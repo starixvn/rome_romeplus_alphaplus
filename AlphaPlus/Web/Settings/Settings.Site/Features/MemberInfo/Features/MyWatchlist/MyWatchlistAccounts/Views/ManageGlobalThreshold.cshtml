@@ -1,0 +1,33 @@
+﻿@model ManageGlobalThresholdViewModel
+
+@{
+    Layout = "~/Features/MemberInfo/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Resources.GlobalThresholdSettings;
+}
+
+@section Styles {
+    @StaticResources.RenderStylesWithDarkMode("~/Features/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings")
+    @StaticResources.RenderStylesWithMedia(767,
+        "~/Features/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings-media")
+}
+
+@section Scripts {
+    @StaticResources.RenderScripts("~/Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/manage-global-threshold")
+}
+
+<div class="box-settings">
+    <div id="alert-message"></div>
+    <p class="note">@Resources.GlobalThresholdSettingsNote</p>
+    <p>@Resources.GlobalThresholdWillBeAppliedForMembers</p>
+    @await Html.PartialAsync("~/Features/MemberInfo/Features/MyWatchlist/Shared/Views/ThresholdInputGroup.cshtml",
+            Model.Threshold)
+    <p class="note">@Resources.ThresholdSettingsNote</p>
+    <button class="btn-submit" id="btn-update">@Resources.Update</button>
+</div>
+
+@Html.AntiForgeryToken()
+<input type="hidden" id="member-info-url" value='@MicroSites.SettingUrl()'>
+<input type="hidden" id="old-winning-threshold" value="@Model.Threshold.WinningThreshold" />
+<input type="hidden" id="old-losing-threshold" value="@Model.Threshold.LosingThreshold" />
+<input type="hidden" id="no-change-to-update-error" value="@Resources.NoChangeToUpdateError" />
+<input type="hidden" id="update-successfully" value="@Resources.WatchlistUpdateSuccessfully" />

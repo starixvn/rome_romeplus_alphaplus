@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>AlphaPlus.Features.Handbook.API</AssemblyName>
+    <RootNamespace>AlphaPlus.Features.Handbook.API</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\AlphaPlus.Shared.AppResources\AlphaPlus.Shared.AppResources.csproj" />
+    <ProjectReference Include="..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
+  </ItemGroup>
+</Project>

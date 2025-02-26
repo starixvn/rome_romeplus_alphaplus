@@ -1,0 +1,49 @@
+﻿.accordion-item {
+    --border-accordion: #dcdcdc;
+    --bg-accordion: #f9f9f9;
+    --bg-accordion2: #ffffff;
+    --text-accordion: #666666;
+    border: 1px solid var(--border-accordion);
+
+    .accordion-header {
+        height: 36px;
+        line-height: 36px;
+        padding: 0 6px;
+        border: none;
+        background-color: var(--bg-accordion);
+        color: var(--text-color);
+        font-weight: bold;
+        font-size: var(--font-size);
+        cursor: pointer;
+        user-select: none;
+
+        &.collapsed {
+            [class^=icon-], [class*=" icon-"] {
+                transform: rotate(-90deg);
+            }
+        }
+
+        [class^=icon-], [class*=" icon-"] {
+            margin-bottom: 0;
+            transition: 0.35s;
+            position: relative;
+            top: -2px;
+        }
+    }
+}
+
+.collapse:not(.show) {
+    display: none;
+}
+
+.collapsing {
+    height: 0;
+    overflow: hidden;
+    transition: height .35s ease;
+}
+
+.accordion-body {
+    border-top: 1px solid var(--border-accordion);
+    background-color: var(--bg-accordion2);
+    padding: 15px;
+}

@@ -1,0 +1,54 @@
+@{
+    Layout = null;
+    void RenderForecastCell(decimal value)
+    {
+        <td class="fcnum text-right">
+            @if (value > 0)
+            {
+                <span class="positive">@value.ToString("N0")</span>
+            }
+            else
+            {
+                @value.ToString("N2")
+            }
+        </td>
+    }
+}
+@model IEnumerable<Outright>
+@if (Model.Any())
+{
+    var number = 1;
+    var matchIndex = 0;
+    var currentLeagueId = 0;
+    foreach (var item in Model)
+    {
+        if (currentLeagueId == item.LeagueId)
+        {
+            matchIndex++;
+        }
+        else
+        {
+            matchIndex = 0;
+            currentLeagueId = item.LeagueId;
+            <tr class="col-league">
+                <td colspan="4">@item.LeagueName</td>
+            </tr>
+        }
+        <tr class="@(matchIndex % 2 == 0 ? string.Empty : "odd")">
+            <td>@(number++)</td>
+            <td><view-betlist matchid="@item.OrId" bettype="BetTypeConstants.Outright" text="@item.TeamName" /></td>
+            <td class="text-right">
+                <number value="@item.Balance" />
+            </td>
+            @{
+                RenderForecastCell(item.TotalWinLost);
+            }
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td colspan="4" class="text-center">@Resources.NoInformationIsAvailable</td>
+    </tr>
+}

@@ -1,0 +1,50 @@
+@{
+    ViewData["Title"] = Resources.NumberGame;
+}
+@section Styles {
+    <link rel="stylesheet" href="~/bundles/totalbets/totalbets.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/bundles/totalbets/totalbets.js" asp-append-version="true"></script>
+}
+@model IEnumerable<NumberGame>
+<div class="page-title">@Resources.NumberGame</div>
+<div class="filter">
+    <div class="auto-refresh"></div>
+</div>
+<table class="tblRpt tblRpt-bordered width-100per" id="tblRpt">
+    <thead>
+        <tr>
+            <th rowspan="2" class="w-number">#</th>
+            <th rowspan="2">@Resources.Event</th>
+            <th colspan="2">@Resources._1stBall</th>
+            <th colspan="2">@Resources.LastBall</th>
+            <th colspan="3">@Resources.NextBall</th>
+            <th colspan="4">@Resources.NextCombo</th>
+            <th rowspan="2" title="@Resources.FullTimeOddEven">@Resources.FTDotOSlashE</th>
+            <th colspan="2">@Resources.NumberWheel</th>
+        </tr>
+        <tr class="thead-row2">
+            <th title="@Resources.OverSlashUnder">@Resources.OSlashU</th>
+            <th title="@Resources.OddSlashEven">@Resources.OSlashE</th>
+            <th title="@Resources.OverSlashUnder">@Resources.OSlashU</th>
+            <th title="@Resources.OddSlashEven">@Resources.OSlashE</th>
+            <th title="@Resources.OverSlashUnder">@Resources.OSlashU</th>
+            <th title="@Resources.OddSlashEven">@Resources.OSlashE</th>
+            <th>@Resources.NextRSlashB</th>
+            <th title="@Resources.OverCommaOdd">@Resources.OCommaO</th>
+            <th title="@Resources.UnderCommaOdd">@Resources.UCommaO</th>
+            <th title="@Resources.OverCommaEven">@Resources.OCommaE</th>
+            <th title="@Resources.UnderCommaEven">@Resources.UCommaE</th>
+            <th>@Resources.LiveGame</th>
+            <th>@Resources.PreGame</th>
+        </tr>
+    </thead>
+    <tbody>
+        <partial name="NumberGamePartial" />
+    </tbody>
+</table>
+<input type="hidden" id="hidden-autoRefreshRefreshText" value="@Resources.Refresh" />
+<input type="hidden" id="hidden-autoRefreshSeconds" value="15,30,45,60,75" />
+<input type="hidden" id="hidden-autoRefreshUrl" value="NumberGame?partial=true" />
+<input type="hidden" id="hidden-autoRefreshSavedSecondKey" value="NumberGame" />

@@ -1,0 +1,27 @@
+{
+    "SecurityCode": {
+        "IsActive": true,
+        "IsSiteMain": true,
+        "Paths": [
+            "SecurityCode/ResetSecurityCode",
+            "SecurityCode/ChangeUserOwnSecurityCode",
+            "Password/ChangePassword",
+            "Password/ResetMainAccountPassword",
+            "Password/ResetSubAccountPassword",
+            "Otp/SetUpOtp",
+            "Otp/ResetOtp",
+            "ChatBot/Setup",
+            "ProtectionCode/Setup",
+            "ApiKey/CreateApiKey",
+            "ApiKey/UpdateApiKey",
+            "ApiKey/RevokeApiKey",
+            "ApiKey/ApiKeyManagement"
+        ],
+        "BetListsPaths": [],
+        "StatementPaths": [],
+        "Sites": [],
+        "VerifyingOtpPath": "Otp/VerifyOtp",
+        "VerifyingSecurityCodePath": "SecurityCode/VerifySecurityCode",
+        "ResetSecurityCodePath": "SecurityCode/ChangeSecurityCode"
+    }
+}

@@ -1,0 +1,493 @@
+﻿[
+  {
+    "outputFileName": "wwwroot/assets/bundles/default-index.js",
+    "inputFiles": [
+      "assets/scripts/home/assetsCDNHealthcheck.js",
+      "assets/scripts/core.js",
+      "assets/scripts/home/toast-message.js",
+      "assets/scripts/home/index-manager.js",
+      "assets/scripts/old-main.js",
+      "assets/scripts/home/header-nav.js",
+      "assets/scripts/home/header-msg.js",
+      "assets/scripts/home/um-message.js",
+      "assets/scripts/home/menu-bar.js",
+      "assets/scripts/customer-profiles/brief-profile.js",
+      "assets/scripts/dashboard/popup-announcement.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/suggest-telegram-otp.js",
+    "inputFiles": [
+      "assets/scripts/core.js",
+      "assets/scripts/home/suggest-telegram-otp.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/default-dashboard.js",
+    "inputFiles": [
+      "assets/scripts/core.js",
+      "assets/scripts/dashboard/dashboard.js",
+      "assets/scripts/dashboard/statistics.js",
+      "assets/scripts/dashboard/notice.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/default-index.css",
+    "inputFiles": [
+      "assets/styles/Home/page.css",
+      "assets/styles/customer-profiles/customer-profile.css",
+      "assets/styles/Home/popup-announcement.css",
+      "assets/styles/Home/tooltip.css",
+      "assets/styles/Home/popup-message.css",
+      "assets/styles/Home/old-main.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/security/security.css",
+    "inputFiles": [
+      "assets/styles/security/security.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/security/verify-security-code.css",
+    "inputFiles": [
+      "assets/styles/security/verify-security-code.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/default-home.css",
+    "inputFiles": [
+      "assets/styles/Home/home.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/security/security-code/verify-securitycode.js",
+    "inputFiles": [
+      "assets/scripts/core.js",
+      "assets/scripts/security/security-code/security-code-resources.js",
+      "assets/scripts/security/security-helper.js",
+      "assets/scripts/security/security-code/verify-securitycode.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/security/security-code/change-securitycode-by-forcing.js",
+    "inputFiles": [
+      "assets/scripts/aes.js",
+      "assets/scripts/core.js",
+      "assets/scripts/security/security-code/security-code-resources.js",
+      "assets/scripts/security/security-helper.js",
+      "assets/scripts/security/security-code/change-securitycode-by-forcing.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/security/security-code/change-securitycode-firstlogin.js",
+    "inputFiles": [
+      "assets/scripts/aes.js",
+      "assets/scripts/core.js",
+      "assets/scripts/security/security-code/security-code-resources.js",
+      "assets/scripts/security/security-helper.js",
+      "assets/scripts/security/security-code/change-securitycode-firstlogin.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/security/security-code/change-user-own-securitycode.js",
+    "inputFiles": [
+      "assets/scripts/aes.js",
+      "assets/scripts/core.js",
+      "assets/scripts/security/security-code/security-code-resources.js",
+      "assets/scripts/security/security-helper.js",
+      "assets/scripts/security/security-code/change-user-own-securitycode.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/security/security-code/reset-securitycode.js",
+    "inputFiles": [
+      "assets/scripts/aes.js",
+      "assets/scripts/core.js",
+      "assets/scripts/security/security-code/security-code-resources.js",
+      "assets/scripts/security/security-helper.js",
+      "assets/scripts/security/security-code/reset-securitycode.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/security/password/change-password.js",
+    "inputFiles": [
+      "assets/scripts/aes.js",
+      "assets/scripts/core.js",
+      "assets/scripts/security/password/password-resources.js",
+      "assets/scripts/security/security-helper.js",
+      "assets/scripts/security/password/change-password.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/security/password/reset-main-account-password.js",
+    "inputFiles": [
+      "assets/scripts/aes.js",
+      "assets/scripts/core.js",
+      "assets/scripts/security/password/password-resources.js",
+      "assets/scripts/security/security-helper.js",
+      "assets/scripts/security/password/reset-main-account-password.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/security/password/force-change-password.js",
+    "inputFiles": [
+      "assets/scripts/aes.js",
+      "assets/scripts/core.js",
+      "assets/scripts/security/password/password-resources.js",
+      "assets/scripts/security/security-helper.js",
+      "assets/scripts/security/password/force-change-password.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/security/password/reset-sub-account-password.js",
+    "inputFiles": [
+      "assets/scripts/aes.js",
+      "assets/scripts/core.js",
+      "assets/scripts/security/password/password-resources.js",
+      "assets/scripts/security/security-helper.js",
+      "assets/scripts/security/password/reset-sub-account-password.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/otp/otp.css",
+    "inputFiles": [
+      "assets/styles/otp/otp.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/security/otp/setup-otp.js",
+    "inputFiles": [
+      "assets/scripts/core.js",
+      "assets/scripts/qrcode.js",
+      "assets/scripts/security/otp/setup-otp.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/security/otp/change-otp-telegram-status.js",
+    "inputFiles": [
+      "assets/scripts/core.js",
+      "assets/scripts/security/otp/change-otp-telegram-status.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/security/otp/verify-otp-difference-device.js",
+    "inputFiles": [
+      "assets/scripts/core.js",
+      "assets/scripts/security/security-helper.js",
+      "assets/scripts/security/otp/verify-otp-difference-device.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/security/otp/verify-otp.js",
+    "inputFiles": [
+      "assets/scripts/core.js",
+      "assets/scripts/security/security-helper.js",
+      "assets/scripts/security/otp/verify-otp.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/security/otp/reset-otp.js",
+    "inputFiles": [
+      "assets/scripts/core.js",
+      "assets/scripts/security/otp/reset-otp.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/apikey/apikey.css",
+    "inputFiles": [
+      "assets/styles/apikey/apikey.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/apikey/create-apikey.js",
+    "inputFiles": [
+      "assets/scripts/core.js",
+      "assets/scripts/apikey/create-apikey.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/apikey/apikey-management.js",
+    "inputFiles": [
+      "assets/scripts/core.js",
+      "assets/scripts/apikey/apikey-management.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/apikey/edit-apikey.js",
+    "inputFiles": [
+      "assets/scripts/core.js",
+      "assets/scripts/apikey/edit-apikey.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/apikey/create-apikey-result.js",
+    "inputFiles": [
+      "assets/scripts/core.js",
+      "assets/scripts/apikey/create-apikey-result.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/kick-out.js",
+    "inputFiles": [
+      "assets/scripts/core.js",
+      "assets/scripts/home/kick-out.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/error.css",
+    "inputFiles": [
+      "assets/styles/error/error.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/partial-um/partial-um.css",
+    "inputFiles": [
+      "assets/styles/partial-um/partial-um.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/home-mobile-calculate-07.css",
+    "inputFiles": [
+      "assets/styles/Home/home-mobile-calculate-07.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/page-mobile-calculate-07.css",
+    "inputFiles": [
+      "assets/styles/Home/page-mobile-calculate-07.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/nickname/create-nickname.js",
+    "inputFiles": [
+      "assets/scripts/core.js",
+      "assets/scripts/nickname/create-nickname.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/nickname/nickname.css",
+    "inputFiles": [
+      "assets/styles/nickname/nickname.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/home/le-mtagconfig.js",
+    "inputFiles": [
+      "assets/scripts/home/le-mtagconfig.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/protection-code/protection.css",
+    "inputFiles": [
+      "assets/styles/protection-code/protection.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/protection-code/protection.js",
+    "inputFiles": [
+      "assets/scripts/aes.js",
+      "assets/scripts/core.js",
+      "assets/scripts/security/security-helper.js",
+      "assets/scripts/protection-code/protection.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/contact-us/contact-us.css",
+    "inputFiles": [
+      "assets/styles/contact-us/contact-us.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/telegramchatbot/chatbot.css",
+    "inputFiles": [
+      "assets/styles/telegramchatbot/chatbot.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/telegramchatbot/chatbot-setting.css",
+    "inputFiles": [
+      "assets/styles/telegramchatbot/chatbot-setting.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/telegramchatbot/telegram-chatbot-setting.js",
+    "inputFiles": [
+      "assets/scripts/core.js",
+      "assets/scripts/telegramchatbot/base-telegram-chatbot.js",
+      "assets/scripts/telegramchatbot/telegram-chatbot-setting.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/telegramchatbot/register-account.css",
+    "inputFiles": [
+      "assets/styles/telegramchatbot/register-account.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/telegramchatbot/register-account.js",
+    "inputFiles": [
+      "assets/scripts/core.js",
+      "assets/scripts/telegramchatbot/base-telegram-chatbot.js",
+      "assets/scripts/telegramchatbot/verify-account-telegram-chatbot.js",
+      "assets/scripts/telegramchatbot/add-account-telegram-chatbot.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/tour/profile-picture-tour.js",
+    "inputFiles": [
+      "assets/scripts/tour/base-tour-controller.js",
+      "assets/scripts/tour/profile-picture-tour.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/dashboard/whitelabel.js",
+    "inputFiles": [
+      "assets/scripts/core.js",
+      "assets/scripts/dashboard/whitelabel.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/default-index-dark.css",
+    "inputFiles": [
+      "assets/styles/Home/page-dark.css",
+      "assets/styles/customer-profiles/customer-profile-dark.css",
+      "assets/styles/Home/popup-announcement-dark.css",
+      "assets/styles/Home/tooltip.css",
+      "assets/styles/Home/popup-message.css",
+      "assets/styles/Home/old-main.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/default-home-dark.css",
+    "inputFiles": [
+      "assets/styles/Home/home-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/page-mobile-calculate-07-dark.css",
+    "inputFiles": [
+      "assets/styles/Home/page-mobile-calculate-07-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/home-mobile-calculate-07-dark.css",
+    "inputFiles": [
+      "assets/styles/Home/home-mobile-calculate-07-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/security/verify-security-code-dark.css",
+    "inputFiles": [
+      "assets/styles/security/verify-security-code-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/security/security-dark.css",
+    "inputFiles": [
+      "assets/styles/security/security-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/otp/otp-dark.css",
+    "inputFiles": [
+      "assets/styles/otp/otp-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/error-dark.css",
+    "inputFiles": [
+      "assets/styles/error/error-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/protection-code/protection-dark.css",
+    "inputFiles": [
+      "assets/styles/protection-code/protection-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/contact-us/contact-us-dark.css",
+    "inputFiles": [
+      "assets/styles/contact-us/contact-us-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/telegramchatbot/chatbot-dark.css",
+    "inputFiles": [
+      "assets/styles/telegramchatbot/chatbot-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/telegramchatbot/chatbot-setting-dark.css",
+    "inputFiles": [
+      "assets/styles/telegramchatbot/chatbot-setting-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/telegramchatbot/register-account-dark.css",
+    "inputFiles": [
+      "assets/styles/telegramchatbot/register-account-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/ChatBotBanneri7-dark.css",
+    "inputFiles": [
+      "assets/styles/Home/ChatBotBanneri7-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/ChatBotBanneri7.css",
+    "inputFiles": [
+      "assets/styles/Home/ChatBotBanneri7.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/ChatBotBanneri1-dark.css",
+    "inputFiles": [
+      "assets/styles/Home/ChatBotBanneri1-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/ChatBotBanneri1.css",
+    "inputFiles": [
+      "assets/styles/Home/ChatBotBanneri1.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/apikey/apikey-dark.css",
+    "inputFiles": [
+      "assets/styles/apikey/apikey-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/ip-info/ip-info.css",
+    "inputFiles": [
+      "assets/styles/ip-info/ip-info.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/ip-info/ip-info-dark.css",
+    "inputFiles": [
+      "assets/styles/ip-info/ip-info-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/whitelabel.css",
+    "inputFiles": [
+      "assets/styles/Home/whitelabel.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/tour/common-tour.css",
+    "inputFiles": [
+      "assets/styles/tour/common-tour.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/tour/common-tour-dark.css",
+    "inputFiles": [
+      "assets/styles/tour/common-tour-dark.css"
+    ]
+  }
+]

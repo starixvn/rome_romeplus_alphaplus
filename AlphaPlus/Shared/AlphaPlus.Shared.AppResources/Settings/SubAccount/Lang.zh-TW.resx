@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="alertPasswordEmpty" xml:space="preserve">
+    <value>密碼不能留空</value>
+  </data>
+  <data name="firstname" xml:space="preserve">
+    <value>名</value>
+  </data>
+  <data name="ip" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="lastname" xml:space="preserve">
+    <value>姓</value>
+  </data>
+  <data name="memberinfo" xml:space="preserve">
+    <value>會員資料</value>
+  </data>
+  <data name="msgErrPassWord" xml:space="preserve">
+    <value>請輸入密碼</value>
+  </data>
+  <data name="msgErrUsername" xml:space="preserve">
+    <value>請輸入帳號</value>
+  </data>
+  <data name="msgErrUsernamePassWord" xml:space="preserve">
+    <value>請輸入會員名字及密碼</value>
+  </data>
+  <data name="nickname" xml:space="preserve">
+    <value>暱稱</value>
+  </data>
+  <data name="noInfo" xml:space="preserve">
+    <value>沒資料顯示</value>
+  </data>
+  <data name="notAccessSubAccount" xml:space="preserve">
+    <value>对不起，您不允许修改子账号</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>密碼</value>
+  </data>
+  <data name="statusclosed" xml:space="preserve">
+    <value>關閉</value>
+  </data>
+  <data name="strNotAccessPage" xml:space="preserve">
+    <value>對不起, 您不被允許進入此網頁.</value>
+  </data>
+  <data name="subaccount" xml:space="preserve">
+    <value>子帐号</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="transfer" xml:space="preserve">
+    <value>轉帳</value>
+  </data>
+  <data name="username" xml:space="preserve">
+    <value>用戶名</value>
+  </data>
+  <data name="view" xml:space="preserve">
+    <value>瀏覽</value>
+  </data>
+  <data name="lblNotAuthorized" xml:space="preserve">
+    <value>您沒有使用此功能的權限</value>
+  </data>
+  <data name="lblconfirmclosesubacc" xml:space="preserve">
+    <value>子帳號不被允許編輯.</value>
+  </data>
+  <data name="viewlog" xml:space="preserve">
+    <value>察看日志</value>
+  </data>
+  <data name="noChangeToUpdate" xml:space="preserve">
+    <value>沒有任何的變化更新。</value>
+  </data>
+  <data name="notExist" xml:space="preserve">
+    <value>此賬號不存在</value>
+  </data>
+  <data name="lblPasswordRequire" xml:space="preserve">
+    <value>密码必须至少 8 个字符没有空格和包含至少 3个 以下：
+
+• 大写字母 [A-Z]
+• 小写字母 [a-z]
+• 数字 [0-9]
+• 特殊字符 （!、 @、 # 等。。)
+
+例如： 59D7!4$h, 493abcDE
+注意： 您的密码需有大小写</value>
+  </data>
+  <data name="lblPasswordWrongRule" xml:space="preserve">
+    <value>您的密码不符合最低安全要求</value>
+  </data>
+  <data name="BetLists" xml:space="preserve">
+    <value>投注历史</value>
+  </data>
+  <data name="UsernameIsNotAvailableError" xml:space="preserve">
+    <value>此帳號無效.</value>
+  </data>
+  <data name="BetsAndForecast" xml:space="preserve">
+    <value>投注 &amp; 預測</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>报告</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>修改</value>
+  </data>
+  <data name="addsubaccount" xml:space="preserve">
+    <value>新增子帐号</value>
+  </data>
+  <data name="FullControl" xml:space="preserve">
+    <value>完全控制</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>更改</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>沒有</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>重填</value>
+  </data>
+  <data name="accpermission" xml:space="preserve">
+    <value>賬戶許可</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="editsubacc" xml:space="preserve">
+    <value>修改子帳號</value>
+  </data>
+  <data name="lblPasswordCSample" xml:space="preserve">
+    <value>您的密码必须与示例密码不同。</value>
+  </data>
+  <data name="lblPasswordDAccountName" xml:space="preserve">
+    <value>您的密码不能包含您的用户名或昵称。</value>
+  </data>
+  <data name="SecurityCode" xml:space="preserve">
+    <value>保安碼</value>
+  </data>
+</root>

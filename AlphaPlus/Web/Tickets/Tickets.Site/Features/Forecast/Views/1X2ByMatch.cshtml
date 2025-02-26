@@ -1,0 +1,30 @@
+@{
+    ViewData["Title"] = Resources.Forecast;
+}
+@section Styles {
+    <link rel="stylesheet" href="~/bundles/totalbets/totalbets.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/bundles/forecast/forecast.js" asp-append-version="true"></script>
+}
+@model Forecast1X2ByMatchViewModel
+<div style="padding-top: 1px ;"></div>
+<div class="filter">
+    <div class="auto-refresh"></div>
+</div>
+<table class="tblRpt tblRpt-bordered tbl-forecast text-center" id="tblRpt">
+    <thead>
+        <tr>
+            <th colspan="2">@Resources.Team</th>
+            <th colspan="3">@Resources._1X2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <partial name="1X2Data" model="Model.Forecast1X2" />
+    </tbody>
+</table>
+<input type="hidden" id="hidden-autoRefreshRefreshText" value="@Resources.Refresh" />
+<input type="hidden" id="hidden-autoRefreshSeconds" value="15,30,45,60,75" />
+<input type="hidden" id="hidden-autoRefreshUrl"
+    value="1X2ByMatch?partial=true&matchId=@Model.MatchId&bettype=@Model.BetType" />
+<input type="hidden" id="hidden-autoRefreshSavedSecondKey" value="1X2ByMatch" />

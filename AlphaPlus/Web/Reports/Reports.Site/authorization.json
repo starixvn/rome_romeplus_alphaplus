@@ -1,0 +1,121 @@
+{
+    "Authorization": {
+        "CustIdQueryStringParamNames": [
+            "CustId"
+        ],
+        "CustIdJsonParamNames": [
+            "CustId"
+        ],
+        "GroupPageAccesses": [
+            {
+                "RoleId": 2,
+                "Name": "Agent",
+                "DeniedPages": [
+                    "SuperWinLossDetailByPT",
+                    "IPMatching",
+                    "BetChoiceMatching"
+                ],
+                "PageAccesses": [
+                    {
+                        "Url": "Outstanding",
+                        "Permission": "[E]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "WinLoss",
+                        "Permission": "[E]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "WinLossDetail",
+                        "Permission": "[E]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "MatchWinLossDetail",
+                        "Permission": "[E]"
+                    },
+                    {
+                        "Url": "WinLossAnalysis",
+                        "Permission": "[E]"
+                    },
+                    {
+                        "Url": "WinLossAnalysisChart",
+                        "Permission": "[E]"
+                    },
+                    {
+                        "Url": "WinLossByProduct",
+                        "Permission": "[E]"
+                    },
+                    {
+                        "Url": "CommissionByBetType",
+                        "Permission": "[E]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "Consolidation",
+                        "Permission": "[E]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true,
+                        "IsViewedByGroupHeadline": true
+                    },
+                    {
+                        "Url": "Statement",
+                        "Permission": "[E]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "ProgressiveContribution",
+                        "Permission": "[E]"
+                    },
+                    {
+                        "Url": "BetCreditHistory",
+                        "Permission": "[E]"
+                    },
+                    {
+                        "Url": "MoveStatementHistory",
+                        "Permission": "[E]"
+                    },
+                    {
+                        "Url": "BonusDetail",
+                        "Permission": "[E]",
+                        "IsCheckBelonging": true
+                    }
+                ]
+            },
+            {
+                "RoleId": 3,
+                "Name": "Master",
+                "DeniedPages": [
+                    "SuperWinLossDetailByPT",
+                    "IPMatching",
+                    "BetChoiceMatching"
+                ]
+            },
+            {
+                "RoleId": 4,
+                "Name": "Super",
+                "PageAccesses": [
+                    {
+                        "Url": "SuperWinLossDetailByPT",
+                        "Permission": "[E]"
+                    },
+                    {
+                        "Url": "IPMatching",
+                        "Permission": "[E]"
+                    },
+                    {
+                        "Url": "BetChoiceMatching",
+                        "Permission": "[E]",
+                        "IsCheckBelonging": true
+                    }
+                ]
+            }
+        ]
+    }
+}

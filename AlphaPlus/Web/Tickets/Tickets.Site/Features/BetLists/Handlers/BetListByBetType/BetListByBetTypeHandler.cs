@@ -1,0 +1,54 @@
+using AlphaPlus.BetLists.RunningBetListByBetType;
+using AlphaPlus.BetLists.Shared.Models;
+using AlphaPlus.BetLists.Shared.Services;
+using AlphaPlus.SmartPunter.Services;
+using AlphaPlus.Tickets.Site.Features.BetLists.Requests.BetListByBetType;
+using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.BetListByBetType;
+using AlphaPlus.Tickets.Site.Features.Shared.Models;
+using AlphaPlus.Utilities.IP;
+using Fanex.BetList.Core.Builder;
+using Fanex.BetList.Core.Entities;
+using MediatR;
+using Microsoft.Extensions.Options;
+
+namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.BetListByBetType;
+
+public class BetListByBetTypeHandler(
+    IRunningBetListByBetTypeService runningBetListByBetTypeService,
+    IForecastService forecastService,
+    IBetListHTMLBuilder builder,
+    ITicketHelper ticketHelper,
+    ISmartPunterBetListMonitor monitorService,
+    IPService ipService,
+    IOptions<AppSettings> options) :
+        BetListBaseHandler(builder, ticketHelper, monitorService, ipService, options),
+        IRequestHandler<BetListByBetTypeQuery, BetListByBetTypeViewModel>
+{
+    private readonly IForecastService forecastService = forecastService;
+    private readonly IRunningBetListByBetTypeService runningBetListByBetTypeService = runningBetListByBetTypeService;
+
+    public async Task<BetListByBetTypeViewModel> Handle(BetListByBetTypeQuery message, CancellationToken cancellationToken)
+    {
+        var param = CreateRunningBetListByBetTypeParam(message);
+        var tickets = await runningBetListByBetTypeService.GetBetList(param);
+        var supportScoreMapBetTypeIds = tickets.Any()
+            ? await forecastService.GetBetTypeIdsSupportScoreMap()
+            : [];
+        WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, tickets);
+
+        return new BetListByBetTypeViewModel(
+            message,
+            new BetListData(tickets, null),
+            Builder,
+            TicketHelper,
+            supportScoreMapBetTypeIds);
+    }
+
+    protected internal static RunningBetListByBetTypeParam CreateRunningBetListByBetTypeParam(BetListByBetTypeQuery message)
+        => new RunningBetListByBetTypeParam(
+            message.ViewerId,
+            message.ViewerLevelId,
+            message.BetType,
+            message.DisplayVNIP,
+            message.Site);
+}

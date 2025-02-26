@@ -1,0 +1,35 @@
+﻿@using AlphaPlus.Shared.AppResources.Settings
+
+@{
+    Layout = "_Layout.cshtml";
+    string language = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
+    string baseImagePath = "~/MemberInfo/assets/bundles/CustomerList/MultipleEditSportsBookGuideline/Agent/{0}.{1}.png";
+
+    string figure1 = string.Format(baseImagePath, "1", language);
+    string figure2 = string.Format(baseImagePath, "2", language);
+    string figure3 = string.Format(baseImagePath, "3", language);
+}
+<div class="multiple-edit">
+    <div class="multiple-edit-agent">
+        <ul>
+            <li>
+                <p>@Resources.AgentEditsMultipleMembers_Guideline1</p>
+                <div>
+                    <img src="@Url.Content(figure1)" />
+                    <p>@Html.Raw(Resources.AgentEditsMultipleMembers_Figure1)</p>
+                </div>
+            </li>
+            <li>
+                <p>@Html.Raw(Resources.AgentEditsMultipleMembers_Guideline2)</p>
+                <div>
+                    <img src="@Url.Content(figure2)" />
+                    <p>@Html.Raw(Resources.AgentEditsMultipleMembers_Figure2)</p>
+                </div>
+                <div>
+                    <img src="@Url.Content(figure3)" />
+                    <p>@Html.Raw(Resources.AgentEditsMultipleMembers_Figure3)</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

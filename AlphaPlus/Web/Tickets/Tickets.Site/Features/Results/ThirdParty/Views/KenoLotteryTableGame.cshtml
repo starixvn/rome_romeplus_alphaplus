@@ -1,0 +1,11 @@
+@using AlphaPlus.Tickets.Site.Features.Results.ThirdParty;
+@{
+    Layout = "~/Features/Results/Views/_Layout.cshtml";
+    ViewBag.Title = Model.ProductName;
+}
+@model KenoLotteryTableGameResultViewModel
+<div role="tabpanel" class="tab-pane active">
+    <div class="filter">
+        <a href="@(Model.ResultUrl)" id="result-link" class="lnk" target="_blank">@Model.ResultLinkText</a>
+    </div>
+</div>

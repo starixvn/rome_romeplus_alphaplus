@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AA" xml:space="preserve">
+    <value>AA</value>
+  </data>
+  <data name="AD" xml:space="preserve">
+    <value>AD</value>
+  </data>
+  <data name="AH" xml:space="preserve">
+    <value>AH</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="AllEvents" xml:space="preserve">
+    <value>All Events</value>
+  </data>
+  <data name="Apr" xml:space="preserve">
+    <value>Apr</value>
+  </data>
+  <data name="Aug" xml:space="preserve">
+    <value>Aug</value>
+  </data>
+  <data name="Away" xml:space="preserve">
+    <value>Away</value>
+  </data>
+  <data name="AwayNoBet" xml:space="preserve">
+    <value>Away No Bet</value>
+  </data>
+  <data name="BadRequest" xml:space="preserve">
+    <value>Bad Request</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Balance</value>
+  </data>
+  <data name="BetCount" xml:space="preserve">
+    <value>Bet Count</value>
+  </data>
+  <data name="BetList" xml:space="preserve">
+    <value>Bet List</value>
+  </data>
+  <data name="BetType" xml:space="preserve">
+    <value>Bet Type</value>
+  </data>
+  <data name="BetTypes" xml:space="preserve">
+    <value>Bet Types</value>
+  </data>
+  <data name="BetsAndForecast" xml:space="preserve">
+    <value>Bets &amp; Forecast</value>
+  </data>
+  <data name="BetsAndForecastGuidelines" xml:space="preserve">
+    <value>Bets &amp; Forecast Guidelines</value>
+  </data>
+  <data name="BrowserIsOutOfDate" xml:space="preserve">
+    <value>Your browser is out of date and might not be working properly width our website. For a better support, we strongly recommend that you upgrade to a newer version.</value>
+  </data>
+  <data name="ClickToUpdateBrowser" xml:space="preserve">
+    <value>Click here to update your browser</value>
+  </data>
+  <data name="ClickToViewScoreMapInfo" xml:space="preserve">
+    <value>Click to view Score Map Info</value>
+  </data>
+  <data name="ConnectionFailedTo3rd" xml:space="preserve">
+    <value>Connect failed to {0}</value>
+  </data>
+  <data name="DA" xml:space="preserve">
+    <value>DA</value>
+  </data>
+  <data name="DD" xml:space="preserve">
+    <value>DD</value>
+  </data>
+  <data name="DH" xml:space="preserve">
+    <value>DH</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="DeadBall" xml:space="preserve">
+    <value>Dead Ball</value>
+  </data>
+  <data name="Dec" xml:space="preserve">
+    <value>Dec</value>
+  </data>
+  <data name="DrawNoBet" xml:space="preserve">
+    <value>Draw No Bet</value>
+  </data>
+  <data name="DrawSlashNoDraw" xml:space="preserve">
+    <value>Draw/No Draw</value>
+  </data>
+  <data name="Event" xml:space="preserve">
+    <value>Event</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>Export to Excel</value>
+  </data>
+  <data name="FT" xml:space="preserve">
+    <value>FT</value>
+  </data>
+  <data name="FTDotOSlashE" xml:space="preserve">
+    <value>FT.O/E</value>
+  </data>
+  <data name="Feb" xml:space="preserve">
+    <value>Feb</value>
+  </data>
+  <data name="FirstGoal" xml:space="preserve">
+    <value>First Goal</value>
+  </data>
+  <data name="Forecast" xml:space="preserve">
+    <value>Forecast</value>
+  </data>
+  <data name="ForecastAway" xml:space="preserve">
+    <value>Forecast Away</value>
+  </data>
+  <data name="ForecastHome" xml:space="preserve">
+    <value>Forecast Home</value>
+  </data>
+  <data name="ForecastWinLoss" xml:space="preserve">
+    <value>Forecast Win/Loss</value>
+  </data>
+  <data name="Forecast_Popup_1" xml:space="preserve">
+    <value>It starts with the new and intuitive menu</value>
+  </data>
+  <data name="Forecast_Popup_2" xml:space="preserve">
+    <value>The meaningful LIVE Forecast Win Loss of Handicap</value>
+  </data>
+  <data name="Forecast_Popup_3" xml:space="preserve">
+    <value>Old Forecast Win Loss always starts from Score 0.</value>
+  </data>
+  <data name="Forecast_Popup_4" xml:space="preserve">
+    <value>New Forecast Win Loss starts from Current Score.</value>
+  </data>
+  <data name="Forecast_Popup_5" xml:space="preserve">
+    <value>Each bet type has its own Forecast Win Loss display, please refer to this guideline for more details.</value>
+  </data>
+  <data name="Forecast_Title" xml:space="preserve">
+    <value>Take a quick tour of Bets &amp; Forecast</value>
+  </data>
+  <data name="Forecast_Title_Content" xml:space="preserve">
+    <value>It’s the fastest and most centralized Total Bets and Forecast ever.</value>
+  </data>
+  <data name="Forecast_Title_LetsGo" xml:space="preserve">
+    <value>Let’s go</value>
+  </data>
+  <data name="Forecast_Title_NotNow" xml:space="preserve">
+    <value>Not now</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="FullTime" xml:space="preserve">
+    <value>Full Time</value>
+  </data>
+  <data name="FullTimeOddEven" xml:space="preserve">
+    <value>Full Time Odd Even</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="HA" xml:space="preserve">
+    <value>HA</value>
+  </data>
+  <data name="HD" xml:space="preserve">
+    <value>HD</value>
+  </data>
+  <data name="HDPOULive" xml:space="preserve">
+    <value>Handicap/Over Under/Live</value>
+  </data>
+  <data name="HH" xml:space="preserve">
+    <value>HH</value>
+  </data>
+  <data name="HT" xml:space="preserve">
+    <value>HT</value>
+  </data>
+  <data name="HTSlashFT" xml:space="preserve">
+    <value>HT/FT</value>
+  </data>
+  <data name="HalfTime" xml:space="preserve">
+    <value>Half Time</value>
+  </data>
+  <data name="Handicap" xml:space="preserve">
+    <value>Handicap</value>
+  </data>
+  <data name="HideMatch" xml:space="preserve">
+    <value>Hide Match</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="HomeNoBet" xml:space="preserve">
+    <value>Home No Bet</value>
+  </data>
+  <data name="HomeSlashAway" xml:space="preserve">
+    <value>Home/Away</value>
+  </data>
+  <data name="Jan" xml:space="preserve">
+    <value>Jan</value>
+  </data>
+  <data name="Jul" xml:space="preserve">
+    <value>Jul</value>
+  </data>
+  <data name="Jun" xml:space="preserve">
+    <value>Jun</value>
+  </data>
+  <data name="Keno" xml:space="preserve">
+    <value>RNG Keno</value>
+  </data>
+  <data name="LastBall" xml:space="preserve">
+    <value>Last Ball</value>
+  </data>
+  <data name="LastGoal" xml:space="preserve">
+    <value>Last Goal</value>
+  </data>
+  <data name="League" xml:space="preserve">
+    <value>League</value>
+  </data>
+  <data name="Live" xml:space="preserve">
+    <value>Live</value>
+  </data>
+  <data name="LiveBall" xml:space="preserve">
+    <value>Live Ball</value>
+  </data>
+  <data name="LiveGame" xml:space="preserve">
+    <value>Live Game</value>
+  </data>
+  <data name="Mar" xml:space="preserve">
+    <value>Mar</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>May</value>
+  </data>
+  <data name="MixParlay" xml:space="preserve">
+    <value>Mix Parlay</value>
+  </data>
+  <data name="MoneyLine" xml:space="preserve">
+    <value>Money Line</value>
+  </data>
+  <data name="NextBall" xml:space="preserve">
+    <value>Next Ball</value>
+  </data>
+  <data name="NextCombo" xml:space="preserve">
+    <value>Next Combo</value>
+  </data>
+  <data name="NextRSlashB" xml:space="preserve">
+    <value>Next R/B</value>
+  </data>
+  <data name="NoGoal" xml:space="preserve">
+    <value>No Goal</value>
+  </data>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>No information is available</value>
+  </data>
+  <data name="NonLive" xml:space="preserve">
+    <value>Non-Live</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>You are not authorized on this function.</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="Nov" xml:space="preserve">
+    <value>Nov</value>
+  </data>
+  <data name="NumberGame" xml:space="preserve">
+    <value>Number Game</value>
+  </data>
+  <data name="NumberGameNo" xml:space="preserve">
+    <value>Number Game No</value>
+  </data>
+  <data name="NumberWheel" xml:space="preserve">
+    <value>Number Wheel</value>
+  </data>
+  <data name="OCommaE" xml:space="preserve">
+    <value>O,E</value>
+  </data>
+  <data name="OCommaO" xml:space="preserve">
+    <value>O,O</value>
+  </data>
+  <data name="OSlashE" xml:space="preserve">
+    <value>O/E</value>
+  </data>
+  <data name="OSlashU" xml:space="preserve">
+    <value>O/U</value>
+  </data>
+  <data name="Oct" xml:space="preserve">
+    <value>Oct</value>
+  </data>
+  <data name="OddSlashEven" xml:space="preserve">
+    <value>Odd/Even</value>
+  </data>
+  <data name="Outright" xml:space="preserve">
+    <value>Outright</value>
+  </data>
+  <data name="OutrightResults" xml:space="preserve">
+    <value>Outright Results</value>
+  </data>
+  <data name="OverCommaEven" xml:space="preserve">
+    <value>Over, Even</value>
+  </data>
+  <data name="OverCommaOdd" xml:space="preserve">
+    <value>Over, Odd</value>
+  </data>
+  <data name="OverSlashUnder" xml:space="preserve">
+    <value>Over/Under</value>
+  </data>
+  <data name="PartialUMAnnouncement" xml:space="preserve">
+    <value>We're updating this function for a better experience. Thus, this function is turned off temporarily ({0} - {1} (GMT+8)). Please try again later and sorry for the inconvenience.</value>
+  </data>
+  <data name="Platform_0" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="Platform_1" xml:space="preserve">
+    <value>Desktop</value>
+  </data>
+  <data name="Platform_2" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="Platform_3" xml:space="preserve">
+    <value>APP</value>
+  </data>
+  <data name="Platform_99" xml:space="preserve">
+    <value>Uncategorized</value>
+  </data>
+  <data name="Platform_NA" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="Platform_Uncategorized" xml:space="preserve">
+    <value>Uncategorized</value>
+  </data>
+  <data name="PleaseChooseABetType" xml:space="preserve">
+    <value>Please choose a bet type.</value>
+  </data>
+  <data name="PleaseChooseAMatch" xml:space="preserve">
+    <value>Please choose a match</value>
+  </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>Please Select</value>
+  </data>
+  <data name="PreGame" xml:space="preserve">
+    <value>Pre Game</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="ResultLinkText" xml:space="preserve">
+    <value>Click here to open {0} results</value>
+  </data>
+  <data name="ResultPopupTitle" xml:space="preserve">
+    <value>{0} Result</value>
+  </data>
+  <data name="Results" xml:space="preserve">
+    <value>Results</value>
+  </data>
+  <data name="Score" xml:space="preserve">
+    <value>Score</value>
+  </data>
+  <data name="ScoreMap" xml:space="preserve">
+    <value>Score Map</value>
+  </data>
+  <data name="ScoreMapInformation" xml:space="preserve">
+    <value>Score Map Information</value>
+  </data>
+  <data name="ScoreMapInformationDescription" xml:space="preserve">
+    <value>Check boxes in Score Map function are applied to bet types as following:</value>
+  </data>
+  <data name="ScoreMapNoteContent" xml:space="preserve">
+    <value>This information is for reference only. It might become obsolete, please contact CSD for more information.</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="SelectAnEvent" xml:space="preserve">
+    <value>Select an event</value>
+  </data>
+  <data name="SelectAtLeastOneEvent" xml:space="preserve">
+    <value>Please select at least one event</value>
+  </data>
+  <data name="SelectMatch" xml:space="preserve">
+    <value>Select Match</value>
+  </data>
+  <data name="SelectedEvents" xml:space="preserve">
+    <value>Selected Event(s)</value>
+  </data>
+  <data name="Sep" xml:space="preserve">
+    <value>Sep</value>
+  </data>
+  <data name="ShowAllLeagues" xml:space="preserve">
+    <value>All Leagues</value>
+  </data>
+  <data name="ShowAllLeaguesExcelTitle" xml:space="preserve">
+    <value>Show All Leagues</value>
+  </data>
+  <data name="Soccer" xml:space="preserve">
+    <value>Soccer</value>
+  </data>
+  <data name="Sport" xml:space="preserve">
+    <value>Sport</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Subtotal_com" xml:space="preserve">
+    <value>Subtotal(Com.)</value>
+  </data>
+  <data name="Subtotal_wl" xml:space="preserve">
+    <value>Subtotal(winlost)</value>
+  </data>
+  <data name="SystemParlay" xml:space="preserve">
+    <value>System Parlay</value>
+  </data>
+  <data name="Team" xml:space="preserve">
+    <value>Team</value>
+  </data>
+  <data name="ThereIsNoData" xml:space="preserve">
+    <value>There is no data</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="TotalAway" xml:space="preserve">
+    <value>Total Away</value>
+  </data>
+  <data name="TotalBets" xml:space="preserve">
+    <value>Total Bets</value>
+  </data>
+  <data name="TotalGoal" xml:space="preserve">
+    <value>Total Goal</value>
+  </data>
+  <data name="TotalGoal01" xml:space="preserve">
+    <value>0-1</value>
+  </data>
+  <data name="TotalGoal23" xml:space="preserve">
+    <value>2-3</value>
+  </data>
+  <data name="TotalGoal46" xml:space="preserve">
+    <value>4-6</value>
+  </data>
+  <data name="TotalGoal4Over" xml:space="preserve">
+    <value>4&amp;Over</value>
+  </data>
+  <data name="TotalGoal7Over" xml:space="preserve">
+    <value>7&amp;Over</value>
+  </data>
+  <data name="TotalHome" xml:space="preserve">
+    <value>Total Home</value>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>Turnover</value>
+  </data>
+  <data name="UCommaE" xml:space="preserve">
+    <value>U,E</value>
+  </data>
+  <data name="UCommaO" xml:space="preserve">
+    <value>U,O</value>
+  </data>
+  <data name="UnderCommaEven" xml:space="preserve">
+    <value>Under, Even</value>
+  </data>
+  <data name="View1stHandicapForecast" xml:space="preserve">
+    <value>View 1st Handicap Forecast</value>
+  </data>
+  <data name="View1stOverUnderForecast" xml:space="preserve">
+    <value>View 1st Over/Under Forecast</value>
+  </data>
+  <data name="ViewDataFromDate" xml:space="preserve">
+    <value>You can view the report data from {0}.</value>
+  </data>
+  <data name="ViewHandicapForecast" xml:space="preserve">
+    <value>View Handicap Forecast</value>
+  </data>
+  <data name="ViewOverUnderForecast" xml:space="preserve">
+    <value>View Over Under Forecast</value>
+  </data>
+  <data name="Win" xml:space="preserve">
+    <value>Win</value>
+  </data>
+  <data name="_1X2" xml:space="preserve">
+    <value>1X2</value>
+  </data>
+  <data name="_1stBall" xml:space="preserve">
+    <value>1st Ball</value>
+  </data>
+  <data name="_1stHalf" xml:space="preserve">
+    <value>1st Half</value>
+  </data>
+  <data name="_1stHdp" xml:space="preserve">
+    <value>1st Hdp</value>
+  </data>
+  <data name="_1stOU" xml:space="preserve">
+    <value>1st OU</value>
+  </data>
+  <data name="agentPT" xml:space="preserve">
+    <value>Agent PT</value>
+  </data>
+  <data name="agentptcomm" xml:space="preserve">
+    <value>Agent PT/ Comm</value>
+  </data>
+  <data name="choice" xml:space="preserve">
+    <value>Choice</value>
+  </data>
+  <data name="ipnote" xml:space="preserve">
+    <value>Country info provided by IP2Location™ and DNSstuff is for reference only, without warranty. For current and accurate info, consult reliable sources if needed</value>
+  </data>
+  <data name="lblComm" xml:space="preserve">
+    <value>Comm</value>
+  </data>
+  <data name="masterPT" xml:space="preserve">
+    <value>Master PT</value>
+  </data>
+  <data name="masterptcomm" xml:space="preserve">
+    <value>Master PT/ Comm</value>
+  </data>
+  <data name="member" xml:space="preserve">
+    <value>Member</value>
+  </data>
+  <data name="memberBetList" xml:space="preserve">
+    <value>Member Bet List</value>
+  </data>
+  <data name="number" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="odds" xml:space="preserve">
+    <value>Odds</value>
+  </data>
+  <data name="place" xml:space="preserve">
+    <value>Place</value>
+  </data>
+  <data name="platform" xml:space="preserve">
+    <value>Platform</value>
+  </data>
+  <data name="stake" xml:space="preserve">
+    <value>Stake</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="superPT" xml:space="preserve">
+    <value>Super PT</value>
+  </data>
+  <data name="superptcomm" xml:space="preserve">
+    <value>Super PT/ Comm</value>
+  </data>
+  <data name="transtime" xml:space="preserve">
+    <value>Trans.Time</value>
+  </data>
+  <data name="MemberRisk" xml:space="preserve">
+    <value>To Win</value>
+  </data>
+  <data name="AgentRisk" xml:space="preserve">
+    <value>Agent Risk</value>
+  </data>
+  <data name="MasterRisk" xml:space="preserve">
+    <value>Master Risk</value>
+  </data>
+  <data name="SuperRisk" xml:space="preserve">
+    <value>Super Risk</value>
+  </data>
+  <data name="HomeDrawAwayNoBet" xml:space="preserve">
+    <value>Home/Draw/Away No Bet</value>
+  </data>
+  <data name="FGSlashLG" xml:space="preserve">
+    <value>FG/LG</value>
+  </data>
+</root>

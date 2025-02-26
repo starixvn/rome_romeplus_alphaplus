@@ -1,0 +1,100 @@
+@import '../../styles/mixins';
+:root,
+:root [data-theme='light'] {
+    --custom-link-color: #333333;
+    --custom-link-background-hover: #e5e5e5;
+    --custom-link-color-hover: #333333;
+    --custom-link-icon-background-hover: #fafafa;
+    --custom-link-icon-background: #ededed;
+}
+:root [data-theme='dark'] {
+    --custom-link-color: #919191;
+    --custom-link-background-hover: #3a3a3a;
+    --custom-link-color-hover: #ededed;
+    --custom-link-icon-background-hover: #585858;
+    --custom-link-icon-background: #2F2F2F;
+}
+.custom-link {
+    position: relative;
+    width: 100%;
+    display: block;
+    font-weight: bold;
+    padding: 9px 25px 8px 39px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+    color: var(--custom-link-color);
+
+    &:hover {
+        background-color: var(--custom-link-background-hover);
+        color: var(--custom-link-color-hover);
+        [class^='icon'] {
+            color: var(--custom-link-color-hover);
+            background: var(--custom-link-icon-background-hover);            
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+        }
+    }
+
+    &:after {
+        position: absolute;
+        top: 4px;
+        right: 5px;
+        font-family: Iconalpha, sans-serif !important;
+        font-size: 19px;
+        font-weight: 400;
+        transition: transform 0.3s ease-out;
+    }
+
+    [class^='icon'] {
+        position: absolute;
+        transform: translate(0, -50%);
+        top: 50%;
+        left: 8px;
+        width: 24px;
+        height: 24px;
+        text-align: center;
+        line-height: 24px;
+        background: var(--custom-link-icon-background);
+        color: var(--custom-link-color);
+        border-radius: 5px;
+        font-size: 17px;
+    }
+}
+
+@media only screen and (max-device-width: 767px) {
+    .custom-link {
+        padding: 0 calculateScale(30px) 0 calculateScale(40px);
+        font-size: calculateScale(13px);
+        margin-bottom: 9px;
+        height: calculateScale(36px);
+        line-height: calculateScale(36px);
+
+        &.detail::after {
+            content: '\E93F';
+        }
+
+        &:after {
+            content: '\E942';
+            top: calculateScale(-2px);
+            right: calculateScale(3px);
+            font-size: calculateScale(22px);
+        }
+
+        [class^='icon'] {
+            width: calculateScale(24px);
+            height: calculateScale(24px);
+            font-size: calculateScale(18px);
+            top: 50%;
+            text-align: center;
+            line-height: calculateScale(24px);
+            transform: translate(0, -50%);
+            left: calculateScale(8px);
+        }
+
+        .feature-item-nav {
+            display: inline-block;
+            float: right;
+            text-transform: capitalize;
+        }
+    }
+}

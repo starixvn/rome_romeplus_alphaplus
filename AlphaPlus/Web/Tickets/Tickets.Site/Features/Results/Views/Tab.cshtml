@@ -1,0 +1,42 @@
+﻿@using AlphaPlus.Core.Models
+@model TabViewModel
+<li role="presentation" class="@((Model.SelectedTabName == "normal") ? "active" : string.Empty)">
+    <a id="tabNormal" asp-action="normal" asp-controller="results">@Resources.Normal</a>
+</li>
+<li role="presentation" class="@((Model.SelectedTabName == "outright") ? "active" : string.Empty)">
+    <a id="tabOutright" asp-action="outright" asp-controller="results">@Resources.Outright</a>
+</li>
+@if (Model.IsEnabledKenoTab)
+{
+    <li role="presentation" class="@((Model.SelectedTabName == "keno") ? "active" : string.Empty)">
+        <a id="tabKeno" asp-action="keno" asp-controller="results">@Resources.Keno</a>
+    </li>
+}
+@if (Model.IsEnableLottery)
+{
+    <li role="presentation" class="@((Model.SelectedTabName == "lottery") ? "active" : string.Empty)">
+        <a id="tablottery" asp-action="lottery"
+            asp-controller="results">@Model.GetProductName(ProductIdConstants.Lottery)</a>
+    </li>
+}
+@if (Model.IsEnableVirtualGames)
+{
+    <li role="presentation" class="@((Model.SelectedTabName == "virtualgames") ? "active" : string.Empty)">
+        <a id="tabvirtualgames" asp-action="virtualgames"
+            asp-controller="results">@Model.GetProductName(ProductIdConstants.VirtualGames)</a>
+    </li>
+}
+@if (Model.IsEnableTableGames)
+{
+    <li role="presentation" class="@((Model.SelectedTabName == "tablegames") ? "active" : string.Empty)">
+        <a id="tabtablegames" asp-action="tableGames"
+            asp-controller="results">@Model.GetProductName(ProductIdConstants.TableGames)</a>
+    </li>
+}
+@if (Model.IsEnableSportsLottery)
+{
+    <li role="presentation" class="@((Model.SelectedTabName == "sportslottery") ? "active" : string.Empty)">
+        <a id="tabsportslottery" asp-action="sportslottery"
+            asp-controller="results">@Model.GetProductName(ProductIdConstants.SportsLottery)</a>
+    </li>
+}

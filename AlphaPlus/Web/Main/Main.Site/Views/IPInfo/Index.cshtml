@@ -1,0 +1,53 @@
+@{
+    Layout = null;
+}
+@using AlphaPlus.Shared.AppResources.Main
+@using AlphaPlus.Main.Site.Features.IPInfo
+@model IPInfoViewModel
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+
+    <link href="@($"~/assets/bundles/ip-info/ip-info{StaticResources.GetDarkModeName()}.css")" rel="stylesheet"
+        type="text/css" asp-append-version="true" />
+    @GoogleAnalyticHelper.GtagScript()
+</head>
+
+<body>
+    @GoogleAnalyticHelper.GtagNoScript()
+    <table class="tbl">
+        <tr>
+            <td>@Resources.IP</td>
+            <td class="tdvalue">@Model.IP</td>
+        </tr>
+        <tr>
+            <td>@Resources.Country</td>
+            <td class="tdvalue">@(Model.IsValid ? Model.IPInfo.CountryLong + " " : string.Empty)
+                @if (Model.IsValid)
+                {
+                    <img src='@($"assets/images/Flags/{Model.IPInfo.CountryShort.ToLowerInvariant()}.gif")' />
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>@Resources.City</td>
+            <td class="tdvalue">@(Model.IsValid ? Model.IPInfo.IpCity : string.Empty)</td>
+        </tr>
+    </table>
+    <div class="note">
+        @Html.Raw(string.Format(Resources.IPNote, $"http://redirect.me/?https://www.infobyip.com/ip-{Model.IP}.html"))
+    </div>
+    <div class="note">
+        @Resources.ipv6note
+        <br />
+        @Resources.ForExample
+        <br />
+        @Resources.ipv61
+        <br />
+        @Resources.ipv62
+    </div>
+</body>
+
+</html>

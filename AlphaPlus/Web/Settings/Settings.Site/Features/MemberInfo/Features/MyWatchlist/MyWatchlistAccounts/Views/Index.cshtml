@@ -1,0 +1,215 @@
+﻿@using Newtonsoft.Json
+@model MyWatchlistAccountsViewModel
+
+@{
+    Layout = "~/Features/MemberInfo/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Resources.MyWatchlist;
+}
+
+@section Styles {
+    @StaticResources.AssetStyles.RenderWithDarkMode(
+                        "/bundles/site-memberinfo/daterangepicker",
+                        "/bundles/site-asset/data-table",
+                        $"/bundles/site-memberinfo/tab-{Model.CustLevel.ToLowerInvariant()}")
+    @StaticResources.RenderStylesWithDarkMode("~/Features/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist")
+    @StaticResources.RenderStylesWithMedia(767,
+                        "~/Features/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-media")
+}
+
+@section Scripts {
+            <script type="text/javascript">
+                var watchlistAccountData = @Html.Raw(JsonConvert.SerializeObject(Model.MyWatchListAccountPagingViewModel, Formatting.None));
+            </script>
+    @StaticResources.AssetScripts.RenderCommon("/bundles/site-memberinfo/daterangepicker")
+    @StaticResources.AssetScripts.RenderCommon("/bundles/site-asset/data-table")
+    @StaticResources.RenderScripts("~/Features/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/jquery.easy-autocomplete")
+    @StaticResources.RenderScripts("~/Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/my-watchlist-accounts")
+}
+<div class="my-watchlist-accounts">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation">
+            @Html.ActionLink(Resources.ReachedThreshold, "Index", "ReachedThreshold")
+        </li>
+        <li role="presentation" class="active">
+            <a href="javascript:;" aria-controls="home" role="tab" data-toggle="tab">@Resources.MyWatchlist</a>
+        </li>
+        <li role="presentation">
+            @Html.ActionLink(Resources.MyThresholds, "Index", "MyThresholds")
+        </li>
+        @await Html.PartialAsync("~/Features/MemberInfo/Features/MyWatchlist/Shared/Views/InfoUserGuideTabs.cshtml",
+                                   Model.UserGuideLink)
+    </ul>
+    <div class="box-watchlist">
+        <div class="ttl-box-watchlist">@Resources.WatchlistMemberSummary</div>
+        <div class="body-box-watchlist">
+            <div class="list-total-statement">
+                <div class="item">
+                    <div class="title-total">@Resources.Active</div>
+                    <div class="text-total" id="summary-active-members"></div>
+                </div>
+                <div class="item">
+                    <div class="title-total">@Resources.Monitored</div>
+                    <div class="text-total" id="summary-monitored-members"></div>
+                </div>
+                <div class="item">
+                    <div class="title-total">@Resources.ReachedLimitToday</div>
+                    <div class="text-total" id="summary-reached-daily-limit-members"></div>
+                </div>
+                <div class="item last-item">
+                    <span class="title-total">@Resources.UnlimitedThreshold</span>
+                    <div class="text-total" id="summary-unlimited-threshold-members"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box-watchlist">
+        <div class="ttl-box-watchlist">@Resources.WatchlistDetails</div>
+        <div class="body-box-watchlist">
+            @using (Html.BeginForm("GetWatchlistAccounts", "MyWatchlistAccounts", FormMethod.Post, new
+            {
+                @class = "form-inline filter form-report",
+                id = "report-form"
+            }))
+            {
+                await Html.RenderPartialAsync("~/Features/MemberInfo/App_Code/Components/DateRangePickerJQuery.cshtml",
+                Model.DateRangePicker);
+                        <div class="form-group">
+                            <label class="label-form-control" for="status-dropdown">@Resources.Status</label>
+                    @Html.DropDownList("status-dropdown", Model.Status, new { id = "status-dropdown" })
+                        </div>
+                        <div class="form-group">
+                            <label class="label-form-control" for="pa-dropdown">@Resources.ProblemAccount</label>
+                    @Html.DropDownList("pa-dropdown", Model.ProblemAccounts, new { id = "pa-dropdown" })
+                        </div>
+                        <div class="form-group username-box">
+                            <label class="label-form-control">@Resources.Username</label>
+                            <input type="text" class="txt-search" id="txt-username" placeholder="@Resources.Username" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="@Resources.Submit" class="btn-submit" id="btn-submit" />
+                        </div>
+                if (Model.CanUpdateAccount)
+                {
+                                    <div class="form-group">
+                                        <button type="button" class="btn-default btn-manage-preset"
+                                            id="btn-manage-preset">@Resources.PersonalThresholdPresets</button>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" class="btn-default btn-global-threshold"
+                                            id="btn-global-threshold">@Resources.GlobalThresholds</button>
+                                    </div>
+                }
+            }
+            @(await
+                        Html.PartialAsync("~/Features/MemberInfo/Features/MyWatchlist/Shared/Views/GlobalThresholdsNote.cshtml",
+                        Model.GlobalThresholdModel, null))
+            <p class="note"><span class="star"></span>@Resources.UnlimitedThresholdNote</p>
+            <div class="table-container">
+                <div class="table-title">
+                    <div class="title">@Resources.MyWatchlist</div>
+                    @if (Model.CanUpdateAccount)
+                    {
+                                <div class="btn-box">
+                                    <button class="btn-submit" id="btn-add-members">@Resources.AddMember</button>
+                                </div>
+                    }
+                </div>
+                <table id="tblRpt" class="hidden tblRpt tblRpt-bordered tblRpt-hover display nowrap"
+                    style="width: 100%">
+                    <thead>
+                        <tr>
+                            @if (!Model.IsMobile)
+                            {
+                                        <th></th>
+                            }
+                            @if (Model.CanUpdateAccount)
+                            {
+                                        <th></th>
+                                        <th></th>
+                            }
+                            <th></th>
+                            @if (Model.IsShowLastLoginColumn)
+                            {
+                                        <th></th>
+                                        <th></th>
+                            }
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            @if (!Model.IsMobile)
+                            {
+                                        <th class="header padding-icon">
+                                    @Resources.No
+                                        </th>
+                            }
+                            @if (Model.CanUpdateAccount)
+                            {
+                                        <th class="header all padding-icon">
+                                            <input type="checkbox" class="select-all" id="select-all" />
+                                        </th>
+                                        <th class="header all padding-icon">
+                                            <div class="edit-multiple icon-table-edit" data-url="" title="Edit Multiple Setting"
+                                                id="edit-multiple"></div>
+                                        </th>
+                            }
+                            <th class="header all username">@Resources.Username</th>
+                            @if (Model.IsShowLastLoginColumn)
+                            {
+                                        <th class="header desktop">@Resources.LastLogin</th>
+                                        <th class="header desktop">@Resources.AddedDate</th>
+                            }
+                            <th class="header desktop">@Resources.Status</th>
+                            <th class="header desktop">@Resources.ProblemAccount</th>
+                            <th class="header all winning">@Resources.WinningThreshold</th>
+                            <th class="header all losing">@Resources.LosingThreshold</th>
+                            <th class="header" style="width: 100px !important;"></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-sm fade" id="edit-popup" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @if (Model.IsMobile)
+            {
+                        <div class="modal-header">
+                            <h5 class="modal-title"></h5>
+                            <button type="button" class="icon icon-close close" data-dismiss="modal" aria-label="Close"
+                                id="close-edit-popup">
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+            }
+            <div class="modal-body"></div>
+        </div>
+    </div>
+</div>
+@await Html.PartialAsync("~/Features/MemberInfo/Features/MyWatchlist/Shared/Views/InformationLegend.cshtml")
+@Html.AntiForgeryToken()
+<input type="hidden" id="search-account-id" value="@Model.SearchAccountId" />
+<input type="hidden" id="is-mobile" value="@(Model.IsMobile ? "true" : "false")" />
+<input type="hidden" id="can-update-account" value="@(Model.CanUpdateAccount ? "true" : "false")" />
+<input type="hidden" id="member-info-url" value="@MicroSites.SettingUrl()" />
+<input type="hidden" id="edit-account-popup-title" value="@Resources.EditWatchlistAccount" />
+<input type="hidden" id="manage-preset-popup-title" value="@Resources.PersonalThresholdPresetSettings" />
+<input type="hidden" id="are-you-sure-to-remove-accounts" value="@Resources.AreYouSureToRemoveAccounts" />
+<input type="hidden" id="edit-personal-threshold" value="@Resources.EditPersonalThreshold" />
+<input type="hidden" id="remove-account" value="@Resources.RemoveAccount" />
+<input type="hidden" id="edit-multiple-personal-threshold" value="@Resources.EditMultiplePersonalThresholds" />
+<input type="hidden" id="remove-multiple-accounts" value="@Resources.RemoveMultipleAccounts" />
+<input type="hidden" id="page-size" value="@Resources.PageSize" />
+<input type="hidden" id="page" value="@Resources.Page" />
+<input type="hidden" id="of" value="@Resources.Of" />
+<input type="hidden" id="no-info" value="@Resources.NoInformationIsAvailable" />
+<input type="hidden" id="is-show-last-login" value="@(Model.IsShowLastLoginColumn ? "true" : "false")" />
+<input type="hidden" id="edit-text" value="@Resources.Edit" />
+<input type="hidden" id="edit-multiple-text" value="@Resources.EditMultiple" />
+<input type="hidden" id="click-to-set-thresholds-text" value="@Resources.ClickToSetThresholds" />
+<input type="hidden" id="today-string" value="@DateTime.Today.ToShortDateWithSlash()" />

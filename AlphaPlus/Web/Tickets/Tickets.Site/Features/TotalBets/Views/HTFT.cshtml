@@ -1,0 +1,40 @@
+@{
+    ViewData["Title"] = Resources.HTSlashFT;
+}
+@section Styles {
+    <link rel="stylesheet" href="~/bundles/totalbets/totalbets.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/bundles/totalbets/totalbets.js" asp-append-version="true"></script>
+}
+@model IEnumerable<HalfTimeFullTime>
+<div class="page-title">@Resources.HTSlashFT</div>
+<div class="filter">
+    <div class="auto-refresh"></div>
+</div>
+<table class="tblRpt tblRpt-bordered" id="tblRpt">
+    <thead>
+        <tr>
+            <th class="w-number">#</th>
+            <th class="width-200">@Resources.Home</th>
+            <th class="width-200">@Resources.Away</th>
+            <th class="width-50">@Resources.HH</th>
+            <th class="width-50">@Resources.HD</th>
+            <th class="width-50">@Resources.HA</th>
+            <th class="width-50">@Resources.DH</th>
+            <th class="width-50">@Resources.DD</th>
+            <th class="width-50">@Resources.DA</th>
+            <th class="width-50">@Resources.AH</th>
+            <th class="width-50">@Resources.AD</th>
+            <th class="width-50">@Resources.AA</th>
+        </tr>
+    </thead>
+    <tbody>
+        <partial name="HTFTPartial" />
+    </tbody>
+</table>
+<input type="hidden" id="hidden-autoRefreshRefreshText" value="@Resources.Refresh" />
+<input type="hidden" id="hidden-autoRefreshSeconds" value="60,75,90,105,120" />
+<input type="hidden" id="hidden-autoRefreshDefaultSelected" value="90" />
+<input type="hidden" id="hidden-autoRefreshUrl" value="HTFT?partial=true" />
+<input type="hidden" id="hidden-autoRefreshSavedSecondKey" value="HTFT" />

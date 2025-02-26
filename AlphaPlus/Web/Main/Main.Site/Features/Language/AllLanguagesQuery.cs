@@ -1,0 +1,26 @@
+﻿using AlphaPlus.Core.Models;
+using MediatR;
+
+namespace AlphaPlus.Main.Site.Features.Language
+{
+    public class AllLanguagesQuery : IRequest<LanguageViewModel>
+    {
+        private readonly string languageCode;
+
+        public AllLanguagesQuery(string languageCode, bool? disabledVietnamese)
+        {
+            this.languageCode = languageCode ?? new UserSessionExt().Language;
+            DisabledVietnamese = disabledVietnamese ?? AppSettings.DisabledVietnamese;
+        }
+
+        public string LanguageCode
+        {
+            get
+            {
+                return languageCode;
+            }
+        }
+
+        public bool DisabledVietnamese { get; }
+    }
+}

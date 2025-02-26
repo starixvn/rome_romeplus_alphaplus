@@ -1,0 +1,539 @@
+﻿[
+  {
+    "outputFile": "styles/components/blockui.css",
+    "inputFile": "styles/components/blockui.scss"
+  },
+  {
+    "outputFile": "styles/components/modals.css",
+    "inputFile": "styles/components/modals.scss"
+  },
+  {
+    "outputFile": "styles/components/dropdown.css",
+    "inputFile": "styles/components/dropdown.scss"
+  },
+  {
+    "outputFile": "styles/components/buttons.css",
+    "inputFile": "styles/components/buttons.scss"
+  },
+  {
+    "outputFile": "styles/components/tables.css",
+    "inputFile": "styles/components/tables.scss"
+  },
+  {
+    "outputFile": "styles/layout/default-layout/header.css",
+    "inputFile": "styles/layout/default-layout/header.scss"
+  },
+  {
+    "outputFile": "styles/layout/default-layout/navigation.css",
+    "inputFile": "styles/layout/default-layout/navigation.scss"
+  },
+  {
+    "outputFile": "styles/layout/default-layout/sidebar.css",
+    "inputFile": "styles/layout/default-layout/sidebar.scss"
+  },
+  {
+    "outputFile": "styles/components/icon.css",
+    "inputFile": "styles/components/icon.scss"
+  },
+  {
+    "outputFile": "styles/base/scaffolding.css",
+    "inputFile": "styles/base/scaffolding.scss"
+  },
+  {
+    "outputFile": "styles/vendors/bootstrap.css",
+    "inputFile": "styles/vendors/bootstrap.scss"
+  },
+  {
+    "outputFile": "styles/themes/super2.css",
+    "inputFile": "styles/themes/super2.scss"
+  },
+  {
+    "outputFile": "styles/themes/master2.css",
+    "inputFile": "styles/themes/master2.scss"
+  },
+  {
+    "outputFile": "styles/themes/agent2.css",
+    "inputFile": "styles/themes/agent2.scss"
+  },
+  {
+    "outputFile": "styles/vendors-extensions/site-main/bootstrap-material-ex.css",
+    "inputFile": "styles/vendors-extensions/site-main/bootstrap-material-ex.scss"
+  },
+  {
+    "outputFile": "styles/base/roboto-fonts.css",
+    "inputFile": "styles/base/roboto-fonts.scss"
+  },
+  {
+    "outputFile": "styles/vendors-extensions/site-results/bootstrap-ex.css",
+    "inputFile": "styles/vendors-extensions/site-results/bootstrap-ex.scss"
+  },
+  {
+    "outputFile": "styles/base/icon-fonts.css",
+    "inputFile": "styles/base/icon-fonts.scss"
+  },
+  {
+    "outputFile": "styles/components/tabs.css",
+    "inputFile": "styles/components/tabs.scss"
+  },
+  {
+    "outputFile": "styles/themes/unsupport-browser/agent2.css",
+    "inputFile": "styles/themes/unsupport-browser/agent2.scss"
+  },
+  {
+    "outputFile": "styles/themes/unsupport-browser/master2.css",
+    "inputFile": "styles/themes/unsupport-browser/master2.scss"
+  },
+  {
+    "outputFile": "styles/themes/unsupport-browser/super2.css",
+    "inputFile": "styles/themes/unsupport-browser/super2.scss"
+  },
+  {
+    "outputFile": "styles/vendors-extensions/site-totalbetsforecast/bootstrap-ex.css",
+    "inputFile": "styles/vendors-extensions/site-totalbetsforecast/bootstrap-ex.scss"
+  },
+  {
+    "outputFile": "styles/components/textboxes.css",
+    "inputFile": "styles/components/textboxes.scss"
+  },
+  {
+    "outputFile": "styles/vendors-extensions/site-viewlogs/bootstrap-ex.css",
+    "inputFile": "styles/vendors-extensions/site-viewlogs/bootstrap-ex.scss"
+  },
+  {
+    "outputFile": "styles/components/form.css",
+    "inputFile": "styles/components/form.scss"
+  },
+  {
+    "outputFile": "styles/components/checkbox-radio.css",
+    "inputFile": "styles/components/checkbox-radio.scss"
+  },
+  {
+    "outputFile": "styles/themes/components/tabs/tab-agent2.css",
+    "inputFile": "styles/themes/components/tabs/tab-agent2.scss"
+  },
+  {
+    "outputFile": "styles/themes/components/tabs/tab-master2.css",
+    "inputFile": "styles/themes/components/tabs/tab-master2.scss"
+  },
+  {
+    "outputFile": "styles/themes/components/tabs/tab-super2.css",
+    "inputFile": "styles/themes/components/tabs/tab-super2.scss"
+  },
+  {
+    "outputFile": "styles/components/pagination.css",
+    "inputFile": "styles/components/pagination.scss"
+  },
+  {
+    "outputFile": "styles/components/month-picker.css",
+    "inputFile": "styles/components/month-picker.scss"
+  },
+  {
+    "outputFile": "styles/components/bootstrap-multiselect.css",
+    "inputFile": "styles/components/bootstrap-multiselect.scss"
+  },
+  {
+    "outputFile": "styles/components/select2.css",
+    "inputFile": "styles/components/select2.scss"
+  },
+  {
+    "outputFile": "styles/components/fanex-pagination.css",
+    "inputFile": "styles/components/fanex-pagination.scss"
+  },
+  {
+    "outputFile": "styles/base/pass-font.css",
+    "inputFile": "styles/base/pass-font.scss"
+  },
+  {
+    "outputFile": "styles/components/fanex-grid.css",
+    "inputFile": "styles/components/fanex-grid.scss"
+  },
+  {
+    "outputFile": "styles/components/calendars.css",
+    "inputFile": "styles/components/calendars.scss"
+  },
+  {
+    "outputFile": "styles/components/alerts.css",
+    "inputFile": "styles/components/alerts.scss"
+  },
+  {
+    "outputFile": "styles/components/accordions.css",
+    "inputFile": "styles/components/accordions.scss"
+  },
+  {
+    "outputFile": "styles/components/breadcrumbs.css",
+    "inputFile": "styles/components/breadcrumbs.scss"
+  },
+  {
+    "outputFile": "styles/layout/before-home-page/before-home-page.css",
+    "inputFile": "styles/layout/before-home-page/before-home-page.scss"
+  },
+  {
+    "outputFile": "styles/vendors/toastr/toastr.css",
+    "inputFile": "styles/vendors/toastr/toastr.scss"
+  },
+  {
+    "outputFile": "styles/components/toastr.css",
+    "inputFile": "styles/components/toastr.scss",
+    "sourceMap": false
+  },
+  {
+    "outputFile": "styles/vendors-extensions/common/bootstrap-ex2.css",
+    "inputFile": "styles/vendors-extensions/common/bootstrap-ex2.scss"
+  },
+  {
+    "outputFile": "styles/layout/dcs/customizeDCS.css",
+    "inputFile": "styles/layout/dcs/customizeDCS.scss"
+  },
+  {
+    "outputFile": "styles/vendors-extensions/site-ng2/bootstrap-ex.css",
+    "inputFile": "styles/vendors-extensions/site-ng2/bootstrap-ex.scss"
+  },
+  {
+    "outputFile": "styles/components/toastr.css",
+    "inputFile": "styles/components/toastr.scss"
+  },
+  {
+    "outputFile": "styles/components/bootstrap.nexDatePicker.css",
+    "inputFile": "styles/components/bootstrap.nexDatePicker.scss"
+  },
+  {
+    "outputFile": "styles/components/tablesorter.css",
+    "inputFile": "styles/components/tablesorter.scss"
+  },
+  {
+    "outputFile": "styles/themes/customer-status.css",
+    "inputFile": "styles/themes/customer-status.scss"
+  },
+  {
+    "outputFile": "styles/components/popover.css",
+    "inputFile": "styles/components/popover.scss"
+  },
+  {
+    "outputFile": "styles/themes/components/buttons/button-super2.css",
+    "inputFile": "styles/themes/components/buttons/button-super2.scss"
+  },
+  {
+    "outputFile": "styles/themes/components/buttons/button-master2.css",
+    "inputFile": "styles/themes/components/buttons/button-master2.scss"
+  },
+  {
+    "outputFile": "styles/themes/components/buttons/button-agent2.css",
+    "inputFile": "styles/themes/components/buttons/button-agent2.scss"
+  },
+  {
+    "outputFile": "styles/base/pass-font.css",
+    "inputFile": "styles/base/pass-font.scss"
+  },
+  {
+    "outputFile": "styles/themes/components/checkbox-radio/checkbox-radio-super2.css",
+    "inputFile": "styles/themes/components/checkbox-radio/checkbox-radio-super2.scss"
+  },
+  {
+    "outputFile": "styles/themes/components/checkbox-radio/checkbox-radio-master2.css",
+    "inputFile": "styles/themes/components/checkbox-radio/checkbox-radio-master2.scss"
+  },
+  {
+    "outputFile": "styles/themes/components/checkbox-radio/checkbox-radio-agent2.css",
+    "inputFile": "styles/themes/components/checkbox-radio/checkbox-radio-agent2.scss"
+  },
+  {
+    "outputFile": "styles/components/customize-checkbox-radio.css",
+    "inputFile": "styles/components/customize-checkbox-radio.scss"
+  },
+  {
+    "outputFile": "styles/components/datatable-customize.css",
+    "inputFile": "styles/components/datatable-customize.scss"
+  },
+  {
+    "outputFile": "styles/components/daterangepicker-customize.css",
+    "inputFile": "styles/components/daterangepicker-customize.scss"
+  },
+  {
+    "outputFile": "styles/components/daterangepicker-customize-dark.css",
+    "inputFile": "styles/components/daterangepicker-customize-dark.scss"
+  },
+  {
+    "outputFile": "styles/base/scaffolding-dark.css",
+    "inputFile": "styles/base/scaffolding-dark.scss"
+  },
+  {
+    "outputFile": "styles/components/accordions-dark.css",
+    "inputFile": "styles/components/accordions-dark.scss"
+  },
+  {
+    "outputFile": "styles/components/alerts-dark.css",
+    "inputFile": "styles/components/alerts-dark.scss"
+  },
+  {
+    "outputFile": "styles/components/blockui-dark.css",
+    "inputFile": "styles/components/blockui-dark.scss"
+  },
+  {
+    "outputFile": "styles/components/bootstrap-multiselect-dark.css",
+    "inputFile": "styles/components/bootstrap-multiselect-dark.scss"
+  },
+  {
+    "outputFile": "styles/components/breadcrumbs-dark.css",
+    "inputFile": "styles/components/breadcrumbs-dark.scss"
+  },
+  {
+    "outputFile": "styles/components/buttons-dark.css",
+    "inputFile": "styles/components/buttons-dark.scss"
+  },
+  {
+    "outputFile": "styles/components/calendars-dark.css",
+    "inputFile": "styles/components/calendars-dark.scss"
+  },
+  {
+    "outputFile": "styles/components/datatable-customize-dark.css",
+    "inputFile": "styles/components/datatable-customize-dark.scss"
+  },
+  {
+    "outputFile": "styles/components/dropdown-dark.css",
+    "inputFile": "styles/components/dropdown-dark.scss"
+  },
+  {
+    "outputFile": "styles/components/fanex-grid-dark.css",
+    "inputFile": "styles/components/fanex-grid-dark.scss"
+  },
+  {
+    "outputFile": "styles/components/fanex-pagination-dark.css",
+    "inputFile": "styles/components/fanex-pagination-dark.scss"
+  },
+  {
+    "outputFile": "styles/components/form-dark.css",
+    "inputFile": "styles/components/form-dark.scss"
+  },
+  {
+    "outputFile": "styles/components/icon-dark.css",
+    "inputFile": "styles/components/icon-dark.scss"
+  },
+  {
+    "outputFile": "styles/components/modals-dark.css",
+    "inputFile": "styles/components/modals-dark.scss"
+  },
+  {
+    "outputFile": "styles/components/month-picker-dark.css",
+    "inputFile": "styles/components/month-picker-dark.scss"
+  },
+  {
+    "outputFile": "styles/components/pagination-dark.css",
+    "inputFile": "styles/components/pagination-dark.scss"
+  },
+  {
+    "outputFile": "styles/components/popover-dark.css",
+    "inputFile": "styles/components/popover-dark.scss"
+  },
+  {
+    "outputFile": "styles/components/select2-dark.css",
+    "inputFile": "styles/components/select2-dark.scss"
+  },
+  {
+    "outputFile": "styles/components/tables-dark.css",
+    "inputFile": "styles/components/tables-dark.scss"
+  },
+  {
+    "outputFile": "styles/components/tabs-dark.css",
+    "inputFile": "styles/components/tabs-dark.scss"
+  },
+  {
+    "outputFile": "styles/components/textboxes-dark.css",
+    "inputFile": "styles/components/textboxes-dark.scss"
+  },
+  {
+    "outputFile": "styles/components/toastr-dark.css",
+    "inputFile": "styles/components/toastr-dark.scss"
+  },
+  {
+    "outputFile": "styles/layout/before-home-page/before-home-page-dark.css",
+    "inputFile": "styles/layout/before-home-page/before-home-page-dark.scss"
+  },
+  {
+    "outputFile": "styles/layout/dcs/customizeDCS-dark.css",
+    "inputFile": "styles/layout/dcs/customizeDCS-dark.scss"
+  },
+  {
+    "outputFile": "styles/layout/default-layout/header-dark.css",
+    "inputFile": "styles/layout/default-layout/header-dark.scss"
+  },
+  {
+    "outputFile": "styles/layout/default-layout/sidebar-dark.css",
+    "inputFile": "styles/layout/default-layout/sidebar-dark.scss"
+  },
+  {
+    "outputFile": "styles/layout/default-layout/title-agent-dark.css",
+    "inputFile": "styles/layout/default-layout/title-agent2-dark.scss"
+  },
+  {
+    "outputFile": "styles/layout/default-layout/title-agent.css",
+    "inputFile": "styles/layout/default-layout/title-agent2.scss"
+  },
+  {
+    "outputFile": "styles/layout/default-layout/title-master-dark.css",
+    "inputFile": "styles/layout/default-layout/title-master2-dark.scss"
+  },
+  {
+    "outputFile": "styles/layout/default-layout/title-master.css",
+    "inputFile": "styles/layout/default-layout/title-master2.scss"
+  },
+  {
+    "outputFile": "styles/layout/default-layout/title-super-dark.css",
+    "inputFile": "styles/layout/default-layout/title-super2-dark.scss"
+  },
+  {
+    "outputFile": "styles/layout/default-layout/title-super.css",
+    "inputFile": "styles/layout/default-layout/title-super2.scss"
+  },
+  {
+    "outputFile": "styles/themes/components/buttons/button-agent2-dark.css",
+    "inputFile": "styles/themes/components/buttons/button-agent2-dark.scss"
+  },
+  {
+    "outputFile": "styles/themes/components/buttons/button-master2-dark.css",
+    "inputFile": "styles/themes/components/buttons/button-master2-dark.scss"
+  },
+  {
+    "outputFile": "styles/themes/components/buttons/button-super2-dark.css",
+    "inputFile": "styles/themes/components/buttons/button-super2-dark.scss"
+  },
+  {
+    "outputFile": "styles/themes/components/checkbox-radio/checkbox-radio-agent2-dark.css",
+    "inputFile": "styles/themes/components/checkbox-radio/checkbox-radio-agent2-dark.scss"
+  },
+  {
+    "outputFile": "styles/themes/components/checkbox-radio/checkbox-radio-master2-dark.css",
+    "inputFile": "styles/themes/components/checkbox-radio/checkbox-radio-master2-dark.scss"
+  },
+  {
+    "outputFile": "styles/themes/components/checkbox-radio/checkbox-radio-super2-dark.css",
+    "inputFile": "styles/themes/components/checkbox-radio/checkbox-radio-super2-dark.scss"
+  },
+  {
+    "outputFile": "styles/themes/components/tabs/tab-agent2-dark.css",
+    "inputFile": "styles/themes/components/tabs/tab-agent2-dark.scss"
+  },
+  {
+    "outputFile": "styles/themes/components/tabs/tab-master2-dark.css",
+    "inputFile": "styles/themes/components/tabs/tab-master2-dark.scss"
+  },
+  {
+    "outputFile": "styles/themes/components/tabs/tab-super2-dark.css",
+    "inputFile": "styles/themes/components/tabs/tab-super2-dark.scss"
+  },
+  {
+    "outputFile": "styles/themes/agent2-dark.css",
+    "inputFile": "styles/themes/agent2-dark.scss"
+  },
+  {
+    "outputFile": "styles/themes/customer-status-dark.css",
+    "inputFile": "styles/themes/customer-status-dark.scss"
+  },
+  {
+    "outputFile": "styles/themes/master2-dark.css",
+    "inputFile": "styles/themes/master2-dark.scss"
+  },
+  {
+    "outputFile": "styles/themes/super2-dark.css",
+    "inputFile": "styles/themes/super2-dark.scss"
+  },
+  {
+    "outputFile": "styles/themes/unsupport-browser/agent-dark2.css",
+    "inputFile": "styles/themes/unsupport-browser/agent-dark2.scss"
+  },
+  {
+    "outputFile": "styles/themes/unsupport-browser/master-dark2.css",
+    "inputFile": "styles/themes/unsupport-browser/master-dark2.scss"
+  },
+  {
+    "outputFile": "styles/themes/unsupport-browser/super-dark2.css",
+    "inputFile": "styles/themes/unsupport-browser/super-dark2.scss"
+  },
+  {
+    "outputFile": "styles/components/customize-checkbox-radio-dark.css",
+    "inputFile": "styles/components/customize-checkbox-radio-dark.scss"
+  },
+  {
+    "outputFile": "styles/abstracts/_agent-variables.css",
+    "inputFile": "styles/abstracts/_agent-variables2.scss"
+  },
+  {
+    "outputFile": "styles/abstracts/_master-variables.css",
+    "inputFile": "styles/abstracts/_master-variables2.scss"
+  },
+  {
+    "outputFile": "styles/abstracts/_super-variables.css",
+    "inputFile": "styles/abstracts/_super-variables2.scss"
+  },
+  {
+    "outputFile": "styles/abstracts/_agent-variables-dark.css",
+    "inputFile": "styles/abstracts/_agent-variables2-dark.scss"
+  },
+  {
+    "outputFile": "styles/abstracts/_master-variables-dark.css",
+    "inputFile": "styles/abstracts/_master-variables2-dark.scss"
+  },
+  {
+    "outputFile": "styles/abstracts/_super-variables-dark.css",
+    "inputFile": "styles/abstracts/_super-variables2-dark.scss"
+  },
+  {
+    "outputFile": "styles/abstracts/_variables-dark.css",
+    "inputFile": "styles/abstracts/_variables2-dark.scss"
+  },
+  {
+    "outputFile": "styles/vendors/multiselect/fanex.multiSelect.css",
+    "inputFile": "styles/vendors/multiselect/fanex.multiSelect.scss"
+  },
+  {
+    "outputFile": "styles/vendors/multiselect/fanex.multiSelect-dark.css",
+    "inputFile": "styles/vendors/multiselect/fanex.multiSelect-dark.scss"
+  },
+  {
+    "outputFile": "styles-v2/components/buttons.css",
+    "inputFile": "styles-v2/components/buttons.scss"
+  },
+  {
+    "outputFile": "styles-v2/components/tables.css",
+    "inputFile": "styles-v2/components/tables.scss"
+  },
+  {
+    "outputFile": "styles-v2/components/textboxes.css",
+    "inputFile": "styles-v2/components/textboxes.scss"
+  },
+  {
+    "outputFile": "styles-v2/components/dropdown.css",
+    "inputFile": "styles-v2/components/dropdown.scss"
+  },
+  {
+    "outputFile": "styles-v2/components/utilities.css",
+    "inputFile": "styles-v2/components/utilities.scss"
+  },
+  {
+    "outputFile": "styles-v2/base/scaffolding.css",
+    "inputFile": "styles-v2/base/scaffolding.scss"
+  },
+  {
+    "outputFile": "styles-v2/base/roboto-fonts.css",
+    "inputFile": "styles-v2/base/roboto-fonts.scss"
+  },
+  {
+    "outputFile": "styles-v2/components/multiselect.css",
+    "inputFile": "styles-v2/components/multiselect.scss"
+  },
+  {
+    "outputFile": "styles-v2/components/filter.css",
+    "inputFile": "styles-v2/components/filter.scss"
+  },
+  {
+    "outputFile": "styles-v2/components/tipsy-modify.css",
+    "inputFile": "styles-v2/components/tipsy-modify.scss"
+  },
+  {
+    "outputFile": "styles-v2/components/alert.css",
+    "inputFile": "styles-v2/components/alert.scss"
+  },
+  {
+    "outputFile": "styles-v2/components/modal.css",
+    "inputFile": "styles-v2/components/modal.scss"
+  }
+]

@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fanex.Logging.Extensions.AspNetCore" Version="1.0.1" />
+    <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
+    <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AlphaPlus.Core\AlphaPlus.Core.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net8.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="UAParser" Version="3.1.47" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AlphaPlus.Utilities.IP\AlphaPlus.Utilities.IP.csproj" />
+  </ItemGroup>
+</Project>

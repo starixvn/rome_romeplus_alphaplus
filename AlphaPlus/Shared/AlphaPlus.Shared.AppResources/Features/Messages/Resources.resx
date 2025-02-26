@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="announcement" xml:space="preserve">
+    <value>Announcement</value>
+  </data>
+  <data name="close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>No information is available</value>
+  </data>
+  <data name="NewBetType" xml:space="preserve">
+    <value>New Bet Type</value>
+  </data>
+  <data name="Notice_2" xml:space="preserve">
+    <value>Your betting limit value has been changed by the upline.&lt;br&gt;Please kindly be informed and have a check the details for your downlines.</value>
+  </data>
+  <data name="Notice_1_2" xml:space="preserve">
+    <value>Your minimum position taking and betting limit value have been changed by the upline.&lt;br&gt;Please kindly be informed and have a check the details for your downlines.</value>
+  </data>
+  <data name="Notice_1" xml:space="preserve">
+    <value>Your minimum position taking value has been changed by the upline.&lt;br&gt;Please kindly be informed and have a check the details for your downlines.</value>
+  </data>
+  <data name="Notice_3" xml:space="preserve">
+    <value>Your upline has enabled Fishing World for your downlines. Please go to setting page to configure your own PT settings.</value>
+  </data>
+  <data name="NewBetTypeEffectDate1" xml:space="preserve">
+    <value>New bet types of Soccer with effect from {0}:</value>
+  </data>
+  <data name="viewAnnouncement" xml:space="preserve">
+    <value>View Announcement</value>
+  </data>
+  <data name="normalAnnouncement" xml:space="preserve">
+    <value>Normal Announcement</value>
+  </data>
+  <data name="specialAnnouncement" xml:space="preserve">
+    <value>Special Announcement</value>
+  </data>
+  <data name="personalMessage" xml:space="preserve">
+    <value>Personal Message</value>
+  </data>
+  <data name="from" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="to" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="highlights" xml:space="preserve">
+    <value>HIGHLIGHTS</value>
+  </data>
+  <data name="more" xml:space="preserve">
+    <value>More</value>
+  </data>
+  <data name="SystemUpdate" xml:space="preserve">
+    <value>System Update</value>
+  </data>
+  <data name="normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="Personal" xml:space="preserve">
+    <value>Personal</value>
+  </data>
+  <data name="Special" xml:space="preserve">
+    <value>Special</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="systemAnnouncement" xml:space="preserve">
+    <value>System Announcement</value>
+  </data>
+  <data name="system" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="TelegramChatbot" xml:space="preserve">
+    <value>Telegram Chatbot Guideline</value>
+  </data>
+  <data name="MyWatchlist" xml:space="preserve">
+    <value>My Watchlist Guideline</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="Feedback_Greeting" xml:space="preserve">
+    <value>We'd love to hear from you. How are we doing?</value>
+  </data>
+  <data name="Feedback_Message" xml:space="preserve">
+    <value>What functions can be improved? What functions are lacking?</value>
+  </data>
+  <data name="Feedback_MessageLimit" xml:space="preserve">
+    <value>You've hit the 4,000 character count limit.</value>
+  </data>
+  <data name="Feedback_Rate" xml:space="preserve">
+    <value>Rate your experience</value>
+  </data>
+  <data name="Terrible" xml:space="preserve">
+    <value>Terrible</value>
+  </data>
+  <data name="Bad" xml:space="preserve">
+    <value>Bad</value>
+  </data>
+  <data name="Okay" xml:space="preserve">
+    <value>Okay</value>
+  </data>
+  <data name="Good" xml:space="preserve">
+    <value>Good</value>
+  </data>
+  <data name="Amazing" xml:space="preserve">
+    <value>Amazing</value>
+  </data>
+  <data name="Later" xml:space="preserve">
+    <value>Later</value>
+  </data>
+  <data name="Feedback_Success" xml:space="preserve">
+    <value>We're so happy to hear from you! Thank you for your valuable feedback.</value>
+  </data>
+  <data name="Feedback_NoInput" xml:space="preserve">
+    <value>Please share your thoughts or rate us</value>
+  </data>
+  <data name="Feedback_InvalidParams" xml:space="preserve">
+    <value>Invalid Params</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>You are not authorized on this function.</value>
+  </data>
+  <data name="BackupDomains" xml:space="preserve">
+    <value>Backup Domains</value>
+  </data>
+  <data name="Domain" xml:space="preserve">
+    <value>Domain</value>
+  </data>
+  <data name="CopyDomain" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="Down" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="VeryGood" xml:space="preserve">
+    <value>Very fast</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>Copied</value>
+  </data>
+  <data name="InUse" xml:space="preserve">
+    <value>In use</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading</value>
+  </data>
+  <data name="normal2" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="Fast" xml:space="preserve">
+    <value>Fast</value>
+  </data>
+  <data name="Slow" xml:space="preserve">
+    <value>Slow</value>
+  </data>
+  <data name="FeedbackTitle" xml:space="preserve">
+    <value>Help us improve!</value>
+  </data>
+  <data name="FeedbackFunctionArea_Greeting" xml:space="preserve">
+    <value>Please evaluate areas you like/ dislike in our {0} function.</value>
+  </data>
+  <data name="FeedbackFunctionArea_Message" xml:space="preserve">
+    <value>Tell us more...</value>
+  </data>
+  <data name="FeedbackFunction_Greeting" xml:space="preserve">
+    <value>How is {0} doing overall? We would love to hear from you!</value>
+  </data>
+  <data name="FeedbackFunction_Message" xml:space="preserve">
+    <value>Which areas can be improved? Which areas are lacking?</value>
+  </data>
+  <data name="FeedbackFunction_Rate" xml:space="preserve">
+    <value>Rate your experience with {0} function.</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>Others</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>of</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>Displaying {from} to {to} of {total} items</value>
+  </data>
+  <data name="GuideNote" xml:space="preserve">
+    <value>By default, Announcements will be displayed from your last seen date to today.&lt;br&gt;
+Normal Announcement and Personal Message are available for up to 3 months.</value>
+  </data>
+  <data name="FeedbackOnFunctionTitle" xml:space="preserve">
+    <value>Help us improve {0}</value>
+  </data>
+  <data name="AgencyDomains" xml:space="preserve">
+    <value>Agency Domains</value>
+  </data>
+  <data name="MemberDomains" xml:space="preserve">
+    <value>Member Domains</value>
+  </data>
+  <data name="CopyAll" xml:space="preserve">
+    <value>Copy All</value>
+  </data>
+</root>

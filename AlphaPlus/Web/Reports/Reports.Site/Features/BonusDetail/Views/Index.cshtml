@@ -1,0 +1,350 @@
+@using AlphaPlus.Core.Extensions
+@using AlphaPlus.Core.Models
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Core.Utils;
+@using AlphaPlus.Shared.AppResources.Report
+@using AlphaPlus.Reports.Features.Shared.Extensions
+@using AlphaPlus.Reports.Features.BonusDetail
+@using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components
+@using AlphaPlus.Reports.Site.Features.BonusDetail
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AlphaPlus.Reports.Site
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = Model.PageHeader.Title;
+
+    void BuildReportDataSuper(IEnumerable<GroupBonus> dataSource)
+    {
+        foreach (var super in dataSource)
+        {
+            for (int i = 0, superLength = super.GroupBonusList.Count; i < superLength; i++)
+            {
+                var master = super.GroupBonusList[i];
+
+                for (int j = 0, masterLength = master.GroupBonusList.Count; j < masterLength; j++)
+                {
+                    var agent = master.GroupBonusList[j];
+                    var mergeRows = agent.Bonus.Count;
+
+                    for (var k = 0; k < mergeRows; k++)
+                    {
+                        var bonus = agent.Bonus[k];
+                        <tr>
+                            @{
+                                BuildCreatedDateRefNoColumns(bonus);
+                            }
+                            @if (k == 0)
+                            {
+                                if (j == 0)
+                                {
+                                    if (i == 0)
+                                    {
+                                        <td rowspan="@super.ColSpan">@super.TotalAmount.FormatNumber()</td>
+                                    }
+                                    <td class="text-left" rowspan="@master.ColSpan">@master.GroupBy</td>
+                                    <td rowspan="@master.ColSpan">@master.TotalAmount.FormatNumber()</td>
+                                }
+                                <td class="text-left" rowspan="@mergeRows">@agent.GroupBy</td>
+                                <td rowspan="@mergeRows">@agent.TotalAmount.FormatNumber()</td>
+                            }
+                            @{
+                                BuildMemberDataColumns(bonus, Model.ViewerLevel);
+                            }
+                        </tr>
+                    }
+                }
+            }
+        }
+    }
+
+    void BuildReportDataMaster(IEnumerable<GroupBonus> dataSource)
+    {
+        foreach (var master in dataSource)
+        {
+            for (int i = 0, masterLength = master.GroupBonusList.Count; i < masterLength; i++)
+            {
+                var agent = master.GroupBonusList[i];
+                var mergeRows = agent.Bonus.Count;
+
+                for (var j = 0; j < mergeRows; j++)
+                {
+                    var bonus = agent.Bonus[j];
+                    <tr>
+                        @{
+                            BuildCreatedDateRefNoColumns(bonus);
+                        }
+                        @if (j == 0)
+                        {
+                            if (i == 0)
+                            {
+                                <td rowspan="@master.ColSpan">@master.TotalAmount.FormatNumber()</td>
+                            }
+                            <td class="text-left" rowspan="@mergeRows">@agent.GroupBy</td>
+                            <td rowspan="@mergeRows">@agent.TotalAmount.FormatNumber()</td>
+                        }
+                        @{
+                            BuildMemberDataColumns(bonus, Model.ViewerLevel);
+                        }
+                    </tr>
+                }
+            }
+        }
+    }
+
+    void BuildReportDataAgent(IEnumerable<GroupBonus> dataSource)
+    {
+        foreach (var agent in dataSource)
+        {
+            var mergeRows = agent.Bonus.Count;
+
+            for (var i = 0; i < mergeRows; i++)
+            {
+                var bonus = agent.Bonus[i];
+                <tr>
+                    @{
+                        BuildCreatedDateRefNoColumns(bonus);
+                    }
+                    @if (i == 0)
+                    {
+                        <td rowspan="@mergeRows">@agent.TotalAmount.FormatNumber()</td>
+                    }
+                    @{
+                        BuildMemberDataColumns(bonus, Model.ViewerLevel);
+                    }
+                </tr>
+            }
+        }
+    }
+
+    void BuildCreatedDateRefNoColumns(BonusEntity bonus)
+    {
+        <td class="text-center">@bonus.CreatedDateString</td>
+        <td>@bonus.TransId</td>
+    }
+
+    void BuildMemberDataColumns(BonusEntity bonus, UserLevel userLevel)
+    {
+        <td class="text-left">@bonus.Username</td>
+        <td @(bonus.IsCancelled ? "class=text-danger" : string.Empty)>@bonus.Amount.FormatNumber()</td>
+        <td class="text-center">@{
+                BuildPaymentDateCell(bonus, userLevel);
+            }</td>
+        <td class="text-center">@{
+                DisplayBonusStatusText(bonus);
+            }</td>
+        <td class="text-center">@{
+                DisplayMemberFeedbackText(bonus);
+            }</td>
+    }
+
+    void BuildPaymentDateCell(BonusEntity bonus, UserLevel userLevel)
+    {
+        if (userLevel.IsAgentLevel() && bonus.CanConfirmPaymentDate)
+        {
+            <span class="icon-payment" data-custid="@bonus.CustId" data-transid="@bonus.TransId" data-username="@bonus.Username"
+                data-amount="@bonus.Amount.FormatNumber()" data-createddate="@bonus.MinConfirmPaymentDate"></span>
+        }
+        else
+        {
+            @bonus.PaymentDateString
+        }
+    }
+
+    void DisplayBonusStatusText(BonusEntity bonus)
+    {
+        var bonusStatus = string.Empty;
+        switch (bonus.StatusId)
+        {
+            case BonusStatusIdConst.Pending:
+                bonusStatus = Resources.Pending;
+                break;
+            case BonusStatusIdConst.Cancelled:
+                bonusStatus = Resources.Cancelled;
+                break;
+            case BonusStatusIdConst.Completed:
+                bonusStatus = Resources.Completed;
+                break;
+            default:
+                break;
+        }
+        <span @(bonus.IsCancelled ? "class=text-danger" : string.Empty)>@bonusStatus</span>
+    }
+
+    void DisplayMemberFeedbackText(BonusEntity bonus)
+    {
+        if (bonus.PaymentDate.HasValue)
+        {
+            var memberFeedback = bonus.IsComplained ? Resources.NotReceived : Resources.Received;
+            <span @(bonus.IsComplained ? "class=text-danger" : string.Empty)>@memberFeedback</span>
+        }
+    }
+}
+@section Styles {
+    <link rel="stylesheet" href="~/bundles/bonusdetail/bonusdetail.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/bundles/bonusdetail/bonusdetail.js" asp-append-version="true"></script>
+}
+@model BonusDetailViewModel
+<report-title model="Model.PageHeader" />
+<form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form">
+    <div class="form-group">
+        <label asp-for="Member">@Resources.Member</label>
+        <input type="text" class="width-140" maxlength="50" autocomplete="off" asp-for="Member" />
+    </div>
+    <daterange-picker model="Model.DateRangePicker" from-label="@Resources.CreatedFrom" />
+    <div class="form-group dropdown-container">
+        <label>@Resources.BonusStatus</label>
+        <select id="dropdown-statusId" name="statusId" asp-items="Model.BonusStatus"></select>
+    </div>
+    <div class="form-group dropdown-container">
+        <label>@Resources.MemberFeedback</label>
+        <select id="dropdown-isComplained" name="isComplained" asp-items="Model.MemberFeedback"></select>
+    </div>
+    <div class="form-group submit-container">
+        <button type="submit" class="btn-submit" id="btn-submit">@Resources.Submit</button>
+    </div>
+</form>
+<table class="tblRpt tblRpt-bordered tblRpt-hover width-100per" id="tbl-report">
+    <thead>
+        <tr>
+            <th rowspan="2">@Resources.CreatedDate</th>
+            <th rowspan="2">@Resources.BonusDetailRefNo</th>
+            @if (Model.ViewerLevel.IsSuperLevel())
+            {
+                <th>@Resources.Super</th>
+                <th colspan="2">@Resources.Master</th>
+                <th colspan="2">@Resources.Agent</th>
+            }
+            else if (Model.ViewerLevel.IsMasterLevel())
+            {
+                <th>@Resources.Master</th>
+                <th colspan="2">@Resources.Agent</th>
+            }
+            else
+            {
+                <th>@Resources.Agent</th>
+            }
+            <th colspan="3">@Resources.Member</th>
+            <th rowspan="2">@Resources.BonusStatus</th>
+            <th rowspan="2">@Resources.MemberFeedback</th>
+        </tr>
+        <tr>
+            <th>@Resources.Amount</th>
+            @if (Model.ViewerLevel.IsSuperLevel())
+            {
+                <th>@Resources.Username</th>
+                <th>@Resources.Amount</th>
+            }
+            @if (Model.ViewerLevel.IsMasterOrSuperLevel())
+            {
+                <th>@Resources.Username</th>
+                <th>@Resources.Amount</th>
+            }
+            <th>@Resources.Username</th>
+            <th>@Resources.Amount</th>
+            <th>@Resources.PaymentDate</th>
+        </tr>
+    </thead>
+    @if (Model.ReportData.HasData)
+    {
+        <tbody>
+            @if (Model.ViewerLevel.IsSuperLevel())
+            {
+                BuildReportDataSuper(Model.ReportData.DataSource);
+            }
+            else if (Model.ViewerLevel.IsMasterLevel())
+            {
+                BuildReportDataMaster(Model.ReportData.DataSource);
+            }
+            else
+            {
+                BuildReportDataAgent(Model.ReportData.DataSource);
+            }
+        </tbody>
+        <tfoot>
+            <tr class="tbl-footer">
+                <td class="text-left">@Resources.Total</td>
+                <td></td>
+                <td>@Model.ReportData.Total.TotalAmount.FormatNumber()</td>
+                <td></td>
+                <td>@Model.ReportData.Total.TotalAmount.FormatNumber()</td>
+                @if (Model.ViewerLevel.IsSuperLevel())
+                {
+                    <td></td>
+                    <td>@Model.ReportData.Total.TotalAmount.FormatNumber()</td>
+                }
+                @if (Model.ViewerLevel.IsMasterOrSuperLevel())
+                {
+                    <td></td>
+                    <td>@Model.ReportData.Total.TotalAmount.FormatNumber()</td>
+                }
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tfoot>
+    }
+    else
+    {
+        <no-information colspan="Model.ViewerLevel.IsSuperLevel() ? 12 : (Model.ViewerLevel.IsMasterLevel() ? 10 : 8)" />
+    }
+</table>
+<pager model="Model.Pager" />
+@if (Model.ViewerLevel.IsAgentLevel())
+{
+    <div class="modal popup-confirmPayment" id="popup-confirmPayment" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="icon icon-close close" data-dismiss="modal"
+                        aria-label="@Resources.Close"><span aria-hidden="true"></span></button>
+                    <h4 class="modal-title">@Resources.ConfirmPayment</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="alert-message" class="msg-content hide">
+                        <div id="alert-message-content" class=""></div>
+                    </div>
+                    <p>@Resources.ConfirmPaymentNote</p>
+                    <form method="post" class="form-horizontal" id="form-confirmPayment" asp-action="ConfirmPayment">
+                        <input type="hidden" name="custId" id="hidden-custId" />
+                        <input type="hidden" name="transId" id="hidden-transId" />
+                        <div class="form-group">
+                            <label class="col-xs-3 control-label">@Resources.PaymentDate</label>
+                            <div class="col-xs-9">
+                                <div class="control date">
+                                    <div id="payment-date-container" class="input-group date paymentdate">
+                                        <input type="text" id="payment-date" name="paymentDate" readonly="readonly"
+                                            autocomplete="off"
+                                            class="ui_nexdatepicker_datetextbox ui_nexdatepicker_fromdate form-control"
+                                            value="@SystemTime.Today.ToShortDateWithSlash()" />
+                                        <span class="input-group-addon">
+                                            <label class="icon-calendar" for="payment-date"></label>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-3 control-label">@Resources.ToMember</label>
+                            <label class="col-xs-9 control-label" id="lbl-toMember"></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-3 control-label">@Resources.Amount</label>
+                            <label class="col-xs-9 control-label" id="lbl-amount"></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-3 control-label">@Resources.BonusDetailRefNo</label>
+                            <label class="col-xs-9 control-label" id="lbl-bonusDetailRefNo"></label>
+                        </div>
+                        <div class="form-group list-button">
+                            <button type="submit" class="btn-submit" id="btn-confirmPayment">@Resources.Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}

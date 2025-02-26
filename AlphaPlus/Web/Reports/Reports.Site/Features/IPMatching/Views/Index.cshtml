@@ -1,0 +1,102 @@
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Report
+@using AlphaPlus.Reports.Features.Shared.Extensions
+@using AlphaPlus.Reports.Features.IPMatching
+@using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components
+@using AlphaPlus.Reports.Site.Features.IPMatching
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AlphaPlus.Reports.Site
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = Model.PageHeader.Title;
+
+    async Task RenderRow(IPMatchingModel data, bool isTotalRow)
+    {
+        <tr @(isTotalRow ? "class=tbl-footer" : string.Empty)>
+            <td class="text-left col-username" @(isTotalRow ? string.Empty : $"data-sortedvalue={data.IP}")>
+                @if (isTotalRow)
+                {
+                    @Resources.Total
+                }
+                else
+                {
+                    <a class="view-bet-list" href="@Model.BuildBetListUrl(data.IP)">@data.IP</a>
+                }
+            </td>
+            <td class="text-right col-member-count">@data.MemberCount.FormatNumber()</td>
+            <td class="text-right col-bet-count">@data.BetCount.FormatNumber()</td>
+            <td class="text-right col-member-turnover">@data.Stake.FormatNumber()</td>
+            <td class="text-right col-member-winloss">@data.MemberWinLoss.FormatNumber()</td>
+            <td class="text-right col-super-winloss altercol">@data.SuperWinLoss.FormatNumber()</td>
+            <td class="text-right col-company">@data.Company.FormatNumber()</td>
+        </tr>
+    }
+}
+@section Scripts {
+    <script src="~/bundles/ipmatching/ipmatching.js" asp-append-version="true"></script>
+}
+@model IPMatchingViewModel
+<report-title model="Model.PageHeader" />
+<form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form">
+    <div class="form-group">
+        <label class="txt">@Resources.Date</label>
+        <div class="control date">
+            <div class="input-group date" id="dpkContainer">
+                <input type="text" readonly="readonly" class="form-control" asp-for="Date" />
+                <span class="input-group-addon">
+                    <span class="icon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>@Resources.MemberCount</label>
+        <select asp-for="MemberCount" asp-items="Model.MemberCounts"></select>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="@Resources.Submit" class="btn-submit" />
+    </div>
+    <div class="form-group">
+        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
+            asp-all-route-data="Model.GetExcelParams()"></a>
+    </div>
+    <div class="note">
+        <span class="star">*</span>@Resources.IPMatchingNote
+    </div>
+    <input type="hidden" id="IsFilterVisible" name="IsFilterVisible"
+        value="@Model.PageHeader.IsFilterVisible.ToString()" />
+</form>
+<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover width-100per" id="tbl-report">
+    <thead>
+        <tr>
+            <th>@Resources.IP</th>
+            <th>@Resources.MemberCount</th>
+            <th>@Resources.BetCount</th>
+            <th>@Resources.Stake</th>
+            <th>@Resources.MemberWinLoss</th>
+            <th>@Resources.SuperWinLoss</th>
+            <th>@Resources.Company</th>
+        </tr>
+    </thead>
+    @if (Model.ReportData.HasData)
+    {
+        <tbody>
+            @foreach (var data in Model.ReportData.DataSource)
+            {
+                await RenderRow(data, false);
+            }
+        </tbody>
+        <tfoot>
+            @{
+                await RenderRow(Model.ReportData.Total, true);
+            }
+        </tfoot>
+    }
+    else
+    {
+        <no-information colspan="7" />
+    }
+</table>
+<input type="hidden" asp-for="MinDate" />
+<input type="hidden" asp-for="Today" />

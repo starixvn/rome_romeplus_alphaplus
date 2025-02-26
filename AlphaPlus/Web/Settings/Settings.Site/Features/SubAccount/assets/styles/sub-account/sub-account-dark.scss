@@ -1,0 +1,571 @@
+﻿@import "../_Variables-dark.scss";
+@import "../_Mixins.scss";
+@import url($icon-alpha-fonts);
+
+@include keyframes-ripple;
+
+.closed {
+    background-color: #4d4f52 !important;
+}
+
+.infoIco:before,.usernameIsValid:before,.PwdSuccess:before,.tick:before,.usernameIsNotValid:before,.PwdError:before,.crossError:before,.icon-print:before {
+    font-family: 'Iconalpha';
+    font-size: 18px;
+    display: inline-block;
+}
+
+.infoIco {
+    text-decoration: none;
+    position: relative;
+}
+
+.infoIco:after {
+    position: relative;
+    content: '';
+}
+
+.infoIco:hover:after {
+    position: absolute;
+    left: 0;
+    top: -1px;
+    width: 26px;
+    height: 26px;
+    margin-left: -4px;
+    margin-top: -4px;
+    background: #b1aea3;
+    -webkit-border-radius: 100%;
+    -khtml-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -o-border-radius: 100%;
+    border-radius: 100%;
+    -webkit-transform: scale(0);
+    -khtml-transform: scale(0);
+    -moz-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+    -moz-animation: ripple 1s ease-out;
+    -o-animation: ripple 1s ease-out;
+    -webkit-animation: ripple 1s ease-out;
+    animation: ripple 1s ease-out;
+}
+
+.infoIco:before {
+    cursor: pointer;
+    content: '';
+    color: #0b599c;
+    position: relative;
+    font-weight: 100;
+    vertical-align: middle;
+}
+
+.usernameIsValid:before,.PwdSuccess:before,.tick:before {
+    content: '';
+    color: #52a220;
+    vertical-align: middle;
+}
+
+.usernameIsNotValid:before,.PwdError:before,.crossError:before {
+    content: '';
+    color: #fe0000;
+    vertical-align: middle;
+}
+
+.usernameIsValid:before {
+    position: relative;
+    top: 0;
+}
+
+.usernameIsNotValid:before {
+    position: relative;
+    top: 0;
+}
+
+.divMenuPopup {
+    background-color: #171717;
+    color: #ededed;
+    display: none;
+    list-style: none;
+    position: absolute;
+    white-space: nowrap;
+    border: 1px solid #292929;
+    margin: 0;
+    padding: 0;
+    -webkit-border-radius: 1px;
+    -khtml-border-radius: 1px;
+    -moz-border-radius: 1px;
+    -o-border-radius: 1px;
+    border-radius: 1px;
+    -webkit-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+    -moz-box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+    box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+}
+
+.divMenuPopup a {
+    font-family: Roboto,Arial,Tahoma,helvetica,sans-serif !important;
+    display: block;
+    text-decoration: none;
+    padding: 2px 8px;
+    line-height: 19px;
+}
+
+.divMenuPopup a:link {
+    color: #333;
+}
+
+.divMenuPopup a:hover {
+    background-color: #3c3c3c;
+}
+
+.divMenuPopup .group {
+    padding: 4px 8px;
+    line-height: 18px;
+}
+
+.divMenuPopup .group:hover {
+    background-color: #3c3c3c;
+    label{
+        cursor: pointer;
+    }
+}
+
+.divMenuPopup .group input[type='checkbox'],.divMenuPopup .group input[type='radio'] {
+    position: relative;
+    top: 2px;
+    margin-right: 4px;
+}
+
+input[type="text"], input[type="password"] {
+    width: 250px;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    margin: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+    appearance: none;
+    border-radius: 1px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 1px;
+    box-sizing: border-box;
+}
+
+input[type="text"].hasBorder, input[type="password"].hasBorder {
+    border: 1px solid rgb(223, 223, 223);
+}
+
+input[type="button"]#dSubmit, input[type="button"].btnSubmit, input[type="submit"]#dSubmit, input[type="submit"].btnSubmit, .buttonSubmit, .btnMain {
+    background: rgb(11, 89, 156);
+    color: rgb(255, 255, 255);
+}
+
+input[type="button"]#dSubmit:hover, input[type="button"]#dSubmit:active, input[type="button"]#dSubmit:focus, input[type="button"].btnSubmit:hover, input[type="button"].btnSubmit:active, input[type="button"].btnSubmit:focus, input[type="submit"]#dSubmit:hover, input[type="submit"]#dSubmit:active, input[type="submit"]#dSubmit:focus, input[type="submit"].btnSubmit:hover, input[type="submit"].btnSubmit:active, input[type="submit"].btnSubmit:focus, .buttonSubmit:hover, .buttonSubmit:active, .buttonSubmit:focus, .btnMain:hover, .btnMain:active, .btnMain:focus {
+    background-color: rgb(9, 75, 132);
+}
+
+input[type="reset"], input[type="button"].btn-reset {
+    background-color: rgb(246, 115, 27);
+    color: rgb(255, 255, 255);
+    outline: none;
+}
+
+input[type="reset"]:hover, input[type="button"].btn-reset:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(238, 101, 9);
+}
+
+table {
+    border-spacing: 0;
+    border: 0;
+    width: 100%;
+}
+
+.tblRpt {
+    background-color: #212223;
+    border: 1px solid $table-border-color;
+    border-top: none;
+    border-right: none;
+    tfoot tr:first-child td {
+        border-bottom: 1px solid $table-border-color;
+    }
+
+    thead tr th, tr th {
+        font-weight: normal;
+    }
+
+    tr td, thead tr th, tr th {
+        border-right-width: 0;
+        border-bottom-width: 0;
+        border-right: 1px solid $table-border-color;
+        border-top: 1px solid $table-border-color;
+        height: $height-normal;
+        padding: 0 8px;
+        white-space: nowrap;
+        vertical-align: middle;
+        @include box-sizing;
+    }
+
+    thead tr td, thead tr th {
+        border-right-color: #5F626B;
+        //background: #383838;
+    }
+
+    tbody + tfoot tr:first-child td {
+        border-top: 1px solid $table-border-color;
+    }
+
+    tr.RptFooter {
+        background-color: $table-footer-bg;
+        color: $table-footer-color;
+        font-weight: 700;
+    }
+
+    .RptHeader02 th {
+        background: #2E2E2E;
+        border-top: 1px solid #5F626B;
+    }
+}
+
+.RptSubTitle {
+    background-color: #ffefde;
+}
+
+.RptTitle {
+    text-align: center;
+}
+
+.RptHeader {
+    font-weight: 400;
+    text-align: center;
+
+    td, th {
+        background-color: $table-header-bg-color;
+        color: $table-header-color;
+    }
+}
+
+.RptHeader02 {
+    font-weight: 400;
+    text-align: center;
+
+    td, th {
+        background-color: $table-subheader-bg-color;
+        color: $table-subheader-color;
+    }
+}
+
+.RptHeader01 {
+    background-color: #e8e8e8;
+    font-weight: 700;
+    height: 22px;
+    text-align: center;
+}
+
+.editBtn:before,.editBtnDisable:before,.editBtn-Disable:before {
+    font-family: 'Iconalpha';
+    cursor: pointer;
+    display: inline-block;
+    color: #045ace;
+}
+
+.icon-edit{
+    cursor: pointer;
+}
+
+.title-page {
+    color: #EDEDED !important;
+    font-weight: 700;
+    height: 39px;
+    line-height: 40px;
+    min-width: 650px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #313334;
+}
+
+.txt-title {
+    line-height: 36px;
+}
+
+.c{
+    text-align: center;
+}
+
+.RptHeader {
+    font-weight: 400;
+    text-align: center;
+
+    td, th {
+        background-color: $table-header-bg-color;
+        color: $table-header-color;
+    }
+}
+
+// To remove the 300-350ms tap delay
+html {
+  touch-action: manipulation;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.title-page {
+    margin-bottom: 12px;
+
+    .txt-title, .btn-add {
+        float: left;
+    }
+
+    .txt-title {
+        line-height: 36px;
+    }
+}
+
+.btn-add {
+    height: 24px;
+    position: relative;
+    top: 7px;
+    margin-left: 20px;
+    line-height: 22px;
+}
+
+.btn-add-disable {
+    @extend .btn-add;
+    opacity: 0.5;
+    cursor: default;
+}
+
+/************************************/
+/* Info */
+/************************************/
+#number1 {
+    margin: 0 8px;
+}
+
+.form-control {
+    border: 1px solid $border-color;
+}
+
+input.form-control {
+    border: 1px solid $border-color;
+    min-width: 260px;
+    margin-left: 0;
+    margin-right: 4px;
+}
+
+/************************************/
+/* Table*/
+/************************************/
+.col-memberinfo, .col-lblForecast, .col-totalbets {
+    width: 110px;
+}
+
+.col-reports, .col-transfer, .col-viewlog {
+    width: 70px;
+}
+
+table.tblPop td.lbl-accPermission {
+    padding: 20px 0 2px;
+}
+
+/************************************/
+/* Icons */
+/************************************/
+%icon {
+    font-family: 'Iconalpha';
+    cursor: pointer;
+    display: inline-block;    
+}
+
+.editBtn {
+    cursor: pointer;
+    padding: 2px;
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    @include ripple-effect-icon($top: 2px);
+
+    &:before {
+        @extend %icon;
+        content: '\e937';
+        font-size: 16px;
+        position: relative;
+        top: 3px;
+    }
+}
+
+.editBtnDisable, .editBtn:disabled {
+	@extend .editBtn;
+}
+
+.editBtn-Disable {
+    cursor: default;
+    height: 22px;
+    width: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    opacity: 0.5;
+
+    &:before {
+        @extend %icon;
+        content: '\e937';
+        font-size: 16px;
+        position: relative;
+        top: 3px;
+        cursor: default;
+    }
+}
+
+%iconMemInfo {
+    cursor: pointer;
+
+    &:after {
+        @extend %icon;
+	    content: '\e93a';
+        font-size: $font-size;
+        margin-left: 2px;
+        position: relative;
+        top: 1px;
+    }
+}
+
+.infoIco {
+    &:before { cursor: default; }
+
+    &:hover:after {
+        -moz-animation-name: none;
+        -o-animation-name: none;
+        -webkit-animation-name: none;
+        animation-name: none;
+    }
+}
+
+.pMemInfo {
+    @extend %iconMemInfo;   
+    color : $link-color;
+    &:hover {
+        color: $link-hover-color;
+    }
+
+    &:hover:after {
+	    color: $icon-hover-color;
+    }
+}
+
+.pMemInfoActive:after {
+    @extend %iconMemInfo;
+}
+
+.schint-message {
+    color: $note-color;
+    font-style: italic;
+    padding: 4px;
+    min-width: 450px;
+    
+    pre {
+        white-space: pre-wrap;
+    }
+    p {
+         font-weight: bold;
+    }
+
+    ul {
+        list-style: none;        
+        margin: 6px 0;
+    }
+
+    > ul {        
+        padding: 0;
+
+        ul {
+            padding-left: 20px;
+        }
+    }
+
+    pre {
+        font-family: $font-family;
+        line-height: 18px;
+    }
+}
+
+
+.tblRpt {
+    border-top: none;
+    border-right: none;
+    tr:nth-child(even) {
+        background: #2E2C1F;
+    }
+}
+
+.closed {
+    background-color: #4D4F52 !important;
+}
+//popup 
+body{
+    height: auto;
+}
+table.tblPop {
+    margin-top: 16px;
+    select{
+        margin: 0 8px;
+        border: 1px solid #474747;
+        + select{
+            margin-right: 7px;
+        }
+    }
+    input[type="password"], input[type="text"]{
+        border: 1px solid #474747;
+        min-width: 260px;
+        margin-left: 0;
+        margin-right: 4px;
+    }
+    .btn {
+        line-height: 1;
+    }
+    td {
+	    height: $height-normal;
+	    padding: 4px 0;
+    }
+}
+.accpermission{
+    padding: 20px 0 6px;
+    font-weight: bold;
+    box-sizing: border-box;
+    line-height: 28px;
+}
+.list-button{
+    padding: 8px 0 0 0;
+    input[type=button].btnSubmit{
+        background: #36587d;
+        color: #ededed;
+        font-weight: 700;
+        border: none;
+        cursor: pointer;
+        height: 28px;
+        outline: none;
+        margin-right: 8px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+.msgerr{
+    background: #361212;
+    border: 1px solid #dd6161;
+    color: #dd6161;
+    margin-top: 8px;
+    padding: 8px;
+    text-align: left;
+    vertical-align: middle;
+    position: relative;
+    display: flex;
+    line-height: 1;
+    align-items: center;
+    border-radius: 2px;
+    &:before{
+        content: '';
+        font-family: Iconalpha;
+        font-size: 24px;
+        float: left;
+        margin-right: 4px;
+    }
+}

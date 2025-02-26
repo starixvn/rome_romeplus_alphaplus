@@ -1,0 +1,21 @@
+﻿:root {
+    --select-border: none;
+    --select-bg: #fff;
+    --select-text-color: #333;
+}
+:root [data-theme='dark'] {
+    --select-border: 1px solid #292929;
+    --select-bg: #171717;
+    --select-text-color: #ededed;
+}
+select {
+    height: 28px;
+    border: var(--select-border);
+    color: var(--select-text-color);
+    background: var(--select-bg);
+    margin-right: 7px;
+    padding: 4px 8px;
+    border-radius: 1px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+}

@@ -1,0 +1,71 @@
+﻿/// <reference path="../core.ts" />
+/// <reference path="../components/month-range-picker.ts" />
+/// <reference path="../components/tooltip.ts" />
+/// <reference path="../components/productmultiselection.ts" />
+
+class WinLossAnalysisChartView extends BaseReport {
+    $msgError: JQuery;
+
+    productComponent: ProductMultiSelectionComponent;
+    monthRangePickerComponent: MonthRangePickerComponent;
+    reportTooltip: ReportTooltip;
+    dualAxisChartComponent: DualAxisChartComponent;
+
+    constructor(
+        productComponent: ProductMultiSelectionComponent,
+        monthRangePickerComponent: MonthRangePickerComponent,
+        reportTooltip: ReportTooltip,
+        dualAxesChartComponent: DualAxisChartComponent
+    ) {
+        super();
+        this.monthRangePickerComponent = monthRangePickerComponent;
+        this.productComponent = productComponent;
+        this.reportTooltip = reportTooltip;
+        this.dualAxisChartComponent = dualAxesChartComponent;
+    }
+
+    init() {
+        this.$msgError = $('#msg-error');
+        this.initComponents();
+    }
+
+    initComponents() {
+        this.productComponent.render();
+        this.monthRangePickerComponent.render();
+        this.dualAxisChartComponent.render(new DualAxisChartOption($('#IsDarkMode').val() === 'True'));
+    }
+
+    onSubmitReport = (event: any) => {
+        let isValid = true;
+        if (!this.productComponent.validateProductIds()) {
+            isValid = false;
+        }
+
+        if (!this.monthRangePickerComponent.isLeast3Month()) {
+            this.showValidationMonthRangeError();
+            isValid = false;
+        }
+
+        if (!isValid) {
+            event.preventDefault();
+            return;
+        }
+
+        this.hideValidationMonthRangeError();
+        super.onSubmitReport(event);
+    };
+
+    showValidationMonthRangeError = () => this.$msgError.removeClass('hide');
+
+    hideValidationMonthRangeError = () => this.$msgError.addClass('hide');
+}
+
+declare let Chart: any;
+$(function () {
+    new WinLossAnalysisChartView(
+        new ProductMultiSelectionComponent(),
+        new MonthRangePickerComponent(),
+        new ReportTooltip(),
+        new DualAxisChartComponent(Chart)
+    ).init();
+});

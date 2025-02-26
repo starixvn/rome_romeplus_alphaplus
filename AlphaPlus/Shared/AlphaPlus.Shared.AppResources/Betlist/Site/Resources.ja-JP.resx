@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="May" xml:space="preserve">
+    <value>5月</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>エクセルにエクスポート</value>
+  </data>
+  <data name="odds" xml:space="preserve">
+    <value>オッズ</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>から</value>
+  </data>
+  <data name="PartialUMAnnouncement" xml:space="preserve">
+    <value>この機能をより良い体験のために更新しています。そのため、この機能は一時的に停止されています（{0} - {1} (GMT+8)）。後ほどお試しください。ご不便をおかけして申し訳ありません。</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>この機能を使用する権限がありません。</value>
+  </data>
+  <data name="lblComm" xml:space="preserve">
+    <value>コミッション</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>すべて</value>
+  </data>
+  <data name="Sport" xml:space="preserve">
+    <value>スポーツ</value>
+  </data>
+  <data name="NumberGame" xml:space="preserve">
+    <value>ナンバーゲーム</value>
+  </data>
+  <data name="NumberGameNo" xml:space="preserve">
+    <value>ナンバーゲーム番号</value>
+  </data>
+  <data name="HT" xml:space="preserve">
+    <value>ハーフタイム</value>
+  </data>
+  <data name="FT" xml:space="preserve">
+    <value>フルタイム</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>まで</value>
+  </data>
+  <data name="BetType" xml:space="preserve">
+    <value>ベットタイプ</value>
+  </data>
+  <data name="BetList" xml:space="preserve">
+    <value>ベットリスト</value>
+  </data>
+  <data name="BetCount" xml:space="preserve">
+    <value>ベット数</value>
+  </data>
+  <data name="member" xml:space="preserve">
+    <value>メンバー</value>
+  </data>
+  <data name="LiveGame" xml:space="preserve">
+    <value>ライブゲーム</value>
+  </data>
+  <data name="Win" xml:space="preserve">
+    <value>勝ち</value>
+  </data>
+  <data name="transtime" xml:space="preserve">
+    <value>取引時間</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>合計</value>
+  </data>
+  <data name="place" xml:space="preserve">
+    <value>場所</value>
+  </data>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>情報はありません</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>日付</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>状態</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="Results" xml:space="preserve">
+    <value>結果</value>
+  </data>
+  <data name="PreGame" xml:space="preserve">
+    <value>試合前</value>
+  </data>
+  <data name="stake" xml:space="preserve">
+    <value>賭け金</value>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>賭金総額</value>
+  </data>
+  <data name="HTSlashFT" xml:space="preserve">
+    <value>前半戦/フルタイム</value>
+  </data>
+  <data name="_1X2" xml:space="preserve">
+    <value>1X2</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>残高</value>
+  </data>
+  <data name="BetsAndForecast" xml:space="preserve">
+    <value>ベット＆予想</value>
+  </data>
+  <data name="ClickToUpdateBrowser" xml:space="preserve">
+    <value>お使いのブラウザを更新するには、こちらをクリックしてください。</value>
+  </data>
+  <data name="Forecast" xml:space="preserve">
+    <value>予想</value>
+  </data>
+  <data name="HDPOULive" xml:space="preserve">
+    <value>ハンディキャップ/オーバー・アンダー/ライブ</value>
+  </data>
+  <data name="MoneyLine" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>普通</value>
+  </data>
+  <data name="Forecast_Title_NotNow" xml:space="preserve">
+    <value>今は違います</value>
+  </data>
+  <data name="Outright" xml:space="preserve">
+    <value>アウトライト</value>
+  </data>
+  <data name="ScoreMap" xml:space="preserve">
+    <value>スコアマップ</value>
+  </data>
+  <data name="Soccer" xml:space="preserve">
+    <value>サッカー</value>
+  </data>
+  <data name="TotalBets" xml:space="preserve">
+    <value>合計ベット</value>
+  </data>
+  <data name="Keno" xml:space="preserve">
+    <value>RNG キノ</value>
+  </data>
+  <data name="MixParlay" xml:space="preserve">
+    <value>ミックスパーレイ</value>
+  </data>
+  <data name="OutrightResults" xml:space="preserve">
+    <value>アウトライト結果</value>
+  </data>
+  <data name="SystemParlay" xml:space="preserve">
+    <value>システムパーレイ</value>
+  </data>
+  <data name="ViewDataFromDate" xml:space="preserve">
+    <value>{0} からレポートデータを表示できます。</value>
+  </data>
+  <data name="League" xml:space="preserve">
+    <value>リーグ</value>
+  </data>
+  <data name="ShowAllLeagues" xml:space="preserve">
+    <value>すべてのリーグ</value>
+  </data>
+  <data name="ThereIsNoData" xml:space="preserve">
+    <value>データがありません</value>
+  </data>
+  <data name="ShowAllLeaguesExcelTitle" xml:space="preserve">
+    <value>すべてのリーグを表示</value>
+  </data>
+  <data name="ConnectionFailedTo3rd" xml:space="preserve">
+    <value>{0} への接続に失敗しました</value>
+  </data>
+  <data name="ResultLinkText" xml:space="preserve">
+    <value>ここをクリックして {0} の結果を表示</value>
+  </data>
+  <data name="ResultPopupTitle" xml:space="preserve">
+    <value>{0} 結果</value>
+  </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>選択してください</value>
+  </data>
+  <data name="TotalGoal01" xml:space="preserve">
+    <value>0 – 1</value>
+  </data>
+  <data name="Apr" xml:space="preserve">
+    <value>4月</value>
+  </data>
+  <data name="Aug" xml:space="preserve">
+    <value>8月</value>
+  </data>
+  <data name="Dec" xml:space="preserve">
+    <value>12月</value>
+  </data>
+  <data name="Feb" xml:space="preserve">
+    <value>2月</value>
+  </data>
+  <data name="Handicap" xml:space="preserve">
+    <value>ハンディキャップ</value>
+  </data>
+  <data name="Jan" xml:space="preserve">
+    <value>1月</value>
+  </data>
+  <data name="Jul" xml:space="preserve">
+    <value>7月</value>
+  </data>
+  <data name="Jun" xml:space="preserve">
+    <value>6月</value>
+  </data>
+  <data name="Sep" xml:space="preserve">
+    <value>9月</value>
+  </data>
+</root>

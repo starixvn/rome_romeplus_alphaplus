@@ -1,0 +1,210 @@
+﻿
+:root,
+:root [data-theme='light'] {
+    --bg-match-title-row: #f3f5e0;
+    --bg-sub-total-row: #eae9ee;
+    --color-sub-total-row: #394e6e;
+    --color-match-title: #f38130;
+    --color-match-title-before: #f38130;
+}
+:root [data-theme='dark'] {
+    --bg-match-title-row: #2E2C1F;
+    --bg-sub-total-row: none;
+    --color-sub-total-row: #ebebeb;
+    --color-match-title: #FFD464;
+    --color-match-title-before: #B29446;
+}
+
+.filter {
+    display: flex;
+    flex-wrap: wrap;
+    .form-group{
+        order: 7;
+        align-items: center;
+        display: flex;
+    }
+    .product-multiselect-container{
+        order: 1;
+    }
+    .from-date-box{
+        order: 2;
+    }
+    .to-date-box{
+        order: 3;
+    }
+    #dropdown-league-container{
+        order: 4;
+    }
+    .submit-container{
+        order: 5;
+    }
+    .daterange-container{
+        order: 6;
+    }
+    .note{
+        width: 100%;
+        order: 10;
+    }
+}
+.match-title-row {
+    background-color: var(--bg-match-title-row)!important;
+}
+
+.league-title {
+    color: var(--text-color);
+    font-weight: bold;
+    text-align: left;
+    text-transform: uppercase;
+    width: 300px;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.match-title:before {
+    content: '>>';
+    
+    padding: 0 10px 0 50px;
+}
+
+.match-title {
+    color: var(--color-match-title);
+    font-weight: bold;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.sub-total-row {
+    background-color: var(--bg-sub-total-row);
+    color: var(--color-sub-total-row);
+    font-weight: bold;
+}
+
+#dropdown-league-container {
+    .multiselect-container.dropdown-menu {
+        width: 400px;
+
+        @media (min-width: 1540px) {
+            width: 700px;
+        }
+    }
+
+    .multiselect-container > .multiselect-all {
+        width: 100%;
+    }
+
+    .multiselect-container > li.filter {
+        width: 100%;
+
+        .input-group {
+            width: 95%;
+
+            @media (min-width: 1540px) {
+                width: 97%;
+            }
+        }
+    }
+
+    .multiselect-container > li {
+        width: 100%;
+        display: inline-block;
+
+        @media (min-width: 1540px) {
+            width: 50%;
+        }
+    }
+
+    @media only screen and (max-device-width: 767px) and (orientation: portrait) {
+        .multiselect-container.dropdown-menu {
+            width: 350px;
+            left: 0 !important;
+        }
+
+        .multiselect-container > li {
+            width: 100%;
+            display: inline-block;
+        }
+
+        .multiselect-container > li.filter {
+            width: 100%;
+
+            .input-group {
+                width: 93%;
+            }
+        }
+    }
+
+    @media only screen and (max-device-width: 767px) and (orientation: landscape) {
+        .multiselect-container.dropdown-menu {
+            width: 350px;
+            left: 0 !important;
+        }
+
+        .multiselect-container > li {
+            width: 100%;
+            display: inline-block;
+        }
+
+        .multiselect-container > li.filter {
+            width: 100%;
+
+            .input-group {
+                width: 93%;
+            }
+        }
+    }
+
+    @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: landscape) {
+        .multiselect-container.dropdown-menu {
+            width: 350px;
+            left: auto !important;
+            right: 0 !important;
+        }
+
+        .multiselect-container > li {
+            width: 100%;
+            display: inline-block;
+        }
+
+        .multiselect-container > li.filter {
+            width: 100%;
+
+            .input-group {
+                width: 93%;
+            }
+        }
+    }
+
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+        .multiselect-container.dropdown-menu {
+            width: 350px;
+            left: auto !important;
+            right: 0 !important;
+        }
+
+        .multiselect-container > li.filter {
+            width: 100%;
+
+            .input-group {
+                width: 93%;
+            }
+        }
+    }
+}
+
+.tblRpt.tblRpt-hover tbody tr.tbl-footer:hover {
+    td {
+        background-color: #7f3d1d;
+    }
+
+    .altercol {
+        background-color: #432616;
+    }
+}
+
+@media only screen and (max-device-width: 767px) and (orientation: landscape) {
+    .filter .form-group {
+        vertical-align: top;
+    }
+}

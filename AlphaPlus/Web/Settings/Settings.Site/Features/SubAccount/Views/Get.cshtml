@@ -1,0 +1,48 @@
+@using AlphaPlus.Shared.AppResources.Settings.SubAccount
+@model SubAccountViewModel
+@{
+    Layout = "~/Features/SubAccount/Views/_Layout.cshtml";
+}
+<div class="">
+    <main role="main" class="pb-3">
+        <div id="errMsg" style="display: none;"></div>
+        <table class="tblPop width-100per">
+            @if (Model.SubAccId != 0)
+            {
+                <tr>
+                    <td>@Lang.username</td>
+                    <td>@Model.Username</td>
+                </tr>
+                <tr>
+                    <td>@Lang.firstname</td>
+                    <td><input type="text" value="@Model.Firstname" id="txtFirstName" /></td>
+                </tr>
+                <tr>
+                    <td>@Lang.lastname</td>
+                    <td><input type="text" value="@Model.Lastname" id="txtLastName" /></td>
+                </tr>
+                <tr>
+                    <td>@Lang.statusclosed</td>
+                    <td><input id="chkClosed" type="checkbox" @(Model.Closed ? "checked" : string.Empty) /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="button" id="btnEdit" class="btn btn-submit" value="@Lang.submit ">
+                        <input type="button" id="btn-reset" class="btn btn-reset" value="@Lang.Reset">
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td colspan="2">@Lang.noInfo</td>
+                </tr>
+            }
+        </table>
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.SubAccId)
+        @Html.HiddenFor(m => m.Firstname)
+        @Html.HiddenFor(m => m.Lastname)
+        @Html.HiddenFor(m => m.Closed)
+    </main>
+</div>

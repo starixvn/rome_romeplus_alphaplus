@@ -1,0 +1,1174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccumTotal" xml:space="preserve">
+    <value>Tổng tiền tích luỹ</value>
+  </data>
+  <data name="AccumulatedTotal" xml:space="preserve">
+    <value>Tổng tiền tích luỹ</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Hành động</value>
+  </data>
+  <data name="ActionDateTime" xml:space="preserve">
+    <value>Thời điểm thực hiện</value>
+  </data>
+  <data name="ActualStake" xml:space="preserve">
+    <value>Tiền cược thực</value>
+  </data>
+  <data name="AgentCommNew" xml:space="preserve">
+    <value>Hoa hồng của Agent</value>
+  </data>
+  <data name="AgentOutstanding" xml:space="preserve">
+    <value>Tiền chưa xử lý của Agent</value>
+  </data>
+  <data name="AgentTotal" xml:space="preserve">
+    <value>Tổng giao dịch của Agent</value>
+  </data>
+  <data name="AgentTotalNew" xml:space="preserve">
+    <value>Tổng cộng của Agent</value>
+  </data>
+  <data name="AgentWinLoss" xml:space="preserve">
+    <value>Thắng thua của Agent</value>
+  </data>
+  <data name="AgentWinLossDetail" xml:space="preserve">
+    <value>Chi tiết thắng thua của Agent</value>
+  </data>
+  <data name="AgentWinLossNew" xml:space="preserve">
+    <value>Thắng thua của Agent</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Tất cả</value>
+  </data>
+  <data name="AllCurrencies" xml:space="preserve">
+    <value>Tất cả tiền tệ</value>
+  </data>
+  <data name="AllLeagues" xml:space="preserve">
+    <value>Tất cả giải đấu</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>Tất cả sản phẩm</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Số lượng</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>Tháng 4</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>Tháng 8</value>
+  </data>
+  <data name="BackToCurrentReport" xml:space="preserve">
+    <value>Quay trở lại Báo Cáo hiện tại</value>
+  </data>
+  <data name="BalanceChange" xml:space="preserve">
+    <value>Thay đổi số dư</value>
+  </data>
+  <data name="BetChoiceMatching" xml:space="preserve">
+    <value>Cược trùng lặp</value>
+  </data>
+  <data name="BetCount" xml:space="preserve">
+    <value>Số lượng cược</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>Hạn mức khả dụng</value>
+  </data>
+  <data name="BetCreditHistory" xml:space="preserve">
+    <value>Lịch sử Hạn mức khả dụng</value>
+  </data>
+  <data name="BetList" xml:space="preserve">
+    <value>Danh sách cược</value>
+  </data>
+  <data name="BetList_Running" xml:space="preserve">
+    <value>Danh sách cược ( đang diễn ra )</value>
+  </data>
+  <data name="BetMatching_IP_Title" xml:space="preserve">
+    <value>Bấm để xem tài khoản cùng IP với tài khoản này.</value>
+  </data>
+  <data name="BetMatching_Username_Title" xml:space="preserve">
+    <value>Bấm để xem cấp trên</value>
+  </data>
+  <data name="BetType" xml:space="preserve">
+    <value>Loại cược</value>
+  </data>
+  <data name="BetType1X2_FT" xml:space="preserve">
+    <value>Cả trận</value>
+  </data>
+  <data name="BonusDetail" xml:space="preserve">
+    <value>Bonus Detail</value>
+  </data>
+  <data name="BonusDetailRefNo" xml:space="preserve">
+    <value>Ref. No.</value>
+  </data>
+  <data name="BonusStatus" xml:space="preserve">
+    <value>Bonus Status</value>
+  </data>
+  <data name="CanOnlyViewDataAfterTimeCurrentReport" xml:space="preserve">
+    <value>Bạn có thể tra cứu dữ liệu báo cáo từ ngày {0}.</value>
+  </data>
+  <data name="CanOnlyViewDataAfterTimeHistoryReport" xml:space="preserve">
+    <value>Bạn có thể tra cứu dữ liệu báo cáo từ ngày {0}.</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Hủy</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="CasinoWinLoss" xml:space="preserve">
+    <value>Casino Win Loss</value>
+  </data>
+  <data name="ClassicView" xml:space="preserve">
+    <value>Phiên bản cũ</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Đóng</value>
+  </data>
+  <data name="Columns" xml:space="preserve">
+    <value>Cột Hiển Thị</value>
+  </data>
+  <data name="Comm" xml:space="preserve">
+    <value>Hoa hồng</value>
+  </data>
+  <data name="CommAndTotal" xml:space="preserve">
+    <value>/Hoa hồng/Tổng cộng</value>
+  </data>
+  <data name="Commission" xml:space="preserve">
+    <value>Hoa hồng</value>
+  </data>
+  <data name="Commission1" xml:space="preserve">
+    <value>Hoa hồng 1</value>
+  </data>
+  <data name="Commission2" xml:space="preserve">
+    <value>Hoa hồng 2</value>
+  </data>
+  <data name="Commission3" xml:space="preserve">
+    <value>Hoa hồng 3</value>
+  </data>
+  <data name="CommissionByBettype" xml:space="preserve">
+    <value>Hoa hồng theo loại cược</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Công ty</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="ConfirmPayment" xml:space="preserve">
+    <value>Confirm Payment</value>
+  </data>
+  <data name="ConfirmPaymentNote" xml:space="preserve">
+    <value>Submitting this form will record your payment's date in the system.</value>
+  </data>
+  <data name="ConfirmPaymentSuccessfully" xml:space="preserve">
+    <value>The payment date has been successfully recorded.</value>
+  </data>
+  <data name="Consolidation" xml:space="preserve">
+    <value>Thắng thua của nhóm</value>
+  </data>
+  <data name="ConsolidationPTNote" xml:space="preserve">
+    <value>Giá trị PT được hiển thị trong báo cáo là PT Lớn Nhất của {0}</value>
+  </data>
+  <data name="ConsolidationReportByDate" xml:space="preserve">
+    <value>Báo cáo chi tiết mỗi ngày</value>
+  </data>
+  <data name="ConsolidationReportByProduct" xml:space="preserve">
+    <value>Tổng kết báo cáo của Sport</value>
+  </data>
+  <data name="ContributionAmount" xml:space="preserve">
+    <value>Tổng tích lũy</value>
+  </data>
+  <data name="ContributionAmountRoundNote" xml:space="preserve">
+    <value>- Tiền tích lũy sẽ được làm tròn đến 4 số lẻ.</value>
+  </data>
+  <data name="ContributionShare" xml:space="preserve">
+    <value>Tiền tích lũy</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>Đã sao chép</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Sao chép</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>Ngày tạo</value>
+  </data>
+  <data name="CreatedFrom" xml:space="preserve">
+    <value>Created From</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Tiền tệ</value>
+  </data>
+  <data name="Daily" xml:space="preserve">
+    <value>Hằng ngày</value>
+  </data>
+  <data name="DailyStatement" xml:space="preserve">
+    <value>Thông báo hằng ngày</value>
+  </data>
+  <data name="DailyWinLossAnalysis" xml:space="preserve">
+    <value>Đánh giá kết quả thắng thua trong ngày</value>
+  </data>
+  <data name="DataOutsideDateRange" xml:space="preserve">
+    <value>Dữ liệu đã di chuyển ra khỏi phạm vi ngày đã chọn và dẫn đến sự biến động trong báo cáo.</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Ngày</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>Thời gian báo cáo</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>Tháng 12</value>
+  </data>
+  <data name="DelayIssueLegend" xml:space="preserve">
+    <value>- Số liệu của {0} sẽ bị trì hoãn 5 phút kể từ khi hoàn thành các vé cược. </value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>Vô hiệu hóa</value>
+  </data>
+  <data name="DoNotShowAgain" xml:space="preserve">
+    <value>Không hiển thị lại</value>
+  </data>
+  <data name="DormantAccounts" xml:space="preserve">
+    <value>Tài Khoản Không Hoạt Động</value>
+  </data>
+  <data name="DormantAccountsNote" xml:space="preserve">
+    <value>- Thông tin của các tài khoản không hoạt động đã được thu thập và tổng hợp; việc xem thông tin chi tiết từng tài khoản không còn khả dụng.</value>
+  </data>
+  <data name="DuplicatedTicketMessage" xml:space="preserve">
+    <value>Vé cược nào có ngày diễn ra bị thay đổi nhiều lần sẽ được hiển thị lại và tô đỏ.</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Đã kích hoạt</value>
+  </data>
+  <data name="Entered" xml:space="preserve">
+    <value>Kết thúc</value>
+  </data>
+  <data name="EventDateFrom" xml:space="preserve">
+    <value>Ngày diễn ra từ</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>Xuất sang Excel</value>
+  </data>
+  <data name="FT" xml:space="preserve">
+    <value>Cả trận</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>Tháng 2</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Lọc</value>
+  </data>
+  <data name="FilterByMemberWinLoss" xml:space="preserve">
+    <value>Lọc theo thắng thua của Member</value>
+  </data>
+  <data name="FilterByStake" xml:space="preserve">
+    <value>Lọc theo tiền cược</value>
+  </data>
+  <data name="FilterByUsername" xml:space="preserve">
+    <value>Lọc theo tên tài khoản</value>
+  </data>
+  <data name="FilterByUsername_Placeholder" xml:space="preserve">
+    <value>Tên tài khoản phải cách nhau bằng dấu phẩy (,)</value>
+  </data>
+  <data name="FirstLastName" xml:space="preserve">
+    <value>Tên/ Họ</value>
+  </data>
+  <data name="Formular_Accumulated_Total" xml:space="preserve">
+    <value>Tổng tiền tích luỹ = Số dư đầu ngày + Thắng thua + Hoa hồng + Chuyển khoản</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>Từ</value>
+  </data>
+  <data name="GameTypeName" xml:space="preserve">
+    <value>Thể loại cá cược</value>
+  </data>
+  <data name="Gaming" xml:space="preserve">
+    <value>Gaming</value>
+  </data>
+  <data name="GivenCredit" xml:space="preserve">
+    <value>Hạn mức được cấp</value>
+  </data>
+  <data name="GrandPrize" xml:space="preserve">
+    <value>Giải đặc biệt</value>
+  </data>
+  <data name="GrandPrize_Guidelines" xml:space="preserve">
+    <value>tiền thắng cược một sự kiện đặc biệt, và không tính vào số dư của member.</value>
+  </data>
+  <data name="GrandTotal" xml:space="preserve">
+    <value>Tổng cộng</value>
+  </data>
+  <data name="GrossComAndAgentTotal" xml:space="preserve">
+    <value>/Tổng hoa hồng/Tổng giao dịch của Agent</value>
+  </data>
+  <data name="GrossComAndMasterTotal" xml:space="preserve">
+    <value>/Tổng hoa hồng/Tổng giao dịch của Master</value>
+  </data>
+  <data name="GrossComm" xml:space="preserve">
+    <value>Tổng hoa hồng</value>
+  </data>
+  <data name="GrossCommNoteForAgent" xml:space="preserve">
+    <value>Góc nhìn của Agent: khoản hoa hồng (không bao gồm Position Taking) mà Master có thể nhận từ cấp trên ứng với từng Agent.</value>
+  </data>
+  <data name="GrossCommNoteForCasino" xml:space="preserve">
+    <value>Đối với một số sản phẩm Sòng Bạc, nếu Position Taking/Tỷ Lệ Hoa Hồng thay đổi trong một trò chơi hoặc một ngày, thì giá trị Tổng Hoa Hồng hiển thị trên báo cáo sẽ là giá trị gần đúng được tính từ Position Taking/Tỷ Lệ Hoa Hồng trung bình.</value>
+  </data>
+  <data name="GrossCommNoteForConsolidationReportAgent" xml:space="preserve">
+    <value>Xem ở cấp Agent: khoản hoa hồng (không bao gồm Position Taking) mà Agent có thể nhận từ cấp trên.</value>
+  </data>
+  <data name="GrossCommNoteForConsolidationReportMaster" xml:space="preserve">
+    <value>Xem ở cấp Master: khoản hoa hồng (không bao gồm Position Taking) mà Master có thể nhận từ cấp trên.</value>
+  </data>
+  <data name="GrossCommNoteForConsolidationReportSuper" xml:space="preserve">
+    <value>Xem ở cấp Super: khoản hoa hồng (không bao gồm Position Taking) mà Super có thể nhận từ cấp trên.</value>
+  </data>
+  <data name="GrossCommNoteForMaster" xml:space="preserve">
+    <value>Góc nhìn của Master: khoản hoa hồng (không bao gồm Position Taking) mà Super có thể nhận từ cấp trên ứng với từng Master.</value>
+  </data>
+  <data name="GrossCommNoteForMember" xml:space="preserve">
+    <value>Góc nhìn của Member: khoản hoa hồng (không bao gồm Position Taking) mà Agent có thể nhận từ cấp trên ứng với từng Member.</value>
+  </data>
+  <data name="GrossCommNoteForRoundingProblem" xml:space="preserve">
+    <value>Giá trị Tổng Hoa Hồng có thể khác nhau ở mỗi cấp do làm tròn đến 4 chữ số thập phân.</value>
+  </data>
+  <data name="GrossCommRoundingNote" xml:space="preserve">
+    <value>- Giá trị hoa hồng có thể chênh lệch nhỏ so với giá trị trên lý thuyết (Hoa Hồng * Position Taking), do được tính bằng tổng giá trị hoa hồng (làm tròn đến 4 chữ số thập phân) của các vé cược phụ.</value>
+  </data>
+  <data name="Guidelines_AccumulatedTotal_Member" xml:space="preserve">
+    <value>số dư tính đến cuối ngày.</value>
+  </data>
+  <data name="Guidelines_AccumulatedTotal_SMA" xml:space="preserve">
+    <value>số dư tính đến cuối ngày.</value>
+  </data>
+  <data name="Guidelines_Commission_Member" xml:space="preserve">
+    <value>tổng hoa hồng của Member</value>
+  </data>
+  <data name="Guidelines_Commission_SMA" xml:space="preserve">
+    <value>tổng tiền hoa hồng dựa trên vé cược của member.</value>
+  </data>
+  <data name="Guidelines_OpeningBalance_Member" xml:space="preserve">
+    <value>số dư được tính đến thời điểm bắt đầu của ngày được chọn. Nếu số dư này không trùng khớp với Tổng tiền tích luỹ của ngày hôm trước thì sẽ được tô màu Hồng.</value>
+  </data>
+  <data name="Guidelines_OpeningBalance_SMA" xml:space="preserve">
+    <value>số dư được tính đến thời điểm bắt đầu của ngày được chọn. Nếu số dư này không trùng khớp với Tổng tiền tích luỹ của ngày hôm trước thì sẽ được tô màu Hồng.</value>
+  </data>
+  <data name="Guidelines_Outstanding" xml:space="preserve">
+    <value>tổng tiền cược của các vé cược đang diễn ra. Nhấn vào để xem danh sách vé cược đang diễn ra.</value>
+  </data>
+  <data name="Guidelines_TransferAmt_Member" xml:space="preserve">
+    <value>tổng lượng tiền chuyển khoản giữa Agent và Member. Nhấn vào để xem chi tiết chuyển khoản.</value>
+  </data>
+  <data name="Guidelines_TransferAmt_SMA" xml:space="preserve">
+    <value>tổng tiền chuyển khoản. Nhấn để xem Chi Tiết Chuyển Khoản.</value>
+  </data>
+  <data name="Guidelines_Turnover" xml:space="preserve">
+    <value>tổng tiền cược (không bao gồm vé cược bị Vô hiệu/Huỷ/Chưa xử lý/Hoàn lại).</value>
+  </data>
+  <data name="Guidelines_VoidRejected" xml:space="preserve">
+    <value>tổng tiền cược của các vé cược bị Huỷ/Từ chối. Nhấn vào để xem danh sách vé cược bị Huỷ/Từ chối.</value>
+  </data>
+  <data name="Guidelines_WinLoss_Member" xml:space="preserve">
+    <value>tổng tiền thắng thua (không bao gồm tiền hoa hồng) của các vé cược (không bao gồm vé cược bị Huỷ/Từ chối/Chưa xử lý). Nhấn vào để xem chi tiết danh sách vé cược.</value>
+  </data>
+  <data name="Guidelines_WinLoss_SMA" xml:space="preserve">
+    <value>tổng tiền thắng thua được tính theo Position Taking (không bao gồm vé cược bị Huỷ/Từ Chối/Chưa xử lý).</value>
+  </data>
+  <data name="HT" xml:space="preserve">
+    <value>Hiệp 1</value>
+  </data>
+  <data name="HideFilter" xml:space="preserve">
+    <value>Ẩn bộ lọc dữ liệu</value>
+  </data>
+  <data name="HistoryDataCanViewNote" xml:space="preserve">
+    <value>Dữ liệu báo cáo trước ngày {0} chỉ có thể được tra cứu đến 31 ngày.</value>
+  </data>
+  <data name="HttpError_Default" xml:space="preserve">
+    <value>Rất tiếc, đã xảy ra lỗi không mong muốn với máy chủ. Vui lòng liên hệ với bộ phận chăm sóc khách hàng của chúng tôi để được hỗ trợ. [{0}]</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="IPMatching" xml:space="preserve">
+    <value>IP trùng lặp</value>
+  </data>
+  <data name="IPMatchingNote" xml:space="preserve">
+    <value>Báo cáo này được sử dụng để tham khảo. Dữ liệu có thể bị thay đổi trong quá trình tính toán.</value>
+  </data>
+  <data name="IP_used_by" xml:space="preserve">
+    <value>IP được dùng bởi</value>
+  </data>
+  <data name="Include" xml:space="preserve">
+    <value>Bao gồm</value>
+  </data>
+  <data name="Insurance_GemsWinLoss" xml:space="preserve">
+    <value>Thắng thua trên bảo hiểm và ngọc</value>
+  </data>
+  <data name="Insurance_GemsWinLossAbbr" xml:space="preserve">
+    <value>Thắng thua trên bảo hiểm và ngọc</value>
+  </data>
+  <data name="InvalidRefNo" xml:space="preserve">
+    <value>Số tham chiếu không đúng</value>
+  </data>
+  <data name="InvalidUsername" xml:space="preserve">
+    <value>Tên người dùng không đúng</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>Tháng 1</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>Tháng 7</value>
+  </data>
+  <data name="June" xml:space="preserve">
+    <value>Tháng 6</value>
+  </data>
+  <data name="KoreanWon" xml:space="preserve">
+    <value>Won</value>
+  </data>
+  <data name="Last3Months" xml:space="preserve">
+    <value>3 tháng trước</value>
+  </data>
+  <data name="LastMonth" xml:space="preserve">
+    <value>Tháng trước</value>
+  </data>
+  <data name="LastWeek" xml:space="preserve">
+    <value>Tuần trước</value>
+  </data>
+  <data name="Least3MonthToChart" xml:space="preserve">
+    <value>Vui lòng chọn mốc thời gian ít nhất là 3 tháng để lập biểu đồ</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Cấp</value>
+  </data>
+  <data name="LiveGame" xml:space="preserve">
+    <value>Trực Tiếp</value>
+  </data>
+  <data name="MainReport" xml:space="preserve">
+    <value>Báo Cáo Chính</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>Tháng 3</value>
+  </data>
+  <data name="MasterCommNew" xml:space="preserve">
+    <value>Hoa hồng của Master</value>
+  </data>
+  <data name="MasterOutstanding" xml:space="preserve">
+    <value>Tiền chưa xử lý của Master</value>
+  </data>
+  <data name="MasterTotal" xml:space="preserve">
+    <value>Tổng giao dịch của Master</value>
+  </data>
+  <data name="MasterTotalNew" xml:space="preserve">
+    <value>Tổng cộng của Master</value>
+  </data>
+  <data name="MasterWinLoss" xml:space="preserve">
+    <value>Thắng thua của Master</value>
+  </data>
+  <data name="MasterWinLossDetail" xml:space="preserve">
+    <value>Chi tiết thắng thua của Master</value>
+  </data>
+  <data name="MasterWinLossNew" xml:space="preserve">
+    <value>Thắng thua của Master</value>
+  </data>
+  <data name="Match" xml:space="preserve">
+    <value>Trận đấu</value>
+  </data>
+  <data name="MatchResultEntered" xml:space="preserve">
+    <value>Kết quả trận đấu đã nhập</value>
+  </data>
+  <data name="MatchWinLoss" xml:space="preserve">
+    <value>Thắng thua theo trận</value>
+  </data>
+  <data name="MatchWinLossDetail" xml:space="preserve">
+    <value>Chi tiết thắng thua theo trận</value>
+  </data>
+  <data name="MatchingBets" xml:space="preserve">
+    <value>Cược trùng lặp</value>
+  </data>
+  <data name="MaxDataRetrieveHistoryError" xml:space="preserve">
+    <value>Vui lòng xem lại thời gian báo cáo vì dữ liệu từ trước ngày {0} chỉ có thể được truy xuất trong vòng 31 ngày.</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>Tháng 5</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>Member</value>
+  </data>
+  <data name="MemberCommNew" xml:space="preserve">
+    <value>Hoa hồng của Member</value>
+  </data>
+  <data name="MemberCount" xml:space="preserve">
+    <value>Số lượng Member</value>
+  </data>
+  <data name="MemberFeedback" xml:space="preserve">
+    <value>Member Feedback</value>
+  </data>
+  <data name="MemberOutstanding" xml:space="preserve">
+    <value>Tiền chưa xử lý của Member</value>
+  </data>
+  <data name="MemberRefNo" xml:space="preserve">
+    <value>Member/Số tham chiếu</value>
+  </data>
+  <data name="MemberTotalNew" xml:space="preserve">
+    <value>Tổng cộng của Member</value>
+  </data>
+  <data name="MemberTurnOver" xml:space="preserve">
+    <value>Tổng tiền cược của Member</value>
+  </data>
+  <data name="MemberWinLoss" xml:space="preserve">
+    <value>Thắng thua của Member</value>
+  </data>
+  <data name="MemberWinLossDetail" xml:space="preserve">
+    <value>Chi tiết thắng thua của Member</value>
+  </data>
+  <data name="MemberWinLossNew" xml:space="preserve">
+    <value>Thắng thua của Member</value>
+  </data>
+  <data name="MembersMovedEventDateReport" xml:space="preserve">
+    <value>Member's Moved Event Date Report</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Tháng</value>
+  </data>
+  <data name="Monthly" xml:space="preserve">
+    <value>Hằng tháng</value>
+  </data>
+  <data name="MonthlyWinLossAnalysis" xml:space="preserve">
+    <value>Phân tích hệ số thắng thua trong tháng</value>
+  </data>
+  <data name="MonthlyWinLossChart" xml:space="preserve">
+    <value>Biểu đồ thắng thua trong tháng</value>
+  </data>
+  <data name="MoveStatementHistory" xml:space="preserve">
+    <value>Lịch sử thay đổi sao kê</value>
+  </data>
+  <data name="MoveStatementHistoryNote" xml:space="preserve">
+    <value>Báo cáo này sẽ hiển thị tất cả vé cược có ngày diễn ra mới/cũ nằm trong khoảng ngày tháng tìm kiếm.</value>
+  </data>
+  <data name="NetTurnover" xml:space="preserve">
+    <value>Tiền cược thực</value>
+  </data>
+  <data name="NetTurnoverAndGrossComm" xml:space="preserve">
+    <value>/Tiền cược thực/Tổng hoa hồng</value>
+  </data>
+  <data name="NetTurnoverAndTaxComm" xml:space="preserve">
+    <value>/Tiền cược thực/Tống phí hoa hồng</value>
+  </data>
+  <data name="NewBalance" xml:space="preserve">
+    <value>Số dư mới</value>
+  </data>
+  <data name="NewEventDate" xml:space="preserve">
+    <value>Ngày diễn ra mới</value>
+  </data>
+  <data name="NewView" xml:space="preserve">
+    <value>Phiên bản mới</value>
+  </data>
+  <data name="NewViewTakesOver" xml:space="preserve">
+    <value>Phiên Bản Mới Được Hiển Thị Chính</value>
+  </data>
+  <data name="NewViewTakesOverNote" xml:space="preserve">
+    <value>Phiên Bản Mới sẽ dc hiển thị chính từ ngày 21/02/2024 (dd/mm/yyyy). Bạn vẫn có thể chuyển về Phiên Bản Cũ.</value>
+  </data>
+  <data name="NewViewTakesOverPopup" xml:space="preserve">
+    <value>Từ ngày &lt;b&gt;21/02/2024 (dd/mm/yyyy)&lt;/b&gt;, &lt;b&gt;Phiên Bản Mới&lt;/b&gt; sẽ được &lt;b&gt;hiển thị chính&lt;/b&gt;. Bạn vẫn có thể chuyển về Phiên Bản Cũ.</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Kế tiếp</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Số</value>
+  </data>
+  <data name="NoColumnsFound" xml:space="preserve">
+    <value>Không tìm thấy Cột nào</value>
+  </data>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>Không có dữ liệu</value>
+  </data>
+  <data name="NoProductDetailsFound" xml:space="preserve">
+    <value>Không tìm thấy Sản Phẩm Phụ nào</value>
+  </data>
+  <data name="NoProductFound" xml:space="preserve">
+    <value>Không tìm thấy Sản Phẩm nào</value>
+  </data>
+  <data name="NonEntered" xml:space="preserve">
+    <value>Chưa có kết quả</value>
+  </data>
+  <data name="NoneSelected" xml:space="preserve">
+    <value>Chưa chọn mục nào</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>Bạn không được cho phép sử dụng chức năng này.</value>
+  </data>
+  <data name="NotReceived" xml:space="preserve">
+    <value>Not Received</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>Tháng 11</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>Tháng 10</value>
+  </data>
+  <data name="OldEventDate" xml:space="preserve">
+    <value>Ngày diễn ra cũ</value>
+  </data>
+  <data name="OlderThan3Months" xml:space="preserve">
+    <value>Lâu hơn 3 tháng</value>
+  </data>
+  <data name="OpeningBal" xml:space="preserve">
+    <value>Số dư đầu ngày</value>
+  </data>
+  <data name="OpeningBalance" xml:space="preserve">
+    <value>Số dư đầu ngày</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>Khác</value>
+  </data>
+  <data name="Outright" xml:space="preserve">
+    <value>Theo môn thể thao</value>
+  </data>
+  <data name="Outstanding" xml:space="preserve">
+    <value>Tiền chưa xử lý</value>
+  </data>
+  <data name="PT" xml:space="preserve">
+    <value>PT</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Trang</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>Hiển thị {from} đến {to} của {total}</value>
+  </data>
+  <data name="PartialUMAnnouncement" xml:space="preserve">
+    <value>Chúng tôi đang nâng cấp chức năng này để có trải nghiệm tốt hơn. Do đó, chức năng này tạm gián đoạn ({0} - {1} (GMT+8)). Xin lỗi vì sự bất tiện này, vui lòng thử lại sau.</value>
+  </data>
+  <data name="PaymentDate" xml:space="preserve">
+    <value>Ngày thanh toán</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="Place" xml:space="preserve">
+    <value>Place</value>
+  </data>
+  <data name="PlayerComm" xml:space="preserve">
+    <value>Hoa hồng</value>
+  </data>
+  <data name="PreGame" xml:space="preserve">
+    <value>Chưa bắt đầu</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Sản phẩm</value>
+  </data>
+  <data name="ProductDetails" xml:space="preserve">
+    <value>Sản Phẩm Phụ</value>
+  </data>
+  <data name="ProgressiveGamesContribution" xml:space="preserve">
+    <value>Tích Lũy Trò Chơi Lũy Tiến</value>
+  </data>
+  <data name="Race" xml:space="preserve">
+    <value>Vòng đua</value>
+  </data>
+  <data name="Received" xml:space="preserve">
+    <value>Received</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Từ chối</value>
+  </data>
+  <data name="Remark" xml:space="preserve">
+    <value>Ghi chú</value>
+  </data>
+  <data name="ReportBy" xml:space="preserve">
+    <value>Báo cáo</value>
+  </data>
+  <data name="ReportDataCanViewNote" xml:space="preserve">
+    <value>Dữ liệu báo cáo từ ngày {0} trở đi có thể được tra cứu đến 90 ngày hoặc hơn.</value>
+  </data>
+  <data name="Results" xml:space="preserve">
+    <value>Kết quả</value>
+  </data>
+  <data name="RoundCount" xml:space="preserve">
+    <value>Số ván</value>
+  </data>
+  <data name="SearchColumns" xml:space="preserve">
+    <value>Tìm Cột</value>
+  </data>
+  <data name="SearchProduct" xml:space="preserve">
+    <value>Tìm Sản Phẩm</value>
+  </data>
+  <data name="SearchProductDetails" xml:space="preserve">
+    <value>Tìm Sản Phẩm Phụ</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Chọn tất cả</value>
+  </data>
+  <data name="SelectLeague" xml:space="preserve">
+    <value>Lựa chọn giải đấu</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>Bỏ chọn tất cả</value>
+  </data>
+  <data name="SelectProducts" xml:space="preserve">
+    <value>Lựa chọn sản phẩm</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>Đã chọn</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>Tháng 9</value>
+  </data>
+  <data name="ShowFilter" xml:space="preserve">
+    <value>Hiện bộ lọc dữ liệu</value>
+  </data>
+  <data name="SinceLastMonth" xml:space="preserve">
+    <value>Từ tháng trước</value>
+  </data>
+  <data name="SpecificDate" xml:space="preserve">
+    <value>Ngày riêng biệt</value>
+  </data>
+  <data name="Sport" xml:space="preserve">
+    <value>Môn thể thao</value>
+  </data>
+  <data name="SportWinLossAnalysis" xml:space="preserve">
+    <value>Phân tích kết quả thắng thua của từng môn thể thao</value>
+  </data>
+  <data name="Stake" xml:space="preserve">
+    <value>Tiền cược</value>
+  </data>
+  <data name="Statement" xml:space="preserve">
+    <value>Sao kê</value>
+  </data>
+  <data name="StatementGuidelines" xml:space="preserve">
+    <value>Hướng dẫn sao kê</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Trạng thái</value>
+  </data>
+  <data name="SubTotal" xml:space="preserve">
+    <value>Tổng phụ</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Xác nhận</value>
+  </data>
+  <data name="SumOfMemberTotal" xml:space="preserve">
+    <value>Tổng Số Dư</value>
+  </data>
+  <data name="SummaryOfDormantAccounts" xml:space="preserve">
+    <value>Tổng hợp tài khoản không hoạt động</value>
+  </data>
+  <data name="SuperCommNew" xml:space="preserve">
+    <value>Hoa hồng của Super</value>
+  </data>
+  <data name="SuperTotalNew" xml:space="preserve">
+    <value>Tổng cộng của Super</value>
+  </data>
+  <data name="SuperWinLoss" xml:space="preserve">
+    <value>Thắng thua của Super</value>
+  </data>
+  <data name="SuperWinLossDetailByPT" xml:space="preserve">
+    <value>Chi tiết thắng thua của Super theo PT</value>
+  </data>
+  <data name="SuperWinLossNew" xml:space="preserve">
+    <value>Thắng thua của Super</value>
+  </data>
+  <data name="TaxComm" xml:space="preserve">
+    <value>Tổng phí hoa hồng</value>
+  </data>
+  <data name="ThereIsNoLeague" xml:space="preserve">
+    <value>Không có giải nào</value>
+  </data>
+  <data name="ThereIsNoProduct" xml:space="preserve">
+    <value>Không có sản phẩm nào</value>
+  </data>
+  <data name="ThereIsNoSelectedProduct" xml:space="preserve">
+    <value>Không có chọn sản phẩm nào</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>Tháng này</value>
+  </data>
+  <data name="ThisWeek" xml:space="preserve">
+    <value>Tuần này</value>
+  </data>
+  <data name="Tip_ShowReportInNormalView" xml:space="preserve">
+    <value>Tách các cột</value>
+  </data>
+  <data name="Tip_ShowReportInStackColumnView" xml:space="preserve">
+    <value>Nhóm các cột</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>Đến</value>
+  </data>
+  <data name="ToMember" xml:space="preserve">
+    <value>To Member</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Hôm nay</value>
+  </data>
+  <data name="Tooltip_CommissionByBetType" xml:space="preserve">
+    <value>- Khác: áp dụng cho các loại cược của {0}.</value>
+  </data>
+  <data name="Tooltip_NetTurnover" xml:space="preserve">
+    <value>- Đối với Sportsbook, Tiền Cược Thực là tiền cược không bao gồm những cược hoà và nửa cược thắng một nửa/thua một nửa.</value>
+  </data>
+  <data name="Tooltip_NetTurnover_RNGCasino" xml:space="preserve">
+    <value>- Đối với {0}, Tiền Cược Thực là Tiền Cược không bao gồm các vé cược bị Vô hiệu/Huỷ/Hoàn lại.</value>
+  </data>
+  <data name="Tooltip_NetTurnover_livecasino" xml:space="preserve">
+    <value>- Đối với {0}, Tiền Cược Thực là tổng số tiền cược có giá trị dùng để tính toán hoa hồng.</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Tổng cộng</value>
+  </data>
+  <data name="TotalCommission" xml:space="preserve">
+    <value>Tổng Hoa Hồng</value>
+  </data>
+  <data name="TotalMemberWL" xml:space="preserve">
+    <value>Thắng thua của Member</value>
+  </data>
+  <data name="TotalMembers" xml:space="preserve">
+    <value>Tổng Số Member</value>
+  </data>
+  <data name="TotalStake" xml:space="preserve">
+    <value>Tổng tiền cược</value>
+  </data>
+  <data name="TotalWinLoss" xml:space="preserve">
+    <value>Tổng Thắng/Thua</value>
+  </data>
+  <data name="Tote" xml:space="preserve">
+    <value>Tote</value>
+  </data>
+  <data name="Transfer" xml:space="preserve">
+    <value>Chuyển khoản</value>
+  </data>
+  <data name="TransferAmt" xml:space="preserve">
+    <value>Chuyển khoản</value>
+  </data>
+  <data name="TransferDetails" xml:space="preserve">
+    <value>Chi tiết Chuyển Khoản</value>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>Tiền Cược</value>
+  </data>
+  <data name="TurnoverAbbr" xml:space="preserve">
+    <value>Tiền Cược</value>
+  </data>
+  <data name="Upline" xml:space="preserve">
+    <value>Cấp trên</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Tên đăng nhập</value>
+  </data>
+  <data name="UsernameIsRequired" xml:space="preserve">
+    <value>Cần nhập tên người dùng</value>
+  </data>
+  <data name="UsernameOrFirstLastName" xml:space="preserve">
+    <value>Tên đăng nhập hoặc Tên/Họ</value>
+  </data>
+  <data name="UsernamePTProduct" xml:space="preserve">
+    <value>Tên đăng nhập/PT/Sản phẩm</value>
+  </data>
+  <data name="VarianceFromSelectedDate" xml:space="preserve">
+    <value>Biến Động Trên Ngày Đã Chọn</value>
+  </data>
+  <data name="ViewHistoryReport" xml:space="preserve">
+    <value>Xem báo cáo trước đó</value>
+  </data>
+  <data name="ViewProductPTList" xml:space="preserve">
+    <value>Xem Danh Sách Sản Phẩm/PT</value>
+  </data>
+  <data name="ViewProductPTListNoteMessage" xml:space="preserve">
+    <value>Giá trị PT hiển thị trong báo cáo là PT lớn nhất của Super</value>
+  </data>
+  <data name="Void" xml:space="preserve">
+    <value>Hủy</value>
+  </data>
+  <data name="Win" xml:space="preserve">
+    <value>Win</value>
+  </data>
+  <data name="WinLoss" xml:space="preserve">
+    <value>Thắng thua</value>
+  </data>
+  <data name="WinLossAbbr" xml:space="preserve">
+    <value>Thắng thua</value>
+  </data>
+  <data name="WinLossAnalysis" xml:space="preserve">
+    <value>Phân tích thắng thua</value>
+  </data>
+  <data name="WinLossByBetType" xml:space="preserve">
+    <value>Thắng thua theo loại cược</value>
+  </data>
+  <data name="WinLossByProduct" xml:space="preserve">
+    <value>Thắng Thua Trên Sản Phẩm</value>
+  </data>
+  <data name="WinLossDate" xml:space="preserve">
+    <value>Ngày thắng thua</value>
+  </data>
+  <data name="WinLossDetail" xml:space="preserve">
+    <value>Chi tiết thắng thua</value>
+  </data>
+  <data name="WinLossTitle" xml:space="preserve">
+    <value>Thắng thua</value>
+  </data>
+  <data name="WinPlace" xml:space="preserve">
+    <value>Win Place</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Hôm qua</value>
+  </data>
+  <data name="_Apr" xml:space="preserve">
+    <value>Th04</value>
+  </data>
+  <data name="_Aug" xml:space="preserve">
+    <value>Th08</value>
+  </data>
+  <data name="_Dec" xml:space="preserve">
+    <value>Th12</value>
+  </data>
+  <data name="_Feb" xml:space="preserve">
+    <value>Th02</value>
+  </data>
+  <data name="_Jan" xml:space="preserve">
+    <value>Th01</value>
+  </data>
+  <data name="_Jul" xml:space="preserve">
+    <value>Th07</value>
+  </data>
+  <data name="_Jun" xml:space="preserve">
+    <value>Th06</value>
+  </data>
+  <data name="_Mar" xml:space="preserve">
+    <value>Th03</value>
+  </data>
+  <data name="_May" xml:space="preserve">
+    <value>Th05</value>
+  </data>
+  <data name="_Nov" xml:space="preserve">
+    <value>Th11</value>
+  </data>
+  <data name="_Oct" xml:space="preserve">
+    <value>Th10</value>
+  </data>
+  <data name="_Sep" xml:space="preserve">
+    <value>Th09</value>
+  </data>
+  <data name="eventdate" xml:space="preserve">
+    <value>Thời điểm diển ra sự kiện</value>
+  </data>
+  <data name="nSelected" xml:space="preserve">
+    <value>Đã chọn #</value>
+  </data>
+  <data name="odds" xml:space="preserve">
+    <value>Tỷ lệ</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>trên</value>
+  </data>
+  <data name="of2" xml:space="preserve">
+    <value>của</value>
+  </data>
+  <data name="over" xml:space="preserve">
+    <value>Over</value>
+  </data>
+  <data name="refno" xml:space="preserve">
+    <value>Số tham chiếu</value>
+  </data>
+  <data name="transtime" xml:space="preserve">
+    <value>Thời gian</value>
+    <comment>Not found</comment>
+  </data>
+  <data name="under" xml:space="preserve">
+    <value>Under</value>
+  </data>
+  <data name="SabaOtherSportsLegend" xml:space="preserve">
+    <value>Dữ liệu {0} đã bao gồm trong {1}</value>
+  </data>
+  <data name="MonitoredMember" xml:space="preserve">
+    <value>Đang theo dõi</value>
+  </data>
+  <data name="AddToMyWatchlist" xml:space="preserve">
+    <value>Thêm vào Danh Sách Theo Dõi</value>
+  </data>
+  <data name="Statement_WinLoss" xml:space="preserve">
+    <value>Thắng thua</value>
+  </data>
+  <data name="Reward" xml:space="preserve">
+    <value>Tiền thưởng</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>Master</value>
+  </data>
+  <data name="NumberGameNo" xml:space="preserve">
+    <value>Number Game No</value>
+  </data>
+  <data name="NumberGame" xml:space="preserve">
+    <value>Number Game</value>
+  </data>
+  <data name="PositionTaking" xml:space="preserve">
+    <value>Position Taking</value>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>Super</value>
+  </data>
+  <data name="SettlementReport" xml:space="preserve">
+    <value>Báo Cáo Quyết Toán</value>
+  </data>
+  <data name="DailyWinLossReport" xml:space="preserve">
+    <value>Báo Cáo Thắng Thua Trong Ngày</value>
+  </data>
+  <data name="WhiteLabel" xml:space="preserve">
+    <value>Nhãn Trắng</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Tìm kiếm</value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>Khuyến Mãi</value>
+  </data>
+  <data name="MasterEarning" xml:space="preserve">
+    <value>Thu Nhập Master</value>
+  </data>
+  <data name="SuperEarning" xml:space="preserve">
+    <value>Thu Nhập Super</value>
+  </data>
+  <data name="LossCarryforward" xml:space="preserve">
+    <value>Chuyển Tiếp Lỗ</value>
+  </data>
+  <data name="NetWinLoss" xml:space="preserve">
+    <value>Thắng Thua Thực</value>
+  </data>
+  <data name="GrossFee" xml:space="preserve">
+    <value>Phí Gộp</value>
+  </data>
+  <data name="PromotionSettlement" xml:space="preserve">
+    <value>Quyết Toán Khuyến Mãi</value>
+  </data>
+  <data name="PromotionShare" xml:space="preserve">
+    <value>Đóng Góp Khuyến Mãi</value>
+  </data>
+  <data name="TotalFee" xml:space="preserve">
+    <value>Tổng Phí</value>
+  </data>
+  <data name="Income" xml:space="preserve">
+    <value>Thu Nhập</value>
+  </data>
+  <data name="WhiteLabelSettlementNote" xml:space="preserve">
+    <value>Tạo Báo Cáo Quyết Toán sau 5 ngày kể từ cuối tháng để đảm bảo tính chính xác của dữ liệu.</value>
+  </data>
+</root>

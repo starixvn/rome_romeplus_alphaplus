@@ -1,0 +1,55 @@
+﻿@* @model MemberRequestViewModel
+<table id="tbl-report" class="tblRpt tblRpt-bordered tblRpt-hover tablesorter" data-has-data="@Model.MemberRequestData.Any()">
+    <thead>
+        <tr>
+            <th>@Resources.No</th>
+            <th class="text-left">@Resources.Username</th>
+            <th>@Resources.Action</th>
+            <th>@Resources.Balance</th>
+            <th>@Resources.Outstanding</th>
+            <th>@Resources.BetCredit</th>
+        </tr>
+    </thead>
+
+
+    @if (Model.MemberRequestData.Any())
+    {
+        int index = 1;
+        <tbody>
+            @foreach (var memberRequest in Model.MemberRequestData)
+            {
+            <tr>
+                <td class="text-center">@index</td>
+                <td>
+                    <div class="link view-member-info-link">
+                        @memberRequest.Username
+                    </div>
+                </td>
+                <td class="text-center">
+                    <span data-custid="@memberRequest.CustId"
+                          data-username="@memberRequest.Username"
+                          class="edit-setting @(memberRequest.Sync ? "icon-edit" : "icon-refresh") "
+                          @(Model.CanEdit ? string.Empty : "disabled")>
+                    </span>
+                    <span data-custid="@memberRequest.CustId"
+                          data-username="@memberRequest.Username"
+                          class="edit-setting"
+                          @(Model.CanEdit ? string.Empty : "disabled")>
+                        @(memberRequest.Sync ? Resources.Edit : Resources.Sync)
+                    </span>
+                </td>
+
+                @HtmlHelpers.RenderNumberCell(memberRequest.Balance, "text-right")
+                @HtmlHelpers.RenderNumberCell(memberRequest.Outstanding, "text-right")
+                @HtmlHelpers.RenderNumberCell(memberRequest.BetCredit, "text-right")
+            </tr>
+
+                index++;
+            }
+        </tbody>
+    }
+    else
+    {
+        @NoInformation.Render(6)
+    }
+</table> *@

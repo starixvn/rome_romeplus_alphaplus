@@ -1,0 +1,55 @@
+﻿using AlphaPlus.Core.Models;
+using MediatR;
+
+namespace AlphaPlus.Main.Site.Features.Language
+{
+    using AlphaPlus.Main.Site.Shared.Constants;
+
+    public class ChangeLanguageCommand : IRequest<string>
+    {
+        private readonly IUserSession userSession;
+        private readonly bool disabledVietnamese;
+
+        public ChangeLanguageCommand(
+            IUserSession userSession,
+            string languageCode,
+            bool disabledVietnamese,
+            bool isUpdateDisplayLanguage)
+        {
+            this.userSession = userSession;
+            LanguageCode = languageCode;
+            this.disabledVietnamese = disabledVietnamese;
+            IsUpdateDisplayLanguage = isUpdateDisplayLanguage;
+        }
+
+        public string LanguageCode { get; }
+
+        public bool IsUpdateDisplayLanguage { get; }
+
+        public int CustId => userSession.CustId;
+
+        public int SubAccId => userSession.SubAccId;
+
+        public string IP => userSession.UserLoginIp;
+
+        public virtual string ChangeLanguage(string languageCode)
+        {
+            if (disabledVietnamese && languageCode == Language.Vietnamese)
+            {
+                languageCode = Language.English;
+            }
+
+            userSession.Language = languageCode;
+            var languageKey = Language.CodeKeys[languageCode];
+            userSession.LangKey = languageKey;
+
+            return languageKey;
+        }
+
+        public virtual void SetDisplayLanguage(string languageCode)
+        {
+            const string UsageLanguageKey = "languageusage";
+            userSession.SetProperty(UsageLanguageKey, languageCode);
+        }
+    }
+}

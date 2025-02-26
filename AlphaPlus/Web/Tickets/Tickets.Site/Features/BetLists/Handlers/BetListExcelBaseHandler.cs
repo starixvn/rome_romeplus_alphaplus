@@ -1,0 +1,276 @@
+using AlphaPlus.BetLists.Shared.Models;
+using AlphaPlus.SmartPunter.Services;
+using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels;
+using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Blocks;
+using AlphaPlus.Utilities.IP;
+using BetListNPOI.SS.UserModel;
+using Fanex.BetList.Core.Builder;
+using Fanex.BetList.Core.Entities;
+using Fanex.BetList.Core.Utils;
+using ONEbook.SpreadSheets;
+using static ONEbook.SpreadSheets.Column;
+using AlphaPlus.Core.Models;
+using AlphaPlus.BetLists.Builders;
+using Microsoft.Extensions.Options;
+using AlphaPlus.Tickets.Site.Features.Shared.Models;
+
+namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers;
+
+/// <summary>
+/// Bet list excel base builder for default method that help to export Excel.
+/// Please kindly note that excel file needs to be opened with Microsoft Office Excel.
+/// If you got the issue about excel file's cell show text in only one line.
+/// Please add empty line to cell in Template Excel File
+/// </summary>
+public class BetListExcelBaseHandler(
+    IBetListHTMLBuilder builder,
+    IBetListExcelBuilder excelBuilder,
+    ITicketHelper ticketHelper,
+    ISmartPunterBetListMonitor monitorService,
+    IPService ipService,
+    IOptions<AppSettings> options,
+    IWebHostEnvironment webHostEnvironment) : BetListBaseHandler(builder, ticketHelper, monitorService, ipService, options)
+{
+    private const string ExcelTemplateDir = "App_Data/ExcelTemplates/{0}/{1}.{2}";
+    private int currentRowIndex = 1;
+
+    protected readonly IBetListExcelBuilder excelBuilder = excelBuilder;
+    protected internal RTFHelper RtfHelper { get; set; } = excelBuilder.RTFHelper;
+    private readonly IWebHostEnvironment webHostEnvironment = webHostEnvironment;
+
+    /// <summary>
+    /// Inititalize RTFHelper for create Font of Workbook for rendering correct format.
+    /// Need to call this method after calling UseTemplate method of ONEBook.SpreadSheet
+    /// </summary>
+    /// <param name="workbook"></param>
+    /// <returns></returns>
+    protected internal static RTFHelper InitRTFHelper(IWorkbook workbook)
+    {
+        var rtfHelper = new RTFHelper
+        {
+            NegFont = workbook.CreateFont(),
+            NormalFont = workbook.CreateFont(),
+            PosFont = workbook.CreateFont(),
+            NegFontCrossed = workbook.CreateFont(),
+            NormalFontCrossed = workbook.CreateFont(),
+            PosFontCrossed = workbook.CreateFont(),
+            RTFRenderer = new RtfTextRender()
+        };
+
+        InitRTFHelperFonts(rtfHelper);
+
+        return rtfHelper;
+    }
+
+    private static void InitRTFHelperFonts(RTFHelper rtfHelper)
+    {
+        rtfHelper.PosFont.Boldweight = (short)FontBoldWeight.Bold;
+        rtfHelper.PosFontCrossed.Boldweight = (short)FontBoldWeight.Bold;
+
+        rtfHelper.NegFont.Boldweight = (short)FontBoldWeight.Bold;
+        rtfHelper.NegFontCrossed.Boldweight = (short)FontBoldWeight.Bold;
+
+        rtfHelper.NormalFont.Boldweight = (short)FontBoldWeight.Normal;
+        rtfHelper.NormalFontCrossed.Boldweight = (short)FontBoldWeight.Normal;
+
+        rtfHelper.NegFont.FontName = "Tahoma";
+        rtfHelper.NegFontCrossed.FontName = "Tahoma";
+        rtfHelper.NormalFont.FontName = "Tahoma";
+        rtfHelper.NormalFontCrossed.FontName = "Tahoma";
+        rtfHelper.PosFont.FontName = "Tahoma";
+        rtfHelper.PosFontCrossed.FontName = "Tahoma";
+
+        rtfHelper.NegFont.FontHeightInPoints = 9;
+        rtfHelper.NegFontCrossed.FontHeightInPoints = 9;
+        rtfHelper.NormalFont.FontHeightInPoints = 9;
+        rtfHelper.NormalFontCrossed.FontHeightInPoints = 9;
+        rtfHelper.PosFont.FontHeightInPoints = 9;
+        rtfHelper.PosFontCrossed.FontHeightInPoints = 9;
+
+        rtfHelper.NormalFontCrossed.IsStrikeout = true;
+        rtfHelper.PosFontCrossed.IsStrikeout = true;
+        rtfHelper.NegFontCrossed.IsStrikeout = true;
+
+        rtfHelper.NegFont.Color = (short)FontColor.Red;
+        rtfHelper.NegFontCrossed.Color = (short)FontColor.Red;
+    }
+
+    protected internal virtual string GetExcelTemplatePath(string templateName, string fileExtension = "xls")
+    {
+        if (string.IsNullOrWhiteSpace(templateName))
+        {
+            throw new ArgumentNullException(nameof(templateName), "Template Name cannot be null or empty");
+        }
+
+        var relativePath = string.Format(ExcelTemplateDir, GetExcelTemplateFolder(), templateName, fileExtension);
+        var absolutePath = Path.Combine(webHostEnvironment.ContentRootPath, relativePath);
+
+        if (File.Exists(absolutePath))
+        {
+            return absolutePath;
+        }
+
+        throw new FileNotFoundException($"Template {absolutePath} does not exist");
+    }
+
+    private string GetExcelTemplateFolder()
+    {
+        var betListNamespace = GetType().Namespace;
+        var lastIndexOfDot = betListNamespace.LastIndexOf(".", StringComparison.Ordinal) + 1;
+
+        if (lastIndexOfDot <= 0)
+        {
+            throw new ArgumentException("Namespace does not contain any dot character, wrong bet list convention.");
+        }
+
+        return betListNamespace.Substring(lastIndexOfDot);
+    }
+
+    protected internal virtual TemplateInfo GetTemplateInfo(UserLevel viewerLevel)
+        => new TemplateInfo(
+            ExcelTemplatePath(viewerLevel),
+            noInfomationText: AlphaPlus.Shared.AppResources.Betlist.Site.Resources.NoInformationIsAvailable,
+            bodyStartIndex: 3,
+            bodyEndIndex: 4,
+            footerEndIndex: 5);
+
+    protected internal virtual string ExcelTemplatePath(UserLevel viewerLevel)
+        => GetExcelTemplatePath(viewerLevel.DisplayName);
+
+    protected internal virtual Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
+    {
+        var ticketData = viewModel.BetListData.TicketData;
+        var mapper = GetTicketDtoRowMapperExcludeUsername(viewModel);
+        mapper.Map(H, ticket => BuildPtCommmission(ticket, ticketData, viewerLevel));
+
+        if (viewerLevel.IsMasterLevel())
+        {
+            mapper.Map(I, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
+        }
+
+        AddPtCommissionForSuper(mapper, viewerLevel, ticketData);
+        AddPlatform(mapper, viewerLevel);
+
+        return mapper;
+    }
+
+    protected Mapper<TicketDto> GetTicketDtoRowMapperIncludeUsername(BetListBaseViewModel viewModel, bool showWinLoss)
+    {
+        var mapper = new Mapper<TicketDto>()
+            .Map(A, _ => currentRowIndex++)
+            .Map(B, ticket => ticket.UserName)
+            .Map(C, ticket => BuildTrans(ticket))
+            .Map(D, ticket => BuildChoice(ticket, viewModel))
+            .Map(E, ticket => BuildOdds(ticket, viewModel))
+            .Map(F, ticket => BuildStake(ticket));
+
+        if (showWinLoss)
+        {
+            return mapper
+                .Map(G, ticket => BuildWinLoss(ticket))
+                .Map(H, ticket => BuildStatus(ticket, viewModel));
+        }
+
+
+        mapper.Map(G, ticket => BuildStatus(ticket, viewModel));
+        return mapper;
+    }
+
+    protected Mapper<TicketDto> GetTicketDtoRowMapperExcludeUsername(BetListBaseViewModel viewModel)
+        => new Mapper<TicketDto>()
+            .Map(A, _ => currentRowIndex++)
+            .Map(B, ticket => BuildTrans(ticket))
+            .Map(C, ticket => BuildChoice(ticket, viewModel))
+            .Map(D, ticket => BuildOdds(ticket, viewModel))
+            .Map(E, ticket => BuildStake(ticket))
+            .Map(F, ticket => BuildWinLoss(ticket))
+            .Map(G, ticket => BuildStatus(ticket, viewModel));
+
+    protected void AddPtCommissionForSuper(Mapper<TicketDto> mapper, UserLevel viewerLevel, List<ITicketData> ticketData)
+    {
+        if (viewerLevel.IsSuperLevel())
+        {
+            mapper
+                .Map(I, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Master))
+                .Map(J, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
+        }
+    }
+
+    protected void AddPlatform(Mapper<TicketDto> mapper, UserLevel viewerLevel)
+    {
+        var platformColId = I;
+        if (viewerLevel.IsSuperLevel())
+        {
+            platformColId = K;
+        }
+        else if (viewerLevel.IsMasterLevel())
+        {
+            platformColId = J;
+        }
+
+        mapper.Map(platformColId, ticket => BuildPlatform(ticket.Platform));
+    }
+
+    protected internal virtual Mapper<TicketDto> GetFooterRowMapper(Footer footer)
+        => new Mapper<TicketDto>()
+            .Map(A, _ => BetListExcelBuilderExt.BuildFooterHeader(RtfHelper))
+            .Map(F, _ => BuildFooter(footer));
+
+    protected virtual IRichTextString BuildTrans(ITicket ticket)
+        => excelBuilder.CreateTransBuilder(ticket.BetTypeId).RenderRTF(ticket, TicketHelper);
+
+    protected virtual IRichTextString BuildChoice(ITicket ticket, BetListBaseViewModel viewModel)
+        => excelBuilder
+            .CreateChoiceBuilder(ticket.BetTypeId)
+            .RenderRTF(ticket, TicketHelper, viewModel.BetListData.TicketData, viewModel.CanViewScoreMap(ticket), RtfHelper)
+            .FirstOrDefault();
+
+    protected virtual IRichTextString BuildOdds(ITicket ticket, BetListBaseViewModel viewModel)
+        => excelBuilder
+            .CreateOddsBuilder(ticket.BetTypeId)
+            .RenderRTF(ticket, viewModel.BetListData.TicketData, TicketHelper.GetOddsTypeNameById, RtfHelper);
+
+    public virtual IRichTextString BuildStake(ITicket ticket)
+        => excelBuilder.CreateStakeBuilder(ticket.BetTypeId).RenderRTF(ticket, TicketHelper, RtfHelper);
+
+    public virtual IRichTextString BuildStatus(TicketDto ticket, BetListBaseViewModel viewModel)
+    {
+        RtfHelper.RTFRenderer.AddText(excelBuilder
+            .CreateStatusBuilder(ticket.BetTypeId)
+            .RenderRTF(ticket, TicketHelper, viewModel.BetListData.TicketData, viewModel.DisplayVNIP, RtfHelper)
+            .ToString());
+
+        if (!string.IsNullOrWhiteSpace(ticket.Country))
+        {
+            RtfHelper.RTFRenderer.AddText("\n" + ticket.Country);
+        }
+
+        var rtfText = RtfHelper.RTFRenderer.Render();
+        RtfHelper.RTFRenderer.Clear();
+
+        return rtfText;
+    }
+
+    protected virtual IRichTextString BuildWinLoss(ITicket ticket)
+    {
+        var winLossBuilder = new WinLossBuilder(ticket);
+
+        return BetListExcelBuilderExt.BuildWinLoss(
+            winLossBuilder.WinLoss,
+            winLossBuilder.CommVisibility ? winLossBuilder.Comm : string.Empty,
+            RtfHelper);
+    }
+
+    protected virtual IRichTextString BuildPtCommmission(ITicket ticket, List<ITicketData> ticketData, UserLevel userLevel)
+        => BetListExcelBuilderExt.BuildPtCommmission(ticket, ticketData, userLevel, RtfHelper);
+
+    protected virtual IRichTextString BuildPlatform(string platform)
+        => BetListExcelBuilderExt.BuildPlatform(platform, RtfHelper);
+
+    protected virtual IRichTextString BuildFooter(Footer footerData)
+        => BetListExcelBuilderExt.BuildFooter(
+            footerData.SubTotalWinLoss,
+            footerData.SubTotalCommission,
+            footerData.Total,
+            RtfHelper);
+}

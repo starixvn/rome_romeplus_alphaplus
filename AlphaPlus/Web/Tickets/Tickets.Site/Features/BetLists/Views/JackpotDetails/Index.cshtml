@@ -1,0 +1,12 @@
+@{
+    ViewData["Title"] = Model.Title;
+}
+@model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.JackpotDetails.JackpotDetailsViewModel
+<div class="space-fixed-title"></div>
+<div class="bl_title no-border-bottom fixed-top">
+    <div class="bl-export-excel">
+        <a asp-action="Excel" asp-all-route-data="@Model.GetExcelParams()" class="icon icon-excel"
+            title="@Resources.ExportToExcel"></a>
+    </div>
+</div>
+<partial name="WinLossTable" model="Model" />

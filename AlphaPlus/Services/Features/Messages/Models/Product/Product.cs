@@ -1,0 +1,22 @@
+﻿namespace AlphaPlus.Features.Messages.API.Models.Product
+{
+    public class Product
+    {
+        public Product()
+        {
+        }
+
+        public Product(int id, string name, bool isHidden)
+        {
+            Id = id;
+            Name = name;
+            IsHidden = isHidden;
+        }
+
+        public int Id { get; set; }
+
+        public string Name { get; set; } = string.Empty;
+
+        public bool IsHidden { get; set; }
+    }
+}

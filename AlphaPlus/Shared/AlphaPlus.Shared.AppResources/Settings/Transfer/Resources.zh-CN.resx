@@ -1,0 +1,858 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>没资料显示</value>
+  </data>
+  <data name="UsernamePlaceHolder" xml:space="preserve">
+    <value>用户名或名/姓</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="MemberOutstanding" xml:space="preserve">
+    <value>会员未结束交易</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>阶层</value>
+  </data>
+  <data name="GivenCredit" xml:space="preserve">
+    <value>信用额度</value>
+  </data>
+  <data name="TransferSuccessfully" xml:space="preserve">
+    <value>成功转账</value>
+  </data>
+  <data name="AllowTransfer" xml:space="preserve">
+    <value>您的转账设定为</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>星期五</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>星期一</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>星期六</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>星期日</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>星期四</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>星期二</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>星期三</value>
+  </data>
+  <data name="Daily" xml:space="preserve">
+    <value>每天</value>
+  </data>
+  <data name="HintNotAvailableToTransfer" xml:space="preserve">
+    <value>转账现金余额不足</value>
+  </data>
+  <data name="HintRangeTransfer" xml:space="preserve">
+    <value>You can transfer from {0} to {1}.</value>
+  </data>
+  <data name="AvailableRangeTransfer" xml:space="preserve">
+    <value>Amount to transfer must be between {0} and {1}.</value>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>超级</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>总代理</value>
+  </data>
+  <data name="Agent" xml:space="preserve">
+    <value>代理</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>会员</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>您没有使用此功能的权限</value>
+  </data>
+  <data name="TransferButton" xml:space="preserve">
+    <value>转账</value>
+  </data>
+  <data name="CashBalance" xml:space="preserve">
+    <value>现金余额</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>资料</value>
+  </data>
+  <data name="OutstandingShortcut" xml:space="preserve">
+    <value>未完成交易</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>金额</value>
+  </data>
+  <data name="ConfirmTransfer" xml:space="preserve">
+    <value>是否确定转账?</value>
+  </data>
+  <data name="TransferAmountIs" xml:space="preserve">
+    <value>Transfer amount is</value>
+  </data>
+  <data name="InvalidValue" xml:space="preserve">
+    <value>数值无效</value>
+  </data>
+  <data name="MultipleTransfer" xml:space="preserve">
+    <value>多重转账</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="AllYesterdayBalance" xml:space="preserve">
+    <value>所有昨天余额</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>开启</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>暫停</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>禁用</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>昨天</value>
+  </data>
+  <data name="YesterdayBalance" xml:space="preserve">
+    <value>昨天余额</value>
+  </data>
+  <data name="MasterBalance" xml:space="preserve">
+    <value>总代理馀额</value>
+  </data>
+  <data name="YesterdayCashBalance" xml:space="preserve">
+    <value>昨天现金余额</value>
+  </data>
+  <data name="MasterCash" xml:space="preserve">
+    <value>总代理现金</value>
+  </data>
+  <data name="Outstanding" xml:space="preserve">
+    <value>未完成交易</value>
+  </data>
+  <data name="UsedCredit" xml:space="preserve">
+    <value>已用額度</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>名</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>姓</value>
+  </data>
+  <data name="TransferAllAndClearCredit" xml:space="preserve">
+    <value>转全部的账并清除信用额度</value>
+  </data>
+  <data name="Calculate" xml:space="preserve">
+    <value>计算</value>
+  </data>
+  <data name="TransferAllAndClearCreditNote" xml:space="preserve">
+    <value>转全部的账和清除信用额度还是依据原有的规则，但是这些将适用于所有列出的级别。</value>
+  </data>
+  <data name="DataChangedWarning" xml:space="preserve">
+    <value>有些数据在计算过程中已经更改。请您检查下图所显示突出的的数额。</value>
+  </data>
+  <data name="TransferAll" xml:space="preserve">
+    <value>全数转账</value>
+  </data>
+  <data name="ClearCredit" xml:space="preserve">
+    <value>清除信用额度</value>
+  </data>
+  <data name="Step" xml:space="preserve">
+    <value>步骤</value>
+  </data>
+  <data name="TransferableAmount" xml:space="preserve">
+    <value>可转账的金额</value>
+  </data>
+  <data name="ClearableCredit" xml:space="preserve">
+    <value>可清除信用额度</value>
+  </data>
+  <data name="ClearCreditConfirm" xml:space="preserve">
+    <value>您是否确认要全数转账及清除信用额度？</value>
+  </data>
+  <data name="TransferAllConfirm" xml:space="preserve">
+    <value>您是否确认要全数转账？</value>
+  </data>
+  <data name="TransferStep_Super_Member" xml:space="preserve">
+    <value>会员去代理</value>
+  </data>
+  <data name="TransferStep_Super_Agent" xml:space="preserve">
+    <value>代理去 {0}</value>
+  </data>
+  <data name="TransferStep_Super_Master" xml:space="preserve">
+    <value>{0} 去您的账号</value>
+  </data>
+  <data name="ClearCreditStep_Super_Member" xml:space="preserve">
+    <value>{0} 的会员们</value>
+  </data>
+  <data name="ClearCreditStep_Super_Agent" xml:space="preserve">
+    <value>{0} 的代理们</value>
+  </data>
+  <data name="ClearCreditStep_Super_Master" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="TransferAllSuccess" xml:space="preserve">
+    <value>全部转账成功。</value>
+  </data>
+  <data name="ClearCreditSuccess" xml:space="preserve">
+    <value>信用额度清空成功。</value>
+  </data>
+  <data name="Transfer_all" xml:space="preserve">
+    <value>全数转账</value>
+  </data>
+  <data name="Clear_credit" xml:space="preserve">
+    <value>清除信用额度</value>
+  </data>
+  <data name="TransferAllUnsuccessfully" xml:space="preserve">
+    <value>全数转账不成功。请再次尝试。</value>
+  </data>
+  <data name="ClearCreditUnsuccessfully" xml:space="preserve">
+    <value>清除信用额度不成功。请再试一次。</value>
+  </data>
+  <data name="TransferStep_Master_Member" xml:space="preserve">
+    <value>会员到{0}</value>
+  </data>
+  <data name="TransferStep_Master_Agent" xml:space="preserve">
+    <value>{0} 去您的账号</value>
+  </data>
+  <data name="ClearCreditStep_Master_Member" xml:space="preserve">
+    <value>所有会员</value>
+  </data>
+  <data name="ClearCreditStep_Master_Agent" xml:space="preserve">
+    <value>代理{0}</value>
+  </data>
+  <data name="TransferredAmount" xml:space="preserve">
+    <value>已转账的金额</value>
+  </data>
+  <data name="ClearedCredit" xml:space="preserve">
+    <value>已清除的额度</value>
+  </data>
+  <data name="TransferAll_ClearCredit_Errors" xml:space="preserve">
+    <value>由于以下原因，无法完成全数转账及清除信用额度：</value>
+  </data>
+  <data name="TransferToDownlineHistory" xml:space="preserve">
+    <value>Transfer To Downline History</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>今日赛事</value>
+  </data>
+  <data name="LastWeek" xml:space="preserve">
+    <value>上周</value>
+  </data>
+  <data name="LastMonth" xml:space="preserve">
+    <value>上月</value>
+  </data>
+  <data name="SinceLastMonth" xml:space="preserve">
+    <value>从上个月起</value>
+  </data>
+  <data name="SpecificDate" xml:space="preserve">
+    <value>特定日期</value>
+  </data>
+  <data name="ThisWeek" xml:space="preserve">
+    <value>这星期</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>这个月</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>到</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>从</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>导出到Excel</value>
+  </data>
+  <data name="CanViewReportDataFrom" xml:space="preserve">
+    <value>You can view the report data from {0}.</value>
+  </data>
+  <data name="ActionDate" xml:space="preserve">
+    <value>Action Date</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="NewBalance" xml:space="preserve">
+    <value>New Balance</value>
+  </data>
+  <data name="OldBalance" xml:space="preserve">
+    <value>Old Balance</value>
+  </data>
+  <data name="TransferAmount" xml:space="preserve">
+    <value>转帐余额</value>
+  </data>
+  <data name="TransferType" xml:space="preserve">
+    <value>Transfer Type</value>
+  </data>
+  <data name="Deposit" xml:space="preserve">
+    <value>Deposit</value>
+  </data>
+  <data name="Withdrawal" xml:space="preserve">
+    <value>Withdrawal</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>之第</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>页</value>
+  </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>页面范围</value>
+  </data>
+  <data name="showhidecolumnAd" xml:space="preserve">
+    <value>右键单击以显示/隐藏列行。</value>
+  </data>
+  <data name="DisallowedAllDayBalanceTransferError" xml:space="preserve">
+    <value>您的上线不允许您使用全天余额转账。该页面将自动刷新。</value>
+  </data>
+  <data name="confirmCancelJob" xml:space="preserve">
+    <value>您要为此客户取消自动转账流程吗？</value>
+  </data>
+  <data name="confirmTurnOnAutoTransfer" xml:space="preserve">
+    <value>&lt;b&gt;您要为此客户开启自动转账吗: {0}?&lt;/b&gt;</value>
+  </data>
+  <data name="confirmTurnOffAutoTransfer" xml:space="preserve">
+    <value>&lt;b&gt;您要为此客户禁用自动转账吗: {0}?&lt;/b&gt;</value>
+  </data>
+  <data name="UsernameOrFirstLastName" xml:space="preserve">
+    <value>用户名或名/姓</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>{total}项目中{from}到{to}的显示</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>全选</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>选定</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>选择 无</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>开启</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="Waiting" xml:space="preserve">
+    <value>等待中</value>
+  </data>
+  <data name="Processing" xml:space="preserve">
+    <value>處理中</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>已完成</value>
+  </data>
+  <data name="First_LastName" xml:space="preserve">
+    <value>名及姓</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>搜寻</value>
+  </data>
+  <data name="AutoTransfer_InfoSettingTime" xml:space="preserve">
+    <value>自动转账流程安排于中午 12:00 (GMT+8) 进行，在这期间昨天余额将被清算。</value>
+  </data>
+  <data name="AutoTransfer_InfoCannotTransfer" xml:space="preserve">
+    <value>为确保自动转账过程中数据的准确性，您不能向已启用自动转账的下线进行转账。</value>
+  </data>
+  <data name="AutoTransfer_InfoAffectTime2" xml:space="preserve">
+    <value>如果您在其运行中开启自动转账，自动转账将会根据您账号的转账设定在下一个预定时间生效。</value>
+  </data>
+  <data name="AutoTransfer_InfoAffectTime" xml:space="preserve">
+    <value>一旦启用，昨天余额将根据您的转账设定&lt;b&gt;({0})&lt;/b&gt;于中午 &lt;span&gt;12:00 (GMT+8)&lt;/span&gt; 清算。</value>
+  </data>
+  <data name="CompletedTime" xml:space="preserve">
+    <value>完成时间</value>
+  </data>
+  <data name="AutoTransferMonitoring" xml:space="preserve">
+    <value>监控自动转账</value>
+  </data>
+  <data name="AutoTransferHistory" xml:space="preserve">
+    <value>自动转账记录</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>新</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>失败</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="AutoTransfer_UpdateSuccess" xml:space="preserve">
+    <value>这些账号的自动转账已成功更新。</value>
+  </data>
+  <data name="AutoTransfer" xml:space="preserve">
+    <value>自动转账</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>原因</value>
+  </data>
+  <data name="PendingTransfer3rd" xml:space="preserve">
+    <value>第三方待定转账</value>
+  </data>
+  <data name="AutoTransfer_MultipleAffectNextConditionWarning" xml:space="preserve">
+    <value>这些账号已启用自动转账。 但是，转账过程正在进行，并且这些账号将根据其自动转账流程在队列中等他们下一个日程表的自动转账.</value>
+  </data>
+  <data name="AutoTransfer_Error_103_Multiple" xml:space="preserve">
+    <value>您无法禁用這些账号的自动转账功能，因为自动转账正在进行中。请等进行完毕之后再重试。</value>
+  </data>
+  <data name="AutoTransfer_UpdateSuccessOff" xml:space="preserve">
+    <value>账号 &lt;{0} 自动转账已成功禁用。</value>
+  </data>
+  <data name="AutoTransfer_UpdateSuccessOn" xml:space="preserve">
+    <value>账号 {0} 自动转账已成功启用。</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>等待中</value>
+  </data>
+  <data name="AutoTransfer_Error_103_Single" xml:space="preserve">
+    <value>您无法禁用此账号的自动转账功能，因为自动转账正在进行中。请等进行完毕之后再重试。</value>
+  </data>
+  <data name="AutoTransfer_MultipleAffectNextConditionWarning_Single" xml:space="preserve">
+    <value>该帐户已启用自动转账。但是，转账过程正在进行中，所以该帐户将根据其自动转账日程表在下一个时间段队列中等待自动转账。</value>
+  </data>
+  <data name="Ignored" xml:space="preserve">
+    <value>忽视</value>
+  </data>
+  <data name="AutoTransferGuideline" xml:space="preserve">
+    <value>自动转账指南</value>
+  </data>
+  <data name="ADBTChangeError" xml:space="preserve">
+    <value>由于上线已为您启用全天余额转账，所以您无法使用自动转账。 页面将会自动刷新。</value>
+  </data>
+  <data name="AutoTransfer_InfoAffectTimeSuper" xml:space="preserve">
+    <value>一旦启用自动转账功能，系统将于 &lt;span&gt;12:00 (GMT+8)&lt;/span&gt;清除昨日余额。</value>
+  </data>
+  <data name="SelectAll2" xml:space="preserve">
+    <value>全选</value>
+  </data>
+  <data name="Sun" xml:space="preserve">
+    <value>日</value>
+  </data>
+  <data name="Sat" xml:space="preserve">
+    <value>六</value>
+  </data>
+  <data name="Mon" xml:space="preserve">
+    <value>一</value>
+  </data>
+  <data name="Wed" xml:space="preserve">
+    <value>三</value>
+  </data>
+  <data name="Thurs" xml:space="preserve">
+    <value>四</value>
+  </data>
+  <data name="Fri" xml:space="preserve">
+    <value>五</value>
+  </data>
+  <data name="Tue" xml:space="preserve">
+    <value>二</value>
+  </data>
+  <data name="AutoTransfer_CancelAllSuccess" xml:space="preserve">
+    <value>自动转账过程已成功取消</value>
+  </data>
+  <data name="CancelSuspendedTransactions" xml:space="preserve">
+    <value>取消暂停交易</value>
+  </data>
+  <data name="AutoTransfer_Statistic" xml:space="preserve">
+    <value>所有下线的类别转账数量是从“等待中”、“进行中”、“失败”和“取消暂停交易”中计算。</value>
+  </data>
+  <data name="CancelAllAutoTransferJobsConfirm" xml:space="preserve">
+    <value>您想取消 {0}个账号的自动转账流程吗？</value>
+  </data>
+  <data name="AutoTransfer_NoCancellable" xml:space="preserve">
+    <value>没有可取消的交易。</value>
+  </data>
+  <data name="AutoTransfer_SetSchedule" xml:space="preserve">
+    <value>您可以为您的下线设置自动转账日程表根据您转账设定可有的选项。</value>
+  </data>
+  <data name="confirmChangeAutoTransferSchedule" xml:space="preserve">
+    <value>您想更改自动转账日程表于此账号：{0}？</value>
+  </data>
+  <data name="AutoTransfer_UpdateScheduleSuccess" xml:space="preserve">
+    <value>账号 {0} 自动转账日程表已成功更新。</value>
+  </data>
+  <data name="confirmUpdateAutoTransfer" xml:space="preserve">
+    <value>&lt;b&gt;您想要更新這些账号的自动转账：&lt;b&gt;</value>
+  </data>
+  <data name="CancelSuspendedTransactionsTip" xml:space="preserve">
+    <value>点击此处取消所有等待中/进行中已超过15分钟的交易。</value>
+  </data>
+  <data name="EditMultipleAutoTransfer" xml:space="preserve">
+    <value>修改多重转账</value>
+  </data>
+  <data name="EditAutoTransferSchedule" xml:space="preserve">
+    <value>修改自动转账日程表</value>
+  </data>
+  <data name="AutoTransfer_ClearSchedule" xml:space="preserve">
+    <value>一旦禁用，当前的自动转账日程表将被清除。</value>
+  </data>
+  <data name="AutoTransfer_UplineConditionChanged" xml:space="preserve">
+    <value>您的转账设定已被上线更改。请刷新页面。</value>
+  </data>
+  <data name="AutoTransfer_UpdateTip" xml:space="preserve">
+    <value>提醒：您可以在「会员信息」中的「{0}」列表中，为多组账户启用自动转账功能，也能在「转账」中的「监视自动转账」确认转账进度。</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>更改</value>
+  </data>
+  <data name="AutoTransfer_HintPath_2" xml:space="preserve">
+    <value>会员</value>
+  </data>
+  <data name="AutoTransfer_HintPath_3" xml:space="preserve">
+    <value>代理</value>
+  </data>
+  <data name="AutoTransfer_HintPath_4" xml:space="preserve">
+    <value>总代理名单</value>
+  </data>
+  <data name="AutoTransfer_Error_101_Single" xml:space="preserve">
+    <value>此账号不存在。</value>
+  </data>
+  <data name="AutoTransfer_Error_101_Multiple" xml:space="preserve">
+    <value>这些账号不存在</value>
+  </data>
+  <data name="AutoTransfer_Error_102_Single" xml:space="preserve">
+    <value>该账号不属于您的下线</value>
+  </data>
+  <data name="AutoTransfer_Error_102_Multiple" xml:space="preserve">
+    <value>这些账号不属于您的下线：</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>开启</value>
+  </data>
+  <data name="NonEntered" xml:space="preserve">
+    <value>未完成</value>
+  </data>
+  <data name="Entered" xml:space="preserve">
+    <value>已完成</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>总和</value>
+  </data>
+  <data name="Transfer" xml:space="preserve">
+    <value>转账</value>
+  </data>
+  <data name="OnlyThisPage" xml:space="preserve">
+    <value>仅此页面</value>
+  </data>
+  <data name="AllPages" xml:space="preserve">
+    <value>全部页面</value>
+  </data>
+  <data name="AllowedAllDayBalanceTransferError" xml:space="preserve">
+    <value>您的上线允许您使用全天余额转账。该页面将自动刷新。</value>
+  </data>
+  <data name="NoTransferMade" xml:space="preserve">
+    <value>未进行转账, 因为所有已选择账号余额为零。</value>
+  </data>
+  <data name="AgentBalance" xml:space="preserve">
+    <value>代理余额</value>
+  </data>
+  <data name="AgentCash" xml:space="preserve">
+    <value>代理现金</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>现金</value>
+  </data>
+  <data name="WarningMultipleTransfer" xml:space="preserve">
+    <value>注意: 若已转账 “昨天余额”, 被{0}特別顯示{1}會員的投注金額將显示負數。因此, 他們有可能輸超過信用額度。</value>
+  </data>
+  <data name="CurrentStatusAllTransactions" xml:space="preserve">
+    <value>现有全部交易状态</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>会员</value>
+  </data>
+  <data name="OutTxn" xml:space="preserve">
+    <value>未完成交易</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>最后登入</value>
+  </data>
+  <data name="LastTxn" xml:space="preserve">
+    <value>最后交易</value>
+  </data>
+  <data name="YouCanTransferUpTo" xml:space="preserve">
+    <value>您可转账不超过</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>投注额度</value>
+  </data>
+  <data name="TransferCondition" xml:space="preserve">
+    <value>转帐设定</value>
+  </data>
+  <data name="Weekly" xml:space="preserve">
+    <value>每周</value>
+  </data>
+  <data name="AccountBalanceTransferCondition" xml:space="preserve">
+    <value>转帐设定</value>
+  </data>
+  <data name="PleaseChooseDaily" xml:space="preserve">
+    <value>如要选择七天,请选每天</value>
+  </data>
+  <data name="PleaseSelectOneDay" xml:space="preserve">
+    <value>请至少选择一天</value>
+  </data>
+  <data name="TransferConditionByCompany" xml:space="preserve">
+    <value>您的账号已被公司设置应用于"每日自动转账"。 您将不被允许调整每周转账设定。</value>
+  </data>
+  <data name="TransferConditionByUpline" xml:space="preserve">
+    <value>您的账号已被上线设置应用于“每日转账”。您将不被允许调整每周转账设定。</value>
+  </data>
+  <data name="ConditionChangeFailed_AutoJobRunning" xml:space="preserve">
+    <value>目前该旗下账号正在进行自动转账流程。 请等待几分钟以完成该过程后，再对转账设定进行更改。</value>
+  </data>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>修改成功</value>
+  </data>
+  <data name="ConfirmUpdateTransferCondition" xml:space="preserve">
+    <value>您确定使用此转账条件于其所有下线?</value>
+  </data>
+  <data name="UpdateTransferCondition_Note" xml:space="preserve">
+    <value>注意：更改转账设定将会影响该账号下所有下线的自动转账状态和日程表。 请选择一个操作：</value>
+  </data>
+  <data name="UpdateTransferCondition_OnAuto" xml:space="preserve">
+    <value>保持当前日程表的自动转账启用状态，并根据新的转账设定调整。</value>
+  </data>
+  <data name="UpdateTransferCondition_OffAuto" xml:space="preserve">
+    <value>禁用所有下线的自动转账并清除自动转账日程表</value>
+  </data>
+  <data name="NoChangeToUpdate" xml:space="preserve">
+    <value>没有任何的变化更新。</value>
+  </data>
+  <data name="TransferConditionChangeToastTitle" xml:space="preserve">
+    <value>自动转账配置</value>
+  </data>
+  <data name="TransferConditionChangeToastBody" xml:space="preserve">
+    <value>您的转账设定已被上线更改。 您的下线的自动转账状态和日程表已相应调整。 点击{0}查看详细信息。</value>
+  </data>
+  <data name="TransferConditionChange_PersonalMessage" xml:space="preserve">
+    <value>您的转账设定已被上线更改。 以下客户已调整自动转账状态和日程表： {0} 。 详细可以在转账功能查询。</value>
+  </data>
+  <data name="Received" xml:space="preserve">
+    <value>已收到</value>
+  </data>
+  <data name="NotReceived" xml:space="preserve">
+    <value>未收到</value>
+  </data>
+  <data name="AlreadyPaid" xml:space="preserve">
+    <value>已支付</value>
+  </data>
+  <data name="Paid" xml:space="preserve">
+    <value>支付</value>
+  </data>
+  <data name="Unpaid" xml:space="preserve">
+    <value>未支付</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>日期范围</value>
+  </data>
+  <data name="RewardDetail" xml:space="preserve">
+    <value>奖金详情</value>
+  </data>
+  <data name="RewardPayment" xml:space="preserve">
+    <value>奖金支付</value>
+  </data>
+  <data name="Program" xml:space="preserve">
+    <value>程序</value>
+  </data>
+  <data name="NoProgramFound" xml:space="preserve">
+    <value>找不到奖金程序</value>
+  </data>
+  <data name="SearchProgram" xml:space="preserve">
+    <value>搜索程序</value>
+  </data>
+  <data name="PaymentStatus" xml:space="preserve">
+    <value>付款状态</value>
+  </data>
+  <data name="MemberPaymentStatus" xml:space="preserve">
+    <value>会员付款状况</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="HideFilter" xml:space="preserve">
+    <value>隐藏筛选</value>
+  </data>
+  <data name="ShowFilter" xml:space="preserve">
+    <value>显示筛选</value>
+  </data>
+  <data name="ConfirmPayment" xml:space="preserve">
+    <value>确认付款</value>
+  </data>
+  <data name="ShowAllErrorPayments" xml:space="preserve">
+    <value>查看所有未成功的付款。</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="PaymentDate" xml:space="preserve">
+    <value>付款日期</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>反馈</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>新增日期</value>
+  </data>
+  <data name="UpdateRewardPaymentStatusConfirm" xml:space="preserve">
+    <value>您确定要确认所选账号的付款吗？</value>
+  </data>
+  <data name="UpdateRewardPaymentStatusSuccessfully" xml:space="preserve">
+    <value>此付款已成功确认。</value>
+  </data>
+  <data name="UpdateAllRewardPaymentStatusSuccessfully" xml:space="preserve">
+    <value>所有付款已成功确认。</value>
+  </data>
+  <data name="UpdateManyRewardPaymentStatusSuccessfully" xml:space="preserve">
+    <value>除以下付款外，所有付款均已成功确认：</value>
+  </data>
+  <data name="Last3Months" xml:space="preserve">
+    <value>过去3个月</value>
+  </data>
+  <data name="NoColumnsFound" xml:space="preserve">
+    <value>无法找寻专栏</value>
+  </data>
+  <data name="SearchColumn" xml:space="preserve">
+    <value>搜索专栏</value>
+  </data>
+  <data name="ADBTOnError" xml:space="preserve">
+    <value>您的上线允许您使用全天余额转账。该页面将自动刷新。</value>
+  </data>
+  <data name="ADBTOffError" xml:space="preserve">
+    <value>您的上线不允许您使用全天余额转账。该页面将自动刷新。</value>
+  </data>
+</root>

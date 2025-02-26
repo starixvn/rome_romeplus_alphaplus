@@ -1,0 +1,127 @@
+@{
+    ViewData["Title"] = Model.Title;
+}
+@section Styles {
+    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter")
+    <link rel="stylesheet" href="~/bundles/betlists/filter.css" asp-append-version="true" />
+}
+@section Scripts {
+    @StaticResources.AssetScripts.Render("/bundles/site-betlists/filter")
+    <script src="~/bundles/betlists/member-betlist.js" asp-append-version="true"></script>
+}
+@model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.RunningBetList.RunningBetListViewModel
+<div class="bl_title">
+    <div class="box">
+        <div>@Model.Title</div>
+        <div>
+            <partial name="IconInformation"
+                model="new[] { Resources.ipnote, Model.ViewDataInstructionMessage, Resources.MemberWinNote }" />
+        </div>
+        <div class="push">
+            <div class="list-icon" id="betlist-filter">
+                <ul>
+                    <li class="showfilter-element"><span class="icon-arrow-up-drop-circle icon-filter"
+                            title="@Resources.HideFilter"></span></li>
+                    <li class="hidefilter-element"><span class="icon-arrow-down-drop-circle icon-filter"
+                            title="@Resources.ShowFilter"></span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<form class="form-inline filter @(Model.IsFilterVisible ? string.Empty : "hide")" role="form" id="betlist-form">
+    <input type="hidden" asp-for="CustId" />
+    <input type="hidden" asp-for="CustName" />
+    <input type="hidden" asp-for="IsFilterVisible" />
+    <div class="form-group">
+        <select id="dropdown-betlist-type">
+            <option value="1" data-url="@Model.GetDailyStatementUrl()">@Resources.DailyStatement</option>
+            <option value="2" data-url="@Model.GetMemberBetListUrl()">@Resources.BetList</option>
+            <option value="3" selected="selected">@Resources.BetlistRunning</option>
+        </select>
+    </div>
+    <product model="@Model.ProductViewModel" />
+    <div class="form-group">
+        <label class="check-box">
+            @Resources.GetAll
+            <input type="checkbox" asp-for="GetAll" />
+        </label>
+    </div>
+    <daterange-picker model="Model.DateRangePicker" />
+</form>
+<table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tblRpt-hover tbl-betlist">
+    <thead>
+        <tr>
+            <th class="col-number">#</th>
+            <th class="col-transtime">@Resources.transtime</th>
+            <th>@Resources.choice</th>
+            <th class="col-odds">@Resources.odds</th>
+            <th class="col-stake">@Resources.stake</th>
+            <th class="col-status">@Resources.status</th>
+            @if (Model.AllowToViewSuperPT)
+            {
+                <th class="col-pt">@Resources.superptcomm</th>
+            }
+            @if (Model.AllowToViewMasterPT)
+            {
+                <th class="col-pt">@Resources.masterptcomm</th>
+            }
+            <th class="col-pt">@Resources.agentptcomm</th>
+            <th class="col-stake">@Resources.MemberRisk</th>
+            @if (Model.ViewerLevel.IsSuperLevel())
+            {
+                <th class="col-stake">@Resources.SuperRisk</th>
+            }
+            @if (Model.ViewerLevel.IsMasterLevel())
+            {
+                <th class="col-stake">@Resources.MasterRisk</th>
+            }
+            @if (Model.ViewerLevel.IsAgentLevel())
+            {
+                <th class="col-stake">@Resources.AgentRisk</th>
+            }
+            <th class="col-platform">@Resources.platform</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.BetListData.Tickets.Any())
+        {
+            var index = 1;
+            foreach (var ticket in Model.BetListData.Tickets)
+            {
+                <tr id="r@(ticket.TransId)">
+                    <td class="w-order text-center">@(index++)</td>
+                    <trans builder="Model.Builder" ticket="ticket" />
+                    <choice builder="Model.Builder" ticket="ticket" ticket-helper="Model.TicketHelper"
+                        ticket-data="Model.BetListData.TicketData" is-show-score-map="Model.CanViewScoreMap(ticket)" />
+                    <odds builder="Model.Builder" ticket="ticket" ticket-data="Model.BetListData.TicketData"
+                        get-cache-property-by-id="Model.TicketHelper.GetOddsTypeNameById" />
+                    <stake builder="Model.Builder" ticket="ticket" ticket-helper="Model.TicketHelper" />
+                    <status builder="Model.Builder" ticket="ticket" ticket-helper="Model.TicketHelper"
+                        ticket-data="Model.BetListData.TicketData" is-show-vn-ip="Model.DisplayVNIP"
+                        country="@ticket.Country" />
+                    @if (Model.AllowToViewSuperPT)
+                    {
+                        <position-taking ticket="ticket" ticket-data="Model.BetListData.TicketData" user-level="UserLevel.Super" />
+                    }
+                    @if (Model.AllowToViewMasterPT)
+                    {
+                        <position-taking ticket="ticket" ticket-data="Model.BetListData.TicketData" user-level="UserLevel.Master" />
+                    }
+                    <position-taking ticket="ticket" ticket-data="Model.BetListData.TicketData" user-level="UserLevel.Agent" />
+                    <risk-amount member-win="@ticket.MemberWinText" sma-risk-amount="@Model.GetSMARiskAmount(ticket)" />
+                    <platform value="@ticket.Platform" />
+                </tr>
+            }
+        }
+        else
+        {
+            <no-infomation colspan="Model.TotalColumn" hastbody="false" />
+        }
+    </tbody>
+</table>
+@* @Html.Hidden("betlist-path",
+Response.ApplyAppPathModifier($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}"))
+@Html.Hidden("old-main-path", Model.OldMainPath)
+@Html.Hidden("results-path", Model.ResultsPath)
+@Html.Hidden("totalbets-forecast-path", Model.TotalBetsForecastPath) *@

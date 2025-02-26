@@ -1,0 +1,177 @@
+﻿@import '../Home/_variables.scss';
+@import '../Home/_mixins.scss';
+
+// To remove the 300-350ms tap delay
+html {
+    touch-action: manipulation;
+}
+
+body {
+    background-color: transparent;
+    font-size: $font-size;
+    font-family: $font-family;
+    line-height: 20px;
+}
+
+.tab-content > .tab-pane {
+    padding: 8px 0;
+}
+
+.tblRpt {
+    table-layout: fixed;
+    width: 100%;
+
+    .col-order {
+        text-align: center;
+        width: 55px;
+    }
+
+    .row-first {
+        color: #ededed;
+
+        font: {
+            style: italic;
+            size: 12px;
+        }
+
+        .messageId {
+            margin-left: 16px;
+            color: #b25900;
+        }
+    }
+
+    tbody td {
+        white-space: normal;
+        word-wrap: break-word;
+    }
+
+    .message-content {
+        &.text-red {
+            color: #e54748;
+        }
+    }
+}
+
+.badge-title {
+    @include border-radius(3px);
+    position: relative;
+    top: -2px;
+    display: inline-block;
+    padding: 2px 4px;
+    background: #da1625;
+    color: #fff;
+    line-height: 1;
+    font-size: 11px;
+    text-transform: capitalize;
+    font-style: normal;
+}
+
+.icon-new-box {
+    color: #db1828;
+    font-size: 30px;
+}
+
+.visible-mobile {
+    display: none !important;
+}
+
+.message-modal {
+    width: 750px;
+
+    .modal-dialog {
+        width: 750px;
+
+        .modal-header {
+            height: 40px;
+
+            .modal-title {
+                height: 35px;
+                cursor: default;
+            }
+        }
+    }
+}
+
+@media only screen and (max-device-width : $conent-device-greater1024) {
+    .filter {
+        .input-group.date .form-control {
+            @include box-shadow-multiple('0px 1px 3px rgba(0, 0, 0, 0.3)');
+        }
+    }
+    .form-group.icon {
+        margin: 20px 0px 0px 10px;
+    }
+
+    .message-modal {
+        width: 550px;
+
+        .modal-dialog {
+            width: 550px;
+
+            .modal-header {
+                height: 50px;
+
+                .modal-title {
+                    height: 40px;
+                }
+            }
+
+            .modal-body {
+                line-height: 30px;
+            }
+        }
+    }
+
+    .tblRpt {
+        .col-order {
+            width: 85px;
+        }
+    }
+}
+
+
+/* ----------- Mobile ----------- */
+/*@media only screen and (max-device-width : $conent-device-lower768) {
+    body {
+        background-color: #fff;
+        font-size: $font-size-mobile;
+    }
+
+    .hidden-mobile {
+        display: none !important;
+    }
+
+    .visible-mobile {
+        display: inline-block !important;
+    }
+
+    .nav-tabs {
+        display: table;
+        width: 100%;
+
+        li {
+            display: table-cell;
+            float: none;
+
+            a {
+                text-align: center;
+            }
+        }
+    }
+
+    .nav.nav-tabs > li > a {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .filter {
+        display: block;
+
+        .group-button {
+            .btn-submit {
+                height: 36px;
+                margin-right: 0;
+            }
+        }
+    }
+}*/

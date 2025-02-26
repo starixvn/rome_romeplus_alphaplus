@@ -1,0 +1,120 @@
+﻿@using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+@using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.ViewModels;
+@using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
+@using AlphaPlus.Core.Helpers;
+
+@model QRCodeMemberSignInViewModel
+
+@{
+    Layout = "~/Features/MemberInfo/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "QR Code Member Sign In";
+    var errorMessageClass = string.IsNullOrEmpty(Model.ErrorMessage) ? "hidden" : "msg msg-error";
+
+    var userguideLink = Model.GetUserGuideLink();
+}
+@section Styles {
+    @* @Html.Stylesheet() *@
+    @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/common/common-{Model.CustLevel}")
+    @StaticResources.RenderStylesWithDarkMode("~/Features/MemberInfo/Features/QRCodeMemberSignIn/bundles/qr-code-member-sign-in")
+}
+
+<div class="page-title">
+    @Model.PageTitle
+    &nbsp;<a href="@userguideLink" target="_blank"><span class="icon icon-information-outline"></span></a>
+</div>
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation">
+        <a class="open-link" data-url="@MicroSites.SettingUrl("~/CopyAccount/Index")">@Resources.SearchAndCopy</a>
+    </li>
+    <li role="presentation">
+        <a class="open-link" data-url="@MicroSites.SettingUrl($"~/Customer/Create?lng={Model.Language}&isDarkMode={Model.IsDarkMode.ToString().ToLowerInvariant()}")" role="tab"
+            data-toggle="tab">@Resources.FullMode</a>
+    </li>
+    <li role="presentation" class="has-icon active">
+        <a href="javascript:;" aria-controls="home" role="tab" data-toggle="tab">@Resources.QRCode</a>
+    </li>
+    <li role="presentation" class="new-function">
+        @Html.ActionLink(Resources.LiteMode, "Index", "CreateAccount", new
+            {
+                lng = Model.Language,
+                isDarkMode =
+                 Model.IsDarkMode.ToString().ToLowerInvariant()
+            }, null)
+        <span class="bage-new">@Resources.lblNew</span>
+    </li>
+
+</ul>
+@if (Model.OnlyShowErrorMessage)
+{
+    <div class="@errorMessageClass">
+        <span className="col-xs-12">@Model.ErrorMessage</span>
+    </div>
+}
+else
+{
+    <form id="qrCodeMemberSignInForm" class="form-inline filter">
+        <div id="message" class="@errorMessageClass">
+            <span id="message-content" className="col-xs-12">@Model.ErrorMessage</span>
+        </div>
+        <div id="create-form">
+            <div class="form-group">
+                <label>@Resources.InputExistingMemberAccount <span class="red">*</span></label>
+                <input type="text" name="UsernameCopyFrom" id="UsernameCopyFrom" placeholder="@Resources.UsernamePlaceHolder" value="@Model.MemberNameCopyFrom" />
+                <span id="icon-message-UsernameCopyFrom" />
+            </div>
+            <div class="form-group">
+                <label>@Resources.MemberCredit <span class="red">*</span></label>
+                <input type="text" name="Credit" id="Credit" placeholder="@Resources.PleaseInputMemberCredit" value="" />
+                <span id="icon-message-credit"> </span>
+                <div id="credit-range" class="hidden">
+                    @Resources.Min: <span id="credit-min-label"></span> - @Resources.Max: <span id="credit-max-label"></span> <span id="credit-hint-tooltip" class="hidden" data-toggle="tooltip" data-placement="bottom" title=""> <span class="icon-credit"></span> </span>
+                </div>
+            </div>
+            <div class="form-group" id="username-group">
+                <label>@Resources.Username <span class="red">*</span></label>
+                <span id="actor-name">@Model.ActorName</span>
+                <select id="FirstSuffix" name="FirstSuffix">
+                    @foreach (var item in Model.NameSuffix)
+                    {
+                        <option value="@item" @(Model.FirstChar.Equals(item) ? "selected=\"selected\"" : string.Empty)> @item</option>
+                    }
+                </select>
+                <select id="SecondSuffix" name="SecondSuffix">
+                    @foreach (var item in Model.NameSuffix)
+                    {
+                        <option value="@item" @(Model.SecondChar.Equals(item) ? "selected=\"selected\"" : string.Empty)> @item</option>
+                    }
+                </select>
+                <select id="ThirdSuffix" name="ThirdSuffix">
+                    @foreach (var item in Model.NameSuffix)
+                    {
+                        <option value="@item" @(Model.ThirdChar.Equals(item) ? "selected=\"selected\"" : string.Empty)> @item</option>
+                    }
+                </select>
+                <span id="icon-message-username" class="icon-check" />
+            </div>
+            <div class="form-group">
+                <label>@Resources.FirstNameOptional</label>
+                <input type="text" name="FirstName" id="FirstName" value="" maxlength="50" />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn-submit" id="btn-submit" disabled>@Resources.CreateAccount</button>
+            </div>
+        </div>
+        @Html.Hidden("CreditHint", Resources.creditHint)
+        @Html.Hidden("MemberMaxCreditHint", Resources.memberMaxCreditHint)
+        <input type="hidden" id="MemberAccountIsInvalid" value="@Resources.MemberAccountIsInvalid" />
+        <input type="hidden" id="UsernameIsInvalid" value="@Resources.UsernameIsInvalid" />
+        <input type="hidden" id="CannotCreateClosedMemberQRCode" value="@Resources.CannotCreateClosedMemberQRCode" />
+        @Html.Hidden("Live", Resources.Live)
+        @Html.HiddenFor(m => m.MemberNameCopyFrom)
+        @Html.HiddenFor(m => m.ShowQRCodeLink)
+        <input type="hidden" id="member-info-url" value="@MicroSites.SettingUrl()" />
+        @Html.AntiForgeryToken()
+    </form>
+
+    @section Scripts {
+    @StaticResources.AssetScripts.Render("/bundles/site-asset/numeral")
+    @StaticResources.RenderScripts("~/Features/MemberInfo/Features/QRCodeMemberSignIn/bundles/qr-code-member-sign-in")
+    }
+}

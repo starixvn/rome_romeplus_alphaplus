@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>情報がありません</value>
+  </data>
+  <data name="NewBetType" xml:space="preserve">
+    <value>New Bet Type</value>
+  </data>
+  <data name="Notice_2" xml:space="preserve">
+    <value>Your betting limit value has been changed by the upline.&lt;br&gt;Please kindly be informed and have a check the details for your downlines.</value>
+  </data>
+  <data name="Notice_1_2" xml:space="preserve">
+    <value>あなたの最小保有ポジションとベットリミットの値が上層ラインによって変更されました。&lt;br&gt;ご確認いただき、下層ラインの詳細をご確認ください。</value>
+  </data>
+  <data name="Notice_1" xml:space="preserve">
+    <value>あなたの最小保有ポジションの値が上層ラインによって変更されました。&lt;br&gt;ご確認のうえ、下層ラインの詳細をご確認ください。</value>
+  </data>
+  <data name="Notice_3" xml:space="preserve">
+    <value>あなたの上層ラインが、下層ライン向けにFishing Worldを有効にしました。設定ページにアクセスして、自分の保有ポジション設定を構成してください。</value>
+  </data>
+  <data name="announcement" xml:space="preserve">
+    <value>通知</value>
+  </data>
+  <data name="from" xml:space="preserve">
+    <value>から</value>
+  </data>
+  <data name="to" xml:space="preserve">
+    <value>へ</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>送信</value>
+  </data>
+  <data name="highlights" xml:space="preserve">
+    <value>ハイライト</value>
+  </data>
+  <data name="more" xml:space="preserve">
+    <value>もっと</value>
+  </data>
+  <data name="SystemUpdate" xml:space="preserve">
+    <value>System Update</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>ロード中</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>ページ</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>の</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>この機能を使用する権限がありません。</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>他の</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>全 {total} 件中、{from} 件目から {to} 件目を表示</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>状態</value>
+  </data>
+  <data name="CopyDomain" xml:space="preserve">
+    <value>複写</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>複写した</value>
+  </data>
+  <data name="close" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>フィードバック</value>
+  </data>
+  <data name="FeedbackTitle" xml:space="preserve">
+    <value>改善にご協力ください！</value>
+  </data>
+  <data name="FeedbackOnFunctionTitle" xml:space="preserve">
+    <value>{0} の改善にご協力ください。</value>
+  </data>
+  <data name="Feedback_Duplicate[1]" xml:space="preserve">
+    <value>フィードバック</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>新しい</value>
+  </data>
+  <data name="normal" xml:space="preserve">
+    <value>普通</value>
+  </data>
+  <data name="normalAnnouncement" xml:space="preserve">
+    <value>特別告知</value>
+  </data>
+  <data name="personalMessage" xml:space="preserve">
+    <value>個人メッセージ</value>
+  </data>
+  <data name="Special" xml:space="preserve">
+    <value>特別</value>
+  </data>
+  <data name="specialAnnouncement" xml:space="preserve">
+    <value>通常告知</value>
+  </data>
+  <data name="systemAnnouncement" xml:space="preserve">
+    <value>システムからのお知らせ</value>
+  </data>
+  <data name="system" xml:space="preserve">
+    <value>システム</value>
+  </data>
+  <data name="viewAnnouncement" xml:space="preserve">
+    <value>告知を見る</value>
+  </data>
+</root>

@@ -1,0 +1,101 @@
+@using AlphaPlus.Core.Extensions
+@using AlphaPlus.Core.Utils
+@using AlphaPlus.Shared.AppResources.Report
+@using AlphaPlus.Reports.Features.EnteredResult
+@using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components
+@using AlphaPlus.Reports.Site.Features.EnteredResult
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AlphaPlus.Reports.Site
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Entered Results";
+
+    void RenderEnteredResult(EnteredResultEntity enteredResult)
+    {
+        if (enteredResult == null)
+        {
+            <td>0</td>
+            <td>0</td>
+        }
+        else
+        {
+            <td>@enteredResult.Entered</td>
+            <td>@enteredResult.NonEntered</td>
+        }
+    }
+
+    DateTime today, yesterday;
+    if (Model.ReportData.HasData)
+    {
+        today = Model.ReportData.Total.EnteredResultToday.EventDate;
+        yesterday = Model.ReportData.Total.EnteredResultYesterday.EventDate;
+    }
+    else
+    {
+        today = SystemTime.Today;
+        yesterday = SystemTime.Yesterday;
+    }
+}
+@section Styles {
+    <link rel="stylesheet" href="~/bundles/enteredresult/enteredresult.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/bundles/enteredresult/enteredresult.js" asp-append-version="true"></script>
+}
+@model EnteredResultViewModel
+<report-title model="Model.PageHeader" />
+<form method="get" class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form" asp-controller="WinLoss" asp-action="Index">
+    <daterange-picker model="Model.DateRangePicker" />
+    <input type="hidden" id="IsHistoricReport" name="IsHistoricReport" />
+    <div class="form-group">
+        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"></a>
+    </div>
+    <a href="javascript:;" id="historic-report" data-is-historic-report="false"></a>
+</form>
+<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter tbl-small-width" id="tbl-report"
+    data-cansort="@Model.ReportData.MoreThanOne">
+    <thead>
+        <tr>
+            <th>@Resources.Date</th>
+            <th colspan="2">@yesterday.ToShortDateWithSlash()</th>
+            <th colspan="2">@today.ToShortDateWithSlash()</th>
+        </tr>
+        <tr class="thead-row2">
+            <th class="sorting" data-colindex="0">@Resources.Results</th>
+            <th class="sorting width-17per" data-colindex="1">@Resources.Entered</th>
+            <th class="sorting width-17per" data-colindex="2">@Resources.NonEntered</th>
+            <th class="sorting width-17per" data-colindex="3">@Resources.Entered</th>
+            <th class="sorting width-17per" data-colindex="4">@Resources.NonEntered</th>
+        </tr>
+        @if (Model.ReportData.HasData)
+        {
+            <tr class="total-row">
+                <td class="text-left">@Resources.Total</td>
+                @{
+                    RenderEnteredResult(Model.ReportData.Total.EnteredResultYesterday);
+                    RenderEnteredResult(Model.ReportData.Total.EnteredResultToday);
+                }
+            </tr>
+        }
+    </thead>
+    @if (Model.ReportData.HasData)
+    {
+        <tbody>
+            @foreach (var enteredResult in Model.ReportData.DataSource)
+            {
+                <tr>
+                    <td class="text-left col-first">@enteredResult.SportName</td>
+                    @{
+                        RenderEnteredResult(enteredResult.EnteredResultYesterday);
+                        RenderEnteredResult(enteredResult.EnteredResultToday);
+                    }
+                </tr>
+            }
+        </tbody>
+    }
+    else
+    {
+        <no-information colspan="5" />
+    }
+</table>

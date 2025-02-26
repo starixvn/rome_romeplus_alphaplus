@@ -1,0 +1,21 @@
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Tickets.Site.Features.Results.ThirdParty;
+@{
+    Layout = null;
+}
+@model ThirdPartyProductViewModel
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>@Model.Title</title>
+    <link rel="stylesheet" href="~/bundles/results/thirdparty-result.css" asp-append-version="true" />
+</head>
+
+<body>
+    <div class="third-party-result">
+        <iframe src="@Model.Result" frameborder="0" class="handhistory-iframe"></iframe>
+    </div>
+</body>
+
+</html>

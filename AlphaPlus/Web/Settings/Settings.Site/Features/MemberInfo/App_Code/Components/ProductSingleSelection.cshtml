@@ -1,0 +1,21 @@
+﻿@using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components
+
+@model ProductMultiSelectionViewModel
+
+{
+    <div class="form-group">
+        <select id="dropdown-product">
+            @foreach (var product in Model.Products)
+            {
+                <option value="@product.Value"
+                        data-productname="@product.Text"
+                        data-disabled="@product.Disabled"
+                        data-has-setting="@product.Setting.HasSetting"
+                        data-error-code="@product.Setting.ErrorCode"
+                        data-error-message="@product.Setting.ErrorMessage"
+                        @(product.Selected ? " selected=\"selected\"" : string.Empty)>@product.Text</option>
+            }
+        </select>
+        <input type="hidden" name="UserSelectedProductId" id="UserSelectedProductId" value="@Model.UserSelectedProductIds" />
+    </div>
+}

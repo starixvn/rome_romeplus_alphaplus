@@ -1,0 +1,253 @@
+[
+  {
+    "outputFileName": "wwwroot/bundles/totalbets/totalbets.css",
+    "inputFiles": [
+      "assets/styles/components/fanex.autorefresh.css",
+      "assets/styles/totalbets/totalbets.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/forecast/scoremap.css",
+    "inputFiles": [
+      "assets/styles/forecast/scoremap.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/forecast/scoremapinformation.css",
+    "inputFiles": [
+      "assets/styles/forecast/scoremapinformation.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/forecast/soccer.css",
+    "inputFiles": [
+      "assets/styles/forecast/soccer.css",
+      "assets/styles/forecast/soccer-quickintro.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/totalbets/totalbets.js",
+    "inputFiles": [
+      "assets/scripts/components/fanex.autorefresh.js",
+      "assets/scripts/totalbets/totalbets.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/forecast/forecast.js",
+    "inputFiles": [
+      "assets/scripts/components/fanex.autorefresh.js",
+      "assets/scripts/forecast/forecast.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/forecast/scoremap.js",
+    "inputFiles": [
+      "assets/scripts/forecast/scoremap.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/forecast/soccer.js",
+    "inputFiles": [
+      "assets/scripts/forecast/soccer-renderer.js",
+      "assets/scripts/forecast/soccer.js",
+      "assets/scripts/forecast/soccer-quickintro.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/results/resultcore.css",
+    "inputFiles": [
+      "assets/styles/results/fanex.result/fanex.result.css",
+      "assets/styles/results/result.css",
+      "assets/styles/results/fanex.result/Allbet/css/table_w.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/results/normal-result.js",
+    "inputFiles": [
+      "assets/scripts/results/normal-result.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/results/outright-result.js",
+    "inputFiles": [
+      "assets/scripts/results/outright-result.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/results/thirdparty-result.css",
+    "inputFiles": [
+      "assets/styles/results/thirdparty-result.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/default.css",
+    "inputFiles": [
+      "assets/styles/betlists/bet-list.css",
+      "assets/styles/betlists/details-popup.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/default.js",
+    "inputFiles": [
+      "assets/scripts/betlists/common/popup-details.js",
+      "assets/scripts/betlists/common/utils.js",
+      "assets/scripts/betlists/common/app-path.js",
+      "assets/scripts/betlists/common/core.js",
+      "assets/scripts/betlists/status/result-details/base-result-details.js",
+      "assets/scripts/betlists/status/result-details/sportsbook-result-details.js",
+      "assets/scripts/betlists/status/result-details/casino-result-details.js",
+      "assets/scripts/betlists/status/result-details/other-result-details.js",
+      "assets/scripts/betlists/status/ip-details.js",
+      "assets/scripts/betlists/choice/score-map.js",
+      "assets/scripts/betlists/choice/ticket-details/base-ticket-details.js",
+      "assets/scripts/betlists/choice/ticket-details/sportsbook-ticket-details.js",
+      "assets/scripts/betlists/choice/ticket-details/casino-ticket-details.js",
+      "assets/scripts/betlists/choice/ticket-details/other-ticket-details.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/icon-note.js",
+    "inputFiles": [
+      "assets/scripts/betlists/common/icon-note.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/last-bets.css",
+    "inputFiles": [
+      "assets/styles/betlists/last-bets.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/last-bets.js",
+    "inputFiles": [
+      "assets/scripts/betlists/common/icon-note.js",
+      "assets/scripts/betlists/last-bets/last-bets.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/search-tickets.css",
+    "inputFiles": [
+      "assets/styles/betlists/search-tickets/search-tickets.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/search-tickets.js",
+    "inputFiles": [
+      "assets/scripts/betlists/common/ajax-helper.js",
+      "assets/scripts/betlists/common/icon-note.js",
+      "assets/scripts/betlists/search-tickets/search-tickets.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/parlay-detail.css",
+    "inputFiles": [
+      "assets/styles/betlists/parlay-detail.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/filter-configuration.css",
+    "inputFiles": [
+      "assets/styles/components/treeview.css",
+      "assets/styles/components/username-tagsinput.css",
+      "assets/styles/betlists/monitoring-bets/filter-configuration.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/filter-configuration.js",
+    "inputFiles": [
+      "assets/scripts/betlists/common/ajax-helper.js",
+      "assets/scripts/components/inline-message.js",
+      "assets/scripts/components/dropdown-list.js",
+      "assets/scripts/components/sportleaguematch-treeview.js",
+      "assets/scripts/components/username-tagsinput.js",
+      "assets/scripts/betlists/monitoring-bets/filter-configuration.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/manage-filters.css",
+    "inputFiles": [
+      "assets/styles/betlists/monitoring-bets/manage-filters.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/manage-filters.js",
+    "inputFiles": [
+      "assets/scripts/betlists/common/ajax-helper.js",
+      "assets/scripts/components/inline-message.js",
+      "assets/scripts/betlists/monitoring-bets/save-filter.js",
+      "assets/scripts/betlists/monitoring-bets/manage-filters.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/last-bets-new.css",
+    "inputFiles": [
+      "assets/styles/components/autorefresh.css",
+      "assets/styles/betlists/monitoring-bets/monitoring-bets.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/last-bets-new.js",
+    "inputFiles": [
+      "assets/scripts/betlists/common/ajax-helper.js",
+      "assets/scripts/betlists/common/icon-note.js",
+      "assets/scripts/components/autorefresh.js",
+      "assets/scripts/components/inline-message.js",
+      "assets/scripts/betlists/monitoring-bets/save-filter.js",
+      "assets/scripts/betlists/last-bets/last-bets-copyhtml.js",
+      "assets/scripts/betlists/last-bets/last-bets-new.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/filter.css",
+    "inputFiles": [
+      "assets/styles/betlists/filter.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/cancelledbets.js",
+    "inputFiles": [
+      "assets/scripts/components/productmultiselection.js",
+      "assets/scripts/components/daterangepicker.js",
+      "assets/scripts/components/dropdown-list.js",
+      "assets/scripts/components/pager.js",
+      "assets/scripts/betlists/common/icon-note.js",
+      "assets/scripts/betlists/cancelledbets/cancelledbets.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/casino-details.js",
+    "inputFiles": [
+      "assets/scripts/components/pager.js",
+      "assets/scripts/betlists/casino-details/casino-details.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/member-betlist.js",
+    "inputFiles": [
+      "assets/scripts/components/productmultiselection.js",
+      "assets/scripts/components/daterangepicker.js",
+      "assets/scripts/components/dropdown-list.js",
+      "assets/scripts/betlists/common/icon-note.js",
+      "assets/scripts/betlists/member-betlist/member-betlist.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/winloss.css",
+    "inputFiles": [
+      "assets/styles/betlists/winloss.css",
+      "assets/styles/betlists/filter.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/winloss.js",
+    "inputFiles": [
+      "assets/scripts/components/breadcrumb-level.js",
+      "assets/scripts/components/daterangepicker-jquery.js",
+      "assets/scripts/components/product-dropdown.js",
+      "assets/scripts/components/week.js",
+      "assets/scripts/betlists/common/ajax-helper.js",
+      "assets/scripts/betlists/common/icon-note.js",
+      "assets/scripts/betlists/winloss/winloss.js"
+    ]
+  }
+]

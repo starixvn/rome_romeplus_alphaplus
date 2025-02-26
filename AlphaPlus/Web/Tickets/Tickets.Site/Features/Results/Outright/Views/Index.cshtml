@@ -1,0 +1,64 @@
+@{
+    Layout = "~/Features/Results/Views/_Layout.cshtml";
+    ViewBag.Title = "Outright";
+}
+@section Scripts {
+    <script src="~/bundles/results/outright-result.js" asp-append-version="true"></script>
+}
+@model OutrightResultViewModel
+<div role="tabpanel" class="tab-pane active" id="outright">
+    <div class="row filter">
+        <form method="get" asp-action="outright" id="frm-outright">
+            <div class="col-sm-12">
+                <span class="txt">@Resources.From</span>
+                <div class="control date">
+                    <div class="input-group date" id="dpk-fromdate">
+                        <input type="text" class="form-control" asp-for="FromDate" readonly />
+                        <span class="input-group-addon">
+                            <span class="icon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <span class="txt">@Resources.To</span>
+                <div class="control date">
+                    <div class="input-group date" id="dpk-todate">
+                        <input type="text" class="form-control" asp-for="ToDate" readonly />
+                        <span class="input-group-addon">
+                            <span class="icon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <input type="submit" value="@Resources.Submit" class="btn-submit" id="btn-submit" />
+                <input type="submit" value="@Model.Today.ToShortDateWithSlash()" id="btn-today"
+                    class="btn-default btn-other-day" />
+                <input type="submit" value="@Model.Yesterday.ToShortDateWithSlash()" id="btn-yesterday"
+                    class="btn-default btn-other-day" />
+            </div>
+            <div class="col-sm-12">
+                <span class="txt-red">*</span> @Model.MinDateMessage
+            </div>
+            @if (Model.Sports.Any())
+            {
+                <div class="col-sm-12 sport-info">
+                    <span class="txt">@Resources.Sport</span>
+                    <div class="dropdown control">
+                        <select class="form-control" asp-for="SportType" asp-items="Model.Sports"></select>
+                    </div>
+                    <span class="txt">@Resources.League</span>
+                    <div class="dropdown control league-content">
+                        <select class="form-control" asp-for="LeagueId" asp-items="Model.Leagues"></select>
+                    </div>
+                    <a class="icon-excel" asp-action="OutrightExcel"
+                        asp-route-fromDate="@Model.FromDate.ToShortDateWithSlash()"
+                        asp-route-toDate="@Model.ToDate.ToShortDateWithSlash()" asp-route-sportType="@Model.SportType"
+                        asp-route-leagueId="@Model.LeagueId"></a>
+                </div>
+            }
+        </form>
+    </div>
+    <div class="main-content">
+        @Html.Raw(Model.HtmlResults)
+    </div>
+</div>
+<input type="hidden" id="MinDate" value="@Model.MinDate.ToShortDateString()" />
+<input type="hidden" id="Today" value="@Model.Today.ToShortDateString()" />

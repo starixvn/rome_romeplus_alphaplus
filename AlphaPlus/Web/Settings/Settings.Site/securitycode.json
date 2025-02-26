@@ -1,0 +1,40 @@
+{
+    "SecurityCode": {
+        "IsActive": true,
+        "Paths": [
+            "QRCodeMemberSignIn",
+            "QRCodeMemberSignIn/Index",
+            "QRCodeMemberSignIn/CreateAccount",
+            "QRCodeMemberSignIn/ShowQRCode",
+            "QRCodeMemberSignIn/GenerateQrCode",
+            "IndirectLoginAccount/NewAccount",
+            "IndirectLoginAccount/Disconnect",
+            "MyWatchlistAccounts",
+            "MyThresholds",
+            "CopyAccount",
+            "PTTemplate",
+            "CreateAccount",
+            "TransferAllAndClearCredit/Index",
+            "CashBalanceTransfer/CashBalance",
+            "AutoTransfer/UpdateSingleAutoTransfer",
+            "AutoTransfer/UpdateSchedule",
+            "AutoTransfer/UpdateMultipleAutoTransfer",
+            "TransferYesterdayBalance",
+            "SubAccount/Add",
+            "SubAccount/UpdatePageAccess",
+            "ViewCustomerSetting",
+            "updateCustomerSetting",
+            "updateMultipleSetting",
+            "Customer/Create",
+            "Customer/EditCustomer",
+            "Customer/EditMultiple",
+            "SearchAccount/GivenCredit"
+        ],
+        "BetListsPaths": [],
+        "StatementPaths": [],
+        "Sites": [],
+        "VerifyingOtpPath": "Otp/VerifyOtp",
+        "VerifyingSecurityCodePath": "SecurityCode/VerifySecurityCode",
+        "ResetSecurityCodePath": "SecurityCode/ChangeSecurityCode"
+    }
+}

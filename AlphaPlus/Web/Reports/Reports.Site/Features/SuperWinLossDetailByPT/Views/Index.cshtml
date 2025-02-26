@@ -1,0 +1,202 @@
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = Model.PageHeader.Title;
+    var reportDataCount = Model.ReportData.Count();
+
+    void RenderBodyRows(SuperWinLossDetailByPTModel winLossDetailByPT)
+    {
+        RenderWinLossDetailByPT(winLossDetailByPT);
+
+        foreach (var winLossDetailByProduct in winLossDetailByPT.SuperWinLossDetails)
+        {
+            RenderWinLossDetailByProduct(winLossDetailByProduct, false);
+        }
+    }
+
+    void RenderWinLossDetailByPT(SuperWinLossDetailByPTModel winLossDetailByPT)
+    {
+        <tr class="pt-row" data-pt-value="@winLossDetailByPT.SuperPT" data-is-hide="false">
+            <td class="text-left col-username bold active" data-sortedvalue="@winLossDetailByPT.SuperPT">
+                <span class="icon-arrow-down"></span>
+                @winLossDetailByPT.SuperPTPercentage
+            </td>
+            @{
+                RenderWinLossDetail(winLossDetailByPT.Total);
+            }
+        </tr>
+    }
+
+    void RenderWinLossDetailByProduct(SuperWinLossDetailByPTEntity winLossDetail, bool isTotalRow)
+    {
+        var rowClass = isTotalRow ? "tbl-footer" : "pt-product-row";
+        <tr class="@rowClass" data-pt-value="@winLossDetail.SuperPT">
+            <td class="text-left col-username" @(isTotalRow ? string.Empty : "data-sortedvalue=" + winLossDetail.ProductId)>
+                @(isTotalRow ? Resources.Total : winLossDetail.ProductName)</td>
+            @{
+                RenderWinLossDetail(winLossDetail);
+            }
+        </tr>
+    }
+
+    void RenderWinLossDetail(SuperWinLossDetailByPTEntity winLossDetail)
+    {
+        if (Model.PageHeader.IsStackMode)
+        {
+            <td class="visible-stack-mode combinedcell col-turnover-combined">
+                <ul>
+                    <li>@winLossDetail.Turnover.FormatNumber()</li>
+                    <li>@winLossDetail.NetTurnover.FormatNumber()</li>
+                    <li>@winLossDetail.GrossComm.FormatNumber()</li>
+                </ul>
+            </td>
+            RenderStackNetWinLoss("member", winLossDetail.MemberWinLoss, winLossDetail.MemberComm, winLossDetail.MemberTotal);
+            RenderStackNetWinLoss("agent", winLossDetail.AgWinLoss, winLossDetail.AgComm, winLossDetail.AgTotal);
+            RenderStackNetWinLoss("master", winLossDetail.MAgWinLoss, winLossDetail.MAgComm, winLossDetail.MAgTotal);
+            RenderStackNetWinLoss("super", winLossDetail.SAgWinLoss, winLossDetail.SAgComm, winLossDetail.SAgTotal);
+        }
+        else
+        {
+            <td class="hidden-stack-mode col-turnover">
+                @winLossDetail.Turnover.FormatNumber()
+            </td>
+            <td class="hidden-stack-mode col-net-turnover">
+                @winLossDetail.NetTurnover.FormatNumber()
+            </td>
+            <td class="hidden-stack-mode col-gross-com">
+                @winLossDetail.GrossComm.FormatNumber()
+            </td>
+            RenderNetWinLoss("member", winLossDetail.MemberWinLoss, winLossDetail.MemberComm, winLossDetail.MemberTotal);
+            RenderNetWinLoss("agent", winLossDetail.AgWinLoss, winLossDetail.AgComm, winLossDetail.AgTotal);
+            RenderNetWinLoss("master", winLossDetail.MAgWinLoss, winLossDetail.MAgComm, winLossDetail.MAgTotal);
+            RenderNetWinLoss("super", winLossDetail.SAgWinLoss, winLossDetail.SAgComm, winLossDetail.SAgTotal);
+        }
+        <td class="text-right col-company">@winLossDetail.Company.FormatNumber()</td>
+    }
+
+    void RenderStackNetWinLoss(string levelName, decimal winLoss, decimal comm, decimal total)
+    {
+        <td class="visible-stack-mode combinedcell col-@levelName-winloss-combined">
+            <ul>
+                <li>@winLoss.FormatNumber()</li>
+                <li>@comm.FormatNumber()</li>
+                <li>@total.FormatNumber()</li>
+            </ul>
+        </td>
+    }
+
+    void RenderNetWinLoss(string levelName, decimal winLoss, decimal comm, decimal total)
+    {
+        <td class="hidden-stack-mode col-@levelName-winloss">
+            @winLoss.FormatNumber()
+        </td>
+        <td class="hidden-stack-mode">
+            @comm.FormatNumber()
+        </td>
+        <td class="hidden-stack-mode bold col-cust-total">
+            @total.FormatNumber()
+        </td>
+    }
+}
+@section Scripts {
+    <script src="~/bundles/superwinlossdetailbypt/superwinlossdetailbypt.js" asp-append-version="true"></script>
+}
+@model SuperWinLossDetailByPTViewModel
+<report-title model="Model.PageHeader" />
+<form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form">
+    <product-multiselection model="@Model.ProductViewModel" />
+    <daterange-picker model="Model.DateRangePicker" />
+    <div class="form-group hide">
+        <span id="icon-information" class="icon-information-outline"></span>
+    </div>
+    <div class="form-group">
+        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
+            asp-all-route-data="Model.GetExcelParams()"></a>
+    </div>
+    <div class="note">
+        <span class="star">*</span>@Model.ViewDataInstructionMessage
+        <a href="javascript:;" id="view-product-pt-list">@Resources.ViewProductPTList</a>
+    </div>
+</form>
+<table
+    class="tblRpt tblRpt-bordered tblRpt-hover tablesorter width-100per tbl-win-loss-detail-by-pt@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty) "
+    data-cansort="@(reportDataCount > 1)" data-sortedcolumn="@Model.SortPropertyName"
+    data-descendingsort="@Model.DescendingSort" id="tbl-report" style="visibility:hidden">
+    <thead>
+        <tr>
+            <th rowspan="2" class="sorting" data-sortedname="ProductId" data-colindex="0">
+                @Resources.PT/@Resources.Product</th>
+            <th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="Turnover" data-colindex="1">
+                @Resources.Turnover</th>
+            <th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="NetTurnover" data-colindex="2">
+                @Resources.NetTurnover</th>
+            <th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="GrossComm" data-colindex="3">
+                @Resources.GrossComm</th>
+            <th rowspan="2" class="visible-stack-mode  col-netturnover-header col-combine sorting"
+                data-sortedname="Turnover" data-colindex="1">
+                <span class="prior-sortedcolumn">@Resources.TurnoverAbbr</span>@Resources.NetTurnoverAndGrossComm
+            </th>
+            <th colspan="3" class="col-level hidden-stack-mode">@Resources.Member</th>
+            <th rowspan="2" class="visible-stack-mode col-combine sorting" data-sortedname="MemberWinLoss"
+                data-colindex="2">@Resources.Member<br />(<span
+                    class="prior-sortedcolumn">@Resources.WinLossAbbr</span>@Resources.CommAndTotal)</th>
+            <th colspan="3" class="col-level hidden-stack-mode">@Resources.Agent</th>
+            <th rowspan="2" class="visible-stack-mode col-combine sorting" data-sortedname="AgWinLoss"
+                data-colindex="3">@Resources.Agent<br />(<span
+                    class="prior-sortedcolumn">@Resources.WinLossAbbr</span>@Resources.CommAndTotal)</th>
+            <th colspan="3" class="col-level hidden-stack-mode">@Resources.Master</th>
+            <th rowspan="2" class="visible-stack-mode col-combine sorting" data-sortedname="MAgWinLoss"
+                data-colindex="4">@Resources.Master<br />(<span
+                    class="prior-sortedcolumn">@Resources.WinLossAbbr</span>@Resources.CommAndTotal)</th>
+            <th colspan="3" class="col-level hidden-stack-mode">@Resources.Super</th>
+            <th rowspan="2" class="visible-stack-mode col-combine sorting" data-sortedname="SAgWinLoss"
+                data-colindex="5">@Resources.Super<br />(<span
+                    class="prior-sortedcolumn">@Resources.WinLossAbbr</span>@Resources.CommAndTotal)</th>
+            <th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="Company" data-colindex="16">
+                @Resources.Company</th>
+            <th rowspan="2" class="visible-stack-mode sorting" data-sortedname="Company" data-colindex="6">
+                @Resources.Company</th>
+        </tr>
+        <tr class="thead-row2">
+            <th class="hidden-stack-mode col-winloss sorting" data-sortedname="MemberWinLoss" data-colindex="4">
+                @Resources.WinLoss</th>
+            <th class="hidden-stack-mode sorting" data-sortedname="MemberComm" data-colindex="5">@Resources.Comm</th>
+            <th class="hidden-stack-mode sorting" data-sortedname="MemberTotal" data-colindex="6">@Resources.Total</th>
+            <th class="hidden-stack-mode col-winloss sorting" data-sortedname="AgWinLoss" data-colindex="7">
+                @Resources.WinLoss</th>
+            <th class="hidden-stack-mode sorting" data-sortedname="AgComm" data-colindex="8">@Resources.Comm</th>
+            <th class="hidden-stack-mode sorting" data-sortedname="AgTotal" data-colindex="9">@Resources.Total</th>
+            <th class="hidden-stack-mode col-winloss sorting" data-sortedname="MAgWinLoss" data-colindex="10">
+                @Resources.WinLoss</th>
+            <th class="hidden-stack-mode sorting" data-sortedname="MAgComm" data-colindex="11">@Resources.Comm</th>
+            <th class="hidden-stack-mode sorting" data-sortedname="MAgTotal" data-colindex="12">@Resources.Total</th>
+            <th class="hidden-stack-mode col-winloss sorting" data-sortedname="SAgWinLoss" data-colindex="13">
+                @Resources.WinLoss</th>
+            <th class="hidden-stack-mode sorting" data-sortedname="SAgComm" data-colindex="14">@Resources.Comm</th>
+            <th class="hidden-stack-mode sorting" data-sortedname="SAgTotal" data-colindex="15">@Resources.Total</th>
+        </tr>
+    </thead>
+    @if (reportDataCount > 0)
+    {
+        <tbody>
+            @foreach (var winLossDetailByPT in Model.ReportData)
+            {
+                RenderBodyRows(winLossDetailByPT);
+            }
+        </tbody>
+        <tfoot>
+            @{
+                RenderWinLossDetailByProduct(Model.Total, true);
+            }
+        </tfoot>
+    }
+    else
+    {
+        <no-information colspan="18" />
+    }
+</table>
+<partial name="ViewProductPTList" model="Model.SuperPTProductViewModels" />
+<a class="hide" id="LoadLegendURL" asp-action="WinLossDetail" asp-controller="Legends"
+    asp-route-MinDate="01/01/0001"></a>
+<input type="hidden" asp-for="IsSetDefaultStackMode" />
+<input type="hidden" id="IsMobileView" value="@Convert.ToByte(Model.IsMobileView)" />

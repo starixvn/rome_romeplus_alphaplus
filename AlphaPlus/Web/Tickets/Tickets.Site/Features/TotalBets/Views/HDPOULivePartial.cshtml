@@ -1,0 +1,63 @@
+@{
+    Layout = null;
+    async Task RenderCell(int betCount, int matchId, int betType, decimal total)
+    {
+        <td class="text-right">
+            @if (betCount != 0)
+            {
+                <view-betlist matchid="@matchId" bettype="@betType" value="@total" redpositive="false" />
+            }
+        </td>
+        <td class="w-icon-fc">
+            @if (betCount != 0)
+            {
+                <a asp-controller="Forecast" asp-action="AH" asp-route-matchid="@matchId" asp-route-bettype="@betType"
+                    class="icon-fc"></a>
+            }
+        </td>
+    }
+}
+
+@model IEnumerable<HDPOULive>
+@if (Model.Any())
+{
+    var number = 1;
+    var matchIndex = 0;
+    var currentLeagueId = 0;
+    foreach (var item in Model)
+    {
+        if (currentLeagueId == item.LeagueId)
+        {
+            matchIndex++;
+        }
+        else
+        {
+            matchIndex = 0;
+            currentLeagueId = item.LeagueId;
+            <tr class="col-league">
+                <td colspan="11">@item.LeagueName</td>
+            </tr>
+        }
+        var className = item.LiveIndicator ? "bg-live" : (matchIndex % 2 == 0 ? string.Empty : "odd");
+        <tr class="@className">
+            <td>@(number++)</td>
+            <td>
+                <event live="@item.LiveIndicator" homescore="@item.LiveHomeScore" awayscore="@item.LiveAwayScore"
+                    time="@item.ShowTime" />
+            </td>
+            <td>@item.Event</td>
+            @{
+                await RenderCell(item.BetCount_HDP, item.MatchId, BetTypeConstants.Handicap, item.Total_Odds_HDP);
+                await RenderCell(item.BetCount_OU, item.MatchId, BetTypeConstants.OverUnder, item.Total_Odds_OU);
+                await RenderCell(item.BetCount_HTHDP, item.MatchId, BetTypeConstants._1stHandicap, item.Total_Odds_HTHDP);
+                await RenderCell(item.BetCount_HTOU, item.MatchId, BetTypeConstants._1stOverUnder, item.Total_Odds_HTOU);
+            }
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td colspan="11" class="text-center">@Resources.NoInformationIsAvailable</td>
+    </tr>
+}

@@ -1,0 +1,32 @@
+@inject IUserSession userSession
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@(ViewData["Title"] ?? "Alpha - Bet Lists")</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
+    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/default")
+    <link rel="stylesheet" href="~/bundles/betlists/default.css" asp-append-version="true" />
+    @RenderSection("Styles", required: false)
+    @GoogleAnalyticHelper.GtagScript()
+</head>
+
+<body data-theme="@(string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark")">
+    @GoogleAnalyticHelper.GtagNoScript()
+    @RenderBody()
+    <partial name="HiddenFields" model="userSession" />
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/ajaxSetup")
+    @StaticResources.AssetScripts.Render("/bundles/site-betlists/default")
+    <script src="~/bundles/betlists/default.js" asp-append-version="true"></script>
+    <partial name="DetailsPopup" />
+    @RenderSection("Scripts", required: false)
+</body>
+
+</html>

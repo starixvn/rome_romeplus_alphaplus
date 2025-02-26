@@ -1,0 +1,45 @@
+﻿@using AlphaPlus.Features.Messages.API.Services
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Features.Messages
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <title>New Announcement</title>
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
+    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-reports/default")
+    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/extendMessage")
+</head>
+<body>
+    <div class="baio-title-effect-date-format">@Lang.NewBetTypeOfSoccerTitle</div>
+    <table class="tblRpt tblRpt-bordered alternative-row-table width-100per tablesorter tblRpt-hover" id="tbl-report" style="padding: 0px;">
+        <thead class="tableFloatingHeaderOriginal">
+            <tr>
+                <th>@Lang.NewBetType</th>
+                <th>@Lang.BetSettingFollows</th>                
+                <th>@Lang.CommissionSettingFollows</th>
+                <th>@Lang.PositionTakingSettingFollows</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("467")</td>
+                <td class="center" rowspan="3">@AlphaRemotingRefService.GetSportTypeName(1)</td>
+                <td class="center">@Lang.LabelOtherTypes</td>
+                <td class="center">@AlphaRemotingRefService.GetBetTypeName("6")</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("468")</td>
+                <td class="center">@Lang.LabelOtherTypes</td>
+                <td class="center">@Lang.LabelHandicapFC</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("469")</td>
+                <td class="center">@Lang.LabelOtherTypes</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>            
+        </tbody>
+    </table>
+</body>
+</html>

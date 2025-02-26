@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="TotalBets" xml:space="preserve">
+    <value>Tổng Cược</value>
+  </data>
+  <data name="Forecast" xml:space="preserve">
+    <value>Dự đoán</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Báo cáo</value>
+  </data>
+  <data name="MemberInfo" xml:space="preserve">
+    <value>Thông tin Member</value>
+  </data>
+  <data name="FullControl" xml:space="preserve">
+    <value>Toàn quyền </value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Cập nhật</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Xem</value>
+  </data>
+  <data name="Transfer" xml:space="preserve">
+    <value>Chuyển khoản</value>
+  </data>
+  <data name="ViewLog" xml:space="preserve">
+    <value>Nhật ký</value>
+  </data>
+  <data name="Daily" xml:space="preserve">
+    <value>Hằng ngày</value>
+  </data>
+  <data name="Sun" xml:space="preserve">
+    <value>Chủ nhật</value>
+  </data>
+  <data name="Mon" xml:space="preserve">
+    <value>Thứ 2</value>
+  </data>
+  <data name="Tue" xml:space="preserve">
+    <value>Thứ 3</value>
+  </data>
+  <data name="Wed" xml:space="preserve">
+    <value>Thứ 4</value>
+  </data>
+  <data name="Thurs" xml:space="preserve">
+    <value>Thứ 5</value>
+  </data>
+  <data name="Sat" xml:space="preserve">
+    <value>Thứ 7</value>
+  </data>
+  <data name="Weekly" xml:space="preserve">
+    <value>Hằng tuần</value>
+  </data>
+  <data name="Fri" xml:space="preserve">
+    <value>Thứ 6</value>
+  </data>
+  <data name="Unlimited" xml:space="preserve">
+    <value>Không giới hạn</value>
+  </data>
+  <data name="DisabledVirtualSports" xml:space="preserve">
+    <value>Không cho phép chơi Virtual Sports</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>Vô hiệu hóa</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Trạng thái</value>
+  </data>
+  <data name="Credit" xml:space="preserve">
+    <value>Tín dụng</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Đăng nhập</value>
+  </data>
+  <data name="UsernameOrFirstLastName" xml:space="preserve">
+    <value>Tên đăng nhập hoặc Tên/Họ</value>
+  </data>
+  <data name="ShowOldValues" xml:space="preserve">
+    <value>Hiển thị giá trị cũ</value>
+  </data>
+  <data name="LoginLogs_Warning" xml:space="preserve">
+    <value>Nhật ký đăng nhập của  thành viên hiện chưa có.</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Tên đăng nhập</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>đến</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Xác nhận</value>
+  </data>
+  <data name="LogId" xml:space="preserve">
+    <value>ID </value>
+    <comment>Not found</comment>
+  </data>
+  <data name="LogDate" xml:space="preserve">
+    <value>Thời điểm đăng nhập</value>
+    <comment>Not found</comment>
+  </data>
+  <data name="EditedBy" xml:space="preserve">
+    <value>Thay đổi bởi</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Hành động</value>
+  </data>
+  <data name="NoInfo" xml:space="preserve">
+    <value>Thông tin chưa được cập nhật</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>trên</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Trang</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Đóng</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>Tháng 1</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>Tháng 2</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>Tháng 3</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>Tháng 4</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>Tháng 5</value>
+  </data>
+  <data name="June" xml:space="preserve">
+    <value>Tháng 6</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>Tháng 7</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>Tháng 8</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>Tháng 9</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>Tháng 10</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>Tháng 11</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>Tháng 12</value>
+  </data>
+  <data name="OldValue" xml:space="preserve">
+    <value>Giá trị cũ</value>
+  </data>
+  <data name="NewValue" xml:space="preserve">
+    <value>Giá trị mới</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Chi tiết</value>
+  </data>
+  <data name="Domain" xml:space="preserve">
+    <value>Domain</value>
+  </data>
+  <data name="Browser" xml:space="preserve">
+    <value>Trình duyệt</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Quốc gia</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>bởi</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>Thiết lập</value>
+  </data>
+  <data name="PageAccess_A" xml:space="preserve">
+    <value>Thông tin thành viên: Toàn quyền </value>
+  </data>
+  <data name="PageAccess_B" xml:space="preserve">
+    <value>Thông tin thành viên: Cập nhật</value>
+  </data>
+  <data name="PageAccess_C" xml:space="preserve">
+    <value>Chuyển khoản</value>
+  </data>
+  <data name="PageAccess_E" xml:space="preserve">
+    <value>Báo cáo</value>
+  </data>
+  <data name="PageAccess_G" xml:space="preserve">
+    <value>Nhật ký</value>
+  </data>
+  <data name="PageAccess_H" xml:space="preserve">
+    <value>Thông tin thành viên: Xem</value>
+  </data>
+  <data name="PageAccess_L" xml:space="preserve">
+    <value>Danh sách cược</value>
+  </data>
+  <data name="PageAccess_D" xml:space="preserve">
+    <value>Tổng Cược &amp; Dự Đoán</value>
+  </data>
+  <data name="AllTypes" xml:space="preserve">
+    <value>Tất cả</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Số lượng</value>
+  </data>
+  <data name="Schedule" xml:space="preserve">
+    <value>Lịch</value>
+  </data>
+</root>

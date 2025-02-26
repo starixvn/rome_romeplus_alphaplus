@@ -1,0 +1,87 @@
+@import 'variables';
+@import 'reset-context';
+
+.table-pagination {
+    @include reset-context;
+
+    .table-pagination-block {
+        @include clearfix;
+
+        > div {
+            float: left;
+        }
+
+        .pagination {
+            display: inline-block;
+            border-radius: $border-radius-base;
+            margin-left: 10px;
+            vertical-align: top;
+
+            > div {
+                display: inline-block;
+                width: 20px;
+                text-align: center;
+            }
+
+            .page-button {
+                background: #979797;
+                margin-left: 3px;
+            }
+
+            > .active > span {
+                cursor: default;
+            }
+
+            > .disabled {
+                > div,
+                > div:hover,
+                > div:focus,
+                > span,
+                > span:hover,
+                > span:focus {
+                    color: $pagination-disabled-color;
+                    background-color: $pagination-disabled-bg;
+                    border-color: $pagination-disabled-border;
+                    cursor: $cursor-disabled;
+                    opacity: 0.4;
+                }
+            }
+        }
+
+        .pagination-records {
+            color: #333;
+            margin-bottom: 14px;
+            float: right;
+        }
+
+        .pagination-page-list {
+            border: 1px solid #cecece;
+            height: 24px;
+            box-shadow: none;
+            box-sizing: border-box;
+        }
+
+        .pagination-input {
+            color: #333;
+            min-width: 130px;
+
+            input {
+                vertical-align: baseline;
+                margin: 0;
+                min-width: 24px;
+                height: 24px;
+                padding: 0 4px;
+                text-align: center;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                line-height: $input-line-height;
+
+                &:focus {
+                    border: 1px solid #0096cc;
+                    transition: all 0.2s linear 0s;
+                    outline: none;
+                }
+            }
+        }
+    }
+}

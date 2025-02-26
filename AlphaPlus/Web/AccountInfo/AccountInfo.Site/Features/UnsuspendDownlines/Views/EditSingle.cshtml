@@ -1,0 +1,25 @@
+﻿@model UnsuspendSingleViewModel
+
+@{
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+}
+
+@section Styles {
+    @* @StaticResources.RenderStylesWithDarkMode("~/Features/UnsuspendDownlines/Bundles/unsuspend-single") *@
+    <link rel="stylesheet" asp-href-include="/unsuspend-downlines-*.css" />
+}
+
+@Html.AntiForgeryToken()
+
+<div id="container" class="unsuspend-container" />
+
+@section Scripts {
+    @* @StaticResources.RenderScripts("~/Features/UnsuspendDownlines/Bundles/unsuspend-single") *@
+    @* <script type="module" src="~/unsuspend-helper.js" asp-append-version="true"></script> *@
+    <script type="module" asp-src-include="/unsuspendSingle-*.js"></script>
+    <script>
+        $(document).ready(() => {
+            window.renderUnsuspendSingle(@Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Data)));
+        })
+    </script>
+}

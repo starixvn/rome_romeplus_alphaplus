@@ -1,0 +1,90 @@
+@{
+    ViewBag.Title = "Product Status";
+    var enableSubmitButton = false;
+    var noDataFound = !Model.ProductStatus.Any();
+}
+@model ProductStatusViewModel
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@(ViewBag.Title ?? "Alpha - Account Info")</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
+
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
+    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-accountinfo/index")
+    @StaticResources.RenderStyles("~/bundles/product-status/index")
+</head>
+
+<body>
+   <div id="msg-serverResult" class="hide"></div>
+    @if (Model.IsShowMessageWarnning)
+    {
+        <div class="msg msg-warning">
+            @Resources.ProductStatusWarningMessage
+        </div>
+    }
+    @using (Html.BeginForm("Update", "ProductStatus", FormMethod.Post, new { id = "formProductStatus" }))
+    {
+        @Html.AntiForgeryToken()
+        <table class="tblRpt tblRpt-bordered width-100per">
+            <thead>
+                <tr>
+                    <th colspan="2">
+                        <div class="text-center">@($"{Model.UserLevelDisplayName}: {Model.CustName}")</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (noDataFound)
+                {
+                    <tr>
+                        <td colspan="2">
+                            <div class="text-center">@Resources.NoInformationIsAvailable</div>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model.ProductStatus)
+                    {
+                        enableSubmitButton |= Model.IsEnabledSubmitButton(item);
+
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>
+                                <input type="checkbox" id="checkbox-@item.SportType-@item.BetType" data-sporttypeid="@item.SportType"
+                                    data-bettypeid="@item.BetType" data-oldvalue="@item.IsDisabled.ToString().ToLowerInvariant()"
+                                @(item.IsDisabled ? string.Empty : "checked=checked") @(Model.IsDisabledEditCustStatus(item) ?
+                        "disabled=disabled" : string.Empty) />
+                                <label for="checkbox-@item.SportType-@item.BetType">@Model.UserLevelDisplayName</label>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        if (!Model.IsViewOnly && !noDataFound)
+        {
+            <div class="margin-top10">
+                <button type="submit" class="btn-submit" @(enableSubmitButton && Model.IsDirectDownline ? string.Empty :
+            "disabled=disabled")>
+                    @Resources.Submit
+                </button>
+            </div>
+            <input type="hidden" id="hiddenProductId" value="@Model.ProductId" />
+            <input type="hidden" id="hiddenCustId" value="@Model.CustId" />
+            <input type="hidden" id="hiddenCustName" value="@Model.CustName" />
+            <input type="hidden" id="hiddenCustRoleId" value="@Model.CustRole.Value" />
+            <input type="hidden" id="hiddenNoDataChange" value="@Resources.NoDataChange" />
+            @Html.Hidden("hiddenIsGroup", Model.IsGroup ? 1 : 0)
+        }
+    }
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    @StaticResources.RenderScripts("~/bundles/product-status/index")
+</body>
+</html>

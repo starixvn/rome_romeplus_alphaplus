@@ -1,0 +1,34 @@
+:root {
+    .page-title {
+        --border-title: #cecece;
+        --text-title: #9d1c1c;
+        --text-icon: #0b599c;
+    }
+}
+:root [data-theme='dark'] {
+    .page-title {
+        --border-title: #313334;
+        --text-title: #ededed;
+        --text-icon: #41a4ff;
+    }
+}
+.page-title {
+    border-bottom: 1px solid var(--border-title);
+    color: var(--text-title);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: uppercase;
+
+    .text-title {
+        color: var(--text-title);
+    }
+    [class*=' icon-'],
+    [class^='icon-'] {
+        font-size: 18px;
+        color: var(--text-icon);
+    }
+}

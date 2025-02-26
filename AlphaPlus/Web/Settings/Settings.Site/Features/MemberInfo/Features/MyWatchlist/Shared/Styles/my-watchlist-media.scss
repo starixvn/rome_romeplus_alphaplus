@@ -1,0 +1,187 @@
+﻿@import "../../../../assets/styles/abstracts/_mixins.scss";
+@import "../../../../assets/styles/abstracts/_variables.scss";
+
+/*body {
+    font-size: calculateScale($font-size);
+}*/
+
+.page-title {
+    font-size: calculateScale(11px);
+}
+
+.page-title .icon-information-outline, .icon-information-outline {
+    top: 0;
+    font-size: 24px !important;
+}
+
+.nav.nav-tabs > li > a {
+    //font-size: 13px;
+    padding: calculateScale(10px) calculateScale(2px) calculateScale(8px);
+}
+
+.user-guide {
+    .icon-information-outline {
+        top: -2px;
+        font-size: 25px !important;
+    }
+
+    .icon-book {
+        top: 1px;
+    }
+
+    .icon-information-outline, .icon-book {
+        vertical-align: top;
+    }
+}
+
+.filter {
+    display: block;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 16px;
+    align-items: flex-end;
+
+    .form-group {
+        margin-right: calculateScale(5px);
+        margin-bottom: calculateScale(8px);
+        vertical-align: bottom;
+
+        label {
+            display: block;
+            //font-size: calculateScale($font-size);
+            margin-bottom: calculateScale(4px);
+        }
+
+        .txt-search {
+            //font-size: calculateScale($font-size);
+            height: calculateScale(24px);
+            width: 100% !important;
+        }
+
+        .control.date {
+            width: calculateScale(80px);
+        }
+
+        .ui_nexdatepicker_datetextbox, .btn-submit, .btn-reset, .btn-manage-preset, .btn-global-threshold {
+            //font-size: calculateScale(11px);
+            height: calculateScale(24px);
+            width: 100%;
+        }
+
+        .btn-group {
+            width: 100%;
+
+            .multiselect.dropdown-toggle {
+                //font-size: calculateScale(11px);
+                height: calculateScale(24px);
+                width: 100%;
+            }
+
+            /*.multiselect.dropdown-toggle .caret {
+                top: 20px;
+            }*/
+
+            .multiselect-container label.radio {
+                padding-bottom: 8px;
+                padding-top: 8px;
+            }
+        }
+
+        .limit-type-dropdown {
+            width: calculateScale(140px);
+        }
+
+        .icon-excel {
+            font-size: calculateScale(18px);
+        }
+    }
+}
+
+table.dataTable.nowrap th, table.dataTable.nowrap td {
+    white-space: inherit;
+}
+
+.table-title {
+    height: calculateScale(35px);
+
+    /*.title {
+        font-size: calculateScale($font-size);
+    }*/
+}
+
+table.dataTable {
+    thead {
+        position: -webkit-sticky;
+        position: sticky;
+        top: -1px;
+        z-index: 9;
+    }
+
+    .header {
+        height: 56px;
+    }
+
+    &.dtr-column {
+        input[type=checkbox] {
+            width: 20px;
+            height: 20px;
+        }
+
+        .icon-table-edit, .icon-view-grid {
+            font-size: calculateScale(18px) !important;
+        }
+    }
+}
+
+.dataTables_wrapper {
+    .dataTables_length {
+        /*label {
+            font-size: calculateScale(11px) !important;
+        }*/
+
+        select {
+            height: calculateScale(27px);
+        }
+    }
+
+    .dataTables_paginate {
+        //font-size: calculateScale(11px) !important;
+        position: absolute;
+    }
+}
+
+.reached-threshold .filter .form-group.username-box {
+    width: calculateScale(120px);
+}
+
+.my-watchlist-accounts {
+    .filter .form-group.username-box {
+        width: 330px;
+
+        .easy-autocomplete {
+            width: 100% !important;
+        }
+    }
+
+    table.dataTable tbody td {
+        height: 40px;
+    }
+}
+
+#edit-popup {
+    .modal-header .modal-title {
+        font-size: calculateScale(14px);
+    }
+
+    ul, ol {
+        li {
+            &.icon-edit, &.icon-bin {
+                font-size: calculateScale(14px);
+                margin: 20px 0 20px 12px;
+
+                &:before {
+                    margin-right: 16px;
+                }
+            }
+        }
+    }
+}

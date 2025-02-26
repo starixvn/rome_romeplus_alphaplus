@@ -1,0 +1,23 @@
+﻿@using AlphaPlus.Shared.AppResources.Settings.Transfer
+@model Tuple<int, int>
+@{
+    Layout = null;
+    var (pageIndex, totalPages) = Model;
+}
+@if (totalPages > 1)
+{
+    <div class="pagingContainer" data-totalpages="@totalPages">
+        <span class="icon pagingFirst @(pageIndex == 1 ? "disabled" : string.Empty)" data-pageindex="1"></span>
+        <span class="icon pagingPrev @(pageIndex == 1 ? "disabled" : string.Empty)"
+            data-pageindex="@(pageIndex - 1)"></span>
+        <span class="pagingSeperator"></span>
+        @Resources.Page
+        <input type="text" class="pagingCurrent" maxlength="9" autocomplete="off" value="@pageIndex" />
+        @Resources.of @totalPages
+        <span class="pagingSeperator"></span>
+        <span class="icon pagingNext @(pageIndex == totalPages ? "disabled" : string.Empty)"
+            data-pageindex="@(pageIndex + 1)"></span>
+        <span class="icon pagingLast @(pageIndex == totalPages ? "disabled" : string.Empty)"
+            data-pageindex="@totalPages"></span>
+    </div>
+}

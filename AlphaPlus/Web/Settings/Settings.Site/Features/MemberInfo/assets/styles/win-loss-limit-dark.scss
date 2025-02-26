@@ -1,0 +1,105 @@
+﻿
+.filter .form-group label {
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.filter .form-group .btn-group {
+    float: unset;
+}
+
+.filter th [class^="col-"],
+.filter td [class^="col-"] {
+    margin-bottom: 0;
+}
+
+#tbl-report {
+    width: unset;
+}
+
+#tbl-report thead th {
+    white-space: normal;
+}
+
+#tbl-report tbody td {
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: break-all;
+}
+
+#tbl-report tfoot td {
+    padding: 0;
+}
+
+#win-loss-limit-form {
+    .multiselect-selected-text {
+        text-transform: none;
+        color: #cbcbcb;
+    }
+
+    .caret {
+        border-top-color: #cbcbcb;
+    }
+}
+
+
+.col-no {
+    width: 50px;
+}
+
+.col-status {
+    width: 100px;
+}
+
+.col-username {
+    width: 190px;
+}
+
+.col-first-name {
+    width: 120px;
+}
+
+.col-last-name {
+    width: 120px;
+}
+
+.col-player-id {
+    width: 120px;
+}
+
+.col-credit {
+    width: 100px;
+}
+
+.col-balance {
+    width: 100px;
+}
+
+.col-remaining-buy-in-amount {
+    width: 130px;
+}
+
+.col-auto-daily-reset {
+    width: 100px;
+}
+
+.col-current-win-loss {
+    width: 100px;
+}
+
+.col-max-win {
+    width: 120px;
+}
+
+.col-win-percent {
+    width: 90px;
+}
+
+.col-max-loss {
+    width: 120px;
+}
+
+.col-loss-percent {
+    width: 100px;
+}

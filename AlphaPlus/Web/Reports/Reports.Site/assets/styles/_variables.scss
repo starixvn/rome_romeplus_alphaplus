@@ -1,0 +1,163 @@
+﻿$font-size: 13px;
+$font-size-mobile: 14px;
+$font-family: Roboto, Arial, Tahoma,helvetica,sans-serif;
+$text-color: #333;
+$border-color: #dfdfdf;
+$height-normal: 28px;
+$height-mobile: 36px;
+
+$popup-bg: #fff;
+$popup-border: $border-color;
+
+$table-td-hover-color: #f8eb95;
+$table-border-color: #d1d1d1;
+$table-header-bg-color: #666;
+$table-header-color: #fff;
+$table-subheader-bg-color: #3f3f3f;
+$table-subheader-color: #fff;
+$table-compopent-height: 22px;
+$table-compopent-height-large: 28px;
+$table-even-bg: #fff;
+$table-odd-bg: #eae9ee;
+$table-footer-bg: #7f3d1d;
+$table-footer-color: #fff;
+
+$link-color: #045ace;
+$link-hover-color: #F60;
+
+$icon-color: #888;
+$icon-color-dark: #333;
+$icon-hover-color: #e38514;
+$icon-disable-color: lighten($icon-color, 20%);
+
+$filter-error-border-color: #e9322d;
+
+$chart-bg-color: #e8e8e8;
+$chart-footer-color: #fff;
+$chart-shadow-color: #cdcdcd;
+
+$screen-device-lower768: 767px;
+$screen-device-greater768: 768px;
+$screen-device-greater1024: 1024px;
+
+$content-gutter-width: 24px; // padding-left: 12px; padding-right: 12px;
+$conent-device-lower768: (767px - $content-gutter-width);
+$conent-device-greater768: (768px - $content-gutter-width);
+$conent-device-greater1024: (1024px - $content-gutter-width);
+
+$high-light-row-color: #f3f5e0;
+$msg-error-color: #fe0000;
+
+:root,
+:root [data-theme='light'] {
+    --font-size: 13px;
+    --font-size-mobile: 14px;
+    --font-family: Roboto, Arial, Tahoma, helvetica, sans-serif;    
+    --height-normal: 28px;
+    --height-mobile: 36px;
+
+    --text-color: #333;
+    --text-color2: #333;
+    --border-color: #dfdfdf;
+
+    --popup-bg: #fff;
+    --popup-border: #dfdfdf;
+
+    --table-td-hover-color: #f8eb95;
+    --table-border-color: #d1d1d1;
+    --table-header-bg-color: #666;
+    --table-header-color: #fff;
+    --table-subheader-bg-color: #3f3f3f;
+    --table-subheader-color: #fff;
+    --table-compopent-height: 22px;
+    --table-compopent-height-large: 28px;
+    --table-even-bg: #fff;
+    --table-odd-bg: #eae9ee;
+    --table-footer-bg: #7f3d1d;
+    --table-footer-color: #fff;
+
+    --table-alternative-bg: #7f3d1d;
+    --table-alternative-tr-td-bg: #ffffff;
+
+    --link-color: #045ace;
+    --link-hover-color: #f60;
+
+    --icon-color: #888;
+    --icon-color-dark: #333;
+    --icon-hover-color: #e38514;
+    --icon-disable-color: #a0a0a0;
+
+    --filter-error-border-color: #e9322d;
+
+    --chart-bg-color: #e8e8e8;
+    --chart-bg-color: #e8e8e8;  
+    --chart-footer-color: #fff;
+    --chart-shadow-color: #cdcdcd;
+
+
+    --bg-high-light-row-color: #f3f5e0;
+    --bg-red-cell:#ff6464;
+    --color-red2: #ff0000;
+    --msg-error-color: #fe0000;
+
+    --color-note_title: #333;
+    --color-note_title-require: #fe0000;
+
+    --bg-sport-and-product-row: #f3f5e0;
+    --bg-pt-row: #fbe0c5;
+    --color-format-negative: #b50000;
+    --color-note-opening-balance: #f6a4a4;
+
+    
+    --report-tooltip-border: #ccc; 
+    --report-tooltip-color: #333;
+    --report-tooltip-bg: #f2f2f2;
+    
+    --btn-switch-version-background: #d3dfec;
+    --btn-switch-version-color: #0b599c;
+    --btn-switch-version-border: #d3dfec;
+
+
+}
+:root [data-theme='dark'] {
+
+    --text-color: #CBCBCB;
+    --text-color2: #fff;
+    --border-color: #dfdfdf;
+
+    --popup-border: #dfdfdf;
+
+    --table-header-bg-color: #383838;
+    --table-border-color: #5f626b;
+    --table-alternative-bg: #4C2511;
+    --table-alternative-tr-td-bg: #181919;
+    --table-footer-bg: #4c2511;
+ 
+    --table-odd-bg: #262829;
+    
+    --link-color: #41A4FF;    
+    --link-hover-color: #F60;
+
+    --chart-bg-color: #212223;  
+    --chart-border-color: #3E3F41;
+
+    --bg-high-light-row-color: #2e2c1f;    
+    --bg-red-cell:#913939;
+    --color-red2: #E54748;
+
+    --color-note_title: #cbcbcb;
+    --color-note_title-require: #dd6161;
+
+    --bg-sport-and-product-row: #2E2C1F;
+    --bg-pt-row: #2e2c1f;
+    --color-format-negative: #E54748;
+    --color-note-opening-balance: #573538;
+
+    --report-tooltip-border: #5F626B; 
+    --report-tooltip-color: #EDEDED;
+    --report-tooltip-bg: #2E2E2E;
+
+    --btn-switch-version-background: #3b4652;
+    --btn-switch-version-color: #ededed;
+    --btn-switch-version-border: #3b4652;
+}

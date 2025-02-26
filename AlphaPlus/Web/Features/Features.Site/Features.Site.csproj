@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>AlphaPlus.Features.Site</AssemblyName>
+    <RootNamespace>AlphaPlus.Features.Site</RootNamespace>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="App_Data\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\StaticMessage\*.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.2" />
+    <PackageReference Include="Fanex.Data.SqlServer" Version="4.2.5.3" />
+    <PackageReference Include="Fanex.Caching" Version="2.2.4" />
+    <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
+    <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.6" />
+    <PackageReference Include="Fanex.RemotingRef" Version="1.5.2" />
+    <PackageReference Include="MediatR" Version="11.1.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+    <PackageReference Include="Alpha.Announcements" Version="1.0.1" />
+    <PackageReference Include="Alpha.Announcements.UplineIdRule" Version="1.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\Shared\Extensions\FanexDataExtensions.cs" Link="Extensions\FanexDataExtensions.cs" />
+    <Compile Include="..\..\..\Shared\Extensions\FanexLoggingExtensions.cs" Link="Extensions\FanexLoggingExtensions.cs" />
+    <Compile Include="..\..\..\Shared\Extensions\RemotingRefExtensions.cs" Link="Extensions\RemotingRefExtensions.cs" />
+    <Compile Include="..\..\..\Shared\Extensions\HttpClientExtensions.cs" Link="Extensions\HttpClientExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
+    <ProjectReference Include="..\..\..\Modules\AlphaPlus.Utilities.IP\AlphaPlus.Utilities.IP.csproj" />
+    <ProjectReference Include="..\..\..\Services\Features\Messages\Messages.API.csproj" />
+    <ProjectReference Include="..\..\..\Services\Features\Handbook\Handbook.API.csproj" />
+  </ItemGroup>
+</Project>

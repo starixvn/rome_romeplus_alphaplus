@@ -1,0 +1,19 @@
+﻿@using AlphaPlus.Shared.AppResources.Settings.ViewLog
+@{
+    var longMonthsInYear = new string[] {
+        Resources.January,
+        Resources.February,
+        Resources.March,
+        Resources.April,
+        Resources.May,
+        Resources.June,
+        Resources.July,
+        Resources.August,
+        Resources.September,
+        Resources.October,
+        Resources.November,
+        Resources.December
+    };
+}
+
+@Html.Hidden("longMonthsInYear", "[\"" + string.Join("\",\"", longMonthsInYear) + "\"]")

@@ -1,0 +1,20 @@
+.pt-template {
+  width: 100%;
+  max-width: 960px;
+  padding-top: 15px;
+
+  select {
+    width: 94px;
+  }
+}
+.template-name {
+  position: relative;
+  display: inline-block;
+  padding-right: 25px;
+  [class^='icon-'],
+  [class*=' icon-'] {
+    position: absolute;
+    top: 4px;
+    right: 0;
+  }
+}

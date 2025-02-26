@@ -1,0 +1,104 @@
+@import '../../styles/_mixins.scss';
+
+.balance-info {
+    padding-left: 10px;
+    padding-right: 10px;
+
+    .row-info {
+        display: table;
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .col {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .given-credit {
+        position: relative;
+        float: right;
+        padding-left: 24px;
+        cursor: pointer;
+        line-height: initial;
+    }
+
+    .icon-edited {
+        @include ripple-effect-icon($top: -2px, $margin-left: -5px);
+        position: absolute;
+        left: 0;
+        top: 10px;
+        line-height: 0;
+        color: var(--icon-color);
+        font-size: 16px;
+        &:after {
+            position: relative;
+            content: '';
+            display: block;
+        }
+        &:hover:after {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            width: 26px;
+            height: 26px;
+            margin-left: -3px;
+            margin-top: -4px;
+            background: #b1aea3;
+            border-radius: 100%;
+            opacity: 1;
+            @include transform(scale(0));
+            -moz-animation: ripple 1s ease-out;
+            -o-animation: ripple 1s ease-out;
+            -webkit-animation: ripple 1s ease-out;
+            animation: ripple 1s ease-out;
+        }
+    }
+
+    .icon-edited:hover:after {
+        margin-top: -17px;
+    }
+
+    div[data-tooltipped] {
+        line-height: 1;
+    }
+
+    .icon-information-outline {
+        margin: 0 0 2px 5px;
+        float: none;
+        font-size: 16px;
+    }
+
+    .currency {
+        margin-right: 5px;
+    }
+
+    .number-link {
+        cursor: pointer;
+        color: var(--link-color);
+
+        &:hover {
+            color: var(--link-hover-color);
+        }
+    }
+
+    .number {
+        color: var(--number-color);
+    }
+}
+
+@include keyframes(ripple) {
+    0% {
+        @include transform(scale(0));
+    }
+
+    20% {
+        @include transform(scale(1));
+    }
+
+    100% {
+        opacity: 0;
+        @include transform(scale(1));
+    }
+}

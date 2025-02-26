@@ -1,0 +1,186 @@
+﻿:root,
+:root [data-theme='light'] {
+    --border-dropdown: #aaa;
+    --border-dropdown2: #ccc;
+    --border-dropdown3: none;
+    --color-dropdown: #212121;
+    --color-dropdown2: #333;
+    --background-dropdown: #fff;
+    --background-dropdown2: #f5f5f5;
+}
+:root [data-theme='dark'] {
+    --border-dropdown: #292929;
+    --border-dropdown2: #292929;
+    --border-dropdown3: 1px solid #292929;
+    --color-dropdown: #ededed;
+    --color-dropdown2: #ededed;
+    --background-dropdown: #171717;
+    --background-dropdown2: #3c3c3c;
+}
+
+// dropdown
+.btn-group,
+.btn-group-vertical {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+.btn-group {
+    button.multiselect {
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+        position: relative;
+        padding: 0 10px;
+        font-size: 13px;
+        background: var(--background-dropdown);
+        color: var(--color-dropdown);
+        border: var(--border-dropdown3);
+        cursor: pointer;
+        height: 28px;
+        outline: 0;
+        margin-right: 8px;
+        white-space: nowrap;
+        -webkit-appearance: none;
+        border-radius: 1px;
+        font-weight: 400;
+        line-height: 28px;
+        &:hover {
+            color: inherit;
+        }
+
+        &:focus,
+        &:visited {
+            box-shadow: 0, 1px, 1px, rgba(0, 0, 0, 0.3);
+        }
+        .multiselect-selected-text {
+            width: 170px;
+            margin-right: 10px;
+            display: inline-block;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            text-align: left;
+        }
+        .caret {
+            position: absolute;
+            right: 10px;
+            top: 12px;
+            display: inline-block;
+            width: 0;
+            height: 0;
+            margin-left: 2px;
+            vertical-align: middle;
+            border-top: 4px dashed;
+            border-right: 4px solid transparent;
+            border-left: 4px solid transparent;
+        }
+    }
+
+    &.open > .dropdown-toggle {
+        &.btn.btn-default {
+            background: var(--background-dropdown);
+            color: var(--color-dropdown2);
+        }
+    }
+}
+.multiselect-container {
+    position: absolute;
+    list-style-type: none;
+    padding: 0;
+    > li {
+        padding: 0;
+        > a {
+            label {
+                cursor: pointer;
+                vertical-align: middle;
+                display: inline-block;
+                font-weight: 400;
+            }
+            &.multiselect-all {
+                label {
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+    .filter {
+        padding: 0;
+        .input-group {
+            width: 91%;
+            margin: 5px;
+            .input-group-btn {
+                display: none;
+            }
+            .form-control.multiselect-search {
+                width: 100%;
+                border-radius: 2px;
+                box-shadow: none;
+                border: 1px solid var(--border-dropdown);
+                line-height: 18px;
+                height: 28px;
+                padding: 6px 8px;
+                background: transparent;
+            }
+        }
+    }
+    label {
+        &.radio {
+            padding: 3px 20px 3px 40px;
+            font-weight: 400;
+            display: inline-block;
+        }
+        &.checkbox {
+            padding: 3px 20px 3px 35px;
+        }
+        input[type='radio'],
+        input[type='checkbox'] {
+            margin-left: -20px;
+            margin-right: 0;
+            position: relative;
+            top: 1px;
+            margin-top: 4px;
+        }
+    }
+}
+.open > .dropdown-menu {
+    display: block;
+}
+.dropdown-menu {
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    list-style: none;
+    background-color: var(--background-dropdown);
+    border: 1px solid var(--border-dropdown2);
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    > li {
+        > a {
+            display: block;
+            line-height: 1.428571429;
+            white-space: nowrap;
+            color: var(--color-dropdown2);
+            &:hover,
+            &:focus {
+                background: var(--background-dropdown2);
+                color: var(--color-dropdown2);
+            }
+        }
+    }
+    > .active {
+        background: var(--background-dropdown2);
+        &.filter {
+            background: transparent;
+        }
+        > a {
+            background: none;
+
+            &:hover,
+            &:focus {
+                background: var(--background-dropdown2);
+            }
+        }
+    }
+}

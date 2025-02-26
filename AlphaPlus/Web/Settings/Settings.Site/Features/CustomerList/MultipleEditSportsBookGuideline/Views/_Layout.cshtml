@@ -1,0 +1,72 @@
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Settings
+
+@model byte
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    <title>@Resources.editmultsportbook</title>
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
+    <link rel="stylesheet" type="text/css" href="@Url.Content(string.Format("~/MemberInfo/assets/bundles/CustomerList/MultipleEditSportsBookGuideline/guideline{0}.css", ViewData["DarkModeName"]))" />
+</head>
+<body>
+    <div>
+        <div class="title">
+            <h4>@Resources.PageTitle</h4>
+            <p>
+                @if (Model == 4) {
+                    @:@Resources.PageTitleIntroduction_Super
+                }
+                else if (Model == 3) {
+                    @:@Resources.PageTitleIntroduction_Master
+                }
+                else {
+                    @:@Resources.PageTitleIntroduction_Agent
+                }
+            </p>
+        </div>
+        <div class="note-box">
+            <div class="note">@Resources.Notes</div>
+            <div class="text-note">
+                <ul>
+                    @if (Model >= 4)
+                    {
+                        <li>@Resources.Notes_Super</li>
+                    }
+                    @if (Model >= 3)
+                    {
+                        <li>@Resources.Notes_Master</li>
+                    }
+                    <li>@Resources.Notes_Agent
+                        <ul>
+                            <li>@Resources.Notes_Agent1</li>
+                            <li>@Resources.Notes_Agent2</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="content">
+            @RenderBody()
+        </div>
+    </div>
+    <script type="text/javascript">
+        function toggleHeader(e) {
+            var t = e.nextElementSibling;
+            if (t.className.length === 0) {
+                t.className = "hide";
+                e.children[0].className = "iconBox collapse-icon"
+            }
+            else {
+                t.className = "";
+                e.children[0].className = "iconBox expand-icon"
+            }
+        }
+    </script>
+</body>
+</html>

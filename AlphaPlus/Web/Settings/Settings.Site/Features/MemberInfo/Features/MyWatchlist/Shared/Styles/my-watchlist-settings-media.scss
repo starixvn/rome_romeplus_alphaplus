@@ -1,0 +1,43 @@
+﻿@import "../../../../assets/styles/abstracts/_variables.scss";
+@import "../../../../assets/styles/abstracts/_mixins.scss";
+
+body {
+    font-size: calculateScale($font-size);
+}
+
+.msg:before {
+    top: 11px;
+}
+
+.tblRpt {
+    input[type="text"], .icon-edit {
+        font-size: calculateScale(12px);
+    }
+
+    .icon-check, .icon-close {
+        font-size: calculateScale(16px);
+    }
+}
+
+.form-group {
+    label, input[type="text"], .multiselect-selected-text {
+        font-size: calculateScale($font-size);
+    }
+
+    input[type="text"], .multiselect.dropdown-toggle {
+        height: calculateScale(32px);
+    }
+
+    input[type="checkbox"] {
+        transform: scale(1.3);
+    }
+
+    .btn-group button.multiselect .caret {
+        top: 20px;
+    }
+}
+
+.btn-submit {
+    height: calculateScale(32px);
+    width: auto;
+}

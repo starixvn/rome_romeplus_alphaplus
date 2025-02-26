@@ -1,0 +1,46 @@
+﻿
+@import '../../abstracts/_variables.scss';
+
+.navigation {
+    position: absolute;
+    top: 88px;
+    bottom: 0;
+    width: $sidebar-width;
+
+
+    .main-tab {
+        overflow: hidden;
+        margin: 6px 10px 0;        
+        border-radius: 5px;
+        padding: 3px;
+
+        li {
+            cursor: pointer;
+            float: left;
+            width: 50%;
+            border-radius: 5px;
+
+            &.disabledViewAccInfo {
+                margin-bottom: 0;
+                cursor: default;
+            }
+
+            a {
+                text-transform: uppercase;
+                text-decoration: none;
+                display: block;
+                height: 28px;
+                line-height: 28px;
+                text-align: center;
+                font-weight: bold;
+                color: #fff;
+                white-space: nowrap;
+                border-radius: 5px;
+            }
+
+            &.active {
+                //background: #fff;
+            }
+        }
+    }
+}

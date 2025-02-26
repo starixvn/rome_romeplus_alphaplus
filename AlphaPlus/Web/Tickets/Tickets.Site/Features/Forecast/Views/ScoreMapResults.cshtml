@@ -1,0 +1,77 @@
+@{
+    Layout = null;
+    bool isRefresh = (bool)(ViewData["IsRefresh"] ?? false);
+    async Task RenderMatrix(int rowNumber, int columnNumber, int[,] matrix, string tableId)
+    {
+        <table id="@tableId" class="tbl-score-result">
+            <thead>
+                <tr class="vsmHomeWay">
+                    <td rowspan="2">@Resources.Away</td>
+                    <td colspan="@columnNumber">@Resources.Home</td>
+                </tr>
+                <tr class="vsm">
+                    @for (int i = 0; i < columnNumber; i++)
+                    {
+                        <td style="width:13%;">@i</td>
+                    }
+                </tr>
+            </thead>
+            @if (matrix != null)
+            {
+                <tbody>
+                    @for (int i = 0; i < rowNumber; i++)
+                    {
+                        <tr>
+                            <td class="vsm">@i</td>
+                            @for (int j = 0; j < columnNumber; j++)
+                            {
+                                <td>
+                                    <number value="@matrix[i, j]" redpositive="true" />
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            }
+        </table>
+    }
+    void RenderLoadingIcon()
+    {
+        <span class="lds-spinner hidden">
+            @for (var i = 0; i < 9; i++)
+            {
+                <span></span>
+            }
+        </span>
+    }
+}
+@model IEnumerable<ScoreMapResult>
+@foreach (var item in Model)
+{
+    if (!isRefresh)
+    {
+        @:<div class="scoremap-result">
+    }
+        <div class="match-title">
+            <span class="icon-menu-down"></span>
+            <span class="scoremap-match">@item.Event</span>
+            <span class="icon-refresh hover-effect-rip" data-matchid="@item.MatchId" title="@Resources.Refresh"></span>
+        @{
+            RenderLoadingIcon();
+        }
+        </div>
+        <div class="tbl-ht-time">
+            <div class="round haft-time">@Resources.HT</div>
+        @{
+            await RenderMatrix(item.RowNumber, item.ColumnNumber, item.HaftTime, "tblht" + item.MatchId);
+        }
+            <div class="round full-time">@Resources.FT</div>
+        @{
+            await RenderMatrix(item.RowNumber, item.ColumnNumber, item.FullTime, "tblft" + item.MatchId);
+        }
+        </div>
+    if (!isRefresh)
+    {
+        @:</div>
+    }
+}

@@ -1,0 +1,21 @@
+@inject AlphaPlus.Core.Models.IUserSession userSession
+@{
+    Layout = null;
+}
+@model NormalDetailViewModel
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Html.Raw(Model.Title)</title>
+    <link rel="stylesheet" href="~/bundles/results/resultcore.css" asp-append-version="true" />
+</head>
+
+<body data-theme="@(string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark")">
+    <div class="detail-result" id="detail-result-body">
+        @Html.Raw(Model.HtmlResult)
+    </div>
+</body>
+
+</html>

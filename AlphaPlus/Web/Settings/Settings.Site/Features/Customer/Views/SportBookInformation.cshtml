@@ -1,0 +1,36 @@
+@model SportBookInformationViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Customer Setting Information</title>
+    <link rel="stylesheet" href="@(Model.CdnUri)sportsbook-information/index.css" asp-append-version="true" />
+</head>
+
+<body>
+    <div id="root" style="height: calc(100% - 90px);"></div>
+    <script type="text/javascript">
+        const appConfig = @Html.Raw(Model.AppConfig);
+        const informationPageParams = @Html.Raw(Model.Params);
+    </script>
+    <environment include="Development,Production">
+        <script type="module" src="@(Model.CdnUri)sportsbook-information/index.js" asp-append-version="true"></script>
+    </environment>
+    @* <environment include="Development">
+    <script type="module">
+    import RefreshRuntime from "http://localhost:4205/@@react-refresh";
+    RefreshRuntime.injectIntoGlobalHook(window);
+    window.$RefreshReg$ = () => { };
+    window.$RefreshSig$ = () => (type) => type;
+    window.__vite_plugin_react_preamble_installed__ = true;
+    </script>
+    <script type="module" src=@("http://localhost:4205/@vite/client")></script>
+    <script type="module" src="http://localhost:4205/src/main.tsx"></script>
+    </environment> *@
+
+</body>
+
+</html>

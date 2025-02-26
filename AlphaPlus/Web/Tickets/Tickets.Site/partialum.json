@@ -1,0 +1,62 @@
+{
+    "PartialUMOptions": {
+        "CacheInSeconds": 15,
+        "PartialUM": [
+            {
+                "FunctionName": "Results",
+                "SettingKeys": [
+                    "Age_Result_SportSelByDate",
+                    "Age_Result_LeagueSelByDate",
+                    "Age_Result_MatchSelByLeague",
+                    "Age_Result_Outright"
+                ]
+            },
+            {
+                "FunctionName": "Last Bets",
+                "SettingKeys": [
+                    "Ost_LastBets_All",
+                    "Ost_LastBets_HDP",
+                    "Ost_LastBets_OU",
+                    "Ost_LastBets_Other"
+                ]
+            },
+            {
+                "FunctionName": "Last Bets (New)",
+                "SettingKeys": [
+                    "Age_BetList_LastBets_Ag",
+                    "Age_BetList_LastBets_LeagueSel",
+                    "Age_CustLastBetFilter_Del",
+                    "Age_CustLastBetFilter_Ins",
+                    "Age_CustLastBetFilter_Sel",
+                    "Age_CustLastBetFilter_Upd"
+                ]
+            },
+            {
+                "FunctionName": "Group Bet List Drilldown",
+                "SettingKeys": [
+                    "Age_BetList_SelWinLossByDate_Mem",
+                    "Age_BetList_SelWinLossByDate_Mem_DB052",
+                    "Age_BetList_SelWinLossByDate_Mem_DB053",
+                    "Age_BetList_SelWinLossByDate_Mem_Old",
+                    "Age_BetList_SelRunningByDate_Mem",
+                    "Age_BetList_SelWinlossParlay_SAg",
+                    "Age_BetList_SelWinlossParlay_Mag",
+                    "Age_BetList_SelWinlossParlay_Ag",
+                    "Age_BetList_SelWinlossByBettypeMatch",
+                    "Age_BetList_SelWinLossByBetType",
+                    "Age_BetList_SelWinlossHR_Sag",
+                    "Age_BetList_SelWinlossHR_Mag",
+                    "Age_BetList_SelWinlossHR_Ag",
+                    "Age_BetList_SelWinlossOutright_Ag",
+                    "Age_BetList_SelWinlossOutright_MAg",
+                    "Age_BetList_SelWinlossOutright_SAg",
+                    "Age_BetList_SelAllByDate_Mem",
+                    "Age_BetList_SelByDayAll_Mem",
+                    "Age_BetList_SelByDayAll_Mem_WH",
+                    "Age_BetList_IPMatching",
+                    "Age_BetList_SelMovingEventByTransId"
+                ]
+            }
+        ]
+    }
+}

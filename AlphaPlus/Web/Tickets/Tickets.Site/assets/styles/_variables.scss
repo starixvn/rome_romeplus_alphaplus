@@ -1,0 +1,213 @@
+﻿:root,
+:root [data-theme='light'] {
+    --bl-font-size: 13px;
+    --bl-text-color: #333;
+
+    //title
+    --bl-title-color: #9d1c1c;
+    --bl-title-border-color: #cecece;
+    --bl-note-title-color: #333;
+    --bl-note-title-color-require: #fe0000;
+    --bl-title-bg-fixed: #fff;
+    --bl-line-border: #dfdfdf;
+
+    //button switch view
+    --bl-bt-switch-view-bg: #d3dfec;
+    --bl-bt-switch-view-color: #0b599c;
+    --bl-bt-switch-view-border-color: #d3dfec;
+
+    //table
+    --bl-tb-bg: #fff;
+    --bl-tb-color: #333;
+    --bl-tb-border-color: #d1d1d1;
+    --bl-tb-header-color: #fff;
+    --bl-tb-header-bg-color: #666;
+    --bl-tb-footer-bg-color: #E8DFCA;
+    --bl-tb-td-hover-color: #f8eb95;
+
+    --bl-tb-underdog: #01122B;
+    --bl-tb-favorite: #B50000;
+    --bl-tb-handicap: #039;
+    --bl-tb-name: #666;
+    --bl-tb-oddtype: #586985;
+    --bl-tb-status: #606060;
+    --bl-tb-bettype: #003399;
+    --bl-tb-time: #434343;
+    --bl-tb-sport: #0066CC;
+    --bl-tb-bl-match: #333;
+    --bl-tb-footertotal-bg: #e8dfca;
+    --bl-tb-outstanding-bg: #f9c95b;
+    --bl-tb-icon-score-map: #0b599c;
+
+    --bl-handicap-color: #606060;
+    --bl-link-color: #045ace;
+    --bl-position-taking-bg: #F5E3E3;
+    --bl-result-color: #1BA4ED;
+
+    --bl-detail-color: #333;
+    --bl-detail-icon-color: #888;
+    --bl-detail-color-hover: #555;
+    --bl-detail-link-color: #755200;
+
+    --bl-combinationLink: #337ab7;
+    --bl-viewbrokengame-link:#1ba4ff;
+    --bl-excluding-choices:#484848;
+    --bl-allbet-bet-id:#bbb;
+    --bl-allbet-bet-type-name:#696969;
+
+    --bl-gamegroupname: #008000;
+    --bl-unit-stake: #039;
+
+    //betbuilder
+    --bl-betbuilder-color: #171717;
+    --bl-betbuilder-border: #171717;
+    --bl-bettype-description-color: #003399;
+
+    --bl-game-bet-id-color: #bbb;
+    --bl-game-bet-type-name-color: #696969;
+    --bl-players-choice-color: #000000;
+    --bl-game-id-color: #000;
+
+
+    --bl-link-color-hover: #F60;
+
+    --bl-game-id: #000;
+
+    --bl-modal-color: #333;
+    --bl-max-payout-color: #b50000;
+
+    --bl-icon-max-payout: url(../images/icon-info-circle.png);
+
+}
+:root [data-theme='dark'] {
+
+    --bl-text-color: #CBCBCB;
+    //title
+    --bl-title-color: #ededed;
+    --bl-title-border-color: #313334;
+    --bl-note-title-color: #cbcbcb;
+    --bl-note-title-color-require: #dd6161;
+    --bl-title-bg-fixed: #171717;
+    --bl-line-border: #3E3F41;
+
+    //button switch view
+    --bl-bt-switch-view-bg: #3b4652;
+    --bl-bt-switch-view-color: #ededed;
+    --bl-bt-switch-view-border-color: #3b4652;
+
+    //table
+    --bl-tb-bg: #212223;
+    --bl-tb-color: #ededed;
+    --bl-tb-border-color: #5F626B;
+    --bl-tb-header-color: #fff;
+    --bl-tb-header-bg-color: #666;
+    --bl-tb-footer-bg-color: #E8DFCA;
+    --bl-tb-td-hover-color: #f8eb95;
+
+    --bl-tb-underdog: #ededed;
+    --bl-tb-favorite: #E54748;
+    --bl-tb-handicap: #5685FF;
+    --bl-tb-name: #b7b7b7;
+    --bl-tb-oddtype: #7A95A0;
+    --bl-tb-status: #ededed;
+    --bl-tb-bettype: #3783E9;
+    --bl-tb-time: #ededed;
+    --bl-tb-sport: #56AEFF;
+    --bl-tb-bl-match: #CBCBCB;
+    --bl-tb-footertotal-bg: #27261B;
+    --bl-tb-outstanding-bg: #56533C;
+    --bl-tb-icon-score-map: #3783E9;
+
+    --bl-handicap-color: #bcbcbc;
+    --bl-position-taking-bg: #3E3535;
+    --bl-result-color: #4D78E5;
+
+    --bl-detail-color: #cbcbcb;
+    --bl-detail-icon-color: #cacaca;
+    --bl-detail-color-hover: #555;
+    --bl-detail-link-color: #B26C00;
+
+    --bl-combinationLink: #4BC0E5;
+    --bl-viewbrokengame-link:#1ba4ff;
+    --bl-excluding-choices:#e7e7e7;
+    --bl-allbet-bet-id:#bbb;
+    --bl-allbet-bet-type-name:#ededed;
+
+    --bl-gamegroupname: #00cc00;
+    --bl-unit-stake: #508BFF;
+
+    --bl-game-bet-id-color: #bbb;
+    --bl-game-bet-type-name-color: #bcbcbc;
+    --bl-players-choice-color: #bbb;
+    --bl-game-id-color: #fff;
+
+    --bl-link-color:#41a4ff;
+    --bl-link-color-hover: #F60;
+
+    --bl-game-id: #fff;
+
+    --bl-modal-color: #EDEDED;
+    --bl-max-payout-color: #E54748;
+
+    --bl-icon-max-payout: url(../images/icon-info-circle-dark.png);
+
+    //custom for dark mode
+    .pt-winloss font {
+        color: #E54748 !important;
+    }
+}
+
+
+
+
+$text-color: #333;
+$text-red-color: #9d1c1c;
+$text-red-color-light: #B50000;
+$link-color: #045ace;
+$link-hover-color: #F60;
+$title-color: #9d1c1c;
+$compopent-height: 30px;
+$height-normal: 28px;
+$border-color: #dfdfdf;
+$border-color-dark: #cecece;
+
+/*******************************************/
+/* Table */
+/*******************************************/
+$table-red-color: #B50000;
+$table-td-hover-color: #f8eb95;
+$table-border-color: #d1d1d1;
+$table-header-bg-color: #666;
+$table-header-color: #fff;
+$table-subheader-bg-color: #3f3f3f;
+$table-subheader-color: #fff;
+$table-compopent-height: 22px;
+$table-compopent-height-large: 28px;
+$table-even-bg: #eae9ee;
+$table-odd-bg: #fff;
+$table-footer-bg: #7f3d1d;
+$table-footer-color: #fff;
+$table-league-bg: #f3f5e0;
+$table-live-bg: #f9ceae;
+
+/*******************************************/
+/* Note */
+/*******************************************/
+$note-color: #666;
+
+$icon-color: #888;
+
+$filter-error-border-color: #e9322d;
+$screen-device-lower768: 767px;
+$screen-device-greater768: 768px;
+$screen-device-greater1024: 1024px;
+
+$msg-error-color: #fe0000;
+/* Popup */
+/*******************************************/
+$popup-bg: #fff;
+$popup-border: $border-color;
+$popup-title-color: #FF6230;
+$popup-text-color: #444;
+$popup-button-color-text: #094b84;
+$popup-button-color-border: #094b84;

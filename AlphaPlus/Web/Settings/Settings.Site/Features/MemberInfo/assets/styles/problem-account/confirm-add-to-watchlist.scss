@@ -1,0 +1,110 @@
+﻿.box-settings {
+    margin-top: 10px;
+}
+
+.content-settings {
+    padding-bottom: 40px;
+}
+
+.flex-settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 95vh;
+}
+
+.total {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.list-button {
+    position: fixed;
+    right: 20px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 10px 10px 0px 0px;
+
+    [class^='btn'] {
+        float: right;
+        min-width: 80px;
+        line-height: 30px;
+    }
+
+    .btn-cancel {
+        margin-right: 20px;
+    }
+
+    .btn-submit {
+        margin-right: 0;
+    }
+}
+
+.more-content {
+    display: inline;
+
+    span {
+        display: none;
+    }
+}
+
+.less-content {
+    display: inline;
+}
+
+.shorten-content {
+    display: inline;
+}
+
+.message {
+    margin-top: 10px;
+}
+
+.less-link {
+    color: #337ab7;
+}
+
+.less-link:hover {
+    color: #337ab7;
+}
+
+.more-link {
+    color: #337ab7;
+}
+
+.more-link:hover {
+    color: #337ab7;
+}
+
+@media screen and (max-device-width: 767px) {
+    .list-button {
+        padding: 20px 16px;
+
+        .btn-cancel {
+            height: 45px;
+            margin-bottom: 16px;
+        }
+
+        .btn-submit {
+            height: 45px;
+            width: auto;
+        }
+    }
+
+    .flex-settings {
+        padding-top: 8px;
+        display: unset;
+        height: auto;
+    }
+
+    .total {
+        font-size: 21px;
+    }
+
+    body {
+        font-size: 18px;
+        padding-bottom: 90px;
+    }
+}

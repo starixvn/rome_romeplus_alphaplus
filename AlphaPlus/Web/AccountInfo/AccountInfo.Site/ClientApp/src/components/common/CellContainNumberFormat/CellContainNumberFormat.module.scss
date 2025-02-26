@@ -1,0 +1,20 @@
+%linkColor {
+    color: var(--link-color);
+
+    &:hover {
+        color: var(--link-hover-color);
+    }
+}
+
+.number {
+    color: var(--number-color);
+
+    &-red {
+        color: var(--number-red-color) !important;
+    }
+
+    &-link {
+        @extend %linkColor;
+        cursor: pointer;
+    }
+}

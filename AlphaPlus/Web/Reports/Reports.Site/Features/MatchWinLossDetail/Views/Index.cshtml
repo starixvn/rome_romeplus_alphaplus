@@ -1,0 +1,241 @@
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = Model.PageHeader.Title;
+    var isSuperLevel = Model.CustLevel.IsSuperLevel();
+    var isMasterOrSuperLevel = Model.CustLevel.IsMasterOrSuperLevel();
+
+    void RenderBetTypeRow(BetTypeWinLossModel data, string betType)
+    {
+        <td class="text-left">@Html.Raw(betType)</td>
+        if (Model.PageHeader.IsStackMode)
+        {
+            <td class="visible-stack-mode combinedcell col-turnover-combined">
+                <ul>
+                    <li>@data.Turnover.FormatNumber()</li>
+                    <li>@data.GrossComm.FormatNumber()</li>
+                </ul>
+            </td>
+            RenderStackNetWinLoss("member", data.MemberWinLoss, data.MemberComm, data.MemberTotal);
+            RenderStackNetWinLoss("agent", data.AgWinLoss, data.AgComm, data.AgTotal);
+            if (isMasterOrSuperLevel)
+            {
+                RenderStackNetWinLoss("master", data.MAgWinLoss, data.MAgComm, data.MAgTotal);
+            }
+            if (isSuperLevel)
+            {
+                RenderStackNetWinLoss("super", data.SAgWinLoss, data.SAgComm, data.SAgTotal);
+            }
+            <td class="visible-stack-mode combinedcell col-company-winloss-combined">
+                <ul>
+                    <li>@data.CompanyComm.FormatNumber()</li>
+                    <li>@data.Company.FormatNumber()</li>
+                </ul>
+            </td>
+        }
+        else
+        {
+            <td class="hidden-stack-mode col-turnover">@data.Turnover.FormatNumber()</td>
+            <td class="hidden-stack-mode">@data.GrossComm.FormatNumber()</td>
+            RenderNetWinLoss("member", data.MemberWinLoss, data.MemberComm, data.MemberTotal);
+            RenderNetWinLoss("agent", data.AgWinLoss, data.AgComm, data.AgTotal, "altercol");
+            if (isMasterOrSuperLevel)
+            {
+                RenderNetWinLoss("master", data.MAgWinLoss, data.MAgComm, data.MAgTotal);
+            }
+            if (isSuperLevel)
+            {
+                RenderNetWinLoss("super", data.SAgWinLoss, data.SAgComm, data.SAgTotal, "altercol");
+            }
+            <td class="hidden-stack-mode col-company-winloss">@data.CompanyComm.FormatNumber()</td>
+            <td class="hidden-stack-mode">@data.Company.FormatNumber()</td>
+        }
+    }
+
+    void RenderNetWinLoss(string level, decimal winloss, decimal comm, decimal total, string highlightClass = "")
+    {
+        <td class="hidden-stack-mode col-@level-winloss @highlightClass">
+            @winloss.FormatNumber()
+        </td>
+        <td class="hidden-stack-mode @highlightClass">
+            @comm.FormatNumber()
+        </td>
+        <td class="hidden-stack-mode bold @highlightClass">
+            @total.FormatNumber()
+        </td>
+    }
+
+    void RenderStackNetWinLoss(string level, decimal winloss, decimal comm, decimal total, string highlightClass = "")
+    {
+        <td class="visible-stack-mode combinedcell col-@level-winloss-combined @highlightClass">
+            <ul>
+                <li>@winloss.FormatNumber()</li>
+                <li>@comm.FormatNumber()</li>
+                <li>@total.FormatNumber()</li>
+            </ul>
+        </td>
+    }
+}
+@section Styles {
+    <link rel="stylesheet" href="~/bundles/matchwinlossdetail/matchwinlossdetail.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/bundles/matchwinlossdetail/matchwinlossdetail.js" asp-append-version="true"></script>
+}
+@model MatchWinLossDetailViewModel
+<report-title model="Model.PageHeader" />
+<form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form" id="report-form">
+    <product-multiselection model="@Model.ProductViewModel" />
+    <daterange-picker model="Model.DateRangePicker" />
+    <league model="@Model.LeagueViewModel" />
+    <div class="form-group hide">
+        <span id="icon-information" class="icon-information-outline"></span>
+    </div>
+    <div class="form-group">
+        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
+            asp-all-route-data="Model.GetExcelParams()"></a>
+    </div>
+    <div class="note">
+        <span class="star">*</span>@Model.ViewDataInstructionMessage
+    </div>
+</form>
+<table
+    class="tblRpt tblRpt-bordered alternative-row-table tblRpt-hover width-100per@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
+    id="tbl-report">
+    <thead>
+        <tr>
+            <th class="hidden-stack-mode" rowspan="2">@Resources.BetType</th>
+            <th class="hidden-stack-mode" rowspan="2">@Resources.Turnover</th>
+            <th class="hidden-stack-mode" rowspan="2">@Resources.GrossComm</th>
+            <th class="visible-stack-mode">@Resources.BetType</th>
+            <th class="visible-stack-mode">@Resources.Turnover<br />@Resources.GrossComm</th>
+            <th class="hidden-stack-mode" colspan="3">@Resources.Member</th>
+            <th class="visible-stack-mode col-combine">
+                @Resources.Member<br />(<span>@Resources.WinLossAbbr</span>@Resources.CommAndTotal)</th>
+            <th class="hidden-stack-mode" colspan="3">@Resources.Agent</th>
+            <th class="visible-stack-mode col-combine">
+                @Resources.Agent<br />(<span>@Resources.WinLossAbbr</span>@Resources.CommAndTotal)</th>
+            @if (isMasterOrSuperLevel)
+            {
+                <th class="hidden-stack-mode" colspan="3">@Resources.Master</th>
+                <th class="visible-stack-mode col-combine">
+                    @Resources.Master<br />(<span>@Resources.WinLossAbbr</span>@Resources.CommAndTotal)</th>
+            }
+            @if (isSuperLevel)
+            {
+                <th class="hidden-stack-mode" colspan="3">@Resources.Super</th>
+                <th class="visible-stack-mode col-combine">
+                    @Resources.Super<br />(<span>@Resources.WinLossAbbr</span>@Resources.CommAndTotal)</th>
+            }
+            <th class="hidden-stack-mode" colspan="2">@Resources.Company</th>
+            <th class="visible-stack-mode col-combine">@Resources.Company<br />(@Resources.Comm/@Resources.Total)</th>
+        </tr>
+        <tr>
+            <th class="hidden-stack-mode">@Resources.WinLoss</th>
+            <th class="hidden-stack-mode">@Resources.Comm</th>
+            <th class="hidden-stack-mode">@Resources.Total</th>
+            <th class="hidden-stack-mode">@Resources.WinLoss</th>
+            <th class="hidden-stack-mode">@Resources.Comm</th>
+            <th class="hidden-stack-mode">@Resources.Total</th>
+            @if (isMasterOrSuperLevel)
+            {
+                <th class="hidden-stack-mode">@Resources.WinLoss</th>
+                <th class="hidden-stack-mode">@Resources.Comm</th>
+                <th class="hidden-stack-mode">@Resources.Total</th>
+            }
+            @if (isSuperLevel)
+            {
+                <th class="hidden-stack-mode">@Resources.WinLoss</th>
+                <th class="hidden-stack-mode">@Resources.Comm</th>
+                <th class="hidden-stack-mode">@Resources.Total</th>
+            }
+            <th class="hidden-stack-mode">@Resources.Comm</th>
+            <th class="hidden-stack-mode">@Resources.Total</th>
+        </tr>
+    </thead>
+    @if (Model.ReportData.HasData)
+    {
+        <tbody>
+            <tr class="tbl-footer">
+                @{
+                    RenderBetTypeRow(Model.ReportData.GrandTotal, Resources.GrandTotal);
+                }
+            </tr>
+            @foreach (var data in Model.ReportData.NormalMatchWinLoss)
+            {
+                <tr class="match-title-row">
+                    <td class="text-left col-username" colspan="@Model.ReportColumnsCount">
+                        <span class="league-title" title="@data.LeagueName">@data.LeagueName</span>
+                        @if (!string.IsNullOrWhiteSpace(data.MatchName))
+                        {
+                            <span class="match-title">@data.MatchName</span>
+                        }
+                    </td>
+                </tr>
+                var isEvenRow = false;
+                foreach (var betType in data.BetTypeWinLoss)
+                {
+                    <tr class="@(isEvenRow ? "even-row" : string.Empty)">
+                        @{
+                            RenderBetTypeRow(betType, $"<a href=\"{Model.GetBetListUrl(data, betType)}\">{betType.Name}</a>");
+                        }
+                    </tr>
+                    isEvenRow = !isEvenRow;
+                }
+                if (data.RenderSubTotal)
+                {
+                    <tr class="sub-total-row">
+                        @{
+                            RenderBetTypeRow(data.Total, Resources.SubTotal);
+                        }
+                    </tr>
+                }
+            }
+            @if (Model.ReportData.ShowTotalRow)
+            {
+                <tr class="tbl-footer">
+                    @{
+                        RenderBetTypeRow(Model.ReportData.TotalNormalMatchWinLoss, Resources.Total);
+                    }
+                </tr>
+            }
+            @if (Model.ReportData.MixParlay != null)
+            {
+                <tr>
+                    @{
+                        RenderBetTypeRow(Model.ReportData.MixParlay, $"<a href=\"{Model.GetParlayBetListUrl(Model.ReportData.MixParlay.Id)}\">{Model.ReportData.MixParlay.Name}</a>");
+                    }
+                </tr>
+            }
+            @if (Model.ReportData.SystemParlay != null)
+            {
+                <tr>
+                    @{
+                        RenderBetTypeRow(Model.ReportData.SystemParlay, $"<a href=\"{Model.GetParlayBetListUrl(Model.ReportData.SystemParlay.Id)}\">{Model.ReportData.SystemParlay.Name}</a>");
+                    }
+                </tr>
+            }
+            @foreach (var parlay in Model.ReportData.ParlayMatchWinLoss)
+            {
+                <tr>
+                    @{
+                        RenderBetTypeRow(parlay, $"<a href=\"{Model.GetBetListUrlByBetType(parlay.Id)}\">{parlay.Name}</a>");
+                    }
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr class="tbl-footer">
+                @{
+                    RenderBetTypeRow(Model.ReportData.GrandTotal, Resources.GrandTotal);
+                }
+            </tr>
+        </tfoot>
+    }
+    else
+    {
+        <no-information colspan="@Model.ReportColumnsCount" />
+    }
+</table>
+<a class="hide" id="LoadLegendURL" asp-action="MatchWinLossDetail" asp-controller="Legends"></a>
+<a class="hide" id="LoadLeagueURL" asp-action="Leagues"></a>
+<input type="hidden" asp-for="IsSetDefaultStackMode" />

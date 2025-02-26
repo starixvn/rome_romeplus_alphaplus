@@ -1,0 +1,68 @@
+@{
+    Layout = null;
+    var isSuper = Model.ViewerLevel.IsSuperLevel();
+    var isMasterOrSuper = Model.ViewerLevel.IsMasterOrSuperLevel();
+    var theadIndex = 0;
+    void RenderRow(DailyWinLossModel data, bool isTotalRow, bool isMasterOrSuper, bool isSuper)
+    {
+        <tr class="@(isTotalRow ? "tbl-footer" : string.Empty)">
+            @if (isTotalRow)
+            {
+                <td colspan="@(isSuper ? 4 : isMasterOrSuper ? 3 : 1)" id="groupTotal">@Resources.Total</td>
+            }
+            else
+            {
+                <td class="text-center">@data.WinLostDate.ToShortDateWithSlash()</td>
+                if (isMasterOrSuper)
+                {
+                    <td class="text-left">@data.WhiteLabelName</td>
+                    <td class="text-left">@data.Agent</td>
+                }
+                if (isSuper)
+                {
+                    <td class="text-left">@data.Master</td>
+                }
+            }
+            <td>@data.MemberWinLoss.FormatNumber()</td>
+            <td>@data.Promotion.FormatNumber()</td>
+        </tr>
+    }
+}
+@model DailyWinLossGetDataViewModel
+<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter width-100per" id="tbl-report"
+    data-cansort="@Model.ReportData.MoreThanOne">
+    <thead>
+        <tr>
+            <th class="sorting" data-colindex="@(theadIndex++)" data-sorttype="text">@Resources.Date</th>
+            @if (isMasterOrSuper)
+            {
+                <th class="sorting" data-colindex="@(theadIndex++)" data-sorttype="text">@Resources.WhiteLabel</th>
+                <th class="sorting" data-colindex="@(theadIndex++)" data-sorttype="text">@Resources.Agent</th>
+            }
+            @if (isSuper)
+            {
+                <th class="sorting" data-colindex="@(theadIndex++)" data-sorttype="text">@Resources.Master</th>
+            }
+            <th class="sorting" data-colindex="@(theadIndex++)">@Resources.MemberWinLoss</th>
+            <th class="sorting" data-colindex="@(theadIndex++)">@Resources.Promotion</th>
+        </tr>
+    </thead>
+    @if (Model.ReportData.HasData)
+    {
+        <tbody>
+            @foreach (var item in Model.ReportData.DataSource)
+            {
+                RenderRow(item, false, isMasterOrSuper, isSuper);
+            }
+        </tbody>
+        <tfoot>
+            @{
+                RenderRow(Model.ReportData.Total, true, isMasterOrSuper, isSuper);
+            }
+        </tfoot>
+    }
+    else
+    {
+        <no-information colspan="@(isSuper ? 6 : isMasterOrSuper ? 5 : 3)" />
+    }
+</table>

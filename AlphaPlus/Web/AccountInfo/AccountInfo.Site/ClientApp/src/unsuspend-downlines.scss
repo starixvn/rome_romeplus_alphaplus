@@ -1,0 +1,210 @@
+@import './styles/variables';
+@import './styles/mixins';
+
+.tblRpt {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.tblRpt {
+    .tbl-footer a {
+        color: #70c1ff;
+
+        &:hover {
+            color: #32a6fe;
+        }
+    }
+
+    tbody:empty {
+        display: none;
+    }
+}
+
+.text-right {
+    text-align: right;
+}
+
+.list-button {
+    padding: 16px 0;
+
+    .btn-submit {
+        margin-right: 0;
+    }
+}
+
+%btn {
+    width: 100px;
+    height: 22px;
+    line-height: 22px;
+    margin: auto;
+    text-align: center;
+    font-size: 11px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.suspend-button {
+    @extend %btn;
+    padding-right: 20px;
+    background: url('./Images/suspened.png');
+}
+
+.unsuspend-button {
+    @extend %btn;
+    padding-left: 20px;
+    background: url('./Images/Unsuspend.png');
+}
+
+%btn-all {
+    width: 80px;
+    height: 20px;
+    border: none;
+    border-radius: 2px;
+    text-align: center;
+    margin: auto;
+    font-size: 11px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btn-suspend-all {
+    @extend %btn-all;
+    margin-right: 5px;
+    background-color: #da5050;
+    line-height: 20px;
+}
+
+.btn-unsuspend-all {
+    @extend %btn-all;
+    margin-left: 5px;
+    background-color: #248ad8;
+    line-height: 20px;
+}
+
+// Update multiple Unsuspend Status
+.unsuspend-container {
+    padding-top: 16px;
+    .list-button {
+        .btn-reset,
+        .btn-submit {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+}
+
+.btn-cancel {
+    display: inline-block;
+    line-height: 28px;
+
+    &:hover {
+        color: #fff;
+    }
+}
+
+.pagination {
+    .icon-chevron-left,
+    .icon-chevron-right,
+    .icon-skip-previous,
+    .icon-skip-next {
+        height: 20px;
+        line-height: 20px;
+        cursor: pointer;
+        outline: none;
+        top: 10px;
+        width: 20px;
+        border-radius: 2px;
+        box-sizing: border-box;
+        vertical-align: middle;
+
+        &:before {
+            font-family: Iconalpha, sans-serif !important;
+            font-size: 15px;
+            color: #fff;
+        }
+    }
+}
+
+.msg-container {
+    min-height: 35px;
+    margin-bottom: 5px;
+
+    .msg-success,
+    .msg-error {
+        border-width: 0;
+        margin: 0;
+    }
+}
+
+.icon-information-outline {
+    float: right;
+}
+
+.review-content {
+    padding: 10px 0 70px;
+}
+
+.total {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.more-content {
+    display: inline;
+}
+
+.shorten-content {
+    display: inline;
+}
+
+.suspend-confirm-container {
+    .list-button {
+        position: fixed;
+        right: 20px;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        padding: 10px 10px 0px 0px;
+    }
+}
+
+@media screen and (max-device-width: 767px) {
+    .suspend-confirm-container {
+        .list-button {
+            padding: 20px 16px;
+
+            .btn-cancel {
+                height: 45px;
+                margin-bottom: 16px;
+            }
+
+            .btn-submit {
+                height: 45px;
+                width: auto;
+            }
+        }
+    }
+    .unsuspend-container {
+        .list-button {
+            .btn-reset,
+            .btn-submit {
+                line-height: 28px;
+            }
+        }
+    }
+
+    .flex-settings {
+        padding-top: 8px;
+        display: unset;
+        height: auto;
+    }
+
+    .total {
+        font-size: 21px;
+    }
+
+    body {
+        font-size: 18px;
+    }
+}

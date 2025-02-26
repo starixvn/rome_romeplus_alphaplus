@@ -1,0 +1,499 @@
+﻿using System.Net;
+using System.Text.Json;
+using Alpha.Captcha.Core;
+using Alpha.Captcha.Core.Services;
+using AlphaPlus.RequestInfo;
+using AlphaPlus.RequestInfo.Models;
+using AlphaPlus.Utilities.IP;
+using Fanex.Alpha.Before.Configurations;
+using Fanex.Alpha.Before.Constants;
+using Fanex.Alpha.Before.Criteria;
+using Fanex.Alpha.Before.Extensions;
+using Fanex.Alpha.Before.Helpers;
+using Fanex.Alpha.Before.Models;
+using Fanex.Alpha.Before.NetThrottling;
+using Fanex.Alpha.Before.NetThrottling.Models;
+using Fanex.Alpha.Before.Resources;
+using Fanex.Alpha.Before.Services.FPS;
+using Fanex.Cryptography.Aes;
+using Fanex.Data.Repository;
+using Microsoft.Extensions.Options;
+using TelegramBot.Client.Services;
+
+namespace Fanex.Alpha.Before.Services.SignIn
+{
+    public interface ISignInService
+    {
+        Task<int> CheckUsername(string username, HttpContext httpContext);
+
+        SignInResult SignIn(HttpContext httpContext);
+
+        Task<SignInResult> SignIn(SignInModel model, HttpContext httpContext);
+
+        Task<SignInResult> AutomationTest(string username, string password, string captcha, string deviceId, string browserSize, HttpContext httpContext);
+    }
+
+    public class SignInService : ISignInService
+    {
+        private readonly string _loginTheme;
+        private static readonly System.Text.RegularExpressions.Regex alphanumericRegex = new System.Text.RegularExpressions.Regex(@"^[a-zA-Z0-9]*$", System.Text.RegularExpressions.RegexOptions.Compiled);
+
+        private readonly ManualUMOptions manualUMOptions;
+        private readonly CommonOptions commonOptions;
+        private readonly AutomationTestOptions automationTestOptions;
+        private readonly IPHelper ipHelper;
+        private readonly IDynamicRepository repository;
+        private readonly IDistributedCacheService cacheService;
+        private readonly IRobotDetector robotDetector;
+        private readonly CaptchaOptions captchaOptions;
+        private readonly ICaptchaService captchaService;
+        private readonly IKickoutCustomerService kickoutCustomerService;
+        private readonly INotificationService notificationService;
+        private readonly Logging.ILogger logger;
+        private readonly ThrottlePolicy throttlePolicy;
+        private readonly INetThrottler netThrottler;
+        private readonly IEncryptUrlHelper encryptUrlHelper;
+        private readonly IDeviceHelper deviceHelper;
+        private readonly HttpClient httpClient;
+
+        public SignInService(
+            IOptions<ManualUMOptions> manualUMOptions,
+            IOptions<CommonOptions> commonOptions,
+            IOptions<AutomationTestOptions> automationTestOptions,
+            IOptions<LoginThemeOptions> loginThemeOptions,
+            Logging.ILogger logger,
+            IPHelper ipHelper,
+            IDynamicRepository repository,
+            IRobotDetector robotDetector,
+            IDistributedCacheService cacheService,
+            CaptchaOptions captchaOptions,
+            ICaptchaService captchaService,
+            IKickoutCustomerService kickoutCustomerService,
+            IDeviceHelper deviceHelper,
+            INotificationService notificationService,
+            IOptions<ThrottlePolicy> throttlePolicy,
+            INetThrottler netThrottler,
+            IEncryptUrlHelper encryptUrlHelper,
+            HttpClient httpClient)
+        {
+            this.manualUMOptions = manualUMOptions.Value;
+            this.commonOptions = commonOptions.Value;
+            this.automationTestOptions = automationTestOptions.Value;
+            this.logger = logger;
+            this.ipHelper = ipHelper;
+            this.repository = repository;
+            this.cacheService = cacheService;
+            this.robotDetector = robotDetector;
+            this.captchaOptions = captchaOptions;
+            this.captchaService = captchaService;
+            this.kickoutCustomerService = kickoutCustomerService;
+            this.notificationService = notificationService;
+            this.throttlePolicy = throttlePolicy.Value;
+            this.netThrottler = netThrottler;
+            this.encryptUrlHelper = encryptUrlHelper;
+            this.httpClient = httpClient;
+            this.deviceHelper = deviceHelper;
+            var loginThemeOpt = loginThemeOptions.Value;
+            _loginTheme = loginThemeOpt.DefaultTheme;
+            if (DateTime.Now >= loginThemeOpt.StartDate &&
+                DateTime.Now <= loginThemeOpt.EndDate)
+            {
+                _loginTheme = loginThemeOpt.EventTheme;
+            }
+        }
+
+        public async Task<int> CheckUsername(string username, HttpContext httpContext)
+        {
+            var requestInfo = await deviceHelper.GetRequestInfo();
+            var command = new CheckUsernameCommand(username, requestInfo.LoginIp, requestInfo.LoginDomain);
+            await repository.ExecuteAsync(command);
+
+            return command.CustId;
+        }
+
+        public SignInResult SignIn(HttpContext httpContext)
+        {
+            var loginResult = new SignInResult
+            {
+                LoginTemplate = _loginTheme,
+                Ip = ipHelper.GetClientIP(),
+                Username = string.Empty,
+                NoInteractionTimeInMinutes = commonOptions.NoInteractionTimeInMinutes
+            };
+
+            //// Check cross cookie compatibility
+            const int EncryptCookieCodeLength = 6;
+            var cookieCode = EncryptExtension.RandomNumberString(EncryptCookieCodeLength);
+            AppSession.CookieCode = cookieCode;
+            var randomCookieTicket = EncryptExtension.CfsEnCode(cookieCode);
+
+            //// Set cookie with custid id
+            var baseDomain = httpContext.Request.Host.Value;
+            httpContext.Response.Cookies.Append(EncryptUrlHelper.UTMS, randomCookieTicket, new CookieOptions
+            {
+                Domain = baseDomain,
+                HttpOnly = true,
+                Expires = DateTime.Now.AddDays(1) // Max 24h
+            });
+
+            loginResult.Language = LanguageHelper.CheckingLanguageFromCookie();
+            loginResult.UTMS = randomCookieTicket;
+            loginResult.Domain = baseDomain;
+
+            //// Use for encrypt pwd
+            const int EncryptPasswordLength = 4;
+            var encryptCode = EncryptExtension.RandomNumberString(EncryptPasswordLength);
+            AppSession.EncryptCode = encryptCode;
+            loginResult.Captcha = encryptCode;
+
+            return loginResult;
+        }
+
+        private async Task<bool> IsCaptchaRequired(SignInModel model)
+            => (await cacheService.GetLoginUserFailedCount(model.Username)) >= commonOptions.LoginFailTimeToStartUsingCaptcha;
+
+        public async Task<SignInResult> SignIn(SignInModel model, HttpContext httpContext)
+        {
+            var signInResult = new SignInResult
+            {
+                Ip = ipHelper.GetClientIP(),
+                LoginTemplate = _loginTheme,
+                Username = model.Username,
+                Captcha = model.Code,
+                NoInteractionTimeInMinutes = commonOptions.NoInteractionTimeInMinutes
+            };
+
+            if (string.IsNullOrWhiteSpace(model.Username) || string.IsNullOrWhiteSpace(model.Password))
+            {
+                return signInResult;
+            }
+
+            if (!IsAlphanumericOnly(model.Username))
+            {
+                signInResult.ErrCode = SignInErrorContants.UsernameAlphanumericOnly;
+                signInResult.ErrMsg = Labels.usernameAlphanumericOnly;
+                return signInResult;
+            }
+
+            AppSession.EncryptCode = model.Code;
+
+            if (string.IsNullOrEmpty(model.Code) || model.Code.Length != 4)
+            {
+                signInResult.ErrCode = SignInErrorContants.InvalidEncryptCode;
+                signInResult.ErrMsg = Labels.errInvalidCaptcha;
+                return signInResult;
+            }
+
+            if (await IsCaptchaRequired(model))
+            {
+                var isVerifiedResult = await captchaService.IsVerified(model.CaptchaToken);
+                if (isVerifiedResult.IsSuccess)
+                {
+                    signInResult.IsCaptchaVerified = true;
+                }
+                else
+                {
+                    if (captchaOptions.LogEnabled)
+                    {
+                        var exception = new Exception($"signin captcha: key={model.Username} code={isVerifiedResult.Code}, reason={isVerifiedResult.Reason}, detail={isVerifiedResult.Detail}");
+                        logger.Warn(exception.Message);
+                    }
+
+                    signInResult.ErrCode = SignInErrorContants.CaptchaRequired;
+                    signInResult.ErrMsg = Labels.BotDetectionMessage;
+                    return signInResult;
+                }
+            }
+
+            var password = AesService.Default.Decrypt(model.Password, model.Code);
+            if (string.IsNullOrEmpty(password))
+            {
+                signInResult.ErrCode = SignInErrorContants.InvalidEncryptCode;
+                signInResult.ErrMsg = Labels.errInvalidCaptcha;
+                return signInResult;
+            }
+
+            var assetAppPath = AssetAppPathHelper.IsValidAssetAppPath(model.AssetAppPath) ? model.AssetAppPath : string.Empty;
+            var dcsStaticAppPath = AssetAppPathHelper.IsValidDCSStaticAppPath(model.DCSStaticAppPath) ? model.DCSStaticAppPath : string.Empty;
+            await VerifyDownlineLogin(
+                model.Username,
+                password,
+                model.Language,
+                model.DeviceId,
+                model.BrowserSize,
+                signInResult,
+                DarkModeHelper.GetDarkModeValue(httpContext.Request),
+                assetAppPath,
+                dcsStaticAppPath,
+                httpContext);
+
+            return signInResult;
+        }
+
+        public async Task<SignInResult> AutomationTest(string username, string password, string captcha, string deviceId, string browserSize, HttpContext httpContext)
+        {
+            var signInResult = new SignInResult
+            {
+                Ip = ipHelper.GetClientIP(),
+                LoginTemplate = _loginTheme,
+                Username = username,
+                NoInteractionTimeInMinutes = commonOptions.NoInteractionTimeInMinutes
+            };
+
+            if (string.IsNullOrEmpty(username) ||
+                string.IsNullOrEmpty(password) ||
+                string.IsNullOrEmpty(captcha) ||
+                !automationTestOptions.AllowedIPs.Contains(ipHelper.GetClientIP()) ||
+                !automationTestOptions.Captcha.Equals(captcha) ||
+                !automationTestOptions.AllowUsernameContainWords.All(s => username.ToUpperInvariant().Contains(s)))
+            {
+                return signInResult;
+            }
+
+            await VerifyDownlineLogin(username, password, LanguageHelper.DefaultLanguage, deviceId, browserSize, signInResult, null, string.Empty, string.Empty, httpContext);
+
+            return signInResult;
+        }
+
+        private async Task UpdateResultAfterLoginFail(SignInResult signInResult, VerifySignInResult verifySignInResult)
+        {
+            signInResult.IsChangedPassword = verifySignInResult.LastTimeToChangePassword != DateTime.MinValue;
+            if (signInResult.IsChangedPassword)
+            {
+                signInResult.ChangedPasswordTime = string.Format(Labels.lblPasswordChanged, verifySignInResult.LastTimeToChangePassword);
+            }
+
+            var loginUserFailedCount = await cacheService.IncreaseLoginUserFailedCount(signInResult.Username, commonOptions.NoInteractionTimeInMinutes);
+            if (loginUserFailedCount >= commonOptions.LoginFailTimeToStartUsingCaptcha)
+            {
+                signInResult.ErrCode = SignInErrorContants.CaptchaRequired;
+                _ = Task.Run(async () => await notificationService.NotifyWrongPassword(verifySignInResult.CustId, verifySignInResult.SubAccId, signInResult.Ip));
+            }
+
+            signInResult.ErrMsg = verifySignInResult.ErrorMessage;
+        }
+
+        private async Task UpdateResultAfterLoginSuccessfully(
+            string password,
+            SignInResult signInResult,
+            VerifySignInResult verifySignInResult,
+            string language,
+            string deviceId,
+            string browserSize,
+            string darkModeName,
+            string assetAppPath,
+            string dcsStaticAppPath,
+            HttpContext httpContext)
+        {
+            await cacheService.ResetLoginSession(signInResult.Username);
+
+            var encryptPassword = AesService.Default.Encrypt(password, signInResult.Captcha);
+            var crossCookieValue = EncryptExtension.CfsEnCode((verifySignInResult.CustId + verifySignInResult.LoginTime.Minute).ToString());
+
+            string url;
+            var robotResult = await robotDetector.IsRobot(httpContext.Request);
+            if (robotResult == 0 || signInResult.IsCaptchaVerified)
+            {
+                url = encryptUrlHelper.BuildAfterURL(
+                    httpContext,
+                    encryptPassword,
+                    verifySignInResult,
+                    language,
+                    deviceId,
+                    browserSize,
+                    signInResult.Captcha,
+                    darkModeName,
+                    assetAppPath,
+                    dcsStaticAppPath);
+            }
+            else
+            {
+                AppSession.AssignRobotCaptchaSession(
+                   verifySignInResult.CustId,
+                   verifySignInResult.Username,
+                   verifySignInResult.SubAccId,
+                   verifySignInResult.SubUserName,
+                   verifySignInResult.IsNickname,
+                   verifySignInResult.Nickname,
+                   encryptPassword,
+                   verifySignInResult.SuperId,
+                   verifySignInResult.Site,
+                   verifySignInResult.RoleId,
+                   robotResult.ToString(),
+                   deviceId,
+                   browserSize,
+                   assetAppPath,
+                   dcsStaticAppPath);
+
+                encryptUrlHelper.WriteLoginLogs(verifySignInResult.SuperId, $"After set sessionId: {httpContext.Session.Id}, custId:{verifySignInResult.CustId}");
+
+                url = "RobotCaptcha/Index";
+            }
+
+            var baseDomain = httpContext.Request.Host.Value;
+            signInResult.ErrMsg = Labels.lblLoginSuccessful;
+            signInResult.AfterLoginUrl = url;
+            signInResult.UTMS = crossCookieValue;
+            signInResult.Domain = baseDomain;
+            signInResult.ErrCode = SignInErrorContants.Success;
+            signInResult.Username = verifySignInResult.SubAccId == 0 ? verifySignInResult.Username : signInResult.Username;
+            httpContext.Response.Cookies.Append(EncryptUrlHelper.UTMS, crossCookieValue, new CookieOptions
+            {
+                Domain = baseDomain,
+                Expires = DateTime.Now.AddDays(1), // Max 24h
+                HttpOnly = true
+            });
+
+
+            if (verifySignInResult.IsKickoutDueToProtectedMode)
+            {
+                _ = Task.Run(() => kickoutCustomerService.KickoutDueToProtectedMode(
+                    verifySignInResult.CustId,
+                    verifySignInResult.RoleId,
+                    verifySignInResult.ServerId,
+                    signInResult.Ip,
+                    verifySignInResult.SubAccId));
+            }
+        }
+
+        private async Task<string> HashPassword(string username, string password)
+        {
+            var newHash = EncryptExtension.CfsEnCode(password);
+            try
+            {
+                if (AppSetting.EnabledCallHashPasswordAPI)
+                {
+                    var oldHash = await httpClient.PostAsJsonAsync<string>("password/hash", new { password });
+
+                    if (!oldHash.Equals(newHash))
+                    {
+                        await logger.InfoAsync($"Username: {username} - Old Hash: {oldHash} - New Hash: {newHash}");
+                    }
+
+                    return oldHash;
+                }
+
+                return newHash;
+            }
+            catch (Exception ex)
+            {
+                await logger.ErrorAsync(ex.Message, ex);
+                return newHash;
+            }
+        }
+
+        private async Task VerifyDownlineLogin(
+            string username,
+            string password,
+            string language,
+            string deviceId,
+            string browserSize,
+            SignInResult signInResult,
+            string darkModeName,
+            string assetAppPath,
+            string dcsStaticAppPath,
+            HttpContext httpContext)
+        {
+            var verifySignInResult = new VerifySignInResult();
+            var request = httpContext.Request;
+            var cacheIdentity = CacheIdentity.From(
+                throttlePolicy.Name,
+                AppSetting.SiteGroup,
+                new[] { username.Trim().ToLowerInvariant(), ipHelper.GetClientIP() });
+            var result = await netThrottler.Throttle(
+                async (success) =>
+                {
+                    var clientIP = ipHelper.GetClientIP();
+                    if (!IPAddress.TryParse(clientIP, out _))
+                    {
+                        return ThrottleResult.Allowed;
+                    }
+
+                    var requestInfo = await deviceHelper.GetRequestInfo();
+                    requestInfo.BrowserName = !string.IsNullOrWhiteSpace(browserSize) ?
+                        $"{requestInfo.BrowserName}, {browserSize}" : requestInfo.BrowserName;
+
+                    verifySignInResult = await VerifyDownlineLogin(username, await HashPassword(username, password), requestInfo, !string.IsNullOrWhiteSpace(darkModeName));
+
+                    encryptUrlHelper.WriteLoginLogs(verifySignInResult.SuperId, $"Call DB result: {JsonSerializer.Serialize(verifySignInResult)}");
+
+                    if (verifySignInResult.ErrorCode == 0)
+                    {
+                        if (manualUMOptions.Sites.Contains(verifySignInResult.Site))
+                        {
+                            signInResult.ErrCode = SignInErrorContants.ManualUM;
+                            signInResult.ErrMsg = string.Format(Labels.UM_Message, manualUMOptions.UMFrom, manualUMOptions.UMTo);
+                            return ThrottleResult.Allowed;
+                        }
+
+                        signInResult.LoginTime = verifySignInResult.LoginTime;
+
+                        await UpdateResultAfterLoginSuccessfully(password, signInResult, verifySignInResult, language, deviceId, browserSize, darkModeName, assetAppPath, dcsStaticAppPath, httpContext);
+
+                        if (throttlePolicy.WhitelistSuperIds.Contains(verifySignInResult.SuperId))
+                        {
+                            return ThrottleResult.Allowed;
+                        }
+
+                        return success(ThrottleResult.Allowed);
+                    }
+                    else
+                    {
+                        await UpdateResultAfterLoginFail(signInResult, verifySignInResult);
+
+                        return ThrottleResult.Allowed;
+                    }
+                },
+            () => ThrottleResult.Blocked,
+            throttlePolicy,
+            cacheIdentity);
+
+            if (result == ThrottleResult.Blocked)
+            {
+                signInResult.ErrCode = SignInErrorContants.LoginTooOften;
+                signInResult.ErrMsg = string.Format(Labels.LoginTooOftenBlockedMessage, username);
+            }
+
+            encryptUrlHelper.WriteLoginLogs(verifySignInResult.SuperId, $"After checking login too often: {JsonSerializer.Serialize(signInResult)}");
+        }
+
+        private async Task<VerifySignInResult> VerifyDownlineLogin(string username, string password, RequestInfo requestInfo, bool isDarkMode)
+        {
+            var criteria = new VerifyDownlineLoginCommand(
+                username,
+                password,
+                requestInfo.LoginIp,
+                requestInfo.LoginDomain,
+                AppSession.LangKey,
+                requestInfo.BrowserName,
+                requestInfo.Platform,
+                requestInfo.CountryCode,
+                isDarkMode);
+            await repository.ExecuteAsync(criteria);
+
+            return new VerifySignInResult
+            {
+                CustId = criteria.CustId,
+                Username = username,
+                SubAccId = criteria.SubAccId,
+                IsNickname = criteria.IsNickname,
+                Nickname = criteria.Nickname,
+                LoginTime = criteria.LoginTime,
+                LastTimeToChangePassword = criteria.LastChangedPwdDate ?? DateTime.MinValue,
+                ErrorCode = criteria.ErrCode,
+                ErrorMessage = criteria.ErrMsg,
+                SuperId = criteria.SuperId,
+                Site = criteria.Site,
+                RoleId = criteria.RoleId,
+                SubUserName = criteria.SubUsername,
+                ServerId = criteria.ServerId,
+                IsKickoutDueToProtectedMode = criteria.IsKickOut
+            };
+        }
+        
+        private static bool IsAlphanumericOnly(string text)
+        {
+            return alphanumericRegex.IsMatch(text);
+        }
+    }
+}

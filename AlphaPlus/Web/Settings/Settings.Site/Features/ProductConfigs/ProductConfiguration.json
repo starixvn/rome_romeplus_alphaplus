@@ -1,0 +1,114 @@
+﻿{
+  "productConfiguration": {
+    "products": [
+      {
+        "productId": 1,
+        "productName": "Sportsbook",
+        "extendProductProperty": {
+          "setting": true,
+          "status": false,
+          "statusOnProductLevel": false
+        }
+      },
+      {
+        "productId": 6,
+        "productName": "Saba Casino",
+        "extendProductProperty": {
+          "setting": true,
+          "status": true,
+          "statusOnProductLevel": true
+        }
+      },
+      {
+        "productId": 5,
+        "productName": "Virtual Sports",
+        "extendProductProperty": {
+          "setting": true,
+          "status": true,
+          "statusOnProductLevel": true
+        }
+      },
+      {
+        "productId": 41,
+        "productName": "Live Casino",
+        "extendProductProperty": {
+          "setting": true,
+          "status": true,
+          "statusOnProductLevel": true
+        }
+      },
+      {
+        "productId": 18,
+        "productName": "RNG Slot",
+        "extendProductProperty": {
+          "setting": true,
+          "status": true,
+          "statusOnProductLevel": false
+        }
+      },
+      {
+        "productId": 44,
+        "productName": "RNG Lottery",
+        "extendProductProperty": {
+          "setting": true,
+          "status": true,
+          "statusOnProductLevel": false
+        }
+      },
+      {
+        "productId": 64,
+        "productName": "Virtual Games",
+        "extendProductProperty": {
+          "setting": true,
+          "status": true,
+          "statusOnProductLevel": false
+        }
+      },
+      {
+        "productId": 42,
+        "productName": "Saba.club",
+        "extendProductProperty": {
+          "setting": true,
+          "status": true,
+          "statusOnProductLevel": false
+        }
+      },
+      {
+        "productId": 54,
+        "productName": "Saba Virtual Sports",
+        "extendProductProperty": {
+          "setting": false,
+          "status": true,
+          "statusOnProductLevel": true
+        }
+      },
+      {
+        "productId": 66,
+        "productName": "VGaming",
+        "extendProductProperty": {
+          "setting": true,
+          "status": true,
+          "statusOnProductLevel": false
+        }
+      },
+      {
+        "productId": 69,
+        "productName": "Bitcoin",
+        "extendProductProperty": {
+          "setting": true,
+          "status": true,
+          "statusOnProductLevel": true
+        }
+      },
+      {
+        "productId": 25,
+        "productName": "Cash Out",
+        "extendProductProperty": {
+          "setting": false,
+          "status": false,
+          "statusOnProductLevel": true
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Fanex.Caching" Version="2.2.4" />
+    <PackageReference Include="Fanex.Caching.Redis" Version="2.2.4" />
+    <PackageReference Include="Fanex.Logging" Version="2.0.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources\Lang.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Lang.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Lang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AlphaPlus.Core\AlphaPlus.Core.csproj" />
+  </ItemGroup>
+</Project>

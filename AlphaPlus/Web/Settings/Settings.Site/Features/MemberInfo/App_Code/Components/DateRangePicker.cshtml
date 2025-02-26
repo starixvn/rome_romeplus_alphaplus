@@ -1,0 +1,38 @@
+﻿@using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+@using AlphaPlus.Settings.MemberInfo.Domain.Extensions;
+@using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components;
+
+@model DateRangePickerViewModel
+
+@{
+    var viewModel = Model;
+    <div id="daterange-picker" class="daterange-picker" data-currentdate="@DateTime.Now"
+        data-mindate="@viewModel.MinDate.ToShortDateWithSlash()" data-maxdate="@viewModel.MaxDate.ToShortDateWithSlash()">
+    </div>
+    <div class="form-group from-date-box">
+        <label>@Resources.From</label>
+        <div class="control date">
+            <div id="from-date-container" class="input-group date fromdate">
+                <input type="text" id="from-date" name="FromDate" readonly="readonly" autocomplete="off"
+                    class="ui_nexdatepicker_datetextbox ui_nexdatepicker_fromdate form-control"
+                    value="@viewModel.FromDate.ToShortDateWithSlash()" />
+                <span class="input-group-addon">
+                    <span class="icon-calendar" id="fdate_trigger"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group to-date-box">
+        <label>@Resources.To</label>
+        <div class="control date">
+            <div id="to-date-container" class="input-group date todate">
+                <input type="text" id="to-date" name="ToDate" readonly="readonly" autocomplete="off"
+                    class="ui_nexdatepicker_datetextbox ui_nexdatepicker_todate form-control"
+                    value="@viewModel.ToDate.ToShortDateWithSlash()" />
+                <span class="input-group-addon">
+                    <span class="icon-calendar" id="tdate_trigger"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+}

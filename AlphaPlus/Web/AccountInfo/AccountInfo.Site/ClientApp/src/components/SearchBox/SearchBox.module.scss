@@ -1,0 +1,85 @@
+@import '../../styles/mixins';
+:root,
+:root [data-theme='light'] {
+    --search-box-background: #fff;
+    --search-box-background2: #f5f5f5;
+    --search-box-border: #e3e3e3;
+}
+:root [data-theme='dark'] {
+    --search-box-background: #212223;
+    --search-box-background2: #2E2E2E;
+    --search-box-border: #3A3A3A;
+}
+.container {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: -1px;
+    height: 40px;
+    z-index: 1000;
+    padding: 10px;
+    background-color: var(--search-box-background);
+
+    .txt-search {
+        border: 1px solid var(--search-box-border);
+        background: var(--search-box-background2);
+        font-style: italic;
+        height: 30px;
+        margin-left: 0;
+        padding: 3px 10px 4px 29px;
+        width: 100%;
+        border-radius: 5px;
+        @include transition('all .3s');
+        @include border-radius(5px);
+        @include box-shadow-multiple(none);
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .icon-search {
+        @include ripple-effect-icon($top: 3px, $margin-left: -1px);
+        position: absolute;
+        top: 13px;
+        left: 13px;
+        padding: 6px;
+        cursor: pointer;
+    }
+}
+
+@media only screen and (max-device-width: 767px) {
+    .container {
+        height: auto;
+        top: calculateScale(7px);
+        padding: 0 calculateScale(20px);
+
+        .txt-search {
+            height: calculateScale(36px);
+            padding: 0px calculateScale(29px);
+            font-size: calculateScale(12px);
+
+            &:focus {
+                border-bottom: calculateScale(2px) solid #67151b;
+            }
+        }
+
+        .icon-search {
+            top: 50%;
+            transform: translate(0, -50%);
+            right: auto;
+            left: calculateScale(22px);
+            padding: calculateScale(6px);
+            &:before {
+                font-size: calculateScale(12px);
+            }
+            &:hover:after {
+                top: calculateScale(3px);
+                width: calculateScale(26px);
+                height: calculateScale(26px);
+                margin-left: calculateScale(-1px);
+                margin-top: calculateScale(-4px);
+            }
+        }
+    }
+}

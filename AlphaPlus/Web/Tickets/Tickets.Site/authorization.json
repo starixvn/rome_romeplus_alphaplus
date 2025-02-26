@@ -1,0 +1,129 @@
+{
+    "Authorization": {
+        "CustIdQueryStringParamNames": [
+            "CustId"
+        ],
+        "CustIdJsonParamNames": [
+            "CustId"
+        ],
+        "GroupPageAccesses": [
+            {
+                "RoleId": 2,
+                "Name": "Agent",
+                "DeniedPages": [
+                    "RiskAnalysisIPMatching"
+                ],
+                "PageAccesses": [
+                    {
+                        "Url": "Forecast",
+                        "Permission": "[D]"
+                    },
+                    {
+                        "Url": "TotalBets",
+                        "Permission": "[D]"
+                    },
+                    {
+                        "Url": "WinLossByMatch",
+                        "Permission": "[E]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "ParlayWinLossByMatch",
+                        "Permission": "[E]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "Winloss",
+                        "Permission": "[E]",
+                        "IsCheckBelonging": true,
+                        "IsViewedByGroupHeadline": true
+                    },
+                    {
+                        "Url": "RunningBetList",
+                        "Permission": "[E]",
+                        "IsCheckBelonging": true,
+                        "IsSupportedAutoFollowBetTool": true
+                    },
+                    {
+                        "Url": "MemberBetList",
+                        "Permission": "[E]",
+                        "IsCheckBelonging": true,
+                        "IsSupportedAutoFollowBetTool": true
+                    },
+                    {
+                        "Url": "CombinationMixParlay",
+                        "Permission": "[L]"
+                    },
+                    {
+                        "Url": "Parlay",
+                        "Permission": "[E],[L]",
+                        "IsCheckBelonging": true,
+                        "IsViewedByGroupHeadline": true
+                    },
+                    {
+                        "Url": "CancelledBet",
+                        "Permission": "[L]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "DailyStatement",
+                        "Permission": "[E]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "CorrectScore",
+                        "Permission": "[L]"
+                    },
+                    {
+                        "Url": "BetListByBetTypeAndMatch",
+                        "Permission": "[D],[L]"
+                    },
+                    {
+                        "Url": "BetListByBetType",
+                        "Permission": "[L]"
+                    },
+                    {
+                        "Url": "CasinoDetails",
+                        "Permission": "[D],[E],[L]",
+                        "IsCheckBelonging": true,
+                        "IsViewedByGroupHeadline": true
+                    },
+                    {
+                        "Url": "MoveStatementHistory",
+                        "Permission": "[L]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "SearchTickets",
+                        "Permission": "[L]"
+                    }
+                ]
+            },
+            {
+                "RoleId": 3,
+                "Name": "Master",
+                "DeniedPages": [
+                    "LastBets",
+                    "MonitoringBets",
+                    "RiskAnalysisIPMatching"
+                ]
+            },
+            {
+                "RoleId": 4,
+                "Name": "Super",
+                "DeniedPages": [
+                    "LastBets",
+                    "MonitoringBets"
+                ],
+                "PageAccesses": [
+                    {
+                        "Url": "RiskAnalysisIPMatching",
+                        "Permission": "[E]",
+                        "IsCheckBelonging": true
+                    }
+                ]
+            }
+        ]
+    }
+}

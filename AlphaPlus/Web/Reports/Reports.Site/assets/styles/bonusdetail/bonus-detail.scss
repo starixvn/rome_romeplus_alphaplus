@@ -1,0 +1,123 @@
+﻿@import '../mixins';
+
+:root,
+:root [data-theme='light'] {
+    --icon-payment-background: url('../images/payment.svg') center center no-repeat;
+}
+:root [data-theme='dark'] {
+    --icon-payment-background: url('../images/payment-dark.svg') center center no-repeat;
+}
+
+
+.filter{
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    .daterange-container{
+        order: 9;
+        ul.dropdown-menu{
+            white-space: nowrap;
+            width: auto;
+            min-width: 150px;
+        }
+    }
+    .multiselect-container.dropdown-menu{
+        width: auto;
+    }
+}
+.text-danger {
+    color: #e92819;
+}
+
+.icon-payment {
+    background: var(--icon-payment-background);
+    cursor: pointer;
+    display: inline-block;
+    width: 18px;
+    height: 16px;
+    vertical-align: middle;
+}
+
+.filter {
+    .form-group .btn-group {
+        float: unset;
+    }
+
+    .multiselect-container .radio {
+        display: block;
+    }
+}
+
+.icon-information-outline {
+    float: unset;
+    margin-bottom: 2px;
+    margin-left: 8px;
+}
+
+body {
+    padding-right: 0 !important;
+}
+
+.popup-confirmPayment {
+    position: fixed !important;
+    top: 5px;
+    z-index: 999;
+    padding-right: 0 !important;
+    @include box-shadow-multiple(none);
+    width: 500px;
+
+    .modal-dialog {
+        width: 500px;
+    }
+
+    .msg {
+        margin: 10px 0 0;
+    }
+
+    p {
+        margin: 10px 0 16px;
+    }
+
+    .form-horizontal {
+        .form-group {
+            margin-right: 0;
+        }
+
+        .control-label {
+            margin-bottom: 0;
+            padding-top: 0;
+            font-weight: normal;
+            text-align: left;
+        }
+
+        .list-button {
+            text-align: right;
+        }
+
+        .icon-calendar:hover {
+            cursor: pointer;
+        }
+
+        .control.date {
+            position: absolute;
+            top: -5px;
+            left: 5px;
+        }
+
+        .input-group.paymentdate {
+            position: fixed;
+            z-index: 2000;
+            width: 130px;
+        }
+    }
+}
+
+@media only screen and (max-device-width: 767px) {
+    .popup-confirmPayment {
+        .form-horizontal {
+            .input-group.paymentdate .form-control {
+                font-size: 14px;
+            }
+        }
+    }
+}

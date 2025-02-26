@@ -1,0 +1,95 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AlphaPlus.Reports.Site
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Reports.Features.Shared.Extensions
+@using AlphaPlus.Reports.Features.BetChoiceMatching
+@using AlphaPlus.Reports.Site
+@using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components
+@using AlphaPlus.Reports.Site.Features.BetChoiceMatching
+@using AlphaPlus.Shared.AppResources.Report
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = Model.PageHeader.Title;
+}
+@section Styles {
+    <link rel="stylesheet" href="~/bundles/betchoicematching/betchoicematching.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script type="text/javascript">
+        const betMatchingResources = {
+            Total: '@Resources.Total',
+            FT: '@Resources.BetType1X2_FT',
+            HT: '@Resources.HT',
+            Versus: '@Resources.vs',
+            Over: '@Resources.over',
+            Under: '@Resources.under',
+            Upline: '@Resources.Upline',
+            IP_used_by: '@Resources.IP_used_by',
+            BetMatching_Username_Title: '@Resources.BetMatching_Username_Title',
+            BetMatching_IP_Title: '@Resources.BetMatching_IP_Title',
+            FilterByUsername: '@Resources.FilterByUsername',
+            FilterByStake: '@Resources.FilterByStake',
+            FilterByMemberWinLoss: '@Resources.FilterByMemberWinLoss',
+            Filter: '@Resources.Filter',
+            TotalStake: '@Resources.TotalStake',
+            TotalMemberWL: '@Resources.TotalMemberWL',
+            FilterByUsername_Placeholder: '@Resources.FilterByUsername_Placeholder'
+        }
+    </script>
+    @StaticResources.AssetScripts.Render("/bundles/common/cleave-jquery")
+    <script src="~/bundles/betchoicematching/betchoicematching.js" asp-append-version="true"></script>
+}
+@model BetChoiceMatchingViewModel
+<report-title model="Model.PageHeader" />
+<form method="get" class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form" asp-action="Query">
+    <div class="form-group">
+        <label class="txt">@Resources.eventdate</label>
+        <div class="control date">
+            <div class="input-group date" id="dpkContainer">
+                <input type="text" readonly="readonly" class="form-control" asp-for="EventDate" />
+                <span class="input-group-addon">
+                    <span class="icon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="txt">@Resources.MatchingBets</label>
+        <select asp-for="BetCount" asp-items="Model.BetCounts"></select>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="@Resources.Submit" class="btn-submit" />
+    </div>
+    <div class="form-group">
+        <a href="javascript:;" class="icon-excel" title="@Resources.ExportToExcel" id="icon-excel"></a>
+    </div>
+    <input type="hidden" id="IsFilterVisible" name="IsFilterVisible"
+        value="@Model.PageHeader.IsFilterVisible.ToString()" />
+</form>
+<table class="tblRpt tblRpt-bordered tblRpt-hover width-100per hide" id="tbl-report">
+    <thead class="tableFloatingHeaderOriginal">
+        <tr>
+            <th class="col-username">@Resources.Username <span class="icon-table-filter"></span></th>
+            <th class="col-transtime">@Resources.transtime</th>
+            <th class="col-refno">@Resources.refno</th>
+            <th class="col-odds">@Resources.odds</th>
+            <th class="col-ip">@Resources.IP</th>
+            <th class="col-stake">@Resources.Stake <span class="icon-table-filter"></span></th>
+            <th class="col-memberwinloss">@Resources.MemberWinLoss <span class="icon-table-filter"></span></th>
+            <th class="col-superwinloss">@Resources.SuperWinLoss</th>
+            <th class="col-company">@Resources.Company</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr id="noinfo-row">
+            <td colspan="9" align="center">@Resources.NoInformationIsAvailable</td>
+        </tr>
+    </tbody>
+    <tfoot>
+    </tfoot>
+</table>
+<a class="hide" id="hidden-excelLink" asp-action="Excel"></a>
+<a class="hide" id="hidden-uplineLink" asp-action="Uplines"></a>
+<input type="hidden" asp-for="MinDate" />
+<input type="hidden" asp-for="Today" />

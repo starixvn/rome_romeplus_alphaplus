@@ -1,0 +1,565 @@
+@import './styles/variables';
+@import './styles/mixins';
+
+@include keyframes-ripple;
+
+body {
+    height: auto;
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    background-color: var(--body-bg); 
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+ol,
+ul {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+ol,
+ul {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+[class^='col'] {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+%linkColor {
+    color: var(--link-color);
+
+    &:hover {
+        color: var(--link-hover-color);
+    }
+}
+
+a,
+.link {
+    @extend %linkColor;
+    cursor: pointer;
+
+    &:hover,
+    &:active,
+    &:focus {
+        text-decoration: none;
+    }
+}
+
+hr {
+    border-top-color: #ddd;
+    border-style: dashed;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+// Customize UI for auto suggestion
+
+.react-autosuggest__suggestions-list {
+    border: 1px solid var(--auto-suggest-border);
+    border-radius: 1px;
+    color: var(--auto-suggest-color);
+    cursor: pointer;
+    background-color: var(--auto-suggest-background);
+    box-shadow: var(--auto-suggest-box-shadow);
+}
+
+.react-autosuggest__suggestion {
+    padding: 8px 10px;
+
+    &:hover {
+        background-color: var(--auto-suggest-background-hover);
+    }
+}
+
+.react-autosuggest__suggestion--highlighted {
+    background-color: var(--auto-suggest-background-hover);
+}
+
+/* Customize tooltip*/
+
+.tippy-tooltip {
+    @include border-radius(2px);
+    font-size: var(--font-size);
+}
+
+.tippy-popper .tippy-tooltip.light-theme {
+    @include box-shadow-multiple(none);
+    border: 1px solid var(--tippy-border);
+    min-width: 106px;
+    background-color: var(--tippy-background);
+    color: var(--tippy-color);
+    text-align: left;
+    box-shadow: var(--tippy-box-shadow);
+}
+
+.tippy-popper[x-placement^='top'] .tippy-tooltip.light-theme [x-arrow] {
+    border: none;
+    bottom: 0;
+
+    &:after,
+    &:before {
+        top: 100%;
+        left: 50%;
+        border: solid transparent;
+        content: ' ';
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+
+    &:after {
+        border-color: rgba(136, 183, 213, 0);
+        border-top-color: #f2f2f2;
+        border-width: 7px;
+        margin-left: -7px;
+    }
+
+    &:before {
+        border-color: rgba(194, 225, 245, 0);
+        border-top-color: #ccc;
+        border-width: 8px;
+        margin-left: -8px;
+    }
+}
+
+.icon-viewlog {
+    margin-left: 4px;
+}
+
+.icon-ic_list {
+    @include ripple-effect-icon($top: -2px, $margin-left: -5px);
+    float: left;
+    margin-right: 8px;
+    line-height: 20px;
+    color: var(--icon-ic_list-color);
+    font-size: 15px;
+}
+
+.row-info {
+    line-height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    .btn-submit{
+        line-height: 26px;
+    }
+}
+
+.col-right {
+    text-align: right;
+    font-weight: bold;
+}
+
+.highlight .col-right {
+    font-family: 'Roboto Bold', sans-serif !important;
+}
+
+.ReactVirtualized__List {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.checkbox:hover label {
+    color: var(--link-color);
+}
+
+.checkbox.disabled {
+    opacity: 1;
+}
+
+.checkbox.disabled label:before,
+.checkbox.disabled label:after {
+    opacity: 0.4;
+}
+
+.icon-qr-code {
+    display: inline-block;
+    text-transform: uppercase;
+    margin-right: 7px;
+    font-size: 12px;
+    width: 16px !important;
+    height: 16px !important;
+
+    &:hover {
+        background-color: #ddd;
+        color: var(--text-color);
+    }
+
+    span {
+        padding-left: 10px;
+        font-family: Roboto, Arial, Tahoma, sans-serif !important;
+    }
+}
+
+@media only screen and (max-device-width: 767px) {
+    body {
+        font-size: calculateScale(var(--font-size));
+    }
+
+    hr {
+        margin-top: calculateScale(4px);
+        margin-bottom: calculateScale(4px);
+    }
+
+    .no-information {
+        padding: calculateScale(4px) calculateScale(10px) 0;
+    }
+
+    .row-info {
+        line-height: calculateScale(30px);
+        padding-left: calculateScale(20px);
+        padding-right: calculateScale(20px);
+    }
+
+    .radio label {
+        padding-left: calculateScale(22px);
+
+        &:before {
+            height: calculateScale(14px);
+            width: calculateScale(14px);
+        }
+
+        &:after {
+            top: calculateScale(3px);
+            left: calculateScale(3px);
+            height: calculateScale(8px);
+            width: calculateScale(8px);
+        }
+    }
+
+    // Customize UI for auto suggestion
+
+    .react-autosuggest__suggestions-list {
+        border-width: calculateScale(1px);
+        border-radius: calculateScale(1px);
+        box-shadow: 0 calculateScale(3px) calculateScale(6px) rgba(0, 0, 0, 0.16),
+            0 calculateScale(3px) calculateScale(6px) rgba(0, 0, 0, 0.23);
+    }
+
+    .react-autosuggest__suggestion {
+        padding: calculateScale(8px) calculateScale(10px);
+    }
+
+    /* Customize tooltip*/
+
+    .tippy-tooltip {
+        @include border-radius(calculateScale(2px));
+        font-size: calculateScale(var(--font-size));
+    }
+
+    .tippy-popper .tippy-tooltip.light-theme {
+        min-width: calculateScale(106px);
+    }
+
+    .tippy-popper[x-placement^='top'] .tippy-tooltip.light-theme [x-arrow] {
+        &:after {
+            border-width: calculateScale(7px);
+            margin-left: calculateScale(-7px);
+        }
+
+        &:before {
+            border-width: calculateScale(8px);
+            margin-left: calculateScale(-8px);
+        }
+    }
+
+    .ReactVirtualized__List {
+        padding-left: calculateScale(10px);
+        padding-right: calculateScale(10px);
+    }
+
+    .checkbox label {
+        padding-left: calculateScale(22px);
+
+        &:before {
+            height: calculateScale(16px);
+            width: calculateScale(16px);
+        }
+
+        &:after {
+            top: calculateScale(5px);
+            left: calculateScale(4px);
+            height: calculateScale(4px);
+            width: calculateScale(9px);
+        }
+    }
+
+    .icon-ic_list {
+        margin-right: calculateScale(8px);
+        line-height: calculateScale(20px);
+        font-size: calculateScale(15px);
+    }
+
+    .icon-ic_list:hover:after {
+        top: calculateScale(-2px);
+        width: calculateScale(26px);
+        height: calculateScale(26px);
+        margin-left: calculateScale(-5px);
+        margin-top: calculateScale(-4px);
+    }
+
+    .icon-qr-code {
+        font-size: calculateScale(12px);
+        padding: 0 !important;
+        width: 16px !important;
+        height: 16px !important;
+        margin-right: 10px !important;
+        margin-left: 6px !important;
+    }
+}
+
+.panel {
+    border: 1px solid transparent;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 5px 0;
+    background: var(--panel-background1);
+    border-color: var(--panel-border1);
+}
+
+.panel {
+    .panel-heading {
+        display: block;
+        height: 36px;
+        line-height: 30px;
+        padding: 0 6px;
+        border: none;
+        background-color: var(--panel-background2);
+        color: var(--panel-color);
+        font-weight: bold;
+        font-size: 13px;
+        cursor: pointer;
+        border-radius: 0;
+
+        &.open {
+            .panel-title {
+                &:before {
+                    transform: rotate(90deg);
+                }
+            }
+
+            + .panel-content {
+                display: block;
+            }
+        }
+
+        .panel-title {
+            padding: 0 20px;
+            position: relative;
+            background-color: var(--panel-background2);
+            color: var(--panel-color);
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+            height: 36px;
+            line-height: 36px;
+            text-transform: uppercase;
+
+            &:before {
+                position: absolute;
+                content: '';
+                top: 12px;
+                left: 4px;
+                transition: 0.35s;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 5px 0 5px 6px;
+                border-color: transparent transparent transparent var(--panel-border2);
+            }
+        }
+    }
+
+    .panel-content {
+        display: none;
+        padding: 16px;
+        border-top: 1px solid var(--panel-border1);
+        background-color: var(--panel-background1);
+    }
+}
+
+.icon-flag {
+    &::before {
+        width: 24px;
+        height: 16px;
+        margin-right: 10px;
+        background-size: 48px 54px;
+    }
+
+    &.langFlag-en-us {
+        &::before {
+            background-position: -24px -38px;
+        }
+    }
+
+    &.langFlag-zh-tw {
+        &::before {
+            background-position: 0 -18px;
+        }
+    }
+
+    &.langFlag-zh-cn {
+        &::before {
+            background-position: 0 -18px;
+        }
+    }
+
+    &.langFlag-ja-jp {
+        &::before {
+            background-position: 0 -1px;
+        }
+    }
+
+    &.langFlag-th-th {
+        &::before {
+            background-position: -24px -19px;
+        }
+    }
+
+    &.langFlag-ko-kr {
+        &::before {
+            background-position: -24px 0;
+        }
+    }
+
+    &.langFlag-vi-vn {
+        &::before {
+            background-position: 0 -38px;
+        }
+    }
+}
+
+.select-modal {
+    .header {
+        border-bottom: 1px solid var(--select-modal-border);
+        position: relative;        
+        height: 40px;
+        line-height: 40px;
+        padding: 0 12px;
+
+        .icon-close {
+            position: absolute;
+            right: 0;
+            font-weight: bold;
+            font-size: 18px;
+            width: 36px;
+            text-align: center;
+            padding: 12px 0;
+            cursor: pointer;
+        }
+    }
+
+    .btn-select {
+        margin: 12px 12px 4px 0px;
+        height: 32px;
+        background-color: #66151a;
+        color: #fff;
+        border: none;
+        width: 72px;
+    }
+    .btn-group {
+        padding: 0 12px;
+    }
+    .btn-cancel {
+        height: 30px;
+    }
+}
+
+.crop-image {
+    height: 100%;
+
+    .img-container {
+        margin: 0 12px;
+    }
+
+    .ReactCrop {
+        margin-top: 10px;
+        height: calc(100% - 122px);
+        display: block;
+        background: #fff;
+        left: 50%;
+        top: 0%;
+        -webkit-transform: translate(-50%, 0%);
+        transform: translate(-50%, 0%);
+
+        > div {
+            height: 100%;
+        }
+
+        .ReactCrop__image {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .ReactCrop__drag-handle {
+        width: 120px !important;
+        height: 120px !important;
+        background-color: inherit !important;
+        border: none !important;
+    }
+
+    .ord-sw {
+        margin-bottom: -40px !important;
+        margin-left: -40px !important;
+    }
+
+    .ord-se {
+        margin-bottom: -40px !important;
+        margin-right: -40px !important;
+    }
+
+    .ord-nw {
+        margin-top: -40px !important;
+        margin-left: -40px !important;
+    }
+
+    .ord-ne {
+        margin-top: -40px !important;
+        margin-right: -40px !important;
+    }
+
+    .select-image {
+        margin: 20px 0 20px 0;
+    }
+}
+// popup 
+.ReactModal__Overlay {
+    background-color: var(--ReactModal-background) !important;
+
+    .ReactModal__Content {
+        border-color: var(--ReactModal-border-color) !important;
+        background-color: transparent !important;
+    }
+}
+body[data-theme='dark'] {
+    background: transparent;
+}
+.member-balance-info{
+    &:after{
+        content: "";
+        clear: both;
+        display: table;
+    }
+    padding-top: 10px;
+    .number-red{
+        color: var(--member-balance-number-red);
+    }
+    .number{
+        color: var(--member-balance-number);
+    }
+}

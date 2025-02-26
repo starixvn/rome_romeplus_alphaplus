@@ -1,0 +1,15 @@
+
+// using Alpha.Tickets.Infrastructure.Repositories;
+
+// namespace AlphaPlus.Tickets.API.Endpoints;
+
+// public class AutoFollowBetEndpoint : IEndpoints
+// {
+//     public void RegisterServices(IServiceCollection services)
+//         => services.AddSingleton<IAutoFollowBetRepository, AutoFollowBetRepository>();
+
+//     public void MapEndpoints(IEndpointRouteBuilder endpoints)
+//         => endpoints.MapGet(
+//             "/api/AutoFollowBet/RealCustId",
+//             (int agentId, int dummyCustId, IAutoFollowBetRepository repository) => repository.GetRealCustId(agentId, dummyCustId));
+// }

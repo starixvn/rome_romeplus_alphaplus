@@ -1,0 +1,15 @@
+using AlphaPlus.Core.Models;
+using MediatR;
+
+namespace AlphaPlus.Settings.Site.Features.SubAccount.Requests
+{
+    public class UpdateSubAccountPageAccessRequest : SubAccountBaseRequest, IRequest<Result>
+    {
+        public string PageAccess { get; set; }
+
+        public override bool IsValid()
+        {
+            return base.IsValid() && HasUpdatePermission;
+        }
+    }
+}

@@ -1,0 +1,21 @@
+﻿namespace AlphaPlus.Settings.Site.Features.CopyAccount.ViewModels
+{
+    public class CopyAccountResponse
+    {
+        public IEnumerable<string> Usernames { get; set; } = [];
+
+        public decimal Credit { get; set; }
+
+        public int NoOfAccount { get; set; }
+
+        public int NoOfFailedAccount => NoOfAccount - Usernames.Count();
+
+        public bool Success { get; set; }
+
+        public int Code { get; set; }
+
+        public string Message { get; set; }
+
+        public bool IsSuccessful => Code == 0;
+    }
+}

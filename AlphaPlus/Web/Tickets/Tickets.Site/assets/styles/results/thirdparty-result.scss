@@ -1,0 +1,59 @@
+﻿$roboto-fonts: '/assets/styles/base/roboto-fonts.css';
+$icon-alpha-fonts: '/assets/styles/base/icon-fonts.css';
+$font-size: 16px;
+$font-family: Roboto, Arial, Tahoma, helvetica, sans-serif;
+$msg-error-color: #fe0000;
+
+@import url($roboto-fonts);
+@import url($icon-alpha-fonts);
+
+// To remove the 300-350ms tap delay
+html {
+    touch-action: manipulation;
+}
+
+.alertboxerr {
+    font: {
+        family: $font-family;
+        size: $font-size;
+    }
+
+    color: $msg-error-color;
+    padding: 20px 0;
+    text-align: center;
+
+    .icon-error:before {
+        font: {
+            family: Iconalpha;
+            size: 20px;
+            weight: 100;
+        }
+
+        content: '\e93c';
+        position: relative;
+        top: 4px;
+        margin-right: 6px;
+    }
+}
+
+.display-none {
+    display: none;
+}
+
+.third-party-result iframe {
+    width: 800px;
+    height: 800px;
+}
+
+.third-party-result .poker-games-iframe {
+    width: 100%;
+    height: 490px;
+}
+
+.third-party-result {
+    background-color: #fff !important;
+}
+
+.third-party-result iframe {
+    width: 100% !important;
+}

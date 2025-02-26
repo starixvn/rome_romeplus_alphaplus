@@ -1,0 +1,65 @@
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = Resources.DailyWinLossReport;
+    var level = Model.ViewerLevel.DisplayName.ToLowerInvariant();
+}
+@model DailyWinLossViewModel
+@section Styles {
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode($"/bundles/site-reports/tab-{level}")
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/site-reports/filter-new")
+    <link rel="stylesheet" href="~/bundles/whitelabel/whitelabel.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script type="text/javascript">
+        var whiteLabels = JSON.parse('@Html.Raw(Model.WhiteLabelJson)');
+    </script>
+    @StaticResources.AssetScripts.RenderCommon("/bundles/site-reports/filter-new")
+    <script src="~/bundles/whitelabel/daily-winloss.js" asp-append-version="true"></script>
+}
+<div class="page-title tabs">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation">
+            <a asp-controller="WhiteLabel" asp-action="Settlement">@Resources.SettlementReport</a>
+        </li>
+        <li role="presentation" class="active">
+            <a href="#dailyWinLoss" aria-controls="home" role="tab" data-toggle="tab">@Resources.DailyWinLossReport</a>
+        </li>
+    </ul>
+    <div class="list-icon">
+        <ul>
+            <li class="showfilter-element"><span class="icon-arrow-up-drop-circle icon-filter"
+                    title="@Resources.HideFilter"></span></li>
+            <li class="hidefilter-element"><span class="icon-arrow-down-drop-circle icon-filter"
+                    title="@Resources.ShowFilter"></span></li>
+        </ul>
+    </div>
+</div>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="dailyWinLoss">
+        <div class="form-inline filter" id="report-form">
+            <daterange-picker-jquery model="@Model.DateRangePicker" />
+            @if (Model.ViewerLevel.IsMasterOrSuperLevel())
+            {
+                <div class="form-group">
+                    <label class="label-form-control">@Resources.WhiteLabel</label>
+                    <div class="select-multiple" id="dropdown-whitelabel" data-label-selectall="@Resources.SelectAll"
+                        data-label-selected="@Resources.Selected" data-label-noneselected="@Resources.NoneSelected"
+                        data-label-all="@Resources.All" data-label-nodatatext="@Resources.NoInformationIsAvailable"
+                        data-label-filterplaceholder="@Resources.Search"></div>
+                </div>
+                <username-autosuggestion value="@Model.Username" />
+            }
+            <div class="form-group">
+                <label class="label-form-control">&nbsp;</label>
+                <a asp-controller="WhiteLabel" asp-action="DailyWinLossExcel" id="icon-excel"
+                    class="icon icon-excel icon-excel-new" data-toggle="tooltip" data-placement="top"
+                    title="@Resources.ExportToExcel"></a>
+            </div>
+        </div>
+        <div class="tblRpt-dailywinloss-container @level" id="tbl-report-container" style="visibility: hidden;">
+            <partial name="DailyWinLossData" model="Model" />
+        </div>
+    </div>
+</div>
+<a class="hide" id="hidden-getDataUrl" asp-controller="WhiteLabel" asp-action="GetDailyWinLossData"></a>
+<a class="hide" id="hidden-usernameSuggestionUrl" asp-action="Suggest" asp-controller="Customer"></a>

@@ -1,0 +1,100 @@
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Features.Messages
+@using AlphaPlus.Features.Messages.API.Constants
+
+@{ var isShowPersonalTab = !(bool)ViewData["IsProtectedMode"]; }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@(ViewBag.Title ?? "Alpha - Sites")</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
+    @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/site-messages/message-{Model.RoleName}")
+    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/default-message")
+    @StaticResources.RenderStylesWithMediaDarkMode(767, "~/assets/bundles/home-mobile-calculate-07")
+
+    @RenderSection("Styles", required: false)
+    @GoogleAnalyticHelper.GtagScript()
+</head>
+<body>
+    @GoogleAnalyticHelper.GtagNoScript()
+    <div class="scroll-tabs">
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="@(Model.MessageType == MessageType.Normal ? "active" : string.Empty)">
+                <a class="open-link" data-url="@Url.Action("Index", "MessageHistory", new { messageType = MessageType.Normal })">
+                    <span class="hidden-mobile">
+                        @Resources.normalAnnouncement
+                    </span>
+                    <span class="visible-mobile">
+                        @Resources.normal
+                    </span>
+                    @if (Model.UnreadMessage.Normal > 0)
+                    {
+                        <span class="badge-title">@Model.UnreadMessage.Normal</span>
+                    }
+                </a>
+            </li>
+            <li role="presentation" class="@(Model.MessageType == MessageType.Special ? "active" : string.Empty)">
+                <a class="open-link" data-url="@Url.Action("Index", "MessageHistory", new { messageType = MessageType.Special })">
+                    <span class="hidden-mobile">
+                        @Resources.specialAnnouncement
+                    </span>
+                    <span class="visible-mobile">
+                        @Resources.Special
+                    </span>
+                    @if (Model.UnreadMessage.Special > 0)
+                    {
+                        <span class="badge-title">@Model.UnreadMessage.Special</span>
+                    }
+                </a>
+            </li>
+            <li role="presentation" class="@(Model.MessageType == MessageType.System ? "active" : string.Empty) ">
+                <a class="open-link" data-url="@Url.Action("Index", "Announcement", new { messageType = MessageType.System })">
+                    <span class="hidden-mobile">
+                        @Resources.systemAnnouncement
+                    </span>
+                    <span class="visible-mobile">
+                        @Resources.system
+                    </span>
+                    @if (Model.UnreadMessage.System > 0)
+                    {
+                        <span class="badge-title">@Model.UnreadMessage.System</span>
+                    }
+                </a>
+            </li>
+            @if (isShowPersonalTab)
+            {
+                <li role="presentation" class="@(Model.MessageType == MessageType.Personal ? "active" : string.Empty)">
+                    <a class="open-link" data-url="@Url.Action("Index", "MessageHistory", new { messageType = MessageType.Personal })">
+                        <span class="hidden-mobile">
+                            @Resources.personalMessage
+                        </span>
+                        <span class="visible-mobile">
+                            @Resources.Personal
+                        </span>
+                        @if (Model.UnreadMessage.Personal > 0)
+                        {
+                            <span class="badge-title">@Model.UnreadMessage.Personal</span>
+                        }
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <div class="tab-content">
+        @RenderBody()
+    </div>
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    @StaticResources.AssetScripts.Render("/bundles/site-messages/message-default")
+    @RenderSection("Scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            $(".open-link").unbind().bind('click', function (event) { top.alpha.viewDataURL(event); });
+        });
+    </script>
+</body>
+</html>

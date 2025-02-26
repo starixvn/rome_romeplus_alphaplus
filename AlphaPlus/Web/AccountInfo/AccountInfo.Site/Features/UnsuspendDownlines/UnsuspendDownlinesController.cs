@@ -1,0 +1,37 @@
+using AlphaPlus.AccountInfo.Site.Features.Shared;
+using AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines.Requests;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+
+namespace AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines
+{
+    public class UnsuspendDownlinesController : SiteBaseController
+    {
+        private const string EditMultipleConfirmPath = "~/Features/UnsuspendDownlines/Views/EditMultipleConfirm.cshtml";
+        
+        public UnsuspendDownlinesController(IMediator mediator)
+            : base(mediator)
+        {
+        }
+
+        public Task<ActionResult> EditSingle(UnsuspendSingleRequest message)
+            => View(message);
+        public Task<ActionResult> EditMultiple(UnsuspendMultipleRequest message)
+            => View(message);
+
+        public Task<ActionResult> FetchCustomerList(UnsuspendViewListRequest message)
+           => Json(message);
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public Task<ActionResult> UnsuspendSingle([FromBody] UnsuspendSingleCommand command)
+          => Json(command);
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public Task<ActionResult> UnsuspendMultiple([FromBody] UnsuspendMultipleCommand command)
+          => Json(command);
+
+        [HttpGet]
+        public Task<ActionResult> MultipleSuspendConfirm(SuspendMultipleConfirmRequest message)
+            => View(message, EditMultipleConfirmPath);
+    }
+}

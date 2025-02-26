@@ -1,0 +1,34 @@
+@using AlphaPlus.Core.Configurations
+@model CreateCustomerViewModel
+@{
+    var userguideLink = Model.GetUserGuideLink();
+}
+<div class="page-title">
+    @Model.PageTitle
+    &nbsp;<a href="@userguideLink" target="_blank"><span class="icon icon-information-outline"></span></a>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation">
+        <a class="open-link" data-url="@MicroSites.SettingUrl("~/CopyAccount/Index")">@Resources.SearchAndCopy</a>
+    </li>
+    <li role="presentation" class="active">
+        <a href="javascript:;" aria-controls="home" role="tab" data-toggle="tab">@Resources.FullMode</a>
+    </li>
+    @if (Model.IsCreateMember)
+    {
+        <li class="has-icon" role="presentation">
+            <a class="open-link" data-url="@MicroSites.SettingUrl("~/QRCodeMemberSignIn/Index")">@Resources.QRCode</a>
+        </li>
+    }
+    <li role="presentation" class="new-function">
+        @Html.ActionLink(Resources.LiteMode, "Index", "CreateAccount", new
+            {
+                lng = Model.Language,
+                isDarkMode =
+                 Model.IsDarkMode.ToString().ToLowerInvariant()
+            }, null)
+        <span class="bage-new">@Resources.lblNew</span>
+    </li>
+
+</ul>

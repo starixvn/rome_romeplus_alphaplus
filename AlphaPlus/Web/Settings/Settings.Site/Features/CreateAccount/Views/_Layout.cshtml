@@ -1,0 +1,40 @@
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@(ViewBag.Title ?? "Alpha - Member Information")</title>
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
+    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-memberinfo/default")
+    @StaticResources.RenderStylesWithDarkMode("~/Features/MemberInfo/assets/bundles/default")
+    @RenderSection("Styles", required: false)
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    @GoogleAnalyticHelper.GtagScript()
+</head>
+
+<body style="height:100%">
+    @GoogleAnalyticHelper.GtagNoScript()
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    @RenderBody()
+    @* <environment names="Development">
+    <script type="module" src=@("http://localhost:5173/@vite/client")></script>
+    </environment> *@
+    <environment names="Development,Production">
+        <link rel="stylesheet" href="~/index.css" asp-append-version="true" />
+        <script type="module" src="~/index.js" asp-append-version="true"></script>
+        <link rel="stylesheet" href="~/PTSelect.css" asp-append-version="true" />
+        <script type="module" src="~/PTSelect.js" asp-append-version="true"></script>
+    </environment>
+    @RenderSection("Scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            $(".open-link").unbind().bind('click', function (event) { top.alpha.viewDataURL(event); });
+        });
+    </script>
+</body>
+
+</html>

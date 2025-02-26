@@ -1,0 +1,37 @@
+﻿@* @model ProductsViewModel
+
+<div class="page-title">
+    <span class="pull-left">@Resources.PlayForFunMemberRequest</span>
+    <span id="icon-information" class="icon-information-outline pull-right"></span>
+</div>
+
+<div id="box_header">
+    <div id="msg-info" class="msg msg-info hide">
+        @Resources.SettingRequiredWarning
+    </div>
+    <div id="msg-warning" class="msg msg-warning hide">
+        @Resources.SettingRequiredWarning
+    </div>
+
+    <form class="form-inline demo-form-inline filter" role="form">
+        @ProductSingleSelection.Render(Model.ProductMultiSelectionViewModel)
+        <div class="form-group pull-right">
+            <span id="icon-refresh" class="btn-refresh btn-group">
+                <span class="icon-refresh2" title="@Resources.Refresh"></span>
+                <span>@Resources.Refresh</span>
+            </span>
+        </div>
+    </form>
+</div>
+<div id="box-content"></div>
+
+@Html.Hidden("memberRequestUrl", Url.Action("Members", "MemberRequests"))
+@Html.Hidden("disabledProductWarningMessage", Resources.DisabledProductWarning)
+@Html.Hidden("noSettingWarning", Resources.NoSettingWarning)
+@Html.Hidden("viewerId", Model.ViewerId)
+@Html.Hidden("GuidelineUrl", AppPathHelper.GetAppPath(Alpha.MemberInfo.Configurations.AppSettings.MainAppPath, "~/MemberRequests/Guidelines"))
+@Html.Hidden("PlayForFunGuide", Resources.PlayForFunGuidelines)
+
+@section Scripts {
+    @StaticResources.RenderScripts("~/assets/bundles/member-requests/member-requests")
+} *@

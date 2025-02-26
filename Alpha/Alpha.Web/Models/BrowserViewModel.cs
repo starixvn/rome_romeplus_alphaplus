@@ -1,6 +1,4 @@
-﻿using AlphaPlus.User.Models;
-
-namespace Alpha.Web.Models
+﻿namespace Alpha.Web.Models
 {
     public class BrowserViewModel
     {

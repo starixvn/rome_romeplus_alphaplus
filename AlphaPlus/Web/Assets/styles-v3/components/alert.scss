@@ -1,0 +1,110 @@
+﻿:root,
+:root [data-theme='light'] {
+    .alert{
+        --border-error: #ef2d2d;
+        --bg-error: #fadddd;
+        --text-error: #fe0000;
+        --border-warning: #7F3D1D;
+        --bg-warning: #FAF9DD;
+        --text-warning: #7F3D1D;
+        --border-success: #2D982D;
+        --bg-success: #EEFBE9;
+        --text-success: #2D982D;
+        --border-info: #2865B5;
+        --bg-info: #E3F4FB;
+        --text-info: #2865B5;
+    }
+}
+:root [data-theme='dark'] {
+    .alert{        
+        --border-error: #ef2d2d;
+        --bg-error: #361212;
+        --text-error: #cc7070;
+        //color below is not dark mode
+        --border-warning: #7F3D1D;
+        --bg-warning: #FAF9DD;
+        --text-warning: #7F3D1D;
+        --border-success: #2D982D;
+        --bg-success: #EEFBE9;
+        --text-success: #2D982D;
+        --border-info: #2865B5;
+        --bg-info: #E3F4FB;
+        --text-info: #2865B5;
+    }
+}
+.alert {
+    --border-error: #ef2d2d;
+    --bg-error: #fadddd;
+    --text-error: #fe0000;
+    --border-warning: #7F3D1D;
+    --bg-warning: #FAF9DD;
+    --text-warning: #7F3D1D;
+    --border-success: #2D982D;
+    --bg-success: #EEFBE9;
+    --text-success: #2D982D;
+    --border-info: #2865B5;
+    --bg-info: #E3F4FB;
+    --text-info: #2865B5;
+    border-width: 1px;
+    border-style: solid;
+    padding: 8px 8px 8px 36px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    font-size: var(--font-size);
+    border-radius: 2px;
+    position: relative;
+
+    &:before {
+        font-family: 'Iconalpha' !important;
+        speak: never;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        position: absolute;
+        top: 6px;
+        left: 10px;
+        font-size: 20px;
+    }
+
+    &.error {
+        border-color: var(--border-error);
+        background-color: var(--bg-error);
+        color: var(--text-error);
+
+        &:before {
+            content: "\e93e";
+        }
+    }
+
+    &.warning {
+        border-color: var(--border-warning);
+        background-color: var(--bg-warning);
+        color: var(--text-warning);
+
+        &:before {
+            content: "\e93d";
+        }
+    }
+
+    &.success {
+        border-color: var(--border-success);
+        background-color: var(--bg-success);
+        color: var(--text-success);
+
+        &:before {
+            content: "\e93b";
+        }
+    }
+
+    &.info {
+        border-color: var(--border-info);
+        background-color: var(--bg-info);
+        color: var(--text-info);
+
+        &:before {
+            content: "\e93c";
+        }
+    }
+}

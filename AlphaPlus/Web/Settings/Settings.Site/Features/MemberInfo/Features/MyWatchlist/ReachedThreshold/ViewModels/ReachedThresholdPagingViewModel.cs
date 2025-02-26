@@ -1,0 +1,18 @@
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.Requests;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
+
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.ViewModels
+{
+    public class ReachedThresholdPagingViewModel
+    {
+        public ReachedThresholdPagingViewModel(ReachlistAccountReport reachlistAccountReport, ReachlistAccountsQuery request)
+        {
+            ReachlistAccounts = reachlistAccountReport.ReachlistAccounts;
+            TotalItems = reachlistAccountReport.TotalItems;
+        }
+
+        public IEnumerable<ReachlistAccountModel> ReachlistAccounts { get; }
+
+        public int TotalItems { get; }
+    }
+}

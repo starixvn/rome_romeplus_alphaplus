@@ -1,0 +1,56 @@
+@using AlphaPlus.Shared.AppResources.Common
+@model Fanex.Customer.Client.Models.CustomerInfo
+@{
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+    ViewBag.Title = $"{Resources.Info} {Model.UserName}";
+    var queryString = AlphaContext.Current.Request.Query;
+}
+@section Scripts {
+    <script src="~/bundles/customer/update-customer-info.js" asp-append-version="true"></script>
+}
+<div class="page-title hide">
+    <span class="text-title pull-left">@ViewBag.Title</span>
+</div>
+<div class="wrapper-transfer-condition">
+    <div class="msg hide" id="msg-alert"></div>
+    <form method="post" asp-action="UpdateInfoPost" id="form-update">
+        <input type="hidden" name="CustId" value="@queryString["custid"]" />
+        <div class="update-info">
+            <table class="tb">
+                <thead>
+                    <tr>
+                        <th colspan="4">@Resources.CustomerInformation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><label asp-for="FirstName">@Resources.FirstName</label></td>
+                        <td><input type="text" asp-for="FirstName" maxlength="32" autocomplete="off" /></td>
+                        <td><label asp-for="LastName">@Resources.LastName</label></td>
+                        <td><input type="text" asp-for="LastName" maxlength="32" autocomplete="off" /></td>
+                    </tr>
+                    <tr>
+                        <td><label asp-for="Phone">@CommonResx.Phone</label></td>
+                        <td><input type="text" asp-for="Phone" maxlength="32" autocomplete="off" /></td>
+                        <td><label asp-for="MobilePhone">@Resources.MobilePhone</label></td>
+                        <td><input type="text" asp-for="MobilePhone" maxlength="32" autocomplete="off" /></td>
+                    </tr>
+                    <tr>
+                        <td><label asp-for="Email">@Resources.Email</label></td>
+                        <td><input type="text" asp-for="Email" maxlength="32" autocomplete="off" /></td>
+                        <td><label asp-for="Fax">@CommonResx.Fax</label></td>
+                        <td><input type="text" asp-for="Fax" maxlength="32" autocomplete="off" /></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="form-btn">
+                <label></label>
+                <button class="btn-submit" type="submit">@Resources.Update</button>
+                <button class="btn-reset" type="button">@Resources.Reset</button>
+            </div>
+        </div>
+    </form>
+</div>
+<input type="hidden" id="hidden-EmailNotValidText" value="@Resources.EmailNotValid" />
+<input type="hidden" id="hidden-UpdatedSuccessfullyText" value="@Resources.UpdatedSuccessfully" />

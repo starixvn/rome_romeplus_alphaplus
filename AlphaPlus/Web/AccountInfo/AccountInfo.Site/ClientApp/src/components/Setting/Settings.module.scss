@@ -1,0 +1,21 @@
+@import '../../styles/mixins';
+
+.setting {
+    padding-left: 10px;
+    padding-right: 10px;
+
+    a {
+        line-height: 32px;
+    }
+}
+
+@media only screen and (max-device-width: 767px) {
+    .setting {
+        padding-left: calculateScale(10px);
+        padding-right: calculateScale(10px);
+
+        a {
+            line-height: calculateScale(32px);
+        }
+    }
+}

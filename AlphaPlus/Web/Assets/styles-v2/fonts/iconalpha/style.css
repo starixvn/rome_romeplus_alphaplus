@@ -1,0 +1,137 @@
+@font-face {
+  font-family: 'icon-alpha-v2';
+  src:  url('fonts/icon-alpha-v2.eot?nvnur2');
+  src:  url('fonts/icon-alpha-v2.eot?nvnur2#iefix') format('embedded-opentype'),
+    url('fonts/icon-alpha-v2.ttf?nvnur2') format('truetype'),
+    url('fonts/icon-alpha-v2.woff?nvnur2') format('woff'),
+    url('fonts/icon-alpha-v2.svg?nvnur2#icon-alpha-v2') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="ic-"], [class*=" ic-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icon-alpha-v2' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ic-mywatchlist:before {
+  content: "\e916";
+}
+.ic-plus-box:before {
+  content: "\e917";
+}
+.ic-directmember:before {
+  content: "\e915";
+}
+.ic-arrow-down-circle:before {
+  content: "\e914";
+}
+.ic-information:before {
+  content: "\e913";
+  color: #22a2ff;
+}
+.ic-time:before {
+  content: "\e91a";
+}
+.ic-minus:before {
+  content: "\e911";
+  color: #fff;
+}
+.ic-plus:before {
+  content: "\e912";
+  color: #fff;
+}
+.ic-error:before {
+  content: "\e93e";
+}
+.ic-info:before {
+  content: "\e93c";
+}
+.ic-success:before {
+  content: "\e93b";
+}
+.ic-warning:before {
+  content: "\e93d";
+}
+.ic-arrow-up-circle:before {
+  content: "\e95c";
+}
+.ic-calendar:before {
+  content: "\e94f";
+}
+.ic-sort:before {
+  content: "\e90e";
+}
+.ic-sorting-asc:before {
+  content: "\e90f";
+}
+.ic-sorting-desc:before {
+  content: "\e910";
+}
+.ic-arrow-left:before {
+  content: "\e909";
+}
+.ic-arrow-right:before {
+  content: "\e90b";
+}
+.ic-first:before {
+  content: "\e90c";
+}
+.ic-last:before {
+  content: "\e90d";
+}
+.ic-excel:before {
+  content: "\e90a";
+  color: #2e9e60;
+}
+.ic-notification:before {
+  content: "\e907";
+}
+.ic-save:before {
+  content: "\e906";
+}
+.ic-copy:before {
+  content: "\e905";
+}
+.ic-reload:before {
+  content: "\e904";
+  color: #fff;
+}
+.ic-check:before {
+  content: "\e900";
+  color: #1bac69;
+}
+.ic-close:before {
+  content: "\e901";
+  color: #d33;
+}
+.ic-delete:before {
+  content: "\e902";
+  color: #d33;
+}
+.ic-edit:before {
+  content: "\e903";
+}
+.ic-notification-off:before {
+  content: "\e908";
+}
+.ic-chevron-double-right:before {
+  content: "\e951";
+}
+.ic-normal-column:before {
+  content: "\e95b";
+}
+.ic-stack-column:before {
+  content: "\e95e";
+}

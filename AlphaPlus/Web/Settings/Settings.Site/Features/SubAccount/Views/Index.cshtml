@@ -1,0 +1,125 @@
+@using AlphaPlus.Core.Models
+@using AlphaPlus.Shared.AppResources.Common
+@using AlphaPlus.Shared.AppResources.Settings
+@using AlphaPlus.Shared.AppResources.Settings.SubAccount
+@{
+    Layout = "~/Features/SubAccount/Views/_Layout.cshtml";
+    var index = 0;
+    var hasnotPerm = UserSession.Current.IsLimitedHostPermissionOnSubAccountFunction;
+}
+@model IEnumerable<SubAccountViewModel>
+<div>
+    <main role="main" class="pb-3">
+        <div class="title-page">
+            <span class="txt-title">@Lang.subaccount</span>
+            <button @(hasnotPerm ? "disabled" : string.Empty)
+                class="btn-refresh btn-add @(hasnotPerm ? "btn-add-disable" : string.Empty)"
+                id="btn-add">@Lang.addsubaccount</button>
+        </div>
+        <table class="tblRpt">
+            <thead class="RptHeader">
+                <td>#</td>
+                <td>@Lang.username</td>
+                <td>@Lang.nickname</td>
+                <td>@Lang.firstname</td>
+                <td>@Lang.lastname</td>
+                @if (Model.Any() && !Model.FirstOrDefault().IsCustomerDateLimit)
+                {
+                    <td>@Resources.CreatedDate</td>
+                }
+                <td>@Lang.memberinfo</td>
+                <td>@Lang.BetsAndForecast</td>
+                <td>@Lang.Reports</td>
+                <td>@Lang.BetLists</td>
+                <td>@Lang.transfer</td>
+                <td>@Lang.viewlog</td>
+                <td>@Lang.Edit</td>
+                <td>@Lang.password</td>
+                <td>@Lang.SecurityCode</td>
+                <td>@CommonResx.RemoveOtpViewModelText</td>
+            </thead>
+            <tbody>
+                @if (Model.Any())
+                {
+                    foreach (var subAcc in Model)
+                    {
+                        ++index;
+                        <tr class='@(subAcc.Closed ? "closed" : string.Empty)'>
+                            <td class="c">@index</td>
+                            <td>@subAcc.Username</td>
+                            <td>@subAcc.Nickname</td>
+                            <td>@subAcc.Firstname</td>
+                            <td>@subAcc.Lastname</td>
+                            @if (!subAcc.IsCustomerDateLimit)
+                            {
+                                <td class="c">@subAcc.CreateDate</td>
+                            }
+                            <td class="c">
+                                <div class="@(hasnotPerm ? string.Empty : "pMemInfo lMemInfo")" data-subaccid="@subAcc.SubAccId"
+                                    data-pageaccess="@subAcc.MemberInfoPermission">@subAcc.GetPermission()</div>
+                            </td>
+                            <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-D")"
+                                    type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId"
+                                    data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasBetsForecastPermission ?
+                            "checked" : string.Empty) /></td>
+                            <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-E")"
+                                    type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId"
+                                    data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasReportPermission ? "checked" :
+                            string.Empty) /></td>
+                            <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-L")"
+                                    type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId"
+                                    data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasBetlistPermission ? "checked" :
+                            string.Empty) /></td>
+                            <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-C")"
+                                    type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId"
+                                    data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasTransferPermission ? "checked" :
+                            string.Empty) /></td>
+                            <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-G")"
+                                    type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId"
+                                    data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasViewLogPermission ? "checked" :
+                            string.Empty) /></td>
+                            <td class="c"><span class="icon-edit info @(hasnotPerm ? "editBtn-Disable" : string.Empty)"
+                                    data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
+                            <td class="c"><span class="icon-edit pwd @(hasnotPerm ? "editBtn-Disable" : string.Empty)"
+                                    data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
+                            <td class="c"><span class="icon-edit sc @(hasnotPerm ? "editBtn-Disable" : string.Empty)"
+                                    data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
+                            <td class="c"><span class="icon-edit otp @(hasnotPerm ? "editBtn-Disable" : string.Empty)"
+                                    data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="15" class="center">@Resources.NoInformationIsAvailable</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @Html.AntiForgeryToken()
+        <ul id="Popup" class="divMenuPopup" style="display: none;">
+            <li class="group">
+                <input type="radio" name="rdPermission" id="pNone" data-pageaccess="">
+                <label for="pNone">@Lang.None</label>
+            </li>
+            <li class="group">
+                <input type="radio" name="rdPermission" id="pView" data-pageaccess="[H]">
+                <label for="pView">@Lang.view</label>
+            </li>
+            <li class="group">
+                <input type="radio" name="rdPermission" id="pUpdateView" data-pageaccess="[B][H]">
+                <label for="pUpdateView">@Lang.Update</label>
+            </li>
+            <li class="group"><input type="radio" name="rdPermission" id="pFullControl" data-pageaccess="[A][B][H]">
+                <label for="pFullControl">@Lang.FullControl</label>
+            </li>
+        </ul>
+    </main>
+</div>
+@section Scripts {
+    <script>
+        var editInfoText = '@Lang.editsubacc';
+        var hasnotPerm = @(hasnotPerm ? 1 : 0);
+    </script>
+}

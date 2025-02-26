@@ -1,0 +1,469 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>情報がありません</value>
+  </data>
+  <data name="UsernamePlaceHolder" xml:space="preserve">
+    <value>ユーザー名</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>ユーザー名</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>送信</value>
+  </data>
+  <data name="MemberOutstanding" xml:space="preserve">
+    <value>メンバー未払い</value>
+  </data>
+  <data name="GivenCredit" xml:space="preserve">
+    <value>付与済み与信</value>
+  </data>
+  <data name="TransferSuccessfully" xml:space="preserve">
+    <value>Transfer successfully</value>
+  </data>
+  <data name="AllowTransfer" xml:space="preserve">
+    <value>You are allowed to transfer on</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>Friday</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>Monday</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>Saturday</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>Sunday</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>Thursday</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>Tuesday</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>Wednesday</value>
+  </data>
+  <data name="Daily" xml:space="preserve">
+    <value>毎日</value>
+  </data>
+  <data name="HintNotAvailableToTransfer" xml:space="preserve">
+    <value>Cash balance is not available to transfer.</value>
+  </data>
+  <data name="HintRangeTransfer" xml:space="preserve">
+    <value>You can transfer from {0} to {1}.</value>
+  </data>
+  <data name="AvailableRangeTransfer" xml:space="preserve">
+    <value>Amount to transfer must be between {0} and {1}.</value>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>スーパー</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>マスター</value>
+  </data>
+  <data name="Agent" xml:space="preserve">
+    <value>エージェント</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>メンバー</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>この機能を使用する権限がありません。</value>
+  </data>
+  <data name="TransferButton" xml:space="preserve">
+    <value>送金</value>
+  </data>
+  <data name="CashBalance" xml:space="preserve">
+    <value>現金残高</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>情報</value>
+  </data>
+  <data name="OutstandingShortcut" xml:space="preserve">
+    <value>未払い取り引き</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>金額</value>
+  </data>
+  <data name="ConfirmTransfer" xml:space="preserve">
+    <value>送金してよろしいですか?</value>
+  </data>
+  <data name="TransferAmountIs" xml:space="preserve">
+    <value>Transfer amount is</value>
+  </data>
+  <data name="InvalidValue" xml:space="preserve">
+    <value>Invalid value.</value>
+  </data>
+  <data name="MultipleTransfer" xml:space="preserve">
+    <value>外国送金</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>状態</value>
+  </data>
+  <data name="AllYesterdayBalance" xml:space="preserve">
+    <value>All yesterday balance</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>すべて</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>開設</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>サスペンド済み</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>閉鎖</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>無効</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>昨日</value>
+  </data>
+  <data name="YesterdayBalance" xml:space="preserve">
+    <value>昨日の残高</value>
+  </data>
+  <data name="MasterBalance" xml:space="preserve">
+    <value>Master Balance</value>
+  </data>
+  <data name="YesterdayCashBalance" xml:space="preserve">
+    <value>Yesterday Cash Balance</value>
+  </data>
+  <data name="MasterCash" xml:space="preserve">
+    <value>Master Cash</value>
+  </data>
+  <data name="Outstanding" xml:space="preserve">
+    <value>未払い</value>
+  </data>
+  <data name="UsedCredit" xml:space="preserve">
+    <value>使用貸付金額
+</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>名</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>氏</value>
+  </data>
+  <data name="TransferToDownlineHistory" xml:space="preserve">
+    <value>Transfer To Downline History</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>今日</value>
+  </data>
+  <data name="LastWeek" xml:space="preserve">
+    <value>先週</value>
+  </data>
+  <data name="LastMonth" xml:space="preserve">
+    <value>先月</value>
+  </data>
+  <data name="SinceLastMonth" xml:space="preserve">
+    <value>先月以降</value>
+  </data>
+  <data name="SpecificDate" xml:space="preserve">
+    <value>特定の日付</value>
+  </data>
+  <data name="ThisWeek" xml:space="preserve">
+    <value>今週</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>今月</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>まで</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>から</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>エクセルにエクスポート</value>
+  </data>
+  <data name="CanViewReportDataFrom" xml:space="preserve">
+    <value>You can view the report data from {0}.</value>
+  </data>
+  <data name="ActionDate" xml:space="preserve">
+    <value>Action Date</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>内容</value>
+  </data>
+  <data name="NewBalance" xml:space="preserve">
+    <value>新残高</value>
+  </data>
+  <data name="OldBalance" xml:space="preserve">
+    <value>Old Balance</value>
+  </data>
+  <data name="TransferAmount" xml:space="preserve">
+    <value>Transfer Amount</value>
+  </data>
+  <data name="TransferType" xml:space="preserve">
+    <value>Transfer Type</value>
+  </data>
+  <data name="Deposit" xml:space="preserve">
+    <value>Deposit</value>
+  </data>
+  <data name="Withdrawal" xml:space="preserve">
+    <value>Withdrawal</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>の</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>ページ</value>
+  </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>Page Size</value>
+  </data>
+  <data name="showhidecolumnAd" xml:space="preserve">
+    <value>Right-click on the header to show/hide columns.</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>オン</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="Waiting" xml:space="preserve">
+    <value>承認中</value>
+  </data>
+  <data name="Processing" xml:space="preserve">
+    <value>Processing</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>完了済み</value>
+  </data>
+  <data name="First_LastName" xml:space="preserve">
+    <value>First/ Last Name</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>キャンセルする</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="AutoTransfer_HintPath_2" xml:space="preserve">
+    <value>お客様リスト</value>
+  </data>
+  <data name="AutoTransfer_HintPath_3" xml:space="preserve">
+    <value>エージェントリスト</value>
+  </data>
+  <data name="AutoTransfer_HintPath_4" xml:space="preserve">
+    <value>Master Agent List</value>
+  </data>
+  <data name="ClearCreditStep_Master_Agent" xml:space="preserve">
+    <value>エージェント{0}</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>ベット与信</value>
+  </data>
+  <data name="UsernameOrFirstLastName" xml:space="preserve">
+    <value>ユーザー名または名/姓</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>何も選択しない</value>
+  </data>
+  <data name="Entered" xml:space="preserve">
+    <value>入力済み</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>全 {total} 件中、{from} 件目から {to} 件目を表示</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>全て選択</value>
+  </data>
+  <data name="SelectAll2" xml:space="preserve">
+    <value>全て選択</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>処理待ち</value>
+  </data>
+  <data name="Columns" xml:space="preserve">
+    <value>列</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>取消済み</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>合計</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>有効</value>
+  </data>
+  <data name="NonEntered" xml:space="preserve">
+    <value>未入力</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>番</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>等級</value>
+  </data>
+  <data name="Transfer" xml:space="preserve">
+    <value>送金</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>選択済み</value>
+  </data>
+  <data name="PendingTransfer3rd" xml:space="preserve">
+    <value>第三者の保留中の振込</value>
+  </data>
+  <data name="AutoTransferMonitoring" xml:space="preserve">
+    <value>自動振込モニタ</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>残高</value>
+  </data>
+  <data name="PendingTransfer3rd_Duplicate[1]" xml:space="preserve">
+    <value>第三者の保留中の振込</value>
+  </data>
+  <data name="AutoTransferMonitoring_Duplicate[1]" xml:space="preserve">
+    <value>自動振込モニタ</value>
+  </data>
+  <data name="NoChangeToUpdate" xml:space="preserve">
+    <value>更新する変更はありません。</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>複写した</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>複写</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>作成日</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>お客様</value>
+  </data>
+  <data name="ADBTOnError" xml:space="preserve">
+    <value>Your upline has allowed you to use All Day Balance Transfer. The page will be automatically refreshed.</value>
+  </data>
+  <data name="ADBTOffError" xml:space="preserve">
+    <value>Your upline has disallowed you to use All Day Balance Transfer. The page will be automatically refreshed.</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>最後のログイン</value>
+  </data>
+</root>

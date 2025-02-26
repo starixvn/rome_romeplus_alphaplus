@@ -1,0 +1,46 @@
+using AlphaPlus.Core;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Shared.AppResources.Settings.ProductResources;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+
+namespace AlphaPlus.Settings.Site.Features.Shared
+{
+    public class SiteBaseController : BaseController
+    {
+        private const string InvalidExcelFileName = "Invalid";
+        protected const string InvalidPageViewPath = "~/Features/MemberInfo/Views/Shared/InvalidPage.cshtml";
+        protected const int BadRequestErrorCode = 999;
+
+        protected readonly IMediator mediator;
+
+        protected SiteBaseController(IMediator mediator)
+        {
+            this.mediator = mediator;
+        }
+
+        protected async Task<ActionResult> View<TResponse>(IRequest<TResponse> message)
+            => (message as BaseQuery).IsValid()
+                ? View(await mediator.Send(message))
+                : View(InvalidPageViewPath);
+
+        protected async Task<ActionResult> View<TResponse>(IRequest<TResponse> message, string viewName)
+            => (message as BaseQuery).IsValid()
+                ? View(viewName, await mediator.Send(message))
+                : View(InvalidPageViewPath);
+
+
+        protected async Task<ActionResult> Json<TResponse>(IRequest<TResponse> message)
+            => (message as BaseQuery).IsValid() ?
+                Json(await mediator.Send(message)) :
+                Json(Result.CreateErrorResult(ProductResources.NotAuthorized, BadRequestErrorCode));
+
+        protected async Task<FileContentResult> ExcelView(IRequest<ExcelFileViewModel> message)
+            => (message as BaseQuery).IsValid()
+                ? GetExcelContent(await mediator.Send(message))
+                : GetExcelContent(new ExcelFileViewModel(InvalidExcelFileName, []));
+
+        private FileContentResult GetExcelContent(ExcelFileViewModel viewModel)
+            => File(viewModel.Content, viewModel.ContentType, viewModel.Name);
+    }
+}

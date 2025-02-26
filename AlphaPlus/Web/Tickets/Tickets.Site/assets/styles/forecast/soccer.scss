@@ -1,0 +1,400 @@
+@import '../mixins';
+
+//  scoremap
+:root,
+:root [data-theme='light'] {
+    .totalandforecast {
+        --color-icon-alert-browser: #fe7e01;
+        --color-icon-close-browser: #bcba7d;
+        --color-note-browser: #803f00;
+        --bg-note-browser: #faf9dd;
+        --border-note-browser: #bcba7d;
+
+        // table
+        --background-col-table: #ffffff;
+        --border-table: #d1d1d1;
+        --background-ground-color: #f8ff8d;
+        --background-win-loss-name: #ebeaea;
+        --color-positive: #e40000;
+        --background-focus-color: #bbcae9;
+        --color-home-name: #e40000;
+    }
+}
+:root [data-theme='dark'] {
+    background-color: #171717;
+    .totalandforecast {
+        // table
+        --background-col-table: #171717;
+        --border-table: #5f626b;
+        --background-ground-color: #36362e;
+        --background-win-loss-name: #2e2f30;
+        --color-positive: #ff4f50;
+        --background-focus-color: #2d4372;
+        --color-home-name: #ff5521;
+    }
+}
+
+body {
+    font-size: 13px;
+    background: transparent;
+    font-family: Roboto, Arial;
+}
+
+.note-browser {
+    background: var(--bg-note-browser);
+    border: 1px solid var(--border-note-browser);
+    color: var(--color-note-browser);
+    padding: 0 15px;
+    width: 100%;
+    display: table;
+
+    .textnote-box,
+    .icon-alert {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .icon-alert:before {
+        font-family: 'Iconalpha';
+        content: '\e937';
+        color: var(--color-icon-alert-browser);
+        font-size: 28px;
+    }
+
+    a {
+        font-weight: bold;
+        text-decoration: underline;
+        white-space: nowrap;
+    }
+
+    .icon-closed {
+        cursor: pointer;
+    }
+
+    .icon-closed:before {
+        font-family: 'Iconalpha';
+        content: '\e92c';
+        color: var(--color-icon-close-browser);
+        font-size: 18px;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        cursor: pointer;
+    }
+}
+
+.totalandforecast {
+    .filter {
+        position: relative;
+
+        .form-inline {
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+    }
+
+    .form-group {
+        margin: 0 8px 15px 0;
+        display: inline-block;
+
+        &.last-filter {
+            margin-right: 8px;
+        }
+        &.loading{
+            margin: 0;
+        }
+        .lds-spinner{
+            position: relative;
+            top: 3px;
+        }
+
+        .btn-submit {
+            margin-right: 8px;
+        }
+
+        .form-control {
+            display: inline-block;
+            width: auto;
+        }
+
+        label {
+            margin-right: 8px;
+            font-weight: normal;
+        }
+    }
+}
+
+table * {
+    box-sizing: content-box;
+}
+
+#dataTotalBet {
+    min-width: 710px;
+}
+
+.tblRpt {
+    tbody tr {
+        &:hover {
+            background-color: var(--background-ground-color);
+
+            td {
+                &.ex-col {
+                    background-color: var(--background-ground-color) !important;
+                }
+
+                &.win-loss-name {
+                    //color: #333;
+                }
+            }
+        }
+    }
+
+    tr td {
+        &.col-time,
+        &.col-event {
+            font-weight: 500;
+
+            &:hover {
+                background-color: var(--background-ground-color) !important;
+            }
+        }
+
+        &.high-light-score {
+            background-color: var(--background-focus-color) !important;
+        }
+
+        &.high-light-win-loss {
+            font-weight: 500;
+        }
+    }
+
+    tr:hover td {
+        &.col-time,
+        &.col-event {
+            background-color: var(--background-ground-table) !important;
+        }
+    }
+
+    &.tblRpt-bordered tr.last-row td.ex-col {
+        border-bottom: 1px solid var(--border-table);
+    }
+
+    tr.cl-league td {
+        text-transform: uppercase;
+        background: #f3f5e0;
+    }
+
+    tr.even td {
+        background: #eae9ee;
+
+        &.col-time,
+        &.col-event,
+        &.col-forecastTotal {
+            background: #fff;
+        }
+    }
+
+    &.tblRpt-bordered tr td.ex-col {
+        border-top: none;
+        border-bottom: none;
+
+        &.head {
+            background: var(--background-win-loss-name);
+            border-bottom: 1px solid var(--border-table);
+            font-size: 10px;
+        }
+
+        &.head,
+        &.winloss-name-empty {
+            padding: 0px 8px;
+            height: 19px;
+            line-height: 19px;
+        }
+
+        span {
+            display: inline-block;
+            min-width: 40px;
+        }
+    }
+
+    tr.total-row {
+        font-weight: bold;
+        font-size: 13px;
+
+        td.total-text {
+            background-color: var(--background-focus-color);
+        }
+    }
+
+    
+    .offer-live,
+    .live-status,
+    .positive,
+    .live-match {
+        color: var(--color-positive);
+    }
+    .home-name{
+        color: var(--color-home-name);
+    }
+
+    .offer-live {
+        text-transform: uppercase;
+    }
+
+    .live-match {
+        text-transform: capitalize;
+        font-style: italic;
+        font-weight: normal;
+    }
+
+    .match-time {
+        font-weight: normal;
+        color: #313131;
+    }
+
+    .ex-text {
+        color: #666;
+    }
+
+    .match-score {
+        color: var(--color-positive);
+    }
+}
+
+.content {
+    #mainContent {
+        margin: 10px 0;
+    }
+
+    .text-status {
+        color: #9d2c2e;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: bold;
+
+        &:before {
+            font-family: 'Iconalpha';
+            color: #9d2c2e;
+            font-size: 22px;
+            content: '\e929';
+            margin-right: 2px;
+            position: relative;
+            top: 4px;
+        }
+    }
+}
+
+.note-content {
+    font-size: 13px;
+    line-height: 28px;
+
+    .bold {
+        font-weight: 500;
+    }
+
+    .highlight {
+    }
+
+    ul {
+        list-style: none;
+        padding-left: 10px;
+
+        &.level1 {
+            > li:before {
+                font-family: 'Iconalpha';
+                color: #333;
+                font-size: 11px;
+                content: '\e936';
+                margin-right: 5px;
+            }
+        }
+
+        &.level2 {
+            padding-left: 30px;
+            list-style-type: disc;
+            margin-right: 5px;
+        }
+
+        &.level3 {
+            padding-left: 0;
+
+            li:before {
+                content: '-';
+                margin-right: 5px;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .note {
+        color: #666;
+        font-style: italic;
+        margin-left: 25px;
+
+        &:before {
+            content: '*';
+            color: #9d2c2e;
+            margin-right: 5px;
+        }
+    }
+}
+
+#helpModal {
+    .modal-header {
+        .btn-close {
+            background-color: transparent;
+            top: 8px;
+        }
+        #myModalLabel {
+            font-size: 15px;
+            font-weight: bold;
+        }
+    }
+
+    .note-content {
+        padding: 0;
+    }
+}
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 900px;
+    }
+}
+a:hover {
+    text-decoration: none;
+}
+
+/*******************Dropdown****************/
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1051px) {
+    .totalandforecast {
+        .filter {
+            .form-group {
+                margin: 0 5px 15px 0;
+
+                .form-control {
+                    padding: 6px 0px;
+
+                    #ddlDeadBall {
+                        width: 120px;
+                    }
+                }
+            }
+
+            .multiselect-selected-text {
+                width: 120px;
+            }
+
+            .btn-group button.multiselect {
+                padding-left: 5px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-device-width: 1152px) {
+    .note-browser .textnote-box {
+        padding-left: 10px;
+    }
+}

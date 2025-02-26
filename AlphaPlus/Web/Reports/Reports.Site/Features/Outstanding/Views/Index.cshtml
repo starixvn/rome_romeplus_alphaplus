@@ -1,0 +1,146 @@
+@using AlphaPlus.Core.Models
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Report
+@using AlphaPlus.Reports.Features.Shared.Extensions
+@using AlphaPlus.Reports.Features.Outstanding
+@using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components
+@using AlphaPlus.Reports.Site.Features.Outstanding
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AlphaPlus.Reports.Site
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = Model.PageHeader.Title;
+    var downlineRoleId = Model.CustLevel.Value - 1;
+    void DisplayUserLevelText(UserLevel userLevel)
+    {
+        if (userLevel.IsMemberLevel())
+        {
+            @Resources.Member
+        }
+        else if (userLevel.IsAgentLevel())
+        {
+            @Resources.Agent
+        }
+        else if (userLevel.IsMasterLevel())
+        {
+            @Resources.Master
+        }
+        else if (userLevel.IsSuperLevel())
+        {
+            @Resources.Super
+        }
+    }
+
+    void RenderOutstandingCells(OutstandingModel data)
+    {
+        foreach (var level in Model.DisplayOutstandingLevels)
+        {
+            <td>@data.GetValueByLevel(level.Value).FormatNumber()</td>
+        }
+    }
+
+    var length = Model.DisplayOutstandingLevels.Count;
+    var isAgentLevel = Model.CustLevel.IsAgentLevel();
+}
+@section Styles {
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/site-asset/data-table")
+    <link rel="stylesheet" media="screen and (max-device-width: 767px)"
+        href="~/bundles/outstanding/outstanding-mobile-calculate-07.css" asp-append-version="true" />
+}
+@section Scripts {
+    @StaticResources.AssetScripts.RenderCommon("/bundles/site-asset/data-table")
+    <script src="~/bundles/outstanding/outstanding.js" asp-append-version="true"></script>
+}
+@model OutstandingViewModel
+<report-title model="Model.PageHeader" />
+<form method="get" class="form-inline filter form-report@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")"
+    role="form" id="report-form">
+    <product-multiselection model="@Model.ProductViewModel" />
+    <div class="form-group last-group">
+        <input type="submit" value="@Resources.Submit" class="btn-submit" />
+    </div>
+    <input type="hidden" asp-for="CustId" />
+    <input type="hidden" asp-for="CustName" />
+    <input type="hidden" id="CustLevelId" name="CustLevelId" value="@Model.CustLevel.Value.ToString()" />
+    <input type="hidden" name="BreadcrumbsJson" value="@Model.PageHeader.BreadcrumbLevel.BreadcrumbsJson" />
+</form>
+<div id="report-container" class="level-@Model.CustLevel.Value" style="width: @(Model.IsMobileView ? "100%" : "60%");">
+    <table
+        class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover display nowrap @(Model.ReportData.HasData ? "hide" : string.Empty)"
+        style="width:100%" data-totalrecords="@Model.ReportData.TotalRecords"
+        data-sortedcolumn="@Model.SortPropertyName" data-descendingsort="@Model.DescendingSort"
+        data-productids="@Model.ProductViewModel.UserSelectedProductIds" id="tbl-report">
+        <thead>
+            <tr>
+                <th data-priority="0"></th>
+                @{
+                    for (var i = 1; i <= length; i++)
+                    {
+                        <th data-priority="@(length - i)"></th>
+                    }
+                }
+                <th></th>
+            </tr>
+            <tr>
+                <th rowspan="2" class="header" data-name="CustName">
+                    @{
+                        DisplayUserLevelText(Model.ReportLevel);
+                    }
+                </th>
+                <th colspan="@length" class="header">@Resources.Outstanding</th>
+                <th class="header" rowspan="2"></th>
+            </tr>
+            <tr class="thead-row2">
+                @{
+                    for (var i = 0; i < length; i++)
+                    {
+                        <th data-priority="@(length - i)">
+                            @{
+                                DisplayUserLevelText(Model.DisplayOutstandingLevels[i]);
+                            }
+                        </th>
+                    }
+                }
+            </tr>
+        </thead>
+        @if (Model.ReportData.HasData)
+        {
+            <tbody>
+                @foreach (var outstanding in Model.ReportData.DataSource)
+                {
+                    <tr>
+                        <td class="text-left" data-sortedvalue="@outstanding.CustName">
+                            @if (isAgentLevel)
+                            {
+                                <a class="open-link"
+                                    data-url="@Model.GetBetListUrl(outstanding.CustId, outstanding.CustName)">@outstanding.CustName</a>
+                            }
+                            else
+                            {
+                                <a href="javascript:;" class="downline-link" data-custid="@outstanding.CustId"
+                                    data-custname="@outstanding.CustName"
+                                    data-custlevelid="@Model.DownlineLevelId">@outstanding.CustName</a>
+                            }
+                        </td>
+                        @{
+                            RenderOutstandingCells(outstanding);
+                        }
+                        <td></td>
+                    </tr>
+                }
+                <tr class="tbl-footer">
+                    <td class="text-left">@Resources.Total</td>
+                    @for (var i = 0; i < length; i++)
+                    {
+                        <td>
+                            @Model.ReportData.Total.GetValueByLevel(Model.DisplayOutstandingLevels[i].Value).FormatNumber()
+                        </td>
+                    }
+                    <td class="control"></td>
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>
+<input type="hidden" asp-for="DisplayOutstandingLevelsJson" />
+<input type="hidden" id="NoInformationIsAvailable" value="@Resources.NoInformationIsAvailable" />

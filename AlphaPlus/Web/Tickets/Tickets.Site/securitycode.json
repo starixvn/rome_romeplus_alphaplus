@@ -1,0 +1,25 @@
+{
+    "SecurityCode": {
+        "IsActive": true,
+        "BetListsPaths": [
+            "MoveStatementHistory",
+            "CancelledBet",
+            "CasinoDetails",
+            "CorrectScore",
+            "DailyStatement",
+            "JackpotDetails",
+            "LastBets",
+            "RiskAnalysisIPMatching",
+            "Parlay",
+            "WinLoss",
+            "SearchTickets",
+            "BetList",
+            "MonitoringBets"
+        ],
+        "StatementPaths": [],
+        "Sites": [],
+        "VerifyingOtpPath": "Otp/VerifyOtp",
+        "VerifyingSecurityCodePath": "SecurityCode/VerifySecurityCode",
+        "ResetSecurityCodePath": "SecurityCode/ChangeSecurityCode"
+    }
+}

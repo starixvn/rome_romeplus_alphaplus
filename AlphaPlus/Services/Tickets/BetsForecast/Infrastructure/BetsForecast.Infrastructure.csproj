@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>AlphaPlus.BetsForecast.Infrastructure</AssemblyName>
+    <RootNamespace>AlphaPlus.BetsForecast.Infrastructure</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\..\Shared\Models\Enumeration.cs" Link="Shared\Enumeration.cs" />
+    <Compile Include="..\..\..\..\Shared\Models\UserLevel.cs" Link="Shared\UserLevel.cs" />
+    <Compile Include="..\..\..\..\Shared\Constants\BetTypeConstants.cs" Link="Shared\BetTypeConstants.cs" />
+    <Compile Include="..\..\..\..\Shared\LanguageHelper.cs" Link="Shared\LanguageHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Fanex.Data.Repository" Version="4.2.5.3" />
+    <PackageReference Include="Fanex.RemotingRef" Version="1.5.4" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\BetsForecast.Domain.csproj" />
+    <ProjectReference Include="..\..\..\..\Modules\AlphaPlus.PartialUM\AlphaPlus.PartialUM.csproj" />
+  </ItemGroup>
+</Project>

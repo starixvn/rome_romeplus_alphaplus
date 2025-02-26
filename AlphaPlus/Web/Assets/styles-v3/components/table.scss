@@ -1,0 +1,47 @@
+:root {
+    .tblRpt {
+        --bg-table: ##ffffff;
+        --border-table: #d1d1d1;
+        --bg-head-table: #666666;
+        --bg-head-table2: #3f3f3f;
+        --color-head: #ffffff;
+    }
+}
+:root [data-theme='dark'] {
+    .tblRpt {
+        --bg-table: #212223;
+        --border-table: #5f626b;
+        --bg-head-table: #4d4d4d;
+        --bg-head-table2: #3f3f3f;
+        --color-head: #ffffff;
+    }
+}
+.tblRpt {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border-table);
+
+    th,
+    td {
+        border-collapse: collapse;
+        border: 1px solid var(--border-table);
+        padding: 0 4px;
+        height: 27px;
+        vertical-align: middle;        
+    }
+    thead {
+        th,
+        td {
+            background-color: var(--bg-head-table);
+            color: var(--color-head);
+            font-weight: 500;
+        }
+        .thead-row2 {
+            th,
+            td {
+                background-color: var(--bg-head-table2);
+                font-weight: 400;
+            }
+        }
+    }
+}

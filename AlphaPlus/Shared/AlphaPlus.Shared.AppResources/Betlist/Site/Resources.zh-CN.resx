@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AA" xml:space="preserve">
+    <value>客客</value>
+  </data>
+  <data name="AD" xml:space="preserve">
+    <value>客和</value>
+  </data>
+  <data name="AH" xml:space="preserve">
+    <value>客主</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="AllEvents" xml:space="preserve">
+    <value>全部赛事</value>
+  </data>
+  <data name="Apr" xml:space="preserve">
+    <value>4月</value>
+  </data>
+  <data name="Aug" xml:space="preserve">
+    <value>8月</value>
+  </data>
+  <data name="Away" xml:space="preserve">
+    <value>客</value>
+  </data>
+  <data name="AwayNoBet" xml:space="preserve">
+    <value>Away No Bet</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>现金</value>
+  </data>
+  <data name="BetCount" xml:space="preserve">
+    <value>投注统计</value>
+  </data>
+  <data name="BetList" xml:space="preserve">
+    <value>投注历史</value>
+  </data>
+  <data name="BetType" xml:space="preserve">
+    <value>投注类别</value>
+  </data>
+  <data name="BetTypes" xml:space="preserve">
+    <value>投注类型</value>
+  </data>
+  <data name="BetsAndForecast" xml:space="preserve">
+    <value>投注 &amp; 预测</value>
+  </data>
+  <data name="BetsAndForecastGuidelines" xml:space="preserve">
+    <value>投注&amp;预测指南</value>
+  </data>
+  <data name="BrowserIsOutOfDate" xml:space="preserve">
+    <value>您的浏览器已过期，可能无法与我们的网站正常操作。为了提供更好的支援，我们强烈建议您升级至新的版本。</value>
+  </data>
+  <data name="ClickToUpdateBrowser" xml:space="preserve">
+    <value>点击此处升级浏览器</value>
+  </data>
+  <data name="ClickToViewScoreMapInfo" xml:space="preserve">
+    <value>点击查看盈利预测图资料</value>
+  </data>
+  <data name="ConnectionFailedTo3rd" xml:space="preserve">
+    <value>Connect failed to {0}</value>
+  </data>
+  <data name="DA" xml:space="preserve">
+    <value>和客</value>
+  </data>
+  <data name="DD" xml:space="preserve">
+    <value>和和</value>
+  </data>
+  <data name="DH" xml:space="preserve">
+    <value>和主</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="DeadBall" xml:space="preserve">
+    <value>非滚球</value>
+  </data>
+  <data name="Dec" xml:space="preserve">
+    <value>12月</value>
+  </data>
+  <data name="DrawNoBet" xml:space="preserve">
+    <value>Draw No Bet</value>
+  </data>
+  <data name="DrawSlashNoDraw" xml:space="preserve">
+    <value>和/No Draw</value>
+  </data>
+  <data name="Event" xml:space="preserve">
+    <value>赛事</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>导出到Excel</value>
+  </data>
+  <data name="FT" xml:space="preserve">
+    <value>全场</value>
+  </data>
+  <data name="FTDotOSlashE" xml:space="preserve">
+    <value>全场单双</value>
+  </data>
+  <data name="Feb" xml:space="preserve">
+    <value>2月</value>
+  </data>
+  <data name="FirstGoal" xml:space="preserve">
+    <value>最先得分</value>
+  </data>
+  <data name="Forecast" xml:space="preserve">
+    <value>预测</value>
+  </data>
+  <data name="ForecastAway" xml:space="preserve">
+    <value>客场预测</value>
+  </data>
+  <data name="ForecastHome" xml:space="preserve">
+    <value>主场预测</value>
+  </data>
+  <data name="ForecastWinLoss" xml:space="preserve">
+    <value>预测赢/输</value>
+  </data>
+  <data name="Forecast_Popup_1" xml:space="preserve">
+    <value>它始于新的直观目录</value>
+  </data>
+  <data name="Forecast_Popup_2" xml:space="preserve">
+    <value>意味着预测滚球让球盘的输/赢</value>
+  </data>
+  <data name="Forecast_Popup_3" xml:space="preserve">
+    <value>旧预测输/赢从0比分开始。</value>
+  </data>
+  <data name="Forecast_Popup_4" xml:space="preserve">
+    <value>新预测输赢从目前比分开始。</value>
+  </data>
+  <data name="Forecast_Popup_5" xml:space="preserve">
+    <value>每种投注类型都有各自预测输赢显示，请参阅本指南了解更多详情。</value>
+  </data>
+  <data name="Forecast_Title" xml:space="preserve">
+    <value>快速浏览投注&amp;预测</value>
+  </data>
+  <data name="Forecast_Title_Content" xml:space="preserve">
+    <value>这是最快、最集中的总投注和预测。</value>
+  </data>
+  <data name="Forecast_Title_LetsGo" xml:space="preserve">
+    <value>现在开始</value>
+  </data>
+  <data name="Forecast_Title_NotNow" xml:space="preserve">
+    <value>不是现在</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>从</value>
+  </data>
+  <data name="FullTime" xml:space="preserve">
+    <value>全场</value>
+  </data>
+  <data name="FullTimeOddEven" xml:space="preserve">
+    <value>全场单双</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>组别</value>
+  </data>
+  <data name="HA" xml:space="preserve">
+    <value>主客</value>
+  </data>
+  <data name="HD" xml:space="preserve">
+    <value>主和</value>
+  </data>
+  <data name="HDPOULive" xml:space="preserve">
+    <value>让球盘/大小盘/滚球</value>
+  </data>
+  <data name="HH" xml:space="preserve">
+    <value>主主</value>
+  </data>
+  <data name="HT" xml:space="preserve">
+    <value>半场</value>
+  </data>
+  <data name="HTSlashFT" xml:space="preserve">
+    <value>半场 / 全场</value>
+  </data>
+  <data name="HalfTime" xml:space="preserve">
+    <value>上半场</value>
+  </data>
+  <data name="Handicap" xml:space="preserve">
+    <value>让球盘</value>
+  </data>
+  <data name="HideMatch" xml:space="preserve">
+    <value>隐藏赛事</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>主</value>
+  </data>
+  <data name="HomeNoBet" xml:space="preserve">
+    <value>Home No Bet</value>
+  </data>
+  <data name="HomeSlashAway" xml:space="preserve">
+    <value>赛事</value>
+  </data>
+  <data name="Jan" xml:space="preserve">
+    <value>1月</value>
+  </data>
+  <data name="Jul" xml:space="preserve">
+    <value>7月</value>
+  </data>
+  <data name="Jun" xml:space="preserve">
+    <value>6月</value>
+  </data>
+  <data name="Keno" xml:space="preserve">
+    <value>快乐彩</value>
+  </data>
+  <data name="LastBall" xml:space="preserve">
+    <value>最后球</value>
+  </data>
+  <data name="LastGoal" xml:space="preserve">
+    <value>最后得分</value>
+  </data>
+  <data name="League" xml:space="preserve">
+    <value>联赛</value>
+  </data>
+  <data name="Live" xml:space="preserve">
+    <value>现场</value>
+  </data>
+  <data name="LiveBall" xml:space="preserve">
+    <value>现场球</value>
+  </data>
+  <data name="LiveGame" xml:space="preserve">
+    <value>Live Game</value>
+  </data>
+  <data name="Mar" xml:space="preserve">
+    <value>3月</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>5月</value>
+  </data>
+  <data name="MixParlay" xml:space="preserve">
+    <value>混合过关</value>
+  </data>
+  <data name="MoneyLine" xml:space="preserve">
+    <value>胜负盘</value>
+  </data>
+  <data name="NextBall" xml:space="preserve">
+    <value>下一颗球</value>
+  </data>
+  <data name="NextCombo" xml:space="preserve">
+    <value>下一球组合</value>
+  </data>
+  <data name="NextRSlashB" xml:space="preserve">
+    <value>下颗 红/蓝</value>
+  </data>
+  <data name="NoGoal" xml:space="preserve">
+    <value>无得分</value>
+  </data>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>没资料显示</value>
+  </data>
+  <data name="NonLive" xml:space="preserve">
+    <value>非现场</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>一般</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>您没有使用此功能的权限</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="Nov" xml:space="preserve">
+    <value>11月</value>
+  </data>
+  <data name="NumberGame" xml:space="preserve">
+    <value>数字游戏</value>
+  </data>
+  <data name="NumberGameNo" xml:space="preserve">
+    <value>数字游戏编号</value>
+  </data>
+  <data name="NumberWheel" xml:space="preserve">
+    <value>包牌</value>
+  </data>
+  <data name="OCommaE" xml:space="preserve">
+    <value>大/双</value>
+  </data>
+  <data name="OCommaO" xml:space="preserve">
+    <value>大/单</value>
+  </data>
+  <data name="OSlashE" xml:space="preserve">
+    <value>单双盘</value>
+  </data>
+  <data name="OSlashU" xml:space="preserve">
+    <value>大小盘</value>
+  </data>
+  <data name="Oct" xml:space="preserve">
+    <value>10月</value>
+  </data>
+  <data name="OddSlashEven" xml:space="preserve">
+    <value>单双</value>
+  </data>
+  <data name="Outright" xml:space="preserve">
+    <value>优胜冠军</value>
+  </data>
+  <data name="OutrightResults" xml:space="preserve">
+    <value>优胜冠军赛果</value>
+  </data>
+  <data name="OverCommaEven" xml:space="preserve">
+    <value>大/双</value>
+  </data>
+  <data name="OverCommaOdd" xml:space="preserve">
+    <value>大/单</value>
+  </data>
+  <data name="OverSlashUnder" xml:space="preserve">
+    <value>大小盘</value>
+  </data>
+  <data name="PartialUMAnnouncement" xml:space="preserve">
+    <value>我们正在更新此功能以获得更好的体验。 因此，此功能将暂时关闭（{0} - {1} (GMT+8)）。 请稍后再试，给您带来不便,敬请谅解。</value>
+  </data>
+  <data name="Platform_1" xml:space="preserve">
+    <value>桌机</value>
+  </data>
+  <data name="Platform_2" xml:space="preserve">
+    <value>手机</value>
+  </data>
+  <data name="Platform_3" xml:space="preserve">
+    <value>应用程式</value>
+  </data>
+  <data name="Platform_99" xml:space="preserve">
+    <value>未分类</value>
+  </data>
+  <data name="Platform_Uncategorized" xml:space="preserve">
+    <value>未分类</value>
+  </data>
+  <data name="PleaseChooseABetType" xml:space="preserve">
+    <value>请选择投注类别</value>
+  </data>
+  <data name="PleaseChooseAMatch" xml:space="preserve">
+    <value>Please choose a match</value>
+  </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>请选择</value>
+  </data>
+  <data name="PreGame" xml:space="preserve">
+    <value>Pre Game</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="ResultLinkText" xml:space="preserve">
+    <value>{0}的赛果请点击此处</value>
+  </data>
+  <data name="ResultPopupTitle" xml:space="preserve">
+    <value>{0}结果</value>
+  </data>
+  <data name="Results" xml:space="preserve">
+    <value>赛果</value>
+  </data>
+  <data name="Score" xml:space="preserve">
+    <value>比分</value>
+  </data>
+  <data name="ScoreMap" xml:space="preserve">
+    <value>盈利预测图</value>
+  </data>
+  <data name="ScoreMapInformation" xml:space="preserve">
+    <value>盈利预测图资料</value>
+  </data>
+  <data name="ScoreMapInformationDescription" xml:space="preserve">
+    <value>勾选, 选择框在盈利预测图功能被应用到投注类型如下：</value>
+  </data>
+  <data name="ScoreMapNoteContent" xml:space="preserve">
+    <value>此信息仅供参考。可能会逾期，请联系客服部以了解更多詳情。</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="SelectAnEvent" xml:space="preserve">
+    <value>选择一个赛事</value>
+  </data>
+  <data name="SelectAtLeastOneEvent" xml:space="preserve">
+    <value>请选择至少一个赛事</value>
+  </data>
+  <data name="SelectMatch" xml:space="preserve">
+    <value>选择赛事</value>
+  </data>
+  <data name="SelectedEvents" xml:space="preserve">
+    <value>选定赛事（S）</value>
+  </data>
+  <data name="Sep" xml:space="preserve">
+    <value>9月</value>
+  </data>
+  <data name="ShowAllLeagues" xml:space="preserve">
+    <value>所有联赛</value>
+  </data>
+  <data name="ShowAllLeaguesExcelTitle" xml:space="preserve">
+    <value>显示所有联赛</value>
+  </data>
+  <data name="Soccer" xml:space="preserve">
+    <value>足球</value>
+  </data>
+  <data name="Sport" xml:space="preserve">
+    <value>运动</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="Subtotal_com" xml:space="preserve">
+    <value>小计(佣金)</value>
+  </data>
+  <data name="Subtotal_wl" xml:space="preserve">
+    <value>小计(输赢)</value>
+  </data>
+  <data name="SystemParlay" xml:space="preserve">
+    <value>系统Parlay</value>
+  </data>
+  <data name="Team" xml:space="preserve">
+    <value>队伍</value>
+  </data>
+  <data name="ThereIsNoData" xml:space="preserve">
+    <value>没有数据</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>时间</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>到</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>总和</value>
+  </data>
+  <data name="TotalAway" xml:space="preserve">
+    <value>客场总和</value>
+  </data>
+  <data name="TotalBets" xml:space="preserve">
+    <value>总投注</value>
+  </data>
+  <data name="TotalGoal" xml:space="preserve">
+    <value>总进球</value>
+  </data>
+  <data name="TotalGoal01" xml:space="preserve">
+    <value>0-1</value>
+  </data>
+  <data name="TotalGoal23" xml:space="preserve">
+    <value>2-3</value>
+  </data>
+  <data name="TotalGoal46" xml:space="preserve">
+    <value>4-6</value>
+  </data>
+  <data name="TotalGoal4Over" xml:space="preserve">
+    <value>4 或以上</value>
+  </data>
+  <data name="TotalGoal7Over" xml:space="preserve">
+    <value>7球以上</value>
+  </data>
+  <data name="TotalHome" xml:space="preserve">
+    <value>主场总和</value>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>投注额</value>
+  </data>
+  <data name="UCommaE" xml:space="preserve">
+    <value>小/双</value>
+  </data>
+  <data name="UCommaO" xml:space="preserve">
+    <value>小/单</value>
+  </data>
+  <data name="UnderCommaEven" xml:space="preserve">
+    <value>小/双</value>
+  </data>
+  <data name="View1stHandicapForecast" xml:space="preserve">
+    <value>游览上半场亚洲盘预测图</value>
+  </data>
+  <data name="View1stOverUnderForecast" xml:space="preserve">
+    <value>游览上半场大小盘预测图</value>
+  </data>
+  <data name="ViewDataFromDate" xml:space="preserve">
+    <value>您可查看报表数据从 {0}.</value>
+  </data>
+  <data name="ViewHandicapForecast" xml:space="preserve">
+    <value>游览亚洲盘预测图</value>
+  </data>
+  <data name="ViewOverUnderForecast" xml:space="preserve">
+    <value>游览大小盘预测图</value>
+  </data>
+  <data name="Win" xml:space="preserve">
+    <value>输赢</value>
+  </data>
+  <data name="_1X2" xml:space="preserve">
+    <value>独赢盘</value>
+  </data>
+  <data name="_1stBall" xml:space="preserve">
+    <value>第一球</value>
+  </data>
+  <data name="_1stHalf" xml:space="preserve">
+    <value>上半场</value>
+  </data>
+  <data name="_1stHdp" xml:space="preserve">
+    <value>上半场亚洲盘</value>
+  </data>
+  <data name="_1stOU" xml:space="preserve">
+    <value>上半场大小盘</value>
+  </data>
+  <data name="agentPT" xml:space="preserve">
+    <value>代理占成数</value>
+  </data>
+  <data name="agentptcomm" xml:space="preserve">
+    <value>代理佔成數/ 佣金</value>
+  </data>
+  <data name="choice" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="ipnote" xml:space="preserve">
+    <value>由IP2Location™ 和 DNSstuff提供的国家与城市的信息只供参考, 并无保证. 如有需要, 请咨询其他可靠来源以获得最新的及准确的信息.</value>
+  </data>
+  <data name="lblComm" xml:space="preserve">
+    <value>佣金</value>
+  </data>
+  <data name="masterPT" xml:space="preserve">
+    <value>总代理占成数</value>
+  </data>
+  <data name="masterptcomm" xml:space="preserve">
+    <value>總代理佔成數/ 佣金</value>
+  </data>
+  <data name="member" xml:space="preserve">
+    <value>会员</value>
+  </data>
+  <data name="memberBetList" xml:space="preserve">
+    <value>会员</value>
+  </data>
+  <data name="number" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="odds" xml:space="preserve">
+    <value>赔率</value>
+  </data>
+  <data name="place" xml:space="preserve">
+    <value>位置</value>
+  </data>
+  <data name="platform" xml:space="preserve">
+    <value>平台</value>
+  </data>
+  <data name="stake" xml:space="preserve">
+    <value>本金</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="superPT" xml:space="preserve">
+    <value>超级总代理占成数</value>
+  </data>
+  <data name="superptcomm" xml:space="preserve">
+    <value>超級總代理佔成數/ 佣金</value>
+  </data>
+  <data name="transtime" xml:space="preserve">
+    <value>交易时间</value>
+  </data>
+  <data name="MemberRisk" xml:space="preserve">
+    <value>赢取金额</value>
+  </data>
+  <data name="AgentRisk" xml:space="preserve">
+    <value>代理风险</value>
+  </data>
+  <data name="MasterRisk" xml:space="preserve">
+    <value>总代理风险</value>
+  </data>
+  <data name="SuperRisk" xml:space="preserve">
+    <value>超级总代理风险</value>
+  </data>
+  <data name="FGSlashLG" xml:space="preserve">
+    <value>最先得分 / 最后得分</value>
+  </data>
+</root>

@@ -1,0 +1,40 @@
+@{
+    Layout = null;
+    async Task RenderCell(decimal total)
+    {
+        <td class="fcnum text-right">
+            <number value="@total" redpositive="true" />
+        </td>
+    }
+}
+
+@model IEnumerable<HalfTimeFullTime>
+@if (Model.Any())
+{
+    var number = 0;
+    foreach (var item in Model)
+    {
+        <tr class="@(number++ % 2 == 0 ? string.Empty : "odd")">
+            <td>@number</td>
+            <td><view-betlist matchid="@item.MatchId" bettype="BetTypeConstants.HTFT" text="@item.HomeName" /></td>
+            <td>@item.AwayName</td>
+            @{
+                await RenderCell(item.TotalHH);
+                await RenderCell(item.TotalHD);
+                await RenderCell(item.TotalHA);
+                await RenderCell(item.TotalDH);
+                await RenderCell(item.TotalDD);
+                await RenderCell(item.TotalDA);
+                await RenderCell(item.TotalAH);
+                await RenderCell(item.TotalAD);
+                await RenderCell(item.TotalAA);
+            }
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td colspan="12" class="text-center">@Resources.NoInformationIsAvailable</td>
+    </tr>
+}

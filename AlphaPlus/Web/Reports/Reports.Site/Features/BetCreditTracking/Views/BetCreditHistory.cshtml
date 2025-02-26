@@ -1,0 +1,117 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = Resources.BetCreditHistory;
+    var userguideLink = Model.GetUserGuideLink();
+    string FormatNullableNumber(decimal? number)
+    {
+        return number.HasValue ? number.Value.FormatNumber() : string.Empty;
+    }
+    void BuildBetCreditHistory(BetCreditHistoryEntity item)
+    {
+        <tr class="@(item.BetCredit == null ? "highlight-row" : string.Empty)">
+            <td>@item.ActionDateString</td>
+            <td class="text-center">@item.WinLostDateString</td>
+            <td class="text-left">@item.RefNo</td>
+            <td>@FormatNullableNumber(item.ActualStake)</td>
+            <td>@FormatNullableNumber(item.WinLoss) </td>
+            <td>@FormatNullableNumber(item.PlayerComm)</td>
+            <td>@FormatNullableNumber(item.BalanceChanged)</td>
+            <td>@FormatNullableNumber(item.NewBalance)</td>
+            <td>@item.GivenCredit.FormatNumber()</td>
+            <td class="@(item.BetCredit < 0M ? "red-cell" : string.Empty)">
+                @FormatNullableNumber(item.BetCredit)
+            </td>
+            <td class="text-left">@item.Action</td>
+        </tr>
+    }
+}
+@section Styles {
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode($"/bundles/site-reports/tab-{Model.CustLevel.DisplayName.ToLowerInvariant()}")
+    <link rel="stylesheet" href="~/bundles/betcredittracking/betcredithistory.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/bundles/betcredittracking/betcredithistory.js" asp-append-version="true"></script>
+}
+@model BetCreditHistoryViewModel
+<div class="page-title">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="javascript:;" aria-controls="home" role="tab" data-toggle="tab">@Resources.BetCreditHistory</a>
+        </li>
+        <li role="presentation">
+            <a class="open-link"
+                data-url="@MicroSites.ReportsUrl("~/BetCreditTracking/MoveStatementHistory")">@Resources.MoveStatementHistory</a>
+        </li>
+        <li>
+            <a href="@userguideLink" target="_blank"><span class="icon icon-information-outline"></span></a>
+        </li>
+    </ul>
+    <div class="list-icon">
+        <ul>
+            <li class="showfilter-element"><span class="icon-arrow-up-drop-circle icon-filter"
+                    title="@Resources.HideFilter"></span></li>
+            <li class="hidefilter-element"><span class="icon-arrow-down-drop-circle icon-filter"
+                    title="@Resources.ShowFilter"></span></li>
+        </ul>
+    </div>
+</div>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="betCreditHistory">
+        <form method="get" class="form-inline filter@(Model.IsFilterVisible ? string.Empty : " hide")" role="form"
+            id="report-form" asp-action="BetCreditHistorySearch">
+            <div class="form-group">
+                <label asp-for="Member">@Resources.Member <span style="color: #E54748;">*</span></label>
+                <input type="text" style="width: 200px;" autocomplete="off" placeholder="@Resources.Username"
+                    asp-for="Member" />
+            </div>
+            <div class="form-group">
+                <label asp-for="RefNo">@Resources.refno</label>
+                <input type="text" style="width: 170px;" maxlength="19" autocomplete="off" asp-for="RefNo" />
+            </div>
+            <daterange-picker model="Model.DateRangePicker" />
+            <div class="form-group">
+                <a id="icon-excel" class="icon-excel" title="@Resources.ExportToExcel"
+                    asp-action="BetCreditHistoryExcel" asp-all-route-data="Model.GetExcelParams()"></a>
+            </div>
+            <div id="validation-msg-error"
+                class="msg msg-error@(string.IsNullOrWhiteSpace(Model.ErrorMessage) ? " hide" : string.Empty)">
+                @Model.ErrorMessage</div>
+        </form>
+        @if (Model.ReportData != null && string.IsNullOrWhiteSpace(Model.ErrorMessage))
+        {
+            <table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover width-100per" id="tbl-report">
+                <thead>
+                    <tr>
+                        <th class="action-datetime-col">@Resources.ActionDateTime</th>
+                        <th>@Resources.WinLossDate</th>
+                        <th>@Resources.refno</th>
+                        <th>@Resources.ActualStake</th>
+                        <th>@Resources.WinLoss</th>
+                        <th>@Resources.PlayerComm</th>
+                        <th>@Resources.BalanceChange</th>
+                        <th>@Resources.NewBalance</th>
+                        <th>@Resources.GivenCredit</th>
+                        <th>@Resources.BetCredit</th>
+                        <th class="action-col">@Resources.Action</th>
+                    </tr>
+                </thead>
+                @if (Model.ReportData.Any())
+                {
+                    <tbody>
+                        @foreach (var record in Model.ReportData)
+                        {
+                            BuildBetCreditHistory(record);
+                        }
+                    </tbody>
+                }
+                else
+                {
+                    <no-information colspan="11" />
+                }
+            </table>
+        }
+    </div>
+</div>
+<pager model="Model.Pager" />
+<input type="hidden" id="UsernameIsRequired" value="@Resources.UsernameIsRequired" />
+<input type="hidden" id="InvalidRefNo" value="@Resources.InvalidRefNo" />

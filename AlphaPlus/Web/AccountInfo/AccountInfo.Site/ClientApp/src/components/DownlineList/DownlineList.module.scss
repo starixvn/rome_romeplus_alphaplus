@@ -1,0 +1,56 @@
+@import '../../styles/mixins';
+:root,
+:root [data-theme='light'] {
+    --status-color-active: #045ace;
+    --status-color-closed: #fe0000;
+    --status-color-suspended: #ff6100;
+ 
+}
+:root [data-theme='dark'] {
+    --status-color-active: #41a4ff;
+    --status-color-closed: #e54748;
+    --status-color-suspended: #e57b2d;
+}
+// Total Downline
+.status {
+    &-active {
+        color: var(--status-color-active);
+    }
+
+    &-closed {
+        color: var(--status-color-closed);
+    }
+
+    &-suspended {
+        color: var(--status-color-suspended);
+    }
+}
+
+.status-list {
+    display: table;
+    width: 100%;
+    line-height: initial;
+    padding: 10px 10px 5px;
+
+    .radio {
+        display: table-cell;
+        width: 33.3%;
+    }
+}
+
+.customer-list {
+    padding: 6px 10px 4px;
+    max-height: 290px;
+    overflow: auto;
+}
+
+@media only screen and (max-device-width: 767px) {
+    .status-list {
+        padding: calculateScale(10px) calculateScale(10px) calculateScale(5px);
+    }
+
+    .customer-list {
+        padding: 10px;
+        max-height: initial;
+    }
+}

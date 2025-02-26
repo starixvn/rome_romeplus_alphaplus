@@ -1,0 +1,37 @@
+@{
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+}
+
+@model IndexViewModel
+
+@section Styles {
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode($"/bundles/common/common-{Model.ActorLevel.DisplayName}")
+    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-accountinfo/index")
+    <link rel="stylesheet" asp-href-include="/main-*.css" />
+}
+
+@Html.AntiForgeryToken()
+<div id="root"></div>
+
+@section Scripts {
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    <script type="text/javascript">
+        const params = {
+            actorName: '@Model.ActorName',
+            actorRoleId: @Model.ActorLevel.Value,
+            mobileView: JSON.parse('@Model.MobileView'.toLowerCase()),
+            showLoginInfo: JSON.parse('@Model.ShowLoginInfo'.toLowerCase())
+        };
+    </script>
+
+    <script type="module" asp-src-include="/main-*.js"></script>
+    @* <script type="module">
+import RefreshRuntime from 'http://localhost:5173/@@react-refresh'
+RefreshRuntime.injectIntoGlobalHook(window)
+window.$RefreshReg$ = () => { }
+window.$RefreshSig$ = () => (type) => type
+window.__vite_plugin_react_preamble_installed__ = true
+</script>
+<script type="module" src=@("http://localhost:5173/@vite/client")></script>
+<script type="module" src="http://localhost:5173/src/main.tsx"></script> *@
+}

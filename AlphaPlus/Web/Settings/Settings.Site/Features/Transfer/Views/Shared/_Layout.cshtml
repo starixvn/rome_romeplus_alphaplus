@@ -1,0 +1,36 @@
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Core.Models
+@using AlphaPlus.Shared.AppResources.Settings.Transfer
+@inject IUserSession userSession
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@(ViewBag.Title ?? "Alpha - Sites")</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
+
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
+    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-transfer/default")
+    @StaticResources.RenderStylesWithDarkMode("~/Features/Transfer/assets/bundles/default")
+    @RenderSection("Styles", required: false)
+    @GoogleAnalyticHelper.GtagScript()
+</head>
+
+<body data-theme="@(string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark")">
+    @GoogleAnalyticHelper.GtagNoScript()
+    @RenderBody()
+
+    @Html.Hidden("NoInformationIsAvailable", @Resources.NoInformationIsAvailable)
+    @Html.Hidden("of", @Resources.of)
+    @Html.Hidden("Page", @Resources.Page)
+    @Html.Hidden("PageSize", @Resources.PageSize)
+
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    @StaticResources.AssetScripts.Render("/bundles/site-transfer/default")
+    @RenderSection("Scripts", required: false)
+</body>
+
+</html>

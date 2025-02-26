@@ -1,0 +1,98 @@
+﻿@using AlphaPlus.Features.Messages.API.Configurations
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Features.Site.Messages.ViewModels
+@using AlphaPlus.Shared.AppResources.Features.Messages
+
+@{
+    Layout = null;
+}
+@model BackupDomainsViewModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
+    @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/site-messages/message-{Model.RoleName}")
+    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/default-message")
+    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/backupdomains/backupdomains")
+    <title>@Resources.BackupDomains</title>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      @StaticResources.AssetScripts.RenderCommon("/bundles/common/support-IE8")
+    <![endif]-->
+    @GoogleAnalyticHelper.GtagScript()
+</head>
+<body>
+    <div class="scroll-tabs">
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#agency" aria-controls="agency" role="tab" data-toggle="tab">@Resources.AgencyDomains</a>
+            </li>
+            <li role="presentation">
+                <a href="#member" aria-controls="member" role="tab" data-toggle="tab">@Resources.MemberDomains</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="agency">
+            @{RenderDomainTable(Model.AgencyDomains, "agency");}
+        </div>
+        <div role="tabpanel" class="tab-pane" id="member">
+            @{RenderDomainTable(Model.MemberDomains, "member");}
+        </div>
+    </div>
+    @Html.Hidden("copyAll", Resources.CopyAll)
+    @Html.Hidden("copyDomain", Resources.CopyDomain)
+    @Html.Hidden("copied", Resources.Copied)
+    @Html.Hidden("inUse", Resources.InUse)
+    @Html.Hidden("domain", Resources.Domain)
+    @Html.Hidden("site-main", AppSettings.GetConfigValue("MainAppPath"))
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    @StaticResources.AssetScripts.RenderCommon("/bundles/site-messages/backup-domains")
+    @StaticResources.RenderScripts("~/assets/bundles/backupdomains/backupdomains")
+</body>
+</html>
+
+@functions {
+    void  RenderDomainTable(IEnumerable<string> domains, string id)
+    {
+        <table class="tblRpt tblRpt-bordered alternative-row-table tablesorter tblRpt-hover" id="tbl-@id">
+            <thead>
+                <tr>
+                    <th class="col-no">#</th>
+                    <th class="col-domain">@Resources.Domain</th>
+                    <th class="col-copy-domain">
+                        @Resources.CopyDomain
+                        <span class="icon icon-content-copy copy-all" id="icon-copy-all-@id" title="@Resources.CopyAll"></span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (domains.Any())
+                {
+                    var index = 0;
+                    foreach (var item in domains)
+                    {
+                        <tr>
+                            <td class="center">@(++index)</td>
+                            <td class="center">
+                                <a href="javascript:;" target="_blank" class="domain-url">@item</a>
+                            </td>
+                            <td class="center" data-domain="@item">
+                                <span class="icon icon-content-copy" id="icon-content-copy-@id-@index" title="@Resources.CopyDomain"></span>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="3" class="center">@Resources.NoInformationIsAvailable</td></tr>
+                }
+            </tbody>
+        </table>
+    }
+}

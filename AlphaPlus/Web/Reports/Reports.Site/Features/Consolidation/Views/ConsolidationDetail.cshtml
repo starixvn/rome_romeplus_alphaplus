@@ -1,0 +1,48 @@
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = Model.PageHeader.Title;
+}
+@section Scripts {
+    <script src="~/bundles/consolidation/consolidation-detail.js" asp-append-version="true"></script>
+}
+@model ConsolidationDetailViewModel
+<report-title model="Model.PageHeader" />
+<form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form">
+    <product-multiselection model="@Model.ProductViewModel" />
+    <daterange-picker model="Model.DateRangePicker" />
+    <div class="form-group hide">
+        <span id="icon-information" class="icon-information-outline"></span>
+    </div>
+    <div class="form-group">
+        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="ConsolidationDetailExcel"
+            asp-all-route-data="Model.GetExcelParams()"></a>
+    </div>
+    <input type="hidden" asp-for="CustId" />
+    <input type="hidden" asp-for="CustName" />
+    <input type="hidden" id="CustLevelId" name="CustLevelId" value="@Model.CustLevel.Value.ToString()" />
+    <input type="hidden" id="BreadcrumbsJson" name="BreadcrumbsJson"
+        value="@Model.PageHeader.BreadcrumbLevel.BreadcrumbsJson" />
+    <input type="hidden" asp-for="ConsolidationProductIds" />
+    <input type="hidden" asp-for="ConsolidationResourceIds" />
+    <input type="hidden" asp-for="UserSelectedCurrencyId" />
+    <input type="hidden" asp-for="ConsolidationFromDate" />
+    <input type="hidden" asp-for="ConsolidationToDate" />
+    <input type="hidden" asp-for="ConsolidationUserSelectedDateRangeOption" />
+    <input type="hidden" asp-for="ReportType" />
+</form>
+<partial name="ConsolidationDetailReportData" model="Model" />
+<a class="hide" id="LoadLegendURL" asp-action="WinLossDetail" asp-controller="Legends"
+    asp-route-MinDate="@Model.DateRangePicker.MinDate" asp-route-ShowDormantAccountsNote="True"></a>
+@if (Model.ReportType == "username")
+{
+    <a class="hide" id="hidden-consolidation-url" asp-action="ConsolidationByUsername"></a>
+}
+else if (Model.ReportType == "date")
+{
+    <a class="hide" id="hidden-consolidation-url" asp-action="ConsolidationByDate"></a>
+}
+else if (Model.ReportType == "product")
+{
+    <a class="hide" id="hidden-consolidation-url" asp-action="ConsolidationByProduct"></a>
+}

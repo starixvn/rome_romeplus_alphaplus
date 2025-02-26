@@ -1,0 +1,36 @@
+@using Fanex.BetList.Core.Utils;
+@{
+    ViewBag.Title = Model.Title;
+    var detailHistory = Model.CashOutModel == null ? [] : Model.CashOutModel.DetailHistory.ToList();
+}
+@model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.CashOutHistory.CashOutHistoryViewModel
+<table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist">
+    <thead>
+        <tr>
+            <th class="col-transtime">@Resources.DateTime</th>
+            <th class="col-transtime">@Resources.CashOutAmount</th>
+            <th class="">@Resources.Activity</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (detailHistory.Any())
+        {
+            foreach (var item in detailHistory)
+            {
+                <tr>
+                    <td class="col-transtime">@item.ChangeTimeText</td>
+                    <td class="col-transtime">@ConvertByBetType.Winloss(item.CashoutAmount)</td>
+                    <td class="choice-block">
+                        <div class="text-left">@item.ActionName</div>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="@Model.TotalColumn" class="text-center">@Resources.NetworkLatency</td>
+            </tr>
+        }
+    </tbody>
+</table>

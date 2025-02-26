@@ -1,0 +1,102 @@
+﻿@model ManageWatchlistAccountsViewModel
+
+@{
+    Layout = "~/Features/MemberInfo/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Model.IsEditWatchlistAccountsPopup ? "Edit Watchlist Account" : Resources.AddMembersToWatchlist;
+}
+
+@section Styles {
+    @StaticResources.RenderStylesWithDarkMode("~/Features/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings")
+    @StaticResources.RenderStylesWithMedia(767, "~/Features/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings-media")
+}
+
+@section Scripts {
+    @StaticResources.RenderScripts("~/Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/manage-watchlist-accounts")
+}
+
+<div class="box-settings">
+    <div id="alert-message"></div>
+    @if (Model.IsEditWatchlistAccountsPopup)
+    {
+        if (Model.Usernames.Split(',').Length > 1)
+        {
+                                    <div>@Model.Usernames</div>
+        }
+    }
+    else
+    {
+                    <div>
+                        <p class="note">@Resources.GlobalThresholdSettingsNote</p>
+                        <p>@Resources.EnterListOfMemberUsernames <span class="red">*</span> @Resources.MaximumMembers</p>
+                        <textarea rows="3" class="txt-usernames" name="usernames" id="txt-usernames">@if (!string.IsNullOrWhiteSpace(Model.Usernames))
+                {
+                    @Model.Usernames
+                }</textarea>
+                    </div>
+    }
+
+    <p style="margin-top: 10px;">@Resources.SelectThresholdPreset</p>
+    <div class="form-group">
+        <label class="lbl-threshold">@Resources.Preset</label>
+        <select id="preset-dropdown" name="presetFilter" class="sel-preset">
+            <option value="">@Resources.SelectPreset</option>
+            @foreach (var preset in Model.PresetSelectionViewModel.Presets)
+            {
+                            <option value="@preset.Value" @(preset.Selected ? " selected=\"selected\"" : string.Empty)>
+                    @preset.Text
+                            </option>
+            }
+        </select>
+    </div>
+    @if (Model.MyWatchlistPage)
+    {
+                    <div class="form-group">
+                        <label class="lbl-threshold" for="winningThreshold">@Resources.WinningThreshold</label>
+                        <input type="text" class="txt-threshold text-right" id="winningThreshold" maxlength="18" autocomplete="off" />
+                        <input type="checkbox" class="ckb-unlimited" id="winning-unlimited" />
+                        <label for="winning-unlimited" class="lbl-unlimited">@Resources.Unlimited</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl-threshold" for="losingThreshold">@Resources.LosingThreshold</label>
+                        <input type="text" class="txt-threshold text-right" id="losingThreshold" maxlength="18" autocomplete="off" />
+                        <input type="checkbox" class="ckb-unlimited" id="losing-unlimited" />
+                        <label for="losing-unlimited" class="lbl-unlimited">@Resources.Unlimited</label>
+                    </div>
+    }
+    else
+    {
+        @await Html.PartialAsync("~/Features/MemberInfo/Features/MyWatchlist/Shared/Views/ThresholdInputGroup.cshtml",
+                                           Model.Threshold)
+    }
+    @if (Model.IsEditWatchlistAccountsPopup)
+    {
+                    <button class="btn-submit" id="btn-update">@Resources.Update</button>
+    }
+    else
+    {
+                    <button class="btn-submit" id="btn-add">@Resources.Add</button>
+    }
+</div>
+@Html.AntiForgeryToken()
+<input type="hidden" id="member-info-url" value="@MicroSites.SettingUrl()">
+<input type="hidden" id="no-change-to-update-error" value="@Resources.NoChangeToUpdateError" />
+<input type="hidden" id="add-successfully" value="@Resources.AddSuccessfully" />
+<input type="hidden" id="update-successfully" value="@Resources.WatchlistUpdateSuccessfully" />
+<input type="hidden" id="is-not-member-error" value="@Resources.IsNotMemberError" />
+<input type="hidden" id="invalid-account-error" value="@Resources.InvalidAccountError" />
+<input type="hidden" id="was-added-watchlist-already-error" value="@Resources.WasAddedWatchlistAlreadyError" />
+<input type="hidden" id="not-in-watchlist-any-longer-error" value="@Resources.NotInWatchlistAnyLongerError" />
+<input type="hidden" id="must-enter-username-error" value="@Resources.MustEnterUsernameError" />
+<input type="hidden" id="more-usernames-error" value="@Resources.MoreThan50UsernamesError" />
+<input type="hidden" id="account-was-disabled-error" value="@Resources.AccountWasDisabled" />
+@if (Model.IsEditWatchlistAccountsPopup)
+{
+        <input type="hidden" id="old-winning-threshold" value="@Model.Threshold.WinningThreshold" />
+        <input type="hidden" id="old-losing-threshold" value="@Model.Threshold.LosingThreshold" />
+        <input type="hidden" id="usernames" value="@Model.Usernames" />
+        <input type="hidden" id="custids" value="@Model.CustIds" />
+}
+else
+{
+        <input type="hidden" id="must-enter-threshold-or-check-error" value="@Resources.MustEnterThresholdOrCheckError" />
+}

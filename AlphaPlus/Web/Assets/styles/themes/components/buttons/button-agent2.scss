@@ -1,0 +1,12 @@
+﻿@import "../../../abstracts/_agent-variables2.scss";
+
+.btn-default.with-level {
+    background-color: $account-info-tabs !important;
+    color: #fff !important;
+
+    &:hover,
+    &:active {
+        background-color: darken($account-info-tabs, 5%);
+        color: #fff;
+    }
+}

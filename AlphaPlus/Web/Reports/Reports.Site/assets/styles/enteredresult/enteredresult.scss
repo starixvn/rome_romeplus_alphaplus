@@ -1,0 +1,47 @@
+﻿:root,
+:root [data-theme='light'] {
+    --color-rp-win-loss: #ff4d00;
+    --color-non-entered-note1: #3333cc; 
+    --color-non-entered-note2: #ff4d00; 
+    --bg-rp-win-loss-total: #f8eb95;
+}
+:root [data-theme='dark'] {
+    --color-rp-win-loss: #ffd439;
+    --color-non-entered-note1: #3266cf; 
+    --color-non-entered-note2: #ff4D00; 
+    --bg-rp-win-loss-total: #7f3d1d;
+}
+.non-entered-note {
+    font-weight: bold;
+    color: var(--color-non-entered-note1);
+    margin-left: 14px;
+
+    span {
+        color: var(--color-non-entered-note2);
+    }
+}
+
+thead {
+    .total-row {
+        font-weight: bold;
+
+        td {
+            background-color: var(--bg-rp-win-loss-total);
+            height: 28px;
+            padding: 4px 8px;
+            white-space: nowrap;
+            vertical-align: middle;
+            -webkit-box-sizing: border-box;
+            -khtml-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            -o-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        td:nth-child(3),
+        td:nth-child(5) {
+            color: var(--color-rp-win-loss);
+        }
+    }
+}

@@ -1,0 +1,74 @@
+﻿@using AlphaPlus.Shared.AppResources.Settings
+
+@{
+    Layout = "_Layout.cshtml";
+    string language = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
+    string baseImagePath = "~/MemberInfo/assets/bundles/CustomerList/MultipleEditSportsBookGuideline/Super/{0}.{1}.png";
+
+    string figure1 = string.Format(baseImagePath, "1", language);
+    string figure2 = string.Format(baseImagePath, "2", language);
+    string figure3 = string.Format(baseImagePath, "3", language);
+
+    string figure4 = string.Format(baseImagePath, "4", language);
+    string figure5 = string.Format(baseImagePath, "5", language);
+    string figure6 = string.Format(baseImagePath, "6", language);
+
+    string targetRoleId = Context.Request.Query["targetRoleId"];
+    string classNameMaster = string.IsNullOrEmpty(targetRoleId) || targetRoleId == "3" ? string.Empty : "hide";
+    string classNameMember = !string.IsNullOrEmpty(targetRoleId) && targetRoleId == "1" ? string.Empty : "hide";
+}
+<div class="multiple-edit">
+    <div class="header-multiple-edit first-child" onclick="toggleHeader(this);">
+        <span class="iconBox @(classNameMaster.Length == 0 ? "expand-icon" : "collapse-icon")"></span>@Resources.SuperEditsMultipleMasters
+    </div>
+    <div class="@classNameMaster">
+        <ul>
+            <li>
+                <p>@Resources.SuperEditsMultipleMasters_Guideline1</p>
+                <div>
+                    <img src="@Url.Content(figure1)" />
+                    <p>@Html.Raw(Resources.SuperEditsMultipleMasters_Figure1)</p>
+                </div>
+            </li>
+            <li>
+                <p>@Html.Raw(Resources.SuperEditsMultipleMasters_Guideline2)</p>
+                <div>
+                    <img src="@Url.Content(figure2)" />
+                    <p>@Html.Raw(Resources.SuperEditsMultipleMasters_Figure2)</p>
+                </div>
+                <div>
+                    <img src="@Url.Content(figure3)" />
+                    <p>@Html.Raw(Resources.SuperEditsMultipleMasters_Figure3)</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="multiple-edit">
+    <div class="header-multiple-edit" onclick="toggleHeader(this);">
+        <span class="iconBox @(classNameMember.Length == 0 ? "expand-icon" : "collapse-icon")"></span>@Resources.SuperEditsMultipleMembers
+    </div>
+    <div class="@classNameMember">
+        <p class="normal-paragraph">@Resources.SuperEditsMultipleMembers_Note</p>
+        <ul>
+            <li>
+                <p>@Resources.SuperEditsMultipleMembers_Guideline4</p>
+                <div>
+                    <img src="@Url.Content(figure4)" />
+                    <p>@Html.Raw(Resources.SuperEditsMultipleMembers_Figure4)</p>
+                </div>
+            </li>
+            <li>
+                <p>@Html.Raw(Resources.SuperEditsMultipleMembers_Guideline5)</p>
+                <div>
+                    <img src="@Url.Content(figure5)" />
+                    <p>@Html.Raw(Resources.SuperEditsMultipleMembers_Figure5)</p>
+                </div>
+                <div>
+                    <img src="@Url.Content(figure6)" />
+                    <p>@Html.Raw(Resources.SuperEditsMultipleMembers_Figure6)</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

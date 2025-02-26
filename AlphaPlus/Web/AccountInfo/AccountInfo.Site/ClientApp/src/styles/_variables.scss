@@ -1,0 +1,183 @@
+﻿:root,
+:root [data-theme='light'] {
+    --font-family: Roboto, Arial, Tahoma, sans-serif;
+    --font-size: 13px;
+    --body-bg:#fff;
+
+    --text-color: #333;
+    --text-red-color: #9d1c1c;
+
+    --link-color: #045ace;
+    --link-hover-color: #f60;
+    --number-color: #004080;
+    --number-red-color: #ff0000;
+
+    --border-color: #dfdfdf;
+    --border-color-dark: #cecece;
+
+    --height-normal: 28px;
+    --height-mobile: 36px;
+
+    --icon-color: #888;
+    --icon-color-dark: #333;
+    --icon-hover-color: #e38514;
+    --icon-disable-color: lighten(--icon-color, 20%);
+    --icon-ic_list-color: #67151b;
+    --icon-credit-color: #325275;
+
+    --paging-bg: #fff;
+    --paging-item-color: #131212;
+    --paging-item-color-hover: #ff0000;
+    --paging-item-bg-hover: #ee6e73;
+    --paging-border: #666;
+
+    // Devices
+    --screen-device-lower768: 767px;
+    --screen-device-greater768: 768px;
+    --screen-device-greater1024: 1024px;
+
+    // Account status colors
+    --disabled-color: #045ace;
+    --disabled-bgcolor: #a0a97a;
+
+    --closed-color: #b50000;
+    --closed-pwdothers-bgcolor: #ccc7ba;
+    --closed-admin-bgcolor: #b3a2c7;
+    --closed-upline-bgcolor: #f79646;
+    --closed-otpsc-bgcolor: #86c5e4;
+    --closed-archive-bgcolor: #969696;
+
+    --suspended-color: #d45f12;
+    --suspended-bgcolor: #f8ded7;
+
+    //text input
+    --acc-info-input-border: #dfdfdf;
+    --acc-info-input-backgound: #ffffff;
+    --acc-info-input-color: #333;
+    //react auto suggest
+    --auto-suggest-border: #dfdfdf;  
+    --auto-suggest-color: #333;  
+    --auto-suggest-background: #fff;
+    --auto-suggest-box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+    --auto-suggest-background-hover: #ddd;
+    //tippy
+    --tippy-border: #ccc;
+    --tippy-border-after: #f2f2f2;
+    --tippy-border-bofore: #ccc;
+    --tippy-background: #f2f2f2;    
+    --tippy-color: #333;
+    --tippy-box-shadow: none;
+    //panel
+    --panel-background1: #fff;
+    --panel-background2: #f9f9f9;     
+    --panel-color: #666;
+    --panel-border1: #dcdcdc;
+    --panel-border2: #666666;
+    //select modal
+    --select-modal-border: #d3d3d3;
+    --select-modal-color: #545454;
+    //ReactModal
+    --ReactModal-background: rgba(255, 255, 255, 0.75) ;
+    --ReactModal-border-color: #d3d3d3;
+    //note 
+    --note-color: #666666;
+    --note-text-color: #ff0302;
+    --note-number-color: #333;
+    //popup
+    --member-balance-number-red: #ff0000;
+    --member-balance-number: #004080;
+
+}
+
+:root [data-theme='dark'] {
+    
+    --body-bg:#212223;
+
+    --text-color: #cbcbcb;
+    --text-red-color: #ff4f50;
+
+    --link-color: #41a4ff;
+    --link-hover-color: #f60;
+    --number-color: #0f7ddb;
+    --number-red-color: #e54748;
+
+    --border-color: #dfdfdf;
+    --border-color-dark: #cecece;
+
+    --height-normal: 28px;
+    --height-mobile: 36px;
+
+    --icon-color: #888;
+    --icon-color-dark: #333;
+    --icon-hover-color: #e38514;
+    --icon-disable-color: lighten(--icon-color, 20%);
+    --icon-ic_list-color: #41A4FF;
+    --icon-credit-color: #2E83CC;
+
+    --paging-bg: #fff;
+    --paging-item-color: #131212;
+    --paging-item-color-hover: #ff0000;
+    --paging-item-bg-hover: #ee6e73;
+    --paging-border: #666;
+
+    // Devices
+    --screen-device-lower768: 767px;
+    --screen-device-greater768: 768px;
+    --screen-device-greater1024: 1024px;
+
+    --component-bg-color: #2b2b2b;
+    --component-color: #e7e7e7;
+    --component-border-color: #474747;
+
+    // Account status colors
+    --disabled-color: #cbcbcb;
+    --disabled-bgcolor: #4b5425;
+
+    --closed-color: #cbcbcb;
+    --closed-pwdothers-bgcolor: #6e654e;
+    --closed-admin-bgcolor: #453659;
+    --closed-upline-bgcolor: #874d1e;
+    --closed-otpsc-bgcolor: #0d3c54;
+    --closed-archive-bgcolor: #0b2945;
+
+    --suspended-color: #cbcbcb;
+    --suspended-bgcolor: #805757;
+
+    //text input
+    --acc-info-input-border: #474747;
+    --acc-info-input-backgound: #313131;
+    --acc-info-input-color: #cbcbcb;
+    //react auto suggest
+    --auto-suggest-border: #474747;  
+    --auto-suggest-color: #e7e7e7;  
+    --auto-suggest-background: #2b2b2b;
+    --auto-suggest-box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+    --auto-suggest-background-hover: #3c3c3c;
+    //tippy
+    --tippy-border: #2E2E2E;
+    --tippy-border-after: #3e3e3e;
+    --tippy-border-bofore: #3e3e3e;
+    --tippy-background: #2E2E2E;    
+    --tippy-color: #EDEDED;
+    --tippy-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+    //panel
+    --panel-background1: #292A2B;
+    --panel-background2: #3A3A3A;      
+    --panel-color: #ededed;
+    --panel-border1: #575757;
+    --panel-border2: #EDEDED;
+    //select modal
+    --select-modal-border: #474747;
+    --select-modal-color: inherit;
+    //ReactModal
+    --ReactModal-background: rgba(0, 0, 0, 0.75) ;
+    --ReactModal-border-color: #474747 ;
+    //note 
+    --note-color: #fff;
+    --note-text-color: #FF4F50;
+    --note-number-color: #9c9c9c;
+    //popup
+    --member-balance-number-red: #e54748;
+    --member-balance-number: #0f7ddb;
+    
+}

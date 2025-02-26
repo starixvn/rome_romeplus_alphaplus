@@ -1,0 +1,180 @@
+﻿
+:root, :root [data-theme='light'] {
+    --filter-btn-link-color: #0B599C;
+    --filter-btn-link-bg: #D3DFEC;
+    --filter-btn-link-bg-hover: #c3d3e5;
+    --filter-bg-ic: #E6E6E6;
+    --filter-bg-ic-hover: #dadada;
+    //switch version
+    --link-version-border: #A5A5A5;
+    --link-version-color: #5A5A5A;
+    --link-version-bg: #F2F2F2;
+    //color ic
+    --color-ic-copy: #444;
+    --color-ic-excel: #1F7244;
+    --color-ic-information: #0b599c;
+}
+
+:root [data-theme='dark'] {
+    // filter
+    --filter-btn-link-color: #41A4FF;
+    --filter-btn-link-bg: #303740;
+    --filter-btn-link-bg-hover: #2d343c;
+    --filter-bg-ic: #2F2F2F;
+    --filter-bg-ic-hover: #2c2c2c;
+    //switch version
+    --link-version-border: #8B8B8B;
+    --link-version-color: #EDEDED;
+    --link-version-bg: #696969;
+    //color ic
+    --color-ic-copy: #ededed;
+    --color-ic-excel: #18965B;
+    --color-ic-information: #41a4ff;
+}
+
+.button-link {
+    display: block;
+    height: var(--btn-height);
+    color: var(--filter-btn-link-color);
+    background: var(--filter-btn-link-bg);
+    border-radius: 3px;
+    font-weight: bold;
+    padding: 8px 16px;
+    text-decoration: none;
+
+    &:hover, &:focus {
+        text-decoration: none;
+        color: var(--filter-btn-link-color);
+        background: var(--filter-btn-link-bg-hover);
+    }
+}
+.filter {
+    z-index: 100;
+    padding-top: 0;
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    position: relative;
+
+    .ic-copy, .ic-excel {
+        font-size: 20px;
+    }
+
+    .ic-copy {
+        color: var(--color-ic-copy);
+    }
+
+    .ic-excel {
+        &:before {
+            color: var(--color-ic-excel);
+        }
+    }
+
+    .ic-information {
+        font-size: 18px;
+        position: relative;
+        top: -4px;
+
+        &:before {
+            color: var(--color-ic-information);
+        }
+    }
+
+    [class^="ic-"], [class*=" ic-"]{
+        cursor: pointer;
+    }
+    .ic-copy, .icon-copy, .ic-excel {
+        background: var(--filter-bg-ic);
+        width: 28px;
+        height: 28px;
+        display: block;
+        text-align: center;
+        border-radius: 3px;
+        padding: 4px;
+        cursor: pointer;
+
+        &:hover {
+            background: var(--filter-bg-ic-hover);
+        }
+    }
+
+    .form-group {
+        margin: 0 24px 16px 0;
+        vertical-align: bottom;
+        position: relative;
+        &-short{
+            margin-right: 12px;
+        }
+        .label-form-control, label {
+            color: var(--text-color-label);
+            line-height: 16px;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+
+            [class^="ic-"], [class*=" ic-"] {
+                font-size: 16px;
+            }
+
+            [class^="icon-"], [class*=" icon-"] {
+                font-size: 12px;
+            }
+
+            [class^="ic-"], [class*=" ic-"], [class^="icon-"], [class*=" icon-"] {
+                cursor: pointer;
+                margin-left: auto;
+
+                &:hover {
+                    opacity: 0.75;
+                }
+            }
+        }
+
+        input[type='text'] {
+            width: 160px;
+            color: var(--text-color);
+        }
+
+        #txt-username {
+            width: 210px
+        }
+    }
+
+    .col-item {
+        display: flex;
+        align-items: center;
+
+        > * {
+            &:not(.tooltip ) {
+                margin: 0 0 0 16px;
+            }
+        }
+    }
+}
+
+
+.link-switch-version {
+    background: var(--link-version-bg);
+    border: 1px solid var(--link-version-border);
+    color: var(--link-version-color);
+    font-size: 13px;
+    line-height: 15px;
+    font-weight: bold;
+    padding: 5px 11px 1px 15px;
+    display: inline-flex;
+    border-radius: 3px;
+    text-decoration: none !important;
+
+    .icon-swap-horizontal {
+        font-size: 20px;
+        position: relative;
+        top: -2px;
+        left: -4px;
+    }
+
+    &:hover {
+        opacity: 0.85;
+        color: var(--link-version-color);
+    }
+}

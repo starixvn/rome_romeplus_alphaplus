@@ -1,0 +1,126 @@
+@{
+    Layout = null;
+    var isSuper = Model.ViewerLevel.IsSuperLevel();
+    var isMasterOrSuper = Model.ViewerLevel.IsMasterOrSuperLevel();
+    var thead1stIndex = 0;
+    var thead2ndIndex = 0;
+    void RenderRow(SettlementModel data, bool isTotalRow, bool isMasterOrSuper, bool isSuper)
+    {
+        <tr class="@(isTotalRow ? "tbl-footer" : string.Empty)">
+            @if (isTotalRow)
+            {
+                <td colspan="@(isSuper ? 4 : isMasterOrSuper ? 3 : 1)" id="groupTotal">@Resources.Total</td>
+            }
+            else
+            {
+                <td class="text-center" data-colname="month">@data.Month</td>
+                if (isMasterOrSuper)
+                {
+                    <td class="text-left" data-colname="whitelabel">@data.WhiteLabel</td>
+                    <td class="text-left" data-colname="agent">@data.Agent</td>
+                }
+                if (isSuper)
+                {
+                    <td class="text-left" data-colname="master">@data.Master</td>
+                }
+            }
+            <td data-colname="memberwinloss">@data.MemberWL.FormatNumber()</td>
+            <td data-colname="memberpromotion">@data.MemberPromotion.FormatNumber()</td>
+            <td data-colname="wllosscarryforward">@data.LossCarryforward.FormatNumber()</td>
+            <td data-colname="wlwinloss">@data.WhiteLabelWinLoss.FormatNumber()</td>
+            <td data-colname="wlnetwinloss">@data.WhiteLabelNetWinLoss.FormatNumber()</td>
+            <td data-colname="wlgrossfee">@data.WhiteLabelFee.FormatNumber()</td>
+            <td data-colname="wlpromotionsettlement">@data.WhiteLabelPromotionSettlement.FormatNumber()</td>
+            <td data-colname="wlpromotionshare">@data.WhiteLabelPromotionShare.FormatNumber()</td>
+            <td data-colname="wltotal" class="bold">@data.WhiteLabelTotal.FormatNumber()</td>
+            @if (isMasterOrSuper)
+            {
+                <td data-colname="masterearning">@data.MasterEarning.FormatNumber()</td>
+            }
+            @if (isSuper)
+            {
+                <td data-colname="superearning">@data.SuperEarning.FormatNumber()</td>
+            }
+            <td data-colname="companyincome">@data.CompanyIncome.FormatNumber()</td>
+            <td data-colname="companypromotionshare">@data.CompanyPromotionShare.FormatNumber()</td>
+            <td data-colname="companytotal" class="bold">@data.CompanyTotal.FormatNumber()</td>
+        </tr>
+    }
+}
+@model SettlementGetDataViewModel
+<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter width-100per" id="tbl-report"
+    data-cansort="@Model.ReportData.MoreThanOne">
+    <thead>
+        <tr>
+            <th rowspan="2" class="sorting" data-colindex="@(thead1stIndex++)" data-colname="month"
+                data-sorttype="text">@Resources.Month</th>
+            @if (isMasterOrSuper)
+            {
+                <th rowspan="2" class="sorting" data-colindex="@(thead1stIndex++)" data-colname="whitelabel"
+                    data-sorttype="text">@Resources.WhiteLabel</th>
+                <th rowspan="2" class="sorting" data-colindex="@(thead1stIndex++)" data-colname="agent"
+                    data-sorttype="text">@Resources.Agent</th>
+            }
+            @if (isSuper)
+            {
+                <th rowspan="2" class="sorting" data-colindex="@(thead1stIndex++)" data-colname="master"
+                    data-sorttype="text">@Resources.Master</th>
+            }
+            <th colspan="2" id="groupMember">@Resources.Member</th>
+            <th colspan="7" id="groupWhiteLabel">@Resources.WhiteLabel</th>
+            @{
+                thead2ndIndex = thead1stIndex + 9;
+            }
+            @if (isMasterOrSuper)
+            {
+                <th rowspan="2" class="sorting" data-colindex="@(thead2ndIndex++)" data-colname="masterearning">
+                    @Resources.MasterEarning</th>
+            }
+            @if (isSuper)
+            {
+                <th rowspan="2" class="sorting" data-colindex="@(thead2ndIndex++)" data-colname="superearning">
+                    @Resources.SuperEarning</th>
+            }
+            <th colspan="3" id="groupCompany">@Resources.Company</th>
+        </tr>
+        <tr class="thead-row2">
+            <th class="sorting" data-colindex="@(thead1stIndex++)" data-colname="memberwinloss">@Resources.WinLossTitle
+            </th>
+            <th class="sorting" data-colindex="@(thead1stIndex++)" data-colname="memberpromotion">@Resources.Promotion
+            </th>
+            <th class="sorting" data-colindex="@(thead1stIndex++)" data-colname="wllosscarryforward">
+                @Resources.LossCarryforward</th>
+            <th class="sorting" data-colindex="@(thead1stIndex++)" data-colname="wlwinloss">@Resources.WinLossTitle</th>
+            <th class="sorting" data-colindex="@(thead1stIndex++)" data-colname="wlnetwinloss">@Resources.NetWinLoss
+            </th>
+            <th class="sorting" data-colindex="@(thead1stIndex++)" data-colname="wlgrossfee">@Resources.GrossFee</th>
+            <th class="sorting" data-colindex="@(thead1stIndex++)" data-colname="wlpromotionsettlement">
+                @Resources.PromotionSettlement</th>
+            <th class="sorting" data-colindex="@(thead1stIndex++)" data-colname="wlpromotionshare">
+                @Resources.PromotionShare</th>
+            <th class="sorting" data-colindex="@(thead1stIndex++)" data-colname="wltotal">@Resources.TotalFee</th>
+            <th class="sorting" data-colindex="@(thead2ndIndex++)" data-colname="companyincome">@Resources.Income</th>
+            <th class="sorting" data-colindex="@(thead2ndIndex++)" data-colname="companypromotionshare">
+                @Resources.PromotionShare</th>
+            <th class="sorting" data-colindex="@(thead2ndIndex++)" data-colname="companytotal">@Resources.Total</th>
+        </tr>
+    </thead>
+    @if (Model.ReportData.HasData)
+    {
+        <tbody>
+            @foreach (var item in Model.ReportData.DataSource)
+            {
+                RenderRow(item, false, isMasterOrSuper, isSuper);
+            }
+        </tbody>
+        <tfoot>
+            @{
+                RenderRow(Model.ReportData.Total, true, isMasterOrSuper, isSuper);
+            }
+        </tfoot>
+    }
+    else
+    {
+        <no-information colspan="@(isSuper ? 18 : isMasterOrSuper ? 16 : 13)" />
+    }
+</table>

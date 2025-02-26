@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>AlphaPlus.Features.Messages.API</AssemblyName>
+    <RootNamespace>AlphaPlus.Features.Messages.API</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Fanex.RemotingRef" Version="1.5.2" />
+    <PackageReference Include="Fanex.Caching" Version="2.2.4" />
+    <PackageReference Include="MediatR" Version="11.1.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+    <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
+    <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.6" />
+    <PackageReference Include="Alpha.Announcements" Version="1.0.1" />
+    <PackageReference Include="Alpha.Announcements.UplineIdRule" Version="1.0.1" />
+    <PackageReference Include="RestSharp" Version="105.2.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
+    <ProjectReference Include="..\..\..\Modules\AlphaPlus.Utilities.IP\AlphaPlus.Utilities.IP.csproj" />
+    <ProjectReference Include="..\..\..\Shared\AlphaPlus.Shared.AppResources\AlphaPlus.Shared.AppResources.csproj" />
+  </ItemGroup>
+</Project>

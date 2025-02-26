@@ -1,0 +1,87 @@
+.btn-submit {
+  text-decoration: none;
+  color: #EDEDED;
+  padding: 6px 16px;
+  font-size: 13px;
+  display: inline-block;
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+.btn-border {
+    padding: 2px 5px;
+    color: #0b589c;
+    background: transparent;
+    border: 1px solid #0b589c;
+    font-size: 13px;
+    outline: none;
+    border-radius: 3px;
+
+    &:hover {
+        color: #fff;
+        background: #0b589c;
+    }
+}
+
+// result copy account
+.result {
+    padding: 20px 15px 20px 15px;   
+    border: 1px solid #E0E0E0;
+    background: #ffffff;
+    max-width: 930px;
+    
+    .note {
+        font-size: 13px;
+    }
+
+    .form-value {
+        border: 1px solid #d1d1d1;
+        padding: 5px 7px;
+        background: #E6E6E6 !important;
+        border-radius: 3px;
+        min-height: 33px;
+        height: auto;
+        line-height: 22px;
+        width: 100% !important;
+        font-size: 13px !important;
+        box-shadow: none;
+        opacity: 1 !important;
+        cursor: default !important;
+    }
+}
+
+.form-row {
+    margin-bottom: 12px;
+
+    label {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+        color: #333333;
+        display: block;
+        margin-bottom: 4px;
+        padding: 0;
+        background: none;
+        text-align: left;
+        white-space: break-spaces;
+    }
+}
+
+.tooltip {
+    background-color: transparent;
+    border-color: transparent;
+
+    .tooltip-inner {
+        padding: 8px;
+        background: #2E2E2E;
+        font-size: 12px;
+        line-height: 15px;
+        max-width: 250px;
+        color: #EDEDED;
+        text-align: inherit;
+    }
+
+    .tooltip-arrow {
+        border-bottom-color: #2E2E2E !important;
+    }
+}

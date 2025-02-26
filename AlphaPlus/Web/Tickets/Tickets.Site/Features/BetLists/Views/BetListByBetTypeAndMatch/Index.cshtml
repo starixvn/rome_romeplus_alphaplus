@@ -1,0 +1,23 @@
+@using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.BetListByBetTypeAndMatch
+@model BetListByBetTypeAndMatchViewModel
+@{
+    ViewData["Title"] = @Resources.BetList;
+}
+@section Scripts {
+    <script src="~/bundles/betlists/icon-note.js" asp-append-version="true"></script>
+}
+<div class="bl_title">
+    <div class="box">
+        <div>@Model.Title</div>
+        <div>
+            <partial name="IconInformation" model="new[] { Resources.ipnote, Resources.MemberWinNote }" />
+        </div>
+        <div class="push">
+            <div class="bl-export-excel">
+                <a asp-action="Excel" asp-all-route-data="@Model.GetExcelParams()" class="icon icon-excel"
+                    title="@Resources.ExportToExcel"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<partial name="TableWithoutWinLoss" model="Model" />

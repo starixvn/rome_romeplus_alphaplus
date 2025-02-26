@@ -1,0 +1,15 @@
+{
+    "SecurityCode": {
+        "IsActive": true,
+        "BetListsPaths": [
+            "BetChoiceMatching"
+        ],
+        "StatementPaths": [
+            "Statement"
+        ],
+        "Sites": [],
+        "VerifyingOtpPath": "Otp/VerifyOtp",
+        "VerifyingSecurityCodePath": "SecurityCode/VerifySecurityCode",
+        "ResetSecurityCodePath": "SecurityCode/ChangeSecurityCode"
+    }
+}

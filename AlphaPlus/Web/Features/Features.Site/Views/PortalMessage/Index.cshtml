@@ -1,0 +1,14 @@
+﻿@using AlphaPlus.Shared.AppResources.Features.Messages
+@model int
+@{ 
+    Layout = null;
+}
+<div class="notice-container">
+    <div class="panel-title"><span class="icon-announcements"></span>@Resources.announcement</div>
+    @await Html.PartialAsync("~/Views/PortalMessage/Messages.cshtml", new { totalMessage = Model })
+
+    <div class="more-info" totalMsg="@(Model + 10)">
+        @Resources.more
+        <span class="icon-arrow-down icon-more"></span>
+    </div>
+</div>

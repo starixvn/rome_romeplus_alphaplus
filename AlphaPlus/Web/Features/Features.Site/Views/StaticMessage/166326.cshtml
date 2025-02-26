@@ -1,0 +1,290 @@
+﻿@using AlphaPlus.Features.Messages.API.Services
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Features.Messages
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <title>New Announcement</title>
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
+    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-reports/default")
+    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/extendMessage")
+</head>
+<body>
+    <div class="baio-title-effect-date-format">@Lang.NewBetTypeTitle</div>
+    <table class="tblRpt tblRpt-bordered alternative-row-table width-100per tablesorter tblRpt-hover" id="tbl-report" style="padding: 0px;">
+        <thead class="tableFloatingHeaderOriginal">
+            <tr>
+                <th>@Lang.NewBetType</th>
+                <th>@Lang.BetSettingFollows</th>
+                <th>@Lang.CommissionSettingFollows</th>
+                <th>@Lang.PositionTakingSettingFollows</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9089")</td>
+                <td class="center" rowspan="52">@AlphaRemotingRefService.GetSportTypeName(43)</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOthers</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9090")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9091")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9092")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelHandicapFC</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9093")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9094")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelHandicapFC</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9095")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9096")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9097")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9098")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9099")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9100")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9101")</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9102")</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.moneyline</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9103")</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.moneyline</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9104")</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.moneyline</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9105")</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.moneyline</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9106")</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.moneyline</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9107")</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.moneyline</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9108")</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.moneyline</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9109")</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.moneyline</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9110")</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.moneyline</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9111")</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.moneyline</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9112")</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.moneyline</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9113")</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.moneyline</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9114")</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.moneyline</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9115")</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.moneyline</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9116")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelHandicapFC</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9117")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9118")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9119")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9120")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOddEven</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9121")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9122")</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.moneyline</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9123")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9124")</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.moneyline</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9125")</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.moneyline</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9126")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9127")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9128")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9129")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9130")</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.moneyline</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9131")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9132")</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.moneyline</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9133")</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.moneyline</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9134")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9135")</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.moneyline</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9136")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9137")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9138")</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.moneyline</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9139")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="baio-bettypes-content-bg">@AlphaRemotingRefService.GetBetTypeName("9140")</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

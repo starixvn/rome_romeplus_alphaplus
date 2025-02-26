@@ -1,0 +1,90 @@
+﻿@mixin box-shadow-multiple($string) {
+    @include css3-prefix('box-shadow', $string);
+}
+@mixin css3-prefix($property, $value) {
+    -webkit-#{$property}: #{$value};
+    -khtml-#{$property}: #{$value};
+    -moz-#{$property}: #{$value};
+    -o-#{$property}: #{$value};
+    #{$property}: #{$value};
+}
+
+@mixin border-radius($radius: 5px) {
+    @include css3-prefix('border-radius', $radius);
+}
+
+@mixin effect-normal() {
+    @include border-radius(1px);
+    -webkit-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+    -moz-box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+    box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+}
+
+
+$component-bg-hover: #3C3C3C;
+$component-bg: #2B2B2B;
+$component-color: #E7E7E7;
+$component-border-color: #474747;
+
+.columns-control-container {
+    input[type="checkbox"] {
+        display: inline-block;
+    }
+
+    label {
+        font-size: 100%;
+        margin: 0;
+        padding: 0 8px;
+    }
+
+    .columns-control-hint {
+        background-color: $component-bg;
+        border: 1px solid $component-border-color;
+        color: $component-color;
+        padding: 8px 15px;
+        position: absolute;
+        left: 200px;
+        top: 0;
+        @include effect-normal;
+
+        p {
+            margin-bottom: 5px;
+        }
+
+        label {
+            cursor: pointer;
+            padding: 0;
+        }
+    }
+
+    .columns-control {
+        background-color: $component-bg;
+        border: 1px solid $component-border-color;
+        color: $component-color;
+        position: absolute;
+        left: 55px;
+        top: 45px;
+        z-index: 10;
+        @include effect-normal;
+
+        ul {
+            margin: 10px 0;
+
+            li {
+                padding: 7px 20px;
+
+                &:hover {
+                    background-color: $component-bg-hover;
+                }
+
+                label {
+                    white-space: nowrap;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}

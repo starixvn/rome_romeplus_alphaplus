@@ -1,0 +1,223 @@
+@{
+    Layout = null;
+    var isSuperLevel = Model.CustLevel.IsSuperLevel();
+    var isMasterLevel = Model.CustLevel.IsMasterLevel();
+    var isMasterOrSuperLevel = Model.CustLevel.IsMasterOrSuperLevel();
+    var isAgentLevel = Model.CustLevel.IsAgentLevel();
+
+    void RenderRow(WinLossDetailModel data, bool isTotalRow = false)
+    {
+        var isDormantAccounts = data.CustId == 0;
+        <tr class="@(isTotalRow ? "tbl-footer" : (isDormantAccounts ? "dormant-accounts-mark" : string.Empty))">
+            <td @(isDormantAccounts || isTotalRow ? string.Empty : $"data-sortedvalue={data.CustName}")
+                class="text-left col-username">
+                @if (isTotalRow)
+                {
+                    @Resources.Total
+                }
+                else if (isDormantAccounts)
+                {
+                    <span class="pull-left">@Resources.DormantAccounts</span>
+                    <span class="icon icon-information-outline icon-dormant-accounts"
+                        title="@Resources.SummaryOfDormantAccounts"></span>
+                }
+                else if (isAgentLevel)
+                {
+                    <a class="open-link" data-url="@Model.GetBetListUrl(data.CustId, data.CustName)">@data.CustName</a>
+                }
+                else
+                {
+                    <a href="javascript:;" class="downline-link" data-custid="@data.CustId" data-custname="@data.CustName"
+                        data-custlevelid="@Model.DownlineLevelId">
+                        @data.CustName
+                    </a>
+                }
+            </td>
+            <td class="col-number-of-tickets">@data.NumberOfTickets.FormatNumber()</td>
+            @if (Model.PageHeader.IsStackMode)
+            {
+                <td class="visible-stack-mode combinedcell col-turnover-combined">
+                    <ul>
+                        <li>@data.Turnover.FormatNumber()</li>
+                        <li>@data.NetTurnover.FormatNumber()</li>
+                        <li>@data.GrossComm.FormatNumber()</li>
+                    </ul>
+                </td>
+                RenderStackNetWinLoss("member", data.MemberWinLoss, data.MemberComm, data.MemberTotal);
+                RenderStackNetWinLoss("agent", data.AgWinLoss, data.AgComm, data.AgTotal, "altercol");
+                if (isMasterOrSuperLevel)
+                {
+                    RenderStackNetWinLoss("master", data.MAgWinLoss, data.MAgComm, data.MAgTotal);
+                }
+                if (isSuperLevel)
+                {
+                    RenderStackNetWinLoss("super", data.SAgWinLoss, data.SAgComm, data.SAgTotal, "altercol");
+                }
+            }
+            else
+            {
+                <td class="hidden-stack-mode col-turnover">
+                    @data.Turnover.FormatNumber()
+                </td>
+                <td class="hidden-stack-mode col-net-turnover">
+                    @data.NetTurnover.FormatNumber()
+                </td>
+                <td class="hidden-stack-mode col-gross-com">
+                    @data.GrossComm.FormatNumber()
+                </td>
+                RenderNetWinLoss("member", data.MemberWinLoss, data.MemberComm, data.MemberTotal);
+                RenderNetWinLoss("agent", data.AgWinLoss, data.AgComm, data.AgTotal, "altercol");
+                if (isMasterOrSuperLevel)
+                {
+                    RenderNetWinLoss("master", data.MAgWinLoss, data.MAgComm, data.MAgTotal);
+                }
+                if (isSuperLevel)
+                {
+                    RenderNetWinLoss("super", data.SAgWinLoss, data.SAgComm, data.SAgTotal, "altercol");
+                }
+            }
+            <td class="col-company">@data.Company.FormatNumber()</td>
+        </tr>
+    }
+
+    void RenderStackNetWinLoss(string level, decimal winloss, decimal comm, decimal total, string highlightClass = "")
+    {
+        <td class="visible-stack-mode combinedcell col-@level-winloss-combined @highlightClass">
+            <ul>
+                <li>@winloss.FormatNumber()</li>
+                <li>@comm.FormatNumber()</li>
+                <li>@total.FormatNumber()</li>
+            </ul>
+        </td>
+    }
+
+    void RenderNetWinLoss(string level, decimal winloss, decimal comm, decimal total, string highlightClass = "")
+    {
+        <td class="hidden-stack-mode col-@level-winloss @highlightClass">
+            @winloss.FormatNumber()
+        </td>
+        <td class="hidden-stack-mode @highlightClass">
+            @comm.FormatNumber()
+        </td>
+        <td class="hidden-stack-mode bold @highlightClass">
+            @total.FormatNumber()
+        </td>
+    }
+}
+@model ConsolidationDetailViewModel
+<table
+    class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter width-100per@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
+    data-cansort="@Model.ReportData.MoreThanOne" data-sortedcolumn="@Model.SortPropertyName"
+    data-descendingsort="@Model.DescendingSort" data-productids="@Model.ProductViewModel.UserSelectedProductIds"
+    data-resourceids="@Model.ProductViewModel.UserSelectedResourceIds" data-fromdate="@Model.DateRangePicker.FromDate"
+    data-todate="@Model.DateRangePicker.ToDate" id="tbl-report" style="visibility:hidden">
+    <thead>
+        <tr>
+            <th class="sorting" rowspan="2" data-sortedname="CustName" data-colindex="0">@Resources.Username</th>
+            <th class="sorting" rowspan="2" data-sortedname="NumberOfTickets" data-colindex="1">@Resources.BetCount</th>
+            <th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="Turnover" data-colindex="2">
+                @Resources.Turnover</th>
+            <th rowspan="2" class="hidden-stack-mode col-netturnover-header sorting" data-sortedname="NetTurnover"
+                data-colindex="3">@Resources.NetTurnover</th>
+            <th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="GrossComm" data-colindex="4">
+                @Resources.GrossComm</th>
+            <th rowspan="2" class="visible-stack-mode col-netturnover-header col-combine sorting"
+                data-sortedname="Turnover" data-colindex="2">
+                <span class="prior-sortedcolumn">@Resources.TurnoverAbbr</span>@Resources.NetTurnoverAndGrossComm
+            </th>
+            <th colspan="3" class="col-level hidden-stack-mode" data-disabledsort="true">@Resources.Member</th>
+            <th class="visible-stack-mode col-combine sorting" data-sortedname="MemberWinLoss" rowspan="2"
+                data-colindex="3">@Resources.Member<br />(<span
+                    class="prior-sortedcolumn">@Resources.WinLossAbbr</span>@Resources.CommAndTotal)</th>
+            <th colspan="3" class="col-level hidden-stack-mode" data-disabledsort="true">@Resources.Agent</th>
+            <th class="visible-stack-mode col-combine sorting" data-sortedname="AgWinLoss" rowspan="2"
+                data-colindex="4">@Resources.Agent<br />(<span
+                    class="prior-sortedcolumn">@Resources.WinLossAbbr</span>@Resources.CommAndTotal)</th>
+            @if (isMasterOrSuperLevel)
+            {
+                <th colspan="3" class="col-level hidden-stack-mode" data-disabledsort="true">@Resources.Master</th>
+                <th class="visible-stack-mode col-combine sorting" data-sortedname="MAgWinLoss" rowspan="2"
+                    data-colindex="5">@Resources.Master<br />(<span
+                        class="prior-sortedcolumn">@Resources.WinLossAbbr</span>@Resources.CommAndTotal)</th>
+            }
+            @if (isSuperLevel)
+            {
+                <th colspan="3" class="col-level hidden-stack-mode" data-disabledsort="true">@Resources.Super</th>
+                <th class="visible-stack-mode col-combine sorting" data-sortedname="SAgWinLoss" rowspan="2"
+                    data-colindex="6">@Resources.Super<br />(<span
+                        class="prior-sortedcolumn">@Resources.WinLossAbbr</span>@Resources.CommAndTotal)</th>
+            }
+            @if (isAgentLevel)
+            {
+                <th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="11">
+                    @Resources.Company</th>
+                <th class="sorting visible-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="5">
+                    @Resources.Company</th>
+            }
+            else if (isMasterLevel)
+            {
+                <th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="14">
+                    @Resources.Company</th>
+                <th class="sorting visible-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="6">
+                    @Resources.Company</th>
+            }
+            else
+            {
+                <th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="17">
+                    @Resources.Company</th>
+                <th class="sorting visible-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="7">
+                    @Resources.Company</th>
+            }
+        </tr>
+        <tr class="thead-row2">
+            <th class="hidden-stack-mode col-winloss sorting" data-sortedname="MemberWinLoss" data-colindex="5">
+                @Resources.WinLoss</th>
+            <th class="hidden-stack-mode sorting" data-sortedname="MemberComm" data-colindex="6">
+                @Resources.Comm</th>
+            <th class="hidden-stack-mode sorting" data-sortedname="MemberTotal" data-colindex="7">
+                @Resources.Total</th>
+            <th class="hidden-stack-mode col-winloss sorting" data-sortedname="AgWinLoss" data-colindex="8">
+                @Resources.WinLoss</th>
+            <th class="hidden-stack-mode sorting" data-sortedname="AgComm" data-colindex="9">
+                @Resources.Comm</th>
+            <th class="hidden-stack-mode sorting" data-sortedname="AgTotal" data-colindex="10">
+                @Resources.Total</th>
+            @if (isMasterOrSuperLevel)
+            {
+                <th class="hidden-stack-mode col-winloss sorting" data-sortedname="MAgWinLoss" data-colindex="11">
+                    @Resources.WinLoss</th>
+                <th class="hidden-stack-mode sorting" data-sortedname="MAgComm" data-colindex="12">
+                    @Resources.Comm</th>
+                <th class="hidden-stack-mode sorting" data-sortedname="MAgTotal" data-colindex="13">
+                    @Resources.Total</th>
+            }
+            @if (isSuperLevel)
+            {
+                <th class="hidden-stack-mode col-winloss sorting" data-sortedname="SAgWinLoss" data-colindex="14">
+                    @Resources.WinLoss</th>
+                <th class="hidden-stack-mode sorting" data-sortedname="SAgComm" data-colindex="15">
+                    @Resources.Comm</th>
+                <th class="hidden-stack-mode sorting" data-sortedname="SAgTotal" data-colindex="16">
+                    @Resources.Total</th>
+            }
+        </tr>
+    </thead>
+    @if (Model.ReportData.HasData)
+    {
+        <tbody>
+            @foreach (var data in Model.ReportData.DataSource)
+            {
+                RenderRow(data);
+            }
+        </tbody>
+        <tfoot>
+            @{
+                RenderRow(Model.ReportData.Total, true);
+            }
+        </tfoot>
+    }
+    else
+    {
+        <no-information colspan="@(isSuperLevel ? 18 : (isMasterLevel ? 15 : 12))" />
+    }
+</table>

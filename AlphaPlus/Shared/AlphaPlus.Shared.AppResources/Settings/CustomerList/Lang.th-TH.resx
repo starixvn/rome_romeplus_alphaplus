@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Daily" xml:space="preserve">
+    <value>รายวัน</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>วันศุกร์</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>วันจันทร์</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>วันเสาร์</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>วันอาทิตย์</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>วันพฤหัส</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>วันอังคาร</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>วันพุธ</value>
+  </data>
+  <data name="AutoTransferPageHint_Member" xml:space="preserve">
+    <value>รายชื่อสมาชิก</value>
+  </data>
+  <data name="AutoTransferPageHint_Agent" xml:space="preserve">
+    <value>รายชื่อเอเย่นต์</value>
+  </data>
+  <data name="AutoTransferPageHint_Master" xml:space="preserve">
+    <value>รายชื่อตัวแทนหลัก</value>
+  </data>
+  <data name="TurnOnTransferBalanceDailyNoteMessage" xml:space="preserve">
+    <value>&lt;div style="font-weight:normal"&gt;&lt;b&gt;หมายเหตุ: &lt;/b&gt;การเปิดใช้งานการโอนยอดคงเหลือทั้งวันจะทำให้การโอนอัตโนมัติถูกปิดลงและจะล้างค่ากำหนดการการโอนอัตโนมัติทั้งหมดที่กำหนดโดย {0} สำหรับดาวน์ไลน์&lt;/div&gt;</value>
+  </data>
+  <data name="AutoTransfer_AffectTime" xml:space="preserve">
+    <value>เมื่อเปิดใช้งานแล้ว ยอดคงเหลือเมื่อวานจะถูกเคลีย ณ เวลา &lt;span&gt;12:00 น. (GMT+8)&lt;/span&gt;</value>
+  </data>
+  <data name="ConfirmAllowAutoTransferViewModelInCaseDisabledMemberMessage_Message" xml:space="preserve">
+    <value>คุณต้องการปิดใช้งานระบบโอนอัตโนมัติสำหรับบัญชีนี้หรือไม่: {0}?</value>
+  </data>
+  <data name="ConfirmAllowAutoTransferViewModelInCaseDisabledMemberMessage_Tip" xml:space="preserve">
+    <value>เคล็ดลับ: คุณสามารถเปิดหรือปิดใช้งานการโอนอัตโนมัติสำหรับหลายบัญชีได้ใน [ข้อมูลสมาชิก &gt;&gt; {0}] หรือ [โอน &gt;&gt; โอน] และติดตามความคืบหน้าใน [โอน &gt; การตรวจสอบการโอนอัตโนมัติ]</value>
+  </data>
+  <data name="ConfirmAllowAutoTransferViewModelInCaseEnabledMemberMessage_Message" xml:space="preserve">
+    <value>คุณต้องการเปิดใช้งานระบบโอนอัตโนมัติสำหรับบัญชีนี้หรือไม่: {0}?</value>
+  </data>
+  <data name="ConfirmAllowAutoTransferViewModelInCaseEnabledMemberMessage_Tip" xml:space="preserve">
+    <value>เคล็ดลับ: คุณสามารถเปิดหรือปิดใช้งานการโอนอัตโนมัติสำหรับหลายบัญชีได้ใน [ข้อมูลสมาชิก &gt;&gt; {0}] หรือ [โอน &gt;&gt; โอน] และติดตามความคืบหน้าใน [โอน &gt; การตรวจสอบการโอนอัตโนมัติ]</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>เลือกทั้งหมด</value>
+  </data>
+  <data name="Mon" xml:space="preserve">
+    <value>วันจันทร์</value>
+  </data>
+  <data name="Tue" xml:space="preserve">
+    <value>วันอังคาร</value>
+  </data>
+  <data name="Wed" xml:space="preserve">
+    <value>วันพุธ</value>
+  </data>
+  <data name="Thurs" xml:space="preserve">
+    <value>วันพฤหัส</value>
+  </data>
+  <data name="Fri" xml:space="preserve">
+    <value>วันศุกร์</value>
+  </data>
+  <data name="Sat" xml:space="preserve">
+    <value>วันเสาร์</value>
+  </data>
+  <data name="Sun" xml:space="preserve">
+    <value>วันอาทิตย์</value>
+  </data>
+  <data name="AutoTransfer_SetSchedule" xml:space="preserve">
+    <value>คุณสามารถตั้งค่ากำหนดการโอนอัตโนมัติสำหรับดาวน์ไลน์ของคุณได้จากตัวเลือกที่มีให้ตามเงื่อนไขการโอนของคุณ</value>
+  </data>
+  <data name="AutoTransfer_ClearSchedule" xml:space="preserve">
+    <value>*เมื่อปิดใช้งานแล้ว ตารางการโอนอัตโนมัติปัจจุบันจะถูกล้าง</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>อัปเดต</value>
+  </data>
+</root>

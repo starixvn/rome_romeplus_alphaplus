@@ -1,0 +1,23 @@
+@import '../../styles/_mixins.scss';
+
+.status-setting {
+    padding-left: 10px;
+    padding-right: 10px;
+
+    [class^='col'] {
+        line-height: 20px;
+        margin: 6px 0;
+    }
+}
+
+@media only screen and (max-device-width: 767px) {
+    .status-setting {
+        padding-left: calculateScale(10px);
+        padding-right: calculateScale(10px);
+
+        [class^='col'] {
+            line-height: calculateScale(20px);
+            margin: calculateScale(6px) 0;
+        }
+    }
+}

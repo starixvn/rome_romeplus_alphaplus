@@ -1,0 +1,289 @@
+@using AlphaPlus.BetLists.LastBets
+@using AlphaPlus.Core.Extensions
+@{
+    ViewBag.Title = Resources.ManageFilters;
+    var allFilterIds = new List<int>();
+    var hasData = Model.FilterConfiguration.Any();
+    void RenderTreeViewSports(int filterId, IEnumerable<Sport> sports)
+    {
+        <tr class="filter-by-sports-hidden" data-filterid="@filterId" data-filterbysports="1">
+            <td colspan="5">
+                <ul class="treeview">
+                    @foreach (var sport in sports)
+                    {
+                        <li>
+                            <div class="tree-node-name">
+                                <span class="arrow right"></span> @sport.Name
+                            </div>
+                            @{
+                                RenderTreeViewLeagues(sport.Leagues);
+                            }
+                        </li>
+                    }
+                </ul>
+            </td>
+        </tr>
+    }
+
+    void RenderTreeViewLeagues(IEnumerable<League> leagues)
+    {
+        <ul class="subtree">
+            @foreach (var league in leagues)
+            {
+                <li>@league.LeagueName</li>
+            }
+        </ul>
+    }
+
+    void RenderDropdownBetTypes(IEnumerable<string> betTypeNames)
+    {
+        var length = betTypeNames.Count();
+        if (length == 0)
+        {
+            @:@Resources.AllBetTypes
+        }
+        else if (length == 1)
+        {
+            @:@betTypeNames.First()
+        }
+        else
+        {
+            RenderDropdown(betTypeNames);
+        }
+    }
+
+    void RenderDropdownMembers(string members)
+    {
+        if (string.IsNullOrWhiteSpace(members))
+        {
+            @:@Resources.None
+        }
+        else
+        {
+            var memberList = members.ToList(',');
+            if (memberList.Length == 1)
+            {
+                @:@memberList[0]
+            }
+            else
+            {
+                RenderDropdown(memberList);
+            }
+        }
+    }
+
+    void RenderDropdown(IEnumerable<string> options)
+    {
+        <div class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                @options.Count() @Resources.Selected<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                @foreach (var item in options)
+                {
+                    <li><a href="javascript:;">@item</a></li>
+                }
+            </ul>
+        </div>
+    }
+}
+@section Styles {
+    @StaticResources.AssetStyles.Render("/bundles-v2/common/common")
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-betlists/monitoring-bets")
+    <link rel="stylesheet" href="~/bundles/betlists/manage-filters.css" asp-append-version="true" />
+}
+@section Scripts {
+    @StaticResources.AssetScripts.RenderCommon("/bundles-v2/site-betlists/monitoring-bets")
+    <script src="~/bundles/betlists/manage-filters.js" asp-append-version="true"></script>
+}
+@model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.LastBets.ManageFiltersViewModel
+<div class="bl_title">@Resources.ManageFilters</div>
+<div class="manage-filters">
+    <div id="inline-message" class="msg hide"></div>
+    <div class="block-btn">
+        <a class="button-cancel" asp-action="IndexNew" asp-controller="LastBets"
+            asp-route-filtername="@Model.FilterName" asp-route-limitrowcount="@Model.LimitRowCount"
+            asp-route-autostart="@Model.AutoStart">@Resources.Back</a>
+        <button type="button" class="button-remove" id="btn-delete-all-filters" @(hasData ? string.Empty :
+            "disabled")>@Resources.RemoveAllFilters</button>
+    </div>
+    <table class="tb tb-bordered tb-hover w-full" id="table-manage-filters">
+        <thead>
+            <tr>
+                <th>@Resources.FilterName</th>
+                <th class="width-180">@Resources.CreatedTime</th>
+                <th class="width-120">@Resources.SetDefault</th>
+                <th class="width-120">@Resources.Notification</th>
+                <th class="width-120">@Resources.Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (hasData)
+            {
+                foreach (var item in Model.FilterConfiguration)
+                {
+                    allFilterIds.Add(item.FilterId);
+                    <tr data-filterid="@item.FilterId" class="col-name">
+                        <td class="text-left">
+                            <div class="filter-name">
+                                <span class="arrow right"></span>
+                                <span id="span-filter-name-@item.FilterId">@item.FilterName</span>
+                            </div>
+                            <input type="text" value="@item.FilterName" class="hide" id="input-filter-name-@item.FilterId"
+                                autocomplete="off" maxlength="50" />
+                        </td>
+                        <td class="text-center" id="created-time-@item.FilterId">@(item.CreatedDate == DateTime.MinValue ? "N/A"
+                    : item.CreatedDate.ToLongDateTimeWithSlash())</td>
+                        <td class="text-center">
+                            @if (item.FilterId != 0)
+                            {
+                                <input type="radio" name="default" id="radio-default-@item.FilterId" class="radio-default"
+                                @(item.IsDefault ? "checked" : string.Empty) disabled />
+                            }
+                        </td>
+                        <td class="text-center">
+                            @if (item.FilterId != 0)
+                            {
+                                <div id="div-notify-@item.FilterId"
+                                    class="div-notify @(item.IsNotify ? "ic-notification" : "ic-notification-off")"></div>
+                            }
+                        </td>
+                        <td class="text-center">
+                            @if (item.FilterId == 0)
+                            {
+                                <span class="icon-save" id="icon-save-filter"></span>
+                                <span class="ic-delete"></span>
+                            }
+                            else
+                            {
+                                <div class="edit-group">
+                                    <span class="ic-edit"></span>
+                                    <span class="ic-delete"></span>
+                                </div>
+                                <div class="confirm-group hide">
+                                    <span class="ic-check"></span>
+                                    <span class="ic-close"></span>
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                    <tr class="filter-name-hidden sub-headed" data-filterid="@item.FilterId">
+                        <td colspan="5">
+                            <div class="filter-by-tickets">
+                                <span class="arrow right"></span> @Resources.FilterByTickets
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="filter-by-tickets-hidden row-level3" data-filterid="@item.FilterId" data-filterbytickets="1">
+                        <td>@Resources.BetType</td>
+                        <td colspan="4">@{
+                                RenderDropdownBetTypes(item.FilterXml.BetTypeNames);
+                            }</td>
+                    </tr>
+                    <tr class="filter-by-tickets-hidden row-level3" data-filterid="@item.FilterId" data-filterbytickets="1">
+                        <td>@Resources.stake</td>
+                        <td colspan="4">>= @item.FilterXml.Stake.ToString("N0")</td>
+                    </tr>
+                    <tr class="filter-by-tickets-hidden row-level3" data-filterid="@item.FilterId" data-filterbytickets="1">
+                        <td>@Resources.LiveStatus</td>
+                        <td colspan="4">
+                            @if (item.FilterXml.LiveStatus == LiveStatusConstants.NonLive)
+                            {
+                                @:@Resources.NonLive
+                            }
+                            else if (item.FilterXml.LiveStatus == LiveStatusConstants.Live)
+                            {
+                                @:@Resources.Live
+                            }
+                            else
+                            {
+                                @:@Resources.All
+                            }
+                        </td>
+                    </tr>
+                    <tr class="filter-name-hidden sub-headed" data-filterid="@item.FilterId">
+                        <td>
+                            <div class="filter-by-sports">
+                                @if (item.FilterXml.IsAllSports)
+                                {
+                                    @:@Resources.FilterBySports
+                                }
+                                else
+                                {
+                                    <span class="arrow right"></span> @Resources.FilterBySports
+                                }
+                            </div>
+                        </td>
+                        <td colspan="4">
+                            @if (item.FilterXml.IsAllSports)
+                            {
+                                @:@Resources.AllSports
+                            }
+                            else
+                            {
+                                @:@Resources.SpecificSports
+                            }
+                        </td>
+                    </tr>
+                    if (!item.FilterXml.IsAllSports)
+                    {
+                        RenderTreeViewSports(item.FilterId, item.FilterXml.FlatternSports);
+                    }
+                    <tr class="filter-name-hidden sub-headed" data-filterid="@item.FilterId">
+                        <td>
+                            <div class="filter-by-members">
+                                @if (item.FilterXml.FilterByMembers == FilterByMembersConstants.AllMembers)
+                                {
+                                    @:@Resources.FilterByMembers
+                                }
+                                else
+                                {
+                                    <span class="arrow right"></span> @Resources.FilterByMembers
+                                }
+                            </div>
+                        </td>
+                        <td colspan="4">@(item.FilterXml.FilterByMembers == FilterByMembersConstants.AllMembers ?
+                    Resources.AllMembers : Resources.SpecificMembers)</td>
+                    </tr>
+                    if (item.FilterXml.FilterByMembers != FilterByMembersConstants.AllMembers)
+                    {
+                        <tr class="filter-by-members-hidden row-level3" data-filterid="@item.FilterId" data-filterbymembers="1">
+                            <td>@Resources.ManuallyEntered</td>
+                            <td colspan="4">@{
+                                    RenderDropdownMembers(item.InputList);
+                                }</td>
+                        </tr>
+                        <tr class="filter-by-members-hidden row-level3" data-filterid="@item.FilterId" data-filterbymembers="1">
+                            <td>@Resources.FromMonitoredList</td>
+                            <td colspan="4">
+                                @if (item.FilterXml.FilterByMembers == FilterByMembersConstants.AllWatchlistMembers)
+                                {
+                                    @:@Resources.AllIncludedNewlyAddedMembers
+                                }
+                                else
+                                {
+                                    RenderDropdownMembers(item.WatchList);
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+            else
+            {
+                <no-infomation colspan="5" hastbody="false" />
+            }
+        </tbody>
+    </table>
+    <partial name="SaveFilterConfirmPopup" model="false" />
+    <input type="hidden" id="hidden-allFilterIds" value="@string.Join(",", allFilterIds)" />
+    <input type="hidden" id="hidden-confirmMessageRemoveAllFilters" value="@Resources.ConfirmMessageRemoveAllFilters" />
+    <input type="hidden" id="hidden-confirmMessageRemoveFilter" value="@Resources.ConfirmMessageRemoveFilter" />
+    <input type="hidden" id="hidden-removedSuccessfullyText" value="@Resources.RemovedSuccessfully" />
+    <input type="hidden" id="hidden-filterNameRequiredError"
+        value="@Resources.FilterConfigurationFilterNameRequiredError" />
+    <input type="hidden" id="hidden-noChangeToUpdate" value="@Resources.NoChangeToUpdate" />
+    <input type="hidden" id="hidden-confirmTurnOffNotification" value="@Resources.ConfirmTurnOffNotification" />
+    <input type="hidden" id="hidden-confirmTurnOnNotification" value="@Resources.ConfirmTurnOnNotification" />
+    <input type="hidden" id="hidden-chatbotUrl" value="@MicroSites.MainUrl("~/TelegramChatBot/Setup")" />
+</div>

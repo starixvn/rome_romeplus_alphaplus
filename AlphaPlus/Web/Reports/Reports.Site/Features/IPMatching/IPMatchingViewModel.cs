@@ -1,0 +1,41 @@
+using AlphaPlus.Core.Extensions;
+using AlphaPlus.Reports.Features.IPMatching;
+using AlphaPlus.Reports.Features.Shared.Models;
+using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using AlphaPlus.Shared.AppResources.Report;
+using AlphaPlus.Core.Utils;
+using AlphaPlus.Core.Helpers;
+
+namespace AlphaPlus.Reports.Site.Features.IPMatching;
+
+public class IPMatchingViewModel(IPMatchingQuery message, ReportData<IPMatchingModel> reportData)
+{
+    private static string BetListPath = MicroSites.TicketUrl("~/RiskAnalysisIPMatching/Index");
+
+    public string Today { get; } = SystemTime.Today.ToShortDateWithSlash();
+
+    public string MinDate { get; } = message.MinDate.ToShortDateWithSlash();
+
+    public string Date { get; } = message.Date.ToShortDateWithSlash();
+
+    public int MemberCount { get; } = message.MemberCount;
+
+    public PageHeaderViewModel PageHeader { get; }
+        = new PageHeaderViewModel(Resources.IPMatching, IsFilterVisible: message.IsFilterVisible);
+
+    public IEnumerable<SelectListItem> MemberCounts
+        => new int[] { 2, 3, 4, 5, 8, 10, 15, 20, 30, 50, 100 }
+        .Select(item => new SelectListItem($">= {item}", item.ToString()));
+
+    public ReportData<IPMatchingModel> ReportData { get; } = reportData;
+
+    public IDictionary<string, string> GetExcelParams()
+        => new Dictionary<string, string>
+        {
+            [nameof(Date)] = Date,
+            [nameof(MemberCount)] = MemberCount.ToString()
+        };
+
+    public string BuildBetListUrl(string ip) => $"{BetListPath}?date={Date}&ip={ip}";
+}

@@ -1,0 +1,188 @@
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Report
+@using AlphaPlus.Reports.Features.Shared.Extensions
+@using AlphaPlus.Reports.Features.ProgressiveContribution
+@using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components
+@using AlphaPlus.Reports.Site.Features.ProgressiveContribution
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AlphaPlus.Reports.Site
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = Model.PageHeader.Title;
+    var isSuperLevel = Model.CustLevel.IsSuperLevel();
+    var isMasterLevel = Model.CustLevel.IsMasterLevel();
+    var isMasterOrSuperLevel = Model.CustLevel.IsMasterOrSuperLevel();
+
+    void RenderProgressiveContribution(ProgressiveContributionEntity data)
+    {
+        <td class="col-turnover">@data.Turnover.FormatNumber()</td>
+        <td class="col-contribution">@data.Contribution.FormatNumber4()</td>
+        if (Model.PageHeader.IsStackMode)
+        {
+            if (isSuperLevel)
+            {
+                RenderStackContributionNumberCell("super", data.ContributionSuper, data.ContributionMaster,
+                data.ContributionAgent);
+            }
+            else if (isMasterLevel)
+            {
+                RenderStackContributionNumberCell("master", data.ContributionMaster, data.ContributionAgent);
+            }
+            else
+            {
+                RenderContributionNumberCell("agent", data.ContributionAgent);
+            }
+        }
+        else
+        {
+            if (isSuperLevel)
+            {
+                RenderContributionNumberCell("super", data.ContributionSuper);
+            }
+
+            if (isMasterOrSuperLevel)
+            {
+                RenderContributionNumberCell("master", data.ContributionMaster);
+            }
+
+            RenderContributionNumberCell("agent", data.ContributionAgent);
+        }
+
+        <td class="col-company">@data.CompanyContribution.FormatNumber4()</td>
+    }
+    void RenderContributionNumberCell(string level, decimal value)
+    {
+        <td class="hidden-stack-mode col-@level-contribution-share">
+            @value.FormatNumber4()
+        </td>
+    }
+    void RenderStackContributionNumberCell(string level, params decimal[] cellValues)
+    {
+        <td class="visible-stack-mode combinedcell col-@level-contribution-share-combined">
+            <ul>
+                @foreach (var cellValue in cellValues)
+                {
+                    <li>@cellValue.FormatNumber4()</li>
+                }
+            </ul>
+        </td>
+    }
+}
+@section Styles {
+    <link rel="stylesheet" href="~/bundles/progressivecontribution/progressivecontribution.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/bundles/progressivecontribution/progressivecontribution.js" asp-append-version="true"></script>
+}
+@model ProgressiveContributionViewModel
+<report-title model="Model.PageHeader" />
+<form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form">
+    <product-multiselection model="Model.ProductViewModel" />
+    @if (Model.IsHistoricReport)
+    {
+        <month-picker model="Model.MonthPicker" />
+        <div class="form-group">
+            <input type="submit" value="@Resources.Submit" class="btn-submit" />
+        </div>
+    }
+    else
+    {
+        <daterange-picker model="Model.DateRangePicker" />
+    }
+    <div class="form-group hide">
+        <span id="icon-information" class="icon-information-outline"></span>
+    </div>
+    <div class="form-group">
+        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
+            asp-all-route-data="Model.GetExcelParams()"></a>
+    </div>
+    <div class="note">
+        <span class="star">*</span>@Model.ViewDataInstructionMessage
+        <a href="javascript:;" id="historic-report"
+            data-is-historic-report="@Model.IsHistoricReport.ToString().ToLower()">@Model.ViewActionMessage</a>
+    </div>
+    <input type="hidden" id="IsStackMode" name="IsStackMode" value="@Model.PageHeader.IsStackMode.ToString()" />
+    <input type="hidden" asp-for="IsHistoricReport" />
+</form>
+<table
+    class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter tbl-progressive-contribution width-100per@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
+    id="tbl-report">
+    <thead>
+        <tr>
+            <th rowspan="2">@Resources.Product/@Resources.BetType</th>
+            <th rowspan="2">@Resources.Turnover</th>
+            <th rowspan="2">@Resources.ContributionAmount</th>
+            <th colspan="@Model.ContributionShareColumnsCount"
+                class="@(isMasterOrSuperLevel ? "hidden-stack-mode": string.Empty)">
+                @Resources.ContributionShare</th>
+            @if (isMasterOrSuperLevel)
+            {
+                <th rowspan="2" class="visible-stack-mode col-combine">
+                    @Resources.ContributionShare
+                    <br />
+                    @if (isMasterLevel)
+                    {
+                        <span>(@Resources.Master/@Resources.Agent)</span>
+                    }
+                    else
+                    {
+                        <span>(@Resources.Super/@Resources.Master/@Resources.Agent)</span>
+                    }
+                </th>
+            }
+            <th rowspan="2">@Resources.Company</th>
+        </tr>
+        <tr class="thead-row2">
+            @if (isSuperLevel)
+            {
+                <th class="hidden-stack-mode">@Resources.Super</th>
+            }
+            @if (isMasterOrSuperLevel)
+            {
+                <th class="hidden-stack-mode">@Resources.Master</th>
+            }
+            <th class="hidden-stack-mode">@Resources.Agent</th>
+        </tr>
+    </thead>
+    @if (Model.ReportData.Any())
+    {
+        <tbody>
+            @foreach (var data in Model.ReportData)
+            {
+                <tr class="product-row bold" data-product-id="@data.ProductId">
+                    <td class="text-left col-username">@data.ProductName</td>
+                    @{
+                        RenderProgressiveContribution(data.Total);
+                    }
+                </tr>
+                foreach (var item in data.ProgressiveContributions)
+                {
+                    <tr class="bet-type-row">
+                        <td class="text-left col-username">@item.BetTypeName</td>
+                        @{
+                            RenderProgressiveContribution(item);
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+        <tfoot>
+            <tr class="tbl-footer">
+                <td class="text-left col-username">@Resources.Total</td>
+                @{
+                    RenderProgressiveContribution(Model.Total);
+                }
+            </tr>
+        </tfoot>
+    }
+    else
+    {
+        <no-information colspan="Model.ReportColumnsCount" />
+    }
+</table>
+<a class="hide" id="LoadLegendURL" asp-action="Legend"></a>
+<input type="hidden" asp-for="IsSetDefaultStackMode" />
+<input type="hidden" asp-for="CustId" />
+<input type="hidden" id="CustLevelId" name="CustLevelId" value="@Model.CustLevel.Value.ToString()" />
+<input type="hidden" id="IsAgentLevel" value="@Model.CustLevel.IsAgentLevel().ToString()" />

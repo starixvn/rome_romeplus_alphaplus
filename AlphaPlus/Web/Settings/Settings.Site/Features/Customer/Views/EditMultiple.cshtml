@@ -1,0 +1,35 @@
+@model EditMultipleCustomersViewModel
+@{
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@(Model.CdnUri)edit-multiple-customers/index.css" asp-append-version="true" />
+}
+
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active">
+        @Html.AntiForgeryToken()
+        <div id="root"></div>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        const appConfig = @Html.Raw(Model.AppConfig);
+        const params = @Html.Raw(Model.Params);
+    </script>
+    <environment include="Development,Production">
+        <script type="module" src="@(Model.CdnUri)edit-multiple-customers/index.js" asp-append-version="true"></script>
+    </environment>
+    @* <environment include="Development">
+<script type="module">
+import RefreshRuntime from "http://localhost:4202/@@react-refresh";
+RefreshRuntime.injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => { };
+window.$RefreshSig$ = () => (type) => type;
+window.__vite_plugin_react_preamble_installed__ = true;
+</script>
+<script type="module" src=@("http://localhost:4202/@vite/client")></script>
+<script type="module" src="http://localhost:4203/src/main.tsx"></script>
+</environment> *@
+}

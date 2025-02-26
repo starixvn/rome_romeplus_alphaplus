@@ -1,0 +1,70 @@
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
+@using AlphaPlus.Settings.MemberInfo.Domain.Configurations
+@using AlphaPlus.Settings.Site.Features.CreateAccount.ViewModels
+@model CreateAccountViewModel
+@{
+    Layout = "~/Features/CreateAccount/Views/_Layout.cshtml";
+    var userguideLink = Model.GetUserGuideLink();
+
+    var userSession = AlphaPlus.Core.Models.UserSession.Current;
+}
+
+@section Styles {
+    @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/common/common-{Model.CustLevel}")
+    @StaticResources.RenderStyles("~/bundles/CreateAccount/create-account")
+}
+
+<div class="page-title">
+    @Model.PageTitle
+    &nbsp;<a href="@userguideLink" target="_blank"><span class="icon icon-information-outline"></span></a>
+</div>
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation">
+        <a class="open-link" data-url="@MicroSites.SettingUrl("~/CopyAccount/Index")">@Resources.SearchAndCopy</a>
+    </li>
+    <li role="presentation">
+        <a class="open-link" data-url="@MicroSites.SettingUrl($"~/Customer/Create?lng={Model.Language}&isDarkMode={Model.IsDarkMode.ToString().ToLowerInvariant()}")">@Resources.FullMode</a>
+    </li>
+    @if (Model.IsCreateMember)
+    {
+        <li class="has-icon" role="presentation">
+            <a class="open-link" data-url="@MicroSites.SettingUrl("~/QRCodeMemberSignIn/Index")">@Resources.QRCode</a>
+        </li>
+    }
+    <li role="presentation" class="new-function active">
+        <a href="javascript:;" aria-controls="home" role="tab" data-toggle="tab">@Resources.LiteMode</a>
+        <span class="bage-new">@Resources.lblNew</span>
+    </li>
+</ul>
+@await Html.PartialAsync("QuickIntroduction", new QuickIntroductionViewModel(userSession.UserName,
+    userSession.Language))
+@if (Model.IsLimitNewDownline)
+{
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active">
+            <div class="msg msg-error">
+                <span className="col-xs-12">@Model.ErrorMessage</span>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" id="SecretKey" value="@Model.SecretKey" />
+    <div id="root" style="height:100%"></div>
+    @section Scripts {
+    <script type="text/javascript">
+        const params = @Html.Raw(Model.Params);
+    </script>
+    @* <environment names="Development">
+<script type="module" src="http://localhost:5173/src/pages/createAccount.tsx"></script>
+</environment> *@
+    <environment names="Development,Production">
+        <link rel="stylesheet" href="~/createAccount.css" asp-append-version="true" />
+        <script type="module" src="~/createAccount.js" asp-append-version="true"></script>
+    </environment>
+    }
+}
+@StaticResources.RenderScripts("~/bundles/CreateAccount/create-account")

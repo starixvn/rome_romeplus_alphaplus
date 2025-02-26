@@ -1,0 +1,136 @@
+﻿@import '../Home/_variables.scss';
+@import '../Home/_mixins.scss';
+
+body {
+    font-size: calculateScale($font-size);
+    line-height: calculateScale(20px);
+}
+
+.hidden-mobile {
+    display: none !important;
+}
+
+.visible-mobile {
+    display: inline-block !important;
+}
+
+.nav-tabs {
+    display: table;
+    width: 100%;
+
+    li {
+        display: table-cell;
+        float: none;
+
+        a {
+            text-align: center;
+        }
+    }
+}
+
+.nav.nav-tabs > li {    
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+.nav.nav-tabs > li > a {
+    padding: calculateScale(10px) calculateScale(10px) calculateScale(8px);
+    font-size: calculateScale(13px);
+}
+
+.badge-title {
+    @include border-radius(calculateScale(3px));
+    padding: calculateScale(2px) calculateScale(4px);
+    font-size: calculateScale(11px);
+}
+
+.filter {
+    display: block;
+    padding-top: 10px;
+
+    .form-group label {
+        display: block;
+    }
+
+    .input-group.date {
+        .form-control {
+            @include box-shadow-multiple('none');
+            border: 1px solid $border-color;
+            height: calculateScale(28px);
+            line-height: calculateScale(28px);
+            padding-left: calculateScale(8px);
+            padding-right: calculateScale(8px);
+            font-size: calculateScale(12px);
+        }
+
+        .icon-calendar {
+            font-size: calculateScale(24px);
+        }
+    }
+
+    .form-group .control.date {
+        width: 164px;
+        margin-left: 0;
+    }
+
+    .form-group.group-button {
+        margin-right: 0;
+    }
+
+    .group-button .btn-submit {
+        height: calculateScale(28px);
+        margin-top: 33px;
+        margin-right: 0;
+        padding-left: calculateScale(16px);
+        padding-right: calculateScale(16px);
+    }
+}
+
+.tblRpt {
+    thead th, tbody td, tfoot td {
+        height: calculateScale(28px);
+        padding: calculateScale(4px) calculateScale(8px);
+    }
+    .row-first {
+        font-size: calculateScale(12px);
+    }
+}
+
+
+@media (max-device-width: 320px) {
+    .scroll-tabs {
+        display: block;
+        position: relative;
+        top: 0;
+        height: auto;
+        width: 100vw;        
+        padding: 0;        
+        -webkit-overflow-scrolling: touch;
+        overflow-x: scroll;
+        overflow-y: hidden;        
+        -webkit-user-select: none;
+    }
+
+    .nav-tabs {
+        display: inline-block;
+        position: relative;
+        width: auto;
+        white-space: nowrap;
+        overflow: hidden;
+    } 
+
+    .nav.nav-tabs > li {
+        display: inline-block;
+    
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+@media (max-device-width: 320px) {
+    .filter .group-button .btn-submit {
+        margin-top: 0;
+    }
+}

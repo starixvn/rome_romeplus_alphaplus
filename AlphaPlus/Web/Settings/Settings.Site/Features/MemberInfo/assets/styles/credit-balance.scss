@@ -1,0 +1,130 @@
+﻿@import "columns-control";
+
+.note {
+    color: #FF4F50;
+}
+
+.filter {
+    margin: 0 0 15px;
+    padding-top: 12px;
+    .form-group .btn-group {
+        float: unset;
+    }
+
+    label {
+        color: #333;
+        font-size: 100%;
+    }
+
+    p {
+        margin: 0 0 15px;
+    }
+
+    .typeahead {
+        width: 200px;
+
+        li {
+            &.active {
+                background-color: #ddd;
+            }
+
+            a {
+                padding: 7px 10px;
+            }
+        }
+    }
+
+    ::-webkit-input-placeholder {
+        font-style: italic;
+        color: #666;
+    }
+
+    ::-moz-placeholder {
+        font-style: italic;
+        color: #666;
+    }
+}
+
+#creditBalanceForm {
+    .multiselect-selected-text {
+        text-transform: none;
+    }
+
+    .multiselect-container.dropdown-menu label.radio {
+        display: block;
+    }
+}
+
+#tbl-container {
+    position: relative;
+}
+
+#tbl-report {
+    width: 100%;
+
+    .link {
+        &:focus {
+            color: #045ace;
+            text-decoration: none;
+        }
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    .text-sm {
+        font-size: 8pt;
+    }
+}
+
+// report-legend
+#report-legend, #product-pt-list-popup {
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    @include box-shadow-multiple(none);
+
+    .modal-dialog {
+        width: 700px;
+        margin: 0;
+        padding: 10px 0;
+
+        @media only screen and (max-device-width : 767px) {
+            width: 90%;
+        }
+
+        @media only screen and (max-device-width : 767px) and (orientation: landscape) {
+            width: 70%;
+        }
+
+        .modal-body {
+            padding-bottom: 0;
+        }
+
+        #msg-content {
+            padding: 12px 0;
+        }
+
+        .list-msg {
+            line-height: 28px;
+            margin-bottom: 0;
+        }
+
+        ul {
+            list-style-type: circle;
+
+            li {
+                margin-left: 30px;
+                p{
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+}
+
+.view-downline {
+    cursor: pointer
+}

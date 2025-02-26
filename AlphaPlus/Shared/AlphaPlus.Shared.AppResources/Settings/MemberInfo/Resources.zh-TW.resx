@@ -1,0 +1,1249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Product" xml:space="preserve">
+    <value>產品</value>
+  </data>
+  <data name="DoubleComm" xml:space="preserve">
+    <value>雙倍佣金</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>組別</value>
+  </data>
+  <data name="MemberCommission" xml:space="preserve">
+    <value>會員佣金</value>
+  </data>
+  <data name="Comm" xml:space="preserve">
+    <value>佣金</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>現金</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>投注額度</value>
+  </data>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>沒資料顯示</value>
+  </data>
+  <data name="Outstanding" xml:space="preserve">
+    <value>未完成交易</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>用戶名</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>動作</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>修改</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>所有產品</value>
+  </data>
+  <data name="NoSettingWarning" xml:space="preserve">
+    <value>產品設定還未配置，請您聯系您的上線</value>
+  </data>
+  <data name="DisabledProductWarning" xml:space="preserve">
+    <value>您被禁用此產品。請您聯系您的上線以便開啟</value>
+  </data>
+  <data name="SelectProducts" xml:space="preserve">
+    <value>選擇產品</value>
+  </data>
+  <data name="ThereIsNoProduct" xml:space="preserve">
+    <value>沒有產品</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>編號.</value>
+  </data>
+  <data name="PlayForFunMemberRequest" xml:space="preserve">
+    <value>免費試玩 - 會員要求</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>選定</value>
+  </data>
+  <data name="SettingRequiredWarning" xml:space="preserve">
+    <value>此產品必需在可用於投注前做設定配置</value>
+  </data>
+  <data name="Sync" xml:space="preserve">
+    <value>同步</value>
+  </data>
+  <data name="PlayForFunGuidelines" xml:space="preserve">
+    <value>免費試玩-指南</value>
+  </data>
+  <data name="BetSettingFollows" xml:space="preserve">
+    <value>投注設定複製跟隨</value>
+  </data>
+  <data name="CommissionSettingFollows" xml:space="preserve">
+    <value>佣金設定複製跟隨</value>
+  </data>
+  <data name="NewBetType" xml:space="preserve">
+    <value>新投注類別</value>
+  </data>
+  <data name="PositionTakingSettingFollows" xml:space="preserve">
+    <value>占成數設定複製跟隨</value>
+  </data>
+  <data name="NewBetTypeEffectDate" xml:space="preserve">
+    <value>籃球的新投注類別將於{0}開始生效</value>
+  </data>
+  <data name="ProgressiveJackpotGames" xml:space="preserve">
+    <value>積寶遊戲</value>
+  </data>
+  <data name="JackpotGames" xml:space="preserve">
+    <value>積寶遊戲</value>
+  </data>
+  <data name="TotalContributionRate" xml:space="preserve">
+    <value>總貢獻比率</value>
+  </data>
+  <data name="JackpotBetStake" xml:space="preserve">
+    <value>積寶賭註金額</value>
+  </data>
+  <data name="ProgressiveJackpotHandbookTitle" xml:space="preserve">
+    <value>累積積寶遊戲 - 手冊</value>
+  </data>
+  <data name="ProgressiveJackpotHandbookDetails" xml:space="preserve">
+    <value>點擊這裏查看新積寶遊戲細節。</value>
+  </data>
+  <data name="CreditBalance" xml:space="preserve">
+    <value>信用額度/餘額</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>關閉</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>禁用</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>開啟</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>暂停</value>
+  </data>
+  <data name="EnterUsername" xml:space="preserve">
+    <value>用戶名或名/姓</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>狀態</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="Credit" xml:space="preserve">
+    <value>信用額度</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>名</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>最後登入</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>姓</value>
+  </data>
+  <data name="LoginIP" xml:space="preserve">
+    <value>最後登入IP</value>
+  </data>
+  <data name="YesterdayBalance" xml:space="preserve">
+    <value>昨天餘額</value>
+  </data>
+  <data name="Of" xml:space="preserve">
+    <value>之第</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>頁</value>
+  </data>
+  <data name="AvailableCredit" xml:space="preserve">
+    <value>可用信用額</value>
+  </data>
+  <data name="DontShowAgain" xml:space="preserve">
+    <value>不再顯示</value>
+  </data>
+  <data name="ShowHideColumnHint" xml:space="preserve">
+    <value>右鍵單擊以顯示/隱藏列行</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="No2" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="MemberWinLossLimit" xml:space="preserve">
+    <value>會員輸贏限制</value>
+  </data>
+  <data name="SelectMaster" xml:space="preserve">
+    <value>選擇總代理</value>
+  </data>
+  <data name="SelectAgent" xml:space="preserve">
+    <value>代理選擇</value>
+  </data>
+  <data name="PlayerId" xml:space="preserve">
+    <value>玩家ID</value>
+  </data>
+  <data name="UsernamePlaceHolder" xml:space="preserve">
+    <value>用戶名或名/姓</value>
+  </data>
+  <data name="NoDataFound" xml:space="preserve">
+    <value>沒資料顯示</value>
+  </data>
+  <data name="AllAgent" xml:space="preserve">
+    <value>所有代理</value>
+  </data>
+  <data name="AutoDailyResetLimit" xml:space="preserve">
+    <value>每日限額自動重設</value>
+  </data>
+  <data name="CurrentWinLossAmount" xml:space="preserve">
+    <value>目前輸贏數額</value>
+  </data>
+  <data name="MaximumWin" xml:space="preserve">
+    <value>最高贏額 (根據信用額度)</value>
+  </data>
+  <data name="CurrentWinLimit" xml:space="preserve">
+    <value>目前贏額（%）</value>
+  </data>
+  <data name="CurrentLossLimit" xml:space="preserve">
+    <value>目前輸額限額 (%)</value>
+  </data>
+  <data name="MaximumLoss" xml:space="preserve">
+    <value>最高輸額</value>
+  </data>
+  <data name="RemainingBuyInAmount" xml:space="preserve">
+    <value>剩余買入金額</value>
+  </data>
+  <data name="YesterdayCashBalance" xml:space="preserve">
+    <value>昨天現金余額</value>
+  </data>
+  <data name="Cash" xml:space="preserve">
+    <value>現金</value>
+  </data>
+  <data name="ProblemMemberAccounts" xml:space="preserve">
+    <value>問題會員帳戶</value>
+  </data>
+  <data name="DateNotified" xml:space="preserve">
+    <value>通報日期 至</value>
+  </data>
+  <data name="ReviewStatus" xml:space="preserve">
+    <value>審查狀態</value>
+  </data>
+  <data name="MarkAsReviewed" xml:space="preserve">
+    <value>標記為已審核</value>
+  </data>
+  <data name="Reviewed" xml:space="preserve">
+    <value>已審查</value>
+  </data>
+  <data name="NotReviewed" xml:space="preserve">
+    <value>未審查</value>
+  </data>
+  <data name="Agent" xml:space="preserve">
+    <value>代理</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>會員</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>總代理</value>
+  </data>
+  <data name="SetReviewedForAccountOnly" xml:space="preserve">
+    <value>選擇的帳號設為已審核</value>
+  </data>
+  <data name="SetReviewedForDownline" xml:space="preserve">
+    <value>將所選的帳戶及受影響的下線設為已審核</value>
+  </data>
+  <data name="ProblemAgentAccounts" xml:space="preserve">
+    <value>問題代理商帳戶</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Nickname" xml:space="preserve">
+    <value>暱稱</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>導出Excel</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>到</value>
+  </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
+    <value>成功更新</value>
+  </data>
+  <data name="EnterAccount" xml:space="preserve">
+    <value>用戶名</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>沒有</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>選擇</value>
+  </data>
+  <data name="DateNotifiedFrom" xml:space="preserve">
+    <value>通報日期 至</value>
+  </data>
+  <data name="SelectedAccounts" xml:space="preserve">
+    <value>所選賬號：</value>
+  </data>
+  <data name="RequiredMaster" xml:space="preserve">
+    <value>請輸入有效總代理賬號</value>
+  </data>
+  <data name="RequiredAgent" xml:space="preserve">
+    <value>請輸入有效代理賬號</value>
+  </data>
+  <data name="ShowAllAccounts" xml:space="preserve">
+    <value>顯示所有 {0} 賬號？</value>
+  </data>
+  <data name="ProblemAccountList" xml:space="preserve">
+    <value>問題賬號列表</value>
+  </data>
+  <data name="ExportDate" xml:space="preserve">
+    <value>導出日期</value>
+  </data>
+  <data name="RemainingTransferInAmount" xml:space="preserve">
+    <value>轉入剩余的金額</value>
+  </data>
+  <data name="AccountInformation" xml:space="preserve">
+    <value>帳號資料</value>
+  </data>
+  <data name="CopyLink" xml:space="preserve">
+    <value>復制鏈接</value>
+  </data>
+  <data name="CreateAccount" xml:space="preserve">
+    <value>新增帳號功能</value>
+  </data>
+  <data name="CreateMemberWithQRCode" xml:space="preserve">
+    <value>用二維碼創建會員</value>
+  </data>
+  <data name="FirstNameOptional" xml:space="preserve">
+    <value>名 （可選擇性）</value>
+  </data>
+  <data name="InputExistingMemberAccount" xml:space="preserve">
+    <value>輸入現有會員賬號（您要使用於復制設置的）</value>
+  </data>
+  <data name="MemberCredit" xml:space="preserve">
+    <value>會員信用額度</value>
+  </data>
+  <data name="NewGivenCredit" xml:space="preserve">
+    <value>新信用額度</value>
+  </data>
+  <data name="PleaseShowThisQRCodeToYourMember" xml:space="preserve">
+    <value>請出示此二維碼給您的會員。</value>
+  </data>
+  <data name="ThisAccountHasBeenSuccessfullyCreated" xml:space="preserve">
+    <value>此賬號已成功創建。</value>
+  </data>
+  <data name="UpdateCredit" xml:space="preserve">
+    <value>更新信用額度</value>
+  </data>
+  <data name="UpdateInformation" xml:space="preserve">
+    <value>更新信息</value>
+  </data>
+  <data name="GivenCreditMustBeBetweenMinMax" xml:space="preserve">
+    <value>信用額必須在 {0} 和 {1} 之間</value>
+  </data>
+  <data name="MemberAccountIsInvalid" xml:space="preserve">
+    <value>會員賬號無效。</value>
+  </data>
+  <data name="UsernameIsInvalid" xml:space="preserve">
+    <value>此帳號無效.</value>
+  </data>
+  <data name="Domain" xml:space="preserve">
+    <value>域名</value>
+  </data>
+  <data name="PleaseInputMemberCredit" xml:space="preserve">
+    <value>請輸入會員信用額</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>密碼</value>
+  </data>
+  <data name="FirstLoginQRCode" xml:space="preserve">
+    <value>首次登入二維碼</value>
+  </data>
+  <data name="CannotCreateClosedMemberQRCode" xml:space="preserve">
+    <value>無法複製已停用或禁用帳戶的設定。</value>
+  </data>
+  <data name="CannotGenerateMessage" xml:space="preserve">
+    <value>由於此帳戶已有人使用，您無法重新取得行動條碼。</value>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>超級</value>
+  </data>
+  <data name="ShowPassword" xml:space="preserve">
+    <value>顯示密碼</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>階層</value>
+  </data>
+  <data name="RequiredPasswordError" xml:space="preserve">
+    <value>密碼不能留空</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>登入</value>
+  </data>
+  <data name="IndirectLogIn" xml:space="preserve">
+    <value>非間接登入</value>
+  </data>
+  <data name="IndirectLoginAccount" xml:space="preserve">
+    <value>非間接登入帳戶</value>
+  </data>
+  <data name="IndirectLoginAccountClosedOrDisabledError" xml:space="preserve">
+    <value>此賬戶已關閉或已禁用，請開啟它，再次重試。</value>
+  </data>
+  <data name="IndirectLoginAccountConfirmation" xml:space="preserve">
+    <value>非間接登入帳戶- 確認</value>
+  </data>
+  <data name="IndirectLoginAccountDisconnectSuccessfully" xml:space="preserve">
+    <value>已成功中斷該帳戶</value>
+  </data>
+  <data name="IndirectLoginAccountNewSuccessfully" xml:space="preserve">
+    <value>該帳戶已成功連接</value>
+  </data>
+  <data name="IndirectLoginAccountPasswordUpdated" xml:space="preserve">
+    <value>間接登入帳戶- 密碼已更新</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>中斷連接</value>
+  </data>
+  <data name="Connect" xml:space="preserve">
+    <value>連接</value>
+  </data>
+  <data name="DisconnectConfirmationMessage" xml:space="preserve">
+    <value>至清單中移除所選的次要帳戶，確定繼續嗎？</value>
+  </data>
+  <data name="ConnectToNewAccount" xml:space="preserve">
+    <value>連接到新帳戶</value>
+  </data>
+  <data name="NewIndirectLoginAccount" xml:space="preserve">
+    <value>新的間接登入帳戶</value>
+  </data>
+  <data name="RequiredYourDownlineUsernameOrNicknameError" xml:space="preserve">
+    <value>賬戶無效或不是您的下線。</value>
+  </data>
+  <data name="YourDownlineUsernameOrNickname" xml:space="preserve">
+    <value>您下線的用戶名或暱稱</value>
+  </data>
+  <data name="UpdatePasswordHint" xml:space="preserve">
+    <value>所選帳戶密碼已更新，請輸入新密碼。</value>
+  </data>
+  <data name="GivenCreditPopupTitle" xml:space="preserve">
+    <value>更新信用額度</value>
+  </data>
+  <data name="ArchiveDate" xml:space="preserve">
+    <value>存檔日期</value>
+  </data>
+  <data name="ArchiveStage" xml:space="preserve">
+    <value>存檔階段</value>
+  </data>
+  <data name="ClearedGivenCredit" xml:space="preserve">
+    <value>已被清除的信用額度</value>
+  </data>
+  <data name="DormantAccountArchiveProcess" xml:space="preserve">
+    <value>不活躍賬號存檔進行中</value>
+  </data>
+  <data name="DormantAccountList" xml:space="preserve">
+    <value>不活躍賬號名單</value>
+  </data>
+  <data name="DeletedSettings" xml:space="preserve">
+    <value>刪除設定</value>
+  </data>
+  <data name="ToBeClearedGivenCredit" xml:space="preserve">
+    <value>即將被清除的信用額度</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>總和</value>
+  </data>
+  <data name="CloseAccount" xml:space="preserve">
+    <value>賬號已關閉</value>
+  </data>
+  <data name="DeleteSettings" xml:space="preserve">
+    <value>賬號設定已刪除</value>
+  </data>
+  <data name="DisableAccount" xml:space="preserve">
+    <value>賬號已禁用</value>
+  </data>
+  <data name="DormantAccountClosedTooltip" xml:space="preserve">
+    <value>此線的會員在存檔截止日期前登入，如果會員有進行投註，那麽此線就不會被禁用。</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>{total}項目中{from}到{to}的顯示</value>
+  </data>
+  <data name="LockStatus" xml:space="preserve">
+    <value>鎖定狀態</value>
+  </data>
+  <data name="IndirectLoginAccountLockedError" xml:space="preserve">
+    <value>此賬號已被鎖定，請解鎖後再次重試。</value>
+  </data>
+  <data name="DeleteAccount" xml:space="preserve">
+    <value>刪除賬號</value>
+  </data>
+  <data name="DeletedAccount" xml:space="preserve">
+    <value>刪除賬號</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>刪除</value>
+  </data>
+  <data name="ParlayMaxPayoutSubTitle" xml:space="preserve">
+    <value>串關最高派彩 {0}</value>
+  </data>
+  <data name="ParlayMaxPayoutSingleSubText" xml:space="preserve">
+    <value>串關最高派彩: {0}</value>
+  </data>
+  <data name="ParlayMaxPayoutMultipleSubText" xml:space="preserve">
+    <value>串關最高派彩</value>
+  </data>
+  <data name="SingleMatchParlay" xml:space="preserve">
+    <value>單場串關</value>
+  </data>
+  <data name="Combo2" xml:space="preserve">
+    <value>複選 2</value>
+  </data>
+  <data name="Combo35" xml:space="preserve">
+    <value>複選 3-5</value>
+  </data>
+  <data name="ComboOver6" xml:space="preserve">
+    <value>複選 6+ &amp; 系統串關</value>
+  </data>
+  <data name="ParlayMaxPayoutUpdateSuccessfully" xml:space="preserve">
+    <value>修改成功</value>
+  </data>
+  <data name="InvalidMaxPayoutValueText" xml:space="preserve">
+    <value>該數額必須為正數</value>
+  </data>
+  <data name="GreaterThanMaxValueText" xml:space="preserve">
+    <value>&lt;BetType&gt;: 該設置 &lt;Column&gt; 高於上線。</value>
+  </data>
+  <data name="soccerParlay" xml:space="preserve">
+    <value>足球混合過關</value>
+  </data>
+  <data name="mixsports" xml:space="preserve">
+    <value>混合體育過關</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>新增日期</value>
+  </data>
+  <data name="ConditionToClearCredit" xml:space="preserve">
+    <value>清除信用額的條件</value>
+  </data>
+  <data name="CreditBalanceNote" xml:space="preserve">
+    <value>報告上顯示的餘額和投注額度與左側的“用戶資料”功能中顯示的相比可能不是最新的。您可以在 “信用額度/餘額” 頁面點擊投注額度查看最新的額度。</value>
+  </data>
+  <data name="WatchlistUpdateSuccessfully" xml:space="preserve">
+    <value>修改成功</value>
+  </data>
+  <data name="Locked" xml:space="preserve">
+    <value>已鎖定</value>
+  </data>
+  <data name="Unlimited" xml:space="preserve">
+    <value>無限</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>從</value>
+  </data>
+  <data name="CanViewReportData" xml:space="preserve">
+    <value>您可查看報表數據從 {0}.</value>
+  </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>頁面範圍</value>
+  </data>
+  <data name="ReachedThreshold" xml:space="preserve">
+    <value>已達限額</value>
+  </data>
+  <data name="MyWatchlist" xml:space="preserve">
+    <value>我的監控列表</value>
+  </data>
+  <data name="ThresholdType" xml:space="preserve">
+    <value>限額類别</value>
+  </data>
+  <data name="SupportsSportsbookDataOnly" xml:space="preserve">
+    <value>此功能僅適用於體育博彩</value>
+  </data>
+  <data name="GlobalWinningThreshold" xml:space="preserve">
+    <value>總體赢限額</value>
+  </data>
+  <data name="GlobalLosingThreshold" xml:space="preserve">
+    <value>總體輸限額</value>
+  </data>
+  <data name="LastReach" xml:space="preserve">
+    <value>已達最後限值</value>
+  </data>
+  <data name="LastThresholdType" xml:space="preserve">
+    <value>最後限額類型</value>
+  </data>
+  <data name="WinningLosingAmount" xml:space="preserve">
+    <value>赢/輸金額</value>
+  </data>
+  <data name="LastWinningThreshold" xml:space="preserve">
+    <value>最後赢限額</value>
+  </data>
+  <data name="LastLosingThreshold" xml:space="preserve">
+    <value>最後輸限額</value>
+  </data>
+  <data name="ReachCount" xml:space="preserve">
+    <value>已達限值的次數</value>
+  </data>
+  <data name="EditWatchlistAccount" xml:space="preserve">
+    <value>修改限額</value>
+  </data>
+  <data name="SelectThresholdPreset" xml:space="preserve">
+    <value>選擇預設限額或設置限額予以上會員：</value>
+  </data>
+  <data name="Preset" xml:space="preserve">
+    <value>預設</value>
+  </data>
+  <data name="PersonalThresholdPresets" xml:space="preserve">
+    <value>預設個人限額</value>
+  </data>
+  <data name="PersonalThresholdPresetSettings" xml:space="preserve">
+    <value>預設設置個人限額</value>
+  </data>
+  <data name="SelectPreset" xml:space="preserve">
+    <value>選擇預設</value>
+  </data>
+  <data name="WinningThreshold" xml:space="preserve">
+    <value>赢限額</value>
+  </data>
+  <data name="LosingThreshold" xml:space="preserve">
+    <value>輸限額</value>
+  </data>
+  <data name="GlobalThresholds" xml:space="preserve">
+    <value>總體限額</value>
+  </data>
+  <data name="GlobalThresholdSettings" xml:space="preserve">
+    <value>總體限額設置</value>
+  </data>
+  <data name="GlobalThresholdWillBeAppliedForMembers" xml:space="preserve">
+    <value>總體限額的設置適用於不在監控列表中的會員。</value>
+  </data>
+  <data name="AreYouSureToRemoveAccounts" xml:space="preserve">
+    <value>您確定要移除所選賬號嗎？</value>
+  </data>
+  <data name="ThresholdPresetName" xml:space="preserve">
+    <value>限額預設名稱</value>
+  </data>
+  <data name="AddMember" xml:space="preserve">
+    <value>添加會員</value>
+  </data>
+  <data name="EditMultiplePersonalThresholds" xml:space="preserve">
+    <value>修改多重個人限額</value>
+  </data>
+  <data name="RemoveMultipleAccounts" xml:space="preserve">
+    <value>移除多重賬號</value>
+  </data>
+  <data name="EditPersonalThreshold" xml:space="preserve">
+    <value>修改個人限額</value>
+  </data>
+  <data name="RemoveAccount" xml:space="preserve">
+    <value>移除賬號</value>
+  </data>
+  <data name="MustEnterThresholdOrCheckError" xml:space="preserve">
+    <value>請輸入限額 ，或選擇無限</value>
+  </data>
+  <data name="MustEnterThresholdError" xml:space="preserve">
+    <value>請輸入限額</value>
+  </data>
+  <data name="NoChangeToUpdateError" xml:space="preserve">
+    <value>沒有任何的變化更新。</value>
+  </data>
+  <data name="MoreThan50UsernamesError" xml:space="preserve">
+    <value>會員人數不可超過 50</value>
+  </data>
+  <data name="IsNotMemberError" xml:space="preserve">
+    <value>不是會員</value>
+  </data>
+  <data name="NotInWatchlistAnyLongerError" xml:space="preserve">
+    <value>已不在監控列表</value>
+  </data>
+  <data name="WasAddedWatchlistAlreadyError" xml:space="preserve">
+    <value>已在監控列表</value>
+  </data>
+  <data name="MustEnterUsernameError" xml:space="preserve">
+    <value>請輸入會員用戶名</value>
+  </data>
+  <data name="PresetIsNoLongerExists" xml:space="preserve">
+    <value>此預設不再存在</value>
+  </data>
+  <data name="PresetNameIsDuplicated" xml:space="preserve">
+    <value>預設名稱已存在</value>
+  </data>
+  <data name="MustEnterPresetNameError" xml:space="preserve">
+    <value>請輸入預設名稱</value>
+  </data>
+  <data name="EnterListOfMemberUsernames" xml:space="preserve">
+    <value>輸入會員用戶名</value>
+  </data>
+  <data name="MaximumMembers" xml:space="preserve">
+    <value>（最多 50 個會員，以逗號 ',' 分隔）</value>
+  </data>
+  <data name="DateTime" xml:space="preserve">
+    <value>日期時間</value>
+  </data>
+  <data name="Global" xml:space="preserve">
+    <value>總體</value>
+  </data>
+  <data name="Personal" xml:space="preserve">
+    <value>個人</value>
+  </data>
+  <data name="AddRow" xml:space="preserve">
+    <value>添加行列</value>
+  </data>
+  <data name="RemoveSuccessfully" xml:space="preserve">
+    <value>成功移除</value>
+  </data>
+  <data name="ReachHistory" xml:space="preserve">
+    <value>已達歷史記錄</value>
+  </data>
+  <data name="AreYouSureToRemovePreset" xml:space="preserve">
+    <value>您確定要移除此預設嗎？</value>
+  </data>
+  <data name="AccumulatedMemberWinLossOnlyStartsCountingNote" xml:space="preserve">
+    <value>累積輸贏僅在設置輸/贏限額 時開始計算。它將每天或在該功能關閉時重置。</value>
+  </data>
+  <data name="AddMembersToWatchlist" xml:space="preserve">
+    <value>添加會員在監控列表</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="AddSuccessfully" xml:space="preserve">
+    <value>添加成功</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>更改</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="EditMultiple" xml:space="preserve">
+    <value>多項編輯</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>資料</value>
+  </data>
+  <data name="AccumulatedMemberWinLossWillBeCountedNote" xml:space="preserve">
+    <value>累積輸贏將在注單結算後立即計算。一旦注單已經結算並積累，即使昨日未結算的賽事移到下一個工作日也將不會改變積累計算。</value>
+  </data>
+  <data name="MyThresholds" xml:space="preserve">
+    <value>我的限額</value>
+  </data>
+  <data name="MyThresholdsSettings" xml:space="preserve">
+    <value>我的限額設定</value>
+  </data>
+  <data name="GlobalThresholdSettingsNote" xml:space="preserve">
+    <value>當個別的會員贏/輸達到您想要的贏/輸限額時，您將收到以下通知：</value>
+  </data>
+  <data name="MyLosingThreshold" xml:space="preserve">
+    <value>我輸的限額</value>
+  </data>
+  <data name="MyThresholdSettingsNote" xml:space="preserve">
+    <value>當您的贏/輸（根據您自己在所有會員的佔成數）達到您想要的贏/輸限額時，您會收到以下的通知：</value>
+  </data>
+  <data name="MyWinningThreshold" xml:space="preserve">
+    <value>我贏的限額</value>
+  </data>
+  <data name="ThresholdSettingsNote" xml:space="preserve">
+    <value>如要禁用限額，請在贏/輸限額旁的無限格子打勾。</value>
+  </data>
+  <data name="Entered" xml:space="preserve">
+    <value>已完成</value>
+  </data>
+  <data name="NonEntered" xml:space="preserve">
+    <value>未完成</value>
+  </data>
+  <data name="lblPasswordRequire" xml:space="preserve">
+    <value>密码必须至少 8 个字符没有空格和包含至少 3个 以下：&lt;br&gt;
+&lt;br&gt;
+• 大写字母 [A-Z]&lt;br&gt;
+• 小写字母 [a-z]&lt;br&gt;
+• 数字 [0-9]&lt;br&gt;
+• 特殊字符 （!、 @、 # 等。。)&lt;br&gt;
+&lt;br&gt;
+例如： 59D7!4$h, 493abcDE&lt;br&gt;
+注意： 您的密码需有大小写</value>
+  </data>
+  <data name="UserNotExist" xml:space="preserve">
+    <value>此賬號不存在</value>
+  </data>
+  <data name="NoAccountCreatedFailed" xml:space="preserve">
+    <value>{0} 賬號創建失敗</value>
+  </data>
+  <data name="FailureReason" xml:space="preserve">
+    <value>失敗原因</value>
+  </data>
+  <data name="CreateMore" xml:space="preserve">
+    <value>創建更多</value>
+  </data>
+  <data name="CopyAccountNote" xml:space="preserve">
+    <value>注意：設定將與原始賬號保持相同</value>
+  </data>
+  <data name="NoOfAccounts" xml:space="preserve">
+    <value>賬號數量</value>
+  </data>
+  <data name="AccountDetails" xml:space="preserve">
+    <value>賬號的詳細資料</value>
+  </data>
+  <data name="AccountDetailsNote" xml:space="preserve">
+    <value>選擇第一個可用的用戶名，其餘的賬號將根據系統的建議。</value>
+  </data>
+  <data name="Usernames" xml:space="preserve">
+    <value>用戶名</value>
+  </data>
+  <data name="MemberMaxCredit" xml:space="preserve">
+    <value>會員最高信用額</value>
+  </data>
+  <data name="GivenCreditPerAccount" xml:space="preserve">
+    <value>每個賬號的信用額度</value>
+  </data>
+  <data name="ClassicView" xml:space="preserve">
+    <value>經典版</value>
+  </data>
+  <data name="AvailableGivenCredit" xml:space="preserve">
+    <value>可用信用額度</value>
+  </data>
+  <data name="InvalidMemberMaxCredit" xml:space="preserve">
+    <value>會員信用額應在0和{0}之間</value>
+  </data>
+  <data name="AccountWasDisabled" xml:space="preserve">
+    <value>這個帳號禁用</value>
+  </data>
+  <data name="SourceAccount" xml:space="preserve">
+    <value>賬號來源。</value>
+  </data>
+  <data name="MaxCreditPerMember" xml:space="preserve">
+    <value>每個會員的最高信用額</value>
+  </data>
+  <data name="InvalidMaxCreditPerAccount" xml:space="preserve">
+    <value>每個賬號最高信用額度: {0} 或是降低。</value>
+  </data>
+  <data name="CreateCustomerSuccessMessage" xml:space="preserve">
+    <value>{0} 賬號已經創建成功。</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>複製！</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>複製</value>
+  </data>
+  <data name="lblUsername" xml:space="preserve">
+    <value>用戶名</value>
+  </data>
+  <data name="pendingTransfer3rd" xml:space="preserve">
+    <value>第三方待定轉賬</value>
+  </data>
+  <data name="EditSetting" xml:space="preserve">
+    <value>修改設定</value>
+  </data>
+  <data name="EditMutipleSetting" xml:space="preserve">
+    <value>修改多重設置</value>
+  </data>
+  <data name="AddToMyWatchlist" xml:space="preserve">
+    <value>添加至我的監控列表</value>
+  </data>
+  <data name="AddMultipleAccountsToWatchlist" xml:space="preserve">
+    <value>將多重賬號添加到我的監控列表</value>
+  </data>
+  <data name="SuspendMultipleAccounts" xml:space="preserve">
+    <value>暫停多重賬號</value>
+  </data>
+  <data name="SetThresholds" xml:space="preserve">
+    <value>設定限額</value>
+  </data>
+  <data name="AccountsAlreadyInWatchlist" xml:space="preserve">
+    <value>{0} 現有賬號在我的監控列表中</value>
+  </data>
+  <data name="NewlyAddedAccounts" xml:space="preserve">
+    <value>新添加的賬號</value>
+  </data>
+  <data name="AddToWatchListConfirmThresholds" xml:space="preserve">
+    <value>建議設定限額予以上新添加賬號。點擊&lt;b&gt;設定限額&lt;/b&gt;繼續進行。</value>
+  </data>
+  <data name="AddMultipleToWatchlistExceedMessage" xml:space="preserve">
+    <value>您一次最多只能添加50個會員至監控列表</value>
+  </data>
+  <data name="AddMultipleToWatchlist" xml:space="preserve">
+    <value>將多重賬號添加到我的監控列表</value>
+  </data>
+  <data name="MarkMultipleAsReviewed" xml:space="preserve">
+    <value>將多重賬號標記為已審核</value>
+  </data>
+  <data name="ProblemAccount" xml:space="preserve">
+    <value>問題賬號</value>
+  </data>
+  <data name="SuspendAccount" xml:space="preserve">
+    <value>暫停賬號</value>
+  </data>
+  <data name="ShowMore" xml:space="preserve">
+    <value>顯示更多</value>
+  </data>
+  <data name="ShowLess" xml:space="preserve">
+    <value>显示更少</value>
+  </data>
+  <data name="lblPasswordMemberRequire" xml:space="preserve">
+    <value>密码必须为 6-10 字符没有空格并包含至少 1  个大写字母、1  个小写字母 、 1  个数字。（例如 493abcDE, 59D7!4$h）
+注意： 您的密码需有大小写</value>
+  </data>
+  <data name="BBINNote" xml:space="preserve">
+    <value>注意：BBIN"贏數額巴仙"的欄位顯示&lt;b&gt;"N/A"&lt;/b&gt; 的意思是最高的贏數額不適用於BBIN的產品。</value>
+  </data>
+  <data name="AddNewMaster" xml:space="preserve">
+    <value>新增總代理</value>
+  </data>
+  <data name="AddNewAgent" xml:space="preserve">
+    <value>新增代理</value>
+  </data>
+  <data name="AddNewMember" xml:space="preserve">
+    <value>增加会员</value>
+  </data>
+  <data name="SearchAndCopy" xml:space="preserve">
+    <value>搜索与複製</value>
+  </data>
+  <data name="FullMode" xml:space="preserve">
+    <value>完全版</value>
+  </data>
+  <data name="QRCode" xml:space="preserve">
+    <value>二維碼</value>
+  </data>
+  <data name="lblNew" xml:space="preserve">
+    <value>新增</value>
+  </data>
+  <data name="QuickIntro_Title_Confirm" xml:space="preserve">
+    <value>現在開始</value>
+  </data>
+  <data name="QuickIntro_Title_NotNow" xml:space="preserve">
+    <value>不是現在</value>
+  </data>
+  <data name="QuickIntro_Note" xml:space="preserve">
+    <value>*請注意，精簡模式將相同的佔成數應用於指定組內的所有產品/體育。 如果您只要每種產品/體育運動有不同的佔成數，請切換到完全版</value>
+  </data>
+  <data name="QuickIntro_Popup_3" xml:space="preserve">
+    <value>優化佔成數配置使流程更快、更集中的透過選擇設定佔成數模板數值到產品群組。</value>
+  </data>
+  <data name="QuickIntro_Title" xml:space="preserve">
+    <value>讓我們快速瀏覽精簡模式</value>
+  </data>
+  <data name="QuickIntro_Title_Content" xml:space="preserve">
+    <value>體驗最快、最集中的創建帳號過程。</value>
+  </data>
+  <data name="PTTemplate" xml:space="preserve">
+    <value>佔成數模板</value>
+  </data>
+  <data name="QuickIntro_Popup_1" xml:space="preserve">
+    <value>讓我們通過瀏覽來發現有關此功能所有令人興奮的事情！</value>
+  </data>
+  <data name="QuickIntro_Popup_2" xml:space="preserve">
+    <value>它從一個新的、直觀的目錄開始。</value>
+  </data>
+  <data name="LiteMode" xml:space="preserve">
+    <value>精簡模式</value>
+  </data>
+  <data name="ADBTOnError" xml:space="preserve">
+    <value>由於上線已為您啟用全天餘額轉賬，所以您無法使用自動轉賬。頁面將會自動刷新。</value>
+  </data>
+  <data name="ADBTOffError" xml:space="preserve">
+    <value>由於上線已為您禁用全天餘額轉賬，所以您可以使用自動轉賬。頁面將會自動刷新。</value>
+  </data>
+  <data name="PageOf" xml:space="preserve">
+    <value>第 {0} 頁 共 {1} 頁    </value>
+  </data>
+  <data name="BetSetting" xml:space="preserve">
+    <value>Bet Setting</value>
+  </data>
+  <data name="PTSetting" xml:space="preserve">
+    <value>Position Taking Setting</value>
+  </data>
+  <data name="SMAUnlimitedBetSettingWarningMessage" xml:space="preserve">
+    <value>
+      Inputting all fields of bet setting = 0 means you do not set limit to the bet setting of this account.&lt;br/&gt;
+      To prevent members from playing the game, set Min Bet = 0 and other fields = 0.1.&lt;br/&gt;
+      Updating upline's bet setting might decrease all downlines' bet settings to ensure that they are not greater than upline's bet setting.
+    </value>
+  </data>
+  <data name="Commission" xml:space="preserve">
+    <value>佣金</value>
+  </data>
+  <data name="Live" xml:space="preserve">
+    <value>現場</value>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>投注額</value>
+  </data>
+  <data name="WinLoss" xml:space="preserve">
+    <value>輸贏</value>
+  </data>
+  <data name="Min" xml:space="preserve">
+    <value>最低</value>
+  </data>
+  <data name="Max" xml:space="preserve">
+    <value>最高</value>
+  </data>
+  <data name="creditHint" xml:space="preserve">
+    <value>可用信用額: {0}</value>
+  </data>
+  <data name="memberMaxCreditHint" xml:space="preserve">
+    <value>您的上線已設置會員最高信用：{0}</value>
+  </data>
+  <data name="MemberBettingBehavior" xml:space="preserve">
+    <value>會員投注模式</value>
+  </data>
+  <data name="CustomerProfile" xml:space="preserve">
+    <value>會員資料</value>
+  </data>
+  <data name="BettingStatistic" xml:space="preserve">
+    <value>投注統計</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>日期範圍</value>
+  </data>
+  <data name="Last90Days" xml:space="preserve">
+    <value>過去 90 天</value>
+  </data>
+  <data name="Last60Days" xml:space="preserve">
+    <value>過去 60 天</value>
+  </data>
+  <data name="Last30Days" xml:space="preserve">
+    <value>過去 30 天</value>
+  </data>
+  <data name="TurnoverBySport" xml:space="preserve">
+    <value>按運動項目劃分的投注額</value>
+  </data>
+  <data name="TurnoverByBetType" xml:space="preserve">
+    <value>按投注類型劃分的投注額</value>
+  </data>
+  <data name="TurnoverAndWinLossByDate" xml:space="preserve">
+    <value>按日期劃分投注額和輸贏</value>
+  </data>
+  <data name="RelatedToOtherAccounts" xml:space="preserve">
+    <value>與其他帳號關聯</value>
+  </data>
+  <data name="MonitoredMember" xml:space="preserve">
+    <value>監控會員</value>
+  </data>
+  <data name="TotalTurnover" xml:space="preserve">
+    <value>總投注額</value>
+  </data>
+  <data name="NetTurnover" xml:space="preserve">
+    <value>淨投注額</value>
+  </data>
+  <data name="Average" xml:space="preserve">
+    <value>平均</value>
+  </data>
+  <data name="MemberUsernameIsInvalid" xml:space="preserve">
+    <value>會員賬號無效。</value>
+  </data>
+  <data name="ProfitMargin" xml:space="preserve">
+    <value>利潤率</value>
+  </data>
+  <data name="BetCount" xml:space="preserve">
+    <value>投注統計</value>
+  </data>
+  <data name="Bettype" xml:space="preserve">
+    <value>投注類別</value>
+  </data>
+  <data name="Stake" xml:space="preserve">
+    <value>本金 </value>
+  </data>
+  <data name="WinLossText" xml:space="preserve">
+    <value>輸贏</value>
+  </data>
+  <data name="Win" xml:space="preserve">
+    <value>輸贏</value>
+  </data>
+  <data name="Lose" xml:space="preserve">
+    <value>輸</value>
+  </data>
+  <data name="Draw" xml:space="preserve">
+    <value>和</value>
+  </data>
+  <data name="Winning" xml:space="preserve">
+    <value>贏額</value>
+  </data>
+  <data name="Losing" xml:space="preserve">
+    <value>損失</value>
+  </data>
+  <data name="Sports" xml:space="preserve">
+    <value>體育</value>
+  </data>
+  <data name="NonLive" xml:space="preserve">
+    <value>非滾球</value>
+  </data>
+  <data name="Mix" xml:space="preserve">
+    <value>混合</value>
+  </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Turnover_(Live)" xml:space="preserve">
+    <value>投注額 (現場)</value>
+  </data>
+  <data name="Turnover_(NonLive)" xml:space="preserve">
+    <value>投注額 (非現場)</value>
+  </data>
+  <data name="MixTurnover" xml:space="preserve">
+    <value>混合投注額</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>活躍</value>
+  </data>
+  <data name="AddedDate" xml:space="preserve">
+    <value>添加日期</value>
+  </data>
+  <data name="ClickToSetThresholds" xml:space="preserve">
+    <value>點擊以設置限額</value>
+  </data>
+  <data name="Monitored" xml:space="preserve">
+    <value>監控</value>
+  </data>
+  <data name="ReachedLimitToday" xml:space="preserve">
+    <value>已達今日上限</value>
+  </data>
+  <data name="UnlimitedThreshold" xml:space="preserve">
+    <value>無限限額</value>
+  </data>
+  <data name="UnlimitedThresholdNote" xml:space="preserve">
+    <value>無限限額意味着您已忽略限額並且不會收到通知。</value>
+  </data>
+  <data name="WatchlistDetails" xml:space="preserve">
+    <value>監控列表詳情</value>
+  </data>
+  <data name="WatchlistMemberSummary" xml:space="preserve">
+    <value>監控列表會員摘要</value>
+  </data>
+  <data name="DateRangeNote" xml:space="preserve">
+    <value>數據總結是從 {0} 至 {1}</value>
+  </data>
+  <data name="BehaviorCategory" xml:space="preserve">
+    <value>行為類別</value>
+  </data>
+  <data name="RiskLevel" xml:space="preserve">
+    <value>風險等級</value>
+  </data>
+  <data name="IndividualCopy" xml:space="preserve">
+    <value>单一複製</value>
+  </data>
+  <data name="CompactCopy" xml:space="preserve">
+    <value>簡潔複製</value>
+  </data>
+  <data name="introCopyNote" xml:space="preserve">
+    <value>點擊“複製”即可複製並分享賬號詳情</value>
+  </data>
+  <data name="Betsetting" xml:space="preserve">
+    <value>投注設定</value>
+  </data>
+</root>

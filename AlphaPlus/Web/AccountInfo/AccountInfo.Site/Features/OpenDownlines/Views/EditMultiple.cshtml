@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+}
+
+@model OpenMultipleViewModel
+
+@section Styles {
+    @* @StaticResources.RenderStylesWithDarkMode("~/Features/OpenDownlines/Bundles/open-multiple") *@
+    <link rel="stylesheet" asp-href-include="~/unsuspend-downlines-*.css" />
+}
+
+@Html.AntiForgeryToken()
+<div id="container" class="unsuspend-container" />
+
+@section Scripts {
+    @* @StaticResources.RenderScripts("~/Features/OpenDownlines/Bundles/open-multiple") *@
+    @* <script type="module" src="~/open-helper.js" asp-append-version="true"></script> *@
+    <script type="module" asp-src-include="~/openMultiple-*.js"></script>
+    <script>
+        $(document).ready(() => {
+            window.renderOpenMultiple(@Html.Raw(JsonSerializer.Serialize(Model)));
+        })
+    </script>
+}

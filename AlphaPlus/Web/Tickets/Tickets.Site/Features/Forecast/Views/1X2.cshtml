@@ -1,0 +1,20 @@
+@{
+    ViewData["Title"] = Resources._1X2;
+}
+@section Styles {
+    <link rel="stylesheet" href="~/bundles/totalbets/totalbets.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/bundles/forecast/forecast.js" asp-append-version="true"></script>
+}
+@model ForecastViewModel<Forecast1X2>
+<div class="page-title">@Resources._1X2</div>
+<div class="auto-refresh left-side"></div>
+<div id="content">
+    <partial name="1X2Partial" />
+</div>
+<input type="hidden" id="hidden-autoRefreshRefreshText" value="@Resources.Refresh" />
+<input type="hidden" id="hidden-autoRefreshSeconds" value="15,30,45,60,75" />
+<input type="hidden" id="hidden-autoRefreshUrl" value="1X2?partial=true&leagueId=" />
+<input type="hidden" id="hidden-autoRefreshSavedSecondKey" value="1X2" />
+<input type="hidden" id="hidden-dataUrl" value="1X2Data?leagueId=" />

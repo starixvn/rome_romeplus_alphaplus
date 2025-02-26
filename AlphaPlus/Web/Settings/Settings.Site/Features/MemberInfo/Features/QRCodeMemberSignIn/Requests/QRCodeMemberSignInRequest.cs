@@ -1,0 +1,25 @@
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.ViewModels;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using MediatR;
+
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.Requests
+{
+    public class QRCodeMemberSignInRequest :
+        QRCodeBaseQuery,
+        IRequest<QRCodeMemberSignInViewModel>
+    {
+        public QRCodeMemberSignInRequest() : this(null) { }
+
+        public QRCodeMemberSignInRequest(IUser viewer) : base(viewer)
+        {
+        }
+
+        public string MemberName { get; set; }
+
+        public decimal Credit { get; set; }
+
+        public bool ShowPageTitle { get; set; } = true;
+
+        public string ErrorMessage { get; set; }
+    }
+}

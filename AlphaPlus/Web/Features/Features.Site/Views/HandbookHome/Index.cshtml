@@ -1,0 +1,57 @@
+﻿@using AlphaPlus.Features.Site.Handbook.ViewModels
+@using AlphaPlus.Features.Handbook.API.Models
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Features.Handbook
+
+@model HomeViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Resources.AngencyHandbook</title>
+    @StaticResources.RenderStyles("~/assets/bundles/handbook/common")
+    @StaticResources.RenderStyles("~/assets/bundles/handbook/page-home")
+</head>
+<body>
+    <div class="container">
+        <div class="left-container"></div> <!-- keep this this to prevent break layout -->
+        <div class="center-container">
+            <div class="docsearch">
+                <h2 class="ttl-search">@Resources.HomePage_Title</h2>
+                <div class="search">
+                    <input id="txt-search" type="text" name="name" value="" placeholder="@Resources.Search" />
+                    <div class="box-suggestion hidden">
+                        <ul></ul>
+                    </div>
+                    <button class="btn-search hover">
+                        <span class="icon-search"></span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="main-article" id="main-article">
+                <ul class="head-tab">
+                    <li class="active">
+                        <a href="#">@Resources.Introduction</a>
+                    </li>
+                </ul>
+                <p>
+                    @Html.Raw(Resources.HomePage_Content)
+                </p>
+            </div>
+        </div>
+        <div class="right-container">
+
+        </div>
+
+    </div>
+    @Html.Hidden("RootPath", "../")
+    @Html.Hidden("NoRecords", Resources.NoRecords)
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    @StaticResources.RenderScripts("~/assets/bundles/handbook/home")
+</body>
+</html>

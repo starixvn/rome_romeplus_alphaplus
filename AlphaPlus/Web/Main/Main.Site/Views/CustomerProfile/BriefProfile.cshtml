@@ -1,0 +1,68 @@
+﻿@using AlphaPlus.Main.Site.Features.CustomerProfile
+@model BriefProfileViewModel
+@{
+    Layout = null;
+    var viewProfileUrl = $"{Model.AccountInfoRootPath}ProfilePicture";
+}
+<div id="profile-content" data-introduce-nick-name-tooltip-cookie-name="@(Model.IntroduceNickNameTooltipCookieName)"
+    data-is-default-avatar="@(Model.IsDefaultAvatar.ToString().ToLower())"
+    data-is-show-profile-picture-tooltip="@(Model.IsShowProfilePictureTooltip.ToString().ToLower())"
+    data-nick-name="@(Model.NickName)">
+    @if (Model.IsProtectedMode)
+    {
+            <span class="profile-avatar">
+                <img src='@(Model.IsDefaultAvatar ? Url.Content("~/assets/images/icon_user_default.png") : Model.EmbedImage)' />
+            </span>
+    }
+    else
+    {
+            <a data-url="@(viewProfileUrl)" class="profile-avatar open-link">
+                <img id="logoProfileImg" width="50" height="50" profile-image-id="@Model.ProfileImageId"
+                    default-avatar="@Model.IsDefaultAvatar.ToString().ToLower()"
+                    src='@(Model.IsDefaultAvatar ? Url.Content("~/assets/images/icon_user_default.png") : Model.EmbedImage)'
+                    alt="" title="@Resources.ProfileClickTootip" />
+            </a>
+    }
+    <div class="userinfo">
+        <span class="userName">@Model.Username</span>
+        @if (AlphaPlus.Core.Models.UserSession.Current.IsIndirectLoggedIn)
+        {
+                <span class="icon-account-circle">&nbsp;</span>
+        }
+        <br />
+
+        <div id="adminAndSubAcc" class="adminAndSubAcc"
+            title="@(Model.SubAccountTooltip.Length == 0 ? Model.NickName : Model.SubAccountTooltip)"
+            data-placement="right" data-toggle="tooltip">@Model.NickName</div>
+
+        @if (Model.IsProtectedMode)
+        {
+                <span class="otp">OTP: @(Model.IsEnableOtp ? Resources.Enabled : Resources.Disabled)</span>
+        }
+        else
+        {
+                <a class="otp open-link" data-url="@MicroSites.MainUrl("~/otp/SetUpOtp")">OTP: @(Model.IsEnableOtp ?
+            Resources.Enabled : Resources.Disabled)</a>
+        }
+    </div>
+
+    @Html.HiddenFor(m => m.Username)
+</div>
+
+@if (!Model.IsInternal)
+{
+    if (string.IsNullOrEmpty(Model.NickName))
+    {
+                <div id="tooltip-box" style="display:none;">
+                    <div>
+                @Html.Raw(Resources.introNickname)
+                    </div>
+                </div>
+    }
+    if (!Model.IsProtectedMode)
+    {
+                <div id="profileTooltip" style="display:none;">
+            @Html.Raw(string.Format(Resources.ProfileLoginTip, viewProfileUrl, viewProfileUrl))
+                </div>
+    }
+}

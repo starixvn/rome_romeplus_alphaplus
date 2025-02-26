@@ -1,0 +1,119 @@
+﻿@using AlphaPlus.Main.Site.Features.OTP
+@model OtpViewModel
+@{
+    Layout = null;
+}
+<div class="panel" id="register-panel" style="@(Model.IsAlreadySetup ? "display:none;" : "")">
+    <div class="panel-heading" role="tab" id="headingRegisterOtpApp">
+        <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#registerOtpApp"
+                aria-expanded="false" aria-controls="registerOtpApp">
+                @Security.RegisterMobileApplication
+            </a>
+        </h4>
+    </div>
+
+    <div id="registerOtpApp" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingRegisterOtpApp">
+        <div class="panel-body">
+            <ul class="list-requirements">
+                <li>
+                    <strong>@Security.DownloadGoogleAuthenticator</strong>
+                    <div class="download-content">
+                        <div class="logo-otp-app">
+                            <img src="~/assets/images/otp/logo.png?v=2" />
+                        </div>
+                        <div class="list-download">
+                            <h2>Google Authenticator</h2>
+                            <p><strong>Google</strong></p>
+                            <ul class="list-inline">
+                                <li><a href="https://apps.apple.com/us/app/google-authenticator/id388497605?mt=8"
+                                        class="btn-download-ios" target="_parent"><img
+                                            src="~/assets/images/otp/apple.png" /></a></li>
+                                <li><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en&gl=US&pli=1"
+                                        target="_blank" class="btn-download-android"><img
+                                            src="~/assets/images/otp/google.png" /></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="additional-information">
+                        <p>@Security.OtherAuthenticators</p>
+                        <p class="bold">@Security.OtpDatetimeWarning</p>
+                    </div>
+                </li>
+                <li>
+                    <strong>@Security.ScanQRCode</strong>
+                    <div id="qr-code" class="qr-code otp-app-qr">
+                        @* <img src="@Html.Raw(Model.CustomerOtp.QRCode)" /> *@
+                    </div>
+                    <div class="username-customize">
+                        <p>@Html.Raw(string.Format(Security.UsernameWarning,
+                                      $"<strong>{Model.CustomerOtp.OtpUsername}</strong>")) <span id="btn-change-username"
+                                class="btn-change-username">@Security.ChangeIt</span></p>
+                        <div id="username-message"></div>
+                        <form class="block username-form" id="username-form" method="get">
+                            <div class="form-group">
+                                <label>@Security.AccountName</label>
+                                <input maxlength="30" type="text" class="txt form-control" name="username" id="username"
+                                    value="@Model.CustomerOtp.OtpUsername" />
+                            </div>
+                            <div class="form-group last">
+                                <input type="submit" class="btn-submit" id="btnChangeUsername"
+                                    value="@Security.RegenerateQR" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="panel-group manualQRCode" id="manualQRCode" role="tablist" aria-multiselectable="true">
+                        <div class="panel">
+                            <div class="panel-heading" role="tab" id="headingQR">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse"
+                                        data-parent="#manualQRCode" href="#unableScan" aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                        @Security.UnableScanQRCode
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="unableScan" class="panel-collapse collapse" role="tabpanel"
+                                aria-labelledby="headingQR">
+                                <div class="panel-body">
+                                    <p>@Security.ManualInputOtpKey</p>
+                                    <p>Key: <strong id="secret-key">@Html.Raw(Model.CustomerOtp.SecretKey)</strong>
+                                        <span id="copy-icon" class="icon-content-copy" data-clipboard-action="copy"
+                                            data-clipboard-target="#secret-key" title="@Security.Copied"></span>
+                                    </p>
+                                    <div class="example">
+                                        <div class="col-left">
+                                            <img src="~/assets/images/otp/manual-ios.png?v=2" title="IOS" />
+                                        </div>
+                                        <div class="col-right">
+                                            <img src="~/assets/images/otp/manual-android.png?v=2" title="Android" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <strong>@Security.Enter6DigitsOtp</strong>
+                    <div id="setup-otp-message"></div>
+                    <form class="block last" id="otp-form">
+                        <div class="form-group">
+                            <label>OTP</label>
+                            <input maxlength="6" type="password" class="txt form-control" name="otp" id="txtOtp" />
+                        </div>
+                        <div class="form-group last">
+                            <input type="submit" class="btn-submit" id="btnSubmitOtp" value="@Security.Verify" />
+                        </div>
+                    </form>
+                </li>
+            </ul>
+            <label class="input-disable ml-16">
+                <input id="cbkEnableOtp" type="checkbox" disabled />
+                @Security.EnableOtpViaMobileAuthenticatorApp
+            </label>
+        </div>
+    </div>
+</div>
+
+@Html.Hidden("OTPUrl", Model.CustomerOtp.OTPUrl)

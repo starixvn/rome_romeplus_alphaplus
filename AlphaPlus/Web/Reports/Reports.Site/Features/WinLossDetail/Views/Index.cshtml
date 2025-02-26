@@ -1,0 +1,91 @@
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = Model.PageHeader.Title;
+    var isSuperLevel = Model.ViewerLevel.IsSuperLevel();
+    var isMasterOrSuperLevel = Model.ViewerLevel.IsMasterOrSuperLevel();
+}
+@section Styles {
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/site-reports/winlossdetail")
+}
+@section Scripts {
+    <script type="text/javascript">
+        var productList = $.parseJSON('@Html.Raw(JsonHelper.ToJson(Model.ProductViewModel.Products))');
+        var productDetailList = $.parseJSON('@Html.Raw(JsonHelper.ToJson(Model.ProductViewModel.ProductDetails))');
+        var columnList = [
+            { value: "fullname", text: '@Resources.FirstLastName', checked: false },
+            { value: "betcount", text: '@Resources.BetCount' },
+            { value: "turnover", text: '@Resources.Turnover' },
+            { value: "netturnover", text: '@Resources.NetTurnover' },
+            { value: "grosscomm", text: '@Resources.GrossComm' },
+            { value: "pwinloss", text: '@Resources.MemberWinLossNew' },
+            { value: "pcomm", text: '@Resources.MemberCommNew' },
+            { value: "ptotal", text: '@Resources.MemberTotalNew' },
+            { value: "awinloss", text: '@Resources.AgentWinLossNew' },
+            { value: "acomm", text: '@Resources.AgentCommNew' },
+            { value: "atotal", text: '@Resources.AgentTotalNew' },
+        @if (isMasterOrSuperLevel)
+        {
+            @:{ value: "mwinloss", text: '@Resources.MasterWinLossNew' },
+            @:{ value: "mcomm", text: '@Resources.MasterCommNew' },
+            @:{ value: "mtotal", text: '@Resources.MasterTotalNew' },
+        }
+        @if (isSuperLevel)
+        {
+            @:{ value: "swinloss", text: '@Resources.SuperWinLossNew' },
+            @:{ value: "scomm", text: '@Resources.SuperCommNew' },
+            @:{ value: "stotal", text: '@Resources.SuperTotalNew' },
+        }
+            { value: "company", text: '@Resources.Company' },
+            { value: "reward", text: '@Resources.Reward' }
+        ];
+        var currentFromData = {
+            custId: @Model.CustId,
+            custName: '@Model.CustName',
+            custLevelId: @Model.CustLevelId,
+            weekFromDate: '@Model.WeekFromDate',
+            weekToDate: '@Model.WeekToDate',
+            fromDate: '@Model.DateRangePicker.FromDate',
+            toDate: '@Model.DateRangePicker.ToDate',
+            username: '@Model.Username'
+        }
+        var viewerLevelId = @Model.ViewerLevel.Value;
+    </script>
+    @StaticResources.AssetScripts.RenderCommon("/bundles/site-reports/winlossdetail")
+    <script src="~/bundles/winlossdetail/winlossdetail.js" asp-append-version="true"></script>
+}
+@model WinLossDetailViewModel
+<div class="flex">
+    <report-title-new model="Model.PageHeader" />
+    <form class="form-inline filter" role="form" id="report-form" style="visibility: hidden">
+        <daterange-picker-jquery model="@Model.DateRangePicker" />
+        <product-dropdown show-product-details="true" />
+        <username-autosuggestion value="@Model.Username" />
+        <visible-column />
+        <div class="label-week-box" id="week-container">
+            <partial name="Weeks" model="@Model.Weeks" />
+        </div>
+    </form>
+
+    <div id="tbl-report-container" class="cover-week-selection" style="visibility: hidden">
+        <partial name="ReportData" />
+    </div>
+</div>
+<a class="hide" id="hidden-getReportDataUrl" asp-action="GetData"></a>
+<a class="hide" id="hidden-getReportWeeksUrl" asp-action="GetWeeks"></a>
+<a class="hide" id="LoadLegendURL" asp-action="WinLossDetail" asp-controller="Legends" asp-route-IsNew="true"
+    asp-route-MinDate="@Model.DateRangePicker.MinDate" asp-route-ShowDormantAccountsNote="True"></a>
+<a class="hide" id="hidden-usernameSuggestionUrl" asp-action="Suggest" asp-controller="Customer"></a>
+<input type="hidden" id="hidden-betListUrl" value="@MicroSites.TicketUrl("~/WinLoss/IndexNew")" />
+<input type="hidden" asp-for="VisibleColumns" />
+<input type="hidden" id="hidden-copyText" value="@Resources.Copy" />
+<input type="hidden" id="hidden-copiedText" value="@Resources.Copied" />
+<input type="hidden" id="hidden-settingsUrl" value="@MicroSites.SettingUrl()" />
+<input type="hidden" id="hidden-titleText2" value="@Resources.MemberWinLossDetail" />
+@if (isMasterOrSuperLevel)
+{
+    <input type="hidden" id="hidden-titleText3" value="@Resources.AgentWinLossDetail" />
+}
+@if (isSuperLevel)
+{
+    <input type="hidden" id="hidden-titleText4" value="@Resources.MasterWinLossDetail" />
+}

@@ -1,0 +1,30 @@
+﻿@using AlphaPlus.Main.Site
+@using AlphaPlus.Main.Site.Features.Default
+@model IndexViewModel
+@if (Model.HightLightFeaturePermission)
+{
+    <div class="popup-highlight hide" id="boxHighlightPopupNewFeature">
+        <button type="button" class="icon icon-close close" title="@Resources.close">
+            <span aria-hidden="true"></span>
+        </button>
+        <div class="text">
+            <div class="image">
+                <img src="~/assets/images/@(Model.HightLightFeatureImageName).svg?v=@AppSettings.JsVersion"
+                    alt="@Resources.HighlightPopupNewFeatureTitle">
+                <p class="sm"><span>@Html.Raw(Resources.HighlightPopupNewFeatureTitle)</span></p>
+            </div>
+            <div>
+                <p class="pc"><span>@Html.Raw(Resources.HighlightPopupNewFeatureTitle)</span></p>
+                @Html.Raw(Resources.HighlightPopupNewFeatureIntro)
+            </div>
+        </div>
+        <div class="action">
+            <label class="label">
+                <input id="chkHideHighlightPopupNewFeature" type="checkbox" />
+                <span>@Resources.doNotShowAgain</span>
+            </label>
+            <a class="btn-submit" id="linkHighlightPopupCheckOut" href="@Model.HightLightFeatureUrl"
+                target="main">@Resources.GetStarted</a>
+        </div>
+    </div>
+}

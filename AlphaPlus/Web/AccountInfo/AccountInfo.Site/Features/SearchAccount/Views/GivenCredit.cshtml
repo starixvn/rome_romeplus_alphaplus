@@ -1,0 +1,39 @@
+@{
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+}
+@using System.Globalization
+@using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCredit.Get
+@model GivenCreditViewModel
+
+@section Styles {
+    <link rel="stylesheet" asp-href-include="/givenCredit-*.css" asp-append-version="true" />
+}
+
+@Html.AntiForgeryToken()
+
+<div id="root"></div>
+
+@section Scripts {
+    <script type="text/javascript">
+        const givenCreditParams = {
+            searchAccountId: @Model.SearchAccountId,
+            searchAccountName: '@Model.SearchAccountName',
+            searchAccountRoleId: @Model.SearchAccountRoleId,
+            currentGivenCredit: '@Model.CurrentGivenCredit',
+            givenCreditMin: '@Model.GivenCreditMin',
+            givenCreditMax: '@Model.GivenCreditMax',
+            memberMaxCredit: @Model.MemberMaxCredit.ToString(CultureInfo.InvariantCulture),
+            availableCredit: @Model.AvailableCredit.ToString(CultureInfo.InvariantCulture)
+                };
+    </script>
+    <script type="module" asp-src-include="/givenCredit-*.js"></script>
+    @* <script type="module">
+import RefreshRuntime from 'http://localhost:5173/@@react-refresh'
+RefreshRuntime.injectIntoGlobalHook(window)
+window.$RefreshReg$ = () => { }
+window.$RefreshSig$ = () => (type) => type
+window.__vite_plugin_react_preamble_installed__ = true
+</script>
+<script type="module" src=@("http://localhost:5173/@vite/client")></script>
+<script type="module" src="http://localhost:5173/src/given-credit.tsx"></script> *@
+}

@@ -1,0 +1,19 @@
+internal static class RoleIdConstants
+{
+    public const byte Super = 4;
+    public const byte Master = 3;
+    public const byte Agent = 2;
+    public const byte Member = 1;
+
+    public static bool IsSuperLevel(byte value) => value == Super;
+
+    public static bool IsMasterLevel(byte value) => value == Master;
+
+    public static bool IsAgentLevel(byte value) => value == Agent;
+
+    public static bool IsMemberLevel(byte value) => value == Member;
+
+    public static bool IsNotMemberLevel(byte value) => !IsMemberLevel(value);
+
+    public static bool IsMemberOrAgentLevel(byte value) => IsMemberLevel(value) || IsAgentLevel(value);
+}

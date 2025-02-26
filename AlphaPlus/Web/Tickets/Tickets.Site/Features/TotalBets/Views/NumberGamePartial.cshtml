@@ -1,0 +1,64 @@
+@{
+    Layout = null;
+    async Task RenderCell(int betCount, int matchId, int betType, byte isLive, decimal total, string betTeam = null)
+    {
+        <td class="text-right">
+            @if (betCount != 0)
+            {
+                <view-betlist matchid="@matchId" bettype="@betType" islive="@isLive" betteam="@(betTeam ?? string.Empty)"
+                    value="@total" redpositive="false" />
+            }
+        </td>
+    }
+}
+
+@model IEnumerable<NumberGame>
+@if (Model.Any())
+{
+    var number = 1;
+    var matchIndex = 0;
+    var currentLeagueId = 0;
+    foreach (var item in Model)
+    {
+        if (currentLeagueId == item.LeagueId)
+        {
+            matchIndex++;
+        }
+        else
+        {
+            matchIndex = 0;
+            currentLeagueId = item.LeagueId;
+            <tr class="col-league">
+                <td colspan="16">@item.LeagueName</td>
+            </tr>
+        }
+        <tr class="@(matchIndex % 2 == 0 ? string.Empty : "odd")">
+            <td>@(number++)</td>
+            <td>@Resources.NumberGameNo @item.MatchCode</td>
+            @{
+                await RenderCell(item.BetCount_OU1stBall, item.MatchId, 81, 0, item.Over_1stBall - item.Under_1stBall);
+                await RenderCell(item.BetCount_OE1stBall, item.MatchId, 83, 0, item.Odd_1stBall - item.Even_1stBall);
+                await RenderCell(item.BetCount_OULastBall, item.MatchId, 82, 0, item.Over_LastBall -
+                item.Under_LastBall);
+                await RenderCell(item.BetCount_OELastBall, item.MatchId, 84, 0, item.Odd_LastBall - item.Even_LastBall);
+                await RenderCell(item.BetCount_OUNext, item.MatchId, 85, 1, item.Over_Next - item.Under_Next);
+                await RenderCell(item.BetCount_OENext, item.MatchId, 86, 1, item.Odd_Next - item.Even_Next);
+                await RenderCell(item.BetCount_NextRB, item.MatchId, 91, 1, item.NextRB_R - item.NextRB_B);
+                await RenderCell(item.BetCount_NextCombo_OverOdd, item.MatchId, 89, 1, item.NextCombo_OverOdd, "1:1");
+                await RenderCell(item.BetCount_NextCombo_UnderOdd, item.MatchId, 89, 1, item.NextCombo_UnderOdd, "2:1");
+                await RenderCell(item.BetCount_NextCombo_OverEven, item.MatchId, 89, 1, item.NextCombo_OverEven, "1:2");
+                await RenderCell(item.BetCount_NextCombo_UnderEven, item.MatchId, 89, 1, item.NextCombo_UnderEven,
+                "2:2");
+                await RenderCell(item.BetCount_OEFullTime, item.MatchId, 86, 0, item.Odd_FullTime - item.Even_FullTime);
+                await RenderCell(item.BetCount_NumberGroupLive, item.MatchId, 90, 1, item.NumberGroupLive);
+                await RenderCell(item.BetCount_NumberGroupPre, item.MatchId, 90, 0, item.NumberGroupPre);
+            }
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td colspan="16" class="text-center">@Resources.NoInformationIsAvailable</td>
+    </tr>
+}

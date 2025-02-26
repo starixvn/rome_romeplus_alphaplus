@@ -1,0 +1,36 @@
+{
+  "DomainMappings": [
+    {
+      "Before": "alp1.nexdev.net",
+      "After": "http://mbp1.nexdev.net/main"
+    },
+    {
+      "Before": "alp2.nexdev.net",
+      "After": "http://mbp2.nexdev.net/main"
+    },
+    {
+      "Before": "alp3.nexdev.net",
+      "After": "http://mbp3.nexdev.net/main"
+    },
+    {
+      "Before": "alp4.nexdev.net",
+      "After": "http://mbp4.nexdev.net/main"
+    },
+    {
+      "Before": "alp5.nexdev.net",
+      "After": "http://mbp5.nexdev.net/main"
+    },
+    {
+      "Before": "alp6.nexdev.net",
+      "After": "http://mbp6.nexdev.net/main"
+    },
+    {
+      "Before": "alp7.nexdev.net",
+      "After": "http://mbp7.nexdev.net/main"
+    },
+    {
+      "Before": "alp8.nexdev.net",
+      "After": "http://mbp8.nexdev.net/main"
+    }
+  ]
+}

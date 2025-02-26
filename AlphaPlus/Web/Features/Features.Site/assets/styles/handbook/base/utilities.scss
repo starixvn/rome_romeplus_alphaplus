@@ -1,0 +1,43 @@
+.text-center{
+    text-align: center;
+}
+.text-left{
+    text-align: left;
+}
+.text-right{
+    text-align: right;
+}
+.mb-10{
+    margin-bottom: 10px;
+}
+
+.hover {
+    cursor: pointer;
+    transition: 0.35s;
+}
+.underline{
+    text-decoration: underline;
+}
+.hover:hover {
+    opacity: 0.85;
+}
+a {
+    color: #345164;
+    text-decoration: none;
+}
+a, a:focus, a:active, a:target, a:hover {
+    outline: none;
+}
+
+.display-none {
+    display: none;
+}
+.fade {
+    transition: opacity .15s linear;
+}
+.relative{
+    position: relative;
+}
+.hidden {
+    display: none !important;
+}

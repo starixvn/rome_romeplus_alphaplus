@@ -1,0 +1,195 @@
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Settings.Transfer
+@{
+    ViewBag.Title = "Auto Transfer Monitoring";
+}
+@using AlphaPlus.Settings.Transfer.API.Configurations;
+@using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.AutoTransfer;
+@model MonitoringViewModel
+
+@section Styles {
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/site-transfer/filter")
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/site-asset/data-table")
+    @StaticResources.RenderStylesWithDarkMode("~/Features/Transfer/assets/bundles/auto-transfer/monitoring")
+}
+
+<div class="container-fluid page-auto-transfer">
+    <ul id="nav-tabs" class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a data-tablink="@(AppSettings.VirtualDirectory + "autotransfer/monitoring")" role="tab"
+                aria-controls="monitoring" data-to data-toggle="tab"
+                class="lnk-changetab">@Resources.AutoTransferMonitoring</a>
+        </li>
+        @if (!Model.IsProtectedMode)
+        {
+            <li role="presentation">
+                <a id="tab-history" data-tablink="@(AppSettings.VirtualDirectory + "autotransfer/history")" role="tab"
+                    aria-controls="history" data-toggle="tab" class="lnk-changetab">@Resources.AutoTransferHistory</a>
+            </li>
+        }
+        <li class="icon-tab">
+            <a href="@Model.UserGuideLink" target="_blank" class="user-guide-link pull-right"
+                title="@Resources.AutoTransferGuideline">
+                <span class="icon icon-book"></span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="monitoring">
+        <div class="filter">
+            <form id="report-form" class="form-inline" role="form">
+                <div class="form-group">
+                    <input type="text" id="txt-username" placeholder="@Resources.UsernameOrFirstLastName" value=""
+                        autocomplete="off" />
+                </div>
+                <div class="form-group column-multiselect-container multiselect-container-control">
+                    <label>@Resources.Status</label>
+                    <select id="ddl-status" data-label-select-none="@Resources.SelectNone"
+                        data-label-selected="@Resources.Selected" data-label-all="@Resources.All"
+                        data-label-select-all="@Resources.SelectAll" data-label-search="@Resources.Search"
+                        multiple="multiple" class="select-multiple">
+                        <option value="New,Waiting,Processing" @(Model.Status == "Failed" ? string.Empty :
+                            "selected=\"selected\"")>@Resources.Processing</option>
+                        <option value="Completed" @(Model.Status == "Failed" ? string.Empty : "selected=\"selected\"")>
+                            @Resources.Completed</option>
+                        <option value="Failed" selected="selected">@Resources.Failed</option>
+                        <option value="Cancelled" @(Model.Status == "Failed" ? string.Empty : "selected=\"selected\"")>
+                            @Resources.Cancelled</option>
+                        <option value="Pending" @(Model.Status == "Failed" ? string.Empty : "selected=\"selected\"")>
+                            @Resources.Pending</option>
+                        <option value="Ignored" @(Model.Status == "Failed" ? string.Empty : "selected=\"selected\"")>
+                            @Resources.Ignored</option>
+                    </select>
+                </div>
+                @{
+                    Render(Model.Columns);
+                }
+                @{
+                    RenderCoundown(new[] { 15, 30, 45, 60, 75 });
+                }
+                <div class="form-group submit-box">
+                    <input type="submit" class="btn-submit" id="btn-submit" value="@Resources.Submit">
+                </div>
+                <div class="form-group">
+                    <div class="icon icon-information-outline"></div>
+                </div>
+            </form>
+        </div>
+        <div id="content">
+            <div class="div-status-all hide">
+                <div class="div-pending-all">
+                    <span class="text"> @Resources.Pending</span>
+                    <span class="spn-pending-count"></span>
+                </div>
+                <div class="div-processing-all">
+                    <span class="text">@Resources.Processing</span>
+                    <span class="spn-processing-count"></span>
+                </div>
+                <div class="div-failed-all">
+                    <span class="text">@Resources.Failed</span>
+                    <span class="spn-failed-count"></span>
+                </div>
+                <div class="div-cancel-all" title="@Resources.CancelSuspendedTransactionsTip">
+                    <input type="button" class="btn-submit" id="btn-cancel-all"
+                        value="@Resources.CancelSuspendedTransactions">
+                    <span class="cancel-all-count"></span>
+                </div>
+            </div>
+            <table id="tbl-monitoring" class="hide width-100per tblRpt tblRpt-bordered dataTable display">
+                <thead>
+                    <tr role="row">
+                        <th col-value="1"></th>
+                        <th col-value="2"></th>
+                        <th col-value="3"></th>
+                        <th col-value="4"></th>
+                        <th col-value="5"></th>
+                        <th col-value="6"></th>
+                        <th col-value="7"></th>
+                    </tr>
+                    <tr class="RptHeader">
+                        <th col-value="1">@Resources.No</th>
+                        <th col-value="2" class="sorting" data-sort="1">@Resources.Username</th>
+                        <th col-value="3">@Resources.First_LastName</th>
+                        <th col-value="4" class="sorting" data-sort="3">@Resources.TransferAmount</th>
+                        <th col-value="5" class="sorting" data-sort="2">@Resources.Status</th>
+                        <th col-value="6">@Resources.Reason</th>
+                        <th col-value="7" class="sorting" data-sort="4">@Resources.CompletedTime</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="7">
+                            <div id="report-pager" class="hide" data-labelpage="@Resources.Page"
+                                data-labelof="@Resources.of" data-labeldisplayitems="@Resources.Pager_DisplayItems"
+                                data-pageindex="1" data-pagesize="500" data-totalrecords="0">
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+@Html.Hidden("VirtualDirectory", AppSettings.VirtualDirectory)
+@Html.Hidden("NoInformationIsAvailable", Resources.NoInformationIsAvailable)
+@Html.Hidden("ViewerId", Model.ViewerId)
+@Html.Hidden("SubAccId", Model.SubAccId)
+@Html.Hidden("New", Resources.Processing)
+@Html.Hidden("Waiting", Resources.Processing)
+@Html.Hidden("Processing", Resources.Processing)
+@Html.Hidden("Completed", Resources.Completed)
+@Html.Hidden("Failed", Resources.Failed)
+@Html.Hidden("Cancelled", Resources.Cancelled)
+@Html.Hidden("Pending", Resources.Pending)
+@Html.Hidden("Ignored", Resources.Ignored)
+@Html.Hidden("confirmCancelJob", Resources.confirmCancelJob)
+@Html.Hidden("CancelAllAutoTransferJobsConfirm", Resources.CancelAllAutoTransferJobsConfirm)
+@Html.Hidden("AutoTransfer_NoCancellable", Resources.AutoTransfer_NoCancellable)
+
+@Html.Hidden("status", Model.Status)
+@section Scripts {
+    @StaticResources.AssetScripts.Render("/bundles/site-asset/numeral")
+    @StaticResources.AssetScripts.Render("/bundles/site-transfer/pagination")
+    @StaticResources.RenderScripts("~/Features/Transfer/assets/bundles/auto-transfer/monitoring")
+}
+@functions
+{
+    void Render(IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem> columns)
+    {
+        <div class="form-group column-multiselect-container multiselect-container-control">
+            <label>@Resources.Columns</label>
+            <select id="dropdown-columns" data-has-any-product-detail="@columns.Any()"
+                data-label-select-none="@Resources.SelectNone" data-label-selected="@Resources.Selected"
+                data-label-all="@Resources.All" data-label-select-all="@Resources.SelectAll"
+                data-label-search-column="@Resources.SearchColumn" multiple="multiple" class="select-multiple">
+                @foreach (var column in columns)
+                {
+                    <option value="@column.Value">@column.Text</option>
+                }
+            </select>
+        </div>
+    }
+
+    void RenderCoundown(int[] intervals)
+    {
+        <div class="form-group">
+            <div class="dropdown btn btn-default btn-countdown">
+                <span class="icon-refresh"></span>
+                <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span id="ddlRefresh" data-norefresh="@Resources.NoRefresh">@Resources.NoRefresh</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" id="refresh-value" aria-labelledby="dropdownMenu2">
+                    <li><a href="javascript:void(0);" data-refresh-value="-1">@Resources.NoRefresh</a></li>
+                    @foreach (var i in intervals)
+                    {
+                        <li><a href="javascript:void(0);" data-refresh-value="@i">@i</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+}

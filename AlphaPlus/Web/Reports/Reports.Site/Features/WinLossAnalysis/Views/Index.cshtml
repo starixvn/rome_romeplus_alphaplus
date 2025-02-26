@@ -1,0 +1,219 @@
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Report
+@using AlphaPlus.Reports.Features.Shared.Extensions
+@using AlphaPlus.Reports.Features.WinLossAnalysis
+@using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components
+@using AlphaPlus.Reports.Site.Features.WinLossAnalysis
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AlphaPlus.Reports.Site
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = Model.PageHeader.Title;
+    var isSuperLevel = Model.CustLevel.IsSuperLevel();
+    var isMasterOrSuperLevel = Model.CustLevel.IsMasterOrSuperLevel();
+
+    void RenderRow(WinLossAnalysisModel data, bool isTotalRow)
+    {
+        <tr class="@(isTotalRow ? "tbl-footer" : string.Empty)">
+            <td class="text-left col-username" data-isdatetime="true">
+                @(isTotalRow ? Resources.Total : data.RollupKey)
+            </td>
+            <td>@data.BetCount.FormatNumber()</td>
+            <td>@data.Turnover.FormatNumber()</td>
+            @if (Model.PageHeader.IsStackMode)
+            {
+                RenderStackNetWinLoss("member", data.MemberWinLoss, data.MemberComm, data.MemberTotal);
+                RenderStackNetWinLoss("agent", data.AgWinLoss, data.AgComm, data.AgTotal, "altercol");
+                if (isMasterOrSuperLevel)
+                {
+                    RenderStackNetWinLoss("master", data.MAgWinLoss, data.MAgComm, data.MAgTotal);
+                }
+                if (isSuperLevel)
+                {
+                    RenderStackNetWinLoss("super", data.SAgWinLoss, data.SAgComm, data.SAgTotal, "altercol");
+                }
+            }
+            else
+            {
+                RenderNetWinLoss("member", data.MemberWinLoss, data.MemberComm, data.MemberTotal);
+                RenderNetWinLoss("agent", data.AgWinLoss, data.AgComm, data.AgTotal, "altercol");
+                if (isMasterOrSuperLevel)
+                {
+                    RenderNetWinLoss("master", data.MAgWinLoss, data.MAgComm, data.MAgTotal);
+                }
+                if (isSuperLevel)
+                {
+                    RenderNetWinLoss("super", data.SAgWinLoss, data.SAgComm, data.SAgTotal, "altercol");
+                }
+            }
+            <td class="col-company">@data.Company.FormatNumber()</td>
+        </tr>
+    }
+
+    void RenderStackNetWinLoss(string level, decimal winloss, decimal comm, decimal total, string className = "")
+    {
+        <td class="visible-stack-mode combinedcell col-@level-winloss-combined @className">
+            <ul>
+                <li>@winloss.FormatNumber()</li>
+                <li>@comm.FormatNumber()</li>
+                <li>@total.FormatNumber()</li>
+            </ul>
+        </td>
+    }
+
+    void RenderNetWinLoss(string level, decimal winloss, decimal comm, decimal total, string className = "")
+    {
+        <td class="hidden-stack-mode col-@level-winloss @className">
+            @winloss.FormatNumber()
+        </td>
+        <td class="hidden-stack-mode @className">
+            @comm.FormatNumber()
+        </td>
+        <td class="hidden-stack-mode bold @className">
+            @total.FormatNumber()
+        </td>
+    }
+}
+@section Scripts {
+    <script src="~/bundles/winlossanalysis/winlossanalysis.js" asp-append-version="true"></script>
+}
+@model WinLossAnalysisViewModel
+<report-title model="Model.PageHeader" />
+<form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form">
+    <product-multiselection model="@Model.ProductViewModel" />
+    <daterange-picker model="@Model.DateRangePicker" />
+    <div class="form-group hide">
+        <span id="icon-information" class="icon-information-outline"></span>
+    </div>
+    <div class="form-group">
+        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
+            asp-all-route-data="Model.GetExcelParams()"></a>
+    </div>
+    <div class="note">
+        <span class="star">*</span>@Model.ViewDataInstructionMessage
+    </div>
+    <div class="report-by">
+        <span>@Resources.ReportBy</span>
+        @foreach (var item in Model.ReportTypes)
+        {
+            <span>
+                <input type="radio" name="ReportTypeId" value="@item.Value" @(item.Selected ? "checked" : string.Empty)
+                    id="rdo_@item.Value" />
+                <label for="rdo_@item.Value">@item.Text</label>
+            </span>
+        }
+    </div>
+</form>
+<table
+    class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter width-100per @(Model.PageHeader.IsStackMode ? "stack-mode" : string.Empty)"
+    id="tbl-report" data-cansort="@Model.ReportData.MoreThanOne" data-sortedcolumn="@Model.SortPropertyName"
+    data-descendingsort="@Model.DescendingSort" style="visibility:hidden">
+    <thead>
+        <tr>
+            <th class="sorting" rowspan="2" data-sortedname="RollupKey" data-colindex="0">
+                @Model.ReportTypeName</th>
+            <th class="sorting" rowspan="2" data-sortedname="BetCount" data-colindex="1">
+                @Resources.BetCount</th>
+            <th class="sorting" rowspan="2" data-sortedname="Turnover" data-colindex="2">
+                @Resources.Turnover</th>
+            <th colspan="3" class="col-level hidden-stack-mode">@Resources.Member</th>
+            <th class="visible-stack-mode col-combine sorting" data-sortedname="MemberWinLoss" rowspan="2"
+                data-colindex="3">@Resources.Member<br />(<span
+                    class="prior-sortedcolumn">@Resources.WinLossAbbr</span>@Resources.CommAndTotal)</th>
+            <th colspan="3" class="col-level hidden-stack-mode">@Resources.Agent</th>
+            <th class="visible-stack-mode col-combine sorting" data-sortedname="AgWinLoss" rowspan="2"
+                data-colindex="4">@Resources.Agent<br />(<span
+                    class="prior-sortedcolumn">@Resources.WinLossAbbr</span>@Resources.CommAndTotal)</th>
+            @if (isMasterOrSuperLevel)
+            {
+                <th colspan="3" class="col-level hidden-stack-mode">@Resources.Master</th>
+                <th class="visible-stack-mode col-combine sorting" data-sortedname="MAgWinLoss" rowspan="2"
+                    data-colindex="5">@Resources.Master<br />(<span
+                        class="prior-sortedcolumn">@Resources.WinLossAbbr</span>@Resources.CommAndTotal)</th>
+            }
+            @if (isSuperLevel)
+            {
+                <th colspan="3" class="col-level hidden-stack-mode">@Resources.Super</th>
+                <th class="visible-stack-mode col-combine sorting" data-sortedname="SAgWinLoss" rowspan="2"
+                    data-colindex="6">@Resources.Super<br />(<span
+                        class="prior-sortedcolumn">@Resources.WinLossAbbr</span>@Resources.CommAndTotal)</th>
+            }
+            @if (Model.CustLevel.IsAgentLevel())
+            {
+                <th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="9">
+                    @Resources.Company</th>
+                <th class="sorting visible-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="5">
+                    @Resources.Company</th>
+            }
+            else if (Model.CustLevel.IsMasterLevel())
+            {
+                <th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="12">
+                    @Resources.Company</th>
+                <th class="sorting visible-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="6">
+                    @Resources.Company</th>
+            }
+            else
+            {
+                <th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="15">
+                    @Resources.Company</th>
+                <th class="sorting visible-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="7">
+                    @Resources.Company</th>
+            }
+        </tr>
+        <tr class="thead-row2">
+            <th class="hidden-stack-mode col-winloss sorting" data-sortedname="MemberWinLoss" data-colindex="3">
+                @Resources.WinLoss</th>
+            <th class="hidden-stack-mode sorting" data-sortedname="MemberComm" data-colindex="4">
+                @Resources.Comm</th>
+            <th class="hidden-stack-mode sorting" data-sortedname="MemberTotal" data-colindex="5">
+                @Resources.Total</th>
+            <th class="hidden-stack-mode col-winloss sorting" data-sortedname="AgWinLoss" data-colindex="6">
+                @Resources.WinLoss</th>
+            <th class="hidden-stack-mode sorting" data-sortedname="AgComm" data-colindex="7">
+                @Resources.Comm</th>
+            <th class="hidden-stack-mode sorting" data-sortedname="AgTotal" data-colindex="8">
+                @Resources.Total</th>
+            @if (isMasterOrSuperLevel)
+            {
+                <th class="hidden-stack-mode col-winloss sorting" data-sortedname="MAgWinLoss" data-colindex="9">
+                    @Resources.WinLoss</th>
+                <th class="hidden-stack-mode sorting" data-sortedname="MAgComm" data-colindex="10">
+                    @Resources.Comm</th>
+                <th class="hidden-stack-mode sorting" data-sortedname="MAgTotal" data-colindex="11">
+                    @Resources.Total</th>
+            }
+            @if (isSuperLevel)
+            {
+                <th class="hidden-stack-mode col-winloss sorting" data-sortedname="SAgWinLoss" data-colindex="12">
+                    @Resources.WinLoss</th>
+                <th class="hidden-stack-mode sorting" data-sortedname="SAgComm" data-colindex="13">
+                    @Resources.Comm</th>
+                <th class="hidden-stack-mode sorting" data-sortedname="SAgTotal" data-colindex="14">
+                    @Resources.Total</th>
+            }
+        </tr>
+    </thead>
+    @if (Model.ReportData.HasData)
+    {
+        <tbody>
+            @foreach (var data in Model.ReportData.DataSource)
+            {
+                RenderRow(data, false);
+            }
+        </tbody>
+        <tfoot>
+            @{
+                RenderRow(Model.ReportData.Total, true);
+            }
+        </tfoot>
+    }
+    else
+    {
+        <no-information colspan="@(isSuperLevel ? 16 : Model.CustLevel.IsMasterLevel() ? 13 : 10)" />
+    }
+</table>
+<a class="hide" id="LoadLegendURL" asp-action="Index" asp-controller="Legends"
+    asp-route-MinDate="@Model.DateRangePicker.MinDate"></a>
+<input type="hidden" asp-for="IsSetDefaultStackMode" />
+<input type="hidden" asp-for="ReportTypeId" />

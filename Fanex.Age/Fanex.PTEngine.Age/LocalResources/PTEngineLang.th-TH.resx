@@ -193,10 +193,10 @@
     <value>ปิด</value>
   </data>
   <data name="com" xml:space="preserve">
-    <value>ความเสี่ยง</value>
+    <value>ค่าคอมฯ</value>
   </data>
   <data name="commission" xml:space="preserve">
-    <value>คอมมิชชั่น</value>
+    <value>ค่าคอมฯ</value>
   </data>
   <data name="confirmtransfer" xml:space="preserve">
     <value>คุณแน่ใจว่าคุณต้องการโอนเงิน</value>
@@ -217,7 +217,7 @@
     <value>ลูกค้า</value>
   </data>
   <data name="customerlist" xml:space="preserve">
-    <value>รายชื่อลูกค้า</value>
+    <value>รายชื่อดาวน์ไลน์</value>
   </data>
   <data name="daily" xml:space="preserve">
     <value>รายวัน</value>
@@ -310,7 +310,7 @@
     <value>นามสกุล</value>
   </data>
   <data name="lasttxn" xml:space="preserve">
-    <value>transaction ครั้งล่าสุด</value>
+    <value>ธุรกรรมล่าสุด</value>
   </data>
   <data name="lbl1stHdp" xml:space="preserve">
     <value>ราคาต่อรอง ครึ่งแรก</value>
@@ -358,7 +358,7 @@
     <value>รายการเดิมพัน</value>
   </data>
   <data name="lblBetSetting" xml:space="preserve">
-    <value>การกำหนดการวางเดิมพัน</value>
+    <value>การตั้งค่าเดิมพัน</value>
   </data>
   <data name="lblCashBalance" xml:space="preserve">
     <value>ยอดเงินสด</value>
@@ -1321,7 +1321,7 @@
     <value>คุณแน่ใจหรือว่าเคลยร์เครดิตทั้งหมดของลูดค้าท่านนี้</value>
   </data>
   <data name="ipnote" xml:space="preserve">
-    <value>หาข้อมูลเพิ่มเติมได้จาก  DNS stuff:&lt;a href="{0}" target="_blank"&gt; click here&lt;/a&gt;.
+    <value>หาข้อมูลเพิ่มเติมได้จาก  DNS stuff:&lt;a href="{0}" target="_blank"&gt; คลิ๊กที่นี่&lt;/a&gt;.
 หมายเหตุ : ประเทศและชื่อเมืองได้ข้อมูลจาก IP2Location and DNS stuff ซึ่งเป็นเพียงข้อมูลอ้างอิงเท่านั้นไม่สามารถรับประกันได้ กรุณาศึกษาหาข้อมูลอื่นๆได้จากแหล่งผู้ให้ข้อมูลที่สามารถเชื่อถือได้ หากท่านต้องการ</value>
   </data>
   <data name="city" xml:space="preserve">
@@ -1769,10 +1769,10 @@
     <value>ความเสี่ยงต่ำสุดของมาสเตอร์</value>
   </data>
   <data name="masterPT" xml:space="preserve">
-    <value>ค่าคอมมาสเตอร์</value>
+    <value>ค่าความเสี่ยงมาสเตอร์</value>
   </data>
   <data name="superPT" xml:space="preserve">
-    <value>ค่าคอมซุปเปอร์</value>
+    <value>ค่าความเสี่ยงซุปเปอร์</value>
   </data>
   <data name="masterAutoPT" xml:space="preserve">
     <value>ค่าแบ่งสู้อัตโนมัติของมาสเตอร์</value>
@@ -1850,7 +1850,7 @@
     <value>รายชื่อเอเย่นต์</value>
   </data>
   <data name="memberList" xml:space="preserve">
-    <value>รายชื่อลูกค้า</value>
+    <value>รายชื่อสมาชิก</value>
   </data>
   <data name="lblPasswordExpired" xml:space="preserve">
     <value>ข้อมูลและความปลอดภัยของคุณเป็นสิ่งสำคัญที่สุดสำหรับเรา ฉะนั้น เราจึงไม่หยุดที่จะปรับปรุงมาตรการระบบรักษาความปลอดภัยของข้อมูลของคุณ  ด้วยเหตุนี้ เราขอให้คุณเปลี่ยนรหัสใหม่ 

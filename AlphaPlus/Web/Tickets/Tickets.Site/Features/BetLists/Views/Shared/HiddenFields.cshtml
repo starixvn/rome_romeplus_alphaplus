@@ -1,0 +1,17 @@
+@{
+    Layout = null;
+    var request = AlphaContext.Current.Request;
+    var ticketBaseUrl = $"//{request.Host}{request.PathBase}/";
+    var custId = request.Query["custid"].ToString();
+    if (string.IsNullOrWhiteSpace(custId))
+    {
+        custId = Model.CustId.ToString();
+    }
+    var viewerId = Model.UserId.ToString();
+    var viewerLevelId = Model.RoleId.ToString();
+}
+@model IUserSession
+<input type="hidden" id="hidden-TicketBaseUrl" value="@ticketBaseUrl" />
+<input type="hidden" id="cust-id" value="@custId" />
+<input type="hidden" id="viewer-id" value="@viewerId" />
+<input type="hidden" id="viewer-level-id" value="@viewerLevelId" />

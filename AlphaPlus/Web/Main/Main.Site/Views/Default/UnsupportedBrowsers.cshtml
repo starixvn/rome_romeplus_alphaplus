@@ -1,0 +1,28 @@
+﻿@using AlphaPlus.Web.Models
+@model BrowserViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    @StaticResources.AssetStyles.RenderWithRoleAndDarkMode("/bundles/site-main/unsupport-browser/")
+    @StaticResources.RenderStyles("~/assets/styles/home/pageIElower10")
+    <title>Your browser is out of date</title>
+</head>
+
+<body class="unsupport-browser">
+    <div id="warning-browser-message" class="warning-browser-message">
+        <a data-url="@MicroSites.MainUrl()" class="icon-close open-link"></a>
+        <p class="title"><span class="icon-alert"></span>@Resources.TitleUnsupportBrowser</p>
+        <div class="content-msg">
+            <span>@Resources.BrowserIsOutOfDate</span><a href="@Model.DownloadNewBrowserLink" target="_blank">
+                @(Resources.ClickToUpdateBrowser).</a>
+        </div>
+    </div>
+</body>
+
+</html>

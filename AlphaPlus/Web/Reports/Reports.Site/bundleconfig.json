@@ -1,0 +1,342 @@
+[
+    {
+        "outputFileName": "wwwroot/bundles/default.css",
+        "inputFiles": [
+            "assets/styles/reports.css",
+            "assets/styles/report-legend.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/outstanding/outstanding-mobile-calculate-07.css",
+        "inputFiles": [
+            "assets/styles/report-mobile-calculate-07.css",
+            "assets/styles/outstanding/outstanding-mobile-calculate-07.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/outstanding/outstanding.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/productmultiselection.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/outstanding/outstanding.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/enteredresult/enteredresult.css",
+        "inputFiles": [
+            "assets/styles/enteredresult/enteredresult.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/enteredresult/enteredresult-mobile-calculate-07.css",
+        "inputFiles": [
+            "assets/styles/report-mobile-calculate-07.css",
+            "assets/styles/datepicker-mobile-07.css",
+            "assets/styles/result-winloss-mobile-07.css",
+            "assets/styles/enteredresult/enteredresult-mobile-calculate-07.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/enteredresult/enteredresult.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/components/sort.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/enteredresult/enteredresult.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/winloss/winloss.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/components/monthpicker.js",
+            "assets/scripts/components/tooltip.js",
+            "assets/scripts/components/productmultiselection.js",
+            "assets/scripts/components/sort.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/winloss/winloss.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/winlossdetail/winlossdetail.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/base-report-new.js",
+            "assets/scripts/components/total-entered-nonentered.js",
+            "assets/scripts/components/daterangepicker-jquery.js",
+            "assets/scripts/components/product-dropdown.js",
+            "assets/scripts/components/username-suggestion.js",
+            "assets/scripts/components/visible-column.js",
+            "assets/scripts/components/week.js",
+            "assets/scripts/components/breadcrumb-level.js",
+            "assets/scripts/winlossdetail/winlossdetail-columns.js",
+            "assets/scripts/winlossdetail/winlossdetail-copyhtml.js",
+            "assets/scripts/winlossdetail/winlossdetail-sort.js",
+            "assets/scripts/winlossdetail/winlossdetail.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/matchwinlossdetail/matchwinlossdetail.css",
+        "inputFiles": [
+            "assets/styles/matchwinlossdetail/matchwinlossdetail.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/matchwinlossdetail/matchwinlossdetail.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/components/productmultiselection.js",
+            "assets/scripts/components/league-multiselection.js",
+            "assets/scripts/components/tooltip.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/matchwinlossdetail/matchwinlossdetail.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/winlossanalysis/winlossanalysis.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/components/tooltip.js",
+            "assets/scripts/components/productmultiselection.js",
+            "assets/scripts/components/sort.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/winlossanalysis/winlossanalysis.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/winlossanalysischart/winlossanalysischart.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/month-range-picker.js",
+            "assets/scripts/components/tooltip.js",
+            "assets/scripts/components/productmultiselection.js",
+            "assets/scripts/components/dual-axis-chart.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/winlossanalysischart/winlossanalysischart.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/winlossbyproduct/winlossbyproduct.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/productmultiselection.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/components/tooltip.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/winlossbyproduct/winlossbyproduct.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/superwinlossdetailbypt/superwinlossdetailbypt.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/productmultiselection.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/components/tooltip.js",
+            "assets/scripts/components/sort.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/superwinlossdetailbypt/superwinlossdetailbypt.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/commissionbybettype/commissionbybettype.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/components/sort.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/commissionbybettype/commissionbybettype.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/consolidation/consolidation.css",
+        "inputFiles": [
+            "assets/styles/consolidation/consolidation.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/consolidation/consolidation.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/productmultiselection.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/components/tooltip.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/consolidation/consolidation.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/consolidation/consolidation-detail.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/productmultiselection.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/components/tooltip.js",
+            "assets/scripts/components/sort.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/consolidation/consolidation-detail.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/statement/statement.css",
+        "inputFiles": [
+            "assets/styles/statement/statement.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/statement/sma-statement.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/components/client-pager.js",
+            "assets/scripts/statement/statement-details.js",
+            "assets/scripts/statement/statement.js",
+            "assets/scripts/statement/sma-statement.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/statement/member-statement.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/components/client-pager.js",
+            "assets/scripts/components/single-selection-dropdown.js",
+            "assets/scripts/statement/statement-details.js",
+            "assets/scripts/statement/statement.js",
+            "assets/scripts/statement/member-statement.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/statement/statement-details.js",
+        "inputFiles": [
+            "assets/scripts/statement/statement-details.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/progressivecontribution/progressivecontribution.css",
+        "inputFiles": [
+            "assets/styles/progressivecontribution/progressivecontribution.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/progressivecontribution/progressivecontribution.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/components/monthpicker.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/components/productmultiselection.js",
+            "assets/scripts/components/tooltip.js",
+            "assets/scripts/progressivecontribution/progressivecontribution.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/bonusdetail/bonusdetail.css",
+        "inputFiles": [
+            "assets/styles/bonusdetail/bonus-detail.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/bonusdetail/bonusdetail.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/components/pager.js",
+            "assets/scripts/bonusdetail/confirm-payment.js",
+            "assets/scripts/bonusdetail/bonus-detail.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/betcredittracking/betcredithistory.css",
+        "inputFiles": [
+            "assets/styles/betcredittracking/bet-credit-history.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/betcredittracking/betcredithistory.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/components/pager.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/betcredittracking/bet-credit-history.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/betcredittracking/movestatementhistory.css",
+        "inputFiles": [
+            "assets/styles/betcredittracking/move-statement-history.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/betcredittracking/movestatementhistory.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/components/pager.js",
+            "assets/scripts/components/monthpicker.js",
+            "assets/scripts/betcredittracking/move-statement-history.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/ipmatching/ipmatching.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/ipmatching/ip-matching.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/betchoicematching/betchoicematching.css",
+        "inputFiles": [
+            "assets/styles/betchoicematching/betchoicematching.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/betchoicematching/betchoicematching.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/simple-tooltip.js",
+            "assets/scripts/betchoicematching/betchoicematching.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/whitelabel/whitelabel.css",
+        "inputFiles": [
+            "assets/styles/whitelabel/whitelabel.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/whitelabel/settlement.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/month-range-picker.js",
+            "assets/scripts/components/multiple-dropdown.js",
+            "assets/scripts/components/visible-column.js",
+            "assets/scripts/components/username-suggestion.js",
+            "assets/scripts/base-report-new.js",
+            "assets/scripts/whitelabel/settlement-columns.js",
+            "assets/scripts/whitelabel/settlement.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/whitelabel/daily-winloss.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/daterangepicker-jquery.js",
+            "assets/scripts/components/multiple-dropdown.js",
+            "assets/scripts/components/username-suggestion.js",
+            "assets/scripts/base-report-new.js",
+            "assets/scripts/whitelabel/daily-winloss.js"
+        ]
+    }
+]

@@ -1,0 +1,45 @@
+@{
+    Layout = null;
+    ViewData["WinLossBetListNew"] = true;
+}
+@model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.WinLoss.WinLossWeekSelectionViewModel
+<div class="breadcrumb-table">
+    <breadcrumb-level model="@Model.BreadcrumbLevels" />
+    <div class="list-icon">
+        <ul>
+            <li>
+                <a href="javascript:;" id="icon-excel" class="icon icon-excel icon-excel-new"
+                    title="@Resources.ExportToExcel" data-url="@MicroSites.TicketUrl("~/WinLoss/Excel")"></a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="scrollable">
+    <table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tblRpt-hover tbl-betlist tblRpt-freeze-header"
+        id="tbl-betlist">
+        <thead>
+            <tr>
+                <th class="col-number">#</th>
+                <th class="col-transtime">@Resources.transtime</th>
+                <th>@Resources.choice</th>
+                <th class="col-odds">@Resources.odds</th>
+                <th class="col-stake">@Resources.stake</th>
+                <th class="col-winloss">@Resources.lblWinLoss</th>
+                <th class="col-status">@Resources.status</th>
+                @if (Model.AllowToViewSuperPT)
+                {
+                    <th class="col-pt">@Resources.superptcomm</th>
+                }
+                @if (Model.AllowToViewMasterPT)
+                {
+                    <th class="col-pt">@Resources.masterptcomm</th>
+                }
+                <th class="col-pt">@Resources.agentptcomm</th>
+                <th class="col-platform">@Resources.platform</th>
+            </tr>
+        </thead>
+        <tbody>
+            <partial name="BetList" model="Model" />
+        </tbody>
+    </table>
+</div>

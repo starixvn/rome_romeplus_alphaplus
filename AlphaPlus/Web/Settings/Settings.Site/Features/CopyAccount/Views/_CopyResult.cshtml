@@ -1,0 +1,74 @@
+﻿@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
+@using AlphaPlus.Settings.Site.Features.CopyAccount.ViewModels
+@model CopyAccountResultViewModel
+<p class="msg msg-success msg-result">@string.Format(Resources.CreateCustomerSuccessMessage,
+    Model.Result.Usernames.Count())</p>
+<div class="note"><span class="star"></span>@Resources.introCopyNote</div>
+<div class="form-row">
+    <button class="btn-border" id="compact-copy-btn" style="margin-right: 8px"
+        data-clipboard-target="#content-copy">@Resources.CompactCopy</button>
+    <button class="btn-border" id="individual-copy-btn"
+        data-clipboard-target="#content-copy">@Resources.IndividualCopy</button>
+</div>
+<div class="form-row">
+    <label>@Resources.Usernames</label>
+    <div class="relative-input result-area">
+        <div class="form-value" readonly="readonly" type="text" name="member" id="usernames">@string.Join(", ",
+            Model.Result.Usernames)</div>
+    </div>
+</div>
+<div class="form-row">
+    <label class="sub-label">@Resources.GivenCreditPerAccount</label>
+    <div class="relative-input result-area">
+        <input class="form-value" disabled="disabled" type="text" name="Credit" id="txtClonedCredit"
+            value="@string.Format("{0:#,0.##}", Model.Credit)" />
+    </div>
+
+</div>
+<div class="form-row">
+    <label class="sub-label">@Resources.Domain</label>
+    <div class="relative-input result-area">
+        <div class="form-value" readonly="readonly" type="text" name="member" id="txtDomains">@string.Join(", ",
+            Model.Result.Domains.Take(3))</div>
+    </div>
+</div>
+
+@if (Model.NoOfFailedAccount > 0)
+{
+    <div class="failed-account-created">
+        <p class="msg msg-error result-text">@string.Format(Resources.NoAccountCreatedFailed, Model.NoOfFailedAccount)</p>
+        <p class="result-text">
+            <span>@Resources.FailureReason: </span>
+            @if (Model.Result.MessageContent != null)
+            {
+            <div class="msg msg-error">
+                <div class="main-message">@Model.Result.MessageContent.MainMessage</div>
+                    @{
+                        var subMessages = Model.Result.MessageContent?.SubMessages;
+                        if (subMessages != null && subMessages.Count() > 0)
+                        {
+                            foreach (var subMessage in subMessages)
+                            {
+                            <div class="sub-message">
+                                    @if (subMessage.IsLive)
+                                    {
+                                    <span class="live-badge">@Resources.Live</span>
+                                    }
+                                    @subMessage.Message
+                            </div>
+                            }
+                        }
+                    }
+            </div>
+            }
+            else
+            {
+            <span>@Model.Result.Message</span>
+            }
+        </p>
+    </div>
+}
+
+<div class="result-submit">
+    <a href="@Url.Action("Index", "CopyAccount")" class="btn-submit" id="btnCreateMore">@Resources.CreateMore</a>
+</div>

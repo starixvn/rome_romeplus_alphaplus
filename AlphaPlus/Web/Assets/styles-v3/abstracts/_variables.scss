@@ -1,0 +1,24 @@
+﻿:root,
+:root [data-theme='light'] {
+    --font-family: Roboto, Arial, sans-serif;
+    --font-size: 13px;
+    // text
+    --text-color: #333333;
+    --text-color2: var(--link-text-color);  
+    --border-color: #d1d1d1;
+    --bg-color1: #ffffff;
+
+    --link-text-color: #045ace;
+    --bg-hover-rip: #b1aea3;
+}
+
+:root [data-theme='dark'] {
+
+    --text-color: #ededed;
+    --text-color2: var(--link-text-color);  
+    --border-color: #474747;
+    --bg-color1: #171717;
+    
+    --link-text-color: #41a4ff;
+    --bg-hover-rip: #b1aea3;
+}

@@ -1,0 +1,88 @@
+@using AlphaPlus.Core.Models
+@using AlphaPlus.Shared.AppResources.Settings.SubAccount
+@model SubAccountViewModel
+@{
+    Layout = "~/Features/SubAccount/Views/_Layout.cshtml";
+}
+<div>
+    <main role="main" class="pb-3">
+        <div id="errMsg" class="msgerr" style="display: none;"></div>
+        <table class="tblPop width-100per">
+            <tr>
+                <td>@Lang.username</td>
+                <td>@Model.Username @Html.DropDownList("FirstOptions.Value", Model.FirstOptions) @Html.DropDownList("NextOptions.Value", Model.NextOptions)</td>
+            </tr>
+            <tr>
+                <td>@Lang.password</td>
+                <td>
+                    <input type="password" id="txtPwd" />
+                    <span id="spnPwdIcon">&nbsp;</span>
+                    <span id="spnInfoIco" class="infoIco" title="@Lang.lblPasswordRequire">&nbsp;</span>
+                </td>
+            </tr>
+            <tr>
+                <td>@Lang.firstname</td>
+                <td><input type="text" value="@Model.Firstname" id="txtFname" /></td>
+            </tr>
+            <tr>
+                <td>@Lang.lastname</td>
+                <td><input type="text" value="@Model.Lastname" id="txtLname" /></td>
+            </tr>
+        </table>
+        <div class="accpermission">@Lang.accpermission</div>
+        <table class="tblRpt">
+            <thead class="RptHeader">
+                <td>@Lang.memberinfo</td>
+                <td>@Lang.BetsAndForecast</td>
+                <td>@Lang.Reports</td>
+                <td>@Lang.BetLists</td>
+                <td>@Lang.transfer</td>
+                <td>@Lang.viewlog</td>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="c">
+                        <div id="MemInfo" class="pMemInfo" data-subaccid="@Model.SubAccId"
+                                data-pageaccess="@Model.MemberInfoPermission" >@Model.GetPermission()</div>
+                    </td>
+                    <td class="c"><input id="@(Model.SubAccId + "-D")" type="checkbox" class="npageaccess"
+                            data-subaccid="@Model.SubAccId" data-pageaccess="@Model.MemberInfoPermission" /></td>
+                    <td class="c"><input id="@(Model.SubAccId + "-E")" type="checkbox" class="npageaccess"
+                            data-subaccid="@Model.SubAccId" data-pageaccess="@Model.MemberInfoPermission" /></td>
+                    <td class="c"><input id="@(Model.SubAccId + "-L")" type="checkbox" class="npageaccess"
+                            data-subaccid="@Model.SubAccId" data-pageaccess="@Model.MemberInfoPermission" /></td>
+                    <td class="c"><input id="@(Model.SubAccId + "-C")" type="checkbox" class="npageaccess"
+                            data-subaccid="@Model.SubAccId" data-pageaccess="@Model.MemberInfoPermission" /></td>
+                    <td class="c"><input id="@(Model.SubAccId + "-G")" type="checkbox" class="npageaccess"
+                            data-subaccid="@Model.SubAccId" data-pageaccess="@Model.MemberInfoPermission" /></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="list-button"><input type="button" id="btnAdd" class="btnSubmit" value="@Lang.Add"></div>
+        @Html.AntiForgeryToken()
+        <ul id="nPopup" class="divMenuPopup" style="display: none;">
+            <li class="group">
+                <input type="radio" name="rdPermission" id="None" data-pageaccess="" checked>
+                <label for="None">@Lang.None</label>
+            </li>
+            <li class="group">
+                <input type="radio" name="rdPermission" id="View" data-pageaccess="[H]">
+                <label for="View">@Lang.view</label>
+            </li>
+            <li class="group">
+                <input type="radio" name="rdPermission" id="UpdateView" data-pageaccess="[B][H]">
+                <label for="UpdateView">@Lang.Update</label>
+            </li>
+            <li class="group"><input type="radio" name="rdPermission" id="FullControl" data-pageaccess="[A][B][H]">
+                <label for="FullControl">@Lang.FullControl</label>
+            </li>
+        </ul>
+    </main>
+    @Html.Hidden("Code", UserSession.Current.CaptchaCode)
+</div>
+@section Scripts {
+    <script>
+        var passwordEmptyMsg = '@Lang.alertPasswordEmpty';
+        var passwordFormatMsg = '@Lang.lblPasswordWrongRule';
+    </script>
+}

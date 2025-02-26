@@ -1,0 +1,522 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ChatBotTitle" xml:space="preserve">
+    <value>Chatbot</value>
+  </data>
+  <data name="ChatbotSetup" xml:space="preserve">
+    <value>Setup Chatbot</value>
+  </data>
+  <data name="InstallLetstalk" xml:space="preserve">
+    <value>Install Letstalk and create a free account.</value>
+  </data>
+  <data name="YourLetstalkAccount" xml:space="preserve">
+    <value>Your Letstalk ID</value>
+  </data>
+  <data name="link" xml:space="preserve">
+    <value>Link</value>
+  </data>
+  <data name="unLink" xml:space="preserve">
+    <value>Unlink</value>
+  </data>
+  <data name="lblVerificationCode" xml:space="preserve">
+    <value>Verification code</value>
+  </data>
+  <data name="Verify" xml:space="preserve">
+    <value>Verify</value>
+  </data>
+  <data name="Resend" xml:space="preserve">
+    <value>Resend</value>
+  </data>
+  <data name="VerificationCodeIsInvalidOrExpired" xml:space="preserve">
+    <value>Invalid/expired verification code, please try again or request a new one.</value>
+  </data>
+  <data name="UnsubscribeWarning" xml:space="preserve">
+    <value>Unlink Atom will stop all of its features. Are you sure you want to proceed?</value>
+  </data>
+  <data name="FunctionReport" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="FunctionNotification" xml:space="preserve">
+    <value>Notification</value>
+  </data>
+  <data name="AccountDoesNotExist" xml:space="preserve">
+    <value>Letstalk ID does not exist.</value>
+  </data>
+  <data name="InvalidCaptcha" xml:space="preserve">
+    <value>Captcha is invalid.</value>
+  </data>
+  <data name="AccountHasAlreadyBeenRegistered" xml:space="preserve">
+    <value>The inputted ID has already been linked to and verified by another SMA account.</value>
+  </data>
+  <data name="OverMaxAddAccountTimes" xml:space="preserve">
+    <value>You have requested too many times today. Please try again later.</value>
+  </data>
+  <data name="Command" xml:space="preserve">
+    <value>Command</value>
+  </data>
+  <data name="ChatBotLanguage" xml:space="preserve">
+    <value>Chatbot's Language</value>
+  </data>
+  <data name="IntroReport" xml:space="preserve">
+    <value>to activate the reports you'd like to query.</value>
+  </data>
+  <data name="IntroNotification" xml:space="preserve">
+    <value>to enable the notification that you'd like to receive.</value>
+  </data>
+  <data name="Read" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="grossComm" xml:space="preserve">
+    <value>Gross Comm</value>
+  </data>
+  <data name="memberWinLoss" xml:space="preserve">
+    <value>Member WL</value>
+  </data>
+  <data name="personalMessageSample" xml:space="preserve">
+    <value>Your minimum position taking value has been changed by the upline. Please kindly be informed and have a check the details for your downlines.</value>
+  </data>
+  <data name="specialAnnouncementSample" xml:space="preserve">
+    <value>Dear Valued Customer: Effective 18th Jan 2018 Company will restrict access our Agent Site from "Hong Kong". Thank you for your kind attention! </value>
+  </data>
+  <data name="normalAnnouncementSample" xml:space="preserve">
+    <value>Attn:[E-Sports] a match has been cancelled, all bets taken are considered REFUNDED.Thank you!</value>
+  </data>
+  <data name="systemAnnouncementSample" xml:space="preserve">
+    <value>Dear valued agents,&lt;br /&gt;We are pleased to inform that there are new games added under Macau Games. You may review the Bet Limit settings affected from 10/05/2018.&lt;br /&gt;Thank you.</value>
+  </data>
+  <data name="updateLanguageFailed" xml:space="preserve">
+    <value>Fail to update Chatbot's language. Please try again.</value>
+  </data>
+  <data name="expiredOrDidNotRecieveTheCode" xml:space="preserve">
+    <value>Didn't receive a code?</value>
+  </data>
+  <data name="IntroChatbot" xml:space="preserve">
+    <value>&lt;strong&gt;Agency Chatbot service&lt;/strong&gt; integrated with this &lt;strong&gt;Letstalk IM&lt;/strong&gt; allows you to receive &lt;strong&gt;up-to-date significant information of your business conveniently and securely without the need to access to this site.&lt;/strong&gt;&lt;br /&gt;To start setting up Chatbot, please follow below steps:</value>
+  </data>
+  <data name="IntroLetstalk" xml:space="preserve">
+    <value>is the most &lt;strong&gt;secured messenger&lt;/strong&gt; which heavily &lt;strong&gt;encrypts&lt;/strong&gt; your conversations. </value>
+  </data>
+  <data name="letstalkIM" xml:space="preserve">
+    <value>Letstalk IM</value>
+  </data>
+  <data name="letstalkTechLmd" xml:space="preserve">
+    <value>Letstalk Technology Limited</value>
+  </data>
+  <data name="pleaseInputLetstalkAccount" xml:space="preserve">
+    <value>Input your Letstalk ID (not the screen name) to link with our chatbot service.</value>
+  </data>
+  <data name="AccountIsRequired" xml:space="preserve">
+    <value>Please input your Letstalk ID.</value>
+  </data>
+  <data name="lblCaptcha" xml:space="preserve">
+    <value>Captcha</value>
+  </data>
+  <data name="verificationCodeIsRequired" xml:space="preserve">
+    <value>Please input verification code.</value>
+  </data>
+  <data name="captchaIsRequired" xml:space="preserve">
+    <value>Please input captcha.</value>
+  </data>
+  <data name="reportExample" xml:space="preserve">
+    <value>Report Example</value>
+  </data>
+  <data name="notificationExample" xml:space="preserve">
+    <value>Notification Example</value>
+  </data>
+  <data name="howFunctionWorks" xml:space="preserve">
+    <value>How function works</value>
+  </data>
+  <data name="pleaseSet" xml:space="preserve">
+    <value>Please set</value>
+  </data>
+  <data name="play" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <data name="playing" xml:space="preserve">
+    <value>Playing</value>
+  </data>
+  <data name="EnterVerificationCode" xml:space="preserve">
+    <value>Verify your Letstalk ID.</value>
+  </data>
+  <data name="IntroVerificationCode" xml:space="preserve">
+    <value>A bot named "&lt;strong&gt;Atom&lt;/strong&gt;" has sent you a 6-digits verification code via Letstalk IM. To verify your Letstalk ID, please input the verification code.</value>
+  </data>
+  <data name="inputCommand" xml:space="preserve">
+    <value>Input command</value>
+  </data>
+  <data name="systemAnnouncement" xml:space="preserve">
+    <value>System Announcement</value>
+  </data>
+  <data name="yesterdayWinLoss" xml:space="preserve">
+    <value>Yesterday Win Loss</value>
+  </data>
+  <data name="ChatbotName" xml:space="preserve">
+    <value>Chatbot's name</value>
+  </data>
+  <data name="Atom" xml:space="preserve">
+    <value>Atom</value>
+  </data>
+  <data name="showQRCode" xml:space="preserve">
+    <value>Show QR code</value>
+  </data>
+  <data name="hideQRCode" xml:space="preserve">
+    <value>Hide QR code</value>
+  </data>
+  <data name="pleaseSetNotification" xml:space="preserve">
+    <value>Please set</value>
+  </data>
+  <data name="LinkTooltip" xml:space="preserve">
+    <value>Please link your Letstalk ID with our chatbot service to use the functions below.</value>
+  </data>
+  <data name="VerifyTooltip" xml:space="preserve">
+    <value>Please verify your Letstalk ID to use the below functions.</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="OutstandingHiddenDownlinesCount" xml:space="preserve">
+    <value>97 more members are not shown.</value>
+  </data>
+  <data name="OutstandingHint" xml:space="preserve">
+    <value>Hint: For quick commands, please type: /os 50</value>
+  </data>
+  <data name="YesterdayTotalBalance" xml:space="preserve">
+    <value>Yesterday Bal</value>
+  </data>
+  <data name="TodayWinLoss" xml:space="preserve">
+    <value>Today WL</value>
+  </data>
+  <data name="YesterdayWL" xml:space="preserve">
+    <value>Yesterday WL</value>
+  </data>
+  <data name="MemberOutstanding" xml:space="preserve">
+    <value>Member Outstanding</value>
+  </data>
+  <data name="MemberCredit" xml:space="preserve">
+    <value>Member Credit</value>
+  </data>
+  <data name="AgentOutstanding" xml:space="preserve">
+    <value>Agent Outstanding</value>
+  </data>
+  <data name="FifteenMinutes" xml:space="preserve">
+    <value>15 minutes</value>
+  </data>
+  <data name="ThirtyMinutes" xml:space="preserve">
+    <value>30 minutes</value>
+  </data>
+  <data name="OneHour" xml:space="preserve">
+    <value>1 hour</value>
+  </data>
+  <data name="ThreeHours" xml:space="preserve">
+    <value>3 hours</value>
+  </data>
+  <data name="SixHours" xml:space="preserve">
+    <value>6 hours</value>
+  </data>
+  <data name="TwelveHours" xml:space="preserve">
+    <value>12 hours</value>
+  </data>
+  <data name="OneDay" xml:space="preserve">
+    <value>1 day</value>
+  </data>
+  <data name="ThreeDays" xml:space="preserve">
+    <value>3 days</value>
+  </data>
+  <data name="SevenDays" xml:space="preserve">
+    <value>7 days</value>
+  </data>
+  <data name="FifteenDays" xml:space="preserve">
+    <value>15 days</value>
+  </data>
+  <data name="ThirtyDays" xml:space="preserve">
+    <value>30 days</value>
+  </data>
+  <data name="lblMessageSelfDestruct" xml:space="preserve">
+    <value>Chatbot's messages will self-destruct after</value>
+  </data>
+  <data name="UpdateMessageSelfDestructMessageFailedMessage" xml:space="preserve">
+    <value>Update self-destruction period unsuccessfully, please try again.</value>
+  </data>
+  <data name="FunctionAction" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="PleaseSetAction" xml:space="preserve">
+    <value>Please set</value>
+  </data>
+  <data name="IntroAction" xml:space="preserve">
+    <value>to activate the actions you'd like to query.</value>
+  </data>
+  <data name="cloneAccountNotification" xml:space="preserve">
+    <value>Your request is being processed now, please wait...</value>
+  </data>
+  <data name="cloneAccountSuccessMsg" xml:space="preserve">
+    <value>A new member has been copied from member01.</value>
+  </data>
+  <data name="HintMessage" xml:space="preserve">
+    <value>*Hint: for quick command,  please type: </value>
+  </data>
+  <data name="actionExample" xml:space="preserve">
+    <value>Action Example</value>
+  </data>
+  <data name="BalanceInfo" xml:space="preserve">
+    <value>Balance Info</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="EnableDisable" xml:space="preserve">
+    <value>Enable/Disable</value>
+  </data>
+  <data name="EnterOTP" xml:space="preserve">
+    <value>Enter the OTP sent from Telegram Chatbot to verify your account (OTP will expire within 3 minutes):</value>
+  </data>
+  <data name="GeneratePrivateQRCode" xml:space="preserve">
+    <value>Generate QR Code</value>
+  </data>
+  <data name="HowItWorks" xml:space="preserve">
+    <value>How it works</value>
+  </data>
+  <data name="InstallTelegram" xml:space="preserve">
+    <value>Download the application on Google Play/App Store, or click &lt;strong&gt;Show QR Code&lt;/strong&gt; and scan the QR code using your phone:</value>
+  </data>
+  <data name="IntroTelegramChatbot" xml:space="preserve">
+    <value>&lt;strong&gt;Telegram Chatbot&lt;/strong&gt; enables you to get up-to-date business information by communicating with the chatbot without accessing to the Agency Site. The chatbot runs on Telegram – a free, secured, encrypted, and cross-platform instant message application.&lt;br /&gt;To setup the chatbot, please follow the instructions below:</value>
+  </data>
+  <data name="IntroTelegramReports" xml:space="preserve">
+    <value>Telegram Chatbot offers a wide variety of reports and features to run your business without accessing the Agency site.&lt;br /&gt;Type “/help” on Chatbot for the full list of commands.</value>
+  </data>
+  <data name="InvalidOTP" xml:space="preserve">
+    <value>OTP is incorrect, please try again</value>
+  </data>
+  <data name="lblOTP" xml:space="preserve">
+    <value>OTP</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>Notification/Alert</value>
+  </data>
+  <data name="NotificationAndSettings" xml:space="preserve">
+    <value>Notifications and Alerts</value>
+  </data>
+  <data name="NotificationAndSettingsIntro" xml:space="preserve">
+    <value>Configure Telegram Chatbot to send you notifications and security alerts.</value>
+  </data>
+  <data name="OrUseThisLink" xml:space="preserve">
+    <value>Or click this link:</value>
+  </data>
+  <data name="OTPIsRequired" xml:space="preserve">
+    <value>Please enter OTP.</value>
+  </data>
+  <data name="Outstanding" xml:space="preserve">
+    <value>Outstanding</value>
+  </data>
+  <data name="PersonalMessage" xml:space="preserve">
+    <value>Personal Message</value>
+  </data>
+  <data name="ProblemAccount" xml:space="preserve">
+    <value>Problem Account</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="ResendOTPSuccessfully" xml:space="preserve">
+    <value>Resent OTP.</value>
+  </data>
+  <data name="ScanQRCode" xml:space="preserve">
+    <value>Scan this QR Code using your mobile device to open Telegram Chatbot</value>
+  </data>
+  <data name="SeeHowItWorks" xml:space="preserve">
+    <value>See how it works</value>
+  </data>
+  <data name="SelectStartOnTelegramChatbot" xml:space="preserve">
+    <value>Click &lt;strong&gt;START&lt;/strong&gt; on Telegram Chatbot then proceed to the next step</value>
+  </data>
+  <data name="StartSettingUp" xml:space="preserve">
+    <value>Sign up on Telegram using your phone number, and click &lt;strong&gt;Generate QR Code&lt;/strong&gt;</value>
+  </data>
+  <data name="Telegram" xml:space="preserve">
+    <value>Telegram</value>
+  </data>
+  <data name="TelegramMessengerInc" xml:space="preserve">
+    <value>Telegram Messenger Inc.</value>
+  </data>
+  <data name="TodayWinLossNew" xml:space="preserve">
+    <value>Today Win Loss</value>
+  </data>
+  <data name="VerifyOTP" xml:space="preserve">
+    <value>Verify OTP</value>
+  </data>
+  <data name="YesterdayWinLossNotificationDescription" xml:space="preserve">
+    <value>Daily send the total row of Alpha Win Loss report of yesterday at 3:00PM (GMT-4)</value>
+  </data>
+  <data name="YouCanTurnOnOff" xml:space="preserve">
+    <value>You can turn on/off any of the above notifications right here, or via Settings in Telegram Chatbot.</value>
+  </data>
+  <data name="ChatID" xml:space="preserve">
+    <value>Chat ID</value>
+  </data>
+  <data name="UnsubscribeTelegramBotWarning" xml:space="preserve">
+    <value>Are you sure you want to unlink?</value>
+  </data>
+  <data name="OTPIsExpiredMessage" xml:space="preserve">
+    <value>OTP is expired, please &lt;span id="btnResend" class="link resend-code"&gt;click here&lt;/span&gt; to generate new OTP.</value>
+  </data>
+  <data name="HasUnlinkedMessage" xml:space="preserve">
+    <value>Your Telegram has been unlinked with {0}.</value>
+  </data>
+  <data name="StartBeforeInputOTP" xml:space="preserve">
+    <value>Please click &lt;strong&gt;START&lt;/strong&gt; on Telegram Chatbot before you input the OTP.</value>
+  </data>
+  <data name="Introducing" xml:space="preserve">
+    <value>Introducing</value>
+  </data>
+  <data name="IntroducingContent" xml:space="preserve">
+    <value>24/7 Virtual Assistant helps you run your business at ease!</value>
+  </data>
+  <data name="IntroducingTitle" xml:space="preserve">
+    <value>{0} Chatbot on Telegram</value>
+  </data>
+  <data name="LatestNotifications" xml:space="preserve">
+    <value>Latest Notifications</value>
+  </data>
+  <data name="SetupNow" xml:space="preserve">
+    <value>Set Up Now</value>
+  </data>
+  <data name="BalanceInfoReport" xml:space="preserve">
+    <value>Balance Info Report</value>
+  </data>
+  <data name="OutstandingReport" xml:space="preserve">
+    <value>Outstanding Report</value>
+  </data>
+  <data name="WinLossReport" xml:space="preserve">
+    <value>Win Loss Report</value>
+  </data>
+  <data name="EnabledTelegramOtpNotification" xml:space="preserve">
+    <value>Enabled Telegram OTP notification</value>
+  </data>
+  <data name="Features" xml:space="preserve">
+    <value>Reports/Features</value>
+  </data>
+  <data name="Feature" xml:space="preserve">
+    <value>Report/Feature</value>
+  </data>
+</root>

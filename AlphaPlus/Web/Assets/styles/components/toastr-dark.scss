@@ -1,0 +1,189 @@
+﻿@import '../abstracts/_variables-dark.scss';
+@import '../abstracts/_mixins.scss';
+
+#toast-container > div {
+    opacity: 1;
+    box-shadow: none;
+
+    &:hover {
+        box-shadow: none !important;
+    }
+}
+.toast-title {
+    font-weight: bold;
+    display: flex;
+    padding-top: 2px;
+    margin-right: 28px;
+    margin-bottom: 10px !important;
+    font-size: 14px;
+
+    
+}
+#toast-container.toast-top-full-width > div, #toast-container.toast-bottom-full-width > div {
+    width: 100%;
+}
+
+%toast {
+    border-width: 1px;
+    border-style: solid;
+    padding: 8px 9px 9px;
+    position: relative;
+    @include border-radius(3px);
+
+    &:before {
+        font-family: Iconalpha;
+        font-size: 20px;
+        position: absolute;
+        left: 9px;
+        top: 9px;
+        line-height: 20px;
+    }
+
+    .toast-title {
+        font-weight: bold;
+        line-height: 16px;
+        margin-bottom: 10px !important;
+        font-size: 14px;
+        padding: 4px 27px 9px 30px;
+        display: flex;
+        margin-right: 0;
+
+        .mins-diff {
+            white-space: nowrap;
+            margin-left: auto;
+            font-weight: normal;
+            color: #ededed;
+            padding-left: 15px;
+            font-size: 12px;
+            margin-top: -1px;
+        }
+    }
+
+    .toast-message {
+        color: $toast-color;
+        font-size: 14px;
+
+        a {
+            color: $toast-color-link;
+            text-decoration: underline;
+
+            &:hover {
+                opacity: 0.85;
+            }
+        }
+    }
+}
+
+#toast-container > .toast-info {
+    @extend %toast;
+    background: $toast-bg-info !important;
+    border-color: $toast-border-info;
+    color: $toast-corlor-info;
+
+    .toast-title {
+        border-bottom: 1px solid $toast-border-info;
+    }
+
+    &:before {
+        content: '\e93c';
+        color: $toast-border-info;
+    }
+}
+
+#toast-container > .toast-error {
+    @extend %toast;
+    background: $toast-bg-error !important;
+    border-color: $toast-border-error;
+    color: $toast-corlor-error;
+
+    .toast-title {
+        border-bottom: 1px solid $toast-border-error;
+    }
+
+    &:before {
+        content: '\e93e';
+        color: $toast-corlor-error;
+    }
+}
+
+#toast-container > .toast-success {
+    @extend %toast;
+    background: $toast-bg-success !important;
+    border-color: $toast-border-success;
+    color: $toast-border-success;
+
+    .toast-title {
+        border-bottom: 1px solid $toast-border-success;
+    }
+
+    &:before {
+        content: '\e93b';
+        color: $toast-border-success;
+    }
+}
+
+#toast-container > .toast-warning {
+    @extend %toast;
+    background: $toast-bg-warning !important;
+    border-color: $toast-border-warning;
+    color: $toast-corlor-warning;
+
+    .toast-title {
+        border-bottom: 1px solid $toast-border-warning;
+    }
+
+    &:before {
+        content: '\e93d';
+        color: $toast-corlor-warning;
+    }
+}
+
+// For announcement
+#toast-container.toastr-announcement {
+    z-index: 9999;
+
+    > .toast-warning {
+        background: #faf9dd;
+        border: none;
+        border-radius: 0;
+        color: #85490d;
+        line-height: 17px;
+        padding: 16px 30px 16px 16px;
+        @include box-shadow-multiple('0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23)');
+
+        &:before {
+            display: none;
+        }
+
+        .toast-close-button {
+            color: #85490d;
+            font:{
+                size: 20px;
+                weight: normal;
+            }
+            position: absolute;
+            right: 7px;
+            left: initial;
+            top: 7px;
+        }
+    }
+}
+.toast-close-button {
+    border-radius: 2px;
+    background-color: rgba(255,255,255,0.1) !important;
+    Width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: normal !important;
+    text-shadow: none !important;
+    color: #ffffff;
+    top: 9px !important;
+    right: 9px !important;
+    position: absolute;
+
+    &:hover {
+        color: #ffffff;
+        background-color: rgba(255,255,255,0.1) !important;
+    }
+}

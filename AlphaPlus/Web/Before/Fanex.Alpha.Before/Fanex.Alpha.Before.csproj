@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="Resources\Labels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Labels.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Labels.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Labels.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\**\*;">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Fanex.Caching.Redis.AspNetCore" Version="2.2.5" />
+    <PackageReference Include="Fanex.Common" Version="1.1.1" />
+    <PackageReference Include="Fanex.Data.ProxyClient" Version="1.0.0" />
+    <PackageReference Include="FPS.Browserless.Detection.Client.NetStandard" Version="1.0.4" />
+    <PackageReference Include="FPS.Client.NetStandard" Version="1.0.15" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="7.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="7.0.3" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="8.0.0" />
+    <PackageReference Include="TelegramBot.Client" Version="1.0.1" />
+    <PackageReference Include="Fanex.Cryptography.Aes" Version="1.0.0.6" />
+    <PackageReference Include="UAParser" Version="3.1.47" />
+    <PackageReference Include="Alpha.SliderCaptcha.AspNetCore" Version="1.0.2" />
+    <PackageReference Include="Fanex.Logging.Extensions.AspNetCore" Version="1.0.0" />
+    <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
+    <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.6" />
+    <PackageReference Include="ONEbook.UM.AspNetCore" Version="3.1.0" />
+    <PackageReference Include="ONEbook.UM.AspNetCore.Filters" Version="3.1.0" />
+    <PackageReference Include="ONEbook.UM.Transport" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Modules\AlphaPlus.RequestInfo\AlphaPlus.RequestInfo.csproj" />
+  </ItemGroup>
+</Project>

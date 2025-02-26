@@ -1,0 +1,1249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Product" xml:space="preserve">
+    <value>ผลิตภัณฑ์</value>
+  </data>
+  <data name="DoubleComm" xml:space="preserve">
+    <value>คอมสองเท่า</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>กลุ่ม</value>
+  </data>
+  <data name="MemberCommission" xml:space="preserve">
+    <value>คอมมิชชั่นของสมาชิก</value>
+  </data>
+  <data name="Comm" xml:space="preserve">
+    <value>ค่าคอมฯ</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>บัญชีคงเหลือ</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>เครดิตสำหรับเดิมพัน</value>
+  </data>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>ไม่มีข้อมูล</value>
+  </data>
+  <data name="Outstanding" xml:space="preserve">
+    <value>เดิมพันที่ยังไม่สิ้นสุด</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>ชื่อผู้ใช้</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>การดำเนินการ</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>รีเฟรช</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>แก้ไข</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>ผลิตภัณฑ์ทั้งหมด</value>
+  </data>
+  <data name="NoSettingWarning" xml:space="preserve">
+    <value>การตั้งค่าสินค้ายังไม่ได้รับการกำหนดค่าสำหรับบัญชีของคุณโปรดติดต่ออัพไลน์ของคุณ</value>
+  </data>
+  <data name="DisabledProductWarning" xml:space="preserve">
+    <value>คุณปิดการใช้งานเกี่ยวกับผลิตภัณฑ์นี้. กรุณาติดต่ออัพไลน์ของคุณเพื่อเปิดงานใช้งานให้คุณ</value>
+  </data>
+  <data name="SelectProducts" xml:space="preserve">
+    <value>เลือกผลิตภัณฑ์</value>
+  </data>
+  <data name="ThereIsNoProduct" xml:space="preserve">
+    <value>ไม่มีสินค้า</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>ลำดับที่.</value>
+  </data>
+  <data name="PlayForFunMemberRequest" xml:space="preserve">
+    <value>ทดลองเล่นฟรี - คำขอสมาชิก</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>เลือก</value>
+  </data>
+  <data name="SettingRequiredWarning" xml:space="preserve">
+    <value>การตั้งค่าการกำหนดค่าที่จำเป็นก่อนที่จะมีความพร้อมในการเดิมพันผลิตภัณฑ์นี้</value>
+  </data>
+  <data name="Sync" xml:space="preserve">
+    <value>ซิงโครไนซ์</value>
+  </data>
+  <data name="PlayForFunGuidelines" xml:space="preserve">
+    <value>ทดลองเล่นฟรี-คู่มือ</value>
+  </data>
+  <data name="BetSettingFollows" xml:space="preserve">
+    <value>การตั้งค่าเดิมพันคัดลอกดังต่อไปนี้</value>
+  </data>
+  <data name="CommissionSettingFollows" xml:space="preserve">
+    <value>การตั้งค่าคอมมิชชั่นคัดลอกดังต่อไปนี้</value>
+  </data>
+  <data name="NewBetType" xml:space="preserve">
+    <value>ประเภทการเดิมพันใหม่</value>
+  </data>
+  <data name="PositionTakingSettingFollows" xml:space="preserve">
+    <value>การตั้งค่าแบ่งสู้คัดลอกดังต่อไปนี้</value>
+  </data>
+  <data name="NewBetTypeEffectDate" xml:space="preserve">
+    <value>ประเภทเดิมพันใหม่ของบาสเกตบอล มีผลตั้งแต่{0}</value>
+  </data>
+  <data name="ProgressiveJackpotGames" xml:space="preserve">
+    <value>เกมส์แจ๊คพ็อต</value>
+  </data>
+  <data name="JackpotGames" xml:space="preserve">
+    <value>เกมแจ็คพอต</value>
+  </data>
+  <data name="TotalContributionRate" xml:space="preserve">
+    <value> อัตรารวมเงินกองทุนรวม</value>
+  </data>
+  <data name="JackpotBetStake" xml:space="preserve">
+    <value>วงเงินเดิมพันแจ็คพอต</value>
+  </data>
+  <data name="ProgressiveJackpotHandbookTitle" xml:space="preserve">
+    <value>เกมแจ็คพอตสะสม - คู่มือ</value>
+  </data>
+  <data name="ProgressiveJackpotHandbookDetails" xml:space="preserve">
+    <value>คลิกที่นี่เพื่อดูรายละเอียดของเกมคพ็อตใหม่</value>
+  </data>
+  <data name="CreditBalance" xml:space="preserve">
+    <value>เครดิต / บัญชีคงเหลือ</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>ทั้งหมด</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>ปิด</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>ปิดการใช้งาน</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>เปิด</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>ถูกระงับ</value>
+  </data>
+  <data name="EnterUsername" xml:space="preserve">
+    <value>ยูเซอร์เนม หรือ ชื่อ/นามสุกล</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>สถานะ</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>ส่ง</value>
+  </data>
+  <data name="Credit" xml:space="preserve">
+    <value>เครดิต</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>ชื่อ</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>เข้าระบบครั้งสุดท้าย</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>นามสกุล</value>
+  </data>
+  <data name="LoginIP" xml:space="preserve">
+    <value>ไอพีที่เข้าระบบ</value>
+  </data>
+  <data name="YesterdayBalance" xml:space="preserve">
+    <value>ยอดคงเหลือเมื่อวาน</value>
+  </data>
+  <data name="Of" xml:space="preserve">
+    <value>ของ</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>หน้า</value>
+  </data>
+  <data name="AvailableCredit" xml:space="preserve">
+    <value>เครดิตที่มีอยู่</value>
+  </data>
+  <data name="DontShowAgain" xml:space="preserve">
+    <value>ไม่ต้องแสดงอีกครั้ง</value>
+  </data>
+  <data name="ShowHideColumnHint" xml:space="preserve">
+    <value>คลิกขวาที่ด้านบนเพื่อแสดง / ซ่อนคอลัมน์</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>ใช่</value>
+  </data>
+  <data name="No2" xml:space="preserve">
+    <value>ไม่ใช่</value>
+  </data>
+  <data name="MemberWinLossLimit" xml:space="preserve">
+    <value>จำกัด ได้/เสีย ของสมาชิก</value>
+  </data>
+  <data name="SelectMaster" xml:space="preserve">
+    <value>เลือกมาสเตอร์</value>
+  </data>
+  <data name="SelectAgent" xml:space="preserve">
+    <value>เลือกเอเย่นต์</value>
+  </data>
+  <data name="PlayerId" xml:space="preserve">
+    <value>ID สมาชิก</value>
+  </data>
+  <data name="UsernamePlaceHolder" xml:space="preserve">
+    <value>ยูเซอร์เนม หรือ ชื่อ/นามสุกล</value>
+  </data>
+  <data name="NoDataFound" xml:space="preserve">
+    <value>ไม่มีข้อมูล</value>
+  </data>
+  <data name="AllAgent" xml:space="preserve">
+    <value>ตัวแทนทั้งหมด</value>
+  </data>
+  <data name="AutoDailyResetLimit" xml:space="preserve">
+    <value>การรีเซ็ตขีดจำกัดอัตโนมัติรายวัน</value>
+  </data>
+  <data name="CurrentWinLossAmount" xml:space="preserve">
+    <value>ยอดได้/เสียปัจจุบัน</value>
+  </data>
+  <data name="MaximumWin" xml:space="preserve">
+    <value>การชนะสูงสุด (ตามเครดิตที่ให้)</value>
+  </data>
+  <data name="CurrentWinLimit" xml:space="preserve">
+    <value>ขีดจำกัดการชนะปัจจุบัน (%)</value>
+  </data>
+  <data name="CurrentLossLimit" xml:space="preserve">
+    <value>ขีดจำกัดการสูญเสียปัจจุบัน (%)</value>
+  </data>
+  <data name="MaximumLoss" xml:space="preserve">
+    <value>การสูญเสียสูงสุด</value>
+  </data>
+  <data name="RemainingBuyInAmount" xml:space="preserve">
+    <value>ยอด Buy-in ที่เหลืออยู่</value>
+  </data>
+  <data name="YesterdayCashBalance" xml:space="preserve">
+    <value>ยอดเงินสดคงเหลือของเมื่อวาน</value>
+  </data>
+  <data name="Cash" xml:space="preserve">
+    <value>เงินสด</value>
+  </data>
+  <data name="EnterAccount" xml:space="preserve">
+    <value>ยูเซอร์เนม</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>ส่งออกไปที่โปรแกรมเอกเซล</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>ยกเลิก</value>
+  </data>
+  <data name="Nickname" xml:space="preserve">
+    <value>ชื่อเล่น</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>ถึง</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>ไม่ใช่ </value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>เลือก</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>สมาชิก</value>
+  </data>
+  <data name="Agent" xml:space="preserve">
+    <value>เอเย่นต์</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>มาสเตอร์</value>
+  </data>
+  <data name="SelectedAccounts" xml:space="preserve">
+    <value>เลือกบัญชี (s):</value>
+  </data>
+  <data name="RequiredMaster" xml:space="preserve">
+    <value>โปรดป้อนบัญชีมาสเตอร์ที่ถูกต้อง</value>
+  </data>
+  <data name="RequiredAgent" xml:space="preserve">
+    <value>โปรดป้อนบัญชีเอเย่นที่ถูกต้อง</value>
+  </data>
+  <data name="ShowAllAccounts" xml:space="preserve">
+    <value>แสดงบัญชี {0} ทั้งหมด?</value>
+  </data>
+  <data name="ProblemAccountList" xml:space="preserve">
+    <value>รายการบัญชีที่มีปัญหา</value>
+  </data>
+  <data name="ExportDate" xml:space="preserve">
+    <value>วันที่จัดเตรียมข้อมูล</value>
+  </data>
+  <data name="DateNotified" xml:space="preserve">
+    <value>วันที่แจ้ง</value>
+  </data>
+  <data name="ReviewStatus" xml:space="preserve">
+    <value>สถานะการตรวจสอบ</value>
+  </data>
+  <data name="MarkAsReviewed" xml:space="preserve">
+    <value>ทำเครื่องหมายว่าตรวจสอบแล้ว</value>
+  </data>
+  <data name="Reviewed" xml:space="preserve">
+    <value>ตรวจสอบแล้ว</value>
+  </data>
+  <data name="NotReviewed" xml:space="preserve">
+    <value>ยังไม่ตรวจสอบ</value>
+  </data>
+  <data name="DateNotifiedFrom" xml:space="preserve">
+    <value>วันที่แจ้งเตือนจาก</value>
+  </data>
+  <data name="SetReviewedForAccountOnly" xml:space="preserve">
+    <value>ตั้งค่าเป็นตรวจสอบแล้วสำหรับบัญชีที่เลือกเท่านั้น</value>
+  </data>
+  <data name="SetReviewedForDownline" xml:space="preserve">
+    <value>ตั้งค่าการตรวจสอบสำหรับบัญชีที่เลือกและดาวน์ไลน์ของบัญชีที่มีปัญหา</value>
+  </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
+    <value>อัปเดตสำเร็จแล้ว!</value>
+  </data>
+  <data name="ProblemAgentAccounts" xml:space="preserve">
+    <value>บัญชีเอเจนต์ที่มีปัญหา</value>
+  </data>
+  <data name="ProblemMemberAccounts" xml:space="preserve">
+    <value>บัญชีสมาชิกทีมีปัญหา</value>
+  </data>
+  <data name="RemainingTransferInAmount" xml:space="preserve">
+    <value>จำนวนเงินโอนเข้าคงเหลือ</value>
+  </data>
+  <data name="AccountInformation" xml:space="preserve">
+    <value>ข้อมูลบัญชี</value>
+  </data>
+  <data name="CopyLink" xml:space="preserve">
+    <value>คัดลอกลิงค์</value>
+  </data>
+  <data name="CreateAccount" xml:space="preserve">
+    <value>สร้างบัญชี</value>
+  </data>
+  <data name="CreateMemberWithQRCode" xml:space="preserve">
+    <value>สร้างสมาชิกด้วยคิวอาร์โค้ด</value>
+  </data>
+  <data name="FirstNameOptional" xml:space="preserve">
+    <value>ชื่อ (ตัวเลือก)</value>
+  </data>
+  <data name="InputExistingMemberAccount" xml:space="preserve">
+    <value>บัญชีสมาชิกที่มีอยู่ (ที่คุณต้องการคัดลอกการตั้งค่า)</value>
+  </data>
+  <data name="MemberCredit" xml:space="preserve">
+    <value>เครดิตเมมเบอร์</value>
+  </data>
+  <data name="NewGivenCredit" xml:space="preserve">
+    <value>เครดิตใหม่ที่ได้รับ</value>
+  </data>
+  <data name="PleaseShowThisQRCodeToYourMember" xml:space="preserve">
+    <value>กรุณาแสดงคิวอาร์โค้ดนี้ให้กับสมาชิกของคุณ</value>
+  </data>
+  <data name="ThisAccountHasBeenSuccessfullyCreated" xml:space="preserve">
+    <value>สร้างบัญชีสำเร็จแล้ว</value>
+  </data>
+  <data name="UpdateCredit" xml:space="preserve">
+    <value>อัปเดตเครดิตที่ได้รับ</value>
+  </data>
+  <data name="UpdateInformation" xml:space="preserve">
+    <value>อัปเดตข้อมูล</value>
+  </data>
+  <data name="GivenCreditMustBeBetweenMinMax" xml:space="preserve">
+    <value>เครดิตที่ให้จะต้องอยู่ระหว่าง {0} ถึง {1}</value>
+  </data>
+  <data name="MemberAccountIsInvalid" xml:space="preserve">
+    <value>บัญชีสมาชิกไม่ถูกต้อง</value>
+  </data>
+  <data name="UsernameIsInvalid" xml:space="preserve">
+    <value>ชื่อที่ใช้ในการเข้าระบบนี้ ไม่สามารถใช้งานได้.</value>
+  </data>
+  <data name="Domain" xml:space="preserve">
+    <value>โดเมน</value>
+  </data>
+  <data name="PleaseInputMemberCredit" xml:space="preserve">
+    <value>กรุณากรอกเครดิตสมาชิก</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>รหัสผ่าน</value>
+  </data>
+  <data name="FirstLoginQRCode" xml:space="preserve">
+    <value>เข้าสู่ระบบคิวอาร์โค้ดครั้งแรก</value>
+  </data>
+  <data name="CannotCreateClosedMemberQRCode" xml:space="preserve">
+    <value>คุณไม่สามารถคัดลอกการตั้งค่าจากบัญชีที่ปิดไปแล้วหรือบัญชีที่ถูกระงับได้</value>
+  </data>
+  <data name="CannotGenerateMessage" xml:space="preserve">
+    <value>การสร้างคิวอาร์โค้ดนี้อีกครั้งไม่สามารถทำได้ เนื่องจากมีการใช้งานแล้ว</value>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>ซุปเปอร์</value>
+  </data>
+  <data name="ShowPassword" xml:space="preserve">
+    <value>แสดง</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>ระดับ</value>
+  </data>
+  <data name="RequiredPasswordError" xml:space="preserve">
+    <value>ขอโทษค่ะ คุณต้องใส่รหัสผ่านด้วย</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>เข้าระบบ</value>
+  </data>
+  <data name="IndirectLogIn" xml:space="preserve">
+    <value>เข้าสู่ระบบทางอ้อม</value>
+  </data>
+  <data name="IndirectLoginAccount" xml:space="preserve">
+    <value>บัญชีเพื่อการเข้าสู่ระบบทางอ้อม</value>
+  </data>
+  <data name="IndirectLoginAccountClosedOrDisabledError" xml:space="preserve">
+    <value>บัญชีนี้ถูกปิดหรือปิดการใช้งานโปรดเปิดและลองอีกครั้ง</value>
+  </data>
+  <data name="IndirectLoginAccountConfirmation" xml:space="preserve">
+    <value>บัญชีเพื่อเข้าสู่ระบบทางอ้อม - การยืนยัน</value>
+  </data>
+  <data name="IndirectLoginAccountDisconnectSuccessfully" xml:space="preserve">
+    <value>ตัดการเชื่อมต่อกับบัญชีแล้ว</value>
+  </data>
+  <data name="IndirectLoginAccountNewSuccessfully" xml:space="preserve">
+    <value>การเชื่อมต่อกับบัญชีสำเร็จ</value>
+  </data>
+  <data name="IndirectLoginAccountPasswordUpdated" xml:space="preserve">
+    <value>บัญชีเพื่อการเข้าสู่ระบบทางอ้อม - รหัสผ่านแก้ไขแล้ว</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>ตัดการเชื่อมต่อ</value>
+  </data>
+  <data name="Connect" xml:space="preserve">
+    <value>เชื่อมต่อ</value>
+  </data>
+  <data name="DisconnectConfirmationMessage" xml:space="preserve">
+    <value>บัญชีที่เลือกไว้จะถูกนำออกจากรายการ ต้องการดำเนินการต่อหรือไม่?</value>
+  </data>
+  <data name="ConnectToNewAccount" xml:space="preserve">
+    <value>เชื่อมต่อกับบัญชีใหม่</value>
+  </data>
+  <data name="NewIndirectLoginAccount" xml:space="preserve">
+    <value>บัญชีใหม่เพื่อเข้าสู่ระบบทางอ้อม</value>
+  </data>
+  <data name="RequiredYourDownlineUsernameOrNicknameError" xml:space="preserve">
+    <value>บัญชีไม่ถูกต้องหรือไม่ใช่ดาวน์ไลน์ของคุณ</value>
+  </data>
+  <data name="YourDownlineUsernameOrNickname" xml:space="preserve">
+    <value>ชื่อผู้ใช้งาน(หรือชื่อเล่น)ของดาวน์ไลน์</value>
+  </data>
+  <data name="UpdatePasswordHint" xml:space="preserve">
+    <value>รหัสผ่านของบัญชีนี้มีการเปลี่ยนแปลง กรุณาบันทึกรหัสผ่านใหม่</value>
+  </data>
+  <data name="GivenCreditPopupTitle" xml:space="preserve">
+    <value>อัปเดตเครดิตที่ได้รับ</value>
+  </data>
+  <data name="ArchiveDate" xml:space="preserve">
+    <value>วันที่จัดเก็บถาวร</value>
+  </data>
+  <data name="ArchiveStage" xml:space="preserve">
+    <value>ขั้นตอนการจัดเก็บ</value>
+  </data>
+  <data name="ClearedGivenCredit" xml:space="preserve">
+    <value>เครดิตที่เคลียร์แล้ว</value>
+  </data>
+  <data name="DormantAccountArchiveProcess" xml:space="preserve">
+    <value>การจัดเก็บถาวรบัญชีที่ไม่ใช้งานอยู่ระหว่างดำเนินการ</value>
+  </data>
+  <data name="DormantAccountList" xml:space="preserve">
+    <value>รายชื่อบัญชีที่ไม่ได้ใช้งาน</value>
+  </data>
+  <data name="DeletedSettings" xml:space="preserve">
+    <value>ลบการตั้งค่า</value>
+  </data>
+  <data name="ToBeClearedGivenCredit" xml:space="preserve">
+    <value>เครดิตที่จะถูกเคลียร์</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>ยอดรวม</value>
+  </data>
+  <data name="CloseAccount" xml:space="preserve">
+    <value>บัญชีถูกปิด</value>
+  </data>
+  <data name="DeleteSettings" xml:space="preserve">
+    <value>ลบการตั้งค่าบัญชีแล้ว</value>
+  </data>
+  <data name="DisableAccount" xml:space="preserve">
+    <value>บัญชีถูกปิดใช้งาน</value>
+  </data>
+  <data name="DormantAccountClosedTooltip" xml:space="preserve">
+    <value>หากสมาชิกเข้าสู่ระบบก่อนเวลากำหนดจัดเก็บถาวรและสมาชิกได้วางเดิมพัน จะไม่ถูกปิดใช้งาน</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>แสดง {from} ถึง {to} จาก {total} รายการ</value>
+  </data>
+  <data name="LockStatus" xml:space="preserve">
+    <value>สถานะล็อก</value>
+  </data>
+  <data name="IndirectLoginAccountLockedError" xml:space="preserve">
+    <value>บัญชีนี้ถูกล็อก กรุณาปลดล็อกและลองใหม่อีกครั้ง</value>
+  </data>
+  <data name="DeleteAccount" xml:space="preserve">
+    <value>บัญชีถูกลบ</value>
+  </data>
+  <data name="DeletedAccount" xml:space="preserve">
+    <value>ลบเรียบร้อย</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>ลบเรียบร้อย</value>
+  </data>
+  <data name="ParlayMaxPayoutSubTitle" xml:space="preserve">
+    <value>การจ่ายเงินสูงสุดของพาร์เลย์ {0}</value>
+  </data>
+  <data name="ParlayMaxPayoutSingleSubText" xml:space="preserve">
+    <value>การจ่ายเงินสูงสุดของพาร์เลย์: {0}</value>
+  </data>
+  <data name="ParlayMaxPayoutMultipleSubText" xml:space="preserve">
+    <value>การจ่ายเงินสูงสุดของพาร์เลย์</value>
+  </data>
+  <data name="SingleMatchParlay" xml:space="preserve">
+    <value>พาร์เลย์การแข่งขันนัดเดียว</value>
+  </data>
+  <data name="Combo2" xml:space="preserve">
+    <value>คอมโบ 2</value>
+  </data>
+  <data name="Combo35" xml:space="preserve">
+    <value>คอมโบ 3-5</value>
+  </data>
+  <data name="ComboOver6" xml:space="preserve">
+    <value>คอมโบ 6+ และ ระบบพาร์เลย์</value>
+  </data>
+  <data name="ParlayMaxPayoutUpdateSuccessfully" xml:space="preserve">
+    <value>อัพเดทเสร็จสมบูรณ์</value>
+  </data>
+  <data name="InvalidMaxPayoutValueText" xml:space="preserve">
+    <value>ค่าต้องเป็นจำนวนบวก</value>
+  </data>
+  <data name="GreaterThanMaxValueText" xml:space="preserve">
+    <value>&lt;BetType&gt;: การตั้งค่า &lt;Column&gt; สูงกว่าของอัพไลน์</value>
+  </data>
+  <data name="soccerParlay" xml:space="preserve">
+    <value>บอลชุดฟุตบอล</value>
+  </data>
+  <data name="mixsports" xml:space="preserve">
+    <value>กีฬาบอลชุด</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>สร้างขึ้นเมื่อ</value>
+  </data>
+  <data name="ConditionToClearCredit" xml:space="preserve">
+    <value>เงื่อนไขในการเคลียร์เครดิต</value>
+  </data>
+  <data name="CreditBalanceNote" xml:space="preserve">
+    <value>ยอดเงินคงเหลือและเครดิตเดิมพันที่แสดงในรายงานอาจไม่ใช่ข้อมูลล่าสุดเมื่อเปรียบเทียบกับยอดที่แสดงใน "ข้อมูลบัญชี" ทางด้านซ้าย คุณสามารถเช็คได้จาก "เครดิต / บัญชีคงเหลือ" คลิกที่จำนวนเครดิตสำหรับการวางเดิมพันเพื่อดูยอดล่าสุด</value>
+  </data>
+  <data name="WatchlistUpdateSuccessfully" xml:space="preserve">
+    <value>อัพเดทเสร็จสมบูรณ์</value>
+  </data>
+  <data name="Locked" xml:space="preserve">
+    <value>ถูกล็อก</value>
+  </data>
+  <data name="Unlimited" xml:space="preserve">
+    <value>ไม่จำกัดค่า</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>จาก</value>
+  </data>
+  <data name="CanViewReportData" xml:space="preserve">
+    <value>ท่านสามารถดูรายงานข้อมูลได้จาก {0}.</value>
+  </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>ขนาดหน้า</value>
+  </data>
+  <data name="ReachedThreshold" xml:space="preserve">
+    <value>ถึงขีดกำจัด</value>
+  </data>
+  <data name="MyWatchlist" xml:space="preserve">
+    <value>รายการเฝ้าดูของฉัน</value>
+  </data>
+  <data name="ThresholdType" xml:space="preserve">
+    <value>ประเภทของขีดจำกัด</value>
+  </data>
+  <data name="SupportsSportsbookDataOnly" xml:space="preserve">
+    <value>ฟังก์ชันนี้ใช้ได้เฉพาะกับ กีฬา</value>
+  </data>
+  <data name="GlobalWinningThreshold" xml:space="preserve">
+    <value>ขีดจำกัดทั่วไปของการชนะ</value>
+  </data>
+  <data name="GlobalLosingThreshold" xml:space="preserve">
+    <value>ขีดจำกัดทั่วไปของการแพ้</value>
+  </data>
+  <data name="LastReach" xml:space="preserve">
+    <value>ขีดจำกัดครั้งล่าสุด</value>
+  </data>
+  <data name="LastThresholdType" xml:space="preserve">
+    <value>ประเภทของขีดจำกัดล่าสุด</value>
+  </data>
+  <data name="WinningLosingAmount" xml:space="preserve">
+    <value>จำนวนเงินที่ชนะ/แพ้</value>
+  </data>
+  <data name="LastWinningThreshold" xml:space="preserve">
+    <value>ขีดจำกัดการชนะครั้งล่าสุด</value>
+  </data>
+  <data name="LastLosingThreshold" xml:space="preserve">
+    <value>ขีดจำกัดการแพ้ครั้งล่าสุด</value>
+  </data>
+  <data name="ReachCount" xml:space="preserve">
+    <value>จำนวนครั้งที่สมาชิกถึงขีดจำกัด</value>
+  </data>
+  <data name="EditWatchlistAccount" xml:space="preserve">
+    <value>แก้ไขเกณฑ์การชนะ/แพ้</value>
+  </data>
+  <data name="SelectThresholdPreset" xml:space="preserve">
+    <value>เลือกเกณฑ์การชนะ/แพ้ที่ตั้งค่าไว้หรือกำหนดค่าเกณฑ์การชนะ/แพ้สำหรับสมาชิกด้านบน:</value>
+  </data>
+  <data name="Preset" xml:space="preserve">
+    <value>ค่าที่ตั้งไว้</value>
+  </data>
+  <data name="PersonalThresholdPresets" xml:space="preserve">
+    <value>ค่าที่ตั้งไว้ของขีดจำกัดรายบุคคล</value>
+  </data>
+  <data name="PersonalThresholdPresetSettings" xml:space="preserve">
+    <value>การตั้งค่าค่าที่ตั้งไว้ของขีดจำกัดรายบุคคล</value>
+  </data>
+  <data name="SelectPreset" xml:space="preserve">
+    <value>เลือกที่ตั้งไว้</value>
+  </data>
+  <data name="WinningThreshold" xml:space="preserve">
+    <value>ขีดจำกัดการชนะ</value>
+  </data>
+  <data name="LosingThreshold" xml:space="preserve">
+    <value>ขีดจำกัดการแพ้</value>
+  </data>
+  <data name="GlobalThresholds" xml:space="preserve">
+    <value>ขีดจำกัดทั่วไป</value>
+  </data>
+  <data name="GlobalThresholdSettings" xml:space="preserve">
+    <value>การตั้งค่าขีดจำกัดทั่วไป</value>
+  </data>
+  <data name="GlobalThresholdWillBeAppliedForMembers" xml:space="preserve">
+    <value>การตั้งค่าเกณฑ์การชนะ/แพ้สากลสำหรับสมาชิกที่ไม่ได้อยู่ในรายการเฝ้าดู</value>
+  </data>
+  <data name="AreYouSureToRemoveAccounts" xml:space="preserve">
+    <value>คุณแน่ใจหรือไม่ว่าต้องการลบบัญชีที่เลือก</value>
+  </data>
+  <data name="ThresholdPresetName" xml:space="preserve">
+    <value>ชื่อของค่าขีดจำกัดที่ตั้งไว้</value>
+  </data>
+  <data name="AddMember" xml:space="preserve">
+    <value>เพิ่มสมาชิก</value>
+  </data>
+  <data name="EditMultiplePersonalThresholds" xml:space="preserve">
+    <value>แก้ไขขีดจำกัดการชนะ/แพ้รายบุคคลหลายรายการ</value>
+  </data>
+  <data name="RemoveMultipleAccounts" xml:space="preserve">
+    <value>ลบบัญชีหลายรายการ</value>
+  </data>
+  <data name="EditPersonalThreshold" xml:space="preserve">
+    <value>แก้ไขขีดจำกัดการชนะ/แพ้รายบุคคล</value>
+  </data>
+  <data name="RemoveAccount" xml:space="preserve">
+    <value>ลบบัญชี</value>
+  </data>
+  <data name="MustEnterThresholdOrCheckError" xml:space="preserve">
+    <value>โปรดป้อนเกณฑ์การชนะ/แพ้ หรือเลือกไม่จำกัดค่า</value>
+  </data>
+  <data name="MustEnterThresholdError" xml:space="preserve">
+    <value>โปรดป้อนเกณฑ์การชนะ/แพ้</value>
+  </data>
+  <data name="NoChangeToUpdateError" xml:space="preserve">
+    <value>ไม่มีการเปลี่ยนแปลงในการอัปเดตนี้</value>
+  </data>
+  <data name="MoreThan50UsernamesError" xml:space="preserve">
+    <value>จำนวนสมาชิกต้องไม่เกิน 50</value>
+  </data>
+  <data name="IsNotMemberError" xml:space="preserve">
+    <value>ไม่ใช่สมาชิก</value>
+  </data>
+  <data name="NotInWatchlistAnyLongerError" xml:space="preserve">
+    <value>ไม่อยู่ในรายการเฝ้าดูอีกต่อไป</value>
+  </data>
+  <data name="WasAddedWatchlistAlreadyError" xml:space="preserve">
+    <value>อยู่ในรายการเฝ้าดูแล้ว</value>
+  </data>
+  <data name="MustEnterUsernameError" xml:space="preserve">
+    <value>โปรดป้อนชื่อผู้ใช้งานสมาชิก</value>
+  </data>
+  <data name="PresetIsNoLongerExists" xml:space="preserve">
+    <value>ไม่มีค่าที่ตั้งไว้อีกต่อไป</value>
+  </data>
+  <data name="PresetNameIsDuplicated" xml:space="preserve">
+    <value>ชื่อที่ตั้งไวได้ถูกใช้งานแล้ว</value>
+  </data>
+  <data name="MustEnterPresetNameError" xml:space="preserve">
+    <value>โปรดป้อนชื่อที่ตั้งไว้</value>
+  </data>
+  <data name="EnterListOfMemberUsernames" xml:space="preserve">
+    <value>ป้อนชื่อผู้ใช้ของสมาชิก</value>
+  </data>
+  <data name="MaximumMembers" xml:space="preserve">
+    <value>(สมาชิกสูงสุด 50 รายการ คั่นด้วยเครื่องหมายจุลภาค ',')</value>
+  </data>
+  <data name="DateTime" xml:space="preserve">
+    <value>วันเวลา</value>
+  </data>
+  <data name="Global" xml:space="preserve">
+    <value>ทั่วไป</value>
+  </data>
+  <data name="Personal" xml:space="preserve">
+    <value>รายบุคคล</value>
+  </data>
+  <data name="AddRow" xml:space="preserve">
+    <value>เพิ่มแถว</value>
+  </data>
+  <data name="RemoveSuccessfully" xml:space="preserve">
+    <value>ถูกลบเรียบร้อยแล้ว</value>
+  </data>
+  <data name="ReachHistory" xml:space="preserve">
+    <value>ประวัติการถึงขีดจำกัด</value>
+  </data>
+  <data name="AreYouSureToRemovePreset" xml:space="preserve">
+    <value>คุณแน่ใจหรือไม่ว่าต้องการลบค่าที่ตั้งไว้นี้</value>
+  </data>
+  <data name="AccumulatedMemberWinLossOnlyStartsCountingNote" xml:space="preserve">
+    <value>ยอดสะสมรวมชนะ/แพ้ จะเริ่มนับเมื่อมีการตั้งค่า เกณฑ์การแพ้/ชนะ แล้ว โดยระบบจะเคลียร์ยอดสะสมทุกวันหรือเมื่อปิดการใช้งานฟังก์ชันนี้</value>
+  </data>
+  <data name="AddMembersToWatchlist" xml:space="preserve">
+    <value>เพิ่มสมาชิกในรายการเฝ้าดู</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>บันทึก</value>
+  </data>
+  <data name="AddSuccessfully" xml:space="preserve">
+    <value>เพิ่มเรียบร้อยแล้ว</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>อัปเดต</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>เพิ่ม</value>
+  </data>
+  <data name="EditMultiple" xml:space="preserve">
+    <value>แก้ไขหลายรายการ</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>ข้อมูล</value>
+  </data>
+  <data name="AccumulatedMemberWinLossWillBeCountedNote" xml:space="preserve">
+    <value>ยอดสะสมรวมชนะ/แพ้ จะถูกนับทันทีหลังจากตั๋วเดิมพันได้รับการคำนวณผล เมื่อตั๋วเดิมพันทำการนับยอดสะสมแล้วและมีการย้ายคู่แข่งขันที่ยังไม่ได้ตัดสินไปยังวันถัดไปจะไม่ทำให้ยอดสะสมเปลี่ยนแปลง</value>
+  </data>
+  <data name="MyThresholds" xml:space="preserve">
+    <value>ขีดจำกัดของฉัน</value>
+  </data>
+  <data name="MyThresholdsSettings" xml:space="preserve">
+    <value>การตั้งค่าขีดจำกัดของฉัน</value>
+  </data>
+  <data name="GlobalThresholdSettingsNote" xml:space="preserve">
+    <value>รับการแจ้งเตือนเมื่อการแพ้ ชนะ ของสมาชิกแต่ละรายถึงขีดจำกัดที่คุณกำหนดไว้ด้านล่าง:</value>
+  </data>
+  <data name="MyLosingThreshold" xml:space="preserve">
+    <value>ขีดจำกัดการแพ้ของฉัน</value>
+  </data>
+  <data name="MyThresholdSettingsNote" xml:space="preserve">
+    <value>รับการแจ้งเตือนเมื่อการชนะ/แพ้ของคุณ (ตามค่าความเสี่ยงของคุณจากสมาชิกทั้งหมด) ถึงขีดจำกัดการชนะ/แพ้ ที่คุณกำหนดไว้ด้านล่าง:</value>
+  </data>
+  <data name="MyWinningThreshold" xml:space="preserve">
+    <value>ขีดจำกัดการชนะของฉัน</value>
+  </data>
+  <data name="ThresholdSettingsNote" xml:space="preserve">
+    <value>หากต้องการปิดใช้งานขีดจำกัด ให้คลิกทำเครื่องหมายที่ช่องไม่จำกัดสำหรับทั้งเกณฑ์การชนะ/แพ้</value>
+  </data>
+  <data name="Entered" xml:space="preserve">
+    <value>เข้า</value>
+  </data>
+  <data name="NonEntered" xml:space="preserve">
+    <value>ยังไม่มีผล</value>
+  </data>
+  <data name="lblPasswordRequire" xml:space="preserve">
+    <value>รหัสต้องมีอย่างน้อย 8 อักขระต้องไม่มีช่องเว้นวรรค และต้องมีอย่างน้อย 3 ข้อ ยังด้านล่าง&lt;br&gt;
+&lt;br&gt;
+1. ต้องมีภาษาอังกฤษตัวพิมพ์ใหญ่ [A-Z] &lt;br&gt;
+2. ต้องมีภาษาอังกฤษตัวพิมพ์เล็ก [a-z]&lt;br&gt;
+3. ตัวเลข [0-9] &lt;br&gt;
+4. อักขระพิเศษ (!,@,#,etc..)&lt;br&gt;
+&lt;br&gt;
+ยกตัวอย่างเช่น: 59D7!4$h, 493abcDE&lt;br&gt;
+หมายเหตุ รหัสผ่านของคุณเป็นสิ่งที่สำคัญ</value>
+  </data>
+  <data name="UserNotExist" xml:space="preserve">
+    <value>ไม่มียูเซอร์นี้</value>
+  </data>
+  <data name="NoAccountCreatedFailed" xml:space="preserve">
+    <value>สร้างไม่สำเร็จ {0} บัญชี</value>
+  </data>
+  <data name="FailureReason" xml:space="preserve">
+    <value>สาเหตุที่ไม่สำเร็จ</value>
+  </data>
+  <data name="CreateMore" xml:space="preserve">
+    <value>สร้างเพิ่ม</value>
+  </data>
+  <data name="CopyAccountNote" xml:space="preserve">
+    <value>หมายเหตุ : การตั้งค่าต่างๆ จะใช้ค่าเดียวกันกับบัญชีต้นทาง</value>
+  </data>
+  <data name="NoOfAccounts" xml:space="preserve">
+    <value>จำนวนบัญชี</value>
+  </data>
+  <data name="AccountDetails" xml:space="preserve">
+    <value>รายละเอียดของบัญชี</value>
+  </data>
+  <data name="AccountDetailsNote" xml:space="preserve">
+    <value>เลือกชื่อบัญชีลำดับแรกที่ว่างอยู่ สำหรับบัญชีถัดไป ระบบจะเลือกให้โดยอัตโนมัติ</value>
+  </data>
+  <data name="Usernames" xml:space="preserve">
+    <value>ชื่อผู้ใช้</value>
+  </data>
+  <data name="MemberMaxCredit" xml:space="preserve">
+    <value>เครดิตสูงสุดของสมาชิก</value>
+  </data>
+  <data name="GivenCreditPerAccount" xml:space="preserve">
+    <value>เครดิตที่ให้แต่ละบัญชี</value>
+  </data>
+  <data name="ClassicView" xml:space="preserve">
+    <value>กลับเป็นมุมมองคลาสสิก</value>
+  </data>
+  <data name="AvailableGivenCredit" xml:space="preserve">
+    <value>เครดิตที่มีอยู่</value>
+  </data>
+  <data name="InvalidMemberMaxCredit" xml:space="preserve">
+    <value>เครดิตของสมาชิกต้องอยู่ระหว่าง 0 และ {0}</value>
+  </data>
+  <data name="AccountWasDisabled" xml:space="preserve">
+    <value>บัญชีนี้ได้ถูกปิดไปแล้ว</value>
+  </data>
+  <data name="SourceAccount" xml:space="preserve">
+    <value>บัญชีต้นทาง</value>
+  </data>
+  <data name="MaxCreditPerMember" xml:space="preserve">
+    <value>เครดิตสูงสุดต่อสมาชิก</value>
+  </data>
+  <data name="InvalidMaxCreditPerAccount" xml:space="preserve">
+    <value>ค่าเครดิตสูงสุดต่อบัญชี ต้องไม่เกิน {0}</value>
+  </data>
+  <data name="CreateCustomerSuccessMessage" xml:space="preserve">
+    <value>สร้างบัญชีใหม่จำนวน {0} บัญชีสำเร็จแล้ว</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>คัดลอกเรียบร้อยแล้ว</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>สำเนา</value>
+  </data>
+  <data name="lblUsername" xml:space="preserve">
+    <value>ชื่อผู้ใช้</value>
+  </data>
+  <data name="pendingTransfer3rd" xml:space="preserve">
+    <value>บุคคลที่สามรอการถ่ายโอน</value>
+  </data>
+  <data name="EditSetting" xml:space="preserve">
+    <value>แก้ไขการตั้งค่า</value>
+  </data>
+  <data name="EditMutipleSetting" xml:space="preserve">
+    <value>แก้ไขการตั้งค่าหลายรายการ</value>
+  </data>
+  <data name="AddToMyWatchlist" xml:space="preserve">
+    <value>เพิ่มไปยังรายการเฝ้าดูของฉัน</value>
+  </data>
+  <data name="AddMultipleAccountsToWatchlist" xml:space="preserve">
+    <value>เพิ่มหลายบัญชีเข้าสู่รายการเฝ้าดูของฉัน</value>
+  </data>
+  <data name="SuspendMultipleAccounts" xml:space="preserve">
+    <value>ระงับหลายบัญชี</value>
+  </data>
+  <data name="SetThresholds" xml:space="preserve">
+    <value>ตั้งค่าเกณฑ์</value>
+  </data>
+  <data name="AccountsAlreadyInWatchlist" xml:space="preserve">
+    <value>{0} บัญขีที่มีอยู่แล้วในรายการเฝ้าดูของฉัน</value>
+  </data>
+  <data name="NewlyAddedAccounts" xml:space="preserve">
+    <value>บัญชีที่เพิ่มมาใหม่</value>
+  </data>
+  <data name="AddToWatchListConfirmThresholds" xml:space="preserve">
+    <value>ขอแนะนำให้คุณตั้งค่าเกณฑ์สำหรับบัญชีที่เพิ่มใหม่มาข้างต้น คลิก&lt;b&gt; ตั้งค่าเกณฑ์ &lt;/b&gt;เพื่อดำเนินการต่อ</value>
+  </data>
+  <data name="AddMultipleToWatchlistExceedMessage" xml:space="preserve">
+    <value>คุณสามารถเพิ่มสมาชิกไปยังรายการเฝ้าดูได้สูงสุด 50 คนต่อครั้ง</value>
+  </data>
+  <data name="AddMultipleToWatchlist" xml:space="preserve">
+    <value>เพิ่มหลายบัญชีเข้าสู่รายการเฝ้าดูของฉัน</value>
+  </data>
+  <data name="MarkMultipleAsReviewed" xml:space="preserve">
+    <value>บันทึกหลายบัญชีพร้อมกันว่าตรวจสอบแล้ว</value>
+  </data>
+  <data name="ProblemAccount" xml:space="preserve">
+    <value>บัญชีที่มีปัญหา</value>
+  </data>
+  <data name="SuspendAccount" xml:space="preserve">
+    <value>ระงับบัญชี</value>
+  </data>
+  <data name="ShowMore" xml:space="preserve">
+    <value>แสดงมากขึ้น</value>
+  </data>
+  <data name="ShowLess" xml:space="preserve">
+    <value>แสดงน้อยลง</value>
+  </data>
+  <data name="lblPasswordMemberRequire" xml:space="preserve">
+    <value>รหัสผ่านต้องมี6-10 อักขระและต้องไม่มีช่องเว้นวรรค ต้องมีภาษาอังกฤษตัวพิมพ์เล็กอย่างน้อย 1ตัว และภาษาอังกฤษตัวพิมพ์ใหญ่อย่างน้อย 1ตัวและตามด้วยตัวเลข
+ยกตัวอย่างเช่น : ( 493abcDE, 59D7!4$h)</value>
+  </data>
+  <data name="BBINNote" xml:space="preserve">
+    <value>หมายเหตุ: ค่า % การชนะของ BBIN แสดงผลเป็น &lt;b&gt;"N/A"&lt;/b&gt; เนื่องจากผลิตภัณฑ์ BBIN ไม่มีการควบคุมขีดจำกัดการชนะสูงสุด</value>
+  </data>
+  <data name="QuickIntro_Title_NotNow" xml:space="preserve">
+    <value>ไม่ใช่ตอนนี้</value>
+  </data>
+  <data name="AddNewMaster" xml:space="preserve">
+    <value>เพิ่มตัวแทนหลัก รายใหม่</value>
+  </data>
+  <data name="AddNewAgent" xml:space="preserve">
+    <value>เพิ่ม Agent </value>
+  </data>
+  <data name="AddNewMember" xml:space="preserve">
+    <value>เพิ่มสมาชิกใหม่</value>
+  </data>
+  <data name="SearchAndCopy" xml:space="preserve">
+    <value>ค้นหาและคัดลอก</value>
+  </data>
+  <data name="FullMode" xml:space="preserve">
+    <value>แบบ เต็ม</value>
+  </data>
+  <data name="QRCode" xml:space="preserve">
+    <value>คิวอาร์โค้ด</value>
+  </data>
+  <data name="lblNew" xml:space="preserve">
+    <value>บใหม่</value>
+  </data>
+  <data name="QuickIntro_Title_Confirm" xml:space="preserve">
+    <value>เริ่มเลย</value>
+  </data>
+  <data name="QuickIntro_Note" xml:space="preserve">
+    <value>*โปรดทราบว่าโหมด Lite จะใช้ค่าแบ่งสู้เดียวกันสำหรับผลิตภัณฑ์/กีฬาทั้งหมดภายในกลุ่มที่กำหนดไว้ หากคุณต้องการค่าที่แตกต่างกันสำหรับแต่ละผลิตภัณฑ์/กีฬา ให้เปลี่ยนไปใช้โหมดเต็มแทน</value>
+  </data>
+  <data name="QuickIntro_Popup_3" xml:space="preserve">
+    <value>ปรับปรุงกระบวนการกำหนดค่าแบ่งสู้ด้วยให้รวดเร็วยิ่งขึ้นโดยการเลือกและใช้เทมเพลตค่าแบ่งสู้ กับกลุ่มผลิตภัณฑ์</value>
+  </data>
+  <data name="QuickIntro_Title" xml:space="preserve">
+    <value>มาทัวร์ชมโหมด Lite กันดีกว่า</value>
+  </data>
+  <data name="QuickIntro_Title_Content" xml:space="preserve">
+    <value>สัมผัสประสบการณ์กระบวนการสร้างบัญชีที่เร็วและรวมศูนย์ยิ่งขึ้น</value>
+  </data>
+  <data name="PTTemplate" xml:space="preserve">
+    <value>เทมเพลตค่าแบ่งสู้</value>
+  </data>
+  <data name="QuickIntro_Popup_1" xml:space="preserve">
+    <value>มาร่วมกันสำรวจสิ่งที่น่าตื่นเต้นทั้งหมดเกี่ยวกับฟีเจอร์นี้กันเถอะ!</value>
+  </data>
+  <data name="QuickIntro_Popup_2" xml:space="preserve">
+    <value>เริ่มต้นด้วยเมนูใหม่และใช้งานง่าย</value>
+  </data>
+  <data name="LiteMode" xml:space="preserve">
+    <value>โหมด Lite</value>
+  </data>
+  <data name="ADBTOnError" xml:space="preserve">
+    <value>บัญชีของคุณไม่สามารถใช้ระบบโอนอัตโนมัติได้ เนื่องจากอัพไลน์ได้เปิดใช้งานระบบโอนยอดคงเหลือตลอดทั้งวันสำหรับบัญชีของคุณ  หน้าแสดงผลนี้จะรีเฟรชโดยอัตโนมัติ</value>
+  </data>
+  <data name="ADBTOffError" xml:space="preserve">
+    <value>บัญชีของคุณสามารถใช้ระบบโอนอัตโนมัติได้ เนื่องจากอัพไลน์ได้ปิดระบบโอนยอดคงเหลือตลอดทั้งวันสำหรับบัญชีของคุณ  หน้าแสดงผลนี้จะรีเฟรชโดยอัตโนมัติ</value>
+  </data>
+  <data name="PageOf" xml:space="preserve">
+    <value>หน้า {0} จาก {1}</value>
+  </data>
+  <data name="Betsetting" xml:space="preserve">
+    <value>การตั้งค่าเดิมพัน</value>
+  </data>
+  <data name="MaxPayoutSetting" xml:space="preserve">
+    <value>Max Payout Setting</value>
+  </data>
+  <data name="PTSetting" xml:space="preserve">
+    <value>Position Taking Setting</value>
+  </data>
+  <data name="SMAUnlimitedBetSettingWarningMessage" xml:space="preserve">
+    <value>
+      Inputting all fields of bet setting = 0 means you do not set limit to the bet setting of this account.&lt;br/&gt;
+      To prevent members from playing the game, set Min Bet = 0 and other fields = 0.1.&lt;br/&gt;
+      Updating upline's bet setting might decrease all downlines' bet settings to ensure that they are not greater than upline's bet setting.
+    </value>
+  </data>
+  <data name="Commission" xml:space="preserve">
+    <value>ค่าคอมฯ</value>
+  </data>
+  <data name="Live" xml:space="preserve">
+    <value>สด</value>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>มูลค่าการเดิมพัน</value>
+  </data>
+  <data name="WinLoss" xml:space="preserve">
+    <value>ยอดได้เสีย</value>
+  </data>
+  <data name="Min" xml:space="preserve">
+    <value>ต่ำสุด</value>
+  </data>
+  <data name="Max" xml:space="preserve">
+    <value>สูงสุด</value>
+  </data>
+  <data name="creditHint" xml:space="preserve">
+    <value>ยอดเงินสดถึงเมื่อวาน: {0}</value>
+  </data>
+  <data name="memberMaxCreditHint" xml:space="preserve">
+    <value>เครดิตสมาชิกสูงสุดที่กำหนดโดยอัพไลน์ของคุณ: {0}</value>
+  </data>
+  <data name="MemberBettingBehavior" xml:space="preserve">
+    <value>พฤติกรรมการเดิมพันของสมาชิก</value>
+  </data>
+  <data name="CustomerProfile" xml:space="preserve">
+    <value>โปรไฟล์สมาชิก</value>
+  </data>
+  <data name="BettingStatistic" xml:space="preserve">
+    <value>สถิติการเดิมพัน</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>ช่วงของข้อมูล</value>
+  </data>
+  <data name="Last90Days" xml:space="preserve">
+    <value>90 วันที่ผ่านมา</value>
+  </data>
+  <data name="Last60Days" xml:space="preserve">
+    <value>60 วันที่ผ่านมา</value>
+  </data>
+  <data name="Last30Days" xml:space="preserve">
+    <value>30 วันที่ผ่านมา</value>
+  </data>
+  <data name="TurnoverBySport" xml:space="preserve">
+    <value>มูลค่าการเดิมพันตามกีฬา</value>
+  </data>
+  <data name="TurnoverByBetType" xml:space="preserve">
+    <value>มูลค่าการเดิมพันตามชนิดการเดิมพัน</value>
+  </data>
+  <data name="TurnoverAndWinLossByDate" xml:space="preserve">
+    <value>มูลค่าการเดิมพันและยอดแพ้ชนะตามวันที่</value>
+  </data>
+  <data name="RelatedToOtherAccounts" xml:space="preserve">
+    <value>เกี่ยวข้องกับบัญชีอื่นๆ</value>
+  </data>
+  <data name="MonitoredMember" xml:space="preserve">
+    <value>สมาชิกที่กำลังเฝ้าดู</value>
+  </data>
+  <data name="TotalTurnover" xml:space="preserve">
+    <value>มูลค่าการเดิมพันรวม</value>
+  </data>
+  <data name="NetTurnover" xml:space="preserve">
+    <value>มูลค่าการเดิมพัน</value>
+  </data>
+  <data name="Average" xml:space="preserve">
+    <value>เฉลี่ย</value>
+  </data>
+  <data name="MemberUsernameIsInvalid" xml:space="preserve">
+    <value>ชื่อผู้ใช้สมาชิกไม่ถูกต้อง</value>
+  </data>
+  <data name="ProfitMargin" xml:space="preserve">
+    <value>อัตรากำไร </value>
+  </data>
+  <data name="BetCount" xml:space="preserve">
+    <value>จำนวนเดิมพัน</value>
+  </data>
+  <data name="Bettype" xml:space="preserve">
+    <value>ประเภทการเดิมพัน</value>
+  </data>
+  <data name="Stake" xml:space="preserve">
+    <value>เงินเดิมพัน </value>
+  </data>
+  <data name="WinLossText" xml:space="preserve">
+    <value>ยอดได้เสีย</value>
+  </data>
+  <data name="Win" xml:space="preserve">
+    <value>ชนะ</value>
+  </data>
+  <data name="Lose" xml:space="preserve">
+    <value>แพ้</value>
+  </data>
+  <data name="Draw" xml:space="preserve">
+    <value>เสมอ</value>
+  </data>
+  <data name="Winning" xml:space="preserve">
+    <value>การชนะ</value>
+  </data>
+  <data name="Losing" xml:space="preserve">
+    <value>เสียไป</value>
+  </data>
+  <data name="Sports" xml:space="preserve">
+    <value>กีฬา</value>
+  </data>
+  <data name="NonLive" xml:space="preserve">
+    <value>ก่อนเริ่มแข่ง</value>
+  </data>
+  <data name="Mix" xml:space="preserve">
+    <value>รวมกัน</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>ใช้งานอยู่</value>
+  </data>
+  <data name="AddedDate" xml:space="preserve">
+    <value>เพิ่มวันที่</value>
+  </data>
+  <data name="ClickToSetThresholds" xml:space="preserve">
+    <value>คลิกเพื่อตั้งค่าเกณฑ์</value>
+  </data>
+  <data name="Monitored" xml:space="preserve">
+    <value>เฝ้าดูอยู่</value>
+  </data>
+  <data name="ReachedLimitToday" xml:space="preserve">
+    <value>ถึงขีดจำกัดรายวัน</value>
+  </data>
+  <data name="UnlimitedThreshold" xml:space="preserve">
+    <value>เกณฑ์ไม่จำกัด</value>
+  </data>
+  <data name="UnlimitedThresholdNote" xml:space="preserve">
+    <value>เกณฑ์ไม่จำกัด หมายความว่าคุณเพิกเฉยต่อเกณฑ์และจะไม่ได้รับการแจ้งเตือน</value>
+  </data>
+  <data name="WatchlistDetails" xml:space="preserve">
+    <value>รายละเอียดรายการเฝ้าดู</value>
+  </data>
+  <data name="WatchlistMemberSummary" xml:space="preserve">
+    <value>สรุปรายการเฝ้าดู</value>
+  </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>ยกเลิก</value>
+  </data>
+  <data name="Turnover_(Live)" xml:space="preserve">
+    <value>เงินหมุนเวียน (สด)</value>
+  </data>
+  <data name="Turnover_(NonLive)" xml:space="preserve">
+    <value>เงินหมุนเวียน (ไม่สด)</value>
+  </data>
+  <data name="MixTurnover" xml:space="preserve">
+    <value>เงินหมุนเวียนรวมกัน</value>
+  </data>
+  <data name="DateRangeNote" xml:space="preserve">
+    <value>ข้อมูลสรุปตั้งแต่ {0} ถึง {1}</value>
+  </data>
+  <data name="BehaviorCategory" xml:space="preserve">
+    <value>หมวดหมู่พฤติกรรม</value>
+  </data>
+  <data name="RiskLevel" xml:space="preserve">
+    <value>ระดับความเสี่ยง</value>
+  </data>
+  <data name="CompactCopy" xml:space="preserve">
+    <value>คัดลอกแบบรวบรัด</value>
+  </data>
+  <data name="IndividualCopy" xml:space="preserve">
+    <value>คัดลอกรายบุคคล</value>
+  </data>
+  <data name="introCopyNote" xml:space="preserve">
+    <value>คลิก 'คัดลอก' เพื่อคัดลอกและแบ่งปันรายละเอียดบัญชี</value>
+  </data>
+</root>

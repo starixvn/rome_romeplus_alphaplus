@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>AlphaPlus.Settings.Transfer.API</AssemblyName>
+    <RootNamespace>AlphaPlus.Settings.Transfer.API</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Fanex.Caching.Redis" Version="2.2.4" />
+    <PackageReference Include="Fanex.RemotingRef" Version="1.5.2" />
+    <PackageReference Include="Fanex.Caching" Version="2.2.4" />
+    <PackageReference Include="MediatR" Version="11.1.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+    <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
+    <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.6" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
+    <ProjectReference Include="..\..\..\..\Modules\AlphaPlus.Utilities.IP\AlphaPlus.Utilities.IP.csproj" />
+    <ProjectReference Include="..\..\..\..\Shared\AlphaPlus.Shared.AppResources\AlphaPlus.Shared.AppResources.csproj" />
+  </ItemGroup>
+</Project>

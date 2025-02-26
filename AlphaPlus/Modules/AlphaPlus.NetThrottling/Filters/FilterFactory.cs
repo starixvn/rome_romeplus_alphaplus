@@ -1,0 +1,34 @@
+namespace AlphaPlus.NetThrottling.Filters
+{
+    public interface IFilterFactory
+    {
+        IFilter GetFilter(string type);
+    }
+
+    public class FilterFactory(IServiceProvider serviceProvider) : IFilterFactory
+    {
+        private readonly Dictionary<string, IFilter> filters = [];
+
+        private readonly IServiceProvider serviceProvider = serviceProvider;
+
+        public IFilter GetFilter(string type)
+        {
+            if (filters.TryGetValue(type, out var value))
+            {
+                return value;
+            }
+
+            var filter = type switch
+            {
+                FilterTypes.IP => (IFilter)serviceProvider.GetService(typeof(IpFilter)),
+                FilterTypes.Session => (IFilter)serviceProvider.GetService(typeof(SessionFilter)),
+                FilterTypes.Whitelist => (IFilter)serviceProvider.GetService(typeof(WhitelistSessionFilter)),
+                _ => throw new NotImplementedException()
+            };
+
+            filters.Add(type, filter);
+
+            return filter;
+        }
+    }
+}

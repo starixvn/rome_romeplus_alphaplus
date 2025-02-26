@@ -1,0 +1,120 @@
+@{
+    Layout = null;
+    int toggleBetType;
+    string toggleForecast;
+    switch (Model.BetType)
+    {
+        case BetTypeConstants.Handicap:
+            toggleBetType = BetTypeConstants.OverUnder;
+            toggleForecast = Resources.ViewOverUnderForecast;
+            break;
+        case BetTypeConstants.OverUnder:
+            toggleBetType = BetTypeConstants.Handicap;
+            toggleForecast = Resources.ViewHandicapForecast;
+            break;
+        case BetTypeConstants._1stHandicap:
+            toggleBetType = BetTypeConstants._1stOverUnder;
+            toggleForecast = Resources.View1stOverUnderForecast;
+            break;
+        case BetTypeConstants._1stOverUnder:
+            toggleBetType = BetTypeConstants._1stHandicap;
+            toggleForecast = Resources.View1stHandicapForecast;
+            break;
+        default:
+            toggleBetType = Model.BetType;
+            toggleForecast = string.Empty;
+            break;
+    }
+}
+@model AH
+@if (Model.HasDataMatch)
+{
+    <table class="tblRpt text-center">
+        <thead>
+            <tr>
+                <th>@Resources.Team</th>
+                <th>@Resources.Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.EventName</td>
+                <td>@Model.EventScore</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <table class="tblRpt text-center">
+        <tbody>
+            <tr>
+                <td>
+                    <b>
+                        @if (Model.BetType == BetTypeConstants._1stHandicap)
+                        {
+                            @:@Resources._1stHdp
+                        }
+                        else if (Model.BetType == BetTypeConstants._1stOverUnder)
+                        {
+                            @:@Resources._1stOU
+                        }
+                        else
+                        {
+                            @:@Model.BetTypeName
+                        }
+                    </b>
+                </td>
+                <td colspan="4">
+                    @foreach (var item in Model.AllScores)
+                    {
+                        <a asp-action="AH" asp-route-matchid="@Model.MatchId" asp-route-bettype="@Model.BetType"
+                            asp-route-score="@item" asp-route-partial="true"
+                            class="view-ah @(item == Model.CurrentScore ? "selected" : string.Empty)">@item</a>
+                    }
+                </td>
+            </tr>
+            @if (Model.HasData)
+            {
+                <tr>
+                    @foreach (var item in Model.ForecastScores)
+                    {
+                        <td>@item</td>
+                    }
+                </tr>
+                <tr>
+                    @foreach (var item in Model.HDPOU)
+                    {
+                        <td>
+                            <number value="item" redpositive="true" />
+                        </td>
+                    }
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5">@Resources.NoInformationIsAvailable</td>
+                </tr>
+            }
+            <tr>
+                <td colspan="5">
+                    <div class="flex justify-content-space-between">
+                        <a asp-controller="BetListByBetTypeAndMatch" asp-action="Index" asp-route-matchid="@Model.MatchId"
+                            asp-route-bettype="@Model.BetType" class="view-betlist">@Resources.BetList</a>
+                        <a asp-action="AH" asp-route-matchid="@Model.MatchId" asp-route-bettype="@toggleBetType"
+                            asp-route-score="0" asp-route-partial="true" class="view-ah">@toggleForecast</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+else
+{
+    <table class="tblRpt text-center">
+        <tbody>
+            <tr>
+                <td>@Resources.NoInformationIsAvailable</td>
+            </tr>
+        </tbody>
+    </table>
+}

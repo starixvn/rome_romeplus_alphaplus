@@ -1,0 +1,61 @@
+@{
+    void RenderLiveDeadBalls(IList<ScoreMapBetType> betTypes, bool isLive, string checkedId)
+    {
+        var betTypeCount = betTypes.Count;
+        var haftBetTypeCount = betTypeCount / 2;
+        if (betTypeCount % 2 != 0)
+        {
+            haftBetTypeCount++;
+        }
+
+        string checkAllId, checkAllText, checkClass;
+        if (isLive)
+        {
+            checkAllId = "chk-allLiveBetType";
+            checkAllText = Resources.LiveBall;
+            checkClass = "live-bettype";
+        }
+        else
+        {
+            checkAllId = "chk-allDeadBetType";
+            checkAllText = Resources.DeadBall;
+            checkClass = "dead-bettype";
+        }
+        <tr>
+            <td rowspan="2" class="even_row">
+                <input type="checkbox" id="@checkAllId" @(checkedId == null ? "checked" : string.Empty) />
+                <label class="bold" title="@checkAllText" for="@checkAllId">@checkAllText</label>
+            </td>
+            @for (int i = 0; i < haftBetTypeCount; i++)
+            {
+                RenderBetTypeCell(betTypes[i], checkClass, checkedId);
+            }
+        </tr>
+        <tr>
+            @for (int i = haftBetTypeCount; i < betTypeCount; i++)
+            {
+                RenderBetTypeCell(betTypes[i], checkClass, checkedId);
+            }
+        </tr>
+    }
+    void RenderBetTypeCell(ScoreMapBetType betType, string checkClass, string checkedId)
+    {
+        var followedBetTypes = (betType.FollowedBetTypes ?? string.Empty).Split(',');
+        <td>
+            <input type="checkbox" id="@(checkClass + betType.BetType)" class="@checkClass" @(checkedId == null ||
+        followedBetTypes.Contains(checkedId) ? "checked" : string.Empty) value="@betType.BetType" />
+            <label for="@(checkClass + betType.BetType)" title="@betType.BetTypeName">@betType.BetTypeName</label>
+        </td>
+    }
+}
+@model ScoreMapViewModel
+<table
+    class="tblLiveDead@(string.IsNullOrWhiteSpace(Model.LiveBetTypes) && string.IsNullOrWhiteSpace(Model.DeadBetTypes) ? " hidden" : string.Empty)"
+    id="tbl-liveDeadBetType">
+    <tbody>
+        @{
+            RenderLiveDeadBalls(Model.BetTypes[0].ToList(), true, Model.LiveBetTypes);
+            RenderLiveDeadBalls(Model.BetTypes[1].ToList(), false, Model.DeadBetTypes);
+        }
+    </tbody>
+</table>

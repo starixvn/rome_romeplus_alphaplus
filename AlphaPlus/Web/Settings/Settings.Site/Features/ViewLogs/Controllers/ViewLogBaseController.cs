@@ -1,0 +1,30 @@
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Configurations;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Helpers;
+using AlphaPlus.Core;
+using Microsoft.AspNetCore.Mvc.Filters;
+
+namespace AlphaPlus.Settings.Site.Features.ViewLogs.Controllers
+{
+    public abstract class ViewLogBaseController : BaseController
+    {
+        private readonly MicroSites microSites;
+
+        protected ViewLogBaseController(IUserSession userSession, MicroSites microSites)
+        {
+            UserSession = userSession;
+            this.microSites = microSites;
+        }
+
+        public IUserSession UserSession { get; set; }
+
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            base.OnActionExecuting(context);
+            if (UserSession.IsSubAcc && !UserSession.SubPageAccess.ViewLog)
+            {
+                Response.Redirect(microSites.OldMainPath(AppSettings.AccessDeniedPage));
+            }
+        }
+    }
+}
