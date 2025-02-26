@@ -123,7 +123,7 @@
     "LogLibs": "Sentry,Rabbit",
     "Fanex.Logging": {
         "DefaultCategory": "Alpha-789y-AF-UAT-Linux",
-        "RabbitMQConnectionStrings": "host=10.99.98.117:5672;virtualHost=/fanex_logging;username=fanexlogging;password=VKREKUBBd2T3DAtosbDPojl4YQFDnDp7Yilb8JGcLQ8=",
+        "RabbitMQConnectionStrings": "host=10.99.99.51;virtualHost=/fanex_logging;username=fanexlogging;password=VKREKUBBd2T3DAtosbDPojl4YQFDnDp7Yilb8JGcLQ8=",
         "SentryUrl": "https://3167377bcf9643bab3d9446cc201eac2@sentry.starixplay.com/24",
         "SentryBackendUrl": "https://3167377bcf9643bab3d9446cc201eac2@10.99.99.51:801/24"
     },
