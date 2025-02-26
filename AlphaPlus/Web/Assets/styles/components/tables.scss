@@ -126,6 +126,19 @@
             text-transform: uppercase;
             text-align: center;
         }
+        .text-icon {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+            align-items: center;
+        
+            [class^="icon-"], [class*=" icon-"] {
+                font-size: 20px;
+                margin-left: 5px;
+                color: #333;
+                cursor: pointer;
+            }
+        }
     }
 
     .tbl-footer {
