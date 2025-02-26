@@ -4116,5 +4116,50 @@ namespace AlphaPlus.Shared.AppResources.Report
                 return ResourceManager.GetString("WhiteLabelSettlementNote", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Agent Risk.
+        /// </summary>
+        public static string AgentRisk {
+            get {
+                return ResourceManager.GetString("AgentRisk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Master Risk.
+        /// </summary>
+        public static string MasterRisk {
+            get {
+                return ResourceManager.GetString("MasterRisk", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Sportsbook Risk Amount.
+        /// </summary>
+        public static string SportsbookRiskAmount {
+            get {
+                return ResourceManager.GetString("SportsbookRiskAmount", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Super Risk.
+        /// </summary>
+        public static string SuperRisk {
+            get {
+                return ResourceManager.GetString("SuperRisk", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to To Win.
+        /// </summary>
+        public static string ToWin {
+            get {
+                return ResourceManager.GetString("ToWin", resourceCulture);
+            }
+        }
     }
 }

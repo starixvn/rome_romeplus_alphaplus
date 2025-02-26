@@ -3,7 +3,8 @@
     "explorer.fileNesting.patterns": {
       "appsettings.json": "appsettings.*.json",
       "results.json": "results.*.json",
-      "sharedSettings.json": "sharedSettings.*.json"
+      "sharedSettings.json": "sharedSettings.*.json",
+      "Labels.resx": "Labels.*.resx"
     },
     "dotnet.defaultSolution": "AlphaPlus.sln"
   }
