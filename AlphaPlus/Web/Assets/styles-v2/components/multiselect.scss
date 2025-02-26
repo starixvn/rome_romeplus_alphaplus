@@ -41,7 +41,7 @@
         border-radius: 3px;
         box-shadow: none !important;
         text-align: left;
-
+        display: block;
         &.error {
             border-color: var(--input-border-error) !important;
         }
