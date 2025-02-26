@@ -12,6 +12,7 @@ export default defineConfig({
     },
     plugins: [react()],
     build: {
+        assetsDir: '',
         rollupOptions: {
             input: {
                 main: '/src/main.tsx',
@@ -23,11 +24,6 @@ export default defineConfig({
                 openSingle: '/src/open-single.tsx',
                 openMultiple: '/src/open-multiple.tsx',
                 protectedMultiple: '/src/protected-multiple.tsx'
-            },
-            output: {
-                entryFileNames: '[name].js',
-                chunkFileNames: '[name].js',
-                assetFileNames: '[name].[ext]'
             }
         }
     }

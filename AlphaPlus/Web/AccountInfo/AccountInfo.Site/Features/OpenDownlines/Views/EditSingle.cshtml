@@ -5,8 +5,7 @@
 }
 
 @section Styles {
-    @* @StaticResources.RenderStylesWithDarkMode("~/Features/OpenDownlines/Bundles/open-single") *@
-    <link rel="stylesheet" href="~/unsuspend-downlines.css" asp-append-version="true" />
+    <link rel="stylesheet" asp-href-include="/unsuspend-downlines-*.css" />
 }
 
 @Html.AntiForgeryToken()
@@ -15,8 +14,8 @@
 
 @section Scripts {
     @* @StaticResources.RenderScripts("~/Features/OpenDownlines/Bundles/open-single") *@
-    <script type="module" src="~/open-helper.js" asp-append-version="true"></script>
-    <script type="module" src="~/openSingle.js" asp-append-version="true"></script>
+    @* <script type="module" src="~/open-helper.js" asp-append-version="true"></script> *@
+    <script type="module" asp-src-include="/openSingle-*.js"></script>
     <script>
         $(document).ready(() => {
             window.renderOpenSingle(@Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Data)));

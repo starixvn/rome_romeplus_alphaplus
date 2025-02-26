@@ -6,11 +6,12 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.RenderCommonWithDarkMode($"/bundles/common/common-{Model.ActorLevel}")
-    <link rel="stylesheet" href="~/profilePicture.css" asp-append-version="true" />
+    <link rel="stylesheet" asp-href-include="/profilePicture-*.css" />
 }
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation">
-        <a class="open-link" data-url="@MicroSites.MainUrl("~/Password/ChangePassword")" role="tab" data-toggle="tab">@Resources.password</a>
+        <a class="open-link" data-url="@MicroSites.MainUrl("~/Password/ChangePassword")" role="tab"
+            data-toggle="tab">@Resources.password</a>
     </li>
     @if (Model.EnableSecurityCode)
     {
@@ -43,9 +44,9 @@
             displayLanguage: '@Model.DisplayLanguage',
             languages: @Html.Raw(JsonSerializer.Serialize(Model.Languages)),
             imageList: @Html.Raw(JsonSerializer.Serialize(Model.Images))
-                };
+                                            };
     </script>
-    <script type="module" src="~/profilePicture.js" asp-append-version="true"></script>
+    <script type="module" asp-src-include="/profilePicture-*.js"></script>
 
     @* <script type="module">
 import RefreshRuntime from 'http://localhost:5173/@@react-refresh'
@@ -57,8 +58,8 @@ window.__vite_plugin_react_preamble_installed__ = true
 <script type="module" src=@("http://localhost:5173/@vite/client")></script>
 <script type="module" src="http://localhost:5173/src/profile-picture.tsx"></script> *@
     <script type="text/javascript">
-        $(document).ready(function() {
-            $(".open-link").unbind().bind('click', function(event) { window.top.alpha.viewDataURL(event); });
+        $(document).ready(function () {
+            $(".open-link").unbind().bind('click', function (event) { window.top.alpha.viewDataURL(event); });
         });
     </script>
 }
