@@ -378,6 +378,7 @@
     {
         "outputFileName": "bundles/site-main/dashboard/dashboard-super.css",
         "inputFiles": [
+            
             "styles/components/tables.css",
             "styles/themes/components/tabs/tab-super.css"
         ]
@@ -385,6 +386,7 @@
     {
         "outputFileName": "bundles/site-main/dashboard/dashboard-master.css",
         "inputFiles": [
+            
             "styles/components/tables.css",
             "styles/themes/components/tabs/tab-master.css"
         ]
@@ -392,6 +394,7 @@
     {
         "outputFileName": "bundles/site-main/dashboard/dashboard-agent.css",
         "inputFiles": [
+            
             "styles/components/tables.css",
             "styles/themes/components/tabs/tab-agent.css"
         ]
