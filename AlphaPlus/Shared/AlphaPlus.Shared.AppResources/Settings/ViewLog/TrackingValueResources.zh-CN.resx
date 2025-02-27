@@ -3432,4 +3432,10 @@
   <data name="IsApplied" xml:space="preserve">
     <value>已申请</value>
   </data>
+  <data name="CommForSuper" xml:space="preserve">
+    <value>超级佣金</value>
+  </data>
+  <data name="CommForMaster" xml:space="preserve">
+    <value>总代理佣金</value>
+  </data>
 </root>

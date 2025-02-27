@@ -2732,6 +2732,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Comm for Master.
+        /// </summary>
+        public static string CommForMaster
+        {
+            get
+            {
+                return ResourceManager.GetString("CommForMaster", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Comm for Member.
         /// </summary>
         public static string CommForMember
@@ -2739,6 +2750,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog
             get
             {
                 return ResourceManager.GetString("CommForMember", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Comm for Super.
+        /// </summary>
+        public static string CommForSuper
+        {
+            get
+            {
+                return ResourceManager.GetString("CommForSuper", resourceCulture);
             }
         }
 
@@ -10498,7 +10520,7 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to Update Group.
+        ///   Looks up a localized string similar to Commission Group.
         /// </summary>
         public static string ugroup
         {

@@ -2023,7 +2023,7 @@
     <value>เครดิต</value>
   </data>
   <data name="defaultlog" xml:space="preserve">
-    <value>การตั้งค่าของลูกค้า</value>
+    <value>ตั้งค่าสมาชิก</value>
   </data>
   <data name="editby" xml:space="preserve">
     <value>แก้ไขโดย</value>
@@ -3422,5 +3422,11 @@
   </data>
   <data name="IsApplied" xml:space="preserve">
     <value>นำไปใช้</value>
+  </data>
+  <data name="CommForSuper" xml:space="preserve">
+    <value>ค่าคอมมิชชั่นจากซุปเปอร์</value>
+  </data>
+  <data name="CommForMaster" xml:space="preserve">
+    <value>ค่าคอมมิชชั่น จากตัวแทนหลัก</value>
   </data>
 </root>

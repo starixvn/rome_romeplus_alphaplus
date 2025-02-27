@@ -3480,4 +3480,10 @@
   <data name="IsApplied" xml:space="preserve">
     <value>Is Applied</value>
   </data>
+  <data name="CommForSuper" xml:space="preserve">
+    <value>Comm for Super</value>
+  </data>
+  <data name="CommForMaster" xml:space="preserve">
+    <value>Comm for Master</value>
+  </data>
 </root>
