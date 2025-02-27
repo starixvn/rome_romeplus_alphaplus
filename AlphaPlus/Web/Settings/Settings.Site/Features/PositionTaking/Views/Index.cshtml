@@ -8,8 +8,7 @@
 @model dynamic
 @{
     Layout = "~/Features/PositionTaking/Views/Shared/_Layout.cshtml";
-    var productId = Model.pt.product.mainProductId != 0 ?
-    Model.pt.product.mainProductId : Model.pt.product.id;
+    var productId = Model.pt.product.id;
     var products = JsonConvert.SerializeObject(Model.product);
     var darkModeName = UserSession.Current.DarkModeName;
 }
@@ -27,13 +26,13 @@
                 <tr>
                     <td>
                         @await Html.PartialAsync("~/Features/PositionTaking/Views/Shared/_PositionTakingHeader.cshtml",
-                                 new Dictionary<string, object>() {
-                        { "ProductId", productId },
-                        { "ShowPTIcon", Model.pt.product.showPTIcon },
-                        {"SiteLabel", AppSettings.SiteLabel},
-                        {"Products", products},
-                        {"LevelType", Model.pt.levelType },
-                        {"RoleId", Model.pt.roleId } })
+                        new Dictionary<string, object>() {
+                                                { "ProductId", productId },
+                                                { "ShowPTIcon", Model.pt.product.showPTIcon },
+                                                {"SiteLabel", AppSettings.SiteLabel},
+                                                {"Products", products},
+                                                {"LevelType", Model.pt.levelType },
+                                                {"RoleId", Model.pt.viewedCustomerInfo.roleId } })
                     </td>
                 </tr>
                 <tr>

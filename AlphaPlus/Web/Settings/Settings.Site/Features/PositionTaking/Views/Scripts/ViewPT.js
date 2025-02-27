@@ -431,10 +431,10 @@
         if (positionTakingInfo.levelType == '2') {
             var agentId = 0;
             switch (positionTakingInfo.viewedCustomerInfo.roleId) {
-                case self.Enums.RoleId.Super:
+                case self.Enums.roleId.Super:
                     agentId = -4;
                     break;
-                case self.Enums.RoleId.Master:
+                case self.Enums.roleId.Master:
                     agentId = -3;
                     break;
                 default:
@@ -444,16 +444,16 @@
             return (
                 '<a  onclick="viewPTManagement.editMemberPTList(' +
                 "'" +
-                customerInfo.CustId +
+                customerInfo.custId +
                 "'," +
                 "'" +
-                customerInfo.CustName +
+                customerInfo.custName +
                 "'," +
                 "'" +
                 agentId +
                 "'" +
                 ');" href="javascript:;">' +
-                customerInfo.CustName +
+                customerInfo.custName +
                 '</a>'
             );
         }
@@ -476,8 +476,7 @@
                     customerInfo.custId +
                     "'," +
                     "'" +
-                    "'" +
-                    customerInfo.CustName +
+                    customerInfo.custName +
                     "'," +
                     "'" +
                     0 +
@@ -590,12 +589,12 @@
         var popupWidth = 1250;
 
         var payload = $.param({
-            productGroupId: self.PositionTakingInfo.Product.GroupId,
+            productGroupId: self.positionTakingInfo.product.groupId,
             custId: custId,
             roleId: 1,
             agentId: agentId,
-            uplineRoleId: self.PositionTakingInfo.CustomerInfo.RoleId,
-            lng: self.PositionTakingInfo.Language,
+            uplineRoleId: self.positionTakingInfo.customerInfo.roleId,
+            lng: self.positionTakingInfo.language,
             isDarkMode: window.isDarkMode
         });
         top.popupManager.open(

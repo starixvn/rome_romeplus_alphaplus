@@ -16,13 +16,13 @@
     <div class="pull-left">
         <label for="dropdown-product">@Resources.Product</label>
         @Html.DropDownList("dropdown-product", products.Select(item => new SelectListItem(item.Name,
-                 $"PositionTaking?productId={item.Id}&productGroupId={item.GroupId}", item.Id ==
-                 Convert.ToInt32(Model["ProductId"]))), new
-                 {
-                     @onblur = "ptProductDropdownBlur();",
-                     @onclick = "ptView(this.value);",
-                     @onchange = "ptProductChanged(this);"
-                 })
+        $"PositionTaking?productId={item.Id}&productGroupId={item.GroupId}", item.Id ==
+        Convert.ToInt32(Model["ProductId"]))), new
+        {
+            @onblur = "ptProductDropdownBlur();",
+            @onclick = "ptView(this.value);",
+            @onchange = "ptProductChanged(this);"
+        })
     </div>
 
     @if (Model["ShowPTIcon"].ToString().Equals("true", StringComparison.OrdinalIgnoreCase))
