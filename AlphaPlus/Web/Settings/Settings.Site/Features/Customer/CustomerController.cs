@@ -1,21 +1,21 @@
+using System.Text.Json;
 using AlphaPlus.Core;
+using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
-using Fanex.Cryptography.Aes;
-using Fanex.Customer.Client.Services;
-using Fanex.Customer.Client.Configurations;
-using Microsoft.AspNetCore.Mvc;
-using AlphaPlus.Settings.Site.Features.Customer.Requests;
-using AlphaPlus.Settings.Site.Features.Customer.ViewModels;
-using AlphaPlus.Core.Configurations;
-using System.Text.Json;
-using Fanex.Customer.Client.Params;
-using Fanex.Customer.Client.Constants;
-using AlphaPlus.Shared.AppResources.Settings;
 using AlphaPlus.Core.Utils;
 using AlphaPlus.Products.Models;
 using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+using AlphaPlus.Settings.Site.Features.Customer.Requests;
+using AlphaPlus.Settings.Site.Features.Customer.ViewModels;
 using AlphaPlus.Settings.Site.Features.ProductStatus;
+using AlphaPlus.Shared.AppResources.Settings;
+using Fanex.Cryptography.Aes;
+using Fanex.Customer.Client.Configurations;
+using Fanex.Customer.Client.Constants;
+using Fanex.Customer.Client.Params;
+using Fanex.Customer.Client.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.Settings.Site.Features.Customer
 {
@@ -132,7 +132,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 
             var generalInfo = request.GeneralInfo;
             var rawPassword = aesService.Decrypt(generalInfo.Password, sessionManager.Get<string>(HashKeySessionKey));
-            generalInfo.Password = encryption.CfsEnCode(rawPassword);
+            generalInfo.Password = rawPassword;
             generalInfo.UpLineRoleId = request.ViewerLevelId;
             generalInfo.Site = request.Site;
             generalInfo.SiteLabel = AppSettings.SiteLabel;
