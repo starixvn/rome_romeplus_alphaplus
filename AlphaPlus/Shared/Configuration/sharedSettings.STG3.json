@@ -236,7 +236,7 @@
     "OfferClearGivenCredit:Sites": "KORIBC,INDO",
     "IndirectLogin": {
         "AllowSuperIds": "*",
-        "URL": "https://stmbp3.gatonic.com/main/Account/IndirectLogin"
+        "URL": "https://stidp3.gatonic.com/main/Account/IndirectLogin"
     },
     "Authorization": {
         "cachedExpireTime": 30,
