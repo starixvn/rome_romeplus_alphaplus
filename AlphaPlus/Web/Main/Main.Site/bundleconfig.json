@@ -341,6 +341,13 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/assets/bundles/tour/new-feature-tour.js",
+    "inputFiles": [
+      "assets/scripts/tour/base-tour-controller.js",
+      "assets/scripts/tour/new-feature-tour.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/assets/bundles/dashboard/whitelabel.js",
     "inputFiles": [
       "assets/scripts/core.js",

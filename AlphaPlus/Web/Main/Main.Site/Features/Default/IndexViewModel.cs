@@ -169,7 +169,15 @@ public class IndexViewModel
 
     public bool IsShowSuggestEnableTelegramOtp { get; set; }
 
-    public bool HightLightFeaturePermission => false;
+        public bool HightLightFeaturePermission
+        {
+            get
+            {
+                var actorLevel = Enumeration.FromValue<UserLevel>(message.RoleId);
+
+                return (actorLevel.IsSuperLevel() || actorLevel.IsMasterLevel()) && ((PageAccess)SubPageAccess).CreateAccount;
+            }
+        }
 
     public string HightLightFeatureImageName => "new_feature" + DarkModeName;
 

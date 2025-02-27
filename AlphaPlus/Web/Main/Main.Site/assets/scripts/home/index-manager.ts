@@ -522,7 +522,24 @@ var indexManager = {
             });
 
             const newFeatureLink = box.find('#linkHighlightPopupCheckOut');
-            newFeatureLink.click(() => box.addClass('hide'));
+            newFeatureLink.click(() => {
+                popupManager.openMultiple(
+                    $('#linkTourNewFeature').attr('href'),
+                    null,
+                    800,
+                    495,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    {
+                        customClass: 'popup-tour-intro'
+                    }
+                );
+                box.addClass('hide');
+            });
             //$(window).scroll(() => box.addClass("hide"));
 
             $('#main-menu-tab')['mCustomScrollbar']({
