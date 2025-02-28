@@ -763,4 +763,17 @@ body {
         transform: rotate(90deg);
         top: -17px;
     }
+    .text {
+        flex-direction: column;
+
+        .image {
+            display: flex;
+            align-items: flex-start;
+            align-items: center;
+            margin-bottom: 16px;
+            * {
+                margin-bottom: 0;
+            }
+        }
+    }
 }

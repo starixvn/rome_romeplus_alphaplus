@@ -1,5 +1,5 @@
 class NewFeatureTour extends BaseTourController {
-    protected maxPage = 3;
+    protected maxPage = 5;
 
     init() {
         super.init();

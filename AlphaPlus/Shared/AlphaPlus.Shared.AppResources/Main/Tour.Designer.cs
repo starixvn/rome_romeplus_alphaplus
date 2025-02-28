@@ -145,5 +145,41 @@ namespace AlphaPlus.Shared.AppResources.Main
                 return ResourceManager.GetString("Index_Page1_Title", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Easily search and manage your Direct Members&apos; settings in Account Info..
+        /// </summary>
+        public static string Index_Page2_Title {
+            get {
+                return ResourceManager.GetString("Index_Page2_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your reports will include data of your Direct Members..
+        /// </summary>
+        public static string Index_Page3_Title {
+            get {
+                return ResourceManager.GetString("Index_Page3_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In Master Agent List, you can only view one level at a time..
+        /// </summary>
+        public static string Index_Page4_Title {
+            get {
+                return ResourceManager.GetString("Index_Page4_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In Transfer function, your Direct Members will be included, allowing you to transfer and configure for all downlines at once..
+        /// </summary>
+        public static string Index_Page5_Title {
+            get {
+                return ResourceManager.GetString("Index_Page5_Title", resourceCulture);
+            }
+        }
     }
 }
