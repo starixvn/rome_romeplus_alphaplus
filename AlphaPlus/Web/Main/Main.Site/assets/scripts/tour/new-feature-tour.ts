@@ -1,5 +1,5 @@
 class NewFeatureTour extends BaseTourController {
-    protected maxPage = 5;
+    protected maxPage = 3;
 
     init() {
         super.init();
@@ -7,4 +7,4 @@ class NewFeatureTour extends BaseTourController {
     }
 }
 
-$(() => new ProfilePictureTour($).init());
+$(() => new NewFeatureTour($).init());

@@ -181,7 +181,7 @@ public class IndexViewModel
 
     public string HightLightFeatureImageName => "new_feature" + DarkModeName;
 
-    public string HightLightFeatureUrl => MicroSites.MainUrl("~/Tour/Reward");
+        public string HightLightFeatureUrl => MicroSites.MainUrl("~/Tour/Index");
 
     public bool IsShowRewardTour { get; }
 

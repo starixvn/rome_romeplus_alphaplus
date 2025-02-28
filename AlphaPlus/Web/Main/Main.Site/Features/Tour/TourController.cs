@@ -15,7 +15,7 @@ public class TourController(IUserSession userSession) : BaseController
 
         if ((actorLevel.IsSuperLevel() || actorLevel.IsMasterLevel()) && userSession.SubPageAccess.CreateAccount)
         {
-            return View(new TourViewModel(userSession.Language, userSession.RoleId));
+            return View(new TourViewModel(userSession.Language, userSession.RoleId, AlphaPlus.Core.Configurations.AppSettings.SiteLabelHash, userSession.DarkModeName));
         }
 
         return new EmptyResult();

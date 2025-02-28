@@ -24,9 +24,9 @@
                 <span>@Resources.doNotShowAgain</span>
             </label>
             <a class="btn-submit" id="linkHighlightPopupCheckOut" href="javascript:;">@Resources.TakeATour</a>
+                onclick="popupManager.open('@Model.HightLightFeatureUrl', null, 800, 495, null, null, null, null, null, null, {customClass :'popup-tour-intro'});">@Resources.GetStarted</a>
         </div>
     </div>
-    <a style="display:none" asp-controller="Tour" asp-action="Index" id="linkTourNewFeature"></a>
 }
 else if (Model.IsShowRewardTour)
 {
