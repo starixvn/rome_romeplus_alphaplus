@@ -20,6 +20,8 @@ RUN echo $TRANSFORM_CONFIG
 RUN if [ "$TRANSFORM_CONFIG" = "LOCAL2" ] \
 		|| [ "$TRANSFORM_CONFIG" = "SIT2" ] \
 		|| [ "$TRANSFORM_CONFIG" = "UAT2" ] \
+		|| [ "$TRANSFORM_CONFIG" = "STG2" ] \
+		|| [ "$TRANSFORM_CONFIG" = "INT2" ] \
 		|| [ "$TRANSFORM_CONFIG" = "PRO2" ] \
 		|| [ "$TRANSFORM_CONFIG" = "AWS2" ] \
 		|| [ "$TRANSFORM_CONFIG" = "NAPAWS2" ] \
