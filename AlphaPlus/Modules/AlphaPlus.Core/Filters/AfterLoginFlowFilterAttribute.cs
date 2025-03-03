@@ -2,6 +2,9 @@ using AlphaPlus.Core.Models;
 using AlphaPlus.Core.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 
 namespace AlphaPlus.Core.Filters;
 
@@ -15,6 +18,13 @@ public sealed class AfterLoginFlowFilterAttribute(IUserSession userSession, INic
     {
         base.OnActionExecuting(filterContext);
 
+        var allowAnonymous = filterContext.ActionDescriptor.EndpointMetadata.OfType<Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute>().Any();
+        if (userSession.CustId == 0 && !allowAnonymous)
+        {
+            UnAuthorization(filterContext);
+            return;
+        }
+
         if (IsValidSession(filterContext))
         {
             var redirectUrl = GetAfterLoginFlowUrl(filterContext);
@@ -27,9 +37,9 @@ public sealed class AfterLoginFlowFilterAttribute(IUserSession userSession, INic
     }
 
     private bool IsValidSession(ActionExecutingContext filterContext)
-            => filterContext.HttpContext?.Session != null
-            && userSession.UserId > 0
-            && !userSession.IsInternal;
+        => filterContext.HttpContext?.Session != null
+        && userSession.UserId > 0
+        && !userSession.IsInternal;
 
     private string GetAfterLoginFlowUrl(ActionExecutingContext filterContext)
     {
@@ -59,10 +69,10 @@ public sealed class AfterLoginFlowFilterAttribute(IUserSession userSession, INic
     }
 
     private static bool IsInIgnoreUrl(string currentUrl)
-            => currentUrl.Equals("Language/Change", StringComparison.OrdinalIgnoreCase)
-            || currentUrl.Equals("Default/Kickout", StringComparison.OrdinalIgnoreCase)
-            || currentUrl.Equals("Account/Logout", StringComparison.OrdinalIgnoreCase)
-            || currentUrl.Equals("Account/Logout2", StringComparison.OrdinalIgnoreCase);
+        => currentUrl.Equals("Language/Change", StringComparison.OrdinalIgnoreCase)
+        || currentUrl.Equals("Default/Kickout", StringComparison.OrdinalIgnoreCase)
+        || currentUrl.Equals("Account/Logout", StringComparison.OrdinalIgnoreCase)
+        || currentUrl.Equals("Account/Logout2", StringComparison.OrdinalIgnoreCase);
 
     private bool IsForceChangePassword
         => !userSession.IsLogged || userSession.IsPasswordExpired;
@@ -93,4 +103,27 @@ public sealed class AfterLoginFlowFilterAttribute(IUserSession userSession, INic
         => currentUrl.Equals("Nickname/Index", StringComparison.OrdinalIgnoreCase)
         ? null
         : MicroSites.MainUrl("~/Nickname/Index");
+
+    private static void UnAuthorization(ActionExecutingContext context)
+    {
+        if (IsAjaxRequest(context.HttpContext.Request))
+        {
+            context.Result = new UnauthorizedObjectResult(new { message = "Your login has timed out." });
+        }
+        else
+        {
+            context.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme).GetAwaiter().GetResult();
+            var controllerName = context.RouteData.Values["controller"].ToString();
+            var actionName = context.RouteData.Values["action"].ToString();
+            var currentUrl = $"{controllerName}/{actionName}";
+
+            if (!currentUrl.Equals("Account/Login", StringComparison.OrdinalIgnoreCase))
+            {
+                context.Result = new RedirectResult(MicroSites.MainUrl("~/Account/Login?r=Your login has timed out."));
+            }
+        }
+    }
+
+    private static bool IsAjaxRequest(HttpRequest request)
+        => request.Headers != null && (request.Headers.XRequestedWith == "XMLHttpRequest" || request.Method == "POST");
 }

@@ -1,26 +1,17 @@
 ﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Requests;
-using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using MediatR;
 using AlphaPlus.Settings.Site.Features.UserNameSuggestion.Models;
 
-namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion
+namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion;
+
+public class UserNameSuggestionQuery : MemberInfoBaseQuery, IRequest<IEnumerable<UsernameSuggestion>>
 {
-    public class UserNameSuggestionQuery : MemberInfoBaseQuery, IRequest<IEnumerable<UsernameSuggestion>>
-    {
-        public UserNameSuggestionQuery() : this(null) { }
+    public string Query { get; set; }
 
-        public UserNameSuggestionQuery(IUser viewer) : base(viewer)
-        {
-        }
+    public bool DirectDownlines { get; set; }
 
-        public string Query { get; set; }
+    public bool IsAccInfo { get; set; } = true;
 
-        public bool DirectDownlines { get; set; }
-
-        public bool IsAccInfo { get; set; } = true;
-
-        public override bool IsValid() =>
-            base.IsValid() &&
-            !string.IsNullOrEmpty(Query);
-    }
+    public override bool IsValid()
+        => !string.IsNullOrWhiteSpace(Query) && Query.Length > 1 && base.IsValid();
 }
