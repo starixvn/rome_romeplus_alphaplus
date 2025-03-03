@@ -11,11 +11,11 @@
             <div class="image">
                 <img src="~/assets/images/@(Model.HightLightFeatureImageName).svg?v=@AppSettings.JsVersion"
                     alt="@Resources.HighlightPopupNewFeatureTitle">
-                <p class="sm"><span>@Html.Raw(Resources.HighlightPopupNewFeatureTitle)</span></p>
+                <p class="sm">@Html.Raw(Resources.HighlightPopupNewFeatureTitle)</p>
             </div>
             <div>
                 <p class="pc"><span>@Html.Raw(Resources.HighlightPopupNewFeatureTitle)</span></p>
-                @Html.Raw(Resources.HighlightPopupNewFeatureIntro)
+                <p>@Html.Raw(Resources.HighlightPopupNewFeatureIntro)</p>
             </div>
         </div>
         <div class="action">

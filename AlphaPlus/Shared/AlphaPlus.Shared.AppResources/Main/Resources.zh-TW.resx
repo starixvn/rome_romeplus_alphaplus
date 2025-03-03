@@ -717,7 +717,10 @@
     <value>查看</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
-    <value>&lt;p&gt;我們很高興為您介紹我們新的現金獎金計劃。獎金金額由公司負責，會員一旦收到獎金，並不能用於下注。獎金將分配給上線，會員可以透過其代理去兌現。&lt;/p&gt;&lt;p&gt;我們的新功能&lt;b&gt;獎金支付&lt;/b&gt;支持您的下線支付管理，確保所有獎金的準確分配。&lt;/p&gt;</value>
+    <value>我們在此宣佈&lt;b&gt;您現在可以擁有自己的會員&lt;/b&gt;！直接創建會員，並享受更大的靈活性組織您的下線。</value>
+  </data>
+  <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
+    <value>介紹&lt;b&gt;“創建直系會員”&lt;/b&gt;！</value>
   </data>
   <data name="HighlightPopupRewardIntro" xml:space="preserve">
     <value>&lt;p&gt;我們很高興為您介紹我們新的現金獎金計劃。獎金金額由公司負責，會員一旦收到獎金，並不能用於下注。獎金將分配給上線，會員可以透過其代理去兌現。&lt;/p&gt;&lt;p&gt;我們的新功能&lt;b&gt;獎金支付&lt;/b&gt;支持您的下線支付管理，確保所有獎金的準確分配。&lt;/p&gt;</value>
@@ -733,12 +736,6 @@
   </data>
   <data name="SessionExpired" xml:space="preserve">
     <value>您的登錄已超時。</value>
-  </data>
-  <data name="HighlightPopupNewFeatureIntro3" xml:space="preserve">
-    <value>複製報告中的數據而無需導出</value>
-  </data>
-  <data name="HighlightPopupNewFeatureIntro4" xml:space="preserve">
-    <value>在投注歷史中過濾注單</value>
   </data>
   <data name="FeedbackOnFunctionTitle" xml:space="preserve">
     <value>幫助我們改進{0}</value>
@@ -760,9 +757,6 @@
   </data>
   <data name="daysAgo" xml:space="preserve">
     <value>天之前</value>
-  </data>
-  <data name="HighlightPopupNewFeatureIntro2" xml:space="preserve">
-    <value>&lt;b&gt; 輕鬆導航 &lt;/b&gt; 和 &lt;b&gt; 提升您的熟練性 &lt;/b&gt;！</value>
   </data>
   <data name="SetupChatbot" xml:space="preserve">
     <value>設置Chatbot</value>
