@@ -2,7 +2,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xslLogFormat="urn:LogFormat">
   <xsl:output method="html" indent="no" />
   <xsl:key name="groupid" match="stakelevel" use="@groupid" />
-  <xsl:include href="..\..\stringreplace.xslt" />
+  <xsl:include href="../../stringreplace.xslt" />
   <xsl:template match="root">
     <table class="tblDesc">
       <tr>
