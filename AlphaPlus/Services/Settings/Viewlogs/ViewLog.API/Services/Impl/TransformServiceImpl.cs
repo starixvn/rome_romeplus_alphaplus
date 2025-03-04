@@ -1,9 +1,10 @@
 ﻿using System.Text;
+using System.Xml;
 using System.Xml.XPath;
 using System.Xml.Xsl;
 using AlphaPlus.Settings.ViewLogs.API.Constants;
-using Fanex.Caching;
 using AlphaPlus.Settings.ViewLogs.API.Params;
+using Fanex.Caching;
 
 namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
 {
@@ -63,7 +64,7 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
 
             if (File.Exists(path))
             {
-                compiledTransform.Load(path);
+                compiledTransform.Load(path, new XsltSettings(true, true), new XmlUrlResolver());
             }
 
             if (compiledTransform.OutputSettings == null)
