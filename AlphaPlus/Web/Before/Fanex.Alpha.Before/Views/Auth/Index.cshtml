@@ -7,8 +7,9 @@
 
 @section styles
 {
-                    <link href="~/assets/bundles/themes/@(Model.LoginTemplate)@(darkModeName).min.css" rel="stylesheet" asp-append-version="true"/>
-                    <link href="~/assets/bundles/alpha.slider-captcha.css" rel="stylesheet" asp-append-version="true"/>
+    <link href="~/assets/bundles/themes/@(Model.LoginTemplate)@(darkModeName).min.css" rel="stylesheet"
+        asp-append-version="true" />
+    <link href="~/assets/bundles/alpha.slider-captcha.css" rel="stylesheet" asp-append-version="true" />
 }
 
 <div class="head-form-login">
@@ -34,8 +35,8 @@
                 <li><a href="javascript:;"><span class="flag flag-kr" data-language-code="ko-KR"></span>한국어</a></li>
                 @if (!AppSetting.DisabledVietnamese)
                 {
-                                    <li><a href="javascript:;"><span class="flag flag-vn" data-language-code="vi-VN"></span>Tiếng Việt</a>
-                                    </li>
+                    <li><a href="javascript:;"><span class="flag flag-vn" data-language-code="vi-VN"></span>Tiếng Việt</a>
+                    </li>
                 }
             </ul>
         </div>
@@ -45,11 +46,11 @@
 </div>
 @if (AppSetting.IsShowTechnicalErrorMessage)
 {
-                    <div class="rowlg msg-error" id="divTechnicalErrorMsg"></div>
+    <div class="rowlg msg-error" id="divTechnicalErrorMsg"></div>
 }
 @if (Model.ErrCode != -1)
 {
-                    <div class="rowlg msg-error" errCode="@Model.ErrCode" id="errmsg">@Model.ErrMsg</div>
+    <div class="rowlg msg-error" errCode="@Model.ErrCode" id="errmsg">@Model.ErrMsg</div>
 }
 
 <div id="verifyRegion" style="@(Model.IsVerified ? "display: none;" : string.Empty)">
@@ -102,7 +103,7 @@
 <input type="hidden" name="dcsStaticAppPath" id="dcsStaticAppPath" value="" />
 @if (AppSetting.IsShowTechnicalErrorMessage)
 {
-                    <input type="hidden" id="hiddenTechnicalErrorTime" value="@AppSetting.TechnicalErrorTime" />
+    <input type="hidden" id="hiddenTechnicalErrorTime" value="@AppSetting.TechnicalErrorTime" />
 }
 
 <input type="hidden" id="isVerified" value="@(Model.IsVerified ? 1 : 0)" />
@@ -115,24 +116,24 @@
 
     @section scripts
     {
-            <script src="~/assets/bundles/alpha.slider-captcha.js" type="text/javascript" asp-append-version="true"></script>
-            <script>
-                var noInteractionTimeInMinutes = parseInt(document.getElementById("NoInteractionTimeInMinutes").value);
-                setTimeout(
-                    function () {
-                        window.location.href = window.location.href;
-                    }, noInteractionTimeInMinutes * 60 * 1000);
+        <script src="~/assets/bundles/alpha.slider-captcha.js" type="text/javascript" asp-append-version="true"></script>
+        <script>
+            var noInteractionTimeInMinutes = parseInt(document.getElementById("NoInteractionTimeInMinutes").value);
+            setTimeout(
+                function () {
+                    window.location.href = window.location.href;
+                }, noInteractionTimeInMinutes * 60 * 1000);
 
-                window.scInstance = sliderCaptcha('captcha', {
-                    lang: "@AppSession.Language",
-                    baseUri: "@Url.Content("~/")",
-                    keyElement: document.getElementById('txtUserName'),
-                    callback: function (response) {
-                        if (response.Code === 0) {
-                            $('#errmsg').text('');
-                        }
+            window.scInstance = sliderCaptcha('captcha', {
+                lang: "@AppSession.Language",
+                baseUri: "@Url.Content("~/")",
+                keyElement: document.getElementById('txtUserName'),
+                callback: function (response) {
+                    if (response.Code === 0) {
+                        $('#errmsg').text('');
                     }
-                });
-            </script>
+                }
+            });
+        </script>
     }
 }
