@@ -7,6 +7,8 @@ public static class AppSettings
 {
     public static string GetConfigValue(string configName) => ConfigurationManager.GetValue<string>(configName);
 
+    public static string TransferRedisConfiguration => GetConfigValue("RedisConfiguration:AlphaPlus.Transfer");
+
     public static IEnumerable<string> TransferToDownlineHistoryOfferSites
         => GetConfigValue("TransferToDownlineHistory:OfferSites")
         .Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries)

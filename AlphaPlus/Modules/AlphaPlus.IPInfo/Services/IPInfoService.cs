@@ -1,10 +1,8 @@
-using System.Text;
-using System.Text.Json;
 using AlphaPlus.IPInfo.DataAccess;
 using AlphaPlus.IPInfo.Extensions;
 using AlphaPlus.IPInfo.Models;
-using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.Extensions.Caching.Memory;
+using Fanex.Caching;
+using Fanex.Caching.Redis;
 
 namespace AlphaPlus.IPInfo.Services;
 
@@ -21,20 +19,25 @@ public class IPInfoService : IIPInfoService
 
     private readonly IPInformationConfig cacheConfig;
     private readonly IIPInfoDataAccess ipInfoDataAccess;
-    private readonly IDistributedCache distributedCache;
-    private readonly IMemoryCache memoryCache;
+    private readonly ICacheService commonCacheService;
+    private readonly ICacheService individualCacheService;
 
-    public IPInfoService(
-        IPInformationConfig cacheConfig,
-        IIPInfoDataAccess ipInfoDataAccess,
-        IDistributedCache distributedCache,
-        IMemoryCache memoryCache)
+    public IPInfoService(IPInformationConfig cacheConfig, IIPInfoDataAccess ipInfoDataAccess)
     {
         this.cacheConfig = cacheConfig;
         this.ipInfoDataAccess = ipInfoDataAccess;
-        this.distributedCache = distributedCache;
-        this.memoryCache = memoryCache;
+        commonCacheService = GetCacheServiceInstance(cacheConfig.CommonIPInfoRedisConfiguration);
+        individualCacheService = GetCacheServiceInstance(cacheConfig.IndividualIPInfoRedisConfiguration);
     }
+
+    private static ICacheService GetCacheServiceInstance(string redisConnectionString)
+        => string.IsNullOrWhiteSpace(redisConnectionString)
+        ? new CacheService()
+        : new CacheService(new RedisCache(new RedisCacheOptions
+        {
+            ConnectionString = redisConnectionString,
+            ApplicationName = "AlphaPlus.Tickets.BetLists"
+        }));
 
     public async Task<IDictionary<string, string>> GetCountries(IEnumerable<string> ipList)
     {
@@ -57,7 +60,7 @@ public class IPInfoService : IIPInfoService
     private async Task IPV4ToCountry(IDictionary<string, string> ipDictionary, IList<string> ipList)
     {
         var ipV4TopCountries = await GetIPV4ByTopCountry();
-        var ipV4NotInTopCountries = memoryCache.Get<List<IPRange>>(IPV4CacheKey) ?? [];
+        var ipV4NotInTopCountries = await individualCacheService.GetAsync<List<IPRange>>(IPV4CacheKey) ?? new List<IPRange>();
         var ipV4NotFoundList = new List<string>();
 
         foreach (var ip in ipList)
@@ -81,25 +84,11 @@ public class IPInfoService : IIPInfoService
         }
     }
 
-    private async Task<IList<IPRange>> GetIPV4ByTopCountry()
-    {
-        var encodedCache = await distributedCache.GetAsync(IPV4TopCountriesCacheKey);
-        IList<IPRange> ipV4TopCountries;
-        if (encodedCache != null)
-        {
-            ipV4TopCountries = JsonSerializer.Deserialize<IList<IPRange>>(Encoding.UTF8.GetString(encodedCache));
-        }
-        else
-        {
-            ipV4TopCountries = await GetIPV4ByTopCountryFromDB();
-            await distributedCache.SetAsync(
-                IPV4TopCountriesCacheKey,
-                Encoding.UTF8.GetBytes(JsonSerializer.Serialize(ipV4TopCountries)),
-                new DistributedCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheConfig.IPV4TopCountriesCacheInMinutes)));
-        }
-
-        return ipV4TopCountries;
-    }
+    private Task<IList<IPRange>> GetIPV4ByTopCountry()
+        => commonCacheService.GetOrSetAsync(
+            IPV4TopCountriesCacheKey,
+            GetIPV4ByTopCountryFromDB,
+            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheConfig.IPV4TopCountriesCacheInMinutes)));
 
     private async Task<IList<IPRange>> GetIPV4ByTopCountryFromDB()
     {
@@ -129,17 +118,17 @@ public class IPInfoService : IIPInfoService
 
     private async Task<IList<IPRange>> MergeIPV4Country(IList<string> ipList)
     {
-        var availableIPV4List = memoryCache.Get<List<IPRange>>(IPV4CacheKey) ?? [];
+        var availableIPV4List = await individualCacheService.GetAsync<List<IPRange>>(IPV4CacheKey) ?? new List<IPRange>();
         availableIPV4List.AddRange(await GetIPV4CountryFromDB(ipList));
 
         var comparer = new IPRangeEqualityComparer();
-        availableIPV4List = [.. availableIPV4List.Distinct(comparer)];
+        availableIPV4List = availableIPV4List.Distinct(comparer).ToList();
         availableIPV4List.Sort();
 
-        memoryCache.Set(
+        await individualCacheService.SetAsync(
             IPV4CacheKey,
             availableIPV4List,
-            new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheConfig.IPV4CacheInMinutes)));
+            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheConfig.IPV4CacheInMinutes)));
 
         return availableIPV4List;
     }
@@ -154,7 +143,7 @@ public class IPInfoService : IIPInfoService
 
         foreach (var ip in ipList)
         {
-            var country = memoryCache.Get<string>($"{IPV6CacheKey}_{ip}");
+            var country = await individualCacheService.GetAsync<string>($"{IPV6CacheKey}_{ip}");
 
             if (country == null)
             {
@@ -178,10 +167,10 @@ public class IPInfoService : IIPInfoService
 
         foreach (var ip in ipV6Info)
         {
-            memoryCache.Set(
+            await individualCacheService.SetAsync(
                 $"{IPV6CacheKey}_{ip.IP}",
                 ip.CountryLong,
-                new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheConfig.IPV6CacheInMinutes)));
+                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheConfig.IPV6CacheInMinutes)));
             ipDictionary[ip.IP] = ip.CountryLong;
         }
     }

@@ -1,8 +1,7 @@
-﻿using System.Text;
+﻿using Fanex.Caching;
 using AlphaPlus.Settings.Transfer.API.Configurations;
 using AlphaPlus.Settings.Transfer.API.Models;
 using Fanex.Logging;
-using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 
 namespace AlphaPlus.Settings.Transfer.API.Services;
@@ -22,20 +21,20 @@ public interface ITransferCacheService
     void CacheRemoveSuccessTransferCustIds(string cacheKey, List<int> listSuccessTransferCustIds, int adminId, string adminName);
 }
 
-public class TransferCacheService(IDistributedCache cacheService) : ITransferCacheService
+public class TransferCacheService(ICacheService cacheService) : ITransferCacheService
 {
-    private readonly IDistributedCache cacheService = cacheService;
+    private readonly ICacheService cacheService = cacheService;
     private static readonly object lockObject = new object();
 
     public List<TransferCacheModel> Get(string cacheKey)
     {
         lock (lockObject)
         {
-            var value = cacheService.Get(cacheKey);
+            string value = cacheService.Get<string>(cacheKey);
 
-            return value != null
-                ? JsonConvert.DeserializeObject<List<TransferCacheModel>>(Encoding.UTF8.GetString(value))
-                : null;
+            return string.IsNullOrWhiteSpace(value)
+                ? null
+                : JsonConvert.DeserializeObject<List<TransferCacheModel>>(value);
         }
     }
 
@@ -77,9 +76,8 @@ public class TransferCacheService(IDistributedCache cacheService) : ITransferCac
     {
         lock (lockObject)
         {
-            var cachePolicy = new DistributedCacheEntryOptions()
-                .SetAbsoluteExpiration(TimeSpan.FromSeconds(AppSettings.MultipleTransferCacheTimeOut));
-            cacheService.Set(cacheKey, Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(value)), cachePolicy);
+            var cachePolicy = new CacheItemOptions();
+            cacheService.Set(cacheKey, JsonConvert.SerializeObject(value), cachePolicy);
 
             if (AppSettings.EnableTransferLogInfo)
             {

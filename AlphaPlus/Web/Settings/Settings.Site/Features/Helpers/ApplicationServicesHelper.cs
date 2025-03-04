@@ -42,6 +42,7 @@ using AlphaPlus.Settings.Site.Features.Shared.Services;
 using AlphaPlus.Settings.Site.Features.SubAccount.Services;
 using AlphaPlus.Settings.Site.Features.UserNameSuggestion;
 using AlphaPlus.Settings.Site.Features.ViewLogs.Helpers;
+using AlphaPlus.Settings.Transfer.API.Configurations;
 using AlphaPlus.Settings.Transfer.API.Helpers;
 using AlphaPlus.Settings.Transfer.API.Models.Reward;
 using AlphaPlus.Settings.Transfer.API.Models.TransferToDownlineHistory;
@@ -53,6 +54,8 @@ using AlphaPlus.Settings.ViewLogs.API.Helpers.Impl;
 using AlphaPlus.Settings.ViewLogs.API.Services;
 using AlphaPlus.Settings.ViewLogs.API.Services.Impl;
 using AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs;
+using Fanex.Caching;
+using Fanex.Caching.Redis;
 using Fanex.Cryptography.Aes;
 using Fanex.Customer.Client.Configurations;
 using Fanex.Data;
@@ -62,6 +65,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using ONEbook.SpreadSheets;
 using ONEbook.SpreadSheets.NPOI;
+using StackExchange.Redis;
 
 namespace AlphaPlus.Settings.Site.Features.Helpers
 {
@@ -207,7 +211,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
 
             services
                 .AddSingleton<Workbook<TransferToDownlineHistoryModel>, NpoiWorkbook<TransferToDownlineHistoryModel>>()
-                .AddSingleton<ITransferCacheService, TransferCacheService>()
+                .AddSingleton<ITransferCacheService>(new TransferCacheService(InitTransferCacheService()))
                 .AddScoped<ITransferService, TransferService>()
                 .AddScoped<AutoTransferService, AutoTransferServiceImpl>()
                 .AddScoped<ICashBalanceTransferService, CashBalanceTransferService>()
@@ -265,6 +269,18 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
             }
 
             return partialUMConfig;
+        }
+
+        private static ICacheService InitTransferCacheService()
+        {
+            var configurationOptions = ConfigurationOptions.Parse(AppSettings.TransferRedisConfiguration);
+            var redisCacheOptions = new RedisCacheOptions
+            {
+                ConnectionOptions = configurationOptions,
+                ApplicationName = configurationOptions.ClientName
+            };
+
+            return new CacheService(new RedisCache(redisCacheOptions));
         }
     }
 }

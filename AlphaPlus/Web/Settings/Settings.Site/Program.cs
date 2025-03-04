@@ -27,11 +27,6 @@ var configuration = builder.Configuration;
 
 builder.Services
     .RegisterApplicationServices(configuration)
-    // .AddStackExchangeRedisCache(options =>
-    // {
-    //     options.Configuration = configuration.GetValue<string>("RedisConfiguration:AlphaPlus.Transfer");
-    //     options.InstanceName = "AlphaPlus.Transfer";
-    // })
     .Configure<ForwardedHeadersOptions>(options =>
     {
         options.ForwardedHeaders =
