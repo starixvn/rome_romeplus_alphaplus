@@ -37,7 +37,8 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status.Base
                         {"SearchAccountName", SearchAccount.Username},
                         {"SearchAccountRoleId", SearchAccount.CustomerLevelValue.ToString()},
                         {"StatusName", StatusName ?? string.Empty},
-                        {"StatusValue", StatusValue}
+                        {"StatusValue", StatusValue},
+                        {"AgentId", SearchAccount.AgentId }
                     };
     }
 }

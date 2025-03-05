@@ -16,8 +16,6 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.CustomerS
 
         public string StatusName { get; set; }
 
-        public int ServerId { get; }
-
         public override bool IsValid()
         {
             var isValid = base.IsValid() && !string.IsNullOrWhiteSpace(StatusName) && CanUpdateAccount && !IsInternal && SearchAccountId > 0;
