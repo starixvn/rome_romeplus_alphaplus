@@ -211,7 +211,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
 
             services
                 .AddSingleton<Workbook<TransferToDownlineHistoryModel>, NpoiWorkbook<TransferToDownlineHistoryModel>>()
-                .AddSingleton<ITransferCacheService>(new TransferCacheService(InitTransferCacheService()))
+                .AddSingleton<ITransferCacheService>(new TransferCacheService(InitTransferCacheService(configuration)))
                 .AddScoped<ITransferService, TransferService>()
                 .AddScoped<AutoTransferService, AutoTransferServiceImpl>()
                 .AddScoped<ICashBalanceTransferService, CashBalanceTransferService>()
@@ -271,9 +271,9 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
             return partialUMConfig;
         }
 
-        private static ICacheService InitTransferCacheService()
+        private static ICacheService InitTransferCacheService(IConfiguration configuration)
         {
-            var configurationOptions = ConfigurationOptions.Parse(AppSettings.TransferRedisConfiguration);
+            var configurationOptions = ConfigurationOptions.Parse(configuration.GetValue<string>("RedisConfiguration:AlphaPlus.Transfer"));
             var redisCacheOptions = new RedisCacheOptions
             {
                 ConnectionOptions = configurationOptions,
