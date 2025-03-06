@@ -1,3 +1,4 @@
+using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
 using AlphaPlus.Core.Models;
@@ -17,7 +18,12 @@ configuration
     .AddJsonFile(SharedSettings, optional: true, reloadOnChange: true)
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
-// Add services to the container.
+builder.Services
+    .AddControllersWithViews(options =>
+    {
+        options.Filters.Add<AfterLoginFlowFilterAttribute>();
+        options.Filters.Add<ProtectedModeFilterAttribute>();
+    });
 builder.Services
     .RegisterApplicationServices(configuration)
     .Configure<ForwardedHeadersOptions>(options =>
