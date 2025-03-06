@@ -114,6 +114,11 @@ public class TransferYesterdayBalanceHandler(
         else
         {
             custIds = message.CustIds.ToListInt();
+
+            if (custIds.Any(id => id == message.ViewerId))
+            {
+                return Result.CreateErrorResult(Resources.NotAuthorized, 403);
+            }
         }
 
         var failedResults = new List<Result>();
@@ -195,8 +200,13 @@ public class TransferYesterdayBalanceHandler(
         return result;
     }
 
-    public Task<Result> Handle(MultipleMemberCommand message, CancellationToken cancellationToken)
+    public async Task<Result> Handle(MultipleMemberCommand message, CancellationToken cancellationToken)
     {
+        if (message.CustIds.ToListInt().Any(id => id == message.ViewerId))
+        {
+            return Result.CreateErrorResult(Resources.NotAuthorized, 403);
+        }
+
         var param = new AgentTransferMultipleYesterdayBalanceParam(
             message.ViewerId,
             AppSettings.AllowedListSuperAccounts,
@@ -215,6 +225,6 @@ public class TransferYesterdayBalanceHandler(
             message.AdminName);
         var service = new AgentTransferMultipleYesterdayBalanceService(param, transferService, transferListService, yesterdayBalanceTransferService);
 
-        return service.ProcessTransfer();
+        return await service.ProcessTransfer();
     }
 }

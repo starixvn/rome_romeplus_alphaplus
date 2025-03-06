@@ -121,7 +121,6 @@
             }
 
             this.handleMultipleTransferYesterdayBalance({
-                custIds: '0',
                 username: $.trim($('#Username').val()),
                 status: $('#Status').val(),
                 autoTransfer: $('#AutoTransfer').val(),
@@ -247,7 +246,7 @@
         }
     }
 }
- 
+
 $(function () {
     new TransferListView(
         new AlertComponent(),
