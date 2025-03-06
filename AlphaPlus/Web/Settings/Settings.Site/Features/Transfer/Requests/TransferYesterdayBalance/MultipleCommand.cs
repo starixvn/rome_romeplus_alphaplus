@@ -15,7 +15,7 @@ public class MultipleCommand : TransferBaseQuery, IRequest<Result>
         SubAccId = viewer.SubAccId;
     }
 
-    public string CustIds { get; set; }
+    public string CustIds { get; set; } = "0";
 
     public string Username { get; set; }
 

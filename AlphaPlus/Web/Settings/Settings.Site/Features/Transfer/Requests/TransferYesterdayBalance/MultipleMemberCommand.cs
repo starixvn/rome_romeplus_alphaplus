@@ -26,7 +26,7 @@ public class MultipleMemberCommand : TransferBaseQuery, IRequest<Result>
         }
     }
 
-    public string CustIds { get; set; }
+    public string CustIds { get; set; } = "0";
 
     public string Username { get; set; }
 
