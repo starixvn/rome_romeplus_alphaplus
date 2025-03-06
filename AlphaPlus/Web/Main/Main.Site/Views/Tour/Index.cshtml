@@ -3,7 +3,8 @@
 @model TourViewModel
 
 @{
-    var imagePath = $"~/assets/images/tour/directmember/master/{Model.Language}";
+    var userLevelName = Model.UserLevel.DisplayName.ToLowerInvariant();
+    var imagePath = $"~/assets/images/tour/directmember/{userLevelName}/{Model.Language}";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -38,15 +39,17 @@
                 <img src="@Url.Content($"{imagePath}/Page3.png")" alt="tour Directmember" />
             </div>
             <div class="content-page content-page-4 hidden">
-                <div class="title">@Html.Raw(Tour.Index_Page4_Title)</div>
+                <div class="title">@Html.Raw(Model.UserLevel.IsSuperLevel()
+                    ? Tour.Index_Page4_Title_Super
+                    : Tour.Index_Page4_Title_Master)</div>
                 <img src="@Url.Content($"{imagePath}/Page4.png")" alt="tour Directmember" />
             </div>
             <div class="content-page content-page-5 hidden">
-                <div class="title">@Html.Raw(Tour.Index_Page5_Title)</div>             
+                <div class="title">@Html.Raw(Tour.Index_Page5_Title)</div>
                 <img src="@Url.Content($"{imagePath}/Page5.png")" alt="tour Directmember" />
             </div>
         </div>
-        
+
     </div>
     <div class="control">
         <div class="spn-page">
