@@ -579,6 +579,7 @@ class CustomerListDataTable {
             CustLevelId: this.viewModel.SearchAccountRoleId,
             CustId: this.viewModel.SearchAccountId,
             CustName: this.viewModel.SearchAccountName,
+            Username: this.$('#txt-username').val(),
             Status: this.$('#statusFilter').val(),
             DoubleComm: this.$('#dcommFilter').val(),
             AllowAutoTransfer: this.$('#dautoTransferFilter').val(),

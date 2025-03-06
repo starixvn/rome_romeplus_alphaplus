@@ -59,7 +59,7 @@
                             {
                                 <li>
                                     <a class="breadcrumb-link view-downline"
-                                    data-url="@(viewModel.BuildBreadcrumbLink(custinfo, AlphaContext.Current.Request.GetEncodedPathAndQuery(), null, linkIndex))">
+                                        data-url="@(viewModel.BuildBreadcrumbLink(custinfo, AlphaContext.Current.Request.GetEncodedPathAndQuery(), null, linkIndex))">
                                         @(custinfo.CustName)
                                     </a>
                                 </li>
@@ -76,8 +76,8 @@
     <div class="form-inline filter form-report">
         <div class="form-group username-box">
             <label>@CustomerListResources.Username</label>
-            <input type="text" class="txt-search" id="txt-username"
-            placeholder="@CustomerListResources.UsernamePlaceHolder" />
+            <input type="text" class="txt-search" id="txt-username" value="@Model.Username"
+                placeholder="@CustomerListResources.UsernamePlaceHolder" />
         </div>
         <div class="form-group status-box">
             <label>@CustomerListResources.Status</label>

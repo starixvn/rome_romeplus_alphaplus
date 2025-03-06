@@ -40,6 +40,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
 
             PageIndex = request.PageIndex;
             PageSize = request.PageSize;
+            Username = request.Username;
             Status = request.Status;
             DoubleComm = request.DoubleComm;
             UnconfirmSetting = request.UnconfirmSetting;
@@ -60,7 +61,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
             EnableAutoTransfer = isEnabledAutoTransfer;
             EnableAllDayBalanceTransfer = request.EnableAllDayBalanceTransfer.HasValue && request.EnableAllDayBalanceTransfer.Value;
             LevelType = request.LevelType;
-            ShowLevelType = request.ViewerLevel.IsMasterOrSuperLevel();
+            ShowLevelType = request.CustLevel.IsMasterOrSuperLevel();
         }
 
         public bool ShowLevelType { get; }
@@ -78,6 +79,8 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
         public string SearchAccountName { get; }
 
         public byte SearchAccountRoleId { get; }
+
+        public string Username { get; }
 
         public byte Status { get; }
 
