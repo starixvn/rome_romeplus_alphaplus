@@ -1,8 +1,9 @@
 ﻿@using AlphaPlus.Main.Site.Features.Tour
 @using AlphaPlus.Core.Configurations
 @model TourViewModel
+
 @{
-    var imagePath = $"~/assets/images/tour/profile-picture/{Model.Language}";
+    var imagePath = $"~/assets/images/tour/directmember/master/{Model.Language}";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -26,23 +27,23 @@
             <div class="content-page content-page-1">
                 <div class="title">@Tour.Index_Page1_Title</div>
                 <p>@Html.Raw(Tour.Index_Page1_Row1)</p>
-                <img src="@Url.Content($"{imagePath}/page1-{Model.SiteLabelHash}.png")" alt="tour new feature" />
+                <img src="@Url.Content($"{imagePath}/Page1.png")" alt="tour Directmember" />
             </div>
             <div class="content-page content-page-2 hidden">
                 <div class="title">@Tour.Index_Page2_Title</div>
-                <img src="@Url.Content($"{imagePath}/page2-{Model.SiteLabelHash}.png")" alt="tour new feature" />
+                <img src="@Url.Content($"{imagePath}/Page2.png")" alt="tour Directmember" />
             </div>
             <div class="content-page content-page-3 hidden">
                 <div class="title">@Html.Raw(Tour.Index_Page3_Title)</div>
-                <img src="@Url.Content($"{imagePath}/page3-{Model.SiteLabelHash}.png")" alt="tour new feature" />
+                <img src="@Url.Content($"{imagePath}/Page3.png")" alt="tour Directmember" />
             </div>
             <div class="content-page content-page-4 hidden">
                 <div class="title">@Html.Raw(Tour.Index_Page4_Title)</div>
-                <img src="@Url.Content($"{imagePath}/page3-{Model.SiteLabelHash}.png")" alt="tour new feature" />
+                <img src="@Url.Content($"{imagePath}/Page4.png")" alt="tour Directmember" />
             </div>
             <div class="content-page content-page-5 hidden">
                 <div class="title">@Html.Raw(Tour.Index_Page5_Title)</div>             
-                <img src="@Url.Content($"{imagePath}/page3-{Model.SiteLabelHash}.png")" alt="tour new feature" />
+                <img src="@Url.Content($"{imagePath}/Page5.png")" alt="tour Directmember" />
             </div>
         </div>
         
