@@ -1,6 +1,6 @@
-﻿using AlphaPlus.Shared.AppResources.Main;
-using AlphaPlus.Core.Helpers;
+﻿using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
+using AlphaPlus.Shared.AppResources.Main;
 
 namespace AlphaPlus.Main.Site.Features.Default.MenuBar
 {
@@ -68,7 +68,7 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
         public virtual string Link
         {
             get
-            { 
+            {
                 if (!string.IsNullOrWhiteSpace(link))
                 {
                     if (link.IndexOf("TransferList/Index", StringComparison.OrdinalIgnoreCase) > -1)
@@ -76,7 +76,8 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
                         return string.Format(link, transferService.IsAllDayBalanceTransfer(userSession.CustId));
                     }
 
-                    if (link.IndexOf("PTTemplate/Index", StringComparison.OrdinalIgnoreCase) > -1)
+                    if ((link.IndexOf("PTTemplate/Index", StringComparison.OrdinalIgnoreCase) > -1)
+                    || (link.IndexOf("Customer/CreateDirectMember", StringComparison.OrdinalIgnoreCase) > -1))
                     {
                         var languageParam = buildLanguageQueryStringFunc();
                         var darkModeParam = buildDarkModeQueryStringFunc();
