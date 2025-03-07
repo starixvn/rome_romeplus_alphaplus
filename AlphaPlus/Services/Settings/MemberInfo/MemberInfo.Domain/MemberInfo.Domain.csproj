@@ -11,6 +11,6 @@
     <ProjectReference Include="..\..\..\..\Shared\AlphaPlus.Shared.AppResources\AlphaPlus.Shared.AppResources.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Fanex.Customer.Client" Version="1.0.1.11-AlphaPlus-04" />
+    <PackageReference Include="Fanex.Customer.Client" Version="1.0.1.11-AlphaPlus-05" />
   </ItemGroup>
 </Project>
