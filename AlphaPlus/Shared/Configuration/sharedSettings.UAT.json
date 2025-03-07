@@ -233,7 +233,7 @@
     "GoogleAnalyticId": "G-Y9E8EEDTFF",
     "OfferAutoTransfer.Currencies": "*",
     "TransferToDownlineHistory:OfferSites": "76666B,IBCIndo",
-    "OfferClearGivenCredit:Sites": "KORIBC,INDO",
+    "OfferClearGivenCredit:Sites": "*",
     "IndirectLogin": {
         "AllowSuperIds": "*",
         "URL": "https://idp1.starixuat.com/main/Account/IndirectLogin"

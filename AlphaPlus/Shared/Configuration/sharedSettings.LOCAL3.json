@@ -233,7 +233,7 @@
     "GoogleAnalyticId": "UA-93265717-1",
     "OfferAutoTransfer.Currencies": "*",
     "TransferToDownlineHistory:OfferSites": "76666B,IBCIndo",
-    "OfferClearGivenCredit:Sites": "KORIBC,INDO",
+    "OfferClearGivenCredit:Sites": "*",
     "IndirectLogin": {
         "AllowSuperIds": "*",
         "URL": "https://indp3.nexdev.net/main/Account/IndirectLogin"
