@@ -233,7 +233,7 @@
     "GoogleAnalyticId": "G-7ZLZVC9F64",
     "OfferAutoTransfer.Currencies": "*",
     "TransferToDownlineHistory:OfferSites": "76666B,IBCIndo",
-    "OfferClearGivenCredit:Sites": "KORIBC,INDO",
+    "OfferClearGivenCredit:Sites": "*",
     "Authorization": {
         "cachedExpireTime": 30,
         "EnableCheckBelonging": true,
