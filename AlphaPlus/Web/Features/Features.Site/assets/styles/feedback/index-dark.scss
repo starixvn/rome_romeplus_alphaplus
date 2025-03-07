@@ -205,3 +205,167 @@
 .rate-star > label:hover ~ input:checked ~ label {
     color: #EFB00E;
 }
+
+
+body.transparent {
+    background: transparent;
+    padding: 1px;
+}
+
+.center-survey {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+}
+
+.survey-box {
+    background: #191919;
+    font-size: 14px;
+    line-height: 1.57142;
+    color: #f1f1f1;
+    max-width: 500px;
+    width: 100%;
+    margin: 30px auto 0;
+    border-radius: 5px;
+    overflow: hidden;
+
+    b {
+        font-family: 'Roboto Bold';
+    }
+
+    .title {
+        color: #118AF2;
+        font-size: 36px;
+        font-weight: bold;
+        font-family: 'Roboto Bold';
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        background-image: url(images/survey-dark.png);
+        background-repeat: no-repeat;
+        background-position: top center;
+        background-size: 100% auto;
+        height: 200px;
+        line-height: 41px;
+        padding: 0 32px;
+
+
+
+        span {
+            display: block;
+            font-size: 42px;
+        }
+    }
+
+    .survey-body {
+        padding: 20px 12px 20px;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    .list-box {
+        background: #333E4B;
+        padding: 12px 12px 12px 40px;
+        margin: 12px 0;
+        border-radius: 3px;
+
+
+        ul {
+            margin: 0;
+        }
+
+        li {
+            list-style: disc;
+
+            &::marker {
+                color: #118AF2;
+            }
+        }
+
+        li + li {
+            margin-top: 10px;
+        }
+
+        span {
+            color: #118AF2;
+            font-weight: bold;
+            font-family: 'Roboto Bold';
+        }
+
+        .underline {
+            text-decoration: underline;
+        }
+    }
+
+    .btn-box-center {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .btn-notuseful, .btn-useful, .btn-close {
+        font-size: 13px;
+        line-height: 28px;
+        height: 28px;
+        padding: 0 15px;
+        font-weight: bold;
+        border-radius: 3px;
+        margin: 0 10px;
+
+        &:hover {
+            opacity: 0.85;
+        }
+    }
+
+    .btn-notuseful {
+        color: #276EAC;
+        border: 1px solid #36587D;
+        background: #191919;        
+    }
+
+    .btn-useful, .btn-close {
+        color: #EDEDED;
+        border: 1px solid #36587D;
+        background: #36587D;        
+    }
+}
+.survey-result.msg {
+    max-width: 300px;
+    padding: 30px 20px;
+    text-align: center;
+    margin: 20% auto 0;
+    font-size: 16px;
+
+    &:before {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 40px;
+        position: relative;
+        top: auto;
+        left: auto;
+        line-height: normal;
+    }
+}
+.survey-result.msg {
+    max-width: 300px;
+    padding: 30px 20px;
+    text-align: center;
+    margin: 20% auto 0;
+    font-size: 16px;
+
+    &:before {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 40px;
+        position: relative;
+        top: auto;
+        left: auto;
+        line-height: normal;
+    }
+}

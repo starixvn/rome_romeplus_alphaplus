@@ -328,4 +328,31 @@
   <data name="close" xml:space="preserve">
     <value>ปิด</value>
   </data>
+  <data name="FeedbackSurvey_SelectUsefulOrNot" xml:space="preserve">
+    <value>โปรดเลือก &lt;b&gt;มีประโยชน์&lt;/b&gt; หรือ &lt;b&gt;ไม่มีประโยชน์&lt;/b&gt; เพื่อดำเนินการต่อ</value>
+  </data>
+  <data name="FeedbackSurvey_WinningThreshold" xml:space="preserve">
+    <value>เรามีความยินดีที่จะนำฟีเจอร์ใหม่ของขีดจำกัดการชนะของกีฬามาใช้ ซึ่งช่วยให้คุณกำหนดขีดจำกัดการชนะที่เฉพาะเจาะจงและควบคุมการจัดการความเสี่ยงและความปลอดภัยได้ดียิ่งขึ้น</value>
+  </data>
+  <data name="FeedbackSurvey_WinningThreshold_StayAhead" xml:space="preserve">
+    <value>&lt;span&gt;ก้าวนำอยู่หนึ่งขั้น&lt;/span&gt;: รับการแจ้งเตือนแบบเรียลไทม์เมื่อสมาชิกใกล้ถึงขีดจำกัด และสามารถดำเนินการล่วงหน้า (&lt;span&gt;จำกัดการวางเดิมพัน ปรับขีดจำกัด ฯลฯ&lt;/span&gt;).</value>
+  </data>
+  <data name="FeedbackSurvey_WinningThreshold_PeaceOfMind" xml:space="preserve">
+    <value>&lt;span&gt;ความสบายใจ&lt;/span&gt;: ลดการจ่ายเงินจำนวนมากที่ไม่สามารถคาดเดาได้ ส่งเสริมประสบการณ์การเล่นเกมที่ปลอดภัยยิ่งขึ้น</value>
+  </data>
+  <data name="FeedbackSurvey_WinningThreshold_CustomizableRiskControl" xml:space="preserve">
+    <value>&lt;span&gt;การควบคุมความเสี่ยงที่ปรับแต่งได้&lt;/span&gt;: ปรับแต่งขีดจำกัดการชนะสำหรับสมาชิกแต่ละรายที่ไม่ซ้ำกัน เพื่อให้มั่นใจว่ามีแนวทางการบริหารความเสี่ยงที่เหมาะสมและแม่นยำยิ่งขึ้น</value>
+  </data>
+  <data name="FeedbackSurveyGreeting" xml:space="preserve">
+    <value>สวัสดีค่ะ &lt;b&gt;{0}&lt;/b&gt; ในฐานะตัวแทนผู้ทรงเกียรติ ข้อมูลเชิงลึกของคุณมีความสำคัญต่อเรา</value>
+  </data>
+  <data name="Useful" xml:space="preserve">
+    <value>มีประโยชน์</value>
+  </data>
+  <data name="NotUseful" xml:space="preserve">
+    <value>ไม่มีประโยชน์</value>
+  </data>
+  <data name="FeedbackSurveyTitle" xml:space="preserve">
+    <value>ช่วยเรา&lt;span&gt;พัฒนา!&lt;/span&gt;</value>
+  </data>
 </root>

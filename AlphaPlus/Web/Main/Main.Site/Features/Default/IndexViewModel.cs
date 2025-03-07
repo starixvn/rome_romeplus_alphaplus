@@ -176,5 +176,18 @@ namespace AlphaPlus.Main.Site.Features.Default
         public bool IsEnableReCheckIn => message.IsEnableReCheckIn;
 
         public string TourUrl => MicroSites.MainUrl("~/Tour/ProfilePicture");
+
+        public bool ShowWinningThresholdSurvey
+        {
+            get
+            {
+                var isSupport = message.RoleId == AlphaPlus.Core.Models.UserLevel.Agent.Value &&
+                    AlphaPlus.Core.Configurations.AppSettings.IsIncluded(AppSettings.WinningThresholdSurveySites, message.Site) &&
+                    !AlphaPlus.Core.Configurations.AppSettings.IsIncluded(AppSettings.WinningThresholdSurveyExcludedSites, message.Site) &&
+                    !AlphaPlus.Core.Configurations.AppSettings.IsIncluded(AppSettings.WinningThresholdSurveyExcludedLines, message.Site);
+
+                return isSupport;
+            }
+        }
     }
 }

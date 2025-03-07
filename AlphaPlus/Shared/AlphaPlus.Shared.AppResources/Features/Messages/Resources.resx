@@ -334,4 +334,31 @@ Normal Announcement and Personal Message are available for up to 3 months.</valu
   <data name="CopyAll" xml:space="preserve">
     <value>Copy All</value>
   </data>
+  <data name="FeedbackSurvey_SelectUsefulOrNot" xml:space="preserve">
+    <value>Please select &lt;b&gt;Useful&lt;/b&gt; or &lt;b&gt;Not Useful&lt;/b&gt; to continue.</value>
+  </data>
+  <data name="FeedbackSurvey_WinningThreshold" xml:space="preserve">
+    <value>We’re excited to implement a new Sportsbook Winning Threshold feature, enabling you to set a specific winning limit, equipping you with greater control over risk management and security.</value>
+  </data>
+  <data name="FeedbackSurvey_WinningThreshold_StayAhead" xml:space="preserve">
+    <value>&lt;span&gt;Stay Ahead&lt;/span&gt;: Receive real-time alerts when members approach their limit—take action early (&lt;span&gt;block placing bets, adjust limits, etc.&lt;/span&gt;).</value>
+  </data>
+  <data name="FeedbackSurvey_WinningThreshold_PeaceOfMind" xml:space="preserve">
+    <value>&lt;span&gt;Peace of Mind&lt;/span&gt;: Minimize large, unpredictable payouts fostering a safer gaming experience.</value>
+  </data>
+  <data name="FeedbackSurvey_WinningThreshold_CustomizableRiskControl" xml:space="preserve">
+    <value>&lt;span&gt;Customizable Risk Control&lt;/span&gt;: Customize winning thresholds for each unique member, ensuring a more tailored and precise approach to risk management.</value>
+  </data>
+  <data name="FeedbackSurveyGreeting" xml:space="preserve">
+    <value>Hi &lt;b&gt;{0}&lt;/b&gt;, as a valued agent in our community, your insights are essential.</value>
+  </data>
+  <data name="Useful" xml:space="preserve">
+    <value>Useful</value>
+  </data>
+  <data name="NotUseful" xml:space="preserve">
+    <value>Not Useful</value>
+  </data>
+  <data name="FeedbackSurveyTitle" xml:space="preserve">
+    <value>Help us &lt;span&gt;Improve!&lt;/span&gt;</value>
+  </data>
 </root>

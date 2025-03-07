@@ -93,6 +93,10 @@ namespace AlphaPlus.Main.Site
 
         public static DateTime EndWhiteLabelOffer => DateTime.Parse(GetValue<string>("EndWhiteLabelOffer"));
 
+        public static string WinningThresholdSurveySites => GetValue<string>("WinningThresholdSurveySites");
+        public static string WinningThresholdSurveyExcludedSites => GetValue<string>("WinningThresholdSurveyExcludedSites");
+        public static string WinningThresholdSurveyExcludedLines => GetValue<string>("WinningThresholdSurveyExcludedLines");
+
         private static T GetValue<T>(string key, T defaultValue = default) => ConfigurationManager.GetValue<T>(key, defaultValue);
 
         private static T GetSectionValue<T>(string key, T defaultValue = default) => ConfigurationManager.GetSection<T>(key, defaultValue);

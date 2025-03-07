@@ -120,6 +120,23 @@ public static class AppSettings
         }
     }
 
+    public static bool IsIncluded(string config, string value)
+    {
+        if (string.IsNullOrWhiteSpace(config))
+        {
+            return false;
+        }
+
+        if (string.Equals("*", config, StringComparison.OrdinalIgnoreCase))
+        {
+            return true;
+        }
+
+        return config
+            .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+            .Any(s => string.Equals(s.Trim(), value, StringComparison.OrdinalIgnoreCase));
+    }
+
     private static HashSet<string> MarketsSupportedNewHandbook { get; } = new HashSet<string>(
         ConfigurationManager
             .GetValue<string>("MarketsSupportedNewHandbook")

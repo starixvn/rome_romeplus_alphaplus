@@ -328,4 +328,31 @@
   <data name="close" xml:space="preserve">
     <value>關閉</value>
   </data>
+  <data name="FeedbackSurvey_SelectUsefulOrNot" xml:space="preserve">
+    <value>請選擇 &lt;b&gt;有用&lt;/b&gt; 或 &lt;b&gt;沒有用&lt;/b&gt; 繼續。</value>
+  </data>
+  <data name="FeedbackSurvey_WinningThreshold" xml:space="preserve">
+    <value>我们很高兴推出新的体育博彩获胜限额功能，借此您可以设置特定的赢额，让您更好地控制风险管理和安全性</value>
+  </data>
+  <data name="FeedbackSurvey_WinningThreshold_StayAhead" xml:space="preserve">
+    <value>&lt;span&gt;保持領先&lt;/span&gt;: 當會員達到其限額時接收即時警報 - 儘早採取行動 (&lt;span&gt;阻止下注、調整限額等&lt;/span&gt;)。</value>
+  </data>
+  <data name="FeedbackSurvey_WinningThreshold_PeaceOfMind" xml:space="preserve">
+    <value>&lt;span&gt;安心&lt;/span&gt;: 化大为小，不可預測的支出，從而提供更安全的遊戲體驗。</value>
+  </data>
+  <data name="FeedbackSurvey_WinningThreshold_CustomizableRiskControl" xml:space="preserve">
+    <value>&lt;span&gt;可定制的風險管理&lt;/span&gt;: 為每個獨有的會員定制獲勝限額，確保更有針對性和更精準的風險管理。</value>
+  </data>
+  <data name="FeedbackSurveyGreeting" xml:space="preserve">
+    <value>您好 &lt;b&gt;{0}&lt;/b&gt;，作為我們共同體中尊貴的代理，您的見解至關重要</value>
+  </data>
+  <data name="Useful" xml:space="preserve">
+    <value>有用</value>
+  </data>
+  <data name="NotUseful" xml:space="preserve">
+    <value>沒有用</value>
+  </data>
+  <data name="FeedbackSurveyTitle" xml:space="preserve">
+    <value>協助我們&lt;span&gt;改進！&lt;/span&gt;</value>
+  </data>
 </root>

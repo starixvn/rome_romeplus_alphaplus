@@ -337,4 +337,31 @@ Thông Báo Chung và Tin Nhắn Cá Nhân sẽ được lưu đến 3 tháng.</
   <data name="CopyAll" xml:space="preserve">
     <value>Sao chép tất cả</value>
   </data>
+  <data name="FeedbackSurvey_SelectUsefulOrNot" xml:space="preserve">
+    <value>Vui lòng chọn &lt;b&gt;Hữu ích&lt;/b&gt; hoặc &lt;b&gt;Không hữu ích&lt;/b&gt; để tiếp tục.</value>
+  </data>
+  <data name="FeedbackSurvey_WinningThreshold" xml:space="preserve">
+    <value>Chúng tôi hân hạnh giới thiệu một tính năng mới: Giới Hạn Thắng của Sportsbook. Tính năng này cho phép bạn đặt ra một giới hạn thắng cụ thể, mang lại quyền kiểm soát tối ưu hơn trong quản lý rủi ro và bảo mật.</value>
+  </data>
+  <data name="FeedbackSurvey_WinningThreshold_StayAhead" xml:space="preserve">
+    <value>&lt;span&gt;Luôn dẫn đầu&lt;/span&gt;: Nhận cảnh báo theo thời gian thực khi các Member sắp đạt giới hạn của họ - chủ động can thiệp (&lt;span&gt;chặn đặt cược, điều chỉnh giới hạn, v.v.&lt;/span&gt;).</value>
+  </data>
+  <data name="FeedbackSurvey_WinningThreshold_PeaceOfMind" xml:space="preserve">
+    <value>&lt;span&gt;An tâm tuyệt đối&lt;/span&gt;: Hạn chế những khoản thanh toán lớn bất ngờ, mang đến một sân chơi an toàn hơn.</value>
+  </data>
+  <data name="FeedbackSurvey_WinningThreshold_CustomizableRiskControl" xml:space="preserve">
+    <value>&lt;span&gt;Kiểm soát rủi ro linh hoạt&lt;/span&gt;: cá nhân hóa mức giới hạn thắng cho từng Member, đảm bảo quản lý rủi ro chính xác và phù hợp với chiến lược của bạn.</value>
+  </data>
+  <data name="FeedbackSurveyGreeting" xml:space="preserve">
+    <value>Chào &lt;b&gt;{0}&lt;/b&gt;, bạn là một đại lý quan trọng trong cộng đồng của chúng tôi, và ý kiến của bạn vô cùng quý giá!</value>
+  </data>
+  <data name="Useful" xml:space="preserve">
+    <value>Hữu ích</value>
+  </data>
+  <data name="NotUseful" xml:space="preserve">
+    <value>Không hữu ích</value>
+  </data>
+  <data name="FeedbackSurveyTitle" xml:space="preserve">
+    <value>Hãy giúp chúng tôi &lt;span&gt;cải thiện!&lt;/span&gt;</value>
+  </data>
 </root>
