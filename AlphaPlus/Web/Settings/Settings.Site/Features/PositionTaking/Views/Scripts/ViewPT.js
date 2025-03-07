@@ -645,6 +645,15 @@ function ptView(url) {
     window.isProductOptionClicked = !window.isProductOptionClicked;
 }
 
+function levelTypeView(value) {
+    if (window.isLevelTypeDropdownClicked) {
+        const mainFrame = top.$('#main');
+        var currentUrl = mainFrame.attr('src');
+        mainFrame.attr('src', this.replaceQueryStringValue(currentUrl, 'levelType', value));
+    }
+    window.isLevelTypeDropdownClicked = !window.isLevelTypeDropdownClicked;
+}
+
 function ptProductDropdownBlur() {
     window.isProductOptionClicked = false;
 }
@@ -658,10 +667,14 @@ function ptProductChanged(element) {
     }
 }
 
+function levelTypeDropdownBlur() {
+    window.isLevelTypeDropdownClicked = false;
+}
+
 function levelTypeChanged(element) {
     var isRedirect = navigator.userAgent.match(/iPad/i) != null || navigator.userAgent.indexOf('Safari') > -1;
     if (isRedirect) {
-        window.isProductOptionClicked = false;
+        window.isLevelTypeDropdownClicked = false;
         var levelType = $(element).val();
         const mainFrame = top.$('#main');
         var currentUrl = mainFrame.attr('src');

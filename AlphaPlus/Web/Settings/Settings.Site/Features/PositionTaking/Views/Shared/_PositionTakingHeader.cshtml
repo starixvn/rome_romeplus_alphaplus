@@ -38,7 +38,8 @@
     {
         <div class="pull-left">
             <label for="dropdown-product">@AlphaPlus.Shared.AppResources.Settings.MemberInfo.Resources.Level</label>
-            <select id="ddlLevel" onchange="levelTypeChanged(this)">
+            <select id="ddlLevel" onchange="levelTypeChanged(this);" onclick="levelTypeView(this.value);"
+                onblur="levelTypeDropdownBlur();">
                 <option value="1" selected="@(levelType==1?true:false)">
                     @(roleId == RoleIdConstants.Super ? CommonResx.MasterAgent : CommonResx.Agent)</option>
                 <option value="2" selected="@(levelType == 2 ? true : false)">@CommonResx.DirectMember</option>
