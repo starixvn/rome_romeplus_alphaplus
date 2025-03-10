@@ -236,7 +236,7 @@
     }
 
     td {
-        &.master, &.agent, &.member {
+        &.super, &.master, &.agent, &.member {
             border-left: 0 !important;
         }
       
