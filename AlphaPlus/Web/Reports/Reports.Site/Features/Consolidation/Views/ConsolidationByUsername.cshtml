@@ -111,12 +111,12 @@
                         </div>
                     </td>
                     <td class="text-left bold">
-                        <div style="position:relative">
+                        <div class="text-icon">
                             @if (isShowPT)
                             {
                                 <a class="downline-link" asp-action="ConsolidationDetail"
                                     asp-all-route-data="@Model.BuildDrillDownParams(total.CustId, total.Username, total.CustLevel)">@total.Username</a>
-                                <span class="view-product-pt-list" data-custid="@total.CustId" data-username="@total.Username"
+                                <span class="ic-percent view-product-pt-list" data-custid="@total.CustId" data-username="@total.Username"
                                     data-userlevel="@total.CustLevelName"></span>
                             }
                             else

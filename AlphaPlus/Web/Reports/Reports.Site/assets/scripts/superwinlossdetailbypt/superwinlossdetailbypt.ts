@@ -100,8 +100,7 @@
         this.$viewProductPTListPopup.modal({ show: true, backdrop: false });
 
         var position = this.$viewProductPTList.position();
-        this.$viewProductPTListPopup.css({
-            bottom: 'auto',
+        this.$viewProductPTListPopup.css({          
             top: position.top + 60
         });
     };

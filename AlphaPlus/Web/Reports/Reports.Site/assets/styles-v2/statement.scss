@@ -1,11 +1,13 @@
 ﻿:root, :root [data-theme='light'] {
     --note-opening-balance-background: #f6a4a4;
     --statement-term-color: #b50000;
+    --border-title-statement: #A4A4A4;
 }
 
 :root [data-theme='dark'] {
     --note-opening-balance-background: #573538;
     --statement-term-color: #ff4f50;
+    --border-title-statement: #696969;
 }
 .statement-term {
     font-weight: bold;
@@ -43,14 +45,12 @@
     align-items: center;
     width: 100%;
     justify-content: space-between;
-    border-bottom: 1px solid var(--border-title);
-    margin: 0 0 10px 0;
-
-    .title-statement-details {
-        font-weight: bold;
-        color: var(--head-title-color);
-        line-height: 40px;
-        font-size: 13px;
-        width: 100%;
-    }
+    border: 1px solid var(--border-title-statement);
+    border-bottom: 0;
+    border-radius: 5px 5px 0 0;
+    margin: 10px 0 0 0;
+    padding: 5px 10px;
+    font-weight: bold;
+    color: var(--head-title-color);
+    font-size: 13px;
 }
