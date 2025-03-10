@@ -25,15 +25,6 @@
         })
     </div>
 
-    @if (Model["ShowPTIcon"].ToString().Equals("true", StringComparison.OrdinalIgnoreCase))
-    {
-        <div class="pull-left">
-            <a class="infoIco"
-                href="@(string.Format("/settings/Customer/SportBookInformation?tabindex=2&theme={0}&custId={1}&roleId={2}&site={3}&siteLabel={4}&lng={5}", theme, UserSession.Current.CustId, UserSession.Current.RoleId - 1, UserSession.Current.Site, Model["SiteLabel"], UserSession.Current.Language))"
-                target="_blank" title="Click to view PT Info"></a>
-        </div>
-    }
-
     @if (roleId > RoleIdConstants.Agent)
     {
         <div class="pull-left">
@@ -44,6 +35,15 @@
                     @(roleId == RoleIdConstants.Super ? CommonResx.MasterAgent : CommonResx.Agent)</option>
                 <option value="2" selected="@(levelType == 2 ? true : false)">@CommonResx.DirectMember</option>
             </select>
+        </div>
+    }
+
+    @if (Model["ShowPTIcon"].ToString().Equals("true", StringComparison.OrdinalIgnoreCase))
+    {
+        <div class="pull-left">
+            <a class="infoIco"
+                href="@(string.Format("/settings/Customer/SportBookInformation?tabindex=2&theme={0}&custId={1}&roleId={2}&site={3}&siteLabel={4}&lng={5}", theme, UserSession.Current.CustId, UserSession.Current.RoleId - 1, UserSession.Current.Site, Model["SiteLabel"], UserSession.Current.Language))"
+                target="_blank" title="Click to view PT Info"></a>
         </div>
     }
 </div>
