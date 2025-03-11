@@ -223,7 +223,7 @@
         "Debug": 0
     },
     "ASKMESLOTResultConfigs": {
-        "Url": "http://saba-wallet-group-001.3rd-party.k8s.nebula.sit/",
+        "Url": "http://saba-wallet-group-001.3rd-party.k8s.nebula.sit/api/AskMeSlotInternal/GetBetHistoryUrl",
         "VendorId": 103,
         "Debug": 0
     }
