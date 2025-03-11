@@ -30,20 +30,14 @@ public class WinLossLimitHandler(IAccountService accountService, WinLossLimitSer
             masterList.Insert(0, new CustInfo(0, CommonResx.DirectMember, 0));
         }
 
-        var masterId = message.MasterId != 0 ? message.MasterId
-            : actorLevel.IsSuperLevel() ? masterList[0].CustId
-            : actorLevel.IsMasterLevel() ? message.CustId
-            : 0;
+        var masterId = GetDefaultMasterId(message, actorLevel, masterList);
         var agentList = masterId == 0 ? new List<CustInfo>() : (await accountService.GetAgentList(masterId)).ToList();
         if (actorLevel.IsMasterLevel())
         {
             agentList.Insert(0, new CustInfo(0, CommonResx.DirectMember, 0));
         }
 
-        var agentId = message.RecommendId != 0 ? message.RecommendId
-            : actorLevel.IsMasterLevel() ? agentList[0].CustId
-            : actorLevel.IsAgentLevel() ? message.CustId
-            : 0;
+        var agentId = GetDefaultAgentId(message, actorLevel, agentList);
         var param = new WinLossLimitParam(
             message.UserSelectedProductId == 0 && firstProduct != null ? firstProduct.ProductId : message.UserSelectedProductId,
             message.CustId,
@@ -61,6 +55,46 @@ public class WinLossLimitHandler(IAccountService accountService, WinLossLimitSer
         var noNeedGetData = !param.IsDirectMember && actorLevel.IsMasterOrSuperLevel() && !agentList.Any();
         var winLossLimitPage = noNeedGetData ? new WinLossLimitPage() : await winLossLimitService.GetWinLossLimitPage(param);
         return new WinLossLimitViewModel(message, products, masterList, agentList, winLossLimitPage, param);
+    }
+
+    private static int GetDefaultMasterId(WinLossLimitQuery message, UserLevel actorLevel, List<CustInfo> masterList)
+    {
+        if (message.MasterId == 0)
+        {
+            if (actorLevel.IsSuperLevel() && masterList.Count > 1)
+            {
+                // First item is direct member
+                // Second item is the first master
+                return masterList[1].CustId;
+            }
+
+            if (actorLevel.IsMasterLevel())
+            {
+                return message.CustId;
+            }
+        }
+
+        return message.MasterId;
+    }
+
+    private static int GetDefaultAgentId(WinLossLimitQuery message, UserLevel actorLevel, List<CustInfo> agentList)
+    {
+        if (message.RecommendId == 0)
+        {
+            if (actorLevel.IsMasterLevel() && agentList.Count > 1)
+            {
+                // First item is direct member
+                // Second item is the first agent
+                return agentList[1].CustId;
+            }
+
+            if (actorLevel.IsAgentLevel())
+            {
+                return message.CustId;
+            }
+        }
+
+        return message.RecommendId;
     }
 
     private static bool GetIsDirectMemberParam(UserLevel actorLevel, int masterId, int agentId)
