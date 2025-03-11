@@ -118,25 +118,21 @@ function App() {
             });
     };
 
-    const fetchDowlineListDataServer = () => {
+    const fetchDowlineListDataServer = async () => {
         if (customer?.CustId) {
             $.blockUI?.();
             const PageIndex = 1;
             const StatusId = 1;
-            Promise.all([
-                SettingsService.getTotalDownlines(customer.CustId, customer.RoleId),
-                SettingsService.GetDownlineList(customer.CustId, customer.RoleId),
-                SettingsService.GetDirectMembers(customer.CustId, customer.RoleId)
-            ])
-                .then((results) => {
-                    setTotalDownlines(results[0]);
-                    setDownlineListData({ ...results[1], PageIndex, StatusId });
-                    setDirectMembersData({ ...results[2], PageIndex, StatusId });
-                    setRedirectToBalanceInfoPage(false);
-
-                    $.unblockUI?.();
-                })
-                .catch(handleError);
+            const totalDownlines = await SettingsService.getTotalDownlines(customer.CustId, customer.RoleId);
+            setTotalDownlines(totalDownlines);
+            const downlineList = await SettingsService.GetDownlineList(customer.CustId, customer.RoleId);
+            setDownlineListData({ ...downlineList, PageIndex, StatusId });
+            if (customer.RoleId !== UserLevel.Agent) {
+                const directMembers = await SettingsService.GetDirectMembers(customer.CustId, customer.RoleId);
+                setDirectMembersData({ ...directMembers, PageIndex, StatusId });
+            }
+            setRedirectToBalanceInfoPage(false);
+            $.unblockUI?.();
         }
     };
 
