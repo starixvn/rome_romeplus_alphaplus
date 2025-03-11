@@ -17,9 +17,10 @@ namespace AlphaPlus.Settings.Site.Features.Customer.ViewModels
             CreateCustomerQuery query,
             AppConfiguration appConfig,
             string cndUri,
+            string assetsVersion,
             string secretKey,
             string suggestUsername = "")
-            : base(appConfig, cndUri)
+            : base(appConfig, cndUri, assetsVersion)
         {
             SecretKey = secretKey;
             Params = JsonSerializer.Serialize(new

@@ -7,7 +7,7 @@
 @section Styles {
     @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/common/common-{Model.ActorLevel.DisplayName}")
     <environment names="Development,Production">
-        <link rel="stylesheet" href="@(Model.CdnUri)direct-member/create/index.css" asp-append-version="true" />
+        <link rel="stylesheet" href="@(Model.CdnUri)direct-member/create/index.css?version=@(Model.AssetsVersion)" />
     </environment>
     <environment names="Development">
         <link rel="stylesheet" href="http://localhost:4210/src/styles.scss" />
@@ -35,7 +35,8 @@
                 const params = @Html.Raw(Model.Params);
             </script>
             <environment names="Development,Production">
-                <script type="module" src="@(Model.CdnUri)direct-member/create/index.js" asp-append-version="true"></script>
+                <script type="module"
+                    src="@(Model.CdnUri)direct-member/create/index.js?version=@(Model.AssetsVersion)"></script>
             </environment>
             <environment names="Development">
                 <script type="module">

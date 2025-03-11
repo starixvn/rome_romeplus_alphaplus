@@ -33,6 +33,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         private readonly IProductStatusService productStatusService;
         private readonly IUserSession userSession;
         private readonly IMemoryCache memoryCache;
+
         private readonly JsonSerializerOptions serializeOptions = new()
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
@@ -82,6 +83,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 query,
                 new AppConfiguration(GetApplicationPath(), systemId),
                 CDNUri,
+                GetAssetsVersion(),
                 GetHashKey(),
                 await customerService.GetSuggestDirectMemberUsername(query.CustName));
 
