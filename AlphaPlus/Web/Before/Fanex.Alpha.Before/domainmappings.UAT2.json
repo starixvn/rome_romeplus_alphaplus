@@ -43,6 +43,22 @@
         {
             "Before": "alp8.starixuat.com",
             "After": "http://mbp8.starixuat.com/main"
+        },
+        {
+            "Before": "alp17.starixuat.com",
+            "After": "http://mbp17.starixuat.com/main"
+        },
+        {
+            "Before": "alp18.starixuat.com",
+            "After": "http://mbp18.starixuat.com/main"
+        },
+        {
+            "Before": "alp19.starixuat.com",
+            "After": "http://mbp19.starixuat.com/main"
+        },
+        {
+            "Before": "alp20.starixuat.com",
+            "After": "http://mbp20.starixuat.com/main"
         }
     ]
 }
