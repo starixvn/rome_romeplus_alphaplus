@@ -639,7 +639,7 @@ function getEditSettingPopUpLeft() {
 window.isProductOptionClicked = false;
 function ptView(url) {
     if (window.isProductOptionClicked) {
-        window.location.href = window.rootUrl + url;
+        window.location.href = url;
     }
 
     window.isProductOptionClicked = !window.isProductOptionClicked;
@@ -647,9 +647,7 @@ function ptView(url) {
 
 function levelTypeView(value) {
     if (window.isLevelTypeDropdownClicked) {
-        const mainFrame = top.$('#main');
-        var currentUrl = mainFrame.attr('src');
-        mainFrame.attr('src', this.replaceQueryStringValue(currentUrl, 'levelType', value));
+        handleLevelDropdownChanged(value);
     }
     window.isLevelTypeDropdownClicked = !window.isLevelTypeDropdownClicked;
 }
@@ -662,8 +660,7 @@ function ptProductChanged(element) {
     var isRedirect = navigator.userAgent.match(/iPad/i) != null || navigator.userAgent.indexOf('Safari') > -1;
     if (isRedirect) {
         window.isProductOptionClicked = false;
-        var url = $(element).val();
-        location.href = window.rootUrl + url;
+        window.location.href = $(element).val();
     }
 }
 
@@ -675,11 +672,14 @@ function levelTypeChanged(element) {
     var isRedirect = navigator.userAgent.match(/iPad/i) != null || navigator.userAgent.indexOf('Safari') > -1;
     if (isRedirect) {
         window.isLevelTypeDropdownClicked = false;
-        var levelType = $(element).val();
-        const mainFrame = top.$('#main');
-        var currentUrl = mainFrame.attr('src');
-        mainFrame.attr('src', this.replaceQueryStringValue(currentUrl, 'levelType', levelType));
+        handleLevelDropdownChanged($(element).val());
     }
+}
+
+function handleLevelDropdownChanged(levelType) {
+    var url = $('#dropdown-product').val();
+    url = replaceQueryStringValue(url, 'levelType', levelType);
+    window.location.href = url;
 }
 
 function replaceQueryStringValue(queryString, paramName, paramValue) {

@@ -10,19 +10,23 @@
     var products = JsonConvert.DeserializeObject<IEnumerable<Product>>(Model["Products"].ToString());
     var levelType = Convert.ToInt32(Model["LevelType"]);
     var roleId = Convert.ToInt32(Model["RoleId"]);
+    var custId = Convert.ToInt32(Model["CustId"]);
+    var settingUrl = AlphaPlus.Core.Helpers.MicroSites.SettingUrl();
 }
 
 <div id="box_header">
     <div class="pull-left">
         <label for="dropdown-product">@Resources.Product</label>
         @Html.DropDownList("dropdown-product", products.Select(item => new SelectListItem(item.Name,
-        $"PositionTaking?productId={item.Id}&productGroupId={item.GroupId}", item.Id ==
-        Convert.ToInt32(Model["ProductId"]))), new
-        {
-            @onblur = "ptProductDropdownBlur();",
-            @onclick = "ptView(this.value);",
-            @onchange = "ptProductChanged(this);"
-        })
+                 $"{settingUrl}PositionTaking?custId={custId}&roleId={roleId}&productId={item.Id}&productGroupId={item.GroupId}&levelType={levelType}",
+                 item.Id
+                 ==
+                 Convert.ToInt32(Model["ProductId"]))), new
+                 {
+                     @onblur = "ptProductDropdownBlur();",
+                     @onclick = "ptView(this.value);",
+                     @onchange = "ptProductChanged(this);"
+                 })
     </div>
 
     @if (roleId > RoleIdConstants.Agent)

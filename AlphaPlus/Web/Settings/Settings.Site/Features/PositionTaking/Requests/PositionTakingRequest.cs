@@ -23,5 +23,5 @@ public class PositionTakingRequest : IRequest<object>
 
     public byte ActorRoleId => UserSession.Current.RoleId;
 
-    public int LevelType { get; set; }
+    public int LevelType { get; set; } = 1;
 }
