@@ -95,6 +95,7 @@
             success: function (rs) {
                 self.cachedData.positionTakingInfo = rs;
                 self.renderPositionTakingInfo(rs);
+                $(".view-downline").unbind().bind('click', function (event) { self.viewDownlinePTList(event); });
             }
         });
     };
