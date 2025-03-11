@@ -11,7 +11,6 @@ var builder = WebApplication.CreateBuilder(args);
 const string SharedSettings = "sharedSettings.json";
 var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../", "Shared/Configuration/", SharedSettings);
 
-
 builder.Configuration
     .AddJsonFile(sharedSettingsPath, optional: true, reloadOnChange: true)
     .AddJsonFile(SharedSettings, optional: true, reloadOnChange: true)
