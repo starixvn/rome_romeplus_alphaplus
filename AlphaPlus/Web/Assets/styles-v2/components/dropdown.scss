@@ -72,6 +72,9 @@ select.select-multiple {
         &.active {
             background-color: var(--dropdown-bg-hover);
         }
+        &.disabled{
+            display: none;
+        }
 
         a {
             padding: 0 !important;
