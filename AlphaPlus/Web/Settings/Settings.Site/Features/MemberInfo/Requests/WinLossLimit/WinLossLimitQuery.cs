@@ -9,9 +9,9 @@ public class WinLossLimitQuery : MemberInfoBaseQuery, IRequest<WinLossLimitViewM
 
     public int SportType { get; set; }
 
-    public int MasterId { get; set; }
+    public int MasterId { get; set; } = -1;
 
-    public int RecommendId { get; set; }
+    public int RecommendId { get; set; } = -1;
 
     public string Username { get; set; }
 

@@ -59,7 +59,7 @@ public class WinLossLimitHandler(IAccountService accountService, WinLossLimitSer
 
     private static int GetDefaultMasterId(WinLossLimitQuery message, UserLevel actorLevel, List<CustInfo> masterList)
     {
-        if (message.MasterId == 0)
+        if (message.MasterId == -1)
         {
             if (actorLevel.IsSuperLevel() && masterList.Count > 1)
             {
@@ -72,6 +72,8 @@ public class WinLossLimitHandler(IAccountService accountService, WinLossLimitSer
             {
                 return message.CustId;
             }
+
+            return 0;
         }
 
         return message.MasterId;
@@ -79,7 +81,7 @@ public class WinLossLimitHandler(IAccountService accountService, WinLossLimitSer
 
     private static int GetDefaultAgentId(WinLossLimitQuery message, UserLevel actorLevel, List<CustInfo> agentList)
     {
-        if (message.RecommendId == 0)
+        if (message.RecommendId == -1)
         {
             if (actorLevel.IsMasterLevel() && agentList.Count > 1)
             {
@@ -92,6 +94,8 @@ public class WinLossLimitHandler(IAccountService accountService, WinLossLimitSer
             {
                 return message.CustId;
             }
+
+            return 0;
         }
 
         return message.RecommendId;
