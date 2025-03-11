@@ -96,16 +96,19 @@
             }
         }
 
-        label {
+        > label {
             font-weight: normal;
             margin-right: 5px;
             max-width: none;
             display: inline-block;
             margin-bottom: 0;
             vertical-align: middle;
+        }
+        >label{
             position: relative;
             top: 1px;
         }
+
 
         .control {
             display: inline-block;

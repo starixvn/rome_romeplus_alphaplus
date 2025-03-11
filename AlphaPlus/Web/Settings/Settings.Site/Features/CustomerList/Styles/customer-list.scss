@@ -77,6 +77,13 @@ body:not(.modal-open) {
 .multiselect-container.dropdown-menu label.radio{
     display: block;
 }
+.multiselect-container{
+    li{
+        &.active{
+            background-color: #ddd;
+        }
+    }
+}
 .dataTable {
     width: 99.5% !important;
     //overflow: hidden;
