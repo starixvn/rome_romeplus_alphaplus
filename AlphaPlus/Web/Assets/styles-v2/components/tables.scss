@@ -511,6 +511,9 @@
 .stack-mode {
     .visible-stack-mode {
         display: table-cell;
+        &-first-col{
+            border-left: 1px solid var(--table-border);
+        }
     }
 
     .hidden-stack-mode {
