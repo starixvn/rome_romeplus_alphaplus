@@ -11,7 +11,7 @@ import styles from './DownlineList.module.scss';
 const Scale = 0.7;
 const STATUS_LOADING = 1;
 const STATUS_LOADED = 2;
-const HEIGHT_DESKTOP = 240;
+const HEIGHT_DESKTOP = 180;
 const ROW_HEIGHT_DESKTOP = 30;
 const MAX_DOM_ROWS_DESKTOP = HEIGHT_DESKTOP / ROW_HEIGHT_DESKTOP;
 const ROW_HEIGHT_MOBILE = ROW_HEIGHT_DESKTOP / Scale;

@@ -25,7 +25,7 @@
 
     &.expanded {
         transition: all 0.4s;
-        max-height: 500px;
+        max-height: 600px;
 
         .feature-item {
             background-color: var(--accordion-feature-item-background);

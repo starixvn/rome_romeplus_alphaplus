@@ -508,7 +508,7 @@ html * {
     #accountinfo-content {
         width: 100%;
         min-height: 500px;
-        max-height: 800px !important;
+        max-height: 788px !important; // this line to revome double scroll on left panel account info
 
         &.small-device {
             height: 100%;

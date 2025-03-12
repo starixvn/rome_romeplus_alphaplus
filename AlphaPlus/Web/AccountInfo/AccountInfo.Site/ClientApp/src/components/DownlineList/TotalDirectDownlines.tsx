@@ -44,7 +44,7 @@ export default function TotalDirectDownlines({
     };
 
     return (
-        <div>
+        <div style={{float: "left", width: "100%"}}>
             <div className="row-info bold">
                 {isDirectMember
                     ? t('DirectMembers')
