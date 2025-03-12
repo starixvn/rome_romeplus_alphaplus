@@ -8,7 +8,21 @@ class CommissionView {
 
         $ddlProduct.change(() => {
             $.blockUI();
-            window.location.href = this.buildUrl(`index?productId=${$ddlProduct.val()}`);
+
+            const queryString = [`productId=${$ddlProduct.val()}`];
+
+            if ($ddlMaster.length) {
+                queryString.push(`masterId=${$ddlMaster.val()}`);
+            }
+
+            if ($ddlAgent.length) {
+                const recommendId = $ddlAgent.val();
+                if (recommendId !== 'undefined') {
+                    queryString.push(`recommendId=${recommendId}`);
+                }
+            }
+
+            window.location.href = this.buildUrl(`index?${queryString.join('&')}`);
         });
 
         $ddlMaster.length &&

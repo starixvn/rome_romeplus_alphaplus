@@ -31,9 +31,16 @@
         <div class="form-group">
             <label>@Resources.SelectAgent</label>
             <div class="original-sl">
-                <select class="original" id="ddl-agent" disabled>
-                    <option value="0">@Resources.NoInformationIsAvailable</option>
-                </select>
+                @if (Model.Agents.Any())
+                {
+                    <select class="original" id="ddl-agent" asp-items="Model.Agents"></select>
+                }
+                else
+                {
+                    <select class="original" id="ddl-agent" disabled>
+                        <option value="0">@Resources.NoInformationIsAvailable</option>
+                    </select>
+                }
             </div>
         </div>
         <div class="form-group">
