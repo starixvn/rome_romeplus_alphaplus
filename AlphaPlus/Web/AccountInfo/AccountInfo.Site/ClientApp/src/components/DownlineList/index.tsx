@@ -71,11 +71,9 @@ export default function DownlineList({
             )}
             {totalDirectMembers && (
                 <TotalDirectDownlines
-                    {...{
-                        ...totalDirectMembers,
-                        fetchDownlineListFromServer: fetchDirectMembersFromServer,
-                        isDirectMember: true
-                    }}
+                    {...totalDirectMembers}
+                    fetchDownlineListFromServer={fetchDirectMembersFromServer}
+                    isDirectMember={true}
                 />
             )}
             {directMembersData && directMembersData.DownlineList && directMembersData.DownlineList.length > 0 && (
