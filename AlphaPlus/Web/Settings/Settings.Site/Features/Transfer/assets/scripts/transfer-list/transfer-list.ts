@@ -252,7 +252,6 @@
 
     private getTransferAllPagesParams() {
         let formData: any = {
-            custIds: '0',
             username: $('#hidden-queryUsername').val(),
             status: $('#hidden-queryStatus').val(),
             allYesterdayBalance: $('#AllYesterdayBalance').is(':checked'),
