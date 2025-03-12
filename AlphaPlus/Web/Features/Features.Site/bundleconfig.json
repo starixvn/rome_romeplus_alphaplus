@@ -181,5 +181,11 @@
     "inputFiles": [
       "assets/scripts/handbook/articles/get-by-slug.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/feedback/winning-threshold-survey.js",
+    "inputFiles": [
+      "assets/scripts/feedback/winning-threshold-survey.js"
+    ]
   }
 ]

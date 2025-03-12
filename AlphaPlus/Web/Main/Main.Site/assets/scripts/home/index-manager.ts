@@ -33,6 +33,7 @@ var indexManager = {
     isInternal: true,
     isReloadTopPage: false,
     isEnableReCheckIn: false,
+    isBlockPage: true,
 
     domElements: {
         mainFrame: null,
@@ -41,17 +42,21 @@ var indexManager = {
         accountInfoContent: null,
         pagePopup: null,
         feedbackFunction: null,
-        language: null
+        language: null,
+
+        winningThresholdSurveyPopup: null
     },
 
     urls: {
         reCheckinUrl: alpha.urls.mainRootPath + 'Account/ReCheckIn',
         feedback: alpha.urls.messageRootPath + 'Feedback/Index',
         checkExistFeedback: alpha.urls.messageRootPath + 'Feedback/CheckExist?id=',
-        feedbackFunction: alpha.urls.messageRootPath + 'Feedback/Function?id='
+        feedbackFunction: alpha.urls.messageRootPath + 'Feedback/Function?id=',
+        winningThresholdSurvey: alpha.urls.messageRootPath + 'Feedback/WinningThresholdSurvey',
     },
 
     init: function () {
+        indexManager.isBlockPage = true;
         alpha.detectResponsiveInformation();
         if (!alpha.core.IsIe8OrLower()) {
             $.material.init();
@@ -61,7 +66,13 @@ var indexManager = {
         indexManager.loadPartialViews();
         indexManager.registerEvents();
         indexManager.setCurrentUrl();
+        setTimeout(() => {
+            indexManager.initWinningThresholdSurvey();
+        }, 1000);
+    },
 
+    initAfterCheckSurvey: function () {
+        indexManager.isBlockPage = false;
         indexManager.initFeedbackGlobal();
         indexManager.initNewFeatureHighlightPopup();
 
@@ -246,6 +257,10 @@ var indexManager = {
 
             var isShowTour = false;
             indexManager.domElements.mainFrame.on('load.newmain', function () {
+                if (indexManager.isBlockPage) {
+                    return;
+                }
+                
                 if (isShowTour) {
                     indexManager.showTour();
                     isShowTour = false;
@@ -565,9 +580,33 @@ var indexManager = {
     },
 
     showTour: function () {
+        if (indexManager.isBlockPage) {
+            return;
+        }
+
         // setTimeout(() => {
         //     popupManager.openMultiple($("#TourURL").val(), null, 800, 495, null, null, null, null, null, null, { customClass: 'popup-tour-intro' })
         // }, 3000);
+    },
+    
+    initWinningThresholdSurvey: function () {
+        if ($("#ShowWinningThresholdSurvey").val() === "0") {
+            indexManager.initAfterCheckSurvey();
+            return;
+        }
+
+        const feedbackId = 12;
+        $.get(indexManager.urls.checkExistFeedback + feedbackId, function (result) {
+            if (result.IsExist) {
+                indexManager.initAfterCheckSurvey();
+                return;
+            }
+
+            indexManager.domElements.winningThresholdSurveyPopup = popupManager.open(
+                indexManager.urls.winningThresholdSurvey, undefined, 440, 380,
+                null, null, null, null, null, null,
+                { customClass: "feedback-survey-modal", disableDraggable: true });
+        });
     }
 };
 

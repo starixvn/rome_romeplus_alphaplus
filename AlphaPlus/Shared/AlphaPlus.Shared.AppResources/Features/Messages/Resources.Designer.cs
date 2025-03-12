@@ -357,7 +357,7 @@ namespace AlphaPlus.Shared.AppResources.Features.Messages {
                 return ResourceManager.GetString("Later", resourceCulture);
             }
         }
-        
+         
         /// <summary>
         ///   Looks up a localized string similar to Loading.
         /// </summary>
@@ -706,6 +706,87 @@ namespace AlphaPlus.Shared.AppResources.Features.Messages {
         public static string viewAnnouncement {
             get {
                 return ResourceManager.GetString("viewAnnouncement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FeedbackSurvey_SelectUsefulOrNot.
+        /// </summary>
+        public static string FeedbackSurvey_SelectUsefulOrNot {
+            get {
+                return ResourceManager.GetString("FeedbackSurvey_SelectUsefulOrNot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FeedbackSurvey_WinningThreshold.
+        /// </summary>
+        public static string FeedbackSurvey_WinningThreshold {
+            get {
+                return ResourceManager.GetString("FeedbackSurvey_WinningThreshold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FeedbackSurvey_WinningThreshold_CustomizableRiskControl.
+        /// </summary>
+        public static string FeedbackSurvey_WinningThreshold_CustomizableRiskControl {
+            get {
+                return ResourceManager.GetString("FeedbackSurvey_WinningThreshold_CustomizableRiskControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FeedbackSurvey_WinningThreshold_PeaceOfMind.
+        /// </summary>
+        public static string FeedbackSurvey_WinningThreshold_PeaceOfMind {
+            get {
+                return ResourceManager.GetString("FeedbackSurvey_WinningThreshold_PeaceOfMind", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FeedbackSurvey_WinningThreshold_StayAhead.
+        /// </summary>
+        public static string FeedbackSurvey_WinningThreshold_StayAhead {
+            get {
+                return ResourceManager.GetString("FeedbackSurvey_WinningThreshold_StayAhead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FeedbackSurveyGreeting.
+        /// </summary>
+        public static string FeedbackSurveyGreeting {
+            get {
+                return ResourceManager.GetString("FeedbackSurveyGreeting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NotUseful.
+        /// </summary>
+        public static string NotUseful {
+            get {
+                return ResourceManager.GetString("NotUseful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NotUseful.
+        /// </summary>
+        public static string Useful {
+            get {
+                return ResourceManager.GetString("Useful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to df.
+        /// </summary>
+        public static string FeedbackSurveyTitle {
+            get {
+                return ResourceManager.GetString("FeedbackSurveyTitle", resourceCulture);
             }
         }
     }

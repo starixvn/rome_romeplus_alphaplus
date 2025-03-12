@@ -93,5 +93,8 @@ namespace AlphaPlus.Main.Site.Features.Default
         public string Currency => userSession.Currency;
 
         public bool IsEnableReCheckIn => !userSession.IsInternal && !options.DisabledCheckDuplicationLogin;
+        
+        public string Site => userSession.Site;
+        public int MRecommendId => userSession.MRecommendId;
     }
 }

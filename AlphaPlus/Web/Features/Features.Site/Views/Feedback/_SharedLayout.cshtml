@@ -23,7 +23,7 @@
     @RenderSection("Styles", required: false)
     @GoogleAnalyticHelper.GtagScript()
 </head>
-<body>
+<body class="bg-transparent">
     @GoogleAnalyticHelper.GtagNoScript()
     @RenderBody()
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")

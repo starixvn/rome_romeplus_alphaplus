@@ -1,0 +1,51 @@
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Features.Messages
+@using AlphaPlus.Features.Site.Messages.Constants
+@using AlphaPlus.Features.Site.Messages.ViewModels.Feedback
+
+@model FeedbackSurveyViewModel
+@{
+    Layout = "~/Views/Feedback/_SharedLayout.cshtml";
+}
+<style>
+    .bg-transparent {
+        background: transparent;
+        padding: 1px;
+    }
+</style>
+<div class="feedback-box center-survey">
+    <div class="survey-box">
+        <div class="title">
+            @Html.Raw(Resources.FeedbackSurveyTitle)
+        </div>
+        <div class="survey-body">
+            <p>@Html.Raw(string.Format(Resources.FeedbackSurveyGreeting, Model.NickName))</p>
+            <p>@Resources.FeedbackSurvey_WinningThreshold </p>
+            <div class="list-box">
+                <ul>
+                    <li>@Html.Raw(Resources.FeedbackSurvey_WinningThreshold_StayAhead)</li>
+                    <li>@Html.Raw(Resources.FeedbackSurvey_WinningThreshold_PeaceOfMind)</li>
+                    <li>@Html.Raw(Resources.FeedbackSurvey_WinningThreshold_CustomizableRiskControl)</li>
+                </ul>
+            </div>
+            <p class="center">@Html.Raw(Resources.FeedbackSurvey_SelectUsefulOrNot)</p>
+            <div class="btn-box-center">
+                <button type="button" class="btn-notuseful" id="btn-not-useful">@Resources.NotUseful</button>
+                <button type="submit" class="btn-useful " id="btn-useful">@Resources.Useful</button>
+                
+                @if (Model.IsInternal)
+                {
+                    <button type="submit" class="btn-close " id="btn-close">@Resources.close</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hide survey-result msg msg-success">@Resources.Feedback_Success</div>
+@Html.Hidden("Feedback_MessageLimit", Resources.Feedback_MessageLimit)
+@Html.Hidden("Feedback_NoInput", Resources.Feedback_NoInput)
+@Html.Hidden("FunctionId", FeedbackFunctionIdConstants.WinningThresholdSurvey)
+@Html.Hidden("IsInternal", (Model.IsInternal ? 1 : 0))
+@section Scripts{
+    @StaticResources.RenderScripts("~/assets/bundles/feedback/winning-threshold-survey")
+}

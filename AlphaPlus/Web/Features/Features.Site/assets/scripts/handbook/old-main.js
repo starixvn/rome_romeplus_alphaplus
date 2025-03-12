@@ -211,10 +211,12 @@ var AgeWnd = function () {
                 }
             });
 
-            popUp.tinyDraggable({
-                exclude: "a.icon-information-outline.icon-info, button.icon.icon-close.close",
-                resizeElement: options.resizable ? ".resizable-handle" : ""
-            });
+            if (!options. disableDraggable) {
+                popUp.tinyDraggable({
+                    exclude: "a.icon-information-outline.icon-info, button.icon.icon-close.close",
+                    resizeElement: options.resizable ? ".resizable-handle" : ""
+                });
+            }
 
             currentAgeWnd.popUp.push(popUp);
         },
