@@ -6,5 +6,5 @@ public class CommissionQuery : CommDataQuery, IRequest<CommissionViewModel>
 {
     public string DarkModeName => viewer.DarkModeName;
 
-    public override bool IsValid() => ProductId > 0 && base.IsValid();
+    public override bool IsValid() => ProductId > 0 && CustId > 0 && ActorLevel.IsEqualOrUplineOf(CustLevel);
 }
