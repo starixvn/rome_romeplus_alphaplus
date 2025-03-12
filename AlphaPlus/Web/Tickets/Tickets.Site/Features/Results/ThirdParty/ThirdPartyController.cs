@@ -127,4 +127,7 @@ public class ThirdPartyController(IMediator mediator) : ResultBaseController(med
 
      [AllowProtectedMode]
     public Task<IActionResult> SabaKenoResult(SabaKenoResultQuery message) => View(message, IndexView);
+
+     [AllowProtectedMode]
+    public Task<IActionResult> FunkyGamesResult(FunkyGamesResultQuery message) => View(message, IndexView);
 }
