@@ -44,7 +44,7 @@ export default function TotalDirectDownlines({
     };
 
     return (
-        <div style={{float: "left", width: "100%"}}>
+        <div style={{ float: 'left', width: '100%' }}>
             <div className="row-info bold">
                 {isDirectMember
                     ? t('DirectMembers')
@@ -55,7 +55,7 @@ export default function TotalDirectDownlines({
             <div className={styles['status-list']}>
                 {StatusItems.map(({ id, title, className, value }) => (
                     <RadioButtonStatus
-                        key={id}
+                        key={`${id}_${isDirectMember}`}
                         statusId={id}
                         title={title}
                         className={styles[className]}
