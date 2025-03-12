@@ -184,7 +184,7 @@ namespace AlphaPlus.Main.Site.Features.Default
                 var isSupport = message.RoleId == AlphaPlus.Core.Models.UserLevel.Agent.Value &&
                     AlphaPlus.Core.Configurations.AppSettings.IsIncluded(AppSettings.WinningThresholdSurveySites, message.Site) &&
                     !AlphaPlus.Core.Configurations.AppSettings.IsIncluded(AppSettings.WinningThresholdSurveyExcludedSites, message.Site) &&
-                    !AlphaPlus.Core.Configurations.AppSettings.IsIncluded(AppSettings.WinningThresholdSurveyExcludedLines, message.Site);
+                    !AlphaPlus.Core.Configurations.AppSettings.IsIncluded(AppSettings.WinningThresholdSurveyExcludedLines, message.MRecommendId.ToString());
 
                 return isSupport;
             }
