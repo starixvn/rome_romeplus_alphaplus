@@ -350,7 +350,7 @@ Normal Announcement and Personal Message are available for up to 3 months.</valu
     <value>&lt;span&gt;Customizable Risk Control&lt;/span&gt;: Customize winning thresholds for each unique member, ensuring a more tailored and precise approach to risk management.</value>
   </data>
   <data name="FeedbackSurveyGreeting" xml:space="preserve">
-    <value>Hi &lt;b&gt;{0}&lt;/b&gt;, as a valued agent in our community, your insights are essential.</value>
+    <value>Hi &lt;b&gt;{0}&lt;/b&gt;, as a valued agent in our community, your insights are essential!</value>
   </data>
   <data name="Useful" xml:space="preserve">
     <value>Useful</value>

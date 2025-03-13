@@ -344,7 +344,7 @@
     <value>&lt;span&gt;可定制的風險管理&lt;/span&gt;: 為每個獨有的會員定制獲勝限額，確保更有針對性和更精準的風險管理。</value>
   </data>
   <data name="FeedbackSurveyGreeting" xml:space="preserve">
-    <value>您好 &lt;b&gt;{0}&lt;/b&gt;，作為我們共同體中尊貴的代理，您的見解至關重要</value>
+    <value>您好 &lt;b&gt;{0}&lt;/b&gt;，作為我們共同體中尊貴的代理，您的見解至關重要!</value>
   </data>
   <data name="Useful" xml:space="preserve">
     <value>有用</value>

@@ -332,7 +332,7 @@
     <value>请选择 &lt;b&gt;有用&lt;/b&gt; 或 &lt;b&gt;没有用&lt;/b&gt; 继续。</value>
   </data>
   <data name="FeedbackSurvey_WinningThreshold" xml:space="preserve">
-    <value>我们很高兴推出新的体育博彩获胜限额功能，借此您可以设置特定的赢额，让您更好地控制风险管理和安全性</value>
+    <value>我们很高兴推出新的体育博彩获胜限额功能，借此您可以设置特定的赢额，让您更好地控制风险管理和安全性!</value>
   </data>
   <data name="FeedbackSurvey_WinningThreshold_StayAhead" xml:space="preserve">
     <value>&lt;span&gt;保持领先&lt;/span&gt;: 当会员达到其限额时接收即时警报 - 尽早采取行动 (&lt;span&gt;阻止下注、调整限额等&lt;/span&gt;)。</value>
