@@ -7,7 +7,28 @@
 
 @section styles
 {
-    <link href="~/assets/bundles/themes/@(Model.LoginTemplate)@(darkModeName).min.css?v=20250313" rel="stylesheet" />
+    @if (!string.IsNullOrWhiteSpace(darkModeName))
+    {
+        if (Model.LoginTemplate.Equals("default", StringComparison.OrdinalIgnoreCase))
+        {
+            <link href="~/assets/bundles/themes/default-dark.min.css" rel="stylesheet" asp-append-version="true" />
+        }
+        else
+        {
+            <link href="~/assets/bundles/themes/event-dark.min.css" rel="stylesheet" asp-append-version="true" />
+        }
+    }
+    else
+    {
+        if (Model.LoginTemplate.Equals("default", StringComparison.OrdinalIgnoreCase))
+        {
+            <link href="~/assets/bundles/themes/default.min.css" rel="stylesheet" asp-append-version="true" />
+        }
+        else
+        {
+            <link href="~/assets/bundles/themes/event.min.css" rel="stylesheet" asp-append-version="true" />
+        }
+    }
     <link href="~/assets/bundles/alpha.slider-captcha.css" rel="stylesheet" asp-append-version="true" />
 }
 
