@@ -106,6 +106,7 @@ input[type="radio"] {
 %block {
   margin: auto;
   max-width: 376px;
+  width: 400px;
   @include box-sizing;
 }
 
