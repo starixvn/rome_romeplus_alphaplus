@@ -2,8 +2,9 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xslLogFormat="urn:LogFormat">
   <xsl:output method="html" indent="no" />
   <xsl:key name="pt-by-sporttype" match="pt/r" use="@sporttype" />
-  <xsl:template name="masterPT">
+  <xsl:template name="directMemberPT">
     <xsl:param name="groupid" />
+    <xsl:param name="uplineroleid" />
     <xsl:if test="pt/r">
       <tr class="headerDetail" onclick="toggle(this)">
         <td colspan="6">
@@ -22,7 +23,14 @@
                       <xsl:value-of select="xslLogFormat:GetSportName(@sporttype)" />
                     </td>
                     <td style="text-align:center;">
-                      <xsl:value-of select="xslLogFormat:GetLogResource('SuperPT')" />
+                      <xsl:choose>
+                        <xsl:when test="$uplineroleid=4">
+                          <xsl:value-of select="xslLogFormat:GetLogResource('SuperPT')" />
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:value-of select="xslLogFormat:GetLogResource('MasterPT')" />
+                        </xsl:otherwise>
+                      </xsl:choose>
                     </td>
                   </tr>
                   <xsl:for-each select="key('pt-by-sporttype', @sporttype)">
@@ -32,7 +40,14 @@
                           <xsl:value-of select="xslLogFormat:GetSportsBookBetSettingName(@sporttype,@bettype)" />
                         </td>
                         <td style="text-align:center;">
-                          <xsl:value-of select="xslLogFormat:GetLogResource('SuperPT')" />
+                          <xsl:choose>
+                            <xsl:when test="$uplineroleid=4">
+                              <xsl:value-of select="xslLogFormat:GetLogResource('SuperPT')" />
+                            </xsl:when>
+                            <xsl:otherwise>
+                              <xsl:value-of select="xslLogFormat:GetLogResource('MasterPT')" />
+                            </xsl:otherwise>
+                          </xsl:choose>
                         </td>
                       </tr>
                     </xsl:if>
@@ -41,7 +56,14 @@
                         <xsl:value-of select="xslLogFormat:GetBetTypeName(@bettype)" />
                       </td>
                       <td class="colW2">
-                        <xsl:value-of select="@superpt" />
+                        <xsl:choose>
+                          <xsl:when test="$uplineroleid=4">
+                            <xsl:value-of select="@superpt" />
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <xsl:value-of select="@masterpt" />
+                          </xsl:otherwise>
+                        </xsl:choose>
                       </td>
                     </tr>
                   </xsl:for-each>
@@ -51,7 +73,14 @@
                 <tr style="text-align:center;" class="headerSportTypeDetail">
                   <td></td>
                   <td>
-                    <xsl:value-of select="xslLogFormat:GetLogResource('SuperPT')" />
+                    <xsl:choose>
+                      <xsl:when test="$uplineroleid=4">
+                        <xsl:value-of select="xslLogFormat:GetLogResource('SuperPT')" />
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:value-of select="xslLogFormat:GetLogResource('MasterPT')" />
+                      </xsl:otherwise>
+                    </xsl:choose>
                   </td>
                 </tr>
                 <xsl:for-each select="pt/r">
@@ -60,7 +89,14 @@
                       <xsl:value-of select="xslLogFormat:GetDisplayName(@settinglevel,@sporttype,@bettype,@productid)" />
                     </td>
                     <td class="colW2">
-                      <xsl:value-of select="@superpt" />
+                      <xsl:choose>
+                        <xsl:when test="$uplineroleid=4">
+                          <xsl:value-of select="@superpt" />
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:value-of select="@masterpt" />
+                        </xsl:otherwise>
+                      </xsl:choose>
                     </td>
                   </tr>
                 </xsl:for-each>

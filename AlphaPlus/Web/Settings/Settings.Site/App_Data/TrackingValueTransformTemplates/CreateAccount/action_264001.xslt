@@ -14,6 +14,7 @@
   <xsl:param name="IsInternal" select="0"></xsl:param>
   <xsl:output method="html" indent="no" />
   <xsl:template match="root">
+    <xsl:variable name="uplineroleid" select="@uplineroleid" />
     <table class="tblDesc">
       <xsl:for-each select="group">
         <xsl:if test="*/r">
@@ -39,8 +40,9 @@
                 <xsl:apply-templates select="discount" />
                 <xsl:apply-templates select="betsetting" />
                 <xsl:apply-templates select="parlaymaxpayout" />
-                <xsl:call-template name="masterPT">
+                <xsl:call-template name="directMemberPT">
                   <xsl:with-param name="groupid" select="$groupid" />
+                  <xsl:with-param name="uplineroleid" select="$uplineroleid" />
                 </xsl:call-template>
                 <xsl:apply-templates select="winlosslimit" />
                 <xsl:call-template name="betLimit" />
