@@ -56,6 +56,7 @@ export default function TotalDirectDownlines({
                 {StatusItems.map(({ id, title, className, value }) => (
                     <RadioButtonStatus
                         key={`${id}_${isDirectMember}`}
+                        isDirectMember={isDirectMember}
                         statusId={id}
                         title={title}
                         className={styles[className]}
