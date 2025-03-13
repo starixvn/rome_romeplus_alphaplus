@@ -760,4 +760,7 @@
   <data name="All" xml:space="preserve">
     <value>全部</value>
   </data>
+  <data name="CreateDirectMember" xml:space="preserve">
+    <value>创建直系会员</value>
+  </data>
 </root>

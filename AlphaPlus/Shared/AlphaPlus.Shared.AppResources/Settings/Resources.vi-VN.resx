@@ -752,4 +752,7 @@
   <data name="All" xml:space="preserve">
     <value>Tất cả</value>
   </data>
+  <data name="CreateDirectMember" xml:space="preserve">
+    <value>Tạo Member Trực Tiếp</value>
+  </data>
 </root>

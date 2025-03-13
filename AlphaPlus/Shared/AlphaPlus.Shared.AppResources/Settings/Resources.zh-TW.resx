@@ -764,4 +764,7 @@
   <data name="All" xml:space="preserve">
     <value>全部</value>
   </data>
+  <data name="CreateDirectMember" xml:space="preserve">
+    <value>創建直系會員</value>
+  </data>
 </root>
