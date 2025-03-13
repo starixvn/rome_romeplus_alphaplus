@@ -7,7 +7,7 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Fanex.RemotingRef" Version="1.5.2" />
+    <PackageReference Include="Fanex.RemotingRef" Version="1.5.4" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />

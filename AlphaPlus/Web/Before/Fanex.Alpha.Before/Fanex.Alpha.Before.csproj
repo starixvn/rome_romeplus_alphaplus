@@ -27,18 +27,19 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.Caching.Redis.AspNetCore" Version="2.2.5" />
-    <PackageReference Include="Fanex.Common" Version="1.1.1" />
+    <PackageReference Include="Fanex.Common" Version="1.1.2.1" />
     <PackageReference Include="Fanex.Data.ProxyClient" Version="1.0.0" />
+    <PackageReference Include="Fanex.RemotingRef" Version="1.5.4" />
     <PackageReference Include="FPS.Browserless.Detection.Client.NetStandard" Version="1.0.4" />
     <PackageReference Include="FPS.Client.NetStandard" Version="1.0.15" />
-    <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="7.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="7.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="8.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.2" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="8.0.0" />
-    <PackageReference Include="TelegramBot.Client" Version="1.0.1" />
+    <PackageReference Include="TelegramBot.Client" Version="1.0.2" />
     <PackageReference Include="Fanex.Cryptography.Aes" Version="1.0.0.6" />
     <PackageReference Include="UAParser" Version="3.1.47" />
     <PackageReference Include="Alpha.SliderCaptcha.AspNetCore" Version="1.0.2" />
-    <PackageReference Include="Fanex.Logging.Extensions.AspNetCore" Version="1.0.0" />
+    <PackageReference Include="Fanex.Logging.Extensions.AspNetCore" Version="1.0.1" />
     <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
     <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.6" />
     <PackageReference Include="ONEbook.UM.AspNetCore" Version="3.1.0" />
