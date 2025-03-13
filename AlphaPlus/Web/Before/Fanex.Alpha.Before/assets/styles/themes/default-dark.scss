@@ -108,7 +108,6 @@ input[type="radio"] {
 %block {
   margin: auto;
   max-width: 376px;
-  width: 400px;
   @include box-sizing;
 }
 div {
@@ -452,19 +451,22 @@ div {
 .block-info {
   @extend %block;
   margin-top: 16px;
-  padding-left: 24px;
+  padding: 10px 40px;
   position: relative;
   margin: 10px 0 0;
+  background-color: #fdf6e4;
+  border-left: 4px solid #d99f3b;
+  border-radius: 5px;
 
   &:before {
     @extend %icon;
-    background-position: -55px -83px;
+    background-position: -82px -54px;
     content: "";
-    height: 16px;
-    width: 16px;
+    height: 32px;
+    width: 32px;
     position: absolute;
-    left: 0;
-    top: 2px;
+    left: 3px;
+    top: 45px;
   }
 }
 
