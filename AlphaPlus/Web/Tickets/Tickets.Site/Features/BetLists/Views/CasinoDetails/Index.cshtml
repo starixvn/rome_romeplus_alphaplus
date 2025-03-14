@@ -21,3 +21,10 @@
     <partial name="WinLossTable" model="Model" />
 </div>
 <pager model="@Model.Pager" />
+<form class="hide" role="form" id="betlist-form">
+    @Html.Hidden("RefNo", Model.RefNo)
+    @Html.Hidden("CustId", Model.CustId)
+    @Html.Hidden("TransType", Model.TransType)
+    @Html.Hidden("SportName", Model.SportName)
+    @Html.Hidden("ProductId", Model.ProductId)
+</form>
