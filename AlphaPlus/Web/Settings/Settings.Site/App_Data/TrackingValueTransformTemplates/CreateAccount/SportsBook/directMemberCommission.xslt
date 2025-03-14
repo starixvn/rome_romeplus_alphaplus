@@ -43,7 +43,6 @@
                       <xsl:value-of select="@masterdiscount" />
                     </xsl:otherwise>
                   </xsl:choose>
-                  <xsl:value-of select="@superdiscount" />
                 </td>
                 <td class="colW2">
                   <xsl:value-of select="@playerdiscount" />
