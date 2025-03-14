@@ -76,7 +76,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
             var customerSettingApiUrl = new Uri(configuration.GetValue<string>("Fanex.Customer:ServiceUri"));
 
             services
-                .AddMediatR(typeof(Program).Assembly)
+                .AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(Program).Assembly))
                 .AddFanexData(configuration)
                 .AddFanexLogging(configuration)
                 .AddRemotingRef(configuration)

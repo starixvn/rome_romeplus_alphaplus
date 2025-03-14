@@ -109,7 +109,7 @@
     <PackageReference Include="Fanex.Result.Core.ThirdPartyResult" Version="2.0.1-upgrade-04" />
     <PackageReference Include="Fanex.Result.Core.VirtualRacing" Version="2.0.0.1" />
     <PackageReference Include="Fanex.Result.Core.WM" Version="3.0.0-upgrade-01" />
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+    <PackageReference Include="MediatR" Version="12.3.0" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.4" />
     <PackageReference Include="ONEbook.SpreadSheets" Version="2.0.0-netstandard01" />
     <PackageReference Include="ONEbook.SpreadSheets.BetListNPOI" Version="2.0.0-netstandard01" />

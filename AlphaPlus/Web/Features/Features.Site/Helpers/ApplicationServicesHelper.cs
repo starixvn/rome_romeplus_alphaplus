@@ -47,7 +47,7 @@ namespace AlphaPlus.Features.Site.Helpers
                 });
 
             services
-                .AddMediatR(typeof(Program).Assembly)
+                .AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(Program).Assembly))
                 .AddFanexData(configuration)
                 .AddFanexLogging(configuration)
                 .AddRemotingRef(configuration)

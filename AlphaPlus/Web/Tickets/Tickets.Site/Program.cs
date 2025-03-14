@@ -74,7 +74,7 @@ builder.Services
         options.ForwardedHeaders =
             ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
     })
-    .AddMediatR(typeof(Program).Assembly)
+    .AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(Program).Assembly))
     .AddFanexLogging(configuration)
     .AddRemotingRef(configuration)
     .AddFanexData(configuration)
