@@ -37,7 +37,9 @@
                     <xsl:value-of select="'display:none;'" />
                   </xsl:attribute>
                 </xsl:if>
-                <xsl:apply-templates select="discount" />
+                <xsl:apply-templates select="discount">
+                  <xsl:with-param name="uplineroleid" select="$uplineroleid" />
+                </xsl:apply-templates>
                 <xsl:apply-templates select="betsetting" />
                 <xsl:apply-templates select="parlaymaxpayout" />
                 <xsl:call-template name="directMemberPT">
