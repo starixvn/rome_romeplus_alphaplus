@@ -23,15 +23,14 @@
                       <xsl:value-of select="xslLogFormat:GetSportName(@sporttype)" />
                     </td>
                     <td style="text-align:center;">
-                      <xsl:value-of select="$uplineroleid" />
-                      <!--<xsl:choose>
+                      <xsl:choose>
                         <xsl:when test="$uplineroleid=4">
                           <xsl:value-of select="xslLogFormat:GetLogResource('SuperPT')" />
                         </xsl:when>
                         <xsl:otherwise>
                           <xsl:value-of select="xslLogFormat:GetLogResource('MasterPT')" />
                         </xsl:otherwise>
-                      </xsl:choose>-->
+                      </xsl:choose>
                     </td>
                   </tr>
                   <xsl:for-each select="key('pt-by-sporttype', @sporttype)">
