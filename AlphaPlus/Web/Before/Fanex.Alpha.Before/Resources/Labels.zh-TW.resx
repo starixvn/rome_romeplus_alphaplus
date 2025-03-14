@@ -175,4 +175,7 @@
   <data name="usernameAlphanumericOnly" xml:space="preserve">
     <value>用戶名只能包含字母或數字。</value>
   </data>
+  <data name="LoginFailedCountMessage" xml:space="preserve">
+    <value>{0} failed attempts. Your access will be locked after 6 failed attempts total.</value>
+  </data>
 </root>

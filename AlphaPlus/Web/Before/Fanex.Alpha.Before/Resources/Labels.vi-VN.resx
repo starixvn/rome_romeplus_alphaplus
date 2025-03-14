@@ -175,4 +175,7 @@
   <data name="usernameAlphanumericOnly" xml:space="preserve">
     <value>Tên Đăng Nhập chỉ chứa ký tự chữ cái và số đếm.</value>
   </data>
+  <data name="LoginFailedCountMessage" xml:space="preserve">
+    <value>{0} failed attempts. Your access will be locked after 6 failed attempts total.</value>
+  </data>
 </root>
