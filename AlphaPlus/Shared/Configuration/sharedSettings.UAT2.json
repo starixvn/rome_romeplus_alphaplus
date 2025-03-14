@@ -132,7 +132,7 @@
     "Fanex.Customer": {
         "ServiceUri": "http://alphaplus_api_settings_UAT_3:5000/api/",
         "CdnUri": "//cdn-customer.starixuat.com/v3/",
-        "SystemId": 2
+        "SystemId": 6
     },
     "SystemId": 2,
     "AssetAppPath": "/stcdn",
