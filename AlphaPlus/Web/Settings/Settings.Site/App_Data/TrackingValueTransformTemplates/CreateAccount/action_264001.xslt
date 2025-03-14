@@ -16,6 +16,11 @@
   <xsl:template match="root">
     <xsl:variable name="uplineroleid" select="@uplineroleid" />
     <table class="tblDesc">
+      <tr>
+        <td colspan="6">
+          <xsl:value-of select="$uplineroleid" />
+        </td>
+      </tr>
       <xsl:for-each select="group">
         <xsl:if test="*/r">
           <xsl:variable name="groupid" select="@id" />
