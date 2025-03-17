@@ -456,11 +456,13 @@
                 z-index: 23;
                 border-top: 1px solid var(--table-border);
                 border-bottom: 1px solid var(--table-border);
-                border-right: 1px solid var(--table-border);
+                border-right: 0;
                 height: 33px;
+                box-shadow: inset -1.3px 0 0 var(--table-border); 
             }
 
             &.thead-row2 {
+                background: var(--table-header-bg2);
                 th {
                     top: 33px!important;                    
                 }
