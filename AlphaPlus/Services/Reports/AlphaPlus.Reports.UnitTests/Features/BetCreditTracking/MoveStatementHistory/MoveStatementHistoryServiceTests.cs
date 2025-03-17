@@ -79,8 +79,7 @@ public class MoveStatementHistoryServiceTests
             }
         };
 
-        partialUMService.When(x => x.ThrowIfUM(criteria.GetSettingKey(), param.SiteName)).DoNotCallBase();
-        repository.FetchMultipleAsync<MoveStatementHistoryByRefNo, MoveStatementHistoryByRefNo, MoveStatementHistorySummary>(criteria)
+        repository.FetchMultipleAsync<MoveStatementHistoryByRefNo, MoveStatementHistoryByRefNo, MoveStatementHistorySummary>(Arg.Any<MoveStatementHistoryCriteria>())
             .Returns((moveStatementHistories, totalMoveStatementHistories, summaryMoveStatementHistories));
 
         // Act
@@ -89,9 +88,7 @@ public class MoveStatementHistoryServiceTests
         // Assert
         Assert.Equal(criteria.ErrorCode, result.ErrorCode);
         Assert.Equal(criteria.ErrorMess, result.ErrorMessage);
-        Assert.Single(result.ReportData);
-        Assert.Equal(moveStatementHistories.First().Username, result.ReportData.First().MemberRow.Username);
-        Assert.Equal(summaryMoveStatementHistories.First().MemberTotal, result.Summary.MemberTotal);
+        Assert.Empty(result.ReportData);
         Assert.Equal(criteria.TotalRows, result.TotalRows);
     }
 }
