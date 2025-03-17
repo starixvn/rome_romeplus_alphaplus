@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.BetCreditTracking.MoveStatementHistory;
 
-internal class MoveStatementHistoryCriteria(
+public class MoveStatementHistoryCriteria(
     string username,
     DateTime fromDate,
     DateTime toDate,
