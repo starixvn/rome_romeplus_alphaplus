@@ -1,0 +1,8 @@
+{
+    "Authorization": {
+        "EnableCheckBelonging": false,
+        "CustIdQueryStringParamNames": [],
+        "CustIdJsonParamNames": [],
+        "GroupPageAccesses": []
+    }
+}
