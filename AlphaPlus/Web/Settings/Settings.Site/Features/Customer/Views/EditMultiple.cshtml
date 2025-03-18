@@ -4,7 +4,7 @@
 }
 
 @section Styles {
-    <link rel="stylesheet" href="@(Model.CdnUri)edit-multiple-customers/index.css" asp-append-version="true" />
+    <link rel="stylesheet" href="@(Model.CdnUri)edit-multiple-customers/index.css?version=@(Model.AssetsVersion)" />
 }
 
 <div class="tab-content">
@@ -19,7 +19,7 @@
         const params = @Html.Raw(Model.Params);
     </script>
     <environment include="Development,Production">
-        <script type="module" src="@(Model.CdnUri)edit-multiple-customers/index.js" asp-append-version="true"></script>
+        <script type="module" src="@(Model.CdnUri)edit-multiple-customers/index.js?version=@(Model.AssetsVersion)"></script>
     </environment>
     @* <environment include="Development">
 <script type="module">

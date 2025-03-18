@@ -5,8 +5,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer.ViewModels
 {
     public class EditMultipleCustomersViewModel : CustomerBaseViewModel
     {
-        public EditMultipleCustomersViewModel(EditMultipleCustomersQuery query, AppConfiguration appConfig, string cndUri)
-            : base(appConfig, cndUri)
+        public EditMultipleCustomersViewModel(EditMultipleCustomersQuery query, AppConfiguration appConfig, string cndUri, string assetsVersion)
+            : base(appConfig, cndUri, assetsVersion)
         {
             Params = JsonSerializer.Serialize(
                 new

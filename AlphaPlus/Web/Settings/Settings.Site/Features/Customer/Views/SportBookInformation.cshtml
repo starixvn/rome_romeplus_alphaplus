@@ -7,7 +7,7 @@
 
 <head>
     <title>Customer Setting Information</title>
-    <link rel="stylesheet" href="@(Model.CdnUri)sportsbook-information/index.css" asp-append-version="true" />
+    <link rel="stylesheet" href="@(Model.CdnUri)sportsbook-information/index.css?version=@(Model.AssetsVersion)" />
 </head>
 
 <body>
@@ -17,7 +17,8 @@
         const informationPageParams = @Html.Raw(Model.Params);
     </script>
     <environment include="Development,Production">
-        <script type="module" src="@(Model.CdnUri)sportsbook-information/index.js" asp-append-version="true"></script>
+        <script type="module"
+            src="@(Model.CdnUri)sportsbook-information/index.js?version=@(Model.AssetsVersion)"></script>
     </environment>
     @* <environment include="Development">
     <script type="module">

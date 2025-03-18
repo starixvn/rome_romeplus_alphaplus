@@ -9,15 +9,18 @@ namespace AlphaPlus.Settings.Site.Features.Customer.ViewModels
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         };
 
-        public CustomerBaseViewModel(AppConfiguration appConfig, string cndUri)
+        public CustomerBaseViewModel(AppConfiguration appConfig, string cndUri, string assetsVersion)
         {
             AppConfig = appConfig != null ? JsonSerializer.Serialize(appConfig, serializeOptions) : string.Empty;
             CdnUri = cndUri;
+            AssetsVersion = assetsVersion;
         }
 
         public string AppConfig { get; }
 
         public string CdnUri { get; }
+
+        public string AssetsVersion { get; }
 
         public string Params { get; protected set; }
     }

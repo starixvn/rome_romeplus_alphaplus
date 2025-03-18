@@ -7,7 +7,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer.ViewModels
         public SportBookInformationViewModel(
             SportBookInformationQuery query,
             AppConfiguration appConfig,
-            string cndUri) : base(appConfig, cndUri)
+            string cndUri,
+            string assetsVersion) : base(appConfig, cndUri, assetsVersion)
         {
             Params = query.ToJson();
         }

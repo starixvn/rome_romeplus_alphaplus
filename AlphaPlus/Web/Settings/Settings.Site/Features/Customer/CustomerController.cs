@@ -16,6 +16,7 @@ using Fanex.Customer.Client.Constants;
 using Fanex.Customer.Client.Params;
 using Fanex.Customer.Client.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Settings.Site.Features.Customer
 {
@@ -23,6 +24,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
     {
         private const string DCSStaticSessionKey = "DCSStaticAppPathSessionKey";
         private const string HashKeySessionKey = "Alpha.MemberInfo.Site.Controllers.CustomerController.PasswordHash";
+        private const string AssetsVersionCacheKey = "Customer:AssetsVersion";
         private readonly int systemId;
         private readonly IEncryption encryption;
         private readonly ISessionManager sessionManager;
@@ -30,6 +32,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         private readonly ICustomerService customerService;
         private readonly IProductStatusService productStatusService;
         private readonly IUserSession userSession;
+        private readonly IMemoryCache memoryCache;
         private readonly JsonSerializerOptions serializeOptions = new()
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
@@ -43,7 +46,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             CustomerClientConfiguration clientConfiguration,
             ICustomerService customerService,
             IProductStatusService productStatusService,
-            IUserSession userSession)
+            IUserSession userSession,
+            IMemoryCache memoryCache)
         {
             this.encryption = encryption;
             this.sessionManager = sessionManager;
@@ -52,6 +56,18 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             this.customerService = customerService;
             this.productStatusService = productStatusService;
             this.userSession = userSession;
+            this.memoryCache = memoryCache;
+        }
+
+        private string GetAssetsVersion()
+        {
+            var version = memoryCache.Get(AssetsVersionCacheKey) as string;
+            if (string.IsNullOrWhiteSpace(version))
+            {
+                version = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
+                memoryCache.Set(AssetsVersionCacheKey, version, DateTime.Now.AddHours(4));
+            }
+            return version;
         }
 
         private string CDNUri => sessionManager.Get<string>(DCSStaticSessionKey) ?? Core.Configurations.ConfigurationManager.GetValue<string>("Fanex.Customer:CdnUri");
@@ -66,6 +82,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 query,
                 new AppConfiguration(GetApplicationPath(), systemId),
                 CDNUri,
+                GetAssetsVersion(),
                 GetHashKey(),
                 await customerService.GetSuggestUsername(query.CustName, query.ViewerLevelId));
 
@@ -77,7 +94,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             var viewModel = new EditCustomerViewModel(
                 query,
                 new AppConfiguration(GetApplicationPath(), systemId),
-                CDNUri);
+                CDNUri,
+                GetAssetsVersion());
 
             return View(viewModel);
         }
@@ -98,7 +116,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             var viewModel = new EditMultipleCustomersViewModel(
                 query,
                 new AppConfiguration(GetApplicationPath(), systemId),
-                CDNUri);
+                CDNUri,
+                GetAssetsVersion());
 
             return View(viewModel);
         }
@@ -108,7 +127,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             var viewModel = new SportBookInformationViewModel(
                 query,
                 new AppConfiguration(GetApplicationPath(), systemId),
-                CDNUri
+                CDNUri,
+                GetAssetsVersion()
             );
 
             return View(viewModel);
