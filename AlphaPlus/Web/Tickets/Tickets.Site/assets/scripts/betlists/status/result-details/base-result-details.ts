@@ -45,6 +45,7 @@
         private static gpiResult: ResultDetails;
         private static gpiLCResult: ResultDetails;
         private static playStarResult: ResultDetails;
+        private static askmeslotResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (
@@ -367,6 +368,13 @@
                     ? new PlayStarResultDetails() 
                     : this.playStarResult;
                 return this.playStarResult;
+            }
+
+            if (betTypeId >= 15000 && betTypeId <= 15199) {
+                this.askmeslotResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.askmeslotResult) 
+                    ? new ASKMESLOTResultDetails() 
+                    : this.askmeslotResult;
+                return this.askmeslotResult;
             }
 
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult)

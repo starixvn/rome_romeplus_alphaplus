@@ -121,4 +121,7 @@ public class ThirdPartyController(IMediator mediator) : ResultBaseController(med
 
      [AllowProtectedMode]
     public Task<IActionResult> PlayStarResult(PlayStarResultQuery message) => View(message, IndexView);
+
+     [AllowProtectedMode]
+    public Task<IActionResult> ASKMESLOTResult(ASKMESLOTResultQuery message) => View(message, IndexView);
 }

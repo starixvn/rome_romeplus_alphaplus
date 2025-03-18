@@ -134,7 +134,7 @@
     "JsVersion": "20240201",
     "AssetsApp:StaticResourcesVersion": "20240201",
     "LocalTest": false,
-    "SettingStatus": 0,
+    "SettingStatus": 1,
     "ProductOfferProductDetail": [
         1
     ],

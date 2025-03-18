@@ -45,7 +45,8 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
     IRequestHandler<SexyGamingResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<GPIResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<GPILiveCasinoResultQuery, ThirdPartyProductViewModel>,
-    IRequestHandler<PlayStarResultQuery, ThirdPartyProductViewModel>
+    IRequestHandler<PlayStarResultQuery, ThirdPartyProductViewModel>,
+    IRequestHandler<ASKMESLOTResultQuery, ThirdPartyProductViewModel>
 {
     public Task<ThirdPartyProductViewModel> Handle(MaxGameResultQuery message, CancellationToken cancellationToken)
         => Handle(message, "MaxGameResultConfigs", "MaxGame");
@@ -183,6 +184,9 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
 
     public Task<ThirdPartyProductViewModel> Handle(PlayStarResultQuery message, CancellationToken cancellationToken)
         => Handle(message, "PlayStarResultConfigs", "PLAYSTAR");
+
+    public Task<ThirdPartyProductViewModel> Handle(ASKMESLOTResultQuery message, CancellationToken cancellationToken)
+        => Handle(message, "ASKMESLOTResultConfigs", "ASKMESLOT");
 
     private Task<ThirdPartyProductViewModel> Handle(Result3rdQuery message, string sectionName, string gameName)
     {
