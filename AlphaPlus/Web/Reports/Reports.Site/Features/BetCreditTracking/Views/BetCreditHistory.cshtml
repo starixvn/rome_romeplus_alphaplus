@@ -9,7 +9,7 @@
     void BuildBetCreditHistory(BetCreditHistoryEntity item)
     {
         <tr class="@(item.BetCredit == null ? "highlight-row" : string.Empty)">
-            <td>@item.ActionDateString</td>
+            <td><div class="text-nowrap">@item.ActionDateString</div></td>
             <td class="text-center">@item.WinLostDateString</td>
             <td class="text-left">@item.RefNo</td>
             <td>@FormatNullableNumber(item.ActualStake)</td>
@@ -81,7 +81,7 @@
             <table class="tb tb-bordered tb-hover w-full text-right" id="tbl-report">
                 <thead>
                     <tr>
-                        <th class="action-datetime-col"><div class="text-nowrap">@Resources.ActionDateTime</div></th>
+                        <th class="action-datetime-col">@Resources.ActionDateTime</th>
                         <th>@Resources.WinLossDate</th>
                         <th>@Resources.refno</th>
                         <th>@Resources.ActualStake</th>
