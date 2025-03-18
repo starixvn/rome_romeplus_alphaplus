@@ -131,7 +131,9 @@
             justify-content: space-between;
             flex-wrap: nowrap;
             align-items: center;
-        
+            &.text-icon-left{
+                justify-content: flex-start;
+            }
             [class^="icon-"], [class*=" icon-"] {
                 font-size: 20px;
                 margin-left: 5px;
