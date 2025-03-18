@@ -23,6 +23,7 @@ namespace Fanex.Alpha.Before.Services
         private readonly IPHelper ipHelper;
         private readonly Logging.ILogger logger;
         private readonly IDynamicRepository dynamicRepository;
+        private readonly Random random = new Random();
 
         public ProfilePictureService(IDynamicRepository dynamicRepository, Logging.ILogger logger, IPHelper ipHelper)
         {
@@ -87,10 +88,10 @@ namespace Fanex.Alpha.Before.Services
 
         public string MakeWaterMarkImage(byte[] imageBytes, string waterMarkText)
         {
-            var image = Image.Load<Rgba32>(imageBytes);
+            using var image = Image.Load<Rgba32>(imageBytes);
             var font = SystemFonts.CreateFont("Arial", 24, FontStyle.Bold);
 
-            image.Mutate(x => ApplyScalingWaterMark(x, waterMarkText, font, Color.Red, 5));
+            image.Mutate(x => ApplyScalingWaterMark(x, waterMarkText, font));
 
             using var ms = new MemoryStream();
             image.SaveAsJpeg(ms);
@@ -100,54 +101,24 @@ namespace Fanex.Alpha.Before.Services
 
         private IImageProcessingContext ApplyScalingWaterMark(IImageProcessingContext processingContext,
             string text,
-            Font font,
-            Color color,
-            float padding)
+            Font font)
         {
-            Size imageSize = processingContext.GetCurrentSize();
-            float targetWidth = imageSize.Width - (padding * 2);
-            float targetHeight = imageSize.Height - (padding * 2);
-            float minFontSize = 1;
-            float maxFontSize = font.Size;
 
-            FontRectangle currentBounds = TextMeasurer.MeasureAdvance(text, new TextOptions(font));
-            if (currentBounds.Width < targetWidth)
-            {
-                maxFontSize = MathF.Floor(maxFontSize * (targetWidth / currentBounds.Width));
-            }
+            var x = 50;
+            var y = 50;
+            var textPosition = new PointF(x + random.Next(-20, 50), y + random.Next(-20, 50));
 
-            while (minFontSize < maxFontSize)
-            {
-                float midFontSize = (minFontSize + maxFontSize) / 2;
-                Font midFont = new(font, midFontSize);
-                currentBounds = TextMeasurer.MeasureAdvance(text, new TextOptions(midFont)
-                {
-                    WrappingLength = targetWidth
-                });
+            var textSize = TextMeasurer.MeasureSize(text, new TextOptions(font));
 
-                if (currentBounds.Height > targetHeight)
-                {
-                    maxFontSize = midFontSize - 0.1f;
-                }
-                else
-                {
-                    minFontSize = midFontSize + 0.1f;
-                }
-            }
+            var backgroundRectangle = new Rectangle(
+                (int)textPosition.X - 5,
+                (int)textPosition.Y,
+                (int)textSize.Width + 12,
+                (int)textSize.Height + 10);
 
-            Font scaledFont = new(font, minFontSize);
+            processingContext.Fill(Color.LightBlue, backgroundRectangle);
 
-            RichTextOptions textOptions = new(scaledFont)
-            {
-                Origin = new Vector2(padding, imageSize.Height * .5f),
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Center,
-                WrappingLength = targetWidth
-            };
-
-            processingContext.Fill(Color.LightBlue, new RectangleF(padding, imageSize.Height * .5f - 18, targetWidth, 35));
-
-            return processingContext.DrawText(textOptions, text, color);
+            return processingContext.DrawText(text, font, Color.Red, textPosition);
         }
     }
 }
