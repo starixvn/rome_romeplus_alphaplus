@@ -24,6 +24,14 @@ namespace Fanex.Alpha.Before.Services
         private readonly Logging.ILogger logger;
         private readonly IDynamicRepository dynamicRepository;
         private readonly Random random = new Random();
+        private readonly IEnumerable<Color> randomColors = new List<Color>
+        {
+            Color.Red,
+            Color.Blue,
+            Color.Purple,
+            Color.Brown,
+            Color.Black
+        };
 
         public ProfilePictureService(IDynamicRepository dynamicRepository, Logging.ILogger logger, IPHelper ipHelper)
         {
@@ -118,7 +126,7 @@ namespace Fanex.Alpha.Before.Services
 
             processingContext.Fill(Color.LightBlue, backgroundRectangle);
 
-            return processingContext.DrawText(text, font, Color.Red, textPosition);
+            return processingContext.DrawText(text, font, randomColors.ElementAt(random.Next(0, 4)), textPosition);
         }
     }
 }
