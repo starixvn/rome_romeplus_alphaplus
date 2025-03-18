@@ -10,7 +10,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer.ViewModels
     public class CreateCustomerViewModel : CustomerBaseViewModel
     {
         public CreateCustomerViewModel(CreateCustomerQuery query, bool isLimitNewDownline, string message)
-            : this(query, null, string.Empty, string.Empty)
+            : this(query, null, string.Empty, string.Empty, string.Empty)
         {
             IsLimitNewDownline = isLimitNewDownline;
             Message = message;
@@ -20,9 +20,10 @@ namespace AlphaPlus.Settings.Site.Features.Customer.ViewModels
             CreateCustomerQuery query,
             AppConfiguration appConfig,
             string cndUri,
+            string assetsVersion,
             string secretKey,
             string suggestUsername = "")
-            : base(appConfig, cndUri)
+            : base(appConfig, cndUri, assetsVersion)
         {
             SecretKey = secretKey;
             Params = JsonSerializer.Serialize(new { uplineId = query.CustId, uplineRoleId = query.CustLevelId, suggestUsername });
