@@ -6,6 +6,7 @@ using AlphaPlus.Logging;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
+using ONEbook.UM.AspNetCore.Filters;
 
 ThreadPool.SetMinThreads(100, 100);
 
@@ -38,6 +39,11 @@ builder.Services
     .AddAuthorization()
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddSharedCookie();
+
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.Add<CheckUMFilterAttribute>();
+});
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
