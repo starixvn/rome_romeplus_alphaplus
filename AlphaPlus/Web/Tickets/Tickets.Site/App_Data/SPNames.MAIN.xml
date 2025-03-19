@@ -1083,7 +1083,7 @@
         <Setting Key="Age_CustomerSelCheckListSmartPunter" SpName="Age_CustomerSelCheckListSmartPunter" DbName="DBCust.CustDB.wsv_alp" />
     </Function>
     <Function Name="Progressive Jackpot">
-        <Setting Key="Acc_GameLaunchSel" SpName="Acc_GameLaunchSel" DbName="DBCust.CustDB.wsv_alp" />
+        <Setting Key="Acc_GameLaunchSel" SpName="Acc_GameLaunchSel" DbName="DBGLOB.GlobCustDB.wsv_alp" />
     </Function>
     <Function Name="Partial UM">
         <Setting Key="Acc_CheckUM_ByReport" SpName="Acc_CheckUM_ByReport" DbName="DBCust.CustDB.wsv_alp" />
