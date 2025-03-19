@@ -16,7 +16,7 @@ export default function TotalIndirectDownlines({ TotalActive, TotalClosed, Total
                 {t('Closed')}: <span className={styles['status-closed']}>{TotalClosed}</span>
             </div>
             <div className="nowrap bold">
-                {t('Suspended')}: <span className={styles['status-suspended']}>{TotalClosed}</span>
+                {t('Suspended')}: <span className={styles['status-suspended']}>{TotalSuspended}</span>
             </div>
         </>
     );
