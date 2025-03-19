@@ -994,6 +994,37 @@
         }
     }
 
+    export class SabaKenoTicketDetails extends BaseTicketDetails {
+        private static instance: SabaKenoTicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new SabaKenoTicketDetails() : this.instance;
+            return this.instance;
+        }
+
+        public ShowSabaKenoDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = '?refno=' + refNo
+                + '&custid=' + custId
+                + '&transType=' + transType
+                + '&sportName=SABA Keno&productId=102';
+
+            let width = 1500;
+            let roleId = Number(this.ViewerLevelId);
+
+            if (roleId <= 3) {
+                width -= 105;
+            }
+
+            if (roleId <= 2) {
+                width -= 105;
+            }
+
+            Common.PopupDetails.Instance(window.top).Show(
+                Common.AppPath.TicketsAppPath + 'CasinoDetails/RNG' + params,
+                'SABA Keno - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+        }
+    }
+
     export class GPIRNGTicketDetails extends BaseTicketDetails {
         private static instance: GPIRNGTicketDetails;
 
@@ -1143,6 +1174,7 @@ let showGPIBetDetails: Function;
 let showGPILCBetDetails: Function;
 let showPlayStarBetDetails: Function;
 let showASKMESLOTBetDetails: Function;
+let showSabaKenoDetails: Function;
 
 $(function () {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
@@ -1194,4 +1226,5 @@ $(function () {
     showGPILCBetDetails = BetList.Choice.TicketDetails.GPILiveCasinoTicketDetails.Instance.ShowGPILCTicketDetails;
     showPlayStarBetDetails = BetList.Choice.TicketDetails.PlayStarTicketDetails.Instance.ShowPlayStarBetDetails;
     showASKMESLOTBetDetails = BetList.Choice.TicketDetails.ASKMESLOTTicketDetails.Instance.ShowASKMESLOTBetDetails;
+    showSabaKenoDetails = BetList.Choice.TicketDetails.SabaKenoTicketDetails.Instance.ShowSabaKenoDetails;
 });

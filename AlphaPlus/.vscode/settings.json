@@ -1,1 +1,10 @@
-{}
+{
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+      "appsettings.json": "appsettings.*.json",
+      "results.json": "results.*.json",
+      "sharedSettings.json": "sharedSettings.*.json"
+    },
+    "dotnet.defaultSolution": "AlphaPlus.sln"
+  }
+  

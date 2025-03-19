@@ -46,6 +46,7 @@
         private static gpiLCResult: ResultDetails;
         private static playStarResult: ResultDetails;
         private static askmeslotResult: ResultDetails;
+        private static sabaKenoResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (
@@ -376,7 +377,12 @@
                     : this.askmeslotResult;
                 return this.askmeslotResult;
             }
-
+            
+            if (betTypeId >= 12300 && betTypeId <= 12499) {
+                this.sabaKenoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sabaKenoResult) ? new SabaKenoResultDetails() : this.sabaKenoResult;
+                return this.sabaKenoResult;
+            }
+            
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult)
                 ? new SportsbookResultDetails()
                 : this.sportsbookResult;
