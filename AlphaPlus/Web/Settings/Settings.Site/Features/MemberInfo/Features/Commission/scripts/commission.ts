@@ -48,7 +48,7 @@ class CommissionView {
             $ddlAgent.change(() => {
                 $.blockUI();
                 const custId = $ddlAgent.val();
-                if (custId === 'undefined') {
+                if (custId === 'undefined' || custId === '0') {
                     this.getMasterComm($ddlProduct.val(), $ddlMaster.val(), $tblContainer);
                 } else {
                     $.get(this.buildUrl(`GetData?productId=${$ddlProduct.val()}&recommendId=${custId}`), (html) => {
