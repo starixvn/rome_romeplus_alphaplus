@@ -26,7 +26,7 @@
                 '&transDesc=',
                 transDesc,
                 '&productId=49'
-            ].join();
+            ].join('');
             Common.PopupDetails.Instance(window.top).Show(this.ResultDetailsPath + params, '', 835, 675);
         };
     }

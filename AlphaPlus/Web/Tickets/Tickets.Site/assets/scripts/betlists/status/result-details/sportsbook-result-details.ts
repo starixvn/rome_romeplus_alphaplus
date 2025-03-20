@@ -125,7 +125,7 @@
                 '&isViewResultFromBetList=true',
                 '&hdp2=',
                 hdp2
-            ].join();
+            ].join('');
 
             Common.PopupDetails.Instance(window.top).Show(this.ResultDetailsPath + params, '', 730, 250);
         };
