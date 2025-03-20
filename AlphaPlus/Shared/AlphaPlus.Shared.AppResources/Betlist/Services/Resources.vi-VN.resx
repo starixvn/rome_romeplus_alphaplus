@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -329,7 +329,7 @@
     <value>Vui lòng nhập Tiền Cược</value>
   </data>
   <data name="FilterConfigurationWelcomeContent" xml:space="preserve">
-    <value>Lần đầu tiên sử dụng chức năng &lt;strong&gt;Cược Gần Nhất&lt;/strong&gt;?&#xD;
+    <value>Lần đầu tiên sử dụng chức năng &lt;strong&gt;Cược Gần Nhất&lt;/strong&gt;?
 Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi vé cược của bạn, và đừng quên lưu lại cấu hình bộ lọc này để sử dụng trong lần sau.</value>
   </data>
   <data name="FilterConfigurationWelcomeContent2" xml:space="preserve">
@@ -856,8 +856,5 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
   </data>
   <data name="AgentRisk" xml:space="preserve">
     <value>Rủi Ro Của Agent</value>
-  </data>
-  <data name="MemberWinNote" xml:space="preserve">
-    <value>&lt;b&gt;Dự Kiến Thắng&lt;/b&gt;: Số tiền thắng thực dự đoán từ vé cược đang diễn ra của Sportsbook mà Member có thể nhận. &lt;b&gt;Tiền Rủi Ro Của Bạn&lt;/b&gt;: Số tiền rủi ro bạn phải chịu nếu Member thắng cược, được tính như sau: &lt;b&gt;Tiền Rủi Ro Của Bạn = Dự Kiến Thắng * Position Taking Của Bạn&lt;/b&gt;. Các giá trị này không áp dụng cho &lt;b&gt;vé cược đã kết toán của Sportsbook hoặc vé cược từ các sản phẩm khác&lt;/b&gt; (cả đang diễn ra và đã kết toán), và sẽ hiển thị là '&lt;b&gt;N/A&lt;/b&gt;' (Not Applicable - Không Áp Dụng).</value>
   </data>
 </root>

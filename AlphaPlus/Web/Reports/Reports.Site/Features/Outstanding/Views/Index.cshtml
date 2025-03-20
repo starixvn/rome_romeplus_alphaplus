@@ -62,6 +62,9 @@
     <div class="form-group last-group">
         <input type="submit" value="@Resources.Submit" class="btn-submit" />
     </div>
+    <div class="form-group hide">
+        <span id="icon-information" class="icon-information-outline"></span>
+    </div>
     <input type="hidden" asp-for="CustId" />
     <input type="hidden" asp-for="CustName" />
     <input type="hidden" id="CustLevelId" name="CustLevelId" value="@Model.CustLevel.Value.ToString()" />
@@ -181,5 +184,6 @@
         }
     </table>
 </div>
+<a class="hide" id="LoadLegendURL" asp-action="Outstanding" asp-controller="Legends"></a>
 <input type="hidden" asp-for="DisplayOutstandingLevelsJson" />
 <input type="hidden" id="NoInformationIsAvailable" value="@Resources.NoInformationIsAvailable" />

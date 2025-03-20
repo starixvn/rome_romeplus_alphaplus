@@ -59,49 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root"
-    xmlns=""
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -122,489 +119,492 @@
   </resheader>
   <data name="Active" xml:space="preserve">
     <value>Active</value>
-    <comment/>
+    <comment />
   </data>
   <data name="Agent" xml:space="preserve">
     <value>Agent</value>
-    <comment/>
+    <comment />
   </data>
   <data name="AgentList" xml:space="preserve">
     <value>Agent List</value>
-    <comment/>
+    <comment />
   </data>
   <data name="AgentOutstanding" xml:space="preserve">
     <value>Agent Outstanding</value>
-    <comment/>
+    <comment />
   </data>
   <data name="BalanceInfo" xml:space="preserve">
     <value>Balance Info</value>
-    <comment/>
+    <comment />
   </data>
   <data name="BetCredit" xml:space="preserve">
     <value>Bet Credit</value>
-    <comment/>
+    <comment />
   </data>
   <data name="BetList" xml:space="preserve">
     <value>Bet List</value>
-    <comment/>
+    <comment />
   </data>
   <data name="BetSettingViewModelText" xml:space="preserve">
     <value>Bet Setting</value>
-    <comment/>
+    <comment />
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
-    <comment/>
+    <comment />
   </data>
   <data name="CommissionViewModelText" xml:space="preserve">
     <value>Commission</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ConfirmAllowAutoMasterPTViewModelInCaseDisabledMessage" xml:space="preserve">
     <value>Are you sure you want to disable auto position taking feature of this master?</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ConfirmAllowAutoMasterPTViewModelInCaseEnabledMessage" xml:space="preserve">
     <value>Are you sure you want to enable auto position taking feature of this master?</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ConfirmAllowAutoMasterPTViewModelText" xml:space="preserve">
     <value>Allow Auto PT</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ConfirmAllowOutrightViewModelInCaseDisabledMessage" xml:space="preserve">
     <value>Are you sure you want to disallow outright betting for this customer?</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ConfirmAllowOutrightViewModelInCaseEnabledMessage" xml:space="preserve">
     <value>Are you sure you want to allow outright betting for this customer?</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ConfirmAllowOutrightViewModelText" xml:space="preserve">
     <value>Allow Outright</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ConfirmClosedViewModelInCaseChangeClosedStatusMessage" xml:space="preserve">
     <value>Are you sure you want to change Closed status for this customer?</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ConfirmClosedViewModelInCaseClosedDownlinesMessage" xml:space="preserve">
     <value>Are you sure you want to change Closed status for this customer? Warning, all downlines will be closed as well!</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ConfirmClosedViewModelInCaseOpenedMemberMessage" xml:space="preserve">
     <value>Are you sure you want to open this account?</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ConfirmClosedViewModelText" xml:space="preserve">
     <value>Closed</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage" xml:space="preserve">
     <value>Are you sure you want to disallow Double Commission feature for Sportsbook's Losing tickets on this customer? Warning, all members under this agent will be disallowed as well!</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ConfirmDoubleCommViewModelInCaseDisabledMemberMessage" xml:space="preserve">
     <value>Are you sure you want to turn OFF Double Commission feature for Sportsbook's Losing tickets on this customer?</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ConfirmDoubleCommViewModelInCaseEnabledMemberMessage" xml:space="preserve">
     <value>Are you sure you want to turn ON Double Commission feature for Sportsbook's Losing tickets on this customer?</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ConfirmDoubleCommViewModelInCaseEnableMasterOrAgentMessage" xml:space="preserve">
     <value>Are you sure you want to allow Double Commission feature for Sportsbook's Losing tickets on this customer?</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ConfirmDoubleCommViewModelText" xml:space="preserve">
     <value>Double Comm</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ConfirmSuspendedViewModelInCaseSuspendedMasterOrAgentMessage" xml:space="preserve">
     <value>Are you sure you want to change Suspend status for this customer? Warning, all members under this agent can't place bet!</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ConfirmSuspendedViewModelInCaseSuspendedMemberMessage" xml:space="preserve">
     <value>Are you sure you want to change Suspend status for this customer? Warning, this member can't place bet!</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage" xml:space="preserve">
     <value>Are you sure you want to change Suspend status for this customer? All downlines will be un-suspended as well.</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMemberMessage" xml:space="preserve">
     <value>Are you sure you want to change Suspend status for this customer?</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ConfirmSuspendedViewModelText" xml:space="preserve">
     <value>Suspended</value>
-    <comment/>
+    <comment />
   </data>
   <data name="CreatedDate" xml:space="preserve">
     <value>Created Date</value>
-    <comment/>
+    <comment />
   </data>
   <data name="Customer" xml:space="preserve">
     <value>Customer</value>
-    <comment/>
+    <comment />
   </data>
   <data name="DownlineList" xml:space="preserve">
     <value>Downline List</value>
-    <comment/>
+    <comment />
   </data>
   <data name="EditInfoViewModelText" xml:space="preserve">
     <value>Info</value>
-    <comment/>
+    <comment />
   </data>
   <data name="Fax" xml:space="preserve">
     <value>Fax</value>
-    <comment/>
+    <comment />
   </data>
   <data name="GivenCredit" xml:space="preserve">
     <value>Given Credit</value>
-    <comment/>
+    <comment />
   </data>
   <data name="IP" xml:space="preserve">
     <value>IP</value>
-    <comment/>
+    <comment />
   </data>
   <data name="LastLogin" xml:space="preserve">
     <value>Last Login</value>
-    <comment/>
+    <comment />
   </data>
   <data name="LastTxn" xml:space="preserve">
     <value>Last transaction</value>
-    <comment/>
+    <comment />
   </data>
   <data name="LoginIP" xml:space="preserve">
     <value>Login IP</value>
-    <comment/>
+    <comment />
   </data>
   <data name="LoginTime" xml:space="preserve">
     <value>Login Time</value>
-    <comment/>
+    <comment />
   </data>
   <data name="Master" xml:space="preserve">
     <value>Master</value>
-    <comment/>
+    <comment />
   </data>
   <data name="MasterOutstanding" xml:space="preserve">
     <value>Master Outstanding</value>
-    <comment/>
+    <comment />
   </data>
   <data name="Member" xml:space="preserve">
     <value>Member</value>
-    <comment/>
+    <comment />
   </data>
   <data name="MemberList" xml:space="preserve">
     <value>Member List</value>
-    <comment/>
+    <comment />
   </data>
   <data name="MemberMaxCredit" xml:space="preserve">
     <value>Member Max Credit</value>
-    <comment/>
+    <comment />
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
-    <comment/>
+    <comment />
   </data>
   <data name="NetPosition" xml:space="preserve">
     <value>Net Position</value>
-    <comment/>
+    <comment />
   </data>
   <data name="NoDataChange" xml:space="preserve">
     <value>There is no change to update.</value>
-    <comment/>
+    <comment />
   </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>No information is available</value>
-    <comment/>
+    <comment />
   </data>
   <data name="NotAuthorized" xml:space="preserve">
     <value>You are not authorized on this function.</value>
-    <comment/>
+    <comment />
   </data>
   <data name="NumberOrder" xml:space="preserve">
     <value>#</value>
-    <comment/>
+    <comment />
   </data>
   <data name="OnlineList" xml:space="preserve">
     <value>Online List</value>
-    <comment/>
+    <comment />
   </data>
   <data name="Outstanding" xml:space="preserve">
     <value>Outstanding</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ResetPasswordViewModelText" xml:space="preserve">
     <value>Reset Password</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ResetSecurityCodeViewModelText" xml:space="preserve">
     <value>Reset Security Code</value>
-    <comment/>
+    <comment />
   </data>
   <data name="Setting" xml:space="preserve">
     <value>Setting</value>
-    <comment/>
+    <comment />
   </data>
   <data name="SportsbookMinPTViewModelText" xml:space="preserve">
     <value>SB's Min PT</value>
-    <comment/>
+    <comment />
   </data>
   <data name="Statement" xml:space="preserve">
     <value>Statement</value>
-    <comment/>
+    <comment />
   </data>
   <data name="Status" xml:space="preserve">
     <value>Status</value>
-    <comment/>
+    <comment />
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>
-    <comment/>
+    <comment />
   </data>
   <data name="Super" xml:space="preserve">
     <value>Super</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ThisUserIsNotOnline" xml:space="preserve">
     <value>This user is not online</value>
-    <comment/>
+    <comment />
   </data>
   <data name="TotalAgentActiveClosed" xml:space="preserve">
     <value>Total Agent active/closed/suspended</value>
-    <comment/>
+    <comment />
   </data>
   <data name="TotalBalance" xml:space="preserve">
     <value>Total Balance</value>
-    <comment/>
+    <comment />
   </data>
   <data name="TotalCash" xml:space="preserve">
     <value>Total Cash</value>
-    <comment/>
+    <comment />
   </data>
   <data name="TotalMemberActiveClosed" xml:space="preserve">
     <value>Total Member active/closed/suspended</value>
-    <comment/>
+    <comment />
   </data>
   <data name="TransferViewModelText" xml:space="preserve">
     <value>Transfer</value>
-    <comment/>
+    <comment />
   </data>
   <data name="UsedCredit" xml:space="preserve">
     <value>Used Credit</value>
-    <comment/>
+    <comment />
   </data>
   <data name="UserNamePlaceHolder" xml:space="preserve">
     <value>Username or First/Last Name</value>
-    <comment/>
+    <comment />
   </data>
   <data name="YesterdayBalance" xml:space="preserve">
     <value>Yesterday Balance</value>
-    <comment/>
+    <comment />
   </data>
   <data name="YesterdayCash" xml:space="preserve">
     <value>Yesterday Cash</value>
-    <comment/>
+    <comment />
   </data>
   <data name="NoInfo" xml:space="preserve">
     <value>No information is available</value>
-    <comment/>
+    <comment />
   </data>
   <data name="Page" xml:space="preserve">
     <value>Page</value>
-    <comment/>
+    <comment />
   </data>
   <data name="RemoveOtpViewModelText" xml:space="preserve">
     <value>Remove OTP</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ShowContactInfo" xml:space="preserve">
     <value>Contact Info</value>
-    <comment/>
+    <comment />
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>Successfully updated!</value>
-    <comment/>
+    <comment />
   </data>
   <data name="GivenCreditPopupTitle" xml:space="preserve">
     <value>Update Given Credit</value>
-    <comment/>
+    <comment />
   </data>
   <data name="LoginInfo" xml:space="preserve">
     <value>Login Info</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ClosedByAdmin" xml:space="preserve">
     <value>This account was closed by admin.</value>
-    <comment/>
+    <comment />
   </data>
   <data name="LockedByFalsePassword" xml:space="preserve">
     <value>This account has been locked due to multiple failed password attempts.</value>
-    <comment/>
+    <comment />
   </data>
   <data name="LockedByFalseOTPSC" xml:space="preserve">
     <value>This account has been locked due to multiple failed OTP/Security Code authentication attempts.</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ClosedByUpline" xml:space="preserve">
     <value>This account was closed by upline.</value>
-    <comment/>
+    <comment />
   </data>
   <data name="Viewlog" xml:space="preserve">
     <value>View Log</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ThisAccountWasDisabled" xml:space="preserve">
     <value>This account was disabled.</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ThisAccountWasSuspended" xml:space="preserve">
     <value>This account was suspended.</value>
-    <comment/>
+    <comment />
   </data>
   <data name="Phone" xml:space="preserve">
     <value>Phone</value>
-    <comment/>
+    <comment />
   </data>
   <data name="And" xml:space="preserve">
     <value>and</value>
-    <comment/>
+    <comment />
   </data>
   <data name="Update" xml:space="preserve">
     <value>Update</value>
-    <comment/>
+    <comment />
   </data>
   <data name="Agents" xml:space="preserve">
     <value>Agents (Active/Closed/Suspended)</value>
-    <comment/>
+    <comment />
   </data>
   <data name="Members" xml:space="preserve">
     <value>Members (Active/Closed/Suspended)</value>
-    <comment/>
+    <comment />
   </data>
   <data name="AccountNotFound" xml:space="preserve">
     <value>Account not found!</value>
-    <comment/>
+    <comment />
   </data>
   <data name="Nickname" xml:space="preserve">
     <value>Nickname</value>
-    <comment/>
+    <comment />
   </data>
   <data name="OutrightDisabledUpline" xml:space="preserve">
     <value>Upline has been disabled Outright betting</value>
-    <comment/>
+    <comment />
   </data>
   <data name="Back" xml:space="preserve">
     <value>Back</value>
-    <comment/>
+    <comment />
   </data>
   <data name="Sportsbook2ViewModelText" xml:space="preserve">
     <value>Sportsbook 2</value>
-    <comment/>
+    <comment />
   </data>
   <data name="UnuspendStatusPopupHeader" xml:space="preserve">
     <value>Unsuspend &lt;username&gt;</value>
-    <comment/>
+    <comment />
   </data>
   <data name="SuspendedByUplineTooltip" xml:space="preserve">
     <value>This account was indirectly suspended by upline</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ConfirmTransferBalanceDailyViewModelText" xml:space="preserve">
     <value>All Day Bal Transfer</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ConfirmTransferBalanceDailyViewModelMessage" xml:space="preserve">
     <value>Are you sure you want to change Transfer Mode for {0}?</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ConfirmTransferBalanceDailyViewModelTooltip" xml:space="preserve">
     <value>Check to allow All-Day Balance Transfer mode</value>
-    <comment/>
+    <comment />
   </data>
   <data name="CreateMemberWithQRCode" xml:space="preserve">
     <value>Create Member with QR Code</value>
-    <comment/>
+    <comment />
   </data>
   <data name="FirstLoginQRCode" xml:space="preserve">
     <value>FIRST LOGIN QR CODE</value>
-    <comment/>
+    <comment />
   </data>
   <data name="PendingTransfer3rd" xml:space="preserve">
     <value>3rd Party Pending Transfer</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ClosedByArchive" xml:space="preserve">
     <value>This account was closed by inactivity.</value>
-    <comment/>
+    <comment />
   </data>
   <data name="DisallowedAllDayBalanceTransferError" xml:space="preserve">
     <value>Your upline has disallowed you to use All Day Balance Transfer. The page will be automatically refreshed.</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ShowMore" xml:space="preserve">
     <value>Show More</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ShowLess" xml:space="preserve">
     <value>Show Less</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ADBTChangeToastMessage" xml:space="preserve">
     <value>All Day Balance Transfer is now enabled for your account. As a result, Auto Transfer schedule has been cleared, and the Auto Transfer configuration you set for downlines will be disabled to ensure data accuracy.</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ADBTChangeToastTitle" xml:space="preserve">
     <value>Auto Transfer Config</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ADBTChangeFailed_AutoJobRunning" xml:space="preserve">
     <value>The Auto Transfer process is currently taking place. Kindly wait for the process to complete within a few minutes before changing the Transfer Mode.</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ADBTConditionChange_PersonalMessage" xml:space="preserve">
     <value>All Day Balance Transfer is now enabled for your account. As a result, Auto Transfer schedule has been cleared, and the Auto Transfer for downlines will be disabled for the following customers: {0}. Details can be found in Transfer function.</value>
-    <comment/>
+    <comment />
   </data>
   <data name="ProductStatusWarningMessage" xml:space="preserve">
     <value>You are not allowed to disable this product on your downlines per company policy.</value>
-    <comment/>
+    <comment />
   </data>
   <data name="AddNewMaster" xml:space="preserve">
     <value>Add New Master</value>
-    <comment/>
+    <comment />
   </data>
   <data name="AddNewAgent" xml:space="preserve">
     <value>Add New Agent</value>
-    <comment/>
+    <comment />
   </data>
   <data name="AddNewMember" xml:space="preserve">
     <value>Add New Member</value>
-    <comment/>
+    <comment />
   </data>
   <data name="SearchAndCopy" xml:space="preserve">
     <value>Search And Copy</value>
-    <comment/>
+    <comment />
   </data>
   <data name="FullMode" xml:space="preserve">
     <value>Full Mode</value>
-    <comment/>
+    <comment />
   </data>
   <data name="QRCode" xml:space="preserve">
     <value>QR Code</value>
-    <comment/>
+    <comment />
   </data>
   <data name="LiteMode" xml:space="preserve">
     <value>Lite Mode</value>
-    <comment/>
+    <comment />
   </data>
   <data name="lblNew" xml:space="preserve">
     <value>New</value>
-    <comment/>
+    <comment />
   </data>
   <data name="lblEditMember" xml:space="preserve">
     <value>Edit Member</value>
+  </data>
+  <data name="MemberWinNote" xml:space="preserve">
+    <value>&lt;b&gt;To Win&lt;/b&gt;: The potential net winning amount a Member can receive from a Sportsbook running bet ticket. &lt;b&gt;Your Risk Amount&lt;/b&gt;: The potential risk you bear if the Member wins the ticket, calculated as: &lt;b&gt;Your Risk Amount = To Win * Your Position Taking. &lt;/b&gt;These values do not apply to &lt;b&gt;Sportsbook settled tickets or other product tickets&lt;/b&gt; (both running and settled), and will be displayed as &lt;b&gt;'N/A'&lt;/b&gt; (Not Applicable).</value>
   </data>
 </root>

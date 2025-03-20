@@ -6,6 +6,7 @@ using AlphaPlus.Shared.AppResources.Report;
 using AlphaPlus.Reports.Features.Shared;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.Products;
+using AlphaPlus.Shared.AppResources.Common;
 
 namespace AlphaPlus.Reports.Site.Features.Legends;
 
@@ -17,12 +18,23 @@ public class LegendHandler(
         IRequestHandler<LegendQuery, LegendViewModel>,
         IRequestHandler<WinLossLegendQuery, LegendViewModel>,
         IRequestHandler<WinLossDetailLegendQuery, LegendViewModel>,
-        IRequestHandler<MatchWinLossDetailLegendQuery, LegendViewModel>
+        IRequestHandler<MatchWinLossDetailLegendQuery, LegendViewModel>,
+        IRequestHandler<OutstandingLegendQuery, LegendViewModel>
 {
     private readonly AppSettings appSettings = options.Value;
     private readonly IProductService productService = productService;
     private readonly ICacheRefService cacheRefService = cacheRefService;
     private readonly Fanex.Logging.ILogger logger = logger;
+
+    public async Task<LegendViewModel> Handle(OutstandingLegendQuery message, CancellationToken cancellationToken)
+    {
+        var legends = new List<string>
+        {
+            $"- {CommonResx.MemberWinNote}"
+        };
+
+        return new LegendViewModel(legends);
+    }
 
     public async Task<LegendViewModel> Handle(LegendQuery message, CancellationToken cancellationToken)
     {
