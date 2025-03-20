@@ -167,11 +167,11 @@ namespace AlphaPlus.Main.Site.Features.Default
 
         public bool IsShowSuggestEnableTelegramOtp { get; set; }
 
-        public bool HightLightFeaturePermission => false; //((PageAccess)SubPageAccess).Transfer;
+        public bool HightLightFeaturePermission => AlphaPlus.Core.Configurations.AppSettings.IsIncluded(AppSettings.RebateAndRetentionCustIds, message.CustId);
 
         public string HightLightFeatureImageName => "new_feature_litemode" + DarkModeName;
 
-        public string HightLightFeatureUrl => MicroSites.SettingUrl("~/Reward/Payment");
+        public string HightLightFeatureUrl => MicroSites.MainUrl("~/Tour/RebateAndRetention");
 
         public bool IsEnableReCheckIn => message.IsEnableReCheckIn;
 

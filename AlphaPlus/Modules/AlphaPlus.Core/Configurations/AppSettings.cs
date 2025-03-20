@@ -137,6 +137,11 @@ public static class AppSettings
             .Any(s => string.Equals(s.Trim(), value, StringComparison.OrdinalIgnoreCase));
     }
 
+    public static bool IsIncluded(int[] config, int value)
+    {
+        return config.Any(c => c == value);
+    }
+
     private static HashSet<string> MarketsSupportedNewHandbook { get; } = new HashSet<string>(
         ConfigurationManager
             .GetValue<string>("MarketsSupportedNewHandbook")

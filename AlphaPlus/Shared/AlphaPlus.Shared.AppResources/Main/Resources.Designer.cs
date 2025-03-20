@@ -2860,5 +2860,82 @@ namespace AlphaPlus.Shared.AppResources.Main
                 return ResourceManager.GetString("invalidsession", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to RebateAndRetentionTour_Page1_Row1.
+        /// </summary>
+        public static string RebateAndRetentionTour_Page1_Row1
+        {
+            get
+            {
+                return ResourceManager.GetString("RebateAndRetentionTour_Page1_Row1", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to RebateAndRetentionTour_Page1_Row2.
+        /// </summary>
+        public static string RebateAndRetentionTour_Page1_Row2
+        {
+            get
+            {
+                return ResourceManager.GetString("RebateAndRetentionTour_Page1_Row2", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to RewardPayment.
+        /// </summary>
+        public static string RewardPayment
+        {
+            get
+            {
+                return ResourceManager.GetString("RewardPayment", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to RebateAndRetentionTour_Page1_Row3.
+        /// </summary>
+        public static string RebateAndRetentionTour_Page1_Row3
+        {
+            get
+            {
+                return ResourceManager.GetString("RebateAndRetentionTour_Page1_Row3", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to RewardDetail.
+        /// </summary>
+        public static string RewardDetail
+        {
+            get
+            {
+                return ResourceManager.GetString("RewardDetail", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to RebateAndRetentionTour_Page1_Row4.
+        /// </summary>
+        public static string RebateAndRetentionTour_Page1_Row4
+        {
+            get
+            {
+                return ResourceManager.GetString("RebateAndRetentionTour_Page1_Row4", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to RebateAndRetentionTour_Page1_Row5.
+        /// </summary>
+        public static string RebateAndRetentionTour_Page1_Row5
+        {
+            get
+            {
+                return ResourceManager.GetString("RebateAndRetentionTour_Page1_Row5", resourceCulture);
+            }
+        }
     }
 }

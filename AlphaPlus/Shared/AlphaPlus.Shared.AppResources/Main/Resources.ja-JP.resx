@@ -833,6 +833,9 @@
   </data>
   <data name="invalidsession" xml:space="preserve">
     <value>Invalid Session!</value>
-    <comment/>
+    <comment />
+  </data>
+  <data name="RebateAndRetentionTour_Page1_Row2" xml:space="preserve">
+    <value>Balance Info</value>
   </data>
 </root>
