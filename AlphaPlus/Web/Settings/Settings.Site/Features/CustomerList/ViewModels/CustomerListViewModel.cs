@@ -1,10 +1,10 @@
-﻿using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
-using AlphaPlus.Shared.AppResources.Settings.CustomerList;
-using AlphaPlus.Settings.Site.Features.CustomerList.Models;
-using AlphaPlus.Core.Models;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Helpers;
-using AlphaPlus.Core.Configurations;
+﻿using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.CustomerList.Models;
+using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Helpers;
+using AlphaPlus.Shared.AppResources.Settings.CustomerList;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
 {
@@ -30,8 +30,6 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
             SearchAccountId = request.CustId;
             SearchAccountRoleId = request.CustLevelId;
             SearchAccountName = request.CustName;
-
-            HideEditMultiple = request.ViewerLevel.IsSuperLevel() && request.CustLevel.IsMasterLevel() || !request.CanUpdateAccount;
 
             PageTitle = PageTitleDictionary[Enumeration.FromValue<UserLevel>(request.CustLevelId)];
 
@@ -61,14 +59,16 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
             EnableAutoTransfer = isEnabledAutoTransfer;
             EnableAllDayBalanceTransfer = request.EnableAllDayBalanceTransfer.HasValue && request.EnableAllDayBalanceTransfer.Value;
             LevelType = request.LevelType;
+            IsDirectMember = LevelType == 2;
             ShowLevelType = request.CustLevel.IsMasterOrSuperLevel();
+            HideEditMultiple = !request.CanUpdateAccount || (request.ViewerLevel.IsSuperLevel() && request.CustLevel.IsMasterLevel() && !IsDirectMember);
         }
 
         public bool ShowLevelType { get; }
 
         public byte LevelType { get; }
 
-        public bool IsDirectMember => LevelType == 2;
+        public bool IsDirectMember { get; }
 
         public bool HideEditMultiple { get; }
 
