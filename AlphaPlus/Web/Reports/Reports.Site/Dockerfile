@@ -1,8 +1,5 @@
 FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-node22-25h1 AS builder
 
-# installing yarn & gulp global
-RUN npm install -g yarn gulp-cli
-
 WORKDIR /src
 
 # copy .csproj files

@@ -1,8 +1,5 @@
 FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-node22-25h1 AS builder
 
-#Installing npm & gulp global
-RUN npm install -g yarn gulp-cli
-
 WORKDIR /src
 
 COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
