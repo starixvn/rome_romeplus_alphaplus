@@ -141,6 +141,7 @@
 <input type="hidden" id="isVerified" value="@(Model.IsVerified ? 1 : 0)" />
 <input type="hidden" id="hiddenAssetAppPaths" value="@Model.AssetAppPaths" />
 <input type="hidden" id="hiddenDCSStaticAppPaths" value="@Model.DCSStaticAppPaths" />
+<input type="hidden" id="showWatermarkProfilePicture" value="@(AppSetting.IsProfilePictureAllowedWatermark ? 1 : 0)" />
 
 @if (Model.ErrCode == Fanex.Alpha.Before.Constants.SignInErrorContants.CaptchaRequired)
 {

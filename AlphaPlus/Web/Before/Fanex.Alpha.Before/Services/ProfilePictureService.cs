@@ -1,4 +1,3 @@
-using System.Numerics;
 using AlphaPlus.Utilities.IP;
 using Fanex.Alpha.Before.Criteria;
 using Fanex.Alpha.Before.Models;
@@ -114,8 +113,8 @@ namespace Fanex.Alpha.Before.Services
 
             var x = 50;
             var y = 50;
-            var textPosition = new PointF(x + random.Next(-20, 50), y + random.Next(-20, 50));
 
+            var textPosition = new PointF(x + random.Next(-20, 50), y + random.Next(-20, 50));
             var textSize = TextMeasurer.MeasureSize(text, new TextOptions(font));
 
             var backgroundRectangle = new Rectangle(
@@ -124,9 +123,8 @@ namespace Fanex.Alpha.Before.Services
                 (int)textSize.Width + 12,
                 (int)textSize.Height + 10);
 
-            processingContext.Fill(Color.LightBlue, backgroundRectangle);
-
-            return processingContext.DrawText(text, font, randomColors.ElementAt(random.Next(0, 4)), textPosition);
+            return processingContext.Fill(Color.LightBlue, backgroundRectangle)
+                .DrawText(text, font, randomColors.ElementAt(random.Next(0, randomColors.Count() - 1)), textPosition);
         }
     }
 }
