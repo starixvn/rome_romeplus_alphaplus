@@ -37,7 +37,7 @@
                 }
                 else
                 {
-                    <select class="original" id="ddl-agent" disabled>
+                    <select class="original" id="ddl-agent" @(Model.MasterId == 0 ? "disabled" : string.Empty)>
                         <option value="0">@Resources.NoInformationIsAvailable</option>
                     </select>
                 }

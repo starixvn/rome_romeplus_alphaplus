@@ -19,7 +19,7 @@ public class CommissionViewModel(
         => products?.Select(p => new SelectListItem(p.Name, p.Id.ToString(), p.Id == message.ProductId));
 
     public IEnumerable<SelectListItem> Masters
-        => masters?.Select(c => new SelectListItem(c.CustName, c.CustId.ToString(), c.CustId == masterId));
+        => masters?.Select(c => new SelectListItem(c.CustName, c.CustId.ToString(), c.CustId == MasterId));
 
     public IEnumerable<SelectListItem> Agents
         => agents?.Select(c => new SelectListItem(c.CustName, c.CustId.ToString(), c.CustId == recommendId));
@@ -35,4 +35,6 @@ public class CommissionViewModel(
             ["siteLabel"] = AppSettings.SiteLabel,
             ["lng"] = message.Language
         };
+
+    public int MasterId { get; } = masterId;
 }
