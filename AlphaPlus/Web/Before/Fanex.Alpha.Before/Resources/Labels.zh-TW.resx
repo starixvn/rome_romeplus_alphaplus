@@ -133,7 +133,7 @@
     <comment/>
   </data>
   <data name="lblPasswordChanged" xml:space="preserve">
-    <value>您上次更改密碼於&lt;font style='color: #ff0000'&gt;{0}&lt;/font&gt;.若您仍無法登入, 請聯繫客服部。</value>
+    <value>您上次更改密碼於&lt;font style='color: #ff0000'&gt;{0}&lt;/font&gt;。若您仍無法登入, 請聯繫客服部。</value>
     <comment/>
   </data>
   <data name="LoginTooOftenBlockedMessage" xml:space="preserve">
@@ -174,5 +174,8 @@
   </data>
   <data name="usernameAlphanumericOnly" xml:space="preserve">
     <value>用戶名只能包含字母或數字。</value>
+  </data>
+  <data name="LoginFailedCountMessage" xml:space="preserve">
+    <value>{0} 次失敗嘗試。累計 6 次失敗後，您的訪問將被鎖定。如需幫助，請聯繫客戶服務部門。</value>
   </data>
 </root>
