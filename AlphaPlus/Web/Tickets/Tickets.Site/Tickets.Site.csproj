@@ -106,7 +106,7 @@
     <PackageReference Include="Fanex.Result.Core.SabaClub" Version="2.0.1-upgrade-01" />
     <PackageReference Include="Fanex.Result.Core.SAGaming" Version="3.0.0-upgrade-01" />
     <PackageReference Include="Fanex.Result.Core.SportsLottery" Version="2.0.0-beta-02" />
-    <PackageReference Include="Fanex.Result.Core.ThirdPartyResult" Version="2.0.1-upgrade-03" />
+    <PackageReference Include="Fanex.Result.Core.ThirdPartyResult" Version="2.0.1-upgrade-04" />
     <PackageReference Include="Fanex.Result.Core.VirtualRacing" Version="2.0.0-upgrade-01" />
     <PackageReference Include="Fanex.Result.Core.WM" Version="3.0.0-upgrade-01" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
