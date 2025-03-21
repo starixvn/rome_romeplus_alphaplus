@@ -62,6 +62,7 @@ public class ConsolidationDetailViewModel(
             ["CustLevelId"] = CustLevel.Value.ToString(),
             [nameof(ProductViewModel.UserSelectedProductIds)] = ProductViewModel.UserSelectedProductIds,
             [nameof(ProductViewModel.UserSelectedResourceIds)] = ProductViewModel.UserSelectedResourceIds,
+            [nameof(LevelType)] = LevelType.ToString(),
             [nameof(DateRangePicker.FromDate)] = DateRangePicker.FromDate,
             [nameof(DateRangePicker.ToDate)] = DateRangePicker.ToDate
         };

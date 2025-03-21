@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -132,8 +132,20 @@
   <data name="Comm" xml:space="preserve">
     <value>Hoa hồng</value>
   </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>Tất cả sản phẩm</value>
+  </data>
   <data name="BetCredit" xml:space="preserve">
     <value>Hạn mức khả dụng</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Số dư</value>
+  </data>
+  <data name="PlayForFunMemberRequest" xml:space="preserve">
+    <value>Chơi Thử - Yêu cầu kích hoạt</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Số lượng</value>
   </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>Không có dữ liệu</value>
@@ -141,8 +153,20 @@
   <data name="Outstanding" xml:space="preserve">
     <value>Tiền chưa xử lý</value>
   </data>
+  <data name="Selected" xml:space="preserve">
+    <value>Đã chọn</value>
+  </data>
+  <data name="SelectProducts" xml:space="preserve">
+    <value>Lựa chọn sản phẩm</value>
+  </data>
+  <data name="ThereIsNoProduct" xml:space="preserve">
+    <value>Không có sản phẩm nào</value>
+  </data>
   <data name="Username" xml:space="preserve">
     <value>Tên đăng nhập</value>
+  </data>
+  <data name="DisabledProductWarning" xml:space="preserve">
+    <value>Sản phẩm này hiện đang khoá. Vui lòng liên lạc với cấp trên để kích hoạt sản phẩm.</value>
   </data>
   <data name="Action" xml:space="preserve">
     <value>Hành động</value>
@@ -153,35 +177,14 @@
   <data name="Edit" xml:space="preserve">
     <value>Tùy chỉnh</value>
   </data>
-  <data name="AllProducts" xml:space="preserve">
-    <value>Tất cả sản phẩm</value>
+  <data name="SettingRequiredWarning" xml:space="preserve">
+    <value>Cần cấu hình các thiết lập trước khi kích hoạt sản phẩm.</value>
   </data>
   <data name="NoSettingWarning" xml:space="preserve">
     <value>Tài khoản của bạn chưa được cấu hình các thiết lập cho sản phẩm này, vui lòng liên hệ với cấp trên,</value>
   </data>
-  <data name="SettingRequiredWarning" xml:space="preserve">
-    <value>Cần cấu hình các thiết lập trước khi kích hoạt sản phẩm.</value>
-  </data>
-  <data name="DisabledProductWarning" xml:space="preserve">
-    <value>Sản phẩm này hiện đang khoá. Vui lòng liên lạc với cấp trên để kích hoạt sản phẩm.</value>
-  </data>
   <data name="Sync" xml:space="preserve">
     <value>Đồng bộ</value>
-  </data>
-  <data name="SelectProducts" xml:space="preserve">
-    <value>Lựa chọn sản phẩm</value>
-  </data>
-  <data name="ThereIsNoProduct" xml:space="preserve">
-    <value>Không có sản phẩm nào</value>
-  </data>
-  <data name="Selected" xml:space="preserve">
-    <value>Đã chọn</value>
-  </data>
-  <data name="No" xml:space="preserve">
-    <value>Số lượng</value>
-  </data>
-  <data name="PlayForFunMemberRequest" xml:space="preserve">
-    <value>Chơi Thử - Yêu cầu kích hoạt</value>
   </data>
   <data name="PlayForFunGuidelines" xml:space="preserve">
     <value>Chơi thử - Hướng dẫn</value>
@@ -201,11 +204,26 @@
   <data name="NewBetTypeEffectDate" xml:space="preserve">
     <value>Các loại cược mới của Bóng Rổ sẽ có hiệu lực từ {0}:</value>
   </data>
+  <data name="ProgressiveJackpotGames" xml:space="preserve">
+    <value>Trò chơi Jackpot lũy tiến</value>
+  </data>
+  <data name="JackpotGames" xml:space="preserve">
+    <value>Trò chơi Jackpot</value>
+  </data>
+  <data name="TotalContributionRate" xml:space="preserve">
+    <value>Tổng mức tích lũy</value>
+  </data>
+  <data name="JackpotBetStake" xml:space="preserve">
+    <value>Tiền cược Jackpot</value>
+  </data>
+  <data name="ProgressiveJackpotHandbookDetails" xml:space="preserve">
+    <value>Nhấn để vào Trợ Giúp để biết thêm chi tiết.</value>
+  </data>
+  <data name="ProgressiveJackpotHandbookTitle" xml:space="preserve">
+    <value>Trò chơi Jackpot Lũy Tiến - Trợ Giúp</value>
+  </data>
   <data name="CreditBalance" xml:space="preserve">
     <value>Hạn mức/Số dư</value>
-  </data>
-  <data name="AvailableCredit" xml:space="preserve">
-    <value>Hạn mức khả dụng</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>Tất cả</value>
@@ -254,6 +272,12 @@
   </data>
   <data name="Page" xml:space="preserve">
     <value>Trang</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>Hiển thị {from} đến {to} trong số {total} mục</value>
+  </data>
+  <data name="AvailableCredit" xml:space="preserve">
+    <value>Hạn mức khả dụng</value>
   </data>
   <data name="DontShowAgain" xml:space="preserve">
     <value>Không hiển thị lại</value>
@@ -315,53 +339,38 @@
   <data name="YesterdayCashBalance" xml:space="preserve">
     <value>Số dư tài khoản đến hết  hôm qua</value>
   </data>
-  <data name="Balance" xml:space="preserve">
-    <value>Số dư</value>
+  <data name="DateNotified" xml:space="preserve">
+    <value>Ngày Thông Báo</value>
   </data>
-  <data name="ProgressiveJackpotGames" xml:space="preserve">
-    <value>Trò chơi Jackpot lũy tiến</value>
+  <data name="ProblemMemberAccounts" xml:space="preserve">
+    <value>Tài Khoản Member Có Vấn Đề</value>
   </data>
-  <data name="JackpotGames" xml:space="preserve">
-    <value>Trò chơi Jackpot</value>
+  <data name="ReviewStatus" xml:space="preserve">
+    <value>Trạng Thái Duyệt</value>
   </data>
-  <data name="TotalContributionRate" xml:space="preserve">
-    <value>Tổng mức tích lũy</value>
+  <data name="MarkAsReviewed" xml:space="preserve">
+    <value>Đánh dấu Đã Duyệt</value>
   </data>
-  <data name="JackpotBetStake" xml:space="preserve">
-    <value>Tiền cược Jackpot</value>
+  <data name="Reviewed" xml:space="preserve">
+    <value>Đã Duyệt</value>
   </data>
-  <data name="ProgressiveJackpotHandbookDetails" xml:space="preserve">
-    <value>Nhấn để vào Trợ Giúp để biết thêm chi tiết.</value>
+  <data name="NotReviewed" xml:space="preserve">
+    <value>Chưa Duyệt</value>
   </data>
-  <data name="ProgressiveJackpotHandbookTitle" xml:space="preserve">
-    <value>Trò chơi Jackpot Lũy Tiến - Trợ Giúp</value>
-  </data>
-  <data name="EnterAccount" xml:space="preserve">
-    <value>Tên đăng nhập</value>
-  </data>
-  <data name="ExportToExcel" xml:space="preserve">
-    <value>Xuất sang Excel</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Hủy</value>
-  </data>
-  <data name="Nickname" xml:space="preserve">
-    <value>Biệt Danh</value>
-  </data>
-  <data name="To" xml:space="preserve">
-    <value>Đến</value>
-  </data>
-  <data name="None" xml:space="preserve">
-    <value>Bỏ Chọn</value>
-  </data>
-  <data name="Select" xml:space="preserve">
-    <value>Lưa chọn</value>
+  <data name="Master" xml:space="preserve">
+    <value>Master</value>
   </data>
   <data name="Member" xml:space="preserve">
     <value>Member</value>
   </data>
   <data name="SelectedAccounts" xml:space="preserve">
     <value>Tài khoản đã chọn:</value>
+  </data>
+  <data name="SetReviewedForAccountOnly" xml:space="preserve">
+    <value>Chỉ đánh dấu Đã Duyệt cho các tài khoản đã chọn.</value>
+  </data>
+  <data name="SetReviewedForDownline" xml:space="preserve">
+    <value>Đánh dấu Đã Duyệt cho các tài khoản đã chọn và cấp dưới có vấn đề của những tài khoản này.</value>
   </data>
   <data name="RequiredMaster" xml:space="preserve">
     <value>Vui lòng nhập tài khoản Master hợp lệ</value>
@@ -372,44 +381,41 @@
   <data name="ShowAllAccounts" xml:space="preserve">
     <value>Xem tất cả {0} tài khoản?</value>
   </data>
+  <data name="Select" xml:space="preserve">
+    <value>Lưa chọn</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Bỏ Chọn</value>
+  </data>
   <data name="ProblemAccountList" xml:space="preserve">
     <value>Danh Sách Tài Khoản Có Vấn Đề</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>Đến</value>
+  </data>
+  <data name="EnterAccount" xml:space="preserve">
+    <value>Tên đăng nhập</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>Xuất sang Excel</value>
   </data>
   <data name="ProblemAgentAccounts" xml:space="preserve">
     <value>Tài Khoản Agent Có Vấn Đề</value>
   </data>
-  <data name="ProblemMemberAccounts" xml:space="preserve">
-    <value>Tài Khoản Member Có Vấn Đề</value>
+  <data name="Nickname" xml:space="preserve">
+    <value>Biệt Danh</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>Đã cập nhật thành công!</value>
   </data>
-  <data name="SetReviewedForDownline" xml:space="preserve">
-    <value>Đánh dấu Đã Duyệt cho các tài khoản đã chọn và cấp dưới có vấn đề của những tài khoản này.</value>
-  </data>
-  <data name="SetReviewedForAccountOnly" xml:space="preserve">
-    <value>Chỉ đánh dấu Đã Duyệt cho các tài khoản đã chọn.</value>
-  </data>
-  <data name="DateNotifiedFrom" xml:space="preserve">
-    <value>Ngày Thông Báo Từ</value>
-  </data>
-  <data name="DateNotified" xml:space="preserve">
-    <value>Ngày Thông Báo</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>Hủy</value>
   </data>
   <data name="ExportDate" xml:space="preserve">
     <value>Ngày Xuất</value>
   </data>
-  <data name="NotReviewed" xml:space="preserve">
-    <value>Chưa Duyệt</value>
-  </data>
-  <data name="Reviewed" xml:space="preserve">
-    <value>Đã Duyệt</value>
-  </data>
-  <data name="MarkAsReviewed" xml:space="preserve">
-    <value>Đánh dấu Đã Duyệt</value>
-  </data>
-  <data name="ReviewStatus" xml:space="preserve">
-    <value>Trạng Thái Duyệt</value>
+  <data name="DateNotifiedFrom" xml:space="preserve">
+    <value>Ngày Thông Báo Từ</value>
   </data>
   <data name="RemainingTransferInAmount" xml:space="preserve">
     <value>Tiền Có Thể Chuyển</value>
@@ -477,17 +483,14 @@
   <data name="CannotGenerateMessage" xml:space="preserve">
     <value>Bạn không thể tạo lại mã QR vì tài khoản này đã được sử dụng.</value>
   </data>
-  <data name="ShowPassword" xml:space="preserve">
-    <value>Xem Mật Khẩu</value>
+  <data name="Connect" xml:space="preserve">
+    <value>Liên kết</value>
   </data>
-  <data name="Level" xml:space="preserve">
-    <value>Cấp</value>
+  <data name="ConnectToNewAccount" xml:space="preserve">
+    <value>Tạo Liên Kết Tài Khoản</value>
   </data>
-  <data name="RequiredPasswordError" xml:space="preserve">
-    <value>Mật Khẩu không thể để trống.</value>
-  </data>
-  <data name="Login" xml:space="preserve">
-    <value>Đăng nhập</value>
+  <data name="Disconnect" xml:space="preserve">
+    <value>Huỷ Liên Kết</value>
   </data>
   <data name="IndirectLogIn" xml:space="preserve">
     <value>Đăng Nhập Gián Tiếp</value>
@@ -495,8 +498,29 @@
   <data name="IndirectLoginAccount" xml:space="preserve">
     <value>ĐĂNG NHẬP TÀI KHOẢN GIÁN TIẾP</value>
   </data>
-  <data name="IndirectLoginAccountClosedOrDisabledError" xml:space="preserve">
-    <value>Tài khoản này đã bị đóng hoặc vô hiệu hóa, vui lòng mở lên và thử lại.</value>
+  <data name="IndirectLoginAccountPasswordUpdated" xml:space="preserve">
+    <value>Đăng Nhập Tài Khoản Gián Tiếp - Thay Đổi Mật Khẩu</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Cấp</value>
+  </data>
+  <data name="NewIndirectLoginAccount" xml:space="preserve">
+    <value>Tài Khoản Gián Tiếp Mới</value>
+  </data>
+  <data name="ShowPassword" xml:space="preserve">
+    <value>Xem Mật Khẩu</value>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>Super</value>
+  </data>
+  <data name="DisconnectConfirmationMessage" xml:space="preserve">
+    <value>Tài khoản này sẽ bị xoá khỏi danh sách. Bạn có muốn tiếp tục?</value>
+  </data>
+  <data name="YourDownlineUsernameOrNickname" xml:space="preserve">
+    <value>Tên Tài Khoản hoặc Biệt Danh Cấp Dưới</value>
+  </data>
+  <data name="UpdatePasswordHint" xml:space="preserve">
+    <value>Mật khẩu của tài khoản này đã được thay đổi, vui lòng nhập mật khẩu mới</value>
   </data>
   <data name="IndirectLoginAccountConfirmation" xml:space="preserve">
     <value>Đăng Nhập Tài Khoản Gián Tiếp - Xác Nhận</value>
@@ -507,32 +531,17 @@
   <data name="IndirectLoginAccountNewSuccessfully" xml:space="preserve">
     <value>Đã liên kết với tài khoản</value>
   </data>
-  <data name="IndirectLoginAccountPasswordUpdated" xml:space="preserve">
-    <value>Đăng Nhập Tài Khoản Gián Tiếp - Thay Đổi Mật Khẩu</value>
+  <data name="RequiredPasswordError" xml:space="preserve">
+    <value>Mật Khẩu không thể để trống.</value>
   </data>
-  <data name="Disconnect" xml:space="preserve">
-    <value>Huỷ Liên Kết</value>
-  </data>
-  <data name="Connect" xml:space="preserve">
-    <value>Liên kết</value>
-  </data>
-  <data name="DisconnectConfirmationMessage" xml:space="preserve">
-    <value>Tài khoản này sẽ bị xoá khỏi danh sách. Bạn có muốn tiếp tục?</value>
-  </data>
-  <data name="ConnectToNewAccount" xml:space="preserve">
-    <value>Tạo Liên Kết Tài Khoản</value>
-  </data>
-  <data name="NewIndirectLoginAccount" xml:space="preserve">
-    <value>Tài Khoản Gián Tiếp Mới</value>
+  <data name="IndirectLoginAccountClosedOrDisabledError" xml:space="preserve">
+    <value>Tài khoản này đã bị đóng hoặc vô hiệu hóa, vui lòng mở lên và thử lại.</value>
   </data>
   <data name="RequiredYourDownlineUsernameOrNicknameError" xml:space="preserve">
     <value>Tài khoản không hợp lệ hoặc không phải là tuyến dưới của bạn.</value>
   </data>
-  <data name="YourDownlineUsernameOrNickname" xml:space="preserve">
-    <value>Tên Tài Khoản hoặc Biệt Danh Cấp Dưới</value>
-  </data>
-  <data name="UpdatePasswordHint" xml:space="preserve">
-    <value>Mật khẩu của tài khoản này đã được thay đổi, vui lòng nhập mật khẩu mới</value>
+  <data name="Login" xml:space="preserve">
+    <value>Đăng nhập</value>
   </data>
   <data name="GivenCreditPopupTitle" xml:space="preserve">
     <value>Cập nhật hạn mức tín dụng</value>
@@ -573,22 +582,19 @@
   <data name="DormantAccountClosedTooltip" xml:space="preserve">
     <value>Member trong tuyến này đã đăng nhập sau Ngày Kết Thúc Lưu Trữ. Nếu Member này có đặt cược, toàn bộ tuyến liên quan sẽ không bị vô hiệu hoá.</value>
   </data>
-  <data name="Pager_DisplayItems" xml:space="preserve">
-    <value>Hiển thị {from} đến {to} trong số {total} mục</value>
-  </data>
   <data name="LockStatus" xml:space="preserve">
     <value>Trạng Thái Khoá</value>
   </data>
   <data name="IndirectLoginAccountLockedError" xml:space="preserve">
     <value>Tài khoản này đã bị khóa, vui lòng mở khóa và thử lại.</value>
   </data>
+  <data name="DeleteAccount" xml:space="preserve">
+    <value>Tài Khoản Đã Xoá</value>
+  </data>
   <data name="Deleted" xml:space="preserve">
     <value>Đã Xoá</value>
   </data>
   <data name="DeletedAccount" xml:space="preserve">
-    <value>Tài Khoản Đã Xoá</value>
-  </data>
-  <data name="DeleteAccount" xml:space="preserve">
     <value>Tài Khoản Đã Xoá</value>
   </data>
   <data name="ParlayMaxPayoutSubTitle" xml:space="preserve">
@@ -627,20 +633,17 @@
   <data name="mixsports" xml:space="preserve">
     <value>Mix Sports Parlay</value>
   </data>
-  <data name="CreatedDate" xml:space="preserve">
-    <value>Ngày tạo</value>
-  </data>
   <data name="ConditionToClearCredit" xml:space="preserve">
     <value>Điều Kiện Để Xoá Hạn Mức Được Cấp</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>Ngày tạo</value>
   </data>
   <data name="CreditBalanceNote" xml:space="preserve">
     <value>Các giá trị Số Dư Tài Khoản và Hạn Mức Khả Dụng hiển thị trong báo cáo này có thể chưa được cập nhật so với giá trị hiển thị trong tính năng Thông Tin Tài Khoản ở bảng điều khiển bên trái. Bạn có thể nhấn vào giá trị Hạn Mức Khả Dụng để xem giá trị mới nhất.</value>
   </data>
-  <data name="WatchlistUpdateSuccessfully" xml:space="preserve">
-    <value>Cập nhật thành công</value>
-  </data>
-  <data name="AccumulatedMemberWinLossOnlyStartsCountingNote" xml:space="preserve">
-    <value>Thắng Thua Tích Lũy chỉ bắt đầu tính khi giới hạn thắng/thua được đặt, và sẽ được đặt lại về 0 mỗi ngày, hoặc khi tắt chức năng này.</value>
+  <data name="Add" xml:space="preserve">
+    <value>Thêm</value>
   </data>
   <data name="AddMember" xml:space="preserve">
     <value>Thêm Member</value>
@@ -651,14 +654,17 @@
   <data name="AddRow" xml:space="preserve">
     <value>Thêm Hàng</value>
   </data>
+  <data name="AddSuccessfully" xml:space="preserve">
+    <value>Đã thêm vào thành công</value>
+  </data>
   <data name="AreYouSureToRemoveAccounts" xml:space="preserve">
     <value>Bạn có chắc muốn xóa tài khoản đã chọn?</value>
   </data>
   <data name="AreYouSureToRemovePreset" xml:space="preserve">
     <value>Bạn có chắc muốn xóa giới hạn đặt sẵn này?</value>
   </data>
-  <data name="DateTime" xml:space="preserve">
-    <value>Ngày Giờ</value>
+  <data name="CanViewReportData" xml:space="preserve">
+    <value>Bạn có thể tra cứu dữ liệu báo cáo từ ngày {0}.</value>
   </data>
   <data name="EditMultiplePersonalThresholds" xml:space="preserve">
     <value>Tùy Chỉnh Đồng Loạt Giới Hạn Riêng</value>
@@ -671,6 +677,9 @@
   </data>
   <data name="EnterListOfMemberUsernames" xml:space="preserve">
     <value>Nhập tên người dùng Member</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>Từ</value>
   </data>
   <data name="Global" xml:space="preserve">
     <value>Chung</value>
@@ -693,23 +702,29 @@
   <data name="IsNotMemberError" xml:space="preserve">
     <value>không phải là Member</value>
   </data>
-  <data name="LastLosingThreshold" xml:space="preserve">
-    <value>Giới Hạn Thua Gần Nhất</value>
+  <data name="LastThresholdType" xml:space="preserve">
+    <value>Loại Giới Hạn Gần Nhất</value>
   </data>
   <data name="LastReach" xml:space="preserve">
     <value>Lần Đạt Giới Hạn Gần Nhất</value>
   </data>
-  <data name="LastThresholdType" xml:space="preserve">
-    <value>Loại Giới Hạn Gần Nhất</value>
+  <data name="LastLosingThreshold" xml:space="preserve">
+    <value>Giới Hạn Thua Gần Nhất</value>
   </data>
   <data name="LastWinningThreshold" xml:space="preserve">
     <value>Giới Hạn Thắng Gần Nhất</value>
   </data>
+  <data name="ThresholdType" xml:space="preserve">
+    <value>Loại Giới Hạn</value>
+  </data>
+  <data name="Locked" xml:space="preserve">
+    <value>Bị khóa</value>
+  </data>
   <data name="LosingThreshold" xml:space="preserve">
     <value>Giới Hạn Thua</value>
   </data>
-  <data name="MaximumMembers" xml:space="preserve">
-    <value>(Tối đa 50 Member, phân tách bởi dấu phẩy ',')</value>
+  <data name="PersonalThresholdPresets" xml:space="preserve">
+    <value>Giới Hạn Riêng Đặt Sẵn</value>
   </data>
   <data name="MoreThan50UsernamesError" xml:space="preserve">
     <value>Số lượng Member không được vượt quá 50</value>
@@ -732,17 +747,20 @@
   <data name="NoChangeToUpdateError" xml:space="preserve">
     <value>Không có gì thay đổi để cập nhật.</value>
   </data>
+  <data name="ReachCount" xml:space="preserve">
+    <value>Số Lần Đạt</value>
+  </data>
+  <data name="ReachHistory" xml:space="preserve">
+    <value>Lịch Sử Đạt Giới Hạn</value>
+  </data>
   <data name="NotInWatchlistAnyLongerError" xml:space="preserve">
     <value>không còn nằm trong danh sách theo dõi</value>
   </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>Số dòng</value>
+  </data>
   <data name="Personal" xml:space="preserve">
     <value>Riêng</value>
-  </data>
-  <data name="PersonalThresholdPresets" xml:space="preserve">
-    <value>Giới Hạn Riêng Đặt Sẵn</value>
-  </data>
-  <data name="PersonalThresholdPresetSettings" xml:space="preserve">
-    <value>Cài Đặt Giới Hạn Riêng Đặt Sẵn</value>
   </data>
   <data name="Preset" xml:space="preserve">
     <value>Giới Hạn Đặt Sẵn</value>
@@ -753,14 +771,8 @@
   <data name="PresetNameIsDuplicated" xml:space="preserve">
     <value>Tên giới hạn đặt sẵn đã được sử dụng</value>
   </data>
-  <data name="ReachCount" xml:space="preserve">
-    <value>Số Lần Đạt</value>
-  </data>
   <data name="ReachedThreshold" xml:space="preserve">
     <value>Đạt Giới Hạn</value>
-  </data>
-  <data name="ReachHistory" xml:space="preserve">
-    <value>Lịch Sử Đạt Giới Hạn</value>
   </data>
   <data name="RemoveAccount" xml:space="preserve">
     <value>Xóa Tài Khoản</value>
@@ -786,8 +798,11 @@
   <data name="ThresholdPresetName" xml:space="preserve">
     <value>Tên Giới Hạn Đặt Sẵn</value>
   </data>
-  <data name="ThresholdType" xml:space="preserve">
-    <value>Loại Giới Hạn</value>
+  <data name="Unlimited" xml:space="preserve">
+    <value>Không giới hạn</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Cập nhật</value>
   </data>
   <data name="WasAddedWatchlistAlreadyError" xml:space="preserve">
     <value>đã có trong danh sách theo dõi</value>
@@ -798,29 +813,20 @@
   <data name="WinningThreshold" xml:space="preserve">
     <value>Giới Hạn Thắng</value>
   </data>
-  <data name="Unlimited" xml:space="preserve">
-    <value>Không giới hạn</value>
+  <data name="MaximumMembers" xml:space="preserve">
+    <value>(Tối đa 50 Member, phân tách bởi dấu phẩy ',')</value>
   </data>
-  <data name="From" xml:space="preserve">
-    <value>Từ</value>
+  <data name="DateTime" xml:space="preserve">
+    <value>Ngày Giờ</value>
   </data>
-  <data name="Locked" xml:space="preserve">
-    <value>Bị khóa</value>
+  <data name="AccumulatedMemberWinLossOnlyStartsCountingNote" xml:space="preserve">
+    <value>Thắng Thua Tích Lũy chỉ bắt đầu tính khi giới hạn thắng/thua được đặt, và sẽ được đặt lại về 0 mỗi ngày, hoặc khi tắt chức năng này.</value>
   </data>
-  <data name="CanViewReportData" xml:space="preserve">
-    <value>Bạn có thể tra cứu dữ liệu báo cáo từ ngày {0}.</value>
+  <data name="PersonalThresholdPresetSettings" xml:space="preserve">
+    <value>Cài Đặt Giới Hạn Riêng Đặt Sẵn</value>
   </data>
-  <data name="PageSize" xml:space="preserve">
-    <value>Số dòng</value>
-  </data>
-  <data name="AddSuccessfully" xml:space="preserve">
-    <value>Đã thêm vào thành công</value>
-  </data>
-  <data name="Update" xml:space="preserve">
-    <value>Cập nhật</value>
-  </data>
-  <data name="Add" xml:space="preserve">
-    <value>Thêm</value>
+  <data name="WatchlistUpdateSuccessfully" xml:space="preserve">
+    <value>Cập nhật thành công</value>
   </data>
   <data name="EditMultiple" xml:space="preserve">
     <value>Tuỳ chỉnh đồng loạt</value>
@@ -858,28 +864,14 @@
   <data name="NonEntered" xml:space="preserve">
     <value>Chưa có kết quả</value>
   </data>
-  <data name="lblPasswordRequire" xml:space="preserve">
-    <value>Mật khẩu phải gồm ít nhất 8 ký tự, không có khoảng trắng và phải có ít nhất 3 ký tự sau đây:&lt;br&gt;
-&lt;br&gt;
- - Ký tự viết hoa [A-Z]&lt;br&gt;
- - Ký tự viết thường [a-z]&lt;br&gt;
- - Ký tự số [0-9]&lt;br&gt;
- - Ký tự đặc biệt (!,@,#,...)&lt;br&gt;
-Ví dụ : 59D7!4$h, 493abcDE&lt;br&gt;
-&lt;br&gt;
-Lưu ý : Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
+  <data name="SearchAndCopy" xml:space="preserve">
+    <value>Tìm và sao chép</value>
   </data>
-  <data name="UserNotExist" xml:space="preserve">
-    <value>Người chơi này không có thực </value>
+  <data name="FullMode" xml:space="preserve">
+    <value>Thiết lập đầy đủ</value>
   </data>
-  <data name="NoAccountCreatedFailed" xml:space="preserve">
-    <value>{0} tài khoản tạo không thành công</value>
-  </data>
-  <data name="FailureReason" xml:space="preserve">
-    <value>Lý do thất bại</value>
-  </data>
-  <data name="CreateMore" xml:space="preserve">
-    <value>Tạo thêm</value>
+  <data name="QRCode" xml:space="preserve">
+    <value>Mã QR</value>
   </data>
   <data name="CopyAccountNote" xml:space="preserve">
     <value>Lưu ý: Cài đặt sẽ giống như của tài khoản sao chép</value>
@@ -893,11 +885,40 @@ Lưu ý : Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
   <data name="AccountDetailsNote" xml:space="preserve">
     <value>Hãy chọn tên tài khoản khả dụng trước và hệ thống sẽ đề xuất tên cho các tài khoản còn lại.</value>
   </data>
-  <data name="Usernames" xml:space="preserve">
-    <value>Tên người dùng</value>
+  <data name="lblPasswordRequire" xml:space="preserve">
+    <value>Mật khẩu phải gồm ít nhất 8 ký tự, không có khoảng trắng và phải có ít nhất 3 ký tự sau đây:&lt;br&gt;
+&lt;br&gt;
+ - Ký tự viết hoa [A-Z]&lt;br&gt;
+ - Ký tự viết thường [a-z]&lt;br&gt;
+ - Ký tự số [0-9]&lt;br&gt;
+ - Ký tự đặc biệt (!,@,#,...)&lt;br&gt;
+Ví dụ : 59D7!4$h, 493abcDE&lt;br&gt;
+&lt;br&gt;
+Lưu ý : Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
   </data>
   <data name="MemberMaxCredit" xml:space="preserve">
     <value>Hạn mức tín dụng tối đa của Member</value>
+  </data>
+  <data name="CreateMore" xml:space="preserve">
+    <value>Tạo thêm</value>
+  </data>
+  <data name="Usernames" xml:space="preserve">
+    <value>Tên người dùng</value>
+  </data>
+  <data name="CreateCustomerSuccessMessage" xml:space="preserve">
+    <value>{0} tài khoản đã được tạo thành công.</value>
+  </data>
+  <data name="UserNotExist" xml:space="preserve">
+    <value>Người chơi này không có thực </value>
+  </data>
+  <data name="NoAccountCreatedFailed" xml:space="preserve">
+    <value>{0} tài khoản tạo không thành công</value>
+  </data>
+  <data name="FailureReason" xml:space="preserve">
+    <value>Lý do thất bại</value>
+  </data>
+  <data name="SourceAccount" xml:space="preserve">
+    <value>Tài khoản sao chép</value>
   </data>
   <data name="GivenCreditPerAccount" xml:space="preserve">
     <value>Hạn mức cho mỗi tài khoản</value>
@@ -908,23 +929,17 @@ Lưu ý : Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
   <data name="AvailableGivenCredit" xml:space="preserve">
     <value>Hạn mức tín dụng còn lại</value>
   </data>
-  <data name="InvalidMemberMaxCredit" xml:space="preserve">
-    <value>Hạn mức tín dụng được cấp cho Member phải trong khoảng từ 0 đến {0}</value>
-  </data>
-  <data name="AccountWasDisabled" xml:space="preserve">
-    <value>Tài khoản bị vô hiệu hóa.</value>
-  </data>
-  <data name="SourceAccount" xml:space="preserve">
-    <value>Tài khoản sao chép</value>
-  </data>
   <data name="MaxCreditPerMember" xml:space="preserve">
     <value>Hạn mức tối đa mỗi Member</value>
   </data>
   <data name="InvalidMaxCreditPerAccount" xml:space="preserve">
     <value>Hạn mức tối đa mỗi Tài khoản: {0} hoặc thấp hơn.</value>
   </data>
-  <data name="CreateCustomerSuccessMessage" xml:space="preserve">
-    <value>{0} tài khoản đã được tạo thành công.</value>
+  <data name="InvalidMemberMaxCredit" xml:space="preserve">
+    <value>Hạn mức tín dụng được cấp cho Member phải trong khoảng từ 0 đến {0}</value>
+  </data>
+  <data name="AccountWasDisabled" xml:space="preserve">
+    <value>Tài khoản bị vô hiệu hóa.</value>
   </data>
   <data name="Copied" xml:space="preserve">
     <value>Đã lưu!</value>
@@ -938,50 +953,50 @@ Lưu ý : Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
   <data name="pendingTransfer3rd" xml:space="preserve">
     <value>Tiền Chưa Chuyển Về Từ Trò Chơi</value>
   </data>
-  <data name="AccountsAlreadyInWatchlist" xml:space="preserve">
-    <value>Đang có {0} tài khoản trên Danh Sách Theo Dõi</value>
-  </data>
-  <data name="AddMultipleAccountsToWatchlist" xml:space="preserve">
-    <value>Thêm Đồng Loạt Tài Khoản vào Danh Sách Theo Dõi</value>
-  </data>
-  <data name="AddMultipleToWatchlistExceedMessage" xml:space="preserve">
-    <value>Mỗi lần chỉ thêm được tối đa 50 Member vào Danh Sách Theo Dõi.</value>
-  </data>
-  <data name="AddToMyWatchlist" xml:space="preserve">
-    <value>Thêm vào Danh Sách Theo Dõi</value>
-  </data>
-  <data name="AddToWatchListConfirmThresholds" xml:space="preserve">
-    <value>Bạn nên cài đặt giới hạn cược cho tài khoản mới thêm. Nhấn &lt;b&gt;Cài Đặt Giới Hạn Cược&lt;/b&gt; để tiếp tục.</value>
-  </data>
-  <data name="MarkMultipleAsReviewed" xml:space="preserve">
-    <value>Đánh Dấu Đã Duyệt Đồng Loạt</value>
-  </data>
-  <data name="NewlyAddedAccounts" xml:space="preserve">
-    <value>Tài khoản mới thêm</value>
-  </data>
-  <data name="ProblemAccount" xml:space="preserve">
-    <value>Tài Khoản Có Vấn Đề</value>
-  </data>
-  <data name="SetThresholds" xml:space="preserve">
-    <value>Cài Đặt Giới Hạn Cược</value>
-  </data>
-  <data name="SuspendMultipleAccounts" xml:space="preserve">
-    <value>Đình Chỉ Đồng Loạt Tài Khoản</value>
-  </data>
-  <data name="AddMultipleToWatchlist" xml:space="preserve">
-    <value>Thêm Đồng Loạt Tài Khoản vào Danh Sách Theo Dõi</value>
+  <data name="EditMutipleSetting" xml:space="preserve">
+    <value>Tuỳ Chỉnh Đồng Loạt Thiết Lập</value>
   </data>
   <data name="EditSetting" xml:space="preserve">
     <value>Sửa Thiết Lập</value>
   </data>
-  <data name="ShowLess" xml:space="preserve">
-    <value>Ẩn bớt</value>
+  <data name="MarkMultipleAsReviewed" xml:space="preserve">
+    <value>Đánh Dấu Đã Duyệt Đồng Loạt</value>
+  </data>
+  <data name="AddMultipleToWatchlist" xml:space="preserve">
+    <value>Thêm Đồng Loạt Tài Khoản vào Danh Sách Theo Dõi</value>
+  </data>
+  <data name="AddToMyWatchlist" xml:space="preserve">
+    <value>Thêm vào Danh Sách Theo Dõi</value>
+  </data>
+  <data name="AddMultipleAccountsToWatchlist" xml:space="preserve">
+    <value>Thêm Đồng Loạt Tài Khoản vào Danh Sách Theo Dõi</value>
+  </data>
+  <data name="SuspendMultipleAccounts" xml:space="preserve">
+    <value>Đình Chỉ Đồng Loạt Tài Khoản</value>
+  </data>
+  <data name="SetThresholds" xml:space="preserve">
+    <value>Cài Đặt Giới Hạn Cược</value>
+  </data>
+  <data name="AccountsAlreadyInWatchlist" xml:space="preserve">
+    <value>Đang có {0} tài khoản trên Danh Sách Theo Dõi</value>
+  </data>
+  <data name="NewlyAddedAccounts" xml:space="preserve">
+    <value>Tài khoản mới thêm</value>
+  </data>
+  <data name="AddToWatchListConfirmThresholds" xml:space="preserve">
+    <value>Bạn nên cài đặt giới hạn cược cho tài khoản mới thêm. Nhấn &lt;b&gt;Cài Đặt Giới Hạn Cược&lt;/b&gt; để tiếp tục.</value>
+  </data>
+  <data name="AddMultipleToWatchlistExceedMessage" xml:space="preserve">
+    <value>Mỗi lần chỉ thêm được tối đa 50 Member vào Danh Sách Theo Dõi.</value>
+  </data>
+  <data name="ProblemAccount" xml:space="preserve">
+    <value>Tài Khoản Có Vấn Đề</value>
   </data>
   <data name="ShowMore" xml:space="preserve">
     <value>Xem thêm</value>
   </data>
-  <data name="EditMutipleSetting" xml:space="preserve">
-    <value>Tuỳ Chỉnh Đồng Loạt Thiết Lập</value>
+  <data name="ShowLess" xml:space="preserve">
+    <value>Ẩn bớt</value>
   </data>
   <data name="lblPasswordMemberRequire" xml:space="preserve">
     <value>Mật khẩu phải gồm 6-10 ký tự, không có khoảng trắng và phải chứa it nhất 1 ký tự viết hoa, 1 ký tự viết thường, 1 ký tự số (ví dụ: 493abcDE, 59D7!4$h).
@@ -990,8 +1005,8 @@ Lưu ý:  Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
   <data name="BBINNote" xml:space="preserve">
     <value>Lưu ý: Phần trăm Thắng (%) của BBIN hiển thị là &lt;b&gt;"N/A"&lt;/b&gt; nghĩa là không áp dụng Giới Hạn Thắng Tối Đa cho sản phẩm này.</value>
   </data>
-  <data name="QuickIntro_Title_NotNow" xml:space="preserve">
-    <value>Không phải bây giờ</value>
+  <data name="PTTemplate" xml:space="preserve">
+    <value>Mẫu Position Taking</value>
   </data>
   <data name="AddNewMaster" xml:space="preserve">
     <value>Tạo thành viên Master mới</value>
@@ -1002,44 +1017,35 @@ Lưu ý:  Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
   <data name="AddNewMember" xml:space="preserve">
     <value>Tạo Member mới</value>
   </data>
-  <data name="SearchAndCopy" xml:space="preserve">
-    <value>Tìm và sao chép</value>
-  </data>
-  <data name="FullMode" xml:space="preserve">
-    <value>Thiết lập đầy đủ</value>
-  </data>
-  <data name="QRCode" xml:space="preserve">
-    <value>Mã QR</value>
-  </data>
-  <data name="lblNew" xml:space="preserve">
-    <value>Mới</value>
-  </data>
-  <data name="PTTemplate" xml:space="preserve">
-    <value>Mẫu Position Taking</value>
+  <data name="LiteMode" xml:space="preserve">
+    <value>Thiết lập rút gọn</value>
   </data>
   <data name="QuickIntro_Title" xml:space="preserve">
     <value>Hãy cùng trải nghiệm nhanh Thiết Lập Rút Gọn</value>
   </data>
-  <data name="LiteMode" xml:space="preserve">
-    <value>Thiết lập rút gọn</value>
+  <data name="QuickIntro_Title_Content" xml:space="preserve">
+    <value>Trải nghiệm các bước tạo tài khoản nhanh nhất và tập trung nhất.</value>
+  </data>
+  <data name="QuickIntro_Title_NotNow" xml:space="preserve">
+    <value>Không phải bây giờ</value>
+  </data>
+  <data name="QuickIntro_Title_Confirm" xml:space="preserve">
+    <value>Bắt đầu nào</value>
   </data>
   <data name="QuickIntro_Popup_1" xml:space="preserve">
     <value>Hãy cùng khám phá tất cả những điều thú vị về tính năng này!</value>
   </data>
-  <data name="QuickIntro_Note" xml:space="preserve">
-    <value>* Xin lưu ý, Thiết Lập Rút Gọn chỉ áp dụng Position Taking giống nhau cho tất cả sản phẩm/môn thể thao trong cùng một nhóm. Nếu bạn muốn các giá trị khác nhau cho từng sản phẩm/môn thể thao, hãy chuyển sang Thiết Lập Đầy Đủ.</value>
-  </data>
   <data name="QuickIntro_Popup_2" xml:space="preserve">
     <value>Mọi thứ bắt đầu với một menu mới và trực quan.</value>
-  </data>
-  <data name="QuickIntro_Title_Content" xml:space="preserve">
-    <value>Trải nghiệm các bước tạo tài khoản nhanh nhất và tập trung nhất.</value>
   </data>
   <data name="QuickIntro_Popup_3" xml:space="preserve">
     <value>Cải tiến quá trình cài đặt Position Taking, tập trung và nhanh hơn thông qua việc chọn và áp dụng các giá trị Position Taking mẫu cho các nhóm sản phẩm. </value>
   </data>
-  <data name="QuickIntro_Title_Confirm" xml:space="preserve">
-    <value>Bắt đầu nào</value>
+  <data name="lblNew" xml:space="preserve">
+    <value>Mới</value>
+  </data>
+  <data name="QuickIntro_Note" xml:space="preserve">
+    <value>* Xin lưu ý, Thiết Lập Rút Gọn chỉ áp dụng Position Taking giống nhau cho tất cả sản phẩm/môn thể thao trong cùng một nhóm. Nếu bạn muốn các giá trị khác nhau cho từng sản phẩm/môn thể thao, hãy chuyển sang Thiết Lập Đầy Đủ.</value>
   </data>
   <data name="PageOf" xml:space="preserve">
     <value>Trang {0} </value>
@@ -1066,44 +1072,8 @@ Lưu ý:  Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
   <data name="Live" xml:space="preserve">
     <value>Trực tiếp</value>
   </data>
-  <data name="Turnover" xml:space="preserve">
-    <value>Tiền cược</value>
-  </data>
-  <data name="WinLoss" xml:space="preserve">
-    <value>Thắng thua</value>
-  </data>
-  <data name="Min" xml:space="preserve">
-    <value>Nhỏ nhất</value>
-  </data>
-  <data name="Max" xml:space="preserve">
-    <value>Lớn nhất</value>
-  </data>
-  <data name="creditHint" xml:space="preserve">
-    <value>Hạn mức khả dụng: {0}</value>
-  </data>
-  <data name="memberMaxCreditHint" xml:space="preserve">
-    <value>Hạn Mức Tín Dụng Tối Đa Của Member Cấp Bởi Cấp Trên：{0}</value>
-  </data>
-  <data name="CustomerProfile" xml:space="preserve">
-    <value>Hồ Sơ Member</value>
-  </data>
-  <data name="MemberBettingBehavior" xml:space="preserve">
-    <value>Hành Vi Đặt Cược Member</value>
-  </data>
-  <data name="BettingStatistic" xml:space="preserve">
-    <value>Thống Kê Cược</value>
-  </data>
-  <data name="DateRange" xml:space="preserve">
-    <value>Giai đoạn</value>
-  </data>
-  <data name="Last90Days" xml:space="preserve">
-    <value>90 ngày trước</value>
-  </data>
-  <data name="Last60Days" xml:space="preserve">
-    <value>60 ngày trước</value>
-  </data>
-  <data name="Last30Days" xml:space="preserve">
-    <value>30 ngày trước</value>
+  <data name="Canceled" xml:space="preserve">
+    <value>Hủy</value>
   </data>
   <data name="TurnoverBySport" xml:space="preserve">
     <value>Tiền Cược Theo Môn Thể Thao</value>
@@ -1114,29 +1084,53 @@ Lưu ý:  Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
   <data name="TurnoverAndWinLossByDate" xml:space="preserve">
     <value>Tiền Cược &amp; Thắng Thua Theo Ngày</value>
   </data>
-  <data name="RelatedToOtherAccounts" xml:space="preserve">
-    <value>Liên quan đến tài khoản khác</value>
+  <data name="NonLive" xml:space="preserve">
+    <value>Không trực tiếp</value>
   </data>
-  <data name="MonitoredMember" xml:space="preserve">
-    <value>Đang theo dõi</value>
+  <data name="Turnover" xml:space="preserve">
+    <value>Tiền cược</value>
   </data>
-  <data name="TotalTurnover" xml:space="preserve">
-    <value>Tổng tiền cược</value>
-  </data>
-  <data name="WinLossText" xml:space="preserve">
+  <data name="WinLoss" xml:space="preserve">
     <value>Thắng thua</value>
   </data>
-  <data name="NetTurnover" xml:space="preserve">
-    <value>Tiền cược thực</value>
+  <data name="Mix" xml:space="preserve">
+    <value>Tổng hợp</value>
+  </data>
+  <data name="MemberBettingBehavior" xml:space="preserve">
+    <value>Hành Vi Đặt Cược Member</value>
   </data>
   <data name="Average" xml:space="preserve">
     <value>Trung bình</value>
   </data>
-  <data name="MemberUsernameIsInvalid" xml:space="preserve">
-    <value>Tên người dùng không đúng.</value>
+  <data name="BetCount" xml:space="preserve">
+    <value>Số lượng cược</value>
   </data>
-  <data name="Canceled" xml:space="preserve">
-    <value>Hủy</value>
+  <data name="BettingStatistic" xml:space="preserve">
+    <value>Thống Kê Cược</value>
+  </data>
+  <data name="CustomerProfile" xml:space="preserve">
+    <value>Hồ Sơ Member</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>Giai đoạn</value>
+  </data>
+  <data name="ProfitMargin" xml:space="preserve">
+    <value>Biên lợi nhuận</value>
+  </data>
+  <data name="MixTurnover" xml:space="preserve">
+    <value>Tiền cược tổng hợp</value>
+  </data>
+  <data name="MonitoredMember" xml:space="preserve">
+    <value>Đang theo dõi</value>
+  </data>
+  <data name="NetTurnover" xml:space="preserve">
+    <value>Tiền cược thực</value>
+  </data>
+  <data name="RelatedToOtherAccounts" xml:space="preserve">
+    <value>Liên quan đến tài khoản khác</value>
+  </data>
+  <data name="TotalTurnover" xml:space="preserve">
+    <value>Tổng tiền cược</value>
   </data>
   <data name="Turnover_(Live)" xml:space="preserve">
     <value>Tiền Cược (Trực tiếp)</value>
@@ -1144,23 +1138,20 @@ Lưu ý:  Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
   <data name="Turnover_(NonLive)" xml:space="preserve">
     <value>Tiền Cược (Không trực tiếp)</value>
   </data>
-  <data name="MixTurnover" xml:space="preserve">
-    <value>Tiền cược tổng hợp</value>
+  <data name="WinLossText" xml:space="preserve">
+    <value>Thắng thua</value>
   </data>
-  <data name="BetCount" xml:space="preserve">
-    <value>Số lượng cược</value>
+  <data name="MemberUsernameIsInvalid" xml:space="preserve">
+    <value>Tên người dùng không đúng.</value>
   </data>
-  <data name="ProfitMargin" xml:space="preserve">
-    <value>Biên lợi nhuận</value>
+  <data name="Last30Days" xml:space="preserve">
+    <value>30 ngày trước</value>
   </data>
-  <data name="introCopyNote" xml:space="preserve">
-    <value>Nhấn 'Sao chép' để sao chép và chia sẻ thông tin tài khoản</value>
+  <data name="Last60Days" xml:space="preserve">
+    <value>60 ngày trước</value>
   </data>
-  <data name="CompactCopy" xml:space="preserve">
-    <value>Sao chép gộp</value>
-  </data>
-  <data name="IndividualCopy" xml:space="preserve">
-    <value>Sao chép lẻ</value>
+  <data name="Last90Days" xml:space="preserve">
+    <value>90 ngày trước</value>
   </data>
   <data name="Active" xml:space="preserve">
     <value>Đang hoạt động</value>
@@ -1189,6 +1180,18 @@ Lưu ý:  Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
   <data name="WatchlistMemberSummary" xml:space="preserve">
     <value>Tổng Hợp Danh Sách Theo Dõi Member</value>
   </data>
+  <data name="Min" xml:space="preserve">
+    <value>Nhỏ nhất</value>
+  </data>
+  <data name="Max" xml:space="preserve">
+    <value>Lớn nhất</value>
+  </data>
+  <data name="creditHint" xml:space="preserve">
+    <value>Hạn mức khả dụng: {0}</value>
+  </data>
+  <data name="memberMaxCreditHint" xml:space="preserve">
+    <value>Hạn Mức Tín Dụng Tối Đa Của Member Cấp Bởi Cấp Trên：{0}</value>
+  </data>
   <data name="DateRangeNote" xml:space="preserve">
     <value>Dữ liệu được tổng hợp từ ngày {0} đến {1}</value>
   </data>
@@ -1198,34 +1201,34 @@ Lưu ý:  Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
   <data name="RiskLevel" xml:space="preserve">
     <value>Mức độ rủi ro</value>
   </data>
-  <data name="NonLive" xml:space="preserve">
-    <value>Không trực tiếp</value>
+  <data name="CompactCopy" xml:space="preserve">
+    <value>Sao chép gộp</value>
   </data>
-  <data name="Mix" xml:space="preserve">
-    <value>Tổng hợp</value>
+  <data name="IndividualCopy" xml:space="preserve">
+    <value>Sao chép lẻ</value>
   </data>
-  <data name="Master" xml:space="preserve">
-    <value>Master</value>
-  </data>
-  <data name="Super" xml:space="preserve">
-    <value>Super</value>
-  </data>
-  <data name="CashSlashBalance" xml:space="preserve">
-    <value>Tiền Khả Dụng/&lt;br/&gt;Số Dư</value>
+  <data name="introCopyNote" xml:space="preserve">
+    <value>Nhấn 'Sao chép' để sao chép và chia sẻ thông tin tài khoản</value>
   </data>
   <data name="CashBalanceNote" xml:space="preserve">
     <value>Đối với Member Trực Tiếp, giá trị hiển thị là Số Dư. Với các cấp dưới khác, giá trị hiển thị là Tiền Khả Dụng.</value>
   </data>
-  <data name="YesterdayCashSlashYesterdayBalance" xml:space="preserve">
-    <value>Tiền Khả Dụng Đến Hết Hôm Qua/&lt;br/&gt;Số Dư Đến Hết Hôm Qua</value>
-  </data>
   <data name="YesterdayCashYesterdayBalanceNote" xml:space="preserve">
     <value>Đối với Member Trực Tiếp, giá trị hiển thị là Số Dư Đến Hết Hôm Qua. Với các cấp dưới khác, giá trị hiển thị là Tiền Khả Dụng Đến Hết Hôm Qua.</value>
   </data>
-  <data name="AvailableCreditSlashBetCredit" xml:space="preserve">
-    <value>Hạn Mức Khả Dụng/&lt;br/&gt;Hạn Mức Cược</value>
-  </data>
   <data name="AvailableCreditBetCreditNote" xml:space="preserve">
     <value>Đối với Member Trực Tiếp, giá trị hiển thị là Hạn Mức Cược. Với các cấp dưới khác, giá trị hiển thị là Hạn Mức Khả Dụng.</value>
+  </data>
+  <data name="SelectDirectDownline" xml:space="preserve">
+    <value>Chọn Cấp Dưới Trực Tiếp</value>
+  </data>
+  <data name="CashSlashBalance" xml:space="preserve">
+    <value>Tiền Khả Dụng/&lt;br/&gt;Số Dư</value>
+  </data>
+  <data name="YesterdayCashSlashYesterdayBalance" xml:space="preserve">
+    <value>Tiền Khả Dụng Đến Hết Hôm Qua/&lt;br/&gt;Số Dư Đến Hết Hôm Qua</value>
+  </data>
+  <data name="AvailableCreditSlashBetCredit" xml:space="preserve">
+    <value>Hạn Mức Khả Dụng/&lt;br/&gt;Hạn Mức Cược</value>
   </data>
 </root>

@@ -21,7 +21,7 @@
                     <span class="icon icon-information-outline icon-dormant-accounts"
                         title="@Resources.SummaryOfDormantAccounts"></span>
                 }
-                else if (isAgentLevel)
+                else if (isAgentLevel || data.IsDirectMember)
                 {
                     <a href="javascript:;" class="open-link"
                         data-url="@Model.GetBetListUrl(data.CustId, data.CustName)">@data.CustName</a>

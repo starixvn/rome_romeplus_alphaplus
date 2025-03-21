@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -132,11 +132,20 @@
   <data name="Comm" xml:space="preserve">
     <value>佣金</value>
   </data>
-  <data name="Balance" xml:space="preserve">
-    <value>现金</value>
+  <data name="AllProducts" xml:space="preserve">
+    <value>所有产品</value>
   </data>
   <data name="BetCredit" xml:space="preserve">
     <value>投注额度</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>现金</value>
+  </data>
+  <data name="PlayForFunMemberRequest" xml:space="preserve">
+    <value>免费试玩 - 会员要求</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>编号.</value>
   </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>没资料显示</value>
@@ -144,8 +153,20 @@
   <data name="Outstanding" xml:space="preserve">
     <value>未完成交易</value>
   </data>
+  <data name="Selected" xml:space="preserve">
+    <value>选定</value>
+  </data>
+  <data name="SelectProducts" xml:space="preserve">
+    <value>选择产品</value>
+  </data>
+  <data name="ThereIsNoProduct" xml:space="preserve">
+    <value>没有产品</value>
+  </data>
   <data name="Username" xml:space="preserve">
     <value>用户名</value>
+  </data>
+  <data name="DisabledProductWarning" xml:space="preserve">
+    <value>您被禁用此产品。请您联系您的上线以便开启</value>
   </data>
   <data name="Action" xml:space="preserve">
     <value>动作</value>
@@ -156,32 +177,11 @@
   <data name="Edit" xml:space="preserve">
     <value>修改</value>
   </data>
-  <data name="AllProducts" xml:space="preserve">
-    <value>所有产品</value>
+  <data name="SettingRequiredWarning" xml:space="preserve">
+    <value>此产品必需在可用于投注前做设定配置</value>
   </data>
   <data name="NoSettingWarning" xml:space="preserve">
     <value>产品设定还未配置，请您联系您的上线</value>
-  </data>
-  <data name="DisabledProductWarning" xml:space="preserve">
-    <value>您被禁用此产品。请您联系您的上线以便开启</value>
-  </data>
-  <data name="SelectProducts" xml:space="preserve">
-    <value>选择产品</value>
-  </data>
-  <data name="ThereIsNoProduct" xml:space="preserve">
-    <value>没有产品</value>
-  </data>
-  <data name="No" xml:space="preserve">
-    <value>编号.</value>
-  </data>
-  <data name="PlayForFunMemberRequest" xml:space="preserve">
-    <value>免费试玩 - 会员要求</value>
-  </data>
-  <data name="Selected" xml:space="preserve">
-    <value>选定</value>
-  </data>
-  <data name="SettingRequiredWarning" xml:space="preserve">
-    <value>此产品必需在可用于投注前做设定配置</value>
   </data>
   <data name="Sync" xml:space="preserve">
     <value>同步</value>
@@ -216,11 +216,11 @@
   <data name="JackpotBetStake" xml:space="preserve">
     <value>积宝赌注金额</value>
   </data>
-  <data name="ProgressiveJackpotHandbookTitle" xml:space="preserve">
-    <value>累积积宝游戏 - 手册</value>
-  </data>
   <data name="ProgressiveJackpotHandbookDetails" xml:space="preserve">
     <value>点击这里查看新积宝游戏细节。</value>
+  </data>
+  <data name="ProgressiveJackpotHandbookTitle" xml:space="preserve">
+    <value>累积积宝游戏 - 手册</value>
   </data>
   <data name="CreditBalance" xml:space="preserve">
     <value>信用额度/馀额</value>
@@ -272,6 +272,9 @@
   </data>
   <data name="Page" xml:space="preserve">
     <value>页</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>{total}项目中{from}到{to}的显示</value>
   </data>
   <data name="AvailableCredit" xml:space="preserve">
     <value>可用信用额</value>
@@ -330,17 +333,17 @@
   <data name="RemainingBuyInAmount" xml:space="preserve">
     <value>剩余买入金额</value>
   </data>
-  <data name="YesterdayCashBalance" xml:space="preserve">
-    <value>昨天现金余额</value>
-  </data>
   <data name="Cash" xml:space="preserve">
     <value>现金</value>
   </data>
-  <data name="ProblemMemberAccounts" xml:space="preserve">
-    <value>问题会员账户</value>
+  <data name="YesterdayCashBalance" xml:space="preserve">
+    <value>昨天现金余额</value>
   </data>
   <data name="DateNotified" xml:space="preserve">
     <value>通报日期 至</value>
+  </data>
+  <data name="ProblemMemberAccounts" xml:space="preserve">
+    <value>问题会员账户</value>
   </data>
   <data name="ReviewStatus" xml:space="preserve">
     <value>审查状态</value>
@@ -354,53 +357,23 @@
   <data name="NotReviewed" xml:space="preserve">
     <value>未审查</value>
   </data>
+  <data name="Master" xml:space="preserve">
+    <value>总代理</value>
+  </data>
   <data name="Agent" xml:space="preserve">
     <value>代理</value>
   </data>
   <data name="Member" xml:space="preserve">
     <value>会员</value>
   </data>
-  <data name="Master" xml:space="preserve">
-    <value>总代理</value>
+  <data name="SelectedAccounts" xml:space="preserve">
+    <value>所选账号：</value>
   </data>
   <data name="SetReviewedForAccountOnly" xml:space="preserve">
     <value>只把所选的账户设为已审核</value>
   </data>
   <data name="SetReviewedForDownline" xml:space="preserve">
     <value>将所选的账户及受影响的下线设为已审核</value>
-  </data>
-  <data name="ProblemAgentAccounts" xml:space="preserve">
-    <value>问题代理商账户</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>取消</value>
-  </data>
-  <data name="Nickname" xml:space="preserve">
-    <value>昵称</value>
-  </data>
-  <data name="ExportToExcel" xml:space="preserve">
-    <value>导出Excel</value>
-  </data>
-  <data name="To" xml:space="preserve">
-    <value>至</value>
-  </data>
-  <data name="UpdateSuccessfully" xml:space="preserve">
-    <value>成功更新</value>
-  </data>
-  <data name="EnterAccount" xml:space="preserve">
-    <value>用户名</value>
-  </data>
-  <data name="None" xml:space="preserve">
-    <value>没有</value>
-  </data>
-  <data name="Select" xml:space="preserve">
-    <value>选择</value>
-  </data>
-  <data name="DateNotifiedFrom" xml:space="preserve">
-    <value>通报日期 至</value>
-  </data>
-  <data name="SelectedAccounts" xml:space="preserve">
-    <value>所选账号：</value>
   </data>
   <data name="RequiredMaster" xml:space="preserve">
     <value>请输入有效总代理账号</value>
@@ -411,11 +384,41 @@
   <data name="ShowAllAccounts" xml:space="preserve">
     <value>显示所有 {0} 账号？</value>
   </data>
+  <data name="Select" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>没有</value>
+  </data>
   <data name="ProblemAccountList" xml:space="preserve">
     <value>问题账号列表</value>
   </data>
+  <data name="To" xml:space="preserve">
+    <value>至</value>
+  </data>
+  <data name="EnterAccount" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>导出Excel</value>
+  </data>
+  <data name="ProblemAgentAccounts" xml:space="preserve">
+    <value>问题代理商账户</value>
+  </data>
+  <data name="Nickname" xml:space="preserve">
+    <value>昵称</value>
+  </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
+    <value>成功更新</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
   <data name="ExportDate" xml:space="preserve">
     <value>导出日期</value>
+  </data>
+  <data name="DateNotifiedFrom" xml:space="preserve">
+    <value>通报日期 至</value>
   </data>
   <data name="RemainingTransferInAmount" xml:space="preserve">
     <value>转入剩余的金额</value>
@@ -483,20 +486,14 @@
   <data name="CannotGenerateMessage" xml:space="preserve">
     <value>由于此帐户已有人使用，您无法重新获取二维码</value>
   </data>
-  <data name="Super" xml:space="preserve">
-    <value>超级</value>
+  <data name="Connect" xml:space="preserve">
+    <value>连接</value>
   </data>
-  <data name="ShowPassword" xml:space="preserve">
-    <value>顯示密碼</value>
+  <data name="ConnectToNewAccount" xml:space="preserve">
+    <value>连接到新账户</value>
   </data>
-  <data name="Level" xml:space="preserve">
-    <value>阶层</value>
-  </data>
-  <data name="RequiredPasswordError" xml:space="preserve">
-    <value>密码不能留空</value>
-  </data>
-  <data name="Login" xml:space="preserve">
-    <value>登入</value>
+  <data name="Disconnect" xml:space="preserve">
+    <value>中断连接</value>
   </data>
   <data name="IndirectLogIn" xml:space="preserve">
     <value>非间接登录</value>
@@ -504,8 +501,29 @@
   <data name="IndirectLoginAccount" xml:space="preserve">
     <value>非间接登录账户</value>
   </data>
-  <data name="IndirectLoginAccountClosedOrDisabledError" xml:space="preserve">
-    <value>此账户已关闭或已禁用，请开启它，再次重试。</value>
+  <data name="IndirectLoginAccountPasswordUpdated" xml:space="preserve">
+    <value>间接登录帐户- 密码已更新</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>阶层</value>
+  </data>
+  <data name="NewIndirectLoginAccount" xml:space="preserve">
+    <value>新的间接登录账户</value>
+  </data>
+  <data name="ShowPassword" xml:space="preserve">
+    <value>顯示密碼</value>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>超级</value>
+  </data>
+  <data name="DisconnectConfirmationMessage" xml:space="preserve">
+    <value>至清单中移除所选的次要账户，确定继续吗？</value>
+  </data>
+  <data name="YourDownlineUsernameOrNickname" xml:space="preserve">
+    <value>您下线的用户名或昵称</value>
+  </data>
+  <data name="UpdatePasswordHint" xml:space="preserve">
+    <value>所选帐户密码已更新，请输入新密码。</value>
   </data>
   <data name="IndirectLoginAccountConfirmation" xml:space="preserve">
     <value>非间接登录账户- 确认</value>
@@ -516,32 +534,17 @@
   <data name="IndirectLoginAccountNewSuccessfully" xml:space="preserve">
     <value>该账户已成功连接</value>
   </data>
-  <data name="IndirectLoginAccountPasswordUpdated" xml:space="preserve">
-    <value>间接登录帐户- 密码已更新</value>
+  <data name="RequiredPasswordError" xml:space="preserve">
+    <value>密码不能留空</value>
   </data>
-  <data name="Disconnect" xml:space="preserve">
-    <value>中断连接</value>
-  </data>
-  <data name="Connect" xml:space="preserve">
-    <value>连接</value>
-  </data>
-  <data name="DisconnectConfirmationMessage" xml:space="preserve">
-    <value>至清单中移除所选的次要账户，确定继续吗？</value>
-  </data>
-  <data name="ConnectToNewAccount" xml:space="preserve">
-    <value>连接到新账户</value>
-  </data>
-  <data name="NewIndirectLoginAccount" xml:space="preserve">
-    <value>新的间接登录账户</value>
+  <data name="IndirectLoginAccountClosedOrDisabledError" xml:space="preserve">
+    <value>此账户已关闭或已禁用，请开启它，再次重试。</value>
   </data>
   <data name="RequiredYourDownlineUsernameOrNicknameError" xml:space="preserve">
     <value>账户无效或不是您的下线。</value>
   </data>
-  <data name="YourDownlineUsernameOrNickname" xml:space="preserve">
-    <value>您下线的用户名或昵称</value>
-  </data>
-  <data name="UpdatePasswordHint" xml:space="preserve">
-    <value>所选帐户密码已更新，请输入新密码。</value>
+  <data name="Login" xml:space="preserve">
+    <value>登入</value>
   </data>
   <data name="GivenCreditPopupTitle" xml:space="preserve">
     <value>更新信用额度</value>
@@ -582,9 +585,6 @@
   <data name="DormantAccountClosedTooltip" xml:space="preserve">
     <value>此线的会员在存档截止日期前登入，如果会员有进行投注，那么此线就不会被禁用。</value>
   </data>
-  <data name="Pager_DisplayItems" xml:space="preserve">
-    <value>{total}项目中{from}到{to}的显示</value>
-  </data>
   <data name="LockStatus" xml:space="preserve">
     <value>锁定状态</value>
   </data>
@@ -594,11 +594,11 @@
   <data name="DeleteAccount" xml:space="preserve">
     <value>删除账号</value>
   </data>
-  <data name="DeletedAccount" xml:space="preserve">
-    <value>删除账号</value>
-  </data>
   <data name="Deleted" xml:space="preserve">
     <value>删除</value>
+  </data>
+  <data name="DeletedAccount" xml:space="preserve">
+    <value>删除账号</value>
   </data>
   <data name="ParlayMaxPayoutSubTitle" xml:space="preserve">
     <value>串关最高派彩 {0}</value>
@@ -636,92 +636,59 @@
   <data name="mixsports" xml:space="preserve">
     <value>混合体育过关</value>
   </data>
-  <data name="CreatedDate" xml:space="preserve">
-    <value>新增日期</value>
-  </data>
   <data name="ConditionToClearCredit" xml:space="preserve">
     <value>清除信用额的条件</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>新增日期</value>
   </data>
   <data name="CreditBalanceNote" xml:space="preserve">
     <value>报告上显示的余额和投注额度与左侧的“用户资料”功能中显示的相比可能不是最新的。您可以在 “信用额度/馀额” 页面点击投注额度查看最新的额度。</value>
   </data>
-  <data name="WatchlistUpdateSuccessfully" xml:space="preserve">
-    <value>修改成功</value>
+  <data name="Add" xml:space="preserve">
+    <value>添加</value>
   </data>
-  <data name="Locked" xml:space="preserve">
-    <value>已锁定</value>
+  <data name="AddMember" xml:space="preserve">
+    <value>添加会员</value>
   </data>
-  <data name="Unlimited" xml:space="preserve">
-    <value>无限</value>
+  <data name="AddMembersToWatchlist" xml:space="preserve">
+    <value>添加会员在在监控列表</value>
   </data>
-  <data name="From" xml:space="preserve">
-    <value>从</value>
+  <data name="AddRow" xml:space="preserve">
+    <value>添加行列</value>
+  </data>
+  <data name="AddSuccessfully" xml:space="preserve">
+    <value>添加成功</value>
+  </data>
+  <data name="AreYouSureToRemoveAccounts" xml:space="preserve">
+    <value>您确定要移除所选账号吗？</value>
+  </data>
+  <data name="AreYouSureToRemovePreset" xml:space="preserve">
+    <value>您确定要移除此预设吗？</value>
   </data>
   <data name="CanViewReportData" xml:space="preserve">
     <value>您可查看报表数据从 {0}.</value>
   </data>
-  <data name="PageSize" xml:space="preserve">
-    <value>页面范围</value>
+  <data name="EditMultiplePersonalThresholds" xml:space="preserve">
+    <value>修改多重个人限額</value>
   </data>
-  <data name="ReachedThreshold" xml:space="preserve">
-    <value>已达限额</value>
-  </data>
-  <data name="MyWatchlist" xml:space="preserve">
-    <value>我的监控列表</value>
-  </data>
-  <data name="ThresholdType" xml:space="preserve">
-    <value>限额类别</value>
-  </data>
-  <data name="SupportsSportsbookDataOnly" xml:space="preserve">
-    <value>此功能仅适用于体育博彩</value>
-  </data>
-  <data name="GlobalWinningThreshold" xml:space="preserve">
-    <value>总体赢限额</value>
-  </data>
-  <data name="GlobalLosingThreshold" xml:space="preserve">
-    <value>总体输限额</value>
-  </data>
-  <data name="LastReach" xml:space="preserve">
-    <value>已达最后限值</value>
-  </data>
-  <data name="LastThresholdType" xml:space="preserve">
-    <value>最后限额类型</value>
-  </data>
-  <data name="WinningLosingAmount" xml:space="preserve">
-    <value>赢/输金额</value>
-  </data>
-  <data name="LastWinningThreshold" xml:space="preserve">
-    <value>最后赢限額</value>
-  </data>
-  <data name="LastLosingThreshold" xml:space="preserve">
-    <value>最后输限額</value>
-  </data>
-  <data name="ReachCount" xml:space="preserve">
-    <value>已达限值的次数</value>
+  <data name="EditPersonalThreshold" xml:space="preserve">
+    <value>修改个人限額</value>
   </data>
   <data name="EditWatchlistAccount" xml:space="preserve">
     <value>修改限額</value>
   </data>
-  <data name="SelectThresholdPreset" xml:space="preserve">
-    <value>选择预设限額或设置限額予以上会员：</value>
+  <data name="EnterListOfMemberUsernames" xml:space="preserve">
+    <value>输入会员用户名</value>
   </data>
-  <data name="Preset" xml:space="preserve">
-    <value>预设</value>
+  <data name="From" xml:space="preserve">
+    <value>从</value>
   </data>
-  <data name="PersonalThresholdPresets" xml:space="preserve">
-    <value>预设个人限額</value>
+  <data name="Global" xml:space="preserve">
+    <value>总体</value>
   </data>
-  <data name="PersonalThresholdPresetSettings" xml:space="preserve">
-    <value>预设设置个人限額</value>
-  </data>
-  <data name="SelectPreset" xml:space="preserve">
-    <value>选择预设</value>
-  </data>
-  <data name="WinningThreshold" xml:space="preserve">
-    <value>赢限額</value>
-  </data>
-  <data name="LosingThreshold" xml:space="preserve">
-    <value>输限額</value>
+  <data name="GlobalLosingThreshold" xml:space="preserve">
+    <value>总体输限额</value>
   </data>
   <data name="GlobalThresholds" xml:space="preserve">
     <value>总体限額</value>
@@ -732,50 +699,74 @@
   <data name="GlobalThresholdWillBeAppliedForMembers" xml:space="preserve">
     <value>总体限額的设置适用于不在监控列表中的会员。</value>
   </data>
-  <data name="AreYouSureToRemoveAccounts" xml:space="preserve">
-    <value>您确定要移除所选账号吗？</value>
-  </data>
-  <data name="ThresholdPresetName" xml:space="preserve">
-    <value>限額预设名称</value>
-  </data>
-  <data name="AddMember" xml:space="preserve">
-    <value>添加会员</value>
-  </data>
-  <data name="EditMultiplePersonalThresholds" xml:space="preserve">
-    <value>修改多重个人限額</value>
-  </data>
-  <data name="RemoveMultipleAccounts" xml:space="preserve">
-    <value>移除多重账号</value>
-  </data>
-  <data name="EditPersonalThreshold" xml:space="preserve">
-    <value>修改个人限額</value>
-  </data>
-  <data name="RemoveAccount" xml:space="preserve">
-    <value>移除账号</value>
-  </data>
-  <data name="MustEnterThresholdOrCheckError" xml:space="preserve">
-    <value>请输入限額，或选择无限</value>
-  </data>
-  <data name="MustEnterThresholdError" xml:space="preserve">
-    <value>请输入限額</value>
-  </data>
-  <data name="NoChangeToUpdateError" xml:space="preserve">
-    <value>没有任何的变化更新。</value>
-  </data>
-  <data name="MoreThan50UsernamesError" xml:space="preserve">
-    <value>会员人数不可超过 50</value>
+  <data name="GlobalWinningThreshold" xml:space="preserve">
+    <value>总体赢限额</value>
   </data>
   <data name="IsNotMemberError" xml:space="preserve">
     <value>不是会员</value>
   </data>
-  <data name="NotInWatchlistAnyLongerError" xml:space="preserve">
-    <value>已不在监控列表</value>
+  <data name="LastThresholdType" xml:space="preserve">
+    <value>最后限额类型</value>
   </data>
-  <data name="WasAddedWatchlistAlreadyError" xml:space="preserve">
-    <value>已在监控列表</value>
+  <data name="LastReach" xml:space="preserve">
+    <value>已达最后限值</value>
+  </data>
+  <data name="LastLosingThreshold" xml:space="preserve">
+    <value>最后输限額</value>
+  </data>
+  <data name="LastWinningThreshold" xml:space="preserve">
+    <value>最后赢限額</value>
+  </data>
+  <data name="ThresholdType" xml:space="preserve">
+    <value>限额类别</value>
+  </data>
+  <data name="Locked" xml:space="preserve">
+    <value>已锁定</value>
+  </data>
+  <data name="LosingThreshold" xml:space="preserve">
+    <value>输限額</value>
+  </data>
+  <data name="PersonalThresholdPresets" xml:space="preserve">
+    <value>预设个人限額</value>
+  </data>
+  <data name="MoreThan50UsernamesError" xml:space="preserve">
+    <value>会员人数不可超过 50</value>
+  </data>
+  <data name="MustEnterPresetNameError" xml:space="preserve">
+    <value>请输入预设名称</value>
+  </data>
+  <data name="MustEnterThresholdError" xml:space="preserve">
+    <value>请输入限額</value>
+  </data>
+  <data name="MustEnterThresholdOrCheckError" xml:space="preserve">
+    <value>请输入限額，或选择无限</value>
   </data>
   <data name="MustEnterUsernameError" xml:space="preserve">
     <value>请输入会员用户名</value>
+  </data>
+  <data name="MyWatchlist" xml:space="preserve">
+    <value>我的监控列表</value>
+  </data>
+  <data name="NoChangeToUpdateError" xml:space="preserve">
+    <value>没有任何的变化更新。</value>
+  </data>
+  <data name="ReachCount" xml:space="preserve">
+    <value>已达限值的次数</value>
+  </data>
+  <data name="ReachHistory" xml:space="preserve">
+    <value>已达历史记录</value>
+  </data>
+  <data name="NotInWatchlistAnyLongerError" xml:space="preserve">
+    <value>已不在监控列表</value>
+  </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>页面范围</value>
+  </data>
+  <data name="Personal" xml:space="preserve">
+    <value>个人</value>
+  </data>
+  <data name="Preset" xml:space="preserve">
+    <value>预设</value>
   </data>
   <data name="PresetIsNoLongerExists" xml:space="preserve">
     <value>此预设不再存在</value>
@@ -783,11 +774,47 @@
   <data name="PresetNameIsDuplicated" xml:space="preserve">
     <value>预设名称已存在</value>
   </data>
-  <data name="MustEnterPresetNameError" xml:space="preserve">
-    <value>请输入预设名称</value>
+  <data name="ReachedThreshold" xml:space="preserve">
+    <value>已达限额</value>
   </data>
-  <data name="EnterListOfMemberUsernames" xml:space="preserve">
-    <value>输入会员用户名</value>
+  <data name="RemoveAccount" xml:space="preserve">
+    <value>移除账号</value>
+  </data>
+  <data name="RemoveMultipleAccounts" xml:space="preserve">
+    <value>移除多重账号</value>
+  </data>
+  <data name="RemoveSuccessfully" xml:space="preserve">
+    <value>成功移除</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="SelectPreset" xml:space="preserve">
+    <value>选择预设</value>
+  </data>
+  <data name="SelectThresholdPreset" xml:space="preserve">
+    <value>选择预设限額或设置限額予以上会员：</value>
+  </data>
+  <data name="SupportsSportsbookDataOnly" xml:space="preserve">
+    <value>此功能仅适用于体育博彩</value>
+  </data>
+  <data name="ThresholdPresetName" xml:space="preserve">
+    <value>限額预设名称</value>
+  </data>
+  <data name="Unlimited" xml:space="preserve">
+    <value>无限</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>更改</value>
+  </data>
+  <data name="WasAddedWatchlistAlreadyError" xml:space="preserve">
+    <value>已在监控列表</value>
+  </data>
+  <data name="WinningLosingAmount" xml:space="preserve">
+    <value>赢/输金额</value>
+  </data>
+  <data name="WinningThreshold" xml:space="preserve">
+    <value>赢限額</value>
   </data>
   <data name="MaximumMembers" xml:space="preserve">
     <value>（最多 50 个会员，以逗号 ',' 分隔）</value>
@@ -795,41 +822,14 @@
   <data name="DateTime" xml:space="preserve">
     <value>日期时间</value>
   </data>
-  <data name="Global" xml:space="preserve">
-    <value>总体</value>
-  </data>
-  <data name="Personal" xml:space="preserve">
-    <value>个人</value>
-  </data>
-  <data name="AddRow" xml:space="preserve">
-    <value>添加行列</value>
-  </data>
-  <data name="RemoveSuccessfully" xml:space="preserve">
-    <value>成功移除</value>
-  </data>
-  <data name="ReachHistory" xml:space="preserve">
-    <value>已达历史记录</value>
-  </data>
-  <data name="AreYouSureToRemovePreset" xml:space="preserve">
-    <value>您确定要移除此预设吗？</value>
-  </data>
   <data name="AccumulatedMemberWinLossOnlyStartsCountingNote" xml:space="preserve">
     <value>累积输赢仅在设置输/赢限额 时开始计算。它将每天或在该功能关闭时重置。</value>
   </data>
-  <data name="AddMembersToWatchlist" xml:space="preserve">
-    <value>添加会员在在监控列表</value>
+  <data name="PersonalThresholdPresetSettings" xml:space="preserve">
+    <value>预设设置个人限額</value>
   </data>
-  <data name="Save" xml:space="preserve">
-    <value>保存</value>
-  </data>
-  <data name="AddSuccessfully" xml:space="preserve">
-    <value>添加成功</value>
-  </data>
-  <data name="Update" xml:space="preserve">
-    <value>更改</value>
-  </data>
-  <data name="Add" xml:space="preserve">
-    <value>添加</value>
+  <data name="WatchlistUpdateSuccessfully" xml:space="preserve">
+    <value>修改成功</value>
   </data>
   <data name="EditMultiple" xml:space="preserve">
     <value>多项编辑</value>
@@ -867,28 +867,14 @@
   <data name="NonEntered" xml:space="preserve">
     <value>未完成</value>
   </data>
-  <data name="lblPasswordRequire" xml:space="preserve">
-    <value>密码必须至少 8 个字符没有空格和包含至少 3个 以下：&lt;br&gt;
-&lt;br&gt;
-• 大写字母 [A-Z]&lt;br&gt;
-• 小写字母 [a-z]&lt;br&gt;
-• 数字 [0-9]&lt;br&gt;
-• 特殊字符 （!、 @、 # 等。。)&lt;br&gt;
-&lt;br&gt;
-例如： 59D7!4$h, 493abcDE&lt;br&gt;
-注意： 您的密码需有大小写</value>
+  <data name="SearchAndCopy" xml:space="preserve">
+    <value>搜索与复制</value>
   </data>
-  <data name="UserNotExist" xml:space="preserve">
-    <value>此账号不存在</value>
+  <data name="FullMode" xml:space="preserve">
+    <value>完全版</value>
   </data>
-  <data name="NoAccountCreatedFailed" xml:space="preserve">
-    <value>{0} 账号创建失败</value>
-  </data>
-  <data name="FailureReason" xml:space="preserve">
-    <value>失败原因</value>
-  </data>
-  <data name="CreateMore" xml:space="preserve">
-    <value>创建更多</value>
+  <data name="QRCode" xml:space="preserve">
+    <value>二维码</value>
   </data>
   <data name="CopyAccountNote" xml:space="preserve">
     <value>注意：设定将与原始账号保持相同</value>
@@ -902,11 +888,40 @@
   <data name="AccountDetailsNote" xml:space="preserve">
     <value>选择第一个可用的用户名，其余的账号将根据系统的建议。</value>
   </data>
-  <data name="Usernames" xml:space="preserve">
-    <value>用户名</value>
+  <data name="lblPasswordRequire" xml:space="preserve">
+    <value>密码必须至少 8 个字符没有空格和包含至少 3个 以下：&lt;br&gt;
+&lt;br&gt;
+• 大写字母 [A-Z]&lt;br&gt;
+• 小写字母 [a-z]&lt;br&gt;
+• 数字 [0-9]&lt;br&gt;
+• 特殊字符 （!、 @、 # 等。。)&lt;br&gt;
+&lt;br&gt;
+例如： 59D7!4$h, 493abcDE&lt;br&gt;
+注意： 您的密码需有大小写</value>
   </data>
   <data name="MemberMaxCredit" xml:space="preserve">
     <value>会员最高信用额</value>
+  </data>
+  <data name="CreateMore" xml:space="preserve">
+    <value>创建更多</value>
+  </data>
+  <data name="Usernames" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="CreateCustomerSuccessMessage" xml:space="preserve">
+    <value>{0} 账号已经创建成功。</value>
+  </data>
+  <data name="UserNotExist" xml:space="preserve">
+    <value>此账号不存在</value>
+  </data>
+  <data name="NoAccountCreatedFailed" xml:space="preserve">
+    <value>{0} 账号创建失败</value>
+  </data>
+  <data name="FailureReason" xml:space="preserve">
+    <value>失败原因</value>
+  </data>
+  <data name="SourceAccount" xml:space="preserve">
+    <value>账号来源。</value>
   </data>
   <data name="GivenCreditPerAccount" xml:space="preserve">
     <value>每个账号的信用额度</value>
@@ -917,23 +932,17 @@
   <data name="AvailableGivenCredit" xml:space="preserve">
     <value>可用信用额度</value>
   </data>
-  <data name="InvalidMemberMaxCredit" xml:space="preserve">
-    <value>会员信用额应在0和{0}之间</value>
-  </data>
-  <data name="AccountWasDisabled" xml:space="preserve">
-    <value>这个帐号禁用</value>
-  </data>
-  <data name="SourceAccount" xml:space="preserve">
-    <value>账号来源。</value>
-  </data>
   <data name="MaxCreditPerMember" xml:space="preserve">
     <value>每个会员的最高信用额</value>
   </data>
   <data name="InvalidMaxCreditPerAccount" xml:space="preserve">
     <value>每个账号最高信用额度: {0} 或是降低。</value>
   </data>
-  <data name="CreateCustomerSuccessMessage" xml:space="preserve">
-    <value>{0} 账号已经创建成功。</value>
+  <data name="InvalidMemberMaxCredit" xml:space="preserve">
+    <value>会员信用额应在0和{0}之间</value>
+  </data>
+  <data name="AccountWasDisabled" xml:space="preserve">
+    <value>这个帐号禁用</value>
   </data>
   <data name="Copied" xml:space="preserve">
     <value>复制！</value>
@@ -947,11 +956,17 @@
   <data name="pendingTransfer3rd" xml:space="preserve">
     <value>第三方待定转账</value>
   </data>
+  <data name="EditMutipleSetting" xml:space="preserve">
+    <value>修改多重设置</value>
+  </data>
   <data name="EditSetting" xml:space="preserve">
     <value>修改设定</value>
   </data>
-  <data name="EditMutipleSetting" xml:space="preserve">
-    <value>修改多重设置</value>
+  <data name="MarkMultipleAsReviewed" xml:space="preserve">
+    <value>将多重账号标记为已审核</value>
+  </data>
+  <data name="AddMultipleToWatchlist" xml:space="preserve">
+    <value>将多重账号添加到我的监控列表</value>
   </data>
   <data name="AddToMyWatchlist" xml:space="preserve">
     <value>添加至我的监控列表</value>
@@ -977,12 +992,6 @@
   <data name="AddMultipleToWatchlistExceedMessage" xml:space="preserve">
     <value>您一次最多只能添加50个会员至监控列表</value>
   </data>
-  <data name="AddMultipleToWatchlist" xml:space="preserve">
-    <value>将多重账号添加到我的监控列表</value>
-  </data>
-  <data name="MarkMultipleAsReviewed" xml:space="preserve">
-    <value>将多重账号标记为已审核</value>
-  </data>
   <data name="ProblemAccount" xml:space="preserve">
     <value>问题账号</value>
   </data>
@@ -1002,6 +1011,9 @@
   <data name="BBINNote" xml:space="preserve">
     <value>注意：BBIN"赢数额巴仙"的栏位显示&lt;b&gt;"N/A"&lt;/b&gt; 的意思是最高的赢数额不适用于BBIN的产品。</value>
   </data>
+  <data name="PTTemplate" xml:space="preserve">
+    <value>占成数模板</value>
+  </data>
   <data name="AddNewMaster" xml:space="preserve">
     <value>新增总代理</value>
   </data>
@@ -1011,29 +1023,8 @@
   <data name="AddNewMember" xml:space="preserve">
     <value>增加会员</value>
   </data>
-  <data name="SearchAndCopy" xml:space="preserve">
-    <value>搜索与复制</value>
-  </data>
-  <data name="FullMode" xml:space="preserve">
-    <value>完全版</value>
-  </data>
-  <data name="QRCode" xml:space="preserve">
-    <value>二维码</value>
-  </data>
-  <data name="lblNew" xml:space="preserve">
-    <value>新增</value>
-  </data>
-  <data name="QuickIntro_Title_Confirm" xml:space="preserve">
-    <value>现在开始</value>
-  </data>
-  <data name="QuickIntro_Title_NotNow" xml:space="preserve">
-    <value>不是现在</value>
-  </data>
-  <data name="QuickIntro_Note" xml:space="preserve">
-    <value>*请注意，精简模式将相同的占成数应用于指定组内的所有产品/体育。 如果您只要每种产品/体育有不同的占成数，请切换到完全版。</value>
-  </data>
-  <data name="QuickIntro_Popup_3" xml:space="preserve">
-    <value>优化占成数配置使流程更快、更集中的通过选择设置占成数模板数值到产品群组。</value>
+  <data name="LiteMode" xml:space="preserve">
+    <value>精简模式</value>
   </data>
   <data name="QuickIntro_Title" xml:space="preserve">
     <value>让我们快速浏览精简模式</value>
@@ -1041,8 +1032,11 @@
   <data name="QuickIntro_Title_Content" xml:space="preserve">
     <value>体验最快、最集中的创建账号过程。</value>
   </data>
-  <data name="PTTemplate" xml:space="preserve">
-    <value>占成数模板</value>
+  <data name="QuickIntro_Title_NotNow" xml:space="preserve">
+    <value>不是现在</value>
+  </data>
+  <data name="QuickIntro_Title_Confirm" xml:space="preserve">
+    <value>现在开始</value>
   </data>
   <data name="QuickIntro_Popup_1" xml:space="preserve">
     <value>让我们通过浏览来发现有关此功能所有令人兴奋的事情！</value>
@@ -1050,8 +1044,14 @@
   <data name="QuickIntro_Popup_2" xml:space="preserve">
     <value>它从一个新的、直观的目录开始。</value>
   </data>
-  <data name="LiteMode" xml:space="preserve">
-    <value>精简模式</value>
+  <data name="QuickIntro_Popup_3" xml:space="preserve">
+    <value>优化占成数配置使流程更快、更集中的通过选择设置占成数模板数值到产品群组。</value>
+  </data>
+  <data name="lblNew" xml:space="preserve">
+    <value>新增</value>
+  </data>
+  <data name="QuickIntro_Note" xml:space="preserve">
+    <value>*请注意，精简模式将相同的占成数应用于指定组内的所有产品/体育。 如果您只要每种产品/体育有不同的占成数，请切换到完全版。</value>
   </data>
   <data name="ADBTOnError" xml:space="preserve">
     <value>由于上线已为您启用全天余额转账，所以您无法使用自动转账。 页面将会自动刷新。</value>
@@ -1062,8 +1062,8 @@
   <data name="PageOf" xml:space="preserve">
     <value>第 {0} 页 共 {1} 页</value>
   </data>
-  <data name="BetSetting" xml:space="preserve">
-    <value>Bet Setting</value>
+  <data name="Betsetting" xml:space="preserve">
+    <value>投注设定</value>
   </data>
   <data name="MaxPayoutSetting" xml:space="preserve">
     <value>Max Payout Setting</value>
@@ -1084,44 +1084,23 @@
   <data name="Live" xml:space="preserve">
     <value>现场</value>
   </data>
-  <data name="Turnover" xml:space="preserve">
-    <value>投注额</value>
+  <data name="Bettype" xml:space="preserve">
+    <value>投注类别</value>
   </data>
-  <data name="WinLoss" xml:space="preserve">
+  <data name="Canceled" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Draw" xml:space="preserve">
+    <value>和</value>
+  </data>
+  <data name="Lose" xml:space="preserve">
+    <value>输</value>
+  </data>
+  <data name="Sports" xml:space="preserve">
+    <value>体育</value>
+  </data>
+  <data name="Win" xml:space="preserve">
     <value>輸贏</value>
-  </data>
-  <data name="Min" xml:space="preserve">
-    <value>最低</value>
-  </data>
-  <data name="Max" xml:space="preserve">
-    <value>最高</value>
-  </data>
-  <data name="creditHint" xml:space="preserve">
-    <value>可用信用额: {0}</value>
-  </data>
-  <data name="memberMaxCreditHint" xml:space="preserve">
-    <value>您的上线已设置会员最高信用：{0}</value>
-  </data>
-  <data name="MemberBettingBehavior" xml:space="preserve">
-    <value>会员投注模式</value>
-  </data>
-  <data name="CustomerProfile" xml:space="preserve">
-    <value>会员资料</value>
-  </data>
-  <data name="BettingStatistic" xml:space="preserve">
-    <value>投注统计</value>
-  </data>
-  <data name="DateRange" xml:space="preserve">
-    <value>日期范围</value>
-  </data>
-  <data name="Last90Days" xml:space="preserve">
-    <value>过去 90 天</value>
-  </data>
-  <data name="Last60Days" xml:space="preserve">
-    <value>过去 60 天</value>
-  </data>
-  <data name="Last30Days" xml:space="preserve">
-    <value>过去 30 天</value>
   </data>
   <data name="TurnoverBySport" xml:space="preserve">
     <value>按运动项目划分的投注额</value>
@@ -1132,65 +1111,59 @@
   <data name="TurnoverAndWinLossByDate" xml:space="preserve">
     <value>按日期划分投注额和输赢</value>
   </data>
-  <data name="RelatedToOtherAccounts" xml:space="preserve">
-    <value>与其他账号关联</value>
-  </data>
-  <data name="MonitoredMember" xml:space="preserve">
-    <value>监控会员</value>
-  </data>
-  <data name="TotalTurnover" xml:space="preserve">
-    <value>总投注额</value>
-  </data>
-  <data name="NetTurnover" xml:space="preserve">
-    <value>净投注额</value>
-  </data>
-  <data name="Average" xml:space="preserve">
-    <value>平均</value>
-  </data>
-  <data name="MemberUsernameIsInvalid" xml:space="preserve">
-    <value>会员账号无效。</value>
-  </data>
-  <data name="ProfitMargin" xml:space="preserve">
-    <value>利润率</value>
-  </data>
-  <data name="BetCount" xml:space="preserve">
-    <value>投注统计</value>
-  </data>
-  <data name="Bettype" xml:space="preserve">
-    <value>投注类别</value>
-  </data>
-  <data name="Stake" xml:space="preserve">
-    <value>本金</value>
-  </data>
-  <data name="WinLossText" xml:space="preserve">
-    <value>輸贏</value>
-  </data>
-  <data name="Win" xml:space="preserve">
-    <value>輸贏</value>
-  </data>
-  <data name="Lose" xml:space="preserve">
-    <value>输</value>
-  </data>
-  <data name="Draw" xml:space="preserve">
-    <value>和</value>
-  </data>
-  <data name="Winning" xml:space="preserve">
-    <value>赢额</value>
-  </data>
-  <data name="Losing" xml:space="preserve">
-    <value>損失</value>
-  </data>
-  <data name="Sports" xml:space="preserve">
-    <value>体育</value>
-  </data>
   <data name="NonLive" xml:space="preserve">
     <value>非滚球</value>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>投注额</value>
+  </data>
+  <data name="WinLoss" xml:space="preserve">
+    <value>輸贏</value>
   </data>
   <data name="Mix" xml:space="preserve">
     <value>混合</value>
   </data>
-  <data name="Canceled" xml:space="preserve">
-    <value>取消</value>
+  <data name="MemberBettingBehavior" xml:space="preserve">
+    <value>会员投注模式</value>
+  </data>
+  <data name="Average" xml:space="preserve">
+    <value>平均</value>
+  </data>
+  <data name="BetCount" xml:space="preserve">
+    <value>投注统计</value>
+  </data>
+  <data name="BettingStatistic" xml:space="preserve">
+    <value>投注统计</value>
+  </data>
+  <data name="CustomerProfile" xml:space="preserve">
+    <value>会员资料</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>日期范围</value>
+  </data>
+  <data name="Losing" xml:space="preserve">
+    <value>損失</value>
+  </data>
+  <data name="ProfitMargin" xml:space="preserve">
+    <value>利润率</value>
+  </data>
+  <data name="MixTurnover" xml:space="preserve">
+    <value>混合投注额</value>
+  </data>
+  <data name="MonitoredMember" xml:space="preserve">
+    <value>监控会员</value>
+  </data>
+  <data name="NetTurnover" xml:space="preserve">
+    <value>净投注额</value>
+  </data>
+  <data name="RelatedToOtherAccounts" xml:space="preserve">
+    <value>与其他账号关联</value>
+  </data>
+  <data name="Stake" xml:space="preserve">
+    <value>本金</value>
+  </data>
+  <data name="TotalTurnover" xml:space="preserve">
+    <value>总投注额</value>
   </data>
   <data name="Turnover_(Live)" xml:space="preserve">
     <value>投注额 (现场)</value>
@@ -1198,8 +1171,23 @@
   <data name="Turnover_(NonLive)" xml:space="preserve">
     <value>投注额 (非现场)</value>
   </data>
-  <data name="MixTurnover" xml:space="preserve">
-    <value>混合投注额</value>
+  <data name="Winning" xml:space="preserve">
+    <value>赢额</value>
+  </data>
+  <data name="WinLossText" xml:space="preserve">
+    <value>輸贏</value>
+  </data>
+  <data name="MemberUsernameIsInvalid" xml:space="preserve">
+    <value>会员账号无效。</value>
+  </data>
+  <data name="Last30Days" xml:space="preserve">
+    <value>过去 30 天</value>
+  </data>
+  <data name="Last60Days" xml:space="preserve">
+    <value>过去 60 天</value>
+  </data>
+  <data name="Last90Days" xml:space="preserve">
+    <value>过去 90 天</value>
   </data>
   <data name="Active" xml:space="preserve">
     <value>活跃</value>
@@ -1228,6 +1216,18 @@
   <data name="WatchlistMemberSummary" xml:space="preserve">
     <value>监控列表会员摘要</value>
   </data>
+  <data name="Min" xml:space="preserve">
+    <value>最低</value>
+  </data>
+  <data name="Max" xml:space="preserve">
+    <value>最高</value>
+  </data>
+  <data name="creditHint" xml:space="preserve">
+    <value>可用信用额: {0}</value>
+  </data>
+  <data name="memberMaxCreditHint" xml:space="preserve">
+    <value>您的上线已设置会员最高信用：{0}</value>
+  </data>
   <data name="DateRangeNote" xml:space="preserve">
     <value>数据总结是从 {0} 至 {1}</value>
   </data>
@@ -1237,34 +1237,34 @@
   <data name="RiskLevel" xml:space="preserve">
     <value>风险等级</value>
   </data>
-  <data name="IndividualCopy" xml:space="preserve">
-    <value>單一复制</value>
-  </data>
   <data name="CompactCopy" xml:space="preserve">
     <value>简洁复制</value>
+  </data>
+  <data name="IndividualCopy" xml:space="preserve">
+    <value>單一复制</value>
   </data>
   <data name="introCopyNote" xml:space="preserve">
     <value>点击“复制”即可复制并分享账号详情</value>
   </data>
-  <data name="Betsetting" xml:space="preserve">
-    <value>投注设定</value>
-  </data>
-  <data name="CashSlashBalance" xml:space="preserve">
-    <value>现金/&lt;br/&gt;余额资料</value>
-  </data>
   <data name="CashBalanceNote" xml:space="preserve">
     <value>对于直系会员账号，显示的栏位为余额。对于所有其他级别，显示的栏位为现金</value>
-  </data>
-  <data name="YesterdayCashSlashYesterdayBalance" xml:space="preserve">
-    <value>昨天馀额/&lt;br/&gt;昨天余额</value>
   </data>
   <data name="YesterdayCashYesterdayBalanceNote" xml:space="preserve">
     <value>对于直系会员账号，显示的栏位为昨天余额。对于所有其他级别，显示的栏位为昨天现金余额</value>
   </data>
-  <data name="AvailableCreditSlashBetCredit" xml:space="preserve">
-    <value>可用信用额/&lt;br/&gt;投注额度</value>
-  </data>
   <data name="AvailableCreditBetCreditNote" xml:space="preserve">
     <value>对于直系会员账号，显示的栏位为投注额度。对于所有其他级别，显示的栏位为可用信用额</value>
+  </data>
+  <data name="SelectDirectDownline" xml:space="preserve">
+    <value>选择直系下线</value>
+  </data>
+  <data name="CashSlashBalance" xml:space="preserve">
+    <value>现金/&lt;br/&gt;余额资料</value>
+  </data>
+  <data name="YesterdayCashSlashYesterdayBalance" xml:space="preserve">
+    <value>昨天馀额/&lt;br/&gt;昨天余额</value>
+  </data>
+  <data name="AvailableCreditSlashBetCredit" xml:space="preserve">
+    <value>可用信用额/&lt;br/&gt;投注额度</value>
   </data>
 </root>

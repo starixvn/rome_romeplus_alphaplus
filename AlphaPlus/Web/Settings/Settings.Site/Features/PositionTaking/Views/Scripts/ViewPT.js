@@ -86,7 +86,8 @@
                 : 0,
             RoleId: self.cachedData.positionTakingInfo
                 ? self.cachedData.positionTakingInfo.viewedCustomerInfo.roleId
-                : 0
+                : 0,
+            LevelType: self.cachedData.positionTakingInfo.levelType
         };
 
         self.cachedData.lastParam = criteria;
@@ -99,7 +100,11 @@
             success: function (rs) {
                 self.cachedData.positionTakingInfo = rs;
                 self.renderPositionTakingInfo(rs);
-                $(".view-downline").unbind().bind('click', function (event) { self.viewDownlinePTList(event); });
+                $('.view-downline')
+                    .unbind()
+                    .bind('click', function (event) {
+                        self.viewDownlinePTList(event);
+                    });
             }
         });
     };
