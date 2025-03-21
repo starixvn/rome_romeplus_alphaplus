@@ -249,6 +249,10 @@ $(() => {
             if (xhr.status === 401 || xhr.status === 403) {
                 alpha.core.signOut();
             }
+
+            if (xhr.status === 503 && xhr.responseJSON && xhr.responseJSON.code === 999999) {
+                alpha.core.signOut2();
+            }
         }
     });
 });

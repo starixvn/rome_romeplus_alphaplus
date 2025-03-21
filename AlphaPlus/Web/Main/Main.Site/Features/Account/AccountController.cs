@@ -33,7 +33,7 @@ public class AccountController(
     private readonly Core.Configurations.AuthorizationOptions options = options.Value;
 
     private const string SecretKey = "!@#$";
-    
+
     [AllowProtectedMode]
     public IActionResult Login(string r = null)
     {
@@ -61,7 +61,14 @@ public class AccountController(
     {
         if (!options.DisabledCheckDuplicationLogin)
         {
-            await accountService.CheckOut();
+            try
+            {
+                await accountService.CheckOut();
+            }
+            finally
+            {
+                // Prevent exception from sql login account is disabled
+            }
         }
 
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
@@ -125,7 +132,7 @@ public class AccountController(
         {
             return Login(invalidSession);
         }
-        
+
         var requestInfo = await deviceHelper.GetRequestInfo();
         requestInfo.BrowserName = !string.IsNullOrWhiteSpace(param.BrowserSize) ?
             $"{requestInfo.BrowserName}, {param.BrowserSize}" : requestInfo.BrowserName;
@@ -206,7 +213,7 @@ public class AccountController(
     [HttpGet, AllowProtectedMode]
     public async Task<IActionResult> IndirectLogin(string parameter)
     {
-        ClearSession();        
+        ClearSession();
 
         var reqParam = aesService.Decrypt(parameter, SecretKey);
 
@@ -251,5 +258,11 @@ public class AccountController(
         }
 
         return new EmptyResult();
+    }
+
+    [HttpGet, AllowProtectedMode]
+    public async Task<IActionResult> Offline()
+    {
+        return await Logout2();
     }
 }
