@@ -144,6 +144,12 @@
     justify-content: space-between;
     width: 100%;
 }
+.breadcrumb-table{
+    border-bottom: 1px solid var(--table-border);
+    + .tb-bordered{
+        margin-top: -1px;
+    }
+}
 @media only screen and (min-device-width: 768px) {
     .breadcrumb-table, .control-pager, #tbl-report {
         width: 60%;
