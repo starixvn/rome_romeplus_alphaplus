@@ -364,7 +364,7 @@
         }
 
         public ShowRNGWarBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=Funky Games (old)&productId=50`;
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=Funky Games (old)&productId=50&sportType=224&title={0} - Detailed Bet list - ${winlossDate.toString().split(' ')[0]}`;
 
             let width = 1500;
             let roleId = Number(this.ViewerLevelId);
@@ -379,7 +379,7 @@
 
             Common.PopupDetails.Instance(window.top).Show(
                 `${Common.AppPath.TicketsAppPath}CasinoDetails/RNG${params}`,
-                'Funky Games (old) - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
+                null,
                 width,
                 800
             );

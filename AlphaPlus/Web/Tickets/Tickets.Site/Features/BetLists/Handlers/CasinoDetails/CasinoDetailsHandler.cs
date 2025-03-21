@@ -4,6 +4,7 @@ using AlphaPlus.SmartPunter.Services;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.CasinoDetails;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.CasinoDetails;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Components;
+using AlphaPlus.Tickets.Site.Features.Shared;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
 using AlphaPlus.Utilities.IP;
 using Fanex.BetList.Core.Builder;
@@ -17,6 +18,7 @@ public class CasinoDetailsHandler(
     ICasinoDetailsService casinoDetailsService,
     IBetListHTMLBuilder builder,
     ITicketHelper ticketHelper,
+    ICacheRefService cacheRefService,
     ISmartPunterBetListMonitor monitorService,
     IPService ipService,
     IOptions<AppSettings> options) :
@@ -26,6 +28,7 @@ public class CasinoDetailsHandler(
         IRequestHandler<RNGCasinoDetailsQuery, CasinoDetailsViewModel>
 {
     private readonly ICasinoDetailsService casinoDetailsService = casinoDetailsService;
+    private readonly ICacheRefService cacheRefService = cacheRefService;
 
     public async Task<CasinoDetailsViewModel> Handle(CasinoDetailsQuery message, CancellationToken cancellationToken)
     {
@@ -59,6 +62,7 @@ public class CasinoDetailsHandler(
     {
         var param = CreateCasinoDetailsParam(message);
         var pagedBetListData = await casinoDetailsService.GetRNGBetList(param);
+        message.SportName = message.SportType == 0 ? message.SportName : GetPopupDetailTitle(message.SportType, message.Title);
 
         return new CasinoDetailsViewModel(
             message,
@@ -78,4 +82,7 @@ public class CasinoDetailsHandler(
             message.PageIndex,
             message.PageSize,
             message.DisplayVNIP);
+
+    protected internal string GetPopupDetailTitle(int sportType, string titleFormat)
+        => string.Format(titleFormat, cacheRefService.GetSportName(sportType));
 }

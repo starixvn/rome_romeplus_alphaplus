@@ -29,7 +29,14 @@ public class CasinoDetailsViewModel(
     public string ExportExcelUrl { get; } = exportExcelURl;
 
     protected override string GetTitle()
-        => $"{(!string.IsNullOrWhiteSpace(message.SportName) ? message.SportName : "RNG Casino")} Details";
+    {
+        if(message.SportType != 0)
+        {
+            return message.SportName;
+        }
+
+        return $"{(!string.IsNullOrWhiteSpace(message.SportName) ? message.SportName : "RNG Casino")} Details";
+    }
 
     public override IDictionary<string, string> GetExcelParams()
         => new Dictionary<string, string>

@@ -9,6 +9,10 @@ public class CasinoDetailsQuery : BetListBaseQuery, IRequest<CasinoDetailsViewMo
 
     public byte TransType { get; set; }
 
+    public int SportType { get; set; } = 0;
+
+    public string Title { get; set; }
+
     public string SportName { get; set; }
 
     public int ProductId { get; set; }
