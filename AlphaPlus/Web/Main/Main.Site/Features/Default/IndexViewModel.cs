@@ -7,187 +7,186 @@ using AlphaPlus.Core.Helpers;
 using AlphaPlus.Main.Site.Features.Default.MenuBar;
 using AlphaPlus.Main.Site.Features.CustomerProfile;
 
-namespace AlphaPlus.Main.Site.Features.Default
+namespace AlphaPlus.Main.Site.Features.Default;
+
+public class IndexViewModel
 {
-    public class IndexViewModel
+    private readonly IndexQuery message;
+    private readonly Func<string> getDefaultUrl;
+    private readonly IBrowserHelper browserHelper;
+    private readonly ActorProfilePictureModel profilePicture;
+
+    public IndexViewModel(
+        IndexQuery message,
+        string passwordHash,
+        Func<string> getDefaultUrl,
+        IBrowserHelper browserHelper,
+        ActorProfilePictureModel profilePicture)
     {
-        private readonly IndexQuery message;
-        private readonly Func<string> getDefaultUrl;
-        private readonly IBrowserHelper browserHelper;
-        private readonly ActorProfilePictureModel profilePicture;
+        this.message = message;
+        PasswordHash = passwordHash;
+        this.getDefaultUrl = getDefaultUrl ?? FunctionRegistry.GetDefaultUrl;
+        this.browserHelper = browserHelper;
+        RequiredNetworkSpeedCalculation = message.CustId > 0 && AppSettings.TrackingConnectionCustIds.Contains(message.CustId);
+        DisableMessages = message.DisableMessages;
+        this.profilePicture = profilePicture;
+        IsProtectedMode = message.IsProtectedMode;
+        AssetAppPath = message.AssetAppPath;
+    }
 
-        public IndexViewModel(
-            IndexQuery message,
-            string passwordHash,
-            Func<string> getDefaultUrl,
-            IBrowserHelper browserHelper,
-            ActorProfilePictureModel profilePicture)
+    public bool EnableSecurityCode => message.EnableSecurityCode;
+
+    public int CustId => message.CustId;
+
+    public int SubAccId => message.SubAccId;
+
+    public int OnUserId => message.OnUserId;
+
+    public string UserLevel => Enumeration.FromValue<UserLevel>(message.RoleId).DisplayName.ToLower();
+
+    public byte RoleId => message.RoleId;
+
+    public string Language => message.Language;
+
+    public string LanguageKey => message.LanguageKey;
+
+    public string SettingsRootPath => UrlHelper.MapSettingsPath("~/");
+
+    public string HowToUseRootPath => UrlHelper.MapHowToUsePath("~/");
+
+    public string MemberInfoRootPath => UrlHelper.MapMemberInfoPath("~/");
+
+    public string AccountInfoRootPath => UrlHelper.MapAccountInfoPath("~/");
+
+    public string ExTotalBetsForecastRootPath => UrlHelper.MapExTotalBetsForecastPath("~/");
+
+    public string MessageSiteRootPath => UrlHelper.MapMessagesPath("~/");
+
+    public string MainRootPath => UrlHelper.MapMainPath("~/");
+
+    public string ResultRootPath => UrlHelper.MapResultPath();
+
+    public string TransferRootPath => UrlHelper.MapTransferPath("~/");
+
+    public string PasswordHash { get; }
+
+    public string SubPageAccess => message.SubPageAccess;
+
+    public bool IsSubAccount => message.IsSubAccount;
+
+    public bool IsInternalWebVPN => message.IsInternalWebVpn;
+
+    public bool IsInternal => message.IsInternal || message.IsIndirectLoggedIn;
+
+    public bool IsShowIntroduction => true;
+
+    public bool ShowOldCustomerList { get; }
+
+    public string DefaultPath => getDefaultUrl?.Invoke() ?? MainRootPath;
+
+    public HeaderNavViewModel HeaderNavViewModel =>
+        new(
+            CustId,
+            message.UserName,
+            BuildNickName(message),
+            EnableSecurityCode,
+            message.ShowSearchAccount,
+            IsEnabledOtp,
+            string.IsNullOrEmpty(profilePicture.ImageBase64String),
+            profilePicture.ImageBase64String,
+            message.ShowCreateMemberByQRCode,
+            !string.IsNullOrWhiteSpace(message.DarkModeName),
+            IsProtectedMode,
+            message.IsOfferProtectedMode,
+            IsSubAccount,
+            message.SuperId);
+
+    public bool IsEnabledOtp => SecurityCodeSessionManager.SecurityCodeSession.IsEnabledOtp;
+
+    public double InitialScaleViewPort
+    {
+        get
         {
-            this.message = message;
-            PasswordHash = passwordHash;
-            this.getDefaultUrl = getDefaultUrl ?? FunctionRegistry.GetDefaultUrl;
-            this.browserHelper = browserHelper;
-            RequiredNetworkSpeedCalculation = message.CustId > 0 && AppSettings.TrackingConnectionCustIds.Contains(message.CustId);
-            DisableMessages = message.DisableMessages;
-            this.profilePicture = profilePicture;
-            IsProtectedMode = message.IsProtectedMode;
-            AssetAppPath = message.AssetAppPath;
-        }
+            var browserName = browserHelper.GetDevice().Info.BrowserName.ToLower();
+            var isTablet = browserHelper.IsMobile(isOnlyTablet: true);
 
-        public bool EnableSecurityCode => message.EnableSecurityCode;
-
-        public int CustId => message.CustId;
-
-        public int SubAccId => message.SubAccId;
-
-        public int OnUserId => message.OnUserId;
-
-        public string UserLevel => Enumeration.FromValue<UserLevel>(message.RoleId).DisplayName.ToLower();
-
-        public byte RoleId => message.RoleId;
-
-        public string Language => message.Language;
-
-        public string LanguageKey => message.LanguageKey;
-
-        public string SettingsRootPath => UrlHelper.MapSettingsPath("~/");
-
-        public string HowToUseRootPath => UrlHelper.MapHowToUsePath("~/");
-
-        public string MemberInfoRootPath => UrlHelper.MapMemberInfoPath("~/");
-
-        public string AccountInfoRootPath => UrlHelper.MapAccountInfoPath("~/");
-
-        public string ExTotalBetsForecastRootPath => UrlHelper.MapExTotalBetsForecastPath("~/");
-
-        public string MessageSiteRootPath => UrlHelper.MapMessagesPath("~/");
-
-        public string MainRootPath => UrlHelper.MapMainPath("~/");
-
-        public string ResultRootPath => UrlHelper.MapResultPath();
-
-        public string TransferRootPath => UrlHelper.MapTransferPath("~/");
-
-        public string PasswordHash { get; }
-
-        public string SubPageAccess => message.SubPageAccess;
-
-        public bool IsSubAccount => message.IsSubAccount;
-
-        public bool IsInternalWebVPN => message.IsInternalWebVpn;
-
-        public bool IsInternal => message.IsInternal || message.IsIndirectLoggedIn;
-
-        public bool IsShowIntroduction => true;
-
-        public bool ShowOldCustomerList { get; }
-
-        public string DefaultPath => getDefaultUrl?.Invoke() ?? MainRootPath;
-
-        public HeaderNavViewModel HeaderNavViewModel =>
-            new(
-                CustId,
-                message.UserName,
-                BuildNickName(message),
-                EnableSecurityCode,
-                message.ShowSearchAccount,
-                IsEnabledOtp,
-                string.IsNullOrEmpty(profilePicture.ImageBase64String),
-                profilePicture.ImageBase64String,
-                message.ShowCreateMemberByQRCode,
-                !string.IsNullOrWhiteSpace(message.DarkModeName),
-                IsProtectedMode,
-                message.IsOfferProtectedMode,
-                IsSubAccount,
-                message.SuperId);
-
-        public bool IsEnabledOtp => SecurityCodeSessionManager.SecurityCodeSession.IsEnabledOtp;
-
-        public double InitialScaleViewPort
-        {
-            get
+            if (browserName.Contains("chrome") && browserHelper.IsAndroid() && !browserHelper.IsAndroidNativeBrowser())
             {
-                var browserName = browserHelper.GetDevice().Info.BrowserName.ToLower();
-                var isTablet = browserHelper.IsMobile(isOnlyTablet: true);
-
-                if (browserName.Contains("chrome") && browserHelper.IsAndroid() && !browserHelper.IsAndroidNativeBrowser())
+                if (!isTablet)
                 {
-                    if (!isTablet)
-                    {
-                        return 0.5;
-                    }
+                    return 0.5;
                 }
-
-                return 0.7;
             }
+
+            return 0.7;
+        }
+    }
+
+    public bool RequiredNetworkSpeedCalculation { get; }
+
+    public bool DisableMessages { get; }
+
+    public bool IsProtectedMode { get; }
+
+    internal static string BuildNickName(IndexQuery message)
+    {
+        if (message.IsSubAcc)
+        {
+            return $"<p>{Resources.subAcc} {HttpUtility.HtmlEncode(message.SubUserName)}</p><p>{HttpUtility.HtmlEncode(message.NickName)}</p>";
         }
 
-        public bool RequiredNetworkSpeedCalculation { get; }
-
-        public bool DisableMessages { get; }
-
-        public bool IsProtectedMode { get; }
-
-        internal static string BuildNickName(IndexQuery message)
+        if (message.IsInternal)
         {
-            if (message.IsSubAcc)
-            {
-                return $"<p>{Resources.subAcc} {HttpUtility.HtmlEncode(message.SubUserName)}</p><p>{HttpUtility.HtmlEncode(message.NickName)}</p>";
-            }
-
-            if (message.IsInternal)
-            {
-                return $"{Resources.admin} {HttpUtility.HtmlEncode(message.AdminName)}";
-            }
-
-            return HttpUtility.HtmlEncode(message.NickName);
+            return $"{Resources.admin} {HttpUtility.HtmlEncode(message.AdminName)}";
         }
 
-        public string LiveChatLicenseID { get; } = AppSettings.LiveChatLicenseID;
+        return HttpUtility.HtmlEncode(message.NickName);
+    }
 
-        public int UMAnnouncementPopupClientIntervalInMinutes { get; } = AppSettings.UMAnnouncementPopupClientIntervalInMinutes;
+    public string LiveChatLicenseID { get; } = AppSettings.LiveChatLicenseID;
 
-        public string DarkModeName => message.DarkModeName;
+    public int UMAnnouncementPopupClientIntervalInMinutes { get; } = AppSettings.UMAnnouncementPopupClientIntervalInMinutes;
 
-        public bool IsDarkMode => !string.IsNullOrWhiteSpace(message.DarkModeName);
+    public string DarkModeName => message.DarkModeName;
 
-        public string AssetAppPath { get; }
+    public bool IsDarkMode => !string.IsNullOrWhiteSpace(message.DarkModeName);
 
-        public bool IsEnabledCDNReCheckin
-            => !string.IsNullOrWhiteSpace(AssetAppPath)
-            && !AlphaPlus.Core.Configurations.AppSettings.AssetAppPath.Equals(AssetAppPath, StringComparison.OrdinalIgnoreCase);
+    public string AssetAppPath { get; }
 
-        public int CDNReCheckinIntervalInSeconds { get; } = AppSettings.CDNReCheckinIntervalInSeconds;
+    public bool IsEnabledCDNReCheckin
+        => !string.IsNullOrWhiteSpace(AssetAppPath)
+        && !AlphaPlus.Core.Configurations.AppSettings.AssetAppPath.Equals(AssetAppPath, StringComparison.OrdinalIgnoreCase);
 
-        public int RecheckinIntervalMiliseconds => AppSettings.RecheckinIntervalMiliseconds;
+    public int CDNReCheckinIntervalInSeconds { get; } = AppSettings.CDNReCheckinIntervalInSeconds;
 
-        public string SessionID => AlphaContext.Current.Session.Id;
+    public int RecheckinIntervalMiliseconds => AppSettings.RecheckinIntervalMiliseconds;
 
-        public string Username => message.IsSubAcc ? message.SubUserName : message.UserName;
+    public string SessionID => AlphaContext.Current.Session.Id;
 
-        public bool IsShowSuggestEnableTelegramOtp { get; set; }
+    public string Username => message.IsSubAcc ? message.SubUserName : message.UserName;
 
-        public bool HightLightFeaturePermission => AlphaPlus.Core.Configurations.AppSettings.IsIncluded(AppSettings.RebateAndRetentionCustIds, message.CustId);
+    public bool IsShowSuggestEnableTelegramOtp { get; set; }
 
-        public string HightLightFeatureImageName => "new_feature_litemode" + DarkModeName;
+    public bool HightLightFeaturePermission => false;
 
-        public string HightLightFeatureUrl => MicroSites.MainUrl("~/Tour/RebateAndRetention");
+    public string HightLightFeatureImageName => "new_feature_litemode" + DarkModeName;
 
-        public bool IsEnableReCheckIn => message.IsEnableReCheckIn;
+    public string HightLightFeatureUrl => MicroSites.MainUrl("~/Tour/RebateAndRetention");
 
-        public string TourUrl => MicroSites.MainUrl("~/Tour/ProfilePicture");
+    public string TourUrl => MicroSites.MainUrl("~/Tour/ProfilePicture");
 
-        public bool ShowWinningThresholdSurvey
+    public bool IsEnableReCheckIn => message.IsEnableReCheckIn;
+
+    public bool ShowWinningThresholdSurvey
+    {
+        get
         {
-            get
-            {
-                var isSupport = message.RoleId == AlphaPlus.Core.Models.UserLevel.Agent.Value &&
-                    AlphaPlus.Core.Configurations.AppSettings.IsIncluded(AppSettings.WinningThresholdSurveySites, message.Site) &&
-                    !AlphaPlus.Core.Configurations.AppSettings.IsIncluded(AppSettings.WinningThresholdSurveyExcludedSites, message.Site) &&
-                    !AlphaPlus.Core.Configurations.AppSettings.IsIncluded(AppSettings.WinningThresholdSurveyExcludedLines, message.MRecommendId.ToString());
+            var isSupport = message.RoleId == AlphaPlus.Core.Models.UserLevel.Agent.Value &&
+                AlphaPlus.Core.Configurations.AppSettings.IsIncluded(AppSettings.WinningThresholdSurveySites, message.Site) &&
+                !AlphaPlus.Core.Configurations.AppSettings.IsIncluded(AppSettings.WinningThresholdSurveyExcludedSites, message.Site) &&
+                !AlphaPlus.Core.Configurations.AppSettings.IsIncluded(AppSettings.WinningThresholdSurveyExcludedLines, message.MRecommendId.ToString());
 
-                return isSupport;
-            }
+            return isSupport;
         }
     }
 }

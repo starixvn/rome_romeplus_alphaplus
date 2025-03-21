@@ -30,6 +30,7 @@ using AlphaPlus.SecurityCode.Extensions;
 using AlphaPlus.Main.Site.Shared.Services;
 using AlphaPlus.Main.Site.Features.NovaCasino;
 using AlphaPlus.Main.Site.Features.WhiteLabel;
+using AlphaPlus.Main.Site.Features.Tour;
 
 namespace AlphaPlus.Main.Site.Extensions;
 
@@ -65,7 +66,6 @@ public static class Extensions
         services.AddSingleton<ITransferService, TransferService>();
         services.AddSingleton<IUser, User>();
 
-
         services.AddSingleton<INicknameChecker, NicknameChecker>();
         services.AddSingleton<IBannerService, BannerService>();
         services.AddSingleton<IUMMessageService, UMMessageService>();
@@ -93,6 +93,7 @@ public static class Extensions
         services.AddHttpClient<ILanguageService, LanguageService>(httpClient => httpClient.BaseAddress = customerServiceUri);
         services.AddHttpClient<IWhiteLabelService, WhiteLabelService>(HttpClient => HttpClient.BaseAddress = new Uri(configuration.GetValue<string>("WhiteLabel:BackOfficeApiUrl")));
 
+        services.AddSingleton<IRewardTourService, RewardTourService>();
         services.AddHealthChecks();
 
         return services;

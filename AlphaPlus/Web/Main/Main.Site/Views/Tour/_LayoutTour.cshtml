@@ -1,0 +1,27 @@
+﻿@inject AlphaPlus.Core.Models.IUserSession userSession
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>@(ViewData["Title"] ?? "Tour")</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
+  @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
+  @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+  <link rel="stylesheet" href="~/assets/bundles/tour/common-tour@(userSession.DarkModeName).css"
+    asp-append-version="true" />
+</head>
+
+<body>
+  <div class="wrapper-tour">
+    <span class="icon-close" onclick="top.popupManager.closeAllPopup()"></span>
+    @RenderBody()
+  </div>
+  @StaticResources.AssetScripts.Render("/bundles/site-main/default")
+  @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

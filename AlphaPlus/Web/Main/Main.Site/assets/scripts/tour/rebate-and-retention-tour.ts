@@ -1,9 +1,5 @@
-﻿class RebateAndRetentionTour extends BaseTourController {
-    protected $: JQueryStatic;
-    protected maxPage = 5;
-}
+﻿class RebateAndRetentionTour extends BaseTourController {}
 
-$(() => {
-    const rebateAndRetention = new RebateAndRetentionTour($);
-    rebateAndRetention.init();
-})
+$(function () {
+    new RebateAndRetentionTour($).init();
+});

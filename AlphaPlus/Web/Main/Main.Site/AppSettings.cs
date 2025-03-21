@@ -97,8 +97,6 @@ namespace AlphaPlus.Main.Site
         public static string WinningThresholdSurveyExcludedSites => GetValue<string>("WinningThresholdSurveyExcludedSites");
         public static string WinningThresholdSurveyExcludedLines => GetValue<string>("WinningThresholdSurveyExcludedLines");
 
-        public static int[] RebateAndRetentionCustIds => GetSectionValue<int[]>("RebateAndRetentionCustIds", []);
-
         private static T GetValue<T>(string key, T defaultValue = default) => ConfigurationManager.GetValue<T>(key, defaultValue);
 
         private static T GetSectionValue<T>(string key, T defaultValue = default) => ConfigurationManager.GetSection<T>(key, defaultValue);
