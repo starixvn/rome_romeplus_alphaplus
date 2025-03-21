@@ -50,6 +50,7 @@
     <link rel="stylesheet" href="~/bundles-v2/movestatementhistory.css" asp-append-version="true" />
 }
 @section Scripts {
+    @StaticResources.AssetScripts.Render("/bundles-v2/site-assets/tipsy")
     <script src="~/bundles/betcredittracking/movestatementhistory.js" asp-append-version="true"></script>
 }
 @model MoveStatementHistoryViewModel
@@ -99,10 +100,6 @@
                     <p class="note red" style="margin-left: 14px;">@Resources.DuplicatedTicketMessage</p>
                 }
             </div>
-            @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
-            {
-                <div id="msg-error" class="msg msg-error">@Model.ErrorMessage</div>
-            }
             <input type="hidden" asp-for="IsMainReport" />
         </form>
         @if (Model.IsMainReport)
@@ -181,3 +178,7 @@
     </div>
 </div>
 <pager model="Model.Pager" />
+@if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+{
+    <input type="hidden" asp-for="ErrorMessage">
+}

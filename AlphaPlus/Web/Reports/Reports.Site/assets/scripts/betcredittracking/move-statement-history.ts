@@ -11,6 +11,10 @@
     public init() {
         $.blockUI();
 
+        const $txtMember = $('#Member');
+        this.checkAndShowError($txtMember);
+        $txtMember.on('input', () => TipsyHelper.clear($txtMember));
+
         this.initComponents();
         this.bindEvents();
 
@@ -42,6 +46,11 @@
             $('#PageIndex').val('1');
             this.$reportForm.submit();
         });
+    }
+
+    private checkAndShowError($txtMember: JQuery) {
+        const $errMsg = $('#ErrorMessage');
+        $errMsg.length && TipsyHelper.showError($txtMember, $errMsg.val(), 'nw');
     }
 }
 

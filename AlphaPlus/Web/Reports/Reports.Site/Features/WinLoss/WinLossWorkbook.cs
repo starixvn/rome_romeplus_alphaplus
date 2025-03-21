@@ -44,7 +44,7 @@ public class WinLossWorkbook(IWebHostEnvironment webHostEnvironment) :
     private static Mapper<WinLossModel> GetRowMapper(string levelTypeValue, bool isTotal = false)
         => new Mapper<WinLossModel>()
         .Map(A, winLoss => isTotal ? Resources.Total : (winLoss.CustId == 0 ? Resources.DormantAccounts : winLoss.CustName))
-        .Map(B, winLoss => winLoss.IsDirectMember ? CommonResx.DirectMember : levelTypeValue)
+        .Map(B, winLoss => isTotal ? string.Empty : (winLoss.IsDirectMember ? CommonResx.DirectMember : levelTypeValue))
         .Map(C, winLoss => winLoss.Turnover)
         .Map(D, winLoss => winLoss.GrossComm)
         .Map(E, winLoss => winLoss.DownlineTotal)

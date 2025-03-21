@@ -9,7 +9,9 @@
     void BuildBetCreditHistory(BetCreditHistoryEntity item)
     {
         <tr class="@(item.BetCredit == null ? "highlight-row" : string.Empty)">
-            <td><div class="text-nowrap">@item.ActionDateString</div></td>
+            <td>
+                <div class="text-nowrap">@item.ActionDateString</div>
+            </td>
             <td class="text-center">@item.WinLostDateString</td>
             <td class="text-left">@item.RefNo</td>
             <td>@FormatNullableNumber(item.ActualStake)</td>
@@ -72,8 +74,8 @@
             </div>
             <daterange-picker model="Model.DateRangePicker" />
             <div class="form-group">
-                <a id="icon-excel" class="ic-excel" title="@Resources.ExportToExcel"
-                    asp-action="BetCreditHistoryExcel" asp-all-route-data="Model.GetExcelParams()"></a>
+                <a id="icon-excel" class="ic-excel" title="@Resources.ExportToExcel" asp-action="BetCreditHistoryExcel"
+                    asp-all-route-data="Model.GetExcelParams()"></a>
             </div>
         </form>
         @if (Model.ReportData != null && string.IsNullOrWhiteSpace(Model.ErrorMessage))
@@ -114,7 +116,6 @@
 <pager model="Model.Pager" />
 <input type="hidden" id="UsernameIsRequired" value="@Resources.UsernameIsRequired" />
 <input type="hidden" id="InvalidRefNo" value="@Resources.InvalidRefNo" />
-<input type="hidden" for="ErrorMessage">
 @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
 {
     <input type="hidden" asp-for="ErrorMessage">
