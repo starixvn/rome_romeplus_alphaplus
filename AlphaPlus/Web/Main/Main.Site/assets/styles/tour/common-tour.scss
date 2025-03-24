@@ -1,4 +1,23 @@
-﻿.wrapper-tour {
+﻿
+:root, :root [data-theme='light'] {
+    --tour-guide-background: #ffffff;
+    --tour-guide-color: #333;
+    --tour-guide-page-bg: #f4f4f4;
+    --tour-guide-page-color: #a4a4a4;
+}
+
+:root [data-theme='dark'] {
+    --tour-guide-background: #171717;
+    --tour-guide-color: #ededed;
+    --tour-guide-page-bg: #212121;
+    --tour-guide-page-color: #4f4f4f;
+}
+
+body{
+    background-color: var(--tour-guide-background);
+    color: var(--tour-guide-color);
+}
+.wrapper-tour {
     position: relative;
     user-select: none;
 
@@ -8,7 +27,7 @@
 
     .icon-close {
         font-size: 22px;
-        color: #333;
+        color: var(--tour-guide-color);
         position: absolute;
         top: 10px;
         right: 10px;
@@ -44,12 +63,12 @@
     }
 }
 .spn-page {
-    background: #f4f4f4;
+    background: var(--tour-guide-page-bg);
     z-index: 1;
     padding: 9px 16px;
     text-align: left;
     text-shadow: none;
-    color: #333;
+    color: var(--tour-guide-color);
 }
 .page-btn {
     .page-btn-next, .page-btn-prev {
@@ -60,10 +79,10 @@
         left: 0;
         z-index: 1;
         font-size: 20px;
-        color: #a4a4a4;
+        color: var(--tour-guide-page-color);
         cursor: pointer;
         &:hover {
-            color: #333;
+            color: var(--tour-guide-color);
         }
     }
 

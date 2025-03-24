@@ -15,7 +15,7 @@
     asp-append-version="true" />
 </head>
 
-<body>
+<body data-theme="@(string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark")">
   <div class="wrapper-tour">
     <span class="icon-close" onclick="top.popupManager.closeAllPopup()"></span>
     @RenderBody()
