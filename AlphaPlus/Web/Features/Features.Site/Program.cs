@@ -4,7 +4,6 @@ using AlphaPlus.Core.Middlewares;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Features.Site.Helpers;
 using Microsoft.AspNetCore.HttpOverrides;
-using ONEbook.UM.AspNetCore.Filters;
 
 ThreadPool.SetMinThreads(100, 100);
 
@@ -21,7 +20,6 @@ configuration
     .AddJsonFile("authorization.json", optional: false, reloadOnChange: true);
 
 builder.Services
-        options.Filters.Add<CheckUMFilterAttribute>();
     .RegisterApplicationServices(configuration)
     .Configure<ForwardedHeadersOptions>(options =>
     {

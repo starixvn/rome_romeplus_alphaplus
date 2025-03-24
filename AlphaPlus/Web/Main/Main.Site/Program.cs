@@ -10,7 +10,6 @@ using AlphaPlus.SecurityCode.Filters;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
-using ONEbook.UM.AspNetCore.Filters;
 
 ThreadPool.SetMinThreads(100, 100);
 
@@ -39,7 +38,6 @@ builder.Services.AddControllersWithViews(options =>
     options.Filters.Add<AfterLoginFlowFilterAttribute>();
     options.Filters.Add<ProtectedModeFilterAttribute>();
     options.Filters.Add<SecurityCodeFilterAttribute>();
-    options.Filters.Add<CheckUMFilterAttribute>();
 });
 
 builder.Services
