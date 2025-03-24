@@ -3,12 +3,12 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net7.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.1-beta-01</Version>
-    <InfomationalVersion>2.0.1</InfomationalVersion>
+    <Version>2.0.2</Version>
+    <InfomationalVersion>2.0.2</InfomationalVersion>
     <Authors>Rome</Authors>
     <Company>Starix Soft</Company>
     <Product>Alpha Plus</Product>
-    <PackageReleaseNotes>Separate Live Casino and RNG Casino Ticket Details (#213479)</PackageReleaseNotes>
+    <PackageReleaseNotes>Funky Games Show Dialog Title by SportName (#213479)</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.BetList.Core" Version="3.0.1.0" />
