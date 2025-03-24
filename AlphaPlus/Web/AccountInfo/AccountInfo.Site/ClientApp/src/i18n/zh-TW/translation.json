@@ -1,5 +1,5 @@
 {
-  "DirectMembers": "直系會員",
+  "DirectMembers": "直系會員 (活躍/關閉/暂停)",
   "userNamePlaceHolder": "用戶名或名/姓",
   "accountNotFound": "用戶名不存在！",
   "master": "總代理",

@@ -1,5 +1,5 @@
 {
-  "DirectMembers": "สมาชิกโดยตรง",
+  "DirectMembers": "สมาชิกโดยตรง (เปิด/ปิด/ถูกระงับ)",
   "userNamePlaceHolder": "ยูเซอร์เนม หรือ ชื่อ/นามสุกล",
   "accountNotFound": "ไม่พบบัญชี!",
   "master": "มาสเตอร์",
