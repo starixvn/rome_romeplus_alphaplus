@@ -28,16 +28,16 @@ public class CheckBelongingFilterAttribute : TypeFilterAttribute
 
         public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
         {
+            var allowAnonymous = context.ActionDescriptor.EndpointMetadata.OfType<Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute>().Any();
+            if (allowAnonymous)
+            {
+                return;
+            }
+
             if (!context.HttpContext.User.Identity.IsAuthenticated ||
                 context.HttpContext.Session.Get<int>("CUSTID") == 0)
             {
                 await UnAuthorization(context);
-                return;
-            }
-
-            var allowAnonymous = context.ActionDescriptor.EndpointMetadata.OfType<Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute>().Any();
-            if (allowAnonymous)
-            {
                 return;
             }
 
@@ -90,9 +90,9 @@ public class CheckBelongingFilterAttribute : TypeFilterAttribute
 
                 if (!currentUrl.Equals("Account/Login", StringComparison.OrdinalIgnoreCase))
                 {
-                    context.HttpContext.Response.Redirect(MicroSites.MainUrl("~/Account/Login?r=You are not authorized on this function!"));
+                    context.Result = new RedirectResult(MicroSites.MainUrl("~/Account/Login?r=You are not authorized on this function!"));
                 }
-            }            
+            }
         }
 
         private async Task KickOutUser(AuthorizationFilterContext context, string message)

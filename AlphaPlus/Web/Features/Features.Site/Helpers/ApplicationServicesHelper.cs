@@ -18,6 +18,7 @@ using AlphaPlus.Features.Messages.API.Configurations;
 using AlphaPlus.Features.Messages.API.Client.Helpers;
 using AlphaPlus.Features.Messages.API;
 using AlphaPlus.Features.Handbook.API.Services;
+using AlphaPlus.Core.Filters;
 
 namespace AlphaPlus.Features.Site.Helpers
 {
@@ -29,7 +30,12 @@ namespace AlphaPlus.Features.Site.Helpers
                 .AddHealthChecks();
 
             services
-                .AddControllersWithViews()
+                .AddControllersWithViews(options =>
+                {
+                    options.Filters.Add<CheckBelongingFilterAttribute>();
+                    options.Filters.Add<AfterLoginFlowFilterAttribute>();
+                    options.Filters.Add<ProtectedModeFilterAttribute>();
+                })
                 .AddNewtonsoftJson(option =>
                 {
                     option.UseMemberCasing();
