@@ -34,6 +34,7 @@ public static class ServiceCollectionExtensions
         services.TryAddSingleton<INicknameChecker, NicknameChecker>();
         services.AddTransient<IAuthorizationService, AuthorizationService>();
         services.AddONEbookUM(configuration);
+        services.AddControllersWithViews(options => options.Filters.Add<CheckUMFilterAttribute>());
 
         services.Configure<KestrelServerOptions>(options =>
         {

@@ -210,7 +210,7 @@
         "EnableUnscheduledUM": false,
         "UMFrom": "3:00",
         "UMTo": "4:00",
-        "UMPageUrl": "/Common/Offline",
+        "UMPageUrl": "/main/Account/Offline",
         "ResultCacheDuration": 15,
         "UMLoggingCategory": "ONEbook-UM"
     },
