@@ -285,7 +285,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 response.IsAllowTotalBalanceTransfer = await IsAllowTotalBalanceTransfer(response.CustId);
                 response.DateLimit = await GetDateLimit(response.CustId);
 
-                var securityCodeFunction = await GetSecurityCodeOptionalFunction(response.CustId, 0);
+                var securityCodeFunction = await GetSecurityCodeOptionalFunction(response.CustId, 0) ?? new SecurityCodeFunction();
                 response.IsEnabledSecurityCodeInBetLists = securityCodeFunction.BetList;
                 response.IsEnabledSecurityCodeInStatement = securityCodeFunction.Statement;
 
