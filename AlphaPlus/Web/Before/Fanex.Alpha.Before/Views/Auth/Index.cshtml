@@ -99,7 +99,7 @@
 <div style="@(Model.IsVerified ? string.Empty : "display: none;")" id="loginRegion">
     <div class="rowlg">
         <figure class="avatar">
-            <img src='@(!string.IsNullOrEmpty(Model.Avatar) ? Model.Avatar : Url.Content("~/assets/images/icon_user_default.png"))'
+            <img style="width: 100px; height: 100px;" src='@(!string.IsNullOrEmpty(Model.Avatar) ? Model.Avatar : Url.Content("~/assets/images/icon_user_default.png"))'
                 alt="Avatar" id="avatar" />
             <figcaption><span class="username" id="username">@Model.Username</span></figcaption>
         </figure>
@@ -141,6 +141,7 @@
 <input type="hidden" id="isVerified" value="@(Model.IsVerified ? 1 : 0)" />
 <input type="hidden" id="hiddenAssetAppPaths" value="@Model.AssetAppPaths" />
 <input type="hidden" id="hiddenDCSStaticAppPaths" value="@Model.DCSStaticAppPaths" />
+<input type="hidden" id="showWatermarkProfilePicture" value="@(AppSetting.IsProfilePictureAllowedWatermark ? 1 : 0)" />
 
 @if (Model.ErrCode == Fanex.Alpha.Before.Constants.SignInErrorContants.CaptchaRequired)
 {
