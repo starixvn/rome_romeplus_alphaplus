@@ -22,13 +22,12 @@ internal static class FanexLoggingExtensions
             yield return new RabbitMQLogging(rabbitMQConnectionStrings);
         }
 
-        var sentryUrl = configuration["Fanex.Logging:SentryBackendUrl"];
+        var sentryUrl = configuration["Fanex.Logging:SentryDsn"];
         if (!string.IsNullOrWhiteSpace(sentryUrl))
         {
             yield return new SentryLogging(new SentryEngineOptions
             {
                 Dsn = new Dsn(sentryUrl),
-                FrontEndDsn = new Dsn(configuration["Fanex.Logging:SentryUrl"])
             });
         }
     }
