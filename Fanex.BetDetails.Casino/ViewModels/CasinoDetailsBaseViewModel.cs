@@ -38,7 +38,7 @@
             Builder = builder;
             TicketHelper = ticketHelper;
 
-            Title = (!string.IsNullOrEmpty(sportName) ? sportName : "RNG Casino") + " Details";
+            Title = GetTitle();
             TotalColumn = TotalColumnByViewLevel[ViewerLevel];
         }
 
@@ -79,5 +79,10 @@
                 DetailData.CurrentPageIndex,
                 DetailData.PageSize,
                 DetailData.TotalRecords);
+
+        protected virtual string GetTitle()
+        {
+            return (!string.IsNullOrEmpty(SportName) ? SportName : "RNG Casino") + " Details";
+        }
     }
 }

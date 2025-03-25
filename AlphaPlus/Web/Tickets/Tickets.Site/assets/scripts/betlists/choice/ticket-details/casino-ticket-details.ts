@@ -364,7 +364,7 @@
         }
 
         public ShowRNGWarBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=Funky Games&productId=50`;
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=Funky Games (old)&productId=50&sportType=224&title={0} - Detailed Bet list - ${winlossDate.toString().split(' ')[0]}`;
 
             let width = 1500;
             let roleId = Number(this.ViewerLevelId);
@@ -379,7 +379,7 @@
 
             Common.PopupDetails.Instance(window.top).Show(
                 `${Common.AppPath.TicketsAppPath}CasinoDetails/RNG${params}`,
-                'Funky Games - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
+                null,
                 width,
                 800
             );
@@ -1126,6 +1126,40 @@
             );
         };
     }
+    
+    
+    export class FunkyGamesTicketDetails extends BaseTicketDetails {
+        private static instance: FunkyGamesTicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance)
+                ? new FunkyGamesTicketDetails()
+                : this.instance;
+            return this.instance;
+        }
+
+        public ShowFunkyGamesBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=Funky Games&productId=104`;
+
+            let width = 1500;
+            let roleId = Number(this.ViewerLevelId);
+
+            if (roleId <= 3) {
+                width -= 105;
+            }
+
+            if (roleId <= 2) {
+                width -= 105;
+            }
+
+            Common.PopupDetails.Instance(window.top).Show(
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/RNG${params}`,
+                'Funky Games - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
+                width,
+                800
+            );
+        };
+    }
 }
 
 let showRnGCasinoDetails: Function;
@@ -1175,6 +1209,7 @@ let showGPILCBetDetails: Function;
 let showPlayStarBetDetails: Function;
 let showASKMESLOTBetDetails: Function;
 let showSabaKenoDetails: Function;
+let showFunkyGamesBetDetails: Function;
 
 $(function () {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
@@ -1227,4 +1262,5 @@ $(function () {
     showPlayStarBetDetails = BetList.Choice.TicketDetails.PlayStarTicketDetails.Instance.ShowPlayStarBetDetails;
     showASKMESLOTBetDetails = BetList.Choice.TicketDetails.ASKMESLOTTicketDetails.Instance.ShowASKMESLOTBetDetails;
     showSabaKenoDetails = BetList.Choice.TicketDetails.SabaKenoTicketDetails.Instance.ShowSabaKenoDetails;
+    showFunkyGamesBetDetails = BetList.Choice.TicketDetails.FunkyGamesTicketDetails.Instance.ShowFunkyGamesBetDetails;
 });

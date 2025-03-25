@@ -47,7 +47,8 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
     IRequestHandler<GPILiveCasinoResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<PlayStarResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<ASKMESLOTResultQuery, ThirdPartyProductViewModel>,
-    IRequestHandler<SabaKenoResultQuery, ThirdPartyProductViewModel>
+    IRequestHandler<SabaKenoResultQuery, ThirdPartyProductViewModel>,
+    IRequestHandler<FunkyGamesResultQuery, ThirdPartyProductViewModel>
 {
     public Task<ThirdPartyProductViewModel> Handle(MaxGameResultQuery message, CancellationToken cancellationToken)
         => Handle(message, "MaxGameResultConfigs", "MaxGame");
@@ -188,6 +189,9 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
 
     public Task<ThirdPartyProductViewModel> Handle(ASKMESLOTResultQuery message, CancellationToken cancellationToken)
         => Handle(message, "ASKMESLOTResultConfigs", "ASKMESLOT");
+        
+    public Task<ThirdPartyProductViewModel> Handle(FunkyGamesResultQuery message, CancellationToken cancellationToken)
+        => Handle(message, "FunkyGamesResultConfigs", "Funky Games");
 
     public Task<ThirdPartyProductViewModel> Handle(SabaKenoResultQuery message, CancellationToken cancellationToken)
         => Handle(message, "SabaKenoResultConfigs", "SABA Keno");

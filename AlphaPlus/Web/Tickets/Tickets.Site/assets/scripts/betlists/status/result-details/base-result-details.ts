@@ -47,6 +47,7 @@
         private static playStarResult: ResultDetails;
         private static askmeslotResult: ResultDetails;
         private static sabaKenoResult: ResultDetails;
+        private static funkyGamesResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (
@@ -376,6 +377,13 @@
                     ? new ASKMESLOTResultDetails() 
                     : this.askmeslotResult;
                 return this.askmeslotResult;
+            }
+            
+            if (betTypeId >= 15200 && betTypeId <= 15399) {
+                this.funkyGamesResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.funkyGamesResult) 
+                    ? new FunkyGamesResultDetails() 
+                    : this.funkyGamesResult;
+                return this.funkyGamesResult;
             }
             
             if (betTypeId >= 12300 && betTypeId <= 12499) {

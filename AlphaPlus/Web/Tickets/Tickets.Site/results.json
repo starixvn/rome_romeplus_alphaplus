@@ -231,5 +231,10 @@
         "Url": "http://10.40.40.248:7107/api/SabaKenoInternal/GetBetHistoryUrl",
         "VendorId": 102,
         "Debug": 0
+    },
+    "FunkyGamesResultConfigs": {
+        "Url": "http://saba-wallet-group-001.3rd-party.t2p.nebula.prod:22080/api/FunkyGamesInternal/GetBetHistoryUrl",
+        "VendorId": 104,
+        "Debug": 0
     }
 }
