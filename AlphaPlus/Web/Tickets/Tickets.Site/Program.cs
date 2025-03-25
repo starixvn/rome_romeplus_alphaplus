@@ -17,7 +17,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
-using ONEbook.UM.AspNetCore.Filters;
 
 ThreadPool.SetMinThreads(100, 100);
 
@@ -58,7 +57,6 @@ builder.Services
         options.Filters.Add<AfterLoginFlowFilterAttribute>();
         options.Filters.Add<ProtectedModeFilterAttribute>();
         options.Filters.Add<SecurityCodeFilterAttribute>();
-        options.Filters.Add<CheckUMFilterAttribute>();
     })
     .AddRazorOptions(options =>
     {

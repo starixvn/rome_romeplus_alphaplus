@@ -4,7 +4,6 @@ using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.Features.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
-using ONEbook.UM.AspNetCore.Filters;
 
 ThreadPool.SetMinThreads(100, 100);
 
@@ -33,11 +32,6 @@ builder.Services
         options.ForwardedHeaders =
             ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
     });
-
-builder.Services.AddControllersWithViews(options =>
-{
-    options.Filters.Add<CheckUMFilterAttribute>();
-});
 
 var app = builder.Build();
 
