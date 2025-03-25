@@ -10,7 +10,7 @@ public class TourController(IUserSession userSession) : BaseController
 
     public IActionResult ProfilePicture() => View(BuildTourViewModel());
 
-    public IActionResult RebateAndRetention() => View(BuildTourViewModel());
+    public IActionResult Reward() => View(BuildTourViewModel());
 
     private TourViewModel BuildTourViewModel()
         => new TourViewModel(userSession.Language, userSession.RoleId, Core.Configurations.AppSettings.SiteLabelHash);

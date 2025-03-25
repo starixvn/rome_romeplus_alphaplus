@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Main.Site.Features.Tour;
 
-public class ShowRewardTourCommand(int custId) : NonQueryCommand
+public class CheckShowRewardTourCommand(int custId) : NonQueryCommand
 {
     public int CustId { get; } = custId;
 

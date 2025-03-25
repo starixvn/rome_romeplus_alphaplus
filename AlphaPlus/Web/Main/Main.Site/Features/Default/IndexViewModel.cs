@@ -21,7 +21,8 @@ public class IndexViewModel
         string passwordHash,
         Func<string> getDefaultUrl,
         IBrowserHelper browserHelper,
-        ActorProfilePictureModel profilePicture)
+        ActorProfilePictureModel profilePicture,
+        bool isShowRewardTour)
     {
         this.message = message;
         PasswordHash = passwordHash;
@@ -32,6 +33,7 @@ public class IndexViewModel
         this.profilePicture = profilePicture;
         IsProtectedMode = message.IsProtectedMode;
         AssetAppPath = message.AssetAppPath;
+        IsShowRewardTour = isShowRewardTour;
     }
 
     public bool EnableSecurityCode => message.EnableSecurityCode;
@@ -169,9 +171,11 @@ public class IndexViewModel
 
     public bool HightLightFeaturePermission => false;
 
-    public string HightLightFeatureImageName => "new_feature_litemode" + DarkModeName;
+    public string HightLightFeatureImageName => "new_feature" + DarkModeName;
 
-    public string HightLightFeatureUrl => MicroSites.MainUrl("~/Tour/RebateAndRetention");
+    public string HightLightFeatureUrl => MicroSites.MainUrl("~/Tour/Reward");
+
+    public bool IsShowRewardTour { get; }
 
     public string TourUrl => MicroSites.MainUrl("~/Tour/ProfilePicture");
 

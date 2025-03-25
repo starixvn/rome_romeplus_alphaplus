@@ -11,8 +11,7 @@
   <link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
   @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
   @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
-  <link rel="stylesheet" href="~/assets/bundles/tour/common-tour@(userSession.DarkModeName).css"
-    asp-append-version="true" />
+  <link rel="stylesheet" href="~/assets/bundles/tour/common-tour.css" asp-append-version="true" />
 </head>
 
 <body data-theme="@(string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark")">

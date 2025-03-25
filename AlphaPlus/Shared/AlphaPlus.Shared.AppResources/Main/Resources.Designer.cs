@@ -2937,5 +2937,49 @@ namespace AlphaPlus.Shared.AppResources.Main
                 return ResourceManager.GetString("RebateAndRetentionTour_Page1_Row5", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to the &lt;b&gt;Cash Reward Program&lt;/b&gt;!.
+        /// </summary>
+        public static string HighlightPopupRewardTitle
+        {
+            get
+            {
+                return ResourceManager.GetString("HighlightPopupRewardTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;We are excited to introduce our new Cash Reward Program. The company is responsible for the reward amounts, and once a Member receives their reward, it cannot be used for placing bets. Rewards will be distributed to uplines, and Members can cash out through their Agents.&lt;/p&gt;&lt;p&gt;Our new feature &lt;b&gt;Reward Payment&lt;/b&gt; supports your downline payment management, ensuring accurate distribution of all rewards.&lt;/p&gt;.
+        /// </summary>
+        public static string HighlightPopupRewardIntro
+        {
+            get
+            {
+                return ResourceManager.GetString("HighlightPopupRewardIntro", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Do not show again.
+        /// </summary>
+        public static string RewardDoNotShowAgain
+        {
+            get
+            {
+                return ResourceManager.GetString("RewardDoNotShowAgain", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Take a tour.
+        /// </summary>
+        public static string RewardTakeATour
+        {
+            get
+            {
+                return ResourceManager.GetString("RewardTakeATour", resourceCulture);
+            }
+        }
     }
 }

@@ -6,7 +6,7 @@
     var imagePath = $"~/assets/images/tour/rebate-and-retention/{Model.Language}";
 }
 @section Scripts {
-    <script src="~/assets/bundles/tour/rebate-and-retention-tour.js" asp-append-version="true"></script>
+    <script src="~/assets/bundles/tour/reward-tour.js" asp-append-version="true"></script>
 }
 <div class="inner">
     <div class="content-page content-page-1">
@@ -28,6 +28,7 @@
         <img src="@Url.Content($"{imagePath}/Page4-lv{Model.RoleId}.png")" alt="image tour">
     </div>
     <div class="content-page content-page-5 hidden">
+        <div class="title"></div>
         <p>@Resources.RebateAndRetentionTour_Page1_Row5</p>
         <img src="@Url.Content($"{imagePath}/Page5-lv{Model.RoleId}.png")" alt="image tour">
     </div>

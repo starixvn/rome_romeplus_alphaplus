@@ -253,4 +253,7 @@
             <Mapping DataField="total_masterSuspended" ObjectProperty="TotalMasterSuspended" />
         </Setting>
     </Function>
+    <Function Name="Reward Tour">
+        <Setting Key="Age_ValidateShowTourGuide" SpName="Age_ValidateShowTourGuide" DbName="DBCust.CustDB.wsv_alpv" />
+    </Function>
 </Functions>

@@ -9,6 +9,7 @@ using AlphaPlus.Core.Utils;
 using AlphaPlus.Main.Site.Features.Default.MenuBar;
 using AlphaPlus.Main.Site.Features.Account;
 using AlphaPlus.Main.Site.Features.CustomerProfile;
+using AlphaPlus.Main.Site.Features.Tour;
 
 namespace AlphaPlus.Main.Site.Features.Default
 {
@@ -32,6 +33,7 @@ namespace AlphaPlus.Main.Site.Features.Default
         private readonly ISettingService telegramSettingService;
         private readonly IEncryption encryption;
         private readonly Fanex.Logging.ILogger logger;
+        private readonly IRewardTourService rewardTourService;
 
         public DefaultHandler(ISessionManager sessionManager,
             IBrowserHelper browserHelper,
@@ -39,10 +41,10 @@ namespace AlphaPlus.Main.Site.Features.Default
             IProfilePictureService customerProfileService,
             ISettingService telegramSettingService,
             IEncryption encryption,
-            Fanex.Logging.ILogger logger)
-            : this(sessionManager, browserHelper, accountService, null, customerProfileService, telegramSettingService, encryption, logger)
+            Fanex.Logging.ILogger logger,
+            IRewardTourService rewardTourService)
+            : this(sessionManager, browserHelper, accountService, null, customerProfileService, telegramSettingService, encryption, logger, rewardTourService)
         {
-
         }
 
         internal DefaultHandler(
@@ -53,7 +55,8 @@ namespace AlphaPlus.Main.Site.Features.Default
             IProfilePictureService customerProfileService,
             ISettingService telegramSettingService,
             IEncryption encryption,
-            Fanex.Logging.ILogger logger)
+            Fanex.Logging.ILogger logger,
+            IRewardTourService rewardTourService)
         {
             this.sessionManager = sessionManager;
             this.browserHelper = browserHelper;
@@ -64,6 +67,7 @@ namespace AlphaPlus.Main.Site.Features.Default
             this.telegramSettingService = telegramSettingService;
             this.encryption = encryption;
             this.logger = logger;
+            this.rewardTourService = rewardTourService;
         }
 
         public Task<BrowserViewModel> Handle(BrowserQuery request, CancellationToken cancellationToken)
@@ -84,10 +88,10 @@ namespace AlphaPlus.Main.Site.Features.Default
         public async Task<IndexViewModel> Handle(IndexQuery message, CancellationToken cancellationToken)
         {
             var profile = await customerProfileService.GetActorProfilePicture(message.CustId);
-
+            var isShowRewardTour = ((PageAccess)message.SubPageAccess).Transfer && await rewardTourService.IsShow(message.CustId);
 
             var viewModel = new IndexViewModel(
-                message, encryption.RandomString(4), getDefaultUrl, browserHelper, profile);
+                message, encryption.RandomString(4), getDefaultUrl, browserHelper, profile, isShowRewardTour);
 
             var custBotMessenger = await GetCustBotMessenger(message.CustId, message.SubAccId, message.Language);
             if (custBotMessenger == null)

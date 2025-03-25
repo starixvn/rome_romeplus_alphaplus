@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -117,6 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>國家</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>城市</value>
+  </data>
+  <data name="IPNote" xml:space="preserve">
+    <value>附加信息於DNSstuff: &lt;a href="{0}" target="_blank"&gt;點擊這裡&lt;/a&gt;.
+注意: 由IP2Location™ 和 DNSstuff提供的國家與城市的信息只供參考, 並無保證. 如有需要, 請諮詢其他可靠來源以獲得最新的及準確的信息.</value>
+  </data>
+  <data name="ipv6note" xml:space="preserve">
+    <value>對於 IPv6，相同的 IP 地址可能會以不同的方式顯示。</value>
+  </data>
+  <data name="ForExample" xml:space="preserve">
+    <value>例如：</value>
+  </data>
+  <data name="ipv61" xml:space="preserve">
+    <value>- IP 地址 1: 2001:db8:3333:4444:5555:6666:1.2.3.4</value>
+  </data>
+  <data name="ipv62" xml:space="preserve">
+    <value> - IP 地址 2: 2001:0db8:3333:4444:5555:6666:0102:0304</value>
+  </data>
   <data name="close" xml:space="preserve">
     <value>關閉</value>
   </data>
@@ -129,15 +154,15 @@
   <data name="admin" xml:space="preserve">
     <value>管理</value>
   </data>
-  <data name="nickname" xml:space="preserve">
-    <value>暱稱</value>
-  </data>
   <data name="configNow" xml:space="preserve">
     <value>設定</value>
   </data>
   <data name="introNickname" xml:space="preserve">
     <value>&lt;div&gt;親愛的客戶! 現在您可使用暱稱登錄&lt;/div&gt;
 &lt;div&gt;... 更安全化及個性化.&lt;/div&gt;</value>
+  </data>
+  <data name="nickname" xml:space="preserve">
+    <value>暱稱</value>
   </data>
   <data name="ProfileLoginTip" xml:space="preserve">
     <value>尊敬的代理， 我們選擇了默認的個人資料圖片，以幫助將我們的網站與假網站區分開來。您可以&lt;a class="change-picture-link" href="{0}" target="main" id="changePictureLink"&gt;點擊此處&lt;/a&gt;選擇一個新的。&lt;br/&gt;此外，您可以在&lt;a class="change-picture-link" href="{1}" target="main"&gt;此處&lt;/a&gt;設置您的首選語言。 謝謝。</value>
@@ -307,6 +332,9 @@
   <data name="doNotShowAgain" xml:space="preserve">
     <value>不再顯示</value>
   </data>
+  <data name="RewardDoNotShowAgain" xml:space="preserve">
+    <value>不再顯示</value>
+  </data>
   <data name="PrivateMessage" xml:space="preserve">
     <value>個人訊息</value>
   </data>
@@ -315,12 +343,6 @@
   </data>
   <data name="LogOut" xml:space="preserve">
     <value>註銷</value>
-  </data>
-  <data name="Next" xml:space="preserve">
-    <value>下一頁</value>
-  </data>
-  <data name="Skip" xml:space="preserve">
-    <value>略過</value>
   </data>
   <data name="BrowserIsOutOfDate" xml:space="preserve">
     <value>您的瀏覽器已屬逾期版本故未能全面支援我們的網站。 為了得到更全面的支援， 強烈建議您升級瀏覽器至新版本。</value>
@@ -391,6 +413,12 @@
   <data name="Replay" xml:space="preserve">
     <value>重播</value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>下一頁</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>略過</value>
+  </data>
   <data name="ReplayInstruction" xml:space="preserve">
     <value>點擊此圖標可重播遊覽手冊教學</value>
   </data>
@@ -400,11 +428,44 @@
   <data name="QuickTourTooltip" xml:space="preserve">
     <value>快速遊覽手冊教學</value>
   </data>
-  <data name="stats" xml:space="preserve">
-    <value>您的統計</value>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>更新成功!</value>
+  </data>
+  <data name="lblBack" xml:space="preserve">
+    <value>退回</value>
+  </data>
+  <data name="lblChangePassword" xml:space="preserve">
+    <value>更改密碼</value>
+  </data>
+  <data name="lblresetpassword" xml:space="preserve">
+    <value>修改密碼</value>
   </data>
   <data name="balance" xml:space="preserve">
     <value>餘額資料</value>
+  </data>
+  <data name="winloss" xml:space="preserve">
+    <value>输赢</value>
+  </data>
+  <data name="credit" xml:space="preserve">
+    <value>信用額度</value>
+  </data>
+  <data name="memberInfo" xml:space="preserve">
+    <value>會員資料</value>
+  </data>
+  <data name="notice" xml:space="preserve">
+    <value>通告</value>
+  </data>
+  <data name="stats" xml:space="preserve">
+    <value>您的統計</value>
+  </data>
+  <data name="personalMessage" xml:space="preserve">
+    <value>個人訊息</value>
+  </data>
+  <data name="specialNotice" xml:space="preserve">
+    <value>特殊公告</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>提交</value>
   </data>
   <data name="Enabled" xml:space="preserve">
     <value>啟用</value>
@@ -412,23 +473,14 @@
   <data name="Disabled" xml:space="preserve">
     <value>禁用</value>
   </data>
-  <data name="normalAnnouncement" xml:space="preserve">
-    <value>一般公告</value>
+  <data name="ThereIsNoChange" xml:space="preserve">
+    <value>沒有任何的變化更新。</value>
   </data>
-  <data name="specialNotice" xml:space="preserve">
-    <value>特殊公告</value>
+  <data name="Remove" xml:space="preserve">
+    <value>刪除</value>
   </data>
-  <data name="specialAnnouncement" xml:space="preserve">
-    <value>特殊公告</value>
-  </data>
-  <data name="personalMessage" xml:space="preserve">
-    <value>個人訊息</value>
-  </data>
-  <data name="notice" xml:space="preserve">
-    <value>通告</value>
-  </data>
-  <data name="winloss" xml:space="preserve">
-    <value>输赢</value>
+  <data name="outstanding" xml:space="preserve">
+    <value>未完成交易</value>
   </data>
   <data name="active" xml:space="preserve">
     <value>活躍</value>
@@ -439,17 +491,26 @@
   <data name="suspended" xml:space="preserve">
     <value>暫停</value>
   </data>
-  <data name="submit" xml:space="preserve">
-    <value>提交</value>
-  </data>
   <data name="to" xml:space="preserve">
     <value>到</value>
+  </data>
+  <data name="loading" xml:space="preserve">
+    <value>載入中</value>
+  </data>
+  <data name="normalAnnouncement" xml:space="preserve">
+    <value>一般公告</value>
+  </data>
+  <data name="specialAnnouncement" xml:space="preserve">
+    <value>特殊公告</value>
   </data>
   <data name="from" xml:space="preserve">
     <value>從</value>
   </data>
-  <data name="outstanding" xml:space="preserve">
-    <value>未完成交易</value>
+  <data name="firstName" xml:space="preserve">
+    <value>名</value>
+  </data>
+  <data name="lastName" xml:space="preserve">
+    <value>姓</value>
   </data>
   <data name="NoPermissionAccessPage" xml:space="preserve">
     <value>對不起, 您不被允許進入此網頁.</value>
@@ -459,9 +520,6 @@
   </data>
   <data name="lblNew" xml:space="preserve">
     <value>新增</value>
-  </data>
-  <data name="UpdatedSuccessfully" xml:space="preserve">
-    <value>更新成功!</value>
   </data>
   <data name="Notice_3" xml:space="preserve">
     <value>您的上線已開啟“捕魚天下”予您的下線。請到您的設定頁面進行配置</value>
@@ -514,11 +572,11 @@
   <data name="PleaseSelectLoginByNickname" xml:space="preserve">
     <value>請選擇"僅限暱稱登錄”</value>
   </data>
-  <data name="DataProcessingIsInProgress" xml:space="preserve">
-    <value>數據處理正在進行中。</value>
-  </data>
   <data name="DataProcessingNotification" xml:space="preserve">
     <value>數據處理通知</value>
+  </data>
+  <data name="DataProcessingIsInProgress" xml:space="preserve">
+    <value>數據處理正在進行中。</value>
   </data>
   <data name="invalidCaptcha" xml:space="preserve">
     <value>識別碼錯誤</value>
@@ -532,26 +590,26 @@
   <data name="PendingTransfer3rd" xml:space="preserve">
     <value>第三方待定轉賬</value>
   </data>
-  <data name="UMFrom" xml:space="preserve">
-    <value>從</value>
-  </data>
-  <data name="UMTo" xml:space="preserve">
-    <value>到</value>
-  </data>
   <data name="UMAnnouncementTitle" xml:space="preserve">
     <value>維護通知</value>
   </data>
-  <data name="UMCustomerSettingsPattern" xml:space="preserve">
-    <value>&lt;strong&gt;_Product_&lt;/strong&gt;的&lt;strong&gt;_SettingType_&lt;/strong&gt;: 從 &lt;span class="um-message-time"&gt;{0}&lt;/span&gt; 至 &lt;span class="um-message-time"&gt;{1}&lt;/span&gt; 無法使用。</value>
+  <data name="UMFrom" xml:space="preserve">
+    <value>從</value>
+  </data>
+  <data name="UMSchedule" xml:space="preserve">
+    <value>這是維護的計劃（GMT +8）並且在此期間，這些功能無法使用：</value>
   </data>
   <data name="UMSorryForInconvenience" xml:space="preserve">
     <value>不便之處 敬請見諒!</value>
   </data>
+  <data name="UMTo" xml:space="preserve">
+    <value>到</value>
+  </data>
   <data name="AllProducts" xml:space="preserve">
     <value>所有產品</value>
   </data>
-  <data name="UMSchedule" xml:space="preserve">
-    <value>這是維護的計劃（GMT +8）並且在此期間，這些功能無法使用：</value>
+  <data name="UMCustomerSettingsPattern" xml:space="preserve">
+    <value>&lt;strong&gt;_Product_&lt;/strong&gt;的&lt;strong&gt;_SettingType_&lt;/strong&gt;: 從 &lt;span class="um-message-time"&gt;{0}&lt;/span&gt; 至 &lt;span class="um-message-time"&gt;{1}&lt;/span&gt; 無法使用。</value>
   </data>
   <data name="UMTransferPattern" xml:space="preserve">
     <value>&lt;strong&gt;轉賬&lt;/strong&gt;: 從 &lt;span class="um-message-time"&gt;{0}&lt;/span&gt; 至 &lt;span class="um-message-time"&gt;{1}&lt;/span&gt; 無法使用。</value>
@@ -637,20 +695,20 @@
   <data name="LearnMore" xml:space="preserve">
     <value>了解更多</value>
   </data>
-  <data name="No" xml:space="preserve">
-    <value>否</value>
-  </data>
   <data name="Yes" xml:space="preserve">
     <value>是</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>否</value>
   </data>
   <data name="AdvertisementMyWatchlistGlobalThresholdDetailAgent" xml:space="preserve">
     <value>請到 &lt;b&gt;風險管理&lt;/b&gt; --&gt; 我的監控列表 - 我的限額 --&gt; 設置贏/輸限額</value>
   </data>
-  <data name="FeedbackTitle" xml:space="preserve">
-    <value>協助我們改進！</value>
-  </data>
   <data name="Feedback" xml:space="preserve">
     <value>反饋</value>
+  </data>
+  <data name="FeedbackTitle" xml:space="preserve">
+    <value>協助我們改進！</value>
   </data>
   <data name="LoveToHear" xml:space="preserve">
     <value>我們很樂意聽取您的意見。</value>
@@ -660,6 +718,15 @@
   </data>
   <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
     <value>&lt;p&gt;我們很高興為您介紹我們新的現金獎金計劃。獎金金額由公司負責，會員一旦收到獎金，並不能用於下注。獎金將分配給上線，會員可以透過其代理去兌現。&lt;/p&gt;&lt;p&gt;我們的新功能&lt;b&gt;獎金支付&lt;/b&gt;支持您的下線支付管理，確保所有獎金的準確分配。&lt;/p&gt;</value>
+  </data>
+  <data name="HighlightPopupRewardIntro" xml:space="preserve">
+    <value>&lt;p&gt;我們很高興為您介紹我們新的現金獎金計劃。獎金金額由公司負責，會員一旦收到獎金，並不能用於下注。獎金將分配給上線，會員可以透過其代理去兌現。&lt;/p&gt;&lt;p&gt;我們的新功能&lt;b&gt;獎金支付&lt;/b&gt;支持您的下線支付管理，確保所有獎金的準確分配。&lt;/p&gt;</value>
+  </data>
+  <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
+    <value>歡迎加入&lt;b&gt;現金獎金計劃&lt;/b&gt;！</value>
+  </data>
+  <data name="HighlightPopupRewardTitle" xml:space="preserve">
+    <value>歡迎加入&lt;b&gt;現金獎金計劃&lt;/b&gt;！</value>
   </data>
   <data name="GetStarted" xml:space="preserve">
     <value>開始吧</value>
@@ -679,8 +746,8 @@
   <data name="WinLossDetailReport" xml:space="preserve">
     <value>輸贏細節報告</value>
   </data>
-  <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
-    <value>歡迎加入&lt;b&gt;現金獎金計劃&lt;/b&gt;！</value>
+  <data name="Here" xml:space="preserve">
+    <value>此處</value>
   </data>
   <data name="minAgo" xml:space="preserve">
     <value>一分鐘前</value>
@@ -693,9 +760,6 @@
   </data>
   <data name="daysAgo" xml:space="preserve">
     <value>天之前</value>
-  </data>
-  <data name="Here" xml:space="preserve">
-    <value>此處</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro2" xml:space="preserve">
     <value>&lt;b&gt; 輕鬆導航 &lt;/b&gt; 和 &lt;b&gt; 提升您的熟練性 &lt;/b&gt;！</value>
@@ -723,31 +787,6 @@
   <data name="InternalServerError" xml:space="preserve">
     <value>發生錯誤。請聯絡客戶服務部尋求協助。謝謝。 [500]</value>
   </data>
-  <data name="IP" xml:space="preserve">
-    <value>IP</value>
-  </data>
-  <data name="Country" xml:space="preserve">
-    <value>國家</value>
-  </data>
-  <data name="City" xml:space="preserve">
-    <value>城市</value>
-  </data>
-  <data name="IPNote" xml:space="preserve">
-    <value>附加信息於DNSstuff: &lt;a href="{0}" target="_blank"&gt;點擊這裡&lt;/a&gt;.
-注意: 由IP2Location™ 和 DNSstuff提供的國家與城市的信息只供參考, 並無保證. 如有需要, 請諮詢其他可靠來源以獲得最新的及準確的信息.</value>
-  </data>
-  <data name="ipv6note" xml:space="preserve">
-    <value>對於 IPv6，相同的 IP 地址可能會以不同的方式顯示。</value>
-  </data>
-  <data name="ForExample" xml:space="preserve">
-    <value>例如：</value>
-  </data>
-  <data name="ipv61" xml:space="preserve">
-    <value>- IP 地址 1: 2001:db8:3333:4444:5555:6666:1.2.3.4</value>
-  </data>
-  <data name="ipv62" xml:space="preserve">
-    <value> - IP 地址 2: 2001:0db8:3333:4444:5555:6666:0102:0304</value>
-  </data>
   <data name="RewardPayable" xml:space="preserve">
     <value>獎金支付</value>
   </data>
@@ -760,36 +799,6 @@
   <data name="RewardReceivableTooltip" xml:space="preserve">
     <value>您可以從上線收到的金額。</value>
   </data>
-  <data name="lblBack" xml:space="preserve">
-    <value>退回</value>
-  </data>
-  <data name="lblChangePassword" xml:space="preserve">
-    <value>更改密碼</value>
-  </data>
-  <data name="credit" xml:space="preserve">
-    <value>信用額度</value>
-  </data>
-  <data name="firstName" xml:space="preserve">
-    <value>名</value>
-  </data>
-  <data name="lastName" xml:space="preserve">
-    <value>姓</value>
-  </data>
-  <data name="loading" xml:space="preserve">
-    <value>載入中</value>
-  </data>
-  <data name="memberInfo" xml:space="preserve">
-    <value>會員資料</value>
-  </data>
-  <data name="Remove" xml:space="preserve">
-    <value>刪除</value>
-  </data>
-  <data name="lblresetpassword" xml:space="preserve">
-    <value>修改密碼</value>
-  </data>
-  <data name="ThereIsNoChange" xml:space="preserve">
-    <value>沒有任何的變化更新。</value>
-  </data>
   <data name="Reward" xml:space="preserve">
     <value>獎金</value>
   </data>
@@ -797,6 +806,9 @@
     <value>您尚未註冊白牌生意，請聯絡我們的客戶服部以獲取進一步的協助。</value>
   </data>
   <data name="TakeATour" xml:space="preserve">
+    <value>瀏覽</value>
+  </data>
+  <data name="RewardTakeATour" xml:space="preserve">
     <value>瀏覽</value>
   </data>
   <data name="Page" xml:space="preserve">
@@ -807,7 +819,6 @@
   </data>
   <data name="invalidsession" xml:space="preserve">
     <value>會議無效！</value>
-    <comment />
   </data>
   <data name="RebateAndRetentionTour_Page1_Row1" xml:space="preserve">
     <value>讓我們探討現金獎金計劃並看看它提供什麼！</value>
@@ -820,6 +831,9 @@
   </data>
   <data name="RebateAndRetentionTour_Page1_Row3" xml:space="preserve">
     <value>新功能允許您確認分配給下線的獎金。</value>
+  </data>
+  <data name="RewardDetail" xml:space="preserve">
+    <value>奖金詳情</value>
   </data>
   <data name="RebateAndRetentionTour_Page1_Row4" xml:space="preserve">
     <value>新報告顯示會員的獎勵交易及其回饋，以提高透明度。</value>

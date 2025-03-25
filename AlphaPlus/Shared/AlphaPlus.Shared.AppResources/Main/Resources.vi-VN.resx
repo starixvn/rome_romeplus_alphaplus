@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -117,6 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Quốc gia</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Thành phố</value>
+  </data>
+  <data name="IPNote" xml:space="preserve">
+    <value>Thông tin chi tiết tại DNSstuff:&lt;a href="{0}" target="_blank"&gt; Xem tại đây&lt;/a&gt;.
+Lưu ý:Thông tin về quốc gia và thành phố được cung cấp bởi  IP2Location™ và DNSstuff, chỉ mang tính chất tham khảo và không được đảm bảo chính xác. Vui lòng tham khảo các nguồn đáng tin cậy khác để cập nhật thông tin mới nhất và chính xác nhất nếu cần.</value>
+  </data>
+  <data name="ipv6note" xml:space="preserve">
+    <value>Đối với IPv6, cùng một địa chỉ IP có thể được hiển thị khác nhau.</value>
+  </data>
+  <data name="ForExample" xml:space="preserve">
+    <value>Ví dụ:</value>
+  </data>
+  <data name="ipv61" xml:space="preserve">
+    <value>- Địa chỉ IP 1: 2001:db8:3333:4444:5555:6666:1.2.3.4</value>
+  </data>
+  <data name="ipv62" xml:space="preserve">
+    <value>- Địa chỉ IP 2: 2001:0db8:3333:4444:5555:6666:0102:0304</value>
+  </data>
   <data name="close" xml:space="preserve">
     <value>Đóng</value>
   </data>
@@ -129,14 +154,14 @@
   <data name="admin" xml:space="preserve">
     <value>Người quản trị</value>
   </data>
-  <data name="nickname" xml:space="preserve">
-    <value>Biệt Danh</value>
-  </data>
   <data name="configNow" xml:space="preserve">
     <value>Cấu hình ngay</value>
   </data>
   <data name="introNickname" xml:space="preserve">
     <value>&lt;div&gt;Chào những thành viên thân mến !.Bây giò bạn có thể đăng nhập bằng chính Biệt Danh của mình&lt;/div&gt;</value>
+  </data>
+  <data name="nickname" xml:space="preserve">
+    <value>Biệt Danh</value>
   </data>
   <data name="ProfileLoginTip" xml:space="preserve">
     <value>Kính gửi Quý khách hàng, Chúng tôi đã chọn một ảnh đại diện mặc định của bạn để phân biệt trang web của chúng tôi với các trang web giả mạo. Nếu muốn thay đổi ảnh, bạn có thể &lt;a class="change-picture-link" href="{0}" target="main" id="changePictureLink"&gt;nhấn vào đây&lt;/a&gt;.&lt;br&gt;Ngoài ra, bạn có thể đặt tùy chọn ngôn ngữ của mình &lt;a class="change-picture-link" href="{1}" target="main"&gt;tại đây&lt;/a&gt;. Trân trọng.</value>
@@ -306,6 +331,9 @@
   <data name="doNotShowAgain" xml:space="preserve">
     <value>Không hiển thị lại</value>
   </data>
+  <data name="RewardDoNotShowAgain" xml:space="preserve">
+    <value>Không hiển thị lại</value>
+  </data>
   <data name="PrivateMessage" xml:space="preserve">
     <value>Tin nhắn cá nhân</value>
   </data>
@@ -314,12 +342,6 @@
   </data>
   <data name="LogOut" xml:space="preserve">
     <value>Đăng Xuất</value>
-  </data>
-  <data name="Next" xml:space="preserve">
-    <value>Tiếp tục </value>
-  </data>
-  <data name="Skip" xml:space="preserve">
-    <value>Bỏ qua</value>
   </data>
   <data name="BrowserIsOutOfDate" xml:space="preserve">
     <value>Trình duyệt của bạn đã lỗi thời và có thể không tương thích tốt với website. Để được hỗ trợ tốt hơn, bạn nên nâng cấp lên một phiên bản mới. Vui lòng</value>
@@ -339,8 +361,14 @@
   <data name="WarningText" xml:space="preserve">
     <value>Lưu ý: </value>
   </data>
+  <data name="TitleUnsupportBrowser" xml:space="preserve">
+    <value>Yêu cầu cập nhật trình duyệt</value>
+  </data>
   <data name="HomeIconIntroduction" xml:space="preserve">
     <value>Biểu tượng Trang Chủ - truy cập vào trang chủ</value>
+  </data>
+  <data name="TransferAndViewLogIntroduction" xml:space="preserve">
+    <value>Chuyển Khoản và Nhật Ký được đưa vào Menu Chính</value>
   </data>
   <data name="QuickMenuIntroduction" xml:space="preserve">
     <value>Truy cập nhanh vào Thiết Lập Tài Khoản</value>
@@ -359,6 +387,12 @@
   </data>
   <data name="MainMenuIntroduction" xml:space="preserve">
     <value>Sắp xếp hợp lý, tất cả trong một nơi</value>
+  </data>
+  <data name="ReportMenuIntroduction" xml:space="preserve">
+    <value>Có gì mới trong những Báo cáo này? Bấm vào đây</value>
+  </data>
+  <data name="WinLossAnalysisChartIntroduction" xml:space="preserve">
+    <value>Biểu đồ phân tích thắng thua ở đây</value>
   </data>
   <data name="CollapseExpandIcon" xml:space="preserve">
     <value>Thu gọn/Mở rộng</value>
@@ -384,11 +418,20 @@
   <data name="ViewLogMenuIntroduction" xml:space="preserve">
     <value>Nhật Ký nằm trong Menu Chính</value>
   </data>
+  <data name="ShowMainMenu" xml:space="preserve">
+    <value>Hiện Menu Chính</value>
+  </data>
   <data name="GotIt" xml:space="preserve">
     <value>Đã rõ</value>
   </data>
   <data name="Replay" xml:space="preserve">
     <value>Xem lại</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Tiếp tục </value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Bỏ qua</value>
   </data>
   <data name="ReplayInstruction" xml:space="preserve">
     <value>Bạn có thể xem lại hướng dẫn này bằng cách nhấn vào &lt;/p&gt;&lt;p&gt; biểu tượng này.</value>
@@ -399,11 +442,47 @@
   <data name="QuickTourTooltip" xml:space="preserve">
     <value>Giới thiệu giao diện mới</value>
   </data>
-  <data name="stats" xml:space="preserve">
-    <value>Thống kê</value>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>Cập nhật thành công.</value>
+  </data>
+  <data name="lblBack" xml:space="preserve">
+    <value>Trở lại</value>
+  </data>
+  <data name="lblChangePassword" xml:space="preserve">
+    <value>Thay đổi mật khẩu</value>
+  </data>
+  <data name="lblresetpassword" xml:space="preserve">
+    <value>Thiết lập lại mật khẩu</value>
   </data>
   <data name="balance" xml:space="preserve">
     <value>Tài Khoản</value>
+  </data>
+  <data name="winloss" xml:space="preserve">
+    <value>Thắng thua</value>
+  </data>
+  <data name="credit" xml:space="preserve">
+    <value>Tín dụng</value>
+  </data>
+  <data name="memberInfo" xml:space="preserve">
+    <value>Thông tin Member</value>
+  </data>
+  <data name="notice" xml:space="preserve">
+    <value>Thông báo</value>
+  </data>
+  <data name="stats" xml:space="preserve">
+    <value>Thống kê</value>
+  </data>
+  <data name="personalMessage" xml:space="preserve">
+    <value>Tin nhắn cá nhân</value>
+  </data>
+  <data name="specialNotice" xml:space="preserve">
+    <value>Thông báo đăc biệt</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Thông báo</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>Xác nhận</value>
   </data>
   <data name="Enabled" xml:space="preserve">
     <value>đã kích hoạt</value>
@@ -411,23 +490,14 @@
   <data name="Disabled" xml:space="preserve">
     <value>chưa kích hoạt</value>
   </data>
-  <data name="normalAnnouncement" xml:space="preserve">
-    <value>Thông báo chung</value>
+  <data name="ThereIsNoChange" xml:space="preserve">
+    <value>Không có thay đổi để cập nhật</value>
   </data>
-  <data name="specialNotice" xml:space="preserve">
-    <value>Thông báo đăc biệt</value>
+  <data name="Remove" xml:space="preserve">
+    <value>Xóa</value>
   </data>
-  <data name="specialAnnouncement" xml:space="preserve">
-    <value>Thông báo đăc biệt</value>
-  </data>
-  <data name="personalMessage" xml:space="preserve">
-    <value>Tin nhắn cá nhân</value>
-  </data>
-  <data name="notice" xml:space="preserve">
-    <value>Thông báo</value>
-  </data>
-  <data name="winloss" xml:space="preserve">
-    <value>Thắng thua</value>
+  <data name="outstanding" xml:space="preserve">
+    <value>Tiền chưa xử lý</value>
   </data>
   <data name="active" xml:space="preserve">
     <value>Hoạt Động</value>
@@ -438,29 +508,50 @@
   <data name="suspended" xml:space="preserve">
     <value>Đình Chỉ</value>
   </data>
-  <data name="submit" xml:space="preserve">
-    <value>Xác nhận</value>
-  </data>
   <data name="to" xml:space="preserve">
     <value>Đến</value>
+  </data>
+  <data name="loading" xml:space="preserve">
+    <value>Đang tải</value>
+  </data>
+  <data name="searchAccount" xml:space="preserve">
+    <value>Tìm kiếm tài khoản</value>
+  </data>
+  <data name="viewMessage" xml:space="preserve">
+    <value>Xem thông báo</value>
+  </data>
+  <data name="viewAnnouncement" xml:space="preserve">
+    <value>Xem thông báo</value>
+  </data>
+  <data name="changeLanguage" xml:space="preserve">
+    <value>Thay đổi ngôn ngữ</value>
+  </data>
+  <data name="normalAnnouncement" xml:space="preserve">
+    <value>Thông báo chung</value>
+  </data>
+  <data name="specialAnnouncement" xml:space="preserve">
+    <value>Thông báo đăc biệt</value>
   </data>
   <data name="from" xml:space="preserve">
     <value>Từ</value>
   </data>
-  <data name="outstanding" xml:space="preserve">
-    <value>Tiền chưa xử lý</value>
+  <data name="firstName" xml:space="preserve">
+    <value>Tên</value>
+  </data>
+  <data name="lastName" xml:space="preserve">
+    <value>Họ</value>
   </data>
   <data name="NoPermissionAccessPage" xml:space="preserve">
     <value>Xin lỗi, bạn không được phép truy cập vào trang này</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>Yêu cầu</value>
   </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>Thông tin chưa được cập nhật</value>
   </data>
   <data name="lblNew" xml:space="preserve">
     <value>Mới</value>
-  </data>
-  <data name="UpdatedSuccessfully" xml:space="preserve">
-    <value>Cập nhật thành công.</value>
   </data>
   <data name="Notice_3" xml:space="preserve">
     <value>Cấp dưới của bạn đã được kích hoạt sản phẩm Fishing World. Vui lòng thiết lập thông số Position Taking của bản thân.</value>
@@ -513,74 +604,11 @@
   <data name="PleaseSelectLoginByNickname" xml:space="preserve">
     <value>Vui lòng chọn Chỉ đăng nhập bằng Biệt Danh</value>
   </data>
-  <data name="DataProcessingIsInProgress" xml:space="preserve">
-    <value>Đang xử lý dữ liệu.</value>
-  </data>
   <data name="DataProcessingNotification" xml:space="preserve">
     <value>Thông báo xử lý dữ liệu</value>
   </data>
-  <data name="Request" xml:space="preserve">
-    <value>Yêu cầu</value>
-  </data>
-  <data name="firstName" xml:space="preserve">
-    <value>Tên</value>
-  </data>
-  <data name="lastName" xml:space="preserve">
-    <value>Họ</value>
-  </data>
-  <data name="loading" xml:space="preserve">
-    <value>Đang tải</value>
-  </data>
-  <data name="searchAccount" xml:space="preserve">
-    <value>Tìm kiếm tài khoản</value>
-  </data>
-  <data name="viewMessage" xml:space="preserve">
-    <value>Xem thông báo</value>
-  </data>
-  <data name="viewAnnouncement" xml:space="preserve">
-    <value>Xem thông báo</value>
-  </data>
-  <data name="changeLanguage" xml:space="preserve">
-    <value>Thay đổi ngôn ngữ</value>
-  </data>
-  <data name="ThereIsNoChange" xml:space="preserve">
-    <value>Không có thay đổi để cập nhật</value>
-  </data>
-  <data name="Remove" xml:space="preserve">
-    <value>Xóa</value>
-  </data>
-  <data name="message" xml:space="preserve">
-    <value>Thông báo</value>
-  </data>
-  <data name="memberInfo" xml:space="preserve">
-    <value>Thông tin Member</value>
-  </data>
-  <data name="credit" xml:space="preserve">
-    <value>Tín dụng</value>
-  </data>
-  <data name="lblresetpassword" xml:space="preserve">
-    <value>Thiết lập lại mật khẩu</value>
-  </data>
-  <data name="lblChangePassword" xml:space="preserve">
-    <value>Thay đổi mật khẩu</value>
-  </data>
-  <data name="lblBack" xml:space="preserve">
-    <value>Trở lại</value>
-  </data>
-  <data name="ShowMainMenu" xml:space="preserve">
-    <value>Hiện Menu Chính</value>
-  </data>
-  <data name="TitleUnsupportBrowser" xml:space="preserve">
-    <value>Yêu cầu cập nhật trình duyệt</value>
-  </data>
-  <data name="TransferAndViewLogIntroduction" xml:space="preserve">
-    <value>Chuyển Khoản và Nhật Ký được đưa vào Menu Chính</value>
-  </data>
-  <data name="ReportMenuIntroduction" xml:space="preserve">
-    <value>Có gì mới trong những Báo cáo này? Bấm vào đây</value>
-  </data>
-  <data name="WinLossAnalysisChartIntroduction" xml:space="preserve">
-    <value>Biểu đồ phân tích thắng thua ở đây</value>
+  <data name="DataProcessingIsInProgress" xml:space="preserve">
+    <value>Đang xử lý dữ liệu.</value>
   </data>
   <data name="invalidCaptcha" xml:space="preserve">
     <value>Đoạn mã  bạn nhập không có thực</value>
@@ -594,26 +622,26 @@
   <data name="PendingTransfer3rd" xml:space="preserve">
     <value>Tiền Chưa Chuyển Về Từ Trò Chơi</value>
   </data>
-  <data name="UMFrom" xml:space="preserve">
-    <value>từ</value>
-  </data>
-  <data name="UMTo" xml:space="preserve">
-    <value>đến</value>
-  </data>
   <data name="UMAnnouncementTitle" xml:space="preserve">
     <value>Thông báo bảo trì</value>
   </data>
-  <data name="UMCustomerSettingsPattern" xml:space="preserve">
-    <value>&lt;strong&gt;_SettingType_&lt;/strong&gt; của &lt;strong&gt;_Product_&lt;/strong&gt;: Gián đoạn từ &lt;span class="um-message-time"&gt;{0}&lt;/span&gt; đến &lt;span class="um-message-time"&gt;{1}&lt;/span&gt;</value>
+  <data name="UMFrom" xml:space="preserve">
+    <value>từ</value>
+  </data>
+  <data name="UMSchedule" xml:space="preserve">
+    <value>Sau đây là lịch bảo trì hệ thống (theo GMT +8) và trong khoảng thời gian này, những tính năng sau tạm thời gián đoạn:</value>
   </data>
   <data name="UMSorryForInconvenience" xml:space="preserve">
     <value>Chúng tôi xin lỗi vì sự bất tiện gây ra.</value>
   </data>
+  <data name="UMTo" xml:space="preserve">
+    <value>đến</value>
+  </data>
   <data name="AllProducts" xml:space="preserve">
     <value>Tất cả sản phẩm</value>
   </data>
-  <data name="UMSchedule" xml:space="preserve">
-    <value>Sau đây là lịch bảo trì hệ thống (theo GMT +8) và trong khoảng thời gian này, những tính năng sau tạm thời gián đoạn:</value>
+  <data name="UMCustomerSettingsPattern" xml:space="preserve">
+    <value>&lt;strong&gt;_SettingType_&lt;/strong&gt; của &lt;strong&gt;_Product_&lt;/strong&gt;: Gián đoạn từ &lt;span class="um-message-time"&gt;{0}&lt;/span&gt; đến &lt;span class="um-message-time"&gt;{1}&lt;/span&gt;</value>
   </data>
   <data name="UMTransferPattern" xml:space="preserve">
     <value>&lt;strong&gt;Chuyển khoản&lt;/strong&gt;: Gián đoạn từ &lt;span class="um-message-time"&gt;{0}&lt;/span&gt; đến &lt;span class="um-message-time"&gt;{1}&lt;/span&gt;</value>
@@ -723,6 +751,15 @@
   <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
     <value>&lt;p&gt;Chúng tôi rất vui mừng giới thiệu Chương trình Tiền thưởng. Công ty sẽ chi trả toàn bộ tiền thưởng này, và khi Member đã nhận thưởng, số tiền này sẽ không được phép sử dụng để đặt cược. Tiền thưởng sẽ được phân phối cho các cấp trên, và Member có thể rút tiền qua Agent của mình.&lt;/p&gt;&lt;p&gt;Chức năng &lt;b&gt;Thanh toán Tiền thưởng&lt;/b&gt; giúp bạn quản lý việc thanh toán cho các cấp dưới, đảm bảo tất cả các khoản tiền thưởng được phân phối một cách chính xác.&lt;/p&gt;</value>
   </data>
+  <data name="HighlightPopupRewardIntro" xml:space="preserve">
+    <value>&lt;p&gt;Chúng tôi rất vui mừng giới thiệu Chương trình Tiền thưởng. Công ty sẽ chi trả toàn bộ tiền thưởng này, và khi Member đã nhận thưởng, số tiền này sẽ không được phép sử dụng để đặt cược. Tiền thưởng sẽ được phân phối cho các cấp trên, và Member có thể rút tiền qua Agent của mình.&lt;/p&gt;&lt;p&gt;Chức năng &lt;b&gt;Thanh toán Tiền thưởng&lt;/b&gt; giúp bạn quản lý việc thanh toán cho các cấp dưới, đảm bảo tất cả các khoản tiền thưởng được phân phối một cách chính xác.&lt;/p&gt;</value>
+  </data>
+  <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
+    <value>Chào mừng đến với &lt;b&gt;Chương trình Tiền thưởng&lt;/b&gt;!</value>
+  </data>
+  <data name="HighlightPopupRewardTitle" xml:space="preserve">
+    <value>Chào mừng đến với &lt;b&gt;Chương trình Tiền thưởng&lt;/b&gt;!</value>
+  </data>
   <data name="GetStarted" xml:space="preserve">
     <value>Bắt đầu</value>
   </data>
@@ -740,9 +777,6 @@
   </data>
   <data name="WinLossDetailReport" xml:space="preserve">
     <value>Báo Cáo Chi Tiết Thắng Thua</value>
-  </data>
-  <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
-    <value>Chào mừng đến với &lt;b&gt;Chương trình Tiền thưởng&lt;/b&gt;!</value>
   </data>
   <data name="SetupChatbot" xml:space="preserve">
     <value>Cài Đặt Chatbot</value>
@@ -767,31 +801,6 @@ Lưu ý: Vui lòng thay đổi &lt;b&gt;mật khẩu&lt;/b&gt; Nova Casino Back 
   <data name="InternalServerError" xml:space="preserve">
     <value>Đã xảy ra lỗi. Vui lòng liên hệ Bộ phận Chăm Sóc Khách hàng để được hỗ trợ. Xin cảm ơn. [500]</value>
   </data>
-  <data name="IP" xml:space="preserve">
-    <value>IP</value>
-  </data>
-  <data name="Country" xml:space="preserve">
-    <value>Quốc gia</value>
-  </data>
-  <data name="City" xml:space="preserve">
-    <value>Thành phố</value>
-  </data>
-  <data name="IPNote" xml:space="preserve">
-    <value>Thông tin chi tiết tại DNSstuff:&lt;a href="{0}" target="_blank"&gt; Xem tại đây&lt;/a&gt;.
-Lưu ý:Thông tin về quốc gia và thành phố được cung cấp bởi  IP2Location™ và DNSstuff, chỉ mang tính chất tham khảo và không được đảm bảo chính xác. Vui lòng tham khảo các nguồn đáng tin cậy khác để cập nhật thông tin mới nhất và chính xác nhất nếu cần.</value>
-  </data>
-  <data name="ipv6note" xml:space="preserve">
-    <value>Đối với IPv6, cùng một địa chỉ IP có thể được hiển thị khác nhau.</value>
-  </data>
-  <data name="ForExample" xml:space="preserve">
-    <value>Ví dụ:</value>
-  </data>
-  <data name="ipv61" xml:space="preserve">
-    <value>- Địa chỉ IP 1: 2001:db8:3333:4444:5555:6666:1.2.3.4</value>
-  </data>
-  <data name="ipv62" xml:space="preserve">
-    <value>- Địa chỉ IP 2: 2001:0db8:3333:4444:5555:6666:0102:0304</value>
-  </data>
   <data name="RewardPayable" xml:space="preserve">
     <value>Tiền thưởng phải trả</value>
   </data>
@@ -810,6 +819,9 @@ Lưu ý:Thông tin về quốc gia và thành phố được cung cấp bởi  I
   <data name="TakeATour" xml:space="preserve">
     <value>Khám Phá</value>
   </data>
+  <data name="RewardTakeATour" xml:space="preserve">
+    <value>Khám Phá</value>
+  </data>
   <data name="Page" xml:space="preserve">
     <value>Trang</value>
   </data>
@@ -818,7 +830,6 @@ Lưu ý:Thông tin về quốc gia và thành phố được cung cấp bởi  I
   </data>
   <data name="invalidsession" xml:space="preserve">
     <value>Session không hợp lệ</value>
-    <comment />
   </data>
   <data name="RebateAndRetentionTour_Page1_Row1" xml:space="preserve">
     <value>Cùng khám phá Chương trình Tiền thưởng và tìm hiểu những lợi ích mà nó mang lại!</value>
