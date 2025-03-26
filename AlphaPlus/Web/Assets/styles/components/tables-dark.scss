@@ -272,6 +272,16 @@
                 color: #fff;
             }
         }
+        .tooltip{
+            background: transparent;
+            border: 0;
+            min-width: 370px;
+            text-align: left;
+            .tooltip-inner{
+                max-width: 100%;
+                text-align: left;
+            }
+        }
     }
 }
 

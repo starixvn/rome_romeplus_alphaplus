@@ -377,5 +377,27 @@ a.transfer-link {
             color: #fff;
         }
 
+    }    
+}
+.user-guide-link{
+    &:after{
+        content: "";
+        clear: both;
+        display: table;
+    }
+}
+.box-auto-calendar,.col-icon-header{
+    .tooltip{
+        background: transparent;
+        border: 0;
+        min-width: 370px;
+        text-align: left;
+        pointer-events: none;
+        .tooltip-inner{
+            max-width: 100%;
+            text-align: left;
+            width: auto;
+            display: inline-block;
+        }
     }
 }
