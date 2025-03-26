@@ -6,6 +6,7 @@ using AlphaPlus.Core;
 using AlphaPlus.Core.Models;
 using UserLevel = AlphaPlus.Features.Messages.API.Models.Constants.UserLevel;
 using Microsoft.AspNetCore.Mvc.Razor;
+using System.Net;
 
 namespace AlphaPlus.Features.Site.Messages.Controllers
 {
@@ -80,7 +81,7 @@ namespace AlphaPlus.Features.Site.Messages.Controllers
                 ? $"{resourceManager.GetString(FileNameMapping[id], CultureInfo.CreateSpecificCulture(userSession.Language))}.pdf"
                 : "Guide.pdf";
 
-            Response.Headers.Append("Content-Disposition", "inline; filename=" + fileDownloadName);
+            Response.Headers.Append("Content-Disposition", "inline; filename=" + WebUtility.UrlEncode(fileDownloadName));
 
             return base.PhysicalFile($"{baseDirectory}/Views/StaticMessage/{fileName}.pdf", "application/pdf");
         }
@@ -102,7 +103,7 @@ namespace AlphaPlus.Features.Site.Messages.Controllers
                 ? $"{resourceManager.GetString(FileNameMapping[id], CultureInfo.CreateSpecificCulture(userSession.Language))}.pdf"
                 : "Guide.pdf";
 
-            Response.Headers.Append("Content-Disposition", "inline; filename=" + fileDownloadName);
+            Response.Headers.Append("Content-Disposition", "inline; filename=" + WebUtility.UrlEncode(fileDownloadName));
 
             return base.PhysicalFile($"{baseDirectory}/Views/StaticMessage/{fileName}.pdf", "application/pdf");
         }
