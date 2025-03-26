@@ -18,7 +18,6 @@ configuration
     .AddJsonFile("authorization.json", optional: false, reloadOnChange: true);
 
 builder.Services
-        options.Filters.Add<CheckBelongingFilterAttribute>();
     .RegisterApplicationServices(configuration)
     .Configure<ForwardedHeadersOptions>(options =>
     {

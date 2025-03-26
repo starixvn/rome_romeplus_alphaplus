@@ -1247,13 +1247,13 @@
     <value>点击“复制”即可复制并分享账号详情</value>
   </data>
   <data name="CashBalanceNote" xml:space="preserve">
-    <value>对于直系会员账号，显示的栏位为余额。对于所有其他级别，显示的栏位为现金</value>
+    <value>对于直系会员账号，显示的栏位为余额。&lt;br/&gt;对于所有其他级别，显示的栏位为现金</value>
   </data>
   <data name="YesterdayCashYesterdayBalanceNote" xml:space="preserve">
-    <value>对于直系会员账号，显示的栏位为昨天余额。对于所有其他级别，显示的栏位为昨天现金余额</value>
+    <value>对于直系会员账号，显示的栏位为昨天余额。&lt;br/&gt;对于所有其他级别，显示的栏位为昨天现金余额</value>
   </data>
   <data name="AvailableCreditBetCreditNote" xml:space="preserve">
-    <value>对于直系会员账号，显示的栏位为投注额度。对于所有其他级别，显示的栏位为可用信用额</value>
+    <value>对于直系会员账号，显示的栏位为投注额度。&lt;br/&gt;对于所有其他级别，显示的栏位为可用信用额</value>
   </data>
   <data name="SelectDirectDownline" xml:space="preserve">
     <value>选择直系下线</value>

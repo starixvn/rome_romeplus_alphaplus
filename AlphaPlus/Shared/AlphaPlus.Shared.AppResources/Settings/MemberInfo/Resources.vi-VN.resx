@@ -1211,13 +1211,13 @@ Lưu ý:  Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
     <value>Nhấn 'Sao chép' để sao chép và chia sẻ thông tin tài khoản</value>
   </data>
   <data name="CashBalanceNote" xml:space="preserve">
-    <value>Đối với Member Trực Tiếp, giá trị hiển thị là Số Dư. Với các cấp dưới khác, giá trị hiển thị là Tiền Khả Dụng.</value>
+    <value>Đối với Member Trực Tiếp, giá trị hiển thị là Số Dư.&lt;br/&gt;Với các cấp dưới khác, giá trị hiển thị là Tiền Khả Dụng.</value>
   </data>
   <data name="YesterdayCashYesterdayBalanceNote" xml:space="preserve">
-    <value>Đối với Member Trực Tiếp, giá trị hiển thị là Số Dư Đến Hết Hôm Qua. Với các cấp dưới khác, giá trị hiển thị là Tiền Khả Dụng Đến Hết Hôm Qua.</value>
+    <value>Đối với Member Trực Tiếp, giá trị hiển thị là Số Dư Đến Hết Hôm Qua.&lt;br/&gt;Với các cấp dưới khác, giá trị hiển thị là Tiền Khả Dụng Đến Hết Hôm Qua.</value>
   </data>
   <data name="AvailableCreditBetCreditNote" xml:space="preserve">
-    <value>Đối với Member Trực Tiếp, giá trị hiển thị là Hạn Mức Cược. Với các cấp dưới khác, giá trị hiển thị là Hạn Mức Khả Dụng.</value>
+    <value>Đối với Member Trực Tiếp, giá trị hiển thị là Hạn Mức Cược.&lt;br/&gt;Với các cấp dưới khác, giá trị hiển thị là Hạn Mức Khả Dụng.</value>
   </data>
   <data name="SelectDirectDownline" xml:space="preserve">
     <value>Chọn Cấp Dưới Trực Tiếp</value>

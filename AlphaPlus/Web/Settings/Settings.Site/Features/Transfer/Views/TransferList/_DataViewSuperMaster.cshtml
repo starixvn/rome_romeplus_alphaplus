@@ -20,7 +20,8 @@
                 <th class="col-icon-header">
                     @Resources.AutoTransfer
                     <a href="@Model.AutoTransferGuidelineUrl" target="_blank" class="user-guide-link pull-right"
-                        title="@Resources.AutoTransferGuideline"><span class="icon icon-book"></span></a>
+                        data-toggle="tooltip" title="@Resources.AutoTransferGuideline"><span
+                            class="icon icon-book"></span></a>
                 </th>
             }
             <th>@Resources.Username</th>
@@ -39,7 +40,8 @@
             </th>
             <th data-colname="yesterdaycash">@Resources.YesterdayCash</th>
             <th class="col-icon-header">@Html.Raw(Resources.TotalCashSlashTotalBalance)<span
-                    class="icon-information-outline" title="@Resources.TotalCashTotalBalanceNote"></span></th>
+                    class="icon-information-outline" data-toggle="tooltip"
+                    title="@Html.Raw(Resources.TotalCashTotalBalanceNote)"></span></th>
             <th>@Resources.Outstanding</th>
             <th>@Resources.GivenCredit</th>
             <th>@Resources.UsedCredit</th>
@@ -71,7 +73,7 @@
                                 </a>
                                 @if (customer.IsAllowAutoTransfer)
                                 {
-                                    <a class="icon-calendar"
+                                    <a class="icon-calendar" data-toggle="tooltip"
                                         title="@TransferConditionHelper.BuildDaysFromSchedule(customer.ScheduleWeekDays)"
                                         asp-action="UpdateSchedule" asp-controller="AutoTransfer"
                                         asp-all-route-data="@Model.GetScheduleTransferParams(customer)"></a>

@@ -1244,13 +1244,13 @@
     <value>點擊“複製”即可複製並分享賬號詳情</value>
   </data>
   <data name="CashBalanceNote" xml:space="preserve">
-    <value>對於直系會員賬號，顯示的欄位為余額。對於所有其他級別，顯示的欄位為現金</value>
+    <value>對於直系會員賬號，顯示的欄位為余額。&lt;br/&gt;對於所有其他級別，顯示的欄位為現金</value>
   </data>
   <data name="YesterdayCashYesterdayBalanceNote" xml:space="preserve">
-    <value>對於直系會員賬號，顯示的欄位為昨天余額。對於所有其他級別，顯示的欄位為昨天現金余額</value>
+    <value>對於直系會員賬號，顯示的欄位為昨天余額。&lt;br/&gt;對於所有其他級別，顯示的欄位為昨天現金余額</value>
   </data>
   <data name="AvailableCreditBetCreditNote" xml:space="preserve">
-    <value>對於直系會員賬號，顯示的欄位為投注額度。對於所有其他級別，顯示的欄位為可用信用額</value>
+    <value>對於直系會員賬號，顯示的欄位為投注額度。&lt;br/&gt;對於所有其他級別，顯示的欄位為可用信用額</value>
   </data>
   <data name="SelectDirectDownline" xml:space="preserve">
     <value>選擇直系下線</value>

@@ -27,8 +27,10 @@
 
     init() {
         var isReloadTopPage = $('#hidden-isReloadTopPage').val();
-        if(isReloadTopPage === '1') {
-            top.indexManager.updateCurrentUrl("adbt=" + ($('#hidden-isAllDayBalanceTransfer').val() === '1' ? 'True' : 'False'));
+        if (isReloadTopPage === '1') {
+            top.indexManager.updateCurrentUrl(
+                'adbt=' + ($('#hidden-isAllDayBalanceTransfer').val() === '1' ? 'True' : 'False')
+            );
             top.indexManager.addCustomCookies('messageForReloadSite', $('#hidden-messageForReloadSite').val());
             top.indexManager.isReloadTopPage = true;
             return;
@@ -66,6 +68,7 @@
         });
 
         $tableTransfer.removeClass('hide').stickyTableHeaders();
+        $('[data-toggle="tooltip"]').tooltip({ html: true, placement: 'right' });
     }
 
     private initPrint() {

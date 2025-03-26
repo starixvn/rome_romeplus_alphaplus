@@ -59,7 +59,9 @@ class CreditBalance {
 
         this.columnsControl.render(this.$('#CookiePrefix').val());
 
-        this.$('#tbl-report').removeClass('hide').stickyTableHeaders();
+        const $tblReport = this.$('#tbl-report');
+        $tblReport.removeClass('hide').stickyTableHeaders();
+        $tblReport.find('.icon-information-outline').tooltip({ html: true, placement: 'right' });
 
         this.$('.view-downline')
             .unbind()
