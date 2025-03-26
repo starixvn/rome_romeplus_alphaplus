@@ -1410,5 +1410,16 @@ namespace AlphaPlus.Shared.AppResources.Common
                 return ResourceManager.GetString("lblEditMember", resourceCulture);
             }
         }
+        /// <summary>
+        ///   Looks up a localized string similar to MemberWinNote.
+        /// </summary>
+        public static string MemberWinNote
+        {
+            get
+            {
+                return ResourceManager.GetString("MemberWinNote", resourceCulture);
+            }
+        }
+        
     }
 }

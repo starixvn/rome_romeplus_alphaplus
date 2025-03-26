@@ -11,6 +11,7 @@
     Layout = "_Layout";
     ViewData["Title"] = Model.PageHeader.Title;
     var downlineRoleId = Model.CustLevel.Value - 1;
+
     void DisplayUserLevelText(UserLevel userLevel)
     {
         if (userLevel.IsMemberLevel())
@@ -37,6 +38,8 @@
         {
             <td>@data.GetValueByLevel(level.Value).FormatNumber()</td>
         }
+
+
     }
 
     var length = Model.DisplayOutstandingLevels.Count;
@@ -59,6 +62,9 @@
     <div class="form-group last-group">
         <input type="submit" value="@Resources.Submit" class="btn-submit" />
     </div>
+    <div class="form-group hide">
+        <span id="icon-information" class="icon-information-outline"></span>
+    </div>
     <input type="hidden" asp-for="CustId" />
     <input type="hidden" asp-for="CustName" />
     <input type="hidden" id="CustLevelId" name="CustLevelId" value="@Model.CustLevel.Value.ToString()" />
@@ -78,6 +84,10 @@
                     {
                         <th data-priority="@(length - i)"></th>
                     }
+
+                    <th data-priority="@(length + 1)"></th>
+
+                    <th data-priority="@(length + 2)"></th>
                 }
                 <th></th>
             </tr>
@@ -88,6 +98,7 @@
                     }
                 </th>
                 <th colspan="@length" class="header">@Resources.Outstanding</th>
+                <th colspan="2" class="header">@Resources.SportsbookRiskAmount</th>
                 <th class="header" rowspan="2"></th>
             </tr>
             <tr class="thead-row2">
@@ -101,6 +112,14 @@
                         </th>
                     }
                 }
+
+                <th data-priority="@(length + 1)">
+                    @Resources.ToWin
+                </th>
+
+                <th data-priority="@(length + 2)">
+                    @Model.GetSMARiskText
+                </th>
             </tr>
         </thead>
         @if (Model.ReportData.HasData)
@@ -125,6 +144,9 @@
                         @{
                             RenderOutstandingCells(outstanding);
                         }
+
+                        <td>@outstanding.ToWin.FormatNumber()</td>
+                        <td>@outstanding.GetSMARiskValueByLevel(Model.ViewerLevel).FormatNumber()</td>
                         <td></td>
                     </tr>
                 }
@@ -136,11 +158,32 @@
                             @Model.ReportData.Total.GetValueByLevel(Model.DisplayOutstandingLevels[i].Value).FormatNumber()
                         </td>
                     }
+                    <td>
+                        @if(Model.TotalHasToWinValue)
+                        {
+                           @Model.ReportData.Total.ToWin.FormatNumber()
+                        }
+                        else
+                        {
+                            @NumberExtensions.NotAvailable
+                        }
+                    </td>
+                    <td>
+                        @if (Model.TotalHasToWinValue)
+                        {
+                            @Model.ReportData.Total.GetSMARiskValueByLevel(Model.ViewerLevel).FormatNumber()
+                        }
+                        else
+                        {
+                            @NumberExtensions.NotAvailable
+                        }
+                    </td>
                     <td class="control"></td>
                 </tr>
             </tbody>
         }
     </table>
 </div>
+<a class="hide" id="LoadLegendURL" asp-action="Outstanding" asp-controller="Legends"></a>
 <input type="hidden" asp-for="DisplayOutstandingLevelsJson" />
 <input type="hidden" id="NoInformationIsAvailable" value="@Resources.NoInformationIsAvailable" />

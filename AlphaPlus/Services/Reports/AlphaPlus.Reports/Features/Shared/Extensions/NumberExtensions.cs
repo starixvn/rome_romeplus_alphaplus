@@ -4,6 +4,8 @@ namespace AlphaPlus.Reports.Features.Shared.Extensions;
 
 public static class NumberExtensions
 {
+    public const string NotAvailable = "N/A";
+
     private const int Percentage = 100;
 
     public static string FormatNumber(this int number)
@@ -21,4 +23,7 @@ public static class NumberExtensions
 
         return $"{ptPercentage}% {SharedResources.PT}";
     }
+
+    public static string FormatNumber(this decimal? numberValue)
+    => numberValue.HasValue ? FormatNumber(numberValue.Value) : NotAvailable;
 }

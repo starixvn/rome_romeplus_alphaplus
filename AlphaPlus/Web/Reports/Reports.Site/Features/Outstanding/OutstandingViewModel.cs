@@ -35,6 +35,15 @@ public class OutstandingViewModel(
 
     public bool IsMobileView { get; } = isMobile;
 
+    public bool TotalHasToWinValue => ReportData.DataSource.Any(i => i.ToWin.HasValue);
+
+    public string GetSMARiskText 
+        => message.ViewerLevel.IsAgentLevel() ? Resources.AgentRisk :
+        message.ViewerLevel.IsMasterLevel() ? Resources.MasterRisk :
+        Resources.SuperRisk;
+
+    public byte ViewerLevel => message.ViewerLevelId;
+
     private static string BuildTitle(UserLevel reportTitle)
         => reportTitle.IsMasterLevel()
         ? Resources.MasterOutstanding

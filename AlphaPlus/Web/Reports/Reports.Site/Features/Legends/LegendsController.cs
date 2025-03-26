@@ -24,4 +24,7 @@ public class LegendsController(IMediator mediator) : ReportBaseController(mediat
 
     public async Task<IActionResult> ProgressiveGamesContribution(MatchWinLossDetailLegendQuery message)
         => View(nameof(Index), await mediator.Send(message));
+
+    public async Task<IActionResult> Outstanding(OutstandingLegendQuery message)
+        => View(nameof(Index), await mediator.Send(message));
 }
