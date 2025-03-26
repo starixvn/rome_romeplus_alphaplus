@@ -18,9 +18,9 @@ public class IndirectLoginResponse
 
     public int RoleId { get; set; }
 
-    public int ErrCode { get; set; }
+    public int Code { get; set; }
 
-    public string ErrMsg { get; set; }
+    public string Message { get; set; }
 
     public int ServerId { get; set; }
 

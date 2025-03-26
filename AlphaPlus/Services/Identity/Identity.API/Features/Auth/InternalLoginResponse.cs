@@ -14,9 +14,9 @@ public class InternalLoginResponse
 
     public int On_UserId { get; set; }
 
-    public int ErrCode { get; set; }
+    public int Code { get; set; }
 
-    public string ErrMsg { get; set; }
+    public string Message { get; set; }
 
     public string Site { get; set; }
 

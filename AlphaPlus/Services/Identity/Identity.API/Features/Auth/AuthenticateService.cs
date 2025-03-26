@@ -260,8 +260,8 @@ namespace AlphaPlus.Identity.API.Features.Auth
             {
                 AdminId = criteria.AdminId,
                 CustId = criteria.CustId,
-                ErrCode = criteria.ErrCode,
-                ErrMsg = criteria.ErrMsg,
+                Code = criteria.ErrCode,
+                Message = criteria.ErrMsg,
                 On_UserId = criteria.On_UserId,
                 RoleId = criteria.RoleId,
                 Username = criteria.Username,
@@ -285,7 +285,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 response.IsAllowTotalBalanceTransfer = await IsAllowTotalBalanceTransfer(response.CustId);
                 response.DateLimit = await GetDateLimit(response.CustId);
 
-                var securityCodeFunction = await GetSecurityCodeOptionalFunction(response.CustId, 0);
+                var securityCodeFunction = await GetSecurityCodeOptionalFunction(response.CustId, 0) ?? new SecurityCodeFunction();
                 response.IsEnabledSecurityCodeInBetLists = securityCodeFunction.BetList;
                 response.IsEnabledSecurityCodeInStatement = securityCodeFunction.Statement;
 
@@ -300,7 +300,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 response.IsAdminCanUpdateSubAccount = await adminPermissionService.HasUpdateSubAccountPermission(response.AdminId);
                 response.OfferedProductGroupIds = await GetOfferedProductGroupIds(response.CustId, response.RoleId);
             }
-
+            
             return response;
         }
 
@@ -328,8 +328,8 @@ namespace AlphaPlus.Identity.API.Features.Auth
             var response = new IndirectLoginResponse
             {
                 CustId = criteria.CustId,
-                ErrCode = criteria.ErrCode,
-                ErrMsg = criteria.ErrMsg,
+                Code = criteria.ErrCode,
+                Message = criteria.ErrMsg,
                 SubAccId = criteria.SubAccId,
                 UplineCustId = criteria.UplineCustId,
                 UplineSubAccId = criteria.UplineSubAccId,
