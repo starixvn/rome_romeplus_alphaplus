@@ -72,7 +72,7 @@
     <input type="hidden" id="CustLevelId" name="CustLevelId" value="@Model.CustLevel.Value.ToString()" />
     <input type="hidden" name="BreadcrumbsJson" value="@Model.PageHeader.BreadcrumbLevel.BreadcrumbsJson" />
 </form>
-<div id="report-container" class="level-@Model.CustLevel.Value" style="width: @(Model.IsMobileView ? "100%" : "65%");">
+<div id="report-container" class="level-@Model.CustLevel.Value" style="width: @(Model.IsMobileView ? "100%" : "75%");">
     <table
         class="tb tb-bordered tb-hover w-full tbl-outstanding tablesorter text-right @(Model.ReportData.HasData ? "hide" : string.Empty)"
         style="width:100%" data-totalrecords="@Model.ReportData.TotalRecords"
