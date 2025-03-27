@@ -74,7 +74,7 @@
 </form>
 <div id="report-container" class="level-@Model.CustLevel.Value" style="width: @(Model.IsMobileView ? "100%" : "75%");">
     <table
-        class="tb tb-bordered tb-hover w-full tbl-outstanding tablesorter text-right @(Model.ReportData.HasData ? "hide" : string.Empty)"
+        class="tb tb-bordered tb-freeze-header tb-hover w-full tbl-outstanding tablesorter text-right @(Model.ReportData.HasData ? "hide" : string.Empty)"
         style="width:100%" data-totalrecords="@Model.ReportData.TotalRecords"
         data-sortedcolumn="@Model.SortPropertyName" data-descendingsort="@Model.DescendingSort" id="tbl-report">
         <thead>

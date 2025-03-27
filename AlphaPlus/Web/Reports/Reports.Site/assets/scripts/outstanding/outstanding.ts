@@ -101,7 +101,7 @@
             paging: false,
             searching: false,
             bInfo: false,
-            fixedHeader: true,
+            //fixedHeader: true,
             processing: true,
             drawCallback: this.drawCallback
         };
@@ -178,7 +178,8 @@
     doAdjustHeader = () => {
         this.$dataTable.fixedHeader.adjust();
 
-        const scrollTo = $('.fixedHeader-floating thead').length > 0 ? $(document).height() : 0;
+        //const scrollTo = $('.fixedHeader-floating thead').length > 0 ? $(document).height() : 0;
+        const scrollTo = window.scrollY;  
         $(window).scrollTop(scrollTo);
     };
 
