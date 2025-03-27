@@ -11,4 +11,24 @@
         }
     }
 }
- 
+.tb .child{
+    padding: 0;
+    ul{
+        li{ 
+            + li{
+                border-top:1px solid var(--table-border) !important;
+            }
+            
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 8px;
+            .dtr-title{
+                text-align: left;
+                display: inline-block;
+                min-width: 75px;
+                font-weight: bold;
+            }
+        }
+    }
+}
