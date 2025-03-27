@@ -78,8 +78,9 @@
         style="width:100%" data-totalrecords="@Model.ReportData.TotalRecords"
         data-sortedcolumn="@Model.SortPropertyName" data-descendingsort="@Model.DescendingSort" id="tbl-report">
         <thead>
-            <tr>
+            <tr class="hide">
                 <th data-priority="0"></th>
+                
                 @if (Model.ShowLevelType)
                 {
                     <th data-priority="@length"></th>
