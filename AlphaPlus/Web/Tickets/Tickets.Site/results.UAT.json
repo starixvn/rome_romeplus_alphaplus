@@ -227,7 +227,7 @@
     "VendorId": 103,
   },
   "SabaKenoResultConfigs": {
-    "Url": "http://10.40.40.248:7107/api/SabaKenoInternal/GetBetHistoryUrl",
+    "Url": "http://10.99.99.7:9107/api/SabaKenoInternal/GetBetHistoryUrl",
     "VendorId": 102,
     "Debug": 0
   },
