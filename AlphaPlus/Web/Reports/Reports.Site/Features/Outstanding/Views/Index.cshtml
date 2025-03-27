@@ -39,8 +39,6 @@
         {
             <td>@data.GetValueByLevel(level.Value).FormatNumber()</td>
         }
-
-
     }
 
     var length = Model.DisplayOutstandingLevels.Count;
@@ -67,7 +65,7 @@
         <input type="submit" value="@Resources.Submit" class="btn-submit" />
     </div>
     <div class="form-group hide">
-        <span id="icon-information" class="icon-information-outline"></span>
+        <span id="icon-information" class="ic-information"></span>
     </div>
     <input type="hidden" asp-for="CustId" />
     <input type="hidden" asp-for="CustName" />
@@ -93,7 +91,6 @@
                     }
 
                     <th data-priority="@(length + 1)"></th>
-
                     <th data-priority="@(length + 2)"></th>
                 }
                 <th></th>
@@ -123,7 +120,6 @@
                 <th data-priority="@(length + 1)">
                     @Resources.ToWin
                 </th>
-
                 <th data-priority="@(length + 2)">
                     @Model.GetSMARiskText
                 </th>
