@@ -102,6 +102,7 @@
     "UnchangedViewListNote": "<username> 取消暂停后，下线列表的状态沒有更改",
     "UpdateSuccessfully": "更新成功！"
   },
+  "UnsuspendedWithNoDownlinesMessages": "您确定要更改这个客户暂停状态吗？",
   "UnsuspendSingleNote": "下线列表的状态在 <username> 取消暂停",
   "AffectedDownlines": "受影响的下线",
   "RemainUnchangedDownlines": "下线列表保持不变",

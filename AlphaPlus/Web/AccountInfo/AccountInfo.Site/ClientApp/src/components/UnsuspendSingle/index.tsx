@@ -39,7 +39,9 @@ export default function UnsuspendSingle({ viewModel, redirectViewListDetail }: P
 
                 if (data.IsSuccessful) {
                     if (top?.customerListNew) {
-                        top.successfulUpdatingCallbackAndReloadMainFrame(true);
+                        top.successfulUpdatingCallbackAndReloadMainFrame &&
+                            typeof top.successfulUpdatingCallbackAndReloadMainFrame === 'function' &&
+                            top.successfulUpdatingCallbackAndReloadMainFrame(true);
                     }
 
                     if (

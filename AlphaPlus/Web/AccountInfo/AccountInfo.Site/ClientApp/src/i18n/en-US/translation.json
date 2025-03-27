@@ -102,6 +102,7 @@
     "UnchangedViewListNote": "List of downlines whose status are unchanged after <username> is unsuspended.",
     "UpdateSuccessfully": "Successfully updated!"
   },
+  "UnsuspendedWithNoDownlinesMessages": "Are you sure you want to change Suspend status for this customer?",
   "UnsuspendSingleNote": "List of downlines' status after <username> is unsuspended.",
   "AffectedDownlines": "Affected Downlines",
   "RemainUnchangedDownlines": "Remain Unchanged Downlines",

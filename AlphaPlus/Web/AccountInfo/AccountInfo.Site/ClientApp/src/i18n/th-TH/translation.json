@@ -102,6 +102,7 @@
     "UnchangedViewListNote": "รายการสถานะดาวน์ไลน์ไม่เปลี่ยนแปลง <username> หลังยกเลิกการระงับ",
     "UpdateSuccessfully": "อัปเดตสำเร็จแล้ว!"
   },
+  "UnsuspendedWithNoDownlinesMessages": "คุณแน่ใจหรือว่าต้องการเปลี่ยนสถานะเป็นระงับการใช้งานให้กับลูกค้าท่านนี้?",
   "UnsuspendSingleNote": "รายการสถานะดาวน์ไลน์ <username> ถูกยกเลิกการระงับ",
   "AffectedDownlines": "ดาวน์ไลน์ที่ได้รับผลกระทบ",
   "RemainUnchangedDownlines": "สถานะดาวน์ไลน์ยังคงไมเปลี่ยน",

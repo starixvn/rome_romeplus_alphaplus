@@ -102,6 +102,7 @@
     "UnchangedViewListNote": "Danh sách tài khoản cấp dưới có trạng thái không thay đổi sau khi <username> được huỷ đình chỉ",
     "UpdateSuccessfully": "Đã cập nhật thành công!"
   },
+  "UnsuspendedWithNoDownlinesMessages": "Bạn có chắc muốn thay đổi trạng thái \"Đình Chỉ\" cho thành viên này không?",
   "UnsuspendSingleNote": "Trạng thái của tài khoản cấp dưới sau khi <username> được huỷ đình chỉ",
   "AffectedDownlines": "Tài khoản bị ảnh hưởng",
   "RemainUnchangedDownlines": "Tài khoản không bị ảnh hưởng",
