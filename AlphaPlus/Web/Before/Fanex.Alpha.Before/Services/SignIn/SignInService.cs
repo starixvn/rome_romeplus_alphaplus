@@ -57,6 +57,10 @@ namespace Fanex.Alpha.Before.Services.SignIn
         private readonly IDeviceHelper deviceHelper;
         private readonly HttpClient httpClient;
 
+        private const int FAILED_LOGIN_ATTEMPTS_NOTIFICATION_THRESHOLD = 3;
+        private const string MESSAGE_KEY_LOGIN_FAILED_EXCEED_COUNT = "PersonalMessage_DownlineLoginFailed_ExceedCount";
+        private const string MESSAGE_KEY_LOGIN_FAILED_CHANGED_PASSWORD = "PersonalMessage_DownlineLoginFailed_ChangedPassword";
+
         public SignInService(
             IOptions<ManualUMOptions> manualUMOptions,
             IOptions<CommonOptions> commonOptions,
@@ -510,57 +514,48 @@ namespace Fanex.Alpha.Before.Services.SignIn
 
         private async Task NotifyLoginFail(SignInResult signInResult, VerifySignInResult verifySignInResult)
         {
-            try {
-                if(verifySignInResult.UplineId <= 0 || 
-                   !(verifySignInResult.FailedCount == 3 || signInResult.IsChangedPassword)) {
+            try 
+            {
+                if (!ShouldNotifyLoginFail(verifySignInResult, signInResult))
+                {
                     return;
                 }
 
                 var targetId = verifySignInResult.UplineId;
                 var targetName = verifySignInResult.UplineName;
-                string message;
-                InsertPersonalMessageCriteria personalMessageCriteria;
-                InsertToastMessageCriteria insertToastMessageCriteria;
-
-                if(verifySignInResult.FailedCount == 3) { 
-                    message = "PersonalMessage_DownlineLoginFailed_ExceedCount";
-                    var messageEn = string.Format(Labels.ResourceManager.GetString(message, CultureInfo.CreateSpecificCulture(LanguageCodeConstants.English)), signInResult.Username);
-                    var messageCh = string.Format(Labels.ResourceManager.GetString(message, CultureInfo.CreateSpecificCulture(LanguageCodeConstants.ChineseTraditional)), signInResult.Username);
-                    var messageCs = string.Format(Labels.ResourceManager.GetString(message, CultureInfo.CreateSpecificCulture(LanguageCodeConstants.ChineseSimplified)), signInResult.Username);
-                    var messageTh = string.Format(Labels.ResourceManager.GetString(message, CultureInfo.CreateSpecificCulture(LanguageCodeConstants.Thai)), signInResult.Username);
-                    var messageVi = string.Format(Labels.ResourceManager.GetString(message, CultureInfo.CreateSpecificCulture(LanguageCodeConstants.Vietnamese)), signInResult.Username);
-                    var messageJp = string.Format(Labels.ResourceManager.GetString(message, CultureInfo.CreateSpecificCulture(LanguageCodeConstants.Japanese)), signInResult.Username);
-                    var messageKo = string.Format(Labels.ResourceManager.GetString(message, CultureInfo.CreateSpecificCulture(LanguageCodeConstants.Korean)), signInResult.Username);
-                    personalMessageCriteria = new InsertPersonalMessageCriteria(
-                        messageEn, messageCh, messageCs, messageTh, messageVi, messageJp, messageKo);
-
-                    insertToastMessageCriteria = new InsertToastMessageCriteria(
-                        targetId, verifySignInResult.CustId, messageEn, messageCh, messageCs, messageTh, messageVi, messageJp, messageKo);                                              
-                } else {
-                   message = "PersonalMessage_DownlineLoginFailed_ChangedPassword";
-                    var messageEn = string.Format(Labels.ResourceManager.GetString(message, CultureInfo.CreateSpecificCulture(LanguageCodeConstants.English)), signInResult.Username, verifySignInResult.LastTimeToChangePassword);
-                    var messageCh = string.Format(Labels.ResourceManager.GetString(message, CultureInfo.CreateSpecificCulture(LanguageCodeConstants.ChineseTraditional)), signInResult.Username, verifySignInResult.LastTimeToChangePassword);
-                    var messageCs = string.Format(Labels.ResourceManager.GetString(message, CultureInfo.CreateSpecificCulture(LanguageCodeConstants.ChineseSimplified)), signInResult.Username, verifySignInResult.LastTimeToChangePassword);
-                    var messageTh = string.Format(Labels.ResourceManager.GetString(message, CultureInfo.CreateSpecificCulture(LanguageCodeConstants.Thai)), signInResult.Username, verifySignInResult.LastTimeToChangePassword);
-                    var messageVi = string.Format(Labels.ResourceManager.GetString(message, CultureInfo.CreateSpecificCulture(LanguageCodeConstants.Vietnamese)), signInResult.Username, verifySignInResult.LastTimeToChangePassword);
-                    var messageJp = string.Format(Labels.ResourceManager.GetString(message, CultureInfo.CreateSpecificCulture(LanguageCodeConstants.Japanese)), signInResult.Username, verifySignInResult.LastTimeToChangePassword);
-                    var messageKo = string.Format(Labels.ResourceManager.GetString(message, CultureInfo.CreateSpecificCulture(LanguageCodeConstants.Korean)), signInResult.Username, verifySignInResult.LastTimeToChangePassword);
-                    personalMessageCriteria = new InsertPersonalMessageCriteria(
-                        messageEn, messageCh, messageCs, messageTh, messageVi, messageJp, messageKo);
-                    
-                    insertToastMessageCriteria = new InsertToastMessageCriteria(
-                        targetId, verifySignInResult.CustId, messageEn, messageCh, messageCs, messageTh, messageVi, messageJp, messageKo);
-                }
+                var (messageKey, messageParams) = GetMessageDetails(verifySignInResult, signInResult);
                 
-                var messageId = (await repository.FetchAsync<long>(personalMessageCriteria))
-                    .FirstOrDefault();
+                var messages = LocalizedMessagesModel.GetLocalizedMessages(messageKey, messageParams);
+                var personalMessageCriteria = new InsertPersonalMessageCriteria(
+                    messages.En, messages.Ch, messages.Cs, messages.Th, messages.Vi, messages.Jp, messages.Ko);
 
-                var assignPersonalMessageCriteria = new AssignPersonalMessageCriteria(messageId, targetId, targetName);
-                repository.Fetch<bool>(assignPersonalMessageCriteria);
-                await repository.FetchAsync<long>(insertToastMessageCriteria);
-            } catch(Exception ex) {
-                await logger.ErrorAsync(ex.Message, ex);
+                await repository.ExecuteAsync(personalMessageCriteria);
+
+                var assignPersonalMessageCriteria = new AssignPersonalMessageCriteria(personalMessageCriteria.MessageIdOutput ?? 0, targetId, targetName);
+                await repository.ExecuteAsync(assignPersonalMessageCriteria);
+
+                var insertToastMessageCriteria = new InsertToastMessageCriteria(
+                    targetId, verifySignInResult.CustId, 
+                    messages.En, messages.Ch, messages.Cs, messages.Th, messages.Vi, messages.Jp, messages.Ko);
+                await repository.ExecuteAsync(insertToastMessageCriteria);
             }
+            catch(Exception ex) 
+            {
+                await logger.ErrorAsync($"Failed to notify login failure for user {signInResult.Username}: {ex.Message}", ex);
+            }
+        }
+
+        private bool ShouldNotifyLoginFail(VerifySignInResult verifySignInResult, SignInResult signInResult)
+        {
+            return verifySignInResult.UplineId > 0 && 
+                   (verifySignInResult.FailedCount == FAILED_LOGIN_ATTEMPTS_NOTIFICATION_THRESHOLD || signInResult.IsChangedPassword);
+        }
+
+        private (string messageKey, object[] messageParams) GetMessageDetails(VerifySignInResult verifySignInResult, SignInResult signInResult)
+        {
+            return verifySignInResult.FailedCount == FAILED_LOGIN_ATTEMPTS_NOTIFICATION_THRESHOLD
+                ? (MESSAGE_KEY_LOGIN_FAILED_EXCEED_COUNT, new object[] { signInResult.Username })
+                : (MESSAGE_KEY_LOGIN_FAILED_CHANGED_PASSWORD, new object[] { signInResult.Username, verifySignInResult.LastTimeToChangePassword });
         }
     }
 }

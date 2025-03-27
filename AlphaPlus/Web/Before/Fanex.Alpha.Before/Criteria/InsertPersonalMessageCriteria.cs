@@ -49,7 +49,7 @@ public class InsertPersonalMessageCriteria(
 
     public bool IsBatch { get; } = true;
 
-    public int? MessageIdOutput { get; set; }
+    public long? MessageIdOutput { get; set; }
 
     public override string GetSettingKey() => "Age_Msg_SetMessage";
 
