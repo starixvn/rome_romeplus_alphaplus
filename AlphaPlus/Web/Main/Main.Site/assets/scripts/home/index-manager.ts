@@ -492,7 +492,7 @@ var indexManager = {
             hiddenIsShowRewardTour.remove();
         } else {
             // New Feature
-            //indexManager.initHighlightPopup($('#menu-REPORTS'), '', 80);
+            indexManager.initHighlightPopup($('#menu-REPORTS'), '000000_TestNewFeature', 80);
         }
     },
 
