@@ -68,7 +68,7 @@
     <PackageReference Include="Fanex.BetList.PP" Version="2.0.0.4" />
     <PackageReference Include="Fanex.BetList.PragmaticLiveCasino" Version="2.0.0.1" />
     <PackageReference Include="Fanex.BetList.RnGCasino" Version="2.0.0.2" />
-    <PackageReference Include="Fanex.BetList.RNGCore" Version="1.0.0.4" />
+    <PackageReference Include="Fanex.BetList.RNGCore" Version="1.0.1-beta-04" />
     <PackageReference Include="Fanex.BetList.RNGWar" Version="2.0.0.1" />
     <PackageReference Include="Fanex.BetList.SabaClub" Version="2.0.0.4" />
     <PackageReference Include="Fanex.BetList.SABAKeno" Version="1.0.0" />
@@ -82,7 +82,7 @@
     <PackageReference Include="Fanex.BetList.UUSlots" Version="1.0.0" />
     <PackageReference Include="Fanex.BetList.VGaming" Version="2.0.0.8" />
     <PackageReference Include="Fanex.BetList.VirtualGames" Version="2.0.0.2" />
-    <PackageReference Include="Fanex.BetList.VirtualSports" Version="2.0.2" />
+    <PackageReference Include="Fanex.BetList.VirtualSports" Version="2.0.2.5-vs7-01" />
     <PackageReference Include="Fanex.BetList.VoidBridge" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.WE" Version="1.0.0.1" />
     <PackageReference Include="Fanex.BetList.WM" Version="2.0.0.1" />
@@ -94,7 +94,7 @@
     <PackageReference Include="Fanex.RemotingRef" Version="1.5.4" />
     <PackageReference Include="Fanex.Result.Core-Bitcoin" Version="2.0.0.1" />
     <PackageReference Include="Fanex.Result.Core-LeapGaming" Version="2.0.0" />
-    <PackageReference Include="Fanex.Result.Core-NPOI.2.0.6" Version="4.0.0-upgrade-05" />
+    <PackageReference Include="Fanex.Result.Core-NPOI.2.0.6" Version="4.0.0.1-vs7-01" />
     <PackageReference Include="Fanex.Result.Core-NumberGame" Version="2.0.0" />
     <PackageReference Include="Fanex.Result.Core-Sportsbook" Version="4.0.0-upgrade-09" />
     <PackageReference Include="Fanex.Result.Core.AllBetCasino" Version="2.0.0.3-upgrade-03" />
@@ -108,7 +108,7 @@
     <PackageReference Include="Fanex.Result.Core.SAGaming" Version="3.0.0-upgrade-01" />
     <PackageReference Include="Fanex.Result.Core.SportsLottery" Version="2.0.0-beta-02" />
     <PackageReference Include="Fanex.Result.Core.ThirdPartyResult" Version="2.0.1-upgrade-04" />
-    <PackageReference Include="Fanex.Result.Core.VirtualRacing" Version="2.0.0-upgrade-01" />
+    <PackageReference Include="Fanex.Result.Core.VirtualRacing" Version="2.0.0.1-vs7-02" />
     <PackageReference Include="Fanex.Result.Core.WM" Version="3.0.0-upgrade-01" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.4" />
