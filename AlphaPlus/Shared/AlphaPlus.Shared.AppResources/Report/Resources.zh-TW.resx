@@ -1095,9 +1095,6 @@
   <data name="Reward" xml:space="preserve">
     <value>獎金</value>
   </data>
-  <data name="WinLossDetail" xml:space="preserve">
-    <value>勝ち負け詳細</value>
-  </data>
   <data name="Close" xml:space="preserve">
     <value>關閉</value>
   </data>

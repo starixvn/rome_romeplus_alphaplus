@@ -169,9 +169,9 @@ public class IndexViewModel
 
     public bool IsShowSuggestEnableTelegramOtp { get; set; }
 
-    public bool HightLightFeaturePermission => ((PageAccess)message.SubPageAccess).ViewReports;
+    public bool HightLightFeaturePermission => false;
 
-    public string HightLightFeatureImageName => "new_feature.svg";
+    public string HightLightFeatureImageName => "new_feature" + DarkModeName;
 
     public string HightLightFeatureUrl => MicroSites.MainUrl("~/Tour/Reward");
 
