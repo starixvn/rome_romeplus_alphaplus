@@ -130,7 +130,7 @@
     "RedisConfiguration": "10.2.27.140:16389,Password=foo1@bared,Name=AlphaPlus,abortConnect=false,configChannel=__Booksleeve_MasterChanged,connectTimeout=6300",
     "RemotingRefUrl": "http://vn-remotingref-prod.nebula.prod/",
     "Fanex.Customer": {
-        "ServiceUri": "http://alphaplus_api_settings_ALPHAPROD:5000/api/",
+        "ServiceUri": "http://alphaplus_api_settings_ALPHAPROD_2:5000/api/",
         "CdnUri": "/stdcsv2/",
         "SystemId": 6
     },
