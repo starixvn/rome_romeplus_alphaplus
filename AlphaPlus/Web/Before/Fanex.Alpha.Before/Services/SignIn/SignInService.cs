@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Globalization;
+using System.Net;
 using System.Text.Json;
 using Alpha.Captcha.Core;
 using Alpha.Captcha.Core.Services;
@@ -55,6 +56,10 @@ namespace Fanex.Alpha.Before.Services.SignIn
         private readonly IEncryptUrlHelper encryptUrlHelper;
         private readonly IDeviceHelper deviceHelper;
         private readonly HttpClient httpClient;
+
+        private const int FAILED_LOGIN_ATTEMPTS_NOTIFICATION_THRESHOLD = 3;
+        private const string MESSAGE_KEY_LOGIN_FAILED_EXCEED_COUNT = "PersonalMessage_DownlineLoginFailed_ExceedCount";
+        private const string MESSAGE_KEY_LOGIN_FAILED_CHANGED_PASSWORD = "PersonalMessage_DownlineLoginFailed_ChangedPassword";
 
         public SignInService(
             IOptions<ManualUMOptions> manualUMOptions,
@@ -446,6 +451,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
                     else
                     {
                         await UpdateResultAfterLoginFail(signInResult, verifySignInResult);
+                        await NotifyLoginFail(signInResult, verifySignInResult);
 
                         return ThrottleResult.Allowed;
                     }
@@ -494,13 +500,62 @@ namespace Fanex.Alpha.Before.Services.SignIn
                 SubUserName = criteria.SubUsername,
                 ServerId = criteria.ServerId,
                 IsKickoutDueToProtectedMode = criteria.IsKickOut,
-                FailedCount = criteria.FailedCount
+
+                FailedCount = criteria.FailedCount,
+                UplineId = criteria.UplineId ?? 0,
+                UplineName = criteria.UplineName
             };
         }
         
         private static bool IsAlphanumericOnly(string text)
         {
             return alphanumericRegex.IsMatch(text);
+        }
+
+        private async Task NotifyLoginFail(SignInResult signInResult, VerifySignInResult verifySignInResult)
+        {
+            try 
+            {
+                if (!ShouldNotifyLoginFail(verifySignInResult, signInResult))
+                {
+                    return;
+                }
+
+                var targetId = verifySignInResult.UplineId;
+                var targetName = verifySignInResult.UplineName;
+                var (messageKey, messageParams) = GetMessageDetails(verifySignInResult, signInResult);
+                
+                var messages = LocalizedMessagesModel.GetLocalizedMessages(messageKey, messageParams);
+                var personalMessageCriteria = new InsertPersonalMessageCriteria(
+                    messages.En, messages.Ch, messages.Cs, messages.Th, messages.Vi, messages.Jp, messages.Ko);
+
+                await repository.ExecuteAsync(personalMessageCriteria);
+
+                var assignPersonalMessageCriteria = new AssignPersonalMessageCriteria(personalMessageCriteria.MessageIdOutput ?? 0, targetId, targetName);
+                await repository.ExecuteAsync(assignPersonalMessageCriteria);
+
+                var insertToastMessageCriteria = new InsertToastMessageCriteria(
+                    targetId, verifySignInResult.CustId, 
+                    messages.En, messages.Ch, messages.Cs, messages.Th, messages.Vi, messages.Jp, messages.Ko);
+                await repository.ExecuteAsync(insertToastMessageCriteria);
+            }
+            catch(Exception ex) 
+            {
+                await logger.ErrorAsync($"Failed to notify login failure for user {signInResult.Username}: {ex.Message}", ex);
+            }
+        }
+
+        private bool ShouldNotifyLoginFail(VerifySignInResult verifySignInResult, SignInResult signInResult)
+        {
+            return verifySignInResult.UplineId > 0 && 
+                   (verifySignInResult.FailedCount == FAILED_LOGIN_ATTEMPTS_NOTIFICATION_THRESHOLD || signInResult.IsChangedPassword);
+        }
+
+        private (string messageKey, object[] messageParams) GetMessageDetails(VerifySignInResult verifySignInResult, SignInResult signInResult)
+        {
+            return verifySignInResult.FailedCount == FAILED_LOGIN_ATTEMPTS_NOTIFICATION_THRESHOLD
+                ? (MESSAGE_KEY_LOGIN_FAILED_EXCEED_COUNT, new object[] { signInResult.Username })
+                : (MESSAGE_KEY_LOGIN_FAILED_CHANGED_PASSWORD, new object[] { signInResult.Username, verifySignInResult.LastTimeToChangePassword });
         }
     }
 }

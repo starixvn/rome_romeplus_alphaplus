@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -117,6 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="IP" xml:space="preserve">
+    <value>ไอพี</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>ประเทศ</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>เมือง</value>
+  </data>
+  <data name="IPNote" xml:space="preserve">
+    <value>หาข้อมูลเพิ่มเติมได้จาก  DNS stuff:&lt;a href="{0}" target="_blank"&gt; คลิ๊กที่นี่&lt;/a&gt;.
+หมายเหตุ : ประเทศและชื่อเมืองได้ข้อมูลจาก IP2Location and DNS stuff ซึ่งเป็นเพียงข้อมูลอ้างอิงเท่านั้นไม่สามารถรับประกันได้ กรุณาศึกษาหาข้อมูลอื่นๆได้จากแหล่งผู้ให้ข้อมูลที่สามารถเชื่อถือได้ หากท่านต้องการ</value>
+  </data>
+  <data name="ipv6note" xml:space="preserve">
+    <value>สำหรับ IPv6 ที่อยู่ไอพีเดียวกันอาจจะแสดงต่างกัน</value>
+  </data>
+  <data name="ForExample" xml:space="preserve">
+    <value>ตัวอย่างเช่น:</value>
+  </data>
+  <data name="ipv61" xml:space="preserve">
+    <value>- หมายเลขไอพี 1: 2001:db8:3333:4444:5555:6666:1.2.3.4</value>
+  </data>
+  <data name="ipv62" xml:space="preserve">
+    <value> - หมายเลขไอพี 2: 2001:0db8:3333:4444:5555:6666:0102:0304</value>
+  </data>
   <data name="close" xml:space="preserve">
     <value>ปิด</value>
   </data>
@@ -129,15 +154,15 @@
   <data name="admin" xml:space="preserve">
     <value>แอดมิน</value>
   </data>
-  <data name="nickname" xml:space="preserve">
-    <value>ชื่อเล่น</value>
-  </data>
   <data name="configNow" xml:space="preserve">
     <value>ยืนยันเดี๋ยวนี้</value>
   </data>
   <data name="introNickname" xml:space="preserve">
     <value>&lt;div&gt;เรียนลูกค้าทุกท่าน คุณสามารถเข้าสู่ระะบบโดยชื่อเล่นของคุณเอง&lt;/div&gt;
 &lt;div&gt;...ปลอดภัยและเป็นส่วนตัวมากขึ้น.&lt;/div&gt;</value>
+  </data>
+  <data name="nickname" xml:space="preserve">
+    <value>ชื่อเล่น</value>
   </data>
   <data name="ProfileLoginTip" xml:space="preserve">
     <value>เรียนเอเย่นท์ของเรา เพื่อให้ท่านเห็นความแตกต่างหากเข้าใช้งานเวปไซต์ปลอม เราได้ทำการเลือกรูปโปรไฟล์ส่วนตัวให้กับท่าน ซึ่งท่านสามารถเข้าทำการเปลี่ยนแปลงได้ โดย&lt;a class="change-picture-link" href="{0}" target="main" id="changePictureLink"&gt;กดที่นี่&lt;/a&gt;.&lt;br/&gt;ทั้งนี้ ท่านสามารถเปลี่ยนภาษาที่ท่านต้องการได้ โดย&lt;a class="change-picture-link" href="{1}" target="main"&gt;กดที่นี่&lt;/a&gt;. ขอบคุณ</value>
@@ -307,6 +332,9 @@
   <data name="doNotShowAgain" xml:space="preserve">
     <value>ไม่ต้องแสดงอีกครั้ง</value>
   </data>
+  <data name="RewardDoNotShowAgain" xml:space="preserve">
+    <value>ไม่ต้องแสดงอีกครั้ง</value>
+  </data>
   <data name="PrivateMessage" xml:space="preserve">
     <value>ข้อความส่วนตัว</value>
   </data>
@@ -315,12 +343,6 @@
   </data>
   <data name="LogOut" xml:space="preserve">
     <value>ออกจากระบบ</value>
-  </data>
-  <data name="Next" xml:space="preserve">
-    <value>ต่อไป</value>
-  </data>
-  <data name="Skip" xml:space="preserve">
-    <value>ผ่าน</value>
   </data>
   <data name="BrowserIsOutOfDate" xml:space="preserve">
     <value>เบราว์เซอร์ของคุณล้าสมัยและอาจจะไม่ได้ทำงานอย่างถูกต้องกับเว็บไซต์ของเรา. สำหรับการสนับสนุนที่ดีเราขอแนะนำให้คุณอัปเกรดเป็นเวอร์ชันใหม่.</value>
@@ -391,6 +413,12 @@
   <data name="Replay" xml:space="preserve">
     <value>เล่นใหม่</value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>ต่อไป</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>ผ่าน</value>
+  </data>
   <data name="ReplayInstruction" xml:space="preserve">
     <value>คุณสามารถรีเพลคู่มือโดยการคลิกที่ไอคอนนี้</value>
   </data>
@@ -400,11 +428,41 @@
   <data name="QuickTourTooltip" xml:space="preserve">
     <value>คู่มือรวบรัด</value>
   </data>
-  <data name="stats" xml:space="preserve">
-    <value>สถิติของคุณ</value>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>ปรับปรุงเรียบร้อยแล้ว!</value>
+  </data>
+  <data name="lblBack" xml:space="preserve">
+    <value>กลับ</value>
+  </data>
+  <data name="lblChangePassword" xml:space="preserve">
+    <value>เปลี่ยนรหัสผ่าน</value>
+  </data>
+  <data name="lblresetpassword" xml:space="preserve">
+    <value>แก้ไขรหัส</value>
   </data>
   <data name="balance" xml:space="preserve">
     <value>บัญชีคงเหลือ</value>
+  </data>
+  <data name="credit" xml:space="preserve">
+    <value>เครดิต</value>
+  </data>
+  <data name="memberInfo" xml:space="preserve">
+    <value>ข้อมูลสมาชิก</value>
+  </data>
+  <data name="notice" xml:space="preserve">
+    <value>ประกาศ</value>
+  </data>
+  <data name="stats" xml:space="preserve">
+    <value>สถิติของคุณ</value>
+  </data>
+  <data name="personalMessage" xml:space="preserve">
+    <value>ข้อความส่วนตัว</value>
+  </data>
+  <data name="specialNotice" xml:space="preserve">
+    <value>ข้อความ เฉพาะ</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>ส่ง</value>
   </data>
   <data name="Enabled" xml:space="preserve">
     <value>เปิดการใช้งาน</value>
@@ -412,20 +470,14 @@
   <data name="Disabled" xml:space="preserve">
     <value> ปิดการใช้งาน</value>
   </data>
-  <data name="normalAnnouncement" xml:space="preserve">
-    <value>ประกาศธรรมดา</value>
+  <data name="ThereIsNoChange" xml:space="preserve">
+    <value>ไม่มีการเปลี่ยนแปลงในการอัปเดตนี้</value>
   </data>
-  <data name="specialNotice" xml:space="preserve">
-    <value>ข้อความ เฉพาะ</value>
+  <data name="Remove" xml:space="preserve">
+    <value>ลบ</value>
   </data>
-  <data name="specialAnnouncement" xml:space="preserve">
-    <value>ข้อความ เฉพาะ</value>
-  </data>
-  <data name="personalMessage" xml:space="preserve">
-    <value>ข้อความส่วนตัว</value>
-  </data>
-  <data name="notice" xml:space="preserve">
-    <value>ประกาศ</value>
+  <data name="outstanding" xml:space="preserve">
+    <value>เดิมพันที่ยังไม่สิ้นสุด</value>
   </data>
   <data name="active" xml:space="preserve">
     <value>ใช้งานอยู่</value>
@@ -436,17 +488,26 @@
   <data name="suspended" xml:space="preserve">
     <value>ระงับ</value>
   </data>
-  <data name="submit" xml:space="preserve">
-    <value>ส่ง</value>
-  </data>
   <data name="to" xml:space="preserve">
     <value>ถึง</value>
+  </data>
+  <data name="loading" xml:space="preserve">
+    <value>กำลังโหลด</value>
+  </data>
+  <data name="normalAnnouncement" xml:space="preserve">
+    <value>ประกาศธรรมดา</value>
+  </data>
+  <data name="specialAnnouncement" xml:space="preserve">
+    <value>ข้อความ เฉพาะ</value>
   </data>
   <data name="from" xml:space="preserve">
     <value>จาก</value>
   </data>
-  <data name="outstanding" xml:space="preserve">
-    <value>เดิมพันที่ยังไม่สิ้นสุด</value>
+  <data name="firstName" xml:space="preserve">
+    <value>ชื่อ</value>
+  </data>
+  <data name="lastName" xml:space="preserve">
+    <value>นามสกุล</value>
   </data>
   <data name="NoPermissionAccessPage" xml:space="preserve">
     <value>ขออภัยคุณไม่ได้รับอนุญาติให้เข้าหน้านี้</value>
@@ -456,9 +517,6 @@
   </data>
   <data name="lblNew" xml:space="preserve">
     <value>บใหม่</value>
-  </data>
-  <data name="UpdatedSuccessfully" xml:space="preserve">
-    <value>ปรับปรุงเรียบร้อยแล้ว!</value>
   </data>
   <data name="Notice_3" xml:space="preserve">
     <value>อัพไลน์ของคุณได้เปิดใช้งานเกมส์ยิงปลาให้ดาวน์ไลน์ของคุณ. โปรดไปที่หน้าการตั้งค่าเพือกำหนดค่าการตั้งค่าส่วนแบ่งของคุณเอง</value>
@@ -511,11 +569,11 @@
   <data name="PleaseSelectLoginByNickname" xml:space="preserve">
     <value>กรุณาเลือก เข้าสู่ระบบด้วยชื่อเล่นเท่านั้น</value>
   </data>
-  <data name="DataProcessingIsInProgress" xml:space="preserve">
-    <value>อยู่ในช่วงการการประมวลผลข้อมูล.</value>
-  </data>
   <data name="DataProcessingNotification" xml:space="preserve">
     <value>แจ้งเตือนการประมวลผลข้อมูล</value>
+  </data>
+  <data name="DataProcessingIsInProgress" xml:space="preserve">
+    <value>อยู่ในช่วงการการประมวลผลข้อมูล.</value>
   </data>
   <data name="invalidCaptcha" xml:space="preserve">
     <value>คุณใส่รหัสที่หมดอายุแล้วในการเข้าระบบ</value>
@@ -529,26 +587,26 @@
   <data name="PendingTransfer3rd" xml:space="preserve">
     <value>บุคคลที่สามรอการถ่ายโอน</value>
   </data>
-  <data name="UMFrom" xml:space="preserve">
-    <value>จาก</value>
-  </data>
-  <data name="UMTo" xml:space="preserve">
-    <value>ถึง</value>
-  </data>
   <data name="UMAnnouncementTitle" xml:space="preserve">
     <value>ประกาศการบำรุงรักษา</value>
   </data>
-  <data name="UMCustomerSettingsPattern" xml:space="preserve">
-    <value>&lt;strong&gt;_SettingType_&lt;/strong&gt; ของ &lt;strong&gt;_Product_&lt;/strong&gt;: ไม่พร้อมใช้งานตั้งแต่ &lt;span class="um-message-time"&gt;{0}&lt;/span&gt; ถึง &lt;span class="um-message-time"&gt;{1}&lt;/span&gt;</value>
+  <data name="UMFrom" xml:space="preserve">
+    <value>จาก</value>
+  </data>
+  <data name="UMSchedule" xml:space="preserve">
+    <value>แผนการบำรุงรักษา (GMT +8) และในช่วงเวลานี้ฟังก์ชันเหล่านี้จะไม่สามารถใช้งานได้:</value>
   </data>
   <data name="UMSorryForInconvenience" xml:space="preserve">
     <value>ขออภัยในความไม่สะดวก มา ณ ที่นี้ด้วย</value>
   </data>
+  <data name="UMTo" xml:space="preserve">
+    <value>ถึง</value>
+  </data>
   <data name="AllProducts" xml:space="preserve">
     <value>ผลิตภัณฑ์ทั้งหมด</value>
   </data>
-  <data name="UMSchedule" xml:space="preserve">
-    <value>แผนการบำรุงรักษา (GMT +8) และในช่วงเวลานี้ฟังก์ชันเหล่านี้จะไม่สามารถใช้งานได้:</value>
+  <data name="UMCustomerSettingsPattern" xml:space="preserve">
+    <value>&lt;strong&gt;_SettingType_&lt;/strong&gt; ของ &lt;strong&gt;_Product_&lt;/strong&gt;: ไม่พร้อมใช้งานตั้งแต่ &lt;span class="um-message-time"&gt;{0}&lt;/span&gt; ถึง &lt;span class="um-message-time"&gt;{1}&lt;/span&gt;</value>
   </data>
   <data name="UMTransferPattern" xml:space="preserve">
     <value>&lt;strong&gt;การถ่ายโอน&lt;/strong&gt;: ไม่สามารถใช้งานได้ตั้งแต่ &lt;span class="um-message-time"&gt;{0}&lt;/span&gt; ถึง &lt;span class="um-message-time"&gt;{1}&lt;/span&gt;</value>
@@ -634,20 +692,20 @@
   <data name="LearnMore" xml:space="preserve">
     <value>ศึกษาเพิ่มเติม</value>
   </data>
-  <data name="No" xml:space="preserve">
-    <value>ไม่มี</value>
-  </data>
   <data name="Yes" xml:space="preserve">
     <value>ใช่</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>ไม่มี</value>
   </data>
   <data name="AdvertisementMyWatchlistGlobalThresholdDetailAgent" xml:space="preserve">
     <value>ไปที่ &lt;b&gt; การจัดการความเสี่ยง &lt;/b&gt; --&gt; รายการเฝ้าดูของฉัน - ขีดจำกัดของฉัน --&gt; ตั้งค่าขีดจำกัดการชนะ/แพ้</value>
   </data>
-  <data name="FeedbackTitle" xml:space="preserve">
-    <value>ช่วยเราพัฒนา!</value>
-  </data>
   <data name="Feedback" xml:space="preserve">
     <value>ข้อเสนอแนะ</value>
+  </data>
+  <data name="FeedbackTitle" xml:space="preserve">
+    <value>ช่วยเราพัฒนา!</value>
   </data>
   <data name="LoveToHear" xml:space="preserve">
     <value>เรารู้สึกยินดีที่ได้รับคำติชมจากคุณ!</value>
@@ -657,6 +715,15 @@
   </data>
   <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
     <value>&lt;p&gt;เรามีความยินดีที่จะแนะนำโปรแกรมรางวัลเงินสดใหม่ที่น่าตื่นเต้นของเรา. บริษัทเป็นผู้รับผิดชอบจำนวนเงินรางวัล และเมื่อสมาชิกได้รับเงินรางวัลแล้ว จะไม่สามารถนำไปใช้วางเดิมพันได้. เงินรางวัลจะแจกจ่ายให้กับอัพไลน์ และสมาชิกสามารถถอนเงินรางวัลผ่านตัวแทนของตนได้&lt;/p&gt;&lt;p&gt;ฟีเจอร์ใหม่ของเรา &lt;b&gt;การจ่ายเงินรางวัล&lt;/b&gt; รองรับการจัดการการจ่ายเงินดาวน์ไลน์ของคุณ ช่วยให้มั่นใจได้ว่าจะแจกจ่ายเงินรางวัลทั้งหมดอย่างถูกต้อง&lt;/p&gt;</value>
+  </data>
+  <data name="HighlightPopupRewardIntro" xml:space="preserve">
+    <value>&lt;p&gt;เรามีความยินดีที่จะแนะนำโปรแกรมรางวัลเงินสดใหม่ที่น่าตื่นเต้นของเรา. บริษัทเป็นผู้รับผิดชอบจำนวนเงินรางวัล และเมื่อสมาชิกได้รับเงินรางวัลแล้ว จะไม่สามารถนำไปใช้วางเดิมพันได้. เงินรางวัลจะแจกจ่ายให้กับอัพไลน์ และสมาชิกสามารถถอนเงินรางวัลผ่านตัวแทนของตนได้&lt;/p&gt;&lt;p&gt;ฟีเจอร์ใหม่ของเรา &lt;b&gt;การจ่ายเงินรางวัล&lt;/b&gt; รองรับการจัดการการจ่ายเงินดาวน์ไลน์ของคุณ ช่วยให้มั่นใจได้ว่าจะแจกจ่ายเงินรางวัลทั้งหมดอย่างถูกต้อง&lt;/p&gt;</value>
+  </data>
+  <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
+    <value>ยินดีต้อนรับสู่&lt;b&gt;โปรแกรม รางวัลเงินสด&lt;/b&gt;!</value>
+  </data>
+  <data name="HighlightPopupRewardTitle" xml:space="preserve">
+    <value>ยินดีต้อนรับสู่&lt;b&gt;โปรแกรม รางวัลเงินสด&lt;/b&gt;!</value>
   </data>
   <data name="GetStarted" xml:space="preserve">
     <value>เริ่มต้น</value>
@@ -676,8 +743,8 @@
   <data name="WinLossDetailReport" xml:space="preserve">
     <value>รายงานรายละเอียดการแพ้ชนะ</value>
   </data>
-  <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
-    <value>ยินดีต้อนรับสู่&lt;b&gt;โปรแกรม รางวัลเงินสด&lt;/b&gt;!</value>
+  <data name="Here" xml:space="preserve">
+    <value>ที่นี่</value>
   </data>
   <data name="minAgo" xml:space="preserve">
     <value>หนึ่งนาทีที่แล้ว</value>
@@ -690,9 +757,6 @@
   </data>
   <data name="daysAgo" xml:space="preserve">
     <value>วันที่แล้ว</value>
-  </data>
-  <data name="Here" xml:space="preserve">
-    <value>ที่นี่</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro2" xml:space="preserve">
     <value>&lt;b&gt; สำรวจ &lt;/b&gt; อย่างง่ายดายและ &lt;b&gt; เพิ่มประสิทธิภาพของคุณ &lt;/b&gt;!</value>
@@ -714,10 +778,6 @@
   </data>
   <data name="NoBadDebt_Description" xml:space="preserve">
     <value>ผู้เล่นฝากเงินล่วงหน้าเพื่อขจัดความเสี่ยงด้านหนี้เสียจากธุรกิจของคุณ</value>
-  </data>
-  <data name="ipv62" xml:space="preserve">
-    <value> - หมายเลขไอพี 2: 2001:0db8:3333:4444:5555:6666:0102:0304</value>
-    <comment />
   </data>
   <data name="RichProductsCollection" xml:space="preserve">
     <value>คอลเลกชันผลิตภัณฑ์ที่หลากหลาย</value>
@@ -751,28 +811,6 @@
   <data name="InternalServerError" xml:space="preserve">
     <value>เกิดข้อผิดพลาด โปรดติดต่อฝ่ายบริการลูกค้าเพื่อขอความช่วยเหลือ ขอบคุณ. [500]</value>
   </data>
-  <data name="ipv6note" xml:space="preserve">
-    <value>สำหรับ IPv6 ที่อยู่ไอพีเดียวกันอาจจะแสดงต่างกัน</value>
-  </data>
-  <data name="IP" xml:space="preserve">
-    <value>ไอพี</value>
-  </data>
-  <data name="Country" xml:space="preserve">
-    <value>ประเทศ</value>
-  </data>
-  <data name="City" xml:space="preserve">
-    <value>เมือง</value>
-  </data>
-  <data name="IPNote" xml:space="preserve">
-    <value>หาข้อมูลเพิ่มเติมได้จาก  DNS stuff:&lt;a href="{0}" target="_blank"&gt; คลิ๊กที่นี่&lt;/a&gt;.
-หมายเหตุ : ประเทศและชื่อเมืองได้ข้อมูลจาก IP2Location and DNS stuff ซึ่งเป็นเพียงข้อมูลอ้างอิงเท่านั้นไม่สามารถรับประกันได้ กรุณาศึกษาหาข้อมูลอื่นๆได้จากแหล่งผู้ให้ข้อมูลที่สามารถเชื่อถือได้ หากท่านต้องการ</value>
-  </data>
-  <data name="ForExample" xml:space="preserve">
-    <value>ตัวอย่างเช่น:</value>
-  </data>
-  <data name="ipv61" xml:space="preserve">
-    <value>- หมายเลขไอพี 1: 2001:db8:3333:4444:5555:6666:1.2.3.4</value>
-  </data>
   <data name="RewardPayable" xml:space="preserve">
     <value>เงินรางวัลที่ต้องแจกจ่าย</value>
   </data>
@@ -785,36 +823,6 @@
   <data name="RewardReceivableTooltip" xml:space="preserve">
     <value>จำนวนเงินที่คุณสามารถรับได้จากอัพไลน์ของคุณ</value>
   </data>
-  <data name="lblBack" xml:space="preserve">
-    <value>กลับ</value>
-  </data>
-  <data name="lblChangePassword" xml:space="preserve">
-    <value>เปลี่ยนรหัสผ่าน</value>
-  </data>
-  <data name="credit" xml:space="preserve">
-    <value>เครดิต</value>
-  </data>
-  <data name="firstName" xml:space="preserve">
-    <value>ชื่อ</value>
-  </data>
-  <data name="lastName" xml:space="preserve">
-    <value>นามสกุล</value>
-  </data>
-  <data name="loading" xml:space="preserve">
-    <value>กำลังโหลด</value>
-  </data>
-  <data name="memberInfo" xml:space="preserve">
-    <value>ข้อมูลสมาชิก</value>
-  </data>
-  <data name="Remove" xml:space="preserve">
-    <value>ลบ</value>
-  </data>
-  <data name="lblresetpassword" xml:space="preserve">
-    <value>แก้ไขรหัส</value>
-  </data>
-  <data name="ThereIsNoChange" xml:space="preserve">
-    <value>ไม่มีการเปลี่ยนแปลงในการอัปเดตนี้</value>
-  </data>
   <data name="Reward" xml:space="preserve">
     <value>เงินรางวัล</value>
   </data>
@@ -822,6 +830,9 @@
     <value>คุณยังไม่ได้ลงทะเบียนธุรกิจฉลากขาว โปรดติดต่อฝ่ายบริการลูกค้าของเราเพื่อขอความช่วยเหลือเพิ่มเติม</value>
   </data>
   <data name="TakeATour" xml:space="preserve">
+    <value>ดูรายละเอียด</value>
+  </data>
+  <data name="RewardTakeATour" xml:space="preserve">
     <value>ดูรายละเอียด</value>
   </data>
   <data name="Page" xml:space="preserve">
@@ -841,7 +852,6 @@
   </data>
   <data name="invalidsession" xml:space="preserve">
     <value>วาระไม่ถูกต้อง</value>
-    <comment />
   </data>
   <data name="RebateAndRetentionTour_Page1_Row1" xml:space="preserve">
     <value>มาสำรวจโปรแกรมเงินรางวัลเงินสดแล้วดูว่ามีอะไรให้บ้าง!</value>
@@ -854,6 +864,9 @@
   </data>
   <data name="RebateAndRetentionTour_Page1_Row3" xml:space="preserve">
     <value>ฟังก์ชั่นใหม่ช่วยให้คุณยืนยันเงินรางวัลให้แจกจ่ายให้กับดาวน์ไลน์ของคุณ</value>
+  </data>
+  <data name="RewardDetail" xml:space="preserve">
+    <value>รายละเอียดเงินรางวัล</value>
   </data>
   <data name="RebateAndRetentionTour_Page1_Row4" xml:space="preserve">
     <value>รายงานใหม่จะแสดงธุรกรรมเงินรางวัลของสมาชิกพร้อมกับข้อคิดเห็นเพื่อความโปร่งใส</value>

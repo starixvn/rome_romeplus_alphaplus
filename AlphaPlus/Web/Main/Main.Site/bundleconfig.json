@@ -485,16 +485,10 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/assets/bundles/tour/common-tour-dark.css",
-    "inputFiles": [
-      "assets/styles/tour/common-tour-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/assets/bundles/tour/rebate-and-retention-tour.js",
+    "outputFileName": "wwwroot/assets/bundles/tour/reward-tour.js",
     "inputFiles": [
       "assets/scripts/tour/base-tour-controller.js",
-      "assets/scripts/tour/rebate-and-retention-tour.js"
+      "assets/scripts/tour/reward-tour.js"
     ]
   }
 ]

@@ -2,29 +2,16 @@
 using AlphaPlus.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AlphaPlus.Main.Site.Features.Tour
+namespace AlphaPlus.Main.Site.Features.Tour;
+
+public class TourController(IUserSession userSession) : BaseController
 {
-    public class TourController : BaseController
-    {
-        private readonly IUserSession userSession;
+    private readonly IUserSession userSession = userSession;
 
-        public TourController(IUserSession userSession)
-        {
-            this.userSession = userSession;
-        }
+    public IActionResult ProfilePicture() => View(BuildTourViewModel());
 
-        public ActionResult ProfilePicture()
-        {
-            var viewModel = new TourViewModel(userSession.Language, userSession.RoleId);
+    public IActionResult Reward() => View(BuildTourViewModel());
 
-            return View(viewModel);
-        }
-
-        public ActionResult RebateAndRetention()
-        {
-            var viewModel = new TourViewModel(userSession.Language, userSession.RoleId);
-
-            return View(viewModel);
-        }
-    }
+    private TourViewModel BuildTourViewModel()
+        => new TourViewModel(userSession.Language, userSession.RoleId, Core.Configurations.AppSettings.SiteLabelHash);
 }

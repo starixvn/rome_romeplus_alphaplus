@@ -1,0 +1,27 @@
+﻿@using AlphaPlus.Main.Site
+@using AlphaPlus.Core.Helpers
+<div class="popup-highlight hide" id="boxHighlightPopupNewFeature">
+    <button type="button" class="icon icon-close close" title="@Resources.close">
+        <span aria-hidden="true"></span>
+    </button>
+    <div class="text">
+        <div class="image">
+            <img src="~/assets/images/reward.svg?v=@AppSettings.JsVersion" alt="@Resources.HighlightPopupRewardTitle">
+            <p class="sm"><span>@Html.Raw(Resources.HighlightPopupRewardTitle)</span></p>
+        </div>
+        <div>
+            <p class="pc"><span>@Html.Raw(Resources.HighlightPopupRewardTitle)</span></p>
+            @Html.Raw(Resources.HighlightPopupRewardIntro)
+        </div>
+    </div>
+    <div class="action">
+        <label class="label">
+            <input id="chkHideHighlightPopupNewFeature" type="checkbox" />
+            <span>@Resources.RewardDoNotShowAgain</span>
+        </label>
+        <a class="btn-submit" id="linkHighlightPopupCheckOut" href="javascript:;"
+            onclick="top.popupManager.open('@MicroSites.MainUrl("~/Tour/Reward")', null, 800, 495, null, null, null, null, null, null, {customClass :'popup-tour-intro'});">
+            @Resources.RewardTakeATour
+        </a>
+    </div>
+</div>

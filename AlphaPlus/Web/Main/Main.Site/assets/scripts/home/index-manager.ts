@@ -52,7 +52,7 @@ var indexManager = {
         feedback: alpha.urls.messageRootPath + 'Feedback/Index',
         checkExistFeedback: alpha.urls.messageRootPath + 'Feedback/CheckExist?id=',
         feedbackFunction: alpha.urls.messageRootPath + 'Feedback/Function?id=',
-        winningThresholdSurvey: alpha.urls.messageRootPath + 'Feedback/WinningThresholdSurvey',
+        winningThresholdSurvey: alpha.urls.messageRootPath + 'Feedback/WinningThresholdSurvey'
     },
 
     init: function () {
@@ -260,7 +260,7 @@ var indexManager = {
                 if (indexManager.isBlockPage) {
                     return;
                 }
-                
+
                 if (isShowTour) {
                     indexManager.showTour();
                     isShowTour = false;
@@ -485,24 +485,33 @@ var indexManager = {
     //},
 
     initNewFeatureHighlightPopup: function () {
-        const leftMenu = $('#menu-TRANSFER');
-        if (!leftMenu.length) {
-            return;
+        // Check for Reward
+        const hiddenIsShowRewardTour = $('#hidden-isShowRewardTour');
+        if (hiddenIsShowRewardTour.length && hiddenIsShowRewardTour.val() === '1') {
+            indexManager.initHighlightPopup($('#menu-TRANSFER'), '221208_RewardProgram', 80);
+            hiddenIsShowRewardTour.remove();
+        } else {
+            // New Feature
+            indexManager.initHighlightPopup(undefined, '', 80);
         }
+    },
 
+    initHighlightPopup: function (mainMenuItem, featureName, paddingTop) {
         const box = $('#boxHighlightPopupNewFeature');
         if (!box.length) {
             return;
         }
 
-        // RedmineId should be included to make FeatureName is unique.
-        const featureName = '220594_CashRewardProgram';
+        if (!mainMenuItem || !mainMenuItem.length) {
+            return;
+        }
+
         const cookiesName = indexManager.hidePopupCookies + featureName;
         const hidePopup = localStorage.getItem(indexManager.getCustomerCookiesName(cookiesName));
 
         if (hidePopup !== '1') {
             popupManager.closeAllPopup();
-            box.css({ top: leftMenu.position().top + 80 });
+            box.css({ top: mainMenuItem.position().top + paddingTop });
             box.removeClass('hide');
 
             box.find('.icon-close').click(() => box.addClass('hide'));
@@ -514,7 +523,6 @@ var indexManager = {
 
             const newFeatureLink = box.find('#linkHighlightPopupCheckOut');
             newFeatureLink.click(() => box.addClass('hide'));
-
             //$(window).scroll(() => box.addClass("hide"));
 
             $('#main-menu-tab')['mCustomScrollbar']({
@@ -522,8 +530,6 @@ var indexManager = {
                     onScrollStart: () => box.addClass('hide')
                 }
             });
-
-            // indexManager.replaceCookieslessURL(newFeatureLink);
         }
     },
 
@@ -537,33 +543,6 @@ var indexManager = {
 
     getCustomerCookiesName: function (key) {
         return `${key}_${$('#CustId').val()}_${$('#SubAccId').val()}`;
-    },
-
-    replaceCookieslessURL: function (newFeatureLink) {
-        //// Rebuild URL for Reports/Bet Lists incase of internal
-        if (newFeatureLink.attr('href').indexOf('(S(') === -1) {
-            return;
-        }
-
-        let retryTimes = 0;
-        let rebuildNewFeatureLinkInterval = setInterval(function () {
-            if (
-                menuBar.domElements.sessionId &&
-                menuBar.domElements.reportSessionId &&
-                newFeatureLink.attr('href').indexOf(menuBar.domElements.reportSessionId) === -1
-            ) {
-                newFeatureLink.attr(
-                    'href',
-                    newFeatureLink
-                        .attr('href')
-                        .replace(menuBar.domElements.sessionId, menuBar.domElements.reportSessionId)
-                );
-                clearInterval(rebuildNewFeatureLinkInterval);
-            }
-
-            retryTimes++;
-            retryTimes >= 10 && clearInterval(rebuildNewFeatureLinkInterval);
-        }, 1000);
     },
 
     addCustomCookies: function (cookieName, value) {
@@ -588,9 +567,9 @@ var indexManager = {
         //     popupManager.openMultiple($("#TourURL").val(), null, 800, 495, null, null, null, null, null, null, { customClass: 'popup-tour-intro' })
         // }, 3000);
     },
-    
+
     initWinningThresholdSurvey: function () {
-        if ($("#ShowWinningThresholdSurvey").val() === "0") {
+        if ($('#ShowWinningThresholdSurvey').val() === '0') {
             indexManager.initAfterCheckSurvey();
             return;
         }
@@ -603,9 +582,18 @@ var indexManager = {
             }
 
             indexManager.domElements.winningThresholdSurveyPopup = popupManager.open(
-                indexManager.urls.winningThresholdSurvey, undefined, 440, 380,
-                null, null, null, null, null, null,
-                { customClass: "feedback-survey-modal", disableDraggable: true });
+                indexManager.urls.winningThresholdSurvey,
+                undefined,
+                440,
+                380,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                { customClass: 'feedback-survey-modal', disableDraggable: true }
+            );
         });
     }
 };

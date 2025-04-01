@@ -625,7 +625,7 @@
     <value>會員輸贏</value>
   </data>
   <data name="MemberWinLossDetail" xml:space="preserve">
-    <value>會員輸贏資料</value>
+    <value>會員輸贏細節</value>
   </data>
   <data name="MemberWinLossNew" xml:space="preserve">
     <value>會員輸贏</value>
@@ -1094,9 +1094,6 @@
   </data>
   <data name="Reward" xml:space="preserve">
     <value>獎金</value>
-  </data>
-  <data name="WinLossDetail" xml:space="preserve">
-    <value>勝ち負け詳細</value>
   </data>
   <data name="Close" xml:space="preserve">
     <value>關閉</value>

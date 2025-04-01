@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="City" xml:space="preserve">
+    <value>都市</value>
+  </data>
   <data name="close" xml:space="preserve">
     <value>閉じる</value>
+  </data>
+  <data name="ProfileClickTootip" xml:space="preserve">
+    <value>ここをクリックしてプロフィール設定を編集してください。</value>
   </data>
   <data name="subAcc" xml:space="preserve">
     <value>サブアカウント</value>
@@ -135,6 +141,10 @@
   </data>
   <data name="nickname" xml:space="preserve">
     <value>ニックネーム</value>
+  </data>
+  <data name="ProfileLoginTip" xml:space="preserve">
+    <value>親愛なる代理店の皆様へ、
+当サイトを偽サイトと区別するため、デフォルトのプロフィール画像を設定いたしました。新しいプロフィール画像を選択するには、&lt;a class="change-picture-link" href="{0}" target="main" id="changePictureLink"&gt;こちらをクリック&lt;/a&gt;してください。&lt;/br&gt;さらに、言語設定を変更するには&lt;a class="change-picture-link" href="{1}" target="main"&gt;こちら&lt;/a&gt;をご利用ください&lt;/a&gt;。ご協力いただきありがとうございます。</value>
   </data>
   <data name="clickHere" xml:space="preserve">
     <value>こちらをクリック</value>
@@ -303,6 +313,9 @@
   <data name="doNotShowAgain" xml:space="preserve">
     <value>再表示しない</value>
   </data>
+  <data name="RewardDoNotShowAgain" xml:space="preserve">
+    <value>再表示しない</value>
+  </data>
   <data name="PrivateMessage" xml:space="preserve">
     <value>プライベートメッセージ</value>
   </data>
@@ -311,88 +324,6 @@
   </data>
   <data name="LogOut" xml:space="preserve">
     <value>ログアウト</value>
-  </data>
-  <data name="Next" xml:space="preserve">
-    <value>次へ</value>
-  </data>
-  <data name="submit" xml:space="preserve">
-    <value>提出する</value>
-  </data>
-  <data name="to" xml:space="preserve">
-    <value>に</value>
-  </data>
-  <data name="from" xml:space="preserve">
-    <value>から</value>
-  </data>
-  <data name="outstanding" xml:space="preserve">
-    <value>未払い</value>
-  </data>
-  <data name="NoInformationIsAvailable" xml:space="preserve">
-    <value>情報がありません</value>
-  </data>
-  <data name="Notice_3" xml:space="preserve">
-    <value>あなたの上層ラインが、下層ライン向けにFishing Worldを有効にしました。設定ページにアクセスして、自分の保有ポジション設定を構成してください。</value>
-  </data>
-  <data name="highlights" xml:space="preserve">
-    <value>ハイライト</value>
-  </data>
-  <data name="Total" xml:space="preserve">
-    <value>合計</value>
-  </data>
-  <data name="ConfiguredNicknameSuccessfully" xml:space="preserve">
-    <value>あなたのニックネームは無事に設定されました。</value>
-  </data>
-  <data name="NicknameRule" xml:space="preserve">
-    <value>ニックネームは一意である必要があり、アルファベットまたは数字のみ使用可能で、5文字以上20文字以下でなければなりません。</value>
-  </data>
-  <data name="NicknameCompanyPolicy" xml:space="preserve">
-    <value>セキュリティを強化し、アカウントを保護するため、ニックネームでのみログインする必要があります。</value>
-  </data>
-  <data name="NicknameEffectedFrom" xml:space="preserve">
-    <value>新しい方針は {0} から施行されます。</value>
-  </data>
-  <data name="NicknameNote1" xml:space="preserve">
-    <value>ニックネームを後から変更することはできません。</value>
-  </data>
-  <data name="NicknameNote2" xml:space="preserve">
-    <value>あなたのニックネームは、直接の上層ラインだけが確認できます。</value>
-  </data>
-  <data name="SubAccNicknameNote2" xml:space="preserve">
-    <value>ニックネームはメインアカウントのユーザーのみが確認できます。</value>
-  </data>
-  <data name="NicknameOption1" xml:space="preserve">
-    <value>ユーザー名またはニックネームでログイン</value>
-  </data>
-  <data name="NicknameOption2" xml:space="preserve">
-    <value>ニックネームのみでログイン</value>
-  </data>
-  <data name="NicknameSkipText" xml:space="preserve">
-    <value>このステップをスキップしてホームページへ進む</value>
-  </data>
-  <data name="NicknameRules" xml:space="preserve">
-    <value>ニックネーム規則</value>
-  </data>
-  <data name="PleaseChooseNickname" xml:space="preserve">
-    <value>ご希望のニックネームをお選びください。</value>
-  </data>
-  <data name="PleaseSelectLoginByNickname" xml:space="preserve">
-    <value>ニックネームのみでログインを選択してください。</value>
-  </data>
-  <data name="invalidCaptcha" xml:space="preserve">
-    <value>入力したコード「{0}」は無効です（「{1}」と比較中）。</value>
-  </data>
-  <data name="CreateMemberWithQRCode" xml:space="preserve">
-    <value>QRコードでメンバーを作成</value>
-  </data>
-  <data name="PendingTransfer3rd" xml:space="preserve">
-    <value>第三者の保留中の振込</value>
-  </data>
-  <data name="ProfileClickTootip" xml:space="preserve">
-    <value>ここをクリックしてプロフィール設定を編集してください。</value>
-  </data>
-  <data name="ProfileLoginTip" xml:space="preserve">
-    <value>親愛なる代理店の皆様へ、
-当サイトを偽サイトと区別するため、デフォルトのプロフィール画像を設定いたしました。新しいプロフィール画像を選択するには、&lt;a class="change-picture-link" href="{0}" target="main" id="changePictureLink"&gt;こちらをクリック&lt;/a&gt;してください。&lt;/br&gt;さらに、言語設定を変更するには&lt;a class="change-picture-link" href="{1}" target="main"&gt;こちら&lt;/a&gt;をご利用ください&lt;/a&gt;。ご協力いただきありがとうございます。</value>
   </data>
   <data name="BrowserIsOutOfDate" xml:space="preserve">
     <value>お使いのブラウザは古く、当ウェブサイトで正しく動作しない可能性があります。より良いサポートを受けるために、ぜひ新しいバージョンへのアップグレードを強くお勧めします。どうぞ、</value>
@@ -478,6 +409,9 @@
   <data name="Replay" xml:space="preserve">
     <value>リプレイ</value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>次へ</value>
+  </data>
   <data name="Skip" xml:space="preserve">
     <value>スキップ</value>
   </data>
@@ -529,6 +463,9 @@
   <data name="message" xml:space="preserve">
     <value>メッセージ</value>
   </data>
+  <data name="submit" xml:space="preserve">
+    <value>提出する</value>
+  </data>
   <data name="Enabled" xml:space="preserve">
     <value>有効化済み</value>
   </data>
@@ -541,6 +478,9 @@
   <data name="Remove" xml:space="preserve">
     <value>削除</value>
   </data>
+  <data name="outstanding" xml:space="preserve">
+    <value>未払い</value>
+  </data>
   <data name="active" xml:space="preserve">
     <value>有効</value>
   </data>
@@ -549,6 +489,9 @@
   </data>
   <data name="suspended" xml:space="preserve">
     <value>サスペンド済み</value>
+  </data>
+  <data name="to" xml:space="preserve">
+    <value>に</value>
   </data>
   <data name="loading" xml:space="preserve">
     <value>ロード中</value>
@@ -571,6 +514,9 @@
   <data name="specialAnnouncement" xml:space="preserve">
     <value>通常告知</value>
   </data>
+  <data name="from" xml:space="preserve">
+    <value>から</value>
+  </data>
   <data name="firstName" xml:space="preserve">
     <value>名</value>
   </data>
@@ -583,11 +529,62 @@
   <data name="Request" xml:space="preserve">
     <value>要求</value>
   </data>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>情報がありません</value>
+  </data>
   <data name="lblNew" xml:space="preserve">
     <value>新しい</value>
   </data>
+  <data name="Notice_3" xml:space="preserve">
+    <value>あなたの上層ラインが、下層ライン向けにFishing Worldを有効にしました。設定ページにアクセスして、自分の保有ポジション設定を構成してください。</value>
+  </data>
+  <data name="highlights" xml:space="preserve">
+    <value>ハイライト</value>
+  </data>
   <data name="systemUpdate" xml:space="preserve">
     <value>システム</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>合計</value>
+  </data>
+  <data name="ConfiguredNicknameSuccessfully" xml:space="preserve">
+    <value>あなたのニックネームは無事に設定されました。</value>
+  </data>
+  <data name="NicknameRule" xml:space="preserve">
+    <value>ニックネームは一意である必要があり、アルファベットまたは数字のみ使用可能で、5文字以上20文字以下でなければなりません。</value>
+  </data>
+  <data name="NicknameCompanyPolicy" xml:space="preserve">
+    <value>セキュリティを強化し、アカウントを保護するため、ニックネームでのみログインする必要があります。</value>
+  </data>
+  <data name="NicknameEffectedFrom" xml:space="preserve">
+    <value>新しい方針は {0} から施行されます。</value>
+  </data>
+  <data name="NicknameNote1" xml:space="preserve">
+    <value>ニックネームを後から変更することはできません。</value>
+  </data>
+  <data name="NicknameNote2" xml:space="preserve">
+    <value>あなたのニックネームは、直接の上層ラインだけが確認できます。</value>
+  </data>
+  <data name="SubAccNicknameNote2" xml:space="preserve">
+    <value>ニックネームはメインアカウントのユーザーのみが確認できます。</value>
+  </data>
+  <data name="NicknameOption1" xml:space="preserve">
+    <value>ユーザー名またはニックネームでログイン</value>
+  </data>
+  <data name="NicknameOption2" xml:space="preserve">
+    <value>ニックネームのみでログイン</value>
+  </data>
+  <data name="NicknameSkipText" xml:space="preserve">
+    <value>このステップをスキップしてホームページへ進む</value>
+  </data>
+  <data name="NicknameRules" xml:space="preserve">
+    <value>ニックネーム規則</value>
+  </data>
+  <data name="PleaseChooseNickname" xml:space="preserve">
+    <value>ご希望のニックネームをお選びください。</value>
+  </data>
+  <data name="PleaseSelectLoginByNickname" xml:space="preserve">
+    <value>ニックネームのみでログインを選択してください。</value>
   </data>
   <data name="DataProcessingNotification" xml:space="preserve">
     <value>データ処理の通知</value>
@@ -595,8 +592,17 @@
   <data name="DataProcessingIsInProgress" xml:space="preserve">
     <value>データ処理が進行しております。</value>
   </data>
+  <data name="invalidCaptcha" xml:space="preserve">
+    <value>入力したコード「{0}」は無効です（「{1}」と比較中）。</value>
+  </data>
   <data name="IamNotARobot" xml:space="preserve">
     <value>私はロボットではありません。</value>
+  </data>
+  <data name="CreateMemberWithQRCode" xml:space="preserve">
+    <value>QRコードでメンバーを作成</value>
+  </data>
+  <data name="PendingTransfer3rd" xml:space="preserve">
+    <value>第三者の保留中の振込</value>
   </data>
   <data name="UMAnnouncementTitle" xml:space="preserve">
     <value>メンテナンスのお知らせ</value>
@@ -727,7 +733,13 @@
   <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
     <value>簡単に参照できる&lt;b&gt;統合ガイドライン&lt;/b&gt;と&lt;b&gt;用語集&lt;/b&gt;を見つけましょう。</value>
   </data>
+  <data name="HighlightPopupRewardIntro" xml:space="preserve">
+    <value>簡単に参照できる&lt;b&gt;統合ガイドライン&lt;/b&gt;と&lt;b&gt;用語集&lt;/b&gt;を見つけましょう。</value>
+  </data>
   <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
+    <value>&lt;b&gt;ワンストップハンドブック&lt;/b&gt;を探検しよう！</value>
+  </data>
+  <data name="HighlightPopupRewardTitle" xml:space="preserve">
     <value>&lt;b&gt;ワンストップハンドブック&lt;/b&gt;を探検しよう！</value>
   </data>
   <data name="GetStarted" xml:space="preserve">
@@ -787,17 +799,6 @@
   <data name="ContactCSD" xml:space="preserve">
     <value>詳しくは顧客サービス部門（CSD）までお問い合わせください！</value>
   </data>
-  <data name="NovaCasinoBriefIntroduction" xml:space="preserve">
-    <value>Nova Casinoは新しいプラットフォームで、マルチエージェントモードをサポートしています。
-今すぐ申請して、さらに多くのダウンラインとプレイヤーを作成しましょう！&lt;br&gt;&lt;br&gt;
-注意: エージェントサイトのNova Casinoバックオフィスで「申請」を初めてクリックした際に、必ず&lt;b&gt;パスワード&lt;/b&gt;を変更してください。ありがとうございます。</value>
-  </data>
-  <data name="Reward" xml:space="preserve">
-    <value>賞金</value>
-  </data>
-  <data name="RewardPayableTooltip" xml:space="preserve">
-    <value>ダウンラインに分配できる金額</value>
-  </data>
   <data name="SyncedNovaCasinoPersonalMessage" xml:space="preserve">
     <value>親愛なるエージェントの皆様へ、
 
@@ -807,11 +808,13 @@
 
 引き続きご協力いただき、ありがとうございます！</value>
   </data>
+  <data name="NovaCasinoBriefIntroduction" xml:space="preserve">
+    <value>Nova Casinoは新しいプラットフォームで、マルチエージェントモードをサポートしています。
+今すぐ申請して、さらに多くのダウンラインとプレイヤーを作成しましょう！&lt;br&gt;&lt;br&gt;
+注意: エージェントサイトのNova Casinoバックオフィスで「申請」を初めてクリックした際に、必ず&lt;b&gt;パスワード&lt;/b&gt;を変更してください。ありがとうございます。</value>
+  </data>
   <data name="SystemUnderMaintenance" xml:space="preserve">
     <value>システムは現在メンテナンス中です。メンテナンス時間: {0} - {1} (GMT+8)。後ほど再試行してください。[503]</value>
-  </data>
-  <data name="RewardReceivableTooltip" xml:space="preserve">
-    <value>アップラインから受け取れる金額。</value>
   </data>
   <data name="InternalServerError" xml:space="preserve">
     <value>エラーが発生しました。サポートが必要な場合は、カスタマーサービス部門までお問い合わせください。ありがとうございます。[500]</value>
@@ -819,11 +822,17 @@
   <data name="RewardPayable" xml:space="preserve">
     <value>支払うべき賞金</value>
   </data>
+  <data name="RewardPayableTooltip" xml:space="preserve">
+    <value>ダウンラインに分配できる金額</value>
+  </data>
   <data name="RewardReceivable" xml:space="preserve">
     <value>未収賞金</value>
   </data>
-  <data name="City" xml:space="preserve">
-    <value>都市</value>
+  <data name="RewardReceivableTooltip" xml:space="preserve">
+    <value>アップラインから受け取れる金額。</value>
+  </data>
+  <data name="Reward" xml:space="preserve">
+    <value>賞金</value>
   </data>
   <data name="NotSetupWhiteLabelMessage" xml:space="preserve">
     <value>ホワイトラベルのビジネスにはまだご登録いただいておりません。 サポートが必要な場合は、弊社のカスタマーサービス部門までお問い合わせください。</value>
@@ -833,7 +842,6 @@
   </data>
   <data name="invalidsession" xml:space="preserve">
     <value>Invalid Session!</value>
-    <comment />
   </data>
   <data name="RebateAndRetentionTour_Page1_Row2" xml:space="preserve">
     <value>Balance Info</value>

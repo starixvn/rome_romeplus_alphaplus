@@ -126,15 +126,15 @@
   <data name="admin" xml:space="preserve">
     <value>관리자</value>
   </data>
-  <data name="nickname" xml:space="preserve">
-    <value>닉네임</value>
-  </data>
   <data name="configNow" xml:space="preserve">
     <value>설정하기</value>
   </data>
   <data name="introNickname" xml:space="preserve">
     <value>&lt;div&gt;Dear customers! Now you can login with your own nickname&lt;/div&gt;
 &lt;div&gt;... more secure and personalized.&lt;/div&gt;</value>
+  </data>
+  <data name="nickname" xml:space="preserve">
+    <value>닉네임</value>
   </data>
   <data name="clickHere" xml:space="preserve">
     <value>여기를 클릭</value>
@@ -301,6 +301,9 @@
   <data name="doNotShowAgain" xml:space="preserve">
     <value>이 페이지를 다시 표시하지않습니다.</value>
   </data>
+  <data name="RewardDoNotShowAgain" xml:space="preserve">
+    <value>이 페이지를 다시 표시하지않습니다.</value>
+  </data>
   <data name="PrivateMessage" xml:space="preserve">
     <value>Private Message</value>
   </data>
@@ -316,29 +319,50 @@
   <data name="Skip" xml:space="preserve">
     <value>다음</value>
   </data>
-  <data name="stats" xml:space="preserve">
-    <value>통계</value>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>Successfully updated!</value>
+  </data>
+  <data name="lblBack" xml:space="preserve">
+    <value>뒤</value>
+  </data>
+  <data name="lblChangePassword" xml:space="preserve">
+    <value>비밀번호 바꾸기</value>
+  </data>
+  <data name="lblresetpassword" xml:space="preserve">
+    <value>비밀번호 재설정</value>
   </data>
   <data name="balance" xml:space="preserve">
     <value>잔액정보</value>
   </data>
-  <data name="normalAnnouncement" xml:space="preserve">
-    <value>일반 공지 사항</value>
+  <data name="winloss" xml:space="preserve">
+    <value>패배</value>
   </data>
-  <data name="specialNotice" xml:space="preserve">
-    <value>특별 공지사항</value>
+  <data name="credit" xml:space="preserve">
+    <value>포인트</value>
   </data>
-  <data name="specialAnnouncement" xml:space="preserve">
-    <value>특별 공지사항</value>
-  </data>
-  <data name="personalMessage" xml:space="preserve">
-    <value>개인 메세지</value>
+  <data name="memberInfo" xml:space="preserve">
+    <value>회원 정보</value>
   </data>
   <data name="notice" xml:space="preserve">
     <value>공지사항</value>
   </data>
-  <data name="winloss" xml:space="preserve">
-    <value>패배</value>
+  <data name="stats" xml:space="preserve">
+    <value>통계</value>
+  </data>
+  <data name="personalMessage" xml:space="preserve">
+    <value>개인 메세지</value>
+  </data>
+  <data name="specialNotice" xml:space="preserve">
+    <value>특별 공지사항</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>확인</value>
+  </data>
+  <data name="ThereIsNoChange" xml:space="preserve">
+    <value>There is no change to update.</value>
+  </data>
+  <data name="outstanding" xml:space="preserve">
+    <value>대기 포인트</value>
   </data>
   <data name="active" xml:space="preserve">
     <value>유효</value>
@@ -349,17 +373,26 @@
   <data name="suspended" xml:space="preserve">
     <value>사용중지</value>
   </data>
-  <data name="submit" xml:space="preserve">
-    <value>확인</value>
-  </data>
   <data name="to" xml:space="preserve">
     <value>종료일</value>
+  </data>
+  <data name="loading" xml:space="preserve">
+    <value>로딩중입니다.</value>
+  </data>
+  <data name="normalAnnouncement" xml:space="preserve">
+    <value>일반 공지 사항</value>
+  </data>
+  <data name="specialAnnouncement" xml:space="preserve">
+    <value>특별 공지사항</value>
   </data>
   <data name="from" xml:space="preserve">
     <value>시작일</value>
   </data>
-  <data name="outstanding" xml:space="preserve">
-    <value>대기 포인트</value>
+  <data name="firstName" xml:space="preserve">
+    <value>이름</value>
+  </data>
+  <data name="lastName" xml:space="preserve">
+    <value>성</value>
   </data>
   <data name="NoPermissionAccessPage" xml:space="preserve">
     <value>죄송합니다. 이페이지를 엑서스 할 수 있는 권한이 없습니다.</value>
@@ -427,50 +460,20 @@
   <data name="PendingTransfer3rd" xml:space="preserve">
     <value>3rd Party Pending Transfer</value>
   </data>
-  <data name="lblBack" xml:space="preserve">
-    <value>뒤</value>
-  </data>
-  <data name="lblChangePassword" xml:space="preserve">
-    <value>비밀번호 바꾸기</value>
-  </data>
-  <data name="credit" xml:space="preserve">
-    <value>포인트</value>
-  </data>
-  <data name="firstName" xml:space="preserve">
-    <value>이름</value>
-  </data>
   <data name="UMFrom" xml:space="preserve">
     <value>시작일</value>
-  </data>
-  <data name="lastName" xml:space="preserve">
-    <value>성</value>
-  </data>
-  <data name="LearnMore" xml:space="preserve">
-    <value>Learn more</value>
-  </data>
-  <data name="loading" xml:space="preserve">
-    <value>로딩중입니다.</value>
-  </data>
-  <data name="memberInfo" xml:space="preserve">
-    <value>회원 정보</value>
-  </data>
-  <data name="No" xml:space="preserve">
-    <value>No</value>
-  </data>
-  <data name="lblresetpassword" xml:space="preserve">
-    <value>비밀번호 재설정</value>
-  </data>
-  <data name="UpdatedSuccessfully" xml:space="preserve">
-    <value>Successfully updated!</value>
-  </data>
-  <data name="ThereIsNoChange" xml:space="preserve">
-    <value>There is no change to update.</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>업데이트</value>
   </data>
+  <data name="LearnMore" xml:space="preserve">
+    <value>Learn more</value>
+  </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
   </data>
   <data name="Page" xml:space="preserve">
     <value>페이지</value>

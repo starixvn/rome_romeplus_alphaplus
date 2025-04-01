@@ -88,13 +88,15 @@ namespace AlphaPlus.Main.Site.Features.Default
         public string AssetAppPath => userSession.AssetAppPath;
 
         private static bool IsQRCodeHidden => AppSettings.HideQRCode;
+
         public int SuperId => userSession.SRecommendId;
 
         public string Currency => userSession.Currency;
 
         public bool IsEnableReCheckIn => !userSession.IsInternal && !options.DisabledCheckDuplicationLogin;
-        
+
         public string Site => userSession.Site;
+
         public int MRecommendId => userSession.MRecommendId;
     }
 }
