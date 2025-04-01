@@ -656,3 +656,16 @@ table {
         font-size: 50px;
     }
 }
+table.racing {
+    .cl-race-name {
+        width: 300px;
+    }
+
+    .cl-match {
+        width: 518px;
+    }
+
+    .cl-place {
+        width: 240px;
+    }
+}
