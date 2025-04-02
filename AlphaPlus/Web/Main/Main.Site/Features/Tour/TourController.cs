@@ -7,15 +7,15 @@ namespace AlphaPlus.Main.Site.Features.Tour;
 public class TourController(IUserSession userSession) : BaseController
 {
     private readonly IUserSession userSession = userSession;
-    
+
     public IActionResult Index()
     {
-        // Create Direct Member Tour
+        // Direct Member Tour
         var actorLevel = Enumeration.FromValue<UserLevel>(userSession.RoleId);
 
         if ((actorLevel.IsSuperLevel() || actorLevel.IsMasterLevel()) && userSession.SubPageAccess.CreateAccount)
         {
-            return View(new TourViewModel(userSession.Language, userSession.RoleId, Core.Configurations.AppSettings.SiteLabelHash, userSession.DarkModeName));
+            return View(BuildTourViewModel());
         }
 
         return new EmptyResult();
