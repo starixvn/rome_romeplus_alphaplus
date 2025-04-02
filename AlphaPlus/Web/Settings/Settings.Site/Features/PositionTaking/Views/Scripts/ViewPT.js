@@ -599,7 +599,7 @@
             roleId: 1,
             agentId: agentId,
             uplineRoleId: self.positionTakingInfo.customerInfo.roleId,
-            lng: self.positionTakingInfo.language,
+            lng: window.language,
             isDarkMode: window.isDarkMode
         });
         top.popupManager.open(
