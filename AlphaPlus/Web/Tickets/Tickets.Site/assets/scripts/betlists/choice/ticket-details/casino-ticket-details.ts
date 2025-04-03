@@ -1160,6 +1160,72 @@
             );
         };
     }
+
+    export class HotDogTicketDetails extends BaseTicketDetails {
+        private static instance: HotDogTicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance)
+                ? new HotDogTicketDetails()
+                : this.instance;
+            return this.instance;
+        }
+
+        public ShowHotDogBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=HotDog&productId=95`;
+
+            let width = 1500;
+            let roleId = Number(this.ViewerLevelId);
+
+            if (roleId <= 3) {
+                width -= 105;
+            }
+
+            if (roleId <= 2) {
+                width -= 105;
+            }
+
+            Common.PopupDetails.Instance(window.top).Show(
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/RNG${params}`,
+                'HOTDOG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
+                width,
+                800
+            );
+        };
+    }
+
+    export class OdinGamingTicketDetails extends BaseTicketDetails {
+        private static instance: OdinGamingTicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance)
+                ? new OdinGamingTicketDetails()
+                : this.instance;
+            return this.instance;
+        }
+
+        public ShowOdinGamingBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=ODIN GAMING&productId=105`;
+
+            let width = 1500;
+            let roleId = Number(this.ViewerLevelId);
+
+            if (roleId <= 3) {
+                width -= 105;
+            }
+
+            if (roleId <= 2) {
+                width -= 105;
+            }
+
+            Common.PopupDetails.Instance(window.top).Show(
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/RNG${params}`,
+                'ODIN GAMING - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
+                width,
+                800
+            );
+        };
+    }
 }
 
 let showRnGCasinoDetails: Function;
@@ -1210,6 +1276,8 @@ let showPlayStarBetDetails: Function;
 let showASKMESLOTBetDetails: Function;
 let showSabaKenoDetails: Function;
 let showFunkyGamesBetDetails: Function;
+let showHotDogBetDetails: Function;
+let showOdinGamingBetDetails: Function;
 
 $(function () {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
@@ -1263,4 +1331,6 @@ $(function () {
     showASKMESLOTBetDetails = BetList.Choice.TicketDetails.ASKMESLOTTicketDetails.Instance.ShowASKMESLOTBetDetails;
     showSabaKenoDetails = BetList.Choice.TicketDetails.SabaKenoTicketDetails.Instance.ShowSabaKenoDetails;
     showFunkyGamesBetDetails = BetList.Choice.TicketDetails.FunkyGamesTicketDetails.Instance.ShowFunkyGamesBetDetails;
+    showHotDogBetDetails = BetList.Choice.TicketDetails.HotDogTicketDetails.Instance.ShowHotDogBetDetails;
+    showOdinGamingBetDetails = BetList.Choice.TicketDetails.OdinGamingTicketDetails.Instance.ShowOdinGamingBetDetails;
 });
