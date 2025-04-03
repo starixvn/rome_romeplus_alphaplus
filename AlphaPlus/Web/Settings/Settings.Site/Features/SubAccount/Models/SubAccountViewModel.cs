@@ -44,7 +44,26 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Models
 
         public string PageAccess { get; set; }
 
-        private bool HasFullPermission => PageAccess.Equals(FullPermission, StringComparison.InvariantCultureIgnoreCase);
+        private bool HasFullPermission
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(PageAccess))
+                {
+                    return false;
+                }
+
+                foreach (var accessType in PageAccessType.AccessTypes.Keys)
+                {
+                    if (!PageAccess.Contains(accessType.ToString(), StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+        }
 
         public bool HasCreateAccountPermission => HasFullPermission || PageAccess.Contains("[A][B][H]", StringComparison.InvariantCultureIgnoreCase);
 
