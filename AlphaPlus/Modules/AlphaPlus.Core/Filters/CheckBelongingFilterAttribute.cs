@@ -95,27 +95,23 @@ public class CheckBelongingFilterAttribute : TypeFilterAttribute
             }
         }
 
-        private async Task KickOutUser(AuthorizationFilterContext context, string message)
+        private Task KickOutUser(AuthorizationFilterContext context, string message)
         {
             var kickOutPageAbsoluteUrl = MicroSites.MainUrl($"{options.KickOutUrl}");
             var currentPageAbsoluteUrl = context.HttpContext.Request.GetDisplayUrl();
             if (currentPageAbsoluteUrl.Contains(kickOutPageAbsoluteUrl, StringComparison.OrdinalIgnoreCase))
             {
-                return;
+                return Task.CompletedTask;
             }
 
             if (IsAjaxRequest(context.HttpContext.Request))
             {
-                var response = context.HttpContext.Response;
-                response.Clear();
-                response.StatusCode = (int)HttpStatusCode.Forbidden;
-                await response.WriteAsJsonAsync(JsonSerializer.Serialize(new { message }));
-                return;
+                context.Result = new UnauthorizedObjectResult(JsonSerializer.Serialize(new { message }));
+                return Task.CompletedTask;
             }
 
-            {
-                context.Result = new RedirectResult($"{kickOutPageAbsoluteUrl}?reason={message}");
-            }
+            context.Result = new RedirectResult($"{kickOutPageAbsoluteUrl}?reason={message}");
+            return Task.CompletedTask;
         }
 
         private static string GetKickOutReasonMessage(byte kickOutReason)
