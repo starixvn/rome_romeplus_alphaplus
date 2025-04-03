@@ -1172,7 +1172,7 @@
         }
 
         public ShowHotDogBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=HotDog&productId=95`;
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=HOTDOG&productId=95`;
 
             let width = 1500;
             let roleId = Number(this.ViewerLevelId);
@@ -1205,7 +1205,7 @@
         }
 
         public ShowOdinGamingBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=ODIN GAMING&productId=105`;
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=ODINGAMING&productId=105`;
 
             let width = 1500;
             let roleId = Number(this.ViewerLevelId);
