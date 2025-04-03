@@ -80,7 +80,8 @@ public class CreditBalanceServiceImpl(IDynamicRepository dynamicRepository, IPSe
                 Enumerable.Empty<CreditBalanceItem>());
         }
 
-        var creditBalances = await repository.FetchAsync<CreditBalanceItem>(criteria, param.AGIP);
+        var creditBalances = await repository.FetchAsync<CreditBalanceItem>(criteria);
+        //var creditBalances = await repository.FetchAsync<CreditBalanceItem>(criteria, param.AGIP);
 
         return new PagedCreditBalance(
             criteria.PageIndex,
