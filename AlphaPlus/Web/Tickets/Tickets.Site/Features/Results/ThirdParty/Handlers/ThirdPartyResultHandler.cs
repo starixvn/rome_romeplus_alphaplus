@@ -48,7 +48,8 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
     IRequestHandler<PlayStarResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<ASKMESLOTResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<SabaKenoResultQuery, ThirdPartyProductViewModel>,
-    IRequestHandler<FunkyGamesResultQuery, ThirdPartyProductViewModel>
+    IRequestHandler<FunkyGamesResultQuery, ThirdPartyProductViewModel>,
+    IRequestHandler<HotDogResultQuery, ThirdPartyProductViewModel>
 {
     public Task<ThirdPartyProductViewModel> Handle(MaxGameResultQuery message, CancellationToken cancellationToken)
         => Handle(message, "MaxGameResultConfigs", "MaxGame");
@@ -195,6 +196,10 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
 
     public Task<ThirdPartyProductViewModel> Handle(SabaKenoResultQuery message, CancellationToken cancellationToken)
         => Handle(message, "SabaKenoResultConfigs", "SABA Keno");
+
+    public Task<ThirdPartyProductViewModel> Handle(HotDogResultQuery message, CancellationToken cancellationToken)
+        => Handle(message, "HotDogResultConfigs", "HOTDOG");
+
     private Task<ThirdPartyProductViewModel> Handle(Result3rdQuery message, string sectionName, string gameName)
     {
         var productName = cacheRefService.GetProductName(message.ProductId);

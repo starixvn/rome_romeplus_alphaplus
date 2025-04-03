@@ -1,240 +1,245 @@
 {
-    "AllbetResultImagePath": "/tickets/bundles/results/Allbet/template/public/game_result/",
-    "GTCasinoResultImagePath": "/tickets/bundles/results/Allbet/template/public/game_result/",
-    "SAGamingResultImagePath": "/tickets/bundles/results/SAGaming/template/public/game_result/",
-    "WMResultImagePath": "/tickets/bundles/results/WM/images/",
-    "KenoResultConfigs": {
-        "Url": "http://172.16.4.41:7053/api/KenoInternal/GetResultUrl",
-        "SiteId": 3100100,
-        "Debug": 0
-    },
-    "LotteryResultConfigs": {
-        "Url": "http://172.16.4.41:7055/api/LotteryInternal/GetResultUrl",
-        "SiteId": 3100100,
-        "Debug": 0
-    },
-    "TableGameResultConfigs": {
-        "Url": "http://172.16.4.41:7057/api/TableGameInternal/GetResultUrl",
-        "SiteId": 3100100,
-        "Debug": 0
-    },
-    "SportsLotteryResultConfigs": {
-        "UrlPage": "http://172.16.4.41:7038/api/SportsLotteryInternal/Result",
-        "SiteId": "4100200",
-        "Debug": 0
-    },
-    "VirtualGamesResultConfigs": {
-        "Url": "http://172.16.4.41:7035/api/VirtualGamesInternal/GetResultUrl",
-        "SiteId": 3100100,
-        "Debug": 0
-    },
-    "Soccer5ResultConfigs": {
-        "Url": "//plggc.155551.com/LinkedGamesWebPortal/GameResult",
-        "SiteId": 4100200,
-        "VendorId": 63,
-        "Debug": 0,
-        "ProxyIP": "lisasqd.nebula.prod",
-        "ProxyPort": 8801
-    },
-    "SabaClubConfigs": {
-        "Url": "http://172.16.4.41:8103/api/SabaClubInternal/GetTicketResult",
-        "Login": "Login",
-        "Password": "U1YwYm1IbGpSeVdMeWhTaE1Ia1I3QT09",
-        "Debug": 0
-    },
-    "MaxGameResultConfigs": {
-        "Url": "http://172.16.4.41:7020/api/MaxGameInternal/GetBetHistoryUrl",
-        "VendorId": 60,
-        "Debug": 0
-    },
-    "SportsLotteryDetailResultConfigs": {
-        "Url": "http://172.16.4.41:7038/api/SportsLotteryInternal/GetBetHistoryUrl",
-        "Debug": 0
-    },
-    "PPLiveCasinoResultConfigs": {
-        "Url": "http://172.16.4.41:7067/api/PragmaticPlayCasinoInternal/GetBetHistoryUrl",
-        "VendorId": 65,
-        "Debug": 0
-    },
-    "HabaneroResultConfigs": {
-        "Url": "http://172.16.4.41:8119/api/HabaneroInternal/GetBetHistoryUrl",
-        "VendorId": 61,
-        "Debug": 0
-    },
-    "CGResultConfigs": {
-        "Url": "http://172.16.4.41:8120/api/CreativeGamingInternal/GetBetHistoryUrl",
-        "VendorId": 62,
-        "Debug": 0
-    },
-    "VGamingConfigs": {
-        "Url": "http://172.16.4.41:7028/api/VGamingInternal/GetBetHistoryUrl",
-        "Debug": 0
-    },
-    "AdvantPlayResultConfigs": {
-        "Url": "http://172.16.4.41:7092/api/AdvantPlayInternal/GetBetHistoryUrl",
-        "VendorId": 67,
-        "Debug": 0
-    },
-    "AdvantPlayMiniResultConfigs": {
-        "Url": "http://172.16.4.41:8129/api/AdvantPlayMiniInternal/GetBetHistoryUrl",
-        "VendorId": 68,
-        "Debug": 0
-    },
-    "BBINResultConfigs": {
-        "Url": "http://172.16.4.41:8106/api/BBinLiveInternal/GetBetHistoryUrl",
-        "Debug": 0
-    },
-    "RNGCasinoResultConfigs": {
-        "Url": "http://172.16.4.41:7034/api/OneRngInternal/GetBetHistoryUrl",
-        "Debug": 0
-    },
-    "VoidbridgeResultConfigs": {
-        "Url": "http://172.16.4.41:8066/api/VoidBridgeInternal/GetBetHistoryUrl",
-        "VendorId": 12,
-        "Debug": 0
-    },
-    "PPResultConfigs": {
-        "Url": "http://172.16.4.41:7065/api/PragmaticPlayInternal/GetBetHistoryUrl",
-        "VendorId": 32,
-        "Debug": 0
-    },
-    "SpadegamingResultConfigs": {
-        "Url": "http://172.16.4.41:8096/api/SpadeGamingInternal/GetBetHistoryUrl",
-        "VendorId": 36,
-        "Debug": 0
-    },
-    "RNGWarResultConfigs": {
-        "Url": "http://172.16.4.41:8105/api/SboGamesInternal/GetBetHistoryUrl",
-        "VendorId": 50,
-        "Debug": 0
-    },
-    "IONCasinoResultConfigs": {
-        "Url": "http://172.16.4.41:8105/api/SboGamesInternal/GetBetHistoryUrl",
-        "VendorId": 12,
-        "Debug": 0
-    },
-    "PGSoftResultConfigs": {
-        "Url": "http://172.16.4.41:7104/api/PocketGamesInternal/GetBetHistoryUrl",
-        "VendorId": 55,
-        "Debug": 0
-    },
-    "JokerResultConfigs": {
-        "Url": "http://172.16.4.41:8113/api/JokerGamingInternal/GetBetHistoryUrl",
-        "VendorId": 56,
-        "Debug": 0
-    },
-    "LinkedGamesResultConfigs": {
-        "Url": "http://172.16.4.41:8121/api/LinkedGamesInternal/GetBetHistoryUrl",
-        "VendorId": 63,
-        "Debug": 0
-    },
-    "BGResultConfigs": {
-        "Url": "http://172.16.4.41:7012/api/BigGamingInternal/GetBetHistoryUrl",
-        "VendorId": 57,
-        "Debug": 0
-    },
-    "CardClubResultConfigs": {
-        "Url": "http://172.16.4.41:8131/api/ArcadiaGamingInternal/GetBetHistoryUrl",
-        "VendorId": 34,
-        "Debug": 0
-    },
-    "FGGResultConfigs": {
-        "Url": "http://172.16.4.41:8132/api/GuaranteedGamingInternal/GetBetHistoryUrl",
-        "Debug": 0
-    },
-    "VirtualGamesDetailResultConfigs": {
-        "Url": "http://172.16.4.41:7035/api/VirtualGamesInternal/GetBetHistoryUrl",
-        "VendorId": 38,
-        "Debug": 0
-    },
-    "SEALResultConfigs": {
-        "Url": "http://172.16.4.41:7051/api/SealEntertainmentInternal/GetBetHistoryUrl",
-        "Debug": 0
-    },
-    "MGResultConfigs": {
-        "Url": "http://10.99.99.170:7004/api/MicroGamingInternal/GetBetHistoryUrl",
-        "VendorId": 57,
-        "Debug": 0
-    },
-    "JiliResultConfigs": {
-        "Url": "http://172.16.4.41:7030/api/JiLiInternal/GetBetHistoryUrl",
-        "Debug": 0
-    },
-    "Live22ResultConfigs": {
-        "Url": "http://172.16.4.41:7024/api/Live22Internal/GetBetHistoryUrl",
-        "VendorId": 79,
-        "Debug": 0
-    },
-    "WEResultConfigs": {
-        "Url": "http://172.16.4.41:7021/api/WorldEntertainmentInternal/GetBetHistoryUrl",
-        "Debug": 0
-    },
-    "UUSlotsResultConfigs": {
-        "Url": "http://172.16.4.41:7058/api/UuSlotsInternal/GetBetHistoryUrl",
-        "VendorId": 78,
-        "Debug": 0
-    },
-    "SabaxDResultConfigs": {
-        "Url": "http://172.16.4.41:7069/api/SabaXdInternal/GetBetHistoryUrl",
-        "VendorId": 86,
-        "Debug": 0
-    },
-    "FastSpinResultConfigs": {
-        "Url": "http://172.16.4.41:7078/api/FastSpinInternal/GetBetHistoryUrl",
-        "Debug": 0
-    },
-    "FACHAIResultConfigs": {
-        "Url": "http://172.16.4.41:7083/api/FaChaiInternal/GetBetHistoryUrl",
-        "VendorId": 89,
-        "Debug": 0
-    },
-    "NextspinResultConfigs": {
-        "Url": "http://172.16.4.41:7023/api/NextSpinInternal/GetBetHistoryUrl",
-        "VendorId": 85,
-        "Debug": 0
-    },
-    "ONCasinoResultConfigs": {
-        "Url": "http://172.16.4.41:7090/api//OnGamingInternal/GetBetHistoryUrl",
-        "VendorId": 96,
-        "Debug": 0
-    },
-    "SexyGamingResultConfigs": {
-        "Url": "http://172.16.4.41:7075/api//SexyCasinoInternal/GetBetHistoryUrl",
-        "VendorId": 45,
-        "Debug": 0
-    },
-    "PlaytechResultConfigs": {
-        "Url": "http://172.16.4.41:7094/api/PlaytechInternal/GetBetHistoryUrl",
-        "Debug": 0
-    },
-    "GPIRNGResultConfigs": {
-        "Url": "http://172.16.4.41:7081/api/GamePlayIntRngInternal/GetBetHistoryUrl",
-        "VendorId": 48,
-        "Debug": 0
-    },
-    "GPILiveCasinoResultConfigs": {
-        "Url": "http://172.16.4.41:7106/api/GamePlayIntCasinoInternal/GetBetHistoryUrl",
-        "VendorId": 90,
-        "Debug": 0
-    },
-    "PlayStarResultConfigs": {
-        "Url": "http://172.16.4.41:7088/api/PlayStarInternal/GetBetHistoryUrl",
-        "VendorId": 91,
-        "Debug": 0
-    },
-    "ASKMESLOTResultConfigs": {
-        "Url": "http://saba-wallet-group-001.3rd-party.k8s.nebula.sit/api/AskMeSlotInternal/GetBetHistoryUrl",
-        "VendorId": 103,
-        "Debug": 0
-    },
-    "SabaKenoResultConfigs": {
-        "Url": "http://172.16.4.41:7107/api/SabaKenoInternal/GetBetHistoryUrl",
-        "VendorId": 102,
-        "Debug": 0
-    },
-    "FunkyGamesResultConfigs": {
-        "Url": "http://saba-wallet-group-001.3rd-party.k8s.nebula.sit/api/FunkyGamesInternal/GetBetHistoryUrl",
-        "VendorId": 104,
-        "Debug": 0
-    }
+  "AllbetResultImagePath": "/tickets/bundles/results/Allbet/template/public/game_result/",
+  "GTCasinoResultImagePath": "/tickets/bundles/results/Allbet/template/public/game_result/",
+  "SAGamingResultImagePath": "/tickets/bundles/results/SAGaming/template/public/game_result/",
+  "WMResultImagePath": "/tickets/bundles/results/WM/images/",
+  "KenoResultConfigs": {
+    "Url": "http://172.16.4.41:7053/api/KenoInternal/GetResultUrl",
+    "SiteId": 3100100,
+    "Debug": 0
+  },
+  "LotteryResultConfigs": {
+    "Url": "http://172.16.4.41:7055/api/LotteryInternal/GetResultUrl",
+    "SiteId": 3100100,
+    "Debug": 0
+  },
+  "TableGameResultConfigs": {
+    "Url": "http://172.16.4.41:7057/api/TableGameInternal/GetResultUrl",
+    "SiteId": 3100100,
+    "Debug": 0
+  },
+  "SportsLotteryResultConfigs": {
+    "UrlPage": "http://172.16.4.41:7038/api/SportsLotteryInternal/Result",
+    "SiteId": "4100200",
+    "Debug": 0
+  },
+  "VirtualGamesResultConfigs": {
+    "Url": "http://172.16.4.41:7035/api/VirtualGamesInternal/GetResultUrl",
+    "SiteId": 3100100,
+    "Debug": 0
+  },
+  "Soccer5ResultConfigs": {
+    "Url": "//plggc.155551.com/LinkedGamesWebPortal/GameResult",
+    "SiteId": 4100200,
+    "VendorId": 63,
+    "Debug": 0,
+    "ProxyIP": "lisasqd.nebula.prod",
+    "ProxyPort": 8801
+  },
+  "SabaClubConfigs": {
+    "Url": "http://172.16.4.41:8103/api/SabaClubInternal/GetTicketResult",
+    "Login": "Login",
+    "Password": "U1YwYm1IbGpSeVdMeWhTaE1Ia1I3QT09",
+    "Debug": 0
+  },
+  "MaxGameResultConfigs": {
+    "Url": "http://172.16.4.41:7020/api/MaxGameInternal/GetBetHistoryUrl",
+    "VendorId": 60,
+    "Debug": 0
+  },
+  "SportsLotteryDetailResultConfigs": {
+    "Url": "http://172.16.4.41:7038/api/SportsLotteryInternal/GetBetHistoryUrl",
+    "Debug": 0
+  },
+  "PPLiveCasinoResultConfigs": {
+    "Url": "http://172.16.4.41:7067/api/PragmaticPlayCasinoInternal/GetBetHistoryUrl",
+    "VendorId": 65,
+    "Debug": 0
+  },
+  "HabaneroResultConfigs": {
+    "Url": "http://172.16.4.41:8119/api/HabaneroInternal/GetBetHistoryUrl",
+    "VendorId": 61,
+    "Debug": 0
+  },
+  "CGResultConfigs": {
+    "Url": "http://172.16.4.41:8120/api/CreativeGamingInternal/GetBetHistoryUrl",
+    "VendorId": 62,
+    "Debug": 0
+  },
+  "VGamingConfigs": {
+    "Url": "http://172.16.4.41:7028/api/VGamingInternal/GetBetHistoryUrl",
+    "Debug": 0
+  },
+  "AdvantPlayResultConfigs": {
+    "Url": "http://172.16.4.41:7092/api/AdvantPlayInternal/GetBetHistoryUrl",
+    "VendorId": 67,
+    "Debug": 0
+  },
+  "AdvantPlayMiniResultConfigs": {
+    "Url": "http://172.16.4.41:8129/api/AdvantPlayMiniInternal/GetBetHistoryUrl",
+    "VendorId": 68,
+    "Debug": 0
+  },
+  "BBINResultConfigs": {
+    "Url": "http://172.16.4.41:8106/api/BBinLiveInternal/GetBetHistoryUrl",
+    "Debug": 0
+  },
+  "RNGCasinoResultConfigs": {
+    "Url": "http://172.16.4.41:7034/api/OneRngInternal/GetBetHistoryUrl",
+    "Debug": 0
+  },
+  "VoidbridgeResultConfigs": {
+    "Url": "http://172.16.4.41:8066/api/VoidBridgeInternal/GetBetHistoryUrl",
+    "VendorId": 12,
+    "Debug": 0
+  },
+  "PPResultConfigs": {
+    "Url": "http://172.16.4.41:7065/api/PragmaticPlayInternal/GetBetHistoryUrl",
+    "VendorId": 32,
+    "Debug": 0
+  },
+  "SpadegamingResultConfigs": {
+    "Url": "http://172.16.4.41:8096/api/SpadeGamingInternal/GetBetHistoryUrl",
+    "VendorId": 36,
+    "Debug": 0
+  },
+  "RNGWarResultConfigs": {
+    "Url": "http://172.16.4.41:8105/api/SboGamesInternal/GetBetHistoryUrl",
+    "VendorId": 50,
+    "Debug": 0
+  },
+  "IONCasinoResultConfigs": {
+    "Url": "http://172.16.4.41:8105/api/SboGamesInternal/GetBetHistoryUrl",
+    "VendorId": 12,
+    "Debug": 0
+  },
+  "PGSoftResultConfigs": {
+    "Url": "http://172.16.4.41:7104/api/PocketGamesInternal/GetBetHistoryUrl",
+    "VendorId": 55,
+    "Debug": 0
+  },
+  "JokerResultConfigs": {
+    "Url": "http://172.16.4.41:8113/api/JokerGamingInternal/GetBetHistoryUrl",
+    "VendorId": 56,
+    "Debug": 0
+  },
+  "LinkedGamesResultConfigs": {
+    "Url": "http://172.16.4.41:8121/api/LinkedGamesInternal/GetBetHistoryUrl",
+    "VendorId": 63,
+    "Debug": 0
+  },
+  "BGResultConfigs": {
+    "Url": "http://172.16.4.41:7012/api/BigGamingInternal/GetBetHistoryUrl",
+    "VendorId": 57,
+    "Debug": 0
+  },
+  "CardClubResultConfigs": {
+    "Url": "http://172.16.4.41:8131/api/ArcadiaGamingInternal/GetBetHistoryUrl",
+    "VendorId": 34,
+    "Debug": 0
+  },
+  "FGGResultConfigs": {
+    "Url": "http://172.16.4.41:8132/api/GuaranteedGamingInternal/GetBetHistoryUrl",
+    "Debug": 0
+  },
+  "VirtualGamesDetailResultConfigs": {
+    "Url": "http://172.16.4.41:7035/api/VirtualGamesInternal/GetBetHistoryUrl",
+    "VendorId": 38,
+    "Debug": 0
+  },
+  "SEALResultConfigs": {
+    "Url": "http://172.16.4.41:7051/api/SealEntertainmentInternal/GetBetHistoryUrl",
+    "Debug": 0
+  },
+  "MGResultConfigs": {
+    "Url": "http://10.99.99.170:7004/api/MicroGamingInternal/GetBetHistoryUrl",
+    "VendorId": 57,
+    "Debug": 0
+  },
+  "JiliResultConfigs": {
+    "Url": "http://172.16.4.41:7030/api/JiLiInternal/GetBetHistoryUrl",
+    "Debug": 0
+  },
+  "Live22ResultConfigs": {
+    "Url": "http://172.16.4.41:7024/api/Live22Internal/GetBetHistoryUrl",
+    "VendorId": 79,
+    "Debug": 0
+  },
+  "WEResultConfigs": {
+    "Url": "http://172.16.4.41:7021/api/WorldEntertainmentInternal/GetBetHistoryUrl",
+    "Debug": 0
+  },
+  "UUSlotsResultConfigs": {
+    "Url": "http://172.16.4.41:7058/api/UuSlotsInternal/GetBetHistoryUrl",
+    "VendorId": 78,
+    "Debug": 0
+  },
+  "SabaxDResultConfigs": {
+    "Url": "http://172.16.4.41:7069/api/SabaXdInternal/GetBetHistoryUrl",
+    "VendorId": 86,
+    "Debug": 0
+  },
+  "FastSpinResultConfigs": {
+    "Url": "http://172.16.4.41:7078/api/FastSpinInternal/GetBetHistoryUrl",
+    "Debug": 0
+  },
+  "FACHAIResultConfigs": {
+    "Url": "http://172.16.4.41:7083/api/FaChaiInternal/GetBetHistoryUrl",
+    "VendorId": 89,
+    "Debug": 0
+  },
+  "NextspinResultConfigs": {
+    "Url": "http://172.16.4.41:7023/api/NextSpinInternal/GetBetHistoryUrl",
+    "VendorId": 85,
+    "Debug": 0
+  },
+  "ONCasinoResultConfigs": {
+    "Url": "http://172.16.4.41:7090/api//OnGamingInternal/GetBetHistoryUrl",
+    "VendorId": 96,
+    "Debug": 0
+  },
+  "SexyGamingResultConfigs": {
+    "Url": "http://172.16.4.41:7075/api//SexyCasinoInternal/GetBetHistoryUrl",
+    "VendorId": 45,
+    "Debug": 0
+  },
+  "PlaytechResultConfigs": {
+    "Url": "http://172.16.4.41:7094/api/PlaytechInternal/GetBetHistoryUrl",
+    "Debug": 0
+  },
+  "GPIRNGResultConfigs": {
+    "Url": "http://172.16.4.41:7081/api/GamePlayIntRngInternal/GetBetHistoryUrl",
+    "VendorId": 48,
+    "Debug": 0
+  },
+  "GPILiveCasinoResultConfigs": {
+    "Url": "http://172.16.4.41:7106/api/GamePlayIntCasinoInternal/GetBetHistoryUrl",
+    "VendorId": 90,
+    "Debug": 0
+  },
+  "PlayStarResultConfigs": {
+    "Url": "http://172.16.4.41:7088/api/PlayStarInternal/GetBetHistoryUrl",
+    "VendorId": 91,
+    "Debug": 0
+  },
+  "ASKMESLOTResultConfigs": {
+    "Url": "http://saba-wallet-group-001.3rd-party.k8s.nebula.sit/api/AskMeSlotInternal/GetBetHistoryUrl",
+    "VendorId": 103,
+    "Debug": 0
+  },
+  "SabaKenoResultConfigs": {
+    "Url": "http://172.16.4.41:7107/api/SabaKenoInternal/GetBetHistoryUrl",
+    "VendorId": 102,
+    "Debug": 0
+  },
+  "FunkyGamesResultConfigs": {
+    "Url": "http://saba-wallet-group-001.3rd-party.k8s.nebula.sit/api/FunkyGamesInternal/GetBetHistoryUrl",
+    "VendorId": 104,
+    "Debug": 0
+  },
+  "HotDogResultConfigs": {
+    "Url": "xxxx/api/HotDogInternal/GetBetHistoryUrl",
+    "VendorId": 95,
+    "Debug": 0
+  }
 }

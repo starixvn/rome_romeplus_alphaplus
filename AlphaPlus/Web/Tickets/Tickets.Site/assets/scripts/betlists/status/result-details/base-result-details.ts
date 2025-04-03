@@ -49,6 +49,7 @@
         private static sabaKenoResult: ResultDetails;
         private static funkyGamesResult: ResultDetails;
         private static virtualRacingResult: ResultDetails;
+        private static hotdogResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (
@@ -398,7 +399,14 @@
                 this.sabaKenoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sabaKenoResult) ? new SabaKenoResultDetails() : this.sabaKenoResult;
                 return this.sabaKenoResult;
             }
-            
+
+            if (betTypeId >= 11900 && betTypeId <= 11999) {
+                this.hotdogResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.hotdogResult)
+                    ? new HotDogResultDetails()
+                    : this.hotdogResult;
+                return this.hotdogResult;
+            }
+
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult)
                 ? new SportsbookResultDetails()
                 : this.sportsbookResult;
