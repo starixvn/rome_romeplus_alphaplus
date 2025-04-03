@@ -240,5 +240,10 @@
     "Url": "http://10.40.40.248:7116/api/HotDogInternal/GetBetHistoryUrl",
     "VendorId": 95,
     "Debug": 0
+  },
+  "MicrogamingLiveConfigs": {
+    "Url": "http://saba-wallet-group-003.3rd-party.t2p.nebula.prod:22080/api/MicroGamingLiveInternal/GetBetHistoryUrl",
+    "VendorId": 107,
+    "Debug": 0
   }
 }

@@ -50,6 +50,7 @@
         private static funkyGamesResult: ResultDetails;
         private static virtualRacingResult: ResultDetails;
         private static hotdogResult: ResultDetails;
+        private static microgamingLiveResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (
@@ -407,6 +408,12 @@
                 return this.hotdogResult;
             }
 
+            if (betTypeId >= 13900 && betTypeId <= 13999) {
+                this.microgamingLiveResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.microgamingLiveResult)
+                    ? new MicrogamingLiveResultDetails()
+                    : this.microgamingLiveResult;
+                return this.microgamingLiveResult;
+            }
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult)
                 ? new SportsbookResultDetails()
                 : this.sportsbookResult;

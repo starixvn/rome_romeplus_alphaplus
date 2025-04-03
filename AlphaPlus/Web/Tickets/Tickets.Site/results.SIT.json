@@ -238,8 +238,13 @@
     "Debug": 0
   },
   "HotDogResultConfigs": {
-    "Url": "xxxx/api/HotDogInternal/GetBetHistoryUrl",
+    "Url": "http://saba-wallet-group-002.3rd-party.k8s.nebula.sit/api/HotDogInternal/GetBetHistoryUrl",
     "VendorId": 95,
+    "Debug": 0
+  },
+  "MicrogamingLiveConfigs": {
+    "Url": "http://saba-wallet-group-003.3rd-party.k8s.nebula.sit/api/MicroGamingLiveInternal/GetBetHistoryUrl",
+    "VendorId": 107,
     "Debug": 0
   }
 }
