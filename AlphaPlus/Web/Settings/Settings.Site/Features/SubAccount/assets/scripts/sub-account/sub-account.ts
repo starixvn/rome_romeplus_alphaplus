@@ -306,7 +306,7 @@ class SubAccount {
                 break;
         }
 
-        this.$('input[type=radio]').change((item) => {
+        this.$('input[type=radio]').unbind('change').change((item) => {
             var subAccId = this.$(evt.currentTarget).data('subaccid');
             this.UpdatePageAccess(subAccId, item);
         });
