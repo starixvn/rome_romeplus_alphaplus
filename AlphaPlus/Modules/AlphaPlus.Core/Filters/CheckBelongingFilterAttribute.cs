@@ -110,8 +110,9 @@ public class CheckBelongingFilterAttribute : TypeFilterAttribute
                 response.Clear();
                 response.StatusCode = (int)HttpStatusCode.Forbidden;
                 await response.WriteAsJsonAsync(JsonSerializer.Serialize(new { message }));
+                return;
             }
-            else
+
             {
                 context.Result = new RedirectResult($"{kickOutPageAbsoluteUrl}?reason={message}");
             }

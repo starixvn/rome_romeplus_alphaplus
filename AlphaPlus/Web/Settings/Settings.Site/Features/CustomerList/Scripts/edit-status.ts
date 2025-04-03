@@ -68,8 +68,7 @@ class EditStatus {
         this.$('.edit-status-popup').click(event => {
             const isOpenPopup = JSON.parse(this.$(event.currentTarget).data("ispopup"));
             if (isOpenPopup) {
-                if (this.$(event.currentTarget).data("message") == 'ShowCheckboxOnCustInfo_AutoTransfer'
-                    && JSON.parse(this.$(event.currentTarget).data("disabled"))) {
+                if (JSON.parse(this.$(event.currentTarget).data("disabled"))) {
                     return;
                 }
 
