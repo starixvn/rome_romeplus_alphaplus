@@ -125,6 +125,13 @@ class TransferConditionView {
                     this.alert.showError(result.Message);
                 }
             },
+            error: (jqXHR) => {
+                if (JSON.parse(jqXHR.responseText) && JSON.parse(jqXHR.responseText).message === 'NoPermission') {
+                    this.alert.showError('You are not authorized on this function!');
+                } else {
+                    this.alert.showError('Sorry, there was an unexpected issue on the server. Please seek help from our customer support. [5000]!');
+                }
+            },
             complete: $.unblockUI
         });
     }

@@ -57,4 +57,8 @@ public class InternalLoginResponse
     public string LoginIp { get; set; }
 
     public int[] OfferedProductGroupIds { get; set; }
+
+    public bool IsForcedChangeSecurityCode { get; set; }
+
+    public string SecurityCode { get; set; }
 }

@@ -30,6 +30,13 @@ class UpdateCustomerInfoView {
                         this.showError(result.Message);
                     }
                 },
+                error: (jqXHR) => {
+                    if (jqXHR.responseJSON && jqXHR.responseJSON.message === 'NoPermission') {
+                        this.showError('You are not authorized on this function!');
+                    } else {
+                        this.showError('Sorry, there was an unexpected issue on the server. Please seek help from our customer support. [5000]!');
+                    }
+                },
                 complete: $.unblockUI
             });
         });

@@ -30,10 +30,18 @@ public class RequestContext(IRequestAnalyst requestAnalyst, IOptions<Authorizati
     public string Url
     {
         get
-        {
+        {   
             if (string.IsNullOrWhiteSpace(_url))
             {
-                _url = AlphaContext.Current.Request.Path;
+                var routeValues = AlphaContext.Current.Request.RouteValues;
+                if (routeValues.ContainsKey("controller") && routeValues.ContainsKey("action"))
+                {
+                    _url = $"{routeValues["controller"]}/{routeValues["action"]}";
+                }
+                else
+                {
+                    _url = AlphaContext.Current.Request.Path;
+                }
             }
 
             return _url;

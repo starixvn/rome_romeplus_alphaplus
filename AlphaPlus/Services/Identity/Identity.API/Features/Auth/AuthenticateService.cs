@@ -272,7 +272,9 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 LanguageUsage = criteria.LanguageUsage,
                 ServerId = criteria.ServerId,
                 Site = criteria.Site,
-                LoginIp = criteria.LoginIp
+                LoginIp = criteria.LoginIp,
+                IsForcedChangeSecurityCode = criteria.IsForcedChangeSecurityCode,
+                SecurityCode = criteria.SecurityCode
             };
 
             if (criteria.ErrCode == 0)

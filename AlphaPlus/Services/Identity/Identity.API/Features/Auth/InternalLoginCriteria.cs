@@ -48,6 +48,10 @@ public class InternalLoginCriteria : NonQueryCommand
 
     public string ErrMsg { get; set; }
 
+    public bool IsForcedChangeSecurityCode { get; set; }
+
+    public string SecurityCode { get; set; }
+
     public override string GetSettingKey() => "Age_LoginDownline_Admin";
 
     public override bool IsValid() => AdminId > 0 && !string.IsNullOrWhiteSpace(Username);
