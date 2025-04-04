@@ -2,12 +2,14 @@ declare var TipsyHelper;
 
 class TransferConditionView {
     private alert: AlertComponent;
+    private NotAuthorizedMessage: any;
 
     constructor(alert: AlertComponent) {
         this.alert = alert;
     }
 
     init() {
+        this.NotAuthorizedMessage = $('input[name="NotAuthorizedMessage"]').val();
         this.showTitle();
         const $checkboxDayOfWeeks = $('input[type=checkbox][name=Weekly]');
         const $labelMon = $('label[for=chk-0]');
@@ -127,7 +129,7 @@ class TransferConditionView {
             },
             error: (jqXHR) => {
                 if (JSON.parse(jqXHR.responseText) && JSON.parse(jqXHR.responseText).message === 'NoPermission') {
-                    this.alert.showError('You are not authorized on this function!');
+                    this.alert.showError(this.NotAuthorizedMessage);
                 } else {
                     this.alert.showError('Sorry, there was an unexpected issue on the server. Please seek help from our customer support. [5000]!');
                 }

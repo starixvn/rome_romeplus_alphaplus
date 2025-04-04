@@ -1,5 +1,8 @@
 class UpdateCustomerInfoView {
+    private NotAuthorizedMessage: any;
+
     init() {
+        this.NotAuthorizedMessage = $('input[name="NotAuthorizedMessage"]').val();
         this.showTitle();
         const $form = $('#form-update').submit((e) => {
             e.preventDefault();
@@ -32,7 +35,7 @@ class UpdateCustomerInfoView {
                 },
                 error: (jqXHR) => {
                     if (jqXHR.responseJSON && jqXHR.responseJSON.message === 'NoPermission') {
-                        this.showError('You are not authorized on this function!');
+                        this.showError(this.NotAuthorizedMessage);
                     } else {
                         this.showError('Sorry, there was an unexpected issue on the server. Please seek help from our customer support. [5000]!');
                     }

@@ -384,7 +384,7 @@
                     },
                     {
                         "Url": "Customer/UpdateInfoPost",
-                        "Permission": "[B]",
+                        "Permission": "[H],[B]",
                         "IsCheckBelonging": true,
                         "IsAllowToDoByThemselves": true
                     },
