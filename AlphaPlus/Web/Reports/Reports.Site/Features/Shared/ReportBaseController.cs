@@ -26,7 +26,7 @@ public abstract class ReportBaseController(IMediator mediator) : BaseController
 
     protected async Task<IActionResult> Json<TResponse>(
         IRequest<TResponse> message,
-        JsonIgnoreCondition jsonIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault)
+        JsonIgnoreCondition jsonIgnoreCondition = JsonIgnoreCondition.WhenWritingNull)
     {
         var baseQuery = message as BaseQuery;
         if (baseQuery != null && baseQuery.IsValid())
