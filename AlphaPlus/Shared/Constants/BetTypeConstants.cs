@@ -52,6 +52,9 @@ internal static class BetTypeConstants
 
     public const int OtherBetTypes = 19001;
 
+    public const int VirtualSport7Min = 15500;
+    public const int VirtualSport7Max = 15599;
+
     public static bool IsOutright(int betType) => betType == Outright;
 
     public static bool IsJackpotContribution(int betType)
@@ -64,6 +67,9 @@ internal static class BetTypeConstants
     public static bool IsNumberGame(int betType) => NumberGameMin <= betType && betType <= NumberGameMax;
 
     public static bool IsHappy5(int betType) => Happy5Min <= betType && betType <= Happy5Max;
+
+    public static bool IsVirtualSport7(int betType)
+        => VirtualSport7Min <= betType && betType <= VirtualSport7Max;
 
     public static bool IsVirtualHorseRacing(int betType)
         => betType == VirtualHorseRacing_Win
