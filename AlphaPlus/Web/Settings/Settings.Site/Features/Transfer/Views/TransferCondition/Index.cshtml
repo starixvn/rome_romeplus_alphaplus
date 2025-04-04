@@ -1,4 +1,5 @@
 ﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Common
 @using AlphaPlus.Shared.AppResources.Settings.Transfer
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferCondition.TransferConditionViewModel
@@ -76,3 +77,4 @@
 <input type="hidden" id="hidden-updateTransferCondition_OnAutoText" value="@Resources.UpdateTransferCondition_OnAuto" />
 <input type="hidden" id="hidden-updateTransferCondition_OffAutoText"
     value="@Resources.UpdateTransferCondition_OffAuto" />
+<input type="hidden" name="NotAuthorizedMessage" value="@CommonResx.NotAuthorized" />

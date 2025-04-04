@@ -92,7 +92,7 @@ public class AuthorizationService(
             {
                 foreach (var pageAccess in groupPageAccess.PageAccesses)
                 {
-                    if (currentUrl.Equals(pageAccess.Url, StringComparison.OrdinalIgnoreCase) && pageAccess.IsCheckBelonging)
+                    if (currentUrl.Contains(pageAccess.Url, StringComparison.OrdinalIgnoreCase) && pageAccess.IsCheckBelonging)
                     {
                         if (requestContext.CustId != 0)
                         {
@@ -156,7 +156,7 @@ public class AuthorizationService(
             {
                 foreach (var pageAccess in groupPageAccess.PageAccesses)
                 {
-                    if (url.Equals(pageAccess.Url, StringComparison.OrdinalIgnoreCase))
+                    if (url.Contains(pageAccess.Url, StringComparison.OrdinalIgnoreCase))
                     {
                         var isAuthorized = IsAuthorizedOnPage(permissions, pageAccess);
 
@@ -178,7 +178,7 @@ public class AuthorizationService(
 
         foreach (var permission in requiredPermission)
         {
-            if (permissions.Contains(permission, StringComparison.OrdinalIgnoreCase))
+            if (permissions.Contains(permission))
             {
                 return true;
             }
