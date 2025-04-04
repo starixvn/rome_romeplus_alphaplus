@@ -323,6 +323,18 @@
                         "IsAllowToDoByThemselves": true
                     },
                     {
+                        "Url": "Customer/UpdateInfoPost",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "Customer/UpdateInfo",
+                        "Permission": "[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
                         "Url": "Customer/Create",
                         "Permission": "[A]",
                         "IsCheckBelonging": true,
@@ -373,18 +385,6 @@
                     {
                         "Url": "Customer/GetCurrentWinLossAmount",
                         "Permission": "[H]",
-                        "IsCheckBelonging": true,
-                        "IsAllowToDoByThemselves": true
-                    },
-                    {
-                        "Url": "Customer/UpdateInfo",
-                        "Permission": "[H]",
-                        "IsCheckBelonging": true,
-                        "IsAllowToDoByThemselves": true
-                    },
-                    {
-                        "Url": "Customer/UpdateInfoPost",
-                        "Permission": "[H],[B]",
                         "IsCheckBelonging": true,
                         "IsAllowToDoByThemselves": true
                     },

@@ -158,12 +158,7 @@ public class AuthorizationService(
                 {
                     if (url.Contains(pageAccess.Url, StringComparison.OrdinalIgnoreCase))
                     {
-                        var isAuthorized = IsAuthorizedOnPage(permissions, pageAccess);
-
-                        if (!isAuthorized)
-                        {
-                            return false;
-                        }
+                        return IsAuthorizedOnPage(permissions, pageAccess);
                     }
                 }
             }
