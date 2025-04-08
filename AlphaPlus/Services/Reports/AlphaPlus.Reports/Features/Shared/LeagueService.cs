@@ -18,7 +18,7 @@ public class LeagueService(
 
     public string GetLeagueName(int leagueId, byte leagueType, int leagueGroupId)
     {
-        if (leagueType == LeagueType.ThirdParty)
+        if (LeagueType.IsLeague3rd(leagueType))
         {
             return cacheRefService.GetLeagueName3rd(leagueId);
         }

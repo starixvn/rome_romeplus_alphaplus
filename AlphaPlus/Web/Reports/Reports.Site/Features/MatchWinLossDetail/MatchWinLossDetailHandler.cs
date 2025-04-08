@@ -164,7 +164,7 @@ public class MatchWinLossDetailHandler(
                 {
                     leagueIds.Add(leagueId);
                 }
-                else if (leagueType == LeagueType.ThirdParty)
+                else if (LeagueType.IsLeague3rd(leagueType))
                 {
                     league3rdIds.Add(leagueId);
                 }
