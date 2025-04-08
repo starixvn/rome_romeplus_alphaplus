@@ -64,6 +64,8 @@ public class IndirectLoginCriteria : NonQueryCommand
 
     public string ErrMsg { get; set; }
 
+    public string SubUsername { get; set; }
+
     public override string GetSettingKey() => "Age_IndirectLoginClaimDownline";
 
     public override bool IsValid() => CustId > 0 || SubAccId > 0 || !string.IsNullOrWhiteSpace(Username);
