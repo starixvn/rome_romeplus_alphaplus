@@ -238,7 +238,7 @@
     "Debug": 0
   },
   "HotDogResultConfigs": {
-    "Url": "http://10.40.40.248:7116/api/HotDogInternal/GetBetHistoryUrl",
+    "Url": "http://saba-wallet-group-002.3rd-party.t2p.nebula.prod:22080/api/HotDogInternal/GetBetHistoryUrl",
     "VendorId": 95,
     "Debug": 0
   },
