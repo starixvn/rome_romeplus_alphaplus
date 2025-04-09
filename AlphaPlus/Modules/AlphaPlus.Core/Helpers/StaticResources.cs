@@ -56,7 +56,7 @@ public static class StaticResources
     {
         var scriptHtml = string.Join(
             string.Empty,
-            paths.Select(path => VirtualPathUtility.ToAbsolute($"{path}{minText}.js")));
+            paths.Select(path => VirtualPathUtility.ToAbsolute($"{path}{minText}.js?v={staticResourcesVersion}")));
 
         return RenderScript(scriptHtml);
     }
@@ -65,7 +65,7 @@ public static class StaticResources
     {
         var styleHtml = string.Join(
             string.Empty,
-            paths.Select(path => VirtualPathUtility.ToAbsolute($"{path}{minText}.css")));
+            paths.Select(path => VirtualPathUtility.ToAbsolute($"{path}{minText}.css?v={staticResourcesVersion}")));
 
         return RenderStyle(styleHtml);
     }
@@ -74,7 +74,7 @@ public static class StaticResources
     {
         var styleHtml = string.Join(
             string.Empty,
-            paths.Select(path => VirtualPathUtility.ToAbsolute($"{path}{minText}.css")));
+            paths.Select(path => VirtualPathUtility.ToAbsolute($"{path}{minText}.css?v={staticResourcesVersion}")));
 
         return RenderStyleWithMedia(maxDeviceWidth, styleHtml);
     }
@@ -84,7 +84,7 @@ public static class StaticResources
         var darkModeName = GetDarkModeName();
         var styleHtml = string.Join(
             string.Empty,
-            paths.Select(path => VirtualPathUtility.ToAbsolute($"{path}{darkModeName}{minText}.css")));
+            paths.Select(path => VirtualPathUtility.ToAbsolute($"{path}{darkModeName}{minText}.css?v={staticResourcesVersion}")));
 
         return RenderStyle(styleHtml);
     }
@@ -96,7 +96,7 @@ public static class StaticResources
         var darkModeName = GetDarkModeName(userSession);
         var styleHtml = string.Join(
             string.Empty,
-            paths.Select(path => VirtualPathUtility.ToAbsolute($"{path}{roleName}{darkModeName}{minText}.css")));
+            paths.Select(path => VirtualPathUtility.ToAbsolute($"{path}{roleName}{darkModeName}{minText}.css?v={staticResourcesVersion}")));
 
         return RenderStyle(styleHtml);
     }
@@ -106,7 +106,7 @@ public static class StaticResources
         var darkModeName = GetDarkModeName();
         var styleHtml = string.Join(
             string.Empty,
-            paths.Select(path => VirtualPathUtility.ToAbsolute($"{path}{darkModeName}{minText}.css")));
+            paths.Select(path => VirtualPathUtility.ToAbsolute($"{path}{darkModeName}{minText}.css?v={staticResourcesVersion}")));
 
         return RenderStyleWithMedia(maxDeviceWidth, styleHtml);
     }
