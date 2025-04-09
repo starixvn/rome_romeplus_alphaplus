@@ -136,8 +136,8 @@
     },
     "SystemId": 2,
     "AssetAppPath": "//localhost:5101",
-    "JsVersion": "20240201",
-    "AssetsApp:StaticResourcesVersion": "20240201",
+    "JsVersion": "20250415",
+    "AssetsApp:StaticResourcesVersion": "20250415",
     "LocalTest": true,
     "SettingStatus": 0,
     "ProductOfferProductDetail": [
