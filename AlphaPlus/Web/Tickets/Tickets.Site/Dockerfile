@@ -47,6 +47,22 @@ RUN if [ "${TRANSFORM_CONFIG}" = "" ]; then cp -r AlphaPlus/Shared/Configuration
 
 RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp -r AlphaPlus/Shared/Configuration/sharedSettings.${TRANSFORM_CONFIG}.json AlphaPlus/Web/Tickets/Tickets.Site/sharedSettings.json; fi
 
+RUN if [ "${TRANSFORM_CONFIG}" = "SIT" ] || \
+  [ "${TRANSFORM_CONFIG}" = "SIT2" ] || \
+  [ "${TRANSFORM_CONFIG}" = "SIT3" ] || \
+  [ "${TRANSFORM_CONFIG}" = "SIT4" ] || \
+  [ "${TRANSFORM_CONFIG}" = "SIT5" ]; then \
+    cp -r AlphaPlus/Web/Tickets/Tickets.Site/results.SIT.json AlphaPlus/Web/Tickets/Tickets.Site/results.json; \
+fi
+
+RUN if [ "${TRANSFORM_CONFIG}" = "UAT" ] || \
+  [ "${TRANSFORM_CONFIG}" = "UAT2" ] || \
+  [ "${TRANSFORM_CONFIG}" = "UAT3" ] || \
+  [ "${TRANSFORM_CONFIG}" = "UAT4" ] || \
+  [ "${TRANSFORM_CONFIG}" = "UAT5" ]; then \
+    cp -r AlphaPlus/Web/Tickets/Tickets.Site/results.UAT.json AlphaPlus/Web/Tickets/Tickets.Site/results.json; \
+fi
+
 WORKDIR /src/AlphaPlus/Web/Tickets/Tickets.Site
 
 RUN yarn && gulp default

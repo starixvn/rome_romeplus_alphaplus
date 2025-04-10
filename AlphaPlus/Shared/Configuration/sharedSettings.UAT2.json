@@ -234,6 +234,9 @@
         "AllowSuperIds": "*",
         "URL": "https://idp2.starixuat.com/main/Account/IndirectLogin"
     },
+    "ProtectedMode": {
+        "OfferSites": "*"
+    },
     "Authorization": {
         "cachedExpireTime": 30,
         "EnableCheckBelonging": true,
