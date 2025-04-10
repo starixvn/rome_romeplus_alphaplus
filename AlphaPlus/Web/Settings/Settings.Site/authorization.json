@@ -441,6 +441,30 @@
                         "Permission": "[C]",
                         "IsCheckBelonging": false,
                         "IsAllowToDoByThemselves": false
+                    },
+                    {
+                        "Url": "Setting/Index",
+                        "Permission": "[G]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "Status/Index",
+                        "Permission": "[G]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "Credit/Index",
+                        "Permission": "[G]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "Login/Index",
+                        "Permission": "[G]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
                     }
                 ]
             },
