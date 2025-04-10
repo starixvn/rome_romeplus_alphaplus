@@ -2842,17 +2842,6 @@ namespace AlphaPlus.Shared.AppResources.Betlist.Services
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to &lt;b&gt;To Win&lt;/b&gt;: The potential net winning amount a Member can receive from a Sportsbook running bet ticket. &lt;b&gt;Your Risk Amount&lt;/b&gt;: The potential risk you bear if the Member wins the ticket, calculated as: &lt;b&gt;Your Risk Amount = To Win * Your Position Taking. &lt;/b&gt;These values do not apply to &lt;b&gt;Sportsbook settled tickets or other product tickets&lt;/b&gt; (both running and settled), and will be displayed as &lt;b&gt;&apos;N/A&apos;&lt;/b&gt; (Not Applicable)..
-        /// </summary>
-        public static string MemberWinNote
-        {
-            get
-            {
-                return ResourceManager.GetString("MemberWinNote", resourceCulture);
-            }
-        }
-
-        /// <summary>
         ///   Looks up a localized string similar to Super Risk.
         /// </summary>
         public static string SuperRisk
