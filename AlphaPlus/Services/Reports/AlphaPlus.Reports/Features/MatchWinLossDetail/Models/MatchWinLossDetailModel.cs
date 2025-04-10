@@ -73,7 +73,7 @@ public class MatchWinLossDetailModel
                 ? SharedResources.Happy5
                 : $"{SharedResources.Happy5} - {leagueName}";
         }
-        else if (BetTypeConstants.IsVirtualHorseRacing(data.BetType))
+        else if (BetTypeConstants.IsVirtualHorseRacing(data.BetType) || BetTypeConstants.IsVirtualSport7(data.BetType))
         {
             matchName = DateTime.TryParse(data.ShowTime, out var eventTime) ? eventTime.ToLongDateWithSlash() : string.Empty;
         }

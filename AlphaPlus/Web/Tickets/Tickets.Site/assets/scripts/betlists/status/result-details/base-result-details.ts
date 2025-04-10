@@ -48,6 +48,9 @@
         private static askmeslotResult: ResultDetails;
         private static sabaKenoResult: ResultDetails;
         private static funkyGamesResult: ResultDetails;
+        private static virtualRacingResult: ResultDetails;
+        private static hotdogResult: ResultDetails;
+        private static microgamingLiveResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (
@@ -385,12 +388,32 @@
                     : this.funkyGamesResult;
                 return this.funkyGamesResult;
             }
-            
+
+            if (betTypeId >= 15500 && betTypeId <= 15599) {
+                this.virtualRacingResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.virtualRacingResult)
+                    ? new VirtualRacingResultDetails()
+                    : this.virtualRacingResult;
+                return this.virtualRacingResult;
+            }
+
             if (betTypeId >= 12300 && betTypeId <= 12499) {
                 this.sabaKenoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sabaKenoResult) ? new SabaKenoResultDetails() : this.sabaKenoResult;
                 return this.sabaKenoResult;
             }
-            
+
+            if (betTypeId >= 11900 && betTypeId <= 11999) {
+                this.hotdogResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.hotdogResult)
+                    ? new HotDogResultDetails()
+                    : this.hotdogResult;
+                return this.hotdogResult;
+            }
+
+            if (betTypeId >= 13900 && betTypeId <= 13999) {
+                this.microgamingLiveResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.microgamingLiveResult)
+                    ? new MicrogamingLiveResultDetails()
+                    : this.microgamingLiveResult;
+                return this.microgamingLiveResult;
+            }
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult)
                 ? new SportsbookResultDetails()
                 : this.sportsbookResult;

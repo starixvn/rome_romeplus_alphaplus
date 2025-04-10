@@ -44,6 +44,7 @@ public static class BetTypeHelper
         {
             1 => 5,
             0 => 1,
+            2 => 3,
             _ => 1
         };
 }

@@ -27,6 +27,10 @@ public class SportsbookResultService(
     public async Task<string> GetResult(NormalResultQuery message)
     {
         var results = await GetResults(message);
+        if (results == null || !results.Any())
+        {
+            return string.Empty;
+        }
 
         var sportType = message.SportId > 0 ? (SportType)message.SportId : SportType.Others;
         var resultSetting = new ResultSetting
@@ -46,6 +50,11 @@ public class SportsbookResultService(
     public async Task<MemoryStream> ExportExcel(ExcelNormalResultQuery message)
     {
         var results = await GetResults(message);
+        if (results == null || !results.Any())
+        {
+            return null;
+        }
+
         var exportExcelSetting = new ResultSetting
         {
             SportType = (SportType)message.SportId,

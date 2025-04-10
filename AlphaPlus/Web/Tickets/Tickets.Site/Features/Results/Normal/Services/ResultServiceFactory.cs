@@ -1,6 +1,7 @@
 using AlphaPlus.Results.Features.Normal;
 using AlphaPlus.Tickets.Site.Features.Shared.Constants;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
+using Fanex.Result.Core.Base;
 using Fanex.Result.Core.GTCasino;
 using Fanex.Result.Core.SAGaming;
 using Fanex.Result.Core.WM;
@@ -25,7 +26,8 @@ public class ResultServiceFactory(
     ISAGamingResultBuilder saResultBuilder,
     IGTCasinoResultBuilder gtResultBuilder,
     IWMResultBuilder wmResultBuilder,
-    IResultEngineAdapter resultEngineAdapter) : IResultServiceFactory
+    IResultEngineAdapter resultEngineAdapter,
+    IVirtualRacing3rdService virtualRacing3rdService) : IResultServiceFactory
 {
     public IProductResultService CreateProductResultService(int sportId, int betTypeId)
     {
@@ -55,8 +57,11 @@ public class ResultServiceFactory(
             SportTypeConstants.VirtualGreyhounds or
             SportTypeConstants.VirtualMotors or
             SportTypeConstants.VirtualCycling or
-            SportTypeConstants.VirtualSpeedway => new VirtualRacingResultService(options, virtualRacingService, resultEngineAdapter),            
-            _=> betTypeId == BetTypeConstants.BetBuilder ?
+            SportTypeConstants.VirtualSpeedway => new VirtualRacingResultService(options, virtualRacingService, resultEngineAdapter),
+            SportTypeConstants.VirtualSteepleChase or
+            SportTypeConstants.VirtualHarnessRacing or
+            SportTypeConstants.VirtualMotorRacingVS7 => new VirtualRacing3rdResultService(virtualRacing3rdService, resultEngineAdapter),
+            _ => betTypeId == BetTypeConstants.BetBuilder ?
                     new BetBuilderResultService(sportsbookService, resultEngineAdapter) : new SportsbookResultService(options, sportsbookService, resultEngineAdapter)
         };
 

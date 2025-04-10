@@ -209,7 +209,7 @@ public class MatchWinLossDetailService(
     }
 
     private string GetTeamName(int teamId, byte leagueType)
-        => leagueType == LeagueType.ThirdParty
+        => leagueType == LeagueType.Match3rd_League3rd
         ? cacheRefService.GetTeamName3rd(teamId)
         : cacheRefService.GetTeamName(teamId);
 }

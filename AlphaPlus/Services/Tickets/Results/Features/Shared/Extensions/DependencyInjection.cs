@@ -19,6 +19,7 @@ public static class DependencyInjection
         .AddSingleton<ISportsbookService, SportsbookService>()
         .AddSingleton<INumberGameService, NumberGameService>()
         .AddSingleton<IVirtualRacingService, VirtualRacingService>()
+        .AddSingleton<IVirtualRacing3rdService, VirtualRacing3rdService>()
         .AddSingleton<IVirtualSportsService, VirtualSportsService>()
         .AddSingleton<IBitcoinService, BitcoinService>()
         .AddSingleton<IOutrightService, OutrightService>();
