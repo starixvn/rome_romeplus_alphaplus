@@ -12,7 +12,8 @@ namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit
             int masterId,
             int agentId,
             int pageIndex,
-            int pageSize)
+            int pageSize,
+            bool isDirectMember)
         {
             CustId = custId;
             BetType = betType;
@@ -21,6 +22,7 @@ namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit
             AgentId = agentId;
             PageIndex = pageIndex;
             PageSize = pageSize;
+            IsDirectDownline = isDirectMember;
         }
 
         public int CustId { get; set; }
@@ -38,6 +40,8 @@ namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit
         public int PageSize { get; set; }
 
         public int PageIndex { get; set; }
+
+        public bool IsDirectDownline { get; set; }
 
         public override string GetSettingKey()
             => "SiteDB_Age_CustomerSelWinlimitInfo";

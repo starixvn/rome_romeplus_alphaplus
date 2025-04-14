@@ -91,7 +91,8 @@ public class WinLossLimitServiceImpl(IDynamicRepository repository, CacheRefServ
             param.MasterId,
             param.AgentId,
             param.PageIndex,
-            param.PageSize), param.AGIP);
+            param.PageSize,
+            param.IsDirectMember), param.AGIP);
         var outstandings = Enumerable.Empty<WinLossLimitDetail>();
 
         foreach (var custWinLossLimit in result.WinLossLimitDetail)
