@@ -15,6 +15,7 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
         public static readonly Dictionary<string, Func<MenuStatus>> MenuItemTypeStatusRules = new()
         {
             [string.Empty] = null,
+            ["CashServiceMenuItem"] = () => new MenuStatus(!Current.IsSubAcc || Current.SubPageAccess.GetPermission(PageAccessType.CreateAccount)),
             ["CreateAccountMenuItem"] = () => new MenuStatus(!Current.IsSubAcc || Current.SubPageAccess.GetPermission(PageAccessType.CreateAccount)),
             ["CreateDirectMemberMenuItem"] = () => new MenuStatus(() => CreateDirectMemberMenuItemVisible),
             ["PTTemplateMenuItem"] = () => new MenuStatus(!Current.IsSubAcc || Current.SubPageAccess.GetPermission(PageAccessType.CreateAccount)),

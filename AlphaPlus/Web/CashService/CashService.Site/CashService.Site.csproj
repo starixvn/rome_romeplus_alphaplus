@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>AlphaPlus.CashService.Site</AssemblyName>
+    <RootNamespace>AlphaPlus.CashService.Site</RootNamespace>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>false</InvariantGlobalization>
@@ -15,8 +17,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="..\..\..\Shared\Extensions\FanexLoggingExtensions.cs" Link="Extensions\FanexLoggingExtensions.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.SecurityCode\AlphaPlus.SecurityCode.csproj" />
+    <ProjectReference Include="..\..\..\Modules\AlphaPlus.Logging\AlphaPlus.Logging.csproj" />
   </ItemGroup>
 
 </Project>

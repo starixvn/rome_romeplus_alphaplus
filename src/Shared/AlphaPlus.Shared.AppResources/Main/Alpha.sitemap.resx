@@ -453,4 +453,34 @@
   <data name="newDirectMember" xml:space="preserve">
     <value>Create Direct Member</value>
   </data>
+  <data name="cashService" xml:space="preserve">
+    <value>Cash Service</value>
+  </data>
+  <data name="ManagePayments" xml:space="preserve">
+    <value>Manage Payments</value>
+  </data>
+  <data name="PendingDeposit" xml:space="preserve">
+    <value>Pending Deposit</value>
+  </data>
+  <data name="PendingWithdrawal" xml:space="preserve">
+    <value>Pending Withdrawal</value>
+  </data>
+  <data name="TransactionHistory" xml:space="preserve">
+    <value>Transaction History</value>
+  </data>
+  <data name="MemberSiteManagement" xml:space="preserve">
+    <value>Member Site Mngt</value>
+  </data>
+  <data name="promotion" xml:space="preserve">
+    <value>Promotion</value>
+  </data>
+  <data name="ManagePromotion" xml:space="preserve">
+    <value>Manage Promotion</value>
+  </data>
+  <data name="PendingPromotion" xml:space="preserve">
+    <value>Pending Promotion</value>
+  </data>
+  <data name="PromotionReport" xml:space="preserve">
+    <value>Promotion Report</value>
+  </data>
 </root>

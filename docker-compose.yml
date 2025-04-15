@@ -87,3 +87,10 @@ services:
             context: .
             dockerfile: src/Web/Features/Features.Site/Dockerfile
         restart: always
+    
+    cash-site:
+        image: ${REGISTRY:-alphaplus}/cash.site:${PLATFORM:-linux}-${TAG:-latest}
+        build:
+            context: .
+            dockerfile: AlphaPlus/Web/CashService/CashService.Site/Dockerfile
+        restart: always

@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
 using Serilog;
 
-const string PathBase = "/main";
+const string PathBase = "/cash";
 const string SharedSettings = "sharedSettings.json";
 var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../", "Shared/Configuration/", SharedSettings);
 
@@ -37,6 +37,7 @@ builder.Host.UseSerilog();
 // Add services to the container.
 builder.Services
     .AddRequestInfo()
+    .AddFanexLogging(configuration)
     .AddAlphaPlusCore(configuration)
     .AddSharedSession(configuration)
     .AddSecurityCodeServices(configuration)
