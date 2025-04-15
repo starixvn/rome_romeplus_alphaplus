@@ -7,12 +7,16 @@ var TipsyHelper = (function () {
          * Northwest    North   Northeast
          */
         // gravity: sw | s | se | e | w | nw | n | ne
-        showError: function ($element, message, gravity) {
+        showError: function ($element, message, gravity, autoFocus) {
             $element.attr('title', message).addClass('error');
             $element.tipsy({ trigger: 'manual', gravity: gravity || 'nw', className: 'error' }).tipsy('show');
 
+			if (typeof autoFocus === 'undefined') {
+				autoFocus = true;
+			}
+			
             // FireFox will not re-focus to the control until blur event finshes.
-            setTimeout(function () { $element.focus(); }, 0);
+            autoFocus && setTimeout(function () { $element.focus(); }, 0);
 
             // Hide error when changing the field.
             $element.is('input') && $element.off("change").change(() => this.clear($element));
