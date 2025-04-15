@@ -153,9 +153,9 @@
     <siteMapNode resourceKey="MemberSiteManagement" url="/cash/MemberSites/Index"></siteMapNode>
   </siteMapNode>
   <siteMapNode resourceKey="promotion" menuItemType="CashServiceMenuItem" functionType="[H]" roles="Agent">
-    <siteMapNode resourceKey="ManagePromotion" url="/cash/Promotion/Index"></siteMapNode>
-    <siteMapNode resourceKey="PendingPromotion" url="/cash/Promotion/Pending"></siteMapNode>
-    <siteMapNode resourceKey="PromotionReport" url="/cash/Promotion/Report"></siteMapNode>
+    <siteMapNode resourceKey="ManagePromotion" url="/cash/Promotions/Index"></siteMapNode>
+    <siteMapNode resourceKey="PendingPromotion" url="/cash/Promotions/Pending"></siteMapNode>
+    <siteMapNode resourceKey="PromotionReport" url="/cash/Promotions/Report"></siteMapNode>
   </siteMapNode>
   <siteMapNode resourceKey="chatbot" url="/main/TelegramChatBot/Setup"></siteMapNode>
   <siteMapNode resourceKey="WhiteLabel" menuItemType="WhiteLabel" functionType="[E]">

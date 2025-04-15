@@ -5,6 +5,7 @@ using AlphaPlus.Core.Middlewares;
 using AlphaPlus.RequestInfo;
 using AlphaPlus.SecurityCode.Extensions;
 using AlphaPlus.SecurityCode.Filters;
+using Fanex.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -36,6 +37,7 @@ builder.Host.UseSerilog();
 
 // Add services to the container.
 builder.Services
+    .AddFanexData(configuration)
     .AddRequestInfo()
     .AddFanexLogging(configuration)
     .AddAlphaPlusCore(configuration)
@@ -47,6 +49,14 @@ builder.Services
         options.Filters.Add<AfterLoginFlowFilterAttribute>();
         options.Filters.Add<ProtectedModeFilterAttribute>();
         options.Filters.Add<SecurityCodeFilterAttribute>();
+    })
+    .AddRazorOptions(options =>
+    {
+        // The old locations are /Views/{1}/{0}.cshtml and /Views/Shared/{0}.cshtml
+        // where {1} is the Controller and {0} is the name of the View
+        options.ViewLocationFormats.Clear();
+        options.ViewLocationFormats.Add("/Features/{1}/Views/{0}.cshtml");
+        options.ViewLocationFormats.Add("/Features/Shared/Views/{0}.cshtml");
     })
     .AddJsonOptions(options =>
     {
@@ -60,7 +70,8 @@ builder.Services
     .Configure<ForwardedHeadersOptions>(options =>
     {
         options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
-    }).AddAuthorization()
+    })
+    .AddAuthorization()
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddSharedCookie();
 
@@ -71,16 +82,6 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new() { Title = "CashService API", Version = "v1" });
 });
 
-// Configure CORS
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowSpecificOrigins",
-        policy => policy
-            .WithOrigins("http://localhost:3000") // Add your frontend URL
-            .AllowAnyMethod()
-            .AllowAnyHeader()
-            .AllowCredentials());
-});
 
 var app = builder.Build();
 app.UseForwardedHeaders();
@@ -124,7 +125,7 @@ StaticResources.Init(configuration.GetValue<string>("JsVersion"));
 app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute());
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Payments}/{action=Index}/{id?}");
 
 
 try
