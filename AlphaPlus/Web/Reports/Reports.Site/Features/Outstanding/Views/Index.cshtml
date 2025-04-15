@@ -12,6 +12,7 @@
     Layout = "_Layout";
     ViewData["Title"] = Model.PageHeader.Title;
     var downlineRoleId = Model.CustLevel.Value - 1;
+    var version = AlphaPlus.Core.Configurations.AppSettings.JsVersion;
 
     void DisplayUserLevelText(UserLevel userLevel)
     {
@@ -46,11 +47,11 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/outstanding")
-    <link rel="stylesheet" href="~/bundles-v2/outstanding.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/bundles-v2/outstanding.css?v=@version" />
 }
 @section Scripts {
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-asset/data-table")
-    <script src="~/bundles/outstanding/outstanding.js" asp-append-version="true"></script>
+    <script src="~/bundles/outstanding/outstanding.js?v=@version"></script>
 }
 @model OutstandingViewModel
 <report-title model="Model.PageHeader" />
@@ -80,7 +81,7 @@
         <thead>
             <tr class="hide">
                 <th data-priority="0"></th>
-                
+
                 @if (Model.ShowLevelType)
                 {
                     <th data-priority="@length"></th>
