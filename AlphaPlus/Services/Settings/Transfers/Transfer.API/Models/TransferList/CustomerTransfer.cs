@@ -43,4 +43,6 @@ public class CustomerTransfer
     public byte Locked { get; init; }
 
     public decimal FutureBetCredit { get; init; }
+
+    public bool IsDirectMember { get; init; }
 }

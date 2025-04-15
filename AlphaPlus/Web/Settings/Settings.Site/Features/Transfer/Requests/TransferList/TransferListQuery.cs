@@ -22,6 +22,8 @@ public class TransferListQuery : TransferBaseQuery, IRequest<TransferListViewMod
 
     public byte AutoTransfer { get; set; } = AutoTransferConstant.All;
 
+    public byte LevelType { get; set; }
+
     public bool AllYesterdayBalance { get; set; }
 
     public int PageIndex { get; set; } = 1;

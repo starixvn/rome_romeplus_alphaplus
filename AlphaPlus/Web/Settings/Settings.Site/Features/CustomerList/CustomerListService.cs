@@ -4,6 +4,7 @@ using AlphaPlus.Settings.Site.Features.CustomerList.Criteria;
 using AlphaPlus.Settings.Site.Features.CustomerList.Params;
 using AlphaPlus.Settings.Site.Features.CustomerList.Models;
 using AlphaPlus.Settings.Site.Features.Shared.Models;
+using AlphaPlus.Settings.MemberInfo.API.Services.Transfer;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList
 {
@@ -11,17 +12,23 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
     {
         Task<CustomerListDTO> GetCustomerList(CustomerListParam param);
 
-        CustomerStatusModel GetCustomerStatus(int custId, byte roleId);
+        Task<CustomerStatusModel> GetCustomerStatus(int custId, byte roleId, int uplineId);
 
         Task<Result> UpdateCustomerStatus(UpdateCustomerStatusParam param);
     }
 
-    public class CustomerListServiceImpl(IDynamicRepository dynamicRepository) : CustomerListService
+    public class CustomerListServiceImpl(IDynamicRepository dynamicRepository, TransferService transferService) : CustomerListService
     {
         private readonly IDynamicRepository dynamicRepository = dynamicRepository;
+        private readonly TransferService transferService = transferService;
 
         public Task<CustomerListDTO> GetCustomerList(CustomerListParam param)
         {
+            if (param.IsDirectMember)
+            {
+                return FetchMemberList(param);
+            }
+
             return param.DirectUplineCustLevel.Value switch
             {
                 4 => FetchMasterList(param),
@@ -31,10 +38,10 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
             };
         }
 
-        public CustomerStatusModel GetCustomerStatus(int custId, byte roleId)
+        public async Task<CustomerStatusModel> GetCustomerStatus(int custId, byte roleId, int uplineId)
         {
             var (customerStatus, dcsProducts)
-                = dynamicRepository.FetchMultiple<NonProductStatusModel, DCSProductStatusModel>(
+                = await dynamicRepository.FetchMultipleAsync<NonProductStatusModel, DCSProductStatusModel>(
                     new SelectCustomerAllStatusModelCriteria(custId));
 
             var customerStatusModel = new CustomerStatusModel(
@@ -56,10 +63,16 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
 
             if (customerStatusModel.NonProduct != null)
             {
-                var closedReasonAndIsProtectedMode = dynamicRepository.Get<ClosedReasonAndIsProtectedMode>(
+                var closedReasonAndIsProtectedMode = await dynamicRepository.GetAsync<ClosedReasonAndIsProtectedMode>(
                     new SelectClosedReasonCriteria(custId, roleId));
                 customerStatusModel.NonProduct.IsProtectedMode = closedReasonAndIsProtectedMode != null
                     && closedReasonAndIsProtectedMode.IsProtectedMode;
+
+                var scheduleOptionCommand = new SelectScheduleOptionCommand(custId);
+                await dynamicRepository.ExecuteAsync(scheduleOptionCommand);
+                customerStatusModel.NonProduct.IsAllowAutoTransfer = scheduleOptionCommand.IsAllowAutoTransfer;
+                customerStatusModel.NonProduct.ScheduleWeekDays = scheduleOptionCommand.ScheduleWeekDays;
+                customerStatusModel.NonProduct.TransferOption = await transferService.GetTransferOption(uplineId);
             }
 
             return customerStatusModel;

@@ -1,33 +1,66 @@
 using AlphaPlus.Core.Models;
+using AlphaPlus.Shared.AppResources.Report;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared.Helpers;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
+using AlphaPlus.Core.Helpers;
+using AlphaPlus.Shared.AppResources.Common;
 
 namespace AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 
-public abstract class DrillDownableViewModel<T>(
-    BaseQuery message,
-    PageHeaderViewModel pageHeader,
-    ReportData<T> reportData,
-    string sortPropertyName,
-    byte descendingSort) where T : class
+public abstract class DrillDownableViewModel<T> where T : class
 {
-    public int CustId { get; } = message.CustId;
+    private string betListPath;
 
-    public string CustName { get; } = message.CustName;
+    protected DrillDownableViewModel(
+        BaseQuery message,
+        byte levelType,
+        PageHeaderViewModel pageHeader,
+        ReportData<T> reportData,
+        string sortPropertyName,
+        byte descendingSort,
+        string betListPath = null)
+    {
+        CustId = message.CustId;
+        CustName = message.CustName;
+        CustLevel = message.CustLevel;
+        DownlineLevelId = (byte)(CustLevel.Value - 1);
+        LevelType = levelType;
+        LevelTypeValue = CustLevel.IsSuperLevel() ? CommonResx.MasterAgent : Resources.Agent;
+        ShowLevelType = CustLevel.IsMasterOrSuperLevel();
+        PageHeader = pageHeader;
+        ReportData = reportData;
+        SortPropertyName = sortPropertyName;
+        DescendingSort = descendingSort;
 
-    public UserLevel CustLevel { get; } = message.CustLevel;
+        if (!string.IsNullOrWhiteSpace(betListPath))
+        {
+            this.betListPath = MicroSites.TicketUrl(betListPath);
+        }
+    }
 
-    public byte DownlineLevelId { get; } = (byte)(message.CustLevelId - 1);
+    public int CustId { get; }
 
-    public PageHeaderViewModel PageHeader { get; } = pageHeader;
+    public string CustName { get; }
 
-    public ReportData<T> ReportData { get; } = reportData;
+    public UserLevel CustLevel { get; }
 
-    public string SortPropertyName { get; } = sortPropertyName;
+    public byte DownlineLevelId { get; }
 
-    public byte DescendingSort { get; } = descendingSort;
+    public byte LevelType { get; }
+
+    public string LevelTypeValue { get; }
+
+    public bool ShowLevelType { get; }
+
+    public PageHeaderViewModel PageHeader { get; }
+
+    public ReportData<T> ReportData { get; }
+
+    public string SortPropertyName { get; }
+
+    public byte DescendingSort { get; }
 
     protected static BreadcrumbViewModel BuildBreadcrumbViewModel(BaseQuery message)
     {
@@ -35,4 +68,32 @@ public abstract class DrillDownableViewModel<T>(
 
         return new BreadcrumbViewModel(breadcrumbs, JsonHelper.ToJson(breadcrumbs));
     }
+
+    public IDictionary<string, string> BuildExcelParams()
+    {
+        var queryParams = new Dictionary<string, string>
+        {
+            [nameof(CustId)] = CustId.ToString(),
+            [nameof(CustName)] = CustName,
+            ["CustLevelId"] = CustLevel.Value.ToString(),
+            [nameof(LevelType)] = LevelType.ToString()
+        };
+
+        return AddMoreExcelParams(queryParams);
+    }
+
+    protected virtual IDictionary<string, string> AddMoreExcelParams(IDictionary<string, string> queryParams) => queryParams;
+
+    public string BuildBetListUrl(int custId, string custName)
+    {
+        var queryParams = new Dictionary<string, string>
+        {
+            [nameof(custId)] = custId.ToString(),
+            [nameof(custName)] = custName,
+        };
+
+        return $"{betListPath}{QueryString.Create(AddMoreBetListParams(queryParams))}";
+    }
+
+    protected virtual IDictionary<string, string> AddMoreBetListParams(IDictionary<string, string> queryParams) => queryParams;
 }

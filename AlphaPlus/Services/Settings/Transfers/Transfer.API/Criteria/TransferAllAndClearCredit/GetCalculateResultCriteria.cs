@@ -9,7 +9,6 @@ namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferAllAndClearCredit
             int custId,
             string username,
             string language,
-            string allowedTotalBalanceTransferSuperIds,
             bool isAllDayBalanceTransfer,
             string downlineNetPosition,
             int downlineCustId)
@@ -17,7 +16,6 @@ namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferAllAndClearCredit
             CustId = custId;
             Username = username;
             Language = language;
-            AllowedTotalBalanceTransferSuperIds = allowedTotalBalanceTransferSuperIds;
             IsAllDayBalanceTransfer = isAllDayBalanceTransfer;
             DownlineCustId = downlineCustId;
             DownlineNetPosition = downlineNetPosition;
@@ -34,14 +32,10 @@ namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferAllAndClearCredit
 
         public string Language { get; set; }
 
-        [SpParam(SqlParamName = "SuperIDsTransferTotal")]
-        public string AllowedTotalBalanceTransferSuperIds { get; set; }
-
         [SpParam(SqlParamName = "IsAllDayTransfer")]
         public bool IsAllDayBalanceTransfer { get; set; }
 
-        public override string GetSettingKey()
-            => "Age_Transfer_Credit_All_Sel";
+        public override string GetSettingKey() => "SiteDB_Age_Transfer_Credit_All_Sel";
 
         public override bool IsValid()
             => !string.IsNullOrWhiteSpace(Username) && DownlineCustId > 0;

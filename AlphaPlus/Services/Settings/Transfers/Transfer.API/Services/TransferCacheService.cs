@@ -1,10 +1,8 @@
-﻿using AlphaPlus.Settings.Transfer.API.Configurations;
+﻿using Fanex.Caching;
+using AlphaPlus.Settings.Transfer.API.Configurations;
 using AlphaPlus.Settings.Transfer.API.Models;
-using Fanex.Caching;
-using Fanex.Caching.Redis;
 using Fanex.Logging;
 using Newtonsoft.Json;
-using StackExchange.Redis;
 
 namespace AlphaPlus.Settings.Transfer.API.Services;
 
@@ -21,13 +19,11 @@ public interface ITransferCacheService
     void CacheRemove(List<TransferCacheModel> listTransferCacheModel, int custId);
 
     void CacheRemoveSuccessTransferCustIds(string cacheKey, List<int> listSuccessTransferCustIds, int adminId, string adminName);
-
-    ICacheService GetCacheService();
 }
 
-public class TransferCacheService(ICacheService cacheService = null) : ITransferCacheService
+public class TransferCacheService(ICacheService cacheService) : ITransferCacheService
 {
-    private readonly ICacheService cacheService = cacheService ?? InitCacheService();
+    private readonly ICacheService cacheService = cacheService;
     private static readonly object lockObject = new object();
 
     public List<TransferCacheModel> Get(string cacheKey)
@@ -80,8 +76,7 @@ public class TransferCacheService(ICacheService cacheService = null) : ITransfer
     {
         lock (lockObject)
         {
-            var cachePolicy = new CacheItemOptions()
-                .SetAbsoluteExpiration(TimeSpan.FromSeconds(AppSettings.MultipleTransferCacheTimeOut));
+            var cachePolicy = new CacheItemOptions();
             cacheService.Set(cacheKey, JsonConvert.SerializeObject(value), cachePolicy);
 
             if (AppSettings.EnableTransferLogInfo)
@@ -153,19 +148,5 @@ public class TransferCacheService(ICacheService cacheService = null) : ITransfer
                 return;
             }
         }
-    }
-
-    public ICacheService GetCacheService() => InitCacheService();
-
-    private static ICacheService InitCacheService()
-    {
-        var configurationOptions = ConfigurationOptions.Parse(AppSettings.TransferRedisConfiguration);
-        var redisCacheOptions = new RedisCacheOptions
-        {
-            ConnectionOptions = configurationOptions,
-            ApplicationName = configurationOptions.ClientName
-        };
-
-        return new CacheService(new RedisCache(redisCacheOptions));
     }
 }

@@ -1,36 +1,35 @@
-using Fanex.Data.Repository;
-using Fanex.RemotingRef;
-using TelegramBot.Client.Services;
-using AlphaPlus.Core.Helpers;
-using AlphaPlus.Core.Utils;
-using AlphaPlus.RequestInfo;
-using Fanex.Cryptography.Aes;
-using Fanex.Caching;
 using System.Net;
 using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Utils;
 using AlphaPlus.Main.Site.Features.Account;
 using AlphaPlus.Main.Site.Features.ApiKey;
 using AlphaPlus.Main.Site.Features.Banner;
-using AlphaPlus.Main.Site.Features.UMMessage;
-using AlphaPlus.Main.Site.Features.Default.MenuBar;
-using AlphaPlus.Main.Site.Features.Language;
-using Fanex.Data;
+using AlphaPlus.Main.Site.Features.CustomerProfile;
 using AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo;
 using AlphaPlus.Main.Site.Features.Dashboard.Statistics;
-using AlphaPlus.Main.Site.Features.Password;
-using AlphaPlus.Main.Site.Features.SecurityCode;
+using AlphaPlus.Main.Site.Features.Default.MenuBar;
+using AlphaPlus.Main.Site.Features.Language;
 using AlphaPlus.Main.Site.Features.Nickname;
-using AlphaPlus.Main.Site.Features.OTP;
-using AlphaPlus.Main.Site.Features.ProtectionCode;
-using AlphaPlus.Main.Site.Features.CustomerProfile;
-using AlphaPlus.Main.Site.Shared.Models;
-using ONEbook.OTP.Services;
-using ONEbook.OTP.Helpers;
-using AlphaPlus.SecurityCode.Extensions;
-using AlphaPlus.Main.Site.Shared.Services;
 using AlphaPlus.Main.Site.Features.NovaCasino;
+using AlphaPlus.Main.Site.Features.OTP;
+using AlphaPlus.Main.Site.Features.Password;
+using AlphaPlus.Main.Site.Features.ProtectionCode;
+using AlphaPlus.Main.Site.Features.SecurityCode;
+using AlphaPlus.Main.Site.Features.UMMessage;
 using AlphaPlus.Main.Site.Features.WhiteLabel;
+using AlphaPlus.Main.Site.Shared.Models;
+using AlphaPlus.Main.Site.Shared.Services;
+using AlphaPlus.RequestInfo;
+using AlphaPlus.SecurityCode.Extensions;
 using AlphaPlus.Main.Site.Features.Tour;
+using Fanex.Cryptography.Aes;
+using Fanex.Data;
+using Fanex.Data.Repository;
+using Fanex.RemotingRef;
+using ONEbook.OTP.Helpers;
+using ONEbook.OTP.Services;
+using TelegramBot.Client.Services;
 
 namespace AlphaPlus.Main.Site.Extensions;
 
@@ -45,7 +44,7 @@ public static class Extensions
             .AddRemotingRef(configuration)
             .AddRequestInfo()
             .AddSecurityCodeServices(configuration);
-        services.AddSingleton<ICacheService, CacheService>();
+
         services.AddSingleton<IDynamicRepository, DynamicRepository>();
         services.AddSingleton(Fanex.Logging.Logger.Log);
 

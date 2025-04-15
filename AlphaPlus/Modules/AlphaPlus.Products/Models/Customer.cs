@@ -21,6 +21,7 @@ namespace AlphaPlus.Products.Models
         int SubAccountId { get; }
         ICustomer Upline { get; }
         string Username { get; }
+        int AgentId { get; }
 
         bool CanSeeProduct(int productId);
 
@@ -42,6 +43,8 @@ namespace AlphaPlus.Products.Models
     public class Customer : ICustomer
     {
         private readonly IEnumerable<CustomerProductStatus> customerProductStatus;
+        private const int DirectMemberOfMasterAgentId = -3;
+        private const int DirectMemberOfSuperAgentId = -4;
 
         public Customer()
         { }
@@ -65,11 +68,13 @@ namespace AlphaPlus.Products.Models
             int subAccountId,
             string username,
             byte userLevelValue,
+            int agentId,
             IEnumerable<CustomerProductStatus> customerProductStatus,
             ICustomer upline)
             : this(id, subAccountId, username, userLevelValue, customerProductStatus)
         {
             Upline = upline;
+            AgentId = agentId;
         }
 
         public int Id { get; }
@@ -85,6 +90,8 @@ namespace AlphaPlus.Products.Models
         public bool IsSubAccount => SubAccountId > 0;
 
         public bool IsMainAccount => !IsSubAccount;
+
+        public int AgentId { get; }
 
         public bool CanSeeProduct(int productId)
         {
@@ -120,7 +127,9 @@ namespace AlphaPlus.Products.Models
             => CustomerLevel.Value > customer.CustomerLevel.Value;
 
         public bool IsDirectUplineOf(ICustomer customer)
-            => CustomerLevel.IsDirectUplineOf(customer.CustomerLevel);
+            => CustomerLevel.IsDirectUplineOf(customer.CustomerLevel)
+                || (IsSuper && customer.AgentId == DirectMemberOfSuperAgentId)
+                || (IsMaster && customer.AgentId == DirectMemberOfMasterAgentId);
 
         public bool IsNotDirectUplineOf(ICustomer customer)
             => !IsDirectUplineOf(customer);

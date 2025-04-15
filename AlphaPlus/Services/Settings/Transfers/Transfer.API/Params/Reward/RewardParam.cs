@@ -9,6 +9,7 @@ public record RewardParam(
     DateTime ToDate,
     string ProgramIds,
     bool? PaymentStatus,
+    byte LevelType,
     string Username,
     int PageIndex = 0,
     int PageSize = 0);

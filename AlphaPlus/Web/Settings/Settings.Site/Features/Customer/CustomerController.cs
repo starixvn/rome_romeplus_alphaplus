@@ -33,6 +33,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         private readonly IProductStatusService productStatusService;
         private readonly IUserSession userSession;
         private readonly IMemoryCache memoryCache;
+
         private readonly JsonSerializerOptions serializeOptions = new()
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
@@ -72,9 +73,25 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 
         private string CDNUri => sessionManager.Get<string>(DCSStaticSessionKey) ?? Core.Configurations.ConfigurationManager.GetValue<string>("Fanex.Customer:CdnUri");
 
+        public async Task<ActionResult> CreateDirectMember(CreateCustomerQuery query)
+        {
+            var limitedRulesResult = await customerService.CheckAllLimitedRules(query.ViewerId, query.ViewerLevelId, query.ActorUsername, true, query.Language);
+
+            var viewModel = limitedRulesResult.IsFailed
+                ? new CreateDirectMemberViewModel(query, true, limitedRulesResult.Message)
+                : new CreateDirectMemberViewModel(
+                query,
+                new AppConfiguration(GetApplicationPath(), systemId),
+                CDNUri,
+                GetAssetsVersion(),
+                GetHashKey(),
+                await customerService.GetSuggestDirectMemberUsername(query.CustName));
+
+            return View(viewModel);
+        }
         public async Task<ActionResult> Create(CreateCustomerQuery query)
         {
-            var limitedRulesResult = await customerService.CheckAllLimitedRules(query.ViewerId, query.ViewerLevelId, query.ActorUsername, query.Language);
+            var limitedRulesResult = await customerService.CheckAllLimitedRules(query.ViewerId, query.ViewerLevelId, query.ActorUsername, false, query.Language);
 
             var viewModel = limitedRulesResult.IsFailed
                 ? new CreateCustomerViewModel(query, true, limitedRulesResult.Message)
@@ -167,6 +184,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 AppSettings.SiteLabel,
                 request.CustDBGroupId,
                 request.Group,
+                request.NumberOfAccounts,
                 CreationModes.FullMode,
                 request.Language));
 
@@ -196,6 +214,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                     request.Site,
                     AppSettings.SiteLabel,
                     request.Group,
+                    request.AgentId,
                     request.Language));
 
             return Content(response);
@@ -225,13 +244,29 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                     request.Site,
                     AppSettings.SiteLabel,
                     request.Group,
+                    request.AgentId,
                     request.Language));
 
             return Content(response);
         }
 
+        public async Task<ActionResult> SearchSuggestDirectMembers(DirectMemberSuggestionQuery request)
+            => Json(await customerService.SearchSuggestDirectMembers(request.ViewerId, request.SearchUsername));
+
+        public async Task<int> CheckDirectMemberUserName(DirectMemberSuggestionQuery request)
+            => await customerService.CheckDirectMemberUserName(request.ViewerId, request.SearchUsername);
+
         public async Task<ActionResult> GetCustomerSetting(GetCustomerSettingRequest request)
-            => Content(await customerService.GetCustomerSetting(request.CustId, request.RoleId, systemId, request.UplineRoleId, request.Language, request.IsGetUpLine, request.ProductGroupId, request.SiteLabel));
+            => Content(await customerService.GetCustomerSetting(
+                request.CustId,
+                request.RoleId,
+                systemId,
+                request.UplineRoleId,
+                request.Language,
+                request.IsGetUpLine,
+                request.ProductGroupId,
+                request.SiteLabel,
+                agentId: request.AgentId));
 
         public async Task<ActionResult> GetCurrentWinLossAmount(CustomerWinLossAmountQuery request)
          => Content(await customerService.GetCustomerCurrentWinLossAmounts(request.CustId, request.SportType, request.BetType, request.Language));

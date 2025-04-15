@@ -34,8 +34,6 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
             }
         }
 
-        public bool IsCookieLess => false;
-
         public string DarkModeName { get; }
 
         public bool IsHideBanner { get; }

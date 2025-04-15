@@ -1,3 +1,5 @@
+using AlphaPlus.Core.Models;
+
 namespace AlphaPlus.Settings.Transfer.API.Models.Reward;
 
 public class RewardPayment
@@ -18,4 +20,6 @@ public class RewardPayment
     public bool Any { get; }
 
     public bool MoreThanOne { get; }
+
+    public UserLevel ActorLevel { get; set; }
 }

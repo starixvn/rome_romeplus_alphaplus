@@ -8,4 +8,5 @@ public record WinLossDetailWeekParam(
     string ProductDetailsXml,
     string Username,
     bool IsReward,
+    byte LevelType,
     string SiteName);

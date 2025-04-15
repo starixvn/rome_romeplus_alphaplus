@@ -43,6 +43,7 @@ $component-border-color: #474747;
         color: $component-color;
         padding: 8px 15px;
         position: absolute;
+        z-index: 20;
         left: 200px;
         top: 0;
         @include effect-normal;

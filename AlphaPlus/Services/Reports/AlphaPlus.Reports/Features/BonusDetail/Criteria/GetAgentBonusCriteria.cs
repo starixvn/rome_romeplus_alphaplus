@@ -1,6 +1,6 @@
 namespace AlphaPlus.Reports.Features.BonusDetail;
 
-internal class GetAgentBonusCriteria(
+public class GetAgentBonusCriteria(
     string username,
     DateTime fromDate,
     DateTime toDate,

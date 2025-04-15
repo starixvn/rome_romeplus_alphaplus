@@ -1,19 +1,20 @@
+using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
-using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using AlphaPlus.Settings.Site.Features.Transfer.Constants;
 using AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferYesterdayBalance;
 using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferYesterdayBalance;
-using AlphaPlus.Settings.Transfer.API.Params.TransferList;
-using AlphaPlus.Settings.Transfer.API.Services;
-using MediatR;
-using AlphaPlus.Settings.Transfer.API.Params.TransferYesterdayBalance;
 using AlphaPlus.Settings.Transfer.API.Configurations;
 using AlphaPlus.Settings.Transfer.API.Models;
-using AlphaPlus.Core.Extensions;
+using AlphaPlus.Settings.Transfer.API.Params.TransferList;
+using AlphaPlus.Settings.Transfer.API.Params.TransferYesterdayBalance;
+using AlphaPlus.Settings.Transfer.API.Services;
+using AlphaPlus.Shared.AppResources.Settings.Transfer;
+using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers;
 
 public class TransferYesterdayBalanceHandler(
+    ITransferCacheService transferCacheService,
     ITransferService transferService,
     ITransferListService transferListService,
     IYesterdayBalanceTransferService yesterdayBalanceTransferService) :
@@ -29,6 +30,7 @@ public class TransferYesterdayBalanceHandler(
     private readonly ITransferService transferService = transferService;
     private readonly ITransferListService transferListService = transferListService;
     private readonly IYesterdayBalanceTransferService yesterdayBalanceTransferService = yesterdayBalanceTransferService;
+    private readonly ITransferCacheService transferCacheService = transferCacheService;
 
     public async Task<SingleViewModel> Handle(SingleQuery message, CancellationToken cancellationToken)
     {
@@ -38,26 +40,21 @@ public class TransferYesterdayBalanceHandler(
             message.CustName,
             StatusConstant.All,
             AutoTransferConstant.All,
+            0,
             false,
             message.AllowTotalBalanceTransfer,
             1,
             1,
-            message.ActorLevel.IsAgentLevel() ? message.AGIP : string.Empty);
-        var reportData = await transferListService.GetTransferList(param);
+            message.AGIP);
+        var customerTransfer = await transferListService.GetCustomerTransfer(param);
+        var balance = 0M;
 
-        if (reportData.TotalPages == 1)
+        if (customerTransfer != null && customerTransfer.CustId == message.CustId)
         {
-            var customer = reportData.Customers.First();
-
-            if (customer.CustId == message.CustId)
-            {
-                return new SingleViewModel(
-                    message.CustId,
-                    message.AllowTotalBalanceTransfer ? customer.Balance : customer.YesterdayBalance);
-            }
+            balance = message.AllowTotalBalanceTransfer ? customerTransfer.Balance : customerTransfer.YesterdayBalance;
         }
 
-        return new SingleViewModel(message.CustId, 0);
+        return new SingleViewModel(message.CustId, balance);
     }
 
     public async Task<Result> Handle(SingleCommand message, CancellationToken cancellationToken)
@@ -72,7 +69,6 @@ public class TransferYesterdayBalanceHandler(
         var param = new TransferYesterdayBalanceParam(
             message.ViewerId,
             message.ViewerLevelId,
-            AppSettings.AllowedListSuperAccounts,
             message.CustId.ToString(),
             false,
             message.Amount,
@@ -103,6 +99,7 @@ public class TransferYesterdayBalanceHandler(
                 message.Username,
                 message.Status,
                 message.AutoTransfer,
+                message.LevelType,
                 message.AllYesterdayBalance,
                 message.AllowTotalBalanceTransfer,
                 1,
@@ -128,7 +125,6 @@ public class TransferYesterdayBalanceHandler(
             var param = new TransferYesterdayBalanceParam(
                 message.ViewerId,
                 message.ViewerLevelId,
-                AppSettings.AllowedListSuperAccounts,
                 string.Join(',', custIdList),
                 true,
                 0,
@@ -167,7 +163,6 @@ public class TransferYesterdayBalanceHandler(
             return Result.CreateErrorResult(Resources.AllowedAllDayBalanceTransferError, 6001);
         }
 
-        ITransferCacheService transferCacheService = new TransferCacheService();
         var cacheKey = string.Format(AgentTransferMemberListCache, AppSettings.SiteLabel, message.ViewerId);
         var custIdCache = transferCacheService.Get(cacheKey) ?? new List<TransferCacheModel>();
         var concurrentTransfer = transferCacheService.CacheContains(custIdCache, message.CustId);
@@ -181,7 +176,6 @@ public class TransferYesterdayBalanceHandler(
         var param = new AgentTransferYesterdayBalanceParam(
             message.ViewerId,
             message.ActorName,
-            AppSettings.AllowedListSuperAccounts,
             message.CustId,
             message.Amount,
             isAllDayBalanceTransfer,
@@ -189,7 +183,9 @@ public class TransferYesterdayBalanceHandler(
             message.IP,
             message.SubAccId,
             message.AGIP);
-        var result = await yesterdayBalanceTransferService.MemberTransfer(param);
+        var result = message.ActorLevel.IsAgentLevel()
+            ? await yesterdayBalanceTransferService.MemberTransfer(param)
+            : await yesterdayBalanceTransferService.DirectMemberTransfer(param);
         transferCacheService.CacheRemoveSuccessTransferCustIds(cacheKey, [message.CustId], message.AdminId, message.AdminName);
 
         if (result.IsSuccessful)
@@ -209,7 +205,7 @@ public class TransferYesterdayBalanceHandler(
 
         var param = new AgentTransferMultipleYesterdayBalanceParam(
             message.ViewerId,
-            AppSettings.AllowedListSuperAccounts,
+            message.ActorLevel,
             message.CustIds,
             message.Username,
             message.Status,
@@ -223,7 +219,7 @@ public class TransferYesterdayBalanceHandler(
             message.AGIP,
             message.AdminId,
             message.AdminName);
-        var service = new AgentTransferMultipleYesterdayBalanceService(param, transferService, transferListService, yesterdayBalanceTransferService);
+        var service = new AgentTransferMultipleYesterdayBalanceService(param, transferCacheService, transferService, transferListService, yesterdayBalanceTransferService);
 
         return await service.ProcessTransfer();
     }

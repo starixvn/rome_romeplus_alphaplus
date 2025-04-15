@@ -1,0 +1,66 @@
+﻿
+:root, :root [data-theme='light'] {
+    --bonus-detail-payment-color: #333;
+}
+
+:root [data-theme='dark'] {
+    --bonus-detail-payment-color: #ededed;
+}
+
+.text-danger {
+    color: #E54748;
+}
+
+.ic-payment {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    position: relative;
+    top: 2px;
+}
+.form-group.daterange-container{
+    order: 10;
+}
+.popup-confirmPayment {
+    .msg {
+        margin-top: 0;
+    }
+    .form-popup {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+
+        .control-label {
+            width: 30%;
+            padding-right: 10px;
+        }
+
+        .control-info {
+            flex: 1;
+        }
+
+        &.list-button {
+            text-align: right;
+            margin-bottom: 0;
+            justify-content: flex-end;
+        }
+    }
+}
+.modal-open .modal .modal-dialog {
+    transform: none;
+    top: 162px;
+    left: auto;
+    margin: 0 auto;
+    position: relative;
+}
+@media only screen and (max-width: 767px) {
+    .page-title {
+        border-bottom: 1px solid var(--border-title);
+
+        .text-title {
+            width: auto;
+            border: 0;
+            margin-right: 10px;
+        }
+    }
+}

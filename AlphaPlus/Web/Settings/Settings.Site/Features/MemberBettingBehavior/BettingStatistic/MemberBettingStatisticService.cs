@@ -1,7 +1,7 @@
 using AlphaPlus.PartialUM.Services;
 using AlphaPlus.Settings.MemberInfo.API.Services;
-using Fanex.Caching;
 using Fanex.Data.Repository;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Settings.Site.Features.MemberBettingBehavior.BettingStatistic
 {
@@ -19,13 +19,13 @@ namespace AlphaPlus.Settings.Site.Features.MemberBettingBehavior.BettingStatisti
         private const byte MinuteTimeCache = 5;
         private const string FormatDateForCache = "yyyyMMdd";
         private readonly IDynamicRepository dynamicRepository;
-        private readonly ICacheService cacheService;
+        private readonly IMemoryCache cacheService;
         private readonly CacheRefService refService;
         private readonly IPartialUMService partialUMService;
 
         public MemberBettingStatisticService(
             IDynamicRepository dynamicRepository,
-            ICacheService cacheService,
+            IMemoryCache cacheService,
             IPartialUMService partialUMService,
             CacheRefService refService)
         {
@@ -46,7 +46,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberBettingBehavior.BettingStatisti
             var turnOverWinLossByDates = new List<TurnoverWinLossByDate>();
 
             var cacheKey = $"{StatisticCacheKey}.{language}.{custId}.{startDate.ToString(FormatDateForCache)}.{endDate.ToString(FormatDateForCache)}";
-            var memberStatisticCacheData = await cacheService.GetAsync<MemberBettingStatistic>(cacheKey);
+            var memberStatisticCacheData = cacheService.Get<MemberBettingStatistic>(cacheKey);
 
             if (memberStatisticCacheData != null)
             {
@@ -78,10 +78,10 @@ namespace AlphaPlus.Settings.Site.Features.MemberBettingBehavior.BettingStatisti
                 item.ProductName = refService.GetProductName(productId);
             }
 
-            await cacheService.SetAsync(
+            cacheService.Set(
                 cacheKey,
                 new MemberBettingStatistic(summaryStatistic, turnOverBySports, turnOverByBettypes, turnOverWinLossByDates),
-                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(MinuteTimeCache)));
+                new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(MinuteTimeCache)));
 
             return new MemberBettingStatistic(summaryStatistic, turnOverBySports, turnOverByBettypes, turnOverWinLossByDates);
         }
@@ -95,7 +95,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberBettingBehavior.BettingStatisti
             BettingStatisticExportRow total;
 
             var cacheKey = $"{StatisticExportCacheKey}.{language}.{custId}.{startDate.ToString(FormatDateForCache)}.{endDate.ToString(FormatDateForCache)}";
-            var memberStatisticExportCacheData = await cacheService.GetAsync<BettingStatisticExportData>(cacheKey);
+            var memberStatisticExportCacheData = cacheService.Get<BettingStatisticExportData>(cacheKey);
 
             if (memberStatisticExportCacheData != null)
             {
@@ -116,10 +116,10 @@ namespace AlphaPlus.Settings.Site.Features.MemberBettingBehavior.BettingStatisti
                 item.Bettype = GetMemberStatisticBetTypeName(item.Bettype);
             }
 
-            await cacheService.SetAsync(
-                  cacheKey,
-                  new BettingStatisticExportData(bettingStatisticExports, total),
-                  new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(MinuteTimeCache)));
+            cacheService.Set(
+                cacheKey,
+                new BettingStatisticExportData(bettingStatisticExports, total),
+                new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(MinuteTimeCache)));
 
             return new BettingStatisticExportData(bettingStatisticExports, total);
         }

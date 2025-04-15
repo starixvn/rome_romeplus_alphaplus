@@ -1,18 +1,17 @@
 using AlphaPlus.AccountInfo.Site.Extensions;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
-using AlphaPlus.Core.Models;
 using AlphaPlus.Logging;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
 
+const string PathBase = "/account-info";
 ThreadPool.SetMinThreads(100, 100);
 
 const string SharedSettings = "sharedSettings.json";
 var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../", "Shared/Configuration/", SharedSettings);
 
-var assembly = typeof(Program).Assembly;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 configuration
@@ -40,17 +39,8 @@ builder.Services
     .AddSharedCookie();
 
 var app = builder.Build();
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}
-else
-{
-    app.UseMiddleware<ExceptionMiddleware>();
-}
-
 app.UseForwardedHeaders();
-app.UsePathBase("/account-info");
+app.UsePathBase(PathBase);
 app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute());
 
 app.UseDefaultFiles();
@@ -60,26 +50,20 @@ app.UseRouting();
 app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.UseMiddleware<RequestCultureMiddleware>();
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseMiddleware<ExceptionMiddleware>();
+}
 
 app.Use(async (context, next) =>
 {
     context.Request.EnableBuffering();
-    context.Request.PathBase = "/account-info";
-
-    var session = context.RequestServices.GetRequiredService<IUserSession>();
-    context.Items["customData"] = new
-    {
-        session.CustId,
-        session.UserName,
-        session.RoleId,
-        session.SubAccId,
-        session.SubUserName,
-        session.AdminId,
-        session.AdminName
-    };
-
+    context.Request.PathBase = PathBase;
     await next(context);
 });
 
@@ -89,6 +73,5 @@ StaticResources.Init(app.Configuration.GetValue<string>("JsVersion"));
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");
-
 
 app.Run();

@@ -18,6 +18,7 @@
         "inputFiles": [
             "assets/scripts/core.js",
             "assets/scripts/components/productmultiselection.js",
+            "assets/scripts/components/single-dropdown.js",
             "assets/scripts/base-report.js",
             "assets/scripts/outstanding/outstanding.js"
         ]
@@ -55,6 +56,7 @@
             "assets/scripts/components/monthpicker.js",
             "assets/scripts/components/tooltip.js",
             "assets/scripts/components/productmultiselection.js",
+            "assets/scripts/components/single-dropdown.js",
             "assets/scripts/components/sort.js",
             "assets/scripts/base-report.js",
             "assets/scripts/winloss/winloss.js"
@@ -72,9 +74,9 @@
             "assets/scripts/components/visible-column.js",
             "assets/scripts/components/week.js",
             "assets/scripts/components/breadcrumb-level.js",
+            "assets/scripts/components/single-dropdown.js",
             "assets/scripts/winlossdetail/winlossdetail-columns.js",
             "assets/scripts/winlossdetail/winlossdetail-copyhtml.js",
-            "assets/scripts/winlossdetail/winlossdetail-sort.js",
             "assets/scripts/winlossdetail/winlossdetail.js"
         ]
     },
@@ -147,6 +149,7 @@
         "outputFileName": "wwwroot/bundles/commissionbybettype/commissionbybettype.js",
         "inputFiles": [
             "assets/scripts/core.js",
+            "assets/scripts/components/single-dropdown.js",
             "assets/scripts/components/daterangepicker.js",
             "assets/scripts/components/sort.js",
             "assets/scripts/base-report.js",
@@ -174,6 +177,7 @@
         "outputFileName": "wwwroot/bundles/consolidation/consolidation-detail.js",
         "inputFiles": [
             "assets/scripts/core.js",
+            "assets/scripts/components/single-dropdown.js",
             "assets/scripts/components/productmultiselection.js",
             "assets/scripts/components/daterangepicker.js",
             "assets/scripts/components/tooltip.js",
@@ -207,7 +211,7 @@
             "assets/scripts/base-report.js",
             "assets/scripts/components/daterangepicker.js",
             "assets/scripts/components/client-pager.js",
-            "assets/scripts/components/single-selection-dropdown.js",
+            "assets/scripts/components/single-dropdown.js",
             "assets/scripts/statement/statement-details.js",
             "assets/scripts/statement/statement.js",
             "assets/scripts/statement/member-statement.js"
@@ -337,6 +341,66 @@
             "assets/scripts/components/username-suggestion.js",
             "assets/scripts/base-report-new.js",
             "assets/scripts/whitelabel/daily-winloss.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles-v2/outstanding.css",
+        "inputFiles": [
+            "assets/styles-v2/outstanding.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles-v2/enteredresult.css",
+        "inputFiles": [
+            "assets/styles-v2/enteredresult.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles-v2/winlossdetailnew.css",
+        "inputFiles": [
+            "assets/styles-v2/winlossdetailnew.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles-v2/winlossanalysischart.css",
+        "inputFiles": [
+            "assets/styles-v2/winlossanalysischart.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles-v2/statement.css",
+        "inputFiles": [
+            "assets/styles-v2/statement.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles-v2/bonusdetail.css",
+        "inputFiles": [
+            "assets/styles-v2/bonusdetail.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles-v2/betcredithistory.css",
+        "inputFiles": [
+            "assets/styles-v2/betcredithistory.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles-v2/movestatementhistory.css",
+        "inputFiles": [
+            "assets/styles-v2/movestatementhistory.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles-v2/betchoicematching.css",
+        "inputFiles": [
+            "assets/styles-v2/betchoicematching.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles-v2/whitelabelreport.css",
+        "inputFiles": [
+            "assets/styles-v2/whitelabelreport.css"
         ]
     }
 ]

@@ -21,21 +21,52 @@ public class WinLossService(
 
     public async Task<ReportData<WinLossModel>> GetWinLoss(WinLossParam param)
     {
+        var criteria = await GetWinLossCriteria(param);
+        await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
+
+        var rawData = await repository.FetchAsync<WinLossModel>(criteria);
+
+        return new ReportData<WinLossModel>(rawData, CalculateTotal(rawData));
+    }
+
+    private async Task<ICriteria> GetWinLossCriteria(WinLossParam param)
+    {
         var reportDate = await reportDateService.GetBalanceUpDayAndMoveBetsDay();
-        var criteria = new WinLossCriteria(
+
+        if (RoleIdConstants.IsAgentLevel(param.CustLevelId))
+        {
+            return new WinLossMemberCriteria(
+                param.CustId,
+                param.FromDate,
+                param.ToDate,
+                reportDate.BalanceUpDay,
+                reportDate.MoveBetsDay,
+                param.ProductIds,
+                param.ProductDetailsXml);
+        }
+
+        if (RoleIdConstants.IsMasterLevel(param.CustLevelId))
+        {
+            return new WinLossAgentCriteria(
+                param.CustId,
+                param.FromDate,
+                param.ToDate,
+                reportDate.BalanceUpDay,
+                reportDate.MoveBetsDay,
+                param.ProductIds,
+                param.ProductDetailsXml,
+                param.LevelType);
+        }
+
+        return new WinLossMasterCriteria(
             param.CustId,
             param.FromDate,
             param.ToDate,
             reportDate.BalanceUpDay,
             reportDate.MoveBetsDay,
             param.ProductIds,
-            param.CustLevelId,
-            param.ProductDetailsXml);
-        await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
-
-        var rawData = await repository.FetchAsync<WinLossModel>(criteria);
-
-        return new ReportData<WinLossModel>(rawData, CalculateTotal(rawData));
+            param.ProductDetailsXml,
+            param.LevelType);
     }
 
     private static WinLossModel CalculateTotal(IEnumerable<WinLossModel> rawData)

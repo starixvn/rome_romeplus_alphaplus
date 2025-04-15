@@ -12,6 +12,7 @@ const CLOSED_ID = 2;
 const SUSPENDED_ID = 3;
 
 interface Props extends TotalDownline {
+    isDirectMember?: boolean;
     fetchDownlineListFromServer: (
         pageIndex?: number,
         reloadByStatus?: boolean,
@@ -21,6 +22,7 @@ interface Props extends TotalDownline {
 }
 
 export default function TotalDirectDownlines({
+    isDirectMember,
     TotalActive,
     TotalClosed,
     TotalSuspended,
@@ -42,12 +44,19 @@ export default function TotalDirectDownlines({
     };
 
     return (
-        <div>
-            <div className="row-info bold">{customer?.RoleId === UserLevel.Master ? t('Agents') : t('Members')}</div>
+        <div style={{ float: 'left', width: '100%' }}>
+            <div className="row-info bold">
+                {isDirectMember
+                    ? t('DirectMembers')
+                    : customer?.RoleId === UserLevel.Master
+                    ? t('Agents')
+                    : t('Members')}
+            </div>
             <div className={styles['status-list']}>
                 {StatusItems.map(({ id, title, className, value }) => (
                     <RadioButtonStatus
-                        key={id}
+                        key={`${id}_${isDirectMember}`}
+                        isDirectMember={isDirectMember}
                         statusId={id}
                         title={title}
                         className={styles[className]}

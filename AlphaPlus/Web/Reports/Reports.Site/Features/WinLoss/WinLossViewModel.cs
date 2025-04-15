@@ -1,5 +1,4 @@
 using AlphaPlus.Core.Extensions;
-using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.EnteredResult;
 using AlphaPlus.Reports.Features.Shared.Models;
@@ -12,14 +11,13 @@ namespace AlphaPlus.Reports.Site.Features.WinLoss;
 
 public class WinLossViewModel : DrillDownableViewModel<WinLossModel>
 {
-    private static string BetListPath = MicroSites.TicketUrl("~/WinLoss/Index");
-
     public WinLossViewModel(
         WinLossQuery message,
         ProductMultiSelectionViewModel productViewModel,
         EnteredResultSport totalEnteredResults,
         ReportData<WinLossModel> reportData) : base(
             message,
+            message.LevelType,
             new PageHeaderViewModel(
                 Title: GetTitle(message.CustLevel),
                 HasStackIcon: true,
@@ -29,13 +27,12 @@ public class WinLossViewModel : DrillDownableViewModel<WinLossModel>
                 TotalEnteredResults: totalEnteredResults),
             reportData,
             message.SortPropertyName,
-            message.DescendingSort)
+            message.DescendingSort,
+            betListPath: "~/WinLoss/Index")
     {
         FromDate = message.FromDate.ToShortDateWithSlash();
         ToDate = message.ToDate.ToShortDateWithSlash();
-        var (custLevelName, downlineLevelName) = GetCustLevelAndDownlineLevelName(CustLevel);
-        CustLevelName = custLevelName;
-        DownlineLevelName = downlineLevelName;
+        CustLevelName = GetCustLevelName(CustLevel);
         IsSetDefaultStackMode = message.IsSetDefaultStackMode;
         ProductViewModel = productViewModel;
         IsHistoricReport = message.IsHistoricReport;
@@ -59,8 +56,6 @@ public class WinLossViewModel : DrillDownableViewModel<WinLossModel>
 
     public string CustLevelName { get; }
 
-    public string DownlineLevelName { get; }
-
     public bool IsHistoricReport { get; }
 
     public bool IsSetDefaultStackMode { get; }
@@ -82,54 +77,27 @@ public class WinLossViewModel : DrillDownableViewModel<WinLossModel>
         ? Resources.MasterWinLoss
         : custLevel.IsMasterLevel() ? Resources.AgentWinLoss : Resources.MemberWinLoss;
 
-    private static (string, string) GetCustLevelAndDownlineLevelName(UserLevel custLevel)
+    private static string GetCustLevelName(UserLevel custLevel)
+        => custLevel.IsSuperLevel() ? Resources.Super : custLevel.IsMasterLevel() ? Resources.Master : Resources.Agent;
+
+    protected override IDictionary<string, string> AddMoreExcelParams(IDictionary<string, string> queryParams)
     {
-        string custLevelName, downlineLevelName;
+        queryParams[nameof(ProductViewModel.UserSelectedProductIds)] = ProductViewModel.UserSelectedProductIds;
+        queryParams[nameof(ProductViewModel.UserSelectedResourceIds)] = ProductViewModel.UserSelectedResourceIds;
+        queryParams[nameof(IsHistoricReport)] = IsHistoricReport.ToString();
+        queryParams[nameof(FromDate)] = FromDate;
+        queryParams[nameof(ToDate)] = ToDate;
 
-        if (custLevel.IsSuperLevel())
-        {
-            custLevelName = Resources.Super;
-            downlineLevelName = Resources.Master;
-        }
-        else if (custLevel.IsMasterLevel())
-        {
-            custLevelName = Resources.Master;
-            downlineLevelName = Resources.Agent;
-        }
-        else
-        {
-            custLevelName = Resources.Agent;
-            downlineLevelName = Resources.Member;
-        }
-
-        return (custLevelName, downlineLevelName);
+        return queryParams;
     }
 
-    public IDictionary<string, string> GetExcelParams()
-        => new Dictionary<string, string>
-        {
-            [nameof(CustId)] = CustId.ToString(),
-            [nameof(CustName)] = CustName,
-            ["CustLevelId"] = CustLevel.Value.ToString(),
-            [nameof(ProductViewModel.UserSelectedProductIds)] = ProductViewModel.UserSelectedProductIds,
-            [nameof(ProductViewModel.UserSelectedResourceIds)] = ProductViewModel.UserSelectedResourceIds,
-            [nameof(IsHistoricReport)] = IsHistoricReport.ToString(),
-            [nameof(FromDate)] = FromDate,
-            [nameof(ToDate)] = ToDate,
-        };
-
-    public string GetBetListUrl(int custId, string custName)
+    protected override IDictionary<string, string> AddMoreBetListParams(IDictionary<string, string> queryParams)
     {
-        var queryString = QueryString.Create(
-        [
-            KeyValuePair.Create(nameof(custId), custId.ToString()),
-            KeyValuePair.Create(nameof(custName), custName),
-            KeyValuePair.Create(nameof(FromDate), FromDate),
-            KeyValuePair.Create(nameof(ToDate), ToDate),
-            KeyValuePair.Create("ProductIds", ProductViewModel.UserSelectedProductIds),
-            KeyValuePair.Create("ResourceIds", ProductViewModel.UserSelectedResourceIds),
-        ]);
+        queryParams[nameof(FromDate)] = FromDate;
+        queryParams[nameof(ToDate)] = ToDate;
+        queryParams["ProductIds"] = ProductViewModel.UserSelectedProductIds;
+        queryParams["ResourceIds"] = ProductViewModel.UserSelectedResourceIds;
 
-        return $"{BetListPath}{queryString}";
+        return queryParams;
     }
 }

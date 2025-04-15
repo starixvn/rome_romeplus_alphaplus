@@ -49,5 +49,10 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Models.ProblemAccount
         public byte Locked { get; set; }
 
         public bool IsExistedWatchlist { get; set; }
+
+        public int AgentId { get; set; }
+
+        public bool IsDirectMember
+            => AgentId == DirectMemberAgentIds.Super || AgentId == DirectMemberAgentIds.Master;
     }
 }

@@ -21,9 +21,21 @@ const SettingsService = {
         const response = await axiosInstance.get(`SearchAccount/GetCustomerInfo?SearchAccountName=${username}`);
         return response.data;
     },
+    getTotalDownlines: async (custId: number, roleId: number) => {
+        return axiosInstance
+            .get('SearchAccount/GetTotalDownlines', { params: { custId, roleId } })
+            .then((response) => response.data);
+    },
     GetDownlineList: async (custId: number, roleId: number, pageIndex = 1, statusId = 1, totalPages = 0) => {
         return axiosInstance
             .get<DownlineListResponse>(`SearchAccount/GetDownlineList`, {
+                params: { custId, roleId, pageIndex, statusId, totalPages }
+            })
+            .then((response) => response.data);
+    },
+    GetDirectMembers: async (custId: number, roleId: number, pageIndex = 1, statusId = 1, totalPages = 0) => {
+        return axiosInstance
+            .get<DownlineListResponse>('SearchAccount/GetDirectMembers', {
                 params: { custId, roleId, pageIndex, statusId, totalPages }
             })
             .then((response) => response.data);
@@ -33,7 +45,9 @@ const SettingsService = {
         username: string,
         roleId: number,
         uplineId: number,
-        uplineName: string
+        uplineName: string,
+        uplineRoleId: number,
+        isDirectMember: boolean
     ) => {
         const params = {
             SearchAccountId: custId,
@@ -41,7 +55,8 @@ const SettingsService = {
             SearchAccountRoleId: roleId,
             UplineId: uplineId,
             UplineName: uplineName,
-            UplineRoleId: roleId + 1
+            UplineRoleId: uplineRoleId,
+            IsDirectMember: isDirectMember
         };
 
         return axios

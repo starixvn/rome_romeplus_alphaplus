@@ -11,7 +11,6 @@ namespace AlphaPlus.Settings.Transfer.API.Params.TransferAllAndClearCredit
             int subAccId,
             bool isClearCredit,
             string username,
-            string allowedTotalBalanceTransferSuperIds,
             string ip,
             string language,
             string transferSteps,
@@ -24,7 +23,6 @@ namespace AlphaPlus.Settings.Transfer.API.Params.TransferAllAndClearCredit
             SubAccId = subAccId;
             IsClearCredit = isClearCredit;
             Username = username;
-            AllowedTotalBalanceTransferSuperIds = allowedTotalBalanceTransferSuperIds;
             IP = ip;
             Language = language;
             IsClearCredit = isClearCredit;
@@ -45,8 +43,6 @@ namespace AlphaPlus.Settings.Transfer.API.Params.TransferAllAndClearCredit
         public bool IsClearCredit { get; }
 
         public string Username { get; }
-
-        public string AllowedTotalBalanceTransferSuperIds { get; }
 
         public string IP { get; }
 

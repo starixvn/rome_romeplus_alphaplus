@@ -2849,7 +2849,18 @@ namespace AlphaPlus.Shared.AppResources.Main
                 return ResourceManager.GetString("WhiteLabelSkypeChat", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Direct Member.
+        /// </summary>
+        public static string TotalDirectMember
+        {
+            get
+            {
+                return ResourceManager.GetString("TotalDirectMember", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Invalid Session!.
         /// </summary>

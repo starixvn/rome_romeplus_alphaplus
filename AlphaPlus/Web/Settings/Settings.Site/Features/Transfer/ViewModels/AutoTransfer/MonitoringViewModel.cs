@@ -2,50 +2,33 @@
 using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer;
 using AlphaPlus.Core.Models;
-using AlphaPlus.Core.Helpers;
 
-namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.AutoTransfer
+namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.AutoTransfer;
+
+public class MonitoringViewModel : AutoTransferViewModel
 {
-    public class MonitoringViewModel
+    public MonitoringViewModel(IUserSession userSession, MonitoringQuery message) : base(userSession)
     {
-        public MonitoringViewModel(IUserSession userSession, MonitoringQuery message)
+        IsProtectedMode = userSession.IsProtectedMode;
+        Status = message.Status;
+        Columns = GetColumns();
+    }
+
+    public bool IsProtectedMode { get; }
+
+    public string Status { get; }
+
+    private IEnumerable<SelectListItem> GetColumns()
+    {
+        if (ShowLevelType)
         {
-            ViewerId = userSession.CustId;
-            SubAccId = userSession.SubAccId;
-            IsProtectedMode = userSession.IsProtectedMode;
-            Status = message.Status;
+            yield return new SelectListItem { Text = Resources.Level, Value = "8" };
         }
 
-        public bool IsProtectedMode { get; set; }
-
-        public int ViewerId { get; set; }
-
-        public int SubAccId { get; set; }
-
-        public string Status { get; set; }
-
-        public IEnumerable<SelectListItem> Columns
-            => new[] {
-                new SelectListItem { Text = Resources.First_LastName, Value = "3" },
-                new SelectListItem { Text = Resources.TransferAmount, Value = "4" },
-                new SelectListItem { Text = Resources.Status, Value = "5" },
-                new SelectListItem { Text = Resources.Reason, Value = "6" },
-                new SelectListItem { Text = Resources.CompletedTime, Value = "7" }
-            };
-
-        public string UserGuideLink
-        {
-            get
-            {
-                if (AlphaPlus.Core.Configurations.AppSettings.SupportedNewHandbook)
-                {
-                    return MicroSites.FeatureUrl($"~/HandbookDefault/GetBySlug?slug=auto-transfer");
-                }
-
-                return AlphaPlus.Core.Configurations.AppSettings.IsSiteLabel789y
-                    ? MicroSites.FeatureUrl("~/StaticMessage/Guide?id=184099")
-                    : MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=184099");
-            }
-        }
+        yield return new SelectListItem { Text = Resources.First_LastName, Value = "3" };
+        yield return new SelectListItem { Text = Resources.TransferAmount, Value = "4" };
+        yield return new SelectListItem { Text = Resources.Status, Value = "5" };
+        yield return new SelectListItem { Text = Resources.Reason, Value = "6" };
+        yield return new SelectListItem { Text = Resources.CompletedTime, Value = "7" };
     }
 }

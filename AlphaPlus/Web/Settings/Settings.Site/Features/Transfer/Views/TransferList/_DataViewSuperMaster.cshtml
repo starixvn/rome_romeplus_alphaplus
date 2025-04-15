@@ -1,10 +1,12 @@
 ﻿@using AlphaPlus.Core.Extensions
+@using AlphaPlus.Shared.AppResources.Common
 @using AlphaPlus.Shared.AppResources.Settings.Transfer
 @using AlphaPlus.Settings.Transfer.API.Helpers
 @using AlphaPlus.Settings.Site.Features.Shared.Helpers
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = null;
+    var masterAgent = Model.IsSuperLevel ? CommonResx.MasterAgent : Resources.Agent;
 }
 @model AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferList.TransferListViewModel
 <table class="tblRpt tblRpt-bordered tblRpt-hover width-100per hide" id="tbl-transfer">
@@ -15,14 +17,15 @@
                     string.Empty) /></th>
             @if (Model.IsEnableAutoTransfer)
             {
-                <th>
+                <th class="col-icon-header">
                     @Resources.AutoTransfer
-                    <a href="/features/HandbookDefault/GetBySlug?slug=auto-transfer" target="_blank"
-                        class="user-guide-link pull-right" title="@Resources.AutoTransferGuideline"><span
+                    <a href="@Model.AutoTransferGuidelineUrl" target="_blank" class="user-guide-link pull-right"
+                        ><span data-toggle="tooltip" title="@Resources.AutoTransferGuideline"
                             class="icon icon-book"></span></a>
                 </th>
             }
             <th>@Resources.Username</th>
+            <th data-colname="level">@Resources.Level</th>
             <th>@Resources.YesterdayBalance</th>
             <th data-colname="pendingtransfer3rd">@Resources.PendingTransfer3rd</th>
             <th data-colname="balance">
@@ -35,17 +38,10 @@
                     @:@Resources.AgentBalance
                 }
             </th>
-            <th data-colname="yesterdaycash">@Resources.YesterdayCashBalance</th>
-            <th>
-                @if (Model.IsSuperLevel)
-                {
-                    @:@Resources.MasterCash
-                }
-                else
-                {
-                    @:@Resources.AgentCash
-                }
-            </th>
+            <th data-colname="yesterdaycash">@Resources.YesterdayCash</th>
+            <th class="col-icon-header">@Html.Raw(Resources.TotalCashSlashTotalBalance)<span
+                    class="icon-information-outline" data-toggle="tooltip"
+                    title="@Html.Raw(Resources.TotalCashTotalBalanceNote)"></span></th>
             <th>@Resources.Outstanding</th>
             <th>@Resources.GivenCredit</th>
             <th>@Resources.UsedCredit</th>
@@ -64,7 +60,8 @@
                     <td class="text-center">@customer.RowNumber</td>
                     <td class="text-center"><input type="checkbox" class="checkbox" data-custid="@customer.CustId"
                             data-custname="@customer.Username" data-value="@(-customer.YesterdayBalance)"
-                            data-autotransfer="@(customer.IsAllowAutoTransfer ? "on" : "off")" /></td>
+                            data-autotransfer="@(customer.IsAllowAutoTransfer ? "on" : "off")"
+                            data-isdirectmember="@Convert.ToByte(customer.IsDirectMember)" /></td>
                     @if (Model.IsEnableAutoTransfer)
                     {
                         <td>
@@ -76,7 +73,7 @@
                                 </a>
                                 @if (customer.IsAllowAutoTransfer)
                                 {
-                                    <a class="icon-calendar"
+                                    <a class="icon-calendar" data-toggle="tooltip"
                                         title="@TransferConditionHelper.BuildDaysFromSchedule(customer.ScheduleWeekDays)"
                                         asp-action="UpdateSchedule" asp-controller="AutoTransfer"
                                         asp-all-route-data="@Model.GetScheduleTransferParams(customer)"></a>
@@ -85,43 +82,72 @@
                         </td>
                     }
                     <td>@customer.Username</td>
+                    <td class="text-center" data-colname="level">@(customer.IsDirectMember ? CommonResx.DirectMember :
+                masterAgent)</td>
                     <td class="text-right @Model.GetYesterdayBalanceColor(customer)">
-                        @if (Model.ShowYesterdayBalanceLink(customer))
-                        {
-                            <a class="transfer-link" asp-action="Single" asp-controller="TransferYesterdayBalance"
-                                asp-all-route-data="@Model.GetSingleTransferParams(customer)">@customer.YesterdayBalance.FormatNumber2()</a>
-                        }
-                        else
-                        {
-                            @customer.YesterdayBalance.FormatNumber2()
+                        @{
+                            var yesterdayBalance = customer.YesterdayBalance.FormatNumber2();
+                            if (Model.ShowYesterdayBalanceLink(customer.YesterdayBalance))
+                            {
+                                if (customer.IsDirectMember)
+                                {
+                                    <a class="transfer-link" asp-action="Member" asp-controller="TransferYesterdayBalance"
+                                        asp-route-custid="@customer.CustId" asp-route-custname="@customer.Username" data-w="520"
+                                        data-h="520">@yesterdayBalance</a>
+                                }
+                                else
+                                {
+                                    <a class="transfer-link" asp-action="Single" asp-controller="TransferYesterdayBalance"
+                                        asp-route-custid="@customer.CustId" asp-route-custname="@customer.Username">@yesterdayBalance</a>
+                                }
+                            }
+                            else
+                            {
+                                @yesterdayBalance
+                            }
                         }
                     </td>
                     <td class="text-right" data-colname="pendingtransfer3rd">@customer.PendingTransfer3rd.FormatNumber2()
                     </td>
-                    <td class="text-right @Model.GetBalanceColor(customer)" data-colname="balance">
-                        @if (Model.ShowBalanceLink(customer))
-                        {
-                            <a class="transfer-link" asp-action="Single" asp-controller="TransferYesterdayBalance"
-                                asp-all-route-data="@Model.GetSingleTransferParams(customer)">@customer.Balance.FormatNumber2()</a>
-                        }
-                        else
-                        {
-                            @customer.Balance.FormatNumber2()
+                    <td class="text-right @Model.GetColor(customer.Balance)" data-colname="balance">
+                        @{
+                            var balance = customer.Balance.FormatNumber2();
+                            if (Model.ShowBalanceLink(customer.Balance))
+                            {
+                                if (customer.IsDirectMember)
+                                {
+                                    <a class="transfer-link" asp-action="Member" asp-controller="TransferYesterdayBalance"
+                                        asp-route-custid="@customer.CustId" asp-route-custname="@customer.Username" data-w="520"
+                                        data-h="520">@balance</a>
+                                }
+                                else
+                                {
+                                    <a class="transfer-link" asp-action="Single" asp-controller="TransferYesterdayBalance"
+                                        asp-route-custid="@customer.CustId" asp-route-custname="@customer.Username">@balance</a>
+                                }
+                            }
+                            else
+                            {
+                                @balance
+                            }
                         }
                     </td>
-                    <td class="text-right @Model.GetCashBalanceColor(customer.YesterdayCashBalance)"
-                        data-colname="yesterdaycash">
+                    <td class="text-right @Model.GetColor(customer.YesterdayCashBalance)" data-colname="yesterdaycash">
                         @customer.YesterdayCashBalance.FormatNumber2()</td>
-                    <td class="text-right @Model.GetCashBalanceColor(customer.CashBalance)">
-                        @if (Model.IsAllDayBalanceTransfer)
-                        {
-                            <a class="transfer-link" asp-action="CashBalance" asp-controller="CashBalanceTransfer"
-                                asp-route-custid="@customer.CustId" data-w="520"
-                                data-h="500">@customer.CashBalance.FormatNumber2()</a>
-                        }
-                        else
-                        {
-                            @customer.CashBalance.FormatNumber2()
+                    <td
+                        class="text-right @Model.GetTotalBalanceColor(customer.CashBalance, customer.FutureBetCredit, customer.IsDirectMember)">
+                        @{
+                            var cashBalance = customer.CashBalance.FormatNumber2();
+                            if (Model.IsAllDayBalanceTransfer)
+                            {
+                                <a class="transfer-link" asp-action="CashBalance" asp-controller="CashBalanceTransfer"
+                                    asp-route-custid="@customer.CustId" asp-route-isdirectmember="@customer.IsDirectMember" data-w="520"
+                                    data-h="500">@cashBalance</a>
+                            }
+                            else
+                            {
+                                @cashBalance
+                            }
                         }
                     </td>
                     <td class="text-right">@customer.Outstanding.FormatNumber2()</td>
@@ -141,6 +167,7 @@
                     <td></td>
                 }
                 <td></td>
+                <td data-colname="level"></td>
                 <td class="text-right">@Model.ReportData.Total.YesterdayBalance.FormatNumber2()</td>
                 <td class="text-right" data-colname="pendingtransfer3rd">
                     @Model.ReportData.Total.PendingTransfer3rd.FormatNumber2()</td>

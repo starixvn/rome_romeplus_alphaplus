@@ -1,24 +1,24 @@
 using AlphaPlus.Core.Models;
-using Fanex.Caching;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Main.Site.Features.Default.MenuBar
 {
     public interface ISiteMenuService
     {
-        IEnumerable<IMenuItem> GetMenuByUserLevel(UserLevel userLevel, bool isCookieLess = false);
+        IEnumerable<IMenuItem> GetMenuByUserLevel(UserLevel userLevel);
     }
 
     public class SiteMenuService : ISiteMenuService
     {
         private const string CacheKeyMenuByUserLevel = "Alpha.Main.MenuForLevel.";
 
-        private readonly ICacheService cacheService;
+        private readonly IMemoryCache cacheService;
         private readonly IMenuItemBuilder menuItemBuilder;
         private readonly ISiteMapReader siteMapReader;
 
 
         public SiteMenuService(
-            ICacheService cacheService,
+            IMemoryCache cacheService,
             IMenuItemBuilder menuItemBuilder,
             ISiteMapReader siteMapReader)
         {
@@ -28,29 +28,24 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
             this.siteMapReader = siteMapReader;
         }
 
-        public IEnumerable<IMenuItem> GetMenuByUserLevel(UserLevel userLevel, bool isCookieLess = false)
+        public IEnumerable<IMenuItem> GetMenuByUserLevel(UserLevel userLevel)
         {
-            var menuItems = GetMenuDataByUserLevel(userLevel, isCookieLess);
+            var menuItems = GetMenuDataByUserLevel(userLevel);
 
             return menuItems;
         }
 
-        private List<IMenuItem> GetMenuDataByUserLevel(UserLevel userLevel, bool isCookieLess)
+        private List<IMenuItem> GetMenuDataByUserLevel(UserLevel userLevel)
         {
             var cacheKey = CacheKeyMenuByUserLevel + userLevel.DisplayName;
 
             List<IMenuItem> menuItems = cacheService.Get<List<IMenuItem>>(cacheKey);
 
-            if (menuItems == null || isCookieLess)
+            if (menuItems == null)
             {
                 var rootNode = siteMapReader.GetRootNode();
-
                 menuItems = BuildMenus(rootNode.ChildNodes, userLevel);
-
-                if (!isCookieLess)
-                {
-                    cacheService.Set(cacheKey, menuItems);
-                }
+                cacheService.Set(cacheKey, menuItems);
             }
 
             return menuItems;

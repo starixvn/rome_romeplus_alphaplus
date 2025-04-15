@@ -18,16 +18,19 @@ public class TransferAllAndClearCreditHandler(
 
     public async Task<CalculationViewModel> Handle(CalculationQuery message, CancellationToken cancellation)
     {
-        var isAllDayBalanceTransfer = await transferService.IsAllDayBalanceTransfer(message.ViewerId);
-        var param = new GetCalculationResultParam(
-            message.CustId,
-            message.Username,
-            message.LanguageKey,
-            message.AllowedTotalBalanceTransferSuperIds,
-            isAllDayBalanceTransfer,
-            message.AGIP);
+        var calculationResult = new TransferResult();
 
-        var calculationResult = string.IsNullOrWhiteSpace(message.Username) ? new TransferResult() : transferAllAndClearCreditService.GetCalculateResult(param);
+        if (!string.IsNullOrWhiteSpace(message.Username))
+        {
+            var isAllDayBalanceTransfer = await transferService.IsAllDayBalanceTransfer(message.ViewerId);
+            var param = new GetCalculationResultParam(
+                message.CustId,
+                message.Username,
+                message.LanguageKey,
+                isAllDayBalanceTransfer,
+                message.AGIP);
+            calculationResult = transferAllAndClearCreditService.GetCalculateResult(param);
+        }
 
         return new CalculationViewModel(message, calculationResult);
     }
@@ -41,7 +44,6 @@ public class TransferAllAndClearCreditHandler(
             message.SubAccId,
             message.IsClearCredit,
             message.Username,
-            message.AllowedTotalBalanceTransferSuperIds,
             message.IP,
             message.LanguageKey,
             message.TransferSteps,

@@ -1,35 +1,25 @@
-﻿using AlphaPlus.Settings.MemberInfo.Domain.Models;
-using MediatR;
+﻿using MediatR;
 using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.WinLossLimit;
 
-namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.WinLossLimit
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.WinLossLimit;
+
+public class WinLossLimitQuery : MemberInfoBaseQuery, IRequest<WinLossLimitViewModel>
 {
-    public class WinLossLimitQuery : MemberInfoBaseQuery, IRequest<WinLossLimitViewModel>
-    {
-        public WinLossLimitQuery() : this(null) { }
+    public int BetType { get; set; }
 
-        public WinLossLimitQuery(IUser viewer) : base(viewer)
-        {
-            PageSize = 100;
-            PageIndex = 1;
-        }
+    public int SportType { get; set; }
 
-        public int BetType { get; set; }
+    public int MasterId { get; set; } = -1;
 
-        public int SportType { get; set; }
+    public int RecommendId { get; set; } = -1;
 
-        public int MasterId { get; set; }
+    public string Username { get; set; }
 
-        public int AgentId { get; set; }
+    public string PlayerId { get; set; }
 
-        public string Username { get; set; }
+    public int UserSelectedProductId { get; set; }
 
-        public string PlayerId { get; set; }
+    public int PageSize { get; set; } = 100;
 
-        public int UserSelectedProductId { get; set; }
-
-        public int PageSize { get; set; }
-
-        public int PageIndex { get; set; }
-    }
+    public int PageIndex { get; set; } = 1;
 }

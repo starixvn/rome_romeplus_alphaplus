@@ -4,7 +4,7 @@ using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.Commission;
 
-public class AgentListQuery : MemberInfoBaseQuery, IRequest<IEnumerable<CustInfo>>
+public class AgentListQuery : MemberInfoBaseQuery, IRequest<IList<CustInfo>>
 {
     public int MasterId { get; set; }
 

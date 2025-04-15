@@ -130,14 +130,14 @@
     "RedisConfiguration": "10.18.200.131:16389,Password=foo1@bared,Name=AlphaPlus,abortConnect=false,configChannel=__Booksleeve_MasterChanged,connectTimeout=6300",
     "RemotingRefUrl": "http://remotingref-api-core.nexdev.net/",
     "Fanex.Customer": {
-        "ServiceUri": "http://customer.nexdev.net/main/api/",
-        "CdnUri": "//cdn-customer.nexdev.net/main/",
+        "ServiceUri": "https://customer.nexdev.net/local3/api/",
+        "CdnUri": "https://cdn-customer.nexdev.net/v3/",
         "SystemId": 2
     },
     "SystemId": 2,
     "AssetAppPath": "//localhost:5101",
-    "JsVersion": "20240201",
-    "AssetsApp:StaticResourcesVersion": "20240201",
+    "JsVersion": "20250415",
+    "AssetsApp:StaticResourcesVersion": "20250415",
     "LocalTest": true,
     "SettingStatus": 0,
     "ProductOfferProductDetail": [
@@ -242,7 +242,7 @@
     "MarketsSupportedNewHandbook": "IBC,MBC",
     "GoogleAnalyticId": "UA-93265717-1",
     "OfferAutoTransfer.Currencies": "*",
-    "TransferToDownlineHistory:OfferSites": "76666B,IBCIndo,BEST-ODDS",
+    "TransferToDownlineHistory:OfferSites": "76666B,IBCIndo,Indo,BEST-ODDS",
     "OfferClearGivenCredit:Sites": "*",
     "IndirectLogin": {
         "AllowSuperIds": "*",
@@ -267,7 +267,7 @@
         "ExpireSeconds": 900
     },
     "WhiteLabel": {
-        "OfferedSites": "",
+        "OfferedSites": "755555",
         "BackOfficeApiUrl": "https://s1-alpha-api-service.starixnet.com/api/"
     },
     "OfferProfilePictureTour": true

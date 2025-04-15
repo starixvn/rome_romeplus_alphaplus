@@ -33,11 +33,12 @@ public class TransferListHandler(
             message.Username,
             message.Status,
             message.AutoTransfer,
+            message.LevelType,
             message.AllYesterdayBalance,
             message.AllowTotalBalanceTransfer,
             message.PageIndex,
             message.PageSize,
-            message.ActorLevel.IsAgentLevel() ? message.AGIP : string.Empty);
+            message.AGIP);
 
         var enteredSportResultTask = winlossService.GetEnteredSportResultsAsync();
         var reportDataTask = transferListService.GetTransferList(param);
@@ -55,11 +56,11 @@ public class TransferListHandler(
             string.Join(',', TransferConditionHelper.GetAutoTransferScheduleFromTransferOption(transferOption, message.ViewerLevelId)));
 
         viewModel.IsReloadTopPage = (!prevADBT && currentADBT) || (prevADBT && !currentADBT);
-        viewModel.MessageForReloadSite = 
-            (!prevADBT && currentADBT) ?  AlphaPlus.Shared.AppResources.Settings.Transfer.Resources.ADBTOnError : 
-            (prevADBT && !currentADBT) ? AlphaPlus.Shared.AppResources.Settings.Transfer.Resources.ADBTOffError : 
+        viewModel.MessageForReloadSite =
+            (!prevADBT && currentADBT) ? AlphaPlus.Shared.AppResources.Settings.Transfer.Resources.ADBTOnError :
+            (prevADBT && !currentADBT) ? AlphaPlus.Shared.AppResources.Settings.Transfer.Resources.ADBTOffError :
             string.Empty;
 
-        return  viewModel;
+        return viewModel;
     }
 }

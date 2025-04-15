@@ -1,3 +1,4 @@
+using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.CustomerStatus;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.DonwlineList;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCredit.Get;
@@ -19,7 +20,13 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
 
         public Task<ActionResult> GetCustomerInfo(CustomerInfoQuery message) => Json(message);
 
+        public Task<ActionResult> GetTotalDownlines(TotalDownlineQuery message)
+            => Json(message);
+
         public Task<ActionResult> GetDownlineList(DownlineListQuery message) => Json(message);
+
+        public Task<ActionResult> GetDirectMembers(DirectMemberListQuery message)
+            => Json(message);
 
         public Task<ActionResult> GetLastTxn(GetLastTxnQuery message) => Json(message);
 
@@ -40,7 +47,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
         public Task<ActionResult> UpdateCustomerStatus([FromBody] CustomerNonProductStatusCommand command) => Json(command);
 
         public async Task<ActionResult> GetMemberBalanceInfo(MemberBalanceInfoQuery message)
-        { 
+        {
             ViewBag.Title = $"{CommonResx.BalanceInfo} - {message.CustName}";
             return await View(message);
         }

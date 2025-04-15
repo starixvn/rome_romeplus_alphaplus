@@ -1,0 +1,56 @@
+﻿:root, :root [data-theme='light'] {
+    --note-opening-balance-background: #f6a4a4;
+    --statement-term-color: #b50000;
+    --border-title-statement: #A4A4A4;
+}
+
+:root [data-theme='dark'] {
+    --note-opening-balance-background: #573538;
+    --statement-term-color: #ff4f50;
+    --border-title-statement: #696969;
+}
+.statement-term {
+    font-weight: bold;
+    color: var(--statement-term-color);
+}
+.tb {
+    .short-title {
+        display: none;
+    }
+
+    tbody tr {
+        td {
+            &.note-opening-balance {
+                background-color: var(--note-opening-balance-background);
+            }
+
+            .format-negative {
+                color: #E54748;
+            }
+
+            .col-win-loss, .col-outstanding, .column-transfer-amount {
+                cursor: pointer;
+            }
+        }
+    }
+}
+.formular-accumulated-total {
+    padding-left: 50px;
+}
+.guideline-row {
+    margin-bottom: 10px;
+}
+.filter .form-group.statement-detail-title {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    border: 1px solid var(--border-title-statement);
+    border-bottom: 0;
+    border-radius: 5px 5px 0 0;
+    margin: 10px 0 0 0;
+    padding: 5px 10px;
+    font-weight: bold;
+    color: var(--head-title-color);
+    font-size: 13px;
+}

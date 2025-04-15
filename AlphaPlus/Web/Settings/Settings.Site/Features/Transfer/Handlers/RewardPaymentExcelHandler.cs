@@ -3,6 +3,7 @@ using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.Features.Transfer.Requests.Reward;
 using AlphaPlus.Settings.Transfer.API.Models.Reward;
 using AlphaPlus.Settings.Transfer.API.Services;
+using AlphaPlus.Shared.AppResources.Common;
 using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using MediatR;
 using ONEbook.SpreadSheets;
@@ -19,22 +20,24 @@ public class RewardPaymentExcelHandler(
 
     public async Task<ExcelFileViewModel> Handle(RewardPaymentExcelQuery message, CancellationToken cancellation)
     {
+        var isMasterOrSuper = message.ActorLevel.IsMasterOrSuperLevel();
+        var levelTypeValue = message.ActorLevel.IsSuperLevel() ? CommonResx.MasterAgent : Resources.Agent;
         var reportData = await rewardService.GetRewardPayments(RewardHandler.GetRewardParam(message));
 
         var content = workbook
-            .UseTemplate(GetTemplateInfo())
+            .UseTemplate(GetTemplateInfo(message.ActorLevel))
             .Title(GetReportTitle(message))
             .Header(Resources.ResourceManager.GetString)
-            .Body(reportData.RewardPayments, GetRowMapper(false))
-            .Footer(reportData.Total, GetRowMapper(true))
+            .Body(reportData.RewardPayments, isMasterOrSuper ? GetRowMapper(levelTypeValue, false) : GetRowMapperMember(false))
+            .Footer(reportData.Total, isMasterOrSuper ? GetRowMapper(levelTypeValue, true) : GetRowMapperMember(true))
             .ExportToBytes();
 
         return new ExcelFileViewModel(GetExcelFileName(message), content);
     }
 
-    private TemplateInfo GetTemplateInfo()
+    private TemplateInfo GetTemplateInfo(UserLevel actorLevel)
         => new TemplateInfo(
-            GetExcelTemplatePath("Reward/RewardPayment"),
+            GetExcelTemplatePath($"Reward/RewardPayment{actorLevel.GetDirectDownLineLevel().DisplayName}"),
             Resources.NoInformationIsAvailable,
             bodyStartIndex: 3,
             bodyEndIndex: 4);
@@ -42,7 +45,39 @@ public class RewardPaymentExcelHandler(
     private static string GetReportTitle(RewardPaymentExcelQuery message)
         => $"{Resources.RewardPayment} {message.FromDate.ToShortDateWithSlash()} --> {message.ToDate.ToShortDateWithSlash()}";
 
-    internal static Mapper<RewardPaymentEntity> GetRowMapper(bool isTotal)
+    internal static Mapper<RewardPaymentEntity> GetRowMapper(string levelTypeValue, bool isTotal)
+    {
+        var mapper = new Mapper<RewardPaymentEntity>();
+
+        if (isTotal)
+        {
+            mapper
+                .Map(A, rp => Resources.Total)
+                .Map(D, rp => rp.Amount);
+        }
+        else
+        {
+            mapper
+                .Map(A, rp => rp.ProgramName)
+                .Map(B, rp => rp.Username)
+                .Map(C, rp => rp.IsDirectMember ? CommonResx.DirectMember : levelTypeValue)
+                .Map(D, rp => rp.Amount)
+                .Map(E, rp =>
+                {
+                    if (rp.PaymentDate.HasValue)
+                    {
+                        return rp.PaymentDate.Value;
+                    }
+
+                    return string.Empty;
+                })
+                .Map(F, rp => rp.PaymentStatus ? Resources.Paid : Resources.Unpaid);
+        }
+
+        return mapper;
+    }
+
+    internal static Mapper<RewardPaymentEntity> GetRowMapperMember(bool isTotal)
     {
         var mapper = new Mapper<RewardPaymentEntity>();
 

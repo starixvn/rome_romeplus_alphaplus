@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -120,14 +120,38 @@
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>Thông tin chưa được cập nhật</value>
   </data>
+  <data name="TransferAllAndClearCredit" xml:space="preserve">
+    <value>Tất toán và Xóa tín dụng</value>
+  </data>
   <data name="UsernamePlaceHolder" xml:space="preserve">
     <value>Tên đăng nhập hoặc Tên/Họ</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Tên đăng nhập</value>
   </data>
+  <data name="Calculate" xml:space="preserve">
+    <value>Tính toán</value>
+  </data>
+  <data name="TransferAllAndClearCreditNote" xml:space="preserve">
+    <value>Chức năng "Tất toán và Xóa tín dụng" vẫn tuân theo các quy tắc hiện tại, nhưng sẽ được áp dụng cho tất cả các cấp được liệt kê</value>
+  </data>
+  <data name="DataChangedWarning" xml:space="preserve">
+    <value>Một số dữ liệu đã thay đổi trong quá trình tính toán. Vui lòng kiểm tra các số liệu được tô sáng trong các bảng bên dưới.</value>
+  </data>
+  <data name="TransferAll" xml:space="preserve">
+    <value>Tất toán</value>
+  </data>
+  <data name="ClearCredit" xml:space="preserve">
+    <value>Xóa tín dụng</value>
+  </data>
   <data name="Submit" xml:space="preserve">
     <value>Xác nhận</value>
+  </data>
+  <data name="Step" xml:space="preserve">
+    <value>Bước</value>
+  </data>
+  <data name="TransferableAmount" xml:space="preserve">
+    <value>Tiền có thể chuyển khoản</value>
   </data>
   <data name="MemberOutstanding" xml:space="preserve">
     <value>Tiền chưa xử lý của Member</value>
@@ -137,6 +161,21 @@
   </data>
   <data name="GivenCredit" xml:space="preserve">
     <value>Hạn mức được cấp</value>
+  </data>
+  <data name="ClearableCredit" xml:space="preserve">
+    <value>Tín dụng có thể xóa</value>
+  </data>
+  <data name="ClearCreditConfirm" xml:space="preserve">
+    <value>Bạn có chắc muốn Tất toán và Xóa tín dụng?</value>
+  </data>
+  <data name="TransferAllConfirm" xml:space="preserve">
+    <value>Bạn có chắc muốn Tất toán?</value>
+  </data>
+  <data name="TransferredAmount" xml:space="preserve">
+    <value>Tiền đã chuyển khoản</value>
+  </data>
+  <data name="ClearedCredit" xml:space="preserve">
+    <value>Tín dụng đã xóa</value>
   </data>
   <data name="TransferSuccessfully" xml:space="preserve">
     <value>Chuyển khoản thành công</value>
@@ -216,6 +255,24 @@
   <data name="InvalidValue" xml:space="preserve">
     <value>Giá trị không có thực.</value>
   </data>
+  <data name="TransferStep_Super_Member" xml:space="preserve">
+    <value>Member tới Agent</value>
+  </data>
+  <data name="TransferStep_Super_Agent" xml:space="preserve">
+    <value>Agent tới  {0}</value>
+  </data>
+  <data name="TransferStep_Super_Master" xml:space="preserve">
+    <value>{0} tới tài khoản của bạn</value>
+  </data>
+  <data name="ClearCreditStep_Super_Member" xml:space="preserve">
+    <value>Members của {0}</value>
+  </data>
+  <data name="ClearCreditStep_Super_Agent" xml:space="preserve">
+    <value>Agents của {0}</value>
+  </data>
+  <data name="ClearCreditStep_Super_Master" xml:space="preserve">
+    <value>{0}</value>
+  </data>
   <data name="MultipleTransfer" xml:space="preserve">
     <value>Chuyển khoản đồng loạt</value>
   </data>
@@ -263,63 +320,6 @@
   </data>
   <data name="LastName" xml:space="preserve">
     <value>Họ</value>
-  </data>
-  <data name="TransferAllAndClearCredit" xml:space="preserve">
-    <value>Tất toán và Xóa tín dụng</value>
-  </data>
-  <data name="Calculate" xml:space="preserve">
-    <value>Tính toán</value>
-  </data>
-  <data name="TransferAllAndClearCreditNote" xml:space="preserve">
-    <value>Chức năng "Tất toán và Xóa tín dụng" vẫn tuân theo các quy tắc hiện tại, nhưng sẽ được áp dụng cho tất cả các cấp được liệt kê</value>
-  </data>
-  <data name="DataChangedWarning" xml:space="preserve">
-    <value>Một số dữ liệu đã thay đổi trong quá trình tính toán. Vui lòng kiểm tra các số liệu được tô sáng trong các bảng bên dưới.</value>
-  </data>
-  <data name="TransferAll" xml:space="preserve">
-    <value>Tất toán</value>
-  </data>
-  <data name="ClearCredit" xml:space="preserve">
-    <value>Xóa tín dụng</value>
-  </data>
-  <data name="Step" xml:space="preserve">
-    <value>Bước</value>
-  </data>
-  <data name="TransferableAmount" xml:space="preserve">
-    <value>Tiền có thể chuyển khoản</value>
-  </data>
-  <data name="ClearableCredit" xml:space="preserve">
-    <value>Tín dụng có thể xóa</value>
-  </data>
-  <data name="ClearCreditConfirm" xml:space="preserve">
-    <value>Bạn có chắc muốn Tất toán và Xóa tín dụng?</value>
-  </data>
-  <data name="TransferAllConfirm" xml:space="preserve">
-    <value>Bạn có chắc muốn Tất toán?</value>
-  </data>
-  <data name="TransferredAmount" xml:space="preserve">
-    <value>Tiền đã chuyển khoản</value>
-  </data>
-  <data name="ClearedCredit" xml:space="preserve">
-    <value>Tín dụng đã xóa</value>
-  </data>
-  <data name="TransferStep_Super_Member" xml:space="preserve">
-    <value>Member tới Agent</value>
-  </data>
-  <data name="TransferStep_Super_Agent" xml:space="preserve">
-    <value>Agent tới  {0}</value>
-  </data>
-  <data name="TransferStep_Super_Master" xml:space="preserve">
-    <value>{0} tới tài khoản của bạn</value>
-  </data>
-  <data name="ClearCreditStep_Super_Member" xml:space="preserve">
-    <value>Members của {0}</value>
-  </data>
-  <data name="ClearCreditStep_Super_Agent" xml:space="preserve">
-    <value>Agents của {0}</value>
-  </data>
-  <data name="ClearCreditStep_Super_Master" xml:space="preserve">
-    <value>{0}</value>
   </data>
   <data name="TransferAllSuccess" xml:space="preserve">
     <value>Tất toán thành công.</value>
@@ -429,8 +429,32 @@
   <data name="DisallowedAllDayBalanceTransferError" xml:space="preserve">
     <value>Cấp trên đã áp giới hạn thời gian chuyển khoản trong ngày của bạn. Trang web này sẽ tự động làm mới để cập nhật các cài đặt mới.</value>
   </data>
+  <data name="PendingTransfer3rd" xml:space="preserve">
+    <value>Tiền Chưa Chuyển Về Từ Trò Chơi</value>
+  </data>
+  <data name="AutoTransfer_InfoCannotTransfer" xml:space="preserve">
+    <value>Để đảm báo tính chính xác của dữ liệu trong quá trình Chuyển Khoản Tự Động, bạn KHÔNG THỂ chuyển khoản cho cấp dưới của bạn nếu Chuyển Khoản Tự Động của họ đang bật.</value>
+  </data>
+  <data name="AutoTransfer_UpdateSuccess" xml:space="preserve">
+    <value>Chuyển Khoản Tự Động đã được cập nhật thành công cho các tài khoản này.</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>Mở</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>Đóng</value>
+  </data>
   <data name="UsernameOrFirstLastName" xml:space="preserve">
     <value>Tên đăng nhập hoặc Tên/Họ</value>
+  </data>
+  <data name="Waiting" xml:space="preserve">
+    <value>Đang Chờ</value>
+  </data>
+  <data name="Processing" xml:space="preserve">
+    <value>Processing</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>Kết thúc</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>Tất cả</value>
@@ -447,20 +471,8 @@
   <data name="SelectNone" xml:space="preserve">
     <value>Bỏ chọn tất cả</value>
   </data>
-  <data name="On" xml:space="preserve">
-    <value>Mở</value>
-  </data>
-  <data name="Off" xml:space="preserve">
-    <value>Đóng</value>
-  </data>
-  <data name="Waiting" xml:space="preserve">
-    <value>Đang Chờ</value>
-  </data>
-  <data name="Processing" xml:space="preserve">
-    <value>Processing</value>
-  </data>
-  <data name="Completed" xml:space="preserve">
-    <value>Kết thúc</value>
+  <data name="SearchColumn" xml:space="preserve">
+    <value>Tìm cột</value>
   </data>
   <data name="First_LastName" xml:space="preserve">
     <value>Tên/ Họ</value>
@@ -471,23 +483,50 @@
   <data name="Search" xml:space="preserve">
     <value>Tìm kiếm</value>
   </data>
-  <data name="PendingTransfer3rd" xml:space="preserve">
-    <value>Tiền Chưa Chuyển Về Từ Trò Chơi</value>
+  <data name="AutoTransfer_MultipleAffectNextConditionWarning" xml:space="preserve">
+    <value>Chuyển Khoản Tự Động đã được bật cho các tài khoản này. Tuy nhiên, quá trình này đang diễn ra, do đó các tài khoản này sẽ được lên lịch để thực hiện Chuyển Khoản Tự Động vào lượt tiếp theo, dựa trên lịch Chuyển Khoản Tự Động của từng tài khoản.</value>
+  </data>
+  <data name="AutoTransfer_Error_103_Multiple" xml:space="preserve">
+    <value>Điều Kiện Chuyển Khoản của bạn đã được cấp trên thay đổi.  Vui lòng tải lại trang.</value>
+  </data>
+  <data name="AutoTransfer_UpdateSuccessOn" xml:space="preserve">
+    <value>Chuyển Khoản Tự Động cho tài khoản {0} đã được mở thành công.</value>
+  </data>
+  <data name="AutoTransfer_UpdateSuccessOff" xml:space="preserve">
+    <value>Chuyển Khoản Tự Động cho tài khoản {0} đã được tắt thành công.</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>Chưa xử lý</value>
   </data>
+  <data name="AutoTransfer_MultipleAffectNextConditionWarning_Single" xml:space="preserve">
+    <value>Chuyển Khoản Tự Động đã được bật cho tài khoản này. Tuy nhiên, do quá trình chuyển khoản tự động đang diễn ra, tài khoản này sẽ được thêm vào danh sách chờ để được xử lý vào lần sau theo lịch chuyển khoản định kỳ.</value>
+  </data>
+  <data name="CancelAllAutoTransferJobsConfirm" xml:space="preserve">
+    <value>Bạn có muốn hủy Chuyển Khoản Tự Động cho {0} tài khoản?</value>
+  </data>
+  <data name="AutoTransfer_CancelAllSuccess" xml:space="preserve">
+    <value>Chuyển Khoản Tự Động đã hủy thành công</value>
+  </data>
+  <data name="CancelSuspendedTransactions" xml:space="preserve">
+    <value>Hủy giao dịch treo</value>
+  </data>
+  <data name="AutoTransfer_NoCancellable" xml:space="preserve">
+    <value>Không có giao dịch có thể hủy.</value>
+  </data>
+  <data name="confirmChangeAutoTransferSchedule" xml:space="preserve">
+    <value>Bạn có muốn thay đổi lịch Chuyển Khoản Tự Động cho tài khoản: {0}?</value>
+  </data>
+  <data name="AutoTransfer_SetSchedule" xml:space="preserve">
+    <value>Bạn có thể đặt lịch Chuyển Khoản Tự Động cho cấp dưới từ các tùy chọn có sẵn dựa trên điều kiện chuyển khoản của bạn.</value>
+  </data>
   <data name="SelectAll2" xml:space="preserve">
     <value>Chọn tất cả</value>
   </data>
-  <data name="Sun" xml:space="preserve">
-    <value>Chủ nhật</value>
-  </data>
-  <data name="Sat" xml:space="preserve">
-    <value>Thứ 7</value>
-  </data>
   <data name="Mon" xml:space="preserve">
     <value>Thứ 2</value>
+  </data>
+  <data name="Tue" xml:space="preserve">
+    <value>Thứ 3</value>
   </data>
   <data name="Wed" xml:space="preserve">
     <value>Thứ 4</value>
@@ -498,47 +537,23 @@
   <data name="Fri" xml:space="preserve">
     <value>Thứ 6</value>
   </data>
-  <data name="Tue" xml:space="preserve">
-    <value>Thứ 3</value>
+  <data name="Sat" xml:space="preserve">
+    <value>Thứ 7</value>
   </data>
-  <data name="AutoTransfer_CancelAllSuccess" xml:space="preserve">
-    <value>Chuyển Khoản Tự Động đã hủy thành công</value>
-  </data>
-  <data name="CancelSuspendedTransactions" xml:space="preserve">
-    <value>Hủy giao dịch treo</value>
-  </data>
-  <data name="AutoTransfer_Statistic" xml:space="preserve">
-    <value>Số giao dịch trong danh mục "Chờ xử lý", "Đang xử lý", "Không thành công" và "Hủy giao dịch treo" được tính trên tất cả cấp dưới.</value>
-  </data>
-  <data name="CancelAllAutoTransferJobsConfirm" xml:space="preserve">
-    <value>Bạn có muốn hủy Chuyển Khoản Tự Động cho {0} tài khoản?</value>
-  </data>
-  <data name="AutoTransfer_NoCancellable" xml:space="preserve">
-    <value>Không có giao dịch có thể hủy.</value>
-  </data>
-  <data name="AutoTransfer_SetSchedule" xml:space="preserve">
-    <value>Bạn có thể đặt lịch Chuyển Khoản Tự Động cho cấp dưới từ các tùy chọn có sẵn dựa trên điều kiện chuyển khoản của bạn.</value>
-  </data>
-  <data name="confirmChangeAutoTransferSchedule" xml:space="preserve">
-    <value>Bạn có muốn thay đổi lịch Chuyển Khoản Tự Động cho tài khoản: {0}?</value>
+  <data name="Sun" xml:space="preserve">
+    <value>Chủ nhật</value>
   </data>
   <data name="AutoTransfer_UpdateScheduleSuccess" xml:space="preserve">
     <value>Chuyển Khoản Tự Động cho tài khoản {0} đã được cập nhật thành công.</value>
   </data>
-  <data name="AutoTransfer_UpdateSuccessOff" xml:space="preserve">
-    <value>Chuyển Khoản Tự Động cho tài khoản {0} đã được tắt thành công.</value>
-  </data>
-  <data name="AutoTransfer_UpdateSuccessOn" xml:space="preserve">
-    <value>Chuyển Khoản Tự Động cho tài khoản {0} đã được mở thành công.</value>
+  <data name="AutoTransfer_ClearSchedule" xml:space="preserve">
+    <value>Sau khi tắt, lịch Chuyển Khoản Tự Động hiện tại sẽ bị xóa.</value>
   </data>
   <data name="confirmUpdateAutoTransfer" xml:space="preserve">
     <value>&lt;b&gt;Bạn có muốn cập nhật Chuyển Khoản Tự Động cho các tài khoản:&lt;b&gt;</value>
   </data>
-  <data name="AutoTransfer_UpdateSuccess" xml:space="preserve">
-    <value>Chuyển Khoản Tự Động đã được cập nhật thành công cho các tài khoản này.</value>
-  </data>
-  <data name="AutoTransfer_InfoCannotTransfer" xml:space="preserve">
-    <value>Để đảm báo tính chính xác của dữ liệu trong quá trình Chuyển Khoản Tự Động, bạn KHÔNG THỂ chuyển khoản cho cấp dưới của bạn nếu Chuyển Khoản Tự Động của họ đang bật.</value>
+  <data name="AutoTransfer_Statistic" xml:space="preserve">
+    <value>Số giao dịch trong danh mục "Chờ xử lý", "Đang xử lý", "Không thành công" và "Hủy giao dịch treo" được tính trên tất cả cấp dưới.</value>
   </data>
   <data name="CancelSuspendedTransactionsTip" xml:space="preserve">
     <value>Nhấn vào để hủy các giao dịch đang chờ hoặc xử lý quá 15 phút.</value>
@@ -548,18 +563,6 @@
   </data>
   <data name="EditAutoTransferSchedule" xml:space="preserve">
     <value>Tùy Chỉnh Lịch Chuyển Khoản Tự Động</value>
-  </data>
-  <data name="AutoTransfer_ClearSchedule" xml:space="preserve">
-    <value>Sau khi tắt, lịch Chuyển Khoản Tự Động hiện tại sẽ bị xóa.</value>
-  </data>
-  <data name="AutoTransfer_Error_103_Multiple" xml:space="preserve">
-    <value>Điều Kiện Chuyển Khoản của bạn đã được cấp trên thay đổi.  Vui lòng tải lại trang.</value>
-  </data>
-  <data name="AutoTransfer_MultipleAffectNextConditionWarning_Single" xml:space="preserve">
-    <value>Chuyển Khoản Tự Động đã được bật cho tài khoản này. Tuy nhiên, do quá trình chuyển khoản tự động đang diễn ra, tài khoản này sẽ được thêm vào danh sách chờ để được xử lý vào lần sau theo lịch chuyển khoản định kỳ.</value>
-  </data>
-  <data name="AutoTransfer_MultipleAffectNextConditionWarning" xml:space="preserve">
-    <value>Chuyển Khoản Tự Động đã được bật cho các tài khoản này. Tuy nhiên, quá trình này đang diễn ra, do đó các tài khoản này sẽ được lên lịch để thực hiện Chuyển Khoản Tự Động vào lượt tiếp theo, dựa trên lịch Chuyển Khoản Tự Động của từng tài khoản.</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Cập nhật</value>
@@ -771,13 +774,31 @@
   <data name="NoColumnsFound" xml:space="preserve">
     <value>Không tìm thấy Cột nào</value>
   </data>
-  <data name="SearchColumn" xml:space="preserve">
-    <value>Tìm cột</value>
+  <data name="ClearCreditStep_Super_DirectMember" xml:space="preserve">
+    <value>Member Trực Tiếp của {0}</value>
+  </data>
+  <data name="TransferStep_Super_DirectMember" xml:space="preserve">
+    <value>Từ Member Trực Tiếp Tới {0}</value>
+  </data>
+  <data name="TotalCash" xml:space="preserve">
+    <value>Tổng số dư tài khoản</value>
+  </data>
+  <data name="TotalBalance" xml:space="preserve">
+    <value>Tổng số tiền giao dịch</value>
+  </data>
+  <data name="YesterdayCash" xml:space="preserve">
+    <value>Số dư tài khoản đến hết hôm qua</value>
+  </data>
+  <data name="TotalCashTotalBalanceNote" xml:space="preserve">
+    <value>Đối với Member/Member Trực Tiếp, giá trị hiển thị là Tổng Số Dư.&lt;br/&gt;Với các cấp dưới khác, giá trị hiển thị là Tổng Tiền Khả Dụng.</value>
   </data>
   <data name="ADBTOnError" xml:space="preserve">
     <value>Cấp trên đã loại bỏ giới hạn thời gian chuyển khoản trong ngày của bạn. Trang web này sẽ được tự động làm mới để cập nhật các cài đặt mới.</value>
   </data>
   <data name="ADBTOffError" xml:space="preserve">
     <value>Cấp trên đã áp giới hạn thời gian chuyển khoản trong ngày của bạn. Trang web này sẽ tự động làm mới để cập nhật các cài đặt mới.</value>
+  </data>
+  <data name="TotalCashSlashTotalBalance" xml:space="preserve">
+    <value>Tổng Tiền Khả Dụng/&lt;br/&gt;Tổng Số Dư</value>
   </data>
 </root>

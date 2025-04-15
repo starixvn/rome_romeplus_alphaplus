@@ -58,8 +58,6 @@ public class BaseQuery
 
     public DateTime MinDate { get; protected set; } = DateTime.MinValue;
 
-    public bool IsPostBack { get; set; }
-
     public bool IsFilterVisible { get; set; } = true;
 
     public virtual bool IsValid()

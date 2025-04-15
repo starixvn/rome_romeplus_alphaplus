@@ -42,6 +42,7 @@ $dropdown-bg-hover: #ddd;
         border: 1px solid $border-color-dark;
         padding: 8px 15px;
         position: absolute;
+        z-index: 20;
         left: 200px;
         top: 0;
         @include effect-normal;

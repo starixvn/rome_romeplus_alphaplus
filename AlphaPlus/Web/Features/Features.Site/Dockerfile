@@ -1,8 +1,4 @@
-FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-alpine AS builder
-
-#Installing npm & gulp global
-RUN apk add --update nodejs npm
-RUN npm install -g yarn gulp-cli
+FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-node22-25h1 AS builder
 
 WORKDIR /src
 

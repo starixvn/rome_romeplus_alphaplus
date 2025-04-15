@@ -24,7 +24,6 @@
         const $reportLegend = $('#report-legend').modal({ show: true, backdrop: false });
         const iconHelpPosition = $iconInformation.position();
         $reportLegend.css({
-            bottom: 'auto',
             top: $('.entered-non-entered').length > 0 ? iconHelpPosition.top + 90 : iconHelpPosition.top + 60
         });
     }

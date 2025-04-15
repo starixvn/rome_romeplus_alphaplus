@@ -7,24 +7,20 @@ html {
     touch-action: manipulation;
 }
 
-body {
-    padding: 2px 16px 8px 16px;
-}
-
 .no-data {
     color: $text-color;
     font-weight: bold;
     text-align: center;
-    background-color: #FFF;
+    background-color: #fff;
 }
 
-.container{
+.container {
     padding: 0;
 }
 .display-none {
     display: none;
 }
-#header_main{
+#header_main {
     border-bottom: 1px solid #313334;
     color: #ededed;
     font-size: 13px;
@@ -47,7 +43,7 @@ label[for] {
 }
 #box_header {
     margin-top: 10px;
-    > *{
+    > * {
         float: none !important;
         display: inline-block;
         vertical-align: middle;
@@ -86,9 +82,11 @@ label[for] {
 }
 
 .freegrid {
-    .free-top-left table thead th, .col_header table thead th {
-        &.column-level-name, &.column-bettype-name {
-            background-color: #4A4734;
+    .free-top-left table thead th,
+    .col_header table thead th {
+        &.column-level-name,
+        &.column-bettype-name {
+            background-color: #4a4734;
             color: $text-color;
         }
     }
@@ -130,13 +128,14 @@ label[for] {
     }
 
     td.column-levelname {
-        background-color: #6B5048;
+        background-color: #6b5048;
         color: #ededed;
         font-weight: bold;
         text-transform: uppercase;
     }
 
-    td, .grid-fixed-table td {
+    td,
+    .grid-fixed-table td {
         border-color: $table-border-color;
     }
 }

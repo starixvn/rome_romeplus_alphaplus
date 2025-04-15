@@ -26,10 +26,7 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferAllAndClear
 
         public bool IsClearCredit { get; set; }
 
-
         public string Username { get; set; }
-
-        public string AllowedTotalBalanceTransferSuperIds => Settings.Transfer.API.Configurations.AppSettings.AllowedTotalBalanceTransferSuperIds;
 
         public string IP { get; set; }
 

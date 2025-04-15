@@ -248,7 +248,7 @@ input[type='button'][disabled] {
 }
 
 .lbl-username {
-    width: 50px;
+    width: 60px;
 }
 
 .output {
@@ -486,7 +486,7 @@ a.transfer-link {
     max-width: 500px;
 }
 .wrapper-transfer-condition {
-    max-width: 600px;
+    width: fit-content;
     padding-top: 1px;
     &.right-content {
         padding-top: 13px;

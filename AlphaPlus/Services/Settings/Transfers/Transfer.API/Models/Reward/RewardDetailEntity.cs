@@ -40,4 +40,6 @@ public class RewardDetailEntity
     public bool MasterPaymentStatus { get; init; }
 
     public DateTime? MasterPaymentDate { get; init; }
+
+    public bool IsDirectMember { get; init; }
 }

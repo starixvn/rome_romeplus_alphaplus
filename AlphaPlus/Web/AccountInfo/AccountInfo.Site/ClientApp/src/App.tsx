@@ -23,6 +23,7 @@ import OnlineUser from './models/online-user';
 import Result from './models/result';
 import SettingItem from './models/setting-item';
 import StatusItem from './models/status-item';
+import TotalDownline from './models/total-downline';
 import { handleError } from './services/axios-helper';
 import SettingsService from './services/settings-service';
 
@@ -44,6 +45,8 @@ function App() {
     const { t } = useTranslation();
     const [redirectToBalanceInfoPage, setRedirectToBalanceInfoPage] = useState(false);
     const [message, setMessage] = useState('');
+    const [totalDownlines, setTotalDownlines] = useState<TotalDownline[]>([]);
+    const [directMembersData, setDirectMembersData] = useState<DownlineListResponse | undefined>(undefined);
 
     const getCustomerInfo = (username: string, requestId: string = LoadCustomerInfo.ByClick) => {
         setMessage('');
@@ -71,7 +74,9 @@ function App() {
                             setMessage('');
                             setCustomer(undefined);
                             setOnlineUsers(undefined);
+                            setTotalDownlines([]);
                             setDownlineListData(undefined);
+                            setDirectMembersData(undefined);
                             setStatusData(undefined);
                             setSettingData(undefined);
 
@@ -83,7 +88,9 @@ function App() {
                             setCustomer(result);
                             setRedirectToBalanceInfoPage(loadCustomerInfoByClick);
                             setOnlineUsers(undefined);
+                            setTotalDownlines([]);
                             setDownlineListData(undefined);
+                            setDirectMembersData(undefined);
 
                             if (resetSetting) {
                                 setStatusData(undefined);
@@ -95,7 +102,9 @@ function App() {
                     } else {
                         setCustomer(undefined);
                         setOnlineUsers(undefined);
+                        setTotalDownlines([]);
                         setDownlineListData(undefined);
+                        setDirectMembersData(undefined);
                         setStatusData(undefined);
                         setSettingData(undefined);
 
@@ -107,6 +116,24 @@ function App() {
             .finally(() => {
                 $.unblockUI?.();
             });
+    };
+
+    const fetchDowlineListDataServer = async () => {
+        if (customer?.CustId) {
+            $.blockUI?.();
+            const PageIndex = 1;
+            const StatusId = 1;
+            const totalDownlines = await SettingsService.getTotalDownlines(customer.CustId, customer.RoleId);
+            setTotalDownlines(totalDownlines);
+            const downlineList = await SettingsService.GetDownlineList(customer.CustId, customer.RoleId);
+            setDownlineListData({ ...downlineList, PageIndex, StatusId });
+            if (customer.RoleId !== UserLevel.Agent) {
+                const directMembers = await SettingsService.GetDirectMembers(customer.CustId, customer.RoleId);
+                setDirectMembersData({ ...directMembers, PageIndex, StatusId });
+            }
+            setRedirectToBalanceInfoPage(false);
+            $.unblockUI?.();
+        }
     };
 
     const fetchDownlineListFromServer = (pageIndex = 1, reloadByStatus = false, statusId = 1, totalPages = 0) => {
@@ -121,6 +148,29 @@ function App() {
                 })
                 .catch(handleError)
                 .finally(() => $.unblockUI?.());
+        }
+    };
+
+    const fetchDirectMembersFromServer = (pageIndex = 1, reloadByStatus = false, statusId = 1, totalPages = 0) => {
+        if (customer?.CustId && (!downlineListData || pageIndex > 1 || reloadByStatus)) {
+            $.blockUI?.();
+
+            SettingsService.GetDirectMembers(customer.CustId, customer.RoleId, pageIndex, statusId, totalPages)
+                .then((responseData) => {
+                    responseData.PageIndex = pageIndex;
+                    responseData.StatusId = statusId;
+
+                    responseData.DownlineList =
+                        directMembersData === undefined || reloadByStatus
+                            ? responseData.DownlineList
+                            : [...directMembersData.DownlineList, ...responseData.DownlineList];
+
+                    setDirectMembersData(responseData);
+                    setRedirectToBalanceInfoPage(false);
+
+                    $.unblockUI?.();
+                })
+                .catch(handleError);
         }
     };
 
@@ -156,26 +206,51 @@ function App() {
         if ((!statusData || !settingData || requestId === LoadCustomerAllStatus.ByUpdateStatus) && customer) {
             blockUIWrapper();
 
-            const { CustId, UserName, RoleId } = customer;
+            const {
+                CustId,
+                UserName,
+                RoleId,
+                IsDirectMember,
+                IsDirectMemberOfSuper,
+                SuperId,
+                SuperName,
+                MasterId,
+                MasterName
+            } = customer;
             let uplineId: number;
             let uplineName: string;
+            let uplineRoleId = RoleId + 1;
 
-            switch (RoleId) {
-                case UserLevel.Master:
-                    uplineId = customer.SuperId;
-                    uplineName = customer.SuperName;
-                    break;
-                case UserLevel.Agent:
-                    uplineId = customer.MasterId;
-                    uplineName = customer.MasterName;
-                    break;
-                default:
-                    uplineId = customer.AgentId;
-                    uplineName = customer.AgentName;
-                    break;
+            if (IsDirectMember) {
+                uplineId = IsDirectMemberOfSuper ? SuperId : MasterId;
+                uplineName = IsDirectMemberOfSuper ? SuperName : MasterName;
+                uplineRoleId = IsDirectMemberOfSuper ? UserLevel.Super : UserLevel.Master;
+            } else {
+                switch (RoleId) {
+                    case UserLevel.Master:
+                        uplineId = customer.SuperId;
+                        uplineName = customer.SuperName;
+                        break;
+                    case UserLevel.Agent:
+                        uplineId = customer.MasterId;
+                        uplineName = customer.MasterName;
+                        break;
+                    default:
+                        uplineId = customer.AgentId;
+                        uplineName = customer.AgentName;
+                        break;
+                }
             }
 
-            SettingsService.GetCustomerAllStatus(CustId, UserName, RoleId, uplineId, uplineName)
+            SettingsService.GetCustomerAllStatus(
+                CustId,
+                UserName,
+                RoleId,
+                uplineId,
+                uplineName,
+                uplineRoleId,
+                IsDirectMember
+            )
                 .then((responseData) => {
                     if (requestId === LoadCustomerAllStatus.ByClick) {
                         source.cancel(LoadCustomerAllStatus.ByUpdateStatus);
@@ -233,11 +308,14 @@ function App() {
             iconClass: 'icon-downline',
             pathname: '/downlineList',
             visible: actorRoleId > UserLevel.Agent && searchAccountRoleId > UserLevel.Member,
-            fetchDataFromServer: fetchDownlineListFromServer,
+            fetchDataFromServer: fetchDowlineListDataServer,
             children: (
                 <DownlineList
+                    totalDownlines={totalDownlines}
                     downlineListData={downlineListData}
+                    directMembersData={directMembersData}
                     fetchDownlineListFromServer={fetchDownlineListFromServer}
+                    fetchDirectMembersFromServer={fetchDirectMembersFromServer}
                 />
             )
         },

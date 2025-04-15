@@ -1,8 +1,7 @@
 using AlphaPlus.Settings.MemberInfo.API.Features.CreateAccount.Criteria;
+using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
 using AlphaPlus.Settings.MemberInfo.Domain.Features.CreateAccount.Models;
 using Fanex.Data.Repository;
-using Fanex.Caching;
-using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
 
 namespace AlphaPlus.Settings.MemberInfo.API.Features.CreateAccount
 {
@@ -15,7 +14,7 @@ namespace AlphaPlus.Settings.MemberInfo.API.Features.CreateAccount
     {
         private readonly IDynamicRepository repository;
 
-        public ProductSettingInfoService(IDynamicRepository dynamicRepository, ICacheService cacheService)
+        public ProductSettingInfoService(IDynamicRepository dynamicRepository)
         {
             repository = dynamicRepository ?? new DynamicRepository();
         }

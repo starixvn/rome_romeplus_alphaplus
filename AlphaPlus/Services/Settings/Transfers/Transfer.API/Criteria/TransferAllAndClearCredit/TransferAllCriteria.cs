@@ -10,7 +10,6 @@ namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferAllAndClearCredit
             int userId,
             int subAccId,
             string username,
-            string allowedTotalBalanceTransferSuperIds,
             string ip,
             string language,
             bool isAllDayBalanceTransfer)
@@ -19,7 +18,6 @@ namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferAllAndClearCredit
             UserId = userId;
             SubAccId = subAccId;
             Username = username;
-            AllowedTotalBalanceTransferSuperIds = allowedTotalBalanceTransferSuperIds;
             IP = ip;
             Language = language;
             IsAllDayBalanceTransfer = isAllDayBalanceTransfer;
@@ -33,9 +31,6 @@ namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferAllAndClearCredit
 
         [SpParam(SqlParamName = "DownlineUsername")]
         public string Username { get; set; }
-
-        [SpParam(SqlParamName = "SuperIDsTransferTotal")]
-        public string AllowedTotalBalanceTransferSuperIds { get; set; }
 
         [SpParam(SqlParamName = "IsAllDayTransfer")]
         public bool IsAllDayBalanceTransfer { get; set; }

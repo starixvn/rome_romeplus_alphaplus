@@ -5,4 +5,5 @@ public record CommissionByBetTypeParam(
     int CustId,
     DateTime FromDate,
     DateTime ToDate,
+    byte LevelType,
     string SiteName);

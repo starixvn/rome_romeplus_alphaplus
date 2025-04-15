@@ -62,14 +62,12 @@ input[type='button'][disabled] {
 
 .page-title .icon-information-outline {
     font-size: 18px !important;
-    top: -1px!important;
 }
 
 .filter {
     display: table;
     width: 100%;
     clear: both;
-    padding-top: 0;
 
     .multiselect .multiselect-selected-text {
         width: 130px;
@@ -334,7 +332,7 @@ html {
 }
 // update info 
 .wrapper-transfer-condition{
-    max-width: 600px;
+    width: fit-content;
 }
 .update-info{
     padding-top: 12px;

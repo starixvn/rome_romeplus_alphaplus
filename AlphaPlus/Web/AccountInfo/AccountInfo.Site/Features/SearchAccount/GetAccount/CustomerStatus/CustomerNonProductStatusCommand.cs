@@ -12,9 +12,9 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.CustomerS
 
         public bool StatusValue { get; set; }
 
-        public string StatusName { get; set; }
+        public int AgentId { get; set; }
 
-        public int ServerId { get; }
+        public string StatusName { get; set; }
 
         public override bool IsValid()
         {
@@ -22,6 +22,10 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.CustomerS
             return !StatusName.Equals(StatusNames.DoubleComm) ? isValid : isValid && IsValidDoubleComm;
         }
 
-        internal bool IsValidDoubleComm => userSession.RoleId == SearchAccountRoleId + 1;
+        private bool IsDirectMember
+            => (ViewerLevelId == UserLevel.Super.Value && AgentId == DirectMemberAgentIds.Super)
+            || (ViewerLevelId == UserLevel.Master.Value && AgentId == DirectMemberAgentIds.Master);
+
+        internal bool IsValidDoubleComm => IsDirectMember || ViewerLevelId == SearchAccountRoleId + 1;
     }
 }

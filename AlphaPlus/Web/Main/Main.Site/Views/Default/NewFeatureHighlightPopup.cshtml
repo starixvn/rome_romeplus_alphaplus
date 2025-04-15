@@ -15,7 +15,7 @@
             </div>
             <div>
                 <p class="pc"><span>@Html.Raw(Resources.HighlightPopupNewFeatureTitle)</span></p>
-                @Html.Raw(Resources.HighlightPopupNewFeatureIntro)
+                <p>@Html.Raw(Resources.HighlightPopupNewFeatureIntro)</p>
             </div>
         </div>
         <div class="action">
@@ -23,7 +23,8 @@
                 <input id="chkHideHighlightPopupNewFeature" type="checkbox" />
                 <span>@Resources.doNotShowAgain</span>
             </label>
-            <a class="btn-submit" id="linkHighlightPopupCheckOut" href="javascript:;">@Resources.TakeATour</a>
+            <a class="btn-submit" id="linkHighlightPopupCheckOut" href="javascript:;" onclick="popupManager.open('@Model.HightLightFeatureUrl', null, 800, 495, null, null, null, null, null,
+                null, {customClass :'popup-tour-intro'});">@Resources.TakeATour</a>
         </div>
     </div>
 }

@@ -11,5 +11,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer.Requests
         public byte RoleId { get; set; }
 
         public int ProductGroupId { get; set; }
+
+        public int AgentId { get; set; }
     }
 }

@@ -65,14 +65,14 @@
                 }
                 else if (Model.CanDrilldown)
                 {
-                    if (isAgentLevel && data.NumberOfTickets == 0)
+                    if ((isAgentLevel || data.IsDirectMember) && data.NumberOfTickets == 0)
                     {
                         @:@data.CustName
                     }
                     else
                     {
                         <a href="javascript:;" class="downline-link" data-custid="@data.CustId" data-custname="@data.CustName"
-                            data-custlevelid="@Model.DownlineLevelId">@data.CustName</a>
+                            data-custlevelid="@(data.IsDirectMember ? UserLevel.Member.Value : Model.DownlineLevelId)">@data.CustName</a>
                     }
                 }
                 else
@@ -124,18 +124,17 @@
     </div>
     <div class="list-icon">
         <ul>
-            <li><span id="icon-copy" class="icon icon-content-copy" data-toggle="tooltip" data-placement="top"
+            <li><span id="icon-copy" class="ic-copy" data-toggle="tooltip" data-placement="top"
                     title="@Resources.Copy"></span></li>
             <li>
-                <a id="icon-excel" class="icon icon-excel icon-excel-new" data-toggle="tooltip" data-placement="top"
+                <a id="icon-excel" class="ic-excel" data-toggle="tooltip" data-placement="top"
                     title="@Resources.ExportToExcel" asp-action="Excel"></a>
             </li>
         </ul>
     </div>
 </div>
 <div class="wrapper-table-scrollable">
-    <table
-        class="tblRpt tblRpt-bordered alternative-row-table-new width-100per tablesorter tblRpt-hover tblRpt-freeze-body tblRpt-freeze-header"
+    <table class="tb tb-bordered w-full tablesorter tb-hover tb-freeze-body tb-freeze-header"
         data-cansort="@Model.ReportData.MoreThanOne" id="tbl-report">
         <thead>
             <tr>

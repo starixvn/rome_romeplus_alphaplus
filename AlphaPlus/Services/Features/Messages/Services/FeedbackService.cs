@@ -1,8 +1,8 @@
 ﻿using AlphaPlus.Features.Messages.API.Criteria.Feedback;
 using AlphaPlus.Features.Messages.API.Models.Feedback;
 using AlphaPlus.Features.Messages.API.Params.Feedback;
-using Fanex.Caching;
 using Fanex.Data.Repository;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Features.Messages.API.Services
 {
@@ -21,9 +21,9 @@ namespace AlphaPlus.Features.Messages.API.Services
         private const int FeedBackOnFunctionCacheInMinutes = 60 * 2;
 
         private readonly IDynamicRepository dynamicRepository;
-        private readonly ICacheService cacheService;
+        private readonly IMemoryCache cacheService;
 
-        public FeedbackServiceImpl(IDynamicRepository dynamicRepository, ICacheService cacheService)
+        public FeedbackServiceImpl(IDynamicRepository dynamicRepository, IMemoryCache cacheService)
         {
             this.dynamicRepository = dynamicRepository;
             this.cacheService = cacheService;
@@ -38,10 +38,13 @@ namespace AlphaPlus.Features.Messages.API.Services
         }
 
         public Task<(IEnumerable<FeedbackFunction>, IEnumerable<FeedbackArea>)> GetFeedbackFunctionAsync(int functionId)
-            => cacheService.GetOrSetAsync(
+            => cacheService.GetOrCreateAsync(
             string.Format(FeedBackOnFunctionCacheKey, functionId),
-            () => dynamicRepository.FetchMultipleAsync<FeedbackFunction, FeedbackArea>(new GetFeedbackFunctionCriteria(functionId)),
-            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(FeedBackOnFunctionCacheInMinutes)));
+            cacheEntry =>
+            {
+                cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(FeedBackOnFunctionCacheInMinutes));
+                return dynamicRepository.FetchMultipleAsync<FeedbackFunction, FeedbackArea>(new GetFeedbackFunctionCriteria(functionId));
+            });
 
         public Task AddFeedbackAsync(AddFeedbackParam param)
             => dynamicRepository.ExecuteAsync(new AddFeedbackCriteria(

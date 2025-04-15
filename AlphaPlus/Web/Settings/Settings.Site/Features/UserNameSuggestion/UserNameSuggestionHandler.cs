@@ -15,7 +15,8 @@ namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion
                 message.Query,
                 message.IsInternal,
                 message.DirectDownlines,
-                message.IsAccInfo);
+                message.IsAccInfo,
+                message.ActorLevel.IsAgentLevel() ? false : message.ExcludeMember);
 
         public Task<IEnumerable<UsernameSuggestion>> Handle(UserNameSuggestionByRoleQuery message, CancellationToken cancellation)
             => usernameSuggestionService.GetUsernameSuggestionByRole(message.CustId, message.SuggestionQuery, message.RoleId);

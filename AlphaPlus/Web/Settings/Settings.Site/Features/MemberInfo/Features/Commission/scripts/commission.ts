@@ -8,7 +8,21 @@ class CommissionView {
 
         $ddlProduct.change(() => {
             $.blockUI();
-            window.location.href = this.buildUrl(`index?productId=${$ddlProduct.val()}`);
+
+            const queryString = [`productId=${$ddlProduct.val()}`];
+
+            if ($ddlMaster.length) {
+                queryString.push(`masterId=${$ddlMaster.val()}`);
+            }
+
+            if ($ddlAgent.length) {
+                const recommendId = $ddlAgent.val();
+                if (recommendId !== 'undefined') {
+                    queryString.push(`recommendId=${recommendId}`);
+                }
+            }
+
+            window.location.href = this.buildUrl(`index?${queryString.join('&')}`);
         });
 
         $ddlMaster.length &&
@@ -25,7 +39,7 @@ class CommissionView {
                     } else {
                         html = ['<option value="0">', $('#hidden-noInfoText').val(), '</option>'];
                     }
-                    $ddlAgent.html(html.join(''));
+                    $ddlAgent.html(html.join('')).prop('disabled', masterId === '0');
                 }).always(() => $iconLoadingAgent.hide());
                 this.getMasterComm($ddlProduct.val(), masterId, $tblContainer);
             });
@@ -34,10 +48,10 @@ class CommissionView {
             $ddlAgent.change(() => {
                 $.blockUI();
                 const custId = $ddlAgent.val();
-                if (custId === '0' || custId === 'undefined') {
+                if (custId === 'undefined' || custId === '0') {
                     this.getMasterComm($ddlProduct.val(), $ddlMaster.val(), $tblContainer);
-                } else if (custId !== '0') {
-                    $.get(this.buildUrl(`GetData?productId=${$ddlProduct.val()}&custid=${custId}`), (html) => {
+                } else {
+                    $.get(this.buildUrl(`GetData?productId=${$ddlProduct.val()}&recommendId=${custId}`), (html) => {
                         $tblContainer.html(html);
                         this.setStickyTableHeaders();
                     }).always($.unblockUI);

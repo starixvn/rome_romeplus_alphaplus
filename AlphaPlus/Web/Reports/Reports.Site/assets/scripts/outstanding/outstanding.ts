@@ -1,20 +1,19 @@
-﻿interface Window {
-    $: JQueryStatic;
-}
-
-class OutstandingView extends BaseReport {
+﻿class OutstandingView extends BaseReport {
     productComponent: ProductMultiSelectionComponent;
+    levelTypeComponent: SingleDropdownComponent;
     displayOutstandingLevels: any;
     $dataTable: JQuery;
     isClickedCollapseExpandAll = false;
 
-    constructor(productComponent: ProductMultiSelectionComponent) {
+    constructor(productComponent: ProductMultiSelectionComponent, levelTypeComponent: SingleDropdownComponent) {
         super(false);
         this.productComponent = productComponent;
+        this.levelTypeComponent = levelTypeComponent;
     }
 
     init() {
         this.productComponent.render();
+        this.levelTypeComponent.render({ dropdownId: 'dropdown-level-type', hiddenInputId: 'level-type' });
 
         this.displayOutstandingLevels = JSON.parse($('#DisplayOutstandingLevelsJson').val());
         this.initDataTable();
@@ -102,7 +101,7 @@ class OutstandingView extends BaseReport {
             paging: false,
             searching: false,
             bInfo: false,
-            fixedHeader: true,
+            //fixedHeader: true,
             processing: true,
             drawCallback: this.drawCallback
         };
@@ -179,7 +178,8 @@ class OutstandingView extends BaseReport {
     doAdjustHeader = () => {
         this.$dataTable.fixedHeader.adjust();
 
-        const scrollTo = $('.fixedHeader-floating thead').length > 0 ? $(document).height() : 0;
+        //const scrollTo = $('.fixedHeader-floating thead').length > 0 ? $(document).height() : 0;
+        const scrollTo = window.scrollY;  
         $(window).scrollTop(scrollTo);
     };
 
@@ -212,5 +212,5 @@ class OutstandingView extends BaseReport {
 }
 
 $(function () {
-    new OutstandingView(new ProductMultiSelectionComponent()).init();
+    new OutstandingView(new ProductMultiSelectionComponent(), new SingleDropdownComponent()).init();
 });

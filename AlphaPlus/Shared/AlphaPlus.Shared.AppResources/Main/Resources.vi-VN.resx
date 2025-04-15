@@ -749,7 +749,10 @@ Lưu ý:Thông tin về quốc gia và thành phố được cung cấp bởi  I
     <value>Xem ngay</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
-    <value>&lt;p&gt;Chúng tôi rất vui mừng giới thiệu Chương trình Tiền thưởng. Công ty sẽ chi trả toàn bộ tiền thưởng này, và khi Member đã nhận thưởng, số tiền này sẽ không được phép sử dụng để đặt cược. Tiền thưởng sẽ được phân phối cho các cấp trên, và Member có thể rút tiền qua Agent của mình.&lt;/p&gt;&lt;p&gt;Chức năng &lt;b&gt;Thanh toán Tiền thưởng&lt;/b&gt; giúp bạn quản lý việc thanh toán cho các cấp dưới, đảm bảo tất cả các khoản tiền thưởng được phân phối một cách chính xác.&lt;/p&gt;</value>
+    <value>Chủ động hơn, linh hoạt hơn! &lt;b&gt;Tự tạo Member trực tiếp&lt;/b&gt; và tổ chức cấp dưới theo cách của bạn.</value>
+  </data>
+  <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
+    <value>Ra Mắt Tính Năng Đột Phá: &lt;b&gt;"Tạo Member Trực Tiếp"&lt;/b&gt;!</value>
   </data>
   <data name="HighlightPopupRewardIntro" xml:space="preserve">
     <value>&lt;p&gt;Chúng tôi rất vui mừng giới thiệu Chương trình Tiền thưởng. Công ty sẽ chi trả toàn bộ tiền thưởng này, và khi Member đã nhận thưởng, số tiền này sẽ không được phép sử dụng để đặt cược. Tiền thưởng sẽ được phân phối cho các cấp trên, và Member có thể rút tiền qua Agent của mình.&lt;/p&gt;&lt;p&gt;Chức năng &lt;b&gt;Thanh toán Tiền thưởng&lt;/b&gt; giúp bạn quản lý việc thanh toán cho các cấp dưới, đảm bảo tất cả các khoản tiền thưởng được phân phối một cách chính xác.&lt;/p&gt;</value>
@@ -765,12 +768,6 @@ Lưu ý:Thông tin về quốc gia và thành phố được cung cấp bởi  I
   </data>
   <data name="SessionExpired" xml:space="preserve">
     <value>Phiên làm việc đã hết hạn.</value>
-  </data>
-  <data name="HighlightPopupNewFeatureIntro3" xml:space="preserve">
-    <value>Sao chép dữ liệu mà không cần xuất ra tệp</value>
-  </data>
-  <data name="HighlightPopupNewFeatureIntro4" xml:space="preserve">
-    <value>Lọc vé cược trên Danh Sách Cược</value>
   </data>
   <data name="FeedbackOnFunctionTitle" xml:space="preserve">
     <value>Giúp chúng tôi cải thiện {0}</value>
@@ -827,6 +824,9 @@ Lưu ý: Vui lòng thay đổi &lt;b&gt;mật khẩu&lt;/b&gt; Nova Casino Back 
   </data>
   <data name="of" xml:space="preserve">
     <value>trên</value>
+  </data>
+  <data name="TotalDirectMember" xml:space="preserve">
+    <value>Tổng Member Trực Tiếp</value>
   </data>
   <data name="invalidsession" xml:space="preserve">
     <value>Session không hợp lệ</value>

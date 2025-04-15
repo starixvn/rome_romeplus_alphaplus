@@ -23,5 +23,7 @@
         public DateTime ToDate { get; set; }
 
         public DateTime LimitedDateToShowInfo { get; set; }
+
+        public byte LevelType { get; set; }
     }
 }

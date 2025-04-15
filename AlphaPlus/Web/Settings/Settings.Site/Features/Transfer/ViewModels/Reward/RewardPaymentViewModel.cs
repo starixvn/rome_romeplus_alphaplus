@@ -11,7 +11,7 @@ public class RewardPaymentViewModel(
 {
     public UserLevel ActorLevel { get; } = message.ActorLevel;
 
-    public RewardFilterViewModel Filter { get; } = new RewardFilterViewModel(message, programs, excelAction: "PaymentExcel");
+    public RewardFilterViewModel Filter { get; } = new RewardFilterViewModel(message, programs, excelAction: "PaymentExcel", showLevelType: message.ActorLevel.IsMasterOrSuperLevel());
 
     public RewardPayment ReportData { get; } = reportData;
 }

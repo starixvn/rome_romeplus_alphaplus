@@ -1,6 +1,6 @@
 using AlphaPlus.Core.Models;
-using Fanex.Caching;
 using Fanex.Data.Repository;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo
 {
@@ -11,36 +11,22 @@ namespace AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo
         Task<BalanceUpDayInfo> GetBalanceUpDayInfo();
     }
 
-    public class BalanceInfoService(IDynamicRepository dynamicRepository, ICacheService cacheService) : IBalanceInfoService
+    public class BalanceInfoService(IDynamicRepository dynamicRepository, IMemoryCache cacheService) : IBalanceInfoService
     {
         private const string BalanceUpDayKey = "SUNPLUS.AGENT.MODEL.BL.REPORTS.BALANCEUPDAY";
         private readonly IDynamicRepository dynamicRepository = dynamicRepository;
-        private readonly ICacheService cacheService = cacheService;
+        private readonly IMemoryCache cacheService = cacheService;
 
-        public async Task<BalanceInfo> GetBalanceInfo(int custId, UserLevel userLevel)
-        {
-            var moveBetsDay = (await GetBalanceUpDayInfo()).MoveBetsDay;
-            var criteria = new GetBalanceInfoCriteria(userLevel, custId, moveBetsDay);
+        public Task<BalanceInfo> GetBalanceInfo(int custId, UserLevel userLevel)
+            => dynamicRepository.GetAsync<BalanceInfo>(new GetBalanceInfoCriteria(userLevel, custId));
 
-            var balanceInfo = await dynamicRepository.GetAsync<BalanceInfo>(criteria);
+        public Task<BalanceUpDayInfo> GetBalanceUpDayInfo()
+            => cacheService.GetOrCreateAsync(BalanceUpDayKey, entry =>
+                {
+                    entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(2);
+                    var criteria = new GetBalanceUpDayInfoCriteria();
 
-            return balanceInfo;
-        }
-
-        public async Task<BalanceUpDayInfo> GetBalanceUpDayInfo()
-        {
-            var balanceUpDayInfo = await cacheService.GetAsync<BalanceUpDayInfo>(BalanceUpDayKey);
-
-            if (balanceUpDayInfo == null)
-            {
-                var criteria = new GetBalanceUpDayInfoCriteria();
-
-                balanceUpDayInfo = await dynamicRepository.GetAsync<BalanceUpDayInfo>(criteria);
-
-                cacheService.Set(BalanceUpDayKey, balanceUpDayInfo, new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(2)));
-            }
-
-            return balanceUpDayInfo;
-        }
+                    return dynamicRepository.GetAsync<BalanceUpDayInfo>(criteria);
+                });
     }
 }

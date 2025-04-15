@@ -58,7 +58,7 @@ class ProgressiveContributionView extends BaseReport {
     }
 
     public registerEvents() {
-        $('.icon-switchmode').on('click', this.onSwitchMode);
+        $('.ic-switchmode').on('click', this.onSwitchMode);
         super.registerHistoricReportEvent();
     }
 

@@ -101,6 +101,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                     PageIndex = message.PageIndex,
                     PageSize = message.PageSize,
                     AllowAutoTransfer = message.AllowAutoTransfer,
+                    LevelType = message.LevelType
                 },
                 cancellation
              );
@@ -132,16 +133,17 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                     message.PageIndex,
                     message.LimitedDateToShowInfo,
                     message.ShowNickname,
-                    message.AllowAutoTransfer);
+                    message.AllowAutoTransfer,
+                    message.LevelType == 2);
 
             return new CustomerListPagingViewModel(await customerListService.GetCustomerList(param), message, ipService);
         }
 
         public Task<CustomerStatusViewModel> Handle(CustomerStatusQuery message, CancellationToken cancellation)
-            => Task.FromResult(BuildCustomerStatus(message));
+            => BuildCustomerStatus(message);
 
         public Task<IEnumerable<ISettingItemMultipleViewModel>> Handle(CustomerStatusMultipleQuery message, CancellationToken cancellation)
-           => Task.FromResult(BuildCustomerStatusMultiple(message));
+           => BuildCustomerStatusMultiple(message);
 
         public Task<Result> Handle(CustomerNonProductStatusCommand message, CancellationToken cancellation)
           => customerListService.UpdateCustomerStatus(
@@ -181,9 +183,9 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
             return results;
         }
 
-        internal CustomerStatusViewModel BuildCustomerStatus(CustomerStatusQuery message)
+        internal async Task<CustomerStatusViewModel> BuildCustomerStatus(CustomerStatusQuery message)
         {
-            var customerStatusModel = customerListService.GetCustomerStatus(message.SearchAccountId, message.SearchAccountRoleId);
+            var customerStatusModel = await customerListService.GetCustomerStatus(message.SearchAccountId, message.SearchAccountRoleId, message.UplineId);
             var isAllDayBalTransfer = transferService.IsAllDayBalanceTransfer(message.ViewerId);
 
             var actor = new Products.Models.Customer(
@@ -205,6 +207,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                message.SubAccountId,
                message.SearchAccountName,
                message.SearchAccountRoleId,
+               message.AgentId,
                BuildSearchAccountProductStatus(customerStatusModel.DCSProducts.ToList()),
                upline);
 
@@ -213,9 +216,9 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                 BuildCustomerProductSettings(actor, searchAccount, message, customerStatusModel));
         }
 
-        internal IEnumerable<ISettingItemMultipleViewModel> BuildCustomerStatusMultiple(CustomerStatusMultipleQuery message)
+        internal async Task<IEnumerable<ISettingItemMultipleViewModel>> BuildCustomerStatusMultiple(CustomerStatusMultipleQuery message)
         {
-            var customerStatusModel = customerListService.GetCustomerStatus(message.SearchAccountId, message.SearchAccountRoleId);
+            var customerStatusModel = await customerListService.GetCustomerStatus(message.SearchAccountId, message.SearchAccountRoleId, message.UplineId);
 
             var actor = new Products.Models.Customer(
                message.ViewerId,
@@ -236,6 +239,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                message.SubAccountId,
                message.SearchAccountName,
                message.SearchAccountRoleId,
+               message.AgentId,
                BuildSearchAccountProductStatus(customerStatusModel.DCSProducts.ToList()),
                upline);
 

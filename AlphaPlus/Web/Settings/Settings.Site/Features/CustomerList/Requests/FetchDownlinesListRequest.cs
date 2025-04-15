@@ -5,5 +5,6 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
 {
     public class FetchDownlinesListRequest : FetchDownlinesListRequestBase, IRequest<CustomerListPagingViewModel>
     {
+        public byte LevelType { get; set; }
     }
 }

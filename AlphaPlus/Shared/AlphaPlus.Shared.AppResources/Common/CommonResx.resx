@@ -607,4 +607,10 @@
   <data name="MemberWinNote" xml:space="preserve">
     <value>&lt;b&gt;To Win&lt;/b&gt;: The potential net winning amount a Member can receive from a Sportsbook running bet ticket. &lt;b&gt;Your Risk Amount&lt;/b&gt;: The potential risk you bear if the Member wins the ticket, calculated as: &lt;b&gt;Your Risk Amount = To Win * Your Position Taking. &lt;/b&gt;These values do not apply to &lt;b&gt;Sportsbook settled tickets or other product tickets&lt;/b&gt; (both running and settled), and will be displayed as &lt;b&gt;'N/A'&lt;/b&gt; (Not Applicable).</value>
   </data>
+  <data name="DirectMember" xml:space="preserve">
+    <value>Direct Member</value>
+  </data>
+  <data name="MasterAgent" xml:space="preserve">
+    <value>Master Agent</value>
+  </data>
 </root>

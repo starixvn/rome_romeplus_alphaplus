@@ -14,6 +14,8 @@ public class CommissionByBetTypeModel
 
     public decimal CasinoComm { get; set; }
 
+    public bool IsDirectMember { get; init; }
+
     public static CommissionByBetTypeModel operator +(CommissionByBetTypeModel model1, CommissionByBetTypeModel model2)
     {
         model1.Comm1 += model2.Comm1;

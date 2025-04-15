@@ -11,9 +11,9 @@ public class MemberQuery : TransferBaseQuery, IRequest<MemberViewModel>
         AllowTotalBalanceTransfer = viewer.AllowTotalBalanceTransfer;
     }
 
+    public bool IsDirectMember { get; set; }
+
     public string ActorName { get; }
 
     public bool AllowTotalBalanceTransfer { get; }
-
-    public override bool IsValid() => ActorLevel.IsAgentLevel() && base.IsValid();
 }

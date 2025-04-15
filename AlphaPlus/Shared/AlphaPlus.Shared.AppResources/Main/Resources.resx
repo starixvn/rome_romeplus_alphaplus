@@ -749,15 +749,14 @@
     <value>Check Out</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
-    <value>&lt;p&gt;We are excited to introduce our new Cash Reward Program. The company is responsible for the reward amounts, and once a Member receives their reward, it cannot be used for placing bets. Rewards will be distributed to uplines, and Members can cash out through their Agents.&lt;/p&gt;&lt;p&gt;Our new feature &lt;b&gt;Reward Payment&lt;/b&gt; supports your downline payment management, ensuring accurate distribution of all rewards.&lt;/p&gt;
-    </value>
+    <value>We’re excited to announce that &lt;b&gt;you can now have your own Members!&lt;/b&gt; Create them directly and enjoy greater flexibility in organizing your downlines.</value>
   </data>
   <data name="HighlightPopupRewardIntro" xml:space="preserve">
     <value>&lt;p&gt;We are excited to introduce our new Cash Reward Program. The company is responsible for the reward amounts, and once a Member receives their reward, it cannot be used for placing bets. Rewards will be distributed to uplines, and Members can cash out through their Agents.&lt;/p&gt;&lt;p&gt;Our new feature &lt;b&gt;Reward Payment&lt;/b&gt; supports your downline payment management, ensuring accurate distribution of all rewards.&lt;/p&gt;
     </value>
   </data>
   <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
-    <value>Welcome to the &lt;b&gt;Cash Reward Program&lt;/b&gt;!</value>
+    <value>Introducing &lt;b&gt;"Create Direct Member"&lt;b&gt;!</value>
   </data>
   <data name="HighlightPopupRewardTitle" xml:space="preserve">
     <value>Welcome to the &lt;b&gt;Cash Reward Program&lt;/b&gt;!</value>
@@ -767,12 +766,6 @@
   </data>
   <data name="SessionExpired" xml:space="preserve">
     <value>Your login has timed out.</value>
-  </data>
-  <data name="HighlightPopupNewFeatureIntro3" xml:space="preserve">
-    <value>Copy data from Report without exporting</value>
-  </data>
-  <data name="HighlightPopupNewFeatureIntro4" xml:space="preserve">
-    <value>Filter tickets on Bet List</value>
   </data>
   <data name="FeedbackOnFunctionTitle" xml:space="preserve">
     <value>Help us improve {0}</value>
@@ -794,9 +787,6 @@
   </data>
   <data name="daysAgo" xml:space="preserve">
     <value>day(s) ago</value>
-  </data>
-  <data name="HighlightPopupNewFeatureIntro2" xml:space="preserve">
-    <value>&lt;b&gt;Navigate&lt;/b&gt; effortlessly and &lt;b&gt;boost your proficiency&lt;/b&gt;!</value>
   </data>
   <data name="SetupChatbot" xml:space="preserve">
     <value>Set Up Chatbot</value>
@@ -895,6 +885,9 @@ Note: Please change your &lt;b&gt;password&lt;/b&gt; the first time you click 'A
   </data>
   <data name="WhiteLabelSkypeChat" xml:space="preserve">
     <value>User Click Skype Chat from White Label Banner: Username: {0}</value>
+  </data>
+  <data name="TotalDirectMember" xml:space="preserve">
+    <value>Total Direct Member</value>
   </data>
   <data name="invalidsession" xml:space="preserve">
     <value>Invalid Session!</value>

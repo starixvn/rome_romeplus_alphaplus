@@ -36,4 +36,6 @@ export default interface Customer {
     BalanceInfo: BalanceInfo;
     LoginInfo: LoginInfoModel;
     ViewLoginIPLink: string;
+    IsDirectMember: boolean;
+    IsDirectMemberOfSuper: boolean;
 }

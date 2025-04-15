@@ -1,10 +1,10 @@
-﻿using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
-using AlphaPlus.Shared.AppResources.Settings.CustomerList;
-using AlphaPlus.Settings.Site.Features.CustomerList.Models;
-using AlphaPlus.Core.Models;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Helpers;
-using AlphaPlus.Core.Configurations;
+﻿using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.CustomerList.Models;
+using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Helpers;
+using AlphaPlus.Shared.AppResources.Settings.CustomerList;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
 {
@@ -31,8 +31,6 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
             SearchAccountRoleId = request.CustLevelId;
             SearchAccountName = request.CustName;
 
-            HideEditMultiple = request.ViewerLevel.IsSuperLevel() && request.CustLevel.IsMasterLevel() || !request.CanUpdateAccount;
-
             PageTitle = PageTitleDictionary[Enumeration.FromValue<UserLevel>(request.CustLevelId)];
 
             BreadcrumbLevel = breadcrumbLevel;
@@ -40,6 +38,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
 
             PageIndex = request.PageIndex;
             PageSize = request.PageSize;
+            Username = request.Username;
             Status = request.Status;
             DoubleComm = request.DoubleComm;
             UnconfirmSetting = request.UnconfirmSetting;
@@ -59,7 +58,17 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
             AllowAutoTransfer = request.AllowAutoTransfer;
             EnableAutoTransfer = isEnabledAutoTransfer;
             EnableAllDayBalanceTransfer = request.EnableAllDayBalanceTransfer.HasValue && request.EnableAllDayBalanceTransfer.Value;
+            LevelType = request.LevelType;
+            IsDirectMember = LevelType == 2;
+            ShowLevelType = request.CustLevel.IsMasterOrSuperLevel();
+            HideEditMultiple = !request.CanUpdateAccount || (request.ViewerLevel.IsSuperLevel() && request.CustLevel.IsMasterLevel() && !IsDirectMember);
         }
+
+        public bool ShowLevelType { get; }
+
+        public byte LevelType { get; }
+
+        public bool IsDirectMember { get; }
 
         public bool HideEditMultiple { get; }
 
@@ -70,6 +79,8 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
         public string SearchAccountName { get; }
 
         public byte SearchAccountRoleId { get; }
+
+        public string Username { get; }
 
         public byte Status { get; }
 

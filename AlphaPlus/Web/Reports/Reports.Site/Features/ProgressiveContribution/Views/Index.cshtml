@@ -68,8 +68,9 @@
         </td>
     }
 }
-@section Styles {
-    <link rel="stylesheet" href="~/bundles/progressivecontribution/progressivecontribution.css" asp-append-version="true" />
+@section Styles {    
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/progressivecontribution")
+    <link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" asp-append-version="true" />
 }
 @section Scripts {
     <script src="~/bundles/progressivecontribution/progressivecontribution.js" asp-append-version="true"></script>
@@ -82,7 +83,7 @@
     @if (Model.IsHistoricReport)
     {
         <month-picker model="Model.MonthPicker" />
-        <div class="form-group">
+        <div class="form-group form-group-short">
             <input type="submit" value="@Resources.Submit" class="btn-submit" />
         </div>
     }
@@ -90,11 +91,11 @@
     {
         <daterange-picker model="Model.DateRangePicker" />
     }
-    <div class="form-group hide">
-        <span id="icon-information" class="icon-information-outline"></span>
+    <div class="form-group form-group-short hide">
+        <span id="icon-information" class="ic-information"></span>
     </div>
     <div class="form-group">
-        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
+        <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="Excel"
             asp-all-route-data="Model.GetExcelParams()"></a>
     </div>
     <div class="note">
@@ -106,7 +107,7 @@
     <input type="hidden" asp-for="IsHistoricReport" />
 </form>
 <table
-    class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter tbl-progressive-contribution width-100per@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
+    class="tb tb-bordered tb-hover tablesorter tbl-progressive-contribution w-full @(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
     id="tbl-report">
     <thead>
         <tr>

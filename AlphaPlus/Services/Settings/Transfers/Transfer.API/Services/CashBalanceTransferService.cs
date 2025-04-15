@@ -10,7 +10,7 @@ namespace AlphaPlus.Settings.Transfer.API.Services;
 
 public interface ICashBalanceTransferService
 {
-    Task<CashBalanceTransfer> GetCashBalanceTransfer(int custId);
+    Task<CashBalanceTransfer> GetCashBalanceTransfer(int custId, bool isDirectMember, string agIP);
 
     Task<Result> AddCashBalanceTransfer(
         int fromCustId,
@@ -21,18 +21,25 @@ public interface ICashBalanceTransferService
         int subAccId,
         string ip,
         string languageKey,
-        string agIP);
+        string agIP,
+        bool isDirectMember);
 }
 
-public class CashBalanceTransferService(IDynamicRepository repository) : ICashBalanceTransferService
+public class CashBalanceTransferService(IDynamicRepository repository, ITransferCacheService transferCacheService) : ICashBalanceTransferService
 {
     private const string AgentTransferMemberListCache = "AgentMultipleTransfer.{0}.{1}";
     private const string ConcurrentSingleTransferResultMessage = "<span style=\"color: red\">The transfer has been proceeding by {0}<br/>";
 
     private readonly IDynamicRepository repository = repository;
+    private readonly ITransferCacheService transferCacheService = transferCacheService;
 
-    public Task<CashBalanceTransfer> GetCashBalanceTransfer(int custId)
-        => repository.GetAsync<CashBalanceTransfer>(new GetCashBalanceTransferCriteria(custId));
+    public Task<CashBalanceTransfer> GetCashBalanceTransfer(int custId, bool isDirectMember, string agIP)
+    {
+        var criteria = new GetCashBalanceTransferCriteria(custId, isDirectMember);
+
+        return repository.GetAsync<CashBalanceTransfer>(criteria);
+        //return repository.GetAsync<CashBalanceTransfer>(criteria, agIP);
+    }
 
     public async Task<Result> AddCashBalanceTransfer(
         int fromCustId,
@@ -43,11 +50,10 @@ public class CashBalanceTransferService(IDynamicRepository repository) : ICashBa
         int subAccId,
         string ip,
         string languageKey,
-        string agIP)
+        string agIP,
+        bool isDirectMember)
     {
         string cacheKey = string.Format(AgentTransferMemberListCache, AppSettings.SiteLabel, creator);
-        ITransferCacheService transferCacheService = new TransferCacheService();
-
         var custIdCache = transferCacheService.Get(cacheKey) ?? new List<TransferCacheModel>();
         var concurrentTrasfer = transferCacheService.CacheContains(custIdCache, toCustId);
 
@@ -70,8 +76,8 @@ public class CashBalanceTransferService(IDynamicRepository repository) : ICashBa
             creator,
             subAccId,
             ip,
-            languageKey);
-
+            languageKey,
+            isDirectMember);
         try
         {
             await repository.ExecuteAsync(criteria, agIP);

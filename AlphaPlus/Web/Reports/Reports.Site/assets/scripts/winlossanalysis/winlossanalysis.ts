@@ -73,7 +73,7 @@ class WinLossAnalysisView extends BaseReport {
     };
 
     public registerEvents() {
-        $('.icon-switchmode').on('click', this.onSwitchMode);
+        $('.ic-switchmode').on('click', this.onSwitchMode);
         $(':radio[name=ReportTypeId]').change(() => this.$reportForm.submit());
     }
 

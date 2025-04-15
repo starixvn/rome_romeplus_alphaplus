@@ -20,7 +20,8 @@
     }
 }
 @section Styles {
-    <link rel="stylesheet" href="~/bundles/statement/statement.css" asp-append-version="true" />
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/statement")
+    <link rel="stylesheet" href="~/bundles-v2/statement.css" asp-append-version="true" />
 }
 @section Scripts {
     <script src="~/bundles/statement/member-statement.js" asp-append-version="true"></script>
@@ -37,11 +38,11 @@
         </select>
     </div>
     <daterange-picker model="Model.DateRangePicker" />
-    <div class="form-group hide">
-        <span id="icon-information" class="icon-information-outline"></span>
+    <div class="form-group form-group-short hide">
+        <span id="icon-information" class="ic-information"></span>
     </div>
     <div class="form-group">
-        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="MemberStatementExcel"
+        <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="MemberStatementExcel"
             asp-all-route-data="Model.GetExcelParams()"></a>
     </div>
     <div class="note">
@@ -52,7 +53,7 @@
     <input type="hidden" asp-for="CustLevelId" />
     <input type="hidden" asp-for="ProductIds" />
 </form>
-<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover width-100per" id="tbl-report">
+<table class="tb tb-bordered tb-hover w-full text-right" id="tbl-report">
     <thead>
         <tr>
             <th>@Resources.Date</th>
@@ -150,7 +151,7 @@
     }
 </table>
 <pager model="Model.Pager" />
-<a class="hide" id="LoadLegendURL" asp-action="MemberReportLegend"></a>
+<a class="hide" id="LoadLegendURL" asp-action="MemberReportLegend" asp-route-IsDirectMember="@Model.IsDirectMember"></a>
 <a class="hide" id="StatementDetailsURL" asp-action="StatementDetails"></a>
 <input type="hidden" asp-for="BetListLink" />
 <input type="hidden" id="BetListTitle" value="@Resources.BetList" />

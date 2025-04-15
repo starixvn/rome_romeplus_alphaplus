@@ -8,10 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AlphaPlus.Shared.AppResources.Main {
+namespace AlphaPlus.Shared.AppResources.Main
+{
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -22,86 +23,181 @@ namespace AlphaPlus.Shared.AppResources.Main {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Tour {
-        
+    public class Tour
+    {
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Tour() {
+        internal Tour()
+        {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
-            get {
-                if (object.ReferenceEquals(resourceMan, null)) {
+        public static global::System.Resources.ResourceManager ResourceManager
+        {
+            get
+            {
+                if (object.ReferenceEquals(resourceMan, null))
+                {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Shared.AppResources.Main.Tour", typeof(Tour).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
-            get {
+        public static global::System.Globalization.CultureInfo Culture
+        {
+            get
+            {
                 return resourceCulture;
             }
-            set {
+            set
+            {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to To enhance account security, you will see your profile picture for verification after entering your username..
         /// </summary>
-        public static string ProfilePicture_Page1_Row1 {
-            get {
+        public static string ProfilePicture_Page1_Row1
+        {
+            get
+            {
                 return ResourceManager.GetString("ProfilePicture_Page1_Row1", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to New Secure Login Process Coming Soon.
         /// </summary>
-        public static string ProfilePicture_Page1_Title {
-            get {
+        public static string ProfilePicture_Page1_Title
+        {
+            get
+            {
                 return ResourceManager.GetString("ProfilePicture_Page1_Title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Ensure your profile picture matches your account before entering your password..
         /// </summary>
-        public static string ProfilePicture_Page2_Title {
-            get {
+        public static string ProfilePicture_Page2_Title
+        {
+            get
+            {
                 return ResourceManager.GetString("ProfilePicture_Page2_Title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Update your profile picture anytime in &lt;a id=&quot;lnk-profile-picture&quot; href=&quot;./&quot; target=&quot;main&quot;&gt;Profile Settings&lt;/a&gt; using two options:.
         /// </summary>
-        public static string ProfilePicture_Page3_Row1 {
-            get {
+        public static string ProfilePicture_Page3_Row1
+        {
+            get
+            {
                 return ResourceManager.GetString("ProfilePicture_Page3_Row1", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Setting a profile picture helps you quickly identity the legitimate site and secure your privacy..
         /// </summary>
-        public static string ProfilePicture_Page3_Title {
-            get {
+        public static string ProfilePicture_Page3_Title
+        {
+            get
+            {
                 return ResourceManager.GetString("ProfilePicture_Page3_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Go to &lt;a id=&quot;lnk-new-feature&quot; href=&quot;javascript:;&quot; target=&quot;main&quot;&gt;Member Information &gt; Create Direct Member&lt;/a&gt; to get started..
+        /// </summary>
+        public static string Index_Page1_Row1
+        {
+            get
+            {
+                return ResourceManager.GetString("Index_Page1_Row1", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Now you can create and fully manage your own Members..
+        /// </summary>
+        public static string Index_Page1_Title
+        {
+            get
+            {
+                return ResourceManager.GetString("Index_Page1_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Easily search and manage your Direct Members&apos; settings in Account Info..
+        /// </summary>
+        public static string Index_Page2_Title
+        {
+            get
+            {
+                return ResourceManager.GetString("Index_Page2_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Your reports will include data of your Direct Members..
+        /// </summary>
+        public static string Index_Page3_Title
+        {
+            get
+            {
+                return ResourceManager.GetString("Index_Page3_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to In Master Agent List, you can only view one level at a time..
+        /// </summary>
+        public static string Index_Page4_Title_Super
+        {
+            get
+            {
+                return ResourceManager.GetString("Index_Page4_Title_Super", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to In &lt;b&gt;Agent List&lt;/b&gt;, you can only view one level at a time..
+        /// </summary>
+        public static string Index_Page4_Title_Master
+        {
+            get
+            {
+                return ResourceManager.GetString("Index_Page4_Title_Master", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to In Transfer function, your Direct Members will be included, allowing you to transfer and configure for all downlines at once..
+        /// </summary>
+        public static string Index_Page5_Title
+        {
+            get
+            {
+                return ResourceManager.GetString("Index_Page5_Title", resourceCulture);
             }
         }
     }

@@ -1,12 +1,12 @@
 using AlphaPlus.AccountInfo.Site.Features.ProfilePicture.Get;
 using AlphaPlus.AccountInfo.Site.Features.ProfilePicture.GetLibrary;
-using AlphaPlus.Core.Configurations;
-using AlphaPlus.SecurityCode.Services;
-using Fanex.Caching;
-using MediatR;
-using JW;
 using AlphaPlus.AccountInfo.Site.Features.ProfilePicture.Update;
+using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Models;
+using AlphaPlus.SecurityCode.Services;
+using JW;
+using MediatR;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.AccountInfo.Site.Features.ProfilePicture
 {
@@ -30,12 +30,12 @@ namespace AlphaPlus.AccountInfo.Site.Features.ProfilePicture
         };
         private readonly ISecurityCodeChecker securityCodeChecker;
         private readonly IProfilePictureService profilePictureService;
-        private readonly ICacheService cacheService;
-        public ProfilePictureHandler(ISecurityCodeChecker securityCodeChecker, IProfilePictureService profilePictureService, ICacheService cacheService)
+        private readonly IMemoryCache memoryCache;
+        public ProfilePictureHandler(ISecurityCodeChecker securityCodeChecker, IProfilePictureService profilePictureService, IMemoryCache memoryCache)
         {
             this.securityCodeChecker = securityCodeChecker;
             this.profilePictureService = profilePictureService;
-            this.cacheService = cacheService;
+            this.memoryCache = memoryCache;
         }
 
         public async Task<ProfilePictureViewModel> Handle(ProfilePictureQuery request, CancellationToken cancellationToken)
@@ -69,10 +69,13 @@ namespace AlphaPlus.AccountInfo.Site.Features.ProfilePicture
             => profilePictureService.UpdateProfilePicture(request.ViewerId, request.ImageId, request.ImageBinary, request.IP);
 
         internal Task<IEnumerable<ProfilePictureModel>> GetProfilePictureLibrary()
-            => cacheService.GetOrSetAsync(
+            => memoryCache.GetOrCreateAsync(
                     ProfilePictureLibraryKey,
-                    profilePictureService.FetchProfilePictureLibrary,
-                    new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(ProfilePictureLibraryCacheInMinutes))
-                );
+                    cacheEntry =>
+                    {
+                        cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(ProfilePictureLibraryCacheInMinutes));
+                        return profilePictureService.FetchProfilePictureLibrary();
+                    });
+
     }
 }

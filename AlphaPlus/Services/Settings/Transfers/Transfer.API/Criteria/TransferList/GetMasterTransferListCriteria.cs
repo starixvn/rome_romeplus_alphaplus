@@ -7,6 +7,7 @@ public class GetMasterTransferListCriteria(
     bool allYesterdayBalance,
     bool allowTotalBalanceTransfer,
     byte autoTransfer,
+    byte levelType,
     int pageIndex,
     int pageSize) : GetTransferListCriteria(
         downlineName,
@@ -18,6 +19,8 @@ public class GetMasterTransferListCriteria(
         pageSize)
 {
     public int MasterId { get; } = custId;
+
+    public byte LevelType { get; } = levelType;
 
     public decimal? TotalOutStanding { get; set; }
 
@@ -35,7 +38,7 @@ public class GetMasterTransferListCriteria(
 
     public decimal? TotalPendingTransfer3rd { get; set; }
 
-    public override string GetSettingKey() => "Age_Transfer_SelList_MAg";
+    public override string GetSettingKey() => "SiteDB_Age_Transfer_SelList_MAg";
 
     public override bool IsValid() => MasterId > 0;
 }

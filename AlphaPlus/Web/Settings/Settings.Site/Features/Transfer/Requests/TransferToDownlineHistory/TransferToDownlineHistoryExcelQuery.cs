@@ -1,15 +1,13 @@
 ﻿using AlphaPlus.Core.Models;
-using AlphaPlus.Settings.Transfer.API.Models;
 using MediatR;
 
-namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferToDownlineHistory
-{
-    public class TransferToDownlineHistoryExcelQuery : TransferToDownlineHistoryBaseQuery, IRequest<ExcelFileViewModel>
-    {
-        public TransferToDownlineHistoryExcelQuery() : this(null) { }
+namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferToDownlineHistory;
 
-        public TransferToDownlineHistoryExcelQuery(IUser viewer) : base(viewer)
-        {
-        }
+public class TransferToDownlineHistoryExcelQuery : TransferToDownlineHistoryPagingQuery, IRequest<ExcelFileViewModel>
+{
+    public TransferToDownlineHistoryExcelQuery()
+    {
+        PageSize = 0;
+        PageIndex = 0;
     }
 }

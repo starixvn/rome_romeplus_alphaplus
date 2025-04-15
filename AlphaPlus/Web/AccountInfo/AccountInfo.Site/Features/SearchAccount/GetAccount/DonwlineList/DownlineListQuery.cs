@@ -13,4 +13,8 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.DonwlineL
 
         public int TotalPages { get; set; }
     }
+
+    public class DirectMemberListQuery : DownlineListQuery
+    {
+    }
 }

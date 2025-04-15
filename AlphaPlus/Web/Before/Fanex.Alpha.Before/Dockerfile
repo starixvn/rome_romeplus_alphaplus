@@ -1,7 +1,4 @@
-FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-alpine AS builder
-
-#Installing npm & gulp global
-RUN apk add --update nodejs npm && npm install -g yarn gulp-cli
+FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-node22-25h1 AS builder
 
 WORKDIR /src
 EXPOSE 5000
@@ -21,27 +18,27 @@ ARG CI_JOB_TOKEN
 RUN echo $TRANSFORM_CONFIG
 RUN mkdir /src/tmp
 RUN if [ "$TRANSFORM_CONFIG" = "PRO" ] \
-    || [ "$TRANSFORM_CONFIG" = "PRO2" ] \
-    || [ "$TRANSFORM_CONFIG" = "PRO3" ] \
-    || [ "$TRANSFORM_CONFIG" = "PRO4" ] \
-    || [ "$TRANSFORM_CONFIG" = "PRO5" ] \
-    || [ "$TRANSFORM_CONFIG" = "DR" ] \
-    || [ "$TRANSFORM_CONFIG" = "DR2" ] \
-    || [ "$TRANSFORM_CONFIG" = "DR3" ] \
-    || [ "$TRANSFORM_CONFIG" = "DR4" ] \
-    || [ "$TRANSFORM_CONFIG" = "DR5" ] \
-    || [ "$TRANSFORM_CONFIG" = "STG" ] \
-    || [ "$TRANSFORM_CONFIG" = "STG2" ] \
-    || [ "$TRANSFORM_CONFIG" = "STG3" ] \
-    || [ "$TRANSFORM_CONFIG" = "STG4" ] \
-    || [ "$TRANSFORM_CONFIG" = "STG5" ]; \
-	then cd /src/tmp && curl --fail -o $TRANSFORM_CONFIG.domainmappings.json --header "PRIVATE-TOKEN:$CI_JOB_TOKEN" https://gitlab.nexdev.net/api/v4/projects/alpha-config%2Flogin-domains/repository/files/src%2F$TRANSFORM_CONFIG.domainmappings.json/raw?ref=main \
-		&& cd - && cp -r tmp/$TRANSFORM_CONFIG.domainmappings.json AlphaPlus/Web/Before/Fanex.Alpha.Before/domainmappings.$TRANSFORM_CONFIG.json; fi
+  || [ "$TRANSFORM_CONFIG" = "PRO2" ] \
+  || [ "$TRANSFORM_CONFIG" = "PRO3" ] \
+  || [ "$TRANSFORM_CONFIG" = "PRO4" ] \
+  || [ "$TRANSFORM_CONFIG" = "PRO5" ] \
+  || [ "$TRANSFORM_CONFIG" = "DR" ] \
+  || [ "$TRANSFORM_CONFIG" = "DR2" ] \
+  || [ "$TRANSFORM_CONFIG" = "DR3" ] \
+  || [ "$TRANSFORM_CONFIG" = "DR4" ] \
+  || [ "$TRANSFORM_CONFIG" = "DR5" ] \
+  || [ "$TRANSFORM_CONFIG" = "STG" ] \
+  || [ "$TRANSFORM_CONFIG" = "STG2" ] \
+  || [ "$TRANSFORM_CONFIG" = "STG3" ] \
+  || [ "$TRANSFORM_CONFIG" = "STG4" ] \
+  || [ "$TRANSFORM_CONFIG" = "STG5" ]; \
+  then cd /src/tmp && curl --fail -o $TRANSFORM_CONFIG.domainmappings.json --header "PRIVATE-TOKEN:$CI_JOB_TOKEN" https://gitlab.nexdev.net/api/v4/projects/alpha-config%2Flogin-domains/repository/files/src%2F$TRANSFORM_CONFIG.domainmappings.json/raw?ref=main \
+  && cd - && cp -r tmp/$TRANSFORM_CONFIG.domainmappings.json AlphaPlus/Web/Before/Fanex.Alpha.Before/domainmappings.$TRANSFORM_CONFIG.json; fi
 
 RUN if [ "$TRANSFORM_CONFIG" != "" ]; \
-then \
+  then \
   cp "AlphaPlus/Web/Before/Fanex.Alpha.Before/domainmappings.$TRANSFORM_CONFIG.json" "AlphaPlus/Web/Before/Fanex.Alpha.Before/domainmappings.json"; \
-fi
+  fi
 
 RUN if [ "$TRANSFORM_CONFIG" = "LOCAL2" ] \
   || [ "$TRANSFORM_CONFIG" = "SIT2" ] \
@@ -49,10 +46,10 @@ RUN if [ "$TRANSFORM_CONFIG" = "LOCAL2" ] \
   || [ "$TRANSFORM_CONFIG" = "STG2" ] \
   || [ "$TRANSFORM_CONFIG" = "PRO2" ] \
   || [ "$TRANSFORM_CONFIG" = "DR2" ]; \
-then \
-	cp "AlphaPlus/Web/Before/Fanex.Alpha.Before/wwwroot/favicon2.ico" "AlphaPlus/Web/Before/Fanex.Alpha.Before/wwwroot/favicon.ico"; \
+  then \
+  cp "AlphaPlus/Web/Before/Fanex.Alpha.Before/wwwroot/favicon2.ico" "AlphaPlus/Web/Before/Fanex.Alpha.Before/wwwroot/favicon.ico"; \
   cp "AlphaPlus/Web/Before/Fanex.Alpha.Before/bundleconfig2.json" "AlphaPlus/Web/Before/Fanex.Alpha.Before/bundleconfig.json"; \
-fi
+  fi
 
 RUN if [ "$TRANSFORM_CONFIG" = "LOCAL3" ] \
   || [ "$TRANSFORM_CONFIG" = "SIT3" ] \
@@ -60,9 +57,9 @@ RUN if [ "$TRANSFORM_CONFIG" = "LOCAL3" ] \
   || [ "$TRANSFORM_CONFIG" = "STG3" ] \
   || [ "$TRANSFORM_CONFIG" = "PRO3" ] \
   || [ "$TRANSFORM_CONFIG" = "DR3" ]; \
-then \
+  then \
   cp "AlphaPlus/Web/Before/Fanex.Alpha.Before/bundleconfig3.json" "AlphaPlus/Web/Before/Fanex.Alpha.Before/bundleconfig.json"; \
-fi
+  fi
 
 WORKDIR /src/AlphaPlus/Web/Before/Fanex.Alpha.Before
 RUN yarn && yarn build

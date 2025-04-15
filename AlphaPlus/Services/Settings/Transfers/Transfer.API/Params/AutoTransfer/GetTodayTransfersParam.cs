@@ -19,5 +19,7 @@
         public int PageIndex { get; set; }
 
         public string AGIP { get; set; }
+
+        public byte LevelType { get; set; }
     }
 }

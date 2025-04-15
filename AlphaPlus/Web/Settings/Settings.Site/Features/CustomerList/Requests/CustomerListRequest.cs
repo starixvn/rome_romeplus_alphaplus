@@ -7,5 +7,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
     public class CustomerListRequest : FetchDownlinesListRequestBase, IRequest<CustomerListViewModel>
     {
         public IEnumerable<CustInfo> BreadcrumbLevel { get; set; } = [];
+
+        public byte LevelType { get; set; } = 1;
     }
 }

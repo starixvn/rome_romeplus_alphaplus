@@ -1,15 +1,15 @@
 ﻿using Alpha.Announcements.Models;
 using Alpha.Announcements.Services;
+using Alpha.Announcements.Specs;
 using AlphaPlus.Features.Messages.API.Client.Requests;
+using AlphaPlus.Features.Messages.API.Configurations;
 using AlphaPlus.Features.Messages.API.Constants;
 using AlphaPlus.Features.Messages.API.Criteria.Announcement;
-using Fanex.Caching;
-using Fanex.Data.Repository;
 using AlphaPlus.Features.Messages.API.Models.Announcement;
 using AlphaPlus.Features.Messages.API.Params.Announcement;
 using AlphaPlus.Features.Messages.Utils;
-using AlphaPlus.Features.Messages.API.Configurations;
-using Alpha.Announcements.Specs;
+using Fanex.Data.Repository;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Features.Messages.API.Services
 {
@@ -21,7 +21,7 @@ namespace AlphaPlus.Features.Messages.API.Services
 
         Task<IEnumerable<AlphaAnnouncement>> GetAnnouncementsHistory(AnnouncementsHistoryParams announcementParams);
 
-        Task<AlphaAnnouncement?> GetPopUpAnnouncements(PopupAnnouncementParams announcementParams);
+        Task<AlphaAnnouncement> GetPopUpAnnouncements(PopupAnnouncementParams announcementParams);
 
         LastSeenAnnouncement GetLastSeenAnnouncement(int custId, int subAccId);
 
@@ -41,13 +41,13 @@ namespace AlphaPlus.Features.Messages.API.Services
         private readonly AnnouncementClient announcementClient;
         private readonly SpecificationService specificationService;
         private readonly IDynamicRepository dynamicRepository;
-        private readonly ICacheService cacheService;
+        private readonly IMemoryCache cacheService;
 
         public AnnouncementServiceImpl(
             AnnouncementClient announcementClient,
             SpecificationService specificationService,
             IDynamicRepository dynamicRepository,
-            ICacheService cacheService)
+            IMemoryCache cacheService)
         {
             this.announcementClient = announcementClient;
             this.specificationService = specificationService;
@@ -90,10 +90,10 @@ namespace AlphaPlus.Features.Messages.API.Services
 
             UpdateLastSeenAnnouncement(announcementParams.CustId, MessageType.System, announcementParams.IsAdminUser, announcementParams.SubAccId);
 
-            return announcements == null ? Enumerable.Empty<AlphaAnnouncement>() : announcements.OrderByDescending(i => i.ReleasedDate);
+            return announcements == null ? [] : announcements.OrderByDescending(i => i.ReleasedDate);
         }
 
-        public async Task<AlphaAnnouncement?> GetPopUpAnnouncements(PopupAnnouncementParams announcementParams)
+        public async Task<AlphaAnnouncement> GetPopUpAnnouncements(PopupAnnouncementParams announcementParams)
         {
             if (announcementParams.IsShowedPopup)
             {
@@ -141,10 +141,13 @@ namespace AlphaPlus.Features.Messages.API.Services
 
         private async Task<IEnumerable<Announcement>> GetNewAnnouncements(DateTime fromDate)
         {
-            var newAnnouncements = await cacheService.GetOrSetAsync(
+            var newAnnouncements = await cacheService.GetOrCreateAsync(
                  $"AlphaPlus.Features.Messages.Announcement_{fromDate}_{AppSettings.SiteLabel}",
-                 async () => await GetAnnouncementsHistory(fromDate, DateTime.Now),
-                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(CachedSecondAnnouncement)));
+                 cacheEntry =>
+                 {
+                     cacheEntry.SetAbsoluteExpiration(TimeSpan.FromSeconds(CachedSecondAnnouncement));
+                     return GetAnnouncementsHistory(fromDate, DateTime.Now);
+                 });
 
             return newAnnouncements;
         }
@@ -152,11 +155,13 @@ namespace AlphaPlus.Features.Messages.API.Services
         private async Task<IEnumerable<Announcement>> GetAvailablePopUpAnnouncements()
         {
             var request = new AnnouncementHistoryRequest(DateTime.Today.AddDays(-30), DateTime.Now, AppSettings.Environment, AppSettings.SiteLabel);
-            var availablePopupAnnouncements = await cacheService.GetOrSetAsync(
+            var availablePopupAnnouncements = await cacheService.GetOrCreateAsync(
                 $"AlphaPlus.Features.Messages.PopupAnnouncement_{AppSettings.SiteLabel}",
-                async () => (await announcementClient.GetAnnouncementsHistory(request))
-                .Where(i => DateTime.Now <= i.ExpiredDate && i.IsPopup),
-                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(CachedSecondAnnouncement)));
+                cacheEntry =>
+                {
+                    cacheEntry.SetAbsoluteExpiration(TimeSpan.FromSeconds(CachedSecondAnnouncement));
+                    return announcementClient.GetAnnouncementsHistory(request);
+                });
 
             return availablePopupAnnouncements;
         }

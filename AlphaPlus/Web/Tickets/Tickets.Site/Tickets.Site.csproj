@@ -87,8 +87,7 @@
     <PackageReference Include="Fanex.BetList.WE" Version="1.0.0.1" />
     <PackageReference Include="Fanex.BetList.WM" Version="2.0.0.1" />
     <PackageReference Include="Fanex.BetList.YeeBet" Version="1.0.0.1" />
-    <PackageReference Include="Fanex.Caching" Version="2.2.4" />
-    <PackageReference Include="Fanex.Common" Version="1.1.1.1" />
+    <PackageReference Include="Fanex.Common" Version="1.1.2.1" />
     <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
     <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.6" />
     <PackageReference Include="Fanex.RemotingRef" Version="1.5.4" />
@@ -110,7 +109,7 @@
     <PackageReference Include="Fanex.Result.Core.ThirdPartyResult" Version="2.0.1-upgrade-04" />
     <PackageReference Include="Fanex.Result.Core.VirtualRacing" Version="2.0.0.1" />
     <PackageReference Include="Fanex.Result.Core.WM" Version="3.0.0-upgrade-01" />
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+    <PackageReference Include="MediatR" Version="12.3.0" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.4" />
     <PackageReference Include="ONEbook.SpreadSheets" Version="2.0.0-netstandard01" />
     <PackageReference Include="ONEbook.SpreadSheets.BetListNPOI" Version="2.0.0-netstandard01" />

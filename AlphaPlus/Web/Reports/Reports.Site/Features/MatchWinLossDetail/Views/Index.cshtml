@@ -76,22 +76,23 @@
     }
 }
 @section Styles {
-    <link rel="stylesheet" href="~/bundles/matchwinlossdetail/matchwinlossdetail.css" asp-append-version="true" />
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/winlossdetailnew")
+    <link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" asp-append-version="true" />
 }
 @section Scripts {
     <script src="~/bundles/matchwinlossdetail/matchwinlossdetail.js" asp-append-version="true"></script>
 }
 @model MatchWinLossDetailViewModel
 <report-title model="Model.PageHeader" />
-<form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form" id="report-form">
+<form class="form-inline filter filter-match-winloss-detail @(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form" id="report-form">
     <product-multiselection model="@Model.ProductViewModel" />
     <daterange-picker model="Model.DateRangePicker" />
     <league model="@Model.LeagueViewModel" />
-    <div class="form-group hide">
-        <span id="icon-information" class="icon-information-outline"></span>
+    <div class="form-group form-group-information hide">
+        <span id="icon-information" class="ic-information"></span>
     </div>
-    <div class="form-group">
-        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
+    <div class="form-group form-group-excel">
+        <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="Excel"
             asp-all-route-data="Model.GetExcelParams()"></a>
     </div>
     <div class="note">
@@ -99,14 +100,14 @@
     </div>
 </form>
 <table
-    class="tblRpt tblRpt-bordered alternative-row-table tblRpt-hover width-100per@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
+    class="tb tb-bordered tb-hover w-full @(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
     id="tbl-report">
     <thead>
         <tr>
             <th class="hidden-stack-mode" rowspan="2">@Resources.BetType</th>
             <th class="hidden-stack-mode" rowspan="2">@Resources.Turnover</th>
             <th class="hidden-stack-mode" rowspan="2">@Resources.GrossComm</th>
-            <th class="visible-stack-mode">@Resources.BetType</th>
+            <th class="visible-stack-mode visible-stack-mode-first-col">@Resources.BetType</th>
             <th class="visible-stack-mode">@Resources.Turnover<br />@Resources.GrossComm</th>
             <th class="hidden-stack-mode" colspan="3">@Resources.Member</th>
             <th class="visible-stack-mode col-combine">
@@ -129,7 +130,7 @@
             <th class="hidden-stack-mode" colspan="2">@Resources.Company</th>
             <th class="visible-stack-mode col-combine">@Resources.Company<br />(@Resources.Comm/@Resources.Total)</th>
         </tr>
-        <tr>
+        <tr class="thead-row2">
             <th class="hidden-stack-mode">@Resources.WinLoss</th>
             <th class="hidden-stack-mode">@Resources.Comm</th>
             <th class="hidden-stack-mode">@Resources.Total</th>

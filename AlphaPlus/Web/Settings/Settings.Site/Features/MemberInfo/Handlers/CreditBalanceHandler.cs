@@ -6,47 +6,38 @@ using MediatR;
 using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.CreditBalance;
 using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.CreditBalance;
 
-namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers;
+
+public class CreditBalanceHandler(
+    CreditBalanceService creditBalanceService,
+    TransferService transferService,
+    IWinlossService winlossService) : IRequestHandler<CreditBalanceQuery, CreditBalanceViewModel>
 {
-    public class CreditBalanceHandler
-        : IRequestHandler<CreditBalanceQuery, CreditBalanceViewModel>
+    private readonly CreditBalanceService creditBalanceService = creditBalanceService;
+    private readonly TransferService transferService = transferService;
+    private readonly IWinlossService winlossService = winlossService;
+
+    public async Task<CreditBalanceViewModel> Handle(CreditBalanceQuery message, CancellationToken cancellation)
     {
-        private readonly CreditBalanceService creditBalanceService;
-        private readonly TransferService transferService;
-        private readonly IWinlossService winlossService;
+        var param = new CreditBalanceParam(
+            message.CustId,
+            message.CustLevel,
+            message.UserName,
+            message.StatusId.Value,
+            message.LevelType,
+            message.PageIndex,
+            message.PageSize,
+            message.IsAdminCanViewVNIP,
+            message.AGIP);
 
-        public CreditBalanceHandler(
-            CreditBalanceService creditBalanceService,
-            TransferService transferService,
-            IWinlossService winlossService)
-        {
-            this.creditBalanceService = creditBalanceService;
-            this.transferService = transferService;
-            this.winlossService = winlossService;
-        }
+        var pagedCreditBalancesTask = creditBalanceService.GetPagedCreditBalancesAsync(param);
+        var transferConditionTask = message.ActorLevel.IsAgentLevel()
+            ? transferService.GetAllowTransfer(message.ViewerId)
+            : Task.FromResult<string>(null);
+        var reportEnteredTask = winlossService.GetEnteredSportResultsAsync();
+        var isAllDayBalTransferTask = transferService.IsAllDayBalanceTransferAsync(message.ViewerId);
+        await Task.WhenAll(pagedCreditBalancesTask, transferConditionTask, reportEnteredTask, isAllDayBalTransferTask);
 
-        public async Task<CreditBalanceViewModel> Handle(CreditBalanceQuery message, CancellationToken cancellation)
-        {
-            var param = new CreditBalanceParam(
-                message.CustId,
-                message.CustLevel,
-                message.UserName,
-                message.StatusId.Value,
-                message.PageIndex,
-                message.PageSize,
-                message.IsAdminCanViewVNIP,
-                message.AGIP);
-
-            var pagedCreditBalances = await creditBalanceService.GetPagedCreditBalancesAsync(param);
-
-            var transferCondition = message.ActorLevel.IsAgentLevel()
-                ? await transferService.GetAllowTransfer(message.ActorId)
-                : null;
-
-            var reportEntered = winlossService.GetEnteredSportResults();
-            var isAllDayBalTransfer = await transferService.IsAllDayBalanceTransferAsync(message.ActorId);
-
-            return new CreditBalanceViewModel(pagedCreditBalances, transferCondition, message, reportEntered, isAllDayBalTransfer);
-        }
+        return new CreditBalanceViewModel(await pagedCreditBalancesTask, await transferConditionTask, message, await reportEnteredTask, await isAllDayBalTransferTask);
     }
 }

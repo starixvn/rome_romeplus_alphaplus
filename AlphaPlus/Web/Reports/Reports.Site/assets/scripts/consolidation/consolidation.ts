@@ -1,7 +1,7 @@
 ﻿/// <reference path="../core.ts" />
 /// <reference path="../components/daterangepicker.ts" />
 /// <reference path="../components/productmultiselection.ts" />
-/// <reference path="../components/single-selection-dropdown.ts" />
+/// <reference path="../components/single-dropdown.ts" />
 /// <reference path="../components/tooltip.ts" />
 /// <reference path="../base-report.ts" />
 
@@ -59,7 +59,7 @@ class ConsolidationView extends BaseReport {
     }
 
     registerEvents() {
-        $('.icon-switchmode').on('click', this.onSwitchMode);
+        $('.ic-switchmode').on('click', this.onSwitchMode);
         //super.registerDrilldownableEvents();
 
         const self = this;
@@ -144,11 +144,11 @@ class ConsolidationView extends BaseReport {
         const custId = $usernameRow.data('custid');
         const $collapseExpandIcon = $usernameRow.find('#icon-' + custId);
 
-        if ($collapseExpandIcon.hasClass('icon-arrow-right')) {
-            $collapseExpandIcon.removeClass().addClass('icon-arrow-down');
+        if ($collapseExpandIcon.hasClass('ic-arrow-right')) {
+            $collapseExpandIcon.removeClass().addClass('ic-arrow-down');
             this.$tableReport.find('.child-row-' + custId).removeClass('hide');
         } else {
-            $collapseExpandIcon.removeClass().addClass('icon-arrow-right');
+            $collapseExpandIcon.removeClass().addClass('ic-arrow-right');
             this.$tableReport.find('.child-row-' + custId).addClass('hide');
         }
     };

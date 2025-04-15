@@ -32,13 +32,13 @@ namespace AlphaPlus.Settings.Transfer.API.Services
                 param.CustId,
                 param.Username,
                 param.Language,
-                param.AllowedTotalBalanceTransferSuperIds,
                 param.IsAllDayBalanceTransfer,
                 BuildDownlineNetPositionXml(netPositionModels),
                 getDownlineCriteria.DownlineCustId);
-
             var (conditionSteps, transferSteps, clearCreditSteps)
                 = repository.FetchMultiple<ConditionStep, TransferStep, ClearCreditStep>(criteria);
+            // var (conditionSteps, transferSteps, clearCreditSteps)
+            //     = repository.FetchMultiple<ConditionStep, TransferStep, ClearCreditStep>(criteria, param.AGIP);
 
             return new TransferResult(transferSteps, clearCreditSteps, conditionSteps.Select(c => c.Content));
         }
@@ -71,7 +71,6 @@ namespace AlphaPlus.Settings.Transfer.API.Services
                     param.UserId,
                     param.SubAccId,
                     param.Username,
-                    param.AllowedTotalBalanceTransferSuperIds,
                     param.IP,
                     param.Language,
                     param.IsAllDayBalanceTransfer);

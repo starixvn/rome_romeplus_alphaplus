@@ -10,6 +10,7 @@ public class CommissionByBetTypeViewModel(
     CommissionByBetTypeQuery message,
     ReportData<CommissionByBetTypeModel> reportData) : DrillDownableViewModel<CommissionByBetTypeModel>(
         message,
+        message.LevelType,
         new PageHeaderViewModel(
             Title: Resources.CommissionByBettype,
             IsFilterVisible: message.IsFilterVisible,
@@ -28,13 +29,11 @@ public class CommissionByBetTypeViewModel(
     public string ViewDataInstructionMessage
         => string.Format(Resources.CanOnlyViewDataAfterTimeHistoryReport, DateRangePicker.MinDate);
 
-    public IDictionary<string, string> GetExcelParams()
-        => new Dictionary<string, string>
-        {
-            [nameof(CustId)] = CustId.ToString(),
-            [nameof(CustName)] = CustName,
-            ["CustLevelId"] = CustLevel.Value.ToString(),
-            [nameof(DateRangePicker.FromDate)] = DateRangePicker.FromDate,
-            [nameof(DateRangePicker.ToDate)] = DateRangePicker.ToDate
-        };
+    protected override IDictionary<string, string> AddMoreExcelParams(IDictionary<string, string> queryParams)
+    {
+        queryParams[nameof(DateRangePicker.FromDate)] = DateRangePicker.FromDate;
+        queryParams[nameof(DateRangePicker.ToDate)] = DateRangePicker.ToDate;
+
+        return queryParams;
+    }
 }

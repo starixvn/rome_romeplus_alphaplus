@@ -24,7 +24,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Multi
         }
 
         public override Dictionary<string, string> QueryStringParameters
-       => new Dictionary<string, string>
+       => new()
        {
            ["productGroupId"] = ProductGroupId.ToString(),
            ["roleId"] = SearchAccount.CustomerLevelValue.ToString(),
@@ -32,6 +32,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Multi
            ["isDarkMode"] = request.IsDarkMode.ToString().ToLowerInvariant(),
            ["custIds"] = request.GetData<string>("customerIds"),
            ["usernames"] = request.GetData<string>("usernames"),
+           ["agentId"] = SearchAccount.AgentId.ToString()
        };
 
         public override string Text => $"{request.GetResource("EditMultiple")} {request.GetProductGroupName(ProductGroupId)}";

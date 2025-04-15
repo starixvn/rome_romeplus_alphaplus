@@ -7,6 +7,7 @@
 
 class ConsolidationDetailView extends BaseReport {
     productComponent: ProductMultiSelectionComponent;
+    levelTypeComponent: SingleDropdownComponent;
     dateRangePickerComponent: DateRangePickerComponent;
     reportTooltip: ReportTooltip;
     sortComponent: SortComponent;
@@ -15,6 +16,7 @@ class ConsolidationDetailView extends BaseReport {
 
     constructor(
         productComponent: ProductMultiSelectionComponent,
+        levelTypeComponent: SingleDropdownComponent,
         dateRangePickerComponent: DateRangePickerComponent,
         reportTooltip: ReportTooltip,
         sortComponent: SortComponent
@@ -22,6 +24,7 @@ class ConsolidationDetailView extends BaseReport {
         super();
 
         this.productComponent = productComponent;
+        this.levelTypeComponent = levelTypeComponent;
         this.dateRangePickerComponent = dateRangePickerComponent;
         this.reportTooltip = reportTooltip;
         this.sortComponent = sortComponent;
@@ -38,6 +41,7 @@ class ConsolidationDetailView extends BaseReport {
 
     initComponents() {
         this.productComponent.render();
+        this.levelTypeComponent.render({ dropdownId: 'dropdown-level-type', hiddenInputId: 'level-type' });
         this.dateRangePickerComponent.render(
             new DateRangePickerOption(undefined, undefined, undefined, this.resetConsolidationParams)
         );
@@ -48,7 +52,7 @@ class ConsolidationDetailView extends BaseReport {
     }
 
     registerEvents() {
-        $('.icon-switchmode').on('click', this.onSwitchMode);
+        $('.ic-switchmode').on('click', this.onSwitchMode);
         super.registerDrilldownableEvents();
 
         const consolidationLink = this.$pageTitle.find('.breadcrumb-link[data-consolidation="true"]');
@@ -166,6 +170,7 @@ class ConsolidationDetailView extends BaseReport {
 $(function () {
     new ConsolidationDetailView(
         new ProductMultiSelectionComponent(),
+        new SingleDropdownComponent(),
         new DateRangePickerComponent(),
         new ReportTooltip(),
         new SortComponent()

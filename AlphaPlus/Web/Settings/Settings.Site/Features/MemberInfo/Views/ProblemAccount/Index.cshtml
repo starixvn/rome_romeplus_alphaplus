@@ -1,5 +1,6 @@
 ﻿@using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.ProblemAccount
 @using AlphaPlus.Settings.MemberInfo.Domain.Extensions
+@using AlphaPlus.Shared.AppResources.Common
 @using AlphaPlus.Shared.AppResources.Settings.MemberInfo
 @using AlphaPlus.Core.Helpers
 @using AlphaPlus.Core.Models
@@ -91,6 +92,7 @@
 @Html.Hidden("text-locked", Resources.Locked)
 
 @Html.Hidden("MonitoredMemberText", Resources.MonitoredMember)
+@Html.Hidden("DirectMemberText", CommonResx.DirectMember)
 @Html.Hidden("memberInfoUrl", @MicroSites.SettingUrl())
 @Html.Hidden("accountInfoUrl", @MicroSites.AccountInfoUrl())
 

@@ -53,7 +53,6 @@ class BaseReport {
         this.$reportLegend.modal({ show: true, backdrop: false });
         const iconHelpPosition = this.$iconInformation.position();
         this.$reportLegend.css({
-            bottom: 'auto',
             top: $('.entered-non-entered').length > 0 ? iconHelpPosition.top + 90 : iconHelpPosition.top + 60
         });
     };
@@ -144,10 +143,11 @@ class BaseReport {
         this.addParamDrilldownable('CustLevelId', $element.data('custlevelid'));
         this.addParamDrilldownable('CustId', $element.data('custid'));
         this.addParamDrilldownable('CustName', $element.data('custname'));
-        this.addParamDrilldownable('product-ids', this.$tableReport.data('productids'));
-        this.addParamDrilldownable('resource-ids', this.$tableReport.data('resourceids'));
-        this.addParamDrilldownable('from-date', this.$tableReport.data('fromdate'));
-        this.addParamDrilldownable('to-date', this.$tableReport.data('todate'));
+        this.addParamDrilldownable('product-ids', $('#query-productids').val());
+        this.addParamDrilldownable('resource-ids', $('#query-resourceids').val());
+        this.addParamDrilldownable('from-date', $('#query-fromdate').val());
+        this.addParamDrilldownable('to-date', $('#query-todate').val());
+        this.addParamDrilldownable('level-type', '0');
 
         this.$reportForm.submit();
     }

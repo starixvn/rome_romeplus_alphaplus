@@ -1,4 +1,4 @@
-﻿using Fanex.Caching;
+﻿using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Settings.ViewLogs.API.Constants
 {
@@ -6,11 +6,11 @@ namespace AlphaPlus.Settings.ViewLogs.API.Constants
     {
         public const int PageSize = 50;
 
-        public static CacheItemOptions CacheItemOptions
+        public static MemoryCacheEntryOptions CacheItemOptions
         {
             get
             {
-                return new CacheItemOptions
+                return new MemoryCacheEntryOptions
                 {
                     SlidingExpiration = TimeSpan.FromHours(1)
                 };

@@ -1,69 +1,34 @@
-namespace AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Models
+namespace AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Models;
+
+public class DormantAccountEntity
 {
-    public class DormantAccountEntity
-    {
-        public DormantAccountEntity()
-        {
-        }
+    public int CustId { get; init; }
 
-        public DormantAccountEntity(
-            int custId,
-            string username,
-            byte roleId,
-            byte statusId,
-            byte stageId,
-            decimal? toBeClearedGivenCredit,
-            decimal? clearedGivenCredit,
-            DateTime? lastLogged,
-            DateTime? closedDate,
-            DateTime? disabledDate,
-            DateTime? settingDeletedDate,
-            DateTime? accountDeletedDate,
-            bool isWarningTicket,
-            int rowNumber)
-        {
-            CustId = custId;
-            Username = username;
-            RoleId = roleId;
-            StatusId = statusId;
-            StageId = stageId;
-            ToBeClearedGivenCredit = toBeClearedGivenCredit;
-            ClearedGivenCredit = clearedGivenCredit;
-            LastLogged = lastLogged;
-            ClosedDate = closedDate;
-            DisabledDate = disabledDate;
-            SettingDeletedDate = settingDeletedDate;
-            AccountDeletedDate = accountDeletedDate;
-            IsWarningTicket = isWarningTicket;
-            RowNumber = rowNumber;
-        }
+    public string Username { get; init; }
 
-        public int CustId { get; set; }
+    public byte RoleId { get; init; }
 
-        public string Username { get; set; }
+    public byte StatusId { get; init; }
 
-        public byte RoleId { get; set; }
+    public byte StageId { get; init; }
 
-        public byte StatusId { get; set; }
+    public decimal? ToBeClearedGivenCredit { get; init; }
 
-        public byte StageId { get; set; }
+    public decimal? ClearedGivenCredit { get; init; }
 
-        public decimal? ToBeClearedGivenCredit { get; set; }
+    public DateTime? LastLogged { get; init; }
 
-        public decimal? ClearedGivenCredit { get; set; }
+    public DateTime? ClosedDate { get; init; }
 
-        public DateTime? LastLogged { get; set; }
+    public DateTime? DisabledDate { get; init; }
 
-        public DateTime? ClosedDate { get; set; }
+    public DateTime? SettingDeletedDate { get; init; }
 
-        public DateTime? DisabledDate { get; set; }
+    public DateTime? AccountDeletedDate { get; init; }
 
-        public DateTime? SettingDeletedDate { get; set; }
+    public bool IsWarningTicket { get; init; }
 
-        public DateTime? AccountDeletedDate { get; set; }
+    public int RowNumber { get; init; }
 
-        public bool IsWarningTicket { get; set; }
-
-        public int RowNumber { get; set; }
-    }
+    public int Recommend { get; init; }
 }

@@ -7,24 +7,20 @@ html {
     touch-action: manipulation;
 }
 
-body {
-    padding: 2px 16px 8px 16px;
-}
-
 .no-data {
     color: $text-color;
     font-weight: bold;
     text-align: center;
-    background-color: #FFF;
+    background-color: #fff;
 }
 
-.container{
+.container {
     padding: 0;
 }
 .display-none {
     display: none;
 }
-#header_main{
+#header_main {
     border-bottom: 1px solid #cecece;
     color: #9d1c1c;
     font-size: 13px;
@@ -47,7 +43,7 @@ label[for] {
 }
 #box_header {
     margin-top: 10px;
-    > *{
+    > * {
         float: none !important;
         display: inline-block;
         vertical-align: middle;
@@ -87,8 +83,10 @@ label[for] {
 }
 
 .freegrid {
-    .free-top-left table thead th, .col_header table thead th {
-        &.column-level-name, &.column-bettype-name {
+    .free-top-left table thead th,
+    .col_header table thead th {
+        &.column-level-name,
+        &.column-bettype-name {
             background-color: #f0f1c7;
             color: $text-color;
         }
@@ -128,7 +126,8 @@ label[for] {
         text-transform: uppercase;
     }
 
-    td, .grid-fixed-table td {
+    td,
+    .grid-fixed-table td {
         border-color: $table-border-color;
     }
 }

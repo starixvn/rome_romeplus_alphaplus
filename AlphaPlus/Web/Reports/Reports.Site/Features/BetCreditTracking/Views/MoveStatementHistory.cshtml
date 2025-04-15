@@ -6,7 +6,15 @@
     async Task BuildMoveStatementHistory(MoveStatementHistoryByMember item)
     {
         <tr class="member-row">
-            <td class="text-left">@item.MemberRow.Username</td>
+            <td class="text-left">
+                <div class="text-icon">
+                    @item.MemberRow.Username
+                    @if (item.MemberRow.IsDirectMember)
+                    {
+                        <span class="ic-directmember" title="@CommonResx.DirectMember"></span>
+                    }
+                </div>
+            </td>
             <td></td>
             <td></td>
             <td>@item.MemberRow.MemberWinLoss.FormatNumber()</td>
@@ -38,14 +46,16 @@
     }
 }
 @section Styles {
-    @StaticResources.AssetStyles.RenderCommonWithDarkMode($"/bundles/site-reports/tab-{Model.CustLevel.DisplayName.ToLowerInvariant()}")
-    <link rel="stylesheet" href="~/bundles/betcredittracking/movestatementhistory.css" asp-append-version="true" />
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/betcredittracking")
+    <link rel="stylesheet" href="~/bundles-v2/movestatementhistory.css" asp-append-version="true" />
 }
 @section Scripts {
+    @StaticResources.AssetScripts.Render("/bundles-v2/site-assets/tipsy")
     <script src="~/bundles/betcredittracking/movestatementhistory.js" asp-append-version="true"></script>
 }
 @model MoveStatementHistoryViewModel
-<div class="page-title@(Model.IsFilterVisible ? string.Empty : " hide-filter")">
+<div
+    class="page-title tabs @Model.CustLevel.DisplayName.ToLowerInvariant() @(Model.IsFilterVisible ? string.Empty : " hide-filter")">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation">
             <a class="open-link"
@@ -54,8 +64,8 @@
         <li role="presentation" class="active">
             <a href="javascript:;" aria-controls="home" role="tab" data-toggle="tab">@Resources.MoveStatementHistory</a>
         </li>
-        <li>
-            <a href="@userguideLink" target="_blank"><span class="icon icon-information-outline"></span></a>
+        <li class="tab-icon">
+            <a href="@userguideLink" target="_blank"><span class="ic-information"></span></a>
         </li>
     </ul>
     <div class="list-icon">
@@ -71,7 +81,7 @@
     <div role="tabpanel" class="tab-pane active" id="moveStatementHistory">
         <form class="form-inline filter@(Model.IsFilterVisible ? string.Empty : " hide")" role="form" id="report-form">
             <div class="form-group">
-                <label asp-for="Member">@Resources.Member</label>
+                <label class="label-form-control" asp-for="Member">@Resources.Member</label>
                 <input type="text" style="width: 200px;" autocomplete="off" placeholder="@Resources.Username"
                     asp-for="Member" />
             </div>
@@ -79,7 +89,7 @@
             <div class="form-group"><input type="submit" value="@Resources.Submit" class="btn-submit" />
             </div>
             <div class="form-group">
-                <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="MoveStatementHistoryExcel"
+                <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="MoveStatementHistoryExcel"
                     asp-all-route-data="Model.GetExcelParams()"></a>
             </div>
             <div class="note-box">
@@ -90,10 +100,6 @@
                     <p class="note red" style="margin-left: 14px;">@Resources.DuplicatedTicketMessage</p>
                 }
             </div>
-            @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
-            {
-                <div id="msg-error" class="msg msg-error">@Model.ErrorMessage</div>
-            }
             <input type="hidden" asp-for="IsMainReport" />
         </form>
         @if (Model.IsMainReport)
@@ -142,7 +148,7 @@
             }
             @if (Model.ReportData != null && string.IsNullOrWhiteSpace(Model.ErrorMessage))
             {
-                <table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tbl-small-width" id="tbl-report">
+                <table class="tb tb-bordered tb-hover w-60p text-right" id="tbl-report">
                     <thead>
                         <tr>
                             <th>@Resources.MemberRefNo</th>
@@ -172,3 +178,7 @@
     </div>
 </div>
 <pager model="Model.Pager" />
+@if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+{
+    <input type="hidden" asp-for="ErrorMessage">
+}

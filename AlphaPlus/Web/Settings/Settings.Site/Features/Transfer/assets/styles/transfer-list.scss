@@ -1,18 +1,16 @@
 @import '_mixins.scss';
 
-
 :root,
 :root [data-theme='light'] {
-
     --transfer-border: #dfdfdf;
     --transfer-bg-hover: #ddd;
     --transfer-color: #333;
-  
+
     --transfer-status-closedby-pwd-others: #ccc7ba;
     --transfer-status-closedby-admin: #b3a2c7;
     --transfer-status-closedby-upline: #f79646;
     --transfer-status-closedby-otp-sc: #86c5e4;
-    --transfer-status-closedby-archive: #969696;   
+    --transfer-status-closedby-archive: #969696;
 
     --transfer-warning-color: #b50000;
     --transfer-warning-highlight-color: #9d1c1c;
@@ -20,19 +18,17 @@
 
     --transfer-transfer-link: #045ace;
     --transfer-favorite-transfer-link: #b50000;
-
-    
 }
 :root [data-theme='dark'] {
     --transfer-border: #292929;
     --transfer-bg-hover: #3c3c3c;
     --transfer-color: #ededed;
 
-    --transfer-status-closedby-pwd-others: #6E654E;
+    --transfer-status-closedby-pwd-others: #6e654e;
     --transfer-status-closedby-admin: #453659;
-    --transfer-status-closedby-upline: #874D1E;
-    --transfer-status-closedby-otp-sc: #0D3C54;
-    --transfer-status-closedby-archive: #0B2945;
+    --transfer-status-closedby-upline: #874d1e;
+    --transfer-status-closedby-otp-sc: #0d3c54;
+    --transfer-status-closedby-archive: #0b2945;
 
     --transfer-warning-color: #ff4f50;
     --transfer-warning-highlight-color: #ff4f50;
@@ -78,7 +74,7 @@
         color: #fff;
     }
 }
-.msg{
+.msg {
     margin-bottom: 8px;
 }
 .box-auto-calendar {
@@ -235,7 +231,7 @@
     }
 }
 
-.filter { 
+.filter {
     .form-group {
         margin-bottom: 10px;
         .btn-group {
@@ -243,31 +239,24 @@
         }
     }
 }
-.filter {
-    .multiselect {    
-        .multiselect-selected-text{
-            width: 80px;
-        }
-    }
-    .multiselect-container.dropdown-menu{
-        min-width: 100%;
-        li{
-            a{
-                label{
-                    display: block;
-                }
+
+.filter .multiselect-container.dropdown-menu {
+    min-width: 100%;
+    li {
+        a {
+            label {
+                display: block;
             }
         }
     }
 }
-
 
 .list-btn {
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
     position: relative;
-    .pagingContainer{
+    .pagingContainer {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
@@ -286,17 +275,16 @@
             background: #094b84;
         }
     }
-    
 }
 
-#warning-multiple-transfer{
+#warning-multiple-transfer {
     color: var(--transfer-warning-color);
     margin-bottom: 10px;
-    .highlight, font{
+    .highlight,
+    font {
         background: var(--transfer-warning-highlight-bg);
         color: var(--transfer-warning-highlight-color);
     }
-
 }
 .dropdown-menu {
     .active,
@@ -304,9 +292,8 @@
         background-color: var(--transfer-bg-hover);
     }
 }
-.block-tbl-transfer{
-    
-    .tblRpt{
+.block-tbl-transfer {
+    .tblRpt {
         margin-bottom: 5px;
     }
 }
@@ -336,7 +323,6 @@
     }
 }
 
-
 .locked-falsePassword {
     background-color: var(--transfer-status-closedby-pwd-others);
 }
@@ -356,23 +342,62 @@
 .closed-byArchive {
     background-color: var(--transfer-status-closedby-archive);
 }
-a.transfer-link{
+a.transfer-link {
     color: var(--transfer-transfer-link);
 }
-.favorite a.transfer-link{
+.favorite a.transfer-link {
     color: var(--transfer-favorite-transfer-link);
 }
-.block-tbl-transfer{
-    thead{
-        th{
-            input[type=checkbox], input[type=radio]{
+.block-tbl-transfer {
+    thead {
+        th {
+            input[type='checkbox'],
+            input[type='radio'] {
                 margin: 0 auto;
             }
         }
     }
-    .text-center{
-        input[type=checkbox], input[type=radio]{
+    .text-center {
+        input[type='checkbox'],
+        input[type='radio'] {
             margin: 0 auto;
+            display: inline-block;
+        }
+    }
+}
+.col-icon-header{
+    padding-right: 28px!important;
+    position: relative!important;
+    .icon , [class*=' icon-'], [class^=icon-] {
+        position: absolute;
+        right: 2px;
+        top: 50%;
+        transform: translateY(-50%);
+        &:before{
+            color: #fff;
+        }
+
+    }    
+}
+.user-guide-link{
+    &:after{
+        content: "";
+        clear: both;
+        display: table;
+    }
+}
+.box-auto-calendar,.col-icon-header{
+    .tooltip{
+        background: transparent;
+        border: 0;
+        min-width: 370px;
+        text-align: left;
+        pointer-events: none;
+        .tooltip-inner{
+            max-width: 100%;
+            text-align: left;
+            width: auto;
+            display: inline-block;
         }
     }
 }

@@ -1258,7 +1258,7 @@ namespace AlphaPlus.Shared.AppResources.Report
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to In Agent&apos;s view: the commission (without PT) that Master can receive from upline on each Agent..
+        ///   Looks up a localized string similar to In Agent's view: the commission (without PT) that Master can receive from upline on each Agent, Master Direct Member..
         /// </summary>
         public static string GrossCommNoteForAgent
         {
@@ -1313,7 +1313,7 @@ namespace AlphaPlus.Shared.AppResources.Report
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to In Master&apos;s view: the commission (without PT) that Super can receive from upline on each Master..
+        ///   Looks up a localized string similar to In Master's view: the commission (without PT) that Super can receive from upline on each Masterr, Super Direct Member..
         /// </summary>
         public static string GrossCommNoteForMaster
         {
@@ -4159,6 +4159,28 @@ namespace AlphaPlus.Shared.AppResources.Report
         public static string ToWin {
             get {
                 return ResourceManager.GetString("ToWin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downline Total.
+        /// </summary>
+        public static string DownlineTotal
+        {
+            get
+            {
+                return ResourceManager.GetString("DownlineTotal", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to total transfer amount between Direct Upline and Member. Click to view Transfer Details..
+        /// </summary>
+        public static string Guidelines_TransferAmt_DirectMember
+        {
+            get
+            {
+                return ResourceManager.GetString("Guidelines_TransferAmt_DirectMember", resourceCulture);
             }
         }
     }

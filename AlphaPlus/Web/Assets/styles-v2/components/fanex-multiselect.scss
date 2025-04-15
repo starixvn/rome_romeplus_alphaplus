@@ -22,7 +22,13 @@
     position: relative;
     display: flex;
     align-items: center;
-
+    &.fanex-multiselect-state-disabled{
+        opacity: 0.7;
+        cursor: not-allowed;
+        input{
+            cursor: not-allowed;
+        }
+    }
     input {
         color: var(--fanex-multiselect-color);
         cursor: pointer;
@@ -194,6 +200,6 @@
         }
     }
 }
-.hide-item{
+.hide-item, .hide-item-global {
     display: none!important;
 }

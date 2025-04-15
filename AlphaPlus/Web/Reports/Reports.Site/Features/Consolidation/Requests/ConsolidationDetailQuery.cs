@@ -13,6 +13,8 @@ public class ConsolidationDetailQuery : ConsolidationQuery, IRequest<Consolidati
 
     public string ConsolidationResourceIds { get; set; }
 
+    public byte LevelType { get; set; }
+
     public DateTime ConsolidationFromDate { get; set; }
 
     public DateTime ConsolidationToDate { get; set; }

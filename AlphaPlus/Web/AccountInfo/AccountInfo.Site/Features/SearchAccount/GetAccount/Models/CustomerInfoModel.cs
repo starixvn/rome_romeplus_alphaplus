@@ -1,3 +1,5 @@
+using AlphaPlus.AccountInfo.Site.Features.Shared;
+
 namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Models;
 
 public class CustomerInfoModel
@@ -125,4 +127,10 @@ public class CustomerInfoModel
     public string SuperName { get; set; }
 
     public byte Locked { get; }
+
+    public bool IsDirectMember => IsDirectMemberOfMaster || IsDirectMemberOfSuper;
+
+    public bool IsDirectMemberOfMaster => AgentId == DirectMemberAgentIds.Master;
+
+    public bool IsDirectMemberOfSuper => AgentId == DirectMemberAgentIds.Super;
 }

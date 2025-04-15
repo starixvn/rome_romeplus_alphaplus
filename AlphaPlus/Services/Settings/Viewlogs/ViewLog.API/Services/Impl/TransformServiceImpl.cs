@@ -4,16 +4,16 @@ using System.Xml.XPath;
 using System.Xml.Xsl;
 using AlphaPlus.Settings.ViewLogs.API.Constants;
 using AlphaPlus.Settings.ViewLogs.API.Params;
-using Fanex.Caching;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
 {
-    public class TransformServiceImpl(LogFormatter logFormatter, ICacheService cacheService) : TransformService
+    public class TransformServiceImpl(LogFormatter logFormatter, IMemoryCache cacheService) : TransformService
     {
         private const string TransformObjectCacheKey = "AlphaPlus.Settings.ViewLogs.API.TransformObject_{0}";
 
         private readonly LogFormatter logFormatter = logFormatter;
-        private readonly ICacheService cacheService = cacheService;
+        private readonly IMemoryCache cacheService = cacheService;
 
         public string TransformTrackingValue(
             string trackingValue,

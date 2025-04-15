@@ -19,4 +19,6 @@ public class MoveStatementHistoryByRefNo
     public decimal MemberTotal { get; init; }
 
     public bool IsMultipleMoved { get; init; }
+
+    public bool IsDirectMember { get; init; }
 }

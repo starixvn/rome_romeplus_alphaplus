@@ -13,6 +13,7 @@ namespace AlphaPlus.Settings.Transfer.API.Services;
 
 public class AgentTransferMultipleYesterdayBalanceService(
     AgentTransferMultipleYesterdayBalanceParam request,
+    ITransferCacheService transferCacheService,
     ITransferService transferService,
     ITransferListService transferListService,
     IYesterdayBalanceTransferService yesterdayBalanceTransferService)
@@ -24,10 +25,10 @@ public class AgentTransferMultipleYesterdayBalanceService(
 
     private readonly AgentTransferMultipleYesterdayBalanceParam request = request;
     private readonly ITransferService transferService = transferService;
-    private readonly ITransferCacheService transferCacheService = new TransferCacheService();
+    private readonly ITransferCacheService transferCacheService = transferCacheService;
     private readonly ITransferListService transferListService = transferListService;
     private readonly IYesterdayBalanceTransferService yesterdayBalanceTransferService = yesterdayBalanceTransferService;
-    private readonly string cacheKey = string.Format(AgentTransferMemberListCache, AppSettings.SiteLabel, request.AgentId);
+    private readonly string cacheKey = string.Format(AgentTransferMemberListCache, AppSettings.SiteLabel, request.ActorId);
     private readonly IDictionary<int, string> custIdsAndNames = new Dictionary<int, string>();
     private readonly List<int> listCustIdsTransferSuccess = new List<int>();
     private readonly List<TransferCacheModel> listCustIdsTransferConcurrent = new List<TransferCacheModel>();
@@ -35,7 +36,7 @@ public class AgentTransferMultipleYesterdayBalanceService(
 
     public async Task<Result> ProcessTransfer()
     {
-        var isAllDayBalanceTransfer = await transferService.IsAllDayBalanceTransferAsync(request.AgentId);
+        var isAllDayBalanceTransfer = await transferService.IsAllDayBalanceTransferAsync(request.ActorId);
         var custIds = await GetCustIds();
         var custIdsBatches = custIds.Chunk(AppSettings.MaxCustIdTransfer);
 
@@ -58,11 +59,12 @@ public class AgentTransferMultipleYesterdayBalanceService(
     private async Task<IEnumerable<int>> GetCustIds()
     {
         var param = new TransferListParam(
-            request.AgentId,
-            UserLevel.Agent.Value,
+            request.ActorId,
+            request.ActorLevel.Value,
             request.Username,
             request.Status,
             request.AutoTransfer,
+            LevelType: 2, // 2: Direct Member incase of Super/Master
             request.AllYesterdayBalance,
             request.AllowTotalBalanceTransfer,
             1,
@@ -89,19 +91,36 @@ public class AgentTransferMultipleYesterdayBalanceService(
         if (validCustIds.Count > 0)
         {
             var memberIds = isUsingCache ? validCustIds : custIds;
-            var criteria = new AgentTransferMultipleYesterdayBalanceCriteria(
-                request.AgentId,
-                request.SuperIdsTransferTotal,
-                string.Join(',', memberIds),
-                request.Status,
-                request.AutoTransfer,
-                isAllDayBalanceTransfer,
-                request.Language,
-                request.IP,
-                request.SubAccId);
+
             try
             {
-                var result = await yesterdayBalanceTransferService.MultipleMemberTransfer(criteria, request.AGIP);
+                Result result;
+                if (request.ActorLevel.IsAgentLevel())
+                {
+                    var criteria = new AgentTransferMultipleYesterdayBalanceCriteria(
+                        request.ActorId,
+                        string.Join(',', memberIds),
+                        request.Status,
+                        request.AutoTransfer,
+                        isAllDayBalanceTransfer,
+                        request.Language,
+                        request.IP,
+                        request.SubAccId);
+                    result = await yesterdayBalanceTransferService.MultipleMemberTransfer(criteria, request.AGIP);
+                }
+                else
+                {
+                    var criteria = new DirectMemberTransferMultipleYesterdayBalanceCriteria(
+                        request.ActorId,
+                        string.Join(',', memberIds),
+                        -request.ActorLevel.Value,
+                        request.Status,
+                        request.AutoTransfer,
+                        request.Language,
+                        request.IP,
+                        request.SubAccId);
+                    result = await yesterdayBalanceTransferService.MultipleDirectMemberTransfer(criteria, request.AGIP);
+                }
 
                 if (result.IsSuccessful)
                 {
@@ -193,6 +212,11 @@ public class AgentTransferMultipleYesterdayBalanceService(
             return listCustIdsTransferConcurrent.Count > 0
                 ? string.Format(ConcurrentTransferResultMessage, listCustIdsTransferConcurrent[0].AdminName, "All")
                 : Resources.TransferSuccessfully;
+        }
+
+        if (!request.ActorLevel.IsAgentLevel() && listCustIdsTransferConcurrent.Count == 0)
+        {
+            return Resources.TransferSuccessfully;
         }
 
         var resultMessage = string.Empty;

@@ -3,6 +3,7 @@
 interface JQuery {
     multiselect(option: any): void;
     multiselect(method: string, value: any): void;
+    multiselect(method: string, value: any, optionalParam: any): void;
 }
 
 class ProductMultiSelectionComponent {

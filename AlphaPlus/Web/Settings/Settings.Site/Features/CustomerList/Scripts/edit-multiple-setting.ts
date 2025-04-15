@@ -45,9 +45,12 @@ class EditMultipleSetting {
             UplineId: this.viewModel.SearchAccountId,
             UplineName: this.viewModel.SearchAccountRoleId,
             UplineRoleId: this.viewModel.SearchAccountRoleId,
-            SearchAccountRoleId: this.viewModel.SearchAccountRoleId - 1,
+            SearchAccountRoleId: this.viewModel.IsDirectMember
+                ? CustomerLevel.Member
+                : this.viewModel.SearchAccountRoleId - 1,
             custids: custids.join(','),
-            usernames: usernames.join(',')
+            usernames: usernames.join(','),
+            isDirectMember: this.viewModel.IsDirectMember
         };
 
         if (custids.length > 0) {

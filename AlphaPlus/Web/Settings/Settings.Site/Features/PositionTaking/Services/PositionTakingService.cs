@@ -22,7 +22,8 @@ public class PositionTakingService(HttpClient httpClient) : IPositionTakingServi
             KeyValuePair.Create(nameof(request.PageSize), request.PageSize.ToString()),
             KeyValuePair.Create(nameof(request.PageIndex), request.PageIndex.ToString()),
             KeyValuePair.Create(nameof(request.Language), request.Language),
-            KeyValuePair.Create(nameof(request.ProductGroupId), request.ProductGroupId.ToString())
+            KeyValuePair.Create(nameof(request.ProductGroupId), request.ProductGroupId.ToString()),
+            KeyValuePair.Create(nameof(request.LevelType), request.LevelType.ToString())
         });
 
         return await httpClient.GetAsJsonAsync<dynamic>($"customer/position-taking{param}");

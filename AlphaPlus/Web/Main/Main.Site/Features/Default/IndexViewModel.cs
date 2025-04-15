@@ -169,11 +169,19 @@ public class IndexViewModel
 
     public bool IsShowSuggestEnableTelegramOtp { get; set; }
 
-    public bool HightLightFeaturePermission => false;
+        public bool HightLightFeaturePermission
+        {
+            get
+            {
+                var actorLevel = Enumeration.FromValue<UserLevel>(message.RoleId);
+
+                return (actorLevel.IsSuperLevel() || actorLevel.IsMasterLevel()) && ((PageAccess)SubPageAccess).CreateAccount;
+            }
+        }
 
     public string HightLightFeatureImageName => "new_feature" + DarkModeName;
 
-    public string HightLightFeatureUrl => MicroSites.MainUrl("~/Tour/Reward");
+        public string HightLightFeatureUrl => MicroSites.MainUrl("~/Tour/Index");
 
     public bool IsShowRewardTour { get; }
 

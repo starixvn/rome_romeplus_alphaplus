@@ -36,7 +36,8 @@
             SearchAccountIds: this.$('#searchAccountIds').val(),
             SearchAccountRoleId: this.$('#searchAccountRoleId').val(),
             EnabledDoubleComm: this.$('input[name=mulitpleDoubleComm]:checked').val(),
-            Usernames: this.$('#usernames').val()
+            Usernames: this.$('#usernames').val(),
+            AgentId: this.$('#agentId').val()
         };
 
         this.$.ajax({

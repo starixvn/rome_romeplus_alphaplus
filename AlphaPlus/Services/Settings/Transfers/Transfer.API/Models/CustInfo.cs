@@ -13,4 +13,6 @@ public class CustInfo
     public string LastName { get; init; }
 
     public string Username2 { get; init; }
+
+    public int? AgentId { get; set; }
 }

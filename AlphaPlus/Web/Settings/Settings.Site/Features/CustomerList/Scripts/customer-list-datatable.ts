@@ -16,6 +16,7 @@ class CustomerListDataTable {
     private doubleComm: string;
     private allowAutoTransfer: string;
     private enableAllDayBalanceTransfer: string;
+    private levelType: string;
 
     resources = {
         ThereIsNoData: (<HTMLInputElement>document.getElementById('thereIsNoData')).value,
@@ -119,7 +120,8 @@ class CustomerListDataTable {
                             Status: this.status,
                             DoubleComm: this.doubleComm,
                             AllowAutoTransfer: this.allowAutoTransfer,
-                            EnableAllDayBalanceTransfer: this.enableAllDayBalanceTransfer
+                            EnableAllDayBalanceTransfer: this.enableAllDayBalanceTransfer,
+                            LevelType: this.viewModel.IsDirectMember ? 2 : 1
                         };
 
                         this.enableAllDayBalanceTransfer = undefined;
@@ -255,14 +257,14 @@ class CustomerListDataTable {
                 }</div>`
         });
 
-        if (this.viewModel.SearchAccountRoleId === CustomerLevel.Agent) {
+        if (this.viewModel.SearchAccountRoleId === CustomerLevel.Agent || this.viewModel.IsDirectMember) {
             columns.push({
                 className: 'center',
                 data: 'UGroup'
             });
         }
 
-        if (this.viewModel.SearchAccountRoleId === CustomerLevel.Agent) {
+        if (this.viewModel.SearchAccountRoleId === CustomerLevel.Agent || this.viewModel.IsDirectMember) {
             columns.push(
                 {
                     className: 'left',
@@ -572,6 +574,31 @@ class CustomerListDataTable {
         });
     };
 
+    private reloadPage = () => {
+        const queryString = {
+            CustLevelId: this.viewModel.SearchAccountRoleId,
+            CustId: this.viewModel.SearchAccountId,
+            CustName: this.viewModel.SearchAccountName,
+            Username: this.$('#txt-username').val(),
+            Status: this.$('#statusFilter').val(),
+            DoubleComm: this.$('#dcommFilter').val(),
+            AllowAutoTransfer: this.$('#dautoTransferFilter').val(),
+            UnconfirmSetting: this.$('#unconfirmSettingFilter').val(),
+            LevelType: this.$('#dropdown-level-type').val()
+        };
+
+        const viewDownlineLink = `${this.viewModel.MemberInfoUrl}CustomerList/${
+            this.viewModel.DownlineLevelName
+        }?${this.$.param(queryString)}&BreadcrumbLevelJson=${this.viewModel.BreadcrumbLevelJson}`;
+        const mainFrame = this.topWindow.$('#main');
+        if (!this.topWindow.alpha.core.isIe()) {
+            mainFrame.contents().find('head').append(this.$('#AssetCommonCssLink').val());
+            mainFrame.contents().find('body').empty().block();
+        }
+
+        mainFrame.attr('src', viewDownlineLink);
+    };
+
     private drawCallback = () => {
         this.detailCallBack();
 
@@ -580,6 +607,16 @@ class CustomerListDataTable {
         this.$('.btn-submit')
             .unbind()
             .bind('click', () => {
+                this.levelType = this.$('#dropdown-level-type').val();
+                const isDirectMemberLevelType = this.levelType == LevelType.DirectMember;
+                if (
+                    (isDirectMemberLevelType && !this.viewModel.IsDirectMember) ||
+                    (!isDirectMemberLevelType && this.viewModel.IsDirectMember)
+                ) {
+                    this.reloadPage();
+                    return;
+                }
+
                 this.username = this.$('#txt-username').val();
                 this.status = this.$('#statusFilter').val();
                 this.doubleComm = this.$('#dcommFilter').val();
@@ -630,7 +667,8 @@ class CustomerListDataTable {
             SearchAccountRoleId: item.RoleId,
             UplineId: this.viewModel.SearchAccountId,
             UplineName: this.viewModel.SearchAccountName,
-            UplineRoleId: this.viewModel.SearchAccountRoleId
+            UplineRoleId: this.viewModel.SearchAccountRoleId,
+            IsDirectMember: this.viewModel.IsDirectMember
         };
 
         return `${this.viewModel.MemberInfoUrl}CustomerList/GetCustomerAllStatus?${this.$.param(queryString)}`;

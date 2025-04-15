@@ -22,7 +22,7 @@ public class PositionTakingController(IMediator mediator, IProductService produc
     }
 
     [HttpPost]
-    public async Task<IActionResult> Index([FromBody]DownlinePositionTakingRequest request)
+    public async Task<IActionResult> Index([FromBody] DownlinePositionTakingRequest request)
     {
         return Json(await mediator.Send(request));
     }

@@ -19,7 +19,12 @@
     > * {
         float: none;
     }
-
+    .monpickr-wrap-parent{        
+        width: 152px!important;        
+    }
+    .daypickr-wrap-parent{        
+        width: 56px!important;        
+    }
     .monpickr-down {
         position: absolute;
         right: 10px;
@@ -84,7 +89,7 @@
                 overflow: hidden;
                 text-indent: 30px;
                 transform: rotate(90deg);
-                top: 8px;
+                top: 10px;
                 left: 3px;
                 position: absolute;
             }

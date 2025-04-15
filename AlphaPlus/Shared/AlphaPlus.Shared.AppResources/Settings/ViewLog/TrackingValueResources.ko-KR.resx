@@ -346,7 +346,7 @@
     <value>Over/Under</value>
   </data>
   <data name="firstname" xml:space="preserve">
-    <value>이름</value>
+    <value>First Name</value>
   </data>
   <data name="v10mpt_1" xml:space="preserve">
     <value>Handicap</value>
@@ -484,7 +484,7 @@
     <value>Live 1st OU</value>
   </data>
   <data name="suspended" xml:space="preserve">
-    <value>보류</value>
+    <value>Suspended</value>
   </data>
   <data name="maxcredit" xml:space="preserve">
     <value>Max Credit</value>
@@ -493,7 +493,7 @@
     <value>Transfer Option</value>
   </data>
   <data name="a_spt_10" xml:space="preserve">
-    <value>순위,승자 등</value>
+    <value>Outright</value>
   </data>
   <data name="AccountRemarkDate" xml:space="preserve">
     <value>Account Remark Date</value>
@@ -526,7 +526,7 @@
     <value>Mobile phone</value>
   </data>
   <data name="a_mpt_10" xml:space="preserve">
-    <value>순위,승자 등</value>
+    <value>Outright</value>
   </data>
   <data name="sitename" xml:space="preserve">
     <value>Site name</value>
@@ -535,7 +535,7 @@
     <value>Odds Type</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>비밀번호</value>
+    <value>Password</value>
   </data>
   <data name="country" xml:space="preserve">
     <value>Country</value>
@@ -631,7 +631,7 @@
     <value>Checker</value>
   </data>
   <data name="isa_smpt_10" xml:space="preserve">
-    <value>순위,승자 등</value>
+    <value>Outright</value>
   </data>
   <data name="v99spt_3" xml:space="preserve">
     <value>Over/Under</value>
@@ -853,7 +853,7 @@
     <value>Handicap</value>
   </data>
   <data name="fname" xml:space="preserve">
-    <value>이름</value>
+    <value>First name</value>
   </data>
   <data name="lname" xml:space="preserve">
     <value>Last name</value>
@@ -922,7 +922,7 @@
     <value>Is Master Auto Position Taking on Agent</value>
   </data>
   <data name="New" xml:space="preserve">
-    <value>새로운</value>
+    <value>New</value>
   </data>
   <data name="Old" xml:space="preserve">
     <value>Old</value>
@@ -964,7 +964,7 @@
     <value>Sub Acc name</value>
   </data>
   <data name="subaccount" xml:space="preserve">
-    <value>보조계정</value>
+    <value>Sub Account</value>
   </data>
   <data name="discountcs" xml:space="preserve">
     <value>Other discount</value>
@@ -991,7 +991,7 @@
     <value>Handicap</value>
   </data>
   <data name="isa_mpt_10" xml:space="preserve">
-    <value>순위,승자 등</value>
+    <value>Outright</value>
   </data>
   <data name="agentID" xml:space="preserve">
     <value>agentID</value>
@@ -1066,7 +1066,7 @@
     <value>Over/Under</value>
   </data>
   <data name="isa_spt_10" xml:space="preserve">
-    <value>순위,승자 등</value>
+    <value>Outright</value>
   </data>
   <data name="isa_smpt_4" xml:space="preserve">
     <value>정확한 득점</value>
@@ -1324,7 +1324,7 @@
     <value>Handicap</value>
   </data>
   <data name="currency" xml:space="preserve">
-    <value>화페</value>
+    <value>Currency</value>
   </data>
   <data name="danger" xml:space="preserve">
     <value>Danger</value>
@@ -1372,7 +1372,7 @@
     <value>answer</value>
   </data>
   <data name="apt_10" xml:space="preserve">
-    <value>순위,승자 등</value>
+    <value>Outright</value>
   </data>
   <data name="CreditGrade" xml:space="preserve">
     <value>Credit Grade</value>
@@ -1438,7 +1438,7 @@
     <value>Handicap</value>
   </data>
   <data name="mpt_10" xml:space="preserve">
-    <value>순위,승자 등</value>
+    <value>Outright</value>
   </data>
   <data name="mphone" xml:space="preserve">
     <value>mphone</value>
@@ -1456,7 +1456,7 @@
     <value>is Update Downline</value>
   </data>
   <data name="closed" xml:space="preserve">
-    <value>중지</value>
+    <value>Closed</value>
   </data>
   <data name="isa_slivept_8" xml:space="preserve">
     <value>Live 1st OU</value>
@@ -1471,7 +1471,7 @@
     <value>Live Hdp</value>
   </data>
   <data name="credit" xml:space="preserve">
-    <value>포인트</value>
+    <value>Credit</value>
   </data>
   <data name="maxv99pt_1" xml:space="preserve">
     <value>Max Hdp</value>
@@ -1753,10 +1753,10 @@
     <value>상황</value>
   </data>
   <data name="spt_10" xml:space="preserve">
-    <value>순위,승자 등</value>
+    <value>Outright</value>
   </data>
   <data name="All" xml:space="preserve">
-    <value>모든</value>
+    <value>All</value>
   </data>
   <data name="TypeAUserName" xml:space="preserve">
     <value>Type a username</value>
@@ -1765,10 +1765,10 @@
     <value>Details</value>
   </data>
   <data name="actionname" xml:space="preserve">
-    <value>실행</value>
+    <value>Action</value>
   </data>
   <data name="creditlog" xml:space="preserve">
-    <value>포인트</value>
+    <value>Credit</value>
   </data>
   <data name="defaultlog" xml:space="preserve">
     <value>회원설정</value>
@@ -1789,7 +1789,7 @@
     <value>Edited by</value>
   </data>
   <data name="viewlog" xml:space="preserve">
-    <value>로그인 보기</value>
+    <value>View Log</value>
   </data>
   <data name="viewby" xml:space="preserve">
     <value>View by</value>
@@ -1798,7 +1798,7 @@
     <value>상황</value>
   </data>
   <data name="admin" xml:space="preserve">
-    <value>관리자</value>
+    <value>Admin</value>
   </data>
   <data name="PlsInputUsername" xml:space="preserve">
     <value>Please input username to search</value>
@@ -1807,7 +1807,7 @@
     <value>Search</value>
   </data>
   <data name="noInfo" xml:space="preserve">
-    <value>가능한 정보가 없습니다</value>
+    <value>No information is available</value>
   </data>
   <data name="Detail" xml:space="preserve">
     <value>Detail</value>
@@ -1834,7 +1834,7 @@
     <value>OtherSports</value>
   </data>
   <data name="soccer" xml:space="preserve">
-    <value>축구</value>
+    <value>Soccer</value>
   </data>
   <data name="Tennis" xml:space="preserve">
     <value>Tennis</value>
@@ -1912,7 +1912,7 @@
     <value>Handicap</value>
   </data>
   <data name="a_mpt_mem_10" xml:space="preserve">
-    <value>순위,승자 등</value>
+    <value>Outright</value>
   </data>
   <data name="a_mpt_mem_2" xml:space="preserve">
     <value>Odd/Even</value>
@@ -2017,7 +2017,7 @@
     <value>Handicap</value>
   </data>
   <data name="isa_mpt_mem_10" xml:space="preserve">
-    <value>순위,승자 등</value>
+    <value>Outright</value>
   </data>
   <data name="isa_mpt_mem_2" xml:space="preserve">
     <value>Odd/Even</value>
@@ -2125,7 +2125,7 @@
     <value>브라우저</value>
   </data>
   <data name="NumberGame" xml:space="preserve">
-    <value>넘버게임 커미션</value>
+    <value>Number Game</value>
   </data>
   <data name="v161spt_81" xml:space="preserve">
     <value>1st/Last Over/Under</value>
@@ -2750,32 +2750,5 @@
   </data>
   <data name="Unlimited" xml:space="preserve">
     <value>무제한</value>
-  </data>
-  <data name="BetLists" xml:space="preserve">
-    <value>배팅 리스트</value>
-  </data>
-  <data name="Commision" xml:space="preserve">
-    <value>수수료</value>
-  </data>
-  <data name="ParlayMaxPayout" xml:space="preserve">
-    <value>Parlay Max Payout</value>
-  </data>
-  <data name="PositionTaking" xml:space="preserve">
-    <value>거래 조건</value>
-  </data>
-  <data name="Soccer2" xml:space="preserve">
-    <value>축구 (2)</value>
-  </data>
-  <data name="Soccer35" xml:space="preserve">
-    <value>축구 (3-5)</value>
-  </data>
-  <data name="SoccerSMP" xml:space="preserve">
-    <value>축구  (SMP)</value>
-  </data>
-  <data name="Statement" xml:space="preserve">
-    <value>기록</value>
-  </data>
-  <data name="WinLossLimit" xml:space="preserve">
-    <value>Win Loss Limit</value>
   </data>
 </root>

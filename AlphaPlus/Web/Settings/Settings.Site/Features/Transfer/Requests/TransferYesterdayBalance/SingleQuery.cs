@@ -6,7 +6,9 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferYesterdayBa
 public class SingleQuery : TransferBaseQuery, IRequest<SingleViewModel>
 {
     public SingleQuery()
-        => AllowTotalBalanceTransfer = viewer.AllowTotalBalanceTransfer;
+    {
+        AllowTotalBalanceTransfer = viewer.AllowTotalBalanceTransfer;
+    }
 
     public bool AllowTotalBalanceTransfer { get; }
 

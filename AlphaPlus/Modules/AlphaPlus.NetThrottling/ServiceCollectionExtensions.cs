@@ -12,7 +12,6 @@ namespace AlphaPlus.NetThrottling
         {
             services.Configure<NetThrottlingConfiguration>(configuration.GetSection("AlphaPlus.NetThrottling"));
             services.AddSingleton<IClock, Clock>();
-            services.AddSingleton<ICacheServiceFactory, CacheServiceFactory>();
             services.AddSingleton<IFilterFactory, FilterFactory>();
             services.AddSingleton<IResolverFactory, ResolverFactory>();
             services.AddSingleton<IpFilter>()

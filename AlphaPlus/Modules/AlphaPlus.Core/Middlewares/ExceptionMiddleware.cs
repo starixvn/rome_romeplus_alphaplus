@@ -1,5 +1,6 @@
 using System.Net;
 using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
 using AlphaPlus.PartialUM.Exceptions;
 using Fanex.Logging;
 using Microsoft.AspNetCore.Http;
@@ -11,9 +12,10 @@ public class ExceptionMiddleware
 {
     private readonly RequestDelegate _next;
     private readonly ILogger _logger;
+    private readonly IUserSession _userSession;
 
-    public ExceptionMiddleware(RequestDelegate next, ILogger logger)
-        => (_next, _logger) = (next, logger);
+    public ExceptionMiddleware(RequestDelegate next, ILogger logger, IUserSession userSession)
+        => (_next, _logger, _userSession) = (next, logger, userSession);
 
     public async Task InvokeAsync(HttpContext httpContext)
     {
@@ -32,24 +34,33 @@ public class ExceptionMiddleware
     {
         context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-        await _logger.ErrorAsync(await ExceptionHelper.BuildError(context.Request, exception));
-
         if (exception is PartialUMException partialUMException)
         {
             context.Response.Redirect(MicroSites.MainUrl($"~/partialum?umfrom={partialUMException.StartTime}&umto={partialUMException.EndTime}"));
+            return;
+        }
+
+        context.Items["customData"] = new
+        {
+            _userSession.CustId,
+            _userSession.UserName,
+            _userSession.RoleId,
+            _userSession.SubAccId,
+            _userSession.SubUserName,
+            _userSession.AdminId,
+            _userSession.AdminName
+        };
+        await _logger.ErrorAsync(await ExceptionHelper.BuildError(context.Request, exception));
+
+        if (context.Request.Headers.XRequestedWith == "XMLHttpRequest")
+        {
+            context.Response.ContentType = "application/json";
+            await context.Response.WriteAsync(JsonConvert.SerializeObject(new { Code = 500, Message = "Sorry, there was an unexpected issue on the server. Please seek help from our customer support. [500]!" }));
         }
         else
         {
-            if (context.Request.Headers.XRequestedWith == "XMLHttpRequest")
-            {
-                context.Response.ContentType = "application/json";
-                await context.Response.WriteAsync(JsonConvert.SerializeObject(new { Code = 500, Message = "Sorry, there was an unexpected issue on the server. Please seek help from our customer support. [500]!" }));
-            }
-            else
-            {
-                context.Response.ContentType = "text/html";
-                context.Response.Redirect(MicroSites.MainUrl("~/error"));
-            }
+            context.Response.ContentType = "text/html";
+            context.Response.Redirect(MicroSites.MainUrl("~/error"));
         }
     }
 }

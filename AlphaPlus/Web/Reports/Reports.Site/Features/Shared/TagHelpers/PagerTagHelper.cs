@@ -20,6 +20,7 @@ public class PagerTagHelper : TagHelper
             output.TagName = "div";
             output.TagMode = TagMode.StartTagAndEndTag;
             output.Attributes.Add("id", "report-pager");
+            output.Attributes.Add("class", "control-pager");
             output.Attributes.Add("data-labelpage", Resources.Page);
             output.Attributes.Add("data-labelof", Resources.of);
             output.Attributes.Add("data-labeldisplayitems", Resources.Pager_DisplayItems);

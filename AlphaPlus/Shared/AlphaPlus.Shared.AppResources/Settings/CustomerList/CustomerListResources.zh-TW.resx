@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -199,7 +199,7 @@
     <value>暱稱</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>編號</value>
+    <value> 編號</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>沒有</value>
@@ -269,15 +269,6 @@
   </data>
   <data name="UnuspendStatusPopupHeader" xml:space="preserve">
     <value>取消暫停 &lt;username&gt;</value>
-  </data>
-  <data name="AccountMyanmarOdds" xml:space="preserve">
-    <value>A緬甸盤</value>
-  </data>
-  <data name="MyanmarOdds" xml:space="preserve">
-    <value>緬甸盤</value>
-  </data>
-  <data name="PlayerMyanmarOdds" xml:space="preserve">
-    <value>P緬甸盤</value>
   </data>
   <data name="Group" xml:space="preserve">
     <value>組別</value>

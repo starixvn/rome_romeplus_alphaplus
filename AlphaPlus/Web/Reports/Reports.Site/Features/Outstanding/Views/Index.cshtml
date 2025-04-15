@@ -1,5 +1,6 @@
 @using AlphaPlus.Core.Models
 @using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Common
 @using AlphaPlus.Shared.AppResources.Report
 @using AlphaPlus.Reports.Features.Shared.Extensions
 @using AlphaPlus.Reports.Features.Outstanding
@@ -38,17 +39,14 @@
         {
             <td>@data.GetValueByLevel(level.Value).FormatNumber()</td>
         }
-
-
     }
 
     var length = Model.DisplayOutstandingLevels.Count;
     var isAgentLevel = Model.CustLevel.IsAgentLevel();
 }
 @section Styles {
-    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/site-asset/data-table")
-    <link rel="stylesheet" media="screen and (max-device-width: 767px)"
-        href="~/bundles/outstanding/outstanding-mobile-calculate-07.css" asp-append-version="true" />
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/outstanding")
+    <link rel="stylesheet" href="~/bundles-v2/outstanding.css" asp-append-version="true" />
 }
 @section Scripts {
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-asset/data-table")
@@ -59,26 +57,34 @@
 <form method="get" class="form-inline filter form-report@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")"
     role="form" id="report-form">
     <product-multiselection model="@Model.ProductViewModel" />
+    @if (Model.ShowLevelType)
+    {
+        <level-type custlevel="@Model.CustLevel" selected-value="@Model.LevelType" />
+    }
     <div class="form-group last-group">
         <input type="submit" value="@Resources.Submit" class="btn-submit" />
     </div>
     <div class="form-group hide">
-        <span id="icon-information" class="icon-information-outline"></span>
+        <span id="icon-information" class="ic-information"></span>
     </div>
     <input type="hidden" asp-for="CustId" />
     <input type="hidden" asp-for="CustName" />
     <input type="hidden" id="CustLevelId" name="CustLevelId" value="@Model.CustLevel.Value.ToString()" />
     <input type="hidden" name="BreadcrumbsJson" value="@Model.PageHeader.BreadcrumbLevel.BreadcrumbsJson" />
 </form>
-<div id="report-container" class="level-@Model.CustLevel.Value" style="width: @(Model.IsMobileView ? "100%" : "60%");">
+<div id="report-container" class="level-@Model.CustLevel.Value" style="width: @(Model.IsMobileView ? "100%" : "75%");">
     <table
-        class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover display nowrap @(Model.ReportData.HasData ? "hide" : string.Empty)"
+        class="tb tb-bordered tb-freeze-header tb-hover w-full tbl-outstanding tablesorter text-right @(Model.ReportData.HasData ? "hide" : string.Empty)"
         style="width:100%" data-totalrecords="@Model.ReportData.TotalRecords"
-        data-sortedcolumn="@Model.SortPropertyName" data-descendingsort="@Model.DescendingSort"
-        data-productids="@Model.ProductViewModel.UserSelectedProductIds" id="tbl-report">
+        data-sortedcolumn="@Model.SortPropertyName" data-descendingsort="@Model.DescendingSort" id="tbl-report">
         <thead>
-            <tr>
+            <tr class="hide">
                 <th data-priority="0"></th>
+                
+                @if (Model.ShowLevelType)
+                {
+                    <th data-priority="@length"></th>
+                }
                 @{
                     for (var i = 1; i <= length; i++)
                     {
@@ -86,20 +92,19 @@
                     }
 
                     <th data-priority="@(length + 1)"></th>
-
                     <th data-priority="@(length + 2)"></th>
                 }
                 <th></th>
             </tr>
             <tr>
-                <th rowspan="2" class="header" data-name="CustName">
-                    @{
-                        DisplayUserLevelText(Model.ReportLevel);
-                    }
-                </th>
+                <th rowspan="2" class="header" data-name="CustName">@Resources.Username</th>
+                @if (Model.ShowLevelType)
+                {
+                    <th rowspan="2" class="header" data-name="IsDirectMember">@Resources.Level</th>
+                }
                 <th colspan="@length" class="header">@Resources.Outstanding</th>
                 <th colspan="2" class="header">@Resources.SportsbookRiskAmount</th>
-                <th class="header" rowspan="2"></th>
+                <th rowspan="2" class="header"></th>
             </tr>
             <tr class="thead-row2">
                 @{
@@ -116,7 +121,6 @@
                 <th data-priority="@(length + 1)">
                     @Resources.ToWin
                 </th>
-
                 <th data-priority="@(length + 2)">
                     @Model.GetSMARiskText
                 </th>
@@ -129,10 +133,9 @@
                 {
                     <tr>
                         <td class="text-left" data-sortedvalue="@outstanding.CustName">
-                            @if (isAgentLevel)
+                            @if (isAgentLevel || outstanding.IsDirectMember)
                             {
-                                <a class="open-link"
-                                    data-url="@Model.GetBetListUrl(outstanding.CustId, outstanding.CustName)">@outstanding.CustName</a>
+                                <a href="javascript:;" class="open-link" data-url="@Model.BuildBetListUrl(outstanding.CustId, outstanding.CustName)">@outstanding.CustName</a>
                             }
                             else
                             {
@@ -141,6 +144,10 @@
                                     data-custlevelid="@Model.DownlineLevelId">@outstanding.CustName</a>
                             }
                         </td>
+                        @if (Model.ShowLevelType)
+                        {
+                            <td class="text-center">@(outstanding.IsDirectMember ? CommonResx.DirectMember : Model.LevelTypeValue)</td>
+                        }
                         @{
                             RenderOutstandingCells(outstanding);
                         }
@@ -152,6 +159,10 @@
                 }
                 <tr class="tbl-footer">
                     <td class="text-left">@Resources.Total</td>
+                    @if (Model.ShowLevelType)
+                    {
+                        <td></td>
+                    }
                     @for (var i = 0; i < length; i++)
                     {
                         <td>
@@ -187,3 +198,4 @@
 <a class="hide" id="LoadLegendURL" asp-action="Outstanding" asp-controller="Legends"></a>
 <input type="hidden" asp-for="DisplayOutstandingLevelsJson" />
 <input type="hidden" id="NoInformationIsAvailable" value="@Resources.NoInformationIsAvailable" />
+<input type="hidden" id="query-productids" value="@Model.ProductViewModel.UserSelectedProductIds" />

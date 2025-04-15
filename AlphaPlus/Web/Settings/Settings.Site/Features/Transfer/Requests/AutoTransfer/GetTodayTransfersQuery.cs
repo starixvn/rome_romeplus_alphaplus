@@ -22,7 +22,6 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
 
         public string Language { get; set; }
 
-
         public string Username { get; set; }
 
         public string Status { get; set; }
@@ -34,6 +33,8 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
         public int PageSize { get; set; }
 
         public int PageIndex { get; set; }
+
+        public byte LevelType { get; set; }
 
         public string AGIP { get; }
 

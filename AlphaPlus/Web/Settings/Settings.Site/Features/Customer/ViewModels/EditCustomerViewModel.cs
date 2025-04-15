@@ -17,7 +17,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer.ViewModels
                 custId = query.CustId,
                 roleId = query.RoleId,
                 uplineRoleId = query.ViewerLevelId,
-                productGroupId = query.ProductGroupId
+                productGroupId = query.ProductGroupId,
+                agentId = query.AgentId
             });
         }
     }

@@ -71,7 +71,16 @@ body:not(.modal-open) {
         }
     }
 }
-
+.multiselect-container.dropdown-menu label.radio{
+    display: block;
+}
+.multiselect-container{
+    li{
+        &.active{
+            background-color: #2b2b2b;
+        }
+    }
+}
 table.dataTable {
     width: 99.5% !important;
     //overflow: hidden;

@@ -12,7 +12,6 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         => services
         .AddSingleton<ICacheRefService, CacheRefService>()
-        .AddSingleton<Fanex.Caching.ICacheService, Fanex.Caching.CacheService>()
         .AddSingleton<IPartialUMDataAccess, PartialUMDataAccess>()
         .AddPartialUM(configuration)
         .AddSingleton<ITotalBetsService, TotalBetsService>()

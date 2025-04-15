@@ -1,0 +1,50 @@
+﻿@using AlphaPlus.Main.Site.Features.Tour
+@using AlphaPlus.Core.Configurations
+@model TourViewModel
+@{
+    Layout = "_LayoutTour";
+    var userLevelName = Model.UserLevel.DisplayName.ToLowerInvariant();
+    var imagePath = $"~/assets/images/tour/directmember/{userLevelName}/{Model.Language}";
+    var version = AlphaPlus.Core.Configurations.AppSettings.JsVersion;
+}
+@section Scripts {
+    <script src="~/assets/bundles/tour/new-feature-tour.js" asp-append-version="true"></script>
+}
+<div class="inner">
+    <div class="content-page content-page-1">
+        <div class="title">@Tour.Index_Page1_Title</div>
+        <p>@Html.Raw(Tour.Index_Page1_Row1)</p>
+        <img src="@Url.Content($"{imagePath}/Page1.png?v={version}")" alt="tour Directmember" />
+    </div>
+    <div class="content-page content-page-2 hidden">
+        <div class="title">@Tour.Index_Page2_Title</div>
+        <img src="@Url.Content($"{imagePath}/Page2.png?v={version}")" alt="tour Directmember" />
+    </div>
+    <div class="content-page content-page-3 hidden">
+        <div class="title">@Html.Raw(Tour.Index_Page3_Title)</div>
+        <img src="@Url.Content($"{imagePath}/Page3.png?v={version}")" alt="tour Directmember" />
+    </div>
+    <div class="content-page content-page-4 hidden">
+        <div class="title">@Html.Raw(Model.UserLevel.IsSuperLevel()
+            ? Tour.Index_Page4_Title_Super
+            : Tour.Index_Page4_Title_Master)</div>
+        <img src="@Url.Content($"{imagePath}/Page4.png?v={version}")" alt="tour Directmember" />
+    </div>
+    <div class="content-page content-page-5 hidden">
+        <div class="title">@Html.Raw(Tour.Index_Page5_Title)</div>
+        <img src="@Url.Content($"{imagePath}/Page5.png?v={version}")" alt="tour Directmember" />
+    </div>
+</div>
+<div class="control">
+    <div class="spn-page">
+        <span>@Resources.Page</span>
+        <span class="page-index">1</span>
+        <span>@Resources.of</span>
+        <span class="total-page">5</span>
+    </div>
+    <div class="page-btn">
+        <span class="page-btn-prev hidden"><i class="icon-caret-left"></i></span>
+        <span class="page-btn-next"><i class="icon-caret-right"></i></span>
+    </div>
+</div>
+@Html.Hidden("NewFeatureUrl", MicroSites.SettingUrl("~/Customer/CreateDirectMember"))

@@ -3,8 +3,8 @@ using AlphaPlus.BetLists.Shared.Services;
 using AlphaPlus.IPInfo.Services;
 using AlphaPlus.PartialUM.Services;
 using AlphaPlus.Utilities.IP;
-using Fanex.Caching;
 using Fanex.Data.Repository;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.BetLists.LastBets;
 
@@ -17,7 +17,7 @@ public interface ILastBetsService
 
 public class LastBetsService(
     IPartialUMService partialUMService,
-    ICacheService cacheService,
+    IMemoryCache cacheService,
     IDynamicRepository repository,
     IIPInfoService ipInfoService,
     IPService ipService) : BetListServiceBase(repository, ipInfoService, ipService), ILastBetsService
@@ -27,7 +27,7 @@ public class LastBetsService(
     private const string RunningOtherMatchesCacheKey = "AlphaPlus.BetLists.LastBets.RunningOtherMatches";
 
     private readonly IPartialUMService partialUMService = partialUMService;
-    private readonly ICacheService cacheService = cacheService;
+    private readonly IMemoryCache cacheService = cacheService;
 
     public Task<IEnumerable<TicketDto>> GetBetList(GetLastBetsParam param)
     {
@@ -89,24 +89,24 @@ public class LastBetsService(
     }
 
     private async Task<IDictionary<int, MatchInfo>> GetRunningOutrightMatches(int cacheTimeInMinutes)
-        => await cacheService.GetOrSetAsync(
+        => await cacheService.GetOrCreateAsync(
         RunningOutrightMatchesCacheKey,
-        async () =>
+        async cacheEntry =>
         {
+            cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTimeInMinutes));
             var matches = await repository.FetchAsync<MatchInfo>(new GetRunningOutrightMatchCriteria());
             return BuildHashTableMatches(matches);
-        },
-        new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTimeInMinutes)));
+        });
 
     private async Task<IDictionary<int, MatchInfo>> GetRunningOtherMatches(int cacheTimeInMinutes)
-        => await cacheService.GetOrSetAsync(
+        => await cacheService.GetOrCreateAsync(
         RunningOtherMatchesCacheKey,
-        async () =>
+        async cacheEntry =>
         {
+            cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTimeInMinutes));
             var matches = await repository.FetchAsync<MatchInfo>(new GetRunningOtherMatchCriteria());
             return BuildHashTableMatches(matches);
-        },
-        new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTimeInMinutes)));
+        });
 
     private static IDictionary<int, MatchInfo> BuildHashTableMatches(IEnumerable<MatchInfo> matches)
     {
@@ -123,7 +123,7 @@ public class LastBetsService(
     private async Task<MatchInfo> GetMatchInfo(int matchId, int cacheTimeInMinutes)
     {
         var cachedKey = $"{RunningMatchesCacheKey}_{matchId}";
-        var matchInfo = await cacheService.GetAsync<MatchInfo>(cachedKey);
+        var matchInfo = cacheService.Get<MatchInfo>(cachedKey);
 
         if (matchInfo == null && !IsDummyMatch(matchId))
         {
@@ -134,7 +134,7 @@ public class LastBetsService(
                 cacheService.Set(
                     cachedKey,
                     matchInfo,
-                    new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTimeInMinutes)));
+                    new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTimeInMinutes)));
             }
         }
 

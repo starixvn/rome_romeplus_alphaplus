@@ -1,0 +1,163 @@
+﻿:root, :root [data-theme='light'] {
+    --move-statement-history-member-row: #DEE9F5;
+    --move-statement-history-color-red: red;
+    --list-total-statement-border: #B1CBE0;
+    --list-total-statement-background: #E8F4FD;
+    --list-total-statement-text-total-color: #444;
+    --list-total-statement-last-item-border: #E8BB90;
+    --list-total-statement-last-item-background: #FDF9EE;
+    --list-total-statement-last-item-text-total-color: #215ACE;
+}
+
+:root [data-theme='dark'] {
+    --move-statement-history-member-row: #3E4C57;
+    --move-statement-history-color-red: #E54748;
+    --list-total-statement-border: #6B8599;
+    --list-total-statement-background: #425A6D;
+    --list-total-statement-text-total-color: #EDEDED;
+    --list-total-statement-last-item-border: #736A53;
+    --list-total-statement-last-item-background: #423D30;
+    --list-total-statement-last-item-text-total-color: #41A4FF;
+}
+
+.member-row td{
+    background-color: var(--move-statement-history-member-row)!important;
+    font-weight: bold;
+}
+
+
+.red {
+    color: var(--move-statement-history-color-red);
+}
+.note-box{
+    width: 90%;
+}
+.total {
+    font-weight: 700;
+}
+.refno {
+    text-align: left;
+    margin-left: 15px;
+}
+// total
+.list-total-statement {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 16px;
+
+    @media only screen and (max-device-width: 768px) {
+        justify-content: center;
+    }
+
+    .item {
+        width: 160px;
+        border: 1px solid var(--list-total-statement-border);
+        background-color: var(--list-total-statement-background);
+        border-radius: 3px;
+        padding: 3px;
+        margin-right: 12px;
+        text-align: center;
+        margin-bottom: 16px;
+
+        &:hover {
+            .title-total {
+                &[data-title] {
+                    &:after, &:before {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+        .title-total {
+            background: #BCD7EE;
+            font-weight: bold;
+            color: #0B599C;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 3px;
+            line-height: 15px;
+            position: relative;
+
+            &[data-title] {
+                &:after, &:before {
+                    position: absolute;
+                    opacity: 0;
+                    transition: 0.35s;
+                    z-index: 9020;
+                    pointer-events: none;
+                }
+
+                &:after {
+                    content: attr(data-title);
+                    bottom: calc(100% + 6px);
+                    left: 0;
+                    font-size: 13px;
+                    padding: 12px;
+                    border-radius: 5px;
+                    background-color: #333333;
+                    color: #fff;
+                }
+
+                &:before {
+                    content: "";
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: 7px 6px 0 6px;
+                    border-color: #333333 transparent transparent transparent;
+                    bottom: 100%;
+                    left: 30px;
+                }
+            }
+        }
+
+        .text-total {
+            color: var(--list-total-statement-text-total-color);
+            font-weight: bold;
+            padding: 7px 0;
+        }
+
+        &.last-item {
+            border-color: var(--list-total-statement-last-item-border);
+            background-color: var(--list-total-statement-last-item-background);
+
+            .title-total {
+                color: #7E3D00;
+                background: #F6C699;
+            }
+
+            .text-total a {
+                color: var(--list-total-statement-last-item-text-total-color);
+            }
+        }
+    }
+}
+.flex-row{
+    display: flex;
+    flex-direction: row;
+}
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.breadcrumb-table{
+    border-bottom: 1px solid var(--table-border);
+    + .tb-bordered{
+        margin-top: -1px;
+    }
+}
+@media only screen and (min-device-width: 768px) {
+    .breadcrumb-table, .control-pager, #tbl-report {
+        width: 60%;
+        min-width: 710px;
+    }
+}
+@media only screen and (max-device-width: 767px) {
+    .filter select, .filter input[type='text'], .filter [class^='btn-submit'], .filter .input-group.date .form-control {
+        height: 28px;
+    }
+}

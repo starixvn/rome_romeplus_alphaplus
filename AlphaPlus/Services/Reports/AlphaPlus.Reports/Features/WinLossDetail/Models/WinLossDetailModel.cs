@@ -45,6 +45,8 @@ public class WinLossDetailModel : NetWinLoss
 
     public int NumberOfTickets { get; set; }
 
+    public bool IsDirectMember { get; init; }
+
     public static WinLossDetailModel operator +(WinLossDetailModel model1, WinLossDetailModel model2)
     {
         model1.NetTurnover += model2.NetTurnover;

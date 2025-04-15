@@ -1,10 +1,10 @@
 using System.Resources;
 using System.Text;
-using AlphaPlus.Shared.AppResources.Main;
 using AlphaPlus.Main.Site.Extensions;
-using Fanex.Caching;
+using AlphaPlus.Shared.AppResources.Main;
 using Fanex.Data.Repository;
 using Fanex.RemotingRef;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Main.Site.Features.UMMessage
 {
@@ -18,10 +18,10 @@ namespace AlphaPlus.Main.Site.Features.UMMessage
         private const string UMMessageCacheKey = "Alpha.Main.Services.Impl.UMMessageService";
         private readonly IDynamicRepository dynamicRepository;
         private readonly ResourceManager settingTypeResource;
-        private readonly ICacheService cacheService;
+        private readonly IMemoryCache cacheService;
         private readonly IRemotingRefService remotingRefService;
 
-        public UMMessageService(IDynamicRepository dynamicRepository, ICacheService cacheService, IRemotingRefService remotingRefService)
+        public UMMessageService(IDynamicRepository dynamicRepository, IMemoryCache cacheService, IRemotingRefService remotingRefService)
         {
             this.dynamicRepository = dynamicRepository;
             this.remotingRefService = remotingRefService;
@@ -32,22 +32,17 @@ namespace AlphaPlus.Main.Site.Features.UMMessage
         public async Task<IEnumerable<UMMessageDTO>> GetMessagesAsync(UMMessageParam param)
             => BuildMessages(await GetUMMessageItemAsync(param));
 
-        private async Task<IEnumerable<UMMessageItem>> GetUMMessageItemAsync(UMMessageParam param)
+        private Task<IEnumerable<UMMessageItem>> GetUMMessageItemAsync(UMMessageParam param)
         {
             var cacheKey = $"{UMMessageCacheKey}_{param.Site}_{param.CurrencyId}_{param.SuperId}";
-            var messages = cacheService.Get<IEnumerable<UMMessageItem>>(cacheKey);
 
-            if (messages == null)
-            {
-                messages = await dynamicRepository.FetchAsync<UMMessageItem>(new GetUMMessageCriteria(param.CustId));
-
-                cacheService.Set(
-                   cacheKey,
-                   messages,
-                   new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(AppSettings.UMAnnouncementPopupServerCacheInMinutes)));
-            }
-
-            return messages;
+            return cacheService.GetOrCreateAsync(
+                cacheKey,
+                entry =>
+                {
+                    entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(AppSettings.UMAnnouncementPopupServerCacheInMinutes);
+                    return dynamicRepository.FetchAsync<UMMessageItem>(new GetUMMessageCriteria(param.CustId));
+                });
         }
 
         private IEnumerable<UMMessageDTO> BuildMessages(IEnumerable<UMMessageItem> messages)

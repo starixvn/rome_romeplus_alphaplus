@@ -1,5 +1,5 @@
 ﻿#txt-username {
-    margin-left: .05em;
+    margin-left: 0.05em;
 }
 
 .dropdown {
@@ -17,7 +17,7 @@
     }
 
     .pagination-page-list {
-        margin-left: .05em;
+        margin-left: 0.05em;
     }
 }
 
@@ -81,14 +81,14 @@ table.tblRpt {
         .paginate_input {
             width: 50px;
             box-shadow: none;
-            border: 1px solid #CFCFCF;
+            border: 1px solid #cfcfcf;
             border-radius: 4px;
             text-align: center;
         }
 
         .paginate_button {
-            color: #3D5AD8 !important;
-            font-family: "Iconalpha";
+            color: #3d5ad8 !important;
+            font-family: 'Iconalpha';
             padding: 0;
             font-size: 20px;
             position: relative;
@@ -111,12 +111,12 @@ table.tblRpt {
             &:hover {
                 background: transparent;
                 border: none;
-                color: #3D5AD8 !important;
+                color: #3d5ad8 !important;
             }
         }
 
         .first:before {
-            content: "\e951";
+            content: '\e951';
             transform: rotate(180deg);
             display: inline-block;
         }
@@ -125,7 +125,7 @@ table.tblRpt {
             padding-right: 8px;
 
             &:before {
-                content: "\e954";
+                content: '\e954';
                 display: inline-block;
                 transform: rotate(90deg);
             }
@@ -135,14 +135,26 @@ table.tblRpt {
             padding-left: 8px;
 
             &:before {
-                content: "\e954";
+                content: '\e954';
                 transform: rotate(-90deg);
                 display: inline-block;
             }
         }
 
         .last:before {
-            content: "\e951";
+            content: '\e951';
         }
+    }
+}
+
+.filter .level-type-multiselect {
+    .btn-group,
+    .btn-default {
+        float: none;
+        width: 130px;
+    }
+
+    .dropdown-menu {
+        min-width: 130px;
     }
 }

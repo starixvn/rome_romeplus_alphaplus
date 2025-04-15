@@ -12,6 +12,7 @@ builder.Services
     .AddFanexDataWithSqlServer(configuration)
     .AddRemotingRef(configuration)
     .AddInfrastructure(configuration)
+    .AddMemoryCache()
     // .AddResponseCompression(options =>
     // {
     //     options.EnableForHttps = false;

@@ -424,7 +424,7 @@
     <value>總佣金</value>
   </data>
   <data name="GrossCommNoteForAgent" xml:space="preserve">
-    <value>在代理級別查看報告：總佣金是總代理可以從上線獲取的數額(不包括占成)予每一個代理</value>
+    <value>在代理名單：總代理可以從上線收到傭金（不含占成）在於每個代理或是總代理直系會員。</value>
   </data>
   <data name="GrossCommNoteForCasino" xml:space="preserve">
     <value>在某些娛樂場產品中，若佔成數/佣金在遊戲中或一天中發生變化，則報告上顯示的總佣金值將是根據平均佔成數/佣金率計算所得出的近似值。</value>
@@ -439,10 +439,10 @@
     <value>在超級代理級別查看報告：總佣金是超級代理可以從上線獲取的總額(不包括占成)</value>
   </data>
   <data name="GrossCommNoteForMaster" xml:space="preserve">
-    <value>在總代理級別查看報告：總佣金是超級總代理可以從上線獲取的數額(不包括占成)予每一個總代理</value>
+    <value>在總代理名單：超級總代理可以從公司收到傭金（不含占成）在於每個總代理或是超級總代理直系會員。</value>
   </data>
   <data name="GrossCommNoteForMember" xml:space="preserve">
-    <value>在會員級別查看報告：總佣金是代理可以從上線獲取的數額(不包括占成)予每一個會員</value>
+    <value>在會員名單：代理可以從上線收到傭金（不含占成）在於每個會員。</value>
   </data>
   <data name="GrossCommNoteForRoundingProblem" xml:space="preserve">
     <value>由於以四個小數點凈值，每個級別的總傭金數值可能不同。</value>
@@ -1145,6 +1145,12 @@
   </data>
   <data name="WhiteLabelSettlementNote" xml:space="preserve">
     <value>以確保數據的準確性，每月結束後5天生成結算報告</value>
+  </data>
+  <data name="DownlineTotal" xml:space="preserve">
+    <value>下線總數</value>
+  </data>
+  <data name="Guidelines_TransferAmt_DirectMember" xml:space="preserve">
+    <value>直系上線與會員之間的轉賬總額。點擊查看轉賬細節。</value>
   </data>
   <data name="ToWin" xml:space="preserve">
     <value>贏取金額</value>

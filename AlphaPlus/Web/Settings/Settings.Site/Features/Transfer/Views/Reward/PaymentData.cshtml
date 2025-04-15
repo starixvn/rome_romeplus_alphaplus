@@ -1,19 +1,28 @@
 ﻿@using AlphaPlus.Core.Extensions
+@using AlphaPlus.Shared.AppResources.Common
 @using AlphaPlus.Shared.AppResources.Settings.Transfer
 @{
     Layout = null;
+    var tdIndex = 0;
+    var showLevelType = Model.ActorLevel.IsMasterOrSuperLevel();
+    var levelTypeValue = Model.ActorLevel.IsSuperLevel() ? CommonResx.MasterAgent : Resources.Agent;
 }
 @model AlphaPlus.Settings.Transfer.API.Models.Reward.RewardPayment
 <table class="tb tb-bordered tb-hover tb-freeze-header w-full reward-payment" id="tbl-transfer"
     data-cansort="@Model.MoreThanOne">
     <thead>
         <tr>
-            <th class="sorting" data-colindex="0">@Resources.Program</th>
-            <th class="sorting" data-colindex="1">@Resources.Username</th>
-            <th class="sorting" data-colindex="2" data-sorttype="digit">@Resources.Amount</th>
-            <th class="sorting" data-colindex="3">@Resources.PaymentDate</th>
-            <th class="disabledsort" data-colindex="4"><input type="checkbox" id="chk-allPaymentStatus" /></th>
-            <th class="sorting" data-colindex="5" data-sorttype="digit">@Resources.PaymentStatus</th>
+            <th class="sorting" data-colindex="@(tdIndex++)">@Resources.Program</th>
+            <th class="sorting" data-colindex="@(tdIndex++)">@Resources.Username</th>
+            @if (showLevelType)
+            {
+                <th class="sorting" data-colindex="@(tdIndex++)">@Resources.Level</th>
+            }
+            <th class="sorting" data-colindex="@(tdIndex++)" data-sorttype="digit">@Resources.Amount</th>
+            <th class="sorting" data-colindex="@(tdIndex++)">@Resources.PaymentDate</th>
+            <th class="disabledsort" data-colindex="@(tdIndex++)"><input type="checkbox" id="chk-allPaymentStatus" />
+            </th>
+            <th class="sorting" data-colindex="@(tdIndex++)" data-sorttype="digit">@Resources.PaymentStatus</th>
         </tr>
     </thead>
     @if (Model.Any)
@@ -25,6 +34,10 @@
                 <tr>
                     <td>@item.ProgramName</td>
                     <td>@item.Username</td>
+                    @if (showLevelType)
+                    {
+                        <td class="text-center">@(item.IsDirectMember ? CommonResx.DirectMember : levelTypeValue)</td>
+                    }
                     <td class="text-right">@item.Amount.FormatNumber20()</td>
                     <td class="text-center"
                         data-sortedvalue="@(paymentDateHasValue ? item.PaymentDate.Value.ToLongDateTime24HWithSlash() : string.Empty)">
@@ -37,7 +50,8 @@
                         @if (!item.PaymentStatus)
                         {
                             <input type="checkbox" class="checkbox-unpaid" data-custid="@item.CustId" data-custname="@item.Username"
-                                data-programid="@item.ProgramId" data-maxtransid="@item.MaxTransId" />
+                                data-programid="@item.ProgramId" data-maxtransid="@item.MaxTransId"
+                                data-isdirectmember="@Convert.ToByte(item.IsDirectMember)" />
                         }
                     </td>
                     <td class="text-center" data-sortedvalue="@Convert.ToByte(item.PaymentStatus)">
@@ -48,7 +62,8 @@
                         else
                         {
                             <button type="button" class="button-unpaid" data-custid="@item.CustId" data-custname="@item.Username"
-                                data-programid="@item.ProgramId" data-maxtransid="@item.MaxTransId">@Resources.Unpaid</button>
+                                data-programid="@item.ProgramId" data-maxtransid="@item.MaxTransId"
+                                data-isdirectmember="@Convert.ToByte(item.IsDirectMember)">@Resources.Unpaid</button>
                         }
                     </td>
                 </tr>
@@ -56,9 +71,9 @@
         </tbody>
         <tfoot>
             <tr class="tbl-footer">
-                <td class="text-right" colspan="2">@Resources.Total</td>
+                <td class="text-right" colspan="@(showLevelType ? 3 : 2)">@Resources.Total</td>
                 <td class="text-right">@Model.Total.Amount.FormatNumber20()</td>
-                <td colspan="3"></td>
+                <td colspan="@(showLevelType ? 4 : 3)"></td>
             </tr>
         </tfoot>
     }
@@ -66,7 +81,7 @@
     {
         <tbody>
             <tr>
-                <td colspan="6" class="text-center">@Resources.NoInformationIsAvailable</td>
+                <td colspan="@(showLevelType ? 7 : 6)" class="text-center">@Resources.NoInformationIsAvailable</td>
             </tr>
         </tbody>
     }

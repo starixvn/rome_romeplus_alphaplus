@@ -36,7 +36,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance
 
         public override decimal GivenCreditMin => Math.Max(0, Outstanding - TotalBalance + PendingTransfer3rd);
 
-        internal override bool ShowTransferLink => ActorLevel.IsAgentLevel() && base.ShowTransferLink;
+        internal override bool ShowTransferLink => (account.IsDirectMember || ActorLevel.IsAgentLevel()) && base.ShowTransferLink;
 
         public override decimal RewardReceivable => RoundUpNumber(balanceInfoModel.RewardReceivable ?? 0);
 

@@ -1,9 +1,8 @@
 namespace AlphaPlus.Settings.Transfer.API.Params.TransferYesterdayBalance;
 
 public record AgentTransferYesterdayBalanceParam(
-    int AgentId,
-    string AgentName,
-    string SuperIdsTransferTotal,
+    int AgentId, // incase direct member is super/master Id
+    string AgentName, // incase direct member is super/master username
     int MemberId,
     decimal Amount,
     bool IsAllDayBalanceTransfer,

@@ -9,6 +9,8 @@ namespace AlphaPlus.Settings.Transfer.API.Services;
 public interface ITransferListService
 {
     Task<CustomerTransferReport> GetTransferList(TransferListParam param);
+
+    Task<CustomerTransfer> GetCustomerTransfer(TransferListParam param);
 }
 
 public class TransferListService(IDynamicRepository repository) : ITransferListService
@@ -17,8 +19,10 @@ public class TransferListService(IDynamicRepository repository) : ITransferListS
 
     public async Task<CustomerTransferReport> GetTransferList(TransferListParam param)
     {
-        var criteria = BuildTransferListCriteria(param);
-        var customers = await repository.FetchAsync<CustomerTransfer>(criteria, param.AGIP);
+        var custLevel = Enumeration.FromValue<UserLevel>(param.CustLevelId);
+        var ip = custLevel.IsAgentLevel() ? param.AGIP : null;
+        var criteria = BuildTransferListCriteria(param, custLevel);
+        var customers = await repository.FetchAsync<CustomerTransfer>(criteria, ip);
 
         if (!customers.Any())
         {
@@ -28,10 +32,19 @@ public class TransferListService(IDynamicRepository repository) : ITransferListS
         return new CustomerTransferReport(customers, BuildTotal(criteria), criteria.TotalPages);
     }
 
-    private static GetTransferListCriteria BuildTransferListCriteria(TransferListParam param)
+    public async Task<CustomerTransfer> GetCustomerTransfer(TransferListParam param)
     {
         var custLevel = Enumeration.FromValue<UserLevel>(param.CustLevelId);
+        var ip = custLevel.IsAgentLevel() ? param.AGIP : null;
+        var criteria = BuildTransferListCriteria(param, custLevel);
+        var customers = await repository.FetchAsync<CustomerTransfer>(criteria, ip);
 
+        return customers.FirstOrDefault();
+    }
+
+    private static GetTransferListCriteria BuildTransferListCriteria(TransferListParam param, UserLevel custLevel)
+    {
+        //var custLevel = Enumeration.FromValue<UserLevel>(param.CustLevelId);
         if (custLevel.IsAgentLevel())
         {
             return new GetAgentTransferListCriteria(
@@ -54,6 +67,7 @@ public class TransferListService(IDynamicRepository repository) : ITransferListS
                 !param.AllYesterdayBalance,
                 param.AllowTotalBalanceTransfer,
                 param.AutoTransfer,
+                param.LevelType,
                 param.PageIndex,
                 param.PageSize);
         }
@@ -65,6 +79,7 @@ public class TransferListService(IDynamicRepository repository) : ITransferListS
             !param.AllYesterdayBalance,
             param.AllowTotalBalanceTransfer,
             param.AutoTransfer,
+            param.LevelType,
             param.PageIndex,
             param.PageSize);
     }

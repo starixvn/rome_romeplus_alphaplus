@@ -5,28 +5,8 @@ namespace AlphaPlus.Settings.Transfer.API.Configurations;
 
 public static class AppSettings
 {
-    public static string StoreProcedurePath => GetConfigValue("StoredProcedurePath");
-
-    public static string FanexDataServiceApi => GetConfigValue("FanexDataServiceApi");
-
-    public static string AllowedTotalBalanceTransferSuperIds => GetConfigValue("AllowedTotalBalanceTransferSuperIds");
-
-    public static string TransferRedisConfiguration => GetConfigValue("RedisConfiguration:AlphaPlus.Transfer");
-
     public static string GetConfigValue(string configName) => ConfigurationManager.GetValue<string>(configName);
 
-    public static void Verify()
-    {
-        Require(StoreProcedurePath, nameof(StoreProcedurePath));
-    }
-
-    private static void Require(string key, string keyName)
-    {
-        if (string.IsNullOrWhiteSpace(key))
-        {
-            throw new NullReferenceException($"{keyName} is null or whitespace");
-        }
-    }
 
     public static IEnumerable<string> TransferToDownlineHistoryOfferSites
         => GetConfigValue("TransferToDownlineHistory:OfferSites")
@@ -37,17 +17,7 @@ public static class AppSettings
         => TransferToDownlineHistoryOfferSites.Contains("*", StringComparer.CurrentCultureIgnoreCase)
         || TransferToDownlineHistoryOfferSites.Contains(site, StringComparer.CurrentCultureIgnoreCase);
 
-    public static string VirtualDirectory
-    {
-        get
-        {
-            return AppPathHelper.GetAppPath("/settings", "~/");
-        }
-    }
-
     public static string SiteLabel => GetConfigValue("SiteLabel") ?? string.Empty;
-
-    public static bool IsMBCSite => !SiteLabel.Equals("789y", StringComparison.OrdinalIgnoreCase);
 
     public static int MultipleTransferCacheTimeOut => int.Parse(GetConfigValue("MultipleTransferCacheTimeOut"));
 
@@ -65,7 +35,13 @@ public static class AppSettings
         StringComparer.OrdinalIgnoreCase
     );
 
-    public static string AllowedListSuperAccounts => GetConfigValue("AllowedListSuperAccounts");
-
     public static int MaxCustIdTransfer => int.Parse(GetConfigValue("MaxCustIdTransfer"));
+
+    public static string VirtualDirectory
+    {
+        get
+        {
+            return AppPathHelper.GetAppPath("/settings", "~/");
+        }
+    }
 }

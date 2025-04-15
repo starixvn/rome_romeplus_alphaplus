@@ -9,7 +9,9 @@
     void BuildBetCreditHistory(BetCreditHistoryEntity item)
     {
         <tr class="@(item.BetCredit == null ? "highlight-row" : string.Empty)">
-            <td>@item.ActionDateString</td>
+            <td>
+                <div class="text-nowrap">@item.ActionDateString</div>
+            </td>
             <td class="text-center">@item.WinLostDateString</td>
             <td class="text-left">@item.RefNo</td>
             <td>@FormatNullableNumber(item.ActualStake)</td>
@@ -26,14 +28,15 @@
     }
 }
 @section Styles {
-    @StaticResources.AssetStyles.RenderCommonWithDarkMode($"/bundles/site-reports/tab-{Model.CustLevel.DisplayName.ToLowerInvariant()}")
-    <link rel="stylesheet" href="~/bundles/betcredittracking/betcredithistory.css" asp-append-version="true" />
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/betcredittracking")
+    <link rel="stylesheet" href="~/bundles-v2/betcredithistory.css" asp-append-version="true" />
 }
 @section Scripts {
+    @StaticResources.AssetScripts.Render("/bundles-v2/site-assets/tipsy")
     <script src="~/bundles/betcredittracking/betcredithistory.js" asp-append-version="true"></script>
 }
 @model BetCreditHistoryViewModel
-<div class="page-title">
+<div class="page-title tabs @Model.CustLevel.DisplayName.ToLowerInvariant()">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active">
             <a href="javascript:;" aria-controls="home" role="tab" data-toggle="tab">@Resources.BetCreditHistory</a>
@@ -42,8 +45,8 @@
             <a class="open-link"
                 data-url="@MicroSites.ReportsUrl("~/BetCreditTracking/MoveStatementHistory")">@Resources.MoveStatementHistory</a>
         </li>
-        <li>
-            <a href="@userguideLink" target="_blank"><span class="icon icon-information-outline"></span></a>
+        <li class="tab-icon">
+            <a href="@userguideLink" target="_blank"><span class="ic-information"></span></a>
         </li>
     </ul>
     <div class="list-icon">
@@ -60,26 +63,24 @@
         <form method="get" class="form-inline filter@(Model.IsFilterVisible ? string.Empty : " hide")" role="form"
             id="report-form" asp-action="BetCreditHistorySearch">
             <div class="form-group">
-                <label asp-for="Member">@Resources.Member <span style="color: #E54748;">*</span></label>
+                <label class="label-form-control" asp-for="Member">@Resources.Member<span
+                        style="color: #E54748;">&nbsp;*</span></label>
                 <input type="text" style="width: 200px;" autocomplete="off" placeholder="@Resources.Username"
-                    asp-for="Member" />
+                    maxlength="50" asp-for="Member" />
             </div>
             <div class="form-group">
-                <label asp-for="RefNo">@Resources.refno</label>
+                <label class="label-form-control" asp-for="RefNo">@Resources.refno</label>
                 <input type="text" style="width: 170px;" maxlength="19" autocomplete="off" asp-for="RefNo" />
             </div>
             <daterange-picker model="Model.DateRangePicker" />
             <div class="form-group">
-                <a id="icon-excel" class="icon-excel" title="@Resources.ExportToExcel"
-                    asp-action="BetCreditHistoryExcel" asp-all-route-data="Model.GetExcelParams()"></a>
+                <a id="icon-excel" class="ic-excel" title="@Resources.ExportToExcel" asp-action="BetCreditHistoryExcel"
+                    asp-all-route-data="Model.GetExcelParams()"></a>
             </div>
-            <div id="validation-msg-error"
-                class="msg msg-error@(string.IsNullOrWhiteSpace(Model.ErrorMessage) ? " hide" : string.Empty)">
-                @Model.ErrorMessage</div>
         </form>
         @if (Model.ReportData != null && string.IsNullOrWhiteSpace(Model.ErrorMessage))
         {
-            <table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover width-100per" id="tbl-report">
+            <table class="tb tb-bordered tb-hover w-full text-right" id="tbl-report">
                 <thead>
                     <tr>
                         <th class="action-datetime-col">@Resources.ActionDateTime</th>
@@ -115,3 +116,7 @@
 <pager model="Model.Pager" />
 <input type="hidden" id="UsernameIsRequired" value="@Resources.UsernameIsRequired" />
 <input type="hidden" id="InvalidRefNo" value="@Resources.InvalidRefNo" />
+@if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+{
+    <input type="hidden" asp-for="ErrorMessage">
+}

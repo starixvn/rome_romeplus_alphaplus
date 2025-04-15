@@ -9,7 +9,7 @@ import postcss from 'gulp-postcss';
 import autoprefixer from 'autoprefixer';
 import uglify from 'gulp-uglify';
 import merge from 'merge-stream';
-import bundleConfig from './bundleconfig.json' assert { type: 'json' };
+import bundleConfig from './bundleconfig.json' with { type: 'json' };
 const sass = gulpSass(dartSass);
 
 const regex = {

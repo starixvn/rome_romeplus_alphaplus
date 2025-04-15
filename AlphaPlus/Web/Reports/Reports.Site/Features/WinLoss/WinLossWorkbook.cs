@@ -3,9 +3,10 @@ using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLoss;
 using ONEbook.SpreadSheets;
-using static ONEbook.SpreadSheets.Column;
 using AlphaPlus.Shared.AppResources.Report;
 using AlphaPlus.Reports.Site.Features.Shared;
+using static ONEbook.SpreadSheets.Column;
+using AlphaPlus.Shared.AppResources.Common;
 
 namespace AlphaPlus.Reports.Site.Features.WinLoss;
 
@@ -22,50 +23,46 @@ public class WinLossWorkbook(IWebHostEnvironment webHostEnvironment) :
     {
         var fromDate = message.FromDate.ToShortDateWithSlash();
         var toDate = message.ToDate.ToShortDateWithSlash();
-        var isAgentLevel = message.CustLevel.IsAgentLevel();
+        var custLevel = message.CustLevel;
+        var isAgentLevel = custLevel.IsAgentLevel();
+        var levelTypeValue = custLevel.IsSuperLevel() ? CommonResx.MasterAgent : Resources.Agent;
 
         var fileContent = UseTemplate(
             new TemplateInfo(
-                GetExcelTemplatePath(message.CustLevel.GetDirectDownLineLevel().DisplayName),
+                GetExcelTemplatePath(custLevel.GetDirectDownLineLevel().DisplayName),
                 noInfomationText: Resources.NoInformationIsAvailable))
             .Title($"{Resources.WinLossTitle} {fromDate} --> {toDate} {Resources.of2} {productNames}")
             .Header(Resources.ResourceManager.GetString)
-            .Body(reportData.DataSource, GetRowMapper(isAgentLevel))
-            .Footer(reportData.Total, GetRowMapper(isAgentLevel, true))
+            .Body(reportData.DataSource, isAgentLevel ? GetRowMapperMember() : GetRowMapper(levelTypeValue))
+            .Footer(reportData.Total, isAgentLevel ? GetRowMapperMember(isTotal: true) : GetRowMapper(levelTypeValue, isTotal: true))
             .Sheet(Resources.DefaultSheetName)
             .ExportToBytes();
 
         return new ExcelFileViewModel($"{Resources.WinLossTitle}-{message.CustName}-{fromDate}-{toDate}", fileContent);
     }
 
-    private static Mapper<WinLossModel> GetRowMapper(bool isAgentLevel, bool isTotal = false)
-    {
-        var mapper = new Mapper<WinLossModel>()
-            .Map(A, winLoss => isTotal ? Resources.Total : (winLoss.CustId == 0 ? Resources.DormantAccounts : winLoss.CustName))
-            .Map(B, winLoss => winLoss.Turnover)
-            .Map(C, winLoss => winLoss.GrossComm);
+    private static Mapper<WinLossModel> GetRowMapper(string levelTypeValue, bool isTotal = false)
+        => new Mapper<WinLossModel>()
+        .Map(A, winLoss => isTotal ? Resources.Total : (winLoss.CustId == 0 ? Resources.DormantAccounts : winLoss.CustName))
+        .Map(B, winLoss => isTotal ? string.Empty : (winLoss.IsDirectMember ? CommonResx.DirectMember : levelTypeValue))
+        .Map(C, winLoss => winLoss.Turnover)
+        .Map(D, winLoss => winLoss.GrossComm)
+        .Map(E, winLoss => winLoss.DownlineTotal)
+        .Map(F, winLoss => winLoss.WinLoss)
+        .Map(G, winLoss => winLoss.Comm)
+        .Map(H, winLoss => winLoss.Total)
+        .Map(I, winLoss => winLoss.Company);
 
-        if (isAgentLevel)
-        {
-            mapper
-                .Map(D, winLoss => winLoss.MemberWinLoss)
-                .Map(E, winLoss => winLoss.MemberComm)
-                .Map(F, winLoss => winLoss.MemberTotal)
-                .Map(G, winLoss => winLoss.WinLoss)
-                .Map(H, winLoss => winLoss.Comm)
-                .Map(I, winLoss => winLoss.Total)
-                .Map(J, winLoss => winLoss.Company);
-        }
-        else
-        {
-            mapper
-                .Map(D, winLoss => winLoss.DownlineTotal)
-                .Map(E, winLoss => winLoss.WinLoss)
-                .Map(F, winLoss => winLoss.Comm)
-                .Map(G, winLoss => winLoss.Total)
-                .Map(H, winLoss => winLoss.Company);
-        }
-
-        return mapper;
-    }
+    private static Mapper<WinLossModel> GetRowMapperMember(bool isTotal = false)
+        => new Mapper<WinLossModel>()
+        .Map(A, winLoss => isTotal ? Resources.Total : (winLoss.CustId == 0 ? Resources.DormantAccounts : winLoss.CustName))
+        .Map(B, winLoss => winLoss.Turnover)
+        .Map(C, winLoss => winLoss.GrossComm)
+        .Map(D, winLoss => winLoss.MemberWinLoss)
+        .Map(E, winLoss => winLoss.MemberComm)
+        .Map(F, winLoss => winLoss.MemberTotal)
+        .Map(G, winLoss => winLoss.WinLoss)
+        .Map(H, winLoss => winLoss.Comm)
+        .Map(I, winLoss => winLoss.Total)
+        .Map(J, winLoss => winLoss.Company);
 }

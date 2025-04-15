@@ -21,18 +21,43 @@ public class CommissionByBetTypeService(
 
     public async Task<ReportData<CommissionByBetTypeModel>> GetCommissionByBetTypes(CommissionByBetTypeParam param)
     {
-        var moveBetsDay = await reportDateService.GetMoveBetsDay();
-        var criteria = new CommissionByBetTypeCriteria(
-            param.CustLevelId,
-            param.CustId,
-            param.FromDate,
-            param.ToDate,
-            moveBetsDay);
+        var criteria = await GetCommissionByBettypeCriteria(param);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
         var rawData = await repository.FetchAsync<CommissionByBetTypeModel>(criteria);
 
         return new ReportData<CommissionByBetTypeModel>(rawData, CalculateTotal(rawData));
+    }
+
+    private async Task<ICriteria> GetCommissionByBettypeCriteria(CommissionByBetTypeParam param)
+    {
+        var moveBetsDay = await reportDateService.GetMoveBetsDay();
+
+        if (RoleIdConstants.IsAgentLevel(param.CustLevelId))
+        {
+            return new CommissionByBetTypeMemberCriteria(
+                param.CustId,
+                param.FromDate,
+                param.ToDate,
+                moveBetsDay);
+        }
+
+        if (RoleIdConstants.IsMasterLevel(param.CustLevelId))
+        {
+            return new CommissionByBetTypeAgentCriteria(
+                param.CustId,
+                param.FromDate,
+                param.ToDate,
+                moveBetsDay,
+                param.LevelType);
+        }
+
+        return new CommissionByBetTypeMasterCriteria(
+            param.CustId,
+            param.FromDate,
+            param.ToDate,
+            moveBetsDay,
+            param.LevelType);
     }
 
     private static CommissionByBetTypeModel CalculateTotal(IEnumerable<CommissionByBetTypeModel> rawData)

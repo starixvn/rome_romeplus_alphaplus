@@ -11,6 +11,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer.Requests
 
         public string ProductGroups { get; set; }
 
+        public int NumberOfAccounts { get; set; } = 1;
+
         public override bool IsValid()
             => base.IsValid()
             && GeneralInfo != null

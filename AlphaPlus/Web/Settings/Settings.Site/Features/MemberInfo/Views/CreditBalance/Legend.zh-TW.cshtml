@@ -10,7 +10,8 @@
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="icon icon-close close" data-dismiss="modal" aria-label="@Resources.ConditionToClearCredit"><span aria-hidden="true"></span></button>
+                <button type="button" class="icon icon-close close" data-dismiss="modal"
+                    aria-label="@Resources.ConditionToClearCredit"><span aria-hidden="true"></span></button>
                 <h4 class="modal-title">@Resources.ConditionToClearCredit</h4>
             </div>
             <div class="modal-body">
@@ -29,7 +30,7 @@
                     }
                     else
                     {
-                        <span>如果符合以下任何條件，下線的信用將被自動清除。</span>
+                        <span>如果達到以下其一條件，下線的信用將被自動清除。</span>
                         if (Model.CustLevel.IsSuperLevel())
                         {
                             if (Model.IsViewingMemberList)
@@ -38,12 +39,12 @@
                             }
                             <ul class="list-msg">
                                 <li>
-                                    對於沒有任何下線的总代理/代理：
-                                    <p>- 任何總代理/代理在上線創建後超過7天未登錄。</p>
+                                    對於沒有任何下線（包括直系會員）的總代理/代理：
+                                    <p>- 所有的總代理/代理在由直系上線創建後超過 7 天未登錄。</p>
                                 </li>
                                 <li>
-                                    對於會員：
-                                    <p>- 任何會員在代理創建後超過14天未登錄。</p>
+                                    對於會員/直系會員：
+                                    <p>- 所有的會員/直系會員在由直系上線創建後超過 14 天未登錄。</p>
                                 </li>
                             </ul>
                         }
@@ -56,11 +57,11 @@
                             <ul class="list-msg">
                                 <li>
                                     對於沒有任何下線的代理：
-                                    <p>- 任何代理在總代理創建後超過7天未登錄。</p>
+                                    <p>- 所有的代理在由總代理創建後超過 7 天未登錄。</p>
                                 </li>
                                 <li>
-                                    對於會員：
-                                    <p>- 任何會員在代理創建後超過14天未登錄。</p>
+                                    對於會員/直系會員：
+                                    <p>- 所有的會員/直系會員在由直系上線創建後超過 14 天未登錄。</p>
                                 </li>
                             </ul>
                         }
@@ -70,4 +71,3 @@
         </div>
     </div>
 </div>
-

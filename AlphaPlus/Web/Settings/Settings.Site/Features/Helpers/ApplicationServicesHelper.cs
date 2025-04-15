@@ -1,9 +1,17 @@
 using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Core.Utils;
+using AlphaPlus.Features.Messages.API.Services;
 using AlphaPlus.PartialUM.Configurations;
 using AlphaPlus.PartialUM.DataAccess;
 using AlphaPlus.PartialUM.Services;
+using AlphaPlus.Products.ViewModels;
 using AlphaPlus.RequestInfo;
+using AlphaPlus.SecurityCode.Extensions;
+using AlphaPlus.SecurityCode.Filters;
+using AlphaPlus.Settings.MemberInfo.API.Features.Commission;
 using AlphaPlus.Settings.MemberInfo.API.Features.DormantAccountList;
 using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyThresholds;
 using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts;
@@ -15,54 +23,49 @@ using AlphaPlus.Settings.MemberInfo.API.Services.CreditBalance;
 using AlphaPlus.Settings.MemberInfo.API.Services.IndirectLoginAccount;
 using AlphaPlus.Settings.MemberInfo.API.Services.WinLossLimit;
 using AlphaPlus.Settings.MemberInfo.Domain.Models;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.Helpers;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Handlers;
-using AlphaPlus.Settings.Site.Features.SubAccount.Services;
-using Fanex.Cryptography.Aes;
-using Fanex.Data;
-using Fanex.RemotingRef;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using MediatR;
-using AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs;
-using AlphaPlus.Settings.ViewLogs.API.Services;
-using AlphaPlus.Settings.ViewLogs.API.DataAccesses;
-using AlphaPlus.Settings.ViewLogs.API.DataAccesses.Impl;
-using AlphaPlus.Settings.ViewLogs.API.Services.Impl;
-using AlphaPlus.Settings.ViewLogs.API.Helpers;
-using AlphaPlus.Settings.ViewLogs.API.Helpers.Impl;
-using AlphaPlus.Settings.Site.Features.ViewLogs.Helpers;
-using AlphaPlus.Settings.Transfer.API.Services;
-using ONEbook.SpreadSheets;
-using ONEbook.SpreadSheets.NPOI;
-using AlphaPlus.Settings.Transfer.API.Models.TransferToDownlineHistory;
-using AlphaPlus.Products.ViewModels;
-using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status;
-using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting;
-using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status.Base;
-using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Base;
 using AlphaPlus.Settings.Site.Features.CustomerList;
 using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
-using AlphaPlus.Settings.Site.Features.Shared.Services;
-using Fanex.Caching;
-using AlphaPlus.Settings.Site.Features.ProductStatus;
-using Fanex.Data.Repository;
-using AlphaPlus.Core.Models;
-using Fanex.Customer.Client.Configurations;
-using AlphaPlus.Core.Filters;
-using AlphaPlus.SecurityCode.Filters;
-using AlphaPlus.Settings.Site.Features.UserNameSuggestion;
-using AlphaPlus.Core.Utils;
-using AlphaPlus.Settings.Site.Features.PositionTaking.Services;
-using AlphaPlus.Settings.MemberInfo.API.Features.Commission;
-using AlphaPlus.SecurityCode.Extensions;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn;
+using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting;
+using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Base;
+using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status;
+using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status.Base;
 using AlphaPlus.Settings.Site.Features.MemberBettingBehavior.BettingStatistic;
 using AlphaPlus.Settings.Site.Features.MemberBettingBehavior.Profile;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.Helpers;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Handlers;
+using AlphaPlus.Settings.Site.Features.PositionTaking.Services;
+using AlphaPlus.Settings.Site.Features.ProductStatus;
+using AlphaPlus.Settings.Site.Features.Shared.Services;
+using AlphaPlus.Settings.Site.Features.SubAccount.Services;
+using AlphaPlus.Settings.Site.Features.UserNameSuggestion;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Helpers;
+using AlphaPlus.Settings.Transfer.API.Configurations;
 using AlphaPlus.Settings.Transfer.API.Helpers;
 using AlphaPlus.Settings.Transfer.API.Models.Reward;
-using AlphaPlus.Features.Messages.API.Services;
+using AlphaPlus.Settings.Transfer.API.Models.TransferToDownlineHistory;
+using AlphaPlus.Settings.Transfer.API.Services;
+using AlphaPlus.Settings.ViewLogs.API.DataAccesses;
+using AlphaPlus.Settings.ViewLogs.API.DataAccesses.Impl;
+using AlphaPlus.Settings.ViewLogs.API.Helpers;
+using AlphaPlus.Settings.ViewLogs.API.Helpers.Impl;
+using AlphaPlus.Settings.ViewLogs.API.Services;
+using AlphaPlus.Settings.ViewLogs.API.Services.Impl;
+using AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs;
+using Fanex.Caching;
+using Fanex.Caching.Redis;
+using Fanex.Cryptography.Aes;
+using Fanex.Customer.Client.Configurations;
+using Fanex.Data;
+using Fanex.Data.Repository;
+using Fanex.RemotingRef;
+using MediatR;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using ONEbook.SpreadSheets;
+using ONEbook.SpreadSheets.NPOI;
+using StackExchange.Redis;
 
 namespace AlphaPlus.Settings.Site.Features.Helpers
 {
@@ -73,7 +76,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
             var customerSettingApiUrl = new Uri(configuration.GetValue<string>("Fanex.Customer:ServiceUri"));
 
             services
-                .AddMediatR(typeof(Program).Assembly)
+                .AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(Program).Assembly))
                 .AddFanexData(configuration)
                 .AddFanexLogging(configuration)
                 .AddRemotingRef(configuration)
@@ -154,7 +157,6 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
             services
                 .Configure<PartialUMOptions>(configuration.GetSection(nameof(PartialUMOptions)))
                 .AddSingleton(GetPartialUMConfig(configuration))
-                .AddSingleton<ICacheService, CacheService>()
                 .AddSingleton<IPartialUMDataAccess, PartialUMDataAccess>()
                 .AddSingleton<IPartialUMService, PartialUMService>();
 
@@ -209,6 +211,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
 
             services
                 .AddSingleton<Workbook<TransferToDownlineHistoryModel>, NpoiWorkbook<TransferToDownlineHistoryModel>>()
+                .AddSingleton<ITransferCacheService>(new TransferCacheService(InitTransferCacheService(configuration)))
                 .AddScoped<ITransferService, TransferService>()
                 .AddScoped<AutoTransferService, AutoTransferServiceImpl>()
                 .AddScoped<ICashBalanceTransferService, CashBalanceTransferService>()
@@ -266,6 +269,18 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
             }
 
             return partialUMConfig;
+        }
+
+        private static ICacheService InitTransferCacheService(IConfiguration configuration)
+        {
+            var configurationOptions = ConfigurationOptions.Parse(configuration.GetValue<string>("RedisConfiguration:AlphaPlus.Transfer"));
+            var redisCacheOptions = new RedisCacheOptions
+            {
+                ConnectionOptions = configurationOptions,
+                ApplicationName = configurationOptions.ClientName
+            };
+
+            return new CacheService(new RedisCache(redisCacheOptions));
         }
     }
 }

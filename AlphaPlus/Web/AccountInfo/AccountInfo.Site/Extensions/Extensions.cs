@@ -9,7 +9,6 @@ using AlphaPlus.Core.Filters;
 using AlphaPlus.RequestInfo;
 using AlphaPlus.SecurityCode.Extensions;
 using AlphaPlus.SecurityCode.Filters;
-using Fanex.Caching;
 using Fanex.Data;
 using Fanex.Data.Repository;
 using Microsoft.AspNetCore.Authentication;
@@ -27,7 +26,6 @@ public static class Extensions
             .AddFanexLogging(configuration)
             .AddRequestInfo();
 
-        services.AddSingleton<ICacheService, CacheService>();
         services.AddSingleton<IDynamicRepository, DynamicRepository>();
         services.AddSingleton(Fanex.Logging.Logger.Log);
 

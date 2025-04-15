@@ -17,50 +17,43 @@
     <div class="form-group">
         <label>@Resources.Product</label>
         <div class="original-sl">
-        <select class="original" id="ddl-product" asp-items="Model.Products"></select>
+            <select class="original" id="ddl-product" asp-items="Model.Products"></select>
         </div>
     </div>
-    @if (Model.Masters != null)
+    @if (Model.ActorLevel.IsSuperLevel())
     {
         <div class="form-group">
-            <label>@Resources.SelectMaster</label>
-            @if (Model.Masters.Any())
-            {
-                <div class="original-sl">
+            <label>@Resources.SelectDirectDownline</label>
+            <div class="original-sl">
                 <select class="original" id="ddl-master" asp-items="Model.Masters"></select>
-                </div>
-            }
-            else
-            {
-                <div class="original-sl">
-                <select class="original" id="ddl-master">
-                    <option value="0">@Resources.NoInformationIsAvailable</option>
-                </select>
-                </div>
-            }
+            </div>
         </div>
-    }
-    @if (Model.Agents != null)
-    {
         <div class="form-group">
             <label>@Resources.SelectAgent</label>
-            @if (Model.Agents.Any())
-            {
-                <div class="original-sl">
-                <select class="original" id="ddl-agent" asp-items="Model.Agents"></select>
-                </div>
-            }
-            else
-            {
-                <div class="original-sl">
-                <select class="original" id="ddl-agent">
-                    <option value="0">@Resources.NoInformationIsAvailable</option>
-                </select>
-                </div>
-            }
+            <div class="original-sl">
+                @if (Model.Agents.Any())
+                {
+                    <select class="original" id="ddl-agent" asp-items="Model.Agents"></select>
+                }
+                else
+                {
+                    <select class="original" id="ddl-agent" @(Model.MasterId == 0 ? "disabled" : string.Empty)>
+                        <option value="0">@Resources.NoInformationIsAvailable</option>
+                    </select>
+                }
+            </div>
         </div>
         <div class="form-group">
             <span class="block-icon-small" id="icon-loadingAgent" style="display:none"></span>
+        </div>
+    }
+    else if (Model.ActorLevel.IsMasterLevel())
+    {
+        <div class="form-group">
+            <label>@Resources.SelectDirectDownline</label>
+            <div class="original-sl">
+                <select class="original" id="ddl-agent" asp-items="Model.Agents"></select>
+            </div>
         </div>
     }
     @if (Model.IsShowGroup)

@@ -25,6 +25,7 @@ namespace AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo
             SetLabelTextByUserLevel();
             CanViewReports = canViewReports;
             CanViewProduct = canViewProduct;
+            ShowDirectMember = userLevel.IsMasterOrSuperLevel();
         }
 
         public BalanceInfo BalanceInfo { get; }
@@ -50,6 +51,8 @@ namespace AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo
         public string MemberTodayWinLossReportPath => GetMemberWinLossReportPathByDate(true);
 
         public string MemberYesterdayWinLossReportPath => GetMemberWinLossReportPathByDate(false);
+
+        public bool ShowDirectMember { get; }
 
         private void SetLabelTextByUserLevel()
         {

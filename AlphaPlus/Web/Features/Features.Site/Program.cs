@@ -1,15 +1,14 @@
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
-using AlphaPlus.Core.Models;
 using AlphaPlus.Features.Site.Helpers;
 using Microsoft.AspNetCore.HttpOverrides;
 
 ThreadPool.SetMinThreads(100, 100);
 
+const string PathBase = "/features";
 const string SharedSettings = "sharedSettings.json";
 var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../", "Shared/Configuration/", SharedSettings);
 
-var assembly = typeof(Program).Assembly;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 configuration
@@ -29,6 +28,18 @@ builder.Services
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
+AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);
+StaticResources.Init(configuration.GetValue<string>("JsVersion"));
+
+app.UseForwardedHeaders();
+app.UsePathBase(PathBase);
+app.MapHealthChecks("/health");
+app.UseStaticFiles(new StaticFileOptions());
+app.UseRouting();
+app.UseAuthorization();
+app.UseSession();
+app.UseMiddleware<RequestCultureMiddleware>();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -38,37 +49,10 @@ else
     app.UseMiddleware<ExceptionMiddleware>();
 }
 
-AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
-AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);
-StaticResources.Init(configuration.GetValue<string>("JsVersion"));
-
-app.UseForwardedHeaders();
-app.UsePathBase("/features");
-app.MapHealthChecks("/health");
-app.UseStaticFiles(new StaticFileOptions());
-
-app.UseRouting();
-app.UseAuthorization();
-app.UseSession();
-app.UseMiddleware<RequestCultureMiddleware>();
-
 app.Use(async (context, next) =>
 {
     context.Request.EnableBuffering();
-    context.Request.PathBase = "/features";
-
-    var session = context.RequestServices.GetRequiredService<IUserSession>();
-    context.Items["customData"] = new
-    {
-        session.CustId,
-        session.UserName,
-        session.RoleId,
-        session.SubAccId,
-        session.SubUserName,
-        session.AdminId,
-        session.AdminName
-    };
-
+    context.Request.PathBase = PathBase;
     await next(context);
 });
 

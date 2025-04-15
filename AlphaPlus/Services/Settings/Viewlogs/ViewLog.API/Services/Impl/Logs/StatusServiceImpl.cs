@@ -2,10 +2,10 @@
 using AlphaPlus.Settings.ViewLogs.API.Criteria;
 using AlphaPlus.Settings.ViewLogs.API.Criteria.Status;
 using AlphaPlus.Settings.ViewLogs.API.DataAccesses;
-using Fanex.Caching;
-using Fanex.Data.Repository;
 using AlphaPlus.Settings.ViewLogs.API.Helpers;
 using AlphaPlus.Settings.ViewLogs.API.Params;
+using Fanex.Data.Repository;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs
 {
@@ -18,7 +18,7 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs
             CustomerService customerService,
             LogDataAccess baseDataAccess,
             IUserSession session,
-            ICacheService cacheService) :
+            IMemoryCache cacheService) :
             base(dynamicRepository, customerService, baseDataAccess, session, cacheService)
         {
         }

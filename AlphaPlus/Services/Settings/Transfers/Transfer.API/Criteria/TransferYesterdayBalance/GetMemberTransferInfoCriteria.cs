@@ -30,7 +30,7 @@ public class GetMemberTransferInfoCriteria(int custId, bool allowedTotalBalanceT
 
     public decimal PendingTransfer3rd { get; set; }
 
-    public override string GetSettingKey() => "Age_Transfer_SelMemberInfo_Yesterday";
+    public override string GetSettingKey() => "SiteDB_Age_Transfer_SelMemberInfo_Yesterday";
 
     public override bool IsValid() => CustId > 0;
 }

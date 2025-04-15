@@ -26,7 +26,8 @@ public class ProductMultiSelectionTagHelper : TagHelper
     private void AddProductDropdown(StringBuilder sb)
     {
         sb
-            .Append("<div class=\"form-group product-multiselect-container\">")
+            .Append("<div class=\"form-group product-multiselect-container product-multiselect-long\">")
+            .Append($"<label class=\"label-form-control\">{Resources.Product}</label>")
             .Append("<select id=\"dropdown-product\" ")
             .Append($"data-hasdata=\"{Model.Products.Any().ToString().ToLowerInvariant()}\" ")
             .Append($"data-label-selectproducts=\"{Resources.SelectProducts}\" ")
@@ -72,7 +73,8 @@ public class ProductMultiSelectionTagHelper : TagHelper
         {
             var isDisabled = string.IsNullOrWhiteSpace(Model.UserSelectedResourceIds);
             sb
-                .Append("<div class=\"form-group product-detail-multiselect-container\">")
+                .Append("<div class=\"form-group product-detail-multiselect-container product-multiselect-container multiselect-long-dropdown\">")
+                .Append($"<label class=\"label-form-control\">{Resources.ProductDetails}</label>")
                 .Append("<select id=\"dropdown-product-detail\" ")
                 .Append($"data-hasdata=\"true\" ")
                 .Append($"data-label-selectnone=\"{Resources.SelectNone}\" ")

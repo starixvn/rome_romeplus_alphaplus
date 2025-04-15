@@ -35,7 +35,8 @@ public class WinLossDetailService(
             param.ProductIds,
             param.ProductDetailsXml,
             param.Username,
-            param.IsReward);
+            param.IsReward,
+            param.LevelType);
 
         var ip = allowedSitesToShareLoad.GetIP(param.SiteName);
 
@@ -44,23 +45,58 @@ public class WinLossDetailService(
 
     public async Task<ReportData<WinLossDetailModel>> GetWinLossDetail(WinLossDetailParam param)
     {
-        var reportDate = await reportDateService.GetBalanceUpDayAndMoveBetsDay();
-        var criteria = new WinLossDetailCriteria(
-            param.CustId,
-            param.FromDate,
-            param.ToDate,
-            reportDate.BalanceUpDay,
-            reportDate.MoveBetsDay,
-            param.ProductIds,
-            param.CustLevelId,
-            param.ProductDetailsXml,
-            param.Username,
-            param.IsReward);
+        var criteria = await GetWinLossDetailCriteria(param);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
         var ip = allowedSitesToShareLoad.GetIP(param.SiteName);
         var (rawData, totals) = await repository.FetchMultipleAsync<WinLossDetailModel, WinLossDetailModel>(criteria, ip);
 
         return new ReportData<WinLossDetailModel>(rawData, totals.FirstOrDefault(), criteria.TotalRecords);
+    }
+
+    private async Task<WinLossDetailMemberCriteria> GetWinLossDetailCriteria(WinLossDetailParam param)
+    {
+        var reportDate = await reportDateService.GetBalanceUpDayAndMoveBetsDay();
+
+        if (RoleIdConstants.IsAgentLevel(param.CustLevelId))
+        {
+            return new WinLossDetailMemberCriteria(
+                param.CustId,
+                param.FromDate,
+                param.ToDate,
+                reportDate.BalanceUpDay,
+                reportDate.MoveBetsDay,
+                param.ProductIds,
+                param.ProductDetailsXml,
+                param.Username,
+                param.IsReward);
+        }
+
+        if (RoleIdConstants.IsMasterLevel(param.CustLevelId))
+        {
+            return new WinLossDetailAgentCriteria(
+                param.CustId,
+                param.FromDate,
+                param.ToDate,
+                reportDate.BalanceUpDay,
+                reportDate.MoveBetsDay,
+                param.ProductIds,
+                param.ProductDetailsXml,
+                param.Username,
+                param.IsReward,
+                param.LevelType);
+        }
+
+        return new WinLossDetailMasterCriteria(
+            param.CustId,
+            param.FromDate,
+            param.ToDate,
+            reportDate.BalanceUpDay,
+            reportDate.MoveBetsDay,
+            param.ProductIds,
+            param.ProductDetailsXml,
+            param.Username,
+            param.IsReward,
+            param.LevelType);
     }
 }

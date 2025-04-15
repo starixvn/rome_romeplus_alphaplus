@@ -1,15 +1,23 @@
-﻿using AlphaPlus.Settings.Transfer.API.Models;
-using MediatR;
-using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferToDownlineHistory;
+﻿using AlphaPlus.Core.Utils;
 
-namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferToDownlineHistory
+namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferToDownlineHistory;
+
+public class TransferToDownlineHistoryQuery : TransferBaseQuery
 {
-    public class TransferToDownlineHistoryQuery : TransferToDownlineHistoryBaseQuery, IRequest<TransferToDownlineHistoryViewModel>
+    public TransferToDownlineHistoryQuery()
     {
-        public TransferToDownlineHistoryQuery() : this(null) { }
-
-        public TransferToDownlineHistoryQuery(IUser viewer) : base(viewer)
-        {
-        }
+        LimitedDateToShowInfo = viewer.LimitedDateToShowInfo;
     }
+
+    public string UserName { get; set; }
+
+    public DateTime FromDate { get; set; } = SystemTime.Today;
+
+    public DateTime ToDate { get; set; } = SystemTime.Today;
+
+    public int UserSelectedDateRangeOption { get; set; }
+
+    public byte LevelType { get; set; }
+
+    public DateTime LimitedDateToShowInfo { get; }
 }

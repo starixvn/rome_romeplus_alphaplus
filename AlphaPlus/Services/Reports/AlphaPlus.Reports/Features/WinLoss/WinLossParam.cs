@@ -7,4 +7,5 @@ public record WinLossParam(
     DateTime ToDate,
     string ProductIds,
     string ProductDetailsXml,
+    byte LevelType,
     string SiteName);

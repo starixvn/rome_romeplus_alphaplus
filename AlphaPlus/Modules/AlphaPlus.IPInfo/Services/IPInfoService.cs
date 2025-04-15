@@ -22,9 +22,7 @@ public class IPInfoService : IIPInfoService
     private readonly ICacheService commonCacheService;
     private readonly ICacheService individualCacheService;
 
-    public IPInfoService(
-        IPInformationConfig cacheConfig,
-        IIPInfoDataAccess ipInfoDataAccess)
+    public IPInfoService(IPInformationConfig cacheConfig, IIPInfoDataAccess ipInfoDataAccess)
     {
         this.cacheConfig = cacheConfig;
         this.ipInfoDataAccess = ipInfoDataAccess;

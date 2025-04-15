@@ -4,14 +4,11 @@ using Fanex.Data.Repository;
 namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferYesterdayBalance;
 
 public abstract class TransferYesterdayBalanceCriteria(
-    string superIdsTransferTotal,
     string language,
     string ip,
     int creator,
     int subAccId) : NonQueryCommand
 {
-    public string SuperIdsTransferTotal { get; } = superIdsTransferTotal;
-
     public string Language { get; } = language;
 
     public string IP { get; } = ip;

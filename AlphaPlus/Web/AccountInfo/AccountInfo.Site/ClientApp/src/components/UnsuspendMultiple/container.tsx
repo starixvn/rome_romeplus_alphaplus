@@ -24,12 +24,21 @@ export default function UnsuspendMultipleContainer(props: {
             forEach(viewModel, (dataRow) => {
                 let currentLevel = dataRow.Downlines.length;
                 while (currentLevel < searchAccountRoleId - 1) {
-                    dataRow.Downlines.push({
-                        SearchAccountId: 0,
-                        DownlineRoleId: 0,
-                        AffectedDownlines: 0,
-                        UnchangedDownlines: 0
-                    });
+                    if (currentLevel === 0 || dataRow.Downlines[0].DownlineRoleId !== 1) {
+                        dataRow.Downlines.push({
+                            SearchAccountId: 0,
+                            DownlineRoleId: 0,
+                            AffectedDownlines: 0,
+                            UnchangedDownlines: 0
+                        });
+                    } else {
+                        dataRow.Downlines.unshift({
+                            SearchAccountId: 0,
+                            DownlineRoleId: 0,
+                            AffectedDownlines: 0,
+                            UnchangedDownlines: 0
+                        });
+                    }
 
                     currentLevel++;
                 }

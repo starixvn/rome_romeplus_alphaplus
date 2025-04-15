@@ -1960,5 +1960,27 @@ namespace AlphaPlus.Shared.AppResources.Settings
                 return ResourceManager.GetString("SuperEditsMultipleMembers_Note", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Level.
+        /// </summary>
+        public static string Level
+        {
+            get
+            {
+                return ResourceManager.GetString("Level", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string All
+        {
+            get
+            {
+                return ResourceManager.GetString("All", resourceCulture);
+            }
+        }
     }
 }

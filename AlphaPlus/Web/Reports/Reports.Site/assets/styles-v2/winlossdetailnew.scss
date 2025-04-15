@@ -1,0 +1,301 @@
+﻿:root, :root [data-theme='light'] {
+    --label-week-color: #727272;
+    --label-week-background: #ffffff;
+    --label-week-border: #ffffff;
+    --label-week-active-color: #0B599C;
+    --label-week-active-background: #E8F4FD;
+    --label-week-active-border: #0B599C;
+    --label-week-disabled-color: #888888;
+    --label-week-disabled-background: #D9D9D9;
+    --label-week-disabled-border: #D9D9D9;
+    --label-week-disabled-shadow: none;
+    --icon-dormant-account-color: #0b599c;
+    --tb-sub-total-row-background: #F1F1F1;
+    --tb-match-title-color: #F6731B;
+    --tb-match-title-background: #D3DAE2;
+    --tb-total-row-background: #D3DAE2;
+}
+
+:root [data-theme='dark'] {
+    --label-week-color: #C5C5C5;
+    --label-week-background: #373737;
+    --label-week-border: #373737;
+    --label-week-active-color: #41A4FF;
+    --label-week-active-background: #183049;
+    --label-week-active-border: #41A4FF;
+    --label-week-disabled-color: #767676;
+    --label-week-disabled-background: #292929;
+    --label-week-disabled-border: #292929;
+    --label-week-disabled-shadow: none;
+    --icon-dormant-account-color: #41a4ff;
+    --tb-sub-total-row-background: #404040;
+    --tb-match-title-color: #D96518;
+    --tb-total-row-background: #41474F;
+    --tb-match-title-background: #41474F;
+}
+
+
+.label-week-box {
+    margin-bottom: 10px;
+    z-index: 2;
+    position: relative;
+    width: 100%;
+    
+    .label-week {
+        display: inline-block;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 16px;
+        color: var(--label-week-color);
+        padding: 4px 10px;
+        margin: 0 10px 5px 0;
+        text-decoration: none;
+        border: 1px solid var(--label-week-border);
+        background: var(--label-week-background);
+        box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.25);
+        border-radius: 3px;
+        height: 24px;
+
+        &[disable], &.disabled {
+            color: var(--label-week-disabled-color) !important;
+            background: var(--label-week-disabled-background) !important;
+            box-shadow: none;
+            border-color: var(--label-week-disabled-border) !important;
+            cursor: not-allowed;
+        }
+
+        &.active, &:hover {
+            background: var(--label-week-active-background);
+            border: 1px solid var(--label-week-active-border);
+            color: var(--label-week-active-color);
+        }
+
+        &.active {
+            font-weight: bold;
+        }
+    }
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.msg {
+    margin-top: 0;
+}
+.filter-match-winloss-detail{
+    .form-group{
+        order: 1;
+    }
+    .from-date-box{
+        order: 2;
+    }
+    .to-date-box{
+        order: 3;
+    }
+    #dropdown-league-container{
+        order: 4;
+    }
+    .submit-container{
+        order: 5;
+        margin-right: 12px;
+    }
+    .daterange-container{
+        order: 7;
+    }
+    .submit-container{
+        order: 6;
+    }
+    .form-group-information{
+        order: 8;
+        margin-right: 12px;
+    }
+    .form-group-excel{
+        order: 9;
+    }
+    .note{
+        order: 10;
+    }
+}
+.cover-week-selection {
+    flex: 1;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    padding-top: 32px;
+    margin-top: -32px;
+    pointer-events: none;
+
+    * {
+        pointer-events: auto;
+    }
+}
+
+.wrapper-table-scrollable {
+    flex: 1;
+    overflow: auto;
+}
+.icon-stack-column, .icon-normal-column {
+    display: block;
+    width: 30px;
+    height: 30px;
+}
+
+.text-icon {
+    .ic-infomartion {
+        color: var(--icon-dormant-account-color);
+    }
+
+    .ic-plus-box, .ic-mywatchlist {
+        font-size: 16px;
+        color: #919191;
+    }
+}
+
+.tb {
+    text-align: right;
+    tr {       
+        td {
+            a {
+                color: #118AF2 !important;
+            }
+            &.col-product {
+                padding-left: 20px;
+            }           
+        }
+    }
+
+    .match-title-row {
+        text-align: left;
+        text-transform: uppercase;
+        font-weight: bold;
+
+        .league-title {
+            width: 300px;
+            display: inline-block;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        .col-username {
+            background: var(--tb-match-title-background);
+        }
+
+        .match-title {
+            color: var(--tb-match-title-color);
+
+            &:before {
+                content: '>>';
+                padding: 0 10px 0 50px;
+            }
+        }
+    }
+
+    tr {
+        &.sport-row {
+            td {
+                background: var(--tb-total-row-background);
+            }
+        }
+
+        &.consolidation-pt-row {
+            td {
+                background: var(--tb-sub-total-row-background);
+            }
+        }
+
+        &.sub-total-row {
+            font-weight: bold;
+            td {
+                background: var(--tb-sub-total-row-background);
+                
+            }
+        }
+        &.username-row, &.product-row, &.pt-row {
+            td {
+                background: var(--tb-total-row-background);
+            }
+        }
+    }
+
+    .username-row {
+        .username-col {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+
+            [class^="ic-"], [class*=" ic-"] {
+                font-size: 20px;
+            }
+        }
+    }
+
+    td {
+        &.super, &.master, &.agent, &.member {
+            border-left: 0 !important;
+        }
+      
+    }
+
+    .ic-percent {
+        font-size: 14px;
+    }
+
+    .pt-row {
+        cursor: pointer;
+
+        .col-username {
+            width: 20%;
+        }
+    }
+    .product-row{
+        .col-username{
+            cursor: pointer;
+        }
+    }
+
+    .pt-product-row {
+        .col-username {
+            padding-left: 26px;
+        }
+    }
+
+    .sport-row {
+        .col-username {
+            padding-left: 16px;
+        }
+    }
+
+    .bet-type-row {
+        .col-username {
+            padding-left: 40px;
+        }
+    }
+
+    .combinedcell {
+        li {
+            line-height: 20px;
+
+            &:last-child {
+                font-weight: bold;
+            }
+        }
+    }
+}
+ul.gross-comm {
+    list-style-type: circle;
+
+    li {
+        margin-left: 30px;
+    }
+}
+.consolidation-modal .product-pt-list-content {
+    list-style: disc;
+    margin: 10px 0 15px 0;
+    padding-left: 15px;
+}

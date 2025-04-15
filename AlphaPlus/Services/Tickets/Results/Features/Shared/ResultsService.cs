@@ -1,6 +1,6 @@
 using AlphaPlus.PartialUM.Services;
-using Fanex.Caching;
 using Fanex.Data.Repository;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Results.Features.Shared;
 
@@ -19,7 +19,7 @@ public interface IResultsService
 
 public class ResultsService(
     IDynamicRepository repository,
-    ICacheService cacheService,
+    IMemoryCache cacheService,
     IPartialUMService partialUMService) : IResultsService
 {
     private const int BalanceUpAndMoveBetsDateCacheInMinutes = 2;
@@ -55,8 +55,11 @@ public class ResultsService(
     public async Task<DateTime> GetMoveBetsDate() => (await GetBalanceUpAndMoveBetsDate()).MoveBetsDay;
 
     public Task<BalanceUpAndMoveBetsDate> GetBalanceUpAndMoveBetsDate()
-        => cacheService.GetOrSetAsync(
+        => cacheService.GetOrCreateAsync(
         BalanceUpAndMoveBetsDateCacheKey,
-        () => repository.GetAsync<BalanceUpAndMoveBetsDate>(new GetBalanceUpAndMoveBetsDayCriteria()),
-        new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(BalanceUpAndMoveBetsDateCacheInMinutes)));
+        cacheEntry =>
+        {
+            cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(BalanceUpAndMoveBetsDateCacheInMinutes));
+            return repository.GetAsync<BalanceUpAndMoveBetsDate>(new GetBalanceUpAndMoveBetsDayCriteria());
+        });
 }

@@ -2,7 +2,7 @@ using AlphaPlus.BetsForecast.Domain.Forecast;
 using AlphaPlus.Shared.AppResources.Betlist.Site;
 using AlphaPlus.Tickets.Site.Features.Forecast.Requests;
 using AlphaPlus.Tickets.Site.Features.Shared.Extensions;
-using Fanex.Caching;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Tickets.Site.Features.Forecast;
 
@@ -17,33 +17,33 @@ public interface IScoreMapService
     Task<IEnumerable<ScoreMapResult>> GetResults(GetScoreMapResultRequest message);
 }
 
-public class ScoreMapService(ICacheService cacheService, HttpClient client) : IScoreMapService
+public class ScoreMapService(IMemoryCache cacheService, HttpClient client) : IScoreMapService
 {
     private const string ScoreMapUrl = "api/forecast/scoremap";
     private const string BetTypesCacheKey = "AlphaPlus.Tickets.Site.ScoreMapBetTypes_{0}";
     private const int BetTypesCacheTimeOut = 2; // 2 hours
 
-    private readonly ICacheService cacheService = cacheService;
+    private readonly IMemoryCache cacheService = cacheService;
     private readonly HttpClient client = client;
 
     public Task<IEnumerable<ScoreMapBetType>[]> GetBetTypes(string language, string siteName)
-        => cacheService.GetOrSetAsync(
+        => cacheService.GetOrCreateAsync(
             string.Format(BetTypesCacheKey, language),
-            async () =>
+            async cacheEntry =>
             {
-                var queryString = QueryString.Create(new[]
-                {
+                cacheEntry.SetAbsoluteExpiration(TimeSpan.FromHours(BetTypesCacheTimeOut));
+                var queryString = QueryString.Create(
+                [
                     KeyValuePair.Create(nameof(language), language),
                     KeyValuePair.Create(nameof(siteName), siteName)
-                });
+                ]);
 
                 var rawdata = await client.GetJson<IEnumerable<ScoreMapBetType>[]>($"{ScoreMapUrl}/bettypes{queryString}");
                 UpdateBetTypeName(rawdata[0]);
                 UpdateBetTypeName(rawdata[1]);
 
                 return rawdata;
-            },
-            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromHours(BetTypesCacheTimeOut)));
+            });
 
     private static void UpdateBetTypeName(IEnumerable<ScoreMapBetType> betTypes)
     {

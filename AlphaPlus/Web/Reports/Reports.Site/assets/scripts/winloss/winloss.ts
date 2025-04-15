@@ -2,6 +2,7 @@
     productComponent: ProductMultiSelectionComponent;
     dateRangePickerComponent: DateRangePickerComponent;
     monthPickerComponent: MonthPickerComponent;
+    levelTypeComponent: SingleDropdownComponent;
     sortComponent: SortComponent;
     reportTooltip: ReportTooltip;
 
@@ -12,6 +13,7 @@
         productComponent: ProductMultiSelectionComponent,
         dateRangePickerComponent: DateRangePickerComponent,
         monthPickerComponent: MonthPickerComponent,
+        levelTypeComponent: SingleDropdownComponent,
         sortComponent: SortComponent,
         reportTooltip: ReportTooltip
     ) {
@@ -20,6 +22,7 @@
         this.productComponent = productComponent;
         this.dateRangePickerComponent = dateRangePickerComponent;
         this.monthPickerComponent = monthPickerComponent;
+        this.levelTypeComponent = levelTypeComponent;
         this.sortComponent = sortComponent;
         this.reportTooltip = reportTooltip;
     }
@@ -36,6 +39,7 @@
 
     initComponents() {
         this.productComponent.render();
+        this.levelTypeComponent.render({ dropdownId: 'dropdown-level-type', hiddenInputId: 'level-type' });
 
         if ($('#IsHistoricReport').val().toLowerCase() === 'true') {
             this.monthPickerComponent.render();
@@ -49,18 +53,20 @@
             super.hideFilter();
         }
 
-        this.sortComponent.initSort(
-            this.$tableReport,
-            { 0: { sorter: 'text' } },
-            this.sortComponent.handleDormantAccountsAfterSort
-        );
+        const sortHeaders = this.levelTypeComponent.$dropdown.length
+            ? {
+                  0: { sorter: 'text' },
+                  1: { sorter: 'text' }
+              }
+            : { 0: { sorter: 'text' } };
+        this.sortComponent.initSort(this.$tableReport, sortHeaders, this.sortComponent.handleDormantAccountsAfterSort);
         // remove style="visibility:hidden"
         // TableSorter cannot run with style="display:none"
         this.$tableReport.removeAttr('style');
     }
 
     registerEvents() {
-        $('.icon-switchmode').click(this.onSwitchMode);
+        $('.ic-switchmode').click(this.onSwitchMode);
         super.registerHistoricReportEvent();
         super.registerDrilldownableEvents();
     }
@@ -174,6 +180,7 @@ $(function () {
         new ProductMultiSelectionComponent(),
         new DateRangePickerComponent(),
         new MonthPickerComponent(),
+        new SingleDropdownComponent(),
         new SortComponent(),
         new ReportTooltip()
     ).init();

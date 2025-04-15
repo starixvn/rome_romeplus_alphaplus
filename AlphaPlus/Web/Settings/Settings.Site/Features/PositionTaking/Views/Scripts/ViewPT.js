@@ -27,7 +27,7 @@
     self.pageSizeList = bootstrapData.pageSizeList;
 
     self.initPage = function () {
-        $("#arrayCustID").val(self.positionTakingInfo.customerInfo.custId);
+        $('#arrayCustID').val(self.positionTakingInfo.customerInfo.custId);
 
         self.cacheElement();
         self.renderPagingControl();
@@ -40,12 +40,16 @@
 
         self.renderPositionTakingInfo(self.positionTakingInfo);
 
-        $(".view-downline").unbind().bind('click', function (event) { self.viewDownlinePTList(event); });
+        $('.view-downline')
+            .unbind()
+            .bind('click', function (event) {
+                self.viewDownlinePTList(event);
+            });
     };
     self.cacheElement = function () {
-        self.domElements.pagingControl = $("#tblHeader .pagingcontrol");
-        self.domElements.mainTable = $("#gridContainer");
-        self.domElements.viewPageContainer = $(".viewpage-container");
+        self.domElements.pagingControl = $('#tblHeader .pagingcontrol');
+        self.domElements.mainTable = $('#gridContainer');
+        self.domElements.viewPageContainer = $('.viewpage-container');
     };
     self.renderPagingControl = function () {
         if (!self.positionTakingInfo || !self.positionTakingInfo.product) {
@@ -66,8 +70,8 @@
         controlHtml += '</select>';
         self.domElements.pagingControl.empty().append(controlHtml);
 
-        self.domElements.pagingDropdown = $("#tblHeader .pagingcontrol #sel_PagingTop");
-        self.domElements.pagingDropdown.unbind("change");
+        self.domElements.pagingDropdown = $('#tblHeader .pagingcontrol #sel_PagingTop');
+        self.domElements.pagingDropdown.unbind('change');
         self.domElements.pagingDropdown.change(function () {
             self.getPositionTakingInfo(parseInt($(this).val()), 1);
         });
@@ -77,25 +81,30 @@
             ProductId: self.cachedData.positionTakingInfo.product.id,
             PageSize: pageSize,
             PageIndex: pageIndex,
-            CustId: self.cachedData.positionTakingInfo ?
-                self.cachedData.positionTakingInfo.viewedCustomerInfo.custId :
-                0,
-            RoleId: self.cachedData.positionTakingInfo ?
-                self.cachedData.positionTakingInfo.viewedCustomerInfo.roleId :
-                0
+            CustId: self.cachedData.positionTakingInfo
+                ? self.cachedData.positionTakingInfo.viewedCustomerInfo.custId
+                : 0,
+            RoleId: self.cachedData.positionTakingInfo
+                ? self.cachedData.positionTakingInfo.viewedCustomerInfo.roleId
+                : 0,
+            LevelType: self.cachedData.positionTakingInfo.levelType
         };
 
         self.cachedData.lastParam = criteria;
         $.ajax({
-            type: "POST",
-            url: window.rootUrl + "PositionTaking",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
+            type: 'POST',
+            url: window.rootUrl + 'PositionTaking',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
             data: JSON.stringify(criteria),
             success: function (rs) {
                 self.cachedData.positionTakingInfo = rs;
                 self.renderPositionTakingInfo(rs);
-                $(".view-downline").unbind().bind('click', function (event) { self.viewDownlinePTList(event); });
+                $('.view-downline')
+                    .unbind()
+                    .bind('click', function (event) {
+                        self.viewDownlinePTList(event);
+                    });
             }
         });
     };
@@ -108,53 +117,66 @@
         self.cachedData.getPositionTakingInfoCriteria.pageIndex = positionTakingInfo.pageIndex;
 
         var gridOptions = self.getGridOptions(positionTakingInfo);
-        self.domElements.mainTable.removeClass("hidden").fanexGrid(gridOptions);
+        self.domElements.mainTable.removeClass('hidden').fanexGrid(gridOptions);
         self.renderPositionTakingInfoFooter(positionTakingInfo);
 
-        $("#box_header, #tblFooter, #tblHeader").width($("#gridContainer").width() + 2);
+        $('#box_header, #tblFooter, #tblHeader').width($('#gridContainer').width() + 2);
     };
 
     self.renderPositionTakingInfoFooter = function (positionTakingInfo) {
         if (positionTakingInfo.totalPage <= 1) {
-            self.domElements.viewPageContainer.addClass("display-none");
+            self.domElements.viewPageContainer.addClass('display-none');
             return;
         }
 
         var pagingControlContent = self.renderFooterPaging(positionTakingInfo.pageIndex, positionTakingInfo.totalPage);
-        self.domElements.viewPageContainer.empty().append(pagingControlContent).removeClass("display-none");
+        self.domElements.viewPageContainer.empty().append(pagingControlContent).removeClass('display-none');
         self.cacheFooterPagingElements();
     };
     self.renderFooterPaging = function (pageIndex, totalPage) {
         var pagingControlContent = '';
         pagingControlContent += '<div class="pagingContainer">';
-        pagingControlContent += '<span class="icon pagingFirst" type="button"' +
-            (pageIndex === 1 ? ' disabled="disabled"' : ' onclick="viewPTManagement.firstPaging();"') + '></span>';
-        pagingControlContent += '<span class="icon pagingPrev " type="button"' +
-            (pageIndex === 1 ? ' disabled="disabled"' : ' onclick="viewPTManagement.previousPaging();"') + ' ></span>';
+        pagingControlContent +=
+            '<span class="icon pagingFirst" type="button"' +
+            (pageIndex === 1 ? ' disabled="disabled"' : ' onclick="viewPTManagement.firstPaging();"') +
+            '></span>';
+        pagingControlContent +=
+            '<span class="icon pagingPrev " type="button"' +
+            (pageIndex === 1 ? ' disabled="disabled"' : ' onclick="viewPTManagement.previousPaging();"') +
+            ' ></span>';
 
         pagingControlContent += '<span class="pagingSeperator"></span>';
         pagingControlContent += viewResources.Page;
-        pagingControlContent += '<input class="pagingCurrent" type="text"' +
+        pagingControlContent +=
+            '<input class="pagingCurrent" type="text"' +
             ' onkeyup="viewPTManagement.doEnterPaging(this, event);"' +
-            ' value="' + pageIndex + '"' +
-            ' maxlength="' + totalPage.toString().length + '"/>';
+            ' value="' +
+            pageIndex +
+            '"' +
+            ' maxlength="' +
+            totalPage.toString().length +
+            '"/>';
         pagingControlContent += viewResources.of + ' ' + totalPage;
         pagingControlContent += '<span class="pagingSeperator"></span>';
 
-        pagingControlContent += '<span class="icon pagingNext " type="button"' +
-            (pageIndex === totalPage ? ' disabled="disabled"' : ' onclick="viewPTManagement.nextPaging()"') + '></span>';
-        pagingControlContent += '<span class="icon pagingLast " type="button"' +
-            (pageIndex === totalPage ? ' disabled="disabled"' : ' onclick="viewPTManagement.lastPaging()"') + '> </span>';
+        pagingControlContent +=
+            '<span class="icon pagingNext " type="button"' +
+            (pageIndex === totalPage ? ' disabled="disabled"' : ' onclick="viewPTManagement.nextPaging()"') +
+            '></span>';
+        pagingControlContent +=
+            '<span class="icon pagingLast " type="button"' +
+            (pageIndex === totalPage ? ' disabled="disabled"' : ' onclick="viewPTManagement.lastPaging()"') +
+            '> </span>';
 
         pagingControlContent += '</div>';
         return pagingControlContent;
     };
     self.cacheFooterPagingElements = function () {
-        self.domElements.pagingCurrent = self.domElements.viewPageContainer.find(".pagingCurrent");
-        self.domElements.pagingFirst = self.domElements.viewPageContainer.find(".pagingFirst");
-        self.domElements.pagingPrev = self.domElements.viewPageContainer.find(".pagingPrev");
-        self.domElements.pagingNext = self.domElements.viewPageContainer.find(".pagingNext");
-        self.domElements.pagingLast = self.domElements.viewPageContainer.find(".pagingLast");
+        self.domElements.pagingCurrent = self.domElements.viewPageContainer.find('.pagingCurrent');
+        self.domElements.pagingFirst = self.domElements.viewPageContainer.find('.pagingFirst');
+        self.domElements.pagingPrev = self.domElements.viewPageContainer.find('.pagingPrev');
+        self.domElements.pagingNext = self.domElements.viewPageContainer.find('.pagingNext');
+        self.domElements.pagingLast = self.domElements.viewPageContainer.find('.pagingLast');
     };
     self.firstPaging = function () {
         var selectedPageIndex = 1;
@@ -175,9 +197,10 @@
         var selectedPageIndex = parseInt(element.value);
         if (selectedPageIndex < 1) {
             selectedPageIndex = 1;
-        }
-        else if (self.cachedData.positionTakingInfo &&
-            self.cachedData.positionTakingInfo.totalPage < selectedPageIndex) {
+        } else if (
+            self.cachedData.positionTakingInfo &&
+            self.cachedData.positionTakingInfo.totalPage < selectedPageIndex
+        ) {
             selectedPageIndex = self.cachedData.positionTakingInfo.totalPage;
         }
 
@@ -225,34 +248,34 @@
         headerColumns.push({
             HeaderText: viewResources.Symbol_No,
             Width: 40,
-            Name: "ColNo",
-            HeaderAlign: "center",
-            CellAlign: "center"
+            Name: 'ColNo',
+            HeaderAlign: 'center',
+            CellAlign: 'center'
         });
 
         groupHeaderColumns.push({
             Width: 40,
-            Name: "ColNo",
-            HeaderAlign: "center",
-            CellAlign: "center",
+            Name: 'ColNo',
+            HeaderAlign: 'center',
+            CellAlign: 'center',
             MergeColNumber: positionTakingInfo.isShowUplinePT ? 3 : 2
         });
 
         headerColumns.push({
             HeaderText: viewResources.Username,
             Width: positionTakingInfo.customerList.length ? 180 : 447,
-            Name: "ColUsername",
-            HeaderAlign: "center",
-            CellAlign: "left"
+            Name: 'ColUsername',
+            HeaderAlign: 'center',
+            CellAlign: 'left'
         });
 
         if (positionTakingInfo.isShowUplinePT && positionTakingInfo.customerList.length) {
             headerColumns.push({
                 HeaderText: '',
                 Width: 20,
-                Name: "ColUserLevelName",
-                HeaderAlign: "center",
-                CellAlign: "center",
+                Name: 'ColUserLevelName',
+                HeaderAlign: 'center',
+                CellAlign: 'center',
                 ThClass: 'column-level-name'
             });
         }
@@ -285,9 +308,9 @@
                     headerColumns.push({
                         HeaderText: betType.name,
                         Width: width,
-                        Name: "ColSportType" + sport.id + "-LiveType" + liveType.id + "-BetType" + betType.id,
-                        HeaderAlign: "center",
-                        CellAlign: "center",
+                        Name: 'ColSportType' + sport.id + '-LiveType' + liveType.id + '-BetType' + betType.id,
+                        HeaderAlign: 'center',
+                        CellAlign: 'center',
                         ThClass: 'column-bettype-name'
                     });
                     activeBetTypeLength++;
@@ -295,10 +318,16 @@
 
                 if (activeBetTypeLength) {
                     groupHeaderColumns.push({
-                        HeaderText: sport.name + " " + liveType.name,
-                        Name: "ColSportType" + sport.id + "-LiveType" + liveType.id + "-BetType" + liveType.activationGroups[0].id,
-                        HeaderAlign: "center",
-                        CellAlign: "center",
+                        HeaderText: sport.name + ' ' + liveType.name,
+                        Name:
+                            'ColSportType' +
+                            sport.id +
+                            '-LiveType' +
+                            liveType.id +
+                            '-BetType' +
+                            liveType.activationGroups[0].id,
+                        HeaderAlign: 'center',
+                        CellAlign: 'center',
                         MergeColNumber: activeBetTypeLength
                     });
                 }
@@ -306,9 +335,11 @@
         }
 
         return {
-            groupHeaderRows: [{
-                Columns: groupHeaderColumns
-            }],
+            groupHeaderRows: [
+                {
+                    Columns: groupHeaderColumns
+                }
+            ],
             headerColumns: headerColumns
         };
     };
@@ -332,13 +363,13 @@
             var custPt = positionTakingInfo.customerList[i];
             var columns = [];
             columns.push({
-                Name: "ColNo",
+                Name: 'ColNo',
                 Value: custPt.groupIndex,
                 MergeRowNumber: uplineLength + 1
             });
 
             columns.push({
-                Name: "ColUsername",
+                Name: 'ColUsername',
                 Value: self.drilldownLink(positionTakingInfo, custPt.customerInfo),
                 MergeRowNumber: uplineLength + 1
             });
@@ -346,7 +377,7 @@
             for (var j = 0; j < uplineLength; j++) {
                 var uplinePT = custPt.uplinePT[j];
                 columns.push({
-                    Name: "ColUserLevelName",
+                    Name: 'ColUserLevelName',
                     Value: self.getLevelName(positionTakingInfo.viewedLevels[j]),
                     TdClass: 'column-levelname'
                 });
@@ -361,7 +392,7 @@
             }
 
             columns.push({
-                Name: "ColUserLevelName",
+                Name: 'ColUserLevelName',
                 Value: self.getLevelName(positionTakingInfo.viewedLevels[uplineLength]),
                 TdClass: 'column-levelname'
             });
@@ -382,12 +413,12 @@
             var custPt = positionTakingInfo.customerList[i];
             var columns = [];
             columns.push({
-                Name: "ColNo",
+                Name: 'ColNo',
                 Value: custPt.groupIndex
             });
 
             columns.push({
-                Name: "ColUsername",
+                Name: 'ColUsername',
                 Value: self.drilldownLink(positionTakingInfo, custPt.customerInfo)
             });
 
@@ -402,18 +433,60 @@
     };
 
     self.drilldownLink = function (positionTakingInfo, customerInfo) {
+        if (positionTakingInfo.levelType == '2') {
+            var agentId = 0;
+            switch (positionTakingInfo.viewedCustomerInfo.roleId) {
+                case self.Enums.roleId.Super:
+                    agentId = -4;
+                    break;
+                case self.Enums.roleId.Master:
+                    agentId = -3;
+                    break;
+                default:
+                    agentId = 0;
+                    break;
+            }
+            return (
+                '<a  onclick="viewPTManagement.editMemberPTList(' +
+                "'" +
+                customerInfo.custId +
+                "'," +
+                "'" +
+                customerInfo.custName +
+                "'," +
+                "'" +
+                agentId +
+                "'" +
+                ');" href="javascript:;">' +
+                customerInfo.custName +
+                '</a>'
+            );
+        }
+
         var link = '';
         switch (positionTakingInfo.viewedCustomerInfo.roleId) {
             case self.Enums.roleId.Super:
             case self.Enums.roleId.Master:
-                link = '<a class="view-downline" data-custid="' + customerInfo.custId + '" href="#">' +
+                link =
+                    '<a class="view-downline" data-custid="' +
+                    customerInfo.custId +
+                    '" href="#">' +
                     customerInfo.custName +
                     '</a>';
                 break;
             case self.Enums.roleId.Agent:
-                link = '<a  onclick="viewPTManagement.editMemberPTList(' +
-                    '\'' + customerInfo.custId + '\',' +
-                    '\'' + customerInfo.custName + '\'' + ');" href="javascript:;">' +
+                link =
+                    '<a  onclick="viewPTManagement.editMemberPTList(' +
+                    "'" +
+                    customerInfo.custId +
+                    "'," +
+                    "'" +
+                    customerInfo.custName +
+                    "'," +
+                    "'" +
+                    0 +
+                    "'" +
+                    ');" href="javascript:;">' +
                     customerInfo.custName +
                     '</a>';
                 break;
@@ -451,7 +524,7 @@
             var betType = liveType.positionTakingByGroups[i];
             var ptValue = numeral(betType.value).value();
             columns.push({
-                Name: "ColSportType" + sport.id + "-LiveType" + liveType.id + "-BetType" + betType.id,
+                Name: 'ColSportType' + sport.id + '-LiveType' + liveType.id + '-BetType' + betType.id,
                 Value: ptValue
             });
         }
@@ -460,20 +533,18 @@
     };
 
     self.viewDownlinePTList = function (event) {
-        var custId = $(event.currentTarget).data("custid");
+        var custId = $(event.currentTarget).data('custid');
         var downlineId = self.getDirectDownlineId(self.cachedData.positionTakingInfo.viewedCustomerInfo.roleId);
         var criteria = {
             ProductId: self.cachedData.positionTakingInfo.product.id,
-            PageSize: self.cachedData.positionTakingInfo ?
-                self.cachedData.positionTakingInfo.pageSize :
-                0,
+            PageSize: self.cachedData.positionTakingInfo ? self.cachedData.positionTakingInfo.pageSize : 0,
             PageIndex: 1,
             CustId: custId,
             RoleId: downlineId,
             ProductGroupId: self.cachedData.positionTakingInfo.product.groupId
         };
         self.cachedData.lastParam = criteria;
-        self.viewDataURL(event, "/settings/PositionTaking?" + $.param(criteria));
+        self.viewDataURL(event, '/settings/PositionTaking?' + $.param(criteria));
     };
     self.viewDataURL = function (event, url) {
         event.preventDefault();
@@ -500,7 +571,7 @@
     };
     self.customerStatusRowCss = function (customerInfo) {
         if (!customerInfo.enabled) {
-            return 'disabled-row'
+            return 'disabled-row';
         }
 
         if (customerInfo.closed) {
@@ -512,75 +583,53 @@
         }
 
         if (customerInfo.lockedAccess.IsLocked) {
-            return customerInfo.lockedAccess.className
+            return customerInfo.lockedAccess.className;
         }
 
         return '';
     };
 
-    self.editMemberPTList = function (custId, custName) {
-        var params = $.param({
-            productId: self.positionTakingInfo.product.id,
-            customerLevel: 1,
-            uplineLevel: self.positionTakingInfo.customerInfo.roleId,
-            customerId: custId,
-
-            isMultiple: false,
-            username: custName,
-            userId: self.positionTakingInfo.customerInfo.custId,
-            subAccid: 0,
-            isViewPt: true,
-            isDarkMode: window.isDarkMode
-        });
-
-        var title = viewResources.editPTTitle + " - " + custName;
+    self.editMemberPTList = function (custId, custName, agentId) {
+        var title = viewResources.editPTTitle + ' - ' + custName;
         var popupWidth = 1250;
 
-        if (self.positionTakingInfo.product.isNewSetting == true) {
-            var payload = $.param({
-                productGroupId: self.positionTakingInfo.product.groupId,
-                custId: custId,
-                roleId: 1,
-                uplineRoleId: self.positionTakingInfo.customerInfo.roleId,
-                lng: window.language,
-                isDarkMode: window.isDarkMode
-            });
-            top.popupManager.open(top.alpha.urls.memberInfoRootPath + "Customer/EditCustomer?" + payload, title, popupWidth);
-        } else {
-            var url = self.positionTakingInfo.product.customerSettingLink;
-
-            if (url) {
-                url += "?" + params;
-                top.popupManager.open(url, title, popupWidth);
-            }
-            else {
-                url = "/settings/DCS/ViewCustomerSetting?" + params;
-                top.popupManager.openByRelativeUrl(url, title, popupWidth);
-            }
-        }
+        var payload = $.param({
+            productGroupId: self.positionTakingInfo.product.groupId,
+            custId: custId,
+            roleId: 1,
+            agentId: agentId,
+            uplineRoleId: self.positionTakingInfo.customerInfo.roleId,
+            lng: window.language,
+            isDarkMode: window.isDarkMode
+        });
+        top.popupManager.open(
+            top.alpha.urls.memberInfoRootPath + 'Customer/EditCustomer?' + payload,
+            title,
+            popupWidth
+        );
     };
     self.getRoleName = function (roleId) {
         switch (roleId) {
             case self.Enums.roleId.Super:
-                return "Super";
+                return 'Super';
             case self.Enums.roleId.Master:
-                return "Master";
+                return 'Master';
             case self.Enums.roleId.Agent:
-                return "Agent";
+                return 'Agent';
             default:
-                return "";
+                return '';
         }
     };
     self.getLevelName = function (levelId) {
         switch (levelId) {
             case self.Enums.roleId.Super:
-                return "S";
+                return 'S';
             case self.Enums.roleId.Master:
-                return "M";
+                return 'M';
             case self.Enums.roleId.Agent:
-                return "A";
+                return 'A';
             default:
-                return "";
+                return '';
         }
     };
 };
@@ -595,10 +644,17 @@ function getEditSettingPopUpLeft() {
 window.isProductOptionClicked = false;
 function ptView(url) {
     if (window.isProductOptionClicked) {
-        window.location.href = window.rootUrl + url;
+        window.location.href = url;
     }
 
     window.isProductOptionClicked = !window.isProductOptionClicked;
+}
+
+function levelTypeView(value) {
+    if (window.isLevelTypeDropdownClicked) {
+        handleLevelDropdownChanged(value);
+    }
+    window.isLevelTypeDropdownClicked = !window.isLevelTypeDropdownClicked;
 }
 
 function ptProductDropdownBlur() {
@@ -606,16 +662,47 @@ function ptProductDropdownBlur() {
 }
 
 function ptProductChanged(element) {
-    var isRedirect = navigator.userAgent.match(/iPad/i) != null || navigator.userAgent.indexOf("Safari") > -1;
+    var isRedirect = navigator.userAgent.match(/iPad/i) != null || navigator.userAgent.indexOf('Safari') > -1;
     if (isRedirect) {
         window.isProductOptionClicked = false;
-        var url = $(element).val();
-        location.href = window.rootUrl + url;
+        window.location.href = $(element).val();
     }
 }
 
+function levelTypeDropdownBlur() {
+    window.isLevelTypeDropdownClicked = false;
+}
+
+function levelTypeChanged(element) {
+    var isRedirect = navigator.userAgent.match(/iPad/i) != null || navigator.userAgent.indexOf('Safari') > -1;
+    if (isRedirect) {
+        window.isLevelTypeDropdownClicked = false;
+        handleLevelDropdownChanged($(element).val());
+    }
+}
+
+function handleLevelDropdownChanged(levelType) {
+    var url = $('#dropdown-product').val();
+    url = replaceQueryStringValue(url, 'levelType', levelType);
+    window.location.href = url;
+}
+
+function replaceQueryStringValue(queryString, paramName, paramValue) {
+    if (typeof queryString === 'undefined' || queryString === null) {
+        return '';
+    }
+
+    var regex = new RegExp('([?&])' + paramName + '=[^&]*', 'i');
+
+    var newQueryString = regex.test(queryString)
+        ? queryString.replace(regex, '$1' + paramName + '=' + paramValue)
+        : queryString + (queryString.indexOf('?') >= 0 ? '&' : '?') + paramName + '=' + paramValue;
+
+    return newQueryString;
+}
+
 function correctCheckValueOnDropdown(dropdownId) {
-    var dropdown = $("#" + dropdownId)[0];
+    var dropdown = $('#' + dropdownId)[0];
     if (!dropdown) {
         return;
     }
@@ -626,9 +713,9 @@ function correctCheckValueOnDropdown(dropdownId) {
         var attributeLength = option.attributes.length;
         for (var j = 0; j < attributeLength; j++) {
             var attr = option.attributes[j];
-            if (attr.name == "selected") {
-                if (attr.value == "selected") {
-                    $("#" + dropdownId).val(option.value);
+            if (attr.name == 'selected') {
+                if (attr.value == 'selected') {
+                    $('#' + dropdownId).val(option.value);
                     findSelected = true;
                 }
 
@@ -648,5 +735,5 @@ window.top.successfulUpdatingCallback = function () {
 
 $(document).ready(function () {
     viewPTManagement.initPage();
-    correctCheckValueOnDropdown("dropdown-product");
+    correctCheckValueOnDropdown('dropdown-product');
 });

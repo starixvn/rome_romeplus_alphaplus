@@ -27,8 +27,10 @@
     {
         <tr class="product-row" data-product-id="@data.ProductId" data-is-hide="@(isExpand ? "false" : "true")">
             <td class="text-left col-username bold @(isExpand ? "active" : string.Empty)">
-                <span class="@(isExpand ? "icon-arrow-down" : "icon-arrow-right")"></span>
-                @data.ProductName
+                <div class="text-icon-left">
+                    <span class="@(isExpand ? "ic-arrow-down" : "ic-arrow-right")"></span>
+                    @data.ProductName
+                </div>
             </td>
             @{
                 RenderWinLossInfo(data.Total);
@@ -54,8 +56,10 @@
         <tr class="sport-row sport-of-@productId@(isExpand ? string.Empty : " hide")" data-product-id="@productId"
             data-sporttype="@data.SportType" data-is-hide="@(isExpand ? "false" : "true")">
             <td class="text-left col-username bold @(isExpand ? "active" : string.Empty)">
-                <span class="@(isExpand ? "icon-arrow-down" : "icon-arrow-right")"></span>
-                @data.SportTypeName
+                <div class="text-icon-left">
+                    <span class="@(isExpand ? "ic-arrow-down" : "ic-arrow-right")"></span>
+                    @data.SportTypeName
+                </div>
             </td>
             @{
                 RenderWinLossInfo(data.Total);
@@ -146,6 +150,10 @@
         <td class="hidden-stack-mode bold col-cust-total @highlightClass">@total.FormatNumber()</td>
     }
 }
+@section Styles {
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/winlossbyproduct")
+    <link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" asp-append-version="true" />
+}
 @section Scripts {
     <script src="~/bundles/winlossbyproduct/winlossbyproduct.js" asp-append-version="true"></script>
 }
@@ -155,11 +163,11 @@
     id="report-form">
     <product-multiselection model="@Model.ProductViewModel" />
     <daterange-picker model="Model.DateRangePicker" />
-    <div class="form-group hide">
-        <span id="icon-information" class="icon-information-outline"></span>
+    <div class="form-group form-group-short hide">
+        <span id="icon-information" class="ic-information"></span>
     </div>
     <div class="form-group">
-        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
+        <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="Excel"
             asp-all-route-data="Model.GetExcelParams()"></a>
     </div>
     <div class="note">
@@ -167,7 +175,7 @@
     </div>
 </form>
 <table
-    class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover width-100per tbl-win-loss-by-product@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty) "
+    class="tb tb-bordered tb-hover w-full tbl-win-loss-by-product@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty) "
     id="tbl-report">
     <thead>
         <tr>
@@ -179,13 +187,9 @@
                 Resources.GrossComm : (isSuperLevel ? Resources.TurnoverAbbr + Resources.GrossComAndMasterTotal :
                 Resources.TurnoverAbbr + Resources.GrossComAndAgentTotal))
             </th>
-            @if (isSuperLevel)
+            @if (isSuperLevel || isMasterLevel)
             {
-                <th rowspan="2" class="hidden-stack-mode">@Resources.MasterTotal</th>
-            }
-            @if (isMasterLevel)
-            {
-                <th rowspan="2" class="hidden-stack-mode">@Resources.AgentTotal</th>
+                <th rowspan="2" class="hidden-stack-mode">@Resources.DownlineTotal</th>
             }
             @if (isAgentLevel)
             {

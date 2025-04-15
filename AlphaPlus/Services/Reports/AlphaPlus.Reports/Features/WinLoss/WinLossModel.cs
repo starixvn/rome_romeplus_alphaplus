@@ -40,6 +40,8 @@ public class WinLossModel
 
     public bool IsDormantAccounts => CustId == 0;
 
+    public bool IsDirectMember { get; init; }
+
     public static WinLossModel operator +(WinLossModel model1, WinLossModel model2)
     {
         model1.Turnover += model2.Turnover;

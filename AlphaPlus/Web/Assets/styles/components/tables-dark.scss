@@ -116,6 +116,7 @@
 
     thead th, tbody td, tfoot td {
         min-height: $height-normal;
+        height: $height-normal;
         padding: 4px 8px;
         white-space: nowrap;
         vertical-align: middle;
@@ -182,6 +183,24 @@
             text-transform: uppercase;
             text-align: center;
         }
+        .text-icon {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+            align-items: center;
+            &.text-icon-left{
+                justify-content: flex-start;
+            }
+            [class^="icon-"], [class*=" icon-"] {
+                font-size: 16px;
+                margin-left: 5px;
+                color: #ededed;
+                cursor: pointer;
+            }
+            .icon-directmember{
+                font-size: 18px;
+            }
+        }
     }
 
     .tbl-footer {
@@ -240,6 +259,32 @@
     .noInfo {
         background-color: #fff !important;
         text-align: center;
+    }
+    .col-icon-header {
+        padding-right: 28px !important;
+        position: relative !important;
+        [class*=' icon-'], [class^=icon-]{
+            position: absolute;
+            right: 2px;
+            top: 50%;
+            transform: translateY(-50%);
+            &:before{
+                color: #fff;
+            }
+        }
+        .tooltip{
+            background: transparent;
+            border: 0;
+            min-width: 370px;
+            text-align: left;
+            pointer-events: none;
+            .tooltip-inner{
+                max-width: 100%;
+                text-align: left;
+                display: inline-block;
+                width: auto;
+            }
+        }
     }
 }
 

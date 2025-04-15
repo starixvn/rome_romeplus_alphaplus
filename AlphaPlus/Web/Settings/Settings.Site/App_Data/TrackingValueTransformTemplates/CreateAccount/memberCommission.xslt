@@ -38,7 +38,7 @@
                   <xsl:value-of select="xslLogFormat:GetSportName(@sporttype)" />
                 </td>
                 <td class="colW2">
-                  <xsl:value-of select="@discount" />
+                  <xsl:value-of select="@playerdiscount" />
                 </td>
                 <xsl:if test="position()=last() and position() mod 3 &gt; 0">
                   <td class="colW1">

@@ -117,11 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ProfilePicture_Page1_Title" xml:space="preserve">
-    <value>กระบวนการเข้าสู่ระบบที่ปลอดภัยแบบใหม่กำลังมาในเร็วๆ นี้</value>
-  </data>
   <data name="ProfilePicture_Page1_Row1" xml:space="preserve">
     <value>เพื่อเพิ่มความปลอดภัยให้กับบัญชี หลังจากป้อนชื่อผู้ใช้ คุณจะพบรูปโปรไฟล์ของคุณเพื่อเป็นการยืนยัน</value>
+  </data>
+  <data name="ProfilePicture_Page3_Row1" xml:space="preserve">
+    <value>อัปเดตรูปโปรไฟล์ของคุณได้ตลอดเวลาใน&lt;a id="lnk-profile-picture" href="./" target="main"&gt;การตั้งค่าโปรไฟล์&lt;/a&gt;ได้ทั้งสองวิธี ดังต่อไปนี้:</value>
+  </data>
+  <data name="ProfilePicture_Page1_Title" xml:space="preserve">
+    <value>กระบวนการเข้าสู่ระบบที่ปลอดภัยแบบใหม่กำลังมาในเร็วๆ นี้</value>
   </data>
   <data name="ProfilePicture_Page2_Title" xml:space="preserve">
     <value>ตรวจสอบให้แน่ใจว่ารูปโปรไฟล์ของคุณตรงกับบัญชีของคุณก่อนที่จะป้อนรหัสผ่าน</value>
@@ -129,7 +132,25 @@
   <data name="ProfilePicture_Page3_Title" xml:space="preserve">
     <value>การตั้งค่ารูปโปรไฟล์ช่วยให้คุณระบุไซต์ที่ถูกต้องได้อย่างรวดเร็วและรักษาความเป็นส่วนตัวของคุณ</value>
   </data>
-  <data name="ProfilePicture_Page3_Row1" xml:space="preserve">
-    <value>อัปเดตรูปโปรไฟล์ของคุณได้ตลอดเวลาใน&lt;a id="lnk-profile-picture" href="./" target="main"&gt;การตั้งค่าโปรไฟล์&lt;/a&gt;ได้ทั้งสองวิธี ดังต่อไปนี้:</value>
+  <data name="Index_Page1_Row1" xml:space="preserve">
+    <value>ไปที่&lt;a id="lnk-new-feature" href="javascript:;" target="main"&gt;ข้อมูลสมาชิก &gt; สร้างสมาชิกโดยตรง&lt;/a&gt;ใหม่เพื่อเริ่มต้น</value>
+  </data>
+  <data name="Index_Page1_Title" xml:space="preserve">
+    <value>ขณะนี้คุณสามารถสร้างและจัดการสมาชิกของคุณเองได้อย่างสมบูรณ์</value>
+  </data>
+  <data name="Index_Page2_Title" xml:space="preserve">
+    <value>ค้นหาและจัดการการตั้งค่าสมาชิกโดยตรงของคุณได้อย่างง่ายดายในข้อมูลบัญชี.</value>
+  </data>
+  <data name="Index_Page3_Title" xml:space="preserve">
+    <value>รายงานของคุณจะรวมข้อมูลของสมาชิกโดยตรงของคุณ</value>
+  </data>
+  <data name="Index_Page4_Title_Super" xml:space="preserve">
+    <value>ใน&lt;b&gt;รายชื่อตัวแทนหลัก&lt;/b&gt; คุณสามารถดูได้ครั้งละหนึ่งระดับเท่านั้น</value>
+  </data>
+  <data name="Index_Page5_Title" xml:space="preserve">
+    <value>ในฟังก์ชัน&lt;b&gt;ถ่ายโอน&lt;/b&gt; สมาชิกโดยตรงของคุณจะถูกรวมไว้ ทำให้คุณสามารถโอนและกำหนดค่าสำหรับดาวน์ไลน์ทั้งหมดได้ในคราวเดียว</value>
+  </data>
+  <data name="Index_Page4_Title_Master" xml:space="preserve">
+    <value>ใน&lt;b&gt;รายชื่อเอเย่นต์&lt;/b&gt; คุณสามารถดูได้ครั้งละหนึ่งระดับเท่านั้น</value>
   </data>
 </root>

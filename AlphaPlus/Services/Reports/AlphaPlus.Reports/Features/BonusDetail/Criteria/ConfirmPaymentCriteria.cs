@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.BonusDetail;
 
-internal class ConfirmPaymentCriteria(
+public class ConfirmPaymentCriteria(
     int custId,
     int subAccId,
     long transId,

@@ -13,21 +13,27 @@ public interface ICommissionService
     Task<CommissionReport> GetAgentComm(CommissionParam param);
 }
 
-public class CommissionService(
-    IDynamicRepository repository,
-    CacheRefService cacheRefService) : ICommissionService
+public class CommissionService(IDynamicRepository repository, CacheRefService cacheRefService) : ICommissionService
 {
     public Task<CommissionReport> GetMasterComm(CommissionParam param)
-        => GetCommission(new GetMasterCommCriteria(param.ProductId, param.CustId, param.SettingStatus), param);
+    {
+        var criteria = new GetMasterCommCriteria(param.ProductId, param.CustId, param.SettingStatus, param.IsDirectMember);
+
+        return GetCommission(criteria, param.ProductId);
+    }
 
     public Task<CommissionReport> GetAgentComm(CommissionParam param)
-        => GetCommission(new GetAgentCommCriteria(param.ProductId, param.CustId, param.SettingStatus), param);
+    {
+        var criteria = new GetAgentCommCriteria(param.ProductId, param.CustId, param.SettingStatus, param.IsDirectMember);
 
-    private async Task<CommissionReport> GetCommission(ICriteria criteria, CommissionParam param)
+        return GetCommission(criteria, param.ProductId);
+    }
+
+    private async Task<CommissionReport> GetCommission(ICriteria criteria, int productId)
     {
         var rawData = await repository.FetchAsync<CommissionEntity>(criteria);
 
-        return param.ProductId == ProductId.Sportsbook
+        return productId == ProductId.Sportsbook
             ? BuildCommissionModels(rawData)
             : BuildDCSCommissionModels(rawData);
     }
@@ -36,7 +42,6 @@ public class CommissionService(
     {
         var commissionModels = new List<CommissionModel>();
         var sportTypes = new List<string> { $"{Resources.Comm} 1(%)", $"{Resources.Comm} 2(%)", $"{Resources.Comm} 3(%)" };
-
 
         foreach (var item in commissions)
         {

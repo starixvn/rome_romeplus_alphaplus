@@ -12,9 +12,6 @@ public class MonthRangePickerTagHelper : TagHelper
     [HtmlAttributeName("model")]
     public MonthPickerViewModel Model { get; set; }
 
-    [HtmlAttributeName("class-name")]
-    public string ClassName { get; set; } = string.Empty;
-
     public override void Process(TagHelperContext context, TagHelperOutput output)
     {
         var fromDate = Model.FromDate.ToShortDateWithSlash();
@@ -28,7 +25,7 @@ public class MonthRangePickerTagHelper : TagHelper
         var sb = new StringBuilder();
         sb
             .Append("<div class=\"form-group\">")
-            .Append($"<label class=\"{ClassName}\">{Resources.From}</label>")
+            .Append($"<label class=\"label-form-control\">{Resources.From}</label>")
             .Append("<div class=\"control month-range-picker-element\">")
             .Append("<div id=\"from-monthpicker\"")
             .Append($"data-longmonths-inyear=\"{Model.MonthNames}\" ")
@@ -39,7 +36,7 @@ public class MonthRangePickerTagHelper : TagHelper
             .Append("</div></div></div>");
         sb
             .Append("<div class=\"form-group\">")
-            .Append($"<label class=\"{ClassName}\">{Resources.To}</label>")
+            .Append($"<label class=\"label-form-control\">{Resources.To}</label>")
             .Append("<div class=\"control month-range-picker-element\">")
             .Append("<div id=\"to-monthpicker\"")
             .Append($"data-longmonths-inyear=\"{Model.MonthNames}\" ")

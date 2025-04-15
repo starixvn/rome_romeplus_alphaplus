@@ -10,6 +10,7 @@ using AlphaPlus.Settings.Site.Features.ProductStatus.Params;
 using AlphaPlus.Shared.AppResources.Settings;
 using AlphaPlus.Settings.Site.Features.Shared.Services;
 using Fanex.Data.Repository;
+using AlphaPlus.Settings.MemberInfo.Domain.Constants;
 
 namespace AlphaPlus.Settings.Site.Features.ProductStatus
 {
@@ -336,7 +337,9 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus
             {
                 var custRole = Enumeration.FromValue<UserLevel>(customerInformation.RoleId);
 
-                isValidRole = custRole.IsDirectDownlineOf(uplineLevel);
+                isValidRole = custRole.IsDirectDownlineOf(uplineLevel)
+                    || (uplineLevel.IsSuperLevel() && customerInformation.AgentId == DirectMemberAgentIds.Super)
+                    || (uplineLevel.IsMasterLevel() && customerInformation.AgentId == DirectMemberAgentIds.Master);
             }
 
             return isValidRole;

@@ -58,6 +58,10 @@
     </div>
     @Html.NumericRow(Model.GivenCreditLabel, balanceInfo.GivenCredit)
     @Html.NumericRow(Model.TotalDownlineCreditLabel, balanceInfo.MemberCredit)
+    @if (Model.ShowDirectMember)
+    {
+        @Html.NumericRow(Resources.TotalDirectMember, balanceInfo.DirectMemberCredit)
+    }
     <div class="group-title">@Resources.Reward</div>
     @{
         RewardRow(Resources.RewardReceivable, Model.BalanceInfo.RewardReceivable ?? 0, Model.BalanceInfo.RewardCurrency,

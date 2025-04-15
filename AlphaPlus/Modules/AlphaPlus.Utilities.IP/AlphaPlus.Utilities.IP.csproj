@@ -7,7 +7,6 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Fanex.Caching" Version="2.2.4" />
     <PackageReference Include="Fanex.Data.ProxyClient" Version="1.0.0" />
   </ItemGroup>
 </Project>

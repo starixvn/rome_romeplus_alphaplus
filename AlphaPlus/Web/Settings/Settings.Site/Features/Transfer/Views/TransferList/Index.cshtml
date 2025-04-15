@@ -1,6 +1,7 @@
 ﻿@using AlphaPlus.Core.Helpers
 @using AlphaPlus.Shared.AppResources.Settings.Transfer
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AlphaPlus.Settings.Site
 @{
     ViewBag.Title = Resources.MultipleTransfer;
     var pagerViewModel = Tuple.Create(Model.PageIndex, Model.ReportData.TotalPages);
@@ -11,17 +12,14 @@
 }
 @section Scripts {
     <script src="~/bundles/transfer/transfer-list.js" asp-append-version="true"></script>
-    @if (!Model.IsMasterOrSuperLevel)
-    {
-        <script type="text/javascript">
-            const warning = @Convert.ToByte(Model.IsShowWarningMultipleTransfer);
-            if (warning) {
-                document.getElementById('warning-multiple-transfer').style.display = 'block';
-            } else {
-                document.getElementById('warning-multiple-transfer').remove();
-            }
-        </script>
-    }
+    <script type="text/javascript">
+        const warning = @Convert.ToByte(Model.IsShowWarningMultipleTransfer);
+        if (warning) {
+            document.getElementById('warning-multiple-transfer').style.display = 'block';
+        } else {
+            document.getElementById('warning-multiple-transfer').remove();
+        }
+    </script>
 }
 <div class="page-title">
     <partial name="_EnteredSportResult" model="Model.EnteredSportResult" />
@@ -46,6 +44,10 @@
             <select asp-for="AutoTransfer" asp-items="Model.AutoTransferOptions"></select>
         </div>
     }
+    @if (!Model.IsAgentLevel)
+    {
+        <level-type custlevel="@Model.ActorLevel" selected-value="@Model.LevelType" />
+    }
     <div class="form-group">
         <input asp-for="AllYesterdayBalance" />
         <label asp-for="AllYesterdayBalance">@Resources.AllYesterdayBalance</label>
@@ -61,11 +63,8 @@
     <input type="hidden" asp-for="PageSize" />
     <input type="hidden" name="ADBT" value="@(Model.IsAllDayBalanceTransfer ? "true" : "false")" />
 </form>
-@if (!Model.IsMasterOrSuperLevel)
-{
-    <div id="warning-multiple-transfer" style="display:none">* @Html.Raw(string.Format(Resources.WarningMultipleTransfer,
+<div id="warning-multiple-transfer" style="display:none">* @Html.Raw(string.Format(Resources.WarningMultipleTransfer,
     "<font class='highlight'>", "</font>"))</div>
-}
 <div class="msg" id="msg-alert" style="display:none"></div>
 <div class="list-btn">
     <div class="btn-left">
@@ -92,13 +91,13 @@
     </div>
 </div>
 <div class="block-tbl-transfer" id="block-tbl-transfer">
-    @if (Model.IsMasterOrSuperLevel)
+    @if (Model.IsAgentLevel)
     {
-        <partial name="_DataViewSuperMaster" />
+        <partial name="_DataViewAgent" />
     }
     else
     {
-        <partial name="_DataViewAgent" />
+        <partial name="_DataViewSuperMaster" />
     }
     <partial name="_Paging" model="pagerViewModel" />
     <partial name="~/Features/Transfer/Views/Shared/_VisibleColumns.cshtml" />
@@ -107,8 +106,19 @@
 <input type="hidden" asp-for="ViewerId" />
 <input type="hidden" id="hidden-usernameSuggestionUrl" value="@MicroSites.SettingUrl("~/UserNameSuggestion")" />
 <a class="hide" id="hidden-transferHintUrl" asp-action="Hint" asp-controller="CashBalanceTransfer"></a>
-<a class="hide" id="hidden-transferYesterdayBalanceMultipleUrl"
-    asp-action="@(Model.IsMasterOrSuperLevel ? "Multiple" : "MultipleMember")"
+<input type="hidden" id="hidden-queryUsername" value="@Model.Username" />
+<input type="hidden" id="hidden-queryStatus" value="@Model.Status" />
+@if (Model.IsEnableAutoTransfer)
+{
+    <input type="hidden" id="hidden-queryAutoTransfer" value="@Model.AutoTransfer" />
+}
+@if (!Model.IsAgentLevel)
+{
+    <input type="hidden" id="hidden-queryLevelType" value="@Model.LevelType" />
+    <a class="hide" id="hidden-transferYesterdayBalanceMultipleUrl" asp-action="Multiple"
+        asp-controller="TransferYesterdayBalance"></a>
+}
+<a class="hide" id="hidden-transferYesterdayBalanceMultipleMemberUrl" asp-action="MultipleMember"
     asp-controller="TransferYesterdayBalance"></a>
 <input type="hidden" id="hidden-updateMultipleAutoTransferUrl" value="@Model.UpdateMultipleAutoTransferUrl" />
 <input type="hidden" id="hidden-confirmTransfer" value="@Resources.ConfirmTransfer" />

@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory;
 
-internal class BetCreditHistoryCriteria(
+public class BetCreditHistoryCriteria(
     string username,
     DateTime fromDate,
     DateTime toDate,

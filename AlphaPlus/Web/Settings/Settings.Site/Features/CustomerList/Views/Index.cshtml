@@ -6,6 +6,7 @@
 @using AlphaPlus.Shared.AppResources.Settings.CustomerList
 @using AlphaPlus.Shared.AppResources.Settings.MemberInfo
 @using AlphaPlus.Shared.AppResources.Settings.ProductResources
+@addTagHelper *, AlphaPlus.Settings.Site
 
 @model AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.CustomerListViewModel
 
@@ -75,7 +76,7 @@
     <div class="form-inline filter form-report">
         <div class="form-group username-box">
             <label>@CustomerListResources.Username</label>
-            <input type="text" class="txt-search" id="txt-username"
+            <input type="text" class="txt-search" id="txt-username" value="@Model.Username"
                 placeholder="@CustomerListResources.UsernamePlaceHolder" />
         </div>
         <div class="form-group status-box">
@@ -109,6 +110,10 @@
                 </select>
             </div>
         }
+        @if (Model.ShowLevelType)
+        {
+            <level-type custlevel="@Model.SearchAccountLevel" selected-value="@Model.LevelType" show-all-option="@false" />
+        }
         <div class="form-group btn-box">
             <input type="submit" value="@Resources.Submit" class="btn-submit" />
         </div>
@@ -133,7 +138,7 @@
                     <th></th>
                 }
                 <th></th>
-                @if (Model.SearchAccountLevel.IsAgentLevel())
+                @if (Model.SearchAccountLevel.IsAgentLevel() || Model.IsDirectMember)
                 {
                     <th></th>
                 }
@@ -192,7 +197,7 @@
                 <th rowspan="2" class="header  @(Model.IsMobileView ? "none" : string.Empty)">
                     @CustomerListResources.FirstLastName
                 </th>
-                @if (Model.SearchAccountRoleId == 2)
+                @if (Model.SearchAccountRoleId == 2 || Model.IsDirectMember)
                 {
                     <th rowspan="2" class="header ugroup @commissionGroupClass">
                         @CustomerListResources.Group
@@ -215,17 +220,32 @@
                 </th>
             </tr>
             <tr class="thead-row2">
-                @if (Model.SearchAccountLevel.IsAgentLevel())
+                @if (Model.IsDirectMember)
                 {
-                    <th class="header commission startGroup @commissionGroupClass">
-                        @CustomerListResources.AComm1
-                    </th>
-                    <th class="header commission @commissionGroupClass">
-                        @CustomerListResources.AComm2
-                    </th>
-                    <th class="header commission @commissionGroupClass">
-                        @CustomerListResources.AComm3
-                    </th>
+                    if (Model.SearchAccountLevel.IsSuperLevel())
+                    {
+                        <th class="header commission startGroup @commissionGroupClass">
+                            @CustomerListResources.SComm1
+                        </th>
+                        <th class="header commission @commissionGroupClass">
+                            @CustomerListResources.SComm2
+                        </th>
+                        <th class="header commission @commissionGroupClass">
+                            @CustomerListResources.SComm3
+                        </th>
+                    }
+                    else
+                    {
+                        <th class="header commission startGroup @commissionGroupClass">
+                            @CustomerListResources.MComm1
+                        </th>
+                        <th class="header commission @commissionGroupClass">
+                            @CustomerListResources.MComm2
+                        </th>
+                        <th class="header commission @commissionGroupClass">
+                            @CustomerListResources.MComm3
+                        </th>
+                    }
                     <th class="header commission @commissionGroupClass">
                         @CustomerListResources.PComm1
                     </th>
@@ -238,25 +258,49 @@
                 }
                 else
                 {
-                    <th class="header @commissionGroupClass commission startGroup">
-                        @CustomerListResources.GroupA
-                    </th>
-                    <th class="header @commissionGroupClass commission">
-                        @CustomerListResources.GroupB
-                    </th>
-                    <th class="header @commissionGroupClass commission">
-                        @CustomerListResources.GroupC
-                    </th>
-                    <th class="header @commissionGroupClass commission">
-                        @CustomerListResources.GroupD
-                    </th>
-                    <th class="header @commissionGroupClass commission">
-                        @CustomerListResources.Group1X2
-                    </th>
-                    <th class="header @commissionGroupClass commission endGroup">
-                        @CustomerListResources.Other
-                    </th>
+                    if (Model.SearchAccountLevel.IsAgentLevel() || Model.IsDirectMember)
+                    {
+                        <th class="header commission startGroup @commissionGroupClass">
+                            @CustomerListResources.AComm1
+                        </th>
+                        <th class="header commission @commissionGroupClass">
+                            @CustomerListResources.AComm2
+                        </th>
+                        <th class="header commission @commissionGroupClass">
+                            @CustomerListResources.AComm3
+                        </th>
+                        <th class="header commission @commissionGroupClass">
+                            @CustomerListResources.PComm1
+                        </th>
+                        <th class="header commission @commissionGroupClass">
+                            @CustomerListResources.PComm2
+                        </th>
+                        <th class="header commission @commissionGroupClass endGroup">
+                            @CustomerListResources.PComm3
+                        </th>
+                    }
+                    else
+                    {
+                        <th class="header @commissionGroupClass commission startGroup">
+                            @CustomerListResources.GroupA
+                        </th>
+                        <th class="header @commissionGroupClass commission">
+                            @CustomerListResources.GroupB
+                        </th>
+                        <th class="header @commissionGroupClass commission">
+                            @CustomerListResources.GroupC
+                        </th>
+                        <th class="header @commissionGroupClass commission">
+                            @CustomerListResources.GroupD
+                        </th>
+                        <th class="header @commissionGroupClass commission">
+                            @CustomerListResources.Group1X2
+                        </th>
+                        <th class="header @commissionGroupClass commission endGroup">
+                            @CustomerListResources.Other
+                        </th>
 
+                    }
                 }
             </tr>
         </thead>
@@ -303,6 +347,7 @@
     </div>
 
     @Html.AntiForgeryToken()
+    @Html.Hidden("IsDirectMember", Model.IsDirectMember ? "true" : "false")
     @Html.Hidden("StatusId", Model.Status)
     @Html.Hidden("DoubleCommId", Model.DoubleComm)
     @Html.Hidden("AllowAutoTransfer", Model.AllowAutoTransfer)

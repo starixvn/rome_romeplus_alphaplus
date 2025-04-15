@@ -4,7 +4,6 @@ using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
-using AlphaPlus.Core.Models;
 using AlphaPlus.NetThrottling;
 using AlphaPlus.RequestInfo;
 using AlphaPlus.Results.Features.Shared;
@@ -19,11 +18,11 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 
 ThreadPool.SetMinThreads(100, 100);
+const string PathBase = "/tickets";
 
 const string SharedSettings = "sharedSettings.json";
 var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../", "Shared/Configuration/", SharedSettings);
 
-var assembly = typeof(Program).Assembly;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 configuration
@@ -75,7 +74,7 @@ builder.Services
         options.ForwardedHeaders =
             ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
     })
-    .AddMediatR(assembly)
+    .AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(Program).Assembly))
     .AddFanexLogging(configuration)
     .AddRemotingRef(configuration)
     .AddFanexData(configuration)
@@ -98,7 +97,15 @@ builder.Services.AddHealthChecks();
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 app.UseForwardedHeaders();
-
+app
+    .UsePathBase(PathBase)
+    .UseRouting()
+    .UseDefaultFiles()
+    .UseStaticFiles()
+    .UseSession()
+    .UseAuthentication()
+    .UseAuthorization()
+    .UseMiddleware<RequestCultureMiddleware>();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -108,35 +115,12 @@ else
     app.UseMiddleware<ExceptionMiddleware>();
 }
 
-app
-    .UsePathBase("/tickets")
-    .UseRouting()
-    .UseDefaultFiles()
-    .UseStaticFiles()
-    .UseSession()
-    .UseAuthentication()
-    .UseAuthorization()
-    .UseMiddleware<RequestCultureMiddleware>();
-
 app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute(), new DisableNetThrottlingAttribute());
 
 app.Use(async (context, next) =>
 {
     context.Request.EnableBuffering();
-    context.Request.PathBase = "/tickets";
-
-    var session = context.RequestServices.GetRequiredService<IUserSession>();
-    context.Items["customData"] = new
-    {
-        session.CustId,
-        session.UserName,
-        session.RoleId,
-        session.SubAccId,
-        session.SubUserName,
-        session.AdminId,
-        session.AdminName
-    };
-
+    context.Request.PathBase = PathBase;
     await next(context);
 });
 
@@ -147,5 +131,4 @@ app.MapDefaultControllerRoute();
 //     "results/{controller}/{action}",
 //     new { controller = "normal", action = "index" });
 
-// await Logger.Log.InfoAsync($"{assembly.GetName().Name} has been started up.");
 await app.RunAsync();

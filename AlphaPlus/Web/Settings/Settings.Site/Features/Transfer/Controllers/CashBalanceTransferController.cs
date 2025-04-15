@@ -4,77 +4,33 @@ using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using MediatR;
 using AlphaPlus.Settings.Site.Features.Transfer.Requests.CashBalanceTransfer;
 
-namespace AlphaPlus.Settings.Site.Features.Transfer.Controllers
+namespace AlphaPlus.Settings.Site.Features.Transfer.Controllers;
+
+public class CashBalanceTransferController(IMediator mediator) : TransferBaseController(mediator)
 {
-    public class CashBalanceTransferController : TransferBaseController
+    [HttpGet]
+    public Task<IActionResult> CashBalance(CashBalanceTransferQuery message) => View(message);
+
+    [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> CashBalance(CashBalanceTransferCommand command)
     {
-        private readonly IUserSession userSession;
-
-        public CashBalanceTransferController(IMediator mediator, IUserSession userSession)
-            : base(mediator)
+        if (command.IsInternal)
         {
-            this.userSession = userSession;
+            return Json(Result.CreateErrorResult(Resources.NotAuthorized, 403));
         }
 
-        [HttpGet]
-        public async Task<ActionResult> CashBalance(CashBalanceTransferQuery message)
-        {
-            if (message == null || !message.IsValid())
-            {
-                return View(InvalidPageViewPath);
-            }
-
-            return View(await mediator.Send(message));
-        }
-
-        [HttpPost, ValidateAntiForgeryToken]
-        public async Task<ActionResult> CashBalance(CashBalanceTransferCommand command)
-        {
-            Result result;
-
-            if (command == null || !command.IsValid())
-            {
-                result = Result.CreateErrorResult(Resources.BadRequest, 400);
-            }
-            else if (userSession.IsInternal)
-            {
-                result = Result.CreateErrorResult(Resources.NotAuthorized, 403);
-            }
-            else
-            {
-                result = await mediator.Send(command);
-            }
-
-            return Json(result);
-        }
-
-        [HttpGet]
-        public async Task<ActionResult> Hint(HintTransferQuery message)
-        {
-            if (message == null || !message.IsValid())
-            {
-                return View(InvalidPageViewPath);
-            }
-
-            var viewModel = await mediator.Send(message);
-
-            return View(GetHintViewNameByLanguage(message.Language), viewModel);
-        }
-
-        [NonAction]
-        private string GetHintViewNameByLanguage(string language)
-        {
-            switch (language)
-            {
-                case "zh-TW":
-                case "zh-CN":
-                case "th-TH":
-                case "vi-VN":
-                    return $"{nameof(Hint)}.{language}";
-
-                default:
-                    return nameof(Hint);
-            }
-        }
+        return await Json(command);
     }
+
+    [HttpGet]
+    public Task<IActionResult> Hint(HintTransferQuery message)
+        => View(message, GetHintViewNameByLanguage(message.Language));
+
+    [NonAction]
+    private string GetHintViewNameByLanguage(string language)
+        => language switch
+        {
+            "zh-TW" or "zh-CN" or "th-TH" or "vi-VN" => $"{nameof(Hint)}.{language}",
+            _ => nameof(Hint)
+        };
 }

@@ -34,7 +34,11 @@ export default function OpenSingle({ viewModel, redirectViewListDetail }: Props)
 
                 if (data.IsSuccessful) {
                     if (top?.customerListNew) {
-                        top.successfulUpdatingCallbackAndReloadMainFrame(true);
+                        try {
+                            top.successfulUpdatingCallbackAndReloadMainFrame(true);
+                        } catch (error) {
+                            $.unblockUI?.();
+                        }
                     }
 
                     if (
