@@ -9,10 +9,9 @@ using Fanex.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Serilog;
 
-const string PathBase = "/cash";
+const string PathBase = "/cash-model";
 const string SharedSettings = "sharedSettings.json";
 var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../", "Shared/Configuration/", SharedSettings);
 
@@ -145,17 +144,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Payments}/{action=Index}/{id?}");
 
-app.MapWhen(x => !x.Request.Path.Value!.StartsWith("/api"), builder =>
-{
-    builder.UseSpa(spa =>
-    {
-        spa.Options.SourcePath = "ClientApp";
-        if (app.Environment.IsDevelopment())
-        {
-            spa.UseReactDevelopmentServer(npmScript: "start");
-        }
-    });
-});
 
 try
 {
