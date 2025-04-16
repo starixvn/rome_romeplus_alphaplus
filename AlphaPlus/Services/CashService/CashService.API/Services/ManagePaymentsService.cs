@@ -21,13 +21,12 @@ public class ManagePaymentsService : IManagePaymentsService
 
     public async Task<IEnumerable<PaymentProviderModel>> GetAllPaymentProviders()
     {
-        var result = await _repository.FetchAsync<PaymentProviderModel>(new GetAllPaymentProvidersCriteria());
+        // var result = await _repository.FetchAsync<PaymentProviderModel>(new GetAllPaymentProvidersCriteria());
         return await GetDummyProviders();
     }
     
     public async Task<IEnumerable<PaymentProviderModel>> GetDummyProviders()
     {
-        // Return dummy payment provider data
         return new List<PaymentProviderModel>
         {
             new PaymentProviderModel
