@@ -180,6 +180,7 @@ var AgeWnd = function () {
         callback: [],
         id: null,
         iframeAttributes: null,
+        customClasses: new Set(),
         calculateWidthHeight: function (width, height, position) {
             var realHeight = height;
             var maxWidth = window.top.window.innerWidth;
@@ -217,9 +218,6 @@ var AgeWnd = function () {
 
             var popupId = "page-popup-" + Math.random().toString(36).substring(7);
             popUp.attr("id", popupId);
-            if (windowCss) {
-                popUp.addClass(windowCss);
-            }
 
             this.id = popupId;
             // Calculate body scrolltop to fix issue: focus popup make body scroll to popup position (on device)
@@ -249,8 +247,16 @@ var AgeWnd = function () {
             var iframe = popUp.find("#popup-iframe");
             iframe.attr("src", "about:blank");
 
+            // reset customClass
+            popUp.removeClass(Array.from(this.customClasses).join(" "));
+            if (windowCss) {
+                popUp.addClass(windowCss);
+                this.customClasses.add(windowCss);
+            }
+
             if (options.customClass) {
                 popUp.addClass(options.customClass);
+                this.customClasses.add(options.customClass);
             }
 
             popUp.appendTo("body");

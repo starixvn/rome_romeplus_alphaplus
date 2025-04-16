@@ -86,7 +86,7 @@ class MemberBettingBehavior {
         const username = this.$.trim(this.$('#txt-username').val());
         if (!username.length) {
             const mustEnterUsernameText = this.$('#mustEnterUserNameText').val();
-            TipsyHelper.showError(this.txtUsername, mustEnterUsernameText, 'w');
+            TipsyHelper.showError(this.txtUsername, mustEnterUsernameText, 'w', false);
             return '';
         }
 
@@ -125,7 +125,7 @@ class MemberBettingBehavior {
                 if (memberProfile.IsFailed) {
                     this.customerProfile.hide();
                     const memberUsernameInvalidText = this.$('#memberUserNameIsInvalidText').val();
-                    TipsyHelper.showError(this.txtUsername, memberUsernameInvalidText, 'w');
+                    TipsyHelper.showError(this.txtUsername, memberUsernameInvalidText, 'w', false);
                     this.$.unblockUI();
                     return;
                 }
@@ -148,7 +148,7 @@ class MemberBettingBehavior {
                 if (memberStatistic.IsFailed) {
                     this.statisticBlock.hide();
                     const memberUsernameInvalidText = this.$('#memberUserNameIsInvalidText').val();
-                    TipsyHelper.showError(this.txtUsername, memberUsernameInvalidText, 'w');
+                    TipsyHelper.showError(this.txtUsername, memberUsernameInvalidText, 'w', false);
                     this.$.unblockUI();
                     return;
                 }
