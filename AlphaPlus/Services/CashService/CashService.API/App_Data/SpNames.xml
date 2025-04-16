@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Functions>
+  <Function Name="Management Payments">
+    <Setting Key="Age_ManagementPayments_SelAllProviders" SpName="Age_ManagementPayments_SelAllProviders" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+  </Function>
+</Functions>
