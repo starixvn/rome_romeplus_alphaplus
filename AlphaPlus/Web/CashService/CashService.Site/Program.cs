@@ -9,6 +9,7 @@ using Fanex.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Serilog;
 
 const string PathBase = "/cash";
@@ -64,6 +65,12 @@ builder.Services
         options.JsonSerializerOptions.PropertyNamingPolicy = null;
     });
 
+// Add SPA static files
+builder.Services.AddSpaStaticFiles(configuration =>
+{
+    configuration.RootPath = "ClientApp/dist";
+});
+
 builder.Services.AddHealthChecks();
 
 builder.Services
@@ -75,13 +82,25 @@ builder.Services
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddSharedCookie();
 
+// Add CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigins",
+        builder =>
+        {
+            builder.WithOrigins("https://localhost:44451")
+                   .AllowAnyHeader()
+                   .AllowAnyMethod()
+                   .AllowCredentials();
+        });
+});
+
 // Add Swagger/OpenAPI support
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new() { Title = "CashService API", Version = "v1" });
 });
-
 
 var app = builder.Build();
 app.UseForwardedHeaders();
@@ -99,9 +118,9 @@ else
     app.UseMiddleware<ExceptionMiddleware>();
 }
 
-
 app.UseDefaultFiles();
 app.UseStaticFiles();
+app.UseSpaStaticFiles();
 
 app.UseRouting();
 app.UseSession();
@@ -116,7 +135,6 @@ app.Use(async (context, next) =>
     await next(context);
 });
 
-
 app.UseCors("AllowSpecificOrigins");
 
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
@@ -127,6 +145,17 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Payments}/{action=Index}/{id?}");
 
+app.MapWhen(x => !x.Request.Path.Value!.StartsWith("/api"), builder =>
+{
+    builder.UseSpa(spa =>
+    {
+        spa.Options.SourcePath = "ClientApp";
+        if (app.Environment.IsDevelopment())
+        {
+            spa.UseReactDevelopmentServer(npmScript: "start");
+        }
+    });
+});
 
 try
 {
