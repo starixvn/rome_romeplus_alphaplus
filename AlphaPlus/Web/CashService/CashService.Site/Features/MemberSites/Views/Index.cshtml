@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Member Sites";
+    Layout = "_Layout";
+}
+
+@section Styles {
+    @if (!(bool)ViewData["IsDevelopment"])
+    {
+        <link rel="stylesheet" href="@ViteHelper.GetViteStyle("MemberSites")">
+    }
+}
+
+<div id="root"></div>
+
+@section Scripts {
+    @if ((bool)ViewData["IsDevelopment"])
+    {
+        <script type="module" src="http://localhost:5173/src/pages/MemberSites/index.tsx"></script>
+    }
+    else
+    {
+        <script type="module" src="@ViteHelper.GetViteAsset("MemberSites")"></script>
+    }
+}

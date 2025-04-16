@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
 using Serilog;
+using AlphaPlus.CashService.Site.Helpers;
 
 const string PathBase = "/cash-model";
 const string SharedSettings = "sharedSettings.json";
@@ -138,6 +139,9 @@ app.UseCors("AllowSpecificOrigins");
 
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
 StaticResources.Init(configuration.GetValue<string>("JsVersion"));
+
+// Initialize ViteHelper
+ViteHelper.Initialize(app.Configuration, app.Environment);
 
 app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute());
 app.MapControllerRoute(
