@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
+    <AssemblyName>AlphaPlus.CashService.API</AssemblyName>
+    <RootNamespace>AlphaPlus.CashService.API</RootNamespace>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>false</InvariantGlobalization>
@@ -11,11 +13,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0-preview.1.24081.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0-preview.1.24081.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0-preview.1.24081.2">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
