@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -8,20 +9,21 @@
     <title>@ViewData["Title"]</title>
     @RenderSection("Styles", required: false)
 </head>
+
 <body>
     @RenderBody()
 
-    @if ((bool)ViewData["IsDevelopment"])
-    {
+    <environment include="Development">
         <script type="module">
-            // Initialize React Refresh
-            window.$RefreshReg$ = () => {}
+            import RefreshRuntime from 'http://localhost:5173/@@react-refresh'
+            RefreshRuntime.injectIntoGlobalHook(window)
+            window.$RefreshReg$ = () => { }
             window.$RefreshSig$ = () => (type) => type
             window.__vite_plugin_react_preamble_installed__ = true
         </script>
-        <script type="module" src=@("http://localhost:5173/@vite/client")></script>
-    }
+    </environment>
 
     @RenderSection("Scripts", required: false)
 </body>
-</html> 
+
+</html>
