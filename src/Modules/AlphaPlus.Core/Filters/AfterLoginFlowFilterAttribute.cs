@@ -2,7 +2,6 @@ using AlphaPlus.Core.Models;
 using AlphaPlus.Core.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Http;
 
 namespace AlphaPlus.Core.Filters;
 
@@ -94,7 +93,4 @@ public sealed class AfterLoginFlowFilterAttribute(IUserSession userSession, INic
         => currentUrl.Equals("Nickname/Index", StringComparison.OrdinalIgnoreCase)
         ? null
         : MicroSites.MainUrl("~/Nickname/Index");
-
-    private static bool IsAjaxRequest(HttpRequest request)
-        => request.Headers != null && (request.Headers.XRequestedWith == "XMLHttpRequest" || request.Method == "POST");
 }
