@@ -18,13 +18,19 @@ const MemberSiteManagement: React.FC = () => {
   ];
 
   return (
-    <div className="member-sites-container">
-      <div className="member-sites-content">
-        <h1 className="member-sites-title">Member Site Management</h1>
-        <div className="member-sites-section">
-          <RegistrationLinks domains={domains} />
-          <GeneralSettings />
-          <MessageForm />
+    <div className="min-h-screen bg-gray-50 p-6">
+      <div className="max-w-5xl mx-auto space-y-6">
+        <h1 className="text-xl font-semibold mb-6">Member Site Management</h1>
+        <div className="space-y-6">
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <RegistrationLinks domains={domains} />
+          </div>
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <GeneralSettings />
+          </div>
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <MessageForm />
+          </div>
         </div>
       </div>
     </div>

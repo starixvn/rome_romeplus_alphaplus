@@ -90,7 +90,8 @@ builder.Services.AddCors(options =>
         {
             builder.WithOrigins(
                     "http://localhost:5173",  // Vite dev server
-                    "http://localhost:5252"   // API server
+                    "http://localhost:5252", // API server
+                    "http://localhost:5159"
                 )
                 .AllowAnyHeader()
                 .AllowAnyMethod()
