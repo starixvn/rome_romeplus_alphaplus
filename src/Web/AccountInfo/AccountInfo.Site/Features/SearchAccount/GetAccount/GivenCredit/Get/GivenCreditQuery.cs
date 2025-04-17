@@ -1,9 +1,9 @@
-using AlphaPlus.AccountInfo.Site.Features.Shared;
+using AlphaPlus.Core;
 using MediatR;
 
 namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCredit.Get;
 
-public class GivenCreditQuery : BaseQuery, IRequest<GivenCreditViewModel>
+public class GivenCreditQuery : QueryBase, IRequest<GivenCreditViewModel>
 {
     public string SearchAccountName { get; set; }
 

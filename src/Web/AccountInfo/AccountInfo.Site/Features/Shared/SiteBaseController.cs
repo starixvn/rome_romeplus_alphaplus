@@ -16,18 +16,18 @@ namespace AlphaPlus.AccountInfo.Site.Features.Shared
         }
 
         protected async Task<ActionResult> View<TResponse>(IRequest<TResponse> message)
-            => (message as BaseQuery).IsValid()
+            => (message as QueryBase).IsValid()
                 ? View(await mediator.Send(message))
                 : View(NoInformationPageViewPath);
 
         protected async Task<ActionResult> View<TResponse>(IRequest<TResponse> message, string viewName)
-            => (message as BaseQuery).IsValid()
+            => (message as QueryBase).IsValid()
                 ? View(viewName, await mediator.Send(message))
                 : View(NoInformationPageViewPath);
 
 
         protected async Task<ActionResult> Json<TResponse>(IRequest<TResponse> message)
-            => (message as BaseQuery).IsValid() ?
+            => (message as QueryBase).IsValid() ?
                 Json(await mediator.Send(message)) :
                 Json(Result.CreateErrorResult("You are not authorized on this function.", StatusCodes.Status403Forbidden));
     }

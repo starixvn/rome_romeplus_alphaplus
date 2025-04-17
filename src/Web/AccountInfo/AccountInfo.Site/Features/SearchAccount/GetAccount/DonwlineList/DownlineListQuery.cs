@@ -1,9 +1,9 @@
-using AlphaPlus.AccountInfo.Site.Features.Shared;
+using AlphaPlus.Core;
 using MediatR;
 
 namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.DonwlineList
 {
-    public class DownlineListQuery : BaseQuery, IRequest<DownlineListViewModel>
+    public class DownlineListQuery : QueryBase, IRequest<DownlineListViewModel>
     {
         public int PageIndex { get; set; }
 

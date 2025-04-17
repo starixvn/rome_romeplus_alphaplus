@@ -1,9 +1,9 @@
-using AlphaPlus.AccountInfo.Site.Features.Shared;
+using AlphaPlus.Core;
 using MediatR;
 
 namespace AlphaPlus.AccountInfo.Site.Features.ProfilePicture.Get
 {
-    public class ProfilePictureQuery : BaseQuery, IRequest<ProfilePictureViewModel>
+    public class ProfilePictureQuery : QueryBase, IRequest<ProfilePictureViewModel>
     {
         private const string DisplayLanguageSessionKey = "languageusage";
 

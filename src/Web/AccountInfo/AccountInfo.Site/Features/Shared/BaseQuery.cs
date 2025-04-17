@@ -1,14 +1,14 @@
 using AlphaPlus.Core.Models;
 
-namespace AlphaPlus.AccountInfo.Site.Features.Shared
+namespace AlphaPlus.Core
 {
-    public abstract class BaseQuery
+    public abstract class QueryBase
     {
         protected readonly IUserSession userSession;
 
-        public BaseQuery() : this(new UserSessionExt()) { }
+        public QueryBase() : this(new UserSessionExt()) { }
 
-        protected BaseQuery(IUserSession userSession)
+        protected QueryBase(IUserSession userSession)
         {
             this.userSession = userSession;
             CustId = userSession.CustId;

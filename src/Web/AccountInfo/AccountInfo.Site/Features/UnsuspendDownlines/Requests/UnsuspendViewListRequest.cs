@@ -1,10 +1,10 @@
-using AlphaPlus.AccountInfo.Site.Features.Shared;
 using AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines.ViewModels;
+using AlphaPlus.Core;
 using MediatR;
 
 namespace AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines.Requests
 {
-    public class UnsuspendViewListRequest : BaseQuery, IRequest<UnsuspendListViewModel>
+    public class UnsuspendViewListRequest : QueryBase, IRequest<UnsuspendListViewModel>
     {
         public int SearchAccountId { get; set; }
         public string SearchAccountName { get; set; }

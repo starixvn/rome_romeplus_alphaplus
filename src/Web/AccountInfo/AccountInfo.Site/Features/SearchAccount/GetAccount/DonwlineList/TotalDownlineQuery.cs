@@ -1,9 +1,9 @@
-using AlphaPlus.AccountInfo.Site.Features.Shared;
+using AlphaPlus.Core;
 using MediatR;
 
 namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.DonwlineList
 {
-    public class TotalDownlineQuery : BaseQuery, IRequest<IEnumerable<TotalDownlinesSummary>>
+    public class TotalDownlineQuery : QueryBase, IRequest<IEnumerable<TotalDownlinesSummary>>
     {
         public byte RoleId { get; set; }
     }

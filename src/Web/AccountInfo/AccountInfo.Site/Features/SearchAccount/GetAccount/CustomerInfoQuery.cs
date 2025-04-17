@@ -1,10 +1,10 @@
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.ViewModels;
-using AlphaPlus.AccountInfo.Site.Features.Shared;
+using AlphaPlus.Core;
 using MediatR;
 
 namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount;
 
-public class CustomerInfoQuery : BaseQuery, IRequest<CustomerInfoViewModel>
+public class CustomerInfoQuery : QueryBase, IRequest<CustomerInfoViewModel>
 {
     public string SearchAccountName { get; set; }
 
