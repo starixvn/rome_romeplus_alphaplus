@@ -1,7 +1,7 @@
 {
   "managePayments": "Manage Payments",
-  "setDailyWidrawalCount": "Set daily widrawal count",
-  "setDailyWidrawalCountForYourMember": "Set daily widrawal amount for your member",
+  "setDailyWithdrawalCount": "Set daily withdrawal count",
+  "setDailyWithdrawalCountForYourMember": "Set daily withdrawal amount for your member",
   "setLimit": "Set limit",
   "managePaymentProviders": "Manage payment providers",
   "action": "Action",
@@ -14,5 +14,6 @@
   "inactive": "Inactive",
   "edit": "Edit",
   "delete": "Delete",
-  "noProvidersFound": "No payment providers found"
+  "noProvidersFound": "No payment providers found",
+  "managePaymentsTip": "Manage payment providers to configure the payment gateway for your members."
 } 

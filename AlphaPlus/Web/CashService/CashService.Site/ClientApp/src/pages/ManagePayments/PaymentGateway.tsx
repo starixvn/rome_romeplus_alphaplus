@@ -39,10 +39,10 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
     <div className="payment-gateway-container">
       <div className="payment-gateway-form">
         <div className="form-group mb-3">
-          <label className="form-label">{t('setDailyWidrawalCount')}</label>
+          <label className="form-label">{t('setDailyWithdrawalCount')}</label>
         </div>
           <div className="form-group mb-3">
-          <label className="form-label">{t('setDailyWidrawalCountForYourMember')}</label>
+          <label className="form-label">{t('setDailyWithdrawalCountForYourMember')}</label>
         </div>
         <div className="form-group mb-3">
           <button type="button" className="btn btn-primary">
