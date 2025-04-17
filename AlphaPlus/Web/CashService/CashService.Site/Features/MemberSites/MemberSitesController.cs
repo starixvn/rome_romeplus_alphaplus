@@ -1,26 +1,13 @@
-using AlphaPlus.Core;
+using AlphaPlus.CashService.Site.Features.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.CashService.Site.Features.MemberSites
 {
-    public class MemberSitesController : BaseController
+    public class MemberSitesController(IMediator mediator)
+        : SiteBaseController(mediator)
     {
-        private readonly IWebHostEnvironment _environment;
-        private readonly IMediator _mediator;
-
-        public MemberSitesController(
-            IWebHostEnvironment environment,
-            IMediator mediator)
-        {
-            _environment = environment;
-            _mediator = mediator;
-        }
-
-        public async Task<IActionResult> Index()
-        {
-            ViewData["IsDevelopment"] = _environment.IsDevelopment();
-            return View();
-        }
+        public IActionResult Index()
+            => View();
     }
 }

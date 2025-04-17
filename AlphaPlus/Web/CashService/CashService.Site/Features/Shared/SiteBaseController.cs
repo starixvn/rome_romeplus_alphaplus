@@ -1,0 +1,34 @@
+using AlphaPlus.Core;
+using AlphaPlus.Core.Models;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+
+namespace AlphaPlus.CashService.Site.Features.Shared
+{
+    public class SiteBaseController : BaseController
+    {
+        private const string InvalidPageViewPath = "~/Features/Shared/Views/Invalid.cshtml";
+        protected readonly IMediator mediator;
+
+        protected SiteBaseController(IMediator mediator)
+        {
+            this.mediator = mediator;
+        }
+
+        protected async Task<ActionResult> View<TResponse>(IRequest<TResponse> message)
+            => (message as QueryBase).IsValid()
+                ? View(await mediator.Send(message))
+                : View(InvalidPageViewPath);
+
+        protected async Task<ActionResult> View<TResponse>(IRequest<TResponse> message, string viewName)
+            => (message as QueryBase).IsValid()
+                ? View(viewName, await mediator.Send(message))
+                : View(InvalidPageViewPath);
+
+
+        protected async Task<ActionResult> Json<TResponse>(IRequest<TResponse> message)
+            => (message as QueryBase).IsValid() ?
+                Json(await mediator.Send(message)) :
+                Json(Result.CreateErrorResult("You are not authorized on this function.", StatusCodes.Status403Forbidden));
+    }
+}
