@@ -140,6 +140,7 @@
         "SystemId": 2
     },
     "SystemId": 2,
+    "IdentityUrl": "http://host.docker.internal:5000/",
     "AssetAppPath": "//localhost:5101",
     "JsVersion": "20250415",
     "AssetsApp:StaticResourcesVersion": "20250415",

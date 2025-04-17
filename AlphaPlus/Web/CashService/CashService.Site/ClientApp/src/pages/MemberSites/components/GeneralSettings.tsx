@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ToggleSetting from './ToggleSetting';
+
 
 const GeneralSettings: React.FC = () => {
   const [allowRegistration, setAllowRegistration] = useState(false);

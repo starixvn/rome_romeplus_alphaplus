@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import RegistrationLinks from './components/RegistrationLinks';
 import GeneralSettings from './components/GeneralSettings';
 import MessageForm from './components/MessageForm';
-import './index.css'; 
+
 
 const MemberSiteManagement: React.FC = () => {
   const domains = [
