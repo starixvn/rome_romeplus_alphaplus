@@ -94,7 +94,7 @@ class CreditBalance {
             setTimeout(() => {
                 window.location = window.location;
                 window.top.updateGivenCreditPopup.close();
-            }, 1000);
+            }, 3000);
         } else {
             window.top.updateGivenCreditPopup.close();
         }

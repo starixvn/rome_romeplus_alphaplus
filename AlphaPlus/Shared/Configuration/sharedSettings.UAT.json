@@ -136,7 +136,7 @@
     },
     "SystemId": 2,
     "AssetAppPath": "/stcdn",
-    "JsVersion": "20250415",
+    "JsVersion": "20250417",
     "AssetsApp:StaticResourcesVersion": "20250415",
     "LocalTest": false,
     "SettingStatus": 1,
@@ -153,7 +153,7 @@
         89,
         103,
         102,
-		95,
+        95,
         105,
         107
     ],
