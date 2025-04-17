@@ -15,5 +15,7 @@
   "edit": "Edit",
   "delete": "Delete",
   "noProvidersFound": "No payment providers found",
-  "managePaymentsTip": "Manage payment providers to configure the payment gateway for your members."
+  "managePaymentsTip": "Manage payment providers to configure the payment gateway for your members.",
+  "managePaymentsTip1": "Bank accounts: Add, edit, and delete your bank accounts.",
+  "managePaymentsTip2": "Payment gateway: Connect payment providers for your members to use. "
 } 

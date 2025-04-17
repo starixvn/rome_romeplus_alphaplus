@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { useTranslation } from 'react-i18next';
-import { Tooltip } from 'react-tippy';
-import 'react-tippy/dist/tippy.css';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css'; 
 import '../../i18n/i18n';
 import './ManagePayments.css';
 import PaymentGateway from './PaymentGateway';
@@ -16,15 +16,23 @@ function ManagePayments() {
       <div className="d-flex justify-content-between align-items-center mb-4">
         <div className="d-flex align-items-center">
           <h1 className="mb-0 me-2 inline-elm">{t('managePayments')}</h1>
-          <Tooltip
-            title={t('info')}
-            position="top"
-            trigger="mouseenter"
-            arrow={true}
+          <Tippy
+            content={
+              <div>
+                <div>
+                  <i className="bi bi-info-circle fs-4 ico-info inline-elm"></i> 
+                  {t('managePayments')}
+                </div>
+                <div>• {t('managePaymentsTip1')}</div>
+                <div>• {t('managePaymentsTip2')}</div>
+              </div>
+            }
+            placement="top"
             theme="light"
+            arrow={true}
           >
             <i className="bi bi-info-circle fs-4 ico-info inline-elm"></i>
-          </Tooltip>
+          </Tippy>
         </div>
       </div>
 
