@@ -33,7 +33,6 @@ public class ManagePaymentsService : IManagePaymentsService
             {
                 Id = 1,
                 Name = "Credit Card",
-                Fee = 2.5m,
                 Status = PaymentProviderStatusConstants.Active,
                 LastUpdated = DateTime.Now.AddDays(-1)
             },
@@ -41,7 +40,6 @@ public class ManagePaymentsService : IManagePaymentsService
             {
                 Id = 2,
                 Name = "Bank Transfer",
-                Fee = 1.0m,
                 Status = PaymentProviderStatusConstants.Active,
                 LastUpdated = DateTime.Now.AddDays(-2)
             },
@@ -49,7 +47,6 @@ public class ManagePaymentsService : IManagePaymentsService
             {
                 Id = 3,
                 Name = "E-Wallet",
-                Fee = 1.5m,
                 Status = PaymentProviderStatusConstants.Inactive,
                 LastUpdated = DateTime.Now.AddDays(-5)
             },
@@ -57,7 +54,6 @@ public class ManagePaymentsService : IManagePaymentsService
             {
                 Id = 4,
                 Name = "Cryptocurrency",
-                Fee = 3.0m,
                 Status = PaymentProviderStatusConstants.Active,
                 LastUpdated = DateTime.Now.AddDays(-3)
             },
@@ -65,7 +61,6 @@ public class ManagePaymentsService : IManagePaymentsService
             {
                 Id = 5,
                 Name = "PayPal",
-                Fee = 2.0m,
                 Status = PaymentProviderStatusConstants.Active,
                 LastUpdated = DateTime.Now.AddDays(-1)
             }

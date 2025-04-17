@@ -6,13 +6,14 @@ using AlphaPlus.CashService.API.Services;
 using AlphaPlus.CashService.API.Models.ManagePayments;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 // Add services to the container
 builder.Services
     .AddCashServiceApi()
-    .AddCashServiceCors(new[] { "http://localhost:3000" })
+    .AddCashServiceCors(configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? new[] { "*" })
     .AddCashServiceLogging()
-    .AddCashServiceDependencies();
+    .AddDependencies(configuration);
 
 var app = builder.Build();
 

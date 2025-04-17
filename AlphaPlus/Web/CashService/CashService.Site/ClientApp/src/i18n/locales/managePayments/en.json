@@ -8,5 +8,11 @@
   "provider": "Provider",
   "fee": "Fee",
   "providerStatus": "Provider status",
-  "lastUpdated": "Last updated"
+  "lastUpdated": "Last updated",
+  "loading": "Loading payment providers...",
+  "active": "Active",
+  "inactive": "Inactive",
+  "edit": "Edit",
+  "delete": "Delete",
+  "noProvidersFound": "No payment providers found"
 } 

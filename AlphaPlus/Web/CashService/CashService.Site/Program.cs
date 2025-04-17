@@ -88,10 +88,13 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowSpecificOrigins",
         builder =>
         {
-            builder.WithOrigins("https://localhost:44451")
-                   .AllowAnyHeader()
-                   .AllowAnyMethod()
-                   .AllowCredentials();
+            builder.WithOrigins(
+                    "http://localhost:5173",  // Vite dev server
+                    "http://localhost:5252"   // API server
+                )
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials();
         });
 });
 

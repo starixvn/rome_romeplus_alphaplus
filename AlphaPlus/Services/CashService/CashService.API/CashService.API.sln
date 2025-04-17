@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashService.API", "CashService.API.csproj", "{12BC6E3E-3847-2C6F-05A9-FA41437C9A47}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12BC6E3E-3847-2C6F-05A9-FA41437C9A47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12BC6E3E-3847-2C6F-05A9-FA41437C9A47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12BC6E3E-3847-2C6F-05A9-FA41437C9A47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12BC6E3E-3847-2C6F-05A9-FA41437C9A47}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F1FFF338-5844-455E-A84B-EFD0971434EA}
+	EndGlobalSection
+EndGlobal
