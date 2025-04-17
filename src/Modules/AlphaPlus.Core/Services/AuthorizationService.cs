@@ -8,9 +8,9 @@ namespace AlphaPlus.Core.Services;
 
 public interface IAuthorizationService
 {
-    Task<AccountStatus> GetAccountStatus();
-
     Task<bool> IsAccountActive();
+
+    Task<AccountStatus> GetAccountStatus();
 
     bool IsAuthorized(string url = null);
 
@@ -23,7 +23,7 @@ public class AuthorizationService(
     IOptions<AuthorizationOptions> options,
     IRequestContext requestContext,
     IMemoryCache cacheService,
-    HttpClient client) : IAuthorizationService
+    IIdentityClient identityClient) : IAuthorizationService
 {
     private const string AccountStatusCacheKey = "AlphaPlus.Auth.CustContext.AccountStatusCacheKey_{0}_{1}";
     private const string RecheckInCacheKey = "AlphaPlus.Auth.CustContext.RecheckInCacheKey_{0}_{1}_{2}";
@@ -31,7 +31,9 @@ public class AuthorizationService(
     private readonly AuthorizationOptions options = options.Value;
     private readonly IRequestContext requestContext = requestContext;
     private readonly IMemoryCache cacheService = cacheService;
-    private readonly HttpClient client = client;
+    private readonly IIdentityClient identityClient = identityClient;
+
+    public async Task<bool> IsAccountActive() => (await GetAccountStatus()).IsActive;
 
     public Task<AccountStatus> GetAccountStatus()
     {
@@ -46,14 +48,9 @@ public class AuthorizationService(
             cacheEntry =>
             {
                 cacheEntry.SetAbsoluteExpiration(TimeSpan.FromSeconds(options.CachedExpireTime));
-                return GetAccountStatus(userSession.CustId, userSession.SubAccId);
+                return identityClient.GetCustomerStatus(userSession.CustId, userSession.SubAccId);
             });
     }
-
-    private async Task<AccountStatus> GetAccountStatus(int custId, int subAccId)
-        => await client.GetAsJsonAsync<AccountStatus>($"api/authorize/customer-status/{custId}/{subAccId}").ConfigureAwait(false);
-
-    public async Task<bool> IsAccountActive() => (await GetAccountStatus()).IsActive;
 
     public bool IsAuthorized(string url = null)
     {
@@ -130,7 +127,7 @@ public class AuthorizationService(
 
         if (kickOutInfo == null)
         {
-            kickOutInfo = await IsKickedOut(onlineUserId);
+            kickOutInfo = await identityClient.ReCheckIn(onlineUserId);
             if (!kickOutInfo.IsKickedOut)
             {
                 cacheService.Set(key, kickOutInfo, new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(options.CachedExpireTime)));
@@ -242,14 +239,7 @@ public class AuthorizationService(
 
     private async Task<BelongingInfo> IsBelonging(IRequestContext requestContext)
     {
-        var queryString = QueryString.Create(new[]
-        {
-            KeyValuePair.Create(nameof(requestContext.UserSession.CustId), requestContext.UserSession.CustId.ToString()),
-            KeyValuePair.Create(nameof(requestContext.UserSession.SubAccId), requestContext.UserSession.SubAccId.ToString()),
-            KeyValuePair.Create(nameof(requestContext.TransId), requestContext.TransId.ToString()),
-            KeyValuePair.Create("downlineCustId", requestContext.CustId.ToString())
-        });
-        var belongingInfo = await client.GetAsJsonAsync<BelongingInfo>($"api/authorize/belonging?{queryString}").ConfigureAwait(false);
+        var belongingInfo = await identityClient.CheckBelonging(requestContext.UserSession.CustId, requestContext.UserSession.SubAccId, requestContext.TransId, requestContext.CustId);
         belongingInfo.IsActive = requestContext.UserSession.IsInternal || belongingInfo.IsActive;
 
         return belongingInfo;
@@ -257,14 +247,7 @@ public class AuthorizationService(
 
     private async Task<BelongingInfo> IsCustomerConsolidatedGroupBelonging(IRequestContext requestContext)
     {
-        var queryString = QueryString.Create(new[]
-        {
-            KeyValuePair.Create(nameof(requestContext.UserSession.CustId), requestContext.UserSession.CustId.ToString()),
-            KeyValuePair.Create(nameof(requestContext.UserSession.SubAccId), requestContext.UserSession.SubAccId.ToString()),
-            KeyValuePair.Create(nameof(requestContext.TransId), requestContext.TransId.ToString()),
-            KeyValuePair.Create("downlineCustId", requestContext.CustId.ToString())
-        });
-        var belongingInfo = await client.GetAsJsonAsync<BelongingInfo>($"api/authorize/belonging-consolidatedgroup{queryString}").ConfigureAwait(false);
+        var belongingInfo = await identityClient.CheckBelongingConsolidatedGroup(requestContext.UserSession.CustId, requestContext.UserSession.SubAccId, requestContext.TransId, requestContext.CustId);
         belongingInfo.IsActive = requestContext.UserSession.IsInternal || belongingInfo.IsActive;
 
         return belongingInfo;
@@ -272,14 +255,9 @@ public class AuthorizationService(
 
     private async Task<BelongingInfo> IsMultipleCustomersBelonging(IRequestContext requestContext)
     {
-        var belongingInfo = await client.GetAsJsonAsync<BelongingInfo>(
-            $"api/authorize/belonging-multiple?custId={requestContext.UserSession.CustId}&subAccId={requestContext.UserSession.SubAccId}&custIds={requestContext.CustIds}")
-            .ConfigureAwait(false);
+        var belongingInfo = await identityClient.CheckBelongingMultiple(requestContext.UserSession.CustId, requestContext.UserSession.SubAccId, requestContext.CustIds);
         belongingInfo.IsActive = requestContext.UserSession.IsInternal || belongingInfo.IsActive;
 
         return belongingInfo;
     }
-
-    private async Task<KickOutInfo> IsKickedOut(int onlineUserId)
-        => await client.PostAsJsonAsync<KickOutInfo>($"api/auth/re-check-in?onlineUserId={onlineUserId}").ConfigureAwait(false);
 }

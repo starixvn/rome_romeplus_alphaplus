@@ -32,7 +32,8 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IBrowserHelper, BrowserHelper>();
         services.AddTransient<IRequestContext, RequestContext>();
         services.TryAddSingleton<INicknameChecker, NicknameChecker>();
-        services.AddHttpClient<IAuthorizationService, AuthorizationService>(configuration.GetValue<string>("IdentityUrl"));
+        services.AddHttpClient<IIdentityClient, IdentityClient>(configuration.GetValue<string>("IdentityUrl"));
+        services.AddTransient<IAuthorizationService, AuthorizationService>();
         services.AddONEbookUM(configuration);
         services.AddControllersWithViews(options => options.Filters.Add<CheckUMFilterAttribute>());
 

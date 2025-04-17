@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Core.Filters;
 
@@ -38,6 +39,11 @@ public class CheckBelongingFilterAttribute : TypeFilterAttribute
                 context.HttpContext.Session.Get<int>("CUSTID") == 0)
             {
                 await UnAuthorization(context);
+                return;
+            }
+
+            if (UserSession.Current.IsInternal)
+            {
                 return;
             }
 

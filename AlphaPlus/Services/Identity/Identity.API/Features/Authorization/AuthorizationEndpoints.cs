@@ -13,7 +13,7 @@ public static class AuthorizationEndpoints
         auth.MapGet("/customer-status/{custId}/{subAccId}", GetCustomerStatus);
         auth.MapGet("/belonging", CheckBelonging);
         auth.MapGet("/belonging-consolidatedgroup", CheckBelongingConsolidatedGroup);
-        auth.MapGet("/belonging-multiple", CheckBelongingMultipleCustomers);
+        auth.MapPost("/belonging-multiple", CheckBelongingMultipleCustomers);
 
         return endpoints;
     }
@@ -39,7 +39,7 @@ public static class AuthorizationEndpoints
         return TypedResults.Ok(belongingInfo);
     }
 
-    private static async Task<Results<Ok<BelongingInfo>, BadRequest>> CheckBelongingMultipleCustomers([AsParameters] BelongingMultipleQuery message, IAuthorizationService service)
+    private static async Task<Results<Ok<BelongingInfo>, BadRequest>> CheckBelongingMultipleCustomers(BelongingMultipleQuery message, IAuthorizationService service)
     {
         var belongingInfo = await service.CheckBelongingMultipleCustomers(message.CustId, message.SubAccId, message.CustIds);
 
