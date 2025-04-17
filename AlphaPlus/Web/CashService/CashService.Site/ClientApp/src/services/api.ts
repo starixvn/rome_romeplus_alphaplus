@@ -4,11 +4,7 @@ import axios from 'axios';
 const api = axios.create({
   baseURL: 'http://localhost:5252/api',
   headers: {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': '*',
-    'Access-Control-Allow-Credentials': 'true',
-    'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS'
+    'Content-Type': 'application/json'
   },
   withCredentials: true
 });
@@ -27,7 +23,7 @@ export const paymentProviderService = {
   // Get all payment providers
   getAllProviders: async (): Promise<PaymentProvider[]> => {
     try {
-      const response = await api.get<PaymentProvider[]>('/payment-providers');
+      const response = await api.get<PaymentProvider[]>('/payment-providers', { method: 'GET' });
       return response.data;
     } catch (error) {
       console.error('Error fetching payment providers:', error);
