@@ -1,28 +1,25 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using AlphaPlus.Core;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Hosting;
 
 namespace AlphaPlus.CashService.Site.Features.MemberSites
 {
-    public class MemberSitesController : Controller
+    public class MemberSitesController : BaseController
     {
-        private readonly ILogger<MemberSitesController> _logger;
         private readonly IWebHostEnvironment _environment;
+        private readonly IMediator _mediator;
 
-        public MemberSitesController(ILogger<MemberSitesController> logger, IWebHostEnvironment environment)
+        public MemberSitesController(
+            IWebHostEnvironment environment,
+            IMediator mediator)
         {
-            _logger = logger;
             _environment = environment;
+            _mediator = mediator;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            ViewData["IsDevelopment"] = false;
+            ViewData["IsDevelopment"] = _environment.IsDevelopment();
             return View();
         }
     }

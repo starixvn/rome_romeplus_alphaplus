@@ -43,6 +43,7 @@ builder.Services
     .AddAlphaPlusCore(configuration)
     .AddSharedSession(configuration)
     .AddSecurityCodeServices(configuration)
+    .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly))
     .AddControllersWithViews(options =>
     {
         options.Filters.Add<CheckBelongingFilterAttribute>();
