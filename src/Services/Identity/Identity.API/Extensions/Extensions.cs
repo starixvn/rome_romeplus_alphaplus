@@ -1,6 +1,7 @@
 using AlphaPlus.Identity.API.Features.Auth;
 using AlphaPlus.Identity.API.Features.Auth.SiteDb;
 using AlphaPlus.Identity.API.Utils;
+using AlphaPlus.Identity.Features.Authorization;
 
 namespace AlphaPlus.Identity.API.Extensions
 {
@@ -12,6 +13,7 @@ namespace AlphaPlus.Identity.API.Extensions
                 .AddSingleton<IEncryption, Encryption>()
                 .AddSingleton<ISiteDBService, SiteDBService>()
                 .AddSingleton<IAdminPermissionService, AdminPermissionService>()
+                .AddSingleton<IAuthorizationService, AuthorizationService>()
                 .AddHttpClient<IAuthenticateService, AuthenticateService>();
 
             return services;

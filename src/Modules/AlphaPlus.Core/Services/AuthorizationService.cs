@@ -1,7 +1,6 @@
 using AlphaPlus.Core.Configurations;
-using AlphaPlus.Core.Criteria;
 using AlphaPlus.Core.Models;
-using Fanex.Data.Repository;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 
@@ -24,8 +23,7 @@ public class AuthorizationService(
     IOptions<AuthorizationOptions> options,
     IRequestContext requestContext,
     IMemoryCache cacheService,
-    IDynamicRepository dynamicRepository)
-    : IAuthorizationService
+    HttpClient client) : IAuthorizationService
 {
     private const string AccountStatusCacheKey = "AlphaPlus.Auth.CustContext.AccountStatusCacheKey_{0}_{1}";
     private const string RecheckInCacheKey = "AlphaPlus.Auth.CustContext.RecheckInCacheKey_{0}_{1}_{2}";
@@ -33,7 +31,7 @@ public class AuthorizationService(
     private readonly AuthorizationOptions options = options.Value;
     private readonly IRequestContext requestContext = requestContext;
     private readonly IMemoryCache cacheService = cacheService;
-    private readonly IDynamicRepository dynamicRepository = dynamicRepository;
+    private readonly HttpClient client = client;
 
     public Task<AccountStatus> GetAccountStatus()
     {
@@ -43,7 +41,6 @@ public class AuthorizationService(
         }
 
         var userSession = requestContext.UserSession;
-        var command = new GetAccountStatusCommand(userSession.CustId, userSession.SubAccId);
         return cacheService.GetOrCreateAsync(
             string.Format(AccountStatusCacheKey, userSession.CustId, userSession.SubAccId),
             cacheEntry =>
@@ -54,17 +51,9 @@ public class AuthorizationService(
     }
 
     private async Task<AccountStatus> GetAccountStatus(int custId, int subAccId)
-    {
-        var command = new GetAccountStatusCommand(custId, subAccId);
-        await dynamicRepository.ExecuteAsync(command);
-        return new AccountStatus(command.IsActive, command.Locked);
-    }
+        => await client.GetAsJsonAsync<AccountStatus>($"api/authorize/customer-status/{custId}/{subAccId}").ConfigureAwait(false);
 
-    public async Task<bool> IsAccountActive()
-    {
-        var accountStatus = await GetAccountStatus();
-        return accountStatus.IsActive;
-    }
+    public async Task<bool> IsAccountActive() => (await GetAccountStatus()).IsActive;
 
     public bool IsAuthorized(string url = null)
     {
@@ -226,9 +215,7 @@ public class AuthorizationService(
             return belongingInfoGroupHeadline.IsActive;
         }
 
-        return requestContext.IsDataStoreInDataWarehouse
-            ? await IsBelongingInDataWarehouse(requestContext)
-            : await IsBelonging(requestContext, pageAccess);
+        return await IsBelonging(requestContext, pageAccess);
     }
 
     internal async Task<bool> IsBelonging(IRequestContext requestContext, Configurations.PageAccess pageAccess)
@@ -255,47 +242,44 @@ public class AuthorizationService(
 
     private async Task<BelongingInfo> IsBelonging(IRequestContext requestContext)
     {
-        var command = new CheckBelongingCommand(
-            requestContext.UserSession.CustId,
-            requestContext.UserSession.SubAccId,
-            requestContext.TransId,
-            requestContext.CustId);
-        await dynamicRepository.ExecuteAsync(command);
-        return new BelongingInfo(command.RoleId, requestContext.UserSession.IsInternal || command.RoleId > 0 && command.IsActive);
-    }
+        var queryString = QueryString.Create(new[]
+        {
+            KeyValuePair.Create(nameof(requestContext.UserSession.CustId), requestContext.UserSession.CustId.ToString()),
+            KeyValuePair.Create(nameof(requestContext.UserSession.SubAccId), requestContext.UserSession.SubAccId.ToString()),
+            KeyValuePair.Create(nameof(requestContext.TransId), requestContext.TransId.ToString()),
+            KeyValuePair.Create("downlineCustId", requestContext.CustId.ToString())
+        });
+        var belongingInfo = await client.GetAsJsonAsync<BelongingInfo>($"api/authorize/belonging?{queryString}").ConfigureAwait(false);
+        belongingInfo.IsActive = requestContext.UserSession.IsInternal || belongingInfo.IsActive;
 
-    private async Task<bool> IsBelongingInDataWarehouse(IRequestContext requestContext)
-    {
-        var command = new CheckBelongingInDataWarehouseCommand(requestContext.UserSession.CustId, requestContext.TransId, requestContext.CustId);
-        await dynamicRepository.ExecuteAsync(command);
-        return command.RoleId > 0;
+        return belongingInfo;
     }
 
     private async Task<BelongingInfo> IsCustomerConsolidatedGroupBelonging(IRequestContext requestContext)
     {
-        var command = new CheckConsolidateGroupBelongingCommand(
-            requestContext.UserSession.CustId,
-            requestContext.UserSession.SubAccId,
-            requestContext.TransId,
-            requestContext.CustId);
-        await dynamicRepository.ExecuteAsync(command);
-        return new BelongingInfo(command.RoleId, requestContext.UserSession.IsInternal || command.RoleId > 0 && command.IsActive);
+        var queryString = QueryString.Create(new[]
+        {
+            KeyValuePair.Create(nameof(requestContext.UserSession.CustId), requestContext.UserSession.CustId.ToString()),
+            KeyValuePair.Create(nameof(requestContext.UserSession.SubAccId), requestContext.UserSession.SubAccId.ToString()),
+            KeyValuePair.Create(nameof(requestContext.TransId), requestContext.TransId.ToString()),
+            KeyValuePair.Create("downlineCustId", requestContext.CustId.ToString())
+        });
+        var belongingInfo = await client.GetAsJsonAsync<BelongingInfo>($"api/authorize/belonging-consolidatedgroup{queryString}").ConfigureAwait(false);
+        belongingInfo.IsActive = requestContext.UserSession.IsInternal || belongingInfo.IsActive;
+
+        return belongingInfo;
     }
 
     private async Task<BelongingInfo> IsMultipleCustomersBelonging(IRequestContext requestContext)
     {
-        var command = new CheckMultipleCustomerBelongingCommand(
-            requestContext.UserSession.CustId,
-            requestContext.UserSession.SubAccId,
-            requestContext.CustIds);
-        await dynamicRepository.ExecuteAsync(command);
-        return new BelongingInfo(command.RoleId, requestContext.UserSession.IsInternal || command.RoleId > 0 && command.IsActive);
+        var belongingInfo = await client.GetAsJsonAsync<BelongingInfo>(
+            $"api/authorize/belonging-multiple?custId={requestContext.UserSession.CustId}&subAccId={requestContext.UserSession.SubAccId}&custIds={requestContext.CustIds}")
+            .ConfigureAwait(false);
+        belongingInfo.IsActive = requestContext.UserSession.IsInternal || belongingInfo.IsActive;
+
+        return belongingInfo;
     }
 
     private async Task<KickOutInfo> IsKickedOut(int onlineUserId)
-    {
-        var command = new ReCheckInCommand(onlineUserId);
-        await dynamicRepository.ExecuteAsync(command);
-        return new KickOutInfo(command.IsKickedOut, command.KickOutReason);
-    }
+        => await client.PostAsJsonAsync<KickOutInfo>($"api/auth/re-check-in?onlineUserId={onlineUserId}").ConfigureAwait(false);
 }

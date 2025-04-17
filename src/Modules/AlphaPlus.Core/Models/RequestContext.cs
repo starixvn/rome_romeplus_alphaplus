@@ -10,8 +10,6 @@ public interface IRequestContext
 
     long TransId { get; }
 
-    bool IsDataStoreInDataWarehouse { get; }
-
     int CustId { get; }
 
     string CustIds { get; }
@@ -30,7 +28,7 @@ public class RequestContext(IRequestAnalyst requestAnalyst, IOptions<Authorizati
     public string Url
     {
         get
-        {   
+        {
             if (string.IsNullOrWhiteSpace(_url))
             {
                 var routeValues = AlphaContext.Current.Request.RouteValues;
@@ -64,8 +62,6 @@ public class RequestContext(IRequestAnalyst requestAnalyst, IOptions<Authorizati
             return transId;
         }
     }
-
-    public bool IsDataStoreInDataWarehouse => AlphaContext.Current.Request.Query["iswhcheck"].ToString() == "1";
 
     public int CustId
     {

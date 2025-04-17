@@ -6,13 +6,12 @@ namespace AlphaPlus.Identity.Features.Authorization;
 
 public static class AuthorizationEndpoints
 {
-    public static IEndpointRouteBuilder MapAuthEndpoints(this IEndpointRouteBuilder endpoints)
+    public static IEndpointRouteBuilder MapAuthorizeEndpoints(this IEndpointRouteBuilder endpoints)
     {
         var auth = endpoints.MapGroup("/api/authorize").WithTags("Authorize").WithOpenApi();
 
         auth.MapGet("/customer-status/{custId}/{subAccId}", GetCustomerStatus);
         auth.MapGet("/belonging", CheckBelonging);
-        auth.MapGet("/belonging-datawarehouse", CheckBelongingInDataWarehouse);
         auth.MapGet("/belonging-consolidatedgroup", CheckBelongingConsolidatedGroup);
         auth.MapGet("/belonging-multiple", CheckBelongingMultipleCustomers);
 
@@ -29,13 +28,6 @@ public static class AuthorizationEndpoints
     private static async Task<Results<Ok<BelongingInfo>, BadRequest>> CheckBelonging([AsParameters] BelongingQuery message, IAuthorizationService service)
     {
         var belongingInfo = await service.CheckBelonging(message.CustId, message.SubAccId, message.TransId, message.DownlineCustId);
-
-        return TypedResults.Ok(belongingInfo);
-    }
-
-    private static async Task<Results<Ok<bool>, BadRequest>> CheckBelongingInDataWarehouse([AsParameters] BelongingQuery message, IAuthorizationService service)
-    {
-        var belongingInfo = await service.CheckBelongingInDataWarehouse(message.CustId, message.TransId, message.DownlineCustId);
 
         return TypedResults.Ok(belongingInfo);
     }

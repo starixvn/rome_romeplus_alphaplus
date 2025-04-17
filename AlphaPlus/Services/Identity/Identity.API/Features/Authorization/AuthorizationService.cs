@@ -9,8 +9,6 @@ public interface IAuthorizationService
 
     Task<BelongingInfo> CheckBelonging(int custId, int subAccId, long transId, int downlineCustId);
 
-    Task<bool> CheckBelongingInDataWarehouse(int custId, long transId, int downlineCustId);
-
     Task<BelongingInfo> CheckBelongingConsolidatedGroup(int custId, int subAccId, long transId, int downlineCustId);
 
     Task<BelongingInfo> CheckBelongingMultipleCustomers(int custId, int subAccId, string custIds);
@@ -34,14 +32,6 @@ internal class AuthorizationService(IDynamicRepository dynamicRepository) : IAut
         await dynamicRepository.ExecuteAsync(command);
 
         return new BelongingInfo(command.RoleId, command.RoleId > 0 && command.IsActive);
-    }
-
-    public async Task<bool> CheckBelongingInDataWarehouse(int custId, long transId, int downlineCustId)
-    {
-        var command = new CheckBelongingInDataWarehouseCommand(custId, transId, downlineCustId);
-        await dynamicRepository.ExecuteAsync(command);
-
-        return command.RoleId > 0;
     }
 
     public async Task<BelongingInfo> CheckBelongingConsolidatedGroup(int custId, int subAccId, long transId, int downlineCustId)
