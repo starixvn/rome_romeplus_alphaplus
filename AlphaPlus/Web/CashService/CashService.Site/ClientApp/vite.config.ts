@@ -4,20 +4,13 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  
+
   build: {
-    outDir: 'dist',
-    emptyOutDir: true,
-    manifest: true,
+    assetsDir: '',
     rollupOptions: {
       input: {
         memberSites: 'src/pages/MemberSites/index.tsx',
         managePayments: 'src/pages/ManagePayments/index.tsx',
-      },
-      output: {
-        entryFileNames: `js/[name].[hash].js`,
-        chunkFileNames: `js/[name].[hash].js`,
-        assetFileNames: `css/[name].[hash].[ext]`
       }
     }
   },
