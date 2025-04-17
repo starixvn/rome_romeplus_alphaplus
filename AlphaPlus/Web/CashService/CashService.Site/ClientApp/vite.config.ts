@@ -12,6 +12,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         memberSites: 'src/pages/MemberSites/index.tsx',
+        managePayments: 'src/pages/ManagePayments/index.tsx',
       },
       output: {
         entryFileNames: `js/[name].[hash].js`,
@@ -20,7 +21,7 @@ export default defineConfig({
       }
     }
   },
-
+ 
   server: {
     port: 5173,
     strictPort: true,

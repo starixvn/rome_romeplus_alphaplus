@@ -1,5 +1,24 @@
-<h1>Manage Payments</h1>
+@{
+    ViewData["Title"] = "Manage Payments";
+    Layout = "_Layout";
+}
 
-<div>
+@section Styles {
+    @if (!(bool)ViewData["IsDevelopment"])
+    {
+        <link rel="stylesheet" href="@ViteHelper.GetViteStyle("ManagePayments")">
+    }
+}
 
-</div>
+<div id="root"></div>
+
+@section Scripts {
+    @if ((bool)ViewData["IsDevelopment"])
+    {
+        <script type="module" src="http://localhost:5173/src/pages/ManagePayments/index.tsx"></script>
+    }
+    else
+    {
+        <script type="module" src="@ViteHelper.GetViteAsset("ManagePayments")"></script>
+    }
+}
