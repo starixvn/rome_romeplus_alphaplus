@@ -11,7 +11,7 @@ function ManagePayments() {
   return (
     <div className="container">
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h1>{t('title')}</h1>
+        <h1>{t('managePayments')}</h1>
         <LanguageSelector />
       </div>
       

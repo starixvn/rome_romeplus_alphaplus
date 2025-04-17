@@ -15,7 +15,6 @@ namespace AlphaPlus.CashService.Site.Features.Payments
 
         public IActionResult Index()
         {
-            ViewData["IsDevelopment"] = false;
             return View();
         }
     }
