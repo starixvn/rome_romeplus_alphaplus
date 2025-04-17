@@ -15,7 +15,7 @@ export interface PaymentProvider {
   name: string;
   fee: number;
   status: number;
-  lastUpdated: string;
+  lastUpdatedStr: string;
 }
 
 // API service for payment providers

@@ -35,11 +35,6 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
     return status === 1 ? t('active') : t('inactive');
   };
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
-  };
-
   return (
     <div className="payment-gateway-container">
       <div className="payment-gateway-form">
@@ -92,18 +87,19 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
                         <button className="btn btn-sm btn-outline-primary me-1">
                           {t('edit')}
                         </button>
-                        <button className="btn btn-sm btn-outline-danger">
-                          {t('delete')}
-                        </button>
                       </td>
                       <td>{provider.name}</td>
-                      <td>Fee</td>
+                      <td>
+                        <button className="btn btn-sm btn-outline-primary me-1">
+                          {t('fee')}
+                        </button>
+                      </td>
                       <td>
                         <span className={`badge ${provider.status === 1 ? 'bg-success' : 'bg-danger'}`}>
                           {getStatusText(provider.status)}
                         </span>
                       </td>
-                      <td>{formatDate(provider.lastUpdated)}</td>
+                      <td>{provider.lastUpdatedStr}</td>
                     </tr>
                   ))
                 ) : (
