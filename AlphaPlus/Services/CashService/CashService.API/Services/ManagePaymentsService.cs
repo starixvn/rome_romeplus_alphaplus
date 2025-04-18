@@ -8,7 +8,7 @@ namespace AlphaPlus.CashService.API.Services;
 public interface IManagePaymentsService
 {
     Task<IEnumerable<PaymentProviderModel>> GetAllPaymentProviders();
-    Task<IEnumerable<PaymentProviderFeeModel>> GetPaymentProviderFees(int providerId);
+    Task<IEnumerable<PaymentProviderFeeGroupModel>> GetPaymentProviderFees(int providerId);
 }
 
 public class ManagePaymentsService : IManagePaymentsService
@@ -28,12 +28,21 @@ public class ManagePaymentsService : IManagePaymentsService
         return providers;
     }
     
-    public async Task<IEnumerable<PaymentProviderFeeModel>> GetPaymentProviderFees(int providerId)
+    public async Task<IEnumerable<PaymentProviderFeeGroupModel>> GetPaymentProviderFees(int providerId)
     {
         // var result = await _repository.FetchAsync<PaymentProviderFeeModel>(new GetPaymentProvidersFeesCriteria(providerId));
         var fees = await GetDummyProviderFees(providerId);
         
-        return fees;
+        var groupedFees = fees
+            .GroupBy(f => f.TransactionType)
+            .Select(g => new PaymentProviderFeeGroupModel
+            {
+                TransactionType = g.Key,
+                Fees = g.ToList()
+            })
+            .ToList();
+        
+        return groupedFees;
     }
 
     private async Task<IEnumerable<PaymentProviderFeeModel>> GetDummyProviderFees(int providerId)

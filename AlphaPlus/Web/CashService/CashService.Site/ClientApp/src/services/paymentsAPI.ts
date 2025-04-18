@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { PaymentProvider } from './interfaces/PaymentProvider';
-import { PaymentProviderFee } from './interfaces/PaymentProviderFee';
+import { PaymentProviderFeeGroup } from './interfaces/PaymentProviderFeeGroup';
 
 // Declare the cashServiceAPIUrl property on the Window interface
 declare global {
@@ -32,9 +32,9 @@ export const paymentProviderService = {
   },
   
   // Get fees for a specific payment provider
-  getProviderFees: async (providerId: number): Promise<PaymentProviderFee[]> => {
+  getProviderFees: async (providerId: number): Promise<PaymentProviderFeeGroup[]> => {
     try {
-      const response = await api.get<PaymentProviderFee[]>(`/payment-provider-fees/${providerId}`, { method: 'GET' });
+      const response = await api.get<PaymentProviderFeeGroup[]>(`/payment-provider-fees/${providerId}`, { method: 'GET' });
       return response.data;
     } catch (error) {
       console.error(`Error fetching fees for provider ${providerId}:`, error);

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
-import { PaymentProviderFee } from '../../services/interfaces/PaymentProviderFee';
+import { PaymentProviderFeeGroup } from '../../services/interfaces/PaymentProviderFeeGroup';
 import { paymentProviderService } from '../../services/paymentsAPI';
 
 interface FeePopupModalProps {
@@ -12,7 +12,7 @@ interface FeePopupModalProps {
 const FeePopupModal: React.FC<FeePopupModalProps> = ({ provider, onClose }) => {
   const { t } = useTranslation('managePayments');
   const [isLoading, setIsLoading] = React.useState(true);
-  const [feeData, setFeeData] = React.useState<PaymentProviderFee[]>([]);
+  const [feeData, setFeeData] = React.useState<PaymentProviderFeeGroup[]>([]);
 
   React.useEffect(() => {
     const loadFeeData = async () => {
@@ -64,12 +64,20 @@ const FeePopupModal: React.FC<FeePopupModalProps> = ({ provider, onClose }) => {
                     </thead>
                     <tbody>
                       {feeData.length > 0 ? (
-                        feeData.map((fee, index) => (
-                          <tr key={index}>
-                            <td>{fee.transactionType}</td>
-                            <td>{fee.method}</td>
-                            <td>{(fee.rate * 100).toFixed(2)}%</td>
-                          </tr>
+                        feeData.map((feeGroup, groupIndex) => (
+                          <React.Fragment key={groupIndex}>
+                            {feeGroup.fees.map((fee, feeIndex) => (
+                              <tr key={`${groupIndex}-${feeIndex}`} className={feeIndex === 0 ? "table-primary" : ""}>
+                                {feeIndex === 0 && (
+                                  <td rowSpan={feeGroup.fees.length}>
+                                    {feeGroup.transactionType}
+                                  </td>
+                                )}
+                                <td>{fee.method}</td>
+                                <td>{(fee.rate * 100).toFixed(2)}%</td>
+                              </tr>
+                            ))}
+                          </React.Fragment>
                         ))
                       ) : (
                         <tr>
