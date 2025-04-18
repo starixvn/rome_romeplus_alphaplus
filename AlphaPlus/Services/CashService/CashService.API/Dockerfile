@@ -1,24 +1,30 @@
-FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
-WORKDIR /app
-EXPOSE 5252
-
-ENV ASPNETCORE_URLS=http://+:5252
-
-USER app
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0 AS build
-ARG configuration=Release
+FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS builder
 WORKDIR /src
-COPY ["CashService.API.csproj", "./"]
-RUN dotnet restore "CashService.API.csproj"
-COPY . .
-WORKDIR "/src/."
-RUN dotnet build "CashService.API.csproj" -c $configuration -o /app/build
 
-FROM build AS publish
-ARG configuration=Release
-RUN dotnet publish "CashService.API.csproj" -c $configuration -o /app/publish /p:UseAppHost=false
+COPY "AlphaPlus/Services/CashService/CashService.API/CashService.API.csproj" "AlphaPlus/Services/CashService/CashService.API/CashService.API.csproj"
+COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
+RUN dotnet restore "AlphaPlus/Services/CashService/CashService.API/CashService.API.csproj" --packages /root/.nuget/packages -v d
 
-FROM base AS final
+COPY "AlphaPlus/Services/CashService/CashService.API" "AlphaPlus/Services/CashService/CashService.API"
+WORKDIR /src/AlphaPlus/Services/CashService/CashService.API
+RUN dotnet publish -c Release -o /app
+
+FROM hub.nexdev.net/base/dotnet/core/aspnet:9.0-alpine-25h1 AS base
+
+# Don’t run as root
+RUN adduser --disabled-password \
+  --home /app \
+  --gecos '' dotnetuser && chown -R dotnetuser /app && chown -R dotnetuser /tmp
+USER dotnetuser
+
+# cache nuget
+WORKDIR /root
+COPY --from=builder /root/.nuget ./.nuget
+
+# final stage/image
+ENV COMPlus_EnableDiagnostics=0
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=builder /app ./
+ENV TZ="America/La_Paz"
+
 ENTRYPOINT ["dotnet", "AlphaPlus.CashService.API.dll"]
