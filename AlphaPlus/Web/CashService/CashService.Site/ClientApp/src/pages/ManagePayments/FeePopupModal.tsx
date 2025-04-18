@@ -20,8 +20,43 @@ const FeePopupModal: React.FC<FeePopupModalProps> = ({ provider, onClose }) => {
               <button type="button" className="btn-close" onClick={onClose}></button>
             </div>
             <div className="modal-body">
-              {/* Add your fee details content here */}
-              <p>{t('feeDetailsContent')}</p>
+              <div>{provider.name} {t('fees')}</div>
+              <b>{t('howItWorks')}</b>
+              <p>{t('feesInfo1')}</p>
+              <p>{t('feesFormula')}</p>
+              <p>{t('feesInfo2')}</p>
+              
+              <table className="table table-striped mt-3">
+                <thead>
+                  <tr>
+                    <th>{t('transactionType')}</th>
+                    <th>{t('paymentMethod')}</th>
+                    <th>{t('feeRate')}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{t('deposit')}</td>
+                    <td>{t('bankTransfer')}</td>
+                    <td>0%</td>
+                  </tr>
+                  <tr>
+                    <td>{t('deposit')}</td>
+                    <td>{t('card')}</td>
+                    <td>2.9% + $0.30</td>
+                  </tr>
+                  <tr>
+                    <td>{t('withdrawal')}</td>
+                    <td>{t('bankTransfer')}</td>
+                    <td>0%</td>
+                  </tr>
+                  <tr>
+                    <td>{t('withdrawal')}</td>
+                    <td>{t('card')}</td>
+                    <td>2.9%</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" onClick={onClose}>

@@ -20,5 +20,15 @@
   "noProvidersFound": "No payment providers found",
   "managePaymentsTip": "Manage payment providers to configure the payment gateway for your members.",
   "managePaymentsTip1": "Bank accounts: Add, edit, and delete your bank accounts.",
-  "managePaymentsTip2": "Payment gateway: Connect payment providers for your members to use. "
+  "managePaymentsTip2": "Payment gateway: Connect payment providers for your members to use. ",
+
+  "fees": "Fees",
+  "howItWorks": "How it works",
+  "feesInfo1": "You'll be charged a fee rate per transaction.",
+  "feesFormula": "Transaction Amount * Fee Rate (%)",
+  "feesInfo2": "Fees are payable to the provider and are not charged by us, so they won't appear in 4.Reports",
+  "transactionType": "Transaction Type",
+  "paymentMethod": "Payment Method",
+  "feeRate": "Fee Rate",
+  "close": "Close"
 } 
