@@ -8,6 +8,7 @@ namespace AlphaPlus.CashService.API.Services;
 public interface IManagePaymentsService
 {
     Task<IEnumerable<PaymentProviderModel>> GetAllPaymentProviders();
+    Task<IEnumerable<PaymentProviderFeeModel>> GetPaymentProviderFees();
 }
 
 public class ManagePaymentsService : IManagePaymentsService
@@ -23,6 +24,49 @@ public class ManagePaymentsService : IManagePaymentsService
     {
         // var result = await _repository.FetchAsync<PaymentProviderModel>(new GetAllPaymentProvidersCriteria());
         return await GetDummyProviders();
+    }
+    
+    public async Task<IEnumerable<PaymentProviderFeeModel>> GetPaymentProviderFees()
+    {
+        // var result = await _repository.FetchAsync<PaymentProviderFeeModel>(new GetPaymentProvidersFeesCriteria());
+        return await GetDummyProviderFees();
+    }
+
+    private async Task<IEnumerable<PaymentProviderFeeModel>> GetDummyProviderFees()
+    {
+        return new List<PaymentProviderFeeModel>
+        {
+            new PaymentProviderFeeModel
+            {
+                TransactionType = "Deposit",
+                Method = "Credit Card",
+                Rate = 2.5m
+            },
+            new PaymentProviderFeeModel
+            {
+                TransactionType = "Withdrawal",
+                Method = "Bank Transfer",
+                Rate = 1.5m
+            },
+            new PaymentProviderFeeModel
+            {
+                TransactionType = "Deposit",
+                Method = "E-Wallet",
+                Rate = 1.0m
+            },
+            new PaymentProviderFeeModel
+            {
+                TransactionType = "Withdrawal",
+                Method = "Cryptocurrency",
+                Rate = 3.0m
+            },
+            new PaymentProviderFeeModel
+            {
+                TransactionType = "Deposit",
+                Method = "PayPal",
+                Rate = 2.0m
+            }
+        };
     }
     
     public async Task<IEnumerable<PaymentProviderModel>> GetDummyProviders()

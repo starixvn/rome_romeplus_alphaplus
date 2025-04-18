@@ -1,4 +1,3 @@
-using AlphaPlus.CashService.API.Constants;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Criteria.ManagePayments
