@@ -15,7 +15,7 @@ const MessageForm: React.FC = () => {
       <h2 className="text-lg font-medium mb-4">Leave a Message</h2>
       <p className="text-sm text-gray-600 mb-6">Include your contact details and a message for your member.</p>
       
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6" data-testid="message-form">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
             <label htmlFor="mobile" className="block text-sm font-medium text-gray-700">
