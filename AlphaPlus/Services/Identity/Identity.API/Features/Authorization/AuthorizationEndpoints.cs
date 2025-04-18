@@ -1,8 +1,7 @@
 using AlphaPlus.Identity.API.Features.Authorization.Requests;
-using AlphaPlus.Identity.Features.Authorization.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 
-namespace AlphaPlus.Identity.Features.Authorization;
+namespace AlphaPlus.Identity.API.Features.Authorization;
 
 public static class AuthorizationEndpoints
 {
@@ -12,7 +11,9 @@ public static class AuthorizationEndpoints
 
         auth.MapGet("/customer-status/{custId}/{subAccId}", GetCustomerStatus);
         auth.MapGet("/belonging", CheckBelonging);
+        auth.MapGet("/belonging-dbcust", CheckBelongingInDBCust);
         auth.MapGet("/belonging-consolidatedgroup", CheckBelongingConsolidatedGroup);
+        auth.MapGet("/belonging-username", CheckBelongingByUsername);
         auth.MapPost("/belonging-multiple", CheckBelongingMultipleCustomers);
 
         return endpoints;
@@ -32,11 +33,25 @@ public static class AuthorizationEndpoints
         return TypedResults.Ok(belongingInfo);
     }
 
+    private static async Task<Results<Ok<BelongingInfo>, BadRequest>> CheckBelongingInDBCust([AsParameters] BelongingQuery message, IAuthorizationService service)
+    {
+        var belongingInfo = await service.CheckBelongingInDBCust(message.CustId, message.SubAccId, message.TransId, message.DownlineCustId);
+
+        return TypedResults.Ok(belongingInfo);
+    }
+
     private static async Task<Results<Ok<BelongingInfo>, BadRequest>> CheckBelongingConsolidatedGroup([AsParameters] BelongingQuery message, IAuthorizationService service)
     {
         var belongingInfo = await service.CheckBelongingConsolidatedGroup(message.CustId, message.SubAccId, message.TransId, message.DownlineCustId);
 
         return TypedResults.Ok(belongingInfo);
+    }
+
+    private static async Task<Results<Ok<DownlineInfo>, BadRequest>> CheckBelongingByUsername([AsParameters] BelongingByUsernameQuery message, IAuthorizationService service)
+    {
+        var downlineInfo = await service.CheckBelongingByUsername(message.CustId, message.SubAccId, message.Username);
+
+        return TypedResults.Ok(downlineInfo);
     }
 
     private static async Task<Results<Ok<BelongingInfo>, BadRequest>> CheckBelongingMultipleCustomers(BelongingMultipleQuery message, IAuthorizationService service)

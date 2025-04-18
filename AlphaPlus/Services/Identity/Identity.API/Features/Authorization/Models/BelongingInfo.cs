@@ -1,6 +1,3 @@
-namespace AlphaPlus.Identity.Features.Authorization.Models;
+namespace AlphaPlus.Identity.API.Features.Authorization;
 
-public record BelongingInfo(byte RoleId, bool IsActive)
-{
-    public bool IsCrossLevel(byte uplineRoleId) => uplineRoleId - RoleId > 1;
-}
+public record BelongingInfo(byte RoleId, bool IsActive);

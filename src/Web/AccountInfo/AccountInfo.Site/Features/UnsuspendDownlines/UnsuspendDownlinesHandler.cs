@@ -65,9 +65,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines
         public async Task<UnsuspendMultipleResultViewModel> Handle(UnsuspendMultipleCommand message, CancellationToken cancellationToken)
         {
             var custIds = string.Join("^", message.UnsuspendList.Select(unspended => unspended.SearchAccountId));
-
-            var isValidCheckMultipleCustomesBelonging = await accountInfoService.CheckMultipleCustomersBelonging(
-                message.ViewerId, message.SubAccountId, custIds, message.IsInternal);
+            var isValidCheckMultipleCustomesBelonging = await accountInfoService.CheckMultipleCustomersBelonging(message.ViewerId, message.SubAccountId, custIds);
 
             if (isValidCheckMultipleCustomesBelonging)
             {

@@ -1,3 +1,10 @@
 namespace AlphaPlus.Identity.API.Features.Authorization.Requests;
 
-public record BelongingMultipleQuery(int CustId, int SubAccId, string CustIds);
+public class BelongingMultipleQuery
+{
+    public int CustId { get; init; }
+
+    public int SubAccId { get; init; }
+
+    public string CustIds { get; init; }
+}

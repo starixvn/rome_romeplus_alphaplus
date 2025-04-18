@@ -51,9 +51,6 @@
     <Function Name="Consolidation Report by Username">
         <Setting Key="EAS_GetPTProductBySMA" SpName="EAS_GetPTProductBySMA" DbName="DBCust.CustDB.wsv_alp" />
     </Function>
-    <Function Name="AlphaAuth">
-        <Setting Key="Age_ReCheckin" SpName="Age_ReCheckin" DbName="DBONUSER.ON_USER.wsv_alp" />
-    </Function>
     <Function Name="Write/View Logs">
         <Setting Key="IS_UpdFunctionUsage" SpName="IS_UpdFunctionUsage" DbName="DBLOG.bodb_CustomerLog.wsv_alp" />
     </Function>
@@ -120,11 +117,6 @@
             <Mapping DataField="IsHidden" ObjectProperty="IsHide" />
         </Setting>
         <Setting Key="Age_Rpt_GetProductDetail" SpName="Age_Rpt_GetProductDetail" DbName="DBAGE.bodb02.wsv_alp" />
-    </Function>
-    <Function Name="Check Belonging">
-        <Setting Key="Age_CustomerSelCheckBelonging" SpName="Age_CustomerSelCheckBelonging" DbName="DBAGE.bodb02.wsv_alp" />
-        <Setting Key="Age_Rpt_CustomerConsolidatedGroup_CheckBelonging" SpName="Age_Rpt_CustomerConsolidatedGroup_CheckBelonging" DbName="DBAGE.bodb02.wsv_alp" />
-        <Setting Key="Age_CustomerStatusSel" SpName="Age_CustomerStatusSel" DbName="DBAGE.bodb02.wsv_alp" />
     </Function>
     <Function Name="Win Loss Detail">
         <Setting Key="Age_Rpt_WinlossDetail_WeekDataSel" SpName="Age_Rpt_WinlossDetail_WeekDataSel" DbName="DBAGE.bodb02.wsv_alp" />

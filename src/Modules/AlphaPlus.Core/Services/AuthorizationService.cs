@@ -1,6 +1,5 @@
 using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 
@@ -19,7 +18,7 @@ public interface IAuthorizationService
     Task<KickOutInfo> IsKickedOut();
 }
 
-public class AuthorizationService(
+internal class AuthorizationService(
     IOptions<AuthorizationOptions> options,
     IRequestContext requestContext,
     IMemoryCache cacheService,
@@ -37,12 +36,8 @@ public class AuthorizationService(
 
     public Task<AccountStatus> GetAccountStatus()
     {
-        if (requestContext.UserSession.IsInternal)
-        {
-            return Task.FromResult(new AccountStatus(true, 0));
-        }
-
         var userSession = requestContext.UserSession;
+
         return cacheService.GetOrCreateAsync(
             string.Format(AccountStatusCacheKey, userSession.CustId, userSession.SubAccId),
             cacheEntry =>
@@ -93,7 +88,7 @@ public class AuthorizationService(
 
                         if (!string.IsNullOrEmpty(requestContext.CustIds))
                         {
-                            return (await IsMultipleCustomersBelonging(requestContext)).IsActive;
+                            return await IsMultipleCustomersBelonging(requestContext);
                         }
                     }
                 }
@@ -105,11 +100,6 @@ public class AuthorizationService(
 
     public async Task<KickOutInfo> IsKickedOut()
     {
-        if (requestContext.UserSession.IsInternal)
-        {
-            return new KickOutInfo(false);
-        }
-
         if (options.IgnoreReCheckInCustIds.Contains(requestContext.UserSession.CustId))
         {
             return new KickOutInfo(false);
@@ -217,7 +207,7 @@ public class AuthorizationService(
 
     internal async Task<bool> IsBelonging(IRequestContext requestContext, Configurations.PageAccess pageAccess)
     {
-        var belongingInfo = await IsBelonging(requestContext);
+        var belongingInfo = await identityClient.CheckBelonging(requestContext.UserSession.CustId, requestContext.UserSession.SubAccId, requestContext.TransId, requestContext.CustId);
 
         if (belongingInfo.RoleId == 0 || belongingInfo.RoleId > requestContext.UserSession.RoleId)
         {
@@ -237,27 +227,13 @@ public class AuthorizationService(
         return belongingInfo.IsActive;
     }
 
-    private async Task<BelongingInfo> IsBelonging(IRequestContext requestContext)
-    {
-        var belongingInfo = await identityClient.CheckBelonging(requestContext.UserSession.CustId, requestContext.UserSession.SubAccId, requestContext.TransId, requestContext.CustId);
-        belongingInfo.IsActive = requestContext.UserSession.IsInternal || belongingInfo.IsActive;
+    private Task<BelongingInfo> IsCustomerConsolidatedGroupBelonging(IRequestContext requestContext)
+        => identityClient.CheckBelongingConsolidatedGroup(requestContext.UserSession.CustId, requestContext.UserSession.SubAccId, requestContext.TransId, requestContext.CustId);
 
-        return belongingInfo;
-    }
-
-    private async Task<BelongingInfo> IsCustomerConsolidatedGroupBelonging(IRequestContext requestContext)
-    {
-        var belongingInfo = await identityClient.CheckBelongingConsolidatedGroup(requestContext.UserSession.CustId, requestContext.UserSession.SubAccId, requestContext.TransId, requestContext.CustId);
-        belongingInfo.IsActive = requestContext.UserSession.IsInternal || belongingInfo.IsActive;
-
-        return belongingInfo;
-    }
-
-    private async Task<BelongingInfo> IsMultipleCustomersBelonging(IRequestContext requestContext)
+    private async Task<bool> IsMultipleCustomersBelonging(IRequestContext requestContext)
     {
         var belongingInfo = await identityClient.CheckBelongingMultiple(requestContext.UserSession.CustId, requestContext.UserSession.SubAccId, requestContext.CustIds);
-        belongingInfo.IsActive = requestContext.UserSession.IsInternal || belongingInfo.IsActive;
 
-        return belongingInfo;
+        return belongingInfo.IsActive;
     }
 }

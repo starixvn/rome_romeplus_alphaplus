@@ -1,13 +1,16 @@
-using AlphaPlus.Identity.Features.Authorization.Criteria;
-using AlphaPlus.Identity.Features.Authorization.Models;
 using Fanex.Data.Repository;
 
-namespace AlphaPlus.Identity.Features.Authorization;
+namespace AlphaPlus.Identity.API.Features.Authorization;
+
 public interface IAuthorizationService
 {
     Task<CustomerStatus> GetCustomerStatus(int custId, int subAccId);
 
     Task<BelongingInfo> CheckBelonging(int custId, int subAccId, long transId, int downlineCustId);
+
+    Task<BelongingInfo> CheckBelongingInDBCust(int custId, int subAccId, long transId, int downlineCustId);
+
+    Task<DownlineInfo> CheckBelongingByUsername(int custId, int subAccId, string username);
 
     Task<BelongingInfo> CheckBelongingConsolidatedGroup(int custId, int subAccId, long transId, int downlineCustId);
 
@@ -26,27 +29,35 @@ internal class AuthorizationService(IDynamicRepository dynamicRepository) : IAut
         return new CustomerStatus(command.IsActive, command.Locked);
     }
 
-    public async Task<BelongingInfo> CheckBelonging(int custId, int subAccId, long transId, int downlineCustId)
+    public Task<BelongingInfo> CheckBelonging(int custId, int subAccId, long transId, int downlineCustId)
+        => CheckBelonging(new CheckBelongingCommand(custId, subAccId, transId, downlineCustId));
+
+    public Task<BelongingInfo> CheckBelongingInDBCust(int custId, int subAccId, long transId, int downlineCustId)
+        => CheckBelonging(new CheckBelongingInDBCustCommand(custId, subAccId, transId, downlineCustId));
+
+    public async Task<DownlineInfo> CheckBelongingByUsername(int custId, int subAccId, string username)
     {
-        var command = new CheckBelongingCommand(custId, subAccId, transId, downlineCustId);
+        var command = new CheckBelongingByUsernameCommand(custId, subAccId, username);
         await dynamicRepository.ExecuteAsync(command);
 
-        return new BelongingInfo(command.RoleId, command.RoleId > 0 && command.IsActive);
+        return new DownlineInfo(
+            command.CustId > 0 && command.IsActive,
+            command.CustId,
+            command.IsSubAcc,
+            command.RoleId,
+            command.AgentId);
     }
 
-    public async Task<BelongingInfo> CheckBelongingConsolidatedGroup(int custId, int subAccId, long transId, int downlineCustId)
+    public Task<BelongingInfo> CheckBelongingConsolidatedGroup(int custId, int subAccId, long transId, int downlineCustId)
+        => CheckBelonging(new CheckBelongingConsolidatedGroupCommand(custId, subAccId, transId, downlineCustId));
+
+    public Task<BelongingInfo> CheckBelongingMultipleCustomers(int custId, int subAccId, string custIds)
+        => CheckBelonging(new CheckBelongingMultipleCustomersCommand(custId, subAccId, custIds));
+
+    private async Task<BelongingInfo> CheckBelonging(CheckBelongingBaseCommand criteria)
     {
-        var command = new CheckBelongingConsolidatedGroupCommand(custId, subAccId, transId, downlineCustId);
-        await dynamicRepository.ExecuteAsync(command);
+        await dynamicRepository.ExecuteAsync(criteria);
 
-        return new BelongingInfo(command.RoleId, command.RoleId > 0 && command.IsActive);
-    }
-
-    public async Task<BelongingInfo> CheckBelongingMultipleCustomers(int custId, int subAccId, string custIds)
-    {
-        var command = new CheckBelongingMultipleCustomersCommand(custId, subAccId, custIds);
-        await dynamicRepository.ExecuteAsync(command);
-
-        return new BelongingInfo(command.RoleId, command.RoleId > 0 && command.IsActive);
+        return new BelongingInfo(criteria.RoleId, criteria.RoleId > 0 && criteria.IsActive);
     }
 }

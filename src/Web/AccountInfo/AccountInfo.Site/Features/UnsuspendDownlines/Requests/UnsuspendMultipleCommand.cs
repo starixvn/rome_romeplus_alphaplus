@@ -15,7 +15,6 @@ namespace AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines.Requests
 
     public class UnsuspendMultipleCommand : QueryBase, IRequest<UnsuspendMultipleResultViewModel>
     {
-
         public IEnumerable<UnsuspendCustomerInfo> UnsuspendList { get; set; }
 
         public int RoleId { get; set; }

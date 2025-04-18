@@ -2,19 +2,11 @@ namespace AlphaPlus.Core.Models;
 
 public class AccountStatus
 {
-    public AccountStatus() { }
+    public bool IsActive { get; init; }
 
-    public AccountStatus(bool isActive, byte locked)
-    {
-        IsActive = isActive;
-        Locked = locked;
-    }
+    public bool IsClosed { get; init; }
 
-    public bool IsActive { get; set; }
+    public byte Locked { get; init; }
 
-    public bool IsClosed { get; set; }
-
-    public byte Locked { get; set; }
-
-    public bool IsLocked { get; set; }
+    public bool IsLocked { get; init; }
 }

@@ -1,6 +1,6 @@
 using Fanex.Data.Repository;
 
-namespace AlphaPlus.Identity.Features.Authorization.Criteria;
+namespace AlphaPlus.Identity.API.Features.Authorization;
 
 public class GetAccountStatusCommand(int custId, int subAccId) : NonQueryCommand
 {

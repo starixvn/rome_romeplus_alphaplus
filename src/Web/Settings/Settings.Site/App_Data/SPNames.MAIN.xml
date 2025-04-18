@@ -39,11 +39,6 @@
         </Setting>
         <Setting Key="Age_Rpt_GetCustomerInfo" SpName="Age_Rpt_GetCustomerInfo" DbName="DBAGE.bodb02.wsv_alp" />
     </Function>
-    <Function Name="Check Belonging">
-        <Setting Key="Age_CustomerSelCheckBelonging" SpName="Age_CustomerSelCheckBelonging" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
-        <Setting Key="Age_CustomerStatusSel" SpName="Age_CustomerStatusSel" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
-        <Setting Key="Age_CustomerSelCheckBelonging_MultiCust" SpName="Age_CustomerSelCheckBelonging_MultiCust" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
-    </Function>
     <Function Name="Win Loss Limit">
         <Setting Key="Age_CustomerSelWinLimitProduct" SpName="Age_CustomerSelWinLimitProduct" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
     </Function>
@@ -54,7 +49,6 @@
     </Function>
     <Function Name="Create Member By QR Code">
         <Setting Key="Age_CustomerSelUserSearch" SpName="Age_CustomerSelUserSearch" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
-        <Setting Key="Age_CustomerSelCheckBelonging_ByUsername" SpName="Age_CustomerSelCheckBelonging_ByUsername" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
         <Setting Key="Age_CustomerSelUserSearch_ByRole" SpName="Age_CustomerSelUserSearch_ByRole" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
     </Function>
     <Function Name="Customer List">
@@ -123,10 +117,6 @@
         <Setting Key="Age_Rpt_RewardDetail_Master" SpName="Age_Rpt_RewardDetail_Master" DbName="DBAGE.bodb02.wsv_alp" />
         <Setting Key="Age_Rpt_RewardDetail_Agent" SpName="Age_Rpt_RewardDetail_Agent" DbName="DBAGE.bodb02.wsv_alp" />
         <Setting Key="Age_Rpt_RewardDetail_Member" SpName="Age_Rpt_RewardDetail_Member" DbName="DBAGE.bodb02.wsv_alp" />
-    </Function>
-    <Function Name="Check Belonging in DBCUST">
-        <Setting Key="Age_CustomerSelCheckBelonging_DBCUST" SpName="Age_CustomerSelCheckBelonging" DbName="DBCust.CustDB.wsv_alp" />
-        <Setting Key="Age_CustomerSelCheckBelonging_ByUsername" SpName="Age_CustomerSelCheckBelonging_ByUsername" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
     </Function>
     <Function Name="Transfer">
         <Setting Key="Acc_CustomerSelTransferOption" SpName="Acc_CustomerSelTransferOption" DbName="DBCust.CustDB.wsv_alp" />
@@ -434,7 +424,6 @@
         <Setting Key="Acc_CustomerSelOnline" SpName="Acc_CustomerSelOnline" DbName="DBONUSER.ON_USER.wsv_alp" Plain="0">
             <Mapping ObjectProperty="LoginTime" DataField="reload_time" />
         </Setting>
-        <Setting Key="Age_ReCheckin" SpName="Age_ReCheckin" DbName="DBONUSER.ON_USER.wsv_alp" Plain="0" />
     </Function>
     <Function Name="Multiple Transfer">
         <Setting Key="SiteDB_Age_Transfer_Ins_Ag" SpName="Age_Transfer_Ins_Ag" DbName="SiteDB.bodb02.wsv_alp" />
@@ -473,12 +462,6 @@
     </Function>
     <Function Name="Base Functions">
         <Setting Key="Age_SelBalanceUpDay" SpName="Age_SelBalanceUpDay" DbName="DBAGE.bodb02.wsv_alp" />
-    </Function>
-    <Function Name="Check Belonging">
-        <Setting Key="Age_CustomerSelCheckBelonging" SpName="Age_CustomerSelCheckBelonging" DbName="DBAGE.bodb02.wsv_alp" />
-        <Setting Key="Age_Rpt_CustomerConsolidatedGroup_CheckBelonging" SpName="Age_Rpt_CustomerConsolidatedGroup_CheckBelonging" DbName="DBAGE.bodb02.wsv_alp" />
-        <Setting Key="Age_CustomerStatusSel" SpName="Age_CustomerStatusSel" DbName="DBAGE.bodb02.wsv_alp" />
-        <Setting Key="Age_CustomerSelCheckBelonging_MultiCust" SpName="Age_CustomerSelCheckBelonging_MultiCust" DbName="DBAGE.bodb02.wsv_alp" />
     </Function>
     <Function Name="Cash Balance Transfer">
         <Setting Key="SiteDB_Age_Transfer_CashBalance_Sel" SpName="Age_Transfer_CashBalance_Sel" DbName="DBTXN.bodb02.wsv_alp" />

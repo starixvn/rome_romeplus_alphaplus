@@ -140,6 +140,7 @@
         "SystemId": 6
     },
     "SystemId": 2,
+    "IdentityUrl": "http://alphaplus_api_identity_ALPHAPROD:5000/",
     "AssetAppPath": "//stalp2-cdn.gatonic.com",
     "JsVersion": "20250415",
     "AssetsApp:StaticResourcesVersion": "20250415",

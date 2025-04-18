@@ -42,7 +42,6 @@ using AlphaPlus.Settings.Site.Features.Shared.Services;
 using AlphaPlus.Settings.Site.Features.SubAccount.Services;
 using AlphaPlus.Settings.Site.Features.UserNameSuggestion;
 using AlphaPlus.Settings.Site.Features.ViewLogs.Helpers;
-using AlphaPlus.Settings.Transfer.API.Configurations;
 using AlphaPlus.Settings.Transfer.API.Helpers;
 using AlphaPlus.Settings.Transfer.API.Models.Reward;
 using AlphaPlus.Settings.Transfer.API.Models.TransferToDownlineHistory;
@@ -61,7 +60,6 @@ using Fanex.Customer.Client.Configurations;
 using Fanex.Data;
 using Fanex.Data.Repository;
 using Fanex.RemotingRef;
-using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using ONEbook.SpreadSheets;
 using ONEbook.SpreadSheets.NPOI;
@@ -173,7 +171,6 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
             services
                 .AddSingleton<QrCodeAdapter, QrCodeAdapterImpl>()
                 .AddScoped<PasswordService, PasswordServiceImpl>()
-                .AddScoped<CheckBelongingService, CheckBelongingServiceImpl>()
                 .AddSingleton<QRCodeMemberSignInService, QRCodeMemberSignInServiceImpl>()
                 .AddHttpClient<IQRCodeService, QRCodeService>(httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("QRCode:API")));
 

@@ -1,7 +1,7 @@
 using AlphaPlus.Identity.API;
 using AlphaPlus.Identity.API.Extensions;
 using AlphaPlus.Identity.API.Features.Auth;
-using AlphaPlus.Identity.Features.Authorization;
+using AlphaPlus.Identity.API.Features.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
