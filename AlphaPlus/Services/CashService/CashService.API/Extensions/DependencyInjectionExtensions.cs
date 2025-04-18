@@ -12,6 +12,7 @@ public static class DependencyInjectionExtensions
             .AddSingleton<IDynamicRepository, DynamicRepository>();
             
         services.AddScoped<IPaymentsService, PaymentsService>();
+        services.AddScoped<IMemberSiteManagementService, MemberSiteManagementService>();
 
         return services;
     }
