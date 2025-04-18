@@ -94,3 +94,10 @@ services:
             context: .
             dockerfile: AlphaPlus/Web/CashService/CashService.Site/Dockerfile
         restart: always
+
+    cash-service-api:
+        image: ${REGISTRY:-alphaplus}/cash.service.api:${PLATFORM:-linux}-${TAG:-latest}
+        build:
+            context: .
+            dockerfile: AlphaPlus/Services/CashService/CashService.API/Dockerfile
+        restart: always

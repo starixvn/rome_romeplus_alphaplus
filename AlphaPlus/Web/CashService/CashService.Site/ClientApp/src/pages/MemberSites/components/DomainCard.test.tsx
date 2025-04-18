@@ -1,12 +1,13 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
 import { render, screen } from '@testing-library/react';
-import React from 'react';
+
 import DomainCard from './DomainCard';
 
 describe('DomainCard', () => {
   const mockProps = {
     domain: 'example.com',
-    url: 'https://example.com/register'
+    url: 'https://example.com/register',
   };
 
   it('renders domain and URL correctly', () => {
@@ -45,4 +46,4 @@ describe('DomainCard', () => {
     const button = screen.getByRole('button', { name: /Download QR Code/i });
     expect(button).toHaveClass('domain-card-button');
   });
-}); 
+});

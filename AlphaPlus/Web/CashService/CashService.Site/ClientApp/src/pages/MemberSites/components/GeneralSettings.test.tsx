@@ -1,6 +1,7 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
-import React from 'react';
+import { describe, expect, it } from 'vitest';
+
+import { fireEvent, render, screen } from '@testing-library/react';
+
 import GeneralSettings from './GeneralSettings';
 
 describe('GeneralSettings', () => {
@@ -21,7 +22,7 @@ describe('GeneralSettings', () => {
     render(<GeneralSettings />);
     const checkboxes = screen.getAllByRole('checkbox');
     const registrationToggle = checkboxes[0];
-    
+
     expect(registrationToggle).not.toBeChecked();
     fireEvent.click(registrationToggle);
     expect(registrationToggle).toBeChecked();
@@ -31,7 +32,7 @@ describe('GeneralSettings', () => {
     render(<GeneralSettings />);
     const checkboxes = screen.getAllByRole('checkbox');
     const depositToggle = checkboxes[1];
-    
+
     expect(depositToggle).not.toBeChecked();
     fireEvent.click(depositToggle);
     expect(depositToggle).toBeChecked();
@@ -46,10 +47,10 @@ describe('GeneralSettings', () => {
   it('applies correct styling to toggle switches', () => {
     render(<GeneralSettings />);
     const checkboxes = screen.getAllByRole('checkbox');
-    
-    checkboxes.forEach(checkbox => {
+
+    checkboxes.forEach((checkbox) => {
       expect(checkbox).toHaveClass('sr-only');
       expect(checkbox).toHaveClass('peer');
     });
   });
-}); 
+});
