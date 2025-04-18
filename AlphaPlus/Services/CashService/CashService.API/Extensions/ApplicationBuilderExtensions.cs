@@ -2,6 +2,7 @@ using System.Text.Json;
 using Microsoft.AspNetCore.Diagnostics;
 using AlphaPlus.CashService.API.Services;
 using AlphaPlus.CashService.API.Models.ManagePayments;
+using AlphaPlus.CashService.API.Endpoints;
 
 namespace AlphaPlus.CashService.API.Extensions;
 
@@ -54,45 +55,8 @@ public static class ApplicationBuilderExtensions
 
     public static WebApplication MapAPIEndpoints(this WebApplication app)
     {
-        app.MapGet("/health", () => Results.Ok(new { Status = "Healthy", Timestamp = DateTime.UtcNow }))
-            .WithName("HealthCheck")
-            .WithOpenApi(operation => new(operation)
-            {
-                Summary = "Health check endpoint",
-                Description = "Returns the health status of the API"
-            });
-
-        app.MapGet("/version", () => Results.Ok(new { Version = "1.0.0", Environment = app.Environment.EnvironmentName }))
-            .WithName("Version")
-            .WithOpenApi(operation => new(operation)
-            {
-                Summary = "Version information",
-                Description = "Returns the current version of the API"
-            });
-
-        app.MapGet("/api/payment-providers", async (IManagePaymentsService service) =>
-        {
-            var providers = await service.GetAllPaymentProviders();
-            return Results.Ok(providers);
-        })
-        .WithName("GetPaymentProviders")
-        .WithOpenApi(operation => new(operation)
-        {
-            Summary = "Get all payment providers",
-            Description = "Returns a list of all available payment providers"
-        });
-
-        app.MapGet("/api/payment-provider-fees/{providerId}", async (int providerId, IManagePaymentsService service) =>
-        {
-            var fees = await service.GetPaymentProviderFees(providerId);
-            return Results.Ok(fees);
-        })
-        .WithName("GetPaymentProviderFees")
-        .WithOpenApi(operation => new(operation)
-        {
-            Summary = "Get payment provider fees",
-            Description = "Returns the fees for a specific payment provider"
-        });
+        app.MapSystemEndpoints();
+        app.MapPaymentEndpoints();
 
         return app;
     }
