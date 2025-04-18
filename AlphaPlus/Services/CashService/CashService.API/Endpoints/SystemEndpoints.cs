@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Http.HttpResults;
-
 namespace AlphaPlus.CashService.API.Endpoints;
 
 public static class SystemEndpoints
@@ -22,4 +20,4 @@ public static class SystemEndpoints
                 Description = "Returns the current version of the API"
             });
     }
-} 
+}
