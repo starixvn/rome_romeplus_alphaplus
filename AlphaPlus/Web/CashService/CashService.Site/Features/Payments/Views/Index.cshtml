@@ -2,9 +2,13 @@
     ViewData["Title"] = "Manage Payments";
     Layout = "_Layout";
 }
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 
 <div id="root"></div>
 
+<script>
+    window.cashServiceAPIUrl = "@Configuration["CashServiceAPIUrl"]";
+</script>
 
 <environment names="Development">
     <script type="module" src="http://localhost:5173/src/pages/ManagePayments/index.tsx"></script>

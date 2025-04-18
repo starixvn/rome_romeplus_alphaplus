@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { paymentProviderService, PaymentProvider } from '../../services/api';
+import { paymentProviderService, PaymentProvider } from '../../services/paymentsAPI';
 import './PaymentGateway.css';
 
 interface PaymentGatewayProps {

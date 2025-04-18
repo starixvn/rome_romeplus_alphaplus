@@ -1,8 +1,15 @@
 import axios from 'axios';
 
+// Declare the cashServiceAPIUrl property on the Window interface
+declare global {
+  interface Window {
+    cashServiceAPIUrl: string;
+  }
+}
+
 // Create an axios instance with default config
 const api = axios.create({
-  baseURL: 'http://localhost:5252/api',
+  baseURL: window.cashServiceAPIUrl,
   headers: {
     'Content-Type': 'application/json'
   },
