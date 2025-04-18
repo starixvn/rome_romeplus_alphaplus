@@ -1,7 +1,7 @@
 using System.Text.Json;
 using Microsoft.AspNetCore.Diagnostics;
 using AlphaPlus.CashService.API.Services;
-using AlphaPlus.CashService.API.Models.ManagePayments;
+using AlphaPlus.CashService.API.Models.Payments;
 using AlphaPlus.CashService.API.Endpoints;
 
 namespace AlphaPlus.CashService.API.Extensions;
@@ -56,7 +56,7 @@ public static class ApplicationBuilderExtensions
     public static WebApplication MapAPIEndpoints(this WebApplication app)
     {
         app.MapSystemEndpoints();
-        app.MapPaymentEndpoints();
+        app.MapPaymentsEndpoints();
 
         return app;
     }

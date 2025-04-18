@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AlphaPlus.CashService.API.Models.ManagePayments
+namespace AlphaPlus.CashService.API.Models.Payments
 {
     public class PaymentProviderFeeGroupModel
     {

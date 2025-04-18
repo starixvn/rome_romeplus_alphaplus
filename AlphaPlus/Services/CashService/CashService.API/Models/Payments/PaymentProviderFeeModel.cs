@@ -1,6 +1,6 @@
 using System;
 
-namespace AlphaPlus.CashService.API.Models.ManagePayments
+namespace AlphaPlus.CashService.API.Models.Payments
 {
     public class PaymentProviderFeeModel
     {

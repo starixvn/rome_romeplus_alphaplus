@@ -1,21 +1,21 @@
 using AlphaPlus.CashService.API.Constants;
-using AlphaPlus.CashService.API.Criteria.ManagePayments;
-using AlphaPlus.CashService.API.Models.ManagePayments;
+using AlphaPlus.CashService.API.Criteria.Payments;
+using AlphaPlus.CashService.API.Models.Payments;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Services;
 
-public interface IManagePaymentsService
+public interface IPaymentsService
 {
     Task<IEnumerable<PaymentProviderModel>> GetAllPaymentProviders();
     Task<IEnumerable<PaymentProviderFeeGroupModel>> GetPaymentProviderFees(int providerId);
 }
 
-public class ManagePaymentsService : IManagePaymentsService
+public class PaymentsService : IPaymentsService
 {
     private readonly IDynamicRepository _repository;
 
-    public ManagePaymentsService(IDynamicRepository repository)
+    public PaymentsService(IDynamicRepository repository)
     {
         _repository = repository;
     }

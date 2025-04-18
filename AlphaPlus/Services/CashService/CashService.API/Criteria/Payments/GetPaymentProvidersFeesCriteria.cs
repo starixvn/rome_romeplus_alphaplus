@@ -1,6 +1,6 @@
 using Fanex.Data.Repository;
 
-namespace AlphaPlus.CashService.API.Criteria.ManagePayments
+namespace AlphaPlus.CashService.API.Criteria.Payments
 {
     public class GetPaymentProvidersFeesCriteria : CriteriaBase
     {

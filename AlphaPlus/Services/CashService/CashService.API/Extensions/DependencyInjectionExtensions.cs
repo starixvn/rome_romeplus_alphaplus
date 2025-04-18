@@ -11,7 +11,7 @@ public static class DependencyInjectionExtensions
         services.AddFanexSql(configuration)
             .AddSingleton<IDynamicRepository, DynamicRepository>();
             
-        services.AddScoped<IManagePaymentsService, ManagePaymentsService>();
+        services.AddScoped<IPaymentsService, PaymentsService>();
 
         return services;
     }

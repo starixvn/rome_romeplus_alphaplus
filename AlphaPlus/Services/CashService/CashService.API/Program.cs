@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.OpenApi.Models;
 using AlphaPlus.CashService.API.Extensions;
 using AlphaPlus.CashService.API.Services;
-using AlphaPlus.CashService.API.Models.ManagePayments;
+using AlphaPlus.CashService.API.Models.Payments;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
