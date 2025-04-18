@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
 using Serilog;
 
-const string PathBase = "/cash-model";
+const string PathBase = "/cash-service";
 const string SharedSettings = "sharedSettings.json";
 var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../", "Shared/Configuration/", SharedSettings);
 
