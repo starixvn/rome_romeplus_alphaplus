@@ -82,16 +82,16 @@ public static class ApplicationBuilderExtensions
             Description = "Returns a list of all available payment providers"
         });
 
-        app.MapGet("/api/payment-provider-fees", async (IManagePaymentsService service) =>
+        app.MapGet("/api/payment-provider-fees/{providerId}", async (int providerId, IManagePaymentsService service) =>
         {
-            var fees = await service.GetPaymentProviderFees();
+            var fees = await service.GetPaymentProviderFees(providerId);
             return Results.Ok(fees);
         })
         .WithName("GetPaymentProviderFees")
         .WithOpenApi(operation => new(operation)
         {
             Summary = "Get payment provider fees",
-            Description = "Returns a list of all payment provider fees"
+            Description = "Returns the fees for a specific payment provider"
         });
 
         return app;

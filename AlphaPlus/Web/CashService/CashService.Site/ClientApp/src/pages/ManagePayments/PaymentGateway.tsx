@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { paymentProviderService, PaymentProvider } from '../../services/paymentsAPI';
+import FeePopupModal from './FeePopupModal';
 import './PaymentGateway.css';
 
 interface PaymentGatewayProps {
@@ -12,6 +13,8 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
   const [providers, setProviders] = React.useState<PaymentProvider[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
   const [error, setError] = React.useState<string | null>(null);
+  const [selectedProvider, setSelectedProvider] = React.useState<PaymentProvider | null>(null);
+  const [showFeePopup, setShowFeePopup] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     const fetchProviders = async () => {
@@ -35,13 +38,23 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
     return status === 1 ? t('active') : t('inactive');
   };
 
+  const handleFeeClick = (provider: PaymentProvider) => {
+    setSelectedProvider(provider);
+    setShowFeePopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setShowFeePopup(false);
+    setSelectedProvider(null);
+  };
+
   return (
     <div className="payment-gateway-container">
       <div className="payment-gateway-form">
         <div className="form-group mb-3">
           <label className="form-label">{t('setDailyWithdrawalCount')}</label>
         </div>
-          <div className="form-group mb-3">
+        <div className="form-group mb-3">
           <label className="form-label">{t('setDailyWithdrawalCountForYourMember')}</label>
         </div>
         <div className="form-group mb-3">
@@ -90,7 +103,10 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
                       </td>
                       <td>{provider.name}</td>
                       <td>
-                        <button className="btn btn-sm btn-outline-primary me-1">
+                        <button 
+                          className="btn btn-sm btn-outline-primary me-1"
+                          onClick={() => handleFeeClick(provider)}
+                        >
                           {t('fee')}
                         </button>
                       </td>
@@ -112,6 +128,14 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
               </tbody>
             </table>
           </div>
+        )}
+
+        {/* Fee Popup Modal */}
+        {showFeePopup && selectedProvider && (
+          <FeePopupModal
+            provider={selectedProvider}
+            onClose={handleClosePopup}
+          />
         )}
       </div>
     </div>

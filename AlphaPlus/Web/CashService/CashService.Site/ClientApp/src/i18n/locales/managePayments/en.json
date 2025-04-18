@@ -1,5 +1,8 @@
 {
   "managePayments": "Manage Payments",
+  "paymentGateway": "Payment Gateway",
+  "bankAccount": "Bank Account",
+  
   "setDailyWithdrawalCount": "Set daily withdrawal count",
   "setDailyWithdrawalCountForYourMember": "Set daily withdrawal amount for your member",
   "setLimit": "Set limit",

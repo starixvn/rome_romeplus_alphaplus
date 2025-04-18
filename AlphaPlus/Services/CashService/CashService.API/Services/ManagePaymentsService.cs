@@ -8,7 +8,7 @@ namespace AlphaPlus.CashService.API.Services;
 public interface IManagePaymentsService
 {
     Task<IEnumerable<PaymentProviderModel>> GetAllPaymentProviders();
-    Task<IEnumerable<PaymentProviderFeeModel>> GetPaymentProviderFees();
+    Task<IEnumerable<PaymentProviderFeeModel>> GetPaymentProviderFees(int providerId);
 }
 
 public class ManagePaymentsService : IManagePaymentsService
@@ -23,45 +23,54 @@ public class ManagePaymentsService : IManagePaymentsService
     public async Task<IEnumerable<PaymentProviderModel>> GetAllPaymentProviders()
     {
         // var result = await _repository.FetchAsync<PaymentProviderModel>(new GetAllPaymentProvidersCriteria());
-        return await GetDummyProviders();
+        var providers = await GetDummyProviders();
+        
+        return providers;
     }
     
-    public async Task<IEnumerable<PaymentProviderFeeModel>> GetPaymentProviderFees()
+    public async Task<IEnumerable<PaymentProviderFeeModel>> GetPaymentProviderFees(int providerId)
     {
-        // var result = await _repository.FetchAsync<PaymentProviderFeeModel>(new GetPaymentProvidersFeesCriteria());
-        return await GetDummyProviderFees();
+        // var result = await _repository.FetchAsync<PaymentProviderFeeModel>(new GetPaymentProvidersFeesCriteria(providerId));
+        var fees = await GetDummyProviderFees(providerId);
+        
+        return fees;
     }
 
-    private async Task<IEnumerable<PaymentProviderFeeModel>> GetDummyProviderFees()
+    private async Task<IEnumerable<PaymentProviderFeeModel>> GetDummyProviderFees(int providerId)
     {
         return new List<PaymentProviderFeeModel>
         {
             new PaymentProviderFeeModel
             {
+                ProviderId = 1,
                 TransactionType = "Deposit",
                 Method = "Credit Card",
                 Rate = 2.5m
             },
             new PaymentProviderFeeModel
             {
+                ProviderId = 2,
                 TransactionType = "Withdrawal",
                 Method = "Bank Transfer",
                 Rate = 1.5m
             },
             new PaymentProviderFeeModel
             {
+                ProviderId = 3,
                 TransactionType = "Deposit",
                 Method = "E-Wallet",
                 Rate = 1.0m
             },
             new PaymentProviderFeeModel
             {
+                ProviderId = 4,
                 TransactionType = "Withdrawal",
                 Method = "Cryptocurrency",
                 Rate = 3.0m
             },
             new PaymentProviderFeeModel
             {
+                ProviderId = 5,
                 TransactionType = "Deposit",
                 Method = "PayPal",
                 Rate = 2.0m

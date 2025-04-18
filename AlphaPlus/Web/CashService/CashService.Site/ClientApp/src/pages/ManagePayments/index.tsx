@@ -44,7 +44,7 @@ function ManagePayments() {
                 className={`nav-link ${activeTab === 'paymentGateway' ? 'active' : ''}`}
                 onClick={() => setActiveTab('paymentGateway')}
               >
-                Payment Gateway
+                {t('paymentGateway')}
               </button>
             </li>
             <li className="nav-item">
@@ -52,7 +52,7 @@ function ManagePayments() {
                 className={`nav-link ${activeTab === 'bankAccount' ? 'active' : ''}`}
                 onClick={() => setActiveTab('bankAccount')}
               >
-                Bank Account
+                {t('bankAccount')}
               </button>
             </li>
           </ul>
