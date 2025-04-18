@@ -30,5 +30,6 @@
   "transactionType": "Transaction Type",
   "paymentMethod": "Payment Method",
   "feeRate": "Fee Rate",
-  "close": "Close"
+  "close": "Close",
+  "noData": "No data available"
 } 

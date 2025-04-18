@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { paymentProviderService, PaymentProvider } from '../../services/paymentsAPI';
+import { paymentProviderService } from '../../services/paymentsAPI';
+import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
 import FeePopupModal from './FeePopupModal';
 import './PaymentGateway.css';
 
