@@ -6,5 +6,7 @@
     "noData": "No data available",
     "cancel": "Cancel",
     "save": "Save",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "enable": "Enable",
+    "disable": "Disable"
 } 

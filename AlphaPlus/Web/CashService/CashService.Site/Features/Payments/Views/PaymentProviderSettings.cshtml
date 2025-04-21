@@ -1,15 +1,17 @@
+@using AlphaPlus.CashService.Site.Features.Payments.Models
 @{
     ViewData["Title"] = "Manage Payments";
     Layout = "_Layout";
 }
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
-@model int
+@model ProviderModel
 <div id="root"></div>
 
 <script>
     window.custId = "1234567890";
     window.cashServiceAPIUrl = "@Configuration["CashServiceAPIUrl"]";
-    window.providerId = @Model;
+    window.providerId = @Model.Id;
+    window.providerName = "@Model.Name";
 </script>
 
 <environment names="Development">

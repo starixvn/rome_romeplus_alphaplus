@@ -69,8 +69,8 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
 
   const handleSaveDailyLimit = () => {};
 
-  const handleEditClick = () => {
-    location.href = '../Payments/PaymentProviderSettings';
+  const handleEditClick = (provider: PaymentProvider) => {
+    location.href = '../Payments/PaymentProviderSettings?id=' + provider.id;
   };
 
   return (
@@ -128,7 +128,7 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
                       <td>
                         <button 
                           className="btn btn-sm btn-outline-primary me-1"
-                          onClick={handleEditClick}
+                          onClick={() => handleEditClick(provider)}
                         >
                           {tGlobal('edit')}
                         </button>

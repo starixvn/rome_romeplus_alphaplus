@@ -29,5 +29,8 @@
   "feeRate": "Fee Rate",
 
   "setMaxDailyWithdrawalCountForYourMembers": "Set daily withdrawal count for your members, whether through bank or payment gateway.",
-  "dailyWithdrawalCount": "Daily withdrawal count"
+  "dailyWithdrawalCount": "Daily withdrawal count",
+
+  "setUpPaymentMethodsForMembers": "Set up payment methods for your members",
+  "addPaymentMethod": "Add payment method"
 } 

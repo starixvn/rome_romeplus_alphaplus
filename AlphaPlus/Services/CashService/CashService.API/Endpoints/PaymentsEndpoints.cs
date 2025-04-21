@@ -19,6 +19,22 @@ public static class PaymentsEndpoints
             Description = "Returns a list of all available payment providers"
         });
 
+        app.MapGet("/api/payment-providers/{providerId}", async (int providerId, IPaymentsService service) =>
+        {
+            var provider = await service.GetPaymentProviderById(providerId);
+            if (provider == null)
+            {
+                return Results.NotFound();
+            }
+            return Results.Ok(provider);
+        })
+        .WithName("GetPaymentProviderById")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Get payment provider by ID",
+            Description = "Returns a specific payment provider by its ID"
+        });
+
         app.MapGet("/api/payment-provider-fees/{providerId}", async (int providerId, IPaymentsService service) =>
         {
             var fees = await service.GetPaymentProviderFees(providerId);

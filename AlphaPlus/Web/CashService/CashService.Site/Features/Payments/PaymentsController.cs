@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using AlphaPlus.CashService.Site.Features.Payments.Models;
 
 namespace AlphaPlus.CashService.Site.Features.Payments
 {
@@ -20,7 +21,12 @@ namespace AlphaPlus.CashService.Site.Features.Payments
 
         public IActionResult PaymentProviderSettings(int id)
         {
-            return View(id);
+            var model = new ProviderModel
+            {
+                Id = id
+            };
+            
+            return View(model);
         }
     }
 }
