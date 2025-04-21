@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { PaymentProvider } from './interfaces/PaymentProvider';
 import { PaymentProviderFeeGroup } from './interfaces/PaymentProviderFeeGroup';
+import { ResultModel } from './interfaces/ResultModel';
 
 // Declare the cashServiceAPIUrl property on the Window interface
 declare global {
@@ -43,17 +44,15 @@ export const paymentProviderService = {
   },
   
   // Set daily withdrawal count for a customer
-  setDailyWithdrawalCount: async (custId: number, count: number): Promise<void> => {
+  setDailyWithdrawalCount: async (custId: number, count: number): Promise<ResultModel> => {
     try {
       const response = await api.post(`/set-daily-withdrawal-count?custId=${custId}&count=${count}`);
-      if (response.status !== 200) {
-        throw new Error('Failed to set daily withdrawal count');
-      }
+      return response.data;
     } catch (error) {
       console.error('Error setting daily withdrawal count:', error);
       throw error;
     }
-  }
+  },
 };
 
 export default api; 

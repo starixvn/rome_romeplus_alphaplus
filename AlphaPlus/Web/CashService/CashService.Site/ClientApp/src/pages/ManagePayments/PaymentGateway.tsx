@@ -67,11 +67,7 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
     setShowDailyLimitPopup(false);
   };
 
-  const handleSaveDailyLimit = (dailyLimit: number) => {
-    // Handle saving the daily limit
-    console.log(`Saving daily limit: ${dailyLimit}`);
-    setShowDailyLimitPopup(false);
-  };
+  const handleSaveDailyLimit = () => {};
 
   return (
     <div className="payment-gateway-container">

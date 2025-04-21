@@ -1,6 +1,7 @@
 using AlphaPlus.CashService.API.Constants;
 using AlphaPlus.CashService.API.Criteria.Payments;
 using AlphaPlus.CashService.API.Models.Payments;
+using AlphaPlus.CashService.API.Models;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Services;
@@ -9,7 +10,7 @@ public interface IPaymentsService
 {
     Task<IEnumerable<PaymentProviderModel>> GetAllPaymentProviders();
     Task<IEnumerable<PaymentProviderFeeGroupModel>> GetPaymentProviderFees(int providerId);
-    Task<bool> SetDailyWithdrawalCount(int custId, int count);
+    Task<ResultModel> SetDailyWithdrawalCount(int custId, int count);
 }
 
 public class PaymentsService : IPaymentsService
@@ -130,18 +131,18 @@ public class PaymentsService : IPaymentsService
         };
     }
 
-    public async Task<bool> SetDailyWithdrawalCount(int custId, int count)
+    public async Task<ResultModel> SetDailyWithdrawalCount(int custId, int count)
     {
         try
         {
             // TODO: Implement actual database update logic
             // For now returning dummy implementation
             // var result = await _repository.ExecuteNonQueryAsync(new SetDailyWithdrawalCountCriteria(custId, count));
-            return true;
+            return new ResultModel("0", "Success");
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            return false;
+            return new ResultModel("1", ex.Message);
         }
     }
 } 

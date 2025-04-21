@@ -34,7 +34,7 @@ public static class PaymentsEndpoints
         app.MapPost("/api/set-daily-withdrawal-count", async (int custId, int count, IPaymentsService service) =>
         {
             var result = await service.SetDailyWithdrawalCount(custId, count);
-            return result ? Results.Ok() : Results.BadRequest();
+            return Results.Ok(result);
         })
         .WithName("SetDailyWithdrawalCount")
         .WithOpenApi(operation => new(operation)

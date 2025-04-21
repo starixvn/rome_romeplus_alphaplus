@@ -14,16 +14,23 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
   const [dailyLimit, setDailyLimit] = React.useState<number>(0);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string>('');
+  const [successMessage, setSuccessMessage] = React.useState<string>('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
+    setSuccessMessage('');
 
     try {
-      await paymentProviderService.setDailyWithdrawalCount(custId, dailyLimit);
-      onSave(dailyLimit);
-      onClose();
+      const response = await paymentProviderService.setDailyWithdrawalCount(custId, dailyLimit);
+      setSuccessMessage(response.message);
+      if (response.isSuccessful) {
+        onSave(dailyLimit);
+        setTimeout(() => {
+          onClose();
+        }, 3000);
+      }
     } catch (err) {
       setError(t('global:errorOccurred'));
     } finally {
@@ -57,6 +64,7 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
                 required
               />
               {error && <div className="text-danger mt-2">{error}</div>}
+              {successMessage && <div className="text-success mt-2">{successMessage}</div>}
             </div>
           </div>
           <div className="modal-footer">
