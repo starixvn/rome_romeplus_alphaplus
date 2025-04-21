@@ -1,83 +1,70 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 interface MessageFormProps {
   mobile: string;
   lineId: string;
   announcement: string;
-  onMessageChange: (messages: { mobile: string; lineId: string; announcement: string }) => void;
+  onMessageChange: (messages: { mobile?: string; lineId?: string; announcement?: string }) => void;
 }
 
-const MessageForm: React.FC<MessageFormProps> = ({ 
-  mobile: initialMobile,
-  lineId: initialLineId,
-  announcement: initialAnnouncement,
+const MessageForm: React.FC<MessageFormProps> = ({
+  mobile,
+  lineId,
+  announcement,
   onMessageChange
 }) => {
-  const [mobile, setMobile] = useState(initialMobile);
-  const [lineId, setLineId] = useState(initialLineId);
-  const [announcement, setAnnouncement] = useState(initialAnnouncement);
-
-  useEffect(() => {
-    setMobile(initialMobile);
-    setLineId(initialLineId);
-    setAnnouncement(initialAnnouncement);
-  }, [initialMobile, initialLineId, initialAnnouncement]);
-
-  const handleChange = () => {
-    onMessageChange({ mobile, lineId, announcement });
-  };
-
   return (
     <div className="space-y-4">
-      <h2 className="text-lg font-medium mb-4">Contact Information</h2>
-      <div className="space-y-6">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Mobile Number
-          </label>
-          <input
-            type="text"
-            value={mobile}
-            onChange={(e) => {
-              setMobile(e.target.value);
-              handleChange();
-            }}
-            placeholder="+66XXXXXXXXX"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e4d8c]"
-          />
-          <p className="mt-1 text-sm text-gray-500">Format: +66XXXXXXXXX</p>
+      <h2 className="text-lg font-semibold text-sky-700 mb-4">Leave a Message</h2>
+      <p className="text-sm text-gray-600 mb-4">Include your contact details and a message for your member.</p>
+      <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Mobile Number
+              </label>
+              <div className="flex">
+                <span className="inline-flex items-center px-3 py-2 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                  +66
+                </span>
+                <input
+                  type="text"
+                  value={mobile}
+                  onChange={(e) => onMessageChange({ mobile: e.target.value })}
+                  placeholder="XXXXXXXXX"
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-r-md focus:outline-none"
+                />
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="lineId">
+                LINE ID
+              </label>
+              <input
+                id="lineId"
+                type="text"
+                value={lineId}
+                onChange={(e) => onMessageChange({ lineId: e.target.value })}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
+              />
+            </div>
+      
         </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            LINE ID
-          </label>
-          <input
-            type="text"
-            value={lineId}
-            onChange={(e) => {
-              setLineId(e.target.value);
-              handleChange();
-            }}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e4d8c]"
-          />
-        </div>
+
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Announcement
-          </label>
+      
+          </label>   
+    
           <textarea
             value={announcement}
-            onChange={(e) => {
-              setAnnouncement(e.target.value);
-              handleChange();
-            }}
+            onChange={(e) => onMessageChange({ announcement: e.target.value })}
             rows={4}
             maxLength={1000}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e4d8c]"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
+            placeholder="Add your message here..."
           />
-          <p className="mt-1 text-sm text-gray-500">
-            {announcement.length}/1000 characters
-          </p>
         </div>
       </div>
     </div>

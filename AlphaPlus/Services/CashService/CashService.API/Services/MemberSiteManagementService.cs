@@ -38,8 +38,14 @@ public class MemberSiteManagementService : IMemberSiteManagementService
                         QrCode = await GenerateQrCodeAsync("https://quickm-6358906.nammamwang.com")
                     }
                 },
-                AllowRegistration = true,
-                AllowDeposit = true
+                GeneralSettings = new List<MemberSiteManagement.GeneralSetting>
+                {
+                    new() { Id = "allowRegistration", Name = "Allow Registration", Description = "Allow member to register", Value = true },
+                    new() { Id = "allowDeposit", Name = "Allow Deposit", Description = "Allow member to deposit", Value = false }
+                },
+                Mobile = "+66812345678",
+                LineId = "lineId123",
+                Announcement = "Welcome to our cash service!"
             };
         }
         catch (Exception ex)

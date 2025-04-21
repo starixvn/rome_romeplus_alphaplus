@@ -9,76 +9,60 @@ describe('MessageForm', () => {
     mobile: '',
     lineId: '',
     announcement: '',
-    onMessageChange: () => {}
+    onMessageChange: vi.fn()
   };
 
   it('renders the title and description', () => {
     render(<MessageForm {...defaultProps} />);
     expect(screen.getByText('Leave a Message')).toBeInTheDocument();
-    expect(
-      screen.getByText('Include your contact details and a message for your member.')
-    ).toBeInTheDocument();
+    expect(screen.getByText('Include your contact details and a message for your member.')).toBeInTheDocument();
   });
 
-  it('renders all form fields', () => {
+  it('renders all form fields with correct labels', () => {
     render(<MessageForm {...defaultProps} />);
-    expect(screen.getByLabelText(/Mobile/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/LINE ID/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/Announcement/i)).toBeInTheDocument();
+    expect(screen.getByText('Mobile Number')).toBeInTheDocument();
+    expect(screen.getByText('LINE ID')).toBeInTheDocument();
+    expect(screen.getByText('Announcement')).toBeInTheDocument();
   });
 
-  it('updates mobile number when input changes', () => {
-    render(<MessageForm {...defaultProps} />);
-    const mobileInput = screen.getByLabelText(/Mobile/i);
-    fireEvent.change(mobileInput, { target: { value: '1234567890' } });
-    expect(mobileInput).toHaveValue('1234567890');
-  });
-
-  it('updates LINE ID when input changes', () => {
-    render(<MessageForm {...defaultProps} />);
-    const lineIdInput = screen.getByLabelText(/LINE ID/i);
-    fireEvent.change(lineIdInput, { target: { value: 'testlineid' } });
-    expect(lineIdInput).toHaveValue('testlineid');
-  });
-
-  it('updates announcement when textarea changes', () => {
-    render(<MessageForm {...defaultProps} />);
-    const announcementTextarea = screen.getByLabelText(/Announcement/i);
-    fireEvent.change(announcementTextarea, { target: { value: 'Test announcement' } });
-    expect(announcementTextarea).toHaveValue('Test announcement');
-  });
-
-  it('shows country code prefix for mobile input', () => {
+  it('renders mobile input with country code prefix', () => {
     render(<MessageForm {...defaultProps} />);
     expect(screen.getByText('+66')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('XXXXXXXXX')).toBeInTheDocument();
   });
 
-  it('handles form submission', () => {
-    const handleSubmit = vi.fn();
-    render(<MessageForm {...defaultProps} />);
-
-    const form = screen.getByTestId('message-form');
-    form.onsubmit = handleSubmit;
-
-    fireEvent.submit(form);
-    expect(handleSubmit).toHaveBeenCalled();
-  });
-
-  it('applies correct styling to form elements', () => {
-    render(<MessageForm {...defaultProps} />);
-    const inputs = screen.getAllByRole('textbox');
-    const button = screen.getByRole('button', { name: /Save/i });
-
-    inputs.forEach((input) => {
-      expect(input).toHaveClass('border-gray-300');
-      if (input.id === 'mobile') {
-        expect(input).toHaveClass('rounded-r-lg');
-      } else {
-        expect(input).toHaveClass('rounded-lg');
-      }
+  it('calls onMessageChange when mobile number changes', () => {
+    const onMessageChange = vi.fn();
+    render(<MessageForm {...defaultProps} onMessageChange={onMessageChange} />);
+    
+    fireEvent.change(screen.getByPlaceholderText('XXXXXXXXX'), { 
+      target: { value: '123456789' } 
     });
+    
+    expect(onMessageChange).toHaveBeenCalledWith({ mobile: '123456789' });
+  });
 
-    expect(button).toHaveClass('bg-[#1e4d8c]');
-    expect(button).toHaveClass('text-white');
+  it('calls onMessageChange when LINE ID changes', () => {
+    const onMessageChange = vi.fn();
+    render(<MessageForm {...defaultProps} onMessageChange={onMessageChange} />);
+    
+    const lineIdInput = screen.getByLabelText('LINE ID');
+    fireEvent.change(lineIdInput, { 
+      target: { value: 'testlineid' } 
+    });
+    
+    expect(onMessageChange).toHaveBeenCalledWith({ lineId: 'testlineid' });
+  });
+
+  it('calls onMessageChange when announcement changes', () => {
+    const onMessageChange = vi.fn();
+    render(<MessageForm {...defaultProps} onMessageChange={onMessageChange} />);
+    
+    const announcementTextarea = screen.getByPlaceholderText('Add your message here...');
+    fireEvent.change(announcementTextarea, { 
+      target: { value: 'Test announcement' } 
+    });
+    
+    expect(onMessageChange).toHaveBeenCalledWith({ announcement: 'Test announcement' });
   });
 });
