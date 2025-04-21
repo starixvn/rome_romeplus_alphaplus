@@ -17,5 +17,10 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         {
             return View();
         }
+
+        public IActionResult PaymentProviderSettings(int id)
+        {
+            return View(id);
+        }
     }
 }
