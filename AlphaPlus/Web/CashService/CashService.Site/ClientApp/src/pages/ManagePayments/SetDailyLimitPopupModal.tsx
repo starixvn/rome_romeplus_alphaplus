@@ -1,19 +1,34 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import './PaymentGateway.css';
+import { paymentProviderService } from '../../services/paymentsAPI';
 
 interface SetDailyLimitPopupModalProps {
   onClose: () => void;
   onSave: (dailyLimit: number) => void;
+  custId: number;
 }
 
-const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClose, onSave }) => {
+const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClose, onSave, custId }) => {
   const { t } = useTranslation(['managePayments', 'global']);
   const [dailyLimit, setDailyLimit] = React.useState<number>(0);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [error, setError] = React.useState<string>('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onSave(dailyLimit);
+    setIsLoading(true);
+    setError('');
+
+    try {
+      await paymentProviderService.setDailyWithdrawalCount(custId, dailyLimit);
+      onSave(dailyLimit);
+      onClose();
+    } catch (err) {
+      setError(t('global:errorOccurred'));
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -41,14 +56,15 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
                 min="0"
                 required
               />
+              {error && <div className="text-danger mt-2">{error}</div>}
             </div>
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-secondary" onClick={onClose}>
               {t('global:cancel')}
             </button>
-            <button type="submit" className="btn btn-primary">
-              {t('global:save')}
+            <button type="submit" className="btn btn-primary" disabled={isLoading}>
+              {isLoading ? t('global:loading') : t('global:save')}
             </button>
           </div>
         </form>

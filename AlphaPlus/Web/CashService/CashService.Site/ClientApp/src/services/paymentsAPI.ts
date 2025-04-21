@@ -40,6 +40,19 @@ export const paymentProviderService = {
       console.error(`Error fetching fees for provider ${providerId}:`, error);
       return [];
     }
+  },
+  
+  // Set daily withdrawal count for a customer
+  setDailyWithdrawalCount: async (custId: number, count: number): Promise<void> => {
+    try {
+      const response = await api.post(`/set-daily-withdrawal-count?custId=${custId}&count=${count}`);
+      if (response.status !== 200) {
+        throw new Error('Failed to set daily withdrawal count');
+      }
+    } catch (error) {
+      console.error('Error setting daily withdrawal count:', error);
+      throw error;
+    }
   }
 };
 

@@ -3,5 +3,6 @@
   <Function Name="Management Payments">
     <Setting Key="Age_ManagementPayments_SelAllProviders" SpName="Age_ManagementPayments_SelAllProviders" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     <Setting Key="Age_ManagementPayments_SelProvidersFees" SpName="Age_ManagementPayments_SelProvidersFees" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_ManagementPayments_SetDailyWithdrawalCount" SpName="Age_ManagementPayments_SetDailyWithdrawalCount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
   </Function>
 </Functions>

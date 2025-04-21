@@ -9,6 +9,7 @@ public interface IPaymentsService
 {
     Task<IEnumerable<PaymentProviderModel>> GetAllPaymentProviders();
     Task<IEnumerable<PaymentProviderFeeGroupModel>> GetPaymentProviderFees(int providerId);
+    Task<bool> SetDailyWithdrawalCount(int custId, int count);
 }
 
 public class PaymentsService : IPaymentsService
@@ -127,5 +128,20 @@ public class PaymentsService : IPaymentsService
                 LastUpdated = DateTime.Now.AddDays(-1)
             }
         };
+    }
+
+    public async Task<bool> SetDailyWithdrawalCount(int custId, int count)
+    {
+        try
+        {
+            // TODO: Implement actual database update logic
+            // For now returning dummy implementation
+            // var result = await _repository.ExecuteNonQueryAsync(new SetDailyWithdrawalCountCriteria(custId, count));
+            return true;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
     }
 } 

@@ -30,5 +30,17 @@ public static class PaymentsEndpoints
             Summary = "Get payment provider fees",
             Description = "Returns the fees for a specific payment provider"
         });
+
+        app.MapPost("/api/set-daily-withdrawal-count", async (int custId, int count, IPaymentsService service) =>
+        {
+            var result = await service.SetDailyWithdrawalCount(custId, count);
+            return result ? Results.Ok() : Results.BadRequest();
+        })
+        .WithName("SetDailyWithdrawalCount")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Set daily withdrawal count",
+            Description = "Sets the daily withdrawal count for a specific customer"
+        });
     }
 } 

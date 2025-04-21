@@ -6,6 +6,13 @@ import FeePopupModal from './FeePopupModal';
 import DailyLimitPopupModal from './SetDailyLimitPopupModal';
 import './PaymentGateway.css';
 
+// Extend Window interface to include custId
+declare global {
+  interface Window {
+    custId: number;
+  }
+}
+
 interface PaymentGatewayProps {
   // Add props here as needed
 }
@@ -19,7 +26,6 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
   const [selectedProvider, setSelectedProvider] = React.useState<PaymentProvider | null>(null);
   const [showFeePopup, setShowFeePopup] = React.useState<boolean>(false);
   const [showDailyLimitPopup, setShowDailyLimitPopup] = React.useState<boolean>(false);
-  const [dailyLimit, setDailyLimit] = React.useState<number>(0);
 
   React.useEffect(() => {
     const fetchProviders = async () => {
@@ -61,11 +67,10 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
     setShowDailyLimitPopup(false);
   };
 
-  const handleSaveDailyLimit = (limit: number) => {
-    setDailyLimit(limit);
+  const handleSaveDailyLimit = (dailyLimit: number) => {
+    // Handle saving the daily limit
+    console.log(`Saving daily limit: ${dailyLimit}`);
     setShowDailyLimitPopup(false);
-    // Here you would typically make an API call to save the daily limit
-    console.log('Saving daily limit:', limit);
   };
 
   return (
@@ -81,7 +86,7 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
           <button 
             type="button" 
             className="btn btn-primary"
-            onClick={handleSetLimitClick}
+            onClick={() => handleSetLimitClick()} // Default values, should be updated with actual values
           >
             {tManagePayments('setLimit')}
           </button>
@@ -167,6 +172,7 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
           <DailyLimitPopupModal
             onClose={handleCloseDailyLimitPopup}
             onSave={handleSaveDailyLimit}
+            custId={window.custId}
           />
         )}
       </div>
