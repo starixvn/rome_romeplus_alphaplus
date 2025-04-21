@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace AlphaPlus.CashService.API.Models.Payments
 {
-    public class PaymentProviderFeeGroupModel
+    public class ProviderFeeGroupModel
     {
-        public PaymentProviderFeeGroupModel()
+        public ProviderFeeGroupModel()
         {
             TransactionType = string.Empty;
-            Fees = new List<PaymentProviderFeeModel>();
+            Fees = new List<ProviderFeeModel>();
         }
 
         public string TransactionType { get; set; }
-        public List<PaymentProviderFeeModel> Fees { get; set; }
+        public List<ProviderFeeModel> Fees { get; set; }
     }
 } 

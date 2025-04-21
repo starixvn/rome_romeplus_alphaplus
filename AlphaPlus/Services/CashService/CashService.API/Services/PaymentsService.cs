@@ -8,11 +8,11 @@ namespace AlphaPlus.CashService.API.Services;
 
 public interface IPaymentsService
 {
-    Task<IEnumerable<PaymentProviderModel>> GetAllPaymentProviders();
-    Task<PaymentProviderModel> GetPaymentProviderById(int providerId);
-    Task<IEnumerable<PaymentProviderFeeGroupModel>> GetPaymentProviderFees(int providerId);
+    Task<IEnumerable<ProviderModel>> GetAllPaymentProviders();
+    Task<ProviderModel> GetPaymentProviderById(int providerId);
+    Task<IEnumerable<ProviderFeeGroupModel>> GetPaymentProviderFees(int providerId);
     Task<ResultModel> SetDailyWithdrawalCount(int custId, int count);
-    Task<IEnumerable<PaymentProviderSettingsModel>> GetPaymentProviderSettings(int providerId, int method, int status, int transactionType);
+    Task<IEnumerable<ProviderSettingsModel>> GetPaymentProviderSettings(int providerId, int method, int status, int transactionType);
 }
 
 public class PaymentsService : IPaymentsService
@@ -24,31 +24,31 @@ public class PaymentsService : IPaymentsService
         _repository = repository;
     }
 
-    public async Task<IEnumerable<PaymentProviderModel>> GetAllPaymentProviders()
+    public async Task<IEnumerable<ProviderModel>> GetAllPaymentProviders()
     {
-        // var result = await _repository.FetchAsync<PaymentProviderModel>(new GetAllPaymentProvidersCriteria());
+        // var result = await _repository.FetchAsync<ProviderModel>(new GetAllPaymentProvidersCriteria());
         var providers = await GetDummyProviders();
         
         return providers;
     }
     
-    public async Task<PaymentProviderModel> GetPaymentProviderById(int providerId)
+    public async Task<ProviderModel> GetPaymentProviderById(int providerId)
     {
-        // var result = await _repository.FetchAsync<PaymentProviderModel>(new GetPaymentProviderByIdCriteria(providerId));
+        // var result = await _repository.FetchAsync<ProviderModel>(new GetPaymentProviderByIdCriteria(providerId));
         var providers = await GetDummyProviders();
         var provider = providers.FirstOrDefault(p => p.Id == providerId);
         
         return provider;
     }
     
-    public async Task<IEnumerable<PaymentProviderFeeGroupModel>> GetPaymentProviderFees(int providerId)
+    public async Task<IEnumerable<ProviderFeeGroupModel>> GetPaymentProviderFees(int providerId)
     {
-        // var result = await _repository.FetchAsync<PaymentProviderFeeModel>(new GetPaymentProvidersFeesCriteria(providerId));
+        // var result = await _repository.FetchAsync<ProviderFeeModel>(new GetPaymentProvidersFeesCriteria(providerId));
         var fees = await GetDummyProviderFees(providerId);
         
         var groupedFees = fees
             .GroupBy(f => f.TransactionType)
-            .Select(g => new PaymentProviderFeeGroupModel
+            .Select(g => new ProviderFeeGroupModel
             {
                 TransactionType = g.Key,
                 Fees = g.ToList()
@@ -58,19 +58,19 @@ public class PaymentsService : IPaymentsService
         return groupedFees;
     }
 
-    public async Task<IEnumerable<PaymentProviderSettingsModel>> GetPaymentProviderSettings(int providerId, int method, int status, int transactionType)
+    public async Task<IEnumerable<ProviderSettingsModel>> GetPaymentProviderSettings(int providerId, int method, int status, int transactionType)
     {
-        // var result = await _repository.FetchAsync<PaymentProviderSettingsModel>(new GetPaymentProviderSettingsCriteria(providerId, method, status, transactionType));
+        // var result = await _repository.FetchAsync<ProviderSettingsModel>(new GetPaymentProviderSettingsCriteria(providerId, method, status, transactionType));
         var settings = await GetDummyProviderSettings(providerId, method, status, transactionType);
         
         return settings;
     }
 
-    private async Task<IEnumerable<PaymentProviderSettingsModel>> GetDummyProviderSettings(int providerId, int method, int status, int transactionType)
+    private async Task<IEnumerable<ProviderSettingsModel>> GetDummyProviderSettings(int providerId, int method, int status, int transactionType)
     {
-        return new List<PaymentProviderSettingsModel>
+        return new List<ProviderSettingsModel>
         {
-            new PaymentProviderSettingsModel
+            new ProviderSettingsModel
             {
                 ProviderId = providerId,
                 Method = method,
@@ -81,7 +81,7 @@ public class PaymentsService : IPaymentsService
                 IsEnabled = true,
                 BankRequired = false
             },
-            new PaymentProviderSettingsModel
+            new ProviderSettingsModel
             {
                 ProviderId = providerId,
                 Method = method,
@@ -95,39 +95,39 @@ public class PaymentsService : IPaymentsService
         };
     }
 
-    private async Task<IEnumerable<PaymentProviderFeeModel>> GetDummyProviderFees(int providerId)
+    private async Task<IEnumerable<ProviderFeeModel>> GetDummyProviderFees(int providerId)
     {
-        return new List<PaymentProviderFeeModel>
+        return new List<ProviderFeeModel>
         {
-            new PaymentProviderFeeModel
+            new ProviderFeeModel
             {
                 ProviderId = 1,
                 TransactionType = "Deposit",
                 Method = "Credit Card",
                 Rate = 2.5m
             },
-            new PaymentProviderFeeModel
+            new ProviderFeeModel
             {
                 ProviderId = 2,
                 TransactionType = "Withdrawal",
                 Method = "Bank Transfer",
                 Rate = 1.5m
             },
-            new PaymentProviderFeeModel
+            new ProviderFeeModel
             {
                 ProviderId = 3,
                 TransactionType = "Deposit",
                 Method = "E-Wallet",
                 Rate = 1.0m
             },
-            new PaymentProviderFeeModel
+            new ProviderFeeModel
             {
                 ProviderId = 4,
                 TransactionType = "Withdrawal",
                 Method = "Cryptocurrency",
                 Rate = 3.0m
             },
-            new PaymentProviderFeeModel
+            new ProviderFeeModel
             {
                 ProviderId = 5,
                 TransactionType = "Deposit",
@@ -137,39 +137,39 @@ public class PaymentsService : IPaymentsService
         };
     }
     
-    public async Task<IEnumerable<PaymentProviderModel>> GetDummyProviders()
+    public async Task<IEnumerable<ProviderModel>> GetDummyProviders()
     {
-        return new List<PaymentProviderModel>
+        return new List<ProviderModel>
         {
-            new PaymentProviderModel
+            new ProviderModel
             {
                 Id = 1,
                 Name = "Credit Card",
                 Status = PaymentProviderStatusConstants.Active,
                 LastUpdated = DateTime.Now.AddDays(-1)
             },
-            new PaymentProviderModel
+            new ProviderModel
             {
                 Id = 2,
                 Name = "Bank Transfer",
                 Status = PaymentProviderStatusConstants.Active,
                 LastUpdated = DateTime.Now.AddDays(-2)
             },
-            new PaymentProviderModel
+            new ProviderModel
             {
                 Id = 3,
                 Name = "E-Wallet",
                 Status = PaymentProviderStatusConstants.Inactive,
                 LastUpdated = DateTime.Now.AddDays(-5)
             },
-            new PaymentProviderModel
+            new ProviderModel
             {
                 Id = 4,
                 Name = "Cryptocurrency",
                 Status = PaymentProviderStatusConstants.Active,
                 LastUpdated = DateTime.Now.AddDays(-3)
             },
-            new PaymentProviderModel
+            new ProviderModel
             {
                 Id = 5,
                 Name = "PayPal",

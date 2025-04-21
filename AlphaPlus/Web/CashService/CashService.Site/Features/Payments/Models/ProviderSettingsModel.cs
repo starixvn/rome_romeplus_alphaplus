@@ -1,6 +1,6 @@
-namespace AlphaPlus.CashService.API.Models.Payments
+namespace AlphaPlus.CashService.Site.Features.Payments.Models
 {
-    public class PaymentProviderSettingsModel
+    public class ProviderSettingsModel
     {
         public int ProviderId { get; set; }
         public int Method { get; set; }

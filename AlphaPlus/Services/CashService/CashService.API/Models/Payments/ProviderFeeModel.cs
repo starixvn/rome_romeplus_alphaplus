@@ -2,9 +2,9 @@ using System;
 
 namespace AlphaPlus.CashService.API.Models.Payments
 {
-    public class PaymentProviderFeeModel
+    public class ProviderFeeModel
     {
-        public PaymentProviderFeeModel()
+        public ProviderFeeModel()
         {
             TransactionType = string.Empty;
             Method = string.Empty;

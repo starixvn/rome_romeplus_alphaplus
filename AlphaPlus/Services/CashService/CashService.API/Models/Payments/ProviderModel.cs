@@ -2,9 +2,9 @@ using System;
 
 namespace AlphaPlus.CashService.API.Models.Payments
 {
-    public class PaymentProviderModel
+    public class ProviderModel
     {
-        public PaymentProviderModel()
+        public ProviderModel()
         {
             LastUpdated = DateTime.UtcNow;
             Name = string.Empty;
@@ -15,6 +15,5 @@ namespace AlphaPlus.CashService.API.Models.Payments
         public string Name { get; set; } = string.Empty;
         public int Status { get; set; }
         public DateTime LastUpdated { get; set; }
-        public string LastUpdatedStr => LastUpdated.ToString("MM/dd/yyyy hh:mm:ss tt");
     }
 } 

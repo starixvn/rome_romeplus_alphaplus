@@ -12,7 +12,7 @@ declare global {
 
 // Create an axios instance with default config
 const api = axios.create({
-  baseURL: window.cashServiceAPIUrl,
+  baseURL: "",
   headers: {
     'Content-Type': 'application/json'
   },
@@ -24,7 +24,7 @@ export const paymentProviderService = {
   // Get all payment providers
   getAllProviders: async (): Promise<PaymentProvider[]> => {
     try {
-      const response = await api.get<PaymentProvider[]>('/payment-providers', { method: 'GET' });
+      const response = await api.get<PaymentProvider[]>('GetAllProviders', { method: 'GET' });
       return response.data;
     } catch (error) {
       console.error('Error fetching payment providers:', error);
@@ -35,7 +35,7 @@ export const paymentProviderService = {
   // Get fees for a specific payment provider
   getProviderFees: async (providerId: number): Promise<PaymentProviderFeeGroup[]> => {
     try {
-      const response = await api.get<PaymentProviderFeeGroup[]>(`/payment-provider-fees/${providerId}`, { method: 'GET' });
+      const response = await api.get<PaymentProviderFeeGroup[]>(`GetProviderFees/${providerId}`, { method: 'GET' });
       return response.data;
     } catch (error) {
       console.error(`Error fetching fees for provider ${providerId}:`, error);
@@ -46,7 +46,7 @@ export const paymentProviderService = {
   // Set daily withdrawal count for a customer
   setDailyWithdrawalCount: async (custId: number, count: number): Promise<ResultModel> => {
     try {
-      const response = await api.post(`/set-daily-withdrawal-count?custId=${custId}&count=${count}`);
+      const response = await api.post(`SetDailyWithdrawalCount?custId=${custId}&count=${count}`);
       return response.data;
     } catch (error) {
       console.error('Error setting daily withdrawal count:', error);

@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using AlphaPlus.CashService.Site.Features.Payments.Models;
+using AlphaPlus.CashService.Site.Helpers;
+using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 
 namespace AlphaPlus.CashService.Site.Features.Payments
 {
@@ -7,11 +10,15 @@ namespace AlphaPlus.CashService.Site.Features.Payments
     {
         private readonly ILogger<PaymentsController> _logger;
         private readonly IWebHostEnvironment _environment;
+        private readonly APIHelper _apiHelper;
+        private readonly string _apiBaseUrl;
 
-        public PaymentsController(ILogger<PaymentsController> logger, IWebHostEnvironment environment)
+        public PaymentsController(ILogger<PaymentsController> logger, IWebHostEnvironment environment, APIHelper apiHelper, IConfiguration configuration)
         {
             _logger = logger;
             _environment = environment;
+            _apiHelper = apiHelper;
+            _apiBaseUrl = configuration["CashServiceAPIUrl"];
         }
 
         public IActionResult Index()
@@ -19,14 +26,32 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             return View();
         }
 
-        public IActionResult PaymentProviderSettings(int id)
+        public async Task<IActionResult> PaymentProviderSettings(int id)
         {
-            var model = new ProviderModel
-            {
-                Id = id
-            };
-            
-            return View(model);
+            var url = $"{_apiBaseUrl}/payment-providers/{id}";
+            var provider = await _apiHelper.GetAsync<ProviderModel>(url);
+            return View(provider);
+        }
+
+        public async Task<IActionResult> GetAllProviders()
+        {
+            var url = $"{_apiBaseUrl}/payment-providers";
+            var providers = await _apiHelper.GetAsync<List<ProviderModel>>(url);
+            return Json(providers);
+        }
+
+        public async Task<IActionResult> GetProviderFees(int id)
+        {
+            var url = $"{_apiBaseUrl}/payment-provider-fees/{id}";
+            var fees = await _apiHelper.GetAsync<List<ProviderFeeGroupModel>>(url);
+            return Json(fees);
+        }
+
+        public async Task<IActionResult> SetDailyWithdrawalCount(int custId, int count)
+        {
+            var url = $"{_apiBaseUrl}/set-daily-withdrawal-count";
+            var result = await _apiHelper.PostAsync<ResultModel>(url, new { custId, count });
+            return Json(result);
         }
     }
 }
