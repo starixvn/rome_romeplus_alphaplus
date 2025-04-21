@@ -57,6 +57,7 @@ public static class ApplicationBuilderExtensions
     {
         app.MapSystemEndpoints();
         app.MapPaymentsEndpoints();
+        app.MapMemberSiteManagementEndpoints();
 
         return app;
     }

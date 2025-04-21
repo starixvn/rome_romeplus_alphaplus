@@ -9,7 +9,7 @@ public static class MemberSiteManagementEndpoints
 {
     public static void MapMemberSiteManagementEndpoints(this WebApplication app)
     {
-        var group = app.MapGroup("/api/member-site")
+        var group = app.MapGroup("/api/member-site-info")
             .WithTags("Member Site Management");
 
         // Get all settings

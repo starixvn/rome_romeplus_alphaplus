@@ -5,21 +5,27 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import GeneralSettings from './GeneralSettings';
 
 describe('GeneralSettings', () => {
+  const defaultProps = {
+    allowRegistration: false,
+    allowDeposit: false,
+    onSettingsChange: () => {}
+  };
+
   it('renders the title and settings sections', () => {
-    render(<GeneralSettings />);
+    render(<GeneralSettings {...defaultProps} />);
     expect(screen.getByText('General Settings')).toBeInTheDocument();
     expect(screen.getByText('Registration')).toBeInTheDocument();
     expect(screen.getByText('Deposit')).toBeInTheDocument();
   });
 
   it('renders toggle switches for both settings', () => {
-    render(<GeneralSettings />);
+    render(<GeneralSettings {...defaultProps} />);
     const checkboxes = screen.getAllByRole('checkbox');
     expect(checkboxes).toHaveLength(2);
   });
 
   it('toggles registration setting when clicked', () => {
-    render(<GeneralSettings />);
+    render(<GeneralSettings {...defaultProps} />);
     const checkboxes = screen.getAllByRole('checkbox');
     const registrationToggle = checkboxes[0];
 
@@ -29,7 +35,7 @@ describe('GeneralSettings', () => {
   });
 
   it('toggles deposit setting when clicked', () => {
-    render(<GeneralSettings />);
+    render(<GeneralSettings {...defaultProps} />);
     const checkboxes = screen.getAllByRole('checkbox');
     const depositToggle = checkboxes[1];
 
@@ -39,13 +45,13 @@ describe('GeneralSettings', () => {
   });
 
   it('displays correct descriptions for each setting', () => {
-    render(<GeneralSettings />);
+    render(<GeneralSettings {...defaultProps} />);
     expect(screen.getByText('Allow member to register')).toBeInTheDocument();
     expect(screen.getByText('Allow member to deposit')).toBeInTheDocument();
   });
 
   it('applies correct styling to toggle switches', () => {
-    render(<GeneralSettings />);
+    render(<GeneralSettings {...defaultProps} />);
     const checkboxes = screen.getAllByRole('checkbox');
 
     checkboxes.forEach((checkbox) => {

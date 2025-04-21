@@ -1,9 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
+interface GeneralSettingsProps {
+  allowRegistration: boolean;
+  allowDeposit: boolean;
+  onSettingsChange: (settings: { allowRegistration: boolean; allowDeposit: boolean }) => void;
+}
 
-const GeneralSettings: React.FC = () => {
-  const [allowRegistration, setAllowRegistration] = useState(false);
-  const [allowDeposit, setAllowDeposit] = useState(false);
+const GeneralSettings: React.FC<GeneralSettingsProps> = ({ 
+  allowRegistration: initialAllowRegistration, 
+  allowDeposit: initialAllowDeposit,
+  onSettingsChange 
+}) => {
+  const [allowRegistration, setAllowRegistration] = useState(initialAllowRegistration);
+  const [allowDeposit, setAllowDeposit] = useState(initialAllowDeposit);
+
+  useEffect(() => {
+    setAllowRegistration(initialAllowRegistration);
+    setAllowDeposit(initialAllowDeposit);
+  }, [initialAllowRegistration, initialAllowDeposit]);
+
+  const handleRegistrationChange = (value: boolean) => {
+    setAllowRegistration(value);
+    onSettingsChange({ allowRegistration: value, allowDeposit });
+  };
+
+  const handleDepositChange = (value: boolean) => {
+    setAllowDeposit(value);
+    onSettingsChange({ allowRegistration, allowDeposit: value });
+  };
 
   return (
     <div className="space-y-4">
@@ -18,7 +42,7 @@ const GeneralSettings: React.FC = () => {
             <input
               type="checkbox"
               checked={allowRegistration}
-              onChange={(e) => setAllowRegistration(e.target.checked)}
+              onChange={(e) => handleRegistrationChange(e.target.checked)}
               className="sr-only peer"
             />
             <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#1e4d8c]"></div>
@@ -33,7 +57,7 @@ const GeneralSettings: React.FC = () => {
             <input
               type="checkbox"
               checked={allowDeposit}
-              onChange={(e) => setAllowDeposit(e.target.checked)}
+              onChange={(e) => handleDepositChange(e.target.checked)}
               className="sr-only peer"
             />
             <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#1e4d8c]"></div>

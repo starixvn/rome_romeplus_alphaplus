@@ -5,8 +5,15 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import MessageForm from './MessageForm';
 
 describe('MessageForm', () => {
+  const defaultProps = {
+    mobile: '',
+    lineId: '',
+    announcement: '',
+    onMessageChange: () => {}
+  };
+
   it('renders the title and description', () => {
-    render(<MessageForm />);
+    render(<MessageForm {...defaultProps} />);
     expect(screen.getByText('Leave a Message')).toBeInTheDocument();
     expect(
       screen.getByText('Include your contact details and a message for your member.')
@@ -14,41 +21,41 @@ describe('MessageForm', () => {
   });
 
   it('renders all form fields', () => {
-    render(<MessageForm />);
+    render(<MessageForm {...defaultProps} />);
     expect(screen.getByLabelText(/Mobile/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/LINE ID/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Announcement/i)).toBeInTheDocument();
   });
 
   it('updates mobile number when input changes', () => {
-    render(<MessageForm />);
+    render(<MessageForm {...defaultProps} />);
     const mobileInput = screen.getByLabelText(/Mobile/i);
     fireEvent.change(mobileInput, { target: { value: '1234567890' } });
     expect(mobileInput).toHaveValue('1234567890');
   });
 
   it('updates LINE ID when input changes', () => {
-    render(<MessageForm />);
+    render(<MessageForm {...defaultProps} />);
     const lineIdInput = screen.getByLabelText(/LINE ID/i);
     fireEvent.change(lineIdInput, { target: { value: 'testlineid' } });
     expect(lineIdInput).toHaveValue('testlineid');
   });
 
   it('updates announcement when textarea changes', () => {
-    render(<MessageForm />);
+    render(<MessageForm {...defaultProps} />);
     const announcementTextarea = screen.getByLabelText(/Announcement/i);
     fireEvent.change(announcementTextarea, { target: { value: 'Test announcement' } });
     expect(announcementTextarea).toHaveValue('Test announcement');
   });
 
   it('shows country code prefix for mobile input', () => {
-    render(<MessageForm />);
+    render(<MessageForm {...defaultProps} />);
     expect(screen.getByText('+66')).toBeInTheDocument();
   });
 
   it('handles form submission', () => {
     const handleSubmit = vi.fn();
-    render(<MessageForm />);
+    render(<MessageForm {...defaultProps} />);
 
     const form = screen.getByTestId('message-form');
     form.onsubmit = handleSubmit;
@@ -58,7 +65,7 @@ describe('MessageForm', () => {
   });
 
   it('applies correct styling to form elements', () => {
-    render(<MessageForm />);
+    render(<MessageForm {...defaultProps} />);
     const inputs = screen.getAllByRole('textbox');
     const button = screen.getByRole('button', { name: /Save/i });
 
