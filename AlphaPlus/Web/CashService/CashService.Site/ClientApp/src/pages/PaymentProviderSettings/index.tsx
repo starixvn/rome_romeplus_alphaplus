@@ -29,12 +29,21 @@ function PaymentProviderSettings() {
   const [selectedStatus, setSelectedStatus] = React.useState('');
   const [selectedTransactionType, setSelectedTransactionType] = React.useState('');
 
-  // Fetch provider settings when component mounts
+  // Fetch provider settings when component mounts or when dropdowns change
   React.useEffect(() => {
     const fetchProviderSettings = async () => {
       try {
         setLoading(true);
-        const settings = await paymentProviderService.getProviderSettings(window.provider.Id, 1, 1, 1);
+        const method = selectedPaymentMethod ? parseInt(selectedPaymentMethod) : 0;
+        const status = selectedStatus ? parseInt(selectedStatus) : 0;
+        const transactionType = selectedTransactionType ? parseInt(selectedTransactionType) : 0;
+        
+        const settings = await paymentProviderService.getProviderSettings(
+          window.provider.Id,
+          method,
+          status,
+          transactionType
+        );
         setProviderSettings(settings);
         setOriginalSettings(settings);
         setError(null);
@@ -47,8 +56,7 @@ function PaymentProviderSettings() {
     };
 
     fetchProviderSettings();
-  }, []);
-
+  }, [selectedPaymentMethod, selectedStatus, selectedTransactionType]);
 
   const handlePaymentMethodChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedPaymentMethod(event.target.value);
@@ -103,9 +111,6 @@ function PaymentProviderSettings() {
   // Handler for reset button
   const handleReset = () => {
     setProviderSettings([...originalSettings]);
-    setSelectedPaymentMethod('');
-    setSelectedStatus('');
-    setSelectedTransactionType('');
   };
 
   const getPaymentMethodName = (id: number) => {
