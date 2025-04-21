@@ -15,7 +15,8 @@ COPY "AlphaPlus/Web/Reports/Reports.Site/Reports.Site.csproj" "AlphaPlus/Web/Rep
 
 # restore NuGet packages
 COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
-RUN dotnet restore "AlphaPlus/Web/Reports/Reports.Site/Reports.Site.csproj" --packages /root/.nuget/packages -v d
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet restore "AlphaPlus/Web/Reports/Reports.Site/Reports.Site.csproj" -v d
 
 # copy all source code
 COPY "AlphaPlus/Modules/AlphaPlus.Utilities.IP" "AlphaPlus/Modules/AlphaPlus.Utilities.IP"
@@ -38,7 +39,17 @@ RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp -r AlphaPlus/Shared/Configuratio
 
 WORKDIR /src/AlphaPlus/Web/Reports/Reports.Site
 
-RUN yarn && gulp default
+# copy package files for better caching
+COPY "AlphaPlus/Web/Reports/Reports.Site/package.json" "AlphaPlus/Web/Reports/Reports.Site/package.json"
+COPY "AlphaPlus/Web/Reports/Reports.Site/yarn.lock" "AlphaPlus/Web/Reports/Reports.Site/yarn.lock"
+
+RUN --mount=type=cache,target=/root/.yarn \
+    --mount=type=cache,target=/root/.cache/yarn \
+    --mount=type=cache,target=/src/AlphaPlus/Web/Reports/Reports.Site/node_modules \  
+    yarn config set cache-folder /root/.cache/yarn && \
+    yarn install --frozen-lockfile && \
+    gulp default
+
 RUN dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine-25h1 AS base
@@ -48,10 +59,6 @@ RUN adduser --disabled-password \
   --home /app \
   --gecos '' dotnetuser && chown -R dotnetuser /app && chown -R dotnetuser /tmp
 USER dotnetuser
-
-# cache nuget
-WORKDIR /root
-COPY --from=builder /root/.nuget ./.nuget
 
 # final stage/image
 ENV COMPlus_EnableDiagnostics=0

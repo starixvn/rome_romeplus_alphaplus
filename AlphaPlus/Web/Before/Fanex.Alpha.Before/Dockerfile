@@ -7,7 +7,9 @@ COPY "AlphaPlus/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "A
 COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
 COPY "AlphaPlus/Web/Before/Fanex.Alpha.Before/Fanex.Alpha.Before.csproj" "AlphaPlus/Web/Before/Fanex.Alpha.Before/Fanex.Alpha.Before.csproj"
 COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
-RUN dotnet restore "AlphaPlus/Web/Before/Fanex.Alpha.Before/Fanex.Alpha.Before.csproj" --packages /root/.nuget/packages -v d
+
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet restore "AlphaPlus/Web/Before/Fanex.Alpha.Before/Fanex.Alpha.Before.csproj" -v d
 
 COPY "AlphaPlus/Modules/AlphaPlus.Utilities.IP" "AlphaPlus/Modules/AlphaPlus.Utilities.IP"
 COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo" "AlphaPlus/Modules/AlphaPlus.RequestInfo"
@@ -61,26 +63,32 @@ RUN if [ "$TRANSFORM_CONFIG" = "LOCAL3" ] \
   cp "AlphaPlus/Web/Before/Fanex.Alpha.Before/bundleconfig3.json" "AlphaPlus/Web/Before/Fanex.Alpha.Before/bundleconfig.json"; \
   fi
 
+# Copy package files for better caching
+COPY "AlphaPlus/Web/Before/Fanex.Alpha.Before/package.json" "AlphaPlus/Web/Before/Fanex.Alpha.Before/package.json"
+COPY "AlphaPlus/Web/Before/Fanex.Alpha.Before/yarn.lock" "AlphaPlus/Web/Before/Fanex.Alpha.Before/yarn.lock"
+
 WORKDIR /src/AlphaPlus/Web/Before/Fanex.Alpha.Before
-RUN yarn && yarn build
+
+# Install yarn dependencies
+RUN --mount=type=cache,target=/root/.yarn \
+    --mount=type=cache,target=/root/.cache/yarn \
+    --mount=type=cache,target=/src/AlphaPlus/Web/Before/Fanex.Alpha.Before/node_modules \
+    yarn config set cache-folder /root/.cache/yarn && \
+    yarn install --frozen-lockfile && \
+    yarn build
 
 RUN dotnet publish -c Release -o /app
 
-
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine-25h1 AS base
-
-# cache nuget
-WORKDIR /root
-COPY --from=builder /root/.nuget ./.nuget
 
 # final stage/image
 ENV COMPlus_EnableDiagnostics=0
 WORKDIR /app
 
 COPY AlphaPlus/Web/Before/Fanex.Alpha.Before/arialbd.ttf AlphaPlus/Web/Before/Fanex.Alpha.Before/
-RUN mkdir -p /usr/share/fonts/truetype/
-RUN install -m644 AlphaPlus/Web/Before/Fanex.Alpha.Before/arialbd.ttf /usr/share/fonts/truetype/
-RUN rm AlphaPlus/Web/Before/Fanex.Alpha.Before/arialbd.ttf
+RUN mkdir -p /usr/share/fonts/truetype/ && \
+    install -m644 AlphaPlus/Web/Before/Fanex.Alpha.Before/arialbd.ttf /usr/share/fonts/truetype/ && \
+    rm AlphaPlus/Web/Before/Fanex.Alpha.Before/arialbd.ttf
 
 # Don’t run as root
 RUN adduser --disabled-password \
