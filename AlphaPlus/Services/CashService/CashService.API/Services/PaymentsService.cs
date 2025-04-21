@@ -13,6 +13,7 @@ public interface IPaymentsService
     Task<IEnumerable<ProviderFeeGroupModel>> GetPaymentProviderFees(int providerId);
     Task<ResultModel> SetDailyWithdrawalCount(int custId, int count);
     Task<IEnumerable<ProviderSettingsModel>> GetPaymentProviderSettings(int providerId, int method, int status, int transactionType);
+    Task<ResultModel> UpdatePaymentProviderSettings(IEnumerable<ProviderSettingsModel> settings);
 }
 
 public class PaymentsService : IPaymentsService
@@ -186,6 +187,29 @@ public class PaymentsService : IPaymentsService
             // TODO: Implement actual database update logic
             // For now returning dummy implementation
             // var result = await _repository.ExecuteNonQueryAsync(new SetDailyWithdrawalCountCriteria(custId, count));
+            return new ResultModel("0", "Success");
+        }
+        catch (Exception ex)
+        {
+            return new ResultModel("1", ex.Message);
+        }
+    }
+
+    public async Task<ResultModel> UpdatePaymentProviderSettings(IEnumerable<ProviderSettingsModel> settings)
+    {
+        try
+        {
+            if (settings == null || !settings.Any())
+            {
+                return new ResultModel("1", "No settings provided");
+            }
+
+            foreach (var setting in settings)
+            {                
+                // TODO: Implement actual database update logic for each setting
+                // var result = await _repository.ExecuteNonQueryAsync(new UpdatePaymentProviderSettingCriteria(setting));
+            }
+
             return new ResultModel("0", "Success");
         }
         catch (Exception ex)

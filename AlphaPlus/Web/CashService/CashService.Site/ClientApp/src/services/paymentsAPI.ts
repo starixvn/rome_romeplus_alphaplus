@@ -70,6 +70,20 @@ export const paymentProviderService = {
       throw error;
     }
   },
+  
+  // Update settings for a specific payment provider
+  updateProviderSettings: async (settings: any): Promise<ResultModel> => {
+    try {
+      const params = new URLSearchParams();
+      params.append('settings', JSON.stringify(settings));
+      
+      const response = await api.put(`/update-payment-provider-settings?${params.toString()}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Error updating settings`, error);
+      throw error;
+    }
+  },
 };
 
 export default api; 

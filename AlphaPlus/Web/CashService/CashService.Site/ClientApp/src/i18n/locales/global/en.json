@@ -10,5 +10,7 @@
     "enable": "Enable",
     "disable": "Disable",
     "reset": "Reset",
-    "update": "Update"
+    "update": "Update",
+    "updateSuccess": "Update successful",
+    "updateFailed": "Update failed"
 } 

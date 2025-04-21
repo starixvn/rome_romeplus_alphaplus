@@ -23,6 +23,8 @@ function PaymentProviderSettings() {
   const [originalSettings, setOriginalSettings] = React.useState<any[]>([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
+  const [updating, setUpdating] = React.useState(false);
+  const [updateMessage, setUpdateMessage] = React.useState<{type: 'success' | 'error', text: string} | null>(null);
   
   // State for dropdowns
   const [selectedPaymentMethod, setSelectedPaymentMethod] = React.useState('');
@@ -111,6 +113,40 @@ function PaymentProviderSettings() {
   // Handler for reset button
   const handleReset = () => {
     setProviderSettings([...originalSettings]);
+    setUpdateMessage(null);
+  };
+
+  // Handler for update button
+  const handleUpdate = async () => {
+    try {
+      setUpdating(true);
+      setUpdateMessage(null);
+      
+      // Call the API to update provider settings
+      const result = await paymentProviderService.updateProviderSettings(providerSettings);
+      
+      if (result.isSuccessful) {
+        setUpdateMessage({
+          type: 'success',
+          text: tGlobal('updateSuccess')
+        });
+        // Update original settings to match current settings after successful update
+        setOriginalSettings([...providerSettings]);
+      } else {
+        setUpdateMessage({
+          type: 'error',
+          text: result.message || tGlobal('updateFailed')
+        });
+      }
+    } catch (err) {
+      console.error('Failed to update provider settings:', err);
+      setUpdateMessage({
+        type: 'error',
+        text: tGlobal('updateFailed')
+      });
+    } finally {
+      setUpdating(false);
+    }
   };
 
   const getPaymentMethodName = (id: number) => {
@@ -146,6 +182,9 @@ function PaymentProviderSettings() {
             <label className="toggle-label">
               {tGlobal('enable')}/{tGlobal('disable')}
             </label>
+            <div className="settings-footer">
+              <button className="btn btn-primary me-2">{tManagePayments('addPaymentMethod')}</button>
+            </div>
             <div className="toggle-container">
               <input
                 type="checkbox"
@@ -200,7 +239,6 @@ function PaymentProviderSettings() {
           </div>
 
           <div className="settings-footer">
-            <button className="btn btn-primary me-2">{tManagePayments('addPaymentMethod')}</button>
             <button className="btn btn-secondary me-2" onClick={handleViewFees}>{tManagePayments('viewProviderFees', {providerName: window.provider.Name})}</button>
           </div>
           <div className="settings-table-container">
@@ -267,9 +305,21 @@ function PaymentProviderSettings() {
             </table>
             <div className="settings-footer">
               <button className="btn btn-warning me-2" onClick={handleReset}>{tGlobal('reset')}</button>
-              <button className="btn btn-success">{tGlobal('update')}</button>
+              <button 
+                className="btn btn-success" 
+                onClick={handleUpdate}
+                disabled={updating}
+              >
+                {updating ? tGlobal('updating') : tGlobal('update')}
+              </button>
             </div>
-         </div>
+            
+            {updateMessage && (
+              <div className={`alert alert-${updateMessage.type === 'success' ? 'success' : 'danger'} mt-3`}>
+                {updateMessage.text}
+              </div>
+            )}
+          </div>
 
         </>
       )}

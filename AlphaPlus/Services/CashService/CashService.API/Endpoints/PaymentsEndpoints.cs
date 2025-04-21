@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using AlphaPlus.CashService.API.Services;
+using AlphaPlus.CashService.API.Models.Payments;
+using Newtonsoft.Json;
 
 namespace AlphaPlus.CashService.API.Endpoints;
 
@@ -69,6 +71,19 @@ public static class PaymentsEndpoints
         {
             Summary = "Get payment provider settings",
             Description = "Returns the settings for a specific payment provider based on method, status, and transaction type"
+        });
+
+        app.MapPut("/api/update-payment-provider-settings", async (string settings, IPaymentsService service) =>
+        {
+            var settingsList = JsonConvert.DeserializeObject<IEnumerable<ProviderSettingsModel>>(settings);
+            var result = await service.UpdatePaymentProviderSettings(settingsList);
+            return Results.Ok(result);
+        })
+        .WithName("UpdatePaymentProviderSettings")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Update payment provider settings",
+            Description = "Updates the settings for a payment provider"
         });
     }
 } 
