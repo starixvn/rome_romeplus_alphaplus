@@ -32,5 +32,6 @@
   "dailyWithdrawalCount": "Daily withdrawal count",
 
   "setUpPaymentMethodsForMembers": "Set up payment methods for your members",
-  "addPaymentMethod": "Add payment method"
+  "addPaymentMethod": "Add payment method",
+  "viewProviderFees": "View {{providerName}} fees"
 } 

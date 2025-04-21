@@ -53,6 +53,17 @@ export const paymentProviderService = {
       throw error;
     }
   },
+  
+  // Get settings for a specific payment provider
+  getProviderSettings: async (providerId: number): Promise<any> => {
+    try {
+      const response = await api.get(`/payment-provider-settings/${providerId}`, { method: 'GET' });
+      return response.data;
+    } catch (error) {
+      console.error(`Error fetching settings for provider ${providerId}:`, error);
+      throw error;
+    }
+  },
 };
 
 export default api; 

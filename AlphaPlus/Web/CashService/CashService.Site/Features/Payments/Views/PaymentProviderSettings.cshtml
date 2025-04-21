@@ -1,4 +1,5 @@
 @using AlphaPlus.CashService.Site.Features.Payments.Models
+@using Newtonsoft.Json
 @{
     ViewData["Title"] = "Manage Payments";
     Layout = "_Layout";
@@ -9,8 +10,7 @@
 
 <script>
     window.custId = "1234567890";
-    window.providerId = @Model.Id;
-    window.providerName = "@Model.Name";
+    window.provider = @Html.Raw(JsonConvert.SerializeObject(Model));
 </script>
 
 <environment names="Development">
