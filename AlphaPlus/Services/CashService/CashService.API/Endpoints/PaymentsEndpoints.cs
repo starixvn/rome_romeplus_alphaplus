@@ -59,7 +59,7 @@ public static class PaymentsEndpoints
             Description = "Sets the daily withdrawal count for a specific customer"
         });
 
-        app.MapGet("/api/payment-provider-settings/{providerId}", async (int providerId, int method, int status, int transactionType, IPaymentsService service) =>
+        app.MapGet("/api/payment-provider-settings", async (int providerId, int method, int status, int transactionType, IPaymentsService service) =>
         {
             var settings = await service.GetPaymentProviderSettings(providerId, method, status, transactionType);
             return Results.Ok(settings);

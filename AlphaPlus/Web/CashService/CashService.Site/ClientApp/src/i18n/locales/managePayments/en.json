@@ -33,5 +33,11 @@
 
   "setUpPaymentMethodsForMembers": "Set up payment methods for your members",
   "addPaymentMethod": "Add payment method",
-  "viewProviderFees": "View {{providerName}} fees"
+  "viewProviderFees": "View {{providerName}} fees",
+  "bank": "Bank",
+  "noBankRequired": "No bank required",
+  "listOfBanks": "List of banks",
+  "status": "Status",
+  "minimum": "Minimum",
+  "maximum": "Maximum"
 } 

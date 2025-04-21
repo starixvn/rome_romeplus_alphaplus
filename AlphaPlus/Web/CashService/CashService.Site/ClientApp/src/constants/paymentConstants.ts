@@ -1,19 +1,19 @@
 export const PAYMENT_METHODS = [
-  { id: 'credit_card', name: 'Credit Card' },
-  { id: 'debit_card', name: 'Debit Card' },
-  { id: 'bank_transfer', name: 'Bank Transfer' },
-  { id: 'paypal', name: 'PayPal' }
+  { id: 1, name: 'Credit Card' },
+  { id: 2, name: 'Debit Card' },
+  { id: 3, name: 'Bank Transfer' },
+  { id: 4, name: 'PayPal' }
 ];
 
 export const STATUS_OPTIONS = [
-  { id: 'active', name: 'Active' },
-  { id: 'inactive', name: 'Inactive' },
-  { id: 'pending', name: 'Pending' }
+  { id: 1, name: 'Active' },
+  { id: 2, name: 'Inactive' },
+  { id: 3, name: 'Pending' }
 ];
 
 export const TRANSACTION_TYPES = [
-  { id: 'payment', name: 'Payment' },
-  { id: 'refund', name: 'Refund' },
-  { id: 'void', name: 'Void' },
-  { id: 'authorization', name: 'Authorization' }
+  { id: 1, name: 'Payment' },
+  { id: 2, name: 'Refund' },
+  { id: 3, name: 'Void' },
+  { id: 4, name: 'Authorization' }
 ]; 

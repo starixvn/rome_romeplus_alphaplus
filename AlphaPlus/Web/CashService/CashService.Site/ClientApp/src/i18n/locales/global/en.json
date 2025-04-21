@@ -8,5 +8,7 @@
     "save": "Save",
     "loading": "Loading...",
     "enable": "Enable",
-    "disable": "Disable"
+    "disable": "Disable",
+    "reset": "Reset",
+    "update": "Update"
 } 

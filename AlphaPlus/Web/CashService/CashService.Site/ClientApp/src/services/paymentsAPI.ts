@@ -55,9 +55,15 @@ export const paymentProviderService = {
   },
   
   // Get settings for a specific payment provider
-  getProviderSettings: async (providerId: number): Promise<any> => {
+  getProviderSettings: async (providerId: number, method: number, status: number, transactionType: number): Promise<any> => {
     try {
-      const response = await api.get(`/payment-provider-settings/${providerId}`, { method: 'GET' });
+      const params = new URLSearchParams();
+      params.append('providerId', providerId.toString());
+      params.append('method', method.toString() );
+      params.append('status', status.toString());
+      params.append('transactionType', transactionType.toString());
+      
+      const response = await api.get(`/payment-provider-settings?${params.toString()}`, { method: 'GET' });
       return response.data;
     } catch (error) {
       console.error(`Error fetching settings for provider ${providerId}:`, error);
