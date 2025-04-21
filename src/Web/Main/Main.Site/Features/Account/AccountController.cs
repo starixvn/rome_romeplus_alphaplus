@@ -1,19 +1,19 @@
+using System.Globalization;
+using System.Net;
 using System.Security.Claims;
 using System.Text.Json;
-using AlphaPlus.Shared.AppResources.Main;
+using AlphaPlus.Core.Filters;
+using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
+using AlphaPlus.Main.Site.Helpers;
 using AlphaPlus.RequestInfo;
+using AlphaPlus.Shared.AppResources.Main;
 using Fanex.Cryptography.Aes;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using AlphaPlus.Main.Site.Helpers;
-using AlphaPlus.Core.Helpers;
-using System.Net;
-using AlphaPlus.Core.Filters;
-using System.Globalization;
 
 namespace AlphaPlus.Main.Site.Features.Account;
 
@@ -31,7 +31,6 @@ public class AccountController(
     private readonly IAesService aesService = aesService;
     private readonly IDeviceHelper deviceHelper = deviceHelper;
     private readonly Core.Configurations.AuthorizationOptions options = options.Value;
-
     private const string SecretKey = "!@#$";
 
     [AllowProtectedMode]
