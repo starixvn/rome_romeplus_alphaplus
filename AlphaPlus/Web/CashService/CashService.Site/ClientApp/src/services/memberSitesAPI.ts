@@ -28,7 +28,7 @@ export interface MemberSiteData {
 }
 
 class MemberSitesService {
-  private readonly BASE_PATH = '/api/member-site-info';
+  private readonly BASE_PATH = '/member-site-info';
 
   private handleError(error: AxiosError<ErrorResponse>): never {
     let message = 'An error occurred';

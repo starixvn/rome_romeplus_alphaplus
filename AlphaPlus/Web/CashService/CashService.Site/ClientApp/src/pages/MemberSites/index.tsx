@@ -23,7 +23,15 @@ const MemberSiteManagement: React.FC = () => {
       try {
         setLoading(true);
         const response = await memberSitesService.getMemberSiteData();
-        setData(response);
+        const newData = {
+          domains: response.domains,
+          allowRegistration: response.allowRegistration,
+          allowDeposit: response.allowDeposit,
+          mobile: response.mobile || '',
+          lineId: response.lineId || '',
+          announcement: response.announcement || ''
+        }
+        setData(newData);
         setError(null);
       } catch (err) {
         setError('Failed to load member site data');
