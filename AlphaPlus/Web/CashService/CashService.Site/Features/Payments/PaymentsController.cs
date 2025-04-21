@@ -29,7 +29,14 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         public async Task<IActionResult> PaymentProviderSettings(int id)
         {
             var url = $"{_apiBaseUrl}/payment-providers/{id}";
-            var provider = await _apiHelper.GetAsync<ProviderModel>(url);
+            // var provider = await _apiHelper.GetAsync<ProviderModel>(url);
+            var provider = new ProviderModel {
+                Id = 1,
+                Name = "Credit Card",
+                Status = 1,
+                LastUpdated = DateTime.Now.AddDays(-1)
+            };
+
             return View(provider);
         }
 
