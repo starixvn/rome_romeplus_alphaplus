@@ -11,6 +11,7 @@ public interface IPaymentsService
     Task<IEnumerable<PaymentProviderModel>> GetAllPaymentProviders();
     Task<IEnumerable<PaymentProviderFeeGroupModel>> GetPaymentProviderFees(int providerId);
     Task<ResultModel> SetDailyWithdrawalCount(int custId, int count);
+    Task<IEnumerable<PaymentProviderSettingsModel>> GetPaymentProviderSettings(int providerId, int method, int status, int transactionType);
 }
 
 public class PaymentsService : IPaymentsService
@@ -45,6 +46,43 @@ public class PaymentsService : IPaymentsService
             .ToList();
         
         return groupedFees;
+    }
+
+    public async Task<IEnumerable<PaymentProviderSettingsModel>> GetPaymentProviderSettings(int providerId, int method, int status, int transactionType)
+    {
+        // var result = await _repository.FetchAsync<PaymentProviderSettingsModel>(new GetPaymentProviderSettingsCriteria(providerId, method, status, transactionType));
+        var settings = await GetDummyProviderSettings(providerId, method, status, transactionType);
+        
+        return settings;
+    }
+
+    private async Task<IEnumerable<PaymentProviderSettingsModel>> GetDummyProviderSettings(int providerId, int method, int status, int transactionType)
+    {
+        return new List<PaymentProviderSettingsModel>
+        {
+            new PaymentProviderSettingsModel
+            {
+                ProviderId = providerId,
+                Method = method,
+                Status = status,
+                TransactionType = transactionType,
+                MinAmount = 10.00m,
+                MaxAmount = 1000.00m,
+                IsEnabled = true,
+                BankRequired = false
+            },
+            new PaymentProviderSettingsModel
+            {
+                ProviderId = providerId,
+                Method = method,
+                Status = status,
+                TransactionType = transactionType,
+                MinAmount = 20.00m,
+                MaxAmount = 2000.00m,
+                IsEnabled = true,
+                BankRequired = true
+            }
+        };
     }
 
     private async Task<IEnumerable<PaymentProviderFeeModel>> GetDummyProviderFees(int providerId)
