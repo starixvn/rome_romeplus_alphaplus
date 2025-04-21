@@ -1,0 +1,10 @@
+{
+    "action": "Action",
+    "edit": "Edit",
+    "delete": "Delete",
+    "close": "Close",
+    "noData": "No data available",
+    "cancel": "Cancel",
+    "save": "Save",
+    "loading": "Loading..."
+} 

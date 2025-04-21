@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
 import FeePopupModal from './FeePopupModal';
+import DailyLimitPopupModal from './SetDailyLimitPopupModal';
 import './PaymentGateway.css';
 
 interface PaymentGatewayProps {
@@ -10,12 +11,15 @@ interface PaymentGatewayProps {
 }
 
 const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
-  const { t } = useTranslation('managePayments');
+  const { t: tGlobal } = useTranslation('global');
+  const { t: tManagePayments } = useTranslation('managePayments');
   const [providers, setProviders] = React.useState<PaymentProvider[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
   const [error, setError] = React.useState<string | null>(null);
   const [selectedProvider, setSelectedProvider] = React.useState<PaymentProvider | null>(null);
   const [showFeePopup, setShowFeePopup] = React.useState<boolean>(false);
+  const [showDailyLimitPopup, setShowDailyLimitPopup] = React.useState<boolean>(false);
+  const [dailyLimit, setDailyLimit] = React.useState<number>(0);
 
   React.useEffect(() => {
     const fetchProviders = async () => {
@@ -36,7 +40,7 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
   }, []);
 
   const getStatusText = (status: number) => {
-    return status === 1 ? t('active') : t('inactive');
+    return status === 1 ? tManagePayments('active') : tManagePayments('inactive');
   };
 
   const handleFeeClick = (provider: PaymentProvider) => {
@@ -49,31 +53,50 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
     setSelectedProvider(null);
   };
 
+  const handleSetLimitClick = () => {
+    setShowDailyLimitPopup(true);
+  };
+
+  const handleCloseDailyLimitPopup = () => {
+    setShowDailyLimitPopup(false);
+  };
+
+  const handleSaveDailyLimit = (limit: number) => {
+    setDailyLimit(limit);
+    setShowDailyLimitPopup(false);
+    // Here you would typically make an API call to save the daily limit
+    console.log('Saving daily limit:', limit);
+  };
+
   return (
     <div className="payment-gateway-container">
       <div className="payment-gateway-form">
         <div className="form-group mb-3">
-          <label className="form-label">{t('setDailyWithdrawalCount')}</label>
+          <label className="form-label">{tManagePayments('setDailyWithdrawalCount')}</label>
         </div>
         <div className="form-group mb-3">
-          <label className="form-label">{t('setDailyWithdrawalCountForYourMember')}</label>
+          <label className="form-label">{tManagePayments('setDailyWithdrawalCountForYourMembers')}</label>
         </div>
         <div className="form-group mb-3">
-          <button type="button" className="btn btn-primary">
-            {t('setLimit')}
+          <button 
+            type="button" 
+            className="btn btn-primary"
+            onClick={handleSetLimitClick}
+          >
+            {tManagePayments('setLimit')}
           </button>
         </div>
         <hr className="separator" />
         <div className="form-group mb-3">
-          <label className="form-label">{t('managePaymentProviders')}</label>
+          <label className="form-label">{tManagePayments('managePaymentProviders')}</label>
         </div>
         
         {loading ? (
           <div className="text-center p-4">
             <div className="spinner-border text-primary" role="status">
-              <span className="visually-hidden">Loading...</span>
+              <span className="visually-hidden">{tGlobal('loading')}</span>
             </div>
-            <p className="mt-2">{t('loading')}</p>
+            <p className="mt-2">{tManagePayments('loading')}</p>
           </div>
         ) : error ? (
           <div className="alert alert-danger" role="alert">
@@ -85,11 +108,11 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">{t('action')}</th>
-                  <th scope="col">{t('provider')}</th>
-                  <th scope="col">{t('fee')}</th>
-                  <th scope="col">{t('providerStatus')}</th>
-                  <th scope="col">{t('lastUpdated')}</th>
+                  <th scope="col">{tGlobal('action')}</th>
+                  <th scope="col">{tManagePayments('provider')}</th>
+                  <th scope="col">{tManagePayments('fee')}</th>
+                  <th scope="col">{tManagePayments('providerStatus')}</th>
+                  <th scope="col">{tManagePayments('lastUpdated')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -99,7 +122,7 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
                       <td>{index + 1}</td>
                       <td>
                         <button className="btn btn-sm btn-outline-primary me-1">
-                          {t('edit')}
+                          {tGlobal('edit')}
                         </button>
                       </td>
                       <td>{provider.name}</td>
@@ -108,7 +131,7 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
                           className="btn btn-sm btn-outline-primary me-1"
                           onClick={() => handleFeeClick(provider)}
                         >
-                          {t('fee')}
+                          {tManagePayments('fee')}
                         </button>
                       </td>
                       <td>
@@ -122,7 +145,7 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
                 ) : (
                   <tr>
                     <td colSpan={6} className="text-center">
-                      {t('noProvidersFound')}
+                      {tGlobal('noData')}
                     </td>
                   </tr>
                 )}
@@ -136,6 +159,14 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
           <FeePopupModal
             provider={selectedProvider}
             onClose={handleClosePopup}
+          />
+        )}
+
+        {/* Daily Limit Popup Modal */}
+        {showDailyLimitPopup && (
+          <DailyLimitPopupModal
+            onClose={handleCloseDailyLimitPopup}
+            onSave={handleSaveDailyLimit}
           />
         )}
       </div>

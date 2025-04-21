@@ -10,6 +10,14 @@ import managePaymentsZhTW from './locales/managePayments/zh-TW.json';
 import managePaymentsJa from './locales/managePayments/ja.json';
 import managePaymentsKo from './locales/managePayments/ko.json';
 
+// Import global translations
+import globalEn from './locales/global/en.json';
+import globalJa from './locales/global/ja.json';
+import globalKo from './locales/global/ko.json';
+import globalVi from './locales/global/vi.json';
+import globalZhCN from './locales/global/zh-CN.json';
+import globalZhTW from './locales/global/zh-TW.json';
+
 // Configure i18next
 i18n
   // Detect user language
@@ -20,21 +28,27 @@ i18n
   .init({
     resources: {
       en: {
+        global: globalEn,
         managePayments: managePaymentsEn,
       },
       vi: {
+        global: globalVi,
         managePayments: managePaymentsVi,
       },
       'zh-CN': {
+        global: globalZhCN,
         managePayments: managePaymentsZhCN,
       },
       'zh-TW': {
+        global: globalZhTW,
         managePayments: managePaymentsZhTW,
       },
       ja: {
+        global: globalJa,
         managePayments: managePaymentsJa,
       },
       ko: {
+        global: globalKo,
         managePayments: managePaymentsKo,
       },
     },

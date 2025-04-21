@@ -4,10 +4,9 @@
   "bankAccount": "Bank Account",
   
   "setDailyWithdrawalCount": "Set daily withdrawal count",
-  "setDailyWithdrawalCountForYourMember": "Set daily withdrawal amount for your member",
+  "setDailyWithdrawalCountForYourMembers": "Set daily withdrawal amount for your members",
   "setLimit": "Set limit",
   "managePaymentProviders": "Manage payment providers",
-  "action": "Action",
   "provider": "Provider",
   "fee": "Fee",
   "providerStatus": "Provider status",
@@ -15,8 +14,6 @@
   "loading": "Loading payment providers...",
   "active": "Active",
   "inactive": "Inactive",
-  "edit": "Edit",
-  "delete": "Delete",
   "noProvidersFound": "No payment providers found",
   "managePaymentsTip": "Manage payment providers to configure the payment gateway for your members.",
   "managePaymentsTip1": "Bank accounts: Add, edit, and delete your bank accounts.",
@@ -30,6 +27,7 @@
   "transactionType": "Transaction Type",
   "paymentMethod": "Payment Method",
   "feeRate": "Fee Rate",
-  "close": "Close",
-  "noData": "No data available"
+
+  "setMaxDailyWithdrawalCountForYourMembers": "Set daily withdrawal count for your members, whether through bank or payment gateway.",
+  "dailyWithdrawalCount": "Daily withdrawal count"
 } 
