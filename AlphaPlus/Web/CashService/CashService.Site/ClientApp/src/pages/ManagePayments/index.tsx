@@ -10,7 +10,7 @@ import BankAccount from './BankAccount';
 
 function ManagePayments() {
   const { t } = useTranslation('managePayments');
-  const [activeTab, setActiveTab] = React.useState('bankAccount');
+  const [activeTab, setActiveTab] = React.useState('paymentGateway');
 
   return (
     <div className="container">

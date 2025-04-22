@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
 using Serilog;
+using System.Text.Json;
 
 const string PathBase = "/cash-service";
 const string SharedSettings = "sharedSettings.json";
@@ -64,7 +65,7 @@ builder.Services
     .AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.WriteIndented = true;
-        options.JsonSerializerOptions.PropertyNamingPolicy = null;
+        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
     });
 
 // Add SPA static files

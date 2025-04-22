@@ -16,7 +16,7 @@ declare global {
 
 // Create an axios instance with default config
 const api = axios.create({
-  baseURL: "cash-service/payments",
+  baseURL: "",
   headers: {
     'Content-Type': 'application/json'
   },
@@ -28,7 +28,7 @@ export const paymentProviderService = {
   // Get all payment providers
   getAllProviders: async (): Promise<PaymentProvider[]> => {
     try {
-      const response = await api.get<PaymentProvider[]>('/payment-providers', { method: 'GET' });
+      const response = await api.get<PaymentProvider[]>('GetAllProviders', { method: 'GET' });
       return response.data;
     } catch (error) {
       console.error('Error fetching payment providers:', error);
