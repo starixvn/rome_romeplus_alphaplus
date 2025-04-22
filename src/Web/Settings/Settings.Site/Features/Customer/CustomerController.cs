@@ -89,6 +89,25 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 
             return View(viewModel);
         }
+
+        public async Task<ActionResult> CreateCashMember(CreateCustomerQuery query)
+        {
+            var limitedRulesResult = await customerService.CheckAllLimitedRules(query.ViewerId, query.ViewerLevelId, query.ActorUsername, false, query.Language);
+
+            var viewModel = limitedRulesResult.IsFailed
+                ? new CreateCustomerViewModel(query, true, limitedRulesResult.Message)
+                : new CreateCustomerViewModel(
+                query,
+                new AppConfiguration(GetApplicationPath(), systemId),
+                CDNUri,
+                GetAssetsVersion(),
+                GetHashKey(),
+                await customerService.GetSuggestUsername(query.CustName, query.ViewerLevelId),
+                productGroupId: 0);
+
+            return View(viewModel);
+        }
+
         public async Task<ActionResult> Create(CreateCustomerQuery query)
         {
             var limitedRulesResult = await customerService.CheckAllLimitedRules(query.ViewerId, query.ViewerLevelId, query.ActorUsername, false, query.Language);
