@@ -12,5 +12,6 @@
     "reset": "Reset",
     "update": "Update",
     "updateSuccess": "Update successful",
-    "updateFailed": "Update failed"
+    "updateFailed": "Update failed",
+    "underMaintenance": "Under Maintenance"
 } 

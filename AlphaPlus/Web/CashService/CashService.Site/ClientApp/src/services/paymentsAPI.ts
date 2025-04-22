@@ -2,6 +2,7 @@ import axios from 'axios';
 import { PaymentProvider } from './interfaces/PaymentProvider';
 import { PaymentProviderFeeGroup } from './interfaces/PaymentProviderFeeGroup';
 import { ResultModel } from './interfaces/ResultModel';
+import { PaymentMethod } from './interfaces/PaymentMethod';
 
 // Declare the cashServiceAPIUrl property on the Window interface
 declare global {
@@ -74,13 +75,32 @@ export const paymentProviderService = {
   // Update settings for a specific payment provider
   updateProviderSettings: async (settings: any): Promise<ResultModel> => {
     try {
-      const params = new URLSearchParams();
-      params.append('settings', JSON.stringify(settings));
-      
-      const response = await api.put(`/update-payment-provider-settings?${params.toString()}`);
+      const response = await api.put(`/update-payment-provider-settings`, settings );
       return response.data;
     } catch (error) {
       console.error(`Error updating settings`, error);
+      throw error;
+    }
+  },
+  
+  // Get all payment methods
+  getAllPaymentMethods: async (): Promise<PaymentMethod[]> => {
+    try {
+      const response = await api.get<PaymentMethod[]>('/payment-methods', { method: 'GET' });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching payment methods:', error);
+      return [];
+    }
+  },
+  
+  // Add a new payment method
+  addPaymentMethod: async (paymentMethod: PaymentMethod): Promise<ResultModel> => {
+    try {
+      const response = await api.post('/add-payment-method', paymentMethod);
+      return response.data;
+    } catch (error) {
+      console.error('Error adding payment method:', error);
       throw error;
     }
   },

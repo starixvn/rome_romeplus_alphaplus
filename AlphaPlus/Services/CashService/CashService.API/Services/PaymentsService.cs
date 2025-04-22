@@ -14,6 +14,9 @@ public interface IPaymentsService
     Task<ResultModel> SetDailyWithdrawalCount(int custId, int count);
     Task<IEnumerable<ProviderSettingsModel>> GetPaymentProviderSettings(int providerId, int method, int status, int transactionType);
     Task<ResultModel> UpdatePaymentProviderSettings(IEnumerable<ProviderSettingsModel> settings);
+    Task<ResultModel> AddPaymentProviderSetting(ProviderSettingsModel setting);
+    Task<IEnumerable<PaymentMethodModel>> GetAllPaymentMethods();
+    Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod);
 }
 
 public class PaymentsService : IPaymentsService
@@ -28,7 +31,7 @@ public class PaymentsService : IPaymentsService
     public async Task<IEnumerable<ProviderModel>> GetAllPaymentProviders()
     {
         // var result = await _repository.FetchAsync<ProviderModel>(new GetAllPaymentProvidersCriteria());
-        var providers = await GetDummyProviders();
+        var providers = await DummyDataService.GetDummyProviders();
         
         return providers;
     }
@@ -36,7 +39,7 @@ public class PaymentsService : IPaymentsService
     public async Task<ProviderModel> GetPaymentProviderById(int providerId)
     {
         // var result = await _repository.FetchAsync<ProviderModel>(new GetPaymentProviderByIdCriteria(providerId));
-        var providers = await GetDummyProviders();
+        var providers = await DummyDataService.GetDummyProviders();
         var provider = providers.FirstOrDefault(p => p.Id == providerId);
         
         return provider;
@@ -45,7 +48,7 @@ public class PaymentsService : IPaymentsService
     public async Task<IEnumerable<ProviderFeeGroupModel>> GetPaymentProviderFees(int providerId)
     {
         // var result = await _repository.FetchAsync<ProviderFeeModel>(new GetPaymentProvidersFeesCriteria(providerId));
-        var fees = await GetDummyProviderFees(providerId);
+        var fees = await DummyDataService.GetDummyProviderFees(providerId);
         
         var groupedFees = fees
             .GroupBy(f => f.TransactionType)
@@ -62,122 +65,9 @@ public class PaymentsService : IPaymentsService
     public async Task<IEnumerable<ProviderSettingsModel>> GetPaymentProviderSettings(int providerId, int method, int status, int transactionType)
     {
         // var result = await _repository.FetchAsync<ProviderSettingsModel>(new GetPaymentProviderSettingsCriteria(providerId, method, status, transactionType));
-        var settings = await GetDummyProviderSettings(providerId, method, status, transactionType);
+        var settings = await DummyDataService.GetDummyProviderSettings(providerId, method, status, transactionType);
         
         return settings;
-    }
-
-    private async Task<IEnumerable<ProviderSettingsModel>> GetDummyProviderSettings(int providerId, int method, int status, int transactionType)
-    {
-        return new List<ProviderSettingsModel>
-        {
-            new ProviderSettingsModel
-            {
-                ProviderId = providerId,
-                Method = method,
-                Status = status,
-                TransactionType = transactionType,
-                MinAmount = 10.00m,
-                MaxAmount = 1000.00m,
-                IsEnabled = true,
-                BankRequired = false
-            },
-            new ProviderSettingsModel
-            {
-                ProviderId = providerId,
-                Method = method,
-                Status = status,
-                TransactionType = transactionType,
-                MinAmount = 20.00m,
-                MaxAmount = 2000.00m,
-                IsEnabled = true,
-                BankRequired = true
-            }
-        };
-    }
-
-    private async Task<IEnumerable<ProviderFeeModel>> GetDummyProviderFees(int providerId)
-    {
-        return new List<ProviderFeeModel>
-        {
-            new ProviderFeeModel
-            {
-                ProviderId = 1,
-                TransactionType = "Deposit",
-                Method = "Credit Card",
-                Rate = 2.5m
-            },
-            new ProviderFeeModel
-            {
-                ProviderId = 2,
-                TransactionType = "Withdrawal",
-                Method = "Bank Transfer",
-                Rate = 1.5m
-            },
-            new ProviderFeeModel
-            {
-                ProviderId = 3,
-                TransactionType = "Deposit",
-                Method = "E-Wallet",
-                Rate = 1.0m
-            },
-            new ProviderFeeModel
-            {
-                ProviderId = 4,
-                TransactionType = "Withdrawal",
-                Method = "Cryptocurrency",
-                Rate = 3.0m
-            },
-            new ProviderFeeModel
-            {
-                ProviderId = 5,
-                TransactionType = "Deposit",
-                Method = "PayPal",
-                Rate = 2.0m
-            }
-        };
-    }
-    
-    public async Task<IEnumerable<ProviderModel>> GetDummyProviders()
-    {
-        return new List<ProviderModel>
-        {
-            new ProviderModel
-            {
-                Id = 1,
-                Name = "Credit Card",
-                Status = PaymentProviderStatusConstants.Active,
-                LastUpdated = DateTime.Now.AddDays(-1)
-            },
-            new ProviderModel
-            {
-                Id = 2,
-                Name = "Bank Transfer",
-                Status = PaymentProviderStatusConstants.Active,
-                LastUpdated = DateTime.Now.AddDays(-2)
-            },
-            new ProviderModel
-            {
-                Id = 3,
-                Name = "E-Wallet",
-                Status = PaymentProviderStatusConstants.Inactive,
-                LastUpdated = DateTime.Now.AddDays(-5)
-            },
-            new ProviderModel
-            {
-                Id = 4,
-                Name = "Cryptocurrency",
-                Status = PaymentProviderStatusConstants.Active,
-                LastUpdated = DateTime.Now.AddDays(-3)
-            },
-            new ProviderModel
-            {
-                Id = 5,
-                Name = "PayPal",
-                Status = PaymentProviderStatusConstants.Active,
-                LastUpdated = DateTime.Now.AddDays(-1)
-            }
-        };
     }
 
     public async Task<ResultModel> SetDailyWithdrawalCount(int custId, int count)
@@ -209,6 +99,55 @@ public class PaymentsService : IPaymentsService
                 // TODO: Implement actual database update logic for each setting
                 // var result = await _repository.ExecuteNonQueryAsync(new UpdatePaymentProviderSettingCriteria(setting));
             }
+
+            return new ResultModel("0", "Success");
+        }
+        catch (Exception ex)
+        {
+            return new ResultModel("1", ex.Message);
+        }
+    }
+
+    public async Task<ResultModel> AddPaymentProviderSetting(ProviderSettingsModel setting)
+    {
+        try
+        {
+            if (setting == null)
+            {
+                return new ResultModel("1", "No setting provided");
+            }
+
+            // TODO: Implement actual database insert logic
+            // var result = await _repository.ExecuteNonQueryAsync(new AddPaymentProviderSettingCriteria(setting));
+
+            return new ResultModel("0", "Success");
+        }
+        catch (Exception ex)
+        {
+            return new ResultModel("1", ex.Message);
+        }
+    }
+
+    public async Task<IEnumerable<PaymentMethodModel>> GetAllPaymentMethods()
+    {
+        // TODO: Implement actual database query
+        // var result = await _repository.FetchAsync<PaymentMethodModel>(new GetAllPaymentMethodsCriteria());
+        var methods = await DummyDataService.GetDummyPaymentMethods();
+        
+        return methods;
+    }
+
+    public async Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod)
+    {
+        try
+        {
+            if (paymentMethod == null)
+            {
+                return new ResultModel("1", "No payment method provided");
+            }
+
+            // TODO: Implement actual database insert logic
+            // var result = await _repository.ExecuteNonQueryAsync(new InsertPaymentMethodCriteria(paymentMethod));
 
             return new ResultModel("0", "Success");
         }

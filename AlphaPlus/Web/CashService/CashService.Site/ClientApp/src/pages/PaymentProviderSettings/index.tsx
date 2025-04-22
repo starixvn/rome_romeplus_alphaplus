@@ -5,6 +5,7 @@ import '../../i18n/i18n';
 import './PaymentProviderSettings.css';
 import { PAYMENT_METHODS, STATUS_OPTIONS, TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import FeePopupModal from '../ManagePayments/FeePopupModal';
+import AddPaymentMethodModal from './AddPaymentMethodModal';
 import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
 import { paymentProviderService } from '../../services/paymentsAPI';
 
@@ -19,6 +20,7 @@ function PaymentProviderSettings() {
   const { t: tGlobal } = useTranslation('global');
   const { t: tManagePayments } = useTranslation('managePayments');
   const [showFeePopup, setShowFeePopup] = React.useState(false);
+  const [showAddPaymentMethod, setShowAddPaymentMethod] = React.useState(false);
   const [providerSettings, setProviderSettings] = React.useState<any[]>([]);
   const [originalSettings, setOriginalSettings] = React.useState<any[]>([]);
   const [loading, setLoading] = React.useState(true);
@@ -78,6 +80,23 @@ function PaymentProviderSettings() {
 
   const handleCloseFeePopup = () => {
     setShowFeePopup(false);
+  };
+
+  const handleAddPaymentMethod = () => {
+    setShowAddPaymentMethod(true);
+  };
+
+  const handleCloseAddPaymentMethod = () => {
+    setShowAddPaymentMethod(false);
+  };
+
+  const handlePaymentMethodAdded = () => {};
+
+  // Handler for viewing banks
+  const handleViewBanks = (setting: any) => {
+    // TODO: Implement bank viewing functionality
+    console.log('View banks for setting:', setting);
+    // This could open a modal or navigate to a bank list page
   };
 
   // Handler for minimum amount change
@@ -183,7 +202,7 @@ function PaymentProviderSettings() {
               {tGlobal('enable')}/{tGlobal('disable')}
             </label>
             <div className="settings-footer">
-              <button className="btn btn-primary me-2">{tManagePayments('addPaymentMethod')}</button>
+              <button className="btn btn-primary me-2" onClick={handleAddPaymentMethod}>{tManagePayments('addPaymentMethod')}</button>
             </div>
             <div className="toggle-container">
               <input
@@ -293,7 +312,7 @@ function PaymentProviderSettings() {
                       {setting.bankRequired ? (
                         <button 
                           className="btn btn-sm btn-info"
-                          onClick={() => {/* Handle view banks */}}
+                          onClick={() => handleViewBanks(setting)}
                         >
                           {tManagePayments('listOfBanks')}
                         </button>
@@ -329,6 +348,15 @@ function PaymentProviderSettings() {
         <FeePopupModal
           provider={{id: window.provider.Id, name: window.provider.Name} as PaymentProvider}
           onClose={handleCloseFeePopup}
+        />
+      )}
+
+      {/* Add Payment Method Modal */}
+      {showAddPaymentMethod && (
+        <AddPaymentMethodModal
+          providerId={window.provider.Id}
+          onClose={handleCloseAddPaymentMethod}
+          onSave={handlePaymentMethodAdded}
         />
       )}
     </div>

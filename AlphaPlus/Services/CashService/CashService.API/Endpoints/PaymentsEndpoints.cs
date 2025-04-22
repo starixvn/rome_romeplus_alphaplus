@@ -73,10 +73,13 @@ public static class PaymentsEndpoints
             Description = "Returns the settings for a specific payment provider based on method, status, and transaction type"
         });
 
-        app.MapPut("/api/update-payment-provider-settings", async (string settings, IPaymentsService service) =>
+        app.MapPut("/api/update-payment-provider-settings", async (HttpRequest request, IPaymentsService service) =>
         {
-            var settingsList = JsonConvert.DeserializeObject<IEnumerable<ProviderSettingsModel>>(settings);
-            var result = await service.UpdatePaymentProviderSettings(settingsList);
+            using var reader = new StreamReader(request.Body);
+            var body = await reader.ReadToEndAsync();
+            var settings = JsonConvert.DeserializeObject<IEnumerable<ProviderSettingsModel>>(body);
+
+            var result = await service.UpdatePaymentProviderSettings(settings);
             return Results.Ok(result);
         })
         .WithName("UpdatePaymentProviderSettings")
@@ -84,6 +87,39 @@ public static class PaymentsEndpoints
         {
             Summary = "Update payment provider settings",
             Description = "Updates the settings for a payment provider"
+        });
+        
+        app.MapGet("/api/payment-methods", async (IPaymentsService service) =>
+        {
+            var methods = await service.GetAllPaymentMethods();
+            return Results.Ok(methods);
+        })
+        .WithName("GetAllPaymentMethods")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Get all payment methods",
+            Description = "Returns a list of all available payment methods"
+        });
+
+        app.MapPost("/api/add-payment-method", async (HttpRequest request, IPaymentsService service) =>
+        {
+            using var reader = new StreamReader(request.Body);
+            var body = await reader.ReadToEndAsync();
+            var method = JsonConvert.DeserializeObject<PaymentMethodModel>(body);
+            
+            if (method == null)
+            {
+                return Results.BadRequest("Invalid payment method data");
+            }
+
+            var result = await service.InsertPaymentMethod(method);
+            return Results.Ok(result);
+        })
+        .WithName("AddPaymentMethod")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Add payment method",
+            Description = "Adds a new payment method to the system"
         });
     }
 } 

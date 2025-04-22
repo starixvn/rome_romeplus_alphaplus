@@ -39,5 +39,11 @@
   "listOfBanks": "List of banks",
   "status": "Status",
   "minimum": "Minimum",
-  "maximum": "Maximum"
+  "maximum": "Maximum",
+
+  "setUpPaymentMethods": "Set up payment methods",
+  "setUpPaymentMethods1": "Step 1: Select transaction type and payment method",
+  "agreeTermsAndConditions": "I agree to contact the provider directly for any transaction-related issues, including but not limit to duplicate charges, failed transaction, incorrect billing, missing funds or transactions, or chargebacks.",
+  "setUpLater": "Set up later",
+  "next": "Next"
 } 

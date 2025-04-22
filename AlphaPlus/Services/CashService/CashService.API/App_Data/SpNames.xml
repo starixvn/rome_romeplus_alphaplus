@@ -6,5 +6,8 @@
     <Setting Key="Age_ManagementPayments_SetDailyWithdrawalCount" SpName="Age_ManagementPayments_SetDailyWithdrawalCount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     <Setting Key="Age_ManagementPayments_SelProviderSettings" SpName="Age_ManagementPayments_SelProviderSettings" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     <Setting Key="Age_ManagementPayments_UpdProviderSettings" SpName="Age_ManagementPayments_UpdProviderSettings" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    
+    <Setting Key="Age_ManagementPayments_InsMethod" SpName="Age_ManagementPayments_InsMethod" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_ManagementPayments_SelAllMethods" SpName="Age_ManagementPayments_SelAllMethods" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
   </Function>
 </Functions>
