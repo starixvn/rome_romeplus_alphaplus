@@ -17,6 +17,5 @@
     
     <Setting Key="Age_ManagementPayments_AddBankAccount" SpName="Age_ManagementPayments_AddBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     <Setting Key="Age_ManagementPayments_UpdBankAccount" SpName="Age_ManagementPayments_UpdBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-    <Setting Key="Age_ManagementPayments_SetupBankCreator" SpName="Age_ManagementPayments_SetupBankCreator" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
   </Function>
 </Functions>

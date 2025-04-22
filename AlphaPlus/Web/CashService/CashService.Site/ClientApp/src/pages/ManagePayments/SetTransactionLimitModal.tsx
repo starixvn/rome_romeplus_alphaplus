@@ -22,11 +22,14 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
   const [maxWithdrawal, setMaxWithdrawal] = useState<string>('');
   const [dailyWithdrawalCount, setDailyWithdrawalCount] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<boolean>(false);
+  const [successMessage, setSuccessMessage] = useState<string>('');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+    setSuccess(false);
     setLoading(true);
 
     try {
@@ -39,7 +42,11 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
       });
 
       if (result.isSuccessful) {
-        onSave();
+        setSuccess(true);
+        setSuccessMessage(result.message || tManagePayments('transactionLimitUpdated'));
+        setTimeout(() => {
+          onSave();
+        }, 3000);
       } else {
         setError(result.message || tManagePayments('failedToSetLimit'));
       }
@@ -56,7 +63,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title">{tManagePayments('setLimit')}</h5>
+            <h5 className="modal-title">{tManagePayments('transactionLimitPreferences')}</h5>
             <button
               type="button"
               className="btn-close"
@@ -71,10 +78,21 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   {error}
                 </div>
               )}
+              {success && (
+                <div className="alert alert-success" role="alert">
+                  {successMessage}
+                </div>
+              )}
               <div className="mb-3">
-                <label className="form-label">{tManagePayments('minimum')} {tManagePayments('deposit')}</label>
+                <label className="form-label">{tManagePayments('customizeTransactionLimitPreferences')}</label>
+              </div>
+              <div className="mb-3">
+                <label className="form-label">{tManagePayments('deposit')}</label>
+              </div>
+              <div className="mb-3">
+                <label className="form-label">{tManagePayments('minPerTransaction')}</label>
                 <input
-                  type="number"
+                  type="text"
                   className="form-control"
                   value={minDeposit}
                   onChange={(e) => setMinDeposit(e.target.value)}
@@ -84,9 +102,9 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">{tManagePayments('maximum')} {tManagePayments('deposit')}</label>
+                <label className="form-label">{tManagePayments('maxPerTransaction')}</label>
                 <input
-                  type="number"
+                  type="text"
                   className="form-control"
                   value={maxDeposit}
                   onChange={(e) => setMaxDeposit(e.target.value)}
@@ -96,9 +114,12 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">{tManagePayments('minimum')} {tManagePayments('withdrawal')}</label>
+                <label className="form-label">{tManagePayments('withdrawal')}</label>
+              </div>
+              <div className="mb-3">
+                <label className="form-label">{tManagePayments('minPerTransaction')}</label>
                 <input
-                  type="number"
+                  type="text"
                   className="form-control"
                   value={minWithdrawal}
                   onChange={(e) => setMinWithdrawal(e.target.value)}
@@ -108,9 +129,9 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">{tManagePayments('maximum')} {tManagePayments('withdrawal')}</label>
+                <label className="form-label">{tManagePayments('maxPerTransaction')}</label>
                 <input
-                  type="number"
+                  type="text"
                   className="form-control"
                   value={maxWithdrawal}
                   onChange={(e) => setMaxWithdrawal(e.target.value)}
@@ -122,13 +143,16 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
               <div className="mb-3">
                 <label className="form-label">{tManagePayments('dailyWithdrawalCount')}</label>
                 <input
-                  type="number"
+                  type="text"
                   className="form-control"
                   value={dailyWithdrawalCount}
                   onChange={(e) => setDailyWithdrawalCount(e.target.value)}
                   min="0"
                   required
                 />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">{tManagePayments('dailyWithdrawalCountTip')}</label>
               </div>
             </div>
             <div className="modal-footer">

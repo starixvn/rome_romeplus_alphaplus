@@ -81,11 +81,6 @@ const BankAccount: React.FC = () => {
 
   const handleSaveSetLimit = () => {
     setShowSetLimitModal(false);
-    setSuccessMessage(tManagePayments('limitSetSuccess'));
-    // Clear success message after 3 seconds
-    setTimeout(() => {
-      setSuccessMessage(null);
-    }, 3000);
   };
 
   const handleEditBankAccount = (accountId: number) => {
