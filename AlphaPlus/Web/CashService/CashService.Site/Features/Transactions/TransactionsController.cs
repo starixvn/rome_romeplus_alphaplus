@@ -1,20 +1,19 @@
+using AlphaPlus.CashService.Site.Features.Shared;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.CashService.Site.Features.Transactions
 {
-    [Route("[controller]")]
-    public class TransactionsController : Controller
+    public class TransactionsController(IMediator mediator) : SiteBaseController(mediator)
     {
-        private readonly ILogger<TransactionsController> _logger;
-
-        public TransactionsController(ILogger<TransactionsController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
             return Ok("Transactions");
+        }
+
+        public IActionResult Deposit()
+        {
+            return View();
         }
     }
 }

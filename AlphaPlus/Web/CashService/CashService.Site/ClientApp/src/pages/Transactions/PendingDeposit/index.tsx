@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import './PendingDepositStyle.css';
 import ManualDepositForm from './components/ManualDepositForm';
 
 interface DepositData {

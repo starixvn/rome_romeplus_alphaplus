@@ -31,6 +31,7 @@ export default defineConfig({
       input: {
         memberSites: 'src/pages/MemberSites/index.tsx',
         managePayments: 'src/pages/ManagePayments/index.tsx',
+        pendingDeposit: 'src/pages/Transactions/PendingDeposit/index.tsx'
       }
     }
   },
