@@ -116,7 +116,8 @@ public class LastBetsHandler(
                     message.LimitRowCount,
                     appSettings.RunningMatchCacheTime,
                     message.DisplayVNIP,
-                    message.Site);
+                    message.Site,
+                    message.ViewerLevelId);
 
                 (betListData, latestTransId) = await GetBetData(param, memberInWatchlistIds, latestTransId);
             }
@@ -150,7 +151,8 @@ public class LastBetsHandler(
             message.LimitRowCount,
             appSettings.RunningMatchCacheTime,
             message.DisplayVNIP,
-            message.Site);
+            message.Site,
+            message.ViewerLevelId);
         var (betListData, latestTransId) = await GetBetData(param, memberInWatchlistIds, message.LatestTransId);
 
         return new LastBetsDataNewViewModel(

@@ -19,7 +19,7 @@ public class MonitoringBetsController(
 
     // Filter Configuration
     public IActionResult FilterConfiguration(FilterConfigurationQuery message)
-        => View(GetViewPath("MonitoringBets", nameof(FilterConfiguration)), new FilterConfigurationViewModel(message, appSettings.MonitoringBetsBetTypes));
+        => View(GetViewPath("MonitoringBets", nameof(FilterConfiguration)), new FilterConfigurationViewModel(message, appSettings.MonitoringBetsBetTypes, user));
 
     public Task<IActionResult> FilterBySports(FilterBySportsQuery message) => JsonData(message);
 
@@ -40,7 +40,11 @@ public class MonitoringBetsController(
 
     // Manage Filters
     public Task<IActionResult> ManageFilters(ManageFiltersQuery message)
-        => View(message, GetViewPath("MonitoringBets", nameof(ManageFilters)));
+    {
+        ViewBag.RoleId = user.LevelId;
+
+        return View(message, GetViewPath("MonitoringBets", nameof(ManageFilters)));
+    }
 
     [HttpPost]
     public Task<IActionResult> AddUnsavedFilter(AddUnsavedFilterCommand message)
@@ -73,9 +77,9 @@ public class MonitoringBetsController(
 
     public override void OnActionExecuting(ActionExecutingContext context)
     {
-        if ((user.IsInternal
+        if (user.IsInternal
         || appSettings.EnableBetsListMonitoring
-        || appSettings.UsersAlwaysAllowAccessBetsListMonitoring.Contains(user.Id)) && user.IsAgent)
+        || appSettings.UsersAlwaysAllowAccessBetsListMonitoring.Contains(user.Id))
         {
             base.OnActionExecuting(context);
         }

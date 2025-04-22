@@ -75,7 +75,8 @@ public class MonitoringBetsHandler(
             unsavedFilterParam.FilterByMembers,
             message.LanguageKey,
             unsavedFilterParam.IP,
-            message.Site));
+            message.Site,
+            message.ViewerLevelId));
 
         if (result.Code == 0)
         {
@@ -103,7 +104,8 @@ public class MonitoringBetsHandler(
         message.FilterByMembers,
         message.LanguageKey,
         message.IP,
-        message.Site);
+        message.Site,
+        message.ViewerLevelId);
 
     private static string CheckIdList(string idList)
         => string.IsNullOrWhiteSpace(idList) || idList == "0"
@@ -155,7 +157,7 @@ public class MonitoringBetsHandler(
 
     public async Task<IEnumerable<UsernameErrCode>> Handle(CheckUsernamesQuery message, CancellationToken cancellationToken)
     {
-        var usernames = await filterBetsService.CheckUsernames(message.ViewerId, message.Usernames);
+        var usernames = await filterBetsService.CheckUsernames(message.ViewerId, message.Usernames, message.ViewerLevelId);
 
         if (message.FromSuggestion)
         {

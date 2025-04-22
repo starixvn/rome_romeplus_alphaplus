@@ -26,4 +26,6 @@ public class GetLastBetsDataNewQuery : BetListBaseQuery, IRequest<LastBetsDataNe
     public long LatestTransId { get; set; }
 
     public byte FilterByMembers { get; set; }
+
+    public byte ViewerLevelId { get; set; }
 }

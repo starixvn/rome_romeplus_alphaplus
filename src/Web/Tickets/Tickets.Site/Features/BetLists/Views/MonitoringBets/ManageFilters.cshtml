@@ -253,19 +253,22 @@
                                     RenderDropdownMembers(item.InputList);
                                 }</td>
                         </tr>
-                        <tr class="filter-by-members-hidden row-level3" data-filterid="@item.FilterId" data-filterbymembers="1">
-                            <td>@Resources.FromMonitoredList</td>
-                            <td colspan="4">
-                                @if (item.FilterXml.FilterByMembers == FilterByMembersConstants.AllWatchlistMembers)
-                                {
-                                    @:@Resources.AllIncludedNewlyAddedMembers
-                                }
-                                else
-                                {
-                                    RenderDropdownMembers(item.WatchList);
-                                }
-                            </td>
-                        </tr>
+                        if (ViewBag.RoleId == 2)
+                        {
+                            <tr class="filter-by-members-hidden row-level3" data-filterid="@item.FilterId" data-filterbymembers="1">
+                                <td>@Resources.FromMonitoredList</td>
+                                <td colspan="4">
+                                    @if (item.FilterXml.FilterByMembers == FilterByMembersConstants.AllWatchlistMembers)
+                                    {
+                                        @:@Resources.AllIncludedNewlyAddedMembers
+                                    }
+                                    else
+                                    {
+                                        RenderDropdownMembers(item.WatchList);
+                                    }
+                                </td>
+                            </tr>
+                        }
                     }
                 }
             }

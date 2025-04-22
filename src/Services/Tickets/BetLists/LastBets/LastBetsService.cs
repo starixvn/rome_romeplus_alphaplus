@@ -5,6 +5,7 @@ using AlphaPlus.PartialUM.Services;
 using AlphaPlus.Utilities.IP;
 using Fanex.Data.Repository;
 using Microsoft.Extensions.Caching.Memory;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.BetLists.LastBets;
 
@@ -38,6 +39,7 @@ public class LastBetsService(
 
     public Task<IEnumerable<TicketDto>> GetBetListNew(GetLastBetsNewParam param)
     {
+        var userLevel = Enumeration.FromValue<UserLevel>(param.UserLevel);
         var criteria = new GetLastBetsNewCriteria(
             param.CustId,
             param.TransId,
@@ -47,7 +49,9 @@ public class LastBetsService(
             param.BetTypeList,
             param.LiveIndicator,
             param.MinStake,
-            param.LimitRowCount);
+            param.LimitRowCount,
+            userLevel.IsSuperLevel(),
+            userLevel.IsMasterLevel());
 
         return GetBetList(criteria, param.DisplayVNIP, param.SiteName, param.RunningMatchCacheTime);
     }

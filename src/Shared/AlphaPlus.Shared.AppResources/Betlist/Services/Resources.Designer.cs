@@ -2851,5 +2851,16 @@ namespace AlphaPlus.Shared.AppResources.Betlist.Services
                 return ResourceManager.GetString("SuperRisk", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Monitor tickets of the selected Member(s), which can be added manually.
+        /// </summary>
+        public static string FilterConfigurationSpecificSuperMasterContent
+        {
+            get
+            {
+                return ResourceManager.GetString("FilterConfigurationSpecificSuperMasterContent", resourceCulture);
+            }
+        }
     }
 }

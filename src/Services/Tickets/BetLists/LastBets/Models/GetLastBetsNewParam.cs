@@ -1,3 +1,5 @@
+using AlphaPlus.Core.Models;
+
 namespace AlphaPlus.BetLists.LastBets;
 
 public record GetLastBetsNewParam(
@@ -12,4 +14,5 @@ public record GetLastBetsNewParam(
     int LimitRowCount,
     int RunningMatchCacheTime,
     bool DisplayVNIP,
-    string SiteName);
+    string SiteName,
+    byte UserLevel);

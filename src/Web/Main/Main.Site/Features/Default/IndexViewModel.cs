@@ -175,17 +175,17 @@ public class IndexViewModel
             {
                 var actorLevel = Enumeration.FromValue<UserLevel>(message.RoleId);
 
-                return (actorLevel.IsSuperLevel() || actorLevel.IsMasterLevel()) && ((PageAccess)SubPageAccess).CreateAccount;
+                return actorLevel.IsNotAgentLevel() && (!IsSubAccount || message.ViewBetList ); 
             }
         }
 
     public string HightLightFeatureImageName => "new_feature" + DarkModeName;
 
-        public string HightLightFeatureUrl => MicroSites.MainUrl("~/Tour/Index");
+    public string HightLightFeatureUrl => MicroSites.TicketUrl($"~/LastBets/IndexNew");
 
     public bool IsShowRewardTour { get; }
 
-    public string TourUrl => MicroSites.MainUrl("~/Tour/ProfilePicture");
+    public string TourUrl => MicroSites.TicketUrl($"~/LastBets/IndexNew");
 
     public bool IsEnableReCheckIn => message.IsEnableReCheckIn;
 

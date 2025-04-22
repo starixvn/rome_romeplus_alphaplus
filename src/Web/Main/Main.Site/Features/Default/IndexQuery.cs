@@ -98,5 +98,7 @@ namespace AlphaPlus.Main.Site.Features.Default
         public string Site => userSession.Site;
 
         public int MRecommendId => userSession.MRecommendId;
+        
+        public bool ViewBetList => userSession.SubPageAccess.GetPermission(PageAccessType.ViewBetLists);
     }
 }

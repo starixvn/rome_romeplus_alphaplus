@@ -16,7 +16,8 @@ internal class AddFilterCommand(
     string inputList,
     string myWatchlist,
     string languageKey,
-    string ip) : NonQueryCommand
+    string ip,
+    byte roleId) : NonQueryCommand
 {
     public int CustId { get; } = custId;
 
@@ -45,6 +46,8 @@ internal class AddFilterCommand(
     public string Language { get; } = languageKey;
 
     public string IP { get; } = ip;
+
+    public byte RoleId { get; } = roleId;
 
     public int ErrCode { get; set; }
 

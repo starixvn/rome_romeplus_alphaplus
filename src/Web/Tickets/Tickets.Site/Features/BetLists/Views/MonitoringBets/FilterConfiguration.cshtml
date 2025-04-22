@@ -105,7 +105,14 @@
                     <input type="radio" name="filterbymembers" id="rdo-specific-members" />
                     <span class="overlay"></span>
                 </label>
-                <p>@Resources.FilterConfigurationSpecificMembersContent</p>
+                @if (Model.ViewerLevel.IsAgentLevel())
+                {
+                    <p>@Resources.FilterConfigurationSpecificMembersContent</p>
+                }
+                else
+                {
+                    <p>@Resources.FilterConfigurationSpecificSuperMasterContent</p>
+                }
             </div>
         </div>
         <div class="hide" id="members-container">
@@ -116,8 +123,11 @@
                     placeholder="@Resources.UsernameTagsInputPlaceHolder" />
                 <div class="tags-box" id="username_tags"></div>
             </div>
-            <p class="text">@Resources.SelectMembers</p>
-            <div class="my-watchlist" id="my-watchlist-members"></div>
+            @if (Model.ViewerLevel.IsAgentLevel())
+            {
+                <p class="text">@Resources.SelectMembers</p>
+                <div class="my-watchlist" id="my-watchlist-members"></div>
+            }
         </div>
     </div>
     <div class="block-btn">@{

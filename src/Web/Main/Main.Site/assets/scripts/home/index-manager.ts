@@ -492,7 +492,7 @@ var indexManager = {
             hiddenIsShowRewardTour.remove();
         } else {
             // New Feature
-            indexManager.initHighlightPopup($('#menu-MEMBERINFO'), '211969_DirectMember', 80);
+            indexManager.initHighlightPopup($('#menu-BETLISTS'), '213315_LastBets', 80);
         }
     },
 

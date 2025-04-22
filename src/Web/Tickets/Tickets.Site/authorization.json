@@ -104,18 +104,12 @@
                 "RoleId": 3,
                 "Name": "Master",
                 "DeniedPages": [
-                    "LastBets",
-                    "MonitoringBets",
                     "RiskAnalysisIPMatching"
                 ]
             },
             {
                 "RoleId": 4,
                 "Name": "Super",
-                "DeniedPages": [
-                    "LastBets",
-                    "MonitoringBets"
-                ],
                 "PageAccesses": [
                     {
                         "Url": "RiskAnalysisIPMatching",

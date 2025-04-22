@@ -10,7 +10,9 @@ public class GetLastBetsNewCriteria(int custId,
     string betTypeList,
     byte liveIndicator,
     decimal minStake,
-    int limitRowCount) : CriteriaBase
+    int limitRowCount,
+    bool isSuperLevel,
+    bool isMasterLevel) : CriteriaBase
 {
     public int CustId { get; } = custId;
 
@@ -30,7 +32,11 @@ public class GetLastBetsNewCriteria(int custId,
 
     public int LimitRowCount { get; } = limitRowCount;
 
-    public override string GetSettingKey() => "Age_BetList_LastBets_Ag";
+    public override string GetSettingKey() => isSuperLevel
+        ? "Age_BetList_LastBets_SAg" 
+        : isMasterLevel
+            ? "Age_BetList_LastBets_MAg" 
+            : "Age_BetList_LastBets_Ag";
 
     public override bool IsValid()
         => !string.IsNullOrWhiteSpace(BetTypeList) && MinStake >= 0 && LimitRowCount > 0;

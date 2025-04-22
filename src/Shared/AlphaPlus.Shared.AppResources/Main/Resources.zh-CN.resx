@@ -714,16 +714,13 @@
     <value>查看</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
-    <value>我们在此宣布&lt;b&gt;您现在可以拥有自己的会员&lt;/b&gt;！直接创建会员，并享受更大的灵活性组织您的下线。</value>
-  </data>
-  <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
-    <value>介绍&lt;b&gt;“创建直系会员”&lt;/b&gt;！</value>
+    <value>通过使用自定义筛选方式监控会员进行中的注单，使用&lt;b&gt;最后投注&lt;/b&gt;将风险降至最低。</value>
   </data>
   <data name="HighlightPopupRewardIntro" xml:space="preserve">
     <value>&lt;p&gt;我们很高兴为您介绍我们新的现金奖金计划。奖金金额由公司负责，会员一旦收到奖金，并不能用于下注。奖金将分配给上线，会员可以通过其代理去兑现。&lt;/p&gt;&lt;p&gt;我们的新功能&lt;b&gt;奖金支付&lt;/b&gt;支持您的下线支付管理，确保所有奖金的准确分配。&lt;/p&gt;</value>
   </data>
   <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
-    <value>欢迎加入&lt;b&gt;现金奖金计划&lt;/b&gt;！</value>
+    <value>探索&lt;b&gt;最后投注&lt;/b&gt;功能</value>
   </data>
   <data name="HighlightPopupRewardTitle" xml:space="preserve">
     <value>欢迎加入&lt;b&gt;现金奖金计划&lt;/b&gt;！</value>
