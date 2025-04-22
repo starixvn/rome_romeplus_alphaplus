@@ -32,6 +32,7 @@ configuration
     .AddJsonFile("authorization.json", optional: false, reloadOnChange: true)
     .AddJsonFile("partialum.json", optional: false, reloadOnChange: true)
     .AddJsonFile("results.json", optional: false, reloadOnChange: true)
+    .AddJsonFile("results3rd.json", optional: false, reloadOnChange: true)
     .AddJsonFile("securitycode.json", optional: false, reloadOnChange: true)
     //.AddEnvironmentVariables()
     .AddCommandLine(args);

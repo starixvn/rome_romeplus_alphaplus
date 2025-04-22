@@ -8,7 +8,10 @@ public class ThirdPartyController(IMediator mediator) : ResultBaseController(med
 {
     private const string IndexView = "~/Features/Results/ThirdParty/Views/Index.cshtml";
 
+
+    public Task<IActionResult> ViewResult(Result3rdQuery message) => View(message, IndexView);
     [AllowProtectedMode]
+
     public Task<IActionResult> MaxGameResult(MaxGameResultQuery message) => View(message, IndexView);
 
     [AllowProtectedMode]
@@ -136,4 +139,5 @@ public class ThirdPartyController(IMediator mediator) : ResultBaseController(med
 
     [AllowProtectedMode]
     public Task<IActionResult> FunkyGamesResult(FunkyGamesResultQuery message) => View(message, IndexView);
+    
 }
