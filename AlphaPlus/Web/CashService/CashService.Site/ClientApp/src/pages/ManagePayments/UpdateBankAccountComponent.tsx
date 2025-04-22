@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Bank } from '../../services/interfaces/Bank';
 import { BankAccount } from '../../services/interfaces/BankAccount';
@@ -21,15 +21,15 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   const { t: tGlobal } = useTranslation('global');
   
   const [accountNickname, setAccountNickname] = useState<string>(bankAccount.accountNickname);
-  const [accountHolderName, setAccountHolderName] = useState<string>(bankAccount.accountHolderName);
-  const [accountNumber, setAccountNumber] = useState<string>(bankAccount.accountNumber);
-  const [selectedBank, setSelectedBank] = useState<string>(bankAccount.bank.id.toString());
+  const [accountHolderName] = useState<string>(bankAccount.accountHolderName);
+  const [accountNumber] = useState<string>(bankAccount.accountNumber);
+  const [selectedBank] = useState<string>(bankAccount.bank.id.toString());
   const [status, setStatus] = useState<string>(bankAccount.status.toString());
   const [depositType, setDepositType] = useState<string>(bankAccount.depositType.toString());
   const [withdrawalType, setWithdrawalType] = useState<string>(bankAccount.withdrawalType.toString());
   const [depositMatchingMode, setDepositMatchingMode] = useState<string>(bankAccount.depositMatchingMode.toString());
   const [promptPay, setPromptPay] = useState<boolean>(bankAccount.promptPay);
-  const [mobile, setMobile] = useState<string>(bankAccount.mobile);
+  const [mobile] = useState<string>(bankAccount.mobile);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<string>('');

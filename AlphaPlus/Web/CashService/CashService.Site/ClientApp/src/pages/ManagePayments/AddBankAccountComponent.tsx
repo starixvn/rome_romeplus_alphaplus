@@ -175,7 +175,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   <button
                     type="button"
                     className={`btn ${depositType === '1' ? 'btn-primary' : 'btn-outline-primary'}`}
-                    onClick={() => setDepositType('1')}
+                    onClick={() => setWithdrawalType('1')}
                   >
                     {tManagePayments('manualWithdrawal')}
                   </button>
