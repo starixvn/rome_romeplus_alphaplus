@@ -8,7 +8,8 @@ namespace AlphaPlus.CashService.API.Services;
 
 public interface IPaymentsService
 {
-    Task<IEnumerable<ProviderModel>> GetAllPaymentProviders();
+    Task<IEnumerable<ProviderModel>> GetAllPaymentProviders(int custId);
+
     Task<ProviderModel> GetPaymentProviderById(int providerId);
     Task<IEnumerable<ProviderFeeGroupModel>> GetPaymentProviderFees(int providerId);
     Task<ResultModel> SetDailyWithdrawalCount(int custId, int count);
@@ -34,10 +35,9 @@ public class PaymentsService : IPaymentsService
         _repository = repository;
     }
 
-    public async Task<IEnumerable<ProviderModel>> GetAllPaymentProviders()
+    public async Task<IEnumerable<ProviderModel>> GetAllPaymentProviders(int custId)
     {
-        // var result = await _repository.FetchAsync<ProviderModel>(new GetAllPaymentProvidersCriteria());
-        var providers = await DummyDataService.GetDummyProviders();
+        var providers = await _repository.FetchAsync<ProviderModel>(new GetPaymentProvidersCriteria(custId));
         
         return providers;
     }

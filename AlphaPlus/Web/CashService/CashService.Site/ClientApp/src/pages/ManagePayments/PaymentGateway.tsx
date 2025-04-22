@@ -31,7 +31,7 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
     const fetchProviders = async () => {
       try {
         setLoading(true);
-        const data = await paymentProviderService.getAllProviders();
+        const data = await paymentProviderService.getProviders();
         setProviders(data);
         setError(null);
       } catch (err) {

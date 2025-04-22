@@ -12,18 +12,35 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         private readonly IWebHostEnvironment _environment;
         private readonly APIHelper _apiHelper;
         private readonly string _apiBaseUrl;
+        private readonly int _custId;
+        private readonly HttpClient _httpClient;
 
-        public PaymentsController(ILogger<PaymentsController> logger, IWebHostEnvironment environment, APIHelper apiHelper, IConfiguration configuration)
+        public PaymentsController(
+            ILogger<PaymentsController> logger, 
+            IWebHostEnvironment environment, 
+            APIHelper apiHelper, 
+            IConfiguration configuration,
+            HttpClient httpClient)
         {
             _logger = logger;
             _environment = environment;
             _apiHelper = apiHelper;
             _apiBaseUrl = configuration["CashServiceAPIUrl"];
+            _httpClient = httpClient;
+
+            _custId = 1176086;
         }
 
         public IActionResult Index()
         {
             return View();
+        }
+
+        public async Task<IActionResult> GetProviders(CancellationToken cancellationToken)
+        {
+            var url = $"{_apiBaseUrl}/payment-providers-by-custid/{_custId}";
+            var providers = await _httpClient.GetFromJsonAsync<List<ProviderModel>>(url, cancellationToken);
+            return Json(providers);
         }
 
         public async Task<IActionResult> PaymentProviderSettings(int id)
@@ -38,13 +55,6 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             };
 
             return View(provider);
-        }
-
-        public async Task<IActionResult> GetAllProviders()
-        {
-            var url = $"{_apiBaseUrl}/payment-providers";
-            var providers = await _apiHelper.GetAsync<List<ProviderModel>>(url);
-            return Json(providers);
         }
 
         public async Task<IActionResult> GetProviderFees(int id)

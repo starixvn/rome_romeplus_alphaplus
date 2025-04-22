@@ -25,10 +25,10 @@ const api = axios.create({
 
 // API service for payment providers
 export const paymentProviderService = {
-  // Get all payment providers
-  getAllProviders: async (): Promise<PaymentProvider[]> => {
+  // Get payment providers
+  getProviders: async (): Promise<PaymentProvider[]> => {
     try {
-      const response = await api.get<PaymentProvider[]>('GetAllProviders', { method: 'GET' });
+      const response = await api.get<PaymentProvider[]>('GetProviders', { method: 'GET' });
       return response.data;
     } catch (error) {
       console.error('Error fetching payment providers:', error);

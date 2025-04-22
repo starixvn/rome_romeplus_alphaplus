@@ -9,9 +9,9 @@ public static class PaymentsEndpoints
 {
     public static void MapPaymentsEndpoints(this WebApplication app)
     {
-        app.MapGet("/api/payment-providers", async (IPaymentsService service) =>
+        app.MapGet("/api/payment-providers-by-custid/{custId}", async (int custId, IPaymentsService service) =>
         {
-            var providers = await service.GetAllPaymentProviders();
+            var providers = await service.GetAllPaymentProviders(custId);
             return Results.Ok(providers);
         })
         .WithName("GetPaymentProviders")

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Functions>
   <Function Name="Management Payments">
-    <Setting Key="Age_ManagementPayments_SelAllProviders" SpName="Age_ManagementPayments_SelAllProviders" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_CashService_PaymentProvider_Sel" SpName="Age_CashService_PaymentProvider_Sel" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+      <Mapping DataField="ProviderID" ObjectProperty="Id"></Mapping>
+      <Mapping DataField="Provider" ObjectProperty="Name"></Mapping>
+      <Mapping DataField="ProviderStatus" ObjectProperty="Status"></Mapping>
+    </Setting>
+   
+   
     <Setting Key="Age_ManagementPayments_SelProvidersFees" SpName="Age_ManagementPayments_SelProvidersFees" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     <Setting Key="Age_ManagementPayments_SetDailyWithdrawalCount" SpName="Age_ManagementPayments_SetDailyWithdrawalCount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     <Setting Key="Age_ManagementPayments_SelProviderSettings" SpName="Age_ManagementPayments_SelProviderSettings" DbName="DBCust.CustDB.wsv_alp" Plain="0" />

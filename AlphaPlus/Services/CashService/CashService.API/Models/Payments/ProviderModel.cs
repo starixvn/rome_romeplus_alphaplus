@@ -9,6 +9,7 @@ namespace AlphaPlus.CashService.API.Models.Payments
             LastUpdated = DateTime.UtcNow;
             Name = string.Empty;
             Status = 0;
+            CustId = 0;
         }
 
         public int Id { get; set; }
@@ -16,5 +17,6 @@ namespace AlphaPlus.CashService.API.Models.Payments
         public int Status { get; set; }
         public DateTime LastUpdated { get; set; }
         public string LastUpdatedStr => LastUpdated.ToString("MM/dd/yyyy hh:mm:ss tt");
+        public int CustId { get; set; }
     }
 } 
