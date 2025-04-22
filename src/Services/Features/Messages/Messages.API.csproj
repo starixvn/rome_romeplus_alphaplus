@@ -13,7 +13,7 @@
     <PackageReference Include="Fanex.Logging.Sentry" Version="5.0.0.1" />
     <PackageReference Include="Alpha.Announcements" Version="1.0.1" />
     <PackageReference Include="Alpha.Announcements.UplineIdRule" Version="1.0.1" />
-    <PackageReference Include="RestSharp" Version="105.2.3" />
+    <PackageReference Include="RestSharp" Version="106.15.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />

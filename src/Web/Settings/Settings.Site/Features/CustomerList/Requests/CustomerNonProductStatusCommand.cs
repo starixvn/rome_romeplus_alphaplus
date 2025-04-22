@@ -11,7 +11,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
 
         public string StatusName { get; set; }
 
-        public int AgentId { get; set; }
+        public new int AgentId { get; set; }
 
         public override bool IsValid()
         {

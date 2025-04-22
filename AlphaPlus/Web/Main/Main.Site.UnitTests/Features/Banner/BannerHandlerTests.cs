@@ -2,11 +2,10 @@ using AlphaPlus.Core.Models;
 using AlphaPlus.Main.Site.Features.Banner;
 using Microsoft.Extensions.Configuration;
 using Moq;
-using Xunit;
 
 namespace AlphaPlus.Main.Site.UnitTests.Features.Banner
 {
-    public class BannerHandlerTests
+    public class BannerHandlerTests : IAsyncDisposable
     {
         private readonly Mock<IBannerService> _bannerServiceMock;
         private readonly Mock<IUserSession> _userSessionMock;
@@ -34,10 +33,11 @@ namespace AlphaPlus.Main.Site.UnitTests.Features.Banner
             Core.Configurations.ConfigurationManager.Init(_configuration);
         }
 
-        public void Dispose()
+        ValueTask IAsyncDisposable.DisposeAsync()
         {
             // Reset configuration to avoid affecting other tests
             Core.Configurations.ConfigurationManager.Init(null);
+            return ValueTask.CompletedTask;
         }
 
         [Fact]

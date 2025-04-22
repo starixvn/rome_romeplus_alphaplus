@@ -2,10 +2,10 @@
 using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Text;
+using System.Web;
 using AlphaPlus.Features.Messages.API.Configurations;
 using RestSharp;
 using RestSharp.Authenticators;
-using RestSharp.Extensions.MonoHttp;
 
 namespace AlphaPlus.Features.Messages.API.Client.Helpers
 {

@@ -7,7 +7,7 @@ using Moq;
 
 namespace AlphaPlus.Main.Site.UnitTests.Features.Banner
 {
-    public class BannerControllerTests
+    public class BannerControllerTests : IAsyncDisposable
     {
         private readonly Mock<IMediator> _mediatorMock;
         private readonly BannerController _controller;
@@ -33,10 +33,11 @@ namespace AlphaPlus.Main.Site.UnitTests.Features.Banner
             Core.Configurations.ConfigurationManager.Init(_configuration);
         }
 
-        public void Dispose()
+        ValueTask IAsyncDisposable.DisposeAsync()
         {
             // Reset configuration to avoid affecting other tests
             Core.Configurations.ConfigurationManager.Init(null);
+            return ValueTask.CompletedTask;
         }
 
         [Fact]
@@ -77,5 +78,7 @@ namespace AlphaPlus.Main.Site.UnitTests.Features.Banner
             Assert.Same(expectedModel, partialViewResult.Model);
             _mediatorMock.Verify(m => m.Send(query, It.IsAny<CancellationToken>()), Times.Once);
         }
+
+
     }
 }
