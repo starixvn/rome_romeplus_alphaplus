@@ -483,4 +483,7 @@
   <data name="PromotionReport" xml:space="preserve">
     <value>Promotion Report</value>
   </data>
+  <data name="newCashMember" xml:space="preserve">
+    <value>New Cash Member</value>
+  </data>
 </root>
