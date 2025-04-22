@@ -11,8 +11,8 @@ interface DepositData {
   lastName: string;
   amount: number;
   currency: string;
-  from: string;
-  to: string;
+  from: number;
+  to: number;
   referenceNo: string;
   dateTime: string;
 }
@@ -33,27 +33,25 @@ const PendingDeposit: React.FC = () => {
   };
 
   const handleSubmitManualDeposit = (data: {
-    username: string;
-    firstName: string;
-    lastName: string;
-    amount: string;
-    currency: string;
-    from: string;
-    to: string;
-    referenceNo: string;
+    memberLoginName: string;
+    from: number;
+    to: number;
+    depositAmount: number;
+    remarks: string;
+    image?: File;
   }) => {
     // Add the new deposit to the list
     const newDeposit: DepositData = {
       id: deposits.length + 1,
-      username: data.username,
-      loginName: data.username, // Using username as login name for simplicity
-      firstName: data.firstName,
-      lastName: data.lastName,
-      amount: parseFloat(data.amount),
-      currency: data.currency,
+      username: data.memberLoginName,
+      loginName: data.memberLoginName, // Using username as login name for simplicity
+      firstName: "", // No firstName in the form data
+      lastName: "", // No lastName in the form data
+      amount: data.depositAmount,
+      currency: "USD", // Default currency
       from: data.from,
       to: data.to,
-      referenceNo: data.referenceNo,
+      referenceNo: data.remarks,
       dateTime: new Date().toLocaleString(),
     };
     

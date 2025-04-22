@@ -4,9 +4,9 @@ interface ManualDepositFormProps {
   onClose: () => void;
   onSubmit: (data: {
     memberLoginName: string;
-    from: string;
-    to: string;
-    depositAmount: string;
+    from: number;
+    to: number;
+    depositAmount: number;
     remarks: string;
     image?: File;
   }) => void;
@@ -14,8 +14,8 @@ interface ManualDepositFormProps {
 
 const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit }) => {
   const [memberLoginName, setMemberLoginName] = useState('999b20a00001');
-  const [from, setFrom] = useState('12345678');
-  const [to, setTo] = useState('1493993018');
+  const [from, setFrom] = useState(12345678);
+  const [to, setTo] = useState(1493993018);
   const [depositAmount, setDepositAmount] = useState('');
   const [remarks, setRemarks] = useState('');
   const [image, setImage] = useState<File | null>(null);
@@ -26,7 +26,7 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
       memberLoginName,
       from,
       to,
-      depositAmount,
+      depositAmount: parseFloat(depositAmount),
       remarks,
       image: image || undefined
     });
@@ -86,7 +86,7 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
                         <select
                           id="from"
                           value={from}
-                          onChange={(e) => setFrom(e.target.value)}
+                          onChange={(e) => setFrom(parseInt(e.target.value))}
                           className="block w-full rounded-md border border-gray-300 py-2 px-3 text-gray-900 appearance-none focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                         >
                           <option value="12345678">12345678</option>
@@ -114,7 +114,7 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
                         <select
                           id="to"
                           value={to}
-                          onChange={(e) => setTo(e.target.value)}
+                          onChange={(e) => setTo(parseInt(e.target.value))}
                           className="block w-full rounded-md border border-gray-300 py-2 px-3 text-gray-900 appearance-none focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                         >
                           <option value="1493993018">1493993018</option>
