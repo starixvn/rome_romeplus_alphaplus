@@ -4,37 +4,21 @@ import RegistrationLinks from './components/RegistrationLinks';
 import GeneralSettings from './components/GeneralSettings';
 import MessageForm from './components/MessageForm';
 import { memberSitesService } from '../../services/memberSitesAPI';
-import { MemberSiteData, Setting, Domain, MessageData } from '../../types/memberSite';
+import {  Setting, Domain, MessageData, MemberSiteResponse } from '../../types/memberSite';
 import './MemberSiteStyle.css'
 
-const defaultSettings: Setting[] = [
-  {
-    id: 'allowRegistration',
-    name: 'Registration',
-    description: 'Allow member to register',
-    value: false,
-    category: 'Access Control'
-  },
-  {
-    id: 'allowDeposit',
-    name: 'Deposit',
-    description: 'Allow member to deposit',
-    value: false,
-    category: 'Access Control'
-  }
-];
 
 const MemberSiteManagement: React.FC = () => {
-  const [originalData, setOriginalData] = useState<MemberSiteData>({
+  const [originalData, setOriginalData] = useState<MemberSiteResponse>({
     domains: [],
-    settings: defaultSettings,
+    generalSettings: [],
     mobile: '',
     lineId: '',
     announcement: ''
   });
-  const [data, setData] = useState<MemberSiteData>({
+  const [data, setData] = useState<MemberSiteResponse>({
     domains: [],
-    settings: defaultSettings,
+    generalSettings: [],
     mobile: '',
     lineId: '',
     announcement: ''
@@ -62,21 +46,21 @@ const MemberSiteManagement: React.FC = () => {
         status: 'active' as const
       }));
 
-      const transformedSettings = defaultSettings.map(setting => ({
+      const transformedSettings = response.generalSettings.map(setting => ({
         ...setting,
         value: Boolean((response as any)[setting.id])
       }));
 
       setData({
         domains: transformedDomains,
-        settings: transformedSettings,
+        generalSettings: transformedSettings,
         mobile: response.mobile || '',
         lineId: response.lineId || '',
         announcement: response.announcement || ''
       });
       setOriginalData({
         domains: transformedDomains,
-        settings: transformedSettings,
+        generalSettings: transformedSettings,
         mobile: response.mobile || '',
         lineId: response.lineId || '',
         announcement: response.announcement || ''
@@ -93,7 +77,7 @@ const MemberSiteManagement: React.FC = () => {
   const handleSettingChange = (settingId: string, value: boolean) => {
     const newData = {
       ...data,
-      settings: data.settings.map(setting => 
+      generalSettings: data.generalSettings.map((setting: Setting) => 
         setting.id === settingId ? { ...setting, value } : setting
       )
     }
@@ -116,7 +100,7 @@ const MemberSiteManagement: React.FC = () => {
     try {
       setIsSaving(true);
       // Convert our data format back to API format
-      const newData: Partial<MemberSiteData> = {};
+      const newData: Partial<MemberSiteResponse> = {};
 
       const response = await memberSitesService.updateMemberSiteData(newData);
       
@@ -129,15 +113,15 @@ const MemberSiteManagement: React.FC = () => {
         status: 'active' as const
       }));
 
-      const transformedSettings = data.settings.map(setting => ({
+      const transformedSettings = data.generalSettings.map((setting: Setting) => ({
         ...setting,
         value: Boolean((response as any)[setting.id])
       }));
 
-      setData(prev => ({
+      setData((prev: MemberSiteResponse) => ({
         ...prev,
         domains: transformedDomains,
-        settings: transformedSettings
+        generalSettings: transformedSettings
       }));
       setIsDirty(false);
       setError(null);
@@ -157,7 +141,7 @@ const MemberSiteManagement: React.FC = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 p-6">
-        <div className="max-w-5xl mx-auto">
+        <div className="container mx-auto">
           <div className="animate-pulse space-y-6">
             <div className="h-8 bg-gray-200 rounded w-1/4"></div>
             <div className="h-[600px] bg-gray-200 rounded"></div>
@@ -198,7 +182,7 @@ const MemberSiteManagement: React.FC = () => {
 
             <div className="border-b-2 border-gray-200 pb-6">
               <GeneralSettings 
-                settings={data.settings}
+                settings={data.generalSettings}
                 onSettingsChange={handleSettingChange}
               />
             </div>

@@ -20,9 +20,10 @@ export interface MessageData {
   announcement?: string;
 }
 
-export interface MemberSiteData {
+
+export interface MemberSiteResponse {
   domains: Domain[];
-  settings: Setting[];
+  generalSettings: Setting[];
   mobile: string;
   lineId: string;
   announcement: string;

@@ -1,6 +1,6 @@
 import { api } from '../config/axios';
 import { AxiosError } from 'axios';
-import { MemberSiteData } from '../types/memberSite';
+import { MemberSiteResponse } from '../types/memberSite';
 // Declare the cashServiceAPIUrl property on the Window interface
 declare global {
   interface Window {
@@ -34,9 +34,9 @@ class MemberSitesService {
     throw new Error(message);
   }
 
-  async getMemberSiteData(): Promise<MemberSiteData> {
+  async getMemberSiteData(): Promise<MemberSiteResponse> {
     try {
-      const { data } = await api.get<MemberSiteData>(this.BASE_PATH);
+      const { data } = await api.get<MemberSiteResponse>(this.BASE_PATH);
       return data;
     } catch (error) {
       if (error instanceof AxiosError) {
@@ -50,9 +50,9 @@ class MemberSitesService {
     }
   }
 
-  async updateMemberSiteData(data: Partial<MemberSiteData>): Promise<MemberSiteData> {
+  async updateMemberSiteData(data: Partial<MemberSiteResponse>): Promise<MemberSiteResponse> {
     try {
-      const { data: responseData } = await api.put<MemberSiteData>(
+      const { data: responseData } = await api.put<MemberSiteResponse>(
         this.BASE_PATH,
         data
       );
@@ -65,14 +65,15 @@ class MemberSitesService {
     }
   }
 
-  private getDefaultMemberSiteData(): MemberSiteData {
-    return {
+  private getDefaultMemberSiteData(): MemberSiteResponse {
+    const defualtMemberSiteData: MemberSiteResponse = {
       domains: [],
-      settings: [],
+      generalSettings: [],
       mobile: '',
       lineId: '',
-      announcement: ''
+      announcement: '',
     };
+    return defualtMemberSiteData;
   }
 }
 
