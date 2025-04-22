@@ -5,9 +5,10 @@ WORKDIR /app
 EXPOSE 8080
 
 # Install dependencies based on the preferred package manager
-COPY AlphaPlus/Web/Assets/package.json ./
-COPY AlphaPlus/Web/Assets/yarn.lock ./
-RUN --mount=type=cache,target=/root/.yarn yarn --frozen-lockfile
+COPY AlphaPlus/Web/Assets/package.json AlphaPlus/Web/Assets/yarn.lock ./
+RUN --mount=type=cache,target=/root/.yarn \
+    --mount=type=cache,target=/root/.cache/yarn \
+    yarn install --frozen-lockfile --prefer-offline
 
 FROM hub.nexdev.net/base/node:18.16-alpine AS builder
 WORKDIR /app

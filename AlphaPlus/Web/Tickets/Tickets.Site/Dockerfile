@@ -18,7 +18,8 @@ COPY "AlphaPlus/Services/Tickets/Results/AlphaPlus.Results.csproj" "AlphaPlus/Se
 COPY "AlphaPlus/Web/Tickets/BetLists.Builders/BetLists.Builders.csproj" "AlphaPlus/Web/Tickets/BetLists.Builders/BetLists.Builders.csproj"
 COPY "AlphaPlus/Web/Tickets/Tickets.Site/Tickets.Site.csproj" "AlphaPlus/Web/Tickets/Tickets.Site/Tickets.Site.csproj"
 COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
-RUN dotnet restore "AlphaPlus/Web/Tickets/Tickets.Site/Tickets.Site.csproj" --packages /root/.nuget/packages -v d
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet restore "AlphaPlus/Web/Tickets/Tickets.Site/Tickets.Site.csproj" -v d
 
 COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo" "AlphaPlus/Modules/AlphaPlus.RequestInfo"
 COPY "AlphaPlus/Modules/AlphaPlus.Core" "AlphaPlus/Modules/AlphaPlus.Core"
@@ -62,7 +63,17 @@ fi
 
 WORKDIR /src/AlphaPlus/Web/Tickets/Tickets.Site
 
-RUN yarn && gulp default
+# copy package files for better caching
+COPY "AlphaPlus/Web/Tickets/Tickets.Site/package.json" "AlphaPlus/Web/Tickets/Tickets.Site/package.json"
+COPY "AlphaPlus/Web/Tickets/Tickets.Site/yarn.lock" "AlphaPlus/Web/Tickets/Tickets.Site/yarn.lock"
+
+RUN --mount=type=cache,target=/root/.yarn \
+    --mount=type=cache,target=/root/.cache/yarn \
+    --mount=type=cache,target=/src/AlphaPlus/Web/Tickets/Tickets.Site/node_modules \  
+    yarn config set cache-folder /root/.cache/yarn && \
+    yarn install --frozen-lockfile && \
+    gulp default
+
 RUN dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine-25h1 AS base
@@ -72,10 +83,6 @@ RUN adduser --disabled-password \
   --home /app \
   --gecos '' dotnetuser && chown -R dotnetuser /app && chown -R dotnetuser /tmp
 USER dotnetuser
-
-# cache nuget
-WORKDIR /root
-COPY --from=builder /root/.nuget ./.nuget
 
 # final stage/image
 ENV COMPlus_EnableDiagnostics=0

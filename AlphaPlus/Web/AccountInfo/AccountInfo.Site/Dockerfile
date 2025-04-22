@@ -10,9 +10,11 @@ COPY "AlphaPlus/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj" "AlphaPlus/Modules
 COPY "AlphaPlus/Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj" "AlphaPlus/Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj"
 COPY "AlphaPlus/Web/AccountInfo/AccountInfo.Site/AccountInfo.Site.csproj" "AlphaPlus/Web/AccountInfo/AccountInfo.Site/AccountInfo.Site.csproj"
 
-# restore NuGet packages
 COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
-RUN dotnet restore "AlphaPlus/Web/AccountInfo/AccountInfo.Site/AccountInfo.Site.csproj" --packages /root/.nuget/packages -v d
+
+# Restore NuGet packages with cache
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet restore "AlphaPlus/Web/AccountInfo/AccountInfo.Site/AccountInfo.Site.csproj" -v d
 
 # copy all source code
 COPY "AlphaPlus/Modules/AlphaPlus.Logging" "AlphaPlus/Modules/AlphaPlus.Logging"
@@ -31,21 +33,31 @@ RUN if [ "${TRANSFORM_CONFIG}" = "" ]; then cp -r AlphaPlus/Shared/Configuration
 
 RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp -r AlphaPlus/Shared/Configuration/sharedSettings.${TRANSFORM_CONFIG}.json AlphaPlus/Web/AccountInfo/AccountInfo.Site/sharedSettings.json; fi
 
-WORKDIR /src/AlphaPlus/Web/AccountInfo/AccountInfo.Site
+# Copy package files for better caching
+COPY "AlphaPlus/Web/AccountInfo/AccountInfo.Site/ClientApp/package.json" "AlphaPlus/Web/AccountInfo/AccountInfo.Site/ClientApp/package.json"
+COPY "AlphaPlus/Web/AccountInfo/AccountInfo.Site/ClientApp/yarn.lock" "AlphaPlus/Web/AccountInfo/AccountInfo.Site/ClientApp/yarn.lock"
 
+WORKDIR /src/AlphaPlus/Web/AccountInfo/AccountInfo.Site/ClientApp
+# Install, build and copy dist files
+RUN --mount=type=cache,target=/root/.yarn \
+    --mount=type=cache,target=/root/.cache/yarn \
+    --mount=type=cache,target=/src/AlphaPlus/Web/AccountInfo/AccountInfo.Site/ClientApp/node_modules \
+    yarn config set cache-folder /root/.cache/yarn && \
+    yarn install --frozen-lockfile --prefer-offline && \
+    yarn build && \
+    mkdir -p /src/AlphaPlus/Web/AccountInfo/AccountInfo.Site/wwwroot && \
+    cp -r dist/* /src/AlphaPlus/Web/AccountInfo/AccountInfo.Site/wwwroot
+
+WORKDIR /src/AlphaPlus/Web/AccountInfo/AccountInfo.Site
 RUN dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine-25h1 AS final
 
-# Don’t run as root
+# Don't run as root
 RUN adduser --disabled-password \
   --home /app \
   --gecos '' dotnetuser && chown -R dotnetuser /app && chown -R dotnetuser /tmp
 USER dotnetuser
-
-# cache nuget
-WORKDIR /root
-COPY --from=builder /root/.nuget ./.nuget
 
 # final stage/image
 ENV COMPlus_EnableDiagnostics=0

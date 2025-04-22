@@ -14,7 +14,8 @@ COPY "AlphaPlus/Services/Features/Handbook/Handbook.API.csproj" "AlphaPlus/Servi
 COPY "AlphaPlus/Web/Features/Features.Site/Features.Site.csproj" "AlphaPlus/Web/Features/Features.Site/Features.Site.csproj"
 
 COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
-RUN dotnet restore "AlphaPlus/Web/Features/Features.Site/Features.Site.csproj" --packages /root/.nuget/packages -v d
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet restore "AlphaPlus/Web/Features/Features.Site/Features.Site.csproj" -v d
 
 # copy src files
 COPY "AlphaPlus/Shared" "AlphaPlus/Shared"
@@ -39,7 +40,18 @@ RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp -r AlphaPlus/Shared/Configuratio
 
 WORKDIR /src/AlphaPlus/Web/Features/Features.Site
 
-RUN yarn && yarn build
+# Copy package files for better caching
+COPY "AlphaPlus/Web/Features/Features.Site/package.json" "AlphaPlus/Web/Features/Features.Site/package.json"
+COPY "AlphaPlus/Web/Features/Features.Site/yarn.lock" "AlphaPlus/Web/Features/Features.Site/yarn.lock"
+
+# Install yarn dependencies and build
+RUN --mount=type=cache,target=/root/.yarn \
+    --mount=type=cache,target=/root/.cache/yarn \
+    --mount=type=cache,target=/src/AlphaPlus/Web/Features/Features.Site/node_modules \
+    yarn config set cache-folder /root/.cache/yarn && \
+    yarn install --frozen-lockfile && \
+    yarn build
+
 RUN dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine-25h1 AS final
@@ -49,10 +61,6 @@ RUN adduser --disabled-password \
   --home /app \
   --gecos '' dotnetuser && chown -R dotnetuser /app && chown -R dotnetuser /tmp
 USER dotnetuser
-
-# cache nuget
-WORKDIR /root
-COPY --from=builder /root/.nuget ./.nuget
 
 # final stage/image
 ENV COMPlus_EnableDiagnostics=0

@@ -14,7 +14,8 @@ COPY "AlphaPlus/Web/Main/Main.Site/Main.Site.csproj" "AlphaPlus/Web/Main/Main.Si
 
 # restore NuGet packages
 COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
-RUN dotnet restore "AlphaPlus/Web/Main/Main.Site/Main.Site.csproj" --packages /root/.nuget/packages -v d
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet restore "AlphaPlus/Web/Main/Main.Site/Main.Site.csproj" -v d
 
 # copy all source code
 COPY "AlphaPlus/Shared" "AlphaPlus/Shared"
@@ -67,7 +68,18 @@ RUN if [ "$TRANSFORM_CONFIG" != "" ]; \
 
 WORKDIR /src/AlphaPlus/Web/Main/Main.Site
 
-RUN yarn && yarn build
+# copy package files for better caching
+COPY "AlphaPlus/Web/Main/Main.Site/package.json" "AlphaPlus/Web/Main/Main.Site/package.json"
+COPY "AlphaPlus/Web/Main/Main.Site/yarn.lock" "AlphaPlus/Web/Main/Main.Site/yarn.lock"
+
+# Install yarn dependencies and build
+RUN --mount=type=cache,target=/root/.yarn \
+    --mount=type=cache,target=/root/.cache/yarn \
+    --mount=type=cache,target=/src/AlphaPlus/Web/Main/Main.Site/node_modules \
+    yarn config set cache-folder /root/.cache/yarn && \
+    yarn install --frozen-lockfile && \
+    yarn build
+
 RUN dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine-25h1 AS base
@@ -77,10 +89,6 @@ RUN adduser --disabled-password \
   --home /app \
   --gecos '' dotnetuser && chown -R dotnetuser /app && chown -R dotnetuser /tmp
 USER dotnetuser
-
-# cache nuget
-WORKDIR /root
-COPY --from=builder /root/.nuget ./.nuget
 
 # final stage/image
 ENV COMPlus_EnableDiagnostics=0
