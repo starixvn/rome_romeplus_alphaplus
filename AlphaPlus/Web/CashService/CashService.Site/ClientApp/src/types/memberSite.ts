@@ -28,14 +28,3 @@ export interface MemberSiteData {
   announcement: string;
   [key: string]: Domain[] | Setting[] | string;
 }
-
-export interface ApiData {
-  domains: Array<{
-    url: string;
-    qrCode?: string;
-  }>;
-  mobile: string;
-  lineId: string;
-  announcement: string;
-  [key: string]: any;
-} 

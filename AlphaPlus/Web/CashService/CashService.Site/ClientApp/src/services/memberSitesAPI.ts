@@ -1,6 +1,6 @@
 import { api } from '../config/axios';
 import { AxiosError } from 'axios';
-
+import { MemberSiteData } from '../types/memberSite';
 // Declare the cashServiceAPIUrl property on the Window interface
 declare global {
   interface Window {
@@ -13,22 +13,8 @@ interface ErrorResponse {
   [key: string]: any;
 }
 
-export interface Domain {
-  url: string;
-  qrCode: string;
-}
-
-export interface MemberSiteData {
-  domains: Domain[];
-  allowRegistration: boolean;
-  allowDeposit: boolean;
-  mobile: string;
-  lineId: string;
-  announcement: string;
-}
-
 class MemberSitesService {
-  private readonly BASE_PATH = '/member-site-info';
+  private readonly BASE_PATH = 'api/management';
 
   private handleError(error: AxiosError<ErrorResponse>): never {
     let message = 'An error occurred';
@@ -64,7 +50,7 @@ class MemberSitesService {
     }
   }
 
-  async updateMemberSiteData(data: MemberSiteData): Promise<MemberSiteData> {
+  async updateMemberSiteData(data: Partial<MemberSiteData>): Promise<MemberSiteData> {
     try {
       const { data: responseData } = await api.put<MemberSiteData>(
         this.BASE_PATH,
@@ -82,8 +68,7 @@ class MemberSitesService {
   private getDefaultMemberSiteData(): MemberSiteData {
     return {
       domains: [],
-      allowRegistration: false,
-      allowDeposit: false,
+      settings: [],
       mobile: '',
       lineId: '',
       announcement: ''

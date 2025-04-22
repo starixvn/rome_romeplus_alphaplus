@@ -8,12 +8,13 @@ interface DomainCardProps {
   onDownloadQRCode?: () => void;
 }
 
-const DomainCard: React.FC<DomainCardProps> = ({ domain, className = '', onDownloadQRCode, index }) => {
+const DomainCard: React.FC<DomainCardProps> = ({ domain, className = '', index }) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(domain.url);
+      console.log("copied",copied);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {

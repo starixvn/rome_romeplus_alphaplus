@@ -4,7 +4,7 @@ import RegistrationLinks from './components/RegistrationLinks';
 import GeneralSettings from './components/GeneralSettings';
 import MessageForm from './components/MessageForm';
 import { memberSitesService } from '../../services/memberSitesAPI';
-import { MemberSiteData, Setting, Domain, ApiData, MessageData } from '../../types/memberSite';
+import { MemberSiteData, Setting, Domain, MessageData } from '../../types/memberSite';
 import './MemberSiteStyle.css'
 
 const defaultSettings: Setting[] = [
@@ -64,7 +64,7 @@ const MemberSiteManagement: React.FC = () => {
 
       const transformedSettings = defaultSettings.map(setting => ({
         ...setting,
-        value: Boolean(response[setting.id])
+        value: Boolean((response as any)[setting.id])
       }));
 
       setData({
@@ -116,18 +116,9 @@ const MemberSiteManagement: React.FC = () => {
     try {
       setIsSaving(true);
       // Convert our data format back to API format
-      const apiData: ApiData = {
-        domains: data.domains.map(({ url, qrCode }) => ({ url, qrCode })),
-        mobile: data.mobile,
-        lineId: data.lineId,
-        announcement: data.announcement,
-        ...data.settings.reduce((acc, setting) => ({
-          ...acc,
-          [setting.id]: setting.value
-        }), {})
-      };
+      const newData: Partial<MemberSiteData> = {};
 
-      const response = await memberSitesService.updateMemberSiteData(apiData);
+      const response = await memberSitesService.updateMemberSiteData(newData);
       
       // Transform API response back to our data format
       const transformedDomains: Domain[] = response.domains.map(domain => ({
@@ -140,7 +131,7 @@ const MemberSiteManagement: React.FC = () => {
 
       const transformedSettings = data.settings.map(setting => ({
         ...setting,
-        value: Boolean(response[setting.id])
+        value: Boolean((response as any)[setting.id])
       }));
 
       setData(prev => ({
