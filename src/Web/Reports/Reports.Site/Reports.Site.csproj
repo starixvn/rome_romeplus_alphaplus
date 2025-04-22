@@ -29,7 +29,7 @@
     <PackageReference Include="Fanex.BetList.Core.RemotingRef" Version="2.0.0.2" />
     <PackageReference Include="Fanex.Common" Version="1.1.2.1" />
     <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
-    <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.6" />
+    <PackageReference Include="Fanex.Logging.Sentry" Version="5.0.0.1" />
     <PackageReference Include="MediatR" Version="12.3.0" />
     <PackageReference Include="ONEbook.SpreadSheets.BetListNPOI" Version="2.0.0-netstandard01" />
     <PackageReference Include="System.Text.Encodings.Web" Version="4.5.1" />

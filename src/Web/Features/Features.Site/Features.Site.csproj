@@ -18,10 +18,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.7" />
-    <PackageReference Include="Fanex.Data.SqlServer" Version="4.2.5.3" />
+    <PackageReference Include="Fanex.Data.SqlServer" Version="4.3.3" />
     <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
-    <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.6" />
-    <PackageReference Include="Fanex.RemotingRef" Version="1.5.4" />
+    <PackageReference Include="Fanex.Logging.Sentry" Version="5.0.0.1" />
+    <PackageReference Include="Fanex.RemotingRef" Version="1.5.5.1" />
     <PackageReference Include="MediatR" Version="12.3.0" />
     <PackageReference Include="Alpha.Announcements" Version="1.0.1" />
     <PackageReference Include="Alpha.Announcements.UplineIdRule" Version="1.0.1" />

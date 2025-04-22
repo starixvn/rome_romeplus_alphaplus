@@ -9,7 +9,7 @@ public class WinLossDetailGetDataViewModel(
     WinLossDetailGetDataQuery message,
     EnteredResultSport totalEnteredResults,
     ReportData<WinLossDetailModel> reportData,
-    IEnumerable<Breadcrumb> breadcrumbs)
+    IEnumerable<Reports.Features.Shared.Models.Breadcrumb> breadcrumbs)
 {
     public UserLevel CustLevel { get; } = message.CustLevel;
 
@@ -25,5 +25,5 @@ public class WinLossDetailGetDataViewModel(
 
     public ReportData<WinLossDetailModel> ReportData { get; } = reportData;
 
-    public IEnumerable<Breadcrumb> Breadcrumbs { get; } = breadcrumbs;
+    public IEnumerable<Reports.Features.Shared.Models.Breadcrumb> Breadcrumbs { get; } = breadcrumbs;
 }

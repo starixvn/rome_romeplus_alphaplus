@@ -2,15 +2,15 @@ using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.Customer;
 using AlphaPlus.Reports.Features.EnteredResult;
+using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLossDetail;
+using AlphaPlus.Reports.Site.Features.Customer;
 using AlphaPlus.Reports.Site.Features.Shared;
+using AlphaPlus.Reports.Site.Features.Shared.Helpers;
+using AlphaPlus.Shared.AppResources.Report;
 using MediatR;
 using Microsoft.Extensions.Options;
-using AlphaPlus.Shared.AppResources.Report;
-using AlphaPlus.Reports.Site.Features.Customer;
-using AlphaPlus.Reports.Features.Products;
-using AlphaPlus.Reports.Site.Features.Shared.Helpers;
 
 namespace AlphaPlus.Reports.Site.Features.WinLossDetail;
 
@@ -118,10 +118,10 @@ public class WinLossDetailHandler(
         return winlossDetailService.GetWinLossDetail(param);
     }
 
-    private async Task<(bool, IEnumerable<Breadcrumb>)> BuildWinLossDetailGetDataQuery(WinLossDetailGetDataQuery message)
+    private async Task<(bool, IEnumerable<Reports.Features.Shared.Models.Breadcrumb>)> BuildWinLossDetailGetDataQuery(WinLossDetailGetDataQuery message)
     {
         var isValidUsername = true;
-        IEnumerable<Breadcrumb> breadcrumbs = null;
+        IEnumerable<Reports.Features.Shared.Models.Breadcrumb> breadcrumbs = null;
 
         if (!string.IsNullOrWhiteSpace(message.Username))
         {
@@ -154,7 +154,7 @@ public class WinLossDetailHandler(
             }
             else
             {
-                breadcrumbs = [new Breadcrumb(message.ViewerId, message.CustName, message.ViewerLevelId)];
+                breadcrumbs = [new Reports.Features.Shared.Models.Breadcrumb(message.ViewerId, message.CustName, message.ViewerLevelId)];
             }
         }
 

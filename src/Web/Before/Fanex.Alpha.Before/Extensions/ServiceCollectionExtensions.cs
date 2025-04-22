@@ -44,7 +44,7 @@ public static class ServiceCollectionExtensions
         {
             logEngines.Add(new SentryLogging(new SentryEngineOptions
             {
-                Dsn = new Dsn(sentryUrl)
+                Dsn = sentryUrl
             }));
         }
 

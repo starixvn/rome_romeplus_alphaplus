@@ -1,15 +1,14 @@
-using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
 
 namespace AlphaPlus.Reports.Site.Features.Shared.Helpers;
 
 public static class BreadcrumbHelper
 {
-    public static IEnumerable<Breadcrumb> BuildBreadcrumbs(BaseQuery message)
+    public static IEnumerable<Reports.Features.Shared.Models.Breadcrumb> BuildBreadcrumbs(BaseQuery message)
     {
-        var breadcrumbs = new List<Breadcrumb>();
+        var breadcrumbs = new List<Reports.Features.Shared.Models.Breadcrumb>();
 
-        if (JsonHelper.TryParse<Breadcrumb[]>(message.BreadcrumbsJson, out var breadcrumbList) && breadcrumbList != null)
+        if (JsonHelper.TryParse<Reports.Features.Shared.Models.Breadcrumb[]>(message.BreadcrumbsJson, out var breadcrumbList) && breadcrumbList != null)
         {
             foreach (var item in breadcrumbList)
             {
@@ -22,7 +21,7 @@ public static class BreadcrumbHelper
             }
         }
 
-        breadcrumbs.Add(new Breadcrumb(message.CustId, message.CustName, message.CustLevelId));
+        breadcrumbs.Add(new Reports.Features.Shared.Models.Breadcrumb(message.CustId, message.CustName, message.CustLevelId));
 
         return breadcrumbs;
     }

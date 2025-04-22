@@ -89,7 +89,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance
         {
             get
             {
-                var custInfos = new List<BreadcrumbLevel>
+                var custInfos = new List<ViewModels.BreadcrumbLevel>
                 {
                     new(account.SuperId, account.SuperName, 4),
                     new(account.MasterId, account.MasterName, 3),

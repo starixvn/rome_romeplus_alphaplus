@@ -1,7 +1,6 @@
 using System.Text.Json;
 using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.WinLoss;
-using AlphaPlus.Tickets.Site.Features.Shared.Models;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 
@@ -18,10 +17,10 @@ public class WinLossWeekSelectionViewModel(
     string[] excludingTicketStatus = null)
         : WinLossViewModel(message, betListData, builder, ticketHelper, showContributionAmountRoundNote, isGroupHeadline, showMemberName, excludingTicketStatus, showFooter: true)
 {
-    public IEnumerable<Breadcrumb> BreadcrumbLevels { get; }
+    public IEnumerable<Shared.Models.Breadcrumb> BreadcrumbLevels { get; }
         = string.IsNullOrWhiteSpace(message.BreadcrumbsJson)
         ? []
-        : JsonSerializer.Deserialize<IEnumerable<Breadcrumb>>(message.BreadcrumbsJson, new JsonSerializerOptions
+        : JsonSerializer.Deserialize<IEnumerable<Shared.Models.Breadcrumb>>(message.BreadcrumbsJson, new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true
         });
