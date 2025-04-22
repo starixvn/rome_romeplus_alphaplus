@@ -5,6 +5,7 @@ import { ResultModel } from './interfaces/ResultModel';
 import { PaymentMethod } from './interfaces/PaymentMethod';
 import { Bank } from './interfaces/Bank';
 import { BankAccount } from './interfaces/BankAccount';
+import { PaymentTransactionLimit } from './interfaces/PaymentTransactionLimit';
 
 // Declare the cashServiceAPIUrl property on the Window interface
 declare global {
@@ -149,6 +150,17 @@ export const paymentProviderService = {
       return response.data;
     } catch (error) {
       console.error(`Error deleting bank account ${bankAccountId}:`, error);
+      throw error;
+    }
+  },
+
+  // Set transaction limit for a payment provider or bank account
+  setTransactionLimit: async (custId: number, limit: PaymentTransactionLimit): Promise<ResultModel> => {
+    try {
+      const response = await api.post(`/set-transaction-limit?custId=${custId}`, limit);
+      return response.data;
+    } catch (error) {
+      console.error('Error setting transaction limit:', error);
       throw error;
     }
   },

@@ -20,6 +20,7 @@ public interface IPaymentsService
     Task<IEnumerable<BankModel>> GetAllBanks();
     Task<IEnumerable<BankAccountModel>> GetBankAccounts(int custId, int bankId, int transactionType, int status, string searchText);
     Task<ResultModel> DeleteBankAccount(int accountId);
+    Task<ResultModel> SetTransactionLimit(int custId, TransactionLimitModel limit);
 }
 
 public class PaymentsService : IPaymentsService
@@ -195,6 +196,26 @@ public class PaymentsService : IPaymentsService
             // var result = await _repository.ExecuteNonQueryAsync(new DeleteBankAccountCriteria(accountId));
 
             return new ResultModel("0", "Bank account deleted successfully");
+        }
+        catch (Exception ex)
+        {
+            return new ResultModel("1", ex.Message);
+        }
+    }
+
+    public async Task<ResultModel> SetTransactionLimit(int custId, TransactionLimitModel limit)
+    {
+        try
+        {
+            if (custId <= 0)
+            {
+                return new ResultModel("1", "Invalid customer ID");
+            }
+
+            // TODO: Implement actual database update logic
+            // var result = await _repository.ExecuteNonQueryAsync(new SetTransactionLimitCriteria(custId, limit, transactionType));
+
+            return new ResultModel("0", "Transaction limit updated successfully");
         }
         catch (Exception ex)
         {

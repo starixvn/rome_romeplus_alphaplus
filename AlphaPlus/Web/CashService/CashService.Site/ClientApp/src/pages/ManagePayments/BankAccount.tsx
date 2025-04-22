@@ -4,6 +4,7 @@ import { Bank } from '../../services/interfaces/Bank';
 import type { BankAccount } from '../../services/interfaces/BankAccount';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { TRANSACTION_TYPES, STATUS_OPTIONS } from '../../constants/paymentConstants';
+import SetTransactionLimitModal from './SetTransactionLimitModal';
 
 const BankAccount: React.FC = () => {
   const { t: tManagePayments } = useTranslation('managePayments');
@@ -19,6 +20,7 @@ const BankAccount: React.FC = () => {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [deleting, setDeleting] = useState<number | null>(null);
+  const [showSetLimitModal, setShowSetLimitModal] = useState(false);
 
   const fetchBankAccounts = async () => {
     try {
@@ -70,8 +72,20 @@ const BankAccount: React.FC = () => {
   };
 
   const handleSetLimit = () => {
-    // TODO: Implement set limit functionality
-    console.log('Set limit clicked');
+    setShowSetLimitModal(true);
+  };
+
+  const handleCloseSetLimitModal = () => {
+    setShowSetLimitModal(false);
+  };
+
+  const handleSaveSetLimit = () => {
+    setShowSetLimitModal(false);
+    setSuccessMessage(tManagePayments('limitSetSuccess'));
+    // Clear success message after 3 seconds
+    setTimeout(() => {
+      setSuccessMessage(null);
+    }, 3000);
   };
 
   const handleEditBankAccount = (accountId: number) => {
@@ -323,6 +337,14 @@ const BankAccount: React.FC = () => {
         <div className="alert alert-info mt-4" role="alert">
           {tGlobal('noData')}
         </div>
+      )}
+
+      {showSetLimitModal && (
+        <SetTransactionLimitModal
+          onClose={handleCloseSetLimitModal}
+          onSave={handleSaveSetLimit}
+          custId={1} // TODO: Replace with actual customer ID
+        />
       )}
     </div>
   );

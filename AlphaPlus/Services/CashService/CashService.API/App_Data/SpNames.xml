@@ -12,10 +12,11 @@
   
     <Setting Key="Age_ManagementPayments_SelAllBanks" SpName="Age_ManagementPayments_SelAllBanks" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     <Setting Key="Age_ManagementPayments_SelBankAccounts" SpName="Age_ManagementPayments_SelBankAccounts" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-    <Setting Key="Age_ManagementPayments_AddBankAccount" SpName="Age_ManagementPayments_AddBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-    <Setting Key="Age_ManagementPayments_SetTransactionLimit" SpName="Age_ManagementPayments_SetTransactionLimit" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-    <Setting Key="Age_ManagementPayments_UpdBankAccount" SpName="Age_ManagementPayments_UpdBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     <Setting Key="Age_ManagementPayments_DelBankAccount" SpName="Age_ManagementPayments_DelBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_ManagementPayments_SetTransactionLimit" SpName="Age_ManagementPayments_SetTransactionLimit" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    
+    <Setting Key="Age_ManagementPayments_AddBankAccount" SpName="Age_ManagementPayments_AddBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_ManagementPayments_UpdBankAccount" SpName="Age_ManagementPayments_UpdBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     <Setting Key="Age_ManagementPayments_SetupBankCreator" SpName="Age_ManagementPayments_SetupBankCreator" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
   </Function>
 </Functions>

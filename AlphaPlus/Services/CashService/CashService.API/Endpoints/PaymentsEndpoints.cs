@@ -163,5 +163,26 @@ public static class PaymentsEndpoints
             Summary = "Delete bank account",
             Description = "Deletes a specific bank account by its ID"
         });
+
+        app.MapPost("/api/set-transaction-limit", async (int custId, HttpRequest request, IPaymentsService service) =>
+        {
+            using var reader = new StreamReader(request.Body);
+            var body = await reader.ReadToEndAsync();
+            var limit = JsonConvert.DeserializeObject<TransactionLimitModel>(body);
+            
+            if (limit == null)
+            {
+                return Results.BadRequest("Invalid transaction limit data");
+            }
+
+            var result = await service.SetTransactionLimit(custId, limit);
+            return Results.Ok(result);
+        })
+        .WithName("SetTransactionLimit")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Set transaction limit",
+            Description = "Sets transaction limits for a specific customer"
+        });
     }
 } 
