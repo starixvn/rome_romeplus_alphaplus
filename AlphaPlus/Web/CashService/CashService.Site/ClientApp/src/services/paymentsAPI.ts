@@ -36,6 +36,28 @@ export const paymentProviderService = {
     }
   },
   
+  // Get daily withdrawal count for a customer
+  getDailyWithdrawalCount: async (): Promise<number> => {
+    try {
+      const response = await api.get(`GetDailyWithdrawalCount`, { method: 'GET' });
+      return response.data;
+    } catch (error) {
+      console.error('Error getting daily withdrawal count:', error);
+      throw error;
+    }
+  },
+  
+  // Set daily withdrawal count for a customer
+  setDailyWithdrawalCount: async (count: number): Promise<ResultModel> => {
+    try {
+      const response = await api.post(`SetDailyWithdrawalCount`, { count });
+      return response.data;
+    } catch (error) {
+      console.error('Error setting daily withdrawal count:', error);
+      throw error;
+    }
+  },
+  
   // Get fees for a specific payment provider
   getProviderFees: async (providerId: number): Promise<PaymentProviderFeeGroup[]> => {
     try {
@@ -47,16 +69,6 @@ export const paymentProviderService = {
     }
   },
   
-  // Set daily withdrawal count for a customer
-  setDailyWithdrawalCount: async (custId: number, count: number): Promise<ResultModel> => {
-    try {
-      const response = await api.post(`/set-daily-withdrawal-count?custId=${custId}&count=${count}`);
-      return response.data;
-    } catch (error) {
-      console.error('Error setting daily withdrawal count:', error);
-      throw error;
-    }
-  },
   
   // Get settings for a specific payment provider
   getProviderSettings: async (providerId: number, method: number, status: number, transactionType: number): Promise<any> => {

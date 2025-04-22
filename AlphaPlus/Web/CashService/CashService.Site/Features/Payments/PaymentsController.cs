@@ -3,6 +3,7 @@ using AlphaPlus.CashService.Site.Features.Payments.Models;
 using AlphaPlus.CashService.Site.Helpers;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
+using AlphaPlus.CashService.Site.Features.Payments.Requests;
 
 namespace AlphaPlus.CashService.Site.Features.Payments
 {
@@ -43,6 +44,26 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             return Json(providers);
         }
 
+        public async Task<IActionResult> GetDailyWithdrawalCount(CancellationToken cancellationToken)
+        {
+            var url = $"{_apiBaseUrl}/get-daily-withdrawal-count/{_custId}";
+            var result = await _httpClient.GetFromJsonAsync<int>(url, cancellationToken);
+            return Json(result);
+        }
+
+        public async Task<IActionResult> SetDailyWithdrawalCount(
+            [FromBody] SetDailyWithdrawalCountRequest request,
+            CancellationToken cancellationToken)
+        {
+            var url = $"{_apiBaseUrl}/set-daily-withdrawal-count";
+            request.CustId = _custId;
+
+            var response = await _httpClient.PostAsJsonAsync(url, request, cancellationToken);
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadFromJsonAsync<ResultModel>(cancellationToken: cancellationToken);
+            return Json(result);
+        }
+
         public async Task<IActionResult> PaymentProviderSettings(int id)
         {
             var url = $"{_apiBaseUrl}/payment-providers/{id}";
@@ -62,13 +83,6 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             var url = $"{_apiBaseUrl}/payment-provider-fees/{id}";
             var fees = await _apiHelper.GetAsync<List<ProviderFeeGroupModel>>(url);
             return Json(fees);
-        }
-
-        public async Task<IActionResult> SetDailyWithdrawalCount(int custId, int count)
-        {
-            var url = $"{_apiBaseUrl}/set-daily-withdrawal-count";
-            var result = await _apiHelper.PostAsync<ResultModel>(url, new { custId, count });
-            return Json(result);
         }
     }
 }

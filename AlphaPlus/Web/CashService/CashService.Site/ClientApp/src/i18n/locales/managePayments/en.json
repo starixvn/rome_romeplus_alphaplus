@@ -6,6 +6,9 @@
   "setDailyWithdrawalCount": "Set daily withdrawal count",
   "setDailyWithdrawalCountForYourMembers": "Set daily withdrawal amount for your members",
   "setLimit": "Set limit",
+  "setLimitSuccess": "Set limit successfully",
+
+  
   "managePaymentProviders": "Manage payment providers",
   "provider": "Provider",
   "fee": "Fee",

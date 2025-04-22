@@ -6,15 +6,27 @@ import { paymentProviderService } from '../../services/paymentsAPI';
 interface SetDailyLimitPopupModalProps {
   onClose: () => void;
   onSave: (dailyLimit: number) => void;
-  custId: number;
 }
 
-const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClose, onSave, custId }) => {
+const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClose, onSave }) => {
   const { t } = useTranslation(['managePayments', 'global']);
   const [dailyLimit, setDailyLimit] = React.useState<number>(0);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string>('');
   const [successMessage, setSuccessMessage] = React.useState<string>('');
+
+  React.useEffect(() => {
+    const loadDailyWithdrawalCount = async () => {
+      try {
+        const count = await paymentProviderService.getDailyWithdrawalCount();
+        setDailyLimit(count);
+      } catch (err) {
+        setError(t('global:errorOccurred'));
+      }
+    };
+
+    loadDailyWithdrawalCount();
+  }, [t]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,13 +35,15 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
     setSuccessMessage('');
 
     try {
-      const response = await paymentProviderService.setDailyWithdrawalCount(custId, dailyLimit);
-      setSuccessMessage(response.message);
+      const response = await paymentProviderService.setDailyWithdrawalCount(dailyLimit);
       if (response.isSuccessful) {
+        setSuccessMessage(t('managePayments:setLimitSuccess'));
         onSave(dailyLimit);
         setTimeout(() => {
           onClose();
         }, 3000);
+      } else {
+        setError(response.message);
       }
     } catch (err) {
       setError(t('global:errorOccurred'));
@@ -55,7 +69,7 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
                 <label htmlFor="dailyLimit" className="form-label">{t('managePayments:dailyWithdrawalCount')}</label>
               </div>
               <input
-                type="number"
+                type="text"
                 className="form-control"
                 id="dailyLimit"
                 value={dailyLimit}

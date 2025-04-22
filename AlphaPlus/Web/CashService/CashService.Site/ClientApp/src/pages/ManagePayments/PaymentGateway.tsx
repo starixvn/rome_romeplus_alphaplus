@@ -6,13 +6,6 @@ import FeePopupModal from './FeePopupModal';
 import DailyLimitPopupModal from './SetDailyLimitPopupModal';
 import './PaymentGateway.css';
 
-// Extend Window interface to include custId
-declare global {
-  interface Window {
-    custId: number;
-  }
-}
-
 interface PaymentGatewayProps {
   // Add props here as needed
 }
@@ -172,11 +165,9 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
 
         {/* Daily Limit Popup Modal */}
         {showDailyLimitPopup && (
-          <DailyLimitPopupModal
-            onClose={handleCloseDailyLimitPopup}
-            onSave={handleSaveDailyLimit}
-            custId={window.custId}
-          />
+          <DailyLimitPopupModal 
+            onClose={handleCloseDailyLimitPopup} 
+            onSave={handleSaveDailyLimit} />
         )}
       </div>
     </div>

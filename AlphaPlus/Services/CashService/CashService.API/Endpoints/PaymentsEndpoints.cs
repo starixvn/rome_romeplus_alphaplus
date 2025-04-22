@@ -1,6 +1,6 @@
-using Microsoft.AspNetCore.Http.HttpResults;
 using AlphaPlus.CashService.API.Services;
 using AlphaPlus.CashService.API.Models.Payments;
+using AlphaPlus.CashService.API.Requests;
 using Newtonsoft.Json;
 
 namespace AlphaPlus.CashService.API.Endpoints;
@@ -19,6 +19,39 @@ public static class PaymentsEndpoints
         {
             Summary = "Get all payment providers",
             Description = "Returns a list of all available payment providers"
+        });
+
+        app.MapGet("/api/get-daily-withdrawal-count/{custId}", async (int custId, IPaymentsService service) =>
+        {
+            var count = await service.GetDailyWithdrawalCount(custId);
+            return Results.Ok(count);
+        })
+        .WithName("GetDailyWithdrawalCount")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Get daily withdrawal count",
+            Description = "Returns the daily withdrawal count for a specific customer"
+        });
+
+        app.MapPost("/api/set-daily-withdrawal-count", async (HttpRequest request, IPaymentsService service) =>
+        {
+            using var reader = new StreamReader(request.Body);
+            var body = await reader.ReadToEndAsync();
+            var withdrawalRequest = JsonConvert.DeserializeObject<SetDailyWithdrawalCountRequest>(body);
+            
+            if (withdrawalRequest == null)
+            {
+                return Results.BadRequest("Invalid request data");
+            }
+
+            var result = await service.SetDailyWithdrawalCount(withdrawalRequest.CustId, withdrawalRequest.Count);
+            return Results.Ok(result);
+        })
+        .WithName("SetDailyWithdrawalCount")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Set daily withdrawal count",
+            Description = "Sets the daily withdrawal count for a specific customer"
         });
 
         app.MapGet("/api/payment-providers/{providerId}", async (int providerId, IPaymentsService service) =>
@@ -43,18 +76,6 @@ public static class PaymentsEndpoints
         {
             Summary = "Get payment provider fees",
             Description = "Returns the fees for a specific payment provider"
-        });
-
-        app.MapPost("/api/set-daily-withdrawal-count", async (int custId, int count, IPaymentsService service) =>
-        {
-            var result = await service.SetDailyWithdrawalCount(custId, count);
-            return Results.Ok(result);
-        })
-        .WithName("SetDailyWithdrawalCount")
-        .WithOpenApi(operation => new(operation)
-        {
-            Summary = "Set daily withdrawal count",
-            Description = "Sets the daily withdrawal count for a specific customer"
         });
 
         app.MapGet("/api/payment-provider-settings", async (int providerId, int method, int status, int transactionType, IPaymentsService service) =>

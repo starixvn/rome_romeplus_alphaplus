@@ -2,9 +2,9 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Criteria.Payments
 {
-    public class GetPaymentProvidersCriteria : CriteriaBase
+    public class GetProvidersCriteria : CriteriaBase
     {
-        public GetPaymentProvidersCriteria(int custId)
+        public GetProvidersCriteria(int custId)
         {
             CustId = custId;
         }
