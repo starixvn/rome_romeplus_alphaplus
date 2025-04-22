@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const createAxiosInstance = () => {
   const instance = axios.create({
-    baseURL: "http://localhost:5000",//window.cashServiceAPIUrl,
+    baseURL: "http://localhost:5100",//window.cashServiceAPIUrl,
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'

@@ -24,8 +24,8 @@ public class MemberSitesController : Controller
         return View();
     }
 
-    [HttpGet("api/management")]
-    public async Task<ActionResult<MemberSiteManagementModel>> GetMemberSiteManagement(CancellationToken cancellationToken)
+    [HttpGet]
+    public async Task<ActionResult<MemberSiteManagementModel>> MemberSiteManagement(CancellationToken cancellationToken)
     {
         try
         {
@@ -39,7 +39,7 @@ public class MemberSitesController : Controller
         }
     }
 
-    [HttpPut("api/management")]
+    [HttpPut]
     public async Task<ActionResult<MemberSiteManagementModel>> MemberSiteManagement([FromBody] MemberSiteManagementModel model, CancellationToken cancellationToken)
     {
         if (!ModelState.IsValid)
