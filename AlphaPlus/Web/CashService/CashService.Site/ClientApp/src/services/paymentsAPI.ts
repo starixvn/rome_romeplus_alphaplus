@@ -3,6 +3,8 @@ import { PaymentProvider } from './interfaces/PaymentProvider';
 import { PaymentProviderFeeGroup } from './interfaces/PaymentProviderFeeGroup';
 import { ResultModel } from './interfaces/ResultModel';
 import { PaymentMethod } from './interfaces/PaymentMethod';
+import { Bank } from './interfaces/Bank';
+import { BankAccount } from './interfaces/BankAccount';
 
 // Declare the cashServiceAPIUrl property on the Window interface
 declare global {
@@ -90,6 +92,44 @@ export const paymentProviderService = {
       return response.data;
     } catch (error) {
       console.error('Error fetching payment methods:', error);
+      return [];
+    }
+  },
+  
+  // Get all banks
+  getAllBanks: async (): Promise<Bank[]> => {
+    try {
+      const response = await api.get<Bank[]>('/banks', { method: 'GET' });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching banks:', error);
+      return [];
+    }
+  },
+  
+  // Get bank accounts with optional filters
+  getBankAccounts: async (
+    custId: number,
+    transactionType: number,
+    bankId?: number,
+    accountNumber?: string,
+    accountHolderName?: string,
+    status?: number
+  ): Promise<BankAccount[]> => {
+    try {
+      const params = new URLSearchParams();
+      params.append('custId', custId.toString());
+      params.append('transactionType', transactionType.toString());
+      
+      if (bankId !== undefined) params.append('bankId', bankId.toString());
+      if (accountNumber) params.append('accountNumber', accountNumber);
+      if (accountHolderName) params.append('accountHolderName', accountHolderName);
+      if (status !== undefined) params.append('status', status.toString());
+      
+      const response = await api.get<BankAccount[]>(`/bank-accounts?${params.toString()}`, { method: 'GET' });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching bank accounts:', error);
       return [];
     }
   },

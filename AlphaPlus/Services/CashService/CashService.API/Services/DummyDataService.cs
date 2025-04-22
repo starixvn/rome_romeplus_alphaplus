@@ -164,4 +164,66 @@ public class DummyDataService
             }
         };
     }
+
+    public static async Task<IEnumerable<BankModel>> GetDummyBanks()
+    {
+        return new List<BankModel>
+        {
+            new BankModel
+            {
+                Id = 1,
+                Name = "Bank of America"
+            },
+            new BankModel
+            {
+                Id = 2,
+                Name = "Chase"
+            },
+            new BankModel
+            {
+                Id = 3,
+                Name = "Wells Fargo"
+            },
+            new BankModel
+            {
+                Id = 4,
+                Name = "Citibank"
+            },
+            new BankModel
+            {
+                Id = 5,
+                Name = "HSBC"
+            }
+        };
+    }
+
+    public static async Task<IEnumerable<BankAccountModel>> GetDummyBankAccounts(int custId, int transactionType)
+    {
+        var banks = await GetDummyBanks();
+        return new List<BankAccountModel>
+        {
+            new BankAccountModel
+            {
+                Id = 1,
+                AccountNumber = "1234567890",
+                AccountNickname = "Primary Account",
+                AccountHolderName = "John Doe",
+                TransactionType = transactionType,
+                Status = BankStatusConstants.Active,
+                Bank = banks.First(),
+                LastUpdated = DateTime.UtcNow
+            },
+            new BankAccountModel
+            {
+                Id = 2,
+                AccountNumber = "0987654321",
+                AccountNickname = "Secondary Account",
+                AccountHolderName = "John Doe",
+                TransactionType = transactionType,
+                Status = BankStatusConstants.Active,
+                Bank = banks.Skip(1).First(),
+                LastUpdated = DateTime.UtcNow.AddDays(-1)
+            }
+        };
+    }
 } 

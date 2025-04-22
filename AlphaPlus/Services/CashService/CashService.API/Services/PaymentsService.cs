@@ -17,6 +17,8 @@ public interface IPaymentsService
     Task<ResultModel> AddPaymentProviderSetting(ProviderSettingsModel setting);
     Task<IEnumerable<PaymentMethodModel>> GetAllPaymentMethods();
     Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod);
+    Task<IEnumerable<BankModel>> GetAllBanks();
+    Task<IEnumerable<BankAccountModel>> GetBankAccounts(int custId, int transactionType, int? status = null, string accountName = null, string accountNumber = null, int? bankId = null);
 }
 
 public class PaymentsService : IPaymentsService
@@ -155,5 +157,28 @@ public class PaymentsService : IPaymentsService
         {
             return new ResultModel("1", ex.Message);
         }
+    }
+
+    public async Task<IEnumerable<BankModel>> GetAllBanks()
+    {
+        // var result = await _repository.FetchAsync<BankModel>(new GetAllBanksCriteria());
+        var banks = await DummyDataService.GetDummyBanks();
+        
+        return banks;
+    }
+
+    public async Task<IEnumerable<BankAccountModel>> GetBankAccounts(
+        int custId, 
+        int transactionType, 
+        int? status = null, 
+        string accountName = null, 
+        string accountNumber = null, 
+        int? bankId = null)
+    {
+        // TODO: Implement actual database query
+        // var result = await _repository.FetchAsync<BankAccountModel>(new GetBankAccountsCriteria(custId, transactionType, status, accountName, accountNumber, bankId));
+        var accounts = await DummyDataService.GetDummyBankAccounts(custId, transactionType);
+        
+        return accounts;
     }
 } 

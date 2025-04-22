@@ -121,5 +121,36 @@ public static class PaymentsEndpoints
             Summary = "Add payment method",
             Description = "Adds a new payment method to the system"
         });
+
+        app.MapGet("/api/banks", async (IPaymentsService service) =>
+        {
+            var banks = await service.GetAllBanks();
+            return Results.Ok(banks);
+        })
+        .WithName("GetAllBanks")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Get all banks",
+            Description = "Returns a list of all available banks"
+        });
+
+        app.MapGet("/api/bank-accounts", async (
+            int custId, 
+            string transactionType,
+            IPaymentsService service,
+            int? bankId = null,
+            string? accountNumber = null,
+            string? accountHolderName = null,
+            int? status = null) =>
+        {
+            var bankAccounts = await service.GetBankAccounts(custId, transactionType, bankId, accountNumber, accountHolderName, status);
+            return Results.Ok(bankAccounts);
+        })
+        .WithName("GetBankAccounts")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Get bank accounts",
+            Description = "Returns a list of bank accounts for a specific customer and transaction type with optional filtering by bank, account number, account holder name, and status"
+        });
     }
 } 

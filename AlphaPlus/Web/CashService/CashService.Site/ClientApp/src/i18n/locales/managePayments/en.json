@@ -45,5 +45,13 @@
   "setUpPaymentMethods1": "Step 1: Select transaction type and payment method",
   "agreeTermsAndConditions": "I agree to contact the provider directly for any transaction-related issues, including but not limit to duplicate charges, failed transaction, incorrect billing, missing funds or transactions, or chargebacks.",
   "setUpLater": "Set up later",
-  "next": "Next"
+  "next": "Next",
+
+  "manageBankAccountAndLimits": "Manage bank account and Limits",
+  "addBankAccountAndLimit": "Add bank account and customize transaction limit preferences for your members",
+  "addBankAccount": "Add bank account", 
+  "accountNickname": "Account nickname",
+  "accountHolderName": "Account holder name", 
+  "bankAccountNumber": "Bank account number", 
+  "searchAccountNumberOrName": "Search account number or name"
 } 

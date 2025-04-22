@@ -6,10 +6,11 @@ import 'tippy.js/dist/tippy.css';
 import '../../i18n/i18n';
 import './ManagePayments.css';
 import PaymentGateway from './PaymentGateway';
+import BankAccount from './BankAccount';
 
 function ManagePayments() {
   const { t } = useTranslation('managePayments');
-  const [activeTab, setActiveTab] = React.useState('paymentGateway');
+  const [activeTab, setActiveTab] = React.useState('bankAccount');
 
   return (
     <div className="container">
@@ -65,8 +66,7 @@ function ManagePayments() {
           )}
           {activeTab === 'bankAccount' && (
             <div className="bank-account-content">
-              {/* Bank Account content will go here */}
-              <p>Bank Account content</p>
+              <BankAccount />
             </div>
           )}
         </div>
