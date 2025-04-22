@@ -110,21 +110,18 @@ export const paymentProviderService = {
   // Get bank accounts with optional filters
   getBankAccounts: async (
     custId: number,
+    bankId: number,
     transactionType: number,
-    bankId?: number,
-    accountNumber?: string,
-    accountHolderName?: string,
-    status?: number
+    status: number,
+    searchText: string,
   ): Promise<BankAccount[]> => {
     try {
       const params = new URLSearchParams();
       params.append('custId', custId.toString());
+      params.append('bankId', bankId.toString());
       params.append('transactionType', transactionType.toString());
-      
-      if (bankId !== undefined) params.append('bankId', bankId.toString());
-      if (accountNumber) params.append('accountNumber', accountNumber);
-      if (accountHolderName) params.append('accountHolderName', accountHolderName);
-      if (status !== undefined) params.append('status', status.toString());
+      params.append('status', status.toString());
+      params.append('searchText', searchText);
       
       const response = await api.get<BankAccount[]>(`/bank-accounts?${params.toString()}`, { method: 'GET' });
       return response.data;
@@ -141,6 +138,17 @@ export const paymentProviderService = {
       return response.data;
     } catch (error) {
       console.error('Error adding payment method:', error);
+      throw error;
+    }
+  },
+  
+  // Delete a bank account
+  deleteBankAccount: async (bankAccountId: number): Promise<ResultModel> => {
+    try {
+      const response = await api.delete(`/bank-accounts/${bankAccountId}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Error deleting bank account ${bankAccountId}:`, error);
       throw error;
     }
   },

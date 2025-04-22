@@ -10,22 +10,25 @@ const BankAccount: React.FC = () => {
   const { t: tGlobal } = useTranslation('global');
   const [banks, setBanks] = useState<Bank[]>([]);
   const [bankAccounts, setBankAccounts] = useState<BankAccount[]>([]);
-  const [selectedBank, setSelectedBank] = useState<string>('');
-  const [selectedTransactionType, setSelectedTransactionType] = useState<string>('');
-  const [selectedStatus, setSelectedStatus] = useState<string>('');
+  const [selectedBank, setSelectedBank] = useState<string>('0');
+  const [selectedTransactionType, setSelectedTransactionType] = useState<string>('0');
+  const [selectedStatus, setSelectedStatus] = useState<string>('0');
+  const [searchInput, setSearchInput] = useState<string>('');
+  const [searchText, setSearchText] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [deleting, setDeleting] = useState<number | null>(null);
 
   const fetchBankAccounts = async () => {
     try {
       setLoading(true);
       const fetchedBankAccounts = await paymentProviderService.getBankAccounts(
         1, // TODO: Replace with actual customer ID
+        parseInt(selectedBank) ,
         parseInt(selectedTransactionType),
-        selectedBank ? parseInt(selectedBank) : undefined,
-        undefined, // accountNumber
-        undefined, // accountHolderName
-        selectedStatus ? parseInt(selectedStatus) : undefined
+        parseInt(selectedStatus),
+        searchText
       );
       setBankAccounts(fetchedBankAccounts);
       setError(null);
@@ -59,7 +62,7 @@ const BankAccount: React.FC = () => {
     if (banks.length > 0) {
       fetchBankAccounts();
     }
-  }, [selectedBank, selectedTransactionType, selectedStatus]);
+  }, [selectedBank, selectedTransactionType, selectedStatus, searchText]);
 
   const handleAddBankAccount = () => {
     // TODO: Implement add bank account functionality
@@ -76,9 +79,28 @@ const BankAccount: React.FC = () => {
     console.log('Edit bank account clicked for account:', accountId);
   };
 
-  const handleDeleteBankAccount = (accountId: number) => {
-    // TODO: Implement delete bank account functionality
-    console.log('Delete bank account clicked for account:', accountId);
+  const handleDeleteBankAccount = async (accountId: number) => {
+    try {
+      setDeleting(accountId);
+      setError(null);
+      setSuccessMessage(null);
+      const result = await paymentProviderService.deleteBankAccount(accountId);
+      if (result.isSuccessful) {
+        setSuccessMessage(result.message);
+
+        // Add a 3-second delay before refreshing the list
+        await new Promise(resolve => setTimeout(resolve, 3000));
+        // Refresh the bank accounts list after successful deletion
+        await fetchBankAccounts();
+      } else {
+        setError(result.message || tManagePayments('failedToDeleteBankAccount'));
+      }
+    } catch (err) {
+      setError(tManagePayments('failedToDeleteBankAccount'));
+      console.error('Error deleting bank account:', err);
+    } finally {
+      setDeleting(null);
+    }
   };
 
   const handleBankChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -93,8 +115,18 @@ const BankAccount: React.FC = () => {
     setSelectedStatus(event.target.value);
   };
 
-  const getTransactionTypeName = (typeId: string) => {
-    const type = TRANSACTION_TYPES.find(t => t.id.toString() === typeId);
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(event.target.value);
+  };
+
+  const handleSearchKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      setSearchText(searchInput);
+    }
+  };
+
+  const getTransactionTypeName = (typeId: number) => {
+    const type = TRANSACTION_TYPES.find(t => t.id === typeId);
     return type ? type.name : typeId;
   };
 
@@ -133,6 +165,12 @@ const BankAccount: React.FC = () => {
         </div>
       )}
 
+      {successMessage && (
+        <div className="alert alert-success" role="alert">
+          {successMessage}
+        </div>
+      )}
+
       {!loading && !error && banks.length === 0 && (
         <div className="alert alert-info" role="alert">
           {tGlobal('noData')}
@@ -140,64 +178,79 @@ const BankAccount: React.FC = () => {
       )}
 
       {!loading && !error && banks.length > 0 && (
-        <div className="row">
-          <div className="col-md-4">
-            <div className="form-group mb-3">
-              <label htmlFor="bankSelect" className="form-label">{tManagePayments('bankName')}</label>
-              <select
-                id="bankSelect"
-                className="form-select"
-                value={selectedBank}
-                onChange={handleBankChange}
-              >
-                <option value="">{tGlobal('select')}</option>
-                {banks.map((bank) => (
-                  <option key={bank.id} value={bank.id}>
-                    {bank.name}
-                  </option>
-                ))}
-              </select>
+        <>
+          <div className="row">
+            <div className="col-md-4">
+              <div className="form-group mb-3">
+                <label htmlFor="bankSelect" className="form-label">{tManagePayments('bank')}</label>
+                <select
+                  id="bankSelect"
+                  className="form-select"
+                  value={selectedBank}
+                  onChange={handleBankChange}
+                >
+                  <option key="0" value="0">{tGlobal('all')}</option>
+                  {banks.map((bank) => (
+                    <option key={bank.id} value={bank.id}>
+                      {bank.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
-          </div>
 
-          <div className="col-md-4">
-            <div className="form-group mb-3">
-              <label htmlFor="transactionTypeSelect" className="form-label">{tManagePayments('transactionType')}</label>
-              <select
-                id="transactionTypeSelect"
-                className="form-select"
-                value={selectedTransactionType}
-                onChange={handleTransactionTypeChange}
-              >
-                <option value="">{tGlobal('select')}</option>
-                {TRANSACTION_TYPES.map((type) => (
-                  <option key={type.id} value={type.id}>
-                    {type.name}
-                  </option>
-                ))}
-              </select>
+            <div className="col-md-4">
+              <div className="form-group mb-3">
+                <label htmlFor="transactionTypeSelect" className="form-label">{tManagePayments('transactionType')}</label>
+                <select
+                  id="transactionTypeSelect"
+                  className="form-select"
+                  value={selectedTransactionType}
+                  onChange={handleTransactionTypeChange}
+                >
+                  {TRANSACTION_TYPES.map((type) => (
+                    <option key={type.id} value={type.id}>
+                      {type.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
-          </div>
 
-          <div className="col-md-4">
-            <div className="form-group mb-3">
-              <label htmlFor="statusSelect" className="form-label">{tManagePayments('status')}</label>
-              <select
-                id="statusSelect"
-                className="form-select"
-                value={selectedStatus}
-                onChange={handleStatusChange}
-              >
-                <option value="">{tGlobal('select')}</option>
-                {STATUS_OPTIONS.map((status) => (
-                  <option key={status.id} value={status.id}>
-                    {status.name}
-                  </option>
-                ))}
-              </select>
+            <div className="col-md-4">
+              <div className="form-group mb-3">
+                <label htmlFor="statusSelect" className="form-label">{tManagePayments('status')}</label>
+                <select
+                  id="statusSelect"
+                  className="form-select"
+                  value={selectedStatus}
+                  onChange={handleStatusChange}
+                >
+                  {STATUS_OPTIONS.map((status) => (
+                    <option key={status.id} value={status.id}>
+                      {status.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
           </div>
-        </div>
+          <div className="row mb-3">
+            <div className="col-md-12">
+              <div className="form-group">
+                <input
+                  type="text"
+                  id="searchInput"
+                  className="form-control"
+                  placeholder={tManagePayments('searchAccountPlaceholder')}
+                  value={searchInput}
+                  onChange={handleSearchChange}
+                  onKeyDown={handleSearchKeyDown}
+                />
+              </div>
+            </div>
+          </div>
+        </>
       )}
 
       {!loading && !error && bankAccounts.length > 0 && (
@@ -205,7 +258,7 @@ const BankAccount: React.FC = () => {
           <table className="table table-striped table-hover">
             <thead>
               <tr>
-                <th>{tManagePayments('action')}</th>
+                <th>{tGlobal('action')}</th>
                 <th>{tManagePayments('accountNickname')}</th>
                 <th>{tManagePayments('bank')}</th>
                 <th>{tManagePayments('accountHolderName')}</th>
@@ -232,9 +285,19 @@ const BankAccount: React.FC = () => {
                         className="btn btn-sm btn-outline-danger"
                         onClick={() => handleDeleteBankAccount(account.id)}
                         title={tManagePayments('delete')}
+                        disabled={deleting === account.id}
                       >
-                        {tGlobal('delete')}
-                        <i className="bi bi-trash"></i>
+                        {deleting === account.id ? (
+                          <>
+                            {tGlobal('deleting')}
+                            <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                          </>
+                        ) : (
+                          <>
+                            {tGlobal('delete')}
+                            <i className="bi bi-trash"></i>
+                          </>
+                        )}
                       </button>
                     </div>
                   </td>

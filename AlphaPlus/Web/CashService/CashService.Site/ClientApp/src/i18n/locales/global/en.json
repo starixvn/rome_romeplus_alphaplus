@@ -14,5 +14,7 @@
     "updateSuccess": "Update successful",
     "updateFailed": "Update failed",
     "underMaintenance": "Under Maintenance",
-    "select": "Select"
+    "select": "Select",
+    "all": "All",
+    "deleting": "Deleting..."
 } 

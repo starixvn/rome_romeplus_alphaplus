@@ -18,7 +18,8 @@ public interface IPaymentsService
     Task<IEnumerable<PaymentMethodModel>> GetAllPaymentMethods();
     Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod);
     Task<IEnumerable<BankModel>> GetAllBanks();
-    Task<IEnumerable<BankAccountModel>> GetBankAccounts(int custId, int transactionType, int? status = null, string accountName = null, string accountNumber = null, int? bankId = null);
+    Task<IEnumerable<BankAccountModel>> GetBankAccounts(int custId, int bankId, int transactionType, int status, string searchText);
+    Task<ResultModel> DeleteBankAccount(int accountId);
 }
 
 public class PaymentsService : IPaymentsService
@@ -169,16 +170,35 @@ public class PaymentsService : IPaymentsService
 
     public async Task<IEnumerable<BankAccountModel>> GetBankAccounts(
         int custId, 
+        int bankId, 
         int transactionType, 
-        int? status = null, 
-        string accountName = null, 
-        string accountNumber = null, 
-        int? bankId = null)
+        int status, 
+        string searchText)
     {
         // TODO: Implement actual database query
-        // var result = await _repository.FetchAsync<BankAccountModel>(new GetBankAccountsCriteria(custId, transactionType, status, accountName, accountNumber, bankId));
+        // var result = await _repository.FetchAsync<BankAccountModel>(new GetBankAccountsCriteria(custId, bankId, transactionType, status, searchText));
         var accounts = await DummyDataService.GetDummyBankAccounts(custId, transactionType);
         
         return accounts;
+    }
+    
+    public async Task<ResultModel> DeleteBankAccount(int accountId)
+    {
+        try
+        {
+            if (accountId <= 0)
+            {
+                return new ResultModel("1", "Invalid account ID");
+            }
+
+            // TODO: Implement actual database delete logic
+            // var result = await _repository.ExecuteNonQueryAsync(new DeleteBankAccountCriteria(accountId));
+
+            return new ResultModel("0", "Bank account deleted successfully");
+        }
+        catch (Exception ex)
+        {
+            return new ResultModel("1", ex.Message);
+        }
     }
 } 

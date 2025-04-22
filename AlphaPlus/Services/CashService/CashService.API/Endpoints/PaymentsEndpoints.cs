@@ -136,14 +136,13 @@ public static class PaymentsEndpoints
 
         app.MapGet("/api/bank-accounts", async (
             int custId, 
-            string transactionType,
             IPaymentsService service,
-            int? bankId = null,
-            string? accountNumber = null,
-            string? accountHolderName = null,
-            int? status = null) =>
+            int bankId,
+            int transactionType,
+            int status,
+            string searchText) =>
         {
-            var bankAccounts = await service.GetBankAccounts(custId, transactionType, bankId, accountNumber, accountHolderName, status);
+            var bankAccounts = await service.GetBankAccounts(custId, bankId, transactionType, status, searchText);
             return Results.Ok(bankAccounts);
         })
         .WithName("GetBankAccounts")
@@ -151,6 +150,18 @@ public static class PaymentsEndpoints
         {
             Summary = "Get bank accounts",
             Description = "Returns a list of bank accounts for a specific customer and transaction type with optional filtering by bank, account number, account holder name, and status"
+        });
+
+        app.MapDelete("/api/bank-accounts/{accountId}", async (int accountId, IPaymentsService service) =>
+        {
+            var result = await service.DeleteBankAccount(accountId);
+            return Results.Ok(result);
+        })
+        .WithName("DeleteBankAccount")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Delete bank account",
+            Description = "Deletes a specific bank account by its ID"
         });
     }
 } 
