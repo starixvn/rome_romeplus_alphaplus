@@ -16,5 +16,7 @@
     "underMaintenance": "Under Maintenance",
     "select": "Select",
     "all": "All",
-    "deleting": "Deleting..."
+    "deleting": "Deleting...",
+    "on": "On",
+    "off": "Off"
 } 

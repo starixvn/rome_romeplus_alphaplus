@@ -5,6 +5,8 @@ import type { BankAccount } from '../../services/interfaces/BankAccount';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { TRANSACTION_TYPES, STATUS_OPTIONS } from '../../constants/paymentConstants';
 import SetTransactionLimitModal from './SetTransactionLimitModal';
+import AddBankAccountComponent from './AddBankAccountComponent';
+import UpdateBankAccountComponent from './UpdateBankAccountComponent';
 
 const BankAccount: React.FC = () => {
   const { t: tManagePayments } = useTranslation('managePayments');
@@ -21,6 +23,9 @@ const BankAccount: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [deleting, setDeleting] = useState<number | null>(null);
   const [showSetLimitModal, setShowSetLimitModal] = useState(false);
+  const [showAddBankAccountModal, setShowAddBankAccountModal] = useState(false);
+  const [showUpdateBankAccountModal, setShowUpdateBankAccountModal] = useState(false);
+  const [selectedBankAccount, setSelectedBankAccount] = useState<BankAccount | null>(null);
 
   const fetchBankAccounts = async () => {
     try {
@@ -67,8 +72,7 @@ const BankAccount: React.FC = () => {
   }, [selectedBank, selectedTransactionType, selectedStatus, searchText]);
 
   const handleAddBankAccount = () => {
-    // TODO: Implement add bank account functionality
-    console.log('Add bank account clicked');
+    setShowAddBankAccountModal(true);
   };
 
   const handleSetLimit = () => {
@@ -84,8 +88,22 @@ const BankAccount: React.FC = () => {
   };
 
   const handleEditBankAccount = (accountId: number) => {
-    // TODO: Implement edit bank account functionality
-    console.log('Edit bank account clicked for account:', accountId);
+    const account = bankAccounts.find(acc => acc.id === accountId);
+    if (account) {
+      setSelectedBankAccount(account);
+      setShowUpdateBankAccountModal(true);
+    }
+  };
+
+  const handleCloseUpdateBankAccountModal = () => {
+    setShowUpdateBankAccountModal(false);
+    setSelectedBankAccount(null);
+  };
+
+  const handleSaveUpdateBankAccount = () => {
+    setShowUpdateBankAccountModal(false);
+    setSelectedBankAccount(null);
+    fetchBankAccounts();
   };
 
   const handleDeleteBankAccount = async (accountId: number) => {
@@ -139,207 +157,233 @@ const BankAccount: React.FC = () => {
     return type ? type.name : typeId;
   };
 
+  const handleCloseAddBankAccountModal = () => {
+    setShowAddBankAccountModal(false);
+  };
+
+  const handleSaveAddBankAccount = () => {
+    setShowAddBankAccountModal(false);
+    fetchBankAccounts();
+  };
+
   return (
     <div className="bank-account-container">
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <h2 className="h4 mb-0">{tManagePayments('manageBankAccountAndLimits')}</h2>
-        <label>{tManagePayments('addBankAccountAndLimit')}</label>
-        <div className="d-flex gap-2">
-          <button 
-            className="btn btn-primary"
-            onClick={handleAddBankAccount}
-          >
-            {tManagePayments('addBankAccount')}
-          </button>
-          <button 
-            className="btn btn-secondary"
-            onClick={handleSetLimit}
-          >
-            {tManagePayments('setLimit')}
-          </button>
-        </div>
-      </div>
-
-      {loading && (
-        <div className="text-center">
-          <div className="spinner-border" role="status">
-            <span className="visually-hidden">{tGlobal('loading')}</span>
-          </div>
-        </div>
-      )}
-
-      {error && (
-        <div className="alert alert-danger" role="alert">
-          {error}
-        </div>
-      )}
-
-      {successMessage && (
-        <div className="alert alert-success" role="alert">
-          {successMessage}
-        </div>
-      )}
-
-      {!loading && !error && banks.length === 0 && (
-        <div className="alert alert-info" role="alert">
-          {tGlobal('noData')}
-        </div>
-      )}
-
-      {!loading && !error && banks.length > 0 && (
-        <>
-          <div className="row">
-            <div className="col-md-4">
-              <div className="form-group mb-3">
-                <label htmlFor="bankSelect" className="form-label">{tManagePayments('bank')}</label>
-                <select
-                  id="bankSelect"
-                  className="form-select"
-                  value={selectedBank}
-                  onChange={handleBankChange}
-                >
-                  <option key="0" value="0">{tGlobal('all')}</option>
-                  {banks.map((bank) => (
-                    <option key={bank.id} value={bank.id}>
-                      {bank.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className="col-md-4">
-              <div className="form-group mb-3">
-                <label htmlFor="transactionTypeSelect" className="form-label">{tManagePayments('transactionType')}</label>
-                <select
-                  id="transactionTypeSelect"
-                  className="form-select"
-                  value={selectedTransactionType}
-                  onChange={handleTransactionTypeChange}
-                >
-                  {TRANSACTION_TYPES.map((type) => (
-                    <option key={type.id} value={type.id}>
-                      {type.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className="col-md-4">
-              <div className="form-group mb-3">
-                <label htmlFor="statusSelect" className="form-label">{tManagePayments('status')}</label>
-                <select
-                  id="statusSelect"
-                  className="form-select"
-                  value={selectedStatus}
-                  onChange={handleStatusChange}
-                >
-                  {STATUS_OPTIONS.map((status) => (
-                    <option key={status.id} value={status.id}>
-                      {status.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-          </div>
-          <div className="row mb-3">
-            <div className="col-md-12">
-              <div className="form-group">
-                <input
-                  type="text"
-                  id="searchInput"
-                  className="form-control"
-                  placeholder={tManagePayments('searchAccountPlaceholder')}
-                  value={searchInput}
-                  onChange={handleSearchChange}
-                  onKeyDown={handleSearchKeyDown}
-                />
-              </div>
-            </div>
-          </div>
-        </>
-      )}
-
-      {!loading && !error && bankAccounts.length > 0 && (
-        <div className="table-responsive mt-4">
-          <table className="table table-striped table-hover">
-            <thead>
-              <tr>
-                <th>{tGlobal('action')}</th>
-                <th>{tManagePayments('accountNickname')}</th>
-                <th>{tManagePayments('bank')}</th>
-                <th>{tManagePayments('accountHolderName')}</th>
-                <th>{tManagePayments('bankAccountNumber')}</th>
-                <th>{tManagePayments('transactionType')}</th>
-                <th>{tManagePayments('status')}</th>
-                <th>{tManagePayments('lastUpdated')}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {bankAccounts.map((account) => (
-                <tr key={account.id}>
-                  <td>
-                    <div className="d-flex gap-2">
-                      <button 
-                        className="btn btn-sm btn-outline-primary"
-                        onClick={() => handleEditBankAccount(account.id)}
-                        title={tManagePayments('edit')}
-                      >
-                        {tGlobal('edit')}
-                        <i className="bi bi-pencil"></i>
-                      </button>
-                      <button 
-                        className="btn btn-sm btn-outline-danger"
-                        onClick={() => handleDeleteBankAccount(account.id)}
-                        title={tManagePayments('delete')}
-                        disabled={deleting === account.id}
-                      >
-                        {deleting === account.id ? (
-                          <>
-                            {tGlobal('deleting')}
-                            <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                          </>
-                        ) : (
-                          <>
-                            {tGlobal('delete')}
-                            <i className="bi bi-trash"></i>
-                          </>
-                        )}
-                      </button>
-                    </div>
-                  </td>
-                  <td>{account.accountNickname}</td>
-                  <td>{account.bank.name}</td>
-                  <td>{account.accountHolderName}</td>
-                  <td>{account.accountNumber}</td>
-                  <td>{getTransactionTypeName(account.transactionType)}</td>
-                  <td>
-                    <span className={`badge ${account.status === 1 ? 'bg-success' : 'bg-danger'}`}>
-                      {account.status === 1 ? tManagePayments('active') : tManagePayments('inactive')}
-                    </span>
-                  </td>
-                  <td>{account.lastUpdatedStr}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-
-      {!loading && !error && bankAccounts.length === 0 && (
-        <div className="alert alert-info mt-4" role="alert">
-          {tGlobal('noData')}
-        </div>
-      )}
-
-      {showSetLimitModal && (
-        <SetTransactionLimitModal
-          onClose={handleCloseSetLimitModal}
-          onSave={handleSaveSetLimit}
-          custId={1} // TODO: Replace with actual customer ID
+      {showAddBankAccountModal ? (
+        <AddBankAccountComponent
+          onClose={handleCloseAddBankAccountModal}
+          onSave={handleSaveAddBankAccount}
+          banks={banks}
         />
+      ) : showUpdateBankAccountModal && selectedBankAccount ? (
+        <UpdateBankAccountComponent
+          onClose={handleCloseUpdateBankAccountModal}
+          onSave={handleSaveUpdateBankAccount}
+          banks={banks}
+          bankAccount={selectedBankAccount}
+        />
+      ) : (
+        <>
+          <div className="d-flex justify-content-between align-items-center mb-4">
+            <h2 className="h4 mb-0">{tManagePayments('manageBankAccountAndLimits')}</h2>
+            <label>{tManagePayments('addBankAccountAndLimit')}</label>
+            <div className="d-flex gap-2">
+              <button 
+                className="btn btn-primary"
+                onClick={handleAddBankAccount}
+              >
+                {tManagePayments('addBankAccount')}
+              </button>
+              <button 
+                className="btn btn-secondary"
+                onClick={handleSetLimit}
+              >
+                {tManagePayments('setLimit')}
+              </button>
+            </div>
+          </div>
+
+          {loading && (
+            <div className="text-center">
+              <div className="spinner-border" role="status">
+                <span className="visually-hidden">{tGlobal('loading')}</span>
+              </div>
+            </div>
+          )}
+
+          {error && (
+            <div className="alert alert-danger" role="alert">
+              {error}
+            </div>
+          )}
+
+          {successMessage && (
+            <div className="alert alert-success" role="alert">
+              {successMessage}
+            </div>
+          )}
+
+          {!loading && !error && banks.length === 0 && (
+            <div className="alert alert-info" role="alert">
+              {tGlobal('noData')}
+            </div>
+          )}
+
+          {!loading && !error && banks.length > 0 && (
+            <>
+              <div className="row">
+                <div className="col-md-4">
+                  <div className="form-group mb-3">
+                    <label htmlFor="bankSelect" className="form-label">{tManagePayments('bank')}</label>
+                    <select
+                      id="bankSelect"
+                      className="form-select"
+                      value={selectedBank}
+                      onChange={handleBankChange}
+                    >
+                      <option key="0" value="0">{tGlobal('all')}</option>
+                      {banks.map((bank) => (
+                        <option key={bank.id} value={bank.id}>
+                          {bank.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="col-md-4">
+                  <div className="form-group mb-3">
+                    <label htmlFor="transactionTypeSelect" className="form-label">{tManagePayments('transactionType')}</label>
+                    <select
+                      id="transactionTypeSelect"
+                      className="form-select"
+                      value={selectedTransactionType}
+                      onChange={handleTransactionTypeChange}
+                    >
+                      {TRANSACTION_TYPES.map((type) => (
+                        <option key={type.id} value={type.id}>
+                          {type.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="col-md-4">
+                  <div className="form-group mb-3">
+                    <label htmlFor="statusSelect" className="form-label">{tManagePayments('status')}</label>
+                    <select
+                      id="statusSelect"
+                      className="form-select"
+                      value={selectedStatus}
+                      onChange={handleStatusChange}
+                    >
+                      {STATUS_OPTIONS.map((status) => (
+                        <option key={status.id} value={status.id}>
+                          {status.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div className="row mb-3">
+                <div className="col-md-12">
+                  <div className="form-group">
+                    <input
+                      type="text"
+                      id="searchInput"
+                      className="form-control"
+                      placeholder={tManagePayments('searchAccountPlaceholder')}
+                      value={searchInput}
+                      onChange={handleSearchChange}
+                      onKeyDown={handleSearchKeyDown}
+                    />
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+
+          {!loading && !error && bankAccounts.length > 0 && (
+            <div className="table-responsive mt-4">
+              <table className="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>{tGlobal('action')}</th>
+                    <th>{tManagePayments('accountNickname')}</th>
+                    <th>{tManagePayments('bank')}</th>
+                    <th>{tManagePayments('accountHolderName')}</th>
+                    <th>{tManagePayments('bankAccountNumber')}</th>
+                    <th>{tManagePayments('transactionType')}</th>
+                    <th>{tManagePayments('status')}</th>
+                    <th>{tManagePayments('lastUpdated')}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {bankAccounts.map((account) => (
+                    <tr key={account.id}>
+                      <td>
+                        <div className="d-flex gap-2">
+                          <button 
+                            className="btn btn-sm btn-outline-primary"
+                            onClick={() => handleEditBankAccount(account.id)}
+                            title={tManagePayments('edit')}
+                          >
+                            {tGlobal('edit')}
+                            <i className="bi bi-pencil"></i>
+                          </button>
+                          <button 
+                            className="btn btn-sm btn-outline-danger"
+                            onClick={() => handleDeleteBankAccount(account.id)}
+                            title={tManagePayments('delete')}
+                            disabled={deleting === account.id}
+                          >
+                            {deleting === account.id ? (
+                              <>
+                                {tGlobal('deleting')}
+                                <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                              </>
+                            ) : (
+                              <>
+                                {tGlobal('delete')}
+                                <i className="bi bi-trash"></i>
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      </td>
+                      <td>{account.accountNickname}</td>
+                      <td>{account.bank.name}</td>
+                      <td>{account.accountHolderName}</td>
+                      <td>{account.accountNumber}</td>
+                      <td>{getTransactionTypeName(account.transactionType)}</td>
+                      <td>
+                        <span className={`badge ${account.status === 1 ? 'bg-success' : 'bg-danger'}`}>
+                          {account.status === 1 ? tManagePayments('active') : tManagePayments('inactive')}
+                        </span>
+                      </td>
+                      <td>{account.lastUpdatedStr}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+
+          {!loading && !error && bankAccounts.length === 0 && (
+            <div className="alert alert-info mt-4" role="alert">
+              {tGlobal('noData')}
+            </div>
+          )}
+
+          {showSetLimitModal && (
+            <SetTransactionLimitModal
+              onClose={handleCloseSetLimitModal}
+              onSave={handleSaveSetLimit}
+              custId={1} // TODO: Replace with actual customer ID
+            />
+          )}
+        </>
       )}
     </div>
   );

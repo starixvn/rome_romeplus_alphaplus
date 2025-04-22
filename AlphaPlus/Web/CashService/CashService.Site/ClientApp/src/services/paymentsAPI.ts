@@ -164,6 +164,28 @@ export const paymentProviderService = {
       throw error;
     }
   },
+  
+  // Add a new bank account
+  addBankAccount: async (bankAccount: BankAccount): Promise<ResultModel> => {
+    try {
+      const response = await api.post('/add-bank-account', bankAccount);
+      return response.data;
+    } catch (error) {
+      console.error('Error adding bank account:', error);
+      throw error;
+    }
+  },
+  
+  // Update an existing bank account
+  updateBankAccount: async (bankAccount: BankAccount): Promise<ResultModel> => {
+    try {
+      const response = await api.put(`/update-bank-account`, bankAccount);
+      return response.data;
+    } catch (error) {
+      console.error('Error updating bank account:', error);
+      throw error;
+    }
+  },
 };
 
 export default api; 

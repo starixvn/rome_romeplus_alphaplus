@@ -21,6 +21,8 @@ public interface IPaymentsService
     Task<IEnumerable<BankAccountModel>> GetBankAccounts(int custId, int bankId, int transactionType, int status, string searchText);
     Task<ResultModel> DeleteBankAccount(int accountId);
     Task<ResultModel> SetTransactionLimit(int custId, TransactionLimitModel limit);
+    Task<ResultModel> AddBankAccount(BankAccountModel bankAccount);
+    Task<ResultModel> UpdateBankAccount(BankAccountModel bankAccount);
 }
 
 public class PaymentsService : IPaymentsService
@@ -76,60 +78,38 @@ public class PaymentsService : IPaymentsService
 
     public async Task<ResultModel> SetDailyWithdrawalCount(int custId, int count)
     {
-        try
-        {
-            // TODO: Implement actual database update logic
-            // For now returning dummy implementation
-            // var result = await _repository.ExecuteNonQueryAsync(new SetDailyWithdrawalCountCriteria(custId, count));
-            return new ResultModel("0", "Success");
-        }
-        catch (Exception ex)
-        {
-            return new ResultModel("1", ex.Message);
-        }
+        // TODO: Implement actual database update logic
+        // var result = await _repository.ExecuteNonQueryAsync(new SetDailyWithdrawalCountCriteria(custId, count));
+        return new ResultModel("0", "Success");
     }
 
     public async Task<ResultModel> UpdatePaymentProviderSettings(IEnumerable<ProviderSettingsModel> settings)
     {
-        try
+        if (settings == null || !settings.Any())
         {
-            if (settings == null || !settings.Any())
-            {
-                return new ResultModel("1", "No settings provided");
-            }
-
-            foreach (var setting in settings)
-            {                
-                // TODO: Implement actual database update logic for each setting
-                // var result = await _repository.ExecuteNonQueryAsync(new UpdatePaymentProviderSettingCriteria(setting));
-            }
-
-            return new ResultModel("0", "Success");
+            return new ResultModel("1", "No settings provided");
         }
-        catch (Exception ex)
-        {
-            return new ResultModel("1", ex.Message);
+
+        foreach (var setting in settings)
+        {                
+            // TODO: Implement actual database update logic for each setting
+            // var result = await _repository.ExecuteNonQueryAsync(new UpdatePaymentProviderSettingCriteria(setting));
         }
+
+        return new ResultModel("0", "Success");
     }
 
     public async Task<ResultModel> AddPaymentProviderSetting(ProviderSettingsModel setting)
     {
-        try
+        if (setting == null)
         {
-            if (setting == null)
-            {
-                return new ResultModel("1", "No setting provided");
-            }
-
-            // TODO: Implement actual database insert logic
-            // var result = await _repository.ExecuteNonQueryAsync(new AddPaymentProviderSettingCriteria(setting));
-
-            return new ResultModel("0", "Success");
+            return new ResultModel("1", "No setting provided");
         }
-        catch (Exception ex)
-        {
-            return new ResultModel("1", ex.Message);
-        }
+
+        // TODO: Implement actual database insert logic
+        // var result = await _repository.ExecuteNonQueryAsync(new AddPaymentProviderSettingCriteria(setting));
+
+        return new ResultModel("0", "Success");
     }
 
     public async Task<IEnumerable<PaymentMethodModel>> GetAllPaymentMethods()
@@ -143,22 +123,15 @@ public class PaymentsService : IPaymentsService
 
     public async Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod)
     {
-        try
+        if (paymentMethod == null)
         {
-            if (paymentMethod == null)
-            {
-                return new ResultModel("1", "No payment method provided");
-            }
-
-            // TODO: Implement actual database insert logic
-            // var result = await _repository.ExecuteNonQueryAsync(new InsertPaymentMethodCriteria(paymentMethod));
-
-            return new ResultModel("0", "Success");
+            return new ResultModel("1", "No payment method provided");
         }
-        catch (Exception ex)
-        {
-            return new ResultModel("1", ex.Message);
-        }
+
+        // TODO: Implement actual database insert logic
+        // var result = await _repository.ExecuteNonQueryAsync(new InsertPaymentMethodCriteria(paymentMethod));
+
+        return new ResultModel("0", "Success");
     }
 
     public async Task<IEnumerable<BankModel>> GetAllBanks()
@@ -185,41 +158,58 @@ public class PaymentsService : IPaymentsService
     
     public async Task<ResultModel> DeleteBankAccount(int accountId)
     {
-        try
+        if (accountId <= 0)
         {
-            if (accountId <= 0)
-            {
-                return new ResultModel("1", "Invalid account ID");
-            }
-
-            // TODO: Implement actual database delete logic
-            // var result = await _repository.ExecuteNonQueryAsync(new DeleteBankAccountCriteria(accountId));
-
-            return new ResultModel("0", "Bank account deleted successfully");
+            return new ResultModel("1", "Invalid account ID");
         }
-        catch (Exception ex)
-        {
-            return new ResultModel("1", ex.Message);
-        }
+
+        // TODO: Implement actual database delete logic
+        // var result = await _repository.ExecuteNonQueryAsync(new DeleteBankAccountCriteria(accountId));
+
+        return new ResultModel("0", "Bank account deleted successfully");
     }
 
     public async Task<ResultModel> SetTransactionLimit(int custId, TransactionLimitModel limit)
     {
-        try
+        if (custId <= 0)
         {
-            if (custId <= 0)
-            {
-                return new ResultModel("1", "Invalid customer ID");
-            }
-
-            // TODO: Implement actual database update logic
-            // var result = await _repository.ExecuteNonQueryAsync(new SetTransactionLimitCriteria(custId, limit, transactionType));
-
-            return new ResultModel("0", "Transaction limit updated successfully");
+            return new ResultModel("1", "Invalid customer ID");
         }
-        catch (Exception ex)
+
+        // TODO: Implement actual database update logic
+        // var result = await _repository.ExecuteNonQueryAsync(new SetTransactionLimitCriteria(custId, limit, transactionType));
+
+        return new ResultModel("0", "Transaction limit updated successfully");
+    }
+
+    public async Task<ResultModel> AddBankAccount(BankAccountModel bankAccount)
+    {
+        if (bankAccount == null)
         {
-            return new ResultModel("1", ex.Message);
+            return new ResultModel("1", "No bank account provided");
         }
+
+        // TODO: Implement actual database insert logic
+        // var result = await _repository.ExecuteNonQueryAsync(new AddBankAccountCriteria(bankAccount));
+
+        return new ResultModel("0", "Bank account added successfully");
+    }
+
+    public async Task<ResultModel> UpdateBankAccount(BankAccountModel bankAccount)
+    {
+        if (bankAccount == null)
+        {
+            return new ResultModel("1", "No bank account provided");
+        }
+
+        if (bankAccount.Id <= 0)
+        {
+            return new ResultModel("1", "Invalid bank account ID");
+        }
+
+        // TODO: Implement actual database update logic
+        // var result = await _repository.ExecuteNonQueryAsync(new UpdateBankAccountCriteria(bankAccount));
+
+        return new ResultModel("0", "Bank account updated successfully");
     }
 } 

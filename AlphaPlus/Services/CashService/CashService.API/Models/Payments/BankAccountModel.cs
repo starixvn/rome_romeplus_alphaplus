@@ -21,5 +21,13 @@ namespace AlphaPlus.CashService.API.Models.Payments
         public BankModel Bank { get; set; }
         public DateTime LastUpdated { get; set; }
         public string LastUpdatedStr => LastUpdated.ToString("MM/dd/yyyy hh:mm:ss tt");
+        
+        public int DepositType { get; set; }
+        public int WithdrawalType { get; set; }
+        public int DepositMatchingMode { get; set; }
+        public bool PromptPay { get; set; }
+        public string Mobile { get; set; } = string.Empty;
+        public string Creator { get; set; } = string.Empty;
+        public int CreatorId { get; set; }
     }
 } 

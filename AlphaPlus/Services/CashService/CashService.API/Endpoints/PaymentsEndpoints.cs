@@ -24,10 +24,6 @@ public static class PaymentsEndpoints
         app.MapGet("/api/payment-providers/{providerId}", async (int providerId, IPaymentsService service) =>
         {
             var provider = await service.GetPaymentProviderById(providerId);
-            if (provider == null)
-            {
-                return Results.NotFound();
-            }
             return Results.Ok(provider);
         })
         .WithName("GetPaymentProviderById")
@@ -152,6 +148,27 @@ public static class PaymentsEndpoints
             Description = "Returns a list of bank accounts for a specific customer and transaction type with optional filtering by bank, account number, account holder name, and status"
         });
 
+        app.MapPost("/api/add-bank-account", async (HttpRequest request, IPaymentsService service) =>
+        {
+            using var reader = new StreamReader(request.Body);
+            var body = await reader.ReadToEndAsync();
+            var bankAccount = JsonConvert.DeserializeObject<BankAccountModel>(body);
+            
+            if (bankAccount == null)
+            {
+                return Results.BadRequest("Invalid bank account data");
+            }
+
+            var result = await service.AddBankAccount(bankAccount);
+            return Results.Ok(result);
+        })
+        .WithName("AddBankAccount")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Add bank account",
+            Description = "Adds a new bank account for a customer"
+        });
+
         app.MapDelete("/api/bank-accounts/{accountId}", async (int accountId, IPaymentsService service) =>
         {
             var result = await service.DeleteBankAccount(accountId);
@@ -183,6 +200,27 @@ public static class PaymentsEndpoints
         {
             Summary = "Set transaction limit",
             Description = "Sets transaction limits for a specific customer"
+        });
+
+        app.MapPut("/api/update-bank-account", async (HttpRequest request, IPaymentsService service) =>
+        {
+            using var reader = new StreamReader(request.Body);
+            var body = await reader.ReadToEndAsync();
+            var bankAccount = JsonConvert.DeserializeObject<BankAccountModel>(body);
+            
+            if (bankAccount == null)
+            {
+                return Results.BadRequest("Invalid bank account data");
+            }
+
+            var result = await service.UpdateBankAccount(bankAccount);
+            return Results.Ok(result);
+        })
+        .WithName("UpdateBankAccount")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Update bank account",
+            Description = "Updates an existing bank account's information"
         });
     }
 } 
