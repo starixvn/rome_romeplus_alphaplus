@@ -1,5 +1,4 @@
 ﻿using AlphaPlus.Core.Helpers;
-
 namespace AlphaPlus.Main.Site
 {
     using AlphaPlus.Core.Configurations;

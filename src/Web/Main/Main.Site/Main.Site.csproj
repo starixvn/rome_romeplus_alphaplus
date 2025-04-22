@@ -11,6 +11,10 @@
     </Content>
 
   </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="AlphaPlus.Main.Site.UnitTests" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\..\Shared\Extensions\HttpClientExtensions.cs" Link="Extensions\HttpClientExtensions.cs" />
     <Compile Include="..\..\..\Shared\Extensions\FanexLoggingExtensions.cs" Link="Extensions\FanexLoggingExtensions.cs" />
