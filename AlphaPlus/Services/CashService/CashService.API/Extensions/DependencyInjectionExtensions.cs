@@ -13,6 +13,7 @@ public static class DependencyInjectionExtensions
             
         services.AddScoped<IPaymentsService, PaymentsService>();
         services.AddScoped<IMemberSiteManagementService, MemberSiteManagementService>();
+        services.AddScoped<IPendingDepositService, PendingDepositService>();
 
         return services;
     }
