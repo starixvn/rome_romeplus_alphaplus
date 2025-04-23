@@ -1,6 +1,6 @@
 FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-node22-25h1 AS builder
 
-WORKDIR /src
+WORKDIR /build
 
 # copy .csproj files
 COPY "src/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "src/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj"
@@ -37,7 +37,7 @@ RUN if [ "${TRANSFORM_CONFIG}" = "" ]; then cp -r src/Shared/Configuration/share
 
 RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp -r src/Shared/Configuration/sharedSettings.${TRANSFORM_CONFIG}.json src/Web/Reports/Reports.Site/sharedSettings.json; fi
 
-WORKDIR /src/src/Web/Reports/Reports.Site
+WORKDIR /build/src/Web/Reports/Reports.Site
 
 # copy package files for better caching
 COPY "src/Web/Reports/Reports.Site/package.json" "src/Web/Reports/Reports.Site/package.json"
@@ -45,7 +45,7 @@ COPY "src/Web/Reports/Reports.Site/yarn.lock" "src/Web/Reports/Reports.Site/yarn
 
 RUN --mount=type=cache,target=/root/.yarn \
     --mount=type=cache,target=/root/.cache/yarn \
-    --mount=type=cache,target=/src/src/Web/Reports/Reports.Site/node_modules \  
+    --mount=type=cache,target=/build/src/Web/Reports/Reports.Site/node_modules \  
     yarn config set cache-folder /root/.cache/yarn && \
     yarn install --frozen-lockfile && \
     gulp default

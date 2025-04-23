@@ -1,6 +1,6 @@
 FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-node22-25h1 AS builder
 
-WORKDIR /src
+WORKDIR /build
 
 # copy .csproj files
 COPY "src/Shared/AlphaPlus.Shared.AppResources/AlphaPlus.Shared.AppResources.csproj" "src/Shared/AlphaPlus.Shared.AppResources/AlphaPlus.Shared.AppResources.csproj"
@@ -48,16 +48,16 @@ RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp -r src/Shared/Configuration/shar
 
 ARG CI_JOB_TOKEN
 RUN echo $TRANSFORM_CONFIG
-RUN mkdir /src/tmp
+RUN mkdir /build/tmp
 RUN if [ "${TRANSFORM_CONFIG}" = "PRO" ] \
   || [ "${TRANSFORM_CONFIG}" = "PRO2" ] \
   || [ "${TRANSFORM_CONFIG}" = "PRO3" ] \
   || [ "${TRANSFORM_CONFIG}" = "PRO4" ] \
   || [ "${TRANSFORM_CONFIG}" = "PRO5" ]; \
-  then cd /src/tmp && curl --fail -o ${TRANSFORM_CONFIG}.domainmappings.json --header "PRIVATE-TOKEN:${CI_JOB_TOKEN}" https://gitlab.nexdev.net/api/v4/projects/alpha-config%2Flogin-domains/repository/files/src%2F${TRANSFORM_CONFIG}.domainmappings.json/raw?ref=main \
+  then cd /build/tmp && curl --fail -o ${TRANSFORM_CONFIG}.domainmappings.json --header "PRIVATE-TOKEN:${CI_JOB_TOKEN}" https://gitlab.nexdev.net/api/v4/projects/alpha-config%2Flogin-domains/repository/files/src%2F${TRANSFORM_CONFIG}.domainmappings.json/raw?ref=main \
   && cd - && cp -r tmp/${TRANSFORM_CONFIG}.domainmappings.json src/Web/Settings/Settings.Site/Domains/domainmappings.json; fi
 
-WORKDIR /src/src/Web/Settings/Settings.Site
+WORKDIR /build/src/Web/Settings/Settings.Site
 
 # Copy package files for better caching
 COPY "src/Web/Settings/Settings.Site/Features/CreateAccount/ClientApp/package.json" "src/Web/Settings/Settings.Site/Features/CreateAccount/ClientApp/package.json"
@@ -65,20 +65,20 @@ COPY "src/Web/Settings/Settings.Site/Features/CreateAccount/ClientApp/package-lo
 COPY "src/Web/Settings/Settings.Site/Features/CreateAccount/ClientApp/yarn.lock" "src/Web/Settings/Settings.Site/Features/CreateAccount/ClientApp/yarn.lock"
 
 # Install ClientApp dependencies with yarn cache and build
-WORKDIR /src/src/Web/Settings/Settings.Site/Features/CreateAccount/ClientApp
+WORKDIR /build/src/Web/Settings/Settings.Site/Features/CreateAccount/ClientApp
 RUN --mount=type=cache,target=/root/.yarn \
     --mount=type=cache,target=/root/.cache/yarn \
-    --mount=type=cache,target=/src/src/Web/Settings/Settings.Site/Features/CreateAccount/ClientApp/node_modules \
+    --mount=type=cache,target=/build/src/Web/Settings/Settings.Site/Features/CreateAccount/ClientApp/node_modules \
     yarn config set cache-folder /root/.cache/yarn && \
     yarn install --frozen-lockfile && \
-    yarn build && cp -r dist/* /src/src/Web/Settings/Settings.Site/wwwroot
+    yarn build && cp -r dist/* /build/src/Web/Settings/Settings.Site/wwwroot
 
-WORKDIR /src/src/Web/Settings/Settings.Site
+WORKDIR /build/src/Web/Settings/Settings.Site
 
 # Install main dependencies with yarn cache and build
 RUN --mount=type=cache,target=/root/.yarn \
     --mount=type=cache,target=/root/.cache/yarn \
-    --mount=type=cache,target=/src/src/Web/Settings/Settings.Site/node_modules \
+    --mount=type=cache,target=/build/src/Web/Settings/Settings.Site/node_modules \
     yarn config set cache-folder /root/.cache/yarn && \
     yarn install --frozen-lockfile && \
     yarn build

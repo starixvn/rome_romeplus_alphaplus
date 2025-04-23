@@ -1,6 +1,6 @@
 FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-node22-25h1 AS builder
 
-WORKDIR /src
+WORKDIR /build
 
 COPY "src/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "src/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
 COPY "src/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj" "src/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj"
@@ -61,7 +61,7 @@ RUN if [ "${TRANSFORM_CONFIG}" = "UAT" ] || \
     cp -r src/Web/Tickets/Tickets.Site/results.UAT.json src/Web/Tickets/Tickets.Site/results.json; \
 fi
 
-WORKDIR /src/src/Web/Tickets/Tickets.Site
+WORKDIR /build/src/Web/Tickets/Tickets.Site
 
 # copy package files for better caching
 COPY "src/Web/Tickets/Tickets.Site/package.json" "src/Web/Tickets/Tickets.Site/package.json"
@@ -69,7 +69,7 @@ COPY "src/Web/Tickets/Tickets.Site/yarn.lock" "src/Web/Tickets/Tickets.Site/yarn
 
 RUN --mount=type=cache,target=/root/.yarn \
     --mount=type=cache,target=/root/.cache/yarn \
-    --mount=type=cache,target=/src/src/Web/Tickets/Tickets.Site/node_modules \  
+    --mount=type=cache,target=/build/src/Web/Tickets/Tickets.Site/node_modules \  
     yarn config set cache-folder /root/.cache/yarn && \
     yarn install --frozen-lockfile && \
     gulp default

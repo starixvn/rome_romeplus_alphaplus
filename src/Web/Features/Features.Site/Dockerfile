@@ -1,6 +1,6 @@
 FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-node22-25h1 AS builder
 
-WORKDIR /src
+WORKDIR /build
 
 # copy .csproj files
 COPY "src/Shared/AlphaPlus.Shared.AppResources/AlphaPlus.Shared.AppResources.csproj" "src/Shared/AlphaPlus.Shared.AppResources/AlphaPlus.Shared.AppResources.csproj"
@@ -38,7 +38,7 @@ RUN if [ "${TRANSFORM_CONFIG}" = "" ]; then cp -r src/Shared/Configuration/share
 
 RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp -r src/Shared/Configuration/sharedSettings.${TRANSFORM_CONFIG}.json src/Web/Features/Features.Site/sharedSettings.json; fi
 
-WORKDIR /src/src/Web/Features/Features.Site
+WORKDIR /build/src/Web/Features/Features.Site
 
 # Copy package files for better caching
 COPY "src/Web/Features/Features.Site/package.json" "src/Web/Features/Features.Site/package.json"
@@ -47,7 +47,7 @@ COPY "src/Web/Features/Features.Site/yarn.lock" "src/Web/Features/Features.Site/
 # Install yarn dependencies and build
 RUN --mount=type=cache,target=/root/.yarn \
     --mount=type=cache,target=/root/.cache/yarn \
-    --mount=type=cache,target=/src/src/Web/Features/Features.Site/node_modules \
+    --mount=type=cache,target=/build/src/Web/Features/Features.Site/node_modules \
     yarn config set cache-folder /root/.cache/yarn && \
     yarn install --frozen-lockfile && \
     yarn build

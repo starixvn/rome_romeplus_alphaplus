@@ -1,6 +1,6 @@
 FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-node22-25h1 AS builder
 
-WORKDIR /src
+WORKDIR /build
 EXPOSE 5000
 
 COPY "src/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "src/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj"
@@ -18,7 +18,7 @@ COPY "src/Web/Before/Fanex.Alpha.Before" "src/Web/Before/Fanex.Alpha.Before"
 ARG TRANSFORM_CONFIG
 ARG CI_JOB_TOKEN
 RUN echo $TRANSFORM_CONFIG
-RUN mkdir /src/tmp
+RUN mkdir /build/tmp
 RUN if [ "$TRANSFORM_CONFIG" = "PRO" ] \
   || [ "$TRANSFORM_CONFIG" = "PRO2" ] \
   || [ "$TRANSFORM_CONFIG" = "PRO3" ] \
@@ -34,7 +34,7 @@ RUN if [ "$TRANSFORM_CONFIG" = "PRO" ] \
   || [ "$TRANSFORM_CONFIG" = "STG3" ] \
   || [ "$TRANSFORM_CONFIG" = "STG4" ] \
   || [ "$TRANSFORM_CONFIG" = "STG5" ]; \
-  then cd /src/tmp && curl --fail -o $TRANSFORM_CONFIG.domainmappings.json --header "PRIVATE-TOKEN:$CI_JOB_TOKEN" https://gitlab.nexdev.net/api/v4/projects/alpha-config%2Flogin-domains/repository/files/src%2F$TRANSFORM_CONFIG.domainmappings.json/raw?ref=main \
+  then cd /build/tmp && curl --fail -o $TRANSFORM_CONFIG.domainmappings.json --header "PRIVATE-TOKEN:$CI_JOB_TOKEN" https://gitlab.nexdev.net/api/v4/projects/alpha-config%2Flogin-domains/repository/files/src%2F$TRANSFORM_CONFIG.domainmappings.json/raw?ref=main \
   && cd - && cp -r tmp/$TRANSFORM_CONFIG.domainmappings.json src/Web/Before/Fanex.Alpha.Before/domainmappings.$TRANSFORM_CONFIG.json; fi
 
 RUN if [ "$TRANSFORM_CONFIG" != "" ]; \
@@ -67,12 +67,12 @@ RUN if [ "$TRANSFORM_CONFIG" = "LOCAL3" ] \
 COPY "src/Web/Before/Fanex.Alpha.Before/package.json" "src/Web/Before/Fanex.Alpha.Before/package.json"
 COPY "src/Web/Before/Fanex.Alpha.Before/yarn.lock" "src/Web/Before/Fanex.Alpha.Before/yarn.lock"
 
-WORKDIR /src/src/Web/Before/Fanex.Alpha.Before
+WORKDIR /build/src/Web/Before/Fanex.Alpha.Before
 
 # Install yarn dependencies
 RUN --mount=type=cache,target=/root/.yarn \
     --mount=type=cache,target=/root/.cache/yarn \
-    --mount=type=cache,target=/src/src/Web/Before/Fanex.Alpha.Before/node_modules \
+    --mount=type=cache,target=/build/src/Web/Before/Fanex.Alpha.Before/node_modules \
     yarn config set cache-folder /root/.cache/yarn && \
     yarn install --frozen-lockfile && \
     yarn build

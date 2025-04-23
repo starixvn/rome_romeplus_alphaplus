@@ -1,6 +1,6 @@
 FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-node22-25h1 AS builder
 
-WORKDIR /src
+WORKDIR /build
 
 # copy .csproj files
 COPY "src/Shared/AlphaPlus.Shared.AppResources/AlphaPlus.Shared.AppResources.csproj" "src/Shared/AlphaPlus.Shared.AppResources/AlphaPlus.Shared.AppResources.csproj"
@@ -37,7 +37,7 @@ RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp -r src/Shared/Configuration/shar
 
 ARG CI_JOB_TOKEN
 RUN echo $TRANSFORM_CONFIG
-RUN mkdir /src/tmp
+RUN mkdir /build/tmp
 RUN if [ "$TRANSFORM_CONFIG" = "PRO" ] \
   || [ "$TRANSFORM_CONFIG" = "PRO2" ] \
   || [ "$TRANSFORM_CONFIG" = "PRO3" ] \
@@ -58,7 +58,7 @@ RUN if [ "$TRANSFORM_CONFIG" = "PRO" ] \
   || [ "$TRANSFORM_CONFIG" = "STG3" ] \
   || [ "$TRANSFORM_CONFIG" = "STG4" ] \
   || [ "$TRANSFORM_CONFIG" = "STG5" ]; \
-  then cd /src/tmp && curl --fail -o $TRANSFORM_CONFIG.domainmappings.json --header "PRIVATE-TOKEN:$CI_JOB_TOKEN" https://gitlab.nexdev.net/api/v4/projects/alpha-config%2Flogin-domains/repository/files/src%2F$TRANSFORM_CONFIG.domainmappings.json/raw?ref=main \
+  then cd /build/tmp && curl --fail -o $TRANSFORM_CONFIG.domainmappings.json --header "PRIVATE-TOKEN:$CI_JOB_TOKEN" https://gitlab.nexdev.net/api/v4/projects/alpha-config%2Flogin-domains/repository/files/src%2F$TRANSFORM_CONFIG.domainmappings.json/raw?ref=main \
   && cd - && cp -r tmp/$TRANSFORM_CONFIG.domainmappings.json src/Web/Main/Main.Site/Domains/domainmappings.$TRANSFORM_CONFIG.json; fi
 
 RUN if [ "$TRANSFORM_CONFIG" != "" ]; \
@@ -66,7 +66,7 @@ RUN if [ "$TRANSFORM_CONFIG" != "" ]; \
   cp "src/Web/Main/Main.Site/Domains/domainmappings.$TRANSFORM_CONFIG.json" "src/Web/Main/Main.Site/Domains/domainmappings.json"; \
   fi
 
-WORKDIR /src/src/Web/Main/Main.Site
+WORKDIR /build/src/Web/Main/Main.Site
 
 # copy package files for better caching
 COPY "src/Web/Main/Main.Site/package.json" "src/Web/Main/Main.Site/package.json"
@@ -75,7 +75,7 @@ COPY "src/Web/Main/Main.Site/yarn.lock" "src/Web/Main/Main.Site/yarn.lock"
 # Install yarn dependencies and build
 RUN --mount=type=cache,target=/root/.yarn \
     --mount=type=cache,target=/root/.cache/yarn \
-    --mount=type=cache,target=/src/src/Web/Main/Main.Site/node_modules \
+    --mount=type=cache,target=/build/src/Web/Main/Main.Site/node_modules \
     yarn config set cache-folder /root/.cache/yarn && \
     yarn install --frozen-lockfile && \
     yarn build
