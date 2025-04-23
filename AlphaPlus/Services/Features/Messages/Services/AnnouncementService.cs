@@ -157,10 +157,10 @@ namespace AlphaPlus.Features.Messages.API.Services
             var request = new AnnouncementHistoryRequest(DateTime.Today.AddDays(-30), DateTime.Now, AppSettings.Environment, AppSettings.SiteLabel);
             var availablePopupAnnouncements = await cacheService.GetOrCreateAsync(
                 $"AlphaPlus.Features.Messages.PopupAnnouncement_{AppSettings.SiteLabel}",
-                cacheEntry =>
+                async cacheEntry =>
                 {
                     cacheEntry.SetAbsoluteExpiration(TimeSpan.FromSeconds(CachedSecondAnnouncement));
-                    return announcementClient.GetAnnouncementsHistory(request);
+                    return (await announcementClient.GetAnnouncementsHistory(request)).Where(i => DateTime.Now <= i.ExpiredDate && i.IsPopup);
                 });
 
             return availablePopupAnnouncements;
