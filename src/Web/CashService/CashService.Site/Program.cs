@@ -1,4 +1,5 @@
 using System.Text.Json;
+using AlphaPlus.CashService.Site.Features.Transactions.Handlers;
 using AlphaPlus.CashService.Site.Helpers;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Filters;
@@ -7,7 +8,6 @@ using AlphaPlus.Core.Middlewares;
 using AlphaPlus.RequestInfo;
 using AlphaPlus.SecurityCode.Extensions;
 using AlphaPlus.SecurityCode.Filters;
-using Fanex.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -42,6 +42,7 @@ builder.Services
     .AddMediatR(cfg =>
     {
         cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
+        cfg.RegisterServicesFromAssembly(typeof(GetTransactionsQueryHandler).Assembly);
     })
     .AddControllersWithViews(options =>
     {
@@ -119,7 +120,6 @@ app.MapControllerRoute(
 
 // Add SignalR hub endpoint
 app.MapHub<ChatHub>("/chathub");
-
 try
 {
     //Log.Information("Starting web application");

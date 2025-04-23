@@ -8,13 +8,18 @@ builder.Services
     .AddCashServiceApi()
     .AddCashServiceCors(configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? ["*"])
     .AddCashServiceLogging()
-    .AddDependencies(configuration);
+    .AddDependencies(configuration)
+    .AddControllers();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline
 app.UseCashServiceSwagger()
     .UseCashServiceExceptionHandler()
     .UseCashServiceCors()
-    .MapApiEndpoints();
+    .MapAPIEndpoints();
+
+app.MapControllerRoute(
+    "default",
+    "{controller=Home}/{action=Index}/{id?}");
 
 await app.RunAsync();
