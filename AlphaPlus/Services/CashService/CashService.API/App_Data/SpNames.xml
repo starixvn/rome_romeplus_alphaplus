@@ -51,4 +51,5 @@
         <Setting Key="Age_Transaction_GetAll" SpName="Age_Transaction_GetAll" DbName="DBCust.CustDB.wsv_alp" Plain="0"></Setting>
         <Setting Key="Age_Transaction_GetById" SpName="Age_Transaction_GetById" DbName="DBCust.CustDB.wsv_alp" Plain="0"></Setting>
     </Function>
+  </Function>
 </Functions>

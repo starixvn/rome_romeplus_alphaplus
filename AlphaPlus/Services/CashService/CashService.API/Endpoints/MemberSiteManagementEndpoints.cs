@@ -15,7 +15,7 @@ public static class MemberSiteManagementEndpoints
         // Get all settings
         group.MapGet("/", async (IMemberSiteManagementService service, [FromQuery] int custId) =>
         {
-            var result = await service.GetAsync(custId);
+            var result = await service.GetAsync(1176086);
             return Results.Ok(result);
         })
         .WithName("GetMemberSiteManagement")
@@ -26,7 +26,7 @@ public static class MemberSiteManagementEndpoints
         });
 
         // Update settings
-        group.MapPut("/", async (IMemberSiteManagementService service, [FromBody] MemberSiteManagement model) =>
+        group.MapPut("/", async (IMemberSiteManagementService service, [FromBody] MemberSiteManagementModel model) =>
         {
             var result = await service.UpdateAsync(model);
             return Results.Ok(result);

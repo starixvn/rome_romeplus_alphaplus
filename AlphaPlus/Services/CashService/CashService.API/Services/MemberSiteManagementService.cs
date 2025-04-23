@@ -1,61 +1,60 @@
 using AlphaPlus.CashService.API.Models;
 using System.ComponentModel.DataAnnotations;
+using AlphaPlus.CashService.API.Criteria.MemberSite;
+using Fanex.Data.Repository;
+using System.Numerics;
 
 namespace AlphaPlus.CashService.API.Services;
 public interface IMemberSiteManagementService
 {
-    Task<MemberSiteManagement> GetAsync(int custId);
-    Task<bool> UpdateAsync(MemberSiteManagement model);
-} 
+    Task<MemberSiteManagementModel> GetAsync(int custId);
+    Task<bool> UpdateAsync(MemberSiteManagementModel model);
+}
 public class MemberSiteManagementService : IMemberSiteManagementService
 {
     private readonly IConfiguration _configuration;
     private readonly ILogger<MemberSiteManagementService> _logger;
+    private readonly IDynamicRepository _repository;
 
     public MemberSiteManagementService(
         IConfiguration configuration,
-        ILogger<MemberSiteManagementService> logger)
+        ILogger<MemberSiteManagementService> logger,
+        IDynamicRepository repository)
     {
         _configuration = configuration;
         _logger = logger;
+        _repository = repository;
     }
 
-    public async Task<MemberSiteManagement> GetAsync(int custId)
+    public async Task<MemberSiteManagementModel> GetAsync(int custId)
     {
-        try
+
+        var (domains, settings) = await _repository.FetchMultipleAsync<DomainModel, CashServiceManagementDto>(new GetMemberSiteInfoCriteria(custId));
+
+        var settingInfo = settings.FirstOrDefault() ?? new CashServiceManagementDto();
+
+        var trasnformModel = new MemberSiteManagementModel
         {
-            // TODO: Replace with database call
-            return new MemberSiteManagement
-            {
-                Domains = new List<MemberSiteManagement.Domain>
-                {
-                    new() { 
-                        Url = "https://quickm-6358906.hdupceria78.com",
-                        QrCode = await GenerateQrCodeAsync("https://quickm-6358906.hdupceria78.com")
-                    },
-                    new() { 
-                        Url = "https://quickm-6358906.nammamwang.com",
-                        QrCode = await GenerateQrCodeAsync("https://quickm-6358906.nammamwang.com")
-                    }
-                },
-                GeneralSettings = new List<MemberSiteManagement.GeneralSetting>
-                {
-                    new() { Id = "allowRegistration", Name = "Allow Registration", Description = "Allow member to register", Value = true },
-                    new() { Id = "allowDeposit", Name = "Allow Deposit", Description = "Allow member to deposit", Value = false }
-                },
-                Mobile = "+66812345678",
-                LineId = "lineId123",
-                Announcement = "Welcome to our cash service!"
-            };
-        }
-        catch (Exception ex)
+            Domains = domains.ToList(),
+            GeneralSettings = BuildGeneralSettings(settingInfo),
+            Announcement = settingInfo.Announcement,
+            Mobile = settingInfo.Mobile,
+            LineId = settingInfo.LineId
+        };
+
+        return trasnformModel;
+    }
+    private List<MemberSitePermission> BuildGeneralSettings(CashServiceManagementDto settingInfo)
+    {
+        return new List<MemberSitePermission>
         {
-            //_logger.LogError(ex, "Error getting member site management data");
-            throw ex;
-        }
+            new() { Id = "allowRegistration", Name = "Allow Registration", Description = "Allow member to register", Value = settingInfo.IsAllowRegister },
+            new() { Id = "allowDeposit", Name = "Allow Deposit", Description = "Allow member to deposit", Value = settingInfo.IsAllowLogin }
+        };
     }
 
-    public async Task<bool> UpdateAsync(MemberSiteManagement model)
+
+    public async Task<bool> UpdateAsync(MemberSiteManagementModel model)
     {
         try
         {
@@ -85,4 +84,4 @@ public class MemberSiteManagementService : IMemberSiteManagementService
         // TODO: Implement actual QR code generation
         return "data:image/png;base64,QR_CODE_BASE64_STRING";
     }
-} 
+}
