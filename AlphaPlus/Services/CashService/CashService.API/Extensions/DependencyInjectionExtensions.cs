@@ -10,11 +10,12 @@ public static class DependencyInjectionExtensions
     {
         services.AddFanexSql(configuration)
             .AddSingleton<IDynamicRepository, DynamicRepository>();
-            
+
         services.AddScoped<IPaymentsService, PaymentsService>();
         services.AddScoped<IMemberSiteManagementService, MemberSiteManagementService>();
         services.AddScoped<IPendingDepositService, PendingDepositService>();
+        services.AddScoped<ITransactionService, TransactionService>();
 
         return services;
     }
-} 
+}

@@ -1,3 +1,6 @@
+using System.Text.Json;
+using AlphaPlus.CashService.Site.Features.Transactions.Handlers;
+using AlphaPlus.CashService.Site.Helpers;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Helpers;
@@ -5,12 +8,10 @@ using AlphaPlus.Core.Middlewares;
 using AlphaPlus.RequestInfo;
 using AlphaPlus.SecurityCode.Extensions;
 using AlphaPlus.SecurityCode.Filters;
-using Fanex.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
 using Serilog;
-using System.Text.Json;
 
 const string PathBase = "/cash-service";
 const string SharedSettings = "sharedSettings.json";
@@ -43,8 +44,11 @@ builder.Services
     .AddAlphaPlusCore(configuration)
     .AddSharedSession(configuration)
     .AddSecurityCodeServices(configuration)
-    .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly))
-    .AddHttpClient()
+    .AddMediatR(cfg =>
+    {
+        cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
+        cfg.RegisterServicesFromAssembly(typeof(GetTransactionsQueryHandler).Assembly);
+    })
     .AddControllersWithViews(options =>
     {
         options.Filters.Add<CheckBelongingFilterAttribute>();
@@ -65,6 +69,8 @@ builder.Services
         options.JsonSerializerOptions.WriteIndented = true;
         options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
     });
+
+builder.Services.AddHttpClient<HttpClientHelper>();
 
 // Add SPA static files
 builder.Services.AddSpaStaticFiles(configuration =>
@@ -145,17 +151,15 @@ app.UseCors("AllowSpecificOrigins");
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
 StaticResources.Init(configuration.GetValue<string>("JsVersion"));
 
-
 app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute());
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Payments}/{action=Index}/{id?}");
 
-
 try
 {
     Log.Information("Starting web application");
-    app.Run();
+    await app.RunAsync();
 }
 catch (Exception ex)
 {

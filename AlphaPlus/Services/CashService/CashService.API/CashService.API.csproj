@@ -4,7 +4,6 @@
     <TargetFramework>net9.0</TargetFramework>
     <AssemblyName>AlphaPlus.CashService.API</AssemblyName>
     <RootNamespace>AlphaPlus.CashService.API</RootNamespace>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>false</InvariantGlobalization>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>

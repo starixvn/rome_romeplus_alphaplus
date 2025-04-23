@@ -1,8 +1,6 @@
 using System.Text.Json;
-using Microsoft.AspNetCore.Diagnostics;
-using AlphaPlus.CashService.API.Services;
-using AlphaPlus.CashService.API.Models.Payments;
 using AlphaPlus.CashService.API.Endpoints;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace AlphaPlus.CashService.API.Extensions;
 
@@ -61,4 +59,4 @@ public static class ApplicationBuilderExtensions
 
         return app;
     }
-} 
+}

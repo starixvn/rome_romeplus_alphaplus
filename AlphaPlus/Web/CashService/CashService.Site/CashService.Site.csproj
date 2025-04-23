@@ -4,7 +4,6 @@
     <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>AlphaPlus.CashService.Site</AssemblyName>
     <RootNamespace>AlphaPlus.CashService.Site</RootNamespace>
-    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>false</InvariantGlobalization>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
@@ -45,13 +44,13 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="Views\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="Views\**" />
+    <EmbeddedResource Remove="Views\**" />
     <None Remove="$(SpaRoot)**" />
+    <None Remove="Views\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Transactions\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

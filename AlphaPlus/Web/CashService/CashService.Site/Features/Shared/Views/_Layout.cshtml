@@ -7,7 +7,7 @@
     <meta content="" name="description">
     <meta content="" name="author">
     <title>@ViewData["Title"]</title>
-    @RenderSection("Styles", required: false)
+    @await RenderSectionAsync("Styles", required: false)
     <environment include="Development">
         <script type="module">
             import RefreshRuntime from 'http://localhost:5173/@@react-refresh'
@@ -22,7 +22,7 @@
 
 <body>
     @RenderBody()
-    @RenderSection("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>

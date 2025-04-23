@@ -1,9 +1,4 @@
-using System.Text.Json;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.OpenApi.Models;
 using AlphaPlus.CashService.API.Extensions;
-using AlphaPlus.CashService.API.Services;
-using AlphaPlus.CashService.API.Models.Payments;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -11,16 +6,21 @@ var configuration = builder.Configuration;
 // Add services to the container
 builder.Services
     .AddCashServiceApi()
-    .AddCashServiceCors(configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? new[] { "*" })
+    .AddCashServiceCors(configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? ["*"])
     .AddCashServiceLogging()
-    .AddDependencies(configuration);
+    .AddDependencies(configuration)
+    .AddControllers();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline
 app.UseCashServiceSwagger()
-   .UseCashServiceExceptionHandler()
-   .UseCashServiceCors()
-   .MapAPIEndpoints();
+    .UseCashServiceExceptionHandler()
+    .UseCashServiceCors()
+    .MapAPIEndpoints();
 
-app.Run();
+app.MapControllerRoute(
+    "default",
+    "{controller=Home}/{action=Index}/{id?}");
+
+await app.RunAsync();
