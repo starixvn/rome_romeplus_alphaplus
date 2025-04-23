@@ -30,7 +30,7 @@ public class MatchWinLossDetailHandler(
         var param = new GetLeaguesParam(
             message.ViewerId,
             message.Products,
-            message.FromDate,
+            message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
             message.ToDate,
             message.Language,
             message.LanguageKey,
