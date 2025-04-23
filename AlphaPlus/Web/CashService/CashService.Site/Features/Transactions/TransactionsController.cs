@@ -1,6 +1,5 @@
 using AlphaPlus.CashService.Site.Features.Shared;
 using AlphaPlus.CashService.Site.Features.Transactions.Queries;
-using AlphaPlus.CashService.Site.Features.Transactions.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
