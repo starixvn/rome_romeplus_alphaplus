@@ -1,5 +1,13 @@
 FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-node22-25h1 AS builder
+WORKDIR /client
+COPY /AlphaPlus/Web/CashService/CashService.Site/ClientApp .
+RUN --mount=type=cache,target=/root/.yarn \
+    --mount=type=cache,target=/root/.cache/yarn \
+    yarn config set cache-folder /root/.cache/yarn && \
+    yarn install --frozen-lockfile && \
+    yarn build
 
+FROM builder AS server-build
 WORKDIR /src
 
 # copy .csproj files
@@ -11,9 +19,10 @@ COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "Alp
 COPY "AlphaPlus/Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj" "AlphaPlus/Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj"
 COPY "AlphaPlus/Web/CashService/CashService.Site/CashService.Site.csproj" "AlphaPlus/Web/CashService/CashService.Site/CashService.Site.csproj"
 
-# restore NuGet packages
+# Restore NuGet packages with cache
 COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
-RUN dotnet restore "AlphaPlus/Web/CashService/CashService.Site/CashService.Site.csproj" --packages /root/.nuget/packages -v d
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet restore "AlphaPlus/Web/CashService/CashService.Site/CashService.Site.csproj" -v d
 
 # copy all source code
 COPY "AlphaPlus/Shared" "AlphaPlus/Shared"
@@ -26,36 +35,34 @@ COPY "AlphaPlus/Modules/AlphaPlus.SecurityCode" "AlphaPlus/Modules/AlphaPlus.Sec
 COPY "AlphaPlus/Web/CashService/CashService.Site" "AlphaPlus/Web/CashService/CashService.Site"
 
 ARG TRANSFORM_CONFIG
-RUN echo $TRANSFORM_CONFIG
 
+# Handle configuration files
+RUN if [ "${TRANSFORM_CONFIG}" = "" ]; then \
+    cp -r AlphaPlus/Shared/Configuration/sharedSettings.json AlphaPlus/Web/CashService/CashService.Site/sharedSettings.json; \
+    else \
+    cp -r AlphaPlus/Shared/Configuration/sharedSettings.${TRANSFORM_CONFIG}.json AlphaPlus/Web/CashService/CashService.Site/sharedSettings.json; \
+    fi
 
-RUN if [ "${TRANSFORM_CONFIG}" = "" ]; then cp -r AlphaPlus/Shared/Configuration/sharedSettings.json AlphaPlus/Web/CashService/CashService.Site/sharedSettings.json; fi
-
-RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp -r AlphaPlus/Shared/Configuration/sharedSettings.${TRANSFORM_CONFIG}.json AlphaPlus/Web/CashService/CashService.Site/sharedSettings.json; fi
-
+# Copy the client build output
+COPY --from=builder /client/dist /src/AlphaPlus/Web/CashService/CashService.Site/wwwroot
 
 WORKDIR /src/AlphaPlus/Web/CashService/CashService.Site
-
-# RUN yarn && gulp default
 RUN dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine-25h1 AS base
 
-# don’t run as root
+# Set up non-root user
 RUN adduser --disabled-password \
-  --home /app \
-  --gecos '' dotnetuser && chown -R dotnetuser /app && chown -R dotnetuser /tmp
+    --home /app \
+    --gecos '' dotnetuser && chown -R dotnetuser /app && chown -R dotnetuser /tmp
 USER dotnetuser
 
-# cache nuget
-WORKDIR /root
-COPY --from=builder /root/.nuget ./.nuget
-
-# final stage/image
+# Configure the application
 ENV COMPlus_EnableDiagnostics=0
-WORKDIR /app
 ENV ASPNETCORE_URLS=http://0.0.0.0:5000
-COPY --from=builder /app ./
 ENV TZ="America/La_Paz"
+
+WORKDIR /app
+COPY --from=server-build /app ./
 
 ENTRYPOINT ["dotnet", "AlphaPlus.CashService.Site.dll"]
