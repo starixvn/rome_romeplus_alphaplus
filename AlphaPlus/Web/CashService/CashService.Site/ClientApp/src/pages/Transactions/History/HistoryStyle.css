@@ -1,0 +1,325 @@
+@import 'tailwindcss';
+
+.transaction-history {
+  padding: 20px;
+  background-color: #f5f6f8;
+  min-height: 100vh;
+}
+
+.transaction-history .page-header {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 12px;
+}
+
+.transaction-history .page-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+/* Tab buttons */
+.transaction-history .tab-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.transaction-history .tab-button {
+  padding: 8px 24px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: white;
+  color: #333;
+}
+
+.transaction-history .tab-button.active {
+  background: #1a4f7c;
+  color: white;
+}
+
+/* Filters container */
+.transaction-history .filters-container {
+  background: white;
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+
+/* Filters section */
+.transaction-history .filters-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.transaction-history .filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.transaction-history .filter-label {
+  font-size: 13px;
+  color: #666;
+}
+
+.transaction-history select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #333;
+  background-color: white;
+  cursor: pointer;
+  height: 36px; /* Match DatePicker height */
+}
+
+.transaction-history select:hover {
+  border-color: #1a4f7c;
+}
+
+/* Search section */
+.transaction-history .search-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+}
+
+.transaction-history .records-limit {
+  color: #666;
+  font-size: 13px;
+}
+
+.transaction-history .search-input {
+  position: relative;
+  width: 250px;
+  margin-left: auto;
+}
+
+.transaction-history .search-input input {
+  width: 100%;
+  padding: 8px 12px 8px 36px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #333;
+}
+
+.transaction-history .search-input svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+/* Table styles */
+.transaction-history .table-section {
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.transaction-history .table-section table {
+  min-width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #e5e7eb;
+}
+
+.transaction-history .table-section th {
+  padding: 4px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f2937;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+.transaction-history .table-section td {
+  padding: 4px;
+  font-size: 13px;
+  color: #4b5563;
+  border: 1px solid #e5e7eb;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.transaction-history .table-section td.amount {
+  text-align: right;
+}
+
+/* Status badges */
+.transaction-history .status-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
+  min-width: 100px;
+}
+
+.transaction-history .status-badge.completed {
+  background-color: #ecfdf5;
+  color: #059669;
+}
+
+.transaction-history .status-badge.expired {
+  background-color: #f3f4f6;
+  color: #6b7280;
+}
+
+.transaction-history .status-badge.rejected {
+  background-color: #fef2f2;
+  color: #dc2626;
+}
+
+.transaction-history .status-badge.provider-rejected {
+  background-color: #fffbeb;
+  color: #d97706;
+}
+
+/* Action buttons */
+.transaction-history .action-button {
+  padding: 2px 16px;
+  font-size: 13px;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #1a4f7c;
+  color: white;
+  border: none;
+  min-width: 60px;
+}
+
+.transaction-history .action-button.verify {
+  background: #4285f4;
+}
+
+/* Empty state */
+.transaction-history .empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 0;
+  color: #6b7280;
+}
+
+.transaction-history .empty-state svg {
+  margin-bottom: 16px;
+  color: #9ca3af;
+}
+
+.transaction-history .empty-state p {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* Loading spinner */
+.transaction-history .loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #1a4f7c;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .transaction-history .filters-section {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .transaction-history {
+    padding: 12px;
+  }
+
+  .transaction-history .filters-container {
+    padding: 16px 0;
+  }
+
+  .transaction-history .filters-section {
+    grid-template-columns: 1fr;
+  }
+
+  .transaction-history .search-section {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .transaction-history .search-input {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .transaction-history .history-table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+/* DatePicker styles */
+.transaction-history .date-range-picker {
+  width: 100%;
+}
+
+.transaction-history .date-range-picker.ant-picker {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 4px 11px;
+  height: 36px;
+}
+
+.transaction-history .date-range-picker .ant-picker-input {
+  font-size: 13px;
+}
+
+.transaction-history .date-range-picker .ant-picker-separator {
+  color: #666;
+}
+
+.transaction-history .date-range-picker.ant-picker:hover,
+.transaction-history .date-range-picker.ant-picker-focused {
+  border-color: #1a4f7c;
+}
+
+.transaction-history .date-range-picker .ant-picker-suffix {
+  color: #666;
+}
+
+/* Override antd calendar dropdown styles */
+.ant-picker-dropdown .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
+  background: #1a4f7c;
+}
+
+.ant-picker-dropdown .ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before {
+  border-color: #1a4f7c;
+}
+
+.ant-picker-dropdown .ant-picker-ranges .ant-picker-preset > .ant-tag-blue {
+  color: #1a4f7c;
+  border-color: #1a4f7c;
+}
