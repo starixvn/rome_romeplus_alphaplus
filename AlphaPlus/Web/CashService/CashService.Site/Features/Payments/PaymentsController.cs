@@ -118,5 +118,18 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             var banks = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
             return Json(banks);
         }
+
+        public async Task<IActionResult> UpdateProvider(
+            [FromBody] ProviderModel provider,
+            CancellationToken cancellationToken)
+        {
+            var url = $"{_apiBaseUrl}/payments/update-provider";
+            provider.CustId = _custId;
+
+            var response = await _httpClient.PostAsJsonAsync(url, provider, cancellationToken);
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
+            return Json(result);
+        }
     }
 }

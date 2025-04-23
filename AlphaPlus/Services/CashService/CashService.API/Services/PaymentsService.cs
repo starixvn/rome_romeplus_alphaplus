@@ -17,8 +17,8 @@ public interface IPaymentsService
     Task<IEnumerable<ProviderSettingsModel>> GetProviderSettings(int providerId, int method, int status, int transactionType);
     Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod);
     Task<IEnumerable<BankModel>> GetBanks(int transactionType);
+    Task<ResultModel> UpdateProvider(ProviderModel provider);
     
-    Task<ResultModel> UpdatePaymentProviderSettings(IEnumerable<ProviderSettingsModel> settings);
     Task<ResultModel> AddPaymentProviderSetting(ProviderSettingsModel setting);
     Task<IEnumerable<BankAccountModel>> GetBankAccounts(int custId, int bankId, int transactionType, int status, string searchText);
     Task<ResultModel> DeleteBankAccount(int accountId);
@@ -89,9 +89,7 @@ public class PaymentsService : IPaymentsService
 
     public async Task<IEnumerable<ProviderSettingsModel>> GetProviderSettings(int providerId, int method, int status, int transactionType)
     {
-        var settings = await DummyDataService.GetDummyProviderSettings(providerId, method, status, transactionType);
-
-        // var settings = await _repository.FetchAsync<ProviderSettingsModel>(new GetProviderSettingsCriteria(providerId, method, status, transactionType));
+        var settings = await _repository.FetchAsync<ProviderSettingsModel>(new GetProviderSettingsCriteria(providerId, method, status, transactionType));
         
         return settings;
     }
@@ -108,24 +106,31 @@ public class PaymentsService : IPaymentsService
         var banks = await _repository.FetchAsync<BankModel>(new GetBanksCriteria(transactionType));
         return banks;
     }
-   
 
-
-    public async Task<ResultModel> UpdatePaymentProviderSettings(IEnumerable<ProviderSettingsModel> settings)
+    public async Task<ResultModel> UpdateProvider(ProviderModel provider)
     {
-        if (settings == null || !settings.Any())
+        var updateStatusCriteria = new UpdateProviderStatusCriteria(provider.CustId, provider.Id, provider.Status);
+
+        await _repository.ExecuteAsync(updateStatusCriteria);
+        if(updateStatusCriteria.ErrCode != 0)
         {
-            return new ResultModel(1, "No settings provided");
+            return new ResultModel(updateStatusCriteria.ErrCode, updateStatusCriteria.ErrMsg);
         }
-
-        foreach (var setting in settings)
+        
+        foreach (var setting in provider.ProviderSettings)
         {                
-            // TODO: Implement actual database update logic for each setting
-            // var result = await _repository.ExecuteNonQueryAsync(new UpdatePaymentProviderSettingCriteria(setting));
+            var updateProviderSettingsCriteria = new UpdateProviderSettingsCriteria(provider.CustId, provider.Id, setting);
+            await _repository.ExecuteAsync(updateProviderSettingsCriteria);
+
+            if(updateProviderSettingsCriteria.ErrCode != 0)
+            {
+                return new ResultModel(updateProviderSettingsCriteria.ErrCode, updateProviderSettingsCriteria.ErrMsg);
+            }
         }
 
-        return new ResultModel(0, "Success");
+        return new ResultModel(0, string.Empty);
     }
+
 
     public async Task<ResultModel> AddPaymentProviderSetting(ProviderSettingsModel setting)
     {

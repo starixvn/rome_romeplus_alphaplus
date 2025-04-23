@@ -102,22 +102,6 @@ public static class PaymentsEndpoints
             Description = "Returns a list of all payment methods"
         });
 
-        app.MapPut("/api/update-payment-provider-settings", async (HttpRequest request, IPaymentsService service) =>
-        {
-            using var reader = new StreamReader(request.Body);
-            var body = await reader.ReadToEndAsync();
-            var settings = JsonConvert.DeserializeObject<IEnumerable<ProviderSettingsModel>>(body);
-
-            var result = await service.UpdatePaymentProviderSettings(settings);
-            return Results.Ok(result);
-        })
-        .WithName("UpdatePaymentProviderSettings")
-        .WithOpenApi(operation => new(operation)
-        {
-            Summary = "Update payment provider settings",
-            Description = "Updates the settings for a payment provider"
-        });
-
         app.MapPost("/api/payments/add-payment-method", async (HttpRequest request, IPaymentsService service) =>
         {
             using var reader = new StreamReader(request.Body);
@@ -143,6 +127,21 @@ public static class PaymentsEndpoints
         {
             Summary = "Get all banks",
             Description = "Returns a list of all available banks"
+        });
+
+        app.MapPost("/api/payments/update-provider", async (HttpRequest request, IPaymentsService service) =>
+        {
+            using var reader = new StreamReader(request.Body);
+            var body = await reader.ReadToEndAsync();
+            var provider = JsonConvert.DeserializeObject<ProviderModel>(body);
+            var result = await service.UpdateProvider(provider);
+            return Results.Ok(result);
+        })
+        .WithName("UpdatePaymentProviderSettings")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Update payment provider settings",
+            Description = "Updates the settings for a payment provider"
         });
 
 

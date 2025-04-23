@@ -112,6 +112,17 @@ export const paymentProviderService = {
     }
   },
 
+  // Update payment provider
+  updateProvider: async (provider: any): Promise<ResultModel> => {
+    try {
+      const response = await api.post(`UpdateProvider`, provider );
+      return response.data;
+    } catch (error) {
+      console.error(`Error updating settings`, error);
+      throw error;
+    }
+  },
+
 
   
   // Get banks for a specific provider
@@ -132,17 +143,6 @@ export const paymentProviderService = {
       return response.data;
     } catch (error) {
       console.error('Error updating provider banks:', error);
-      throw error;
-    }
-  },
-
-  // Update settings for a specific payment provider
-  updateProviderSettings: async (settings: any): Promise<ResultModel> => {
-    try {
-      const response = await api.put(`/update-payment-provider-settings`, settings );
-      return response.data;
-    } catch (error) {
-      console.error(`Error updating settings`, error);
       throw error;
     }
   },

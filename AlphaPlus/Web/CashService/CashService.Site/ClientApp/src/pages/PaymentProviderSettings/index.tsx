@@ -153,8 +153,15 @@ function PaymentProviderSettings() {
       setUpdating(true);
       setUpdateMessage(null);
       
-      // Call the API to update provider settings
-      const result = await paymentProviderService.updateProviderSettings(providerSettings);
+      var provider = {
+        id: window.providerSettingsViewModel.Provider.Id,
+        name: window.providerSettingsViewModel.Provider.Name,
+        status: providerStatus ? 1 : 0,
+        providerSettings: providerSettings
+      };
+
+      // Call the API to update provider
+      const result = await paymentProviderService.updateProvider(provider);
       
       if (result.isSuccessful) {
         setUpdateMessage({
@@ -170,7 +177,7 @@ function PaymentProviderSettings() {
         });
       }
     } catch (err) {
-      console.error('Failed to update provider settings:', err);
+      console.error('Failed to update provider:', err);
       setUpdateMessage({
         type: 'error',
         text: tGlobal('updateFailed')
@@ -186,9 +193,9 @@ function PaymentProviderSettings() {
     // You might want to add API call here to update the provider status on the server
   };
 
-  const getPaymentMethodName = (id: number) => {
-    return window.providerSettingsViewModel.PaymentMethods.find((method: any) => method.Id === id)?.Name || id;
-  };
+  // const getPaymentMethodName = (id: number) => {
+    // return window.providerSettingsViewModel.PaymentMethods.find((method: any) => method.Id === id)?.Name || id;
+  // };
 
   const getStatusName = (id: number) => {
     return STATUS_OPTIONS.find(status => status.id === id)?.name || id;
@@ -291,7 +298,7 @@ function PaymentProviderSettings() {
               <tbody>
                 {providerSettings.map((setting, index) => (
                   <tr key={index}>
-                    <td>{getPaymentMethodName(setting.method)}</td>
+                    <td>{setting.methodName}</td>
                     <td>{getStatusName(setting.status)}</td>
                     <td>{getTransactionTypeName(setting.transactionType)}</td>
                     <td>
