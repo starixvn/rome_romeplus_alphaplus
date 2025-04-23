@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.BonusDetail;
 
-public abstract class GetBonusDetailCriteria(
+internal abstract class GetBonusDetailCriteria(
     string username,
     DateTime fromDate,
     DateTime toDate,

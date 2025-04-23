@@ -1,6 +1,7 @@
 using AlphaPlus.Reports.Features.BetChoiceMatching;
 
 namespace AlphaPlus.Reports.UnitTests.Features.BetChoiceMatching;
+
 [Trait("Category", "BetChoiceMatching")]
 public class GetBetChoiceMatchingCriteriaTest
 {
