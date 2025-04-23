@@ -27,6 +27,7 @@ function PaymentProviderSettings() {
   const [error, setError] = React.useState<string | null>(null);
   const [updating, setUpdating] = React.useState(false);
   const [updateMessage, setUpdateMessage] = React.useState<{type: 'success' | 'error', text: string} | null>(null);
+  const [providerStatus, setProviderStatus] = React.useState(window.providerSettingsViewModel.Provider.Status);
   
   // State for dropdowns
   const [selectedPaymentMethod, setSelectedPaymentMethod] = React.useState('');
@@ -132,6 +133,10 @@ function PaymentProviderSettings() {
   // Handler for reset button
   const handleReset = () => {
     setProviderSettings([...originalSettings]);
+    setSelectedPaymentMethod('');
+    setSelectedStatus('');
+    setSelectedTransactionType('');
+    setProviderStatus(window.providerSettingsViewModel.Provider.Status);
     setUpdateMessage(null);
   };
 
@@ -168,6 +173,12 @@ function PaymentProviderSettings() {
     }
   };
 
+  // Handler for provider status toggle
+  const handleProviderStatusToggle = () => {
+    setProviderStatus(!providerStatus);
+    // You might want to add API call here to update the provider status on the server
+  };
+
   const getPaymentMethodName = (id: number) => {
     return window.providerSettingsViewModel.PaymentMethods.find((method: any) => method.Id === id)?.Name || id;
   };
@@ -198,7 +209,7 @@ function PaymentProviderSettings() {
         <>
           <div className="form-group">
             <label className="form-label">{tManagePayments('setUpPaymentMethodsForMembers')}</label>
-            <label className="toggle-label">
+            <label className="toggle-label" htmlFor='enableToggle'>
               {tGlobal('enable')}/{tGlobal('disable')}
             </label>
             <div className="settings-footer">
@@ -208,9 +219,9 @@ function PaymentProviderSettings() {
               <input
                 type="checkbox"
                 id="enableToggle"
-                checked={window.providerSettingsViewModel.Provider.Status}
+                checked={providerStatus}
+                onChange={handleProviderStatusToggle}
                 className="toggle-checkbox"
-                disabled={true}
               />
             </div>
           </div>
