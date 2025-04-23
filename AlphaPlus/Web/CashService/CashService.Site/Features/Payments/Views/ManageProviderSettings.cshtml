@@ -1,15 +1,15 @@
-@using AlphaPlus.CashService.Site.Features.Payments.Models
+@using AlphaPlus.CashService.Site.Features.Payments.ViewModels
 @using Newtonsoft.Json
 @{
-    ViewData["Title"] = "Manage Payments";
+    ViewData["Title"] = "Manage Provider Settings";
     Layout = "_Layout";
 }
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
-@model ProviderModel
+@model ProviderSettingsViewModel
 <div id="root"></div>
 
 <script>
-    window.provider = @Html.Raw(JsonConvert.SerializeObject(Model));
+    window.providerSettingsViewModel = @Html.Raw(JsonConvert.SerializeObject(Model));
 </script>
 
 <environment names="Development">

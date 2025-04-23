@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using AlphaPlus.CashService.Site.Helpers;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using AlphaPlus.CashService.Site.Features.Payments.Requests;
 using AlphaPlus.CashService.Site.Features.Payments.Models;
+using AlphaPlus.CashService.Site.Features.Payments.ViewModels;
 
 namespace AlphaPlus.CashService.Site.Features.Payments
 {
@@ -11,7 +11,6 @@ namespace AlphaPlus.CashService.Site.Features.Payments
     {
         private readonly ILogger<PaymentsController> _logger;
         private readonly IWebHostEnvironment _environment;
-        private readonly APIHelper _apiHelper;
         private readonly string _apiBaseUrl;
         private readonly int _custId;
         private readonly HttpClient _httpClient;
@@ -19,13 +18,11 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         public PaymentsController(
             ILogger<PaymentsController> logger, 
             IWebHostEnvironment environment, 
-            APIHelper apiHelper, 
             IConfiguration configuration,
             HttpClient httpClient)
         {
             _logger = logger;
             _environment = environment;
-            _apiHelper = apiHelper;
             _apiBaseUrl = configuration["CashServiceAPIUrl"];
             _httpClient = httpClient;
 
@@ -64,26 +61,34 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             return Json(result);
         }
 
-        public async Task<IActionResult> GetProviderFees()
+        public async Task<IActionResult> GetProviderFees(CancellationToken cancellationToken)
         {
             var url = $"{_apiBaseUrl}/payments/provider-fees/{_custId}";
-            var fees = await _apiHelper.GetAsync<object>(url);
+            var fees = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
             return Json(fees);
         }
 
-        public async Task<IActionResult> PaymentProviderSettings(int id)
+        public async Task<IActionResult> ManageProviderSettings(int id, CancellationToken cancellationToken)
         {
-            var url = $"{_apiBaseUrl}/payment-providers/{id}";
-            // var provider = await _apiHelper.GetAsync<ProviderModel>(url);
-            var provider = new ProviderModel {
-                Id = 1,
-                Name = "Credit Card",
-                Status = 1,
-                LastUpdated = DateTime.Now.AddDays(-1)
+            var url = $"{_apiBaseUrl}/payments/providers/{_custId}/{id}";
+            var provider = await _httpClient.GetFromJsonAsync<ProviderModel>(url, cancellationToken);
+            var paymentMethods = await _httpClient.GetFromJsonAsync<IEnumerable<PaymentMethodModel>>($"{_apiBaseUrl}/payments/payment-methods", cancellationToken);
+            var allPaymentMethods = paymentMethods.ToList().Prepend(PaymentMethodModel.CreateAllOption());
+
+            var viewModel = new ProviderSettingsViewModel
+            {
+                Provider = provider,
+                PaymentMethods = allPaymentMethods
             };
-
-            return View(provider);
+            
+            return View(viewModel);
         }
-
+    
+        public async Task<IActionResult> ProviderSettings(int providerId,int method, int status, int transactionType, CancellationToken cancellationToken)
+        {
+            var url = $"{_apiBaseUrl}/payments/provider-settings?providerId={providerId}&method={method}&status={status}&transactionType={transactionType}";
+            var settings = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
+            return Json(settings);
+        }
     }
 }

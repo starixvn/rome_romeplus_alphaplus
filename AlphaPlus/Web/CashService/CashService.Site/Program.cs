@@ -5,7 +5,6 @@ using AlphaPlus.Core.Middlewares;
 using AlphaPlus.RequestInfo;
 using AlphaPlus.SecurityCode.Extensions;
 using AlphaPlus.SecurityCode.Filters;
-using AlphaPlus.CashService.Site.Helpers;
 using Fanex.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -46,7 +45,6 @@ builder.Services
     .AddSecurityCodeServices(configuration)
     .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly))
     .AddHttpClient()
-    .AddScoped<APIHelper>()
     .AddControllersWithViews(options =>
     {
         options.Filters.Add<CheckBelongingFilterAttribute>();

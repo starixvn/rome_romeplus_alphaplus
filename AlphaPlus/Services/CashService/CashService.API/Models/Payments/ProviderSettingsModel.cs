@@ -8,6 +8,8 @@ namespace AlphaPlus.CashService.API.Models.Payments
         public int TransactionType { get; set; }
         public decimal MinAmount { get; set; }
         public decimal MaxAmount { get; set; }
+        public decimal MinAmountTrans { get; set; }
+        public decimal MaxAmountTrans { get; set; }
         public bool IsEnabled { get; set; }
         public bool BankRequired { get; set; }
     }

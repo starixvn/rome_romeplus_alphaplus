@@ -66,10 +66,9 @@ public static class PaymentsEndpoints
             Description = "Returns the fees for a specific payment provider"
         });
 
-
-        app.MapGet("/api/payment-providers/{providerId}", async (int providerId, IPaymentsService service) =>
+        app.MapGet("/api/payments/providers/{custId}/{providerId}", async (int custId, int providerId, IPaymentsService service) =>
         {
-            var provider = await service.GetPaymentProviderById(providerId);
+            var provider = await service.GetProviderById(custId, providerId);
             return Results.Ok(provider);
         })
         .WithName("GetPaymentProviderById")
@@ -79,10 +78,9 @@ public static class PaymentsEndpoints
             Description = "Returns a specific payment provider by its ID"
         });
 
-       
-        app.MapGet("/api/payment-provider-settings", async (int providerId, int method, int status, int transactionType, IPaymentsService service) =>
+        app.MapGet("/api/payments/provider-settings", async (int providerId, int method, int status, int transactionType, IPaymentsService service) =>
         {
-            var settings = await service.GetPaymentProviderSettings(providerId, method, status, transactionType);
+            var settings = await service.GetProviderSettings(providerId, method, status, transactionType);
             return Results.Ok(settings);
         })
         .WithName("GetPaymentProviderSettings")
@@ -90,6 +88,18 @@ public static class PaymentsEndpoints
         {
             Summary = "Get payment provider settings",
             Description = "Returns the settings for a specific payment provider based on method, status, and transaction type"
+        });
+
+        app.MapGet("/api/payments/payment-methods", async (IPaymentsService service) =>
+        {
+            var methods = await service.GetPaymentMethods();
+            return Results.Ok(methods);
+        })
+        .WithName("GetPaymentMethods")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Get payment methods",
+            Description = "Returns a list of all payment methods"
         });
 
         app.MapPut("/api/update-payment-provider-settings", async (HttpRequest request, IPaymentsService service) =>
@@ -108,18 +118,9 @@ public static class PaymentsEndpoints
             Description = "Updates the settings for a payment provider"
         });
         
-        app.MapGet("/api/payment-methods", async (IPaymentsService service) =>
-        {
-            var methods = await service.GetAllPaymentMethods();
-            return Results.Ok(methods);
-        })
-        .WithName("GetAllPaymentMethods")
-        .WithOpenApi(operation => new(operation)
-        {
-            Summary = "Get all payment methods",
-            Description = "Returns a list of all available payment methods"
-        });
 
+
+        
         app.MapPost("/api/add-payment-method", async (HttpRequest request, IPaymentsService service) =>
         {
             using var reader = new StreamReader(request.Body);

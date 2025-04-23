@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { useTranslation } from 'react-i18next';
 import '../../i18n/i18n';
 import './PaymentProviderSettings.css';
-import { PAYMENT_METHODS, STATUS_OPTIONS, TRANSACTION_TYPES } from '../../constants/paymentConstants';
+import { STATUS_OPTIONS, TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import ProviderFeesPopupModal from '../ManagePayments/ProviderFeesPopupModal';
 import AddPaymentMethodModal from './AddPaymentMethodModal';
 import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
@@ -12,7 +12,7 @@ import { paymentProviderService } from '../../services/paymentsAPI';
 // Extend Window interface to include providerName
 declare global {
   interface Window {
-    provider: any;
+    providerSettingsViewModel: any;
   }
 }
 
@@ -43,7 +43,7 @@ function PaymentProviderSettings() {
         const transactionType = selectedTransactionType ? parseInt(selectedTransactionType) : 0;
         
         const settings = await paymentProviderService.getProviderSettings(
-          window.provider.Id,
+          window.providerSettingsViewModel.Provider.Id,
           method,
           status,
           transactionType
@@ -169,7 +169,7 @@ function PaymentProviderSettings() {
   };
 
   const getPaymentMethodName = (id: number) => {
-    return PAYMENT_METHODS.find(method => method.id === id)?.name || id;
+    return window.providerSettingsViewModel.PaymentMethods.find((method: any) => method.Id === id)?.Name || id;
   };
 
   const getStatusName = (id: number) => {
@@ -183,7 +183,7 @@ function PaymentProviderSettings() {
   return (
     <div className="payment-provider-settings">
       <div className="settings-header">
-        <h2>{window.provider.Name}</h2>
+        <h2>{window.providerSettingsViewModel.Provider.Name}</h2>
       </div>
       
       {loading ? (
@@ -208,7 +208,7 @@ function PaymentProviderSettings() {
               <input
                 type="checkbox"
                 id="enableToggle"
-                checked={window.provider.Status}
+                checked={window.providerSettingsViewModel.Provider.Status}
                 className="toggle-checkbox"
                 disabled={true}
               />
@@ -222,9 +222,8 @@ function PaymentProviderSettings() {
               value={selectedPaymentMethod}
               onChange={handlePaymentMethodChange}
             >
-              <option value="">{tGlobal('select')}</option>
-              {PAYMENT_METHODS.map(method => (
-                <option key={method.id} value={method.id}>{method.name}</option>
+              {window.providerSettingsViewModel.PaymentMethods.map((method: any) => (
+                <option key={method.Id} value={method.Id}>{method.Name}</option>
               ))}
             </select>
           </div>
@@ -236,7 +235,6 @@ function PaymentProviderSettings() {
               value={selectedStatus}
               onChange={handleStatusChange}
             >
-              <option value="">{tGlobal('select')}</option>
               {STATUS_OPTIONS.map(status => (
                 <option key={status.id} value={status.id}>{status.name}</option>
               ))}
@@ -250,7 +248,6 @@ function PaymentProviderSettings() {
               value={selectedTransactionType}
               onChange={handleTransactionTypeChange}
             >
-              <option value="">{tGlobal('select')}</option>
               {TRANSACTION_TYPES.map(type => (
                 <option key={type.id} value={type.id}>{type.name}</option>
               ))}
@@ -258,7 +255,7 @@ function PaymentProviderSettings() {
           </div>
 
           <div className="settings-footer">
-            <button className="btn btn-secondary me-2" onClick={handleViewFees}>{tManagePayments('viewProviderFees', {providerName: window.provider.Name})}</button>
+            <button className="btn btn-secondary me-2" onClick={handleViewFees}>{tManagePayments('viewProviderFees', {providerName: window.providerSettingsViewModel.Provider.Name})}</button>
           </div>
           <div className="settings-table-container">
             <table className="table table-striped">
@@ -346,7 +343,7 @@ function PaymentProviderSettings() {
       {/* Fee Popup Modal */}
       {showFeePopup && (
         <ProviderFeesPopupModal
-          provider={{id: window.provider.Id, name: window.provider.Name} as PaymentProvider}
+          provider={{id: window.providerSettingsViewModel.Provider.Id, name: window.providerSettingsViewModel.Provider.Name} as PaymentProvider}
           onClose={handleCloseFeePopup}
         />
       )}
@@ -354,7 +351,7 @@ function PaymentProviderSettings() {
       {/* Add Payment Method Modal */}
       {showAddPaymentMethod && (
         <AddPaymentMethodModal
-          providerId={window.provider.Id}
+          providerId={window.providerSettingsViewModel.Provider.Id}
           onClose={handleCloseAddPaymentMethod}
           onSave={handlePaymentMethodAdded}
         />

@@ -12,14 +12,21 @@
       <Mapping DataField="MethodName" ObjectProperty="Method"></Mapping>
       <Mapping DataField="FeeRate" ObjectProperty="Rate"></Mapping>
     </Setting>
+    <Setting Key="Age_CashService_PaymentProviderDtl_Sel" SpName="Age_CashService_PaymentProviderDtl_Sel_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+      <Mapping DataField="MethodName" ObjectProperty="Method"></Mapping>
+      <Mapping DataField="PaymentMethodStatus" ObjectProperty="Status"></Mapping>
+      <Mapping DataField="PaymentMethodEnable" ObjectProperty="IsEnabled"></Mapping>
+      <Mapping DataField="RequiresBank" ObjectProperty="BankRequired"></Mapping>
+    </Setting>
+    <Setting Key="Age_CashService_PaymentMethods" SpName="Age_CashService_PaymentMethods_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+      <Mapping DataField="PaymentMethodID" ObjectProperty="Id"></Mapping>
+      <Mapping DataField="MethodName" ObjectProperty="Name"></Mapping>
+    </Setting>
     
-    
-    <Setting Key="Age_ManagementPayments_SelProviderSettings" SpName="Age_ManagementPayments_SelProviderSettings" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+
     <Setting Key="Age_ManagementPayments_UpdProviderSettings" SpName="Age_ManagementPayments_UpdProviderSettings" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-    
     <Setting Key="Age_ManagementPayments_InsMethod" SpName="Age_ManagementPayments_InsMethod" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-    <Setting Key="Age_ManagementPayments_SelAllMethods" SpName="Age_ManagementPayments_SelAllMethods" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-  
+   
     <Setting Key="Age_ManagementPayments_SelAllBanks" SpName="Age_ManagementPayments_SelAllBanks" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     <Setting Key="Age_ManagementPayments_SelBankAccounts" SpName="Age_ManagementPayments_SelBankAccounts" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     <Setting Key="Age_ManagementPayments_DelBankAccount" SpName="Age_ManagementPayments_DelBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />

@@ -12,12 +12,12 @@ public interface IPaymentsService
     Task<int> GetDailyWithdrawalCount(int custId);
     Task<ResultModel> SetDailyWithdrawalCount(int custId, int count);
     Task<IEnumerable<ProviderFeeGroupModel>> GetProviderFees(int custId);
-
-    Task<ProviderModel> GetPaymentProviderById(int providerId);
-    Task<IEnumerable<ProviderSettingsModel>> GetPaymentProviderSettings(int providerId, int method, int status, int transactionType);
+    Task<ProviderModel> GetProviderById(int custId, int providerId);
+    Task<IEnumerable<PaymentMethodModel>> GetPaymentMethods();
+    Task<IEnumerable<ProviderSettingsModel>> GetProviderSettings(int providerId, int method, int status, int transactionType);
+    
     Task<ResultModel> UpdatePaymentProviderSettings(IEnumerable<ProviderSettingsModel> settings);
     Task<ResultModel> AddPaymentProviderSetting(ProviderSettingsModel setting);
-    Task<IEnumerable<PaymentMethodModel>> GetAllPaymentMethods();
     Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod);
     Task<IEnumerable<BankModel>> GetAllBanks();
     Task<IEnumerable<BankAccountModel>> GetBankAccounts(int custId, int bankId, int transactionType, int status, string searchText);
@@ -74,21 +74,24 @@ public class PaymentsService : IPaymentsService
         return groupedFees;
     }
 
-
-    public async Task<ProviderModel> GetPaymentProviderById(int providerId)
+    public async Task<ProviderModel> GetProviderById(int custId, int providerId)
     {
-        // var result = await _repository.FetchAsync<ProviderModel>(new GetPaymentProviderByIdCriteria(providerId));
-        var providers = await DummyDataService.GetDummyProviders();
+        var providers = await GetProviders(custId);
         var provider = providers.FirstOrDefault(p => p.Id == providerId);
-        
         return provider;
     }
     
-
-    public async Task<IEnumerable<ProviderSettingsModel>> GetPaymentProviderSettings(int providerId, int method, int status, int transactionType)
+    public async Task<IEnumerable<PaymentMethodModel>> GetPaymentMethods()
     {
-        // var result = await _repository.FetchAsync<ProviderSettingsModel>(new GetPaymentProviderSettingsCriteria(providerId, method, status, transactionType));
+        var methods = await _repository.FetchAsync<PaymentMethodModel>(new GetPaymentMethodsCriteria());
+        return methods;
+    }
+
+    public async Task<IEnumerable<ProviderSettingsModel>> GetProviderSettings(int providerId, int method, int status, int transactionType)
+    {
         var settings = await DummyDataService.GetDummyProviderSettings(providerId, method, status, transactionType);
+
+        // var settings = await _repository.FetchAsync<ProviderSettingsModel>(new GetProviderSettingsCriteria(providerId, method, status, transactionType));
         
         return settings;
     }
@@ -121,15 +124,6 @@ public class PaymentsService : IPaymentsService
         // var result = await _repository.ExecuteNonQueryAsync(new AddPaymentProviderSettingCriteria(setting));
 
         return new ResultModel(0, "Success");
-    }
-
-    public async Task<IEnumerable<PaymentMethodModel>> GetAllPaymentMethods()
-    {
-        // TODO: Implement actual database query
-        // var result = await _repository.FetchAsync<PaymentMethodModel>(new GetAllPaymentMethodsCriteria());
-        var methods = await DummyDataService.GetDummyPaymentMethods();
-        
-        return methods;
     }
 
     public async Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod)

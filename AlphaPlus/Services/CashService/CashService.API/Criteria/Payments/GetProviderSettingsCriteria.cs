@@ -1,10 +1,11 @@
+using Fanex.Data;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Criteria.Payments
 {
-    public class GetPaymentProviderSettingsCriteria : CriteriaBase
+    public class GetProviderSettingsCriteria : CriteriaBase
     {
-        public GetPaymentProviderSettingsCriteria(int providerId, int method, int status, int transactionType)
+        public GetProviderSettingsCriteria(int providerId, int method, int status, int transactionType)
         {
             ProviderId = providerId;
             Method = method;
@@ -13,11 +14,17 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
         }
 
         public int ProviderId { get; set; }
+
+        [SpParam(SqlParamName = "PaymentMethodID")]
         public int Method { get; set; }
+
+        [SpParam(SqlParamName = "PaymentMethodStatus")]
         public int Status { get; set; }
+
+        [SpParam(SqlParamName = "TransactionType")]
         public int TransactionType { get; set; }
 
-        public override string GetSettingKey() => "Age_ManagementPayments_SelProviderSettings";
+        public override string GetSettingKey() => "Age_CashService_PaymentProviderDtl_Sel";
 
         public override bool IsValid() => ProviderId > 0;
     }

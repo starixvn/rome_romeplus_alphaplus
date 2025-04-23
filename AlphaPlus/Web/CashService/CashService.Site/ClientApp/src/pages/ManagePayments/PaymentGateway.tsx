@@ -63,7 +63,7 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
   const handleSaveDailyLimit = () => {};
 
   const handleEditClick = (provider: PaymentProvider) => {
-    location.href = '../Payments/PaymentProviderSettings?id=' + provider.id;
+    location.href = 'ManageProviderSettings?id=' + provider.id;
   };
 
   return (
