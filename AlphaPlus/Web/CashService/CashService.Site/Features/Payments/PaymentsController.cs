@@ -73,7 +73,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             var url = $"{_apiBaseUrl}/payments/providers/{_custId}/{id}";
             var provider = await _httpClient.GetFromJsonAsync<ProviderModel>(url, cancellationToken);
             var paymentMethods = await _httpClient.GetFromJsonAsync<IEnumerable<PaymentMethodModel>>($"{_apiBaseUrl}/payments/payment-methods", cancellationToken);
-            var allPaymentMethods = paymentMethods.ToList().Prepend(PaymentMethodModel.CreateAllOption());
+            var allPaymentMethods = paymentMethods.ToList().Prepend(PaymentMethodModel.CreateOptionAll());
 
             var viewModel = new ProviderSettingsViewModel
             {
@@ -89,6 +89,27 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             var url = $"{_apiBaseUrl}/payments/provider-settings?providerId={providerId}&method={method}&status={status}&transactionType={transactionType}";
             var settings = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
             return Json(settings);
+        }
+
+        public async Task<IActionResult> GetPaymentMethods(CancellationToken cancellationToken)
+        {
+            var url = $"{_apiBaseUrl}/payments/payment-methods";
+            var paymentMethods = await _httpClient.GetFromJsonAsync<IEnumerable<PaymentMethodModel>>(url, cancellationToken);
+            var allPaymentMethods = paymentMethods.ToList().Prepend(PaymentMethodModel.CreateOptionAll());
+            return Json(allPaymentMethods);
+        }
+
+        public async Task<IActionResult> AddPaymentMethod(
+            [FromBody] PaymentMethodModel paymentMethod,
+            CancellationToken cancellationToken)
+        {
+            var url = $"{_apiBaseUrl}/payments/add-payment-method";
+            paymentMethod.CustId = _custId;
+
+            var response = await _httpClient.PostAsJsonAsync(url, paymentMethod, cancellationToken);
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
+            return Json(result);
         }
     }
 }

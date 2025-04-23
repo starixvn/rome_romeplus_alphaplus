@@ -1,3 +1,4 @@
+using AlphaPlus.CashService.API.Models.Payments;
 using Fanex.Data;
 using Fanex.Data.Repository;
 
@@ -5,33 +6,34 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
 {
     public class InsertPaymentMethodCriteria : NonQueryCommand
     {
-        public InsertPaymentMethodCriteria(
-            int providerId,
-            string methodName,
-            int transactionType,
-            int creator)
+        public InsertPaymentMethodCriteria(PaymentMethodModel model)
         {
-            ProviderId = providerId;
-            TransactionType = transactionType;
-            MethodName = methodName;
-            Creator = creator;
+            CustId = model.CustId;
+            ProviderId = model.ProviderId;
+            TransactionType = model.TransactionType;
+            Method = model.Method;
+
+            APIMethodKey = model.APIMethodKey ?? string.Empty;
+            MerchantID = model.MerchantID ?? string.Empty;
+            AppSecret = model.AppSecret ?? string.Empty;
         }
 
-        [SpParam(SqlParamName = "ProviderId")]
+        public int CustId { get; }
         public int ProviderId { get; }
-
-        [SpParam(SqlParamName = "MethodName")]
-        public string MethodName { get; }
-
-        [SpParam(SqlParamName = "MethodType")]
         public int TransactionType { get; }
 
-        [SpParam(SqlParamName = "Creator")]
-        public int Creator { get; }
+        [SpParam(SqlParamName = "PaymentMethodID")]
+        public int Method { get; }
 
-        public override string GetSettingKey() => "Age_ManagementPayments_InsMethod";
+        public string APIMethodKey { get; }
+        public string MerchantID { get; }
+        public string AppSecret { get; }
 
-        public override bool IsValid() 
-            => ProviderId > 0 && !string.IsNullOrWhiteSpace(MethodName) && TransactionType > 0 && Creator > 0;
+        public int ErrCode { get; set; }
+        public string ErrMsg { get; set; } = "";
+
+        public override string GetSettingKey() => "Age_CashService_PaymentProvider_Ins";
+
+        public override bool IsValid() => CustId > 0 && ProviderId > 0;
     }
 } 

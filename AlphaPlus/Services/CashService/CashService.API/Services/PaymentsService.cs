@@ -15,10 +15,10 @@ public interface IPaymentsService
     Task<ProviderModel> GetProviderById(int custId, int providerId);
     Task<IEnumerable<PaymentMethodModel>> GetPaymentMethods();
     Task<IEnumerable<ProviderSettingsModel>> GetProviderSettings(int providerId, int method, int status, int transactionType);
+    Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod);
     
     Task<ResultModel> UpdatePaymentProviderSettings(IEnumerable<ProviderSettingsModel> settings);
     Task<ResultModel> AddPaymentProviderSetting(ProviderSettingsModel setting);
-    Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod);
     Task<IEnumerable<BankModel>> GetAllBanks();
     Task<IEnumerable<BankAccountModel>> GetBankAccounts(int custId, int bankId, int transactionType, int status, string searchText);
     Task<ResultModel> DeleteBankAccount(int accountId);
@@ -95,7 +95,13 @@ public class PaymentsService : IPaymentsService
         
         return settings;
     }
-
+    
+    public async Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod)
+    {
+        var criteria = new InsertPaymentMethodCriteria(paymentMethod);
+        await _repository.ExecuteAsync(criteria);
+        return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
+    }
    
     public async Task<ResultModel> UpdatePaymentProviderSettings(IEnumerable<ProviderSettingsModel> settings)
     {
@@ -126,19 +132,7 @@ public class PaymentsService : IPaymentsService
         return new ResultModel(0, "Success");
     }
 
-    public async Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod)
-    {
-        if (paymentMethod == null)
-        {
-            return new ResultModel(1, "No payment method provided");
-        }
-
-        // TODO: Implement actual database insert logic
-        // var result = await _repository.ExecuteNonQueryAsync(new InsertPaymentMethodCriteria(paymentMethod));
-
-        return new ResultModel(0, "Success");
-    }
-
+  
     public async Task<IEnumerable<BankModel>> GetAllBanks()
     {
         // var result = await _repository.FetchAsync<BankModel>(new GetAllBanksCriteria());

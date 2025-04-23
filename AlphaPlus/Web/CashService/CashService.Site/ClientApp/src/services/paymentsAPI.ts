@@ -79,6 +79,29 @@ export const paymentProviderService = {
     }
   },
   
+  // Get all payment methods
+  getPaymentMethods: async (): Promise<PaymentMethod[]> => {
+    try {
+      const response = await api.get<PaymentMethod[]>('GetPaymentMethods', { method: 'GET' });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching payment methods:', error);
+      return [];
+    }
+  },
+  
+  // Add a new payment method
+  addPaymentMethod: async (paymentMethod: PaymentMethod): Promise<ResultModel> => {
+    try {
+      const response = await api.post('AddPaymentMethod', paymentMethod);
+      return response.data;
+    } catch (error) {
+      console.error('Error adding payment method:', error);
+      throw error;
+    }
+  },
+
+
 
   // Update settings for a specific payment provider
   updateProviderSettings: async (settings: any): Promise<ResultModel> => {
@@ -88,17 +111,6 @@ export const paymentProviderService = {
     } catch (error) {
       console.error(`Error updating settings`, error);
       throw error;
-    }
-  },
-  
-  // Get all payment methods
-  getAllPaymentMethods: async (): Promise<PaymentMethod[]> => {
-    try {
-      const response = await api.get<PaymentMethod[]>('/payment-methods', { method: 'GET' });
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching payment methods:', error);
-      return [];
     }
   },
   
@@ -134,17 +146,6 @@ export const paymentProviderService = {
     } catch (error) {
       console.error('Error fetching bank accounts:', error);
       return [];
-    }
-  },
-  
-  // Add a new payment method
-  addPaymentMethod: async (paymentMethod: PaymentMethod): Promise<ResultModel> => {
-    try {
-      const response = await api.post('/add-payment-method', paymentMethod);
-      return response.data;
-    } catch (error) {
-      console.error('Error adding payment method:', error);
-      throw error;
     }
   },
   

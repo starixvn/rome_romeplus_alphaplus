@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { TRANSACTION_TYPES, STATUS_OPTIONS } from '../../constants/paymentConstants';
+import { TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { PaymentMethod } from '../../services/interfaces/PaymentMethod';
 
@@ -24,13 +24,14 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
   const [paymentMethods, setPaymentMethods] = React.useState<PaymentMethod[]>([]);
   const [allMethodsInactive, setAllMethodsInactive] = React.useState<boolean>(false);
 
-  const inactiveStatus = STATUS_OPTIONS.find(option => option.name === 'Inactive')?.id;
+  const inactiveStatus = 2;
+  const activeStatus = 1;
   
   // Load payment methods when component mounts
   React.useEffect(() => {
     const loadPaymentMethods = async () => {
       try {
-        const methods = await paymentProviderService.getAllPaymentMethods();
+        const methods = await paymentProviderService.getPaymentMethods();
         setPaymentMethods(methods);
         // Check if all methods are inactive using STATUS_OPTIONS constant
         setAllMethodsInactive(methods.length > 0 && methods.every(method => method.status === inactiveStatus));
@@ -57,8 +58,11 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
         providerId,
         method: parseInt(selectedPaymentMethod),
         transactionType: parseInt(selectedTransactionType),
-        status: 1, // Active status
-        creator: 1 // Default creator ID
+        status: activeStatus,
+        custId: 0,
+        apiMethodKey: selectedMethod?.apiMethodKey || '',
+        merchantID: selectedMethod?.merchantID || '',
+        appSecret: selectedMethod?.appSecret || ''
       };
 
       const response = await paymentProviderService.addPaymentMethod(newSetting);
@@ -113,7 +117,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
                 required
               >
                 <option value="">{tGlobal('select')}</option>
-                {paymentMethods.map(method => (
+                {paymentMethods.filter(p => p.id !== 0).map(method => (
                   <option 
                     key={method.id} 
                     value={method.id}

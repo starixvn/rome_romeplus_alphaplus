@@ -2,8 +2,12 @@
 export interface PaymentMethod {
   id: number;
   name: string;
+  custId?: number;
   providerId: number;
   transactionType: number;
+  method: number;
   status: number;
-  creator: number;
+  apiMethodKey?: string;
+  merchantID?: string;
+  appSecret?: string;
 } 

@@ -117,21 +117,12 @@ public static class PaymentsEndpoints
             Summary = "Update payment provider settings",
             Description = "Updates the settings for a payment provider"
         });
-        
 
-
-        
-        app.MapPost("/api/add-payment-method", async (HttpRequest request, IPaymentsService service) =>
+        app.MapPost("/api/payments/add-payment-method", async (HttpRequest request, IPaymentsService service) =>
         {
             using var reader = new StreamReader(request.Body);
             var body = await reader.ReadToEndAsync();
             var method = JsonConvert.DeserializeObject<PaymentMethodModel>(body);
-            
-            if (method == null)
-            {
-                return Results.BadRequest("Invalid payment method data");
-            }
-
             var result = await service.InsertPaymentMethod(method);
             return Results.Ok(result);
         })
@@ -141,6 +132,10 @@ public static class PaymentsEndpoints
             Summary = "Add payment method",
             Description = "Adds a new payment method to the system"
         });
+        
+
+
+        
 
         app.MapGet("/api/banks", async (IPaymentsService service) =>
         {
