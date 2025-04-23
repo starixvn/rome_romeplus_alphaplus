@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   getTransactions,
-  TransactionHistoryItem,
   TransactionsHistoryResponse,
   TransactionsHistoryParams,
 } from '../../../../services/transactionsHistoryAPI';
@@ -15,7 +13,6 @@ interface TransactionListProps {
 }
 
 const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) => {
-  const { t } = useTranslation('transactions');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<TransactionsHistoryResponse>({

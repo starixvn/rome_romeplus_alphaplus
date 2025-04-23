@@ -16,12 +16,12 @@ public class TransactionsController(IMediator mediator, ILogger<TransactionsCont
 
     [HttpGet]
     public async Task<IActionResult> GetTransactionsAsync(
-        [FromQuery] string? username,
-        [FromQuery] string? referenceNumber,
+        [FromQuery] string username,
+        [FromQuery] string referenceNumber,
         [FromQuery] DateTime? fromDate,
         [FromQuery] DateTime? toDate,
         [FromQuery] int page = 1,
-        [FromQuery] int pageSize = 10,
+        [FromQuery] int pageSize = 1000,
         CancellationToken cancellationToken = default)
     {
         try

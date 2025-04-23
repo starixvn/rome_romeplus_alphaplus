@@ -23,10 +23,10 @@ const HistoryTab: React.FC<HistoryTabProps> = ({ activeTab, onTabChange }) => {
       <h1 className="text-xl font-semibold text-gray-900 mb-4">{t('transactionHistory')}</h1>
       <div className="flex space-x-4">
         <button onClick={() => onTabChange('deposit')} className={getButtonClass('deposit')}>
-          {t('deposits')}
+          {t('deposit')}
         </button>
         <button onClick={() => onTabChange('withdrawal')} className={getButtonClass('withdrawal')}>
-          {t('withdrawals')}
+          {t('withdrawal')}
         </button>
       </div>
     </div>

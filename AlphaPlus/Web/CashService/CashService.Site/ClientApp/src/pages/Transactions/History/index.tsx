@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { useTranslation } from 'react-i18next';
 import TransactionList from './components/TransactionList';
 import HistoryTab from './components/HistoryTab';
 import './HistoryStyle.css';
 
 const History: React.FC = () => {
-  const { t } = useTranslation('transactions');
   const [activeTab, setActiveTab] = useState<'deposit' | 'withdrawal'>('deposit');
 
   const handleTabChange = (tab: 'deposit' | 'withdrawal') => {
