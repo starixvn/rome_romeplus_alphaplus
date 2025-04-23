@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using AlphaPlus.CashService.Site.Features.Payments.Models;
 using AlphaPlus.CashService.Site.Helpers;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using AlphaPlus.CashService.Site.Features.Payments.Requests;
+using AlphaPlus.CashService.Site.Features.Payments.Models;
 
 namespace AlphaPlus.CashService.Site.Features.Payments
 {
@@ -39,14 +39,14 @@ namespace AlphaPlus.CashService.Site.Features.Payments
 
         public async Task<IActionResult> GetProviders(CancellationToken cancellationToken)
         {
-            var url = $"{_apiBaseUrl}/payment-providers-by-custid/{_custId}";
-            var providers = await _httpClient.GetFromJsonAsync<List<ProviderModel>>(url, cancellationToken);
+            var url = $"{_apiBaseUrl}/payments/providers-by-custid/{_custId}";
+            var providers = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
             return Json(providers);
         }
 
         public async Task<IActionResult> GetDailyWithdrawalCount(CancellationToken cancellationToken)
         {
-            var url = $"{_apiBaseUrl}/get-daily-withdrawal-count/{_custId}";
+            var url = $"{_apiBaseUrl}/payments/get-daily-withdrawal-count/{_custId}";
             var result = await _httpClient.GetFromJsonAsync<int>(url, cancellationToken);
             return Json(result);
         }
@@ -55,13 +55,20 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             [FromBody] SetDailyWithdrawalCountRequest request,
             CancellationToken cancellationToken)
         {
-            var url = $"{_apiBaseUrl}/set-daily-withdrawal-count";
+            var url = $"{_apiBaseUrl}/payments/set-daily-withdrawal-count";
             request.CustId = _custId;
 
             var response = await _httpClient.PostAsJsonAsync(url, request, cancellationToken);
             response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadFromJsonAsync<ResultModel>(cancellationToken: cancellationToken);
+            var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
             return Json(result);
+        }
+
+        public async Task<IActionResult> GetProviderFees()
+        {
+            var url = $"{_apiBaseUrl}/payments/provider-fees/{_custId}";
+            var fees = await _apiHelper.GetAsync<object>(url);
+            return Json(fees);
         }
 
         public async Task<IActionResult> PaymentProviderSettings(int id)
@@ -78,11 +85,5 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             return View(provider);
         }
 
-        public async Task<IActionResult> GetProviderFees(int id)
-        {
-            var url = $"{_apiBaseUrl}/payment-provider-fees/{id}";
-            var fees = await _apiHelper.GetAsync<List<ProviderFeeGroupModel>>(url);
-            return Json(fees);
-        }
     }
 }

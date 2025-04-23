@@ -2,9 +2,9 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Criteria.Payments
 {
-    public class GetDailyWithdrawalCountCriteria : CriteriaBase
+    public class GetDailyLimitCriteria : CriteriaBase
     {
-        public GetDailyWithdrawalCountCriteria(int custId, int modeView)
+        public GetDailyLimitCriteria(int custId, int modeView)
         {
             CustId = custId;
             ModeView = modeView;

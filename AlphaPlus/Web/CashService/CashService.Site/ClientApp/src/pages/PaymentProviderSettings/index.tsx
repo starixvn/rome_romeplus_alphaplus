@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import '../../i18n/i18n';
 import './PaymentProviderSettings.css';
 import { PAYMENT_METHODS, STATUS_OPTIONS, TRANSACTION_TYPES } from '../../constants/paymentConstants';
-import FeePopupModal from '../ManagePayments/FeePopupModal';
+import ProviderFeesPopupModal from '../ManagePayments/ProviderFeesPopupModal';
 import AddPaymentMethodModal from './AddPaymentMethodModal';
 import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
 import { paymentProviderService } from '../../services/paymentsAPI';
@@ -345,7 +345,7 @@ function PaymentProviderSettings() {
 
       {/* Fee Popup Modal */}
       {showFeePopup && (
-        <FeePopupModal
+        <ProviderFeesPopupModal
           provider={{id: window.provider.Id, name: window.provider.Name} as PaymentProvider}
           onClose={handleCloseFeePopup}
         />

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
-import FeePopupModal from './FeePopupModal';
+import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import DailyLimitPopupModal from './SetDailyLimitPopupModal';
 import './PaymentGateway.css';
 
@@ -157,7 +157,7 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
 
         {/* Fee Popup Modal */}
         {showFeePopup && selectedProvider && (
-          <FeePopupModal
+          <ProviderFeesPopupModal
             provider={selectedProvider}
             onClose={handleClosePopup}
           />

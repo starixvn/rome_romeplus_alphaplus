@@ -9,19 +9,19 @@ public static class PaymentsEndpoints
 {
     public static void MapPaymentsEndpoints(this WebApplication app)
     {
-        app.MapGet("/api/payment-providers-by-custid/{custId}", async (int custId, IPaymentsService service) =>
+        app.MapGet("/api/payments/providers-by-custid/{custId}", async (int custId, IPaymentsService service) =>
         {
-            var providers = await service.GetAllPaymentProviders(custId);
+            var providers = await service.GetProviders(custId);
             return Results.Ok(providers);
         })
         .WithName("GetPaymentProviders")
         .WithOpenApi(operation => new(operation)
         {
-            Summary = "Get all payment providers",
-            Description = "Returns a list of all available payment providers"
+            Summary = "Get payment providers",
+            Description = "Returns a list of available payment providers"
         });
 
-        app.MapGet("/api/get-daily-withdrawal-count/{custId}", async (int custId, IPaymentsService service) =>
+        app.MapGet("/api/payments/get-daily-withdrawal-count/{custId}", async (int custId, IPaymentsService service) =>
         {
             var count = await service.GetDailyWithdrawalCount(custId);
             return Results.Ok(count);
@@ -33,18 +33,18 @@ public static class PaymentsEndpoints
             Description = "Returns the daily withdrawal count for a specific customer"
         });
 
-        app.MapPost("/api/set-daily-withdrawal-count", async (HttpRequest request, IPaymentsService service) =>
+        app.MapPost("/api/payments/set-daily-withdrawal-count", async (HttpRequest request, IPaymentsService service) =>
         {
             using var reader = new StreamReader(request.Body);
             var body = await reader.ReadToEndAsync();
-            var withdrawalRequest = JsonConvert.DeserializeObject<SetDailyWithdrawalCountRequest>(body);
+            var limitRequest = JsonConvert.DeserializeObject<SetDailyWithdrawalCountRequest>(body);
             
-            if (withdrawalRequest == null)
+            if (limitRequest == null)
             {
                 return Results.BadRequest("Invalid request data");
             }
 
-            var result = await service.SetDailyWithdrawalCount(withdrawalRequest.CustId, withdrawalRequest.Count);
+            var result = await service.SetDailyWithdrawalCount(limitRequest.CustId, limitRequest.Count);
             return Results.Ok(result);
         })
         .WithName("SetDailyWithdrawalCount")
@@ -53,6 +53,19 @@ public static class PaymentsEndpoints
             Summary = "Set daily withdrawal count",
             Description = "Sets the daily withdrawal count for a specific customer"
         });
+
+        app.MapGet("/api/payments/provider-fees/{custId}", async (int custId, IPaymentsService service) =>
+        {
+            var fees = await service.GetProviderFees(custId);
+            return Results.Ok(fees);
+        })
+        .WithName("GetPaymentProviderFees")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Get payment provider fees",
+            Description = "Returns the fees for a specific payment provider"
+        });
+
 
         app.MapGet("/api/payment-providers/{providerId}", async (int providerId, IPaymentsService service) =>
         {
@@ -66,18 +79,7 @@ public static class PaymentsEndpoints
             Description = "Returns a specific payment provider by its ID"
         });
 
-        app.MapGet("/api/payment-provider-fees/{providerId}", async (int providerId, IPaymentsService service) =>
-        {
-            var fees = await service.GetPaymentProviderFees(providerId);
-            return Results.Ok(fees);
-        })
-        .WithName("GetPaymentProviderFees")
-        .WithOpenApi(operation => new(operation)
-        {
-            Summary = "Get payment provider fees",
-            Description = "Returns the fees for a specific payment provider"
-        });
-
+       
         app.MapGet("/api/payment-provider-settings", async (int providerId, int method, int status, int transactionType, IPaymentsService service) =>
         {
             var settings = await service.GetPaymentProviderSettings(providerId, method, status, transactionType);

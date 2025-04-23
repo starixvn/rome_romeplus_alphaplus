@@ -7,13 +7,6 @@ import { Bank } from './interfaces/Bank';
 import { BankAccount } from './interfaces/BankAccount';
 import { PaymentTransactionLimit } from './interfaces/PaymentTransactionLimit';
 
-// Declare the cashServiceAPIUrl property on the Window interface
-declare global {
-  interface Window {
-    cashServiceAPIUrl: string;
-  }
-}
-
 // Create an axios instance with default config
 const api = axios.create({
   baseURL: "",
@@ -59,12 +52,12 @@ export const paymentProviderService = {
   },
   
   // Get fees for a specific payment provider
-  getProviderFees: async (providerId: number): Promise<PaymentProviderFeeGroup[]> => {
+  getProviderFees: async (): Promise<PaymentProviderFeeGroup[]> => {
     try {
-      const response = await api.get<PaymentProviderFeeGroup[]>(`/payment-provider-fees/${providerId}`, { method: 'GET' });
+      const response = await api.get<PaymentProviderFeeGroup[]>(`GetProviderFees`, { method: 'GET' });
       return response.data;
     } catch (error) {
-      console.error(`Error fetching fees for provider ${providerId}:`, error);
+      console.error(`Error fetching fees for provider`, error);
       return [];
     }
   },

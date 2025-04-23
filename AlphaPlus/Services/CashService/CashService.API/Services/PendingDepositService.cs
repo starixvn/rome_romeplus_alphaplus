@@ -33,7 +33,7 @@ public class PendingDepositService(IDynamicRepository repository) : IPendingDepo
 
     public async Task<ResultModel> InsetAccountInfo(AccountInfoDetail accountInfoDetail)
     {
-        return new ResultModel("0", "Success");
+        return new ResultModel(0, "Success");
     }
     
     private static IEnumerable<BankAccountInfo> GetDummyBankAccountInfo()
