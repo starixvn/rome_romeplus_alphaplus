@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using AlphaPlus.CashService.Site.Features.Payments.Requests;
 using AlphaPlus.CashService.Site.Features.Payments.Models;
 using AlphaPlus.CashService.Site.Features.Payments.ViewModels;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.CashService.Site.Features.Payments
 {
@@ -14,17 +15,20 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         private readonly string _apiBaseUrl;
         private readonly int _custId;
         private readonly HttpClient _httpClient;
+        private readonly IUserSession _userSession;
 
         public PaymentsController(
             ILogger<PaymentsController> logger, 
             IWebHostEnvironment environment, 
             IConfiguration configuration,
-            HttpClient httpClient)
+            HttpClient httpClient,
+            IUserSession userSession)
         {
             _logger = logger;
             _environment = environment;
             _apiBaseUrl = configuration["CashServiceAPIUrl"];
             _httpClient = httpClient;
+            _userSession = userSession;
 
             _custId = 1176086;
         }
@@ -36,6 +40,8 @@ namespace AlphaPlus.CashService.Site.Features.Payments
 
         public async Task<IActionResult> GetProviders(CancellationToken cancellationToken)
         {
+            Console.WriteLine("_userSession: " + _userSession.CustId);
+
             var url = $"{_apiBaseUrl}/payments/providers-by-custid/{_custId}";
             var providers = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
             return Json(providers);

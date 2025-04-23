@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Functions>
     <Function Name="Management Payments">
-    <Setting Key="Age_CashService_PaymentProvider_Sel" SpName="Age_CashService_PaymentProvider_Sel_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
-            <Mapping DataField="ProviderID" ObjectProperty="Id"></Mapping>
-            <Mapping DataField="Provider" ObjectProperty="Name"></Mapping>
-            <Mapping DataField="ProviderStatus" ObjectProperty="Status"></Mapping>
-        </Setting>
-    <Setting Key="Age_CashService_DailyWithdrawLimit_Sel" SpName="Age_CashService_DailyWithdrawLimit_Sel_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-    <Setting Key="Age_CashService_DailyWithdrawLimit_Upd" SpName="Age_CashService_DailyWithdrawLimit_Upd_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-    <Setting Key="Age_CashService_PaymentProviderFee_Sel" SpName="Age_CashService_PaymentProviderFee_Sel_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
-      <Mapping DataField="MethodName" ObjectProperty="Method"></Mapping>
-      <Mapping DataField="FeeRate" ObjectProperty="Rate"></Mapping>
-    </Setting>
-    <Setting Key="Age_CashService_PaymentProviderDtl_Sel" SpName="Age_CashService_PaymentProviderDtl_Sel_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
-      <Mapping DataField="PaymentMethodID" ObjectProperty="Method"></Mapping>
-      <Mapping DataField="PaymentMethodStatus" ObjectProperty="Status"></Mapping>
-      <Mapping DataField="PaymentMethodEnable" ObjectProperty="IsEnabled"></Mapping>
-      <Mapping DataField="RequiresBank" ObjectProperty="BankRequired"></Mapping>
-    </Setting>
-    <Setting Key="Age_CashService_PaymentMethods" SpName="Age_CashService_PaymentMethods_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
-      <Mapping DataField="PaymentMethodID" ObjectProperty="Id"></Mapping>
-      <Mapping DataField="MethodName" ObjectProperty="Name"></Mapping>
-    </Setting>
-    <Setting Key="Age_CashService_PaymentProvider_Ins" SpName="Age_CashService_PaymentProvider_Ins" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-    <Setting Key="Age_CashService_BankList" SpName="Age_CashService_BankList" DbName="DBCust.CustDB.wsv_alp" Plain="0">
-      <Mapping DataField="BankID" ObjectProperty="Id"></Mapping>
-      <Mapping DataField="Bank" ObjectProperty="Name"></Mapping>
-    </Setting>
-    <Setting Key="Age_CashService_ProviderStatus_Upd" SpName="Age_CashService_ProviderStatus_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-    <Setting Key="Age_CashService_PaymentProvider_Upd" SpName="Age_CashService_PaymentProvider_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-   
-   
-    <Setting Key="Age_ManagementPayments_SelProvidersFees" SpName="Age_ManagementPayments_SelProvidersFees" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-    <Setting Key="Age_ManagementPayments_SetDailyWithdrawalCount" SpName="Age_ManagementPayments_SetDailyWithdrawalCount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-    <Setting Key="Age_ManagementPayments_SelProviderSettings" SpName="Age_ManagementPayments_SelProviderSettings" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-    <Setting Key="Age_ManagementPayments_UpdProviderSettings" SpName="Age_ManagementPayments_UpdProviderSettings" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+      <Setting Key="Age_CashService_PaymentProvider_Sel" SpName="Age_CashService_PaymentProvider_Sel_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+        <Mapping DataField="ProviderID" ObjectProperty="Id"></Mapping>
+        <Mapping DataField="Provider" ObjectProperty="Name"></Mapping>
+        <Mapping DataField="ProviderStatus" ObjectProperty="Status"></Mapping>
+      </Setting>
+      <Setting Key="Age_CashService_DailyWithdrawLimit_Sel" SpName="Age_CashService_DailyWithdrawLimit_Sel_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+      <Setting Key="Age_CashService_DailyWithdrawLimit_Upd" SpName="Age_CashService_DailyWithdrawLimit_Upd_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+      <Setting Key="Age_CashService_PaymentProviderFee_Sel" SpName="Age_CashService_PaymentProviderFee_Sel_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+        <Mapping DataField="MethodName" ObjectProperty="Method"></Mapping>
+        <Mapping DataField="FeeRate" ObjectProperty="Rate"></Mapping>
+      </Setting>
+      <Setting Key="Age_CashService_PaymentProviderDtl_Sel" SpName="Age_CashService_PaymentProviderDtl_Sel_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+        <Mapping DataField="PaymentMethodID" ObjectProperty="Method"></Mapping>
+        <Mapping DataField="PaymentMethodStatus" ObjectProperty="Status"></Mapping>
+        <Mapping DataField="PaymentMethodEnable" ObjectProperty="IsEnabled"></Mapping>
+        <Mapping DataField="RequiresBank" ObjectProperty="BankRequired"></Mapping>
+      </Setting>
+      <Setting Key="Age_CashService_PaymentMethods" SpName="Age_CashService_PaymentMethods_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+        <Mapping DataField="PaymentMethodID" ObjectProperty="Id"></Mapping>
+        <Mapping DataField="MethodName" ObjectProperty="Name"></Mapping>
+      </Setting>
+      <Setting Key="Age_CashService_PaymentProvider_Ins" SpName="Age_CashService_PaymentProvider_Ins" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+      <Setting Key="Age_CashService_BankList" SpName="Age_CashService_BankList" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+        <Mapping DataField="BankID" ObjectProperty="Id"></Mapping>
+        <Mapping DataField="Bank" ObjectProperty="Name"></Mapping>
+      </Setting>
+      <Setting Key="Age_CashService_ProviderStatus_Upd" SpName="Age_CashService_ProviderStatus_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+      <Setting Key="Age_CashService_PaymentProvider_Upd" SpName="Age_CashService_PaymentProvider_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     
-    <Setting Key="Age_ManagementPayments_InsMethod" SpName="Age_ManagementPayments_InsMethod" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-    <Setting Key="Age_ManagementPayments_SelAllMethods" SpName="Age_ManagementPayments_SelAllMethods" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-  
-    <Setting Key="Age_ManagementPayments_SelAllBanks" SpName="Age_ManagementPayments_SelAllBanks" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_ManagementPayments_SelBankAccounts" SpName="Age_ManagementPayments_SelBankAccounts" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_ManagementPayments_DelBankAccount" SpName="Age_ManagementPayments_DelBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_ManagementPayments_SetTransactionLimit" SpName="Age_ManagementPayments_SetTransactionLimit" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    
+      <Setting Key="Age_ManagementPayments_SelProvidersFees" SpName="Age_ManagementPayments_SelProvidersFees" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+      <Setting Key="Age_ManagementPayments_SetDailyWithdrawalCount" SpName="Age_ManagementPayments_SetDailyWithdrawalCount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+      <Setting Key="Age_ManagementPayments_SelProviderSettings" SpName="Age_ManagementPayments_SelProviderSettings" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+      <Setting Key="Age_ManagementPayments_UpdProviderSettings" SpName="Age_ManagementPayments_UpdProviderSettings" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+      
+      <Setting Key="Age_ManagementPayments_InsMethod" SpName="Age_ManagementPayments_InsMethod" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+      <Setting Key="Age_ManagementPayments_SelAllMethods" SpName="Age_ManagementPayments_SelAllMethods" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    
+      <Setting Key="Age_ManagementPayments_SelAllBanks" SpName="Age_ManagementPayments_SelAllBanks" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+      <Setting Key="Age_ManagementPayments_SelBankAccounts" SpName="Age_ManagementPayments_SelBankAccounts" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+      <Setting Key="Age_ManagementPayments_DelBankAccount" SpName="Age_ManagementPayments_DelBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+      <Setting Key="Age_ManagementPayments_SetTransactionLimit" SpName="Age_ManagementPayments_SetTransactionLimit" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
 
-        <Setting Key="Age_ManagementPayments_AddBankAccount" SpName="Age_ManagementPayments_AddBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_ManagementPayments_UpdBankAccount" SpName="Age_ManagementPayments_UpdBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+      <Setting Key="Age_ManagementPayments_AddBankAccount" SpName="Age_ManagementPayments_AddBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+      <Setting Key="Age_ManagementPayments_UpdBankAccount" SpName="Age_ManagementPayments_UpdBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     </Function>
 
     <Function Name="Cash Service">
-        <Setting Key="Age_Transaction_GetAll" SpName="Age_Transaction_GetAll" DbName="DBCust.CustDB.wsv_alp" Plain="0"></Setting>
-        <Setting Key="Age_Transaction_GetById" SpName="Age_Transaction_GetById" DbName="DBCust.CustDB.wsv_alp" Plain="0"></Setting>
+      <Setting Key="Age_Transaction_GetAll" SpName="Age_Transaction_GetAll" DbName="DBCust.CustDB.wsv_alp" Plain="0"></Setting>
+      <Setting Key="Age_Transaction_GetById" SpName="Age_Transaction_GetById" DbName="DBCust.CustDB.wsv_alp" Plain="0"></Setting>
     </Function>
     <Function Name="Member Site Info">
         <Setting Key="Age_CashService_GeneralSetting" SpName="Age_CashService_GeneralSetting_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
