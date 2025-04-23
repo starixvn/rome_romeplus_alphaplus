@@ -102,6 +102,14 @@ public class PaymentsService : IPaymentsService
         await _repository.ExecuteAsync(criteria);
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
+  
+    public async Task<IEnumerable<BankModel>> GetAllBanks()
+    {
+        var banks = await _repository.FetchAsync<BankModel>(new GetAllBanksCriteria());
+        return banks;
+    }
+   
+
    
     public async Task<ResultModel> UpdatePaymentProviderSettings(IEnumerable<ProviderSettingsModel> settings)
     {
@@ -130,15 +138,6 @@ public class PaymentsService : IPaymentsService
         // var result = await _repository.ExecuteNonQueryAsync(new AddPaymentProviderSettingCriteria(setting));
 
         return new ResultModel(0, "Success");
-    }
-
-  
-    public async Task<IEnumerable<BankModel>> GetAllBanks()
-    {
-        // var result = await _repository.FetchAsync<BankModel>(new GetAllBanksCriteria());
-        var banks = await DummyDataService.GetDummyBanks();
-        
-        return banks;
     }
 
     public async Task<IEnumerable<BankAccountModel>> GetBankAccounts(

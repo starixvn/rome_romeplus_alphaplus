@@ -6,6 +6,7 @@ import './PaymentProviderSettings.css';
 import { STATUS_OPTIONS, TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import ProviderFeesPopupModal from '../ManagePayments/ProviderFeesPopupModal';
 import AddPaymentMethodModal from './AddPaymentMethodModal';
+import BanksPopupModal from './BanksPopupModal';
 import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
 import { paymentProviderService } from '../../services/paymentsAPI';
 
@@ -21,6 +22,8 @@ function PaymentProviderSettings() {
   const { t: tManagePayments } = useTranslation('managePayments');
   const [showFeePopup, setShowFeePopup] = React.useState(false);
   const [showAddPaymentMethod, setShowAddPaymentMethod] = React.useState(false);
+  const [showBanksPopup, setShowBanksPopup] = React.useState(false);
+  const [selectedSetting, setSelectedSetting] = React.useState<any>(null);
   const [providerSettings, setProviderSettings] = React.useState<any[]>([]);
   const [originalSettings, setOriginalSettings] = React.useState<any[]>([]);
   const [loading, setLoading] = React.useState(true);
@@ -95,9 +98,13 @@ function PaymentProviderSettings() {
 
   // Handler for viewing banks
   const handleViewBanks = (setting: any) => {
-    // TODO: Implement bank viewing functionality
-    console.log('View banks for setting:', setting);
-    // This could open a modal or navigate to a bank list page
+    setSelectedSetting(setting);
+    setShowBanksPopup(true);
+  };
+
+  const handleCloseBanksPopup = () => {
+    setShowBanksPopup(false);
+    setSelectedSetting(null);
   };
 
   // Handler for minimum amount change
@@ -366,6 +373,11 @@ function PaymentProviderSettings() {
           onClose={handleCloseAddPaymentMethod}
           onSave={handlePaymentMethodAdded}
         />
+      )}
+
+      {/* Banks Popup Modal */}
+      {showBanksPopup && selectedSetting && (
+        <BanksPopupModal onClose={handleCloseBanksPopup} />
       )}
     </div>
   );

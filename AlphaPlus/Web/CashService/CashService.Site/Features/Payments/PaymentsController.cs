@@ -111,5 +111,12 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
             return Json(result);
         }
+
+        public async Task<IActionResult> GetAllBanks(CancellationToken cancellationToken)
+        {
+            var url = $"{_apiBaseUrl}/payments/banks";
+            var banks = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
+            return Json(banks);
+        }
     }
 }

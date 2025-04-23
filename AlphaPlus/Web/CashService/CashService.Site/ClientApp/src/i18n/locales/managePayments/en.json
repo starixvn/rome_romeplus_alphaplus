@@ -87,5 +87,7 @@
   "mobile": "Mobile",
   "select": "Select",
   "promptPay": "PromptPay",
-  "linkMobile": "Link the mobile number registered with your bank account to enable PromptPay"
+  "linkMobile": "Link the mobile number registered with your bank account to enable PromptPay",
+
+  "bankName": "Bank name"
 } 

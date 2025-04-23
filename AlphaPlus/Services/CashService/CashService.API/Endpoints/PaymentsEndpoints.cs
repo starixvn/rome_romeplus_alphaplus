@@ -133,11 +133,7 @@ public static class PaymentsEndpoints
             Description = "Adds a new payment method to the system"
         });
         
-
-
-        
-
-        app.MapGet("/api/banks", async (IPaymentsService service) =>
+        app.MapGet("/api/payments/banks", async (IPaymentsService service) =>
         {
             var banks = await service.GetAllBanks();
             return Results.Ok(banks);
@@ -148,6 +144,10 @@ public static class PaymentsEndpoints
             Summary = "Get all banks",
             Description = "Returns a list of all available banks"
         });
+
+
+        
+
 
         app.MapGet("/api/bank-accounts", async (
             int custId, 

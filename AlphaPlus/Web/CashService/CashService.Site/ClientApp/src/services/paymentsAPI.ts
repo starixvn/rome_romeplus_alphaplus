@@ -100,8 +100,39 @@ export const paymentProviderService = {
       throw error;
     }
   },
+  
+  // Get all banks
+  getAllBanks: async (): Promise<Bank[]> => {
+    try {
+      const response = await api.get<Bank[]>('GetAllBanks', { method: 'GET' });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching banks:', error);
+      return [];
+    }
+  },
 
+  // Get banks for a specific provider
+  getBanks: async (providerId: number): Promise<Bank[]> => {
+    try {
+      const response = await api.get<Bank[]>(`GetProviderBanks?providerId=${providerId}`, { method: 'GET' });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching provider banks:', error);
+      return [];
+    }
+  },
 
+  // Update banks for a specific provider
+  updateProviderBanks: async (providerId: number, bankIds: number[]): Promise<ResultModel> => {
+    try {
+      const response = await api.post('UpdateProviderBanks', { providerId, bankIds });
+      return response.data;
+    } catch (error) {
+      console.error('Error updating provider banks:', error);
+      throw error;
+    }
+  },
 
   // Update settings for a specific payment provider
   updateProviderSettings: async (settings: any): Promise<ResultModel> => {
@@ -111,17 +142,6 @@ export const paymentProviderService = {
     } catch (error) {
       console.error(`Error updating settings`, error);
       throw error;
-    }
-  },
-  
-  // Get all banks
-  getAllBanks: async (): Promise<Bank[]> => {
-    try {
-      const response = await api.get<Bank[]>('/banks', { method: 'GET' });
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching banks:', error);
-      return [];
     }
   },
   
