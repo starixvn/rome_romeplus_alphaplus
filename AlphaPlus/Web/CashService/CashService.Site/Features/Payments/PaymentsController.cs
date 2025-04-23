@@ -40,8 +40,6 @@ namespace AlphaPlus.CashService.Site.Features.Payments
 
         public async Task<IActionResult> GetProviders(CancellationToken cancellationToken)
         {
-            Console.WriteLine("_userSession: " + _userSession.CustId);
-
             var url = $"{_apiBaseUrl}/payments/providers-by-custid/{_custId}";
             var providers = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
             return Json(providers);
