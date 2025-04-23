@@ -1,11 +1,6 @@
 using AlphaPlus.CashService.API.Models;
 using AlphaPlus.CashService.API.Models.PendingDeposit;
-using AlphaPlus.CashService.API.Criteria.PendingDeposit;
 using Fanex.Data.Repository;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
 
 namespace AlphaPlus.CashService.API.Services;
 
@@ -13,8 +8,7 @@ public interface IPendingDepositService
 {
     Task<IEnumerable<BankAccountInfo>> GetMemberBankAccountInfo();
     Task<IEnumerable<MemberLoginNameInfo>> GetMemberLoginName();
-
-    Task<ResultModel> InsetAccountInfo(AccountInfoDetail accountInfoDetail);
+    Task<ResultModel> InsetAccountInfo(DepositInfoDetail depositInfoDetail);
 }
 
 public class PendingDepositService(IDynamicRepository repository) : IPendingDepositService
@@ -31,7 +25,7 @@ public class PendingDepositService(IDynamicRepository repository) : IPendingDepo
         //return await repository.FetchAsync<MemberLoginNameInfo>(new GetMemberLoginNameCriteria());
     }
 
-    public async Task<ResultModel> InsetAccountInfo(AccountInfoDetail accountInfoDetail)
+    public async Task<ResultModel> InsetAccountInfo(DepositInfoDetail depositInfoDetail)
     {
         return new ResultModel(0, "Success");
     }
@@ -42,6 +36,7 @@ public class PendingDepositService(IDynamicRepository repository) : IPendingDepo
         {
             new()
             {
+                Id = 1,
                 Username = "John Doe",
                 LoginName = "johndoe123",
                 FirstName = "John",
@@ -54,7 +49,8 @@ public class PendingDepositService(IDynamicRepository repository) : IPendingDepo
                 DateAndTime = DateTime.Now.AddDays(-1)
             },
             new()
-            {
+            {   
+                Id = 2,
                 Username = "Jane Smith",
                 LoginName = "janesmith456",
                 FirstName = "Jane",
@@ -68,6 +64,7 @@ public class PendingDepositService(IDynamicRepository repository) : IPendingDepo
             },
             new()
             {
+                Id = 3,
                 Username = "Bob Johnson",
                 LoginName = "bjohnson789",
                 FirstName = "Bob",

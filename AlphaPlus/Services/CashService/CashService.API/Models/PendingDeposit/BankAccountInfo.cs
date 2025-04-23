@@ -1,9 +1,9 @@
-using System;
-
 namespace AlphaPlus.CashService.API.Models.PendingDeposit
 {
     public class BankAccountInfo
     {
+        public int Id { get; set; }
+        
         public string Username { get; set; }
         
         public string LoginName { get; set; }

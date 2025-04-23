@@ -1,13 +1,19 @@
 using AlphaPlus.CashService.Site.Features.Shared;
 using AlphaPlus.CashService.Site.Features.Transactions.Queries;
+using AlphaPlus.CashService.Site.Features.Transactions.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.CashService.Site.Features.Transactions;
 
-public class TransactionsController(IMediator mediator, ILogger<TransactionsController> logger)
-    : SiteBaseController(mediator)
+    public class TransactionsController(
+        IMediator mediator,
+        IConfiguration configuration,
+        HttpClient httpClient
+    ) : SiteBaseController(mediator)
 {
+    private readonly string _apiBaseUrl = configuration["CashServiceAPIUrl"];
+    
     public IActionResult Index() => Ok("Transactions");
 
     public IActionResult Deposit() => View();
@@ -25,6 +31,7 @@ public class TransactionsController(IMediator mediator, ILogger<TransactionsCont
         CancellationToken cancellationToken = default)
     {
         try
+
         {
             var query = new GetTransactionsQuery
             {
@@ -67,5 +74,12 @@ public class TransactionsController(IMediator mediator, ILogger<TransactionsCont
             logger.LogError(ex, "Error getting transaction by ID");
             return StatusCode(500, new { error = "Failed to fetch transaction" });
         }
+    }
+    
+    public async Task<IActionResult> GetMemberBankAccounts()
+    {
+       var url = $"{_apiBaseUrl}/member-bank-accounts";
+       var memberAccounts = await httpClient.GetFromJsonAsync<object>(url);
+       return Json(memberAccounts);
     }
 }

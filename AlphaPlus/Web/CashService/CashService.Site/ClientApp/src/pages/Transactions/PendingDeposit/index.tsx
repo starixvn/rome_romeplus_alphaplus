@@ -2,27 +2,23 @@ import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './PendingDepositsStyle.css';
 import ManualDepositForm from './components/ManualDepositForm';
-
-interface DepositData {
-  id: number;
-  username: string;
-  loginName: string;
-  firstName: string;
-  lastName: string;
-  amount: number;
-  currency: string;
-  from: number;
-  to: number;
-  referenceNo: string;
-  dateTime: string;
-}
+import { DepositAccountInfo } from '../../../services/interfaces/DepositAccountInfo';
+import { pendingDepositService } from '../../../services/pendingDepositAPI';
 
 const PendingDeposit: React.FC = () => {
   const [recentDeposits, setRecentDeposits] = useState<string>('All');
   const [toFilter, setToFilter] = useState<string>('All');
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [deposits, setDeposits] = useState<DepositData[]>([]);
+  const [deposits, setDeposits] = useState<DepositAccountInfo[]>([]);
   const [showManualDepositForm, setShowManualDepositForm] = useState<boolean>(false);
+
+  React.useEffect(() => {
+    const fetchDeposits = async () => {
+      const deposits = await pendingDepositService.getMemberBankAccounts();
+      setDeposits(deposits);
+    };
+    fetchDeposits();
+  }, []);
 
   const handleAddManualDeposit = () => {
     setShowManualDepositForm(true);
@@ -41,7 +37,7 @@ const PendingDeposit: React.FC = () => {
     image?: File;
   }) => {
     // Add the new deposit to the list
-    const newDeposit: DepositData = {
+    const newDeposit: DepositAccountInfo = {
       id: deposits.length + 1,
       username: data.memberLoginName,
       loginName: data.memberLoginName, // Using username as login name for simplicity
@@ -52,12 +48,14 @@ const PendingDeposit: React.FC = () => {
       from: data.from,
       to: data.to,
       referenceNo: data.remarks,
-      dateTime: new Date().toLocaleString(),
+      dateAndTime: new Date(),
     };
 
     setDeposits([...deposits, newDeposit]);
     setShowManualDepositForm(false);
   };
+
+  console.log('deposits', deposits);
 
   return (
     <div className="min-h-screen bg-gray-50">
