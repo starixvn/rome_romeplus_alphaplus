@@ -193,10 +193,6 @@ function PaymentProviderSettings() {
     // You might want to add API call here to update the provider status on the server
   };
 
-  // const getPaymentMethodName = (id: number) => {
-    // return window.providerSettingsViewModel.PaymentMethods.find((method: any) => method.Id === id)?.Name || id;
-  // };
-
   const getStatusName = (id: number) => {
     return STATUS_OPTIONS.find(status => status.id === id)?.name || id;
   };

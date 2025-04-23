@@ -13,6 +13,7 @@
       <Mapping DataField="FeeRate" ObjectProperty="Rate"></Mapping>
     </Setting>
     <Setting Key="Age_CashService_PaymentProviderDtl_Sel" SpName="Age_CashService_PaymentProviderDtl_Sel_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+      <Mapping DataField="PaymentMethodID" ObjectProperty="Method"></Mapping>
       <Mapping DataField="PaymentMethodStatus" ObjectProperty="Status"></Mapping>
       <Mapping DataField="PaymentMethodEnable" ObjectProperty="IsEnabled"></Mapping>
       <Mapping DataField="RequiresBank" ObjectProperty="BankRequired"></Mapping>

@@ -3,6 +3,7 @@ using AlphaPlus.CashService.API.Criteria.Payments;
 using AlphaPlus.CashService.API.Models.Payments;
 using AlphaPlus.CashService.API.Models;
 using Fanex.Data.Repository;
+using System.Text;
 
 namespace AlphaPlus.CashService.API.Services;
 
@@ -117,9 +118,16 @@ public class PaymentsService : IPaymentsService
             return new ResultModel(updateStatusCriteria.ErrCode, updateStatusCriteria.ErrMsg);
         }
         
-        foreach (var setting in provider.ProviderSettings)
-        {                
-            var updateProviderSettingsCriteria = new UpdateProviderSettingsCriteria(provider.CustId, provider.Id, setting);
+        if(provider.ProviderSettings != null && provider.ProviderSettings.Count > 0)
+        {
+            var jsonSetting = new List<string>();
+            foreach (var setting in provider.ProviderSettings)
+            {   
+                jsonSetting.Add($"{{\"MethodID\": {setting.Method}, \"Status\": {setting.Status}, \"MinAmount\": {setting.MinAmount}, \"MaxAmount\": {setting.MaxAmount}, \"Enabled\": {(setting.IsEnabled ? 1 : 0)}}}");
+            }
+
+            var jsonSettings = $"[{string.Join(",", jsonSetting)}]";
+            var updateProviderSettingsCriteria = new UpdateProviderSettingsCriteria(provider.CustId, provider.Id, jsonSettings);
             await _repository.ExecuteAsync(updateProviderSettingsCriteria);
 
             if(updateProviderSettingsCriteria.ErrCode != 0)
@@ -127,7 +135,7 @@ public class PaymentsService : IPaymentsService
                 return new ResultModel(updateProviderSettingsCriteria.ErrCode, updateProviderSettingsCriteria.ErrMsg);
             }
         }
-
+            
         return new ResultModel(0, string.Empty);
     }
 

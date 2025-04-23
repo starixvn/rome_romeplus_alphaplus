@@ -5,7 +5,7 @@ namespace AlphaPlus.CashService.API.Models.Payments
         public int CustId { get; set; }
         public int ProviderId { get; set; }
         public int Method { get; set; }
-        public string MethodName { get; set; }
+        public string MethodName { get; set; } = "";
         public int Status { get; set; }
         public int TransactionType { get; set; }
         public decimal MinAmount { get; set; }
