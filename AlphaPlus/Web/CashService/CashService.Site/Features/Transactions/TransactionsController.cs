@@ -22,8 +22,8 @@ public class TransactionsController(
 
     [HttpGet]
     public async Task<IActionResult> GetTransactionsAsync(
-        [FromQuery] string username,
-        [FromQuery] string referenceNumber,
+        [FromQuery] string transactionType,
+        [FromQuery] string status,
         [FromQuery] DateTime? fromDate,
         [FromQuery] DateTime? toDate,
         [FromQuery] int page = 1,
@@ -35,8 +35,8 @@ public class TransactionsController(
         {
             var query = new GetTransactionsQuery
             {
-                Username = username,
-                ReferenceNumber = referenceNumber,
+                TransactionType = transactionType,
+                Status = status,
                 FromDate = fromDate,
                 ToDate = toDate,
                 Page = page,

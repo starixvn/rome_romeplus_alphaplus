@@ -5,7 +5,8 @@ namespace AlphaPlus.CashService.Site.Features.Transactions.Queries;
 
 public record GetTransactionsQuery : IRequest<TransactionResponse>
 {
-    public string Username { get; init; }
+    public string TransactionType { get; set; }
+    public string Status { get; init; }
     public string ReferenceNumber { get; init; }
     public DateTime? FromDate { get; init; }
     public DateTime? ToDate { get; init; }

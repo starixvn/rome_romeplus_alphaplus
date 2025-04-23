@@ -25,8 +25,10 @@ export interface TransactionsHistoryParams {
   status: string;
   column: string;
   searchText: string;
+  account: string;
   page: number;
   pageSize: number;
+  transactionType?: 'deposit' | 'withdrawal';
 }
 
 const api = axios.create({

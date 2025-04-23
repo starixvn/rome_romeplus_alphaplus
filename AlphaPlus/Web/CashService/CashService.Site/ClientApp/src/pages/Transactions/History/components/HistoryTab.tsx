@@ -15,7 +15,7 @@ const HistoryTab: React.FC<HistoryTabProps> = ({ activeTab, onTabChange }) => {
     if (tab === activeTab) {
       return `${baseClass} bg-blue-600 text-white hover:bg-blue-700`;
     }
-    return `${baseClass} text-gray-600 hover:bg-gray-100 hover:text-gray-900`;
+    return `${baseClass} text-gray-600 border border-gray-300 hover:border-gray-400 hover:bg-gray-50`;
   };
 
   return (

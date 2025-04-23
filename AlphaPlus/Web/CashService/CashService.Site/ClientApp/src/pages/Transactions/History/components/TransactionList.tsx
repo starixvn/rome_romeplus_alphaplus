@@ -24,6 +24,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     status: 'All',
     column: 'All Columns (9)',
     searchText: '',
+    account: '',
     page: 1,
     pageSize: 10,
   });
@@ -66,6 +67,10 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     setSearchParams((prev: TransactionsHistoryParams) => ({ ...prev, searchText: value }));
   };
 
+  const handleAccountChange = (value: string) => {
+    setSearchParams((prev: TransactionsHistoryParams) => ({ ...prev, account: value }));
+  };
+
   return (
     <div className="transaction-list-container">
       {error && (
@@ -83,9 +88,12 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           dateRange={searchParams.dateRange}
           status={searchParams.status}
           column={searchParams.column}
+          account={searchParams.account}
+          transactionType={transactionType}
           onDateRangeChange={handleDateRangeChange}
           onStatusChange={handleStatusChange}
           onColumnChange={handleColumnChange}
+          onAccountChange={handleAccountChange}
         />
       </div>
 

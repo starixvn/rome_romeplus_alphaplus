@@ -11,17 +11,18 @@ using AlphaPlus.SecurityCode.Filters;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.OpenApi.Models;
 using Serilog;
 
-const string PathBase = "/cash-service";
-const string SharedSettings = "sharedSettings.json";
-var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../", "Shared/Configuration/", SharedSettings);
+const string pathBase = "/cash-service";
+const string sharedSettings = "sharedSettings.json";
+var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../", "Shared/Configuration/", sharedSettings);
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 configuration
     .AddJsonFile(sharedSettingsPath, optional: true, reloadOnChange: true)
-    .AddJsonFile(SharedSettings, optional: true, reloadOnChange: true)
+    .AddJsonFile(sharedSettings, optional: true, reloadOnChange: true)
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"authorization.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"securitycode.json", optional: false, reloadOnChange: true)
@@ -93,9 +94,9 @@ builder.Services
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigins",
-        builder =>
+        corsPolicyBuilder =>
         {
-            builder.WithOrigins(
+            corsPolicyBuilder.WithOrigins(
                     "http://localhost:5173",  // Vite dev server
                     "http://localhost:5252", // API server
                     "http://localhost:5159"
@@ -110,12 +111,12 @@ builder.Services.AddCors(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new() { Title = "CashService API", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "CashService API", Version = "v1" });
 });
 
 var app = builder.Build();
 app.UseForwardedHeaders();
-app.UsePathBase(PathBase);
+app.UsePathBase(pathBase);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -142,7 +143,7 @@ app.UseMiddleware<RequestCultureMiddleware>();
 app.Use(async (context, next) =>
 {
     context.Request.EnableBuffering();
-    context.Request.PathBase = PathBase;
+    context.Request.PathBase = pathBase;
     await next(context);
 });
 
