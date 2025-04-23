@@ -133,9 +133,9 @@ public static class PaymentsEndpoints
             Description = "Adds a new payment method to the system"
         });
         
-        app.MapGet("/api/payments/banks", async (IPaymentsService service) =>
+        app.MapGet("/api/payments/banks", async (int transactionType, IPaymentsService service) =>
         {
-            var banks = await service.GetAllBanks();
+            var banks = await service.GetBanks(transactionType);
             return Results.Ok(banks);
         })
         .WithName("GetAllBanks")

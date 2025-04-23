@@ -2,13 +2,15 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Bank } from '../../services/interfaces/Bank';
 import { paymentProviderService } from '../../services/paymentsAPI';
+import { TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import './PaymentProviderSettings.css';
 
 interface BanksPopupModalProps {
   onClose: () => void;
+  transactionType: number;
 }
 
-const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose }) => {
+const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionType }) => {
   const { t: tGlobal } = useTranslation('global');
   const { t: tManagePayments } = useTranslation('managePayments');
   const [banks, setBanks] = React.useState<Bank[]>([]);
@@ -19,7 +21,7 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose }) => {
     const fetchBanks = async () => {
       try {
         setLoading(true);
-        const fetchedBanks = await paymentProviderService.getAllBanks();
+        const fetchedBanks = await paymentProviderService.getBanks(transactionType);
         setBanks(fetchedBanks);
         setError(null);
       } catch (err) {
@@ -56,24 +58,27 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose }) => {
               {tGlobal('noData')}
             </div>
           ) : (
-            <div className="table-responsive">
-              <table className="table table-striped">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>{tManagePayments('bankName')}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {banks.map((bank, index) => (
-                    <tr key={bank.id}>
-                      <td>{index + 1}</td>
-                      <td>{bank.name}</td>
+            <>
+              <label>{TRANSACTION_TYPES.find(type => type.id === transactionType)?.name || transactionType}</label>
+              <div className="table-responsive">
+                <table className="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>{tManagePayments('bankName')}</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody>
+                    {banks.map((bank, index) => (
+                      <tr key={bank.id}>
+                        <td>{index + 1}</td>
+                        <td>{bank.name}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
           )}
         </div>
         <div className="modal-footer">

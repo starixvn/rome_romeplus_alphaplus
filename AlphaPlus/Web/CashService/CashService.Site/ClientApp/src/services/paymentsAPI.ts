@@ -102,9 +102,9 @@ export const paymentProviderService = {
   },
   
   // Get all banks
-  getAllBanks: async (): Promise<Bank[]> => {
+  getBanks: async (transactionType: number): Promise<Bank[]> => {
     try {
-      const response = await api.get<Bank[]>('GetAllBanks', { method: 'GET' });
+      const response = await api.get<Bank[]>(`GetBanks?transactionType=${transactionType}`, { method: 'GET' });
       return response.data;
     } catch (error) {
       console.error('Error fetching banks:', error);
@@ -112,8 +112,10 @@ export const paymentProviderService = {
     }
   },
 
+
+  
   // Get banks for a specific provider
-  getBanks: async (providerId: number): Promise<Bank[]> => {
+  getProviderBanks: async (providerId: number): Promise<Bank[]> => {
     try {
       const response = await api.get<Bank[]>(`GetProviderBanks?providerId=${providerId}`, { method: 'GET' });
       return response.data;

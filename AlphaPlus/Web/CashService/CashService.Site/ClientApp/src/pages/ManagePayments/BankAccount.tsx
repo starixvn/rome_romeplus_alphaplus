@@ -51,7 +51,7 @@ const BankAccount: React.FC = () => {
     const fetchBanks = async () => {
       try {
         setLoading(true);
-        const fetchedBanks = await paymentProviderService.getAllBanks();
+        const fetchedBanks = await paymentProviderService.getProviderBanks(1);
         setBanks(fetchedBanks);
         setError(null);
       } catch (err) {

@@ -43,6 +43,8 @@
   "status": "Status",
   "minimum": "Minimum",
   "maximum": "Maximum",
+  "minAmount": "Min amount",
+  "maxAmount": "Max amount",
 
   "setUpPaymentMethods": "Set up payment methods",
   "setUpPaymentMethods1": "Step 1: Select transaction type and payment method",

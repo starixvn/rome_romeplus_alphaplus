@@ -16,10 +16,10 @@ public interface IPaymentsService
     Task<IEnumerable<PaymentMethodModel>> GetPaymentMethods();
     Task<IEnumerable<ProviderSettingsModel>> GetProviderSettings(int providerId, int method, int status, int transactionType);
     Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod);
+    Task<IEnumerable<BankModel>> GetBanks(int transactionType);
     
     Task<ResultModel> UpdatePaymentProviderSettings(IEnumerable<ProviderSettingsModel> settings);
     Task<ResultModel> AddPaymentProviderSetting(ProviderSettingsModel setting);
-    Task<IEnumerable<BankModel>> GetAllBanks();
     Task<IEnumerable<BankAccountModel>> GetBankAccounts(int custId, int bankId, int transactionType, int status, string searchText);
     Task<ResultModel> DeleteBankAccount(int accountId);
     Task<ResultModel> SetTransactionLimit(int custId, TransactionLimitModel limit);
@@ -103,14 +103,14 @@ public class PaymentsService : IPaymentsService
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
   
-    public async Task<IEnumerable<BankModel>> GetAllBanks()
+    public async Task<IEnumerable<BankModel>> GetBanks(int transactionType)
     {
-        var banks = await _repository.FetchAsync<BankModel>(new GetAllBanksCriteria());
+        var banks = await _repository.FetchAsync<BankModel>(new GetBanksCriteria(transactionType));
         return banks;
     }
    
 
-   
+
     public async Task<ResultModel> UpdatePaymentProviderSettings(IEnumerable<ProviderSettingsModel> settings)
     {
         if (settings == null || !settings.Any())

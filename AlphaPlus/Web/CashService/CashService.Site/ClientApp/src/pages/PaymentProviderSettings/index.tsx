@@ -247,7 +247,7 @@ function PaymentProviderSettings() {
           </div>
 
           <div className="form-group">
-            <label className="form-label">{tGlobal('status')}</label>
+            <label className="form-label">{tManagePayments('status')}</label>
             <select 
               className="form-select" 
               value={selectedStatus}
@@ -298,19 +298,21 @@ function PaymentProviderSettings() {
                       <input 
                         type="text" 
                         className="form-control form-control-sm" 
-                        value={setting.minAmount || ''} 
+                        value={setting.minAmount.toLocaleString()} 
                         onChange={(e) => handleMinAmountChange(index, e.target.value)}
                         placeholder={tManagePayments('minimum')}
                       />
+                      <label className="form-label">{tManagePayments('minAmount')} {setting.minAmountTrans.toLocaleString()}</label>
                     </td>
                     <td>
                       <input 
                         type="text" 
                         className="form-control form-control-sm" 
-                        value={setting.maxAmount || ''} 
+                        value={setting.maxAmount.toLocaleString()} 
                         onChange={(e) => handleMaxAmountChange(index, e.target.value)}
                         placeholder={tManagePayments('maximum')}
                       />
+                      <label className="form-label">{tManagePayments('maxAmount')} {setting.maxAmountTrans.toLocaleString()}</label>
                     </td>
                     <td>
                       <div className="toggle-container">
@@ -377,7 +379,10 @@ function PaymentProviderSettings() {
 
       {/* Banks Popup Modal */}
       {showBanksPopup && selectedSetting && (
-        <BanksPopupModal onClose={handleCloseBanksPopup} />
+        <BanksPopupModal
+          onClose={handleCloseBanksPopup} 
+          transactionType={selectedSetting.transactionType}
+        />
       )}
     </div>
   );
