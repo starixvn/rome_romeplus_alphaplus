@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace AlphaPlus.CashService.API.Services;
 public interface IMemberSiteManagementService
 {
-    Task<MemberSiteManagement> GetAsync();
+    Task<MemberSiteManagement> GetAsync(int custId);
     Task<bool> UpdateAsync(MemberSiteManagement model);
 } 
 public class MemberSiteManagementService : IMemberSiteManagementService
@@ -20,7 +20,7 @@ public class MemberSiteManagementService : IMemberSiteManagementService
         _logger = logger;
     }
 
-    public async Task<MemberSiteManagement> GetAsync()
+    public async Task<MemberSiteManagement> GetAsync(int custId)
     {
         try
         {
