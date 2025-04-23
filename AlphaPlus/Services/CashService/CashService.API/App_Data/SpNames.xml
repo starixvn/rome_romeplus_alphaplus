@@ -52,5 +52,10 @@
         <Setting Key="Age_Transaction_GetAll" SpName="Age_Transaction_GetAll" DbName="DBCust.CustDB.wsv_alp" Plain="0"></Setting>
         <Setting Key="Age_Transaction_GetById" SpName="Age_Transaction_GetById" DbName="DBCust.CustDB.wsv_alp" Plain="0"></Setting>
     </Function>
-  </Function>
+    <Function Name="Member Site Info">
+        <Setting Key="Age_CashService_GeneralSetting" SpName="Age_CashService_GeneralSetting_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+            <Mapping DataField="Domain" ObjectProperty="Url" />
+            <Mapping DataField="SettingInfo" ObjectProperty="GeneralSettingType" />
+        </Setting>
+    </Function>
 </Functions>
