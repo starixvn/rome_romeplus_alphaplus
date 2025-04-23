@@ -256,7 +256,7 @@ const PendingDeposit: React.FC = () => {
                         {deposit.referenceNo}
                       </td>
                       <td className="px-1 py-1 text-sm text-gray-600 border border-gray-300">
-                        {deposit.dateTime}
+                        {deposit.dateAndTime.toLocaleString()}
                       </td>
                       <td className="px-1 py-1 text-sm text-gray-600 border border-gray-300">
                         <button className="text-blue-600 hover:text-blue-900">Edit</button>

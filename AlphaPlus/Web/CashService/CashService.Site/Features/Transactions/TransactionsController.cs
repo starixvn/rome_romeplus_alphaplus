@@ -5,11 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.CashService.Site.Features.Transactions;
 
-    public class TransactionsController(
-        IMediator mediator,
-        IConfiguration configuration,
-        HttpClient httpClient
-    ) : SiteBaseController(mediator)
+public class TransactionsController(
+    IMediator mediator,
+    IConfiguration configuration,
+    HttpClient httpClient,
+    ILogger<TransactionsController> logger
+) : SiteBaseController(mediator)
 {
     private readonly string _apiBaseUrl = configuration["CashServiceAPIUrl"];
     
