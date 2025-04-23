@@ -19,7 +19,7 @@ public class LeagueTagHelper : TagHelper
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
     
-        output.Attributes.Add("class", "form-group product-multiselect-container product-multiselect-long"); 
+        output.Attributes.Add("class", "form-group product-multiselect-container product-multiselect-long product-multiselect-two-col"); 
         output.Attributes.Add("id", "dropdown-league-container");
 
         var sb = new StringBuilder();

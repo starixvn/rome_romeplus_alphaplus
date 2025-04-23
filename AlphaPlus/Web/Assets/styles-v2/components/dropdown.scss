@@ -208,7 +208,7 @@ select.select-multiple {
         color: var(--text-color-label) !important;
     }
 }
-@media (min-width: 1540px) {
+@media (min-width: 1200px) {
     .product-multiselect-two-col {
         .multiselect-container {
             &.dropdown-menu {
