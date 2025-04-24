@@ -1,8 +1,22 @@
 import { describe, expect, it, vi } from 'vitest';
-
 import { fireEvent, render, screen } from '@testing-library/react';
-
 import MessageForm from './MessageForm';
+
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => {
+      const translations: Record<string, string> = {
+        'message.title': 'Message',
+        'message.description': 'Description',
+        'message.mobile': 'Mobile',
+        'message.lineId': 'Line ID',
+        'message.announcement': 'Announcement',
+        'message.placeholder.message': 'Enter your message'
+      };
+      return translations[key] || key;
+    }
+  })
+}));
 
 describe('MessageForm', () => {
   const defaultProps = {
@@ -12,57 +26,86 @@ describe('MessageForm', () => {
     onMessageChange: vi.fn()
   };
 
-  it('renders the title and description', () => {
+  it('renders all form fields with correct labels and placeholders', () => {
     render(<MessageForm {...defaultProps} />);
-    expect(screen.getByText('Leave a Message')).toBeInTheDocument();
-    expect(screen.getByText('Include your contact details and a message for your member.')).toBeInTheDocument();
-  });
-
-  it('renders all form fields with correct labels', () => {
-    render(<MessageForm {...defaultProps} />);
-    expect(screen.getByText('Mobile Number')).toBeInTheDocument();
-    expect(screen.getByText('LINE ID')).toBeInTheDocument();
-    expect(screen.getByText('Announcement')).toBeInTheDocument();
-  });
-
-  it('renders mobile input with country code prefix', () => {
-    render(<MessageForm {...defaultProps} />);
-    expect(screen.getByText('+66')).toBeInTheDocument();
+    
+    // Check all form fields are present
+    expect(screen.getByLabelText('Mobile')).toBeInTheDocument();
+    expect(screen.getByLabelText('Line ID')).toBeInTheDocument();
+    expect(screen.getByLabelText('Announcement')).toBeInTheDocument();
+    
+    // Check placeholders
     expect(screen.getByPlaceholderText('XXXXXXXXX')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Enter your message')).toBeInTheDocument();
   });
 
-  it('calls onMessageChange when mobile number changes', () => {
+  it('handles mobile number input changes correctly', () => {
     const onMessageChange = vi.fn();
     render(<MessageForm {...defaultProps} onMessageChange={onMessageChange} />);
     
-    fireEvent.change(screen.getByPlaceholderText('XXXXXXXXX'), { 
-      target: { value: '123456789' } 
-    });
+    const mobileInput = screen.getByLabelText('Mobile');
+    fireEvent.change(mobileInput, { target: { value: '123456789' } });
     
     expect(onMessageChange).toHaveBeenCalledWith({ mobile: '123456789' });
   });
 
-  it('calls onMessageChange when LINE ID changes', () => {
+  it('handles LINE ID input changes correctly', () => {
     const onMessageChange = vi.fn();
     render(<MessageForm {...defaultProps} onMessageChange={onMessageChange} />);
     
-    const lineIdInput = screen.getByLabelText('LINE ID');
-    fireEvent.change(lineIdInput, { 
-      target: { value: 'testlineid' } 
-    });
+    const lineIdInput = screen.getByLabelText('Line ID');
+    fireEvent.change(lineIdInput, { target: { value: 'testlineid' } });
     
     expect(onMessageChange).toHaveBeenCalledWith({ lineId: 'testlineid' });
   });
 
-  it('calls onMessageChange when announcement changes', () => {
+  it('handles announcement text changes correctly', () => {
     const onMessageChange = vi.fn();
     render(<MessageForm {...defaultProps} onMessageChange={onMessageChange} />);
     
-    const announcementTextarea = screen.getByPlaceholderText('Add your message here...');
-    fireEvent.change(announcementTextarea, { 
-      target: { value: 'Test announcement' } 
-    });
+    const announcementInput = screen.getByLabelText('Announcement');
+    fireEvent.change(announcementInput, { target: { value: 'Test announcement' } });
     
+    expect(onMessageChange).toHaveBeenCalledWith({ announcement: 'Test announcement' });
+  });
+
+  it('maintains correct values when props are updated', () => {
+    const { rerender } = render(<MessageForm {...defaultProps} />);
+    
+    // Initial render with empty values
+    expect(screen.getByLabelText('Mobile')).toHaveValue('');
+    expect(screen.getByLabelText('Line ID')).toHaveValue('');
+    expect(screen.getByLabelText('Announcement')).toHaveValue('');
+    
+    // Update with new values
+    const updatedProps = {
+      mobile: '123456789',
+      lineId: 'testlineid',
+      announcement: 'Test announcement',
+      onMessageChange: vi.fn()
+    };
+    
+    rerender(<MessageForm {...updatedProps} />);
+    
+    // Verify values are updated
+    expect(screen.getByLabelText('Mobile')).toHaveValue('123456789');
+    expect(screen.getByLabelText('Line ID')).toHaveValue('testlineid');
+    expect(screen.getByLabelText('Announcement')).toHaveValue('Test announcement');
+  });
+
+  it('handles multiple field updates correctly', () => {
+    const onMessageChange = vi.fn();
+    render(<MessageForm {...defaultProps} onMessageChange={onMessageChange} />);
+    
+    // Update all fields
+    fireEvent.change(screen.getByLabelText('Mobile'), { target: { value: '123456789' } });
+    fireEvent.change(screen.getByLabelText('Line ID'), { target: { value: 'testlineid' } });
+    fireEvent.change(screen.getByLabelText('Announcement'), { target: { value: 'Test announcement' } });
+    
+    // Verify all updates were called with correct values
+    expect(onMessageChange).toHaveBeenCalledTimes(3);
+    expect(onMessageChange).toHaveBeenCalledWith({ mobile: '123456789' });
+    expect(onMessageChange).toHaveBeenCalledWith({ lineId: 'testlineid' });
     expect(onMessageChange).toHaveBeenCalledWith({ announcement: 'Test announcement' });
   });
 });

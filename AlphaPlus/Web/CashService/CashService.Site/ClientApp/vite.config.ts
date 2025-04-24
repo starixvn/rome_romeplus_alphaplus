@@ -19,8 +19,16 @@ export default defineConfig({
     coverage: {
       reporter: ['text', 'json', 'html'],
       exclude: [
-        'node_modules/',
+        '**/node_modules/**',
         'src/test/setup.ts',
+        'dist/**',
+        '.vite/**',
+        '**/*.config.{js,ts}',
+        "**/*.d.{js,ts}",
+        "**/*.eslintrc.{js,ts}",
+        '**/i18n/**',
+        '**/config/**',
+        '.eslintrc.cjs',
       ],
     },
   },

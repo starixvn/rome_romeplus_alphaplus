@@ -1,5 +1,6 @@
 import React from 'react';
 import { Setting } from '../../../types/memberSite';
+import { useTranslation } from 'react-i18next';
 
 interface GeneralSettingsProps {
   settings: Setting[];
@@ -10,6 +11,8 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({
   settings,
   onSettingsChange 
 }) => {
+  const { t } = useTranslation('memberSite');
+
   // Group settings by category
   const groupedSettings = settings.reduce((acc, setting) => {
     const category = setting.category || 'General';
@@ -23,7 +26,7 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-lg text-sky-700 font-semibold">General Settings</h2>
+        <h2 className="text-lg text-sky-700 font-semibold">{t('generalSettings.title')}</h2>
       </div>
     
       {Object.entries(groupedSettings).map(([category, categorySettings]) => (
@@ -41,11 +44,11 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({
               >
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-gray-900">
-                    {setting.name}
+                    {t(`generalSettings.${setting.id}.title`)}
                   </p>
                   {setting.description && (
                     <p className="mt-1 text-xs text-gray-500 line-clamp-2">
-                      {setting.description}
+                      {t(`generalSettings.${setting.id}.description`)}
                     </p>
                   )}
                 </div>

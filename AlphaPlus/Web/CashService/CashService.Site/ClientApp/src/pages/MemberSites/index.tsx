@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import '../../i18n/i18n';
 import { createRoot } from 'react-dom/client';
 import RegistrationLinks from './components/RegistrationLinks';
 import GeneralSettings from './components/GeneralSettings';
 import MessageForm from './components/MessageForm';
 import { memberSitesService } from '../../services/memberSitesAPI';
-import {  Setting, Domain, MessageData, MemberSiteResponse } from '../../types/memberSite';
+import { Setting, Domain, MessageData, MemberSiteResponse } from '../../types/memberSite';
 import './MemberSiteStyle.css'
+import { useTranslation } from 'react-i18next';
 
 
 const MemberSiteManagement: React.FC = () => {
+  const { t } = useTranslation('memberSite');
   const [originalData, setOriginalData] = useState<MemberSiteResponse>({
     domains: [],
     generalSettings: [],
@@ -36,13 +39,13 @@ const MemberSiteManagement: React.FC = () => {
     try {
       setLoading(true);
       const response = await memberSitesService.getMemberSiteData();
-      
+
       // Transform API response to our data format
       const transformedDomains: Domain[] = response.domains.map(domain => ({
         id: domain.url,
         url: domain.url,
         qrCode: domain.qrCode,
-        name: `Domain ${domain.url.split('.')[1]}`,
+        name: `${t('registrationLinks.domain')} ${domain.url.split('.')[1]}`,
         status: 'active' as const
       }));
 
@@ -67,7 +70,7 @@ const MemberSiteManagement: React.FC = () => {
       });
       setError(null);
     } catch (err) {
-      setError('Failed to load member site data');
+      setError(t('errors.loadFailed'));
       console.error('Error loading data:', err);
     } finally {
       setLoading(false);
@@ -77,7 +80,7 @@ const MemberSiteManagement: React.FC = () => {
   const handleSettingChange = (settingId: string, value: boolean) => {
     const newData = {
       ...data,
-      generalSettings: data.generalSettings.map((setting: Setting) => 
+      generalSettings: data.generalSettings.map((setting: Setting) =>
         setting.id === settingId ? { ...setting, value } : setting
       )
     }
@@ -86,7 +89,7 @@ const MemberSiteManagement: React.FC = () => {
     setIsDirty(isDirty);
   };
 
-  const handleMessageChange = (messages: MessageData) => {  
+  const handleMessageChange = (messages: MessageData) => {
     const newData = {
       ...data,
       ...messages
@@ -103,13 +106,13 @@ const MemberSiteManagement: React.FC = () => {
       const newData: Partial<MemberSiteResponse> = {};
 
       const response = await memberSitesService.updateMemberSiteData(newData);
-      
+
       // Transform API response back to our data format
-      const transformedDomains: Domain[] = response.domains.map(domain => ({
+      const transformedDomains: Domain[] = response.domains.map((domain, index) => ({
         id: domain.url,
         url: domain.url,
         qrCode: domain.qrCode,
-        name: `Domain ${domain.url.split('.')[1]}`,
+        name: `${t('registrationLinks.domain')} ${index + 1}`,
         status: 'active' as const
       }));
 
@@ -126,7 +129,7 @@ const MemberSiteManagement: React.FC = () => {
       setIsDirty(false);
       setError(null);
     } catch (err) {
-      setError('Failed to update member site data');
+      setError(t('errors.updateFailed'));
       console.error('Error updating data:', err);
     } finally {
       setIsSaving(false);
@@ -152,7 +155,7 @@ const MemberSiteManagement: React.FC = () => {
   }
 
   return (
-    <form 
+    <form
       className="min-h-screen bg-gray-50 p-6"
       onSubmit={(e) => {
         e.preventDefault();
@@ -160,35 +163,33 @@ const MemberSiteManagement: React.FC = () => {
       }}
     >
       <div className="container mx-auto">
-        <h1 className="text-xl font-semibold mb-3">Member Site Management</h1>
+        <h1 className="text-xl font-semibold mb-3">{t('title')}</h1>
 
         <div className="bg-white rounded-lg shadow-sm p-6">
-        
-          
           {error && (
             <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6" role="alert">
-              <strong className="font-bold">Error!</strong>
+              <strong className="font-bold">{t('errors.title')}</strong>
               <span className="block sm:inline"> {error}</span>
             </div>
           )}
 
           <div className="space-y-8">
             <div className="border-b-2 border-gray-200 pb-6">
-              <RegistrationLinks 
+              <RegistrationLinks
                 domains={data.domains}
                 onRequestNewLink={handleRequestNewLink}
               />
             </div>
 
             <div className="border-b-2 border-gray-200 pb-6">
-              <GeneralSettings 
+              <GeneralSettings
                 settings={data.generalSettings}
                 onSettingsChange={handleSettingChange}
               />
             </div>
 
             <div className="pb-6">
-              <MessageForm 
+              <MessageForm
                 mobile={data.mobile}
                 lineId={data.lineId}
                 announcement={data.announcement}
@@ -202,10 +203,10 @@ const MemberSiteManagement: React.FC = () => {
                 disabled={!isDirty || isSaving}
                 className={`px-6 py-2 rounded-md text-white transition-colors
                   ${isDirty && !isSaving
-                    ? 'bg-[#1e4d8c] hover:bg-[#173d70] cursor-pointer' 
+                    ? 'bg-[#1e4d8c] hover:bg-[#173d70] cursor-pointer'
                     : 'bg-gray-400 cursor-not-allowed'}`}
               >
-                {isSaving ? 'Saving...' : 'Save Changes'}
+                {isSaving ? t('actions.saving') : t('actions.save')}
               </button>
             </div>
           </div>

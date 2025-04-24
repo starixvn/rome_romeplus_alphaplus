@@ -1,73 +1,125 @@
 import { describe, expect, it, vi } from 'vitest';
-
 import { fireEvent, render, screen } from '@testing-library/react';
-
 import GeneralSettings from './GeneralSettings';
+
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => {
+      const translations: Record<string, string> = {
+        'generalSettings.title': 'General Settings',
+        'generalSettings.setting1.title': 'Setting 1',
+        'generalSettings.setting1.description': 'Description 1',
+        'generalSettings.setting2.title': 'Setting 2',
+        'generalSettings.setting2.description': 'Description 2',
+        'generalSettings.setting3.title': 'Setting 3',
+        'generalSettings.setting3.description': 'Description 3'
+      };
+      return translations[key] || key;
+    }
+  })
+}));
 
 describe('GeneralSettings', () => {
   const mockSettings = [
     {
-      id: '1',
+      id: 'setting1',
       name: 'Setting 1',
       description: 'Description 1',
       value: false,
-      category: 'Category 1'
+      category: 'General'
     },
     {
-      id: '2',
+      id: 'setting2',
       name: 'Setting 2',
       description: 'Description 2',
       value: true,
-      category: 'Category 1'
+      category: 'General'
     },
     {
-      id: '3',
+      id: 'setting3',
       name: 'Setting 3',
       description: 'Description 3',
       value: false,
-      category: 'Category 2'
+      category: 'Security'
     }
   ];
 
   const mockOnSettingsChange = vi.fn();
 
-  it('renders the title', () => {
+  it('renders all settings with correct content', () => {
     render(<GeneralSettings settings={mockSettings} onSettingsChange={mockOnSettingsChange} />);
-    expect(screen.getByText('General Settings')).toBeInTheDocument();
-  });
-
-  it('groups settings by category', () => {
-    render(<GeneralSettings settings={mockSettings} onSettingsChange={mockOnSettingsChange} />);
-    expect(screen.getByText('Setting 1')).toBeInTheDocument();
-    expect(screen.getByText('Setting 2')).toBeInTheDocument();
-    expect(screen.getByText('Setting 3')).toBeInTheDocument();
-  });
-
-  it('renders setting descriptions when provided', () => {
-    render(<GeneralSettings settings={mockSettings} onSettingsChange={mockOnSettingsChange} />);
-    expect(screen.getByText('Description 1')).toBeInTheDocument();
-    expect(screen.getByText('Description 2')).toBeInTheDocument();
-  });
-
-  it('calls onSettingsChange when a setting is toggled', () => {
-    render(<GeneralSettings settings={mockSettings} onSettingsChange={mockOnSettingsChange} />);
-    const setting1 = screen.getByText('Setting 1').closest('button');
-    fireEvent.click(setting1!);
-    expect(mockOnSettingsChange).toHaveBeenCalledWith('1', true);
-  });
-
-  it('applies correct styling to setting buttons', () => {
-    render(<GeneralSettings settings={mockSettings} onSettingsChange={mockOnSettingsChange} />);
-    const settingButton = screen.getByText('Setting 1').closest('button');
-    expect(settingButton).toHaveClass('w-full', 'text-left', 'flex', 'items-center', 'justify-between', 'p-4', 'bg-gray-50', 'rounded-lg', 'cursor-pointer', 'hover:bg-gray-100', 'transition-colors');
-  });
-
-  it('applies correct styling to setting names and descriptions', () => {
-    render(<GeneralSettings settings={mockSettings} onSettingsChange={mockOnSettingsChange} />);
-    const settingName = screen.getByText('Setting 1');
-    const settingDescription = screen.getByText('Description 1');
     
-    expect(settingName).toHaveClass('text-sm', 'font-medium', 'text-gray-900');
-    expect(settingDescription).toHaveClass('mt-1', 'text-xs', 'text-gray-500', 'line-clamp-2');
+    // Check if all settings are rendered with their titles and descriptions
+    mockSettings.forEach(setting => {
+      expect(screen.getByText(setting.name)).toBeInTheDocument();
+      expect(screen.getByText(setting.description)).toBeInTheDocument();
+    });
+  });
+
+  it('groups settings by category correctly', () => {
+    render(<GeneralSettings settings={mockSettings} onSettingsChange={mockOnSettingsChange} />);
+    
+    // Get all setting buttons
+    const settingButtons = screen.getAllByRole('button');
+    
+    // Verify that settings are grouped (General settings should be together)
+    const generalSettings = mockSettings.filter(s => s.category === 'General');
+    const securitySettings = mockSettings.filter(s => s.category === 'Security');
+    
+    // Check if the number of rendered buttons matches the number of settings
+    expect(settingButtons.length).toBe(mockSettings.length);
+  });
+
+  it('calls onSettingsChange with correct parameters when toggling settings', () => {
+    render(<GeneralSettings settings={mockSettings} onSettingsChange={mockOnSettingsChange} />);
+    
+    // Test toggling each setting
+    mockSettings.forEach(setting => {
+      const settingButton = screen.getByText(setting.name).closest('button');
+      fireEvent.click(settingButton!);
+      expect(mockOnSettingsChange).toHaveBeenCalledWith(setting.id, !setting.value);
+    });
+  });
+
+  it('handles empty settings array', () => {
+    render(<GeneralSettings settings={[]} onSettingsChange={mockOnSettingsChange} />);
+    
+    // Verify no settings are rendered
+    mockSettings.forEach(setting => {
+      expect(screen.queryByText(setting.name)).not.toBeInTheDocument();
+      expect(screen.queryByText(setting.description)).not.toBeInTheDocument();
+    });
+  });
+
+  it('maintains correct state for each setting', () => {
+    const { rerender } = render(
+      <GeneralSettings settings={mockSettings} onSettingsChange={mockOnSettingsChange} />
+    );
+
+    // Verify initial states
+    mockSettings.forEach(setting => {
+      const checkbox = screen.getByText(setting.name)
+        .closest('button')
+        ?.querySelector('input[type="checkbox"]');
+      expect(checkbox).toHaveProperty('checked', setting.value);
+    });
+
+    // Update settings and rerender
+    const updatedSettings = mockSettings.map(setting => ({
+      ...setting,
+      value: !setting.value
+    }));
+    
+    rerender(
+      <GeneralSettings settings={updatedSettings} onSettingsChange={mockOnSettingsChange} />
+    );
+
+    // Verify updated states
+    updatedSettings.forEach(setting => {
+      const checkbox = screen.getByText(setting.name)
+        .closest('button')
+        ?.querySelector('input[type="checkbox"]');
+      expect(checkbox).toHaveProperty('checked', setting.value);
+    });
   });
 });

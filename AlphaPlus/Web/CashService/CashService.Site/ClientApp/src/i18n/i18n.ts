@@ -18,6 +18,14 @@ import globalVi from './locales/global/vi.json';
 import globalZhCN from './locales/global/zh-CN.json';
 import globalZhTW from './locales/global/zh-TW.json';
 
+// Import memberSite translations
+import memberSiteEn from './locales/memberSite/en.json';
+import memberSiteVi from './locales/memberSite/vi.json';
+import memberSiteZhCN from './locales/memberSite/zh-CN.json';
+import memberSiteZhTW from './locales/memberSite/zh-TW.json';
+import memberSiteJa from './locales/memberSite/ja.json';
+import memberSiteKo from './locales/memberSite/ko.json';
+
 // Configure i18next
 i18n
   // Detect user language
@@ -30,26 +38,32 @@ i18n
       en: {
         global: globalEn,
         managePayments: managePaymentsEn,
+        memberSite: memberSiteEn
       },
       vi: {
         global: globalVi,
         managePayments: managePaymentsVi,
+        memberSite: memberSiteVi
       },
       'zh-CN': {
         global: globalZhCN,
         managePayments: managePaymentsZhCN,
+        memberSite: memberSiteZhCN
       },
       'zh-TW': {
         global: globalZhTW,
         managePayments: managePaymentsZhTW,
+        memberSite: memberSiteZhTW
       },
       ja: {
         global: globalJa,
         managePayments: managePaymentsJa,
+        memberSite: memberSiteJa
       },
       ko: {
         global: globalKo,
         managePayments: managePaymentsKo,
+        memberSite: memberSiteKo
       },
     },
     fallbackLng: 'en',

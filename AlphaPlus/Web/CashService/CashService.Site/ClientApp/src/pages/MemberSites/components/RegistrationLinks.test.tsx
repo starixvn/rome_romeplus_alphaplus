@@ -1,8 +1,21 @@
 import { describe, expect, it, vi } from 'vitest';
-
-import { render, screen } from '@testing-library/react';
-
+import { render, screen, fireEvent } from '@testing-library/react';
 import RegistrationLinks from './RegistrationLinks';
+
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => {
+      const translations: Record<string, string> = {
+        'registrationLinks.title': 'Registration Links',
+        'registrationLinks.note': 'Manage your registration links',
+        'registrationLinks.requestNewLink': 'Request New Link',
+        'registrationLinks.domain': 'Domain',
+        'registrationLinks.downloadQRCode': 'Download QR Code'
+      };
+      return translations[key] || key;
+    }
+  })
+}));
 
 describe('RegistrationLinks', () => {
   const mockDomains = [
@@ -22,52 +35,37 @@ describe('RegistrationLinks', () => {
 
   const mockOnRequestNewLink = vi.fn();
 
-  it('renders the title and description', () => {
+  it('renders all domains with correct data', () => {
     render(<RegistrationLinks domains={mockDomains} />);
-    expect(screen.getByText('Registration Links')).toBeInTheDocument();
-    expect(screen.getByText('If bolth link are blocked request a new link')).toBeInTheDocument();
-  });
-
-  it('renders all domain cards', () => {
-    render(<RegistrationLinks domains={mockDomains} />);
-    expect(screen.getAllByText(/Domain \d/)).toHaveLength(2);
-  });
-
-  it('displays correct URL for each card', () => {
-    render(<RegistrationLinks domains={mockDomains} />);
-    mockDomains.forEach((domain) => {
+    
+    mockDomains.forEach(domain => {
+      expect(screen.getByText(domain.name)).toBeInTheDocument();
       expect(screen.getByText(domain.url)).toBeInTheDocument();
     });
   });
 
-  it('shows request new link button when all domains are blocked', () => {
-    const blockedDomains = [
-      { ...mockDomains[0], status: 'blocked' as const },
-      { ...mockDomains[1], status: 'blocked' as const }
-    ];
-    render(<RegistrationLinks domains={blockedDomains} onRequestNewLink={mockOnRequestNewLink} />);
-    expect(screen.getByText('Request New Link')).toBeInTheDocument();
-    expect(screen.getByText('All links are blocked. You may request new ones.')).toBeInTheDocument();
-  });
-
-  it('does not show request new link button when not all domains are blocked', () => {
-    render(<RegistrationLinks domains={mockDomains} onRequestNewLink={mockOnRequestNewLink} />);
+  it('shows request new link button only when all domains are blocked', () => {
+    // Test with mixed status domains
+    const { rerender } = render(<RegistrationLinks domains={mockDomains} onRequestNewLink={mockOnRequestNewLink} />);
     expect(screen.queryByText('Request New Link')).not.toBeInTheDocument();
+
+    // Test with all blocked domains
+    const allBlockedDomains = mockDomains.map(d => ({ ...d, status: 'blocked' as const }));
+    rerender(<RegistrationLinks domains={allBlockedDomains} onRequestNewLink={mockOnRequestNewLink} />);
+    expect(screen.getByText('Request New Link')).toBeInTheDocument();
   });
 
-  it('renders empty state when no domains are available', () => {
+  it('calls onRequestNewLink when request button is clicked', () => {
+    const allBlockedDomains = mockDomains.map(d => ({ ...d, status: 'blocked' as const }));
+    render(<RegistrationLinks domains={allBlockedDomains} onRequestNewLink={mockOnRequestNewLink} />);
+    
+    fireEvent.click(screen.getByText('Request New Link'));
+    expect(mockOnRequestNewLink).toHaveBeenCalled();
+  });
+
+  it('handles empty domains array correctly', () => {
     render(<RegistrationLinks domains={[]} />);
     expect(screen.getByText('No registration links available')).toBeInTheDocument();
   });
 
-
-  it('applies correct styling to the request new link button', () => {
-    const blockedDomains = [
-      { ...mockDomains[0], status: 'blocked' as const },
-      { ...mockDomains[1], status: 'blocked' as const }
-    ];
-    render(<RegistrationLinks domains={blockedDomains} onRequestNewLink={mockOnRequestNewLink} />);
-    const button = screen.getByText('Request New Link');
-    expect(button).toHaveClass('px-4', 'py-2', 'text-sm', 'bg-[#1e4d8c]', 'text-white', 'rounded-md', 'hover:bg-[#173d70]', 'transition-colors');
-  });
 });

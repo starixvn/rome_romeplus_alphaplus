@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Domain } from '../../../types/memberSite';
-import { QRCodeCanvas } from "qrcode.react";
+import { QRCodeCanvas } from 'qrcode.react';
+import { useTranslation } from 'react-i18next';
 
 interface DomainCardProps {
   domain: Domain;
@@ -9,6 +10,7 @@ interface DomainCardProps {
 }
 
 const DomainCard: React.FC<DomainCardProps> = ({ domain, className = '', index }) => {
+  const { t } = useTranslation('memberSite');
   const [copied, setCopied] = useState(false);
   const qrRef = useRef<HTMLDivElement>(null);
 
@@ -40,7 +42,7 @@ const DomainCard: React.FC<DomainCardProps> = ({ domain, className = '', index }
     <div className={`bg-[#1e4d8c] rounded-lg p-4 flex items-center justify-between ${className}`}>
       <div className="flex items-center flex-1 min-w-0">
         <div className="flex-1 min-w-0">
-          <p className="text-white text-sm font-bold">Domain {index + 1}</p>
+          <p className="text-white text-sm font-bold">{t('registrationLinks.domain')} {index + 1}</p>
           <p className="text-white text-sm truncate">{domain.url}</p>
         </div>
         <button 
@@ -68,7 +70,7 @@ const DomainCard: React.FC<DomainCardProps> = ({ domain, className = '', index }
             : 'opacity-50 cursor-not-allowed'
         }`}
       >
-        Download QR Code
+        {t('registrationLinks.downloadQRCode')}
       </button>
       
       {/* Hidden QR Code for download */}

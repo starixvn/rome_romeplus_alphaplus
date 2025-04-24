@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface MessageFormProps {
   mobile: string;
@@ -13,21 +14,24 @@ const MessageForm: React.FC<MessageFormProps> = ({
   announcement,
   onMessageChange
 }) => {
+  const { t } = useTranslation('memberSite');
+
   return (
     <div className="space-y-4">
-      <h2 className="text-lg font-semibold text-sky-700 mb-4">Leave a Message</h2>
-      <p className="text-sm text-gray-600 mb-4">Include your contact details and a message for your member.</p>
+      <h2 className="text-lg font-semibold text-sky-700 mb-4">{t('message.title')}</h2>
+      <p className="text-sm text-gray-600 mb-4">{t('message.description')}</p>
       <div className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Mobile Number
+              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="mobile">
+                {t('message.mobile')}
               </label>
               <div className="flex">
                 <span className="inline-flex items-center px-3 py-2 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                   +66
                 </span>
                 <input
+                  id="mobile"
                   type="text"
                   value={mobile}
                   onChange={(e) => onMessageChange({ mobile: e.target.value })}
@@ -38,7 +42,7 @@ const MessageForm: React.FC<MessageFormProps> = ({
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="lineId">
-                LINE ID
+                {t('message.lineId')}
               </label>
               <input
                 id="lineId"
@@ -52,18 +56,18 @@ const MessageForm: React.FC<MessageFormProps> = ({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Announcement
-      
+          <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="announcement">
+            {t('message.announcement')}
           </label>   
     
           <textarea
+            id="announcement"
             value={announcement}
             onChange={(e) => onMessageChange({ announcement: e.target.value })}
             rows={4}
             maxLength={1000}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
-            placeholder="Add your message here..."
+            placeholder={t('message.placeholder.message')}
           />
         </div>
       </div>
