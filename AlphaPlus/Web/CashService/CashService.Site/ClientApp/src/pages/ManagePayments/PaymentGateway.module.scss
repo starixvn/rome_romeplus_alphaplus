@@ -5,6 +5,9 @@
 }
 
 .table-payment{
+    table{
+        text-align: center;
+    }
     thead{
         box-shadow: var(--table-header-box-shadow);
         tr{
@@ -17,6 +20,7 @@
     }
     th,td{
         padding: 4px 8px;
+        align-items: center;
         border-left: 1px solid var(--table-border-color);
         &:first-child{
             border-left: none;

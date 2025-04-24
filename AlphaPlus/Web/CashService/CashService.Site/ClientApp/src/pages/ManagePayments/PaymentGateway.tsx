@@ -5,6 +5,7 @@ import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
 import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import DailyLimitPopupModal from './SetDailyLimitPopupModal';
 import styles from './PaymentGateway.module.scss';
+import { IconEdit } from '../../components/Icons';
 
 interface PaymentGatewayProps {
   // Add props here as needed
@@ -113,23 +114,25 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
                 <th scope="col">{tManagePayments('lastUpdated')}</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className='font-[500]'>
               {providers.length > 0 ? (
                 providers.map((provider, index) => (
                   <tr key={provider.id}>
                     <td>{index + 1}</td>
                     <td>
-                      <button
-                        className="btn btn-sm btn-outline-primary me-1"
-                        onClick={() => handleEditClick(provider)}
-                      >
-                        {tGlobal('edit')}
-                      </button>
+                      <div className='flex justify-center items-center'>
+                        <button
+                          className="mx-[4px]"
+                          onClick={() => handleEditClick(provider)}
+                        >                          
+                          <IconEdit />
+                        </button>                      
+                      </div>
                     </td>
                     <td>{provider.name}</td>
                     <td>
                       <button
-                        className="btn btn-sm btn-outline-primary me-1"
+                        className="font-bold text-[12px] tracking-[0.12px] leading-[26px] px-[16px] rounded-[4px] bg-[#163f78] text-[#ffffff] cursor-pointer"
                         onClick={() => handleFeeClick(provider)}
                       >
                         {tManagePayments('fee')}
@@ -137,7 +140,7 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
                     </td>
                     <td>
                       <span
-                        className={`badge ${provider.status === 1 ? 'bg-success' : 'bg-danger'}`}
+                        className={`rounded-[10px] ${provider.status === 1 ? ' bg-green-200 ' : ' bg-emerald-200 '}`}
                       >
                         {getStatusText(provider.status)}
                       </span>

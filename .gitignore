@@ -33,7 +33,7 @@ packages/
 node_modules/
 *.map
 *.js
-*.css
+
 wwwroot/assets/bundles/
 wwwroot/
 *.bat
