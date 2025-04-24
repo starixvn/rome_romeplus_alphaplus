@@ -93,5 +93,6 @@
   "promptPay": "PromptPay",
   "linkMobile": "Link the mobile number registered with your bank account to enable PromptPay",
 
-  "bankName": "Bank name"
+  "bankName": "Bank name",
+  "bankAccountDeletedSuccessfully": "Bank account deleted successfully"
 } 

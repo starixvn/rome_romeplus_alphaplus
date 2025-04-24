@@ -14,7 +14,7 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
         {
             CustId = custId;
             BankId = bankId;
-            TransactionType = transactionType == 0 ? null : transactionType.ToString();
+            TransactionType = transactionType.HasValue && transactionType.Value != 0 ? transactionType.ToString() : null;
             Status = status;
             SearchText = searchText;
         }

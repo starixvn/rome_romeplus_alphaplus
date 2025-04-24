@@ -132,7 +132,7 @@ const BankAccount: React.FC = () => {
       setSuccessMessage(null);
       const result = await paymentProviderService.deleteBankAccount(accountId);
       if (result.isSuccessful) {
-        setSuccessMessage(result.message);
+        setSuccessMessage(tManagePayments('bankAccountDeletedSuccessfully'));
 
         // Add a 3-second delay before refreshing the list
         await new Promise(resolve => setTimeout(resolve, 3000));

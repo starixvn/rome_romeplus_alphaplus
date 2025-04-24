@@ -25,8 +25,6 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   const [accountNumber] = useState<string>(bankAccount.accountNumber);
   const [selectedBank] = useState<string>(bankAccount.bankId.toString());
   const [status, setStatus] = useState<string>(bankAccount.status.toString());
-  const [depositType, setDepositType] = useState<string>('1'); // Default value
-  const [withdrawalType, setWithdrawalType] = useState<string>('1'); // Default value
   const [depositMatchingMode, setDepositMatchingMode] = useState<string>(bankAccount.depositMatchingMode.toString());
   const [promptPay, setPromptPay] = useState<boolean>(bankAccount.promptPay);
   const [mobile] = useState<string>(bankAccount.mobile);
@@ -170,15 +168,15 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 <div className="btn-group" role="group">
                   <button
                     type="button"
-                    className={`btn ${depositType === '1' ? 'btn-primary' : 'btn-outline-primary'}`}
-                    onClick={() => setDepositType('1')}
+                    className={`btn `}
+                    onClick={() => {}}
                   >
                     {tManagePayments('slipUpload')}
                   </button>
                   <button
                     type="button"
-                    className={`btn ${depositType === '2' ? 'btn-primary' : 'btn-outline-primary'}`}
-                    onClick={() => setDepositType('2')}
+                    className={`btn`}
+                    onClick={() => {}}
                   >
                     {tManagePayments('sms')}
                     <br />
@@ -192,8 +190,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 <div className="btn-group" role="group">
                   <button
                     type="button"
-                    className={`btn ${withdrawalType === '1' ? 'btn-primary' : 'btn-outline-primary'}`}
-                    onClick={() => setWithdrawalType('1')}
+                    className={`btn`}
+                    onClick={() => {}}
                   >
                     {tManagePayments('manualWithdrawal')}
                   </button>
