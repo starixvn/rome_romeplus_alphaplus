@@ -63,8 +63,15 @@ RUN --mount=type=cache,target=/root/.yarn \
     --mount=type=cache,target=/root/.cache/yarn \
     --mount=type=cache,target=/build/src/Web/Settings/Settings.Site/Features/CreateAccount/ClientApp/node_modules \
     yarn config set cache-folder /root/.cache/yarn && \
-    yarn install --frozen-lockfile && \
-    yarn build && cp -r dist/* /build/src/Web/Settings/Settings.Site/wwwroot
+    yarn install --frozen-lockfile
+
+RUN --mount=type=cache,target=/root/.yarn \
+    --mount=type=cache,target=/root/.cache/yarn \
+    --mount=type=cache,target=/build/src/Web/Settings/Settings.Site/Features/CreateAccount/ClientApp/node_modules \
+    yarn config set cache-folder /root/.cache/yarn && \
+    yarn build
+
+RUN cp -r dist/* /build/src/Web/Settings/Settings.Site/wwwroot
 
 WORKDIR /build/src/Web/Settings/Settings.Site
 
@@ -73,7 +80,12 @@ RUN --mount=type=cache,target=/root/.yarn \
     --mount=type=cache,target=/root/.cache/yarn \
     --mount=type=cache,target=/build/src/Web/Settings/Settings.Site/node_modules \
     yarn config set cache-folder /root/.cache/yarn && \
-    yarn install --frozen-lockfile && \
+    yarn install --frozen-lockfile
+
+RUN --mount=type=cache,target=/root/.yarn \
+    --mount=type=cache,target=/root/.cache/yarn \
+    --mount=type=cache,target=/build/src/Web/Settings/Settings.Site/node_modules \
+    yarn config set cache-folder /root/.cache/yarn && \
     yarn build
 
 RUN --mount=type=cache,target=/root/.nuget/packages \

@@ -64,13 +64,17 @@ RUN if [ "$TRANSFORM_CONFIG" = "LOCAL3" ] \
   fi
 
 WORKDIR /build/src/Web/Before/Fanex.Alpha.Before
-
 # Install yarn dependencies
 RUN --mount=type=cache,target=/root/.yarn \
     --mount=type=cache,target=/root/.cache/yarn \
     --mount=type=cache,target=/build/src/Web/Before/Fanex.Alpha.Before/node_modules \
     yarn config set cache-folder /root/.cache/yarn && \
-    yarn install --frozen-lockfile && \
+    yarn install --frozen-lockfile
+
+RUN --mount=type=cache,target=/root/.yarn \
+    --mount=type=cache,target=/root/.cache/yarn \
+    --mount=type=cache,target=/build/src/Web/Before/Fanex.Alpha.Before/node_modules \
+    yarn config set cache-folder /root/.cache/yarn && \
     yarn build
 
 RUN --mount=type=cache,target=/root/.nuget/packages \

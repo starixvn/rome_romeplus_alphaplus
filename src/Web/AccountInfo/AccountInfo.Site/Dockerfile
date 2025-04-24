@@ -6,15 +6,22 @@ WORKDIR /build
 COPY "src/Web/AccountInfo/AccountInfo.Site/ClientApp" "src/Web/AccountInfo/AccountInfo.Site/ClientApp"
 
 WORKDIR /build/src/Web/AccountInfo/AccountInfo.Site/ClientApp
+
+RUN mkdir -p /build/src/Web/AccountInfo/AccountInfo.Site/wwwroot
 # Install, build and copy dist files
 RUN --mount=type=cache,target=/root/.yarn \
     --mount=type=cache,target=/root/.cache/yarn \
     --mount=type=cache,target=/build/src/Web/AccountInfo/AccountInfo.Site/ClientApp/node_modules \
     yarn config set cache-folder /root/.cache/yarn && \
-    yarn install --frozen-lockfile --prefer-offline && \
-    yarn build && \
-    mkdir -p /build/src/Web/AccountInfo/AccountInfo.Site/wwwroot && \
-    cp -r dist/* /build/src/Web/AccountInfo/AccountInfo.Site/wwwroot
+    yarn install --frozen-lockfile --prefer-offline
+
+RUN --mount=type=cache,target=/root/.yarn \
+    --mount=type=cache,target=/root/.cache/yarn \
+    --mount=type=cache,target=/build/src/Web/AccountInfo/AccountInfo.Site/ClientApp/node_modules \
+    yarn config set cache-folder /root/.cache/yarn && \
+    yarn build
+
+RUN cp -r dist/* /build/src/Web/AccountInfo/AccountInfo.Site/wwwroot
 
 WORKDIR /build
 # copy .csproj files

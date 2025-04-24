@@ -67,8 +67,13 @@ RUN --mount=type=cache,target=/root/.yarn \
     --mount=type=cache,target=/root/.cache/yarn \
     --mount=type=cache,target=/build/src/Web/Tickets/Tickets.Site/node_modules \  
     yarn config set cache-folder /root/.cache/yarn && \
-    yarn install --frozen-lockfile && \
-    gulp default
+    yarn install --frozen-lockfile
+
+RUN --mount=type=cache,target=/root/.yarn \
+    --mount=type=cache,target=/root/.cache/yarn \
+    --mount=type=cache,target=/build/src/Web/Tickets/Tickets.Site/node_modules \  
+    yarn config set cache-folder /root/.cache/yarn && \
+    yarn gulp
 
 RUN --mount=type=cache,target=/root/.nuget/packages \
     dotnet publish -c Release -o /app
