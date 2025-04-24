@@ -14,7 +14,7 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
         {
             CustId = custId;
             BankId = bankId;
-            TransactionType = transactionType;
+            TransactionType = transactionType == 0 ? null : transactionType.ToString();
             Status = status;
             SearchText = searchText;
         }
@@ -24,7 +24,7 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
         public int? BankId { get; }
 
         [SpParam(SqlParamName = "TransactionTypeID")]
-        public int? TransactionType { get; }
+        public string TransactionType { get; }
 
         [SpParam(SqlParamName = "BankAccountStatus")]
         public int? Status { get; }
