@@ -4,6 +4,7 @@ using AlphaPlus.CashService.API.Models.Payments;
 using AlphaPlus.CashService.API.Models;
 using Fanex.Data.Repository;
 using CashService.API.DTOs;
+using System.Text.Json;
 
 namespace AlphaPlus.CashService.API.Services;
 
@@ -149,9 +150,7 @@ public class PaymentsService : IPaymentsService
 
     public async Task<IEnumerable<TransactionTypeModel>> GetTransactionTypes(int bankId)
     {
-        // TODO: Implement actual database query
-        // var transactionTypes = await _repository.FetchAsync<TransactionTypeModel>(new GetTransactionTypesCriteria(bankId));
-        var transactionTypes = await DummyDataService.GetDummyTransactionTypes(bankId);
+        var transactionTypes = await _repository.FetchAsync<TransactionTypeModel>(new GetTransactionTypesCriteria(bankId));
         return transactionTypes;
     }
 
@@ -209,6 +208,7 @@ public class PaymentsService : IPaymentsService
     {
         var criteria = new GetBankAccountByIdCriteria(accountId);
         var accounts = await _repository.FetchAsync<BankAccountModel>(criteria);
+        Console.WriteLine(JsonSerializer.Serialize(accounts));
         return accounts.FirstOrDefault();
     }
 
