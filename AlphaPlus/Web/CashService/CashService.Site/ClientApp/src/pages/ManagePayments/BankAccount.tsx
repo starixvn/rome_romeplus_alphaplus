@@ -414,7 +414,6 @@ const BankAccount: React.FC = () => {
             <SetTransactionLimitModal
               onClose={handleCloseSetLimitModal}
               onSave={handleSaveSetLimit}
-              custId={1} // TODO: Replace with actual customer ID
             />
           )}
         </>

@@ -180,9 +180,34 @@ public static class PaymentsEndpoints
             Description = "Returns a list of bank accounts for a specific customer and transaction type with optional filtering by bank, account number, account holder name, and status"
         });
 
+        app.MapGet("/api/payments/transaction-limit/{custId}", async (int custId, IPaymentsService service) =>
+        {
+            var limit = await service.GetTransactionLimit(custId);
+            return Results.Ok(limit);
+        })
+        .WithName("GetTransactionLimit")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Get transaction limit",
+            Description = "Returns the transaction limits for a specific customer"
+        });
 
+        app.MapPost("/api/payments/set-transaction-limit", async (int custId, HttpRequest request, IPaymentsService service) =>
+        {
+            using var reader = new StreamReader(request.Body);
+            var body = await reader.ReadToEndAsync();
+            var limit = JsonConvert.DeserializeObject<TransactionLimitModel>(body);
+            var result = await service.SetTransactionLimit(custId, limit);
+            return Results.Ok(result);
+        })
+        .WithName("SetTransactionLimit")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Set transaction limit",
+            Description = "Sets transaction limits for a specific customer"
+        });
 
-
+        
 
         app.MapPost("/api/add-bank-account", async (HttpRequest request, IPaymentsService service) =>
         {
@@ -215,27 +240,6 @@ public static class PaymentsEndpoints
         {
             Summary = "Delete bank account",
             Description = "Deletes a specific bank account by its ID"
-        });
-
-        app.MapPost("/api/set-transaction-limit", async (int custId, HttpRequest request, IPaymentsService service) =>
-        {
-            using var reader = new StreamReader(request.Body);
-            var body = await reader.ReadToEndAsync();
-            var limit = JsonConvert.DeserializeObject<TransactionLimitModel>(body);
-            
-            if (limit == null)
-            {
-                return Results.BadRequest("Invalid transaction limit data");
-            }
-
-            var result = await service.SetTransactionLimit(custId, limit);
-            return Results.Ok(result);
-        })
-        .WithName("SetTransactionLimit")
-        .WithOpenApi(operation => new(operation)
-        {
-            Summary = "Set transaction limit",
-            Description = "Sets transaction limits for a specific customer"
         });
 
         app.MapPut("/api/update-bank-account", async (HttpRequest request, IPaymentsService service) =>

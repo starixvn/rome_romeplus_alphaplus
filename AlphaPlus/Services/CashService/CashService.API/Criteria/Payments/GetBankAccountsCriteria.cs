@@ -27,8 +27,8 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
 
         public int? Status { get; }
 
-        [SpParam(Ignored = true)]
-        public string? SearchText { get; }
+        [SpParam(SqlParamName = "SearchAccount")]
+        public string SearchText { get; }
 
         public override string GetSettingKey() => "Age_CashService_BankAccountAgent_List";
 

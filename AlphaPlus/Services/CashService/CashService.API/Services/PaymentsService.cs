@@ -3,7 +3,7 @@ using AlphaPlus.CashService.API.Criteria.Payments;
 using AlphaPlus.CashService.API.Models.Payments;
 using AlphaPlus.CashService.API.Models;
 using Fanex.Data.Repository;
-using System.Text;
+using CashService.API.DTOs;
 
 namespace AlphaPlus.CashService.API.Services;
 
@@ -22,9 +22,10 @@ public interface IPaymentsService
     Task<IEnumerable<BankModel>> GetBanksByCust(int custId);
     Task<IEnumerable<TransactionTypeModel>> GetTransactionTypes(int bankId);
     Task<IEnumerable<BankAccountModel>> GetBankAccounts(int custId, int bankId, int transactionType, int status, string searchText);
-    
-    Task<ResultModel> DeleteBankAccount(int accountId);
+    Task<TransactionLimitModel> GetTransactionLimit(int custId);
     Task<ResultModel> SetTransactionLimit(int custId, TransactionLimitModel limit);
+
+    Task<ResultModel> DeleteBankAccount(int accountId);
     Task<ResultModel> AddBankAccount(BankAccountModel bankAccount);
     Task<ResultModel> UpdateBankAccount(BankAccountModel bankAccount);
 }
@@ -54,7 +55,7 @@ public class PaymentsService : IPaymentsService
     
     public async Task<ResultModel> SetDailyWithdrawalCount(int custId, int count)
     {
-        var criteria = new SetDailyWithdrawalCountCriteria(custId, ModeViewConstants.PaymentGateway, count);    
+        var criteria = new SetDailyWithdrawalCountCriteria(custId, count);    
         await _repository.ExecuteAsync(criteria);
 
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
@@ -166,6 +167,37 @@ public class PaymentsService : IPaymentsService
         return accounts;
     }
     
+    public async Task<TransactionLimitModel> GetTransactionLimit(int custId)
+    {
+        var (limits, count) = await _repository.FetchMultipleAsync<DailyLimitDTO, int>(new GetDailyLimitCriteria(custId, ModeViewConstants.BankAccount));
+
+        var depositLimit = limits.FirstOrDefault(l => l.IsDeposit);
+        var withdrawalLimit = limits.FirstOrDefault(l => !l.IsDeposit);
+
+        return new TransactionLimitModel {
+            DailyWithdrawalCount = count.FirstOrDefault(),
+            MinPerDepositTransaction = depositLimit.MinPer,
+            MaxPerDepositTransaction = depositLimit.MaxPer,
+            MinPerWithdrawalTransaction = withdrawalLimit.MinPer,
+            MaxPerWithdrawalTransaction = withdrawalLimit.MaxPer,
+        } ;
+    }
+    
+    public async Task<ResultModel> SetTransactionLimit(int custId, TransactionLimitModel limit)
+    {
+        var criteria = new SetTransactionLimitCriteria(
+            custId, 
+            limit.DailyWithdrawalCount, 
+            limit.MinPerDepositTransaction, 
+            limit.MaxPerDepositTransaction, 
+            limit.MinPerWithdrawalTransaction, 
+            limit.MaxPerWithdrawalTransaction);
+
+        await _repository.ExecuteAsync(criteria);
+
+        return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
+    }
+
 
     public async Task<ResultModel> DeleteBankAccount(int accountId)
     {
@@ -178,19 +210,6 @@ public class PaymentsService : IPaymentsService
         // var result = await _repository.ExecuteNonQueryAsync(new DeleteBankAccountCriteria(accountId));
 
         return new ResultModel(0, "Bank account deleted successfully");
-    }
-
-    public async Task<ResultModel> SetTransactionLimit(int custId, TransactionLimitModel limit)
-    {
-        if (custId <= 0)
-        {
-            return new ResultModel(1, "Invalid customer ID");
-        }
-
-        // TODO: Implement actual database update logic
-        // var result = await _repository.ExecuteNonQueryAsync(new SetTransactionLimitCriteria(custId, limit, transactionType));
-
-        return new ResultModel(0, "Transaction limit updated successfully");
     }
 
     public async Task<ResultModel> AddBankAccount(BankAccountModel bankAccount)

@@ -30,8 +30,8 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             _httpClient = httpClient;
             _userSession = userSession;
 
-            // _custId = 1176086;
-            _custId = 187900621;
+            _custId = 1176086;
+            // _custId = 187900621;
         }
 
         public IActionResult Index()
@@ -161,6 +161,24 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             var url = $"{_apiBaseUrl}/payments/bank-accounts?custId={_custId}&bankId={bankId}&transactionType={transactionType}&status={status}&searchText={searchText}";
             var bankAccounts = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
             return Json(bankAccounts);
+        }
+
+        public async Task<IActionResult> GetTransactionLimit(CancellationToken cancellationToken)
+        {
+            var url = $"{_apiBaseUrl}/payments/transaction-limit/{_custId}";
+            var result = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
+            return Json(result);
+        }
+
+        public async Task<IActionResult> SetTransactionLimit(
+            [FromBody] TransactionLimitModel request,
+            CancellationToken cancellationToken)
+        {
+            var url = $"{_apiBaseUrl}/payments/set-transaction-limit?custId={_custId}";
+            var response = await _httpClient.PostAsJsonAsync(url, request, cancellationToken);
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
+            return Json(result);
         }
     }
 }

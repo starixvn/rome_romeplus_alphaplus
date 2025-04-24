@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { paymentProviderService } from '../../services/paymentsAPI';
 
 interface SetTransactionLimitModalProps {
   onClose: () => void;
   onSave: () => void;
-  custId: number;
 }
 
 const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
   onClose,
-  onSave,
-  custId
+  onSave
 }) => {
   const { t: tManagePayments } = useTranslation('managePayments');
   const { t: tGlobal } = useTranslation('global');
@@ -26,6 +24,24 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    const fetchTransactionLimit = async () => {
+      try {
+        const limit = await paymentProviderService.getTransactionLimit();
+        setMinDeposit(limit.minPerDepositTransaction.toString());
+        setMaxDeposit(limit.maxPerDepositTransaction.toString());
+        setMinWithdrawal(limit.minPerWithdrawalTransaction.toString());
+        setMaxWithdrawal(limit.maxPerWithdrawalTransaction.toString());
+        setDailyWithdrawalCount(limit.dailyWithdrawalCount.toString());
+      } catch (err) {
+        setError(tManagePayments('failedToFetchLimit'));
+        console.error('Error fetching transaction limit:', err);
+      }
+    };
+
+    fetchTransactionLimit();
+  }, [tManagePayments]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -33,12 +49,12 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
     setLoading(true);
 
     try {
-      const result = await paymentProviderService.setTransactionLimit(custId, {
+      const result = await paymentProviderService.setTransactionLimit({
+        dailyWithdrawalCount: parseInt(dailyWithdrawalCount) || 0,
         minPerDepositTransaction: parseFloat(minDeposit) || 0,
         maxPerDepositTransaction: parseFloat(maxDeposit) || 0,
         minPerWithdrawalTransaction: parseFloat(minWithdrawal) || 0,
-        maxPerWithdrawalTransaction: parseFloat(maxWithdrawal) || 0,
-        dailyWithdrawalCount: parseInt(dailyWithdrawalCount) || 0
+        maxPerWithdrawalTransaction: parseFloat(maxWithdrawal) || 0
       });
 
       if (result.isSuccessful) {

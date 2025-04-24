@@ -168,19 +168,29 @@ export const paymentProviderService = {
     }
   },
 
-
-  
-  // Update banks for a specific provider
-  updateProviderBanks: async (providerId: number, bankIds: number[]): Promise<ResultModel> => {
+  // Get transaction limit for a payment provider or bank account
+  getTransactionLimit: async (): Promise<PaymentTransactionLimit> => {
     try {
-      const response = await api.post('UpdateProviderBanks', { providerId, bankIds });
+      const response = await api.get<PaymentTransactionLimit>(`/get-transaction-limit`);
       return response.data;
     } catch (error) {
-      console.error('Error updating provider banks:', error);
+      console.error('Error getting transaction limit:', error);
+      throw error;
+    }
+  },
+
+  // Set transaction limit for a payment provider or bank account
+  setTransactionLimit: async (limit: PaymentTransactionLimit): Promise<ResultModel> => {
+    try {
+      const response = await api.post(`/set-transaction-limit`, limit);
+      return response.data;
+    } catch (error) {
+      console.error('Error setting transaction limit:', error);
       throw error;
     }
   },
   
+
   // Delete a bank account
   deleteBankAccount: async (bankAccountId: number): Promise<ResultModel> => {
     try {
@@ -188,17 +198,6 @@ export const paymentProviderService = {
       return response.data;
     } catch (error) {
       console.error(`Error deleting bank account ${bankAccountId}:`, error);
-      throw error;
-    }
-  },
-
-  // Set transaction limit for a payment provider or bank account
-  setTransactionLimit: async (custId: number, limit: PaymentTransactionLimit): Promise<ResultModel> => {
-    try {
-      const response = await api.post(`/set-transaction-limit?custId=${custId}`, limit);
-      return response.data;
-    } catch (error) {
-      console.error('Error setting transaction limit:', error);
       throw error;
     }
   },

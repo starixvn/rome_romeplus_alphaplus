@@ -6,7 +6,12 @@
         <Mapping DataField="Provider" ObjectProperty="Name"></Mapping>
         <Mapping DataField="ProviderStatus" ObjectProperty="Status"></Mapping>
       </Setting>
-      <Setting Key="Age_CashService_DailyWithdrawLimit_Sel" SpName="Age_CashService_DailyWithdrawLimit_Sel_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+      <Setting Key="Age_CashService_DailyWithdrawLimit_Sel" SpName="Age_CashService_DailyWithdrawLimit_Sel_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+        <Mapping DataField="MinPer" ObjectProperty="MinPer"></Mapping>
+        <Mapping DataField="MaxPer" ObjectProperty="MaxPer"></Mapping>
+        <Mapping DataField="Deposit" ObjectProperty="IsDeposit"></Mapping>
+        <Mapping DataField="WDLimit" ObjectProperty="DailyWithdrawalCount"></Mapping>
+      </Setting>
       <Setting Key="Age_CashService_DailyWithdrawLimit_Upd" SpName="Age_CashService_DailyWithdrawLimit_Upd_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
       <Setting Key="Age_CashService_PaymentProviderFee_Sel" SpName="Age_CashService_PaymentProviderFee_Sel_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
         <Mapping DataField="MethodName" ObjectProperty="Method"></Mapping>
@@ -49,10 +54,10 @@
         <Mapping DataField="BankAccountStatus" ObjectProperty="Status"></Mapping>
         <Mapping DataField="LastUpdated" ObjectProperty="RepUpdateTime"></Mapping>
       </Setting>
-    
-      <Setting Key="Age_ManagementPayments_SetTransactionLimit" SpName="Age_ManagementPayments_SetTransactionLimit" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+
       <Setting Key="Age_ManagementPayments_DelBankAccount" SpName="Age_ManagementPayments_DelBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
       
+       
       <Setting Key="Age_ManagementPayments_AddBankAccount" SpName="Age_ManagementPayments_AddBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
       <Setting Key="Age_ManagementPayments_UpdBankAccount" SpName="Age_ManagementPayments_UpdBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     </Function>
