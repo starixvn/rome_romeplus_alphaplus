@@ -71,11 +71,6 @@ builder.Services
 
 builder.Services.AddHttpClient<HttpClientHelper>();
 
-// Add SPA static files
-builder.Services.AddSpaStaticFiles(configuration =>
-{
-    configuration.RootPath = "ClientApp/dist";
-});
 
 builder.Services.AddHealthChecks();
 
@@ -130,7 +125,6 @@ else
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
-app.UseSpaStaticFiles();
 
 app.UseRouting();
 app.UseSession();

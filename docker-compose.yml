@@ -1,103 +1,103 @@
-version: '3.4'
+version: "3.4"
 
 services:
-    settings-site:
-        image: ${REGISTRY:-alphaplus}/settings.site:${PLATFORM:-linux}-${TAG:-latest}
-        build:
-            context: .
-            dockerfile: src/Web/Settings/Settings.Site/Dockerfile
-        restart: always
+  settings-site:
+    image: ${REGISTRY:-alphaplus}/settings.site:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Web/Settings/Settings.Site/Dockerfile
+    restart: always
 
-    tickets-api:
-        image: ${REGISTRY:-alphaplus}/tickets.api:${PLATFORM:-linux}-${TAG:-latest}
-        build:
-            context: .
-            dockerfile: src/Services/Tickets/API/Dockerfile
-        restart: always
+  tickets-api:
+    image: ${REGISTRY:-alphaplus}/tickets.api:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Services/Tickets/API/Dockerfile
+    restart: always
 
-    identity-api:
-        image: ${REGISTRY:-alphaplus}/identity.api:${PLATFORM:-linux}-${TAG:-latest}
-        build:
-            context: .
-            dockerfile: src/Services/Identity/Identity.API/Dockerfile
-        restart: always
+  identity-api:
+    image: ${REGISTRY:-alphaplus}/identity.api:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Services/Identity/Identity.API/Dockerfile
+    restart: always
 
-    tickets-site:
-        image: ${REGISTRY:-alphaplus}/tickets.site:${PLATFORM:-linux}-${TAG:-latest}
-        build:
-            context: .
-            dockerfile: src/Web/Tickets/Tickets.Site/Dockerfile
-        restart: always
-        depends_on:
-            - tickets-api
+  tickets-site:
+    image: ${REGISTRY:-alphaplus}/tickets.site:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Web/Tickets/Tickets.Site/Dockerfile
+    restart: always
+    depends_on:
+      - tickets-api
 
-    assets:
-        image: ${REGISTRY:-alphaplus}/assets:${PLATFORM:-linux}-${TAG:-latest}
-        build:
-            context: .
-            dockerfile: src/Web/assets/Dockerfile
-        restart: always
+  assets:
+    image: ${REGISTRY:-alphaplus}/assets:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Web/assets/Dockerfile
+    restart: always
 
-    account-info:
-        image: ${REGISTRY:-alphaplus}/account-info:${PLATFORM:-linux}-${TAG:-latest}
-        build:
-            context: .
-            dockerfile: src/Web/AccountInfo/AccountInfo.Site/Dockerfile
-        restart: always
+  account-info:
+    image: ${REGISTRY:-alphaplus}/account-info:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Web/AccountInfo/AccountInfo.Site/Dockerfile
+    restart: always
 
-    main:
-        image: ${REGISTRY:-alphaplus}/main:${PLATFORM:-linux}-${TAG:-latest}
-        build:
-            context: .
-            dockerfile: src/Web/Main/Main.Site/Dockerfile
-        restart: always
-        depends_on:
-            - identity-api
+  main:
+    image: ${REGISTRY:-alphaplus}/main:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Web/Main/Main.Site/Dockerfile
+    restart: always
+    depends_on:
+      - identity-api
 
-    login:
-        image: ${REGISTRY:-alphaplus}/login:${PLATFORM:-linux}-${TAG:-latest}
-        build:
-            context: .
-            dockerfile: src/Web/Before/Fanex.Alpha.Before/Dockerfile
-        restart: always
+  login:
+    image: ${REGISTRY:-alphaplus}/login:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Web/Before/Fanex.Alpha.Before/Dockerfile
+    restart: always
 
-    proxy:
-        build: src/proxy
-        restart: always
-        ports:
-            - 5100:80
-        depends_on:
-            - main
-            - settings-site
-            - reports-site
-            - features-site
-            - account-info
-            - tickets-site
+  proxy:
+    build: src/proxy
+    restart: always
+    ports:
+      - 5100:80
+    depends_on:
+      - main
+      - settings-site
+      - reports-site
+      - features-site
+      - account-info
+      - tickets-site
 
-    reports-site:
-        image: ${REGISTRY:-alphaplus}/reports.site:${PLATFORM:-linux}-${TAG:-latest}
-        build:
-            context: .
-            dockerfile: src/Web/Reports/Reports.Site/Dockerfile
-        restart: always
+  reports-site:
+    image: ${REGISTRY:-alphaplus}/reports.site:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Web/Reports/Reports.Site/Dockerfile
+    restart: always
 
-    features-site:
-        image: ${REGISTRY:-alphaplus}/features.site:${PLATFORM:-linux}-${TAG:-latest}
-        build:
-            context: .
-            dockerfile: src/Web/Features/Features.Site/Dockerfile
-        restart: always
-    
-    cash-site:
-        image: ${REGISTRY:-alphaplus}/cash.site:${PLATFORM:-linux}-${TAG:-latest}
-        build:
-            context: .
-            dockerfile: AlphaPlus/Web/CashService/CashService.Site/Dockerfile
-        restart: always
+  features-site:
+    image: ${REGISTRY:-alphaplus}/features.site:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Web/Features/Features.Site/Dockerfile
+    restart: always
 
-    cash-service-api:
-        image: ${REGISTRY:-alphaplus}/cash.service.api:${PLATFORM:-linux}-${TAG:-latest}
-        build:
-            context: .
-            dockerfile: AlphaPlus/Services/CashService/CashService.API/Dockerfile
-        restart: always
+  cash-site:
+    image: ${REGISTRY:-alphaplus}/cash.site:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Web/CashService/CashService.Site/Dockerfile
+    restart: always
+
+  cash-service-api:
+    image: ${REGISTRY:-alphaplus}/cash.service.api:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Services/CashService/CashService.API/Dockerfile
+    restart: always

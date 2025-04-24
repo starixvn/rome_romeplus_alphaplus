@@ -1,11 +1,10 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
-using AlphaPlus.CashService.Site.Features.Payments.Requests;
 using AlphaPlus.CashService.Site.Features.Payments.Models;
+using AlphaPlus.CashService.Site.Features.Payments.Requests;
 using AlphaPlus.CashService.Site.Features.Payments.ViewModels;
 using AlphaPlus.Core.Models;
-using AlphaPlus.CashService.Site.Features.Payments.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace AlphaPlus.CashService.Site.Features.Payments
 {
@@ -19,8 +18,8 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         private readonly IUserSession _userSession;
 
         public PaymentsController(
-            ILogger<PaymentsController> logger, 
-            IWebHostEnvironment environment, 
+            ILogger<PaymentsController> logger,
+            IWebHostEnvironment environment,
             IConfiguration configuration,
             HttpClient httpClient,
             IUserSession userSession)
@@ -86,11 +85,11 @@ namespace AlphaPlus.CashService.Site.Features.Payments
                 Provider = provider,
                 PaymentMethods = allPaymentMethods
             };
-            
+
             return View(viewModel);
         }
-    
-        public async Task<IActionResult> ProviderSettings(int providerId,int method, int status, int transactionType, CancellationToken cancellationToken)
+
+        public async Task<IActionResult> ProviderSettings(int providerId, int method, int status, int transactionType, CancellationToken cancellationToken)
         {
             var url = $"{_apiBaseUrl}/payments/provider-settings?providerId={providerId}&method={method}&status={status}&transactionType={transactionType}";
             var settings = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
@@ -137,7 +136,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
             return Json(result);
         }
-    
+
         public async Task<IActionResult> GetBanksByCust(CancellationToken cancellationToken)
         {
             var url = $"{_apiBaseUrl}/payments/banks/{_custId}";
@@ -153,10 +152,10 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         }
 
         public async Task<IActionResult> GetBankAccounts(
-            int bankId, 
-            int transactionType, 
-            int status, 
-            string searchText, 
+            int bankId,
+            int transactionType,
+            int status,
+            string searchText,
             CancellationToken cancellationToken)
         {
             var url = $"{_apiBaseUrl}/payments/bank-accounts?custId={_custId}&bankId={bankId}&transactionType={transactionType}&status={status}&searchText={searchText}";
@@ -216,7 +215,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
             return Json(result);
         }
-        
+
         public async Task<IActionResult> DeleteBankAccount(
             int bankAccountId,
             CancellationToken cancellationToken)
