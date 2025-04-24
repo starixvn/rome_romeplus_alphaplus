@@ -34,7 +34,6 @@ public class DateRangePickerViewModel
         FromDate = fromDate.ToShortDateWithSlash();
         ToDate = toDate.ToShortDateWithSlash();
         UserSelectedDateRangeOption = userSelectedDateRangeOption;
-        //// TODO: ricky will refactor here
         var rangeOptions = BuildRangeOptions(isSupportHistoricReport, isHistoricReport);
         RangeOptions = optionValues != null ? rangeOptions.Where(item => optionValues.Contains(int.Parse(item.Value))) : rangeOptions;
         IsRenderSubmitButton = isRenderSubmitButton;

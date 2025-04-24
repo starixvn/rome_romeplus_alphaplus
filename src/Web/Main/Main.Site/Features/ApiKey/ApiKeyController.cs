@@ -2,6 +2,8 @@
 using AlphaPlus.Core.Models;
 using MediatR;
 using AlphaPlus.Core;
+using Microsoft.AspNetCore.Mvc.Filters;
+using AlphaPlus.Shared.AppResources.Common;
 
 namespace AlphaPlus.Main.Site.Features.ApiKey
 {
@@ -55,18 +57,17 @@ namespace AlphaPlus.Main.Site.Features.ApiKey
             return Json(await mediator.Send(query));
         }
 
-        // TODO
-        // protected override void OnAuthorization(AuthorizationContext filterContext)
-        // {
-        //     base.OnAuthorization(filterContext);
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            base.OnActionExecuting(context);
 
-        //     if (userSession.IsSubAcc
-        //         || userSession.IsProtectedMode
-        //         || (!AppSettings.APISuperIds.Any(s => string.Equals(s, "*")) &&
-        //             !AppSettings.APISuperIds.Any(s => string.Equals(s, userSession.SRecommendId.ToString()))))
-        //     {
-        //         UnAuthentication(filterContext);
-        //     }
-        // }
+            if (userSession.IsSubAcc
+                || userSession.IsProtectedMode
+                || (!AppSettings.APISuperIds.Any(s => string.Equals(s, "*")) &&
+                    !AppSettings.APISuperIds.Any(s => string.Equals(s, userSession.SRecommendId.ToString()))))
+            {
+                context.Result = new UnauthorizedObjectResult(new { message = CommonResx.NotAuthorized });
+            }
+        }
     }
 }

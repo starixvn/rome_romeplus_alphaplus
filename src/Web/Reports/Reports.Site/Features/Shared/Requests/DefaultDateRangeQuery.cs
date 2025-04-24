@@ -17,7 +17,6 @@ public class DefaultDateRangeQuery : BaseQuery
 
     public bool CheckDateRangeConstraint()
     {
-        //// TODO: Side effect here
         AssignFromDateValue();
 
         return MinDate <= FromDate

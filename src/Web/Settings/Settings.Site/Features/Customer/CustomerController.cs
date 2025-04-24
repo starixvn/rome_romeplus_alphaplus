@@ -370,7 +370,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             {
                 Enabled = true,
                 Id = "AccountInfo",
-                Name = "Account Info",//TODO:Resources.Lang.userinfo,
+                Name = AlphaPlus.Shared.AppResources.Main.Resources.accountInfo,
                 URL = MicroSites.SettingUrl(
                     string.Format("~/Customer/AccountInfo?CustId={0}&roleId={1}&&lng={2}&isDarkMode={3}",
                     customerId,

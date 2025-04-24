@@ -6,23 +6,10 @@ namespace AlphaPlus.Main.Site.Features.TelegramChatBot
 {
     using AlphaPlus.Core.Models;
     using AlphaPlus.Main.Site.Shared.Models;
-
     public class TelegramChatBotController(IMediator mediator, IUserSession userSession) : BaseController
     {
         private readonly IMediator mediator = mediator;
         private readonly IUserSession userSession = userSession;
-
-        // TODO: PartialUM
-        // protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        // {
-        //     if (AppSettings.EnabledUMTelegramChatbot)
-        //     {
-        //         filterContext.Result = new RedirectResult($"~/PartialUM/Index?umfrom={AppSettings.TelegramChatbotUMFrom}&umto={AppSettings.TelegramChatbotUMTo}");
-        //         return;
-        //     }
-
-        //     base.OnActionExecuting(filterContext);
-        // }
 
         public async Task<IActionResult> Setup(SetUpChatBotQuery query)
         {
@@ -65,18 +52,7 @@ namespace AlphaPlus.Main.Site.Features.TelegramChatBot
                 return Json(UnauthorizedResult.CreateUnauthorizedResult());
             }
 
-            // TODO: captcha mvc
-            // var isCaptchaValid = this.IsCaptchaValid(null);
-            // if (command.IsShowCaptcha && !isCaptchaValid)
-            // {
-            //     return Json(Result.CreateErrorResult(ChatBot.InvalidCaptcha));
-            // }
-
             var result = await mediator.Send(command);
-            // if (result.IsNotOk && result.Code == -3 && !isCaptchaValid)
-            // {
-            //     return PartialView("Captcha");
-            // }
 
             return Json(result);
         }
