@@ -32,5 +32,6 @@
     <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.6" />
     <PackageReference Include="MediatR" Version="12.3.0" />
     <PackageReference Include="ONEbook.SpreadSheets.BetListNPOI" Version="2.0.0-netstandard01" />
+    <PackageReference Include="System.Text.Encodings.Web" Version="4.5.1" />
   </ItemGroup>
 </Project>
