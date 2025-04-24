@@ -143,11 +143,11 @@ const MemberSiteManagement: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 p-6">
+      <div className="min-h-screen bg-gray-50 dark:bg-[#1E1E1E] p-6">
         <div className="container mx-auto">
           <div className="animate-pulse space-y-6">
-            <div className="h-8 bg-gray-200 rounded w-1/4"></div>
-            <div className="h-[600px] bg-gray-200 rounded"></div>
+            <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-1/4"></div>
+            <div className="h-[600px] bg-gray-200 dark:bg-gray-700 rounded"></div>
           </div>
         </div>
       </div>
@@ -156,32 +156,32 @@ const MemberSiteManagement: React.FC = () => {
 
   return (
     <form
-      className="min-h-screen bg-gray-50 p-6"
+      className="min-h-screen bg-gray-50 dark:bg-[#1E1E1E] p-6 transition-colors duration-200"
       onSubmit={(e) => {
         e.preventDefault();
         handleSave();
       }}
     >
       <div className="container mx-auto">
-        <h1 className="text-xl font-semibold mb-3">{t('title')}</h1>
+        <h1 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">{t('title')}</h1>
 
-        <div className="bg-white rounded-lg shadow-sm p-6">
+        <div className="bg-white dark:bg-[#2D2D2D] rounded-lg shadow-sm p-6">
           {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6" role="alert">
+            <div className="bg-red-100 dark:bg-red-900/30 border border-red-400 dark:border-red-800 text-red-700 dark:text-red-400 px-4 py-3 rounded relative mb-6" role="alert">
               <strong className="font-bold">{t('errors.title')}</strong>
               <span className="block sm:inline"> {error}</span>
             </div>
           )}
 
           <div className="space-y-8">
-            <div className="border-b-2 border-gray-200 pb-6">
+            <div className="border-b-2 border-gray-200 dark:border-gray-700 pb-6">
               <RegistrationLinks
                 domains={data.domains}
                 onRequestNewLink={handleRequestNewLink}
               />
             </div>
 
-            <div className="border-b-2 border-gray-200 pb-6">
+            <div className="border-b-2 border-gray-200 dark:border-gray-700 pb-6">
               <GeneralSettings
                 settings={data.generalSettings}
                 onSettingsChange={handleSettingChange}
@@ -203,8 +203,8 @@ const MemberSiteManagement: React.FC = () => {
                 disabled={!isDirty || isSaving}
                 className={`px-6 py-2 rounded-md text-white transition-colors
                   ${isDirty && !isSaving
-                    ? 'bg-[#1e4d8c] hover:bg-[#173d70] cursor-pointer'
-                    : 'bg-gray-400 cursor-not-allowed'}`}
+                    ? 'bg-[#2C3E50] hover:bg-[#1e4d8c] dark:bg-[#1e4d8c] dark:hover:bg-[#173d70] cursor-pointer'
+                    : 'bg-gray-400 dark:bg-gray-600 cursor-not-allowed'}`}
               >
                 {isSaving ? t('actions.saving') : t('actions.save')}
               </button>

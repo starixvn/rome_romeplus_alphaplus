@@ -39,7 +39,7 @@ const DomainCard: React.FC<DomainCardProps> = ({ domain, className = '', index }
 
 
   return (
-    <div className={`bg-[#1e4d8c] rounded-lg p-4 flex items-center justify-between ${className}`}>
+    <div className={`bg-[#1e4d8c] dark:bg-[#2C3E50] rounded-lg p-4 flex items-center justify-between ${className}`}>
       <div className="flex items-center flex-1 min-w-0">
         <div className="flex-1 min-w-0">
           <p className="text-white text-sm font-bold">{t('registrationLinks.domain')} {index + 1}</p>
@@ -47,7 +47,7 @@ const DomainCard: React.FC<DomainCardProps> = ({ domain, className = '', index }
         </div>
         <button 
           onClick={(e) => handleCopy(e)}
-          className="ml-2 p-1.5 text-white hover:bg-[#2a5da0] rounded transition-colors"
+          className="ml-2 p-1.5 text-white hover:bg-[#2a5da0] dark:hover:bg-[#173d70] rounded transition-colors"
           title="Copy URL"
         >
           {copied ? (
@@ -64,9 +64,9 @@ const DomainCard: React.FC<DomainCardProps> = ({ domain, className = '', index }
       <button 
         disabled={domain.status === 'blocked'}
         onClick={(e) => downloadQRCode(e)}
-        className={`bg-white text-[#1e4d8c] px-4 py-2 rounded text-sm font-medium whitespace-nowrap ${
+        className={`bg-white dark:bg-gray-200 text-[#1e4d8c] dark:text-[#2C3E50] px-4 py-2 rounded text-sm font-medium whitespace-nowrap ${
           domain.status === 'active'
-            ? 'hover:bg-gray-50'
+            ? 'hover:bg-gray-50 dark:hover:bg-gray-300'
             : 'opacity-50 cursor-not-allowed'
         }`}
       >
