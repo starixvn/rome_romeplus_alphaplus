@@ -30,7 +30,8 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             _httpClient = httpClient;
             _userSession = userSession;
 
-            _custId = 1176086;
+            // _custId = 1176086;
+            _custId = 187900621;
         }
 
         public IActionResult Index()
@@ -116,7 +117,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             return Json(result);
         }
 
-        public async Task<IActionResult> GetBanks(int transactionType, CancellationToken cancellationToken)
+        public async Task<IActionResult> GetBanksByTransactionType(int transactionType, CancellationToken cancellationToken)
         {
             var url = $"{_apiBaseUrl}/payments/banks?transactionType={transactionType}";
             var banks = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
@@ -134,6 +135,20 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
             return Json(result);
+        }
+    
+        public async Task<IActionResult> GetBanksByCust(CancellationToken cancellationToken)
+        {
+            var url = $"{_apiBaseUrl}/payments/banks/{_custId}";
+            var banks = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
+            return Json(banks);
+        }
+
+        public async Task<IActionResult> GetTransactionTypes(int bankId, CancellationToken cancellationToken)
+        {
+            var url = $"{_apiBaseUrl}/payments/transaction-types/{bankId}";
+            var transactionTypes = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
+            return Json(transactionTypes);
         }
     }
 }

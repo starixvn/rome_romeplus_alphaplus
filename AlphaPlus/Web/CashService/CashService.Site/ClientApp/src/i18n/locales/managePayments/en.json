@@ -33,6 +33,8 @@
 
   "setMaxDailyWithdrawalCountForYourMembers": "Set daily withdrawal count for your members, whether through bank or payment gateway.",
   "dailyWithdrawalCount": "Daily withdrawal count",
+  "failedToSetLimit": "Failed to set limit",
+  "transactionLimitUpdated": "Transaction limit updated successfully",
 
   "setUpPaymentMethodsForMembers": "Set up payment methods for your members",
   "addPaymentMethod": "Add payment method",

@@ -226,4 +226,23 @@ public class DummyDataService
             }
         };
     }
+
+    public static async Task<IEnumerable<TransactionTypeModel>> GetDummyTransactionTypes(int bankId)
+    {
+        return new List<TransactionTypeModel>
+        {
+            new TransactionTypeModel
+            {
+                Id = 1,
+                Name = "Deposit",
+                IsDeposit = true
+            },
+            new TransactionTypeModel
+            {
+                Id = 2,
+                Name = "Withdrawal",
+                IsDeposit = false
+            }
+        };
+    }
 } 

@@ -21,7 +21,7 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
     const fetchBanks = async () => {
       try {
         setLoading(true);
-        const fetchedBanks = await paymentProviderService.getBanks(transactionType);
+        const fetchedBanks = await paymentProviderService.getBanksByTransactionType(transactionType);
         setBanks(fetchedBanks);
         setError(null);
       } catch (err) {

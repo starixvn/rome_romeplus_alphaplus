@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Bank } from '../../services/interfaces/Bank';
 import type { BankAccount } from '../../services/interfaces/BankAccount';
 import { paymentProviderService } from '../../services/paymentsAPI';
-import { TRANSACTION_TYPES, STATUS_OPTIONS } from '../../constants/paymentConstants';
+import { TRANSACTION_TYPES, ENABLED_STATUS_OPTIONS } from '../../constants/paymentConstants';
 import SetTransactionLimitModal from './SetTransactionLimitModal';
 import AddBankAccountComponent from './AddBankAccountComponent';
 import UpdateBankAccountComponent from './UpdateBankAccountComponent';
@@ -26,6 +26,21 @@ const BankAccount: React.FC = () => {
   const [showAddBankAccountModal, setShowAddBankAccountModal] = useState(false);
   const [showUpdateBankAccountModal, setShowUpdateBankAccountModal] = useState(false);
   const [selectedBankAccount, setSelectedBankAccount] = useState<BankAccount | null>(null);
+  const [transactionTypes, setTransactionTypes] = useState<any[]>([]);
+
+  const fetchTransactionTypes = async (bankId: number) => {
+    try {
+      setLoading(true);
+      const fetchedTransactionTypes = await paymentProviderService.getTransactionTypes(bankId);
+      setTransactionTypes(fetchedTransactionTypes);
+      setError(null);
+    } catch (err) {
+      setError('Failed to load transaction types. Please try again later.');
+      console.error('Error fetching transaction types:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const fetchBankAccounts = async () => {
     try {
@@ -51,7 +66,7 @@ const BankAccount: React.FC = () => {
     const fetchBanks = async () => {
       try {
         setLoading(true);
-        const fetchedBanks = await paymentProviderService.getProviderBanks(1);
+        const fetchedBanks = await paymentProviderService.getBanksByCust();
         setBanks(fetchedBanks);
         setError(null);
       } catch (err) {
@@ -63,7 +78,10 @@ const BankAccount: React.FC = () => {
     };
 
     fetchBanks();
-  }, []);
+    if (selectedBank !== '0') {
+      fetchTransactionTypes(parseInt(selectedBank));
+    }
+  }, [selectedBank]);
 
   useEffect(() => {
     if (banks.length > 0) {
@@ -153,7 +171,9 @@ const BankAccount: React.FC = () => {
   };
 
   const getTransactionTypeName = (typeId: number) => {
-    const type = TRANSACTION_TYPES.find(t => t.id === typeId);
+    const type = transactionTypes.length > 0 
+      ? transactionTypes.find(t => t.id === typeId)
+      : TRANSACTION_TYPES.find(t => t.id === typeId);
     return type ? type.name : typeId;
   };
 
@@ -259,11 +279,14 @@ const BankAccount: React.FC = () => {
                       value={selectedTransactionType}
                       onChange={handleTransactionTypeChange}
                     >
-                      {TRANSACTION_TYPES.map((type) => (
-                        <option key={type.id} value={type.id}>
-                          {type.name}
-                        </option>
-                      ))}
+                      <option key="0" value="0">{tGlobal('all')}</option>
+                      {transactionTypes.length && (
+                        transactionTypes.map((type) => (
+                          <option key={type.id} value={type.id}>
+                            {type.name}
+                          </option>
+                        ))
+                      )}
                     </select>
                   </div>
                 </div>
@@ -277,7 +300,7 @@ const BankAccount: React.FC = () => {
                       value={selectedStatus}
                       onChange={handleStatusChange}
                     >
-                      {STATUS_OPTIONS.map((status) => (
+                      {ENABLED_STATUS_OPTIONS.map((status) => (
                         <option key={status.id} value={status.id}>
                           {status.name}
                         </option>

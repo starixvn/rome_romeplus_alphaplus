@@ -9,6 +9,12 @@ public static class PaymentsEndpoints
 {
     public static void MapPaymentsEndpoints(this WebApplication app)
     {
+        MapPaymentProviderEndpoints(app);
+        MapBankAccountEndpoints(app);
+    }
+
+    private static void MapPaymentProviderEndpoints(WebApplication app)
+    {
         app.MapGet("/api/payments/providers-by-custid/{custId}", async (int custId, IPaymentsService service) =>
         {
             var providers = await service.GetProviders(custId);
@@ -116,7 +122,7 @@ public static class PaymentsEndpoints
             Summary = "Add payment method",
             Description = "Adds a new payment method to the system"
         });
-        
+
         app.MapGet("/api/payments/banks", async (int transactionType, IPaymentsService service) =>
         {
             var banks = await service.GetBanks(transactionType);
@@ -128,24 +134,34 @@ public static class PaymentsEndpoints
             Summary = "Get all banks",
             Description = "Returns a list of all available banks"
         });
+    }
 
-        app.MapPost("/api/payments/update-provider", async (HttpRequest request, IPaymentsService service) =>
+    private static void MapBankAccountEndpoints(WebApplication app)
+    {
+        app.MapGet("/api/payments/banks/{custId}", async (int custId, IPaymentsService service) =>
         {
-            using var reader = new StreamReader(request.Body);
-            var body = await reader.ReadToEndAsync();
-            var provider = JsonConvert.DeserializeObject<ProviderModel>(body);
-            var result = await service.UpdateProvider(provider);
-            return Results.Ok(result);
+            var banks = await service.GetBanksByCust(custId);
+            return Results.Ok(banks);
         })
-        .WithName("UpdatePaymentProviderSettings")
+        .WithName("GetBanksByCust")
         .WithOpenApi(operation => new(operation)
         {
-            Summary = "Update payment provider settings",
-            Description = "Updates the settings for a payment provider"
+            Summary = "Get banks by customer",
+            Description = "Returns a list of banks associated with a specific customer"
+        });
+        
+        app.MapGet("/api/payments/transaction-types/{bankId}", async (int bankId, IPaymentsService service) =>
+        {
+            var transactionTypes = await service.GetTransactionTypes(bankId);
+            return Results.Ok(transactionTypes);
+        })
+        .WithName("GetTransactionTypes")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Get transaction types",
+            Description = "Returns a list of transaction types for a specific bank"
         });
 
-
-        
 
 
         app.MapGet("/api/bank-accounts", async (

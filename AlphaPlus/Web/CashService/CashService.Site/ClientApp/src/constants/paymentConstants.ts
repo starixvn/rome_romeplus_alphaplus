@@ -11,3 +11,9 @@ export const TRANSACTION_TYPES = [
   { id: 1, name: 'Deposit' },
   { id: 2, name: 'Withdrawal' }
 ]; 
+
+export const ENABLED_STATUS_OPTIONS = [
+  { id: 0, name: 'All' },
+  { id: 1, name: 'Enable' },
+  { id: 2, name: 'Disable' }
+];

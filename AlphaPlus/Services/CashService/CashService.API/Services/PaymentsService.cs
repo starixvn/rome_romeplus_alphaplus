@@ -19,7 +19,9 @@ public interface IPaymentsService
     Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod);
     Task<IEnumerable<BankModel>> GetBanks(int transactionType);
     Task<ResultModel> UpdateProvider(ProviderModel provider);
-    
+    Task<IEnumerable<BankModel>> GetBanksByCust(int custId);
+    Task<IEnumerable<TransactionTypeModel>> GetTransactionTypes(int bankId);
+
     Task<ResultModel> AddPaymentProviderSetting(ProviderSettingsModel setting);
     Task<IEnumerable<BankAccountModel>> GetBankAccounts(int custId, int bankId, int transactionType, int status, string searchText);
     Task<ResultModel> DeleteBankAccount(int accountId);
@@ -104,7 +106,7 @@ public class PaymentsService : IPaymentsService
   
     public async Task<IEnumerable<BankModel>> GetBanks(int transactionType)
     {
-        var banks = await _repository.FetchAsync<BankModel>(new GetBanksCriteria(transactionType));
+        var banks = await _repository.FetchAsync<BankModel>(new GetBanksByTransactionTypeCriteria(transactionType));
         return banks;
     }
 
@@ -137,6 +139,20 @@ public class PaymentsService : IPaymentsService
         }
             
         return new ResultModel(0, string.Empty);
+    }
+
+    public async Task<IEnumerable<BankModel>> GetBanksByCust(int custId)
+    {
+        var banks = await _repository.FetchAsync<BankModel>(new GetBanksByCustCriteria(custId));
+        return banks;
+    }
+
+    public async Task<IEnumerable<TransactionTypeModel>> GetTransactionTypes(int bankId)
+    {
+        // TODO: Implement actual database query
+        // var transactionTypes = await _repository.FetchAsync<TransactionTypeModel>(new GetTransactionTypesCriteria(bankId));
+        var transactionTypes = await DummyDataService.GetDummyTransactionTypes(bankId);
+        return transactionTypes;
     }
 
 
@@ -223,4 +239,5 @@ public class PaymentsService : IPaymentsService
 
         return new ResultModel(0, "Bank account updated successfully");
     }
+
 } 

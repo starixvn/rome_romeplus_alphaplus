@@ -6,6 +6,7 @@ import { PaymentMethod } from './interfaces/PaymentMethod';
 import { Bank } from './interfaces/Bank';
 import { BankAccount } from './interfaces/BankAccount';
 import { PaymentTransactionLimit } from './interfaces/PaymentTransactionLimit';
+import { TransactionType } from './interfaces/TransactionType';
 
 // Create an axios instance with default config
 const api = axios.create({
@@ -102,9 +103,9 @@ export const paymentProviderService = {
   },
   
   // Get all banks
-  getBanks: async (transactionType: number): Promise<Bank[]> => {
+  getBanksByTransactionType: async (transactionType: number): Promise<Bank[]> => {
     try {
-      const response = await api.get<Bank[]>(`GetBanks?transactionType=${transactionType}`, { method: 'GET' });
+      const response = await api.get<Bank[]>(`GetBanksByTransactionType?transactionType=${transactionType}`, { method: 'GET' });
       return response.data;
     } catch (error) {
       console.error('Error fetching banks:', error);
@@ -123,12 +124,10 @@ export const paymentProviderService = {
     }
   },
 
-
-  
   // Get banks for a specific provider
-  getProviderBanks: async (providerId: number): Promise<Bank[]> => {
+  getBanksByCust: async (): Promise<Bank[]> => {
     try {
-      const response = await api.get<Bank[]>(`GetProviderBanks?providerId=${providerId}`, { method: 'GET' });
+      const response = await api.get<Bank[]>(`GetBanksByCust`, { method: 'GET' });
       return response.data;
     } catch (error) {
       console.error('Error fetching provider banks:', error);
@@ -136,6 +135,19 @@ export const paymentProviderService = {
     }
   },
 
+  // Get transaction types for a specific bank
+  getTransactionTypes: async (bankId: number): Promise<TransactionType[]> => {
+    try {
+      const response = await api.get<TransactionType[]>(`GetTransactionTypes?bankId=${bankId}`, { method: 'GET' });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching transaction types:', error);
+      return [];
+    }
+  },
+
+  
+  
   // Update banks for a specific provider
   updateProviderBanks: async (providerId: number, bankIds: number[]): Promise<ResultModel> => {
     try {
