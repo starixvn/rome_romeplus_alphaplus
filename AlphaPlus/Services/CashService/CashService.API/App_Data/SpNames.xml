@@ -55,11 +55,12 @@
         <Mapping DataField="LastUpdated" ObjectProperty="RepUpdateTime"></Mapping>
       </Setting>
 
+      <Setting Key="Age_CashService_BankAccountAgent_Ins" SpName="Age_CashService_BankAccountAgent_Ins_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+      <Setting Key="Age_CashService_BankAccountAgent_Sel" SpName="Age_CashService_BankAccountAgent_Sel_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+        <Mapping DataField="LastUpdated" ObjectProperty="RepUpdateTime"></Mapping>
+      </Setting>
+      <Setting Key="Age_CashService_BankAccountAgent_Upd" SpName="Age_CashService_BankAccountAgent_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
       <Setting Key="Age_ManagementPayments_DelBankAccount" SpName="Age_ManagementPayments_DelBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-      
-       
-      <Setting Key="Age_ManagementPayments_AddBankAccount" SpName="Age_ManagementPayments_AddBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-      <Setting Key="Age_ManagementPayments_UpdBankAccount" SpName="Age_ManagementPayments_UpdBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     </Function>
 
     <Function Name="Cash Service">

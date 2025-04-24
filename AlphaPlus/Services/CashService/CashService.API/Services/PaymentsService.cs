@@ -24,10 +24,10 @@ public interface IPaymentsService
     Task<IEnumerable<BankAccountModel>> GetBankAccounts(int custId, int bankId, int transactionType, int status, string searchText);
     Task<TransactionLimitModel> GetTransactionLimit(int custId);
     Task<ResultModel> SetTransactionLimit(int custId, TransactionLimitModel limit);
-
-    Task<ResultModel> DeleteBankAccount(int accountId);
     Task<ResultModel> AddBankAccount(BankAccountModel bankAccount);
+    Task<BankAccountModel> GetBankAccountById(int accountId);
     Task<ResultModel> UpdateBankAccount(BankAccountModel bankAccount);
+    Task<ResultModel> DeleteBankAccount(int accountId);
 }
 
 public class PaymentsService : IPaymentsService
@@ -198,6 +198,26 @@ public class PaymentsService : IPaymentsService
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
 
+    public async Task<ResultModel> AddBankAccount(BankAccountModel bankAccount)
+    {
+        var criteria = new AddBankAccountCriteria(bankAccount);
+        await _repository.ExecuteAsync(criteria);
+        return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
+    }
+
+    public async Task<BankAccountModel> GetBankAccountById(int accountId)
+    {
+        var criteria = new GetBankAccountByIdCriteria(accountId);
+        var accounts = await _repository.FetchAsync<BankAccountModel>(criteria);
+        return accounts.FirstOrDefault();
+    }
+
+    public async Task<ResultModel> UpdateBankAccount(BankAccountModel bankAccount)
+    {
+        var criteria = new UpdateBankAccountCriteria(bankAccount);
+        await _repository.ExecuteAsync(criteria);
+        return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
+    }
 
     public async Task<ResultModel> DeleteBankAccount(int accountId)
     {
@@ -209,38 +229,6 @@ public class PaymentsService : IPaymentsService
         // TODO: Implement actual database delete logic
         // var result = await _repository.ExecuteNonQueryAsync(new DeleteBankAccountCriteria(accountId));
 
-        return new ResultModel(0, "Bank account deleted successfully");
+        return new ResultModel(0, string.Empty);
     }
-
-    public async Task<ResultModel> AddBankAccount(BankAccountModel bankAccount)
-    {
-        if (bankAccount == null)
-        {
-            return new ResultModel(1, "No bank account provided");
-        }
-
-        // TODO: Implement actual database insert logic
-        // var result = await _repository.ExecuteNonQueryAsync(new AddBankAccountCriteria(bankAccount));
-
-        return new ResultModel(0, "Bank account added successfully");
-    }
-
-    public async Task<ResultModel> UpdateBankAccount(BankAccountModel bankAccount)
-    {
-        if (bankAccount == null)
-        {
-            return new ResultModel(1, "No bank account provided");
-        }
-
-        if (bankAccount.Id <= 0)
-        {
-            return new ResultModel(1, "Invalid bank account ID");
-        }
-
-        // TODO: Implement actual database update logic
-        // var result = await _repository.ExecuteNonQueryAsync(new UpdateBankAccountCriteria(bankAccount));
-
-        return new ResultModel(0, "Bank account updated successfully");
-    }
-
 } 

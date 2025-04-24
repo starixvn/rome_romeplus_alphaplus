@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Bank } from '../../services/interfaces/Bank';
 import { BankAccount } from '../../services/interfaces/BankAccount';
@@ -25,8 +25,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   const [accountNumber] = useState<string>(bankAccount.accountNumber);
   const [selectedBank] = useState<string>(bankAccount.bankId.toString());
   const [status, setStatus] = useState<string>(bankAccount.status.toString());
-  const [depositType, setDepositType] = useState<string>(bankAccount.depositType.toString());
-  const [withdrawalType, setWithdrawalType] = useState<string>(bankAccount.withdrawalType.toString());
+  const [depositType, setDepositType] = useState<string>('1'); // Default value
+  const [withdrawalType, setWithdrawalType] = useState<string>('1'); // Default value
   const [depositMatchingMode, setDepositMatchingMode] = useState<string>(bankAccount.depositMatchingMode.toString());
   const [promptPay, setPromptPay] = useState<boolean>(bankAccount.promptPay);
   const [mobile] = useState<string>(bankAccount.mobile);
@@ -34,6 +34,28 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   const [success, setSuccess] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    const fetchBankAccount = async () => {
+      try {
+        setLoading(true);
+        const fetchedBankAccount = await paymentProviderService.getBankAccountById(bankAccount.id);
+        if (fetchedBankAccount) {
+          setAccountNickname(fetchedBankAccount.accountNickname);
+          setStatus(fetchedBankAccount.status.toString());
+          setDepositMatchingMode(fetchedBankAccount.depositMatchingMode.toString());
+          setPromptPay(fetchedBankAccount.promptPay);
+        }
+      } catch (err) {
+        setError(tManagePayments('failedToLoadBankAccount'));
+        console.error('Error fetching bank account:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBankAccount();
+  }, [bankAccount.id, tManagePayments]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,8 +73,6 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
         bankName: banks.find(b => b.id === parseInt(selectedBank))?.name || '',
         transactionTypes: bankAccount.transactionTypes,
         status: parseInt(status),
-        depositType: parseInt(depositType),
-        withdrawalType: parseInt(withdrawalType),
         depositMatchingMode: parseInt(depositMatchingMode),
         promptPay,
         mobile,

@@ -8,28 +8,20 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
     {
         public UpdateBankAccountCriteria(BankAccountModel bankAccModel)
         {
-            BankAccountId = bankAccModel.Id;
-            Status = bankAccModel.Status;
+            Creator = bankAccModel.CreatorId;
             BankId = bankAccModel.BankId;
+            Status = bankAccModel.Status;
 
-            DepositType = bankAccModel.DepositType;
-            WithdrawalType = bankAccModel.WithdrawalType;
+            AccountNickname = bankAccModel.AccountNickname;
+
+            TransactionTypeIDs = bankAccModel.TransactionTypes;
             DepositMatchingMode = bankAccModel.DepositMatchingMode;
 
-            AccountNumber = bankAccModel.AccountNumber;
-            Creator = bankAccModel.CreatorId;
-
-            AccountHolderName = bankAccModel.AccountHolderName;
-            AccountNickname = bankAccModel.AccountNickname;
-            
             PromptPay = bankAccModel.PromptPay;
             Mobile = bankAccModel.Mobile;
         }
 
-        [SpParam(SqlParamName = "BankAccountId")]
-        public int BankAccountId { get; }
-
-        [SpParam(SqlParamName = "Creator")]
+       [SpParam(SqlParamName = "CustId")]
         public int Creator { get; }
 
         [SpParam(SqlParamName = "Status")]
@@ -38,29 +30,28 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
         [SpParam(SqlParamName = "BankId")]
         public int BankId { get; }
 
-        public int DepositType { get; }
-        public int WithdrawalType { get; }
-        public int DepositMatchingMode { get; }
-
-        public string AccountHolderName { get; }
-        public string AccountNumber { get; }
         public string AccountNickname { get; }
 
+        [SpParam(SqlParamName = "TransactionTypeID")]
+        public string TransactionTypeIDs {get;}
+        public int DepositMatchingMode {get;}
+
+        [SpParam(SqlParamName = "PromptPayEnabled")]
         public bool PromptPay { get; }
+        [SpParam(SqlParamName = "PromptPayMobile")]
         public string Mobile { get; }
 
-        public override string GetSettingKey() => "Age_ManagementPayments_UpdBankAccount";
+        public int ErrCode { get; set; }
+        public string ErrMsg { get; set; } = string.Empty;
+
+        public override string GetSettingKey() => "Age_CashService_BankAccountAgent_Upd";
 
         public override bool IsValid() => 
-            BankAccountId > 0 &&
             BankId > 0 && 
-            !string.IsNullOrWhiteSpace(AccountNumber) && 
             Status > 0 && 
             Creator > 0 &&
-            !string.IsNullOrWhiteSpace(AccountHolderName) &&
             !string.IsNullOrWhiteSpace(AccountNickname) &&
-            DepositType > 0 &&
-            WithdrawalType > 0 &&
+            !string.IsNullOrWhiteSpace(TransactionTypeIDs) &&
             DepositMatchingMode > 0;
     }
 } 

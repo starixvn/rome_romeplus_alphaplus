@@ -12,7 +12,7 @@ import { InfoIcon } from '../../components/Icons';
 
 function ManagePayments() {
   const { t } = useTranslation('managePayments');
-  const [activeTab, setActiveTab] = React.useState('paymentGateway');
+  const [activeTab, setActiveTab] = React.useState('bankAccount');
 
   return (
     <div className="px-[12px]">

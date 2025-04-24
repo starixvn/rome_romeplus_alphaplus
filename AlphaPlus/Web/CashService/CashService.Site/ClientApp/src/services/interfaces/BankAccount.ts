@@ -10,8 +10,6 @@ export interface BankAccount {
   bankName: string;
   lastUpdated: string;
   lastUpdatedStr: string;
-  depositType: number;
-  withdrawalType: number;
   depositMatchingMode: number;
   promptPay: boolean;
   mobile: string;

@@ -5,6 +5,7 @@ using AlphaPlus.CashService.Site.Features.Payments.Requests;
 using AlphaPlus.CashService.Site.Features.Payments.Models;
 using AlphaPlus.CashService.Site.Features.Payments.ViewModels;
 using AlphaPlus.Core.Models;
+using AlphaPlus.CashService.Site.Features.Payments.Models;
 
 namespace AlphaPlus.CashService.Site.Features.Payments
 {
@@ -30,8 +31,8 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             _httpClient = httpClient;
             _userSession = userSession;
 
-            _custId = 1176086;
-            // _custId = 187900621;
+            // _custId = 1176086;
+            _custId = 187900621;
         }
 
         public IActionResult Index()
@@ -180,5 +181,52 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
             return Json(result);
         }
+
+        public async Task<IActionResult> AddBankAccount(
+            [FromBody] BankAccountModel bankAccount,
+            CancellationToken cancellationToken)
+        {
+            var url = $"{_apiBaseUrl}/payments/bank-accounts";
+            bankAccount.CreatorId = _custId;
+
+            var response = await _httpClient.PostAsJsonAsync(url, bankAccount, cancellationToken);
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
+            return Json(result);
+        }
+
+        public async Task<IActionResult> GetBankAccountById(
+            int bankAccountId,
+            CancellationToken cancellationToken)
+        {
+            var url = $"{_apiBaseUrl}/payments/bank-accounts/{bankAccountId}";
+            var bankAccount = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
+            return Json(bankAccount);
+        }
+
+        public async Task<IActionResult> UpdateBankAccount(
+            [FromBody] BankAccountModel bankAccount,
+            CancellationToken cancellationToken)
+        {
+            var url = $"{_apiBaseUrl}/payments/update-bank-account";
+            bankAccount.CreatorId = _custId;
+
+            var response = await _httpClient.PutAsJsonAsync(url, bankAccount, cancellationToken);
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
+            return Json(result);
+        }
+        
+        public async Task<IActionResult> DeleteBankAccount(
+            int bankAccountId,
+            CancellationToken cancellationToken)
+        {
+            var url = $"{_apiBaseUrl}/payments/bank-accounts/{bankAccountId}";
+            var response = await _httpClient.DeleteAsync(url, cancellationToken);
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
+            return Json(result);
+        }
+
     }
 }

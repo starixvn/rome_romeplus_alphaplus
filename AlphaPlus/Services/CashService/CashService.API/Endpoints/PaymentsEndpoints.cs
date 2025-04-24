@@ -207,19 +207,11 @@ public static class PaymentsEndpoints
             Description = "Sets transaction limits for a specific customer"
         });
 
-        
-
-        app.MapPost("/api/add-bank-account", async (HttpRequest request, IPaymentsService service) =>
+        app.MapPost("/api/payments/add-bank-account", async (HttpRequest request, IPaymentsService service) =>
         {
             using var reader = new StreamReader(request.Body);
             var body = await reader.ReadToEndAsync();
             var bankAccount = JsonConvert.DeserializeObject<BankAccountModel>(body);
-            
-            if (bankAccount == null)
-            {
-                return Results.BadRequest("Invalid bank account data");
-            }
-
             var result = await service.AddBankAccount(bankAccount);
             return Results.Ok(result);
         })
@@ -230,7 +222,34 @@ public static class PaymentsEndpoints
             Description = "Adds a new bank account for a customer"
         });
 
-        app.MapDelete("/api/bank-accounts/{accountId}", async (int accountId, IPaymentsService service) =>
+        app.MapGet("/api/payments/bank-accounts/{accountId}", async (int accountId, IPaymentsService service) =>
+        {
+            var bankAccount = await service.GetBankAccountById(accountId);
+            return Results.Ok(bankAccount);
+        })
+        .WithName("GetBankAccountById")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Get bank account by ID",
+            Description = "Returns a specific bank account by its ID"
+        });
+
+        app.MapPut("/api/payments/update-bank-account", async (HttpRequest request, IPaymentsService service) =>
+        {
+            using var reader = new StreamReader(request.Body);
+            var body = await reader.ReadToEndAsync();
+            var bankAccount = JsonConvert.DeserializeObject<BankAccountModel>(body);
+            var result = await service.UpdateBankAccount(bankAccount);
+            return Results.Ok(result);
+        })
+        .WithName("UpdateBankAccount")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Update bank account",
+            Description = "Updates an existing bank account's information"
+        });
+
+        app.MapDelete("/api/payments/bank-accounts/{accountId}", async (int accountId, IPaymentsService service) =>
         {
             var result = await service.DeleteBankAccount(accountId);
             return Results.Ok(result);
@@ -240,27 +259,6 @@ public static class PaymentsEndpoints
         {
             Summary = "Delete bank account",
             Description = "Deletes a specific bank account by its ID"
-        });
-
-        app.MapPut("/api/update-bank-account", async (HttpRequest request, IPaymentsService service) =>
-        {
-            using var reader = new StreamReader(request.Body);
-            var body = await reader.ReadToEndAsync();
-            var bankAccount = JsonConvert.DeserializeObject<BankAccountModel>(body);
-            
-            if (bankAccount == null)
-            {
-                return Results.BadRequest("Invalid bank account data");
-            }
-
-            var result = await service.UpdateBankAccount(bankAccount);
-            return Results.Ok(result);
-        })
-        .WithName("UpdateBankAccount")
-        .WithOpenApi(operation => new(operation)
-        {
-            Summary = "Update bank account",
-            Description = "Updates an existing bank account's information"
         });
     }
 } 

@@ -171,7 +171,7 @@ export const paymentProviderService = {
   // Get transaction limit for a payment provider or bank account
   getTransactionLimit: async (): Promise<PaymentTransactionLimit> => {
     try {
-      const response = await api.get<PaymentTransactionLimit>(`/get-transaction-limit`);
+      const response = await api.get<PaymentTransactionLimit>(`GetTransactionLimit`);
       return response.data;
     } catch (error) {
       console.error('Error getting transaction limit:', error);
@@ -182,7 +182,7 @@ export const paymentProviderService = {
   // Set transaction limit for a payment provider or bank account
   setTransactionLimit: async (limit: PaymentTransactionLimit): Promise<ResultModel> => {
     try {
-      const response = await api.post(`/set-transaction-limit`, limit);
+      const response = await api.post(`SetTransactionLimit`, limit);
       return response.data;
     } catch (error) {
       console.error('Error setting transaction limit:', error);
@@ -190,25 +190,24 @@ export const paymentProviderService = {
     }
   },
   
-
-  // Delete a bank account
-  deleteBankAccount: async (bankAccountId: number): Promise<ResultModel> => {
-    try {
-      const response = await api.delete(`/bank-accounts/${bankAccountId}`);
-      return response.data;
-    } catch (error) {
-      console.error(`Error deleting bank account ${bankAccountId}:`, error);
-      throw error;
-    }
-  },
-  
   // Add a new bank account
   addBankAccount: async (bankAccount: BankAccount): Promise<ResultModel> => {
     try {
-      const response = await api.post('/add-bank-account', bankAccount);
+      const response = await api.post('AddBankAccount', bankAccount);
       return response.data;
     } catch (error) {
       console.error('Error adding bank account:', error);
+      throw error;
+    }
+  },
+
+  // Get a bank account by ID
+  getBankAccountById: async (bankAccountId: number): Promise<BankAccount> => {
+    try {
+      const response = await api.get<BankAccount>(`GetBankAccountById?bankAccountId=${bankAccountId}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Error fetching bank account ${bankAccountId}:`, error);
       throw error;
     }
   },
@@ -216,10 +215,21 @@ export const paymentProviderService = {
   // Update an existing bank account
   updateBankAccount: async (bankAccount: BankAccount): Promise<ResultModel> => {
     try {
-      const response = await api.put(`/update-bank-account`, bankAccount);
+      const response = await api.put(`UpdateBankAccount`, bankAccount);
       return response.data;
     } catch (error) {
       console.error('Error updating bank account:', error);
+      throw error;
+    }
+  },
+  
+  // Delete a bank account
+  deleteBankAccount: async (bankAccountId: number): Promise<ResultModel> => {
+    try {
+      const response = await api.delete(`DeleteBankAccount?bankAccountId=${bankAccountId}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Error deleting bank account ${bankAccountId}:`, error);
       throw error;
     }
   },

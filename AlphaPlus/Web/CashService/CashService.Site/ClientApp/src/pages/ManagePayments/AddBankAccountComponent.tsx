@@ -48,8 +48,6 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
         bankName: banks.find(b => b.id === parseInt(selectedBank))?.name || '',
         transactionTypes: '',
         status: parseInt(status),
-        depositType: parseInt(depositType),
-        withdrawalType: parseInt(withdrawalType),
         depositMatchingMode: parseInt(depositMatchingMode),
         promptPay,
         mobile,
