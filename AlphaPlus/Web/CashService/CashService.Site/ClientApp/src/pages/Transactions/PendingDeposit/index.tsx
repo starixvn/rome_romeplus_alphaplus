@@ -66,7 +66,7 @@ const PendingDeposit: React.FC = () => {
           <div className="mb-6">
             <button
               onClick={handleAddManualDeposit}
-              className="bg-[#1e4d8c] text-white px-8 py-2 rounded-lg text-sm font-medium hover:bg-[#173d70] transition-colors flex items-center"
+              className="bg-[#1e4d8c] text-white px-8 py-2 rounded-lg text-sm font-medium hover:bg-[#173d70] transition-colors flex items-center cursor-pointer"
             >
               <span className="mr-1">+</span> Add Manual Deposit
             </button>

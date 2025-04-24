@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface ManualDepositFormProps {
   onClose: () => void;
@@ -19,6 +19,7 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
   const [depositAmount, setDepositAmount] = useState('');
   const [remarks, setRemarks] = useState('');
   const [image, setImage] = useState<File | null>(null);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,9 +33,42 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
     });
   };
 
+  console.log('image', image);
+
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setImage(e.target.files[0]);
+      const selectedFile = e.target.files[0];
+      setImage(selectedFile);
+      
+      const objectUrl = URL.createObjectURL(selectedFile);
+      setImageUrl(objectUrl);
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (imageUrl) {
+        URL.revokeObjectURL(imageUrl);
+      }
+    };
+  }, [imageUrl]);
+
+  const openImageInNewTab = () => {
+    if (imageUrl) {
+      window.open(imageUrl, '_blank');
+    }
+  };
+
+  const resetImageUpload = () => {
+    if (imageUrl) {
+      URL.revokeObjectURL(imageUrl);
+    }
+    setImage(null);
+    setImageUrl(null);
+    
+    const fileInput = document.getElementById('image-upload') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = '';
     }
   };
 
@@ -44,7 +78,7 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
         <h2 className="text-lg font-medium">Add Manual Deposit</h2>
       </div>
 
-      <form onSubmit={handleSubmit} className="p-6 flex-1">
+      <form id='manual-deposit-form' onSubmit={handleSubmit} className="p-6 flex-1">
         <div className="flex flex-row space-x-20">
           {/* Left side - Account information */}
           <div className="flex-1">
@@ -161,16 +195,48 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
 
           {/* Right side - Upload image and buttons */}
           <div className="w-80 flex flex-col">
-            <div className="h-[500px] border border-dashed border-gray-300 rounded-md flex flex-col items-center justify-center mb-6 relative">
-              <div className="flex flex-col items-center justify-center text-center p-6">
-                <svg className="h-10 w-10 text-gray-400 mb-4" stroke="currentColor" fill="none" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                <p className="text-sm text-blue-600 font-medium cursor-pointer">Click to upload</p>
-                <p className="text-xs text-gray-500 mt-1">or drag and drop</p>
-                <p className="text-xs text-gray-500">Upload jpeg, jpg, png</p>
-                <p className="text-xs text-gray-500">(Max 1 MB)</p>
-              </div>
+            <div className="h-[500px] border border-dashed border-gray-300 rounded-md flex flex-col items-center justify-center mb-6 relative overflow-hidden">
+              {imageUrl ? (
+                <div className="absolute inset-0 flex flex-col items-center">
+                  <img 
+                    src={imageUrl} 
+                    alt="Preview" 
+                    className="w-full h-full object-contain cursor-pointer" 
+                    onClick={openImageInNewTab}
+                  />
+                  <a 
+                    href={imageUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="absolute bottom-2 left-2 bg-white rounded-md p-2 shadow hover:bg-gray-200 flex items-center z-20"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-600 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                    <span className="text-xs font-medium">View Full Size</span>
+                  </a>
+                  <button
+                    type="button"
+                    onClick={resetImageUpload}
+                    className="absolute top-2 right-2 bg-white rounded-full p-1 shadow hover:bg-gray-200 z-20"
+                    title="Remove image"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              ) : (
+                <div className="flex flex-col items-center justify-center text-center p-6">
+                  <svg className="h-10 w-10 text-gray-400 mb-4" stroke="currentColor" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <p className="text-sm text-blue-600 font-medium cursor-pointer">Click to upload</p>
+                  <p className="text-xs text-gray-500 mt-1">or drag and drop</p>
+                  <p className="text-xs text-gray-500">Upload jpeg, jpg, png</p>
+                  <p className="text-xs text-gray-500">(Max 1 MB)</p>
+                </div>
+              )}
               <input
                 id="image-upload"
                 type="file"
@@ -180,7 +246,7 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
               />
               <label
                 htmlFor="image-upload"
-                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                className={`absolute inset-0 w-full h-full ${imageUrl ? 'opacity-0 z-0' : 'opacity-0 cursor-pointer z-10'}`}
               />
             </div>
             
