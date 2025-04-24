@@ -1,5 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+
+import { fireEvent, render, screen } from '@testing-library/react';
+
 import DomainCard from './DomainCard';
 
 vi.mock('react-i18next', () => ({
@@ -7,11 +9,11 @@ vi.mock('react-i18next', () => ({
     t: (key: string) => {
       const translations: Record<string, string> = {
         'registrationLinks.domain': 'Domain',
-        'registrationLinks.downloadQRCode': 'Download QR Code'
+        'registrationLinks.downloadQRCode': 'Download QR Code',
       };
       return translations[key] || key;
-    }
-  })
+    },
+  }),
 }));
 
 describe('DomainCard', () => {
@@ -38,16 +40,16 @@ describe('DomainCard', () => {
 
     render(<DomainCard domain={mockDomain} index={0} />);
     const copyButton = screen.getByTitle('Copy URL');
-    
+
     await fireEvent.click(copyButton);
-    
+
     expect(writeTextMock).toHaveBeenCalledWith(mockDomain.url);
   });
 
   it('handles copy URL functionality failure', async () => {
     const writeTextMock = vi.fn().mockRejectedValue(new Error('Failed to copy'));
     const consoleErrorMock = vi.spyOn(console, 'error').mockImplementation(() => {});
-    
+
     Object.assign(navigator, {
       clipboard: {
         writeText: writeTextMock,
@@ -56,9 +58,9 @@ describe('DomainCard', () => {
 
     render(<DomainCard domain={mockDomain} index={0} />);
     const copyButton = screen.getByTitle('Copy URL');
-    
+
     await fireEvent.click(copyButton);
-    
+
     expect(consoleErrorMock).toHaveBeenCalledWith('Failed to copy text: ', expect.any(Error));
     consoleErrorMock.mockRestore();
   });
@@ -79,14 +81,14 @@ describe('DomainCard', () => {
   it('handles QR code download functionality', () => {
     const createElementSpy = vi.spyOn(document, 'createElement');
     const appendChildSpy = vi.spyOn(document.body, 'appendChild');
-    const removeChildSpy = vi.spyOn(document.body, 'removeChild');
+    //const removeChildSpy = vi.spyOn(document.body, 'removeChild');
     const clickSpy = vi.spyOn(HTMLAnchorElement.prototype, 'click');
 
     render(<DomainCard domain={mockDomain} index={0} />);
     const downloadButton = screen.getByText('Download QR Code');
-    
+
     fireEvent.click(downloadButton);
-    
+
     expect(createElementSpy).toHaveBeenCalledWith('a');
     expect(appendChildSpy).toHaveBeenCalled();
     expect(clickSpy).toHaveBeenCalled();
