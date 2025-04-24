@@ -217,7 +217,7 @@
     "Fanex.Caching.Redis": {
         "ConnectionOptions": {
             "EndPoints": [
-                "10.99.185.214:16380"
+                "10.99.185.214:16383"
             ],
             "Password": "foo1@bared",
             "AbortOnConnectFail": false,
