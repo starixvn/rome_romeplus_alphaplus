@@ -2,13 +2,19 @@ namespace AlphaPlus.CashService.Site.Features.Transactions.Models;
 
 public record TransactionModel
 {
-    public int Id { get; init; }
-    public string ReferenceNumber { get; init; } = string.Empty;
-    public string Username { get; init; } = string.Empty;
-    public decimal Amount { get; init; }
-    public string Status { get; init; } = string.Empty;
-    public DateTime CreatedAt { get; init; }
-    public string Description { get; init; } = string.Empty;
+    public int TransactionId { get; set; }
+    public string Username { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public decimal Amount { get; set; }
+    public string Currency { get; set; }
+    public bool IsDeposit { get; set; }
+    public string From { get; set; }
+    public string To { get; set; }
+    public string Status { get; set; }
+    public string TransactionType { get; set; }
+    public string ReferenceNumber { get; set; }
+    public DateTime DateTime { get; set; }
 }
 
 public record TransactionResponse

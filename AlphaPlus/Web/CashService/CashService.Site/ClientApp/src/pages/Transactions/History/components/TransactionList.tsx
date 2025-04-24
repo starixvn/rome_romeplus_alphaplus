@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { getTransactions } from '../../../../services/transactionsHistoryAPI';
 import {
-  getTransactions,
+  TransactionItem,
   TransactionsHistoryResponse,
   TransactionsHistoryParams,
-} from '../../../../services/transactionsHistoryAPI';
+} from '../../../../interfaces/TransactionHistory';
 import Filters from './Filters';
 import Search from './Search';
 import Table from './Table';
@@ -15,60 +16,90 @@ interface TransactionListProps {
 const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [data, setData] = useState<TransactionsHistoryResponse>({
+  const [apiData, setApiData] = useState<TransactionsHistoryResponse>({
     items: [],
     totalCount: 0,
   });
-  const [searchParams, setSearchParams] = useState<TransactionsHistoryParams>({
+  const [apiParams, setApiParams] = useState<Omit<TransactionsHistoryParams, 'searchText'>>(() => ({
     dateRange: ['04/10/2025', '04/16/2025'],
     status: 'All',
     column: 'All Columns (9)',
-    searchText: '',
     account: '',
     page: 1,
-    pageSize: 10,
-  });
+    pageSize: 1000,
+    transactionType: transactionType,
+  }));
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
+  const [localSearchText, setLocalSearchText] = useState('');
+  const [displayedItems, setDisplayedItems] = useState<TransactionItem[]>([]);
 
   useEffect(() => {
-    setSearchParams((prev) => ({ ...prev, transactionType }));
+    setApiParams((prev) => ({
+      ...prev,
+      transactionType: transactionType,
+      page: 1,
+    }));
   }, [transactionType]);
 
-  const fetchData = async () => {
-    try {
-      setLoading(true);
-      const response = await getTransactions(searchParams);
-      setData(response);
-      setError(null);
-    } catch (err) {
-      setError('Failed to load transaction history');
-      console.error('Error loading data:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const paramsForApi: TransactionsHistoryParams = {
+          ...apiParams,
+          searchText: '',
+        };
+        const response = await getTransactions(paramsForApi);
+        setApiData(response);
+        setError(null);
+      } catch (err) {
+        setError('Failed to load transaction history');
+        console.error('Error loading data:', err);
+        setApiData({ items: [], totalCount: 0 });
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [apiParams, refreshTrigger]);
 
   useEffect(() => {
-    fetchData();
-  }, [searchParams]);
+    if (!localSearchText) {
+      setDisplayedItems(apiData.items);
+    } else {
+      const lowerCaseSearchText = localSearchText.toLowerCase();
+      const filtered = apiData.items.filter(
+        (item) =>
+          item.username.toLowerCase().includes(lowerCaseSearchText) ||
+          item.referenceNumber.toLowerCase().includes(lowerCaseSearchText)
+      );
+      setDisplayedItems(filtered);
+    }
+  }, [apiData.items, localSearchText]);
 
   const handleDateRangeChange = (dates: [string, string]) => {
-    setSearchParams((prev: TransactionsHistoryParams) => ({ ...prev, dateRange: dates }));
+    setApiParams((prev) => ({ ...prev, dateRange: dates, page: 1 }));
   };
 
   const handleStatusChange = (value: string) => {
-    setSearchParams((prev: TransactionsHistoryParams) => ({ ...prev, status: value }));
+    setApiParams((prev) => ({ ...prev, status: value, page: 1 }));
   };
 
   const handleColumnChange = (value: string) => {
-    setSearchParams((prev: TransactionsHistoryParams) => ({ ...prev, column: value }));
-  };
-
-  const handleSearchChange = (value: string) => {
-    setSearchParams((prev: TransactionsHistoryParams) => ({ ...prev, searchText: value }));
+    setApiParams((prev) => ({ ...prev, column: value, page: 1 }));
   };
 
   const handleAccountChange = (value: string) => {
-    setSearchParams((prev: TransactionsHistoryParams) => ({ ...prev, account: value }));
+    setApiParams((prev) => ({ ...prev, account: value, page: 1 }));
+  };
+
+  const handleLocalSearchChange = (value: string) => {
+    setLocalSearchText(value);
+  };
+
+  const handleRefresh = () => {
+    setRefreshTrigger((prev) => prev + 1);
   };
 
   return (
@@ -85,10 +116,10 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
 
       <div className="filters-container mb-4">
         <Filters
-          dateRange={searchParams.dateRange}
-          status={searchParams.status}
-          column={searchParams.column}
-          account={searchParams.account}
+          dateRange={apiParams.dateRange}
+          status={apiParams.status}
+          column={apiParams.column}
+          account={apiParams.account}
           transactionType={transactionType}
           onDateRangeChange={handleDateRangeChange}
           onStatusChange={handleStatusChange}
@@ -97,18 +128,16 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         />
       </div>
 
-      <div className="bg-white p-4 rounded-lg">
-        <div className="search-section mb-2 w-full">
-          <Search
-            value={searchParams.searchText}
-            onChange={handleSearchChange}
-            placeholder="Username/Reference No."
-          />
-        </div>
+      <div className="search-section mb-2 w-full">
+        <Search
+          value={localSearchText}
+          onChange={handleLocalSearchChange}
+          placeholder="Username/Reference No."
+        />
+      </div>
 
-        <div className="table-section">
-          <Table items={data.items} isLoading={loading} />
-        </div>
+      <div className="table-section">
+        <Table items={displayedItems} isLoading={loading} onRefreshNeeded={handleRefresh} />
       </div>
     </div>
   );

@@ -12,10 +12,12 @@ const History: React.FC = () => {
   };
 
   return (
-    <div className="transaction-history p-6">
-      <HistoryTab activeTab={activeTab} onTabChange={handleTabChange} />
-      <div className="transaction-list">
-        <TransactionList transactionType={activeTab} />
+    <div className="min-h-screen bg-gray-50">
+      <div className="bg-white rounded-lg shadow-sm p-4">
+        <HistoryTab activeTab={activeTab} onTabChange={handleTabChange} />
+        <div className="transaction-list">
+          <TransactionList transactionType={activeTab} />
+        </div>
       </div>
     </div>
   );

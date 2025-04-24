@@ -1,16 +1,17 @@
 ﻿using System.Text.Json;
 
 namespace AlphaPlus.CashService.Site.Helpers;
+
 public class HttpClientHelper
 {
-    private readonly HttpClient _httpClient;
-    private readonly JsonSerializerOptions _jsonOptions;
+    private readonly HttpClient httpClient;
+    private readonly JsonSerializerOptions jsonOptions;
 
     public HttpClientHelper(HttpClient httpClient, IConfiguration configuration)
     {
-        _httpClient = httpClient;
-        _httpClient.BaseAddress = new Uri(configuration.GetValue<string>("CashServiceAPIUrl") ?? "http://localhost:5252");
-        _jsonOptions = new JsonSerializerOptions
+        this.httpClient = httpClient;
+        this.httpClient.BaseAddress = new Uri(configuration.GetValue<string>("CashServiceAPIUrl"));
+        jsonOptions = new JsonSerializerOptions
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
             WriteIndented = true
@@ -20,28 +21,28 @@ public class HttpClientHelper
     public async Task<T> GetAsync<T>(string path, Dictionary<string, string> queryParams = null)
     {
         var url = BuildUrlWithQueryParams(path, queryParams);
-        var response = await _httpClient.GetAsync(url);
+        var response = await httpClient.GetAsync(url);
         response.EnsureSuccessStatusCode();
-        return await response.Content.ReadFromJsonAsync<T>(_jsonOptions);
+        return await response.Content.ReadFromJsonAsync<T>(jsonOptions);
     }
 
     public async Task<TResponse> PostAsync<TRequest, TResponse>(string path, TRequest data)
     {
-        var response = await _httpClient.PostAsJsonAsync(path, data, _jsonOptions);
+        var response = await httpClient.PostAsJsonAsync(path, data, jsonOptions);
         response.EnsureSuccessStatusCode();
-        return await response.Content.ReadFromJsonAsync<TResponse>(_jsonOptions);
+        return await response.Content.ReadFromJsonAsync<TResponse>(jsonOptions);
     }
 
     public async Task PutAsync<TRequest>(string path, TRequest data)
     {
-        var response = await _httpClient.PutAsJsonAsync(path, data, _jsonOptions);
+        var response = await httpClient.PutAsJsonAsync(path, data, jsonOptions);
         response.EnsureSuccessStatusCode();
     }
 
     public async Task DeleteAsync(string path, Dictionary<string, string> queryParams = null)
     {
         var url = BuildUrlWithQueryParams(path, queryParams);
-        var response = await _httpClient.DeleteAsync(url);
+        var response = await httpClient.DeleteAsync(url);
         response.EnsureSuccessStatusCode();
     }
 

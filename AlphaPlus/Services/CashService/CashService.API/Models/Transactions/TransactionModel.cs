@@ -1,7 +1,6 @@
 namespace AlphaPlus.CashService.API.Models.Transactions;
 
 using System;
-using Enum;
 
 public class TransactionModel
 {
@@ -14,8 +13,8 @@ public class TransactionModel
     public bool IsDeposit { get; set; }
     public string From { get; set; }
     public string To { get; set; }
-    public TransactionStatus Status { get; set; }
-    public TransactionType TransactionType { get; set; }
+    public string Status { get; set; }
+    public string TransactionType { get; set; }
     public string ReferenceNumber { get; set; }
     public DateTime DateTime { get; set; }
 }

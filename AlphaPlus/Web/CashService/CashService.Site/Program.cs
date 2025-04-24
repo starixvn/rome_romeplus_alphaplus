@@ -1,5 +1,4 @@
 using System.Text.Json;
-using AlphaPlus.CashService.Site.Features.Transactions.Handlers;
 using AlphaPlus.CashService.Site.Helpers;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Filters;
@@ -48,7 +47,6 @@ builder.Services
     .AddMediatR(cfg =>
     {
         cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
-        cfg.RegisterServicesFromAssembly(typeof(GetTransactionsQueryHandler).Assembly);
     })
     .AddControllersWithViews(options =>
     {

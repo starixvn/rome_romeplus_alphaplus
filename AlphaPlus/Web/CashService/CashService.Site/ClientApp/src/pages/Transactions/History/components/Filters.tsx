@@ -37,7 +37,7 @@ const Filters: React.FC<FiltersProps> = ({
   };
 
   return (
-    <div className="flex items-center space-x-4 mb-0 bg-white p-4 rounded-lg">
+    <div className="flex items-center space-x-4 bg-white rounded-lg">
       <div className="w-[280px]">
         <label className="block text-sm font-medium text-gray-700 mb-1">Date Range</label>
         <RangePicker
@@ -50,6 +50,33 @@ const Filters: React.FC<FiltersProps> = ({
           allowClear={false}
           className="block w-full bg-white border border-gray-300 rounded text-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm h-9"
         />
+      </div>
+
+      <div className="w-[180px]">
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          {transactionType === 'deposit' ? 'To' : 'From'}
+        </label>
+        <div className="select-wrapper relative">
+          <select
+            value={account}
+            onChange={(e) => onAccountChange(e.target.value)}
+            className="appearance-none block w-full bg-white border border-gray-300 px-3 py-1.5 pr-8 rounded text-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm h-9"
+          >
+            <option value="">Select Account</option>
+            <option value="account1">Account 1</option>
+            <option value="account2">Account 2</option>
+            <option value="account3">Account 3</option>
+          </select>
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+            <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fillRule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
+        </div>
       </div>
 
       <div className="w-[180px]">
@@ -66,7 +93,15 @@ const Filters: React.FC<FiltersProps> = ({
             <option value="PROVIDER_REJECTED">Provider Rejected</option>
             <option value="EXPIRED">Expired</option>
           </select>
-          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+            <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fillRule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
         </div>
       </div>
 
@@ -84,21 +119,16 @@ const Filters: React.FC<FiltersProps> = ({
             <option value="Status">Status</option>
             <option value="Reference No.">Reference No.</option>
           </select>
-          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+            <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fillRule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
         </div>
-      </div>
-
-      <div className="w-[180px]">
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          {transactionType === 'deposit' ? 'To' : 'From'}
-        </label>
-        <input
-          type="text"
-          value={account}
-          onChange={(e) => onAccountChange(e.target.value)}
-          placeholder="Account"
-          className="block w-full bg-white border border-gray-300 px-3 py-1.5 rounded text-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm h-9"
-        />
       </div>
     </div>
   );

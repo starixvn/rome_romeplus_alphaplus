@@ -11,7 +11,7 @@ public class GetTransactionsQueryHandler(HttpClientHelper httpClientHelper)
     public async Task<TransactionResponse> Handle(GetTransactionsQuery request, CancellationToken cancellationToken)
     {
         var queryParams = ObjectConverter.ToDictionary(request);
-        var result = await httpClientHelper.GetAsync<TransactionResponse>("/transactions/history", queryParams);
+        var result = await httpClientHelper.GetAsync<TransactionResponse>("/api/transactions/history", queryParams);
         return result;
     }
 }

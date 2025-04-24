@@ -17,10 +17,20 @@ public class TransactionsController(ITransactionService transactionService)
         return Ok(result);
     }
 
-    [HttpGet("history/{id}")]
-    public async Task<ActionResult<TransactionModel>> GetTransactionById(int id)
+    [HttpGet("details")]
+    public async Task<ActionResult<TransactionModel>> GetTransactionById(int transactionId)
     {
-        var transaction = await transactionService.GetTransactionByIdAsync(id);
+        var transaction = await transactionService.GetTransactionByIdAsync(transactionId);
+        if (transaction == null)
+            return NotFound();
+
+        return Ok(transaction);
+    }
+
+    [HttpPost("revert-pending")]
+    public async Task<ActionResult<TransactionModel>> UpdateStatus(int transactionId)
+    {
+        var transaction = await transactionService.UpdateTransactionStatus(transactionId, "Pending");
         if (transaction == null)
             return NotFound();
 

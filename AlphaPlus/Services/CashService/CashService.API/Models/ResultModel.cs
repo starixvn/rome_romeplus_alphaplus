@@ -1,21 +1,13 @@
 namespace AlphaPlus.CashService.API.Models
 {
-    public class ResultModel
+    public class ResultModel(int code, string message)
     {
-        public ResultModel()
+        public ResultModel() : this(0, string.Empty)
         {
-            Code = 0;
-            Message = string.Empty;
         }
 
-        public ResultModel(int code, string message)
-        {
-            Code = code;
-            Message = message;
-        }
-
-        public int Code { get; set; }
-        public string Message { get; set; }
+        public int Code { get; set; } = code;
+        public string Message { get; set; } = message;
         public bool IsSuccessful => Code == 0;
     }
 }

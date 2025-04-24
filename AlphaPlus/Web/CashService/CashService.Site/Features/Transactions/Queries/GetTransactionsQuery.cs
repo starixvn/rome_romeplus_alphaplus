@@ -7,7 +7,6 @@ public record GetTransactionsQuery : IRequest<TransactionResponse>
 {
     public string TransactionType { get; set; }
     public string Status { get; init; }
-    public string ReferenceNumber { get; init; }
     public DateTime? FromDate { get; init; }
     public DateTime? ToDate { get; init; }
     public int Page { get; init; } = 1;

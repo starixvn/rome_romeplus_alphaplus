@@ -1,144 +1,203 @@
 namespace AlphaPlus.CashService.API.Services;
 
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Criteria.Transactions;
 using Enum;
+using Extensions;
 using Fanex.Data.Repository;
+using Models;
 using Models.Transactions;
 
 public interface ITransactionService
 {
     Task<TransactionResponse> GetTransactionsAsync(GetAllTransactionsWithPagingCriteria criteria);
 
-    Task<TransactionModel> GetTransactionByIdAsync(int id);
+    Task<TransactionModel> GetTransactionByIdAsync(int transactionId);
+
+    Task<ResultModel> UpdateTransactionStatus(int transactionId, string status);
 }
 
 public class TransactionService(IDynamicRepository dynamicRepository) : ITransactionService
 {
     public async Task<TransactionResponse> GetTransactionsAsync(GetAllTransactionsWithPagingCriteria criteria)
     {
-        //var transactions = await dynamicRepository.FetchAsync<TransactionModel>(criteria);
-        var transactions = await Task.FromResult(GetMockTransactions());
+        var allMockTransactions = GetMockTransactions();
 
-        // Apply filters
+        // Basic filtering example (can be expanded based on criteria)
+        var filteredTransactions = allMockTransactions
+            .Where(t => criteria.Status == "All" || t.Status == criteria.Status)
+            .Where(t => criteria.TransactionType == null ||
+                       (criteria.TransactionType == "deposit" && t.IsDeposit) ||
+                       (criteria.TransactionType == "withdrawal" && !t.IsDeposit))
+            .ToList();
 
-        return new TransactionResponse
+        var pagedTransactions = filteredTransactions
+            .Skip((criteria.Page - 1) * criteria.PageSize)
+            .Take(criteria.PageSize)
+            .ToList();
+
+        return await Task.FromResult(new TransactionResponse
         {
-            Items = transactions.ToList(),
-            TotalCount = criteria.TotalItems,
+            Items = pagedTransactions,
+            TotalCount = filteredTransactions.Count,
             Page = criteria.Page,
             PageSize = criteria.PageSize
-        };
+        });
     }
 
-    public async Task<TransactionModel> GetTransactionByIdAsync(int id)
+    public async Task<TransactionModel> GetTransactionByIdAsync(int transactionId)
     {
-        //return await dynamicRepository.GetAsync<TransactionModel>(new GetTransactionsByIdCriteria { TransactionId = id });
-        return await Task.FromResult(GetMockTransactions().FirstOrDefault(t => t.TransactionId == id));
+        return await Task.FromResult(GetMockTransactions().FirstOrDefault(t => t.TransactionId == transactionId));
+    }
+
+    public async Task<ResultModel> UpdateTransactionStatus(int transactionId, string status)
+    {
+        var random = new Random();
+        int randomValue = random.Next(2);
+        string errMsg = string.Empty;
+        if (randomValue != 0)
+        {
+            return new ResultModel(1, "Transaction status updated successfully.");
+        }
+        return await Task.FromResult(new ResultModel(randomValue, errMsg));
     }
 
     private static List<TransactionModel> GetMockTransactions()
     {
-        return
-        [
+        var baseTime = DateTime.Parse("2025-04-15 22:08:19");
+        var transactions = new List<TransactionModel>
+        {
             new()
             {
                 TransactionId = 1,
                 Username = "999bb20a00001",
-                FirstName = "TB",
-                LastName = "BT",
+                FirstName = "Sophia",
+                LastName = "Miller",
                 Amount = 20.0M,
                 Currency = "TB",
                 From = "143399301B",
                 To = "12345678",
-                Status = TransactionStatus.Completed,
+                Status = EnumHelper.GetDescription(TransactionStatus.Completed),
                 IsDeposit = true,
-                TransactionType = TransactionType.AutoDeposit,
+                TransactionType = EnumHelper.GetDescription(TransactionType.AutoDeposit),
                 ReferenceNumber = "QW352163991323101",
-                DateTime = DateTime.Parse("2025-04-15 22:08:19")
+                DateTime = baseTime.AddSeconds(0)
             },
-
             new()
             {
                 TransactionId = 2,
-                Username = "user2",
-                FirstName = "John",
-                LastName = "Doe",
-                Amount = 50.0M,
-                Currency = "USD",
-                From = "AccountA",
-                To = "AccountB",
-                Status = TransactionStatus.Rejected,
-                TransactionType = TransactionType.AutoDeposit,
-                ReferenceNumber = "REF123456789",
-                DateTime = DateTime.Parse("2025-04-16 10:15:00")
+                Username = "999bb20a00002",
+                FirstName = "Jackson",
+                LastName = "Davis",
+                Amount = 20.0M,
+                Currency = "TB",
+                From = "143399301B",
+                To = "12345678",
+                Status = EnumHelper.GetDescription(TransactionStatus.Rejected),
+                IsDeposit = true,
+                TransactionType = EnumHelper.GetDescription(TransactionType.AutoDeposit),
+                ReferenceNumber = "QW352163991323102",
+                DateTime = baseTime.AddSeconds(1)
             },
-
             new()
             {
                 TransactionId = 3,
-                Username = "user3",
-                FirstName = "Jane",
-                LastName = "Smith",
-                Amount = 100.0M,
-                Currency = "EUR",
-                From = "Wallet1",
-                To = "Wallet2",
-                Status = TransactionStatus.ProviderRejected,
+                Username = "999bb20a00003",
+                FirstName = "Olivia",
+                LastName = "Garcia",
+                Amount = 20.0M,
+                Currency = "TB",
+                From = "143399301B",
+                To = "12345678",
+                Status = EnumHelper.GetDescription(TransactionStatus.ProviderRejected),
                 IsDeposit = true,
-                TransactionType = TransactionType.AutoDeposit,
-                ReferenceNumber = "REF987654321",
-                DateTime = DateTime.Parse("2025-04-17 14:30:00")
+                TransactionType = EnumHelper.GetDescription(TransactionType.AutoDeposit),
+                ReferenceNumber = "QW352163991323103",
+                DateTime = baseTime.AddSeconds(2)
             },
-
             new()
             {
-                TransactionId = 4    ,
-                Username = "user4",
-                FirstName = "Alice",
-                LastName = "Brown",
-                Amount = 75.0M,
-                Currency = "GBP",
-                From = "Bank1",
-                To = "Bank2",
-                Status = TransactionStatus.Completed,
-                IsDeposit = false,
-                TransactionType = TransactionType.ManualWithdrawal,
-                ReferenceNumber = "REF456123789",
-                DateTime = DateTime.Parse("2025-04-18 09:45:00")
+                TransactionId = 4,
+                Username = "999bb20a00004",
+                FirstName = "Liam",
+                LastName = "Rodriguez",
+                Amount = 20.0M,
+                Currency = "TB",
+                From = "143399301B",
+                To = "12345678",
+                Status = EnumHelper.GetDescription(TransactionStatus.Completed),
+                IsDeposit = false, // Changed to withdrawal for variety
+                TransactionType = EnumHelper.GetDescription(TransactionType.AutoWithdrawal),
+                ReferenceNumber = "QW352163991323104",
+                DateTime = baseTime.AddSeconds(3)
             },
-
             new()
             {
                 TransactionId = 5,
-                Username = "user5",
-                FirstName = "Bob",
-                LastName = "White",
-                Amount = 200.0M,
-                Currency = "CAD",
-                From = "Card1",
-                To = "Card2",
-                Status = TransactionStatus.Rejected,
+                Username = "999bb20a00005",
+                FirstName = "Emma",
+                LastName = "Martinez",
+                Amount = 20.0M,
+                Currency = "TB",
+                From = "143399301B",
+                To = "12345678",
+                Status = EnumHelper.GetDescription(TransactionStatus.Rejected),
                 IsDeposit = true,
-                TransactionType = TransactionType.AutoDeposit,
-                ReferenceNumber = "REF321654987",
-                DateTime = DateTime.Parse("2025-04-19 16:20:00")
+                TransactionType = EnumHelper.GetDescription(TransactionType.AutoDeposit),
+                ReferenceNumber = "QW352163991323105",
+                DateTime = baseTime.AddSeconds(4)
             },
-
             new()
             {
                 TransactionId = 6,
-                Username = "user6",
-                FirstName = "Charlie",
-                LastName = "Green",
-                Amount = 300.0M,
-                Currency = "AUD",
-                From = "AccountX",
-                To = "AccountY",
-                Status = TransactionStatus.Expired,
-                TransactionType = TransactionType.AutoWithdrawal,
-                ReferenceNumber = "REF654987321",
-                DateTime = DateTime.Parse("2025-04-20 12:00:00")
+                Username = "999bb20a00006",
+                FirstName = "Noah",
+                LastName = "Hernandez",
+                Amount = 20.0M,
+                Currency = "TB",
+                From = "143399301B",
+                To = "12345678",
+                Status = EnumHelper.GetDescription(TransactionStatus.Expired),
+                IsDeposit = false, // Changed to withdrawal for variety
+                TransactionType = EnumHelper.GetDescription(TransactionType.AutoWithdrawal),
+                ReferenceNumber = "QW352163991323106",
+                DateTime = baseTime.AddSeconds(5)
             }
-        ];
+        };
+
+        var firstNames = new List<string> { "Ava", "Isabella", "Mia", "Aiden", "Lucas", "Ethan", "Mason", "Logan", "Oliver", "Elijah", "James", "Benjamin", "William", "Michael", "Alexander", "Daniel", "Matthew", "David", "Joseph", "Andrew" };
+        var lastNames = new List<string> { "Wilson", "Moore", "Taylor", "Anderson", "Thomas", "Jackson", "White", "Harris", "Martin", "Thompson", "Young", "Allen", "King", "Wright", "Scott", "Green", "Baker", "Adams", "Nelson", "Carter" };
+        var statuses = new List<TransactionStatus> { TransactionStatus.Completed, TransactionStatus.Rejected, TransactionStatus.ProviderRejected, TransactionStatus.Expired };
+        var random = new Random();
+
+        for (int i = 7; i <= 26; i++)
+        {
+            var firstName = firstNames[random.Next(firstNames.Count)];
+            var lastName = lastNames[random.Next(lastNames.Count)];
+            var status = statuses[random.Next(statuses.Count)];
+            var isDeposit = random.Next(2) == 0; // Randomly choose deposit or withdrawal
+            var transactionTypeEnum = isDeposit ? TransactionType.AutoDeposit : TransactionType.AutoWithdrawal;
+
+            transactions.Add(new TransactionModel
+            {
+                TransactionId = i,
+                Username = $"999bb20a{i:D5}", // Ensure 5 digits
+                FirstName = firstName,
+                LastName = lastName,
+                Amount = 20.0M,
+                Currency = "TB",
+                From = "143399301B",
+                To = "12345678",
+                Status = EnumHelper.GetDescription(status),
+                IsDeposit = isDeposit,
+                TransactionType = EnumHelper.GetDescription(transactionTypeEnum),
+                ReferenceNumber = $"QW352163991323{i + 100}",
+                DateTime = baseTime.AddSeconds(i - 1)
+            });
+        }
+
+        return transactions;
     }
 }
