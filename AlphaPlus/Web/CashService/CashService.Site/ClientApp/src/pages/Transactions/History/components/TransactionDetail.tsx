@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Spin, Alert, message } from 'antd';
-import { TransactionItem } from '../../../../interfaces/TransactionHistory';
+import { TransactionItem } from '../../../../services/interfaces/TransactionHistory';
 import {
   getTransactionDetail,
   revertTransaction,

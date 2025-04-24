@@ -58,11 +58,11 @@ export const getTransactionDetail = async (transactionId: number): Promise<Trans
 /**
  * Reverts a transaction to pending status.
  */
-export const revertTransaction = async (id: number): Promise<void> => {
+export const revertTransaction = async (transactionId: number): Promise<void> => {
   try {
-    await api.post('RevertTransaction', { transactionId: id });
+    await api.post('RevertTransactionToPending', { transactionId: transactionId });
   } catch (error) {
-    console.error(`Error reverting transaction for ID ${id}:`, error);
+    console.error(`Error reverting transaction for ID ${transactionId}:`, error);
     throw error;
   }
 };

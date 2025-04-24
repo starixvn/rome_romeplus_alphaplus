@@ -66,7 +66,7 @@ public class TransactionsController(
         return Json(memberAccounts);
     }
 
-    [HttpPost("RevertTransaction")]
+    [HttpPost]
     public async Task<IActionResult> RevertTransactionToPending([FromBody] RevertTransactionRequest request)
     {
         if (request.TransactionId <= 0)

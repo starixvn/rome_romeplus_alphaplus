@@ -4,7 +4,7 @@ import {
   TransactionItem,
   TransactionsHistoryResponse,
   TransactionsHistoryParams,
-} from '../../../../interfaces/TransactionHistory';
+} from '../../../../services/interfaces/TransactionHistory';
 import Filters from './Filters';
 import Search from './Search';
 import Table from './Table';
