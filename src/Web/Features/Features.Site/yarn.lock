@@ -23,68 +23,6 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@types/bootstrap@3.3.*":
-  version "3.3.42"
-  resolved "https://registry.yarnpkg.com/@types/bootstrap/-/bootstrap-3.3.42.tgz#003a089fe86888804115f856e4ff4bfd2650d055"
-  integrity sha512-ERkg6+Doymm2Uv/+jvqgxmoDLr6vz7wThaS2523QoY/tcTuw7HKrF5v06u2Ga3nEu0+iVTnNk7HLIzgm6ZZh8A==
-  dependencies:
-    "@types/jquery" "*"
-
-"@types/clipboard@1.5.*":
-  version "1.5.36"
-  resolved "https://registry.yarnpkg.com/@types/clipboard/-/clipboard-1.5.36.tgz#e79fffc758e94e7ff9de9898ae7561db3c2bdd51"
-  integrity sha512-dvLNK0b8E4QRq2h/inCdPL80XIp7Db9qmMWbbPmv9LcRIc8HgZdEseZOg+CcfsJNXolVS6RAvVd2Dg+d9WJ2hg==
-
-"@types/jquery-typeahead@^2.10.5":
-  version "2.10.5"
-  resolved "https://registry.yarnpkg.com/@types/jquery-typeahead/-/jquery-typeahead-2.10.5.tgz#72441821da34dfdb9c2947bb063821a840e91b6d"
-  integrity sha512-0XCdz8CLsM6lZcPN4ApraY0tpXUxpBAmR9Xu6ohVtrkvQr8HLLfGe3LqXU47YU2KLdk8YcVKUvzNx9aNK/kOZA==
-  dependencies:
-    "@types/jquery" "*"
-
-"@types/jquery.blockui@^0.0.32":
-  version "0.0.32"
-  resolved "https://registry.yarnpkg.com/@types/jquery.blockui/-/jquery.blockui-0.0.32.tgz#46ad855d94107c6b648f0fc98af1c88250451ca0"
-  integrity sha512-PipynaFcJfd3y+N6qH6fIHt4WA68udmz5vmD93N+DxaoxdXx7gomWCFKpJ/bqLGH/txXIz3Talj0d054/DvVAg==
-  dependencies:
-    "@types/jquery" "*"
-
-"@types/jquery.cookie@^1.4.35":
-  version "1.4.35"
-  resolved "https://registry.yarnpkg.com/@types/jquery.cookie/-/jquery.cookie-1.4.35.tgz#58f8ca4a61535915bbbd897c7fea66e03985c3a7"
-  integrity sha512-chaHxzUOnN3MxSt5PNDtGLa74Z7DGsYnnBhg2NihAY9awJ01q903T07DVHkDnY9J7LkCcxuZyHnsVvmLmdFsAg==
-  dependencies:
-    "@types/jquery" "*"
-
-"@types/jquery@*":
-  version "3.5.29"
-  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.5.29.tgz#3c06a1f519cd5fc3a7a108971436c00685b5dcea"
-  integrity sha512-oXQQC9X9MOPRrMhPHHOsXqeQDnWeCDT3PelUIg/Oy8FAbzSZtFHRjc7IpbfFVmpLtJ+UOoywpRsuO5Jxjybyeg==
-  dependencies:
-    "@types/sizzle" "*"
-
-"@types/jquery@^2.0.32":
-  version "2.0.32"
-  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-2.0.32.tgz#8e0b01690d482782f68938bf0a0dde52b018e0f2"
-  integrity sha512-yJgZc/9lv97DrOa8HXdq8Jnxb1xsS98NlbD+CCoYfILnjDMDPb0BLcG4X/GCtCKU8cNsGyLwaYU4Qiug38YBjA==
-
-"@types/jqueryui@^1.12.21":
-  version "1.12.21"
-  resolved "https://registry.yarnpkg.com/@types/jqueryui/-/jqueryui-1.12.21.tgz#e8c3a2955a5236da452b3dacd4d87c8d64cb5326"
-  integrity sha512-hsTOaWPg963smNdoHbEN2anu4vVWj9k2xuaZMIajWERPikaBRG49RmaDA/tb2HldX9/a0qHvQYKipXHSLhM3qA==
-  dependencies:
-    "@types/jquery" "*"
-
-"@types/sizzle@*":
-  version "2.3.8"
-  resolved "https://registry.yarnpkg.com/@types/sizzle/-/sizzle-2.3.8.tgz#518609aefb797da19bf222feb199e8f653ff7627"
-  integrity sha512-0vWLNK2D5MT9dg0iOo8GlKguPAU02QjmZitPEsXRuJXU/OGIOt9vT9Fc26wtYuavLxtO45v9PGleoL9Z0k1LHg==
-
-"@types/storejs@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@types/storejs/-/storejs-2.0.3.tgz#1b66b98e01cc8d05e769731c59668b938f85ba26"
-  integrity sha512-VF/KPGUEKxi7j3//HaPCKaKbMtKOnWYf+aLzZcBQrhQAcHevA4OA2HwFpeJ6S6JD7xpS06G3K7oZkyIfp9lfeQ==
-
 aggregate-error@^4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/aggregate-error/-/aggregate-error-4.0.1.tgz#25091fe1573b9e0be892aeda15c7c66a545f758e"
