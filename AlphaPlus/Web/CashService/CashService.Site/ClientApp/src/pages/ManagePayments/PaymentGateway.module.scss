@@ -1,0 +1,25 @@
+:root{
+    --table-header-border-bottom:rgba(0,0,0,.35);
+    --table-header-box-shadow: 0 2px 5px #0003;
+    --table-border-color: #0000001f;
+}
+
+.table-payment{
+    thead{
+        box-shadow: var(--table-header-box-shadow);
+        tr{
+            th{
+                border-bottom: 1px solid var(--table-header-border-bottom);
+                
+                
+            }
+        }
+    }
+    th,td{
+        padding: 4px 8px;
+        border-left: 1px solid var(--table-border-color);
+        &:first-child{
+            border-left: none;
+        }
+    }
+}

@@ -5,18 +5,20 @@ import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; 
 import '../../i18n/i18n';
 import './ManagePayments.css';
+import './ManagePayments.module.scss';
 import PaymentGateway from './PaymentGateway';
 import BankAccount from './BankAccount';
+import { InfoIcon } from '../../components/Icons';
 
 function ManagePayments() {
   const { t } = useTranslation('managePayments');
-  const [activeTab, setActiveTab] = React.useState('bankAccount');
+  const [activeTab, setActiveTab] = React.useState('paymentGateway');
 
   return (
-    <div className="container">
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <div className="d-flex align-items-center">
-          <h1 className="mb-0 me-2 inline-elm">{t('managePayments')}</h1>
+    <div className="px-[12px]">
+      <div className="mb-[8px]">
+        <h1 className="flex items-center font-bold text-[15px]">
+          {t('managePayments')}
           <Tippy
             content={
               <div>
@@ -32,27 +34,27 @@ function ManagePayments() {
             theme="light"
             arrow={true}
           >
-            <i className="bi bi-info-circle fs-4 ico-info inline-elm"></i>
+            <span><InfoIcon /></span>
           </Tippy>
-        </div>
+        </h1>
       </div>
 
       <div className="card">
         <div className="card-header">
-          <ul className="nav nav-tabs card-header-tabs">
-            <li className="nav-item">
+          <ul className="flex">
+            <li className="mr-[8px]">
               <button
-                className={`nav-link ${activeTab === 'paymentGateway' ? 'active' : ''}`}
-                onClick={() => setActiveTab('paymentGateway')}
-              >
+                  className={`font-bold text-[12px] tracking-[0.12px] leading-[36px] pr-[16px] pl-[16px] rounded-t-[4px] ${activeTab === 'paymentGateway' ? ' bg-[#163f78] text-[#ffffff] cursor-pointer' : 'bg-[#dbe2ef] text-[#163f78] cursor-pointer'}`}
+                  onClick={() => setActiveTab('paymentGateway')}
+                >
                 {t('paymentGateway')}
               </button>
             </li>
-            <li className="nav-item">
+            <li>
               <button
-                className={`nav-link ${activeTab === 'bankAccount' ? 'active' : ''}`}
-                onClick={() => setActiveTab('bankAccount')}
-              >
+                  className={`font-bold text-[12px] tracking-[0.12px] leading-[36px] pr-[16px] pl-[16px] rounded-t-[4px] ${activeTab === 'bankAccount' ? ' bg-[#163f78] text-[#ffffff] cursor-pointer' : 'bg-[#dbe2ef] text-[#163f78] cursor-pointer'}`}
+                  onClick={() => setActiveTab('bankAccount')}
+                >
                 {t('bankAccount')}
               </button>
             </li>
