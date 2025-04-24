@@ -38,3 +38,9 @@ wwwroot/assets/bundles/
 wwwroot/
 *.bat
 *.orig
+
+
+# Test coverage
+coverage
+coverage/**
+.nyc_output
