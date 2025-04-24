@@ -13,7 +13,7 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
         [SpParam(SqlParamName = "TransactionTypeID")]
         public int BankId { get; set; }
 
-        public override string GetSettingKey() => "Age_ManagementPayments_SelTransactionTypes";
+        public override string GetSettingKey() => "Age_CashService_TransTypeControl";
 
         public override bool IsValid() => true;
     }
