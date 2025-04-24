@@ -1,3 +1,4 @@
+using Fanex.Data;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Criteria.Payments
@@ -9,6 +10,7 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
             BankId = bankId;
         }
 
+        [SpParam(SqlParamName = "TransactionTypeID")]
         public int BankId { get; set; }
 
         public override string GetSettingKey() => "Age_ManagementPayments_SelTransactionTypes";

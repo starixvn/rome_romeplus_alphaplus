@@ -78,10 +78,8 @@ const BankAccount: React.FC = () => {
       }
     };
 
+    fetchTransactionTypes(parseInt(selectedBank));
     fetchBanks();
-    if (selectedBank !== '0') {
-      fetchTransactionTypes(parseInt(selectedBank));
-    }
   }, [selectedBank]);
 
   useEffect(() => {
