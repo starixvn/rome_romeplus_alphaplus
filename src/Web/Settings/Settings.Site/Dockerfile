@@ -57,13 +57,6 @@ RUN if [ "${TRANSFORM_CONFIG}" = "PRO" ] \
   then cd /build/tmp && curl --fail -o ${TRANSFORM_CONFIG}.domainmappings.json --header "PRIVATE-TOKEN:${CI_JOB_TOKEN}" https://gitlab.nexdev.net/api/v4/projects/alpha-config%2Flogin-domains/repository/files/src%2F${TRANSFORM_CONFIG}.domainmappings.json/raw?ref=main \
   && cd - && cp -r tmp/${TRANSFORM_CONFIG}.domainmappings.json src/Web/Settings/Settings.Site/Domains/domainmappings.json; fi
 
-WORKDIR /build/src/Web/Settings/Settings.Site
-
-# Copy package files for better caching
-COPY "src/Web/Settings/Settings.Site/Features/CreateAccount/ClientApp/package.json" "src/Web/Settings/Settings.Site/Features/CreateAccount/ClientApp/package.json"
-COPY "src/Web/Settings/Settings.Site/Features/CreateAccount/ClientApp/package-lock.json" "src/Web/Settings/Settings.Site/Features/CreateAccount/ClientApp/package-lock.json"
-COPY "src/Web/Settings/Settings.Site/Features/CreateAccount/ClientApp/yarn.lock" "src/Web/Settings/Settings.Site/Features/CreateAccount/ClientApp/yarn.lock"
-
 # Install ClientApp dependencies with yarn cache and build
 WORKDIR /build/src/Web/Settings/Settings.Site/Features/CreateAccount/ClientApp
 RUN --mount=type=cache,target=/root/.yarn \
@@ -83,7 +76,8 @@ RUN --mount=type=cache,target=/root/.yarn \
     yarn install --frozen-lockfile && \
     yarn build
 
-RUN dotnet publish -c Release -o /app
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine-25h1 AS final
 

@@ -40,10 +40,6 @@ RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp -r src/Shared/Configuration/shar
 
 WORKDIR /build/src/Web/Features/Features.Site
 
-# Copy package files for better caching
-COPY "src/Web/Features/Features.Site/package.json" "src/Web/Features/Features.Site/package.json"
-COPY "src/Web/Features/Features.Site/yarn.lock" "src/Web/Features/Features.Site/yarn.lock"
-
 # Install yarn dependencies and build
 RUN --mount=type=cache,target=/root/.yarn \
     --mount=type=cache,target=/root/.cache/yarn \
@@ -52,7 +48,8 @@ RUN --mount=type=cache,target=/root/.yarn \
     yarn install --frozen-lockfile && \
     yarn build
 
-RUN dotnet publish -c Release -o /app
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine-25h1 AS final
 

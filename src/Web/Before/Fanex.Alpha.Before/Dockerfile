@@ -63,10 +63,6 @@ RUN if [ "$TRANSFORM_CONFIG" = "LOCAL3" ] \
   cp "src/Web/Before/Fanex.Alpha.Before/bundleconfig3.json" "src/Web/Before/Fanex.Alpha.Before/bundleconfig.json"; \
   fi
 
-# Copy package files for better caching
-COPY "src/Web/Before/Fanex.Alpha.Before/package.json" "src/Web/Before/Fanex.Alpha.Before/package.json"
-COPY "src/Web/Before/Fanex.Alpha.Before/yarn.lock" "src/Web/Before/Fanex.Alpha.Before/yarn.lock"
-
 WORKDIR /build/src/Web/Before/Fanex.Alpha.Before
 
 # Install yarn dependencies
@@ -77,7 +73,8 @@ RUN --mount=type=cache,target=/root/.yarn \
     yarn install --frozen-lockfile && \
     yarn build
 
-RUN dotnet publish -c Release -o /app
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine-25h1 AS base
 

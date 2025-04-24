@@ -63,10 +63,6 @@ fi
 
 WORKDIR /build/src/Web/Tickets/Tickets.Site
 
-# copy package files for better caching
-COPY "src/Web/Tickets/Tickets.Site/package.json" "src/Web/Tickets/Tickets.Site/package.json"
-COPY "src/Web/Tickets/Tickets.Site/yarn.lock" "src/Web/Tickets/Tickets.Site/yarn.lock"
-
 RUN --mount=type=cache,target=/root/.yarn \
     --mount=type=cache,target=/root/.cache/yarn \
     --mount=type=cache,target=/build/src/Web/Tickets/Tickets.Site/node_modules \  
@@ -74,7 +70,8 @@ RUN --mount=type=cache,target=/root/.yarn \
     yarn install --frozen-lockfile && \
     gulp default
 
-RUN dotnet publish -c Release -o /app
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine-25h1 AS base
 

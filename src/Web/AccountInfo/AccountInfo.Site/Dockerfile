@@ -2,6 +2,21 @@ FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-node22-25h1 AS builder
 
 WORKDIR /build
 
+# Copy package files for better caching
+COPY "src/Web/AccountInfo/AccountInfo.Site/ClientApp" "src/Web/AccountInfo/AccountInfo.Site/ClientApp"
+
+WORKDIR /build/src/Web/AccountInfo/AccountInfo.Site/ClientApp
+# Install, build and copy dist files
+RUN --mount=type=cache,target=/root/.yarn \
+    --mount=type=cache,target=/root/.cache/yarn \
+    --mount=type=cache,target=/build/src/Web/AccountInfo/AccountInfo.Site/ClientApp/node_modules \
+    yarn config set cache-folder /root/.cache/yarn && \
+    yarn install --frozen-lockfile --prefer-offline && \
+    yarn build && \
+    mkdir -p /build/src/Web/AccountInfo/AccountInfo.Site/wwwroot && \
+    cp -r dist/* /build/src/Web/AccountInfo/AccountInfo.Site/wwwroot
+
+WORKDIR /build
 # copy .csproj files
 COPY "src/Modules/AlphaPlus.Logging/AlphaPlus.Logging.csproj" "src/Modules/AlphaPlus.Logging/AlphaPlus.Logging.csproj"
 COPY "src/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "src/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj"
@@ -33,23 +48,9 @@ RUN if [ "${TRANSFORM_CONFIG}" = "" ]; then cp -r src/Shared/Configuration/share
 
 RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp -r src/Shared/Configuration/sharedSettings.${TRANSFORM_CONFIG}.json src/Web/AccountInfo/AccountInfo.Site/sharedSettings.json; fi
 
-# Copy package files for better caching
-COPY "src/Web/AccountInfo/AccountInfo.Site/ClientApp/package.json" "src/Web/AccountInfo/AccountInfo.Site/ClientApp/package.json"
-COPY "src/Web/AccountInfo/AccountInfo.Site/ClientApp/yarn.lock" "src/Web/AccountInfo/AccountInfo.Site/ClientApp/yarn.lock"
-
-WORKDIR /build/src/Web/AccountInfo/AccountInfo.Site/ClientApp
-# Install, build and copy dist files
-RUN --mount=type=cache,target=/root/.yarn \
-    --mount=type=cache,target=/root/.cache/yarn \
-    --mount=type=cache,target=/build/src/Web/AccountInfo/AccountInfo.Site/ClientApp/node_modules \
-    yarn config set cache-folder /root/.cache/yarn && \
-    yarn install --frozen-lockfile --prefer-offline && \
-    yarn build && \
-    mkdir -p /build/src/Web/AccountInfo/AccountInfo.Site/wwwroot && \
-    cp -r dist/* /build/src/Web/AccountInfo/AccountInfo.Site/wwwroot
-
 WORKDIR /build/src/Web/AccountInfo/AccountInfo.Site
-RUN dotnet publish -c Release -o /app
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine-25h1 AS final
 

@@ -39,10 +39,6 @@ RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp -r src/Shared/Configuration/shar
 
 WORKDIR /build/src/Web/Reports/Reports.Site
 
-# copy package files for better caching
-COPY "src/Web/Reports/Reports.Site/package.json" "src/Web/Reports/Reports.Site/package.json"
-COPY "src/Web/Reports/Reports.Site/yarn.lock" "src/Web/Reports/Reports.Site/yarn.lock"
-
 RUN --mount=type=cache,target=/root/.yarn \
     --mount=type=cache,target=/root/.cache/yarn \
     --mount=type=cache,target=/build/src/Web/Reports/Reports.Site/node_modules \  
@@ -50,7 +46,8 @@ RUN --mount=type=cache,target=/root/.yarn \
     yarn install --frozen-lockfile && \
     gulp default
 
-RUN dotnet publish -c Release -o /app
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine-25h1 AS base
 

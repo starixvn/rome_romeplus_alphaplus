@@ -8,6 +8,8 @@ EXPOSE 8080
 COPY src/Web/Assets/package.json src/Web/Assets/yarn.lock ./
 RUN --mount=type=cache,target=/root/.yarn \
     --mount=type=cache,target=/root/.cache/yarn \
+    --mount=type=cache,target=/app/src/Web/Assets/node_modules \
+    yarn config set cache-folder /root/.cache/yarn && \
     yarn install --frozen-lockfile --prefer-offline
 
 FROM hub.nexdev.net/base/node:18.16-alpine AS builder
@@ -33,7 +35,11 @@ RUN if [ "$TRANSFORM_CONFIG" = "LOCAL2" ] \
 	then cp ./bundleconfig2.json ./bundleconfig.json; \
 	fi
 
-RUN yarn gulp
+RUN --mount=type=cache,target=/root/.yarn \
+    --mount=type=cache,target=/root/.cache/yarn \
+    --mount=type=cache,target=/app/src/Web/Assets/node_modules \
+    yarn config set cache-folder /root/.cache/yarn && \
+    yarn gulp
 
 # Use nginx-unprivileged image
 FROM hub.nexdev.net/base/nginxinc/nginx-unprivileged:1.22-alpine-slim
