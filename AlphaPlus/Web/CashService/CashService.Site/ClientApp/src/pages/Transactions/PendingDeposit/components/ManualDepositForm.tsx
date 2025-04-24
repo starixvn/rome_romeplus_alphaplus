@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface ManualDepositFormProps {
   onClose: () => void;
@@ -13,6 +14,7 @@ interface ManualDepositFormProps {
 }
 
 const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit }) => {
+  const { t } = useTranslation('pendingDeposit');
   const [memberLoginName, setMemberLoginName] = useState('999b20a00001');
   const [from, setFrom] = useState(12345678);
   const [to, setTo] = useState(1493993018);
@@ -75,7 +77,7 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
   return (
     <div className="fixed inset-0 bg-white flex flex-col z-50">
       <div className="bg-gray-100 p-4">
-        <h2 className="text-lg font-medium">Add Manual Deposit</h2>
+        <h2 className="text-lg font-medium">{t('manualDepositForm.title')}</h2>
       </div>
 
       <form id='manual-deposit-form' onSubmit={handleSubmit} className="p-6 flex-1">
@@ -83,13 +85,13 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
           {/* Left side - Account information */}
           <div className="flex-1">
             <div className="mb-5">
-              <h3 className="text-md font-medium text-gray-700 mb-4">Account Information</h3>
+              <h3 className="text-md font-medium text-gray-700 mb-4">{t('manualDepositForm.accountInformation')}</h3>
               
               <div className="flex flex-col space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="memberLoginName" className="block text-sm font-medium text-gray-700 mb-1">
-                      Member Login Name*
+                      {t('manualDepositForm.memberLoginName')}
                     </label>
                     <div className="relative">
                       <select
@@ -110,7 +112,7 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
 
                   <div>
                     <label htmlFor="from" className="block text-sm font-medium text-gray-700 mb-1">
-                      From*
+                      {t('manualDepositForm.from')}
                     </label>
                     <div className="relative">
                       <div className="flex items-center">
@@ -138,7 +140,7 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="to" className="block text-sm font-medium text-gray-700 mb-1">
-                      To*
+                      {t('manualDepositForm.to')}
                     </label>
                     <div className="relative">
                       <div className="flex items-center">
@@ -164,7 +166,7 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
 
                   <div>
                     <label htmlFor="depositAmount" className="block text-sm font-medium text-gray-700 mb-1">
-                      Deposit Amount*
+                      {t('manualDepositForm.depositAmount')}
                     </label>
                     <input
                       id="depositAmount"
@@ -179,14 +181,14 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
 
                 <div>
                   <label htmlFor="remarks" className="block text-sm font-medium text-gray-700 mb-1">
-                    Remarks
+                    {t('manualDepositForm.remarks')}
                   </label>
                   <textarea
                     id="remarks"
                     value={remarks}
                     onChange={(e) => setRemarks(e.target.value)}
                     className="block w-full rounded-md border border-gray-300 py-2 px-3 text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm min-h-[120px]"
-                    placeholder="Add a remark here..."
+                    placeholder={t('manualDepositForm.remarksPlaceholder')}
                   />
                 </div>
               </div>
@@ -213,13 +215,13 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-600 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
-                    <span className="text-xs font-medium">View Full Size</span>
+                    <span className="text-xs font-medium">{t('manualDepositForm.viewFullSize')}</span>
                   </a>
                   <button
                     type="button"
                     onClick={resetImageUpload}
                     className="absolute top-2 right-2 bg-white rounded-full p-1 shadow hover:bg-gray-200 z-20"
-                    title="Remove image"
+                    title={t('manualDepositForm.removeImage')}
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -231,10 +233,10 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
                   <svg className="h-10 w-10 text-gray-400 mb-4" stroke="currentColor" fill="none" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
-                  <p className="text-sm text-blue-600 font-medium cursor-pointer">Click to upload</p>
-                  <p className="text-xs text-gray-500 mt-1">or drag and drop</p>
-                  <p className="text-xs text-gray-500">Upload jpeg, jpg, png</p>
-                  <p className="text-xs text-gray-500">(Max 1 MB)</p>
+                  <p className="text-sm text-blue-600 font-medium cursor-pointer">{t('manualDepositForm.uploadImage')}</p>
+                  <p className="text-xs text-gray-500 mt-1">{t('manualDepositForm.dragAndDrop')}</p>
+                  <p className="text-xs text-gray-500">{t('manualDepositForm.imageFormat')}</p>
+                  <p className="text-xs text-gray-500">({t('manualDepositForm.maxSize')})</p>
                 </div>
               )}
               <input
@@ -250,19 +252,19 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
               />
             </div>
             
-            <div className="flex justify-end space-x-3">
+            <div className="flex justify-between space-x-4">
               <button
                 type="button"
                 onClick={onClose}
-                className="px-6 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="flex-1 py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
-                Cancel
+                {t('manualDepositForm.cancel')}
               </button>
               <button
                 type="submit"
-                className="bg-[#1e4d8c] text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-[#173d70] transition-colors"
+                className="flex-1 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
-                Approve
+                {t('manualDepositForm.submit')}
               </button>
             </div>
           </div>

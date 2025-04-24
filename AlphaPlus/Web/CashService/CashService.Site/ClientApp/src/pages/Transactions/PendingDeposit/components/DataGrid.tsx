@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { DepositAccountInfo } from '../../../../services/interfaces/DepositAccountInfo';
 import UpdateDeposit from './UpdateDeposit';
+import { useTranslation } from 'react-i18next';
 
 interface DataGridProps {
   deposits: DepositAccountInfo[];
 }
 
 const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
+  const { t } = useTranslation('pendingDeposit');
   const [editingDeposit, setEditingDeposit] = useState<DepositAccountInfo | null>(null);
 
   const handleEditClick = (deposit: DepositAccountInfo) => {
@@ -18,10 +20,7 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
   };
 
   const handleSaveEdit = (updatedDeposit: DepositAccountInfo) => {
-    // Here you would typically call an API to update the deposit
     console.log('Saving updated deposit:', updatedDeposit);
-    
-    // For now, just close the form
     setEditingDeposit(null);
   };
 
@@ -41,7 +40,7 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
                 scope="col"
                 className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
               >
-                Username
+                {t('dataGrid.member')}
               </th>
               <th
                 scope="col"
@@ -60,7 +59,7 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
                 scope="col"
                 className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
               >
-                Amount
+                {t('dataGrid.amount')}
               </th>
               <th
                 scope="col"
@@ -72,31 +71,31 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
                 scope="col"
                 className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
               >
-                From
+                {t('dataGrid.from')}
               </th>
               <th
                 scope="col"
                 className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
               >
-                To
+                {t('dataGrid.to')}
               </th>
               <th
                 scope="col"
                 className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
               >
-                Reference No.
+                {t('dataGrid.referenceNo')}
               </th>
               <th
                 scope="col"
                 className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
               >
-                Date and Time
+                {t('dataGrid.dateAndTime')}
               </th>
               <th
                 scope="col"
                 className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
               >
-                Action
+                {t('dataGrid.actions')}
               </th>
             </tr>
           </thead>
@@ -142,7 +141,7 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
                       className="text-blue-600 hover:text-blue-800 font-medium"
                       onClick={() => handleEditClick(deposit)}
                     >
-                      Edit
+                      {t('dataGrid.viewDetails')}
                     </button>
                   </td>
                 </tr>
@@ -194,7 +193,7 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
                         />
                       </g>
                     </svg>
-                    <div className="text-sm text-gray-500">No Data to display</div>
+                    <div className="text-sm text-gray-500">{t('dataGrid.noDepositsFound')}</div>
                   </div>
                 </td>
               </tr>

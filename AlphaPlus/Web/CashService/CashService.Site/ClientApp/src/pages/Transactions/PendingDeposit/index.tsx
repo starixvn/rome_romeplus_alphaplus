@@ -6,8 +6,11 @@ import Filter from './components/Filter';
 import DataGrid from './components/DataGrid';
 import { DepositAccountInfo } from '../../../services/interfaces/DepositAccountInfo';
 import { pendingDepositService } from '../../../services/pendingDepositAPI';
+import { useTranslation } from 'react-i18next';
+import '../../../i18n/i18n';
 
 const PendingDeposit: React.FC = () => {
+  const { t } = useTranslation('pendingDeposit');
   const [recentDeposits, setRecentDeposits] = useState<string>('All');
   const [toFilter, setToFilter] = useState<string>('All');
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -61,14 +64,14 @@ const PendingDeposit: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       <div className="mx-auto space-y-6">
         <div className="bg-white rounded-lg shadow-sm p-2">
-          <h1 className="text-xl font-semibold mb-6">Pending Deposit</h1>
+          <h1 className="text-xl font-semibold mb-6">{t('pendingDeposit')}</h1>
 
           <div className="mb-6">
             <button
               onClick={handleAddManualDeposit}
               className="bg-[#1e4d8c] text-white px-8 py-2 rounded-lg text-sm font-medium hover:bg-[#173d70] transition-colors flex items-center cursor-pointer"
             >
-              <span className="mr-1">+</span> Add Manual Deposit
+              <span className="mr-1">+</span> {t('addManualDeposit')}
             </button>
           </div>
 

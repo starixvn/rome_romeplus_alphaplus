@@ -26,6 +26,14 @@ import memberSiteZhTW from './locales/memberSite/zh-TW.json';
 import memberSiteJa from './locales/memberSite/ja.json';
 import memberSiteKo from './locales/memberSite/ko.json';
 
+// Import pendingDeposit translations
+import pendingDepositEn from './locales/pendingDeposit/en.json';
+import pendingDepositVi from './locales/pendingDeposit/vi.json';
+import pendingDepositZhCN from './locales/pendingDeposit/zh-CN.json';
+import pendingDepositZhTW from './locales/pendingDeposit/zh-TW.json';
+import pendingDepositJa from './locales/pendingDeposit/ja.json';
+import pendingDepositKo from './locales/pendingDeposit/ko.json';
+
 // Configure i18next
 i18n
   // Detect user language
@@ -38,32 +46,38 @@ i18n
       en: {
         global: globalEn,
         managePayments: managePaymentsEn,
-        memberSite: memberSiteEn
+        memberSite: memberSiteEn,
+        pendingDeposit: pendingDepositEn
       },
       vi: {
         global: globalVi,
         managePayments: managePaymentsVi,
-        memberSite: memberSiteVi
+        memberSite: memberSiteVi,
+        pendingDeposit: pendingDepositVi
       },
       'zh-CN': {
         global: globalZhCN,
         managePayments: managePaymentsZhCN,
-        memberSite: memberSiteZhCN
+        memberSite: memberSiteZhCN,
+        pendingDeposit: pendingDepositZhCN
       },
       'zh-TW': {
         global: globalZhTW,
         managePayments: managePaymentsZhTW,
-        memberSite: memberSiteZhTW
+        memberSite: memberSiteZhTW,
+        pendingDeposit: pendingDepositZhTW
       },
       ja: {
         global: globalJa,
         managePayments: managePaymentsJa,
-        memberSite: memberSiteJa
+        memberSite: memberSiteJa,
+        pendingDeposit: pendingDepositJa
       },
       ko: {
         global: globalKo,
         managePayments: managePaymentsKo,
-        memberSite: memberSiteKo
+        memberSite: memberSiteKo,
+        pendingDeposit: pendingDepositKo
       },
     },
     fallbackLng: 'en',

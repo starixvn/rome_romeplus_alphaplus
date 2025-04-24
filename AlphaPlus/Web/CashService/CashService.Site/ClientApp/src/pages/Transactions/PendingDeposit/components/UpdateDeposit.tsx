@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { DepositAccountInfo } from '../../../../services/interfaces/DepositAccountInfo';
+import { useTranslation } from 'react-i18next';
 
 interface UpdateDepositProps {
   deposit: DepositAccountInfo;
@@ -12,6 +13,7 @@ const UpdateDeposit: React.FC<UpdateDepositProps> = ({
   onClose, 
   onSave 
 }) => {
+  const { t } = useTranslation('pendingDeposit');
   const [username, setUsername] = useState('');
   const [loginName, setLoginName] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -35,7 +37,6 @@ const UpdateDeposit: React.FC<UpdateDepositProps> = ({
       setTo(deposit.to.toString());
       setReferenceNo(deposit.referenceNo);
       
-      // Format date for datetime-local input
       const date = typeof deposit.dateAndTime === 'string' 
         ? new Date(deposit.dateAndTime)
         : deposit.dateAndTime;
@@ -68,14 +69,14 @@ const UpdateDeposit: React.FC<UpdateDepositProps> = ({
   return (
     <div className="fixed inset-0 bg-white flex flex-col z-50">
       <div className="bg-gray-100 p-4">
-        <h2 className="text-lg font-medium">Edit Deposit</h2>
+        <h2 className="text-lg font-medium">{t('updateDeposit.title')}</h2>
       </div>
       
       <form id='update-deposit-form' onSubmit={handleSubmit} className="p-6 flex-1 w-1/2">
         <div className="grid grid-cols-2 gap-6">
           <div>
             <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
-              Username
+              {t('dataGrid.member')}
             </label>
             <input
               id="username"
@@ -131,7 +132,7 @@ const UpdateDeposit: React.FC<UpdateDepositProps> = ({
           
           <div>
             <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-1">
-              Amount
+              {t('dataGrid.amount')}
             </label>
             <input
               id="amount"
@@ -163,7 +164,7 @@ const UpdateDeposit: React.FC<UpdateDepositProps> = ({
           
           <div>
             <label htmlFor="from" className="block text-sm font-medium text-gray-700 mb-1">
-              From
+              {t('dataGrid.from')}
             </label>
             <input
               id="from"
@@ -177,7 +178,7 @@ const UpdateDeposit: React.FC<UpdateDepositProps> = ({
           
           <div>
             <label htmlFor="to" className="block text-sm font-medium text-gray-700 mb-1">
-              To
+              {t('dataGrid.to')}
             </label>
             <input
               id="to"
@@ -191,7 +192,7 @@ const UpdateDeposit: React.FC<UpdateDepositProps> = ({
           
           <div>
             <label htmlFor="referenceNo" className="block text-sm font-medium text-gray-700 mb-1">
-              Reference No.
+              {t('dataGrid.referenceNo')}
             </label>
             <input
               id="referenceNo"
@@ -205,7 +206,7 @@ const UpdateDeposit: React.FC<UpdateDepositProps> = ({
           
           <div>
             <label htmlFor="dateTime" className="block text-sm font-medium text-gray-700 mb-1">
-              Date and Time
+              {t('dataGrid.dateAndTime')}
             </label>
             <input
               id="dateTime"
@@ -224,13 +225,13 @@ const UpdateDeposit: React.FC<UpdateDepositProps> = ({
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
-            Cancel
+            {t('manualDepositForm.cancel')}
           </button>
           <button
             type="submit"
             className="bg-[#1e4d8c] text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-[#173d70] transition-colors"
           >
-            Save Changes
+            {t('updateDeposit.approveDeposit')}
           </button>
         </div>
       </form>

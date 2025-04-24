@@ -1,0 +1,85 @@
+{
+  "pendingDeposit": "Pending Deposit",
+  "addManualDeposit": "Add Manual Deposit",
+  
+  "filter": {
+    "recentDeposits": "Recent Deposits",
+    "all": "All",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "last7Days": "Last 7 Days",
+    "to": "To",
+    "search": "Search",
+    "usernamePlaceholder": "Username/Reference No."
+  },
+  
+  "dataGrid": {
+    "member": "Member",
+    "amount": "Amount",
+    "from": "From",
+    "to": "To",
+    "referenceNo": "Reference No.",
+    "dateAndTime": "Date & Time",
+    "actions": "Actions",
+    "approve": "Approve",
+    "reject": "Reject",
+    "viewDetails": "View Details",
+    "loading": "Loading pending deposits...",
+    "noDepositsFound": "No pending deposits found"
+  },
+  
+  "manualDepositForm": {
+    "title": "Add Manual Deposit",
+    "accountInformation": "Account Information",
+    "memberLoginName": "Member Login Name*",
+    "from": "From*",
+    "to": "To*",
+    "depositAmount": "Deposit Amount*",
+    "remarks": "Remarks",
+    "remarksPlaceholder": "Add a remark here...",
+    "uploadImage": "Click to upload",
+    "dragAndDrop": "or drag and drop",
+    "imageFormat": "Upload jpeg, jpg, png",
+    "maxSize": "Max 1 MB",
+    "viewFullSize": "View Full Size",
+    "removeImage": "Remove image",
+    "cancel": "Cancel",
+    "submit": "Submit"
+  },
+  
+  "updateDeposit": {
+    "title": "Update Deposit",
+    "approveDeposit": "Approve Deposit",
+    "rejectDeposit": "Reject Deposit",
+    "confirmTitle": "Confirm Action",
+    "confirmApproveMessage": "Are you sure you want to approve this deposit?",
+    "confirmRejectMessage": "Are you sure you want to reject this deposit?",
+    "confirmCancel": "Cancel",
+    "confirmYes": "Yes, proceed",
+    "depositDetails": "Deposit Details",
+    "memberInfo": "Member Information",
+    "transactionDetails": "Transaction Details",
+    "depositApproved": "Deposit approved successfully",
+    "depositRejected": "Deposit rejected successfully"
+  },
+
+  "status": {
+    "pending": "Pending",
+    "approved": "Approved",
+    "rejected": "Rejected"
+  },
+  
+  "errorMessages": {
+    "requiredField": "This field is required",
+    "invalidAmount": "Please enter a valid amount",
+    "amountTooSmall": "Amount must be greater than 0",
+    "failedToSubmit": "Failed to submit deposit",
+    "failedToApprove": "Failed to approve deposit",
+    "failedToReject": "Failed to reject deposit"
+  },
+  
+  "successMessages": {
+    "depositSubmitted": "Deposit submitted successfully",
+    "depositUpdated": "Deposit updated successfully"
+  }
+} 

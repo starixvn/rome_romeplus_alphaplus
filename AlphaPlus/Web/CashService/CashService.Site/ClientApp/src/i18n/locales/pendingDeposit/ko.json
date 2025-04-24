@@ -1,0 +1,85 @@
+{
+  "pendingDeposit": "대기 중인 입금",
+  "addManualDeposit": "수동 입금 추가",
+  
+  "filter": {
+    "recentDeposits": "최근 입금",
+    "all": "전체",
+    "today": "오늘",
+    "yesterday": "어제",
+    "last7Days": "지난 7일",
+    "to": "수신",
+    "search": "검색",
+    "usernamePlaceholder": "사용자 이름/참조 번호"
+  },
+  
+  "dataGrid": {
+    "member": "회원",
+    "amount": "금액",
+    "from": "발신",
+    "to": "수신",
+    "referenceNo": "참조 번호",
+    "dateAndTime": "날짜 및 시간",
+    "actions": "작업",
+    "approve": "승인",
+    "reject": "거절",
+    "viewDetails": "상세 보기",
+    "loading": "대기 중인 입금 로딩 중...",
+    "noDepositsFound": "대기 중인 입금이 없습니다"
+  },
+  
+  "manualDepositForm": {
+    "title": "수동 입금 추가",
+    "accountInformation": "계정 정보",
+    "memberLoginName": "회원 로그인 이름*",
+    "from": "발신*",
+    "to": "수신*",
+    "depositAmount": "입금 금액*",
+    "remarks": "비고",
+    "remarksPlaceholder": "여기에 비고 추가...",
+    "uploadImage": "클릭하여 업로드",
+    "dragAndDrop": "또는 드래그 앤 드롭",
+    "imageFormat": "jpeg, jpg, png 업로드",
+    "maxSize": "최대 1 MB",
+    "viewFullSize": "전체 크기로 보기",
+    "removeImage": "이미지 제거",
+    "cancel": "취소",
+    "submit": "제출"
+  },
+  
+  "updateDeposit": {
+    "title": "입금 업데이트",
+    "approveDeposit": "입금 승인",
+    "rejectDeposit": "입금 거절",
+    "confirmTitle": "작업 확인",
+    "confirmApproveMessage": "이 입금을 승인하시겠습니까?",
+    "confirmRejectMessage": "이 입금을 거절하시겠습니까?",
+    "confirmCancel": "취소",
+    "confirmYes": "예, 진행합니다",
+    "depositDetails": "입금 상세 정보",
+    "memberInfo": "회원 정보",
+    "transactionDetails": "거래 상세 정보",
+    "depositApproved": "입금이 성공적으로 승인되었습니다",
+    "depositRejected": "입금이 성공적으로 거절되었습니다"
+  },
+
+  "status": {
+    "pending": "대기 중",
+    "approved": "승인됨",
+    "rejected": "거절됨"
+  },
+  
+  "errorMessages": {
+    "requiredField": "이 필드는 필수입니다",
+    "invalidAmount": "유효한 금액을 입력하세요",
+    "amountTooSmall": "금액은 0보다 커야 합니다",
+    "failedToSubmit": "입금 제출에 실패했습니다",
+    "failedToApprove": "입금 승인에 실패했습니다",
+    "failedToReject": "입금 거절에 실패했습니다"
+  },
+  
+  "successMessages": {
+    "depositSubmitted": "입금이 성공적으로 제출되었습니다",
+    "depositUpdated": "입금이 성공적으로 업데이트되었습니다"
+  }
+} 

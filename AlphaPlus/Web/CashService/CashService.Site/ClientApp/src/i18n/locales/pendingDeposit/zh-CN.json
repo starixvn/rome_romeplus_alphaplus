@@ -1,0 +1,85 @@
+{
+  "pendingDeposit": "待处理存款",
+  "addManualDeposit": "添加手动存款",
+  
+  "filter": {
+    "recentDeposits": "最近存款",
+    "all": "全部",
+    "today": "今天",
+    "yesterday": "昨天",
+    "last7Days": "过去7天",
+    "to": "到",
+    "search": "搜索",
+    "usernamePlaceholder": "用户名/参考号"
+  },
+  
+  "dataGrid": {
+    "member": "会员",
+    "amount": "金额",
+    "from": "来自",
+    "to": "到",
+    "referenceNo": "参考编号",
+    "dateAndTime": "日期和时间",
+    "actions": "操作",
+    "approve": "批准",
+    "reject": "拒绝",
+    "viewDetails": "查看详情",
+    "loading": "正在加载待处理存款...",
+    "noDepositsFound": "未找到待处理存款"
+  },
+  
+  "manualDepositForm": {
+    "title": "添加手动存款",
+    "accountInformation": "账户信息",
+    "memberLoginName": "会员登录名*",
+    "from": "来自*",
+    "to": "到*",
+    "depositAmount": "存款金额*",
+    "remarks": "备注",
+    "remarksPlaceholder": "在此处添加备注...",
+    "uploadImage": "点击上传",
+    "dragAndDrop": "或拖放",
+    "imageFormat": "上传jpeg、jpg、png",
+    "maxSize": "最大1 MB",
+    "viewFullSize": "查看全尺寸",
+    "removeImage": "删除图片",
+    "cancel": "取消",
+    "submit": "提交"
+  },
+  
+  "updateDeposit": {
+    "title": "更新存款",
+    "approveDeposit": "批准存款",
+    "rejectDeposit": "拒绝存款",
+    "confirmTitle": "确认操作",
+    "confirmApproveMessage": "您确定要批准此存款吗？",
+    "confirmRejectMessage": "您确定要拒绝此存款吗？",
+    "confirmCancel": "取消",
+    "confirmYes": "是，继续",
+    "depositDetails": "存款详情",
+    "memberInfo": "会员信息",
+    "transactionDetails": "交易详情",
+    "depositApproved": "存款已成功批准",
+    "depositRejected": "存款已成功拒绝"
+  },
+
+  "status": {
+    "pending": "待处理",
+    "approved": "已批准",
+    "rejected": "已拒绝"
+  },
+  
+  "errorMessages": {
+    "requiredField": "此字段为必填项",
+    "invalidAmount": "请输入有效金额",
+    "amountTooSmall": "金额必须大于0",
+    "failedToSubmit": "提交存款失败",
+    "failedToApprove": "批准存款失败",
+    "failedToReject": "拒绝存款失败"
+  },
+  
+  "successMessages": {
+    "depositSubmitted": "存款已成功提交",
+    "depositUpdated": "存款已成功更新"
+  }
+} 
