@@ -95,7 +95,7 @@ public class WinLossLimitViewModel
     public static string GetStatusText(string statusKey) => Resources.ResourceManager.GetString(statusKey);
 
     public static string GetCurrentWinAnmout(decimal? currentWinAnmout)
-        => currentWinAnmout.HasValue ? currentWinAnmout.Value.ToString("#,##0.00") : Unlimited;
+        => currentWinAnmout.HasValue ? currentWinAnmout.Value.ToString("#,##0.00") : Lang.Unlimited;
 
     public string GetMaxWinLimit(decimal maxWinLimit)
         => FormatMaxWinLimit(maxWinLimit);
@@ -115,8 +115,6 @@ public class WinLossLimitViewModel
     public static string GetRemainingTransferInAmount(decimal? remainingTransferInAmount, decimal? maxLossLimit)
         => FormatRemainingTransferInAmmount(maxLossLimit, remainingTransferInAmount);
 
-    private static string Unlimited { get; } = Lang.Unlimited;
-
     private static string FormatMaxWinLimit(decimal maxWinLimit)
     {
         if (maxWinLimit == MaxWinLimitToShowNotAvailable)
@@ -124,7 +122,7 @@ public class WinLossLimitViewModel
             return "N/A";
         }
 
-        return maxWinLimit == 0 ? Unlimited : $"{maxWinLimit.ToString("#,##0")}X";
+        return maxWinLimit == 0 ? Lang.Unlimited : $"{maxWinLimit.ToString("#,##0")}X";
     }
 
     private static string FormatWinPercent(decimal credit, decimal? currentWinLimit, decimal? winPercent, decimal maxWinLimit)
@@ -136,7 +134,7 @@ public class WinLossLimitViewModel
 
         if (!winPercent.HasValue)
         {
-            return Unlimited;
+            return Lang.Unlimited;
         }
 
         return winPercent > 0 ? $"{winPercent.Value.ToString("#,##0.##")}%" : "0%";
@@ -151,7 +149,7 @@ public class WinLossLimitViewModel
 
         if (!lossPercent.HasValue)
         {
-            return Unlimited;
+            return Lang.Unlimited;
         }
 
         return lossPercent > 0 ? $"{lossPercent.Value.ToString("#,##0.##")}%" : "0%";
@@ -164,14 +162,14 @@ public class WinLossLimitViewModel
             return "-";
         }
 
-        return maxLossLimit.Value == 0 ? Unlimited : maxLossLimit.Value.ToString("#,##0.##");
+        return maxLossLimit.Value == 0 ? Lang.Unlimited : maxLossLimit.Value.ToString("#,##0.##");
     }
 
     private static string FormatRemainingBuyInAmount(decimal? maxLossLimit, decimal? remainingBuyInAmount)
     {
         if (maxLossLimit.HasValue && maxLossLimit.Value == 0)
         {
-            return Unlimited;
+            return Lang.Unlimited;
         }
 
         return remainingBuyInAmount.HasValue ? remainingBuyInAmount.Value.ToString("#,##0.##") : "-";
@@ -181,7 +179,7 @@ public class WinLossLimitViewModel
     {
         if (maxLossLimit.HasValue && maxLossLimit.Value == 0)
         {
-            return Unlimited;
+            return Lang.Unlimited;
         }
 
         return remainingTransferInAmount.HasValue ? remainingTransferInAmount.Value.ToString("#,##0.##") : "-";
