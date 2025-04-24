@@ -6,31 +6,32 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
     public class GetBankAccountsCriteria : CriteriaBase
     {
         public GetBankAccountsCriteria(
+            int custId,
             int? bankId = null,
             int? transactionType = null,
             int? status = null,
-            string? searchText = null)
+            string searchText = null)
         {
+            CustId = custId;
             BankId = bankId;
             TransactionType = transactionType;
             Status = status;
             SearchText = searchText;
         }
+        
+        public int CustId { get; }
 
-        [SpParam(SqlParamName = "BankId")]
         public int? BankId { get; }
 
-        [SpParam(SqlParamName = "TransactionType")]
         public int? TransactionType { get; }
 
-        [SpParam(SqlParamName = "Status")]
         public int? Status { get; }
 
-        [SpParam(SqlParamName = "SearchText")]
+        [SpParam(Ignored = true)]
         public string? SearchText { get; }
 
-        public override string GetSettingKey() => "Age_ManagementPayments_SelBankAccounts";
+        public override string GetSettingKey() => "Age_CashService_BankAccountAgent_List";
 
-        public override bool IsValid() => true; // All parameters are optional
+        public override bool IsValid() => true; 
     }
 } 

@@ -46,7 +46,6 @@ const BankAccount: React.FC = () => {
     try {
       setLoading(true);
       const fetchedBankAccounts = await paymentProviderService.getBankAccounts(
-        1, // TODO: Replace with actual customer ID
         parseInt(selectedBank) ,
         parseInt(selectedTransactionType),
         parseInt(selectedStatus),
@@ -69,6 +68,8 @@ const BankAccount: React.FC = () => {
         const fetchedBanks = await paymentProviderService.getBanksByCust();
         setBanks(fetchedBanks);
         setError(null);
+
+        fetchBankAccounts();
       } catch (err) {
         setError('Failed to load banks. Please try again later.');
         console.error('Error fetching banks:', err);
@@ -170,11 +171,21 @@ const BankAccount: React.FC = () => {
     }
   };
 
-  const getTransactionTypeName = (typeId: number) => {
-    const type = transactionTypes.length > 0 
-      ? transactionTypes.find(t => t.id === typeId)
-      : TRANSACTION_TYPES.find(t => t.id === typeId);
-    return type ? type.name : typeId;
+  const getTransactionTypeNames = (types: string) => {
+    if (!types) return '';
+    
+    // Split the comma-separated type IDs
+    const typeIds = types.split(',').map(id => parseInt(id.trim()));
+    
+    // Map each type ID to its name
+    const typeNames = typeIds.map(typeId => {
+      const type = transactionTypes.length > 0 
+        ? transactionTypes.find(t => t.id === typeId)
+        : TRANSACTION_TYPES.find(t => t.id === typeId);
+      return type ? type.name : typeId.toString();
+    });
+    
+    return typeNames.join(', ');
   };
 
   const handleCloseAddBankAccountModal = () => {
@@ -316,7 +327,7 @@ const BankAccount: React.FC = () => {
                       type="text"
                       id="searchInput"
                       className="form-control"
-                      placeholder={tManagePayments('searchAccountPlaceholder')}
+                      placeholder={tManagePayments('searchAccountNumberOrName')}
                       value={searchInput}
                       onChange={handleSearchChange}
                       onKeyDown={handleSearchKeyDown}
@@ -376,10 +387,10 @@ const BankAccount: React.FC = () => {
                         </div>
                       </td>
                       <td>{account.accountNickname}</td>
-                      <td>{account.bank.name}</td>
+                      <td>{account.bankName}</td>
                       <td>{account.accountHolderName}</td>
                       <td>{account.accountNumber}</td>
-                      <td>{getTransactionTypeName(account.transactionType)}</td>
+                      <td>{getTransactionTypeNames(account.transactionTypes)}</td>
                       <td>
                         <span className={`badge ${account.status === 1 ? 'bg-success' : 'bg-danger'}`}>
                           {account.status === 1 ? tManagePayments('active') : tManagePayments('inactive')}

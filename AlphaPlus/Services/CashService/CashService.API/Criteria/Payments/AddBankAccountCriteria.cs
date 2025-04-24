@@ -9,7 +9,7 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
         public AddBankAccountCriteria(BankAccountModel bankAccModel)
         {
             Status = bankAccModel.Status;
-            BankId = bankAccModel.Bank.Id;
+            BankId = bankAccModel.BankId;
 
             DepositType = bankAccModel.DepositType;
             WithdrawalType = bankAccModel.WithdrawalType;
@@ -19,7 +19,7 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
             Creator = bankAccModel.CreatorId;
 
             AccountHolderName = bankAccModel.AccountHolderName;
-            BankId = bankAccModel.Bank.Id;
+            BankId = bankAccModel.BankId;
             AccountNickname = bankAccModel.AccountNickname;
             
             PromptPay = bankAccModel.PromptPay;

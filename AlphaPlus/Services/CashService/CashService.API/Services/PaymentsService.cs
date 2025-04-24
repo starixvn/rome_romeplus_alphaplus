@@ -21,9 +21,8 @@ public interface IPaymentsService
     Task<ResultModel> UpdateProvider(ProviderModel provider);
     Task<IEnumerable<BankModel>> GetBanksByCust(int custId);
     Task<IEnumerable<TransactionTypeModel>> GetTransactionTypes(int bankId);
-
-    Task<ResultModel> AddPaymentProviderSetting(ProviderSettingsModel setting);
     Task<IEnumerable<BankAccountModel>> GetBankAccounts(int custId, int bankId, int transactionType, int status, string searchText);
+    
     Task<ResultModel> DeleteBankAccount(int accountId);
     Task<ResultModel> SetTransactionLimit(int custId, TransactionLimitModel limit);
     Task<ResultModel> AddBankAccount(BankAccountModel bankAccount);
@@ -155,20 +154,6 @@ public class PaymentsService : IPaymentsService
         return transactionTypes;
     }
 
-
-    public async Task<ResultModel> AddPaymentProviderSetting(ProviderSettingsModel setting)
-    {
-        if (setting == null)
-        {
-            return new ResultModel(1, "No setting provided");
-        }
-
-        // TODO: Implement actual database insert logic
-        // var result = await _repository.ExecuteNonQueryAsync(new AddPaymentProviderSettingCriteria(setting));
-
-        return new ResultModel(0, "Success");
-    }
-
     public async Task<IEnumerable<BankAccountModel>> GetBankAccounts(
         int custId, 
         int bankId, 
@@ -176,13 +161,12 @@ public class PaymentsService : IPaymentsService
         int status, 
         string searchText)
     {
-        // TODO: Implement actual database query
-        // var result = await _repository.FetchAsync<BankAccountModel>(new GetBankAccountsCriteria(custId, bankId, transactionType, status, searchText));
-        var accounts = await DummyDataService.GetDummyBankAccounts(custId, transactionType);
-        
+        var criteria = new GetBankAccountsCriteria(custId, bankId, transactionType, status, searchText);
+        var accounts = await _repository.FetchAsync<BankAccountModel>(criteria);
         return accounts;
     }
     
+
     public async Task<ResultModel> DeleteBankAccount(int accountId)
     {
         if (accountId <= 0)

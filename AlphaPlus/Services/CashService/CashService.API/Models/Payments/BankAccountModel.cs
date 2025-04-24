@@ -16,12 +16,15 @@ namespace AlphaPlus.CashService.API.Models.Payments
         public string AccountNumber { get; set; } = string.Empty;
         public string AccountNickname { get; set; } = string.Empty;
         public string AccountHolderName { get; set; } = string.Empty;
-        public int TransactionType { get; set; }
+        public string TransactionTypes { get; set; }
+
+        public string BankName { get; set; }
+        public int BankId { get; set; }
         public int Status { get; set; }
-        public BankModel Bank { get; set; }
         public DateTime LastUpdated { get; set; }
         public string LastUpdatedStr => LastUpdated.ToString("MM/dd/yyyy hh:mm:ss tt");
         
+
         public int DepositType { get; set; }
         public int WithdrawalType { get; set; }
         public int DepositMatchingMode { get; set; }

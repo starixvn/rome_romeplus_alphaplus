@@ -23,7 +23,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   const [accountNickname, setAccountNickname] = useState<string>(bankAccount.accountNickname);
   const [accountHolderName] = useState<string>(bankAccount.accountHolderName);
   const [accountNumber] = useState<string>(bankAccount.accountNumber);
-  const [selectedBank] = useState<string>(bankAccount.bank.id.toString());
+  const [selectedBank] = useState<string>(bankAccount.bankId.toString());
   const [status, setStatus] = useState<string>(bankAccount.status.toString());
   const [depositType, setDepositType] = useState<string>(bankAccount.depositType.toString());
   const [withdrawalType, setWithdrawalType] = useState<string>(bankAccount.withdrawalType.toString());
@@ -47,11 +47,9 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
         accountNickname,
         accountHolderName,
         accountNumber,
-        bank: {
-          id: parseInt(selectedBank),
-          name: banks.find(b => b.id === parseInt(selectedBank))?.name || ''
-        },
-        transactionType: bankAccount.transactionType,
+        bankId: parseInt(selectedBank),
+        bankName: banks.find(b => b.id === parseInt(selectedBank))?.name || '',
+        transactionTypes: bankAccount.transactionTypes,
         status: parseInt(status),
         depositType: parseInt(depositType),
         withdrawalType: parseInt(withdrawalType),

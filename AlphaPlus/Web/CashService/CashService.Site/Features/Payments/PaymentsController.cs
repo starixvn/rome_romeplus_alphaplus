@@ -150,5 +150,17 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             var transactionTypes = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
             return Json(transactionTypes);
         }
+
+        public async Task<IActionResult> GetBankAccounts(
+            int bankId, 
+            int transactionType, 
+            int status, 
+            string searchText, 
+            CancellationToken cancellationToken)
+        {
+            var url = $"{_apiBaseUrl}/payments/bank-accounts?custId={_custId}&bankId={bankId}&transactionType={transactionType}&status={status}&searchText={searchText}";
+            var bankAccounts = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
+            return Json(bankAccounts);
+        }
     }
 }

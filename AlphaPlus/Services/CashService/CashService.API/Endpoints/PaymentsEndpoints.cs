@@ -162,15 +162,13 @@ public static class PaymentsEndpoints
             Description = "Returns a list of transaction types for a specific bank"
         });
 
-
-
-        app.MapGet("/api/bank-accounts", async (
+        app.MapGet("/api/payments/bank-accounts", async (
             int custId, 
-            IPaymentsService service,
             int bankId,
             int transactionType,
             int status,
-            string searchText) =>
+            string searchText,
+            IPaymentsService service) =>
         {
             var bankAccounts = await service.GetBankAccounts(custId, bankId, transactionType, status, searchText);
             return Results.Ok(bankAccounts);
@@ -181,6 +179,10 @@ public static class PaymentsEndpoints
             Summary = "Get bank accounts",
             Description = "Returns a list of bank accounts for a specific customer and transaction type with optional filtering by bank, account number, account holder name, and status"
         });
+
+
+
+
 
         app.MapPost("/api/add-bank-account", async (HttpRequest request, IPaymentsService service) =>
         {

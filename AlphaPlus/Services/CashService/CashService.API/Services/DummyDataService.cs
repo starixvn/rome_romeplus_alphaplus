@@ -208,9 +208,10 @@ public class DummyDataService
                 AccountNumber = "1234567890",
                 AccountNickname = "Primary Account",
                 AccountHolderName = "John Doe",
-                TransactionType = transactionType,
+                TransactionTypes = transactionType.ToString(),
                 Status = BankStatusConstants.Active,
-                Bank = banks.First(),
+                BankId = banks.First().Id,
+                BankName = banks.First().Name,
                 LastUpdated = DateTime.UtcNow
             },
             new BankAccountModel
@@ -219,9 +220,10 @@ public class DummyDataService
                 AccountNumber = "0987654321",
                 AccountNickname = "Secondary Account",
                 AccountHolderName = "John Doe",
-                TransactionType = transactionType,
+                TransactionTypes = transactionType.ToString(),
                 Status = BankStatusConstants.Active,
-                Bank = banks.Skip(1).First(),
+                BankId = banks.Skip(1).First().Id,
+                BankName = banks.Skip(1).First().Name,
                 LastUpdated = DateTime.UtcNow.AddDays(-1)
             }
         };

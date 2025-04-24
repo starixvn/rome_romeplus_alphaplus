@@ -4,12 +4,10 @@ export interface BankAccount {
   accountNumber: string;
   accountNickname: string;
   accountHolderName: string;
-  transactionType: number;
+  transactionTypes: string;
   status: number;
-  bank: {
-    id: number;
-    name: string;
-  };
+  bankId: number;
+  bankName: string;
   lastUpdated: string;
   lastUpdatedStr: string;
   depositType: number;

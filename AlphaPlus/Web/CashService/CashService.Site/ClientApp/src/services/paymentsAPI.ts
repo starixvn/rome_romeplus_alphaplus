@@ -145,8 +145,30 @@ export const paymentProviderService = {
       return [];
     }
   },
-
   
+  // Get bank accounts with optional filters
+  getBankAccounts: async (
+    bankId: number,
+    transactionType: number,
+    status: number,
+    searchText: string,
+  ): Promise<BankAccount[]> => {
+    try {
+      const params = new URLSearchParams();
+      params.append('bankId', bankId.toString());
+      params.append('transactionType', transactionType.toString());
+      params.append('status', status.toString());
+      params.append('searchText', searchText);
+      
+      const response = await api.get<BankAccount[]>(`GetBankAccounts?${params.toString()}`, { method: 'GET' });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching bank accounts:', error);
+      return [];
+    }
+  },
+
+
   
   // Update banks for a specific provider
   updateProviderBanks: async (providerId: number, bankIds: number[]): Promise<ResultModel> => {
@@ -156,30 +178,6 @@ export const paymentProviderService = {
     } catch (error) {
       console.error('Error updating provider banks:', error);
       throw error;
-    }
-  },
-  
-  // Get bank accounts with optional filters
-  getBankAccounts: async (
-    custId: number,
-    bankId: number,
-    transactionType: number,
-    status: number,
-    searchText: string,
-  ): Promise<BankAccount[]> => {
-    try {
-      const params = new URLSearchParams();
-      params.append('custId', custId.toString());
-      params.append('bankId', bankId.toString());
-      params.append('transactionType', transactionType.toString());
-      params.append('status', status.toString());
-      params.append('searchText', searchText);
-      
-      const response = await api.get<BankAccount[]>(`/bank-accounts?${params.toString()}`, { method: 'GET' });
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching bank accounts:', error);
-      return [];
     }
   },
   

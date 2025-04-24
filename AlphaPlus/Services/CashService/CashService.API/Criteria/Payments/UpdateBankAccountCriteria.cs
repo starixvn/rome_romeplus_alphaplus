@@ -10,7 +10,7 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
         {
             BankAccountId = bankAccModel.Id;
             Status = bankAccModel.Status;
-            BankId = bankAccModel.Bank.Id;
+            BankId = bankAccModel.BankId;
 
             DepositType = bankAccModel.DepositType;
             WithdrawalType = bankAccModel.WithdrawalType;

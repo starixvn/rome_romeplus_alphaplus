@@ -44,11 +44,9 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
         accountNickname,
         accountHolderName,
         accountNumber,
-        bank: {
-          id: parseInt(selectedBank),
-          name: banks.find(b => b.id === parseInt(selectedBank))?.name || ''
-        },
-        transactionType: 0,
+        bankId: parseInt(selectedBank),
+        bankName: banks.find(b => b.id === parseInt(selectedBank))?.name || '',
+        transactionTypes: '',
         status: parseInt(status),
         depositType: parseInt(depositType),
         withdrawalType: parseInt(withdrawalType),
