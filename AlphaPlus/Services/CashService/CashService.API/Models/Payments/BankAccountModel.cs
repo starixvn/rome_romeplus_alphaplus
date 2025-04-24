@@ -11,7 +11,7 @@ namespace AlphaPlus.CashService.API.Models.Payments
             AccountHolderName = string.Empty;
             LastUpdated = DateTime.UtcNow;
         }
-
+ 
         public int Id { get; set; }
         public string AccountNumber { get; set; } = string.Empty;
         public string AccountNickname { get; set; } = string.Empty;

@@ -18,8 +18,5 @@
     "all": "All",
     "deleting": "Deleting...",
     "on": "On",
-    "off": "Off",
-
-    "updateFailed": "Update failed",
-    "updateSuccess": "Update successful"
+    "off": "Off"
 } 
