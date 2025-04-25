@@ -108,6 +108,7 @@ public class PaymentsService : IPaymentsService
     public async Task<IEnumerable<BankModel>> GetBanks(int transactionType)
     {
         var banks = await _repository.FetchAsync<BankModel>(new GetBanksByTransactionTypeCriteria(transactionType));
+        Console.WriteLine(JsonSerializer.Serialize(banks));
         return banks;
     }
 

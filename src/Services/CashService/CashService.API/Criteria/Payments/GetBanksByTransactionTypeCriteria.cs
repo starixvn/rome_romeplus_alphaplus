@@ -7,11 +7,11 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
     {
         public GetBanksByTransactionTypeCriteria(int transactionType)
         {
-            TransactionType = transactionType;
+            TransactionType = transactionType == 0 ? null : transactionType;
         }
 
         [SpParam(Ignored = true)]
-        public int TransactionType { get; }
+        public int? TransactionType { get; }
 
         public override string GetSettingKey() => "Age_CashService_BankList";
 

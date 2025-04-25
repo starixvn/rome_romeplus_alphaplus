@@ -17,3 +17,11 @@ export const ENABLED_STATUS_OPTIONS = [
   { id: 1, name: 'Enable' },
   { id: 2, name: 'Disable' }
 ];
+
+export const BANK_TRANSACTION_TYPES = [
+  { id: 0, name: 'All' },
+  { id: 1, name: 'Manual Deposit' },
+  { id: 2, name: 'Auto Deposit' },
+  { id: 3, name: 'Manual Withdrawal' },
+  { id: 4, name: 'Auto Withdrawal' }
+]; 

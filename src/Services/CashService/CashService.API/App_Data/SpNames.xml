@@ -27,6 +27,8 @@
       <Setting Key="Age_CashService_BankList" SpName="Age_CashService_BankList" DbName="DBCust.CustDB.wsv_alp" Plain="0">
         <Mapping DataField="BankID" ObjectProperty="Id"></Mapping>
         <Mapping DataField="Bank" ObjectProperty="Name"></Mapping>
+        <Mapping DataField="TransactionTypeID" ObjectProperty="TransactionTypes"></Mapping>
+        <Mapping DataField="DepositMode" ObjectProperty="DepositMatchingMode"></Mapping>
       </Setting>
       <Setting Key="Age_CashService_ProviderStatus_Upd" SpName="Age_CashService_ProviderStatus_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
       <Setting Key="Age_CashService_PaymentProvider_Upd" SpName="Age_CashService_PaymentProvider_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />

@@ -85,7 +85,7 @@ const BankAccount: React.FC = () => {
 
     fetchTransactionTypes();
     fetchBanks();
-  }, [selectedBank]);
+  }, []);
 
   useEffect(() => {
     if (banks.length > 0) {
@@ -201,7 +201,6 @@ const BankAccount: React.FC = () => {
         <AddBankAccountComponent
           onClose={handleCloseAddBankAccountModal}
           onSave={handleSaveAddBankAccount}
-          banks={banks}
         />
       ) : showUpdateBankAccountModal && selectedBankAccount ? (
         <UpdateBankAccountComponent
