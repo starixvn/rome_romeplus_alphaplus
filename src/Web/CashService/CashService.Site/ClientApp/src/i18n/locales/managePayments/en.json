@@ -95,6 +95,8 @@
 
   "bankName": "Bank name",
   "bankAccountDeletedSuccessfully": "Bank account deleted successfully",
+  "bankAccountUpdatedSuccessfully": "Bank account updated successfully",
+  "failedToUpdateBankAccount": "Failed to update bank account",
   
   "enableDisable": "Enable/deposit provider",
   "enableDisableTip1": "Enable or deposit provider for your members.",

@@ -131,7 +131,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
       if (result.isSuccessful) {
         setSuccess(true);
-        setSuccessMessage(result.message || tManagePayments('bankAccountUpdated'));
+        setSuccessMessage(result.message || tManagePayments('bankAccountUpdatedSuccessfully'));
         setTimeout(() => {
           onSave();
         }, 3000);
@@ -218,9 +218,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                   disabled
                   required
                 >
-                  <option value="">{tGlobal('select')}</option>
                   {banks.map((bank) => (
-                    <option key={bank.id} value={bank.id}>
+                    <option key={bank.id} value={bank.id} selected={bank.id === parseInt(selectedBank)}>
                       {bank.name}
                     </option>
                   ))}
