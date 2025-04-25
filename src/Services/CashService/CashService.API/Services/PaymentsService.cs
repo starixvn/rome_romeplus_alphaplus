@@ -15,7 +15,7 @@ public interface IPaymentsService
     Task<ResultModel> SetDailyWithdrawalCount(int custId, int count);
     Task<IEnumerable<ProviderFeeGroupModel>> GetProviderFees(int custId);
     Task<ProviderModel> GetProviderById(int custId, int providerId);
-    Task<IEnumerable<PaymentMethodModel>> GetPaymentMethods();
+    Task<IEnumerable<PaymentMethodModel>> GetPaymentMethods(int providerId, int transactionType);
     Task<IEnumerable<ProviderSettingsModel>> GetProviderSettings(int providerId, int method, int status, int transactionType);
     Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod);
     Task<IEnumerable<BankModel>> GetBanks(int transactionType);
@@ -85,9 +85,9 @@ public class PaymentsService : IPaymentsService
         return provider;
     }
     
-    public async Task<IEnumerable<PaymentMethodModel>> GetPaymentMethods()
+    public async Task<IEnumerable<PaymentMethodModel>> GetPaymentMethods(int providerId, int transactionType)
     {
-        var methods = await _repository.FetchAsync<PaymentMethodModel>(new GetPaymentMethodsCriteria());
+        var methods = await _repository.FetchAsync<PaymentMethodModel>(new GetPaymentMethodsCriteria(providerId, transactionType));
         return methods;
     }
 

@@ -41,7 +41,11 @@
       <Setting Key="Age_ManagementPayments_UpdProviderSettings" SpName="Age_ManagementPayments_UpdProviderSettings" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
       
       <Setting Key="Age_ManagementPayments_InsMethod" SpName="Age_ManagementPayments_InsMethod" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-      <Setting Key="Age_ManagementPayments_SelAllMethods" SpName="Age_ManagementPayments_SelAllMethods" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+      <Setting Key="Age_CashService_PaymentMethods" SpName="Age_CashService_PaymentMethods" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+        <Mapping DataField="PaymentMethodID" ObjectProperty="Id"></Mapping>
+        <Mapping DataField="MethodName" ObjectProperty="Name"></Mapping>
+        <Mapping DataField="PaymentMethodStatus" ObjectProperty="Status"></Mapping>
+      </Setting>
       <Setting Key="Age_CashService_UserBankAccount" SpName="Age_CashService_UserBankAccount_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
         <Mapping DataField="BankID" ObjectProperty="Id"></Mapping>
         <Mapping DataField="BankName" ObjectProperty="Name"></Mapping>

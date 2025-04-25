@@ -2,7 +2,6 @@ import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { useTranslation } from 'react-i18next';
 import '../../i18n/i18n';
-import './PaymentProviderSettings.css';
 import { STATUS_OPTIONS, TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import ProviderFeesPopupModal from '../ManagePayments/ProviderFeesPopupModal';
 import AddPaymentMethodModal from './AddPaymentMethodModal';

@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { Bank } from '../../services/interfaces/Bank';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { TRANSACTION_TYPES } from '../../constants/paymentConstants';
-import './PaymentProviderSettings.css';
 
 interface BanksPopupModalProps {
   onClose: () => void;

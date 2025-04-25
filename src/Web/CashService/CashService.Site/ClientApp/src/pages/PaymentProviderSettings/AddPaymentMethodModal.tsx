@@ -24,14 +24,14 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
   const [paymentMethods, setPaymentMethods] = React.useState<PaymentMethod[]>([]);
   const [allMethodsInactive, setAllMethodsInactive] = React.useState<boolean>(false);
 
-  const inactiveStatus = 2;
+  const inactiveStatus = 0;
   const activeStatus = 1;
   
   // Load payment methods when component mounts
   React.useEffect(() => {
     const loadPaymentMethods = async () => {
       try {
-        const methods = await paymentProviderService.getPaymentMethods();
+        const methods = await paymentProviderService.getPaymentMethods(providerId, parseInt(selectedTransactionType));
         setPaymentMethods(methods);
         // Check if all methods are inactive using STATUS_OPTIONS constant
         setAllMethodsInactive(methods.length > 0 && methods.every(method => method.status === inactiveStatus));

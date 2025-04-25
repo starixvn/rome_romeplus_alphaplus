@@ -96,9 +96,9 @@ public static class PaymentsEndpoints
             Description = "Returns the settings for a specific payment provider based on method, status, and transaction type"
         });
 
-        app.MapGet("/api/payments/payment-methods", async (IPaymentsService service) =>
+        app.MapGet("/api/payments/payment-methods", async (int providerId, int transactionType, IPaymentsService service) =>
         {
-            var methods = await service.GetPaymentMethods();
+            var methods = await service.GetPaymentMethods(providerId, transactionType);
             return Results.Ok(methods);
         })
         .WithName("GetPaymentMethods")

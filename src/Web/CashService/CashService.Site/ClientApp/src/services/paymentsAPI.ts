@@ -81,9 +81,9 @@ export const paymentProviderService = {
   },
   
   // Get all payment methods
-  getPaymentMethods: async (): Promise<PaymentMethod[]> => {
+  getPaymentMethods: async (providerId: number, transactionType: number): Promise<PaymentMethod[]> => {
     try {
-      const response = await api.get<PaymentMethod[]>('GetPaymentMethods', { method: 'GET' });
+      const response = await api.get<PaymentMethod[]>(`GetPaymentMethods?providerId=${providerId}&transactionType=${transactionType}`, { method: 'GET' });
       return response.data;
     } catch (error) {
       console.error('Error fetching payment methods:', error);
