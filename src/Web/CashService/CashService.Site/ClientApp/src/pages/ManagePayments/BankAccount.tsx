@@ -7,7 +7,9 @@ import { TRANSACTION_TYPES, ENABLED_STATUS_OPTIONS } from '../../constants/payme
 import SetTransactionLimitModal from './SetTransactionLimitModal';
 import AddBankAccountComponent from './AddBankAccountComponent';
 import UpdateBankAccountComponent from './UpdateBankAccountComponent';
+import { IconDelete, IconPen, IconSearch } from '../../components/Icons';
 import styles from './PaymentGateway.module.scss';
+
 
 const BankAccount: React.FC = () => {
   const { t: tManagePayments } = useTranslation('managePayments');
@@ -216,13 +218,13 @@ const BankAccount: React.FC = () => {
             <div className="text-[12px] leading-[14px]">{tManagePayments('addBankAccountAndLimit')}</div>
             <div className="my-[8px]">
               <button 
-                className="w-[183px] h-[30px] rounded-[5px] text-[#ffffff] px-[16px] py-[4px] text-[12px] font-bold mx-[4px] bg-[#163f78] hover:bg-[#375A8A] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
+                className="w-[183px] h-[30px] rounded-[5px] text-[#ffffff] px-[16px] py-[4px] text-[12px] font-bold mr-[8px] bg-[#163f78] hover:bg-[#375A8A] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
                 onClick={handleAddBankAccount}
               >
               +{tManagePayments('addBankAccount')}
               </button>
               <button 
-                className="w-[183px] h-[30px] rounded-[5px] text-[#163f78] px-[16px] py-[4px] text-[12px] font-bold border-[1px] border-[#163f78] mx-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
+                className="w-[183px] h-[30px] rounded-[5px] text-[#163f78] px-[16px] py-[4px] text-[12px] font-bold border-[1px] border-[#163f78] mr-[8px] bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
                 onClick={handleSetLimit}
               >
                 {tManagePayments('setLimit')}
@@ -258,13 +260,13 @@ const BankAccount: React.FC = () => {
 
           {!loading && !error && banks.length > 0 && (
             <>
-              <div className="row">
-                <div className="col-md-4">
-                  <div className="form-group mb-3">
-                    <label htmlFor="bankSelect" className="form-label">{tManagePayments('bank')}</label>
+              <div className="flex px-[14px]">
+                <div className="w-[230px] pr-[14px]">
+                  <div className="form-group mb-[8px]">
+                    <label htmlFor="bankSelect" className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('bank')}</label>
                     <select
                       id="bankSelect"
-                      className="form-select"
+                      className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78]"
                       value={selectedBank}
                       onChange={handleBankChange}
                     >
@@ -278,12 +280,12 @@ const BankAccount: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="col-md-4">
-                  <div className="form-group mb-3">
-                    <label htmlFor="transactionTypeSelect" className="form-label">{tManagePayments('transactionType')}</label>
+                <div className="w-[230px] pr-[14px]">
+                  <div className="form-group mb-[8px]">
+                    <label htmlFor="transactionTypeSelect" className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('transactionType')}</label>
                     <select
                       id="transactionTypeSelect"
-                      className="form-select"
+                      className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78]"
                       value={selectedTransactionType}
                       onChange={handleTransactionTypeChange}
                     >
@@ -299,12 +301,12 @@ const BankAccount: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="col-md-4">
-                  <div className="form-group mb-3">
-                    <label htmlFor="statusSelect" className="form-label">{tManagePayments('status')}</label>
+                <div className="w-[230px] pr-[14px]">
+                  <div className="form-group mb-[8px]">
+                    <label htmlFor="statusSelect" className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('status')}</label>
                     <select
                       id="statusSelect"
-                      className="form-select"
+                      className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78]"
                       value={selectedStatus}
                       onChange={handleStatusChange}
                     >
@@ -317,13 +319,16 @@ const BankAccount: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <div className="row mb-3">
-                <div className="col-md-12">
-                  <div className="form-group">
+              <div className="flex px-[14px] pb-[16px]">
+                <div className="w-[195px] ml-auto">
+                  <div className="relative">
+                    <span className='absolute top-[10px] left-[5px] z-[100]'>
+                    <IconSearch />
+                    </span>
                     <input
                       type="text"
                       id="searchInput"
-                      className="form-control"
+                      className="h-[35px] w-[100%] pl-[30px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78]"
                       placeholder={tManagePayments('searchAccountNumberOrName')}
                       value={searchInput}
                       onChange={handleSearchChange}
@@ -336,8 +341,8 @@ const BankAccount: React.FC = () => {
           )}
 
           {!loading && !error && bankAccounts.length > 0 && (
-            <div className="table-responsive mt-4">
-              <table className="table table-striped table-hover">
+            <div className={styles['table-payment']}>
+              <table className="text-[12px] w-full border-collapse border border-[#0000001f] border-t-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
                 <thead>
                   <tr>
                     <th>{tGlobal('action')}</th>
@@ -350,21 +355,20 @@ const BankAccount: React.FC = () => {
                     <th>{tManagePayments('lastUpdated')}</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className='font-[500]'>
                   {bankAccounts.map((account) => (
                     <tr key={account.id}>
                       <td>
-                        <div className="d-flex gap-2">
+                        <div className="flex">
                           <button 
-                            className="btn btn-sm btn-outline-primary"
+                            className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[#163f78]"
                             onClick={() => handleEditBankAccount(account.id)}
                             title={tManagePayments('edit')}
-                          >
-                            {tGlobal('edit')}
-                            <i className="bi bi-pencil"></i>
+                          >                            
+                            <IconPen />
                           </button>
                           <button 
-                            className="btn btn-sm btn-outline-danger"
+                            className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[#163f78]"
                             onClick={() => handleDeleteBankAccount(account.id)}
                             title={tManagePayments('delete')}
                             disabled={deleting === account.id}
@@ -376,16 +380,15 @@ const BankAccount: React.FC = () => {
                               </>
                             ) : (
                               <>
-                                {tGlobal('delete')}
-                                <i className="bi bi-trash"></i>
+                                <IconDelete />
                               </>
                             )}
                           </button>
                         </div>
                       </td>
-                      <td>{account.accountNickname}</td>
-                      <td>{account.bankName}</td>
-                      <td>{account.accountHolderName}</td>
+                      <td className='text-left'>{account.accountNickname}</td>
+                      <td className='text-left'>{account.bankName}</td>
+                      <td className='text-left'>{account.accountHolderName}</td>
                       <td>{account.accountNumber}</td>
                       <td>{getTransactionTypeNames(account.transactionTypes)}</td>
                       <td>
