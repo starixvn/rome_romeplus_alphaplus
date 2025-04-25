@@ -30,8 +30,8 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             _httpClient = httpClient;
             _userSession = userSession;
 
-           // _custId = 1176086;
-           _custId = 187900621;
+           _custId = 1176086;
+           // _custId = 187900621;
         }
 
         public IActionResult Index()
@@ -66,9 +66,9 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             return Json(result);
         }
 
-        public async Task<IActionResult> GetProviderFees(CancellationToken cancellationToken)
+        public async Task<IActionResult> GetProviderFees(int providerId, CancellationToken cancellationToken)
         {
-            var url = $"{_apiBaseUrl}/payments/provider-fees/{_custId}";
+            var url = $"{_apiBaseUrl}/payments/provider-fees/{providerId}";
             var fees = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
             return Json(fees);
         }
@@ -77,7 +77,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         {
             var url = $"{_apiBaseUrl}/payments/providers/{_custId}/{id}";
             var provider = await _httpClient.GetFromJsonAsync<ProviderModel>(url, cancellationToken);
-            var paymentMethods = await _httpClient.GetFromJsonAsync<IEnumerable<PaymentMethodModel>>($"{_apiBaseUrl}/payments/payment-methods?providerId={provider.Id}&transactionType=0", cancellationToken);
+            var paymentMethods = await _httpClient.GetFromJsonAsync<IEnumerable<PaymentMethodModel>>($"{_apiBaseUrl}/payments/payment-methods?custId={_custId}&providerId={provider.Id}&transactionType=0", cancellationToken);
             var allPaymentMethods = paymentMethods.ToList().Prepend(PaymentMethodModel.CreateOptionAll());
 
             var viewModel = new ProviderSettingsViewModel

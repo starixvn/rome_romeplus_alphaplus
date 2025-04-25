@@ -104,12 +104,27 @@
   "enableDisableTip3": "Deposits and withdrawals are unavailable, even when enabled.",
 
 
-  "status-0": "All",
-  "status-1": "Enable",
-  "status-2": "Disable",
+  "enable-status-0": "All",
+  "enable-status-1": "Enable",
+  "enable-status-2": "Disable",
+  "transaction-1": "Deposit",
+  "transaction-2": "Withdrawal",
   "transactionType-0": "All",
   "transactionType-1": "Manual Deposit",
   "transactionType-2": "Auto Deposit",
   "transactionType-3": "Manual Withdraw",
-  "transactionType-4": "Auto Withdraw"
+  "transactionType-4": "Auto Withdraw",
+  "status-0": "All",
+  "status-1": "Processing",
+  "status-2": "Completed",
+  "status-3": "Fail",
+  "status-4": "Maintenance",
+
+  "payment-method-0": "All",
+  "payment-method-1": "PromptPay",
+  "payment-method-2": "QR Code",
+  "payment-method-3": "Bank Transfer",
+  "payment-method-4": "Mobile Banking",
+  "payment-method-5": "Credit Card",
+  "payment-method-6": "Debit Card"
 } 

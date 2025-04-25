@@ -60,9 +60,9 @@ public static class PaymentsEndpoints
             Description = "Sets the daily withdrawal count for a specific customer"
         });
 
-        app.MapGet("/api/payments/provider-fees/{custId}", async (int custId, IPaymentsService service) =>
+        app.MapGet("/api/payments/provider-fees/{providerId}", async (int providerId, IPaymentsService service) =>
         {
-            var fees = await service.GetProviderFees(custId);
+            var fees = await service.GetProviderFees(providerId);
             return Results.Ok(fees);
         })
         .WithName("GetPaymentProviderFees")
@@ -96,9 +96,9 @@ public static class PaymentsEndpoints
             Description = "Returns the settings for a specific payment provider based on method, status, and transaction type"
         });
 
-        app.MapGet("/api/payments/payment-methods", async (int providerId, int transactionType, IPaymentsService service) =>
+        app.MapGet("/api/payments/payment-methods", async (int custId, int providerId, int transactionType, IPaymentsService service) =>
         {
-            var methods = await service.GetPaymentMethods(providerId, transactionType);
+            var methods = await service.GetPaymentMethods(custId, providerId, transactionType);
             return Results.Ok(methods);
         })
         .WithName("GetPaymentMethods")

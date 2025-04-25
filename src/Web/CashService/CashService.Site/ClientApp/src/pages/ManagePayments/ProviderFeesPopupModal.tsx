@@ -12,7 +12,7 @@ interface ProviderFeesPopupModalProps {
 }
 
 const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provider, onClose }) => {
-  const { t: tGlobal } = useTranslation();
+  const { t: tGlobal } = useTranslation('global');
   const { t: tManagePayments } = useTranslation('managePayments');
   const [isLoading, setIsLoading] = React.useState(true);
   const [feeData, setFeeData] = React.useState<PaymentProviderFeeGroup[]>([]);
@@ -21,7 +21,7 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
     const loadFeeData = async () => {
       try {
         setIsLoading(true);
-        const fees = await paymentProviderService.getProviderFees();
+        const fees = await paymentProviderService.getProviderFees(provider.id);
         setFeeData(fees);
       } catch (error) {
         console.error('Error loading fee data:', error);
@@ -83,7 +83,7 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
                             <tr key={`${groupIndex}-${feeIndex}`} className={feeIndex === 0 ? "table-primary" : ""}>
                               {feeIndex === 0 && (
                                 <td rowSpan={feeGroup.fees.length}>
-                                  {feeGroup.transactionType}
+                                  {tManagePayments(`transaction-${feeGroup.transactionType}`)}
                                 </td>
                               )}
                               <td>{fee.method}</td>

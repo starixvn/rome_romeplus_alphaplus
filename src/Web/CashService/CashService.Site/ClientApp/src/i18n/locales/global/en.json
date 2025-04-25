@@ -18,5 +18,7 @@
   "all": "All",
   "deleting": "Deleting...",
   "on": "On",
-  "off": "Off"
+  "off": "Off",
+  "enabled": "Enabled",
+  "disabled": "Disabled"
 }

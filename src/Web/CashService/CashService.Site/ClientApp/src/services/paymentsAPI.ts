@@ -54,9 +54,9 @@ export const paymentProviderService = {
   },
 
   // Get fees for a specific payment provider
-  getProviderFees: async (): Promise<PaymentProviderFeeGroup[]> => {
+  getProviderFees: async (providerId: number): Promise<PaymentProviderFeeGroup[]> => {
     try {
-      const response = await api.get<PaymentProviderFeeGroup[]>(`GetProviderFees`, {
+      const response = await api.get<PaymentProviderFeeGroup[]>(`GetProviderFees?providerId=${providerId}`, {
         method: 'GET',
       });
       return response.data;

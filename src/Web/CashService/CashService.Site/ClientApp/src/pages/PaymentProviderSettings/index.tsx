@@ -201,14 +201,6 @@ function PaymentProviderSettings() {
     // You might want to add API call here to update the provider status on the server
   };
 
-  const getStatusName = (id: number) => {
-    return STATUS_OPTIONS.find(status => status.id === id)?.name || id;
-  };
-
-  const getTransactionTypeName = (id: number) => {
-    return TRANSACTION_TYPES.find(type => type.id === id)?.name || id;
-  };
-
   return (
     <div className="payment-provider-settings">
       <div className="settings-header">
@@ -289,7 +281,7 @@ function PaymentProviderSettings() {
               onChange={handleStatusChange}
             >
               {STATUS_OPTIONS.map(status => (
-                <option key={status.id} value={status.id}>{status.name}</option>
+                <option key={status.id} value={status.id}>{tManagePayments(`status-${status.id}`)}</option>
               ))}
             </select>
           </div>
@@ -302,7 +294,7 @@ function PaymentProviderSettings() {
               onChange={handleTransactionTypeChange}
             >
               {TRANSACTION_TYPES.map(type => (
-                <option key={type.id} value={type.id}>{type.name}</option>
+                <option key={type.id} value={type.id}>{tManagePayments(`transaction-${type.id}`)}</option>
               ))}
             </select>
           </div>
@@ -327,8 +319,8 @@ function PaymentProviderSettings() {
                 {providerSettings.map((setting, index) => (
                   <tr key={index}>
                     <td>{setting.methodName}</td>
-                    <td>{getStatusName(setting.status)}</td>
-                    <td>{getTransactionTypeName(setting.transactionType)}</td>
+                    <td>{tManagePayments(`status-${setting.status}`)}</td>
+                    <td>{tManagePayments(`transaction-${setting.transactionType}`)}</td>
                     <td>
                       <input 
                         type="text" 

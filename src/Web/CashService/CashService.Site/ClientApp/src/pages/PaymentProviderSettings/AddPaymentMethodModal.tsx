@@ -108,7 +108,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
               >
                 <option value="">{tGlobal('select')}</option>
                 {TRANSACTION_TYPES.filter(type => type.id !== 0).map(type => (
-                  <option key={type.id} value={type.id}>{type.name}</option>
+                  <option key={type.id} value={type.id}>{tManagePayments(`transaction-${type.id}`)}</option>
                 ))}
               </select>
             </div>
@@ -128,7 +128,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
                     value={method.id}
                     disabled={method.status === inactiveStatus}
                   >
-                    {method.name}{method.status === inactiveStatus ? ` (${tGlobal('underMaintenance')})` : ''}
+                    {tManagePayments(`payment-method-${method.id}`)}{method.status === inactiveStatus ? ` (${tGlobal('underMaintenance')})` : ''}
                   </option>
                 ))}
               </select>

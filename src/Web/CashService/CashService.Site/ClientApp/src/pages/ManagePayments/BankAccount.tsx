@@ -311,7 +311,7 @@ const BankAccount: React.FC = () => {
                     >
                       {ENABLED_STATUS_OPTIONS.map((status) => (
                         <option key={status.id} value={status.id}>
-                          {tManagePayments(`status-${status.id}`)}
+                          {tManagePayments(`enable-status-${status.id}`)}
                         </option>
                       ))}
                     </select>
@@ -392,7 +392,7 @@ const BankAccount: React.FC = () => {
                       <td>{getTransactionTypeNames(account.transactionTypes)}</td>
                       <td>
                         <span className={`badge ${account.status === 1 ? 'bg-success' : 'bg-danger'}`}>
-                          {account.status === 1 ? tManagePayments('active') : tManagePayments('inactive')}
+                          {account.status === 1 ? tGlobal('enabled') : tGlobal('disabled')}
                         </span>
                       </td>
                       <td>{account.lastUpdatedStr}</td>

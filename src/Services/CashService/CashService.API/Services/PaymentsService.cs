@@ -13,9 +13,9 @@ public interface IPaymentsService
     Task<IEnumerable<ProviderModel>> GetProviders(int custId);
     Task<int> GetDailyWithdrawalCount(int custId);
     Task<ResultModel> SetDailyWithdrawalCount(int custId, int count);
-    Task<IEnumerable<ProviderFeeGroupModel>> GetProviderFees(int custId);
+    Task<IEnumerable<ProviderFeeGroupModel>> GetProviderFees(int providerId);
     Task<ProviderModel> GetProviderById(int custId, int providerId);
-    Task<IEnumerable<PaymentMethodModel>> GetPaymentMethods(int providerId, int transactionType);
+    Task<IEnumerable<PaymentMethodModel>> GetPaymentMethods(int custId, int providerId, int transactionType);
     Task<IEnumerable<ProviderSettingsModel>> GetProviderSettings(int providerId, int method, int status, int transactionType);
     Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod);
     Task<IEnumerable<BankModel>> GetBanks(int transactionType);
@@ -63,9 +63,9 @@ public class PaymentsService : IPaymentsService
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
     
-    public async Task<IEnumerable<ProviderFeeGroupModel>> GetProviderFees(int custId)
+    public async Task<IEnumerable<ProviderFeeGroupModel>> GetProviderFees(int providerId)
     {
-        var fees = await _repository.FetchAsync<ProviderFeeModel>(new GetProvidersFeesCriteria(custId));
+        var fees = await _repository.FetchAsync<ProviderFeeModel>(new GetProvidersFeesCriteria(providerId));
         
         var groupedFees = fees
             .GroupBy(f => f.TransactionType)
@@ -86,9 +86,9 @@ public class PaymentsService : IPaymentsService
         return provider;
     }
     
-    public async Task<IEnumerable<PaymentMethodModel>> GetPaymentMethods(int providerId, int transactionType)
+    public async Task<IEnumerable<PaymentMethodModel>> GetPaymentMethods(int custId, int providerId, int transactionType)
     {
-        var methods = await _repository.FetchAsync<PaymentMethodModel>(new GetPaymentMethodsCriteria(providerId, transactionType));
+        var methods = await _repository.FetchAsync<PaymentMethodModel>(new GetPaymentMethodsCriteria(custId, providerId, transactionType));
         return methods;
     }
 
