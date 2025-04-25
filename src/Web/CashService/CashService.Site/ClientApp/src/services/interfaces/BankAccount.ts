@@ -13,4 +13,5 @@ export interface BankAccount {
   depositMatchingMode: number;
   promptPay: boolean;
   mobile: string;
+  mobilePrefix: string;
 } 

@@ -27,6 +27,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments.Models
         public int DepositMatchingMode { get; set; }
         public bool PromptPay { get; set; }
         public string Mobile { get; set; } = string.Empty;
+        public string MobilePrefix { get; set; } = string.Empty;
         public string Creator { get; set; } = string.Empty;
         public int CreatorId { get; set; }
     }

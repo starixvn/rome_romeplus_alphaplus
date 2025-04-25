@@ -26,7 +26,7 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
         [SpParam(SqlParamName = "CustId")]
         public int Creator { get; }
 
-        [SpParam(SqlParamName = "Status")]
+        [SpParam(SqlParamName = "BankAccountStatus")]
         public int Status { get; }
 
         [SpParam(SqlParamName = "BankId")]
@@ -47,6 +47,10 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
         [SpParam(SqlParamName = "PromptPayMobile")]
         public string Mobile { get; }
 
+        [SpParam(Ignore = true, SqlParamName = "PromptPayMobilePrefix")]
+        public string MobilePrefix { get; }
+
+
         public int ErrCode { get; set; }
         public string ErrMsg { get; set; } = string.Empty;
 
@@ -59,7 +63,6 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
             Creator > 0 &&
             !string.IsNullOrWhiteSpace(AccountHolderName) &&
             !string.IsNullOrWhiteSpace(AccountNickname) &&
-            !string.IsNullOrWhiteSpace(TransactionTypeIDs) &&
-            DepositMatchingMode > 0;
+            !string.IsNullOrWhiteSpace(TransactionTypeIDs);
     }
 } 

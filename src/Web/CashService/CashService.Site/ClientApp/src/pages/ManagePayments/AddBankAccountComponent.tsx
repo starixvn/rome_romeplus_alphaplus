@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Bank } from '../../services/interfaces/Bank';
+import { MobilePrefix } from '../../services/interfaces/MobilePrefix';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import {
   hasDepositTransactionType,
@@ -9,6 +10,7 @@ import {
   hasWithdrawalTransactionType,
   hasManualWithdrawalTransactionType
 } from '../../utils/bankTransactionUtils';
+import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
 
 interface AddBankAccountComponentProps {
   onClose: () => void;
@@ -30,24 +32,66 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
   const [depositMatchingMode, setDepositMatchingMode] = useState<string>('1');
   const [promptPay, setPromptPay] = useState<boolean>(false);
   const [mobile, setMobile] = useState<string>('');
+  const [mobilePrefix, setMobilePrefix] = useState<string>('');
+  const [mobilePrefixes, setMobilePrefixes] = useState<MobilePrefix[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [banks, setBanks] = useState<Bank[]>([]);
+  
+  // Add state variables for selected transaction types
+  const [selectedManualDeposit, setSelectedManualDeposit] = useState<boolean>(false);
+  const [selectedAutoDeposit, setSelectedAutoDeposit] = useState<boolean>(false);
+  const [selectedManualWithdrawal, setSelectedManualWithdrawal] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchBanks = async () => {
       try {
         const fetchedBanks = await paymentProviderService.getBanksByTransactionType(0);
         setBanks(fetchedBanks);
+        
+        // Set first bank data if available
+        if (fetchedBanks.length > 0) {
+          const firstBank = fetchedBanks[0];
+          setSelectedBank(firstBank.id.toString());
+          
+          // Set transaction types based on first bank's capabilities
+          if (hasManualDepositTransactionType(firstBank.id.toString(), fetchedBanks)) {
+            setSelectedManualDeposit(true);
+          }
+          if (hasAutoDepositTransactionType(firstBank.id.toString(), fetchedBanks)) {
+            setSelectedAutoDeposit(true);
+          }
+          if (hasManualWithdrawalTransactionType(firstBank.id.toString(), fetchedBanks)) {
+            setSelectedManualWithdrawal(true);
+          }
+          
+          // Set deposit matching mode based on bank's capabilities
+          if (firstBank.depositMatchingMode >= 1) {
+            setDepositMatchingMode('1');
+          }
+        }
       } catch (err) {
         console.error('Error fetching banks:', err);
         setError(tManagePayments('failedToFetchBanks'));
       }
     };
 
+    const fetchMobilePrefixes = async () => {
+      try {
+        const prefixes = await paymentProviderService.getMobilePrefixes();
+        setMobilePrefixes(prefixes);
+        if (prefixes.length > 0) {
+          setMobilePrefix(prefixes[0].prefix);
+        }
+      } catch (err) {
+        console.error('Error fetching mobile prefixes:', err);
+      }
+    };
+
     fetchBanks();
+    fetchMobilePrefixes();
   }, [tManagePayments]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -57,6 +101,23 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
     setLoading(true);
 
     try {
+      // Combine selected transaction types into a comma-separated string
+      const selectedTransactionTypes: string[] = [];
+      
+      if (selectedManualDeposit) {
+        selectedTransactionTypes.push(BANK_TRANSACTION_TYPES[1].id.toString());
+      }
+      
+      if (selectedAutoDeposit) {
+        selectedTransactionTypes.push(BANK_TRANSACTION_TYPES[2].id.toString());
+      }
+      
+      if (selectedManualWithdrawal) {
+        selectedTransactionTypes.push(BANK_TRANSACTION_TYPES[3].id.toString());
+      }
+      
+      const transactionTypesString = selectedTransactionTypes.join(',');
+
       const result = await paymentProviderService.addBankAccount({
         id: 0, // Temporary ID for new bank account
         accountNickname,
@@ -64,11 +125,12 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
         accountNumber,
         bankId: parseInt(selectedBank),
         bankName: banks.find(b => b.id === parseInt(selectedBank))?.name || '',
-        transactionTypes: '',
+        transactionTypes: transactionTypesString,
         status: parseInt(status),
         depositMatchingMode: parseInt(depositMatchingMode),
         promptPay,
-        mobile,
+        mobile: mobile,
+        mobilePrefix: mobilePrefix,
         lastUpdated: new Date().toISOString(),
         lastUpdatedStr: new Date().toLocaleString()
       });
@@ -88,6 +150,19 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
     } finally {
       setLoading(false);
     }
+  };
+
+  // Toggle handlers for transaction type buttons
+  const toggleManualDeposit = () => {
+    setSelectedManualDeposit(!selectedManualDeposit);
+  };
+
+  const toggleAutoDeposit = () => {
+    setSelectedAutoDeposit(!selectedAutoDeposit);
+  };
+
+  const toggleManualWithdrawal = () => {
+    setSelectedManualWithdrawal(!selectedManualWithdrawal);
   };
 
   return (
@@ -125,14 +200,14 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     className={`btn ${status === '1' ? 'btn-success' : 'btn-outline-success'}`}
                     onClick={() => setStatus('1')}
                   >
-                    {tManagePayments('enable')}
+                    {tGlobal('enable')}
                   </button>
                   <button
                     type="button"
                     className={`btn ${status === '2' ? 'btn-danger' : 'btn-outline-danger'}`}
                     onClick={() => setStatus('2')}
                   >
-                    {tManagePayments('disable')}
+                    {tGlobal('disable')}
                   </button>
                 </div>
               </div>
@@ -163,8 +238,8 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     {hasManualDepositTransactionType(selectedBank, banks) && (
                       <button
                         type="button"
-                        className={`btn btn-slip-upload`}
-                        onClick={() => {}}
+                        className={`btn ${selectedManualDeposit ? 'btn-primary' : 'btn-slip-upload'}`}
+                        onClick={toggleManualDeposit}
                       >
                         {tManagePayments('slipUpload')}
                         <br />
@@ -174,8 +249,8 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     {hasAutoDepositTransactionType(selectedBank, banks) && (
                       <button
                         type="button"
-                        className={`btn btn-auto-deposit`}
-                        onClick={() => {}}
+                        className={`btn ${selectedAutoDeposit ? 'btn-primary' : 'btn-auto-deposit'}`}
+                        onClick={toggleAutoDeposit}
                       >
                         {tManagePayments('sms')}
                         <br />
@@ -193,8 +268,8 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     {hasManualWithdrawalTransactionType(selectedBank, banks) && (
                       <button
                         type="button"
-                        className={`btn btn-manual-withdrawal`}
-                        onClick={() => {}}
+                        className={`btn ${selectedManualWithdrawal ? 'btn-primary' : 'btn-manual-withdrawal'}`}
+                        onClick={toggleManualWithdrawal}
                       >
                         {tManagePayments('manualWithdrawal')}
                       </button>
@@ -285,13 +360,28 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
               
               <div className="mb-3">
                 <label className="form-label">{tManagePayments('mobile')}</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={mobile}
-                  onChange={(e) => setMobile(e.target.value)}
-                  required
-                />
+                <div className="input-group">
+                  <select
+                    className="form-select"
+                    value={mobilePrefix}
+                    onChange={(e) => setMobilePrefix(e.target.value)}
+                    style={{ maxWidth: '120px' }}
+                  >
+                    {mobilePrefixes.map((prefix) => (
+                      <option key={prefix.id} value={prefix.prefix}>
+                        {prefix.prefix}
+                      </option>
+                    ))}
+                  </select>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={mobile}
+                    onChange={(e) => setMobile(e.target.value)}
+                    placeholder={tManagePayments('enterMobileNumber')}
+                    required
+                  />
+                </div>
               </div>
             </div>
             <div className="modal-footer">

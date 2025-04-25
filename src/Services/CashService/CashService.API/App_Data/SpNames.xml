@@ -73,6 +73,7 @@
       </Setting>
       <Setting Key="Age_CashService_BankAccountAgent_Upd" SpName="Age_CashService_BankAccountAgent_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
       <Setting Key="Age_ManagementPayments_DelBankAccount" SpName="Age_ManagementPayments_DelBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+      <Setting Key="Age_ManagementPayments_SelMobilePrefixes" SpName="Age_ManagementPayments_SelMobilePrefixes" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     </Function>
 
     <Function Name="Cash Service">

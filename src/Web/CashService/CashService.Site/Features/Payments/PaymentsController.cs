@@ -227,5 +227,12 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             return Json(result);
         }
 
+        public async Task<IActionResult> GetMobilePrefixes(CancellationToken cancellationToken)
+        {
+            var url = $"{_apiBaseUrl}/payments/mobile-prefixes";
+            var prefixes = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
+            return Json(prefixes);
+        }
+
     }
 }
