@@ -8,6 +8,7 @@ import AddPaymentMethodModal from './AddPaymentMethodModal';
 import BanksPopupModal from './BanksPopupModal';
 import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
 import { paymentProviderService } from '../../services/paymentsAPI';
+import { formatNumber, formatInputValue } from '../../utils/numberFormatting';
 
 // Extend Window interface to include providerName
 declare global {
@@ -108,20 +109,24 @@ function PaymentProviderSettings() {
 
   // Handler for minimum amount change
   const handleMinAmountChange = (index: number, value: string) => {
+    const formattedValue = formatInputValue(value);
+    
     const updatedSettings = [...providerSettings];
     updatedSettings[index] = {
       ...updatedSettings[index],
-      minAmount: value
+      minAmount: formattedValue
     };
     setProviderSettings(updatedSettings);
   };
 
   // Handler for maximum amount change
   const handleMaxAmountChange = (index: number, value: string) => {
+    const formattedValue = formatInputValue(value);
+    
     const updatedSettings = [...providerSettings];
     updatedSettings[index] = {
       ...updatedSettings[index],
-      maxAmount: value
+      maxAmount: formattedValue
     };
     setProviderSettings(updatedSettings);
   };
@@ -300,21 +305,21 @@ function PaymentProviderSettings() {
                       <input 
                         type="text" 
                         className="form-control form-control-sm" 
-                        value={setting.minAmount.toLocaleString()} 
+                        value={formatNumber(setting.minAmount)} 
                         onChange={(e) => handleMinAmountChange(index, e.target.value)}
                         placeholder={tManagePayments('minimum')}
                       />
-                      <label className="form-label">{tManagePayments('minAmount')} {setting.minAmountTrans.toLocaleString()}</label>
+                      <label className="form-label">{tManagePayments('minAmount')} {formatNumber(setting.minAmountTrans)}</label>
                     </td>
                     <td>
                       <input 
                         type="text" 
                         className="form-control form-control-sm" 
-                        value={setting.maxAmount.toLocaleString()} 
+                        value={formatNumber(setting.maxAmount)} 
                         onChange={(e) => handleMaxAmountChange(index, e.target.value)}
                         placeholder={tManagePayments('maximum')}
                       />
-                      <label className="form-label">{tManagePayments('maxAmount')} {setting.maxAmountTrans.toLocaleString()}</label>
+                      <label className="form-label">{tManagePayments('maxAmount')} {formatNumber(setting.maxAmountTrans)}</label>
                     </td>
                     <td>
                       <div className="toggle-container">

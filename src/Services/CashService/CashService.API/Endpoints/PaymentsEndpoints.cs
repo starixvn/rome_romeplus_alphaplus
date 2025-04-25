@@ -108,6 +108,21 @@ public static class PaymentsEndpoints
             Description = "Returns a list of all payment methods"
         });
 
+        app.MapPut("/api/payments/update-provider", async (HttpRequest request, IPaymentsService service) =>
+        {
+            using var reader = new StreamReader(request.Body);
+            var body = await reader.ReadToEndAsync();
+            var provider = JsonConvert.DeserializeObject<ProviderModel>(body);
+            var result = await service.UpdateProvider(provider);
+            return Results.Ok(result);
+        })
+        .WithName("UpdateProvider")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Update payment provider",
+            Description = "Updates an existing payment provider's information"
+        });
+
         app.MapPost("/api/payments/add-payment-method", async (HttpRequest request, IPaymentsService service) =>
         {
             using var reader = new StreamReader(request.Body);
