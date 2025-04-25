@@ -23,10 +23,6 @@
         <Mapping DataField="PaymentMethodEnable" ObjectProperty="IsEnabled"></Mapping>
         <Mapping DataField="RequiresBank" ObjectProperty="BankRequired"></Mapping>
       </Setting>
-      <Setting Key="Age_CashService_PaymentMethods" SpName="Age_CashService_PaymentMethods_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
-        <Mapping DataField="PaymentMethodID" ObjectProperty="Id"></Mapping>
-        <Mapping DataField="MethodName" ObjectProperty="Name"></Mapping>
-      </Setting>
       <Setting Key="Age_CashService_PaymentProvider_Ins" SpName="Age_CashService_PaymentProvider_Ins" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
       <Setting Key="Age_CashService_BankList" SpName="Age_CashService_BankList" DbName="DBCust.CustDB.wsv_alp" Plain="0">
         <Mapping DataField="BankID" ObjectProperty="Id"></Mapping>
