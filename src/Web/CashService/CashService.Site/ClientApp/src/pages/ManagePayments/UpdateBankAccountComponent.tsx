@@ -74,6 +74,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
         depositMatchingMode: parseInt(depositMatchingMode),
         promptPay,
         mobile,
+        mobilePrefix: '',
         lastUpdated: new Date().toISOString(),
         lastUpdatedStr: new Date().toLocaleString()
       });
