@@ -46,7 +46,11 @@
         <Mapping DataField="BankID" ObjectProperty="Id"></Mapping>
         <Mapping DataField="BankName" ObjectProperty="Name"></Mapping>
       </Setting>
-      <Setting Key="Age_CashService_TransTypeControl" SpName="Age_CashService_TransTypeControl" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+      <Setting Key="Age_CashService_TransTypeControl" SpName="Age_CashService_TransTypeControl" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+        <Mapping DataField="TransactionTypeID" ObjectProperty="Id"></Mapping>
+        <Mapping DataField="TransTypeDesc" ObjectProperty="Name"></Mapping>
+      </Setting>
+
       <Setting Key="Age_CashService_BankAccountAgent_List" SpName="Age_CashService_BankAccountAgent_List_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
         <Mapping DataField="BankAccountAgentID" ObjectProperty="Id"></Mapping>
         <Mapping DataField="BankAccountNumber" ObjectProperty="AccountNumber"></Mapping>

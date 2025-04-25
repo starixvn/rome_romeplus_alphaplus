@@ -136,9 +136,9 @@ export const paymentProviderService = {
   },
 
   // Get transaction types for a specific bank
-  getTransactionTypes: async (bankId: number): Promise<TransactionType[]> => {
+  getTransactionTypes: async (): Promise<TransactionType[]> => {
     try {
-      const response = await api.get<TransactionType[]>(`GetTransactionTypes?bankId=${bankId}`, { method: 'GET' });
+      const response = await api.get<TransactionType[]>(`GetTransactionTypes`, { method: 'GET' });
       return response.data;
     } catch (error) {
       console.error('Error fetching transaction types:', error);

@@ -21,7 +21,7 @@ public interface IPaymentsService
     Task<IEnumerable<BankModel>> GetBanks(int transactionType);
     Task<ResultModel> UpdateProvider(ProviderModel provider);
     Task<IEnumerable<BankModel>> GetBanksByCust(int custId);
-    Task<IEnumerable<TransactionTypeModel>> GetTransactionTypes(int bankId);
+    Task<IEnumerable<TransactionTypeModel>> GetTransactionTypes();
     Task<IEnumerable<BankAccountModel>> GetBankAccounts(int custId, int bankId, int transactionType, int status, string searchText);
     Task<TransactionLimitModel> GetTransactionLimit(int custId);
     Task<ResultModel> SetTransactionLimit(int custId, TransactionLimitModel limit);
@@ -148,9 +148,9 @@ public class PaymentsService : IPaymentsService
         return banks;
     }
 
-    public async Task<IEnumerable<TransactionTypeModel>> GetTransactionTypes(int bankId)
+    public async Task<IEnumerable<TransactionTypeModel>> GetTransactionTypes()
     {
-        var transactionTypes = await _repository.FetchAsync<TransactionTypeModel>(new GetTransactionTypesCriteria(bankId));
+        var transactionTypes = await _repository.FetchAsync<TransactionTypeModel>(new GetTransactionTypesCriteria());
         return transactionTypes;
     }
 
@@ -170,8 +170,8 @@ public class PaymentsService : IPaymentsService
     {
         var (limits, count) = await _repository.FetchMultipleAsync<DailyLimitDTO, int>(new GetDailyLimitCriteria(custId, ModeViewConstants.BankAccount));
 
-        var depositLimit = limits.FirstOrDefault(l => l.IsDeposit);
-        var withdrawalLimit = limits.FirstOrDefault(l => !l.IsDeposit);
+        var depositLimit = limits.FirstOrDefault(l => l.IsDeposit) ?? new DailyLimitDTO();
+        var withdrawalLimit = limits.FirstOrDefault(l => !l.IsDeposit) ?? new DailyLimitDTO();
 
         return new TransactionLimitModel {
             DailyWithdrawalCount = count.FirstOrDefault(),
@@ -208,7 +208,6 @@ public class PaymentsService : IPaymentsService
     {
         var criteria = new GetBankAccountByIdCriteria(accountId);
         var accounts = await _repository.FetchAsync<BankAccountModel>(criteria);
-        Console.WriteLine(JsonSerializer.Serialize(accounts));
         return accounts.FirstOrDefault();
     }
 

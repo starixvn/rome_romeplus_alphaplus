@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Bank } from '../../services/interfaces/Bank';
 import type { BankAccount } from '../../services/interfaces/BankAccount';
@@ -27,11 +27,12 @@ const BankAccount: React.FC = () => {
   const [showUpdateBankAccountModal, setShowUpdateBankAccountModal] = useState(false);
   const [selectedBankAccount, setSelectedBankAccount] = useState<BankAccount | null>(null);
   const [transactionTypes, setTransactionTypes] = useState<any[]>([]);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
-  const fetchTransactionTypes = async (bankId: number) => {
+  const fetchTransactionTypes = async () => {
     try {
       setLoading(true);
-      const fetchedTransactionTypes = await paymentProviderService.getTransactionTypes(bankId);
+      const fetchedTransactionTypes = await paymentProviderService.getTransactionTypes();
       setTransactionTypes(fetchedTransactionTypes);
       setError(null);
     } catch (err) {
@@ -44,7 +45,6 @@ const BankAccount: React.FC = () => {
 
   const fetchBankAccounts = async () => {
     try {
-      setLoading(true);
       const fetchedBankAccounts = await paymentProviderService.getBankAccounts(
         parseInt(selectedBank) ,
         parseInt(selectedTransactionType),
@@ -53,11 +53,14 @@ const BankAccount: React.FC = () => {
       );
       setBankAccounts(fetchedBankAccounts);
       setError(null);
+      
+      // Set focus on the search input after loading
+      if (searchInputRef.current) {
+        searchInputRef.current.focus();
+      }
     } catch (err) {
       setError('Failed to load bank accounts. Please try again later.');
       console.error('Error fetching bank accounts:', err);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -69,6 +72,7 @@ const BankAccount: React.FC = () => {
         setBanks(fetchedBanks);
         setError(null);
 
+        // Call fetchBankAccounts without setting loading state
         fetchBankAccounts();
       } catch (err) {
         setError('Failed to load banks. Please try again later.');
@@ -78,7 +82,7 @@ const BankAccount: React.FC = () => {
       }
     };
 
-    fetchTransactionTypes(parseInt(selectedBank));
+    fetchTransactionTypes();
     fetchBanks();
   }, [selectedBank]);
 
@@ -161,12 +165,7 @@ const BankAccount: React.FC = () => {
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(event.target.value);
-  };
-
-  const handleSearchKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      setSearchText(searchInput);
-    }
+    setSearchText(event.target.value);
   };
 
   const getTransactionTypeNames = (types: string) => {
@@ -292,7 +291,7 @@ const BankAccount: React.FC = () => {
                       {transactionTypes.length && (
                         transactionTypes.map((type) => (
                           <option key={type.id} value={type.id}>
-                            {type.name}
+                            {tManagePayments(`transactionType-${type.id}`)}
                           </option>
                         ))
                       )}
@@ -311,7 +310,7 @@ const BankAccount: React.FC = () => {
                     >
                       {ENABLED_STATUS_OPTIONS.map((status) => (
                         <option key={status.id} value={status.id}>
-                          {status.name}
+                          {tManagePayments(`status-${status.id}`)}
                         </option>
                       ))}
                     </select>
@@ -328,7 +327,7 @@ const BankAccount: React.FC = () => {
                       placeholder={tManagePayments('searchAccountNumberOrName')}
                       value={searchInput}
                       onChange={handleSearchChange}
-                      onKeyDown={handleSearchKeyDown}
+                      ref={searchInputRef}
                     />
                   </div>
                 </div>

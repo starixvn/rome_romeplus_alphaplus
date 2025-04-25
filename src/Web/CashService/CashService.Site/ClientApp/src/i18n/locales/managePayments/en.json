@@ -99,5 +99,15 @@
   "enableDisable": "Enable/deposit provider",
   "enableDisableTip1": "Enable or deposit provider for your members.",
   "enableDisableTip2": "When the provider is under maintenance:",
-  "enableDisableTip3": "Deposits and withdrawals are unavailable, even when enabled."
+  "enableDisableTip3": "Deposits and withdrawals are unavailable, even when enabled.",
+
+
+  "status-0": "All",
+  "status-1": "Enable",
+  "status-2": "Disable",
+  "transactionType-0": "All",
+  "transactionType-1": "Manual Deposit",
+  "transactionType-2": "Auto Deposit",
+  "transactionType-3": "Manual Withdraw",
+  "transactionType-4": "Auto Withdraw"
 } 

@@ -165,9 +165,9 @@ public static class PaymentsEndpoints
             Description = "Returns a list of banks associated with a specific customer"
         });
         
-        app.MapGet("/api/payments/transaction-types/{bankId}", async (int bankId, IPaymentsService service) =>
+        app.MapGet("/api/payments/transaction-types", async (IPaymentsService service) =>
         {
-            var transactionTypes = await service.GetTransactionTypes(bankId);
+            var transactionTypes = await service.GetTransactionTypes();
             return Results.Ok(transactionTypes);
         })
         .WithName("GetTransactionTypes")

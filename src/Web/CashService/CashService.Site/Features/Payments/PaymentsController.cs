@@ -30,8 +30,8 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             _httpClient = httpClient;
             _userSession = userSession;
 
-           //  _custId = 1176086;
-           _custId = 187900621;
+           _custId = 1176086;
+           // _custId = 187900621;
         }
 
         public IActionResult Index()
@@ -144,9 +144,9 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             return Json(banks);
         }
 
-        public async Task<IActionResult> GetTransactionTypes(int bankId, CancellationToken cancellationToken)
+        public async Task<IActionResult> GetTransactionTypes(CancellationToken cancellationToken)
         {
-            var url = $"{_apiBaseUrl}/payments/transaction-types/{bankId}";
+            var url = $"{_apiBaseUrl}/payments/transaction-types";
             var transactionTypes = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
             return Json(transactionTypes);
         }
