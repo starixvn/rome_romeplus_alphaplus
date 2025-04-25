@@ -37,3 +37,16 @@
         }
     }
 }
+.table-striped{
+    width: 100%;
+    font-size: 12px;
+    thead{
+        box-shadow: 0 2px 5px #0003;
+    }
+    th,td{
+        border: 1px solid var(--table-border-color);
+        border-collapse: collapse;
+        height: 28px;
+        text-align: center;
+    }
+}

@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
 import { PaymentProviderFeeGroup } from '../../services/interfaces/PaymentProviderFeeGroup';
 import { paymentProviderService } from '../../services/paymentsAPI';
-import './PaymentGateway.css';
+import styles from './PaymentGateway.module.scss';
+import { IconClose } from '../../components/Icons';
 
 interface ProviderFeesPopupModalProps {
   provider: PaymentProvider;
@@ -33,11 +34,13 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
   }, [provider.id]);
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <div className="modal-header">
-          <h5 className="modal-title">{tManagePayments('feeDetails')} - {provider.name}</h5>
-          <button type="button" className="btn-close" onClick={onClose}></button>
+    <div className="bg-[#00000066] fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+      <div className="p-[30px] bg-[#ffffff] max-w-[600px] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
+        <div className="relative">
+          <h5 className="text-[16px] text-center text-[#163f78] font-bold leading-[21.6px] tracking-[0.2px] pb-[4px]">{tManagePayments('feeDetails')} - {provider.name}</h5>
+          <button type="button" className="absolute top-[-20px] right-[-20px] cursor-pointer" onClick={onClose}>
+            <IconClose />
+          </button>
         </div>
         <div className="modal-body">
           {isLoading ? (
@@ -48,20 +51,23 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
             </div>
           ) : (
             <>
-              <div className="form-group mb-3">
+              <div className="text-[12px] leading-[14px]">
                 <div>
-                  <label className="form-label">{provider.name} {tManagePayments('fees')}</label>
+                  <label className="font-semibold">{provider.name} {tManagePayments('fees')}</label>
                 </div>
                 <div>
                   <label className="form-label">{tManagePayments('howItWorks')}</label>
                 </div>
                 <p>{tManagePayments('feesInfo1')}</p>
-                <p>{tManagePayments('feesFormula')}</p>
-                <p>{tManagePayments('feesInfo2')}</p>
+          
+                <ul className='list-disc pl-[24px]'>
+                  <li>{tManagePayments('feesFormula')}</li>
+                </ul>
+                <p className='mb-[16px]'>{tManagePayments('feesInfo2')}</p>
               </div>
               
               <div className="form-group mb-3">
-                <table className="table table-striped">
+                <table className={styles['table-striped']}>
                   <thead>
                     <tr>
                       <th>{tManagePayments('transactionType')}</th>
@@ -97,8 +103,8 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
             </>
           )}
         </div>
-        <div className="modal-footer">
-          <button type="button" className="btn btn-secondary" onClick={onClose}>
+        <div className="flex justify-center">
+          <button type="button" className="w-[140px] capitalize font-bold h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px] border-[#163f78] mx-[4px] bg-[#163f78] hover:bg-[#375A8A] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]" onClick={onClose}>
             {tGlobal('close')}
           </button>
         </div>

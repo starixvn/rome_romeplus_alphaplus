@@ -126,7 +126,7 @@ export const IconPen: React.FC = () => (
   </svg>
 );
 export const IconInfo: React.FC = () => (
-  <svg className='w-[16px] h-[16px] ml-[4px] fill-[#163f78]' version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <svg className='w-[20px] h-[20px] ml-[4px] fill-[#163f78]' version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
     <path
       d="M14.667 12h2.667v-2.667h-2.667zM16 26.667c-5.88 0-10.667-4.787-10.667-10.667s4.787-10.667 10.667-10.667c5.88 0 10.667 4.787 10.667 10.667s-4.787 10.667-10.667 10.667zM16 2.667c-7.364 0-13.333 5.97-13.333 13.333s5.97 13.333 13.333 13.333c7.364 0 13.333-5.97 13.333-13.333s-5.97-13.333-13.333-13.333zM14.667 22.667h2.667v-8h-2.667v8z"
     ></path>
