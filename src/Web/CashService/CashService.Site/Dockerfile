@@ -47,7 +47,8 @@ RUN if [ "${TRANSFORM_CONFIG}" = "" ]; then \
 COPY --from=builder /client/dist /build/src/Web/CashService/CashService.Site/wwwroot
 
 WORKDIR /build/src/Web/CashService/CashService.Site
-RUN dotnet publish -c Release -o /app
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine-25h1 AS base
 
