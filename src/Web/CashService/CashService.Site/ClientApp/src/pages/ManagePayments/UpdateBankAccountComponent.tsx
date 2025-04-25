@@ -2,7 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Bank } from '../../services/interfaces/Bank';
 import { BankAccount } from '../../services/interfaces/BankAccount';
+import { MobilePrefix } from '../../services/interfaces/MobilePrefix';
 import { paymentProviderService } from '../../services/paymentsAPI';
+import {
+  hasDepositTransactionType,
+  hasManualDepositTransactionType,
+  hasAutoDepositTransactionType,
+  hasWithdrawalTransactionType,
+  hasManualWithdrawalTransactionType
+} from '../../utils/bankTransactionUtils';
+import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
 
 interface UpdateBankAccountComponentProps {
   onClose: () => void;
@@ -23,15 +32,22 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   const [accountNickname, setAccountNickname] = useState<string>(bankAccount.accountNickname);
   const [accountHolderName] = useState<string>(bankAccount.accountHolderName);
   const [accountNumber] = useState<string>(bankAccount.accountNumber);
-  const [selectedBank] = useState<string>(bankAccount.bankId.toString());
+  const [selectedBank, setSelectedBank] = useState<string>(bankAccount.bankId.toString());
   const [status, setStatus] = useState<string>(bankAccount.status.toString());
   const [depositMatchingMode, setDepositMatchingMode] = useState<string>(bankAccount.depositMatchingMode.toString());
   const [promptPay, setPromptPay] = useState<boolean>(bankAccount.promptPay);
-  const [mobile] = useState<string>(bankAccount.mobile);
+  const [mobile, setMobile] = useState<string>(bankAccount.mobile);
+  const [mobilePrefix, setMobilePrefix] = useState<string>(bankAccount.mobilePrefix || '');
+  const [mobilePrefixes, setMobilePrefixes] = useState<MobilePrefix[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+
+  // Add state variables for selected transaction types
+  const [selectedManualDeposit, setSelectedManualDeposit] = useState<boolean>(false);
+  const [selectedAutoDeposit, setSelectedAutoDeposit] = useState<boolean>(false);
+  const [selectedManualWithdrawal, setSelectedManualWithdrawal] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchBankAccount = async () => {
@@ -43,6 +59,13 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
           setStatus(fetchedBankAccount.status.toString());
           setDepositMatchingMode(fetchedBankAccount.depositMatchingMode.toString());
           setPromptPay(fetchedBankAccount.promptPay);
+          setSelectedBank(fetchedBankAccount.bankId.toString());
+          
+          // Set transaction types based on bank account's capabilities
+          const transactionTypes = fetchedBankAccount.transactionTypes.split(',');
+          setSelectedManualDeposit(transactionTypes.includes(BANK_TRANSACTION_TYPES[1].id.toString()));
+          setSelectedAutoDeposit(transactionTypes.includes(BANK_TRANSACTION_TYPES[2].id.toString()));
+          setSelectedManualWithdrawal(transactionTypes.includes(BANK_TRANSACTION_TYPES[3].id.toString()));
         }
       } catch (err) {
         setError(tManagePayments('failedToLoadBankAccount'));
@@ -52,7 +75,17 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
       }
     };
 
+    const fetchMobilePrefixes = async () => {
+      try {
+        const prefixes = await paymentProviderService.getMobilePrefixes();
+        setMobilePrefixes(prefixes);
+      } catch (err) {
+        console.error('Error fetching mobile prefixes:', err);
+      }
+    };
+
     fetchBankAccount();
+    fetchMobilePrefixes();
   }, [bankAccount.id, tManagePayments]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -62,6 +95,23 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
     setLoading(true);
 
     try {
+      // Combine selected transaction types into a comma-separated string
+      const selectedTransactionTypes: string[] = [];
+      
+      if (selectedManualDeposit) {
+        selectedTransactionTypes.push(BANK_TRANSACTION_TYPES[1].id.toString());
+      }
+      
+      if (selectedAutoDeposit) {
+        selectedTransactionTypes.push(BANK_TRANSACTION_TYPES[2].id.toString());
+      }
+      
+      if (selectedManualWithdrawal) {
+        selectedTransactionTypes.push(BANK_TRANSACTION_TYPES[3].id.toString());
+      }
+      
+      const transactionTypesString = selectedTransactionTypes.join(',');
+
       const result = await paymentProviderService.updateBankAccount({
         id: bankAccount.id,
         accountNickname,
@@ -69,12 +119,12 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
         accountNumber,
         bankId: parseInt(selectedBank),
         bankName: banks.find(b => b.id === parseInt(selectedBank))?.name || '',
-        transactionTypes: bankAccount.transactionTypes,
+        transactionTypes: transactionTypesString,
         status: parseInt(status),
         depositMatchingMode: parseInt(depositMatchingMode),
         promptPay,
         mobile,
-        mobilePrefix: '',
+        mobilePrefix,
         lastUpdated: new Date().toISOString(),
         lastUpdatedStr: new Date().toLocaleString()
       });
@@ -94,6 +144,19 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
     } finally {
       setLoading(false);
     }
+  };
+
+  // Toggle handlers for transaction type buttons
+  const toggleManualDeposit = () => {
+    setSelectedManualDeposit(!selectedManualDeposit);
+  };
+
+  const toggleAutoDeposit = () => {
+    setSelectedAutoDeposit(!selectedAutoDeposit);
+  };
+
+  const toggleManualWithdrawal = () => {
+    setSelectedManualWithdrawal(!selectedManualWithdrawal);
   };
 
   return (
@@ -131,14 +194,14 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                     className={`btn ${status === '1' ? 'btn-success' : 'btn-outline-success'}`}
                     onClick={() => setStatus('1')}
                   >
-                    {tManagePayments('active')}
+                    {tGlobal('enable')}
                   </button>
                   <button
                     type="button"
                     className={`btn ${status === '2' ? 'btn-danger' : 'btn-outline-danger'}`}
                     onClick={() => setStatus('2')}
                   >
-                    {tManagePayments('inactive')}
+                    {tGlobal('disable')}
                   </button>
                 </div>
               </div>
@@ -164,60 +227,79 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 </select>
               </div>
 
-              <div className="mb-3">
-                <label className="form-label">{tManagePayments('depositType')}</label>
-                <div className="btn-group" role="group">
-                  <button
-                    type="button"
-                    className={`btn `}
-                    onClick={() => {}}
-                  >
-                    {tManagePayments('slipUpload')}
-                  </button>
-                  <button
-                    type="button"
-                    className={`btn`}
-                    onClick={() => {}}
-                  >
-                    {tManagePayments('sms')}
-                    <br />
-                    {tManagePayments('autoDeposit')}
-                  </button>
+              {hasDepositTransactionType(selectedBank, banks) && (
+                <div className="mb-3">
+                  <label className="form-label">{tManagePayments('depositType')}</label>
+                  <div className="btn-group" role="group">
+                    {hasManualDepositTransactionType(selectedBank, banks) && (
+                      <button
+                        type="button"
+                        className={`btn ${selectedManualDeposit ? 'btn-primary' : 'btn-slip-upload'}`}
+                        onClick={toggleManualDeposit}
+                      >
+                        {tManagePayments('slipUpload')}
+                        <br />
+                        {tManagePayments('manualDeposit')}
+                      </button>
+                    )}
+                    {hasAutoDepositTransactionType(selectedBank, banks) && (
+                      <button
+                        type="button"
+                        className={`btn ${selectedAutoDeposit ? 'btn-primary' : 'btn-auto-deposit'}`}
+                        onClick={toggleAutoDeposit}
+                      >
+                        {tManagePayments('sms')}
+                        <br />
+                        {tManagePayments('autoDeposit')}
+                      </button>
+                    )}
+                  </div>
                 </div>
-              </div>
+              )}
 
-              <div className="mb-3">
-                <label className="form-label">{tManagePayments('withdrawalType')}</label>
-                <div className="btn-group" role="group">
-                  <button
-                    type="button"
-                    className={`btn`}
-                    onClick={() => {}}
-                  >
-                    {tManagePayments('manualWithdrawal')}
-                  </button>
+              {hasWithdrawalTransactionType(selectedBank, banks) && (
+                <div className="mb-3">
+                  <label className="form-label">{tManagePayments('withdrawalType')}</label>
+                  <div className="btn-group" role="group">
+                    {hasManualWithdrawalTransactionType(selectedBank, banks) && (
+                      <button
+                        type="button"
+                        className={`btn ${selectedManualWithdrawal ? 'btn-primary' : 'btn-manual-withdrawal'}`}
+                        onClick={toggleManualWithdrawal}
+                      >
+                        {tManagePayments('manualWithdrawal')}
+                      </button>
+                    )}
+                  </div>
                 </div>
-              </div>
+              )}
 
-              <div className="mb-3">
-                <label className="form-label">{tManagePayments('depositMatchingMode')}</label>
-                <div className="btn-group" role="group">
-                  <button
-                    type="button"
-                    className={`btn ${depositMatchingMode === '1' ? 'btn-primary' : 'btn-outline-primary'}`}
-                    onClick={() => setDepositMatchingMode('1')}
-                  >
-                    {tManagePayments('manualMatching')}
-                  </button>
-                  <button
-                    type="button"
-                    className={`btn ${depositMatchingMode === '2' ? 'btn-primary' : 'btn-outline-primary'}`}
-                    onClick={() => setDepositMatchingMode('2')}
-                  >
-                    {tManagePayments('autoMatching')}
-                  </button>
-                </div>
-              </div>
+              {(() => {
+                const selectedBankObj = banks.find(b => b.id === parseInt(selectedBank));
+                return selectedBank && selectedBankObj && selectedBankObj.depositMatchingMode >= 1 && (
+                  <div className="mb-3">
+                    <label className="form-label">{tManagePayments('depositMatchingMode')}</label>
+                    <div className="btn-group" role="group">
+                      <button
+                        type="button"
+                        className={`btn ${depositMatchingMode === '1' ? 'btn-primary' : 'btn-outline-primary'}`}
+                        onClick={() => setDepositMatchingMode('1')}
+                      >
+                        {tManagePayments('manualMatching')}
+                      </button>
+                      {selectedBankObj.depositMatchingMode >= 2 && (
+                        <button
+                          type="button"
+                          className={`btn ${depositMatchingMode === '2' ? 'btn-primary' : 'btn-outline-primary'}`}
+                          onClick={() => setDepositMatchingMode('2')}
+                        >
+                          {tManagePayments('autoMatching')}
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                );
+              })()}
 
               <div className="mb-3">
                 <label className="form-label">{tManagePayments('accountHolderName')}</label>
@@ -237,6 +319,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                   readOnly
                   required
                 />
+
                 <label className="text-muted">{tManagePayments('accountNickname')}</label>
                 <label className="text-muted">{tManagePayments('accountNicknameNote1')}</label>
                 <input
@@ -271,13 +354,28 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
               <div className="mb-3">
                 <label className="form-label">{tManagePayments('mobile')}</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={mobile}
-                  readOnly
-                  required
-                />
+                <div className="input-group">
+                  <select
+                    className="form-select"
+                    value={mobilePrefix}
+                    onChange={(e) => setMobilePrefix(e.target.value)}
+                    style={{ maxWidth: '120px' }}
+                  >
+                    {mobilePrefixes.map((prefix) => (
+                      <option key={prefix.id} value={prefix.prefix}>
+                        {prefix.prefix}
+                      </option>
+                    ))}
+                  </select>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={mobile}
+                    onChange={(e) => setMobile(e.target.value)}
+                    placeholder={tManagePayments('enterMobileNumber')}
+                    required
+                  />
+                </div>
               </div>
             </div>
             <div className="modal-footer">
