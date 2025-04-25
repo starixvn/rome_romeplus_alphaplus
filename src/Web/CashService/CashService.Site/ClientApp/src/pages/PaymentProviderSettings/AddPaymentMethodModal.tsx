@@ -31,10 +31,15 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
   React.useEffect(() => {
     const loadPaymentMethods = async () => {
       try {
-        const methods = await paymentProviderService.getPaymentMethods(providerId, parseInt(selectedTransactionType));
-        setPaymentMethods(methods);
-        // Check if all methods are inactive using STATUS_OPTIONS constant
-        setAllMethodsInactive(methods.length > 0 && methods.every(method => method.status === inactiveStatus));
+        if (selectedTransactionType) {
+          const methods = await paymentProviderService.getPaymentMethods(providerId, parseInt(selectedTransactionType));
+          setPaymentMethods(methods);
+          // Check if all methods are inactive using STATUS_OPTIONS constant
+          setAllMethodsInactive(methods.length > 0 && methods.every(method => method.status === inactiveStatus));
+        } else {
+          setPaymentMethods([]);
+          setAllMethodsInactive(false);
+        }
       } catch (err) {
         console.error('Failed to load payment methods:', err);
         setError(tGlobal('errorOccurred'));
@@ -42,7 +47,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
     };
 
     loadPaymentMethods();
-  }, [tGlobal]);
+  }, [tGlobal, selectedTransactionType, providerId]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

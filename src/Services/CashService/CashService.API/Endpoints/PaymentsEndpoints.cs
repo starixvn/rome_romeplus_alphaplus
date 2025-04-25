@@ -108,7 +108,7 @@ public static class PaymentsEndpoints
             Description = "Returns a list of all payment methods"
         });
 
-        app.MapPut("/api/payments/update-provider", async (HttpRequest request, IPaymentsService service) =>
+        app.MapPost("/api/payments/update-provider", async (HttpRequest request, IPaymentsService service) =>
         {
             using var reader = new StreamReader(request.Body);
             var body = await reader.ReadToEndAsync();

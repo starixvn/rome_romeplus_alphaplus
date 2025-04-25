@@ -94,5 +94,10 @@
   "linkMobile": "Link the mobile number registered with your bank account to enable PromptPay",
 
   "bankName": "Bank name",
-  "bankAccountDeletedSuccessfully": "Bank account deleted successfully"
+  "bankAccountDeletedSuccessfully": "Bank account deleted successfully",
+  
+  "enableDisable": "Enable/deposit provider",
+  "enableDisableTip1": "Enable or deposit provider for your members.",
+  "enableDisableTip2": "When the provider is under maintenance:",
+  "enableDisableTip3": "Deposits and withdrawals are unavailable, even when enabled."
 } 

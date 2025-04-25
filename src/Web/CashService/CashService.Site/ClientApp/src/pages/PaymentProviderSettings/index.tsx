@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { useTranslation } from 'react-i18next';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 import '../../i18n/i18n';
 import { STATUS_OPTIONS, TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import ProviderFeesPopupModal from '../ManagePayments/ProviderFeesPopupModal';
@@ -9,6 +11,7 @@ import BanksPopupModal from './BanksPopupModal';
 import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { formatNumber, formatInputValue } from '../../utils/numberFormatting';
+import { IconInfo } from '../../components/Icons';
 
 // Extend Window interface to include providerName
 declare global {
@@ -223,9 +226,29 @@ function PaymentProviderSettings() {
         <>
           <div className="form-group">
             <label className="form-label">{tManagePayments('setUpPaymentMethodsForMembers')}</label>
-            <label className="toggle-label" htmlFor='enableToggle'>
-              {tGlobal('enable')}/{tGlobal('disable')}
-            </label>
+            <div className="d-flex align-items-center">
+              <label className="toggle-label me-2" htmlFor='enableToggle'>
+                {tGlobal('enable')}/{tGlobal('disable')}
+              </label>
+              <Tippy
+                content={
+                  <div>
+                    <div>
+                      <i className="bi bi-info-circle fs-4 ico-info inline-elm"></i> 
+                      {tManagePayments('enableDisable')}
+                    </div>
+                    <div>• {tManagePayments('enableDisableTip1')}</div>
+                    <div>• {tManagePayments('enableDisableTip2')}</div>
+                    <div>• {tManagePayments('enableDisableTip3')}</div>
+                  </div>
+                }
+                placement="top"
+                theme="light"
+                arrow={true}
+              >
+                <span><IconInfo /></span>
+              </Tippy>
+            </div>
             <div className="settings-footer">
               <button className="btn btn-primary me-2" onClick={handleAddPaymentMethod}>{tManagePayments('addPaymentMethod')}</button>
             </div>
