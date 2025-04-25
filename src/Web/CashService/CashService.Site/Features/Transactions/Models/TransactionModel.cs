@@ -14,7 +14,9 @@ public record TransactionModel
     public string Status { get; set; }
     public string TransactionType { get; set; }
     public string ReferenceNumber { get; set; }
-    public DateTime DateTime { get; set; }
+    public decimal BetCredit { get; set; }
+    public DateTime CreatedDate { get; set; }
+    public DateTime? LastUpdatedDate { get; set; }
 }
 
 public record TransactionResponse

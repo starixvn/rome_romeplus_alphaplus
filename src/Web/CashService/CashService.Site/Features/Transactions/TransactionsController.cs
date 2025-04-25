@@ -1,11 +1,12 @@
 using AlphaPlus.CashService.Site.Features.Shared;
 using AlphaPlus.CashService.Site.Features.Shared.Models;
-using AlphaPlus.CashService.Site.Features.Transactions.Commands;
 using AlphaPlus.CashService.Site.Features.Transactions.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.CashService.Site.Features.Transactions;
+
+using Commands;
 
 public class TransactionsController(
     IMediator mediator,
@@ -76,7 +77,7 @@ public class TransactionsController(
 
         try
         {
-            var command = new RevertTransactionCommand(request.TransactionId);
+            var command = new RevertTransactionCommand(request.TransactionId, request.Remarks);
             var result = await mediator.Send(command);
 
             return Ok(result);

@@ -28,9 +28,10 @@ public class TransactionsController(ITransactionService transactionService)
     }
 
     [HttpPost("revert-pending")]
-    public async Task<ActionResult<TransactionModel>> UpdateStatus(int transactionId)
+    public async Task<ActionResult<TransactionModel>> UpdateStatus([FromBody] UpdateTransactionStatusRemarkCommand command)
     {
-        var transaction = await transactionService.UpdateTransactionStatus(transactionId, "Pending");
+        command.Status = "Pending";
+        var transaction = await transactionService.UpdateTransactionStatus(command);
         if (transaction == null)
             return NotFound();
 

@@ -3,4 +3,4 @@ using MediatR;
 
 namespace AlphaPlus.CashService.Site.Features.Transactions.Commands;
 
-public record RevertTransactionCommand(int TransactionId) : IRequest<ResultModel>;
+public record RevertTransactionCommand(int TransactionId, string Remarks) : IRequest<ResultModel>;

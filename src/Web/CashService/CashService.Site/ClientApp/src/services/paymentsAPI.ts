@@ -6,15 +6,15 @@ import { PaymentMethod } from './interfaces/PaymentMethod';
 import { Bank } from './interfaces/Bank';
 import { BankAccount } from './interfaces/BankAccount';
 import { PaymentTransactionLimit } from './interfaces/PaymentTransactionLimit';
-import { TransactionType } from './interfaces/TransactionType';
+import { TransactionType } from './interfaces/Transactions/TransactionType';
 
 // Create an axios instance with default config
 const api = axios.create({
-  baseURL: "",
+  baseURL: '',
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   },
-  withCredentials: true
+  withCredentials: true,
 });
 
 // API service for payment providers
@@ -29,7 +29,7 @@ export const paymentProviderService = {
       return [];
     }
   },
-  
+
   // Get daily withdrawal count for a customer
   getDailyWithdrawalCount: async (): Promise<number> => {
     try {
@@ -40,7 +40,7 @@ export const paymentProviderService = {
       throw error;
     }
   },
-  
+
   // Set daily withdrawal count for a customer
   setDailyWithdrawalCount: async (count: number): Promise<ResultModel> => {
     try {
@@ -51,27 +51,34 @@ export const paymentProviderService = {
       throw error;
     }
   },
-  
+
   // Get fees for a specific payment provider
   getProviderFees: async (): Promise<PaymentProviderFeeGroup[]> => {
     try {
-      const response = await api.get<PaymentProviderFeeGroup[]>(`GetProviderFees`, { method: 'GET' });
+      const response = await api.get<PaymentProviderFeeGroup[]>(`GetProviderFees`, {
+        method: 'GET',
+      });
       return response.data;
     } catch (error) {
       console.error(`Error fetching fees for provider`, error);
       return [];
     }
   },
-  
+
   // Get settings for a specific payment provider
-  getProviderSettings: async (providerId: number, method: number, status: number, transactionType: number): Promise<any> => {
+  getProviderSettings: async (
+    providerId: number,
+    method: number,
+    status: number,
+    transactionType: number
+  ): Promise<any> => {
     try {
       const params = new URLSearchParams();
       params.append('providerId', providerId.toString());
-      params.append('method', method.toString() );
+      params.append('method', method.toString());
       params.append('status', status.toString());
       params.append('transactionType', transactionType.toString());
-      
+
       const response = await api.get(`ProviderSettings?${params.toString()}`, { method: 'GET' });
       return response.data;
     } catch (error) {
@@ -79,7 +86,7 @@ export const paymentProviderService = {
       throw error;
     }
   },
-  
+
   // Get all payment methods
   getPaymentMethods: async (providerId: number, transactionType: number): Promise<PaymentMethod[]> => {
     try {
@@ -90,7 +97,7 @@ export const paymentProviderService = {
       return [];
     }
   },
-  
+
   // Add a new payment method
   addPaymentMethod: async (paymentMethod: PaymentMethod): Promise<ResultModel> => {
     try {
@@ -101,11 +108,14 @@ export const paymentProviderService = {
       throw error;
     }
   },
-  
+
   // Get all banks
   getBanksByTransactionType: async (transactionType: number): Promise<Bank[]> => {
     try {
-      const response = await api.get<Bank[]>(`GetBanksByTransactionType?transactionType=${transactionType}`, { method: 'GET' });
+      const response = await api.get<Bank[]>(
+        `GetBanksByTransactionType?transactionType=${transactionType}`,
+        { method: 'GET' }
+      );
       return response.data;
     } catch (error) {
       console.error('Error fetching banks:', error);
@@ -116,7 +126,7 @@ export const paymentProviderService = {
   // Update payment provider
   updateProvider: async (provider: any): Promise<ResultModel> => {
     try {
-      const response = await api.post(`UpdateProvider`, provider );
+      const response = await api.post(`UpdateProvider`, provider);
       return response.data;
     } catch (error) {
       console.error(`Error updating settings`, error);
@@ -138,20 +148,22 @@ export const paymentProviderService = {
   // Get transaction types for a specific bank
   getTransactionTypes: async (): Promise<TransactionType[]> => {
     try {
-      const response = await api.get<TransactionType[]>(`GetTransactionTypes`, { method: 'GET' });
+      const response = await api.get<TransactionType[]>(`GetTransactionTypes?bankId=${bankId}`, { method: 'GET' });
+        method: 'GET',
+      });
       return response.data;
     } catch (error) {
       console.error('Error fetching transaction types:', error);
       return [];
     }
   },
-  
+
   // Get bank accounts with optional filters
   getBankAccounts: async (
     bankId: number,
     transactionType: number,
     status: number,
-    searchText: string,
+    searchText: string
   ): Promise<BankAccount[]> => {
     try {
       const params = new URLSearchParams();
@@ -159,8 +171,10 @@ export const paymentProviderService = {
       params.append('transactionType', transactionType.toString());
       params.append('status', status.toString());
       params.append('searchText', searchText);
-      
-      const response = await api.get<BankAccount[]>(`GetBankAccounts?${params.toString()}`, { method: 'GET' });
+
+      const response = await api.get<BankAccount[]>(`GetBankAccounts?${params.toString()}`, {
+        method: 'GET',
+      });
       return response.data;
     } catch (error) {
       console.error('Error fetching bank accounts:', error);
@@ -189,7 +203,7 @@ export const paymentProviderService = {
       throw error;
     }
   },
-  
+
   // Add a new bank account
   addBankAccount: async (bankAccount: BankAccount): Promise<ResultModel> => {
     try {
@@ -204,14 +218,16 @@ export const paymentProviderService = {
   // Get a bank account by ID
   getBankAccountById: async (bankAccountId: number): Promise<BankAccount> => {
     try {
-      const response = await api.get<BankAccount>(`GetBankAccountById?bankAccountId=${bankAccountId}`);
+      const response = await api.get<BankAccount>(
+        `GetBankAccountById?bankAccountId=${bankAccountId}`
+      );
       return response.data;
     } catch (error) {
       console.error(`Error fetching bank account ${bankAccountId}:`, error);
       throw error;
     }
   },
-  
+
   // Update an existing bank account
   updateBankAccount: async (bankAccount: BankAccount): Promise<ResultModel> => {
     try {
@@ -222,7 +238,7 @@ export const paymentProviderService = {
       throw error;
     }
   },
-  
+
   // Delete a bank account
   deleteBankAccount: async (bankAccountId: number): Promise<ResultModel> => {
     try {
@@ -235,4 +251,4 @@ export const paymentProviderService = {
   },
 };
 
-export default api; 
+export default api;

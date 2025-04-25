@@ -34,6 +34,10 @@ import pendingDepositZhTW from './locales/pendingDeposit/zh-TW.json';
 import pendingDepositJa from './locales/pendingDeposit/ja.json';
 import pendingDepositKo from './locales/pendingDeposit/ko.json';
 
+// Import transactionHistory translations
+import enTransactionHistory from './locales/transactionHistory/en.json';
+import zhTWTransactionHistory from './locales/transactionHistory/zh-TW.json';
+
 // Configure i18next
 i18n
   // Detect user language
@@ -47,50 +51,52 @@ i18n
         global: globalEn,
         managePayments: managePaymentsEn,
         memberSite: memberSiteEn,
-        pendingDeposit: pendingDepositEn
+        pendingDeposit: pendingDepositEn,
+        transactionHistory: enTransactionHistory,
       },
       vi: {
         global: globalVi,
         managePayments: managePaymentsVi,
         memberSite: memberSiteVi,
-        pendingDeposit: pendingDepositVi
+        pendingDeposit: pendingDepositVi,
       },
       'zh-CN': {
         global: globalZhCN,
         managePayments: managePaymentsZhCN,
         memberSite: memberSiteZhCN,
-        pendingDeposit: pendingDepositZhCN
+        pendingDeposit: pendingDepositZhCN,
       },
       'zh-TW': {
         global: globalZhTW,
         managePayments: managePaymentsZhTW,
         memberSite: memberSiteZhTW,
-        pendingDeposit: pendingDepositZhTW
+        pendingDeposit: pendingDepositZhTW,
+        transactionHistory: zhTWTransactionHistory,
       },
       ja: {
         global: globalJa,
         managePayments: managePaymentsJa,
         memberSite: memberSiteJa,
-        pendingDeposit: pendingDepositJa
+        pendingDeposit: pendingDepositJa,
       },
       ko: {
         global: globalKo,
         managePayments: managePaymentsKo,
         memberSite: memberSiteKo,
-        pendingDeposit: pendingDepositKo
+        pendingDeposit: pendingDepositKo,
       },
     },
     fallbackLng: 'en',
     debug: process.env.NODE_ENV === 'development',
-    
+
     interpolation: {
       escapeValue: false, // React already escapes values
     },
-    
+
     detection: {
       order: ['localStorage', 'navigator'],
       caches: ['localStorage'],
     },
   });
 
-export default i18n; 
+export default i18n;

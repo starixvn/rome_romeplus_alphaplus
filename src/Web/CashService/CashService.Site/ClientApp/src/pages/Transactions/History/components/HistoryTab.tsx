@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import '../../../../i18n/i18n';
 
 interface HistoryTabProps {
   activeTab: 'deposit' | 'withdrawal';
@@ -7,11 +8,11 @@ interface HistoryTabProps {
 }
 
 const HistoryTab: React.FC<HistoryTabProps> = ({ activeTab, onTabChange }) => {
-  const { t } = useTranslation('transactions');
+  const { t } = useTranslation('transactionHistory');
 
   const getButtonClass = (tab: 'deposit' | 'withdrawal') => {
     const baseClass =
-      'px-6 py-2 text-sm font-medium transition-colors duration-200 focus:outline-none rounded-md';
+      'px-6 py-2 text-sm font-medium transition-colors duration-200 focus:outline-none rounded-md cursor-pointer';
     if (tab === activeTab) {
       return `${baseClass} bg-blue-600 text-white hover:bg-blue-700`;
     }

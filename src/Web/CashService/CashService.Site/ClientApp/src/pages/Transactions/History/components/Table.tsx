@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import TransactionDetail from './TransactionDetail';
-import { TransactionItem } from '../../../../services/interfaces/TransactionHistory';
+import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { NoRecordsIcon } from '../../../../components/Icons';
+import { useTranslation } from 'react-i18next';
+import '../../../../i18n/i18n';
 
 interface TableProps {
   items: TransactionItem[];
@@ -9,104 +11,29 @@ interface TableProps {
   onRefreshNeeded?: () => void;
 }
 
-const formatDateTime = (dateTimeStr: string): string => {
-  const date = new Date(dateTimeStr);
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const day = date.getDate().toString().padStart(2, '0');
-  const year = date.getFullYear();
+const formatDateTime = (dateTimeStr: string): { date: string; time: string } => {
+  const dateObj = new Date(dateTimeStr);
+  const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+  const day = dateObj.getDate().toString().padStart(2, '0');
+  const year = dateObj.getFullYear();
 
-  let hours = date.getHours();
-  const minutes = date.getMinutes().toString().padStart(2, '0');
-  const seconds = date.getSeconds().toString().padStart(2, '0');
+  let hours = dateObj.getHours();
+  const minutes = dateObj.getMinutes().toString().padStart(2, '0');
+  const seconds = dateObj.getSeconds().toString().padStart(2, '0');
   const ampm = hours >= 12 ? 'PM' : 'AM';
 
   hours = hours % 12;
   hours = hours ? hours : 12; // the hour '0' should be '12'
+  const hoursStr = hours.toString().padStart(2, '0');
 
-  return `${month}/${day}/${year} ${hours}:${minutes}:${seconds} ${ampm}`;
+  return {
+    date: `${month}/${day}/${year}`,
+    time: `${hoursStr}:${minutes}:${seconds} ${ampm}`,
+  };
 };
 
-const buildHeader = () => (
-  <thead>
-    <tr>
-      <th
-        scope="col"
-        className="px-1 py-0.5 text-center text-sm font-semibold text-gray-800 border border-gray-300"
-      >
-        #
-      </th>
-      <th
-        scope="col"
-        className="px-1 py-0.5 text-center text-sm font-semibold text-gray-800 border border-gray-300"
-      >
-        Username
-      </th>
-      <th
-        scope="col"
-        className="px-1 py-0.5 text-center text-sm font-semibold text-gray-800 border border-gray-300"
-      >
-        <div>First Name</div>
-        <div>Last Name</div>
-      </th>
-      <th
-        scope="col"
-        className="px-1 py-0.5 text-center text-sm font-semibold text-gray-800 border border-gray-300"
-      >
-        Amount
-      </th>
-      <th
-        scope="col"
-        className="px-1 py-0.5 text-center text-sm font-semibold text-gray-800 border border-gray-300"
-      >
-        Currency
-      </th>
-      <th
-        scope="col"
-        className="px-1 py-0.5 text-center text-sm font-semibold text-gray-800 border border-gray-300"
-      >
-        From
-      </th>
-      <th
-        scope="col"
-        className="px-1 py-0.5 text-center text-sm font-semibold text-gray-800 border border-gray-300"
-      >
-        To
-      </th>
-      <th
-        scope="col"
-        className="px-1 py-0.5 text-center text-sm font-semibold text-gray-800 border border-gray-300"
-      >
-        Status
-      </th>
-      <th
-        scope="col"
-        className="px-1 py-0.5 text-center text-sm font-semibold text-gray-800 border border-gray-300"
-      >
-        Transaction type
-      </th>
-      <th
-        scope="col"
-        className="px-1 py-0.5 text-center text-sm font-semibold text-gray-800 border border-gray-300"
-      >
-        Reference No.
-      </th>
-      <th
-        scope="col"
-        className="px-1 py-0.5 text-center text-sm font-semibold text-gray-800 border border-gray-300"
-      >
-        Date and Time
-      </th>
-      <th
-        scope="col"
-        className="px-1 py-0.5 text-center text-sm font-semibold text-gray-800 border border-gray-300"
-      >
-        Action
-      </th>
-    </tr>
-  </thead>
-);
-
 const Table: React.FC<TableProps> = ({ items, isLoading, onRefreshNeeded }) => {
+  const { t } = useTranslation('transactionHistory');
   const [selectedTransactionId, setSelectedTransactionId] = useState<number | null>(null);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
 
@@ -125,45 +52,169 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onRefreshNeeded }) => {
     onRefreshNeeded?.();
   };
 
+  const getStatusStyle = (status: string) => {
+    switch (status.toUpperCase()) {
+      case 'COMPLETED':
+        return 'bg-[#DCFCE7] text-[#166534]';
+      case 'EXPIRED':
+        return 'bg-[#F3F4F6] text-[#374151]';
+      case 'REJECTED':
+      case 'PROVIDER_REJECTED':
+        return 'bg-[#FEE2E2] text-[#991B1B]';
+      default:
+        return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  const buildHeader = () => (
+    <thead>
+      <tr>
+        <th
+          scope="col"
+          className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50 text-center"
+        >
+          {t('table.no')}
+        </th>
+        <th
+          scope="col"
+          className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
+        >
+          {t('table.username')}
+        </th>
+        <th
+          scope="col"
+          className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
+        >
+          {t('table.name')}
+        </th>
+        <th
+          scope="col"
+          className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
+        >
+          {t('table.amount')}
+        </th>
+        <th
+          scope="col"
+          className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
+        >
+          {t('table.currency')}
+        </th>
+        <th
+          scope="col"
+          className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
+        >
+          {t('table.from')}
+        </th>
+        <th
+          scope="col"
+          className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
+        >
+          {t('table.to')}
+        </th>
+        <th
+          scope="col"
+          className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
+        >
+          {t('table.status')}
+        </th>
+        <th
+          scope="col"
+          className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
+        >
+          {t('table.type')}
+        </th>
+        <th
+          scope="col"
+          className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
+        >
+          {t('table.referenceNo')}
+        </th>
+        <th
+          scope="col"
+          className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
+        >
+          {t('table.dateAndTime')}
+        </th>
+        <th
+          scope="col"
+          className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
+        >
+          {t('table.actions')}
+        </th>
+      </tr>
+    </thead>
+  );
+
   const buildRow = (item: TransactionItem, index: number) => (
-    <tr key={item.transactionId}>
-      <td className="px-1 py-0.5 text-sm text-gray-600 border border-gray-300 text-center">
+    <tr key={item.transactionId} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+      <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
         {index + 1}
       </td>
-      <td className="px-1 py-0.5 text-sm text-gray-600 border border-gray-300 text-center">
-        {item.username}
-      </td>
-      <td className="px-1 py-0.5 text-sm text-gray-600 border border-gray-300 text-left">
+      <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.username}</td>
+      <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">
         <div>{item.firstName}</div>
         <div>{item.lastName}</div>
       </td>
-      <td className="px-1 py-0.5 text-sm text-gray-600 border border-gray-300 text-center">
+      <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-right">
         {item.amount.toFixed(2)}
       </td>
-      <td className="px-1 py-0.5 text-sm text-gray-600 border border-gray-300 text-center">
+      <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
         {item.currency}
       </td>
-      <td className="px-1 py-0.5 text-sm text-gray-600 border border-gray-300 text-center">
-        {item.from}
+      <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">
+        <div className="flex items-center">
+          {item.from ? (
+            <>
+              <img src="/icons/wallet.svg" alt="wallet" className="w-4 h-4 mr-2" />
+              {item.from}
+            </>
+          ) : (
+            '-'
+          )}
+        </div>
       </td>
-      <td className="px-1 py-0.5 text-sm text-gray-600 border border-gray-300 text-center">
-        {item.to}
+      <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">
+        <div className="flex items-center">
+          {item.to === 'U2Pay' ? (
+            <>
+              <img src="/icons/u2pay.svg" alt="u2pay" className="w-4 h-4 mr-2" />
+              {item.to}
+            </>
+          ) : (
+            <>
+              <img src="/icons/wallet.svg" alt="wallet" className="w-4 h-4 mr-2" />
+              {item.to}
+            </>
+          )}
+        </div>
       </td>
-      <td className="px-1 py-0.5 text-sm border border-gray-300 text-center">
-        <span className={`status-badge ${item.status.toLowerCase()}`}>{item.status}</span>
+      <td className="px-4 py-0.5 text-sm border border-gray-300 text-center">
+        <span
+          className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusStyle(item.status)}`}
+        >
+          {item.status.toUpperCase()}
+        </span>
       </td>
-      <td className="px-1 py-0.5 text-sm text-gray-600 border border-gray-300 text-center">
+      <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
         {item.transactionType}
       </td>
-      <td className="px-1 py-0.5 text-sm text-gray-600 border border-gray-300 text-center">
+      <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
         {item.referenceNumber}
       </td>
-      <td className="px-1 py-0.5 text-sm text-gray-600 border border-gray-300 text-center">
-        {formatDateTime(item.dateTime)}
+      <td className="px-2 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
+        <div>{formatDateTime(item.createdDate).date}</div>
+        <div>{formatDateTime(item.createdDate).time}</div>
       </td>
-      <td className="px-1 py-0.5 text-sm text-gray-600 border border-gray-300 text-center">
-        <button className="action-button" onClick={() => handleViewTransaction(item.transactionId)}>
-          View
+      <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
+        <button
+          onClick={() => handleViewTransaction(item.transactionId)}
+          className={`text-white px-3 py-1 rounded text-xs font-medium cursor-pointer ${
+            item.status === 'EXPIRED'
+              ? 'bg-gray-500 hover:bg-gray-600'
+              : 'bg-blue-600 hover:bg-blue-700'
+          }`}
+        >
+          {item.status === 'EXPIRED' ? t('table.verify') : t('table.view')}
         </button>
       </td>
     </tr>
@@ -174,7 +225,7 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onRefreshNeeded }) => {
       <td colSpan={12} className="border border-gray-300">
         <div className="flex flex-col items-center justify-center py-16">
           <NoRecordsIcon className="mb-4 text-gray-400" />
-          <p className="text-gray-500 text-sm">No records found</p>
+          <p className="text-gray-500 text-sm">{t('table.noRecords')}</p>
         </div>
       </td>
     </tr>
@@ -194,7 +245,7 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onRefreshNeeded }) => {
 
   return (
     <>
-      <div className="transaction-history overflow-x-auto">
+      <div className="overflow-x-auto">
         <table className="min-w-full border-collapse border border-gray-300">
           {buildHeader()}
           {buildBody()}

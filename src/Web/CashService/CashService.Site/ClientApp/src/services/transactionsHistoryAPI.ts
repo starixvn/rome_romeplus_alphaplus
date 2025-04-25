@@ -3,7 +3,8 @@ import {
   TransactionItem,
   TransactionsHistoryResponse,
   TransactionsHistoryParams,
-} from './interfaces/TransactionHistory';
+} from './interfaces/Transactions/TransactionHistory';
+import { ResultModel } from './interfaces/ResultModel';
 
 const api = axios.create({
   baseURL: '',
@@ -58,9 +59,16 @@ export const getTransactionDetail = async (transactionId: number): Promise<Trans
 /**
  * Reverts a transaction to pending status.
  */
-export const revertTransaction = async (transactionId: number): Promise<void> => {
+export const revertTransaction = async (
+  transactionId: number,
+  remarks: string
+): Promise<ResultModel> => {
   try {
-    await api.post('RevertTransactionToPending', { transactionId: transactionId });
+    const response = await api.post<ResultModel>('RevertTransactionToPending', {
+      transactionId: transactionId,
+      remarks: remarks,
+    });
+    return response.data;
   } catch (error) {
     console.error(`Error reverting transaction for ID ${transactionId}:`, error);
     throw error;

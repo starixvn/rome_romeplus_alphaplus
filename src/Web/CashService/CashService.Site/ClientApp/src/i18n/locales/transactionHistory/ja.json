@@ -1,0 +1,82 @@
+{
+  "transactionHistory": "取引履歴",
+  "deposit": "入金",
+  "withdrawal": "出金",
+
+  "filter": {
+    "recentTransactions": "最近の取引",
+    "all": "すべて",
+    "today": "今日",
+    "yesterday": "昨日",
+    "last7Days": "過去7日間",
+    "to": "まで",
+    "from": "送信元",
+    "selectAccount": "アカウントを選択",
+    "allColumns": "すべての列 (9)",
+    "column": "列",
+    "search": "検索",
+    "usernamePlaceholder": "ユーザー名/参照番号",
+    "status": "ステータス",
+    "transactionType": "取引タイプ",
+    "dateRange": "日付範囲"
+  },
+
+  "table": {
+    "no": "番号",
+    "username": "ユーザー名",
+    "name": "氏名",
+    "amount": "金額",
+    "currency": "通貨",
+    "from": "送信元",
+    "to": "送信先",
+    "status": "ステータス",
+    "type": "タイプ",
+    "referenceNo": "参照番号",
+    "dateAndTime": "日時",
+    "actions": "操作",
+    "view": "表示",
+    "loading": "取引を読み込み中...",
+    "noRecords": "レコードが見つかりません"
+  },
+
+  "detail": {
+    "title": "取引詳細",
+    "username": "ユーザー名",
+    "loginName": "ログイン名",
+    "fullName": "氏名",
+    "betCredit": "ベットクレジット",
+    "from": "送信元",
+    "to": "送信先",
+    "dateAndTime": "日時",
+    "transactionType": "取引タイプ",
+    "operatedBy": "操作者",
+    "processedOn": "処理日時",
+    "amount": "取引金額",
+    "remarks": "備考",
+    "remarksPlaceholder": "備考を追加...",
+    "close": "閉じる",
+    "revertToPending": "保留に戻す",
+    "loading": "取引詳細を読み込み中...",
+    "noDetails": "利用可能な取引詳細はありません。",
+    "error": "取引詳細の読み込みに失敗しました"
+  },
+
+  "status": {
+    "completed": "完了",
+    "rejected": "拒否",
+    "providerRejected": "プロバイダー拒否",
+    "expired": "期限切れ"
+  },
+
+  "errorMessages": {
+    "requiredField": "このフィールドは必須です",
+    "invalidAmount": "有効な金額を入力してください",
+    "amountTooSmall": "金額は0より大きい必要があります",
+    "failedToLoad": "取引履歴の読み込みに失敗しました",
+    "failedToRevert": "取引の復元に失敗しました"
+  },
+
+  "successMessages": {
+    "reverted": "取引が正常に保留状態に戻されました！"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "transactionHistory": "거래 내역",
+  "deposit": "입금",
+  "withdrawal": "출금",
+
+  "filter": {
+    "recentTransactions": "최근 거래",
+    "all": "전체",
+    "today": "오늘",
+    "yesterday": "어제",
+    "last7Days": "지난 7일",
+    "to": "수신",
+    "from": "발신",
+    "selectAccount": "계정 선택",
+    "allColumns": "모든 열 (9)",
+    "column": "열",
+    "search": "검색",
+    "usernamePlaceholder": "사용자 이름/참조 번호",
+    "status": "상태",
+    "transactionType": "거래 유형",
+    "dateRange": "날짜 범위"
+  },
+
+  "table": {
+    "no": "번호",
+    "username": "사용자 이름",
+    "name": "이름",
+    "amount": "금액",
+    "currency": "통화",
+    "from": "발신",
+    "to": "수신",
+    "status": "상태",
+    "type": "유형",
+    "referenceNo": "참조 번호",
+    "dateAndTime": "날짜 및 시간",
+    "actions": "작업",
+    "view": "보기",
+    "loading": "거래 로딩 중...",
+    "noRecords": "기록을 찾을 수 없습니다"
+  },
+
+  "detail": {
+    "title": "거래 상세",
+    "username": "사용자 이름",
+    "loginName": "로그인 이름",
+    "fullName": "이름",
+    "betCredit": "베팅 크레딧",
+    "from": "발신",
+    "to": "수신",
+    "dateAndTime": "날짜 및 시간",
+    "transactionType": "거래 유형",
+    "operatedBy": "작업자",
+    "processedOn": "처리 시간",
+    "amount": "거래 금액",
+    "remarks": "비고",
+    "remarksPlaceholder": "비고 추가...",
+    "close": "닫기",
+    "revertToPending": "대기 상태로 되돌리기",
+    "loading": "거래 상세 로딩 중...",
+    "noDetails": "사용 가능한 거래 상세가 없습니다.",
+    "error": "거래 상세 로딩 실패"
+  },
+
+  "status": {
+    "completed": "완료",
+    "rejected": "거부",
+    "providerRejected": "공급자 거부",
+    "expired": "만료"
+  },
+
+  "errorMessages": {
+    "requiredField": "이 필드는 필수입니다",
+    "invalidAmount": "유효한 금액을 입력하세요",
+    "amountTooSmall": "금액은 0보다 커야 합니다",
+    "failedToLoad": "거래 내역 로딩 실패",
+    "failedToRevert": "거래 되돌리기 실패"
+  },
+
+  "successMessages": {
+    "reverted": "거래가 성공적으로 대기 상태로 되돌려졌습니다!"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "transactionHistory": "Lịch sử giao dịch",
+  "deposit": "Nạp tiền",
+  "withdrawal": "Rút tiền",
+
+  "filter": {
+    "recentTransactions": "Giao dịch gần đây",
+    "all": "Tất cả",
+    "today": "Hôm nay",
+    "yesterday": "Hôm qua",
+    "last7Days": "7 ngày qua",
+    "to": "Đến",
+    "from": "Từ",
+    "selectAccount": "Chọn tài khoản",
+    "allColumns": "Tất cả các cột (9)",
+    "column": "Cột",
+    "search": "Tìm kiếm",
+    "usernamePlaceholder": "Tên đăng nhập/Số tham chiếu",
+    "status": "Trạng thái",
+    "transactionType": "Loại giao dịch",
+    "dateRange": "Khoảng thời gian"
+  },
+
+  "table": {
+    "no": "STT",
+    "username": "Tên đăng nhập",
+    "name": "Họ tên",
+    "amount": "Số tiền",
+    "currency": "Tiền tệ",
+    "from": "Từ",
+    "to": "Đến",
+    "status": "Trạng thái",
+    "type": "Loại",
+    "referenceNo": "Số tham chiếu",
+    "dateAndTime": "Ngày giờ",
+    "actions": "Thao tác",
+    "view": "Xem",
+    "loading": "Đang tải giao dịch...",
+    "noRecords": "Không tìm thấy dữ liệu"
+  },
+
+  "detail": {
+    "title": "Chi tiết giao dịch",
+    "username": "Tên đăng nhập",
+    "loginName": "Tên đăng nhập",
+    "fullName": "Họ và tên",
+    "betCredit": "Tiền cược",
+    "from": "Từ",
+    "to": "Đến",
+    "dateAndTime": "Ngày giờ",
+    "transactionType": "Loại giao dịch",
+    "operatedBy": "Người thực hiện",
+    "processedOn": "Thời gian xử lý",
+    "amount": "Số tiền giao dịch",
+    "remarks": "Ghi chú",
+    "remarksPlaceholder": "Thêm ghi chú...",
+    "close": "Đóng",
+    "revertToPending": "Hoàn trả về chờ xử lý",
+    "loading": "Đang tải chi tiết giao dịch...",
+    "noDetails": "Không có thông tin chi tiết giao dịch.",
+    "error": "Không thể tải chi tiết giao dịch."
+  },
+
+  "status": {
+    "completed": "Hoàn thành",
+    "rejected": "Từ chối",
+    "providerRejected": "Nhà cung cấp từ chối",
+    "expired": "Hết hạn"
+  },
+
+  "errorMessages": {
+    "requiredField": "Trường này là bắt buộc",
+    "invalidAmount": "Vui lòng nhập số tiền hợp lệ",
+    "amountTooSmall": "Số tiền phải lớn hơn 0",
+    "failedToLoad": "Không thể tải lịch sử giao dịch",
+    "failedToRevert": "Không thể hoàn trả giao dịch"
+  },
+
+  "successMessages": {
+    "reverted": "Hoàn trả giao dịch về trạng thái chờ xử lý thành công!"
+  }
+}

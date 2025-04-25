@@ -4,8 +4,8 @@ import {
   TransactionItem,
   TransactionsHistoryResponse,
   TransactionsHistoryParams,
-} from '../../../../services/interfaces/TransactionHistory';
-import Filters from './Filters';
+} from '../../../../services/interfaces/Transactions/TransactionHistory';
+import Filters from './Filters/Filters';
 import Search from './Search';
 import Table from './Table';
 
@@ -20,15 +20,17 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     items: [],
     totalCount: 0,
   });
-  const [apiParams, setApiParams] = useState<Omit<TransactionsHistoryParams, 'searchText'>>(() => ({
+  const [apiParams, setApiParams] = useState<
+    Omit<TransactionsHistoryParams, 'searchText' | 'column'>
+  >(() => ({
     dateRange: ['04/10/2025', '04/16/2025'],
     status: 'All',
-    column: 'All Columns (9)',
     account: '',
     page: 1,
     pageSize: 1000,
     transactionType: transactionType,
   }));
+  const [columnFilter, setColumnFilter] = useState<string>('All');
   const [refreshTrigger, setRefreshTrigger] = useState(0);
   const [localSearchText, setLocalSearchText] = useState('');
   const [displayedItems, setDisplayedItems] = useState<TransactionItem[]>([]);
@@ -48,6 +50,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         const paramsForApi: TransactionsHistoryParams = {
           ...apiParams,
           searchText: '',
+          column: columnFilter,
         };
         const response = await getTransactions(paramsForApi);
         setApiData(response);
@@ -62,7 +65,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     };
 
     fetchData();
-  }, [apiParams, refreshTrigger]);
+  }, [apiParams, columnFilter, refreshTrigger]);
 
   useEffect(() => {
     if (!localSearchText) {
@@ -87,7 +90,8 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
   };
 
   const handleColumnChange = (value: string) => {
-    setApiParams((prev) => ({ ...prev, column: value, page: 1 }));
+    setColumnFilter(value);
+    setApiParams((prev) => ({ ...prev, page: 1 }));
   };
 
   const handleAccountChange = (value: string) => {
@@ -118,7 +122,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         <Filters
           dateRange={apiParams.dateRange}
           status={apiParams.status}
-          column={apiParams.column}
+          column={columnFilter}
           account={apiParams.account}
           transactionType={transactionType}
           onDateRangeChange={handleDateRangeChange}

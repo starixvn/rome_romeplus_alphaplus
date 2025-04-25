@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Spin, Alert, message } from 'antd';
-import { TransactionItem } from '../../../../services/interfaces/TransactionHistory';
+import { Modal, Spin, Alert } from 'antd';
+import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import {
   getTransactionDetail,
   revertTransaction,
 } from '../../../../services/transactionsHistoryAPI';
+import { useTranslation } from 'react-i18next';
+import '../../../../i18n/i18n';
 
 interface TransactionDetailProps {
   transactionId: number | null;
@@ -33,23 +35,31 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
   onClose,
   onRevertSuccess,
 }) => {
+  const { t } = useTranslation('transactionHistory');
   const [detailData, setDetailData] = useState<TransactionItem | null>(null);
   const [loadingDetail, setLoadingDetail] = useState(false);
   const [detailError, setDetailError] = useState<string | null>(null);
   const [reverting, setReverting] = useState(false);
+  const [revertAlert, setRevertAlert] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
+  const [remarks, setRemarks] = useState('');
 
   useEffect(() => {
     if (isOpen && transactionId !== null) {
       setLoadingDetail(true);
       setDetailError(null);
       setDetailData(null);
+      setRevertAlert({ type: null, message: '' });
       getTransactionDetail(transactionId)
         .then((data) => {
           setDetailData(data);
+          setRemarks(data.remarks || '');
         })
         .catch((err) => {
           console.error(err);
-          setDetailError('Failed to load transaction details.');
+          setDetailError(t('detail.error'));
         })
         .finally(() => {
           setLoadingDetail(false);
@@ -59,21 +69,32 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
       setDetailError(null);
       setLoadingDetail(false);
       setReverting(false);
+      setRemarks('');
     }
-  }, [isOpen, transactionId]);
+  }, [isOpen, transactionId, t]);
 
   const handleRevert = async () => {
     if (transactionId === null) return;
 
     setReverting(true);
+    setRevertAlert({ type: null, message: '' });
     try {
-      await revertTransaction(transactionId);
-      message.success('Transaction reverted to pending successfully!');
-      onRevertSuccess?.();
-      onClose();
+      var result = await revertTransaction(transactionId, remarks);
+      if (result.isSuccessful) {
+        setRevertAlert({
+          type: 'success',
+          message: t('successMessages.reverted'),
+        });
+        setTimeout(() => {
+          onRevertSuccess?.();
+          onClose();
+        }, 3000);
+      } else {
+        setRevertAlert({ type: 'error', message: result.message });
+      }
     } catch (err) {
       console.error(err);
-      message.error('Failed to revert transaction.');
+      setRevertAlert({ type: 'error', message: t('errorMessages.failedToRevert') });
     } finally {
       setReverting(false);
     }
@@ -91,86 +112,88 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
       return <Alert message={detailError} type="error" showIcon className="mb-4" />;
     }
     if (!detailData) {
-      return (
-        <Alert
-          message="No transaction details available."
-          type="warning"
-          showIcon
-          className="mb-4"
-        />
-      );
+      return <Alert message={t('detail.noDetails')} type="warning" showIcon className="mb-4" />;
     }
 
     return (
       <div className="p-4">
+        {revertAlert.type && (
+          <Alert
+            message={revertAlert.message}
+            type={revertAlert.type}
+            showIcon
+            style={{ marginBottom: '20px' }}
+          />
+        )}
         <div className="bg-white rounded-lg border border-gray-200 p-4 mb-4">
           <div className="grid grid-cols-4 gap-4">
             <div>
-              <div className="text-sm text-gray-600">Username</div>
+              <div className="text-sm text-gray-600">{t('detail.username')}</div>
               <div className="font-medium">{detailData.username}</div>
             </div>
             <div>
-              <div className="text-sm text-gray-600">Login Name</div>
+              <div className="text-sm text-gray-600">{t('detail.loginName')}</div>
               <div className="font-medium">{detailData.username}</div>
             </div>
             <div>
-              <div className="text-sm text-gray-600">First/Last Name</div>
+              <div className="text-sm text-gray-600">{t('detail.fullName')}</div>
               <div className="font-medium">{`${detailData.firstName} ${detailData.lastName}`}</div>
             </div>
             <div>
-              <div className="text-sm text-gray-600">Bet Credit</div>
-              <div className="font-medium">0.00</div>
+              <div className="text-sm text-gray-600">{t('detail.betCredit')}</div>
+              <div className="font-medium">{detailData.betCredit.toFixed(2)}</div>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 gap-4 mb-4">
           <div>
             <div className="mb-4">
-              <div className="text-sm text-gray-600">From</div>
+              <div className="text-sm text-gray-600">{t('detail.from')}</div>
               <div className="flex items-center gap-2">
                 <div className="w-4 h-4 rounded-full bg-green-500"></div>
                 <span className="font-medium">{detailData.from}</span>
               </div>
             </div>
             <div className="mb-4">
-              <div className="text-sm text-gray-600">Date and Time</div>
-              <div className="font-medium">{formatDateTime(detailData.dateTime)}</div>
+              <div className="text-sm text-gray-600">{t('detail.dateAndTime')}</div>
+              <div className="font-medium">{formatDateTime(detailData.createdDate)}</div>
             </div>
             <div className="mb-4">
-              <div className="text-sm text-gray-600">Deposit Type</div>
+              <div className="text-sm text-gray-600">{t('detail.transactionType')}</div>
               <div className="font-medium">{detailData.transactionType}</div>
             </div>
             <div className="mb-4">
-              <div className="text-sm text-gray-600">Operated By</div>
+              <div className="text-sm text-gray-600">{t('detail.operatedBy')}</div>
               <div className="font-medium">{detailData.username?.substring(0, 9)}</div>
             </div>
           </div>
           <div>
             <div className="mb-4">
-              <div className="text-sm text-gray-600">To</div>
+              <div className="text-sm text-gray-600">{t('detail.to')}</div>
               <div className="flex items-center gap-2">
                 <div className="w-4 h-4 rounded-full bg-green-500"></div>
                 <span className="font-medium">{detailData.to}</span>
               </div>
             </div>
             <div className="mb-4">
-              <div className="text-sm text-gray-600">Processed On</div>
-              <div className="font-medium">{formatDateTime(detailData.dateTime)}</div>
+              <div className="text-sm text-gray-600">{t('detail.processedOn')}</div>
+              <div className="font-medium">{formatDateTime(detailData.lastUpdatedDate)}</div>
             </div>
             <div className="mb-4">
-              <div className="text-sm text-gray-600">Deposit Amount</div>
+              <div className="text-sm text-gray-600">{t('detail.amount')}</div>
               <div className="font-medium">{`${detailData.amount.toFixed(2)} ${detailData.currency}`}</div>
             </div>
           </div>
         </div>
 
-        <div className="mt-4">
-          <div className="text-sm text-gray-600 mb-2">Remarks</div>
+        <div className="mb-4">
+          <div className="text-sm text-gray-600 mb-2">{t('detail.remarks')}</div>
           <textarea
+            value={remarks}
+            onChange={(e) => setRemarks(e.target.value)}
             className="w-full h-24 p-2 border border-gray-300 rounded-md"
-            placeholder="Add a remark here..."
-            readOnly
+            placeholder={t('detail.remarksPlaceholder')}
           />
         </div>
       </div>
@@ -181,7 +204,9 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
     <Modal
       title={
         <div className="flex items-center gap-2">
-          <span>Deposit History ({detailData?.referenceNumber ?? 'Loading...'})</span>
+          <span>
+            {t('detail.title')} ({detailData?.referenceNumber ?? t('detail.loading')})
+          </span>
           {detailData && (
             <span className={`status-badge ${detailData.status.toLowerCase()}`}>
               {detailData.status}
@@ -195,18 +220,18 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
         <button
           key="close"
           onClick={onClose}
-          className="px-4 py-2 text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400 transition duration-150 ease-in-out"
+          className="px-4 py-2 text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400 transition duration-150 ease-in-out cursor-pointer"
         >
-          Close
+          {t('detail.close')}
         </button>,
         <button
           key="revert"
           onClick={handleRevert}
-          className={`px-4 py-2 ml-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-150 ease-in-out ${reverting ? 'opacity-50 cursor-not-allowed' : ''}`}
+          className={`px-4 py-2 ml-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-150 ease-in-out cursor-pointer ${reverting ? 'opacity-50 cursor-not-allowed' : ''}`}
           disabled={reverting || !detailData}
         >
           {reverting ? <Spin size="small" className="mr-2" /> : null}
-          Revert To Pending
+          {t('detail.revertToPending')}
         </button>,
       ]}
       width={600}

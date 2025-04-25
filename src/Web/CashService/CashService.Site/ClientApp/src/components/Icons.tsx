@@ -1,5 +1,9 @@
 import React from 'react';
 
+export interface IconProps {
+  className?: string;
+}
+
 export const NoRecordsIcon: React.FC<{ className?: string }> = ({ className }) => (
   <svg
     width="70"
@@ -118,6 +122,16 @@ export const InfoIcon: React.FC<{ className?: string }> = ({ className }) => (
   >
     <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
     <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+  </svg>
+);
+
+export const ChevronDownIcon: React.FC<IconProps> = ({ className = '' }) => (
+  <svg className={className} fill="currentColor" viewBox="0 0 20 20">
+    <path
+      fillRule="evenodd"
+      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const IconPen: React.FC = () => (

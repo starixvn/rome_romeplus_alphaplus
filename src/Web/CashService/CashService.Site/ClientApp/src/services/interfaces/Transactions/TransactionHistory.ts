@@ -4,13 +4,16 @@ export interface TransactionItem {
   firstName: string;
   lastName: string;
   amount: number;
+  betCredit: number;
   currency: string;
   from: string;
   to: string;
   status: 'COMPLETED' | 'REJECTED' | 'PROVIDER_REJECTED' | 'EXPIRED';
   transactionType: string;
   referenceNumber: string;
-  dateTime: string;
+  remarks: string;
+  createdDate: string;
+  lastUpdatedDate: string;
 }
 
 export interface TransactionsHistoryResponse {
@@ -26,5 +29,5 @@ export interface TransactionsHistoryParams {
   account: string;
   page: number;
   pageSize: number;
-  transactionType?: 'deposit' | 'withdrawal';
+  transactionType: 'deposit' | 'withdrawal';
 }
