@@ -4,15 +4,6 @@ namespace AlphaPlus.CashService.Site.Features.Payments.Models
 {
     public class PaymentMethodModel
     {
-        public PaymentMethodModel()
-        {
-            Name = string.Empty;
-            Status = 0;
-            ProviderId = 0;
-            TransactionType = 0;
-            CustId = 0;
-        }
-
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public int CustId { get; set; }

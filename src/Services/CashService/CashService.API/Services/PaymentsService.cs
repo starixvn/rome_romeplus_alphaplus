@@ -88,6 +88,7 @@ public class PaymentsService : IPaymentsService
     public async Task<IEnumerable<PaymentMethodModel>> GetPaymentMethods(int providerId, int transactionType)
     {
         var methods = await _repository.FetchAsync<PaymentMethodModel>(new GetPaymentMethodsCriteria(providerId, transactionType));
+        Console.WriteLine(JsonSerializer.Serialize(methods));
         return methods;
     }
 
