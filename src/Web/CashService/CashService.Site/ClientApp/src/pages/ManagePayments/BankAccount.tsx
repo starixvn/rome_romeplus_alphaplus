@@ -7,6 +7,7 @@ import { TRANSACTION_TYPES, ENABLED_STATUS_OPTIONS } from '../../constants/payme
 import SetTransactionLimitModal from './SetTransactionLimitModal';
 import AddBankAccountComponent from './AddBankAccountComponent';
 import UpdateBankAccountComponent from './UpdateBankAccountComponent';
+import styles from './PaymentGateway.module.scss';
 
 const BankAccount: React.FC = () => {
   const { t: tManagePayments } = useTranslation('managePayments');
@@ -195,7 +196,7 @@ const BankAccount: React.FC = () => {
   };
 
   return (
-    <div className="bank-account-container">
+    <div className="bg-[#ffffff] max-w-[1000px]">
       {showAddBankAccountModal ? (
         <AddBankAccountComponent
           onClose={handleCloseAddBankAccountModal}
@@ -211,18 +212,18 @@ const BankAccount: React.FC = () => {
         />
       ) : (
         <>
-          <div className="d-flex justify-content-between align-items-center mb-4">
-            <h2 className="h4 mb-0">{tManagePayments('manageBankAccountAndLimits')}</h2>
-            <label>{tManagePayments('addBankAccountAndLimit')}</label>
-            <div className="d-flex gap-2">
+          <div className="px-[14px] py-[8px]">
+            <div className="pb-[8px] mt-[8px] text-[16px] text-[#163f78] font-semibold leading-[21.6px] tracking-[0.2px] ">{tManagePayments('manageBankAccountAndLimits')}</div>
+            <div className="text-[12px] leading-[14px]">{tManagePayments('addBankAccountAndLimit')}</div>
+            <div className="my-[8px]">
               <button 
-                className="btn btn-primary"
+                className="w-[183px] h-[30px] rounded-[5px] text-[#ffffff] px-[16px] py-[4px] text-[12px] font-bold mx-[4px] bg-[#163f78] hover:bg-[#375A8A] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
                 onClick={handleAddBankAccount}
               >
-                {tManagePayments('addBankAccount')}
+              +{tManagePayments('addBankAccount')}
               </button>
               <button 
-                className="btn btn-secondary"
+                className="w-[183px] h-[30px] rounded-[5px] text-[#163f78] px-[16px] py-[4px] text-[12px] font-bold border-[1px] border-[#163f78] mx-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
                 onClick={handleSetLimit}
               >
                 {tManagePayments('setLimit')}

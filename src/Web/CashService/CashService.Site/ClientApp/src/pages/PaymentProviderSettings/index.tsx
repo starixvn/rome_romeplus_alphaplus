@@ -12,6 +12,7 @@ import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { formatNumber, formatInputValue } from '../../utils/numberFormatting';
 import { IconInfo } from '../../components/Icons';
+import './PaymentProviderSettings.css';
 
 // Extend Window interface to include providerName
 declare global {
@@ -211,7 +212,7 @@ function PaymentProviderSettings() {
   return (
     <div className="payment-provider-settings">
       <div className="settings-header">
-        <h2>{window.providerSettingsViewModel.Provider.Name}</h2>
+        <h2 className='pb-[8px] mt-[8px] text-[16px] text-[#163f78] font-semibold leading-[21.6px] tracking-[0.2px] '>{window.providerSettingsViewModel.Provider.Name}</h2>
       </div>
       
       {loading ? (
@@ -225,33 +226,37 @@ function PaymentProviderSettings() {
       ) : (
         <>
           <div className="form-group">
-            <label className="form-label">{tManagePayments('setUpPaymentMethodsForMembers')}</label>
+            <div>      
+            <p className="">
+              {tManagePayments('setUpPaymentMethodsForMembers')}
+            </p>
+            <button className="w-[183px] h-[30px] rounded-[5px] text-[#ffffff] px-[16px] py-[4px] text-[12px] font-bold bg-[#163f78] hover:bg-[#375A8A] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]" onClick={handleAddPaymentMethod}>+{tManagePayments('addPaymentMethod')}</button>
+            </div>
             <div className="d-flex align-items-center">
               <label className="toggle-label me-2" htmlFor='enableToggle'>
                 {tGlobal('enable')}/{tGlobal('disable')}
-              </label>
-              <Tippy
-                content={
-                  <div>
+                <Tippy
+                  content={
                     <div>
-                      <i className="bi bi-info-circle fs-4 ico-info inline-elm"></i> 
-                      {tManagePayments('enableDisable')}
+                      <div>
+                        <i className="bi bi-info-circle fs-4 ico-info inline-elm"></i> 
+                        {tManagePayments('enableDisable')}
+                      </div>
+                      <div>• {tManagePayments('enableDisableTip1')}</div>
+                      <div>• {tManagePayments('enableDisableTip2')}</div>
+                      <div>• {tManagePayments('enableDisableTip3')}</div>
                     </div>
-                    <div>• {tManagePayments('enableDisableTip1')}</div>
-                    <div>• {tManagePayments('enableDisableTip2')}</div>
-                    <div>• {tManagePayments('enableDisableTip3')}</div>
-                  </div>
-                }
-                placement="top"
-                theme="light"
-                arrow={true}
-              >
-                <span><IconInfo /></span>
-              </Tippy>
+                  }
+                  placement="top"
+                  theme="light"
+                  arrow={true}
+                >
+                  <span><IconInfo /></span>
+                </Tippy>
+              </label>
+              
             </div>
-            <div className="settings-footer">
-              <button className="btn btn-primary me-2" onClick={handleAddPaymentMethod}>{tManagePayments('addPaymentMethod')}</button>
-            </div>
+            
             <div className="toggle-container">
               <input
                 type="checkbox"

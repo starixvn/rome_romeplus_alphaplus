@@ -75,7 +75,7 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
                       <th>{tManagePayments('feeRate')}</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody className='font-[500]'>
                     {feeData.length > 0 ? (
                       feeData.map((feeGroup, groupIndex) => (
                         <React.Fragment key={groupIndex}>
@@ -87,7 +87,7 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
                                 </td>
                               )}
                               <td>{fee.method}</td>
-                              <td>{fee.rate.toFixed(2)}%</td>
+                              <td className='text-[#163f78]'>{fee.rate.toFixed(2)}%</td>
                             </tr>
                           ))}
                         </React.Fragment>

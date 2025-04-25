@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { paymentProviderService } from '../../services/paymentsAPI';
+import { IconClose } from '../../components/Icons';
 
 interface SetTransactionLimitModalProps {
   onClose: () => void;
@@ -75,20 +76,21 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
   };
 
   return (
-    <div className="modal show d-block" tabIndex={-1}>
-      <div className="modal-dialog">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title">{tManagePayments('transactionLimitPreferences')}</h5>
+    <div className="bg-[#00000066] fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center" tabIndex={-1}>
+      <div className="p-[30px] bg-[#ffffff] max-w-[500px] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
+        <div className="relative">
+            <h5 className="text-[16px] text-[#163f78] font-bold leading-[21.6px] tracking-[0.2px] pb-[4px]">{tManagePayments('transactionLimitPreferences')}</h5>
             <button
               type="button"
-              className="btn-close"
+              className="absolute top-[-20px] right-[-20px] cursor-pointer"
               onClick={onClose}
               disabled={loading}
-            />
+            >
+              <IconClose />
+            </button>
           </div>
           <form onSubmit={handleSubmit}>
-            <div className="modal-body">
+            <div className="text-[12px] leading-[14px] mb-[16px]">
               {error && (
                 <div className="alert alert-danger" role="alert">
                   {error}
@@ -99,17 +101,18 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   {successMessage}
                 </div>
               )}
-              <div className="mb-3">
-                <label className="form-label">{tManagePayments('customizeTransactionLimitPreferences')}</label>
+              <div className="pt-[4px]">
+                 {tManagePayments('customizeTransactionLimitPreferences')}
               </div>
-              <div className="mb-3">
-                <label className="form-label">{tManagePayments('deposit')}</label>
+              <div className="text-[#163f78] my-[8px] font-semibold">
+                {tManagePayments('deposit')}
               </div>
-              <div className="mb-3">
-                <label className="form-label">{tManagePayments('minPerTransaction')}</label>
+              <div className='flex justify-between'>
+              <div className="w-[48%]">
+                <label className="block font-bold text-[#333333] my-[8px]">{tManagePayments('minPerTransaction')}</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78]"
                   value={minDeposit}
                   onChange={(e) => setMinDeposit(e.target.value)}
                   min="0"
@@ -117,11 +120,11 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   required
                 />
               </div>
-              <div className="mb-3">
-                <label className="form-label">{tManagePayments('maxPerTransaction')}</label>
+              <div className="w-[48%]">
+                <label className="block font-bold text-[#333333] my-[8px]">{tManagePayments('maxPerTransaction')}</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78]"
                   value={maxDeposit}
                   onChange={(e) => setMaxDeposit(e.target.value)}
                   min="0"
@@ -129,14 +132,14 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   required
                 />
               </div>
-              <div className="mb-3">
-                <label className="form-label">{tManagePayments('withdrawal')}</label>
               </div>
-              <div className="mb-3">
-                <label className="form-label">{tManagePayments('minPerTransaction')}</label>
+              <div className="text-[#163f78] my-[8px] font-semibold">{tManagePayments('withdrawal')}</div>
+              <div className='flex justify-between'>
+              <div className="w-[48%]">
+                <label className="block font-bold text-[#333333] my-[8px]">{tManagePayments('minPerTransaction')}</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78]"
                   value={minWithdrawal}
                   onChange={(e) => setMinWithdrawal(e.target.value)}
                   min="0"
@@ -144,11 +147,11 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   required
                 />
               </div>
-              <div className="mb-3">
-                <label className="form-label">{tManagePayments('maxPerTransaction')}</label>
+              <div className="w-[48%]">
+                <label className="block font-bold text-[#333333] my-[8px]">{tManagePayments('maxPerTransaction')}</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78]"
                   value={maxWithdrawal}
                   onChange={(e) => setMaxWithdrawal(e.target.value)}
                   min="0"
@@ -156,25 +159,27 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   required
                 />
               </div>
-              <div className="mb-3">
-                <label className="form-label">{tManagePayments('dailyWithdrawalCount')}</label>
+              </div>
+              <div className='flex justify-between'>
+              <div className="w-[48%]">
+                <label className="block font-bold text-[#333333] my-[8px]">{tManagePayments('dailyWithdrawalCount')}</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78]"
                   value={dailyWithdrawalCount}
                   onChange={(e) => setDailyWithdrawalCount(e.target.value)}
                   min="0"
                   required
                 />
+                <label className=" block mt-[4px] text-[#828282] text-[11px] leading-[12px] font-semibold">{tManagePayments('dailyWithdrawalCountTip')}</label>
               </div>
-              <div className="mb-3">
-                <label className="form-label">{tManagePayments('dailyWithdrawalCountTip')}</label>
+              
               </div>
             </div>
-            <div className="modal-footer">
+            <div className="flex justify-center">
               <button
                 type="button"
-                className="btn btn-secondary"
+                className="w-[140px] h-[30px] rounded-[20px] text-[#163f78] px-[16px] py-[4px] text-[12px] border-[1px] border-[#163f78] mx-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer "
                 onClick={onClose}
                 disabled={loading}
               >
@@ -182,7 +187,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
               </button>
               <button
                 type="submit"
-                className="btn btn-primary"
+                className="w-[140px] h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px] border-[#163f78] mx-[4px] bg-[#163f78] hover:bg-[#375A8A] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
                 disabled={loading}
               >
                 {loading ? tGlobal('saving') : tGlobal('save')}
@@ -191,7 +196,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
           </form>
         </div>
       </div>
-    </div>
+ 
   );
 };
 
