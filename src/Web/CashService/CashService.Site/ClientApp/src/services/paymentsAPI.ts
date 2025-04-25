@@ -6,7 +6,7 @@ import { PaymentMethod } from './interfaces/PaymentMethod';
 import { Bank } from './interfaces/Bank';
 import { BankAccount } from './interfaces/BankAccount';
 import { PaymentTransactionLimit } from './interfaces/PaymentTransactionLimit';
-import { TransactionType } from './interfaces/Transactions/TransactionType';
+import { TransactionType } from './interfaces/TransactionType';
 
 // Create an axios instance with default config
 const api = axios.create({
@@ -88,9 +88,15 @@ export const paymentProviderService = {
   },
 
   // Get all payment methods
-  getPaymentMethods: async (providerId: number, transactionType: number): Promise<PaymentMethod[]> => {
+  getPaymentMethods: async (
+    providerId: number,
+    transactionType: number
+  ): Promise<PaymentMethod[]> => {
     try {
-      const response = await api.get<PaymentMethod[]>(`GetPaymentMethods?providerId=${providerId}&transactionType=${transactionType}`, { method: 'GET' });
+      const response = await api.get<PaymentMethod[]>(
+        `GetPaymentMethods?providerId=${providerId}&transactionType=${transactionType}`,
+        { method: 'GET' }
+      );
       return response.data;
     } catch (error) {
       console.error('Error fetching payment methods:', error);
@@ -148,9 +154,7 @@ export const paymentProviderService = {
   // Get transaction types for a specific bank
   getTransactionTypes: async (): Promise<TransactionType[]> => {
     try {
-      const response = await api.get<TransactionType[]>(`GetTransactionTypes?bankId=${bankId}`, { method: 'GET' });
-        method: 'GET',
-      });
+      const response = await api.get<TransactionType[]>(`GetTransactionTypes`, { method: 'GET' });
       return response.data;
     } catch (error) {
       console.error('Error fetching transaction types:', error);
