@@ -30,13 +30,6 @@ configuration
 
 AlphaPlus.Core.Configurations.ConfigurationManager.Init(builder.Configuration);
 
-// Configure Serilog
-Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    .CreateLogger();
-
-builder.Host.UseSerilog();
-
 // Add services to the container.
 builder.Services
     .AddRequestInfo()
@@ -83,30 +76,6 @@ builder.Services
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddSharedCookie();
 
-// Add CORS
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowSpecificOrigins",
-        corsPolicyBuilder =>
-        {
-            corsPolicyBuilder.WithOrigins(
-                    "http://localhost:5173",  // Vite dev server
-                    "http://localhost:5252", // API server
-                    "http://localhost:5159"
-                )
-                .AllowAnyHeader()
-                .AllowAnyMethod()
-                .AllowCredentials();
-        });
-});
-
-// Add Swagger/OpenAPI support
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "CashService API", Version = "v1" });
-});
-
 var app = builder.Build();
 app.UseForwardedHeaders();
 app.UsePathBase(pathBase);
@@ -115,8 +84,6 @@ app.UsePathBase(pathBase);
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
-    app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CashService API v1"));
 }
 else
 {
