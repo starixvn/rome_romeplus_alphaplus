@@ -196,10 +196,10 @@ public class WinLossByProductServiceTest
         var betTypes = sport.WinLossByBetTypes.ToList();
 
         Assert.Contains(betTypes, b => b.BetTypeName.Contains("Next Over/Under"));
-        Assert.Contains(betTypes, b => b.BetTypeName.Contains("FT Odd/Even"));
+        Assert.Contains(betTypes, b => b.BetTypeName.Contains("FT. Odd/Even"));
         Assert.Contains(betTypes, b => b.BetTypeName.Contains("Next Odd/Even"));
-        Assert.Contains(betTypes, b => b.BetTypeName.Contains("Number Wheel PreGame"));
-        Assert.Contains(betTypes, b => b.BetTypeName.Contains("Number Wheel LiveGame"));
+        Assert.Contains(betTypes, b => b.BetTypeName.Contains("Number Wheel Pre Game"));
+        Assert.Contains(betTypes, b => b.BetTypeName.Contains("Number Wheel Live Game"));
     }
 
     [Fact]

@@ -3,7 +3,7 @@
 namespace AlphaPlus.Reports.UnitTests.Features.BetCreditTracking.MoveStatementHistory;
 
 [Trait("Category", "MoveStatementHistory")]
-public class MoveStatementHistoryByMemberTests
+public class MoveStatementHistoryByMemberTest
 {
     [Fact]
     public void Constructor_ShouldInitializePropertiesCorrectly()

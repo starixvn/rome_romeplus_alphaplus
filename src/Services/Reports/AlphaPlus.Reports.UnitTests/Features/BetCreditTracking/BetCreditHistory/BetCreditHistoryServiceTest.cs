@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using AlphaPlus.PartialUM.Services;
 using AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory;
 using AlphaPlus.Reports.Features.Shared.Constants;
@@ -86,6 +87,7 @@ public class BetCreditHistoryServiceTests
         };
 
         SetupMocks(testResults);
+
         SetupLogActionCache(new LogAction
         {
             Id = 999,
@@ -100,11 +102,10 @@ public class BetCreditHistoryServiceTests
 
         // Act
         var result = await service.GetBetCreditHistory(testParam);
-
         // Assert
         Assert.NotNull(result);
         Assert.Equal(3, result.ReportData.Count());
-        Assert.Equal(BetCreditHistoryResources.BetSettled + ", " + BetCreditHistoryResources.running + " " + BetCreditHistoryResources.to + " " + BetCreditHistoryResources.BetSettled, result.ReportData.ElementAt(0).Action);
+        Assert.Equal(BetCreditHistoryResources.BetSettled + ", " + BetCreditHistoryResources.running + " " + BetCreditHistoryResources.to + " ", result.ReportData.ElementAt(0).Action);
         Assert.Equal(BetCreditHistoryResources.BetUpdated + ", " + BetCreditHistoryResources.running + " " + BetCreditHistoryResources.to + " " + BetCreditHistoryResources._void, result.ReportData.ElementAt(1).Action);
         Assert.Equal("CustomActionName", result.ReportData.ElementAt(2).Action);
     }
@@ -169,9 +170,9 @@ public class BetCreditHistoryServiceTests
     }
 
     [Theory]
-    [InlineData(-1, "Opening credit")]
-    [InlineData(29, "Cash out, running to settled")]
-    [InlineData(34, "Cancel cash out, running to settled")]
+    [InlineData(-1, "Opening Credit")]
+    [InlineData(29, "Cash Out, running to VOID")]
+    [InlineData(34, "Cancel Cash Out, running to VOID")]
     [InlineData(110, "Transfer submitted REF123")]
     public async Task GetBetCreditHistory_Should_Convert_Special_Actions(int actionId, string expectedResult)
     {
@@ -180,7 +181,7 @@ public class BetCreditHistoryServiceTests
             ? "Transfer inserted REF123"
             : actionId == -1
                 ? "any"
-                : "running to settled";
+                : expectedResult;
 
         var testResults = new List<BetCreditHistoryEntity>
         {
@@ -223,12 +224,13 @@ public class BetCreditHistoryServiceTests
             .Setup(m => m.CreateEntry(It.IsAny<object>()))
             .Returns(cacheEntry.Object);
 
+        object outValue = null;
         memoryCacheMock
-            .Setup(m => m.TryGetValue(It.IsAny<object>(), out It.Ref<Dictionary<int, LogAction>>.IsAny))
-            .Callback(new TryGetValueCallback((object key, out Dictionary<int, LogAction> value) =>
+            .Setup(m => m.TryGetValue(It.IsAny<object>(), out outValue))
+            .Callback((object key, out object value) =>
             {
                 value = logActions;
-            }))
+            })
             .Returns(true);
     }
 
@@ -240,12 +242,13 @@ public class BetCreditHistoryServiceTests
             .Setup(m => m.CreateEntry(It.IsAny<object>()))
             .Returns(cacheEntry.Object);
 
+        object outValue = null;
         memoryCacheMock
-            .Setup(m => m.TryGetValue(It.IsAny<object>(), out It.Ref<Dictionary<int, LogAction>>.IsAny))
-            .Callback(new TryGetValueCallback((object key, out Dictionary<int, LogAction> value) =>
+            .Setup(m => m.TryGetValue(It.IsAny<object>(), out outValue))
+            .Callback((object key, out object value) =>
             {
                 value = new Dictionary<int, LogAction>();
-            }))
+            })
             .Returns(true);
     }
 

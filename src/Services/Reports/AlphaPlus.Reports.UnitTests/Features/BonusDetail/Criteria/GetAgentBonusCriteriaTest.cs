@@ -1,9 +1,9 @@
-﻿using AlphaPlus.Reports.Features.BetCreditTracking.MoveStatementHistory;
+﻿using AlphaPlus.Reports.Features.BonusDetail;
 
-namespace AlphaPlus.Reports.UnitTests.Features.BetCreditTracking.MoveStatementHistory;
+namespace AlphaPlus.Reports.UnitTests.Features.BonusDetail;
 
-[Trait("Category", "MoveStatementHistory")]
-public class MoveStatementHistoryCriteriaTests
+[Trait("Category", "BonusDetail")]
+public class GetAgentBonusCriteriaTest
 {
     [Fact]
     public void Constructor_ShouldInitializePropertiesCorrectly()
@@ -12,42 +12,44 @@ public class MoveStatementHistoryCriteriaTests
         var username = "testuser";
         var fromDate = new DateTime(2025, 1, 1);
         var toDate = new DateTime(2025, 1, 31);
-        var loggedId = 1;
+        byte? statusId = 1;
+        bool? isComplained = true;
         var pageIndex = 0;
         var pageSize = 10;
-        var isVariance = true;
+        var agentId = 123;
 
         // Act
-        var criteria = new MoveStatementHistoryCriteria(username, fromDate, toDate, loggedId, pageIndex, pageSize, isVariance);
+        var criteria = new GetAgentBonusCriteria(username, fromDate, toDate, statusId, isComplained, pageIndex, pageSize, agentId);
 
         // Assert
         Assert.Equal(username, criteria.Username);
         Assert.Equal(fromDate, criteria.FromDate);
         Assert.Equal(toDate, criteria.ToDate);
-        Assert.Equal(loggedId, criteria.LoggedId);
+        Assert.Equal(statusId, criteria.StatusId);
+        Assert.Equal(isComplained, criteria.IsComplained);
         Assert.Equal(pageIndex, criteria.PageIndex);
         Assert.Equal(pageSize, criteria.PageSize);
-        Assert.Equal(isVariance, criteria.IsVariance);
+        Assert.Equal(agentId, criteria.AgentId);
     }
 
     [Fact]
     public void GetSettingKey_ShouldReturnCorrectKey()
     {
         // Arrange
-        var criteria = new MoveStatementHistoryCriteria("testuser", DateTime.Now, DateTime.Now, 1, 0, 10, true);
+        var criteria = new GetAgentBonusCriteria("testuser", DateTime.Now, DateTime.Now, 1, true, 0, 10, 123);
 
         // Act
         var settingKey = criteria.GetSettingKey();
 
         // Assert
-        Assert.Equal("Age_Rpt_StatementMovement", settingKey);
+        Assert.Equal("Age_Rpt_BonusDetail_Agent", settingKey);
     }
 
     [Fact]
     public void IsValid_ShouldReturnTrue_WhenCriteriaIsValid()
     {
         // Arrange
-        var criteria = new MoveStatementHistoryCriteria("testuser", new DateTime(2025, 1, 1), new DateTime(2025, 1, 31), 1, 0, 10, true);
+        var criteria = new GetAgentBonusCriteria("testuser", new DateTime(2025, 1, 1), new DateTime(2025, 1, 31), 1, true, 0, 10, 123);
 
         // Act
         var isValid = criteria.IsValid();
@@ -57,10 +59,10 @@ public class MoveStatementHistoryCriteriaTests
     }
 
     [Fact]
-    public void IsValid_ShouldReturnFalse_WhenFromDateIsGreaterThanToDate()
+    public void IsValid_ShouldReturnFalse_WhenAgentIdIsZero()
     {
         // Arrange
-        var criteria = new MoveStatementHistoryCriteria("testuser", new DateTime(2025, 1, 31), new DateTime(2025, 1, 1), 1, 0, 10, true);
+        var criteria = new GetAgentBonusCriteria("testuser", new DateTime(2025, 1, 1), new DateTime(2025, 1, 31), 1, true, 0, 10, 0);
 
         // Act
         var isValid = criteria.IsValid();

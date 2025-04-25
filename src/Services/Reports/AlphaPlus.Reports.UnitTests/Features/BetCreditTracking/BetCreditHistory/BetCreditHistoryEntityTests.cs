@@ -3,7 +3,7 @@
 namespace AlphaPlus.Reports.UnitTests.Features.BetCreditTracking.BetCreditHistory;
 
 [Trait("Category", "BetCreditHistory")]
-public class BetCreditHistoryEntityTests
+public class BetCreditHistoryCriteriaTest
 {
     [Fact]
     public void Constructor_ShouldInitializePropertiesCorrectly()

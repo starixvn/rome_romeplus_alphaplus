@@ -3,7 +3,7 @@
 namespace AlphaPlus.Reports.UnitTests.Features.BonusDetail;
 
 [Trait("Category", "BonusDetail")]
-public class GetSuperBonusCriteriaTests
+public class GetSuperBonusCriteriaTest
 {
     [Fact]
     public void Constructor_ShouldInitializePropertiesCorrectly()

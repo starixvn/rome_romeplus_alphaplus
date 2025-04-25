@@ -3,7 +3,7 @@
 namespace AlphaPlus.Reports.UnitTests.Features.BonusDetail;
 
 [Trait("Category", "BonusDetail")]
-public class GroupBonusTests
+public class GroupBonusTest
 {
     [Fact]
     public void Constructor_ShouldInitializeTotalAmountCorrectly()

@@ -3,7 +3,7 @@
 namespace AlphaPlus.Reports.UnitTests.Features.BonusDetail;
 
 [Trait("Category", "BonusDetail")]
-public class GetAgentBonusCriteriaTests
+public class GetMasterBonusCriteriaTest
 {
     [Fact]
     public void Constructor_ShouldInitializePropertiesCorrectly()
@@ -16,10 +16,10 @@ public class GetAgentBonusCriteriaTests
         bool? isComplained = true;
         var pageIndex = 0;
         var pageSize = 10;
-        var agentId = 123;
+        var masterId = 123;
 
         // Act
-        var criteria = new GetAgentBonusCriteria(username, fromDate, toDate, statusId, isComplained, pageIndex, pageSize, agentId);
+        var criteria = new GetMasterBonusCriteria(username, fromDate, toDate, statusId, isComplained, pageIndex, pageSize, masterId);
 
         // Assert
         Assert.Equal(username, criteria.Username);
@@ -29,27 +29,27 @@ public class GetAgentBonusCriteriaTests
         Assert.Equal(isComplained, criteria.IsComplained);
         Assert.Equal(pageIndex, criteria.PageIndex);
         Assert.Equal(pageSize, criteria.PageSize);
-        Assert.Equal(agentId, criteria.AgentId);
+        Assert.Equal(masterId, criteria.MasterId);
     }
 
     [Fact]
     public void GetSettingKey_ShouldReturnCorrectKey()
     {
         // Arrange
-        var criteria = new GetAgentBonusCriteria("testuser", DateTime.Now, DateTime.Now, 1, true, 0, 10, 123);
+        var criteria = new GetMasterBonusCriteria("testuser", DateTime.Now, DateTime.Now, 1, true, 0, 10, 123);
 
         // Act
         var settingKey = criteria.GetSettingKey();
 
         // Assert
-        Assert.Equal("Age_Rpt_BonusDetail_Agent", settingKey);
+        Assert.Equal("Age_Rpt_BonusDetail_Master", settingKey);
     }
 
     [Fact]
     public void IsValid_ShouldReturnTrue_WhenCriteriaIsValid()
     {
         // Arrange
-        var criteria = new GetAgentBonusCriteria("testuser", new DateTime(2025, 1, 1), new DateTime(2025, 1, 31), 1, true, 0, 10, 123);
+        var criteria = new GetMasterBonusCriteria("testuser", new DateTime(2025, 1, 1), new DateTime(2025, 1, 31), 1, true, 0, 10, 123);
 
         // Act
         var isValid = criteria.IsValid();
@@ -59,10 +59,10 @@ public class GetAgentBonusCriteriaTests
     }
 
     [Fact]
-    public void IsValid_ShouldReturnFalse_WhenAgentIdIsZero()
+    public void IsValid_ShouldReturnFalse_WhenMasterIdIsZero()
     {
         // Arrange
-        var criteria = new GetAgentBonusCriteria("testuser", new DateTime(2025, 1, 1), new DateTime(2025, 1, 31), 1, true, 0, 10, 0);
+        var criteria = new GetMasterBonusCriteria("testuser", new DateTime(2025, 1, 1), new DateTime(2025, 1, 31), 1, true, 0, 10, 0);
 
         // Act
         var isValid = criteria.IsValid();

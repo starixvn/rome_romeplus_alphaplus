@@ -3,7 +3,7 @@
 namespace AlphaPlus.Reports.UnitTests.Features.BetCreditTracking.BetCreditHistory;
 
 [Trait("Category", "BetCreditHistory")]
-public class GetLogActionsCriteriaTests
+public class GetLogActionsCriteriaTest
 {
     [Fact]
     public void GetSettingKey_ShouldReturnCorrectKey()
