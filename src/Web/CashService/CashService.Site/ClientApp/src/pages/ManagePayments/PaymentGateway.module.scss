@@ -5,13 +5,22 @@
 }
 
 .table-payment{
+    max-height: 50vh;
+    overflow: auto;
+    box-shadow: 0 1px 5px #0003,0 2px 2px #00000024,0 3px 1px -2px #0000001f;
     table{
         text-align: center;
+        border-spacing: 0;
+        border-collapse: separate;
     }
     thead{
         box-shadow: var(--table-header-box-shadow);
+        position: sticky;
+        top: 0;
         tr{
             th{
+                background-color: #fff;
+                border-top: 1px solid rgba(0, 0, 0, .12);
                 border-bottom: 1px solid var(--table-header-border-bottom);
                 
                 
@@ -22,6 +31,7 @@
         padding: 4px 8px;
         align-items: center;
         border-left: 1px solid var(--table-border-color);
+        border-bottom: 1px solid var(--table-border-color);
         &:first-child{
             border-left: none;
         }

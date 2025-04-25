@@ -69,8 +69,8 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
 
   return (
     <div className="bg-[#ffffff] max-w-[1000px]">
-      <div className="px-[14px] pb-[8px]">
-        <div className="pb-[8px] mt-[8px] text-[16px] text-[#163f78] font-semibold leading-[21.6px] tracking-[0.2px] ">
+      <div className="px-[14px] py-[8px]">
+        <div className="pb-[8px] mt-[8px] text-[16px] text-[#163f78] font-bold leading-[21.6px] tracking-[0.2px] ">
           {tManagePayments('setDailyWithdrawalCount')}
         </div>
         <div className="pb-[8px] text-[12px]">
@@ -79,13 +79,13 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
         <div className="mt-[8px] mb-[8px]">
           <button
             type="button"
-            className="bg-[#ffffff] text-[#163f78] border-[1px] border-[#163f78] rounded-[5px] px-[16px] py-[4px] text-[12px] font-bold leading-[20.58px] tracking-[0.12px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
+            className=" bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer  text-[#163f78] border-[1px] border-[#163f78] rounded-[5px] px-[16px] py-[4px] text-[12px] font-bold cursor-pointer leading-[20.58px] tracking-[0.12px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
             onClick={() => handleSetLimitClick()} // Default values, should be updated with actual values
           >
             {tManagePayments('setLimit')}
           </button>
         </div>
-        <span className='block w-[100%] h-[1px] bg-[#e0e0e0] my-[10px]' ></span>
+        <span className="block w-[100%] h-[1px] bg-[#e0e0e0] my-[10px]"></span>
         <div className="pb-[8px] mt-[8px] text-[16px] text-[#163f78] font-semibold leading-[21.6px] tracking-[0.2px]">
           {tManagePayments('managePaymentProviders')}
         </div>
@@ -103,7 +103,7 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
         </div>
       ) : (
         <div className={styles['table-payment']}>
-          <table className="text-[12px] w-full border-collapse border border-[#0000001f] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
+          <table className="text-[12px] w-full border-collapse border border-[#0000001f] border-t-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -114,7 +114,7 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
                 <th scope="col">{tManagePayments('lastUpdated')}</th>
               </tr>
             </thead>
-            <tbody className='font-[500]'>
+            <tbody className="font-[500]">
               {providers.length > 0 ? (
                 providers.map((provider, index) => (
                   <tr key={provider.id}>
@@ -122,17 +122,17 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
                     <td>
                       <div className='flex justify-center items-center'>
                         <button
-                          className="mx-[4px]"
-                          onClick={() => handleEditClick(provider)}
-                        >                          
-                          <IconEdit />
-                        </button>                      
+                            className="mx-[4px] cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[#163f78]"
+                            onClick={() => handleEditClick(provider)}
+                          >
+                            <IconEdit />
+                        </button>
                       </div>
                     </td>
                     <td>{provider.name}</td>
                     <td>
                       <button
-                        className="font-bold text-[12px] tracking-[0.12px] leading-[26px] px-[16px] rounded-[4px] bg-[#163f78] text-[#ffffff] cursor-pointer"
+                        className="font-bold text-[12px] tracking-[0.12px] leading-[24px] px-[16px] rounded-[4px] bg-[#163f78] hover:bg-[#375A8A] text-[#ffffff] cursor-pointer"
                         onClick={() => handleFeeClick(provider)}
                       >
                         {tManagePayments('fee')}
@@ -140,7 +140,7 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
                     </td>
                     <td>
                       <span
-                        className={`rounded-[10px] ${provider.status === 1 ? ' bg-green-200 ' : ' bg-emerald-200 '}`}
+                        className={`rounded-[20px] px-[10px] py-[3px] ${provider.status === 1 ? ' bg-[#D5E9D9] ' : ' bg-[#f87171]'}`}
                       >
                         {getStatusText(provider.status)}
                       </span>

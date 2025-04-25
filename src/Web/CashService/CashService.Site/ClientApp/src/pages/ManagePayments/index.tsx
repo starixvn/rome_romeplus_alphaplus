@@ -15,7 +15,7 @@ function ManagePayments() {
   const [activeTab, setActiveTab] = React.useState('bankAccount');
 
   return (
-    <div className="px-[12px]">
+    <div className="p-[12px]">
       <div className="mb-[8px]">
         <h1 className="flex items-center font-bold text-[15px]">
           {t('managePayments')}
