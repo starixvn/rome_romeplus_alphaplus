@@ -38,6 +38,14 @@ import pendingDepositKo from './locales/pendingDeposit/ko.json';
 import enTransactionHistory from './locales/transactionHistory/en.json';
 import zhTWTransactionHistory from './locales/transactionHistory/zh-TW.json';
 
+// Declare the language property on the Window interface
+declare global {
+  interface Window {
+    language?: string;
+    changeLanguage?: (lang: string) => void;
+  }
+}
+
 // Configure i18next
 i18n
   // Detect user language
@@ -94,9 +102,17 @@ i18n
     },
 
     detection: {
-      order: ['localStorage', 'navigator'],
+      order: ['localStorage', 'querystring', 'navigator'],
+      lookupLocalStorage: 'i18nextLng',
+      lookupQuerystring: 'lang',
       caches: ['localStorage'],
     },
   });
+
+// Set language from query string if available
+const queryLang = window.language;
+if (queryLang && i18n.languages.includes(queryLang)) {
+  i18n.changeLanguage(queryLang);
+}
 
 export default i18n;

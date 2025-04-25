@@ -1,1 +1,24 @@
-{} 
+{
+  "action": "작업",
+  "edit": "편집",
+  "delete": "삭제",
+  "close": "닫기",
+  "noData": "데이터 없음",
+  "cancel": "취소",
+  "save": "저장",
+  "loading": "로딩 중...",
+  "enable": "활성화",
+  "disable": "비활성화",
+  "reset": "초기화",
+  "update": "업데이트",
+  "updateSuccess": "업데이트 성공",
+  "updateFailed": "업데이트 실패",
+  "underMaintenance": "점검 중",
+  "select": "선택",
+  "all": "전체",
+  "deleting": "삭제 중...",
+  "on": "켜짐",
+  "off": "꺼짐",
+  "enabled": "활성화됨",
+  "disabled": "비활성화됨"
+} 

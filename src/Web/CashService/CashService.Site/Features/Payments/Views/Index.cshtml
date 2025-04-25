@@ -3,9 +3,24 @@
     Layout = "_Layout";
 }
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+@using AlphaPlus.CashService.Site.Features.Payments.ViewModels
+
+@model PaymentBaseViewModel
 
 <div id="root"></div>
-
+<script>
+    // Initialize language from localStorage or fallback to model's language
+    const storedLanguage = localStorage.getItem('i18nextLng');
+    window.language = storedLanguage || "@Model.Language";
+    
+    // Function to change language
+    window.changeLanguage = function(lang) {
+        localStorage.setItem('i18nextLng', lang);
+        window.language = lang;
+        // Reload the page to apply the new language
+        window.location.reload();
+    };
+</script>
 <environment names="Development">
     <script type="module" src="http://localhost:5173/src/pages/ManagePayments/index.tsx"></script>
 </environment>

@@ -1,1 +1,24 @@
-{} 
+{
+  "action": "Thao tác",
+  "edit": "Sửa",
+  "delete": "Xóa",
+  "close": "Đóng",
+  "noData": "Không có dữ liệu",
+  "cancel": "Hủy",
+  "save": "Lưu",
+  "loading": "Đang tải...",
+  "enable": "Bật",
+  "disable": "Tắt",
+  "reset": "Đặt lại",
+  "update": "Cập nhật",
+  "updateSuccess": "Cập nhật thành công",
+  "updateFailed": "Cập nhật thất bại",
+  "underMaintenance": "Đang bảo trì",
+  "select": "Chọn",
+  "all": "Tất cả",
+  "deleting": "Đang xóa...",
+  "on": "Bật",
+  "off": "Tắt",
+  "enabled": "Đã bật",
+  "disabled": "Đã tắt"
+} 

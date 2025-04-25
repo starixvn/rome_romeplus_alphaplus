@@ -36,7 +36,12 @@ namespace AlphaPlus.CashService.Site.Features.Payments
 
         public IActionResult Index()
         {
-            return View();
+            var viewModel = new PaymentBaseViewModel
+            {
+                Language = _userSession.Language
+            };
+
+            return View(viewModel);
         }
 
         public async Task<IActionResult> GetProviders(CancellationToken cancellationToken)
@@ -83,7 +88,8 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             var viewModel = new ProviderSettingsViewModel
             {
                 Provider = provider,
-                PaymentMethods = allPaymentMethods
+                PaymentMethods = allPaymentMethods,
+                Language = _userSession.Language
             };
 
             return View(viewModel);

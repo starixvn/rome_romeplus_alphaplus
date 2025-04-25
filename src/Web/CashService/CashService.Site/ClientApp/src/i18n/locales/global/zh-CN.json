@@ -1,1 +1,24 @@
-{} 
+{
+  "action": "操作",
+  "edit": "编辑",
+  "delete": "删除",
+  "close": "关闭",
+  "noData": "暂无数据",
+  "cancel": "取消",
+  "save": "保存",
+  "loading": "加载中...",
+  "enable": "启用",
+  "disable": "禁用",
+  "reset": "重置",
+  "update": "更新",
+  "updateSuccess": "更新成功",
+  "updateFailed": "更新失败",
+  "underMaintenance": "系统维护中",
+  "select": "选择",
+  "all": "全部",
+  "deleting": "删除中...",
+  "on": "开启",
+  "off": "关闭",
+  "enabled": "已启用",
+  "disabled": "已禁用"
+} 
