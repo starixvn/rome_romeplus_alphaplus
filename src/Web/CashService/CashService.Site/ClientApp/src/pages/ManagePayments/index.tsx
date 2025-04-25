@@ -8,7 +8,7 @@ import './ManagePayments.css';
 import './ManagePayments.module.scss';
 import PaymentGateway from './PaymentGateway';
 import BankAccount from './BankAccount';
-import { InfoIcon } from '../../components/Icons';
+import { IconInfo } from '../../components/Icons';
 
 function ManagePayments() {
   const { t } = useTranslation('managePayments');
@@ -34,7 +34,7 @@ function ManagePayments() {
             theme="light"
             arrow={true}
           >
-            <span><InfoIcon /></span>
+            <span><IconInfo /></span>
           </Tippy>
         </h1>
       </div>

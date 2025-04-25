@@ -5,7 +5,7 @@ import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
 import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import DailyLimitPopupModal from './SetDailyLimitPopupModal';
 import styles from './PaymentGateway.module.scss';
-import { IconEdit } from '../../components/Icons';
+import { IconEdit, IconPen } from '../../components/Icons';
 
 interface PaymentGatewayProps {
   // Add props here as needed
@@ -125,7 +125,7 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
                             className="mx-[4px] cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[#163f78]"
                             onClick={() => handleEditClick(provider)}
                           >
-                            <IconEdit />
+                            <IconPen />
                         </button>
                       </div>
                     </td>

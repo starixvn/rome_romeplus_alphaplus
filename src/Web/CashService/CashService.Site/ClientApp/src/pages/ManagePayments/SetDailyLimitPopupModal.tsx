@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import './PaymentGateway.css';
 import { paymentProviderService } from '../../services/paymentsAPI';
+import { IconClose } from '../../components/Icons';
 
 
 interface SetDailyLimitPopupModalProps {
@@ -59,7 +60,7 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
         <div className="relative">
           <h5 className="text-[16px] text-[#163f78] font-bold leading-[21.6px] tracking-[0.2px] pb-[4px]">{t('managePayments:setDailyWithdrawalCount')}</h5>
           <button type="button" className="absolute top-[-20px] right-[-20px] cursor-pointer" onClick={onClose}>
-           close
+           <IconClose />
           </button>
         </div>
         <form onSubmit={handleSubmit}>

@@ -120,3 +120,21 @@ export const InfoIcon: React.FC<{ className?: string }> = ({ className }) => (
     <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
   </svg>
 );
+export const IconPen: React.FC = () => (
+  <svg className='w-[16px] h-[16px] fill-[#163f78]' xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 32 32">
+    <path d="M0 25.2v6.8h6.8l19.6-19.8-6.8-6.6-19.6 19.6zM31.4 7.2c0.8-0.8 0.8-1.8 0-2.4l-4-4c-0.8-0.8-1.8-0.8-2.4 0l-3.2 3.2 6.8 6.8 2.8-3.6z"/>
+  </svg>
+);
+export const IconInfo: React.FC = () => (
+  <svg className='w-[16px] h-[16px] ml-[4px] fill-[#163f78]' version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+    <path
+      d="M14.667 12h2.667v-2.667h-2.667zM16 26.667c-5.88 0-10.667-4.787-10.667-10.667s4.787-10.667 10.667-10.667c5.88 0 10.667 4.787 10.667 10.667s-4.787 10.667-10.667 10.667zM16 2.667c-7.364 0-13.333 5.97-13.333 13.333s5.97 13.333 13.333 13.333c7.364 0 13.333-5.97 13.333-13.333s-5.97-13.333-13.333-13.333zM14.667 22.667h2.667v-8h-2.667v8z"
+    ></path>
+  </svg>
+);
+export const IconClose: React.FC = () => (
+  <svg className='w-[22px] h-[22px] fill-[#163f78]' version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<path  d="M25.333 8.547l-1.88-1.88-7.453 7.453-7.453-7.453-1.88 1.88 7.453 7.453-7.453 7.453 1.88 1.88 7.453-7.453 7.453 7.453 1.88-1.88-7.453-7.453 7.453-7.453z"></path>
+</svg>
+
+);
