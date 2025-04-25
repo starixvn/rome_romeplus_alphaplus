@@ -8,7 +8,7 @@ import SetTransactionLimitModal from './SetTransactionLimitModal';
 import AddBankAccountComponent from './AddBankAccountComponent';
 import UpdateBankAccountComponent from './UpdateBankAccountComponent';
 import { IconDelete, IconPen, IconSearch } from '../../components/Icons';
-
+import styles from './PaymentGateway.module.scss';
 
 const BankAccount: React.FC = () => {
   const { t: tManagePayments } = useTranslation('managePayments');
