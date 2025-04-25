@@ -30,8 +30,8 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             _httpClient = httpClient;
             _userSession = userSession;
 
-            _custId = 1176086;
-            // _custId = 187900621;
+           //  _custId = 1176086;
+           _custId = 187900621;
         }
 
         public IActionResult Index()
