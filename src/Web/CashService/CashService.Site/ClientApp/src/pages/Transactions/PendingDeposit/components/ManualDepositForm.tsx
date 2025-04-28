@@ -81,99 +81,78 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
       </div>
 
       <form id='manual-deposit-form' onSubmit={handleSubmit} className="p-6 flex-1">
-        <div className="flex flex-row space-x-20">
+        <div className="flex flex-row space-x-10">
           {/* Left side - Account information */}
-          <div className="flex-1">
-            <div className="mb-5">
-              <h3 className="text-md font-medium text-gray-700 mb-4">{t('manualDepositForm.accountInformation')}</h3>
+          <div className="">
+            <div className="mb-5 w-[900px]">
+              <h3 className="text-md font-medium text-blue-900 mb-4">{t('manualDepositForm.accountInformation')}</h3>
               
               <div className="flex flex-col space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="memberLoginName" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="memberLoginName" className="block text-sm font-medium text-gray-700 mb-1 relative">
                       {t('manualDepositForm.memberLoginName')}
+                      <span className="text-red-500 absolute">*</span>
                     </label>
                     <div className="relative">
                       <select
                         id="memberLoginName"
                         value={memberLoginName}
                         onChange={(e) => setMemberLoginName(e.target.value)}
-                        className="block w-full rounded-md border border-gray-300 py-2 px-3 text-gray-900 appearance-none focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+                        className="border border-gray-300 rounded-md px-2 w-full h-[35px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
                       >
                         <option value="999b20a00001">999b20a00001</option>
                       </select>
-                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
-                        <svg className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="from" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="from" className="block text-sm font-medium text-gray-700 mb-1 relative">
                       {t('manualDepositForm.from')}
+                      <span className="text-red-500 absolute">*</span>
                     </label>
                     <div className="relative">
-                      <div className="flex items-center">
-                        <div className="mr-2 flex items-center justify-center w-8 h-8 rounded-full bg-gray-200">
-                          <span className="text-gray-600 text-xs">🌐</span>
-                        </div>
-                        <select
-                          id="from"
-                          value={from}
-                          onChange={(e) => setFrom(parseInt(e.target.value))}
-                          className="block w-full rounded-md border border-gray-300 py-2 px-3 text-gray-900 appearance-none focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
-                        >
-                          <option value="12345678">12345678</option>
-                        </select>
-                      </div>
-                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
-                        <svg className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
+                      <select
+                        id="from"
+                        value={from}
+                        onChange={(e) => setFrom(parseInt(e.target.value))}
+                        className="border border-gray-300 rounded-md px-2 w-full h-[35px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
+                      >
+                        <option value="12345678">12345678</option>
+                      </select>
                     </div>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="to" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="to" className="block text-sm font-medium text-gray-700 mb-1 relative">
                       {t('manualDepositForm.to')}
+                      <span className="text-red-500 absolute">*</span>
                     </label>
                     <div className="relative">
-                      <div className="flex items-center">
-                        <div className="mr-2 flex items-center justify-center w-8 h-8 rounded-full bg-gray-200">
-                          <span className="text-gray-600 text-xs">🌐</span>
-                        </div>
-                        <select
-                          id="to"
-                          value={to}
-                          onChange={(e) => setTo(parseInt(e.target.value))}
-                          className="block w-full rounded-md border border-gray-300 py-2 px-3 text-gray-900 appearance-none focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
-                        >
-                          <option value="1493993018">1493993018</option>
-                        </select>
-                      </div>
-                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
-                        <svg className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
+                      <select
+                        id="to"
+                        value={to}
+                        onChange={(e) => setTo(parseInt(e.target.value))}
+                        className="border border-gray-300 rounded-md px-2 w-full h-[35px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
+                      >
+                        <option value="1493993018">1493993018</option>
+                      </select>
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="depositAmount" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="depositAmount" className="block text-sm font-medium text-gray-700 mb-1 relative">
                       {t('manualDepositForm.depositAmount')}
+                      <span className="text-red-500 absolute">*</span>
                     </label>
                     <input
                       id="depositAmount"
                       type="number"
                       value={depositAmount}
                       onChange={(e) => setDepositAmount(e.target.value)}
-                      className="block w-full rounded-md border border-gray-300 py-2 px-3 text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+                      className="border border-gray-300 rounded-md px-2 w-full h-[35px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184]"
                       placeholder="0"
                     />
                   </div>
@@ -187,7 +166,7 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
                     id="remarks"
                     value={remarks}
                     onChange={(e) => setRemarks(e.target.value)}
-                    className="block w-full rounded-md border border-gray-300 py-2 px-3 text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm min-h-[120px]"
+                    className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] min-h-[120px]"
                     placeholder={t('manualDepositForm.remarksPlaceholder')}
                   />
                 </div>
@@ -196,8 +175,8 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
           </div>
 
           {/* Right side - Upload image and buttons */}
-          <div className="w-80 flex flex-col">
-            <div className="h-[500px] border border-dashed border-gray-300 rounded-md flex flex-col items-center justify-center mb-6 relative overflow-hidden">
+          <div className="flex flex-col">
+            <div className="w-[350px] h-[450px] border-[2px] border-dashed border-[#163f78] rounded-[5px] flex flex-col items-center justify-center mb-6 ml-[60px] relative">
               {imageUrl ? (
                 <div className="absolute inset-0 flex flex-col items-center">
                   <img 
@@ -206,17 +185,6 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
                     className="w-full h-full object-contain cursor-pointer" 
                     onClick={openImageInNewTab}
                   />
-                  <a 
-                    href={imageUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="absolute bottom-2 left-2 bg-white rounded-md p-2 shadow hover:bg-gray-200 flex items-center z-20"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-600 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                    <span className="text-xs font-medium">{t('manualDepositForm.viewFullSize')}</span>
-                  </a>
                   <button
                     type="button"
                     onClick={resetImageUpload}
@@ -230,13 +198,15 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
                 </div>
               ) : (
                 <div className="flex flex-col items-center justify-center text-center p-6">
-                  <svg className="h-10 w-10 text-gray-400 mb-4" stroke="currentColor" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-[#163f78] mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
-                  <p className="text-sm text-blue-600 font-medium cursor-pointer">{t('manualDepositForm.uploadImage')}</p>
-                  <p className="text-xs text-gray-500 mt-1">{t('manualDepositForm.dragAndDrop')}</p>
-                  <p className="text-xs text-gray-500">{t('manualDepositForm.imageFormat')}</p>
-                  <p className="text-xs text-gray-500">({t('manualDepositForm.maxSize')})</p>
+                  <p className="text-sm font-medium mb-1">
+                    <span className="text-[#163f78] cursor-pointer underline">Click to upload</span> <span className="text-[#333]">or drag</span>
+                  </p>
+                  <span className="text-sm font-medium text-[#333] mb-2">and drop</span>
+                  <span className="text-xs font-medium text-[#333]">Upload jpeg, jpg, png</span>
+                  <span className="text-xs font-medium text-[#333]">(Max 1 MB)</span>
                 </div>
               )}
               <input
@@ -252,19 +222,19 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
               />
             </div>
             
-            <div className="flex justify-between space-x-4">
+            <div className="flex justify-end space-x-4 mt-3">
               <button
                 type="button"
                 onClick={onClose}
-                className="flex-1 py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="w-[140px] h-[35px] border border-gray-300 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none"
               >
                 {t('manualDepositForm.cancel')}
               </button>
               <button
                 type="submit"
-                className="flex-1 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="w-[140px] h-[35px] border border-transparent rounded-full text-sm font-medium text-white bg-[#163f78] hover:bg-[#0f2d5c] focus:outline-none"
               >
-                {t('manualDepositForm.submit')}
+                {t('manualDepositForm.approve')}
               </button>
             </div>
           </div>

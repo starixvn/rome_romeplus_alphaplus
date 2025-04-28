@@ -15,7 +15,12 @@
   
   "dataGrid": {
     "member": "Thành viên",
+    "username": "Tên người dùng",
+    "loginName": "Tên đăng nhập",
+    "firstName": "Tên",
+    "lastName": "Họ",
     "amount": "Số tiền",
+    "currency": "Tiền tệ",
     "from": "Từ",
     "to": "Đến",
     "referenceNo": "Số tham chiếu",
@@ -23,18 +28,38 @@
     "actions": "Hành động",
     "approve": "Phê duyệt",
     "reject": "Từ chối",
+    "process": "Xử lý",
     "viewDetails": "Xem chi tiết",
     "loading": "Đang tải tiền gửi đang chờ xử lý...",
     "noDepositsFound": "Không tìm thấy tiền gửi nào đang chờ xử lý"
   },
   
+  "pendingDepositModal": {
+    "title": "Tiền gửi đang chờ xử lý",
+    "username": "Tên người dùng",
+    "loginName": "Tên đăng nhập",
+    "firstName": "Tên",
+    "lastName": "Họ",
+    "name": "Tên/Họ",
+    "betCredit": "Tín dụng cược",
+    "from": "Từ",
+    "to": "Đến",
+    "depositAmount": "Số tiền gửi",
+    "dateAndTime": "Ngày và giờ",
+    "remarks": "Ghi chú",
+    "remarksPlaceholder": "Thêm ghi chú tại đây...",
+    "approve": "Phê duyệt",
+    "reject": "Từ chối",
+    "close": "Đóng"
+  },
+  
   "manualDepositForm": {
     "title": "Thêm tiền gửi thủ công",
     "accountInformation": "Thông tin tài khoản",
-    "memberLoginName": "Tên đăng nhập thành viên*",
-    "from": "Từ*",
-    "to": "Đến*",
-    "depositAmount": "Số tiền gửi*",
+    "memberLoginName": "Tên đăng nhập thành viên",
+    "from": "Từ",
+    "to": "Đến",
+    "depositAmount": "Số tiền gửi",
     "remarks": "Ghi chú",
     "remarksPlaceholder": "Thêm ghi chú tại đây...",
     "uploadImage": "Nhấp để tải lên",
@@ -44,7 +69,7 @@
     "viewFullSize": "Xem kích thước đầy đủ",
     "removeImage": "Xóa hình ảnh",
     "cancel": "Hủy",
-    "submit": "Gửi"
+    "approve": "Phê duyệt"
   },
   
   "updateDeposit": {
@@ -80,6 +105,8 @@
   
   "successMessages": {
     "depositSubmitted": "Tiền gửi đã được gửi thành công",
-    "depositUpdated": "Tiền gửi đã được cập nhật thành công"
+    "depositUpdated": "Tiền gửi đã được cập nhật thành công",
+    "depositApproved": "Tiền gửi đã được phê duyệt thành công",
+    "depositRejected": "Tiền gửi đã bị từ chối thành công"
   }
 } 

@@ -30,7 +30,8 @@ const Filter: React.FC<FilterProps> = ({
           <select
             value={recentDeposits}
             onChange={(e) => setRecentDeposits(e.target.value)}
-            className="appearance-none block w-full bg-white border border-gray-300 px-3 py-1.5 pr-8 rounded text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm h-9"
+            className="appearance-none block w-full bg-white border border-gray-300 px-3 py-1 pr-8 rounded text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm h-8"
+            style={{ height: '32px' }}
           >
             <option value="All">{t('filter.all')}</option>
             <option value="Today">{t('filter.today')}</option>
@@ -55,7 +56,8 @@ const Filter: React.FC<FilterProps> = ({
           <select
             value={toFilter}
             onChange={(e) => setToFilter(e.target.value)}
-            className="appearance-none block w-full bg-white border border-gray-300 px-3 py-1.5 pr-8 rounded text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm h-9"
+            className="appearance-none block w-full bg-white border border-gray-300 px-3 py-1 pr-8 rounded text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm h-8"
+            style={{ height: '32px' }}
           >
             <option value="All">{t('filter.all')}</option>
             <option value="Bank1">Bank 1</option>
@@ -92,7 +94,8 @@ const Filter: React.FC<FilterProps> = ({
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="block w-full rounded-md border border-gray-300 py-1.5 pl-10 pr-3 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm h-9"
+            className="block w-full rounded-md border border-gray-300 py-1 pl-10 pr-3 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm h-8"
+            style={{ height: '32px' }}
             placeholder={t('filter.usernamePlaceholder')}
           />
         </div>

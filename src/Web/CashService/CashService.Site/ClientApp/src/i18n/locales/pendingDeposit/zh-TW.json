@@ -15,7 +15,12 @@
   
   "dataGrid": {
     "member": "會員",
+    "username": "用戶名",
+    "loginName": "登錄名",
+    "firstName": "名字",
+    "lastName": "姓氏",
     "amount": "金額",
+    "currency": "貨幣",
     "from": "來自",
     "to": "到",
     "referenceNo": "參考編號",
@@ -23,18 +28,38 @@
     "actions": "操作",
     "approve": "批准",
     "reject": "拒絕",
+    "process": "處理",
     "viewDetails": "查看詳情",
     "loading": "正在加載待處理存款...",
     "noDepositsFound": "未找到待處理存款"
   },
   
+  "pendingDepositModal": {
+    "title": "待處理存款",
+    "username": "用戶名",
+    "loginName": "登錄名",
+    "firstName": "名字",
+    "lastName": "姓氏",
+    "name": "名字/姓氏",
+    "betCredit": "投注額度",
+    "from": "來自",
+    "to": "到",
+    "depositAmount": "存款金額",
+    "dateAndTime": "日期和時間",
+    "remarks": "備註",
+    "remarksPlaceholder": "在此處添加備註...",
+    "approve": "批准",
+    "reject": "拒絕",
+    "close": "關閉"
+  },
+  
   "manualDepositForm": {
     "title": "添加手動存款",
     "accountInformation": "賬戶信息",
-    "memberLoginName": "會員登錄名*",
-    "from": "來自*",
-    "to": "到*",
-    "depositAmount": "存款金額*",
+    "memberLoginName": "會員登錄名",
+    "from": "來自",
+    "to": "到",
+    "depositAmount": "存款金額",
     "remarks": "備註",
     "remarksPlaceholder": "在此處添加備註...",
     "uploadImage": "點擊上傳",
@@ -44,7 +69,7 @@
     "viewFullSize": "查看全尺寸",
     "removeImage": "刪除圖片",
     "cancel": "取消",
-    "submit": "提交"
+    "approve": "批准"
   },
   
   "updateDeposit": {
@@ -70,7 +95,7 @@
   },
   
   "errorMessages": {
-    "requiredField": "此欄位為必填項",
+    "requiredField": "此字段為必填項",
     "invalidAmount": "請輸入有效金額",
     "amountTooSmall": "金額必須大於0",
     "failedToSubmit": "提交存款失敗",
@@ -80,6 +105,8 @@
   
   "successMessages": {
     "depositSubmitted": "存款已成功提交",
-    "depositUpdated": "存款已成功更新"
+    "depositUpdated": "存款已成功更新",
+    "depositApproved": "存款已成功批准",
+    "depositRejected": "存款已成功拒絕"
   }
 } 

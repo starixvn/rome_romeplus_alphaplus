@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { DepositAccountInfo } from '../../../../services/interfaces/DepositAccountInfo';
 import UpdateDeposit from './UpdateDeposit';
+import PendingDepositModal from './PendingDepositModal';
 import { useTranslation } from 'react-i18next';
 
 interface DataGridProps {
@@ -10,13 +11,18 @@ interface DataGridProps {
 const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
   const { t } = useTranslation('pendingDeposit');
   const [editingDeposit, setEditingDeposit] = useState<DepositAccountInfo | null>(null);
+  const [processingDeposit, setProcessingDeposit] = useState<DepositAccountInfo | null>(null);
 
-  const handleEditClick = (deposit: DepositAccountInfo) => {
-    setEditingDeposit(deposit);
+  const handleProcessClick = (deposit: DepositAccountInfo) => {
+    setProcessingDeposit(deposit);
   };
 
   const handleCloseEdit = () => {
     setEditingDeposit(null);
+  };
+
+  const handleCloseProcess = () => {
+    setProcessingDeposit(null);
   };
 
   const handleSaveEdit = (updatedDeposit: DepositAccountInfo) => {
@@ -24,131 +30,72 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
     setEditingDeposit(null);
   };
 
+  const handleApproveDeposit = (deposit: DepositAccountInfo) => {
+    console.log('Approving deposit:', deposit);
+    setProcessingDeposit(null);
+  };
+
+  const handleRejectDeposit = (deposit: DepositAccountInfo) => {
+    console.log('Rejecting deposit:', deposit);
+    setProcessingDeposit(null);
+  };
+
   return (
     <>
-      <div className="overflow-x-auto">
-        <table className="min-w-full border-collapse border border-gray-300">
-          <thead>
+      <div className="max-h-[50vh] overflow-auto shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
+        <table className="text-[14px] w-full border-collapse border border-[#0000001f] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
+          <thead className="sticky top-0 shadow-[0_2px_5px_#0003]">
             <tr>
-              <th
-                scope="col"
-                className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-              >
-                #
+              <th scope="col" className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700">#</th>
+              <th scope="col" className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700">{t('dataGrid.username')}</th>
+              <th scope="col" className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700">{t('dataGrid.loginName')}</th>
+              <th scope="col" className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700">
+                <div>{t('dataGrid.firstName')}</div>
+                <div>{t('dataGrid.lastName')}</div>
               </th>
-              <th
-                scope="col"
-                className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-              >
-                {t('dataGrid.member')}
-              </th>
-              <th
-                scope="col"
-                className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-              >
-                Login Name
-              </th>
-              <th
-                scope="col"
-                className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-              >
-                <div>First Name</div>
-                <div>Last Name</div>
-              </th>
-              <th
-                scope="col"
-                className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-              >
-                {t('dataGrid.amount')}
-              </th>
-              <th
-                scope="col"
-                className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-              >
-                Currency
-              </th>
-              <th
-                scope="col"
-                className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-              >
-                {t('dataGrid.from')}
-              </th>
-              <th
-                scope="col"
-                className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-              >
-                {t('dataGrid.to')}
-              </th>
-              <th
-                scope="col"
-                className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-              >
-                {t('dataGrid.referenceNo')}
-              </th>
-              <th
-                scope="col"
-                className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-              >
-                {t('dataGrid.dateAndTime')}
-              </th>
-              <th
-                scope="col"
-                className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-              >
-                {t('dataGrid.actions')}
-              </th>
+              <th scope="col" className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700">{t('dataGrid.amount')}</th>
+              <th scope="col" className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700">{t('dataGrid.currency')}</th>
+              <th scope="col" className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700">{t('dataGrid.from')}</th>
+              <th scope="col" className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700">{t('dataGrid.to')}</th>
+              <th scope="col" className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700">{t('dataGrid.referenceNo')}</th>
+              <th scope="col" className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700">{t('dataGrid.dateAndTime')}</th>
+              <th scope="col" className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700">{t('dataGrid.actions')}</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="font-[500]">
             {deposits.length > 0 ? (
               deposits.map((deposit, index) => (
-                <tr key={deposit.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                  <td className="px-4 py-3 text-sm text-gray-700 border border-gray-300">
-                    {index + 1}
-                  </td>
-                  <td className="px-4 py-3 text-sm text-gray-700 border border-gray-300">
-                    {deposit.username}
-                  </td>
-                  <td className="px-4 py-3 text-sm text-gray-700 border border-gray-300">
-                    {deposit.loginName}
-                  </td>
-                  <td className="px-4 py-3 text-sm text-gray-700 border border-gray-300">
+                <tr key={deposit.id}>
+                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{index + 1}</td>
+                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{deposit.username}</td>
+                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{deposit.loginName}</td>
+                  <td className="py-1 px-2 border border-[#dee2e6] text-center">
                     <div>{deposit.firstName}</div>
                     <div>{deposit.lastName}</div>
                   </td>
-                  <td className="px-4 py-3 text-sm text-gray-700 border border-gray-300">
-                    {deposit.amount.toFixed(2)}
-                  </td>
-                  <td className="px-4 py-3 text-sm text-gray-700 border border-gray-300">
-                    {deposit.currency}
-                  </td>
-                  <td className="px-4 py-3 text-sm text-gray-700 border border-gray-300">
-                    {deposit.from}
-                  </td>
-                  <td className="px-4 py-3 text-sm text-gray-700 border border-gray-300">
-                    {deposit.to}
-                  </td>
-                  <td className="px-4 py-3 text-sm text-gray-700 border border-gray-300">
-                    {deposit.referenceNo}
-                  </td>
-                  <td className="px-4 py-3 text-sm text-gray-700 border border-gray-300">
+                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{deposit.amount.toFixed(2)}</td>
+                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{deposit.currency}</td>
+                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{deposit.from}</td>
+                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{deposit.to}</td>
+                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{deposit.referenceNo}</td>
+                  <td className="py-1 px-2 border border-[#dee2e6] text-center">
                     {typeof deposit.dateAndTime === 'string' 
                       ? deposit.dateAndTime 
                       : deposit.dateAndTime.toISOString().replace('T', '').replace(/\.\d+Z$/, '')}
                   </td>
-                  <td className="px-4 py-3 text-sm border border-gray-300">
+                  <td className="py-1 px-2 border border-[#dee2e6] text-center">
                     <button 
-                      className="text-blue-600 hover:text-blue-800 font-medium"
-                      onClick={() => handleEditClick(deposit)}
+                      className="font-bold text-[13px] tracking-[0.12px] leading-[26px] px-3 rounded-[4px] bg-[#163f78] hover:bg-[#375A8A] text-[#ffffff] cursor-pointer"
+                      onClick={() => handleProcessClick(deposit)}
                     >
-                      {t('dataGrid.viewDetails')}
+                      {t('dataGrid.process')}
                     </button>
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan={11} className="border border-gray-300">
+                <td colSpan={11} className="p-3 text-center border border-[#dee2e6]">
                   <div className="flex flex-col items-center justify-center py-16">
                     <svg
                       width="70"
@@ -207,6 +154,15 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
           deposit={editingDeposit}
           onClose={handleCloseEdit}
           onSave={handleSaveEdit}
+        />
+      )}
+
+      {processingDeposit && (
+        <PendingDepositModal
+          deposit={processingDeposit}
+          onClose={handleCloseProcess}
+          onApprove={handleApproveDeposit}
+          onReject={handleRejectDeposit}
         />
       )}
     </>
