@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Spin, Alert } from 'antd';
+import { Dialog } from '../../../../components/ui/Dialog';
+import { Spinner } from '../../../../components/Icons';
+import { Alert } from '../../../../components/ui/Alert';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import {
   getTransactionDetail,
@@ -104,7 +106,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
     if (loadingDetail) {
       return (
         <div className="text-center p-10">
-          <Spin size="large" />
+          <Spinner size="large" />
         </div>
       );
     }
@@ -201,7 +203,11 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
   };
 
   return (
-    <Modal
+    <Dialog
+      open={isOpen}
+      onOpenChange={(open: boolean) => {
+        if (!open) onClose();
+      }}
       title={
         <div className="flex items-center gap-2">
           <span>
@@ -214,8 +220,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
           )}
         </div>
       }
-      open={isOpen}
-      onCancel={onClose}
+      description=""
       footer={[
         <button
           key="close"
@@ -230,15 +235,14 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
           className={`px-4 py-2 ml-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-150 ease-in-out cursor-pointer ${reverting ? 'opacity-50 cursor-not-allowed' : ''}`}
           disabled={reverting || !detailData}
         >
-          {reverting ? <Spin size="small" className="mr-2" /> : null}
+          {reverting ? <Spinner size="small" className="mr-2" /> : null}
           {t('detail.revertToPending')}
         </button>,
       ]}
-      width={600}
-      destroyOnClose
+      size="2xl"
     >
       {renderContent()}
-    </Modal>
+    </Dialog>
   );
 };
 

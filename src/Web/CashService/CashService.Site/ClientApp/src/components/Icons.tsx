@@ -135,22 +135,80 @@ export const ChevronDownIcon: React.FC<IconProps> = ({ className = '' }) => (
   </svg>
 );
 export const IconPen: React.FC = () => (
-  <svg className='w-[16px] h-[16px] fill-[#163f78]' xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 32 32">
-    <path d="M0 25.2v6.8h6.8l19.6-19.8-6.8-6.6-19.6 19.6zM31.4 7.2c0.8-0.8 0.8-1.8 0-2.4l-4-4c-0.8-0.8-1.8-0.8-2.4 0l-3.2 3.2 6.8 6.8 2.8-3.6z"/>
+  <svg
+    className="w-[16px] h-[16px] fill-[#163f78]"
+    xmlns="http://www.w3.org/2000/svg"
+    version="1.1"
+    viewBox="0 0 32 32"
+  >
+    <path d="M0 25.2v6.8h6.8l19.6-19.8-6.8-6.6-19.6 19.6zM31.4 7.2c0.8-0.8 0.8-1.8 0-2.4l-4-4c-0.8-0.8-1.8-0.8-2.4 0l-3.2 3.2 6.8 6.8 2.8-3.6z" />
   </svg>
 );
 export const IconInfo: React.FC = () => (
-  <svg className='w-[20px] h-[20px] ml-[4px] fill-[#163f78]' version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-    <path
-      d="M14.667 12h2.667v-2.667h-2.667zM16 26.667c-5.88 0-10.667-4.787-10.667-10.667s4.787-10.667 10.667-10.667c5.88 0 10.667 4.787 10.667 10.667s-4.787 10.667-10.667 10.667zM16 2.667c-7.364 0-13.333 5.97-13.333 13.333s5.97 13.333 13.333 13.333c7.364 0 13.333-5.97 13.333-13.333s-5.97-13.333-13.333-13.333zM14.667 22.667h2.667v-8h-2.667v8z"
-    ></path>
+  <svg
+    className="w-[20px] h-[20px] ml-[4px] fill-[#163f78]"
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 32 32"
+  >
+    <path d="M14.667 12h2.667v-2.667h-2.667zM16 26.667c-5.88 0-10.667-4.787-10.667-10.667s4.787-10.667 10.667-10.667c5.88 0 10.667 4.787 10.667 10.667s-4.787 10.667-10.667 10.667zM16 2.667c-7.364 0-13.333 5.97-13.333 13.333s5.97 13.333 13.333 13.333c7.364 0 13.333-5.97 13.333-13.333s-5.97-13.333-13.333-13.333zM14.667 22.667h2.667v-8h-2.667v8z"></path>
   </svg>
 );
 export const IconClose: React.FC = () => (
-  <svg className='w-[22px] h-[22px] fill-[#163f78]' version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-<path  d="M25.333 8.547l-1.88-1.88-7.453 7.453-7.453-7.453-1.88 1.88 7.453 7.453-7.453 7.453 1.88 1.88 7.453-7.453 7.453 7.453 1.88-1.88-7.453-7.453 7.453-7.453z"></path>
-</svg>
+  <svg
+    className="w-[22px] h-[22px] fill-[#163f78]"
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 32 32"
+  >
+    <path d="M25.333 8.547l-1.88-1.88-7.453 7.453-7.453-7.453-1.88 1.88 7.453 7.453-7.453 7.453 1.88 1.88 7.453-7.453 7.453 7.453 1.88-1.88-7.453-7.453 7.453-7.453z"></path>
+  </svg>
+);
 
+export const Spinner: React.FC<{ size?: 'small' | 'large'; className?: string }> = ({
+  size = 'large',
+  className = '',
+}) => {
+  const spinnerSize = size === 'small' ? 'h-5 w-5' : 'h-8 w-8';
+  return (
+    <svg
+      className={`animate-spin text-blue-600 ${spinnerSize} ${className}`}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+      ></circle>
+      <path
+        className="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+      ></path>
+    </svg>
+  );
+};
+
+export const CalendarIcon: React.FC<{ className?: string }> = ({ className = '' }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className={`w-5 h-5 ${className}`}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M6.75 3v2.25M17.25 3v2.25M3.75 7.5h16.5M4.5 21h15a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5h-15A1.5 1.5 0 003 6v13.5A1.5 1.5 0 004.5 21z"
+    />
+  </svg>
 );
 export const IconSearch: React.FC = () => (
   <svg className='w-[16px] h-[16px] fill-[#828282] ' version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
