@@ -258,7 +258,7 @@
     "Authorization": {
         "cachedExpireTime": 30,
         "EnableCheckBelonging": true,
-        "DisabledCheckDuplicationLogin": false,
+        "DisabledCheckDuplicationLogin": true,
         "KickOutUrl": "~/default/kickout"
     },
     "DisableMessages": false,
