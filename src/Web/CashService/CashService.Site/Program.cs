@@ -10,7 +10,6 @@ using AlphaPlus.SecurityCode.Filters;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.OpenApi.Models;
 using Serilog;
 
 const string pathBase = "/cash-service";
@@ -77,10 +76,17 @@ builder.Services
     .AddSharedCookie();
 
 var app = builder.Build();
-app.UseForwardedHeaders();
-app.UsePathBase(pathBase);
-
 // Configure the HTTP request pipeline.
+app.UseForwardedHeaders();
+app
+    .UsePathBase(pathBase)
+    .UseRouting()
+    .UseDefaultFiles()
+    .UseStaticFiles()
+    .UseSession()
+    .UseAuthentication()
+    .UseAuthorization()
+    .UseMiddleware<RequestCultureMiddleware>();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -89,15 +95,6 @@ else
 {
     app.UseMiddleware<ExceptionMiddleware>();
 }
-
-app.UseDefaultFiles();
-app.UseStaticFiles();
-
-app.UseRouting();
-app.UseSession();
-app.UseAuthentication();
-app.UseAuthorization();
-app.UseMiddleware<RequestCultureMiddleware>();
 
 app.Use(async (context, next) =>
 {
@@ -118,7 +115,7 @@ app.MapControllerRoute(
 
 try
 {
-    Log.Information("Starting web application");
+    //Log.Information("Starting web application");
     await app.RunAsync();
 }
 catch (Exception ex)
