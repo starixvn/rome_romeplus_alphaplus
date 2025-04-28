@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import '../../i18n/i18n';
 import { createRoot } from 'react-dom/client';
 import RegistrationLinks from './components/RegistrationLinks';
 import GeneralSettings from './components/GeneralSettings';
@@ -8,9 +7,10 @@ import { memberSitesService } from '../../services/memberSitesAPI';
 import { Setting, Domain, MessageData, MemberSiteResponse } from '../../types/memberSite';
 import './MemberSiteStyle.css'
 import { useTranslation } from 'react-i18next';
-
+import { useCookieLanguage } from './hooks/useCookieLanguage';
 
 const MemberSiteManagement: React.FC = () => {
+  useCookieLanguage();
   const { t } = useTranslation('memberSite');
   const [originalData, setOriginalData] = useState<MemberSiteResponse>({
     domains: [],

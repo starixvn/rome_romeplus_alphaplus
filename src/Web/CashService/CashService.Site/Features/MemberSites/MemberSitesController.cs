@@ -4,24 +4,31 @@ using Microsoft.Extensions.Logging;
 using AlphaPlus.CashService.Site.Features.MemberSites.Models;
 using AlphaPlus.CashService.Site.Features.MemberSites.Queries;
 using AlphaPlus.CashService.Site.Features.MemberSites.Commands;
-
+using AlphaPlus.Core.Models;
+using AlphaPlus.CashService.Site.Features.MemberSites.ViewModels;
 namespace AlphaPlus.CashService.Site.Features.MemberSites;
 
 public class MemberSitesController : Controller
 {
     private readonly IMediator _mediator;
     private readonly ILogger<MemberSitesController> _logger;
+     private readonly IUserSession _userSession;
 
-    public MemberSitesController(IMediator mediator, ILogger<MemberSitesController> logger)
+    public MemberSitesController(IMediator mediator, ILogger<MemberSitesController> logger, IUserSession userSession)
     {
         _mediator = mediator;
         _logger = logger;
+        _userSession = userSession;
     }
 
     [HttpGet]   
     public IActionResult Index()
     {
-        return View();
+        var model = new MemberSiteBaseViewModel
+        {
+            DarkModeName = _userSession.DarkModeName
+        };
+        return View(model);
     }
 
     [HttpGet]
