@@ -116,6 +116,11 @@
             "Name": "SiteDB.CustDB.wsv_alpv",
             "ConnectionString": "packet size=4096; Data Source=10.40.40.191;Initial Catalog=CustDB;integrated security=false; trustservercertificate=true; user id=wsv_alpv; password=PXf2SBfRUQy8FX4nLKHkrJ9Y9GtDtpJCaj335Qs3Yws==",
             "ProviderName": "System.Data.SqlClient"
+        },
+        {
+            "Name": "DBCRM.bodb_CRM.wsv_alpv",
+            "ConnectionString": "packet size=4096; Data Source=10.40.40.86;Initial Catalog=bodb_CRM;integrated security=false; trustservercertificate=true; user id=wsv_alpv; password=PXf2SBfRUQy8FX4nLKHkrJ9Y9GtDtpJCaj335Qs3Yws==",
+            "ProviderName": "System.Data.SqlClient"
         }
     ],
     "StoredProcedurePath": "~/App_Data/SPNames.INTERNAL.xml",
@@ -151,7 +156,7 @@
         87,
         66,
         89,
-		95,
+        95,
         105,
         107,
         108

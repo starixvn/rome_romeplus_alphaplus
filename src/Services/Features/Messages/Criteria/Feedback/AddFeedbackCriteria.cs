@@ -12,7 +12,8 @@ namespace AlphaPlus.Features.Messages.API.Criteria.Feedback
             string comment,
             byte rate,
             int? funcId,
-            string xmlfb)
+            string xmlfb,
+            int statusId)
         {
             CustId = custId;
             SubAccId = subAccId;
@@ -20,6 +21,7 @@ namespace AlphaPlus.Features.Messages.API.Criteria.Feedback
             Rate = rate;
             FuncId = funcId;
             XMLfb = xmlfb;
+            StatusId = statusId;
         }
 
         public int CustId { get; }
@@ -33,6 +35,8 @@ namespace AlphaPlus.Features.Messages.API.Criteria.Feedback
         public int? FuncId { get; }
 
         public string XMLfb { get; }
+
+        public int StatusId { get; }
 
         public override string GetSettingKey()
             => "Age_CustFeedbackIns";
