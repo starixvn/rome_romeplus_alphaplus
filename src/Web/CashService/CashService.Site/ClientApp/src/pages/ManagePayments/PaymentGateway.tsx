@@ -102,7 +102,7 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
           {error}
         </div>
       ) : (
-        <div className={styles['table-payment']}>
+        <div className={styles['table-fixed-header']}>
           <table className="text-[12px] w-full border-collapse border border-[#0000001f] border-t-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
             <thead>
               <tr>

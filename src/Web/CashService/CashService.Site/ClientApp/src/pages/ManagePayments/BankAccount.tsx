@@ -340,11 +340,12 @@ const BankAccount: React.FC = () => {
           )}
 
           {!loading && !error && bankAccounts.length > 0 && (
-            <div className={styles['table-payment']}>
-              <table className="text-[12px] w-full border-collapse border border-[#0000001f] border-t-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
+            <div className={`${styles["table-fixed-header"]} ${styles["table-fixed-body"]}`}>
+              <table className="text-[12px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
                 <thead>
                   <tr>
-                    <th>{tGlobal('action')}</th>
+                    <th className={`${styles["col-no"]} bg-[#ffffff]`}>#</th>
+                    <th className={`${styles["col-action"]} bg-[#ffffff]`}>{tGlobal('action')}</th>
                     <th>{tManagePayments('accountNickname')}</th>
                     <th>{tManagePayments('bank')}</th>
                     <th>{tManagePayments('accountHolderName')}</th>
@@ -355,9 +356,10 @@ const BankAccount: React.FC = () => {
                   </tr>
                 </thead>
                 <tbody className='font-[500]'>
-                  {bankAccounts.map((account) => (
+                  {bankAccounts.map((account, index) => (
                     <tr key={account.id}>
-                      <td>
+                      <td className={`${styles["col-no"]} bg-[#ffffff]`}>{index + 1}</td> 
+                      <td className={`${styles["col-action"]} bg-[#ffffff]`}>
                         <div className="flex">
                           <button 
                             className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[#163f78]"

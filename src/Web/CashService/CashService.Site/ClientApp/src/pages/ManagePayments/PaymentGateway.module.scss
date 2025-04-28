@@ -4,7 +4,7 @@
     --table-border-color: #0000001f;
 }
 
-.table-payment{
+.table-fixed-header{
     max-height: 50vh;
     overflow: auto;
     box-shadow: 0 1px 5px #0003,0 2px 2px #00000024,0 3px 1px -2px #0000001f;
@@ -57,5 +57,30 @@
         height: 28px;
         padding: 4px 8px;
         text-align: center;
+    }
+}
+.table-fixed-body table{
+    thead, tbody{
+        th,td{
+            &.col-no{
+                left: 0;
+                min-width: 32px;
+                position: sticky;
+                z-index: 6;
+            }
+            &.col-action{
+                left: 32px;
+                min-width: 32px;
+                position: sticky;
+                z-index: 6;
+                box-shadow: 3px 0 4px 0 rgba(99, 84, 84, .3) !important;
+            }
+        }
+    }
+}
+.table-fixed-body.table-fixed-header{
+    thead {
+        z-index: 10;
+        
     }
 }

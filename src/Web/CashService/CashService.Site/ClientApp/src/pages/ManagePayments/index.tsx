@@ -5,7 +5,6 @@ import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; 
 import '../../i18n/i18n';
 import './ManagePayments.css';
-import './ManagePayments.module.scss';
 import PaymentGateway from './PaymentGateway';
 import BankAccount from './BankAccount';
 import { IconInfo } from '../../components/Icons';

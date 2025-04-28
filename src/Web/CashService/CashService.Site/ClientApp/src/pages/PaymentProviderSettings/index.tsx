@@ -308,7 +308,7 @@ function PaymentProviderSettings() {
             <button className="rounded-[5px] text-[#163f78] p-[8px] text-[12px] font-bold border-[1px] border-[#163f78] ml-auto mt-auto bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer leading-[14px]" onClick={handleViewFees}>{tManagePayments('viewProviderFees', {providerName: window.providerSettingsViewModel.Provider.Name})}</button>
           </div>
           
-          <div className={styles['table-payment']}>
+          <div className={styles['table-fixed-header']}>
             <table className="text-[12px] w-full border-collapse border border-[#0000001f] border-t-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
               <thead>
                 <tr>
