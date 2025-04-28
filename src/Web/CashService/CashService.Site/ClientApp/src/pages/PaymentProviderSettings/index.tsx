@@ -13,7 +13,7 @@ import { paymentProviderService } from '../../services/paymentsAPI';
 import { formatNumber, formatInputValue } from '../../utils/numberFormatting';
 import { IconInfo } from '../../components/Icons';
 import './PaymentProviderSettings.css';
-
+import styles from '../ManagePayments/PaymentGateway.module.scss';
 // Extend Window interface to include providerName
 declare global {
   interface Window {
@@ -203,10 +203,6 @@ function PaymentProviderSettings() {
 
   return (
     <div className="payment-provider-settings">
-      <div className="settings-header">
-        <h2 className='pb-[8px] mt-[8px] text-[16px] text-[#163f78] font-semibold leading-[21.6px] tracking-[0.2px] '>{window.providerSettingsViewModel.Provider.Name}</h2>
-      </div>
-      
       {loading ? (
         <div className="loading-container">
           <p>{tGlobal('loading')}</p>
@@ -217,15 +213,19 @@ function PaymentProviderSettings() {
         </div>
       ) : (
         <>
-          <div className="form-group">
+        <div className='bg-[#ffffff] px-[16px] py-[10px] mb-[8px]'>
+        <div className="settings-header">
+        <h2 className='pb-[8px] mt-[8px] text-[16px] text-[#163f78] font-semibold leading-[21.6px] tracking-[0.2px] '>{window.providerSettingsViewModel.Provider.Name}</h2>
+      </div>
+          <div className="flex gap-[24px]">
             <div>      
-            <p className="">
+            <p className="mb-[8px]">
               {tManagePayments('setUpPaymentMethodsForMembers')}
             </p>
             <button className="w-[183px] h-[30px] rounded-[5px] text-[#ffffff] px-[16px] py-[4px] text-[12px] font-bold bg-[#163f78] hover:bg-[#375A8A] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]" onClick={handleAddPaymentMethod}>+{tManagePayments('addPaymentMethod')}</button>
             </div>
             <div className="d-flex align-items-center">
-              <label className="toggle-label me-2" htmlFor='enableToggle'>
+              <label className="flex mb-[8px]" htmlFor='enableToggle'>
                 {tGlobal('enable')}/{tGlobal('disable')}
                 <Tippy
                   content={
@@ -243,67 +243,72 @@ function PaymentProviderSettings() {
                   theme="light"
                   arrow={true}
                 >
-                  <span><IconInfo /></span>
+                  <span className='cursor-pointer'><IconInfo /></span>
                 </Tippy>
               </label>
-              
+              <label className={styles.toggleContainer}>
+                <input
+                  type="checkbox"
+                  id="enableToggle"
+                  checked={providerStatus}
+                  onChange={handleProviderStatusToggle}
+                  className="opacity-0 absolute hidden peer" 
+                />
+                <span className='block cursor-pointer w-[60px] h-[30px] rounded-[20px] bg-[#c2c2c2] relative after:content-[""] after:absolute after:top-[3px] after:left-[3px] after:w-[24px] after:h-[24px] after:rounded-[50%] after:bg-[#ffffff] after:transition-all after:duration-300 after:ease-in-out after:shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] peer-checked:after:left-[32px] peer-checked:bg-[#163F78]'>
+
+                </span>
+              </label>
             </div>
             
-            <div className="toggle-container">
-              <input
-                type="checkbox"
-                id="enableToggle"
-                checked={providerStatus}
-                onChange={handleProviderStatusToggle}
-                className="toggle-checkbox"
-              />
+            
+          </div>
+          </div>
+        <div className='bg-[#ffffff] px-[16px] py-[10px]'>
+          <div className='flex flex-wrap mb-[8px]'>
+          <h2 className='w-[100%] mt-[8px] text-[16px] text-[#163f78] font-semibold leading-[21.6px] tracking-[0.2px] '>{window.providerSettingsViewModel.Provider.Name}</h2>
+            <div className="w-[230px] pr-[14px]">
+              <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('paymentMethod')}</label>
+              <select 
+                className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer" 
+                value={selectedPaymentMethod}
+                onChange={handlePaymentMethodChange}
+              >
+                {window.providerSettingsViewModel.PaymentMethods.map((method: any) => (
+                  <option key={method.Id} value={method.Id}>{method.Name}</option>
+                ))}
+              </select>
             </div>
-          </div>
 
-          <div className="form-group">
-            <label className="form-label">{tManagePayments('paymentMethod')}</label>
-            <select 
-              className="form-select" 
-              value={selectedPaymentMethod}
-              onChange={handlePaymentMethodChange}
-            >
-              {window.providerSettingsViewModel.PaymentMethods.map((method: any) => (
-                <option key={method.Id} value={method.Id}>{method.Name}</option>
-              ))}
-            </select>
-          </div>
+            <div className="w-[230px] pr-[14px]">
+              <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('status')}</label>
+              <select 
+                className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer" 
+                value={selectedStatus}
+                onChange={handleStatusChange}
+              >
+                {STATUS_OPTIONS.map(status => (
+                  <option key={status.id} value={status.id}>{tManagePayments(`status-${status.id}`)}</option>
+                ))}
+              </select>
+            </div>
 
-          <div className="form-group">
-            <label className="form-label">{tManagePayments('status')}</label>
-            <select 
-              className="form-select" 
-              value={selectedStatus}
-              onChange={handleStatusChange}
-            >
-              {STATUS_OPTIONS.map(status => (
-                <option key={status.id} value={status.id}>{tManagePayments(`status-${status.id}`)}</option>
-              ))}
-            </select>
+            <div className="w-[230px] pr-[14px]">
+              <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('transactionType')}</label>
+              <select 
+                className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer" 
+                value={selectedTransactionType}
+                onChange={handleTransactionTypeChange}
+              >
+                {TRANSACTION_TYPES.map(type => (
+                  <option key={type.id} value={type.id}>{tManagePayments(`transaction-${type.id}`)}</option>
+                ))}
+              </select>
+            </div>
+            <button className="rounded-[5px] text-[#163f78] p-[8px] text-[12px] font-bold border-[1px] border-[#163f78] ml-auto mt-auto bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer leading-[14px]" onClick={handleViewFees}>{tManagePayments('viewProviderFees', {providerName: window.providerSettingsViewModel.Provider.Name})}</button>
           </div>
-
-          <div className="form-group">
-            <label className="form-label">{tManagePayments('transactionType')}</label>
-            <select 
-              className="form-select" 
-              value={selectedTransactionType}
-              onChange={handleTransactionTypeChange}
-            >
-              {TRANSACTION_TYPES.map(type => (
-                <option key={type.id} value={type.id}>{tManagePayments(`transaction-${type.id}`)}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="settings-footer">
-            <button className="btn btn-secondary me-2" onClick={handleViewFees}>{tManagePayments('viewProviderFees', {providerName: window.providerSettingsViewModel.Provider.Name})}</button>
-          </div>
-          <div className="settings-table-container">
-            <table className="table table-striped">
+          
+          <div className={styles['table-payment']}>
+            <table className="text-[12px] w-full border-collapse border border-[#0000001f] border-t-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
               <thead>
                 <tr>
                   <th>{tManagePayments('paymentMethod')}</th>
@@ -318,71 +323,81 @@ function PaymentProviderSettings() {
               <tbody>
                 {providerSettings.map((setting, index) => (
                   <tr key={index}>
-                    <td>{setting.methodName}</td>
-                    <td>{tManagePayments(`status-${setting.status}`)}</td>
-                    <td>{tManagePayments(`transaction-${setting.transactionType}`)}</td>
+                    <td className='font-semibold'>{setting.methodName}</td>
+                    <td><span className='rounded-[20px] font-semibold px-[10px] py-[3px]  bg-[#AFE9D7]'>{tManagePayments(`status-${setting.status}`)}</span></td>
+                    <td className='font-semibold'>{tManagePayments(`transaction-${setting.transactionType}`)}</td>
                     <td>
-                      <input 
-                        type="text" 
-                        className="form-control form-control-sm" 
-                        value={formatNumber(setting.minAmount)} 
-                        onChange={(e) => handleMinAmountChange(index, e.target.value)}
-                        placeholder={tManagePayments('minimum')}
-                      />
-                      <label className="form-label">{tManagePayments('minAmount')} {formatNumber(setting.minAmountTrans)}</label>
+                      <div className='flex flex-col'>
+                        <input 
+                          type="text" 
+                          className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer mb-2px]" 
+                          value={formatNumber(setting.minAmount)} 
+                          onChange={(e) => handleMinAmountChange(index, e.target.value)}
+                          placeholder={tManagePayments('minimum')}
+                        />
+                        <label className="text-left text-[11px] text-[#828282] font-semibold">{tManagePayments('minAmount')} {formatNumber(setting.minAmountTrans)}</label>
+                      </div>
                     </td>
                     <td>
+                      <div className='flex flex-col'>
                       <input 
                         type="text" 
-                        className="form-control form-control-sm" 
+                        className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer mb-2px]m" 
                         value={formatNumber(setting.maxAmount)} 
                         onChange={(e) => handleMaxAmountChange(index, e.target.value)}
                         placeholder={tManagePayments('maximum')}
                       />
-                      <label className="form-label">{tManagePayments('maxAmount')} {formatNumber(setting.maxAmountTrans)}</label>
+                      <label className="text-left text-[11px] text-[#828282] font-semibold">{tManagePayments('maxAmount')} {formatNumber(setting.maxAmountTrans)}</label>
+                      </div>
                     </td>
                     <td>
-                      <div className="toggle-container">
+                      <div className="">
+                        <label className={styles.toggleContainer}>
                         <input
                           type="checkbox"
                           id={`toggle-${index}`}
                           checked={setting.isEnabled || false}
                           onChange={() => handleSettingToggle(index)}
-                          className="toggle-checkbox"
+                          className="opacity-0 absolute hidden peer"
                         />
+                        <span className='block cursor-pointer w-[60px] h-[30px] rounded-[20px] bg-[#c2c2c2] relative after:content-[""] after:absolute after:top-[3px] after:left-[3px] after:w-[24px] after:h-[24px] after:rounded-[50%] after:bg-[#ffffff] after:transition-all after:duration-300 after:ease-in-out after:shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] peer-checked:after:left-[32px] peer-checked:bg-[#163F78]'></span>
+                        </label>                        
                       </div>
                     </td>
                     <td>
                       {setting.bankRequired ? (
                         <button 
-                          className="btn btn-sm btn-info"
+                          className="rounded-[5px] text-[#163f78] p-[8px] text-[12px] font-bold border-[1px] border-[#163f78] ml-auto mt-auto bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer leading-[14px]"
                           onClick={() => handleViewBanks(setting)}
                         >
                           {tManagePayments('listOfBanks')}
                         </button>
-                      ) : tManagePayments('noBankRequired')}
+                      ) : ( <span className='font-semibold color-[#333333]'>{tManagePayments('noBankRequired')} </span>) }
+
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            <div className="settings-footer">
-              <button className="btn btn-warning me-2" onClick={handleReset}>{tGlobal('reset')}</button>
-              <button 
-                className="btn btn-success" 
-                onClick={handleUpdate}
-                disabled={updating}
-              >
-                {updating ? tGlobal('updating') : tGlobal('update')}
-              </button>
-            </div>
-            
-            {updateMessage && (
-              <div className={`alert alert-${updateMessage.type === 'success' ? 'success' : 'danger'} mt-3`}>
-                {updateMessage.text}
-              </div>
-            )}
           </div>
+
+          <div className="flex justify-end py-[8px] mt-[8px]">
+            <button className="w-[140px] h-[30px] rounded-[20px] text-[#163f78] px-[16px] py-[4px] text-[12px] border-[1px] border-[#163f78]  bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer " onClick={handleReset}>{tGlobal('reset')}</button>
+            <button 
+              className="w-[140px] h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px] border-[#163f78] ml-[8px] bg-[#163f78] hover:bg-[#375A8A] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]" 
+              onClick={handleUpdate}
+              disabled={updating}
+            >
+              {updating ? tGlobal('updating') : tGlobal('update')}
+            </button>
+          </div>
+            
+          {updateMessage && (
+            <div className={`alert alert-${updateMessage.type === 'success' ? 'success' : 'danger'} mt-3`}>
+              {updateMessage.text}
+            </div>
+          )}
+         </div>
 
         </>
       )}

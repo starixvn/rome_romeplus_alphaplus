@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { Bank } from '../../services/interfaces/Bank';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { TRANSACTION_TYPES } from '../../constants/paymentConstants';
-
+import styles from '../ManagePayments/PaymentGateway.module.scss';
+import { IconClose } from '../../components/Icons';
 interface BanksPopupModalProps {
   onClose: () => void;
   transactionType: number;
@@ -35,13 +36,15 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
   }, [tManagePayments]);
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <div className="modal-header">
-          <h5 className="modal-title">{tManagePayments('listOfBanks')}</h5>
-          <button type="button" className="btn-close" onClick={onClose}></button>
+    <div className="bg-[#00000066] fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+      <div className="p-[30px] bg-[#ffffff] w-full max-w-[560px] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
+        <div className="relative">
+          <h5 className="text-[16px] text-[#163f78] font-bold leading-[21.6px] tracking-[0.2px] pb-[4px]">{tManagePayments('listOfBanks')}</h5>
+          <button type="button" className="absolute top-[-20px] right-[-20px] cursor-pointer" onClick={onClose}>
+            <IconClose />
+          </button>
         </div>
-        <div className="modal-body">
+        <div className="mb-[12px]">
           {loading ? (
             <div className="text-center">
               <div className="spinner-border" role="status">
@@ -58,9 +61,9 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
             </div>
           ) : (
             <>
-              <label>{TRANSACTION_TYPES.find(type => type.id === transactionType)?.name || transactionType}</label>
+              <label className='block text-[#163f78] my-[16px] font-semibold'>{TRANSACTION_TYPES.find(type => type.id === transactionType)?.name || transactionType}</label>
               <div className="table-responsive">
-                <table className="table table-striped">
+                <table className={styles['table-striped']}>
                   <thead>
                     <tr>
                       <th>#</th>
@@ -71,7 +74,7 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
                     {banks.map((bank, index) => (
                       <tr key={bank.id}>
                         <td>{index + 1}</td>
-                        <td>{bank.name}</td>
+                        <td className='text-left!'>{bank.name}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -80,8 +83,8 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
             </>
           )}
         </div>
-        <div className="modal-footer">
-          <button type="button" className="btn btn-secondary" onClick={onClose}>
+        <div className="flex justify-center">
+          <button type="button" className="w-[140px] capitalize font-bold h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px] border-[#163f78] mx-[4px] bg-[#163f78] hover:bg-[#375A8A] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]" onClick={onClose}>
             {tGlobal('close')}
           </button>
         </div>

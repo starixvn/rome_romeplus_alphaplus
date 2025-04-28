@@ -42,7 +42,7 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
             <IconClose />
           </button>
         </div>
-        <div className="modal-body">
+        <div className="mb-[12px]">
           {isLoading ? (
             <div className="text-center">
               <div className="spinner-border" role="status">
@@ -60,7 +60,7 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
                 </div>
                 <p>{tManagePayments('feesInfo1')}</p>
           
-                <ul className='list-disc pl-[24px]'>
+                <ul className='list-disc pl-[24px] mb-[16px]'>
                   <li>{tManagePayments('feesFormula')}</li>
                 </ul>
                 <p className='mb-[16px]'>{tManagePayments('feesInfo2')}</p>
