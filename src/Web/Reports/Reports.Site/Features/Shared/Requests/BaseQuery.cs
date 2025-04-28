@@ -11,7 +11,7 @@ public class BaseQuery
     {
     }
 
-    protected BaseQuery(IUserSession viewer)
+    internal BaseQuery(IUserSession viewer)
     {
         Viewer = viewer;
         ViewerId = viewer.CustId;

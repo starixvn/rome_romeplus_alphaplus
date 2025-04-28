@@ -1,36 +1,50 @@
-using AlphaPlus.Reports.Site.Features.Shared;
+using AlphaPlus.Core.Models;
 
-namespace Reports.Site.UnitTests.Features.Shared;
+namespace AlphaPlus.Reports.Site.UnitTests.Features.Shared;
 
+[Trait("Category", "Shared")]
 public class ExcelFileViewModelTests
 {
     [Fact]
     public void Constructor_ShouldInitializeProperties()
     {
         // Arrange
-        var fileName = "test-file.xlsx";
+        var fileName = "test-file";
         var fileContents = new byte[] { 1, 2, 3, 4, 5 };
 
         // Act
         var viewModel = new ExcelFileViewModel(fileName, fileContents);
 
         // Assert
-        Assert.Equal(fileName, viewModel.FileName);
-        Assert.Equal(fileContents, viewModel.FileContents);
+        Assert.Equal($"{fileName}.xls", viewModel.Name);
+        Assert.Equal(fileContents, viewModel.Content);
     }
 
     [Fact]
-    public void ImplicitConversion_ToByteArray_ShouldReturnFileContents()
+    public void Constructor_InvalidFileName_ShouldCreateNewDefaultFileName()
     {
         // Arrange
-        var fileName = "test-file.xlsx";
+        string fileName = null;
         var fileContents = new byte[] { 1, 2, 3, 4, 5 };
-        var viewModel = new ExcelFileViewModel(fileName, fileContents);
 
         // Act
-        byte[] result = viewModel;
+        var viewModel = new ExcelFileViewModel(fileName, fileContents);
 
         // Assert
-        Assert.Equal(fileContents, result);
+        Assert.Equal("no-name.xls", viewModel.Name);
+    }
+
+    [Fact]
+    public void Constructor_InvalidFileNameChars_ShouldReplaceToEmpty()
+    {
+        // Arrange
+        var fileName = "test>file";
+        var fileContents = new byte[] { 1, 2, 3, 4, 5 };
+
+        // Act
+        var viewModel = new ExcelFileViewModel(fileName, fileContents);
+
+        // Assert
+        Assert.Equal("testfile.xls", viewModel.Name);
     }
 }
