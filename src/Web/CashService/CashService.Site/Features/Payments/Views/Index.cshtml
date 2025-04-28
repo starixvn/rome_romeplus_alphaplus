@@ -7,6 +7,12 @@
 
 @model PaymentBaseViewModel
 
+@section Styles {
+    <environment names="Production">
+        <link rel="stylesheet" asp-href-include="/managePayments-*.css" />
+    </environment>
+}
+
 <div id="root"></div>
 <script>
     // Initialize language from localStorage or fallback to model's language

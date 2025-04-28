@@ -4,6 +4,12 @@
 }
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 
+@section Styles {
+    <environment names="Production">
+        <link rel="stylesheet" asp-href-include="/pendingDeposit-*.css" />
+    </environment>
+}
+
 <div id="root"></div>
 
 <script>

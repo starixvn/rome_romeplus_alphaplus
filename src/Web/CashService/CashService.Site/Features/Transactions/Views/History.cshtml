@@ -4,6 +4,12 @@
 }
 @inject IConfiguration Configuration
 
+@section Styles {
+    <environment names="Production">
+        <link rel="stylesheet" asp-href-include="/transactionsHistory-*.css" />
+    </environment>
+}
+
 <div id="root"></div>
 
 <script>

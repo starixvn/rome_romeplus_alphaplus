@@ -4,8 +4,13 @@
 }
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 
-<div id="root" data-theme="@(string.IsNullOrWhiteSpace(Model.DarkModeName) ? "" : "dark")" ></div>
+<div id="root" data-theme="@(string.IsNullOrWhiteSpace(Model.DarkModeName) ? "" : "dark")"></div>
 
+@section Styles {
+    <environment names="Production">
+        <link rel="stylesheet" asp-href-include="/memberSites-*.css" />
+    </environment>
+}
 
 <environment names="Development">
     <script type="module" src="http://localhost:5173/src/pages/MemberSites/index.tsx"></script>
