@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client';
 import { useTranslation } from 'react-i18next';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
-import '../../i18n/i18n';
 import { STATUS_OPTIONS, TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import ProviderFeesPopupModal from '../ManagePayments/ProviderFeesPopupModal';
 import AddPaymentMethodModal from './AddPaymentMethodModal';
@@ -14,6 +13,7 @@ import { formatNumber, formatInputValue } from '../../utils/numberFormatting';
 import { IconInfo } from '../../components/Icons';
 import './PaymentProviderSettings.css';
 import styles from '../ManagePayments/PaymentGateway.module.scss';
+import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 // Extend Window interface to include providerName
 declare global {
   interface Window {
@@ -24,6 +24,7 @@ declare global {
 function PaymentProviderSettings() {
   const { t: tGlobal } = useTranslation('global');
   const { t: tManagePayments } = useTranslation('managePayments');
+  useCookieLanguage();
   const [showFeePopup, setShowFeePopup] = React.useState(false);
   const [showAddPaymentMethod, setShowAddPaymentMethod] = React.useState(false);
   const [showBanksPopup, setShowBanksPopup] = React.useState(false);

@@ -9,9 +9,11 @@ import './ManagePayments.module.scss';
 import PaymentGateway from './PaymentGateway';
 import BankAccount from './BankAccount';
 import { IconInfo } from '../../components/Icons';
+import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 
 function ManagePayments() {
   const { t } = useTranslation('managePayments');
+  useCookieLanguage();
   const [activeTab, setActiveTab] = React.useState('bankAccount');
 
   return (

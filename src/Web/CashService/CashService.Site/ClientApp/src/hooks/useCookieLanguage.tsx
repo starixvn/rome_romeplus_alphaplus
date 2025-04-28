@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import i18n from '../../../i18n/i18n';
+import i18n from '../i18n/i18n';
 
 function getCookie(name: string) {
   const value = `; ${document.cookie}`;

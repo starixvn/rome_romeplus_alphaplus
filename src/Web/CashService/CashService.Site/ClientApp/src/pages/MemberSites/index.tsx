@@ -7,11 +7,11 @@ import { memberSitesService } from '../../services/memberSitesAPI';
 import { Setting, Domain, MessageData, MemberSiteResponse } from '../../types/memberSite';
 import './MemberSiteStyle.css'
 import { useTranslation } from 'react-i18next';
-import { useCookieLanguage } from './hooks/useCookieLanguage';
+import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 
 const MemberSiteManagement: React.FC = () => {
-  useCookieLanguage();
   const { t } = useTranslation('memberSite');
+  useCookieLanguage();
   const [originalData, setOriginalData] = useState<MemberSiteResponse>({
     domains: [],
     generalSettings: [],
