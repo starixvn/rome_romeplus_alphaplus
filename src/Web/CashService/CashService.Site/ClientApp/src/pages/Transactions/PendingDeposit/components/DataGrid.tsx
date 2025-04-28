@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { DepositAccountInfo } from '../../../../services/interfaces/DepositAccountInfo';
-import UpdateDeposit from './UpdateDeposit';
 import PendingDepositModal from './PendingDepositModal';
 import { useTranslation } from 'react-i18next';
 
@@ -148,14 +147,6 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
           </tbody>
         </table>
       </div>
-
-      {editingDeposit && (
-        <UpdateDeposit
-          deposit={editingDeposit}
-          onClose={handleCloseEdit}
-          onSave={handleSaveEdit}
-        />
-      )}
 
       {processingDeposit && (
         <PendingDepositModal

@@ -55,12 +55,6 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
     };
   }, [imageUrl]);
 
-  const openImageInNewTab = () => {
-    if (imageUrl) {
-      window.open(imageUrl, '_blank');
-    }
-  };
-
   const resetImageUpload = () => {
     if (imageUrl) {
       URL.revokeObjectURL(imageUrl);
@@ -182,13 +176,12 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
                   <img 
                     src={imageUrl} 
                     alt="Preview" 
-                    className="w-full h-full object-contain cursor-pointer" 
-                    onClick={openImageInNewTab}
+                    className="w-full h-full object-contain"
                   />
                   <button
                     type="button"
                     onClick={resetImageUpload}
-                    className="absolute top-2 right-2 bg-white rounded-full p-1 shadow hover:bg-gray-200 z-20"
+                    className="absolute top-2 right-2 bg-white rounded-full p-1 shadow hover:bg-gray-200 z-20 cursor-pointer"
                     title={t('manualDepositForm.removeImage')}
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">

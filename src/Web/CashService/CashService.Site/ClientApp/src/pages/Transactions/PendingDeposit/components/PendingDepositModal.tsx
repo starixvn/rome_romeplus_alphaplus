@@ -8,7 +8,6 @@ interface PendingDepositModalProps {
   onApprove: (deposit: DepositAccountInfo) => void;
   onReject: (deposit: DepositAccountInfo) => void;
 }
-
 const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ 
   deposit, 
   onClose, 
