@@ -4,7 +4,6 @@ import { DepositAccountInfo } from './interfaces/DepositAccountInfo';
 import { DepositMemberLoginName } from './interfaces/DepositMemberLoginName';
 import { ResultModel } from './interfaces/ResultModel';
 
-// Create an axios instance with default config
 const api = axios.create({
   baseURL: "",
   headers: {
@@ -13,9 +12,7 @@ const api = axios.create({
   withCredentials: true
 });
 
-// API service for pending deposits
 export const pendingDepositService = {
-  // Get member login names
   getMemberLoginNames: async (): Promise<DepositMemberLoginName[]> => {
     try {
       const response = await api.get<DepositMemberLoginName[]>('GetMemberLoginNames');
@@ -26,7 +23,6 @@ export const pendingDepositService = {
     }
   },
   
-  // Get member bank accounts
   getMemberBankAccounts: async (): Promise<DepositAccountInfo[]> => {
     try {
       const response = await api.get<DepositAccountInfo[]>('GetMemberBankAccounts');
@@ -37,7 +33,6 @@ export const pendingDepositService = {
     }
   },
   
-  // Insert account information for a manual deposit
   insertAccountInfo: async (accountInfo: DepositInfoDetail): Promise<ResultModel> => {
     try {
       const response = await api.post<ResultModel>('InsertAccountInfo', accountInfo);

@@ -1,5 +1,5 @@
 using AlphaPlus.CashService.API.Models;
-using AlphaPlus.CashService.API.Models.PendingDeposit;
+using AlphaPlus.CashService.API.Models.PendingDepositWithdrawal;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Services;
@@ -8,7 +8,7 @@ public interface IPendingDepositService
 {
     Task<IEnumerable<BankAccountInfo>> GetMemberBankAccountInfo();
     Task<IEnumerable<MemberLoginNameInfo>> GetMemberLoginName();
-    Task<ResultModel> InsetAccountInfo(DepositInfoDetail depositInfoDetail);
+    Task<ResultModel> InsetAccountInfo(PendingInfoDetail depositInfoDetail);
 }
 
 public class PendingDepositService(IDynamicRepository repository) : IPendingDepositService
@@ -25,7 +25,7 @@ public class PendingDepositService(IDynamicRepository repository) : IPendingDepo
         //return await repository.FetchAsync<MemberLoginNameInfo>(new GetMemberLoginNameCriteria());
     }
 
-    public async Task<ResultModel> InsetAccountInfo(DepositInfoDetail depositInfoDetail)
+    public async Task<ResultModel> InsetAccountInfo(PendingInfoDetail depositInfoDetail)
     {
         return new ResultModel(0, "Success");
     }

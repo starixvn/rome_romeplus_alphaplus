@@ -1,0 +1,112 @@
+{
+    "pendingWithdrawal": "待處理提款",
+    "addManualWithdrawal": "添加手動提款",
+    
+    "filter": {
+      "recentWithdrawals": "最近提款",
+      "all": "全部",
+      "today": "今天",
+      "yesterday": "昨天",
+      "last7Days": "過去7天",
+      "to": "到",
+      "search": "搜索",
+      "usernamePlaceholder": "用戶名/參考號"
+    },
+    
+    "dataGrid": {
+      "member": "會員",
+      "username": "用戶名",
+      "loginName": "登錄名",
+      "firstName": "名字",
+      "lastName": "姓氏",
+      "amount": "金額",
+      "currency": "貨幣",
+      "from": "來自",
+      "to": "到",
+      "referenceNo": "參考編號",
+      "dateAndTime": "日期和時間",
+      "actions": "操作",
+      "approve": "批准",
+      "reject": "拒絕",
+      "process": "處理",
+      "viewDetails": "查看詳情",
+      "loading": "正在加載待處理提款...",
+      "noWithdrawalsFound": "未找到待處理提款"
+    },
+    
+    "pendingWithdrawalModal": {
+      "title": "待處理提款",
+      "username": "用戶名",
+      "loginName": "登錄名",
+      "firstName": "名字",
+      "lastName": "姓氏",
+      "name": "名字/姓氏",
+      "betCredit": "投注額度",
+      "from": "來自",
+      "to": "到",
+      "withdrawalAmount": "提款金額",
+      "dateAndTime": "日期和時間",
+      "remarks": "備註",
+      "remarksPlaceholder": "在此處添加備註...",
+      "approve": "批准",
+      "reject": "拒絕",
+      "close": "關閉"
+    },
+    
+    "manualWithdrawalForm": {
+      "title": "添加手動提款",
+      "accountInformation": "賬戶信息",
+      "memberLoginName": "會員登錄名",
+      "from": "來自",
+      "to": "到",
+      "withdrawalAmount": "提款金額",
+      "remarks": "備註",
+      "remarksPlaceholder": "在此處添加備註...",
+      "uploadImage": "點擊上傳",
+      "dragAndDrop": "或拖放",
+      "imageFormat": "上傳jpeg、jpg、png",
+      "maxSize": "最大1 MB",
+      "viewFullSize": "查看全尺寸",
+      "removeImage": "刪除圖片",
+      "cancel": "取消",
+      "approve": "批准"
+    },
+    
+    "updateWithdrawal": {
+      "title": "更新提款",
+      "approveWithdrawal": "批准提款",
+      "rejectWithdrawal": "拒絕提款",
+      "confirmTitle": "確認操作",
+      "confirmApproveMessage": "您確定要批准此提款嗎？",
+      "confirmRejectMessage": "您確定要拒絕此提款嗎？",
+      "confirmCancel": "取消",
+      "confirmYes": "是，繼續",
+      "withdrawalDetails": "提款詳情",
+      "memberInfo": "會員信息",
+      "transactionDetails": "交易詳情",
+      "withdrawalApproved": "提款已成功批准",
+      "withdrawalRejected": "提款已成功拒絕"
+    },
+  
+    "status": {
+      "pending": "待處理",
+      "approved": "已批准",
+      "rejected": "已拒絕"
+    },
+    
+    "errorMessages": {
+      "requiredField": "此字段為必填項",
+      "invalidAmount": "請輸入有效金額",
+      "amountTooSmall": "金額必須大於0",
+      "failedToSubmit": "提交提款失敗",
+      "failedToApprove": "批准提款失敗",
+      "failedToReject": "拒絕提款失敗"
+    },
+    
+    "successMessages": {
+      "withdrawalSubmitted": "提款已成功提交",
+      "withdrawalUpdated": "提款已成功更新",
+      "withdrawalApproved": "提款已成功批准",
+      "withdrawalRejected": "提款已成功拒絕"
+    }
+}

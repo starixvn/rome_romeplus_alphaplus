@@ -1,4 +1,4 @@
-namespace AlphaPlus.CashService.API.Models.PendingDeposit
+namespace AlphaPlus.CashService.API.Models.PendingDepositWithdrawal
 {
     public class BankAccountInfo
     {

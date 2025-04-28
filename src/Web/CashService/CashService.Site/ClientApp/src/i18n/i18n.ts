@@ -34,6 +34,14 @@ import pendingDepositZhTW from './locales/pendingDeposit/zh-TW.json';
 import pendingDepositJa from './locales/pendingDeposit/ja.json';
 import pendingDepositKo from './locales/pendingDeposit/ko.json';
 
+// Import pendingWithdrawal translations
+import pendingWithdrawalEn from './locales/pendingWithdrawal/en.json';
+import pendingWithdrawalVi from './locales/pendingWithdrawal/vi.json';
+import pendingWithdrawalZhCN from './locales/pendingWithdrawal/zh-CN.json';
+import pendingWithdrawalZhTW from './locales/pendingWithdrawal/zh-TW.json';
+import pendingWithdrawalJa from './locales/pendingWithdrawal/ja.json';
+import pendingWithdrawalKo from './locales/pendingWithdrawal/ko.json';
+
 // Import transactionHistory translations
 import enTransactionHistory from './locales/transactionHistory/en.json';
 import zhTWTransactionHistory from './locales/transactionHistory/zh-TW.json';
@@ -60,6 +68,7 @@ i18n
         managePayments: managePaymentsEn,
         memberSite: memberSiteEn,
         pendingDeposit: pendingDepositEn,
+        pendingWithdrawal: pendingWithdrawalEn,
         transactionHistory: enTransactionHistory,
       },
       vi: {
@@ -67,18 +76,21 @@ i18n
         managePayments: managePaymentsVi,
         memberSite: memberSiteVi,
         pendingDeposit: pendingDepositVi,
+        pendingWithdrawal: pendingWithdrawalVi,
       },
       'zh-CN': {
         global: globalZhCN,
         managePayments: managePaymentsZhCN,
         memberSite: memberSiteZhCN,
         pendingDeposit: pendingDepositZhCN,
+        pendingWithdrawal: pendingWithdrawalZhCN,
       },
       'zh-TW': {
         global: globalZhTW,
         managePayments: managePaymentsZhTW,
         memberSite: memberSiteZhTW,
         pendingDeposit: pendingDepositZhTW,
+        pendingWithdrawal: pendingWithdrawalZhTW,
         transactionHistory: zhTWTransactionHistory,
       },
       ja: {
@@ -86,12 +98,14 @@ i18n
         managePayments: managePaymentsJa,
         memberSite: memberSiteJa,
         pendingDeposit: pendingDepositJa,
+        pendingWithdrawal: pendingWithdrawalJa,
       },
       ko: {
         global: globalKo,
         managePayments: managePaymentsKo,
         memberSite: memberSiteKo,
         pendingDeposit: pendingDepositKo,
+        pendingWithdrawal: pendingWithdrawalKo,
       },
     },
     fallbackLng: 'en',

@@ -1,0 +1,112 @@
+{
+    "pendingWithdrawal": "Pending Withdrawal",
+    "addManualWithdrawal": "Add Manual Withdrawal",
+    
+    "filter": {
+      "recentWithdrawals": "Recent Withdrawals",
+      "all": "All",
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "last7Days": "Last 7 Days",
+      "to": "To",
+      "search": "Search",
+      "usernamePlaceholder": "Username/Reference No."
+    },
+    
+    "dataGrid": {
+      "member": "Member",
+      "username": "Username",
+      "loginName": "Login Name",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "amount": "Amount",
+      "currency": "Currency",
+      "from": "From",
+      "to": "To",
+      "referenceNo": "Reference No.",
+      "dateAndTime": "Date & Time",
+      "actions": "Actions",
+      "approve": "Approve",
+      "reject": "Reject",
+      "process": "Process",
+      "viewDetails": "View Details",
+      "loading": "Loading pending withdrawals...",
+      "noWithdrawalsFound": "No pending withdrawals found"
+    },
+    
+    "pendingWithdrawalModal": {
+      "title": "Pending Withdrawal",
+      "username": "Username",
+      "loginName": "Login Name",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "name": "First/Last Name",
+      "betCredit": "Bet Credit",
+      "from": "From",
+      "to": "To",
+      "withdrawalAmount": "Withdrawal Amount",
+      "dateAndTime": "Date and Time",
+      "remarks": "Remarks",
+      "remarksPlaceholder": "Add a remark here...",
+      "approve": "Approve",
+      "reject": "Reject",
+      "close": "Close"
+    },
+    
+    "manualWithdrawalForm": {
+      "title": "Add Manual Withdrawal",
+      "accountInformation": "Account Information",
+      "memberLoginName": "Member Login Name",
+      "from": "From",
+      "to": "To",
+      "withdrawalAmount": "Withdrawal Amount",
+      "remarks": "Remarks",
+      "remarksPlaceholder": "Add a remark here...",
+      "uploadImage": "Click to upload",
+      "dragAndDrop": "or drag and drop",
+      "imageFormat": "Upload jpeg, jpg, png",
+      "maxSize": "Max 1 MB",
+      "viewFullSize": "View Full Size",
+      "removeImage": "Remove image",
+      "cancel": "Cancel",
+      "approve": "Approve"
+    },
+    
+    "updateWithdrawal": {
+      "title": "Update Withdrawal",
+      "approveWithdrawal": "Approve Withdrawal",
+      "rejectWithdrawal": "Reject Withdrawal",
+      "confirmTitle": "Confirm Action",
+      "confirmApproveMessage": "Are you sure you want to approve this withdrawal?",
+      "confirmRejectMessage": "Are you sure you want to reject this withdrawal?",
+      "confirmCancel": "Cancel",
+      "confirmYes": "Yes, proceed",
+      "withdrawalDetails": "Withdrawal Details",
+      "memberInfo": "Member Information",
+      "transactionDetails": "Transaction Details",
+      "withdrawalApproved": "Withdrawal approved successfully",
+      "withdrawalRejected": "Withdrawal rejected successfully"
+    },
+  
+    "status": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    
+    "errorMessages": {
+      "requiredField": "This field is required",
+      "invalidAmount": "Please enter a valid amount",
+      "amountTooSmall": "Amount must be greater than 0",
+      "failedToSubmit": "Failed to submit withdrawal",
+      "failedToApprove": "Failed to approve withdrawal",
+      "failedToReject": "Failed to reject withdrawal"
+    },
+    
+    "successMessages": {
+      "withdrawalSubmitted": "Withdrawal submitted successfully",
+      "withdrawalUpdated": "Withdrawal updated successfully",
+      "withdrawalApproved": "Withdrawal approved successfully",
+      "withdrawalRejected": "Withdrawal rejected successfully"
+    }
+}

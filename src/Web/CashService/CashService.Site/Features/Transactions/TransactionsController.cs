@@ -21,6 +21,8 @@ public class TransactionsController(
 
     public IActionResult Deposit() => View();
 
+    public IActionResult Withdrawal() => View();
+
     public IActionResult History() => View();
 
     public async Task<IActionResult> GetAll(string transactionType,
@@ -65,6 +67,13 @@ public class TransactionsController(
         var url = $"{_apiBaseUrl}/member-bank-accounts";
         var memberAccounts = await httpClient.GetFromJsonAsync<object>(url);
         return Json(memberAccounts);
+    }
+
+    public async Task<IActionResult> GetBankWithdrawalAccounts()
+    {
+        var url = $"{_apiBaseUrl}/bank-withdrawal-accounts";
+        var withdrawalAccounts = await httpClient.GetFromJsonAsync<object>(url);
+        return Json(withdrawalAccounts);
     }
 
     [HttpPost]

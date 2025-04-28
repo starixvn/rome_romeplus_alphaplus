@@ -9,24 +9,14 @@ interface DataGridProps {
 
 const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
   const { t } = useTranslation('pendingDeposit');
-  const [editingDeposit, setEditingDeposit] = useState<DepositAccountInfo | null>(null);
   const [processingDeposit, setProcessingDeposit] = useState<DepositAccountInfo | null>(null);
 
   const handleProcessClick = (deposit: DepositAccountInfo) => {
     setProcessingDeposit(deposit);
   };
 
-  const handleCloseEdit = () => {
-    setEditingDeposit(null);
-  };
-
   const handleCloseProcess = () => {
     setProcessingDeposit(null);
-  };
-
-  const handleSaveEdit = (updatedDeposit: DepositAccountInfo) => {
-    console.log('Saving updated deposit:', updatedDeposit);
-    setEditingDeposit(null);
   };
 
   const handleApproveDeposit = (deposit: DepositAccountInfo) => {

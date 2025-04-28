@@ -1,4 +1,4 @@
-using AlphaPlus.CashService.API.Models.PendingDeposit;
+using AlphaPlus.CashService.API.Models.PendingDepositWithdrawal;
 using AlphaPlus.CashService.API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -42,7 +42,7 @@ public static class PendingDepositEndpoints
         {
             using var reader = new StreamReader(request.Body);
             var body = await reader.ReadToEndAsync();
-            var accountInfo = JsonConvert.DeserializeObject<DepositInfoDetail>(body);
+            var accountInfo = JsonConvert.DeserializeObject<PendingInfoDetail>(body);
             
             if (accountInfo == null)
             {

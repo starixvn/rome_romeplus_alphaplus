@@ -1,6 +1,6 @@
-namespace AlphaPlus.CashService.API.Models.PendingDeposit
+namespace AlphaPlus.CashService.API.Models.PendingDepositWithdrawal
 {
-    public class DepositInfoDetail
+    public class PendingInfoDetail
     {
         public string MemberLoginName { get; set; }
         
