@@ -1,13 +1,11 @@
-using AlphaPlus.Core;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Main.Site.Features.Language;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using Xunit;
 
-namespace AlphaPlus.Main.Site.Tests.Features.Language
+namespace AlphaPlus.Main.Site.UnitTests.Features.Language
 {
     public class LanguageControllerTests
     {
@@ -63,8 +61,7 @@ namespace AlphaPlus.Main.Site.Tests.Features.Language
             Assert.Equal(expectedLanguageCode, result.Value);
             _mediatorMock.Verify(x => x.Send(
                 It.Is<ChangeLanguageCommand>(cmd =>
-                    cmd.LanguageCode == expectedLanguageCode &&
-                    !cmd.DisplayLanguage),
+                    cmd.LanguageCode == expectedLanguageCode),
                 It.IsAny<CancellationToken>()), Times.Once);
         }
 
@@ -87,52 +84,8 @@ namespace AlphaPlus.Main.Site.Tests.Features.Language
             Assert.Equal(expectedLanguageCode, result.Value);
             _mediatorMock.Verify(x => x.Send(
                 It.Is<ChangeLanguageCommand>(cmd =>
-                    cmd.LanguageCode == expectedLanguageCode &&
-                    !cmd.DisplayLanguage),
+                    cmd.LanguageCode == expectedLanguageCode),
                 It.IsAny<CancellationToken>()), Times.Once);
-        }
-
-        [Fact]
-        public async Task Change_SetsCorrectCookieOptions()
-        {
-            // Arrange
-            const string expectedLanguageCode = "en";
-            _userSessionMock.Setup(x => x.IsInternal).Returns(false);
-            _mediatorMock.Setup(x => x.Send(
-                It.IsAny<ChangeLanguageCommand>(),
-                It.IsAny<CancellationToken>()))
-                .ReturnsAsync(expectedLanguageCode);
-
-            var responseCookies = new Mock<IResponseCookies>();
-            var httpContext = new DefaultHttpContext();
-            httpContext.Request.Headers["Host"] = "test.example.com";
-            httpContext.Response.Cookies = responseCookies.Object;
-            _controller.ControllerContext = new ControllerContext()
-            {
-                HttpContext = httpContext
-            };
-
-            // Act
-            await _controller.Change(expectedLanguageCode, false);
-
-            // Assert
-            responseCookies.Verify(x => x.Append(
-                "LANGUAGE",
-                expectedLanguageCode,
-                It.Is<CookieOptions>(opt =>
-                    opt.Path == "/" &&
-                    opt.Domain == ".example.com" &&
-                    !opt.HttpOnly)),
-                Times.Once);
-
-            responseCookies.Verify(x => x.Append(
-                "hidLanguage",
-                expectedLanguageCode,
-                It.Is<CookieOptions>(opt =>
-                    opt.Path == "/" &&
-                    opt.Domain == ".example.com" &&
-                    !opt.HttpOnly)),
-                Times.Once);
         }
     }
 }

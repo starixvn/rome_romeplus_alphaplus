@@ -26,7 +26,7 @@ namespace AlphaPlus.Main.Site.Features.Language
             var domain = Request.Headers.Host.ToString();
             var subDomain = domain.Split('.')[0];
             var mainDomain = domain.Replace(subDomain, string.Empty);
-            var cookieOptions = new CookieOptions() { Expires = DateTime.Now.AddDays(365), Path = "/", Domain = mainDomain, HttpOnly = false };
+            var cookieOptions = new CookieOptions { Expires = DateTime.Now.AddDays(365), Path = "/", Domain = mainDomain, HttpOnly = false };
             Response.Cookies.Append("LANGUAGE", viewModel, cookieOptions);
             Response.Cookies.Append("hidLanguage", viewModel, cookieOptions);
 
