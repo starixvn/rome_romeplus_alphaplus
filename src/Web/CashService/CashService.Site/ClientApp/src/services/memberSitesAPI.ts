@@ -14,7 +14,7 @@ interface ErrorResponse {
 }
 
 class MemberSitesService {
-  private readonly BASE_PATH = 'cash-service/MemberSites/MemberSiteManagement';
+  private readonly BASE_PATH = 'MemberSiteManagement';
 
   private handleError(error: AxiosError<ErrorResponse>): never {
     let message = 'An error occurred';
