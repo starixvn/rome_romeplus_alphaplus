@@ -1,15 +1,13 @@
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { useTranslation } from 'react-i18next';
-import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; 
 import '../../i18n/i18n';
 import './ManagePayments.css';
 import PaymentGateway from './PaymentGateway';
 import BankAccount from './BankAccount';
-import { IconInfo } from '../../components/Icons';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
-
+import TitleCommon from '../../components/ui/TitleCommon';
 function ManagePayments() {
   const { t } = useTranslation('managePayments');
   useCookieLanguage();
@@ -17,28 +15,7 @@ function ManagePayments() {
 
   return (
     <div className="p-[12px]">
-      <div className="mb-[8px]">
-        <h1 className="flex items-center font-bold text-[15px]">
-          {t('managePayments')}
-          <Tippy
-            content={
-              <div>
-                <div>
-                  <i className="bi bi-info-circle fs-4 ico-info inline-elm"></i> 
-                  {t('managePayments')}
-                </div>
-                <div>• {t('managePaymentsTip1')}</div>
-                <div>• {t('managePaymentsTip2')}</div>
-              </div>
-            }
-            placement="top"
-            theme="light"
-            arrow={true}
-          >
-            <span><IconInfo /></span>
-          </Tippy>
-        </h1>
-      </div>
+      <TitleCommon title={t('managePayments')} />
 
       <div className="card">
         <div className="card-header">
