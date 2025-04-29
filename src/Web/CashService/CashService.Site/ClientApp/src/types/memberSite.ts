@@ -24,6 +24,7 @@ export interface MessageData {
 export interface MemberSiteResponse {
   domains: Domain[];
   generalSettings: Setting[];
+  countryCode: string;
   mobile: string;
   lineId: string;
   announcement: string;

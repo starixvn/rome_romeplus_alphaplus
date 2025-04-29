@@ -2,15 +2,14 @@ namespace AlphaPlus.CashService.Site.Features.MemberSites.Models;
 
 public class MemberSiteManagementModel
 {
+    public int CustId { get; set; }
+    public string CountryCode { get; set; }
     public IEnumerable<Domain> Domains { get; set; } = new List<Domain>();
     public IEnumerable<GeneralSetting> GeneralSettings { get; set; } = new List<GeneralSetting>();
-    // public bool AllowRegistration { get; set; }
-    // public bool AllowDeposit { get; set; }
     public string Mobile { get; set; } = string.Empty;
     public string LineId { get; set; } = string.Empty;
     public string Announcement { get; set; } = string.Empty;
 }
-
 public class Domain
 {
     public string Url { get; set; } = string.Empty;

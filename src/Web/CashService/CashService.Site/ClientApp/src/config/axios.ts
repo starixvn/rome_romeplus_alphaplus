@@ -1,8 +1,8 @@
 import axios from 'axios';
-
+//http://localhost:5159
 const createAxiosInstance = () => {
   const instance = axios.create({
-    baseURL: "http://localhost:5100",//window.cashServiceAPIUrl,
+    baseURL: "",//window.cashServiceAPIUrl,
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'

@@ -4,6 +4,8 @@ namespace AlphaPlus.CashService.API.Models;
 
 public class MemberSiteManagementModel
 {
+    public int CustId { get; set; }
+    public string CountryCode { get; set; }
     // Domain settings
     public List<DomainModel> Domains { get; set; } = new();
     public List<MemberSitePermission> GeneralSettings { get; set; } = new();
@@ -34,19 +36,18 @@ public class CashServiceManagementDto
         AllowLogin = 2,
         AllowAll = 3
     }
-
-    public int SettingType { get; set; } = 0;
+    public int SettingInfo { get; set; } = 0;
 
     public bool IsAllowRegister
     {
-        get => SettingType == (int)GeneralSettingType.AllowRegister ||
-               SettingType == (int)GeneralSettingType.AllowAll;
+        get => SettingInfo == (int)GeneralSettingType.AllowRegister ||
+               SettingInfo == (int)GeneralSettingType.AllowAll;
     }
 
     public bool IsAllowLogin
     {
-        get => SettingType == (int)GeneralSettingType.AllowLogin ||
-               SettingType == (int)GeneralSettingType.AllowAll;
+        get => SettingInfo == (int)GeneralSettingType.AllowLogin ||
+               SettingInfo == (int)GeneralSettingType.AllowAll;
     }
 
     public string Mobile { get; set; }

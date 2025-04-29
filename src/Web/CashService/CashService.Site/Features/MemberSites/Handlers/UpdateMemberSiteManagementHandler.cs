@@ -4,11 +4,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using AlphaPlus.CashService.Site.Features.MemberSites.Models;
 using AlphaPlus.CashService.Site.Features.MemberSites.Commands;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.CashService.Site.Features.MemberSites.Handlers;
 
 public class UpdateMemberSiteManagementHandler 
-    : IRequestHandler<UpdateMemberSiteManagementCommand, MemberSiteManagementModel>
+    : IRequestHandler<UpdateMemberSiteManagementCommand, Result>
 {
     private readonly HttpClient _httpClient;
     private readonly IConfiguration _configuration;
@@ -24,12 +25,13 @@ public class UpdateMemberSiteManagementHandler
         _logger = logger;
     }
 
-    public async Task<MemberSiteManagementModel> Handle(
+    public async Task<Result> Handle(
         UpdateMemberSiteManagementCommand request,
         CancellationToken cancellationToken)
     {
         try
         {
+            //var baseUrl = "http://localhost:5252";
             var baseUrl = _configuration["CashServiceAPIUrl"];
             var response = await _httpClient.PutAsJsonAsync(
                 $"{baseUrl}/api/member-site-info",
@@ -37,8 +39,7 @@ public class UpdateMemberSiteManagementHandler
                 cancellationToken);
 
             response.EnsureSuccessStatusCode();
-            return await response.Content.ReadFromJsonAsync<MemberSiteManagementModel>(cancellationToken) 
-                ?? new MemberSiteManagementModel();
+            return await response.Content.ReadFromJsonAsync<Result>(cancellationToken);
         }
         catch (Exception ex)
         {

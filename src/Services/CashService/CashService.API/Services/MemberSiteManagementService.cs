@@ -8,7 +8,7 @@ namespace AlphaPlus.CashService.API.Services;
 public interface IMemberSiteManagementService
 {
     Task<MemberSiteManagementModel> GetAsync(int custId);
-    Task<bool> UpdateAsync(MemberSiteManagementModel model);
+    Task<ResultModel> UpdateAsync(MemberSiteManagementModel model);
 }
 public class MemberSiteManagementService : IMemberSiteManagementService
 {
@@ -39,7 +39,8 @@ public class MemberSiteManagementService : IMemberSiteManagementService
             GeneralSettings = BuildGeneralSettings(settingInfo),
             Announcement = settingInfo.Announcement,
             Mobile = settingInfo.Mobile,
-            LineId = settingInfo.LineId
+            LineId = settingInfo.LineId,
+            CountryCode = "66"
         };
 
         return trasnformModel;
@@ -53,24 +54,39 @@ public class MemberSiteManagementService : IMemberSiteManagementService
         };
     }
 
+    private int ConvertToSettingInfo(List<MemberSitePermission> generalSettings)
+    {
+        var allowRegistration = generalSettings.FirstOrDefault(x => x.Id == "allowRegistration")?.Value ?? false;
+        var allowDeposit = generalSettings.FirstOrDefault(x => x.Id == "allowDeposit")?.Value ?? false;
 
-    public async Task<bool> UpdateAsync(MemberSiteManagementModel model)
+        if (allowRegistration && allowDeposit)
+            return (int)CashServiceManagementDto.GeneralSettingType.AllowAll;
+        if (allowRegistration)
+            return (int)CashServiceManagementDto.GeneralSettingType.AllowRegister;
+        if (allowDeposit)
+            return (int)CashServiceManagementDto.GeneralSettingType.AllowLogin;
+        
+        return (int)CashServiceManagementDto.GeneralSettingType.None;
+    }
+
+    public async Task<ResultModel> UpdateAsync(MemberSiteManagementModel model)
     {
         try
         {
             if (model == null) throw new ArgumentNullException(nameof(model));
 
             // Validate model
-            var validationContext = new ValidationContext(model);
-            var validationResults = new List<ValidationResult>();
-            if (!Validator.TryValidateObject(model, validationContext, validationResults, true))
+            var command = new UpdateMemberSiteInfoCommand
             {
-                throw new ValidationException(string.Join(", ", validationResults.Select(r => r.ErrorMessage)));
-            }
-
-            // TODO: Save to database
-            _logger.LogInformation("Member site management updated successfully");
-            return true;
+                CustId = model.CustId,
+                Mobile = model.Mobile,
+                LineId = model.LineId,
+                Announcement = model.Announcement,
+                CountryCode = model.CountryCode,
+                SettingInfo = ConvertToSettingInfo(model.GeneralSettings)
+            };
+            await _repository.ExecuteAsync(command);
+            return new ResultModel(command.ErrCode, command.ErrMsg);
         }
         catch (Exception ex)
         {

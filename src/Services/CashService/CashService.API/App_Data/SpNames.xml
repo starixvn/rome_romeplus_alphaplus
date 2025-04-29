@@ -83,7 +83,7 @@
     <Function Name="Member Site Info">
         <Setting Key="Age_CashService_GeneralSetting" SpName="Age_CashService_GeneralSetting_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
             <Mapping DataField="Domain" ObjectProperty="Url" />
-            <Mapping DataField="SettingInfo" ObjectProperty="GeneralSettingType" />
         </Setting>
+        <Setting Key="Age_CashService_GeneralSetting_Upd" SpName="Age_CashService_GeneralSetting_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0"/>
     </Function>
 </Functions>

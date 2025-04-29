@@ -4,7 +4,7 @@ import RegistrationLinks from './components/RegistrationLinks';
 import GeneralSettings from './components/GeneralSettings';
 import MessageForm from './components/MessageForm';
 import { memberSitesService } from '../../services/memberSitesAPI';
-import { Setting, Domain, MessageData, MemberSiteResponse } from '../../types/memberSite';
+import { Setting, MessageData, MemberSiteResponse } from '../../types/memberSite';
 import './MemberSiteStyle.css'
 import { useTranslation } from 'react-i18next';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
@@ -15,6 +15,7 @@ const MemberSiteManagement: React.FC = () => {
   const [originalData, setOriginalData] = useState<MemberSiteResponse>({
     domains: [],
     generalSettings: [],
+    countryCode: '',
     mobile: '',
     lineId: '',
     announcement: ''
@@ -22,6 +23,7 @@ const MemberSiteManagement: React.FC = () => {
   const [data, setData] = useState<MemberSiteResponse>({
     domains: [],
     generalSettings: [],
+    countryCode: '',
     mobile: '',
     lineId: '',
     announcement: ''
@@ -39,35 +41,8 @@ const MemberSiteManagement: React.FC = () => {
     try {
       setLoading(true);
       const response = await memberSitesService.getMemberSiteData();
-
-      // Transform API response to our data format
-      const transformedDomains: Domain[] = response.domains.map(domain => ({
-        id: domain.url,
-        url: domain.url,
-        qrCode: domain.qrCode,
-        name: `${t('registrationLinks.domain')} ${domain.url.split('.')[1]}`,
-        status: 'active' as const
-      }));
-
-      const transformedSettings = response.generalSettings.map(setting => ({
-        ...setting,
-        value: Boolean((response as any)[setting.id])
-      }));
-
-      setData({
-        domains: transformedDomains,
-        generalSettings: transformedSettings,
-        mobile: response.mobile || '',
-        lineId: response.lineId || '',
-        announcement: response.announcement || ''
-      });
-      setOriginalData({
-        domains: transformedDomains,
-        generalSettings: transformedSettings,
-        mobile: response.mobile || '',
-        lineId: response.lineId || '',
-        announcement: response.announcement || ''
-      });
+      setData(response);
+      setOriginalData(response);
       setError(null);
     } catch (err) {
       setError(t('errors.loadFailed'));
@@ -103,31 +78,16 @@ const MemberSiteManagement: React.FC = () => {
     try {
       setIsSaving(true);
       // Convert our data format back to API format
-      const newData: Partial<MemberSiteResponse> = {};
-
-      const response = await memberSitesService.updateMemberSiteData(newData);
-
+      
+      const response = await memberSitesService.updateMemberSiteData(data);
+      console.log(response);
       // Transform API response back to our data format
-      const transformedDomains: Domain[] = response.domains.map((domain, index) => ({
-        id: domain.url,
-        url: domain.url,
-        qrCode: domain.qrCode,
-        name: `${t('registrationLinks.domain')} ${index + 1}`,
-        status: 'active' as const
-      }));
-
-      const transformedSettings = data.generalSettings.map((setting: Setting) => ({
-        ...setting,
-        value: Boolean((response as any)[setting.id])
-      }));
-
-      setData((prev: MemberSiteResponse) => ({
-        ...prev,
-        domains: transformedDomains,
-        generalSettings: transformedSettings
-      }));
+     
       setIsDirty(false);
       setError(null);
+      
+      
+      
     } catch (err) {
       setError(t('errors.updateFailed'));
       console.error('Error updating data:', err);

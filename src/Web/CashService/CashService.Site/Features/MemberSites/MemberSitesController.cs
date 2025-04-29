@@ -47,7 +47,7 @@ public class MemberSitesController : Controller
     }
 
     [HttpPut]
-    public async Task<ActionResult<MemberSiteManagementModel>> MemberSiteManagement([FromBody] MemberSiteManagementModel model, CancellationToken cancellationToken)
+    public async Task<ActionResult<Result>> MemberSiteManagement([FromBody] MemberSiteManagementModel model, CancellationToken cancellationToken)
     {
         if (!ModelState.IsValid)
         {
@@ -56,9 +56,10 @@ public class MemberSitesController : Controller
 
         try
         {
-            var result = await _mediator.Send(
-                new UpdateMemberSiteManagementCommand(model),
-                cancellationToken);
+            //model.CustId = _userSession.CustId;
+            model.CustId = 1176086;
+            model.CountryCode = "66";
+            var result = await _mediator.Send(new UpdateMemberSiteManagementCommand(model),cancellationToken);
             return Ok(result);
         }
         catch (Exception ex)

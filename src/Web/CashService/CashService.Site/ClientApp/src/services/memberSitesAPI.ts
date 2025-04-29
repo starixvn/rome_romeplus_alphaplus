@@ -69,6 +69,7 @@ class MemberSitesService {
     const defualtMemberSiteData: MemberSiteResponse = {
       domains: [],
       generalSettings: [],
+      countryCode: '',
       mobile: '',
       lineId: '',
       announcement: '',
