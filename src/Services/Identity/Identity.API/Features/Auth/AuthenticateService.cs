@@ -352,7 +352,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 SecurityCode = criteria.SecurityCode,
                 PwdExpiry = criteria.PwdExpiry,
                 Nickname = criteria.Nickname,
-                LoginIp = criteria.LoginIp,
+                LoginIp = request.LoginIp,
                 SubUsername = criteria.SubUsername
             };
 

@@ -56,9 +56,6 @@ namespace AlphaPlus.Settings.Transfer.API.Criteria.AutoTransfer
 
         public override string GetSettingKey() => "Age_ClearBalanceCust_SettingUpdate";
 
-        public override bool IsValid() =>
-            FromCustId > 0 &&
-            ToCustId > 0 &&
-            !string.IsNullOrEmpty(IP);
+        public override bool IsValid() => FromCustId > 0 && ToCustId > 0;
     }
 }
