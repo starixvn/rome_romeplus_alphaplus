@@ -138,11 +138,11 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
       {open && (
         <div className="absolute z-50 mt-2 bg-white border border-gray-200 rounded shadow-lg left-0">
           <div className="flex">
-            <div className="flex flex-col border-r pr-1 mr-1 min-w-[110px]">
+            <div className="flex flex-col border-r pr-1 mr-1 min-w-[110px] pt-3">
               {quickRanges.map((item) => (
                 <button
                   key={item.label}
-                  className="text-left px-2 py-1 text-xs text-gray-700 hover:bg-blue-100 hover:text-blue-700 rounded transition"
+                  className="text-left px-2 py-1 text-xs text-gray-700 hover:bg-blue-100 hover:text-blue-700 rounded transition cursor-pointer"
                   onClick={() => setPendingRange([{ ...item.range(), key: 'selection' }])}
                   type="button"
                 >
@@ -164,19 +164,19 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
             />
           </div>
           <div className="px-4 py-2">
-            <div className="text-xs text-gray-700 mb-2">
+            <div className="flex items-center justify-between text-xs text-gray-700 mb-2">
               <span className="font-semibold">Selected:</span>{' '}
               {selectedStart && selectedEnd
                 ? `${selectedStart.toLocaleDateString('en-US')} - ${selectedEnd.toLocaleDateString('en-US')} (${days} days)`
                 : 'No range selected'}
+              <button
+                className="ml-4 bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-1.5 rounded transition"
+                onClick={handleApply}
+                disabled={!selectedStart || !selectedEnd}
+              >
+                Apply
+              </button>
             </div>
-            <button
-              className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-1.5 rounded transition"
-              onClick={handleApply}
-              disabled={!selectedStart || !selectedEnd}
-            >
-              Apply
-            </button>
           </div>
         </div>
       )}

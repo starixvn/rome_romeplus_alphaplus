@@ -9,6 +9,7 @@ interface TableProps {
   items: TransactionItem[];
   isLoading: boolean;
   onRefreshNeeded?: () => void;
+  columnFilter?: string[];
 }
 
 const formatDateTime = (dateTimeStr: string): { date: string; time: string } => {
@@ -32,7 +33,12 @@ const formatDateTime = (dateTimeStr: string): { date: string; time: string } => 
   };
 };
 
-const Table: React.FC<TableProps> = ({ items, isLoading, onRefreshNeeded }) => {
+const Table: React.FC<TableProps> = ({
+  items,
+  isLoading,
+  onRefreshNeeded,
+  columnFilter = ['All'],
+}) => {
   const { t } = useTranslation('transactionHistory');
   const [selectedTransactionId, setSelectedTransactionId] = useState<number | null>(null);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
@@ -66,6 +72,10 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onRefreshNeeded }) => {
     }
   };
 
+  const shouldShowColumn = (columnName: string) => {
+    return columnFilter.includes(columnName);
+  };
+
   const buildHeader = () => (
     <thead>
       <tr>
@@ -81,60 +91,78 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onRefreshNeeded }) => {
         >
           {t('table.username')}
         </th>
-        <th
-          scope="col"
-          className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-        >
-          {t('table.name')}
-        </th>
-        <th
-          scope="col"
-          className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-        >
-          {t('table.amount')}
-        </th>
-        <th
-          scope="col"
-          className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-        >
-          {t('table.currency')}
-        </th>
-        <th
-          scope="col"
-          className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-        >
-          {t('table.from')}
-        </th>
-        <th
-          scope="col"
-          className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-        >
-          {t('table.to')}
-        </th>
-        <th
-          scope="col"
-          className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-        >
-          {t('table.status')}
-        </th>
-        <th
-          scope="col"
-          className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-        >
-          {t('table.type')}
-        </th>
-        <th
-          scope="col"
-          className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-        >
-          {t('table.referenceNo')}
-        </th>
-        <th
-          scope="col"
-          className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-        >
-          {t('table.dateAndTime')}
-        </th>
+        {shouldShowColumn(t('table.name')) && (
+          <th
+            scope="col"
+            className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
+          >
+            {t('table.name')}
+          </th>
+        )}
+        {shouldShowColumn(t('table.amount')) && (
+          <th
+            scope="col"
+            className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
+          >
+            {t('table.amount')}
+          </th>
+        )}
+        {shouldShowColumn(t('table.currency')) && (
+          <th
+            scope="col"
+            className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
+          >
+            {t('table.currency')}
+          </th>
+        )}
+        {shouldShowColumn(t('table.from')) && (
+          <th
+            scope="col"
+            className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
+          >
+            {t('table.from')}
+          </th>
+        )}
+        {shouldShowColumn(t('table.to')) && (
+          <th
+            scope="col"
+            className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
+          >
+            {t('table.to')}
+          </th>
+        )}
+        {shouldShowColumn(t('table.status')) && (
+          <th
+            scope="col"
+            className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
+          >
+            {t('table.status')}
+          </th>
+        )}
+        {shouldShowColumn(t('table.type')) && (
+          <th
+            scope="col"
+            className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
+          >
+            {t('table.type')}
+          </th>
+        )}
+        {shouldShowColumn(t('table.referenceNo')) && (
+          <th
+            scope="col"
+            className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
+          >
+            {t('table.referenceNo')}
+          </th>
+        )}
+        {shouldShowColumn(t('table.dateAndTime')) && (
+          <th
+            scope="col"
+            className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
+          >
+            {t('table.dateAndTime')}
+          </th>
+        )}
         <th
           scope="col"
           className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
@@ -151,60 +179,78 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onRefreshNeeded }) => {
         {index + 1}
       </td>
       <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.username}</td>
-      <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">
-        <div>{item.firstName}</div>
-        <div>{item.lastName}</div>
-      </td>
-      <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-right">
-        {item.amount.toFixed(2)}
-      </td>
-      <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
-        {item.currency}
-      </td>
-      <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">
-        <div className="flex items-center">
-          {item.from ? (
-            <>
-              <img src="/icons/wallet.svg" alt="wallet" className="w-4 h-4 mr-2" />
-              {item.from}
-            </>
-          ) : (
-            '-'
-          )}
-        </div>
-      </td>
-      <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">
-        <div className="flex items-center">
-          {item.to === 'U2Pay' ? (
-            <>
-              <img src="/icons/u2pay.svg" alt="u2pay" className="w-4 h-4 mr-2" />
-              {item.to}
-            </>
-          ) : (
-            <>
-              <img src="/icons/wallet.svg" alt="wallet" className="w-4 h-4 mr-2" />
-              {item.to}
-            </>
-          )}
-        </div>
-      </td>
-      <td className="px-4 py-0.5 text-sm border border-gray-300 text-center">
-        <span
-          className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusStyle(item.status)}`}
-        >
-          {item.status.toUpperCase()}
-        </span>
-      </td>
-      <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
-        {item.transactionType}
-      </td>
-      <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
-        {item.referenceNumber}
-      </td>
-      <td className="px-2 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
-        <div>{formatDateTime(item.createdDate).date}</div>
-        <div>{formatDateTime(item.createdDate).time}</div>
-      </td>
+      {shouldShowColumn(t('table.name')) && (
+        <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">
+          <div>{item.firstName}</div>
+          <div>{item.lastName}</div>
+        </td>
+      )}
+      {shouldShowColumn(t('table.amount')) && (
+        <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-right">
+          {item.amount.toFixed(2)}
+        </td>
+      )}
+      {shouldShowColumn(t('table.currency')) && (
+        <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
+          {item.currency}
+        </td>
+      )}
+      {shouldShowColumn(t('table.from')) && (
+        <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">
+          <div className="flex items-center">
+            {item.from ? (
+              <>
+                <img src="/icons/wallet.svg" alt="wallet" className="w-4 h-4 mr-2" />
+                {item.from}
+              </>
+            ) : (
+              '-'
+            )}
+          </div>
+        </td>
+      )}
+      {shouldShowColumn(t('table.to')) && (
+        <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">
+          <div className="flex items-center">
+            {item.to === 'U2Pay' ? (
+              <>
+                <img src="/icons/u2pay.svg" alt="u2pay" className="w-4 h-4 mr-2" />
+                {item.to}
+              </>
+            ) : (
+              <>
+                <img src="/icons/wallet.svg" alt="wallet" className="w-4 h-4 mr-2" />
+                {item.to}
+              </>
+            )}
+          </div>
+        </td>
+      )}
+      {shouldShowColumn(t('table.status')) && (
+        <td className="px-4 py-0.5 text-sm border border-gray-300 text-center">
+          <span
+            className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusStyle(item.status)}`}
+          >
+            {item.status.toUpperCase()}
+          </span>
+        </td>
+      )}
+      {shouldShowColumn(t('table.type')) && (
+        <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
+          {item.transactionType}
+        </td>
+      )}
+      {shouldShowColumn(t('table.referenceNo')) && (
+        <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
+          {item.referenceNumber}
+        </td>
+      )}
+      {shouldShowColumn(t('table.dateAndTime')) && (
+        <td className="px-2 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
+          <div>{formatDateTime(item.createdDate).date}</div>
+          <div>{formatDateTime(item.createdDate).time}</div>
+        </td>
+      )}
       <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
         <button
           onClick={() => handleViewTransaction(item.transactionId)}

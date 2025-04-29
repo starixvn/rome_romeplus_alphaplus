@@ -8,12 +8,15 @@ import {
 import Filters from './Filters/Filters';
 import Search from './Search';
 import Table from './Table';
+import { useTranslation } from 'react-i18next';
+import '../../../../i18n/i18n';
 
 interface TransactionListProps {
   transactionType: 'deposit' | 'withdrawal';
 }
 
 const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) => {
+  const { t } = useTranslation('transactionHistory');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [apiData, setApiData] = useState<TransactionsHistoryResponse>({
@@ -30,7 +33,17 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     pageSize: 1000,
     transactionType: transactionType,
   }));
-  const [columnFilter, setColumnFilter] = useState<string>('All');
+  const [columnFilter, setColumnFilter] = useState<string[]>([
+    t('table.name'),
+    t('table.amount'),
+    t('table.currency'),
+    t('table.from'),
+    t('table.to'),
+    t('table.status'),
+    t('table.type'),
+    t('table.referenceNo'),
+    t('table.dateAndTime'),
+  ]);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
   const [localSearchText, setLocalSearchText] = useState('');
   const [displayedItems, setDisplayedItems] = useState<TransactionItem[]>([]);
@@ -50,7 +63,6 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         const paramsForApi: TransactionsHistoryParams = {
           ...apiParams,
           searchText: '',
-          column: columnFilter,
         };
         const response = await getTransactions(paramsForApi);
         setApiData(response);
@@ -89,9 +101,8 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     setApiParams((prev) => ({ ...prev, status: value, page: 1 }));
   };
 
-  const handleColumnChange = (value: string) => {
+  const handleColumnChange = (value: string[]) => {
     setColumnFilter(value);
-    setApiParams((prev) => ({ ...prev, page: 1 }));
   };
 
   const handleAccountChange = (value: string) => {
@@ -141,7 +152,12 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
       </div>
 
       <div className="table-section">
-        <Table items={displayedItems} isLoading={loading} onRefreshNeeded={handleRefresh} />
+        <Table
+          items={displayedItems}
+          isLoading={loading}
+          onRefreshNeeded={handleRefresh}
+          columnFilter={columnFilter}
+        />
       </div>
     </div>
   );

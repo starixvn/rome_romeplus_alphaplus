@@ -7,12 +7,12 @@ import DateRangeFilter from './DateRangeFilter';
 interface FiltersProps {
   dateRange: [string, string];
   status: string;
-  column: string;
+  column: string[];
   account: string;
   transactionType: 'deposit' | 'withdrawal';
   onDateRangeChange: (dates: [string, string]) => void;
   onStatusChange: (value: string) => void;
-  onColumnChange: (value: string) => void;
+  onColumnChange: (value: string[]) => void;
   onAccountChange: (value: string) => void;
 }
 

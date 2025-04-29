@@ -28,9 +28,6 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
           className="appearance-none block w-full bg-white border border-gray-300 px-3 py-1.5 pr-8 rounded text-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm h-9"
         >
           <option value="">{t('filter.selectAccount')}</option>
-          <option value="account1">{t('filter.account1')}</option>
-          <option value="account2">{t('filter.account2')}</option>
-          <option value="account3">{t('filter.account3')}</option>
         </select>
         <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
           <ChevronDownIcon className="h-4 w-4" />

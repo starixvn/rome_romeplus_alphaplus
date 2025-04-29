@@ -21,7 +21,6 @@ export const getTransactions = async (
       page: params.page.toString(),
       pageSize: params.pageSize.toString(),
       status: params.status,
-      column: params.column,
       searchText: params.searchText,
       account: params.account,
       fromDate: params.dateRange[0],
