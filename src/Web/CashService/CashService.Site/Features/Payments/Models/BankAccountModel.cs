@@ -1,5 +1,4 @@
 using Newtonsoft.Json;
-
 namespace AlphaPlus.CashService.Site.Features.Payments.Models
 {
     public class BankAccountModel

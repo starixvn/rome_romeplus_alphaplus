@@ -1,7 +1,5 @@
 using AlphaPlus.CashService.API.Models.PendingCommons;
 using AlphaPlus.CashService.API.Services;
-using Azure.Core;
-using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace AlphaPlus.CashService.API.Endpoints;
