@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using AlphaPlus.CashService.API.Criteria.MemberSite;
 using AlphaPlus.CashService.API.Models;
 using Fanex.Data.Repository;
@@ -64,7 +63,7 @@ public class MemberSiteManagementService : IMemberSiteManagementService
             return (int)CashServiceManagementDto.GeneralSettingType.AllowRegister;
         if (allowDeposit)
             return (int)CashServiceManagementDto.GeneralSettingType.AllowLogin;
-        
+
         return (int)CashServiceManagementDto.GeneralSettingType.None;
     }
 
