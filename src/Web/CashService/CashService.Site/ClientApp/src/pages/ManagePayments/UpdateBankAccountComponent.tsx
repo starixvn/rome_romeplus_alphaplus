@@ -191,8 +191,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 <div className="btn-group" role="group">
                   <button
                     type="button"
-                    className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer  ${status === '1' ? 'bg-[#163f78] text-[#ffffff]' : 'bg-[#163f78] text-[#ffffff]'}`}
-                    onClick={() => setStatus('1')}
+                    className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer  ${status === '1' ? 'bg-[#163f78] text-[#ffffff]' : 'bg-[#eeeeee] text-[#163f78]'}`}                    onClick={() => setStatus('1')}
                   >
                     {tGlobal('enable')}
                   </button>
