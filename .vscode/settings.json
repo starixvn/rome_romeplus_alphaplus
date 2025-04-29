@@ -1,0 +1,6 @@
+{
+  "sonarlint.connectedMode.project": {
+    "connectionId": "NX-SonarQube",
+    "projectKey": "AlphaPlus"
+  }
+}
