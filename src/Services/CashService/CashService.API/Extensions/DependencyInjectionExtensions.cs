@@ -22,6 +22,7 @@ public static class DependencyInjectionExtensions
         services.AddScoped<IPendingDepositService, PendingDepositService>();
         services.AddScoped<IPendingWithdrawalService, PendingWithdrawalService>();
         services.AddScoped<ITransactionService, TransactionService>();
+        services.AddScoped<IPromotionService, PromotionService>();
 
         return services;
     }
