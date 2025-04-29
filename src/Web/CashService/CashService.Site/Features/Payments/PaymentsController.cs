@@ -1,10 +1,8 @@
-using System.Collections.Generic;
 using AlphaPlus.CashService.Site.Features.Payments.Models;
 using AlphaPlus.CashService.Site.Features.Payments.Requests;
 using AlphaPlus.CashService.Site.Features.Payments.ViewModels;
 using AlphaPlus.Core.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 
 namespace AlphaPlus.CashService.Site.Features.Payments
 {
@@ -30,8 +28,8 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             _httpClient = httpClient;
             _userSession = userSession;
 
-           _custId = 1176086;
-           // _custId = 187900621;
+            _custId = 1176086;
+            // _custId = 187900621;
         }
 
         public IActionResult Index()
@@ -193,7 +191,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         {
             var url = $"{_apiBaseUrl}/payments/add-bank-account";
             bankAccount.CreatorId = _custId;
- 
+
             var response = await _httpClient.PostAsJsonAsync(url, bankAccount, cancellationToken);
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);

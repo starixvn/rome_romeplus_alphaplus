@@ -1,5 +1,3 @@
-using System;
-
 namespace AlphaPlus.CashService.Site.Features.Payments.Models
 {
     public class PaymentMethodModel
@@ -15,7 +13,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments.Models
         public string APIMethodKey { get; set; }
         public string MerchantID { get; set; }
         public string AppSecret { get; set; }
-        
+
         public static PaymentMethodModel CreateOptionAll()
         {
             return new PaymentMethodModel
@@ -25,4 +23,4 @@ namespace AlphaPlus.CashService.Site.Features.Payments.Models
             };
         }
     }
-} 
+}

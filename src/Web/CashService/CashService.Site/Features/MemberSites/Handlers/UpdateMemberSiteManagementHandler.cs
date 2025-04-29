@@ -1,14 +1,11 @@
-using System.Net.Http.Json;
-using MediatR;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using AlphaPlus.CashService.Site.Features.MemberSites.Models;
 using AlphaPlus.CashService.Site.Features.MemberSites.Commands;
+using AlphaPlus.CashService.Site.Features.MemberSites.Models;
 using AlphaPlus.Core.Models;
+using MediatR;
 
 namespace AlphaPlus.CashService.Site.Features.MemberSites.Handlers;
 
-public class UpdateMemberSiteManagementHandler 
+public class UpdateMemberSiteManagementHandler
     : IRequestHandler<UpdateMemberSiteManagementCommand, Result>
 {
     private readonly HttpClient _httpClient;
@@ -47,4 +44,4 @@ public class UpdateMemberSiteManagementHandler
             throw;
         }
     }
-} 
+}

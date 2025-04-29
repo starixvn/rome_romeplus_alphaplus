@@ -1,7 +1,6 @@
 using AlphaPlus.PartialUM.Services;
 using AlphaPlus.Reports.Features.CommissionByBetType;
 using AlphaPlus.Reports.Features.Shared;
-using AlphaPlus.Reports.Features.Shared.Models;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.UnitTests.Features.CommissionByBetType;

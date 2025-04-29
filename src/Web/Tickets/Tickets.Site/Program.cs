@@ -11,7 +11,6 @@ using AlphaPlus.SecurityCode.Extensions;
 using AlphaPlus.SecurityCode.Filters;
 using AlphaPlus.Tickets.Site.Features.Shared.Extensions;
 using Fanex.Data;
-using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;

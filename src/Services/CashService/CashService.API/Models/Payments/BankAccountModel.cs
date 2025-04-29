@@ -1,5 +1,3 @@
-using System;
-
 namespace AlphaPlus.CashService.API.Models.Payments
 {
     public class BankAccountModel
@@ -11,7 +9,7 @@ namespace AlphaPlus.CashService.API.Models.Payments
             AccountHolderName = string.Empty;
             LastUpdated = DateTime.UtcNow;
         }
- 
+
         public int Id { get; set; }
         public string AccountNumber { get; set; } = string.Empty;
         public string AccountNickname { get; set; } = string.Empty;
@@ -23,7 +21,7 @@ namespace AlphaPlus.CashService.API.Models.Payments
         public int Status { get; set; }
         public DateTime LastUpdated { get; set; }
         public string LastUpdatedStr => LastUpdated.ToString("MM/dd/yyyy hh:mm:ss tt");
-        
+
         public int DepositMatchingMode { get; set; }
         public bool PromptPay { get; set; }
         public string Mobile { get; set; } = string.Empty;
@@ -31,4 +29,4 @@ namespace AlphaPlus.CashService.API.Models.Payments
         public string Creator { get; set; } = string.Empty;
         public int CreatorId { get; set; }
     }
-} 
+}

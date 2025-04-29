@@ -1,7 +1,6 @@
 using AlphaPlus.Results.Features.Normal;
 using AlphaPlus.Tickets.Site.Features.Shared.Constants;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
-using Fanex.Result.Core.Base;
 using Fanex.Result.Core.GTCasino;
 using Fanex.Result.Core.SAGaming;
 using Fanex.Result.Core.WCasino;

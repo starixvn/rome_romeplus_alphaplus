@@ -1,5 +1,3 @@
-using System;
-
 namespace AlphaPlus.CashService.Site.Features.Payments.Models
 {
     public class ProviderSettingsModel
@@ -17,4 +15,4 @@ namespace AlphaPlus.CashService.Site.Features.Payments.Models
         public bool IsEnabled { get; set; }
         public bool BankRequired { get; set; }
     }
-} 
+}

@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace AlphaPlus.CashService.API.Models.Payments
 {
     public class ProviderModel
@@ -20,7 +17,7 @@ namespace AlphaPlus.CashService.API.Models.Payments
         public int Status { get; set; }
         public DateTime LastUpdated { get; set; }
         public List<ProviderSettingsModel> ProviderSettings { get; set; }
-        
+
         public string LastUpdatedStr => LastUpdated.ToString("MM/dd/yyyy hh:mm:ss tt");
     }
-} 
+}

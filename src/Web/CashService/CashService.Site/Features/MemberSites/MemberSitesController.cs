@@ -1,18 +1,17 @@
-using Microsoft.AspNetCore.Mvc;
-using MediatR;
-using Microsoft.Extensions.Logging;
+using AlphaPlus.CashService.Site.Features.MemberSites.Commands;
 using AlphaPlus.CashService.Site.Features.MemberSites.Models;
 using AlphaPlus.CashService.Site.Features.MemberSites.Queries;
-using AlphaPlus.CashService.Site.Features.MemberSites.Commands;
-using AlphaPlus.Core.Models;
 using AlphaPlus.CashService.Site.Features.MemberSites.ViewModels;
+using AlphaPlus.Core.Models;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 namespace AlphaPlus.CashService.Site.Features.MemberSites;
 
 public class MemberSitesController : Controller
 {
     private readonly IMediator _mediator;
     private readonly ILogger<MemberSitesController> _logger;
-     private readonly IUserSession _userSession;
+    private readonly IUserSession _userSession;
 
     public MemberSitesController(IMediator mediator, ILogger<MemberSitesController> logger, IUserSession userSession)
     {
@@ -21,7 +20,7 @@ public class MemberSitesController : Controller
         _userSession = userSession;
     }
 
-    [HttpGet]   
+    [HttpGet]
     public IActionResult Index()
     {
         var model = new MemberSiteBaseViewModel

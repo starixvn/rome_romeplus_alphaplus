@@ -1,7 +1,6 @@
 using AlphaPlus.Reports.Features.EnteredResult;
 using AlphaPlus.Reports.Site.Features.Shared.TagHelpers;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
-using AlphaPlus.Shared.AppResources.Report;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AlphaPlus.Reports.Site.UnitTests.Features.Shared.TagHelpers;

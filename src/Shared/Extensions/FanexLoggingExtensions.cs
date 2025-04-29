@@ -1,7 +1,6 @@
 using Fanex.Logging;
 using Fanex.Logging.RabbitMQ;
 using Fanex.Logging.Sentry;
-using Sentry;
 
 internal static class FanexLoggingExtensions
 {

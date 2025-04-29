@@ -1,13 +1,10 @@
-using System.Net.Http.Json;
-using MediatR;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using AlphaPlus.CashService.Site.Features.MemberSites.Models;
 using AlphaPlus.CashService.Site.Features.MemberSites.Queries;
+using MediatR;
 
 namespace AlphaPlus.CashService.Site.Features.MemberSites.Handlers;
 
-public class GetMemberSiteManagementHandler 
+public class GetMemberSiteManagementHandler
     : IRequestHandler<GetMemberSiteManagementQuery, MemberSiteManagementModel>
 {
     private readonly HttpClient _httpClient;
@@ -45,4 +42,4 @@ public class GetMemberSiteManagementHandler
             throw;
         }
     }
-} 
+}

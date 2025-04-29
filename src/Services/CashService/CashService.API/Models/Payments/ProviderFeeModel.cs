@@ -1,5 +1,3 @@
-using System;
-
 namespace AlphaPlus.CashService.API.Models.Payments
 {
     public class ProviderFeeModel
@@ -17,4 +15,4 @@ namespace AlphaPlus.CashService.API.Models.Payments
         public string Method { get; set; }
         public decimal Rate { get; set; }
     }
-} 
+}

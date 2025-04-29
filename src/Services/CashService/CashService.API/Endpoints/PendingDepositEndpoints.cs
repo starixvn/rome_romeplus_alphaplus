@@ -1,9 +1,6 @@
 using AlphaPlus.CashService.API.Models.PendingDepositWithdrawal;
 using AlphaPlus.CashService.API.Services;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using System.IO;
 
 namespace AlphaPlus.CashService.API.Endpoints;
 
@@ -43,7 +40,7 @@ public static class PendingDepositEndpoints
             using var reader = new StreamReader(request.Body);
             var body = await reader.ReadToEndAsync();
             var accountInfo = JsonConvert.DeserializeObject<PendingInfoDetail>(body);
-            
+
             if (accountInfo == null)
             {
                 return Results.BadRequest("Invalid account information data");
@@ -59,4 +56,4 @@ public static class PendingDepositEndpoints
             Description = "Adds new account information for a manual deposit"
         });
     }
-} 
+}

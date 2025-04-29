@@ -1,4 +1,3 @@
-using Fanex.Data;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Criteria.Payments
@@ -9,4 +8,4 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
 
         public override bool IsValid() => true;
     }
-} 
+}

@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
-
 namespace AlphaPlus.CashService.Site.Features.Payments.Models
 {
-      public class ProviderModel
+    public class ProviderModel
     {
         public ProviderModel()
         {
@@ -22,4 +19,4 @@ namespace AlphaPlus.CashService.Site.Features.Payments.Models
 
         public string LastUpdatedStr => LastUpdated.ToString("MM/dd/yyyy hh:mm:ss tt");
     }
-} 
+}

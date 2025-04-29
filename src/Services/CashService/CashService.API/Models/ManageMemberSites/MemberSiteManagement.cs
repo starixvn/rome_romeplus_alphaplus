@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace AlphaPlus.CashService.API.Models;
 
 public class MemberSiteManagementModel

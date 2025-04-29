@@ -1,12 +1,8 @@
-using System.Text;
 using AlphaPlus.Reports.Features.EnteredResult;
-using AlphaPlus.Reports.Features.Shared.Extensions;
-using AlphaPlus.Reports.Site.Features.EnteredResult;
 using AlphaPlus.Reports.Site.Features.Shared.TagHelpers;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using AlphaPlus.Shared.AppResources.Report;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using Xunit;
 
 namespace AlphaPlus.Reports.Site.UnitTests.Features.Shared.TagHelpers;
 

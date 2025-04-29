@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using System.Net;
+﻿using System.Net;
 using System.Text.Json;
 using Alpha.Captcha.Core;
 using Alpha.Captcha.Core.Services;
@@ -278,7 +277,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
             {
                 signInResult.ErrCode = verifySignInResult.ErrorCode;
             }
-            
+
             signInResult.ErrMsg = verifySignInResult.ErrorMessage;
             signInResult.FailedCount = verifySignInResult.FailedCount;
         }
@@ -347,7 +346,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
             signInResult.Domain = baseDomain;
             signInResult.ErrCode = SignInErrorContants.Success;
             signInResult.Username = verifySignInResult.SubAccId == 0 ? verifySignInResult.Username : signInResult.Username;
-            
+
             httpContext.Response.Cookies.Append(EncryptUrlHelper.UTMS, crossCookieValue, new CookieOptions
             {
                 Domain = baseDomain,
@@ -506,7 +505,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
                 UplineName = criteria.UplineName
             };
         }
-        
+
         private static bool IsAlphanumericOnly(string text)
         {
             return alphanumericRegex.IsMatch(text);
@@ -514,7 +513,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
 
         private async Task NotifyLoginFail(SignInResult signInResult, VerifySignInResult verifySignInResult)
         {
-            try 
+            try
             {
                 if (!ShouldNotifyLoginFail(verifySignInResult, signInResult))
                 {
@@ -524,7 +523,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
                 var targetId = verifySignInResult.UplineId;
                 var targetName = verifySignInResult.UplineName;
                 var (messageKey, messageParams) = GetMessageDetails(verifySignInResult, signInResult);
-                
+
                 var messages = LocalizedMessagesModel.GetLocalizedMessages(messageKey, messageParams);
                 var personalMessageCriteria = new InsertPersonalMessageCriteria(
                     messages.En, messages.Ch, messages.Cs, messages.Th, messages.Vi, messages.Jp, messages.Ko);
@@ -535,11 +534,11 @@ namespace Fanex.Alpha.Before.Services.SignIn
                 await repository.ExecuteAsync(assignPersonalMessageCriteria);
 
                 var insertToastMessageCriteria = new InsertToastMessageCriteria(
-                    targetId, verifySignInResult.CustId, 
+                    targetId, verifySignInResult.CustId,
                     messages.En, messages.Ch, messages.Cs, messages.Th, messages.Vi, messages.Jp, messages.Ko);
                 await repository.ExecuteAsync(insertToastMessageCriteria);
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 await logger.ErrorAsync($"Failed to notify login failure for user {signInResult.Username}: {ex.Message}", ex);
             }
@@ -547,7 +546,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
 
         private bool ShouldNotifyLoginFail(VerifySignInResult verifySignInResult, SignInResult signInResult)
         {
-            return verifySignInResult.UplineId > 0 && 
+            return verifySignInResult.UplineId > 0 &&
                    (verifySignInResult.FailedCount == FAILED_LOGIN_ATTEMPTS_NOTIFICATION_THRESHOLD || signInResult.IsChangedPassword);
         }
 

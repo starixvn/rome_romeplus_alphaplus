@@ -1,7 +1,6 @@
 ﻿using AlphaPlus.Logging.Configurations;
 using Fanex.Logging;
 using Fanex.Logging.Sentry;
-using Sentry;
 
 namespace AlphaPlus.Logging.LogEngines
 {

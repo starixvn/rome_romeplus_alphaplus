@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace AlphaPlus.AccountInfo.Site.Features.ProtectedStatus.Params
 {
     public class GetProtectedStatusParam

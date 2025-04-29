@@ -1,5 +1,4 @@
-﻿using Fanex.Data;
-using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
 namespace AlphaPlus.Settings.Transfer.API.Criteria.CashBalanceTransfer;
 

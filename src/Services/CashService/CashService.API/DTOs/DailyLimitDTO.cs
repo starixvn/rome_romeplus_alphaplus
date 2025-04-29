@@ -1,5 +1,3 @@
-using System;
-
 namespace CashService.API.DTOs
 {
     public class DailyLimitDTO
@@ -8,4 +6,4 @@ namespace CashService.API.DTOs
         public decimal MinPer { get; set; }
         public decimal MaxPer { get; set; }
     }
-} 
+}

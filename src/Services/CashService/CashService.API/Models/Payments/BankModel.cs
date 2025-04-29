@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace AlphaPlus.CashService.API.Models.Payments
 {
     public class BankModel
@@ -10,4 +7,4 @@ namespace AlphaPlus.CashService.API.Models.Payments
         public string TransactionTypes { get; set; } = string.Empty;
         public int DepositMatchingMode { get; set; }
     }
-} 
+}

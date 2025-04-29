@@ -1,7 +1,6 @@
 using System.Text.Json;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Models;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.ViewModels;
-using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Transfer.Requests;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Shared.AppResources.Settings;

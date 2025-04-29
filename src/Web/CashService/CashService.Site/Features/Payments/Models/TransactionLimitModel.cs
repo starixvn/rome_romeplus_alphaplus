@@ -1,5 +1,3 @@
-using System;
-
 namespace AlphaPlus.CashService.Site.Features.Payments.Models
 {
     public class TransactionLimitModel
@@ -10,4 +8,4 @@ namespace AlphaPlus.CashService.Site.Features.Payments.Models
         public decimal MinPerWithdrawalTransaction { get; set; }
         public decimal MaxPerWithdrawalTransaction { get; set; }
     }
-} 
+}

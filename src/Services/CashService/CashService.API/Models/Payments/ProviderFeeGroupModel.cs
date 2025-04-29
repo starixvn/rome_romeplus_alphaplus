@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace AlphaPlus.CashService.API.Models.Payments
 {
     public class ProviderFeeGroupModel
@@ -14,4 +11,4 @@ namespace AlphaPlus.CashService.API.Models.Payments
         public string TransactionType { get; set; }
         public List<ProviderFeeModel> Fees { get; set; }
     }
-} 
+}

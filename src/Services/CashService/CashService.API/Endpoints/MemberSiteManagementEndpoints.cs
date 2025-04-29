@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Http.HttpResults;
 using AlphaPlus.CashService.API.Models;
 using AlphaPlus.CashService.API.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -38,4 +37,4 @@ public static class MemberSiteManagementEndpoints
             Description = "Updates all member site management settings"
         });
     }
-} 
+}
