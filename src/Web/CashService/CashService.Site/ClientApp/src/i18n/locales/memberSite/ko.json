@@ -39,5 +39,9 @@
   },
   "loading": {
     "title": "로딩 중..."
+  },
+  "messages": {
+    "updateSuccess": "회원 사이트 데이터를 업데이트했습니다",
+    "updateFailed": "회원 사이트 데이터를 업데이트할 수 없습니다"
   }
 } 

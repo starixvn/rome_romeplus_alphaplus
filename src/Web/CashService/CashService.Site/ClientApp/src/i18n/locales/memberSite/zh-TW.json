@@ -39,5 +39,9 @@
   },
   "loading": {
     "title": "載入中..."
+  },
+  "messages": {
+    "updateSuccess": "會員網站資料更新成功",
+    "updateFailed": "無法更新會員網站資料"
   }
 } 

@@ -1,7 +1,6 @@
 export interface Domain {
   id: string;
   url: string;
-  qrCode?: string;
   name: string;
   status: 'active' | 'blocked';
 }
@@ -20,7 +19,6 @@ export interface MessageData {
   announcement?: string;
 }
 
-
 export interface MemberSiteResponse {
   domains: Domain[];
   generalSettings: Setting[];
@@ -29,4 +27,13 @@ export interface MemberSiteResponse {
   lineId: string;
   announcement: string;
   [key: string]: Domain[] | Setting[] | string;
+}
+
+export interface ResponseResult {
+  code: number;
+  message: string;
+  isSuccessful: boolean;
+  isFailed: boolean;
+  isOk: boolean;
+  isNotOk: boolean;
 }

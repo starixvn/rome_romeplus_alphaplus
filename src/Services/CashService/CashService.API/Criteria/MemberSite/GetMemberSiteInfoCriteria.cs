@@ -8,6 +8,6 @@ namespace AlphaPlus.CashService.API.Criteria.MemberSite
 
         public int CustId { get; set; } = custId;
 
-        public override bool IsValid() => true;
+        public override bool IsValid() => CustId > 0;
     }
 }

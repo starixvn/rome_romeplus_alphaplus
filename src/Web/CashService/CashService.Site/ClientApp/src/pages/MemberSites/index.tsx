@@ -8,6 +8,7 @@ import { Setting, MessageData, MemberSiteResponse } from '../../types/memberSite
 import './MemberSiteStyle.css'
 import { useTranslation } from 'react-i18next';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
+import { ResultMessage, ResultType } from '../../components/ResultMessage';
 
 const MemberSiteManagement: React.FC = () => {
   const { t } = useTranslation('memberSite');
@@ -29,7 +30,7 @@ const MemberSiteManagement: React.FC = () => {
     announcement: ''
   });
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [result, setResult] = useState<{type: ResultType; text: string} | null>(null);
   const [isDirty, setIsDirty] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
 
@@ -43,9 +44,12 @@ const MemberSiteManagement: React.FC = () => {
       const response = await memberSitesService.getMemberSiteData();
       setData(response);
       setOriginalData(response);
-      setError(null);
+      setResult(null);
     } catch (err) {
-      setError(t('errors.loadFailed'));
+      setResult({
+        type: 'error',
+        text: t('errors.loadFailed')
+      });
       console.error('Error loading data:', err);
     } finally {
       setLoading(false);
@@ -77,19 +81,19 @@ const MemberSiteManagement: React.FC = () => {
   const handleSave = async () => {
     try {
       setIsSaving(true);
-      // Convert our data format back to API format
-      
       const response = await memberSitesService.updateMemberSiteData(data);
-      console.log(response);
-      // Transform API response back to our data format
-     
+        
+
       setIsDirty(false);
-      setError(null);
-      
-      
-      
+      setResult({
+        type: response.isSuccessful ? 'success' : 'error',
+        text: response.isSuccessful ? t('messages.updateSuccess') : response.message
+      });
     } catch (err) {
-      setError(t('errors.updateFailed'));
+      setResult({
+        type: 'error',
+        text: t('errors.updateFailed')
+      });
       console.error('Error updating data:', err);
     } finally {
       setIsSaving(false);
@@ -126,11 +130,12 @@ const MemberSiteManagement: React.FC = () => {
         <h1 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">{t('title')}</h1>
 
         <div className="bg-white dark:bg-[#2D2D2D] rounded-lg shadow-sm p-6">
-          {error && (
-            <div className="bg-red-100 dark:bg-red-900/30 border border-red-400 dark:border-red-800 text-red-700 dark:text-red-400 px-4 py-3 rounded relative mb-6" role="alert">
-              <strong className="font-bold">{t('errors.title')}</strong>
-              <span className="block sm:inline"> {error}</span>
-            </div>
+          {result && (
+            <ResultMessage
+              type={result.type}
+              message={result.text}
+              className="mb-6"
+            />
           )}
 
           <div className="space-y-8">

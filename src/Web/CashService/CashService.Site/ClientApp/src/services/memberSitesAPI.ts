@@ -1,6 +1,6 @@
 import { api } from '../config/axios';
 import { AxiosError } from 'axios';
-import { MemberSiteResponse } from '../types/memberSite';
+import { MemberSiteResponse, ResponseResult } from '../types/memberSite';
 // Declare the cashServiceAPIUrl property on the Window interface
 declare global {
   interface Window {
@@ -50,9 +50,9 @@ class MemberSitesService {
     }
   }
 
-  async updateMemberSiteData(data: Partial<MemberSiteResponse>): Promise<MemberSiteResponse> {
+  async updateMemberSiteData(data: Partial<MemberSiteResponse>): Promise<ResponseResult> {
     try {
-      const { data: responseData } = await api.put<MemberSiteResponse>(
+      const { data: responseData } = await api.put<ResponseResult>(
         this.BASE_PATH,
         data
       );

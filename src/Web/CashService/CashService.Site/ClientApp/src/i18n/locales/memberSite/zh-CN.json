@@ -39,5 +39,9 @@
   },
   "loading": {
     "title": "加载中..."
+  },
+  "messages": {
+    "updateSuccess": "会员网站数据更新成功",
+    "updateFailed": "无法更新会员网站数据"
   }
 } 

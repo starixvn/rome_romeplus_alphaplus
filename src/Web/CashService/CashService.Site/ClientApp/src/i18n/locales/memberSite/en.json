@@ -39,5 +39,9 @@
   },
   "loading": {
     "title": "Loading..."
+  },
+  "messages": {
+    "updateSuccess": "Member site data updated successfully",
+    "updateFailed": "Failed to update member site data"
   }
 } 

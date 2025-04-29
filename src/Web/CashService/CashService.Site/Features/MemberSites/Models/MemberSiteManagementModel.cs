@@ -13,7 +13,6 @@ public class MemberSiteManagementModel
 public class Domain
 {
     public string Url { get; set; } = string.Empty;
-    public string QrCode { get; set; } = string.Empty;
 } 
 public class GeneralSetting
 {

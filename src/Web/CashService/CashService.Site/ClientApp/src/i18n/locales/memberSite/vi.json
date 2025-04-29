@@ -39,5 +39,9 @@
   },
   "loading": {
     "title": "Đang tải..."
+  },
+  "messages": {
+    "updateSuccess": "Dữ liệu trang thành viên đã được cập nhật thành công",
+    "updateFailed": "Không thể cập nhật dữ liệu trang thành viên"
   }
 } 

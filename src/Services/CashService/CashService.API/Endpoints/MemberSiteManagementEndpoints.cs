@@ -27,8 +27,7 @@ public static class MemberSiteManagementEndpoints
         // Update settings
         group.MapPut("/", async (IMemberSiteManagementService service, [FromBody] MemberSiteManagementModel model) =>
         {
-            var result = await service.UpdateAsync(model);
-            return Results.Ok(result);
+           return await service.UpdateAsync(model);
         })
         .WithName("UpdateMemberSiteManagement")
         .WithOpenApi(operation => new(operation)
