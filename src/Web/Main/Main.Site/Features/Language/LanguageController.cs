@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AlphaPlus.Core;
+using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Models;
 using MediatR;
-using AlphaPlus.Core.Filters;
-using AlphaPlus.Core;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.Main.Site.Features.Language
 {
@@ -10,14 +10,6 @@ namespace AlphaPlus.Main.Site.Features.Language
     {
         private readonly IUserSession userSession = userSession;
         private readonly IMediator mediator = mediator;
-
-        // [AllowProtectedMode]
-        // public async Task<IActionResult> List()
-        // {
-        //     var viewModel = await mediator.Send(new AllLanguagesQuery(userSession.Language, AppSettings.DisabledVietnamese));
-
-        //     return PartialView(viewModel);
-        // }
 
         [HttpPost]
         [AllowProtectedMode]
