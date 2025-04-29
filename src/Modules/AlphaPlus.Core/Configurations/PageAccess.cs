@@ -6,13 +6,13 @@ public class PageAccess
 
     public string Url { get; set; } = string.Empty;
 
-    public bool IsCheckBelonging { get; set; } = false;
+    public bool IsCheckBelonging { get; set; }
 
-    public bool IsAllowToDoByThemselves { get; set; } = false;
+    public bool IsAllowToDoByThemselves { get; set; }
 
-    public bool IsViewedByGroupHeadline { get; set; } = false;
+    public bool IsViewedByGroupHeadline { get; set; }
 
     public bool IsAllowedCrossLevel { get; set; } = true;
 
-    public bool IsSupportedAutoFollowBetTool { get; set; } = false;
+    public bool IsSupportedAutoFollowBetTool { get; set; }
 }

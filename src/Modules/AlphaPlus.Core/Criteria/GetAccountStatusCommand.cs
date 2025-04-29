@@ -8,9 +8,9 @@ public class GetAccountStatusCommand(int custId, int subAccId) : NonQueryCommand
 
     public int SubAccId { get; } = subAccId;
 
-    public bool IsActive { get; set; } = false;
+    public bool IsActive { get; set; }
 
-    public byte Locked { get; set; } = 0;
+    public byte Locked { get; set; }
 
     public override string GetSettingKey() => "Age_CustomerStatusSel";
 

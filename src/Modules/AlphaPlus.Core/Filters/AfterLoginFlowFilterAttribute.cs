@@ -1,5 +1,5 @@
-using AlphaPlus.Core.Models;
 using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -11,17 +11,17 @@ public sealed class AfterLoginFlowFilterAttribute(IUserSession userSession, INic
     private readonly IUserSession userSession = userSession;
     private readonly INicknameChecker nicknameChecker = nicknameChecker;
 
-    public override void OnActionExecuting(ActionExecutingContext filterContext)
+    public override void OnActionExecuting(ActionExecutingContext context)
     {
-        base.OnActionExecuting(filterContext);
+        base.OnActionExecuting(context);
 
-        if (IsValidSession(filterContext))
+        if (IsValidSession(context))
         {
-            var redirectUrl = GetAfterLoginFlowUrl(filterContext);
+            var redirectUrl = GetAfterLoginFlowUrl(context);
 
             if (redirectUrl != null)
             {
-                filterContext.Result = new RedirectResult(redirectUrl);
+                context.Result = new RedirectResult(redirectUrl);
             }
         }
     }
