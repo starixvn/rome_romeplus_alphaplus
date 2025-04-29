@@ -27,10 +27,10 @@ public class UpdateMemberSiteManagementHandler
     {
         try
         {
-            //var baseUrl = "http://localhost:5252";
+            //var baseUrl = "http://localhost:5252/api";
             var baseUrl = _configuration["CashServiceAPIUrl"];
             var response = await _httpClient.PutAsJsonAsync(
-                $"{baseUrl}/api/member-site-info",
+                $"{baseUrl}/member-site-info",
                 request.Model,
                 cancellationToken);
 
