@@ -3,7 +3,6 @@ using AlphaPlus.Reports.Site.Features.Shared.TagHelpers;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using AlphaPlus.Shared.AppResources.Report;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using Xunit.Abstractions;
 
 namespace AlphaPlus.Reports.Site.UnitTests.Features.Shared.TagHelpers;
 
