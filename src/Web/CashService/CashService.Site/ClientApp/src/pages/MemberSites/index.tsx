@@ -141,7 +141,7 @@ const MemberSiteManagement: React.FC = () => {
           <div className="space-y-8">
             <div className="border-b-2 border-gray-200 dark:border-gray-700 pb-6">
               <RegistrationLinks
-                domains={data.domains}
+                domains={data.domains.map(domain => ({...domain, status: 'active'}))}
                 onRequestNewLink={handleRequestNewLink}
               />
             </div>
