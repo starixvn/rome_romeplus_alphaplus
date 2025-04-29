@@ -36,7 +36,8 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         {
             var viewModel = new PaymentBaseViewModel
             {
-                Language = _userSession.Language
+                Language = _userSession.Language,
+                DarkModeName = _userSession.DarkModeName
             };
 
             return View(viewModel);
