@@ -12,6 +12,7 @@ import {
   hasManualWithdrawalTransactionType
 } from '../../utils/bankTransactionUtils';
 import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
+import { IconCheck, IconError } from '../../components/Icons';
 
 interface UpdateBankAccountComponentProps {
   onClose: () => void;
@@ -175,14 +176,10 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
           <form onSubmit={handleSubmit}>
             <div className="modal-body">
               {error && (
-                <div className="alert alert-danger" role="alert">
-                  {error}
-                </div>
+                <div className="mt-[16px] font-bold text-[12px] text-[#333] bg-[#FFF2F2] border-[1px] border-[#FE0000] rounded-[10px] pl-[36px] pr-[12px] py-[8px] relative block capitalize"><IconError className='w-[20px] h-[20px] fill-[#fe0000] absolute top-[8px] left-[10px]' />{error}</div>
               )}
               {success && (
-                <div className="alert alert-success" role="alert">
-                  {successMessage}
-                </div>
+                <div className="mt-[16px] font-bold text-[12px] text-[#333] bg-[#E2FFF2] border-[1px] border-[#5cb774] rounded-[10px] pl-[36px] pr-[12px] py-[8px] relative block capitalize"><IconCheck className='w-[20px] h-[20px] fill-[#5CB774] absolute top-[8px] left-[10px]' />{successMessage}</div>
               )}
               
               <div className="mb-3">

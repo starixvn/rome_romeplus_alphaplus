@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { PaymentMethod } from '../../services/interfaces/PaymentMethod';
+import { IconCheck, IconError } from '../../components/Icons';
 
 interface AddPaymentMethodModalProps {
   onClose: () => void;
@@ -134,8 +135,8 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
               </select>
             </div>
 
-            {error && <div className="text-danger mt-2">{error}</div>}
-            {successMessage && <div className="text-success mt-2">{successMessage}</div>}
+            {error && <div className="mt-[16px] font-bold text-[12px] text-[#333] bg-[#FFF2F2] border-[1px] border-[#FE0000] rounded-[10px] pl-[36px] pr-[12px] py-[8px] relative block capitalize"><IconError className='w-[20px] h-[20px] fill-[#fe0000] absolute top-[8px] left-[10px]' />{error}</div>}
+            {successMessage && <div className="mt-[16px] font-bold text-[12px] text-[#333] bg-[#E2FFF2] border-[1px] border-[#5cb774] rounded-[10px] pl-[36px] pr-[12px] py-[8px] relative block capitalize"><IconCheck className='w-[20px] h-[20px] fill-[#5CB774] absolute top-[8px] left-[10px]' />{successMessage}</div>}
           </div>
           <div className="modal-footer">
             <div className="form-check mb-3 w-100">
