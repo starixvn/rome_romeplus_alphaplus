@@ -3,10 +3,11 @@ using AlphaPlus.Reports.Site.Features.Shared.TagHelpers;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using AlphaPlus.Shared.AppResources.Report;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using Xunit.Abstractions;
 
 namespace AlphaPlus.Reports.Site.UnitTests.Features.Shared.TagHelpers;
 
-[Trait("Category", "ReportTitleNewTagHelper")]
+[Trait("Category", "Shared")]
 public class ReportTitleNewTagHelperTest
 {
     private readonly ReportTitleNewTagHelper tagHelper;
@@ -177,8 +178,8 @@ public class ReportTitleNewTagHelperTest
         // Assert
         var content = output.Content.GetContent();
         Assert.Contains("<div class=\"entered-non-entered\">", content);
-        Assert.Contains("<span class=\"event-date-yesterday\">Yesterday</span>", content);
-        Assert.Contains("<span id=\"total-non-entered-today-text\">Today</span>", content);
+        Assert.Contains("id=\"total-non-entered-yesterday-number\">5", content);
+        Assert.Contains("id=\"total-non-entered-today-number\">10", content);
         Assert.Contains(Resources.NonEntered, content);
         Assert.Contains(Resources.Entered, content);
     }

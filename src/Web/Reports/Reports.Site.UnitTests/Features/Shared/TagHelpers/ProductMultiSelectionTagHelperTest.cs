@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AlphaPlus.Reports.Site.UnitTests.Features.Shared.TagHelpers;
 
-[Trait("Category", "ProductMultiSelectionTagHelper")]
+[Trait("Category", "Shared")]
 public class ProductMultiSelectionTagHelperTest
 {
     private readonly ProductMultiSelectionTagHelper tagHelper;

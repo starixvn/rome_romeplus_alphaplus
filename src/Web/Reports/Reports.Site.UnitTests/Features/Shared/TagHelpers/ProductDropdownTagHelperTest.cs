@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AlphaPlus.Reports.Site.UnitTests.Features.Shared.TagHelpers;
 
-[Trait("Category", "ProductDropdownTagHelper")]
+[Trait("Category", "Shared")]
 public class ProductDropdownTagHelperTest
 {
     private readonly ProductDropdownTagHelper tagHelper;

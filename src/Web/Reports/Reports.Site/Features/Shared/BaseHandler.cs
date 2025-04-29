@@ -13,7 +13,7 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
     protected readonly AppSettings appSettings = options.Value;
 
     #region Build Product and Product Detail for dropdown list
-    protected async Task<(ProductMultiSelectionViewModel, string)> BuildProductViewModel(
+    internal async Task<(ProductMultiSelectionViewModel, string)> BuildProductViewModel(
         BaseQuery message,
         string userSelectedProductIds,
         string userSelectedResourceIds,
@@ -35,7 +35,7 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
             validUserSelectedResourceIds.JoinWithComma()), productDetailXml);
     }
 
-    protected async Task<ProductMultiSelectionViewModel> BuildProductViewModel(
+    internal async Task<ProductMultiSelectionViewModel> BuildProductViewModel(
         BaseQuery message,
         string userSelectedProductIds)
     {
