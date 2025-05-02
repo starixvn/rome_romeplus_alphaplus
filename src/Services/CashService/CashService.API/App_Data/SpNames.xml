@@ -24,11 +24,8 @@
         <Mapping DataField="RequiresBank" ObjectProperty="BankRequired"></Mapping>
       </Setting>
       <Setting Key="Age_CashService_PaymentProvider_Ins" SpName="Age_CashService_PaymentProvider_Ins" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-      <Setting Key="Age_CashService_BankList" SpName="Age_CashService_BankList" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+      <Setting Key="Age_CashService_BankList" SpName="Age_CashService_BankList_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
         <Mapping DataField="BankID" ObjectProperty="Id"></Mapping>
-        <Mapping DataField="Bank" ObjectProperty="Name"></Mapping>
-        <Mapping DataField="TransactionTypeID" ObjectProperty="TransactionTypes"></Mapping>
-        <Mapping DataField="DepositMode" ObjectProperty="DepositMatchingMode"></Mapping>
       </Setting>
       <Setting Key="Age_CashService_ProviderStatus_Upd" SpName="Age_CashService_ProviderStatus_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
       <Setting Key="Age_CashService_PaymentProvider_Upd" SpName="Age_CashService_PaymentProvider_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
@@ -46,7 +43,7 @@
       </Setting>
       <Setting Key="Age_CashService_UserBankAccount" SpName="Age_CashService_UserBankAccount_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
         <Mapping DataField="BankID" ObjectProperty="Id"></Mapping>
-        <Mapping DataField="BankName" ObjectProperty="Name"></Mapping>
+        <Mapping DataField="BankName" ObjectProperty="Bank"></Mapping>
       </Setting>
       <Setting Key="Age_CashService_TransTypeControl" SpName="Age_CashService_TransTypeControl" DbName="DBCust.CustDB.wsv_alp" Plain="0">
         <Mapping DataField="TransactionTypeID" ObjectProperty="Id"></Mapping>
@@ -66,7 +63,6 @@
         <Mapping DataField="PromptPayEnabled" ObjectProperty="PromptPay"></Mapping>
         <Mapping DataField="CreatedBy" ObjectProperty="CreatorId"></Mapping>
         <Mapping DataField="LastUpdated" ObjectProperty="LastUpdated"></Mapping>
-        <Mapping DataField="TransactionTypeID" ObjectProperty="TransactionTypes"></Mapping>
         <Mapping DataField="DepositMatching" ObjectProperty="DepositMatchingMode"></Mapping>
         <Mapping DataField="BankAccountNumber" ObjectProperty="AccountNumber"></Mapping>
         <Mapping DataField="PromptPayMobile" ObjectProperty="Mobile"></Mapping>

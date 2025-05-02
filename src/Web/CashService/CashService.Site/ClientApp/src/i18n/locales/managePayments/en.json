@@ -27,6 +27,7 @@
   "feesInfo1": "You'll be charged a fee rate per transaction.",
   "feesFormula": "Transaction Amount * Fee Rate (%)",
   "feesInfo2": "Fees are payable to the provider and are not charged by us, so they won't appear in 4.Reports",
+  "feeDetails": "Fee Details",
   "transactionType": "Transaction Type",
   "paymentMethod": "Payment Method",
   "feeRate": "Fee Rate",
@@ -92,6 +93,7 @@
   "select": "Select",
   "promptPay": "PromptPay",
   "linkMobile": "Link the mobile number registered with your bank account to enable PromptPay",
+  "enterMobileNumber": "Enter mobile number",
 
   "bankName": "Bank name",
   "bankAccountDeletedSuccessfully": "Bank account deleted successfully",
@@ -107,6 +109,7 @@
   "enable-status-0": "All",
   "enable-status-1": "Enable",
   "enable-status-2": "Disable",
+  "transaction-0": "All",
   "transaction-1": "Deposit",
   "transaction-2": "Withdrawal",
   "transactionType-0": "All",

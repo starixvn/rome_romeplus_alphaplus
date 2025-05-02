@@ -41,7 +41,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
   const [banks, setBanks] = useState<Bank[]>([]);
   
   // Add state variables for selected transaction types
-  const [selectedManualDeposit, setSelectedManualDeposit] = useState<boolean>(false);
+  const [selectedManualDeposit, setSelectedManualDeposit] = useState<boolean>(true);
   const [selectedAutoDeposit, setSelectedAutoDeposit] = useState<boolean>(false);
   const [selectedManualWithdrawal, setSelectedManualWithdrawal] = useState<boolean>(false);
 
@@ -57,15 +57,9 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
           setSelectedBank(firstBank.id.toString());
           
           // Set transaction types based on first bank's capabilities
-          if (hasManualDepositTransactionType(firstBank.id.toString(), fetchedBanks)) {
-            setSelectedManualDeposit(true);
-          }
-          if (hasAutoDepositTransactionType(firstBank.id.toString(), fetchedBanks)) {
-            setSelectedAutoDeposit(true);
-          }
-          if (hasManualWithdrawalTransactionType(firstBank.id.toString(), fetchedBanks)) {
-            setSelectedManualWithdrawal(true);
-          }
+          setSelectedManualDeposit(true);
+          setSelectedAutoDeposit(false);
+          setSelectedManualWithdrawal(false);
           
           // Set deposit matching mode based on bank's capabilities
           if (firstBank.depositMatchingMode >= 1) {
@@ -165,6 +159,17 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
     setSelectedManualWithdrawal(!selectedManualWithdrawal);
   };
 
+  // Handler for bank selection changes
+  const handleBankChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newBankId = e.target.value;
+    setSelectedBank(newBankId);
+    
+    // Reset transaction type selections
+    setSelectedManualDeposit(true);
+    setSelectedAutoDeposit(false);
+    setSelectedManualWithdrawal(false);
+  };
+
   return (
     <div className="modal show d-block" tabIndex={-1}>
       <div className="modal-dialog">
@@ -218,7 +223,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                 <select
                   className="h-[35px] w-[470px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer"
                   value={selectedBank}
-                  onChange={(e) => setSelectedBank(e.target.value)}
+                  onChange={handleBankChange}
                   required
                 >
                   {banks.map((bank) => (
@@ -313,7 +318,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     onChange={(e) => setAccountHolderName(e.target.value)}
                     required
                   />
-                  <label className=" block mt-[4px] text-[#828282] text-[11px] leading-[12px] font-semibold">{tManagePayments('accountHolderNameNote1')}</label>
+                  <label className=" block mt-[4px] text-[#828282] text-[11px] leading-[12px] font-semibold">{tManagePayments('provideFullName')}</label>
                 </div>
 
                 <div className='w-[230px]'>
@@ -350,14 +355,14 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     className={`text-[12px] text-[#163f78] w-[70px] px-[16px] py-[8px] cursor-pointer  ${promptPay ? 'bg-[#163f78] text-[#ffffff]' : 'bg-[#eeeeee] text-[#163f78]'}`}
                     onClick={() => setPromptPay(true)}
                   >
-                    {tManagePayments('on')}
+                    {tGlobal('on')}
                   </button>
                   <button
                     type="button"
                     className={`text-[12px] text-[#163f78] w-[70px] px-[16px] py-[8px] cursor-pointer text-[#163f78] ${!promptPay ? 'bg-[#163f78] text-[#ffffff]' : 'bg-[#eeeeee] text-[#163f78]'}`}
                     onClick={() => setPromptPay(false)}
                   >
-                    {tManagePayments('off')}
+                    {tGlobal('off')}
                   </button>
                 </div>
               </div>

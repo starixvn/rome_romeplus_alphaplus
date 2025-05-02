@@ -17,14 +17,12 @@ import { IconCheck, IconError } from '../../components/Icons';
 interface UpdateBankAccountComponentProps {
   onClose: () => void;
   onSave: () => void;
-  banks: Bank[];
   bankAccount: BankAccount;
 }
 
 const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   onClose,
   onSave,
-  banks,
   bankAccount
 }) => {
   const { t: tManagePayments } = useTranslation('managePayments');
@@ -44,6 +42,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   const [success, setSuccess] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+  const [banks, setBanks] = useState<Bank[]>([]);
 
   // Add state variables for selected transaction types
   const [selectedManualDeposit, setSelectedManualDeposit] = useState<boolean>(false);
@@ -51,6 +50,23 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   const [selectedManualWithdrawal, setSelectedManualWithdrawal] = useState<boolean>(false);
 
   useEffect(() => {
+    const fetchBanks = async () => {
+      try {
+        const fetchedBanks = await paymentProviderService.getBanksByTransactionType(0);
+        setBanks(fetchedBanks);
+        
+        if (fetchedBanks.length > 0) {
+          // Set transaction types based on bank's capabilities
+          setSelectedManualDeposit(true);
+          setSelectedAutoDeposit(false);
+          setSelectedManualWithdrawal(false);
+        }
+      } catch (err) {
+        console.error('Error fetching banks:', err);
+        setError(tManagePayments('failedToFetchBanks'));
+      }
+    };
+
     const fetchBankAccount = async () => {
       try {
         setLoading(true);
@@ -85,6 +101,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
       }
     };
 
+    fetchBanks();
     fetchBankAccount();
     fetchMobilePrefixes();
   }, [bankAccount.id, tManagePayments]);
@@ -194,8 +211,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                   </button>
                   <button
                     type="button"
-                    className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer  ${status === '2' ? 'bg-[#163f78] text-[#ffffff]' : 'bg-[#eeeeee] text-[#163f78]'}`}
-                    onClick={() => setStatus('2')}
+                    className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer  ${status === '0' ? 'bg-[#163f78] text-[#ffffff]' : 'bg-[#eeeeee] text-[#163f78]'}`}
+                    onClick={() => setStatus('0')}
                   >
                     {tGlobal('disable')}
                   </button>
@@ -296,14 +313,15 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
               <div className="flex gap-[16px]">
                 <div className='w-[230px]'>
-                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('accountHolderName')}</label>
-                <input
-                  type="text"
-                  className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer"
-                  value={accountHolderName}
-                  readOnly
-                  required
-                />
+                  <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('accountHolderName')}</label>
+                  <input
+                    type="text"
+                    className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer"
+                    value={accountHolderName}
+                    readOnly
+                    required
+                  />
+                  <label className=" block mt-[4px] text-[#828282] text-[11px] leading-[12px] font-semibold">{tManagePayments('provideFullName')}</label>
                 </div>
 
                 <div className='w-[230px]'>
@@ -340,14 +358,14 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                     className={`text-[12px] text-[#163f78] w-[70px] px-[16px] py-[8px] cursor-pointer ${promptPay ? 'bg-[#163f78] text-[#ffffff]' : 'bg-[#eeeeee] text-[#163f78]'}`}
                     onClick={() => setPromptPay(true)}
                   >
-                    {tManagePayments('on')}
+                    {tGlobal('on')}
                   </button>
                   <button
                     type="button"
                     className={`text-[12px] text-[#163f78] w-[70px] px-[16px] py-[8px] cursor-pointer ${!promptPay ? 'bg-[#163f78] text-[#ffffff]' : 'bg-[#eeeeee] text-[#163f78]'}`}
                     onClick={() => setPromptPay(false)}
                   >
-                    {tManagePayments('off')}
+                    {tGlobal('off')}
                   </button>
                 </div>
               </div>

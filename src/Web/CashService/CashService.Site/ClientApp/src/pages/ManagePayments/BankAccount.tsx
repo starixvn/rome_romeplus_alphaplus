@@ -207,7 +207,6 @@ const BankAccount: React.FC = () => {
         <UpdateBankAccountComponent
           onClose={handleCloseUpdateBankAccountModal}
           onSave={handleSaveUpdateBankAccount}
-          banks={banks}
           bankAccount={selectedBankAccount}
         />
       ) : (
@@ -364,14 +363,14 @@ const BankAccount: React.FC = () => {
                           <button 
                             className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[#163f78]"
                             onClick={() => handleEditBankAccount(account.id)}
-                            title={tManagePayments('edit')}
+                            title={tGlobal('edit')}
                           >                            
                             <IconPen />
                           </button>
                           <button 
                             className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[#163f78]"
                             onClick={() => handleDeleteBankAccount(account.id)}
-                            title={tManagePayments('delete')}
+                            title={tGlobal('delete')}
                             disabled={deleting === account.id}
                           >
                             {deleting === account.id ? (

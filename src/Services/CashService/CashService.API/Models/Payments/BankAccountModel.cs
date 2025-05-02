@@ -14,7 +14,8 @@ namespace AlphaPlus.CashService.API.Models.Payments
         public string AccountNumber { get; set; } = string.Empty;
         public string AccountNickname { get; set; } = string.Empty;
         public string AccountHolderName { get; set; } = string.Empty;
-        public string TransactionTypes { get; set; }
+        public string TransactionTypeID { get; set; }
+        public string TransactionTypes => TransactionTypeID;
 
         public string BankName { get; set; }
         public int BankId { get; set; }
