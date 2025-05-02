@@ -1,4 +1,4 @@
-namespace CashService.API.DTOs
+namespace CashService.API.DTOs.Payments
 {
     public class DailyLimitDTO
     {

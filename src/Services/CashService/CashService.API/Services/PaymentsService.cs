@@ -3,7 +3,7 @@ using AlphaPlus.CashService.API.Criteria.Payments;
 using AlphaPlus.CashService.API.Models.Payments;
 using AlphaPlus.CashService.API.Models;
 using Fanex.Data.Repository;
-using CashService.API.DTOs;
+using CashService.API.DTOs.Payments;
 using System.Text.Json;
 
 namespace AlphaPlus.CashService.API.Services;
@@ -127,7 +127,7 @@ public class PaymentsService : IPaymentsService
             var jsonSetting = new List<string>();
             foreach (var setting in provider.ProviderSettings)
             {   
-                jsonSetting.Add($"{{\"MethodID\": {setting.Method}, \"Status\": {setting.Status}, \"MinAmount\": {setting.MinAmount}, \"MaxAmount\": {setting.MaxAmount}, \"Enabled\": {(setting.IsEnabled ? 1 : 0)}}}");
+                jsonSetting.Add(setting.ToJsonString());
             }
 
             var jsonSettings = $"[{string.Join(",", jsonSetting)}]";

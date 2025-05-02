@@ -1,6 +1,6 @@
 using AlphaPlus.CashService.API.Services;
 using AlphaPlus.CashService.API.Models.Payments;
-using AlphaPlus.CashService.API.Requests;
+using AlphaPlus.CashService.API.Requests.Payments;
 using Newtonsoft.Json;
 
 namespace AlphaPlus.CashService.API.Endpoints;

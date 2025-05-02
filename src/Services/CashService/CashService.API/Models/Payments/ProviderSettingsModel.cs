@@ -14,5 +14,10 @@ namespace AlphaPlus.CashService.API.Models.Payments
         public decimal MaxAmountTrans { get; set; }
         public bool IsEnabled { get; set; }
         public bool BankRequired { get; set; }
+
+        public string ToJsonString()
+        {
+            return $"{{\"MethodID\": {Method}, \"Status\": {Status}, \"MinAmount\": {MinAmount}, \"MaxAmount\": {MaxAmount}, \"Enabled\": {(IsEnabled ? 1 : 0)}}}";
+        }
     }
 } 

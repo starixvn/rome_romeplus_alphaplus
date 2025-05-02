@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace AlphaPlus.CashService.API.Requests;
+namespace AlphaPlus.CashService.API.Requests.Payments;
 
 public class SetDailyWithdrawalCountRequest
 {
