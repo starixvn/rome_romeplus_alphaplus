@@ -1,5 +1,4 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -27,11 +26,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.SmartPunter", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.Utilities.IP", "src\Modules\AlphaPlus.Utilities.IP\AlphaPlus.Utilities.IP.csproj", "{4E2AA0E0-3120-4069-8C34-1E995CAB1F18}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{984BB9B3-3FA3-BE33-9484-CAC21695A33C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{03997797-E7F5-0643-168D-B8EA7178C2FE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CashService", "CashService", "{D6B55944-FFA8-3654-0290-36853AA518CE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CashService", "CashService", "{41F431AA-AEB3-EEAF-2F81-C0642FBE34ED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashService.API", "src\Services\CashService\CashService.API\CashService.API.csproj", "{EDB16F57-7DCA-4B5D-A85D-E1E8C98BDD29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashService.API.UnitTests", "src\Services\CashService\CashService.API.UnitTests\CashService.API.UnitTests.csproj", "{B2BB7D28-5789-4EB8-A123-C35317D07BE6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Features", "Features", "{24269F10-8EBA-2117-B7C7-DBBAB11AECE3}"
 EndProject
