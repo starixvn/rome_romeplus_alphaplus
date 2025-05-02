@@ -148,6 +148,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure.UnitTests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetsForecast.Infrastructure.UnitTests", "src\Services\Tickets\BetsForecast\Infrastructure.UnitTests\BetsForecast.Infrastructure.UnitTests.csproj", "{A8BA112C-309D-4BC0-9F11-C59633EEB9A3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BetLists.UnitTests", "BetLists.UnitTests", "{0029F168-4C90-4E7A-4888-8B5C0AC504B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.BetLists.UnitTests", "src\Services\Tickets\BetLists.UnitTests\AlphaPlus.BetLists.UnitTests.csproj", "{BC6F2E34-08CC-4E4B-8036-38277FC49266}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -650,6 +654,18 @@ Global
 		{A8BA112C-309D-4BC0-9F11-C59633EEB9A3}.Release|x64.Build.0 = Release|Any CPU
 		{A8BA112C-309D-4BC0-9F11-C59633EEB9A3}.Release|x86.ActiveCfg = Release|Any CPU
 		{A8BA112C-309D-4BC0-9F11-C59633EEB9A3}.Release|x86.Build.0 = Release|Any CPU
+		{BC6F2E34-08CC-4E4B-8036-38277FC49266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC6F2E34-08CC-4E4B-8036-38277FC49266}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC6F2E34-08CC-4E4B-8036-38277FC49266}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BC6F2E34-08CC-4E4B-8036-38277FC49266}.Debug|x64.Build.0 = Debug|Any CPU
+		{BC6F2E34-08CC-4E4B-8036-38277FC49266}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BC6F2E34-08CC-4E4B-8036-38277FC49266}.Debug|x86.Build.0 = Debug|Any CPU
+		{BC6F2E34-08CC-4E4B-8036-38277FC49266}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC6F2E34-08CC-4E4B-8036-38277FC49266}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC6F2E34-08CC-4E4B-8036-38277FC49266}.Release|x64.ActiveCfg = Release|Any CPU
+		{BC6F2E34-08CC-4E4B-8036-38277FC49266}.Release|x64.Build.0 = Release|Any CPU
+		{BC6F2E34-08CC-4E4B-8036-38277FC49266}.Release|x86.ActiveCfg = Release|Any CPU
+		{BC6F2E34-08CC-4E4B-8036-38277FC49266}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -726,5 +742,7 @@ Global
 		{89990E7A-1377-4711-B436-52FD7F025CD7} = {74309A99-D50D-0497-5045-2E7A00AC6245}
 		{87AF53C1-5FD1-740B-74E2-894004FC2833} = {7AECD835-D7B4-E8A9-BCC2-A737E4B757D2}
 		{A8BA112C-309D-4BC0-9F11-C59633EEB9A3} = {87AF53C1-5FD1-740B-74E2-894004FC2833}
+		{0029F168-4C90-4E7A-4888-8B5C0AC504B5} = {C1F00440-3B95-7E7C-4384-129F8D527FBA}
+		{BC6F2E34-08CC-4E4B-8036-38277FC49266} = {0029F168-4C90-4E7A-4888-8B5C0AC504B5}
 	EndGlobalSection
 EndGlobal
