@@ -59,7 +59,6 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
         public override bool IsValid() => 
             BankId > 0 && 
             !string.IsNullOrWhiteSpace(AccountNumber) && 
-            Status > 0 && 
             Creator > 0 &&
             !string.IsNullOrWhiteSpace(AccountHolderName) &&
             !string.IsNullOrWhiteSpace(AccountNickname) &&
