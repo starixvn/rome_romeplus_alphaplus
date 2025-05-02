@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { api } from '../config/axios';
 import { PaymentProvider } from './interfaces/PaymentProvider';
 import { PaymentProviderFeeGroup } from './interfaces/PaymentProviderFeeGroup';
 import { ResultModel } from './interfaces/ResultModel';
@@ -8,15 +8,6 @@ import { BankAccount } from './interfaces/BankAccount';
 import { PaymentTransactionLimit } from './interfaces/PaymentTransactionLimit';
 import { TransactionType } from './interfaces/TransactionType';
 import { MobilePrefix } from './interfaces/MobilePrefix';
-
-// Create an axios instance with default config
-const api = axios.create({
-  baseURL: '',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  withCredentials: true,
-});
 
 // API service for payment providers
 export const paymentProviderService = {
@@ -266,5 +257,3 @@ export const paymentProviderService = {
     }
   },
 };
-
-export default api;

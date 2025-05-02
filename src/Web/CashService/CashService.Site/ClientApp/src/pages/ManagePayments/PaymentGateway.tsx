@@ -23,6 +23,8 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = () => {
 
   React.useEffect(() => {
     const fetchProviders = async () => {
+      console.log("fetchProviders");
+      
       try {
         setLoading(true);
         const data = await paymentProviderService.getProviders();

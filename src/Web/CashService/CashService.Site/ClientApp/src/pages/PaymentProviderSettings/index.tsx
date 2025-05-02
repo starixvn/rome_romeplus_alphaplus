@@ -275,7 +275,7 @@ function PaymentProviderSettings() {
                 onChange={handlePaymentMethodChange}
               >
                 {window.providerSettingsViewModel.PaymentMethods.map((method: any) => (
-                  <option key={method.Id} value={method.Id}>{method.Name}</option>
+                  <option key={method.Id} value={method.Id}>{method.Id === 0 ? tGlobal('all') : method.Name}</option>
                 ))}
               </select>
             </div>
@@ -301,7 +301,7 @@ function PaymentProviderSettings() {
                 onChange={handleTransactionTypeChange}
               >
                 {TRANSACTION_TYPES.map(type => (
-                  <option key={type.id} value={type.id}>{tManagePayments(`transaction-${type.id}`)}</option>
+                  <option key={type.id} value={type.id}>{type.id === 0 ? tGlobal('all') : tManagePayments(`transaction-${type.id}`)}</option>
                 ))}
               </select>
             </div>

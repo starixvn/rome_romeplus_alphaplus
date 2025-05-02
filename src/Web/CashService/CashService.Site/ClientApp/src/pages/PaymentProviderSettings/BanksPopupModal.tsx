@@ -61,7 +61,7 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
             </div>
           ) : (
             <>
-              <label className='block text-[#163f78] my-[16px] font-semibold'>{TRANSACTION_TYPES.find(type => type.id === transactionType)?.name || transactionType}</label>
+              <label className='block text-[#163f78] my-[16px] font-semibold'>{tManagePayments(`transaction-${transactionType}`)}</label>
               <div className="table-responsive">
                 <table className={styles['table-striped']}>
                   <thead>

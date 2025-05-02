@@ -11,7 +11,7 @@ import TitleCommon from '../../components/ui/TitleCommon';
 function ManagePayments() {
   const { t } = useTranslation('managePayments');
   useCookieLanguage();
-  const [activeTab, setActiveTab] = React.useState('bankAccount');
+  const [activeTab, setActiveTab] = React.useState('paymentGateway');
 
   return (
     <div className="p-[12px]">

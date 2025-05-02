@@ -1,6 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import { mapLanguageCode, supportedLanguages } from './languageMap';
 
 // Import ManagePayments specific translations
 import managePaymentsEn from './locales/managePayments/en.json';
@@ -9,6 +10,7 @@ import managePaymentsZhCN from './locales/managePayments/zh-CN.json';
 import managePaymentsZhTW from './locales/managePayments/zh-TW.json';
 import managePaymentsJa from './locales/managePayments/ja.json';
 import managePaymentsKo from './locales/managePayments/ko.json';
+import managePaymentsTh from './locales/managePayments/th.json';
 
 // Import global translations
 import globalEn from './locales/global/en.json';
@@ -17,6 +19,7 @@ import globalKo from './locales/global/ko.json';
 import globalVi from './locales/global/vi.json';
 import globalZhCN from './locales/global/zh-CN.json';
 import globalZhTW from './locales/global/zh-TW.json';
+import globalTh from './locales/global/th.json';
 
 // Import memberSite translations
 import memberSiteEn from './locales/memberSite/en.json';
@@ -25,6 +28,7 @@ import memberSiteZhCN from './locales/memberSite/zh-CN.json';
 import memberSiteZhTW from './locales/memberSite/zh-TW.json';
 import memberSiteJa from './locales/memberSite/ja.json';
 import memberSiteKo from './locales/memberSite/ko.json';
+import memberSiteTh from './locales/memberSite/th.json';
 
 // Import pendingDeposit translations
 import pendingDepositEn from './locales/pendingDeposit/en.json';
@@ -33,6 +37,7 @@ import pendingDepositZhCN from './locales/pendingDeposit/zh-CN.json';
 import pendingDepositZhTW from './locales/pendingDeposit/zh-TW.json';
 import pendingDepositJa from './locales/pendingDeposit/ja.json';
 import pendingDepositKo from './locales/pendingDeposit/ko.json';
+import pendingDepositTh from './locales/pendingDeposit/th.json';
 
 // Import pendingWithdrawal translations
 import pendingWithdrawalEn from './locales/pendingWithdrawal/en.json';
@@ -41,16 +46,21 @@ import pendingWithdrawalZhCN from './locales/pendingWithdrawal/zh-CN.json';
 import pendingWithdrawalZhTW from './locales/pendingWithdrawal/zh-TW.json';
 import pendingWithdrawalJa from './locales/pendingWithdrawal/ja.json';
 import pendingWithdrawalKo from './locales/pendingWithdrawal/ko.json';
+import pendingWithdrawalTh from './locales/pendingWithdrawal/th.json';
 
 // Import transactionHistory translations
-import enTransactionHistory from './locales/transactionHistory/en.json';
-import zhTWTransactionHistory from './locales/transactionHistory/zh-TW.json';
+import transactionHistoryEn from './locales/transactionHistory/en.json';
+import transactionHistoryVi from './locales/transactionHistory/vi.json';
+import transactionHistoryZhCN from './locales/transactionHistory/zh-CN.json';
+import transactionHistoryZhTW from './locales/transactionHistory/zh-TW.json';
+import transactionHistoryJa from './locales/transactionHistory/ja.json';
+import transactionHistoryKo from './locales/transactionHistory/ko.json';
+import transactionHistoryTh from './locales/transactionHistory/th.json';
 
 // Declare the language property on the Window interface
 declare global {
   interface Window {
     language?: string;
-    changeLanguage?: (lang: string) => void;
   }
 }
 
@@ -69,7 +79,7 @@ i18n
         memberSite: memberSiteEn,
         pendingDeposit: pendingDepositEn,
         pendingWithdrawal: pendingWithdrawalEn,
-        transactionHistory: enTransactionHistory,
+        transactionHistory: transactionHistoryEn,
       },
       vi: {
         global: globalVi,
@@ -77,6 +87,7 @@ i18n
         memberSite: memberSiteVi,
         pendingDeposit: pendingDepositVi,
         pendingWithdrawal: pendingWithdrawalVi,
+        transactionHistory: transactionHistoryVi,
       },
       'zh-CN': {
         global: globalZhCN,
@@ -84,6 +95,7 @@ i18n
         memberSite: memberSiteZhCN,
         pendingDeposit: pendingDepositZhCN,
         pendingWithdrawal: pendingWithdrawalZhCN,
+        transactionHistory: transactionHistoryZhCN,
       },
       'zh-TW': {
         global: globalZhTW,
@@ -91,7 +103,7 @@ i18n
         memberSite: memberSiteZhTW,
         pendingDeposit: pendingDepositZhTW,
         pendingWithdrawal: pendingWithdrawalZhTW,
-        transactionHistory: zhTWTransactionHistory,
+        transactionHistory: transactionHistoryZhTW,
       },
       ja: {
         global: globalJa,
@@ -99,6 +111,7 @@ i18n
         memberSite: memberSiteJa,
         pendingDeposit: pendingDepositJa,
         pendingWithdrawal: pendingWithdrawalJa,
+        transactionHistory: transactionHistoryJa,
       },
       ko: {
         global: globalKo,
@@ -106,17 +119,29 @@ i18n
         memberSite: memberSiteKo,
         pendingDeposit: pendingDepositKo,
         pendingWithdrawal: pendingWithdrawalKo,
+        transactionHistory: transactionHistoryKo,
+      },
+      th: {
+        global: globalTh,
+        managePayments: managePaymentsTh,
+        memberSite: memberSiteTh,
+        pendingDeposit: pendingDepositTh,
+        pendingWithdrawal: pendingWithdrawalTh,
+        transactionHistory: transactionHistoryTh,
       },
     },
     fallbackLng: 'en',
     debug: process.env.NODE_ENV === 'development',
+
+    // Add supported languages configuration
+    supportedLngs: supportedLanguages,
 
     interpolation: {
       escapeValue: false, // React already escapes values
     },
 
     detection: {
-      order: ['localStorage', 'querystring', 'navigator'],
+      order: ['localStorage', 'navigator'],
       lookupLocalStorage: 'i18nextLng',
       lookupQuerystring: 'lang',
       caches: ['localStorage'],
@@ -124,8 +149,12 @@ i18n
   });
 
 // Set language from query string if available
-const queryLang = window.language;
-if (queryLang && i18n.languages.includes(queryLang)) {
+const queryLang = mapLanguageCode(window.language);
+
+if (queryLang 
+  && i18n.languages.includes(queryLang)
+  && localStorage.getItem('i18nextLng') !== queryLang) {
+    console.log("changeLanguage", queryLang + localStorage.getItem('i18nextLng'));
   i18n.changeLanguage(queryLang);
 }
 
