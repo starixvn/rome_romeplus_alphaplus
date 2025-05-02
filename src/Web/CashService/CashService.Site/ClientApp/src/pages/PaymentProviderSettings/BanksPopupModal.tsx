@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Bank } from '../../services/interfaces/Bank';
 import { paymentProviderService } from '../../services/paymentsAPI';
-import { TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import styles from '../ManagePayments/PaymentGateway.module.scss';
 import { IconClose } from '../../components/Icons';
 interface BanksPopupModalProps {
