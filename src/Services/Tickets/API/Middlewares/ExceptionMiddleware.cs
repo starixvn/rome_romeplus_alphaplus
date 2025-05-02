@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Text.Json;
 using AlphaPlus.PartialUM.Exceptions;
 
 namespace AlphaPlus.Tickets.API.Middlewares;
 
+[ExcludeFromCodeCoverage]
 public class ExceptionMiddleware
 {
     private readonly RequestDelegate _next;

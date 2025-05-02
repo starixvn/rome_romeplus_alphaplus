@@ -1,9 +1,11 @@
 
+using System.Diagnostics.CodeAnalysis;
 using AlphaPlus.BetsForecast.Infrastructure.TotalBets;
 using AlphaPlus.BetsForecast.Infrastructure.TotalBets.Params;
 
 namespace AlphaPlus.Tickets.API.Endpoints;
 
+[ExcludeFromCodeCoverage]
 public class TotalBetsEndpoint : IEndpoint
 {
     public void MapEndpoints(IEndpointRouteBuilder endpoints)
