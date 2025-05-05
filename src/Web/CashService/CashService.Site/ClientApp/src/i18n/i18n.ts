@@ -1,7 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import { mapLanguageCode, supportedLanguages } from './languageMap';
 
 // Import ManagePayments specific translations
 import managePaymentsEn from './locales/managePayments/en.json';
@@ -57,12 +56,6 @@ import transactionHistoryJa from './locales/transactionHistory/ja.json';
 import transactionHistoryKo from './locales/transactionHistory/ko.json';
 import transactionHistoryTh from './locales/transactionHistory/th.json';
 
-// Declare the language property on the Window interface
-declare global {
-  interface Window {
-    language?: string;
-  }
-}
 
 // Configure i18next
 i18n
@@ -133,9 +126,6 @@ i18n
     fallbackLng: 'en',
     debug: process.env.NODE_ENV === 'development',
 
-    // Add supported languages configuration
-    supportedLngs: supportedLanguages,
-
     interpolation: {
       escapeValue: false, // React already escapes values
     },
@@ -147,15 +137,5 @@ i18n
       caches: ['localStorage'],
     },
   });
-
-// Set language from query string if available
-const queryLang = mapLanguageCode(window.language);
-
-if (queryLang 
-  && i18n.languages.includes(queryLang)
-  && localStorage.getItem('i18nextLng') !== queryLang) {
-    console.log("changeLanguage", queryLang + localStorage.getItem('i18nextLng'));
-  i18n.changeLanguage(queryLang);
-}
 
 export default i18n;

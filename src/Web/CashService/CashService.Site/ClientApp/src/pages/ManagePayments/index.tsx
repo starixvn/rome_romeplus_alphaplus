@@ -2,12 +2,12 @@ import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { useTranslation } from 'react-i18next';
 import 'tippy.js/dist/tippy.css'; 
-import '../../i18n/i18n';
 import './ManagePayments.css';
 import PaymentGateway from './PaymentGateway';
 import BankAccount from './BankAccount';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 import TitleCommon from '../../components/ui/TitleCommon';
+
 function ManagePayments() {
   const { t } = useTranslation('managePayments');
   useCookieLanguage();

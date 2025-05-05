@@ -14,9 +14,6 @@
 }
 
 <div id="root" data-theme="@(string.IsNullOrWhiteSpace(Model.DarkModeName) ? "light" : "dark")"></div>
-<script>
-    window.language ="@Model.Language";
-</script>
 <environment names="Development">
     <script type="module" src="http://localhost:5173/src/pages/ManagePayments/index.tsx"></script>
 </environment>
