@@ -124,10 +124,16 @@
   "status-4": "Maintenance",
 
   "payment-method-0": "All",
-  "payment-method-1": "PromptPay",
-  "payment-method-2": "QR Code",
-  "payment-method-3": "Bank Transfer",
-  "payment-method-4": "Mobile Banking",
-  "payment-method-5": "Credit Card",
-  "payment-method-6": "Debit Card"
+  "payment-method-1": "ATM",
+  "payment-method-2": "Internet Banking",
+  "payment-method-3": "PromptPay",
+  "payment-method-4": "THAI QR",
+  "payment-method-5": "truemoney",
+  "payment-method-6": "Bank Transfer",
+
+  "addPaymentMethodStep1": "Step 1: Select transaction type and payment method",
+  "addPaymentMethodStep2": "Step 2: Join the Telegram and Channel",
+  "clickLinkOrScanQRCode": "Click the link or scan the QR code for set up assistance.",
+  "addPaymentMethodStep2_Link": "https://t.me/",
+  "addPaymentMethodStep3": "Step 3: Enter details"
 } 

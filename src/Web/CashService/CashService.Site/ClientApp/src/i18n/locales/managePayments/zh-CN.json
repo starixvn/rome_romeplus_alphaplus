@@ -119,12 +119,16 @@
   "status-2": "已完成",
   "status-3": "失败",
   "status-4": "维护中",
-
   "payment-method-0": "全部",
-  "payment-method-1": "PromptPay",
-  "payment-method-2": "二维码",
-  "payment-method-3": "银行转账",
-  "payment-method-4": "手机银行",
-  "payment-method-5": "信用卡",
-  "payment-method-6": "借记卡"
+  "payment-method-1": "ATM机",
+  "payment-method-2": "网银",
+  "payment-method-3": "PromptPay",
+  "payment-method-4": "泰国二维码",
+  "payment-method-5": "truemoney",
+  "payment-method-6": "银行转账",
+  "addPaymentMethodStep1": "步骤1：选择交易类型和支付方式",
+  "addPaymentMethodStep2": "步骤2：加入Telegram群组和频道",
+  "clickLinkOrScanQRCode": "点击链接或扫描二维码以获取设置协助。",
+  "addPaymentMethodStep2_Link": "https://t.me/",
+  "addPaymentMethodStep3": "步骤3：输入详细信息"
 } 

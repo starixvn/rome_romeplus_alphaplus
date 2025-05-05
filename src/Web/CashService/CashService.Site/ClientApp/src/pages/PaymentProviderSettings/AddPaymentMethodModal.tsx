@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { PaymentMethod } from '../../services/interfaces/PaymentMethod';
-import { IconCheck, IconError } from '../../components/Icons';
+import { IconCheck, IconError, IconClose } from '../../components/Icons';
 
 interface AddPaymentMethodModalProps {
   onClose: () => void;
@@ -24,6 +24,9 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
   const [agreeToTerms, setAgreeToTerms] = React.useState(false);
   const [paymentMethods, setPaymentMethods] = React.useState<PaymentMethod[]>([]);
   const [allMethodsInactive, setAllMethodsInactive] = React.useState<boolean>(false);
+  const [apiKey, setApiKey] = React.useState('');
+  const [merchantID, setMerchantID] = React.useState('');
+  const [appSecret, setAppSecret] = React.useState('');
 
   const inactiveStatus = 0;
   const activeStatus = 1;
@@ -48,13 +51,19 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
     };
 
     loadPaymentMethods();
-  }, [tGlobal, selectedTransactionType, providerId]);
+  }, [selectedTransactionType]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
     setSuccessMessage('');
+
+    if (!apiKey || !merchantID || !appSecret) {
+      setError(tGlobal('pleaseFillAllFields'));
+      setIsLoading(false);
+      return;
+    }
 
     try {
       const selectedMethod = paymentMethods.find(method => method.id === parseInt(selectedPaymentMethod));
@@ -66,9 +75,9 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
         transactionType: parseInt(selectedTransactionType),
         status: activeStatus,
         custId: 0,
-        apiMethodKey: selectedMethod?.apiMethodKey || '',
-        merchantID: selectedMethod?.merchantID || '',
-        appSecret: selectedMethod?.appSecret || ''
+        apiMethodKey: apiKey,
+        merchantID: merchantID,
+        appSecret: appSecret
       };
 
       const response = await paymentProviderService.addPaymentMethod(newSetting);
@@ -90,56 +99,104 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <div className="modal-header">
-          <h5 className="modal-title">{tManagePayments('setUpPaymentMethods')}</h5>
-          <button type="button" className="btn-close" onClick={onClose}></button>
+    <div className="bg-[#00000066] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+      <div className="p-[30px] bg-[#ffffff] w-full max-w-[560px] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
+        <div className="relative">
+          <h5 className="text-[16px] text-[#163f78] font-bold leading-[21.6px] tracking-[0.2px] pb-[4px]">{tManagePayments('setUpPaymentMethods')}</h5>
+          <button type="button" className="absolute top-[-20px] right-[-20px] cursor-pointer" onClick={onClose}>
+            <IconClose />
+          </button>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="modal-body">
-
-            <div className="form-group mb-3">
-              <label className="form-label">{tManagePayments('transactionType')}</label>
-              <select 
-                className="form-select" 
-                value={selectedTransactionType}
-                onChange={(e) => setSelectedTransactionType(e.target.value)}
-                required
-              >
-                <option value="">{tGlobal('select')}</option>
-                {TRANSACTION_TYPES.filter(type => type.id !== 0).map(type => (
-                  <option key={type.id} value={type.id}>{tManagePayments(`transaction-${type.id}`)}</option>
-                ))}
-              </select>
-            </div>
+            <div>
+              <label className="form-label">{tManagePayments('addPaymentMethodStep1')}</label>
+              <div className="form-group mb-3">
+                <label className="form-label">{tManagePayments('transactionType')}</label>
+                <select 
+                  className="form-select" 
+                  value={selectedTransactionType}
+                  onChange={(e) => setSelectedTransactionType(e.target.value)}
+                  required
+                >
+                  <option value="">{tGlobal('select')}</option>
+                  {TRANSACTION_TYPES.filter(type => type.id !== 0).map(type => (
+                    <option key={type.id} value={type.id}>{tManagePayments(`transaction-${type.id}`)}</option>
+                  ))}
+                </select>
+              </div>
             
-            <div className="form-group mb-3">
-              <label className="form-label">{tManagePayments('paymentMethod')}</label>
-              <select 
-                className="form-select" 
-                value={selectedPaymentMethod}
-                onChange={(e) => setSelectedPaymentMethod(e.target.value)}
-                required
-              >
-                <option value="">{tGlobal('select')}</option>
-                {paymentMethods.filter(p => p.id !== 0).map(method => (
-                  <option 
-                    key={method.id} 
-                    value={method.id}
-                    disabled={method.status === inactiveStatus}
-                  >
-                    {tManagePayments(`payment-method-${method.id}`)}{method.status === inactiveStatus ? ` (${tGlobal('underMaintenance')})` : ''}
-                  </option>
-                ))}
-              </select>
+              <div className="form-group mb-3">
+                <label className="form-label">{tManagePayments('paymentMethod')}</label>
+                <select 
+                  className="form-select" 
+                  value={selectedPaymentMethod}
+                  onChange={(e) => setSelectedPaymentMethod(e.target.value)}
+                  required
+                >
+                  <option value="">{tGlobal('select')}</option>
+                  {paymentMethods.filter(p => p.id !== 0).map(method => (
+                    <option 
+                      key={method.id} 
+                      value={method.id}
+                      disabled={method.status === inactiveStatus}
+                    >
+                      {tManagePayments(`payment-method-${method.id}`)}{method.status === inactiveStatus ? ` (${tGlobal('underMaintenance')})` : ''}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
-
+            <div>
+              <label className="form-label">{tManagePayments('addPaymentMethodStep2')}</label>
+              <p>{tManagePayments('clickLinkOrScanQRCode')}</p>
+              <a href={tManagePayments('addPaymentMethodStep2_Link')} target="_blank" rel="noopener noreferrer">{tManagePayments('addPaymentMethodStep2_Link')}</a>
+              <div style={{ marginTop: '16px', textAlign: 'center' }}>
+                <img src="../qr-placeholder.png" alt="QR Code" style={{ width: '150px', height: '150px', display: 'inline-block' }} />
+              </div>
+            </div>
+            <div>
+              <label className="form-label">{tManagePayments('addPaymentMethodStep3')}</label>
+              <div className="form-group mb-3">
+                <label className="form-label" htmlFor="apiKey">API Key</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="apiKey"
+                  value={apiKey}
+                  onChange={e => setApiKey(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group mb-3">
+                <label className="form-label" htmlFor="merchantID">Merchant ID</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="merchantID"
+                  value={merchantID}
+                  onChange={e => setMerchantID(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group mb-3">
+                <label className="form-label" htmlFor="appSecret">App Secret</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="appSecret"
+                  value={appSecret}
+                  onChange={e => setAppSecret(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+           
             {error && <div className="mt-[16px] font-bold text-[12px] text-[#333] bg-[#FFF2F2] border-[1px] border-[#FE0000] rounded-[10px] pl-[36px] pr-[12px] py-[8px] relative block capitalize"><IconError className='w-[20px] h-[20px] fill-[#fe0000] absolute top-[8px] left-[10px]' />{error}</div>}
             {successMessage && <div className="mt-[16px] font-bold text-[12px] text-[#333] bg-[#E2FFF2] border-[1px] border-[#5cb774] rounded-[10px] pl-[36px] pr-[12px] py-[8px] relative block capitalize"><IconCheck className='w-[20px] h-[20px] fill-[#5CB774] absolute top-[8px] left-[10px]' />{successMessage}</div>}
           </div>
-          <div className="modal-footer">
-            <div className="form-check mb-3 w-100">
+          <div className="flex justify-center mt-[16px]">
+            <div className="form-check mb-3 w-100 flex items-center justify-center">
               <input
                 type="checkbox"
                 className="form-check-input"
@@ -148,16 +205,16 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
                 onChange={(e) => setAgreeToTerms(e.target.checked)}
                 required
               />
-              <label className="form-check-label" htmlFor="agreeToTerms">
+              <label className="form-check-label ml-2" htmlFor="agreeToTerms">
                 {tManagePayments('agreeTermsAndConditions')}
               </label>
             </div>
-            <button type="button" className="btn btn-secondary" onClick={onClose}>
+            <button type="button" className="w-[140px] capitalize font-bold h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px] border-[#163f78] mx-[4px] bg-[#163f78] hover:bg-[#375A8A] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]" onClick={onClose}>
               {tManagePayments('setUpLater')}
             </button>
             <button 
               type="submit" 
-              className="btn btn-primary" 
+              className="w-[140px] capitalize font-bold h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px] border-[#163f78] mx-[4px] bg-[#163f78] hover:bg-[#375A8A] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
               disabled={isLoading || allMethodsInactive}
             >
               {isLoading ? tGlobal('loading') : tGlobal('save')}

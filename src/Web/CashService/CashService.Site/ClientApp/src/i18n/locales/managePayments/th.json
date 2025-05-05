@@ -120,12 +120,16 @@
   "status-2": "เสร็จสมบูรณ์",
   "status-3": "ล้มเหลว",
   "status-4": "อยู่ระหว่างการบำรุงรักษา",
-
   "payment-method-0": "ทั้งหมด",
-  "payment-method-1": "พร้อมเพย์",
-  "payment-method-2": "คิวอาร์โค้ด",
-  "payment-method-3": "โอนผ่านธนาคาร",
-  "payment-method-4": "โมบายแบงก์กิ้ง",
-  "payment-method-5": "บัตรเครดิต",
-  "payment-method-6": "บัตรเดบิต"
+  "payment-method-1": "ATM",
+  "payment-method-2": "อินเทอร์เน็ตแบงก์กิ้ง",
+  "payment-method-3": "PromptPay",
+  "payment-method-4": "THAI QR",
+  "payment-method-5": "truemoney",
+  "payment-method-6": "โอนผ่านธนาคาร",
+  "addPaymentMethodStep1": "ขั้นตอนที่ 1: เลือกประเภทการทำรายการและวิธีการชำระเงิน",
+  "addPaymentMethodStep2": "ขั้นตอนที่ 2: เข้าร่วมกลุ่มและช่องทาง Telegram",
+  "clickLinkOrScanQRCode": "คลิกลิงก์หรือสแกน QR code เพื่อขอความช่วยเหลือในการตั้งค่า",
+  "addPaymentMethodStep2_Link": "https://t.me/",
+  "addPaymentMethodStep3": "ขั้นตอนที่ 3: กรอกรายละเอียด"
 } 

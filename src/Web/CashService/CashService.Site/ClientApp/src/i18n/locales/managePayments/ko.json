@@ -121,10 +121,15 @@
   "status-4": "유지보수 중",
 
   "payment-method-0": "전체",
-  "payment-method-1": "프롬프트페이",
-  "payment-method-2": "QR 코드",
-  "payment-method-3": "은행 송금",
-  "payment-method-4": "모바일 뱅킹",
-  "payment-method-5": "신용카드",
-  "payment-method-6": "체크카드"
+  "payment-method-1": "ATM",
+  "payment-method-2": "인터넷뱅킹",
+  "payment-method-3": "PromptPay",
+  "payment-method-4": "THAI QR",
+  "payment-method-5": "truemoney",
+  "payment-method-6": "은행 이체",
+  "addPaymentMethodStep1": "1단계: 거래 유형과 결제 방법 선택",
+  "addPaymentMethodStep2": "2단계: 텔레그램 그룹 및 채널 참여",
+  "clickLinkOrScanQRCode": "설정 지원을 위해 링크를 클릭하거나 QR 코드를 스캔하세요.",
+  "addPaymentMethodStep2_Link": "https://t.me/",
+  "addPaymentMethodStep3": "3단계: 세부 정보 입력"
 } 

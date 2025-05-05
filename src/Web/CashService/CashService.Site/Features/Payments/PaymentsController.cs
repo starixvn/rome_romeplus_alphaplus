@@ -28,8 +28,8 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             _httpClient = httpClient;
             _userSession = userSession;
 
-            // _custId = 1176086;
-            _custId = 187900621;
+            _custId = 1176086;
+            // _custId = 187900621;
         }
 
         public IActionResult Index()
@@ -103,7 +103,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
 
         public async Task<IActionResult> GetPaymentMethods(int providerId, int transactionType, CancellationToken cancellationToken)
         {
-            var url = $"{_apiBaseUrl}/payments/payment-methods?providerId={providerId}&transactionType={transactionType}";
+            var url = $"{_apiBaseUrl}/payments/payment-methods?custId={_custId}&providerId={providerId}&transactionType={transactionType}";
             var paymentMethods = await _httpClient.GetFromJsonAsync<IEnumerable<PaymentMethodModel>>(url, cancellationToken);
             var allPaymentMethods = paymentMethods.ToList().Prepend(PaymentMethodModel.CreateOptionAll());
             return Json(allPaymentMethods);

@@ -120,12 +120,16 @@
   "status-2": "完了",
   "status-3": "失敗",
   "status-4": "メンテナンス中",
-
   "payment-method-0": "すべて",
-  "payment-method-1": "プロンプトペイ",
-  "payment-method-2": "QRコード",
-  "payment-method-3": "銀行振込",
-  "payment-method-4": "モバイルバンキング",
-  "payment-method-5": "クレジットカード",
-  "payment-method-6": "デビットカード"
+  "payment-method-1": "ATM",
+  "payment-method-2": "インターネットバンキング",
+  "payment-method-3": "PromptPay",
+  "payment-method-4": "タイQR",
+  "payment-method-5": "truemoney",
+  "payment-method-6": "銀行振込",
+  "addPaymentMethodStep1": "ステップ1：取引タイプと支払い方法を選択",
+  "addPaymentMethodStep2": "ステップ2：Telegramグループとチャンネルに参加",
+  "clickLinkOrScanQRCode": "設定サポートのためにリンクをクリックするかQRコードをスキャンしてください。",
+  "addPaymentMethodStep2_Link": "https://t.me/",
+  "addPaymentMethodStep3": "ステップ3：詳細を入力"
 } 
