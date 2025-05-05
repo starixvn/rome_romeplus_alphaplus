@@ -1,4 +1,4 @@
-namespace AlphaPlus.CashService.Site.Features.Transactions;
+namespace AlphaPlus.CashService.Site.Features.Transactions.Requests;
 
 public class RevertTransactionRequest
 {

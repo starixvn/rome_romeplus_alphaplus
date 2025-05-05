@@ -4,6 +4,7 @@ import {
   TransactionsHistoryResponse,
   TransactionsHistoryParams,
 } from './interfaces/Transactions/TransactionHistory';
+import { AccountOption } from './interfaces/Transactions/AccountOption';
 import { ResultModel } from './interfaces/ResultModel';
 
 const api = axios.create({
@@ -71,5 +72,18 @@ export const revertTransaction = async (
   } catch (error) {
     console.error(`Error reverting transaction for ID ${transactionId}:`, error);
     throw error;
+  }
+};
+
+/**
+ * Fetches account options.
+ */
+export const getAccount = async (): Promise<AccountOption[]> => {
+  try {
+    const response = await api.get<AccountOption[]>('GetFilterAccount');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching accounts:', error);
+    return [];
   }
 };

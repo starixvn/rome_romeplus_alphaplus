@@ -7,6 +7,7 @@ using Criteria.Transactions;
 using Enum;
 using Extensions;
 using Fanex.Data.Repository;
+using Microsoft.Extensions.Logging;
 using Models;
 using Models.Transactions;
 
@@ -17,9 +18,12 @@ public interface ITransactionService
     Task<TransactionModel> GetTransactionByIdAsync(int transactionId);
 
     Task<ResultModel> UpdateTransactionStatus(UpdateTransactionStatusRemarkCommand command);
+
+    Task<IEnumerable<AccountOptionModel>> GetAccountAsync(GetAccountCriteria criteria, CancellationToken cancellationToken);
 }
 
-public class TransactionService(IDynamicRepository dynamicRepository) : ITransactionService
+public class TransactionService(IDynamicRepository dynamicRepository, ILogger<TransactionService> logger)
+    : ITransactionService
 {
     public async Task<TransactionResponse> GetTransactionsAsync(GetAllTransactionsWithPagingCriteria criteria)
     {
@@ -118,5 +122,19 @@ public class TransactionService(IDynamicRepository dynamicRepository) : ITransac
         }
 
         return transactions;
+    }
+
+    public async Task<IEnumerable<AccountOptionModel>> GetAccountAsync(GetAccountCriteria criteria, CancellationToken cancellationToken)
+    {
+        var mockAccounts = new List<AccountOptionModel>
+        {
+            new() { Id = 1, Name = "Main Wallet" },
+            new() { Id = 2, Name = "Savings Account" },
+            new() { Id = 3, Name = "Investment Portfolio" },
+            new() { Id = 101, Name = "Trading Account A" },
+            new() { Id = 102, Name = "Trading Account B" }
+        };
+
+        return await Task.FromResult(mockAccounts);
     }
 }

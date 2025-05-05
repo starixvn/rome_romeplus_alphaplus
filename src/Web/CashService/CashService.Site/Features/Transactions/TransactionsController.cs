@@ -3,9 +3,11 @@ using AlphaPlus.CashService.Site.Features.Shared.Models;
 using AlphaPlus.CashService.Site.Features.Transactions.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using AlphaPlus.CashService.Site.Features.Transactions.Models;
 
 namespace AlphaPlus.CashService.Site.Features.Transactions;
 
+using AlphaPlus.CashService.Site.Features.Transactions.Requests;
 using Commands;
 
 public class TransactionsController(
@@ -74,6 +76,22 @@ public class TransactionsController(
         var url = $"{_apiBaseUrl}/bank-withdrawal-accounts";
         var withdrawalAccounts = await httpClient.GetFromJsonAsync<object>(url);
         return Json(withdrawalAccounts);
+    }
+
+    public async Task<IActionResult> GetFilterAccount()
+    {
+        try
+        {
+            var query = new GetFilterAccountQuery();
+            var result = await mediator.Send(query);
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error getting filter accounts");
+            return StatusCode(StatusCodes.Status500InternalServerError,
+                new ResultModel { Code = StatusCodes.Status500InternalServerError, Message = "Failed to fetch accounts." });
+        }
     }
 
     [HttpPost]

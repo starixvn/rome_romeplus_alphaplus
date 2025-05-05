@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronDownIcon } from '../../../../../components/Icons';
 import { useTranslation } from 'react-i18next';
 import '../../../../../i18n/i18n';
+import { getAccount } from '../../../../../services/transactionsHistoryAPI';
+import { AccountOption } from '../../../../../services/interfaces/Transactions/AccountOption';
 
 interface AccountFilterProps {
   account: string;
@@ -15,6 +17,25 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
   onAccountChange,
 }) => {
   const { t } = useTranslation('transactionHistory');
+  const [accountOptions, setAccountOptions] = useState<AccountOption[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchAccounts = async () => {
+      setIsLoading(true);
+      try {
+        const options = await getAccount();
+        setAccountOptions(options);
+      } catch (error) {
+        console.error('Failed to fetch accounts:', error);
+        setAccountOptions([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchAccounts();
+  }, []);
 
   return (
     <div className="w-[180px]">
@@ -26,8 +47,17 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
           value={account}
           onChange={(e) => onAccountChange(e.target.value)}
           className="appearance-none block w-full bg-white border border-gray-300 px-3 py-1.5 pr-8 rounded text-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm h-9"
+          disabled={isLoading}
         >
-          <option value="">{t('filter.selectAccount')}</option>
+          <option value="">
+            {isLoading ? t('filter.loadingAccounts') : t('filter.selectAccount')}
+          </option>
+          {!isLoading &&
+            accountOptions.map((option) => (
+              <option key={option.id} value={option.id}>
+                {option.name}
+              </option>
+            ))}
         </select>
         <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
           <ChevronDownIcon className="h-4 w-4" />
