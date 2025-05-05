@@ -318,7 +318,7 @@ const BankAccount: React.FC = () => {
                 </div>
               </div>
               <div className="flex px-[14px] pb-[16px]">
-                <div className="w-[195px] ml-auto">
+                <div className="w-[250px] ml-auto">
                   <div className="relative">
                     <span className='absolute top-[10px] left-[5px] z-[100]'>
                     <IconSearch />

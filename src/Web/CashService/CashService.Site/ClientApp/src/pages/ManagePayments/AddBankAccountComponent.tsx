@@ -241,7 +241,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     {hasManualDepositTransactionType(selectedBank, banks) && (
                       <button
                         type="button"
-                        className={`block w-[230px] cursor-pointer h-[120px]  rounded-[4px] border-[1px] border-[#163f78]  ${selectedManualDeposit ? 'text-[#163f78] bg-[#ffffff]' : 'text-[#ffffff] bg-[#163f78]'}`}
+                        className={`block w-[230px] cursor-pointer h-[120px]  rounded-[4px] border-[1px] border-[#163f78]  ${selectedManualDeposit ? 'text-[#ffffff] bg-[#163f78]' : 'text-[#163f78] bg-[#ffffff]'}`}
                         onClick={toggleManualDeposit}
                       >
                         <span className="text-[14px] font-bold ">{tManagePayments('slipUpload')}</span>
@@ -252,7 +252,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     {hasAutoDepositTransactionType(selectedBank, banks) && (
                       <button
                         type="button"
-                        className={`block w-[230px] cursor-pointer h-[120px] rounded-[4px] border-[1px] border-[#163f78] ${selectedAutoDeposit ? 'text-[#163f78] bg-[#ffffff]' : 'text-[#ffffff] bg-[#163f78]'}`}
+                        className={`block w-[230px] cursor-pointer h-[120px] rounded-[4px] border-[1px] border-[#163f78] ${selectedAutoDeposit ? 'text-[#ffffff] bg-[#163f78]' : 'text-[#163f78] bg-[#ffffff]'}`}
                         onClick={toggleAutoDeposit}
                       >
                         <span className="text-[14px] font-bold">{tManagePayments('sms')}</span>
@@ -271,7 +271,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     {hasManualWithdrawalTransactionType(selectedBank, banks) && (
                       <button
                         type="button"
-                        className={`block cursor-pointer w-[230px] h-[120px] rounded-[4px] border-[1px] border-[#163f78] ${selectedManualWithdrawal ? 'text-[#163f78] bg-[#ffffff]' : 'text-[#ffffff] bg-[#163f78]'}`}
+                        className={`block cursor-pointer w-[230px] h-[120px] rounded-[4px] border-[1px] border-[#163f78] ${selectedManualWithdrawal ? 'text-[#ffffff] bg-[#163f78]' : 'text-[#163f78] bg-[#ffffff]'}`}
                         onClick={toggleManualWithdrawal}
                       >
                         <span className="text-[14px] font-bold">{tManagePayments('manualWithdrawal')}</span>
