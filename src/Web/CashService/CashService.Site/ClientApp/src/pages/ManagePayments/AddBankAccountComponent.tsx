@@ -11,6 +11,7 @@ import {
   hasManualWithdrawalTransactionType
 } from '../../utils/bankTransactionUtils';
 import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
+import { IconCheck, IconError } from '../../components/Icons';
 
 interface AddBankAccountComponentProps {
   onClose: () => void;
@@ -171,34 +172,26 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
   };
 
   return (
-    <div className="modal show d-block" tabIndex={-1}>
+    <div className="p-[12px]" tabIndex={-1}>
       <div className="modal-dialog">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="pb-[8px] mt-[8px] text-[16px] text-[#163f78] font-semibold leading-[21.6px] tracking-[0.2px] ">{tManagePayments('bankManagement')}</h5>
-            <button
-              type="button"
-              className="btn-close"
-              onClick={onClose}
-              disabled={loading}
-            />
+        <div className="modal-content max-w-[1200px]">
+          <div className="mb-[8px]">
+            <h2 className="flex items-center font-bold text-[15px] ">{tManagePayments('bankManagement')}</h2>            
           </div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className='bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]'>
             <div className="modal-body">
               {error && (
-                <div className="alert alert-danger" role="alert">
-                  {error}
+                <div className="mb-[8px] font-bold text-[12px] text-[#333] bg-[#FFF2F2] border-[1px] border-[#FE0000] rounded-[10px] pl-[36px] pr-[12px] py-[8px] relative block capitalize" role="alert">
+                  <IconError className='w-[20px] h-[20px] fill-[#fe0000] absolute top-[8px] left-[10px]' />{error}
                 </div>
               )}
-              {success && (
-                <div className="alert alert-success" role="alert">
-                  {successMessage}
-                </div>
+              {success && (                
+                <div className="mb-[8px] font-bold text-[12px] text-[#333] bg-[#E2FFF2] border-[1px] border-[#5cb774] rounded-[10px] pl-[36px] pr-[12px] py-[8px] relative block capitalize" role="alert"><IconCheck className='w-[20px] h-[20px] fill-[#5CB774] absolute top-[8px] left-[10px]' />{successMessage}</div>
               )}
               
               <div className="mb-3">
-                <div className="pb-[8px] mt-[8px] text-[16px] text-[#163f78] font-semibold leading-[21.6px] tracking-[0.2px]">{tManagePayments('bankStatus')}</div>
-                <p className="pb-[8px] text-[12px]">{tManagePayments('bankNote1')}</p>
+                <div className="pb-[8px] text-[16px] text-[#163f78] font-semibold leading-[21.6px] tracking-[0.2px]">{tManagePayments('bankStatus')}</div>
+                <p className="text-[12px] my-[8px]">{tManagePayments('bankNote1')}</p>
                 <div className="btn-group" role="group">
                   <button
                     type="button"
@@ -217,7 +210,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                 </div>
               </div>
 
-              <div className="pb-[8px] mt-[8px] text-[16px] text-[#163f78] font-semibold leading-[21.6px] tracking-[0.2px]">{tManagePayments('accountInformation')}</div>
+              <div className="mt-[8px] text-[16px] text-[#163f78] font-semibold leading-[21.6px] tracking-[0.2px]">{tManagePayments('accountInformation')}</div>
               <div>
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('bank')}</label>
                 <select
@@ -286,22 +279,16 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                 return selectedBank && selectedBankObj && selectedBankObj.depositMatchingMode >= 1 && (
                   <div className="mb-3">
                     <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('depositMatchingMode')}</label>
-                    <div className="btn-group" role="group">
-                      <button
-                        type="button"
-                        className={`btn ${depositMatchingMode === '1' ? 'btn-primary' : 'btn-outline-primary'}`}
-                        onClick={() => setDepositMatchingMode('1')}
-                      >
-                        {tManagePayments('manualMatching')}
-                      </button>
-                      {selectedBankObj.depositMatchingMode >= 2 && (
-                        <button
-                          type="button"
-                          className={`btn ${depositMatchingMode === '2' ? 'btn-primary' : 'btn-outline-primary'}`}
-                          onClick={() => setDepositMatchingMode('2')}
-                        >
-                          {tManagePayments('autoMatching')}
-                        </button>
+                    <div className="flex gap-[8px]" role="group">
+                      <label className='flex items-center cursor-pointer capitalize' htmlFor="manualMatching1" onClick={() => setDepositMatchingMode('1')}>
+                        <input className='w-[20px] h-[20px] m-[10px] cursor-pointer' id="manualMatching1" type="radio" name="depositMatchingMode" value={depositMatchingMode} checked={depositMatchingMode === '1'} />
+                        <span className='text-[12px] leading-[14px]'>{tManagePayments('manualMatching')}</span>
+                      </label>
+                      {selectedBankObj.depositMatchingMode >= 2 && (                        
+                        <label className='flex items-center cursor-pointer capitalize' htmlFor="manualMatching2" onClick={() => setDepositMatchingMode('2')}>
+                          <input className='w-[20px] h-[20px] m-[10px] cursor-pointer' id="manualMatching2" type="radio" name="depositMatchingMode" value={depositMatchingMode} checked={depositMatchingMode === '2'} />
+                          <span className='text-[12px] leading-[14px]'>{tManagePayments('autoMatching')}</span>
+                        </label>
                       )}
                     </div>
                   </div>
@@ -385,7 +372,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   </select>
                   <input
                     type="text"
-                    className="focus:outline-none focus:border-[#163f78] cursor-pointerl"
+                    className="focus:outline-none focus:border-[#163f78] w-[100%] h-[100%]"
                     value={mobile}
                     onChange={(e) => setMobile(e.target.value)}
                     placeholder={tManagePayments('enterMobileNumber')}

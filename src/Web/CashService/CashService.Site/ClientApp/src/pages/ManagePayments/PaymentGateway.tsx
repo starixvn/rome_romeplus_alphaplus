@@ -169,7 +169,7 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = ({ setActiveTab, activeTab
                           </td>
                           <td>
                             <span
-                              className={`rounded-[20px] px-[10px] py-[3px] ${provider.status === 1 ? ' bg-[#D5E9D9] ' : ' bg-[#f87171]'}`}
+                              className={`rounded-[20px] px-[10px] py-[3px] ${provider.status === 1 ? ' bg-[#FBD8D8] ' : ' bg-[#D4E7D9]'}`}
                             >
                               {getStatusText(provider.status)}
                             </span>

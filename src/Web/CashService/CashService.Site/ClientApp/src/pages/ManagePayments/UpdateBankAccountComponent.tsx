@@ -178,19 +178,14 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   };
 
   return (
-    <div className="modal show d-block" tabIndex={-1}>
+    <div className="p-[12px]" tabIndex={-1}>
       <div className="modal-dialog">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="pb-[8px] mt-[8px] text-[16px] text-[#163f78] font-semibold leading-[21.6px] tracking-[0.2px] ">{tManagePayments('bankManagement')}</h5>
-            <button
-              type="button"
-              className="btn-close"
-              onClick={onClose}
-              disabled={loading}
-            />
+        <div className="modal-content max-w-[1200px]">
+          <div className="mb-[8px]">
+            <h2 className="flex items-center font-bold text-[15px] ">{tManagePayments('bankManagement')}</h2>
+            
           </div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className='bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]'>
             <div className="modal-body">
               {error && (
                 <div className="mt-[16px] font-bold text-[12px] text-[#333] bg-[#FFF2F2] border-[1px] border-[#FE0000] rounded-[10px] pl-[36px] pr-[12px] py-[8px] relative block capitalize"><IconError className='w-[20px] h-[20px] fill-[#fe0000] absolute top-[8px] left-[10px]' />{error}</div>
@@ -387,7 +382,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                   </select>
                   <input
                     type="text"
-                    className="focus:outline-none focus:border-[#163f78] cursor-pointer"
+                    className="focus:outline-none focus:border-[#163f78] w-[100%] h-[100%]"
                     value={mobile}
                     onChange={(e) => setMobile(e.target.value)}
                     placeholder={tManagePayments('enterMobileNumber')}

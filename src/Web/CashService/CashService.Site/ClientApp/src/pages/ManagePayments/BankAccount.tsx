@@ -8,7 +8,7 @@ import SetTransactionLimitModal from './SetTransactionLimitModal';
 import AddBankAccountComponent from './AddBankAccountComponent';
 import UpdateBankAccountComponent from './UpdateBankAccountComponent';
 import TitleCommon from '../../components/ui/TitleCommon';
-import { IconDelete, IconPen, IconSearch } from '../../components/Icons';
+import { IconCheck, IconDelete, IconError, IconPen, IconSearch, IconSync } from '../../components/Icons';
 import styles from './PaymentGateway.module.scss';
 
 interface BankAccountProps {
@@ -242,7 +242,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
               </ul>
             </div>
             <div className="card-body">
-              <div className="bg-[#ffffff] max-w-[1000px]">
+              <div className="bg-[#ffffff]">
                 <div className="px-[14px] py-[8px]">
                   <div className="pb-[8px] mt-[8px] text-[16px] text-[#163f78] font-semibold leading-[21.6px] tracking-[0.2px] ">{tManagePayments('manageBankAccountAndLimits')}</div>
                   <div className="text-[12px] leading-[14px]">{tManagePayments('addBankAccountAndLimit')}</div>
@@ -269,19 +269,20 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                     </div>
                   </div>
                 )}
-
+                <div className='px-[14px]'>
                 {error && (
-                  <div className="alert alert-danger" role="alert">
+                  <div className="font-bold text-[12px] text-[#333] bg-[#FFF2F2] border-[1px] border-[#FE0000] rounded-[10px] pl-[36px] pr-[12px] py-[8px] relative block capitalize" role="alert">
+                    <IconError className='w-[20px] h-[20px] fill-[#fe0000] absolute top-[8px] left-[10px]' />
                     {error}
                   </div>
                 )}
 
                 {successMessage && (
-                  <div className="alert alert-success" role="alert">
-                    {successMessage}
-                  </div>
+                  <div className="font-bold text-[12px] text-[#333] bg-[#E2FFF2] border-[1px] border-[#5cb774] rounded-[10px] pl-[36px] pr-[12px] py-[8px] relative block capitalize" role="alert">
+                    <IconCheck className='w-[20px] h-[20px] fill-[#5CB774] absolute top-[8px] left-[10px]' />
+                  {successMessage}</div>
                 )}
-
+                </div>
                 {!loading && !error && banks.length === 0 && (
                   <div className="alert alert-info" role="alert">
                     {tGlobal('noData')}
@@ -358,7 +359,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                           <input
                             type="text"
                             id="searchInput"
-                            className="h-[35px] w-[100%] pl-[30px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78]"
+                            className="h-[35px] w-[100%] pl-[30px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] shadow-[0_0_6px_rgba(0,0,0,0.16)]"
                             placeholder={tManagePayments('searchAccountNumberOrName')}
                             value={searchInput}
                             onChange={handleSearchChange}
@@ -407,8 +408,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                                 >
                                   {deleting === account.id ? (
                                     <>
-                                      {tGlobal('deleting')}
-                                      <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                      <IconSync className='w-[16px] h-[16px] fill-[#163f78]' />
                                     </>
                                   ) : (
                                     <>
@@ -424,7 +424,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                             <td>{account.accountNumber}</td>
                             <td>{getTransactionTypeNames(account.transactionTypes)}</td>
                             <td>
-                              <span className={`badge ${account.status === 1 ? 'bg-success' : 'bg-danger'}`}>
+                              <span className={`rounded-[20px] px-[10px] py-[3px] ${account.status === 1 ? 'bg-[#FBD8D8]' : 'bg-[#D4E7D9]'}`}>
                                 {account.status === 1 ? tGlobal('enabled') : tGlobal('disabled')}
                               </span>
                             </td>
