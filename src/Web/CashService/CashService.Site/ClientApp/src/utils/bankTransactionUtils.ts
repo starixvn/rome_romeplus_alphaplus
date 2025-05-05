@@ -2,9 +2,6 @@ import { Bank } from '../services/interfaces/Bank';
 import { BANK_TRANSACTION_TYPES } from '../constants/paymentConstants';
 
 export const hasDepositTransactionType = (bankId: string, banks: Bank[]): boolean => {
-  console.log('bankId', bankId);
-  console.log('banks', banks);
-  
   if (!bankId) return false;
   const bank = banks.find(b => b.id === parseInt(bankId));
   if (!bank) return false;

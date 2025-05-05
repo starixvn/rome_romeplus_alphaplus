@@ -29,6 +29,7 @@ export default defineConfig({
         '**/i18n/**',
         '**/config/**',
         '.eslintrc.cjs',
+        'src/services/interfaces/**',
       ],
     },
   },
