@@ -1,7 +1,12 @@
+using AlphaPlus.PaymentService.API.Deposit;
+using AlphaPlus.PaymentService.API.Shared;
+
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 builder.Services
     .AddFanexLogging(configuration)
+    .AddExceptionHandler<GlobalExceptionHandler>()
+    .AddProblemDetails()
     .AddEndpointsApiExplorer()
     .AddSwaggerGen()
     .AddHealthChecks();
@@ -9,10 +14,18 @@ builder.Services
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger().UseSwaggerUI();
+    app
+        .UseDeveloperExceptionPage()
+        .UseSwagger()
+        .UseSwaggerUI();
+}
+else
+{
+    app.UseExceptionHandler();
 }
 
-app.MapHealthChecks("/health");
-app.MapGet("/", () => "Hello World!");
+app.MapHealthChecks("/health").AllowAnonymous();
+app.UseMiddleware<ApiKeyMiddleware>();
+app.RegisterDepositEndpoints();
 
 await app.RunAsync();
