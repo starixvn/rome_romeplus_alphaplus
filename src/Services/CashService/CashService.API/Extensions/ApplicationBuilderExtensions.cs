@@ -56,7 +56,7 @@ public static class ApplicationBuilderExtensions
         app.MapSystemEndpoints();
         app.MapPaymentsEndpoints();
         app.MapMemberSiteManagementEndpoints();
-      // app.MapPendingDepositEndpoints();
+        app.MapPendingDepositEndpoints();
         app.MapPendingWithdrawalEndpoints();
 
         return app;

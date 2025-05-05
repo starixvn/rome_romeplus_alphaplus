@@ -11,15 +11,15 @@ public static class PendingWithdrawalEndpoints
         var group = app.MapGroup("/api")
             .WithTags("Pending Withdrawal");
 
-        group.MapGet("/member-login-names", async (IPendingWithdrawalService service) =>
+        group.MapGet("/member-withdraw-login-names", async (IPendingWithdrawalService service) =>
         {
-            var members = await service.GetMemberLoginName();
+            var members = await service.GetMemberWithdrawalLoginNames();
             return Results.Ok(members);
         })
-        .WithName("GetMemberLoginNames")
+        .WithName("GetMemberWithdrawLoginNames")
         .WithOpenApi(operation => new(operation)
         {
-            Summary = "Get member login names",
+            Summary = "Get member withdrawal login names",
             Description = "Returns a list of all available member login names for manual withdrawal"
         });
 
@@ -35,7 +35,7 @@ public static class PendingWithdrawalEndpoints
             Description = "Returns a list of bank withdrawal accounts"
         });
 
-        group.MapPost("/add-account-info", async (HttpRequest request, IPendingWithdrawalService service) =>
+        group.MapPost("/add-withdraw-account-info", async (HttpRequest request, IPendingWithdrawalService service) =>
         {
             using var reader = new StreamReader(request.Body);
             var body = await reader.ReadToEndAsync();
@@ -46,13 +46,13 @@ public static class PendingWithdrawalEndpoints
                 return Results.BadRequest("Invalid account information data");
             }
 
-            var result = await service.InsetAccountInfo(accountInfo);
+            var result = await service.InsertWithdrawAccountInfo(accountInfo);
             return Results.Ok(result);
         })
-        .WithName("InsertAccountInfo")
+        .WithName("InsertWithdrawAccountInfo")
         .WithOpenApi(operation => new(operation)
         {
-            Summary = "Insert account information",
+            Summary = "Insert withdrawal account information",
             Description = "Adds new account information for a manual withdrawal"
         });
     }

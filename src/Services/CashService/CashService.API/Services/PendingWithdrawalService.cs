@@ -7,8 +7,8 @@ namespace AlphaPlus.CashService.API.Services;
 public interface IPendingWithdrawalService
 {
     Task<IEnumerable<BankAccountInfo>> GetBankWithdrawalAccounts();
-    Task<IEnumerable<MemberLoginNameInfo>> GetMemberLoginName();
-    Task<ResultModel> InsetAccountInfo(PendingInfoDetail withdrawalInfoDetail);
+    Task<IEnumerable<MemberLoginNameInfo>> GetMemberWithdrawalLoginNames();
+    Task<ResultModel> InsertWithdrawAccountInfo(PendingInfoDetail withdrawalInfoDetail);
 }
 
 public class PendingWithdrawalService(IDynamicRepository repository) : IPendingWithdrawalService
@@ -19,13 +19,13 @@ public class PendingWithdrawalService(IDynamicRepository repository) : IPendingW
         //return await repository.FetchAsync<BankAccountInfo>(new GetMemberBankAccountCriteria());
     }
 
-    public async Task<IEnumerable<MemberLoginNameInfo>> GetMemberLoginName()
+    public async Task<IEnumerable<MemberLoginNameInfo>> GetMemberWithdrawalLoginNames()
     {
         return GetDummyMemberLoginInfo();
         //return await repository.FetchAsync<MemberLoginNameInfo>(new GetMemberLoginNameCriteria());
     }
 
-    public async Task<ResultModel> InsetAccountInfo(PendingInfoDetail withdrawalInfoDetail)
+    public async Task<ResultModel> InsertWithdrawAccountInfo(PendingInfoDetail withdrawalInfoDetail)
     {
         return new ResultModel(0, "Success");
     }

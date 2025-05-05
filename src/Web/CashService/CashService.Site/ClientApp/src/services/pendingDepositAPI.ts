@@ -13,9 +13,9 @@ const api = axios.create({
 });
 
 export const pendingDepositService = {
-  getMemberLoginNames: async (): Promise<DepositMemberLoginName[]> => {
+  getMemberDepositLoginNames: async (): Promise<DepositMemberLoginName[]> => {
     try {
-      const response = await api.get<DepositMemberLoginName[]>('GetMemberLoginNames');
+      const response = await api.get<DepositMemberLoginName[]>('GetMemberDepositLoginNames');
       return response.data;
     } catch (error) {
       console.error('Error fetching member login names:', error);
@@ -33,9 +33,9 @@ export const pendingDepositService = {
     }
   },
   
-  insertAccountInfo: async (accountInfo: DepositInfoDetail): Promise<ResultModel> => {
+  insertDepositAccountInfo: async (accountInfo: DepositInfoDetail): Promise<ResultModel> => {
     try {
-      const response = await api.post<ResultModel>('InsertAccountInfo', accountInfo);
+      const response = await api.post<ResultModel>('InsertDepositAccountInfo', accountInfo);
       return response.data;
     } catch (error) {
       console.error('Error inserting account information:', error);

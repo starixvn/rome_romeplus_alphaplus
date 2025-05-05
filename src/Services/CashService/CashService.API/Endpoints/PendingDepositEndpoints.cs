@@ -11,15 +11,15 @@ public static class PendingDepositEndpoints
         var group = app.MapGroup("/api")
             .WithTags("Pending Deposit");
 
-        group.MapGet("/member-login-names", async (IPendingDepositService service) =>
+        group.MapGet("/member-deposit-login-names", async (IPendingDepositService service) =>
         {
-            var members = await service.GetMemberLoginName();
+            var members = await service.GetMemberDepositLoginNames();
             return Results.Ok(members);
         })
-        .WithName("GetMemberLoginNames")
+        .WithName("GetMemberDepositLoginNames")
         .WithOpenApi(operation => new(operation)
         {
-            Summary = "Get member login names",
+            Summary = "Get member deposit login names",
             Description = "Returns a list of all available member login names for manual deposit"
         });
 
@@ -35,7 +35,7 @@ public static class PendingDepositEndpoints
             Description = "Returns a list of bank accounts for members"
         });
 
-        group.MapPost("/add-account-info", async (HttpRequest request, IPendingDepositService service) =>
+        group.MapPost("/add-deposit-account-info", async (HttpRequest request, IPendingDepositService service) =>
         {
             using var reader = new StreamReader(request.Body);
             var body = await reader.ReadToEndAsync();
@@ -46,13 +46,13 @@ public static class PendingDepositEndpoints
                 return Results.BadRequest("Invalid account information data");
             }
 
-            var result = await service.InsetAccountInfo(accountInfo);
+            var result = await service.InsertDepositAccountInfo(accountInfo);
             return Results.Ok(result);
         })
-        .WithName("InsertAccountInfo")
+        .WithName("InsertDepositAccountInfo")
         .WithOpenApi(operation => new(operation)
         {
-            Summary = "Insert account information",
+            Summary = "Insert deposit account information",
             Description = "Adds new account information for a manual deposit"
         });
     }
