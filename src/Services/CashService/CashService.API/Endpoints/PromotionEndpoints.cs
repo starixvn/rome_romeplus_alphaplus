@@ -4,7 +4,7 @@ namespace AlphaPlus.CashService.API.Endpoints;
 
 public static class PromotionEndpoints
 {
-    public static void MapPaymentsEndpoints(this WebApplication app)
+    public static void MapPromotionEndpoints(this WebApplication app)
     {
         app.MapGet("/api/promotion/get-promotion", async (IPromotionService service) =>
         {

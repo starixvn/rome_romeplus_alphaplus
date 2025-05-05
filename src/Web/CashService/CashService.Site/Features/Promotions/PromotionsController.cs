@@ -1,36 +1,51 @@
-using AlphaPlus.CashService.Site.Features.Payments;
 using AlphaPlus.CashService.Site.Features.Promotions.Models;
 using AlphaPlus.Core.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Http;
 
 namespace AlphaPlus.CashService.Site.Features.Promotions
 {
-    [Route("[controller]")]
     public class PromotionsController : Controller
     {
         private readonly ILogger<PromotionsController> _logger;
-
         private readonly string _apiBaseUrl;
         private static HttpClient _httpClient;
+        private readonly IUserSession _userSession;
 
-        public PromotionsController(ILogger<PromotionsController> logger, HttpClient httpClient)
+        public PromotionsController(
+            ILogger<PromotionsController> logger,
+            HttpClient httpClient,
+            IConfiguration configuration,
+            IUserSession userSession)
         {
             _logger = logger;
+            _apiBaseUrl = configuration["CashServiceAPIUrl"];
             _httpClient = httpClient;
+            _userSession = userSession;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return Ok("Promotions");
+            //CancellationToken cancellationToken = CancellationToken.None;
+
+            //var url = $"{_apiBaseUrl}/promotion/get-promotion";
+            //var promotion = await _httpClient.GetFromJsonAsync<IEnumerable<PromotionModel>>(url, cancellationToken);
+
+            //var viewModel = new PromotionViewModel
+            //{
+            //    Language = _userSession.Language,
+            //    DarkModeName = _userSession.DarkModeName,
+            //    Promotion = promotion
+            //};
+
+            return Ok("hello");
         }
 
-        public async Task<IActionResult> GetPromotion( CancellationToken cancellationToken)
+        public async Task<IActionResult> GetPromotion(CancellationToken cancellationToken)
         {
             var url = $"{_apiBaseUrl}/promotion/get-promotion";
-            
-            var result  = await _httpClient.GetFromJsonAsync<IEnumerable<PromotionModel>>(url, cancellationToken);
-          
+
+            var result = await _httpClient.GetFromJsonAsync<IEnumerable<PromotionModel>>(url, cancellationToken);
+
             return Json(result);
         }
     }

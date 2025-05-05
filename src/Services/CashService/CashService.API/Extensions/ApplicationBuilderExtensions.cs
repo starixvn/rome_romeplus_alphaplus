@@ -60,6 +60,7 @@ public static class ApplicationBuilderExtensions
         app.MapPendingDepositEndpoints();
         app.MapPendingWithdrawalEndpoints();
         app.MapTransactionsHistoryEndpoints();
+        app.MapPromotionEndpoints();
 
         return app;
     }
