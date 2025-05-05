@@ -10,7 +10,7 @@ import BanksPopupModal from './BanksPopupModal';
 import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { formatNumber, formatInputValue } from '../../utils/numberFormatting';
-import { IconInfo } from '../../components/Icons';
+import { IconCheck, IconError, IconInfo } from '../../components/Icons';
 import './PaymentProviderSettings.css';
 import styles from '../ManagePayments/PaymentGateway.module.scss';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
@@ -394,7 +394,8 @@ function PaymentProviderSettings() {
           </div>
             
           {updateMessage && (
-            <div className={`alert alert-${updateMessage.type === 'success' ? 'success' : 'danger'} mt-3`}>
+            <div className={`mt-[8px] font-bold text-[12px] text-[#333] rounded-[10px] pl-[36px] pr-[12px] py-[8px] border-[1px] relative block capitalize ${updateMessage.type === 'success' ? 'bg-[#E2FFF2] border-[#5cb774] ' : 'bg-[#FFF2F2] border-[#FE0000]'} `}>
+              {updateMessage.type === 'success'? <IconCheck className='w-[20px] h-[20px] fill-[#5CB774] absolute top-[8px] left-[10px]' /> : <IconError className='w-[20px] h-[20px] fill-[#fe0000] absolute top-[8px] left-[10px]' />}
               {updateMessage.text}
             </div>
           )}

@@ -408,7 +408,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                                 >
                                   {deleting === account.id ? (
                                     <>
-                                      <IconSync className='w-[16px] h-[16px] fill-[#163f78]' />
+                                      <IconSync className='w-[16px] h-[16px] fill-[#163f78] animate-spin duration-2000 ease-linear animate-infinite' />
                                     </>
                                   ) : (
                                     <>

@@ -102,7 +102,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
     <div className="bg-[#00000066] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-center justify-center">
       <div className="p-[30px] bg-[#ffffff] w-full max-w-[560px] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
         <div className="relative">
-          <h5 className="text-[16px] text-[#163f78] font-bold leading-[21.6px] tracking-[0.2px] pb-[4px]">{tManagePayments('setUpPaymentMethods')}</h5>
+          <h3 className="text-[16px] text-[#163f78] font-bold leading-[21.6px] tracking-[0.2px] pb-[4px]">{tManagePayments('setUpPaymentMethods')}</h3>
           <button type="button" className="absolute top-[-20px] right-[-20px] cursor-pointer" onClick={onClose}>
             <IconClose />
           </button>
@@ -110,11 +110,12 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
         <form onSubmit={handleSubmit}>
           <div className="modal-body">
             <div>
-              <label className="form-label">{tManagePayments('addPaymentMethodStep1')}</label>
-              <div className="form-group mb-3">
-                <label className="form-label">{tManagePayments('transactionType')}</label>
+              <h4 className="text-[14px] pt-[16px] text-[#163f78] font-semibold pb-[4px]">{tManagePayments('addPaymentMethodStep1')}</h4>
+              <div className='flex gap-[10px]'>
+              <div className="w-[48%]">
+                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('transactionType')}</label>
                 <select 
-                  className="form-select" 
+                  className="h-[35px] w-full border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer" 
                   value={selectedTransactionType}
                   onChange={(e) => setSelectedTransactionType(e.target.value)}
                   required
@@ -126,10 +127,10 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
                 </select>
               </div>
             
-              <div className="form-group mb-3">
-                <label className="form-label">{tManagePayments('paymentMethod')}</label>
+              <div className="w-[48%]">
+                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('paymentMethod')}</label>
                 <select 
-                  className="form-select" 
+                  className="h-[35px] w-full border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer" 
                   value={selectedPaymentMethod}
                   onChange={(e) => setSelectedPaymentMethod(e.target.value)}
                   required
@@ -146,75 +147,82 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
                   ))}
                 </select>
               </div>
+              </div>
             </div>
             <div>
-              <label className="form-label">{tManagePayments('addPaymentMethodStep2')}</label>
-              <p>{tManagePayments('clickLinkOrScanQRCode')}</p>
+              <hr className='mt-[16px] border-[#0000001F]'  />
+              <h4 className="text-[14px] pt-[16px] text-[#163f78] font-semibold pb-[4px]">{tManagePayments('addPaymentMethodStep2')}</h4>
+              <p className='mt-[8px]'>{tManagePayments('clickLinkOrScanQRCode')}</p>
               <a href={tManagePayments('addPaymentMethodStep2_Link')} target="_blank" rel="noopener noreferrer">{tManagePayments('addPaymentMethodStep2_Link')}</a>
               <div style={{ marginTop: '16px', textAlign: 'center' }}>
                 <img src="../qr-placeholder.png" alt="QR Code" style={{ width: '150px', height: '150px', display: 'inline-block' }} />
               </div>
             </div>
             <div>
-              <label className="form-label">{tManagePayments('addPaymentMethodStep3')}</label>
-              <div className="form-group mb-3">
-                <label className="form-label" htmlFor="apiKey">API Key</label>
+            <hr className='mt-[16px] mb-[16px] border-[#0000001F]'  />
+              <label className="text-[14px] pt-[16px] text-[#163f78] font-semibold pb-[4px]">{tManagePayments('addPaymentMethodStep3')}</label>
+              <div className='flex flex-wrap gap-[10px]'>
+              <div className="w-[48%]">
+                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('apiKey')}</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="h-[35px] w-full border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer"
                   id="apiKey"
                   value={apiKey}
                   onChange={e => setApiKey(e.target.value)}
                   required
                 />
               </div>
-              <div className="form-group mb-3">
-                <label className="form-label" htmlFor="merchantID">Merchant ID</label>
+              <div className="w-[48%]">
+                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('merchantID')}</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="h-[35px] w-full border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer"
                   id="merchantID"
                   value={merchantID}
                   onChange={e => setMerchantID(e.target.value)}
                   required
                 />
               </div>
-              <div className="form-group mb-3">
-                <label className="form-label" htmlFor="appSecret">App Secret</label>
+              <div className="w-[48%]">
+                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('appSecret')}</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="h-[35px] w-full border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer"
                   id="appSecret"
                   value={appSecret}
                   onChange={e => setAppSecret(e.target.value)}
                   required
                 />
               </div>
+              </div>
             </div>
            
             {error && <div className="mt-[16px] font-bold text-[12px] text-[#333] bg-[#FFF2F2] border-[1px] border-[#FE0000] rounded-[10px] pl-[36px] pr-[12px] py-[8px] relative block capitalize"><IconError className='w-[20px] h-[20px] fill-[#fe0000] absolute top-[8px] left-[10px]' />{error}</div>}
             {successMessage && <div className="mt-[16px] font-bold text-[12px] text-[#333] bg-[#E2FFF2] border-[1px] border-[#5cb774] rounded-[10px] pl-[36px] pr-[12px] py-[8px] relative block capitalize"><IconCheck className='w-[20px] h-[20px] fill-[#5CB774] absolute top-[8px] left-[10px]' />{successMessage}</div>}
           </div>
-          <div className="flex justify-center mt-[16px]">
-            <div className="form-check mb-3 w-100 flex items-center justify-center">
+          <div className="flex flex-wrap mt-[16px] mb-[16px]">
+            <label className="w-full flex items-center justify-center cursor-pointer text-[#333] text-[12px] leading-[14px]">
               <input
                 type="checkbox"
-                className="form-check-input"
+                className="w-[18px] h-[18px]"
                 id="agreeToTerms"
                 checked={agreeToTerms}
                 onChange={(e) => setAgreeToTerms(e.target.checked)}
                 required
               />
-              <label className="form-check-label ml-2" htmlFor="agreeToTerms">
+              <span className="flex-1 pl-[6px]">
                 {tManagePayments('agreeTermsAndConditions')}
-              </label>
+              </span>
+            </label>
             </div>
-            <button type="button" className="w-[140px] capitalize font-bold h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px] border-[#163f78] mx-[4px] bg-[#163f78] hover:bg-[#375A8A] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]" onClick={onClose}>
+            <div className='flex justify-center'>
+            <button type="button" className="w-[140px] h-[30px] rounded-[20px] text-[#163f78] px-[16px] py-[4px] text-[12px] border-[1px] border-[#163f78] mx-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer " onClick={onClose}>
               {tManagePayments('setUpLater')}
             </button>
             <button 
               type="submit" 
-              className="w-[140px] capitalize font-bold h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px] border-[#163f78] mx-[4px] bg-[#163f78] hover:bg-[#375A8A] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
+              className="w-[140px] capitalize font-bold h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px] border-[#163f78] mx-[4px] bg-[#163f78] hover:bg-[#375A8A] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] disabled:bg-[#375A8A]"
               disabled={isLoading || allMethodsInactive}
             >
               {isLoading ? tGlobal('loading') : tGlobal('save')}
