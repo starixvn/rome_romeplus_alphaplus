@@ -99,13 +99,22 @@ public class PaymentsService : IPaymentsService
     public async Task<IEnumerable<PaymentMethodModel>> GetPaymentMethods(int custId, int providerId, int transactionType)
     {
         var methods = await _repository.FetchAsync<PaymentMethodModel>(new GetPaymentMethodsCriteria(custId, providerId, transactionType));
+        foreach (var method in methods)
+        {
+            method.Name = _cacheRefService.GetPaymentMethodName(method.Id, method.Name);
+        }
+
         return methods;
     }
 
     public async Task<IEnumerable<ProviderSettingsModel>> GetProviderSettings(int providerId, int method, int status, int transactionType)
     {
         var settings = await _repository.FetchAsync<ProviderSettingsModel>(new GetProviderSettingsCriteria(providerId, method, status, transactionType));
-        
+        foreach (var setting in settings)
+        {
+            setting.MethodName = _cacheRefService.GetPaymentMethodName(setting.Method, setting.MethodName);
+        }
+
         return settings;
     }
     

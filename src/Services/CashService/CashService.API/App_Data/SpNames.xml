@@ -26,8 +26,9 @@
       <Setting Key="Age_CashService_PaymentProvider_Ins" SpName="Age_CashService_PaymentProvider_Ins" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
       <Setting Key="Age_CashService_BankList" SpName="Age_CashService_BankList_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
         <Mapping DataField="BankID" ObjectProperty="Id"></Mapping>
+        <Mapping DataField="MappingType" ObjectProperty="MappingTypes"></Mapping>
       </Setting>
-      <Setting Key="Age_CashService_ProviderStatus_Upd" SpName="Age_CashService_ProviderStatus_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+      <Setting Key="Age_CashService_PaymentProviderStatus_Upd" SpName="Age_CashService_PaymentProviderStatus_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
       <Setting Key="Age_CashService_PaymentProvider_Upd" SpName="Age_CashService_PaymentProvider_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     
       <Setting Key="Age_ManagementPayments_SelProvidersFees" SpName="Age_ManagementPayments_SelProvidersFees" DbName="DBCust.CustDB.wsv_alp" Plain="0" />

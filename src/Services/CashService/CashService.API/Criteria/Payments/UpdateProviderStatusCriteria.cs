@@ -21,7 +21,7 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
         public int ErrCode { get; set; }
         public string ErrMsg { get; set; } = string.Empty;
 
-        public override string GetSettingKey() => "Age_CashService_ProviderStatus_Upd";
+        public override string GetSettingKey() => "Age_CashService_PaymentProviderStatus_Upd";
 
         public override bool IsValid() => ProviderId > 0 && CustId > 0;
     }

@@ -15,5 +15,6 @@ namespace AlphaPlus.CashService.API.Models.Payments
         public int MethodId { get; set; }
         public string Method { get; set; }
         public decimal Rate { get; set; }
+        public string RateText => Rate.ToString("#,##0.##") + "%";
     }
 }
