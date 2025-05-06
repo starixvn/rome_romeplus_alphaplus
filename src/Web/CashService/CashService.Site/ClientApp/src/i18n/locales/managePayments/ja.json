@@ -130,7 +130,6 @@
   "addPaymentMethodStep1": "ステップ1：取引タイプと支払い方法を選択",
   "addPaymentMethodStep2": "ステップ2：Telegramグループとチャンネルに参加",
   "clickLinkOrScanQRCode": "設定サポートのためにリンクをクリックするかQRコードをスキャンしてください。",
-  "addPaymentMethodStep2_Link": "https://t.me/",
   "addPaymentMethodStep3": "ステップ3：詳細を入力",
   "enabled": "有効",
   "disabled": "無効"
