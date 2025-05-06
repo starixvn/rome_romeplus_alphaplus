@@ -202,7 +202,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         public async Task<IActionResult> GetBankAccountById(
             int bankAccountId,
             CancellationToken cancellationToken)
-        {
+        { 
             var url = $"{_apiBaseUrl}/payments/bank-accounts/{bankAccountId}";
             var bankAccount = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
             return Json(bankAccount);

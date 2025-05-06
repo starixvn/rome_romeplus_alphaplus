@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 namespace AlphaPlus.CashService.Site.Features.Payments.Models
 {
     public class BankAccountModel
@@ -23,11 +25,22 @@ namespace AlphaPlus.CashService.Site.Features.Payments.Models
         public DateTime LastUpdated { get; set; }
         public string LastUpdatedStr => LastUpdated.ToString("MM/dd/yyyy hh:mm:ss tt");
 
-        public int DepositMatchingMode { get; set; }
         public bool PromptPay { get; set; }
         public string Mobile { get; set; } = string.Empty;
         public string MobilePrefix { get; set; } = string.Empty;
         public string Creator { get; set; } = string.Empty;
         public int CreatorId { get; set; }
+
+        public string Bank_TransTypeList { get; set; }
+        public string Agent_TransTypeList { get; set; }
+        public int Agent_DepositMatchingMode { get; set; }
+        public string Bank_DepositMatchingMode { get; set; }
+        public DepositMatchingModeModel BankDepositMatchingMode 
+        {
+            get
+            {
+                return string.IsNullOrEmpty(Bank_DepositMatchingMode) ? null : JsonConvert.DeserializeObject<DepositMatchingModeModel>(Bank_DepositMatchingMode);
+            }
+        }
     }
 }

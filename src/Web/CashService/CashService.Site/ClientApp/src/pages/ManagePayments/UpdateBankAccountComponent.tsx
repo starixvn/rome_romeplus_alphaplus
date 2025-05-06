@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Bank } from '../../services/interfaces/Bank';
 import { BankAccount } from '../../services/interfaces/BankAccount';
 import { MobilePrefix } from '../../services/interfaces/MobilePrefix';
+import { DepositMatchingMode } from '../../services/interfaces/DepositMatchingMode';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import {
   hasDepositTransactionType,
@@ -33,7 +34,6 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   const [accountNumber] = useState<string>(bankAccount.accountNumber);
   const [selectedBank, setSelectedBank] = useState<string>(bankAccount.bankId.toString());
   const [status, setStatus] = useState<string>(bankAccount.status.toString());
-  const [depositMatchingMode, setDepositMatchingMode] = useState<string>(bankAccount.depositMatchingMode.toString());
   const [promptPay, setPromptPay] = useState<boolean>(bankAccount.promptPay);
   const [mobile, setMobile] = useState<string>(bankAccount.mobile);
   const [mobilePrefix, setMobilePrefix] = useState<string>(bankAccount.mobilePrefix || '');
@@ -43,6 +43,10 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [banks, setBanks] = useState<Bank[]>([]);
+
+  const [bankDepositMatchingMode, setBankDepositMatchingMode] = useState<DepositMatchingMode>(bankAccount.bankDepositMatchingMode);
+  const [bank_TransTypeList, setBank_TransTypeList] = useState<string>(bankAccount.bank_TransTypeList);
+  const [agent_DepositMatchingMode, setAgent_DepositMatchingMode] = useState<number>(bankAccount.agent_DepositMatchingMode);
 
   // Add state variables for selected transaction types
   const [selectedManualDeposit, setSelectedManualDeposit] = useState<boolean>(false);
@@ -54,13 +58,6 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
       try {
         const fetchedBanks = await paymentProviderService.getBanksByTransactionType(0);
         setBanks(fetchedBanks);
-        
-        if (fetchedBanks.length > 0) {
-          // Set transaction types based on bank's capabilities
-          setSelectedManualDeposit(true);
-          setSelectedAutoDeposit(false);
-          setSelectedManualWithdrawal(false);
-        }
       } catch (err) {
         console.error('Error fetching banks:', err);
         setError(tManagePayments('failedToFetchBanks'));
@@ -74,15 +71,17 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
         if (fetchedBankAccount) {
           setAccountNickname(fetchedBankAccount.accountNickname);
           setStatus(fetchedBankAccount.status.toString());
-          setDepositMatchingMode(fetchedBankAccount.depositMatchingMode.toString());
           setPromptPay(fetchedBankAccount.promptPay);
           setSelectedBank(fetchedBankAccount.bankId.toString());
           
-          // Set transaction types based on bank account's capabilities
-          const transactionTypes = fetchedBankAccount.transactionTypes.split(',');
-          setSelectedManualDeposit(transactionTypes.includes(BANK_TRANSACTION_TYPES[1].id.toString()));
-          setSelectedAutoDeposit(transactionTypes.includes(BANK_TRANSACTION_TYPES[2].id.toString()));
-          setSelectedManualWithdrawal(transactionTypes.includes(BANK_TRANSACTION_TYPES[3].id.toString()));
+          setBankDepositMatchingMode(fetchedBankAccount.bankDepositMatchingMode);
+          setBank_TransTypeList(fetchedBankAccount.bank_TransTypeList);
+          setAgent_DepositMatchingMode(fetchedBankAccount.agent_DepositMatchingMode);
+
+          var transTypeList = fetchedBankAccount.agent_TransTypeList.split(',');
+          setSelectedManualDeposit(transTypeList.includes(BANK_TRANSACTION_TYPES[1].id.toString()));
+          setSelectedAutoDeposit(transTypeList.includes(BANK_TRANSACTION_TYPES[2].id.toString()));
+          setSelectedManualWithdrawal(transTypeList.includes(BANK_TRANSACTION_TYPES[3].id.toString()));
         }
       } catch (err) {
         setError(tManagePayments('failedToLoadBankAccount'));
@@ -137,15 +136,20 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
         accountNumber,
         bankId: parseInt(selectedBank),
         bankName: banks.find(b => b.id === parseInt(selectedBank))?.name || '',
-        transactionTypes: transactionTypesString,
         status: parseInt(status),
-        depositMatchingMode: parseInt(depositMatchingMode),
         promptPay,
         mobile,
         mobilePrefix,
         lastUpdated: new Date().toISOString(),
         lastUpdatedStr: new Date().toLocaleString(),
-        code: ''
+        code: '',
+        creator: '',
+        transactionTypes: '',
+        depositMatchingMode: 0,
+        bank_TransTypeList: bank_TransTypeList,
+        agent_TransTypeList: transactionTypesString,
+        agent_DepositMatchingMode: agent_DepositMatchingMode,
+        bankDepositMatchingMode: bankDepositMatchingMode
       });
 
       if (result.isSuccessful) {
@@ -185,6 +189,14 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
           <div className="mb-[8px]">
             <h2 className="flex items-center font-bold text-[15px] ">{tManagePayments('bankManagement')}</h2>
             
+          </div>
+          <div>
+            <label>{tManagePayments('createdBy')}</label>
+            <label>{tManagePayments('lastUpdated')}</label>
+            <label>{bankAccount.accountNickname}</label>
+            <label>{tManagePayments(`status-${bankAccount.status}`)}</label>
+            <label>{bankAccount.creator}</label>
+            <label>{bankAccount.lastUpdatedStr}</label>
           </div>
           <form onSubmit={handleSubmit} className='bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]'>
             <div className="modal-body">
@@ -288,16 +300,16 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                     <div className="btn-group" role="group">
                       <button
                         type="button"
-                        className={`btn ${depositMatchingMode === '1' ? 'btn-primary' : 'btn-outline-primary'}`}
-                        onClick={() => setDepositMatchingMode('1')}
+                        className={`btn ${agent_DepositMatchingMode === 1 ? 'btn-primary' : 'btn-outline-primary'}`}
+                        onClick={() => setAgent_DepositMatchingMode(1)}
                       >
                         {tManagePayments('manualMatching')}
                       </button>
                       {selectedBankObj.depositMatchingMode >= 2 && (
                         <button
                           type="button"
-                          className={`btn ${depositMatchingMode === '2' ? 'btn-primary' : 'btn-outline-primary'}`}
-                          onClick={() => setDepositMatchingMode('2')}
+                          className={`btn ${agent_DepositMatchingMode === 2 ? 'btn-primary' : 'btn-outline-primary'}`}
+                          onClick={() => setAgent_DepositMatchingMode(2)}
                         >
                           {tManagePayments('autoMatching')}
                         </button>
@@ -376,7 +388,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                     style={{ maxWidth: '120px' }}
                   >
                     {mobilePrefixes.map((prefix) => (
-                      <option key={prefix.id} value={prefix.prefix}>
+                      <option key={prefix.id} value={prefix.prefix} selected={prefix.prefix === mobilePrefix}>
                         {prefix.prefix}
                       </option>
                     ))}

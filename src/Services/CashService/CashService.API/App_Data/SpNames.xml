@@ -28,6 +28,7 @@
         <Mapping DataField="BankID" ObjectProperty="Id"></Mapping>
         <Mapping DataField="Bankcode" ObjectProperty="Code"></Mapping>
         <Mapping DataField="MappingType" ObjectProperty="MappingTypes"></Mapping>
+        <Mapping DataField="TransTypeList" ObjectProperty="TransactionTypeID"></Mapping>
       </Setting>
       <Setting Key="Age_CashService_PaymentProviderStatus_Upd" SpName="Age_CashService_PaymentProviderStatus_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
       <Setting Key="Age_CashService_PaymentProvider_Upd" SpName="Age_CashService_PaymentProvider_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
@@ -48,13 +49,13 @@
         <Mapping DataField="BankName" ObjectProperty="Bank"></Mapping>
         <Mapping DataField="BankCode" ObjectProperty="Code"></Mapping>
       </Setting>
-      <Setting Key="f_CashService_TransTypeControl" SpName="f_CashService_TransTypeControl" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+      <Setting Key="Age_CashService_TransTypeControl" SpName="Age_CashService_TransTypeControl" DbName="DBCust.CustDB.wsv_alp" Plain="0">
         <Mapping DataField="TransactionTypeID" ObjectProperty="Id"></Mapping>
         <Mapping DataField="TransTypeDesc" ObjectProperty="Name"></Mapping>
       </Setting>
 
       <Setting Key="Age_CashService_BankAccountAgent_List" SpName="Age_CashService_BankAccountAgent_List_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
-        <Mapping DataField="BankAccountAgentID" ObjectProperty="Id"></Mapping>
+        <Mapping DataField="AgentBankAccountID" ObjectProperty="Id"></Mapping>
         <Mapping DataField="BankAccountNumber" ObjectProperty="AccountNumber"></Mapping>
         <Mapping DataField="BankCode" ObjectProperty="Code"></Mapping>
         <Mapping DataField="TransTypeList" ObjectProperty="TransactionTypeID"></Mapping>
@@ -67,9 +68,9 @@
         <Mapping DataField="PromptPayEnabled" ObjectProperty="PromptPay"></Mapping>
         <Mapping DataField="CreatedBy" ObjectProperty="CreatorId"></Mapping>
         <Mapping DataField="LastUpdated" ObjectProperty="LastUpdated"></Mapping>
-        <Mapping DataField="DepositMatching" ObjectProperty="DepositMatchingMode"></Mapping>
         <Mapping DataField="BankAccountNumber" ObjectProperty="AccountNumber"></Mapping>
         <Mapping DataField="PromptPayMobile" ObjectProperty="Mobile"></Mapping>
+        <Mapping DataField="MappingType" ObjectProperty="MappingTypes"></Mapping>
       </Setting>
       <Setting Key="Age_CashService_BankAccountAgent_Upd" SpName="Age_CashService_BankAccountAgent_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
       <Setting Key="Age_ManagementPayments_DelBankAccount" SpName="Age_ManagementPayments_DelBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />

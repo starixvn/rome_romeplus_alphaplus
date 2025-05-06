@@ -202,8 +202,6 @@ public class PaymentsService : IPaymentsService
     {
         var criteria = new GetBankAccountsCriteria(custId, bankId, transactionType, status, searchText);
         var accounts = await _repository.FetchAsync<BankAccountModel>(criteria);
-
-        Console.WriteLine(JsonSerializer.Serialize(accounts));
         return accounts;
     }
     

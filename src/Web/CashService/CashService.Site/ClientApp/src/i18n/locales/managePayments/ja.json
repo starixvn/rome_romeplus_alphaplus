@@ -137,5 +137,7 @@
   "appSecret": "App Secret",
   "apiKey": "API Key",
   "merchantID": "Merchant ID",
-  "back": "戻る"
+  "back": "戻る",
+  "createdBy": "作成者",
+  "lastUpdated": "最終更新"
 } 

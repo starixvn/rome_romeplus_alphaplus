@@ -17,7 +17,6 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
             AccountNickname = bankAccModel.AccountNickname;
 
             TransactionTypeIDs = bankAccModel.TransactionTypes;
-            DepositMatchingMode = bankAccModel.DepositMatchingMode;
 
             PromptPay = bankAccModel.PromptPay;
             Mobile = bankAccModel.Mobile;

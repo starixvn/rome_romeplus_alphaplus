@@ -1,3 +1,5 @@
+import { DepositMatchingMode } from './DepositMatchingMode';
+
 // Bank Account interface
 export interface BankAccount {
   id: number;
@@ -15,4 +17,10 @@ export interface BankAccount {
   promptPay: boolean;
   mobile: string;
   mobilePrefix: string;
+
+  bank_TransTypeList: string;
+  agent_TransTypeList: string;
+  agent_DepositMatchingMode: number;
+  bankDepositMatchingMode: DepositMatchingMode;
+  creator: string;
 } 

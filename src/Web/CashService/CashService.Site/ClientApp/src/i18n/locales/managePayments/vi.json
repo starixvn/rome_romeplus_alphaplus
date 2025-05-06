@@ -137,5 +137,7 @@
   "appSecret": "App Secret",
   "apiKey": "API Key",
   "merchantID": "Merchant ID",
-  "back": "Quay lại"
+  "back": "Quay lại",
+  "createdBy": "Tạo bởi",
+  "lastUpdated": "Cập nhật lần cuối"
 } 

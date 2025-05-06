@@ -10,7 +10,7 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
             BankAccountId = bankAccountId;
         }
 
-        [SpParam(SqlParamName = "BankAccountAgentID")]
+        [SpParam(SqlParamName = "AgentBankAccountID")]
         public int BankAccountId { get; }
 
         public override string GetSettingKey() => "Age_CashService_BankAccountAgent_Sel";

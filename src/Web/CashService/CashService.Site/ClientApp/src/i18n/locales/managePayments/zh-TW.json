@@ -137,5 +137,7 @@
   "appSecret": "App Secret",
   "apiKey": "API Key",
   "merchantID": "Merchant ID",
-  "back": "返回"
+  "back": "返回",
+  "createdBy": "創建者",
+  "lastUpdated": "最後更新"
 } 

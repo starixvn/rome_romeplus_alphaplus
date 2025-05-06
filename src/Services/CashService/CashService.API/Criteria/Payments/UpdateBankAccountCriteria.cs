@@ -9,14 +9,14 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
         public UpdateBankAccountCriteria(BankAccountModel bankAccModel)
         {
             Creator = bankAccModel.CreatorId;
-            BankId = bankAccModel.BankId;
+            Id = bankAccModel.Id;
             Status = bankAccModel.Status;
-
             AccountNickname = bankAccModel.AccountNickname;
 
-            TransactionTypeIDs = bankAccModel.TransactionTypes;
-            DepositMatchingMode = bankAccModel.DepositMatchingMode;
+            TransactionTypeIDs = bankAccModel.Agent_TransTypeList;
+            DepositMatchingMode = bankAccModel.Agent_DepositMatchingMode;
 
+            MobilePrefix = bankAccModel.MobilePrefix;
             PromptPay = bankAccModel.PromptPay;
             Mobile = bankAccModel.Mobile;
         }
@@ -24,18 +24,20 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
        [SpParam(SqlParamName = "CustId")]
         public int Creator { get; }
 
-        [SpParam(SqlParamName = "Status")]
-        public int Status { get; }
+        [SpParam(SqlParamName = "AgentBankAccountID")]
+        public int Id { get; }
 
-        [SpParam(SqlParamName = "BankId")]
-        public int BankId { get; }
+        [SpParam(SqlParamName = "BankAccountStatus")]
+        public int Status { get; }
 
         public string AccountNickname { get; }
 
-        [SpParam(SqlParamName = "TransactionTypeID")]
+        [SpParam(SqlParamName = "TransTypeList")]
         public string TransactionTypeIDs {get;}
         public int DepositMatchingMode {get;}
 
+        [SpParam(SqlParamName = "CountryCode")]
+        public string MobilePrefix { get; }
         [SpParam(SqlParamName = "PromptPayEnabled")]
         public bool PromptPay { get; }
         [SpParam(SqlParamName = "PromptPayMobile")]
@@ -47,7 +49,7 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
         public override string GetSettingKey() => "Age_CashService_BankAccountAgent_Upd";
 
         public override bool IsValid() => 
-            BankId > 0 && 
+            Id > 0 && 
             Status > 0 && 
             Creator > 0 &&
             !string.IsNullOrWhiteSpace(AccountNickname) &&

@@ -137,5 +137,7 @@
   "appSecret": "App Secret",
   "apiKey": "API Key",
   "merchantID": "Merchant ID",
-  "back": "뒤로"
+  "back": "뒤로",
+  "createdBy": "작성자",
+  "lastUpdated": "마지막 업데이트"
 } 
