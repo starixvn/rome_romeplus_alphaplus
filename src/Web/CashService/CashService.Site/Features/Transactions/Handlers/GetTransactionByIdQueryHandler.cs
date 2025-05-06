@@ -10,7 +10,7 @@ public class GetTransactionByIdQueryHandler(HttpClientHelper httpClientHelper)
 {
     public async Task<TransactionModel> Handle(GetTransactionByIdQuery request, CancellationToken cancellationToken)
     {
-        var result = await httpClientHelper.GetAsync<TransactionModel>($"api/transactions/details?transactionId={request.TransactionId}");
+        var result = await httpClientHelper.GetAsync<TransactionModel>($"api/transactions/details/{request.TransactionId}");
         return result;
     }
 }

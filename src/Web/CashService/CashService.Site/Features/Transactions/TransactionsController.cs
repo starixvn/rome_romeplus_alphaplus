@@ -1,14 +1,12 @@
-using AlphaPlus.CashService.Site.Features.Shared;
-using AlphaPlus.CashService.Site.Features.Shared.Models;
-using AlphaPlus.CashService.Site.Features.Transactions.Queries;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using AlphaPlus.CashService.Site.Features.Transactions.Models;
-
 namespace AlphaPlus.CashService.Site.Features.Transactions;
 
-using AlphaPlus.CashService.Site.Features.Transactions.Requests;
+using AlphaPlus.CashService.Site.Features.Shared.Models;
 using Commands;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Queries;
+using Requests;
+using Shared;
 
 public class TransactionsController(
     IMediator mediator,
@@ -28,7 +26,7 @@ public class TransactionsController(
     public IActionResult History() => View();
 
     public async Task<IActionResult> GetAll(string transactionType,
-        string status, DateTime? fromDate, DateTime? toDate, int page = 1, int pageSize = 1000)
+        string status, DateTime? fromDate, DateTime? toDate, int page = 1, int pageSize = 100)
     {
         var query = new GetTransactionsQuery
         {

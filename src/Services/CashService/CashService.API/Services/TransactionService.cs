@@ -19,7 +19,7 @@ public interface ITransactionService
 
     Task<ResultModel> UpdateTransactionStatus(UpdateTransactionStatusRemarkCommand command);
 
-    Task<IEnumerable<AccountOptionModel>> GetAccountAsync(GetAccountCriteria criteria, CancellationToken cancellationToken);
+    Task<IEnumerable<AccountOptionModel>> GetAccountAsync(GetAccountCriteria criteria, CancellationToken cancellationToken = default);
 }
 
 public class TransactionService(IDynamicRepository dynamicRepository, ILogger<TransactionService> logger)
@@ -29,7 +29,6 @@ public class TransactionService(IDynamicRepository dynamicRepository, ILogger<Tr
     {
         var allMockTransactions = GetMockTransactions();
 
-        // Basic filtering example (can be expanded based on criteria)
         var filteredTransactions = allMockTransactions
             .Where(t => criteria.Status == "All" || t.Status == criteria.Status)
             .Where(t => criteria.TransactionType == null ||
@@ -45,7 +44,7 @@ public class TransactionService(IDynamicRepository dynamicRepository, ILogger<Tr
         return await Task.FromResult(new TransactionResponse
         {
             Items = pagedTransactions,
-            TotalCount = filteredTransactions.Count,
+            TotalCount = allMockTransactions.Count,
             Page = criteria.Page,
             PageSize = criteria.PageSize
         });
@@ -83,7 +82,7 @@ public class TransactionService(IDynamicRepository dynamicRepository, ILogger<Tr
         var fromAccounts = new[] { "143399301B", "143399302B", "143399303B", "143399304B" };
         var toAccounts = new[] { "12345678", "87654321", "11223344", "44332211" };
 
-        for (var i = 1; i <= 100; i++)
+        for (var i = 1; i <= 1000; i++)
         {
             var isDeposit = random.Next(2) == 0;
             var transactionType = isDeposit ? TransactionType.AutoDeposit : TransactionType.AutoWithdrawal;
@@ -124,7 +123,7 @@ public class TransactionService(IDynamicRepository dynamicRepository, ILogger<Tr
         return transactions;
     }
 
-    public async Task<IEnumerable<AccountOptionModel>> GetAccountAsync(GetAccountCriteria criteria, CancellationToken cancellationToken)
+    public async Task<IEnumerable<AccountOptionModel>> GetAccountAsync(GetAccountCriteria criteria, CancellationToken cancellationToken = default)
     {
         var mockAccounts = new List<AccountOptionModel>
         {

@@ -8,6 +8,7 @@ import {
 import Filters from './Filters/Filters';
 import Search from './Search';
 import Table from './Table';
+import Pagination from './Pagination';
 import { useTranslation } from 'react-i18next';
 import '../../../../i18n/i18n';
 
@@ -30,7 +31,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     status: 'All',
     account: '',
     page: 1,
-    pageSize: 1000,
+    pageSize: 100,
     transactionType: transactionType,
   }));
   const [columnFilter, setColumnFilter] = useState<string[]>([
@@ -117,6 +118,16 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     setRefreshTrigger((prev) => prev + 1);
   };
 
+  const handlePageChange = (newPage: number) => {
+    setApiParams((prev) => ({ ...prev, page: newPage }));
+  };
+
+  const handlePageSizeChange = (newSize: number) => {
+    setApiParams((prev) => ({ ...prev, pageSize: newSize, page: 1 }));
+  };
+
+  const pageSizeOptions = [100, 200, 500, 1000];
+
   return (
     <div className="transaction-list-container">
       {error && (
@@ -157,6 +168,17 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           isLoading={loading}
           onRefreshNeeded={handleRefresh}
           columnFilter={columnFilter}
+        />
+      </div>
+
+      <div className="pagination-section">
+        <Pagination
+          currentPage={apiParams.page}
+          totalCount={apiData.totalCount}
+          pageSize={apiParams.pageSize}
+          pageSizeOptions={pageSizeOptions}
+          onPageChange={handlePageChange}
+          onPageSizeChange={handlePageSizeChange}
         />
       </div>
     </div>
