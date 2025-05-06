@@ -107,7 +107,7 @@
             </tbody>
         </table>
     </div>
-    <partial name="~/Features/BetLists/Views/MonitoringBets/SaveFilterConfirmPopup.cshtml" model="false" />
+    <partial name="~/Features/BetLists/Views/MonitoringBets/SaveFilterConfirmPopup.cshtml" model="@((false, Model.ViewerLevel.IsAgentLevel()))" />
 </div>
 @* @Html.Hidden("betlist-path", Response.ApplyAppPathModifier($"~/{AppSettings.BetlistRouting}"))
 @Html.Hidden("old-main-path", Model.OldMainPath) *@

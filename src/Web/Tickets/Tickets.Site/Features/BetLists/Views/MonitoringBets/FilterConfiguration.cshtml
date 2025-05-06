@@ -137,7 +137,7 @@
     {
         <partial name="WelcomePopup" />
     }
-    <partial name="SaveFilterConfirmPopup" model="true" />
+    <partial name="SaveFilterConfirmPopup" model="@((true, Model.ViewerLevel.IsAgentLevel()))" />
 </div>
 <input type="hidden" id="hidden-BetTypesRequiredError" value="@Resources.FilterConfigurationBetTypesRequiredError" />
 <input type="hidden" id="hidden-StakeRequiredError" value="@Resources.FilterConfigurationStakeRequiredError" />
