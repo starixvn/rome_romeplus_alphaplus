@@ -1,4 +1,3 @@
-using System.Net;
 using Microsoft.AspNetCore.Authorization;
 
 namespace AlphaPlus.PaymentService.API.Shared;
@@ -22,14 +21,14 @@ public class ApiKeyMiddleware(RequestDelegate next, IConfiguration configuration
         var userApiKey = context.Request.Headers[ApiKeyHeaderName];
         if (string.IsNullOrWhiteSpace(userApiKey))
         {
-            context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            context.Response.StatusCode = StatusCodes.Status400BadRequest;
             return;
         }
 
         var apiKey = _configuration.GetValue<string>(ApiKeyName);
         if (userApiKey != apiKey)
         {
-            context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
             return;
         }
 

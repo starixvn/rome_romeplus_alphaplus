@@ -1,4 +1,3 @@
-using System.Net;
 using System.Text;
 using Microsoft.AspNetCore.Diagnostics;
 
@@ -15,7 +14,7 @@ public class GlobalExceptionHandler(Fanex.Logging.ILogger logger) : IExceptionHa
         await logger.ErrorAsync(await BuildError(httpContext.Request, exception));
 
         httpContext.Response.ContentType = "application/json";
-        httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+        httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
         await httpContext.Response.WriteAsJsonAsync(new
         {
             httpContext.Response.StatusCode,
