@@ -53,7 +53,8 @@
     "revertToPending": "Revert To Pending",
     "loading": "Loading transaction details...",
     "noDetails": "No transaction details available.",
-    "error": "Failed to load transaction details."
+    "error": "Failed to load transaction details.",
+    "cancel": "Cancel"
   },
 
   "status": {

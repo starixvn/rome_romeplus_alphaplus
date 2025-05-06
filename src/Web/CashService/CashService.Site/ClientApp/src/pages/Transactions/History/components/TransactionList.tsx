@@ -169,9 +169,6 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           onRefreshNeeded={handleRefresh}
           columnFilter={columnFilter}
         />
-      </div>
-
-      <div className="pagination-section">
         <Pagination
           currentPage={apiParams.page}
           totalCount={apiData.totalCount}

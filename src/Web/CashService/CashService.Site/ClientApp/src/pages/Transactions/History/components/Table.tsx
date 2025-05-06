@@ -248,19 +248,15 @@ const Table: React.FC<TableProps> = ({
       {shouldShowColumn(t('table.dateAndTime')) && (
         <td className="px-2 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
           <div>{formatDateTime(item.createdDate).date}</div>
-          <div>{formatDateTime(item.createdDate).time}</div>
+          <div className="text-xs text-gray-500">{formatDateTime(item.createdDate).time}</div>
         </td>
       )}
       <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
         <button
           onClick={() => handleViewTransaction(item.transactionId)}
-          className={`text-white px-3 py-1 rounded text-xs font-medium cursor-pointer ${
-            item.status === 'EXPIRED'
-              ? 'bg-gray-500 hover:bg-gray-600'
-              : 'bg-blue-600 hover:bg-blue-700'
-          }`}
+          className="bg-blue-800 hover:bg-blue-900 text-white text-xs font-semibold py-1 px-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50 cursor-pointer"
         >
-          {item.status === 'EXPIRED' ? t('table.verify') : t('table.view')}
+          {t('table.view')}
         </button>
       </td>
     </tr>
