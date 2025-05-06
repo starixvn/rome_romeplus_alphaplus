@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-interface ManualDepositFormProps {
+interface ManualAddDepositFormProps {
   onClose: () => void;
   onSubmit: (data: {
     memberLoginName: string;
@@ -13,7 +13,7 @@ interface ManualDepositFormProps {
   }) => void;
 }
 
-const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit }) => {
+const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, onSubmit }) => {
   const { t } = useTranslation('pendingDeposit');
   const [memberLoginName, setMemberLoginName] = useState('999b20a00001');
   const [from, setFrom] = useState(12345678);
@@ -237,4 +237,4 @@ const ManualDepositForm: React.FC<ManualDepositFormProps> = ({ onClose, onSubmit
   );
 };
 
-export default ManualDepositForm; 
+export default ManualAddDepositForm; 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-interface ManualWithdrawalFormProps {
+interface ManualAddWithdrawalFormProps {
   onClose: () => void;
   onSubmit: (data: {
     memberLoginName: string;
@@ -13,7 +13,7 @@ interface ManualWithdrawalFormProps {
   }) => void;
 }
 
-const ManualWithdrawalForm: React.FC<ManualWithdrawalFormProps> = ({ onClose, onSubmit }) => {
+const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClose, onSubmit }) => {
   const { t } = useTranslation('pendingWithdrawal');
   const [memberLoginName, setMemberLoginName] = useState('999b20a00001');
   const [from, setFrom] = useState(12345678);
@@ -237,4 +237,4 @@ const ManualWithdrawalForm: React.FC<ManualWithdrawalFormProps> = ({ onClose, on
   );
 };
 
-export default ManualWithdrawalForm;
+export default ManualAddWithdrawalForm;

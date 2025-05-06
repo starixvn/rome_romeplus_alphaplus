@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './PendingWithdrawalsStyle.css';
-import ManualWithdrawalForm from './components/ManualWithdrawalForm.tsx';
+import ManualAddWithdrawalForm from './components/ManualAddWithdrawalForm.tsx';
 import Filter from './components/Filter.tsx';
 import DataGrid from './components/DataGrid.tsx';
 import { WithdrawalAccountInfo } from '../../../services/interfaces/WithdrawalAccountInfo';
@@ -15,7 +15,7 @@ const PendingWithdrawal: React.FC = () => {
   const [toFilter, setToFilter] = useState<string>('All');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [withdrawals, setWithdrawals] = useState<WithdrawalAccountInfo[]>([]);
-  const [showManualWithdrawalForm, setShowManualWithdrawalForm] = useState<boolean>(false);
+  const [showManualAddWithdrawalForm, setShowManualAddWithdrawalForm] = useState<boolean>(false);
 
   React.useEffect(() => {
     const fetchWithdrawals = async () => {
@@ -26,11 +26,11 @@ const PendingWithdrawal: React.FC = () => {
   }, []);
 
   const handleAddManualWithdrawal = () => {
-    setShowManualWithdrawalForm(true);
+    setShowManualAddWithdrawalForm(true);
   };
 
   const handleCloseManualWithdrawalForm = () => {
-    setShowManualWithdrawalForm(false);
+    setShowManualAddWithdrawalForm(false);
   };
 
   const handleSubmitManualWithdrawal = (data: {
@@ -57,7 +57,7 @@ const PendingWithdrawal: React.FC = () => {
     };
 
     setWithdrawals([...withdrawals, newWithdrawal]);
-    setShowManualWithdrawalForm(false);
+    setShowManualAddWithdrawalForm(false);
   };
 
   return (
@@ -88,8 +88,8 @@ const PendingWithdrawal: React.FC = () => {
         </div>
       </div>
 
-      {showManualWithdrawalForm && (
-        <ManualWithdrawalForm
+      {showManualAddWithdrawalForm && (
+        <ManualAddWithdrawalForm
           onClose={handleCloseManualWithdrawalForm}
           onSubmit={handleSubmitManualWithdrawal}
         />

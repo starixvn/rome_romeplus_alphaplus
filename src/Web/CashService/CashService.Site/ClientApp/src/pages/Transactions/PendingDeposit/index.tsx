@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './PendingDepositsStyle.css';
-import ManualDepositForm from './components/ManualDepositForm';
+import ManualAddDepositForm from './components/ManualAddDepositForm';
 import Filter from './components/Filter';
 import DataGrid from './components/DataGrid';
 import { DepositAccountInfo } from '../../../services/interfaces/DepositAccountInfo';
@@ -15,7 +15,7 @@ const PendingDeposit: React.FC = () => {
   const [toFilter, setToFilter] = useState<string>('All');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [deposits, setDeposits] = useState<DepositAccountInfo[]>([]);
-  const [showManualDepositForm, setShowManualDepositForm] = useState<boolean>(false);
+  const [showManualAddDepositForm, setShowManualAddDepositForm] = useState<boolean>(false);
 
   React.useEffect(() => {
     const fetchDeposits = async () => {
@@ -26,11 +26,11 @@ const PendingDeposit: React.FC = () => {
   }, []);
 
   const handleAddManualDeposit = () => {
-    setShowManualDepositForm(true);
+    setShowManualAddDepositForm(true);
   };
 
   const handleCloseManualDepositForm = () => {
-    setShowManualDepositForm(false);
+    setShowManualAddDepositForm(false);
   };
 
   const handleSubmitManualDeposit = (data: {
@@ -57,7 +57,7 @@ const PendingDeposit: React.FC = () => {
     };
 
     setDeposits([...deposits, newDeposit]);
-    setShowManualDepositForm(false);
+    setShowManualAddDepositForm(false);
   };
 
   return (
@@ -88,8 +88,8 @@ const PendingDeposit: React.FC = () => {
         </div>
       </div>
 
-      {showManualDepositForm && (
-        <ManualDepositForm
+      {showManualAddDepositForm && (
+        <ManualAddDepositForm
           onClose={handleCloseManualDepositForm}
           onSubmit={handleSubmitManualDeposit}
         />
