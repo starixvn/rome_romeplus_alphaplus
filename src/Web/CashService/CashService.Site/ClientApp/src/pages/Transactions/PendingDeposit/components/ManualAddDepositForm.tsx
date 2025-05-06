@@ -169,8 +169,8 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, on
           </div>
 
           {/* Right side - Upload image and buttons */}
-          <div className="flex flex-col">
-            <div className="w-[350px] h-[450px] border-[2px] border-dashed border-[#163f78] rounded-[5px] flex flex-col items-center justify-center mb-6 ml-[60px] relative">
+          <div className="flex flex-col items-center pl-20">
+            <div className="w-[350px] h-[450px] border-[2px] border-dashed border-[#163f78] rounded-[5px] flex flex-col items-center justify-center mb-6 relative">
               {imageUrl ? (
                 <div className="absolute inset-0 flex flex-col items-center">
                   <img 
@@ -215,7 +215,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, on
               />
             </div>
             
-            <div className="flex justify-end space-x-4 mt-3">
+            <div className="flex justify-center space-x-4 mt-3 w-full">
               <button
                 type="button"
                 onClick={onClose}

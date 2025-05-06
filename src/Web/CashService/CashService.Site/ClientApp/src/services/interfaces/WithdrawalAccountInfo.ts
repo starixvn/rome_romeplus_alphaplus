@@ -10,4 +10,5 @@ export interface WithdrawalAccountInfo {
     to: number;
     referenceNo: string;
     dateAndTime: Date;
+    image?: File;
 }
