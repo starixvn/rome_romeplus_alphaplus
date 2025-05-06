@@ -1193,6 +1193,6 @@
     <value>tổng số tiền chuyển khoản giữa Cấp Trên Trực Tiếp và Member. Nhấn vào để xem chi tiết chuyển khoản.</value>
   </data>
   <data name="RewardCurrency" xml:space="preserve">
-    <value />
+    <value>Tiền tệ phần thưởng</value>
   </data>
 </root>

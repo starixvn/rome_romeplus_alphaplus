@@ -1168,6 +1168,6 @@
     <value>直系上線與會員之間的轉賬總額。點擊查看轉賬細節。</value>
   </data>
   <data name="RewardCurrency" xml:space="preserve">
-    <value />
+    <value>獎勵貨幣</value>
   </data>
 </root>

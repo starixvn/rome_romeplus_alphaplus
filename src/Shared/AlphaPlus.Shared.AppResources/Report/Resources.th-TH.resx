@@ -289,7 +289,7 @@
     <value>รวม</value>
   </data>
   <data name="ConsolidationPTNote" xml:space="preserve">
-    <value>ค่าความเสี่ยงที่แสดงในรายงานคือ “ค่าความเสี่ยงสูงสุด” ของ{0}</value>
+    <value>ค่าความเสี่ยงที่แสดงในรายงานคือ "ค่าความเสี่ยงสูงสุด" ของ{0}</value>
   </data>
   <data name="ConsolidationReportByDate" xml:space="preserve">
     <value>รายงานงบการเงินประจำวัน</value>
@@ -1165,6 +1165,6 @@
     <value>จำนวนเงินโอนทั้งหมดระหว่างอัพไลน์และสมาชิกโดยตรง คลิ๊กเพื่อดูรายละเอียดการโอนเงิน</value>
   </data>
   <data name="RewardCurrency" xml:space="preserve">
-    <value />
+    <value>สกุลเงินรางวัล</value>
   </data>
 </root>

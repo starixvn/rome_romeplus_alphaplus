@@ -1168,6 +1168,6 @@
     <value>直系上线与会员之间的转账总额。点击查看转账细节。</value>
   </data>
   <data name="RewardCurrency" xml:space="preserve">
-    <value />
+    <value>奖励货币</value>
   </data>
 </root>

@@ -1267,6 +1267,6 @@
     <value>2024年2月21日 (dd/mm/yyyy)より、新しい表示がメイン表示となりますが、クラシック表示に戻すことができます。</value>
   </data>
   <data name="RewardCurrency" xml:space="preserve">
-    <value />
+    <value>報酬通貨</value>
   </data>
 </root>
