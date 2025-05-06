@@ -247,7 +247,7 @@ function PaymentProviderSettings() {
                   <span className='cursor-pointer'><IconInfo /></span>
                 </Tippy>
               </label>
-              <label className={styles.toggleContainer}>
+              <label>
                 <input
                   type="checkbox"
                   id="enableToggle"
@@ -353,7 +353,7 @@ function PaymentProviderSettings() {
                     </td>
                     <td>
                       <div className="">
-                        <label className={styles.toggleContainer}>
+                        <label>
                         <input
                           type="checkbox"
                           id={`toggle-${index}`}
