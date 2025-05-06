@@ -2,6 +2,6 @@ using MediatR;
 
 namespace AlphaPlus.Tickets.Site.Features.Results.ThirdParty;
 
-public class SpadeGamingResultQuery : Result3rdQuery, IRequest<ThirdPartyProductViewModel>
+public class SpadeGamingResultQuery : Result3rdRequest, IRequest<ThirdPartyProductViewModel>
 {
 }

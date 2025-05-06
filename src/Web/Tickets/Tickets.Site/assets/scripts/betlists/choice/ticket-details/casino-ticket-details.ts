@@ -1259,6 +1259,72 @@
             );
         };
     }
+
+    export class LiveCasinoTicketDetails extends BaseTicketDetails {
+        private static instance: LiveCasinoTicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance)
+                ? new LiveCasinoTicketDetails()
+                : this.instance;
+            return this.instance;
+        }
+
+        public ShowBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string, sportTypeId: number, sportTypeName: string) => {
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=${sportTypeName}`;
+
+            let width = 1500;
+            let roleId = Number(this.ViewerLevelId);
+
+            if (roleId <= 3) {
+                width -= 105;
+            }
+
+            if (roleId <= 2) {
+                width -= 105;
+            }
+
+            Common.PopupDetails.Instance(window.top).Show(
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/LiveCasino${params}`,
+                `${sportTypeName} - Detailed Bet list - ${winlossDate.toString().split(' ')[0]}`,
+                width,
+                800
+            );
+        };
+    }
+
+    export class RNGTicketDetails extends BaseTicketDetails {
+        private static instance: RNGTicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance)
+                ? new RNGTicketDetails()
+                : this.instance;
+            return this.instance;
+        }
+
+        public ShowBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string, sportTypeId: number, sportTypeName: string) => {
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=${sportTypeName}`;
+
+            let width = 1500;
+            let roleId = Number(this.ViewerLevelId);
+
+            if (roleId <= 3) {
+                width -= 105;
+            }
+
+            if (roleId <= 2) {
+                width -= 105;
+            }
+
+            Common.PopupDetails.Instance(window.top).Show(
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/RNG${params}`,
+                `${sportTypeName} - Detailed Bet list - ${winlossDate.toString().split(' ')[0]}`,
+                width,
+                800
+            );
+        };
+    }
 }
 
 let showRnGCasinoDetails: Function;
@@ -1312,6 +1378,8 @@ let showFunkyGamesBetDetails: Function;
 let showHotDogBetDetails: Function;
 let showOdinGamingBetDetails: Function;
 let showMicroGamingLCBetDetails: Function;
+let showLiveCasinoBetDetails: Function;
+let showRNGBetDetails: Function;
 
 $(function () {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
@@ -1368,4 +1436,6 @@ $(function () {
     showHotDogBetDetails = BetList.Choice.TicketDetails.HotDogTicketDetails.Instance.ShowHotDogBetDetails;
     showOdinGamingBetDetails = BetList.Choice.TicketDetails.OdinGamingTicketDetails.Instance.ShowOdinGamingBetDetails;
     showMicroGamingLCBetDetails = BetList.Choice.TicketDetails.MicrogamingLiveTicketDetails.Instance.ShowMicrogamingLiveBetDetails;
+    showLiveCasinoBetDetails = BetList.Choice.TicketDetails.LiveCasinoTicketDetails.Instance.ShowBetDetails;
+    showRNGBetDetails = BetList.Choice.TicketDetails.RNGTicketDetails.Instance.ShowBetDetails;
 });

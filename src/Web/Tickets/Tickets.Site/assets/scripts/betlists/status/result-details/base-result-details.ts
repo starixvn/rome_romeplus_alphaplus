@@ -51,8 +51,9 @@
         private static virtualRacingResult: ResultDetails;
         private static hotdogResult: ResultDetails;
         private static microgamingLiveResult: ResultDetails;
+        private static result3rd: ResultDetails;
 
-        public static CreateInstance(betTypeId: number): ResultDetails {
+        public static CreateInstance(betTypeId: number, sportTypeId: number): ResultDetails {
             if (
                 betTypeId === 9 ||
                 betTypeId === 29 ||
@@ -414,6 +415,14 @@
                     : this.microgamingLiveResult;
                 return this.microgamingLiveResult;
             }
+
+            if (sportTypeId > 99) {
+                this.result3rd = Common.Utils.IsNullOrUndefinedOrEmpty(this.result3rd)
+                    ? new Result3rdDetails()
+                    : this.result3rd;
+                return this.result3rd;
+            }
+
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult)
                 ? new SportsbookResultDetails()
                 : this.sportsbookResult;
@@ -457,7 +466,7 @@
             siteId?: string,
             transDesc?: string
         ) => {
-            ResultDetailsFactory.CreateInstance(betTypeId).ViewResultDetails(
+            ResultDetailsFactory.CreateInstance(betTypeId, sportTypeId).ViewResultDetails(
                 matchId,
                 race,
                 betTypeId,

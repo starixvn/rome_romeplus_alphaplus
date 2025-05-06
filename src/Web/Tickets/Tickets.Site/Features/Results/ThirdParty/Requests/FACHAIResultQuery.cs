@@ -2,6 +2,6 @@ using MediatR;
 
 namespace AlphaPlus.Tickets.Site.Features.Results.ThirdParty;
 
-public class FACHAIResultQuery : Result3rdQuery, IRequest<ThirdPartyProductViewModel>
+public class FACHAIResultQuery : Result3rdRequest, IRequest<ThirdPartyProductViewModel>
 {
 }

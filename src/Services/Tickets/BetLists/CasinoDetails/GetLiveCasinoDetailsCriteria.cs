@@ -11,4 +11,6 @@ internal class GetLiveCasinoDetailsCriteria(long refNo,
         : GetCasinoDetailsCriteria(refNo, custId, transType, productId, pageIndex, pageSize, moveBetsDate, balanceUpDate)
 {
     public override string GetSettingKey() => "Acc_BetList_LC_Detail";
+
+    public override bool IsValid() => RefNo > 0 && CustId > 0;
 }

@@ -1,0 +1,10 @@
+{
+  "Result3rdConfig": [
+    {
+      "Name": "PlaytechLive",
+      "VendorId": 129,
+      "Url": "http://saba-wallet-group-004.3rd-party.k8s.nebula.sit/api/PlayTechLiveInternal/GetBetHistoryUrl",
+      "Debug": 0
+    }
+  ]
+}

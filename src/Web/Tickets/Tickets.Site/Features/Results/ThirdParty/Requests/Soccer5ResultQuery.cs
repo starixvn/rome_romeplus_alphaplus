@@ -2,7 +2,7 @@ using MediatR;
 
 namespace AlphaPlus.Tickets.Site.Features.Results.ThirdParty;
 
-public class Soccer5ResultQuery : Result3rdQuery, IRequest<ThirdPartyProductViewModel>
+public class Soccer5ResultQuery : Result3rdRequest, IRequest<ThirdPartyProductViewModel>
 {
     public string MatchId { get; set; }
 

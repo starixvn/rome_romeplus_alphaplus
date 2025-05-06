@@ -8,6 +8,7 @@ using MediatR;
 namespace AlphaPlus.Tickets.Site.Features.Results.ThirdParty;
 
 public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelper browserHelper, ICacheRefService cacheRefService) :
+    IRequestHandler<Result3rdQuery, ThirdPartyProductViewModel>,
     IRequestHandler<MaxGameResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<SportsLotteryDetailResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<PPLiveCasinoResultQuery, ThirdPartyProductViewModel>,
@@ -52,6 +53,35 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
     IRequestHandler<HotDogResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<MicrogamingLiveResultQuery, ThirdPartyProductViewModel>
 {
+    public Task<ThirdPartyProductViewModel> Handle(Result3rdQuery message, CancellationToken cancellationToken)
+    {
+        var sportName = cacheRefService.GetSportName(message.SportTypeId);
+        var config = GetThirdPartyConfig(message.SportTypeId);
+        if (config == null)
+        {
+            return Task.FromResult(new ThirdPartyProductViewModel(string.Format(Resources.ResultPopupTitle, sportName), string.Empty));
+        }
+        
+        var request = new ResultRequest(message.CustId, message.TransId3rd, message.GameId3rd, message.CurrencyId, message.SiteId, message.Language)
+        {
+            IsDarkMode = message.IsDarkMode ? "1" : "0",
+            Platform = browserHelper.IsMobile() ? "M" : "D",
+            BetTypeId = message.BetType,
+            EndTime = message.EndTime
+        };
+
+        var result = new ThirdPartyResult(config).GetResultGET(request);
+        var viewModel = new ThirdPartyProductViewModel(string.Format(Resources.ResultPopupTitle, sportName), result);
+
+        return Task.FromResult(viewModel);
+
+        ThirdPartyConfigs GetThirdPartyConfig(int sportTypeId)
+        {
+            var configs = configuration.GetSection("Result3rdConfig").Get<List<ThirdPartyConfigs>>();
+            return configs.FirstOrDefault(x => x.VendorId == sportTypeId);
+        }
+    }
+
     public Task<ThirdPartyProductViewModel> Handle(MaxGameResultQuery message, CancellationToken cancellationToken)
         => Handle(message, "MaxGameResultConfigs", "MaxGame");
 
@@ -191,7 +221,7 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
 
     public Task<ThirdPartyProductViewModel> Handle(ASKMESLOTResultQuery message, CancellationToken cancellationToken)
         => Handle(message, "ASKMESLOTResultConfigs", "ASKMESLOT");
-        
+
     public Task<ThirdPartyProductViewModel> Handle(FunkyGamesResultQuery message, CancellationToken cancellationToken)
         => Handle(message, "FunkyGamesResultConfigs", "Funky Games");
 
@@ -204,7 +234,7 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
     public Task<ThirdPartyProductViewModel> Handle(MicrogamingLiveResultQuery message, CancellationToken cancellationToken)
         => Handle(message, "MicrogamingLiveConfigs", "Microgaming Live");
 
-    private Task<ThirdPartyProductViewModel> Handle(Result3rdQuery message, string sectionName, string gameName)
+    private Task<ThirdPartyProductViewModel> Handle(Result3rdRequest message, string sectionName, string gameName)
     {
         var productName = cacheRefService.GetProductName(message.ProductId);
         var request = new ResultRequest(message.CustId, message.TransId3rd, message.GameId3rd, message.CurrencyId, message.SiteId, message.Language)
