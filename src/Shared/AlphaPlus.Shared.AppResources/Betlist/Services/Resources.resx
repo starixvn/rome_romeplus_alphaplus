@@ -877,6 +877,6 @@
     <value>Agent Risk</value>
   </data>
   <data name="FilterConfigurationSpecificSuperMasterContent" xml:space="preserve">
-    <value>Monitor tickets of the selected Member(s), which can be added manually.</value>
+    <value>Monitor tickets of the selected Member(s), which can be added manually or selected from Problem Account List.</value>
   </data>
 </root>

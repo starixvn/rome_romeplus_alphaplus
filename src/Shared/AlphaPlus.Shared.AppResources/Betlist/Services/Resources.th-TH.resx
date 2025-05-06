@@ -853,6 +853,6 @@
     <value>ความเสี่ยงของเอเย่นท์</value>
   </data>
   <data name="FilterConfigurationSpecificSuperMasterContent" xml:space="preserve">
-    <value>ตรวจสอบตั๋วเดิมพันของสมาชิกที่เลือก โดยสามารถเพิ่มสมาชิกเฉพาะได้ด้วยตนเอง</value>
+    <value>ตรวจสอบตั๋วเดิมพันของสมาชิกที่เลือกไว้ ซึ่งสามารถเพิ่มด้วยตนเองหรือเลือกจากรายการบัญชีปัญหา</value>
   </data>
 </root>

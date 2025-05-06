@@ -749,7 +749,8 @@
     <value>Check Out</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
-    <value>Minimize business risk with &lt;b&gt;Last Bets&lt;/b&gt; by monitoring Member's running bet tickets using custom filters.</value>
+    <value>First time using <b>Last Bets</b> function? Please set the filter criteria based on your monitoring needs for bet tickets, and don’t forget to save your filter for later use.
+Go ahead and give it a try!</value>
   </data>
   <data name="HighlightPopupRewardIntro" xml:space="preserve">
     <value>&lt;p&gt;We are excited to introduce our new Cash Reward Program. The company is responsible for the reward amounts, and once a Member receives their reward, it cannot be used for placing bets. Rewards will be distributed to uplines, and Members can cash out through their Agents.&lt;/p&gt;&lt;p&gt;Our new feature &lt;b&gt;Reward Payment&lt;/b&gt; supports your downline payment management, ensuring accurate distribution of all rewards.&lt;/p&gt;

@@ -717,13 +717,14 @@
     <value>查看</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
-    <value>通過使用自定義篩選方式監控會員進行中的注單，使用&lt;b&gt;最後投注&lt;/b&gt;將風險降至最低。</value>
+    <value>第一次使用<b>最後投注</b>功能？請根據您對投注注單的監控需求設置篩選標準，並且不要忘記保存您篩選標準以供日後使用。
+ 來嘗試一下吧！</value>
   </data>
   <data name="HighlightPopupRewardIntro" xml:space="preserve">
     <value>&lt;p&gt;我們很高興為您介紹我們新的現金獎金計劃。獎金金額由公司負責，會員一旦收到獎金，並不能用於下注。獎金將分配給上線，會員可以透過其代理去兌現。&lt;/p&gt;&lt;p&gt;我們的新功能&lt;b&gt;獎金支付&lt;/b&gt;支持您的下線支付管理，確保所有獎金的準確分配。&lt;/p&gt;</value>
   </data>
   <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
-    <value>探索&lt;b&gt;最後投注&lt;/b&gt;功能</value>
+    <value>發現<b>新視圖</b>最後投注</value>
   </data>
   <data name="HighlightPopupRewardTitle" xml:space="preserve">
     <value>歡迎加入&lt;b&gt;現金獎金計劃&lt;/b&gt;！</value>
