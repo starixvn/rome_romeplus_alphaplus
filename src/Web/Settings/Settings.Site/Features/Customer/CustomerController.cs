@@ -271,9 +271,15 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 
         public async Task<ActionResult> SearchSuggestDirectMembers(DirectMemberSuggestionQuery request)
             => Json(await customerService.SearchSuggestDirectMembers(request.ViewerId, request.SearchUsername));
+      
+        public async Task<ActionResult> SearchSuggestCashMembers(DirectMemberSuggestionQuery request)
+            => Json(await customerService.SearchSuggestCashMembers(request.ViewerId, request.SearchUsername));
 
         public async Task<int> CheckDirectMemberUserName(DirectMemberSuggestionQuery request)
-            => await customerService.CheckDirectMemberUserName(request.ViewerId, request.SearchUsername);
+            => await customerService.CheckDirectMemberUserName(request.ViewerId, request.SearchUsername);    
+        
+        public async Task<int> CheckCashMemberUserName(DirectMemberSuggestionQuery request)
+            => await customerService.CheckCashMemberUserName(request.ViewerId, request.SearchUsername);
 
         public async Task<ActionResult> GetCustomerSetting(GetCustomerSettingRequest request)
             => Content(await customerService.GetCustomerSetting(
@@ -285,7 +291,19 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 request.IsGetUpLine,
                 request.ProductGroupId,
                 request.SiteLabel,
-                agentId: request.AgentId));
+                agentId: request.AgentId)); 
+        
+        public async Task<ActionResult> GetCashCustomerSetting(GetCustomerSettingRequest request)
+            => Content(await customerService.GetCashCustomerSetting(
+                request.CustId,
+                request.RoleId,
+                systemId,
+                request.UplineRoleId,
+                request.Language,
+                request.IsGetUpLine,
+                request.ProductGroupId,
+                request.SiteLabel));
+        
 
         public async Task<ActionResult> GetCurrentWinLossAmount(CustomerWinLossAmountQuery request)
          => Content(await customerService.GetCustomerCurrentWinLossAmounts(request.CustId, request.SportType, request.BetType, request.Language));

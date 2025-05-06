@@ -239,3 +239,10 @@ export const IconSync = ({ className }: { className?: string }) => (
 export const IconBack = ({ className }: { className?: string }) => (
   <svg className={classNames(className)} xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 18 18" width="18px" height="18px" data-v-75a2fae7="" ><path d="M5.5 9.5c-.3-.3-.3-.8 0-1.1l6-6c.3-.3.8-.3 1.1 0s.3.8 0 1.1L7.1 9l5.5 5.5c.3.3.3.8 0 1.1s-.8.3-1.1 0l-6-6.1z" ></path></svg>
 );
+export const IconArrowDown = ({ className }: { className?: string }) => (
+  <svg className={classNames(className)} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+<path d="M15.8909 23.6457C15.3613 23.6435 14.8543 23.4313 14.4809 23.0557L4.48091 13.0557C4.15326 12.6731 3.98205 12.1809 4.00149 11.6776C4.02093 11.1742 4.2296 10.6967 4.58579 10.3406C4.94198 9.98437 5.88727 9.16523 6.39062 9.14579C6.39062 9.14579 7.00802 8.81802 7.39062 9.14567L15.8906 17.6456L24.3906 9.14559C24.7732 8.81794 25.8906 9.14569 25.8906 9.14569C26.394 9.16513 26.8399 9.98437 27.196 10.3406C27.5522 10.6967 27.7609 11.1742 27.7803 11.6776C27.7998 12.1809 27.6286 12.6731 27.3009 13.0557L17.3009 23.0557C16.9276 23.4313 16.4205 23.6435 15.8909 23.6457Z" />
+</svg>
+
+  
+);

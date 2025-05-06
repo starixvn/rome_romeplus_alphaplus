@@ -3,13 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { Bank } from '../../services/interfaces/Bank';
 import type { BankAccount } from '../../services/interfaces/BankAccount';
 import { paymentProviderService } from '../../services/paymentsAPI';
-import { TRANSACTION_TYPES, ENABLED_STATUS_OPTIONS } from '../../constants/paymentConstants';
+import { ENABLED_STATUS_OPTIONS } from '../../constants/paymentConstants';
 import SetTransactionLimitModal from './SetTransactionLimitModal';
 import AddBankAccountComponent from './AddBankAccountComponent';
 import UpdateBankAccountComponent from './UpdateBankAccountComponent';
 import TitleCommon from '../../components/ui/TitleCommon';
 import { IconCheck, IconDelete, IconError, IconPen, IconSearch, IconSync } from '../../components/Icons';
 import '../../styles/global.scss';
+import CustomDropdown from '../../components/ui/customDropdown';
 
 interface BankAccountProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
@@ -292,20 +293,14 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                     <div className="flex px-[14px]">
                       <div className="w-[230px] pr-[14px]">
                         <div className="form-group mb-[8px]">
-                          <label htmlFor="bankSelect" className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('bank')}</label>
-                          <select
-                            id="bankSelect"
-                            className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78]"
-                            value={selectedBank}
-                            onChange={handleBankChange}
-                          >
-                            <option key="0" value="0">{tGlobal('all')}</option>
-                            {banks.map((bank) => (
-                              <option key={bank.id} value={bank.id}>
-                                {bank.name}
-                              </option>
-                            ))}
-                          </select>
+                          <label htmlFor="bankSelect" className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('bank')}</label>                           
+                          <CustomDropdown 
+                            options={banks.map(bank => ({
+                              value: bank.id,
+                              label: bank.name
+                            }))}
+                            onSelect={(option) => handleBankChange({ target: { value: option.value.toString() } } as React.ChangeEvent<HTMLSelectElement>)}
+                          />
                         </div>
                       </div>
 
@@ -314,7 +309,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                           <label htmlFor="transactionTypeSelect" className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('transactionType')}</label>
                           <select
                             id="transactionTypeSelect"
-                            className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78]"
+                            className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer"
                             value={selectedTransactionType}
                             onChange={handleTransactionTypeChange}
                           >
@@ -335,7 +330,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                           <label htmlFor="statusSelect" className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('status')}</label>
                           <select
                             id="statusSelect"
-                            className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78]"
+                            className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer"
                             value={selectedStatus}
                             onChange={handleStatusChange}
                           >
