@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Bank } from '../../services/interfaces/Bank';
 import { paymentProviderService } from '../../services/paymentsAPI';
-import styles from '../ManagePayments/PaymentGateway.module.scss';
+import '../../styles/global.scss';
 import { IconClose } from '../../components/Icons';
 interface BanksPopupModalProps {
   onClose: () => void;
@@ -62,7 +62,7 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
             <>
               <label className='block text-[#163f78] my-[16px] font-semibold'>{tManagePayments(`transaction-${transactionType}`)}</label>
               <div className="table-responsive">
-                <table className={styles['table-striped']}>
+                <table className="table-striped">
                   <thead>
                     <tr>
                       <th>#</th>

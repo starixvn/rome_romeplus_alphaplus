@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
 import { PaymentProviderFeeGroup } from '../../services/interfaces/PaymentProviderFeeGroup';
 import { paymentProviderService } from '../../services/paymentsAPI';
-import styles from './PaymentGateway.module.scss';
+import '../../styles/global.scss';
 import { IconClose } from '../../components/Icons';
 
 interface ProviderFeesPopupModalProps {
@@ -67,7 +67,7 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
               </div>
               
               <div className="form-group mb-3">
-                <table className={styles['table-striped']}>
+                <table className="table-striped">
                   <thead>
                     <tr>
                       <th>{tManagePayments('transactionType')}</th>
