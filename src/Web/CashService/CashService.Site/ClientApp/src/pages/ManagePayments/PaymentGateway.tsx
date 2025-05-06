@@ -44,7 +44,7 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = ({ setActiveTab, activeTab
   }, []);
 
   const getStatusText = (status: number) => {
-    return status === 1 ? tManagePayments('active') : tManagePayments('inactive');
+    return status === 1 ? tManagePayments('enabled') : tManagePayments('disabled');
   };
 
   const handleFeeClick = (provider: PaymentProvider) => {

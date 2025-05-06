@@ -35,15 +35,21 @@ public interface IPaymentsService
 public class PaymentsService : IPaymentsService
 {
     private readonly IDynamicRepository _repository;
-
-    public PaymentsService(IDynamicRepository repository)
+    private readonly ICacheRefService _cacheRefService;
+    public PaymentsService(IDynamicRepository repository, ICacheRefService cacheRefService)
     {
         _repository = repository;
+        _cacheRefService = cacheRefService;
     }
 
     public async Task<IEnumerable<ProviderModel>> GetProviders(int custId)
     {
         var providers = await _repository.FetchAsync<ProviderModel>(new GetProvidersCriteria(custId));
+
+        foreach (var provider in providers)
+        {
+            provider.Name = _cacheRefService.GetProviderName(provider.Id, provider.Name);
+        }
         
         return providers;
     }
@@ -66,7 +72,11 @@ public class PaymentsService : IPaymentsService
     public async Task<IEnumerable<ProviderFeeGroupModel>> GetProviderFees(int providerId)
     {
         var fees = await _repository.FetchAsync<ProviderFeeModel>(new GetProvidersFeesCriteria(providerId));
-        
+        foreach (var fee in fees)
+        {
+            fee.Method = _cacheRefService.GetPaymentMethodName(fee.MethodId, fee.Method);
+        }
+
         var groupedFees = fees
             .GroupBy(f => f.TransactionType)
             .Select(g => new ProviderFeeGroupModel

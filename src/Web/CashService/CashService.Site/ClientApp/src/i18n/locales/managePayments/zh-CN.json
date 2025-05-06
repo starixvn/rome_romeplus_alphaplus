@@ -130,5 +130,7 @@
   "addPaymentMethodStep2": "步骤2：加入Telegram群组和频道",
   "clickLinkOrScanQRCode": "点击链接或扫描二维码以获取设置协助。",
   "addPaymentMethodStep2_Link": "https://t.me/",
-  "addPaymentMethodStep3": "步骤3：输入详细信息"
+  "addPaymentMethodStep3": "步骤3：输入详细信息",
+  "enabled": "启用",
+  "disabled": "禁用"
 } 

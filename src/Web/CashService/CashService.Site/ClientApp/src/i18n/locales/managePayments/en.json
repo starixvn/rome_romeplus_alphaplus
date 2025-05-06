@@ -135,5 +135,7 @@
   "addPaymentMethodStep2": "Step 2: Join the Telegram and Channel",
   "clickLinkOrScanQRCode": "Click the link or scan the QR code for set up assistance.",
   "addPaymentMethodStep2_Link": "https://t.me/",
-  "addPaymentMethodStep3": "Step 3: Enter details"
+  "addPaymentMethodStep3": "Step 3: Enter details",
+  "enabled": "Enabled",
+  "disabled": "Disabled"
 } 

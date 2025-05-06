@@ -131,5 +131,7 @@
   "addPaymentMethodStep2": "ขั้นตอนที่ 2: เข้าร่วมกลุ่มและช่องทาง Telegram",
   "clickLinkOrScanQRCode": "คลิกลิงก์หรือสแกน QR code เพื่อขอความช่วยเหลือในการตั้งค่า",
   "addPaymentMethodStep2_Link": "https://t.me/",
-  "addPaymentMethodStep3": "ขั้นตอนที่ 3: กรอกรายละเอียด"
+  "addPaymentMethodStep3": "ขั้นตอนที่ 3: กรอกรายละเอียด",
+  "enabled": "เปิดใช้งาน",
+  "disabled": "ปิดใช้งาน"
 } 

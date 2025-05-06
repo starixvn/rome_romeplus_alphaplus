@@ -131,5 +131,7 @@
   "addPaymentMethodStep2": "Bước 2: Tham gia nhóm và kênh Telegram",
   "clickLinkOrScanQRCode": "Nhấp vào liên kết hoặc quét mã QR để được hỗ trợ thiết lập.",
   "addPaymentMethodStep2_Link": "https://t.me/",
-  "addPaymentMethodStep3": "Bước 3: Nhập thông tin chi tiết"
+  "addPaymentMethodStep3": "Bước 3: Nhập thông tin chi tiết",
+  "enabled": "Bật",
+  "disabled": "Tắt"
 } 
