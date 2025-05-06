@@ -7,7 +7,6 @@ import { Bank } from './interfaces/Bank';
 import { BankAccount } from './interfaces/BankAccount';
 import { PaymentTransactionLimit } from './interfaces/PaymentTransactionLimit';
 import { TransactionType } from './interfaces/TransactionType';
-import { MobilePrefix } from './interfaces/MobilePrefix';
 
 // API service for payment providers
 export const paymentProviderService = {
@@ -243,17 +242,6 @@ export const paymentProviderService = {
     } catch (error) {
       console.error(`Error deleting bank account ${bankAccountId}:`, error);
       throw error;
-    }
-  },
-
-  // Get mobile prefixes
-  getMobilePrefixes: async (): Promise<MobilePrefix[]> => {
-    try {
-      const response = await api.get<MobilePrefix[]>('GetMobilePrefixes', { method: 'GET' });
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching mobile prefixes:', error);
-      return [];
     }
   },
 };

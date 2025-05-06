@@ -275,17 +275,5 @@ public static class PaymentsEndpoints
             Summary = "Delete bank account",
             Description = "Deletes a specific bank account by its ID"
         });
-
-        app.MapGet("/api/payments/mobile-prefixes", async (IPaymentsService service) =>
-        {
-            var prefixes = await service.GetMobilePrefixes();
-            return Results.Ok(prefixes);
-        })
-        .WithName("GetMobilePrefixes")
-        .WithOpenApi(operation => new(operation)
-        {
-            Summary = "Get mobile prefixes",
-            Description = "Returns a list of all available mobile prefixes"
-        });
     }
 } 

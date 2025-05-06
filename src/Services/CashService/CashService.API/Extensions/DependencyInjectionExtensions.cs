@@ -16,6 +16,7 @@ public static class DependencyInjectionExtensions
 
         services.AddSingleton<IEncryptionService, EncryptionService>();
 
+        services.AddScoped<IBaseService, BaseService>();
         services.AddScoped<IPaymentsService, PaymentsService>();
         services.AddScoped<IMemberSiteManagementService, MemberSiteManagementService>();
         services.AddScoped<IPendingDepositService, PendingDepositService>();

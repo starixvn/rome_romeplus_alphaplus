@@ -14,6 +14,7 @@ import {
 } from '../../utils/bankTransactionUtils';
 import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { IconCheck, IconError } from '../../components/Icons';
+import { baseAPI } from '../../services/baseAPI';
 
 interface UpdateBankAccountComponentProps {
   onClose: () => void;
@@ -93,7 +94,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
     const fetchMobilePrefixes = async () => {
       try {
-        const prefixes = await paymentProviderService.getMobilePrefixes();
+        const prefixes = await baseAPI.getMobilePrefixes();
         setMobilePrefixes(prefixes);
       } catch (err) {
         console.error('Error fetching mobile prefixes:', err);

@@ -1,6 +1,7 @@
 using AlphaPlus.CashService.Site.Features.Payments.Models;
 using AlphaPlus.CashService.Site.Features.Payments.Requests;
 using AlphaPlus.CashService.Site.Features.Payments.ViewModels;
+using AlphaPlus.CashService.Site.Features.Shared;
 using AlphaPlus.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,7 +28,6 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             _apiBaseUrl = configuration["CashServiceAPIUrl"];
             _httpClient = httpClient;
             _userSession = userSession;
-
             _custId = 1176086;
             // _custId = 187900621;
         }
@@ -234,10 +234,9 @@ namespace AlphaPlus.CashService.Site.Features.Payments
 
         public async Task<IActionResult> GetMobilePrefixes(CancellationToken cancellationToken)
         {
-            var url = $"{_apiBaseUrl}/payments/mobile-prefixes";
+            var url = $"{_apiBaseUrl}/base/mobile-prefixes";
             var prefixes = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
             return Json(prefixes);
         }
-
     }
 }
