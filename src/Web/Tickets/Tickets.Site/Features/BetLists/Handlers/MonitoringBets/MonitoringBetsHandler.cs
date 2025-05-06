@@ -157,14 +157,12 @@ public class MonitoringBetsHandler(
 
     public async Task<IEnumerable<UsernameErrCode>> Handle(CheckUsernamesQuery message, CancellationToken cancellationToken)
     {
-        Console.WriteLine($"Message details: {System.Text.Json.JsonSerializer.Serialize(message)}");
         var usernames = await filterBetsService.CheckUsernames(message.ViewerId, message.Usernames, message.ViewerLevelId);
-        Console.WriteLine($"Checking usernames 1: {System.Text.Json.JsonSerializer.Serialize(usernames)}");
 
         if (message.FromSuggestion)
         {
             var validUsernames = usernames.Where(u => u.ErrCode == 0);
-            Console.WriteLine($"Checking usernames 2: {System.Text.Json.JsonSerializer.Serialize(usernames)}");
+
             foreach (var item in validUsernames)
             {
                 await customerClient.UpdateUserSearch(
