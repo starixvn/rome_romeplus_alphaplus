@@ -19,6 +19,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments.Models
         public string BankName { get; set; }
         public int BankId { get; set; }
         public int Status { get; set; }
+        public string Code { get; set; }
         public DateTime LastUpdated { get; set; }
         public string LastUpdatedStr => LastUpdated.ToString("MM/dd/yyyy hh:mm:ss tt");
 

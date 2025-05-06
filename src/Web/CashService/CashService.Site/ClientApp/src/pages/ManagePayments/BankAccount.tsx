@@ -184,10 +184,8 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
     
     // Map each type ID to its name
     const typeNames = typeIds.map(typeId => {
-      const type = transactionTypes.length > 0 
-        ? transactionTypes.find(t => t.id === typeId)
-        : TRANSACTION_TYPES.find(t => t.id === typeId);
-      return type ? type.name : typeId.toString();
+      const type = transactionTypes.length > 0 ? transactionTypes.find(t => t.id === typeId) : '';
+      return type ? type.name : tManagePayments(`transactionType-${typeId}`);
     });
     
     return typeNames.join(', ');
@@ -324,7 +322,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                             {transactionTypes.length && (
                               transactionTypes.map((type) => (
                                 <option key={type.id} value={type.id}>
-                                  {tManagePayments(`transactionType-${type.id}`)}
+                                  {tManagePayments(`transactionType-${type.id}`)} 
                                 </option>
                               ))
                             )}

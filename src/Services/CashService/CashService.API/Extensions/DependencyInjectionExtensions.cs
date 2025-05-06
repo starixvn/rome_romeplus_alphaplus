@@ -14,6 +14,8 @@ public static class DependencyInjectionExtensions
 
         services.AddRemotingRef(configuration);
 
+        services.AddSingleton<IEncryptionService, EncryptionService>();
+
         services.AddScoped<IPaymentsService, PaymentsService>();
         services.AddScoped<IMemberSiteManagementService, MemberSiteManagementService>();
         services.AddScoped<IPendingDepositService, PendingDepositService>();

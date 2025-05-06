@@ -229,7 +229,7 @@ describe('paymentProviderService', () => {
 
   it('addBankAccount returns result on success', async () => {
     const mockResult = { isSuccessful: true, message: 'ok', code: 0 };
-    const mockAccount = { id: 1, accountNumber: '123', accountNickname: 'A', accountHolderName: 'B', transactionTypes: 'Deposit', status: 1, bankId: 1, bankName: 'BankA', lastUpdated: '', lastUpdatedStr: '', depositMatchingMode: 1, promptPay: false, mobile: '', mobilePrefix: '' };
+    const mockAccount = { id: 1, accountNumber: '123', accountNickname: 'A', accountHolderName: 'B', transactionTypes: 'Deposit', status: 1, bankId: 1, bankName: 'BankA', lastUpdated: '', lastUpdatedStr: '', depositMatchingMode: 1, promptPay: false, mobile: '', mobilePrefix: '', code: ''};
     (api.post as Mock).mockResolvedValueOnce({ data: mockResult });
     const result = await paymentProviderService.addBankAccount(mockAccount);
     expect(result).toEqual(mockResult);
@@ -238,7 +238,7 @@ describe('paymentProviderService', () => {
 
   it('addBankAccount throws on error', async () => {
     (api.post as Mock).mockRejectedValueOnce(new Error('fail'));
-    await expect(paymentProviderService.addBankAccount({ id: 1, accountNumber: '123', accountNickname: 'A', accountHolderName: 'B', transactionTypes: 'Deposit', status: 1, bankId: 1, bankName: 'BankA', lastUpdated: '', lastUpdatedStr: '', depositMatchingMode: 1, promptPay: false, mobile: '', mobilePrefix: '' })).rejects.toThrow('fail');
+    await expect(paymentProviderService.addBankAccount({ id: 1, accountNumber: '123', accountNickname: 'A', accountHolderName: 'B', transactionTypes: 'Deposit', status: 1, bankId: 1, bankName: 'BankA', lastUpdated: '', lastUpdatedStr: '', depositMatchingMode: 1, promptPay: false, mobile: '', mobilePrefix: '', code: '' })).rejects.toThrow('fail');
   });
 
   it('getBankAccountById returns account on success', async () => {
@@ -256,7 +256,7 @@ describe('paymentProviderService', () => {
 
   it('updateBankAccount returns result on success', async () => {
     const mockResult = { isSuccessful: true, message: 'ok', code: 0 };
-    const mockAccount = { id: 1, accountNumber: '123', accountNickname: 'A', accountHolderName: 'B', transactionTypes: 'Deposit', status: 1, bankId: 1, bankName: 'BankA', lastUpdated: '', lastUpdatedStr: '', depositMatchingMode: 1, promptPay: false, mobile: '', mobilePrefix: '' };
+    const mockAccount = { id: 1, accountNumber: '123', accountNickname: 'A', accountHolderName: 'B', transactionTypes: 'Deposit', status: 1, bankId: 1, bankName: 'BankA', lastUpdated: '', lastUpdatedStr: '', depositMatchingMode: 1, promptPay: false, mobile: '', mobilePrefix: '', code: '' };
     (api.put as Mock).mockResolvedValueOnce({ data: mockResult });
     const result = await paymentProviderService.updateBankAccount(mockAccount);
     expect(result).toEqual(mockResult);
@@ -265,7 +265,7 @@ describe('paymentProviderService', () => {
 
   it('updateBankAccount throws on error', async () => {
     (api.put as Mock).mockRejectedValueOnce(new Error('fail'));
-    await expect(paymentProviderService.updateBankAccount({ id: 1, accountNumber: '123', accountNickname: 'A', accountHolderName: 'B', transactionTypes: 'Deposit', status: 1, bankId: 1, bankName: 'BankA', lastUpdated: '', lastUpdatedStr: '', depositMatchingMode: 1, promptPay: false, mobile: '', mobilePrefix: '' })).rejects.toThrow('fail');
+    await expect(paymentProviderService.updateBankAccount({ id: 1, accountNumber: '123', accountNickname: 'A', accountHolderName: 'B', transactionTypes: 'Deposit', status: 1, bankId: 1, bankName: 'BankA', lastUpdated: '', lastUpdatedStr: '', depositMatchingMode: 1, promptPay: false, mobile: '', mobilePrefix: '', code: '' })).rejects.toThrow('fail');
   });
 
   it('deleteBankAccount returns result on success', async () => {

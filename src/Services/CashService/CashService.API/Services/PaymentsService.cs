@@ -36,10 +36,16 @@ public class PaymentsService : IPaymentsService
 {
     private readonly IDynamicRepository _repository;
     private readonly ICacheRefService _cacheRefService;
-    public PaymentsService(IDynamicRepository repository, ICacheRefService cacheRefService)
+    private readonly IEncryptionService _encryption;
+
+    public PaymentsService(
+        IDynamicRepository repository, 
+        ICacheRefService cacheRefService, 
+        IEncryptionService encryption)
     {
         _repository = repository;
         _cacheRefService = cacheRefService;
+        _encryption = encryption;
     }
 
     public async Task<IEnumerable<ProviderModel>> GetProviders(int custId)
@@ -120,6 +126,9 @@ public class PaymentsService : IPaymentsService
     
     public async Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod)
     {
+        paymentMethod.APIMethodKey = _encryption.Encrypt(paymentMethod.APIMethodKey);
+        paymentMethod.MerchantID = _encryption.Encrypt(paymentMethod.MerchantID);
+        paymentMethod.AppSecret = _encryption.Encrypt(paymentMethod.AppSecret);
         var criteria = new InsertPaymentMethodCriteria(paymentMethod);
         await _repository.ExecuteAsync(criteria);
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
@@ -128,6 +137,11 @@ public class PaymentsService : IPaymentsService
     public async Task<IEnumerable<BankModel>> GetBanks(int transactionType)
     {
         var banks = await _repository.FetchAsync<BankModel>(new GetBanksByTransactionTypeCriteria(transactionType));
+        foreach (var bank in banks)
+        {
+            bank.Name = _cacheRefService.GetBankName(bank.Id, bank.Bank);
+        }
+
         return banks;
     }
 
@@ -165,6 +179,11 @@ public class PaymentsService : IPaymentsService
     public async Task<IEnumerable<BankModel>> GetBanksByCust(int custId)
     {
         var banks = await _repository.FetchAsync<BankModel>(new GetBanksByCustCriteria(custId));
+        foreach (var bank in banks)
+        {
+            bank.Name = _cacheRefService.GetBankName(bank.Id, bank.Bank);
+        }
+
         return banks;
     }
 
@@ -183,6 +202,8 @@ public class PaymentsService : IPaymentsService
     {
         var criteria = new GetBankAccountsCriteria(custId, bankId, transactionType, status, searchText);
         var accounts = await _repository.FetchAsync<BankAccountModel>(criteria);
+
+        Console.WriteLine(JsonSerializer.Serialize(accounts));
         return accounts;
     }
     
@@ -229,6 +250,11 @@ public class PaymentsService : IPaymentsService
     {
         var criteria = new GetBankAccountByIdCriteria(accountId);
         var accounts = await _repository.FetchAsync<BankAccountModel>(criteria);
+        foreach (var bank in accounts)
+        {
+            bank.BankName = _cacheRefService.GetBankName(bank.Id, bank.BankName);
+        }
+
         return accounts.FirstOrDefault();
     }
 

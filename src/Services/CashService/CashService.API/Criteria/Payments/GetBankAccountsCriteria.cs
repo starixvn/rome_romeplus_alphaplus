@@ -23,7 +23,7 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
 
         public int? BankId { get; }
 
-        [SpParam(SqlParamName = "TransactionTypeID")]
+        [SpParam(SqlParamName = "TransTypeList")]
         public string TransactionType { get; }
 
         [SpParam(SqlParamName = "BankAccountStatus")]

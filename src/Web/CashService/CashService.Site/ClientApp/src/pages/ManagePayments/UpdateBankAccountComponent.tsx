@@ -144,7 +144,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
         mobile,
         mobilePrefix,
         lastUpdated: new Date().toISOString(),
-        lastUpdatedStr: new Date().toLocaleString()
+        lastUpdatedStr: new Date().toLocaleString(),
+        code: ''
       });
 
       if (result.isSuccessful) {

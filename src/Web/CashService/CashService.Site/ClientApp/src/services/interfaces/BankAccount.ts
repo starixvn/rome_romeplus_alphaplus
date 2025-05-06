@@ -6,6 +6,7 @@ export interface BankAccount {
   accountHolderName: string;
   transactionTypes: string;
   status: number;
+  code: string;
   bankId: number;
   bankName: string;
   lastUpdated: string;

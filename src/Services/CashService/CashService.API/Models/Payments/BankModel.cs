@@ -10,7 +10,7 @@ namespace AlphaPlus.CashService.API.Models.Payments
         public string Code { get; set; }
 
         public int Id { get; set; }
-        public string Name => Bank;
+        public string Name { get; set; }
         public string TransactionTypes => TransactionTypeID;
         public DepositMatchingModeModel DepositMatchingMode 
         {

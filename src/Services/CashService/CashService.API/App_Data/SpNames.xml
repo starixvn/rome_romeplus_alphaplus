@@ -56,7 +56,8 @@
       <Setting Key="Age_CashService_BankAccountAgent_List" SpName="Age_CashService_BankAccountAgent_List_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
         <Mapping DataField="BankAccountAgentID" ObjectProperty="Id"></Mapping>
         <Mapping DataField="BankAccountNumber" ObjectProperty="AccountNumber"></Mapping>
-        <Mapping DataField="TransactionType" ObjectProperty="TransactionTypes"></Mapping>
+        <Mapping DataField="BankCode" ObjectProperty="Code"></Mapping>
+        <Mapping DataField="TransTypeList" ObjectProperty="TransactionTypeID"></Mapping>
         <Mapping DataField="BankAccountStatus" ObjectProperty="Status"></Mapping>
         <Mapping DataField="LastUpdated" ObjectProperty="RepUpdateTime"></Mapping>
       </Setting>
