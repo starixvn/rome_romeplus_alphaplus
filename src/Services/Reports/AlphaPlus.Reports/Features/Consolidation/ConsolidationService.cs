@@ -111,6 +111,7 @@ public class ConsolidationService(
             {
                 ConsolidationEntity total = null;
                 var sortedWinLoss = winloss.OrderByDescending(w => w.PositionTaking).ToList();
+                var rewardAmount = winloss.FirstOrDefault().RewardAmount;
 
                 foreach (var item in winloss)
                 {
@@ -122,11 +123,15 @@ public class ConsolidationService(
                         CustLevel = item.CustLevel,
                         Username = item.Username,
                         CurrencyId = item.CurrencyId,
-                        CurrencyName = currencyHash.TryGetValue(item.CurrencyId, out var currencyName) ? currencyName : string.Empty
+                        CurrencyName = currencyHash.TryGetValue(item.CurrencyId, out var currencyName) ? currencyName : string.Empty,
+                        RewardAmount = item.RewardAmount,
+                        RewardCurrency = item.RewardCurrency
                     };
 
                     total += item;
                 }
+
+                total.RewardAmount = rewardAmount;
 
                 return new ConsolidationByUsername(total, BuildConsolidationByPTs(sortedWinLoss).ToList());
             });
@@ -150,7 +155,9 @@ public class ConsolidationService(
                         CustId = item.CustId,
                         CustLevel = item.CustLevel,
                         Username = item.Username,
-                        CurrencyId = item.CurrencyId
+                        CurrencyId = item.CurrencyId,
+                        RewardAmount = item.RewardAmount,
+                        RewardCurrency = item.RewardCurrency
                     };
 
                     total += item;

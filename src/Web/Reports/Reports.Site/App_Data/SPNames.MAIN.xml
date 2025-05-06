@@ -210,8 +210,6 @@
             <Mapping DataField="owner_total" ObjectProperty="OwnerTotal" />
             <Mapping DataField="company" ObjectProperty="Company" />
             <Mapping DataField="betcount" ObjectProperty="BetCount" />
-            <Mapping DataField="rewardamount" ObjectProperty="RewardAmount" />
-            <Mapping DataField="rewardcurrency" ObjectProperty="RewardCurrency" />
         </Setting>
         <Setting Key="Age_CustomerSelCheckBelonging_MultiCust" SpName="Age_CustomerSelCheckBelonging_MultiCust" DbName="DBAGE.bodb02.wsv_alp" />
     </Function>

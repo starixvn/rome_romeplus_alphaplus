@@ -35,7 +35,7 @@ public class WinLossDetailModel : NetWinLoss
 
     public bool IsExistedWatchlist { get; init; }
 
-    public decimal? RewardAmount { get; init; }
+    public decimal RewardAmount { get; init; } = 0;
 
     public string RewardCurrency { get; init; }
 

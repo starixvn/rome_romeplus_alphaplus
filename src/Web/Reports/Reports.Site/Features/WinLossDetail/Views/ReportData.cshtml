@@ -44,7 +44,7 @@
                 <td data-colname="stotal" class="bold">@data.SAgTotal.FormatNumber()</td>
             }
             <td data-colname="company">@data.Company.FormatNumber()</td>
-            <td data-colname="reward">@((data.RewardAmount ?? 0).FormatNumber())</td>
+            <td data-colname="reward">@data.RewardAmount.FormatNumber())</td>
         </tr>
     }
     void RenderUsernameColumn(WinLossDetailModel data, bool isTotalRow, bool isDormantAccounts)

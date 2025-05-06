@@ -70,7 +70,7 @@ public class ConsolidationEntity
 
     public int BetCount { get; set; }
 
-    public decimal? RewardAmount { get; set; }
+    public decimal RewardAmount { get; set; }
 
     public string RewardCurrency { get; set; }
 
