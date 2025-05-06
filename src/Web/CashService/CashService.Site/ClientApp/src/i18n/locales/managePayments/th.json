@@ -132,5 +132,9 @@
   "clickLinkOrScanQRCode": "คลิกลิงก์หรือสแกน QR code เพื่อขอความช่วยเหลือในการตั้งค่า",
   "addPaymentMethodStep3": "ขั้นตอนที่ 3: กรอกรายละเอียด",
   "enabled": "เปิดใช้งาน",
-  "disabled": "ปิดใช้งาน"
+  "disabled": "ปิดใช้งาน",
+
+  "appSecret": "App Secret",
+  "apiKey": "API Key",
+  "merchantID": "Merchant ID"
 } 

@@ -132,5 +132,9 @@
   "clickLinkOrScanQRCode": "點擊連結或掃描QR碼以獲取設置協助。",
   "addPaymentMethodStep3": "步驟3：輸入詳細資訊",
   "enabled": "啟用",
-  "disabled": "禁用"
+  "disabled": "禁用",
+
+  "appSecret": "App Secret",
+  "apiKey": "API Key",
+  "merchantID": "Merchant ID"
 } 

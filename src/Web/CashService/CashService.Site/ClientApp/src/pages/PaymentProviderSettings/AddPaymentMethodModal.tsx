@@ -26,6 +26,15 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
   const [apiKey, setApiKey] = React.useState('');
   const [merchantID, setMerchantID] = React.useState('');
   const [appSecret, setAppSecret] = React.useState('');
+  const [telegramAssistantUrl, setTelegramAssistantUrl] = React.useState<string>('');
+  const [fieldErrors, setFieldErrors] = React.useState({
+    selectedTransactionType: '',
+    selectedPaymentMethod: '',
+    apiKey: '',
+    merchantID: '',
+    appSecret: '',
+    agreeToTerms: '',
+  });
 
   const inactiveStatus = 0;
   const activeStatus = 1;
@@ -52,14 +61,31 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
     loadPaymentMethods();
   }, [selectedTransactionType]);
 
+  React.useEffect(() => {
+    const el = document.getElementById('telegramAssistantUrl') as HTMLInputElement | null;
+    if (el) {
+      setTelegramAssistantUrl(el.value);
+    }
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
     setSuccessMessage('');
 
-    if (!apiKey || !merchantID || !appSecret) {
-      setError(tGlobal('pleaseFillAllFields'));
+    // Field-level validation
+    const errors: typeof fieldErrors = {
+      selectedTransactionType: !selectedTransactionType ? tGlobal('pleaseFillField') : '',
+      selectedPaymentMethod: !selectedPaymentMethod ? tGlobal('pleaseFillField') : '',
+      apiKey: !apiKey ? tGlobal('pleaseFillField') : '',
+      merchantID: !merchantID ? tGlobal('pleaseFillField') : '',
+      appSecret: !appSecret ? tGlobal('pleaseFillField') : '',
+      agreeToTerms: !agreeToTerms ? tGlobal('pleaseAgreeTerms') : '',
+    };
+    setFieldErrors(errors);
+    const hasError = Object.values(errors).some(Boolean);
+    if (hasError) {
       setIsLoading(false);
       return;
     }
@@ -114,25 +140,32 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
               <div className="w-[48%]">
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('transactionType')}<span className='text-[#E25757]'>*</span></label>
                 <select 
-                  className="h-[35px] w-full border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer" 
+                  className={`h-[35px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer ${fieldErrors.selectedTransactionType ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                   value={selectedTransactionType}
-                  onChange={(e) => setSelectedTransactionType(e.target.value)}
-                  required
+                  onChange={(e) => {
+                    setSelectedTransactionType(e.target.value);
+                    setFieldErrors(f => ({ ...f, selectedTransactionType: '' }));
+                  }}
                 >
                   <option value="">{tGlobal('select')}</option>
                   {TRANSACTION_TYPES.filter(type => type.id !== 0).map(type => (
                     <option key={type.id} value={type.id}>{tManagePayments(`transaction-${type.id}`)}</option>
                   ))}
                 </select>
+                {fieldErrors.selectedTransactionType && (
+                  <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.selectedTransactionType}</div>
+                )}
               </div>
             
               <div className="w-[48%]">
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('paymentMethod')}<span className='text-[#E25757]'>*</span></label>
                 <select 
-                  className="h-[35px] w-full border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer" 
+                  className={`h-[35px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer ${fieldErrors.selectedPaymentMethod ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                   value={selectedPaymentMethod}
-                  onChange={(e) => setSelectedPaymentMethod(e.target.value)}
-                  required
+                  onChange={(e) => {
+                    setSelectedPaymentMethod(e.target.value);
+                    setFieldErrors(f => ({ ...f, selectedPaymentMethod: '' }));
+                  }}
                 >
                   <option value="">{tGlobal('select')}</option>
                   {paymentMethods.filter(p => p.id !== 0).map(method => (
@@ -141,10 +174,13 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
                       value={method.id}
                       disabled={method.status === inactiveStatus}
                     >
-                      {tManagePayments(`payment-method-${method.id}`)}{method.status === inactiveStatus ? ` (${tGlobal('underMaintenance')})` : ''}
+                      {method.name}{method.status === inactiveStatus ? ` (${tGlobal('underMaintenance')})` : ''}
                     </option>
                   ))}
                 </select>
+                {fieldErrors.selectedPaymentMethod && (
+                  <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.selectedPaymentMethod}</div>
+                )}
               </div>
               </div>
             </div>
@@ -152,7 +188,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
               <hr className='mt-[16px] border-[#0000001F]'  />
               <h4 className="text-[14px] pt-[16px] text-[#163f78] font-semibold pb-[4px]">{tManagePayments('addPaymentMethodStep2')}</h4>
               <p className='mt-[8px]'>{tManagePayments('clickLinkOrScanQRCode')}</p>
-              <a href={tManagePayments('addPaymentMethodStep2_Link')} target="_blank" rel="noopener noreferrer">{tManagePayments('addPaymentMethodStep2_Link')}</a>
+              <a href={telegramAssistantUrl} target="_blank" rel="noopener noreferrer">{telegramAssistantUrl}</a>
               <div style={{ marginTop: '16px', textAlign: 'center' }}>
                 <img src="../assets/qrcode.png" alt="QR Code" style={{ width: '150px', height: '150px', display: 'inline-block' }} />
               </div>
@@ -165,34 +201,49 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('apiKey')}<span className='text-[#E25757]'>*</span></label>
                 <input
                   type="text"
-                  className="h-[35px] w-full border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer"
+                  className={`h-[35px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer ${fieldErrors.apiKey ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                   id="apiKey"
                   value={apiKey}
-                  onChange={e => setApiKey(e.target.value)}
-                  required
+                  onChange={e => {
+                    setApiKey(e.target.value);
+                    setFieldErrors(f => ({ ...f, apiKey: '' }));
+                  }}
                 />
+                {fieldErrors.apiKey && (
+                  <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.apiKey}</div>
+                )}
               </div>
               <div className="w-[48%]">
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('merchantID')}<span className='text-[#E25757]'>*</span></label>
                 <input
                   type="text"
-                  className="h-[35px] w-full border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer"
+                  className={`h-[35px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer ${fieldErrors.merchantID ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                   id="merchantID"
                   value={merchantID}
-                  onChange={e => setMerchantID(e.target.value)}
-                  required
+                  onChange={e => {
+                    setMerchantID(e.target.value);
+                    setFieldErrors(f => ({ ...f, merchantID: '' }));
+                  }}
                 />
+                {fieldErrors.merchantID && (
+                  <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.merchantID}</div>
+                )}
               </div>
               <div className="w-[48%]">
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('appSecret')}<span className='text-[#E25757]'>*</span></label>
                 <input
                   type="text"
-                  className="h-[35px] w-full border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer"
+                  className={`h-[35px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer ${fieldErrors.appSecret ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                   id="appSecret"
                   value={appSecret}
-                  onChange={e => setAppSecret(e.target.value)}
-                  required
+                  onChange={e => {
+                    setAppSecret(e.target.value);
+                    setFieldErrors(f => ({ ...f, appSecret: '' }));
+                  }}
                 />
+                {fieldErrors.appSecret && (
+                  <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.appSecret}</div>
+                )}
               </div>
               </div>
             </div>
@@ -207,13 +258,18 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
                 className="w-[18px] h-[18px]"
                 id="agreeToTerms"
                 checked={agreeToTerms}
-                onChange={(e) => setAgreeToTerms(e.target.checked)}
-                required
+                onChange={(e) => {
+                  setAgreeToTerms(e.target.checked);
+                  setFieldErrors(f => ({ ...f, agreeToTerms: '' }));
+                }}
               />
               <span className="flex-1 pl-[6px]">
                 {tManagePayments('agreeTermsAndConditions')}
               </span>
             </label>
+            {fieldErrors.agreeToTerms && (
+              <div className="w-full text-[#FE0000] text-[11px] mt-1 text-center">{fieldErrors.agreeToTerms}</div>
+            )}
             </div>
             <div className='flex justify-center'>
             <button type="button" className="w-[140px] h-[30px] rounded-[20px] text-[#163f78] px-[16px] py-[4px] text-[12px] border-[1px] border-[#163f78] mx-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer " onClick={onClose}>

@@ -132,6 +132,9 @@
   "clickLinkOrScanQRCode": "설정 지원을 위해 링크를 클릭하거나 QR 코드를 스캔하세요.",
   "addPaymentMethodStep3": "3단계: 세부 정보 입력", 
   "enabled": "활성화",
-  "disabled": "비활성화"
+  "disabled": "비활성화",
 
+  "appSecret": "App Secret",
+  "apiKey": "API Key",
+  "merchantID": "Merchant ID"
 } 

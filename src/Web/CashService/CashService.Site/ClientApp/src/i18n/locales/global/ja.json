@@ -20,5 +20,7 @@
   "on": "オン",
   "off": "オフ",
   "enabled": "有効",
-  "disabled": "無効"
+  "disabled": "無効",
+  "pleaseFillField": "フィールドを入力してください",
+  "pleaseAgreeTerms": "利用規約に同意してください"
 } 

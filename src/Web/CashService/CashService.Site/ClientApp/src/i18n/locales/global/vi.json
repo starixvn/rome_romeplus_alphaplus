@@ -20,5 +20,7 @@
   "on": "Bật",
   "off": "Tắt",
   "enabled": "Đã bật",
-  "disabled": "Đã tắt"
+  "disabled": "Đã tắt",
+  "pleaseFillField": "Vui lòng điền vào trường",
+  "pleaseAgreeTerms": "Vui lòng đồng ý với điều khoản và điều kiện"
 } 

@@ -20,5 +20,8 @@
   "on": "On",
   "off": "Off",
   "enabled": "Enabled",
-  "disabled": "Disabled"
+  "disabled": "Disabled",
+
+  "pleaseFillField": "Please fill in the field",
+  "pleaseAgreeTerms": "Please agree to the terms and conditions"
 }

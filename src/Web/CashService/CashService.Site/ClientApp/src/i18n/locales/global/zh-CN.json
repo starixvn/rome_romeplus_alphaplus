@@ -20,5 +20,7 @@
   "on": "开启",
   "off": "关闭",
   "enabled": "已启用",
-  "disabled": "已禁用"
+  "disabled": "已禁用",
+  "pleaseFillField": "请填写字段",
+  "pleaseAgreeTerms": "请同意条款和条件"
 } 

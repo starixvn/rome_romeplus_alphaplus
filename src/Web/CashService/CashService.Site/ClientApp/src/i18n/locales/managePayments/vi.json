@@ -132,5 +132,9 @@
   "clickLinkOrScanQRCode": "Nhấp vào liên kết hoặc quét mã QR để được hỗ trợ thiết lập.",
   "addPaymentMethodStep3": "Bước 3: Nhập thông tin chi tiết",
   "enabled": "Bật",
-  "disabled": "Tắt"
+  "disabled": "Tắt",
+
+  "appSecret": "App Secret",
+  "apiKey": "API Key",
+  "merchantID": "Merchant ID"
 } 

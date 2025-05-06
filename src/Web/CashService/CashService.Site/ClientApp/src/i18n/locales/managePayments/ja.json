@@ -132,5 +132,9 @@
   "clickLinkOrScanQRCode": "設定サポートのためにリンクをクリックするかQRコードをスキャンしてください。",
   "addPaymentMethodStep3": "ステップ3：詳細を入力",
   "enabled": "有効",
-  "disabled": "無効"
+  "disabled": "無効",
+
+  "appSecret": "App Secret",
+  "apiKey": "API Key",
+  "merchantID": "Merchant ID"
 } 
