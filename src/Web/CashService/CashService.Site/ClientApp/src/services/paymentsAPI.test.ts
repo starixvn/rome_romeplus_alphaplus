@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { paymentProviderService } from './paymentsAPI';
 import { api } from '../config/axios';
 import type { Mock } from 'vitest';
