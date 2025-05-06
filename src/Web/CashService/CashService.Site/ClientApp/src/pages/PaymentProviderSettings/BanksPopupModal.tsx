@@ -38,7 +38,7 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
     <div className="bg-[#00000066] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-center justify-center">
       <div className="p-[30px] bg-[#ffffff] w-full max-w-[560px] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
         <div className="relative">
-          <h5 className="text-[16px] text-[#163f78] font-bold leading-[21.6px] tracking-[0.2px] pb-[4px]">{tManagePayments('listOfBanks')}</h5>
+          <h5 className="text-[16px] text-[#163f78] font-bold leading-[21.6px] tracking-[0.2px]">{tManagePayments('listOfBanks')}</h5>
           <button type="button" className="absolute top-[-20px] right-[-20px] cursor-pointer" onClick={onClose}>
             <IconClose />
           </button>
@@ -61,8 +61,8 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
           ) : (
             <>
               <label className='block text-[#163f78] my-[16px] font-semibold'>{tManagePayments(`transaction-${transactionType}`)}</label>
-              <div className="table-responsive">
-                <table className="table-striped">
+              <div className="table-fixed-header max-h-[300px] overflow-y-auto">
+                <table className="w-full">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -73,7 +73,12 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
                     {banks.map((bank, index) => (
                       <tr key={bank.id}>
                         <td>{index + 1}</td>
-                        <td className='text-left!'>{bank.name}</td>
+                        <td className='text-left!'>
+                          <div className='flex items-center'>
+                            <img src="../assets/bank/BAAC.png" alt={bank.name} className='w-[20px] h-[20px] mr-[8px]' />
+                            {bank.name}
+                          </div>
+                        </td>
                       </tr>
                     ))}
                   </tbody>

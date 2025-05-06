@@ -214,10 +214,11 @@ function PaymentProviderSettings() {
         </div>
       ) : (
         <>
+        <div>Back</div>
         <div className='bg-[#ffffff] px-[16px] py-[10px] mb-[8px]'>
-        <div className="settings-header">
-        <h2 className='pb-[8px] mt-[8px] text-[16px] text-[#163f78] font-semibold leading-[21.6px] tracking-[0.2px] '>{window.providerSettingsViewModel.Provider.Name}</h2>
-      </div>
+          <div className="settings-header">
+            <h2 className='pb-[8px] mt-[8px] text-[16px] text-[#163f78] font-semibold leading-[21.6px] tracking-[0.2px] '>{window.providerSettingsViewModel.Provider.Name}</h2>
+          </div>
           <div className="flex gap-[24px]">
             <div>      
             <p className="mb-[8px]">
@@ -308,11 +309,11 @@ function PaymentProviderSettings() {
             <button className="rounded-[5px] text-[#163f78] p-[8px] text-[12px] font-bold border-[1px] border-[#163f78] ml-auto mt-auto bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer leading-[14px]" onClick={handleViewFees}>{tManagePayments('viewProviderFees', {providerName: window.providerSettingsViewModel.Provider.Name})}</button>
           </div>
           
-          <div className="table-fixed-header">
-            <table className="text-[12px] w-full border-collapse border border-[#0000001f] border-t-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
+          <div className="table-fixed-header table-fixed-body">
+            <table className="text-[12px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
               <thead>
                 <tr>
-                  <th>{tManagePayments('paymentMethod')}</th>
+                  <th className='col-shadown col-payment-method'><span className='relative z-3'>{tManagePayments('paymentMethod')}</span></th>
                   <th>{tManagePayments('status')}</th>
                   <th>{tManagePayments('transactionType')}</th>
                   <th>{tManagePayments('minimum')}</th>
@@ -324,7 +325,7 @@ function PaymentProviderSettings() {
               <tbody>
                 {providerSettings.map((setting, index) => (
                   <tr key={index}>
-                    <td className='font-semibold'>{setting.methodName}</td>
+                    <td className='col-shadown col-payment-method font-semibold'><span className='relative z-3'>{setting.methodName}</span></td>
                     <td><span className='rounded-[20px] font-semibold px-[10px] py-[3px]  bg-[#AFE9D7]'>{tManagePayments(`status-${setting.status}`)}</span></td>
                     <td className='font-semibold'>{tManagePayments(`transaction-${setting.transactionType}`)}</td>
                     <td>
