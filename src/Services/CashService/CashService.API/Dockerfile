@@ -3,13 +3,13 @@ WORKDIR /build
 
 # Create a dedicated layer for NuGet packages with improved caching
 COPY "src/NuGet.config" "src/NuGet.config"
-COPY "src/Services/CashService/PaymentService.API/PaymentService.API.csproj" "src/Services/CashService/PaymentService.API/PaymentService.API.csproj"
+COPY "src/Services/CashService/CashService.API/CashService.API.csproj" "src/Services/CashService/CashService.API/CashService.API.csproj"
 RUN --mount=type=cache,target=/root/.nuget/packages \
-  dotnet restore "src/Services/CashService/PaymentService.API/PaymentService.API.csproj" -v d
+  dotnet restore "src/Services/CashService/CashService.API/CashService.API.csproj" -v d
 
 # Copy only the necessary source code and publish
-COPY "src/Services/CashService/PaymentService.API" "src/Services/CashService/PaymentService.API"
-WORKDIR /build/src/Services/CashService/PaymentService.API
+COPY "src/Services/CashService/CashService.API" "src/Services/CashService/CashService.API"
+WORKDIR /build/src/Services/CashService/CashService.API
 RUN --mount=type=cache,target=/root/.nuget/packages \
   dotnet publish -c Release -o /app
 
@@ -30,4 +30,4 @@ COPY --from=builder /app ./
 
 # Switch to non-root user
 USER dotnetuser
-ENTRYPOINT ["dotnet", "AlphaPlus.PaymentService.API.dll"]
+ENTRYPOINT ["dotnet", "AlphaPlus.CashService.API.dll"]
