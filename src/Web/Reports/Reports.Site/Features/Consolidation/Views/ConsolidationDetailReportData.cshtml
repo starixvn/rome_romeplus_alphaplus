@@ -78,6 +78,8 @@
                 }
             }
             <td class="col-company">@data.Company.FormatNumber()</td>
+            <td class="col-reward">@data.RewardAmount.FormatNumber()</td>
+            <td class="col-currency">@data.RewardCurrency</td>
         </tr>
     }
 
@@ -166,6 +168,8 @@
                 <th class="sorting visible-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="7">
                     @Resources.Company</th>
             }
+            <th class="sorting" rowspan="2" data-sortedname="RewardAmount" data-colindex="8">@Resources.Reward</th>
+            <th class="sorting" rowspan="2" data-sortedname="RewardCurrency" data-colindex="9">@Resources.RewardCurrency</th>
         </tr>
         <tr class="thead-row2">
             <th class="hidden-stack-mode col-winloss sorting" data-sortedname="MemberWinLoss" data-colindex="5">
@@ -216,6 +220,6 @@
     }
     else
     {
-        <no-information colspan="@(isSuperLevel ? 18 : (isMasterLevel ? 15 : 12))" />
+        <no-information colspan="@(isSuperLevel ? 20 : (isMasterLevel ? 17 : 14))" />
     }
 </table>

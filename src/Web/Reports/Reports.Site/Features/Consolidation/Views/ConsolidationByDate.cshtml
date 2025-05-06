@@ -37,6 +37,8 @@
             </th>
             <th rowspan="2">@Resources.Company</th>
             <th rowspan="2">@Resources.BetCount</th>
+            <th rowspan="2">@Resources.Reward</th>
+            <th rowspan="2">@Resources.RewardCurrency</th>
         </tr>
         <tr class="thead-row2">
             <th class="hidden-stack-mode">@Resources.WinLoss</th>
@@ -108,6 +110,8 @@
                         }
                         <td>@data.Company.FormatNumber()</td>
                         <td>@data.BetCount.FormatNumber()</td>
+                        <td>@data.RewardAmount.FormatNumber()</td>
+                        <td>@data.RewardCurrency</td>
                     </tr>
                 }
             }
@@ -115,7 +119,7 @@
     }
     else
     {
-        <no-information colspan="15" />
+        <no-information colspan="17" />
     }
 </table>
 <a class="hide" id="LoadLegendURL" asp-action="WinLoss" asp-controller="Legends"

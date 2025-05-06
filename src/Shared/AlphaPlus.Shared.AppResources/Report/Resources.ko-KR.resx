@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Action" xml:space="preserve">
+    <value>실행</value>
+  </data>
   <data name="Agent" xml:space="preserve">
     <value>에이전트</value>
   </data>
@@ -195,6 +198,9 @@
   <data name="CasinoWinLoss" xml:space="preserve">
     <value>카지노 승리/패배</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>닫기</value>
+  </data>
   <data name="Comm" xml:space="preserve">
     <value>수수료</value>
   </data>
@@ -219,6 +225,9 @@
   <data name="Company" xml:space="preserve">
     <value>회사</value>
   </data>
+  <data name="Consolidation" xml:space="preserve">
+    <value>Consolidation</value>
+  </data>
   <data name="ConsolidationReportByDate" xml:space="preserve">
     <value>일과 연결 리포트</value>
   </data>
@@ -227,6 +236,9 @@
   </data>
   <data name="ConsolidationReportByUsername" xml:space="preserve">
     <value>아이디 통합 보고서</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>작성일</value>
   </data>
   <data name="Currency" xml:space="preserve">
     <value>화페</value>
@@ -279,6 +291,9 @@
   <data name="FilterByUsername_Placeholder" xml:space="preserve">
     <value>Separate mulitple usernames by comma (,)</value>
   </data>
+  <data name="FirstLastName" xml:space="preserve">
+    <value>First/ Last Name</value>
+  </data>
   <data name="From" xml:space="preserve">
     <value>시작일</value>
   </data>
@@ -287,6 +302,9 @@
   </data>
   <data name="Gaming" xml:space="preserve">
     <value>Gaming</value>
+  </data>
+  <data name="GivenCredit" xml:space="preserve">
+    <value>주어진 크레딧</value>
   </data>
   <data name="GrandTotal" xml:space="preserve">
     <value>총 그랜드</value>
@@ -594,6 +612,9 @@
   <data name="WinLossAbbr" xml:space="preserve">
     <value>승/패</value>
   </data>
+  <data name="WinLossAnalysis" xml:space="preserve">
+    <value>승리/패배 분석</value>
+  </data>
   <data name="WinLossByBetType" xml:space="preserve">
     <value>배팅 종류별 승리 패배</value>
   </data>
@@ -605,27 +626,6 @@
   </data>
   <data name="Yesterday" xml:space="preserve">
     <value>어제</value>
-  </data>
-  <data name="eventdate" xml:space="preserve">
-    <value>경기 날짜</value>
-  </data>
-  <data name="odds" xml:space="preserve">
-    <value>배당</value>
-  </data>
-  <data name="of" xml:space="preserve">
-    <value>부터</value>
-  </data>
-  <data name="over" xml:space="preserve">
-    <value>오버</value>
-  </data>
-  <data name="refno" xml:space="preserve">
-    <value>배팅 번호</value>
-  </data>
-  <data name="transtime" xml:space="preserve">
-    <value>전송 시간</value>
-  </data>
-  <data name="under" xml:space="preserve">
-    <value>언더</value>
   </data>
   <data name="_Apr" xml:space="preserve">
     <value>4월</value>
@@ -660,25 +660,28 @@
   <data name="_Oct" xml:space="preserve">
     <value>10월</value>
   </data>
-  <data name="Action" xml:space="preserve">
-    <value>실행</value>
+  <data name="eventdate" xml:space="preserve">
+    <value>경기 날짜</value>
   </data>
-  <data name="Close" xml:space="preserve">
-    <value>닫기</value>
+  <data name="odds" xml:space="preserve">
+    <value>배당</value>
   </data>
-  <data name="Consolidation" xml:space="preserve">
-    <value>Consolidation</value>
+  <data name="of" xml:space="preserve">
+    <value>부터</value>
   </data>
-  <data name="CreatedDate" xml:space="preserve">
-    <value>작성일</value>
+  <data name="over" xml:space="preserve">
+    <value>오버</value>
   </data>
-  <data name="GivenCredit" xml:space="preserve">
-    <value>주어진 크레딧</value>
+  <data name="refno" xml:space="preserve">
+    <value>배팅 번호</value>
   </data>
-  <data name="FirstLastName" xml:space="preserve">
-    <value>First/ Last Name</value>
+  <data name="transtime" xml:space="preserve">
+    <value>전송 시간</value>
   </data>
-  <data name="WinLossAnalysis" xml:space="preserve">
-    <value>승리/패배 분석</value>
+  <data name="under" xml:space="preserve">
+    <value>언더</value>
+  </data>
+  <data name="RewardCurrency" xml:space="preserve">
+    <value />
   </data>
 </root>

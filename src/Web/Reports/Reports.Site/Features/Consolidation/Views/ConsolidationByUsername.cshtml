@@ -2,7 +2,7 @@
     Layout = "_Layout";
     ViewData["Title"] = Model.PageHeader.Title;
 
-    void RenderConsolidateRow(ConsolidationEntity consolidation)
+    void RenderConsolidateRow(ConsolidationEntity consolidation, bool isRenderedDetail = false)
     {
         <td>@consolidation.Turnover.FormatNumber()</td>
         <td>@consolidation.GrossComm.FormatNumber()</td>
@@ -50,6 +50,16 @@
         }
         <td>@consolidation.Company.FormatNumber()</td>
         <td>@consolidation.BetCount.FormatNumber()</td>
+        @if (isRenderedDetail)
+        {
+            <td>@consolidation.RewardAmount.FormatNumber()</td>
+            <td>@consolidation.RewardCurrency</td>
+        }
+        else
+        {
+            <td></td>
+            <td></td>
+        }
     }
 }
 @section Styles {    
@@ -85,6 +95,8 @@
             </th>
             <th rowspan="2">@Resources.Company</th>
             <th rowspan="2">@Resources.BetCount</th>
+            <th rowspan="2">@Resources.Reward</th>
+            <th rowspan="2">@Resources.RewardCurrency</th>
         </tr>
         <tr class="thead-row2">
             <th class="hidden-stack-mode">@Resources.WinLoss</th>
@@ -128,7 +140,7 @@
                     </td>
                     <td class="text-center">@total.CurrencyName</td>
                     @{
-                        RenderConsolidateRow(total);
+                        RenderConsolidateRow(total, true);
                     }
                 </tr>
                 foreach (var dataByPT in dataByUsername.ConsolidationByPTs)
@@ -163,7 +175,7 @@
     }
     else
     {
-        <no-information colspan="14" />
+        <no-information colspan="16" />
     }
 </table>
 <div class="modal fade consolidation-modal" id="consolidation-product-pt-list-popup" tabindex="-1" role="dialog"
