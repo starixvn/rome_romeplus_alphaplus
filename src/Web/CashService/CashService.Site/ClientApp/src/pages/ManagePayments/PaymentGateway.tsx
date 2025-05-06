@@ -4,7 +4,7 @@ import { paymentProviderService } from '../../services/paymentsAPI';
 import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
 import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import DailyLimitPopupModal from './SetDailyLimitPopupModal';
-import styles from './PaymentGateway.module.scss';
+import '../../styles/global.scss';
 import TitleCommon from '../../components/ui/TitleCommon';
 import { IconPen } from '../../components/Icons';
 
@@ -131,7 +131,7 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = ({ setActiveTab, activeTab
                 {error}
               </div>
             ) : (
-              <div className={styles['table-fixed-header']}>
+              <div className="table-fixed-header">
                 <table className="text-[12px] w-full border-collapse border border-[#0000001f] border-t-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
                   <thead>
                     <tr>

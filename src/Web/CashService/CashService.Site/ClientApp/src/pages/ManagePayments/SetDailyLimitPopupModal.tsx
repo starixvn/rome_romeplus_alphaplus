@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import './PaymentGateway.css';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { IconCheck, IconClose, IconError } from '../../components/Icons';
 

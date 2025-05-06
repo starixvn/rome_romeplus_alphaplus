@@ -9,7 +9,7 @@ import AddBankAccountComponent from './AddBankAccountComponent';
 import UpdateBankAccountComponent from './UpdateBankAccountComponent';
 import TitleCommon from '../../components/ui/TitleCommon';
 import { IconCheck, IconDelete, IconError, IconPen, IconSearch, IconSync } from '../../components/Icons';
-import styles from './PaymentGateway.module.scss';
+import '../../styles/global.scss';
 
 interface BankAccountProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
@@ -372,12 +372,12 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                 )}
 
                 {!loading && !error && bankAccounts.length > 0 && (
-                  <div className={`${styles["table-fixed-header"]} ${styles["table-fixed-body"]}`}>
+                  <div className="table-fixed-header table-fixed-body">
                     <table className="text-[12px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
                       <thead>
                         <tr>
-                          <th className={`${styles["col-no"]} bg-[#ffffff]`}>#</th>
-                          <th className={`${styles["col-action"]} bg-[#ffffff]`}>{tGlobal('action')}</th>
+                          <th className="col-no bg-[#ffffff]">#</th>
+                          <th className="col-action bg-[#ffffff]">{tGlobal('action')}</th>
                           <th>{tManagePayments('accountNickname')}</th>
                           <th>{tManagePayments('bank')}</th>
                           <th>{tManagePayments('accountHolderName')}</th>
@@ -390,8 +390,8 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                       <tbody className='font-[500]'>
                         {bankAccounts.map((account, index) => (
                           <tr key={account.id}>
-                            <td className={`${styles["col-no"]} bg-[#ffffff]`}>{index + 1}</td> 
-                            <td className={`${styles["col-action"]} bg-[#ffffff]`}>
+                            <td className="col-no bg-[#ffffff]">{index + 1}</td> 
+                            <td className="col-action bg-[#ffffff]">
                               <div className="flex">
                                 <button 
                                   className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[#163f78]"
@@ -419,7 +419,12 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                               </div>
                             </td>
                             <td className='text-left'>{account.accountNickname}</td>
-                            <td className='text-left'>{account.bankName}</td>
+                            <td className='text-left'>
+                              <div className='flex items-center relative pl-[25px]'>
+                                <img src="../assets/bank/BAAC.png" alt={account.bankName} className='w-[20px] h-[20px] absolute top-[0] left-[0]' />
+                                {account.bankName}
+                              </div>
+                              </td>
                             <td className='text-left'>{account.accountHolderName}</td>
                             <td>{account.accountNumber}</td>
                             <td>{getTransactionTypeNames(account.transactionTypes)}</td>
