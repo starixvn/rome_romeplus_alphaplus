@@ -4,7 +4,6 @@ import { TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { PaymentMethod } from '../../services/interfaces/PaymentMethod';
 import { IconCheck, IconError, IconClose } from '../../components/Icons';
-
 interface AddPaymentMethodModalProps {
   onClose: () => void;
   onSave: () => void;
@@ -113,7 +112,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
               <h4 className="text-[14px] pt-[16px] text-[#163f78] font-semibold pb-[4px]">{tManagePayments('addPaymentMethodStep1')}</h4>
               <div className='flex gap-[10px]'>
               <div className="w-[48%]">
-                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('transactionType')}</label>
+                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('transactionType')}<span className='text-[#E25757]'>*</span></label>
                 <select 
                   className="h-[35px] w-full border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer" 
                   value={selectedTransactionType}
@@ -128,7 +127,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
               </div>
             
               <div className="w-[48%]">
-                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('paymentMethod')}</label>
+                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('paymentMethod')}<span className='text-[#E25757]'>*</span></label>
                 <select 
                   className="h-[35px] w-full border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer" 
                   value={selectedPaymentMethod}
@@ -155,7 +154,9 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
               <p className='mt-[8px]'>{tManagePayments('clickLinkOrScanQRCode')}</p>
               <a href={tManagePayments('addPaymentMethodStep2_Link')} target="_blank" rel="noopener noreferrer">{tManagePayments('addPaymentMethodStep2_Link')}</a>
               <div style={{ marginTop: '16px', textAlign: 'center' }}>
-                <img src="../qr-placeholder.png" alt="QR Code" style={{ width: '150px', height: '150px', display: 'inline-block' }} />
+                <img src="http://localhost:5173/src/public/qr-placeholder.png" alt="QR Code" style={{ width: '150px', height: '150px', display: 'inline-block' }} />
+               
+
               </div>
             </div>
             <div>
@@ -163,7 +164,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
               <label className="text-[14px] pt-[16px] text-[#163f78] font-semibold pb-[4px]">{tManagePayments('addPaymentMethodStep3')}</label>
               <div className='flex flex-wrap gap-[10px]'>
               <div className="w-[48%]">
-                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('apiKey')}</label>
+                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('apiKey')}<span className='text-[#E25757]'>*</span></label>
                 <input
                   type="text"
                   className="h-[35px] w-full border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer"
@@ -174,7 +175,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
                 />
               </div>
               <div className="w-[48%]">
-                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('merchantID')}</label>
+                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('merchantID')}<span className='text-[#E25757]'>*</span></label>
                 <input
                   type="text"
                   className="h-[35px] w-full border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer"
@@ -185,7 +186,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
                 />
               </div>
               <div className="w-[48%]">
-                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('appSecret')}</label>
+                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('appSecret')}<span className='text-[#E25757]'>*</span></label>
                 <input
                   type="text"
                   className="h-[35px] w-full border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer"
