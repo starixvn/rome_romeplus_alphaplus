@@ -46,8 +46,9 @@
       <Setting Key="Age_CashService_UserBankAccount" SpName="Age_CashService_UserBankAccount_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
         <Mapping DataField="BankID" ObjectProperty="Id"></Mapping>
         <Mapping DataField="BankName" ObjectProperty="Bank"></Mapping>
+        <Mapping DataField="BankCode" ObjectProperty="Code"></Mapping>
       </Setting>
-      <Setting Key="Age_CashService_TransTypeControl" SpName="Age_CashService_TransTypeControl" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+      <Setting Key="f_CashService_TransTypeControl" SpName="f_CashService_TransTypeControl" DbName="DBCust.CustDB.wsv_alp" Plain="0">
         <Mapping DataField="TransactionTypeID" ObjectProperty="Id"></Mapping>
         <Mapping DataField="TransTypeDesc" ObjectProperty="Name"></Mapping>
       </Setting>

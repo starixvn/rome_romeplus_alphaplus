@@ -8,7 +8,7 @@ import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 
 function ManagePayments() {
   useCookieLanguage();
-  const [activeTab, setActiveTab] = React.useState('paymentGateway');
+  const [activeTab, setActiveTab] = React.useState('bankAccount');
 
   return (
     <>

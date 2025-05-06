@@ -12,6 +12,12 @@ namespace AlphaPlus.CashService.API.Models.Payments
         public int Id { get; set; }
         public string Name => Bank;
         public string TransactionTypes => TransactionTypeID;
-        public DepositMatchingModeModel DepositMatchingMode => JsonConvert.DeserializeObject<DepositMatchingModeModel>(DepositMode);
+        public DepositMatchingModeModel DepositMatchingMode 
+        {
+            get
+            {
+                return string.IsNullOrEmpty(DepositMode) ? null : JsonConvert.DeserializeObject<DepositMatchingModeModel>(DepositMode);
+            }
+        }
     }
 }
