@@ -60,7 +60,7 @@
   "accountNickname": "口座のニックネーム",
   "accountHolderName": "口座名義人",
   "bankAccountNumber": "銀行口座番号",
-  "searchAccountNumberOrName": "口座番号または名義で検索...",
+  "searchAccountNumberOrName": "口座番号または名義で検索",
 
   "transactionLimitPreferences": "取引制限設定",
   "customizeTransactionLimitPreferences": "メンバーの取引制限設定をカスタマイズします。",

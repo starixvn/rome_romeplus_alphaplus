@@ -60,7 +60,7 @@
   "accountNickname": "账户昵称",
   "accountHolderName": "账户持有人姓名",
   "bankAccountNumber": "银行账号",
-  "searchAccountNumberOrName": "搜索账号或姓名...",
+  "searchAccountNumberOrName": "搜索账号或姓名",
 
   "transactionLimitPreferences": "交易限额设置",
   "customizeTransactionLimitPreferences": "为您的会员自定义交易限额设置。",

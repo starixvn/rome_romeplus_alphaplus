@@ -61,7 +61,7 @@
   "accountNickname": "Account nickname",
   "accountHolderName": "Account holder name", 
   "bankAccountNumber": "Bank account number", 
-  "searchAccountNumberOrName": "Search account number or name ...",
+  "searchAccountNumberOrName": "Search account number or name",
 
   "transactionLimitPreferences": "Transaction limit preferences",
   "customizeTransactionLimitPreferences": "Customize transaction limit preferences for your members.",

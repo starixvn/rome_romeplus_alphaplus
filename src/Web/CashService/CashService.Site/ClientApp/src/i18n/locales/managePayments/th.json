@@ -60,7 +60,7 @@
   "accountNickname": "ชื่อเล่นบัญชี",
   "accountHolderName": "ชื่อเจ้าของบัญชี",
   "bankAccountNumber": "เลขที่บัญชีธนาคาร",
-  "searchAccountNumberOrName": "ค้นหาเลขที่บัญชีหรือชื่อ ...",
+  "searchAccountNumberOrName": "ค้นหาเลขที่บัญชีหรือชื่อ",
 
   "transactionLimitPreferences": "การตั้งค่าขีดจำกัดการทำรายการ",
   "customizeTransactionLimitPreferences": "กำหนดค่าการตั้งค่าขีดจำกัดการทำรายการสำหรับสมาชิกของคุณ",

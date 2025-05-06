@@ -60,7 +60,7 @@
   "accountNickname": "계좌 닉네임",
   "accountHolderName": "계좌 소유자 이름",
   "bankAccountNumber": "은행 계좌 번호",
-  "searchAccountNumberOrName": "계좌 번호 또는 이름으로 검색...",
+  "searchAccountNumberOrName": "계좌 번호 또는 이름으로 검색",
 
   "transactionLimitPreferences": "거래 한도 설정",
   "customizeTransactionLimitPreferences": "회원의 거래 한도 설정을 사용자 정의합니다.",
