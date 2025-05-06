@@ -6,13 +6,13 @@
         <Mapping DataField="Provider" ObjectProperty="Name"></Mapping>
         <Mapping DataField="ProviderStatus" ObjectProperty="Status"></Mapping>
       </Setting>
-      <Setting Key="Age_CashService_DailyWithdrawLimit_Sel" SpName="Age_CashService_DailyWithdrawLimit_Sel_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+      <Setting Key="Age_CashService_AgentBankAccountLimit_Sel" SpName="Age_CashService_AgentBankAccountLimit_Sel_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
         <Mapping DataField="MinPer" ObjectProperty="MinPer"></Mapping>
         <Mapping DataField="MaxPer" ObjectProperty="MaxPer"></Mapping>
         <Mapping DataField="Deposit" ObjectProperty="IsDeposit"></Mapping>
         <Mapping DataField="WDLimit" ObjectProperty="DailyWithdrawalCount"></Mapping>
       </Setting>
-      <Setting Key="Age_CashService_DailyWithdrawLimit_Upd" SpName="Age_CashService_DailyWithdrawLimit_Upd_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+      <Setting Key="Age_CashService_AgentBankAccountLimit_Upd" SpName="Age_CashService_AgentBankAccountLimit_Upd_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
       <Setting Key="Age_CashService_PaymentProviderFee_Sel" SpName="Age_CashService_PaymentProviderFee_Sel_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
         <Mapping DataField="MethodName" ObjectProperty="Method"></Mapping>
         <Mapping DataField="FeeRate" ObjectProperty="Rate"></Mapping>

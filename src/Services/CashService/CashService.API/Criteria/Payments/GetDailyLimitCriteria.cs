@@ -14,7 +14,7 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
 
         public int ModeView { get; set; }
 
-        public override string GetSettingKey() => "Age_CashService_DailyWithdrawLimit_Sel";
+        public override string GetSettingKey() => "Age_CashService_AgentBankAccountLimit_Sel";
 
         public override bool IsValid() => CustId > 0;
     }
