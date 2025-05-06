@@ -154,9 +154,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
               <p className='mt-[8px]'>{tManagePayments('clickLinkOrScanQRCode')}</p>
               <a href={tManagePayments('addPaymentMethodStep2_Link')} target="_blank" rel="noopener noreferrer">{tManagePayments('addPaymentMethodStep2_Link')}</a>
               <div style={{ marginTop: '16px', textAlign: 'center' }}>
-                <img src="http://localhost:5173/src/public/qr-placeholder.png" alt="QR Code" style={{ width: '150px', height: '150px', display: 'inline-block' }} />
-               
-
+                <img src="../assets/qrcode.png" alt="QR Code" style={{ width: '150px', height: '150px', display: 'inline-block' }} />
               </div>
             </div>
             <div>
