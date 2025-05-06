@@ -749,7 +749,7 @@ Lưu ý:Thông tin về quốc gia và thành phố được cung cấp bởi  I
     <value>Xem ngay</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
-    <value>Giảm thiểu rủi ro kinh doanh với &lt;b&gt;Last Bets&lt;/b&gt; bằng cách giám sát vé cược đang chạy của thành viên thông qua bộ lọc tùy chỉnh.</value>
+    <value>Giảm thiểu rủi ro kinh doanh bằng cách giám sát các vé cược đang chạy của thành viên thông qua bộ lọc tùy chỉnh.</value>
   </data>
   <data name="HighlightPopupRewardIntro" xml:space="preserve">
     <value>&lt;p&gt;Chúng tôi rất vui mừng giới thiệu Chương trình Tiền thưởng. Công ty sẽ chi trả toàn bộ tiền thưởng này, và khi Member đã nhận thưởng, số tiền này sẽ không được phép sử dụng để đặt cược. Tiền thưởng sẽ được phân phối cho các cấp trên, và Member có thể rút tiền qua Agent của mình.&lt;/p&gt;&lt;p&gt;Chức năng &lt;b&gt;Thanh toán Tiền thưởng&lt;/b&gt; giúp bạn quản lý việc thanh toán cho các cấp dưới, đảm bảo tất cả các khoản tiền thưởng được phân phối một cách chính xác.&lt;/p&gt;</value>

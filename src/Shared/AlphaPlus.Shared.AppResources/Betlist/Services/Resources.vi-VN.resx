@@ -858,6 +858,6 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
     <value>Rủi Ro Của Agent</value>
   </data>
   <data name="FilterConfigurationSpecificSuperMasterContent" xml:space="preserve">
-    <value>Giám sát vé cược của thành viên đã chọn, có thể được thêm vào thủ công.</value>
-  </data> 
+    <value>Theo dõi vé cược của những Member được chọn, có thể thêm thủ công.</value>
+  </data>
 </root>
