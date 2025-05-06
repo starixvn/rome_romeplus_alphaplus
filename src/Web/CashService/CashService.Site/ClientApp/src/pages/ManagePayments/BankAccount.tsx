@@ -224,7 +224,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
               <ul className="flex">
                 <li className="mr-[8px]">
                   <button
-                      className={`font-bold text-[12px] tracking-[0.12px] leading-[36px] pr-[16px] pl-[16px] rounded-t-[4px] ${activeTab === 'paymentGateway' ? ' bg-[#163f78] text-[#ffffff] cursor-pointer' : 'bg-[#dbe2ef] text-[#163f78] cursor-pointer'}`}
+                      className={`font-bold text-[12px] tracking-[0.12px] leading-[36px] pr-[16px] pl-[16px] rounded-t-[4px] ${activeTab === 'paymentGateway' ? ' bg-[var(--primary-color)] text-[#ffffff] cursor-pointer' : 'bg-[#dbe2ef] text-[var(--primary-color)] cursor-pointer'}`}
                       onClick={() => setActiveTab('paymentGateway')}
                     >
                     {tManagePayments('paymentGateway')}
@@ -232,7 +232,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                 </li>
                 <li>
                   <button
-                      className={`font-bold text-[12px] tracking-[0.12px] leading-[36px] pr-[16px] pl-[16px] rounded-t-[4px] ${activeTab === 'bankAccount' ? ' bg-[#163f78] text-[#ffffff] cursor-pointer' : 'bg-[#dbe2ef] text-[#163f78] cursor-pointer'}`}
+                      className={`font-bold text-[12px] tracking-[0.12px] leading-[36px] pr-[16px] pl-[16px] rounded-t-[4px] ${activeTab === 'bankAccount' ? ' bg-[var(--primary-color)] text-[#ffffff] cursor-pointer' : 'bg-[#dbe2ef] text-[var(--primary-color)] cursor-pointer'}`}
                       onClick={() => setActiveTab('bankAccount')}
                     >
                     {tManagePayments('bankAccount')}
@@ -243,17 +243,17 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
             <div className="card-body">
               <div className="bg-[#ffffff]">
                 <div className="px-[14px] py-[8px]">
-                  <div className="pb-[8px] mt-[8px] text-[16px] text-[#163f78] font-semibold leading-[21.6px] tracking-[0.2px] ">{tManagePayments('manageBankAccountAndLimits')}</div>
+                  <div className="pb-[8px] mt-[8px] text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] tracking-[0.2px] ">{tManagePayments('manageBankAccountAndLimits')}</div>
                   <div className="text-[12px] leading-[14px]">{tManagePayments('addBankAccountAndLimit')}</div>
                   <div className="my-[8px]">
                     <button 
-                      className="w-[183px] h-[30px] rounded-[5px] text-[#ffffff] px-[16px] py-[4px] text-[12px] font-bold mr-[8px] bg-[#163f78] hover:bg-[#375A8A] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
+                      className="w-[183px] h-[30px] rounded-[5px] text-[#ffffff] px-[16px] py-[4px] text-[12px] font-bold mr-[8px] bg-[var(--primary-color)] hover:bg-[#375A8A] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
                       onClick={handleAddBankAccount}
                     >
                     +{tManagePayments('addBankAccount')}
                     </button>
                     <button 
-                      className="w-[183px] h-[30px] rounded-[5px] text-[#163f78] px-[16px] py-[4px] text-[12px] font-bold border-[1px] border-[#163f78] mr-[8px] bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
+                      className="w-[183px] h-[30px] rounded-[5px] text-[var(--primary-color)] px-[16px] py-[4px] text-[12px] font-bold border-[1px] border-[var(--primary-color)] mr-[8px] bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
                       onClick={handleSetLimit}
                     >
                       {tManagePayments('setLimit')}
@@ -309,7 +309,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                           <label htmlFor="transactionTypeSelect" className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('transactionType')}</label>
                           <select
                             id="transactionTypeSelect"
-                            className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer"
+                            className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer"
                             value={selectedTransactionType}
                             onChange={handleTransactionTypeChange}
                           >
@@ -330,7 +330,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                           <label htmlFor="statusSelect" className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('status')}</label>
                           <select
                             id="statusSelect"
-                            className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer"
+                            className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer"
                             value={selectedStatus}
                             onChange={handleStatusChange}
                           >
@@ -352,7 +352,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                           <input
                             type="text"
                             id="searchInput"
-                            className="h-[35px] w-[100%] pl-[30px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] shadow-[0_0_6px_rgba(0,0,0,0.16)]"
+                            className="h-[35px] w-[100%] pl-[30px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] shadow-[0_0_6px_rgba(0,0,0,0.16)]"
                             placeholder={tManagePayments('searchAccountNumberOrName')}
                             value={searchInput}
                             onChange={handleSearchChange}
@@ -387,21 +387,21 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                             <td className="col-action bg-[#ffffff]">
                               <div className="flex">
                                 <button 
-                                  className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[#163f78]"
+                                  className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--primary-color)]"
                                   onClick={() => handleEditBankAccount(account.id)}
                                   title={tGlobal('edit')}
                                 >                            
                                   <IconPen />
                                 </button>
                                 <button 
-                                  className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[#163f78]"
+                                  className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--primary-color)]"
                                   onClick={() => handleDeleteBankAccount(account.id)}
                                   title={tGlobal('delete')}
                                   disabled={deleting === account.id}
                                 >
                                   {deleting === account.id ? (
                                     <>
-                                      <IconSync className='w-[16px] h-[16px] fill-[#163f78] animate-spin duration-2000 ease-linear animate-infinite' />
+                                      <IconSync className='w-[16px] h-[16px] fill-[var(--primary-color)] animate-spin duration-2000 ease-linear animate-infinite' />
                                     </>
                                   ) : (
                                     <>

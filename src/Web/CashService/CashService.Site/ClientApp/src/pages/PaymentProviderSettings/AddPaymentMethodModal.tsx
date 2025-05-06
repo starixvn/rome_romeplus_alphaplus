@@ -127,7 +127,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
     <div className="bg-[#00000066] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-center justify-center">
       <div className="p-[30px] bg-[#ffffff] w-full max-w-[560px] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
         <div className="relative">
-          <h3 className="text-[16px] text-[#163f78] font-bold leading-[21.6px] tracking-[0.2px] pb-[4px]">{tManagePayments('setUpPaymentMethods')}</h3>
+          <h3 className="text-[16px] text-[var(--primary-color)] font-bold leading-[21.6px] tracking-[0.2px] pb-[4px]">{tManagePayments('setUpPaymentMethods')}</h3>
           <button type="button" className="absolute top-[-20px] right-[-20px] cursor-pointer" onClick={onClose}>
             <IconClose />
           </button>
@@ -135,12 +135,12 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
         <form onSubmit={handleSubmit}>
           <div className="modal-body">
             <div>
-              <h4 className="text-[14px] pt-[16px] text-[#163f78] font-semibold pb-[4px]">{tManagePayments('addPaymentMethodStep1')}</h4>
+              <h4 className="text-[14px] pt-[16px] text-[var(--primary-color)] font-semibold pb-[4px]">{tManagePayments('addPaymentMethodStep1')}</h4>
               <div className='flex gap-[10px]'>
               <div className="w-[48%]">
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('transactionType')}<span className='text-[#E25757]'>*</span></label>
                 <select 
-                  className={`h-[35px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer ${fieldErrors.selectedTransactionType ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
+                  className={`h-[35px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer ${fieldErrors.selectedTransactionType ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                   value={selectedTransactionType}
                   onChange={(e) => {
                     setSelectedTransactionType(e.target.value);
@@ -160,7 +160,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
               <div className="w-[48%]">
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('paymentMethod')}<span className='text-[#E25757]'>*</span></label>
                 <select 
-                  className={`h-[35px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer ${fieldErrors.selectedPaymentMethod ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
+                  className={`h-[35px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer ${fieldErrors.selectedPaymentMethod ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                   value={selectedPaymentMethod}
                   onChange={(e) => {
                     setSelectedPaymentMethod(e.target.value);
@@ -186,7 +186,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
             </div>
             <div>
               <hr className='mt-[16px] border-[#0000001F]'  />
-              <h4 className="text-[14px] pt-[16px] text-[#163f78] font-semibold pb-[4px]">{tManagePayments('addPaymentMethodStep2')}</h4>
+              <h4 className="text-[14px] pt-[16px] text-[var(--primary-color)] font-semibold pb-[4px]">{tManagePayments('addPaymentMethodStep2')}</h4>
               <p className='mt-[8px]'>{tManagePayments('clickLinkOrScanQRCode')}</p>
               <a href={telegramAssistantUrl} target="_blank" rel="noopener noreferrer">{telegramAssistantUrl}</a>
               <div style={{ marginTop: '16px', textAlign: 'center' }}>
@@ -195,13 +195,13 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
             </div>
             <div>
             <hr className='mt-[16px] mb-[16px] border-[#0000001F]'  />
-              <label className="text-[14px] pt-[16px] text-[#163f78] font-semibold pb-[4px]">{tManagePayments('addPaymentMethodStep3')}</label>
+              <label className="text-[14px] pt-[16px] text-[var(--primary-color)] font-semibold pb-[4px]">{tManagePayments('addPaymentMethodStep3')}</label>
               <div className='flex flex-wrap gap-[10px]'>
               <div className="w-[48%]">
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('apiKey')}<span className='text-[#E25757]'>*</span></label>
                 <input
                   type="text"
-                  className={`h-[35px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer ${fieldErrors.apiKey ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
+                  className={`h-[35px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer ${fieldErrors.apiKey ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                   id="apiKey"
                   value={apiKey}
                   onChange={e => {
@@ -217,7 +217,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('merchantID')}<span className='text-[#E25757]'>*</span></label>
                 <input
                   type="text"
-                  className={`h-[35px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer ${fieldErrors.merchantID ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
+                  className={`h-[35px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer ${fieldErrors.merchantID ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                   id="merchantID"
                   value={merchantID}
                   onChange={e => {
@@ -233,7 +233,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('appSecret')}<span className='text-[#E25757]'>*</span></label>
                 <input
                   type="text"
-                  className={`h-[35px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer ${fieldErrors.appSecret ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
+                  className={`h-[35px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer ${fieldErrors.appSecret ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                   id="appSecret"
                   value={appSecret}
                   onChange={e => {
@@ -272,12 +272,12 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
             )}
             </div>
             <div className='flex justify-center'>
-            <button type="button" className="w-[140px] h-[30px] rounded-[20px] text-[#163f78] px-[16px] py-[4px] text-[12px] border-[1px] border-[#163f78] mx-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer " onClick={onClose}>
+            <button type="button" className="w-[140px] h-[30px] rounded-[20px] text-[var(--primary-color)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--primary-color)] mx-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer " onClick={onClose}>
               {tManagePayments('setUpLater')}
             </button>
             <button 
               type="submit" 
-              className="w-[140px] capitalize font-bold h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px] border-[#163f78] mx-[4px] bg-[#163f78] hover:bg-[#375A8A] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] disabled:bg-[#375A8A]"
+              className="w-[140px] capitalize font-bold h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--primary-color)] mx-[4px] bg-[var(--primary-color)] hover:bg-[#375A8A] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] disabled:bg-[#375A8A]"
               disabled={isLoading || allMethodsInactive}
             >
               {isLoading ? tGlobal('loading') : tGlobal('save')}

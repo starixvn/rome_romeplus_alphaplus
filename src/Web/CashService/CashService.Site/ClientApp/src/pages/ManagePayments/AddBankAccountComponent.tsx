@@ -191,19 +191,19 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
               )}
               
               <div className="mb-3">
-                <div className="pb-[8px] text-[16px] text-[#163f78] font-semibold leading-[21.6px] tracking-[0.2px]">{tManagePayments('bankStatus')}</div>
+                <div className="pb-[8px] text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] tracking-[0.2px]">{tManagePayments('bankStatus')}</div>
                 <p className="text-[12px] my-[8px]">{tManagePayments('bankNote1')}</p>
                 <div className="btn-group" role="group">
                   <button
                     type="button"
-                    className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer ${status === '1' ? 'bg-[#163f78] text-[#ffffff]' : 'bg-[#eeeeee] text-[#163f78]'}`}
+                    className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer ${status === '1' ? 'bg-[var(--primary-color)] text-[#ffffff]' : 'bg-[#eeeeee] text-[var(--primary-color)]'}`}
                     onClick={() => setStatus('1')}
                   >
                     {tGlobal('enable')}
                   </button>
                   <button
                     type="button"
-                    className={`text-[12px] text-[#163f78] w-[100px] px-[16px] py-[8px] cursor-pointer ${status === '2' ? 'bg-[#163f78] text-[#ffffff]' : 'bg-[#eeeeee] text-[#163f78]'}`}
+                    className={`text-[12px] text-[var(--primary-color)] w-[100px] px-[16px] py-[8px] cursor-pointer ${status === '2' ? 'bg-[var(--primary-color)] text-[#ffffff]' : 'bg-[#eeeeee] text-[var(--primary-color)]'}`}
                     onClick={() => setStatus('2')}
                   >
                     {tGlobal('disable')}
@@ -211,11 +211,11 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                 </div>
               </div>
 
-              <div className="mt-[8px] text-[16px] text-[#163f78] font-semibold leading-[21.6px] tracking-[0.2px]">{tManagePayments('accountInformation')}</div>
+              <div className="mt-[8px] text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] tracking-[0.2px]">{tManagePayments('accountInformation')}</div>
               <div>
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('bank')}</label>
                 <select
-                  className="h-[35px] w-[470px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer"
+                  className="h-[35px] w-[470px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer"
                   value={selectedBank}
                   onChange={handleBankChange}
                   required
@@ -235,7 +235,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     {hasManualDepositTransactionType(selectedBank, banks) && (
                       <button
                         type="button"
-                        className={`block w-[230px] cursor-pointer h-[120px]  rounded-[4px] border-[1px] border-[#163f78]  ${selectedManualDeposit ? 'text-[#ffffff] bg-[#163f78]' : 'text-[#163f78] bg-[#ffffff]'}`}
+                        className={`block w-[230px] cursor-pointer h-[120px]  rounded-[4px] border-[1px] border-[var(--primary-color)]  ${selectedManualDeposit ? 'text-[#ffffff] bg-[var(--primary-color)]' : 'text-[var(--primary-color)] bg-[#ffffff]'}`}
                         onClick={toggleManualDeposit}
                       >
                         <span className="text-[14px] font-bold ">{tManagePayments('slipUpload')}</span>
@@ -246,7 +246,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     {hasAutoDepositTransactionType(selectedBank, banks) && (
                       <button
                         type="button"
-                        className={`block w-[230px] cursor-pointer h-[120px] rounded-[4px] border-[1px] border-[#163f78] ${selectedAutoDeposit ? 'text-[#ffffff] bg-[#163f78]' : 'text-[#163f78] bg-[#ffffff]'}`}
+                        className={`block w-[230px] cursor-pointer h-[120px] rounded-[4px] border-[1px] border-[var(--primary-color)] ${selectedAutoDeposit ? 'text-[#ffffff] bg-[var(--primary-color)]' : 'text-[var(--primary-color)] bg-[#ffffff]'}`}
                         onClick={toggleAutoDeposit}
                       >
                         <span className="text-[14px] font-bold">{tManagePayments('sms')}</span>
@@ -265,7 +265,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     {hasManualWithdrawalTransactionType(selectedBank, banks) && (
                       <button
                         type="button"
-                        className={`block cursor-pointer w-[230px] h-[120px] rounded-[4px] border-[1px] border-[#163f78] ${selectedManualWithdrawal ? 'text-[#ffffff] bg-[#163f78]' : 'text-[#163f78] bg-[#ffffff]'}`}
+                        className={`block cursor-pointer w-[230px] h-[120px] rounded-[4px] border-[1px] border-[var(--primary-color)] ${selectedManualWithdrawal ? 'text-[#ffffff] bg-[var(--primary-color)]' : 'text-[var(--primary-color)] bg-[#ffffff]'}`}
                         onClick={toggleManualWithdrawal}
                       >
                         <span className="text-[14px] font-bold">{tManagePayments('manualWithdrawal')}</span>
@@ -301,7 +301,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('accountHolderName')}</label>                
                   <input
                     type="text"
-                    className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer"
+                    className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer"
                     value={accountHolderName}
                     onChange={(e) => setAccountHolderName(e.target.value)}
                     required
@@ -313,7 +313,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('bankAccountNumber')}</label>
                   <input
                     type="text"
-                    className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer"
+                    className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer"
                     value={accountNumber}
                     onChange={(e) => setAccountNumber(e.target.value)}
                     required
@@ -325,7 +325,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   
                   <input
                     type="text"
-                    className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer"
+                    className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer"
                     value={accountNickname}
                     onChange={(e) => setAccountNickname(e.target.value)}
                     required
@@ -335,19 +335,19 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
               </div>
 
               <div className="mb-3">
-                <div className="pb-[8px] mt-[8px] text-[16px] text-[#163f78] font-semibold leading-[21.6px] tracking-[0.2px]">{tManagePayments('promptPay')}</div>
+                <div className="pb-[8px] mt-[8px] text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] tracking-[0.2px]">{tManagePayments('promptPay')}</div>
                 <p className="pb-[8px] text-[12px]">{tManagePayments('linkMobile')}</p>
                 <div className="btn-group" role="group">
                   <button
                     type="button"
-                    className={`text-[12px] text-[#163f78] w-[70px] px-[16px] py-[8px] cursor-pointer  ${promptPay ? 'bg-[#163f78] text-[#ffffff]' : 'bg-[#eeeeee] text-[#163f78]'}`}
+                    className={`text-[12px] text-[var(--primary-color)] w-[70px] px-[16px] py-[8px] cursor-pointer  ${promptPay ? 'bg-[var(--primary-color)] text-[#ffffff]' : 'bg-[#eeeeee] text-[var(--primary-color)]'}`}
                     onClick={() => setPromptPay(true)}
                   >
                     {tGlobal('on')}
                   </button>
                   <button
                     type="button"
-                    className={`text-[12px] text-[#163f78] w-[70px] px-[16px] py-[8px] cursor-pointer text-[#163f78] ${!promptPay ? 'bg-[#163f78] text-[#ffffff]' : 'bg-[#eeeeee] text-[#163f78]'}`}
+                    className={`text-[12px] text-[var(--primary-color)] w-[70px] px-[16px] py-[8px] cursor-pointer text-[var(--primary-color)] ${!promptPay ? 'bg-[var(--primary-color)] text-[#ffffff]' : 'bg-[#eeeeee] text-[var(--primary-color)]'}`}
                     onClick={() => setPromptPay(false)}
                   >
                     {tGlobal('off')}
@@ -358,9 +358,9 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
               
               <div className="mb-3">
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('mobile')}</label>
-                <div className="flex items-center h-[35px] w-[470px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[#163f78] cursor-pointer">
+                <div className="flex items-center h-[35px] w-[470px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer">
                   <select
-                    className="focus:outline-none focus:border-[#163f78] cursor-pointer"
+                    className="focus:outline-none focus:border-[var(--primary-color)] cursor-pointer"
                     value={mobilePrefix}
                     onChange={(e) => setMobilePrefix(e.target.value)}
                     style={{ maxWidth: '120px' }}
@@ -373,7 +373,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   </select>
                   <input
                     type="text"
-                    className="focus:outline-none focus:border-[#163f78] w-[100%] h-[100%]"
+                    className="focus:outline-none focus:border-[var(--primary-color)] w-[100%] h-[100%]"
                     value={mobile}
                     onChange={(e) => setMobile(e.target.value)}
                     placeholder={tManagePayments('enterMobileNumber')}
@@ -385,7 +385,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
             <div className="flex justify-end py-[8px] mt-[8px]">
               <button
                 type="button"
-                className="w-[140px] h-[30px] rounded-[20px] text-[#163f78] px-[16px] py-[4px] text-[12px] border-[1px] border-[#163f78]  bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer "
+                className="w-[140px] h-[30px] rounded-[20px] text-[var(--primary-color)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--primary-color)]  bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer "
                 onClick={onClose}
                 disabled={loading}
               >
@@ -393,7 +393,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
               </button>
               <button
                 type="submit"
-                className="w-[140px] h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px] border-[#163f78] ml-[8px] bg-[#163f78] hover:bg-[#375A8A] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
+                className="w-[140px] h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--primary-color)] ml-[8px] bg-[var(--primary-color)] hover:bg-[#375A8A] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
                 disabled={loading}
               >
                 {loading ? tGlobal('saving') : tGlobal('save')}
