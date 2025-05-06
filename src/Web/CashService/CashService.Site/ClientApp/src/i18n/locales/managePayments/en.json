@@ -2,6 +2,7 @@
   "managePayments": "Manage Payments",
   "paymentGateway": "Payment Gateway",
   "bankAccount": "Bank Account",
+  "back": "Back",
   
   "setDailyWithdrawalCount": "Set daily withdrawal count",
   "setDailyWithdrawalCountForYourMembers": "Set daily withdrawal amount for your members",
@@ -39,6 +40,7 @@
 
   "setUpPaymentMethodsForMembers": "Set up payment methods for your members",
   "addPaymentMethod": "Add payment method",
+  
   "viewProviderFees": "View {{providerName}} fees",
   "bank": "Bank",
   "noBankRequired": "No bank required",

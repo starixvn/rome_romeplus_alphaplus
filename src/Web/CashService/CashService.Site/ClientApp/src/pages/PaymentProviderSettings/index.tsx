@@ -10,7 +10,7 @@ import BanksPopupModal from './BanksPopupModal';
 import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { formatNumber, formatInputValue } from '../../utils/numberFormatting';
-import { IconCheck, IconError, IconInfo } from '../../components/Icons';
+import { IconBack, IconCheck, IconError, IconInfo } from '../../components/Icons';
 import './PaymentProviderSettings.css';
 import '../../styles/global.scss';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
@@ -214,7 +214,12 @@ function PaymentProviderSettings() {
         </div>
       ) : (
         <>
-        <div>Back</div>
+        <div className='text-[#163f78] px-[8px] py-[4px] border-b-[2px] border-[#cfcfcf] border-dotted mb-[4px]'>
+          <span className='cursor-pointer inline-flex items-center py-[8px]' onClick={() => window.history.back()}>
+          <IconBack className='w-[18px] h-[18px] fill-[#163f78] mr-[8px]'  />
+          <span className='text-[12px] text-[#163f78] font-semibold'>{tManagePayments('back')}</span>
+          </span>
+        </div>
         <div className='bg-[#ffffff] px-[16px] py-[10px] mb-[8px]'>
           <div className="settings-header">
             <h2 className='pb-[8px] mt-[8px] text-[16px] text-[#163f78] font-semibold leading-[21.6px] tracking-[0.2px] '>{window.providerSettingsViewModel.Provider.Name}</h2>

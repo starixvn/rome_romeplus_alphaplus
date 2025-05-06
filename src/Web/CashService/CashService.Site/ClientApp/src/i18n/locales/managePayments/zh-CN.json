@@ -135,5 +135,6 @@
 
   "appSecret": "App Secret",
   "apiKey": "API Key",
-  "merchantID": "Merchant ID"
+  "merchantID": "Merchant ID",
+  "back": "返回"
 } 
