@@ -51,6 +51,7 @@ RUN if [ "${TRANSFORM_CONFIG}" = "SIT" ] || \
   [ "${TRANSFORM_CONFIG}" = "SIT4" ] || \
   [ "${TRANSFORM_CONFIG}" = "SIT5" ]; then \
     cp -r src/Web/Tickets/Tickets.Site/results.SIT.json src/Web/Tickets/Tickets.Site/results.json; \
+    cp -r src/Web/Tickets/Tickets.Site/results3rd.SIT.json src/Web/Tickets/Tickets.Site/results3rd.json; \
 fi
 
 RUN if [ "${TRANSFORM_CONFIG}" = "UAT" ] || \
