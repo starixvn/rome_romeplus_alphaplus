@@ -249,7 +249,7 @@ function PaymentProviderSettings() {
                   theme="light"
                   arrow={true}
                 >
-                  <span className='cursor-pointer'><IconInfo /></span>
+                  <span className='cursor-pointer'><IconInfo className="w-[20px] h-[20px] ml-[4px] fill-[#163f78]" /></span>
                 </Tippy>
               </label>
               <label>

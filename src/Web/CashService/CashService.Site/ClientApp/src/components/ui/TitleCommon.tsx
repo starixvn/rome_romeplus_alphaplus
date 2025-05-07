@@ -29,7 +29,7 @@ export default function TitleCommon({ title }: TitleCommonProps) {
                 theme="light"
                 arrow={true}
             >
-                <span><IconInfo /></span>
+                <span><IconInfo className="w-[20px] h-[20px] ml-[4px] fill-[#163f78]" /></span>
             </Tippy>
             </h1>
         </div>
