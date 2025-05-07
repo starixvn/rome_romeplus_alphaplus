@@ -1,3 +1,4 @@
+using AlphaPlus.CashService.API.Criteria.PendingDeposit;
 using AlphaPlus.CashService.API.Models;
 using AlphaPlus.CashService.API.Models.PendingCommons;
 using Fanex.Data.Repository;
@@ -9,6 +10,10 @@ public interface IPendingDepositService
     Task<IEnumerable<BankAccountInfo>> GetMemberBankAccountInfo();
     Task<IEnumerable<MemberLoginNameInfo>> GetMemberDepositLoginNames();
     Task<ResultModel> InsertDepositAccountInfo(PendingInfoDetail depositInfoDetail);
+
+    Task<decimal> GetAccumulateCreditAsync(int id);
+    Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int id);
+    Task<(ResultModel, int, string)> CreateManualDepositAsync(CreateManualDeposit param);
 }
 
 public class PendingDepositService(IDynamicRepository repository) : IPendingDepositService
@@ -90,9 +95,46 @@ public class PendingDepositService(IDynamicRepository repository) : IPendingDepo
             new() { MemberLoginName = "rbrown456", From = 0, To = 1001 }
         };
     }
+
+    public async Task<decimal> GetAccumulateCreditAsync(int id)
+    {
+        var criteria = new GetAccumulateCreditCriteria
+        {
+            CustId = id
+        };
+        return await repository.GetAsync<decimal>(criteria);
+    }
+
+    public async Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int id)
+    {
+        var criteria = new GetMemberSettingDepositCriteria
+        {
+            CustId = id
+        };
+        return await repository.GetAsync<MemberSettingDeposit>(criteria);
+    }
+
+    public async Task<(ResultModel, int, string)> CreateManualDepositAsync(CreateManualDeposit param)
+    {
+        var command = new CreateManualDepositCommand
+        {
+            CustId = param.CustId,
+            UplineId = param.UplineId,
+            SubAccId = param.SubAccId,
+            AgentGivenCredit = param.AgentGivenCredit,
+            MemberUsedCredit = param.MemberUsedCredit,
+            MinLimitAmt = param.MinLimitAmt,
+            MaxLimitAmt = param.MaxLimitAmt,
+            PaymentFrom = param.PaymentFrom,
+            PaymentTo = param.PaymentTo,
+            Amount = param.Amount,
+            PaySlip = param.PaySlip,
+            Ip = param.Ip,
+            Remark = param.Remark,
+        };
+        await repository.ExecuteAsync(command);
+        var result = new ResultModel(command.ErrCode, command.ErrMsg);
+
+        return (result, command.TransId, command.CashAccumCreditTbl);
+    }
 }
-
-
-
-
-
