@@ -16,6 +16,7 @@ const MemberSiteManagement: React.FC = () => {
   const [originalData, setOriginalData] = useState<MemberSiteResponse>({
     domains: [],
     generalSettings: [],
+    countryCodes: [],
     countryCode: '',
     mobile: '',
     lineId: '',
@@ -24,6 +25,7 @@ const MemberSiteManagement: React.FC = () => {
   const [data, setData] = useState<MemberSiteResponse>({
     domains: [],
     generalSettings: [],
+    countryCodes: [],
     countryCode: '',
     mobile: '',
     lineId: '',
@@ -89,6 +91,11 @@ const MemberSiteManagement: React.FC = () => {
         type: response.isSuccessful ? 'success' : 'error',
         text: response.isSuccessful ? t('messages.updateSuccess') : response.message
       });
+      setTimeout(() => {
+        setOriginalData(data);
+        setResult(null);
+      }, 1000);
+      
     } catch (err) {
       setResult({
         type: 'error',
@@ -156,6 +163,8 @@ const MemberSiteManagement: React.FC = () => {
             <hr className='my-[16px] border-[#0000001F]' />
             <div className="">
               <MessageForm
+                countryCode={data.countryCode}
+                countryCodes={data.countryCodes}
                 mobile={data.mobile}
                 lineId={data.lineId}
                 announcement={data.announcement}
@@ -169,8 +178,8 @@ const MemberSiteManagement: React.FC = () => {
                 disabled={!isDirty || isSaving}
                 className={`w-[140px] h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px]  ml-[8px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:h-[38px] font-bold
                   ${isDirty && !isSaving
-                    ? 'border-[var(--primary-color)] bg-[var(--primary-color)] hover:bg-[#375A8A] hover:border-[#375A8A] cursor-pointer'
-                    : 'bg-[#375A8A] border-[#375A8A] cursor-not-allowed'}`}
+                    ? 'border-[var(--primary-color)] bg-[var(--primary-color)] hover:bg-[#375A8A] hover:border-[#375A8A] cursor-pointer disabled:opacity-70'
+                    : 'bg-[#375A8A] border-[#375A8A] cursor-not-allowed disabled:opacity-70'}`}
               >
                 {isSaving ? t('actions.saving') : t('actions.save')}
               </button>

@@ -57,7 +57,6 @@ public class MemberSitesController : Controller
         {
             //model.CustId = _userSession.CustId;
             model.CustId = 1176086;
-            model.CountryCode = "66";
             var result = await _mediator.Send(new UpdateMemberSiteManagementCommand(model),cancellationToken);
             return Ok(result);
         }

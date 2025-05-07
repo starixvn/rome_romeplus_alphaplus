@@ -23,10 +23,10 @@ export interface MemberSiteResponse {
   domains: Domain[];
   generalSettings: Setting[];
   countryCode: string;
+  countryCodes: string[];
   mobile: string;
   lineId: string;
   announcement: string;
-  [key: string]: Domain[] | Setting[] | string;
 }
 
 export interface ResponseResult {

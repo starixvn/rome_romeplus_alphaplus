@@ -4,6 +4,7 @@ public class MemberSiteManagementModel
 {
     public int CustId { get; set; }
     public string CountryCode { get; set; }
+    public IEnumerable<string> CountryCodes { get; set; }
     public IEnumerable<Domain> Domains { get; set; } = new List<Domain>();
     public IEnumerable<GeneralSetting> GeneralSettings { get; set; } = new List<GeneralSetting>();
     public string Mobile { get; set; } = string.Empty;

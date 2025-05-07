@@ -20,6 +20,8 @@ vi.mock('react-i18next', () => ({
 
 describe('MessageForm', () => {
   const defaultProps = {
+    countryCodes: ['66', '84'],
+    countryCode: '',
     mobile: '',
     lineId: '',
     announcement: '',
@@ -82,7 +84,9 @@ describe('MessageForm', () => {
       mobile: '123456789',
       lineId: 'testlineid',
       announcement: 'Test announcement',
-      onMessageChange: vi.fn()
+      onMessageChange: vi.fn(),
+      countryCodes: ['66', '84'],
+      countryCode: '66'
     };
     
     rerender(<MessageForm {...updatedProps} />);

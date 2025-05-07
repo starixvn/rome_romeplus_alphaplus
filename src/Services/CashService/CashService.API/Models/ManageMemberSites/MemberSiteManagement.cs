@@ -4,9 +4,9 @@ public class MemberSiteManagementModel
 {
     public int CustId { get; set; }
     public string CountryCode { get; set; }
-    // Domain settings
-    public List<DomainModel> Domains { get; set; } = new();
-    public List<MemberSitePermission> GeneralSettings { get; set; } = new();
+    public IEnumerable<string> CountryCodes { get; set; }
+    public IEnumerable<DomainModel> Domains { get; set; }
+    public IEnumerable<MemberSitePermission> GeneralSettings { get; set; }
     public string Mobile { get; set; }
     public string LineId { get; set; }
     public string Announcement { get; set; }
