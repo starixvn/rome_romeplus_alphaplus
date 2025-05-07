@@ -2,8 +2,8 @@
 
 using Criteria.Bank;
 using DTOs.Common;
+using Fanex.Cryptography.Aes;
 using Fanex.Data.Repository;
-using Shared.Services;
 
 public interface IBankService
 {
@@ -12,8 +12,12 @@ public interface IBankService
     Task<IEnumerable<BankInfo>> GetMemberBankInfoAsync(int custId);
 }
 
-public class BankService(IDynamicRepository dynamicRepository, IEncryptionService encryptionService) : IBankService
+public class BankService(IDynamicRepository dynamicRepository, 
+    IAesService encryptionService,
+    IConfiguration configuration) : IBankService
 {
+    private readonly string _encryptSecretKey = configuration.GetValue<string>("EncryptSecretKey") ?? "!@#$";
+
     public async Task<IEnumerable<BankInfo>> GetCashAgentBankInfoAsync(int agentId, int transactionType)
     {
         var criteria = new GetCashAgentBankInfoCriteria
@@ -41,7 +45,7 @@ public class BankService(IDynamicRepository dynamicRepository, IEncryptionServic
         var decryptBankNumber = bankList as BankInfo[] ?? bankList.ToArray();
         foreach (var bank in decryptBankNumber)
         {
-            bank.BankAccountNumber = encryptionService.Decrypt(bank.BankAccountNumber);
+            bank.BankAccountNumber = encryptionService.Decrypt(bank.BankAccountNumber, _encryptSecretKey);
         }
         return decryptBankNumber;
     }
