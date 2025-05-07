@@ -3,23 +3,29 @@ import { createRoot } from 'react-dom/client';
 import 'tippy.js/dist/tippy.css'; 
 import '../../i18n/i18n';
 import { promotionService } from '../../services/promotionAPI';
-import Table from './components/Table';
+import PromotionList from './components/PromotionList';
 import type { Promotion } from '../../services/interfaces/Promotion';
 
 const Promotion: React.FC = () => {
-    const [promotionType] = useState<string>('All');
-    const [status] = useState<string>('All');
+    const [promotionType, setPromotionType] = useState<string>('All');
+    const [status, setStatus] = useState<string>('All');
     const [error, setError] = useState<string | null>(null);
     const [promotions, setPromotions] = useState<Promotion[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    const handleFilterChange = (type: string, status: string) => {
+        setPromotionType(type);
+        setStatus(status);
+        console.log(type, status);
+    };
 
     useEffect(() => {
         const fetchPromotions = async () => {
             setIsLoading(true);
             try {
                 const response = await promotionService.getPromotion({
-                    Type: promotionType,
-                    Status: status
+                    type: promotionType,
+                    status: status
                 });
                 setPromotions(response);
                 setError(null);
@@ -44,7 +50,11 @@ const Promotion: React.FC = () => {
                     </div>
                 )}
                 <div className="promotion-list">
-                    <Table items={promotions} isLoading={isLoading} />
+                    <PromotionList 
+                        items={promotions} 
+                        isLoading={isLoading} 
+                        onFilterChange={handleFilterChange}
+                    />
                 </div>
             </div>
         </div>

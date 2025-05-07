@@ -56,6 +56,14 @@ import transactionHistoryJa from './locales/transactionHistory/ja.json';
 import transactionHistoryKo from './locales/transactionHistory/ko.json';
 import transactionHistoryTh from './locales/transactionHistory/th.json';
 
+// Import promotion translations
+import promotionEn from './locales/promotion/en.json';
+import promotionVi from './locales/promotion/vi.json';
+import promotionZhCN from './locales/promotion/zh-CN.json';
+import promotionZhTW from './locales/promotion/zh-TW.json';
+import promotionJa from './locales/promotion/ja.json';
+import promotionKo from './locales/promotion/ko.json';
+import promotionTh from './locales/promotion/th.json';
 
 // Configure i18next
 i18n
@@ -73,6 +81,7 @@ i18n
         pendingDeposit: pendingDepositEn,
         pendingWithdrawal: pendingWithdrawalEn,
         transactionHistory: transactionHistoryEn,
+        promotion: promotionEn,
       },
       vi: {
         global: globalVi,
@@ -81,6 +90,7 @@ i18n
         pendingDeposit: pendingDepositVi,
         pendingWithdrawal: pendingWithdrawalVi,
         transactionHistory: transactionHistoryVi,
+        promotion: promotionVi,
       },
       'zh-CN': {
         global: globalZhCN,
@@ -89,6 +99,7 @@ i18n
         pendingDeposit: pendingDepositZhCN,
         pendingWithdrawal: pendingWithdrawalZhCN,
         transactionHistory: transactionHistoryZhCN,
+        promotion: promotionZhCN,
       },
       'zh-TW': {
         global: globalZhTW,
@@ -97,6 +108,7 @@ i18n
         pendingDeposit: pendingDepositZhTW,
         pendingWithdrawal: pendingWithdrawalZhTW,
         transactionHistory: transactionHistoryZhTW,
+        promotion: promotionZhTW,
       },
       ja: {
         global: globalJa,
@@ -105,6 +117,7 @@ i18n
         pendingDeposit: pendingDepositJa,
         pendingWithdrawal: pendingWithdrawalJa,
         transactionHistory: transactionHistoryJa,
+        promotion: promotionJa,
       },
       ko: {
         global: globalKo,
@@ -113,6 +126,7 @@ i18n
         pendingDeposit: pendingDepositKo,
         pendingWithdrawal: pendingWithdrawalKo,
         transactionHistory: transactionHistoryKo,
+        promotion: promotionKo,
       },
       th: {
         global: globalTh,
@@ -121,6 +135,7 @@ i18n
         pendingDeposit: pendingDepositTh,
         pendingWithdrawal: pendingWithdrawalTh,
         transactionHistory: transactionHistoryTh,
+        promotion: promotionTh,
       },
     },
     fallbackLng: 'en',

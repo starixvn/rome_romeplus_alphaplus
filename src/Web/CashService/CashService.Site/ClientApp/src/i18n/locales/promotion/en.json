@@ -1,3 +1,4 @@
+{
   "table": {
     "no": "#",
     "action": "Action",
@@ -12,4 +13,8 @@
     "provider": "Provider",
     "status": "Status",
     "lastUpdated": "Last Updated"
+  },
+  "search": {
+    "placeholder": "Search by title or type..."
   }
+}

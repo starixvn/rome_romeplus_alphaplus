@@ -7,8 +7,8 @@ export const promotionService = {
         try {
             const queryParams = new URLSearchParams(
             {
-                promotionType: promotionParams.Type,
-                status: promotionParams.Status
+                promotionType: promotionParams.type,
+                status: promotionParams.status
             });
             const response = await api.get<Promotion[]>(`GetPromotion?${queryParams.toString()}`);
       return response.data;
