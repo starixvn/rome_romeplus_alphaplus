@@ -211,7 +211,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
             <div className='flex text-[12px] text-[#333333] font-semibold'>
               <div className='flex flex-col mr-[32px]'>
                 <label>{tManagePayments('createdBy')}</label>
-                <label>{bankAccount.creator}</label>
+                <label>{creator}</label>
               </div>
               <div className='flex flex-col'>
                 <label>{tManagePayments('lastUpdated')}</label>
