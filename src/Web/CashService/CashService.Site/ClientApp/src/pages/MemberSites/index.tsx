@@ -128,7 +128,7 @@ const MemberSiteManagement: React.FC = () => {
     >
       <div className="p-[12px]">
         <div className='mb-[8px]'>
-          <h1 className="flex items-center font-bold text-[15px] text-[#333333]">{t('title')}</h1>
+          <h1 className="flex items-center font-bold text-[15px] text-[#333333] max-[768px]:text-[19px]">{t('title')}</h1>
         </div>
         <div className="bg-[#ffffff] rounded-[4px] max-w-[1200px]">
           {result && (
