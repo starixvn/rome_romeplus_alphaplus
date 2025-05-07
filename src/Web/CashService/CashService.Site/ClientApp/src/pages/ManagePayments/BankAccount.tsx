@@ -247,7 +247,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                   <div className="text-[12px] leading-[14px]">{tManagePayments('addBankAccountAndLimit')}</div>
                   <div className="my-[8px]">
                     <button 
-                      className="w-[183px] h-[30px] rounded-[5px] text-[#ffffff] px-[16px] py-[4px] text-[12px] font-bold mr-[8px] bg-[var(--primary-color)] hover:bg-[#375A8A] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
+                      className="w-[183px] h-[30px] rounded-[5px] text-[#ffffff] px-[16px] py-[4px] text-[12px] font-bold mr-[8px] bg-[var(--primary-color)] hover:bg-[#375A8A] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
                       onClick={handleAddBankAccount}
                     >
                     +{tManagePayments('addBankAccount')}
@@ -414,7 +414,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                             <td className='text-left'>{account.accountNickname}</td>
                             <td className='text-left'>
                               <div className='flex items-center relative pl-[25px]'>
-                                <img src="../assets/bank/BAAC.png" alt={account.bankName} className='w-[20px] h-[20px] absolute top-[0] left-[0]' />
+                                <img src="../assets/bank/BBL.png" alt={account.bankName} className='w-[20px] h-[20px] absolute top-[0] left-[0]' />
                                 {account.bankName}
                               </div>
                               </td>

@@ -211,7 +211,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   </button>
                   <button
                     type="button"
-                    className={`text-[12px] text-[var(--primary-color)] w-[100px] px-[16px] py-[8px] cursor-pointer ${status === '2' ? 'bg-[var(--primary-color)] text-[#ffffff]' : 'bg-[#eeeeee] text-[var(--primary-color)]'}`}
+                    className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer ${status === '2' ? 'bg-[var(--primary-color)] text-[#ffffff]' : 'bg-[#eeeeee] text-[var(--primary-color)]'}`}
                     onClick={() => setStatus('2')}
                   >
                     {tGlobal('disable')}
@@ -351,14 +351,14 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                 <div className="btn-group" role="group">
                   <button
                     type="button"
-                    className={`text-[12px] text-[var(--primary-color)] w-[70px] px-[16px] py-[8px] cursor-pointer  ${promptPay ? 'bg-[var(--primary-color)] text-[#ffffff]' : 'bg-[#eeeeee] text-[var(--primary-color)]'}`}
+                    className={`text-[12px] w-[70px] px-[16px] py-[8px] cursor-pointer  ${promptPay ? 'bg-[var(--primary-color)] text-[#ffffff]' : 'bg-[#eeeeee] text-[var(--primary-color)]'}`}
                     onClick={() => setPromptPay(true)}
                   >
                     {tGlobal('on')}
                   </button>
                   <button
                     type="button"
-                    className={`text-[12px] text-[var(--primary-color)] w-[70px] px-[16px] py-[8px] cursor-pointer text-[var(--primary-color)] ${!promptPay ? 'bg-[var(--primary-color)] text-[#ffffff]' : 'bg-[#eeeeee] text-[var(--primary-color)]'}`}
+                    className={`text-[12px] w-[70px] px-[16px] py-[8px] cursor-pointer ${!promptPay ? 'bg-[var(--primary-color)] text-[#ffffff]' : 'bg-[#eeeeee] text-[var(--primary-color)]'}`}
                     onClick={() => setPromptPay(false)}
                   >
                     {tGlobal('off')}
@@ -371,7 +371,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('mobile')}</label>
                 <div className="flex items-center h-[35px] w-[470px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer">
                   <select
-                    className="focus:outline-none focus:border-[var(--primary-color)] cursor-pointer"
+                    className="focus:outline-none focus:border-[var(--primary-color)] h-[100%]  cursor-pointer mr-[5px]"
                     value={countryCode}
                     onChange={(e) => setCountryCode(e.target.value)}
                     style={{ maxWidth: '120px' }}
@@ -384,7 +384,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   </select>
                   <input
                     type="text"
-                    className="focus:outline-none focus:border-[var(--primary-color)] w-[100%] h-[100%]"
+                    className="focus:outline-none w-[100%] h-[100%] pl-[10px] border-l-[1px] border-[#0000003D]"
                     value={mobile}
                     onChange={(e) => setMobile(e.target.value)}
                     placeholder={tManagePayments('enterMobileNumber')}
