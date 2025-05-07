@@ -5,7 +5,7 @@ import GeneralSettings from './components/GeneralSettings';
 import MessageForm from './components/MessageForm';
 import { memberSitesService } from '../../services/memberSitesAPI';
 import { Setting, MessageData, MemberSiteResponse } from '../../types/memberSite';
-import './MemberSiteStyle.css'
+import '../../styles/common.css'
 import { useTranslation } from 'react-i18next';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 import { ResultMessage, ResultType } from '../../components/ResultMessage';
@@ -120,16 +120,17 @@ const MemberSiteManagement: React.FC = () => {
 
   return (
     <form
-      className="min-h-screen bg-gray-50 dark:bg-[#1E1E1E] p-6 transition-colors duration-200"
+      className=""
       onSubmit={(e) => {
         e.preventDefault();
         handleSave();
       }}
     >
-      <div className="container mx-auto">
-        <h1 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">{t('title')}</h1>
-
-        <div className="bg-white dark:bg-[#2D2D2D] rounded-lg shadow-sm p-6">
+      <div className="p-[12px]">
+        <div className='mb-[8px]'>
+          <h1 className="flex items-center font-bold text-[15px] text-[#333333]">{t('title')}</h1>
+        </div>
+        <div className="bg-[#ffffff] rounded-[4px] max-w-[1200px]">
           {result && (
             <ResultMessage
               type={result.type}
@@ -138,7 +139,7 @@ const MemberSiteManagement: React.FC = () => {
             />
           )}
 
-          <div className="space-y-8">
+          <div className="p-[24px]">
             <div className="border-b-2 border-gray-200 dark:border-gray-700 pb-6">
               <RegistrationLinks
                 domains={data.domains.map(domain => ({...domain, status: 'active'}))}

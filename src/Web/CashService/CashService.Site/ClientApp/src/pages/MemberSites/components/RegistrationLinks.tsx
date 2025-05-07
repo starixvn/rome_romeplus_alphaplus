@@ -18,8 +18,8 @@ const RegistrationLinks: React.FC<Props> = ({ domains, onRequestNewLink }) => {
     <div className="space-y-4">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-lg font-semibold text-sky-700 dark:text-sky-400">{t('registrationLinks.title')}</h2>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <h2 className="pb-[8px] text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] tracking-[0.2px] ">{t('registrationLinks.title')}</h2>
+          <p className="pb-[8px] text-[12px]">
             {t('registrationLinks.note')}
           </p>
         </div>
@@ -33,7 +33,7 @@ const RegistrationLinks: React.FC<Props> = ({ domains, onRequestNewLink }) => {
         )}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="flex gap-[30px] w-[83.333%]">
         {domains.map((domain, index) => (
           <DomainCard 
             key={domain.id} 

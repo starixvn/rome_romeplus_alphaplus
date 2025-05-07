@@ -12,7 +12,7 @@ export default function TitleCommon({ title }: TitleCommonProps) {
     return (
       <>
         <div className="mb-[8px]">
-            <h1 className="flex items-center font-bold text-[15px]">
+            <h1 className="flex items-center font-bold text-[15px] text-[#333333]">
             {title}
             <Tippy
                 content={

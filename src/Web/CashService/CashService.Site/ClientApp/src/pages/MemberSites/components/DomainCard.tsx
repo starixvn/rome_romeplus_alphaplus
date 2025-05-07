@@ -39,39 +39,44 @@ const DomainCard: React.FC<DomainCardProps> = ({ domain, className = '', index }
 
 
   return (
-    <div className={`bg-[#1e4d8c] dark:bg-[#2C3E50] rounded-lg p-4 flex items-center justify-between ${className}`}>
-      <div className="flex items-center flex-1 min-w-0">
-        <div className="flex-1 min-w-0">
-          <p className="text-white text-sm font-bold">{t('registrationLinks.domain')} {index + 1}</p>
-          <p className="text-white text-sm truncate">{domain.url}</p>
+    <div className={`bg-[var(--primary-color)] justify-between rounded-[5px] flex-1 text-[#ffffff] flex flex-nowrap p-[16px]
+ ${className}`}>
+      <div className="flex justify-between items-center  ">
+        <div className="leading-[15px]">
+          <p className="text-[14px] font-bold">{t('registrationLinks.domain')} {index + 1}</p>
+          <p className="text-[12px]">{domain.url}</p>
         </div>
+        
+      </div>
+      <div className="flex items-center ">
         <button 
-          onClick={(e) => handleCopy(e)}
-          className="ml-2 p-1.5 text-white hover:bg-[#2a5da0] dark:hover:bg-[#173d70] rounded transition-colors"
-          title="Copy URL"
+            onClick={(e) => handleCopy(e)}
+            className="cursor-pointer p-1.5 rounded-[4px] hover:bg-[#2a5da0] transition-colors"
+            title="Copy URL"
+          >
+            {copied ? (
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+            )}
+          </button>
+          <button 
+          disabled={domain.status === 'blocked'}
+          onClick={(e) => downloadQRCode(e)}
+          className={`cursor-pointer text-[var(--primary-color)] text-[12px] font-bold bg-[#ffffff] rounded-[5px] p-[6px]  ${
+            domain.status === 'active'
+              ? 'hover:bg-gray-50 dark:hover:bg-gray-300'
+              : 'opacity-50 cursor-not-allowed'
+          }`}
         >
-          {copied ? (
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-          ) : (
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-            </svg>
-          )}
+          {t('registrationLinks.downloadQRCode')}
         </button>
       </div>
-      <button 
-        disabled={domain.status === 'blocked'}
-        onClick={(e) => downloadQRCode(e)}
-        className={`bg-white dark:bg-gray-200 text-[#1e4d8c] dark:text-[#2C3E50] px-4 py-2 rounded text-sm font-medium whitespace-nowrap ${
-          domain.status === 'active'
-            ? 'hover:bg-gray-50 dark:hover:bg-gray-300'
-            : 'opacity-50 cursor-not-allowed'
-        }`}
-      >
-        {t('registrationLinks.downloadQRCode')}
-      </button>
+      
       
       {/* Hidden QR Code for download */}
       <div ref={qrRef} className="hidden">

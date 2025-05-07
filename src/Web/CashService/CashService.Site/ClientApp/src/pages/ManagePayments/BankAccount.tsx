@@ -422,7 +422,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                             <td>{account.accountNumber}</td>
                             <td>{getTransactionTypeNames(account.transactionTypes)}</td>
                             <td>
-                              <span className={`rounded-[20px] px-[10px] py-[3px] ${account.status === 1 ? 'bg-[#FBD8D8]' : 'bg-[#D4E7D9]'}`}>
+                              <span className={`rounded-[20px] px-[10px] py-[3px] ${account.status === 1 ? 'bg-[#D4E7D9]' : 'bg-[#FBD8D8]'}`}>
                                 {account.status === 1 ? tGlobal('enabled') : tGlobal('disabled')}
                               </span>
                             </td>
