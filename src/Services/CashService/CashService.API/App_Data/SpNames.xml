@@ -27,7 +27,6 @@
       <Setting Key="Age_CashService_BankList" SpName="Age_CashService_BankList_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
         <Mapping DataField="BankID" ObjectProperty="Id"></Mapping>
         <Mapping DataField="Bankcode" ObjectProperty="Code"></Mapping>
-        <Mapping DataField="TransTypeList" ObjectProperty="TransactionTypeID"></Mapping>
       </Setting>
       <Setting Key="Age_CashService_PaymentProviderStatus_Upd" SpName="Age_CashService_PaymentProviderStatus_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
       <Setting Key="Age_CashService_PaymentProvider_Upd" SpName="Age_CashService_PaymentProvider_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
@@ -73,7 +72,7 @@
       </Setting>
       <Setting Key="Age_CashService_BankAccountAgent_Upd" SpName="Age_CashService_BankAccountAgent_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
       <Setting Key="Age_ManagementPayments_DelBankAccount" SpName="Age_ManagementPayments_DelBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-      <Setting Key="Age_ManagementPayments_SelMobilePrefixes" SpName="Age_ManagementPayments_SelMobilePrefixes" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+      <Setting Key="Age_CashService_CountryPrefix_Sel" SpName="Age_CashService_CountryPrefix_Sel" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     </Function>
 
     <Function Name="Cash Service">

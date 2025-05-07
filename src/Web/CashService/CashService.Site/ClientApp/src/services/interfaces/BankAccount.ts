@@ -16,7 +16,7 @@ export interface BankAccount {
   depositMatchingMode: number;
   promptPay: boolean;
   mobile: string;
-  mobilePrefix: string;
+  countryCode: string;
 
   bank_TransTypeList: string;
   agent_TransTypeList: string;

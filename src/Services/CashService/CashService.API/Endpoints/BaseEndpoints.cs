@@ -6,16 +6,16 @@ public static class BaseEndpoints
 {
     public static void MapBaseEndpoints(this WebApplication app)
     {
-        app.MapGet("/api/base/mobile-prefixes", async (IBaseService service) =>
+        app.MapGet("/api/base/country-codes/{custId}", async (int custId, IBaseService service) =>
         {
-            var prefixes = await service.GetMobilePrefixes();
+            var prefixes = await service.GetCountryCodes(custId);
             return Results.Ok(prefixes);
         })
-        .WithName("GetMobilePrefixes")
+        .WithName("GetCountryCodes")
         .WithOpenApi(operation => new(operation)
         {
-            Summary = "Get mobile prefixes",
-            Description = "Returns a list of all available mobile prefixes"
+            Summary = "Get country codes",
+            Description = "Returns a list of all available country codes"
         });
     }
 } 

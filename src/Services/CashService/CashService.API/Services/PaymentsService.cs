@@ -31,7 +31,7 @@ public interface IPaymentsService
     Task<ResultModel> DeleteBankAccount(int accountId);
 }
 
-public class PaymentsService : BaseService, IPaymentsService
+public class PaymentsService : IPaymentsService
 {
     private readonly IDynamicRepository _repository;
     private readonly ICacheRefService _cacheRefService;
@@ -125,10 +125,12 @@ public class PaymentsService : BaseService, IPaymentsService
     
     public async Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod)
     {
-        paymentMethod.APIMethodKey = _encryption.Encrypt(paymentMethod.APIMethodKey);
-        paymentMethod.MerchantID = _encryption.Encrypt(paymentMethod.MerchantID);
-        paymentMethod.AppSecret = _encryption.Encrypt(paymentMethod.AppSecret);
-        var criteria = new InsertPaymentMethodCriteria(paymentMethod);
+        var criteria = new InsertPaymentMethodCriteria(paymentMethod) {
+            APIMethodKey = _encryption.Encrypt(paymentMethod.APIMethodKey),
+            MerchantID = _encryption.Encrypt(paymentMethod.MerchantID),
+            AppSecret = _encryption.Encrypt(paymentMethod.AppSecret)
+        };
+        
         await _repository.ExecuteAsync(criteria);
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
@@ -140,7 +142,7 @@ public class PaymentsService : BaseService, IPaymentsService
         {
             bank.Name = _cacheRefService.GetBankName(bank.Id, bank.Bank);
         }
-
+        
         return banks;
     }
 

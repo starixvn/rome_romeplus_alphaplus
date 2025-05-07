@@ -12,10 +12,6 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
             ProviderId = model.ProviderId;
             TransactionType = model.TransactionType;
             Method = model.Method;
-
-            APIMethodKey = model.APIMethodKey ?? string.Empty;
-            MerchantID = model.MerchantID ?? string.Empty;
-            AppSecret = model.AppSecret ?? string.Empty;
         }
 
         public int CustId { get; }
@@ -25,9 +21,9 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
         [SpParam(SqlParamName = "PaymentMethodID")]
         public int Method { get; }
 
-        public string APIMethodKey { get; }
-        public string MerchantID { get; }
-        public string AppSecret { get; }
+        public string APIMethodKey { get; set; }
+        public string MerchantID { get; set; }
+        public string AppSecret { get; set; }
 
         public int ErrCode { get; set; }
         public string ErrMsg { get; set; } = "";

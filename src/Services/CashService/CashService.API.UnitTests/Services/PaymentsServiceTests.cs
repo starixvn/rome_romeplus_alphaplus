@@ -253,20 +253,7 @@ public class PaymentsServiceTests
         Assert.Equal(1, result.Code);
         Assert.Equal("Invalid account ID", result.Message);
     }
-
-    [Fact]
-    public async Task GetMobilePrefixes_WhenCalled_ReturnsPrefixes()
-    {
-        // Act
-        var result = await _service.GetMobilePrefixes();
-
-        // Assert
-        Assert.NotNull(result);
-        Assert.Equal(15, result.Count());
-        Assert.Contains(result, p => p.CountryCode == "US" && p.Prefix == "+1");
-        Assert.Contains(result, p => p.CountryCode == "GB" && p.Prefix == "+44");
-    }
-
+    
     [Fact]
     public async Task GetBanks_WhenValidTransactionType_ReturnsBanks()
     {

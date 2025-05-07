@@ -17,7 +17,7 @@ public class BankAccountModelTests
         bankAccount.AccountNumber.Should().BeEmpty();
         bankAccount.AccountHolderName.Should().BeEmpty();
         bankAccount.Mobile.Should().BeEmpty();
-        bankAccount.MobilePrefix.Should().BeEmpty();
+        bankAccount.CountryCode.Should().BeEmpty();
         bankAccount.Creator.Should().BeEmpty();
         bankAccount.LastUpdated.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(1));
     }
@@ -52,10 +52,9 @@ public class BankAccountModelTests
             BankName = "Test Bank",
             BankId = 1,
             Status = 1,
-            DepositMatchingMode = 2,
             PromptPay = true,
             Mobile = "1234567890",
-            MobilePrefix = "+1",
+            CountryCode = "+1",
             Creator = "Admin",
             CreatorId = 1
         };
@@ -69,10 +68,9 @@ public class BankAccountModelTests
         bankAccount.BankName.Should().Be("Test Bank");
         bankAccount.BankId.Should().Be(1);
         bankAccount.Status.Should().Be(1);
-        bankAccount.DepositMatchingMode.Should().Be(2);
         bankAccount.PromptPay.Should().BeTrue();
         bankAccount.Mobile.Should().Be("1234567890");
-        bankAccount.MobilePrefix.Should().Be("+1");
+        bankAccount.CountryCode.Should().Be("+1");
         bankAccount.Creator.Should().Be("Admin");
         bankAccount.CreatorId.Should().Be(1);
     }

@@ -45,9 +45,7 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
         public bool PromptPay { get; }
         [SpParam(SqlParamName = "PromptPayMobile")]
         public string Mobile { get; }
-
-        [SpParam(Ignored = true, SqlParamName = "PromptPayMobilePrefix")]
-        public string MobilePrefix { get; }
+        public string CountryCode { get; }
 
 
         public int ErrCode { get; set; }

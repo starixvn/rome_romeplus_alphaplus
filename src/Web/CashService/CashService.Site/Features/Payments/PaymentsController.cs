@@ -232,11 +232,11 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             return Json(result);
         }
 
-        public async Task<IActionResult> GetMobilePrefixes(CancellationToken cancellationToken)
+        public async Task<IActionResult> GetCountryCodes(CancellationToken cancellationToken)
         {
-            var url = $"{_apiBaseUrl}/base/mobile-prefixes";
-            var prefixes = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
-            return Json(prefixes);
+            var url = $"{_apiBaseUrl}/base/country-codes/{_custId}";
+            var countryCodes = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
+            return Json(countryCodes);
         }
     }
 }

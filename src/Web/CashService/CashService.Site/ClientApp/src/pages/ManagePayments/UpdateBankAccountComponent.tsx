@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Bank } from '../../services/interfaces/Bank';
 import { BankAccount } from '../../services/interfaces/BankAccount';
-import { MobilePrefix } from '../../services/interfaces/MobilePrefix';
 import { DepositMatchingMode } from '../../services/interfaces/DepositMatchingMode';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import {
@@ -37,8 +36,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   const [status, setStatus] = useState<string>(bankAccount.status.toString());
   const [promptPay, setPromptPay] = useState<boolean>(bankAccount.promptPay);
   const [mobile, setMobile] = useState<string>(bankAccount.mobile);
-  const [mobilePrefix, setMobilePrefix] = useState<string>(bankAccount.mobilePrefix || '');
-  const [mobilePrefixes, setMobilePrefixes] = useState<MobilePrefix[]>([]);
+  const [countryCode, setCountryCode] = useState<string>(bankAccount.countryCode || '');
+  const [countryCodes, setCountryCodes] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<string>('');
@@ -92,10 +91,10 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
       }
     };
 
-    const fetchMobilePrefixes = async () => {
+    const fetchCountryCodes = async () => {
       try {
-        const prefixes = await baseAPI.getMobilePrefixes();
-        setMobilePrefixes(prefixes);
+        const prefixes = await baseAPI.getCountryCodes();
+        setCountryCodes(prefixes);
       } catch (err) {
         console.error('Error fetching mobile prefixes:', err);
       }
@@ -103,7 +102,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
     fetchBanks();
     fetchBankAccount();
-    fetchMobilePrefixes();
+    fetchCountryCodes();
   }, [bankAccount.id, tManagePayments]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -140,7 +139,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
         status: parseInt(status),
         promptPay,
         mobile,
-        mobilePrefix,
+        countryCode,
         lastUpdated: new Date().toISOString(),
         lastUpdatedStr: new Date().toLocaleString(),
         code: '',
@@ -192,10 +191,10 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
             
           </div>
           <div>
-            <label>{tManagePayments('createdBy')}</label>
-            <label>{tManagePayments('lastUpdated')}</label>
             <label>{bankAccount.accountNickname}</label>
             <label>{tManagePayments(`status-${bankAccount.status}`)}</label>
+            <label>{tManagePayments('createdBy')}</label>
+            <label>{tManagePayments('lastUpdated')}</label>
             <label>{bankAccount.creator}</label>
             <label>{bankAccount.lastUpdatedStr}</label>
           </div>
@@ -384,13 +383,13 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 <div className="flex items-center h-[35px] w-[470px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer">
                   <select
                     className="focus:outline-none focus:border-[var(--primary-color)] cursor-pointer"
-                    value={mobilePrefix}
-                    onChange={(e) => setMobilePrefix(e.target.value)}
+                    value={countryCode}
+                    onChange={(e) => setCountryCode(e.target.value)}
                     style={{ maxWidth: '120px' }}
                   >
-                    {mobilePrefixes.map((prefix) => (
-                      <option key={prefix.id} value={prefix.prefix} selected={prefix.prefix === mobilePrefix}>
-                        {prefix.prefix}
+                    {countryCodes.map((code) => (
+                      <option key={code} value={code} selected={code === countryCode}>
+                        +{code}
                       </option>
                     ))}
                   </select>

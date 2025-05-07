@@ -16,7 +16,7 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
             TransactionTypeIDs = bankAccModel.Agent_TransTypeList;
             DepositMatchingMode = bankAccModel.Agent_DepositMatchingMode;
 
-            MobilePrefix = bankAccModel.MobilePrefix;
+            CountryCode = bankAccModel.CountryCode;
             PromptPay = bankAccModel.PromptPay;
             Mobile = bankAccModel.Mobile;
         }
@@ -36,8 +36,7 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
         public string TransactionTypeIDs {get;}
         public int DepositMatchingMode {get;}
 
-        [SpParam(SqlParamName = "CountryCode")]
-        public string MobilePrefix { get; }
+        public string CountryCode { get; }
         [SpParam(SqlParamName = "PromptPayEnabled")]
         public bool PromptPay { get; }
         [SpParam(SqlParamName = "PromptPayMobile")]
