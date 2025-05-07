@@ -39,7 +39,8 @@ public class PromotionService(IDynamicRepository repository) : IPromotionService
                 GamesPercentage = 1,
                 GamesMaxPayout = 10,
                 LiveCasinoPercentage = 1,
-                LiveCasinoMaxPayout = 10
+                LiveCasinoMaxPayout = 10,
+                Status = "Active"
             },
             new PromotionModel
             {
@@ -52,7 +53,8 @@ public class PromotionService(IDynamicRepository repository) : IPromotionService
                 GamesPercentage = 1,
                 GamesMaxPayout = 10,
                 LiveCasinoPercentage = 1,
-                LiveCasinoMaxPayout = 10
+                LiveCasinoMaxPayout = 10,
+                 Status = "Active"
             },
             new PromotionModel
             {
@@ -65,7 +67,8 @@ public class PromotionService(IDynamicRepository repository) : IPromotionService
                 GamesPercentage = 1,
                 GamesMaxPayout = 10,
                 LiveCasinoPercentage = 1,
-                LiveCasinoMaxPayout = 9
+                LiveCasinoMaxPayout = 9,
+                 Status = "All"
             }
         };
     }

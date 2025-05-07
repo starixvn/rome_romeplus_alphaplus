@@ -3,24 +3,31 @@ import { createRoot } from 'react-dom/client';
 import 'tippy.js/dist/tippy.css'; 
 import '../../i18n/i18n';
 import { promotionService } from '../../services/promotionAPI';
+import Table from './components/Table';
+import type { Promotion } from '../../services/interfaces/Promotion';
 
 const Promotion: React.FC = () => {
     const [promotionType] = useState<string>('All');
     const [status] = useState<string>('All');
     const [error, setError] = useState<string | null>(null);
+    const [promotions, setPromotions] = useState<Promotion[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchPromotions = async () => {
+            setIsLoading(true);
             try {
-                await promotionService.getPromotion({
+                const response = await promotionService.getPromotion({
                     Type: promotionType,
                     Status: status
                 });
+                setPromotions(response);
                 setError(null);
             } catch (err) {
                 setError('Failed to load promotions');
                 console.error('Error loading promotions:', err);
             } finally {
+                setIsLoading(false);
             }
         };
 
@@ -37,7 +44,7 @@ const Promotion: React.FC = () => {
                     </div>
                 )}
                 <div className="promotion-list">
-                   
+                    <Table items={promotions} isLoading={isLoading} />
                 </div>
             </div>
         </div>

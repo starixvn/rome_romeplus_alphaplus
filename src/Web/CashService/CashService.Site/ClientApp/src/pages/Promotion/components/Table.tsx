@@ -15,7 +15,9 @@ const Table: React.FC<TableProps> = ({
     const { t } = useTranslation('promotion');
 
     const getStatusStyle = (status: string) => {
-        switch (status.toUpperCase()) {
+
+        var s = status ? status.toLocaleUpperCase() : '';
+        switch (s) {
             case 'ACTIVE':
                 return 'bg-[#DCFCE7] text-[#166534]';
             case 'SCHEDULED':
@@ -106,21 +108,21 @@ const Table: React.FC<TableProps> = ({
             <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
                 {index + 1}
             </td>
-            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.PromotionTitle}</td>
-            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.PromotionType}</td>
-            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.SportsPercentage}<br />{item.SportsMaxPayout}</td>
-            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.VirtualSportsPercentage}<br />{item.VirtualSportsMaxPayout}</td>
-            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.GamesPercentage}<br />{item.GamesMaxPayout}</td>
-            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.LiveCasinoPercentage}<br />{item.LiveCasinoMaxPayout}</td>
-            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.Provider}</td>
+            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.promotionTitle}</td>
+            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.promotionType}</td>
+            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.sportsPercentage}<br />{item.sportsMaxPayout}</td>
+            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.virtualSportsPercentage}<br />{item.virtualSportsMaxPayout}</td>
+            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.gamesPercentage}<br />{item.gamesMaxPayout}</td>
+            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.liveCasinoPercentage}<br />{item.liveCasinoMaxPayout}</td>
+            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.provider}</td>
             <td className="px-4 py-0.5 text-sm border border-gray-300 text-center">
                 <span
-                    className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusStyle(item.Status)}`}
+                    className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusStyle(item.status)}`}
                 >
-                    {item.Status.toUpperCase()}
+                    {item.status.toUpperCase()}
                 </span>
             </td>
-            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.LastUpdated}</td>
+            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.lastUpdated}</td>
         </tr>
     );
 
