@@ -20,53 +20,56 @@ const MessageForm: React.FC<MessageFormProps> = ({
     <div className="">
       <h2 className="w-full text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] tracking-[0.2px] ">{t('message.title')}</h2>
       <p className="text-[12px] pt-[4px] mb-[8px] font-semibold">{t('message.description')}</p>
-      <div className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
+      <div className="">
+          <div className="flex gap-[16px] mb-[4px]">
+            <div className='w-[24%] min-w-[200px] pt-[4px]'>
               <label className="text-[12px] pt-[4px] mb-[8px] font-semibold" htmlFor="mobile">
                 {t('message.mobile')}
               </label>
-              <div className="flex">
-                <span className="inline-flex items-center px-3 py-2 rounded-l-md border border-r-0 border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-sm">
-                  +66
-                </span>
-                <input
+              <div className="flex items-center h-[35px]  border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer">
+                <select
+                  className="focus:outline-none focus:border-[var(--primary-color)] h-[100%]  cursor-pointer mr-[5px]"
+                >
+                  <option value="+66">+66</option>
+                  <option value="+84">+84</option>
+                </select>
+                <input                     
+                  className="focus:outline-none w-[100%] h-[100%] pl-[10px] border-l-[1px] border-[#0000003D]"
                   id="mobile"
                   type="text"
                   value={mobile}
                   onChange={(e) => onMessageChange({ mobile: e.target.value })}
                   placeholder="XXXXXXXXX"
-                  className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-r-md focus:outline-none focus:ring-1 focus:ring-sky-500 dark:focus:ring-sky-400"
                 />
               </div>
             </div>
-            <div>
+            <div className='w-[24%] min-w-[200px] pt-[4px]'>
               <label className="text-[12px] pt-[4px] mb-[8px] font-semibold" htmlFor="lineId">
                 {t('message.lineId')}
+                <span className='text-[#E25757]'>*</span>
               </label>
               <input
                 id="lineId"
                 type="text"
                 value={lineId}
                 onChange={(e) => onMessageChange({ lineId: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-1 focus:ring-sky-500 dark:focus:ring-sky-400"
+                className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)]"
               />
             </div>
       
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="announcement">
+        <div className='w-[50%] min-w-[400px]'>
+          <label className="text-[12px] pt-[4px] mb-[8px] font-semibold" htmlFor="announcement">
             {t('message.announcement')}
-          </label>   
-    
+          </label> 
           <textarea
             id="announcement"
             value={announcement}
             onChange={(e) => onMessageChange({ announcement: e.target.value })}
             rows={4}
             maxLength={1000}
-            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-1 focus:ring-sky-500 dark:focus:ring-sky-400"
+            className="p-[8px] h-[100px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)]"
             placeholder={t('message.placeholder.message')}
           />
         </div>

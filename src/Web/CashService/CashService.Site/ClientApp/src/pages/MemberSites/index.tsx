@@ -167,10 +167,10 @@ const MemberSiteManagement: React.FC = () => {
               <button
                 type="submit"
                 disabled={!isDirty || isSaving}
-                className={`px-6 py-2 rounded-md text-white transition-colors
+                className={`w-[140px] h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px]  ml-[8px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]
                   ${isDirty && !isSaving
-                    ? 'bg-[#2C3E50] hover:bg-[#1e4d8c] dark:bg-[#1e4d8c] dark:hover:bg-[#173d70] cursor-pointer'
-                    : 'bg-gray-400 dark:bg-gray-600 cursor-not-allowed'}`}
+                    ? 'border-[var(--primary-color)] bg-[var(--primary-color)] hover:bg-[#375A8A] hover:border-[#375A8A] cursor-pointer'
+                    : 'bg-[#375A8A] border-[#375A8A] cursor-not-allowed'}`}
               >
                 {isSaving ? t('actions.saving') : t('actions.save')}
               </button>
