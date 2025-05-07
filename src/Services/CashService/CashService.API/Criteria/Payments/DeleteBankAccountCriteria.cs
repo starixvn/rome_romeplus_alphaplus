@@ -3,15 +3,10 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Criteria.Payments
 {
-    public class DeleteBankAccountCriteria : NonQueryCommand
+    public class DeleteBankAccountCriteria(int bankAccountId) : NonQueryCommand
     {
-        public DeleteBankAccountCriteria(int bankAccountId)
-        {
-            BankAccountId = bankAccountId;
-        }
-
         [SpParam(SqlParamName = "BankAccountId")]
-        public int BankAccountId { get; }
+        public int BankAccountId { get; } = bankAccountId;
 
         public override string GetSettingKey() => "Age_ManagementPayments_DelBankAccount";
 

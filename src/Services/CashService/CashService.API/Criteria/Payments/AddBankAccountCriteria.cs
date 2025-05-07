@@ -4,47 +4,35 @@ using AlphaPlus.CashService.API.Models.Payments;
 
 namespace AlphaPlus.CashService.API.Criteria.Payments
 {
-    public class AddBankAccountCriteria : NonQueryCommand
+    public class AddBankAccountCriteria(BankAccountModel bankAccModel) : NonQueryCommand
     {
-        public AddBankAccountCriteria(BankAccountModel bankAccModel)
-        {
-            Creator = bankAccModel.CreatorId;
-            BankId = bankAccModel.BankId;
-            Status = bankAccModel.Status;
-
-            AccountHolderName = bankAccModel.AccountHolderName;
-            AccountNumber = bankAccModel.AccountNumber;
-            AccountNickname = bankAccModel.AccountNickname;
-
-            TransactionTypeIDs = bankAccModel.TransactionTypes;
-
-            PromptPay = bankAccModel.PromptPay;
-            Mobile = bankAccModel.Mobile;
-        }
-
         [SpParam(SqlParamName = "CustId")]
-        public int Creator { get; }
+        public int Creator { get; } = bankAccModel.CreatorId;
 
         [SpParam(SqlParamName = "BankAccountStatus")]
-        public int Status { get; }
+        public int Status { get; } = bankAccModel.Status;
 
         [SpParam(SqlParamName = "BankId")]
-        public int BankId { get; }
+        public int BankId { get; } = bankAccModel.BankId;
 
-        public string AccountHolderName { get; }
+        public string AccountHolderName { get; } = bankAccModel.AccountHolderName;
 
         [SpParam(SqlParamName = "BankAccountNumber")]
-        public string AccountNumber { get; }
-        public string AccountNickname { get; }
+        public string AccountNumber { get; } = bankAccModel.AccountNumber;
+
+        public string AccountNickname { get; } = bankAccModel.AccountNickname;
 
         [SpParam(SqlParamName = "TransactionTypeID")]
-        public string TransactionTypeIDs {get;}
+        public string TransactionTypeIDs {get;} = bankAccModel.TransactionTypes;
+
         public int DepositMatchingMode {get;}
 
         [SpParam(SqlParamName = "PromptPayEnabled")]
-        public bool PromptPay { get; }
+        public bool PromptPay { get; } = bankAccModel.PromptPay;
+
         [SpParam(SqlParamName = "PromptPayMobile")]
-        public string Mobile { get; }
+        public string Mobile { get; } = bankAccModel.Mobile;
+
         public string CountryCode { get; }
 
 

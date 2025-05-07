@@ -2,18 +2,11 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Criteria.Payments
 {
-    public class GetPaymentMethodsCriteria : CriteriaBase
+    public class GetPaymentMethodsCriteria(int custId, int providerId, int transactionType) : CriteriaBase
     {
-        public GetPaymentMethodsCriteria( int custId, int providerId, int transactionType)
-        {
-            CustId = custId;
-            ProviderId = providerId;
-            TransactionType = transactionType == 0 ? null : transactionType;
-        }
-
-        public int CustId { get; set; }
-        public int ProviderId { get; set; }
-        public int? TransactionType { get; set; }
+        public int CustId { get; set; } = custId;
+        public int ProviderId { get; set; } = providerId;
+        public int? TransactionType { get; set; } = transactionType == 0 ? null : transactionType;
 
         public override string GetSettingKey() => "Age_CashService_PaymentMethods";
 

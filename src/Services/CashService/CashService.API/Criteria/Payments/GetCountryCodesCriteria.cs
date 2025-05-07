@@ -2,14 +2,9 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Criteria.Payments;
 
-public class GetCountryCodesCriteria : CriteriaBase
+public class GetCountryCodesCriteria(int custId) : CriteriaBase
 {
-    public GetCountryCodesCriteria(int custId)
-    {
-        CustId = custId;
-    }
-
-    public int CustId { get; set; }
+    public int CustId { get; set; } = custId;
 
     public override string GetSettingKey() => "Age_CashService_CountryPrefix_Sel";
 

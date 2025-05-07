@@ -4,22 +4,14 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Criteria.Payments
 {
-    public class InsertPaymentMethodCriteria : NonQueryCommand
+    public class InsertPaymentMethodCriteria(PaymentMethodModel model) : NonQueryCommand
     {
-        public InsertPaymentMethodCriteria(PaymentMethodModel model)
-        {
-            CustId = model.CustId;
-            ProviderId = model.ProviderId;
-            TransactionType = model.TransactionType;
-            Method = model.Method;
-        }
-
-        public int CustId { get; }
-        public int ProviderId { get; }
-        public int TransactionType { get; }
+        public int CustId { get; } = model.CustId;
+        public int ProviderId { get; } = model.ProviderId;
+        public int TransactionType { get; } = model.TransactionType;
 
         [SpParam(SqlParamName = "PaymentMethodID")]
-        public int Method { get; }
+        public int Method { get; } = model.Method;
 
         public string APIMethodKey { get; set; }
         public string MerchantID { get; set; }

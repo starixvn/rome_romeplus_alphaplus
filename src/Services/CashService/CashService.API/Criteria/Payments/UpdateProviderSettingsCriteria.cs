@@ -2,18 +2,11 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Criteria.Payments
 {
-    public class UpdateProviderSettingsCriteria : NonQueryCommand
+    public class UpdateProviderSettingsCriteria(int custId, int providerId, string settings) : NonQueryCommand
     {
-        public UpdateProviderSettingsCriteria(int custId, int providerId, string settings)
-        {
-            CustId = custId;
-            ProviderId = providerId;
-            PaymentMethods = settings;
-        }
-
-        public int CustId { get; }
-        public int ProviderId { get; }
-        public string PaymentMethods { get; }
+        public int CustId { get; } = custId;
+        public int ProviderId { get; } = providerId;
+        public string PaymentMethods { get; } = settings;
 
         public int ErrCode { get; set; }
         public string ErrMsg { get; set; } = string.Empty;

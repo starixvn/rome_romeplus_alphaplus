@@ -4,33 +4,25 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Criteria.Payments
 {
-    public class SetTransactionLimitCriteria : NonQueryCommand
+    public class SetTransactionLimitCriteria(
+        int custId,
+        int dailyWithdrawalCount,
+        decimal minPerDeposit,
+        decimal maxPerDeposit,
+        decimal minPerWithdrawal,
+        decimal maxPerWithdrawal)
+        : NonQueryCommand
     {
-        public SetTransactionLimitCriteria(
-            int custId, 
-            int dailyWithdrawalCount,
-            decimal minPerDeposit,
-            decimal maxPerDeposit,
-            decimal minPerWithdrawal,
-            decimal maxPerWithdrawal)
-        {
-            CustId = custId;
-            DailyWithdrawalCount = dailyWithdrawalCount;
-            MinPerDeposit = minPerDeposit;
-            MaxPerDeposit = maxPerDeposit;  
-            MinPerWithdrawal = minPerWithdrawal;
-            MaxPerWithdrawal = maxPerWithdrawal;
-        }
-
-        public int CustId { get; }
+        public int CustId { get; } = custId;
         public int ModeAction { get; } = ModeViewConstants.BankAccount; 
 
         [SpParam(SqlParamName = "DrawLimit")]
-        public int DailyWithdrawalCount { get; }
-        public decimal MinPerDeposit { get; }
-        public decimal MaxPerDeposit { get; } 
-        public decimal MinPerWithdrawal { get; } 
-        public decimal MaxPerWithdrawal { get; } 
+        public int DailyWithdrawalCount { get; } = dailyWithdrawalCount;
+
+        public decimal MinPerDeposit { get; } = minPerDeposit;
+        public decimal MaxPerDeposit { get; } = maxPerDeposit;
+        public decimal MinPerWithdrawal { get; } = minPerWithdrawal;
+        public decimal MaxPerWithdrawal { get; } = maxPerWithdrawal;
 
         public int ErrCode { get; set; }
         public string ErrMsg { get; set; } = string.Empty;

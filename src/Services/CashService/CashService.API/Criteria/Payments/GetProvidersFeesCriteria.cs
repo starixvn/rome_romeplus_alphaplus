@@ -2,14 +2,9 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Criteria.Payments
 {
-    public class GetProvidersFeesCriteria : CriteriaBase
+    public class GetProvidersFeesCriteria(int providerId) : CriteriaBase
     {
-        public GetProvidersFeesCriteria(int providerId)
-        {
-            ProviderId = providerId;
-        }
-
-        public int ProviderId { get; set; }
+        public int ProviderId { get; set; } = providerId;
 
         public override string GetSettingKey() => "Age_CashService_PaymentProviderFee_Sel";
 

@@ -2,17 +2,11 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Criteria.Payments
 {
-    public class GetDailyLimitCriteria : CriteriaBase
+    public class GetDailyLimitCriteria(int custId, int modeView) : CriteriaBase
     {
-        public GetDailyLimitCriteria(int custId, int modeView)
-        {
-            CustId = custId;
-            ModeView = modeView;
-        }
+        public int CustId { get; } = custId;
 
-        public int CustId { get; }
-
-        public int ModeView { get; set; }
+        public int ModeView { get; set; } = modeView;
 
         public override string GetSettingKey() => "Age_CashService_AgentBankAccountLimit_Sel";
 

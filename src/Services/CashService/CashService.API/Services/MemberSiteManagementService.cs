@@ -3,31 +3,26 @@ using AlphaPlus.CashService.API.Models;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Services;
+
 public interface IMemberSiteManagementService
 {
     Task<MemberSiteManagementModel> GetAsync(int custId);
+
     Task<ResultModel> UpdateAsync(MemberSiteManagementModel model);
 }
-public class MemberSiteManagementService : IMemberSiteManagementService
-{
-    private readonly IConfiguration _configuration;
-    private readonly ILogger<MemberSiteManagementService> _logger;
-    private readonly IDynamicRepository _repository;
 
-    public MemberSiteManagementService(
-        IConfiguration configuration,
-        ILogger<MemberSiteManagementService> logger,
-        IDynamicRepository repository)
-    {
-        _configuration = configuration;
-        _logger = logger;
-        _repository = repository;
-    }
+public class MemberSiteManagementService(
+    IConfiguration configuration,
+    ILogger<MemberSiteManagementService> logger,
+    IDynamicRepository repository)
+    : IMemberSiteManagementService
+{
+    private readonly IConfiguration _configuration = configuration;
+    private readonly ILogger<MemberSiteManagementService> _logger = logger;
 
     public async Task<MemberSiteManagementModel> GetAsync(int custId)
     {
-
-        var (domains, settings) = await _repository.FetchMultipleAsync<DomainModel, CashServiceManagementDto>(new GetMemberSiteInfoCriteria(custId));
+        var (domains, settings) = await repository.FetchMultipleAsync<DomainModel, CashServiceManagementDto>(new GetMemberSiteInfoCriteria(custId));
 
         var settingInfo = settings.FirstOrDefault() ?? new CashServiceManagementDto();
 
@@ -43,6 +38,7 @@ public class MemberSiteManagementService : IMemberSiteManagementService
 
         return trasnformModel;
     }
+
     private List<MemberSitePermission> BuildGeneralSettings(CashServiceManagementDto settingInfo)
     {
         return new List<MemberSitePermission>
@@ -83,7 +79,7 @@ public class MemberSiteManagementService : IMemberSiteManagementService
                 CountryCode = model.CountryCode,
                 SettingInfo = ConvertToSettingInfo(model.GeneralSettings)
             };
-            await _repository.ExecuteAsync(command);
+            await repository.ExecuteAsync(command);
             return new ResultModel(command.ErrCode, command.ErrMsg);
         }
         catch (Exception ex)

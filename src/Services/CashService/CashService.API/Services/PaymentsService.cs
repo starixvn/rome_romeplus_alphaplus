@@ -31,29 +31,19 @@ public interface IPaymentsService
     Task<ResultModel> DeleteBankAccount(int accountId);
 }
 
-public class PaymentsService : IPaymentsService
+public class PaymentsService(
+    IDynamicRepository repository,
+    ICacheRefService cacheRefService,
+    IEncryptionService encryption)
+    : IPaymentsService
 {
-    private readonly IDynamicRepository _repository;
-    private readonly ICacheRefService _cacheRefService;
-    private readonly IEncryptionService _encryption;
-
-    public PaymentsService(
-        IDynamicRepository repository, 
-        ICacheRefService cacheRefService, 
-        IEncryptionService encryption)
-    {
-        _repository = repository;
-        _cacheRefService = cacheRefService;
-        _encryption = encryption;
-    }
-
     public async Task<IEnumerable<ProviderModel>> GetProviders(int custId)
     {
-        var providers = await _repository.FetchAsync<ProviderModel>(new GetProvidersCriteria(custId));
+        var providers = await repository.FetchAsync<ProviderModel>(new GetProvidersCriteria(custId));
 
         foreach (var provider in providers)
         {
-            provider.Name = _cacheRefService.GetProviderName(provider.Id, provider.Name);
+            provider.Name = cacheRefService.GetProviderName(provider.Id, provider.Name);
         }
         
         return providers;
@@ -61,7 +51,7 @@ public class PaymentsService : IPaymentsService
 
     public async Task<int> GetDailyWithdrawalCount(int custId)
     {
-        var result = await _repository.FetchAsync<int>(new GetDailyLimitCriteria(custId, ModeViewConstants.PaymentGateway));
+        var result = await repository.FetchAsync<int>(new GetDailyLimitCriteria(custId, ModeViewConstants.PaymentGateway));
 
         return result.FirstOrDefault();
     }
@@ -69,17 +59,17 @@ public class PaymentsService : IPaymentsService
     public async Task<ResultModel> SetDailyWithdrawalCount(int custId, int count)
     {
         var criteria = new SetDailyWithdrawalCountCriteria(custId, count);    
-        await _repository.ExecuteAsync(criteria);
+        await repository.ExecuteAsync(criteria);
 
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
     
     public async Task<IEnumerable<ProviderFeeGroupModel>> GetProviderFees(int providerId)
     {
-        var fees = await _repository.FetchAsync<ProviderFeeModel>(new GetProvidersFeesCriteria(providerId));
+        var fees = await repository.FetchAsync<ProviderFeeModel>(new GetProvidersFeesCriteria(providerId));
         foreach (var fee in fees)
         {
-            fee.Method = _cacheRefService.GetPaymentMethodName(fee.MethodId, fee.Method);
+            fee.Method = cacheRefService.GetPaymentMethodName(fee.MethodId, fee.Method);
         }
 
         var groupedFees = fees
@@ -103,10 +93,10 @@ public class PaymentsService : IPaymentsService
     
     public async Task<IEnumerable<PaymentMethodModel>> GetPaymentMethods(int custId, int providerId, int transactionType)
     {
-        var methods = await _repository.FetchAsync<PaymentMethodModel>(new GetPaymentMethodsCriteria(custId, providerId, transactionType));
+        var methods = await repository.FetchAsync<PaymentMethodModel>(new GetPaymentMethodsCriteria(custId, providerId, transactionType));
         foreach (var method in methods)
         {
-            method.Name = _cacheRefService.GetPaymentMethodName(method.Id, method.Name);
+            method.Name = cacheRefService.GetPaymentMethodName(method.Id, method.Name);
         }
 
         return methods;
@@ -114,10 +104,10 @@ public class PaymentsService : IPaymentsService
 
     public async Task<IEnumerable<ProviderSettingsModel>> GetProviderSettings(int providerId, int method, int status, int transactionType)
     {
-        var settings = await _repository.FetchAsync<ProviderSettingsModel>(new GetProviderSettingsCriteria(providerId, method, status, transactionType));
+        var settings = await repository.FetchAsync<ProviderSettingsModel>(new GetProviderSettingsCriteria(providerId, method, status, transactionType));
         foreach (var setting in settings)
         {
-            setting.MethodName = _cacheRefService.GetPaymentMethodName(setting.Method, setting.MethodName);
+            setting.MethodName = cacheRefService.GetPaymentMethodName(setting.Method, setting.MethodName);
         }
 
         return settings;
@@ -126,21 +116,21 @@ public class PaymentsService : IPaymentsService
     public async Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod)
     {
         var criteria = new InsertPaymentMethodCriteria(paymentMethod) {
-            APIMethodKey = _encryption.Encrypt(paymentMethod.APIMethodKey),
-            MerchantID = _encryption.Encrypt(paymentMethod.MerchantID),
-            AppSecret = _encryption.Encrypt(paymentMethod.AppSecret)
+            APIMethodKey = encryption.Encrypt(paymentMethod.APIMethodKey),
+            MerchantID = encryption.Encrypt(paymentMethod.MerchantID),
+            AppSecret = encryption.Encrypt(paymentMethod.AppSecret)
         };
         
-        await _repository.ExecuteAsync(criteria);
+        await repository.ExecuteAsync(criteria);
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
   
     public async Task<IEnumerable<BankModel>> GetBanks(int transactionType)
     {
-        var banks = await _repository.FetchAsync<BankModel>(new GetBanksByTransactionTypeCriteria(transactionType));
+        var banks = await repository.FetchAsync<BankModel>(new GetBanksByTransactionTypeCriteria(transactionType));
         foreach (var bank in banks)
         {
-            bank.Name = _cacheRefService.GetBankName(bank.Id, bank.Bank);
+            bank.Name = cacheRefService.GetBankName(bank.Id, bank.Bank);
         }
         
         return banks;
@@ -150,7 +140,7 @@ public class PaymentsService : IPaymentsService
     {
         var updateStatusCriteria = new UpdateProviderStatusCriteria(provider.CustId, provider.Id, provider.Status);
 
-        await _repository.ExecuteAsync(updateStatusCriteria);
+        await repository.ExecuteAsync(updateStatusCriteria);
         if(updateStatusCriteria.ErrCode != 0)
         {
             return new ResultModel(updateStatusCriteria.ErrCode, updateStatusCriteria.ErrMsg);
@@ -166,7 +156,7 @@ public class PaymentsService : IPaymentsService
 
             var jsonSettings = $"[{string.Join(",", jsonSetting)}]";
             var updateProviderSettingsCriteria = new UpdateProviderSettingsCriteria(provider.CustId, provider.Id, jsonSettings);
-            await _repository.ExecuteAsync(updateProviderSettingsCriteria);
+            await repository.ExecuteAsync(updateProviderSettingsCriteria);
 
             if(updateProviderSettingsCriteria.ErrCode != 0)
             {
@@ -179,10 +169,10 @@ public class PaymentsService : IPaymentsService
 
     public async Task<IEnumerable<BankModel>> GetBanksByCust(int custId)
     {
-        var banks = await _repository.FetchAsync<BankModel>(new GetBanksByCustCriteria(custId));
+        var banks = await repository.FetchAsync<BankModel>(new GetBanksByCustCriteria(custId));
         foreach (var bank in banks)
         {
-            bank.Name = _cacheRefService.GetBankName(bank.Id, bank.Bank);
+            bank.Name = cacheRefService.GetBankName(bank.Id, bank.Bank);
         }
 
         return banks;
@@ -190,7 +180,7 @@ public class PaymentsService : IPaymentsService
 
     public async Task<IEnumerable<TransactionTypeModel>> GetTransactionTypes()
     {
-        var transactionTypes = await _repository.FetchAsync<TransactionTypeModel>(new GetTransactionTypesCriteria());
+        var transactionTypes = await repository.FetchAsync<TransactionTypeModel>(new GetTransactionTypesCriteria());
         return transactionTypes;
     }
 
@@ -202,13 +192,13 @@ public class PaymentsService : IPaymentsService
         string searchText)
     {
         var criteria = new GetBankAccountsCriteria(custId, bankId, transactionType, status, searchText);
-        var accounts = await _repository.FetchAsync<BankAccountModel>(criteria);
+        var accounts = await repository.FetchAsync<BankAccountModel>(criteria);
         return accounts;
     }
     
     public async Task<TransactionLimitModel> GetTransactionLimit(int custId)
     {
-        var (limits, count) = await _repository.FetchMultipleAsync<DailyLimitDTO, int>(new GetDailyLimitCriteria(custId, ModeViewConstants.BankAccount));
+        var (limits, count) = await repository.FetchMultipleAsync<DailyLimitDTO, int>(new GetDailyLimitCriteria(custId, ModeViewConstants.BankAccount));
 
         var depositLimit = limits.FirstOrDefault(l => l.IsDeposit) ?? new DailyLimitDTO();
         var withdrawalLimit = limits.FirstOrDefault(l => !l.IsDeposit) ?? new DailyLimitDTO();
@@ -232,7 +222,7 @@ public class PaymentsService : IPaymentsService
             limit.MinPerWithdrawalTransaction, 
             limit.MaxPerWithdrawalTransaction);
 
-        await _repository.ExecuteAsync(criteria);
+        await repository.ExecuteAsync(criteria);
 
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
@@ -241,17 +231,17 @@ public class PaymentsService : IPaymentsService
     {
         Console.WriteLine(JsonSerializer.Serialize(bankAccount));
         var criteria = new AddBankAccountCriteria(bankAccount);
-        await _repository.ExecuteAsync(criteria);
+        await repository.ExecuteAsync(criteria);
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
 
     public async Task<BankAccountModel> GetBankAccountById(int accountId)
     {
         var criteria = new GetBankAccountByIdCriteria(accountId);
-        var accounts = await _repository.FetchAsync<BankAccountModel>(criteria);
+        var accounts = await repository.FetchAsync<BankAccountModel>(criteria);
         foreach (var bank in accounts)
         {
-            bank.BankName = _cacheRefService.GetBankName(bank.Id, bank.BankName);
+            bank.BankName = cacheRefService.GetBankName(bank.Id, bank.BankName);
         }
 
         return accounts.FirstOrDefault();
@@ -260,7 +250,7 @@ public class PaymentsService : IPaymentsService
     public async Task<ResultModel> UpdateBankAccount(BankAccountModel bankAccount)
     {
         var criteria = new UpdateBankAccountCriteria(bankAccount);
-        await _repository.ExecuteAsync(criteria);
+        await repository.ExecuteAsync(criteria);
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
 

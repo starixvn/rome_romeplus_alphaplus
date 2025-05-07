@@ -3,20 +3,13 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Criteria.Payments
 {
-    public class UpdateProviderStatusCriteria : NonQueryCommand
+    public class UpdateProviderStatusCriteria(int custId, int providerId, int status) : NonQueryCommand
     {
-        public UpdateProviderStatusCriteria(int custId, int providerId, int status)
-        {
-            CustId = custId;
-            ProviderId = providerId;
-            Status = status;
-        }
-
-        public int CustId { get; }
-        public int ProviderId { get; }
+        public int CustId { get; } = custId;
+        public int ProviderId { get; } = providerId;
 
         [SpParam(SqlParamName = "ProviderStatus")]
-        public int Status { get; }
+        public int Status { get; } = status;
 
         public int ErrCode { get; set; }
         public string ErrMsg { get; set; } = string.Empty;

@@ -3,15 +3,10 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Criteria.Payments
 {
-    public class GetBankAccountByIdCriteria : CriteriaBase
+    public class GetBankAccountByIdCriteria(int bankAccountId) : CriteriaBase
     {
-        public GetBankAccountByIdCriteria(int bankAccountId)
-        {
-            BankAccountId = bankAccountId;
-        }
-
         [SpParam(SqlParamName = "AgentBankAccountID")]
-        public int BankAccountId { get; }
+        public int BankAccountId { get; } = bankAccountId;
 
         public override string GetSettingKey() => "Age_CashService_BankAccountAgent_Sel";
 

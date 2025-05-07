@@ -3,34 +3,26 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Criteria.Payments
 {
-    public class GetBankAccountsCriteria : CriteriaBase
+    public class GetBankAccountsCriteria(
+        int custId,
+        int? bankId = null,
+        int? transactionType = null,
+        int? status = null,
+        string searchText = null)
+        : CriteriaBase
     {
-        public GetBankAccountsCriteria(
-            int custId,
-            int? bankId = null,
-            int? transactionType = null,
-            int? status = null,
-            string searchText = null)
-        {
-            CustId = custId;
-            BankId = bankId;
-            TransactionType = transactionType.HasValue && transactionType.Value != 0 ? transactionType.ToString() : null;
-            Status = status;
-            SearchText = searchText;
-        }
-        
-        public int CustId { get; }
+        public int CustId { get; } = custId;
 
-        public int? BankId { get; }
+        public int? BankId { get; } = bankId;
 
         [SpParam(SqlParamName = "TransTypeList")]
-        public string TransactionType { get; }
+        public string TransactionType { get; } = transactionType.HasValue && transactionType.Value != 0 ? transactionType.ToString() : null;
 
         [SpParam(SqlParamName = "BankAccountStatus")]
-        public int? Status { get; }
+        public int? Status { get; } = status;
 
         [SpParam(SqlParamName = "SearchAccount")]
-        public string SearchText { get; }
+        public string SearchText { get; } = searchText;
 
         public override string GetSettingKey() => "Age_CashService_BankAccountAgent_List";
 

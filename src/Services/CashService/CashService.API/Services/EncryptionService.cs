@@ -13,15 +13,10 @@ public interface IEncryptionService
 
 public class EncryptionService : IEncryptionService
 {
-    private readonly byte[] _key;
-    private readonly byte[] _iv;
+    private readonly byte[] _key = Encoding.UTF8.GetBytes("A1B2C3D4E5F6G7H8"); // 16 bytes for AES-128
+    private readonly byte[] _iv = Encoding.UTF8.GetBytes("1H2G3F4E5D6C7B8A"); // 16 bytes
 
-    public EncryptionService()
-    {
-        // For demonstration, use a static key/iv. In production, use secure key management.
-        _key = Encoding.UTF8.GetBytes("A1B2C3D4E5F6G7H8"); // 16 bytes for AES-128
-        _iv = Encoding.UTF8.GetBytes("1H2G3F4E5D6C7B8A"); // 16 bytes
-    }
+    // For demonstration, use a static key/iv. In production, use secure key management.
 
     public string Encrypt(string plainText)
     {
