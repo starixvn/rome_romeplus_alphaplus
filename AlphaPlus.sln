@@ -1,4 +1,3 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
@@ -158,6 +157,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgencyCash.API", "src\AgencyCash\AgencyCash.API\AgencyCash.API.csproj", "{DCAC8D7D-9A9A-DD99-0188-1C984FBC52E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgencyCash.APIGateway", "src\AgencyCash\AgencyCash.APIGateway\AgencyCash.APIGateway.csproj", "{30125152-40AF-1038-5ADD-572464ED9889}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.Shared", "src\Modules\AlphaPlus.Shared\AlphaPlus.Shared.csproj", "{B6027BCD-705E-44EA-95A8-38BA5A1FBDB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -721,6 +722,18 @@ Global
 		{30125152-40AF-1038-5ADD-572464ED9889}.Release|x64.Build.0 = Release|Any CPU
 		{30125152-40AF-1038-5ADD-572464ED9889}.Release|x86.ActiveCfg = Release|Any CPU
 		{30125152-40AF-1038-5ADD-572464ED9889}.Release|x86.Build.0 = Release|Any CPU
+		{B6027BCD-705E-44EA-95A8-38BA5A1FBDB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6027BCD-705E-44EA-95A8-38BA5A1FBDB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6027BCD-705E-44EA-95A8-38BA5A1FBDB9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B6027BCD-705E-44EA-95A8-38BA5A1FBDB9}.Debug|x64.Build.0 = Debug|Any CPU
+		{B6027BCD-705E-44EA-95A8-38BA5A1FBDB9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B6027BCD-705E-44EA-95A8-38BA5A1FBDB9}.Debug|x86.Build.0 = Debug|Any CPU
+		{B6027BCD-705E-44EA-95A8-38BA5A1FBDB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6027BCD-705E-44EA-95A8-38BA5A1FBDB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6027BCD-705E-44EA-95A8-38BA5A1FBDB9}.Release|x64.ActiveCfg = Release|Any CPU
+		{B6027BCD-705E-44EA-95A8-38BA5A1FBDB9}.Release|x64.Build.0 = Release|Any CPU
+		{B6027BCD-705E-44EA-95A8-38BA5A1FBDB9}.Release|x86.ActiveCfg = Release|Any CPU
+		{B6027BCD-705E-44EA-95A8-38BA5A1FBDB9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -796,6 +809,7 @@ Global
 		{8466B980-18E9-49B6-B1FF-07A789BA170E} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{DCAC8D7D-9A9A-DD99-0188-1C984FBC52E1} = {8466B980-18E9-49B6-B1FF-07A789BA170E}
 		{30125152-40AF-1038-5ADD-572464ED9889} = {8466B980-18E9-49B6-B1FF-07A789BA170E}
+		{B6027BCD-705E-44EA-95A8-38BA5A1FBDB9} = {EC447DCF-ABFA-6E24-52A5-D7FD48A5C558}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96B8FE04-10B1-4AF3-8637-2A70F4B419A8}

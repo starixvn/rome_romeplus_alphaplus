@@ -3,6 +3,7 @@
 using Criteria.Bank;
 using DTOs.Common;
 using Fanex.Data.Repository;
+using Shared.Services;
 
 public interface IBankService
 {

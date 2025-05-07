@@ -11,7 +11,7 @@ builder.Services
     .AddDependencies(configuration);
 
 var app = builder.Build();
-
+var p = Fanex.Data.Cryptography.EncryptPassword("1F9aTn0BydQik5ne");
 // Configure the HTTP request pipeline
 app.UseCashServiceSwagger()
     .UseCashServiceExceptionHandler()

@@ -49,13 +49,13 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
           className="appearance-none block w-full bg-white border border-gray-300 px-3 py-1.5 pr-8 rounded text-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm h-9"
           disabled={isLoading}
         >
-          <option value="">
+          <option value="" disabled>
             {isLoading ? t('filter.loadingAccounts') : t('filter.selectAccount')}
           </option>
           {!isLoading &&
             accountOptions.map((option) => (
-              <option key={option.id} value={option.id}>
-                {option.name}
+              <option key={option.bankId} value={option.bankId}>
+                {option.bankAccountNumber}
               </option>
             ))}
         </select>

@@ -1,4 +1,4 @@
 export interface AccountOption {
-  id: number;
-  name: string;
+  bankId: number;
+  bankAccountNumber: string;
 }
