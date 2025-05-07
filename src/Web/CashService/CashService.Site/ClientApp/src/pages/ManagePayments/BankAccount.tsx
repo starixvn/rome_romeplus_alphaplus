@@ -216,10 +216,10 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
         />
       ) : (
         <>
-         <div className="p-[12px]">
+         <div className="p-[12px] h-[calc(100%-250px)]">
           <TitleCommon title={tManagePayments('managePayments')} />
           
-          <div className="card">
+          <div className="card h-[calc(100%-40px)] flex flex-col">
             <div className="card-header">
               <ul className="flex">
                 <li className="mr-[8px]">
@@ -240,9 +240,9 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                 </li>
               </ul>
             </div>
-            <div className="card-body">
-              <div className="bg-[#ffffff]">
-                <div className="px-[14px] py-[8px]">
+            <div className="card-body h-full">
+              <div className=" h-full flex flex-col">
+                <div className="bg-[#ffffff] px-[14px] py-[8px]">
                   <div className="pb-[8px] mt-[8px] text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] tracking-[0.2px] ">{tManagePayments('manageBankAccountAndLimits')}</div>
                   <div className="text-[12px] leading-[14px]">{tManagePayments('addBankAccountAndLimit')}</div>
                   <div className="my-[8px]">
@@ -268,7 +268,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                     </div>
                   </div>
                 )}
-                <div className='px-[14px]'>
+                <div className='px-[14px] bg-[#ffffff]'>
                 {error && (
                   <div className="font-bold text-[12px] text-[#333] bg-[#FFF2F2] border-[1px] border-[#FE0000] rounded-[10px] pl-[36px] pr-[12px] py-[8px] relative block capitalize" role="alert">
                     <IconError className='w-[20px] h-[20px] fill-[#fe0000] absolute top-[8px] left-[10px]' />
@@ -290,7 +290,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
 
                 {!loading && !error && banks.length > 0 && (
                   <>
-                    <div className="flex px-[14px]">
+                    <div className="flex px-[14px] bg-[#ffffff]">
                       <div className="w-[230px] pr-[14px]">
                         <div className="form-group mb-[8px]">
                           <label htmlFor="bankSelect" className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('bank')}</label>                           
@@ -343,7 +343,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                         </div>
                       </div>
                     </div>
-                    <div className="flex px-[14px] pb-[16px]">
+                    <div className="flex px-[14px] pb-[16px] bg-[#ffffff]">
                       <div className="w-[250px] ml-auto">
                         <div className="relative">
                           <span className='absolute top-[10px] left-[5px] z-[100]'>
@@ -365,7 +365,8 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                 )}
 
                 {!loading && !error && bankAccounts.length > 0 && (
-                  <div className="table-fixed-header table-fixed-body">
+                  <div className="flex-1 h-full">
+                  <div className="table-fixed-header table-fixed-body bg-[#ffffff] h-full">
                     <table className="text-[12px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
                       <thead>
                         <tr>
@@ -428,9 +429,11 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                             </td>
                             <td>{account.lastUpdatedStr}</td>
                           </tr>
-                        ))}
+                        ))} 
+                        
                       </tbody>
                     </table>
+                  </div>
                   </div>
                 )}
 
