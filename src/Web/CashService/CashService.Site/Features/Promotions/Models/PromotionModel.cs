@@ -26,7 +26,7 @@
 
         public decimal LiveCasinoMaxPayout { get; set; }
 
-        public string Period { get; set; }
+        public string Period => $"{FromDate:MM/dd/yyyy} - {ToDate:MM/dd/yyyy}";
 
         public string Provider { get; set; }
 

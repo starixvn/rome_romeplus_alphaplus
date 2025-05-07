@@ -1,0 +1,15 @@
+  "table": {
+    "no": "#",
+    "action": "Action",
+    "promotionTitle": "Promotion Title",
+    "promotionType": "Promotion Type",
+    "percentage": "Percentage (%)",
+    "maxPayout": "Max Payout",
+    "sports": "Sports",
+    "virtualSports": "Virtual Sports",
+    "games": "Games",
+    "period": "Period",
+    "provider": "Provider",
+    "status": "Status",
+    "lastUpdated": "Last Updated"
+  }

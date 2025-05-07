@@ -16,7 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\pages\Promotion\components\Table.tsx" />
     <None Remove="ClientApp\src\pages\Promotion\index.tsx" />
+    <None Remove="ClientApp\src\services\interfaces\Promotion.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,7 +45,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\pages\Promotion\components\Table.tsx" />
     <TypeScriptCompile Include="ClientApp\src\pages\Promotion\index.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\services\interfaces\Promotion.ts" />
   </ItemGroup>
 
 </Project>
