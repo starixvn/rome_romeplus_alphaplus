@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+
 import Table from './Table';
 import type { Promotion } from '../../../services/interfaces/Promotion';
 
@@ -12,7 +12,7 @@ const PromotionList: React.FC<PromotionListProps> = ({
     items,
     isLoading
 }) => {
-    const { t } = useTranslation('promotion');
+     
 
     return (
         <div className="space-y-4">

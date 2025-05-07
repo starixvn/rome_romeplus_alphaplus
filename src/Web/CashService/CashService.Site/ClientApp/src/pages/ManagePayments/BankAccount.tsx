@@ -9,7 +9,6 @@ import AddBankAccountComponent from './AddBankAccountComponent';
 import UpdateBankAccountComponent from './UpdateBankAccountComponent';
 import TitleCommon from '../../components/ui/TitleCommon';
 import { IconCheck, IconDelete, IconError, IconPen, IconSearch, IconSync } from '../../components/Icons';
-import '../styles/global.scss';
 import CustomDropdown from '../../components/ui/customDropdown';
 
 interface BankAccountProps {
