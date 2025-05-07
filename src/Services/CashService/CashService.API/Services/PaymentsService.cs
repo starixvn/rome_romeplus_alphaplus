@@ -264,6 +264,7 @@ public class PaymentsService(
 
     public async Task<ResultModel> UpdateBankAccount(BankAccountModel bankAccount)
     {
+        Console.WriteLine(JsonSerializer.Serialize(bankAccount));
         var criteria = new UpdateBankAccountCriteria(bankAccount);
         await repository.ExecuteAsync(criteria);
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
