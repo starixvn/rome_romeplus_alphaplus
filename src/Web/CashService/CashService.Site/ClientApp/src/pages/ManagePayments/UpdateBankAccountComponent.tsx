@@ -405,7 +405,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('mobile')}</label>
                 <div className="flex items-center h-[35px] w-[470px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer">
                   <select
-                    className="focus:outline-none focus:border-[var(--primary-color)] cursor-pointer"
+                    className="focus:outline-none focus:border-[var(--primary-color)] h-[100%]  cursor-pointer mr-[5px]"
                     value={countryCode}
                     onChange={(e) => setCountryCode(e.target.value)}
                     style={{ maxWidth: '120px' }}
@@ -414,11 +414,11 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                       <option key={code} value={code} selected={code === countryCode}>
                         +{code}
                       </option>
-                    ))}
+                    ))}                
                   </select>
                   <input
                     type="text"
-                    className="focus:outline-none focus:border-[var(--primary-color)] w-[100%] h-[100%]"
+                    className="focus:outline-none w-[100%] h-[100%] pl-[10px] border-l-[1px] border-[#0000003D]"
                     value={mobile}
                     onChange={(e) => setMobile(e.target.value)}
                     placeholder={tManagePayments('enterMobileNumber')}

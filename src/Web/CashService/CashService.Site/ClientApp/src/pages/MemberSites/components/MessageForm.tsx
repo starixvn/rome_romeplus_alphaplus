@@ -17,13 +17,13 @@ const MessageForm: React.FC<MessageFormProps> = ({
   const { t } = useTranslation('memberSite');
 
   return (
-    <div className="space-y-4">
-      <h2 className="text-lg font-semibold text-sky-700 dark:text-sky-400 mb-4">{t('message.title')}</h2>
-      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{t('message.description')}</p>
+    <div className="">
+      <h2 className="w-full text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] tracking-[0.2px] ">{t('message.title')}</h2>
+      <p className="text-[12px] pt-[4px] mb-[8px] font-semibold">{t('message.description')}</p>
       <div className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="mobile">
+              <label className="text-[12px] pt-[4px] mb-[8px] font-semibold" htmlFor="mobile">
                 {t('message.mobile')}
               </label>
               <div className="flex">
@@ -41,7 +41,7 @@ const MessageForm: React.FC<MessageFormProps> = ({
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="lineId">
+              <label className="text-[12px] pt-[4px] mb-[8px] font-semibold" htmlFor="lineId">
                 {t('message.lineId')}
               </label>
               <input

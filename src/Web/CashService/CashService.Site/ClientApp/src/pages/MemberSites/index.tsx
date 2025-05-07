@@ -140,20 +140,20 @@ const MemberSiteManagement: React.FC = () => {
           )}
 
           <div className="p-[24px]">
-            <div className="border-b-2 border-gray-200 dark:border-gray-700 pb-6">
+            <div className="">
               <RegistrationLinks
                 domains={data.domains.map(domain => ({...domain, status: 'active'}))}
                 onRequestNewLink={handleRequestNewLink}
               />
             </div>
-
-            <div className="border-b-2 border-gray-200 dark:border-gray-700 pb-6">
+            <hr className='my-[16px] border-[#0000001F]' />
+            <div className="">
               <GeneralSettings
                 settings={data.generalSettings}
                 onSettingsChange={handleSettingChange}
               />
             </div>
-
+            <hr className='my-[16px] border-[#0000001F]' />
             <div className="pb-6">
               <MessageForm
                 mobile={data.mobile}

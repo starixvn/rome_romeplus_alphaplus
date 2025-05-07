@@ -24,18 +24,18 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({
   }, {} as Record<string, Setting[]>);
 
   return (
-    <div className="space-y-4">
+    <div>
       <div className="flex items-center justify-between">
-        <h2 className="text-lg text-sky-700 dark:text-sky-400 font-semibold">{t('generalSettings.title')}</h2>
+        <h2 className="w-full text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] tracking-[0.2px] ">{t('generalSettings.title')}</h2>
       </div>
     
       {Object.entries(groupedSettings).map(([category, categorySettings]) => (
-        <div key={category} className="space-y-3">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div key={category}>
+          <div className="flex ">
             {categorySettings.map((setting) => (
               <button 
                 key={setting.id} 
-                className="w-full text-left flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="text-left w-[25%] min-w-[200px]"
                 onClick={(e) =>{
                   e.preventDefault();
                   onSettingsChange(setting.id, !setting.value);
@@ -43,27 +43,30 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({
                 aria-pressed={setting.value}
               >
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                  <p className="text-[12px] font-semibold my-[8px] leading-[14px]">
                     {t(`generalSettings.${setting.id}.title`)}
                   </p>
                   {setting.description && (
-                    <p className="mt-1 text-xs text-gray-500 dark:text-gray-400 line-clamp-2">
+                    <p className="text-[12px] leading-[12px] mb-[8px]">
                       {t(`generalSettings.${setting.id}.description`)}
                     </p>
                   )}
                 </div>
-                <label className="relative inline-flex items-center flex-shrink-0">
+                
+
+                <label>
+                  
                   <input
                     type="checkbox"
                     checked={setting.value}   
-                    className="sr-only peer"
+                    className="opacity-0 absolute hidden peer"
                     onChange={(e) => {
                       e.preventDefault();
                       onSettingsChange(setting.id, !setting.value);
                     }}
                   />
-                  <div className="w-11 h-6 bg-gray-200 dark:bg-gray-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 dark:after:border-gray-600 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#1e4d8c] dark:peer-checked:bg-[#2C3E50]"></div>
-                </label>
+                  <span className="block cursor-pointer w-[60px] h-[30px] rounded-[20px] bg-[#c2c2c2] relative after:content-[&quot;&quot;] after:absolute after:top-[3px] after:left-[3px] after:w-[24px] after:h-[24px] after:rounded-[50%] after:bg-[#ffffff] after:transition-all after:duration-300 after:ease-in-out after:shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] peer-checked:after:left-[32px] peer-checked:bg-[var(--primary-color)]"></span>
+                  </label>
               </button>
             ))}
           </div>

@@ -15,11 +15,11 @@ const RegistrationLinks: React.FC<Props> = ({ domains, onRequestNewLink }) => {
   const allDomainsBlocked = domains.every(d => d.status === 'blocked');
     
   return (
-    <div className="space-y-4">
+    <div className="">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="pb-[8px] text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] tracking-[0.2px] ">{t('registrationLinks.title')}</h2>
-          <p className="pb-[8px] text-[12px]">
+          <h2 className="text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] tracking-[0.2px] ">{t('registrationLinks.title')}</h2>
+          <p className="text-[12px] pt-[4px] mb-[16px] font-semibold">
             {t('registrationLinks.note')}
           </p>
         </div>
