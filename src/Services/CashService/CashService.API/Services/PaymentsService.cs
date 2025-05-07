@@ -7,6 +7,7 @@ using CashService.API.DTOs.Payments;
 using System.Text.Json;
 using Fanex.Cryptography.Aes;
 using Microsoft.Extensions.Configuration;
+using AlphaPlus.Shared;
 
 namespace AlphaPlus.CashService.API.Services;
 
@@ -40,7 +41,7 @@ public class PaymentsService(
     IConfiguration configuration)
     : IPaymentsService
 {
-    private readonly string _encryptSecretKey = configuration.GetValue<string>("EncryptSecretKey") ?? "!@#$";
+    private readonly string _encryptSecretKey = configuration.GetValue<string>("EncryptSecretKey") ?? AlphaPlusConstants.EncryptSecretKey;
 
     public async Task<IEnumerable<ProviderModel>> GetProviders(int custId)
     {

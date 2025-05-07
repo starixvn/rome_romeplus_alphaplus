@@ -1,5 +1,6 @@
 ﻿namespace AlphaPlus.CashService.API.Services;
 
+using AlphaPlus.Shared;
 using Criteria.Bank;
 using DTOs.Common;
 using Fanex.Cryptography.Aes;
@@ -16,7 +17,7 @@ public class BankService(IDynamicRepository dynamicRepository,
     IAesService encryptionService,
     IConfiguration configuration) : IBankService
 {
-    private readonly string _encryptSecretKey = configuration.GetValue<string>("EncryptSecretKey") ?? "!@#$";
+    private readonly string _encryptSecretKey = configuration.GetValue<string>("EncryptSecretKey") ?? AlphaPlusConstants.EncryptSecretKey;
 
     public async Task<IEnumerable<BankInfo>> GetCashAgentBankInfoAsync(int agentId, int transactionType)
     {
