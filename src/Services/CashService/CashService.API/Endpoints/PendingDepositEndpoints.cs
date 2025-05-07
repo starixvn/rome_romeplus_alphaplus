@@ -8,7 +8,7 @@ public static class PendingDepositEndpoints
 {
     public static void MapPendingDepositEndpoints(this WebApplication app)
     {
-        var group = app.MapGroup("/api")
+        var group = app.MapGroup("/api/deposit")
             .WithTags("Pending Deposit");
 
         group.MapGet("/member-deposit-login-names", async (IPendingDepositService service) =>

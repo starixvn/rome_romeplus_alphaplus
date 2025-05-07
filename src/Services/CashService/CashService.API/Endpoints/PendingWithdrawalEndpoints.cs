@@ -8,7 +8,7 @@ public static class PendingWithdrawalEndpoints
 {
     public static void MapPendingWithdrawalEndpoints(this WebApplication app)
     {
-        var group = app.MapGroup("/api")
+        var group = app.MapGroup("/api/withdrawal")
             .WithTags("Pending Withdrawal");
 
         group.MapGet("/member-withdraw-login-names", async (IPendingWithdrawalService service) =>

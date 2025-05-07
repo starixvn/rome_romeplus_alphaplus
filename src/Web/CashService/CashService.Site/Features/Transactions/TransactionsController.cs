@@ -64,14 +64,14 @@ public class TransactionsController(
 
     public async Task<IActionResult> GetMemberBankAccounts()
     {
-        var url = $"{_apiBaseUrl}/member-bank-accounts";
+        var url = $"{_apiBaseUrl}/deposit/member-bank-accounts";
         var memberAccounts = await httpClient.GetFromJsonAsync<object>(url);
         return Json(memberAccounts);
     }
 
     public async Task<IActionResult> GetBankWithdrawalAccounts()
     {
-        var url = $"{_apiBaseUrl}/bank-withdrawal-accounts";
+        var url = $"{_apiBaseUrl}/withdrawal/bank-withdrawal-accounts";
         var withdrawalAccounts = await httpClient.GetFromJsonAsync<object>(url);
         return Json(withdrawalAccounts);
     }
