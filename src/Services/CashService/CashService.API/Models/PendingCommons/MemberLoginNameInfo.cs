@@ -1,4 +1,4 @@
-namespace AlphaPlus.CashService.API.Models.PendingDepositWithdrawal
+namespace AlphaPlus.CashService.API.Models.PendingCommons
 {
     public class MemberLoginNameInfo
     {

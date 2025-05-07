@@ -1,4 +1,4 @@
-using AlphaPlus.CashService.API.Models.PendingDepositWithdrawal;
+using AlphaPlus.CashService.API.Models.PendingCommons;
 using AlphaPlus.CashService.API.Services;
 using Newtonsoft.Json;
 

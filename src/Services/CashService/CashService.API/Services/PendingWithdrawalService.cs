@@ -1,5 +1,5 @@
 using AlphaPlus.CashService.API.Models;
-using AlphaPlus.CashService.API.Models.PendingDepositWithdrawal;
+using AlphaPlus.CashService.API.Models.PendingCommons;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Services;
