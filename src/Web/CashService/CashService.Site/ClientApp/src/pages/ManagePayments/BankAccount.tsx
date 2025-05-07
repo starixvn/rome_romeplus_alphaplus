@@ -143,11 +143,11 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
       const result = await paymentProviderService.deleteBankAccount(accountId);
       if (result.isSuccessful) {
         setSuccessMessage(tManagePayments('bankAccountDeletedSuccessfully'));
-
-        // Add a 3-second delay before refreshing the list
-        await new Promise(resolve => setTimeout(resolve, 3000));
-        // Refresh the bank accounts list after successful deletion
-        await fetchBankAccounts();
+        // Clear success message and refresh list again after 3 seconds
+        setTimeout(() => {
+          setSuccessMessage(null);
+          fetchBankAccounts();
+        }, 3000);
       } else {
         setError(result.message || tManagePayments('failedToDeleteBankAccount'));
       }
