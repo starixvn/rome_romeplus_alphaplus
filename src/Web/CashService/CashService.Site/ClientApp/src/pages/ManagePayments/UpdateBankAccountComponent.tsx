@@ -37,6 +37,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   const [promptPay, setPromptPay] = useState<boolean>(bankAccount.promptPay);
   const [mobile, setMobile] = useState<string>(bankAccount.mobile);
   const [countryCode, setCountryCode] = useState<string>(bankAccount.countryCode || '');
+  const [creator, setCreator] = useState<string>(bankAccount.creator || '');
   const [countryCodes, setCountryCodes] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
@@ -82,6 +83,13 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
           setSelectedManualDeposit(transTypeList.includes(BANK_TRANSACTION_TYPES[1].id.toString()));
           setSelectedAutoDeposit(transTypeList.includes(BANK_TRANSACTION_TYPES[2].id.toString()));
           setSelectedManualWithdrawal(transTypeList.includes(BANK_TRANSACTION_TYPES[3].id.toString()));
+
+          setCreator(fetchedBankAccount.creator);
+
+          var countryCode = fetchedBankAccount.mobile.split('-')[0];
+          var mobile = fetchedBankAccount.mobile.split('-')[1];
+          setMobile(mobile);
+          setCountryCode(countryCode);
         }
       } catch (err) {
         setError(tManagePayments('failedToLoadBankAccount'));
@@ -195,7 +203,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
             <label>{tManagePayments(`status-${bankAccount.status}`)}</label>
             <label>{tManagePayments('createdBy')}</label>
             <label>{tManagePayments('lastUpdated')}</label>
-            <label>{bankAccount.creator}</label>
+            <label>{creator}</label>
             <label>{bankAccount.lastUpdatedStr}</label>
           </div>
           <form onSubmit={handleSubmit} className='bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]'>

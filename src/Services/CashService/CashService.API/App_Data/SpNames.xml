@@ -69,6 +69,7 @@
         <Mapping DataField="BankAccountNumber" ObjectProperty="AccountNumber"></Mapping>
         <Mapping DataField="PromptPayMobile" ObjectProperty="Mobile"></Mapping>
         <Mapping DataField="MappingType" ObjectProperty="MappingTypes"></Mapping>
+        <Mapping DataField="Username" ObjectProperty="Creator"></Mapping>
       </Setting>
       <Setting Key="Age_CashService_BankAccountAgent_Upd" SpName="Age_CashService_BankAccountAgent_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
       <Setting Key="Age_ManagementPayments_DelBankAccount" SpName="Age_ManagementPayments_DelBankAccount" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
