@@ -12,32 +12,29 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
             BankId = bankAccModel.BankId;
             Status = bankAccModel.Status;
 
-            AccountHolderName = bankAccModel.AccountHolderName;
-            AccountNumber = bankAccModel.AccountNumber;
             AccountNickname = bankAccModel.AccountNickname;
 
-            TransactionTypeIDs = bankAccModel.TransactionTypes;
+            TransactionTypeIDs = bankAccModel.Agent_TransTypeList;
 
             PromptPay = bankAccModel.PromptPay;
             Mobile = bankAccModel.Mobile;
+            CountryCode = bankAccModel.CountryCode;
         }
 
         [SpParam(SqlParamName = "CustId")]
         public int Creator { get; }
 
+        [SpParam(SqlParamName = "BankId")]
+        public int BankId { get; }
         [SpParam(SqlParamName = "BankAccountStatus")]
         public int Status { get; }
 
-        [SpParam(SqlParamName = "BankId")]
-        public int BankId { get; }
-
-        public string AccountHolderName { get; }
-
+        public string AccountHolderName { get; set; }
         [SpParam(SqlParamName = "BankAccountNumber")]
-        public string AccountNumber { get; }
+        public string AccountNumber { get; set; }
         public string AccountNickname { get; }
 
-        [SpParam(SqlParamName = "TransactionTypeID")]
+        [SpParam(SqlParamName = "TransTypeList")]
         public string TransactionTypeIDs {get;}
         public int DepositMatchingMode {get;}
 
@@ -46,7 +43,6 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
         [SpParam(SqlParamName = "PromptPayMobile")]
         public string Mobile { get; }
         public string CountryCode { get; }
-
 
         public int ErrCode { get; set; }
         public string ErrMsg { get; set; } = string.Empty;
@@ -58,7 +54,6 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
             !string.IsNullOrWhiteSpace(AccountNumber) && 
             Creator > 0 &&
             !string.IsNullOrWhiteSpace(AccountHolderName) &&
-            !string.IsNullOrWhiteSpace(AccountNickname) &&
-            !string.IsNullOrWhiteSpace(TransactionTypeIDs);
+            !string.IsNullOrWhiteSpace(AccountNickname);
     }
 } 
