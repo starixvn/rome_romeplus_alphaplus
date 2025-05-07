@@ -5,7 +5,8 @@ using AlphaPlus.CashService.API.Models;
 using Fanex.Data.Repository;
 using CashService.API.DTOs.Payments;
 using System.Text.Json;
-using AlphaPlus.Shared.Services;
+using Fanex.Cryptography.Aes;
+using Microsoft.Extensions.Configuration;
 
 namespace AlphaPlus.CashService.API.Services;
 
@@ -35,9 +36,12 @@ public interface IPaymentsService
 public class PaymentsService(
     IDynamicRepository repository,
     ICacheRefService cacheRefService,
-    IEncryptionService encryption)
+    IAesService encryption,
+    IConfiguration configuration)
     : IPaymentsService
 {
+    private readonly string _encryptSecretKey = configuration.GetValue<string>("EncryptSecretKey") ?? "!@#$";
+
     public async Task<IEnumerable<ProviderModel>> GetProviders(int custId)
     {
         var providers = await repository.FetchAsync<ProviderModel>(new GetProvidersCriteria(custId));
@@ -117,9 +121,9 @@ public class PaymentsService(
     public async Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod)
     {
         var criteria = new InsertPaymentMethodCriteria(paymentMethod) {
-            APIMethodKey = encryption.Encrypt(paymentMethod.APIMethodKey),
-            MerchantID = encryption.Encrypt(paymentMethod.MerchantID),
-            AppSecret = encryption.Encrypt(paymentMethod.AppSecret)
+            APIMethodKey = encryption.Encrypt(paymentMethod.APIMethodKey, _encryptSecretKey),
+            MerchantID = encryption.Encrypt(paymentMethod.MerchantID, _encryptSecretKey),
+            AppSecret = encryption.Encrypt(paymentMethod.AppSecret, _encryptSecretKey)
         };
         
         await repository.ExecuteAsync(criteria);
@@ -197,8 +201,8 @@ public class PaymentsService(
 
         foreach (var bank in accounts)
         {
-            bank.AccountHolderName = encryption.Decrypt(bank.AccountHolderName);
-            bank.AccountNumber = encryption.Decrypt(bank.AccountNumber);
+            bank.AccountHolderName = encryption.Decrypt(bank.AccountHolderName, _encryptSecretKey);
+            bank.AccountNumber = encryption.Decrypt(bank.AccountNumber, _encryptSecretKey);
         }
 
         return accounts;
@@ -238,8 +242,8 @@ public class PaymentsService(
     public async Task<ResultModel> AddBankAccount(BankAccountModel bankAccount)
     {
         var criteria = new AddBankAccountCriteria(bankAccount) {
-            AccountHolderName = encryption.Encrypt(bankAccount.AccountHolderName),
-            AccountNumber = encryption.Encrypt(bankAccount.AccountNumber),
+            AccountHolderName = encryption.Encrypt(bankAccount.AccountHolderName, _encryptSecretKey),
+            AccountNumber = encryption.Encrypt(bankAccount.AccountNumber, _encryptSecretKey),
         };
         
         await repository.ExecuteAsync(criteria);
@@ -253,8 +257,8 @@ public class PaymentsService(
         foreach (var bank in accounts)
         {
             bank.BankName = cacheRefService.GetBankName(bank.Id, bank.BankName);
-            bank.AccountHolderName = encryption.Decrypt(bank.AccountHolderName);
-            bank.AccountNumber = encryption.Decrypt(bank.AccountNumber);
+            bank.AccountHolderName = encryption.Decrypt(bank.AccountHolderName, _encryptSecretKey);
+            bank.AccountNumber = encryption.Decrypt(bank.AccountNumber, _encryptSecretKey);
         }
 
         return accounts.FirstOrDefault();
