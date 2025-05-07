@@ -13,11 +13,9 @@ public interface IBankService
     Task<IEnumerable<BankInfo>> GetMemberBankInfoAsync(int custId);
 }
 
-public class BankService(IDynamicRepository dynamicRepository, 
-    IAesService encryptionService,
-    IConfiguration configuration) : IBankService
+public class BankService(IDynamicRepository dynamicRepository, IAesService encryptionService) : IBankService
 {
-    private readonly string _encryptSecretKey = configuration.GetValue<string>("EncryptSecretKey") ?? AlphaPlusConstants.EncryptSecretKey;
+    private readonly string _encryptSecretKey = AlphaPlusConstants.EncryptSecretKey;
 
     public async Task<IEnumerable<BankInfo>> GetCashAgentBankInfoAsync(int agentId, int transactionType)
     {

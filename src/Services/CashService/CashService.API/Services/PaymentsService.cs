@@ -6,7 +6,6 @@ using Fanex.Data.Repository;
 using CashService.API.DTOs.Payments;
 using System.Text.Json;
 using Fanex.Cryptography.Aes;
-using Microsoft.Extensions.Configuration;
 using AlphaPlus.Shared;
 
 namespace AlphaPlus.CashService.API.Services;
@@ -37,11 +36,10 @@ public interface IPaymentsService
 public class PaymentsService(
     IDynamicRepository repository,
     ICacheRefService cacheRefService,
-    IAesService encryption,
-    IConfiguration configuration)
+    IAesService encryption)
     : IPaymentsService
 {
-    private readonly string _encryptSecretKey = configuration.GetValue<string>("EncryptSecretKey") ?? AlphaPlusConstants.EncryptSecretKey;
+    private readonly string _encryptSecretKey = AlphaPlusConstants.EncryptSecretKey;
 
     public async Task<IEnumerable<ProviderModel>> GetProviders(int custId)
     {
