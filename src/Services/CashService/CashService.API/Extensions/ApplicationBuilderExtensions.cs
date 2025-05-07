@@ -61,6 +61,7 @@ public static class ApplicationBuilderExtensions
         app.MapPendingWithdrawalEndpoints();
         app.MapTransactionsHistoryEndpoints();
         app.MapPromotionEndpoints();
+        app.MapCommonEndpoints();
 
         return app;
     }

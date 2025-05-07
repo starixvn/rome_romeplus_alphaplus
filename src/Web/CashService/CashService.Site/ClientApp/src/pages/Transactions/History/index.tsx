@@ -16,7 +16,7 @@ const History: React.FC = () => {
       <div className="bg-white rounded-lg shadow-sm p-4">
         <HistoryTab activeTab={activeTab} onTabChange={handleTabChange} />
         <div className="transaction-list">
-          <TransactionList transactionType={activeTab} />
+          <TransactionList transactionType={activeTab === 'deposit' ? 1 : 2} />
         </div>
       </div>
     </div>

@@ -25,7 +25,7 @@ public class TransactionsController(
 
     public IActionResult History() => View();
 
-    public async Task<IActionResult> GetAll(string transactionType,
+    public async Task<IActionResult> GetAll(int transactionType,
         string status, DateTime? fromDate, DateTime? toDate, int page = 1, int pageSize = 100)
     {
         var query = new GetTransactionsQuery

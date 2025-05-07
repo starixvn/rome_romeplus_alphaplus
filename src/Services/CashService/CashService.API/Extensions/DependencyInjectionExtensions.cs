@@ -24,11 +24,12 @@ public static class DependencyInjectionExtensions
         services.AddScoped<IPendingWithdrawalService, PendingWithdrawalService>();
         services.AddScoped<ITransactionService, TransactionService>();
         services.AddScoped<IPromotionService, PromotionService>();
+        services.AddScoped<IBankService, BankService>();
 
         return services;
     }
 
-    private static IServiceCollection AddRemotingRef(this IServiceCollection services, IConfiguration configuration)
+    private static void AddRemotingRef(this IServiceCollection services, IConfiguration configuration)
     {
         RefDataTypeContainer
             .ConnectTo(new Uri(configuration["RemotingRefUrl"]))
@@ -36,7 +37,5 @@ public static class DependencyInjectionExtensions
 
         services.AddSingleton<IRemotingRefService, RemotingRefService>();
         services.AddSingleton<ICacheRefService, CacheRefService>();
-
-        return services;
     }
 }

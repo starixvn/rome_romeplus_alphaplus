@@ -1,10 +1,41 @@
 namespace AlphaPlus.CashService.API.Endpoints;
 
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Models;
+using Services;
+
 public static class CommonEndpoints
 {
-    public static void MapPendingCommonEndpoints(this WebApplication app)
+    public static void MapCommonEndpoints(this WebApplication app)
     {
-        app.MapPendingDepositEndpoints();
-        app.MapPendingWithdrawalEndpoints();
+        var group = app.MapGroup("/api/common")
+            .WithTags("Common Get APIs");
+
+        group.MapGet("/agent-bank-list", async ([FromQuery] int agentId
+                , [FromQuery] int transactionType
+                , IBankService service) =>
+            {
+                var bankList = await service.GetCashAgentBankInfoAsync(agentId, transactionType);
+                return Results.Ok(bankList);
+            })
+            .WithName("GetCashAgentBankList")
+            .WithOpenApi(operation => new OpenApiOperation(operation)
+            {
+                Summary = "Get CashAgent Bank List",
+                Description = "Returns a list of bank"
+            });
+
+        group.MapGet("/member-bank-list", async ([FromQuery] int custId
+                , IBankService service) =>
+            {
+                var bankList = await service.GetMemberBankInfoAsync(custId);
+                return Results.Ok(bankList);
+            })
+            .WithName("GetCashMemberBankList")
+            .WithOpenApi(operation => new OpenApiOperation(operation)
+            {
+                Summary = "Get Cash Member Bank List",
+                Description = "Returns a list of bank"
+            });
     }
 }

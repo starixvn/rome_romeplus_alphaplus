@@ -16,7 +16,7 @@ public static class TransactionsEndpoints
                 , [FromQuery] DateTime? toDate
                 , [FromQuery] int? account
                 , [FromQuery] string status
-                , [FromQuery] string transactionType
+                , [FromQuery] int transactionType
                 , [FromQuery] int page
                 , [FromQuery] int pageSize
                 , ITransactionService service) =>

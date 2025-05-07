@@ -31,9 +31,8 @@ public class TransactionService(IDynamicRepository dynamicRepository, ILogger<Tr
 
         var filteredTransactions = allMockTransactions
             .Where(t => criteria.Status == "All" || t.Status == criteria.Status)
-            .Where(t => criteria.TransactionType == null ||
-                       (criteria.TransactionType == "deposit" && t.IsDeposit) ||
-                       (criteria.TransactionType == "withdrawal" && !t.IsDeposit))
+            .Where(t => (criteria.TransactionType == 1 && t.IsDeposit) ||
+                       (criteria.TransactionType == 2 && !t.IsDeposit))
             .ToList();
 
         var pagedTransactions = filteredTransactions
@@ -44,7 +43,7 @@ public class TransactionService(IDynamicRepository dynamicRepository, ILogger<Tr
         return await Task.FromResult(new TransactionResponse
         {
             Items = pagedTransactions,
-            TotalCount = allMockTransactions.Count,
+            TotalCount = pagedTransactions.Count,
             Page = criteria.Page,
             PageSize = criteria.PageSize
         });

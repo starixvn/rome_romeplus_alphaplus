@@ -28,5 +28,5 @@ export interface TransactionsHistoryParams {
   account: string;
   page: number;
   pageSize: number;
-  transactionType: 'deposit' | 'withdrawal';
+  transactionType: number;
 }

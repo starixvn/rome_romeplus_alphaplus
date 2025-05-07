@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 import '../../../../i18n/i18n';
 
 interface TransactionListProps {
-  transactionType: 'deposit' | 'withdrawal';
+  transactionType: number;
 }
 
 const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) => {
@@ -146,7 +146,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           status={apiParams.status}
           column={columnFilter}
           account={apiParams.account}
-          transactionType={transactionType}
+          transactionType={transactionType === 1 ? 'deposit' : 'withdrawal'}
           onDateRangeChange={handleDateRangeChange}
           onStatusChange={handleStatusChange}
           onColumnChange={handleColumnChange}
