@@ -193,6 +193,15 @@ public class PaymentsService(
     {
         var criteria = new GetBankAccountsCriteria(custId, bankId, transactionType, status, searchText);
         var accounts = await repository.FetchAsync<BankAccountModel>(criteria);
+
+        Console.WriteLine(JsonSerializer.Serialize(accounts));
+        foreach (var bank in accounts)
+        {
+            bank.AccountHolderName = _encryption.Decrypt(bank.AccountHolderName);
+            bank.AccountNumber = _encryption.Decrypt(bank.AccountNumber);
+        }
+
+        Console.WriteLine(JsonSerializer.Serialize(accounts));
         return accounts;
     }
     
@@ -229,9 +238,12 @@ public class PaymentsService(
 
     public async Task<ResultModel> AddBankAccount(BankAccountModel bankAccount)
     {
-        Console.WriteLine(JsonSerializer.Serialize(bankAccount));
-        var criteria = new AddBankAccountCriteria(bankAccount);
-        await repository.ExecuteAsync(criteria);
+        var criteria = new AddBankAccountCriteria(bankAccount) {
+            AccountHolderName = _encryption.Encrypt(bankAccount.AccountHolderName),
+            AccountNumber = _encryption.Encrypt(bankAccount.AccountNumber),
+        };
+        
+        await _repository.ExecuteAsync(criteria);
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
 
@@ -242,6 +254,8 @@ public class PaymentsService(
         foreach (var bank in accounts)
         {
             bank.BankName = cacheRefService.GetBankName(bank.Id, bank.BankName);
+            bank.AccountHolderName = _encryption.Decrypt(bank.AccountHolderName);
+            bank.AccountNumber = _encryption.Decrypt(bank.AccountNumber);
         }
 
         return accounts.FirstOrDefault();

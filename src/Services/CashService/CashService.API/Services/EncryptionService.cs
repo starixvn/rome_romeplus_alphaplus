@@ -39,18 +39,25 @@ public class EncryptionService : IEncryptionService
 
     public string Decrypt(string cipherText)
     {
-        if (string.IsNullOrEmpty(cipherText))
+        try
+        {
+            if (string.IsNullOrEmpty(cipherText))
+                return cipherText;
+
+            using var aes = Aes.Create();
+            aes.Key = _key;
+            aes.IV = _iv;
+            var decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
+
+            var buffer = Convert.FromBase64String(cipherText);
+            using var ms = new MemoryStream(buffer);
+            using var cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read);
+            using var sr = new StreamReader(cs);
+            return sr.ReadToEnd();
+        }
+        catch
+        {
             return cipherText;
-
-        using var aes = Aes.Create();
-        aes.Key = _key;
-        aes.IV = _iv;
-        var decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
-
-        var buffer = Convert.FromBase64String(cipherText);
-        using var ms = new MemoryStream(buffer);
-        using var cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read);
-        using var sr = new StreamReader(cs);
-        return sr.ReadToEnd();
+        }
     }
 } 
