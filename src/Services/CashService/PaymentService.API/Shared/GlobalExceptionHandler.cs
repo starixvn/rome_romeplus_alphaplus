@@ -13,13 +13,10 @@ public class GlobalExceptionHandler(Fanex.Logging.ILogger logger) : IExceptionHa
     {
         await logger.ErrorAsync(await BuildError(httpContext.Request, exception));
 
-        httpContext.Response.ContentType = "application/json";
-        httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
-        await httpContext.Response.WriteAsJsonAsync(new
-        {
-            httpContext.Response.StatusCode,
-            exception.Message
-        }, cancellationToken: cancellationToken);
+        var response = httpContext.Response;
+        response.ContentType = "application/json";
+        response.StatusCode = StatusCodes.Status500InternalServerError;
+        await response.WriteAsJsonAsync(new { response.StatusCode, exception.Message }, cancellationToken: cancellationToken);
 
         return false;
     }
