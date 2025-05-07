@@ -116,6 +116,11 @@
             "Name": "SiteDB.CustDB.wsv_alp",
             "ConnectionString": "packet size=4096; Data Source=10.18.200.57;Initial Catalog=CustDB;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
+        },
+        {
+            "Name": "DBCRM.bodb_CRM.wsv_alp",
+            "ConnectionString": "packet size=4096; Data Source=10.18.200.58;Initial Catalog=bodb_CRM;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ProviderName": "System.Data.SqlClient"
         }
     ],
     "StoredProcedurePath": "~/App_Data/SPNames.MAIN.xml",

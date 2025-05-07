@@ -4,55 +4,69 @@ using AlphaPlus.Features.Messages.API.Params.Feedback;
 using Fanex.Data.Repository;
 using Microsoft.Extensions.Caching.Memory;
 
-namespace AlphaPlus.Features.Messages.API.Services
+namespace AlphaPlus.Features.Messages.API.Services;
+
+public interface FeedbackService
 {
-    public interface FeedbackService
+    Task<bool> CheckExistsAsync(int custId, int subAccId, int functionId);
+
+    Task<(IEnumerable<FeedbackFunction>, IEnumerable<FeedbackArea>)> GetFeedbackFunctionAsync(int functionId);
+
+    Task AddFeedbackAsync(AddFeedbackParam param);
+}
+
+public class FeedbackServiceImpl : FeedbackService
+{
+    private const string FeedBackOnFunctionCacheKey = "AlphaPlus.Features.Messages.API.Services.FeedbackService.FeedBackOnFunction_{0}";
+    private const int FeedBackOnFunctionCacheInMinutes = 60 * 2;
+    private const string FeedBackNewStatusIdCacheKey = "AlphaPlus.Features.Messages.API.Services.FeedbackService.FeedBackNewStatusId";
+
+    private readonly IDynamicRepository dynamicRepository;
+    private readonly IMemoryCache cacheService;
+
+    public FeedbackServiceImpl(IDynamicRepository dynamicRepository, IMemoryCache cacheService)
     {
-        Task<bool> CheckExistsAsync(int custId, int subAccId, int functionId);
-
-        Task<(IEnumerable<FeedbackFunction>, IEnumerable<FeedbackArea>)> GetFeedbackFunctionAsync(int functionId);
-
-        Task AddFeedbackAsync(AddFeedbackParam param);
+        this.dynamicRepository = dynamicRepository;
+        this.cacheService = cacheService;
     }
 
-    public class FeedbackServiceImpl : FeedbackService
+    public async Task<bool> CheckExistsAsync(int custId, int subAccId, int functionId)
     {
-        private const string FeedBackOnFunctionCacheKey = "AlphaPlus.Features.Messages.API.Services.FeedbackService.FeedBackOnFunction_{0}";
-        private const int FeedBackOnFunctionCacheInMinutes = 60 * 2;
+        var criteria = new CheckExistsCriteria(custId, subAccId, functionId);
+        await dynamicRepository.ExecuteAsync(criteria);
 
-        private readonly IDynamicRepository dynamicRepository;
-        private readonly IMemoryCache cacheService;
+        return criteria.IsExists;
+    }
 
-        public FeedbackServiceImpl(IDynamicRepository dynamicRepository, IMemoryCache cacheService)
+    public Task<(IEnumerable<FeedbackFunction>, IEnumerable<FeedbackArea>)> GetFeedbackFunctionAsync(int functionId)
+        => cacheService.GetOrCreateAsync(
+        string.Format(FeedBackOnFunctionCacheKey, functionId),
+        cacheEntry =>
         {
-            this.dynamicRepository = dynamicRepository;
-            this.cacheService = cacheService;
-        }
+            cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(FeedBackOnFunctionCacheInMinutes));
+            return dynamicRepository.FetchMultipleAsync<FeedbackFunction, FeedbackArea>(new GetFeedbackFunctionCriteria(functionId));
+        });
 
-        public async Task<bool> CheckExistsAsync(int custId, int subAccId, int functionId)
-        {
-            var criteria = new CheckExistsCriteria(custId, subAccId, functionId);
-            await dynamicRepository.ExecuteAsync(criteria);
+    public async Task AddFeedbackAsync(AddFeedbackParam param)
+        => await dynamicRepository.ExecuteAsync(new AddFeedbackCriteria(
+            param.CustId,
+            param.SubAccountId,
+            param.Comment,
+            param.Rate,
+            param.FunctionId,
+            param.XMLFeedback,
+            await GetFeedbackNewStatusId()));
 
-            return criteria.IsExists;
-        }
-
-        public Task<(IEnumerable<FeedbackFunction>, IEnumerable<FeedbackArea>)> GetFeedbackFunctionAsync(int functionId)
-            => cacheService.GetOrCreateAsync(
-            string.Format(FeedBackOnFunctionCacheKey, functionId),
-            cacheEntry =>
+    private Task<int> GetFeedbackNewStatusId()
+        => cacheService.GetOrCreateAsync(
+            FeedBackNewStatusIdCacheKey,
+            async cacheEntry =>
             {
-                cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(FeedBackOnFunctionCacheInMinutes));
-                return dynamicRepository.FetchMultipleAsync<FeedbackFunction, FeedbackArea>(new GetFeedbackFunctionCriteria(functionId));
-            });
+                var feedbacks = await dynamicRepository.FetchAsync<FeedbackStatus>(new GetAllFeedbackStatusCriteria());
+                var feedbackWithNewStatus = feedbacks.FirstOrDefault(f => f.SettingValue.Equals("New", StringComparison.OrdinalIgnoreCase));
+                var newStatusId = feedbackWithNewStatus == null ? 0 : feedbackWithNewStatus.SettingId;
 
-        public Task AddFeedbackAsync(AddFeedbackParam param)
-            => dynamicRepository.ExecuteAsync(new AddFeedbackCriteria(
-                param.CustId,
-                param.SubAccountId,
-                param.Comment,
-                param.Rate,
-                param.FunctionId,
-                param.XMLFeedback));
-    }
+                cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(FeedBackOnFunctionCacheInMinutes));
+                return newStatusId;
+            });
 }
