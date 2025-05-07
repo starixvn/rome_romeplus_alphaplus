@@ -4,6 +4,7 @@ import 'tippy.js/dist/tippy.css';
 import '../../i18n/i18n';
 import { promotionService } from '../../services/promotionAPI';
 import PromotionList from './components/PromotionList';
+import Filter from './components/Filter';
 import type { Promotion } from '../../services/interfaces/Promotion';
 
 const Promotion: React.FC = () => {
@@ -16,7 +17,6 @@ const Promotion: React.FC = () => {
     const handleFilterChange = (type: string, status: string) => {
         setPromotionType(type);
         setStatus(status);
-        console.log(type, status);
     };
 
     useEffect(() => {
@@ -49,11 +49,13 @@ const Promotion: React.FC = () => {
                         <span className="block sm:inline"> {error}</span>
                     </div>
                 )}
+                
+                <Filter onFilterChange={handleFilterChange} />
+                
                 <div className="promotion-list">
                     <PromotionList 
-                        items={promotions} 
-                        isLoading={isLoading} 
-                        onFilterChange={handleFilterChange}
+                        items={promotions}
+                        isLoading={isLoading}
                     />
                 </div>
             </div>
