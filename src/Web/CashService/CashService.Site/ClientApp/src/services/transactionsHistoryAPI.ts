@@ -29,7 +29,7 @@ export const getTransactions = async (
     });
 
     if (params.transactionType) {
-      queryParams.append('transactionType', params.transactionType);
+      queryParams.append('transactionType', params.transactionType.toString());
     }
 
     const response = await api.get<TransactionsHistoryResponse>(`GetAll?${queryParams.toString()}`);
