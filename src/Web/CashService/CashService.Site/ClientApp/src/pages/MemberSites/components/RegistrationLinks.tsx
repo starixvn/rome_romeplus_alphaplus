@@ -18,7 +18,7 @@ const RegistrationLinks: React.FC<Props> = ({ domains, onRequestNewLink }) => {
     <div className="">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] tracking-[0.2px] max-[768px]:text-[20px]">{t('registrationLinks.title')}</h2>
+          <h2 className="text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] tracking-[0.2px] max-[768px]:text-[20px] max-[768px]:leading-[26px]">{t('registrationLinks.title')}</h2>
           <p className="text-[12px] pt-[4px] mb-[16px] font-semibold max-[768px]:text-[16px]">
             {t('registrationLinks.note')}
           </p>

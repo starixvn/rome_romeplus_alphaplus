@@ -26,7 +26,7 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({
   return (
     <div>
       <div className="flex items-center justify-between">
-        <h2 className="w-full text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] tracking-[0.2px] ">{t('generalSettings.title')}</h2>
+        <h2 className="text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] tracking-[0.2px] max-[768px]:text-[20px] max-[768px]:leading-[26px]">{t('generalSettings.title')}</h2>
       </div>
     
       {Object.entries(groupedSettings).map(([category, categorySettings]) => (
@@ -35,7 +35,7 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({
             {categorySettings.map((setting) => (
               <button 
                 key={setting.id} 
-                className="text-left w-[25%] min-w-[200px]"
+                className="text-left w-[25%] min-w-[200px] max-[768px]:w-[48%]"
                 onClick={(e) =>{
                   e.preventDefault();
                   onSettingsChange(setting.id, !setting.value);
@@ -43,19 +43,16 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({
                 aria-pressed={setting.value}
               >
                 <div className="flex-1 min-w-0">
-                  <p className="text-[12px] font-semibold my-[8px] leading-[14px]">
+                  <p className="text-[12px] font-semibold my-[8px] leading-[14px] max-[768px]:text-[16px] max-[768px]:leading-[16px]">
                     {t(`generalSettings.${setting.id}.title`)}
                   </p>
                   {setting.description && (
-                    <p className="text-[12px] leading-[12px] mb-[8px]">
+                    <p className="text-[12px] leading-[12px] mb-[8px] max-[768px]:text-[16px] max-[768px]:leading-[16px]">
                       {t(`generalSettings.${setting.id}.description`)}
                     </p>
                   )}
-                </div>
-                
-
-                <label>
-                  
+                </div>  
+                <label>                  
                   <input
                     type="checkbox"
                     checked={setting.value}   

@@ -139,7 +139,7 @@ const MemberSiteManagement: React.FC = () => {
             />
           )}
 
-          <div className="p-[24px]">
+          <div className="p-[24px] max-[768px]:p-[12px]">
             <div className="">
               <RegistrationLinks
                 domains={data.domains.map(domain => ({...domain, status: 'active'}))}
@@ -154,7 +154,7 @@ const MemberSiteManagement: React.FC = () => {
               />
             </div>
             <hr className='my-[16px] border-[#0000001F]' />
-            <div className="pb-6">
+            <div className="">
               <MessageForm
                 mobile={data.mobile}
                 lineId={data.lineId}
@@ -167,7 +167,7 @@ const MemberSiteManagement: React.FC = () => {
               <button
                 type="submit"
                 disabled={!isDirty || isSaving}
-                className={`w-[140px] h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px]  ml-[8px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]
+                className={`w-[140px] h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px]  ml-[8px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:h-[38px] font-bold
                   ${isDirty && !isSaving
                     ? 'border-[var(--primary-color)] bg-[var(--primary-color)] hover:bg-[#375A8A] hover:border-[#375A8A] cursor-pointer'
                     : 'bg-[#375A8A] border-[#375A8A] cursor-not-allowed'}`}

@@ -9,7 +9,7 @@ interface DomainCardProps {
   className?: string;
 }
 
-const DomainCard: React.FC<DomainCardProps> = ({ domain, className = '', index }) => {
+const DomainCard: React.FC<DomainCardProps> = ({ domain,  index }) => {
   const { t } = useTranslation('memberSite');
   const [copied, setCopied] = useState(false);
   const qrRef = useRef<HTMLDivElement>(null);

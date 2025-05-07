@@ -18,23 +18,23 @@ const MessageForm: React.FC<MessageFormProps> = ({
 
   return (
     <div className="">
-      <h2 className="w-full text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] tracking-[0.2px] ">{t('message.title')}</h2>
-      <p className="text-[12px] pt-[4px] mb-[8px] font-semibold">{t('message.description')}</p>
+      <h2 className="text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] max-[768px]:text-[20px] max-[768px]:leading-[26px] ">{t('message.title')}</h2>
+      <p className="text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px]">{t('message.description')}</p>
       <div className="">
-          <div className="flex gap-[16px] mb-[4px]">
-            <div className='w-[24%] min-w-[200px] pt-[4px]'>
-              <label className="text-[12px] pt-[4px] mb-[8px] font-semibold" htmlFor="mobile">
+          <div className="flex gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0]">
+            <div className='w-[24%] min-w-[200px] pt-[4px] max-[768px]:w-[48%]'>
+              <label className="block text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:mb-[8px]" htmlFor="mobile">
                 {t('message.mobile')}
               </label>
               <div className="flex items-center h-[35px]  border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer">
                 <select
-                  className="focus:outline-none focus:border-[var(--primary-color)] h-[100%]  cursor-pointer mr-[5px]"
+                  className="focus:outline-none focus:border-[var(--primary-color)] h-[100%]  cursor-pointer mr-[5px] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
                 >
                   <option value="+66">+66</option>
                   <option value="+84">+84</option>
                 </select>
                 <input                     
-                  className="focus:outline-none w-[100%] h-[100%] pl-[10px] border-l-[1px] border-[#0000003D]"
+                  className="focus:outline-none w-[100%] h-[100%] pl-[10px] border-l-[1px] border-[#0000003D] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
                   id="mobile"
                   type="text"
                   value={mobile}
@@ -43,8 +43,8 @@ const MessageForm: React.FC<MessageFormProps> = ({
                 />
               </div>
             </div>
-            <div className='w-[24%] min-w-[200px] pt-[4px]'>
-              <label className="text-[12px] pt-[4px] mb-[8px] font-semibold" htmlFor="lineId">
+            <div className='w-[24%] min-w-[200px] pt-[4px] max-[768px]:w-[48%]'>
+              <label className="block text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:mb-[8px]" htmlFor="lineId">
                 {t('message.lineId')}
                 <span className='text-[#E25757]'>*</span>
               </label>
@@ -53,14 +53,14 @@ const MessageForm: React.FC<MessageFormProps> = ({
                 type="text"
                 value={lineId}
                 onChange={(e) => onMessageChange({ lineId: e.target.value })}
-                className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)]"
+                className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
               />
             </div>
       
         </div>
 
-        <div className='w-[50%] min-w-[400px]'>
-          <label className="text-[12px] pt-[4px] mb-[8px] font-semibold" htmlFor="announcement">
+        <div className='w-[50%] min-w-[400px] max-[768px]:w-[100%]'>
+          <label className="block text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:mb-[8px]" htmlFor="announcement">
             {t('message.announcement')}
           </label> 
           <textarea
@@ -69,7 +69,7 @@ const MessageForm: React.FC<MessageFormProps> = ({
             onChange={(e) => onMessageChange({ announcement: e.target.value })}
             rows={4}
             maxLength={1000}
-            className="p-[8px] h-[100px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)]"
+            className="p-[8px] h-[100px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:w-[100%]"
             placeholder={t('message.placeholder.message')}
           />
         </div>
