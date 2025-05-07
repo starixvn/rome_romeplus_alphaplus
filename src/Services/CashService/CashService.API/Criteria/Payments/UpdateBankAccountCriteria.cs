@@ -37,10 +37,7 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
 
         public override bool IsValid() => 
             Id > 0 && 
-            Status > 0 && 
             Creator > 0 &&
-            !string.IsNullOrWhiteSpace(AccountNickname) &&
-            !string.IsNullOrWhiteSpace(TransactionTypeIDs) &&
-            DepositMatchingMode > 0;
+            !string.IsNullOrWhiteSpace(AccountNickname);
     }
 } 

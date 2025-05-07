@@ -195,14 +195,12 @@ public class PaymentsService(
         var criteria = new GetBankAccountsCriteria(custId, bankId, transactionType, status, searchText);
         var accounts = await repository.FetchAsync<BankAccountModel>(criteria);
 
-        Console.WriteLine(JsonSerializer.Serialize(accounts));
         foreach (var bank in accounts)
         {
             bank.AccountHolderName = encryption.Decrypt(bank.AccountHolderName);
             bank.AccountNumber = encryption.Decrypt(bank.AccountNumber);
         }
 
-        Console.WriteLine(JsonSerializer.Serialize(accounts));
         return accounts;
     }
     
