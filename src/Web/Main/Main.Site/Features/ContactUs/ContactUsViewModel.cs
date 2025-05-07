@@ -14,7 +14,7 @@ namespace AlphaPlus.Main.Site.Features.ContactUs
 
         public ContactUsViewModel(string domain, IUserSession userSession)
         {
-            IsShowSkypeId = AppSettings.SiteLabel.Equals("MBC", StringComparison.OrdinalIgnoreCase);
+            // IsShowSkypeId = AppSettings.SiteLabel.Equals("MBC", StringComparison.OrdinalIgnoreCase);
             _skypeId = AppSettings.ContactUsSkypeId;
 
             Username = userSession.IsSubAcc ? userSession.SubUserName : userSession.UserName;
