@@ -5,7 +5,7 @@ import GeneralSettings from './components/GeneralSettings';
 import MessageForm from './components/MessageForm';
 import { memberSitesService } from '../../services/memberSitesAPI';
 import { Setting, MessageData, MemberSiteResponse } from '../../types/memberSite';
-import '../../styles/common.css'
+import '../styles/common.css'
 import { useTranslation } from 'react-i18next';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 import { ResultMessage, ResultType } from '../../components/ResultMessage';

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
 import { PaymentProviderFeeGroup } from '../../services/interfaces/PaymentProviderFeeGroup';
 import { paymentProviderService } from '../../services/paymentsAPI';
-import '../../styles/global.scss';
+import '../styles/global.scss';
 import { IconClose } from '../../components/Icons';
 
 interface ProviderFeesPopupModalProps {

@@ -9,7 +9,7 @@ import AddBankAccountComponent from './AddBankAccountComponent';
 import UpdateBankAccountComponent from './UpdateBankAccountComponent';
 import TitleCommon from '../../components/ui/TitleCommon';
 import { IconCheck, IconDelete, IconError, IconPen, IconSearch, IconSync } from '../../components/Icons';
-import '../../styles/global.scss';
+import '../styles/global.scss';
 import CustomDropdown from '../../components/ui/customDropdown';
 
 interface BankAccountProps {
@@ -277,7 +277,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                 )}
 
                 {successMessage && (
-                  <div className="font-bold text-[12px] text-[#333] bg-[#E2FFF2] border-[1px] border-[#5cb774] rounded-[10px] pl-[36px] pr-[12px] py-[8px] relative block capitalize" role="alert">
+                  <div className="font-bold text-[12px]  text-[#333] bg-[#E2FFF2] border-[1px] border-[#5cb774] rounded-[10px] pl-[36px] pr-[12px] py-[8px] relative block capitalize" role="alert">
                     <IconCheck className='w-[20px] h-[20px] fill-[#5CB774] absolute top-[8px] left-[10px]' />
                   {successMessage}</div>
                 )}
@@ -367,7 +367,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                 {!loading && !error && bankAccounts.length > 0 && (
                   <div className="flex-1 h-full">
                   <div className="table-fixed-header table-fixed-body bg-[#ffffff] h-full">
-                    <table className="text-[12px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
+                    <table className="text-[12px] max-[600px]:text-[17px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
                       <thead>
                         <tr>
                           <th className="col-no bg-[#ffffff]">#</th>

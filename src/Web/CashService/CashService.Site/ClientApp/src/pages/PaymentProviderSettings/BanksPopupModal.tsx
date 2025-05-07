@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Bank } from '../../services/interfaces/Bank';
 import { paymentProviderService } from '../../services/paymentsAPI';
-import '../../styles/global.scss';
+import '../styles/global.scss';
 import { IconClose } from '../../components/Icons';
 interface BanksPopupModalProps {
   onClose: () => void;
