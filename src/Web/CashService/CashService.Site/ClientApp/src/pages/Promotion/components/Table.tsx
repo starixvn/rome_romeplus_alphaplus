@@ -1,6 +1,5 @@
-﻿import React, { useState } from 'react';
+﻿import React from 'react';
 import { useTranslation } from 'react-i18next';
-import '../../../../i18n/i18n';
 import { Promotion } from '../../../services/interfaces/Promotion';
 import { NoRecordsIcon } from '../../../components/Icons';
 

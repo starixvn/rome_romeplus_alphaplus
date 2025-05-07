@@ -1,4 +1,5 @@
 using AlphaPlus.CashService.API.Services;
+using AlphaPlus.Shared.Services;
 using Fanex.Data.Repository;
 using Fanex.Data.SqlServer;
 using Fanex.RemotingRef;

@@ -3,7 +3,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace AlphaPlus.CashService.API.Services;
+namespace AlphaPlus.Shared.Services;
 
 public interface IEncryptionService
 {

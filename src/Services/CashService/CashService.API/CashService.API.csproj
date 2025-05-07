@@ -22,6 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Modules\AlphaPlus.Shared\AlphaPlus.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="App_Data\**\*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

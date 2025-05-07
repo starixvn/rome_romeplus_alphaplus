@@ -3,32 +3,24 @@ import { createRoot } from 'react-dom/client';
 import 'tippy.js/dist/tippy.css'; 
 import '../../i18n/i18n';
 import { promotionService } from '../../services/promotionAPI';
-import { Promotion as PromotionType } from '../../services/interfaces/Promotion';
-import PromotionList from './components/PromotionList';
 
 const Promotion: React.FC = () => {
-    const [promotionType, setPromotionType] = useState<string>('All');
-    const [status, setStatus] = useState<string>('All');
-    const [promotions, setPromotions] = useState<PromotionType[]>([]);
-    const [loading, setLoading] = useState(true);
+    const [promotionType] = useState<string>('All');
+    const [status] = useState<string>('All');
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchPromotions = async () => {
             try {
-                setLoading(true);
-                const response = await promotionService.getPromotion({
+                await promotionService.getPromotion({
                     Type: promotionType,
                     Status: status
                 });
-                setPromotions(response);
                 setError(null);
             } catch (err) {
                 setError('Failed to load promotions');
                 console.error('Error loading promotions:', err);
-                setPromotions([]);
             } finally {
-                setLoading(false);
             }
         };
 
