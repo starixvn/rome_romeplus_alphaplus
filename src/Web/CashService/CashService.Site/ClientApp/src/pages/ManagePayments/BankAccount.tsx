@@ -281,12 +281,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                   {successMessage}</div>
                 )}
                 </div>
-                {!loading && !error && banks.length === 0 && (
-                  <div className="alert alert-info" role="alert">
-                    {tGlobal('noData')}
-                  </div>
-                )}
-
+              
                 {!loading && !error && banks.length > 0 && (
                   <>
                     <div className="flex px-[14px] bg-[#ffffff]">
@@ -436,7 +431,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                   </div>
                 )}
 
-                {!loading && !error && bankAccounts.length === 0 && (
+                {!loading && !error && banks.length > 0 && bankAccounts.length === 0 && (
                   <div className="alert alert-info mt-4" role="alert">
                     {tGlobal('noData')}
                   </div>
