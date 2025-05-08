@@ -35,6 +35,18 @@ public static class PendingDepositEndpoints
             Description = "Returns total Cash member return Credit of Agent"
         });
 
+        group.MapGet("/cash-deposit-limit-amount/{id}/{accumCreditReturn}", async (int id, decimal accumCreditReturn, IPendingDepositService service) =>
+        {
+            var creditAmt = await service.GetLimitAmtDepositAsync(id, accumCreditReturn);
+            return Results.Ok(creditAmt);
+        })
+        .WithName("GetLimitAmtDepositAsync")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Get limit amount deposit information",
+            Description = "Returns range value the member can deposit (MinAmt - MaxAmt)"
+        });
+
         group.MapGet("/member-setting-deposit/{id}", async (int id, IPendingDepositService service) =>
         {
             var memberSettingDeposit = await service.GetMemberSettingDepositAsync(id);

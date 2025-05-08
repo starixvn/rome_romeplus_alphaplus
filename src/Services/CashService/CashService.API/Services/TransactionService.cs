@@ -20,6 +20,10 @@ public interface ITransactionService
     Task<ResultModel> UpdateTransactionStatus(UpdateTransactionStatusRemarkCommand command);
 
     Task<IEnumerable<AccountOptionModel>> GetAccountAsync(GetAccountCriteria criteria, CancellationToken cancellationToken = default);
+
+    Task<IEnumerable<MemberInfo>> GetMembersAsync(int id);
+
+    Task<ResultModel> SyncCashAccumCreditAsync(string cashAccumCreditTbl);
 }
 
 public class TransactionService(IDynamicRepository dynamicRepository, ILogger<TransactionService> logger)
@@ -134,5 +138,24 @@ public class TransactionService(IDynamicRepository dynamicRepository, ILogger<Tr
         };
 
         return await Task.FromResult(mockAccounts);
+    }
+
+    public async Task<IEnumerable<MemberInfo>> GetMembersAsync(int id)
+    {
+        var criteria = new GetMembersCriteria
+        {
+            CustId = id
+        };
+        return await dynamicRepository.FetchAsync<MemberInfo>(criteria);
+    }
+
+    public async Task<ResultModel> SyncCashAccumCreditAsync(string cashAccumCreditTbl)
+    {
+        var command = new SyncCashAccumCreditCommand
+        {
+            CashAccumCreditTbl = cashAccumCreditTbl
+        };
+        await dynamicRepository.ExecuteAsync(command);
+        return new ResultModel(command.ErrCode, command.ErrMsg);
     }
 }

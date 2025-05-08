@@ -8,12 +8,17 @@ namespace AlphaPlus.CashService.API.Services;
 public interface IPendingDepositService
 {
     Task<IEnumerable<BankAccountInfo>> GetMemberBankAccountInfo();
+
     Task<decimal> GetAccumulateCreditAsync(int id);
+
+    Task<CreditAmount> GetLimitAmtDepositAsync(int id, decimal accumCreditReturn);
+
     Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int id);
+
     Task<(ResultModel, int, string)> CreateManualDepositAsync(CreateManualDeposit param);
 }
 
-public class PendingDepositService(IDynamicRepository repository) : IPendingDepositService
+public class PendingDepositService(IDynamicRepository dynamicRepository) : IPendingDepositService
 {
     public async Task<IEnumerable<BankAccountInfo>> GetMemberBankAccountInfo()
     {
@@ -69,14 +74,24 @@ public class PendingDepositService(IDynamicRepository repository) : IPendingDepo
             }
         };
     }
-    
+
     public async Task<decimal> GetAccumulateCreditAsync(int id)
     {
         var criteria = new GetAccumulateCreditCriteria
         {
             CustId = id
         };
-        return await repository.GetAsync<decimal>(criteria);
+        return await dynamicRepository.GetAsync<decimal>(criteria);
+    }
+
+    public async Task<CreditAmount> GetLimitAmtDepositAsync(int id, decimal accumCreditReturn)
+    {
+        var criteria = new GetLimitAmtDepositCriteria
+        {
+            CustId = id,
+            AccumCreditReturn = accumCreditReturn
+        };
+        return await dynamicRepository.GetAsync<CreditAmount>(criteria);
     }
 
     public async Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int id)
@@ -85,7 +100,7 @@ public class PendingDepositService(IDynamicRepository repository) : IPendingDepo
         {
             CustId = id
         };
-        return await repository.GetAsync<MemberSettingDeposit>(criteria);
+        return await dynamicRepository.GetAsync<MemberSettingDeposit>(criteria);
     }
 
     public async Task<(ResultModel, int, string)> CreateManualDepositAsync(CreateManualDeposit param)
@@ -106,7 +121,7 @@ public class PendingDepositService(IDynamicRepository repository) : IPendingDepo
             Ip = param.Ip,
             Remark = param.Remark,
         };
-        await repository.ExecuteAsync(command);
+        await dynamicRepository.ExecuteAsync(command);
         var result = new ResultModel(command.ErrCode, command.ErrMsg);
 
         return (result, command.TransId, command.CashAccumCreditTbl);

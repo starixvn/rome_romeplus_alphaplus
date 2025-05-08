@@ -82,5 +82,29 @@ public static class TransactionsEndpoints
             Summary = "Revert transaction to pending",
             Description = "Revert transaction to pending"
         });
+
+        group.MapGet("/get-members/{id}", async (int id, ITransactionService service) =>
+        {
+            var members = await service.GetMembersAsync(id);
+            return Results.Ok(members);
+        })
+        .WithName("GetMembersAsync")
+        .WithOpenApi(operation => new OpenApiOperation(operation)
+        {
+            Summary = "Get Cash Member List of Agent",
+            Description = "Returns Cash Member List of Agent"
+        });
+
+        group.MapPut("/sync-credit/{cashAccumCreditTbl}", async (string cashAccumCreditTbl, ITransactionService service) =>
+        {
+            var syncCash = await service.SyncCashAccumCreditAsync(cashAccumCreditTbl);
+            return syncCash.Code != 0 ? Results.NotFound() : Results.Ok(new { syncCash });
+        })
+        .WithName("SyncCashAccumCreditAsync")
+        .WithOpenApi(operation => new OpenApiOperation(operation)
+        {
+            Summary = "Sync Cash Accum Credit",
+            Description = "Manually sync data CashAccumCredit to DBCUST.custdb"
+        });
     }
 }
