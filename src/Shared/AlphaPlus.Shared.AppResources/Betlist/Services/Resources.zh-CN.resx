@@ -853,6 +853,6 @@
     <value>代理风险</value>
   </data>
   <data name="FilterConfigurationSpecificSuperMasterContent" xml:space="preserve">
-    <value>监控所选会员的注单，可以手动添加或从问题账号列表里选择。</value>
+    <value>可手动添加特定会员以监控其注单。</value>
   </data>
 </root>
