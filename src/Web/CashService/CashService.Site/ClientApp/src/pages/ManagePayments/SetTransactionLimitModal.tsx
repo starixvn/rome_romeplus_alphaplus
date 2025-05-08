@@ -93,7 +93,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
           <form onSubmit={handleSubmit}>
             <div className="text-[12px] leading-[14px] mb-[16px]">           
               { error && <ResultMessage type="error" message={error} />}
-              { successMessage && <ResultMessage type="success" message={successMessage} />}   
+              { success && <ResultMessage type="success" message={successMessage} />}   
               <div className="pt-[4px]">
                  {tManagePayments('customizeTransactionLimitPreferences')}
               </div>
