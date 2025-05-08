@@ -22,13 +22,11 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
 
         public int DepositMatchingMode {get;} = bankAccModel.Agent_DepositMatchingMode;
 
-        public string CountryCode { get; } = bankAccModel.CountryCode;
-
         [SpParam(SqlParamName = "PromptPayEnabled")]
         public bool PromptPay { get; } = bankAccModel.PromptPay;
 
         [SpParam(SqlParamName = "PromptPayMobile")]
-        public string Mobile { get; } = bankAccModel.Mobile;
+        public string Mobile { get; set; }
 
         public int ErrCode { get; set; }
         public string ErrMsg { get; set; } = string.Empty;

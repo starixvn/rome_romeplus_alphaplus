@@ -11,14 +11,9 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
             Creator = bankAccModel.CreatorId;
             BankId = bankAccModel.BankId;
             Status = bankAccModel.Status;
-
             AccountNickname = bankAccModel.AccountNickname;
-
             TransactionTypeIDs = bankAccModel.Agent_TransTypeList;
-
             PromptPay = bankAccModel.PromptPay;
-            Mobile = bankAccModel.Mobile;
-            CountryCode = bankAccModel.CountryCode;
         }
 
         [SpParam(SqlParamName = "CustId")]
@@ -41,8 +36,7 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
         [SpParam(SqlParamName = "PromptPayEnabled")]
         public bool PromptPay { get; }
         [SpParam(SqlParamName = "PromptPayMobile")]
-        public string Mobile { get; }
-        public string CountryCode { get; }
+        public string Mobile { get; set; }
 
         public int ErrCode { get; set; }
         public string ErrMsg { get; set; } = string.Empty;

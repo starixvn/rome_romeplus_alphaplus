@@ -142,7 +142,7 @@ public class PaymentsService(
                 bank.DepositMatchingMode.SourceTypeName = cacheRefService.GetDepositMatchingModeName(bank.DepositMatchingMode.SourceType, bank.DepositMatchingMode.SourceType);
             }
         }
-        
+
         return banks;
     }
 
@@ -213,6 +213,7 @@ public class PaymentsService(
         {
             bank.AccountHolderName = encryption.Decrypt(bank.AccountHolderName, _encryptSecretKey);
             bank.AccountNumber = encryption.Decrypt(bank.AccountNumber, _encryptSecretKey);
+            bank.Mobile = encryption.Decrypt(bank.Mobile, _encryptSecretKey);
 
             if(bank.Bank_DepositMatchingMode != null)
             {
@@ -260,6 +261,7 @@ public class PaymentsService(
         var criteria = new AddBankAccountCriteria(bankAccount) {
             AccountHolderName = encryption.Encrypt(bankAccount.AccountHolderName, _encryptSecretKey),
             AccountNumber = encryption.Encrypt(bankAccount.AccountNumber, _encryptSecretKey),
+            Mobile = encryption.Encrypt(bankAccount.CountryCode + "-" + bankAccount.Mobile, _encryptSecretKey),
         };
         
         await repository.ExecuteAsync(criteria);
@@ -275,7 +277,8 @@ public class PaymentsService(
             bank.BankName = cacheRefService.GetBankName(bank.Id, bank.BankName);
             bank.AccountHolderName = encryption.Decrypt(bank.AccountHolderName, _encryptSecretKey);
             bank.AccountNumber = encryption.Decrypt(bank.AccountNumber, _encryptSecretKey);
-
+            bank.Mobile = encryption.Decrypt(bank.Mobile, _encryptSecretKey);
+            
             if(bank.Bank_DepositMatchingMode != null)
             {
                 bank.BankDepositMatchingMode = Newtonsoft.Json.JsonConvert.DeserializeObject<DepositMatchingModeModel>(bank.Bank_DepositMatchingMode);
@@ -289,7 +292,10 @@ public class PaymentsService(
     public async Task<ResultModel> UpdateBankAccount(BankAccountModel bankAccount)
     {
         Console.WriteLine(JsonSerializer.Serialize(bankAccount));
-        var criteria = new UpdateBankAccountCriteria(bankAccount);
+        var criteria = new UpdateBankAccountCriteria(bankAccount) {
+            Mobile = encryption.Encrypt(bankAccount.CountryCode + "-" + bankAccount.Mobile, _encryptSecretKey),
+        };
+
         await repository.ExecuteAsync(criteria);
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }

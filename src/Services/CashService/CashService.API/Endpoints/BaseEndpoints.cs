@@ -6,9 +6,9 @@ public static class BaseEndpoints
 {
     public static void MapBaseEndpoints(this WebApplication app)
     {
-        app.MapGet("/api/base/country-codes/{custId}", async (int custId, IBaseService service) =>
+        app.MapGet("/api/base/country-codes/{siteName}", async (string siteName, IBaseService service) =>
         {
-            var prefixes = await service.GetCountryCodes(custId);
+            var prefixes = await service.GetCountryCodes(siteName);
             return Results.Ok(prefixes);
         })
         .WithName("GetCountryCodes")

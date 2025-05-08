@@ -5,14 +5,14 @@ namespace AlphaPlus.CashService.API.Services;
 
 public interface IBaseService
 {
-    Task<IEnumerable<string>> GetCountryCodes(int custId);
+    Task<IEnumerable<string>> GetCountryCodes(string siteName);
 }
 
 public class BaseService(IDynamicRepository repository) : IBaseService
 {
-    public async Task<IEnumerable<string>> GetCountryCodes(int custId)
+    public async Task<IEnumerable<string>> GetCountryCodes(string siteName)
     {
-        var criteria = new GetCountryCodesCriteria(custId);
+        var criteria = new GetCountryCodesCriteria(siteName);
         var result = await repository.FetchAsync<string>(criteria);
         return result;
     }
