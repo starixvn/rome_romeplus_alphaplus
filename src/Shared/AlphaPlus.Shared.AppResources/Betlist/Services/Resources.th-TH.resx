@@ -852,4 +852,7 @@
   <data name="AgentRisk" xml:space="preserve">
     <value>ความเสี่ยงของเอเย่นท์</value>
   </data>
+  <data name="FilterConfigurationSpecificSuperMasterContent" xml:space="preserve">
+    <value>ตรวจสอบตั๋วเดิมพันของสมาชิกที่เลือกไว้ ซึ่งสามารถเพิ่มด้วยตนเองหรือเลือกจากรายการบัญชีปัญหา</value>
+  </data>
 </root>

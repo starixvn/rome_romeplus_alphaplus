@@ -749,16 +749,13 @@ Lưu ý:Thông tin về quốc gia và thành phố được cung cấp bởi  I
     <value>Xem ngay</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
-    <value>Chủ động hơn, linh hoạt hơn! &lt;b&gt;Tự tạo Member trực tiếp&lt;/b&gt; và tổ chức cấp dưới theo cách của bạn.</value>
-  </data>
-  <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
-    <value>Ra Mắt Tính Năng Đột Phá: &lt;b&gt;"Tạo Member Trực Tiếp"&lt;/b&gt;!</value>
+    <value>Giảm thiểu rủi ro kinh doanh bằng cách giám sát các vé cược đang chạy của thành viên thông qua bộ lọc tùy chỉnh.</value>
   </data>
   <data name="HighlightPopupRewardIntro" xml:space="preserve">
     <value>&lt;p&gt;Chúng tôi rất vui mừng giới thiệu Chương trình Tiền thưởng. Công ty sẽ chi trả toàn bộ tiền thưởng này, và khi Member đã nhận thưởng, số tiền này sẽ không được phép sử dụng để đặt cược. Tiền thưởng sẽ được phân phối cho các cấp trên, và Member có thể rút tiền qua Agent của mình.&lt;/p&gt;&lt;p&gt;Chức năng &lt;b&gt;Thanh toán Tiền thưởng&lt;/b&gt; giúp bạn quản lý việc thanh toán cho các cấp dưới, đảm bảo tất cả các khoản tiền thưởng được phân phối một cách chính xác.&lt;/p&gt;</value>
   </data>
   <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
-    <value>Chào mừng đến với &lt;b&gt;Chương trình Tiền thưởng&lt;/b&gt;!</value>
+    <value>Khám phá tính năng Cược Gần Nhất</value>
   </data>
   <data name="HighlightPopupRewardTitle" xml:space="preserve">
     <value>Chào mừng đến với &lt;b&gt;Chương trình Tiền thưởng&lt;/b&gt;!</value>

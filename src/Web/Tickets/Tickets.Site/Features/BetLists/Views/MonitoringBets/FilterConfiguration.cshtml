@@ -22,7 +22,7 @@
 }
 @section Scripts {
     @StaticResources.AssetScripts.RenderCommon("/bundles-v2/site-betlists/monitoring-bets")
-    <script src="~/bundles/betlists/filter-configuration.js" asp-append-version="true"></script>
+    <script src="~/bundles/betlists/filter-configuration.js?v=1.0.0"></script>
 }
 @model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.LastBets.FilterConfigurationViewModel
 <div class="bl_title">@Resources.FilterConfiguration</div>
@@ -105,7 +105,14 @@
                     <input type="radio" name="filterbymembers" id="rdo-specific-members" />
                     <span class="overlay"></span>
                 </label>
-                <p>@Resources.FilterConfigurationSpecificMembersContent</p>
+                @if (Model.ViewerLevel.IsAgentLevel())
+                {
+                    <p>@Resources.FilterConfigurationSpecificMembersContent</p>
+                }
+                else
+                {
+                    <p>@Resources.FilterConfigurationSpecificSuperMasterContent</p>
+                }
             </div>
         </div>
         <div class="hide" id="members-container">
@@ -116,8 +123,11 @@
                     placeholder="@Resources.UsernameTagsInputPlaceHolder" />
                 <div class="tags-box" id="username_tags"></div>
             </div>
-            <p class="text">@Resources.SelectMembers</p>
-            <div class="my-watchlist" id="my-watchlist-members"></div>
+            @if (Model.ViewerLevel.IsAgentLevel())
+            {
+                <p class="text">@Resources.SelectMembers</p>
+                <div class="my-watchlist" id="my-watchlist-members"></div>
+            }
         </div>
     </div>
     <div class="block-btn">@{
@@ -127,7 +137,7 @@
     {
         <partial name="WelcomePopup" />
     }
-    <partial name="SaveFilterConfirmPopup" model="true" />
+    <partial name="SaveFilterConfirmPopup" model="@((true, Model.ViewerLevel.IsAgentLevel()))" />
 </div>
 <input type="hidden" id="hidden-BetTypesRequiredError" value="@Resources.FilterConfigurationBetTypesRequiredError" />
 <input type="hidden" id="hidden-StakeRequiredError" value="@Resources.FilterConfigurationStakeRequiredError" />

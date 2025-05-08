@@ -25,7 +25,7 @@ public interface IFilterBetsService
 
     Task<IEnumerable<SavedFilter>> GetSavedFilters(int custId, int subAccId, string siteName, AddFilterParam unsavedFilter);
 
-    Task<IEnumerable<UsernameErrCode>> CheckUsernames(int agentId, string usernames);
+    Task<IEnumerable<UsernameErrCode>> CheckUsernames(int agentId, string usernames, byte roleId);
 }
 
 public class FilterBetsService(
@@ -137,7 +137,8 @@ public class FilterBetsService(
             param.InputList,
             param.MyWatchlist,
             param.LanguageKey,
-            param.IP);
+            param.IP,
+            param.RoleId);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
         await repository.ExecuteAsync(criteria);
@@ -427,6 +428,6 @@ public class FilterBetsService(
         return criteria.Status;
     }
 
-    public Task<IEnumerable<UsernameErrCode>> CheckUsernames(int agentId, string usernames)
-        => repository.FetchAsync<UsernameErrCode>(new CheckUsernamesCriteria(agentId, usernames));
+    public Task<IEnumerable<UsernameErrCode>> CheckUsernames(int agentId, string usernames, byte roleId)
+        => repository.FetchAsync<UsernameErrCode>(new CheckUsernamesCriteria(agentId, usernames, roleId));
 }

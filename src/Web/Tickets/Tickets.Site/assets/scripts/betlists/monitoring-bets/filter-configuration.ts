@@ -32,7 +32,14 @@ class FilterConfigurationView {
 
         this.betTypeDropdown = new DropdownListComponent();
         this.betTypeDropdown.render('ddl-bettype', {
-            onChange: () => TipsyHelper.clear($('#ddl-bettype').next('.btn-group'))
+            onChange: () => {
+                const betTypeElement = $('#ddl-bettype').next('.btn-group');
+                TipsyHelper.clear(betTypeElement);
+            },
+            onSelectAll: () => {
+                const betTypeElement = $('#ddl-bettype').next('.btn-group');
+                TipsyHelper.clear(betTypeElement);
+            }
         });
 
         this.liveStatusDropdown = new DropdownListComponent();
@@ -104,7 +111,7 @@ class FilterConfigurationView {
         const rdoSpecificMembers = $('#rdo-specific-members').change(() => {
             if (rdoSpecificMembers.is(':checked')) {
                 membersContainer.removeClass('hide');
-                this.getMyWatchlistMembers();
+                $("#my-watchlist-members").length && this.getMyWatchlistMembers();
             }
         });
 
@@ -191,12 +198,13 @@ class FilterConfigurationView {
 
     private getFormData(rdoSpecificSports: JQuery, rdoSpecificMembers: JQuery) {
         let betType: string;
+        const betTypeElement = $('#ddl-bettype').next('.btn-group');
         if (this.betTypeDropdown.isSelectAll()) {
             betType = '0';
+            TipsyHelper.clear(betTypeElement);
         } else {
             betType = this.betTypeDropdown.getSelected().join();
             if (!betType.length) {
-                const betTypeElement = $('#ddl-bettype').next('.btn-group');
                 TipsyHelper.showError(betTypeElement, $('#hidden-BetTypesRequiredError').val());
                 this.scrollTopInlineMessage(betTypeElement);
                 return;

@@ -1,12 +1,14 @@
 using AlphaPlus.Shared.AppResources.Betlist.Services;
 using AlphaPlus.BetLists.LastBets;
+using AlphaPlus.Core.Models;
 using AlphaPlus.BetLists.Shared.Helpers;
+using AlphaPlus.Tickets.Site.Features.BetLists.Models;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.LastBets;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.LastBets;
 
-public class FilterConfigurationViewModel(FilterConfigurationQuery message, int[] betTypes)
+public class FilterConfigurationViewModel(FilterConfigurationQuery message, int[] betTypes, IUser viewer)
 {
     public string FilterName { get; } = message.FilterName;
 
@@ -15,6 +17,8 @@ public class FilterConfigurationViewModel(FilterConfigurationQuery message, int[
     public bool AutoStart { get; } = message.AutoStart;
 
     public bool ShowWelcomePopup { get; } = message.Welcome;
+
+    public UserLevel ViewerLevel { get; } = Enumeration.FromValue<UserLevel>(viewer.LevelId);
 
     public IEnumerable<SelectListItem> BetTypes
     {

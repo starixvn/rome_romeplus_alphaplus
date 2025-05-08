@@ -69,7 +69,7 @@
   </siteMapNode>
   <!--/MemberInfo-->
   <siteMapNode resourceKey="BetLists" menuItemType="BetListsMenuItem" functionType="[L]">
-    <siteMapNode resourceKey="LastBets" url="/tickets/LastBets/IndexNew" roles="Agent" useDomainConfig="Betlist:Domain"></siteMapNode>
+    <siteMapNode resourceKey="LastBets" url="/tickets/LastBets/IndexNew" useDomainConfig="Betlist:Domain"></siteMapNode>
     <siteMapNode resourceKey="searchTickets" url="/tickets/SearchTickets/Index" useDomainConfig="Betlist:Domain"></siteMapNode>
     <siteMapNode resourceKey="cancelledBets" url="/tickets/CancelledBets/Index" useDomainConfig="Betlist:Domain"></siteMapNode>
 

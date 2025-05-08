@@ -24,6 +24,8 @@
                 "FunctionName": "Last Bets (New)",
                 "SettingKeys": [
                     "Age_BetList_LastBets_Ag",
+                    "Age_BetList_LastBets_MAg",
+                    "Age_BetList_LastBets_SAg",
                     "Age_BetList_LastBets_LeagueSel",
                     "Age_CustLastBetFilter_Del",
                     "Age_CustLastBetFilter_Ins",

@@ -852,4 +852,7 @@
   <data name="AgentRisk" xml:space="preserve">
     <value>代理風險</value>
   </data>
+  <data name="FilterConfigurationSpecificSuperMasterContent" xml:space="preserve">
+    <value>監控所選會員的注單，可以手動添加或從問題賬號列表裡選擇。</value>
+  </data>
 </root>
