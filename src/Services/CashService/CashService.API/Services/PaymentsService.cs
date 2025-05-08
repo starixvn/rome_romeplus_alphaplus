@@ -210,7 +210,7 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
     
     public async Task<TransactionLimitModel> GetTransactionLimit(int custId)
     {
-        var (limits, count) = await repository.FetchMultipleAsync<DailyLimitDTO, int>(new GetDailyLimitCriteria(custId, ModeViewConstants.BankAccount));
+        var (limits, count) = await repository.FetchMultipleAsync<DailyLimitDTO, Int16>(new GetDailyLimitCriteria(custId, ModeViewConstants.BankAccount));
 
         var depositLimit = limits.FirstOrDefault(l => l.IsDeposit) ?? new DailyLimitDTO();
         var withdrawalLimit = limits.FirstOrDefault(l => !l.IsDeposit) ?? new DailyLimitDTO();
