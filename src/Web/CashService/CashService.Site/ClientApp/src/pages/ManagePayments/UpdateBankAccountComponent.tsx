@@ -287,7 +287,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                       label: bank.name
                     }))}
                     onSelect={handleBankChange}
-                    disable={status === '0'}
+                    disable={status === '1'}
                     initialValue={parseInt(selectedBank)}
                     showOptionAll={false}
                   />
