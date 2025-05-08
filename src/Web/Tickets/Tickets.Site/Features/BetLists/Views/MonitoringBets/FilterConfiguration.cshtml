@@ -22,7 +22,7 @@
 }
 @section Scripts {
     @StaticResources.AssetScripts.RenderCommon("/bundles-v2/site-betlists/monitoring-bets")
-    <script src="~/bundles/betlists/filter-configuration.js" asp-append-version="true"></script>
+    @StaticResources.AssetScripts.Render("/bundles/betlists/filter-configuration")
 }
 @model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.LastBets.FilterConfigurationViewModel
 <div class="bl_title">@Resources.FilterConfiguration</div>
