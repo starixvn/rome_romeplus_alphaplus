@@ -6,14 +6,35 @@ import { useTranslation } from 'react-i18next';
 interface Props {
   domains: Domain[];
   onRequestNewLink?: () => void;
+  loading: boolean;
 }
 
-const RegistrationLinks: React.FC<Props> = ({ domains, onRequestNewLink }) => {
+const RegistrationLinksSkeleton = () => {
+  return (
+    <div>
+      {/* Title and subtitle skeleton */}
+      <div>
+        <div className="h-[22px] w-[180px] bg-gray-200 rounded mb-2 animate-pulse"></div>
+        <div className="h-[16px] w-[320px] bg-gray-100 rounded mb-4 animate-pulse"></div>
+      </div>
+      {/* 2 domain card skeletons */}
+      <div className="flex gap-[30px] w-[83.333%] max-[768px]:w-full max-[768px]:flex-col">
+        <div className="h-[70px] w-full bg-gray-200 rounded animate-pulse"></div>
+        <div className="h-[70px] w-full bg-gray-200 rounded animate-pulse"></div>
+      </div>
+    </div>
+  );
+};
+
+const RegistrationLinks: React.FC<Props> = ({ domains, onRequestNewLink, loading }) => {
   const { t } = useTranslation('memberSite');
 
   // check if all link is blocked
   const allDomainsBlocked = domains.every(d => d.status === 'blocked');
-    
+  if (loading) {
+  return <RegistrationLinksSkeleton />
+  }
+
   return (
     <div className="">
       <div className="flex justify-between items-center">

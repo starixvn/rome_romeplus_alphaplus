@@ -87,7 +87,7 @@
         <Setting Key="Age_CashService_GeneralSetting" SpName="Age_CashService_GeneralSetting_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
             <Mapping DataField="Domain" ObjectProperty="Url" />
         </Setting>
-        <Setting Key="Age_CashService_GeneralSetting_Upd" SpName="Age_CashService_GeneralSetting_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Age_CashService_GeneralSetting_Upd" SpName="Age_CashService_GeneralSetting_Upd_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     </Function>
 
     <Function Name="Promotion">

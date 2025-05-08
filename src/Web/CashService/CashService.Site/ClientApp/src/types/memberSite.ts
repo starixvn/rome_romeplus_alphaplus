@@ -27,6 +27,8 @@ export interface MemberSiteResponse {
   mobile: string;
   lineId: string;
   announcement: string;
+  mobileCode: string;
+  mobilePhone: string;
 }
 
 export interface ResponseResult {

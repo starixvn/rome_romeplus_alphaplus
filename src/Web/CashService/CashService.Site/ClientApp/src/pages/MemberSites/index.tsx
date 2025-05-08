@@ -13,26 +13,21 @@ import { ResultMessage, ResultType } from '../../components/ResultMessage';
 const MemberSiteManagement: React.FC = () => {
   const { t } = useTranslation('memberSite');
   useCookieLanguage();
-  const [originalData, setOriginalData] = useState<MemberSiteResponse>({
+  const defaultData = {
     domains: [],
     generalSettings: [],
     countryCodes: [],
     countryCode: '',
+    mobileCode: '',
+    mobilePhone: '',
     mobile: '',
     lineId: '',
     announcement: ''
-  });
-  const [data, setData] = useState<MemberSiteResponse>({
-    domains: [],
-    generalSettings: [],
-    countryCodes: [],
-    countryCode: '',
-    mobile: '',
-    lineId: '',
-    announcement: ''
-  });
+  }
+  const [originalData, setOriginalData] = useState<MemberSiteResponse>(defaultData);
+  const [data, setData] = useState<MemberSiteResponse>(defaultData);
   const [loading, setLoading] = useState(true);
-  const [result, setResult] = useState<{type: ResultType; text: string} | null>(null);
+  const [result, setResult] = useState<{ type: ResultType; text: string } | null>(null);
   const [isDirty, setIsDirty] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
 
@@ -83,8 +78,11 @@ const MemberSiteManagement: React.FC = () => {
   const handleSave = async () => {
     try {
       setIsSaving(true);
-      const response = await memberSitesService.updateMemberSiteData(data);
-        
+      const response = await memberSitesService.updateMemberSiteData({
+        ...data,
+        mobile: `${data.mobileCode}-${data.mobilePhone}`
+      });
+
 
       setIsDirty(false);
       setResult({
@@ -94,8 +92,8 @@ const MemberSiteManagement: React.FC = () => {
       setTimeout(() => {
         setOriginalData(data);
         setResult(null);
-      }, 1000);
-      
+      }, 3000);
+
     } catch (err) {
       setResult({
         type: 'error',
@@ -112,18 +110,6 @@ const MemberSiteManagement: React.FC = () => {
     console.log('Requesting new link...');
   };
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 dark:bg-[#1E1E1E] p-6">
-        <div className="container mx-auto">
-          <div className="animate-pulse space-y-6">
-            <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-1/4"></div>
-            <div className="h-[600px] bg-gray-200 dark:bg-gray-700 rounded"></div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <form
@@ -149,8 +135,9 @@ const MemberSiteManagement: React.FC = () => {
           <div className="p-[24px] max-[768px]:p-[12px]">
             <div className="">
               <RegistrationLinks
-                domains={data.domains.map(domain => ({...domain, status: 'active'}))}
+                domains={data.domains.map(domain => ({ ...domain, status: 'active' }))}
                 onRequestNewLink={handleRequestNewLink}
+                loading={loading}
               />
             </div>
             <hr className='my-[16px] border-[#0000001F]' />
@@ -158,17 +145,19 @@ const MemberSiteManagement: React.FC = () => {
               <GeneralSettings
                 settings={data.generalSettings}
                 onSettingsChange={handleSettingChange}
+                loading={loading}
               />
             </div>
             <hr className='my-[16px] border-[#0000001F]' />
             <div className="">
               <MessageForm
-                countryCode={data.countryCode}
                 countryCodes={data.countryCodes}
-                mobile={data.mobile}
+                mobilePhone={data.mobilePhone}
+                mobileCode={data.mobileCode}
                 lineId={data.lineId}
                 announcement={data.announcement}
                 onMessageChange={handleMessageChange}
+                loading={loading}
               />
             </div>
 

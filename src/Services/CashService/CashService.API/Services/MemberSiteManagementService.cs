@@ -67,8 +67,9 @@ public class MemberSiteManagementService(
 
     private int ConvertToSettingInfo(IEnumerable<MemberSitePermission> generalSettings)
     {
-        var allowRegistration = generalSettings.FirstOrDefault(x => x.Id == "allowRegistration")?.Value ?? false;
-        var allowDeposit = generalSettings.FirstOrDefault(x => x.Id == "allowDeposit")?.Value ?? false;
+        var memberSitePermissions = generalSettings.ToList();
+        var allowRegistration = memberSitePermissions.FirstOrDefault(x => x.Id == "allowRegistration")?.Value ?? false;
+        var allowDeposit = memberSitePermissions.FirstOrDefault(x => x.Id == "allowDeposit")?.Value ?? false;
 
         if (allowRegistration && allowDeposit)
             return (int)CashServiceManagementDto.GeneralSettingType.AllowAll;
@@ -83,12 +84,10 @@ public class MemberSiteManagementService(
     public async Task<ResultModel> UpdateAsync(MemberSiteManagementModel model)
     {
         if (model == null) throw new ArgumentNullException(nameof(model));
-
-        // Validate model
+        
         var command = new UpdateMemberSiteInfoCommand
         {
             CustId = model.CustId,
-            CountryCode = model.CountryCode,
             Mobile = encryption.Encrypt(model.Mobile, _encryptSecretKey),
             LineId = encryption.Encrypt(model.LineId, _encryptSecretKey),
             Announcement = model.Announcement,

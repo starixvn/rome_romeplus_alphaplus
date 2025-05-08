@@ -37,8 +37,9 @@ class MemberSitesService {
   async getMemberSiteData(): Promise<MemberSiteResponse> {
     try {
       const { data } = await api.get<MemberSiteResponse>(this.BASE_PATH);
-      data.countryCode = data.mobile.split('-')[0];
-      data.mobile = data.mobile.split('-')[1];
+      const mobile = data.mobile.split('-');
+      data.mobileCode = mobile[0];
+      data.mobilePhone = mobile[1];
       return data;
     } catch (error) {
       if (error instanceof AxiosError) {

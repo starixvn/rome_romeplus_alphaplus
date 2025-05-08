@@ -22,7 +22,8 @@ describe('MessageForm', () => {
   const defaultProps = {
     countryCodes: ['66', '84'],
     countryCode: '',
-    mobile: '',
+    mobileCode: '',
+    mobilePhone: '',
     lineId: '',
     announcement: '',
     onMessageChange: vi.fn()
@@ -86,7 +87,8 @@ describe('MessageForm', () => {
       announcement: 'Test announcement',
       onMessageChange: vi.fn(),
       countryCodes: ['66', '84'],
-      countryCode: '66'
+      mobileCode: '66',
+      mobilePhone: '123456789'
     };
     
     rerender(<MessageForm {...updatedProps} />);

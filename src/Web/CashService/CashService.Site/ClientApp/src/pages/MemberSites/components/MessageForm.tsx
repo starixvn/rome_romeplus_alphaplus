@@ -3,22 +3,45 @@ import { useTranslation } from 'react-i18next';
 
 interface MessageFormProps {
   countryCodes: string[];
-  countryCode: string;
-  mobile: string;
+  mobileCode: string;
+  mobilePhone: string;
   lineId: string;
   announcement: string;
-  onMessageChange: (messages: { mobile?: string; lineId?: string; announcement?: string; countryCode?: string }) => void;
+  loading: boolean;
+  onMessageChange: (messages: { mobileCode?: string; mobilePhone?: string; lineId?: string; announcement?: string }) => void;
 }
 
+const MessageFormSkeleton = () => {
+  return (
+    <div>
+      {/* Title skeleton */}
+      <div className="h-[22px] w-[160px] bg-gray-200 rounded mb-2 animate-pulse"></div>
+      {/* Subtitle skeleton */}
+      <div className="h-[16px] w-[340px] bg-gray-100 rounded mb-4 animate-pulse"></div>
+      {/* Input skeletons */}
+      <div className="flex gap-4 mb-4">
+        <div className="h-[38px] w-[190px] bg-gray-200 rounded animate-pulse"></div>
+        <div className="h-[38px] w-[190px] bg-gray-200 rounded animate-pulse"></div>
+      </div>
+      {/* Textarea skeleton */}
+      <div className="h-[80px] w-[400px] bg-gray-200 rounded animate-pulse"></div>
+    </div>
+  );
+};
 const MessageForm: React.FC<MessageFormProps> = ({
   countryCodes,
-  countryCode,
-  mobile,
+  mobileCode,
+  mobilePhone,
   lineId,
   announcement,
-  onMessageChange
+  onMessageChange,
+  loading
 }) => {
   const { t } = useTranslation('memberSite');
+
+  if (loading) {
+    return <MessageFormSkeleton />
+  }
 
   return (
     <div className="">
@@ -32,23 +55,23 @@ const MessageForm: React.FC<MessageFormProps> = ({
               </label>
               <div className="flex items-center h-[35px]  border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer">
                 <select
-                  value={countryCode}
+                  value={mobileCode}
                   onChange={(e) =>{
-                    onMessageChange({ countryCode: e.target.value });
+                    onMessageChange({ mobileCode: e.target.value });
                   }}
                   className="focus:outline-none focus:border-[var(--primary-color)] h-[100%]  cursor-pointer mr-[5px] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
                 >
                   {countryCodes.map((code) => (
-                    <option value={code} selected={code === countryCode}>+{code}</option>
+                    <option key={code} value={code} selected={code === mobileCode}>+{code}</option>
                   ))}
                 </select>
                 <input                     
                   className="focus:outline-none w-[100%] h-[100%] pl-[10px] border-l-[1px] border-[#0000003D] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
                   id="mobile"
                   type="text"
-                  value={mobile}
+                  value={mobilePhone}
                   onChange={(e) => {
-                    onMessageChange({ mobile: `${e.target.value}` });
+                    onMessageChange({ mobilePhone: e.target.value });
                   }}
                   placeholder="XXXXXXXXX"
                 />

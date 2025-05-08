@@ -9,9 +9,7 @@ namespace AlphaPlus.CashService.API.Criteria.MemberSite
         public int CustId { get; set; }
 
         public int SettingInfo { get; set; }
-
-        public string CountryCode { get; set; }
-
+        
         public string Mobile { get; set; }
 
         public string LineId { get; set; }
