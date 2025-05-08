@@ -14,6 +14,7 @@ public class CustomerHandler(ICustomerClient customerClient)
             message.ViewerId,
             message.Query,
             message.IsInternal,
-            message.DirectDownline,
+            // Pass true as DirectDownlines to get all members including their nicknames
+            true,
             message.IsAccInfo);
 }
