@@ -9,13 +9,11 @@ interface DateRangeFilterProps {
 
 const DateRangeFilter: React.FC<DateRangeFilterProps> = ({ dateRange, onDateRangeChange }) => {
   const { t } = useTranslation('transactionHistory');
-  // Convert string to Date/null for DateRangePicker
   const value: [Date | null, Date | null] = [
     dateRange[0] ? new Date(dateRange[0]) : null,
     dateRange[1] ? new Date(dateRange[1]) : null,
   ];
 
-  // Convert Date/null back to string for parent
   const handleChange = (val: [Date | null, Date | null]) => {
     onDateRangeChange([
       val[0] ? val[0].toLocaleDateString('en-US') : '',

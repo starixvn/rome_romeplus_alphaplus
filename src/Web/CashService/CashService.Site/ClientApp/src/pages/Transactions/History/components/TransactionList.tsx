@@ -31,7 +31,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     status: 'All',
     account: '',
     page: 1,
-    pageSize: 100,
+    pageSize: 50,
     transactionType: transactionType,
   }));
   const [columnFilter, setColumnFilter] = useState<string[]>([

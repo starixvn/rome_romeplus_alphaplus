@@ -53,20 +53,6 @@ public static class TransactionsEndpoints
             Description = "Returns transaction details"
         });
 
-        group.MapGet("/get-account", async (ITransactionService service) =>
-        {
-            var criteria = new GetAccountCriteria();
-
-            var accounts = await service.GetAccountAsync(criteria);
-            return Results.Ok(accounts);
-        })
-        .WithName("Get Account on Filter")
-        .WithOpenApi(operation => new OpenApiOperation(operation)
-        {
-            Summary = "Get Account on Filter",
-            Description = "Returns list Account"
-        });
-
         group.MapPost("/revert-pending", async (ITransactionService service, [FromBody] UpdateTransactionStatusRemarkCommand command) =>
         {
             command.Status = "Pending";
