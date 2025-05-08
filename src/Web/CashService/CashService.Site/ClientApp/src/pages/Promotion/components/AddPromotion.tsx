@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { Promotion } from '../../../services/interfaces/Promotion';
 
 
@@ -21,7 +21,7 @@ const INITIAL_CATEGORY = {
 };
 
 const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave }) => {
-  const { t } = useTranslation(['promotion', 'global']);
+ 
   const [isActive, setIsActive] = useState(true);
   const [promotionType, setPromotionType] = useState(PROMOTION_TYPES[0].value);
   const [period, setPeriod] = useState('');
