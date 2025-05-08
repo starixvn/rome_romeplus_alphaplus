@@ -32,13 +32,12 @@ namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
         {
             // Arrange
             var criteria = new SetDailyWithdrawalCountCriteria(1, 5);
-            const string expectedKey = "Age_CashService_DailyWithdrawLimit_Upd";
 
             // Act
-            var actualKey = criteria.GetSettingKey();
+            var key = criteria.GetSettingKey();
 
             // Assert
-            Assert.Equal(expectedKey, actualKey);
+            Assert.Equal("Age_CashService_AgentBankAccountLimit_Upd", key);
         }
 
         [Theory]

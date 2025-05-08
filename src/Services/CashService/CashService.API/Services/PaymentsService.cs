@@ -111,6 +111,11 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
     
     public async Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod)
     {
+        if (paymentMethod.CustId <= 0 || paymentMethod.ProviderId <= 0)
+        {
+            return new ResultModel(1, "Invalid customer ID or provider ID");
+        }
+
         var criteria = new InsertPaymentMethodCriteria(paymentMethod);
         await repository.ExecuteAsync(criteria);
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);

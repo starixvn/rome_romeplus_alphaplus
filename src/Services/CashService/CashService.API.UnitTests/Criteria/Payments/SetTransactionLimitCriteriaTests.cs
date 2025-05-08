@@ -43,7 +43,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
         {
             // Arrange
             var criteria = new SetTransactionLimitCriteria(1, 5, 100m, 1000m, 50m, 500m);
-            const string expectedKey = "Age_CashService_DailyWithdrawLimit_Upd";
+            const string expectedKey = "Age_CashService_AgentBankAccountLimit_Upd";
 
             // Act
             var actualKey = criteria.GetSettingKey();

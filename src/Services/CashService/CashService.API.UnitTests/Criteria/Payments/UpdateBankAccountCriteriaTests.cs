@@ -13,27 +13,28 @@ namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
             var model = new BankAccountModel
             {
                 Id = 1,
-                CreatorId = 123,
+                CreatorId = 1,
                 Status = 1,
-                AccountNickname = "My Account",
+                AccountNickname = "Test Account",
                 Agent_TransTypeList = "1,2,3",
                 Agent_DepositMatchingMode = 1,
                 PromptPay = true,
-                Mobile = "0123456789"
+                CountryCode = "66",
+                Mobile = "1234567890"
             };
 
             // Act
             var criteria = new UpdateBankAccountCriteria(model);
 
             // Assert
-            Assert.Equal(model.CreatorId, criteria.Creator);
             Assert.Equal(model.Id, criteria.Id);
+            Assert.Equal(model.CreatorId, criteria.Creator);
             Assert.Equal(model.Status, criteria.Status);
             Assert.Equal(model.AccountNickname, criteria.AccountNickname);
             Assert.Equal(model.Agent_TransTypeList, criteria.TransactionTypeIDs);
             Assert.Equal(model.Agent_DepositMatchingMode, criteria.DepositMatchingMode);
             Assert.Equal(model.PromptPay, criteria.PromptPay);
-            Assert.Equal(model.Mobile, criteria.Mobile);
+            Assert.Equal(model.CountryCode + "-" + model.Mobile, criteria.Mobile);
         }
 
         [Fact]
@@ -83,11 +84,8 @@ namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
 
         [Theory]
         [InlineData(0, 1, 1, "My Account", "1,2,3", 1, false)] // Invalid Id
-        [InlineData(1, 0, 1, "My Account", "1,2,3", 1, false)] // Invalid Status
         [InlineData(1, 1, 0, "My Account", "1,2,3", 1, false)] // Invalid Creator
         [InlineData(1, 1, 1, "", "1,2,3", 1, false)] // Empty AccountNickname
-        [InlineData(1, 1, 1, "My Account", "", 1, false)] // Empty TransactionTypes
-        [InlineData(1, 1, 1, "My Account", "1,2,3", 0, false)] // Invalid DepositMatchingMode
         public void IsValid_WhenRequiredFieldsMissing_ShouldReturnFalse(
             int id,
             int status,

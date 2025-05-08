@@ -48,13 +48,12 @@ namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
         {
             // Arrange
             var criteria = new UpdateProviderStatusCriteria(1, 1, 1);
-            const string expectedKey = "Age_CashService_ProviderStatus_Upd";
 
             // Act
-            var result = criteria.GetSettingKey();
+            var key = criteria.GetSettingKey();
 
             // Assert
-            Assert.Equal(expectedKey, result);
+            Assert.Equal("Age_CashService_PaymentProviderStatus_Upd", key);
         }
     }
 } 

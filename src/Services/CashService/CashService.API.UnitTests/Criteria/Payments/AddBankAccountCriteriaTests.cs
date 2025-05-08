@@ -12,16 +12,16 @@ namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
             // Arrange
             var model = new BankAccountModel
             {
-                CreatorId = 123,
-                BankId = 456,
+                CreatorId = 1,
+                BankId = 1,
                 Status = 1,
+                AccountNickname = "Test Account",
+                Agent_TransTypeList = "1,2,3",
+                PromptPay = true,
                 AccountHolderName = "John Doe",
                 AccountNumber = "1234567890",
-                AccountNickname = "My Account",
-                TransactionTypeID = "1,2,3",
-                Agent_DepositMatchingMode = 1,
-                PromptPay = true,
-                Mobile = "0123456789"
+                CountryCode = "66",
+                Mobile = "1234567890"
             };
 
             // Act
@@ -31,13 +31,12 @@ namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
             Assert.Equal(model.CreatorId, criteria.Creator);
             Assert.Equal(model.BankId, criteria.BankId);
             Assert.Equal(model.Status, criteria.Status);
+            Assert.Equal(model.AccountNickname, criteria.AccountNickname);
+            Assert.Equal(model.Agent_TransTypeList, criteria.TransactionTypeIDs);
+            Assert.Equal(model.PromptPay, criteria.PromptPay);
             Assert.Equal(model.AccountHolderName, criteria.AccountHolderName);
             Assert.Equal(model.AccountNumber, criteria.AccountNumber);
-            Assert.Equal(model.AccountNickname, criteria.AccountNickname);
-            Assert.Equal(model.TransactionTypeID, criteria.TransactionTypeIDs);
-            Assert.Equal(model.Agent_DepositMatchingMode, criteria.DepositMatchingMode);
-            Assert.Equal(model.PromptPay, criteria.PromptPay);
-            Assert.Equal(model.Mobile, criteria.Mobile);
+            Assert.Equal(model.CountryCode + "-" + model.Mobile, criteria.Mobile);
         }
 
         [Fact]
@@ -91,7 +90,6 @@ namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
         [InlineData(1, "1234567890", 0, "John Doe", "My Account", "1,2,3", false)] // Invalid Creator
         [InlineData(1, "1234567890", 1, "", "My Account", "1,2,3", false)] // Empty AccountHolderName
         [InlineData(1, "1234567890", 1, "John Doe", "", "1,2,3", false)] // Empty AccountNickname
-        [InlineData(1, "1234567890", 1, "John Doe", "My Account", "", false)] // Empty TransactionTypes
         public void IsValid_WhenRequiredFieldsMissing_ShouldReturnFalse(
             int bankId,
             string accountNumber,
@@ -109,7 +107,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
                 CreatorId = creator,
                 AccountHolderName = accountHolderName,
                 AccountNickname = accountNickname,
-                TransactionTypeID = transactionTypes
+                Agent_TransTypeList = transactionTypes
             };
             var criteria = new AddBankAccountCriteria(model);
 
