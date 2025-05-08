@@ -325,7 +325,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
               )}
 
               {(() => {
-                return selectedBank && selectedBankObj && selectedBankObj.depositMatchingMode.mappingTypes.length > 0 && (
+                return selectedBank && selectedBankObj && selectedBankObj.depositMatchingMode?.mappingTypes?.length > 0 && (
                   <div className="mb-3">
                     <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('depositMatchingMode')}</label>
                     <div className="flex gap-[8px]" role="group">
