@@ -283,7 +283,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                         type="button"
                         className={`block w-[230px] cursor-pointer h-[120px]  rounded-[4px] border-[1px] border-[var(--primary-color)]  ${selectedManualDeposit ? 'text-[#ffffff] bg-[var(--primary-color)]' : 'text-[var(--primary-color)] bg-[#ffffff]'}`}
                         onClick={toggleManualDeposit}
-                      >
+                      >                     
                         <span className="text-[14px] font-bold ">{tManagePayments('slipUpload')}</span>
                         <br />
                         <span className="text-[12px]">{tManagePayments('manualDeposit')}</span>
@@ -308,7 +308,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
               )}
 
               {hasWithdrawalTransactionType(selectedBank, banks) && (
-                <div className="mb-3">
+                <div>
                   <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('withdrawalType')}</label>
                   <div className="btn-group" role="group">
                     {hasManualWithdrawalTransactionType(selectedBank, banks) && (
