@@ -343,18 +343,20 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
               {(() => {
                 const selectedBankObj = banks.find(b => b.id === parseInt(selectedBank));
-                return selectedBank && selectedBankObj && selectedBankObj.depositMatchingMode >= 1 && (
+                return selectedBank && selectedBankObj && selectedBankObj.depositMatchingMode.mappingTypes.length > 0 && (
                   <div className="mb-3">
                     <label className="form-label">{tManagePayments('depositMatchingMode')}</label>
                     <div className="btn-group" role="group">
-                      <button
-                        type="button"
-                        className={`btn ${agent_DepositMatchingMode === 1 ? 'btn-primary' : 'btn-outline-primary'}`}
-                        onClick={() => setAgent_DepositMatchingMode(1)}
-                      >
-                        {tManagePayments('manualMatching')}
-                      </button>
-                      {selectedBankObj.depositMatchingMode >= 2 && (
+                      {selectedBankObj.depositMatchingMode.mappingTypes.includes(1) && (
+                        <button
+                          type="button"
+                          className={`btn ${agent_DepositMatchingMode === 1 ? 'btn-primary' : 'btn-outline-primary'}`}
+                          onClick={() => setAgent_DepositMatchingMode(1)}
+                        >
+                          {tManagePayments('manualMatching')}
+                        </button>   
+                      )}
+                      {selectedBankObj.depositMatchingMode.mappingTypes.includes(2) && (
                         <button
                           type="button"
                           className={`btn ${agent_DepositMatchingMode === 2 ? 'btn-primary' : 'btn-outline-primary'}`}
