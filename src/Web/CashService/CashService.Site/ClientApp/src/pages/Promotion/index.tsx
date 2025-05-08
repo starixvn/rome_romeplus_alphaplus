@@ -6,6 +6,7 @@ import { promotionService } from '../../services/promotionAPI';
 import PromotionList from './components/PromotionList';
 import Filter from './components/Filter';
 import type { Promotion } from '../../services/interfaces/Promotion';
+import AddPromotion from './components/AddPromotion';
 
 const Promotion: React.FC = () => {
     const [promotionType, setPromotionType] = useState<string>('All');
@@ -13,30 +14,31 @@ const Promotion: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [promotions, setPromotions] = useState<Promotion[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [showAddPromotion, setShowAddPromotion] = useState<boolean>(false);
 
     const handleFilterChange = (type: string, status: string) => {
         setPromotionType(type);
         setStatus(status);
     };
 
-    useEffect(() => {
-        const fetchPromotions = async () => {
-            setIsLoading(true);
-            try {
-                const response = await promotionService.getPromotion({
-                    type: promotionType,
-                    status: status
-                });
-                setPromotions(response);
-                setError(null);
-            } catch (err) {
-                setError('Failed to load promotions');
-                console.error('Error loading promotions:', err);
-            } finally {
-                setIsLoading(false);
-            }
-        };
+    const fetchPromotions = async () => {
+        setIsLoading(true);
+        try {
+            const response = await promotionService.getPromotion({
+                type: promotionType,
+                status: status
+            });
+            setPromotions(response);
+            setError(null);
+        } catch (err) {
+            setError('Failed to load promotions');
+            console.error('Error loading promotions:', err);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
+    useEffect(() => {
         fetchPromotions();
     }, [promotionType, status]);
 
@@ -50,14 +52,34 @@ const Promotion: React.FC = () => {
                     </div>
                 )}
                 
-                <Filter onFilterChange={handleFilterChange} />
-                
-                <div className="promotion-list">
-                    <PromotionList 
-                        items={promotions}
-                        isLoading={isLoading}
+
+                {!showAddPromotion ? (
+                    <>
+                        <div className="add-promotion">
+                            <button 
+                                className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                                onClick={() => setShowAddPromotion(true)}
+                            >
+                                Add Promotion
+                            </button>
+                        </div>
+                        <Filter onFilterChange={handleFilterChange} />
+                        <div className="promotion-list">
+                            <PromotionList 
+                                items={promotions}
+                                isLoading={isLoading}
+                            />
+                        </div>
+                    </>
+                ) : (
+                    <AddPromotion 
+                        onClose={() => setShowAddPromotion(false)} 
+                        onSave={() => {
+                            setShowAddPromotion(false);
+                            fetchPromotions();
+                        }} 
                     />
-                </div>
+                )}
             </div>
         </div>
     );
