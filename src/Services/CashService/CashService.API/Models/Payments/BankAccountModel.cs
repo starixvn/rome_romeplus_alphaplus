@@ -1,5 +1,3 @@
-using Newtonsoft.Json;
-
 namespace AlphaPlus.CashService.API.Models.Payments
 {
     public class BankAccountModel
@@ -37,12 +35,6 @@ namespace AlphaPlus.CashService.API.Models.Payments
         public string Agent_TransTypeList { get; set; }
         public int Agent_DepositMatchingMode { get; set; }
         public string Bank_DepositMatchingMode { get; set; }
-        public DepositMatchingModeModel BankDepositMatchingMode 
-        {
-            get
-            {
-                return string.IsNullOrEmpty(Bank_DepositMatchingMode) ? null : JsonConvert.DeserializeObject<DepositMatchingModeModel>(Bank_DepositMatchingMode);
-            }
-        }
+        public DepositMatchingModeModel BankDepositMatchingMode { get; set; }
     }
 }

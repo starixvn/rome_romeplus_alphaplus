@@ -312,7 +312,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                         toggleAutoDeposit();
                       }}
                     >
-                      <span className="text-[14px] font-bold">{tManagePayments('sms')}</span>
+                      <span className="text-[14px] font-bold">{bankDepositMatchingMode.sourceTypeName}</span>
                       <br />
                       <span className="text-[12px]">{tManagePayments('autoDeposit')}</span>
                     </button>
@@ -343,7 +343,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
               {(() => {
                 const selectedBankObj = banks.find(b => b.id === parseInt(selectedBank));
-                return selectedBank && selectedBankObj && selectedBankObj.depositMatchingMode.mappingTypes.length > 0 && (
+                return selectedBank && selectedBankObj && selectedBankObj.depositMatchingMode?.mappingTypes?.length > 0 && (
                   <div className="mb-3">
                     <label className="form-label">{tManagePayments('depositMatchingMode')}</label>
                     <div className="btn-group" role="group">

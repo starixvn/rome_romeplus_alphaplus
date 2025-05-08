@@ -7,6 +7,7 @@ public interface ICacheRefService
     string GetProviderName(int providerId, string defaultName);
     string GetPaymentMethodName(int methodId, string defaultName);
     string GetBankName(int bankId, string defaultName);
+    string GetDepositMatchingModeName(string sourceType, string defaultName);
 
     string GetResourceDataByRefIdAndResourceId(string refId, int resourceId);
 }
@@ -25,6 +26,11 @@ public class CacheRefService(IRemotingRefService remotingRefService) : ICacheRef
 
     public string GetBankName(int bankId, string defaultName) {
         var result = GetResourceDataByRefIdAndResourceId("ref-bank-name", bankId);
+        return string.IsNullOrWhiteSpace(result) ? defaultName : result;
+    }
+
+    public string GetDepositMatchingModeName(string sourceType, string defaultName) {
+        var result = GetResourceDataByRefIdAndResourceId("ref-deposit-matching-mode-name", sourceType);
         return string.IsNullOrWhiteSpace(result) ? defaultName : result;
     }
 

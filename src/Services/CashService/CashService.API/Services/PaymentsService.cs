@@ -135,6 +135,12 @@ public class PaymentsService(
         foreach (var bank in banks)
         {
             bank.Name = cacheRefService.GetBankName(bank.Id, bank.Bank);
+
+            if(bank.DepositMode != null)
+            {
+                bank.DepositMatchingMode = Newtonsoft.Json.JsonConvert.DeserializeObject<DepositMatchingModeModel>(bank.DepositMode);
+                bank.DepositMatchingMode.SourceTypeName = cacheRefService.GetDepositMatchingModeName(bank.DepositMatchingMode.SourceType, bank.DepositMatchingMode.SourceType);
+            }
         }
         
         return banks;
@@ -177,6 +183,11 @@ public class PaymentsService(
         foreach (var bank in banks)
         {
             bank.Name = cacheRefService.GetBankName(bank.Id, bank.Bank);
+            if(bank.DepositMode != null)
+            {
+                bank.DepositMatchingMode = Newtonsoft.Json.JsonConvert.DeserializeObject<DepositMatchingModeModel>(bank.DepositMode);
+                bank.DepositMatchingMode.SourceTypeName = cacheRefService.GetDepositMatchingModeName(bank.DepositMatchingMode.SourceType, bank.DepositMatchingMode.SourceType);
+            }
         }
 
         return banks;
@@ -202,6 +213,12 @@ public class PaymentsService(
         {
             bank.AccountHolderName = encryption.Decrypt(bank.AccountHolderName, _encryptSecretKey);
             bank.AccountNumber = encryption.Decrypt(bank.AccountNumber, _encryptSecretKey);
+
+            if(bank.Bank_DepositMatchingMode != null)
+            {
+                bank.BankDepositMatchingMode = Newtonsoft.Json.JsonConvert.DeserializeObject<DepositMatchingModeModel>(bank.Bank_DepositMatchingMode);
+                bank.BankDepositMatchingMode.SourceTypeName = cacheRefService.GetDepositMatchingModeName(bank.BankDepositMatchingMode.SourceType, bank.BankDepositMatchingMode.SourceType);
+            }
         }
 
         return accounts;
@@ -258,6 +275,12 @@ public class PaymentsService(
             bank.BankName = cacheRefService.GetBankName(bank.Id, bank.BankName);
             bank.AccountHolderName = encryption.Decrypt(bank.AccountHolderName, _encryptSecretKey);
             bank.AccountNumber = encryption.Decrypt(bank.AccountNumber, _encryptSecretKey);
+
+            if(bank.Bank_DepositMatchingMode != null)
+            {
+                bank.BankDepositMatchingMode = Newtonsoft.Json.JsonConvert.DeserializeObject<DepositMatchingModeModel>(bank.Bank_DepositMatchingMode);
+                bank.BankDepositMatchingMode.SourceTypeName = cacheRefService.GetDepositMatchingModeName(bank.BankDepositMatchingMode.SourceType, bank.BankDepositMatchingMode.SourceType);
+            }
         }
 
         return accounts.FirstOrDefault();

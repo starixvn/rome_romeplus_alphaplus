@@ -40,11 +40,23 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [banks, setBanks] = useState<Bank[]>([]);
+  const [selectedBankObj, setSelectedBankObj] = useState<Bank | undefined>(undefined);
   
   // Add state variables for selected transaction types
   const [selectedManualDeposit, setSelectedManualDeposit] = useState<boolean>(true);
   const [selectedAutoDeposit, setSelectedAutoDeposit] = useState<boolean>(false);
   const [selectedManualWithdrawal, setSelectedManualWithdrawal] = useState<boolean>(false);
+
+  // Add field-level validation state
+  const [fieldErrors, setFieldErrors] = useState({
+    accountNickname: '',
+    accountHolderName: '',
+    accountNumber: '',
+    selectedBank: '',
+    mobile: '',
+    countryCode: '',
+    selectedDepositType: ''
+  });
 
   useEffect(() => {
     const fetchBanks = async () => {
@@ -56,6 +68,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
         if (fetchedBanks.length > 0) {
           const firstBank = fetchedBanks[0];
           setSelectedBank(firstBank.id.toString());
+          setSelectedBankObj(firstBank);
           
           // Set transaction types based on first bank's capabilities
           setSelectedManualDeposit(true);
@@ -63,7 +76,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
           setSelectedManualWithdrawal(false);
           
           // Set deposit matching mode based on bank's capabilities
-          if (firstBank.depositMatchingMode >= 1) {
+          if (firstBank.depositMatchingMode.mappingTypes.length > 0) {
             setDepositMatchingMode('1');
           }
         }
@@ -94,6 +107,23 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
     setError(null);
     setSuccess(false);
     setLoading(true);
+
+    // Field-level validation
+    const errors = {
+      accountNickname: !accountNickname ? tGlobal('pleaseFillField') : '',
+      accountHolderName: !accountHolderName ? tGlobal('pleaseFillField') : '',
+      accountNumber: !accountNumber ? tGlobal('pleaseFillField') : '',
+      selectedBank: !selectedBank ? tGlobal('pleaseFillField') : '',
+      mobile: !mobile ? tGlobal('pleaseFillField') : '',
+      countryCode: !countryCode ? tGlobal('pleaseFillField') : '',
+      selectedDepositType: !selectedManualDeposit && !selectedAutoDeposit ? tManagePayments('pleaseSelectDepositType') : ''
+    };
+    setFieldErrors(errors);
+    const hasError = Object.values(errors).some(Boolean);
+    if (hasError) {
+      setLoading(false);
+      return;
+    }
 
     try {
       // Combine selected transaction types into a comma-separated string
@@ -135,7 +165,8 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
         agent_DepositMatchingMode: parseInt(depositMatchingMode),
         bankDepositMatchingMode: {
           sourceType: 'BANK',
-          mappingTypes: [parseInt(depositMatchingMode)]
+          mappingTypes: [parseInt(depositMatchingMode)],
+          sourceTypeName: ''
         }
       });
 
@@ -173,6 +204,10 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
   const handleBankChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newBankId = e.target.value;
     setSelectedBank(newBankId);
+    
+    // Find and set the selected bank object
+    const bank = banks.find(b => b.id === parseInt(newBankId));
+    setSelectedBankObj(bank);
     
     // Reset transaction type selections
     setSelectedManualDeposit(true);
@@ -221,12 +256,11 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
 
               <div className="mt-[8px] text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] tracking-[0.2px]">{tManagePayments('accountInformation')}</div>
               <div>
-                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('bank')}</label>
+                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('bank')}<span className='text-[#E25757]'>*</span></label>
                 <select
-                  className="h-[35px] w-[470px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer"
+                  className={`h-[35px] w-[470px] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer ${fieldErrors.selectedBank ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                   value={selectedBank}
                   onChange={handleBankChange}
-                  required
                 >
                   {banks.map((bank) => (
                     <option key={bank.id} value={bank.id}>
@@ -234,6 +268,9 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     </option>
                   ))}
                 </select>
+                {fieldErrors.selectedBank && (
+                  <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.selectedBank}</div>
+                )}
               </div>
 
               {hasDepositTransactionType(selectedBank, banks) && (
@@ -257,12 +294,15 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                         className={`block w-[230px] cursor-pointer h-[120px] rounded-[4px] border-[1px] border-[var(--primary-color)] ${selectedAutoDeposit ? 'text-[#ffffff] bg-[var(--primary-color)]' : 'text-[var(--primary-color)] bg-[#ffffff]'}`}
                         onClick={toggleAutoDeposit}
                       >
-                        <span className="text-[14px] font-bold">{tManagePayments('sms')}</span>
+                        <span className="text-[14px] font-bold">{selectedBankObj?.depositMatchingMode.sourceTypeName}</span>
                         <br />
                         <span className="text-[12px]">{tManagePayments('autoDeposit')}</span>
                       </button>
                     )}
                   </div>
+                  {fieldErrors.selectedDepositType && (
+                    <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.selectedDepositType}</div>
+                  )}
                 </div>
               )}
 
@@ -284,16 +324,17 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
               )}
 
               {(() => {
-                const selectedBankObj = banks.find(b => b.id === parseInt(selectedBank));
-                return selectedBank && selectedBankObj && selectedBankObj.depositMatchingMode >= 1 && (
+                return selectedBank && selectedBankObj && selectedBankObj.depositMatchingMode.mappingTypes.length > 0 && (
                   <div className="mb-3">
                     <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('depositMatchingMode')}</label>
                     <div className="flex gap-[8px]" role="group">
-                      <label className='flex items-center cursor-pointer capitalize' htmlFor="manualMatching1" onClick={() => setDepositMatchingMode('1')}>
-                        <input className='w-[20px] h-[20px] m-[10px] cursor-pointer' id="manualMatching1" type="radio" name="depositMatchingMode" value={depositMatchingMode} checked={depositMatchingMode === '1'} />
-                        <span className='text-[12px] leading-[14px]'>{tManagePayments('manualMatching')}</span>
-                      </label>
-                      {selectedBankObj.depositMatchingMode >= 2 && (                        
+                      {selectedBankObj.depositMatchingMode.mappingTypes.includes(1) && (   
+                        <label className='flex items-center cursor-pointer capitalize' htmlFor="manualMatching1" onClick={() => setDepositMatchingMode('1')}>
+                          <input className='w-[20px] h-[20px] m-[10px] cursor-pointer' id="manualMatching1" type="radio" name="depositMatchingMode" value={depositMatchingMode} checked={depositMatchingMode === '1'} />
+                          <span className='text-[12px] leading-[14px]'>{tManagePayments('manualMatching')}</span>
+                        </label>
+                      )}
+                      {selectedBankObj.depositMatchingMode.mappingTypes.includes(2) && (                        
                         <label className='flex items-center cursor-pointer capitalize' htmlFor="manualMatching2" onClick={() => setDepositMatchingMode('2')}>
                           <input className='w-[20px] h-[20px] m-[10px] cursor-pointer' id="manualMatching2" type="radio" name="depositMatchingMode" value={depositMatchingMode} checked={depositMatchingMode === '2'} />
                           <span className='text-[12px] leading-[14px]'>{tManagePayments('autoMatching')}</span>
@@ -306,42 +347,47 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
 
               <div className="flex gap-[16px]">
                 <div className='w-[230px]'>
-                  <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('accountHolderName')}</label>                
+                  <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('accountHolderName')}<span className='text-[#E25757]'>*</span></label>                
                   <input
                     type="text"
-                    className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer"
+                    className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer ${fieldErrors.accountHolderName ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                     value={accountHolderName}
                     onChange={(e) => setAccountHolderName(e.target.value)}
-                    required
                     maxLength={255}
                   />
-                  <label className=" block mt-[4px] text-[#828282] text-[11px] leading-[12px] font-semibold">{tManagePayments('provideFullName')}</label>
+                  {fieldErrors.accountHolderName && (
+                    <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.accountHolderName}</div>
+                  )}
+                  <label className="block mt-[4px] text-[#828282] text-[11px] leading-[12px] font-semibold">{tManagePayments('provideFullName')}</label>
                 </div>
 
                 <div className='w-[230px]'>
-                  <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('bankAccountNumber')}</label>
+                  <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('bankAccountNumber')}<span className='text-[#E25757]'>*</span></label>
                   <input
                     type="text"
-                    className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer"
+                    className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer ${fieldErrors.accountNumber ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                     value={accountNumber}
                     onChange={(e) => setAccountNumber(e.target.value)}
-                    required
                     maxLength={50}
                   />
+                  {fieldErrors.accountNumber && (
+                    <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.accountNumber}</div>
+                  )}
                 </div>
 
-                <div className='w-[230px]'> 
-                  <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('accountNickname')}</label>
-                  
+                <div className='w-[230px]'>
+                  <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('accountNickname')}<span className='text-[#E25757]'>*</span></label>
                   <input
                     type="text"
-                    className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer"
+                    className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer ${fieldErrors.accountNickname ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                     value={accountNickname}
                     onChange={(e) => setAccountNickname(e.target.value)}
-                    required
                     maxLength={255}
                   />
-                  <label className=" block mt-[4px] text-[#828282] text-[11px] leading-[12px] font-semibold">{tManagePayments('accountNicknameNote1')}</label>
+                  {fieldErrors.accountNickname && (
+                    <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.accountNickname}</div>
+                  )}
+                  <label className="block mt-[4px] text-[#828282] text-[11px] leading-[12px] font-semibold">{tManagePayments('accountNicknameNote1')}</label>
                 </div>
               </div>
 
@@ -368,10 +414,10 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
 
               
               <div className="mb-3">
-                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('mobile')}</label>
+                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('mobile')}<span className='text-[#E25757]'>*</span></label>
                 <div className="flex items-center h-[35px] w-[470px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer">
                   <select
-                    className="focus:outline-none focus:border-[var(--primary-color)] h-[100%]  cursor-pointer mr-[5px]"
+                    className={`focus:outline-none focus:border-[var(--primary-color)] h-[100%] cursor-pointer mr-[5px] ${fieldErrors.countryCode ? 'border-[#FE0000]' : ''}`}
                     value={countryCode}
                     onChange={(e) => setCountryCode(e.target.value)}
                     style={{ maxWidth: '120px' }}
@@ -384,14 +430,16 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   </select>
                   <input
                     type="text"
-                    className="focus:outline-none w-[100%] h-[100%] pl-[10px] border-l-[1px] border-[#0000003D]"
+                    className={`focus:outline-none w-[100%] h-[100%] pl-[10px] border-l-[1px] ${fieldErrors.mobile ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                     value={mobile}
                     onChange={(e) => setMobile(e.target.value)}
                     placeholder={tManagePayments('enterMobileNumber')}
                     maxLength={50}
-                    required
                   />
                 </div>
+                {(fieldErrors.mobile || fieldErrors.countryCode) && (
+                  <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.mobile || fieldErrors.countryCode}</div>
+                )}
               </div>
             </div>
             <div className="flex justify-end py-[8px] mt-[8px]">
