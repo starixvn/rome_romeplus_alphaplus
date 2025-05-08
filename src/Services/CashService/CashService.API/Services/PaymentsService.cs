@@ -131,7 +131,7 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
             if(bank.DepositMode != null)
             {
                 bank.DepositMatchingMode = Newtonsoft.Json.JsonConvert.DeserializeObject<DepositMatchingModeModel>(bank.DepositMode);
-                bank.DepositMatchingMode.SourceTypeName = cacheRefService.GetDepositMatchingModeName(bank.DepositMatchingMode.SourceType, bank.DepositMatchingMode.SourceType);
+                bank.DepositMatchingMode.SourceTypeName = cacheRefService.GetDepositAutoModeName(bank.DepositMatchingMode.SourceType, bank.DepositMatchingMode.SourceType);
             }
         }
 
@@ -178,7 +178,7 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
             if(bank.DepositMode != null)
             {
                 bank.DepositMatchingMode = Newtonsoft.Json.JsonConvert.DeserializeObject<DepositMatchingModeModel>(bank.DepositMode);
-                bank.DepositMatchingMode.SourceTypeName = cacheRefService.GetDepositMatchingModeName(bank.DepositMatchingMode.SourceType, bank.DepositMatchingMode.SourceType);
+                bank.DepositMatchingMode.SourceTypeName = cacheRefService.GetDepositAutoModeName(bank.DepositMatchingMode.SourceType, bank.DepositMatchingMode.SourceType);
             }
         }
 
@@ -206,7 +206,7 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
             if(bank.Bank_DepositMatchingMode != null)
             {
                 bank.BankDepositMatchingMode = Newtonsoft.Json.JsonConvert.DeserializeObject<DepositMatchingModeModel>(bank.Bank_DepositMatchingMode);
-                bank.BankDepositMatchingMode.SourceTypeName = cacheRefService.GetDepositMatchingModeName(bank.BankDepositMatchingMode.SourceType, bank.BankDepositMatchingMode.SourceType);
+                bank.BankDepositMatchingMode.SourceTypeName = cacheRefService.GetDepositAutoModeName(bank.BankDepositMatchingMode.SourceType, bank.BankDepositMatchingMode.SourceType);
             }
         }
 
@@ -263,7 +263,7 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
             if(bank.Bank_DepositMatchingMode != null)
             {
                 bank.BankDepositMatchingMode = Newtonsoft.Json.JsonConvert.DeserializeObject<DepositMatchingModeModel>(bank.Bank_DepositMatchingMode);
-                bank.BankDepositMatchingMode.SourceTypeName = cacheRefService.GetDepositMatchingModeName(bank.BankDepositMatchingMode.SourceType, bank.BankDepositMatchingMode.SourceType);
+                bank.BankDepositMatchingMode.SourceTypeName = cacheRefService.GetDepositAutoModeName(bank.BankDepositMatchingMode.SourceType, bank.BankDepositMatchingMode.SourceType);
             }
         }
 

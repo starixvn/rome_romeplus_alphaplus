@@ -7,7 +7,7 @@ public interface ICacheRefService
     string GetProviderName(int providerId, string defaultName);
     string GetPaymentMethodName(int methodId, string defaultName);
     string GetBankName(int bankId, string defaultName);
-    string GetDepositMatchingModeName(string sourceType, string defaultName);
+    string GetDepositAutoModeName(string sourceType, string defaultName);
 
     string GetResourceDataByRefIdAndResourceId(string refId, int resourceId);
 }
@@ -15,22 +15,22 @@ public interface ICacheRefService
 public class CacheRefService(IRemotingRefService remotingRefService) : ICacheRefService
 {
     public string GetProviderName(int providerId, string defaultName) {
-        var result = GetResourceDataByRefIdAndResourceId("ref-provider-name", providerId);
+        var result = GetResourceDataByRefIdAndResourceId("cash_provider", providerId);
         return string.IsNullOrWhiteSpace(result) ? defaultName : result;
     }
 
     public string GetPaymentMethodName(int methodId, string defaultName) {
-        var result = GetResourceDataByRefIdAndResourceId("ref-payment-method-name", methodId);
+        var result = GetResourceDataByRefIdAndResourceId("cash_payment_method", methodId);
         return string.IsNullOrWhiteSpace(result) ? defaultName : result;
     }
 
     public string GetBankName(int bankId, string defaultName) {
-        var result = GetResourceDataByRefIdAndResourceId("ref-bank-name", bankId);
+        var result = GetResourceDataByRefIdAndResourceId("cash_bank", bankId);
         return string.IsNullOrWhiteSpace(result) ? defaultName : result;
     }
 
-    public string GetDepositMatchingModeName(string sourceType, string defaultName) {
-        var result = GetResourceDataByRefIdAndResourceId("ref-deposit-matching-mode-name", sourceType);
+    public string GetDepositAutoModeName(string sourceType, string defaultName) {
+        var result = GetResourceDataByRefIdAndResourceId("cash_deposit_automode", sourceType);
         return string.IsNullOrWhiteSpace(result) ? defaultName : result;
     }
 
