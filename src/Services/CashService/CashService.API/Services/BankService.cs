@@ -21,7 +21,7 @@ public class BankService(IDynamicRepository dynamicRepository) : IBankService
             TransType = transactionType
         };
         var bankList = await dynamicRepository.FetchAsync<BankInfo>(criteria);
-        return DecryptBankNumber(bankList);
+        return bankList;
     }
 
     public async Task<IEnumerable<BankInfo>> GetMemberBankInfoAsync(int custId)
@@ -32,12 +32,6 @@ public class BankService(IDynamicRepository dynamicRepository) : IBankService
         };
         var bankList = await dynamicRepository.FetchAsync<BankInfo>(criteria);
 
-        return DecryptBankNumber(bankList);
-    }
-
-    private IEnumerable<BankInfo> DecryptBankNumber(IEnumerable<BankInfo> bankList)
-    {
-        var decryptBankNumber = bankList as BankInfo[] ?? bankList.ToArray();
-        return decryptBankNumber;
+        return bankList;
     }
 }
