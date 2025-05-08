@@ -416,7 +416,29 @@
                 return this.microgamingLiveResult;
             }
 
-            if (sportTypeId > 99) {
+            var virtualSports = [125,
+                126,
+                127,
+                134,
+                147,
+                177,
+                178,
+                179,
+                180,
+                186,
+                187,
+                188,
+                190,
+                191,
+                192,
+                193,
+                194,
+                196,
+                197,
+                198,
+                199,
+                245];
+            if (sportTypeId > 99 && !virtualSports.includes(sportTypeId)) {
                 this.result3rd = Common.Utils.IsNullOrUndefinedOrEmpty(this.result3rd)
                     ? new Result3rdDetails()
                     : this.result3rd;
