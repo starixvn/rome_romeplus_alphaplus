@@ -12,9 +12,9 @@ public static class MemberSiteManagementEndpoints
             .WithTags("Member Site Management");
 
         // Get all settings
-        group.MapGet("/", async (IMemberSiteManagementService service, [FromQuery] int custId, [FromQuery] string siteName) =>
+        group.MapGet("/", async (IMemberSiteManagementService service, [FromQuery] int custId, [FromQuery] string site) =>
         {
-            var result = await service.GetAsync(custId, siteName);
+            var result = await service.GetAsync(custId, site);
             return Results.Ok(result);
         })
         .WithName("GetMemberSiteManagement")

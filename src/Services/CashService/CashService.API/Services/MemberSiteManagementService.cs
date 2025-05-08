@@ -7,7 +7,7 @@ using AlphaPlus.Shared;
 namespace AlphaPlus.CashService.API.Services;
 public interface IMemberSiteManagementService
 {
-    Task<MemberSiteManagementModel> GetAsync(int custId, string siteName);
+    Task<MemberSiteManagementModel> GetAsync(int custId, string site);
 
     Task<ResultModel> UpdateAsync(MemberSiteManagementModel model);
 }
@@ -22,10 +22,10 @@ public class MemberSiteManagementService(
     private readonly IConfiguration _configuration = configuration;
     private readonly ILogger<MemberSiteManagementService> _logger = logger;
     private readonly string _encryptSecretKey = configuration.GetValue<string>("EncryptSecretKey") ?? AlphaPlusConstants.EncryptSecretKey;
-    public async Task<MemberSiteManagementModel> GetAsync(int custId, string siteName)
+    public async Task<MemberSiteManagementModel> GetAsync(int custId, string site)
     {
         var (domains, settings) = await repository.FetchMultipleAsync<DomainModel, CashServiceManagementDto>(new GetMemberSiteInfoCriteria(custId));
-        var countryCodes = await repository.FetchAsync<string>(new GetCountryCodesCriteria(siteName));
+        var countryCodes = await repository.FetchAsync<string>(new GetCountryCodesCriteria(site));
         var settingInfo = settings.FirstOrDefault() ?? new CashServiceManagementDto();
 
         var trasnformModel = new MemberSiteManagementModel
