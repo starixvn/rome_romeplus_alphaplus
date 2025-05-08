@@ -7,6 +7,7 @@ import PromotionList from './components/PromotionList';
 import Filter from './components/Filter';
 import type { Promotion } from '../../services/interfaces/Promotion';
 import AddPromotion from './components/AddPromotion';
+import './common.css';
 
 const Promotion: React.FC = () => {
     const [promotionType, setPromotionType] = useState<string>('All');
@@ -43,8 +44,11 @@ const Promotion: React.FC = () => {
     }, [promotionType, status]);
 
     return (
-        <div className="min-h-screen bg-gray-50">
-            <div className="bg-white rounded-lg shadow-sm p-4">
+        <div className="">
+            <div className="p-[12px]">
+                <div className="mb-[8px]">
+                    <h1 className="font-bold text-[15px] text-[#333333]">Manage Promotion</h1>                    
+                </div>
                 {error && (
                     <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
                         <strong className="font-bold">Error!</strong>
@@ -57,10 +61,10 @@ const Promotion: React.FC = () => {
                     <>
                         <div className="add-promotion">
                             <button 
-                                className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                                className="w-[183px] h-[30px] rounded-[5px] text-[#ffffff] px-[16px] py-[4px] text-[12px] font-bold mr-[8px] bg-[var(--primary-color)] hover:bg-[#375A8A] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
                                 onClick={() => setShowAddPromotion(true)}
                             >
-                                Add Promotion
+                                + Add Promotion
                             </button>
                         </div>
                         <Filter onFilterChange={handleFilterChange} />

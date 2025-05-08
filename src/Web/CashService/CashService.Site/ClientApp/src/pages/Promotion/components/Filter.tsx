@@ -25,8 +25,8 @@ const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
     };
 
     return (
-        <div className="flex flex-wrap gap-4 items-center mb-4">
-            <div className="flex-1 min-w-[200px]">
+        <div className="flex ">
+            {/* <div className="flex-1 min-w-[200px]">
                 <input
                     type="text"
                     placeholder={t('search.placeholder')}
@@ -34,19 +34,25 @@ const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
-            </div>
-            <div className="flex gap-4">
-                <select
-                    className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    value={selectedType}
-                    onChange={(e) => handleTypeChange(e.target.value)}
-                >
-                    {promotionTypes.map(type => (
-                        <option key={type} value={type}>{type}</option>
-                    ))}
-                </select>
-                <select
-                    className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            </div> */}
+            <div className="text-[12px] flex gap-[16px]">
+                <div className="flex flex-col w-[180px]">
+                    <label className="block  font-semibold text-[#333333] my-[4px]">Promotion Type</label>
+                    <select
+                        className="border-0 border-b-[1px] h-[32px] border-[#0000003D] rounded-[0px] focus:outline-none focus:focus:outline-none focus:ring-blue-500"
+                        value={selectedType}
+                        onChange={(e) => handleTypeChange(e.target.value)}
+                    >
+                        {promotionTypes.map(type => (
+                            <option key={type} value={type}>{type}</option>
+                        ))}
+                    </select>
+                </div>
+                
+                <div className="flex flex-col w-[160px]">
+                    <label className='block  font-semibold text-[#333333] my-[4px]'>Status</label>
+                    <select
+                    className="border-0 border-b-[1px] h-[32px] border-[#0000003D] rounded-[0px] focus:outline-none focus:focus:outline-none focus:ring-blue-500"
                     value={selectedStatus}
                     onChange={(e) => handleStatusChange(e.target.value)}
                 >
@@ -54,6 +60,8 @@ const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
                         <option key={status} value={status}>{status}</option>
                     ))}
                 </select>
+                </div>
+                
             </div>
         </div>
     );
