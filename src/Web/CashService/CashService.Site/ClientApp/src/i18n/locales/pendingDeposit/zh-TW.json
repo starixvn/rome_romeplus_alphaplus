@@ -10,7 +10,9 @@
     "last7Days": "過去7天",
     "to": "到",
     "search": "搜索",
-    "usernamePlaceholder": "用戶名/參考號"
+    "usernamePlaceholder": "用戶名/參考號",
+    "last30Mins": "過去30分鐘",
+    "last60Mins": "過去60分鐘"
   },
   
   "dataGrid": {

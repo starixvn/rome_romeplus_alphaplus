@@ -34,9 +34,8 @@ const Filter: React.FC<FilterProps> = ({
             style={{ height: '32px' }}
           >
             <option value="All">{t('filter.all')}</option>
-            <option value="Today">{t('filter.today')}</option>
-            <option value="Yesterday">{t('filter.yesterday')}</option>
-            <option value="Last7Days">{t('filter.last7Days')}</option>
+            <option value="Last30Mins">{t('filter.last30Mins')}</option>
+            <option value="Last60Mins">{t('filter.last60Mins')}</option>
           </select>
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
             <svg

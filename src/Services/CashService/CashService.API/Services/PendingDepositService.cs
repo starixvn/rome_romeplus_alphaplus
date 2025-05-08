@@ -42,7 +42,7 @@ public class PendingDepositService(IDynamicRepository dynamicRepository) : IPend
                 From = 12345678,
                 To = 87654321,
                 ReferenceNo = "REF001",
-                DateAndTime = DateTime.Now.AddDays(-1)
+                DateAndTime = DateTime.Now
             },
             new()
             {   
@@ -56,7 +56,7 @@ public class PendingDepositService(IDynamicRepository dynamicRepository) : IPend
                 From = 56781234,
                 To = 43218765,
                 ReferenceNo = "REF002",
-                DateAndTime = DateTime.Now.AddDays(-2)
+                DateAndTime = DateTime.Now.AddMinutes(-30)
             },
             new()
             {
@@ -70,7 +70,7 @@ public class PendingDepositService(IDynamicRepository dynamicRepository) : IPend
                 From = 98765432,
                 To = 23456789,
                 ReferenceNo = "REF003",
-                DateAndTime = DateTime.Now.AddDays(-3)
+                DateAndTime = DateTime.Now.AddMinutes(-60)
             }
         };
     }

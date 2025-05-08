@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import './PendingDepositsStyle.css';
 import ManualAddDepositForm from './components/ManualAddDepositForm';
@@ -16,8 +16,9 @@ const PendingDeposit: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [deposits, setDeposits] = useState<DepositAccountInfo[]>([]);
   const [showManualAddDepositForm, setShowManualAddDepositForm] = useState<boolean>(false);
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchDeposits = async () => {
       const deposits = await pendingDepositService.getMemberBankAccounts();
       setDeposits(deposits);
@@ -53,12 +54,54 @@ const PendingDeposit: React.FC = () => {
       from: data.from,
       to: data.to,
       referenceNo: data.remarks,
-      dateAndTime: new Date(),
+      dateAndTime: new Date(),  
+      dateAndTimeStr: new Date().toLocaleString(),
     };
 
     setDeposits([...deposits, newDeposit]);
     setShowManualAddDepositForm(false);
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 500);
+    
+    return () => clearTimeout(timer);
+  }, [searchTerm]);
+  
+  const filteredDeposits = useMemo(() => {
+    let result = [...deposits];
+    if (recentDeposits === 'Last30Mins') {
+      const thirtyMinsAgo = new Date();
+      thirtyMinsAgo.setMinutes(thirtyMinsAgo.getMinutes() - 30);
+      result = result.filter(deposit => {
+        const depositDate = new Date(deposit.dateAndTime);
+        return depositDate > thirtyMinsAgo;
+      });
+    } else if (recentDeposits === 'Last60Mins') {
+      const sixtyMinsAgo = new Date();
+      sixtyMinsAgo.setMinutes(sixtyMinsAgo.getMinutes() - 60);
+      result = result.filter(deposit => {
+        const depositDate = new Date(deposit.dateAndTime);
+        return depositDate > sixtyMinsAgo;
+      });
+    }
+
+    if (toFilter !== 'All') {
+      result = result.filter(deposit => deposit.to.toString() === toFilter);
+    }
+    
+    if (debouncedSearchTerm.trim()) {
+      const term = debouncedSearchTerm.toLowerCase().trim();
+      result = result.filter(deposit => 
+        deposit.username.toLowerCase().includes(term) || 
+        deposit.referenceNo.toLowerCase().includes(term)
+      );
+    }
+    
+    return result;
+  }, [deposits, recentDeposits, toFilter, debouncedSearchTerm]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -84,7 +127,7 @@ const PendingDeposit: React.FC = () => {
             setSearchTerm={setSearchTerm}
           />
 
-          <DataGrid deposits={deposits} />
+          <DataGrid deposits={filteredDeposits} />
         </div>
       </div>
 

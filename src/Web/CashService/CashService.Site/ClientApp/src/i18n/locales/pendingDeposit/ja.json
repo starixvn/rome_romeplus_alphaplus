@@ -10,7 +10,9 @@
     "last7Days": "過去7日間",
     "to": "まで",
     "search": "検索",
-    "usernamePlaceholder": "ユーザー名/参照番号"
+    "usernamePlaceholder": "ユーザー名/参照番号",
+    "last30Mins": "過去30分間",
+    "last60Mins": "過去60分間"
   },
   
   "dataGrid": {

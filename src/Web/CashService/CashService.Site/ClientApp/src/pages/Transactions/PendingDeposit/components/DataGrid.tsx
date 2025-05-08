@@ -68,9 +68,7 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
                   <td className="py-1 px-2 border border-[#dee2e6] text-center">{deposit.to}</td>
                   <td className="py-1 px-2 border border-[#dee2e6] text-center">{deposit.referenceNo}</td>
                   <td className="py-1 px-2 border border-[#dee2e6] text-center">
-                    {typeof deposit.dateAndTime === 'string' 
-                      ? deposit.dateAndTime 
-                      : deposit.dateAndTime.toISOString().replace('T', '').replace(/\.\d+Z$/, '')}
+                    {deposit.dateAndTimeStr}
                   </td>
                   <td className="py-1 px-2 border border-[#dee2e6] text-center">
                     <button 

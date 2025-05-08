@@ -23,5 +23,7 @@ namespace AlphaPlus.CashService.API.Models.PendingCommons
         public string ReferenceNo { get; set; }
         
         public DateTime DateAndTime { get; set; }
+
+        public string DateAndTimeStr => DateAndTime.ToString("MM/dd/yyyy hh:mm:ss tt");
     }
 } 

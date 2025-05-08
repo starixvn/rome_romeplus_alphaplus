@@ -86,9 +86,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
               <div>
                 <div className="text-sm font-medium mb-1">Date and Time</div>
                 <div>
-                  {typeof deposit.dateAndTime === 'string' 
-                    ? deposit.dateAndTime 
-                    : deposit.dateAndTime.toLocaleString()}
+                  {deposit.dateAndTimeStr}
                 </div>
               </div>
             </div>

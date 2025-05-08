@@ -10,4 +10,5 @@ export interface DepositAccountInfo {
   to: number;
   referenceNo: string;
   dateAndTime: Date;
+  dateAndTimeStr: string;
 } 

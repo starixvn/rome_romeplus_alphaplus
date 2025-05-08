@@ -10,7 +10,9 @@
     "last7Days": "7 ngày qua",
     "to": "Đến",
     "search": "Tìm kiếm",
-    "usernamePlaceholder": "Tên người dùng/Số tham chiếu"
+    "usernamePlaceholder": "Tên người dùng/Số tham chiếu",
+    "last30Mins": "30 phút qua",
+    "last60Mins": "60 phút qua"
   },
   
   "dataGrid": {
