@@ -36,7 +36,8 @@ export default defineConfig({
         memberSites: 'src/pages/MemberSites/index.tsx',
         managePayments: 'src/pages/ManagePayments/index.tsx',
         pendingDeposit: 'src/pages/Transactions/PendingDeposit/index.tsx',
-        transactionsHistory: 'src/pages/Transactions/History/index.tsx'
+        transactionsHistory: 'src/pages/Transactions/History/index.tsx',
+        paymentProviderSettings: 'src/pages/PaymentProviderSettings/index.tsx'
       }
     }
   },
