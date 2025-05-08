@@ -42,6 +42,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
         [InlineData(0, 1, "test", false)] // Invalid CustId
         [InlineData(1, 0, "test", false)] // Invalid ProviderId
         [InlineData(0, 0, "test", false)] // Both invalid
+        [InlineData(-1, -1, "test", false)] // Negative values
         public void IsValid_WhenValidParameters_ShouldReturnTrue(
             int custId, 
             int providerId, 

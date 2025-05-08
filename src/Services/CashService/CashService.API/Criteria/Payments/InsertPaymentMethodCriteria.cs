@@ -13,9 +13,9 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
         [SpParam(SqlParamName = "PaymentMethodID")]
         public int Method { get; } = model.Method;
 
-        public string APIMethodKey { get; set; }
-        public string MerchantID { get; set; }
-        public string AppSecret { get; set; }
+        public string APIMethodKey { get; } = model.APIMethodKey;
+        public string MerchantID { get; } = model.MerchantID;
+        public string AppSecret { get; } = model.AppSecret;
 
         public int ErrCode { get; set; }
         public string ErrMsg { get; set; } = "";

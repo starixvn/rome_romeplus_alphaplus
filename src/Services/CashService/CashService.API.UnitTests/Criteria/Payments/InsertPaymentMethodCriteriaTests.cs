@@ -35,7 +35,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
         }
 
         [Fact]
-        public void Constructor_WhenNullStringsProvided_ShouldSetEmptyStrings()
+        public void Constructor_WhenEmptyStringsProvided_ShouldSetEmptyStrings()
         {
             // Arrange
             var model = new PaymentMethodModel
@@ -44,9 +44,9 @@ namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
                 ProviderId = 456,
                 TransactionType = 1,
                 Method = 2,
-                APIMethodKey = null,
-                MerchantID = null,
-                AppSecret = null
+                APIMethodKey = string.Empty,
+                MerchantID = string.Empty,
+                AppSecret = string.Empty
             };
 
             // Act

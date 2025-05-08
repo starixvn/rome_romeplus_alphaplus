@@ -19,7 +19,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
                 AccountNumber = "1234567890",
                 AccountNickname = "My Account",
                 TransactionTypeID = "1,2,3",
-                DepositMatchingMode = 1,
+                Agent_DepositMatchingMode = 1,
                 PromptPay = true,
                 Mobile = "0123456789"
             };
@@ -35,7 +35,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
             Assert.Equal(model.AccountNumber, criteria.AccountNumber);
             Assert.Equal(model.AccountNickname, criteria.AccountNickname);
             Assert.Equal(model.TransactionTypeID, criteria.TransactionTypeIDs);
-            Assert.Equal(model.DepositMatchingMode, criteria.DepositMatchingMode);
+            Assert.Equal(model.Agent_DepositMatchingMode, criteria.DepositMatchingMode);
             Assert.Equal(model.PromptPay, criteria.PromptPay);
             Assert.Equal(model.Mobile, criteria.Mobile);
         }

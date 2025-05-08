@@ -12,12 +12,12 @@ namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
             // Arrange
             var model = new BankAccountModel
             {
+                Id = 1,
                 CreatorId = 123,
-                BankId = 456,
                 Status = 1,
                 AccountNickname = "My Account",
-                TransactionTypeID = "1,2,3",
-                DepositMatchingMode = 1,
+                Agent_TransTypeList = "1,2,3",
+                Agent_DepositMatchingMode = 1,
                 PromptPay = true,
                 Mobile = "0123456789"
             };
@@ -27,11 +27,11 @@ namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
 
             // Assert
             Assert.Equal(model.CreatorId, criteria.Creator);
-            Assert.Equal(model.BankId, criteria.BankId);
+            Assert.Equal(model.Id, criteria.Id);
             Assert.Equal(model.Status, criteria.Status);
             Assert.Equal(model.AccountNickname, criteria.AccountNickname);
-            Assert.Equal(model.TransactionTypeID, criteria.TransactionTypeIDs);
-            Assert.Equal(model.DepositMatchingMode, criteria.DepositMatchingMode);
+            Assert.Equal(model.Agent_TransTypeList, criteria.TransactionTypeIDs);
+            Assert.Equal(model.Agent_DepositMatchingMode, criteria.DepositMatchingMode);
             Assert.Equal(model.PromptPay, criteria.PromptPay);
             Assert.Equal(model.Mobile, criteria.Mobile);
         }
@@ -54,7 +54,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
         [InlineData(1, 1, 1, "My Account", "1,2,3", 1, true)] // Valid case
         [InlineData(2, 2, 2, "Business Acc", "4,5,6", 2, true)] // Valid case with different values
         public void IsValid_WhenAllRequiredFieldsProvided_ShouldReturnTrue(
-            int bankId,
+            int id,
             int status,
             int creator,
             string accountNickname,
@@ -65,12 +65,12 @@ namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
             // Arrange
             var model = new BankAccountModel
             {
-                BankId = bankId,
+                Id = id,
                 Status = status,
                 CreatorId = creator,
                 AccountNickname = accountNickname,
-                TransactionTypeID = transactionTypes,
-                DepositMatchingMode = depositMatchingMode
+                Agent_TransTypeList = transactionTypes,
+                Agent_DepositMatchingMode = depositMatchingMode
             };
             var criteria = new UpdateBankAccountCriteria(model);
 
@@ -82,14 +82,14 @@ namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
         }
 
         [Theory]
-        [InlineData(0, 1, 1, "My Account", "1,2,3", 1, false)] // Invalid BankId
+        [InlineData(0, 1, 1, "My Account", "1,2,3", 1, false)] // Invalid Id
         [InlineData(1, 0, 1, "My Account", "1,2,3", 1, false)] // Invalid Status
         [InlineData(1, 1, 0, "My Account", "1,2,3", 1, false)] // Invalid Creator
         [InlineData(1, 1, 1, "", "1,2,3", 1, false)] // Empty AccountNickname
         [InlineData(1, 1, 1, "My Account", "", 1, false)] // Empty TransactionTypes
         [InlineData(1, 1, 1, "My Account", "1,2,3", 0, false)] // Invalid DepositMatchingMode
         public void IsValid_WhenRequiredFieldsMissing_ShouldReturnFalse(
-            int bankId,
+            int id,
             int status,
             int creator,
             string accountNickname,
@@ -100,12 +100,12 @@ namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
             // Arrange
             var model = new BankAccountModel
             {
-                BankId = bankId,
+                Id = id,
                 Status = status,
                 CreatorId = creator,
                 AccountNickname = accountNickname,
-                TransactionTypeID = transactionTypes,
-                DepositMatchingMode = depositMatchingMode
+                Agent_TransTypeList = transactionTypes,
+                Agent_DepositMatchingMode = depositMatchingMode
             };
             var criteria = new UpdateBankAccountCriteria(model);
 

@@ -5,8 +5,6 @@ using AlphaPlus.CashService.API.Models;
 using Fanex.Data.Repository;
 using CashService.API.DTOs.Payments;
 using System.Text.Json;
-using Fanex.Cryptography.Aes;
-using AlphaPlus.Shared;
 
 namespace AlphaPlus.CashService.API.Services;
 
@@ -33,14 +31,8 @@ public interface IPaymentsService
     Task<ResultModel> DeleteBankAccount(int accountId);
 }
 
-public class PaymentsService(
-    IDynamicRepository repository,
-    ICacheRefService cacheRefService,
-    IAesService encryption)
-    : IPaymentsService
+public class PaymentsService(IDynamicRepository repository, ICacheRefService cacheRefService) : IPaymentsService
 {
-    private readonly string _encryptSecretKey = AlphaPlusConstants.EncryptSecretKey;
-
     public async Task<IEnumerable<ProviderModel>> GetProviders(int custId)
     {
         var providers = await repository.FetchAsync<ProviderModel>(new GetProvidersCriteria(custId));
@@ -119,12 +111,7 @@ public class PaymentsService(
     
     public async Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod)
     {
-        var criteria = new InsertPaymentMethodCriteria(paymentMethod) {
-            APIMethodKey = encryption.Encrypt(paymentMethod.APIMethodKey, _encryptSecretKey),
-            MerchantID = encryption.Encrypt(paymentMethod.MerchantID, _encryptSecretKey),
-            AppSecret = encryption.Encrypt(paymentMethod.AppSecret, _encryptSecretKey)
-        };
-        
+        var criteria = new InsertPaymentMethodCriteria(paymentMethod);
         await repository.ExecuteAsync(criteria);
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
@@ -211,10 +198,6 @@ public class PaymentsService(
 
         foreach (var bank in accounts)
         {
-            bank.AccountHolderName = encryption.Decrypt(bank.AccountHolderName, _encryptSecretKey);
-            bank.AccountNumber = encryption.Decrypt(bank.AccountNumber, _encryptSecretKey);
-            bank.Mobile = encryption.Decrypt(bank.Mobile, _encryptSecretKey);
-
             if(bank.Bank_DepositMatchingMode != null)
             {
                 bank.BankDepositMatchingMode = Newtonsoft.Json.JsonConvert.DeserializeObject<DepositMatchingModeModel>(bank.Bank_DepositMatchingMode);
@@ -258,11 +241,7 @@ public class PaymentsService(
 
     public async Task<ResultModel> AddBankAccount(BankAccountModel bankAccount)
     {
-        var criteria = new AddBankAccountCriteria(bankAccount) {
-            AccountHolderName = encryption.Encrypt(bankAccount.AccountHolderName, _encryptSecretKey),
-            AccountNumber = encryption.Encrypt(bankAccount.AccountNumber, _encryptSecretKey),
-            Mobile = encryption.Encrypt(bankAccount.CountryCode + "-" + bankAccount.Mobile, _encryptSecretKey),
-        };
+        var criteria = new AddBankAccountCriteria(bankAccount);
         
         await repository.ExecuteAsync(criteria);
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
@@ -275,10 +254,7 @@ public class PaymentsService(
         foreach (var bank in accounts)
         {
             bank.BankName = cacheRefService.GetBankName(bank.Id, bank.BankName);
-            bank.AccountHolderName = encryption.Decrypt(bank.AccountHolderName, _encryptSecretKey);
-            bank.AccountNumber = encryption.Decrypt(bank.AccountNumber, _encryptSecretKey);
-            bank.Mobile = encryption.Decrypt(bank.Mobile, _encryptSecretKey);
-            
+
             if(bank.Bank_DepositMatchingMode != null)
             {
                 bank.BankDepositMatchingMode = Newtonsoft.Json.JsonConvert.DeserializeObject<DepositMatchingModeModel>(bank.Bank_DepositMatchingMode);
@@ -292,10 +268,7 @@ public class PaymentsService(
     public async Task<ResultModel> UpdateBankAccount(BankAccountModel bankAccount)
     {
         Console.WriteLine(JsonSerializer.Serialize(bankAccount));
-        var criteria = new UpdateBankAccountCriteria(bankAccount) {
-            Mobile = encryption.Encrypt(bankAccount.CountryCode + "-" + bankAccount.Mobile, _encryptSecretKey),
-        };
-
+        var criteria = new UpdateBankAccountCriteria(bankAccount);
         await repository.ExecuteAsync(criteria);
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
