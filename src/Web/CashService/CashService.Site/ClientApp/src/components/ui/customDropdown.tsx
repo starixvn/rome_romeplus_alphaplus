@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { IconArrowDown } from "../Icons";
 
-interface DropdownOption {
+export interface DropdownOption {
   value: string | number;
   label: string;
 }
@@ -10,12 +10,27 @@ interface CustomDropdownProps {
   options: DropdownOption[];
   placeholder?: string;
   onSelect: (option: DropdownOption) => void;
+  disable?: boolean;
+  initialValue?: string | number;
 }
 
-const CustomDropdown = ({ options, placeholder = "All", onSelect }: CustomDropdownProps) => {
+const CustomDropdown = ({ options, placeholder = "All", onSelect, disable = false, initialValue }: CustomDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState<DropdownOption | null>(null);
+  const [selected, setSelected] = useState<DropdownOption | null>(() => {
+    if (initialValue) {
+      const option = options.find(opt => opt.value === initialValue);
+      return option || null;
+    }
+    return null;
+  });
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (initialValue) {
+      const option = options.find(opt => opt.value === initialValue);
+      setSelected(option || null);
+    }
+  }, [initialValue, options]);
 
   const allOptions = [
     { value: "0", label: "All" },
@@ -23,13 +38,17 @@ const CustomDropdown = ({ options, placeholder = "All", onSelect }: CustomDropdo
   ];
 
   const handleToggle = () => {
-    setIsOpen(!isOpen);
+    if (!disable) {
+      setIsOpen(!isOpen);
+    }
   };
 
   const handleSelect = (option: DropdownOption) => {
-    setSelected(option);
-    setIsOpen(false);
-    if (onSelect) onSelect(option);
+    if (!disable) {
+      setSelected(option);
+      setIsOpen(false);
+      if (onSelect) onSelect(option);
+    }
   };
 
   useEffect(() => {
@@ -45,13 +64,13 @@ const CustomDropdown = ({ options, placeholder = "All", onSelect }: CustomDropdo
  
   return (
     <div className="relative z-20" ref={dropdownRef}>
-      <div className="flex items-center h-[35px] w-[100%] border-[1px] border-[#0000003D]  rounded-[4px] px-[12px] text-[12px] leading-[35px] cursor-pointer focus:outline-none focus:border-[#163f78] relative" onClick={handleToggle}>
+      <div className={`flex items-center h-[35px] w-[100%] border-[1px] rounded-[4px] px-[12px] text-[12px] leading-[35px] ${disable ? 'cursor-not-allowed border-[#0000003D] bg-[#f4f4f4]' : 'border-[#0000003D] bg-[#ffffff] cursor-pointer'} focus:outline-none focus:border-[#163f78] relative`} onClick={handleToggle}>
       <img src="../assets/bank/BAAC.png" className='w-[16px] h-[16px] mr-[8px] inline-block' />
         {selected ? selected.label : placeholder}
         <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[10px] "/>
       </div>
       {isOpen && (
-        <div className="absolute top-[36px] text-[12px] left-0 w-[100%] bg-[#fff] border-[1px] border-[#0000003D] rounded-[8px] overflow-y-hidden">
+        <div className="max-h-[200px] overflow-y-auto absolute top-[36px] text-[12px] left-0 w-[100%] bg-[#fff] border-[1px] border-[#0000003D] rounded-[8px]">
           {allOptions.map((option) => (
             <div
               key={option.value}

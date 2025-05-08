@@ -14,6 +14,7 @@ import {
 import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { IconCheck, IconError } from '../../components/Icons';
 import { baseAPI } from '../../services/baseAPI';
+import CustomDropdown, { DropdownOption } from '../../components/ui/customDropdown';
 
 interface UpdateBankAccountComponentProps {
   onClose: () => void;
@@ -210,6 +211,10 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
     setSelectedManualWithdrawal(!selectedManualWithdrawal);
   };
 
+  const handleBankChange = (option: DropdownOption) => {
+    setSelectedBank(option.value.toString());
+  };
+
   return (
     <div className="p-[12px]" tabIndex={-1}>
       <div className="modal-dialog">
@@ -274,17 +279,18 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
               <div className="mb-[8px]">
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('bank')}</label>
-                <select
-                  className="h-[35px] w-[470px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer disabled:bg-[#f4f4f4] disabled:cursor-not-allowed"
-                  value={selectedBank}
-                  disabled
-                >
-                  {banks.map((bank) => (
-                    <option key={bank.id} value={bank.id} selected={bank.id === parseInt(selectedBank)}>
-                      {bank.name}
-                    </option>
-                  ))}
-                </select>
+                 
+                <div className='w-[470px]'>
+                  <CustomDropdown
+                    options={banks.map(bank => ({
+                      value: bank.id,
+                      label: bank.name
+                    }))}
+                    onSelect={handleBankChange}
+                    disable={status === '0'}
+                    initialValue={parseInt(selectedBank)}
+                  />
+                </div>
               </div>
 
               {hasDepositTransactionType(selectedBank, banks) && (
@@ -373,7 +379,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                   <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('accountHolderName')}</label>
                   <input
                     type="text"
-                    className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer read-only:bg-[#f4f4f4] read-only:cursor-not-allowed"
+                    className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer read-only:bg-[#f4f4f4] read-only:cursor-not-allowed read-only:focus:border-[#0000003D]"
                     value={accountHolderName}
                     readOnly
                   />
@@ -384,7 +390,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('bankAccountNumber')}</label>
                 <input
                   type="text"
-                  className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer read-only:bg-[#f4f4f4] read-only:cursor-not-allowed"
+                  className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer read-only:bg-[#f4f4f4] read-only:cursor-not-allowed read-only:focus:border-[#0000003D]"
                   value={accountNumber}
                   readOnly
                 />

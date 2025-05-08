@@ -12,6 +12,7 @@ import {
 import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { IconCheck, IconError } from '../../components/Icons';
 import { baseAPI } from '../../services/baseAPI';
+import CustomDropdown, { DropdownOption } from '../../components/ui/customDropdown';
 
 interface AddBankAccountComponentProps {
   onClose: () => void;
@@ -201,8 +202,8 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
   };
 
   // Handler for bank selection changes
-  const handleBankChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newBankId = e.target.value;
+  const handleBankChange = (option: DropdownOption) => {
+    const newBankId = option.value.toString();
     setSelectedBank(newBankId);
     
     // Find and set the selected bank object
@@ -215,6 +216,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
     setSelectedManualWithdrawal(false);
   };
 
+ 
   return (
     <div className="p-[12px]" tabIndex={-1}>
       <div className="modal-dialog">
@@ -257,17 +259,17 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
               <div className="mt-[8px] text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] tracking-[0.2px]">{tManagePayments('accountInformation')}</div>
               <div>
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('bank')}<span className='text-[#E25757]'>*</span></label>
-                <select
-                  className={`h-[35px] w-[470px] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer ${fieldErrors.selectedBank ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
-                  value={selectedBank}
-                  onChange={handleBankChange}
-                >
-                  {banks.map((bank) => (
-                    <option key={bank.id} value={bank.id}>
-                      {bank.name}
-                    </option>
-                  ))}
-                </select>
+                <div className='w-[470px]'>
+                  <CustomDropdown
+                    options={banks.map(bank => ({
+                      value: bank.id,
+                      label: bank.name
+                    }))}
+                    onSelect={handleBankChange}
+                    disable={status === '0'}
+                  
+                  />
+                </div>
                 {fieldErrors.selectedBank && (
                   <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.selectedBank}</div>
                 )}
