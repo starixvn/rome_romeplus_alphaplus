@@ -1,6 +1,6 @@
 using AlphaPlus.CashService.API.Models.PendingCommons;
 using AlphaPlus.CashService.API.Services;
-using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.CashService.API.Endpoints;
 
@@ -10,18 +10,6 @@ public static class PendingDepositEndpoints
     {
         var group = app.MapGroup("/api/deposit")
             .WithTags("Pending Deposit");
-
-        group.MapGet("/member-deposit-login-names", async (IPendingDepositService service) =>
-        {
-            var members = await service.GetMemberDepositLoginNames();
-            return Results.Ok(members);
-        })
-        .WithName("GetMemberDepositLoginNames")
-        .WithOpenApi(operation => new(operation)
-        {
-            Summary = "Get member deposit login names",
-            Description = "Returns a list of all available member login names for manual deposit"
-        });
 
         group.MapGet("/member-bank-accounts", async (IPendingDepositService service) =>
         {
@@ -35,25 +23,40 @@ public static class PendingDepositEndpoints
             Description = "Returns a list of bank accounts for members"
         });
 
-        group.MapPost("/add-deposit-account-info", async (HttpRequest request, IPendingDepositService service) =>
+        group.MapGet("/accumulate-credit/{id}", async (int id, IPendingDepositService service) =>
         {
-            using var reader = new StreamReader(request.Body);
-            var body = await reader.ReadToEndAsync();
-            var accountInfo = JsonConvert.DeserializeObject<PendingInfoDetail>(body);
-
-            if (accountInfo == null)
-            {
-                return Results.BadRequest("Invalid account information data");
-            }
-
-            var result = await service.InsertDepositAccountInfo(accountInfo);
-            return Results.Ok(result);
+            var accumulateCredit = await service.GetAccumulateCreditAsync(id);
+            return Results.Ok(accumulateCredit);
         })
-        .WithName("InsertDepositAccountInfo")
+        .WithName("GetAccumulateCreditAsync")
         .WithOpenApi(operation => new(operation)
         {
-            Summary = "Insert deposit account information",
-            Description = "Adds new account information for a manual deposit"
+            Summary = "Get accumulate credit deposit information",
+            Description = "Returns total Cash member return Credit of Agent"
+        });
+
+        group.MapGet("/member-setting-deposit/{id}", async (int id, IPendingDepositService service) =>
+        {
+            var memberSettingDeposit = await service.GetMemberSettingDepositAsync(id);
+            return Results.Ok(memberSettingDeposit);
+        })
+        .WithName("GetMemberSettingDepositAsync")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Get member setting deposit information",
+            Description = "Returns range value the member can deposit (MinAmt - MaxAmt)"
+        });
+
+        group.MapPost("/create-manual-deposit", async ([FromBody] CreateManualDeposit param, IPendingDepositService service) =>
+        {
+            var (result, id, message) = await service.CreateManualDepositAsync(param);
+            return result.Code != 0 ? Results.NotFound() : Results.Ok(new { result, id, message });
+        })
+        .WithName("CreateManualDepositAsync")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Create manual deposit",
+            Description = "Adding manual deposit transaction on Agency site"
         });
     }
 }

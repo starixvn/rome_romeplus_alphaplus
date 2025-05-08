@@ -8,9 +8,6 @@ namespace AlphaPlus.CashService.API.Services;
 public interface IPendingDepositService
 {
     Task<IEnumerable<BankAccountInfo>> GetMemberBankAccountInfo();
-    Task<IEnumerable<MemberLoginNameInfo>> GetMemberDepositLoginNames();
-    Task<ResultModel> InsertDepositAccountInfo(PendingInfoDetail depositInfoDetail);
-
     Task<decimal> GetAccumulateCreditAsync(int id);
     Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int id);
     Task<(ResultModel, int, string)> CreateManualDepositAsync(CreateManualDeposit param);
@@ -24,17 +21,6 @@ public class PendingDepositService(IDynamicRepository repository) : IPendingDepo
         //return await repository.FetchAsync<BankAccountInfo>(new GetMemberBankAccountCriteria());
     }
 
-    public async Task<IEnumerable<MemberLoginNameInfo>> GetMemberDepositLoginNames()
-    {
-        return GetDummyMemberLoginInfo();
-        //return await repository.FetchAsync<MemberLoginNameInfo>(new GetMemberLoginNameCriteria());
-    }
-
-    public async Task<ResultModel> InsertDepositAccountInfo(PendingInfoDetail depositInfoDetail)
-    {
-        return new ResultModel(0, "Success");
-    }
-    
     private static IEnumerable<BankAccountInfo> GetDummyBankAccountInfo()
     {
         return new List<BankAccountInfo>
@@ -84,18 +70,6 @@ public class PendingDepositService(IDynamicRepository repository) : IPendingDepo
         };
     }
     
-    private static IEnumerable<MemberLoginNameInfo> GetDummyMemberLoginInfo()
-    {
-        return new List<MemberLoginNameInfo>
-        {
-            new() { MemberLoginName = "johndoe123", From = 0, To = 1000 },
-            new() { MemberLoginName = "janesmith456", From = 0, To = 1000 },
-            new() { MemberLoginName = "bjohnson789", From = 0, To = 1000 },
-            new() { MemberLoginName = "asmith123", From = 0, To = 100 },
-            new() { MemberLoginName = "rbrown456", From = 0, To = 1001 }
-        };
-    }
-
     public async Task<decimal> GetAccumulateCreditAsync(int id)
     {
         var criteria = new GetAccumulateCreditCriteria
