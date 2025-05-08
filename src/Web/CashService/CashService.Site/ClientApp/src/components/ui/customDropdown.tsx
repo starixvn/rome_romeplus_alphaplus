@@ -8,14 +8,13 @@ export interface DropdownOption {
 
 export interface CustomDropdownProps {
   options: DropdownOption[];
-  placeholder?: string;
   onSelect: (option: DropdownOption) => void;
   disable?: boolean;
   initialValue?: string | number;
   showOptionAll?: boolean;
 }
 
-const CustomDropdown = ({ options, placeholder = "All", onSelect, disable = false, initialValue }: CustomDropdownProps) => {
+const CustomDropdown = ({ options, onSelect, disable = false, initialValue }: CustomDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<DropdownOption | null>(() => {
     if (initialValue) {
@@ -32,10 +31,6 @@ const CustomDropdown = ({ options, placeholder = "All", onSelect, disable = fals
       setSelected(option || null);
     }
   }, [initialValue, options]);
-
-  const allOptions = [
-    ...options
-  ];
 
   const handleToggle = () => {
     if (!disable) {
@@ -68,14 +63,13 @@ const CustomDropdown = ({ options, placeholder = "All", onSelect, disable = fals
 
 
       <img src="../assets/bank/BAAC.png" className='w-[16px] h-[16px] mr-[8px] inline-block' />
-        {selected ? selected.label : placeholder}
+        {selected ? selected.label : options[0]?.label || ""}
         <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[10px] "/>
-
 
       </div>
       {isOpen && (
         <div className="max-h-[200px] overflow-y-auto absolute top-[36px] text-[12px] left-0 w-[100%] bg-[#fff] border-[1px] border-[#0000003D] rounded-[8px]">
-          {allOptions.map((option) => (
+          {options.map((option) => (
             <div
               key={option.value}
               onClick={() => handleSelect(option)}
