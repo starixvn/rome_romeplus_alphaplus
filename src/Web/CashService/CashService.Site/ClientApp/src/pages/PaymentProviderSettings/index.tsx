@@ -11,7 +11,6 @@ import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { formatNumber, formatInputValue } from '../../utils/numberFormatting';
 import { IconBack, IconCheck, IconError, IconInfo } from '../../components/Icons';
-import '../styles/global.scss';
 import '../styles/common.css';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 // Extend Window interface to include providerName
