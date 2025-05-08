@@ -1,5 +1,4 @@
 using AlphaPlus.CashService.API.Services;
-using Fanex.Cryptography.Aes;
 using Fanex.Data.Repository;
 using Fanex.Data.SqlServer;
 using Fanex.RemotingRef;
@@ -14,8 +13,6 @@ public static class DependencyInjectionExtensions
             .AddSingleton<IDynamicRepository, DynamicRepository>();
 
         services.AddRemotingRef(configuration);
-
-        services.AddSingleton<IAesService, AesService>();
 
         services.AddScoped<IBaseService, BaseService>();
         services.AddScoped<IPaymentsService, PaymentsService>();
