@@ -1,4 +1,5 @@
 import React from 'react';
+import { IconCheck, IconError } from '../Icons';
 
 export type ResultType = 'error' | 'success';
 
@@ -10,32 +11,21 @@ interface ResultMessageProps {
 
 const getResultStyles = (type: ResultType) => {
   const styles = {
-    error: 'bg-red-50 border-red-100 text-red-500 dark:bg-red-900/10 dark:border-red-800/20 dark:text-red-400',
-    success: 'bg-emerald-50 border-emerald-100 text-emerald-600 dark:bg-emerald-900/10 dark:border-emerald-800/20 dark:text-emerald-400'
+    error: ' bg-[#FFF2F2] border-[#FE0000] ',
+    success: 'bg-[#E2FFF2] border-[#5CB774] '
   };
   return styles[type];
 };
 
-const getResultTitle = (type: ResultType) => {
-  const titles = {
-    error: 'Error!',
-    success: 'Success!'
-  };
-  return titles[type];
-};
 
 const getResultIcon = (type: ResultType) => {
   if (type === 'error') {
     return (
-      <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-      </svg>
+      <IconError className="w-[20px] h-[20px] fill-[#D42020] absolute top-[8px] left-[10px]" />
     );
   }
   return (
-    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-    </svg>
+      <IconCheck className="w-[20px] h-[20px] fill-[#5CB774] absolute top-[8px] left-[10px]" />
   );
 };
 
@@ -45,13 +35,9 @@ export const ResultMessage: React.FC<ResultMessageProps> = ({
   className = ''
 }) => {
   return (
-    <div 
-      className={`${getResultStyles(type)} px-4 py-3 rounded border ${className}`}
-      role="alert"
-    >
-      <div className="flex items-center">
-        {getResultIcon(type)}
-        <span className="font-semibold mr-2">{getResultTitle(type)}</span>
+    <div className={`${className} fixed top-0 left-0 w-full h-full inline-flex justify-center items-center pointer-events-none`} role="alert">
+      <div className={`${getResultStyles(type)} font-bold text-[12px] text-[#333] border-[1px] rounded-[10px] pl-[36px] pr-[12px] py-[8px] left-[50%] transform-[translateX(-50%)] block capitalize absolute top-0 opacity-0 animate-[var(--animate-fade-in-scale)] `}>
+        {getResultIcon(type)}         
         {message}
       </div>
     </div>

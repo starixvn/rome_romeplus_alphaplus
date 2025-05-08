@@ -128,7 +128,6 @@ const MemberSiteManagement: React.FC = () => {
             <ResultMessage
               type={result.type}
               message={result.text}
-              className="mb-6"
             />
           )}
 

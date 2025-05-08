@@ -8,4 +8,24 @@ html, body{
 }
 :root {
   --primary-color: #163f78;
+  --animate-fade-in-scale: fade-in-scale 3s ease-out;
+}
+
+@keyframes fade-in-scale {
+  0% {
+    opacity: 0;
+    top: 0;
+  }
+  20% {
+    opacity: 1;
+    top: 40px;
+  }
+  80% {
+    opacity: 1;
+    top: 40px;
+  }
+  100% {
+    opacity: 0;
+    top: 0;
+  }
 }
