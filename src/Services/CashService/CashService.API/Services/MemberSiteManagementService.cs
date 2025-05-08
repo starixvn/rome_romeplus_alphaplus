@@ -1,14 +1,13 @@
 using AlphaPlus.CashService.API.Criteria.MemberSite;
 using AlphaPlus.CashService.API.Criteria.Payments;
 using AlphaPlus.CashService.API.Models;
-using Fanex.Cryptography.Aes;
 using Fanex.Data.Repository;
 using AlphaPlus.Shared;
 
 namespace AlphaPlus.CashService.API.Services;
 public interface IMemberSiteManagementService
 {
-    Task<MemberSiteManagementModel> GetAsync(int custId);
+    Task<MemberSiteManagementModel> GetAsync(int custId, string siteName);
 
     Task<ResultModel> UpdateAsync(MemberSiteManagementModel model);
 }
@@ -16,20 +15,17 @@ public interface IMemberSiteManagementService
 public class MemberSiteManagementService(
     IConfiguration configuration,
     ILogger<MemberSiteManagementService> logger,
-    IDynamicRepository repository,
-    IAesService encryption
+    IDynamicRepository repository
     )
     : IMemberSiteManagementService
 {
     private readonly IConfiguration _configuration = configuration;
     private readonly ILogger<MemberSiteManagementService> _logger = logger;
     private readonly string _encryptSecretKey = configuration.GetValue<string>("EncryptSecretKey") ?? AlphaPlusConstants.EncryptSecretKey;
-    public async Task<MemberSiteManagementModel> GetAsync(int custId)
+    public async Task<MemberSiteManagementModel> GetAsync(int custId, string siteName)
     {
-        var (domains, settings) =
-            await repository.FetchMultipleAsync<DomainModel, CashServiceManagementDto>(
-                new GetMemberSiteInfoCriteria(custId));
-        var countryCodes = await repository.FetchAsync<string>(new GetCountryCodesCriteria(custId));
+        var (domains, settings) = await repository.FetchMultipleAsync<DomainModel, CashServiceManagementDto>(new GetMemberSiteInfoCriteria(custId));
+        var countryCodes = await repository.FetchAsync<string>(new GetCountryCodesCriteria(siteName));
         var settingInfo = settings.FirstOrDefault() ?? new CashServiceManagementDto();
 
         var trasnformModel = new MemberSiteManagementModel
@@ -37,14 +33,11 @@ public class MemberSiteManagementService(
             Domains = domains.ToList(),
             GeneralSettings = BuildGeneralSettings(settingInfo),
             Announcement = settingInfo.Announcement,
-            Mobile = encryption.Decrypt(settingInfo.Mobile, _encryptSecretKey),
-            LineId = encryption.Decrypt(settingInfo.LineId, _encryptSecretKey),
+            Mobile = settingInfo.Mobile,
+            LineId = settingInfo.LineId,
             CountryCodes = countryCodes
         };
-        Console.WriteLine("Mobile before: " + settingInfo.Mobile);
-        Console.WriteLine("LineId before: " + settingInfo.LineId);
-        Console.WriteLine("Mobile after: " + trasnformModel.Mobile);
-        Console.WriteLine("LineId after: " + trasnformModel.LineId);
+
         return trasnformModel;
     }
 
@@ -88,8 +81,8 @@ public class MemberSiteManagementService(
         var command = new UpdateMemberSiteInfoCommand
         {
             CustId = model.CustId,
-            Mobile = encryption.Encrypt(model.Mobile, _encryptSecretKey),
-            LineId = encryption.Encrypt(model.LineId, _encryptSecretKey),
+            Mobile = model.Mobile,
+            LineId = model.LineId,
             Announcement = model.Announcement,
             SettingInfo = ConvertToSettingInfo(model.GeneralSettings)
         };

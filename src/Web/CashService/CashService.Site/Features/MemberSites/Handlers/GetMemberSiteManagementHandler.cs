@@ -31,7 +31,7 @@ public class GetMemberSiteManagementHandler
             var baseUrl = _configuration["CashServiceAPIUrl"];
             var response = await _httpClient.GetFromJsonAsync<MemberSiteManagementModel>(
                 //$"{baseUrl}/api/member-site-info?custId={request.CustId}",
-                $"{baseUrl}/member-site-info?custId={1176086}",
+                $"{baseUrl}/member-site-info?custId={1176086}&siteName={request.SiteName}",
                 cancellationToken);
 
             return response ?? new MemberSiteManagementModel();

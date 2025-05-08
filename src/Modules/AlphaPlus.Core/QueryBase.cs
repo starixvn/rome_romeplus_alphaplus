@@ -54,6 +54,8 @@ namespace AlphaPlus.Core
         public string IP => userSession.UserLoginIp;
 
         public int ServerId => userSession.ServerId;
+        
+        public string SiteName => userSession.SiteName;
 
         public virtual bool IsValid() => ViewerId > 0;
     }

@@ -77,6 +77,8 @@ class MemberSitesService {
       mobile: '',
       lineId: '',
       announcement: '',
+      mobileCode: '',
+      mobilePhone: '',
     };
     return defualtMemberSiteData;
   }

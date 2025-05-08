@@ -30,7 +30,7 @@ describe('MessageForm', () => {
   };
 
   it('renders all form fields with correct labels and placeholders', () => {
-    render(<MessageForm {...defaultProps} />);
+    render(<MessageForm {...defaultProps} loading={false} />);
     
     // Check all form fields are present
     expect(screen.getByLabelText('Mobile')).toBeInTheDocument();
@@ -44,7 +44,7 @@ describe('MessageForm', () => {
 
   it('handles mobile number input changes correctly', () => {
     const onMessageChange = vi.fn();
-    render(<MessageForm {...defaultProps} onMessageChange={onMessageChange} />);
+    render(<MessageForm {...defaultProps} onMessageChange={onMessageChange} loading={false} />);
     
     const mobileInput = screen.getByLabelText('Mobile');
     fireEvent.change(mobileInput, { target: { value: '123456789' } });
@@ -54,7 +54,7 @@ describe('MessageForm', () => {
 
   it('handles LINE ID input changes correctly', () => {
     const onMessageChange = vi.fn();
-    render(<MessageForm {...defaultProps} onMessageChange={onMessageChange} />);
+    render(<MessageForm {...defaultProps} onMessageChange={onMessageChange} loading={false} />);
     
     const lineIdInput = screen.getByLabelText('Line ID');
     fireEvent.change(lineIdInput, { target: { value: 'testlineid' } });
@@ -64,7 +64,7 @@ describe('MessageForm', () => {
 
   it('handles announcement text changes correctly', () => {
     const onMessageChange = vi.fn();
-    render(<MessageForm {...defaultProps} onMessageChange={onMessageChange} />);
+    render(<MessageForm {...defaultProps} onMessageChange={onMessageChange} loading={false} />);
     
     const announcementInput = screen.getByLabelText('Announcement');
     fireEvent.change(announcementInput, { target: { value: 'Test announcement' } });
@@ -73,7 +73,7 @@ describe('MessageForm', () => {
   });
 
   it('maintains correct values when props are updated', () => {
-    const { rerender } = render(<MessageForm {...defaultProps} />);
+    const { rerender } = render(<MessageForm {...defaultProps} loading={false} />);
     
     // Initial render with empty values
     expect(screen.getByLabelText('Mobile')).toHaveValue('');
@@ -91,7 +91,7 @@ describe('MessageForm', () => {
       mobilePhone: '123456789'
     };
     
-    rerender(<MessageForm {...updatedProps} />);
+    rerender(<MessageForm {...updatedProps} loading={false} />);
     
     // Verify values are updated
     expect(screen.getByLabelText('Mobile')).toHaveValue('123456789');
@@ -101,7 +101,7 @@ describe('MessageForm', () => {
 
   it('handles multiple field updates correctly', () => {
     const onMessageChange = vi.fn();
-    render(<MessageForm {...defaultProps} onMessageChange={onMessageChange} />);
+    render(<MessageForm {...defaultProps} onMessageChange={onMessageChange} loading={false} />);
     
     // Update all fields
     fireEvent.change(screen.getByLabelText('Mobile'), { target: { value: '123456789' } });

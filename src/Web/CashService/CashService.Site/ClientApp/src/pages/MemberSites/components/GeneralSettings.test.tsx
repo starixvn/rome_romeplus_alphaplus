@@ -49,7 +49,7 @@ describe('GeneralSettings', () => {
   const mockOnSettingsChange = vi.fn();
 
   it('renders all settings with correct content', () => {
-    render(<GeneralSettings settings={mockSettings} onSettingsChange={mockOnSettingsChange} />);
+    render(<GeneralSettings settings={mockSettings} onSettingsChange={mockOnSettingsChange} loading={false} />);
 
     // Check if all settings are rendered with their titles and descriptions
     mockSettings.forEach((setting) => {
@@ -59,7 +59,7 @@ describe('GeneralSettings', () => {
   });
 
   it('groups settings by category correctly', () => {
-    render(<GeneralSettings settings={mockSettings} onSettingsChange={mockOnSettingsChange} />);
+    render(<GeneralSettings settings={mockSettings} onSettingsChange={mockOnSettingsChange} loading={false} />);
 
     // Get all setting buttons
     const settingButtons = screen.getAllByRole('button');
@@ -73,7 +73,7 @@ describe('GeneralSettings', () => {
   });
 
   it('calls onSettingsChange with correct parameters when toggling settings', () => {
-    render(<GeneralSettings settings={mockSettings} onSettingsChange={mockOnSettingsChange} />);
+    render(<GeneralSettings settings={mockSettings} onSettingsChange={mockOnSettingsChange} loading={false} />);
 
     // Test toggling each setting
     mockSettings.forEach((setting) => {
@@ -84,7 +84,7 @@ describe('GeneralSettings', () => {
   });
 
   it('handles empty settings array', () => {
-    render(<GeneralSettings settings={[]} onSettingsChange={mockOnSettingsChange} />);
+    render(<GeneralSettings settings={[]} onSettingsChange={mockOnSettingsChange} loading={false} />);
 
     // Verify no settings are rendered
     mockSettings.forEach((setting) => {
@@ -95,7 +95,7 @@ describe('GeneralSettings', () => {
 
   it('maintains correct state for each setting', () => {
     const { rerender } = render(
-      <GeneralSettings settings={mockSettings} onSettingsChange={mockOnSettingsChange} />
+      <GeneralSettings settings={mockSettings} onSettingsChange={mockOnSettingsChange} loading={false} />
     );
 
     // Verify initial states
@@ -114,7 +114,7 @@ describe('GeneralSettings', () => {
     }));
 
     rerender(
-      <GeneralSettings settings={updatedSettings} onSettingsChange={mockOnSettingsChange} />
+      <GeneralSettings settings={updatedSettings} onSettingsChange={mockOnSettingsChange} loading={false} />
     );
 
     // Verify updated states

@@ -36,7 +36,7 @@ describe('RegistrationLinks', () => {
   const mockOnRequestNewLink = vi.fn();
 
   it('renders all domains with correct data', () => {
-    render(<RegistrationLinks domains={mockDomains} />);
+    render(<RegistrationLinks domains={mockDomains} loading={false} />);
     
     mockDomains.forEach(domain => {
       expect(screen.getByText(domain.name)).toBeInTheDocument();
@@ -46,25 +46,25 @@ describe('RegistrationLinks', () => {
 
   it('shows request new link button only when all domains are blocked', () => {
     // Test with mixed status domains
-    const { rerender } = render(<RegistrationLinks domains={mockDomains} onRequestNewLink={mockOnRequestNewLink} />);
+    const { rerender } = render(<RegistrationLinks domains={mockDomains} onRequestNewLink={mockOnRequestNewLink} loading={false} />);
     expect(screen.queryByText('Request New Link')).not.toBeInTheDocument();
 
     // Test with all blocked domains
     const allBlockedDomains = mockDomains.map(d => ({ ...d, status: 'blocked' as const }));
-    rerender(<RegistrationLinks domains={allBlockedDomains} onRequestNewLink={mockOnRequestNewLink} />);
+    rerender(<RegistrationLinks domains={allBlockedDomains} onRequestNewLink={mockOnRequestNewLink} loading={false} />);
     expect(screen.getByText('Request New Link')).toBeInTheDocument();
   });
 
   it('calls onRequestNewLink when request button is clicked', () => {
     const allBlockedDomains = mockDomains.map(d => ({ ...d, status: 'blocked' as const }));
-    render(<RegistrationLinks domains={allBlockedDomains} onRequestNewLink={mockOnRequestNewLink} />);
+    render(<RegistrationLinks domains={allBlockedDomains} onRequestNewLink={mockOnRequestNewLink} loading={false} />);
     
     fireEvent.click(screen.getByText('Request New Link'));
     expect(mockOnRequestNewLink).toHaveBeenCalled();
   });
 
   it('handles empty domains array correctly', () => {
-    render(<RegistrationLinks domains={[]} />);
+    render(<RegistrationLinks domains={[]} loading={false} />);
     expect(screen.getByText('No registration links available')).toBeInTheDocument();
   });
 
