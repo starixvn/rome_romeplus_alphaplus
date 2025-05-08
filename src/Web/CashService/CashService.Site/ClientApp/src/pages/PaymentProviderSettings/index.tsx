@@ -11,7 +11,8 @@ import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { formatNumber, formatInputValue } from '../../utils/numberFormatting';
 import { IconBack, IconCheck, IconError, IconInfo } from '../../components/Icons';
-import '../styles/common.css';
+import './common.css';
+import '../../styles/global.scss';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 // Extend Window interface to include providerName
 declare global {
@@ -225,13 +226,13 @@ function PaymentProviderSettings() {
           </div>
           <div className="flex gap-[24px]">
             <div>      
-            <p className="mb-[8px]">
+            <p className="block text-[12px] font-semibold text-[#333333] my-[8px]">
               {tManagePayments('setUpPaymentMethodsForMembers')}
             </p>
             <button className="w-[183px] h-[30px] rounded-[5px] text-[#ffffff] px-[16px] py-[4px] text-[12px] font-bold bg-[var(--primary-color)] hover:bg-[#375A8A] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]" onClick={handleAddPaymentMethod}>+{tManagePayments('addPaymentMethod')}</button>
             </div>
             <div className="d-flex align-items-center">
-              <label className="flex mb-[8px]" htmlFor='enableToggle'>
+              <label className="flex text-[12px] font-semibold text-[#333333] my-[8px]" htmlFor='enableToggle'>
                 {tGlobal('enable')}/{tGlobal('disable')}
                 <Tippy
                   content={

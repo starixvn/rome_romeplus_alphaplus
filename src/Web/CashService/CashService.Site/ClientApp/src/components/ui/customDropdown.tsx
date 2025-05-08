@@ -15,7 +15,7 @@ export interface CustomDropdownProps {
   showOptionAll?: boolean;
 }
 
-const CustomDropdown = ({ options, placeholder = "All", onSelect, disable = false, initialValue, showOptionAll = true }: CustomDropdownProps) => {
+const CustomDropdown = ({ options, placeholder = "All", onSelect, disable = false, initialValue }: CustomDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<DropdownOption | null>(() => {
     if (initialValue) {
@@ -33,10 +33,9 @@ const CustomDropdown = ({ options, placeholder = "All", onSelect, disable = fals
     }
   }, [initialValue, options]);
 
-  const allOptions = showOptionAll ? [
-    { value: "0", label: "All" },
+  const allOptions = [
     ...options
-  ] : options;
+  ];
 
   const handleToggle = () => {
     if (!disable) {

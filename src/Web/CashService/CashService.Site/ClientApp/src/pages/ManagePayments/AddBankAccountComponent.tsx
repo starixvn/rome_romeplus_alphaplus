@@ -267,7 +267,6 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     }))}
                     onSelect={handleBankChange}
                     disable={status === '0'}
-                    showOptionAll={false}
                   />
                 </div>
                 {fieldErrors.selectedBank && (
