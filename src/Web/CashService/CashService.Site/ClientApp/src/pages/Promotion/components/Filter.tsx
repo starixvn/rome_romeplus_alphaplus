@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+//import { useTranslation } from 'react-i18next';
 
 interface FilterProps {
     onFilterChange: (type: string, status: string) => void;
 }
 
 const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
-    const { t } = useTranslation('promotion');
+    //const { t } = useTranslation('promotion');
     const [selectedType, setSelectedType] = useState('All');
     const [selectedStatus, setSelectedStatus] = useState('All');
-    const [searchTerm, setSearchTerm] = useState('');
+    //const [searchTerm, setSearchTerm] = useState('');
 
     const promotionTypes = ['All', 'Welcome Bonus', 'Reload Bonus', 'Cashback', 'Tournament'];
     const statusOptions = ['All', 'Active', 'Scheduled', 'Expired'];
