@@ -14,23 +14,18 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    ui: true,
-    setupFiles: './src/test/setup.ts',
+    ui: false,
+    setupFiles: './setuptest.ts',
     coverage: {
-      reporter: ['text', 'json', 'html'],
+      provider: 'v8',
+      reporter: ['text', 'json'],
       exclude: [
-        '**/node_modules/**',
-        'src/test/setup.ts',
-        'dist/**',
-        '.vite/**',
-        '**/*.config.{js,ts}',
-        "**/*.d.{js,ts}",
-        "**/*.eslintrc.{js,ts}",
-        '**/i18n/**',
-        '**/config/**',
-        '.eslintrc.cjs',
+        '**/*.test.{ts,tsx}',
         'src/services/interfaces/**',
       ],
+      include: [
+        'src/**/*.{ts,tsx}'    // Only include TypeScript and TSX files in src
+      ]
     },
   },
 
