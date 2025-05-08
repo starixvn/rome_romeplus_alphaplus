@@ -357,7 +357,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                         <>                       
                           <label className='flex items-center cursor-pointer capitalize mr-[8px]' htmlFor="manualMatching1" onClick={() => setAgent_DepositMatchingMode(1)}>
                             <input className='w-[20px] h-[20px] m-[10px] cursor-pointer accent-[var(--primary-color)]' id="manualMatching1" type="radio" name="depositMatchingMode" value={agent_DepositMatchingMode} checked={agent_DepositMatchingMode == 1} />
-                            <span className='text-[12px] leading-[14px] text-[#333333]'>{tManagePayments('manualMatching')}</span>
+                            <span className='text-[12px] leading-[14px] text-[#333333]'>{tManagePayments('decimal')}</span>
                           </label> 
                         </>
                       )}
@@ -365,7 +365,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                         <>                        
                           <label className='flex items-center cursor-pointer capitalize' htmlFor="manualMatching2" onClick={() => setAgent_DepositMatchingMode(2)}>
                             <input className='w-[20px] h-[20px] m-[10px] cursor-pointer accent-[var(--primary-color)]' id="manualMatching2" type="radio" name="depositMatchingMode" value={agent_DepositMatchingMode} checked={agent_DepositMatchingMode == 2} />
-                            <span className='text-[12px] leading-[14px] text-[#333333]'>{tManagePayments('autoMatching')}</span>
+                            <span className='text-[12px] leading-[14px] text-[#333333]'>{tManagePayments('bankMatching')}</span>
                           </label>
                         </>
                       )}

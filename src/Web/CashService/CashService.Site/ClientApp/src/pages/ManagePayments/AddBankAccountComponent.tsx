@@ -333,13 +333,13 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                       {selectedBankObj.depositMatchingMode.mappingTypes.includes(1) && (   
                         <label className='flex items-center cursor-pointer capitalize' htmlFor="manualMatching1" onClick={() => setDepositMatchingMode('1')}>
                           <input className='w-[20px] h-[20px] m-[10px] cursor-pointer' id="manualMatching1" type="radio" name="depositMatchingMode" value={depositMatchingMode} checked={depositMatchingMode === '1'} />
-                          <span className='text-[12px] leading-[14px]'>{tManagePayments('manualMatching')}</span>
+                          <span className='text-[12px] leading-[14px]'>{tManagePayments('decimal')}</span>
                         </label>
                       )}
                       {selectedBankObj.depositMatchingMode.mappingTypes.includes(2) && (                        
                         <label className='flex items-center cursor-pointer capitalize' htmlFor="manualMatching2" onClick={() => setDepositMatchingMode('2')}>
                           <input className='w-[20px] h-[20px] m-[10px] cursor-pointer' id="manualMatching2" type="radio" name="depositMatchingMode" value={depositMatchingMode} checked={depositMatchingMode === '2'} />
-                          <span className='text-[12px] leading-[14px]'>{tManagePayments('autoMatching')}</span>
+                          <span className='text-[12px] leading-[14px]'>{tManagePayments('bankMatching')}</span>
                         </label>
                       )}
                     </div>
