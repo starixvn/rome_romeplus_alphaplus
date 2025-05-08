@@ -136,6 +136,5 @@
   "apiKey": "API Key",
   "merchantID": "Merchant ID",
   "createdBy": "Created by",
-  "lastUpdated": "Last updated"
-  
+  "pleaseSelectDepositType": "Please select deposit type"
 } 
