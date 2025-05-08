@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { paymentProviderService } from '../../services/paymentsAPI';
-import { IconCheck, IconClose, IconError } from '../../components/Icons';
+import { IconClose, } from '../../components/Icons';
+import { ResultMessage } from '../../components/ResultMessage';
 
 
 interface SetDailyLimitPopupModalProps {
@@ -42,7 +43,7 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
         onSave(dailyLimit);
         setTimeout(() => {
           onClose();
-        },1113000);
+        },3000);
       } else {
         setError(response.message);
       }
@@ -78,8 +79,8 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
                 min="0"
                 required
               />
-              {error && <div className="mt-[16px] font-bold text-[12px] text-[#333] bg-[#FFF2F2] border-[1px] border-[#FE0000] rounded-[10px] pl-[36px] pr-[12px] py-[8px] relative block capitalize"><IconError className='w-[20px] h-[20px] fill-[#fe0000] absolute top-[8px] left-[10px]' />{error}</div>}
-              {successMessage && <div className="mt-[16px] font-bold text-[12px] text-[#333] bg-[#E2FFF2] border-[1px] border-[#5cb774] rounded-[10px] pl-[36px] pr-[12px] py-[8px] relative block capitalize"><IconCheck className='w-[20px] h-[20px] fill-[#5CB774] absolute top-[8px] left-[10px]' />{successMessage}</div>}
+              { error && <ResultMessage type="error" message={error} />}
+              { successMessage && <ResultMessage type="success" message={successMessage} />}
             </div>
           </div>
           <div className="flex justify-center">
