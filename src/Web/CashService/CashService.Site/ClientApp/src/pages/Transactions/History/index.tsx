@@ -5,9 +5,9 @@ import HistoryTab from './components/HistoryTab';
 import './HistoryStyle.css';
 
 const History: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'deposit' | 'withdrawal'>('deposit');
+  const [activeTab, setActiveTab] = useState<number>(1);
 
-  const handleTabChange = (tab: 'deposit' | 'withdrawal') => {
+  const handleTabChange = (tab: number) => {
     setActiveTab(tab);
   };
 
@@ -16,7 +16,7 @@ const History: React.FC = () => {
       <div className="bg-white rounded-lg shadow-sm p-4">
         <HistoryTab activeTab={activeTab} onTabChange={handleTabChange} />
         <div className="transaction-list">
-          <TransactionList transactionType={activeTab === 'deposit' ? 1 : 2} />
+          <TransactionList transactionType={activeTab} />
         </div>
       </div>
     </div>

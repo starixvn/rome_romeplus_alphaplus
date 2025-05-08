@@ -2,6 +2,7 @@ namespace AlphaPlus.CashService.Site.Features.Transactions;
 
 using AlphaPlus.CashService.Site.Features.Shared.Models;
 using Commands;
+using Core.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Queries;
@@ -12,7 +13,8 @@ public class TransactionsController(
     IMediator mediator,
     IConfiguration configuration,
     HttpClient httpClient,
-    ILogger<TransactionsController> logger
+    ILogger<TransactionsController> logger,
+    IUserSession userSession
 ) : SiteBaseController(mediator)
 {
     private readonly string _apiBaseUrl = configuration["CashServiceAPIUrl"] ?? throw new InvalidOperationException("CashServiceAPIUrl not configured.");
@@ -44,22 +46,16 @@ public class TransactionsController(
 
     public async Task<IActionResult> Detail(int transactionId)
     {
-        try
-        {
-            var query = new GetTransactionByIdQuery(transactionId);
-            var result = await mediator.Send(query);
-            return Ok(result);
-        }
-        catch (KeyNotFoundException ex)
-        {
-            logger.LogWarning(ex, "Transaction not found");
-            return NotFound(new { error = "Transaction not found" });
-        }
-        catch (Exception ex)
-        {
-            logger.LogError(ex, "Error getting transaction by ID");
-            return StatusCode(500, new { error = "Failed to fetch transaction" });
-        }
+        var query = new GetTransactionByIdQuery(transactionId);
+        var result = await mediator.Send(query);
+        return Ok(result);
+    }
+
+    public async Task<IActionResult> GetDepositTransactionTypes()
+    {
+        var url = $"{_apiBaseUrl}/deposit/transaction-types";
+        var transactionTypes = await httpClient.GetFromJsonAsync<object>(url);
+        return Json(transactionTypes);
     }
 
     public async Task<IActionResult> GetMemberBankAccounts()
@@ -76,11 +72,11 @@ public class TransactionsController(
         return Json(withdrawalAccounts);
     }
 
-    public async Task<IActionResult> GetFilterAccount()
+    public async Task<IActionResult> GetFilterAccount(int transactionType)
     {
         try
         {
-            var query = new GetFilterAccountQuery();
+            var query = new GetFilterAccountQuery(transactionType);
             var result = await mediator.Send(query);
             return Ok(result);
         }

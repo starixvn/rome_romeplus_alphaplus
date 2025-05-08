@@ -9,7 +9,7 @@ interface FiltersProps {
   status: string;
   column: string[];
   account: string;
-  transactionType: 'deposit' | 'withdrawal';
+  transactionType: number;
   onDateRangeChange: (dates: [string, string]) => void;
   onStatusChange: (value: string) => void;
   onColumnChange: (value: string[]) => void;

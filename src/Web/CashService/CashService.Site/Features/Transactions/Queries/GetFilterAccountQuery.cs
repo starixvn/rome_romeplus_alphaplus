@@ -3,4 +3,4 @@ using MediatR;
 
 namespace AlphaPlus.CashService.Site.Features.Transactions.Queries;
 
-public record GetFilterAccountQuery : IRequest<IEnumerable<AccountOptionDto>>;
+public record GetFilterAccountQuery(int TransactionType) : IRequest<IEnumerable<AccountOptionDto>>;

@@ -2,6 +2,6 @@ namespace AlphaPlus.CashService.Site.Features.Transactions.Models;
 
 public class AccountOptionDto
 {
-    public int Id { get; set; }
-    public string Name { get; set; } = string.Empty;
+    public int BankId { get; set; }
+    public string BankAccountNumber { get; set; } = string.Empty;
 }

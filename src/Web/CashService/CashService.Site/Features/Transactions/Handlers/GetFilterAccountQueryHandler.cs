@@ -1,12 +1,13 @@
-using AlphaPlus.CashService.Site.Features.Transactions.Models;
-using AlphaPlus.CashService.Site.Features.Transactions.Queries;
-using MediatR;
-
 namespace AlphaPlus.CashService.Site.Features.Transactions.Handlers;
 
+using Core.Models;
 using Helpers;
+using MediatR;
+using Models;
+using Queries;
 
 public class GetFilterAccountQueryHandler(HttpClientHelper httpClientHelper,
+    IUserSession userSession,
     ILogger<GetFilterAccountQueryHandler> logger
     ) : IRequestHandler<GetFilterAccountQuery, IEnumerable<AccountOptionDto>>
 {
@@ -14,7 +15,7 @@ public class GetFilterAccountQueryHandler(HttpClientHelper httpClientHelper,
     {
         try
         {
-            var accounts = await httpClientHelper.GetAsync<IEnumerable<AccountOptionDto>>("api/transactions/get-account");
+            var accounts = await httpClientHelper.GetAsync<IEnumerable<AccountOptionDto>>($"api/common/agent-bank-list?agentId={userSession.CustId}&transactionType={request.TransactionType}");
             return accounts ?? [];
         }
         catch (Exception ex)

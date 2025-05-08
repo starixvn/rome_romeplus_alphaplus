@@ -7,14 +7,16 @@ import { AccountOption } from '../../../../../services/interfaces/Transactions/A
 
 interface AccountFilterProps {
   account: string;
-  transactionType: 'deposit' | 'withdrawal';
+  transactionType: number;
   onAccountChange: (value: string) => void;
+  onAccountsLoaded?: () => void;
 }
 
 const AccountFilter: React.FC<AccountFilterProps> = ({
   account,
   transactionType,
   onAccountChange,
+  onAccountsLoaded,
 }) => {
   const { t } = useTranslation('transactionHistory');
   const [accountOptions, setAccountOptions] = useState<AccountOption[]>([]);
@@ -24,8 +26,11 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
     const fetchAccounts = async () => {
       setIsLoading(true);
       try {
-        const options = await getAccount();
+        const options = await getAccount(transactionType);
         setAccountOptions(options);
+        if (onAccountsLoaded) {
+          onAccountsLoaded();
+        }
       } catch (error) {
         console.error('Failed to fetch accounts:', error);
         setAccountOptions([]);
@@ -35,12 +40,12 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
     };
 
     fetchAccounts();
-  }, []);
+  }, [transactionType, onAccountsLoaded]);
 
   return (
     <div className="w-[180px]">
       <label className="block text-sm font-medium text-gray-700 mb-1">
-        {transactionType === 'deposit' ? t('filter.to') : t('filter.from')}
+        {transactionType === 1 ? t('filter.to') : t('filter.from')}
       </label>
       <div className="select-wrapper relative">
         <select

@@ -78,9 +78,11 @@ export const revertTransaction = async (
 /**
  * Fetches account options.
  */
-export const getAccount = async (): Promise<AccountOption[]> => {
+export const getAccount = async (transactionType: number): Promise<AccountOption[]> => {
   try {
-    const response = await api.get<AccountOption[]>('GetFilterAccount');
+    const response = await api.get<AccountOption[]>(
+      `GetFilterAccount?transactionType=${transactionType}`
+    );
     return response.data;
   } catch (error) {
     console.error('Error fetching accounts:', error);

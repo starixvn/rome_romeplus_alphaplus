@@ -1,6 +1,6 @@
-﻿using System.Text.Json;
+﻿namespace AlphaPlus.CashService.Site.Helpers;
 
-namespace AlphaPlus.CashService.Site.Helpers;
+using System.Text.Json;
 
 public class HttpClientHelper
 {

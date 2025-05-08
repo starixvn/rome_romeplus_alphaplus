@@ -146,7 +146,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           status={apiParams.status}
           column={columnFilter}
           account={apiParams.account}
-          transactionType={transactionType === 1 ? 'deposit' : 'withdrawal'}
+          transactionType={transactionType}
           onDateRangeChange={handleDateRangeChange}
           onStatusChange={handleStatusChange}
           onColumnChange={handleColumnChange}
