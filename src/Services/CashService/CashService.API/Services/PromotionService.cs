@@ -1,25 +1,56 @@
-﻿using AlphaPlus.CashService.API.Models;
+﻿using AlphaPlus.CashService.API.Criteria.Promotion;
+using AlphaPlus.CashService.API.Models;
 using AlphaPlus.CashService.API.Models.Promotion;
 using Fanex.Data.Repository;
+using System.Runtime.InteropServices;
 
 namespace AlphaPlus.CashService.API.Services;
 
 public interface IPromotionService
 {
-    Task<IEnumerable<PromotionModel>> GetPromotion();
+    Task<IEnumerable<PromotionModel>> GetPromotion(string type, string status);
 
     Task<ResultModel> AddPromotion(AddPromotionModel addPromotionMdoel);
+
+    Task<ResultModel> EditPromotion(AddPromotionModel addPromotionMdoel);
 }
+
 public class PromotionService(IDynamicRepository repository) : IPromotionService
 {
-    public Task<ResultModel> AddPromotion(AddPromotionModel addPromotionMdoel)
+    private List<PromotionModel> promotionModels = CreateFakePromotionModel();
+
+    public async Task<ResultModel> AddPromotion(AddPromotionModel addPromotionMdoel)
     {
-        throw new NotImplementedException();
+        var addPromotionCriteria = new AddPromotionCriteria
+        {
+            PromotionType = addPromotionMdoel.PromotionType,
+            FromDate = addPromotionMdoel.FromDate,
+            ToDate = addPromotionMdoel.ToDate,
+            Provider = addPromotionMdoel.Provider,
+            SportsPercentage = addPromotionMdoel.SportsPercentage,
+            SportsMinTurnover = addPromotionMdoel.SportsMinTurnover,
+            SportsMaxPayout = addPromotionMdoel.SportsMaxPayout,
+            VirtualSportsPercentage = addPromotionMdoel.VirtualSportsPercentage,
+            VirtualSportsMinTurnover = addPromotionMdoel.VirtualSportsMinTurnover,
+            VirtualSportsMaxPayout = addPromotionMdoel.VirtualSportsMaxPayout,
+            GamesPercentage = addPromotionMdoel.GamesPercentage,
+            GamesMinTurnover = addPromotionMdoel.GamesMinTurnover,
+            GamesMaxPayout = addPromotionMdoel.GamesMaxPayout,
+            LiveCasinoPercentage = addPromotionMdoel.LiveCasinoPercentage,
+            LiveCasinoMinTurnover = addPromotionMdoel.LiveCasinoMinTurnover,
+            LiveCasinoMaxPayout = addPromotionMdoel.LiveCasinoMaxPayout
+        };
+
+        await repository.ExecuteAsync(addPromotionCriteria);
+
+        var result = new ResultModel(addPromotionCriteria.ErrCode, addPromotionCriteria.ErrMsg);
+
+        return result;
     }
 
-    public async Task<IEnumerable<PromotionModel>> GetPromotion()
+    public async Task<IEnumerable<PromotionModel>> GetPromotion(string type, string status)
     {
-        var result = CreateFakePromotionModel();
+        var result = promotionModels.Where(x => x.PromotionType == type && x.Status == status);
 
         return result;
     }
@@ -73,4 +104,32 @@ public class PromotionService(IDynamicRepository repository) : IPromotionService
         };
     }
 
+    public async Task<ResultModel> EditPromotion(AddPromotionModel addPromotionMdoel)
+    {
+        var editPromotionCriteria = new EditPromotionCriteria
+        {
+            PromotionType = addPromotionMdoel.PromotionType,
+            FromDate = addPromotionMdoel.FromDate,
+            ToDate = addPromotionMdoel.ToDate,
+            Provider = addPromotionMdoel.Provider,
+            SportsPercentage = addPromotionMdoel.SportsPercentage,
+            SportsMinTurnover = addPromotionMdoel.SportsMinTurnover,
+            SportsMaxPayout = addPromotionMdoel.SportsMaxPayout,
+            VirtualSportsPercentage = addPromotionMdoel.VirtualSportsPercentage,
+            VirtualSportsMinTurnover = addPromotionMdoel.VirtualSportsMinTurnover,
+            VirtualSportsMaxPayout = addPromotionMdoel.VirtualSportsMaxPayout,
+            GamesPercentage = addPromotionMdoel.GamesPercentage,
+            GamesMinTurnover = addPromotionMdoel.GamesMinTurnover,
+            GamesMaxPayout = addPromotionMdoel.GamesMaxPayout,
+            LiveCasinoPercentage = addPromotionMdoel.LiveCasinoPercentage,
+            LiveCasinoMinTurnover = addPromotionMdoel.LiveCasinoMinTurnover,
+            LiveCasinoMaxPayout = addPromotionMdoel.LiveCasinoMaxPayout
+        };
+
+        await repository.ExecuteAsync(editPromotionCriteria);
+
+        var result = new ResultModel(editPromotionCriteria.ErrCode, editPromotionCriteria.ErrMsg);
+
+        return result;
+    }
 }

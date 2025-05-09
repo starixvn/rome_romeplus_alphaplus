@@ -8,9 +8,9 @@ namespace AlphaPlus.CashService.API.Controllers;
 public class PromotionController(IPromotionService service) : ControllerBase
 {
     [Route("get-promotion")]
-   public async Task<IActionResult> GetPromotion()
+   public async Task<IActionResult> GetPromotion(string type, string status)
     {
-        var result = await service.GetPromotion();
+        var result = await service.GetPromotion(type, status);
         
         return Ok(result);
     }
