@@ -10,7 +10,7 @@ interface BanksPopupModalProps {
 
 const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionType }) => {
   const { t: tGlobal } = useTranslation('global');
-  const { t: tManagePayments } = useTranslation('managePayments');
+  const { t: tPaymentProviderSettings } = useTranslation('paymentProviderSettings');
   const [banks, setBanks] = React.useState<Bank[]>([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
@@ -23,7 +23,7 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
         setBanks(fetchedBanks);
         setError(null);
       } catch (err) {
-        setError(tManagePayments('failedToLoadBanks'));
+        setError(tPaymentProviderSettings('failedToLoadBanks'));
         console.error('Error fetching banks:', err);
       } finally {
         setLoading(false);
@@ -31,13 +31,13 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
     };
 
     fetchBanks();
-  }, [tManagePayments]);
+  }, [tPaymentProviderSettings]);
 
   return (
     <div className="bg-[#00000066] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-center justify-center">
       <div className="p-[30px] bg-[#ffffff] w-full max-w-[560px] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
         <div className="relative">
-          <h5 className="text-[16px] text-[var(--primary-color)] font-bold leading-[21.6px] tracking-[0.2px]">{tManagePayments('listOfBanks')}</h5>
+          <h5 className="text-[16px] text-[var(--primary-color)] font-bold leading-[21.6px] tracking-[0.2px]">{tPaymentProviderSettings('listOfBanks')}</h5>
           <button type="button" className="absolute top-[-20px] right-[-20px] cursor-pointer" onClick={onClose}>
             <IconClose />
           </button>
@@ -59,13 +59,13 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
             </div>
           ) : (
             <>
-              <label className='block text-[var(--primary-color)] my-[16px] font-semibold'>{tManagePayments(`transaction-${transactionType}`)}</label>
+              <label className='block text-[var(--primary-color)] my-[16px] font-semibold'>{tPaymentProviderSettings(`transaction-${transactionType}`)}</label>
               <div className="table-fixed-header max-h-[300px] overflow-y-auto">
                 <table className="w-full">
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>{tManagePayments('bankName')}</th>
+                      <th>{tPaymentProviderSettings('bankName')}</th>
                     </tr>
                   </thead>
                   <tbody>
