@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { IconClose } from '../../components/Icons';
 import { ResultMessage } from '../../components/ResultMessage';
+import { handleNumericInput, handleIntegerInput } from '../../utils/inputHandlers';
 
 interface SetTransactionLimitModalProps {
   onClose: () => void;
@@ -107,7 +108,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   type="text"
                   className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)]"
                   value={minDeposit}
-                  onChange={(e) => setMinDeposit(e.target.value)}
+                  onChange={(e) => handleNumericInput(e.target.value, setMinDeposit)}
                   min="0"
                   step="0.01"
                   required
@@ -119,7 +120,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   type="text"
                   className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)]"
                   value={maxDeposit}
-                  onChange={(e) => setMaxDeposit(e.target.value)}
+                  onChange={(e) => handleNumericInput(e.target.value, setMaxDeposit)}
                   min="0"
                   step="0.01"
                   required
@@ -134,7 +135,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   type="text"
                   className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)]"
                   value={minWithdrawal}
-                  onChange={(e) => setMinWithdrawal(e.target.value)}
+                  onChange={(e) => handleNumericInput(e.target.value, setMinWithdrawal)}
                   min="0"
                   step="0.01"
                   required
@@ -146,7 +147,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   type="text"
                   className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)]"
                   value={maxWithdrawal}
-                  onChange={(e) => setMaxWithdrawal(e.target.value)}
+                  onChange={(e) => handleNumericInput(e.target.value, setMaxWithdrawal)}
                   min="0"
                   step="0.01"
                   required
@@ -160,7 +161,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   type="text"
                   className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)]"
                   value={dailyWithdrawalCount}
-                  onChange={(e) => setDailyWithdrawalCount(e.target.value)}
+                  onChange={(e) => handleIntegerInput(e.target.value, setDailyWithdrawalCount)}
                   min="0"
                   required
                 />

@@ -22,5 +22,7 @@
   "enabled": "有効",
   "disabled": "無効",
   "pleaseFillField": "フィールドを入力してください",
-  "pleaseAgreeTerms": "利用規約に同意してください"
+  "pleaseAgreeTerms": "利用規約に同意してください",
+  "back": "戻る",
+  "errorOccurred": "エラーが発生しました"
 } 

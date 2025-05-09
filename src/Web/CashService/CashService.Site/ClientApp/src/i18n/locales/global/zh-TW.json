@@ -22,5 +22,7 @@
   "enabled": "已啟用",
   "disabled": "已禁用",
   "pleaseFillField": "請填寫字段",
-  "pleaseAgreeTerms": "請同意條款和條件"
+  "pleaseAgreeTerms": "請同意條款和條件",
+  "back": "返回",
+  "errorOccurred": "發生錯誤"
 } 

@@ -74,11 +74,16 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
                 <label htmlFor="dailyLimit" className="pb-[8px] text-[12px] leading-[14px] block">{t('managePayments:dailyWithdrawalCount')}</label>
               </div>
               <input
-                type="text"
+                type="number"
                 className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)]"
                 id="dailyLimit"
                 value={dailyLimit}
-                onChange={(e) => setDailyLimit(Number(e.target.value))}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (value === '' || /^\d+$/.test(value)) {
+                    setDailyLimit(value === '' ? 0 : Number(value));
+                  }
+                }}
                 min="0"
                 required
               />              

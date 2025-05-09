@@ -27,7 +27,7 @@
   "howItWorks": "How it works",
   "feesInfo1": "You'll be charged a fee rate per transaction.",
   "feesFormula": "Transaction Amount * Fee Rate (%)",
-  "feesInfo2": "Fees are payable to the provider and are not charged by us, so they won't appear in 4.Reports",
+  "feesInfo2": "Fees are payable to the provider and are not charged by us, so they won't appear in Reports",
   "feeDetails": "Fee Details",
   "transactionType": "Transaction Type",
   "paymentMethod": "Payment Method",

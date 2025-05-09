@@ -22,5 +22,7 @@
   "enabled": "Đã bật",
   "disabled": "Đã tắt",
   "pleaseFillField": "Vui lòng điền vào trường",
-  "pleaseAgreeTerms": "Vui lòng đồng ý với điều khoản và điều kiện"
+  "pleaseAgreeTerms": "Vui lòng đồng ý với điều khoản và điều kiện",
+  "back": "Trở lại",
+  "errorOccurred": "Đã xảy ra lỗi"
 } 
