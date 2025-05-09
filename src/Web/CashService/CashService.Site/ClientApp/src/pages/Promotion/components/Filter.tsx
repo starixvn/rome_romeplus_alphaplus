@@ -25,7 +25,7 @@ const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
     };
 
     return (
-        <div className="flex ">
+        <div className="flex mb-[16px]">
             {/* <div className="flex-1 min-w-[200px]">
                 <input
                     type="text"

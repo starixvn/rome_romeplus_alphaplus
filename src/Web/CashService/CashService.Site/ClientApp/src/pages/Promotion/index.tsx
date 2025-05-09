@@ -1,13 +1,14 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import 'tippy.js/dist/tippy.css'; 
-import '../../i18n/i18n';
+
 import { promotionService } from '../../services/promotionAPI';
 import PromotionList from './components/PromotionList';
 import Filter from './components/Filter';
 import type { Promotion } from '../../services/interfaces/Promotion';
 import AddPromotion from './components/AddPromotion';
 import './common.css';
+import '../../styles/global.scss';
 
 const Promotion: React.FC = () => {
     const [promotionType, setPromotionType] = useState<string>('All');
@@ -59,7 +60,7 @@ const Promotion: React.FC = () => {
 
                 {!showAddPromotion ? (
                     <>
-                        <div className="add-promotion">
+                        <div className="mb-[16px]">
                             <button 
                                 className="w-[183px] h-[30px] rounded-[5px] text-[#ffffff] px-[16px] py-[4px] text-[12px] font-bold mr-[8px] bg-[var(--primary-color)] hover:bg-[#375A8A] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
                                 onClick={() => setShowAddPromotion(true)}
@@ -67,13 +68,12 @@ const Promotion: React.FC = () => {
                                 + Add Promotion
                             </button>
                         </div>
-                        <Filter onFilterChange={handleFilterChange} />
-                        <div className="promotion-list">
-                            <PromotionList 
-                                items={promotions}
-                                isLoading={isLoading}
-                            />
-                        </div>
+                        <Filter onFilterChange={handleFilterChange} />                        
+                        <PromotionList 
+                            items={promotions}
+                            isLoading={isLoading}
+                        />
+                        
                     </>
                 ) : (
                     <AddPromotion 

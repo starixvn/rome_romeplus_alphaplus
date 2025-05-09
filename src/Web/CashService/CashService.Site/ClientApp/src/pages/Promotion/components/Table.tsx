@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Promotion } from '../../../services/interfaces/Promotion';
-import { NoRecordsIcon } from '../../../components/Icons';
+import { IconDelete, IconPen, NoRecordsIcon } from '../../../components/Icons';
 
 interface TableProps {
     items: Promotion[];
@@ -13,6 +13,7 @@ const Table: React.FC<TableProps> = ({
     isLoading
 }) => {
     const { t } = useTranslation('promotion');
+    const { t: tGlobal } = useTranslation('global');
 
     const getStatusStyle = (status: string) => {
 
@@ -32,70 +33,40 @@ const Table: React.FC<TableProps> = ({
     const buildHeader = () => (
         <thead>
             <tr>
-                <th
-                    scope="col"
-                    className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50 text-center"
-                >
+                <th scope="col" className='w-[40px] sticky z-10 left-0 top-[0] bg-[#ffffff] '>
+                    {t('table.no')} 
+                </th>
+                <th scope="col" className='w-[75px] sticky z-10 left-[40px] top-[0] bg-[#ffffff]'>
                     {t('table.action')}
                 </th>
-                <th
-                    scope="col"
-                    className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-                >
-                    {t('table.promotionTitle')}
+                <th className='sticky z-10 w-[110px]  left-[115px] top-[0] bg-[#ffffff] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]' scope="col">
+                    <span className="relative z-3">{t('table.promotionTitle')}</span>
                 </th>
-                <th
-                    scope="col"
-                    className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-                >
+                <th scope="col">
                     {t('table.promotionType')}
                 </th>
-                <th
-                    scope="col"
-                    className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-                >
+                <th scope="col">
                     {t('table.sports')}
                 </th>
-                <th
-                    scope="col"
-                    className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-                >
+                <th scope="col">
                     {t('table.virtualSports')}
                 </th>
-                <th
-                    scope="col"
-                    className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-                >
+                <th scope="col">
                     {t('table.games')}
                 </th>
-                <th
-                    scope="col"
-                    className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-                >
+                <th scope="col">
                     {t('table.liveCasino')}
                 </th>
-                <th
-                    scope="col"
-                    className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-                >
+                <th scope="col">
                     {t('table.period')}
                 </th>
-                <th
-                    scope="col"
-                    className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-                >
+                <th scope="col">
                     {t('table.provider')}
                 </th>
-                <th
-                    scope="col"
-                    className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-                >
+                <th scope="col">
                     {t('table.status')}
                 </th>
-                <th
-                    scope="col"
-                    className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-                >
+                <th scope="col">
                     {t('table.lastUpdated')}
                 </th>
 
@@ -105,24 +76,39 @@ const Table: React.FC<TableProps> = ({
 
     const buildRow = (item: Promotion, index: number) => (
         <tr className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
+            <td className='w-[40px] sticky left-0 bg-[#ffffff]'>
                 {index + 1}
             </td>
-            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.promotionTitle}</td>
-            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.promotionType}</td>
-            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.sportsPercentage}<br />{item.sportsMaxPayout}</td>
-            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.virtualSportsPercentage}<br />{item.virtualSportsMaxPayout}</td>
-            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.gamesPercentage}<br />{item.gamesMaxPayout}</td>
-            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.liveCasinoPercentage}<br />{item.liveCasinoMaxPayout}</td>
-            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.provider}</td>
-            <td className="px-4 py-0.5 text-sm border border-gray-300 text-center">
+            <td className='w-[75px] sticky left-[40px] bg-[#ffffff]'>
+                <div className="flex gap-[4px]">
+                    <button className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--primary-color)]"
+                        title={tGlobal('edit')}
+                    >                            
+                        <IconPen />
+                    </button>
+                    <button className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--primary-color)]"
+                        title={tGlobal('delete')}
+                    >                            
+                        <IconDelete />
+                    </button>
+                </div>
+            </td>
+            <td className="w-[110px] sticky left-[115px] bg-[#ffffff] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">{item.promotionTitle}</td>
+            <td className="">{item.promotionType}</td>
+            <td className="">{item.sportsPercentage}<br />{item.sportsMaxPayout}</td>
+            <td className="">{item.virtualSportsPercentage}<br />{item.virtualSportsMaxPayout}</td>
+            <td className="">{item.gamesPercentage}<br />{item.gamesMaxPayout}</td>
+            <td className="">{item.liveCasinoPercentage}<br />{item.liveCasinoMaxPayout}</td>
+            <td className="">{item.period}</td>
+            <td className="">{item.provider}</td>
+            <td className="">
                 <span
-                    className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusStyle(item.status)}`}
+                    className={`rounded-[20px] px-[10px] py-[3px] ${getStatusStyle(item.status)}`}
                 >
                     {item.status.toUpperCase()}
                 </span>
             </td>
-            <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">{item.lastUpdated}</td>
+            <td className="">{item.lastUpdated}</td>
         </tr>
     );
 
@@ -138,7 +124,7 @@ const Table: React.FC<TableProps> = ({
     );
 
     const buildBody = () => (
-        <tbody>{items && items.length > 0 ? items.map(buildRow) : buildEmptyState()}</tbody>
+        <tbody className='font-[500]'>{items && items.length > 0 ? items.map(buildRow) : buildEmptyState()}</tbody>
     );
 
     if (isLoading) {
@@ -151,10 +137,11 @@ const Table: React.FC<TableProps> = ({
 
     return (
         <>
-            <div className="overflow-x-auto">
-                <table className="min-w-full border-collapse border border-gray-300">
+            <div className="table-fixed-header table-fixed-body bg-[#ffffff] h-full">
+                <table className="text-[12px] max-[600px]:text-[17px] min-w-[1300px] whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
                     {buildHeader()}
                     {buildBody()}
+                    
                 </table>
             </div>
         </>

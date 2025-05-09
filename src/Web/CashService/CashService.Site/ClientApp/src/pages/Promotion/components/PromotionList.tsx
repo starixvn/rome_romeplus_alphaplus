@@ -15,9 +15,9 @@ const PromotionList: React.FC<PromotionListProps> = ({
      
 
     return (
-        <div className="space-y-4">
+        <>
             <Table items={items} isLoading={isLoading} />
-        </div>
+        </>
     );
 };
 
