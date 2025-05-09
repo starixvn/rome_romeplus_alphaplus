@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Bank } from '../../services/interfaces/Bank';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { IconClose } from '../../components/Icons';
+import Loading from '../../components/ui/Loading';
 interface BanksPopupModalProps {
   onClose: () => void;
   transactionType: number;
@@ -44,11 +45,7 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
         </div>
         <div className="mb-[12px]">
           {loading ? (
-            <div className="text-center">
-              <div className="spinner-border" role="status">
-                <span className="visually-hidden">{tGlobal('loading')}</span>
-              </div>
-            </div>
+            <Loading />
           ) : error ? (
             <div className="alert alert-danger" role="alert">
               {error}

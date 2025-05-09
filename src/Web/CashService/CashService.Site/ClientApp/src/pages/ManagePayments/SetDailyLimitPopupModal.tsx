@@ -63,6 +63,9 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
            <IconClose />
           </button>
         </div>
+        
+        { error && <div className='my-[8px]'> <ResultMessage type="error" message={error} /> </div>}
+        { successMessage && <div className='my-[8px]'> <ResultMessage type="success" message={successMessage} /> </div>}
         <form onSubmit={handleSubmit}>
           <div className="mb-[16px]">
             <div className=" ">
@@ -78,9 +81,7 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
                 onChange={(e) => setDailyLimit(Number(e.target.value))}
                 min="0"
                 required
-              />
-              { error && <ResultMessage type="error" message={error} />}
-              { successMessage && <ResultMessage type="success" message={successMessage} />}
+              />              
             </div>
           </div>
           <div className="flex justify-center">

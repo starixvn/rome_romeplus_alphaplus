@@ -4,6 +4,7 @@ import { DepositMatchingMode } from './DepositMatchingMode';
 export interface Bank {
   id: number;
   name: string;
+  code: string;
   transactionTypes: string;
   depositMatchingMode: DepositMatchingMode;
 } 

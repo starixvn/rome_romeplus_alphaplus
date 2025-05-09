@@ -283,7 +283,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                   <CustomDropdown
                     options={banks.map(bank => ({
                       value: bank.id,
-                      label: bank.name
+                      label: bank.name,
+                      
                     }))}
                     onSelect={handleBankChange}
                     disable={status === '1'}

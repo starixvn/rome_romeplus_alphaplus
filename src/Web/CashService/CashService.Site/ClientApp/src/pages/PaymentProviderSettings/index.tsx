@@ -14,10 +14,10 @@ import Tippy from '@tippyjs/react';
 import i18n from '../../i18n/i18n-paymentProviderSettings';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 import { ResultMessage } from '../../components/ResultMessage';
-
-
 import '../../styles/global.scss';
 import './PaymentProviderSettings.css';
+
+import Loading from '../../components/ui/Loading';
 declare global {
   interface Window {
     providerSettingsViewModel: any;
@@ -206,10 +206,10 @@ function PaymentProviderSettings() {
   };
 
   return (
-    <div className="payment-provider-settings">
+    <div className="payment-provider-settings h-full">       
       {loading ? (
-        <div className="loading-container">
-          <p>{tGlobal('loading')}</p>
+        <div className='flex justify-center items-center h-full'>
+          <Loading />
         </div>
       ) : error ? (
         <div className="error-container">
@@ -256,13 +256,13 @@ function PaymentProviderSettings() {
                   <span className='cursor-pointer'><IconInfo className="w-[20px] h-[20px] ml-[4px] fill-[#163f78]" /></span>
                 </Tippy>
               </label>
-              <label>
+              <label className='inline-block'>
                 <input
                   type="checkbox"
                   id="enableToggle"
                   checked={providerStatus}
                   onChange={handleProviderStatusToggle}
-                  className="opacity-0 absolute hidden peer" 
+                  className="opacity-0 absolute hidden peer " 
                 />
                 <span className='block cursor-pointer w-[60px] h-[30px] rounded-[20px] bg-[#c2c2c2] relative after:content-[""] after:absolute after:top-[3px] after:left-[3px] after:w-[24px] after:h-[24px] after:rounded-[50%] after:bg-[#ffffff] after:transition-all after:duration-300 after:ease-in-out after:shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] peer-checked:after:left-[32px] peer-checked:bg-[var(--primary-color)]'>
 

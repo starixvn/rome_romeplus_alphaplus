@@ -5,12 +5,12 @@ import GeneralSettings from './components/GeneralSettings';
 import MessageForm from './components/MessageForm';
 import { memberSitesService } from '../../services/memberSitesAPI';
 import { Setting, MessageData, MemberSiteResponse } from '../../types/memberSite';
-import '../../styles/global.scss';
-import './MemberSites.css'
 import { useTranslation } from 'react-i18next';
 import i18n from '../../i18n/i18n-memberSite';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 import { ResultMessage, ResultType } from '../../components/ResultMessage';
+import '../../styles/global.scss';
+import './MemberSites.css'
 
 const MemberSiteManagement: React.FC = () => {
   const { t } = useTranslation('memberSite');

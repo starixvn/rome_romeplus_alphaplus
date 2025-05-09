@@ -1,1 +1,4 @@
-﻿@import "../../styles/common.css";
+﻿@import "tailwindcss";
+.member-sites-container {
+    opacity: 1;
+}

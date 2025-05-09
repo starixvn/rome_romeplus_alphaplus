@@ -4,6 +4,7 @@ import { IconArrowDown } from "../Icons";
 export interface DropdownOption {
   value: string | number;
   label: string;
+  code?: string;
 }
 
 export interface CustomDropdownProps {
@@ -70,12 +71,13 @@ const CustomDropdown = ({ options, onSelect, disable = false, initialValue }: Cu
       {isOpen && (
         <div className="max-h-[200px] overflow-y-auto absolute top-[36px] text-[12px] left-0 w-[100%] bg-[#fff] border-[1px] border-[#0000003D] rounded-[8px]">
           {options.map((option) => (
+            console.log(option),
             <div
               key={option.value}
               onClick={() => handleSelect(option)}
               className="py-[3px] px-[12px] hover:bg-[#1967D2] hover:text-[#fff] cursor-pointer flex items-center"
             >
-              <img src="../assets/bank/BAAC.png" alt={option.label} className='w-[16px] h-[16px] mr-[8px] inline-block' />
+              <img src={`../assets/bank/${option.code}.png`} alt={option.label} className='w-[16px] h-[16px] mr-[8px] inline-block' />
               {option.label}
             </div>
           ))}

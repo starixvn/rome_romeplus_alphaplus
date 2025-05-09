@@ -78,6 +78,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
         setLoading(true);
         const fetchedBanks = await paymentProviderService.getBanksByCust();
         setBanks(fetchedBanks);
+        console.log('Banks:', fetchedBanks);
         setError(null);
 
         // Call fetchBankAccounts without setting loading state
@@ -283,16 +284,23 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                 </div>
               
                 {!loading && !error && banks.length > 0 && (
+                 
                   <>
+                    
                     <div className="flex px-[14px] bg-[#ffffff]">
                       <div className="w-[230px] pr-[14px]">
                         <div className="form-group mb-[8px]">
                           <label htmlFor="bankSelect" className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('bank')}</label>                           
-                          <CustomDropdown 
-                            options={banks.map(bank => ({
-                              value: bank.id,
-                              label: bank.name
-                            }))}
+                          
+                          <CustomDropdown                           
+                            options={(() => {
+                              
+                              return banks.map(bank => ({
+                                value: bank.id,
+                                label: bank.name,
+                                code: bank.code
+                              }));
+                            })()}
                             onSelect={(option) => handleBankChange({ target: { value: option.value.toString() } } as React.ChangeEvent<HTMLSelectElement>)}
                           />
                         </div>
@@ -377,6 +385,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                       </thead>
                       <tbody className='font-[500]'>
                         {bankAccounts.map((account, index) => (
+                          console.log(account),
                           <tr key={account.id}>
                             <td className="col-no bg-[#ffffff]">{index + 1}</td> 
                             <td className="col-action bg-[#ffffff]">
@@ -409,7 +418,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                             <td className='text-left'>{account.accountNickname}</td>
                             <td className='text-left'>
                               <div className='flex items-center relative pl-[25px]'>
-                                <img src="../assets/bank/BBL.png" alt={account.bankName} className='w-[20px] h-[20px] absolute top-[0] left-[0]' />
+                                <img src={`../assets/bank/${account.code}.png`} alt={account.bankName} className='w-[20px] h-[20px] absolute top-[0] left-[0]' />
                                 {account.bankName}
                               </div>
                               </td>
