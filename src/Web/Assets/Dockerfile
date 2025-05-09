@@ -27,11 +27,7 @@ RUN if [ "$TRANSFORM_CONFIG" = "LOCAL2" ] \
 		|| [ "$TRANSFORM_CONFIG" = "STGINT2" ] \
 		|| [ "$TRANSFORM_CONFIG" = "INT2" ] \
 		|| [ "$TRANSFORM_CONFIG" = "PRO2" ] \
-		|| [ "$TRANSFORM_CONFIG" = "AWS2" ] \
-		|| [ "$TRANSFORM_CONFIG" = "NAPAWS2" ] \
-		|| [ "$TRANSFORM_CONFIG" = "NAPINTERNAL2" ] \
-		|| [ "$TRANSFORM_CONFIG" = "MNL2" ] \
-		|| [ "$TRANSFORM_CONFIG" = "MNLNAP2" ]; \
+		|| [ "$TRANSFORM_CONFIG" = "DR2" ]; \
 	then cp ./bundleconfig2.json ./bundleconfig.json; \
 	fi
 
