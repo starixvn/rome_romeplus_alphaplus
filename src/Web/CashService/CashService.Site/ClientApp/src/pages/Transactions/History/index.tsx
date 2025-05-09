@@ -3,8 +3,11 @@ import { createRoot } from 'react-dom/client';
 import TransactionList from './components/TransactionList';
 import HistoryTab from './components/HistoryTab';
 import './HistoryStyle.css';
+import i18n from '../../../i18n/i18n-transactionHistory';
+import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
 
 const History: React.FC = () => {
+  useCookieLanguage(i18n);
   const [activeTab, setActiveTab] = useState<number>(1);
 
   const handleTabChange = (tab: number) => {

@@ -7,10 +7,12 @@ import DataGrid from './components/DataGrid.tsx';
 import { WithdrawalAccountInfo } from '../../../services/interfaces/WithdrawalAccountInfo';
 import { pendingWithdrawalService } from '../../../services/pendingWithdrawalAPI';
 import { useTranslation } from 'react-i18next';
-
+import i18n from '../../../i18n/i18n-pendingWithdrawal';
+import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
 
 const PendingWithdrawal: React.FC = () => {
   const { t } = useTranslation('pendingWithdrawal');
+  useCookieLanguage(i18n);
   const [recentWithdrawals, setRecentWithdrawals] = useState<string>('All');
   const [toFilter, setToFilter] = useState<string>('All');
   const [searchTerm, setSearchTerm] = useState<string>('');
