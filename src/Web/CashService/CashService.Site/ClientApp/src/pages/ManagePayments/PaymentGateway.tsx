@@ -6,6 +6,8 @@ import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import DailyLimitPopupModal from './SetDailyLimitPopupModal';
 import TitleCommon from '../../components/ui/TitleCommon';
 import { IconPen } from '../../components/Icons';
+import Loading from '../../components/ui/Loading';
+import { ResultMessage } from '../../components/ResultMessage';
 
 interface PaymentGatewayProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
@@ -119,16 +121,10 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = ({ setActiveTab, activeTab
               </div>
             </div>
             {loading ? (
-              <div className="text-center p-4">
-                <div className="spinner-border text-primary" role="status">
-                  <span className="visually-hidden">{tGlobal('loading')}</span>
-                </div>
-                <p className="mt-2">{tManagePayments('loading')}</p>
-              </div>
+              <Loading />
             ) : error ? (
-              <div className="alert alert-danger" role="alert">
-                {error}
-              </div>
+              <ResultMessage type="error" message={error} />
+              
             ) : (
               <div className="table-fixed-header">
                 <table className="text-[12px] w-full border-collapse border border-[#0000001f] border-t-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">

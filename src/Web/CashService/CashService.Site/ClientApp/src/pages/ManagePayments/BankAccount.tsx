@@ -8,8 +8,10 @@ import SetTransactionLimitModal from './SetTransactionLimitModal';
 import AddBankAccountComponent from './AddBankAccountComponent';
 import UpdateBankAccountComponent from './UpdateBankAccountComponent';
 import TitleCommon from '../../components/ui/TitleCommon';
-import { IconCheck, IconDelete, IconError, IconPen, IconSearch, IconSync } from '../../components/Icons';
+import { IconDelete,  IconPen, IconSearch, IconSync } from '../../components/Icons';
 import CustomDropdown from '../../components/ui/customDropdown';
+import Loading from '../../components/ui/Loading';
+import { ResultMessage } from '../../components/ResultMessage';
 
 interface BankAccountProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
@@ -217,6 +219,7 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
       ) : (
         <>
          <div className="p-[12px] h-[calc(100%-250px)]">
+          
           <TitleCommon title={tManagePayments('managePayments')} />
           
           <div className="card h-[calc(100%-40px)] flex flex-col">
@@ -243,6 +246,14 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
             <div className="card-body h-full">
               <div className=" h-full flex flex-col">
                 <div className="bg-[#ffffff] px-[14px] py-[8px]">
+                <div className='pt-[14px] bg-[#ffffff]'>                   
+                  {error && (
+                    <ResultMessage type="error" message={error} />
+                  )}
+                  {successMessage && (
+                    <ResultMessage type="success" message={successMessage} />
+                  )}
+                </div>
                   <div className="pb-[8px] mt-[8px] text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] tracking-[0.2px] ">{tManagePayments('manageBankAccountAndLimits')}</div>
                   <div className="text-[12px] leading-[14px]">{tManagePayments('addBankAccountAndLimit')}</div>
                   <div className="my-[8px]">
@@ -262,31 +273,13 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                 </div>
 
                 {loading && (
-                  <div className="text-center">
-                    <div className="spinner-border" role="status">
-                      <span className="visually-hidden">{tGlobal('loading')}</span>
-                    </div>
-                  </div>
+                  <Loading />
                 )}
-                <div className='px-[14px] bg-[#ffffff]'>
-                {error && (
-                  <div className="font-bold text-[12px] text-[#333] bg-[#FFF2F2] border-[1px] border-[#FE0000] rounded-[10px] pl-[36px] pr-[12px] py-[8px] relative block capitalize" role="alert">
-                    <IconError className='w-[20px] h-[20px] fill-[#fe0000] absolute top-[8px] left-[10px]' />
-                    {error}
-                  </div>
-                )}
-
-                {successMessage && (
-                  <div className="font-bold text-[12px]  text-[#333] bg-[#E2FFF2] border-[1px] border-[#5cb774] rounded-[10px] pl-[36px] pr-[12px] py-[8px] relative block capitalize" role="alert">
-                    <IconCheck className='w-[20px] h-[20px] fill-[#5CB774] absolute top-[8px] left-[10px]' />
-                  {successMessage}</div>
-                )}
-                </div>
+                
               
                 {!loading && !error && banks.length > 0 && (
                  
-                  <>
-                    
+                  <>                    
                     <div className="flex px-[14px] bg-[#ffffff]">
                       <div className="w-[230px] pr-[14px]">
                         <div className="form-group mb-[8px]">

@@ -4,6 +4,7 @@ import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
 import { PaymentProviderFeeGroup } from '../../services/interfaces/PaymentProviderFeeGroup';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { IconClose } from '../../components/Icons';
+import Loading from '../../components/ui/Loading';
 
 interface ProviderFeesPopupModalProps {
   provider: PaymentProvider;
@@ -43,11 +44,7 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
         </div>
         <div className="mb-[12px]">
           {isLoading ? (
-            <div className="text-center">
-              <div className="spinner-border" role="status">
-                <span className="visually-hidden">{tGlobal('loading')}</span>
-              </div>
-            </div>
+            <Loading />
           ) : (
             <>
               <div className="text-[12px] leading-[14px]">
