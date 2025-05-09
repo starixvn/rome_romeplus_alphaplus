@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { useTranslation } from 'react-i18next';
 
 import { STATUS_OPTIONS, TRANSACTION_TYPES } from '../../constants/paymentConstants';
-import ProviderFeesPopupModal from '../ManagePayments/ProviderFeesPopupModal';
+import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import AddPaymentMethodModal from './AddPaymentMethodModal';
 import BanksPopupModal from './BanksPopupModal';
 import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
