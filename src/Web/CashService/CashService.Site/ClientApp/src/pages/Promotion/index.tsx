@@ -45,8 +45,8 @@ const Promotion: React.FC = () => {
     }, [promotionType, status]);
 
     return (
-        <div className="">
-            <div className="p-[12px]">
+     
+            <div className="p-[12px] h-full flex flex-col">
                 <div className="mb-[8px]">
                     <h1 className="font-bold text-[15px] text-[#333333]">Manage Promotion</h1>                    
                 </div>
@@ -85,7 +85,7 @@ const Promotion: React.FC = () => {
                     />
                 )}
             </div>
-        </div>
+ 
     );
 };
 

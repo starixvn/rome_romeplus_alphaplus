@@ -36,13 +36,13 @@ const Table: React.FC<TableProps> = ({
     const buildHeader = () => (
         <thead>
             <tr>
-                <th scope="col" className='w-[40px] sticky z-10 left-0 bg-[#ffffff] '>
-                    {t('table.no')} 
+                <th scope="col" className='w-[32px] sticky z-10 left-0 bg-[#ffffff] '>
+                    <span>{t('table.no')} </span>
                 </th>
-                <th scope="col" className='w-[75px] sticky z-10 left-[40px] bg-[#ffffff]'>
+                <th scope="col" className='w-[75px] sticky z-10 left-[32px] bg-[#ffffff]'>
                     {t('table.action')}
                 </th>
-                <th className='sticky z-10 w-[110px]  left-[115px] bg-[#ffffff] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]' scope="col">
+                <th className='sticky z-10 w-[110px]  left-[107px] bg-[#ffffff] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]' scope="col">
                     <span className="relative z-3">{t('table.promotionTitle')}</span>
                 </th>
                 <th scope="col">
@@ -77,11 +77,11 @@ const Table: React.FC<TableProps> = ({
     );
 
     const buildRow = (item: Promotion, index: number) => (
-        <tr className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-            <td className='w-[40px] sticky left-0 bg-[#ffffff]'>
+        <tr>
+            <td className='w-[32px] sticky left-0 bg-[#ffffff]'>
                 {index + 1}
             </td>
-            <td className='w-[75px] sticky left-[40px] bg-[#ffffff]'>
+            <td className='w-[75px] sticky left-[32px] bg-[#ffffff]'>
                 <div className="flex gap-[4px]">
                     <button className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--primary-color)]"
                         title={tGlobal('edit')}
@@ -95,7 +95,7 @@ const Table: React.FC<TableProps> = ({
                     </button>
                 </div>
             </td>
-            <td className="text-left w-[110px] sticky left-[115px] bg-[#ffffff] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">{item.promotionTitle}</td>
+            <td className="text-left w-[110px] sticky left-[107px] bg-[#ffffff] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">{item.promotionTitle}</td>
             <td className="">{item.promotionType}</td>
             <td className="text-right">{item.sportsPercentage}<br />{item.sportsMaxPayout}</td>
             <td className="text-right">{item.virtualSportsPercentage}<br />{item.virtualSportsMaxPayout}</td>
@@ -139,13 +139,16 @@ const Table: React.FC<TableProps> = ({
 
     return (
         <>
-            <div className="table-fixed-header table-fixed-body bg-[#ffffff] h-full">
-                <table className="text-[12px] max-[600px]:text-[17px] min-w-[1300px] whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
+
+       
+            <div className="table-fixed-header table-fixed-body bg-[#ffffff] max-h-[calc(100vh-140px)] overflow-y-auto">
+                <table className="text-[12px] max-[600px]:text-[17px] min-w-[1300px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
                     {buildHeader()}
                     {buildBody()}
-                    
+                 
                 </table>
             </div>
+        
         </>
     );
 };
