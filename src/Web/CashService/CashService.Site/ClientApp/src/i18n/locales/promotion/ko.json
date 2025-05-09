@@ -1,3 +1,21 @@
 {
-   
+    "table": {
+        "no": "번호",
+        "action": "작업",
+        "promotionTitle": "프로모션 제목",
+        "promotionType": "프로모션 유형",
+        "percentage": "비율 (%)",
+        "maxPayout": "최대 지급액",
+        "sports": "스포츠",
+        "virtualSports": "가상 스포츠",
+        "liveCasino": "라이브 카지노",
+        "games": "게임",
+        "period": "기간",
+        "provider": "제공자",
+        "status": "상태",
+        "lastUpdated": "마지막 업데이트"
+    },
+    "search": {
+        "placeholder": "제목 또는 유형으로 검색..."
+    }
 }

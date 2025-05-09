@@ -1,1 +1,21 @@
-{} 
+{
+  "table": {
+    "no": "ลำดับ",
+    "action": "การดำเนินการ",
+    "promotionTitle": "ชื่อโปรโมชั่น",
+    "promotionType": "ประเภทโปรโมชั่น",
+    "percentage": "เปอร์เซ็นต์ (%)",
+    "maxPayout": "การจ่ายเงินสูงสุด",
+    "sports": "กีฬา",
+    "virtualSports": "กีฬาเสมือน",
+    "liveCasino": "คาสิโนสด",
+    "games": "เกม",
+    "period": "ระยะเวลา",
+    "provider": "ผู้ให้บริการ",
+    "status": "สถานะ",
+    "lastUpdated": "อัปเดตล่าสุด"
+  },
+  "search": {
+    "placeholder": "ค้นหาตามชื่อหรือประเภท..."
+  }
+} 

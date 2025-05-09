@@ -1,3 +1,21 @@
 {
-   
+    "table": {
+        "no": "STT",
+        "action": "Thao tác",
+        "promotionTitle": "Tiêu đề khuyến mãi",
+        "promotionType": "Loại khuyến mãi",
+        "percentage": "Phần trăm (%)",
+        "maxPayout": "Thanh toán tối đa",
+        "sports": "Thể thao",
+        "virtualSports": "Thể thao ảo",
+        "liveCasino": "Casino trực tuyến",
+        "games": "Trò chơi",
+        "period": "Thời gian",
+        "provider": "Nhà cung cấp",
+        "status": "Trạng thái",
+        "lastUpdated": "Cập nhật lần cuối"
+    },
+    "search": {
+        "placeholder": "Tìm kiếm theo tiêu đề hoặc loại..."
+    }
 }

@@ -1,5 +1,7 @@
 ﻿import React from 'react';
 import { useTranslation } from 'react-i18next';
+import i18n from '../../../i18n/i18n-promotion';
+import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
 import { Promotion } from '../../../services/interfaces/Promotion';
 import { IconDelete, IconPen, NoRecordsIcon } from '../../../components/Icons';
 
@@ -14,32 +16,33 @@ const Table: React.FC<TableProps> = ({
 }) => {
     const { t } = useTranslation('promotion');
     const { t: tGlobal } = useTranslation('global');
+    useCookieLanguage(i18n);
 
     const getStatusStyle = (status: string) => {
 
         var s = status ? status.toLocaleUpperCase() : '';
         switch (s) {
             case 'ACTIVE':
-                return 'bg-[#DCFCE7] text-[#166534]';
+                return 'bg-[#D4E7D9]';
             case 'SCHEDULED':
-                return 'bg-[#F3F4F6] text-[#374151]';
+                return 'bg-[#FBD8D8]';
             case 'EXPIRED':
-                return 'bg-[#FEE2E2] text-[#991B1B]';
+                return 'bg-[#FBD8D8]';
             default:
-                return 'bg-gray-100 text-gray-800';
+                return '';
         }
     };
 
     const buildHeader = () => (
         <thead>
             <tr>
-                <th scope="col" className='w-[40px] sticky z-10 left-0 top-[0] bg-[#ffffff] '>
+                <th scope="col" className='w-[40px] sticky z-10 left-0 bg-[#ffffff] '>
                     {t('table.no')} 
                 </th>
-                <th scope="col" className='w-[75px] sticky z-10 left-[40px] top-[0] bg-[#ffffff]'>
+                <th scope="col" className='w-[75px] sticky z-10 left-[40px] bg-[#ffffff]'>
                     {t('table.action')}
                 </th>
-                <th className='sticky z-10 w-[110px]  left-[115px] top-[0] bg-[#ffffff] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]' scope="col">
+                <th className='sticky z-10 w-[110px]  left-[115px] bg-[#ffffff] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]' scope="col">
                     <span className="relative z-3">{t('table.promotionTitle')}</span>
                 </th>
                 <th scope="col">
@@ -69,7 +72,6 @@ const Table: React.FC<TableProps> = ({
                 <th scope="col">
                     {t('table.lastUpdated')}
                 </th>
-
             </tr>
         </thead>
     );
@@ -93,12 +95,12 @@ const Table: React.FC<TableProps> = ({
                     </button>
                 </div>
             </td>
-            <td className="w-[110px] sticky left-[115px] bg-[#ffffff] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">{item.promotionTitle}</td>
+            <td className="text-left w-[110px] sticky left-[115px] bg-[#ffffff] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">{item.promotionTitle}</td>
             <td className="">{item.promotionType}</td>
-            <td className="">{item.sportsPercentage}<br />{item.sportsMaxPayout}</td>
-            <td className="">{item.virtualSportsPercentage}<br />{item.virtualSportsMaxPayout}</td>
-            <td className="">{item.gamesPercentage}<br />{item.gamesMaxPayout}</td>
-            <td className="">{item.liveCasinoPercentage}<br />{item.liveCasinoMaxPayout}</td>
+            <td className="text-right">{item.sportsPercentage}<br />{item.sportsMaxPayout}</td>
+            <td className="text-right">{item.virtualSportsPercentage}<br />{item.virtualSportsMaxPayout}</td>
+            <td className="text-right">{item.gamesPercentage}<br />{item.gamesMaxPayout}</td>
+            <td className="text-right">{item.liveCasinoPercentage}<br />{item.liveCasinoMaxPayout}</td>
             <td className="">{item.period}</td>
             <td className="">{item.provider}</td>
             <td className="">

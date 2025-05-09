@@ -1,3 +1,21 @@
 {
-   
+    "table": {
+        "no": "番号",
+        "action": "アクション",
+        "promotionTitle": "プロモーションタイトル",
+        "promotionType": "プロモーションタイプ",
+        "percentage": "パーセンテージ (%)",
+        "maxPayout": "最大ペイアウト",
+        "sports": "スポーツ",
+        "virtualSports": "バーチャルスポーツ",
+        "liveCasino": "ライブカジノ",
+        "games": "ゲーム",
+        "period": "期間",
+        "provider": "プロバイダー",
+        "status": "ステータス",
+        "lastUpdated": "最終更新"
+    },
+    "search": {
+        "placeholder": "タイトルまたはタイプで検索..."
+    }
 }
