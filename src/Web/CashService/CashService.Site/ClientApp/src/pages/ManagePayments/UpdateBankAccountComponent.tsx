@@ -318,7 +318,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                         toggleAutoDeposit();
                       }}
                     >
-                      <span className="text-[14px] font-bold">{bankDepositMatchingMode.sourceTypeName}</span>
+                      <span className="text-[14px] font-bold">{bankDepositMatchingMode?.sourceTypeName}</span>
                       <br />
                       <span className="text-[12px]">{tManagePayments('autoDeposit')}</span>
                     </button>

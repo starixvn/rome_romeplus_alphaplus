@@ -134,5 +134,6 @@
   "apiKey": "APIキー",
   "merchantID": "マーチャントID",
   "createdBy": "作成者",
-  "pleaseSelectDepositType": "入金タイプを選択してください"
+  "pleaseSelectDepositType": "入金タイプを選択してください",
+  "failedToLoadBankAccount": "銀行口座の読み込みに失敗しました"
 }

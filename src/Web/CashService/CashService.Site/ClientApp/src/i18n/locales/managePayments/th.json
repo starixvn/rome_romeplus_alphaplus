@@ -134,5 +134,6 @@
   "apiKey": "API Key",
   "merchantID": "รหัสร้านค้า",
   "createdBy": "สร้างโดย",
-  "pleaseSelectDepositType": "กรุณาเลือกประเภทการฝาก"
+  "pleaseSelectDepositType": "กรุณาเลือกประเภทการฝาก",
+  "failedToLoadBankAccount": "ไม่สามารถโหลดบัญชีธนาคารได้"
 }

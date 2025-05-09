@@ -134,5 +134,6 @@
   "apiKey": "API密鑰",
   "merchantID": "商戶ID",
   "createdBy": "創建者",
-  "pleaseSelectDepositType": "請選擇存款類型"
+  "pleaseSelectDepositType": "請選擇存款類型",
+  "failedToLoadBankAccount": "加載銀行賬戶失敗"
 }

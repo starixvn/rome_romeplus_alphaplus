@@ -136,5 +136,6 @@
   "apiKey": "API Key",
   "merchantID": "Merchant ID",
   "createdBy": "Created by",
-  "pleaseSelectDepositType": "Please select deposit type"
+  "pleaseSelectDepositType": "Please select deposit type",
+  "failedToLoadBankAccount": "Failed to load bank account"
 } 

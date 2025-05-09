@@ -134,5 +134,6 @@
   "apiKey": "API Key",
   "merchantID": "ID người bán",
   "createdBy": "Tạo bởi",
-  "pleaseSelectDepositType": "Vui lòng chọn loại nạp tiền"
+  "pleaseSelectDepositType": "Vui lòng chọn loại nạp tiền",
+  "failedToLoadBankAccount": "Không tải được tài khoản ngân hàng"
 }
