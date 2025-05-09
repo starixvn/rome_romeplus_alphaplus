@@ -13,6 +13,7 @@ import { formatNumber, formatInputValue } from '../../utils/numberFormatting';
 import { IconBack, IconInfo } from '../../components/Icons';
 import './common.css';
 import '../../styles/global.scss';
+import i18n from '../../i18n/i18n-managePayments';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 import { ResultMessage } from '../../components/ResultMessage';
 // Extend Window interface to include providerName
@@ -25,7 +26,7 @@ declare global {
 function PaymentProviderSettings() {
   const { t: tGlobal } = useTranslation('global');
   const { t: tManagePayments } = useTranslation('managePayments');
-  useCookieLanguage();
+  useCookieLanguage(i18n);
   const [showFeePopup, setShowFeePopup] = React.useState(false);
   const [showAddPaymentMethod, setShowAddPaymentMethod] = React.useState(false);
   const [showBanksPopup, setShowBanksPopup] = React.useState(false);

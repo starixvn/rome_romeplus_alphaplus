@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import i18n from '../i18n/i18n';
 
 function getCookie(name: string) {
   const value = `; ${document.cookie}`;
@@ -8,11 +7,11 @@ function getCookie(name: string) {
   return undefined;
 }
 
-export function useCookieLanguage(cookieName = 'LANGUAGE') {
+export function useCookieLanguage(i18nInstance: any, cookieName = 'LANGUAGE') {
   useEffect(() => {
     const cookieLang = getCookie(cookieName);
     if (cookieLang) {
-      i18n.changeLanguage(cookieLang);
+      i18nInstance.changeLanguage(cookieLang);
     }
   }, [cookieName]);
 }

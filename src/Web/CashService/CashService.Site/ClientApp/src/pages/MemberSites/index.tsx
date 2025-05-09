@@ -7,12 +7,13 @@ import { memberSitesService } from '../../services/memberSitesAPI';
 import { Setting, MessageData, MemberSiteResponse } from '../../types/memberSite';
 import '../../styles/common.css'
 import { useTranslation } from 'react-i18next';
+import i18n from '../../i18n/i18n-memberSite';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 import { ResultMessage, ResultType } from '../../components/ResultMessage';
 
 const MemberSiteManagement: React.FC = () => {
   const { t } = useTranslation('memberSite');
-  useCookieLanguage();
+  useCookieLanguage(i18n);
   const defaultData = {
     domains: [],
     generalSettings: [],

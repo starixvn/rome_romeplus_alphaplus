@@ -5,10 +5,11 @@ import './common.css';
 import '../../styles/global.scss';
 import PaymentGateway from './PaymentGateway';
 import BankAccount from './BankAccount';
+import i18n from '../../i18n/i18n-managePayments';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 
 function ManagePayments() {
-  useCookieLanguage();
+  useCookieLanguage(i18n);
   const [activeTab, setActiveTab] = React.useState('paymentGateway');
 
   return (
