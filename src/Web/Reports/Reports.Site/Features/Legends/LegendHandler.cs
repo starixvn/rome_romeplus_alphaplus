@@ -112,6 +112,7 @@ public class LegendHandler(
 
         await AddOfferedProductsNeedDelayTimeToSummarizeData(legends, productParam);
         legends.Add($"- {await GetProductDetailsBelongSabaOtherSportsNote(message.ViewerId, productParam)}");
+        legends.Add($"- {await GetProductDetailsBelongSoccerPinGoal(message.ViewerId, productParam)}");
         legends.Add(GetGrossCommNotes(message.ViewerLevel, false));
         legends.Add(Resources.GrossCommRoundingNote);
         if (message.ShowDormantAccountsNote)
@@ -135,6 +136,20 @@ public class LegendHandler(
             Resources.SabaOtherSportsLegend,
             productDetailsBelongSabaOthers,
             cacheRefService.GetProductDetailName(ProductDetailIdConstants.SabaOtherSports));
+    }
+    private async Task<string> GetProductDetailsBelongSoccerPinGoal(int custId, GetProductsParam param)
+    {
+        var products = await GetProducts(param);
+        var productDetailsBelongSoccerPinGoal = (await GetProductDetails(custId, products))
+            .Where(i => i.ResourceId == ProductDetailIdConstants.SoccerPinGoal && i.ChildResourceId != 0)
+            .OrderBy(product => product.Order)
+            .Select(i => cacheRefService.GetProductDetailName(i.ChildResourceId))
+            .JoinWithComma(", ");
+
+        return string.Format(
+            Resources.SabaOtherSportsLegend,
+            productDetailsBelongSoccerPinGoal,
+            cacheRefService.GetProductDetailName(ProductDetailIdConstants.SoccerPinGoal));
     }
 
     public Task<LegendViewModel> Handle(MatchWinLossDetailLegendQuery message, CancellationToken cancellationToken)
