@@ -1,7 +1,6 @@
 import Tippy from "@tippyjs/react";
 import { useTranslation } from 'react-i18next';
 import { IconInfo } from "../Icons";
-import '../../i18n/i18n-global';
 
 interface TitleCommonProps {
   title: string;
