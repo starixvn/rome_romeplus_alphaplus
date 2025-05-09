@@ -1,3 +1,4 @@
+using AlphaPlus.CashService.API.Criteria.PendingWithdrawal;
 using AlphaPlus.CashService.API.Models;
 using AlphaPlus.CashService.API.Models.PendingCommons;
 using Fanex.Data.Repository;
@@ -7,29 +8,24 @@ namespace AlphaPlus.CashService.API.Services;
 public interface IPendingWithdrawalService
 {
     Task<IEnumerable<BankAccountInfo>> GetBankWithdrawalAccounts();
-    Task<IEnumerable<MemberLoginNameInfo>> GetMemberWithdrawalLoginNames();
-    Task<ResultModel> InsertWithdrawAccountInfo(PendingInfoDetail withdrawalInfoDetail);
+
+    Task<decimal> GetCashBalanceAsync(int custId);
+
+    Task<CreditAmount> GetLimitAmtWithdrawAsync(CashLimitAmt cashLimitAmt);
+
+    Task<MemberSettingWithdraw> GetMemberSettingWithdrawAsync(int custId);
+
+    Task<(ResultModel, int, string)> CreateManualWithdrawAsync(CreateManualModel param);
 }
 
-public class PendingWithdrawalService(IDynamicRepository repository) : IPendingWithdrawalService
+public class PendingWithdrawalService(IDynamicRepository dynamicRepository) : IPendingWithdrawalService
 {
     public async Task<IEnumerable<BankAccountInfo>> GetBankWithdrawalAccounts()
     {
         return GetDummyBankAccountInfo();
-        //return await repository.FetchAsync<BankAccountInfo>(new GetMemberBankAccountCriteria());
+        //return await dynamicRepository.FetchAsync<BankAccountInfo>(new GetMemberBankAccountCriteria());
     }
 
-    public async Task<IEnumerable<MemberLoginNameInfo>> GetMemberWithdrawalLoginNames()
-    {
-        return GetDummyMemberLoginInfo();
-        //return await repository.FetchAsync<MemberLoginNameInfo>(new GetMemberLoginNameCriteria());
-    }
-
-    public async Task<ResultModel> InsertWithdrawAccountInfo(PendingInfoDetail withdrawalInfoDetail)
-    {
-        return new ResultModel(0, "Success");
-    }
-    
     private static IEnumerable<BankAccountInfo> GetDummyBankAccountInfo()
     {
         return new List<BankAccountInfo>
@@ -46,7 +42,7 @@ public class PendingWithdrawalService(IDynamicRepository repository) : IPendingW
                 From = 44556677,
                 To = 77665544,
                 ReferenceNo = "REF004",
-                DateAndTime = DateTime.Now.AddDays(-2)
+                DateAndTime = DateTime.Now
             },
             new()
             {
@@ -60,7 +56,7 @@ public class PendingWithdrawalService(IDynamicRepository repository) : IPendingW
                 From = 11223344,
                 To = 55667788,
                 ReferenceNo = "REF005",
-                DateAndTime = DateTime.Now.AddHours(-12)
+                DateAndTime = DateTime.Now.AddHours(-1)
             },
             new()
             {
@@ -74,20 +70,63 @@ public class PendingWithdrawalService(IDynamicRepository repository) : IPendingW
                 From = 99887766,
                 To = 66778899,
                 ReferenceNo = "REF006",
-                DateAndTime = DateTime.Now.AddDays(-4)
+                DateAndTime = DateTime.Now.AddMinutes(-20)
             }
         };
     }
     
-    private static IEnumerable<MemberLoginNameInfo> GetDummyMemberLoginInfo()
+    public async Task<decimal> GetCashBalanceAsync(int custId)
     {
-        return new List<MemberLoginNameInfo>
+        var criteria = new GetCashBalanceCriteria
         {
-            new() { MemberLoginName = "awilliams321", From = 500, To = 3500 },
-            new() { MemberLoginName = "mbrown555", From = 100, To = 1500 },
-            new() { MemberLoginName = "edavis789", From = 200, To = 2000 },
-            new() { MemberLoginName = "tgreen222", From = 300, To = 2500 },
-            new() { MemberLoginName = "swilson444", From = 50, To = 500 }
+            CustId = custId
         };
+        return await dynamicRepository.GetAsync<decimal>(criteria);
+    }
+
+    public async Task<CreditAmount> GetLimitAmtWithdrawAsync(CashLimitAmt cashLimitAmt)
+    {
+        var criteria = new GetLimitAmtWithdrawCriteria()
+        {
+            CustId = cashLimitAmt.CustId,
+            ProviderId = cashLimitAmt.ProviderId,
+            UplineId = cashLimitAmt.UplineId,
+            CashBalance = cashLimitAmt.CashBalance
+
+        };
+        return await dynamicRepository.GetAsync<CreditAmount>(criteria);
+    }
+
+    public async Task<MemberSettingWithdraw> GetMemberSettingWithdrawAsync(int custId)
+    {
+        var criteria = new GetMemberSettingWithdrawCriteria
+        {
+            CustId = custId
+        };
+        return await dynamicRepository.GetAsync<MemberSettingWithdraw>(criteria);
+    }
+
+    public async Task<(ResultModel, int, string)> CreateManualWithdrawAsync(CreateManualModel param)
+    {
+        var command = new CreateManualWithdrawCommand
+        {
+            CustId = param.CustId,
+            UplineId = param.UplineId,
+            SubAccId = param.SubAccId,
+            MinLimitAmt = param.MinLimitAmt,
+            MaxLimitAmt = param.MaxLimitAmt,
+            WithdrawalLimitCnt = param.WithdrawalLimitCnt,
+            PaymentFrom = param.PaymentFrom,
+            PaymentTo = param.PaymentTo,
+            Amount = param.Amount,
+            PaySlip = param.PaySlip,
+            Ip = param.Ip,
+            Remark = param.Remark,
+            ProviderId = param.ProviderId,
+        };
+        await dynamicRepository.ExecuteAsync(command);
+        var result = new ResultModel(command.ErrCode, command.ErrMsg);
+
+        return (result, command.TransId, command.CashAccumCreditTbl);
     }
 }

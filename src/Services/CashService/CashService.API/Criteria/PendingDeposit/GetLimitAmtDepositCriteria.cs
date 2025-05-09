@@ -10,5 +10,5 @@ public class GetLimitAmtDepositCriteria : CriteriaBase
 
     public override string GetSettingKey() => "Age_CashDeposit_LimitAmtSel";
 
-    public override bool IsValid() => true;
+    public override bool IsValid() => CustId > 0;
 }

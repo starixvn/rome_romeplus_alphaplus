@@ -8,5 +8,5 @@ public class GetAccumulateCreditCriteria : CriteriaBase
 
     public override string GetSettingKey() => "Age_CashAccumCredit_AgSel";
 
-    public override bool IsValid() => true;
+    public override bool IsValid() => CustId > 0;
 }

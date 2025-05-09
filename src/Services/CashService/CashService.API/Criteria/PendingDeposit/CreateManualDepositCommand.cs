@@ -39,6 +39,6 @@ namespace AlphaPlus.CashService.API.Criteria.PendingDeposit
 
         public override string GetSettingKey() => "Age_CashDeposit_ManualAdd";
 
-        public override bool IsValid() => true;
+        public override bool IsValid() => CustId > 0;
     }
 }

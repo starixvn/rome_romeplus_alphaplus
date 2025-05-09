@@ -11,18 +11,6 @@ public static class PendingWithdrawalEndpoints
         var group = app.MapGroup("/api/withdrawal")
             .WithTags("Pending Withdrawal");
 
-        group.MapGet("/member-withdraw-login-names", async (IPendingWithdrawalService service) =>
-        {
-            var members = await service.GetMemberWithdrawalLoginNames();
-            return Results.Ok(members);
-        })
-        .WithName("GetMemberWithdrawLoginNames")
-        .WithOpenApi(operation => new(operation)
-        {
-            Summary = "Get member withdrawal login names",
-            Description = "Returns a list of all available member login names for manual withdrawal"
-        });
-
         group.MapGet("/bank-withdrawal-accounts", async (IPendingWithdrawalService service) =>
         {
             var bankAccounts = await service.GetBankWithdrawalAccounts();
@@ -35,25 +23,5 @@ public static class PendingWithdrawalEndpoints
             Description = "Returns a list of bank withdrawal accounts"
         });
 
-        group.MapPost("/add-withdraw-account-info", async (HttpRequest request, IPendingWithdrawalService service) =>
-        {
-            using var reader = new StreamReader(request.Body);
-            var body = await reader.ReadToEndAsync();
-            var accountInfo = JsonConvert.DeserializeObject<PendingInfoDetail>(body);
-
-            if (accountInfo == null)
-            {
-                return Results.BadRequest("Invalid account information data");
-            }
-
-            var result = await service.InsertWithdrawAccountInfo(accountInfo);
-            return Results.Ok(result);
-        })
-        .WithName("InsertWithdrawAccountInfo")
-        .WithOpenApi(operation => new(operation)
-        {
-            Summary = "Insert withdrawal account information",
-            Description = "Adds new account information for a manual withdrawal"
-        });
     }
 }

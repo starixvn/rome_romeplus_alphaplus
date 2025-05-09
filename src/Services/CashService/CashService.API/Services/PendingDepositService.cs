@@ -9,13 +9,13 @@ public interface IPendingDepositService
 {
     Task<IEnumerable<BankAccountInfo>> GetMemberBankAccountInfo();
 
-    Task<decimal> GetAccumulateCreditAsync(int id);
+    Task<decimal> GetAccumulateCreditAsync(int custId);
 
-    Task<CreditAmount> GetLimitAmtDepositAsync(int id, decimal accumCreditReturn);
+    Task<CreditAmount> GetLimitAmtDepositAsync(int custId, decimal accumCreditReturn);
 
-    Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int id);
+    Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int custId);
 
-    Task<(ResultModel, int, string)> CreateManualDepositAsync(CreateManualDeposit param);
+    Task<(ResultModel, int, string)> CreateManualDepositAsync(CreateManualModel param);
 }
 
 public class PendingDepositService(IDynamicRepository dynamicRepository) : IPendingDepositService
@@ -75,35 +75,35 @@ public class PendingDepositService(IDynamicRepository dynamicRepository) : IPend
         };
     }
 
-    public async Task<decimal> GetAccumulateCreditAsync(int id)
+    public async Task<decimal> GetAccumulateCreditAsync(int custId)
     {
         var criteria = new GetAccumulateCreditCriteria
         {
-            CustId = id
+            CustId = custId
         };
         return await dynamicRepository.GetAsync<decimal>(criteria);
     }
 
-    public async Task<CreditAmount> GetLimitAmtDepositAsync(int id, decimal accumCreditReturn)
+    public async Task<CreditAmount> GetLimitAmtDepositAsync(int custId, decimal accumCreditReturn)
     {
         var criteria = new GetLimitAmtDepositCriteria
         {
-            CustId = id,
+            CustId = custId,
             AccumCreditReturn = accumCreditReturn
         };
         return await dynamicRepository.GetAsync<CreditAmount>(criteria);
     }
 
-    public async Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int id)
+    public async Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int custId)
     {
         var criteria = new GetMemberSettingDepositCriteria
         {
-            CustId = id
+            CustId = custId
         };
         return await dynamicRepository.GetAsync<MemberSettingDeposit>(criteria);
     }
 
-    public async Task<(ResultModel, int, string)> CreateManualDepositAsync(CreateManualDeposit param)
+    public async Task<(ResultModel, int, string)> CreateManualDepositAsync(CreateManualModel param)
     {
         var command = new CreateManualDepositCommand
         {

@@ -1,6 +1,6 @@
 ﻿namespace AlphaPlus.CashService.API.Models.PendingCommons;
 
-public class CreateManualDeposit
+public class CreateManualModel
 {
     public int CustId { get; set; }
 
@@ -16,6 +16,8 @@ public class CreateManualDeposit
 
     public decimal MaxLimitAmt { get; set; }
 
+    public int WithdrawalLimitCnt { get; set; }
+
     public string PaymentFrom { get; set; }
 
     public string PaymentTo { get; set; }
@@ -27,4 +29,6 @@ public class CreateManualDeposit
     public string Ip { get; set; }
 
     public string Remark { get; set; }
+
+    public int ProviderId { get; set; }
 }

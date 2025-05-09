@@ -23,9 +23,9 @@ public static class PendingDepositEndpoints
             Description = "Returns a list of bank accounts for members"
         });
 
-        group.MapGet("/accumulate-credit/{id}", async (int id, IPendingDepositService service) =>
+        group.MapGet("/accumulate-credit/{custId}", async (int custId, IPendingDepositService service) =>
         {
-            var accumulateCredit = await service.GetAccumulateCreditAsync(id);
+            var accumulateCredit = await service.GetAccumulateCreditAsync(custId);
             return Results.Ok(accumulateCredit);
         })
         .WithName("GetAccumulateCreditAsync")
@@ -35,9 +35,9 @@ public static class PendingDepositEndpoints
             Description = "Returns total Cash member return Credit of Agent"
         });
 
-        group.MapGet("/cash-deposit-limit-amount/{id}/{accumCreditReturn}", async (int id, decimal accumCreditReturn, IPendingDepositService service) =>
+        group.MapGet("/cash-deposit-limit-amount/{custId}/{accumCreditReturn}", async (int custId, decimal accumCreditReturn, IPendingDepositService service) =>
         {
-            var creditAmt = await service.GetLimitAmtDepositAsync(id, accumCreditReturn);
+            var creditAmt = await service.GetLimitAmtDepositAsync(custId, accumCreditReturn);
             return Results.Ok(creditAmt);
         })
         .WithName("GetLimitAmtDepositAsync")
@@ -47,9 +47,9 @@ public static class PendingDepositEndpoints
             Description = "Returns range value the member can deposit (MinAmt - MaxAmt)"
         });
 
-        group.MapGet("/member-setting-deposit/{id}", async (int id, IPendingDepositService service) =>
+        group.MapGet("/member-setting-deposit/{custId}", async (int custId, IPendingDepositService service) =>
         {
-            var memberSettingDeposit = await service.GetMemberSettingDepositAsync(id);
+            var memberSettingDeposit = await service.GetMemberSettingDepositAsync(custId);
             return Results.Ok(memberSettingDeposit);
         })
         .WithName("GetMemberSettingDepositAsync")
@@ -59,7 +59,7 @@ public static class PendingDepositEndpoints
             Description = "Returns range value the member can deposit (MinAmt - MaxAmt)"
         });
 
-        group.MapPost("/create-manual-deposit", async ([FromBody] CreateManualDeposit param, IPendingDepositService service) =>
+        group.MapPost("/create-manual-deposit", async ([FromBody] CreateManualModel param, IPendingDepositService service) =>
         {
             var (result, id, message) = await service.CreateManualDepositAsync(param);
             return result.Code != 0 ? Results.NotFound() : Results.Ok(new { result, id, message });
