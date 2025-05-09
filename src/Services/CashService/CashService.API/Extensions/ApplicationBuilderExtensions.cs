@@ -54,14 +54,13 @@ public static class ApplicationBuilderExtensions
     public static WebApplication MapApiEndpoints(this WebApplication app)
     {
         app.MapSystemEndpoints();
-        app.MapBaseEndpoints();
+        app.MapCommonEndpoints();
         app.MapPaymentsEndpoints();
         app.MapMemberSiteManagementEndpoints();
         app.MapPendingDepositEndpoints();
         app.MapPendingWithdrawalEndpoints();
         app.MapTransactionsHistoryEndpoints();
         app.MapPromotionEndpoints();
-        app.MapCommonEndpoints();
 
         return app;
     }

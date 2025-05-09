@@ -234,7 +234,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
 
         public async Task<IActionResult> GetCountryCodes(CancellationToken cancellationToken)
         {
-            var url = $"{_apiBaseUrl}/base/country-codes/{_userSession.Site}";
+            var url = $"{_apiBaseUrl}/common/country-codes/{_userSession.Site}";
             var countryCodes = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
             return Json(countryCodes);
         }

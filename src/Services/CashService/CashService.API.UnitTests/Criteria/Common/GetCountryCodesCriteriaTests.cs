@@ -1,7 +1,7 @@
-using AlphaPlus.CashService.API.Criteria.Payments;
+using AlphaPlus.CashService.API.Criteria.Common;
 using Xunit;
 
-namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments;
+namespace AlphaPlus.CashService.API.UnitTests.Criteria.Common;
 
 public class GetCountryCodesCriteriaTests
 {

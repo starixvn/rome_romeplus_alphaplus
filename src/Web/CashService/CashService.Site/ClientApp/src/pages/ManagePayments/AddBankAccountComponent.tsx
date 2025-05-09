@@ -11,7 +11,7 @@ import {
 } from '../../utils/bankTransactionUtils';
 import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { IconCheck, IconError } from '../../components/Icons';
-import { baseAPI } from '../../services/baseAPI';
+import { baseAPI } from '../../services/commonAPI';
 import CustomDropdown, { DropdownOption } from '../../components/ui/customDropdown';
 
 interface AddBankAccountComponentProps {

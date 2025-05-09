@@ -1,5 +1,5 @@
 using AlphaPlus.CashService.API.Criteria.MemberSite;
-using AlphaPlus.CashService.API.Criteria.Payments;
+using AlphaPlus.CashService.API.Criteria.Common;
 using AlphaPlus.CashService.API.Models;
 using Fanex.Data.Repository;
 using AlphaPlus.Shared;

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { baseAPI } from './baseAPI';
+import { baseAPI } from './commonAPI';
 import { api } from '../config/axios';
 
 // Mock the axios api
@@ -9,7 +9,7 @@ vi.mock('../config/axios', () => ({
   },
 }));
 
-describe('baseAPI', () => {
+describe('commonAPI', () => {
   beforeEach(() => {
     // Clear all mocks before each test
     vi.clearAllMocks();
