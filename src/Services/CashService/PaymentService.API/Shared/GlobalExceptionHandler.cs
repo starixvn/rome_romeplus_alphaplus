@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Diagnostics;
 
 namespace AlphaPlus.PaymentService.API.Shared;
 
-public class GlobalExceptionHandler(Fanex.Logging.ILogger logger) : IExceptionHandler
+public sealed class GlobalExceptionHandler(Fanex.Logging.ILogger logger) : IExceptionHandler
 {
     private const string BreakLine = "\r\n";
     private const string TwoBreakLine = "\r\n\r\n";

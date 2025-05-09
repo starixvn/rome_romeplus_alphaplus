@@ -1,9 +1,4 @@
-using AgencyCash.APIGateway.DelegatingHandlers;
 using AgencyCash.APIGateway.Shared;
-using Ocelot.Cache.CacheManager;
-using Ocelot.DependencyInjection;
-using Ocelot.Middleware;
-using Ocelot.Provider.Polly;
 using ONEbook.UM.AspNetCore;
 using ONEbook.UM.Configurations;
 using ONEbook.UM.Helpers;
@@ -22,27 +17,22 @@ builder.Services
     .AddProblemDetails()
     .AddHealthChecks();
 builder.Services
-    .AddOcelot(configuration.GetSection("Ocelot"))
-    .AddPolly()
-    .AddCacheManager(x => x.WithDictionaryHandle())
-    .AddDelegatingHandler<ApiKeyHandler>(true)
-    .AddDelegatingHandler<UMHandler>(true)
-    .AddDelegatingHandler<NoGzipDelegatingHandler>(true);
+    .AddReverseProxy()
+    .LoadFromConfig(configuration.GetSection("ReverseProxy"));
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
-else
-{
-    app.UseExceptionHandler();
-}
 
-app
-    .UseRouting()
-    .UseEndpoints(config => config.MapHealthChecks("/health"))
-    .UseOcelot()
-    .Wait();
+app.UseExceptionHandler();
+app.MapHealthChecks("/health");
+app.MapReverseProxy(config =>
+{
+    config
+        .UseMiddleware<ApiKeyMiddleware>()
+        .UseMiddleware<UMMiddleware>();
+});
 
 await app.RunAsync();

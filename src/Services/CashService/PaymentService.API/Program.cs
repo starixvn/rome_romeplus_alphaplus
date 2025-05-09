@@ -1,4 +1,3 @@
-using AlphaPlus.PaymentService.API.Deposit;
 using AlphaPlus.PaymentService.API.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +6,7 @@ builder.Services
     .AddFanexLogging(configuration)
     .AddExceptionHandler<GlobalExceptionHandler>()
     .AddProblemDetails()
+    .AddPaymentServices(configuration)
     .AddEndpointsApiExplorer()
     .AddSwaggerGen()
     .AddHealthChecks();
@@ -25,10 +25,10 @@ app
     .UseSwagger()
     .UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Payment Service API");
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Payments Service API");
         c.RoutePrefix = string.Empty; // Set Swagger UI at the app's root
     });
 app.MapHealthChecks("/health");
-app.RegisterDepositEndpoints();
+app.RegisterPaymentsEndpoints();
 
 await app.RunAsync();
