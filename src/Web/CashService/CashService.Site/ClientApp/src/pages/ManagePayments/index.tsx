@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
-import 'tippy.js/dist/tippy.css'; 
+// import 'tippy.js/dist/tippy.css'; 
 import './common.css';
-import '../../styles/global.scss';
+// import '../../styles/global.scss';
 import PaymentGateway from './PaymentGateway';
 import BankAccount from './BankAccount';
 import i18n from '../../i18n/i18n-managePayments';
