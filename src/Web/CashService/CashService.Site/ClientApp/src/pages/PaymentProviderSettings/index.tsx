@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { useTranslation } from 'react-i18next';
-import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
+
 import { STATUS_OPTIONS, TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import ProviderFeesPopupModal from '../ManagePayments/ProviderFeesPopupModal';
 import AddPaymentMethodModal from './AddPaymentMethodModal';
@@ -11,12 +10,14 @@ import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { formatNumber, formatInputValue } from '../../utils/numberFormatting';
 import { IconBack, IconInfo } from '../../components/Icons';
-import './common.css';
-import '../../styles/global.scss';
+import Tippy from '@tippyjs/react';
 import i18n from '../../i18n/i18n-managePayments';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 import { ResultMessage } from '../../components/ResultMessage';
-// Extend Window interface to include providerName
+
+
+import '../../styles/global.scss';
+import './PaymentProviderSettings.css';
 declare global {
   interface Window {
     providerSettingsViewModel: any;
