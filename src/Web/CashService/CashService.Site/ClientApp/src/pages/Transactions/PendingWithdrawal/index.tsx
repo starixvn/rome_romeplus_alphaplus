@@ -7,7 +7,7 @@ import DataGrid from './components/DataGrid.tsx';
 import { WithdrawalAccountInfo } from '../../../services/interfaces/WithdrawalAccountInfo';
 import { pendingWithdrawalService } from '../../../services/pendingWithdrawalAPI';
 import { useTranslation } from 'react-i18next';
-import '../../../i18n/i18n';
+
 
 const PendingWithdrawal: React.FC = () => {
   const { t } = useTranslation('pendingWithdrawal');

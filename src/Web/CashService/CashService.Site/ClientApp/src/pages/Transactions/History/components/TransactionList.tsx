@@ -10,7 +10,7 @@ import Search from './Search';
 import Table from './Table';
 import Pagination from './Pagination';
 import { useTranslation } from 'react-i18next';
-import '../../../../i18n/i18n';
+
 
 interface TransactionListProps {
   transactionType: number;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ChevronDownIcon } from '../../../../../components/Icons';
 import { useTranslation } from 'react-i18next';
-import '../../../../../i18n/i18n';
+
 
 interface StatusFilterProps {
   status: string;

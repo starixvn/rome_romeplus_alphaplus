@@ -8,7 +8,7 @@ import {
   revertTransaction,
 } from '../../../../services/transactionsHistoryAPI';
 import { useTranslation } from 'react-i18next';
-import '../../../../i18n/i18n';
+
 
 interface TransactionDetailProps {
   transactionId: number | null;

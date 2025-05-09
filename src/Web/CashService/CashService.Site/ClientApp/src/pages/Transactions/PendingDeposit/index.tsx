@@ -7,7 +7,7 @@ import DataGrid from './components/DataGrid';
 import { DepositAccountInfo } from '../../../services/interfaces/DepositAccountInfo';
 import { pendingDepositService } from '../../../services/pendingDepositAPI';
 import { useTranslation } from 'react-i18next';
-import '../../../i18n/i18n';
+
 
 const PendingDeposit: React.FC = () => {
   const { t } = useTranslation('pendingDeposit');

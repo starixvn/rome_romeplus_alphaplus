@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDownIcon } from '../../../../../components/Icons';
 import { useTranslation } from 'react-i18next';
-import '../../../../../i18n/i18n';
 import { getAccount } from '../../../../../services/transactionsHistoryAPI';
 import { AccountOption } from '../../../../../services/interfaces/Transactions/AccountOption';
 
