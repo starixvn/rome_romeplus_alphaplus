@@ -1,5 +1,6 @@
 using AlphaPlus.CashService.API.Models.PendingCommons;
 using AlphaPlus.CashService.API.Services;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace AlphaPlus.CashService.API.Endpoints;
@@ -23,5 +24,52 @@ public static class PendingWithdrawalEndpoints
             Description = "Returns a list of bank withdrawal accounts"
         });
 
+        group.MapGet("/cash-balance/{custId}", async (int custId, IPendingWithdrawalService service) =>
+        {
+            var cashBalance = await service.GetCashBalanceAsync(custId);
+            return Results.Ok(cashBalance);
+        })
+        .WithName("GetCashBalanceAsync")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Get cash balance of member",
+            Description = "Returns cash balance of member"
+        });
+
+        group.MapGet("/limit-amount", async ([FromBody] CashLimitAmt param, IPendingWithdrawalService service) =>
+        {
+            var cashLimit = await service.GetLimitAmtWithdrawAsync(param);
+            return Results.Ok(cashLimit);
+        })
+        .WithName("GetLimitAmtWithdrawAsync")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Get limit amount withdrawal information",
+            Description = "Returns range value the member can withdrawal (MinAmt - MaxAmt)"
+        });
+
+        group.MapGet("/member-setting/{custId}", async (int custId, IPendingWithdrawalService service) =>
+        {
+            var memberSettingWithdraw = await service.GetMemberSettingWithdrawAsync(custId);
+            return Results.Ok(memberSettingWithdraw);
+        })
+        .WithName("GetMemberSettingWithdrawAsync")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Get member setting withdrawal information",
+            Description = "Returns withdrawal setting value for Member - use to validate min-max amount"
+        });
+
+        group.MapPost("/create", async ([FromBody] CreateManualModel param, IPendingWithdrawalService service) =>
+        {
+            var (result, id, message) = await service.CreateManualWithdrawAsync(param);
+            return result.Code != 0 ? Results.NotFound() : Results.Ok(new { result, id, message });
+        })
+        .WithName("CreateManualWithdrawAsync")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Create manual withdrawal",
+            Description = "Adding manual withdrawal transaction on Agency site"
+        });
     }
 }

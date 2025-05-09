@@ -11,7 +11,7 @@ public interface IPendingWithdrawalService
 
     Task<decimal> GetCashBalanceAsync(int custId);
 
-    Task<CreditAmount> GetLimitAmtWithdrawAsync(CashLimitAmt cashLimitAmt);
+    Task<CreditAmount> GetLimitAmtWithdrawAsync(CashLimitAmt param);
 
     Task<MemberSettingWithdraw> GetMemberSettingWithdrawAsync(int custId);
 
@@ -84,14 +84,14 @@ public class PendingWithdrawalService(IDynamicRepository dynamicRepository) : IP
         return await dynamicRepository.GetAsync<decimal>(criteria);
     }
 
-    public async Task<CreditAmount> GetLimitAmtWithdrawAsync(CashLimitAmt cashLimitAmt)
+    public async Task<CreditAmount> GetLimitAmtWithdrawAsync(CashLimitAmt param)
     {
-        var criteria = new GetLimitAmtWithdrawCriteria()
+        var criteria = new GetLimitAmtWithdrawCriteria
         {
-            CustId = cashLimitAmt.CustId,
-            ProviderId = cashLimitAmt.ProviderId,
-            UplineId = cashLimitAmt.UplineId,
-            CashBalance = cashLimitAmt.CashBalance
+            CustId = param.CustId,
+            ProviderId = param.ProviderId,
+            UplineId = param.UplineId,
+            CashBalance = param.CashBalance
 
         };
         return await dynamicRepository.GetAsync<CreditAmount>(criteria);

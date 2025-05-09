@@ -35,7 +35,7 @@ public static class PendingDepositEndpoints
             Description = "Returns total Cash member return Credit of Agent"
         });
 
-        group.MapGet("/cash-deposit-limit-amount/{custId}/{accumCreditReturn}", async (int custId, decimal accumCreditReturn, IPendingDepositService service) =>
+        group.MapGet("/limit-amount/{custId}/{accumCreditReturn}", async (int custId, decimal accumCreditReturn, IPendingDepositService service) =>
         {
             var creditAmt = await service.GetLimitAmtDepositAsync(custId, accumCreditReturn);
             return Results.Ok(creditAmt);
@@ -47,7 +47,7 @@ public static class PendingDepositEndpoints
             Description = "Returns range value the member can deposit (MinAmt - MaxAmt)"
         });
 
-        group.MapGet("/member-setting-deposit/{custId}", async (int custId, IPendingDepositService service) =>
+        group.MapGet("/member-setting/{custId}", async (int custId, IPendingDepositService service) =>
         {
             var memberSettingDeposit = await service.GetMemberSettingDepositAsync(custId);
             return Results.Ok(memberSettingDeposit);
@@ -56,10 +56,10 @@ public static class PendingDepositEndpoints
         .WithOpenApi(operation => new(operation)
         {
             Summary = "Get member setting deposit information",
-            Description = "Returns range value the member can deposit (MinAmt - MaxAmt)"
+            Description = "Returns deposit setting value for Member - use to validate min-max amount"
         });
 
-        group.MapPost("/create-manual-deposit", async ([FromBody] CreateManualModel param, IPendingDepositService service) =>
+        group.MapPost("/create", async ([FromBody] CreateManualModel param, IPendingDepositService service) =>
         {
             var (result, id, message) = await service.CreateManualDepositAsync(param);
             return result.Code != 0 ? Results.NotFound() : Results.Ok(new { result, id, message });
