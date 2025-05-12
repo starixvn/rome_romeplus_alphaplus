@@ -43,5 +43,15 @@ namespace AlphaPlus.CashService.Site.Features.Promotions
 
             return Json(result);
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeletePromotion(string id, CancellationToken cancellationToken)
+        {           
+            var url = $"{_apiBaseUrl}/promotion/delete/{_userSession.CustId}/{id}";
+            var response = await _httpClient.DeleteAsync(url, cancellationToken);    
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);        
+            return Json(result);
+        }
     }
 }

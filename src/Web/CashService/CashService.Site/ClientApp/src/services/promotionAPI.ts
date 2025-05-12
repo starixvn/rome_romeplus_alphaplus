@@ -16,5 +16,13 @@ export const promotionService = {
       console.error('Error fetching promotion:', error);
             return [];
     }
+  },
+  deletePromotion: async (promotionId: number): Promise<void> => {
+    try {
+      await api.delete(`DeletePromotion/${promotionId}`);
+    } catch (error) {
+      console.error('Error deleting promotion:', error);
+      throw error;
+    }
   }
 };

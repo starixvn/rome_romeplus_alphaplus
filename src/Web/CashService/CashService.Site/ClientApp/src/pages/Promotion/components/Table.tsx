@@ -8,11 +8,15 @@ import { IconDelete, IconPen, NoRecordsIcon } from '../../../components/Icons';
 interface TableProps {
     items: Promotion[];
     isLoading: boolean;
+    onEdit?: (item: Promotion) => void;
+    onDelete?: (item: Promotion) => void;
 }
 
 const Table: React.FC<TableProps> = ({
     items,
-    isLoading
+    isLoading,
+    onEdit,
+    onDelete
 }) => {
     const { t } = useTranslation('promotion');
     const { t: tGlobal } = useTranslation('global');
@@ -83,13 +87,17 @@ const Table: React.FC<TableProps> = ({
             </td>
             <td className='w-[75px] sticky left-[32px] bg-[#ffffff]'>
                 <div className="flex gap-[4px]">
-                    <button className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--primary-color)]"
+                    <button 
+                        className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--primary-color)]"
                         title={tGlobal('edit')}
+                        onClick={() => onEdit?.(item)}
                     >                            
                         <IconPen />
                     </button>
-                    <button className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--primary-color)]"
+                    <button 
+                        className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--primary-color)]"
                         title={tGlobal('delete')}
+                        onClick={() => onDelete?.(item)}
                     >                            
                         <IconDelete />
                     </button>

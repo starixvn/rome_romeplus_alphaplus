@@ -13,6 +13,8 @@ public interface IPromotionService
     Task<ResultModel> AddPromotion(AddPromotionModel addPromotionMdoel);
 
     Task<ResultModel> EditPromotion(AddPromotionModel addPromotionMdoel);
+
+    Task<ResultModel> DeletePromotion(int custId, int promotionId);
 }
 
 public class PromotionService(IDynamicRepository repository) : IPromotionService
@@ -60,6 +62,7 @@ public class PromotionService(IDynamicRepository repository) : IPromotionService
         {
             new PromotionModel
             {
+                PromotionId = 1,
                 PromotionTitle = "Promotion1",
                 PromotionType = "Rebase on Turnover",
                 SportsPercentage = 1,
@@ -74,6 +77,7 @@ public class PromotionService(IDynamicRepository repository) : IPromotionService
             },
             new PromotionModel
             {
+                PromotionId = 2,
                 PromotionTitle = "Promotion2",
                 PromotionType = "Rebase on Turnover 1",
                 SportsPercentage = 1,
@@ -88,6 +92,7 @@ public class PromotionService(IDynamicRepository repository) : IPromotionService
             },
             new PromotionModel
             {
+                PromotionId = 3,
                 PromotionTitle = "Promotion3",
                 PromotionType = "Rebase on Turnover 2",
                 SportsPercentage = 1,
@@ -128,6 +133,19 @@ public class PromotionService(IDynamicRepository repository) : IPromotionService
         await repository.ExecuteAsync(editPromotionCriteria);
 
         var result = new ResultModel(editPromotionCriteria.ErrCode, editPromotionCriteria.ErrMsg);
+
+        return result;
+    }
+
+    public async Task<ResultModel> DeletePromotion(int custId, int promotionId)
+    {
+        var deletePromotionCriteria = new DeletePromotionCriteria(custId, promotionId); 
+
+        promotionModels.RemoveAll(p => p.PromotionId == promotionId);
+
+        //await repository.ExecuteAsync(deletePromotionCriteria);
+
+        var result = new ResultModel(deletePromotionCriteria.ErrCode, deletePromotionCriteria.ErrMsg);
 
         return result;
     }

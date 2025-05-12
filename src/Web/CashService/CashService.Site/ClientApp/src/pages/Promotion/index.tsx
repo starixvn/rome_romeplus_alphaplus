@@ -17,6 +17,7 @@ const Promotion: React.FC = () => {
     const [promotions, setPromotions] = useState<Promotion[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [showAddPromotion, setShowAddPromotion] = useState<boolean>(false);
+    const [selectedPromotion, setSelectedPromotion] = useState<Promotion | null>(null);
 
     const handleFilterChange = (type: string, status: string) => {
         setPromotionType(type);
@@ -44,6 +45,23 @@ const Promotion: React.FC = () => {
         fetchPromotions();
     }, [promotionType, status]);
 
+    const handleEdit = (promotion: Promotion) => {
+        setSelectedPromotion(promotion);
+        setShowAddPromotion(true);
+    };
+
+    const handleDelete = async (promotion: Promotion) => {
+        if (window.confirm('Are you sure you want to delete this promotion?')) {
+            try {
+                await promotionService.deletePromotion(promotion.promotionId);
+                fetchPromotions();
+            } catch (err) {
+                setError('Failed to delete promotion');
+                console.error('Error deleting promotion:', err);
+            }
+        }
+    };
+
     return (
      
             <div className="p-[12px] h-full flex flex-col">
@@ -63,7 +81,10 @@ const Promotion: React.FC = () => {
                         <div className="mb-[16px]">
                             <button 
                                 className="w-[183px] h-[30px] rounded-[5px] text-[#ffffff] px-[16px] py-[4px] text-[12px] font-bold mr-[8px] bg-[var(--primary-color)] hover:bg-[#375A8A] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
-                                onClick={() => setShowAddPromotion(true)}
+                                onClick={() => {
+                                    setSelectedPromotion(null);
+                                    setShowAddPromotion(true);
+                                }}
                             >
                                 + Add Promotion
                             </button>
@@ -72,16 +93,23 @@ const Promotion: React.FC = () => {
                         <PromotionList 
                             items={promotions}
                             isLoading={isLoading}
+                            onEdit={handleEdit}
+                            onDelete={handleDelete}
                         />
                         
                     </>
                 ) : (
                     <AddPromotion 
-                        onClose={() => setShowAddPromotion(false)} 
+                        onClose={() => {
+                            setShowAddPromotion(false);
+                            setSelectedPromotion(null);
+                        }} 
                         onSave={() => {
                             setShowAddPromotion(false);
+                            setSelectedPromotion(null);
                             fetchPromotions();
-                        }} 
+                        }}
+                        promotion={selectedPromotion}
                     />
                 )}
             </div>

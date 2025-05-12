@@ -17,5 +17,17 @@ public static class PromotionEndpoints
             Summary = "Get promotion",
             Description = "Returns a list of available promotion"
         });
+
+        app.MapDelete("/api/promotion/delete/{custId:int}/{promotionId:int}", async (int custId, int promotionId, IPromotionService service) =>
+        {
+            var result = await service.DeletePromotion(custId, promotionId);
+            return Results.Ok(result);
+        })
+        .WithName("DeletePromotion")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Delete promotion",
+            Description = "Deletes a promotion by its ID for a specific customer."
+        });
     }
 } 

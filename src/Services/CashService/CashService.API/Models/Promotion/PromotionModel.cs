@@ -2,6 +2,8 @@
 {
     public class PromotionModel
     {
+        public int PromotionId { get; set; }
+
         public string PromotionTitle { get;set; }
 
         public string PromotionType { get; set; }

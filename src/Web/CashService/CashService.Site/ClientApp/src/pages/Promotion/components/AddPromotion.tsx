@@ -6,6 +6,7 @@ import { Promotion } from '../../../services/interfaces/Promotion';
 interface AddPromotionProps {
   onClose: () => void;
   onSave: (promotion: Promotion) => void;
+  promotion?: Promotion | null;
 }
 
 const PROMOTION_TYPES = [
@@ -13,48 +14,62 @@ const PROMOTION_TYPES = [
   // Add more types as needed
 ];
 
-const INITIAL_CATEGORY = {
-  percentage: '',
-  minTurnover: '',
-  maxPayout: '',
-  unlimited: false,
-};
-
-const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave }) => {
+const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion }) => {
  
-  const [isActive, setIsActive] = useState(true);
-  const [promotionType, setPromotionType] = useState(PROMOTION_TYPES[0].value);
-  const [period, setPeriod] = useState('');
-  const [provider, setProvider] = useState('');
+  const [isActive, setIsActive] = useState<boolean>(promotion?.status === 'ACTIVE' || true);
+  const [promotionType, setPromotionType] = useState(promotion?.promotionType || PROMOTION_TYPES[0].value);
+  const [period, setPeriod] = useState(promotion?.period || '');
+  const [provider, setProvider] = useState(promotion?.provider || '');
   const [categories, setCategories] = useState({
-    sports: { ...INITIAL_CATEGORY },
-    virtualSports: { ...INITIAL_CATEGORY },
-    games: { ...INITIAL_CATEGORY },
-    liveCasino: { ...INITIAL_CATEGORY },
+    sports: {
+      percentage: promotion?.sportsPercentage?.toString() || '',
+      minTurnover: '',
+      maxPayout: promotion?.sportsMaxPayout?.toString() || '',
+      unlimited: false,
+    },
+    virtualSports: {
+      percentage: promotion?.virtualSportsPercentage?.toString() || '',
+      minTurnover: '',
+      maxPayout: promotion?.virtualSportsMaxPayout?.toString() || '',
+      unlimited: false,
+    },
+    games: {
+      percentage: promotion?.gamesPercentage?.toString() || '',
+      minTurnover: '',
+      maxPayout: promotion?.gamesMaxPayout?.toString() || '',
+      unlimited: false,
+    },
+    liveCasino: {
+      percentage: promotion?.liveCasinoPercentage?.toString() || '',
+      minTurnover: '',
+      maxPayout: promotion?.liveCasinoMaxPayout?.toString() || '',
+      unlimited: false,
+    },
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const promotion: Promotion = {
-        promotionTitle: '',
-        promotionType: '',
-        fromDate: new Date(),
-        toDate: new Date(),
-        sportsPercentage: 1,
-        virtualSportsPercentage: 1,
-        gamesPercentage: 1,
-        liveCasinoPercentage: 1,
-        sportsMaxPayout: 1,
-        virtualSportsMaxPayout: 1,
-        gamesMaxPayout: 1,
-        liveCasinoMaxPayout: 1,
-        period: '',
-        provider: '',
-        status: '',
-        lastUpdated: '',
+    const [fromDate, toDate] = period.split(' - ').map(date => new Date(date));
+    const promotionData: Promotion = {
+      promotionId: promotion?.promotionId || 0,
+      promotionTitle: '',
+      promotionType,
+      fromDate,
+      toDate,
+      sportsPercentage: parseFloat(categories.sports.percentage) || 0,
+      virtualSportsPercentage: parseFloat(categories.virtualSports.percentage) || 0,
+      gamesPercentage: parseFloat(categories.games.percentage) || 0,
+      liveCasinoPercentage: parseFloat(categories.liveCasino.percentage) || 0,
+      sportsMaxPayout: parseFloat(categories.sports.maxPayout) || 0,
+      virtualSportsMaxPayout: parseFloat(categories.virtualSports.maxPayout) || 0,
+      gamesMaxPayout: parseFloat(categories.games.maxPayout) || 0,
+      liveCasinoMaxPayout: parseFloat(categories.liveCasino.maxPayout) || 0,
+      period,
+      provider,
+      status: isActive ? 'ACTIVE' : 'INACTIVE',
+      lastUpdated: new Date().toISOString(),
     };
-    onSave(promotion);
-    console.log('Form submitted');
+    onSave(promotionData);
   };
 
   const handleCategoryChange = (cat: string, field: string, value: string | boolean) => {

@@ -1,4 +1,5 @@
 ﻿export interface Promotion {
+    promotionId: number;
     promotionTitle: string;
     promotionType: string;
     fromDate: Date;

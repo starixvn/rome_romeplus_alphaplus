@@ -94,5 +94,6 @@
         <Setting Key="Age_Promotion_GetPromotion" SpName="Age_Promotion_GetPromotion" DbName="DBCust.CustDB.wsv_alp" Plain="0">
             <Mapping DataField="Domain" ObjectProperty="Url" />
         </Setting>
+        <Setting Key="Age_CashService_Promotion_Delete" SpName="Age_CashService_Promotion_Delete" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     </Function>
 </Functions>
