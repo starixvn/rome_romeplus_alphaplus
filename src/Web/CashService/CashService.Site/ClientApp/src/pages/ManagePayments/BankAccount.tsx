@@ -83,7 +83,6 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
         setLoading(true);
         const fetchedBanks = await paymentProviderService.getBanksByCust();
         setBanks(fetchedBanks);
-        console.log('Banks:', fetchedBanks);
         setError(null);
 
         // Call fetchBankAccounts without setting loading state
@@ -396,7 +395,6 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
                       </thead>
                       <tbody className='font-[500]'>
                         {bankAccounts.map((account, index) => (
-                          console.log(account),
                           <tr key={account.id}>
                             <td className="col-no bg-[#ffffff]">{index + 1}</td> 
                             <td className="col-action bg-[#ffffff]">

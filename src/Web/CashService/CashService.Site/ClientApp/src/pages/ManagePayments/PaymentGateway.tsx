@@ -26,7 +26,6 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = ({ setActiveTab, activeTab
 
   React.useEffect(() => {
     const fetchProviders = async () => {
-      console.log("fetchProviders");
       
       try {
         setLoading(true);
