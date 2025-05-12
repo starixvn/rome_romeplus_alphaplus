@@ -9,6 +9,8 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
         public AddBankAccountCriteria(BankAccountModel bankAccModel)
         {
             Creator = bankAccModel.CreatorId;
+            CreatorName = bankAccModel.Creator;
+
             BankId = bankAccModel.BankId;
             Status = bankAccModel.Status;
             AccountNickname = bankAccModel.AccountNickname;
@@ -22,6 +24,8 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
 
         [SpParam(SqlParamName = "CustId")]
         public int Creator { get; }
+        [SpParam(SqlParamName = "Username")]
+        public string CreatorName { get; }
 
         [SpParam(SqlParamName = "BankId")]
         public int BankId { get; }

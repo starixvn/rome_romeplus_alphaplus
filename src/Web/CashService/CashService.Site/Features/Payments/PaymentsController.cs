@@ -185,6 +185,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         {
             var url = $"{_apiBaseUrl}/payments/add-bank-account";
             bankAccount.CreatorId = _custId;
+            bankAccount.Creator = _userSession.UserName;
 
             var response = await _httpClient.PostAsJsonAsync(url, bankAccount, cancellationToken);
             response.EnsureSuccessStatusCode();
