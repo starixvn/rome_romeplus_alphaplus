@@ -136,5 +136,7 @@
   "createdBy": "创建者",
   "pleaseSelectDepositType": "请选择存款类型",
   "failedToLoadBankAccount": "加载银行账户失败",
-  "pleaseSelectDepositMatchingMode": "请选择存款匹配模式"
+  "pleaseSelectDepositMatchingMode": "请选择存款匹配模式",
+  "confirmDeleteBankAccount": "您确定要删除此银行账户吗？",
+  "deleteBankAccount": "删除银行账户"
 }

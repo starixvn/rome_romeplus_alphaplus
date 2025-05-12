@@ -136,5 +136,7 @@
   "createdBy": "Tạo bởi",
   "pleaseSelectDepositType": "Vui lòng chọn loại nạp tiền",
   "failedToLoadBankAccount": "Không tải được tài khoản ngân hàng",
-  "pleaseSelectDepositMatchingMode": "Vui lòng chọn chế độ khớp nạp tiền"
+  "pleaseSelectDepositMatchingMode": "Vui lòng chọn chế độ khớp nạp tiền",
+  "confirmDeleteBankAccount": "Bạn có chắc chắn muốn xóa tài khoản ngân hàng này không?",
+  "deleteBankAccount": "Xóa tài khoản ngân hàng"
 }

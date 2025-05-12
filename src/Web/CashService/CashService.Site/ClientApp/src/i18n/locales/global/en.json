@@ -25,5 +25,6 @@
   "pleaseFillField": "Please fill in the field",
   "pleaseAgreeTerms": "Please agree to the terms and conditions",
   "back": "Back",
-  "errorOccurred": "An error occurred"
+  "errorOccurred": "An error occurred",
+  "confirm": "Confirm"
 }

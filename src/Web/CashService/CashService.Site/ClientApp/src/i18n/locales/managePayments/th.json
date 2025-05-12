@@ -136,5 +136,7 @@
   "createdBy": "สร้างโดย",
   "pleaseSelectDepositType": "กรุณาเลือกประเภทการฝาก",
   "failedToLoadBankAccount": "ไม่สามารถโหลดบัญชีธนาคารได้",
-  "pleaseSelectDepositMatchingMode": "กรุณาเลือกโหมดการจับคู่การฝาก"
+  "pleaseSelectDepositMatchingMode": "กรุณาเลือกโหมดการจับคู่การฝาก",
+  "confirmDeleteBankAccount": "คุณแน่ใจหรือต้องการลบบัญชีธนาคารนี้?",
+  "deleteBankAccount": "ลบบัญชีธนาคาร"
 }

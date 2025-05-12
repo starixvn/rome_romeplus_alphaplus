@@ -27,6 +27,7 @@
     "i18next-browser-languagedetector": "^8.0.4",
     "qrcode.react": "^4.2.0",
     "react": "^19.0.0",
+    "react-confirm-alert": "^3.0.6",
     "react-date-range": "^2.0.1",
     "react-dom": "^19.0.0",
     "react-i18next": "^15.4.1",
@@ -54,13 +55,13 @@
     "globals": "^15.15.0",
     "jsdom": "^26.1.0",
     "msw": "^2.7.4",
+    "numeral": "^2.0.6",
     "prettier": "^3.5.3",
     "react-select": "^5.10.1",
     "sass": "^1.86.3",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
     "vite": "^6.2.0",
-    "vitest": "^3.1.1",
-    "numeral": "^2.0.6"
+    "vitest": "^3.1.1"
   }
 }

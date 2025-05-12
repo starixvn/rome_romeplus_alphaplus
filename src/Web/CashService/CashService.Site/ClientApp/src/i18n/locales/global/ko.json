@@ -24,5 +24,6 @@
   "pleaseFillField": "필드를 입력해주세요",
   "pleaseAgreeTerms": "이용 약관에 동의해주세요",
   "back": "돌아가기",
-  "errorOccurred": "오류가 발생했습니다"
+  "errorOccurred": "오류가 발생했습니다",
+  "confirm": "확인"
 } 

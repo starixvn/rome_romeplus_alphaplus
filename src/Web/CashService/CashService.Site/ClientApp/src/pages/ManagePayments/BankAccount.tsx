@@ -13,6 +13,9 @@ import CustomDropdown from '../../components/ui/customDropdown';
 import Loading from '../../components/ui/Loading';
 import { ResultMessage } from '../../components/ResultMessage';
 
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+
 interface BankAccountProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
   activeTab: string;
@@ -139,27 +142,42 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
   };
 
   const handleDeleteBankAccount = async (accountId: number) => {
-    try {
-      setDeleting(accountId);
-      setError(null);
-      setSuccessMessage(null);
-      const result = await paymentProviderService.deleteBankAccount(accountId);
-      if (result.isSuccessful) {
-        setSuccessMessage(tManagePayments('bankAccountDeletedSuccessfully'));
-        // Clear success message and refresh list again after 3 seconds
-        setTimeout(() => {
-          setSuccessMessage(null);
-          fetchBankAccounts();
-        }, 3000);
-      } else {
-        setError(result.message || tManagePayments('failedToDeleteBankAccount'));
-      }
-    } catch (err) {
-      setError(tManagePayments('failedToDeleteBankAccount'));
-      console.error('Error deleting bank account:', err);
-    } finally {
-      setDeleting(null);
-    }
+    confirmAlert({
+      title: tManagePayments('deleteBankAccount'),
+      message: tManagePayments('confirmDeleteBankAccount'),
+      buttons: [
+        {
+          label: tGlobal('confirm'),
+          onClick: async () => {
+            try {
+              setDeleting(accountId);
+              setError(null);
+              setSuccessMessage(null);
+              const result = await paymentProviderService.deleteBankAccount(accountId);
+              if (result.isSuccessful) {
+                setSuccessMessage(tManagePayments('bankAccountDeletedSuccessfully'));
+                // Clear success message and refresh list again after 3 seconds
+                setTimeout(() => {
+                  setSuccessMessage(null);
+                  fetchBankAccounts();
+                }, 3000);
+              } else {
+                setError(result.message || tManagePayments('failedToDeleteBankAccount'));
+              }
+            } catch (err) {
+              setError(tManagePayments('failedToDeleteBankAccount'));
+              console.error('Error deleting bank account:', err);
+            } finally {
+              setDeleting(null);
+            }
+          }
+        },
+        {
+          label: tGlobal('cancel'),
+          onClick: () => {}
+        }
+      ]
+    });
   };
 
   const handleBankChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
