@@ -148,25 +148,21 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
             return new ResultModel(updateStatusCriteria.ErrCode, updateStatusCriteria.ErrMsg);
         }
         
-        if(provider.ProviderSettings != null && provider.ProviderSettings.Count > 0)
-        {
-            var jsonSetting = new List<string>();
-            foreach (var setting in provider.ProviderSettings)
-            {   
-                jsonSetting.Add(setting.ToJsonString());
-            }
-
-            var jsonSettings = $"[{string.Join(",", jsonSetting)}]";
-            var updateProviderSettingsCriteria = new UpdateProviderSettingsCriteria(provider.CustId, provider.Id, jsonSettings);
-            await repository.ExecuteAsync(updateProviderSettingsCriteria);
-
-            if(updateProviderSettingsCriteria.ErrCode != 0)
-            {
-                return new ResultModel(updateProviderSettingsCriteria.ErrCode, updateProviderSettingsCriteria.ErrMsg);
-            }
+        if(provider.ProviderSettings == null || provider.ProviderSettings.Count == 0)
+        {  
+            return new ResultModel(0, string.Empty); 
         }
-            
-        return new ResultModel(0, string.Empty);
+
+        var jsonSetting = new List<string>();   
+        foreach (var setting in provider.ProviderSettings)
+        {   
+            jsonSetting.Add(setting.ToJsonString());
+        }
+
+        var jsonSettings = $"[{string.Join(",", jsonSetting)}]";
+        var updateProviderSettingsCriteria = new UpdateProviderSettingsCriteria(provider.CustId, provider.Id, jsonSettings);
+        await repository.ExecuteAsync(updateProviderSettingsCriteria);
+        return new ResultModel(updateProviderSettingsCriteria.ErrCode, updateProviderSettingsCriteria.ErrMsg);
     }
 
     public async Task<IEnumerable<BankModel>> GetBanksByCust(int custId)
