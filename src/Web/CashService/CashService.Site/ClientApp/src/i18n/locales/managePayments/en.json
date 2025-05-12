@@ -137,5 +137,6 @@
   "merchantID": "Merchant ID",
   "createdBy": "Created by",
   "pleaseSelectDepositType": "Please select deposit type",
-  "failedToLoadBankAccount": "Failed to load bank account"
+  "failedToLoadBankAccount": "Failed to load bank account",
+  "pleaseSelectDepositMatchingMode": "Please select deposit matching mode"
 } 

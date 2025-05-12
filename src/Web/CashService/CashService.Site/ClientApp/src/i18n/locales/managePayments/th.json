@@ -135,5 +135,6 @@
   "merchantID": "รหัสร้านค้า",
   "createdBy": "สร้างโดย",
   "pleaseSelectDepositType": "กรุณาเลือกประเภทการฝาก",
-  "failedToLoadBankAccount": "ไม่สามารถโหลดบัญชีธนาคารได้"
+  "failedToLoadBankAccount": "ไม่สามารถโหลดบัญชีธนาคารได้",
+  "pleaseSelectDepositMatchingMode": "กรุณาเลือกโหมดการจับคู่การฝาก"
 }

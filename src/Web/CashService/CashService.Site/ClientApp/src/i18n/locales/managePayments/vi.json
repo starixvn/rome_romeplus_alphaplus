@@ -135,5 +135,6 @@
   "merchantID": "ID người bán",
   "createdBy": "Tạo bởi",
   "pleaseSelectDepositType": "Vui lòng chọn loại nạp tiền",
-  "failedToLoadBankAccount": "Không tải được tài khoản ngân hàng"
+  "failedToLoadBankAccount": "Không tải được tài khoản ngân hàng",
+  "pleaseSelectDepositMatchingMode": "Vui lòng chọn chế độ khớp nạp tiền"
 }

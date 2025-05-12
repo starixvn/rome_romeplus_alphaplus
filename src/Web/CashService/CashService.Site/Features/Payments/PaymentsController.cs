@@ -1,7 +1,6 @@
 using AlphaPlus.CashService.Site.Features.Payments.Models;
 using AlphaPlus.CashService.Site.Features.Payments.Requests;
 using AlphaPlus.CashService.Site.Features.Payments.ViewModels;
-using AlphaPlus.CashService.Site.Features.Shared;
 using AlphaPlus.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,22 +8,16 @@ namespace AlphaPlus.CashService.Site.Features.Payments
 {
     public class PaymentsController : Controller
     {
-        private readonly ILogger<PaymentsController> _logger;
-        private readonly IWebHostEnvironment _environment;
         private readonly string _apiBaseUrl;
         private readonly int _custId;
         private readonly HttpClient _httpClient;
         private readonly IUserSession _userSession;
 
         public PaymentsController(
-            ILogger<PaymentsController> logger,
-            IWebHostEnvironment environment,
             IConfiguration configuration,
             HttpClient httpClient,
             IUserSession userSession)
         {
-            _logger = logger;
-            _environment = environment;
             _apiBaseUrl = configuration["CashServiceAPIUrl"];
             _httpClient = httpClient;
             _userSession = userSession;

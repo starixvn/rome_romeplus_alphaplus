@@ -58,7 +58,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   const [fieldErrors, setFieldErrors] = useState({
     mobile: '',
     countryCode: '',
-    selectedDepositType: ''
+    selectedDepositType: '',
+    selectedDepositMatchingMode: ''
   });
 
   useEffect(() => {
@@ -131,7 +132,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
     const errors = {
       mobile: !mobile ? tGlobal('pleaseFillField') : '',
       countryCode: !countryCode ? tGlobal('pleaseFillField') : '',
-      selectedDepositType: !selectedManualDeposit && !selectedAutoDeposit ? tManagePayments('pleaseSelectDepositType') : ''
+      selectedDepositType: !selectedManualDeposit && !selectedAutoDeposit ? tManagePayments('pleaseSelectDepositType') : '',
+      selectedDepositMatchingMode: selectedAutoDeposit && !agent_DepositMatchingMode ? tManagePayments('pleaseSelectDepositMatchingMode') : ''
     };
     setFieldErrors(errors);
     const hasError = Object.values(errors).some(Boolean);
@@ -349,7 +351,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
               {(() => {
                 const selectedBankObj = banks.find(b => b.id === parseInt(selectedBank));
-                return selectedBank && selectedBankObj && selectedBankObj.depositMatchingMode?.mappingTypes?.length > 0 && (
+                return selectedBank && selectedBankObj && selectedBankObj.depositMatchingMode?.mappingTypes?.length > 0 && selectedAutoDeposit && (
                   <div className="mb-[8px]">
                     <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('depositMatchingMode')}</label>
                     <div className="flex" role="group">
@@ -370,6 +372,9 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                         </>
                       )}
                     </div>
+                    {fieldErrors.selectedDepositMatchingMode && (
+                      <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.selectedDepositMatchingMode}</div>
+                    )}
                   </div>
                 );
               })()}

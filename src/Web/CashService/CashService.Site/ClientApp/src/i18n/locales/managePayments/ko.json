@@ -135,5 +135,6 @@
   "merchantID": "가맹점 ID",
   "createdBy": "생성자",
   "pleaseSelectDepositType": "입금 유형을 선택하세요",
-  "failedToLoadBankAccount": "은행 계좌 로드 실패"
+  "failedToLoadBankAccount": "은행 계좌 로드 실패",
+  "pleaseSelectDepositMatchingMode": "입금 매칭 모드를 선택하세요"
 }
