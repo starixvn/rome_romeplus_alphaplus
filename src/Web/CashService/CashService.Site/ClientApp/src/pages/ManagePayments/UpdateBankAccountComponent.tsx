@@ -44,6 +44,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   const [success, setSuccess] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+  const [initialLoading, setInitialLoading] = useState<boolean>(true);
   const [banks, setBanks] = useState<Bank[]>([]);
 
   const [bankDepositMatchingMode, setBankDepositMatchingMode] = useState<DepositMatchingMode>(bankAccount.bankDepositMatchingMode);
@@ -105,6 +106,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
         console.error('Error fetching bank account:', err);
       } finally {
         setLoading(false);
+        setInitialLoading(false);
       }
     };
 
@@ -117,10 +119,18 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
       }
     };
 
-    fetchBanks();
-    fetchBankAccount();
-    fetchCountryCodes();
+    Promise.all([fetchBanks(), fetchBankAccount(), fetchCountryCodes()]).finally(() => {
+      setInitialLoading(false);
+    });
   }, [bankAccount.id, tManagePayments]);
+
+  if (initialLoading) {
+    return (
+      <div className="p-[12px] flex items-center justify-center">
+        <div className="text-[14px] text-[#333333]">{tGlobal('loading')}...</div>
+      </div>
+    );
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
