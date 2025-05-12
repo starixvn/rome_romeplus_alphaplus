@@ -15,22 +15,22 @@ public interface ICacheRefService
 public class CacheRefService(IRemotingRefService remotingRefService) : ICacheRefService
 {
     public string GetProviderName(int providerId, string defaultName) {
-        var result = GetResourceDataByRefIdAndResourceId("cash_provider", providerId);
+        var result = GetResourceDataByRefIdAndResourceId("CashPaymentProvider", providerId);
         return string.IsNullOrWhiteSpace(result) ? defaultName : result;
     }
 
     public string GetPaymentMethodName(int methodId, string defaultName) {
-        var result = GetResourceDataByRefIdAndResourceId("cash_payment_method", methodId);
+        var result = GetResourceDataByRefIdAndResourceId("CashPaymentMethod", methodId);
         return string.IsNullOrWhiteSpace(result) ? defaultName : result;
     }
 
     public string GetBankName(int bankId, string defaultName) {
-        var result = GetResourceDataByRefIdAndResourceId("cash_bank", bankId);
+        var result = GetResourceDataByRefIdAndResourceId("CashBankList", bankId);
         return string.IsNullOrWhiteSpace(result) ? defaultName : result;
     }
 
     public string GetDepositAutoModeName(string sourceType, string defaultName) {
-        var result = GetResourceDataByRefIdAndResourceId("cash_deposit_automode", sourceType);
+        var result = GetResourceDataByRefIdAndResourceId("CashDepositAutoMode", sourceType);
         return string.IsNullOrWhiteSpace(result) ? defaultName : result;
     }
 
