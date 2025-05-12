@@ -13,6 +13,7 @@ describe('bankTransactionUtils', () => {
     {
       id: 1,
       name: 'Bank 1',
+      code: 'BANK1',
       transactionTypes: '1,2,3', // Manual Deposit, Auto Deposit, Manual Withdrawal
       depositMatchingMode: {
         sourceType: '1',
@@ -23,6 +24,7 @@ describe('bankTransactionUtils', () => {
     {
       id: 2,
       name: 'Bank 2',
+      code: 'BANK2',
       transactionTypes: '1,3', // Manual Deposit, Manual Withdrawal
       depositMatchingMode: {
         sourceType: '1',
@@ -33,6 +35,7 @@ describe('bankTransactionUtils', () => {
     {
       id: 3,
       name: 'Bank 3',
+      code: 'BANK3',
       transactionTypes: '2,4', // Auto Deposit, Auto Withdrawal
       depositMatchingMode: {
         sourceType: '2',
@@ -43,6 +46,7 @@ describe('bankTransactionUtils', () => {
     {
       id: 4,
       name: 'Bank 4',
+      code: 'BANK4',
       transactionTypes: '', // No transaction types
       depositMatchingMode: {
         sourceType: '1',
@@ -53,6 +57,7 @@ describe('bankTransactionUtils', () => {
     {
       id: 5,
       name: 'Bank 5',
+      code: 'BANK5',
       transactionTypes: ' 1 , 2 ', // Manual Deposit, Auto Deposit with whitespace
       depositMatchingMode: {
         sourceType: '1',
@@ -63,6 +68,7 @@ describe('bankTransactionUtils', () => {
     {
       id: 6,
       name: 'Bank 6',
+      code: 'BANK6',
       transactionTypes: '', // Empty transaction types
       depositMatchingMode: {
         sourceType: '1',

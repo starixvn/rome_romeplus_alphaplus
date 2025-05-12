@@ -1,14 +1,14 @@
 import axios from 'axios';
-//http://localhost:5159
+
 const createAxiosInstance = () => {
   const instance = axios.create({
-    baseURL: "",//window.cashServiceAPIUrl,
+    baseURL: "",
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     },
     withCredentials: true,
-    timeout: 10000, // Timeout after 10s
+    timeout: 120000, // Timeout after 120s
   });
 
   // Request interceptor
