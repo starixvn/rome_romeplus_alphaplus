@@ -102,8 +102,6 @@ function PaymentProviderSettings() {
     setShowAddPaymentMethod(false);
   };
 
-  const handlePaymentMethodAdded = () => {};
-
   // Handler for viewing banks
   const handleViewBanks = (setting: any) => {
     setSelectedSetting(setting);
@@ -326,7 +324,27 @@ function PaymentProviderSettings() {
                   <th>{tPaymentProviderSettings('transactionType')}</th>
                   <th>{tPaymentProviderSettings('minimum')}</th>
                   <th>{tPaymentProviderSettings('maximum')}</th>
-                  <th>{tGlobal('enable')}/{tGlobal('disable')}</th>
+                  <th>
+                    {tGlobal('enable')}/{tGlobal('disable')}
+                    <Tippy
+                      content={
+                        <div>
+                          <div>
+                            <i className="bi bi-info-circle fs-4 ico-info inline-elm"></i> 
+                            {tPaymentProviderSettings('enableDisable')}
+                          </div>
+                          <div>• {tPaymentProviderSettings('enableDisableTip1')}</div>
+                          <div>• {tPaymentProviderSettings('enableDisableTip2')}</div>
+                          <div>• {tPaymentProviderSettings('enableDisableTip3')}</div>
+                        </div>
+                      }
+                      placement="top"
+                      theme="light"
+                      arrow={true}
+                    >
+                      <span className='cursor-pointer'><IconInfo className="w-[20px] h-[20px] ml-[4px] fill-[#163f78]" /></span>
+                    </Tippy>
+                </th>
                   <th>{tPaymentProviderSettings('bank')}</th>
                 </tr>
               </thead>
@@ -426,7 +444,6 @@ function PaymentProviderSettings() {
         <AddPaymentMethodModal
           providerId={window.providerSettingsViewModel.Provider.Id}
           onClose={handleCloseAddPaymentMethod}
-          onSave={handlePaymentMethodAdded}
         />
       )}
 

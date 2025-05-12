@@ -6,11 +6,10 @@ import { PaymentMethod } from '../../services/interfaces/PaymentMethod';
 import { IconCheck, IconError, IconClose } from '../../components/Icons';
 interface AddPaymentMethodModalProps {
   onClose: () => void;
-  onSave: () => void;
   providerId: number;
 }
 
-const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, onSave, providerId }) => {
+const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, providerId }) => {
   const { t: tGlobal } = useTranslation('global');
   const { t: tPaymentProviderSettings } = useTranslation('paymentProviderSettings');
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
@@ -109,10 +108,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
       
       if (response.isSuccessful) {
         setSuccessMessage(tGlobal('updateSuccess'));
-        setTimeout(() => {
-          onSave();
-          onClose();
-        }, 3000);
+        setTimeout(() => { onClose(); }, 3000);
       } else {
         setError(response.message || tGlobal('updateFailed'));
       }
