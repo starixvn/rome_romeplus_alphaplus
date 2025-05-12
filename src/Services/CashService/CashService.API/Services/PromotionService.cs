@@ -8,7 +8,7 @@ namespace AlphaPlus.CashService.API.Services;
 
 public interface IPromotionService
 {
-    Task<IEnumerable<PromotionModel>> GetPromotion(string type, string status);
+    Task<IEnumerable<PromotionModel>> GetPromotion(string promotionType, string status);
 
     Task<ResultModel> AddPromotion(AddPromotionModel addPromotionMdoel);
 
@@ -48,10 +48,9 @@ public class PromotionService(IDynamicRepository repository) : IPromotionService
         return result;
     }
 
-    public async Task<IEnumerable<PromotionModel>> GetPromotion(string type, string status)
+    public async Task<IEnumerable<PromotionModel>> GetPromotion(string promotionType, string status)
     {
-        var result = promotionModels.Where(x => x.PromotionType == type && x.Status == status);
-
+        var result = promotionModels; 
         return result;
     }
 

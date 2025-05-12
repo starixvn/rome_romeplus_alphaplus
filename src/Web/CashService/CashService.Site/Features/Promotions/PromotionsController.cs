@@ -26,24 +26,18 @@ namespace AlphaPlus.CashService.Site.Features.Promotions
 
         public async Task<IActionResult> Index()
         {
-            CancellationToken cancellationToken = CancellationToken.None;
-
-            var url = $"{_apiBaseUrl}/promotion/get-promotion";
-            var promotion = await _httpClient.GetFromJsonAsync<IEnumerable<PromotionModel>>(url, cancellationToken);
-
-            var viewModel = new PromotionViewModel
+            var viewModel = new PromotionBaseViewModel
             {
                 Language = _userSession.Language,
                 DarkModeName = _userSession.DarkModeName,
-                Promotion = promotion
             };
 
             return View(viewModel);
         }
 
-        public async Task<IActionResult> GetPromotion(CancellationToken cancellationToken)
+        public async Task<IActionResult> GetPromotion(string promotionType, string status, CancellationToken cancellationToken)
         {
-            var url = $"{_apiBaseUrl}/promotion/get-promotion";
+            var url = $"{_apiBaseUrl}/promotion/get-promotion/{promotionType}/{status}";
 
             var result = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
 

@@ -6,9 +6,9 @@ public static class PromotionEndpoints
 {
     public static void MapPromotionEndpoints(this WebApplication app)
     {
-        app.MapGet("/api/promotion/get-promotion/{type}/{status}", async (string type, string status, IPromotionService service) =>
+        app.MapGet("/api/promotion/get-promotion/{promotionType}/{status}", async (string promotionType, string status, IPromotionService service) =>
         {
-            var promotions = await service.GetPromotion(type, status);
+            var promotions = await service.GetPromotion(promotionType, status);
             return Results.Ok(promotions);
         })
         .WithName("GetPromotion")
