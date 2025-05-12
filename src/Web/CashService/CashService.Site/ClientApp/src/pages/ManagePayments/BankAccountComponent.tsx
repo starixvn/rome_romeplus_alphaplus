@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Bank } from '../../services/interfaces/Payments/Bank';
-import type { BankAccount } from '../../services/interfaces/Payments/BankAccount';
+import { Bank, BankAccount } from '../../services/interfaces/Payments';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { ENABLED_STATUS_OPTIONS } from '../../constants/paymentConstants';
 import SetTransactionLimitModal from './SetTransactionLimitModal';
@@ -16,12 +15,12 @@ import { ResultMessage } from '../../components/ResultMessage';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
-interface BankAccountProps {
+interface BankAccountComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
   activeTab: string;
 }
 
-const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) => {
+const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTab, activeTab }) => {
   const { t: tManagePayments } = useTranslation('managePayments');
   const { t: tGlobal } = useTranslation('global');
   const [banks, setBanks] = useState<Bank[]>([]);
@@ -471,4 +470,4 @@ const BankAccount: React.FC<BankAccountProps> = ({ setActiveTab, activeTab }) =>
   );
 };
 
-export default BankAccount; 
+export default BankAccountComponent; 

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { PaymentProvider } from '../../services/interfaces/Payments/PaymentProvider';
-import { PaymentProviderFeeGroup } from '../../services/interfaces/Payments/PaymentProviderFeeGroup';
+import { PaymentProvider, PaymentProviderFeeGroup } from '../../services/interfaces/Payments';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { IconClose } from '../../components/Icons';
 import Loading from '../../components/ui/Loading';

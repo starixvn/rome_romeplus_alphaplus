@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 
-import PaymentGateway from './PaymentGateway';
-import BankAccount from './BankAccount';
+import PaymentGatewayComponent from './PaymentGatewayComponent';
+import BankAccountComponent from './BankAccountComponent';
 import i18n from '../../i18n/i18n-managePayments';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 import '../../styles/global.scss';
@@ -17,12 +17,12 @@ function ManagePayments() {
     <>
       {activeTab === 'paymentGateway' && (
         <div className="payment-gateway-content">
-          <PaymentGateway setActiveTab={setActiveTab} activeTab={activeTab} />
+          <PaymentGatewayComponent setActiveTab={setActiveTab} activeTab={activeTab} />
         </div>
       )}
       {activeTab === 'bankAccount' && (
         <div className="bank-account-content h-[calc(100%-24px)]">
-          <BankAccount setActiveTab={setActiveTab} activeTab={activeTab} />
+          <BankAccountComponent setActiveTab={setActiveTab} activeTab={activeTab} />
         </div>
       )}
     </>

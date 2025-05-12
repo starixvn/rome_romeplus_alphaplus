@@ -9,12 +9,12 @@ import { IconPen } from '../../components/Icons';
 import Loading from '../../components/ui/Loading';
 import { ResultMessage } from '../../components/ResultMessage';
 
-interface PaymentGatewayProps {
+interface PaymentGatewayComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
   activeTab: string;
 }
 
-const PaymentGateway: React.FC<PaymentGatewayProps> = ({ setActiveTab, activeTab }) => {
+const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setActiveTab, activeTab }) => {
   const { t: tGlobal } = useTranslation('global');
   const { t: tManagePayments } = useTranslation('managePayments');
   const [providers, setProviders] = React.useState<PaymentProvider[]>([]);
@@ -199,4 +199,4 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = ({ setActiveTab, activeTab
   );
 };
 
-export default PaymentGateway;
+export default PaymentGatewayComponent;
