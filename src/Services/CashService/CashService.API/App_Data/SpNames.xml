@@ -62,7 +62,7 @@
         </Setting>
 
         <Setting Key="Age_CashService_BankAccountAgent_Ins" SpName="Age_CashService_BankAccountAgent_Ins_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_CashService_BankAccountAgent_Sel" SpName="Age_CashService_BankAccountAgent_Sel_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+        <Setting Key="Age_CashService_BankAccountAgent_Sel" SpName="Age_CashService_BankAccountAgent_Sel_UAT2" DbName="DBCust.AgencyCashService.asv_CashService" Plain="0">
             <Mapping DataField="PromptPayEnabled" ObjectProperty="PromptPay"></Mapping>
             <Mapping DataField="CreatedBy" ObjectProperty="CreatorId"></Mapping>
             <Mapping DataField="LastUpdated" ObjectProperty="LastUpdated"></Mapping>
