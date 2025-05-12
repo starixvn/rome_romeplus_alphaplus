@@ -4,7 +4,6 @@ import { TransactionItem } from '../../../../services/interfaces/Transactions/Tr
 import { NoRecordsIcon } from '../../../../components/Icons';
 import { useTranslation } from 'react-i18next';
 
-
 interface TableProps {
   items: TransactionItem[];
   isLoading: boolean;
@@ -24,7 +23,7 @@ const formatDateTime = (dateTimeStr: string): { date: string; time: string } => 
   const ampm = hours >= 12 ? 'PM' : 'AM';
 
   hours = hours % 12;
-  hours = hours ? hours : 12; // the hour '0' should be '12'
+  hours = hours ? hours : 12;
   const hoursStr = hours.toString().padStart(2, '0');
 
   return {

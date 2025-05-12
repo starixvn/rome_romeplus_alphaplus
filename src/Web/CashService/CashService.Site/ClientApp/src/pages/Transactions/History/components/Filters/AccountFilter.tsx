@@ -3,6 +3,7 @@ import { ChevronDownIcon } from '../../../../../components/Icons';
 import { useTranslation } from 'react-i18next';
 import { getAccount } from '../../../../../services/transactionsHistoryAPI';
 import { AccountOption } from '../../../../../services/interfaces/Transactions/AccountOption';
+import CustomDropdown, { DropdownOption } from '../../../../../components/ui/customDropdown';
 
 interface AccountFilterProps {
   account: string;
@@ -42,31 +43,21 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
   }, [transactionType, onAccountsLoaded]);
 
   return (
-    <div className="w-[180px]">
-      <label className="block text-sm font-medium text-gray-700 mb-1">
+    <div className="form-group mb-[8px]">
+      <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">
         {transactionType === 1 ? t('filter.to') : t('filter.from')}
       </label>
-      <div className="select-wrapper relative">
-        <select
-          value={account}
-          onChange={(e) => onAccountChange(e.target.value)}
-          className="appearance-none block w-full bg-white border border-gray-300 px-3 py-1.5 pr-8 rounded text-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm h-9"
-          disabled={isLoading}
-        >
-          <option value="" disabled>
-            {isLoading ? t('filter.loadingAccounts') : t('filter.selectAccount')}
-          </option>
-          {!isLoading &&
-            accountOptions.map((option) => (
-              <option key={option.bankId} value={option.bankId}>
-                {option.bankAccountNumber}
-              </option>
-            ))}
-        </select>
-        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-          <ChevronDownIcon className="h-4 w-4" />
-        </div>
-      </div>
+      <CustomDropdown
+        options={accountOptions.map((option) => ({
+          value: option.bankId,
+          label: option.bankAccountNumber,
+          code: option.BankCode,
+        }))}
+        onSelect={(selected) => onAccountChange(String(selected.value))}
+        disable={isLoading}
+        showOptionAll={true}
+        initialValue={account}
+      />
     </div>
   );
 };

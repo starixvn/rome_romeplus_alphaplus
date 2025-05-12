@@ -14,6 +14,7 @@ interface FiltersProps {
   onStatusChange: (value: string) => void;
   onColumnChange: (value: string[]) => void;
   onAccountChange: (value: string) => void;
+  onMenuClose?: () => void;
 }
 
 const Filters: React.FC<FiltersProps> = ({
@@ -26,17 +27,26 @@ const Filters: React.FC<FiltersProps> = ({
   onStatusChange,
   onColumnChange,
   onAccountChange,
+  onMenuClose,
 }) => {
   return (
-    <div className="flex items-center space-x-4 bg-white rounded-lg">
-      <DateRangeFilter dateRange={dateRange} onDateRangeChange={onDateRangeChange} />
-      <AccountFilter
-        account={account}
-        transactionType={transactionType}
-        onAccountChange={onAccountChange}
-      />
-      <StatusFilter status={status} onStatusChange={onStatusChange} />
-      <ColumnFilter column={column} onColumnChange={onColumnChange} />
+    <div className="flex bg-[#ffffff] px-[14px] py-[8px] rounded-lg">
+      <div className="w-[280px] pr-[14px]">
+        <DateRangeFilter dateRange={dateRange} onDateRangeChange={onDateRangeChange} />
+      </div>
+      <div className="w-[230px] pr-[14px]">
+        <AccountFilter
+          account={account}
+          transactionType={transactionType}
+          onAccountChange={onAccountChange}
+        />
+      </div>
+      <div className="w-[230px] pr-[14px]">
+        <StatusFilter status={status} onStatusChange={onStatusChange} />
+      </div>
+      <div className="w-[220px]">
+        <ColumnFilter column={column} onColumnChange={onColumnChange} onMenuClose={onMenuClose} />
+      </div>
     </div>
   );
 };

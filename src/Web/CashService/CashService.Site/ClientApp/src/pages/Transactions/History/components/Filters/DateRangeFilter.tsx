@@ -22,8 +22,8 @@ const DateRangeFilter: React.FC<DateRangeFilterProps> = ({ dateRange, onDateRang
   };
 
   return (
-    <div className="w-[280px]">
-      <label className="block text-sm font-medium text-gray-700 mb-1">
+    <div className="form-group mb-[8px]">
+      <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">
         {t('filter.dateRange')}
       </label>
       <DateRangePicker value={value} onChange={handleChange} />

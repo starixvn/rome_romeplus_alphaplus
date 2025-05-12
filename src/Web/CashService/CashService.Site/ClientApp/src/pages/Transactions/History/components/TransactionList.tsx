@@ -11,7 +11,6 @@ import Table from './Table';
 import Pagination from './Pagination';
 import { useTranslation } from 'react-i18next';
 
-
 interface TransactionListProps {
   transactionType: number;
 }
