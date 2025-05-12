@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { paymentProviderService } from '../../services/paymentsAPI';
-import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
+import { PaymentProvider } from '../../services/interfaces/Payments/PaymentProvider';
 import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import DailyLimitPopupModal from './SetDailyLimitPopupModal';
 import TitleCommon from '../../components/ui/TitleCommon';

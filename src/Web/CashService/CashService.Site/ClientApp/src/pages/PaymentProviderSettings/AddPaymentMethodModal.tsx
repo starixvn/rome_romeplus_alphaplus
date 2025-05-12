@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { paymentProviderService } from '../../services/paymentsAPI';
-import { PaymentMethod } from '../../services/interfaces/PaymentMethod';
+import { PaymentMethod } from '../../services/interfaces/Payments/PaymentMethod';
 import { IconCheck, IconError, IconClose } from '../../components/Icons';
 interface AddPaymentMethodModalProps {
   onClose: () => void;

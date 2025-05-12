@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Bank } from '../../services/interfaces/Bank';
-import type { BankAccount } from '../../services/interfaces/BankAccount';
+import { Bank } from '../../services/interfaces/Payments/Bank';
+import type { BankAccount } from '../../services/interfaces/Payments/BankAccount';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { ENABLED_STATUS_OPTIONS } from '../../constants/paymentConstants';
 import SetTransactionLimitModal from './SetTransactionLimitModal';

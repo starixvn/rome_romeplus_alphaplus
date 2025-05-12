@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Bank } from '../../services/interfaces/Bank';
-import { BankAccount } from '../../services/interfaces/BankAccount';
-import { DepositMatchingMode } from '../../services/interfaces/DepositMatchingMode';
+import { Bank } from '../../services/interfaces/Payments/Bank';
+import { BankAccount } from '../../services/interfaces/Payments/BankAccount';
+import { DepositMatchingMode } from '../../services/interfaces/Payments/DepositMatchingMode';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import {
   hasDepositTransactionType,

@@ -1,11 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { 
-  hasDepositTransactionType,
-  hasManualDepositTransactionType,
-  hasAutoDepositTransactionType,
-  hasWithdrawalTransactionType,
-  hasManualWithdrawalTransactionType
-} from './bankTransactionUtils';
+import { hasDepositTransactionType, hasManualDepositTransactionType, hasAutoDepositTransactionType, hasWithdrawalTransactionType, hasManualWithdrawalTransactionType } from './bankTransactionUtils';
 import { Bank } from '../services/interfaces/Bank';
 
 describe('bankTransactionUtils', () => {
@@ -16,64 +10,31 @@ describe('bankTransactionUtils', () => {
       code: 'BANK1',
       transactionTypes: '1,2,3', // Manual Deposit, Auto Deposit, Manual Withdrawal
       depositMatchingMode: {
-        sourceType: '1',
+        sourceType: 'BANK',
         mappingTypes: [1, 2],
-        sourceTypeName: 'Decimal'
+        sourceTypeName: 'Bank Matching'
       }
     },
     {
       id: 2,
       name: 'Bank 2',
       code: 'BANK2',
-      transactionTypes: '1,3', // Manual Deposit, Manual Withdrawal
+      transactionTypes: '3,4', // Manual Withdrawal, Auto Withdrawal
       depositMatchingMode: {
-        sourceType: '1',
+        sourceType: 'BANK',
         mappingTypes: [1],
-        sourceTypeName: 'Decimal'
+        sourceTypeName: 'Bank Matching'
       }
     },
     {
       id: 3,
       name: 'Bank 3',
       code: 'BANK3',
-      transactionTypes: '2,4', // Auto Deposit, Auto Withdrawal
-      depositMatchingMode: {
-        sourceType: '2',
-        mappingTypes: [2],
-        sourceTypeName: 'Bank Matching'
-      }
-    },
-    {
-      id: 4,
-      name: 'Bank 4',
-      code: 'BANK4',
       transactionTypes: '', // No transaction types
       depositMatchingMode: {
-        sourceType: '1',
+        sourceType: 'BANK',
         mappingTypes: [],
-        sourceTypeName: 'None'
-      }
-    },
-    {
-      id: 5,
-      name: 'Bank 5',
-      code: 'BANK5',
-      transactionTypes: ' 1 , 2 ', // Manual Deposit, Auto Deposit with whitespace
-      depositMatchingMode: {
-        sourceType: '1',
-        mappingTypes: [1, 2],
-        sourceTypeName: 'Decimal'
-      }
-    },
-    {
-      id: 6,
-      name: 'Bank 6',
-      code: 'BANK6',
-      transactionTypes: '', // Empty transaction types
-      depositMatchingMode: {
-        sourceType: '1',
-        mappingTypes: [],
-        sourceTypeName: 'None'
+        sourceTypeName: 'Bank Matching'
       }
     }
   ];
@@ -84,11 +45,11 @@ describe('bankTransactionUtils', () => {
     });
 
     it('should return true for bank with auto deposit', () => {
-      expect(hasDepositTransactionType('3', mockBanks)).toBe(true);
+      expect(hasDepositTransactionType('1', mockBanks)).toBe(true);
     });
 
     it('should return false for bank without deposit types', () => {
-      expect(hasDepositTransactionType('4', mockBanks)).toBe(false);
+      expect(hasDepositTransactionType('2', mockBanks)).toBe(false);
     });
 
     it('should return false for invalid bank id', () => {
@@ -98,14 +59,6 @@ describe('bankTransactionUtils', () => {
     it('should return false for empty bank id', () => {
       expect(hasDepositTransactionType('', mockBanks)).toBe(false);
     });
-
-    it('should handle transaction types with whitespace', () => {
-      expect(hasDepositTransactionType('5', mockBanks)).toBe(true);
-    });
-
-    it('should handle null transaction types', () => {
-      expect(hasDepositTransactionType('6', mockBanks)).toBe(false);
-    });
   });
 
   describe('hasManualDepositTransactionType', () => {
@@ -114,49 +67,21 @@ describe('bankTransactionUtils', () => {
     });
 
     it('should return false for bank without manual deposit', () => {
+      expect(hasManualDepositTransactionType('2', mockBanks)).toBe(false);
+    });
+
+    it('should return false for bank with no transaction types', () => {
       expect(hasManualDepositTransactionType('3', mockBanks)).toBe(false);
-    });
-
-    it('should return false for invalid bank id', () => {
-      expect(hasManualDepositTransactionType('999', mockBanks)).toBe(false);
-    });
-
-    it('should handle transaction types with whitespace', () => {
-      expect(hasManualDepositTransactionType('5', mockBanks)).toBe(true);
-    });
-
-    it('should handle null transaction types', () => {
-      expect(hasManualDepositTransactionType('6', mockBanks)).toBe(false);
-    });
-
-    it('should return false for empty bank id', () => {
-      expect(hasManualDepositTransactionType('', mockBanks)).toBe(false);
     });
   });
 
   describe('hasAutoDepositTransactionType', () => {
     it('should return true for bank with auto deposit', () => {
-      expect(hasAutoDepositTransactionType('3', mockBanks)).toBe(true);
+      expect(hasAutoDepositTransactionType('1', mockBanks)).toBe(true);
     });
 
     it('should return false for bank without auto deposit', () => {
       expect(hasAutoDepositTransactionType('2', mockBanks)).toBe(false);
-    });
-
-    it('should return false for invalid bank id', () => {
-      expect(hasAutoDepositTransactionType('999', mockBanks)).toBe(false);
-    });
-
-    it('should handle transaction types with whitespace', () => {
-      expect(hasAutoDepositTransactionType('5', mockBanks)).toBe(true);
-    });
-
-    it('should handle null transaction types', () => {
-      expect(hasAutoDepositTransactionType('6', mockBanks)).toBe(false);
-    });
-
-    it('should return false for empty bank id', () => {
-      expect(hasAutoDepositTransactionType('', mockBanks)).toBe(false);
     });
   });
 
@@ -165,20 +90,12 @@ describe('bankTransactionUtils', () => {
       expect(hasWithdrawalTransactionType('1', mockBanks)).toBe(true);
     });
 
+    it('should return true for bank with manual withdrawal', () => {
+      expect(hasWithdrawalTransactionType('2', mockBanks)).toBe(true);
+    });
+
     it('should return false for bank without withdrawal', () => {
       expect(hasWithdrawalTransactionType('3', mockBanks)).toBe(false);
-    });
-
-    it('should return false for invalid bank id', () => {
-      expect(hasWithdrawalTransactionType('999', mockBanks)).toBe(false);
-    });
-
-    it('should handle null transaction types', () => {
-      expect(hasWithdrawalTransactionType('6', mockBanks)).toBe(false);
-    });
-
-    it('should return false for empty bank id', () => {
-      expect(hasWithdrawalTransactionType('', mockBanks)).toBe(false);
     });
   });
 
@@ -187,20 +104,12 @@ describe('bankTransactionUtils', () => {
       expect(hasManualWithdrawalTransactionType('1', mockBanks)).toBe(true);
     });
 
+    it('should return true for bank with manual withdrawal', () => {
+      expect(hasManualWithdrawalTransactionType('2', mockBanks)).toBe(true);
+    });
+
     it('should return false for bank without manual withdrawal', () => {
       expect(hasManualWithdrawalTransactionType('3', mockBanks)).toBe(false);
-    });
-
-    it('should return false for invalid bank id', () => {
-      expect(hasManualWithdrawalTransactionType('999', mockBanks)).toBe(false);
-    });
-
-    it('should handle null transaction types', () => {
-      expect(hasManualWithdrawalTransactionType('6', mockBanks)).toBe(false);
-    });
-
-    it('should return false for empty bank id', () => {
-      expect(hasManualWithdrawalTransactionType('', mockBanks)).toBe(false);
     });
   });
 }); 

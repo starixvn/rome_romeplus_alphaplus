@@ -1,11 +1,13 @@
 import { api } from '../config/axios';
-import { PaymentProvider } from './interfaces/PaymentProvider';
-import { PaymentProviderFeeGroup } from './interfaces/PaymentProviderFeeGroup';
+import { 
+  PaymentProvider,
+  PaymentProviderFeeGroup,
+  PaymentMethod,
+  Bank,
+  BankAccount,
+  PaymentTransactionLimit 
+} from './interfaces/Payments';
 import { ResultModel } from './interfaces/ResultModel';
-import { PaymentMethod } from './interfaces/PaymentMethod';
-import { Bank } from './interfaces/Bank';
-import { BankAccount } from './interfaces/BankAccount';
-import { PaymentTransactionLimit } from './interfaces/PaymentTransactionLimit';
 import { TransactionType } from './interfaces/TransactionType';
 
 // API service for payment providers

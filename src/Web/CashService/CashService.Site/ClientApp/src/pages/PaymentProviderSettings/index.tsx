@@ -6,7 +6,7 @@ import { STATUS_OPTIONS, TRANSACTION_TYPES } from '../../constants/paymentConsta
 import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import AddPaymentMethodModal from './AddPaymentMethodModal';
 import BanksPopupModal from './BanksPopupModal';
-import { PaymentProvider } from '../../services/interfaces/PaymentProvider';
+import { PaymentProvider } from '../../services/interfaces/Payments/PaymentProvider';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { formatNumber, formatInputValue } from '../../utils/numberFormatting';
 import { IconBack, IconInfo } from '../../components/Icons';

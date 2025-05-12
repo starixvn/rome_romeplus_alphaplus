@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Bank } from '../../services/interfaces/Bank';
+import { Bank } from '../../services/interfaces/Payments/Bank';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import {
   hasDepositTransactionType,
