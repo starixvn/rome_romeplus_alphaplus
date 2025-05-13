@@ -70,6 +70,8 @@ public class IndexViewModel
 
     public string TransferRootPath => UrlHelper.MapTransferPath("~/");
 
+    public string CashServiceRootPath => UrlHelper.MapCashServicePath("~/");
+
     public string PasswordHash { get; }
 
     public string SubPageAccess => message.SubPageAccess;

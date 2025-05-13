@@ -14,7 +14,8 @@ public static class MicroSites
         { "AccountInfo", AccountInfoUrl },
         { "ViewLog", SettingUrl },
         { "OldMain", SettingUrl },
-        { "Settings", SettingUrl }
+        { "Settings", SettingUrl },
+        { "CashService", CashServiceUrl }
     };
 
     public static string GetMicroSiteUrl(string microSiteName, string virtualPath)
@@ -37,4 +38,7 @@ public static class MicroSites
 
     public static string AccountInfoUrl(string virtualPath = "~/")
         => AppPathHelper.GetAppPath("/account-info", virtualPath);
+    
+    public static string CashServiceUrl(string virtualPath = "~/")
+        => AppPathHelper.GetAppPath("/cash-service", virtualPath);
 }

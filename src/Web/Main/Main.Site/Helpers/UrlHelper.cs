@@ -34,6 +34,9 @@ namespace AlphaPlus.Main.Site.Helpers
         [ThreadStatic]
         private static Func<string, string> mapTransferPath;
 
+        [ThreadStatic]
+        private static Func<string, string> mapCashServicePath;
+
         public static Func<string, string> MapSettingsPath
         {
             get => mapSettingsPath ?? MicroSites.SettingUrl;
@@ -156,6 +159,21 @@ namespace AlphaPlus.Main.Site.Helpers
         public static string MapResultPath()
         {
             return AppPathHelper.GetAppPath("/tickets", "~/");
+        }
+
+     
+
+        public static Func<string, string> MapCashServicePath
+        {
+            get
+            {
+                return mapCashServicePath ?? MicroSites.CashServiceUrl;
+            }
+
+            internal set
+            {
+                mapCashServicePath = value;
+            }
         }
     }
 }
