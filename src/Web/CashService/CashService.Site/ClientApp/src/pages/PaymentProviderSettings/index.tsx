@@ -216,7 +216,10 @@ function PaymentProviderSettings() {
       ) : (
         <>
         <div className='text-[var(--primary-color)] px-[8px] py-[4px] border-b-[2px] border-[#cfcfcf] border-dotted mb-[4px]'>
-          <span className='cursor-pointer inline-flex items-center py-[8px]' onClick={() => window.history.back()}>
+          <span className='cursor-pointer inline-flex items-center py-[8px]' onClick={() => {
+              document.location.href = document.referrer;
+            }
+          }>
             <IconBack className='w-[18px] h-[18px] fill-[var(--primary-color)] mr-[8px]'  />
             <span className='text-[12px] text-[var(--primary-color)] font-semibold'>{tGlobal('back')}</span>
           </span>
