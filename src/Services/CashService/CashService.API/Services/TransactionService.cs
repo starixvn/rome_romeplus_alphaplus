@@ -19,7 +19,7 @@ public interface ITransactionService
 
     Task<ResultModel> UpdateTransactionStatus(UpdateTransactionStatusRemarkCommand command);
 
-    Task<IEnumerable<MemberInfo>> GetMembersAsync(int id);
+    Task<IEnumerable<MemberInfo>> GetMembersAsync(int id, string siteDbIp = "");
 
     Task<ResultModel> SyncCashAccumCreditAsync(string cashAccumCreditTbl);
 }
@@ -124,13 +124,13 @@ public class TransactionService(IDynamicRepository dynamicRepository, ILogger<Tr
         return transactions;
     }
 
-    public async Task<IEnumerable<MemberInfo>> GetMembersAsync(int id)
+    public async Task<IEnumerable<MemberInfo>> GetMembersAsync(int id, string siteDbIp = "")
     {
         var criteria = new GetMembersCriteria
         {
             CustId = id
         };
-        return await dynamicRepository.FetchAsync<MemberInfo>(criteria);
+        return await dynamicRepository.FetchAsync<MemberInfo>(criteria, siteDbIp);
     }
 
     public async Task<ResultModel> SyncCashAccumCreditAsync(string cashAccumCreditTbl)

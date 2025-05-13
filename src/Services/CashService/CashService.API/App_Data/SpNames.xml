@@ -80,7 +80,12 @@
         <Setting Key="Age_Transaction_GetAll" SpName="Age_Transaction_GetAll" DbName="DBCust.CustDB.wsv_alp" Plain="0"></Setting>
         <Setting Key="Age_Transaction_GetById" SpName="Age_Transaction_GetById" DbName="DBCust.CustDB.wsv_alp" Plain="0"></Setting>
         <Setting Key="GetCashMemberBankInfoCriteria" SpName="GetCashMemberBankInfoCriteria" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="Age_CashService_MemberListSel" SpName="Age_CashService_MemberListSel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0"></Setting>
         <Setting Key="Age_CashAgentBankInfoSel" SpName="Age_CashAgentBankInfoSel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="Age_CashMemberBankInfoSel" SpName="Age_CashMemberBankInfoSel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="Age_CashAccumCredit_AgSel" SpName="Age_CashAccumCredit_AgSel" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="Age_CashDeposit_LimitAmtSel" SpName="Age_CashDeposit_LimitAmtSel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="Acc_ServerDBConfigSelByCust" SpName="Acc_ServerDBConfigSelByCust" DbName="DBGLOB.GlobCustDB.wsv_CashService" Plain="0"></Setting>
     </Function>
 
     <Function Name="Member Site Info">
