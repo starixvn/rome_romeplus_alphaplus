@@ -1,8 +1,8 @@
-﻿using AlphaPlus.CashService.API.Models;
+﻿using AlphaPlus.CashService.API.Criteria;
 
 namespace AlphaPlus.CashService.API.Criteria.Transactions;
 
-public class SyncCashAccumCreditCommand : BaseNonQueryCommand
+public class SyncCashAccumCreditCommand() : BaseActionCommand(0, 0, "", "")
 {
     public string CashAccumCreditTbl { get; set; }
 

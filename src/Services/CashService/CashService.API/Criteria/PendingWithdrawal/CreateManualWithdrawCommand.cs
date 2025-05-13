@@ -1,15 +1,11 @@
-﻿using AlphaPlus.CashService.API.Models;
+﻿using AlphaPlus.CashService.API.Criteria;
 using Fanex.Data;
 
 namespace AlphaPlus.CashService.API.Criteria.PendingWithdrawal;
 
-public class CreateManualWithdrawCommand : BaseNonQueryCommand
+public class CreateManualWithdrawCommand() : BaseActionCommand(0, 0, "", "")
 {
-    public int CustId { get; set; }
-
     public int UplineId { get; set; }
-
-    public int SubAccId { get; set; }
 
     public decimal MinLimitAmt { get; set; }
 

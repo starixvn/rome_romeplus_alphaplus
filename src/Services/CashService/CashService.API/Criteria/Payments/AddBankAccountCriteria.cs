@@ -1,29 +1,26 @@
 using Fanex.Data;
-using Fanex.Data.Repository;
-using AlphaPlus.CashService.API.Models.Payments;
+using AlphaPlus.CashService.API.Requests.Payments;
 
 namespace AlphaPlus.CashService.API.Criteria.Payments
 {
-    public class AddBankAccountCriteria : NonQueryCommand
+    public class AddBankAccountCriteria : BaseActionCommand
     {
-        public AddBankAccountCriteria(BankAccountModel bankAccModel)
+        public AddBankAccountCriteria(AddBankAccountRequest request) : 
+            base(request.ActorId, request.SubAccId, request.IP, request.Language)
         {
-            Creator = bankAccModel.CreatorId;
-            CreatorName = bankAccModel.Creator;
+            CreatorName = request.Creator;
+            BankId = request.BankId;
+            Status = request.Status;
+            AccountNickname = request.AccountNickname;
+            TransactionTypeIDs = request.Agent_TransTypeList;
+            PromptPay = request.PromptPay;
 
-            BankId = bankAccModel.BankId;
-            Status = bankAccModel.Status;
-            AccountNickname = bankAccModel.AccountNickname;
-            TransactionTypeIDs = bankAccModel.Agent_TransTypeList;
-            PromptPay = bankAccModel.PromptPay;
-
-            AccountHolderName = bankAccModel.AccountHolderName;
-            AccountNumber = bankAccModel.AccountNumber;
-            Mobile = bankAccModel.CountryCode + "-" + bankAccModel.Mobile;
+            AccountHolderName = request.AccountHolderName;
+            AccountNumber = request.AccountNumber;
+            Mobile = request.CountryCode + "-" + request.Mobile;
+            DepositMatchingMode = request.Agent_DepositMatchingMode;
         }
 
-        [SpParam(SqlParamName = "CustId")]
-        public int Creator { get; }
         [SpParam(SqlParamName = "Username")]
         public string CreatorName { get; }
 
@@ -46,15 +43,12 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
         [SpParam(SqlParamName = "PromptPayMobile")]
         public string Mobile { get; }
 
-        public int ErrCode { get; set; }
-        public string ErrMsg { get; set; } = string.Empty;
-
         public override string GetSettingKey() => "Age_CashService_BankAccountAgent_Ins";
 
         public override bool IsValid() => 
+            base.IsValid() &&
             BankId > 0 && 
             !string.IsNullOrWhiteSpace(AccountNumber) && 
-            Creator > 0 &&
             !string.IsNullOrWhiteSpace(AccountHolderName) &&
             !string.IsNullOrWhiteSpace(AccountNickname);
     }

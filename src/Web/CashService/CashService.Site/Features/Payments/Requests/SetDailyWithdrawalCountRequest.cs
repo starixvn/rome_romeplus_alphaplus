@@ -1,14 +1,10 @@
-using System.ComponentModel.DataAnnotations;
+using AlphaPlus.CashService.Site.Features.Shared.Requests;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.CashService.Site.Features.Payments.Requests
 {
-    public class SetDailyWithdrawalCountRequest
+    public class SetDailyWithdrawalCountRequest : BaseActionRequest
     {
-        [Required]
-        public int CustId { get; set; }
-
-        [Required]
-        [Range(0, int.MaxValue, ErrorMessage = "Daily withdrawal count must be a non-negative number")]
         public int Count { get; set; }
     }
 } 

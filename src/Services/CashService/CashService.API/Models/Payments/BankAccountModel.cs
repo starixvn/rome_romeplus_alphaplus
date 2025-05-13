@@ -36,5 +36,7 @@ namespace AlphaPlus.CashService.API.Models.Payments
         public int Agent_DepositMatchingMode { get; set; }
         public string Bank_DepositMatchingMode { get; set; }
         public DepositMatchingModeModel BankDepositMatchingMode { get; set; }
+
+        public int SubAccId { get; set; }
     }
 }

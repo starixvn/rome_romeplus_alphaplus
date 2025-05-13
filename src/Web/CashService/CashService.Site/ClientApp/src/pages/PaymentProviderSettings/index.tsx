@@ -164,7 +164,7 @@ function PaymentProviderSettings() {
       setUpdateMessage(null);
       
       var provider = {
-        id: window.providerSettingsViewModel.Provider.Id,
+        providerId: window.providerSettingsViewModel.Provider.Id,
         name: window.providerSettingsViewModel.Provider.Name,
         status: providerStatus ? 1 : 0,
         providerSettings: providerSettings

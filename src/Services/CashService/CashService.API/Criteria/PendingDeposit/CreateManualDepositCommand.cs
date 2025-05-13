@@ -1,14 +1,10 @@
-﻿using AlphaPlus.CashService.API.Models;
+﻿using AlphaPlus.CashService.API.Criteria;
 
 namespace AlphaPlus.CashService.API.Criteria.PendingDeposit;
 
-public class CreateManualDepositCommand : BaseNonQueryCommand
+    public class CreateManualDepositCommand() : BaseActionCommand(0, 0, "", "")
 {
-    public int CustId { get; set; }
-
     public int UplineId { get; set; }
-
-    public int SubAccId { get; set; }
 
     public decimal AgentGivenCredit { get; set; }
 

@@ -1,5 +1,4 @@
 using AlphaPlus.CashService.API.Services;
-using AlphaPlus.CashService.API.Models.Payments;
 using AlphaPlus.CashService.API.Requests.Payments;
 using Newtonsoft.Json;
 
@@ -50,7 +49,7 @@ public static class PaymentsEndpoints
                 return Results.BadRequest("Invalid request data");
             }
 
-            var result = await service.SetDailyWithdrawalCount(limitRequest.CustId, limitRequest.Count);
+            var result = await service.SetDailyWithdrawalCount(limitRequest);
             return Results.Ok(result);
         })
         .WithName("SetDailyWithdrawalCount")
@@ -112,7 +111,7 @@ public static class PaymentsEndpoints
         {
             using var reader = new StreamReader(request.Body);
             var body = await reader.ReadToEndAsync();
-            var provider = JsonConvert.DeserializeObject<ProviderModel>(body);
+            var provider = JsonConvert.DeserializeObject<UpdateProviderRequest>(body);
             var result = await service.UpdateProvider(provider);
             return Results.Ok(result);
         })
@@ -127,7 +126,7 @@ public static class PaymentsEndpoints
         {
             using var reader = new StreamReader(request.Body);
             var body = await reader.ReadToEndAsync();
-            var method = JsonConvert.DeserializeObject<PaymentMethodModel>(body);
+            var method = JsonConvert.DeserializeObject<InsertPaymentMethodRequest>(body);
             var result = await service.InsertPaymentMethod(method);
             return Results.Ok(result);
         })
@@ -207,12 +206,12 @@ public static class PaymentsEndpoints
             Description = "Returns the transaction limits for a specific customer"
         });
 
-        app.MapPost("/api/payments/set-transaction-limit", async (int custId, HttpRequest request, IPaymentsService service) =>
+        app.MapPost("/api/payments/set-transaction-limit", async (HttpRequest request, IPaymentsService service) =>
         {
             using var reader = new StreamReader(request.Body);
             var body = await reader.ReadToEndAsync();
-            var limit = JsonConvert.DeserializeObject<TransactionLimitModel>(body);
-            var result = await service.SetTransactionLimit(custId, limit);
+            var limit = JsonConvert.DeserializeObject<SetTransactionLimitRequest>(body);
+            var result = await service.SetTransactionLimit(limit);
             return Results.Ok(result);
         })
         .WithName("SetTransactionLimit")
@@ -226,7 +225,7 @@ public static class PaymentsEndpoints
         {
             using var reader = new StreamReader(request.Body);
             var body = await reader.ReadToEndAsync();
-            var bankAccount = JsonConvert.DeserializeObject<BankAccountModel>(body);
+            var bankAccount = JsonConvert.DeserializeObject<AddBankAccountRequest>(body);
             var result = await service.AddBankAccount(bankAccount);
             return Results.Ok(result);
         })
@@ -253,7 +252,7 @@ public static class PaymentsEndpoints
         {
             using var reader = new StreamReader(request.Body);
             var body = await reader.ReadToEndAsync();
-            var bankAccount = JsonConvert.DeserializeObject<BankAccountModel>(body);
+            var bankAccount = JsonConvert.DeserializeObject<UpdateBankAccountRequest>(body);
             var result = await service.UpdateBankAccount(bankAccount);
             return Results.Ok(result);
         })
@@ -264,9 +263,12 @@ public static class PaymentsEndpoints
             Description = "Updates an existing bank account's information"
         });
 
-        app.MapDelete("/api/payments/bank-accounts/{accountId}", async (int accountId, IPaymentsService service) =>
-        {
-            var result = await service.DeleteBankAccount(accountId);
+        app.MapPost("/api/payments/bank-accounts/delete", async (HttpRequest request,IPaymentsService service) =>
+        { 
+            using var reader = new StreamReader(request.Body);
+            var body = await reader.ReadToEndAsync();
+            var deleteBankAccountRequest = JsonConvert.DeserializeObject<DeleteBankAccountRequest>(body);
+            var result = await service.DeleteBankAccount(deleteBankAccountRequest);
             return Results.Ok(result);
         })
         .WithName("DeleteBankAccount")

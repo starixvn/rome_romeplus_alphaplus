@@ -10,7 +10,7 @@ import {
   hasManualWithdrawalTransactionType
 } from '../../utils/bankTransactionUtils';
 import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
-import { IconCheck, IconError, IconBack } from '../../components/Icons';
+import { IconCheck, IconError } from '../../components/Icons';
 import { baseAPI } from '../../services/commonAPI';
 import CustomDropdown, { DropdownOption } from '../../components/ui/customDropdown';
 import BackCommon from '../../components/ui/BackComponents';

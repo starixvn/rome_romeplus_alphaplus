@@ -54,9 +54,8 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             [FromBody] SetDailyWithdrawalCountRequest request,
             CancellationToken cancellationToken)
         {
+            request.SetUserSession(_userSession);
             var url = $"{_apiBaseUrl}/payments/set-daily-withdrawal-count";
-            request.CustId = _custId;
-
             var response = await _httpClient.PostAsJsonAsync(url, request, cancellationToken);
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
@@ -103,13 +102,13 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         }
 
         public async Task<IActionResult> AddPaymentMethod(
-            [FromBody] PaymentMethodModel paymentMethod,
+            [FromBody] InsertPaymentMethodRequest request,
             CancellationToken cancellationToken)
         {
+            request.SetUserSession(_userSession);
             var url = $"{_apiBaseUrl}/payments/add-payment-method";
-            paymentMethod.CustId = _custId;
 
-            var response = await _httpClient.PostAsJsonAsync(url, paymentMethod, cancellationToken);
+            var response = await _httpClient.PostAsJsonAsync(url, request, cancellationToken);
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
             return Json(result);
@@ -123,13 +122,13 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         }
 
         public async Task<IActionResult> UpdateProvider(
-            [FromBody] ProviderModel provider,
+            [FromBody] UpdateProviderRequest request,
             CancellationToken cancellationToken)
         {
+            request.SetUserSession(_userSession);
             var url = $"{_apiBaseUrl}/payments/update-provider";
-            provider.CustId = _custId;
 
-            var response = await _httpClient.PostAsJsonAsync(url, provider, cancellationToken);
+            var response = await _httpClient.PostAsJsonAsync(url, request, cancellationToken);
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
             return Json(result);
@@ -169,10 +168,11 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         }
 
         public async Task<IActionResult> SetTransactionLimit(
-            [FromBody] TransactionLimitModel request,
+            [FromBody] SetTransactionLimitRequest request,
             CancellationToken cancellationToken)
         {
-            var url = $"{_apiBaseUrl}/payments/set-transaction-limit?custId={_custId}";
+            request.SetUserSession(_userSession);
+            var url = $"{_apiBaseUrl}/payments/set-transaction-limit";
             var response = await _httpClient.PostAsJsonAsync(url, request, cancellationToken);
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
@@ -180,14 +180,12 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         }
 
         public async Task<IActionResult> AddBankAccount(
-            [FromBody] BankAccountModel bankAccount,
+            [FromBody] AddBankAccountRequest request,
             CancellationToken cancellationToken)
         {
+            request.SetUserSession(_userSession);
             var url = $"{_apiBaseUrl}/payments/add-bank-account";
-            bankAccount.CreatorId = _custId;
-            bankAccount.Creator = _userSession.UserName;
-
-            var response = await _httpClient.PostAsJsonAsync(url, bankAccount, cancellationToken);
+            var response = await _httpClient.PostAsJsonAsync(url, request, cancellationToken);
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
             return Json(result);
@@ -203,24 +201,24 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         }
 
         public async Task<IActionResult> UpdateBankAccount(
-            [FromBody] BankAccountModel bankAccount,
+            [FromBody] UpdateBankAccountRequest request,
             CancellationToken cancellationToken)
         {
+            request.SetUserSession(_userSession);
             var url = $"{_apiBaseUrl}/payments/update-bank-account";
-            bankAccount.CreatorId = _custId;
-
-            var response = await _httpClient.PutAsJsonAsync(url, bankAccount, cancellationToken);
+            var response = await _httpClient.PutAsJsonAsync(url, request, cancellationToken);
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
             return Json(result);
         }
 
         public async Task<IActionResult> DeleteBankAccount(
-            int bankAccountId,
+            [FromBody] DeleteBankAccountRequest request,
             CancellationToken cancellationToken)
         {
-            var url = $"{_apiBaseUrl}/payments/bank-accounts/{bankAccountId}";
-            var response = await _httpClient.DeleteAsync(url, cancellationToken);
+            request.SetUserSession(_userSession);
+            var url = $"{_apiBaseUrl}/payments/bank-accounts/delete";
+            var response = await _httpClient.PostAsJsonAsync(url, request,cancellationToken);
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
             return Json(result);

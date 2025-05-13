@@ -4,7 +4,7 @@ using AlphaPlus.CashService.API.Models.Payments;
 using AlphaPlus.CashService.API.Models;
 using Fanex.Data.Repository;
 using CashService.API.DTOs.Payments;
-using System.Text.Json;
+using AlphaPlus.CashService.API.Requests.Payments;
 
 namespace AlphaPlus.CashService.API.Services;
 
@@ -12,23 +12,23 @@ public interface IPaymentsService
 {
     Task<IEnumerable<ProviderModel>> GetProviders(int custId);
     Task<int> GetDailyWithdrawalCount(int custId);
-    Task<ResultModel> SetDailyWithdrawalCount(int custId, int count);
+    Task<ResultModel> SetDailyWithdrawalCount(SetDailyWithdrawalCountRequest request);
     Task<IEnumerable<ProviderFeeGroupModel>> GetProviderFees(int providerId);
     Task<ProviderModel> GetProviderById(int custId, int providerId);
     Task<IEnumerable<PaymentMethodModel>> GetPaymentMethods(int custId, int providerId, int transactionType);
     Task<IEnumerable<ProviderSettingsModel>> GetProviderSettings(int providerId, int method, int status, int transactionType);
-    Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod);
+    Task<ResultModel> InsertPaymentMethod(InsertPaymentMethodRequest request);
     Task<IEnumerable<BankModel>> GetBanks(int transactionType);
-    Task<ResultModel> UpdateProvider(ProviderModel provider);
+    Task<ResultModel> UpdateProvider(UpdateProviderRequest request);
     Task<IEnumerable<BankModel>> GetBanksByCust(int custId);
     Task<IEnumerable<TransactionTypeModel>> GetTransactionTypes();
     Task<IEnumerable<BankAccountModel>> GetBankAccounts(int custId, int bankId, int transactionType, int status, string searchText);
     Task<TransactionLimitModel> GetTransactionLimit(int custId);
-    Task<ResultModel> SetTransactionLimit(int custId, TransactionLimitModel limit);
-    Task<ResultModel> AddBankAccount(BankAccountModel bankAccount);
+    Task<ResultModel> SetTransactionLimit(SetTransactionLimitRequest request);
+    Task<ResultModel> AddBankAccount(AddBankAccountRequest request);
     Task<BankAccountModel> GetBankAccountById(int accountId);
-    Task<ResultModel> UpdateBankAccount(BankAccountModel bankAccount);
-    Task<ResultModel> DeleteBankAccount(int accountId);
+    Task<ResultModel> UpdateBankAccount(UpdateBankAccountRequest request);
+    Task<ResultModel> DeleteBankAccount(DeleteBankAccountRequest request);
 }
 
 public class PaymentsService(IDynamicRepository repository, ICacheRefService cacheRefService) : IPaymentsService
@@ -52,11 +52,10 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
         return result.FirstOrDefault();
     }
     
-    public async Task<ResultModel> SetDailyWithdrawalCount(int custId, int count)
+    public async Task<ResultModel> SetDailyWithdrawalCount(SetDailyWithdrawalCountRequest request)
     {
-        var criteria = new SetDailyWithdrawalCountCriteria(custId, count);    
+        var criteria = new SetDailyWithdrawalCountCriteria(request);    
         await repository.ExecuteAsync(criteria);
-
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
     
@@ -109,15 +108,15 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
         return settings;
     }
     
-    public async Task<ResultModel> InsertPaymentMethod(PaymentMethodModel paymentMethod)
+    public async Task<ResultModel> InsertPaymentMethod(InsertPaymentMethodRequest request)
     {
-        if (paymentMethod.CustId <= 0 || paymentMethod.ProviderId <= 0)
+        if (request.ActorId <= 0 || request.ProviderId <= 0)
         {
             return new ResultModel(1, "Invalid customer ID or provider ID");
         }
 
-        var criteria = new InsertPaymentMethodCriteria(paymentMethod) {
-            APIConfig = $"{{\"APIMethodKey\":\"{paymentMethod.APIMethodKey}\",\"MerchantID\":\"{paymentMethod.MerchantID}\",\"AppSecret\":\"{paymentMethod.AppSecret}\"}}",
+        var criteria = new InsertPaymentMethodCriteria(request) {
+            APIConfig = $"{{\"APIMethodKey\":\"{request.APIMethodKey}\",\"MerchantID\":\"{request.MerchantID}\",\"AppSecret\":\"{request.AppSecret}\"}}",
         };
 
         await repository.ExecuteAsync(criteria);
@@ -141,9 +140,9 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
         return banks;
     }
 
-    public async Task<ResultModel> UpdateProvider(ProviderModel provider)
+    public async Task<ResultModel> UpdateProvider(UpdateProviderRequest request)
     {
-        var updateStatusCriteria = new UpdateProviderStatusCriteria(provider.CustId, provider.Id, provider.Status);
+        var updateStatusCriteria = new UpdateProviderStatusCriteria(request);
 
         await repository.ExecuteAsync(updateStatusCriteria);
         if(updateStatusCriteria.ErrCode != 0)
@@ -151,19 +150,19 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
             return new ResultModel(updateStatusCriteria.ErrCode, updateStatusCriteria.ErrMsg);
         }
         
-        if(provider.ProviderSettings == null || provider.ProviderSettings.Count == 0)
+        if(request.ProviderSettings == null || request.ProviderSettings.Count == 0)
         {  
             return new ResultModel(0, string.Empty); 
         }
 
         var jsonSetting = new List<string>();   
-        foreach (var setting in provider.ProviderSettings)
+        foreach (var setting in request.ProviderSettings)
         {   
             jsonSetting.Add(setting.ToJsonString());
         }
 
         var jsonSettings = $"[{string.Join(",", jsonSetting)}]";
-        var updateProviderSettingsCriteria = new UpdateProviderSettingsCriteria(provider.CustId, provider.Id, jsonSettings);
+        var updateProviderSettingsCriteria = new UpdateProviderSettingsCriteria(request, jsonSettings);
         await repository.ExecuteAsync(updateProviderSettingsCriteria);
         return new ResultModel(updateProviderSettingsCriteria.ErrCode, updateProviderSettingsCriteria.ErrMsg);
     }
@@ -228,25 +227,16 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
         } ;
     }
     
-    public async Task<ResultModel> SetTransactionLimit(int custId, TransactionLimitModel limit)
+    public async Task<ResultModel> SetTransactionLimit(SetTransactionLimitRequest request)
     {
-        var criteria = new SetTransactionLimitCriteria(
-            custId, 
-            limit.DailyWithdrawalCount, 
-            limit.MinPerDepositTransaction, 
-            limit.MaxPerDepositTransaction, 
-            limit.MinPerWithdrawalTransaction, 
-            limit.MaxPerWithdrawalTransaction);
-
+        var criteria = new SetTransactionLimitCriteria(request);
         await repository.ExecuteAsync(criteria);
-
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
 
-    public async Task<ResultModel> AddBankAccount(BankAccountModel bankAccount)
+    public async Task<ResultModel> AddBankAccount(AddBankAccountRequest request)
     {
-        var criteria = new AddBankAccountCriteria(bankAccount);
-        
+        var criteria = new AddBankAccountCriteria(request);
         await repository.ExecuteAsync(criteria);
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
@@ -269,24 +259,17 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
         return accounts.FirstOrDefault();
     }
 
-    public async Task<ResultModel> UpdateBankAccount(BankAccountModel bankAccount)
+    public async Task<ResultModel> UpdateBankAccount(UpdateBankAccountRequest request)
     {
-        Console.WriteLine(JsonSerializer.Serialize(bankAccount));
-        var criteria = new UpdateBankAccountCriteria(bankAccount);
+        var criteria = new UpdateBankAccountCriteria(request);
         await repository.ExecuteAsync(criteria);
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
 
-    public async Task<ResultModel> DeleteBankAccount(int accountId)
+    public async Task<ResultModel> DeleteBankAccount(DeleteBankAccountRequest request)
     {
-        if (accountId <= 0)
-        {
-            return new ResultModel(1, "Invalid account ID");
-        }
-
-        var criteria = new DeleteBankAccountCriteria(accountId);
+        var criteria = new DeleteBankAccountCriteria(request);
         await repository.ExecuteAsync(criteria);
-
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
 } 

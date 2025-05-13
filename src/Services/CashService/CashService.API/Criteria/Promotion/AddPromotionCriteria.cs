@@ -1,8 +1,8 @@
-﻿using AlphaPlus.CashService.API.Models;
+﻿using AlphaPlus.CashService.API.Criteria;
 
 namespace AlphaPlus.CashService.API.Criteria.Promotion
 {
-    public class AddPromotionCriteria : BaseNonQueryCommand
+    public class AddPromotionCriteria() : BaseActionCommand(0, 0, "", "")
     {
         public string PromotionType { get; set; }
 

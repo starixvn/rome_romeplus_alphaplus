@@ -1,40 +1,30 @@
 using AlphaPlus.CashService.API.Constants;
+using AlphaPlus.CashService.API.Requests.Payments;
 using Fanex.Data;
-using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Criteria.Payments
 {
-    public class SetTransactionLimitCriteria(
-        int custId,
-        int dailyWithdrawalCount,
-        decimal minPerDeposit,
-        decimal maxPerDeposit,
-        decimal minPerWithdrawal,
-        decimal maxPerWithdrawal)
-        : NonQueryCommand
+    public class SetTransactionLimitCriteria(SetTransactionLimitRequest request) 
+        : BaseActionCommand(request.ActorId, request.SubAccId, request.IP, request.Language)
     {
-        public int CustId { get; } = custId;
         public int ModeAction { get; } = ModeViewConstants.BankAccount; 
 
         [SpParam(SqlParamName = "DrawLimit")]
-        public int DailyWithdrawalCount { get; } = dailyWithdrawalCount;
+        public int DailyWithdrawalCount { get; } = request.DailyWithdrawalCount;    
 
-        public decimal MinPerDeposit { get; } = minPerDeposit;
-        public decimal MaxPerDeposit { get; } = maxPerDeposit;
-        public decimal MinPerWithdrawal { get; } = minPerWithdrawal;
-        public decimal MaxPerWithdrawal { get; } = maxPerWithdrawal;
-
-        public int ErrCode { get; set; }
-        public string ErrMsg { get; set; } = string.Empty;
+        public decimal MinPerDeposit { get; } = request.MinPerDepositTransaction ;  
+        public decimal MaxPerDeposit { get; } = request.MaxPerDepositTransaction ;
+        public decimal MinPerWithdrawal { get; } = request.MinPerWithdrawalTransaction ;
+        public decimal MaxPerWithdrawal { get; } = request.MaxPerWithdrawalTransaction ;
 
         public override string GetSettingKey() => "Age_CashService_AgentBankAccountLimit_Upd";
 
-        public override bool IsValid() => 
-            DailyWithdrawalCount >= 0 && 
-            CustId > 0 &&
-            MinPerDeposit >= 0 &&
-            MaxPerDeposit >= 0 &&
-            MinPerWithdrawal >= 0 &&
-            MaxPerWithdrawal >= 0;
+        public override bool IsValid()
+            => base.IsValid() &&
+                DailyWithdrawalCount >= 0 && 
+                MinPerDeposit >= 0 &&
+                MaxPerDeposit >= 0 &&
+                MinPerWithdrawal >= 0 &&
+                MaxPerWithdrawal >= 0;
     }
 } 

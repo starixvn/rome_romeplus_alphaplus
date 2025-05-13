@@ -1,41 +1,35 @@
 using Fanex.Data;
-using Fanex.Data.Repository;
-using AlphaPlus.CashService.API.Models.Payments;
+using AlphaPlus.CashService.API.Requests.Payments;
 
 namespace AlphaPlus.CashService.API.Criteria.Payments
 {
-    public class UpdateBankAccountCriteria(BankAccountModel bankAccModel) : NonQueryCommand
+    public class UpdateBankAccountCriteria(UpdateBankAccountRequest request) 
+        : BaseActionCommand(request.ActorId, request.SubAccId, request.IP, request.Language)
     {
-        [SpParam(SqlParamName = "CustId")]
-        public int Creator { get; } = bankAccModel.CreatorId;
-
         [SpParam(SqlParamName = "AgentBankAccountID")]
-        public int Id { get; } = bankAccModel.Id;
+        public int Id { get; } = request.Id;
 
         [SpParam(SqlParamName = "BankAccountStatus")]
-        public int Status { get; } = bankAccModel.Status;
+        public int Status { get; } = request.Status;
 
-        public string AccountNickname { get; } = bankAccModel.AccountNickname;
+        public string AccountNickname { get; } = request.AccountNickname;
 
         [SpParam(SqlParamName = "TransTypeList")]
-        public string TransactionTypeIDs {get;} = bankAccModel.Agent_TransTypeList;
+        public string TransactionTypeIDs {get;} = request.Agent_TransTypeList;
 
-        public int DepositMatchingMode {get;} = bankAccModel.Agent_DepositMatchingMode;
+        public int DepositMatchingMode {get;} = request.Agent_DepositMatchingMode;
 
         [SpParam(SqlParamName = "PromptPayEnabled")]
-        public bool PromptPay { get; } = bankAccModel.PromptPay;
+        public bool PromptPay { get; } = request.PromptPay;
 
         [SpParam(SqlParamName = "PromptPayMobile")]
-        public string Mobile { get; } = bankAccModel.CountryCode + "-" + bankAccModel.Mobile;
-
-        public int ErrCode { get; set; }
-        public string ErrMsg { get; set; } = string.Empty;
+        public string Mobile { get; } = request.CountryCode + "-" + request.Mobile;
 
         public override string GetSettingKey() => "Age_CashService_BankAccountAgent_Upd";
 
-        public override bool IsValid() => 
-            Id > 0 && 
-            Creator > 0 &&
-            !string.IsNullOrWhiteSpace(AccountNickname);
+        public override bool IsValid()
+            => base.IsValid() &&
+                Id > 0 && 
+                !string.IsNullOrWhiteSpace(AccountNickname);
     }
 } 

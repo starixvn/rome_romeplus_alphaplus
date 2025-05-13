@@ -1,21 +1,20 @@
+using AlphaPlus.CashService.API.Requests.Payments;
 using Fanex.Data;
-using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Criteria.Payments
 {
-    public class UpdateProviderStatusCriteria(int custId, int providerId, int status) : NonQueryCommand
+    public class UpdateProviderStatusCriteria(UpdateProviderRequest request) 
+        : BaseActionCommand(request.ActorId, request.SubAccId, request.IP, request.Language)
     {
-        public int CustId { get; } = custId;
-        public int ProviderId { get; } = providerId;
+        public int ProviderId { get; } = request.ProviderId;
 
         [SpParam(SqlParamName = "ProviderStatus")]
-        public int Status { get; } = status;
-
-        public int ErrCode { get; set; }
-        public string ErrMsg { get; set; } = string.Empty;
+        public int Status { get; } = request.Status;
 
         public override string GetSettingKey() => "Age_CashService_PaymentProviderStatus_Upd";
 
-        public override bool IsValid() => ProviderId > 0 && CustId > 0;
+        public override bool IsValid()
+            => base.IsValid() &&
+                ProviderId > 0;
     }
 } 

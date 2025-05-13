@@ -43,7 +43,7 @@ export const paymentProviderService = {
       console.error('Error setting daily withdrawal count:', error);
       throw error;
     }
-  },
+  }, 
 
   // Get fees for a specific payment provider
   getProviderFees: async (providerId: number): Promise<PaymentProviderFeeGroup[]> => {
@@ -239,7 +239,7 @@ export const paymentProviderService = {
   // Delete a bank account
   deleteBankAccount: async (bankAccountId: number): Promise<ResultModel> => {
     try {
-      const response = await api.delete(`DeleteBankAccount?bankAccountId=${bankAccountId}`);
+      const response = await api.post(`DeleteBankAccount`, { bankAccountId });
       return response.data;
     } catch (error) {
       console.error(`Error deleting bank account ${bankAccountId}:`, error);
