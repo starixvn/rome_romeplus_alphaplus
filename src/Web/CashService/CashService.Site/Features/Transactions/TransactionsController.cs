@@ -18,6 +18,8 @@ public class TransactionsController(
 ) : SiteBaseController(mediator)
 {
     private readonly string _apiBaseUrl = configuration["CashServiceAPIUrl"] ?? throw new InvalidOperationException("CashServiceAPIUrl not configured.");
+    private readonly int _custId = userSession.CustId;
+    private readonly string _agip = userSession.AGIP;
 
     public IActionResult Index() => Ok("Transactions");
 
@@ -70,6 +72,13 @@ public class TransactionsController(
         var url = $"{_apiBaseUrl}/withdrawal/bank-withdrawal-accounts";
         var withdrawalAccounts = await httpClient.GetFromJsonAsync<object>(url);
         return Json(withdrawalAccounts);
+    }
+
+    public async Task<IActionResult> GetMemberLoginName()
+    {
+        var url = $"{_apiBaseUrl}/transactions/get-members/{_custId}{_agip}";
+        var memberLogins = await httpClient.GetFromJsonAsync<object>(url);
+        return Json(memberLogins);
     }
 
     public async Task<IActionResult> GetFilterAccount(int transactionType)

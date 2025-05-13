@@ -6,6 +6,7 @@ import {
 } from './interfaces/Transactions/TransactionHistory';
 import { AccountOption } from './interfaces/Transactions/AccountOption';
 import { ResultModel } from './interfaces/ResultModel';
+import { MemberLoginName } from './interfaces/Transactions/MemberLoginName';
 
 const api = axios.create({
   baseURL: '',
@@ -89,3 +90,14 @@ export const getAccount = async (transactionType: number): Promise<AccountOption
     return [];
   }
 };
+
+export const getMemberLoginName = async (): Promise<MemberLoginName[]> => {
+  try {
+    const response = await api.get<MemberLoginName[]>('GetMemberLoginName');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching member login names:', error);
+    return [];
+  }
+};
+

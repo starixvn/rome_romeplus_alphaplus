@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { getMemberLoginName } from '../../../../services/transactionsHistoryAPI';
+import { MemberLoginName } from '../../../../services/interfaces/Transactions/MemberLoginName';
 
 interface ManualAddDepositFormProps {
   onClose: () => void;
@@ -15,7 +17,8 @@ interface ManualAddDepositFormProps {
 
 const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, onSubmit }) => {
   const { t } = useTranslation('pendingDeposit');
-  const [memberLoginName, setMemberLoginName] = useState('999b20a00001');
+  const [memberLoginNames, setMemberLoginName] = useState<MemberLoginName[]>([]);
+  const [member, setMember] = useState('');
   const [from, setFrom] = useState(12345678);
   const [to, setTo] = useState(1493993018);
   const [depositAmount, setDepositAmount] = useState('');
@@ -23,10 +26,19 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, on
   const [image, setImage] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
+  useEffect(() => {
+    const fetchMemberLoginName = async () => {
+      const memberLoginNames = await getMemberLoginName();
+      setMemberLoginName(memberLoginNames);
+      console.log('memberLoginNames', memberLoginNames);
+    };
+    fetchMemberLoginName();
+  }, []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit({
-      memberLoginName,
+      memberLoginName: member,
       from,
       to,
       depositAmount: parseFloat(depositAmount),
@@ -91,11 +103,15 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, on
                     <div className="relative">
                       <select
                         id="memberLoginName"
-                        value={memberLoginName}
-                        onChange={(e) => setMemberLoginName(e.target.value)}
+                        value={memberLoginNames[0]?.username}
+                        onChange={(e) => setMember(e.target.value)}
                         className="border border-gray-300 rounded-md px-2 w-full h-[35px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
                       >
-                        <option value="999b20a00001">999b20a00001</option>
+                        {memberLoginNames.map((name) => (
+                          <option key={name.custId} value={name.username}>
+                            {name.username}
+                          </option>
+                        ))}
                       </select>
                     </div>
                   </div>

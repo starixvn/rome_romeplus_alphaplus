@@ -5,7 +5,7 @@ import ManualAddDepositForm from './components/ManualAddDepositForm';
 import Filter from './components/Filter';
 import DataGrid from './components/DataGrid';
 import { DepositAccountInfo } from '../../../services/interfaces/DepositAccountInfo';
-import { pendingDepositService } from '../../../services/pendingDepositAPI';
+import { getMemberBankAccounts } from '../../../services/pendingDepositAPI';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../../i18n/i18n-pendingDeposit';
 import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
@@ -22,7 +22,7 @@ const PendingDeposit: React.FC = () => {
 
   useEffect(() => {
     const fetchDeposits = async () => {
-      const deposits = await pendingDepositService.getMemberBankAccounts();
+      const deposits = await getMemberBankAccounts();
       setDeposits(deposits);
     };
     fetchDeposits();

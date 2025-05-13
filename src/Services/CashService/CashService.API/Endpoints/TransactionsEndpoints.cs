@@ -69,9 +69,9 @@ public static class TransactionsEndpoints
             Description = "Revert transaction to pending"
         });
 
-        group.MapGet("/get-members/{id}", async (int id, ITransactionService service) =>
+        group.MapGet("/get-members/{custId}/{agip}", async (int custId, string agip, ITransactionService service) =>
         {
-            var members = await service.GetMembersAsync(id);
+            var members = await service.GetMembersAsync(custId, agip);
             return Results.Ok(members);
         })
         .WithName("GetMembersAsync")
