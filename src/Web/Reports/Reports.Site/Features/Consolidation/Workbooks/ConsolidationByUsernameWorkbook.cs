@@ -42,7 +42,9 @@ public class ConsolidationByUsernameWorkbook(IWebHostEnvironment webHostEnvironm
         .Map(K, winLoss => winLoss.OwnerComm)
         .Map(L, winLoss => winLoss.OwnerTotal)
         .Map(M, winLoss => winLoss.Company)
-        .Map(N, winLoss => winLoss.BetCount);
+        .Map(N, winLoss => winLoss.BetCount)
+        .Map(O, winLoss => winLoss.RewardAmount)
+        .Map(P, winLoss => winLoss.RewardCurrency);
     private readonly Mapper<ConsolidationEntity> groupByPTMapper = new Mapper<ConsolidationEntity>()
         .Map(A, winLoss => string.Empty)
         .Map(B, winLoss => winLoss.PositionTakingText)
@@ -57,7 +59,9 @@ public class ConsolidationByUsernameWorkbook(IWebHostEnvironment webHostEnvironm
         .Map(K, winLoss => winLoss.OwnerComm)
         .Map(L, winLoss => winLoss.OwnerTotal)
         .Map(M, winLoss => winLoss.Company)
-        .Map(N, winLoss => winLoss.BetCount);
+        .Map(N, winLoss => winLoss.BetCount)
+        .Map(O, winLoss => string.Empty)
+        .Map(P, winLoss => string.Empty);
     private readonly Mapper<ConsolidationEntity> dataMapper = new Mapper<ConsolidationEntity>()
         .Map(A, winLoss => string.Empty)
         .Map(B, winLoss => $"{PaddingToProductName}{winLoss.ProductName}")
@@ -72,7 +76,9 @@ public class ConsolidationByUsernameWorkbook(IWebHostEnvironment webHostEnvironm
         .Map(K, winLoss => winLoss.OwnerComm)
         .Map(L, winLoss => winLoss.OwnerTotal)
         .Map(M, winLoss => winLoss.Company)
-        .Map(N, winLoss => winLoss.BetCount);
+        .Map(N, winLoss => winLoss.BetCount)
+        .Map(O, winLoss => string.Empty)
+        .Map(P, winLoss => string.Empty);
 
     public ExcelFileViewModel BuildExcelFile(
         ConsolidationExcelQuery message,

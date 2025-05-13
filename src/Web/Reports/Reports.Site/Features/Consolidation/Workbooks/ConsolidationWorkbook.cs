@@ -23,6 +23,9 @@ public class ConsolidationWorkbook(IWebHostEnvironment webHostEnvironment) :
     ReportNpoiWorkbook<ConsolidationByGroup>(webHostEnvironment),
     IConsolidationWorkbook
 {
+    private bool isReportByDate;
+
+
     public ExcelFileViewModel BuildExcelFile(
         ConsolidationExcelQuery message,
         IEnumerable<ConsolidationByGroup> reportData,
@@ -31,7 +34,7 @@ public class ConsolidationWorkbook(IWebHostEnvironment webHostEnvironment) :
     {
         var fromDate = message.FromDate.ToShortDateWithSlash();
         var toDate = message.ToDate.ToShortDateWithSlash();
-        var byDate = message.ReportType == ConsolidationReportType.ByDate;
+        var byDate = isReportByDate = message.ReportType == ConsolidationReportType.ByDate;
         var templateName = byDate ? "ConsolidationByDate" : "ConsolidationByProduct";
         var reportTypeName = byDate ? Resources.ConsolidationReportByDate : Resources.ConsolidationReportByProduct;
         var currencyName = message.UserSelectedCurrencyId == 0
@@ -65,14 +68,14 @@ public class ConsolidationWorkbook(IWebHostEnvironment webHostEnvironment) :
                 row.CopyCellsFrom(sheet.OddRowTemplate);
 
                 row.SetCellValue(0, group.BreakDown);
-                SetWinLossByUsernameValue(item, row);
+                SetWinLossByUsernameValue(item, row, isReportByDate);
             }
         }
 
         MergeCells(sheet, (group) => group.WinLoss.Count());
     }
 
-    private void SetWinLossByUsernameValue(ConsolidationEntity data, Row row)
+    private void SetWinLossByUsernameValue(ConsolidationEntity data, Row row, bool isReportByDate)
     {
         var custLevelNameIndex = 1;
         row.SetCellValue(custLevelNameIndex++, data.CustLevelName);
@@ -88,7 +91,17 @@ public class ConsolidationWorkbook(IWebHostEnvironment webHostEnvironment) :
         row.SetCellValue(custLevelNameIndex++, data.OwnerComm);
         row.SetCellValue(custLevelNameIndex++, data.OwnerTotal);
         row.SetCellValue(custLevelNameIndex++, data.Company);
-        row.SetCellValue(custLevelNameIndex, data.BetCount);
+
+        if (isReportByDate)
+        {
+            row.SetCellValue(custLevelNameIndex++, data.BetCount);
+            row.SetCellValue(custLevelNameIndex++, data.RewardAmount);
+            row.SetCellValue(custLevelNameIndex, data.RewardCurrency);
+        }
+        else
+        {
+            row.SetCellValue(custLevelNameIndex, data.BetCount);
+        }
     }
 
     private void MergeCells(Sheet sheet, Func<ConsolidationByGroup, int> getGroupLength)
