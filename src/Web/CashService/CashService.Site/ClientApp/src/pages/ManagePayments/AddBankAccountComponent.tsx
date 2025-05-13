@@ -368,7 +368,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('accountHolderName')}<span className='text-[#E25757]'>*</span></label>                
                     <input
                       type="text"
-                      className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountHolderName ? 'border-[#FE0000]' : 'border-[var(--border-)]'}`}
+                      className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountHolderName ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
                       value={accountHolderName}
                       onChange={(e) => setAccountHolderName(e.target.value)}
                       maxLength={255}
@@ -383,7 +383,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('bankAccountNumber')}<span className='text-[#E25757]'>*</span></label>
                     <input
                       type="text"
-                      className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountNumber ? 'border-[#FE0000]' : 'border-[var(--border-)]'}`}
+                      className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountNumber ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
                       value={accountNumber}
                       onChange={(e) => setAccountNumber(e.target.value)}
                       maxLength={50}
@@ -397,7 +397,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('accountNickname')}<span className='text-[#E25757]'>*</span></label>
                     <input
                       type="text"
-                      className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountNickname ? 'border-[#FE0000]' : 'border-[var(--border-)]'}`}
+                      className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountNickname ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
                       value={accountNickname}
                       onChange={(e) => setAccountNickname(e.target.value)}
                       maxLength={255}
@@ -433,7 +433,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                 
                 <div className="mb-3">
                   <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('mobile')}<span className='text-[#E25757]'>*</span></label>
-                  <div className="flex items-center h-[35px] w-[470px] border-[1px] border-[var(--border-)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer">
+                  <div className="flex items-center h-[35px] w-[470px] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer">
                     <select
                       className={`focus:outline-none focus:border-[var(--button-border)] h-[100%] cursor-pointer mr-[5px] ${fieldErrors.countryCode ? 'border-[#FE0000]' : ''}`}
                       value={countryCode}
@@ -448,7 +448,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     </select>
                     <input
                       type="text"
-                      className={`focus:outline-none w-[100%] h-[100%] pl-[10px] border-l-[1px] ${fieldErrors.mobile ? 'border-[#FE0000]' : 'border-[var(--border-)]'}`}
+                      className={`focus:outline-none w-[100%] h-[100%] pl-[10px] border-l-[1px] ${fieldErrors.mobile ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
                       value={mobile}
                       onChange={(e) => setMobile(e.target.value)}
                       placeholder={tManagePayments('enterMobileNumber')}
@@ -471,7 +471,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                 </button>
                 <button
                   type="submit"
-                  className="w-[140px] h-[30px] rounded-[20px] text-[var(--button-text-cancel)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)] ml-[8px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] hover:border-[var(--button-background-hover)] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
+                  className="w-[140px] h-[30px] rounded-[20px] text-[var(--button-text)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)] ml-[8px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] hover:border-[var(--button-background-hover)] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
                   disabled={loading}
                 >
                   {loading ? tGlobal('saving') : tGlobal('save')}

@@ -294,7 +294,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                     options={banks.map(bank => ({
                       value: bank.id,
                       label: bank.name,
-                      
+                      code: bank.code
                     }))}
                     onSelect={handleBankChange}
                     disable={status === '1'}
