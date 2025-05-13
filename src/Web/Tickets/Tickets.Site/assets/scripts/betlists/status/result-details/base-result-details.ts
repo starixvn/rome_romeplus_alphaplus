@@ -416,28 +416,7 @@
                 return this.microgamingLiveResult;
             }
 
-            var virtualSports = [125,
-                126,
-                127,
-                134,
-                147,
-                177,
-                178,
-                179,
-                180,
-                186,
-                187,
-                188,
-                190,
-                191,
-                192,
-                193,
-                194,
-                196,
-                197,
-                198,
-                199,
-                245];
+            var virtualSports = [125, 126, 127, 134, 147, 161, 164, 175, 177, 178, 179, 180, 182, 183, 184, 185, 186, 188, 190, 191, 192, 193, 194, 195, 196, 197, 198, 201, 211, 231, 233, 241, 242, 243, 244, 250, 251, 255, 1000];
             if (sportTypeId > 99 && !virtualSports.includes(sportTypeId)) {
                 this.result3rd = Common.Utils.IsNullOrUndefinedOrEmpty(this.result3rd)
                     ? new Result3rdDetails()

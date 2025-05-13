@@ -26,6 +26,8 @@ public class WinLossByMatchViewModel(
 
     public byte CustLevelId { get; } = message.CustLevelId;
 
+    public int LeagueType { get; } = message.LeagueType;
+
     public override IDictionary<string, string> GetExcelParams()
         => new Dictionary<string, string>
         {
@@ -36,6 +38,7 @@ public class WinLossByMatchViewModel(
             [nameof(ToDate)] = ToDate.ToShortDateWithSlash(),
             [nameof(BetType)] = BetType.ToString(),
             [nameof(LeagueId)] = LeagueId.ToString(),
+            [nameof(LeagueType)] = LeagueType.ToString(),
             [nameof(MatchId)] = MatchId.ToString(),
             [nameof(Race)] = Race,
             [nameof(LiveIndicator)] = LiveIndicator.ToString(),
