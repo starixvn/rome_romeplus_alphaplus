@@ -76,7 +76,7 @@ public class TransactionsController(
 
     public async Task<IActionResult> GetMemberLoginName()
     {
-        var url = $"{_apiBaseUrl}/transactions/get-members/{_custId}{_agip}";
+        var url = $"{_apiBaseUrl}/transactions/get-members/{_custId}/{_agip}";
         var memberLogins = await httpClient.GetFromJsonAsync<object>(url);
         return Json(memberLogins);
     }
