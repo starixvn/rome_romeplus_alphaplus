@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Select, {
   MultiValue,
   ActionMeta,
@@ -151,7 +151,6 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
   styles,
   onMenuClose,
 }) => {
-  const menuRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
 
   const componentOptions = useMemo(() => {

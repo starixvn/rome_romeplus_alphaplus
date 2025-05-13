@@ -22,8 +22,8 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             _userSession = userSession;
         }
 
-        // private int _custId => 1176086;
-        private int _custId => _userSession.CustId;
+        private int _custId => 1176086;
+        // private int _custId => _userSession.CustId;
 
         public IActionResult Index()
         {

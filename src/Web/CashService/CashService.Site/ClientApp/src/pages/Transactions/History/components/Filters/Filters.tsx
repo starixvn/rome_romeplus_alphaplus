@@ -27,7 +27,6 @@ const Filters: React.FC<FiltersProps> = ({
   onStatusChange,
   onColumnChange,
   onAccountChange,
-  onMenuClose,
 }) => {
   return (
     <div className="flex bg-[#ffffff] px-[14px] py-[8px] rounded-lg">
@@ -45,7 +44,7 @@ const Filters: React.FC<FiltersProps> = ({
         <StatusFilter status={status} onStatusChange={onStatusChange} />
       </div>
       <div className="w-[220px]">
-        <ColumnFilter column={column} onColumnChange={onColumnChange} onMenuClose={onMenuClose} />
+        <ColumnFilter column={column} onColumnChange={onColumnChange} />
       </div>
     </div>
   );

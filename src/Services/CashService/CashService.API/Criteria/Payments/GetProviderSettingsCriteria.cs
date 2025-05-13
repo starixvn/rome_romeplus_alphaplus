@@ -17,7 +17,7 @@ namespace AlphaPlus.CashService.API.Criteria.Payments
         [SpParam(SqlParamName = "TransactionType")]
         public int TransactionType { get; set; } = transactionType;
 
-        public override string GetSettingKey() => "Age_CashService_PaymentProviderDtl_Sel";
+        public override string GetSettingKey() => "Age_CashService_PaymentProviderDetail_Sel";
 
         public override bool IsValid() => ProviderId > 0;
     }
