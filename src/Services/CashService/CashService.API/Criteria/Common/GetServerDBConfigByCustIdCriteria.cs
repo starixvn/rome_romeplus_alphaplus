@@ -2,7 +2,7 @@
 
 using Fanex.Data.Repository;
 
-public class GetSiteDBGroupIDCriteria : CriteriaBase
+public class GetServerDBConfigByCustIdCriteria : CriteriaBase
 {
     public int CustId { get; set; }
 

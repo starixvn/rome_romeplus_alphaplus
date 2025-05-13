@@ -21,7 +21,7 @@ public interface ITransactionService
 
     Task<IEnumerable<MemberInfo>> GetMembersAsync(int custId, string siteDbIp = "");
 
-    Task<ResultModel> SyncCashAccumCreditAsync(string cashAccumCreditTbl);
+    Task<ResultModel> SyncCashAccumCreditAsync(string cashAccumCreditTbl, string siteDbIp = "");
 }
 
 public class TransactionService(IDynamicRepository dynamicRepository, ILogger<TransactionService> logger)
@@ -133,13 +133,13 @@ public class TransactionService(IDynamicRepository dynamicRepository, ILogger<Tr
         return await dynamicRepository.FetchAsync<MemberInfo>(criteria, siteDbIp);
     }
 
-    public async Task<ResultModel> SyncCashAccumCreditAsync(string cashAccumCreditTbl)
+    public async Task<ResultModel> SyncCashAccumCreditAsync(string cashAccumCreditTbl, string siteDbIp = "")
     {
         var command = new SyncCashAccumCreditCommand
         {
             CashAccumCreditTbl = cashAccumCreditTbl
         };
-        await dynamicRepository.ExecuteAsync(command);
+        await dynamicRepository.ExecuteAsync(command, siteDbIp);
         return new ResultModel(command.ErrCode, command.ErrMsg);
     }
 }

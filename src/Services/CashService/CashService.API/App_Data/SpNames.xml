@@ -88,6 +88,12 @@
         <Setting Key="Acc_ServerDBConfigSelByCust" SpName="Acc_ServerDBConfigSelByCust" DbName="DBGLOB.GlobCustDB.wsv_CashService" Plain="0"></Setting>
     </Function>
 
+    <Function Name="Approve Manual Deposit">
+        <Setting Key="Age_CashDeposit_ManualAdd" SpName="Age_CashDeposit_ManualAdd" DbName="DBCust.CustDB.wsv_alp" Plain="0"></Setting>
+        <Setting Key="Age_CashDeposit_MemberSettingSel" SpName="Age_CashDeposit_MemberSettingSel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="Age_CashAccumCredit_SyncData" SpName="Age_CashAccumCredit_SyncData" DbName="DBCust.CustDB.wsv_alp" Plain="0"></Setting>
+    </Function>
+
     <Function Name="Member Site Info">
         <Setting Key="Age_CashService_GeneralSetting" SpName="Age_CashService_GeneralSetting_UAT2" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="Domain" ObjectProperty="Url" />
