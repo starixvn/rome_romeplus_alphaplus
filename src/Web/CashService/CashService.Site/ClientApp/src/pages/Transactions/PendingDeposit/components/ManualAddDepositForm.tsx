@@ -11,7 +11,7 @@ interface ManualAddDepositFormProps {
     to: number;
     depositAmount: number;
     remarks: string;
-    image?: File;
+    image?: string;
   }) => void;
 }
 
@@ -25,6 +25,8 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, on
   const [remarks, setRemarks] = useState('');
   const [image, setImage] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [imageBase64, setImageBase64] = useState<string | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
     const fetchMemberLoginName = async () => {
@@ -43,20 +45,70 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, on
       to,
       depositAmount: parseFloat(depositAmount),
       remarks,
-      image: image || undefined
+      image: imageBase64 || undefined
     });
   };
 
   console.log('image', image);
+  console.log('imageBase64', imageBase64);
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const convertToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = error => reject(error);
+    });
+  };
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const selectedFile = e.target.files[0];
       setImage(selectedFile);
       
+      // Convert to base64
+      const base64 = await convertToBase64(selectedFile);
+      setImageBase64(base64);
+      
       const objectUrl = URL.createObjectURL(selectedFile);
       setImageUrl(objectUrl);
     }
+  };
+
+  const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+    
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      const droppedFile = e.dataTransfer.files[0];
+      setImage(droppedFile);
+      
+      // Convert to base64
+      const base64 = await convertToBase64(droppedFile);
+      setImageBase64(base64);
+      
+      const objectUrl = URL.createObjectURL(droppedFile);
+      setImageUrl(objectUrl);
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+
+  const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
   };
 
   useEffect(() => {
@@ -73,6 +125,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, on
     }
     setImage(null);
     setImageUrl(null);
+    setImageBase64(null);
     
     const fileInput = document.getElementById('image-upload') as HTMLInputElement;
     if (fileInput) {
@@ -186,7 +239,13 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, on
 
           {/* Right side - Upload image and buttons */}
           <div className="flex flex-col items-center pl-20">
-            <div className="w-[350px] h-[450px] border-[2px] border-dashed border-[#163f78] rounded-[5px] flex flex-col items-center justify-center mb-6 relative">
+            <div 
+              className={`w-[350px] h-[450px] border-[2px] border-dashed ${isDragging ? 'border-blue-500 bg-blue-50' : 'border-[#163f78]'} rounded-[5px] flex flex-col items-center justify-center mb-6 relative`}
+              onDrop={handleDrop}
+              onDragOver={handleDragOver}
+              onDragEnter={handleDragEnter}
+              onDragLeave={handleDragLeave}
+            >
               {imageUrl ? (
                 <div className="absolute inset-0 flex flex-col items-center">
                   <img 
