@@ -17,7 +17,7 @@
             <Mapping DataField="MethodName" ObjectProperty="Method"></Mapping>
             <Mapping DataField="FeeRate" ObjectProperty="Rate"></Mapping>
         </Setting>
-        <Setting Key="Age_CashService_PaymentProviderDtl_Sel" SpName="Age_CashService_PaymentProviderDtl_Sel_UAT2" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
+        <Setting Key="Age_CashService_PaymentProviderDetail_Sel" SpName="Age_CashService_PaymentProviderDetail_Sel_UAT2" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="PaymentMethodID" ObjectProperty="Method"></Mapping>
             <Mapping DataField="PaymentMethodStatus" ObjectProperty="Status"></Mapping>
             <Mapping DataField="PaymentMethodEnable" ObjectProperty="IsEnabled"></Mapping>

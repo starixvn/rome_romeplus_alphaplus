@@ -116,7 +116,10 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
             return new ResultModel(1, "Invalid customer ID or provider ID");
         }
 
-        var criteria = new InsertPaymentMethodCriteria(paymentMethod);
+        var criteria = new InsertPaymentMethodCriteria(paymentMethod) {
+            APIConfig = $"{{\"APIMethodKey\":\"{paymentMethod.APIMethodKey}\",\"MerchantID\":\"{paymentMethod.MerchantID}\",\"AppSecret\":\"{paymentMethod.AppSecret}\"}}",
+        };
+        
         await repository.ExecuteAsync(criteria);
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
