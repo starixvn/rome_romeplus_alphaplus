@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 interface ColumnFilterProps {
   column: string[];
   onColumnChange: (value: string[]) => void;
+  onMenuClose?: () => void;
 }
 
 type MultiselectOption = { value: string; label: string };

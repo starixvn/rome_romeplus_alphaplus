@@ -60,7 +60,7 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({
   return (
     <div>
       <div className="flex items-center justify-between">
-        <h2 className="text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] tracking-[0.2px] max-[768px]:text-[20px] max-[768px]:leading-[26px]">{t('generalSettings.title')}</h2>
+        <h2 className="text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px] max-[768px]:text-[20px] max-[768px]:leading-[26px]">{t('generalSettings.title')}</h2>
       </div>
     
       {Object.entries(groupedSettings).map(([category, categorySettings]) => (

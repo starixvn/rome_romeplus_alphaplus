@@ -6,7 +6,7 @@ import { ENABLED_STATUS_OPTIONS } from '../../constants/paymentConstants';
 import SetTransactionLimitModal from './SetTransactionLimitModal';
 import AddBankAccountComponent from './AddBankAccountComponent';
 import UpdateBankAccountComponent from './UpdateBankAccountComponent';
-import TitleCommon from '../../components/ui/TitleCommon';
+import TitleCommon from '../../components/ui/TitleComponents';
 import { IconDelete,  IconPen, IconSearch, IconSync } from '../../components/Icons';
 import CustomDropdown from '../../components/ui/customDropdown';
 import Loading from '../../components/ui/Loading';
@@ -242,7 +242,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
               <ul className="flex">
                 <li className="mr-[8px]">
                   <button
-                      className={`font-bold text-[12px] tracking-[0.12px] leading-[36px] pr-[16px] pl-[16px] rounded-t-[4px] ${activeTab === 'paymentGateway' ? ' bg-[var(--primary-color)] text-[#ffffff] cursor-pointer' : 'bg-[#dbe2ef] text-[var(--primary-color)] cursor-pointer'}`}
+                      className={`font-bold text-[12px] tracking-[0.12px] leading-[36px] pr-[16px] pl-[16px] rounded-t-[4px] ${activeTab === 'paymentGateway' ? ' bg-[var(--primary-color)] text-[#ffffff] cursor-pointer' : 'bg-[#dbe2ef] text-[var(--text-color-primary)] cursor-pointer'}`}
                       onClick={() => setActiveTab('paymentGateway')}
                     >
                     {tManagePayments('paymentGateway')}
@@ -250,7 +250,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                 </li>
                 <li>
                   <button
-                      className={`font-bold text-[12px] tracking-[0.12px] leading-[36px] pr-[16px] pl-[16px] rounded-t-[4px] ${activeTab === 'bankAccount' ? ' bg-[var(--primary-color)] text-[#ffffff] cursor-pointer' : 'bg-[#dbe2ef] text-[var(--primary-color)] cursor-pointer'}`}
+                      className={`font-bold text-[12px] tracking-[0.12px] leading-[36px] pr-[16px] pl-[16px] rounded-t-[4px] ${activeTab === 'bankAccount' ? ' bg-[var(--primary-color)] text-[#ffffff] cursor-pointer' : 'bg-[#dbe2ef] text-[var(--text-color-primary)] cursor-pointer'}`}
                       onClick={() => setActiveTab('bankAccount')}
                     >
                     {tManagePayments('bankAccount')}
@@ -269,7 +269,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                     <ResultMessage type="success" message={successMessage} />
                   )}
                 </div>
-                  <div className="pb-[8px] mt-[8px] text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] tracking-[0.2px] ">{tManagePayments('manageBankAccountAndLimits')}</div>
+                  <div className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px] ">{tManagePayments('manageBankAccountAndLimits')}</div>
                   <div className="text-[12px] leading-[14px]">{tManagePayments('addBankAccountAndLimit')}</div>
                   <div className="my-[8px]">
                     <button 
@@ -279,7 +279,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                     +{tManagePayments('addBankAccount')}
                     </button>
                     <button 
-                      className="w-[183px] h-[30px] rounded-[5px] text-[var(--primary-color)] px-[16px] py-[4px] text-[12px] font-bold border-[1px] border-[var(--primary-color)] mr-[8px] bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
+                      className="w-[183px] h-[30px] rounded-[5px] text-[var(--text-color-primary)] px-[16px] py-[4px] text-[12px] font-bold border-[1px] border-[var(--primary-color)] mr-[8px] bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
                       onClick={handleSetLimit}
                     >
                       {tManagePayments('setLimit')}
@@ -318,7 +318,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                           <label htmlFor="transactionTypeSelect" className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('transactionType')}</label>
                           <select
                             id="transactionTypeSelect"
-                            className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer"
+                            className="h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer"
                             value={selectedTransactionType}
                             onChange={handleTransactionTypeChange}
                           >
@@ -339,7 +339,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                           <label htmlFor="statusSelect" className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('status')}</label>
                           <select
                             id="statusSelect"
-                            className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer"
+                            className="h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer"
                             value={selectedStatus}
                             onChange={handleStatusChange}
                           >
@@ -397,14 +397,14 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                             <td className="col-action bg-[#ffffff]">
                               <div className="flex">
                                 <button 
-                                  className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--primary-color)]"
+                                  className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
                                   onClick={() => handleEditBankAccount(account.id)}
                                   title={tGlobal('edit')}
                                 >                            
                                   <IconPen />
                                 </button>
                                 <button 
-                                  className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--primary-color)]"
+                                  className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
                                   onClick={() => handleDeleteBankAccount(account.id)}
                                   title={tGlobal('delete')}
                                   disabled={deleting === account.id}

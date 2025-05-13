@@ -88,14 +88,14 @@ const Table: React.FC<TableProps> = ({
             <td className='w-[75px] sticky left-[32px] bg-[#ffffff]'>
                 <div className="flex gap-[4px]">
                     <button 
-                        className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--primary-color)]"
+                        className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
                         title={tGlobal('edit')}
                         onClick={() => onEdit?.(item)}
                     >                            
                         <IconPen />
                     </button>
                     <button 
-                        className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--primary-color)]"
+                        className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
                         title={tGlobal('delete')}
                         onClick={() => onDelete?.(item)}
                     >                            

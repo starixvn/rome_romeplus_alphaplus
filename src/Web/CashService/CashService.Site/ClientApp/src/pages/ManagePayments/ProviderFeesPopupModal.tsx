@@ -36,7 +36,7 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
     <div className="bg-[#00000066] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-center justify-center">
       <div className="p-[30px] bg-[#ffffff] max-w-[600px] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
         <div className="relative">
-          <h5 className="text-[16px] text-center text-[var(--primary-color)] font-bold leading-[21.6px] tracking-[0.2px] pb-[4px]">{tManagePayments('feeDetails')} - {provider.name}</h5>
+          <h5 className="text-[16px] text-center text-[var(--text-color-primary)] font-bold leading-[21.6px] tracking-[0.2px] pb-[4px]">{tManagePayments('feeDetails')} - {provider.name}</h5>
           <button type="button" className="absolute top-[-20px] right-[-20px] cursor-pointer" onClick={onClose}>
             <IconClose />
           </button>
@@ -82,7 +82,7 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
                                 </td>
                               )}
                               <td>{fee.method}</td>
-                              <td className='text-[var(--primary-color)]'>
+                              <td className='text-[var(--text-color-primary)]'>
                                 {fee.rateText}
                               </td>
                             </tr>

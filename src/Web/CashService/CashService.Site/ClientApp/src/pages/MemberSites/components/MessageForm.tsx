@@ -45,7 +45,7 @@ const MessageForm: React.FC<MessageFormProps> = ({
 
   return (
     <div className="">
-      <h2 className="text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] max-[768px]:text-[20px] max-[768px]:leading-[26px] ">{t('message.title')}</h2>
+      <h2 className="text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] max-[768px]:text-[20px] max-[768px]:leading-[26px] ">{t('message.title')}</h2>
       <p className="text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px]">{t('message.description')}</p>
       <div className="">
           <div className="flex gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0]">
@@ -87,7 +87,7 @@ const MessageForm: React.FC<MessageFormProps> = ({
                 type="text"
                 value={lineId}
                 onChange={(e) => onMessageChange({ lineId: e.target.value })}
-                className="h-[35px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
+                className="h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
               />
             </div>
       

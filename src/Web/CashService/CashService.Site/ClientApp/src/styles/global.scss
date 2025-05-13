@@ -5,7 +5,27 @@
   --table-header-box-shadow: 0 2px 5px #0003;
   --table-border-color: #0000001f;
   --primary-color: #163f78;
-  --animate-fade-in-scale: fade-in-scale 3s ease-out;
+
+  --text-color-primary: #163f78;
+  --border-primary-color: #163f78;
+
+  //control
+  --border-control: red;
+  --border-control-focus: red;
+  --background-control: red;
+
+  //button
+  --button-border: #163f78;
+  --button-background: #163f78;
+  --button-text: #ffffff;
+  
+  --button-border-cancel: #163f78;
+  --button-background-cancel: #ffffff;
+  --button-text-cancel: #163f78;
+
+
+
+  --color-level: red;
 }
 
 html,

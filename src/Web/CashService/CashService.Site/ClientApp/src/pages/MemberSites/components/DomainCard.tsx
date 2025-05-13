@@ -66,7 +66,7 @@ const DomainCard: React.FC<DomainCardProps> = ({ domain,  index }) => {
           <button 
           disabled={domain.status === 'blocked'}
           onClick={(e) => downloadQRCode(e)}
-          className={`cursor-pointer whitespace-nowrap text-[var(--primary-color)] text-[12px] font-bold bg-[#ffffff] rounded-[5px] p-[6px] max-[768px]:text-[16px]  ${
+          className={`cursor-pointer whitespace-nowrap text-[var(--text-color-primary)] text-[12px] font-bold bg-[#ffffff] rounded-[5px] p-[6px] max-[768px]:text-[16px]  ${
             domain.status === 'active'
               ? 'hover:bg-gray-50 dark:hover:bg-gray-300'
               : 'opacity-50 cursor-not-allowed'
