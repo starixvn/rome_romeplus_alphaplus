@@ -100,7 +100,7 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
             Remark = param.Remark,
         };
 
-        await dynamicRepository.ExecuteAsync(command);
+        await dynamicRepository.ExecuteAsync(command, siteDbConf.AGIP);
         var result = new ResultModel(command.ErrCode, command.ErrMsg);
         if (command.ErrCode == 0)
         {

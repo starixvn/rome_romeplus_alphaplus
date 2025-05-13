@@ -16,9 +16,14 @@ public interface IPendingWithdrawalService
     Task<MemberSettingWithdraw> GetMemberSettingWithdrawAsync(int custId);
 
     Task<(ResultModel, int, string)> CreateManualWithdrawAsync(CreateManualModel param);
+
+    Task<ResultModel> AddManualWithdrawAsync(CreateManualModel param);
 }
 
-public class PendingWithdrawalService(IDynamicRepository dynamicRepository) : IPendingWithdrawalService
+public class PendingWithdrawalService(
+    IDynamicRepository dynamicRepository,
+    ICommonService commonService,
+    ITransactionService transactionService) : IPendingWithdrawalService
 {
     public async Task<IEnumerable<BankAccountInfo>> GetBankWithdrawalAccounts()
     {
@@ -74,7 +79,7 @@ public class PendingWithdrawalService(IDynamicRepository dynamicRepository) : IP
             }
         };
     }
-    
+
     public async Task<decimal> GetCashBalanceAsync(int custId)
     {
         var criteria = new GetCashBalanceCriteria
@@ -92,7 +97,6 @@ public class PendingWithdrawalService(IDynamicRepository dynamicRepository) : IP
             ProviderId = param.ProviderId,
             UplineId = param.UplineId,
             CashBalance = param.CashBalance
-
         };
         return await dynamicRepository.GetAsync<CreditAmount>(criteria);
     }
@@ -128,5 +132,50 @@ public class PendingWithdrawalService(IDynamicRepository dynamicRepository) : IP
         var result = new ResultModel(command.ErrCode, command.ErrMsg);
 
         return (result, command.TransId, command.CashAccumCreditTbl);
+    }
+
+    public async Task<ResultModel> AddManualWithdrawAsync(CreateManualModel param)
+    {
+        var siteDbConf = await commonService.GetServerDBConfigByCustIdAsync(param.CustId);
+        var memberSettings = await GetMemberSettingWithdrawAsync(param.CustId);
+        var command = new CreateManualWithdrawCommand
+        {
+            CustId = param.CustId,
+            UplineId = param.UplineId,
+            SubAccId = param.SubAccId,
+            MinLimitAmt = memberSettings.MinLimitAmt,
+            MaxLimitAmt = memberSettings.MaxLimitAmt,
+            WithdrawalLimitCnt = memberSettings.WithdrawalLimitCnt,
+            PaymentFrom = param.PaymentFrom,
+            PaymentTo = param.PaymentTo,
+            Amount = param.Amount,
+            PaySlip = param.PaySlip,
+            Ip = param.Ip,
+            Remark = param.Remark,
+            ProviderId = param.ProviderId,
+        };
+        await dynamicRepository.ExecuteAsync(command, siteDbConf.AGIP);
+        var result = new ResultModel(command.ErrCode, command.ErrMsg);
+        if (command.ErrCode == 0)
+        {
+            SyncCashAccumulatedCredit(command.CashAccumCreditTbl, siteDbConf.AGIP_DBCUST);
+        }
+        return result;
+    }
+
+    private void SyncCashAccumulatedCredit(string cashAccumulatedCreditTbl, string custDbIp = "")
+    {
+        _ = Task.Run(async () =>
+        {
+            try
+            {
+                await transactionService.SyncCashAccumCreditAsync(cashAccumulatedCreditTbl, custDbIp);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        });
     }
 }
