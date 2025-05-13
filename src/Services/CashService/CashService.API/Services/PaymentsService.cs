@@ -119,7 +119,7 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
         var criteria = new InsertPaymentMethodCriteria(paymentMethod) {
             APIConfig = $"{{\"APIMethodKey\":\"{paymentMethod.APIMethodKey}\",\"MerchantID\":\"{paymentMethod.MerchantID}\",\"AppSecret\":\"{paymentMethod.AppSecret}\"}}",
         };
-        
+
         await repository.ExecuteAsync(criteria);
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
@@ -284,9 +284,9 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
             return new ResultModel(1, "Invalid account ID");
         }
 
-        // TODO: Implement actual database delete logic
-        // var result = await _repository.ExecuteNonQueryAsync(new DeleteBankAccountCriteria(accountId));
+        var criteria = new DeleteBankAccountCriteria(accountId);
+        await repository.ExecuteAsync(criteria);
 
-        return new ResultModel(0, string.Empty);
+        return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
 } 

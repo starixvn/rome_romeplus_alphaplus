@@ -72,7 +72,7 @@
             <Mapping DataField="Username" ObjectProperty="Creator"></Mapping>
         </Setting>
         <Setting Key="Age_CashService_BankAccountAgent_Upd" SpName="Age_CashService_BankAccountAgent_Upd" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
-        <Setting Key="Age_ManagementPayments_DelBankAccount" SpName="Age_ManagementPayments_DelBankAccount" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="Age_CashService_BankAccountAgent_Del" SpName="Age_CashService_BankAccountAgent_Del" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
         <Setting Key="Age_CashService_CountryCodeSel" SpName="Age_CashService_CountryCodeSel_UAT2" DbName="DBCust.CustDB.wsv_CashService" Plain="0" />
     </Function>
 
