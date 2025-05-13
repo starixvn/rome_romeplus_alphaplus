@@ -9,7 +9,6 @@ namespace AlphaPlus.CashService.Site.Features.Payments
     public class PaymentsController : Controller
     {
         private readonly string _apiBaseUrl;
-        private readonly int _custId;
         private readonly HttpClient _httpClient;
         private readonly IUserSession _userSession;
 
@@ -21,9 +20,10 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             _apiBaseUrl = configuration["CashServiceAPIUrl"];
             _httpClient = httpClient;
             _userSession = userSession;
-            _custId = 1176086;
-            // _custId = 187900621;
         }
+
+        // private int _custId => 1176086;
+        private int _custId => _userSession.CustId;
 
         public IActionResult Index()
         {
