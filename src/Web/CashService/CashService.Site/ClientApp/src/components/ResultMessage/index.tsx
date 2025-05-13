@@ -36,7 +36,7 @@ export const ResultMessage: React.FC<ResultMessageProps> = ({
 }) => {
   return (
     <div className={`${className} `} role="alert">
-      <div className={`${getResultStyles(type)} relative font-bold text-[12px] text-[#333] border-[1px] rounded-[10px] pl-[36px] pr-[12px] py-[8px]   block capitalize   `}>
+      <div className={`${getResultStyles(type)} relative font-bold text-[12px] text-[#333] border-[1px] rounded-[10px] pl-[36px] pr-[12px] py-[8px] leading-[18px]  block capitalize   `}>
         {getResultIcon(type)}         
         {message}
       </div>

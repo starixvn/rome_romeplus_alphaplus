@@ -65,7 +65,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
         setSuccessMessage(tManagePayments('transactionLimitUpdated'));
         setTimeout(() => {
           onSave();
-        }, 3000);
+        }, 300011);
       } else {
         setError(result.message || tManagePayments('failedToSetLimit'));
       }

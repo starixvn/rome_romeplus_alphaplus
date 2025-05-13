@@ -62,12 +62,11 @@ const CustomDropdown = ({ options, onSelect, disable = false, initialValue }: Cu
     <div className="relative z-20" ref={dropdownRef}>
       <div className={`flex items-center h-[35px] w-[100%] border-[1px] rounded-[4px] px-[12px] text-[12px] leading-[13px] ${disable ? 'cursor-not-allowed border-[#0000003D] bg-[#f4f4f4]' : 'border-[#0000003D] bg-[#ffffff] cursor-pointer'} focus:outline-none focus:border-[#163f78] relative`} onClick={handleToggle}>
 
-
-      <img src="../assets/bank/BAAC.png" className='w-[16px] h-[16px] mr-[8px] inline-block' />
+      <img src={`../assets/bank/${selected ? selected.code : options[0]?.code || ""}.png`} className='w-[16px] h-[16px] mr-[8px] inline-block' />
         {selected ? selected.label : options[0]?.label || ""}
         <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[10px] "/>
-
       </div>
+      
       {isOpen && (
         <div className="max-h-[200px] overflow-y-auto absolute top-[36px] text-[12px] left-0 w-[100%] bg-[#fff] border-[1px] border-[#0000003D] rounded-[8px]">
           {options.map((option) => (

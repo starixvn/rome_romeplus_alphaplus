@@ -236,8 +236,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
         <>
          <div className="p-[12px] h-[calc(100%-250px)]">
           
-          <TitleCommon title={tManagePayments('managePayments')} />
-          
+          <TitleCommon title={tManagePayments('managePayments')} Tippy={false} />
           <div className="card h-[calc(100%-40px)] flex flex-col">
             <div className="card-header">
               <ul className="flex">
@@ -302,8 +301,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                           <label htmlFor="bankSelect" className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('bank')}</label>                           
                           
                           <CustomDropdown                           
-                            options={(() => {
-                              
+                            options={(() => {                              
                               return banks.map(bank => ({
                                 value: bank.id,
                                 label: bank.name,
@@ -357,7 +355,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                     <div className="flex px-[14px] pb-[16px] bg-[#ffffff]">
                       <div className="w-[250px] ml-auto">
                         <div className="relative">
-                          <span className='absolute top-[10px] left-[5px] z-[100]'>
+                          <span className='absolute top-[10px] left-[5px] z-[10]'>
                           <IconSearch />
                           </span>
                           <input

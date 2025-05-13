@@ -10,7 +10,7 @@ import {
   hasManualWithdrawalTransactionType
 } from '../../utils/bankTransactionUtils';
 import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
-import { IconCheck, IconError } from '../../components/Icons';
+import { IconCheck, IconError, IconBack } from '../../components/Icons';
 import { baseAPI } from '../../services/commonAPI';
 import CustomDropdown, { DropdownOption } from '../../components/ui/customDropdown';
 
@@ -227,6 +227,12 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
     <div className="p-[12px]" tabIndex={-1}>
       <div className="modal-dialog">
         <div className="modal-content max-w-[1200px]">
+        <div className='text-[var(--primary-color)] px-[8px] py-[4px] border-b-[2px] border-[#cfcfcf] border-dotted mb-[4px]'>
+          <span className='cursor-pointer inline-flex items-center py-[8px]' onClick={onClose}>
+            <IconBack className='w-[18px] h-[18px] fill-[var(--primary-color)] mr-[8px]'  />
+            <span className='text-[12px] text-[var(--primary-color)] font-semibold'>{tGlobal('back')}</span>
+          </span>
+        </div>
           <div className="mb-[8px]">
             <h2 className="flex items-center font-bold text-[15px] ">{tManagePayments('bankManagement')}</h2>            
           </div>
@@ -461,7 +467,16 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
               <div className="flex justify-end py-[8px] mt-[8px]">
                 <button
                   type="button"
-                  className="w-[140px] h-[30px] rounded-[20px] text-[var(--primary-color)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--primary-color)]  bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer "
+                  className="w-[140px] h-[30px] rounded-[20px] text-[var(--primary-color)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--primary-color)]  bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer flex items-center justify-center"
+                  onClick={onClose}
+                  disabled={loading}
+                >
+                  <IconBack className="w-[16px] h-[16px] mr-[4px]" />
+                  {tGlobal('goBack')}
+                </button>
+                <button
+                  type="button"
+                  className="w-[140px] h-[30px] rounded-[20px] text-[var(--primary-color)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--primary-color)]  bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer ml-[8px]"
                   onClick={onClose}
                   disabled={loading}
                 >

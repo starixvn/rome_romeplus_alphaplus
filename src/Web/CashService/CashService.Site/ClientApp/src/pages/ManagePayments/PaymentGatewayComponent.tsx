@@ -73,7 +73,16 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
 
   return (
     <div className="p-[12px]">
-      <TitleCommon title={tManagePayments('managePayments')} />
+      <TitleCommon title={tManagePayments('managePayments')} Tippy >
+        <div>
+          <div>
+            <i className="bi bi-info-circle fs-4 ico-info inline-elm"></i> 
+            {tManagePayments('managePayments')}
+          </div>
+          <div>• {tManagePayments('managePaymentsTip1')}</div>
+          <div>• {tManagePayments('managePaymentsTip2')}</div>
+        </div>
+      </TitleCommon>
 
       <div className="card">
         <div className="card-header">

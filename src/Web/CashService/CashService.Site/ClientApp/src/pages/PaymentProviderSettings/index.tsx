@@ -217,9 +217,17 @@ function PaymentProviderSettings() {
         <>
         <div className='text-[var(--primary-color)] px-[8px] py-[4px] border-b-[2px] border-[#cfcfcf] border-dotted mb-[4px]'>
           <span className='cursor-pointer inline-flex items-center py-[8px]' onClick={() => window.history.back()}>
-          <IconBack className='w-[18px] h-[18px] fill-[var(--primary-color)] mr-[8px]'  />
-          <span className='text-[12px] text-[var(--primary-color)] font-semibold'>{tGlobal('back')}</span>
+            <IconBack className='w-[18px] h-[18px] fill-[var(--primary-color)] mr-[8px]'  />
+            <span className='text-[12px] text-[var(--primary-color)] font-semibold'>{tGlobal('back')}</span>
           </span>
+        </div>
+        <div className='my-[16px]'>
+          {updateMessage && (
+            <ResultMessage
+              type={updateMessage.type}
+              message={updateMessage.text}
+            />           
+          )}
         </div>
         <div className='bg-[#ffffff] px-[16px] py-[10px] mb-[8px]'>
           <div className="settings-header">
@@ -266,11 +274,9 @@ function PaymentProviderSettings() {
 
                 </span>
               </label>
-            </div>
-            
-            
+            </div>            
           </div>
-          </div>
+        </div>
         <div className='bg-[#ffffff] px-[16px] py-[10px]'>
           <div className='flex flex-wrap mb-[8px]'>
           <h2 className='w-[100%] mt-[8px] text-[16px] text-[var(--primary-color)] font-semibold leading-[21.6px] tracking-[0.2px] '>{window.providerSettingsViewModel.Provider.Name}</h2>
@@ -325,25 +331,27 @@ function PaymentProviderSettings() {
                   <th>{tPaymentProviderSettings('minimum')}</th>
                   <th>{tPaymentProviderSettings('maximum')}</th>
                   <th>
-                    {tGlobal('enable')}/{tGlobal('disable')}
-                    <Tippy
-                      content={
-                        <div>
+                    <div className='flex items-center justify-center'>
+                      {tGlobal('enable')}/{tGlobal('disable')}
+                      <Tippy
+                        content={
                           <div>
-                            <i className="bi bi-info-circle fs-4 ico-info inline-elm"></i> 
-                            {tPaymentProviderSettings('enableDisable')}
+                            <div>
+                              <i className="bi bi-info-circle fs-4 ico-info inline-elm"></i> 
+                              {tPaymentProviderSettings('enableDisable')}
+                            </div>
+                            <div>• {tPaymentProviderSettings('enableDisableTip1')}</div>
+                            <div>• {tPaymentProviderSettings('enableDisableTip2')}</div>
+                            <div>• {tPaymentProviderSettings('enableDisableTip3')}</div>
                           </div>
-                          <div>• {tPaymentProviderSettings('enableDisableTip1')}</div>
-                          <div>• {tPaymentProviderSettings('enableDisableTip2')}</div>
-                          <div>• {tPaymentProviderSettings('enableDisableTip3')}</div>
-                        </div>
-                      }
-                      placement="top"
-                      theme="light"
-                      arrow={true}
-                    >
-                      <span className='cursor-pointer'><IconInfo className="w-[20px] h-[20px] ml-[4px] fill-[#163f78]" /></span>
-                    </Tippy>
+                        }
+                        placement="top"
+                        theme="light"
+                        arrow={true}
+                      >
+                        <span className='cursor-pointer'><IconInfo className="w-[20px] h-[20px] ml-[4px] fill-[#163f78]" /></span>
+                      </Tippy>
+                    </div>
                 </th>
                   <th>{tPaymentProviderSettings('bank')}</th>
                 </tr>
@@ -379,16 +387,16 @@ function PaymentProviderSettings() {
                       </div>
                     </td>
                     <td>
-                      <div className="">
-                        <label>
-                        <input
-                          type="checkbox"
-                          id={`toggle-${index}`}
-                          checked={setting.isEnabled || false}
-                          onChange={() => handleSettingToggle(index)}
-                          className="opacity-0 absolute hidden peer"
-                        />
-                        <span className='block cursor-pointer w-[60px] h-[30px] rounded-[20px] bg-[#c2c2c2] relative after:content-[""] after:absolute after:top-[3px] after:left-[3px] after:w-[24px] after:h-[24px] after:rounded-[50%] after:bg-[#ffffff] after:transition-all after:duration-300 after:ease-in-out after:shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] peer-checked:after:left-[32px] peer-checked:bg-[var(--primary-color)]'></span>
+                      <div className="flex items-center justify-center">
+                        <label className='cursor-pointer '>
+                          <input
+                            type="checkbox"
+                            id={`toggle-${index}`}
+                            checked={setting.isEnabled || false}
+                            onChange={() => handleSettingToggle(index)}
+                            className="opacity-0 absolute hidden peer"
+                          />
+                          <span className='block cursor-pointer w-[60px] h-[30px] rounded-[20px] bg-[#c2c2c2] relative after:content-[""] after:absolute after:top-[3px] after:left-[3px] after:w-[24px] after:h-[24px] after:rounded-[50%] after:bg-[#ffffff] after:transition-all after:duration-300 after:ease-in-out after:shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] peer-checked:after:left-[32px] peer-checked:bg-[var(--primary-color)]'></span>
                         </label>                        
                       </div>
                     </td>
@@ -408,7 +416,6 @@ function PaymentProviderSettings() {
               </tbody>
             </table>
           </div>
-
           <div className="flex justify-end py-[8px] mt-[8px]">
             <button className="w-[140px] h-[30px] rounded-[20px] text-[var(--primary-color)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--primary-color)]  bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer " onClick={handleReset}>{tGlobal('reset')}</button>
             <button 
@@ -418,14 +425,7 @@ function PaymentProviderSettings() {
             >
               {updating ? tGlobal('updating') : tGlobal('update')}
             </button>
-          </div>
-            
-          {updateMessage && (
-            <ResultMessage
-              type={updateMessage.type}
-              message={updateMessage.text}
-            />           
-          )}
+          </div>          
          </div>
 
         </>

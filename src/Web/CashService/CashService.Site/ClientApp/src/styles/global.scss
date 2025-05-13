@@ -230,3 +230,47 @@ body {
       -2em -2em 0 0.2em;
   }
 }
+.react-confirm-alert-overlay{
+  background: #00000066;
+}
+.react-confirm-alert-blur{
+  filter: blur(0px);
+}
+.react-confirm-alert-body{
+  border-radius: 4px;
+  font-size: 12px;
+  color: #333333;
+  box-shadow: none;
+  font-family: inherit;
+  h1{
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--primary-color);
+  }
+   .react-confirm-alert-button-group{
+    button{
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+      background-color: var(--primary-color);
+      border-radius: 15px;
+      padding: 4px 16px;
+      cursor: pointer;
+      &[label="Confirm"]{
+        &:hover{
+          background-color: #375A8A;
+        }
+      }
+      &[label="Cancel"]{
+        background-color: #fff;
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+        box-shadow:  0 1px 5px #0003,  0 2px 2px #00000024,  0 3px 1px -2px #0000001f;
+        &:hover{
+          background-color: #EAEDF2; 
+        }
+      }
+
+    }
+   }
+}
