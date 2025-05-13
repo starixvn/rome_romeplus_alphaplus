@@ -229,7 +229,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
           </button>
           <button
             onClick={handleApprove}
-            className="w-[140px] capitalize font-bold h-[32px] rounded-[20px] text-white px-[16px] py-[4px] text-[12px] border-[1px] border-[#163f78] mx-[4px] bg-[#163f78] hover:bg-[#375A8A] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
+            className="w-[140px] capitalize font-bold h-[32px] rounded-[20px] text-white px-[16px] py-[4px] text-[12px] border-[1px] border-[#163f78] mx-[4px] bg-[#163f78] hover:bg-[var(--button-background-hover)] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
           >
             {t('pendingWithdrawalModal.approve')}
           </button>

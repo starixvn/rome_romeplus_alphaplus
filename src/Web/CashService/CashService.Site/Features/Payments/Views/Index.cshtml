@@ -4,6 +4,7 @@
 }
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 @using AlphaPlus.CashService.Site.Features.Payments.ViewModels
+@inject AlphaPlus.Core.Models.IUserSession userSession
 
 @model PaymentBaseViewModel
 
@@ -14,7 +15,7 @@
     </environment>
 }
 
-<div id="root" data-theme="@(string.IsNullOrWhiteSpace(Model.DarkModeName) ? "light" : "dark")"></div>
+<div id="root" class="view-@userSession.SiteName.ToLowerInvariant()" data-theme="@(string.IsNullOrWhiteSpace(Model.DarkModeName) ? "light" : "dark")"></div>
 <environment names="Development">
     <script type="module" src="http://localhost:5173/src/pages/ManagePayments/index.tsx"></script>
 </environment>

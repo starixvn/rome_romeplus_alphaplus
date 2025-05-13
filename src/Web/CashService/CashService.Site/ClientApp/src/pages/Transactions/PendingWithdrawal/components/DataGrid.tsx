@@ -74,7 +74,7 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
                   </td>
                   <td className="py-1 px-2 border border-[#dee2e6] text-center">
                     <button 
-                      className="font-bold text-[13px] tracking-[0.12px] leading-[26px] px-3 rounded-[4px] bg-[#163f78] hover:bg-[#375A8A] text-[#ffffff] cursor-pointer"
+                      className="font-bold text-[13px] tracking-[0.12px] leading-[26px] px-3 rounded-[4px] bg-[#163f78] hover:bg-[var(--button-background-hover)] text-[#ffffff] cursor-pointer"
                       onClick={() => handleProcessClick(withdrawal)}
                     >
                       {t('dataGrid.process')}

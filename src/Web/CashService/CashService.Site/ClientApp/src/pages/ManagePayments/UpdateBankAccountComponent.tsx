@@ -14,6 +14,7 @@ import { IconBack, IconCheck, IconError } from '../../components/Icons';
 import { baseAPI } from '../../services/commonAPI';
 import CustomDropdown, { DropdownOption } from '../../components/ui/customDropdown';
 import Loading from '../../components/ui/Loading';
+import BackCommon from '../../components/ui/BackComponents';
 
 interface UpdateBankAccountComponentProps {
   onClose: () => void;
@@ -188,10 +189,13 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
       });
 
       if (result.isSuccessful) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         setSuccess(true);
         setSuccessMessage(result.message || tManagePayments('bankAccountUpdatedSuccessfully'));
         setTimeout(() => {
+          
           onSave();
+        
         }, 3000);
       } else {
         setError(result.message || tManagePayments('failedToUpdateBankAccount'));
@@ -223,26 +227,20 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
   return (
     <div className="p-[12px]" tabIndex={-1}>
-      <div className='text-[var(--text-color-primary)] px-[8px] py-[4px] border-b-[2px] border-[#cfcfcf] border-dotted mb-[4px]'>
-          <span className='cursor-pointer inline-flex items-center py-[8px]' onClick={onClose}>
-            <IconBack className='w-[18px] h-[18px] fill-[var(--primary-color)] mr-[8px]'  />
-            <span className='text-[12px] text-[var(--text-color-primary)] font-semibold'>{tGlobal('back')}</span>
-          </span>
-        </div>
+      <BackCommon onClose={onClose} />
       <div className="modal-dialog">
         <div className="modal-content max-w-[1200px]">
           <div className="mb-[8px]">
             <h2 className="flex items-center font-bold text-[15px] text-[#333333]">{tManagePayments('bankManagement')}</h2>
-            
-          </div>
-        
+          </div>        
           <div className={ `bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] mb-[20px] ${bankAccount.status === 1 ? 'border-l-[12px] border-[#5cb774]' : 'bg-[#D4E7D9]'}`}>
-             
             <div className='flex mb-[12px]'>
               <label className='font-semibold text-[16px] mr-[5px] text-[var(--text-color-primary)]'>{bankAccount.accountNickname}</label>
-              <div><span className={`font-semibold text-[12px]  rounded-[20px] px-[10px] py-[3px] uppercase ${bankAccount.status === 1 ? 'bg-[#D4E7D9]' : 'bg-[#FBD8D8]'}`}>
+              <div>
+                <span className={`font-semibold text-[12px]  rounded-[20px] px-[10px] py-[3px] uppercase ${bankAccount.status === 1 ? 'bg-[#D4E7D9]' : 'bg-[#FBD8D8]'}`}>
                                 {bankAccount.status === 1 ? tGlobal('enabled') : tGlobal('disabled')}
-                              </span></div>
+                </span>
+              </div>
             </div>             
              
             <div className='flex text-[12px] text-[#333333] font-semibold'>
@@ -273,13 +271,13 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 <div className="btn-group" role="group">
                   <button
                     type="button"
-                    className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer  ${status === '1' ? 'bg-[var(--primary-color)] text-[#ffffff]' : 'bg-[#eeeeee] text-[var(--text-color-primary)]'}`}                    onClick={() => setStatus('1')}
+                    className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer  ${status === '1' ? 'bg-[var(--button-background)] text-[#ffffff]' : 'bg-[#eeeeee] text-[var(--text-color-primary)]'}`}                    onClick={() => setStatus('1')}
                   >
                     {tGlobal('enable')}
                   </button>
                   <button
                     type="button"
-                    className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer  ${status === '0' ? 'bg-[var(--primary-color)] text-[#ffffff]' : 'bg-[#eeeeee] text-[var(--text-color-primary)]'}`}
+                    className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer  ${status === '0' ? 'bg-[var(--button-background)] text-[#ffffff]' : 'bg-[#eeeeee] text-[var(--text-color-primary)]'}`}
                     onClick={() => setStatus('0')}
                   >
                     {tGlobal('disable')}
@@ -312,7 +310,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                     {hasManualDepositTransactionType(selectedBank, banks) && (
                       <button
                       type="button"
-                      className={`block w-[230px] cursor-pointer h-[120px]  rounded-[4px] border-[1px] border-[var(--primary-color)]  ${selectedManualDeposit ? 'text-[#ffffff] bg-[var(--primary-color)]' : 'text-[var(--text-color-primary)] bg-[#ffffff]'}`}
+                      className={`block w-[230px] cursor-pointer h-[120px]  rounded-[4px] border-[1px] border-[var(--button-border)]  ${selectedManualDeposit ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[var(--text-color-primary)] bg-[#ffffff]'}`}
                       onClick={() => {
                         toggleManualDeposit();
                       }}
@@ -325,7 +323,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                     {hasAutoDepositTransactionType(selectedBank, banks) && (
                       <button
                       type="button"
-                      className={`block w-[230px] cursor-pointer h-[120px] rounded-[4px] border-[1px] border-[var(--primary-color)] ${selectedAutoDeposit ? 'text-[#ffffff] bg-[var(--primary-color)]' : 'text-[var(--text-color-primary)] bg-[#ffffff]'}`}
+                      className={`block w-[230px] cursor-pointer h-[120px] rounded-[4px] border-[1px] border-[var(--button-border)] ${selectedAutoDeposit ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[var(--text-color-primary)] bg-[#ffffff]'}`}
                       onClick={() => {
                         toggleAutoDeposit();
                       }}
@@ -349,7 +347,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                     {hasManualWithdrawalTransactionType(selectedBank, banks) && (
                       <button
                       type="button"
-                      className={`block cursor-pointer w-[230px] h-[120px] rounded-[4px] border-[1px] border-[var(--primary-color)] ${selectedManualWithdrawal ? 'text-[#ffffff] bg-[var(--primary-color)]' : 'text-[var(--text-color-primary)] bg-[#ffffff]'}`}
+                      className={`block cursor-pointer w-[230px] h-[120px] rounded-[4px] border-[1px] border-[var(--button-border)] ${selectedManualWithdrawal ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[var(--text-color-primary)] bg-[#ffffff]'}`}
                       onClick={toggleManualWithdrawal}
                     >
                       <span className="text-[14px] font-bold">{tManagePayments('manualWithdrawal')}</span>
@@ -394,7 +392,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                   <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('accountHolderName')}<span className="text-[#E25757]">*</span></label>
                   <input
                     type="text"
-                    className="h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer read-only:bg-[#f4f4f4] read-only:cursor-not-allowed read-only:focus:border-[#0000003D]"
+                    className="h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer read-only:bg-[#f4f4f4] read-only:cursor-not-allowed read-only:focus:border-[#0000003D]"
                     value={accountHolderName}
                     readOnly
                   />
@@ -405,7 +403,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('bankAccountNumber')}<span className="text-[#E25757]">*</span></label>
                 <input
                   type="text"
-                  className="h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer read-only:bg-[#f4f4f4] read-only:cursor-not-allowed read-only:focus:border-[#0000003D]"
+                  className="h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer read-only:bg-[#f4f4f4] read-only:cursor-not-allowed read-only:focus:border-[#0000003D]"
                   value={accountNumber}
                   readOnly
                 />
@@ -416,7 +414,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 
                 <input
                   type="text"
-                  className={`h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer `}
+                  className={`h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer `}
                   value={accountNickname}
                   onChange={(e) => {
                     setAccountNickname(e.target.value);
@@ -432,14 +430,14 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 <div className="btn-group" role="group">
                   <button
                     type="button"
-                    className={`text-[12px] w-[70px] px-[16px] py-[8px] cursor-pointer ${promptPay ? 'bg-[var(--primary-color)] text-[#ffffff]' : 'bg-[#eeeeee] text-[var(--text-color-primary)]'}`}
+                    className={`text-[12px] w-[70px] px-[16px] py-[8px] cursor-pointer ${promptPay ? 'bg-[var(--button-background)] text-[#ffffff]' : 'bg-[#eeeeee] text-[var(--text-color-primary)]'}`}
                     onClick={() => setPromptPay(true)}
                   >
                     {tGlobal('on')}
                   </button>
                   <button
                     type="button"
-                    className={`text-[12px] w-[70px] px-[16px] py-[8px] cursor-pointer ${!promptPay ? 'bg-[var(--primary-color)] text-[#ffffff]' : 'bg-[#eeeeee] text-[var(--text-color-primary)]'}`}
+                    className={`text-[12px] w-[70px] px-[16px] py-[8px] cursor-pointer ${!promptPay ? 'bg-[var(--button-background)] text-[#ffffff]' : 'bg-[#eeeeee] text-[var(--text-color-primary)]'}`}
                     onClick={() => setPromptPay(false)}
                   >
                     {tGlobal('off')}
@@ -449,9 +447,9 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
               <div className="mb-[8px]">
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('mobile')}<span className='text-[#E25757]'>*</span></label>
-                <div className="flex items-center h-[35px] w-[470px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer">
+                <div className="flex items-center h-[35px] w-[470px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer">
                   <select
-                    className={`focus:outline-none focus:border-[var(--primary-color)] h-[100%] cursor-pointer mr-[5px] ${fieldErrors.countryCode ? 'border-[#FE0000]' : ''}`}
+                    className={`focus:outline-none focus:border-[var(--button-border)] h-[100%] cursor-pointer mr-[5px] ${fieldErrors.countryCode ? 'border-[#FE0000]' : ''}`}
                     value={countryCode}
                     onChange={(e) => {
                       setCountryCode(e.target.value);
@@ -482,7 +480,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
             <div className="flex justify-end py-[8px] mt-[8px]">
               <button
                 type="button"
-                className="w-[140px] h-[30px] rounded-[20px] text-[var(--text-color-primary)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--primary-color)]  bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer"
+                className="w-[140px] h-[30px] rounded-[20px] text-[var(--button-text-cancel)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)]  bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] cursor-pointer"
                 onClick={onClose}
                 disabled={loading}
               >
@@ -490,7 +488,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
               </button>
               <button
                 type="submit"
-                className="w-[140px] h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--primary-color)] ml-[8px] bg-[var(--primary-color)] hover:bg-[#375A8A] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
+                className="w-[140px] h-[30px] rounded-[20px] text-[var(--button-text)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)] ml-[8px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] hover:border-[var(--button-border-hover)] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
                 disabled={loading}
               >
                 {loading ? tGlobal('saving') : tGlobal('save')}

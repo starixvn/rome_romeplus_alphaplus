@@ -18,7 +18,7 @@ const StatusFilter: React.FC<StatusFilterProps> = ({ status, onStatusChange }) =
         <select
           value={status}
           onChange={(e) => onStatusChange(e.target.value)}
-          className="h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer"
+          className="h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
         >
           <option value="All">{t('filter.all')}</option>
           <option value="COMPLETED">{t('status.completed')}</option>

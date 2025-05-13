@@ -7,24 +7,28 @@
   --primary-color: #163f78;
 
   --text-color-primary: #163f78;
-  --border-primary-color: #163f78;
 
   //control
-  --border-control: red;
-  --border-control-focus: red;
-  --background-control: red;
+  --border-control: #0000003D;
+  --border-control-focus: #163f78;
+  --background-control: #163f78;
 
   //button
   --button-border: #163f78;
-  --button-background: #163f78;
+  --button-border-hover: #375A8A;
+
   --button-text: #ffffff;
-  
-  --button-border-cancel: #163f78;
-  --button-background-cancel: #ffffff;
   --button-text-cancel: #163f78;
 
+  --button-background: #163f78;
+  --button-background-hover: #375A8A;
+ 
+  --button-background-cancel: #ffffff;
+  --button-background-cancel-hover: #EAEDF2;
+  
 
 
+  //color level 
   --color-level: red;
 }
 

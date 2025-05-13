@@ -53,13 +53,13 @@ const MessageForm: React.FC<MessageFormProps> = ({
               <label className="block text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:mb-[8px]" htmlFor="mobile">
                 {t('message.mobile')}
               </label>
-              <div className="flex items-center h-[35px]  border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] cursor-pointer">
+              <div className="flex items-center h-[35px]  border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer">
                 <select
                   value={mobileCode}
                   onChange={(e) =>{
                     onMessageChange({ mobileCode: e.target.value });
                   }}
-                  className="focus:outline-none focus:border-[var(--primary-color)] h-[100%]  cursor-pointer mr-[5px] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
+                  className="focus:outline-none focus:border-[var(--button-border)] h-[100%]  cursor-pointer mr-[5px] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
                 >
                   {countryCodes.map((code) => (
                     <option key={code} value={code} selected={code === mobileCode}>+{code}</option>
@@ -87,7 +87,7 @@ const MessageForm: React.FC<MessageFormProps> = ({
                 type="text"
                 value={lineId}
                 onChange={(e) => onMessageChange({ lineId: e.target.value })}
-                className="h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
+                className="h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
               />
             </div>
       
@@ -103,7 +103,7 @@ const MessageForm: React.FC<MessageFormProps> = ({
             onChange={(e) => onMessageChange({ announcement: e.target.value })}
             rows={4}
             maxLength={1000}
-            className="p-[8px] h-[100px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--primary-color)] max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:w-[100%]"
+            className="p-[8px] h-[100px] w-[100%] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:w-[100%]"
             placeholder={t('message.placeholder.message')}
           />
         </div>
