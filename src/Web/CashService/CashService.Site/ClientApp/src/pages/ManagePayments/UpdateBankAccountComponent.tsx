@@ -13,6 +13,7 @@ import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { IconBack, IconCheck, IconError } from '../../components/Icons';
 import { baseAPI } from '../../services/commonAPI';
 import CustomDropdown, { DropdownOption } from '../../components/ui/customDropdown';
+import Loading from '../../components/ui/Loading';
 
 interface UpdateBankAccountComponentProps {
   onClose: () => void;
@@ -104,7 +105,6 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
         console.error('Error fetching bank account:', err);
       } finally {
         setLoading(false);
-        setInitialLoading(false);
       }
     };
 
@@ -123,11 +123,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   }, [bankAccount.id, tManagePayments]);
 
   if (initialLoading) {
-    return (
-      <div className="p-[12px] flex items-center justify-center">
-        <div className="text-[14px] text-[#333333]">{tGlobal('loading')}...</div>
-      </div>
-    );
+    return <Loading size="md" />;
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
