@@ -14,8 +14,8 @@ import Tippy from '@tippyjs/react';
 import i18n from '../../i18n/i18n-paymentProviderSettings';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 import { ResultMessage } from '../../components/ResultMessage';
+import '../../styles/common.css';
 import '../../styles/global.scss';
-import './PaymentProviderSettings.css';
 
 import Loading from '../../components/ui/Loading';
 declare global {

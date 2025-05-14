@@ -9,8 +9,9 @@ import { useTranslation } from 'react-i18next';
 import i18n from '../../i18n/i18n-memberSite';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 import { ResultMessage, ResultType } from '../../components/ResultMessage';
+import '../../styles/common.css';
 import '../../styles/global.scss';
-import './MemberSites.css'
+
 import TitleCommon from '../../components/ui/TitleComponents';
 
 const MemberSiteManagement: React.FC = () => {

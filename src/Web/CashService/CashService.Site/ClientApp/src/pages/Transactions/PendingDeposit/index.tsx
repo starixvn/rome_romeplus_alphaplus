@@ -1,6 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
-import './PendingDepositsStyle.css';
 import ManualAddDepositForm from './components/ManualAddDepositForm';
 import Filter from './components/Filter';
 import DataGrid from './components/DataGrid';
@@ -9,6 +8,8 @@ import { getMemberBankAccounts } from '../../../services/pendingDepositAPI';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../../i18n/i18n-pendingDeposit';
 import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
+import '../../../styles/common.css';
+import '../../../styles/global.scss';
 
 const PendingDeposit: React.FC = () => {
   const { t } = useTranslation('pendingDeposit');

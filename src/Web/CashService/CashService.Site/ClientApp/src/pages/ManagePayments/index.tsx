@@ -5,8 +5,9 @@ import PaymentGatewayComponent from './PaymentGatewayComponent';
 import BankAccountComponent from './BankAccountComponent';
 import i18n from '../../i18n/i18n-managePayments';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
+import '../../styles/common.css';
 import '../../styles/global.scss';
-import './ManagePayments.css';
+
 
  
 function ManagePayments() {

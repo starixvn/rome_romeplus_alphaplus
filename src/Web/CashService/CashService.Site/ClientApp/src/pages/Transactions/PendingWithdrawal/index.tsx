@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import './PendingWithdrawalsStyle.css';
 import ManualAddWithdrawalForm from './components/ManualAddWithdrawalForm.tsx';
 import Filter from './components/Filter.tsx';
 import DataGrid from './components/DataGrid.tsx';
@@ -9,6 +8,8 @@ import { getBankWithdrawalAccounts } from '../../../services/pendingWithdrawalAP
 import { useTranslation } from 'react-i18next';
 import i18n from '../../../i18n/i18n-pendingWithdrawal';
 import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
+import '../../../styles/common.css';
+import '../../../styles/global.scss';
 
 const PendingWithdrawal: React.FC = () => {
   const { t } = useTranslation('pendingWithdrawal');

@@ -31,6 +31,7 @@ export default defineConfig({
 
   build: {
     assetsDir: '',
+    cssCodeSplit: false,
     rollupOptions: {
       input: {
         memberSites: 'src/pages/MemberSites/index.tsx',
@@ -38,6 +39,9 @@ export default defineConfig({
         pendingDeposit: 'src/pages/Transactions/PendingDeposit/index.tsx',
         transactionsHistory: 'src/pages/Transactions/History/index.tsx',
         paymentProviderSettings: 'src/pages/PaymentProviderSettings/index.tsx'
+      },
+      output:{
+        assetFileNames: 'index-[hash][extname]'
       }
     }
   },
