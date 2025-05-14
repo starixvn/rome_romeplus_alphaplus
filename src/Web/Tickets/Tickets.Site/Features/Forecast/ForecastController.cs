@@ -40,12 +40,14 @@ public class ForecastController : BaseController
         => Json(await soccerService.GetMatches(message.LeagueId, message.IsLive, message.Language, message.SiteName));
 
     public async Task<IActionResult> GetSoccerResults(GetSoccerResultRequest message)
-        => Json(await soccerService.GetResults(
+        => Json(message.IsValid()
+        ? await soccerService.GetResults(
             message.ViewerId,
             message.MatchIds,
             message.IsLive,
             message.Language,
-            message.SiteName));
+            message.SiteName)
+        : Enumerable.Empty<SoccerResult>());
 
     public async Task<IActionResult> HDPOULive(GetForecastRequest message)
     {
