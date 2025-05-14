@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { getAccount } from '../../../../../services/transactionsHistoryAPI';
+import { transactionAPI } from '../../../../../services/transactionsHistoryAPI';
 import { AccountOption } from '../../../../../services/interfaces/Transactions/AccountOption';
 import CustomDropdown from '../../../../../components/ui/customDropdown';
 
@@ -25,7 +25,7 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
     const fetchAccounts = async () => {
       setIsLoading(true);
       try {
-        const options = await getAccount(transactionType);
+        const options = await transactionAPI.getAccount(transactionType);
         setAccountOptions(options);
         if (onAccountsLoaded) {
           onAccountsLoaded();

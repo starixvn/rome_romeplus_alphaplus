@@ -1,5 +1,5 @@
 export interface BankInfo {
-    bankId: number;
-    bankAccountNumber: string;
-    bankCode: string;
+  bankId: number;
+  bankAccountNumber: string;
+  bankCode: string;
 }

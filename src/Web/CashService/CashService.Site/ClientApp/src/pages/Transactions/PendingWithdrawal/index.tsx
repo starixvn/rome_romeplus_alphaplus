@@ -36,18 +36,17 @@ const PendingWithdrawal: React.FC = () => {
   };
 
   const handleSubmitManualWithdrawal = (data: {
-    memberLoginName: string;
+    memberLoginName: number;
     from: number;
     to: number;
     withdrawalAmount: number;
     remarks: string;
     image?: File;
   }) => {
-
     const newWithdrawal: WithdrawalAccountInfo = {
       id: withdrawals.length + 1,
-      username: data.memberLoginName,
-      loginName: data.memberLoginName,
+      username: data.memberLoginName.toString(),
+      loginName: data.memberLoginName.toString(),
       firstName: '',
       lastName: '',
       amount: data.withdrawalAmount,

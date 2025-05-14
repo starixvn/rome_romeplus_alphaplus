@@ -3,12 +3,8 @@ import { Dialog } from '../../../../components/ui/Dialog';
 import { Spinner } from '../../../../components/Icons';
 import { Alert } from '../../../../components/ui/Alert';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
-import {
-  getTransactionDetail,
-  revertTransaction,
-} from '../../../../services/transactionsHistoryAPI';
+import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import { useTranslation } from 'react-i18next';
-
 
 interface TransactionDetailProps {
   transactionId: number | null;
@@ -54,7 +50,8 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
       setDetailError(null);
       setDetailData(null);
       setRevertAlert({ type: null, message: '' });
-      getTransactionDetail(transactionId)
+      transactionAPI
+        .getTransactionDetail(transactionId)
         .then((data) => {
           setDetailData(data);
           setRemarks(data.remarks || '');
@@ -81,7 +78,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
     setReverting(true);
     setRevertAlert({ type: null, message: '' });
     try {
-      var result = await revertTransaction(transactionId, remarks);
+      var result = await transactionAPI.revertTransaction(transactionId, remarks);
       if (result.isSuccessful) {
         setRevertAlert({
           type: 'success',

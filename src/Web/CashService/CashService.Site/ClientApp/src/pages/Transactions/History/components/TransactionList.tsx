@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getTransactions } from '../../../../services/transactionsHistoryAPI';
+import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import {
   TransactionItem,
   TransactionsHistoryResponse,
@@ -64,7 +64,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           ...apiParams,
           searchText: '',
         };
-        const response = await getTransactions(paramsForApi);
+        const response = await transactionAPI.getTransactions(paramsForApi);
         setApiData(response);
         setError(null);
       } catch (err) {
