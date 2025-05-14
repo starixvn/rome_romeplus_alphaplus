@@ -124,7 +124,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       id="memberLoginName"
                       value={memberLoginName ?? ''}
                       onChange={(e) => handleMemberChange(parseInt(e.target.value))}
-                      className="border border-gray-300 rounded-md px-2 w-full h-[32px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
+                      className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
                     >
                       <option value="">{t('manualWithdrawalForm.selectMember')}</option>
                       {memberLoginNames.map((name) => (
@@ -147,7 +147,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       id="from"
                       value={from ?? ''}
                       onChange={(e) => setFrom(parseInt(e.target.value))}
-                      className="border border-gray-300 rounded-md px-2 w-full h-[32px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
+                      className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
                       disabled={!memberLoginName}
                     >
                       <option value="">{t('manualWithdrawalForm.selectBank')}</option>
@@ -173,7 +173,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       id="to"
                       value={to ?? ''}
                       onChange={(e) => setTo(parseInt(e.target.value))}
-                      className="border border-gray-300 rounded-md px-2 w-full h-[32px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
+                      className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
                     >
                       <option value="">{t('manualWithdrawalForm.selectBank')}</option>
                       {bankInfo.map((bank) => (
@@ -197,7 +197,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       type="number"
                       value={withdrawalAmount}
                       onChange={(e) => setWithdrawalAmount(e.target.value)}
-                      className="border border-gray-300 rounded-md px-2 w-full h-[32px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184]"
+                      className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184]"
                       placeholder="0"
                     />
                   </div>
@@ -289,13 +289,13 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
               <button
                 type="button"
                 onClick={onClose}
-                className="w-[140px] h-[32px] border border-gray-300 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none"
+                className="w-[140px] h-[32px] max-[768px]:h-[40px] border border-gray-300 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none"
               >
                 {t('manualWithdrawalForm.cancel')}
               </button>
               <button
                 type="submit"
-                className="w-[140px] h-[32px] border border-transparent rounded-full text-sm font-medium text-white bg-[#163f78] hover:bg-[#0f2d5c] focus:outline-none"
+                className="w-[140px] h-[32px] max-[768px]:h-[40px] border border-transparent rounded-full text-sm font-medium text-white bg-[#163f78] hover:bg-[#0f2d5c] focus:outline-none"
               >
                 {t('manualWithdrawalForm.approve')}
               </button>

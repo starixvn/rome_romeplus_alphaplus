@@ -367,7 +367,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('accountHolderName')}<span className='text-[#E25757]'>*</span></label>                
                     <input
                       type="text"
-                      className={`h-[32px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountHolderName ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
+                      className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountHolderName ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
                       value={accountHolderName}
                       onChange={(e) => setAccountHolderName(e.target.value)}
                       maxLength={255}
@@ -382,7 +382,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('bankAccountNumber')}<span className='text-[#E25757]'>*</span></label>
                     <input
                       type="text"
-                      className={`h-[32px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountNumber ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
+                      className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountNumber ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
                       value={accountNumber}
                       onChange={(e) => setAccountNumber(e.target.value)}
                       maxLength={50}
@@ -396,7 +396,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('accountNickname')}<span className='text-[#E25757]'>*</span></label>
                     <input
                       type="text"
-                      className={`h-[32px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountNickname ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
+                      className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountNickname ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
                       value={accountNickname}
                       onChange={(e) => setAccountNickname(e.target.value)}
                       maxLength={255}
@@ -432,7 +432,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                 
                 <div className="mb-3">
                   <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('mobile')}<span className='text-[#E25757]'>*</span></label>
-                  <div className="flex items-center h-[32px] w-[470px] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer">
+                  <div className="flex items-center h-[32px] max-[768px]:h-[40px] w-[470px] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer">
                     <select
                       className={`focus:outline-none focus:border-[var(--button-border)] h-[100%] cursor-pointer mr-[5px] ${fieldErrors.countryCode ? 'border-[#FE0000]' : ''}`}
                       value={countryCode}

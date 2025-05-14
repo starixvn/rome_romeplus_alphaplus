@@ -39,7 +39,7 @@ const DomainCard: React.FC<DomainCardProps> = ({ domain,  index }) => {
 
 
   return (
-    <div className={`bg-[var(--primary-color)] justify-between rounded-[5px] flex-1 text-[#ffffff] flex flex-nowrap p-[16px] `}>
+    <div className={`bg-[var(--primary-color)] justify-between rounded-[5px] flex-1 text-[#ffffff] flex flex-nowrap p-[16px] max-w-[450px]`}>
       <div className="flex justify-between items-center  ">
         <div className="leading-[15px] max-[768px]:leading-[22px]">
           <p className="text-[14px] font-bold max-[768px]:text-[18px]">{t('registrationLinks.domain')} {index + 1}</p>

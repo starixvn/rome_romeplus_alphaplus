@@ -139,7 +139,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
                       <span>🔄</span>
                     </div>
                     <select 
-                      className="border border-gray-300 rounded py-1 px-2 w-full h-[32px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184]"
+                      className="border border-gray-300 rounded py-1 px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184]"
                       value={withdrawal.from}
                       onChange={handleChangeForm}
                     >
@@ -223,13 +223,13 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
         <div className="flex justify-end space-x-3 mt-6">
           <button
             onClick={handleReject}
-            className="w-[140px] capitalize font-bold h-[32px] rounded-[20px] px-[16px] text-[#163f78] py-[4px] text-[12px] border-[1px] border-[#163f78] mx-[4px] bg-[#ffffff] hover:bg-[#dee2e7] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
+            className="w-[140px] capitalize font-bold h-[32px] max-[768px]:h-[40px] rounded-[20px] px-[16px] text-[#163f78] py-[4px] text-[12px] border-[1px] border-[#163f78] mx-[4px] bg-[#ffffff] hover:bg-[#dee2e7] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
           >
             {t('pendingWithdrawalModal.reject')}
           </button>
           <button
             onClick={handleApprove}
-            className="w-[140px] capitalize font-bold h-[32px] rounded-[20px] text-white px-[16px] py-[4px] text-[12px] border-[1px] border-[#163f78] mx-[4px] bg-[#163f78] hover:bg-[var(--button-background-hover)] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
+            className="w-[140px] capitalize font-bold h-[32px] max-[768px]:h-[40px] rounded-[20px] text-white px-[16px] py-[4px] text-[12px] border-[1px] border-[#163f78] mx-[4px] bg-[#163f78] hover:bg-[var(--button-background-hover)] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
           >
             {t('pendingWithdrawalModal.approve')}
           </button>

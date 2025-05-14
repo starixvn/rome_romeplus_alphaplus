@@ -49,13 +49,13 @@ const MessageForm: React.FC<MessageFormProps> = ({
     <div className="">
       <h2 className="text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] max-[768px]:text-[20px] max-[768px]:leading-[26px] ">{t('message.title')}</h2>
       <p className="text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px]">{t('message.description')}</p>
-      <div className="">
-          <div className="flex gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0]">
-            <div className='w-[250px] pt-[4px] max-[768px]:w-[48%]'>
+      <div className="max-w-[785px]">
+          <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap">
+            <div className='w-[32%] pt-[4px] max-[768px]:w-[48%]'>
               <label className="block text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:mb-[8px]" htmlFor="mobile">
                 {t('message.mobile')}
               </label>
-              <div className="flex items-center h-[32px]  border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--border-control-focus)] cursor-pointer">
+              <div className="flex items-center h-[32px] max-[768px]:h-[40px]  border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--border-control-focus)] cursor-pointer">
                 <select
                   value={mobileCode}
                   onChange={(e) =>{
@@ -79,7 +79,7 @@ const MessageForm: React.FC<MessageFormProps> = ({
                 />
               </div>
             </div>
-            <div className='w-[250px] pt-[4px] max-[768px]:w-[48%]'>
+            <div className='w-[32%] pt-[4px] max-[768px]:w-[48%]'>
               <label className="block text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:mb-[8px]" htmlFor="lineId">
                 {t('message.lineId')}
                 <span className='text-[#E25757]'>*</span>
@@ -89,10 +89,10 @@ const MessageForm: React.FC<MessageFormProps> = ({
                 type="text"
                 value={lineId}
                 onChange={(e) => onMessageChange({ lineId: e.target.value })}
-                className="h-[32px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--border-control-focus)] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
+                className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--border-control-focus)] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
               />
             </div>
-            <div className='w-[24%] min-w-[200px] pt-[4px] max-[768px]:w-[48%]'>
+            <div className='w-[32%] pt-[4px] max-[768px]:w-[48%]'>
               <label className="block text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:mb-[8px]" htmlFor="lineId">
                 {t('message.telegram')}
               </label>
@@ -101,12 +101,12 @@ const MessageForm: React.FC<MessageFormProps> = ({
                 type="text"
                 value={telegram}
                 onChange={(e) => onMessageChange({ telegram: e.target.value })}
-                className="h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
+                className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
               />
             </div>
         </div>
 
-        <div className='w-[516px] max-[768px]:w-[100%]'>
+        <div className='w-[calc(64%+16px)] max-[768px]:w-[100%]'>
           <label className="block text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:mb-[8px]" htmlFor="announcement">
             {t('message.announcement')}
           </label> 

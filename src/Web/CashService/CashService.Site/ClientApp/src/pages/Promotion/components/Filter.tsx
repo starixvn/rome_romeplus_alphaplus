@@ -39,7 +39,7 @@ const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
                 <div className="flex flex-col w-[180px]">
                     <label className="block  font-semibold text-[#333333] my-[4px]">Promotion Type</label>
                     <select
-                        className="border-0 border-b-[1px] h-[32px] border-[#0000003D] rounded-[0px] focus:outline-none focus:focus:outline-none focus:ring-blue-500"
+                        className="border-0 border-b-[1px] h-[32px] max-[768px]:h-[40px] border-[#0000003D] rounded-[0px] focus:outline-none focus:focus:outline-none focus:ring-blue-500"
                         value={selectedType}
                         onChange={(e) => handleTypeChange(e.target.value)}
                     >
@@ -52,7 +52,7 @@ const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
                 <div className="flex flex-col w-[160px]">
                     <label className='block  font-semibold text-[#333333] my-[4px]'>Status</label>
                     <select
-                    className="border-0 border-b-[1px] h-[32px] border-[#0000003D] rounded-[0px] focus:outline-none focus:focus:outline-none focus:ring-blue-500"
+                    className="border-0 border-b-[1px] h-[32px] max-[768px]:h-[40px] border-[#0000003D] rounded-[0px] focus:outline-none focus:focus:outline-none focus:ring-blue-500"
                     value={selectedStatus}
                     onChange={(e) => handleStatusChange(e.target.value)}
                 >

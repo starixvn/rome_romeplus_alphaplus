@@ -113,7 +113,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
         <div className="w-[100%] max-w-[250px]">
           <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">Promotion Type<span className="text-[#E25757]">*</span></label>
           <select
-            className="h-[32px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
+            className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
             value={promotionType}
             onChange={e => setPromotionType(e.target.value)}
           >
@@ -126,7 +126,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
           <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">Period<span className="text-[#E25757]">*</span></label>
           <input
             type="text"
-            className="h-[32px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
+            className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
             placeholder="05/07/2025 - 05/07/2025"
             value={period}
             onChange={e => setPeriod(e.target.value)}
@@ -135,7 +135,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
         <div className="w-[100%] max-w-[250px]">
           <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">Provider<span className="text-[#E25757]">*</span></label>
           <select
-            className="h-[32px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
+            className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
             value={provider}
             onChange={e => setProvider(e.target.value)}
           >
@@ -167,7 +167,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
                 type="number"
                 min="0"
                 step="0.01"
-                className="h-[32px] w-[100%] border-[1px] rounded-[4px] px-[8px] pr-[32px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
+                className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] pr-[32px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
                 value={categories[cat.key as keyof typeof categories].percentage}
                 onChange={e => handleCategoryChange(cat.key, 'percentage', e.target.value)}
               />
@@ -179,7 +179,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
             <input
               type="number"
               min="0"
-              className="h-[32px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
+              className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
               value={categories[cat.key as keyof typeof categories].minTurnover}
               onChange={e => handleCategoryChange(cat.key, 'minTurnover', e.target.value)}
             />
@@ -201,7 +201,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
             <input
               type="number"
               min="0"
-              className="h-[32px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
+              className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
               value={categories[cat.key as keyof typeof categories].maxPayout}
               onChange={e => handleCategoryChange(cat.key, 'maxPayout', e.target.value)}
               disabled={categories[cat.key as keyof typeof categories].unlimited}

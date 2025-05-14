@@ -54,7 +54,7 @@ const RegistrationLinks: React.FC<Props> = ({ domains, onRequestNewLink, loading
         )}
       </div>
 
-      <div className="flex gap-[30px] w-[83.333%] max-[768px]:w-full max-[768px]:flex-col">
+      <div className="flex gap-[30px] flex-wrap w-[100%] max-[768px]:w-full max-[768px]:flex-col">
         {domains.map((domain, index) => (
           <DomainCard 
             key={domain.id} 

@@ -163,7 +163,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, on
                         id="memberLoginName"
                         value={memberLoginNames[0]?.id}
                         onChange={(e) => setMember(e.target.value)}
-                        className="border border-gray-300 rounded-md px-2 w-full h-[32px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
+                        className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
                       >
                         {memberLoginNames.map((name) => (
                           <option key={name.id} value={name.id}>
@@ -187,7 +187,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, on
                         id="from"
                         value={from}
                         onChange={(e) => setFrom(parseInt(e.target.value))}
-                        className="border border-gray-300 rounded-md px-2 w-full h-[32px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
+                        className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
                       >
                         <option value="12345678">12345678</option>
                       </select>
@@ -209,7 +209,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, on
                         id="to"
                         value={to}
                         onChange={(e) => setTo(parseInt(e.target.value))}
-                        className="border border-gray-300 rounded-md px-2 w-full h-[32px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
+                        className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
                       >
                         <option value="1493993018">1493993018</option>
                       </select>
@@ -229,7 +229,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, on
                       type="number"
                       value={depositAmount}
                       onChange={(e) => setDepositAmount(e.target.value)}
-                      className="border border-gray-300 rounded-md px-2 w-full h-[32px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184]"
+                      className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184]"
                       placeholder="0"
                     />
                   </div>
@@ -327,13 +327,13 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, on
               <button
                 type="button"
                 onClick={onClose}
-                className="w-[140px] h-[32px] border border-gray-300 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none"
+                className="w-[140px] h-[32px] max-[768px]:h-[40px] border border-gray-300 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none"
               >
                 {t('manualDepositForm.cancel')}
               </button>
               <button
                 type="submit"
-                className="w-[140px] h-[32px] border border-transparent rounded-full text-sm font-medium text-white bg-[#163f78] hover:bg-[#0f2d5c] focus:outline-none"
+                className="w-[140px] h-[32px] max-[768px]:h-[40px] border border-transparent rounded-full text-sm font-medium text-white bg-[#163f78] hover:bg-[#0f2d5c] focus:outline-none"
               >
                 {t('manualDepositForm.approve')}
               </button>

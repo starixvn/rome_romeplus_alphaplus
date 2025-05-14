@@ -86,7 +86,7 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({
                     </p>
                   )}
                 </div>  
-                <label>                  
+                <label className='inline-block'>                  
                   <input
                     type="checkbox"
                     checked={setting.value}   
