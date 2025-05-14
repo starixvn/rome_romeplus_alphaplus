@@ -54,7 +54,7 @@
   "setUpPaymentMethods1": "ステップ1：取引タイプと支払い方法を選択",
   "agreeTermsAndConditions": "重複請求、取引失敗、不正な請求、資金または取引の欠落、または返金を含むがこれに限定されない取引関連の問題について、プロバイダーに直接連絡することに同意します",
   "setUpLater": "後で設定",
-  "next": "次へ",
+  "next": "次の",
 
   "manageBankAccountAndLimits": "銀行口座と制限の管理",
   "addBankAccountAndLimit": "銀行口座を追加し、メンバーの取引制限設定をカスタマイズ",

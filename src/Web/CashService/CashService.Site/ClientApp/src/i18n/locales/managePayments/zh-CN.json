@@ -54,7 +54,7 @@
   "setUpPaymentMethods1": "步骤1：选择交易类型和支付方式",
   "agreeTermsAndConditions": "我同意直接联系提供商处理任何交易相关问题，包括但不限于重复收费、交易失败、错误计费、资金或交易缺失或退款。",
   "setUpLater": "稍后设置",
-  "next": "下一步",
+  "next": "下一页",
 
   "manageBankAccountAndLimits": "管理银行账户和限额",
   "addBankAccountAndLimit": "添加银行账户并自定义会员的交易限额偏好",
@@ -127,8 +127,8 @@
   "addPaymentMethodStep2": "步骤2：加入Telegram和频道",
   "clickLinkOrScanQRCode": "点击链接或扫描二维码以获取设置帮助。",
   "addPaymentMethodStep3": "步骤3：输入详情",
-  "enabled": "已启用",
-  "disabled": "已停用",
+  "enabled": "已开启",
+  "disabled": "禁用",
 
   "appSecret": "应用密钥",
   "apiKey": "API密钥",
