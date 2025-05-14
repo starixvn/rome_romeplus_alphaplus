@@ -12,14 +12,7 @@ namespace AlphaPlus.NetThrottling.Resolvers
 
         public virtual Task Block(HttpContext context)
         {
-            if (context.Request.IsAjaxRequest())
-            {
-                return BlockAjaxRequest(context);
-            }
-            else
-            {
-                return BlockNonAjaxRequest(context);
-            }
+            return context.Request.IsAjaxRequest() ? BlockAjaxRequest(context) : BlockNonAjaxRequest(context);
         }
 
         public virtual Task BlockAjaxRequest(HttpContext context) => BlockRequest(context);

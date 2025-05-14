@@ -5,7 +5,7 @@ namespace AlphaPlus.NetThrottling
 {
     public sealed class NetThrottlingConfiguration
     {
-        public bool IsUseRedis { get; set; } = false;
+        public bool IsUseRedis { get; set; }
 
         public string Resolver { get; set; } = ResolverTypes.Base;
 
