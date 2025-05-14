@@ -7,6 +7,7 @@ import {
 import { AccountOption } from './interfaces/Transactions/AccountOption';
 import { ResultModel } from './interfaces/ResultModel';
 import { MemberLoginName } from './interfaces/Transactions/MemberLoginName';
+import { BankInfo } from './interfaces/Transactions/BankInfo';
 
 const api = axios.create({
   baseURL: '',
@@ -101,3 +102,32 @@ export const getMemberLoginName = async (): Promise<MemberLoginName[]> => {
   }
 };
 
+export const GetCashAgentBankInfo = async (): Promise<BankInfo[]> => {
+  try {
+    const response = await api.get<BankInfo[]>('GetCashAgentBankInfo');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching cash agent bank info:', error);
+    return [];
+  }
+};
+
+export const GetCashMemberBankInfo = async (): Promise<BankInfo[]> => {
+  try {
+    const response = await api.get<BankInfo[]>('GetCashMemberBankInfo');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching cash member bank info:', error);
+    return [];
+  }
+};
+
+export const GetCashAgentProviderInfo = async (): Promise<BankInfo[]> => {
+  try {
+    const response = await api.get<BankInfo[]>('GetCashAgentProviderInfo');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching cash agent provider info:', error);
+    return [];
+  }
+};

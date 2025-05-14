@@ -1,9 +1,7 @@
 import axios from 'axios';
-import { WithdrawalInfoDetail } from './interfaces/WithdrawalInfoDetail';
 import { WithdrawalAccountInfo } from './interfaces/WithdrawalAccountInfo';
-import { WithdrawalMemberLoginName } from './interfaces/WithdrawalMemberLoginName';
-import { ResultModel } from './interfaces/ResultModel';
-
+import { CreditAmount } from './interfaces/Transactions/CreditAmount';
+import { CashLimitAmt } from './interfaces/Transactions/CashLimitAmt';
 
 const api = axios.create({
   baseURL: "",
@@ -13,35 +11,33 @@ const api = axios.create({
   withCredentials: true
 });
 
-export const pendingWithdrawalService = {
-  getMemberWithdrawLoginNames: async (): Promise<WithdrawalMemberLoginName[]> => {
-    try {
-      const response = await api.get<WithdrawalMemberLoginName[]>('GetMemberWithdrawLoginNames');
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching member login names:', error);
-      return [];
-    }
-  },
-  
-  getBankWithdrawalAccounts: async (): Promise<WithdrawalAccountInfo[]> => {
-    try {
-      const response = await api.get<WithdrawalAccountInfo[]>('GetBankWithdrawalAccounts');
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching member bank accounts:', error);
-      return [];
-    }
-  },
-  
-  insertWithdrawAccountInfo: async (accountInfo: WithdrawalInfoDetail): Promise<ResultModel> => {
-    try {
-      const response = await api.post<ResultModel>('InsertWithdrawAccountInfo', accountInfo);
-      return response.data;
-    } catch (error) {
-      console.error('Error inserting account information:', error);
-      throw error;
-    }
+export const getBankWithdrawalAccounts = async (): Promise<WithdrawalAccountInfo[]> => {
+  try {
+    const response = await api.get<WithdrawalAccountInfo[]>('GetBankWithdrawalAccounts');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching member bank accounts:', error);
+    return [];
+  }
+}
+
+export const getCashBalance = async (): Promise<number> => {
+  try {
+    const response = await api.get<number>('GetCashBalance');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching cash balance:', error);
+    return 0;
+  }
+};
+
+export const getLimitAmtWithdrawal = async (cashLimitAmt: CashLimitAmt): Promise<CreditAmount> => {
+  try {
+    const response = await api.get<CreditAmount>('GetLimitAmtWithdrawal', { params: cashLimitAmt });
+    return response.data;
+  } catch (error) { 
+    console.error('Error fetching credit amount:', error);
+    return { minAmt: 0, maxAmt: 0 };
   }
 };
 

@@ -42,7 +42,7 @@ const PendingDeposit: React.FC = () => {
     to: number;
     depositAmount: number;
     remarks: string;
-    image?: File;
+    image?: string;
   }) => {
 
     const newDeposit: DepositAccountInfo = {

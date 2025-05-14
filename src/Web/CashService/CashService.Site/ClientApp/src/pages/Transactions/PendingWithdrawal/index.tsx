@@ -5,7 +5,7 @@ import ManualAddWithdrawalForm from './components/ManualAddWithdrawalForm.tsx';
 import Filter from './components/Filter.tsx';
 import DataGrid from './components/DataGrid.tsx';
 import { WithdrawalAccountInfo } from '../../../services/interfaces/WithdrawalAccountInfo';
-import { pendingWithdrawalService } from '../../../services/pendingWithdrawalAPI';
+import { getBankWithdrawalAccounts } from '../../../services/pendingWithdrawalAPI';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../../i18n/i18n-pendingWithdrawal';
 import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
@@ -21,7 +21,7 @@ const PendingWithdrawal: React.FC = () => {
 
   React.useEffect(() => {
     const fetchWithdrawals = async () => {
-      const withdrawals = await pendingWithdrawalService.getBankWithdrawalAccounts();
+      const withdrawals = await getBankWithdrawalAccounts();
       setWithdrawals(withdrawals);
     };
     fetchWithdrawals();
