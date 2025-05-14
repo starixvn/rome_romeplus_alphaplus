@@ -25,9 +25,10 @@ public static class CommonEndpoints
 
         group.MapGet("/agent-bank-list", async ([FromQuery] int agentId
             , [FromQuery] int transactionType
+            , [FromQuery] string siteDbIp
             , IBankService service) =>
         {
-            var bankList = await service.GetCashAgentBankInfoAsync(agentId, transactionType);
+            var bankList = await service.GetCashAgentBankInfoAsync(agentId, transactionType, siteDbIp);
             return Results.Ok(bankList);
         })
         .WithName("GetCashAgentBankList")
@@ -37,10 +38,9 @@ public static class CommonEndpoints
             Description = "Returns a list of bank"
         });
 
-        group.MapGet("/member-bank-list", async ([FromQuery] int custId
-            , IBankService service) =>
+        group.MapGet("/member-bank-list/{custId}/{siteDbIp}", async (int custId, string siteDbIp, IBankService service) =>
         {
-            var bankList = await service.GetMemberBankInfoAsync(custId);
+            var bankList = await service.GetMemberBankInfoAsync(custId, siteDbIp);
             return Results.Ok(bankList);
         })
         .WithName("GetCashMemberBankList")
@@ -52,9 +52,10 @@ public static class CommonEndpoints
 
         group.MapGet("/provider-bank-list", async ([FromQuery] int agentId
             , [FromQuery] int transactionType
+            , [FromQuery] string siteDbIp
             , IBankService service) =>
         {
-            var bankList = await service.GetCashAgentProviderAsync(agentId, transactionType);
+            var bankList = await service.GetCashAgentProviderAsync(agentId, transactionType, siteDbIp);
             return Results.Ok(bankList);
         })
         .WithName("GetCashAgentProviderAsync")

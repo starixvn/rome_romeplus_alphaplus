@@ -102,9 +102,9 @@ export const getMemberLoginName = async (): Promise<MemberLoginName[]> => {
   }
 };
 
-export const GetCashAgentBankInfo = async (): Promise<BankInfo[]> => {
+export const GetCashAgentBankInfo = async (transactionType: number): Promise<BankInfo[]> => {
   try {
-    const response = await api.get<BankInfo[]>('GetCashAgentBankInfo');
+    const response = await api.get<BankInfo[]>(`GetCashAgentBankInfo?transactionType=${transactionType}`);
     return response.data;
   } catch (error) {
     console.error('Error fetching cash agent bank info:', error);
@@ -112,9 +112,9 @@ export const GetCashAgentBankInfo = async (): Promise<BankInfo[]> => {
   }
 };
 
-export const GetCashMemberBankInfo = async (): Promise<BankInfo[]> => {
+export const GetCashMemberBankInfo = async (custId: number): Promise<BankInfo[]> => {
   try {
-    const response = await api.get<BankInfo[]>('GetCashMemberBankInfo');
+    const response = await api.get<BankInfo[]>(`GetCashMemberBankInfo?custId=${custId}`);
     return response.data;
   } catch (error) {
     console.error('Error fetching cash member bank info:', error);
@@ -122,9 +122,9 @@ export const GetCashMemberBankInfo = async (): Promise<BankInfo[]> => {
   }
 };
 
-export const GetCashAgentProviderInfo = async (): Promise<BankInfo[]> => {
+export const GetCashAgentProvider = async (transactionType: number): Promise<BankInfo[]> => {
   try {
-    const response = await api.get<BankInfo[]>('GetCashAgentProviderInfo');
+    const response = await api.get<BankInfo[]>(`GetCashAgentProvider?transactionType=${transactionType}`);
     return response.data;
   } catch (error) {
     console.error('Error fetching cash agent provider info:', error);

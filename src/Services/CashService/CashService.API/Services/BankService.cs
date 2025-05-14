@@ -10,7 +10,7 @@ public interface IBankService
 
     Task<IEnumerable<BankInfo>> GetMemberBankInfoAsync(int custId, string siteDbIp = "");
 
-    Task<IEnumerable<BankInfo>> GetCashAgentProviderAsync(int agentId, int transactionType);
+    Task<IEnumerable<BankInfo>> GetCashAgentProviderAsync(int agentId, int transactionType, string siteDbIp = "");
 }
 
 public class BankService(IDynamicRepository dynamicRepository) : IBankService
@@ -37,14 +37,14 @@ public class BankService(IDynamicRepository dynamicRepository) : IBankService
         return bankList;
     }
 
-    public async Task<IEnumerable<BankInfo>> GetCashAgentProviderAsync(int agentId, int transactionType)
+    public async Task<IEnumerable<BankInfo>> GetCashAgentProviderAsync(int agentId, int transactionType, string siteDbIp = "")
     {
         var criteria = new GetCashAgentProviderCriteria
         {
             AgentId = agentId,
             TransType = transactionType
         };
-        var bankList = await dynamicRepository.FetchAsync<BankInfo>(criteria);
+        var bankList = await dynamicRepository.FetchAsync<BankInfo>(criteria, siteDbIp);
         return bankList;
     }
 }

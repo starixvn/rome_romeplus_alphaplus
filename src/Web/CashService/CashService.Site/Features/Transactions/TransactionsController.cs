@@ -18,8 +18,8 @@ public class TransactionsController(
 ) : SiteBaseController(mediator)
 {
     private readonly string _apiBaseUrl = configuration["CashServiceAPIUrl"] ?? throw new InvalidOperationException("CashServiceAPIUrl not configured.");
-    private readonly int _custId = userSession.CustId;
-    private readonly string _agip = userSession.AGIP;
+    private readonly int agentId = userSession.CustId;
+    private readonly string siteDbIp = userSession.AGIP;
 
     public IActionResult Index() => Ok("Transactions");
 
@@ -76,7 +76,28 @@ public class TransactionsController(
 
     public async Task<IActionResult> GetMemberLoginName()
     {
-        var url = $"{_apiBaseUrl}/transactions/get-members/{_custId}/{_agip}";
+        var url = $"{_apiBaseUrl}/transactions/get-members/{agentId}/{siteDbIp}";
+        var memberLogins = await httpClient.GetFromJsonAsync<object>(url);
+        return Json(memberLogins);
+    }
+
+    public async Task<IActionResult> GetCashAgentBankInfo(int transactionType)
+    {
+        var url = $"{_apiBaseUrl}/common/agent-bank-list?agentId={agentId}&transactionType={transactionType}&siteDbIp={siteDbIp}";
+        var memberLogins = await httpClient.GetFromJsonAsync<object>(url);
+        return Json(memberLogins);
+    }
+
+    public async Task<IActionResult> GetCashMemberBankInfo(int custId)
+    {
+        var url = $"{_apiBaseUrl}/common/agent-bank-list/{custId}/{siteDbIp}";
+        var memberLogins = await httpClient.GetFromJsonAsync<object>(url);
+        return Json(memberLogins);
+    }
+
+    public async Task<IActionResult> GetCashAgentProvider(int transactionType)
+    {
+        var url = $"{_apiBaseUrl}/common/provider-bank-list?agentId={agentId}&transactionType={transactionType}&siteDbIp={siteDbIp}";
         var memberLogins = await httpClient.GetFromJsonAsync<object>(url);
         return Json(memberLogins);
     }
