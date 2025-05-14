@@ -6,5 +6,9 @@ public class GetSoccerResultRequest : RequestBase
 {
     public bool IsLive { get; init; } = true;
 
-    public string MatchIds { get; init; } = "77819293,77819298";
+    public string MatchIds { get; init; }
+
+    public bool IsValid()
+        => !string.IsNullOrWhiteSpace(MatchIds)
+        && MatchIds.Split(',', StringSplitOptions.RemoveEmptyEntries).All(m => int.TryParse(m, out _));
 }
