@@ -352,6 +352,12 @@ public class UserSessionExt : IUserSession
         set => UserSession.Current.AGIP = value;
     }
 
+    public string CustDbAGIP
+    {
+        get => UserSession.Current.CustDbAGIP;
+        set => UserSession.Current.CustDbAGIP = value;
+    }
+
     public int SiteDBGroupId
     {
         get => UserSession.Current.SiteDBGroupId;

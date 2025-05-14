@@ -13,7 +13,7 @@ public class TransactionsController(
     : Controller
 {
     private readonly int agentId = userSession.CustId;
-    private readonly string siteDbIp = userSession.AGIP;
+    private readonly string custDbSiteDbIp = userSession.CustDbAGIP;
 
     public IActionResult Index() => Ok("Transactions");
 
@@ -53,7 +53,7 @@ public class TransactionsController(
 
     public async Task<IActionResult> GetLimitAmtDeposit(int custId)
     {
-        var url = $"/deposit/limit-amount?agentId={agentId}&custId={custId}&siteDbIp={siteDbIp}";
+        var url = $"/deposit/limit-amount?agentId={agentId}&custId={custId}&siteDbIp={custDbSiteDbIp}";
         var limitAmtDeposit = await httpClientHelper.GetAsync<object>(url);
         return Json(limitAmtDeposit);
     }
@@ -73,28 +73,28 @@ public class TransactionsController(
 
     public async Task<IActionResult> GetMemberLoginName()
     {
-        var url = $"/transactions/get-members?agentId={agentId}&siteDbIp={siteDbIp}";
+        var url = $"/transactions/get-members?agentId={agentId}&siteDbIp={custDbSiteDbIp}";
         var memberLogins = await httpClientHelper.GetAsync<object>(url);
         return Json(memberLogins);
     }
 
     public async Task<IActionResult> GetCashAgentBankInfo(int transactionType)
     {
-        var url = $"/transactions/agent-bank-list?agentId={agentId}&transactionType={transactionType}&siteDbIp={siteDbIp}";
+        var url = $"/transactions/agent-bank-list?agentId={agentId}&transactionType={transactionType}&siteDbIp={custDbSiteDbIp}";
         var memberLogins = await httpClientHelper.GetAsync<object>(url);
         return Json(memberLogins);
     }
 
     public async Task<IActionResult> GetCashMemberBankInfo(int custId)
     {
-        var url = $"/transactions/agent-bank-list?agentId={custId}&siteDbIp={siteDbIp}";
+        var url = $"/transactions/agent-bank-list?agentId={custId}&siteDbIp={custDbSiteDbIp}";
         var memberLogins = await httpClientHelper.GetAsync<object>(url);
         return Json(memberLogins);
     }
 
     public async Task<IActionResult> GetCashAgentProvider(int transactionType)
     {
-        var url = $"/transactions/provider-bank-list?agentId={agentId}&transactionType={transactionType}&siteDbIp={siteDbIp}";
+        var url = $"/transactions/provider-bank-list?agentId={agentId}&transactionType={transactionType}&siteDbIp={custDbSiteDbIp}";
         var memberLogins = await httpClientHelper.GetAsync<object>(url);
         return Json(memberLogins);
     }

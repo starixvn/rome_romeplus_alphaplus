@@ -138,12 +138,13 @@ public interface IUserSession
 
     string AGIP { get; set; }
 
+    string CustDbAGIP { get; set; }
+
     int SiteDBGroupId { get; set; }
 
     int CustDBGroupId { get; set; }
 
     int[] OfferedProductGroupIds { get; set; }
-
 
     T GetProperty<T>(string propertyName, T defaultValue = default);
 

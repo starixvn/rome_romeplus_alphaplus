@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-namespace AlphaPlus.CashService.Site.Helpers;
+﻿namespace AlphaPlus.CashService.Site.Helpers;
 
 using System.Net;
 using System.Text;
@@ -87,11 +85,11 @@ public class HttpClientHelper
 
     private static string BuildUrlWithQueryParams(string path, Dictionary<string, string> queryParams)
     {
-        if (queryParams == null || !queryParams.Any())
-            return path;
+        if (queryParams == null || queryParams.Count == 0)
+            return $"/api{path}";
 
         var query = string.Join("&", queryParams.Select(kvp => $"{Uri.EscapeDataString(kvp.Key)}={Uri.EscapeDataString(kvp.Value)}"));
-        return $"{path}?{query}";
+        return $"/api{path}?{query}";
     }
 }
 
