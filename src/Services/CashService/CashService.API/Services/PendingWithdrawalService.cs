@@ -1,6 +1,5 @@
 using AlphaPlus.CashService.API.Criteria.PendingWithdrawal;
 using AlphaPlus.CashService.API.Features.Shared.Models;
-using AlphaPlus.CashService.API.Models;
 using AlphaPlus.CashService.API.Models.PendingCommons;
 using Fanex.Data.Repository;
 
@@ -159,18 +158,18 @@ public class PendingWithdrawalService(
         var result = new ResultModel(command.ErrCode, command.ErrMsg);
         if (command.ErrCode == 0)
         {
-            SyncCashAccumulatedCredit(command.CashAccumCreditTbl, siteDbConf.AGIP_DBCUST);
+            SyncCashAccumulatedCredit(command.CashAccumCreditTbl, siteDbConf.CustDBGroupId);
         }
         return result;
     }
 
-    private void SyncCashAccumulatedCredit(string cashAccumulatedCreditTbl, string custDbIp = "")
+    private void SyncCashAccumulatedCredit(string cashAccumulatedCreditTbl, int custDbGroupId)
     {
         _ = Task.Run(async () =>
         {
             try
             {
-                await transactionService.SyncCashAccumCreditAsync(cashAccumulatedCreditTbl, custDbIp);
+                await transactionService.SyncCashAccumCreditAsync(cashAccumulatedCreditTbl, custDbGroupId);
             }
             catch (Exception e)
             {

@@ -138,8 +138,6 @@ public interface IUserSession
 
     string AGIP { get; set; }
 
-    string CustDbAGIP { get; set; }
-
     int SiteDBGroupId { get; set; }
 
     int CustDBGroupId { get; set; }

@@ -75,8 +75,6 @@ public static class AppSettings
 
     public static string DBTXN_IP => ConfigurationManager.GetValue<string>("DBTXN_IP");
 
-    public static string DBCUST_IP => ConfigurationManager.GetValue<string>("DBCUST_IP");
-
     public static string SubAccountPermission_LockAdminAccounts => ConfigurationManager.GetValue<string>("SubAccountPermission_LockAdminAccounts");
 
     public static string ProductColumnNameMappings => ConfigurationManager.GetValue<string>("ProductColumnNameMappings");

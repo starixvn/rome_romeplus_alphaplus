@@ -72,7 +72,6 @@ public class UserSessionBase : IUserSession, IDisposable
     private const string AUTOFOLLOWBETISDUMMYAGENTSESSIONKEY = "AUTOFOLLOWBETISDUMMYAGENT";
     private const string ISINTERNALWEBVPN = "ISINTERNALWEBVPN";
     private const string AGIPSESSIONKEY = "AGIP";
-    private const string CUSTDB_AGIP_SESSIONKEY = "CUSTDB_AGIP";
     private const string SITEDBGROUPIDSESSIONKEY = "SITEDBGROUPID";
     private const string CUSTDBGROUPIDSESSIONKEY = "CUSTDBGROUPID";
     private const string OFFEREDPRODUCTGROUPIDS = "OFFEREDPRODUCTGROUPIDS";
@@ -423,12 +422,6 @@ public class UserSessionBase : IUserSession, IDisposable
     {
         get => GetProperty<string>(AGIPSESSIONKEY) ?? AppSettings.DBTXN_IP;
         set => SetProperty(AGIPSESSIONKEY, value);
-    }
-
-    public string CustDbAGIP
-    {
-        get => GetProperty<string>(CUSTDB_AGIP_SESSIONKEY) ?? AppSettings.DBCUST_IP;
-        set => SetProperty(CUSTDB_AGIP_SESSIONKEY, value);
     }
 
     public int SiteDBGroupId

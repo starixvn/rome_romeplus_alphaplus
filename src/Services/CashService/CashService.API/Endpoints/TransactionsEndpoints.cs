@@ -69,9 +69,9 @@ public static class TransactionsEndpoints
             Description = "Revert transaction to pending"
         });
 
-        group.MapGet("/get-members", async ([FromQuery] int agentId, [FromQuery] string siteDbIp, ITransactionService service) =>
+        group.MapGet("/get-members", async ([FromQuery] int agentId, [FromQuery] int custDbGroupId, ITransactionService service) =>
         {
-            var members = await service.GetMembersAsync(agentId, siteDbIp);
+            var members = await service.GetMembersAsync(agentId, custDbGroupId);
             return Results.Ok(members);
         })
         .WithName("GetMembersAsync")
@@ -83,10 +83,10 @@ public static class TransactionsEndpoints
 
         group.MapGet("/agent-bank-list", async ([FromQuery] int agentId
                 , [FromQuery] int transactionType
-                , [FromQuery] string siteDbIp
+                , [FromQuery] int custDbGroupId
                 , IBankService service) =>
             {
-                var bankList = await service.GetCashAgentBankInfoAsync(agentId, transactionType, siteDbIp);
+                var bankList = await service.GetCashAgentBankInfoAsync(agentId, transactionType, custDbGroupId);
                 return Results.Ok(bankList);
             })
             .WithName("GetCashAgentBankList")
@@ -96,9 +96,9 @@ public static class TransactionsEndpoints
                 Description = "Returns a list of bank"
             });
 
-        group.MapGet("/member-bank-list", async ([FromQuery] int custId, [FromQuery] string siteDbIp, IBankService service) =>
+        group.MapGet("/member-bank-list", async ([FromQuery] int custId, [FromQuery] int custDbGroupId, IBankService service) =>
             {
-                var bankList = await service.GetMemberBankInfoAsync(custId, siteDbIp);
+                var bankList = await service.GetMemberBankInfoAsync(custId, custDbGroupId);
                 return Results.Ok(bankList);
             })
             .WithName("GetCashMemberBankList")
@@ -110,10 +110,10 @@ public static class TransactionsEndpoints
 
         group.MapGet("/provider-bank-list", async ([FromQuery] int agentId
                 , [FromQuery] int transactionType
-                , [FromQuery] string siteDbIp
+                , [FromQuery] int custDbGroupId
                 , IBankService service) =>
             {
-                var bankList = await service.GetCashAgentProviderAsync(agentId, transactionType, siteDbIp);
+                var bankList = await service.GetCashAgentProviderAsync(agentId, transactionType, custDbGroupId);
                 return Results.Ok(bankList);
             })
             .WithName("GetCashAgentProviderAsync")

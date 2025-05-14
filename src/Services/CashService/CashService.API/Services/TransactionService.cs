@@ -8,8 +8,6 @@ using Criteria.Transactions;
 using Enum;
 using Extensions;
 using Fanex.Data.Repository;
-using Microsoft.Extensions.Logging;
-using Models;
 using Models.Transactions;
 
 public interface ITransactionService
@@ -20,12 +18,12 @@ public interface ITransactionService
 
     Task<ResultModel> UpdateTransactionStatus(UpdateTransactionStatusRemarkCommand command);
 
-    Task<IEnumerable<MemberInfo>> GetMembersAsync(int agentId, string siteDbIp);
+    Task<IEnumerable<MemberInfo>> GetMembersAsync(int agentId, int custDbGroupId);
 
-    Task<ResultModel> SyncCashAccumCreditAsync(string cashAccumCreditTbl, string siteDbIp = "");
+    Task<ResultModel> SyncCashAccumCreditAsync(string cashAccumCreditTbl, int custDbGroupId);
 }
 
-public class TransactionService(IDynamicRepository dynamicRepository, ILogger<TransactionService> logger)
+public class TransactionService(IDynamicRepository dynamicRepository)
     : ITransactionService
 {
     public async Task<TransactionResponse> GetTransactionsAsync(GetAllTransactionsWithPagingCriteria criteria)
@@ -125,22 +123,24 @@ public class TransactionService(IDynamicRepository dynamicRepository, ILogger<Tr
         return transactions;
     }
 
-    public async Task<IEnumerable<MemberInfo>> GetMembersAsync(int agentId, string siteDbIp)
+    public async Task<IEnumerable<MemberInfo>> GetMembersAsync(int agentId, int custDbGroupId)
     {
         var criteria = new GetMembersCriteria
         {
-            CustId = agentId
+            CustId = agentId,
+            CustDbGroupId = custDbGroupId
         };
-        return await dynamicRepository.FetchAsync<MemberInfo>(criteria, siteDbIp);
+        return await dynamicRepository.FetchAsync<MemberInfo>(criteria);
     }
 
-    public async Task<ResultModel> SyncCashAccumCreditAsync(string cashAccumCreditTbl, string siteDbIp = "")
+    public async Task<ResultModel> SyncCashAccumCreditAsync(string cashAccumCreditTbl, int custDbGroupId)
     {
         var command = new SyncCashAccumCreditCommand
         {
-            CashAccumCreditTbl = cashAccumCreditTbl
+            CashAccumCreditTbl = cashAccumCreditTbl,
+            CustDbGroupId = custDbGroupId
         };
-        await dynamicRepository.ExecuteAsync(command, siteDbIp);
+        await dynamicRepository.ExecuteAsync(command);
         return new ResultModel(command.ErrCode, command.ErrMsg);
     }
 }
