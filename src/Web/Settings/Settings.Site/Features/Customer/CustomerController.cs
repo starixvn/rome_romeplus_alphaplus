@@ -209,6 +209,39 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 
             return Content(response);
         }
+        
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateCashCustomer([FromBody] CreateCustomerRequest request)
+        {
+            if (request.IsInternal || !request.IsValid())
+            {
+                return UnAuthorized();
+            }
+
+            var generalInfo = request.GeneralInfo;
+            var rawPassword = aesService.Decrypt(generalInfo.Password, sessionManager.Get<string>(HashKeySessionKey));
+            generalInfo.Password = rawPassword;
+            generalInfo.UpLineRoleId = request.ViewerLevelId;
+            generalInfo.Site = request.Site;
+            generalInfo.SiteLabel = AppSettings.SiteLabel;
+
+            var response = await customerService.CreateCashCustomer(new CreateCustomerParam(
+                generalInfo,
+                request.ProductGroups,
+                request.ViewerId,
+                request.SubAccId,
+                request.IP,
+                request.Site,
+                AppSettings.SiteLabel,
+                request.CustDBGroupId,
+                request.Group,
+                request.NumberOfAccounts,
+                CreationModes.FullMode,
+                request.Language));
+
+            return Content(response);
+        }
+        
 
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> Update([FromBody] UpdateCustomerRequest request)
