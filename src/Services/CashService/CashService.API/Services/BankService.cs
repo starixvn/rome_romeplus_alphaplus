@@ -1,8 +1,8 @@
 ﻿namespace AlphaPlus.CashService.API.Services;
 
-using Criteria.Bank;
-using DTOs.Common;
+using AlphaPlus.CashService.API.Features.Shared.DTOs;
 using Fanex.Data.Repository;
+using AlphaPlus.CashService.API.Criteria.Bank;
 
 public interface IBankService
 {

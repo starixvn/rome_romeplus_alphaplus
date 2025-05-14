@@ -1,5 +1,6 @@
 namespace AlphaPlus.CashService.API.Services;
 
+using AlphaPlus.CashService.API.Features.Shared.Models;
 using Criteria.PendingDeposit;
 using Fanex.Data.Repository;
 using Models;

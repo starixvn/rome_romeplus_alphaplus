@@ -1,4 +1,5 @@
 ﻿using AlphaPlus.CashService.API.Criteria;
+using AlphaPlus.CashService.API.Features.Shared.Criteria;
 
 namespace AlphaPlus.CashService.API.Criteria.PendingDeposit;
 

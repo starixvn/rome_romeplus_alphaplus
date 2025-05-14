@@ -3,6 +3,7 @@ namespace AlphaPlus.CashService.API.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AlphaPlus.CashService.API.Features.Shared.Models;
 using Criteria.Transactions;
 using Enum;
 using Extensions;

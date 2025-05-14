@@ -1,4 +1,5 @@
 ﻿using AlphaPlus.CashService.API.Criteria.Promotion;
+using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Models;
 using AlphaPlus.CashService.API.Models.Promotion;
 using Fanex.Data.Repository;

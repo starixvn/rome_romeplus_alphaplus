@@ -1,8 +1,9 @@
 using AlphaPlus.CashService.API.Criteria.MemberSite;
-using AlphaPlus.CashService.API.Criteria.Common;
 using AlphaPlus.CashService.API.Models;
 using AlphaPlus.CashService.API.Models.ManageMemberSites;
 using Fanex.Data.Repository;
+using AlphaPlus.CashService.API.Features.Shared.Models;
+using AlphaPlus.CashService.API.Features.Shared.Criteria;
 
 
 namespace AlphaPlus.CashService.API.Services;

@@ -1,9 +1,8 @@
-using AlphaPlus.CashService.API.Criteria.Common;
+using AlphaPlus.CashService.API.Features.Shared.Criteria;
+using AlphaPlus.CashService.API.Features.Shared.DTOs;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Services;
-
-using DTOs.Common;
 
 public interface ICommonService
 {

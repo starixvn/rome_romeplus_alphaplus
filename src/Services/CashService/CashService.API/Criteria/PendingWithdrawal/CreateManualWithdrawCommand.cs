@@ -1,4 +1,5 @@
 ﻿using AlphaPlus.CashService.API.Criteria;
+using AlphaPlus.CashService.API.Features.Shared.Criteria;
 using Fanex.Data;
 
 namespace AlphaPlus.CashService.API.Criteria.PendingWithdrawal;
