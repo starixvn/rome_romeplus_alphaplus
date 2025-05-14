@@ -138,5 +138,7 @@
   "confirmDeleteBankAccount": "이 은행 계좌를 삭제하시겠습니까?",
   "deleteBankAccount": "은행 계좌 삭제",
   "minAmountLessThanMinTrans": "오류가 발생했습니다",
-  "maxAmountGreaterThanMaxTrans": "오류가 발생했습니다"
+  "maxAmountGreaterThanMaxTrans": "오류가 발생했습니다",
+  "minDepositMustBeLessThanOrEqualMaxDeposit": "최소 입금은 최대 입금 이하여야 합니다",
+  "minWithdrawalMustBeLessThanOrEqualMaxWithdrawal": "최소 출금은 최대 출금 이하여야 합니다"
 }

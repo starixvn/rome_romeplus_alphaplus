@@ -138,5 +138,7 @@
   "confirmDeleteBankAccount": "您确定要删除此银行账户吗？",
   "deleteBankAccount": "删除银行账户",
   "minAmountLessThanMinTrans": "最小金额不能小于最小交易金额",
-  "maxAmountGreaterThanMaxTrans": "最大金额不能大于最大交易金额"
+  "maxAmountGreaterThanMaxTrans": "最大金额不能大于最大交易金额",
+  "minDepositMustBeLessThanOrEqualMaxDeposit": "最小入金不能小于或等于最大入金",
+  "minWithdrawalMustBeLessThanOrEqualMaxWithdrawal": "最小出金不能小于或等于最大出金"
 }

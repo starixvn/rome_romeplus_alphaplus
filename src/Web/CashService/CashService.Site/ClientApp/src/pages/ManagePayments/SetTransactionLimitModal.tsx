@@ -26,6 +26,17 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
   const [success, setSuccess] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [loading, setLoading] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<{
+    minDeposit: boolean;
+    maxDeposit: boolean;
+    minWithdrawal: boolean;
+    maxWithdrawal: boolean;
+  }>({
+    minDeposit: false,
+    maxDeposit: false,
+    minWithdrawal: false,
+    maxWithdrawal: false
+  });
 
   useEffect(() => {
     const fetchTransactionLimit = async () => {
@@ -50,6 +61,46 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
     setError(null);
     setSuccess(false);
     setLoading(true);
+    setFieldErrors({
+      minDeposit: false,
+      maxDeposit: false,
+      minWithdrawal: false,
+      maxWithdrawal: false
+    });
+
+    // Validate min < max
+    const minDepositNum = parseFloat(minDeposit) || 0;
+    const maxDepositNum = parseFloat(maxDeposit) || 0;
+    const minWithdrawalNum = parseFloat(minWithdrawal) || 0;
+    const maxWithdrawalNum = parseFloat(maxWithdrawal) || 0;
+    var hasError = false;
+    var errorMessage = '';
+    if (minDepositNum > maxDepositNum) {
+      errorMessage = tManagePayments('minDepositMustBeLessThanOrEqualMaxDeposit');
+      setFieldErrors(prev => ({
+        ...prev,
+        minDeposit: true,
+        maxDeposit: true
+      }));
+      setLoading(false);
+      hasError = true;
+    }
+
+    if (minWithdrawalNum > maxWithdrawalNum) {
+      errorMessage += "<br />" + tManagePayments('minWithdrawalMustBeLessThanOrEqualMaxWithdrawal');
+      setFieldErrors(prev => ({
+        ...prev,
+        minWithdrawal: true,
+        maxWithdrawal: true
+      }));
+      setLoading(false);
+      hasError = true;
+    }
+
+    if (hasError) {
+      setError(errorMessage);
+      return;
+    }
 
     try {
       const result = await paymentProviderService.setTransactionLimit({
@@ -106,7 +157,11 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                 <label className="block font-bold text-[#333333] my-[8px]">{tManagePayments('minPerTransaction')}</label>
                 <input
                   type="text"
-                  className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)]"
+                  className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none ${
+                    fieldErrors.minDeposit 
+                      ? 'border-[#ff0000] focus:border-[#ff0000]' 
+                      : 'border-[var(--border-control)] focus:border-[var(--button-border)]'
+                  }`}
                   value={minDeposit}
                   onChange={(e) => handleNumericInput(e.target.value, setMinDeposit)}
                   min="0"
@@ -118,7 +173,11 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                 <label className="block font-bold text-[#333333] my-[8px]">{tManagePayments('maxPerTransaction')}</label>
                 <input
                   type="text"
-                  className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)]"
+                  className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none ${
+                    fieldErrors.maxDeposit 
+                      ? 'border-[#ff0000] focus:border-[#ff0000]' 
+                      : 'border-[var(--border-control)] focus:border-[var(--button-border)]'
+                  }`}
                   value={maxDeposit}
                   onChange={(e) => handleNumericInput(e.target.value, setMaxDeposit)}
                   min="0"
@@ -133,7 +192,11 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                 <label className="block font-bold text-[#333333] my-[8px]">{tManagePayments('minPerTransaction')}</label>
                 <input
                   type="text"
-                  className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)]"
+                  className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none ${
+                    fieldErrors.minWithdrawal 
+                      ? 'border-[#ff0000] focus:border-[#ff0000]' 
+                      : 'border-[var(--border-control)] focus:border-[var(--button-border)]'
+                  }`}
                   value={minWithdrawal}
                   onChange={(e) => handleNumericInput(e.target.value, setMinWithdrawal)}
                   min="0"
@@ -145,7 +208,11 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                 <label className="block font-bold text-[#333333] my-[8px]">{tManagePayments('maxPerTransaction')}</label>
                 <input
                   type="text"
-                  className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)]"
+                  className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none ${
+                    fieldErrors.maxWithdrawal 
+                      ? 'border-[#ff0000] focus:border-[#ff0000]' 
+                      : 'border-[var(--border-control)] focus:border-[var(--button-border)]'
+                  }`}
                   value={maxWithdrawal}
                   onChange={(e) => handleNumericInput(e.target.value, setMaxWithdrawal)}
                   min="0"

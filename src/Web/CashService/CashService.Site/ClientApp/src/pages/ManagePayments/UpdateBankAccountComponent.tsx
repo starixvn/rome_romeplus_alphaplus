@@ -135,8 +135,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
     // Field-level validation
     const errors = {
-      mobile: !mobile ? tGlobal('pleaseFillField') : '',
-      countryCode: !countryCode ? tGlobal('pleaseFillField') : '',
+      mobile: promptPay && !mobile ? tGlobal('pleaseFillField') : '',
+      countryCode: promptPay && !countryCode ? tGlobal('pleaseFillField') : '',
       selectedDepositType: !selectedManualDeposit && !selectedAutoDeposit ? tManagePayments('pleaseSelectDepositType') : '',
       selectedDepositMatchingMode: selectedAutoDeposit && !agent_DepositMatchingMode ? tManagePayments('pleaseSelectDepositMatchingMode') : ''
     };

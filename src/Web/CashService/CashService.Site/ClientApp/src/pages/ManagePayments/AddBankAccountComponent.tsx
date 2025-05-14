@@ -122,8 +122,8 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
       accountHolderName: !accountHolderName ? tGlobal('pleaseFillField') : '',
       accountNumber: !accountNumber ? tGlobal('pleaseFillField') : '',
       selectedBank: !selectedBank ? tGlobal('pleaseFillField') : '',
-      mobile: !mobile ? tGlobal('pleaseFillField') : '',
-      countryCode: !countryCode ? tGlobal('pleaseFillField') : '',
+      mobile: promptPay && !mobile ? tGlobal('pleaseFillField') : '',
+      countryCode: promptPay && !countryCode ? tGlobal('pleaseFillField') : '',
       selectedDepositType: !selectedManualDeposit && !selectedAutoDeposit ? tManagePayments('pleaseSelectDepositType') : '',
       selectedDepositMatchingMode: selectedAutoDeposit && !depositMatchingMode ? tManagePayments('pleaseSelectDepositMatchingMode') : ''
     };
