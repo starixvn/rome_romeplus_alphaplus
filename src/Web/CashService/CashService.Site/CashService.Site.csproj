@@ -41,10 +41,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Transactions\Commands\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\pages\Promotion\components\Table.tsx" />
     <TypeScriptCompile Include="ClientApp\src\pages\Promotion\index.tsx" />
     <TypeScriptCompile Include="ClientApp\src\services\interfaces\Promotion.ts" />

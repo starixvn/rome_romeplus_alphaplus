@@ -1,6 +1,6 @@
 namespace AlphaPlus.CashService.Site.Features.Transactions.Models;
 
-public record TransactionModel
+public record Transaction
 {
     public int TransactionId { get; set; }
     public string Username { get; set; }
@@ -17,12 +17,4 @@ public record TransactionModel
     public decimal BetCredit { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime? LastUpdatedDate { get; set; }
-}
-
-public record TransactionResponse
-{
-    public IEnumerable<TransactionModel> Items { get; init; } = [];
-    public int TotalCount { get; init; }
-    public int Page { get; init; }
-    public int PageSize { get; init; }
 }

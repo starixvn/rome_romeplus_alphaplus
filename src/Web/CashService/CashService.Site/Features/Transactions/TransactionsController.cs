@@ -1,13 +1,12 @@
 namespace AlphaPlus.CashService.Site.Features.Transactions;
 
-using Commands;
 using Core.Models;
 using Helpers;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 using Shared.Models;
 
 public class TransactionsController(
-    IConfiguration configuration,
     HttpClientHelper httpClientHelper,
     ILogger<TransactionsController> logger,
     IUserSession userSession)
@@ -24,9 +23,9 @@ public class TransactionsController(
 
     public IActionResult History() => View();
 
-    public async Task<IActionResult> GetAll(int transactionType, string status, DateTime? fromDate, DateTime? toDate, int page = 1, int pageSize = 100)
+    public async Task<IActionResult> GetAll([FromQuery] GetTransactionFilter filter)
     {
-        var url = $"/transactions?transactionType={transactionType}&status={status}&fromDate={fromDate}&toDate={toDate}&page={page}&pageSize={pageSize}";
+        var url = $"/transactions?transactionType={filter.TransactionType}&status={filter.StatusId}&fromDate={filter.FromDate}&toDate={filter.ToDate}&page={filter.PageIndex}&pageSize={filter.PageSize}";
         var result = await httpClientHelper.GetAsync<object>(url);
         return Json(result);
     }
@@ -101,12 +100,11 @@ public class TransactionsController(
     }
 
     [HttpPost]
-    public async Task<IActionResult> RevertTransactionToPending([FromBody] RevertTransactionCommand request)
+    public async Task<IActionResult> RevertTransactionToPending([FromBody] RevertTransaction request)
     {
         try
         {
-            var url = "/transactions/revert";
-            var result = await httpClientHelper.PostAsync<RevertTransactionCommand, ResultModel>(url, request);
+            var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/transactions/revert", request);
             return Ok(result);
         }
         catch (Exception ex)
