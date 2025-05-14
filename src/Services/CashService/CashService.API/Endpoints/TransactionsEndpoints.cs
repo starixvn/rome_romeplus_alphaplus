@@ -69,7 +69,7 @@ public static class TransactionsEndpoints
             Description = "Revert transaction to pending"
         });
 
-        group.MapGet("/get-members/{agentId}/{siteDbIp}", async (int agentId, string siteDbIp, ITransactionService service) =>
+        group.MapGet("/get-members", async ([FromQuery] int agentId, [FromQuery] string siteDbIp, ITransactionService service) =>
         {
             var members = await service.GetMembersAsync(agentId, siteDbIp);
             return Results.Ok(members);
@@ -81,16 +81,46 @@ public static class TransactionsEndpoints
             Description = "Returns Cash Member List of Agent"
         });
 
-        group.MapPut("/sync-credit/{cashAccumCreditTbl}", async (string cashAccumCreditTbl, ITransactionService service) =>
-        {
-            var syncCash = await service.SyncCashAccumCreditAsync(cashAccumCreditTbl);
-            return syncCash.Code != 0 ? Results.NotFound() : Results.Ok(new { syncCash });
-        })
-        .WithName("SyncCashAccumCreditAsync")
-        .WithOpenApi(operation => new OpenApiOperation(operation)
-        {
-            Summary = "Sync Cash Accum Credit",
-            Description = "Manually sync data CashAccumCredit to DBCUST.custdb"
-        });
+        group.MapGet("/agent-bank-list", async ([FromQuery] int agentId
+                , [FromQuery] int transactionType
+                , [FromQuery] string siteDbIp
+                , IBankService service) =>
+            {
+                var bankList = await service.GetCashAgentBankInfoAsync(agentId, transactionType, siteDbIp);
+                return Results.Ok(bankList);
+            })
+            .WithName("GetCashAgentBankList")
+            .WithOpenApi(operation => new OpenApiOperation(operation)
+            {
+                Summary = "Get CashAgent Bank List",
+                Description = "Returns a list of bank"
+            });
+
+        group.MapGet("/member-bank-list", async ([FromQuery] int custId, [FromQuery] string siteDbIp, IBankService service) =>
+            {
+                var bankList = await service.GetMemberBankInfoAsync(custId, siteDbIp);
+                return Results.Ok(bankList);
+            })
+            .WithName("GetCashMemberBankList")
+            .WithOpenApi(operation => new OpenApiOperation(operation)
+            {
+                Summary = "Get Cash Member Bank List",
+                Description = "Returns a list of bank"
+            });
+
+        group.MapGet("/provider-bank-list", async ([FromQuery] int agentId
+                , [FromQuery] int transactionType
+                , [FromQuery] string siteDbIp
+                , IBankService service) =>
+            {
+                var bankList = await service.GetCashAgentProviderAsync(agentId, transactionType, siteDbIp);
+                return Results.Ok(bankList);
+            })
+            .WithName("GetCashAgentProviderAsync")
+            .WithOpenApi(operation => new OpenApiOperation(operation)
+            {
+                Summary = "Get Cash Agent Provider List",
+                Description = "Returns a list of bank"
+            });
     }
 }
