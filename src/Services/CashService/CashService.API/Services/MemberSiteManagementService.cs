@@ -82,9 +82,9 @@ public class MemberSiteManagementService(
         var command = new UpdateMemberSiteInfoCommand
         {
             CustId = model.CustId,
-            // SubAccId = model.SubAccId,
-            // IP = model.IP,
-            // Language = model.Language,
+            SubAccId = model.SubAccId,
+            IP = model.IP,
+            Language = model.Language,
             Mobile = model.Mobile,
             Contacts = model.Contacts,
             Announcement = model.Announcement,
