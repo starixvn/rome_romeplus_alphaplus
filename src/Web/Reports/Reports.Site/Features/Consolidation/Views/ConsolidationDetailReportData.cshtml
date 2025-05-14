@@ -79,7 +79,7 @@
             }
             <td class="col-company">@data.Company.FormatNumber()</td>
             <td class="col-reward">@data.RewardAmount.FormatNumber()</td>
-            <td class="col-currency">@data.RewardCurrency</td>
+            <td class="col-currency">@(isTotalRow ? string.Empty : data.RewardCurrency)</td>
         </tr>
     }
 
