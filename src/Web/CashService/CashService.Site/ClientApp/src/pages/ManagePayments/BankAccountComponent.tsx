@@ -273,7 +273,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                   <div className="text-[12px] leading-[14px]">{tManagePayments('addBankAccountAndLimit')}</div>
                   <div className="my-[8px]">
                     <button 
-                      className="w-[183px] h-[30px] rounded-[5px] text-[#ffffff] px-[16px] py-[4px] text-[12px] font-bold mr-[8px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
+                      className="w-[183px] h-[30px] rounded-[5px] text-[var(--button-text)] px-[16px] py-[4px] text-[12px] font-bold mr-[8px] border-[1px] border-[var(--button-border)] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] hover:border-[var(--button-border-hover)] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
                       onClick={handleAddBankAccount}
                     >
                     +{tManagePayments('addBankAccount')}
@@ -318,7 +318,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                           <label htmlFor="transactionTypeSelect" className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('transactionType')}</label>
                           <select
                             id="transactionTypeSelect"
-                            className="h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
+                            className="h-[32px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
                             value={selectedTransactionType}
                             onChange={handleTransactionTypeChange}
                           >
@@ -339,7 +339,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                           <label htmlFor="statusSelect" className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('status')}</label>
                           <select
                             id="statusSelect"
-                            className="h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
+                            className="h-[32px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
                             value={selectedStatus}
                             onChange={handleStatusChange}
                           >
@@ -361,7 +361,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                           <input
                             type="text"
                             id="searchInput"
-                            className="h-[35px] w-[100%] pl-[30px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] shadow-[0_0_6px_rgba(0,0,0,0.16)]"
+                            className="h-[32px] w-[100%] pl-[30px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] shadow-[0_0_6px_rgba(0,0,0,0.16)]"
                             placeholder={tManagePayments('searchAccountNumberOrName')}
                             value={searchInput}
                             onChange={handleSearchChange}

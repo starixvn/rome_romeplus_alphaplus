@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { Promotion } from '../../../services/interfaces/Promotion';
+import { IconInfo } from '../../../components/Icons';
 
 
 interface AddPromotionProps {
@@ -85,32 +86,34 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
 
   return (
     <form id='add-promotion-form' onSubmit={handleSubmit}>
-    <div className="bg-white rounded-lg shadow-sm p-6 max-w-3xl mx-auto">
-      <h2 className="text-lg font-semibold mb-2">Current Promotion</h2>
-      <p className="mb-4 text-gray-600 text-sm">
+    <div className="bg-[#ffffff] p-[16px] rounded-[5px] ">
+      <h2 className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px] ">Current Promotion</h2>
+      <p className="pb-[8px] text-[12px] font-semibold">
         Do you want to keep your promotion active? You can only run one promotion at a time.
       </p>
-      <div className="flex gap-2 mb-6">
+      <div className="">
         <button
-          className={`px-4 py-2 rounded ${isActive ? 'bg-blue-800 text-white' : 'bg-gray-200 text-gray-700'}`}
+          className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer ${isActive ? 'bg-[var(--button-switch-background-active)] text-[var(--button-switch-background-color-active)]' : 'bg-[var(--button-switch-background)] text-[var(--button-switch-background-color)]'}`}
           onClick={() => setIsActive(true)}
         >
           Enable
         </button>
         <button
-          className={`px-4 py-2 rounded ${!isActive ? 'bg-blue-800 text-white' : 'bg-gray-200 text-gray-700'}`}
+          className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer ${!isActive ? 'bg-[var(--button-switch-background-active)] text-[var(--button-switch-background-color-active)]' : 'bg-[var(--button-switch-background)] text-[var(--button-switch-background-color)]'}`}
           onClick={() => setIsActive(false)}
         >
           Disable
         </button>
       </div>
-
-      <h3 className="text-md font-semibold mb-2">Promotion Settings <span className="ml-1 text-blue-500 cursor-pointer" title="Promotion runs on a weekly basis.">i</span></h3>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-        <div>
-          <label className="block text-sm font-medium mb-1">Promotion Type*</label>
+      <hr className='my-[16px] border-[#E0E0E0]' />   
+      
+      <h3 className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px] flex">Promotion Settings <span className="" title="Promotion runs on a weekly basis."><IconInfo className='w-[20px] cursor-pointer h-[20px] ml-[4px] fill-[#163f78]' /></span></h3>
+      <p className="text-[12px] text-[#333333] font-semibold">Promotion runs on a weekly basis.</p>
+      <div className="flex no-wrap gap-[16px]">
+        <div className="w-[100%] max-w-[250px]">
+          <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">Promotion Type<span className="text-[#E25757]">*</span></label>
           <select
-            className="w-full border rounded px-2 py-1"
+            className="h-[32px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
             value={promotionType}
             onChange={e => setPromotionType(e.target.value)}
           >
@@ -119,20 +122,20 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
             ))}
           </select>
         </div>
-        <div>
-          <label className="block text-sm font-medium mb-1">Period*</label>
+        <div className="w-[100%] max-w-[250px]">
+          <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">Period<span className="text-[#E25757]">*</span></label>
           <input
             type="text"
-            className="w-full border rounded px-2 py-1"
+            className="h-[32px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
             placeholder="05/07/2025 - 05/07/2025"
             value={period}
             onChange={e => setPeriod(e.target.value)}
           />
         </div>
-        <div>
-          <label className="block text-sm font-medium mb-1">Provider*</label>
+        <div className="w-[100%] max-w-[250px]">
+          <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">Provider<span className="text-[#E25757]">*</span></label>
           <select
-            className="w-full border rounded px-2 py-1"
+            className="h-[32px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
             value={provider}
             onChange={e => setProvider(e.target.value)}
           >
@@ -148,7 +151,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
           </select>
         </div>
       </div>
-
+            
       {/* Category Fields */}
       {[
         { key: 'sports', label: 'Sports' },
@@ -156,63 +159,66 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
         { key: 'games', label: 'Games' },
         { key: 'liveCasino', label: 'Live Casino' },
       ].map(cat => (
-        <div key={cat.key} className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end mb-2">
-          <div>
-            <label className="block text-sm font-medium mb-1">{cat.label} Percentage*</label>
-            <div className="flex items-center gap-1">
+        <div key={cat.key} className="flex no-wrap gap-[16px]">
+          <div className="w-[100%] max-w-[250px]">
+            <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{cat.label} Percentage<span className="text-[#E25757]">*</span></label>
+            <div className="flex items-center relative">
               <input
                 type="number"
                 min="0"
                 step="0.01"
-                className="w-full border rounded px-2 py-1"
+                className="h-[32px] w-[100%] border-[1px] rounded-[4px] px-[8px] pr-[32px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
                 value={categories[cat.key as keyof typeof categories].percentage}
                 onChange={e => handleCategoryChange(cat.key, 'percentage', e.target.value)}
               />
-              <span className="text-gray-500">%</span>
+              <span className="absolute right-0 top-0 text-[12px] text-[#333333] h-full w-[32px] leading-[32px] text-center font-bold border-l-[1px] border-[var(--border-control)]">%</span>
             </div>
           </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Min Turnover*</label>
+          <div className="w-[100%] max-w-[250px]">
+            <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">Min Turnover<span className="text-[#E25757]">*</span></label>
             <input
               type="number"
               min="0"
-              className="w-full border rounded px-2 py-1"
+              className="h-[32px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
               value={categories[cat.key as keyof typeof categories].minTurnover}
               onChange={e => handleCategoryChange(cat.key, 'minTurnover', e.target.value)}
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Max Payout*</label>
+          <div className="w-[100%] max-w-[250px]">
+            <label className="flex justify-between text-[12px] font-semibold text-[#333333] my-[8px]">
+              <div>Max Payout<span className="text-[#E25757]">*</span></div>
+              <div className="flex items-center text-[12px]">
+                <input
+                  type="checkbox"
+                  className="mr-2"
+                  checked={categories[cat.key as keyof typeof categories].unlimited}
+                  onChange={e => handleCategoryChange(cat.key, 'unlimited', e.target.checked)}
+                  id={`${cat.key}-unlimited`}
+                />
+                <label htmlFor={`${cat.key}-unlimited`} className="text-[var(--text-color-primary)]">Unlimited</label>
+              </div>            
+            </label>
             <input
               type="number"
               min="0"
-              className="w-full border rounded px-2 py-1"
+              className="h-[32px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
               value={categories[cat.key as keyof typeof categories].maxPayout}
               onChange={e => handleCategoryChange(cat.key, 'maxPayout', e.target.value)}
               disabled={categories[cat.key as keyof typeof categories].unlimited}
             />
           </div>
-          <div className="flex items-center mt-6">
-            <input
-              type="checkbox"
-              className="mr-2"
-              checked={categories[cat.key as keyof typeof categories].unlimited}
-              onChange={e => handleCategoryChange(cat.key, 'unlimited', e.target.checked)}
-              id={`${cat.key}-unlimited`}
-            />
-            <label htmlFor={`${cat.key}-unlimited`} className="text-sm">Unlimited</label>
-          </div>
+          
         </div>
       ))}
-      <div className="flex justify-end">
+      <div className="flex justify-start mt-[16px]">
         <button
-          className="px-4 py-2 mr-2 text-gray-700 bg-gray-200 rounded hover:bg-gray-300 transition-colors"
+          className="w-[140px] h-[30px] rounded-[20px] text-[var(--button-text-cancel)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)] mx-[4px] bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] cursor-pointer "
           onClick={() => {onClose()}}
         >
           Cancel
         </button>
         <button
-          className="px-4 py-2 text-white bg-blue-800 rounded hover:bg-blue-900 transition-colors"
+          className="w-[140px] h-[30px] rounded-[20px] text-[var(--button-text)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)] mx-[4px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] hover:border-[var(--button-border-hover)] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
         >
           Save
         </button>

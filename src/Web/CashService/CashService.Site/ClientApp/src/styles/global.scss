@@ -11,7 +11,7 @@
   //control
   --border-control: #0000003D;
   --border-control-focus: #163f78;
-  --background-control: #163f78;
+  --background-control: #ffffff;
 
   //button
   --button-border: #163f78;
@@ -26,7 +26,11 @@
   --button-background-cancel: #ffffff;
   --button-background-cancel-hover: #EAEDF2;
   
-
+  //button switch 
+  --button-switch-background: #eeeeee;
+  --button-switch-background-active: #163f78;
+  --button-switch-background-color: #163f78;
+  --button-switch-background-color-active: #ffffff;
 
   //color level 
   --color-level: red;
@@ -269,29 +273,29 @@ body {
   h1{
     font-size: 16px;
     font-weight: 600;
-    color: var(--primary-color);
+    color: var(--text-color-primary);
   }
    .react-confirm-alert-button-group{
     button{
       font-size: 12px;
       font-weight: 600;
-      color: #fff;
-      background-color: var(--primary-color);
+      color: var(--button-text);
+      background-color: var(--button-background);
+      border: 1px solid var(--button-border);
       border-radius: 15px;
       padding: 4px 16px;
       cursor: pointer;
       &[label="Confirm"]{
         &:hover{
-          background-color: #375A8A;
+          background-color: var(--button-background-hover);
         }
       }
       &[label="Cancel"]{
-        background-color: #fff;
-        color: var(--primary-color);
-        border: 1px solid var(--primary-color);
+        background-color: var(--button-background-cancel);
+        color: var(--button-text-cancel);        
         box-shadow:  0 1px 5px #0003,  0 2px 2px #00000024,  0 3px 1px -2px #0000001f;
         &:hover{
-          background-color: #EAEDF2; 
+          background-color: var(--button-background-cancel-hover); 
         }
       }
 

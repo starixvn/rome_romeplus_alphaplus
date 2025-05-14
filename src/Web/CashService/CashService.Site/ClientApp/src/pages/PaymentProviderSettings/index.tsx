@@ -241,7 +241,7 @@ function PaymentProviderSettings() {
             <p className="block text-[12px] font-semibold text-[#333333] my-[8px]">
               {tPaymentProviderSettings('setUpPaymentMethodsForMembers')}
             </p>
-            <button className="w-[183px] h-[30px] rounded-[5px] text-[#ffffff] px-[16px] py-[4px] text-[12px] font-bold bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]" onClick={handleAddPaymentMethod}>+{tPaymentProviderSettings('addPaymentMethod')}</button>
+            <button className="w-[183px] h-[30px] rounded-[5px] text-[var(--button-text)] px-[16px] py-[4px] text-[12px] font-bold border-[1px] border-[var(--button-border)] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] hover:border-[var(--button-border-hover)] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]" onClick={handleAddPaymentMethod}>+{tPaymentProviderSettings('addPaymentMethod')}</button>
             </div>
             <div className="d-flex align-items-center">
               <label className="flex text-[12px] font-semibold text-[#333333] my-[8px]" htmlFor='enableToggle'>
@@ -419,8 +419,8 @@ function PaymentProviderSettings() {
               </tbody>
             </table>
           </div>
-          <div className="flex justify-end py-[8px] mt-[8px]">
-            <button className="w-[140px] h-[30px] rounded-[20px] text-[var(--text-color-primary)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)]  bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer " onClick={handleReset}>{tGlobal('reset')}</button>
+          <div className="flex justify-start py-[8px] mt-[8px]">
+            <button className="w-[140px] h-[30px] rounded-[20px] text-[var(--text-color-primary)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)] bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] hover:border-[var(--button-border-cancel-hover)] cursor-pointer " onClick={handleReset}>{tGlobal('reset')}</button>
             <button 
               className="w-[140px] h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)] ml-[8px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] hover:border-[var(--button-border-hover)] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]" 
               onClick={handleUpdate}

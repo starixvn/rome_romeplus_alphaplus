@@ -117,7 +117,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
               <div className="mt-[8px] mb-[8px]">
                 <button
                   type="button"
-                  className=" bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer  text-[var(--text-color-primary)] border-[1px] border-[var(--button-border)] rounded-[5px] px-[16px] py-[4px] text-[12px] font-bold leading-[20.58px] tracking-[0.12px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
+                  className=" bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] cursor-pointer  text-[var(--text-color-primary)] border-[1px] border-[var(--button-border)] rounded-[5px] px-[16px] py-[4px] text-[12px] font-bold leading-[20.58px] tracking-[0.12px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
                   onClick={() => handleSetLimitClick()} // Default values, should be updated with actual values
                 >
                   {tManagePayments('setLimit')}
@@ -154,7 +154,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
                           <td>
                             <div className='flex justify-center items-center'>
                               <button
-                                  className="mx-[4px] cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
+                                  className="mx-[4px] cursor-pointer p-[4px] rounded-[4px] hover:bg-[var(--button-background-cancel-hover)] text-[var(--text-color-primary)]"
                                   onClick={() => handleEditClick(provider)}
                                 >
                                   <IconPen />
@@ -164,7 +164,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
                           <td>{provider.name}</td>
                           <td>
                             <button
-                              className="font-bold text-[12px] tracking-[0.12px] leading-[30px] px-[16px] rounded-[4px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] text-[#ffffff] cursor-pointer"
+                              className="font-bold text-[12px] tracking-[0.12px] leading-[30px] px-[16px] rounded-[4px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] text-[var(--button-text)] cursor-pointer"
                               onClick={() => handleFeeClick(provider)}
                             >
                               {tManagePayments('fee')}

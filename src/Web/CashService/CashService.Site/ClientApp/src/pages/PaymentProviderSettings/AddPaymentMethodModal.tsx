@@ -153,7 +153,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
               <div className="w-[48%]">
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('transactionType')}<span className='text-[#E25757]'>*</span></label>
                 <select 
-                  className={`h-[35px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.selectedTransactionType ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
+                  className={`h-[32px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.selectedTransactionType ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                   value={formState.selectedTransactionType}
                   onChange={(e) => {
                     handleInputChange('selectedTransactionType', e.target.value);
@@ -172,7 +172,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
               <div className="w-[48%]">
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('paymentMethod')}<span className='text-[#E25757]'>*</span></label>
                 <select 
-                  className={`h-[35px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.selectedPaymentMethod ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
+                  className={`h-[32px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.selectedPaymentMethod ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                   value={formState.selectedPaymentMethod}
                   onChange={(e) => {
                     handleInputChange('selectedPaymentMethod', e.target.value);
@@ -198,8 +198,8 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
             <div>
               <hr className='mt-[16px] border-[#0000001F]'  />
               <h4 className="text-[14px] pt-[16px] text-[var(--text-color-primary)] font-semibold pb-[4px]">{tPaymentProviderSettings('addPaymentMethodStep2')}</h4>
-              <p className='mt-[8px]'>{tPaymentProviderSettings('clickLinkOrScanQRCode')}</p>
-              <a href={telegramAssistantUrl} target="_blank" rel="noopener noreferrer">{telegramAssistantUrl}</a>
+              <p className='mt-[8px] text-[12px]'>{tPaymentProviderSettings('clickLinkOrScanQRCode')}</p>
+              <a href={telegramAssistantUrl} className='text-[12px] text-[var(--text-color-primary)] font-semibold' target="_blank" rel="noopener noreferrer">{telegramAssistantUrl}</a>
               <div style={{ marginTop: '16px', textAlign: 'center' }}>
                 <img src="../assets/qrcode.png" alt="QR Code" style={{ width: '150px', height: '150px', display: 'inline-block' }} />
               </div>
@@ -212,7 +212,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('apiKey')}<span className='text-[#E25757]'>*</span></label>
                 <input
                   type="text"
-                  className={`h-[35px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.apiKey ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
+                  className={`h-[32px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.apiKey ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                   id="apiKey"
                   value={formState.apiKey}
                   onChange={(e) => {
@@ -227,7 +227,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('merchantID')}<span className='text-[#E25757]'>*</span></label>
                 <input
                   type="text"
-                  className={`h-[35px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.merchantID ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
+                  className={`h-[32px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.merchantID ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                   id="merchantID"
                   value={formState.merchantID}
                   onChange={(e) => {
@@ -242,7 +242,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('appSecret')}<span className='text-[#E25757]'>*</span></label>
                 <input
                   type="text"
-                  className={`h-[35px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.appSecret ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
+                  className={`h-[32px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.appSecret ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                   id="appSecret"
                   value={formState.appSecret}
                   onChange={(e) => {

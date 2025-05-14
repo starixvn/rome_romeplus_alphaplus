@@ -271,13 +271,13 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 <div className="btn-group" role="group">
                   <button
                     type="button"
-                    className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer  ${status === '1' ? 'bg-[var(--button-background)] text-[#ffffff]' : 'bg-[#eeeeee] text-[var(--text-color-primary)]'}`}                    onClick={() => setStatus('1')}
+                    className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer  ${status === '1' ? 'bg-[var(--button-switch-background-active)] text-[var(--button-switch-background-color-active)]' : 'bg-[var(--button-switch-background-active)] text-[var(--button-switch-background-color-active)]'}`}                    onClick={() => setStatus('1')}
                   >
                     {tGlobal('enable')}
                   </button>
                   <button
                     type="button"
-                    className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer  ${status === '0' ? 'bg-[var(--button-background)] text-[#ffffff]' : 'bg-[#eeeeee] text-[var(--text-color-primary)]'}`}
+                    className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer  ${status === '0' ? 'bg-[var(--button-switch-background-active)] text-[var(--button-switch-background-color-active)]' : 'bg-[var(--button-switch-background)] text-[var(--button-switch-background-color)]'}`}
                     onClick={() => setStatus('0')}
                   >
                     {tGlobal('disable')}
@@ -392,7 +392,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                   <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('accountHolderName')}<span className="text-[#E25757]">*</span></label>
                   <input
                     type="text"
-                    className="h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer read-only:bg-[#f4f4f4] read-only:cursor-not-allowed read-only:focus:border-[#0000003D]"
+                    className="h-[32px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer read-only:bg-[#f4f4f4] read-only:cursor-not-allowed read-only:focus:border-[#0000003D]"
                     value={accountHolderName}
                     readOnly
                   />
@@ -403,7 +403,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('bankAccountNumber')}<span className="text-[#E25757]">*</span></label>
                 <input
                   type="text"
-                  className="h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer read-only:bg-[#f4f4f4] read-only:cursor-not-allowed read-only:focus:border-[#0000003D]"
+                  className="h-[32px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer read-only:bg-[#f4f4f4] read-only:cursor-not-allowed read-only:focus:border-[#0000003D]"
                   value={accountNumber}
                   readOnly
                 />
@@ -414,7 +414,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 
                 <input
                   type="text"
-                  className={`h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer `}
+                  className={`h-[32px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer `}
                   value={accountNickname}
                   onChange={(e) => {
                     setAccountNickname(e.target.value);
@@ -447,7 +447,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
               <div className="mb-[8px]">
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('mobile')}<span className='text-[#E25757]'>*</span></label>
-                <div className="flex items-center h-[35px] w-[470px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer">
+                <div className="flex items-center h-[32px] w-[470px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer">
                   <select
                     className={`focus:outline-none focus:border-[var(--button-border)] h-[100%] cursor-pointer mr-[5px] ${fieldErrors.countryCode ? 'border-[#FE0000]' : ''}`}
                     value={countryCode}

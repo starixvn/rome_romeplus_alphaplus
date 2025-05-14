@@ -56,9 +56,9 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
             </div>
           ) : (
             <>
-              <label className='block text-[var(--text-color-primary)] my-[16px] font-semibold'>{tPaymentProviderSettings(`transaction-${transactionType}`)}</label>
+              <label className='block text-[var(--text-color-primary)] text-[12px] leading-[13px] my-[16px] font-semibold'>{tPaymentProviderSettings(`transaction-${transactionType}`)}</label>
               <div className="table-fixed-header max-h-[300px] overflow-y-auto">
-                <table className="w-full">
+                <table className="w-full text-[12px]">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -71,7 +71,7 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
                         <td>{index + 1}</td>
                         <td className='text-left!'>
                           <div className='flex items-center'>
-                            <img src="../assets/bank/BAAC.png" alt={bank.name} className='w-[20px] h-[20px] mr-[8px]' />
+                            <img src={`../assets/bank/${bank.code}.png`} alt={bank.name} className='w-[20px] h-[20px] mr-[8px]' />
                             {bank.name}
                           </div>
                         </td>
