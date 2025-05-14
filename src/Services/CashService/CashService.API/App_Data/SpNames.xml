@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Functions>
+    <Function Name="Shared Functions">
+        <Setting Key="SiteDB_0_WriteLog_UserLog_RunSP" SpName="WriteLog_UserLog_RunSP_UAT2" DbName="DBLOG.bodb_CustomerLog.wsv_CashService" Plain="0" />
+    </Function>
     <Function Name="Management Payments">
         <Setting Key="Age_CashService_PaymentProvider_Sel" SpName="Age_CashService_PaymentProvider_Sel_UAT2" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="ProviderID" ObjectProperty="Id"></Mapping>
