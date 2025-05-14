@@ -22,19 +22,9 @@ export const getMemberBankAccounts = async (): Promise<DepositAccountInfo[]> => 
   }
 };
 
-export const getAccumulateCredit = async (): Promise<number> => {
+export const getLimitAmtDeposit = async (custId: number): Promise<CreditAmount> => {
   try {
-    const response = await api.get<number>('GetAccumulateCredit');
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching accumulate credit:', error);
-    return 0;
-  }
-};
-
-export const getLimitAmtDeposit = async (accumCreditReturn: number): Promise<CreditAmount> => {
-  try {
-    const response = await api.get<CreditAmount>('GetLimitAmtDeposit', { params: { accumCreditReturn } });
+    const response = await api.get<CreditAmount>(`GetLimitAmtDeposit?custId=${custId}`);
     return response.data;
   } catch (error) {
     console.error('Error fetching credit amount:', error);

@@ -31,4 +31,6 @@ public class CreateManualModel
     public string Remark { get; set; }
 
     public int ProviderId { get; set; }
+
+    public string SiteDbIp { get; set; } = string.Empty;
 }

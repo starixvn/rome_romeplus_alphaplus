@@ -67,6 +67,24 @@ public class TransactionsController(
         return Json(memberAccounts);
     }
 
+    public async Task<IActionResult> GetLimitAmtDeposit(int custId)
+    {
+        var url = $"{_apiBaseUrl}/deposit/limit-amount?agentId={agentId}&custId={custId}&siteDbIp={siteDbIp}";
+        var limitAmtDeposit = await httpClient.GetFromJsonAsync<object>(url);
+        return Json(limitAmtDeposit);
+    }
+
+    public async Task<IActionResult> AddManualDeposit([FromBody] CreateManualRequest request)
+    {
+        request.SiteDbIp = siteDbIp;
+        request.SetUserSession(userSession);
+        var url = $"{_apiBaseUrl}/deposit/create";
+        var response = await httpClient.PostAsJsonAsync(url, request);
+        response.EnsureSuccessStatusCode();
+        var result = await response.Content.ReadFromJsonAsync<object>();
+        return Json(result);
+    }
+
     public async Task<IActionResult> GetBankWithdrawalAccounts()
     {
         var url = $"{_apiBaseUrl}/withdrawal/bank-withdrawal-accounts";

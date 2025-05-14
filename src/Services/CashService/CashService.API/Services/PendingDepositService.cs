@@ -9,13 +9,9 @@ public interface IPendingDepositService
 {
     Task<IEnumerable<BankAccountInfo>> GetMemberBankAccountInfo();
 
-    Task<decimal> GetAccumulateCreditAsync(int custId, string siteDbIp = "");
-
-    Task<CreditAmount> GetLimitAmtDepositAsync(int custId, decimal accumCreditReturn);
+    Task<CreditAmount> GetLimitAmtDepositAsync(int agentId, int custId, string siteDbIp = "");
 
     Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int custId, string siteDbIp = "");
-
-    Task<(ResultModel, int, string)> CreateManualDepositAsync(CreateManualModel param);
 
     Task<ResultModel> AddManualDepositAsync(CreateManualModel param, string sitDbIp = "");
 }
@@ -27,23 +23,25 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
     public async Task<IEnumerable<BankAccountInfo>> GetMemberBankAccountInfo()
         => await dynamicRepository.FetchAsync<BankAccountInfo>(new GetMemberBankAccountCriteria());
 
-    public async Task<decimal> GetAccumulateCreditAsync(int custId, string siteDbIp = "")
+    public async Task<decimal> GetAccumulateCreditAsync(int agentId)
     {
         var criteria = new GetAccumulateCreditCriteria
         {
-            CustId = custId
+            CustId = agentId
         };
-        return await dynamicRepository.GetAsync<decimal>(criteria, siteDbIp);
+        return await dynamicRepository.GetAsync<decimal>(criteria);
     }
 
-    public async Task<CreditAmount> GetLimitAmtDepositAsync(int custId, decimal accumCreditReturn)
+    public async Task<CreditAmount> GetLimitAmtDepositAsync(int agentId, int custId, string siteDbIp)
     {
+        var acCumCreditReturn = await GetAccumulateCreditAsync(agentId);
+
         var criteria = new GetLimitAmtDepositCriteria
         {
             CustId = custId,
-            AccumCreditReturn = accumCreditReturn
+            AccumCreditReturn = acCumCreditReturn
         };
-        return await dynamicRepository.GetAsync<CreditAmount>(criteria);
+        return await dynamicRepository.GetAsync<CreditAmount>(criteria, siteDbIp);
     }
 
     public async Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int custId, string siteDbIp = "")
@@ -53,30 +51,6 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
             CustId = custId
         };
         return await dynamicRepository.GetAsync<MemberSettingDeposit>(criteria, siteDbIp);
-    }
-
-    public async Task<(ResultModel, int, string)> CreateManualDepositAsync(CreateManualModel param)
-    {
-        var command = new CreateManualDepositCommand
-        {
-            CustId = param.CustId,
-            UplineId = param.UplineId,
-            SubAccId = param.SubAccId,
-            AgentGivenCredit = param.AgentGivenCredit,
-            MemberUsedCredit = param.MemberUsedCredit,
-            MinLimitAmt = param.MinLimitAmt,
-            MaxLimitAmt = param.MaxLimitAmt,
-            PaymentFrom = param.PaymentFrom,
-            PaymentTo = param.PaymentTo,
-            Amount = param.Amount,
-            PaySlip = param.PaySlip,
-            Ip = param.Ip,
-            Remark = param.Remark,
-        };
-        await dynamicRepository.ExecuteAsync(command);
-        var result = new ResultModel(command.ErrCode, command.ErrMsg);
-
-        return (result, command.TransId, command.CashAccumCreditTbl);
     }
 
     public async Task<ResultModel> AddManualDepositAsync(CreateManualModel param, string sitDbIp = "")

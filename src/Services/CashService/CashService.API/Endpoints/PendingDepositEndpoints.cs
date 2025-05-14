@@ -1,6 +1,8 @@
 using AlphaPlus.CashService.API.Models.PendingCommons;
 using AlphaPlus.CashService.API.Services;
+using Azure.Core;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace AlphaPlus.CashService.API.Endpoints;
 
@@ -23,21 +25,12 @@ public static class PendingDepositEndpoints
             Description = "Returns a list of bank accounts for members"
         });
 
-        group.MapGet("/accumulate-credit/{custId}", async (int custId, IPendingDepositService service) =>
+        group.MapGet("/limit-amount", async ([FromQuery] int agentId
+            , [FromQuery] int custId
+            , [FromQuery] string siteDbIp
+            , IPendingDepositService service) =>
         {
-            var accumulateCredit = await service.GetAccumulateCreditAsync(custId);
-            return Results.Ok(accumulateCredit);
-        })
-        .WithName("GetAccumulateCreditAsync")
-        .WithOpenApi(operation => new(operation)
-        {
-            Summary = "Get accumulate credit deposit information",
-            Description = "Returns total Cash member return Credit of Agent"
-        });
-
-        group.MapGet("/limit-amount/{custId}/{accumCreditReturn}", async (int custId, decimal accumCreditReturn, IPendingDepositService service) =>
-        {
-            var creditAmt = await service.GetLimitAmtDepositAsync(custId, accumCreditReturn);
+            var creditAmt = await service.GetLimitAmtDepositAsync(agentId, custId, siteDbIp);
             return Results.Ok(creditAmt);
         })
         .WithName("GetLimitAmtDepositAsync")
@@ -59,10 +52,14 @@ public static class PendingDepositEndpoints
             Description = "Returns deposit setting value for Member - use to validate min-max amount"
         });
 
-        group.MapPost("/create", async ([FromBody] CreateManualModel param, IPendingDepositService service) =>
+        group.MapPost("/create", async (HttpRequest request, IPendingDepositService service) =>
         {
-            var (result, id, message) = await service.CreateManualDepositAsync(param);
-            return result.Code != 0 ? Results.NotFound() : Results.Ok(new { result, id, message });
+            using var reader = new StreamReader(request.Body);
+            var body = await reader.ReadToEndAsync();
+            var provider = JsonConvert.DeserializeObject<CreateManualModel>(body);
+
+            var result = await service.AddManualDepositAsync(provider, provider.SiteDbIp);
+            return Results.Ok(result);
         })
         .WithName("CreateManualDepositAsync")
         .WithOpenApi(operation => new(operation)
