@@ -136,7 +136,7 @@
     "RemotingRefUrl": "http://vn-remotingref.gamora.prod/",
     "Fanex.Customer": {
         "ServiceUri": "http://fanex_customer_api_ALPHAKLDR:5000/api/",
-        "CdnUri": "//mbc-mb.byb6181.com/stdcsv1/",
+        "CdnUri": "/stdcsv1/",
         "SystemId": 7
     },
     "SystemId": 2,
