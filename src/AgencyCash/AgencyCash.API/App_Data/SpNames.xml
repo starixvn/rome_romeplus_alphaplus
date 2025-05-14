@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Functions>
+  <Function Name="Shared">
+    <Settings Key="Acc_ServerDBConfigSelByCust" SpName="Acc_ServerDBConfigSelByCust" DbName="DBGLOB.GlobCustDB.wsv_CashService" />
+    <Settings Key="CustDB0_Age_CashService_CustServiceTypeSel" SpName="Age_CashService_CustServiceTypeSel" DbName="DBGLOB.GlobCustDB.wsv_CashService" />
+  </Function>
   <Function Name="Register Cash Member">
-    <Settings Key="RegisterCashMember" SpName="RegisterCashMember" DbName="DBCUST.CUSTDB.wsv_alp" />
+    <Settings Key="RegisterCashMember" SpName="RegisterCashMember" DbName="DDBGLOB.GlobCustDB.wsv_CashService" />
   </Function>
 </Functions>
