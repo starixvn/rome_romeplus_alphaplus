@@ -5,6 +5,8 @@ using AlphaPlus.CashService.API.Features.Payments.Requests;
 using Fanex.Data.Repository;
 using AlphaPlus.CashService.API.Features.Payments.DTOs;
 using AlphaPlus.CashService.API.Features.Shared.Models;
+using AlphaPlus.CashService.API.Features.Shared.Criteria;
+using AlphaPlus.CashService.API.Features.Shared.Constants;
 
 namespace AlphaPlus.CashService.API.Services;
 
@@ -31,8 +33,13 @@ public interface IPaymentsService
     Task<ResultModel> DeleteBankAccount(DeleteBankAccountRequest request);
 }
 
-public class PaymentsService(IDynamicRepository repository, ICacheRefService cacheRefService) : IPaymentsService
+public class PaymentsService(
+    IDynamicRepository repository,
+    ICacheRefService cacheRefService,
+    ICommonService commonService
+) : IPaymentsService
 {
+    private readonly ICommonService _commonService = commonService;
     public async Task<IEnumerable<ProviderModel>> GetProviders(int custId)
     {
         var providers = await repository.FetchAsync<ProviderModel>(new GetProvidersCriteria(custId));
@@ -56,6 +63,7 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
     {
         var criteria = new SetDailyWithdrawalCountCriteria(request);    
         await repository.ExecuteAsync(criteria);
+        await _commonService.WriteLogUserRunSP(ActionLogConstants.SetDailyWithdrawalCount, request, criteria);        
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
     
@@ -120,6 +128,7 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
         };
 
         await repository.ExecuteAsync(criteria);
+        await _commonService.WriteLogUserRunSP(ActionLogConstants.InsertPaymentMethod, request, criteria);
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
   
@@ -145,6 +154,8 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
         var updateStatusCriteria = new UpdateProviderStatusCriteria(request);
 
         await repository.ExecuteAsync(updateStatusCriteria);
+        await _commonService.WriteLogUserRunSP(ActionLogConstants.UpdateProviderStatus, request, updateStatusCriteria);
+
         if(updateStatusCriteria.ErrCode != 0)
         {
             return new ResultModel(updateStatusCriteria.ErrCode, updateStatusCriteria.ErrMsg);
@@ -164,6 +175,9 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
         var jsonSettings = $"[{string.Join(",", jsonSetting)}]";
         var updateProviderSettingsCriteria = new UpdateProviderSettingsCriteria(request, jsonSettings);
         await repository.ExecuteAsync(updateProviderSettingsCriteria);
+
+        await _commonService.WriteLogUserRunSP(ActionLogConstants.UpdateProviderSettings, request, updateProviderSettingsCriteria);
+
         return new ResultModel(updateProviderSettingsCriteria.ErrCode, updateProviderSettingsCriteria.ErrMsg);
     }
 
@@ -231,6 +245,9 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
     {
         var criteria = new SetTransactionLimitCriteria(request);
         await repository.ExecuteAsync(criteria);
+
+        await _commonService.WriteLogUserRunSP(ActionLogConstants.SetTransactionLimit, request, criteria);
+
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
 
@@ -238,6 +255,9 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
     {
         var criteria = new AddBankAccountCriteria(request);
         await repository.ExecuteAsync(criteria);
+
+        await _commonService.WriteLogUserRunSP(ActionLogConstants.AddBankAccount, request, criteria);
+
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
 
@@ -263,6 +283,9 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
     {
         var criteria = new UpdateBankAccountCriteria(request);
         await repository.ExecuteAsync(criteria);
+
+        await _commonService.WriteLogUserRunSP(ActionLogConstants.UpdateBankAccount, request, criteria);
+
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
 
@@ -270,6 +293,7 @@ public class PaymentsService(IDynamicRepository repository, ICacheRefService cac
     {
         var criteria = new DeleteBankAccountCriteria(request);
         await repository.ExecuteAsync(criteria);
+        await _commonService.WriteLogUserRunSP(ActionLogConstants.DeleteBankAccount, request, criteria);
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
 } 

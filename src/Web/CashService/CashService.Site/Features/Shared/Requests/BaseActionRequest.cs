@@ -12,10 +12,15 @@ public class BaseActionRequest
         SubAccId = userSession.SubAccId;
         IP = userSession.UserLoginIp;
         Language = userSession.LangKey;
+        UserId = userSession.UserId;
+        
+        SiteDB = userSession.CustDBGroupId;
     }
 
     public int ActorId { get; set; }
     public int SubAccId { get; set; }
     public string IP { get; set; }
     public string Language { get; set; }
+    public int UserId { get; set; }
+    public int SiteDB { get; set; }
 } 

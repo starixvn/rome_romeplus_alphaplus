@@ -1,6 +1,8 @@
 using AlphaPlus.CashService.API.Features.Shared.Criteria;
 using AlphaPlus.CashService.API.Features.Shared.DTOs;
+using AlphaPlus.CashService.API.Features.Shared.Request;
 using Fanex.Data.Repository;
+using Newtonsoft.Json;
 
 namespace AlphaPlus.CashService.API.Services;
 
@@ -9,6 +11,8 @@ public interface ICommonService
     Task<IEnumerable<string>> GetCountryCodes(string siteName);
 
     Task<SiteDbConfig> GetServerDBConfigByCustIdAsync(int custId);
+
+    Task WriteLogUserRunSP(int actionId, BaseActionRequest request, BaseActionCommand baseActionCommand);
 }
 
 public class CommonService(IDynamicRepository repository) : ICommonService
@@ -25,5 +29,44 @@ public class CommonService(IDynamicRepository repository) : ICommonService
         var criteria = new GetServerDBConfigByCustIdCriteria { CustId = custId };
         var siteDbConfig = await repository.GetAsync<SiteDbConfig>(criteria);
         return siteDbConfig;
+    }
+
+    public async Task WriteLogUserRunSP(int actionId, BaseActionRequest request, BaseActionCommand baseActionCommand)
+    {
+        if(baseActionCommand.ErrCode != 0)
+        {
+            return;
+        }
+
+        var isSuccess = false;
+
+        try
+        {
+            var criteria = new WriteLogUserRunSPCriteria(actionId, request, baseActionCommand);
+            await repository.ExecuteAsync(criteria);
+            isSuccess = true;
+        }
+        catch (System.Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+
+        if(isSuccess)
+        {
+            return;
+        }
+
+        try
+        {
+            var criteria = new WriteLogUserRunSPCriteria(actionId, request, baseActionCommand);
+            criteria.SiteDB = 0;
+
+            await repository.ExecuteAsync(criteria);
+            isSuccess = true;
+        }
+        catch (System.Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
     }
 }

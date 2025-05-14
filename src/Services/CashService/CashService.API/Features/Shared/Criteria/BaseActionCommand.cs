@@ -20,6 +20,9 @@ public class BaseActionCommand : NonQueryCommand
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; }
 
+    public string TrackingValue { get; set; }
+    public string TrackingValue2 { get; set; }
+
     public override string GetSettingKey() => string.Empty;
 
     public override bool IsValid()
