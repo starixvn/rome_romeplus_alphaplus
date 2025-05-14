@@ -15,11 +15,6 @@
     </Content>
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="ClientApp\src\pages\Promotion\components\Table.tsx" />
-    <None Remove="ClientApp\src\pages\Promotion\index.tsx" />
-    <None Remove="ClientApp\src\services\interfaces\Promotion.ts" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.15" />
@@ -38,12 +33,6 @@
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.SecurityCode\AlphaPlus.SecurityCode.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Logging\AlphaPlus.Logging.csproj" />
     <ProjectReference Include="..\..\..\Shared\AlphaPlus.Shared.AppResources\AlphaPlus.Shared.AppResources.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\pages\Promotion\components\Table.tsx" />
-    <TypeScriptCompile Include="ClientApp\src\pages\Promotion\index.tsx" />
-    <TypeScriptCompile Include="ClientApp\src\services\interfaces\Promotion.ts" />
   </ItemGroup>
 
 </Project>
