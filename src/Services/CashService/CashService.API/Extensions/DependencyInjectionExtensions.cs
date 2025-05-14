@@ -11,6 +11,8 @@ public static class DependencyInjectionExtensions
     {
         services.AddFanexSql(configuration)
             .AddSingleton<IDynamicRepository, DynamicRepository>();
+            
+        FanexLoggingExtensions.AddFanexLogging(services, configuration);
 
         services.AddRemotingRef(configuration);
 

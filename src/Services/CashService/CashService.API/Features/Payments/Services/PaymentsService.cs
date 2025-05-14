@@ -5,7 +5,6 @@ using AlphaPlus.CashService.API.Features.Payments.Requests;
 using Fanex.Data.Repository;
 using AlphaPlus.CashService.API.Features.Payments.DTOs;
 using AlphaPlus.CashService.API.Features.Shared.Models;
-using AlphaPlus.CashService.API.Features.Shared.Criteria;
 using AlphaPlus.CashService.API.Features.Shared.Constants;
 
 namespace AlphaPlus.CashService.API.Services;
@@ -39,7 +38,6 @@ public class PaymentsService(
     ICommonService commonService
 ) : IPaymentsService
 {
-    private readonly ICommonService _commonService = commonService;
     public async Task<IEnumerable<ProviderModel>> GetProviders(int custId)
     {
         var providers = await repository.FetchAsync<ProviderModel>(new GetProvidersCriteria(custId));
@@ -63,7 +61,7 @@ public class PaymentsService(
     {
         var criteria = new SetDailyWithdrawalCountCriteria(request);    
         await repository.ExecuteAsync(criteria);
-        await _commonService.WriteLogUserRunSP(ActionLogConstants.SetDailyWithdrawalCount, request, criteria);        
+        await commonService.WriteLogUserRunSP(ActionLogConstants.SetDailyWithdrawalCount, request, criteria);        
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
     
@@ -128,7 +126,7 @@ public class PaymentsService(
         };
 
         await repository.ExecuteAsync(criteria);
-        await _commonService.WriteLogUserRunSP(ActionLogConstants.InsertPaymentMethod, request, criteria);
+        await commonService.WriteLogUserRunSP(ActionLogConstants.InsertPaymentMethod, request, criteria);
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
   
@@ -154,7 +152,7 @@ public class PaymentsService(
         var updateStatusCriteria = new UpdateProviderStatusCriteria(request);
 
         await repository.ExecuteAsync(updateStatusCriteria);
-        await _commonService.WriteLogUserRunSP(ActionLogConstants.UpdateProviderStatus, request, updateStatusCriteria);
+        await commonService.WriteLogUserRunSP(ActionLogConstants.UpdateProviderStatus, request, updateStatusCriteria);
 
         if(updateStatusCriteria.ErrCode != 0)
         {
@@ -176,7 +174,7 @@ public class PaymentsService(
         var updateProviderSettingsCriteria = new UpdateProviderSettingsCriteria(request, jsonSettings);
         await repository.ExecuteAsync(updateProviderSettingsCriteria);
 
-        await _commonService.WriteLogUserRunSP(ActionLogConstants.UpdateProviderSettings, request, updateProviderSettingsCriteria);
+        await commonService.WriteLogUserRunSP(ActionLogConstants.UpdateProviderSettings, request, updateProviderSettingsCriteria);
 
         return new ResultModel(updateProviderSettingsCriteria.ErrCode, updateProviderSettingsCriteria.ErrMsg);
     }
@@ -246,7 +244,7 @@ public class PaymentsService(
         var criteria = new SetTransactionLimitCriteria(request);
         await repository.ExecuteAsync(criteria);
 
-        await _commonService.WriteLogUserRunSP(ActionLogConstants.SetTransactionLimit, request, criteria);
+        await commonService.WriteLogUserRunSP(ActionLogConstants.SetTransactionLimit, request, criteria);
 
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
@@ -256,7 +254,7 @@ public class PaymentsService(
         var criteria = new AddBankAccountCriteria(request);
         await repository.ExecuteAsync(criteria);
 
-        await _commonService.WriteLogUserRunSP(ActionLogConstants.AddBankAccount, request, criteria);
+        await commonService.WriteLogUserRunSP(ActionLogConstants.AddBankAccount, request, criteria);
 
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
@@ -284,7 +282,7 @@ public class PaymentsService(
         var criteria = new UpdateBankAccountCriteria(request);
         await repository.ExecuteAsync(criteria);
 
-        await _commonService.WriteLogUserRunSP(ActionLogConstants.UpdateBankAccount, request, criteria);
+        await commonService.WriteLogUserRunSP(ActionLogConstants.UpdateBankAccount, request, criteria);
 
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
@@ -293,7 +291,7 @@ public class PaymentsService(
     {
         var criteria = new DeleteBankAccountCriteria(request);
         await repository.ExecuteAsync(criteria);
-        await _commonService.WriteLogUserRunSP(ActionLogConstants.DeleteBankAccount, request, criteria);
+        await commonService.WriteLogUserRunSP(ActionLogConstants.DeleteBankAccount, request, criteria);
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
     }
 } 

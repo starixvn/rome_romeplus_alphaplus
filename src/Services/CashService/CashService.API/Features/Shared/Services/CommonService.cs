@@ -2,7 +2,6 @@ using AlphaPlus.CashService.API.Features.Shared.Criteria;
 using AlphaPlus.CashService.API.Features.Shared.DTOs;
 using AlphaPlus.CashService.API.Features.Shared.Request;
 using Fanex.Data.Repository;
-using Newtonsoft.Json;
 
 namespace AlphaPlus.CashService.API.Services;
 
@@ -15,7 +14,7 @@ public interface ICommonService
     Task WriteLogUserRunSP(int actionId, BaseActionRequest request, BaseActionCommand baseActionCommand);
 }
 
-public class CommonService(IDynamicRepository repository) : ICommonService
+public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger logger) : ICommonService
 {
     public async Task<IEnumerable<string>> GetCountryCodes(string siteName)
     {
@@ -46,9 +45,9 @@ public class CommonService(IDynamicRepository repository) : ICommonService
             await repository.ExecuteAsync(criteria);
             isSuccess = true;
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
-            Console.WriteLine(e.Message);
+            logger.Error(e.Message, e);
         }
 
         if(isSuccess)
@@ -60,13 +59,11 @@ public class CommonService(IDynamicRepository repository) : ICommonService
         {
             var criteria = new WriteLogUserRunSPCriteria(actionId, request, baseActionCommand);
             criteria.SiteDB = 0;
-
             await repository.ExecuteAsync(criteria);
-            isSuccess = true;
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
-            Console.WriteLine(e.Message);
+            logger.Error(e.Message, e);
         }
     }
 }
