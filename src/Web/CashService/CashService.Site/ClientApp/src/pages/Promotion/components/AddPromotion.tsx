@@ -93,13 +93,13 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
       </p>
       <div className="">
         <button
-          className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer ${isActive ? 'bg-[var(--button-switch-background-active)] text-[var(--button-switch-background-color-active)]' : 'bg-[var(--button-switch-background)] text-[var(--button-switch-background-color)]'}`}
+          className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer ${isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
           onClick={() => setIsActive(true)}
         >
           Enable
         </button>
         <button
-          className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer ${!isActive ? 'bg-[var(--button-switch-background-active)] text-[var(--button-switch-background-color-active)]' : 'bg-[var(--button-switch-background)] text-[var(--button-switch-background-color)]'}`}
+          className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer ${!isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
           onClick={() => setIsActive(false)}
         >
           Disable

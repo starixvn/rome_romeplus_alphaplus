@@ -11,6 +11,7 @@ import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 import { ResultMessage, ResultType } from '../../components/ResultMessage';
 import '../../styles/global.scss';
 import './MemberSites.css'
+import TitleCommon from '../../components/ui/TitleComponents';
 
 const MemberSiteManagement: React.FC = () => {
   const { t } = useTranslation('memberSite');
@@ -123,14 +124,16 @@ const MemberSiteManagement: React.FC = () => {
     >
       <div className="p-[12px]">
         <div className='mb-[8px]'>
-          <h1 className="flex items-center font-bold text-[15px] text-[#333333] max-[768px]:text-[19px]">{t('title')}</h1>
+          <TitleCommon title={t('title')} Tippy={false} />
         </div>
         <div className="bg-[#ffffff] rounded-[4px] max-w-[1200px]">
           {result && (
-            <ResultMessage
-              type={result.type}
-              message={result.text}
-            />
+            <div className='pt-[24px] mx-[24px]'>
+              <ResultMessage
+                type={result.type}
+                message={result.text}
+              />
+            </div>
           )}
 
           <div className="p-[24px] max-[768px]:p-[12px]">
@@ -162,14 +165,14 @@ const MemberSiteManagement: React.FC = () => {
               />
             </div>
 
-            <div className="flex justify-end pt-4">
+            <div className="flex justify-start py-[8px] mt-[8px]">
               <button
                 type="submit"
                 disabled={!isDirty || isSaving}
-                className={`w-[140px] h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px]  ml-[8px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:h-[38px] font-bold
+                className={`w-[140px] h-[30px] rounded-[20px] text-[var(--button-text)] px-[16px] py-[4px] text-[12px] border-[1px]  ml-[8px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:h-[38px] font-bold
                   ${isDirty && !isSaving
                     ? 'border-[var(--button-border)] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] hover:border-[#375A8A] cursor-pointer disabled:opacity-70'
-                    : 'bg-[#375A8A] border-[#375A8A] cursor-not-allowed disabled:opacity-70'}`}
+                    : 'bg-[var(--button-background-hover)] border-[var(--button-border-hover)] cursor-not-allowed disabled:opacity-70'}`}
               >
                 {isSaving ? t('actions.saving') : t('actions.save')}
               </button>

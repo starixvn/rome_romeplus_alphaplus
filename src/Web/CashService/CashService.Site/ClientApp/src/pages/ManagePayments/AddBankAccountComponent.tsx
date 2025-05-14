@@ -254,14 +254,14 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   <div className="btn-group" role="group">
                     <button
                       type="button"
-                      className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer rounded-tl-[4px] rounded-bl-[4px] ${status === '1' ? 'bg-[var(--button-switch-background-active)] text-[var(--button-switch-background-color-active)]' : 'bg-[var(--button-switch-background)] text-[var(--button-switch-background-color)]'}`}
+                      className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer rounded-tl-[4px] rounded-bl-[4px] ${status === '1' ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
                       onClick={() => setStatus('1')}
                     >
                       {tGlobal('enable')}
                     </button>
                     <button
                       type="button"
-                      className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer rounded-tr-[4px] rounded-br-[4px] ${status === '2' ? 'bg-[var(--button-switch-background-active)] text-[var(--button-switch-background-color-active)]' : 'bg-[var(--button-switch-background)] text-[var(--button-switch-background-color)]'}`}
+                      className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer rounded-tr-[4px] rounded-br-[4px] ${status === '2' ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
                       onClick={() => setStatus('2')}
                     >
                       {tGlobal('disable')}
@@ -415,14 +415,14 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   <div className="btn-group" role="group">
                     <button
                       type="button"
-                      className={`text-[12px] w-[70px] px-[16px] py-[8px] cursor-pointer rounded-tl-[4px] rounded-bl-[4px] ${promptPay ? 'bg-[var(--button-switch-background-active)] text-[var(--button-switch-background-color-active)]' : 'bg-[var(--button-switch-background)] text-[var(--button-switch-background-color)]'}`}
+                      className={`text-[12px] w-[70px] px-[16px] py-[8px] cursor-pointer rounded-tl-[4px] rounded-bl-[4px] ${promptPay ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
                       onClick={() => setPromptPay(true)}
                     >
                       {tGlobal('on')}
                     </button>
                     <button
                       type="button"
-                      className={`text-[12px] w-[70px] px-[16px] py-[8px] cursor-pointer rounded-tr-[4px] rounded-br-[4px] ${!promptPay ? 'bg-[var(--button-switch-background-active)] text-[var(--button-switch-background-color-active)]' : 'bg-[var(--button-switch-background)] text-[var(--button-switch-background-color)]'}`}
+                      className={`text-[12px] w-[70px] px-[16px] py-[8px] cursor-pointer rounded-tr-[4px] rounded-br-[4px] ${!promptPay ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
                       onClick={() => setPromptPay(false)}
                     >
                       {tGlobal('off')}

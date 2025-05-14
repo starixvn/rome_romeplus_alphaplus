@@ -4,12 +4,13 @@
   --table-header-border-bottom: rgba(0, 0, 0, 0.35);
   --table-header-box-shadow: 0 2px 5px #0003;
   --table-border-color: #0000001f;
+  
   --primary-color: #163f78;
 
   --text-color-primary: #163f78;
 
   //control
-  --border-control: #0000003D;
+  --border-control: #d1d1d1;
   --border-control-focus: #163f78;
   --background-control: #ffffff;
 
@@ -26,11 +27,16 @@
   --button-background-cancel: #ffffff;
   --button-background-cancel-hover: #EAEDF2;
   
-  //button switch 
-  --button-switch-background: #eeeeee;
+  //button switch-toggle
+  --button-switch-toggle-background: #eeeeee;
+  --button-switch-toggle-background-active: #163f78;
+  --button-switch-toggle-background-color: #163f78;
+  --button-switch-toggle-background-color-active: #ffffff;
+
+  //button switch
   --button-switch-background-active: #163f78;
-  --button-switch-background-color: #163f78;
-  --button-switch-background-color-active: #ffffff;
+  --button-switch-dot-background: #ffffff;
+  --button-switch-background: #c2c2c2;
 
   //color level 
   --color-level: red;

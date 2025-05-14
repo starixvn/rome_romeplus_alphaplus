@@ -9,6 +9,7 @@ import type { Promotion } from '../../services/interfaces/Promotion';
 import AddPromotion from './components/AddPromotion';
 import './common.css';
 import '../../styles/global.scss';
+import TitleCommon from '../../components/ui/TitleComponents';
 
 const Promotion: React.FC = () => {
     const [promotionType, setPromotionType] = useState<string>('All');
@@ -65,8 +66,8 @@ const Promotion: React.FC = () => {
     return (
      
             <div className="p-[12px] h-full flex flex-col">
-                <div className="mb-[8px]">
-                    <h1 className="font-bold text-[15px] text-[#333333]">Manage Promotion</h1>                    
+                <div className="mb-[8px]">                      
+                    <TitleCommon title='Manage Promotion' Tippy={false} />                 
                 </div>
                 {error && (
                     <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
