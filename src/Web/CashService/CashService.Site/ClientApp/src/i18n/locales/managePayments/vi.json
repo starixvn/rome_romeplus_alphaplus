@@ -2,7 +2,6 @@
   "managePayments": "Quản lý thanh toán",
   "paymentGateway": "Cổng thanh toán",
   "bankAccount": "Tài khoản ngân hàng",
-  "back": "Quay lại",
   
   "setDailyWithdrawalCount": "Đặt số lần rút tiền hàng ngày",
   "setDailyWithdrawalCountForYourMembers": "Đặt số tiền rút hàng ngày cho thành viên của bạn",
@@ -91,7 +90,6 @@
   "bankAccountAdded": "Thêm tài khoản ngân hàng thành công",
   "failedToAddBankAccount": "Thêm tài khoản ngân hàng thất bại",
   "mobile": "Di động",
-  "select": "Chọn",
   "promptPay": "PromptPay",
   "linkMobile": "Liên kết số điện thoại đã đăng ký với tài khoản ngân hàng của bạn để kích hoạt PromptPay",
   "enterMobileNumber": "Nhập số điện thoại",

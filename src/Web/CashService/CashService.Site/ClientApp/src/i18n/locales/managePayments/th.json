@@ -2,7 +2,6 @@
   "managePayments": "จัดการการชำระเงิน",
   "paymentGateway": "ช่องทางการชำระเงิน",
   "bankAccount": "บัญชีธนาคาร",
-  "back": "กลับ",
   
   "setDailyWithdrawalCount": "ตั้งค่าจำนวนการถอนรายวัน",
   "setDailyWithdrawalCountForYourMembers": "ตั้งจำนวนเงินถอนรายวันสำหรับสมาชิกของคุณ",
@@ -91,7 +90,6 @@
   "bankAccountAdded": "เพิ่มบัญชีธนาคารสำเร็จ",
   "failedToAddBankAccount": "เพิ่มบัญชีธนาคารไม่สำเร็จ",
   "mobile": "มือถือ",
-  "select": "เลือก",
   "promptPay": "PromptPay",
   "linkMobile": "เชื่อมโยงหมายเลขมือถือที่ลงทะเบียนกับบัญชีธนาคารของคุณเพื่อเปิดใช้งาน PromptPay",
   "enterMobileNumber": "ป้อนหมายเลขมือถือ",

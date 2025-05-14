@@ -2,7 +2,6 @@
   "managePayments": "支払い管理",
   "paymentGateway": "決済ゲートウェイ",
   "bankAccount": "銀行口座",
-  "back": "戻る",
   
   "setDailyWithdrawalCount": "1日の出金回数を設定",
   "setDailyWithdrawalCountForYourMembers": "メンバーの1日の出金額を設定",
@@ -91,7 +90,6 @@
   "bankAccountAdded": "銀行口座の追加に成功しました",
   "failedToAddBankAccount": "銀行口座の追加に失敗しました",
   "mobile": "携帯電話",
-  "select": "選択",
   "promptPay": "PromptPay",
   "linkMobile": "PromptPayを有効にするために銀行口座に登録された携帯電話番号をリンク",
   "enterMobileNumber": "携帯電話番号を入力",

@@ -2,7 +2,6 @@
   "managePayments": "Manage Payments",
   "paymentGateway": "Payment Gateway",
   "bankAccount": "Bank Account",
-  "back": "Back",
   
   "setDailyWithdrawalCount": "Set daily withdrawal count",
   "setDailyWithdrawalCountForYourMembers": "Set daily withdrawal amount for your members",
@@ -92,7 +91,6 @@
   "bankAccountAdded": "Bank account added successfully",
   "failedToAddBankAccount": "Failed to add bank account",
   "mobile": "Mobile",
-  "select": "Select",
   "promptPay": "PromptPay",
   "linkMobile": "Link the mobile number registered with your bank account to enable PromptPay",
   "enterMobileNumber": "Enter mobile number",

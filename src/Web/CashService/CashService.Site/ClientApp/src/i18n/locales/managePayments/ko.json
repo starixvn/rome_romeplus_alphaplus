@@ -2,7 +2,6 @@
   "managePayments": "결제 관리",
   "paymentGateway": "결제 게이트웨이",
   "bankAccount": "은행 계좌",
-  "back": "뒤로",
   
   "setDailyWithdrawalCount": "일일 출금 횟수 설정",
   "setDailyWithdrawalCountForYourMembers": "회원을 위한 일일 출금 금액 설정",
@@ -91,7 +90,6 @@
   "bankAccountAdded": "은행 계좌 추가 성공",
   "failedToAddBankAccount": "은행 계좌 추가 실패",
   "mobile": "휴대폰",
-  "select": "선택",
   "promptPay": "PromptPay",
   "linkMobile": "PromptPay 활성화를 위해 은행 계좌에 등록된 휴대폰 번호 연결",
   "enterMobileNumber": "휴대폰 번호 입력",

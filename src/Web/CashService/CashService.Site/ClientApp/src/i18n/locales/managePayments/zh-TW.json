@@ -2,7 +2,6 @@
   "managePayments": "管理支付",
   "paymentGateway": "支付網關",
   "bankAccount": "銀行賬戶",
-  "back": "返回",
   
   "setDailyWithdrawalCount": "設置每日提款次數",
   "setDailyWithdrawalCountForYourMembers": "為您的會員設置每日提款金額",
@@ -91,7 +90,6 @@
   "bankAccountAdded": "銀行賬戶添加成功",
   "failedToAddBankAccount": "添加銀行賬戶失敗",
   "mobile": "手機",
-  "select": "選擇",
   "promptPay": "PromptPay",
   "linkMobile": "鏈接與您的銀行賬戶註冊的手機號碼以啟用PromptPay",
   "enterMobileNumber": "輸入手機號碼",
