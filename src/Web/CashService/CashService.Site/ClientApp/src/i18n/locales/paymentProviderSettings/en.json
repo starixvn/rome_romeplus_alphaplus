@@ -83,5 +83,7 @@
   "apiKey": "API Key",
   "merchantID": "Merchant ID",
   "bankName": "Bank name",
-  "failedToLoadBanks": "Failed to load banks"
+  "failedToLoadBanks": "Failed to load banks",
+  "minAmountLessThanMinTrans": "Minimum amount cannot be less than minimum transaction amount",
+  "maxAmountGreaterThanMaxTrans": "Maximum amount cannot be greater than maximum transaction amount"
 } 

@@ -26,5 +26,10 @@
   "back": "Back",
   "errorOccurred": "An error occurred",
   "confirm": "Confirm",
-  "saving": "Saving..."
+  "saving": "Saving...",
+
+  "invalidAmountFormat": "Invalid amount format",
+  "minAmountGreaterThanMax": "Minimum amount cannot be greater than maximum amount",
+  "amountCannotBeNegative": "Amount cannot be negative",
+  "row": "Row"
 }

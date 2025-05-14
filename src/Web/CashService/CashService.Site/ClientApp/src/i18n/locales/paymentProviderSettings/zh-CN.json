@@ -83,5 +83,7 @@
   "apiKey": "API密钥",
   "merchantID": "商户ID",
   "bankName": "银行名称",
-  "failedToLoadBanks": "加载银行失败"
+  "failedToLoadBanks": "加载银行失败",
+  "minAmountLessThanMinTrans": "最小金额不能小于最小交易金额",
+  "maxAmountGreaterThanMaxTrans": "最大金额不能大于最大交易金额"
 }

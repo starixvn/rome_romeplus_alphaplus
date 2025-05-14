@@ -39,6 +39,7 @@ function PaymentProviderSettings() {
   const [updating, setUpdating] = React.useState(false);
   const [updateMessage, setUpdateMessage] = React.useState<{type: 'success' | 'error', text: string} | null>(null);
   const [providerStatus, setProviderStatus] = React.useState(window.providerSettingsViewModel.Provider.Status);
+  const [validationErrors, setValidationErrors] = React.useState<{[key: string]: string}>({});
   
   // State for dropdowns
   const [selectedPaymentMethod, setSelectedPaymentMethod] = React.useState('');
@@ -123,6 +124,12 @@ function PaymentProviderSettings() {
       minAmount: formattedValue
     };
     setProviderSettings(updatedSettings);
+    
+    // Clear validation error for this field
+    const newValidationErrors = {...validationErrors};
+    delete newValidationErrors[`minAmount-${index}`];
+    delete newValidationErrors[`maxAmount-${index}`];
+    setValidationErrors(newValidationErrors);
   };
 
   // Handler for maximum amount change
@@ -135,6 +142,12 @@ function PaymentProviderSettings() {
       maxAmount: formattedValue
     };
     setProviderSettings(updatedSettings);
+    
+    // Clear validation error for this field
+    const newValidationErrors = {...validationErrors};
+    delete newValidationErrors[`minAmount-${index}`];
+    delete newValidationErrors[`maxAmount-${index}`];
+    setValidationErrors(newValidationErrors);
   };
 
   // Handler for toggle change
@@ -160,6 +173,85 @@ function PaymentProviderSettings() {
   // Handler for update button
   const handleUpdate = async () => {
     try {
+      // Validate min and max amounts
+      interface ValidationError {
+        index: number;
+        field: string;
+        error: string;
+      }
+
+      const validationErrors: ValidationError[] = [];
+      providerSettings.forEach((setting, index) => {
+        const minAmount = parseFloat(setting.minAmount);
+        const maxAmount = parseFloat(setting.maxAmount);
+        
+        if (isNaN(minAmount) || isNaN(maxAmount)) {
+          validationErrors.push({
+            index,
+            field: 'minAmount',
+            error: tGlobal('invalidAmountFormat')
+          } as ValidationError);
+        }
+        
+        if (minAmount > maxAmount) {
+          validationErrors.push({
+            index,
+            field: 'minAmount',
+            error: tGlobal('minAmountGreaterThanMax')
+          } as ValidationError);
+        }
+
+        if (minAmount < 0 ) {
+          validationErrors.push({
+            index,
+            field: 'minAmount',
+            error: tGlobal('amountCannotBeNegative')
+          } as ValidationError);
+        }
+
+        if ( maxAmount < 0) {
+          validationErrors.push({
+            index,
+            field: 'maxAmount',
+            error: tGlobal('amountCannotBeNegative')
+          } as ValidationError);
+        }
+
+        if (minAmount < setting.minAmountTrans) {
+          validationErrors.push({
+            index,
+            field: 'minAmount',
+            error: tPaymentProviderSettings('minAmountLessThanMinTrans')
+          } as ValidationError);
+        }
+
+        if (maxAmount > setting.maxAmountTrans) {
+          validationErrors.push({
+            index,  
+            field: 'maxAmount',
+            error: tPaymentProviderSettings('maxAmountGreaterThanMaxTrans')
+          } as ValidationError);
+        }
+      });
+
+      // Create error map for input fields
+      const errorMap: {[key: string]: string} = {};
+      validationErrors.forEach(err => {
+        errorMap[`${err.field}-${err.index}`] = err.error;
+      });
+      setValidationErrors(errorMap);
+
+      if (validationErrors.length > 0) {
+        setUpdateMessage({
+          type: 'error',
+          text: validationErrors.map(err => 
+            `${tGlobal('row')} ${err.index + 1}: ${err.error}`
+          ).join('<br />')
+        });
+        return;
+      }
+
+      setValidationErrors({});
       setUpdating(true);
       setUpdateMessage(null);
       
@@ -211,7 +303,7 @@ function PaymentProviderSettings() {
         </div>
       ) : error ? (
         <div className="error-container">
-          <p className="error-message">{error}</p>
+          <p className="error-message" dangerouslySetInnerHTML={{ __html: error }}></p>
         </div>
       ) : (
         <>
@@ -369,7 +461,7 @@ function PaymentProviderSettings() {
                       <div className='flex flex-col'>
                         <input 
                           type="text" 
-                          className="h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer mb-2px]" 
+                          className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer mb-2px] ${validationErrors[`minAmount-${index}`] ? 'border-[#dc3545]' : 'border-[var(--border-control)]'}`}
                           value={formatNumber(setting.minAmount)} 
                           onChange={(e) => handleMinAmountChange(index, e.target.value)}
                           placeholder={tPaymentProviderSettings('minimum')}
@@ -381,7 +473,7 @@ function PaymentProviderSettings() {
                       <div className='flex flex-col'>
                       <input 
                         type="text" 
-                        className="h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer mb-2px]m" 
+                        className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer mb-2px] ${validationErrors[`maxAmount-${index}`] ? 'border-[#dc3545]' : 'border-[var(--border-control)]'}`}
                         value={formatNumber(setting.maxAmount)} 
                         onChange={(e) => handleMaxAmountChange(index, e.target.value)}
                         placeholder={tPaymentProviderSettings('maximum')}

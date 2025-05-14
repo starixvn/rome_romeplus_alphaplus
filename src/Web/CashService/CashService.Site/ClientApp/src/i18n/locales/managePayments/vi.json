@@ -136,5 +136,7 @@
   "failedToLoadBankAccount": "Không tải được tài khoản ngân hàng",
   "pleaseSelectDepositMatchingMode": "Vui lòng chọn chế độ khớp nạp tiền",
   "confirmDeleteBankAccount": "Bạn có chắc chắn muốn xóa tài khoản ngân hàng này không?",
-  "deleteBankAccount": "Xóa tài khoản ngân hàng"
+  "deleteBankAccount": "Xóa tài khoản ngân hàng",
+  "minAmountLessThanMinTrans": "Số tiền tối thiểu không thể nhỏ hơn số tiền tối thiểu của giao dịch",
+  "maxAmountGreaterThanMaxTrans": "Số tiền tối đa không thể lớn hơn số tiền tối đa của giao dịch"
 }

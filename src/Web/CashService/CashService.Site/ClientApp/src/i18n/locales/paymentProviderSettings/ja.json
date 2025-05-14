@@ -83,5 +83,7 @@
   "apiKey": "APIキー",
   "merchantID": "マーチャントID",
   "bankName": "銀行名",
-  "failedToLoadBanks": "銀行の読み込みに失敗しました"
+  "failedToLoadBanks": "銀行の読み込みに失敗しました",
+  "minAmountLessThanMinTrans": "最小金額は最小取引金額より小さくなります",
+  "maxAmountGreaterThanMaxTrans": "最大金額は最大取引金額より大きくなります"
 }

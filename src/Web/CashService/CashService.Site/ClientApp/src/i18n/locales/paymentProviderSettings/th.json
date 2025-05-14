@@ -83,5 +83,7 @@
   "apiKey": "คีย์ API",
   "merchantID": "รหัสร้านค้า",
   "bankName": "ชื่อธนาคาร",
-  "failedToLoadBanks": "โหลดธนาคารไม่สำเร็จ"
+  "failedToLoadBanks": "โหลดธนาคารไม่สำเร็จ",
+  "minAmountLessThanMinTrans": "จำนวนขั้นต่ำไม่สามารถมีค่าน้อยกว่าจำนวนขั้นต่ำของการทำธุรกรรม",
+  "maxAmountGreaterThanMaxTrans": "จำนวนสูงสุดไม่สามารถมีค่ามากกว่าจำนวนสูงสุดของการทำธุรกรรม"
 }

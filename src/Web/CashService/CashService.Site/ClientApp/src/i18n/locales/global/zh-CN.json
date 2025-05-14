@@ -26,5 +26,9 @@
   "back": "退回",
   "errorOccurred": "发生错误",
   "confirm": "确认",
-  "saving": "保存中..."
+  "saving": "保存中...",
+  "invalidAmountFormat": "金额格式无效",
+  "minAmountGreaterThanMax": "最小金额不能大于最大金额",
+  "amountCannotBeNegative": "金额不能为负",
+  "row": "行"
 } 

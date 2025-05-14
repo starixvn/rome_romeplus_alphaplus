@@ -136,5 +136,7 @@
   "failedToLoadBankAccount": "加载银行账户失败",
   "pleaseSelectDepositMatchingMode": "请选择存款匹配模式",
   "confirmDeleteBankAccount": "您确定要删除此银行账户吗？",
-  "deleteBankAccount": "删除银行账户"
+  "deleteBankAccount": "删除银行账户",
+  "minAmountLessThanMinTrans": "最小金额不能小于最小交易金额",
+  "maxAmountGreaterThanMaxTrans": "最大金额不能大于最大交易金额"
 }

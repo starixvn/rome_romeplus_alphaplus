@@ -83,5 +83,7 @@
   "apiKey": "Khóa API",
   "merchantID": "ID người bán",
   "bankName": "Tên ngân hàng",
-  "failedToLoadBanks": "Tải danh sách ngân hàng thất bại"
+  "failedToLoadBanks": "Tải danh sách ngân hàng thất bại",
+  "minAmountLessThanMinTrans": "Số tiền tối thiểu không thể nhỏ hơn số tiền tối thiểu của giao dịch",
+  "maxAmountGreaterThanMaxTrans": "Số tiền tối đa không thể lớn hơn số tiền tối đa của giao dịch"
 }
