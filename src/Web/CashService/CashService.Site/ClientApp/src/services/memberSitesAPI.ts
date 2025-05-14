@@ -37,9 +37,12 @@ class MemberSitesService {
   async getMemberSiteData(): Promise<MemberSiteResponse> {
     try {
       const { data } = await api.get<MemberSiteResponse>(this.BASE_PATH);
-      const mobile = data.mobile.split('-');
+      const mobile = data.mobile ? data.mobile.split('-') : ['', ''];
       data.mobileCode = mobile[0];
       data.mobilePhone = mobile[1];
+      const contacts = JSON.parse(data.contacts);
+      data.telegram = contacts.find((contact: any) => contact.platform === 'tele')?.value;
+      data.lineId = contacts.find((contact: any) => contact.platform === 'line')?.value;
       return data;
     } catch (error) {
       if (error instanceof AxiosError) {
@@ -79,6 +82,8 @@ class MemberSitesService {
       announcement: '',
       mobileCode: '',
       mobilePhone: '',
+      contacts: '',
+      telegram: ''
     };
     return defualtMemberSiteData;
   }

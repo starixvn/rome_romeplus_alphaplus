@@ -25,7 +25,9 @@ const MemberSiteManagement: React.FC = () => {
     mobilePhone: '',
     mobile: '',
     lineId: '',
-    announcement: ''
+    announcement: '',
+    contacts: '',
+    telegram: ''
   }
   const [originalData, setOriginalData] = useState<MemberSiteResponse>(defaultData);
   const [data, setData] = useState<MemberSiteResponse>(defaultData);
@@ -83,7 +85,8 @@ const MemberSiteManagement: React.FC = () => {
       setIsSaving(true);
       const response = await memberSitesService.updateMemberSiteData({
         ...data,
-        mobile: `${data.mobileCode}-${data.mobilePhone}`
+        mobile: `${data.mobileCode}-${data.mobilePhone}`,
+        contacts: JSON.stringify([{platform: 'tele', value: data.telegram}, {platform: 'line', value: data.lineId}]),
       });
 
 
@@ -155,11 +158,12 @@ const MemberSiteManagement: React.FC = () => {
             <hr className='my-[16px] border-[#0000001F]' />
             <div className="">
               <MessageForm
+                telegram={data.telegram}
                 countryCodes={data.countryCodes}
                 mobilePhone={data.mobilePhone}
                 mobileCode={data.mobileCode}
                 lineId={data.lineId}
-                announcement={data.announcement}
+                announcement={data.announcement || ''}
                 onMessageChange={handleMessageChange}
                 loading={loading}
               />

@@ -23,6 +23,7 @@
     "description": "Include your contact details and a message for your member.",
     "mobile": "Mobile",
     "lineId": "LINE ID",
+    "telegram": "Telegram",
     "announcement": "Announcement",
     "placeholder": {
       "message": "Add your message here..."

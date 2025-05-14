@@ -29,6 +29,8 @@ export interface MemberSiteResponse {
   announcement: string;
   mobileCode: string;
   mobilePhone: string;
+  contacts: string;
+  telegram: string;
 }
 
 export interface ResponseResult {

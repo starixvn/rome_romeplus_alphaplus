@@ -1,15 +1,17 @@
 using AlphaPlus.CashService.API.Criteria.MemberSite;
 using AlphaPlus.CashService.API.Criteria.Common;
 using AlphaPlus.CashService.API.Models;
+using AlphaPlus.CashService.API.Models.ManageMemberSites;
 using Fanex.Data.Repository;
-using AlphaPlus.Shared;
+
 
 namespace AlphaPlus.CashService.API.Services;
+
 public interface IMemberSiteManagementService
 {
-    Task<MemberSiteManagementModel> GetAsync(int custId, string site);
+    Task<MemberSiteModel> GetAsync(int custId, string site);
 
-    Task<ResultModel> UpdateAsync(MemberSiteManagementModel model);
+    Task<ResultModel> UpdateAsync(UpdateMemberSiteModel model);
 }
 
 public class MemberSiteManagementService(
@@ -21,27 +23,26 @@ public class MemberSiteManagementService(
 {
     private readonly IConfiguration _configuration = configuration;
     private readonly ILogger<MemberSiteManagementService> _logger = logger;
-    private readonly string _encryptSecretKey = configuration.GetValue<string>("EncryptSecretKey") ?? AlphaPlusConstants.EncryptSecretKey;
-    public async Task<MemberSiteManagementModel> GetAsync(int custId, string site)
+    public async Task<MemberSiteModel> GetAsync(int custId, string site)
     {
-        var (domains, settings) = await repository.FetchMultipleAsync<DomainModel, CashServiceManagementDto>(new GetMemberSiteInfoCriteria(custId));
+        var (domains, settings) = await repository.FetchMultipleAsync<DomainModel, MemberSiteDataObject>(new GetMemberSiteInfoCriteria(custId));
         var countryCodes = await repository.FetchAsync<string>(new GetCountryCodesCriteria(site));
-        var settingInfo = settings.FirstOrDefault() ?? new CashServiceManagementDto();
+        var settingInfo = settings.FirstOrDefault() ?? new MemberSiteDataObject();
 
-        var trasnformModel = new MemberSiteManagementModel
+        var trasnformModel = new MemberSiteModel
         {
             Domains = domains.ToList(),
             GeneralSettings = BuildGeneralSettings(settingInfo),
             Announcement = settingInfo.Announcement,
             Mobile = settingInfo.Mobile,
-            LineId = settingInfo.LineId,
+            Contacts = settingInfo.Contacts,
             CountryCodes = countryCodes
         };
 
         return trasnformModel;
     }
 
-    private List<MemberSitePermission> BuildGeneralSettings(CashServiceManagementDto settingInfo)
+    private List<MemberSitePermission> BuildGeneralSettings(MemberSiteDataObject settingInfo)
     {
         return new List<MemberSitePermission>
         {
@@ -65,24 +66,27 @@ public class MemberSiteManagementService(
         var allowDeposit = memberSitePermissions.FirstOrDefault(x => x.Id == "allowDeposit")?.Value ?? false;
 
         if (allowRegistration && allowDeposit)
-            return (int)CashServiceManagementDto.GeneralSettingType.AllowAll;
+            return (int)MemberSiteDataObject.GeneralSettingType.AllowAll;
         if (allowRegistration)
-            return (int)CashServiceManagementDto.GeneralSettingType.AllowRegister;
+            return (int)MemberSiteDataObject.GeneralSettingType.AllowRegister;
         if (allowDeposit)
-            return (int)CashServiceManagementDto.GeneralSettingType.AllowLogin;
+            return (int)MemberSiteDataObject.GeneralSettingType.AllowLogin;
 
-        return (int)CashServiceManagementDto.GeneralSettingType.None;
+        return (int)MemberSiteDataObject.GeneralSettingType.None;
     }
 
-    public async Task<ResultModel> UpdateAsync(MemberSiteManagementModel model)
+    public async Task<ResultModel> UpdateAsync(UpdateMemberSiteModel model)
     {
         if (model == null) throw new ArgumentNullException(nameof(model));
         
         var command = new UpdateMemberSiteInfoCommand
         {
             CustId = model.CustId,
+            // SubAccId = model.SubAccId,
+            // IP = model.IP,
+            // Language = model.Language,
             Mobile = model.Mobile,
-            LineId = model.LineId,
+            Contacts = model.Contacts,
             Announcement = model.Announcement,
             SettingInfo = ConvertToSettingInfo(model.GeneralSettings)
         };

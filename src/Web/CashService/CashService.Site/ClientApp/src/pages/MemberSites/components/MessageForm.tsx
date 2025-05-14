@@ -6,9 +6,10 @@ interface MessageFormProps {
   mobileCode: string;
   mobilePhone: string;
   lineId: string;
+  telegram: string;
   announcement: string;
   loading: boolean;
-  onMessageChange: (messages: { mobileCode?: string; mobilePhone?: string; lineId?: string; announcement?: string }) => void;
+  onMessageChange: (messages: { mobileCode?: string; mobilePhone?: string; lineId?: string; telegram?: string; announcement?: string }) => void;
 }
 
 const MessageFormSkeleton = () => {
@@ -33,6 +34,7 @@ const MessageForm: React.FC<MessageFormProps> = ({
   mobileCode,
   mobilePhone,
   lineId,
+  telegram,
   announcement,
   onMessageChange,
   loading
@@ -62,7 +64,7 @@ const MessageForm: React.FC<MessageFormProps> = ({
                   className="focus:outline-none focus:border-[var(--button-border)] h-[100%]  cursor-pointer mr-[5px] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
                 >
                   {countryCodes.map((code) => (
-                    <option key={code} value={code} selected={code === mobileCode}>+{code}</option>
+                    <option key={code} value={code} >+{code}</option>
                   ))}
                 </select>
                 <input                     
@@ -90,7 +92,18 @@ const MessageForm: React.FC<MessageFormProps> = ({
                 className="h-[32px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--border-control-focus)] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
               />
             </div>
-      
+            <div className='w-[24%] min-w-[200px] pt-[4px] max-[768px]:w-[48%]'>
+              <label className="block text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:mb-[8px]" htmlFor="lineId">
+                {t('message.telegram')}
+              </label>
+              <input
+                id="telegram"
+                type="text"
+                value={telegram}
+                onChange={(e) => onMessageChange({ telegram: e.target.value })}
+                className="h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
+              />
+            </div>
         </div>
 
         <div className='w-[516px] max-[768px]:w-[100%]'>

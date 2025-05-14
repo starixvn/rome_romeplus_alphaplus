@@ -23,6 +23,7 @@
     "description": "請包含您的聯絡方式和給會員的訊息。",
     "mobile": "手機號碼",
     "lineId": "LINE ID",
+    "telegram": "Telegram",
     "announcement": "公告",
     "placeholder": {
       "message": "在此輸入您的訊息..."

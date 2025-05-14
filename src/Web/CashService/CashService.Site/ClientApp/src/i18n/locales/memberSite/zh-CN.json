@@ -23,6 +23,7 @@
     "description": "请包含您的联系方式和给会员的信息。",
     "mobile": "手机号码",
     "lineId": "LINE ID",
+    "telegram": "Telegram",
     "announcement": "公告",
     "placeholder": {
       "message": "在此输入您的信息..."

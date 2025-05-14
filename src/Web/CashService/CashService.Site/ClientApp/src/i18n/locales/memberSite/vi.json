@@ -2,7 +2,7 @@
   "title": "Quản lý Trang Thành viên",
   "registrationLinks": {
     "title": "Liên kết Đăng ký",
-    "note": "Nếu cả hai liên kết bị chặn, hãy yêu cầu liên kết mới.",
+    "note": "Nếu cả hai liên kết đều bị chặn, hãy yêu cầu liên kết mới.",
     "domain": "Tên miền",
     "downloadQRCode": "Tải mã QR",
     "requestNewLink": "Yêu cầu Liên kết Mới"
@@ -21,8 +21,9 @@
   "message": {
     "title": "Để lại Tin nhắn",
     "description": "Bao gồm thông tin liên hệ và tin nhắn cho thành viên của bạn.",
-    "mobile": "Số điện thoại",
-    "lineId": "LINE ID",
+    "mobile": "Di động",
+    "lineId": "ID LINE",
+    "telegram": "Telegram",
     "announcement": "Thông báo",
     "placeholder": {
       "message": "Thêm tin nhắn của bạn tại đây..."
@@ -41,7 +42,7 @@
     "title": "Đang tải..."
   },
   "messages": {
-    "updateSuccess": "Dữ liệu trang thành viên đã được cập nhật thành công",
+    "updateSuccess": "Cập nhật dữ liệu trang thành viên thành công",
     "updateFailed": "Không thể cập nhật dữ liệu trang thành viên"
   }
 } 

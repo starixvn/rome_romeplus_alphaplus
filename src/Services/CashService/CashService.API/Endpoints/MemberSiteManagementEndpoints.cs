@@ -1,4 +1,4 @@
-using AlphaPlus.CashService.API.Models;
+using AlphaPlus.CashService.API.Models.ManageMemberSites;
 using AlphaPlus.CashService.API.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,7 +25,7 @@ public static class MemberSiteManagementEndpoints
         });
 
         // Update settings
-        group.MapPut("/", async (IMemberSiteManagementService service, [FromBody] MemberSiteManagementModel model) =>
+        group.MapPut("/", async (IMemberSiteManagementService service, [FromBody] UpdateMemberSiteModel model) =>
         {
            return await service.UpdateAsync(model);
         })

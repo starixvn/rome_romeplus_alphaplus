@@ -23,6 +23,7 @@
     "description": "連絡先とメンバーへのメッセージを含めてください。",
     "mobile": "携帯電話",
     "lineId": "LINE ID",
+    "telegram": "Telegram",
     "announcement": "お知らせ",
     "placeholder": {
       "message": "メッセージを入力してください..."

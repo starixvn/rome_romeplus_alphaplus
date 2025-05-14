@@ -1,23 +1,30 @@
-using AlphaPlus.CashService.Site.Features.MemberSites.Commands;
 using AlphaPlus.CashService.Site.Features.MemberSites.Models;
-using AlphaPlus.CashService.Site.Features.MemberSites.Queries;
 using AlphaPlus.CashService.Site.Features.MemberSites.ViewModels;
 using AlphaPlus.Core.Models;
-using MediatR;
+
 using Microsoft.AspNetCore.Mvc;
 namespace AlphaPlus.CashService.Site.Features.MemberSites;
 
 public class MemberSitesController : Controller
 {
-    private readonly IMediator _mediator;
+    private readonly string _apiBaseUrl;
     private readonly ILogger<MemberSitesController> _logger;
     private readonly IUserSession _userSession;
+    private readonly IConfiguration _configuration;
 
-    public MemberSitesController(IMediator mediator, ILogger<MemberSitesController> logger, IUserSession userSession)
+    private readonly HttpClient _httpClient;
+
+    public MemberSitesController(
+        IConfiguration configuration,
+         ILogger<MemberSitesController> logger,
+          IUserSession userSession,
+          HttpClient httpClient)
     {
-        _mediator = mediator;
+        _apiBaseUrl = configuration["CashServiceAPIUrl"];
         _logger = logger;
         _userSession = userSession;
+        _configuration = configuration;
+        _httpClient = httpClient;
     }
 
     [HttpGet]
@@ -31,12 +38,16 @@ public class MemberSitesController : Controller
     }
 
     [HttpGet]
-    public async Task<ActionResult<MemberSiteManagementModel>> MemberSiteManagement(CancellationToken cancellationToken)
+    public async Task<IActionResult> MemberSiteManagement(CancellationToken cancellationToken)
     {
         try
         {
-            var result = await _mediator.Send(new GetMemberSiteManagementQuery(), cancellationToken);
-            return Ok(result);
+            var baseUrl = _configuration["CashServiceAPIUrl"];
+            var response = await _httpClient.GetFromJsonAsync<MemberSiteManagementModel>(
+                //$"{baseUrl}/api/member-site-info?custId={1176086}",
+                $"{baseUrl}/member-site-info?custId={1176086}&site={_userSession.Site}",
+                cancellationToken);
+            return Ok(response);
         }
         catch (Exception ex)
         {
@@ -46,7 +57,7 @@ public class MemberSitesController : Controller
     }
 
     [HttpPut]
-    public async Task<ActionResult<Result>> MemberSiteManagement([FromBody] MemberSiteManagementModel model, CancellationToken cancellationToken)
+    public async Task<IActionResult> MemberSiteManagement([FromBody] UpdateMemberSiteManagementModel model, CancellationToken cancellationToken)
     {
         if (!ModelState.IsValid)
         {
@@ -57,7 +68,16 @@ public class MemberSitesController : Controller
         {
             //model.CustId = _userSession.CustId;
             model.CustId = 1176086;
-            var result = await _mediator.Send(new UpdateMemberSiteManagementCommand(model),cancellationToken);
+            model.SubAccId = _userSession.SubAccId;
+            model.IP = _userSession.UserLoginIp;
+            model.Language = _userSession.Language;
+            var response = await _httpClient.PutAsJsonAsync(
+                $"{_apiBaseUrl}/member-site-info",
+                model,
+                cancellationToken);
+
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadFromJsonAsync<Result>(cancellationToken);
             return Ok(result);
         }
         catch (Exception ex)

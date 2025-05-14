@@ -101,8 +101,9 @@
     <Function Name="Member Site Info">
         <Setting Key="Age_CashService_GeneralSetting" SpName="Age_CashService_GeneralSetting_UAT2" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="Domain" ObjectProperty="Url" />
+            <Mapping DataField="Contact" ObjectProperty="Contacts" />
         </Setting>
-        <Setting Key="Age_CashService_GeneralSetting_Upd" SpName="Age_CashService_GeneralSetting_Upd_UAT2" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="Age_CashService_GeneralSetting_Upd" SpName="Age_CashService_GeneralSetting_Upd_UAT2" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0"/>
     </Function>
 
     <Function Name="Promotion">
