@@ -12,7 +12,7 @@ export default function TitleCommon({ title, Tippy: showTippy, children }: Title
     return (
       <>
         <div className="mb-[8px]">
-            <h1 className="flex items-center font-bold text-[15px] text-[#333333]">
+            <h1 className="flex items-center font-bold text-[15px] text-[#333333] max-[768px]:text-[19px]">
             {title}
             {showTippy && (
               <Tippy

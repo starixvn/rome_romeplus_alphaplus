@@ -128,7 +128,7 @@ const MemberSiteManagement: React.FC = () => {
         </div>
         <div className="bg-[#ffffff] rounded-[4px] max-w-[1200px]">
           {result && (
-            <div className='pt-[24px] mx-[24px]'>
+            <div className='pt-[24px] mx-[24px] max-[768px]:mx-[12px] max-[768px]:pt-[12px]'>
               <ResultMessage
                 type={result.type}
                 message={result.text}

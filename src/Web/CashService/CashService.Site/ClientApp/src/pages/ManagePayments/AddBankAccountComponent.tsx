@@ -14,6 +14,7 @@ import { IconCheck, IconError } from '../../components/Icons';
 import { baseAPI } from '../../services/commonAPI';
 import CustomDropdown, { DropdownOption } from '../../components/ui/customDropdown';
 import BackCommon from '../../components/ui/BackComponents';
+import Loading from '../../components/ui/Loading';
 
 interface AddBankAccountComponentProps {
   onClose: () => void;
@@ -233,9 +234,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
             <h2 className="flex items-center font-bold text-[15px] ">{tManagePayments('bankManagement')}</h2>            
           </div>
           {isLoadingBanks ? (
-            <div className="flex justify-center items-center p-[16px]">
-              <div className="text-[14px] text-[#666]">{tGlobal('loading')}...</div>
-            </div>
+            <Loading />
           ) : (
             <form onSubmit={handleSubmit} className='bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]'>
               <div className="modal-body">

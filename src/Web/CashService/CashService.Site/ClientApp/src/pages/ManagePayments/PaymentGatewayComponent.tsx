@@ -89,7 +89,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
           <ul className="flex">
             <li className="mr-[8px]">
               <button
-                  className={`font-bold text-[12px] tracking-[0.12px] leading-[36px] pr-[16px] pl-[16px] rounded-t-[4px] ${activeTab === 'paymentGateway' ? ' bg-[var(--button-background)] text-[#ffffff] cursor-pointer' : 'bg-[#dbe2ef] text-[var(--text-color-primary)] cursor-pointer'}`}
+                  className={`font-bold text-[12px] leading-[36px] max-[768px]:text-[16px] px-[16px] rounded-t-[4px] ${activeTab === 'paymentGateway' ? ' bg-[var(--button-background)] text-[#ffffff] cursor-pointer' : 'bg-[#dbe2ef] text-[var(--text-color-primary)] cursor-pointer'}`}
                   onClick={() => setActiveTab('paymentGateway')}
                 >
                 {tManagePayments('paymentGateway')}
@@ -97,7 +97,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
             </li>
             <li>
               <button
-                  className={`font-bold text-[12px] tracking-[0.12px] leading-[36px] pr-[16px] pl-[16px] rounded-t-[4px] ${activeTab === 'bankAccount' ? ' bg-[var(--button-background)] text-[#ffffff] cursor-pointer' : 'bg-[#dbe2ef] text-[var(--text-color-primary)] cursor-pointer'}`}
+                  className={`font-bold text-[12px] leading-[36px] max-[768px]:text-[16px] px-[16px] rounded-t-[4px] ${activeTab === 'bankAccount' ? ' bg-[var(--button-background)] text-[#ffffff] cursor-pointer' : 'bg-[#dbe2ef] text-[var(--text-color-primary)] cursor-pointer'}`}
                   onClick={() => setActiveTab('bankAccount')}
                 >
                 {tManagePayments('bankAccount')}
@@ -108,23 +108,23 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
         <div className="card-body">
           <div className="bg-[#ffffff] max-w-[1000px]">
             <div className="px-[14px] py-[8px]">
-              <div className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px] ">
+              <div className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] max-[768px]:text-[20px] max-[768px]:leading-[24px] ">
                 {tManagePayments('setDailyWithdrawalCount')}
               </div>
-              <div className="pb-[8px] text-[12px]">
+              <div className="pb-[8px] text-[12px] max-[768px]:text-[16px] ">
                 {tManagePayments('setDailyWithdrawalCountForYourMembers')}
               </div>
               <div className="mt-[8px] mb-[8px]">
                 <button
                   type="button"
-                  className=" bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] cursor-pointer  text-[var(--text-color-primary)] border-[1px] border-[var(--button-border)] rounded-[5px] px-[16px] py-[4px] text-[12px] font-bold leading-[20.58px] tracking-[0.12px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
+                  className=" bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] cursor-pointer  text-[var(--text-color-primary)] border-[1px] border-[var(--button-border)] rounded-[5px] px-[16px] py-[4px] text-[12px] font-bold leading-[20.58px] tracking-[0.12px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] max-[768px]:text-[16px] max-[768px]:py-[6px]"
                   onClick={() => handleSetLimitClick()} // Default values, should be updated with actual values
                 >
                   {tManagePayments('setLimit')}
                 </button>
               </div>
               <span className="block w-[100%] h-[1px] bg-[#e0e0e0] my-[10px]"></span>
-              <div className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px]">
+              <div className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] max-[768px]:text-[20px] max-[768px]:leading-[24px] ">
                 {tManagePayments('managePaymentProviders')}
               </div>
             </div>
@@ -135,7 +135,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
               
             ) : (
               <div className="table-fixed-header">
-                <table className="text-[12px] w-full border-collapse border border-[#0000001f] border-t-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
+                <table className="text-[12px] max-[768px]:text-[16px] w-full border-collapse border border-[#0000001f] border-t-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
                   <thead>
                     <tr>
                       <th scope="col">#</th>
@@ -164,7 +164,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
                           <td>{provider.name}</td>
                           <td>
                             <button
-                              className="font-bold text-[12px] tracking-[0.12px] leading-[30px] px-[16px] rounded-[4px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] text-[var(--button-text)] cursor-pointer"
+                              className="font-bold text-[12px] tracking-[0.12px] leading-[30px] px-[16px] rounded-[4px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] text-[var(--button-text)] cursor-pointer max-[768px]:text-[16px] "
                               onClick={() => handleFeeClick(provider)}
                             >
                               {tManagePayments('fee')}

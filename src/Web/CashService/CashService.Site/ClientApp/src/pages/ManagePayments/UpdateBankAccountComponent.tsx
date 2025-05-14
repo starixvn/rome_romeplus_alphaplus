@@ -124,7 +124,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   }, [bankAccount.id, tManagePayments]);
 
   if (initialLoading) {
-    return <Loading size="md" />;
+    return <Loading  />;
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
