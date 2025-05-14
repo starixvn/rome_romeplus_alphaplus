@@ -7,7 +7,7 @@ import PromotionList from './components/PromotionList';
 import Filter from './components/Filter';
 import type { Promotion } from '../../services/interfaces/Promotion';
 import AddPromotion from './components/AddPromotion';
-import './common.css';
+import './Promotion.css';
 import '../../styles/global.scss';
 import TitleCommon from '../../components/ui/TitleComponents';
 
@@ -65,7 +65,7 @@ const Promotion: React.FC = () => {
 
     return (
      
-            <div className="p-[12px] h-full flex flex-col">
+            <div className="p-[12px] h-full flex flex-col promotion-page">
                 <div className="mb-[8px]">                      
                     <TitleCommon title='Manage Promotion' Tippy={false} />                 
                 </div>
