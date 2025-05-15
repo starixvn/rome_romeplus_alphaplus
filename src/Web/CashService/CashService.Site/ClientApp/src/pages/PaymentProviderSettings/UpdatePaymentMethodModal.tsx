@@ -285,7 +285,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
             </div>
             <div className='flex justify-center'>
             <button type="button" className="w-[140px] h-[30px] rounded-[20px] text-[var(--text-color-primary)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)] mx-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer " onClick={onClose}>
-              {tPaymentProviderSettings('cancel')}
+              {tPaymentProviderSettings('setUpLater')}
             </button>
             <button 
               type="submit" 
