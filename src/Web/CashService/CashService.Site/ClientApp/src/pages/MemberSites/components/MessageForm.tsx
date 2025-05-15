@@ -51,7 +51,7 @@ const MessageForm: React.FC<MessageFormProps> = ({
       <p className="text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px]">{t('message.description')}</p>
       <div className="max-w-[785px]">
           <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap">
-            <div className='w-[32%] pt-[4px] max-[768px]:w-[48%]'>
+            <div className='w-[230px] pt-[4px] max-[768px]:w-[48%]'>
               <label className="block text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:mb-[8px]" htmlFor="mobile">
                 {t('message.mobile')}
               </label>
@@ -79,7 +79,7 @@ const MessageForm: React.FC<MessageFormProps> = ({
                 />
               </div>
             </div>
-            <div className='w-[32%] pt-[4px] max-[768px]:w-[48%]'>
+            <div className='w-[230px] pt-[4px] max-[768px]:w-[48%]'>
               <label className="block text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:mb-[8px]" htmlFor="lineId">
                 {t('message.lineId')}
                 <span className='text-[#E25757]'>*</span>
@@ -92,7 +92,7 @@ const MessageForm: React.FC<MessageFormProps> = ({
                 className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--border-control-focus)] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
               />
             </div>
-            <div className='w-[32%] pt-[4px] max-[768px]:w-[48%]'>
+            <div className='w-[230px] pt-[4px] max-[768px]:w-[48%]'>
               <label className="block text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:mb-[8px]" htmlFor="lineId">
                 {t('message.telegram')}
               </label>
@@ -106,7 +106,7 @@ const MessageForm: React.FC<MessageFormProps> = ({
             </div>
         </div>
 
-        <div className='w-[calc(64%+16px)] max-[768px]:w-[100%]'>
+        <div className='w-[476px] max-[768px]:w-[100%]'>
           <label className="block text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:mb-[8px]" htmlFor="announcement">
             {t('message.announcement')}
           </label> 
