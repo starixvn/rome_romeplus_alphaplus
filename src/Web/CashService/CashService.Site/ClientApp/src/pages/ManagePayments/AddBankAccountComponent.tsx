@@ -260,7 +260,9 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                 </div>
 
                 <div className="mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px]">{tManagePayments('accountInformation')}</div>
-                <div>
+                
+                
+                <div className='mb-[16px]'>
                   <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('bank')}<span className='text-[#E25757]'>*</span></label>
                   <div className='w-[470px]'>
                     <CustomDropdown
@@ -278,55 +280,60 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   )}
                 </div>
 
-                {hasDepositTransactionType(selectedBank, banks) && (
-                  <div className="mb-3">
-                    <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('depositType')}</label>
-                    <div className="flex gap-[10px]" role="group">
-                      {hasManualDepositTransactionType(selectedBank, banks) && (
-                        <button
-                          type="button"
-                          className={`block w-[230px] cursor-pointer h-[120px]  rounded-[4px] border-[1px] border-[var(--button-border)]  ${selectedManualDeposit ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[var(--text-color-primary)] bg-[#ffffff]'}`}
-                          onClick={toggleManualDeposit}
-                        >                     
-                          <span className="text-[14px] font-bold ">{tManagePayments('slipUpload')}</span>
-                          <br />
-                          <span className="text-[12px]">{tManagePayments('manualDeposit')}</span>
-                        </button>
-                      )}
-                      {hasAutoDepositTransactionType(selectedBank, banks) && (
-                        <button
-                          type="button"
-                          className={`block w-[230px] cursor-pointer h-[120px] rounded-[4px] border-[1px] border-[var(--button-border)] ${selectedAutoDeposit ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[var(--text-color-primary)] bg-[#ffffff]'}`}
-                          onClick={toggleAutoDeposit}
-                        >
-                          <span className="text-[14px] font-bold">{selectedBankObj?.depositMatchingMode.sourceTypeName}</span>
-                          <br />
-                          <span className="text-[12px]">{tManagePayments('autoDeposit')}</span>
-                        </button>
+                <div className=''>
+                  <div className="pb-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px]">{tManagePayments('transactionType')}<span className='text-[#E25757]'>*</span></div>
+                  <div className='inline-block border-[1px] border-[var(--border-control)] rounded-[4px] px-[16px] pb-[16px] bg-[#f8f8f8] mb-[8px]'>
+                  {hasDepositTransactionType(selectedBank, banks) && (
+                    <div className="mb-3">
+                      <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('depositType')}</label>
+                      <div className="flex gap-[10px]" role="group">
+                        {hasManualDepositTransactionType(selectedBank, banks) && (
+                          <button
+                            type="button"
+                            className={`block w-[230px] cursor-pointer h-[120px]  rounded-[4px] border-[1px] border-[var(--button-border)]  ${selectedManualDeposit ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[var(--text-color-primary)] bg-[#ffffff]'}`}
+                            onClick={toggleManualDeposit}
+                          >                     
+                            <span className="text-[14px] font-bold ">{tManagePayments('slipUpload')}</span>
+                            <br />
+                            <span className="text-[12px]">{tManagePayments('manualDeposit')}</span>
+                          </button>
+                        )}
+                        {hasAutoDepositTransactionType(selectedBank, banks) && (
+                          <button
+                            type="button"
+                            className={`block w-[230px] cursor-pointer h-[120px] rounded-[4px] border-[1px] border-[var(--button-border)] ${selectedAutoDeposit ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[var(--text-color-primary)] bg-[#ffffff]'}`}
+                            onClick={toggleAutoDeposit}
+                          >
+                            <span className="text-[14px] font-bold">{selectedBankObj?.depositMatchingMode.sourceTypeName}</span>
+                            <br />
+                            <span className="text-[12px]">{tManagePayments('autoDeposit')}</span>
+                          </button>
+                        )}
+                      </div>
+                      {fieldErrors.selectedDepositType && (
+                        <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.selectedDepositType}</div>
                       )}
                     </div>
-                    {fieldErrors.selectedDepositType && (
-                      <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.selectedDepositType}</div>
-                    )}
-                  </div>
-                )}
+                  )}
 
-                {hasWithdrawalTransactionType(selectedBank, banks) && (
-                  <div>
-                    <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('withdrawalType')}</label>
-                    <div className="btn-group" role="group">
-                      {hasManualWithdrawalTransactionType(selectedBank, banks) && (
-                        <button
-                          type="button"
-                          className={`block cursor-pointer w-[230px] h-[120px] rounded-[4px] border-[1px] border-[var(--button-border)] ${selectedManualWithdrawal ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[var(--text-color-primary)] bg-[#ffffff]'}`}
-                          onClick={toggleManualWithdrawal}
-                        >
-                          <span className="text-[14px] font-bold">{tManagePayments('manualWithdrawal')}</span>
-                        </button>
-                      )}
+                  {hasWithdrawalTransactionType(selectedBank, banks) && (
+                    <div>
+                      <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('withdrawalType')}</label>
+                      <div className="btn-group" role="group">
+                        {hasManualWithdrawalTransactionType(selectedBank, banks) && (
+                          <button
+                            type="button"
+                            className={`block cursor-pointer w-[230px] h-[120px] rounded-[4px] border-[1px] border-[var(--button-border)] ${selectedManualWithdrawal ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[var(--text-color-primary)] bg-[#ffffff]'}`}
+                            onClick={toggleManualWithdrawal}
+                          >
+                            <span className="text-[14px] font-bold">{tManagePayments('manualWithdrawal')}</span>
+                          </button>
+                        )}
+                      </div>
                     </div>
+                  )}
                   </div>
-                )}
+                </div>
 
                 {(() => {
                   return selectedBank && selectedBankObj && selectedBankObj.depositMatchingMode?.mappingTypes?.length > 0 && selectedAutoDeposit && (

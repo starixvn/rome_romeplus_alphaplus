@@ -266,7 +266,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
               )}
               
               <div className="mb-[8px]">
-                <div className='pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px]' >{tManagePayments('bankStatus')}</div>
+                <div className='pb-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px]' >{tManagePayments('bankStatus')}</div>
                 <p className="pb-[8px] text-[12px]">{tManagePayments('bankNote1')}</p>
                 <div className="btn-group" role="group">
                   <button
@@ -286,7 +286,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
               </div>
 
               <div className="mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px]">{tManagePayments('accountInformation')}</div>
-              <div className="mb-[8px]">
+              <div className="mb-[16px]">
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('bank')}</label>
                  
                 <div className='w-[470px]'>
@@ -303,9 +303,13 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 </div>
               </div>
 
+
+              <div className=''>
+              <div className="pb-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px]">{tManagePayments('transactionType')}<span className='text-[#E25757]'>*</span></div>
+              <div className='inline-block border-[1px] border-[var(--border-control)] rounded-[4px] px-[16px] pb-[16px] bg-[#f8f8f8] mb-[8px]'>
               {hasDepositTransactionType(selectedBank, banks) && (
                 <div className="mb-[8px]">
-                  <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('depositType')}<span className='text-[#E25757]'>*</span></label>
+                  <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('depositType')}</label>
                   <div className="flex gap-[10px]" role="group">
                     {hasManualDepositTransactionType(selectedBank, banks) && (
                       <button
@@ -356,6 +360,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                   </div>
                 </div>
               )}
+              </div>
+              </div>
 
               {(() => {
                 const selectedBankObj = banks.find(b => b.id === parseInt(selectedBank));
@@ -387,7 +393,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 );
               })()}
 
-              <div className="flex gap-[16px]">
+              <div className="flex flex-wrap gap-[16px]">
                 <div className='w-[230px]'>
                   <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('accountHolderName')}<span className="text-[#E25757]">*</span></label>
                   <input

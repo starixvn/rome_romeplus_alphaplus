@@ -477,7 +477,7 @@ function PaymentProviderSettings() {
                   <tr key={index}>
                     <td className='col-shadown col-payment-method font-semibold'><span className='relative z-3'>{setting.methodName}</span></td>
                     <td>
-                      <span className={`rounded-[20px] font-semibold px-[10px] py-[3px] ${
+                      <span className={`inline-block min-w-[90px] text-center rounded-[20px] font-semibold px-[10px] py-[3px] ${
                         setting.status === 1 ? 'bg-[#90d3ff]' :
                         setting.status === 2 ? 'bg-[#D4E7D9]' :
                         setting.status === 3 ? 'bg-[#FBD8D8]' :

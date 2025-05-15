@@ -182,7 +182,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
                           </td>
                           <td>
                           <span
-                              className={`rounded-[20px] px-[10px] py-[3px] ${provider.status === 0 ? 'bg-[#FBD8D8]' : provider.status === 1 ? 'bg-[#D4E7D9]': 'bg-[#E0E0E0]'}`}
+                              className={` inline-block rounded-[20px] min-w-[70px] text-center px-[10px] py-[3px] ${provider.status === 0 ? 'bg-[#FBD8D8]' : provider.status === 1 ? 'bg-[#D4E7D9]': 'bg-[#E0E0E0]'}`}
                             >
                               {getStatusText(provider.status)}
                             </span>
