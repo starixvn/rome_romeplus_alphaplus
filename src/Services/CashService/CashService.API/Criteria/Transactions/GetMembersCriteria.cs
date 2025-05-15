@@ -10,7 +10,7 @@ public class GetMembersCriteria : CriteriaBase
     [SpParam(Ignored = true)]
     public int CustDbGroupId { get; set; }
 
-    public override string GetSettingKey() => $"Cust_{CustDbGroupId}_Age_CashService_MemberListSel";
+    public override string GetSettingKey() => $"CustDb_{CustDbGroupId}_Age_CashService_MemberListSel";
 
     public override bool IsValid() => CustId > 0;
 }
