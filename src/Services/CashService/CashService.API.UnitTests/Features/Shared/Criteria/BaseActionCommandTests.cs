@@ -5,19 +5,11 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Shared.Criteria;
 
 public class BaseActionCommandTests
 {
-    private class TestBaseActionCommand : BaseActionCommand
-    {
-        public TestBaseActionCommand(int custId, int subAccId, string ip, string language) 
-            : base(custId, subAccId, ip, language)
-        {
-        }
-    }
-
     [Fact]
     public void IsValid_WhenAllPropertiesAreValid_ReturnsTrue()
     {
         // Arrange
-        var command = new TestBaseActionCommand(
+        var command = new BaseActionCommand(
             custId: 1,
             subAccId: 1,
             ip: "127.0.0.1",
@@ -41,7 +33,7 @@ public class BaseActionCommandTests
     public void IsValid_WhenPropertiesAreInvalid_ReturnsFalse(int custId, int subAccId, string ip, string language)
     {
         // Arrange
-        var command = new TestBaseActionCommand(custId, subAccId, ip, language);
+        var command = new BaseActionCommand(custId, subAccId, ip, language);
 
         // Act
         var result = command.IsValid();
@@ -54,7 +46,7 @@ public class BaseActionCommandTests
     public void GetSettingKey_WhenCalled_ReturnsEmptyString()
     {
         // Arrange
-        var command = new TestBaseActionCommand(1, 1, "127.0.0.1", "en");
+        var command = new BaseActionCommand(1, 1, "127.0.0.1", "en");
 
         // Act
         var result = command.GetSettingKey();
@@ -73,7 +65,7 @@ public class BaseActionCommandTests
         var language = "en";
 
         // Act
-        var command = new TestBaseActionCommand(custId, subAccId, ip, language);
+        var command = new BaseActionCommand(custId, subAccId, ip, language);
 
         // Assert
         Assert.Equal(custId, command.CustId);

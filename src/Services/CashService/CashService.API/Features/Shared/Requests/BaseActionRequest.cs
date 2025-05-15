@@ -1,4 +1,4 @@
-namespace AlphaPlus.CashService.API.Features.Shared.Request;
+namespace AlphaPlus.CashService.API.Features.Shared.Requests;
 
 public class BaseActionRequest
 {

@@ -1,4 +1,4 @@
-using AlphaPlus.CashService.API.Features.Shared.Request;
+using AlphaPlus.CashService.API.Features.Shared.Requests;
 using Fanex.Data;
 using Fanex.Data.Repository;
 

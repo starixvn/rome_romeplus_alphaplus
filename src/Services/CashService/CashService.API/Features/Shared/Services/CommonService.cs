@@ -1,6 +1,6 @@
 using AlphaPlus.CashService.API.Features.Shared.Criteria;
 using AlphaPlus.CashService.API.Features.Shared.DTOs;
-using AlphaPlus.CashService.API.Features.Shared.Request;
+using AlphaPlus.CashService.API.Features.Shared.Requests;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Features.Shared.Services;

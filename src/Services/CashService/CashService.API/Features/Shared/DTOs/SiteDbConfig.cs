@@ -11,5 +11,6 @@ public class SiteDbConfig
     public string AGIP { get; init; }
 
     public int CustDBGroupId { get; init; }
+
     public string AGIP_DBCUST { get; init; }
 }

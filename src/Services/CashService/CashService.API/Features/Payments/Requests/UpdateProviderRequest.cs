@@ -1,5 +1,5 @@
 using AlphaPlus.CashService.API.Features.Payments.Models;
-using AlphaPlus.CashService.API.Features.Shared.Request;
+using AlphaPlus.CashService.API.Features.Shared.Requests;
 
 namespace AlphaPlus.CashService.API.Features.Payments.Requests;
 

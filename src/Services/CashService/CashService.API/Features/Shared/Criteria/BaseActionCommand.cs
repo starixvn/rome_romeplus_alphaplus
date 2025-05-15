@@ -4,7 +4,7 @@ using Fanex.Data.Repository;
 
 public class BaseActionCommand : NonQueryCommand
 {
-    protected BaseActionCommand(int custId, int subAccId, string ip, string language)
+    public BaseActionCommand(int custId, int subAccId, string ip, string language)
     {
         CustId = custId;
         SubAccId = subAccId;
