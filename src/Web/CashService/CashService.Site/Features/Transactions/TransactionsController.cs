@@ -87,16 +87,16 @@ public class TransactionsController(
 
     public async Task<IActionResult> GetCashMemberBankInfo(int custId)
     {
-        var url = $"/transactions/agent-bank-list?agentId={custId}&custDbGroupId={CustDbGroupId}";
-        var memberLogins = await httpClientHelper.GetAsync<object>(url);
-        return Json(memberLogins);
+        var url = $"/transactions/member-bank-list?custId={custId}&custDbGroupId={CustDbGroupId}";
+        var memberBanks = await httpClientHelper.GetAsync<object>(url);
+        return Json(memberBanks);
     }
 
     public async Task<IActionResult> GetCashAgentProvider(int transactionType)
     {
         var url = $"/transactions/provider-bank-list?agentId={AgentId}&transactionType={transactionType}&custDbGroupId={CustDbGroupId}";
-        var memberLogins = await httpClientHelper.GetAsync<object>(url);
-        return Json(memberLogins);
+        var agentProviders = await httpClientHelper.GetAsync<object>(url);
+        return Json(agentProviders);
     }
 
     [HttpPost]

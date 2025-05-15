@@ -103,7 +103,6 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
 
       <form id="manual-withdrawal-form" onSubmit={handleSubmit} className="p-6 flex-1">
         <div className="flex flex-row space-x-10">
-          {/* Left side - Account information */}
           <div className="">
             <div className="mb-5 w-[900px]">
               <h3 className="text-md font-medium text-blue-900 mb-4">
@@ -126,7 +125,9 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       onChange={(e) => handleMemberChange(parseInt(e.target.value))}
                       className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
                     >
-                      <option value="">{t('manualWithdrawalForm.selectMember')}</option>
+                      <option value="" disabled hidden>
+                        {t('manualWithdrawalForm.selectMember')}
+                      </option>
                       {memberLoginNames.map((name) => (
                         <option key={name.custId} value={name.custId}>
                           {name.username}
@@ -150,7 +151,9 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
                       disabled={!memberLoginName}
                     >
-                      <option value="">{t('manualWithdrawalForm.selectBank')}</option>
+                      <option value="" disabled hidden>
+                        {t('manualWithdrawalForm.selectMemberBank')}
+                      </option>
                       {memberBankInfo.map((bank) => (
                         <option key={bank.bankId} value={bank.bankId}>
                           {bank.bankAccountNumber}
@@ -175,7 +178,9 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       onChange={(e) => setTo(parseInt(e.target.value))}
                       className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
                     >
-                      <option value="">{t('manualWithdrawalForm.selectBank')}</option>
+                      <option value="" disabled hidden>
+                        {t('manualWithdrawalForm.selectBank')}
+                      </option>
                       {bankInfo.map((bank) => (
                         <option key={bank.bankId} value={bank.bankId}>
                           {bank.bankAccountNumber}
@@ -219,7 +224,6 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
             </div>
           </div>
 
-          {/* Right side - Upload image and buttons */}
           <div className="flex flex-col items-center pl-20">
             <div className="w-[350px] h-[450px] border-[2px] border-dashed border-[#163f78] rounded-[5px] flex flex-col items-center justify-center mb-6 relative">
               {imageUrl ? (
