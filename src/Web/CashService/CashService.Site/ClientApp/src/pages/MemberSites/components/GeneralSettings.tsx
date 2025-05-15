@@ -1,5 +1,5 @@
 import React from 'react';
-import { Setting } from '../../../types/memberSite';
+import { Setting } from '../../../services/interfaces/MemberSites/memberSite';
 import { useTranslation } from 'react-i18next';
 
 interface GeneralSettingsProps {

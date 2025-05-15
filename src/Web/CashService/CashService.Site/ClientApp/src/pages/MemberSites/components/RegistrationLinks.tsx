@@ -1,5 +1,5 @@
 import React from 'react';
-import { Domain } from '../../../types/memberSite';
+import { Domain } from '../../../services/interfaces/MemberSites/memberSite';
 import DomainCard from './DomainCard';
 import { useTranslation } from 'react-i18next';
 

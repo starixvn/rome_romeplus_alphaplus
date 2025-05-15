@@ -1,15 +1,16 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-
+import { Contact, MobilePhone } from '../../../services/interfaces/MemberSites';
 interface MessageFormProps {
-  countryCodes: string[];
-  mobileCode: string;
-  mobilePhone: string;
-  lineId: string;
-  telegram: string;
+  contacts: Contact[];
+  mobilePhone: MobilePhone;
   announcement: string;
+  countryCodes: string[];
   loading: boolean;
-  onMessageChange: (messages: { mobileCode?: string; mobilePhone?: string; lineId?: string; telegram?: string; announcement?: string }) => void;
+  onMessageChange: (messages: {
+    mobilePhone?: MobilePhone; 
+    contacts?: Contact[];
+    announcement?: string }) => void;
 }
 
 const MessageFormSkeleton = () => {
@@ -30,12 +31,10 @@ const MessageFormSkeleton = () => {
   );
 };
 const MessageForm: React.FC<MessageFormProps> = ({
-  countryCodes,
-  mobileCode,
+  contacts,
   mobilePhone,
-  lineId,
-  telegram,
   announcement,
+  countryCodes,
   onMessageChange,
   loading
 }) => {
@@ -43,6 +42,21 @@ const MessageForm: React.FC<MessageFormProps> = ({
 
   if (loading) {
     return <MessageFormSkeleton />
+  }
+
+  const handleContactChange = (contact: Contact) => {
+    const newContact = contacts.find(c => c.type === contact.type); 
+    if (newContact) {
+      newContact.value = contact.value;
+    } else {
+      contacts.push(contact);
+    }
+    onMessageChange({ contacts: contacts });
+  }
+
+  const handleMobilePhoneChange = (data: Partial<MobilePhone>) => {
+    const newMobilePhone = { ...mobilePhone, ...data };
+    onMessageChange({ mobilePhone: newMobilePhone });
   }
 
   return (
@@ -57,9 +71,9 @@ const MessageForm: React.FC<MessageFormProps> = ({
               </label>
               <div className="flex items-center h-[32px] max-[768px]:h-[40px]  border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--border-control-focus)] cursor-pointer">
                 <select
-                  value={mobileCode}
+                  value={mobilePhone.code}
                   onChange={(e) =>{
-                    onMessageChange({ mobileCode: e.target.value });
+                    handleMobilePhoneChange({code: e.target.value});
                   }}
                   className="focus:outline-none focus:border-[var(--button-border)] h-[100%]  cursor-pointer mr-[5px] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
                 >
@@ -71,9 +85,9 @@ const MessageForm: React.FC<MessageFormProps> = ({
                   className="focus:outline-none w-[100%] h-[100%] pl-[10px] border-l-[1px] border-[var(--border-control)] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
                   id="mobile"
                   type="text"
-                  value={mobilePhone}
+                  value={mobilePhone.phone}
                   onChange={(e) => {
-                    onMessageChange({ mobilePhone: e.target.value });
+                    handleMobilePhoneChange({phone: e.target.value});
                   }}
                   placeholder="XXXXXXXXX"
                 />
@@ -87,8 +101,8 @@ const MessageForm: React.FC<MessageFormProps> = ({
               <input
                 id="lineId"
                 type="text"
-                value={lineId}
-                onChange={(e) => onMessageChange({ lineId: e.target.value })}
+                value={contacts.find(contact => contact.type === 'line')?.value}
+                onChange={(e) => handleContactChange({ type: 'line', value: e.target.value })}
                 className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--border-control-focus)] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
               />
             </div>
@@ -99,8 +113,8 @@ const MessageForm: React.FC<MessageFormProps> = ({
               <input
                 id="telegram"
                 type="text"
-                value={telegram}
-                onChange={(e) => onMessageChange({ telegram: e.target.value })}
+                value={contacts.find(contact => contact.type === 'telegram')?.value}
+                onChange={(e) => handleContactChange({ type: 'telegram', value: e.target.value })}
                 className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
               />
             </div>

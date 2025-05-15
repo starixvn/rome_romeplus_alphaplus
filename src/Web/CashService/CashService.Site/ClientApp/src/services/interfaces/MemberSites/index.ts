@@ -33,6 +33,25 @@ export interface MemberSiteResponse {
   telegram: string;
 }
 
+export interface Contact {
+  type: string;
+  value: string;
+}
+
+export interface MobilePhone {
+  code: string;
+  phone: string;
+}
+
+export interface MemberSiteManagementData {
+  domains: Domain[];
+  generalSettings: Setting[];
+  mobilePhone: MobilePhone;
+  contacts: Contact[];
+  announcement: string;
+  countryCodes: string[];
+}
+
 export interface ResponseResult {
   code: number;
   message: string;
@@ -41,3 +60,16 @@ export interface ResponseResult {
   isOk: boolean;
   isNotOk: boolean;
 }
+
+export const MemberSiteManagementDataDefault: MemberSiteManagementData = {
+  domains: [],
+  generalSettings: [],
+  mobilePhone: {
+    code: '',
+    phone: ''
+  },
+  contacts: [],
+  announcement: '',
+  countryCodes: []
+};
+

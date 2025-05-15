@@ -1,6 +1,6 @@
 import { api } from '../config/axios';
 import { AxiosError } from 'axios';
-import { MemberSiteResponse, ResponseResult } from '../types/memberSite';
+import { MemberSiteManagementData, MemberSiteResponse, ResponseResult } from '../services/interfaces/MemberSites';
 // Declare the cashServiceAPIUrl property on the Window interface
 declare global {
   interface Window {
@@ -34,16 +34,26 @@ class MemberSitesService {
     throw new Error(message);
   }
 
-  async getMemberSiteData(): Promise<MemberSiteResponse> {
+  async getMemberSiteData(): Promise<MemberSiteManagementData> {
     try {
       const { data } = await api.get<MemberSiteResponse>(this.BASE_PATH);
       const mobile = data.mobile ? data.mobile.split('-') : ['', ''];
-      data.mobileCode = mobile[0];
-      data.mobilePhone = mobile[1];
       const contacts = JSON.parse(data.contacts);
-      data.telegram = contacts.find((contact: any) => contact.platform === 'tele')?.value;
-      data.lineId = contacts.find((contact: any) => contact.platform === 'line')?.value;
-      return data;
+      const memberSiteManagementData: MemberSiteManagementData = {
+        domains: data.domains,
+        generalSettings: data.generalSettings,
+        mobilePhone: {
+          code: mobile[0],
+          phone: mobile[1]
+        },
+        contacts: contacts.map((contact: any) => ({
+          type: contact.type,
+          value: contact.value
+        })),
+        announcement: data.announcement,
+        countryCodes: data.countryCodes
+      };
+      return memberSiteManagementData;
     } catch (error) {
       if (error instanceof AxiosError) {
         // Return default data for specific error cases
@@ -71,19 +81,17 @@ class MemberSitesService {
     }
   }
 
-  private getDefaultMemberSiteData(): MemberSiteResponse {
-    const defualtMemberSiteData: MemberSiteResponse = {
+  private getDefaultMemberSiteData(): MemberSiteManagementData {
+    const defualtMemberSiteData: MemberSiteManagementData = {
       domains: [],
       generalSettings: [],
-      countryCodes: [],
-      countryCode: '',
-      mobile: '',
-      lineId: '',
       announcement: '',
-      mobileCode: '',
-      mobilePhone: '',
-      contacts: '',
-      telegram: ''
+      mobilePhone: {
+        code: '',
+        phone: ''
+      },
+      contacts: [],
+      countryCodes: []
     };
     return defualtMemberSiteData;
   }

@@ -4,7 +4,7 @@ import RegistrationLinks from './components/RegistrationLinks';
 import GeneralSettings from './components/GeneralSettings';
 import MessageForm from './components/MessageForm';
 import { memberSitesService } from '../../services/memberSitesAPI';
-import { Setting, MessageData, MemberSiteResponse } from '../../types/memberSite';
+import { Setting, MessageData, MemberSiteManagementData, MemberSiteManagementDataDefault } from '../../services/interfaces/MemberSites';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../i18n/i18n-memberSite';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
@@ -17,21 +17,8 @@ import TitleComponent from '../../components/TitleComponent';
 const MemberSiteManagement: React.FC = () => {
   const { t } = useTranslation('memberSite');
   useCookieLanguage(i18n);
-  const defaultData = {
-    domains: [],
-    generalSettings: [],
-    countryCodes: [],
-    countryCode: '',
-    mobileCode: '',
-    mobilePhone: '',
-    mobile: '',
-    lineId: '',
-    announcement: '',
-    contacts: '',
-    telegram: ''
-  }
-  const [originalData, setOriginalData] = useState<MemberSiteResponse>(defaultData);
-  const [data, setData] = useState<MemberSiteResponse>(defaultData);
+  const [originalData, setOriginalData] = useState<MemberSiteManagementData>(MemberSiteManagementDataDefault);
+  const [data, setData] = useState<MemberSiteManagementData>(MemberSiteManagementDataDefault);
   const [loading, setLoading] = useState(true);
   const [result, setResult] = useState<{ type: ResultType; text: string } | null>(null);
   const [isDirty, setIsDirty] = useState(false);
@@ -84,11 +71,14 @@ const MemberSiteManagement: React.FC = () => {
   const handleSave = async () => {
     try {
       setIsSaving(true);
-      const response = await memberSitesService.updateMemberSiteData({
-        ...data,
-        mobile: `${data.mobileCode}-${data.mobilePhone}`,
-        contacts: JSON.stringify([{platform: 'tele', value: data.telegram}, {platform: 'line', value: data.lineId}]),
-      });
+      const requestData = {
+        mobile: `${data.mobilePhone.code}-${data.mobilePhone.phone}`,
+        contacts: JSON.stringify(data.contacts),
+        announcement: data.announcement,
+        generalSettings: data.generalSettings,
+        
+      }
+      const response = await memberSitesService.updateMemberSiteData(requestData);
 
 
       setIsDirty(false);
@@ -159,11 +149,9 @@ const MemberSiteManagement: React.FC = () => {
             <hr className='my-[16px] border-[#0000001F]' />
             <div className="">
               <MessageForm
-                telegram={data.telegram}
                 countryCodes={data.countryCodes}
+                contacts={data.contacts}
                 mobilePhone={data.mobilePhone}
-                mobileCode={data.mobileCode}
-                lineId={data.lineId}
                 announcement={data.announcement || ''}
                 onMessageChange={handleMessageChange}
                 loading={loading}
