@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 interface FilterProps {
   recentDeposits: string;
   setRecentDeposits: (value: string) => void;
-  toFilter: string;
-  setToFilter: (value: string) => void;
+  cashAgentTo: string;
+  setCashAgentTo: (value: string) => void;
   searchTerm: string;
   setSearchTerm: (value: string) => void;
 }
@@ -13,8 +13,8 @@ interface FilterProps {
 const Filter: React.FC<FilterProps> = ({
   recentDeposits,
   setRecentDeposits,
-  toFilter,
-  setToFilter,
+  cashAgentTo,
+  setCashAgentTo,
   searchTerm,
   setSearchTerm,
 }) => {
@@ -53,8 +53,8 @@ const Filter: React.FC<FilterProps> = ({
         <label className="block text-sm font-medium text-gray-700 mb-1">{t('filter.to')}</label>
         <div className="select-wrapper relative">
           <select
-            value={toFilter}
-            onChange={(e) => setToFilter(e.target.value)}
+            value={cashAgentTo}
+            onChange={(e) => setCashAgentTo(e.target.value)}
             className="appearance-none block w-full bg-white border border-gray-300 px-3 py-1 pr-8 rounded text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm h-8"
             style={{ height: '32px' }}
           >

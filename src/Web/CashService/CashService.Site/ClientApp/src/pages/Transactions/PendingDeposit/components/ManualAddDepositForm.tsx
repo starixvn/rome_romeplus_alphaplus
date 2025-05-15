@@ -18,7 +18,7 @@ interface ManualAddDepositFormProps {
 const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, onSubmit }) => {
   const { t } = useTranslation('pendingDeposit');
   const [memberLoginNames, setMemberLoginName] = useState<MemberLoginName[]>([]);
-  const [member, setMember] = useState('');
+  const [memberId, setMemberId] = useState<number>(0);
   const [from, setFrom] = useState(12345678);
   const [to, setTo] = useState(1493993018);
   const [depositAmount, setDepositAmount] = useState('');
@@ -32,6 +32,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, on
     const fetchMemberLoginName = async () => {
       const memberLoginNames = await transactionAPI.getMemberLoginName();
       setMemberLoginName(memberLoginNames);
+      setMemberId(memberLoginNames[0]?.custId);
       console.log('memberLoginNames', memberLoginNames);
     };
     fetchMemberLoginName();
@@ -40,7 +41,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, on
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit({
-      memberLoginName: member,
+      memberLoginName: memberId.toString(),
       from,
       to,
       depositAmount: parseFloat(depositAmount),
@@ -162,10 +163,10 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, on
                       <select
                         id="memberLoginName"
                         value={memberLoginNames[0]?.custId}
-                        onChange={(e) => setMember(e.target.value)}
+                        onChange={(e) => setMemberId(parseInt(e.target.value))}
                         className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
                       >
-                        {memberLoginNames.map((name) => (
+                        {memberLoginNames.map((data) => (
                           <option key={name.custId} value={name.custId}>
                             {name.custId}
                           </option>

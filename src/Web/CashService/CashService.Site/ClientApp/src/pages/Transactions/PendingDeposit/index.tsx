@@ -4,7 +4,8 @@ import ManualAddDepositForm from './components/ManualAddDepositForm';
 import Filter from './components/Filter';
 import DataGrid from './components/DataGrid';
 import { DepositAccountInfo } from '../../../services/interfaces/DepositAccountInfo';
-import { getMemberBankAccounts } from '../../../services/pendingDepositAPI';
+import { pendingDepositAPI } from '../../../services/pendingDepositAPI';
+import { transactionAPI } from '../../../services/transactionsHistoryAPI';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../../i18n/i18n-pendingDeposit';
 import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
@@ -15,7 +16,7 @@ const PendingDeposit: React.FC = () => {
   const { t } = useTranslation('pendingDeposit');
   useCookieLanguage(i18n);
   const [recentDeposits, setRecentDeposits] = useState<string>('All');
-  const [toFilter, setToFilter] = useState<string>('All');
+  const [cashAgentTo, setCashAgentTo] = useState<string>('All');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [deposits, setDeposits] = useState<DepositAccountInfo[]>([]);
   const [showManualAddDepositForm, setShowManualAddDepositForm] = useState<boolean>(false);
@@ -23,7 +24,7 @@ const PendingDeposit: React.FC = () => {
 
   useEffect(() => {
     const fetchDeposits = async () => {
-      const deposits = await getMemberBankAccounts();
+      const deposits = await pendingDepositAPI.getMemberBankAccounts();
       setDeposits(deposits);
     };
     fetchDeposits();
@@ -91,8 +92,8 @@ const PendingDeposit: React.FC = () => {
       });
     }
 
-    if (toFilter !== 'All') {
-      result = result.filter(deposit => deposit.to.toString() === toFilter);
+    if (cashAgentTo !== 'All') {
+      result = result.filter(deposit => deposit.to.toString() === cashAgentTo);
     }
     
     if (debouncedSearchTerm.trim()) {
@@ -104,7 +105,7 @@ const PendingDeposit: React.FC = () => {
     }
     
     return result;
-  }, [deposits, recentDeposits, toFilter, debouncedSearchTerm]);
+  }, [deposits, recentDeposits, cashAgentTo, debouncedSearchTerm]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -124,8 +125,8 @@ const PendingDeposit: React.FC = () => {
           <Filter
             recentDeposits={recentDeposits}
             setRecentDeposits={setRecentDeposits}
-            toFilter={toFilter}
-            setToFilter={setToFilter}
+            cashAgentTo={cashAgentTo}
+            setCashAgentTo={setCashAgentTo}
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
           />
