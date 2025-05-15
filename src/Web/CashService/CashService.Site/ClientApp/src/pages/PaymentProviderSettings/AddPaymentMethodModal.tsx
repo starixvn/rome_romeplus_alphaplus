@@ -9,6 +9,7 @@ import { QRCodeCanvas } from 'qrcode.react';
 interface AddPaymentMethodModalProps {
   onClose: () => void;
   providerId: number;
+  orgTelegramAssistantUrl: string;
 }
 
 interface PaymentMethodFormState {
@@ -18,10 +19,11 @@ interface PaymentMethodFormState {
   merchantID: string;
   appSecret: string;
   agreeToTerms: boolean;
-  channelContact: object;
+  telegramAssistantUrl: string;
 }
 
-const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, providerId }) => {
+const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, providerId, orgTelegramAssistantUrl }) => {
+ 
   const { t: tGlobal } = useTranslation('global');
   const { t: tPaymentProviderSettings } = useTranslation('paymentProviderSettings');
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
@@ -36,12 +38,12 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
     merchantID: '',
     appSecret: '',
     agreeToTerms: false,
-    channelContact: {}
+    telegramAssistantUrl: orgTelegramAssistantUrl
   });
 
   const [paymentMethods, setPaymentMethods] = React.useState<PaymentMethod[]>([]);
   const [allMethodsInactive, setAllMethodsInactive] = React.useState<boolean>(false);
-  const [telegramAssistantUrl, setTelegramAssistantUrl] = React.useState<string>('');
+  const [telegramAssistantUrl, setTelegramAssistantUrl] = React.useState<string>(orgTelegramAssistantUrl);
   const [fieldErrors, setFieldErrors] = React.useState({
     selectedTransactionType: '',
     selectedPaymentMethod: '',

@@ -5,6 +5,6 @@ namespace AlphaPlus.CashService.Site.Features.Payments.ViewModels
     public class ProviderSettingsViewModel : PaymentBaseViewModel
     {
         public ProviderModel Provider { get; set; }
-        public IEnumerable<PaymentMethodModel> PaymentMethods { get; set; }
+        public AddPaymentMethodViewModel AddPaymentMethodViewModel { get; set; }
     }
 } 

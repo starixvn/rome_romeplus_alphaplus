@@ -309,7 +309,13 @@ function PaymentProviderSettings() {
         <>
         <div className='text-[var(--text-color-primary)] px-[8px] py-[4px] border-b-[2px] border-[#cfcfcf] border-dotted mb-[4px]'>
           <span className='cursor-pointer inline-flex items-center py-[8px]' onClick={() => {
-              document.location.href = document.referrer;
+              const previousUrl = localStorage.getItem('cashsite_previousUrl');
+              if (previousUrl) {
+                localStorage.removeItem('cashsite_previousUrl');
+                window.location.href = previousUrl;
+              } else {
+                window.history.back();
+              }
             }
           }>
             <IconBack className='w-[18px] h-[18px] fill-[var(--primary-color)] mr-[8px]'  />
@@ -382,7 +388,7 @@ function PaymentProviderSettings() {
                 value={selectedPaymentMethod}
                 onChange={handlePaymentMethodChange}
               >
-                {window.providerSettingsViewModel.PaymentMethods.map((method: any) => (
+                {window.providerSettingsViewModel.AddPaymentMethodViewModel.PaymentMethods.map((method: any) => (
                   <option key={method.Id} value={method.Id}>{method.Id === 0 ? tGlobal('all') : method.Name}</option>
                 ))}
               </select>
@@ -538,7 +544,8 @@ function PaymentProviderSettings() {
       {showAddPaymentMethod && (
         <AddPaymentMethodModal
           providerId={window.providerSettingsViewModel.Provider.Id}
-          onClose={handleCloseAddPaymentMethod}
+          onClose={handleCloseAddPaymentMethod}   
+          orgTelegramAssistantUrl={window.providerSettingsViewModel.AddPaymentMethodViewModel.ChannelContact.Tele}
         />
       )}
 

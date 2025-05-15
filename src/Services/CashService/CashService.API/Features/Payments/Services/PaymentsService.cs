@@ -17,7 +17,6 @@ public interface IPaymentsService
     Task<ResultModel> SetDailyWithdrawalCount(SetDailyWithdrawalCountRequest request);
     Task<IEnumerable<ProviderFeeGroupModel>> GetProviderFees(int providerId);
     Task<ProviderModel> GetProviderById(int custId, int providerId);
-    Task<IEnumerable<PaymentMethodModel>> GetPaymentMethods(int custId, int providerId, int transactionType);
     Task<AddPaymentMethodViewModel> GetAddPaymentMethodInfo(int custId, int providerId, int transactionType);
     Task<IEnumerable<ProviderSettingsModel>> GetProviderSettings(int providerId, int method, int status, int transactionType);
     Task<ResultModel> InsertPaymentMethod(InsertPaymentMethodRequest request);
@@ -299,11 +298,5 @@ public class PaymentsService(
         await repository.ExecuteAsync(criteria);
         await commonService.WriteLogUserRunSP(ActionLogConstants.DeleteBankAccount, request, criteria);
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
-    }
-
-    public async Task<IEnumerable<PaymentMethodModel>> GetPaymentMethods(int custId, int providerId, int transactionType)
-    {
-        var data = await GetAddPaymentMethodInfo(custId, providerId, transactionType);
-        return data.PaymentMethods;
     }
 } 

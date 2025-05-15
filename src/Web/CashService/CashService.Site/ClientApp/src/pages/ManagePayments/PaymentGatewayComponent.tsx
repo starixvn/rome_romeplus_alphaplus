@@ -68,6 +68,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
   const handleSaveDailyLimit = () => {};
 
   const handleEditClick = (provider: PaymentProvider) => {
+    localStorage.setItem('cashsite_previousUrl', window.location.href);
     location.href = 'ManageProviderSettings?id=' + provider.id;
   };
 
