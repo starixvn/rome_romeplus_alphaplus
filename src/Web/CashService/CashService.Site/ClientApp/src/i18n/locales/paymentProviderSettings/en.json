@@ -85,5 +85,7 @@
   "bankName": "Bank name",
   "failedToLoadBanks": "Failed to load banks",
   "minAmountLessThanMinTrans": "Minimum amount cannot be less than minimum transaction amount",
-  "maxAmountGreaterThanMaxTrans": "Maximum amount cannot be greater than maximum transaction amount"
+  "maxAmountGreaterThanMaxTrans": "Maximum amount cannot be greater than maximum transaction amount",
+  "retrySetup": "Retry setup",
+  "updatePaymentMethod": "Update payment method"
 } 

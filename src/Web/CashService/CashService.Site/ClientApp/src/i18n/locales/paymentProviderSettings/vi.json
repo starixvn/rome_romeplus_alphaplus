@@ -85,5 +85,7 @@
   "bankName": "Tên ngân hàng",
   "failedToLoadBanks": "Tải danh sách ngân hàng thất bại",
   "minAmountLessThanMinTrans": "Số tiền tối thiểu không thể nhỏ hơn số tiền tối thiểu của giao dịch",
-  "maxAmountGreaterThanMaxTrans": "Số tiền tối đa không thể lớn hơn số tiền tối đa của giao dịch"
+  "maxAmountGreaterThanMaxTrans": "Số tiền tối đa không thể lớn hơn số tiền tối đa của giao dịch",
+  "retrySetup": "Thử lại cài đặt",
+  "updatePaymentMethod": "Cập nhật phương thức thanh toán"
 }

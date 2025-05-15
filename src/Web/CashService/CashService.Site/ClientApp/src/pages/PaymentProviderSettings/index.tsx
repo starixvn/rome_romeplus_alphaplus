@@ -6,6 +6,7 @@ import { STATUS_OPTIONS, TRANSACTION_TYPES } from '../../constants/paymentConsta
 import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import AddPaymentMethodModal from './AddPaymentMethodModal';
 import BanksPopupModal from './BanksPopupModal';
+import UpdatePaymentMethodModal from './UpdatePaymentMethodModal';
 import { PaymentProvider } from '../../services/interfaces/Payments/PaymentProvider';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { formatNumber, formatInputValue } from '../../utils/numberFormatting';
@@ -31,6 +32,7 @@ function PaymentProviderSettings() {
   const [showFeePopup, setShowFeePopup] = React.useState(false);
   const [showAddPaymentMethod, setShowAddPaymentMethod] = React.useState(false);
   const [showBanksPopup, setShowBanksPopup] = React.useState(false);
+  const [showUpdatePaymentMethod, setShowUpdatePaymentMethod] = React.useState(false);
   const [selectedSetting, setSelectedSetting] = React.useState<any>(null);
   const [providerSettings, setProviderSettings] = React.useState<any[]>([]);
   const [originalSettings, setOriginalSettings] = React.useState<any[]>([]);
@@ -295,6 +297,19 @@ function PaymentProviderSettings() {
     // You might want to add API call here to update the provider status on the server
   };
 
+  // Handler for retrying setup
+  const handleRetrySetup = async (index: number) => {
+    setSelectedSetting(providerSettings[index]);
+    setShowUpdatePaymentMethod(true);
+  };
+
+  const handleCloseUpdatePaymentMethod = () => {
+    setShowUpdatePaymentMethod(false);
+    setSelectedSetting(null);
+  };
+
+  const failStatus = 3;
+
   return (
     <div className="payment-provider-settings h-full">       
       {loading ? (
@@ -461,7 +476,10 @@ function PaymentProviderSettings() {
                 {providerSettings.map((setting, index) => (
                   <tr key={index}>
                     <td className='col-shadown col-payment-method font-semibold'><span className='relative z-3'>{setting.methodName}</span></td>
-                    <td><span className='rounded-[20px] font-semibold px-[10px] py-[3px]  bg-[#AFE9D7]'>{tPaymentProviderSettings(`status-${setting.status}`)}</span></td>
+                    <td>
+                      <span className='rounded-[20px] font-semibold px-[10px] py-[3px]  bg-[#AFE9D7]'>{tPaymentProviderSettings(`status-${setting.status}`)}</span>
+                      {setting.status === failStatus && <button className='rounded-[20px] font-semibold px-[10px] py-[3px]  bg-[#AFE9D7]' onClick={() => handleRetrySetup(index)}>{tPaymentProviderSettings('retrySetup')}</button>}
+                    </td>
                     <td className='font-semibold'>{tPaymentProviderSettings(`transaction-${setting.transactionType}`)}</td>
                     <td>
                       <div className='flex flex-col'>
@@ -502,7 +520,7 @@ function PaymentProviderSettings() {
                       </div>
                     </td>
                     <td>
-                      {setting.bankRequired ? (
+                      {setting.status === failStatus ? <>-</> : setting.bankRequired ? (
                         <button 
                           className="rounded-[5px] text-[var(--button-text-cancel)] p-[8px] text-[12px] font-bold border-[1px] border-[var(--button-border)] ml-auto mt-auto bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] hover:border-[var(--button-border-cancel-hover)] cursor-pointer leading-[14px]"
                           onClick={() => handleViewBanks(setting)}
@@ -554,6 +572,16 @@ function PaymentProviderSettings() {
         <BanksPopupModal
           onClose={handleCloseBanksPopup} 
           transactionType={selectedSetting.transactionType}
+        />
+      )}
+
+      {/* Update Payment Method Modal */}
+      {showUpdatePaymentMethod && selectedSetting && (
+        <UpdatePaymentMethodModal
+          providerId={window.providerSettingsViewModel.Provider.Id}
+          onClose={handleCloseUpdatePaymentMethod}
+          orgTelegramAssistantUrl={window.providerSettingsViewModel.AddPaymentMethodViewModel.ChannelContact.Tele}
+          existingPaymentMethod={selectedSetting}
         />
       )}
     </div>

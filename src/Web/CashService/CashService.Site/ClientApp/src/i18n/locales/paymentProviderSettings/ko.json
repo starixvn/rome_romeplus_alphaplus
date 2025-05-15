@@ -85,5 +85,7 @@
   "bankName": "은행명",
   "failedToLoadBanks": "은행 로딩 실패",
   "minAmountLessThanMinTrans": "오류가 발생했습니다",
-  "maxAmountGreaterThanMaxTrans": "오류가 발생했습니다"
+  "maxAmountGreaterThanMaxTrans": "오류가 발생했습니다",
+  "retrySetup": "설정 재시도",
+  "updatePaymentMethod": "결제 방법 업데이트"
 }
