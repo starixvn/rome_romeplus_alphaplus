@@ -3,7 +3,7 @@ using AlphaPlus.CashService.API.Features.Shared.DTOs;
 using AlphaPlus.CashService.API.Features.Shared.Request;
 using Fanex.Data.Repository;
 
-namespace AlphaPlus.CashService.API.Services;
+namespace AlphaPlus.CashService.API.Features.Shared.Services;
 
 public interface ICommonService
 {

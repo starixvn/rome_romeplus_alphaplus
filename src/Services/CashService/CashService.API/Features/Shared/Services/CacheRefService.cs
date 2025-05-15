@@ -1,6 +1,6 @@
 using Fanex.RemotingRef;
 
-namespace AlphaPlus.CashService.API.Services;
+namespace AlphaPlus.CashService.API.Features.Shared.Services;
 
 public interface ICacheRefService
 {

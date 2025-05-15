@@ -7,8 +7,9 @@ using AlphaPlus.CashService.API.Features.Payments.DTOs;
 using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Constants;
 using AlphaPlus.CashService.API.Features.Payments.ViewModels;
+using AlphaPlus.CashService.API.Features.Shared.Services;
 
-namespace AlphaPlus.CashService.API.Services;
+namespace AlphaPlus.CashService.API.Features.Payments.Services;
 
 public interface IPaymentsService
 {

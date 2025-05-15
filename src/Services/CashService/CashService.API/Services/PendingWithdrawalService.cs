@@ -1,5 +1,6 @@
 using AlphaPlus.CashService.API.Criteria.PendingWithdrawal;
 using AlphaPlus.CashService.API.Features.Shared.Models;
+using AlphaPlus.CashService.API.Features.Shared.Services;
 using AlphaPlus.CashService.API.Models.PendingCommons;
 using Fanex.Data.Repository;
 
