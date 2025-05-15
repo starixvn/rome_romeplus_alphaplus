@@ -477,8 +477,14 @@ function PaymentProviderSettings() {
                   <tr key={index}>
                     <td className='col-shadown col-payment-method font-semibold'><span className='relative z-3'>{setting.methodName}</span></td>
                     <td>
-                      <span className='rounded-[20px] font-semibold px-[10px] py-[3px]  bg-[#AFE9D7]'>{tPaymentProviderSettings(`status-${setting.status}`)}</span>
-                      {setting.status === failStatus && <button className='rounded-[20px] font-semibold px-[10px] py-[3px]  bg-[#AFE9D7]' onClick={() => handleRetrySetup(index)}>{tPaymentProviderSettings('retrySetup')}</button>}
+                      <span className={`rounded-[20px] font-semibold px-[10px] py-[3px] ${
+                        setting.status === 1 ? 'bg-[#90d3ff]' :
+                        setting.status === 2 ? 'bg-[#D4E7D9]' :
+                        setting.status === 3 ? 'bg-[#FBD8D8]' :
+                        setting.status === 4 ? 'bg-[#fcae7b]' :
+                        'bg-[#E0E0E0]'
+                      }`}>{tPaymentProviderSettings(`status-${setting.status}`)}</span>
+                      {setting.status === failStatus && <><br /><span className='inline-block mt-[4px] cursor-pointer text-[var(--text-color-primary)] font-semibold underline' onClick={() => handleRetrySetup(index)}>{tPaymentProviderSettings('retrySetup')}</span></>}
                     </td>
                     <td className='font-semibold'>{tPaymentProviderSettings(`transaction-${setting.transactionType}`)}</td>
                     <td>

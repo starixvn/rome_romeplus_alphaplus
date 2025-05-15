@@ -151,7 +151,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
           </button>
         </div>
         <form onSubmit={handleSubmit}>
-          <div className="modal-body"> 
+          <div className="modal-body max-h-[70vh] overflow-y-auto"> 
             <div>
               <h4 className="text-[14px] pt-[16px] text-[var(--text-color-primary)] font-semibold pb-[4px]">{tPaymentProviderSettings('addPaymentMethodStep1')}</h4>
               <div className='flex gap-[10px]'>
@@ -205,7 +205,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
               <h4 className="text-[14px] pt-[16px] text-[var(--text-color-primary)] font-semibold pb-[4px]">{tPaymentProviderSettings('addPaymentMethodStep2')}</h4>
               <p className='mt-[8px] text-[12px]'>{tPaymentProviderSettings('clickLinkOrScanQRCode')}</p>
               <a href={telegramAssistantUrl} className='text-[12px] text-[var(--text-color-primary)] font-semibold' target="_blank" rel="noopener noreferrer">{telegramAssistantUrl}</a>
-              <div style={{ marginTop: '16px', textAlign: 'center' }}>
+              <div className="mt-[16px] flex justify-center">
                 {telegramAssistantUrl && <QRCodeCanvas value={telegramAssistantUrl} size={128} />}
               </div>
             </div>

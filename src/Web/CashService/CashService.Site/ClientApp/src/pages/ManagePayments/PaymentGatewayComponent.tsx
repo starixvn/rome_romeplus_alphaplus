@@ -174,15 +174,15 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
                           <td>{provider.name}</td>
                           <td>
                             <button
-                              className="font-bold text-[12px] tracking-[0.12px] leading-[30px] px-[16px] rounded-[4px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] text-[var(--button-text)] cursor-pointer max-[768px]:text-[16px] "
+                              className="font-bold text-[12px] py-[4px] px-[16px] rounded-[4px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] text-[var(--button-text)] cursor-pointer max-[768px]:text-[16px] "
                               onClick={() => handleFeeClick(provider)}
                             >
                               {tManagePayments('fee')}
                             </button>
                           </td>
                           <td>
-                            <span
-                              className={`rounded-[20px] px-[10px] py-[3px] ${provider.status === 1 ? ' bg-[#D4E7D9] ' : ' bg-[#FBD8D8]'}`}
+                          <span
+                              className={`rounded-[20px] px-[10px] py-[3px] ${provider.status === 0 ? 'bg-[#FBD8D8]' : provider.status === 1 ? 'bg-[#D4E7D9]': 'bg-[#E0E0E0]'}`}
                             >
                               {getStatusText(provider.status)}
                             </span>
