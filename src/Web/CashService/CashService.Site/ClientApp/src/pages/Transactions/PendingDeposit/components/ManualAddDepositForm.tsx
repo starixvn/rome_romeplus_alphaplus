@@ -162,13 +162,13 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, on
                     <div className="relative">
                       <select
                         id="memberLoginName"
-                        value={memberLoginNames[0]?.custId}
+                        value={memberId}
                         onChange={(e) => setMemberId(parseInt(e.target.value))}
                         className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
                       >
                         {memberLoginNames.map((data) => (
-                          <option key={name.custId} value={name.custId}>
-                            {name.custId}
+                          <option key={data.custId} value={data.custId}>
+                            {data.username}
                           </option>
                         ))}
                       </select>
