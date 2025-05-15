@@ -87,5 +87,6 @@
   "minAmountLessThanMinTrans": "最小金額不能小於最小交易金額",
   "maxAmountGreaterThanMaxTrans": "最大金額不能大於最大交易金額",
   "retrySetup": "重試設置",
-  "updatePaymentMethod": "更新支付方式"
+  "updatePaymentMethod": "更新支付方式",
+  "failToSetupPaymentMethodWarning": "發生錯誤。請重試或直接聯繫提供商尋求幫助。"
 }

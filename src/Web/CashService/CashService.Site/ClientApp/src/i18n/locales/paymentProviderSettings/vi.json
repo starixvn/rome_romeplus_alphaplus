@@ -87,5 +87,6 @@
   "minAmountLessThanMinTrans": "Số tiền tối thiểu không thể nhỏ hơn số tiền tối thiểu của giao dịch",
   "maxAmountGreaterThanMaxTrans": "Số tiền tối đa không thể lớn hơn số tiền tối đa của giao dịch",
   "retrySetup": "Thử lại cài đặt",
-  "updatePaymentMethod": "Cập nhật phương thức thanh toán"
+  "updatePaymentMethod": "Cập nhật phương thức thanh toán",
+  "failToSetupPaymentMethodWarning": "Điều gì đó đã sai. Vui lòng thử lại hoặc liên hệ nhà cung cấp trực tiếp để được hỗ trợ"
 }

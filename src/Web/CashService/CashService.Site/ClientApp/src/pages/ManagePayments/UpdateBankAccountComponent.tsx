@@ -99,7 +99,10 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
           var countryCode = m.includes('-') ?  fetchedBankAccount.mobile.split('-')[0] : '';
           var mobile = m.includes('-') ? fetchedBankAccount.mobile.split('-')[1] : m;
           setMobile(mobile);
-          setCountryCode(countryCode);
+
+          if(countryCodes.includes(countryCode)) {
+            setCountryCode(countryCode);
+          }
         }
       } catch (err) {
         setError(tManagePayments('failedToLoadBankAccount'));
@@ -113,6 +116,10 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
       try {
         const prefixes = await baseAPI.getCountryCodes();
         setCountryCodes(prefixes);
+
+        if (!countryCode && prefixes.length > 0) {
+          setCountryCode(prefixes[0]);
+        }
       } catch (err) {
         console.error('Error fetching mobile prefixes:', err);
       }

@@ -87,5 +87,6 @@
   "minAmountLessThanMinTrans": "最小金額は最小取引金額より小さくなります",
   "maxAmountGreaterThanMaxTrans": "最大金額は最大取引金額より大きくなります",
   "retrySetup": "設定を再試行",
-  "updatePaymentMethod": "支払い方法を更新"
+  "updatePaymentMethod": "支払い方法を更新",
+  "failToSetupPaymentMethodWarning": "何かがおかしいです。もう一度試してください、またはプロバイダーに直接連絡してください"
 }

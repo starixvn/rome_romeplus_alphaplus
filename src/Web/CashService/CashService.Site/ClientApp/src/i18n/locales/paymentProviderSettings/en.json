@@ -87,5 +87,6 @@
   "minAmountLessThanMinTrans": "Minimum amount cannot be less than minimum transaction amount",
   "maxAmountGreaterThanMaxTrans": "Maximum amount cannot be greater than maximum transaction amount",
   "retrySetup": "Retry setup",
-  "updatePaymentMethod": "Update payment method"
+  "updatePaymentMethod": "Update payment method",
+  "failToSetupPaymentMethodWarning": "Something went wrong. Please try again or contact the provider directly for assistance."
 } 

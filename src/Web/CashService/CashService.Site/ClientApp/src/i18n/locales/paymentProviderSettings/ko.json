@@ -87,5 +87,6 @@
   "minAmountLessThanMinTrans": "오류가 발생했습니다",
   "maxAmountGreaterThanMaxTrans": "오류가 발생했습니다",
   "retrySetup": "설정 재시도",
-  "updatePaymentMethod": "결제 방법 업데이트"
+  "updatePaymentMethod": "결제 방법 업데이트",
+  "failToSetupPaymentMethodWarning": "문제가 발생했습니다. 다시 시도하거나 제공업체에 직접 문의하세요"
 }
