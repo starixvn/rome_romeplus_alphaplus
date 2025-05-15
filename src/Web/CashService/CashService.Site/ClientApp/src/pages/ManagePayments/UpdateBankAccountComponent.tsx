@@ -445,37 +445,39 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 </div>
               </div>
 
-              <div className="mb-[8px]">
-                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('mobile')}<span className='text-[#E25757]'>*</span></label>
-                <div className="flex items-center h-[32px] max-[768px]:h-[40px] w-[470px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer">
-                  <select
-                    className={`focus:outline-none focus:border-[var(--button-border)] h-[100%] cursor-pointer mr-[5px] ${fieldErrors.countryCode ? 'border-[#FE0000]' : ''}`}
-                    value={countryCode}
-                    onChange={(e) => {
-                      setCountryCode(e.target.value);
-                    }}
-                    style={{ maxWidth: '120px' }}
-                  >
-                    {countryCodes.map((code) => (
-                      <option key={code} value={code} selected={code === countryCode}>
-                        +{code}
-                      </option>
-                    ))}                
-                  </select>
-                  <input
-                    type="text"
-                    className={`focus:outline-none w-[100%] h-[100%] pl-[10px] border-l-[1px] ${fieldErrors.mobile ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
-                    value={mobile}
-                    onChange={(e) => {
-                      setMobile(e.target.value);
-                    }}
-                    placeholder={tManagePayments('enterMobileNumber')}
-                  />
+              {promptPay && (
+                <div className="mb-[8px]">
+                  <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('mobile')}<span className='text-[#E25757]'>*</span></label>
+                  <div className="flex items-center h-[32px] max-[768px]:h-[40px] w-[470px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer">
+                    <select
+                      className={`focus:outline-none focus:border-[var(--button-border)] h-[100%] cursor-pointer mr-[5px] ${fieldErrors.countryCode ? 'border-[#FE0000]' : ''}`}
+                      value={countryCode}
+                      onChange={(e) => {
+                        setCountryCode(e.target.value);
+                      }}
+                      style={{ maxWidth: '120px' }}
+                    >
+                      {countryCodes.map((code) => (
+                        <option key={code} value={code} selected={code === countryCode}>
+                          +{code}
+                        </option>
+                      ))}                
+                    </select>
+                    <input
+                      type="text"
+                      className={`focus:outline-none w-[100%] h-[100%] pl-[10px] border-l-[1px] ${fieldErrors.mobile ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
+                      value={mobile}
+                      onChange={(e) => {
+                        setMobile(e.target.value);
+                      }}
+                      placeholder={tManagePayments('enterMobileNumber')}
+                    />
+                  </div>
+                  {(fieldErrors.mobile || fieldErrors.countryCode) && (
+                    <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.mobile || fieldErrors.countryCode}</div>
+                  )}
                 </div>
-                {(fieldErrors.mobile || fieldErrors.countryCode) && (
-                  <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.mobile || fieldErrors.countryCode}</div>
-                )}
-              </div>
+              )}
             </div>
             <div className="flex justify-end py-[8px] mt-[8px]">
               <button

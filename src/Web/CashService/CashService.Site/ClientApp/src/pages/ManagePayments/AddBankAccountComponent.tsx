@@ -424,35 +424,36 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   </div>
                 </div>
 
-                
-                <div className="mb-3">
-                  <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('mobile')}<span className='text-[#E25757]'>*</span></label>
-                  <div className="flex items-center h-[32px] max-[768px]:h-[40px] w-[470px] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer">
-                    <select
-                      className={`focus:outline-none focus:border-[var(--button-border)] h-[100%] cursor-pointer mr-[5px] ${fieldErrors.countryCode ? 'border-[#FE0000]' : ''}`}
-                      value={countryCode}
-                      onChange={(e) => setCountryCode(e.target.value)}
-                      style={{ maxWidth: '120px' }}
-                    >
-                      {countryCodes.map((code) => (
-                        <option key={code} value={code}>
-                          +{code}
-                        </option>
-                      ))}
-                    </select>
-                    <input
-                      type="text"
-                      className={`focus:outline-none w-[100%] h-[100%] pl-[10px] border-l-[1px] ${fieldErrors.mobile ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
-                      value={mobile}
-                      onChange={(e) => setMobile(e.target.value)}
-                      placeholder={tManagePayments('enterMobileNumber')}
-                      maxLength={50}
-                    />
+                {promptPay && (
+                  <div className="mb-3">
+                    <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('mobile')}<span className='text-[#E25757]'>*</span></label>
+                    <div className="flex items-center h-[32px] max-[768px]:h-[40px] w-[470px] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer">
+                      <select
+                        className={`focus:outline-none focus:border-[var(--button-border)] h-[100%] cursor-pointer mr-[5px] ${fieldErrors.countryCode ? 'border-[#FE0000]' : ''}`}
+                        value={countryCode}
+                        onChange={(e) => setCountryCode(e.target.value)}
+                        style={{ maxWidth: '120px' }}
+                      >
+                        {countryCodes.map((code) => (
+                          <option key={code} value={code}>
+                            +{code}
+                          </option>
+                        ))}
+                      </select>
+                      <input
+                        type="text"
+                        className={`focus:outline-none w-[100%] h-[100%] pl-[10px] border-l-[1px] ${fieldErrors.mobile ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
+                        value={mobile}
+                        onChange={(e) => setMobile(e.target.value)}
+                        placeholder={tManagePayments('enterMobileNumber')}
+                        maxLength={50}
+                      />
+                    </div>
+                    {(fieldErrors.mobile || fieldErrors.countryCode) && (
+                      <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.mobile || fieldErrors.countryCode}</div>
+                    )}
                   </div>
-                  {(fieldErrors.mobile || fieldErrors.countryCode) && (
-                    <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.mobile || fieldErrors.countryCode}</div>
-                  )}
-                </div>
+                )}
               </div>
               <div className="flex justify-end py-[8px] mt-[8px]">            
                 <button
