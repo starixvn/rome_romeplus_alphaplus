@@ -83,7 +83,7 @@ public class CommonServiceTests
     {
         // Arrange
         var actionId = 1;
-        var request = new BaseActionRequest();
+        var request = new BaseActionRequest() { SiteDB=1 };
         var command = new BaseActionCommand(
             custId: request.ActorId,
             subAccId: 0,
@@ -107,7 +107,7 @@ public class CommonServiceTests
     {
         // Arrange
         var actionId = 1;
-        var request = new BaseActionRequest();
+        var request = new BaseActionRequest() { SiteDB=1 };
         var command = new BaseActionCommand(
             custId: request.ActorId,
             subAccId: 0,
