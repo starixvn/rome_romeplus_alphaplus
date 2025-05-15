@@ -27,10 +27,10 @@ public static class PendingDepositEndpoints
 
         group.MapGet("/limit-amount", async ([FromQuery] int agentId
             , [FromQuery] int custId
-            , [FromQuery] string siteDbIp
+            , [FromQuery] int custDbGroupId
             , IPendingDepositService service) =>
         {
-            var creditAmt = await service.GetLimitAmtDepositAsync(agentId, custId, siteDbIp);
+            var creditAmt = await service.GetLimitAmtDepositAsync(agentId, custId, custDbGroupId);
             return Results.Ok(creditAmt);
         })
         .WithName("GetLimitAmtDepositAsync")

@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import { MemberLoginName } from '../../../../services/interfaces/Transactions/MemberLoginName';
 import { BankInfo } from '../../../../services/interfaces/Transactions/BankInfo';
+import { CreditAmount } from '../../../../services/interfaces/Transactions/CreditAmount';
+import pendingDepositAPI from '../../../../services/pendingDepositAPI';
 interface ManualAddDepositFormProps {
   cashAgentOptions: BankInfo[];
   onClose: () => void;
@@ -15,6 +17,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
   const [paymentFrom, setPaymentFrom] = useState('');
   const [paymentTo, setPaymentTo] = useState(cashAgentOptions[0].bankAccountNumber);
   const [cashMemberOptions, setCashMemberOptions] = useState<BankInfo[]>([]);
+  const [creditAmount, setCreditAmount] = useState<CreditAmount>({ minAmt: 0, maxAmt: 0 });
   const [depositAmount, setDepositAmount] = useState('');
   const [remarks, setRemarks] = useState('');
   const [image, setImage] = useState<File | null>(null);
@@ -35,8 +38,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
   useEffect(() => {
     const fetchCashMemberBankInfo = async () => {
       if (memberId) {
-        //const bankInfo = await transactionAPI.getCashMemberBankInfo(memberId);
-        const bankInfo = await transactionAPI.getCashMemberBankInfo(1176093);
+        const bankInfo = await transactionAPI.getCashMemberBankInfo(memberId);
         setCashMemberOptions(bankInfo);
         if (bankInfo.length > 0) {
           setPaymentFrom(bankInfo[0].bankAccountNumber);
@@ -44,6 +46,16 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
       }
     };
     fetchCashMemberBankInfo();
+  }, [memberId]);
+
+  useEffect(() => {
+    const fetchCreditLimitAmount = async () => {
+      if (memberId) {
+        const creditAmount = await pendingDepositAPI.getLimitAmtDeposit(memberId);
+        setCreditAmount(creditAmount);
+      }
+    };
+    fetchCreditLimitAmount();
   }, [memberId]);
 
   const handleMemberChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -57,6 +69,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
 
   console.log('image', image);
   console.log('imageBase64', imageBase64);
+  console.log('creditAmount', creditAmount);
 
   const convertToBase64 = (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {

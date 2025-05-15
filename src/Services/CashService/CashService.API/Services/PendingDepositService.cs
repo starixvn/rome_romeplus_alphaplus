@@ -10,7 +10,7 @@ public interface IPendingDepositService
 {
     Task<IEnumerable<BankAccountInfo>> GetMemberBankAccountInfo();
 
-    Task<CreditAmount> GetLimitAmtDepositAsync(int agentId, int custId, string siteDbIp = "");
+    Task<CreditAmount> GetLimitAmtDepositAsync(int agentId, int custId, int custDbGroupId);
 
     Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int custId, string siteDbIp = "");
 
@@ -33,7 +33,7 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
         return await dynamicRepository.GetAsync<decimal>(criteria);
     }
 
-    public async Task<CreditAmount> GetLimitAmtDepositAsync(int agentId, int custId, string siteDbIp)
+    public async Task<CreditAmount> GetLimitAmtDepositAsync(int agentId, int custId, int custDbGroupId)
     {
         var acCumCreditReturn = await GetAccumulateCreditAsync(agentId);
 
@@ -42,7 +42,7 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
             CustId = custId,
             AccumCreditReturn = acCumCreditReturn
         };
-        return await dynamicRepository.GetAsync<CreditAmount>(criteria, siteDbIp);
+        return await dynamicRepository.GetAsync<CreditAmount>(criteria);
     }
 
     public async Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int custId, string siteDbIp = "")
