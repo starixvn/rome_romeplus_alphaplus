@@ -132,7 +132,7 @@
   "apiKey": "API Key",
   "merchantID": "ID người bán",
   "createdBy": "Tạo bởi",
-  "pleaseSelectDepositType": "Vui lòng chọn loại nạp tiền",
+  "pleaseSelectTransactionType": "Vui lòng chọn loại giao dịch",
   "failedToLoadBankAccount": "Không tải được tài khoản ngân hàng",
   "pleaseSelectDepositMatchingMode": "Vui lòng chọn chế độ khớp nạp tiền",
   "confirmDeleteBankAccount": "Bạn có chắc chắn muốn xóa tài khoản ngân hàng này không?",

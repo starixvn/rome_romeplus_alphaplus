@@ -42,9 +42,7 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
           </button>
         </div>
         <div className="mb-[12px]">
-          {isLoading ? (
-            <Loading />
-          ) : (
+          {isLoading ? (<Loading />) : (
             <>
               <div className="text-[12px] leading-[14px]">
                 <div>

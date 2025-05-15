@@ -132,7 +132,7 @@
   "apiKey": "API Key",
   "merchantID": "รหัสร้านค้า",
   "createdBy": "สร้างโดย",
-  "pleaseSelectDepositType": "กรุณาเลือกประเภทการฝาก",
+  "pleaseSelectTransactionType": "กรุณาเลือกประเภทการทำธุรกรรม",
   "failedToLoadBankAccount": "ไม่สามารถโหลดบัญชีธนาคารได้",
   "pleaseSelectDepositMatchingMode": "กรุณาเลือกโหมดการจับคู่การฝาก",
   "confirmDeleteBankAccount": "คุณแน่ใจหรือต้องการลบบัญชีธนาคารนี้?",

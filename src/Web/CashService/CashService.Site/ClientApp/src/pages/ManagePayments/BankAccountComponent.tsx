@@ -271,12 +271,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
               <div className=" h-full flex flex-col">
                 <div className="bg-[#ffffff] px-[14px] py-[8px]">
                 <div className='pt-[14px] bg-[#ffffff]'>                   
-                  {error && (
-                    <ResultMessageComponent type="error" message={error} />
-                  )}
-                  {successMessage && (
-                    <ResultMessageComponent type="success" message={successMessage} />
-                  )}
+                  {error && (<ResultMessageComponent type="error" message={error} />)}
+                  {successMessage && (<ResultMessageComponent type="success" message={successMessage} />)}
                 </div>
                   <div className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px] ">{tManagePayments('manageBankAccountAndLimits')}</div>
                   <div className="text-[12px] leading-[14px]">{tManagePayments('addBankAccountAndLimit')}</div>

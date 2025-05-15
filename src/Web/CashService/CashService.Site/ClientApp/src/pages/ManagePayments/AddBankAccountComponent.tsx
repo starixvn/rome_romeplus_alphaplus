@@ -58,7 +58,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
     selectedBank: '',
     mobile: '',
     countryCode: '',
-    selectedDepositType: '',
+    selectedTransactionType: '',
     selectedDepositMatchingMode: ''
   });
 
@@ -122,7 +122,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
       selectedBank: !selectedBank ? tGlobal('pleaseFillField') : '',
       mobile: promptPay && !mobile ? tGlobal('pleaseFillField') : '',
       countryCode: promptPay && !countryCode ? tGlobal('pleaseFillField') : '',
-      selectedDepositType: !selectedManualDeposit && !selectedAutoDeposit ? tManagePayments('pleaseSelectDepositType') : '',
+      selectedTransactionType: !selectedManualDeposit && !selectedAutoDeposit && !selectedManualWithdrawal ? tManagePayments('pleaseSelectTransactionType') : '',
       selectedDepositMatchingMode: selectedAutoDeposit && !depositMatchingMode ? tManagePayments('pleaseSelectDepositMatchingMode') : ''
     };
     setFieldErrors(errors);
@@ -231,9 +231,9 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
           <div className="mb-[8px]">
             <h2 className="flex items-center font-bold text-[15px] ">{tManagePayments('bankManagement')}</h2>            
           </div>
-          {isLoadingBanks ? (
-            <Loading />
-          ) : (
+          {isLoadingBanks 
+            ? ( <Loading /> ) 
+            : (
             <form onSubmit={handleSubmit} className='bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]'>
               <div className="modal-body">
                 {error && (<ResultMessageComponent message={error} type='error' />)}
@@ -275,13 +275,13 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                       disable={status === '0'}
                     />
                   </div>
-                  {fieldErrors.selectedBank && (
-                    <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.selectedBank}</div>
-                  )}
+                  {fieldErrors.selectedBank && (<div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.selectedBank}</div>)}
                 </div>
 
                 <div className=''>
                   <div className="pb-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px]">{tManagePayments('transactionType')}<span className='text-[#E25757]'>*</span></div>
+                  {fieldErrors.selectedTransactionType && (<div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.selectedTransactionType}</div> )}
+                    
                   <div className='inline-block border-[1px] border-[var(--border-control)] rounded-[4px] px-[16px] pb-[16px] bg-[#f8f8f8] mb-[8px]'>
                   {hasDepositTransactionType(selectedBank, banks) && (
                     <div className="mb-3">
@@ -310,9 +310,6 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                           </button>
                         )}
                       </div>
-                      {fieldErrors.selectedDepositType && (
-                        <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.selectedDepositType}</div>
-                      )}
                     </div>
                   )}
 

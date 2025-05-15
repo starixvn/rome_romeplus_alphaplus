@@ -138,12 +138,8 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
                 {tManagePayments('managePaymentProviders')}
               </div>
             </div>
-            {loading ? (
-              <Loading />
-            ) : error ? (
-              <ResultMessageComponent type="error" message={error} />
-              
-            ) : (
+            {loading ? (<Loading />) 
+              : error ? (<ResultMessageComponent type="error" message={error} />) : (
               <div className="table-fixed-header">
                 <table className="text-[12px] max-[768px]:text-[16px] w-full border-collapse border border-[#0000001f] border-t-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
                   <thead>
