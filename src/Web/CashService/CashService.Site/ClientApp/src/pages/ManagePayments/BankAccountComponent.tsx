@@ -235,8 +235,17 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
       ) : (
         <>
          <div className="p-[12px] h-[calc(100%-250px)]">
+          <TitleCommon title={tManagePayments('managePayments')} Tippy >
+            <div>
+              <div>
+                <i className="bi bi-info-circle fs-4 ico-info inline-elm"></i> 
+                {tManagePayments('managePayments')}
+              </div>
+              <div>• {tManagePayments('managePaymentsTip1')}</div>
+              <div>• {tManagePayments('managePaymentsTip2')}</div>
+            </div>
+          </TitleCommon>
           
-          <TitleCommon title={tManagePayments('managePayments')} Tippy={false} />
           <div className="card h-[calc(100%-40px)] flex flex-col">
             <div className="card-header">
               <ul className="flex">
