@@ -114,6 +114,7 @@ export const transactionAPI = {
         `GetCashAgentBankInfo?transactionType=${transactionType}`,
         { method: 'GET' }
       );
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error('Error fetching cash agent bank info:', error);

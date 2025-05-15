@@ -1,4 +1,4 @@
 export interface MemberLoginName {
-  id: number;
-  loginName: string;
+  custId: number;
+  username: string;
 }

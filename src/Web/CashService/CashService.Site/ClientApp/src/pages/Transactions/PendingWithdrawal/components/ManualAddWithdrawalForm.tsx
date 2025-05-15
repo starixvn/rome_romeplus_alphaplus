@@ -128,8 +128,8 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                     >
                       <option value="">{t('manualWithdrawalForm.selectMember')}</option>
                       {memberLoginNames.map((name) => (
-                        <option key={name.id} value={name.id}>
-                          {name.loginName}
+                        <option key={name.custId} value={name.custId}>
+                          {name.username}
                         </option>
                       ))}
                     </select>
