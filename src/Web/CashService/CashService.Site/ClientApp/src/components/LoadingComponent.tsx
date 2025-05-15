@@ -5,7 +5,7 @@ interface LoadingProps {
   className?: string;
 }
 
-export const Loading: React.FC<LoadingProps> = ({ 
+export const LoadingComponent: React.FC<LoadingProps> = ({ 
   size = 'md', 
   className = '' 
 }) => {
@@ -22,4 +22,4 @@ export const Loading: React.FC<LoadingProps> = ({
   );
 };
 
-export default Loading;
+export default LoadingComponent;

@@ -12,9 +12,9 @@ import {
 import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { IconCheck, IconError } from '../../components/Icons';
 import { baseAPI } from '../../services/commonAPI';
-import CustomDropdown, { DropdownOption } from '../../components/customDropdownComponent';
-import BackCommon from '../../components/BackComponent';
+import CustomDropdown, { DropdownOption } from '../../components/DropdownComponent';
 import Loading from '../../components/LoadingComponent';
+import BackComponent from '../../components/BackComponent';
 
 interface AddBankAccountComponentProps {
   onClose: () => void;
@@ -229,7 +229,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
     <div className="p-[12px]" tabIndex={-1}>
       <div className="modal-dialog">
         <div className="modal-content max-w-[1200px]">
-          <BackCommon onClose={onClose} />
+          <BackComponent onClose={onClose} />
           <div className="mb-[8px]">
             <h2 className="flex items-center font-bold text-[15px] ">{tManagePayments('bankManagement')}</h2>            
           </div>

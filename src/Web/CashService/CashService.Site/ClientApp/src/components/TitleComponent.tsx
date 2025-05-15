@@ -2,13 +2,13 @@ import Tippy from "@tippyjs/react";
 import { IconInfo } from "./Icons";
 import { ReactNode } from 'react';
 
-interface TitleCommonProps {
+interface TitleComponentProps {
   title: string;
   Tippy?: boolean;
   children?: ReactNode;
 }
 
-export default function TitleCommon({ title, Tippy: showTippy, children }: TitleCommonProps) {
+export default function TitleComponent({ title, Tippy: showTippy, children }: TitleComponentProps) {
     return (
       <>
         <div className="mb-[8px]">

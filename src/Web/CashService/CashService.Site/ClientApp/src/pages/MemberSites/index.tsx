@@ -8,11 +8,11 @@ import { Setting, MessageData, MemberSiteResponse } from '../../types/memberSite
 import { useTranslation } from 'react-i18next';
 import i18n from '../../i18n/i18n-memberSite';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
-import { ResultMessage, ResultType } from '../../components/ResultMessageComponent';
+import { ResultMessageComponent, ResultType } from '../../components/ResultMessageComponent';
 import '../../styles/common.css';
 import '../../styles/global.scss';
 
-import TitleCommon from '../../components/TitleComponent';
+import TitleComponent from '../../components/TitleComponent';
 
 const MemberSiteManagement: React.FC = () => {
   const { t } = useTranslation('memberSite');
@@ -128,12 +128,12 @@ const MemberSiteManagement: React.FC = () => {
     >
       <div className="p-[12px]">
         <div className='mb-[8px]'>
-          <TitleCommon title={t('title')} Tippy={false} />
+          <TitleComponent title={t('title')} Tippy={false} />
         </div>
         <div className="bg-[#ffffff] rounded-[4px] max-w-[1200px]">
           {result && (
             <div className='pt-[24px] mx-[24px] max-[768px]:mx-[12px] max-[768px]:pt-[12px]'>
-              <ResultMessage
+              <ResultMessageComponent
                 type={result.type}
                 message={result.text}
               />

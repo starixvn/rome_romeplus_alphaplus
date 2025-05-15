@@ -6,11 +6,11 @@ import { ENABLED_STATUS_OPTIONS } from '../../constants/paymentConstants';
 import SetTransactionLimitModal from './SetTransactionLimitModal';
 import AddBankAccountComponent from './AddBankAccountComponent';
 import UpdateBankAccountComponent from './UpdateBankAccountComponent';
-import TitleCommon from '../../components/TitleComponent';
+import TitleComponent from '../../components/TitleComponent';
 import { IconDelete,  IconPen, IconSearch, IconSync } from '../../components/Icons';
-import CustomDropdown from '../../components/customDropdownComponent';
+import CustomDropdown from '../../components/DropdownComponent';
 import Loading from '../../components/LoadingComponent';
-import { ResultMessage } from '../../components/ResultMessageComponent';
+import { ResultMessageComponent } from '../../components/ResultMessageComponent';
 
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
@@ -235,7 +235,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
       ) : (
         <>
          <div className="p-[12px] h-[calc(100%-250px)]">
-          <TitleCommon title={tManagePayments('managePayments')} Tippy >
+          <TitleComponent title={tManagePayments('managePayments')} Tippy >
             <div>
               <div>
                 <i className="bi bi-info-circle fs-4 ico-info inline-elm"></i> 
@@ -244,7 +244,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
               <div>• {tManagePayments('managePaymentsTip1')}</div>
               <div>• {tManagePayments('managePaymentsTip2')}</div>
             </div>
-          </TitleCommon>
+          </TitleComponent>
           
           <div className="card h-[calc(100%-40px)] flex flex-col">
             <div className="card-header">
@@ -272,10 +272,10 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                 <div className="bg-[#ffffff] px-[14px] py-[8px]">
                 <div className='pt-[14px] bg-[#ffffff]'>                   
                   {error && (
-                    <ResultMessage type="error" message={error} />
+                    <ResultMessageComponent type="error" message={error} />
                   )}
                   {successMessage && (
-                    <ResultMessage type="success" message={successMessage} />
+                    <ResultMessageComponent type="success" message={successMessage} />
                   )}
                 </div>
                   <div className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px] ">{tManagePayments('manageBankAccountAndLimits')}</div>

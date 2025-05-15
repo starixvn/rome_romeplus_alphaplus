@@ -7,7 +7,7 @@ export interface DropdownOption {
   code?: string;
 }
 
-export interface CustomDropdownProps {
+export interface CustomDropdownComponentProps {
   options: DropdownOption[];
   onSelect: (option: DropdownOption) => void;
   disable?: boolean;
@@ -15,7 +15,7 @@ export interface CustomDropdownProps {
   showOptionAll?: boolean;
 }
 
-const CustomDropdown = ({ options, onSelect, disable = false, initialValue }: CustomDropdownProps) => {
+const CustomDropdownComponent = ({ options, onSelect, disable = false, initialValue }: CustomDropdownComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<DropdownOption | null>(() => {
     if (initialValue) {
@@ -85,4 +85,4 @@ const CustomDropdown = ({ options, onSelect, disable = false, initialValue }: Cu
   );
 };
 
-export default CustomDropdown;
+export default CustomDropdownComponent;

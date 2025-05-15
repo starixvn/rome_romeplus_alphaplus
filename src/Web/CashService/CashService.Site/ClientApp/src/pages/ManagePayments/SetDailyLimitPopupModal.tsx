@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { IconClose, } from '../../components/Icons';
-import { ResultMessage } from '../../components/ResultMessageComponent';
+import { ResultMessageComponent } from '../../components/ResultMessageComponent';
 
 
 interface SetDailyLimitPopupModalProps {
@@ -64,8 +64,8 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
           </button>
         </div>
         <div className='my-[8px]'>
-          { error && <ResultMessage type="error" message={error} />}
-          { successMessage && <ResultMessage type="success" message={successMessage} />}
+          { error && <ResultMessageComponent type="error" message={error} />}
+          { successMessage && <ResultMessageComponent type="success" message={successMessage} />}
         </div>
         <form onSubmit={handleSubmit}>
           <div className="mb-[16px]">

@@ -1,11 +1,11 @@
 import { IconBack } from "./Icons";
 import { useTranslation } from 'react-i18next';
 
-interface BackCommonProps {
+interface BackComponentProps {
   onClose: () => void;
 }
 
-export default function BackCommon({ onClose }: BackCommonProps) {
+export default function BackComponent({ onClose }: BackComponentProps) {
     const { t: tGlobal } = useTranslation('global');
     return (
       <>

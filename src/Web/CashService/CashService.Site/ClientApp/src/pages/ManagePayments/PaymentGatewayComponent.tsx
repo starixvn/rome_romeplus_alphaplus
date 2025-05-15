@@ -4,10 +4,10 @@ import { paymentProviderService } from '../../services/paymentsAPI';
 import { PaymentProvider } from '../../services/interfaces/Payments/PaymentProvider';
 import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import DailyLimitPopupModal from './SetDailyLimitPopupModal';
-import TitleCommon from '../../components/TitleComponent';
+import TitleComponent from '../../components/TitleComponent';
 import { IconPen } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
-import { ResultMessage } from '../../components/ResultMessageComponent';
+import { ResultMessageComponent } from '../../components/ResultMessageComponent';
 
 interface PaymentGatewayComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
@@ -74,7 +74,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
 
   return (
     <div className="p-[12px]">
-      <TitleCommon title={tManagePayments('managePayments')} Tippy >
+      <TitleComponent title={tManagePayments('managePayments')} Tippy >
         <div>
           <div>
             <i className="bi bi-info-circle fs-4 ico-info inline-elm"></i> 
@@ -83,7 +83,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
           <div>• {tManagePayments('managePaymentsTip1')}</div>
           <div>• {tManagePayments('managePaymentsTip2')}</div>
         </div>
-      </TitleCommon>
+      </TitleComponent>
 
       <div className="card">
         <div className="card-header">
@@ -132,7 +132,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
             {loading ? (
               <Loading />
             ) : error ? (
-              <ResultMessage type="error" message={error} />
+              <ResultMessageComponent type="error" message={error} />
               
             ) : (
               <div className="table-fixed-header">

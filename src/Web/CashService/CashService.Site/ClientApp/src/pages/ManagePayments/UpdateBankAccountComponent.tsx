@@ -12,9 +12,9 @@ import {
 import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { IconCheck, IconError } from '../../components/Icons';
 import { baseAPI } from '../../services/commonAPI';
-import CustomDropdown, { DropdownOption } from '../../components/customDropdownComponent';
+import CustomDropdown, { DropdownOption } from '../../components/DropdownComponent';
 import Loading from '../../components/LoadingComponent';
-import BackCommon from '../../components/BackComponent';
+import BackComponent from '../../components/BackComponent';
 
 interface UpdateBankAccountComponentProps {
   onClose: () => void;
@@ -227,7 +227,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
   return (
     <div className="p-[12px]" tabIndex={-1}>
-      <BackCommon onClose={onClose} />
+      <BackComponent onClose={onClose} />
       <div className="modal-dialog">
         <div className="modal-content max-w-[1200px]">
           <div className="mb-[8px]">

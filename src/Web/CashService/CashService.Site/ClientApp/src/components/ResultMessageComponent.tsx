@@ -29,7 +29,7 @@ const getResultIcon = (type: ResultType) => {
   );
 };
 
-export const ResultMessage: React.FC<ResultMessageProps> = ({
+export const ResultMessageComponent: React.FC<ResultMessageProps> = ({
   type,
   message,
   className = ''
