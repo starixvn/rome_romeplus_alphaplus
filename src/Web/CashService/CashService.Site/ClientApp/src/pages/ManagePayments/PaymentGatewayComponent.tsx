@@ -44,7 +44,16 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
   }, []);
 
   const getStatusText = (status: number) => {
-    return status === 1 ? tManagePayments('enabled') : tManagePayments('disabled');
+    switch (status) {
+      case 0:
+        return tManagePayments('disabled');
+      case 1:
+        return tManagePayments('enabled');
+        case 2:
+          return tManagePayments('-');
+      default:
+        return tManagePayments('unknown');
+    }
   };
 
   const handleFeeClick = (provider: PaymentProvider) => {

@@ -53,7 +53,6 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
 
   // Add field-level validation state
   const [fieldErrors, setFieldErrors] = useState({
-    accountNickname: '',
     accountHolderName: '',
     accountNumber: '',
     selectedBank: '',
@@ -118,7 +117,6 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
 
     // Field-level validation
     const errors = {
-      accountNickname: !accountNickname ? tGlobal('pleaseFillField') : '',
       accountHolderName: !accountHolderName ? tGlobal('pleaseFillField') : '',
       accountNumber: !accountNumber ? tGlobal('pleaseFillField') : '',
       selectedBank: !selectedBank ? tGlobal('pleaseFillField') : '',
@@ -393,17 +391,14 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   </div>
 
                   <div className='w-[230px]'>
-                    <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('accountNickname')}<span className='text-[#E25757]'>*</span></label>
+                    <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('accountNickname')}</label>
                     <input
                       type="text"
-                      className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountNickname ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
+                      className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer`}
                       value={accountNickname}
                       onChange={(e) => setAccountNickname(e.target.value)}
                       maxLength={255}
                     />
-                    {fieldErrors.accountNickname && (
-                      <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.accountNickname}</div>
-                    )}
                     <label className="block mt-[4px] text-[#828282] text-[11px] leading-[12px] font-semibold">{tManagePayments('accountNicknameNote1')}</label>
                   </div>
                 </div>
