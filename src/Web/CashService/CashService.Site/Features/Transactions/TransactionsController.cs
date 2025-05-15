@@ -58,6 +58,20 @@ public class TransactionsController(
         return Json(limitAmtDeposit);
     }
 
+    public async Task<IActionResult> GetSettingLimitAmtWithdrawal(int custId, int providerId, int paymentMethodId)
+    {
+        var data = new Dictionary<string, string> {
+            { "uplineId", AgentId.ToString() },
+            { "custId", custId.ToString() },
+            { "custDbGroupId", CustDbGroupId.ToString() },
+            { "providerId", providerId.ToString() },
+            { "paymentMethodId", paymentMethodId.ToString() }
+        };
+        var url = $"/withdrawal/limit-amount";
+        var limitAmtDeposit = await httpClientHelper.GetAsync<object>(url, data);
+        return Json(limitAmtDeposit);
+    }
+
     public async Task<IActionResult> AddManualDeposit([FromBody] object request)
     {
         var result = await httpClientHelper.PostAsync<object, ResultModel>("/deposit/create", request);
@@ -94,7 +108,7 @@ public class TransactionsController(
 
     public async Task<IActionResult> GetCashAgentProvider(int transactionType)
     {
-        var url = $"/transactions/provider-bank-list?agentId={AgentId}&transactionType={transactionType}&custDbGroupId={CustDbGroupId}";
+        var url = $"/transactions/payment-provider-list?agentId={AgentId}&transactionType={transactionType}&custDbGroupId={CustDbGroupId}";
         var agentProviders = await httpClientHelper.GetAsync<object>(url);
         return Json(agentProviders);
     }

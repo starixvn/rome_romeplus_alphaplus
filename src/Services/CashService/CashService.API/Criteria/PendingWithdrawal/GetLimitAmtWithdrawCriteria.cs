@@ -10,9 +10,11 @@ public class GetLimitAmtWithdrawCriteria : CriteriaBase
 
     public int UplineId { get; set; }
 
-    public decimal CashBalance { get; set; }
+    public decimal PaymentMethodId { get; set; }
 
-    public override string GetSettingKey() => "Age_CashWithdrawal_LimitAmtSel";
+    public int CustDbGroupId { get; set; }
+
+    public override string GetSettingKey() => $"CustDb_{CustDbGroupId}_Age_CashWithdrawal_LimitAmtSel";
 
     public override bool IsValid() => CustId > 0 && ProviderId > 0;
 }

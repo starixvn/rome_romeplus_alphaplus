@@ -3,7 +3,10 @@ import { createRoot } from 'react-dom/client';
 import ManualAddWithdrawalForm from './components/ManualAddWithdrawalForm.tsx';
 import Filter from './components/Filter.tsx';
 import DataGrid from './components/DataGrid.tsx';
-import { WithdrawalAccountInfo } from '../../../services/interfaces/WithdrawalAccountInfo';
+import {
+  AddManualWithdrawalAccountInfo,
+  WithdrawalAccountInfo,
+} from '../../../services/interfaces/WithdrawalAccountInfo';
 import { getBankWithdrawalAccounts } from '../../../services/pendingWithdrawalAPI';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../../i18n/i18n-pendingWithdrawal';
@@ -37,29 +40,23 @@ const PendingWithdrawal: React.FC = () => {
   };
 
   const handleSubmitManualWithdrawal = (data: {
-    memberLoginName: number;
-    from: number;
-    to: number;
+    custId: number;
+    from: string;
+    to: string;
     withdrawalAmount: number;
     remarks: string;
     image?: File;
   }) => {
-    const newWithdrawal: WithdrawalAccountInfo = {
-      id: withdrawals.length + 1,
-      username: data.memberLoginName.toString(),
-      loginName: data.memberLoginName.toString(),
-      firstName: '',
-      lastName: '',
-      amount: data.withdrawalAmount,
-      currency: 'USD',
+    const manualWithdrawalData: AddManualWithdrawalAccountInfo = {
+      custId: data.custId,
       from: data.from,
       to: data.to,
-      referenceNo: data.remarks,
-      dateAndTime: new Date(),
+      amount: data.withdrawalAmount,
+      remarks: data.remarks,
+      image: data.image,
+      providerId: isNaN(parseInt(data.from)) ? 0 : parseInt(data.from),
     };
-
-    setWithdrawals([...withdrawals, newWithdrawal]);
-    setShowManualAddWithdrawalForm(false);
+    console.log(manualWithdrawalData);
   };
 
   return (

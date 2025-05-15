@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BankInfo } from '../../../../services/interfaces/Transactions/BankInfo';
+import { WithdrawalAgentBankDropDown } from '../../../../services/interfaces/Transactions/BankInfo';
 import { MemberLoginName } from '../../../../services/interfaces/Transactions/MemberLoginName';
 import { TransactionTypes } from '../../../../utils/constants';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
+import { getSettingLimitAmtWithdrawal } from '../../../../services/pendingWithdrawalAPI';
 
 interface ManualAddWithdrawalFormProps {
   onClose: () => void;
   onSubmit: (data: {
-    memberLoginName: number;
-    from: number;
-    to: number;
+    custId: number;
+    from: string;
+    to: string;
     withdrawalAmount: number;
     remarks: string;
     image?: File;
@@ -19,23 +20,25 @@ interface ManualAddWithdrawalFormProps {
 
 const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClose, onSubmit }) => {
   const { t } = useTranslation('pendingWithdrawal');
-  const [memberLoginName, setMemberLoginName] = useState<number | null>(null);
-  const [from, setFrom] = useState<number | null>(null);
-  const [to, setTo] = useState<number | null>(null);
+  const [custId, setCustId] = useState<number | null>(null);
+  const [from, setFrom] = useState<string>('');
+  const [to, setTo] = useState<string>('');
   const [withdrawalAmount, setWithdrawalAmount] = useState('');
   const [remarks, setRemarks] = useState('');
   const [image, setImage] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [minAmount, setMinAmount] = useState(0);
+  const [maxAmount, setMaxAmount] = useState(0);
   const [memberLoginNames, setMemberLoginNames] = useState<MemberLoginName[]>([]);
-  const [bankInfo, setBankInfo] = useState<BankInfo[]>([]);
-  const [memberBankInfo, setMemberBankInfo] = useState<BankInfo[]>([]);
+  const [bankInfo, setBankInfo] = useState<WithdrawalAgentBankDropDown[]>([]);
+  const [memberBankInfo, setMemberBankInfo] = useState<WithdrawalAgentBankDropDown[]>([]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!memberLoginName || !from || !to) return;
+    if (!verifyParam()) return;
 
     onSubmit({
-      memberLoginName,
+      custId: custId as number,
       from,
       to,
       withdrawalAmount: parseFloat(withdrawalAmount),
@@ -44,19 +47,78 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
     });
   };
 
-  const handleMemberChange = async (selectedMemberId: number) => {
-    setMemberLoginName(selectedMemberId);
-    setFrom(null);
+  const verifyParam = (): boolean => {
+    if (!custId || custId <= 0) {
+      alert(t('manualWithdrawalForm.invalidCustId'));
+      return false;
+    }
 
+    if (!from || !to) {
+      alert(t('manualWithdrawalForm.invalidBankSelection'));
+      return false;
+    }
+
+    const amount = parseFloat(withdrawalAmount);
+    if (isNaN(amount) || amount < minAmount || amount > maxAmount) {
+      alert(t('manualWithdrawalForm.invalidAmount'));
+      return false;
+    }
+
+    if (image && image.size > 0.1 * 1024 * 1024) {
+      alert(t('manualWithdrawalForm.imageSizeError'));
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleMemberChange = async (selectedMemberId: number) => {
+    setCustId(selectedMemberId);
+    setTo('');
     const memberBanks = await transactionAPI.getCashMemberBankInfo(selectedMemberId);
-    setMemberBankInfo(memberBanks);
+    setMemberBankInfo(
+      memberBanks.map((bank) => ({
+        value: `${bank.bankCode}-${bank.bankAccountNumber}`,
+        label: bank.bankAccountNumber,
+        isPaymentMethod: false,
+        providerId: 0,
+        paymentMethodId: 0,
+      }))
+    );
+    await handleUpdateLimitWithdrawalAmt();
+  };
+
+  const handleFromChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedFrom = e.target.value;
+    setFrom(selectedFrom);
+    await handleUpdateLimitWithdrawalAmt();
+  };
+
+  const handleUpdateLimitWithdrawalAmt = async () => {
+    if (!custId) return;
+
+    const fromSelect = document.getElementById('from') as HTMLSelectElement;
+    const selectedOption = fromSelect?.options[fromSelect.selectedIndex];
+    const providerId = selectedOption
+      ? parseInt(selectedOption.getAttribute('data-provider-id') || '0')
+      : 0;
+    const paymentMethodId = selectedOption
+      ? parseInt(selectedOption.getAttribute('data-payment-method-id') || '0')
+      : 0;
+    const limits = await getSettingLimitAmtWithdrawal({
+      custId,
+      providerId,
+      paymentMethodId,
+    });
+    setMinAmount(limits.minAmt);
+    setMaxAmount(limits.maxAmt);
   };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const selectedFile = e.target.files[0];
-      setImage(selectedFile);
 
+      setImage(selectedFile);
       const objectUrl = URL.createObjectURL(selectedFile);
       setImageUrl(objectUrl);
     }
@@ -68,7 +130,23 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       setMemberLoginNames(memberNames);
 
       const bankInfo = await transactionAPI.getCashAgentBankInfo(TransactionTypes.Withdrawal);
-      setBankInfo(bankInfo);
+      const providerInfo = await transactionAPI.getCashAgentProvider(TransactionTypes.Withdrawal);
+      const banks: WithdrawalAgentBankDropDown[] = bankInfo.map((bank) => ({
+        value: `${bank.bankCode}-${bank.bankAccountNumber}`,
+        label: bank.bankAccountNumber,
+        isPaymentMethod: false,
+        providerId: 0,
+        paymentMethodId: 0,
+      }));
+      const mappedProviderInfo: WithdrawalAgentBankDropDown[] = providerInfo.map((provider) => ({
+        value: provider.providerId.toString(),
+        label: provider.providerName,
+        isPaymentMethod: true,
+        providerId: provider.providerId,
+        paymentMethodId: provider.paymentMethodId,
+      }));
+
+      setBankInfo([...banks, ...mappedProviderInfo]);
     };
 
     fetchData();
@@ -121,7 +199,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                     </label>
                     <select
                       id="memberLoginName"
-                      value={memberLoginName ?? ''}
+                      value={custId ?? ''}
                       onChange={(e) => handleMemberChange(parseInt(e.target.value))}
                       className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
                     >
@@ -146,17 +224,21 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                     </label>
                     <select
                       id="from"
-                      value={from ?? ''}
-                      onChange={(e) => setFrom(parseInt(e.target.value))}
+                      value={from}
+                      onChange={handleFromChange}
                       className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
-                      disabled={!memberLoginName}
                     >
                       <option value="" disabled hidden>
-                        {t('manualWithdrawalForm.selectMemberBank')}
+                        {t('manualWithdrawalForm.selectBank')}
                       </option>
-                      {memberBankInfo.map((bank) => (
-                        <option key={bank.bankId} value={bank.bankId}>
-                          {bank.bankAccountNumber}
+                      {bankInfo.map((bank) => (
+                        <option
+                          key={bank.value}
+                          value={bank.value}
+                          data-provider-id={bank.providerId}
+                          data-payment-method-id={bank.paymentMethodId}
+                        >
+                          {bank.label}
                         </option>
                       ))}
                     </select>
@@ -174,16 +256,17 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                     </label>
                     <select
                       id="to"
-                      value={to ?? ''}
-                      onChange={(e) => setTo(parseInt(e.target.value))}
+                      value={to}
+                      onChange={(e) => setTo(e.target.value)}
                       className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
+                      disabled={!custId}
                     >
                       <option value="" disabled hidden>
-                        {t('manualWithdrawalForm.selectBank')}
+                        {t('manualWithdrawalForm.selectMemberBank')}
                       </option>
-                      {bankInfo.map((bank) => (
-                        <option key={bank.bankId} value={bank.bankId}>
-                          {bank.bankAccountNumber}
+                      {memberBankInfo.map((bank) => (
+                        <option key={bank.value} value={bank.value}>
+                          {bank.label}
                         </option>
                       ))}
                     </select>
@@ -196,7 +279,11 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                     >
                       {t('manualWithdrawalForm.withdrawalAmount')}
                       <span className="text-red-500 absolute">*</span>
+                      <span className="text-xs text-gray-500 pl-3">
+                        ({minAmount} - {maxAmount})
+                      </span>
                     </label>
+
                     <input
                       id="withdrawalAmount"
                       type="number"

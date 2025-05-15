@@ -4,11 +4,11 @@ import { CreditAmount } from './interfaces/Transactions/CreditAmount';
 import { CashLimitAmt } from './interfaces/Transactions/CashLimitAmt';
 
 const api = axios.create({
-  baseURL: "",
+  baseURL: '',
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   },
-  withCredentials: true
+  withCredentials: true,
 });
 
 export const getBankWithdrawalAccounts = async (): Promise<WithdrawalAccountInfo[]> => {
@@ -19,7 +19,7 @@ export const getBankWithdrawalAccounts = async (): Promise<WithdrawalAccountInfo
     console.error('Error fetching member bank accounts:', error);
     return [];
   }
-}
+};
 
 export const getCashBalance = async (): Promise<number> => {
   try {
@@ -31,11 +31,15 @@ export const getCashBalance = async (): Promise<number> => {
   }
 };
 
-export const getLimitAmtWithdrawal = async (cashLimitAmt: CashLimitAmt): Promise<CreditAmount> => {
+export const getSettingLimitAmtWithdrawal = async (
+  cashLimitAmt: CashLimitAmt
+): Promise<CreditAmount> => {
   try {
-    const response = await api.get<CreditAmount>('GetLimitAmtWithdrawal', { params: cashLimitAmt });
+    const response = await api.get<CreditAmount>('GetSettingLimitAmtWithdrawal', {
+      params: cashLimitAmt,
+    });
     return response.data;
-  } catch (error) { 
+  } catch (error) {
     console.error('Error fetching credit amount:', error);
     return { minAmt: 0, maxAmt: 0 };
   }

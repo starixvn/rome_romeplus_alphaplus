@@ -1,7 +1,6 @@
 using AlphaPlus.CashService.API.Models.PendingCommons;
 using AlphaPlus.CashService.API.Services;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace AlphaPlus.CashService.API.Endpoints;
 
@@ -36,9 +35,19 @@ public static class PendingWithdrawalEndpoints
             Description = "Returns cash balance of member"
         });
 
-        group.MapGet("/limit-amount", async ([FromBody] CashLimitAmt param, IPendingWithdrawalService service) =>
+        group.MapGet("/limit-amount", async ([FromQuery] int custId,
+                [FromQuery] int uplineId,
+                [FromQuery] int providerId,
+                [FromQuery] int paymentMethodId,
+                IPendingWithdrawalService service) =>
         {
-            var cashLimit = await service.GetLimitAmtWithdrawAsync(param);
+            var cashLimit = await service.GetLimitAmtWithdrawAsync(new CashLimitAmt
+            {
+                CustId = custId,
+                UplineId = uplineId,
+                ProviderId = providerId,
+                PaymentMethodId = paymentMethodId
+            });
             return Results.Ok(cashLimit);
         })
         .WithName("GetLimitAmtWithdrawAsync")

@@ -108,13 +108,13 @@ public static class TransactionsEndpoints
                 Description = "Returns a list of bank"
             });
 
-        group.MapGet("/provider-bank-list", async ([FromQuery] int agentId
+        group.MapGet("/payment-provider-list", async ([FromQuery] int agentId
                 , [FromQuery] int transactionType
                 , [FromQuery] int custDbGroupId
                 , IBankService service) =>
             {
-                var bankList = await service.GetCashAgentProviderAsync(agentId, transactionType, custDbGroupId);
-                return Results.Ok(bankList);
+                var paymentProviderList = await service.GetCashAgentProviderAsync(agentId, transactionType, custDbGroupId);
+                return Results.Ok(paymentProviderList);
             })
             .WithName("GetCashAgentProviderAsync")
             .WithOpenApi(operation => new OpenApiOperation(operation)

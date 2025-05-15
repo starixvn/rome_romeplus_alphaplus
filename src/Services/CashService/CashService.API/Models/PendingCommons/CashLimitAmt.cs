@@ -1,5 +1,7 @@
 ﻿namespace AlphaPlus.CashService.API.Models.PendingCommons;
 
+using Fanex.Data;
+
 public class CashLimitAmt
 {
     public int CustId { get; set; }
@@ -8,6 +10,8 @@ public class CashLimitAmt
 
     public int UplineId { get; set; }
 
-    public decimal CashBalance { get; set; }
+    public int PaymentMethodId { get; set; }
 
+    [SpParam(Ignored = true)]
+    public int CustDbGroupId { get; set; }
 }

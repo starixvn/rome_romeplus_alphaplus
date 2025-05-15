@@ -6,7 +6,7 @@ import {
 } from './interfaces/Transactions/TransactionHistory';
 import { AccountOption } from './interfaces/Transactions/AccountOption';
 import { ResultModel } from './interfaces/ResultModel';
-import { BankInfo } from './interfaces/Transactions/BankInfo';
+import { BankInfo, ProviderInfo } from './interfaces/Transactions/BankInfo';
 import { MemberLoginName } from './interfaces/Transactions/MemberLoginName';
 
 export const transactionAPI = {
@@ -86,11 +86,12 @@ export const transactionAPI = {
     }
   },
 
-  getCashAgentProvider: async (transactionType: number): Promise<BankInfo[]> => {
+  getCashAgentProvider: async (transactionType: number): Promise<ProviderInfo[]> => {
     try {
-      const response = await api.get<BankInfo[]>(
+      const response = await api.get<ProviderInfo[]>(
         `GetCashAgentProvider?transactionType=${transactionType}`
       );
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error('Error fetching cash agent provider info:', error);
