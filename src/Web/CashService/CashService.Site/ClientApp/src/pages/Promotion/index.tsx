@@ -7,7 +7,7 @@ import PromotionList from './components/PromotionList';
 import Filter from './components/Filter';
 import type { Promotion } from '../../services/interfaces/Promotion';
 import AddPromotion from './components/AddPromotion';
-import TitleCommon from '../../components/ui/TitleComponents';
+import TitleCommon from '../../components/TitleComponent';
 import '../../styles/common.css';
 import '../../styles/global.scss';
 

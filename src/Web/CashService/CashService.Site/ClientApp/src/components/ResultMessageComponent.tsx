@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconCheck, IconError } from '../Icons';
+import { IconCheck, IconError } from './Icons';
 
 export type ResultType = 'error' | 'success';
 

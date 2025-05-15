@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { transactionAPI } from '../../../../../services/transactionsHistoryAPI';
 import { AccountOption } from '../../../../../services/interfaces/Transactions/AccountOption';
-import CustomDropdown from '../../../../../components/ui/customDropdown';
+import CustomDropdown from '../../../../../components/customDropdownComponent';
 
 interface AccountFilterProps {
   account: string;

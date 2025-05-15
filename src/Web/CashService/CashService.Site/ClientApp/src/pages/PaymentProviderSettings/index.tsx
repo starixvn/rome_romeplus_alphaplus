@@ -13,11 +13,11 @@ import { IconBack, IconInfo } from '../../components/Icons';
 import Tippy from '@tippyjs/react';
 import i18n from '../../i18n/i18n-paymentProviderSettings';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
-import { ResultMessage } from '../../components/ResultMessage';
+import { ResultMessage } from '../../components/ResultMessageComponent';
 import '../../styles/common.css';
 import '../../styles/global.scss';
 
-import Loading from '../../components/ui/Loading';
+import Loading from '../../components/LoadingComponent';
 declare global {
   interface Window {
     providerSettingsViewModel: any;

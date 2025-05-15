@@ -12,9 +12,9 @@ import {
 import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { IconCheck, IconError } from '../../components/Icons';
 import { baseAPI } from '../../services/commonAPI';
-import CustomDropdown, { DropdownOption } from '../../components/ui/customDropdown';
-import BackCommon from '../../components/ui/BackComponents';
-import Loading from '../../components/ui/Loading';
+import CustomDropdown, { DropdownOption } from '../../components/customDropdownComponent';
+import BackCommon from '../../components/BackComponent';
+import Loading from '../../components/LoadingComponent';
 
 interface AddBankAccountComponentProps {
   onClose: () => void;

@@ -1,5 +1,5 @@
 import Tippy from "@tippyjs/react";
-import { IconInfo } from "../Icons";
+import { IconInfo } from "./Icons";
 import { ReactNode } from 'react';
 
 interface TitleCommonProps {

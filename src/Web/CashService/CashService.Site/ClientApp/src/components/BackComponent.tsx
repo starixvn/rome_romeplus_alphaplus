@@ -1,4 +1,4 @@
-import { IconBack } from "../Icons";
+import { IconBack } from "./Icons";
 import { useTranslation } from 'react-i18next';
 
 interface BackCommonProps {

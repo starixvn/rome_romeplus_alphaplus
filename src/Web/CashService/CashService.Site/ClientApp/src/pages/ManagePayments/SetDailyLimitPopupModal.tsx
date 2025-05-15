@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { IconClose, } from '../../components/Icons';
-import { ResultMessage } from '../../components/ResultMessage';
+import { ResultMessage } from '../../components/ResultMessageComponent';
 
 
 interface SetDailyLimitPopupModalProps {

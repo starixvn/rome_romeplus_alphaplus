@@ -8,11 +8,11 @@ import { Setting, MessageData, MemberSiteResponse } from '../../types/memberSite
 import { useTranslation } from 'react-i18next';
 import i18n from '../../i18n/i18n-memberSite';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
-import { ResultMessage, ResultType } from '../../components/ResultMessage';
+import { ResultMessage, ResultType } from '../../components/ResultMessageComponent';
 import '../../styles/common.css';
 import '../../styles/global.scss';
 
-import TitleCommon from '../../components/ui/TitleComponents';
+import TitleCommon from '../../components/TitleComponent';
 
 const MemberSiteManagement: React.FC = () => {
   const { t } = useTranslation('memberSite');

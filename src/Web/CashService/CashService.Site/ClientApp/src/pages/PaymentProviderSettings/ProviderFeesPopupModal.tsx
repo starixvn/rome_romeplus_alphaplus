@@ -4,7 +4,7 @@ import { PaymentProvider } from '../../services/interfaces/Payments/PaymentProvi
 import { PaymentProviderFeeGroup } from '../../services/interfaces/Payments/PaymentProviderFeeGroup';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { IconClose } from '../../components/Icons';
-import Loading from '../../components/ui/Loading';
+import Loading from '../../components/LoadingComponent';
 
 interface ProviderFeesPopupModalProps {
   provider: PaymentProvider;

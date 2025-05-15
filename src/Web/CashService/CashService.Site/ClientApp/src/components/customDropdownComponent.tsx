@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { IconArrowDown } from "../Icons";
+import { IconArrowDown } from "./Icons";
 
 export interface DropdownOption {
   value: string | number;

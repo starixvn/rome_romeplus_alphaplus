@@ -6,11 +6,11 @@ import { ENABLED_STATUS_OPTIONS } from '../../constants/paymentConstants';
 import SetTransactionLimitModal from './SetTransactionLimitModal';
 import AddBankAccountComponent from './AddBankAccountComponent';
 import UpdateBankAccountComponent from './UpdateBankAccountComponent';
-import TitleCommon from '../../components/ui/TitleComponents';
+import TitleCommon from '../../components/TitleComponent';
 import { IconDelete,  IconPen, IconSearch, IconSync } from '../../components/Icons';
-import CustomDropdown from '../../components/ui/customDropdown';
-import Loading from '../../components/ui/Loading';
-import { ResultMessage } from '../../components/ResultMessage';
+import CustomDropdown from '../../components/customDropdownComponent';
+import Loading from '../../components/LoadingComponent';
+import { ResultMessage } from '../../components/ResultMessageComponent';
 
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';

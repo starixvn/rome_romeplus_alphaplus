@@ -4,10 +4,10 @@ import { paymentProviderService } from '../../services/paymentsAPI';
 import { PaymentProvider } from '../../services/interfaces/Payments/PaymentProvider';
 import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import DailyLimitPopupModal from './SetDailyLimitPopupModal';
-import TitleCommon from '../../components/ui/TitleComponents';
+import TitleCommon from '../../components/TitleComponent';
 import { IconPen } from '../../components/Icons';
-import Loading from '../../components/ui/Loading';
-import { ResultMessage } from '../../components/ResultMessage';
+import Loading from '../../components/LoadingComponent';
+import { ResultMessage } from '../../components/ResultMessageComponent';
 
 interface PaymentGatewayComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
