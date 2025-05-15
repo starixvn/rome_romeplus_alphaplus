@@ -193,6 +193,8 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             CancellationToken cancellationToken)
         {
             request.SetUserSession(_userSession);
+            request.Creator = _userSession.UserName;
+
             var url = $"{_apiBaseUrl}/payments/add-bank-account";
             var response = await _httpClient.PostAsJsonAsync(url, request, cancellationToken);
             response.EnsureSuccessStatusCode();

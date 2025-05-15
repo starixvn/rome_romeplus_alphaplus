@@ -7,6 +7,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments.Requests;
 public class AddBankAccountRequest : BaseActionRequest
 {
         public int Id { get; set; }
+        public string Creator { get; set; }
         public string AccountNumber { get; set; } = string.Empty;
         public string AccountNickname { get; set; } = string.Empty;
         public string AccountHolderName { get; set; } = string.Empty;
@@ -21,7 +22,6 @@ public class AddBankAccountRequest : BaseActionRequest
         public bool PromptPay { get; set; }
         public string Mobile { get; set; } = string.Empty;
         public string CountryCode { get; set; } = string.Empty;
-        public string Creator { get; set; } = string.Empty;
         public int CreatorId { get; set; }
 
         public string Bank_TransTypeList { get; set; }
