@@ -12,6 +12,7 @@ import '../../../styles/common.css';
 import '../../../styles/global.scss';
 import { BankInfo } from '../../../services/interfaces/Transactions/BankInfo';
 import { TransactionType } from '../common.functions';
+import { transactionAPI } from '../../../services/transactionsHistoryAPI';
 
 const PendingDeposit: React.FC = () => {
   const { t } = useTranslation('pendingDeposit');
