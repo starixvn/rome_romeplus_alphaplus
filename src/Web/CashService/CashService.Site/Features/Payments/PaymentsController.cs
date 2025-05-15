@@ -73,7 +73,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         {
             var url = $"{_apiBaseUrl}/payments/providers/{_custId}/{id}";
             var provider = await _httpClient.GetFromJsonAsync<ProviderModel>(url, cancellationToken);
-            var paymentMethods = await _httpClient.GetFromJsonAsync<IEnumerable<PaymentMethodModel>>($"{_apiBaseUrl}/payments/payment-methods?custId={_custId}&providerId={provider.Id}&transactionType=0", cancellationToken);
+            var paymentMethods = await _httpClient.GetFromJsonAsync<IEnumerable<PaymentMethodModel>>($"{_apiBaseUrl}/payments/methods?custId={_custId}&providerId={provider.Id}&transactionType=0", cancellationToken);
             var allPaymentMethods = paymentMethods.ToList().Prepend(PaymentMethodModel.CreateOptionAll());
 
             var viewModel = new ProviderSettingsViewModel
@@ -93,12 +93,11 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             return Json(settings);
         }
 
-        public async Task<IActionResult> GetPaymentMethods(int providerId, int transactionType, CancellationToken cancellationToken)
+        public async Task<IActionResult> GetAddPaymentMethodInfo(int providerId, int transactionType, CancellationToken cancellationToken)
         {
-            var url = $"{_apiBaseUrl}/payments/payment-methods?custId={_custId}&providerId={providerId}&transactionType={transactionType}";
-            var paymentMethods = await _httpClient.GetFromJsonAsync<IEnumerable<PaymentMethodModel>>(url, cancellationToken);
-            var allPaymentMethods = paymentMethods.ToList().Prepend(PaymentMethodModel.CreateOptionAll());
-            return Json(allPaymentMethods);
+            var url = $"{_apiBaseUrl}/payments/add-payment-method-info?custId={_custId}&providerId={providerId}&transactionType={transactionType}";
+            var paymentMethods = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
+            return Json(paymentMethods);
         }
 
         public async Task<IActionResult> AddPaymentMethod(

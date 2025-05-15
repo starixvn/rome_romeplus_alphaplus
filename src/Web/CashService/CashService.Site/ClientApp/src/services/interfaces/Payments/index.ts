@@ -5,4 +5,6 @@ export * from './PaymentProviderFee';
 export * from './PaymentTransactionLimit';
 export * from './PaymentProviderFeeGroup';
 export * from './PaymentProvider';
-export * from './PaymentMethod'; 
+export * from './PaymentMethod';
+export * from './AddPaymentMethodViewModel';
+export * from './ChannelContactModel';

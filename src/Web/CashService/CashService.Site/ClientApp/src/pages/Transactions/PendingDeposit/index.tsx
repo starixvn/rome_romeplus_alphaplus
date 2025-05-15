@@ -5,7 +5,6 @@ import Filter from './components/Filter';
 import DataGrid from './components/DataGrid';
 import { DepositAccountInfo } from '../../../services/interfaces/DepositAccountInfo';
 import { pendingDepositAPI } from '../../../services/pendingDepositAPI';
-import { transactionAPI } from '../../../services/transactionsHistoryAPI';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../../i18n/i18n-pendingDeposit';
 import { useCookieLanguage } from '../../../hooks/useCookieLanguage';

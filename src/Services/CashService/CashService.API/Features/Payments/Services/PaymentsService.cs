@@ -6,6 +6,7 @@ using Fanex.Data.Repository;
 using AlphaPlus.CashService.API.Features.Payments.DTOs;
 using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Constants;
+using AlphaPlus.CashService.API.Features.Payments.ViewModels;
 
 namespace AlphaPlus.CashService.API.Services;
 
@@ -17,6 +18,7 @@ public interface IPaymentsService
     Task<IEnumerable<ProviderFeeGroupModel>> GetProviderFees(int providerId);
     Task<ProviderModel> GetProviderById(int custId, int providerId);
     Task<IEnumerable<PaymentMethodModel>> GetPaymentMethods(int custId, int providerId, int transactionType);
+    Task<AddPaymentMethodViewModel> GetAddPaymentMethodInfo(int custId, int providerId, int transactionType);
     Task<IEnumerable<ProviderSettingsModel>> GetProviderSettings(int providerId, int method, int status, int transactionType);
     Task<ResultModel> InsertPaymentMethod(InsertPaymentMethodRequest request);
     Task<IEnumerable<BankModel>> GetBanks(int transactionType);
@@ -92,15 +94,19 @@ public class PaymentsService(
         return provider;
     }
     
-    public async Task<IEnumerable<PaymentMethodModel>> GetPaymentMethods(int custId, int providerId, int transactionType)
+    public async Task<AddPaymentMethodViewModel> GetAddPaymentMethodInfo(int custId, int providerId, int transactionType)
     {
-        var methods = await repository.FetchAsync<PaymentMethodModel>(new GetPaymentMethodsCriteria(custId, providerId, transactionType));
+        var criteria = new GetAddPaymentMethodInfoCriteria(custId, providerId, transactionType);
+        var methods = await repository.FetchAsync<PaymentMethodModel>(criteria);
         foreach (var method in methods)
         {
             method.Name = cacheRefService.GetPaymentMethodName(method.Id, method.Name);
         }
 
-        return methods;
+        return new AddPaymentMethodViewModel {
+            PaymentMethods = methods,
+            ChannelContact = string.IsNullOrEmpty(criteria.ChannelContact) ? new ChannelContactModel() : Newtonsoft.Json.JsonConvert.DeserializeObject<ChannelContactModel>(criteria.ChannelContact)
+        };
     }
 
     public async Task<IEnumerable<ProviderSettingsModel>> GetProviderSettings(int providerId, int method, int status, int transactionType)
@@ -293,5 +299,11 @@ public class PaymentsService(
         await repository.ExecuteAsync(criteria);
         await commonService.WriteLogUserRunSP(ActionLogConstants.DeleteBankAccount, request, criteria);
         return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
+    }
+
+    public async Task<IEnumerable<PaymentMethodModel>> GetPaymentMethods(int custId, int providerId, int transactionType)
+    {
+        var data = await GetAddPaymentMethodInfo(custId, providerId, transactionType);
+        return data.PaymentMethods;
     }
 } 

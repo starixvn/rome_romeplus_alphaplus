@@ -5,7 +5,8 @@ import {
   PaymentMethod,
   Bank,
   BankAccount,
-  PaymentTransactionLimit 
+  PaymentTransactionLimit,
+  AddPaymentMethodViewModel
 } from './interfaces/Payments';
 import { ResultModel } from './interfaces/ResultModel';
 import { TransactionType } from './interfaces/TransactionType';
@@ -80,20 +81,20 @@ export const paymentProviderService = {
     }
   },
 
-  // Get all payment methods
-  getPaymentMethods: async (
+  // Get all payment methods and channel contact
+  getAddPaymentMethodInfo: async (
     providerId: number,
     transactionType: number
-  ): Promise<PaymentMethod[]> => {
+  ): Promise<AddPaymentMethodViewModel> => {
     try {
-      const response = await api.get<PaymentMethod[]>(
-        `GetPaymentMethods?providerId=${providerId}&transactionType=${transactionType}`,
+      const response = await api.get<AddPaymentMethodViewModel>(
+        `GetAddPaymentMethodInfo?providerId=${providerId}&transactionType=${transactionType}`,
         { method: 'GET' }
       );
       return response.data;
     } catch (error) {
       console.error('Error fetching payment methods:', error);
-      return [];
+      return { paymentMethods: [], channelContact: {tele: ''} };
     }
   },
 

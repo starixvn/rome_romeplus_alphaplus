@@ -4,6 +4,7 @@ import { TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { PaymentMethod } from '../../services/interfaces/Payments/PaymentMethod';
 import { IconCheck, IconError, IconClose } from '../../components/Icons';
+import { QRCodeCanvas } from 'qrcode.react';
 
 interface AddPaymentMethodModalProps {
   onClose: () => void;
@@ -17,6 +18,7 @@ interface PaymentMethodFormState {
   merchantID: string;
   appSecret: string;
   agreeToTerms: boolean;
+  channelContact: object;
 }
 
 const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, providerId }) => {
@@ -33,7 +35,8 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
     apiKey: '',
     merchantID: '',
     appSecret: '',
-    agreeToTerms: false
+    agreeToTerms: false,
+    channelContact: {}
   });
 
   const [paymentMethods, setPaymentMethods] = React.useState<PaymentMethod[]>([]);
@@ -56,9 +59,12 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
     const loadPaymentMethods = async () => {
       try {
         if (formState.selectedTransactionType) {
-          const methods = await paymentProviderService.getPaymentMethods(providerId, parseInt(formState.selectedTransactionType));
-          setPaymentMethods(methods);
-          setAllMethodsInactive(methods.length > 0 && methods.every(method => method.status === inactiveStatus));
+          const response = await paymentProviderService.getAddPaymentMethodInfo(providerId, parseInt(formState.selectedTransactionType));
+          
+          setPaymentMethods(response.paymentMethods);
+          setTelegramAssistantUrl(response.channelContact.tele || '');
+
+          setAllMethodsInactive(response.paymentMethods.length > 0 && response.paymentMethods.every(method => method.status === inactiveStatus));
         } else {
           setPaymentMethods([]);
           setAllMethodsInactive(false);
@@ -71,13 +77,6 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
 
     loadPaymentMethods();
   }, [formState.selectedTransactionType]);
-
-  React.useEffect(() => {
-    const el = document.getElementById('telegramAssistantUrl') as HTMLInputElement | null;
-    if (el) {
-      setTelegramAssistantUrl(el.value);
-    }
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -146,7 +145,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
           </button>
         </div>
         <form onSubmit={handleSubmit}>
-          <div className="modal-body">
+          <div className="modal-body"> 
             <div>
               <h4 className="text-[14px] pt-[16px] text-[var(--text-color-primary)] font-semibold pb-[4px]">{tPaymentProviderSettings('addPaymentMethodStep1')}</h4>
               <div className='flex gap-[10px]'>
@@ -201,7 +200,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
               <p className='mt-[8px] text-[12px]'>{tPaymentProviderSettings('clickLinkOrScanQRCode')}</p>
               <a href={telegramAssistantUrl} className='text-[12px] text-[var(--text-color-primary)] font-semibold' target="_blank" rel="noopener noreferrer">{telegramAssistantUrl}</a>
               <div style={{ marginTop: '16px', textAlign: 'center' }}>
-                <img src="../assets/qrcode.png" alt="QR Code" style={{ width: '150px', height: '150px', display: 'inline-block' }} />
+                {telegramAssistantUrl && <QRCodeCanvas value={telegramAssistantUrl} size={128} />}
               </div>
             </div>
             <div>

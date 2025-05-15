@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Manage Provider Settings";
     Layout = "_Layout";
-    var telegramAssistantUrl = Configuration["TelegramAssistantUrl"];
 }
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 @model ProviderSettingsViewModel
@@ -14,7 +13,6 @@
 }
 
 <div id="root"></div>
-<input type="hidden" id="telegramAssistantUrl" name="telegramAssistantUrl" value="@telegramAssistantUrl" />
 
 <script>
     window.providerSettingsViewModel = @Html.Raw(JsonConvert.SerializeObject(Model));
