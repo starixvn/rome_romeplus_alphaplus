@@ -11,7 +11,7 @@
   //text 
   --text-color-primary: #163f78;
   --text-12px: 12px;
-  --text-16px: 16px;
+  --text-16px: 16px;  //text-[length:var(--text-12px)]
 
   //control
   --border-control: #d1d1d1;
@@ -42,6 +42,13 @@
   --button-switch-dot-background: #ffffff;
   --button-switch-background: #c2c2c2;
 
+  //message
+  --message-background-processing: #90d3ff;
+  --message-background-completed: #D4E7D9;
+  --message-background-error: #FBD8D8;
+  --message-background-fail: #E0E0E0;
+  --message-background-maintenance: #fcae7b;
+ 
   //color level 
   --color-level: red;
 }

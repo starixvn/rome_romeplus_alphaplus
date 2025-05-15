@@ -10,11 +10,11 @@ import {
   hasManualWithdrawalTransactionType
 } from '../../utils/bankTransactionUtils';
 import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
-import { IconCheck, IconError } from '../../components/Icons';
 import { baseAPI } from '../../services/commonAPI';
 import CustomDropdown, { DropdownOption } from '../../components/DropdownComponent';
 import Loading from '../../components/LoadingComponent';
 import BackComponent from '../../components/BackComponent';
+import { ResultMessageComponent } from '../../components/ResultMessageComponent';
 
 interface UpdateBankAccountComponentProps {
   onClose: () => void;
@@ -259,10 +259,10 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
           <form onSubmit={handleSubmit} className='bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]'>
             <div className="modal-body">
               {error && (
-                <div className="mt-[16px] font-bold text-[12px] text-[#333] bg-[#FFF2F2] border-[1px] border-[#FE0000] rounded-[10px] pl-[36px] pr-[12px] py-[8px] relative block capitalize"><IconError className='w-[20px] h-[20px] fill-[#fe0000] absolute top-[8px] left-[10px]' />{error}</div>
+                <ResultMessageComponent message={error} type='error' />                
               )}
               {success && (
-                <div className="mt-[16px] font-bold text-[12px] text-[#333] bg-[#E2FFF2] border-[1px] border-[#5cb774] rounded-[10px] pl-[36px] pr-[12px] py-[8px] relative block capitalize"><IconCheck className='w-[20px] h-[20px] fill-[#5CB774] absolute top-[8px] left-[10px]' />{successMessage}</div>
+                <ResultMessageComponent message={successMessage} type='success' />
               )}
               
               <div className="mb-[8px]">
