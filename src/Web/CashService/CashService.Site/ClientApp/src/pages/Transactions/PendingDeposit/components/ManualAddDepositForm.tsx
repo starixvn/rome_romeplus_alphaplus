@@ -2,25 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import { MemberLoginName } from '../../../../services/interfaces/Transactions/MemberLoginName';
-
+import { BankInfo } from '../../../../services/interfaces/Transactions/BankInfo';
 interface ManualAddDepositFormProps {
+  cashAgentOptions: BankInfo[];
   onClose: () => void;
-  onSubmit: (data: {
-    memberLoginName: string;
-    from: number;
-    to: number;
-    depositAmount: number;
-    remarks: string;
-    image?: string;
-  }) => void;
 }
 
-const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, onSubmit }) => {
+const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOptions, onClose }) => {
   const { t } = useTranslation('pendingDeposit');
-  const [memberLoginNames, setMemberLoginName] = useState<MemberLoginName[]>([]);
+  const [memberLoginOptions, setMemberLoginOptions] = useState<MemberLoginName[]>([]);
   const [memberId, setMemberId] = useState<number>(0);
-  const [from, setFrom] = useState(12345678);
-  const [to, setTo] = useState(1493993018);
+  const [paymentFrom, setPaymentFrom] = useState('');
+  const [paymentTo, setPaymentTo] = useState(cashAgentOptions[0].bankAccountNumber);
+  const [cashMemberOptions, setCashMemberOptions] = useState<BankInfo[]>([]);
   const [depositAmount, setDepositAmount] = useState('');
   const [remarks, setRemarks] = useState('');
   const [image, setImage] = useState<File | null>(null);
@@ -31,23 +25,34 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, on
   useEffect(() => {
     const fetchMemberLoginName = async () => {
       const memberLoginNames = await transactionAPI.getMemberLoginName();
-      setMemberLoginName(memberLoginNames);
+      setMemberLoginOptions(memberLoginNames);
       setMemberId(memberLoginNames[0]?.custId);
       console.log('memberLoginNames', memberLoginNames);
     };
     fetchMemberLoginName();
   }, []);
 
+  useEffect(() => {
+    const fetchCashMemberBankInfo = async () => {
+      if (memberId) {
+        //const bankInfo = await transactionAPI.getCashMemberBankInfo(memberId);
+        const bankInfo = await transactionAPI.getCashMemberBankInfo(1176093);
+        setCashMemberOptions(bankInfo);
+        if (bankInfo.length > 0) {
+          setPaymentFrom(bankInfo[0].bankAccountNumber);
+        }
+      }
+    };
+    fetchCashMemberBankInfo();
+  }, [memberId]);
+
+  const handleMemberChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newMemberId = parseInt(e.target.value);
+    setMemberId(newMemberId);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({
-      memberLoginName: memberId.toString(),
-      from,
-      to,
-      depositAmount: parseFloat(depositAmount),
-      remarks,
-      image: imageBase64 || undefined,
-    });
   };
 
   console.log('image', image);
@@ -163,10 +168,10 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, on
                       <select
                         id="memberLoginName"
                         value={memberId}
-                        onChange={(e) => setMemberId(parseInt(e.target.value))}
+                        onChange={handleMemberChange}
                         className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
                       >
-                        {memberLoginNames.map((data) => (
+                        {memberLoginOptions.map((data) => (
                           <option key={data.custId} value={data.custId}>
                             {data.username}
                           </option>
@@ -177,7 +182,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, on
 
                   <div>
                     <label
-                      htmlFor="from"
+                      htmlFor="paymentFrom"
                       className="block text-sm font-medium text-gray-700 mb-1 relative"
                     >
                       {t('manualDepositForm.from')}
@@ -185,12 +190,16 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, on
                     </label>
                     <div className="relative">
                       <select
-                        id="from"
-                        value={from}
-                        onChange={(e) => setFrom(parseInt(e.target.value))}
+                        id="paymentFrom"
+                        value={paymentFrom}
+                        onChange={(e) => setPaymentFrom(e.target.value)}
                         className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
                       >
-                        <option value="12345678">12345678</option>
+                        {cashMemberOptions.map((option) => (
+                          <option key={option.bankId} value={option.bankAccountNumber}>
+                            {option.bankAccountNumber}
+                          </option>
+                        ))}
                       </select>
                     </div>
                   </div>
@@ -199,7 +208,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, on
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label
-                      htmlFor="to"
+                      htmlFor="paymentTo"
                       className="block text-sm font-medium text-gray-700 mb-1 relative"
                     >
                       {t('manualDepositForm.to')}
@@ -207,12 +216,16 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ onClose, on
                     </label>
                     <div className="relative">
                       <select
-                        id="to"
-                        value={to}
-                        onChange={(e) => setTo(parseInt(e.target.value))}
+                        id="paymentTo"
+                        value={paymentTo}
+                        onChange={(e) => setPaymentTo(e.target.value)}
                         className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
                       >
-                        <option value="1493993018">1493993018</option>
+                        {cashAgentOptions.map((option) => (
+                          <option key={option.bankId} value={option.bankAccountNumber}>
+                            {option.bankAccountNumber}
+                          </option>
+                        ))}
                       </select>
                     </div>
                   </div>

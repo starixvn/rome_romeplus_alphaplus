@@ -10,12 +10,15 @@ import i18n from '../../../i18n/i18n-pendingDeposit';
 import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
 import '../../../styles/common.css';
 import '../../../styles/global.scss';
+import { BankInfo } from '../../../services/interfaces/Transactions/BankInfo';
+import { TransactionType } from '../common.functions';
 
 const PendingDeposit: React.FC = () => {
   const { t } = useTranslation('pendingDeposit');
   useCookieLanguage(i18n);
   const [recentDeposits, setRecentDeposits] = useState<string>('All');
-  const [cashAgentTo, setCashAgentTo] = useState<string>('All');
+  const [cashAgentOptions, setCashAgentOptions] = useState<BankInfo[]>([]);
+  const [cashAgentTo, setCashAgentTo] = useState<string>('');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [deposits, setDeposits] = useState<DepositAccountInfo[]>([]);
   const [showManualAddDepositForm, setShowManualAddDepositForm] = useState<boolean>(false);
@@ -26,7 +29,13 @@ const PendingDeposit: React.FC = () => {
       const deposits = await pendingDepositAPI.getMemberBankAccounts();
       setDeposits(deposits);
     };
+    const fetchCashAgentBankInfo = async () => {
+      const bankInfo = await transactionAPI.getCashAgentBankInfo(TransactionType.Deposit);
+      setCashAgentOptions(bankInfo);
+    };
+
     fetchDeposits();
+    fetchCashAgentBankInfo();
   }, []);
 
   const handleAddManualDeposit = () => {
@@ -34,34 +43,6 @@ const PendingDeposit: React.FC = () => {
   };
 
   const handleCloseManualDepositForm = () => {
-    setShowManualAddDepositForm(false);
-  };
-
-  const handleSubmitManualDeposit = (data: {
-    memberLoginName: string;
-    from: number;
-    to: number;
-    depositAmount: number;
-    remarks: string;
-    image?: string;
-  }) => {
-
-    const newDeposit: DepositAccountInfo = {
-      id: deposits.length + 1,
-      username: data.memberLoginName,
-      loginName: data.memberLoginName,
-      firstName: '',
-      lastName: '',
-      amount: data.depositAmount,
-      currency: 'USD',
-      from: data.from,
-      to: data.to,
-      referenceNo: data.remarks,
-      dateAndTime: new Date(),  
-      dateAndTimeStr: new Date().toLocaleString(),
-    };
-
-    setDeposits([...deposits, newDeposit]);
     setShowManualAddDepositForm(false);
   };
 
@@ -124,6 +105,7 @@ const PendingDeposit: React.FC = () => {
           <Filter
             recentDeposits={recentDeposits}
             setRecentDeposits={setRecentDeposits}
+            cashAgentOptions={cashAgentOptions}
             cashAgentTo={cashAgentTo}
             setCashAgentTo={setCashAgentTo}
             searchTerm={searchTerm}
@@ -136,8 +118,8 @@ const PendingDeposit: React.FC = () => {
 
       {showManualAddDepositForm && (
         <ManualAddDepositForm
+          cashAgentOptions={cashAgentOptions}
           onClose={handleCloseManualDepositForm}
-          onSubmit={handleSubmitManualDeposit}
         />
       )}
     </div>

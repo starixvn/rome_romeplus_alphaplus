@@ -1,9 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { BankInfo } from '../../../../services/interfaces/Transactions/BankInfo';
 
 interface FilterProps {
   recentDeposits: string;
   setRecentDeposits: (value: string) => void;
+  cashAgentOptions: BankInfo[];
   cashAgentTo: string;
   setCashAgentTo: (value: string) => void;
   searchTerm: string;
@@ -13,6 +15,7 @@ interface FilterProps {
 const Filter: React.FC<FilterProps> = ({
   recentDeposits,
   setRecentDeposits,
+  cashAgentOptions,
   cashAgentTo,
   setCashAgentTo,
   searchTerm,
@@ -59,9 +62,11 @@ const Filter: React.FC<FilterProps> = ({
             style={{ height: '32px' }}
           >
             <option value="All">{t('filter.all')}</option>
-            <option value="Bank1">Bank 1</option>
-            <option value="Bank2">Bank 2</option>
-            <option value="Wallet1">Wallet 1</option>
+            {cashAgentOptions.map((option) => (
+              <option key={option.bankId} value={option.bankId}>
+                {option.bankAccountNumber}
+              </option>
+            ))}
           </select>
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
             <svg
