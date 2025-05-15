@@ -1,4 +1,5 @@
-using System.Text.Json;
+// using System.Text.Json;
+using Newtonsoft.Json;
 using AlphaPlus.Core;
 using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Helpers;
@@ -6,6 +7,7 @@ using AlphaPlus.Core.Models;
 using AlphaPlus.Core.Utils;
 using AlphaPlus.Products.Models;
 using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+using AlphaPlus.Settings.Site.Features.Customer.Models;
 using AlphaPlus.Settings.Site.Features.Customer.Requests;
 using AlphaPlus.Settings.Site.Features.Customer.ViewModels;
 using AlphaPlus.Settings.Site.Features.ProductStatus;
@@ -17,6 +19,7 @@ using Fanex.Customer.Client.Params;
 using Fanex.Customer.Client.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+
 
 namespace AlphaPlus.Settings.Site.Features.Customer
 {
@@ -33,11 +36,12 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         private readonly IProductStatusService productStatusService;
         private readonly IUserSession userSession;
         private readonly IMemoryCache memoryCache;
-
-        private readonly JsonSerializerOptions serializeOptions = new()
+        private readonly HttpClient httpClient;
+        private readonly IConfiguration configuration;
+        private readonly JsonSerializerSettings serializeOptions = new()
         {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            WriteIndented = true
+            ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver(),
+            Formatting = Newtonsoft.Json.Formatting.Indented
         };
 
         public CustomerController(
@@ -48,7 +52,9 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             ICustomerService customerService,
             IProductStatusService productStatusService,
             IUserSession userSession,
-            IMemoryCache memoryCache)
+            IMemoryCache memoryCache,
+            IConfiguration configuration,
+            HttpClient httpClient)
         {
             this.encryption = encryption;
             this.sessionManager = sessionManager;
@@ -58,6 +64,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             this.productStatusService = productStatusService;
             this.userSession = userSession;
             this.memoryCache = memoryCache;
+            this.httpClient = httpClient;
+            this.configuration = configuration;
         }
 
         private string GetAssetsVersion()
@@ -432,7 +440,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             return applicationPath;
         }
 
-        private ContentResult UnAuthorized() => Content(JsonSerializer.Serialize(Result.CreateErrorResult(Resources.NotAuthorized), serializeOptions));
+        private ContentResult UnAuthorized() => Content(JsonConvert.SerializeObject(Result.CreateErrorResult(Resources.NotAuthorized), serializeOptions));
 
         private SettingProductTab BuildAccountInfoTab(int customerId, int customerLevel, bool isDarkMode)
         {
@@ -478,6 +486,20 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 productGroupId,
                 userSession.Language,
                 isDarkMode.ToString().ToLowerInvariant()));
+        }
+        
+        public async Task<IActionResult> GetCountryCodes(CancellationToken cancellationToken)
+        {
+            var url = $"{configuration["CashServiceAPIUrl"]}/common/country-codes/{userSession.Site}";
+            var countryCodes = await httpClient.GetFromJsonAsync<string[]>(url, cancellationToken);
+            return Json(countryCodes);
+        }
+
+        public async Task<IActionResult> GetBanks(CancellationToken cancellationToken)
+        {
+            var url = $"{configuration["CashServiceAPIUrl"]}/payments/banks?transactionType={0}";
+            var banks = await httpClient.GetFromJsonAsync<BankModel[]>(url, cancellationToken);
+            return Json(banks, serializeOptions);
         }
     }
 }
