@@ -12,8 +12,7 @@ public class TransactionsController(
     IUserSession userSession)
     : Controller
 {
-    //private readonly int AgentId = userSession.CustId;
-    private readonly int AgentId = 187900621;
+    private readonly int AgentId = userSession.CustId;
     private readonly int CustDbGroupId = userSession.CustDBGroupId;
 
     public IActionResult Index() => Ok("Transactions");
