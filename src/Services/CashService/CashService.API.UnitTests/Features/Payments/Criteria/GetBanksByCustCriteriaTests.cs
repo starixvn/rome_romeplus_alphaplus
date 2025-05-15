@@ -1,34 +1,34 @@
 using Xunit;
-using AlphaPlus.CashService.API.Criteria.Payments;
+using AlphaPlus.CashService.API.Features.Payments.Criteria;
 
 namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
 {
-    public class GetBankAccountByIdCriteriaTests
+    public class GetBanksByCustCriteriaTests
     {
         [Fact]
         public void Constructor_WhenCalled_ShouldSetPropertiesCorrectly()
         {
             // Arrange
-            const int expectedBankAccountId = 123;
+            const int expectedCustId = 123;
 
             // Act
-            var criteria = new GetBankAccountByIdCriteria(expectedBankAccountId);
+            var criteria = new GetBanksByCustCriteria(expectedCustId);
 
             // Assert
-            Assert.Equal(expectedBankAccountId, criteria.BankAccountId);
+            Assert.Equal(expectedCustId, criteria.CustId);
         }
 
         [Fact]
         public void GetSettingKey_WhenCalled_ShouldReturnExpectedKey()
         {
             // Arrange
-            var criteria = new GetBankAccountByIdCriteria(1);
+            var criteria = new GetBanksByCustCriteria(1);
 
             // Act
             var result = criteria.GetSettingKey();
 
             // Assert
-            Assert.Equal("Age_CashService_BankAccountAgent_Sel", result);
+            Assert.Equal("Age_CashService_UserBankAccount", result);
         }
 
         [Theory]
@@ -36,10 +36,10 @@ namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
         [InlineData(100, true)]
         [InlineData(0, false)]
         [InlineData(-1, false)]
-        public void IsValid_WhenValidBankAccountId_ShouldReturnTrue(int bankAccountId, bool expectedResult)
+        public void IsValid_WhenValidCustId_ShouldReturnTrue(int custId, bool expectedResult)
         {
             // Arrange
-            var criteria = new GetBankAccountByIdCriteria(bankAccountId);
+            var criteria = new GetBanksByCustCriteria(custId);
 
             // Act
             var result = criteria.IsValid();

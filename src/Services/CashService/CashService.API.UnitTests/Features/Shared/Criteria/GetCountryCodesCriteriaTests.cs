@@ -1,4 +1,4 @@
-using AlphaPlus.CashService.API.Criteria.Common;
+using AlphaPlus.CashService.API.Features.Shared.Criteria;
 using Xunit;
 
 namespace AlphaPlus.CashService.API.UnitTests.Criteria.Common;

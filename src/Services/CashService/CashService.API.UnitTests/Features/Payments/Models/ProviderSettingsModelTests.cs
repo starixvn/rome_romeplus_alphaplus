@@ -1,4 +1,4 @@
-using AlphaPlus.CashService.API.Models.Payments;
+using AlphaPlus.CashService.API.Features.Payments.Models;
 using Xunit;
 
 namespace AlphaPlus.CashService.API.UnitTests.Models.Payments
