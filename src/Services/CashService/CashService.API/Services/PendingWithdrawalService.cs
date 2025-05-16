@@ -100,7 +100,15 @@ public class PendingWithdrawalService(
             PaymentMethodId = param.PaymentMethodId,
             CustDbGroupId = param.CustDbGroupId
         };
-        return await dynamicRepository.GetAsync<CreditAmount>(criteria);
+        await dynamicRepository.GetAsync<CreditAmount>(criteria);
+        var random = new Random();
+        return new CreditAmount
+
+        {
+            MaxAmt = random.Next(0, 101),
+            MinAmt = criteria.MinAmt,
+            IsReachLimitCnt = criteria.IsReachLimitCnt
+        };
     }
 
     public async Task<MemberSettingWithdraw> GetMemberSettingWithdrawAsync(int custId)

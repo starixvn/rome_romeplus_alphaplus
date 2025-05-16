@@ -5,17 +5,11 @@ import { MemberLoginName } from '../../../../services/interfaces/Transactions/Me
 import { TransactionTypes } from '../../../../utils/constants';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import { getSettingLimitAmtWithdrawal } from '../../../../services/pendingWithdrawalAPI';
+import { AddWithdrawalModel } from '../../../../services/interfaces/AddWithdrawalModel';
 
 interface ManualAddWithdrawalFormProps {
   onClose: () => void;
-  onSubmit: (data: {
-    custId: number;
-    from: string;
-    to: string;
-    withdrawalAmount: number;
-    remarks: string;
-    image?: File;
-  }) => void;
+  onSubmit: (data: AddWithdrawalModel) => void;
 }
 
 const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClose, onSubmit }) => {
@@ -39,11 +33,13 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
 
     onSubmit({
       custId: custId as number,
-      from,
-      to,
-      withdrawalAmount: parseFloat(withdrawalAmount),
+      paymentFrom: from,
+      paymentTo: to,
+      minLimitAmt: minAmount,
+      maxLimitAmt: maxAmount,
+      amount: parseFloat(withdrawalAmount),
       remarks,
-      image: image || undefined,
+      image: image as File,
     });
   };
 
@@ -64,7 +60,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       return false;
     }
 
-    if (image && image.size > 0.1 * 1024 * 1024) {
+    if (image && image.size > 1024 * 1024) {
       alert(t('manualWithdrawalForm.imageSizeError'));
       return false;
     }
@@ -173,6 +169,18 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
     }
   };
 
+  const displayMinMaxAmount = () => {
+    console.log(minAmount, maxAmount);
+    if (maxAmount === 0) {
+      return '';
+    }
+    return (
+      <span className="text-xs text-gray-500 pl-3">
+        ({minAmount} - {maxAmount})
+      </span>
+    );
+  };
+
   return (
     <div className="fixed inset-0 bg-white flex flex-col z-50">
       <div className="bg-gray-100 p-4">
@@ -279,9 +287,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                     >
                       {t('manualWithdrawalForm.withdrawalAmount')}
                       <span className="text-red-500 absolute">*</span>
-                      <span className="text-xs text-gray-500 pl-3">
-                        ({minAmount} - {maxAmount})
-                      </span>
+                      {displayMinMaxAmount()}
                     </label>
 
                     <input

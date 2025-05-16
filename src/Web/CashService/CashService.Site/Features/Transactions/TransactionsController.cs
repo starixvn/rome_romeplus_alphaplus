@@ -9,7 +9,8 @@ using Shared.Models;
 public class TransactionsController(
     HttpClientHelper httpClientHelper,
     ILogger<TransactionsController> logger,
-    IUserSession userSession)
+    IUserSession userSession,
+    IHttpContextAccessor httpContextAccessor)
     : Controller
 {
     private readonly int AgentId = userSession.CustId;
@@ -76,6 +77,84 @@ public class TransactionsController(
     {
         var result = await httpClientHelper.PostAsync<object, ResultModel>("/deposit/create", request);
         return Json(result);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> AddManualWithdrawal([FromBody] AddWithdrawalParams request)
+    {
+        var result = VerifyInputParam(request);
+        if (result.Code != 0)
+        {
+            return Json(result);
+        }
+        request.UplineId = AgentId;
+        request.IP = GetClientIp();
+        request.Payslip = request.File != null ? await ToByteArrayAsync(request.File) : null;
+        result = await httpClientHelper.PostAsync<AddWithdrawalParams, ResultModel>("/withdrawal/create", request);
+        return Json(result);
+    }
+
+    public async Task<byte[]> ToByteArrayAsync(IFormFile file)
+    {
+        using var ms = new MemoryStream();
+        await file.CopyToAsync(ms);
+        return ms.ToArray();
+    }
+
+    private static ResultModel VerifyInputParam(AddWithdrawalParams request)
+    {
+        var result = new ResultModel();
+        if (request.Amount <= 0 || (request.MaxLimitAmt > 0 && request.Amount > request.MaxLimitAmt))
+        {
+            result.Code = 1;
+            result.Message = "Amount must be greater than 0 and less than MaxLimit";
+        }
+        if (request.CustId <= 0)
+        {
+            result.Code = 1;
+            result.Message = "Please select member login";
+        }
+
+        if (string.IsNullOrWhiteSpace(request.PaymentFrom) && request.ProviderId <= 0)
+        {
+            result.Code = 1;
+            result.Message = "Please select From Payment";
+        }
+
+        if (string.IsNullOrWhiteSpace(request.PaymentTo))
+        {
+            result.Code = 1;
+            result.Message = "Please select Member Bank account";
+        }
+
+        if (!IsValidFile(request.File))
+        {
+            result.Code = 1;
+            result.Message = "File upload must be less than 1MB";
+        }
+        return result;
+    }
+
+    private static bool IsValidFile(IFormFile? file)
+    {
+        if (file == null) return true;
+        const long maxFileSize = 1 * 1024 * 1024;
+
+        return file.Length <= maxFileSize;
+    }
+
+    private string GetClientIp()
+    {
+        var context = httpContextAccessor.HttpContext;
+
+        var ip = context?.Request?.Headers["X-Forwarded-For"].FirstOrDefault();
+
+        if (string.IsNullOrEmpty(ip))
+        {
+            ip = context?.Connection?.RemoteIpAddress?.ToString();
+        }
+
+        return ip ?? "Unknown";
     }
 
     public async Task<IActionResult> GetBankWithdrawalAccounts()

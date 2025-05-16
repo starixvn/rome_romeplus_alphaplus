@@ -2,6 +2,8 @@ import axios from 'axios';
 import { WithdrawalAccountInfo } from './interfaces/WithdrawalAccountInfo';
 import { CreditAmount } from './interfaces/Transactions/CreditAmount';
 import { CashLimitAmt } from './interfaces/Transactions/CashLimitAmt';
+import { ResultModel } from './interfaces/ResultModel';
+import { AddWithdrawalModel } from './interfaces/AddWithdrawalModel';
 
 const api = axios.create({
   baseURL: '',
@@ -42,6 +44,18 @@ export const getSettingLimitAmtWithdrawal = async (
   } catch (error) {
     console.error('Error fetching credit amount:', error);
     return { minAmt: 0, maxAmt: 0 };
+  }
+};
+
+export const manualAddWithdrawal = async (
+  manualAddWithdrawal: AddWithdrawalModel
+): Promise<ResultModel> => {
+  try {
+    const response = await api.post<ResultModel>('AddManualWithdrawal', manualAddWithdrawal);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching credit amount:', error);
+    return { code: 1, isSuccessful: false, message: 'Error add manual withdrawal' };
   }
 };
 

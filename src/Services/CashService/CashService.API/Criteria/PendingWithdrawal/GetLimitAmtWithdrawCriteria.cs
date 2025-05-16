@@ -2,6 +2,8 @@
 
 namespace AlphaPlus.CashService.API.Criteria.PendingWithdrawal;
 
+using Fanex.Data;
+
 public class GetLimitAmtWithdrawCriteria : CriteriaBase
 {
     public int CustId { get; set; }
@@ -10,9 +12,14 @@ public class GetLimitAmtWithdrawCriteria : CriteriaBase
 
     public int UplineId { get; set; }
 
-    public decimal PaymentMethodId { get; set; }
+    public int PaymentMethodId { get; set; }
 
+    [SpParam(Ignored = true)]
     public int CustDbGroupId { get; set; }
+
+    public decimal MinAmt { get; set; }
+    public decimal MaxAmt { get; set; }
+    public bool IsReachLimitCnt { get; set; }
 
     public override string GetSettingKey() => $"CustDb_{CustDbGroupId}_Age_CashWithdrawal_LimitAmtSel";
 
