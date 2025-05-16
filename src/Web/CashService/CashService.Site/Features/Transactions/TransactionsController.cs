@@ -80,7 +80,7 @@ public class TransactionsController(
     {
         var rq = new AddWithdrawalParams
         {
-            UplineId = AgentId,
+            UplineId = agentId,
             CustId = 1176092
         };
 
@@ -89,8 +89,8 @@ public class TransactionsController(
         {
             return Json(result);
         }
-        request.UplineId = AgentId;
-        request.IP = GetClientIp();
+        request.UplineId = agentId;
+        request.Ip = GetClientIp();
         request.Payslip = request.File != null ? await ToByteArrayAsync(request.File) : null;
         result = await httpClientHelper.PostAsync<AddWithdrawalParams, ResultModel>("/deposit/create", rq);
         return Json(result);
