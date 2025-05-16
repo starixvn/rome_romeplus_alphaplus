@@ -13,8 +13,9 @@ public class TransactionsController(
     IHttpContextAccessor httpContextAccessor)
     : Controller
 {
-    private readonly int AgentId = userSession.CustId;
-    private readonly int CustDbGroupId = userSession.CustDBGroupId;
+    private readonly int agentId = userSession.CustId;
+    private readonly int custDbGroupId = userSession.CustDBGroupId;
+    private readonly int siteDbGroupId = userSession.SiteDBGroupId;
 
     public IActionResult Index() => Ok("Transactions");
 
@@ -54,7 +55,7 @@ public class TransactionsController(
 
     public async Task<IActionResult> GetLimitAmtDeposit(int custId)
     {
-        var url = $"/deposit/limit-amount?agentId={AgentId}&custId={custId}&custDbGroupId={CustDbGroupId}";
+        var url = $"/deposit/limit-amount?agentId={agentId}&custId={custId}&custDbGroupId={custDbGroupId}";
         var limitAmtDeposit = await httpClientHelper.GetAsync<object>(url);
         return Json(limitAmtDeposit);
     }
@@ -62,9 +63,9 @@ public class TransactionsController(
     public async Task<IActionResult> GetSettingLimitAmtWithdrawal(int custId, int providerId, int paymentMethodId)
     {
         var data = new Dictionary<string, string> {
-            { "uplineId", AgentId.ToString() },
+            { "uplineId", agentId.ToString() },
             { "custId", custId.ToString() },
-            { "custDbGroupId", CustDbGroupId.ToString() },
+            { "custDbGroupId", custDbGroupId.ToString() },
             { "providerId", providerId.ToString() },
             { "paymentMethodId", paymentMethodId.ToString() }
         };
@@ -87,9 +88,11 @@ public class TransactionsController(
         {
             return Json(result);
         }
-        request.UplineId = AgentId;
-        request.IP = GetClientIp();
-        request.Payslip = request.File != null ? await ToByteArrayAsync(request.File) : null;
+        request.UplineId = agentId;
+        request.Ip = GetClientIp();
+        request.SiteDbGroupId = siteDbGroupId;
+        request.CustDbGroupId = custDbGroupId;
+        request.Payslip = request.File != null ? await FileHelper.CompressAndConvertToBase64Async(request.File) : null;
         result = await httpClientHelper.PostAsync<AddWithdrawalParams, ResultModel>("/withdrawal/create", request);
         return Json(result);
     }
@@ -166,28 +169,28 @@ public class TransactionsController(
 
     public async Task<IActionResult> GetMemberLoginName()
     {
-        var url = $"/transactions/get-members?agentId={AgentId}&custDbGroupId={CustDbGroupId}";
+        var url = $"/transactions/get-members?agentId={agentId}&custDbGroupId={custDbGroupId}";
         var memberLogins = await httpClientHelper.GetAsync<object>(url);
         return Json(memberLogins);
     }
 
     public async Task<IActionResult> GetCashAgentBankInfo(int transactionType)
     {
-        var url = $"/transactions/agent-bank-list?agentId={AgentId}&transactionType={transactionType}&custDbGroupId={CustDbGroupId}";
+        var url = $"/transactions/agent-bank-list?agentId={agentId}&transactionType={transactionType}&custDbGroupId={custDbGroupId}";
         var memberLogins = await httpClientHelper.GetAsync<object>(url);
         return Json(memberLogins);
     }
 
     public async Task<IActionResult> GetCashMemberBankInfo(int custId)
     {
-        var url = $"/transactions/member-bank-list?custId={custId}&custDbGroupId={CustDbGroupId}";
+        var url = $"/transactions/member-bank-list?custId={custId}&custDbGroupId={custDbGroupId}";
         var memberBanks = await httpClientHelper.GetAsync<object>(url);
         return Json(memberBanks);
     }
 
     public async Task<IActionResult> GetCashAgentProvider(int transactionType)
     {
-        var url = $"/transactions/payment-provider-list?agentId={AgentId}&transactionType={transactionType}&custDbGroupId={CustDbGroupId}";
+        var url = $"/transactions/payment-provider-list?agentId={agentId}&transactionType={transactionType}&custDbGroupId={custDbGroupId}";
         var agentProviders = await httpClientHelper.GetAsync<object>(url);
         return Json(agentProviders);
     }

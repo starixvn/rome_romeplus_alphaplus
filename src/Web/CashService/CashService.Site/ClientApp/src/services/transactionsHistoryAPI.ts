@@ -91,7 +91,6 @@ export const transactionAPI = {
       const response = await api.get<ProviderInfo[]>(
         `GetCashAgentProvider?transactionType=${transactionType}`
       );
-      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error('Error fetching cash agent provider info:', error);

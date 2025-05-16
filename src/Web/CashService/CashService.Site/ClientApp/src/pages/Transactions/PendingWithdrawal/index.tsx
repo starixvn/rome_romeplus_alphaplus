@@ -3,17 +3,13 @@ import { createRoot } from 'react-dom/client';
 import ManualAddWithdrawalForm from './components/ManualAddWithdrawalForm.tsx';
 import Filter from './components/Filter.tsx';
 import DataGrid from './components/DataGrid.tsx';
-import {    
-  AddManualWithdrawalAccountInfo,
-  WithdrawalAccountInfo,
-} from '../../../services/interfaces/WithdrawalAccountInfo';
 import { getBankWithdrawalAccounts } from '../../../services/pendingWithdrawalAPI';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../../i18n/i18n-pendingWithdrawal';
 import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
 import '../../../styles/common.css';
 import '../../../styles/global.scss';
-import { AddWithdrawalModel } from '../../../services/interfaces/AddWithdrawalModel.ts';
+import { WithdrawalAccountInfo } from '../../../services/interfaces/WithdrawalAccountInfo.ts';
 
 const PendingWithdrawal: React.FC = () => {
   const { t } = useTranslation('pendingWithdrawal');
@@ -38,19 +34,6 @@ const PendingWithdrawal: React.FC = () => {
 
   const handleCloseManualWithdrawalForm = () => {
     setShowManualAddWithdrawalForm(false);
-  };
-
-  const handleSubmitManualWithdrawal = (data: AddWithdrawalModel) => {
-    const manualWithdrawalData: AddManualWithdrawalAccountInfo = {
-      custId: data.custId,
-      from: data.paymentFrom,
-      to: data.paymentTo,
-      amount: data.amount,
-      remarks: data.remarks,
-      image: data.image,
-      providerId: isNaN(parseInt(data.paymentFrom)) ? 0 : parseInt(data.paymentFrom),
-    };
-    console.log(manualWithdrawalData);
   };
 
   return (
@@ -82,10 +65,7 @@ const PendingWithdrawal: React.FC = () => {
       </div>
 
       {showManualAddWithdrawalForm && (
-        <ManualAddWithdrawalForm
-          onClose={handleCloseManualWithdrawalForm}
-          onSubmit={handleSubmitManualWithdrawal}
-        />
+        <ManualAddWithdrawalForm onClose={handleCloseManualWithdrawalForm} />
       )}
     </div>
   );

@@ -69,10 +69,10 @@ public static class PendingWithdrawalEndpoints
             Description = "Returns withdrawal setting value for Member - use to validate min-max amount"
         });
 
-        group.MapPost("/create", async ([FromBody] CreateManualModel param, IPendingWithdrawalService service) =>
+        group.MapPost("/create", async ([FromBody] AddManualWithdrawalModel model, IPendingWithdrawalService service) =>
         {
-            var (result, id, message) = await service.CreateManualWithdrawAsync(param);
-            return result.Code != 0 ? Results.NotFound() : Results.Ok(new { result, id, message });
+            var result = await service.AddManualWithdrawAsync(model);
+            return Results.Ok(result);
         })
         .WithName("CreateManualWithdrawAsync")
         .WithOpenApi(operation => new(operation)

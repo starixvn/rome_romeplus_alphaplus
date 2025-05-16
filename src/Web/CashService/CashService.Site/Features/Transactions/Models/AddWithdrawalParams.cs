@@ -13,6 +13,8 @@ public class AddWithdrawalParams
     public decimal Amount { get; set; }
     public byte[] Payslip { get; set; }
     public string Remark { get; set; }
-    public string IP { get; set; }
+    public string Ip { get; set; }
+    public int SiteDbGroupId { get; set; }
+    public int CustDbGroupId { get; set; }
     public IFormFile File { get; set; }
 }

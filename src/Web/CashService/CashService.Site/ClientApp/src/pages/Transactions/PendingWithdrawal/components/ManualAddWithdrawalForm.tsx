@@ -4,15 +4,18 @@ import { WithdrawalAgentBankDropDown } from '../../../../services/interfaces/Tra
 import { MemberLoginName } from '../../../../services/interfaces/Transactions/MemberLoginName';
 import { TransactionTypes } from '../../../../utils/constants';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
-import { getSettingLimitAmtWithdrawal } from '../../../../services/pendingWithdrawalAPI';
+import {
+  getSettingLimitAmtWithdrawal,
+  manualAddWithdrawal,
+} from '../../../../services/pendingWithdrawalAPI';
 import { AddWithdrawalModel } from '../../../../services/interfaces/AddWithdrawalModel';
+import { Alert } from '../../../../components/ui/Alert';
 
 interface ManualAddWithdrawalFormProps {
   onClose: () => void;
-  onSubmit: (data: AddWithdrawalModel) => void;
 }
 
-const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClose, onSubmit }) => {
+const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClose }) => {
   const { t } = useTranslation('pendingWithdrawal');
   const [custId, setCustId] = useState<number | null>(null);
   const [from, setFrom] = useState<string>('');
@@ -23,15 +26,20 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [minAmount, setMinAmount] = useState(0);
   const [maxAmount, setMaxAmount] = useState(0);
+  const [providerId, setProviderId] = useState(0);
   const [memberLoginNames, setMemberLoginNames] = useState<MemberLoginName[]>([]);
-  const [bankInfo, setBankInfo] = useState<WithdrawalAgentBankDropDown[]>([]);
+  const [agentBankInfo, setBankInfo] = useState<WithdrawalAgentBankDropDown[]>([]);
   const [memberBankInfo, setMemberBankInfo] = useState<WithdrawalAgentBankDropDown[]>([]);
+  const [alert, setAlert] = useState<{ type: 'success' | 'error' | null; message: string }>({
+    type: null,
+    message: '',
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!verifyParam()) return;
 
-    onSubmit({
+    const manualWithdrawalData: AddWithdrawalModel = {
       custId: custId as number,
       paymentFrom: from,
       paymentTo: to,
@@ -40,28 +48,43 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       amount: parseFloat(withdrawalAmount),
       remarks,
       image: image as File,
-    });
+      providerId,
+    };
+    const addWithdrawalResponse = await manualAddWithdrawal(manualWithdrawalData);
+    if (addWithdrawalResponse.isSuccessful) {
+      setAlert({ type: 'success', message: t('addWithdrawalSuccess') });
+      setTimeout(() => {
+        onClose();
+      }, 3000);
+    } else {
+      setAlert({ type: 'error', message: addWithdrawalResponse.message });
+    }
   };
 
   const verifyParam = (): boolean => {
     if (!custId || custId <= 0) {
-      alert(t('manualWithdrawalForm.invalidCustId'));
+      setAlert({ type: 'error', message: t('manualWithdrawalForm.memberLoginNameRequired') });
       return false;
     }
 
-    if (!from || !to) {
-      alert(t('manualWithdrawalForm.invalidBankSelection'));
+    if (!from) {
+      setAlert({ type: 'error', message: t('manualWithdrawalForm.agentBankSelectionRequired') });
+      return false;
+    }
+
+    if (!to) {
+      setAlert({ type: 'error', message: t('manualWithdrawalForm.memberBankSelectionRequired') });
       return false;
     }
 
     const amount = parseFloat(withdrawalAmount);
-    if (isNaN(amount) || amount < minAmount || amount > maxAmount) {
-      alert(t('manualWithdrawalForm.invalidAmount'));
+    if (isNaN(amount) || amount <= minAmount || amount > maxAmount) {
+      setAlert({ type: 'error', message: t('manualWithdrawalForm.amountRangeError') });
       return false;
     }
 
     if (image && image.size > 1024 * 1024) {
-      alert(t('manualWithdrawalForm.imageSizeError'));
+      setAlert({ type: 'error', message: t('manualWithdrawalForm.imageSizeError') });
       return false;
     }
 
@@ -74,9 +97,8 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
     const memberBanks = await transactionAPI.getCashMemberBankInfo(selectedMemberId);
     setMemberBankInfo(
       memberBanks.map((bank) => ({
-        value: `${bank.bankCode}-${bank.bankAccountNumber}`,
+        value: `${bank.bankCode}_${bank.bankAccountNumber}`,
         label: bank.bankAccountNumber,
-        isPaymentMethod: false,
         providerId: 0,
         paymentMethodId: 0,
       }))
@@ -108,6 +130,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
     });
     setMinAmount(limits.minAmt);
     setMaxAmount(limits.maxAmt);
+    setProviderId(providerId);
   };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -128,16 +151,14 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       const bankInfo = await transactionAPI.getCashAgentBankInfo(TransactionTypes.Withdrawal);
       const providerInfo = await transactionAPI.getCashAgentProvider(TransactionTypes.Withdrawal);
       const banks: WithdrawalAgentBankDropDown[] = bankInfo.map((bank) => ({
-        value: `${bank.bankCode}-${bank.bankAccountNumber}`,
+        value: `${bank.bankCode}_${bank.bankAccountNumber}`,
         label: bank.bankAccountNumber,
-        isPaymentMethod: false,
         providerId: 0,
         paymentMethodId: 0,
       }));
       const mappedProviderInfo: WithdrawalAgentBankDropDown[] = providerInfo.map((provider) => ({
-        value: provider.providerId.toString(),
+        value: `${provider.providerName}_${provider.providerName}`,
         label: provider.providerName,
-        isPaymentMethod: true,
         providerId: provider.providerId,
         paymentMethodId: provider.paymentMethodId,
       }));
@@ -169,8 +190,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
     }
   };
 
-  const displayMinMaxAmount = () => {
-    console.log(minAmount, maxAmount);
+  const renderMinMaxAmount = () => {
     if (maxAmount === 0) {
       return '';
     }
@@ -188,6 +208,14 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       </div>
 
       <form id="manual-withdrawal-form" onSubmit={handleSubmit} className="p-6 flex-1">
+        {alert.type && (
+          <Alert
+            message={alert.message}
+            type={alert.type}
+            showIcon
+            style={{ marginBottom: '20px' }}
+          />
+        )}
         <div className="flex flex-row space-x-10">
           <div className="">
             <div className="mb-5 w-[900px]">
@@ -239,7 +267,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       <option value="" disabled hidden>
                         {t('manualWithdrawalForm.selectBank')}
                       </option>
-                      {bankInfo.map((bank) => (
+                      {agentBankInfo.map((bank) => (
                         <option
                           key={bank.value}
                           value={bank.value}
@@ -287,7 +315,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                     >
                       {t('manualWithdrawalForm.withdrawalAmount')}
                       <span className="text-red-500 absolute">*</span>
-                      {displayMinMaxAmount()}
+                      {renderMinMaxAmount()}
                     </label>
 
                     <input

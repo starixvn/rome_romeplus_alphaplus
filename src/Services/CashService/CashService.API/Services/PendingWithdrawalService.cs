@@ -18,7 +18,7 @@ public interface IPendingWithdrawalService
 
     Task<(ResultModel, int, string)> CreateManualWithdrawAsync(CreateManualModel param);
 
-    Task<ResultModel> AddManualWithdrawAsync(CreateManualModel param);
+    Task<ResultModel> AddManualWithdrawAsync(AddManualWithdrawalModel param);
 }
 
 public class PendingWithdrawalService(
@@ -133,7 +133,7 @@ public class PendingWithdrawalService(
             PaymentFrom = param.PaymentFrom,
             PaymentTo = param.PaymentTo,
             Amount = param.Amount,
-            PaySlip = param.PaySlip,
+            Payslip = param.PaySlip,
             Ip = param.Ip,
             Remark = param.Remark,
             ProviderId = param.ProviderId,
@@ -144,9 +144,8 @@ public class PendingWithdrawalService(
         return (result, command.TransId, command.CashAccumCreditTbl);
     }
 
-    public async Task<ResultModel> AddManualWithdrawAsync(CreateManualModel param)
+    public async Task<ResultModel> AddManualWithdrawAsync(AddManualWithdrawalModel param)
     {
-        var siteDbConf = await commonService.GetServerDBConfigByCustIdAsync(param.CustId);
         var memberSettings = await GetMemberSettingWithdrawAsync(param.CustId);
         var command = new CreateManualWithdrawCommand
         {
@@ -159,16 +158,17 @@ public class PendingWithdrawalService(
             PaymentFrom = param.PaymentFrom,
             PaymentTo = param.PaymentTo,
             Amount = param.Amount,
-            PaySlip = param.PaySlip,
+            Payslip = param.Payslip,
             Ip = param.Ip,
             Remark = param.Remark,
             ProviderId = param.ProviderId,
+            SiteDbGroupId = param.SiteDbGroupId
         };
-        await dynamicRepository.ExecuteAsync(command, siteDbConf.AGIP);
+        await dynamicRepository.ExecuteAsync(command);
         var result = new ResultModel(command.ErrCode, command.ErrMsg);
         if (command.ErrCode == 0)
         {
-            SyncCashAccumulatedCredit(command.CashAccumCreditTbl, siteDbConf.CustDBGroupId);
+            SyncCashAccumulatedCredit(command.CashAccumCreditTbl, param.CustDbGroupId);
         }
         return result;
     }

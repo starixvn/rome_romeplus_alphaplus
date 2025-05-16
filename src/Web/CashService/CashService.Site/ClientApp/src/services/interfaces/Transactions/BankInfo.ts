@@ -14,7 +14,6 @@ export interface ProviderInfo {
 export interface WithdrawalAgentBankDropDown {
   value: string;
   label: string;
-  isPaymentMethod: boolean;
   providerId: number;
   paymentMethodId: number;
 }

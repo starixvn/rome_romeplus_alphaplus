@@ -72,7 +72,13 @@
     "viewFullSize": "View Full Size",
     "removeImage": "Remove image",
     "cancel": "Cancel",
-    "approve": "Approve"
+    "approve": "Approve",
+    "memberLoginNameRequired": "Member Login Name is required",
+    "agentBankSelectionRequired": "From is required",
+    "memberBankSelectionRequired": "To is required",
+    "amountRangeError": "Amount must be between min and max amount",
+    "imageSizeError": "Image size must be less than 1 MB",
+    "addWithdrawalSuccess": "Add withdrawal successfully!!!"
   },
 
   "updateWithdrawal": {

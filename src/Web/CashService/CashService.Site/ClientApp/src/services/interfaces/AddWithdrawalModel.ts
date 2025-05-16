@@ -7,4 +7,5 @@ export interface AddWithdrawalModel {
   image: File;
   minLimitAmt: number;
   maxLimitAmt: number;
+  providerId: number;
 }
