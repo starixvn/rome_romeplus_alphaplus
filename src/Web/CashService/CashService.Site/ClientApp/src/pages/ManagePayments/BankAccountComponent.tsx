@@ -10,7 +10,7 @@ import TitleComponent from '../../components/TitleComponent';
 import { IconDelete,  IconPen, IconSearch, IconSync } from '../../components/Icons';
 import CustomDropdown from '../../components/DropdownComponent';
 import Loading from '../../components/LoadingComponent';
-import { ResultMessageComponent } from '../../components/ResultMessageComponent';
+import { ResultMessageComponent } from '../../components/MessageComponents';
 
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';

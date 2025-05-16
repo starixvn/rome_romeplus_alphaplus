@@ -7,7 +7,7 @@ import DailyLimitPopupModal from './SetDailyLimitPopupModal';
 import TitleComponent from '../../components/TitleComponent';
 import { IconPen } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
-import { ResultMessageComponent } from '../../components/ResultMessageComponent';
+import { ResultMessageComponent } from '../../components/MessageComponents';
 
 interface PaymentGatewayComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;

@@ -14,7 +14,7 @@ import { baseAPI } from '../../services/commonAPI';
 import CustomDropdown, { DropdownOption } from '../../components/DropdownComponent';
 import Loading from '../../components/LoadingComponent';
 import BackComponent from '../../components/BackComponent';
-import { ResultMessageComponent } from '../../components/ResultMessageComponent';
+import { ResultMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import CountryCodeComponent from '../../components/CountryCodeComponent';
 
 interface AddBankAccountComponentProps {
@@ -352,7 +352,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                         )}
                       </div>
                       {fieldErrors.selectedDepositMatchingMode && (
-                        <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.selectedDepositMatchingMode}</div>
+                        <ValidateMessageComponent message={fieldErrors.selectedDepositMatchingMode} />
                       )}
                     </div>
                   );
@@ -363,13 +363,13 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('accountHolderName')}<span className='text-[#E25757]'>*</span></label>                
                     <input
                       type="text"
-                      className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountHolderName ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
+                      className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountHolderName ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
                       value={accountHolderName}
                       onChange={(e) => setAccountHolderName(e.target.value)}
                       maxLength={255}
                     />
                     {fieldErrors.accountHolderName && (
-                      <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.accountHolderName}</div>
+                      <ValidateMessageComponent message={fieldErrors.accountHolderName} />
                     )}
                     <label className="block mt-[4px] text-[#828282] text-[11px] leading-[12px] font-semibold">{tManagePayments('provideFullName')}</label>
                   </div>
@@ -378,13 +378,13 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('bankAccountNumber')}<span className='text-[#E25757]'>*</span></label>
                     <input
                       type="text"
-                      className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountNumber ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
+                      className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountNumber ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
                       value={accountNumber}
                       onChange={(e) => setAccountNumber(e.target.value)}
                       maxLength={50}
                     />
-                    {fieldErrors.accountNumber && (
-                      <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.accountNumber}</div>
+                    {fieldErrors.accountNumber && ( 
+                      <ValidateMessageComponent message={fieldErrors.accountNumber} />
                     )}
                   </div>
 
@@ -392,7 +392,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('accountNickname')}</label>
                     <input
                       type="text"
-                      className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer`}
+                      className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer`}
                       value={accountNickname}
                       onChange={(e) => setAccountNickname(e.target.value)}
                       maxLength={255}

@@ -8,7 +8,7 @@ import { Setting, MessageData, MemberSiteManagementData, MemberSiteManagementDat
 import { useTranslation } from 'react-i18next';
 import i18n from '../../i18n/i18n-memberSite';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
-import { ResultMessageComponent, ResultType } from '../../components/ResultMessageComponent';
+import { ResultMessageComponent, ResultType } from '../../components/MessageComponents';
 import '../../styles/common.css';
 import '../../styles/global.scss';
 

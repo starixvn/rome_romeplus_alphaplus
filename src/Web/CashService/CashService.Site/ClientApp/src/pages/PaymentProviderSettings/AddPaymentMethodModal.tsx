@@ -4,7 +4,7 @@ import { TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { PaymentMethod } from '../../services/interfaces/Payments/PaymentMethod';
 import { QRCodeCanvas } from 'qrcode.react';
-import { ResultMessageComponent } from '../../components/ResultMessageComponent';
+import { ResultMessageComponent } from '../../components/MessageComponents';
 import { IconClose } from '../../components/Icons';
 
 interface AddPaymentMethodModalProps {

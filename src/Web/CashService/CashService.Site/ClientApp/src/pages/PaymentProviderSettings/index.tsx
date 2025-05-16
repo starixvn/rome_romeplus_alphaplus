@@ -14,7 +14,7 @@ import { IconBack, IconInfo } from '../../components/Icons';
 import Tippy from '@tippyjs/react';
 import i18n from '../../i18n/i18n-paymentProviderSettings';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
-import { ResultMessageComponent } from '../../components/ResultMessageComponent';
+import { ResultMessageComponent } from '../../components/MessageComponents';
 import '../../styles/common.css';
 import '../../styles/global.scss';
 

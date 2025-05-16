@@ -1,7 +1,7 @@
 import React from 'react';
-import { IconCheck, IconError } from './Icons';
+import { IconCheck, IconError, IconWarning } from './Icons';
 
-export type ResultType = 'error' | 'success';
+export type ResultType = 'error' | 'success' | 'warning';
 
 interface ResultMessageProps {
   type: ResultType;
@@ -12,21 +12,28 @@ interface ResultMessageProps {
 const getResultStyles = (type: ResultType) => {
   const styles = {
     error: ' bg-[#FFF2F2] border-[#FE0000] ',
-    success: 'bg-[#E2FFF2] border-[#5CB774] '
+    success: 'bg-[#E2FFF2] border-[#5CB774] ',
+    warning: 'bg-[#F6F2D7] border-[#FFDD9C] '
   };
   return styles[type];
 };
 
 
 const getResultIcon = (type: ResultType) => {
-  if (type === 'error') {
-    return (
-      <IconError className="w-[20px] h-[20px] fill-[#D42020] absolute top-[8px] left-[10px] max-[768px]:top-[6px]" />
-    );
+  switch (type) {
+    case 'error':
+      return (
+        <IconError className="w-[20px] h-[20px] fill-[#D42020] absolute top-[7px] left-[10px]" />
+      );
+    case 'warning':
+      return (
+        <IconWarning className="w-[20px] h-[20px] fill-[#7F3D1D] absolute top-[7px] left-[10px]" />
+      );
+    default:
+      return (
+        <IconCheck className="w-[20px] h-[20px] fill-[#5CB774] absolute top-[7px] left-[10px]" />
+      );
   }
-  return (
-      <IconCheck className="w-[20px] h-[20px] fill-[#5CB774] absolute top-[8px] left-[10px]" />
-  );
 };
 
 export const ResultMessageComponent: React.FC<ResultMessageProps> = ({
@@ -42,4 +49,12 @@ export const ResultMessageComponent: React.FC<ResultMessageProps> = ({
       </div>
     </div>
   );
-}; 
+};
+
+export const ValidateMessageComponent: React.FC<ResultMessageProps> = ({
+  message,
+}) => {
+  return (
+    <div className="text-[#FE0000] text-[12px]">{message}</div>
+  );
+};
