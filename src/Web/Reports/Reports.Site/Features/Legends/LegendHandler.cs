@@ -67,6 +67,7 @@ public class LegendHandler(
             message.MinDate);
         await AddOfferedProductsNeedDelayTimeToSummarizeData(legends, productParam);
         legends.Add($"- {await GetProductDetailsBelongSabaOtherSportsNote(message.ViewerId, productParam)}");
+        legends.Add($"- {await GetProductDetailsBelongSoccerPinGoal(message.ViewerId, productParam)}");
         legends.Add(GetGrossCommNotes(message.ViewerLevel, message.IsConsolidation));
         legends.Add(Resources.GrossCommRoundingNote);
         if (message.ShowDormantAccountsNote)
