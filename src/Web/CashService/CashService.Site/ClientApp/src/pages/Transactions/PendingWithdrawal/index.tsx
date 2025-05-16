@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import ManualAddWithdrawalForm from './components/ManualAddWithdrawalForm.tsx';
 import Filter from './components/Filter.tsx';
 import DataGrid from './components/DataGrid.tsx';
-import {
+import {    
   AddManualWithdrawalAccountInfo,
   WithdrawalAccountInfo,
 } from '../../../services/interfaces/WithdrawalAccountInfo';
