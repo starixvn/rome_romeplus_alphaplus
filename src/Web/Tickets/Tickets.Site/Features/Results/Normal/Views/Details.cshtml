@@ -9,6 +9,8 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@Html.Raw(Model.Title)</title>
+    @StaticResources.AssetStyles.Render("/bundles-v2/common/common")
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-tickets/normal")
     <link rel="stylesheet" href="~/bundles/results/resultcore.css" asp-append-version="true" />
 </head>
 

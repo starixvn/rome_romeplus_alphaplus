@@ -9,11 +9,11 @@
 <div role="tabpanel" class="tab-pane active" id="normal">
     <div class="row filter">
         <form method="get" asp-action="normal" id="result-filter">
-            <div class="col-sm-12 main-option">
-                <div class="form-group">
+            <div class="form-inline filter z-100">
+                <div class="form-group from-date-box">
                     <label class="txt">@Resources.Date</label>
                     <div class="control date">
-                        <div class="input-group date" id="dpkContainer">
+                        <div class="input-group date datepicker " id="dpkContainer">
                             <input type="text" class="form-control" asp-for="ResultDate" readonly />
                             <span class="input-group-addon">
                                 <span class="icon-calendar"></span>
@@ -23,20 +23,20 @@
                 </div>
                 <div class="form-group">
                     <input type="submit" value="@Model.Today.ToShortDateWithSlash()" id="today-results"
-                        class="btn-default btn-other-day" />
+                        class="btn-submit btn-default btn-other-day" />
                     <input type="submit" value="@Model.Yesterday.ToShortDateWithSlash()" id="yesterday-results"
-                        class="btn-default btn-other-day" />
+                        class="btn-submit btn-default btn-other-day" />
                 </div>
             </div>
-            <div class="col-sm-12">
-                <span class="txt-red">*</span> @Model.MinDateMessage
+            <div class="form-group note">
+                <span class="star">*</span> @Model.MinDateMessage
             </div>
             @if (Model.Sports.Any())
             {
-                <div class="col-sm-12 sport-info">
+                <div class="form-inline filter">
                     <div class="form-group">
                         <label class="txt">@Resources.Sport</label>
-                        <div class="dropdown control">
+                        <div class="control">
                             <select class="form-control" asp-for="SportId" asp-items="Model.Sports"
                                 data-placeholder="@Resources.PleaseSelect">
                                 <option></option>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="form-group">
                         <label class="txt">@Resources.League</label>
-                        <div class="dropdown control league-content">
+                        <div class="control league-content">
                             <select class="form-control" asp-for="LeagueId" asp-items="Model.Leagues"
                                 data-placeholder="@Resources.PleaseSelect">
                                 <option></option>
@@ -54,9 +54,11 @@
                     </div>
                     @if (Model.HasInformation)
                     {
-                        <a class="icon-excel" asp-action="NormalExcel"
-                            asp-route-resultDate="@Model.ResultDate.ToShortDateWithSlash()" asp-route-sportId="@Model.SportId"
-                            asp-route-leagueId="@Model.LeagueId"></a>
+                        <div class="form-group">
+                            <a class="ic-excel" asp-action="NormalExcel"
+                                asp-route-resultDate="@Model.ResultDate.ToShortDateWithSlash()" asp-route-sportId="@Model.SportId"
+                                asp-route-leagueId="@Model.LeagueId"></a>
+                        </div>
                     }
                 </div>
             }

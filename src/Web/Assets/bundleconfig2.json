@@ -1882,6 +1882,7 @@
 			"styles-v2/components/alert.css",
 			"styles-v2/components/title.css",
 			"styles-v2/components/modal.css"
+			
 		]
 	},
 	{
@@ -2211,5 +2212,17 @@
 			"styles-v2/components/daterangepicker-customize.css",
 			"styles-v2/components/tooltip.css"
 		]
-	}
+	},
+    {
+      "outputFileName": "bundles-v2/site-tickets/normal.css",
+      "inputFiles": [
+        "styles-v2/components/tab.css",
+        "styles-v2/components/bootstrap-daterangepicker.css",
+        "styles-v2/components/daterangepicker-customize.css",
+        "styles/vendors/bootstrap-multiselect.css",
+        "styles/components/bootstrap-multiselect.css",
+        "styles/vendors/select2.css",
+        "styles-v2/components/tables.css"
+      ]
+    }
 ]

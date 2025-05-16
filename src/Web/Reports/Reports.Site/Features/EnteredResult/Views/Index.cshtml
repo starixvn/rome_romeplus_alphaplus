@@ -75,7 +75,7 @@
         @if (Model.ReportData.HasData)
         {
             <tr class="total-row">
-                <td class="text-left">@Resources.Total</td>
+                <td class="text-right">@Resources.Total</td>
                 @{
                     RenderEnteredResult(Model.ReportData.Total.EnteredResultYesterday);
                     RenderEnteredResult(Model.ReportData.Total.EnteredResultToday);

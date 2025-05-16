@@ -63,7 +63,7 @@
                     <tr>
                         @if (isFirstRow)
                         {
-                            <td class="text-left first-row" rowspan="@date.WinLoss.Count(x => x.BetCount > 0)">@date.BreakDown</td>
+                            <td class="text-left bold first-row consolidation" rowspan="@date.WinLoss.Count(x => x.BetCount > 0)">@date.BreakDown</td>
                             isFirstRow = false;
                         }
                         <td class="text-left @data.CustLevelName.ToLowerInvariant()">@data.CustLevelName</td>
@@ -104,11 +104,11 @@
                         {
                             <td class="hidden-stack-mode col-member-winloss">@data.MemberWinLoss.FormatNumber()</td>
                             <td class="hidden-stack-mode">@data.MemberComm.FormatNumber()</td>
-                            <td class="hidden-stack-mode bold">@data.MemberTotal.FormatNumber()</td>
+                            <td class="hidden-stack-mode bold consolidation">@data.MemberTotal.FormatNumber()</td>
                             <td class="hidden-stack-mode col-owner-turnover">@data.OwnerTurnover.FormatNumber()</td>
                             <td class="hidden-stack-mode">@data.OwnerWinLoss.FormatNumber()</td>
                             <td class="hidden-stack-mode">@data.OwnerComm.FormatNumber()</td>
-                            <td class="hidden-stack-mode bold">@data.OwnerTotal.FormatNumber()</td>
+                            <td class="hidden-stack-mode bold consolidation">@data.OwnerTotal.FormatNumber()</td>
                         }
                         <td>@data.Company.FormatNumber()</td>
                         <td>@data.BetCount.FormatNumber()</td>
