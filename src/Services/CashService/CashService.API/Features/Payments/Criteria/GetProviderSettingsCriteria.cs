@@ -3,10 +3,11 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Features.Payments.Criteria
 {
-    public class GetProviderSettingsCriteria(int providerId, int method, int status, int transactionType)
+    public class GetProviderSettingsCriteria(int providerId, int custId, int method, int status, int transactionType)
         : CriteriaBase
     {
         public int ProviderId { get; set; } = providerId;
+        public int CustId { get; set; } = custId;
 
         [SpParam(SqlParamName = "PaymentMethodID")]
         public int Method { get; set; } = method;

@@ -83,9 +83,9 @@ public static class PaymentsEndpoints
             Description = "Returns a specific payment provider by its ID"
         });
 
-        app.MapGet("/api/payments/provider-settings", async (int providerId, int method, int status, int transactionType, IPaymentsService service) =>
+        app.MapGet("/api/payments/provider-settings", async (int providerId, int custId, int method, int status, int transactionType, IPaymentsService service) =>
         {
-            var settings = await service.GetProviderSettings(providerId, method, status, transactionType);
+            var settings = await service.GetProviderSettings(providerId, custId, method, status, transactionType);
             return Results.Ok(settings);
         })
         .WithName("GetPaymentProviderSettings")

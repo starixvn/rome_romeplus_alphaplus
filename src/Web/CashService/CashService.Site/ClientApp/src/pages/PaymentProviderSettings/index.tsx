@@ -20,6 +20,7 @@ import '../../styles/global.scss';
 
 import Loading from '../../components/LoadingComponent';
 import { ButtonComponent } from '../../components/ButtonComponents';
+import { PaymentMethod } from '../../services/interfaces/Payments';
 declare global {
   interface Window {
     providerSettingsViewModel: any;
@@ -310,6 +311,10 @@ function PaymentProviderSettings() {
   };
 
   const failStatus = 3;
+  const isEditable = (paymentMethod: PaymentMethod) => {
+    return paymentMethod.method !== 3 && paymentMethod.method !== 4;
+  }
+
 
   return (
     <div className="payment-provider-settings h-full">       
@@ -490,6 +495,7 @@ function PaymentProviderSettings() {
                     </td>
                     <td className='font-semibold'>{tPaymentProviderSettings(`transaction-${setting.transactionType}`)}</td>
                     <td>
+                      {isEditable(setting) ? (
                       <div className='flex flex-col'>
                         <input 
                           type="text" 
@@ -500,8 +506,12 @@ function PaymentProviderSettings() {
                         />
                         <label className="text-left text-[11px] text-[#828282] font-semibold">{tPaymentProviderSettings('minAmount')} {formatNumber(setting.minAmountTrans)}</label>
                       </div>
+                      ) : (
+                        <div className='flex flex-col'>-</div>
+                      )}
                     </td>
                     <td>
+                      {isEditable(setting) ? (
                       <div className='flex flex-col'>
                       <input 
                         type="text" 
@@ -509,11 +519,15 @@ function PaymentProviderSettings() {
                         value={formatNumber(setting.maxAmount)} 
                         onChange={(e) => handleMaxAmountChange(index, e.target.value)}
                         placeholder={tPaymentProviderSettings('maximum')}
-                      />
-                      <label className="text-left text-[11px] text-[#828282] font-semibold">{tPaymentProviderSettings('maxAmount')} {formatNumber(setting.maxAmountTrans)}</label>
+                        />
+                        <label className="text-left text-[11px] text-[#828282] font-semibold">{tPaymentProviderSettings('maxAmount')} {formatNumber(setting.maxAmountTrans)}</label>
                       </div>
+                      ) : (
+                        <div className='flex flex-col'>-</div>
+                      )}
                     </td>
-                    <td>
+                    <td>   
+                      {isEditable(setting) ? (
                       <div className="flex items-center justify-center">
                         <label className='cursor-pointer '>
                           <input
@@ -526,9 +540,12 @@ function PaymentProviderSettings() {
                           <span className='block cursor-pointer w-[60px] h-[30px] rounded-[20px] bg-[var(--button-switch-background)] relative after:content-[""] after:absolute after:top-[3px] after:left-[3px] after:w-[24px] after:h-[24px] after:rounded-[50%] after:bg-[var(--button-switch-dot-background)] after:transition-all after:duration-300 after:ease-in-out after:shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] peer-checked:after:left-[32px] peer-checked:bg-[var(--button-switch-background-active)]'></span>
                         </label>                        
                       </div>
+                      ) : (
+                        <div className='flex flex-col'>-</div>
+                      )}
                     </td>
-                    <td>
-                      {setting.status === failStatus ? <>-</> : setting.bankRequired ? (                   
+                    <td>     
+                      {!isEditable(setting) ? <>-</> : setting.bankRequired ? (                   
                         <ButtonComponent type="cancel" style="medium" text={tPaymentProviderSettings('listOfBanks')} onClick={() => handleViewBanks(setting)} />                      
                       ) : ( <span className='font-semibold color-[#333333]'>{tPaymentProviderSettings('noBankRequired')} </span>) }
                     </td>

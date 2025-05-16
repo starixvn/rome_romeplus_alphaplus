@@ -18,7 +18,7 @@ public interface IPaymentsService
     Task<IEnumerable<ProviderFeeGroupModel>> GetProviderFees(int providerId);
     Task<ProviderModel> GetProviderById(int custId, int providerId);
     Task<AddPaymentMethodViewModel> GetAddPaymentMethodInfo(int custId, int providerId, int transactionType);
-    Task<IEnumerable<ProviderSettingsModel>> GetProviderSettings(int providerId, int method, int status, int transactionType);
+    Task<IEnumerable<ProviderSettingsModel>> GetProviderSettings(int providerId, int custId, int method, int status, int transactionType);
     Task<ResultModel> InsertPaymentMethod(InsertPaymentMethodRequest request);
     Task<IEnumerable<BankModel>> GetBanks(int transactionType);
     Task<ResultModel> UpdateProvider(UpdateProviderRequest request);
@@ -109,9 +109,9 @@ public class PaymentsService(
         };
     }
 
-    public async Task<IEnumerable<ProviderSettingsModel>> GetProviderSettings(int providerId, int method, int status, int transactionType)
+    public async Task<IEnumerable<ProviderSettingsModel>> GetProviderSettings(int providerId, int custId, int method, int status, int transactionType)
     {
-        var settings = await repository.FetchAsync<ProviderSettingsModel>(new GetProviderSettingsCriteria(providerId, method, status, transactionType));
+        var settings = await repository.FetchAsync<ProviderSettingsModel>(new GetProviderSettingsCriteria(providerId, custId, method, status, transactionType));
         foreach (var setting in settings)
         {
             setting.MethodName = cacheRefService.GetPaymentMethodName(setting.Method, setting.MethodName);

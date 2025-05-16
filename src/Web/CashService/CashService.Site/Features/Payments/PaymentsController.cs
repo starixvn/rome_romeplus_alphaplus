@@ -93,7 +93,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
 
         public async Task<IActionResult> ProviderSettings(int providerId, int method, int status, int transactionType, CancellationToken cancellationToken)
         {
-            var url = $"{_apiBaseUrl}/payments/provider-settings?providerId={providerId}&method={method}&status={status}&transactionType={transactionType}";
+            var url = $"{_apiBaseUrl}/payments/provider-settings?providerId={providerId}&custId={_custId}&method={method}&status={status}&transactionType={transactionType}";
             var settings = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
             return Json(settings);
         }
