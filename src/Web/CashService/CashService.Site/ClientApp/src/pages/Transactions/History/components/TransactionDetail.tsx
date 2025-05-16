@@ -54,7 +54,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
         .getTransactionDetail(transactionId)
         .then((data) => {
           setDetailData(data);
-          setRemarks(data.remarks || '');
+          setRemarks(data.remark || '');
         })
         .catch((err) => {
           console.error(err);
@@ -151,12 +151,12 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
               <div className="text-sm text-gray-600">{t('detail.from')}</div>
               <div className="flex items-center gap-2">
                 <div className="w-4 h-4 rounded-full bg-green-500"></div>
-                <span className="font-medium">{detailData.from}</span>
+                <span className="font-medium">{detailData.paymentFrom}</span>
               </div>
             </div>
             <div className="mb-4">
               <div className="text-sm text-gray-600">{t('detail.dateAndTime')}</div>
-              <div className="font-medium">{formatDateTime(detailData.createdDate)}</div>
+              <div className="font-medium">{formatDateTime(detailData.createdTime)}</div>
             </div>
             <div className="mb-4">
               <div className="text-sm text-gray-600">{t('detail.transactionType')}</div>
@@ -172,7 +172,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
               <div className="text-sm text-gray-600">{t('detail.to')}</div>
               <div className="flex items-center gap-2">
                 <div className="w-4 h-4 rounded-full bg-green-500"></div>
-                <span className="font-medium">{detailData.to}</span>
+                <span className="font-medium">{detailData.paymentTo}</span>
               </div>
             </div>
             <div className="mb-4">
@@ -208,7 +208,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
       title={
         <div className="flex items-center gap-2">
           <span>
-            {t('detail.title')} ({detailData?.referenceNumber ?? t('detail.loading')})
+            {t('detail.title')} ({detailData?.transferRefNo ?? t('detail.loading')})
           </span>
           {detailData && (
             <span className={`status-badge ${detailData.status.toLowerCase()}`}>

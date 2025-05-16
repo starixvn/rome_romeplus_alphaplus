@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { transactionAPI } from '../../../../../services/transactionsHistoryAPI';
-import { AccountOption } from '../../../../../services/interfaces/Transactions/AccountOption';
 import CustomDropdown from '../../../../../components/DropdownComponent';
+import { BankInfo } from '../../../../../services/interfaces/Transactions/BankInfo';
 
 interface AccountFilterProps {
   account: string;
@@ -18,14 +18,14 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
   onAccountsLoaded,
 }) => {
   const { t } = useTranslation('transactionHistory');
-  const [accountOptions, setAccountOptions] = useState<AccountOption[]>([]);
+  const [accountOptions, setAccountOptions] = useState<BankInfo[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchAccounts = async () => {
       setIsLoading(true);
       try {
-        const options = await transactionAPI.getAccount(transactionType);
+        const options = await transactionAPI.getCashAgentBankInfo(transactionType);
         setAccountOptions(options);
         if (onAccountsLoaded) {
           onAccountsLoaded();
@@ -50,7 +50,7 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
         options={accountOptions.map((option) => ({
           value: option.bankId,
           label: option.bankAccountNumber,
-          code: option.BankCode,
+          code: option.bankCode,
         }))}
         onSelect={(selected) => onAccountChange(String(selected.value))}
         disable={isLoading}

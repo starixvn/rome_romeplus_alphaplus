@@ -14,10 +14,9 @@ public static class TransactionsEndpoints
 
         group.MapGet("/history", async ([FromQuery] DateTime? fromDate
                 , [FromQuery] DateTime? toDate
-                , [FromQuery] int? account
-                , [FromQuery] string status
+                , [FromQuery] int paymentStatus
                 , [FromQuery] int transactionType
-                , [FromQuery] int page
+                , [FromQuery] int pageIndex
                 , [FromQuery] int pageSize
                 , ITransactionService service) =>
             {
@@ -25,10 +24,9 @@ public static class TransactionsEndpoints
                 {
                     FromDate = fromDate,
                     ToDate = toDate,
-                    Account = account,
-                    Status = status,
+                    PaymentStatus = paymentStatus,
                     TransactionType = transactionType,
-                    Page = page,
+                    PageIndex = pageIndex,
                     PageSize = pageSize
                 };
                 var transactionHistory = await service.GetTransactionsAsync(criteria);

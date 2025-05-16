@@ -29,7 +29,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     dateRange: ['04/10/2025', '04/16/2025'],
     status: 'All',
     account: '',
-    page: 1,
+    pageIndex: 1,
     pageSize: 50,
     transactionType: transactionType,
   }));
@@ -52,7 +52,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     setApiParams((prev) => ({
       ...prev,
       transactionType: transactionType,
-      page: 1,
+      pageIndex: 1,
     }));
   }, [transactionType]);
 
@@ -87,18 +87,18 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
       const filtered = apiData.items.filter(
         (item) =>
           item.username.toLowerCase().includes(lowerCaseSearchText) ||
-          item.referenceNumber.toLowerCase().includes(lowerCaseSearchText)
+          item.transferRefNo.toLowerCase().includes(lowerCaseSearchText)
       );
       setDisplayedItems(filtered);
     }
   }, [apiData.items, localSearchText]);
 
   const handleDateRangeChange = (dates: [string, string]) => {
-    setApiParams((prev) => ({ ...prev, dateRange: dates, page: 1 }));
+    setApiParams((prev) => ({ ...prev, dateRange: dates, pageIndex: 1 }));
   };
 
   const handleStatusChange = (value: string) => {
-    setApiParams((prev) => ({ ...prev, status: value, page: 1 }));
+    setApiParams((prev) => ({ ...prev, status: value, pageIndex: 1 }));
   };
 
   const handleColumnChange = (value: string[]) => {
@@ -106,7 +106,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
   };
 
   const handleAccountChange = (value: string) => {
-    setApiParams((prev) => ({ ...prev, account: value, page: 1 }));
+    setApiParams((prev) => ({ ...prev, account: value, pageIndex: 1 }));
   };
 
   const handleLocalSearchChange = (value: string) => {
@@ -118,11 +118,11 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
   };
 
   const handlePageChange = (newPage: number) => {
-    setApiParams((prev) => ({ ...prev, page: newPage }));
+    setApiParams((prev) => ({ ...prev, pageIndex: newPage }));
   };
 
   const handlePageSizeChange = (newSize: number) => {
-    setApiParams((prev) => ({ ...prev, pageSize: newSize, page: 1 }));
+    setApiParams((prev) => ({ ...prev, pageSize: newSize, pageIndex: 1 }));
   };
 
   const pageSizeOptions = [100, 200, 500, 1000];
@@ -169,7 +169,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           columnFilter={columnFilter}
         />
         <Pagination
-          currentPage={apiParams.page}
+          currentPage={apiParams.pageIndex}
           totalCount={apiData.totalCount}
           pageSize={apiParams.pageSize}
           pageSizeOptions={pageSizeOptions}

@@ -4,15 +4,17 @@ export interface TransactionItem {
   firstName: string;
   lastName: string;
   amount: number;
-  betCredit: number;
   currency: string;
-  from: string;
-  to: string;
+  paymentFrom: string;
+  paymentTo: string;
+  statusId: number;
   status: 'COMPLETED' | 'REJECTED' | 'PROVIDER_REJECTED' | 'EXPIRED';
+  betCredit: number;
+  transactionTypeId: number;
   transactionType: string;
-  referenceNumber: string;
-  remarks: string;
-  createdDate: string;
+  transferRefNo: string;
+  remark: string;
+  createdTime: string;
   lastUpdatedDate: string;
 }
 
@@ -26,7 +28,7 @@ export interface TransactionsHistoryParams {
   status: string;
   searchText: string;
   account: string;
-  page: number;
+  pageIndex: number;
   pageSize: number;
   transactionType: number;
 }

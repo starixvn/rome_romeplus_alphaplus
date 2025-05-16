@@ -57,7 +57,30 @@ const Table: React.FC<TableProps> = ({
     onRefreshNeeded?.();
   };
 
-  const getStatusStyle = (status: string) => {
+  const getStatusById = (id: number) => {
+    switch (id) {
+      case 0:
+        return 'Waiting';
+      case 1:
+        return 'Cancelled';
+      case 2:
+        return 'Pending';
+      case 3:
+        return 'EXPIRED';
+      case 4:
+        return 'Completed';
+      case 5:
+        return 'Rejected';
+      case 6:
+        return 'Provider Rejected';
+      default:
+        return 'All';
+    }
+  };
+
+  const getStatusStyle = (statusId: number) => {
+    const status = getStatusById(statusId);
+
     switch (status.toUpperCase()) {
       case 'COMPLETED':
         return 'bg-[#DCFCE7] text-[#166534]';
@@ -197,10 +220,10 @@ const Table: React.FC<TableProps> = ({
       {shouldShowColumn(t('table.from')) && (
         <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">
           <div className="flex items-center">
-            {item.from ? (
+            {item.paymentFrom ? (
               <>
                 <img src="/icons/wallet.svg" alt="wallet" className="w-4 h-4 mr-2" />
-                {item.from}
+                {item.paymentFrom}
               </>
             ) : (
               '-'
@@ -211,15 +234,15 @@ const Table: React.FC<TableProps> = ({
       {shouldShowColumn(t('table.to')) && (
         <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">
           <div className="flex items-center">
-            {item.to === 'U2Pay' ? (
+            {item.paymentTo === 'U2Pay' ? (
               <>
                 <img src="/icons/u2pay.svg" alt="u2pay" className="w-4 h-4 mr-2" />
-                {item.to}
+                {item.paymentTo}
               </>
             ) : (
               <>
                 <img src="/icons/wallet.svg" alt="wallet" className="w-4 h-4 mr-2" />
-                {item.to}
+                {item.paymentTo}
               </>
             )}
           </div>
@@ -228,9 +251,9 @@ const Table: React.FC<TableProps> = ({
       {shouldShowColumn(t('table.status')) && (
         <td className="px-4 py-0.5 text-sm border border-gray-300 text-center">
           <span
-            className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusStyle(item.status)}`}
+            className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusStyle(item.statusId)}`}
           >
-            {item.status.toUpperCase()}
+            {getStatusById(item.statusId).toUpperCase()}
           </span>
         </td>
       )}
@@ -241,13 +264,13 @@ const Table: React.FC<TableProps> = ({
       )}
       {shouldShowColumn(t('table.referenceNo')) && (
         <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
-          {item.referenceNumber}
+          {item.transferRefNo}
         </td>
       )}
       {shouldShowColumn(t('table.dateAndTime')) && (
         <td className="px-2 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
-          <div>{formatDateTime(item.createdDate).date}</div>
-          <div className="text-xs text-gray-500">{formatDateTime(item.createdDate).time}</div>
+          <div>{formatDateTime(item.createdTime).date}</div>
+          <div className="text-xs text-gray-500">{formatDateTime(item.createdTime).time}</div>
         </td>
       )}
       <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">

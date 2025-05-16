@@ -15,9 +15,9 @@ export const transactionAPI = {
   ): Promise<TransactionsHistoryResponse> => {
     try {
       const queryParams = new URLSearchParams({
-        page: params.page.toString(),
+        pageIndex: params.pageIndex.toString(),
         pageSize: params.pageSize.toString(),
-        status: params.status,
+        paymentStatus: params.status,
         searchText: params.searchText,
         account: params.account,
         fromDate: params.dateRange[0],

@@ -25,7 +25,7 @@ public class TransactionsController(
 
     public async Task<IActionResult> GetAll([FromQuery] GetTransactionFilter filter)
     {
-        var url = $"/transactions?transactionType={filter.TransactionType}&status={filter.StatusId}&fromDate={filter.FromDate}&toDate={filter.ToDate}&page={filter.PageIndex}&pageSize={filter.PageSize}";
+        var url = $"/transactions/history?transactionType={filter.TransactionType}&paymentStatus={filter.PaymentStatus}&fromDate={filter.FromDate}&toDate={filter.ToDate}&pageIndex={filter.PageIndex}&pageSize={filter.PageSize}";
         var result = await httpClientHelper.GetAsync<object>(url);
         return Json(result);
     }

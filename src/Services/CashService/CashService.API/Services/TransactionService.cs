@@ -28,26 +28,15 @@ public class TransactionService(IDynamicRepository dynamicRepository)
 {
     public async Task<TransactionResponse> GetTransactionsAsync(GetAllTransactionsWithPagingCriteria criteria)
     {
-        var allMockTransactions = GetMockTransactions();
+        var rawData = await dynamicRepository.FetchAsync<TransactionModel>(criteria);
 
-        var filteredTransactions = allMockTransactions
-            .Where(t => criteria.Status == "All" || t.Status == criteria.Status)
-            .Where(t => (criteria.TransactionType == 1 && t.IsDeposit) ||
-                       (criteria.TransactionType == 2 && !t.IsDeposit))
-            .ToList();
-
-        var pagedTransactions = filteredTransactions
-            .Skip((criteria.Page - 1) * criteria.PageSize)
-            .Take(criteria.PageSize)
-            .ToList();
-
-        return await Task.FromResult(new TransactionResponse
+        return new TransactionResponse
         {
-            Items = pagedTransactions,
-            TotalCount = filteredTransactions.Count,
-            Page = criteria.Page,
+            Items = rawData.ToList(),
+            TotalCount = criteria.TotalRecords,
+            Page = criteria.PageIndex,
             PageSize = criteria.PageSize
-        });
+        };
     }
 
     public async Task<TransactionModel> GetTransactionByIdAsync(int transactionId)
@@ -106,16 +95,13 @@ public class TransactionService(IDynamicRepository dynamicRepository)
                 FirstName = firstName,
                 LastName = lastName,
                 Amount = amount,
-                BetCredit = betCredit,
                 Currency = currency,
-                From = from,
-                To = to,
+                PaymentFrom = from,
+                PaymentTo = to,
                 Status = EnumHelper.GetDescription(status),
-                IsDeposit = isDeposit,
                 TransactionType = EnumHelper.GetDescription(transactionType),
-                ReferenceNumber = referenceNumber,
-                CreatedDate = createdDate,
-                LastUpdatedDate = lastUpdatedTime,
+                TransferRefNo = referenceNumber,
+                CreatedTime = createdDate,
                 Remark = $"Transaction remarks for {referenceNumber}"
             });
         }
