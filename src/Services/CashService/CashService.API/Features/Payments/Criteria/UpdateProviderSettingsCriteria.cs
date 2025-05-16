@@ -4,7 +4,7 @@ using AlphaPlus.CashService.API.Features.Shared.Criteria;
 namespace AlphaPlus.CashService.API.Features.Payments.Criteria
 {
     public class UpdateProviderSettingsCriteria(UpdateProviderRequest request, string settings) 
-        : BaseActionCommand(request.ActorId, request.SubAccId, request.IP, request.Language)
+        : BaseDBCommand(request.ActorId, request.SubAccId, request.IP, request.Language)
     {
         public int ProviderId { get; } = request.ProviderId;
         public string PaymentMethods { get; } = settings;

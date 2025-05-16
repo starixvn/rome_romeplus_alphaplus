@@ -1,10 +1,9 @@
-﻿using AlphaPlus.CashService.API.Criteria;
-using AlphaPlus.CashService.API.Features.Shared.Criteria;
-using Fanex.Data;
+﻿using Fanex.Data;
+using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Criteria.PendingWithdrawal;
 
-public class CreateManualWithdrawCommand() : BaseActionCommand(0, 0, "", "")
+public class CreateManualWithdrawCommand : NonQueryCommand
 {
     public int UplineId { get; set; }
 
@@ -33,6 +32,11 @@ public class CreateManualWithdrawCommand() : BaseActionCommand(0, 0, "", "")
 
     [SpParam(Ignored = true)]
     public string CashAccumCreditTbl { get; set; }
+
+    public int CustId { get; set; }
+    public int SubAccId { get; set; }
+    public int ErrCode { get; set; }
+    public string ErrMsg { get; set; }
 
     public override string GetSettingKey() => "Age_CashWithdrawal_ManualAdd";
 

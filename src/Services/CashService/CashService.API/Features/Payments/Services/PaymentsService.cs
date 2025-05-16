@@ -5,7 +5,6 @@ using AlphaPlus.CashService.API.Features.Payments.Requests;
 using Fanex.Data.Repository;
 using AlphaPlus.CashService.API.Features.Payments.DTOs;
 using AlphaPlus.CashService.API.Features.Shared.Models;
-using AlphaPlus.CashService.API.Features.Shared.Constants;
 using AlphaPlus.CashService.API.Features.Payments.ViewModels;
 using AlphaPlus.CashService.API.Features.Shared.Services;
 
@@ -62,9 +61,8 @@ public class PaymentsService(
     public async Task<ResultModel> SetDailyWithdrawalCount(SetDailyWithdrawalCountRequest request)
     {
         var criteria = new SetDailyWithdrawalCountCriteria(request);    
-        await repository.ExecuteAsync(criteria);
-        await commonService.WriteLogUserRunSP(ActionLogConstants.SetDailyWithdrawalCount, request, criteria);        
-        return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
+        var result = await commonService.RunDBCommand(request, criteria); 
+        return result;
     }
     
     public async Task<IEnumerable<ProviderFeeGroupModel>> GetProviderFees(int providerId)
@@ -122,7 +120,7 @@ public class PaymentsService(
     
     public async Task<ResultModel> InsertPaymentMethod(InsertPaymentMethodRequest request)
     {
-        if (request.ActorId <= 0 || request.ProviderId <= 0)
+        if (!request.IsValid())
         {
             return new ResultModel(1, "Invalid customer ID or provider ID");
         }
@@ -131,9 +129,8 @@ public class PaymentsService(
             APIConfig = $"{{\"APIMethodKey\":\"{request.APIMethodKey}\",\"MerchantID\":\"{request.MerchantID}\",\"AppSecret\":\"{request.AppSecret}\"}}",
         };
 
-        await repository.ExecuteAsync(criteria);
-        await commonService.WriteLogUserRunSP(ActionLogConstants.InsertPaymentMethod, request, criteria);
-        return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
+        var result = await commonService.RunDBCommand(request, criteria); 
+        return result;
     }
   
     public async Task<IEnumerable<BankModel>> GetBanks(int transactionType)
@@ -156,13 +153,11 @@ public class PaymentsService(
     public async Task<ResultModel> UpdateProvider(UpdateProviderRequest request)
     {
         var updateStatusCriteria = new UpdateProviderStatusCriteria(request);
+        var result = await commonService.RunDBCommand(request, updateStatusCriteria);
 
-        await repository.ExecuteAsync(updateStatusCriteria);
-        await commonService.WriteLogUserRunSP(ActionLogConstants.UpdateProviderStatus, request, updateStatusCriteria);
-
-        if(updateStatusCriteria.ErrCode != 0)
+        if(!result.IsSuccessful)
         {
-            return new ResultModel(updateStatusCriteria.ErrCode, updateStatusCriteria.ErrMsg);
+            return result;
         }
         
         if(request.ProviderSettings == null || request.ProviderSettings.Count == 0)
@@ -178,11 +173,8 @@ public class PaymentsService(
 
         var jsonSettings = $"[{string.Join(",", jsonSetting)}]";
         var updateProviderSettingsCriteria = new UpdateProviderSettingsCriteria(request, jsonSettings);
-        await repository.ExecuteAsync(updateProviderSettingsCriteria);
-
-        await commonService.WriteLogUserRunSP(ActionLogConstants.UpdateProviderSettings, request, updateProviderSettingsCriteria);
-
-        return new ResultModel(updateProviderSettingsCriteria.ErrCode, updateProviderSettingsCriteria.ErrMsg);
+        result = await commonService.RunDBCommand(request, updateProviderSettingsCriteria);
+        return result;
     }
 
     public async Task<IEnumerable<BankModel>> GetBanksByCust(int custId)
@@ -248,21 +240,15 @@ public class PaymentsService(
     public async Task<ResultModel> SetTransactionLimit(SetTransactionLimitRequest request)
     {
         var criteria = new SetTransactionLimitCriteria(request);
-        await repository.ExecuteAsync(criteria);
-
-        await commonService.WriteLogUserRunSP(ActionLogConstants.SetTransactionLimit, request, criteria);
-
-        return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
+        var result = await commonService.RunDBCommand(request, criteria);
+        return result;
     }
 
     public async Task<ResultModel> AddBankAccount(AddBankAccountRequest request)
     {
         var criteria = new AddBankAccountCriteria(request);
-        await repository.ExecuteAsync(criteria);
-
-        await commonService.WriteLogUserRunSP(ActionLogConstants.AddBankAccount, request, criteria);
-
-        return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
+        var result = await commonService.RunDBCommand(request, criteria);
+        return result;
     }
 
     public async Task<BankAccountModel> GetBankAccountById(int accountId)
@@ -286,18 +272,14 @@ public class PaymentsService(
     public async Task<ResultModel> UpdateBankAccount(UpdateBankAccountRequest request)
     {
         var criteria = new UpdateBankAccountCriteria(request);
-        await repository.ExecuteAsync(criteria);
-
-        await commonService.WriteLogUserRunSP(ActionLogConstants.UpdateBankAccount, request, criteria);
-
-        return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
+        var result = await commonService.RunDBCommand(request, criteria);
+        return result;
     }
 
     public async Task<ResultModel> DeleteBankAccount(DeleteBankAccountRequest request)
     {
         var criteria = new DeleteBankAccountCriteria(request);
-        await repository.ExecuteAsync(criteria);
-        await commonService.WriteLogUserRunSP(ActionLogConstants.DeleteBankAccount, request, criteria);
-        return new ResultModel(criteria.ErrCode, criteria.ErrMsg);
+        var result = await commonService.RunDBCommand(request, criteria);
+        return result;
     }
 } 

@@ -1,9 +1,8 @@
-﻿using AlphaPlus.CashService.API.Criteria;
-using AlphaPlus.CashService.API.Features.Shared.Criteria;
+﻿using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Criteria.PendingDeposit;
 
-    public class CreateManualDepositCommand() : BaseActionCommand(0, 0, "", "")
+    public class CreateManualDepositCommand : NonQueryCommand
 {
     public int UplineId { get; set; }
 
@@ -30,6 +29,11 @@ namespace AlphaPlus.CashService.API.Criteria.PendingDeposit;
     public int TransId { get; set; }
 
     public string CashAccumCreditTbl { get; set; }
+    public int SubAccId { get; set; }
+    public int ErrCode { get; set; }
+    public string ErrMsg { get; set; }
+
+    public int CustId { get; set; }
 
     public override string GetSettingKey() => "Age_CashDeposit_ManualAdd";
 

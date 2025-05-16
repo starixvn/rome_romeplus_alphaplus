@@ -1,5 +1,6 @@
 using AlphaPlus.CashService.API.Features.Shared.Criteria;
 using AlphaPlus.CashService.API.Features.Shared.DTOs;
+using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Requests;
 using Fanex.Data.Repository;
 
@@ -11,7 +12,9 @@ public interface ICommonService
 
     Task<SiteDbConfig> GetServerDBConfigByCustIdAsync(int custId);
 
-    Task WriteLogUserRunSP(int actionId, BaseActionRequest request, BaseActionCommand baseActionCommand);
+    Task<ResultModel> RunDBCommand(BaseActionRequest request, BaseDBCommand baseDBCommand);
+
+    Task WriteLogDBCommand(BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel);
 }
 
 public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger logger) : ICommonService
@@ -30,18 +33,32 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
         return siteDbConfig;
     }
 
-    public async Task WriteLogUserRunSP(int actionId, BaseActionRequest request, BaseActionCommand baseActionCommand)
+    public async Task<ResultModel> RunDBCommand(BaseActionRequest request, BaseDBCommand baseDBCommand)
     {
-        if(baseActionCommand.ErrCode != 0)
+        var writeLLogDBCommandModels = await repository.FetchAsync<WriteLogDBCommandModel>(baseDBCommand);
+        
+        if(baseDBCommand.ErrCode != 0)
         {
-            return;
+            return new ResultModel(baseDBCommand.ErrCode, baseDBCommand.ErrMsg);
         }
 
+        foreach (var writeLogDBCommandModel in writeLLogDBCommandModels)
+        {
+            await WriteLogDBCommand(request, writeLogDBCommandModel);
+        }
+
+        return new ResultModel(0, string.Empty);
+    }
+
+    public async Task WriteLogDBCommand(BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel)
+    {
         var isSuccess = false;
 
         try
         {
-            var criteria = new WriteLogUserRunSPCriteria(actionId, request, baseActionCommand);
+            var criteria = new WriteLogDBCommandCriteria(request, writeLogDBCommandModel);
+            criteria.SiteDB = 0;
+
             await repository.ExecuteAsync(criteria);
             isSuccess = true;
         }
@@ -57,8 +74,7 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
 
         try
         {
-            var criteria = new WriteLogUserRunSPCriteria(actionId, request, baseActionCommand);
-            criteria.SiteDB = 0;
+            var criteria = new WriteLogDBCommandCriteria(request, writeLogDBCommandModel);
             await repository.ExecuteAsync(criteria);
         }
         catch (Exception e)

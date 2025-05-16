@@ -4,7 +4,7 @@ using AlphaPlus.CashService.API.Features.Shared.Criteria;
 
 namespace AlphaPlus.CashService.API.Features.Payments.Criteria
 {
-    public class AddBankAccountCriteria : BaseActionCommand
+    public class AddBankAccountCriteria : BaseDBCommand
     {
         public AddBankAccountCriteria(AddBankAccountRequest request) : 
             base(request.ActorId, request.SubAccId, request.IP, request.Language)

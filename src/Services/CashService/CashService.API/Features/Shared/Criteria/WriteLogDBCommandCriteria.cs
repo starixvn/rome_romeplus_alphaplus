@@ -1,19 +1,21 @@
+using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Requests;
 using Fanex.Data;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Features.Shared.Criteria;
 
-public class WriteLogUserRunSPCriteria : NonQueryCommand
+public class WriteLogDBCommandCriteria : NonQueryCommand
 {
-    public WriteLogUserRunSPCriteria(int actionId, BaseActionRequest request, BaseActionCommand baseActionCommand)
+    public WriteLogDBCommandCriteria(BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel)
     {
-        ActionId = actionId;
         CustId = request.ActorId;
         UserId = request.UserId;
         SiteDB = request.SiteDB;
-        TrackingValue = baseActionCommand.TrackingValue;
-        TrackingValue2 = baseActionCommand.TrackingValue2;
+        
+        ActionId = writeLogDBCommandModel.ActionId;
+        TrackingValue = writeLogDBCommandModel.TrackingValue;
+        TrackingValue2 = writeLogDBCommandModel.TrackingValue2;
     }
 
     public int CustId { get; }

@@ -1,9 +1,8 @@
-﻿using AlphaPlus.CashService.API.Criteria;
-using AlphaPlus.CashService.API.Features.Shared.Criteria;
+﻿using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Criteria.Promotion
 {
-    public class AddPromotionCriteria() : BaseActionCommand(0, 0, "", "")
+    public class AddPromotionCriteria : NonQueryCommand
     {
         public string PromotionType { get; set; }
 
@@ -36,6 +35,9 @@ namespace AlphaPlus.CashService.API.Criteria.Promotion
         public decimal LiveCasinoMinTurnover { get; set; }
 
         public decimal LiveCasinoMaxPayout { get; set; }
+
+        public int ErrCode { get; set; }
+        public string ErrMsg { get; set; }
 
         public override string GetSettingKey() => "";
 

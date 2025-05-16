@@ -2,9 +2,9 @@
 
 using Fanex.Data.Repository;
 
-public class BaseActionCommand : NonQueryCommand
+public class BaseDBCommand : CriteriaBase
 {
-    public BaseActionCommand(int custId, int subAccId, string ip, string language)
+    public BaseDBCommand(int custId, int subAccId, string ip, string language)
     {
         CustId = custId;
         SubAccId = subAccId;
@@ -19,9 +19,6 @@ public class BaseActionCommand : NonQueryCommand
 
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; }
-
-    public string TrackingValue { get; set; }
-    public string TrackingValue2 { get; set; }
 
     public override string GetSettingKey() => string.Empty;
 

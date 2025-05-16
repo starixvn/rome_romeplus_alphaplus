@@ -5,7 +5,7 @@ using Fanex.Data;
 namespace AlphaPlus.CashService.API.Features.Payments.Criteria
 {
     public class DeleteBankAccountCriteria(DeleteBankAccountRequest request) 
-        : BaseActionCommand(request.ActorId, request.SubAccId, request.IP, request.Language)
+        : BaseDBCommand(request.ActorId, request.SubAccId, request.IP, request.Language)
     {
         [SpParam(SqlParamName = "AgentBankAccountID")]
         public int BankAccountId { get; } = request.BankAccountId;

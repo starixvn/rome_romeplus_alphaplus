@@ -5,7 +5,7 @@ using AlphaPlus.CashService.API.Features.Shared.Criteria;
 namespace AlphaPlus.CashService.API.Features.Payments.Criteria
 {
     public class UpdateBankAccountCriteria(UpdateBankAccountRequest request) 
-        : BaseActionCommand(request.ActorId, request.SubAccId, request.IP, request.Language)
+        : BaseDBCommand(request.ActorId, request.SubAccId, request.IP, request.Language)
     {
         [SpParam(SqlParamName = "AgentBankAccountID")]
         public int Id { get; } = request.Id;

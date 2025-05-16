@@ -6,7 +6,7 @@ using Fanex.Data;
 namespace AlphaPlus.CashService.API.Features.Payments.Criteria
 {
     public class SetDailyWithdrawalCountCriteria(SetDailyWithdrawalCountRequest request) 
-        : BaseActionCommand(request.ActorId, request.SubAccId, request.IP, request.Language)
+        : BaseDBCommand(request.ActorId, request.SubAccId, request.IP, request.Language)
     {
         public int ModeAction { get; } = ModeViewConstants.PaymentGateway; 
 

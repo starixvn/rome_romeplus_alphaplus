@@ -9,4 +9,6 @@ public class BaseActionRequest
 
     public int UserId { get; set; }
     public int SiteDB { get; set; }
+
+    public virtual bool IsValid() => ActorId > 0;
 } 
