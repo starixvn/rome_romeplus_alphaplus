@@ -75,6 +75,8 @@ else
     app.UseMiddleware<ExceptionMiddleware>();
 }
 
+app.UseDeveloperExceptionPage(); // For development only - remove in production
+
 app.Use(async (context, next) =>
 {
     context.Request.EnableBuffering();

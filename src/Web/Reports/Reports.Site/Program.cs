@@ -97,6 +97,8 @@ else
     app.UseMiddleware<ExceptionMiddleware>();
 }
 
+app.UseDeveloperExceptionPage(); // For development only - remove in production
+
 app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute(), new DisableNetThrottlingAttribute());
 
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());

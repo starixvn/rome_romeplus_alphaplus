@@ -56,6 +56,8 @@ else
     app.UseMiddleware<ExceptionMiddleware>();
 }
 
+app.UseDeveloperExceptionPage(); // For development only - remove in production
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=SubAccount}/{action=Index}/{id?}");
