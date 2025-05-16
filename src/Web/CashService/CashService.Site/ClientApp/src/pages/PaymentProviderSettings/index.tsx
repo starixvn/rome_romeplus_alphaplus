@@ -312,7 +312,7 @@ function PaymentProviderSettings() {
 
   const failStatus = 3;
   const isEditable = (paymentMethod: PaymentMethod) => {
-    return paymentMethod.method !== 3 && paymentMethod.method !== 4;
+    return paymentMethod.status !== 3 && paymentMethod.status !== 4;
   }
 
 
