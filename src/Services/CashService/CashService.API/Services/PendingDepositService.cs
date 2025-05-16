@@ -30,11 +30,14 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
         {
             CustId = agentId
         };
-        return await dynamicRepository.GetAsync<decimal>(criteria);
+        await dynamicRepository.GetAsync<decimal>(criteria);
+
+        return criteria.AccumCreditReturn;
     }
 
     public async Task<CreditAmount> GetLimitAmtDepositAsync(int agentId, int custId, int custDbGroupId)
     {
+        var creditAmount = new CreditAmount();
         var acCumCreditReturn = await GetAccumulateCreditAsync(agentId);
 
         var criteria = new GetLimitAmtDepositCriteria
@@ -42,7 +45,11 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
             CustId = custId,
             AccumCreditReturn = acCumCreditReturn
         };
-        return await dynamicRepository.GetAsync<CreditAmount>(criteria);
+        await dynamicRepository.GetAsync<CreditAmount>(criteria);
+        creditAmount.MaxAmt = criteria.MaxAmt;
+        creditAmount.MinAmt = criteria.MinAmt;
+
+        return creditAmount;
     }
 
     public async Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int custId, string siteDbIp = "")

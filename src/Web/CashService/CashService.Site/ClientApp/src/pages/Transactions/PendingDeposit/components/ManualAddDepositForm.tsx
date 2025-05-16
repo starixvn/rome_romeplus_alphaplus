@@ -184,8 +184,8 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
                         onChange={handleMemberChange}
                         className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
                       >
-                        {memberLoginOptions.map((data) => (
-                          <option key={data.custId} value={data.custId}>
+                        {memberLoginOptions.map((data, key) => (
+                          <option key={`${key}-${data.custId}`} value={data.custId}>
                             {data.username}
                           </option>
                         ))}
@@ -208,8 +208,8 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
                         onChange={(e) => setPaymentFrom(e.target.value)}
                         className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
                       >
-                        {cashMemberOptions.map((option) => (
-                          <option key={option.bankId} value={option.bankAccountNumber}>
+                        {cashMemberOptions.map((option, key) => (
+                          <option key={`${key}-${option.bankAccountNumber}`} value={option.bankAccountNumber}>
                             {option.bankAccountNumber}
                           </option>
                         ))}
@@ -234,8 +234,8 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
                         onChange={(e) => setPaymentTo(e.target.value)}
                         className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
                       >
-                        {cashAgentOptions.map((option) => (
-                          <option key={option.bankId} value={option.bankAccountNumber}>
+                        {cashAgentOptions.map((option, key) => (
+                          <option key={`${key}-${option.bankAccountNumber}`} value={option.bankAccountNumber}>
                             {option.bankAccountNumber}
                           </option>
                         ))}
@@ -250,6 +250,15 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
                     >
                       {t('manualDepositForm.depositAmount')}
                       <span className="text-red-500 absolute">*</span>
+                      <span className="text-sm pl-3">
+                        <span className="text-blue-900">
+                          (Agent Available Credit:
+                            <span className="text-red-500">
+                              {` ${creditAmount.minAmt} - ${creditAmount.maxAmt}`}
+                            </span>
+                          )
+                        </span>
+                      </span>
                     </label>
                     <input
                       id="depositAmount"
