@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 
-namespace AgencyCash.API.Shared;
+namespace AgencyCash.API.Shared.Helpers;
 
 public sealed class GlobalExceptionHandler(Fanex.Logging.ILogger logger) : IExceptionHandler
 {

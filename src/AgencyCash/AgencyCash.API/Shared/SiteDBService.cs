@@ -9,6 +9,8 @@ public interface ISiteDBService
 {
     Task<int> GetCustDBGroupId(int custId);
 
+    Task<int> GetSiteDBGroupId(int custId);
+
     Task<SiteDBConfig> GetSiteDBConfig(int custId);
 }
 
@@ -27,16 +29,27 @@ public class SiteDBService(IDynamicRepository dynamicRepository, IMemoryCache me
         return siteDBConfig?.CustDBGroupId ?? 0;
     }
 
+    public async Task<int> GetSiteDBGroupId(int custId)
+    {
+        var siteDBConfig = await GetSiteDBConfig(custId);
+
+        return siteDBConfig?.SiteDBGroupId ?? 0;
+    }
+
     public async Task<SiteDBConfig> GetSiteDBConfig(int custId)
     {
-        var key = $"{SiteDBConfigCacheKey}_{custId}";
+        var cacheKey = $"{SiteDBConfigCacheKey}_{custId}";
 
-        if (!memoryCache.TryGetValue<SiteDBConfig>(key, out var siteDBConfig))
+        if (!memoryCache.TryGetValue<SiteDBConfig>(cacheKey, out var siteDBConfig))
         {
             siteDBConfig = await dynamicRepository.GetAsync<SiteDBConfig>(new GetSiteDBConfigCriteria(custId));
-            var cacheEntryOptions = new MemoryCacheEntryOptions()
-                .SetSlidingExpiration(TimeSpan.FromMinutes(SiteDBConfigCacheInMinutes));
-            memoryCache.Set(key, siteDBConfig, cacheEntryOptions);
+
+            if (siteDBConfig != null)
+            {
+                var cacheEntryOptions = new MemoryCacheEntryOptions()
+                    .SetAbsoluteExpiration(TimeSpan.FromMinutes(SiteDBConfigCacheInMinutes));
+                memoryCache.Set(cacheKey, siteDBConfig, cacheEntryOptions);
+            }
         }
 
         return siteDBConfig;

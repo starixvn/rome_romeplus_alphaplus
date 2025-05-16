@@ -2,9 +2,16 @@
 <Functions>
   <Function Name="Shared">
     <Settings Key="Acc_ServerDBConfigSelByCust" SpName="Acc_ServerDBConfigSelByCust" DbName="DBGLOB.GlobCustDB.wsv_CashService" />
-    <Settings Key="CustDB0_Age_CashService_CustServiceTypeSel" SpName="Age_CashService_CustServiceTypeSel" DbName="DBGLOB.GlobCustDB.wsv_CashService" />
   </Function>
   <Function Name="Register Cash Member">
-    <Settings Key="RegisterCashMember" SpName="RegisterCashMember" DbName="DDBGLOB.GlobCustDB.wsv_CashService" />
+    <Settings Key="RegisterCashMember" SpName="RegisterCashMember" DbName="DBGLOB.GlobCustDB.wsv_CashService" />
+  </Function>
+  <Function Name="Payments: Deposit and Withdraw">
+    <Settings Key="Age_CashService_CustServiceTypeSel" SpName="Age_CashService_CustServiceTypeSel" DbName="DBCust.CustDB.wsv_CashService" />
+    <Settings Key="Age_CashDeposit_MemberSettingSel" SpName="Age_CashDeposit_MemberSettingSel" DbName="DBCust.CustDB.wsv_CashService" />
+    <Settings Key="WriteLog_UserLog_Transfer" SpName="WriteLog_UserLog_Transfer" DbName="DBLOG.bodb_CustomerLog.wsv_CashService" />
+    <Settings Key="SiteDB3_WriteLog_UserLog_Transfer" SpName="WriteLog_UserLog_Transfer" DbName="DBSite03.bodb02.wsv_CashService" />
+    <Settings Key="WriteLog_UserLog_RunSP" SpName="WriteLog_UserLog_RunSP" DbName="DBLOG.bodb_CustomerLog.wsv_CashService" />
+    <Settings Key="CustDB0_WriteLog_UserLog_RunSP" SpName="WriteLog_UserLog_RunSP" DbName="DBCust.CustDB.wsv_CashService" />
   </Function>
 </Functions>

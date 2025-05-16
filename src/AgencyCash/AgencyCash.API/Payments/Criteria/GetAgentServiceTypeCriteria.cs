@@ -1,6 +1,7 @@
+using AgencyCash.API.Shared.Helpers;
 using Fanex.Data.Repository;
 
-namespace AgencyCash.API.Shared.Criteria;
+namespace AgencyCash.API.Payments.Criteria;
 
 public class GetAgentServiceTypeCriteria(int custId, int custDBGroupId) : NonQueryCommand
 {
@@ -8,7 +9,8 @@ public class GetAgentServiceTypeCriteria(int custId, int custDBGroupId) : NonQue
 
     public byte ServiceType { get; set; }
 
-    public override string GetSettingKey() => $"CustDB{custDBGroupId}_Age_CashService_CustServiceTypeSel";
+    public override string GetSettingKey()
+        => SPNameHelper.CustDBPrefix("Age_CashService_CustServiceTypeSel", custDBGroupId);
 
     public override bool IsValid() => CustId > 0;
 }

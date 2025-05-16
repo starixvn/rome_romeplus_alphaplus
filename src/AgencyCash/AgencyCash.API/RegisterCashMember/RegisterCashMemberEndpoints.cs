@@ -2,11 +2,11 @@ using AgencyCash.API.RegisterCashMember.Requests;
 using AgencyCash.API.RegisterCashMember.Criteria;
 namespace AgencyCash.API.RegisterCashMember;
 
-public static class RegisterCashMemberEndpoint 
+public static class RegisterCashMemberEndpoints
 {
-    public static void MapRegisterCashMemberEndpoint(this WebApplication app)
+    public static void MapRegisterCashMemberEndpoints(this WebApplication app)
     {
-        app.MapPost("/api/cash-member/register", async (RegisterCashMemberRequest request, IRegisterCashMemberService service) 
+        app.MapPost("/api/cash-member/register", async (RegisterCashMemberRequest request, IRegisterCashMemberService service)
         => HandleAsync(request, service))
         .WithName("RegisterCashMember")
         .WithTags("Cash Service");
@@ -21,10 +21,10 @@ public static class RegisterCashMemberEndpoint
         // }
 
         return Results.Ok(await service.RegisterCashMember(new RegisterCashMemberCommand(
-            request.AgentId, 
-            request.UserName, 
-            request.FirstName, 
-            request.LastName, 
+            request.AgentId,
+            request.UserName,
+            request.FirstName,
+            request.LastName,
             request.PhoneNumber)));
     }
 }

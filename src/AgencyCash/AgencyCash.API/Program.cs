@@ -1,5 +1,6 @@
+using AgencyCash.API.Payments;
 using AgencyCash.API.RegisterCashMember;
-using AgencyCash.API.Shared;
+using AgencyCash.API.Shared.Helpers;
 using Fanex.Data.Repository;
 using Fanex.Data.SqlServer;
 
@@ -12,6 +13,7 @@ builder.Services
     .AddFanexSql(configuration)
     .AddSingleton<IDynamicRepository, DynamicRepository>()
     .AddSingleton<IRegisterCashMemberService, RegisterCashMemberService>()
+    .RegisterPaymentsModule()
     .AddSwaggerGen()
     .AddEndpointsApiExplorer()
     .AddHealthChecks();
@@ -34,6 +36,7 @@ app
         c.RoutePrefix = string.Empty; // Set Swagger UI at the app's root
     });
 app.MapHealthChecks("/health");
-app.MapRegisterCashMemberEndpoint();
+app.MapRegisterCashMemberEndpoints();
+app.MapPaymentsEndpoints();
 
 await app.RunAsync();
