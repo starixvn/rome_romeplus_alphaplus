@@ -1,4 +1,4 @@
-namespace AlphaPlus.CashService.API.Models.ManageMemberSites;
+namespace AlphaPlus.CashService.API.Features.MemberSites.Models;
 
 public class MemberSiteModel
 {
@@ -12,9 +12,3 @@ public class MemberSiteModel
     public string Announcement { get; set; }
 }
 
-public class UpdateMemberSiteModel : MemberSiteModel
-{
-    public int SubAccId { get; set; }
-    public string IP { get; set; }
-    public string Language { get; set; }
-}

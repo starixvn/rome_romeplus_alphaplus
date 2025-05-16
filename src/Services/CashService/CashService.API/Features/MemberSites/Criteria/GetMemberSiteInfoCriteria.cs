@@ -1,6 +1,6 @@
 using Fanex.Data.Repository;
 
-namespace AlphaPlus.CashService.API.Criteria.MemberSite
+namespace AlphaPlus.CashService.API.Features.MemberSites.Criteria
 {
     public class GetMemberSiteInfoCriteria(int custId) : CriteriaBase
     {

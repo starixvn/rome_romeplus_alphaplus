@@ -1,8 +1,8 @@
-using AlphaPlus.CashService.API.Models.ManageMemberSites;
-using AlphaPlus.CashService.API.Services;
+using AlphaPlus.CashService.API.Features.MemberSites.Services;
+using AlphaPlus.CashService.API.Features.MemberSites.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AlphaPlus.CashService.API.Endpoints;
+namespace AlphaPlus.CashService.API.Features.MemberSites.Endpoints;
 
 public static class MemberSiteManagementEndpoints
 {

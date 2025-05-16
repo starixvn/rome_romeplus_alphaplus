@@ -1,4 +1,4 @@
-namespace AlphaPlus.CashService.API.Models.ManageMemberSites;
+namespace AlphaPlus.CashService.API.Features.MemberSites.Models;
 
 public class MemberSiteDataObject
 {
