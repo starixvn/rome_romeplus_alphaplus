@@ -38,11 +38,15 @@ class MemberSitesService {
     try {
       const { data } = await api.get<MemberSiteResponse>(this.BASE_PATH);
       const mobile = data.mobile ? data.mobile.split('-') : ['', ''];
-      let mappingContacts: { type: string; value: string }[] = [];
+      let mappingContacts: { type: string; value: string, isRequired: boolean }[] = [];
       if (typeof data.contacts === 'string') {
         const jsonContacts = JSON.parse(data.contacts);
-        if (Array.isArray(jsonContacts)) {
-          mappingContacts = jsonContacts;
+        if(Array.isArray(jsonContacts) && jsonContacts.length > 0) {
+          mappingContacts = jsonContacts.map(contact => ({
+            type: contact.type,
+            value: contact.value,
+            isRequired: contact.type === 'line' ? true : contact.isRequired
+          }));
         }
       }
       const memberSiteManagementData: MemberSiteManagementData = {
