@@ -1,4 +1,5 @@
 import React from 'react';
+import { ensureNumericKeyPress } from '../utils/inputHandlers';
 
 interface CountryCodeComponentProps {
   label: string;
@@ -9,7 +10,7 @@ interface CountryCodeComponentProps {
     mobile?: string;
     countryCode?: string;
   };
-  onCountryCodeChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onCountryCodeChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onMobileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
 }
@@ -28,18 +29,17 @@ const MobileInputComponent: React.FC<CountryCodeComponentProps> = ({
     <div className="mb-[8px]">
       <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{label}<span className='text-[#E25757]'>*</span></label>
       <div className="flex items-center h-[32px] max-[768px]:h-[40px] w-[470px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer">
-        <select
-          className={`focus:outline-none focus:border-[var(--button-border)] h-[100%] cursor-pointer mr-[5px] ${fieldErrors.countryCode ? 'border-[#FE0000]' : ''}`}
+        <input
+          type="text"
+          className={`focus:outline-none h-[100%] cursor-pointer mr-[5px] ${fieldErrors.countryCode ? 'border-[#FE0000]' : ''}`}
           value={countryCode}
           onChange={onCountryCodeChange}
+          onKeyPress={ensureNumericKeyPress}
+          pattern="[0-9]*"
+          placeholder={`+${countryCodes[0]}`}
           style={{ maxWidth: '120px' }}
-        >
-          {countryCodes.map((code) => (
-            <option key={code} value={code} selected={code === countryCode}>
-              +{code}
-            </option>
-          ))}                
-        </select>
+          inputMode="numeric"
+        />
         <input
           type="text"
           className={`focus:outline-none w-[100%] h-[100%] pl-[10px] border-l-[1px] ${fieldErrors.mobile ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}

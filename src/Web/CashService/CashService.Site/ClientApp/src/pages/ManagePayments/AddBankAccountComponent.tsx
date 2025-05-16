@@ -16,6 +16,7 @@ import Loading from '../../components/LoadingComponent';
 import BackComponent from '../../components/BackComponent';
 import { ResultMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import CountryCodeComponent from '../../components/CountryCodeComponent';
+import { ensureNumericKeyPress, preventSpecialCharacter } from '../../utils/inputHandlers';
 
 interface AddBankAccountComponentProps {
   onClose: () => void;
@@ -35,7 +36,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
   const [selectedBank, setSelectedBank] = useState<string>('');
   const [status, setStatus] = useState<string>('1'); // Default to active
   const [depositMatchingMode, setDepositMatchingMode] = useState<number>(0);
-  const [promptPay, setPromptPay] = useState<boolean>(false);
+  const [promptPay, setPromptPay] = useState<boolean>(true);
   const [mobile, setMobile] = useState<string>('');
   const [countryCode, setCountryCode] = useState<string>('');
   const [countryCodes, setCountryCodes] = useState<string[]>([]);
@@ -82,7 +83,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
           setSelectedManualWithdrawal(false);
           
           // Set deposit matching mode based on bank's capabilities
-          if (firstBank.depositMatchingMode.mappingTypes.length > 0) {
+          if (firstBank.depositMatchingMode?.mappingTypes?.length > 0) {
             setDepositMatchingMode(0);
           }
         }
@@ -98,9 +99,6 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
       try {
         const prefixes = await baseAPI.getCountryCodes();
         setCountryCodes(prefixes);
-        if (prefixes.length > 0) {
-          setCountryCode(prefixes[0]);
-        }
       } catch (err) {
         console.error('Error fetching mobile prefixes:', err);
       }
@@ -334,17 +332,18 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                 </div>
 
                 {(() => {
-                  return selectedBank && selectedBankObj && selectedBankObj.depositMatchingMode?.mappingTypes?.length > 0 && selectedAutoDeposit && (
+                  const mappingTypes = selectedBankObj?.depositMatchingMode?.mappingTypes || [];  
+                  return selectedBank && selectedBankObj && mappingTypes.length > 0 && selectedAutoDeposit && (
                     <div className="mb-3">
                       <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('depositMatchingMode')}</label>
                       <div className="flex gap-[8px]" role="group">
-                        {selectedBankObj.depositMatchingMode.mappingTypes.includes(1) && (   
+                        {mappingTypes.includes(1) && (   
                           <label className='flex items-center cursor-pointer capitalize' htmlFor="manualMatching1" onClick={() => setDepositMatchingMode(1)}>
                             <input className='w-[20px] h-[20px] m-[10px] cursor-pointer' id="manualMatching1" type="radio" name="depositMatchingMode" value={depositMatchingMode} checked={depositMatchingMode === 1} />
                             <span className='text-[12px] leading-[14px]'>{tManagePayments('decimal')}</span>
                           </label>
                         )}
-                        {selectedBankObj.depositMatchingMode.mappingTypes.includes(2) && (                        
+                        {mappingTypes.includes(2) && (                        
                           <label className='flex items-center cursor-pointer capitalize' htmlFor="manualMatching2" onClick={() => setDepositMatchingMode(2)}>
                             <input className='w-[20px] h-[20px] m-[10px] cursor-pointer' id="manualMatching2" type="radio" name="depositMatchingMode" value={depositMatchingMode} checked={depositMatchingMode === 2} />
                             <span className='text-[12px] leading-[14px]'>{tManagePayments('bankMatching')}</span>
@@ -366,6 +365,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                       className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountHolderName ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
                       value={accountHolderName}
                       onChange={(e) => setAccountHolderName(e.target.value)}
+                      onKeyDown={preventSpecialCharacter}
                       maxLength={255}
                     />
                     {fieldErrors.accountHolderName && (
@@ -381,6 +381,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                       className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountNumber ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
                       value={accountNumber}
                       onChange={(e) => setAccountNumber(e.target.value)}
+                      onKeyDown={ensureNumericKeyPress}
                       maxLength={50}
                     />
                     {fieldErrors.accountNumber && ( 

@@ -135,7 +135,7 @@
   "pleaseSelectTransactionType": "取引タイプを選択してください",
   "failedToLoadBankAccount": "銀行口座の読み込みに失敗しました",
   "pleaseSelectDepositMatchingMode": "入金マッチングモードを選択してください",
-  "confirmDeleteBankAccount": "この銀行口座を削除してもよろしいですか？",
+  "confirmDeleteBankAccount": "この銀行口座を削除してもよろしいですか？ この操作は元に戻すことができません",
   "deleteBankAccount": "銀行口座を削除",
   "minAmountLessThanMinTrans": "最小金額は最小取引金額より小さくなります",
   "maxAmountGreaterThanMaxTrans": "最大金額は最大取引金額より大きくなります",

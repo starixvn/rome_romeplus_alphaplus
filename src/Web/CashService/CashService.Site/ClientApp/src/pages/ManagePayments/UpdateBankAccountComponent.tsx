@@ -183,7 +183,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
         status: parseInt(status),
         promptPay,
         mobile,
-        countryCode,
+        countryCode: countryCode,
         lastUpdated: new Date().toISOString(),
         lastUpdatedStr: new Date().toLocaleString(),
         code: '',
@@ -366,11 +366,13 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
               {(() => {
                 const selectedBankObj = banks.find(b => b.id === parseInt(selectedBank));
-                return selectedBank && selectedBankObj && selectedBankObj.depositMatchingMode?.mappingTypes?.length > 0 && selectedAutoDeposit && (
+                const mappingTypes = selectedBankObj?.depositMatchingMode?.mappingTypes || [];
+
+                return selectedBank && selectedBankObj && mappingTypes.length > 0 && selectedAutoDeposit && (
                   <div className="mb-[8px]">
                     <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tManagePayments('depositMatchingMode')}</label>
                     <div className="flex" role="group">
-                      {selectedBankObj.depositMatchingMode.mappingTypes.includes(1) && (
+                      {mappingTypes.includes(1) && (
                         <>                       
                           <label className='flex items-center cursor-pointer capitalize mr-[8px]' htmlFor="manualMatching1" onClick={() => setAgent_DepositMatchingMode(1)}>
                             <input className='w-[20px] h-[20px] m-[10px] cursor-pointer accent-[var(--primary-color)]' id="manualMatching1" type="radio" name="depositMatchingMode" value={agent_DepositMatchingMode} checked={agent_DepositMatchingMode == 1} />
@@ -378,7 +380,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                           </label> 
                         </>
                       )}
-                      {selectedBankObj.depositMatchingMode.mappingTypes.includes(2) && (
+                      {mappingTypes.includes(2) && (
                         <>                        
                           <label className='flex items-center cursor-pointer capitalize' htmlFor="manualMatching2" onClick={() => setAgent_DepositMatchingMode(2)}>
                             <input className='w-[20px] h-[20px] m-[10px] cursor-pointer accent-[var(--primary-color)]' id="manualMatching2" type="radio" name="depositMatchingMode" value={agent_DepositMatchingMode} checked={agent_DepositMatchingMode == 2} />

@@ -137,7 +137,7 @@
   "pleaseSelectTransactionType": "Please select transaction type",
   "failedToLoadBankAccount": "Failed to load bank account",
   "pleaseSelectDepositMatchingMode": "Please select deposit matching mode",
-  "confirmDeleteBankAccount": "Are you sure you want to delete this bank account?",
+  "confirmDeleteBankAccount": "Are you sure you want to delete {{bankAccount}}? This action is permanent and cannot be undone.",
   "deleteBankAccount": "Delete bank account",
   "minAmountLessThanMinTrans": "Minimum amount cannot be less than minimum transaction amount",
   "maxAmountGreaterThanMaxTrans": "Maximum amount cannot be greater than maximum transaction amount",

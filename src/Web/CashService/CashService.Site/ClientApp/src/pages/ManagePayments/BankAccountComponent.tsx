@@ -139,19 +139,19 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
     fetchBankAccounts();
   };
 
-  const handleDeleteBankAccount = async (accountId: number) => {
+  const handleDeleteBankAccount = async (account: BankAccount) => {
     confirmAlert({
       title: tManagePayments('deleteBankAccount'),
-      message: tManagePayments('confirmDeleteBankAccount'),
+      message: tManagePayments('confirmDeleteBankAccount').replace('{{bankAccount}}', account.accountNumber || ''),
       buttons: [
         {
           label: tGlobal('confirm'),
           onClick: async () => {
             try {
-              setDeleting(accountId);
+              setDeleting(account.id);
               setError(null);
               setSuccessMessage(null);
-              const result = await paymentProviderService.deleteBankAccount(accountId);
+              const result = await paymentProviderService.deleteBankAccount(account.id);
               if (result.isSuccessful) {
                 setSuccessMessage(tManagePayments('bankAccountDeletedSuccessfully'));
                 // Clear success message and refresh list again after 3 seconds
@@ -410,7 +410,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                                 </button>
                                 <button 
                                   className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
-                                  onClick={() => handleDeleteBankAccount(account.id)}
+                                  onClick={() => handleDeleteBankAccount(account)}
                                   title={tGlobal('delete')}
                                   disabled={deleting === account.id}
                                 >

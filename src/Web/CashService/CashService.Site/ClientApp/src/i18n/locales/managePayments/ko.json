@@ -135,7 +135,7 @@
   "pleaseSelectTransactionType": "거래 유형을 선택하세요",
   "failedToLoadBankAccount": "은행 계좌 로드 실패",
   "pleaseSelectDepositMatchingMode": "입금 매칭 모드를 선택하세요",
-  "confirmDeleteBankAccount": "이 은행 계좌를 삭제하시겠습니까?",
+  "confirmDeleteBankAccount": "이 은행 계좌를 삭제하시겠습니까? 이 작업은 취소할 수 없습니다",
   "deleteBankAccount": "은행 계좌 삭제",
   "minAmountLessThanMinTrans": "오류가 발생했습니다",
   "maxAmountGreaterThanMaxTrans": "오류가 발생했습니다",

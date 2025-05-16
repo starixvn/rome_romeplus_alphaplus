@@ -135,7 +135,7 @@
   "pleaseSelectTransactionType": "กรุณาเลือกประเภทการทำธุรกรรม",
   "failedToLoadBankAccount": "ไม่สามารถโหลดบัญชีธนาคารได้",
   "pleaseSelectDepositMatchingMode": "กรุณาเลือกโหมดการจับคู่การฝาก",
-  "confirmDeleteBankAccount": "คุณแน่ใจหรือต้องการลบบัญชีธนาคารนี้?",
+  "confirmDeleteBankAccount": "คุณแน่ใจหรือต้องการลบบัญชีธนาคารนี้? การลบจะไม่สามารถย้อนกลับได้",
   "deleteBankAccount": "ลบบัญชีธนาคาร",
   "minAmountLessThanMinTrans": "จำนวนขั้นต่ำไม่สามารถมีค่าน้อยกว่าจำนวนขั้นต่ำของการทำธุรกรรม",
   "maxAmountGreaterThanMaxTrans": "จำนวนสูงสุดไม่สามารถมีค่ามากกว่าจำนวนสูงสุดของการทำธุรกรรม",

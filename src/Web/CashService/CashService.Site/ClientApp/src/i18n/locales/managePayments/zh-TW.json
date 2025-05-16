@@ -135,7 +135,7 @@
   "pleaseSelectTransactionType": "請選擇交易類型",
   "failedToLoadBankAccount": "加載銀行賬戶失敗",
   "pleaseSelectDepositMatchingMode": "請選擇存款匹配模式",
-  "confirmDeleteBankAccount": "您確定要刪除此銀行賬戶嗎？",
+  "confirmDeleteBankAccount": "您確定要刪除 {{bankAccount}} 銀行賬戶嗎？",
   "deleteBankAccount": "刪除銀行賬戶",
   "minAmountLessThanMinTrans": "最小金額不能小於最小交易金額",
   "maxAmountGreaterThanMaxTrans": "最大金額不能大於最大交易金額",
