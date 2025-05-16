@@ -310,7 +310,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                               return banks.map(bank => ({
                                 value: bank.id,
                                 label: bank.id === 0 ? tGlobal('all') : bank.name,
-                                code: bank.code
+                                code: bank.code.toLocaleUpperCase()
                               }));
                             })()}
                             onSelect={(option) => handleBankChange({ target: { value: option.value.toString() } } as React.ChangeEvent<HTMLSelectElement>)}

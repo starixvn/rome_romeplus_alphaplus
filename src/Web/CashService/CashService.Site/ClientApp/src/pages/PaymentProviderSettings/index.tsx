@@ -435,8 +435,8 @@ function PaymentProviderSettings() {
                   <option key={type.id} value={type.id}>{type.id === 0 ? tGlobal('all') : tPaymentProviderSettings(`transaction-${type.id}`)}</option>
                 ))}
               </select>
-            </div>
-            <button className="rounded-[5px] text-[var(--button-text-cancel)] p-[8px] text-[12px] font-bold border-[1px] border-[var(--button-border)] ml-auto mt-auto bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] hover:border-[var(--button-border-cancel-hover)] cursor-pointer leading-[14px]" onClick={handleViewFees}>{tPaymentProviderSettings('viewProviderFees', {providerName: window.providerSettingsViewModel.Provider.Name})}</button>
+            </div>        
+            <ButtonComponent className="ml-auto mt-auto" type="cancel" style="medium" text={tPaymentProviderSettings('viewProviderFees', {providerName: window.providerSettingsViewModel.Provider.Name})} onClick={handleViewFees} />
           </div>
           
           <div className="table-fixed-header table-fixed-body">
@@ -528,15 +528,9 @@ function PaymentProviderSettings() {
                       </div>
                     </td>
                     <td>
-                      {setting.status === failStatus ? <>-</> : setting.bankRequired ? (
-                        <button 
-                          className="rounded-[5px] text-[var(--button-text-cancel)] p-[8px] text-[12px] font-bold border-[1px] border-[var(--button-border)] ml-auto mt-auto bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] hover:border-[var(--button-border-cancel-hover)] cursor-pointer leading-[14px]"
-                          onClick={() => handleViewBanks(setting)}
-                        >
-                          {tPaymentProviderSettings('listOfBanks')}
-                        </button>
+                      {setting.status === failStatus ? <>-</> : setting.bankRequired ? (                   
+                        <ButtonComponent type="cancel" style="medium" text={tPaymentProviderSettings('listOfBanks')} onClick={() => handleViewBanks(setting)} />                      
                       ) : ( <span className='font-semibold color-[#333333]'>{tPaymentProviderSettings('noBankRequired')} </span>) }
-
                     </td>
                   </tr>
                 ))}
@@ -545,7 +539,7 @@ function PaymentProviderSettings() {
           </div>
           <div className="flex justify-start gap-[8px] py-[8px] mt-[8px]">
             <ButtonComponent className='w-[140px]' type="cancel" style="rounded" text={tGlobal('reset')} onClick={handleReset}   />
-            <ButtonComponent className="w-[140px]" type="apply" style="rounded" text={updating ? tGlobal('updating') : tGlobal('update')} onClick={handleUpdate}   />
+            <ButtonComponent className="w-[140px]" type="apply" style="rounded" text={updating ? tGlobal('updating') : tGlobal('update')} onClick={handleUpdate} disabled={updating}  />
           </div>          
          </div>
         </>

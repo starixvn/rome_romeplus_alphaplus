@@ -62,7 +62,7 @@ const CustomDropdownComponent = ({ options, onSelect, disable = false, initialVa
     <div className="relative z-20" ref={dropdownRef}>
       <div className={`flex items-center h-[35px] w-[100%] border-[1px] rounded-[4px] px-[12px] text-[12px] leading-[13px] border-[var(--border-control)] ${disable ? 'cursor-not-allowed bg-[#f4f4f4]' : ' bg-[var(--background-control)] cursor-pointer'} focus:outline-none focus:border-[var(--border-control-focus)] relative`} onClick={handleToggle}>
       
-      <img src={`../assets/bank/${selected ? selected.code : options[0]?.code?.toLocaleUpperCase() || ""}.png`} className='w-[16px] h-[16px] mr-[8px] inline-block' />
+      <img src={`../assets/bank/${selected ? selected.code : options[0]?.code || ""}.png`} className='w-[16px] h-[16px] mr-[8px] inline-block' />
         {selected ? selected.label : options[0]?.label || ""}
         <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[10px] "/>
       </div>
