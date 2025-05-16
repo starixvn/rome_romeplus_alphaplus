@@ -98,6 +98,20 @@ const Table: React.FC<TableProps> = ({
     return columnFilter.includes(columnName);
   };
 
+  const renderBankAccount = (bankAccount: string) => {
+    const [bankCode, accountNumber] = bankAccount.split('_');
+    return (
+      <div className="flex items-center">
+        <img
+          src={`../assets/bank/${bankCode}.png`}
+          alt={bankCode}
+          className="w-[16px] h-[16px] mr-[8px] inline-block"
+        />
+        <span>{accountNumber}</span>
+      </div>
+    );
+  };
+
   const buildHeader = () => (
     <thead>
       <tr>
@@ -220,32 +234,13 @@ const Table: React.FC<TableProps> = ({
       {shouldShowColumn(t('table.from')) && (
         <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">
           <div className="flex items-center">
-            {item.paymentFrom ? (
-              <>
-                <img src="/icons/wallet.svg" alt="wallet" className="w-4 h-4 mr-2" />
-                {item.paymentFrom}
-              </>
-            ) : (
-              '-'
-            )}
+            {item.paymentFrom ? <>{renderBankAccount(item.paymentFrom)}</> : '-'}
           </div>
         </td>
       )}
       {shouldShowColumn(t('table.to')) && (
         <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300">
-          <div className="flex items-center">
-            {item.paymentTo === 'U2Pay' ? (
-              <>
-                <img src="/icons/u2pay.svg" alt="u2pay" className="w-4 h-4 mr-2" />
-                {item.paymentTo}
-              </>
-            ) : (
-              <>
-                <img src="/icons/wallet.svg" alt="wallet" className="w-4 h-4 mr-2" />
-                {item.paymentTo}
-              </>
-            )}
-          </div>
+          <div className="flex items-center">{renderBankAccount(item.paymentTo)}</div>
         </td>
       )}
       {shouldShowColumn(t('table.status')) && (

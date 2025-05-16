@@ -54,8 +54,8 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
         }))}
         onSelect={(selected) => onAccountChange(String(selected.value))}
         disable={isLoading}
-        showOptionAll={true}
         initialValue={account}
+        showOptionAll={true}
       />
     </div>
   );

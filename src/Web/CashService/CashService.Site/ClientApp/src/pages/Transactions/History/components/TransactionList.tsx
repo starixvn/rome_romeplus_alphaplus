@@ -25,14 +25,19 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
   });
   const [apiParams, setApiParams] = useState<
     Omit<TransactionsHistoryParams, 'searchText' | 'column'>
-  >(() => ({
-    dateRange: ['04/10/2025', '04/16/2025'],
-    status: -1,
-    account: '',
-    pageIndex: 1,
-    pageSize: 50,
-    transactionType: transactionType,
-  }));
+  >(() => {
+    const today = new Date();
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(today.getDate() - 7);
+    return {
+      dateRange: [sevenDaysAgo.toLocaleDateString('en-US'), today.toLocaleDateString('en-US')],
+      status: -1,
+      account: '',
+      pageIndex: 1,
+      pageSize: 50,
+      transactionType: transactionType,
+    };
+  });
   const [columnFilter, setColumnFilter] = useState<string[]>([
     t('table.name'),
     t('table.amount'),

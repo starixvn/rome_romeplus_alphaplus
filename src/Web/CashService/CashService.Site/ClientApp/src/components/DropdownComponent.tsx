@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from "react";
-import { IconArrowDown } from "./Icons";
+import { useState, useRef, useEffect } from 'react';
+import { IconArrowDown } from './Icons';
 
 export interface DropdownOption {
   value: string | number;
@@ -15,11 +15,17 @@ export interface CustomDropdownComponentProps {
   showOptionAll?: boolean;
 }
 
-const CustomDropdownComponent = ({ options, onSelect, disable = false, initialValue }: CustomDropdownComponentProps) => {
+const CustomDropdownComponent = ({
+  options,
+  onSelect,
+  disable = false,
+  initialValue,
+  showOptionAll = false,
+}: CustomDropdownComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<DropdownOption | null>(() => {
     if (initialValue) {
-      const option = options.find(opt => opt.value === initialValue);
+      const option = options.find((opt) => opt.value === initialValue);
       return option || null;
     }
     return null;
@@ -28,7 +34,7 @@ const CustomDropdownComponent = ({ options, onSelect, disable = false, initialVa
 
   useEffect(() => {
     if (initialValue) {
-      const option = options.find(opt => opt.value === initialValue);
+      const option = options.find((opt) => opt.value === initialValue);
       setSelected(option || null);
     }
   }, [initialValue, options]);
@@ -54,28 +60,45 @@ const CustomDropdownComponent = ({ options, onSelect, disable = false, initialVa
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
-  
+
+  const displayOptions = showOptionAll
+    ? [{ value: '', label: 'All', code: 'all' }, ...options]
+    : options;
+
   return (
     <div className="relative z-20" ref={dropdownRef}>
-      <div className={`flex items-center h-[35px] w-[100%] border-[1px] rounded-[4px] px-[12px] text-[12px] leading-[13px] border-[var(--border-control)] ${disable ? 'cursor-not-allowed bg-[#f4f4f4]' : ' bg-[var(--background-control)] cursor-pointer'} focus:outline-none focus:border-[var(--border-control-focus)] relative`} onClick={handleToggle}>
-      
-      <img src={`../assets/bank/${selected ? selected.code : options[0]?.code || ""}.png`} className='w-[16px] h-[16px] mr-[8px] inline-block' />
-        {selected ? selected.label : options[0]?.label || ""}
-        <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[10px] "/>
+      <div
+        className={`flex items-center h-[35px] w-[100%] border-[1px] rounded-[4px] px-[12px] text-[12px] leading-[13px] border-[var(--border-control)] ${disable ? 'cursor-not-allowed bg-[#f4f4f4]' : ' bg-[var(--background-control)] cursor-pointer'} focus:outline-none focus:border-[var(--border-control-focus)] relative`}
+        onClick={handleToggle}
+      >
+        {selected && selected.code && selected.value !== '' && (
+          <img
+            src={`../assets/bank/${selected.code}.png`}
+            className="w-[16px] h-[16px] mr-[8px] inline-block"
+          />
+        )}
+        {selected ? selected.label : options[0]?.label || ''}
+        <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[10px] " />
       </div>
-      
+
       {isOpen && (
         <div className="max-h-[200px] overflow-y-auto absolute top-[36px] text-[12px] left-0 w-[100%] bg-[#fff] border-[1px] border-[#0000003D] rounded-[8px]">
-          {options.map((option) => (            
+          {displayOptions.map((option) => (
             <div
               key={option.value}
               onClick={() => handleSelect(option)}
               className="py-[3px] px-[12px] hover:bg-[#1967D2] hover:text-[#fff] cursor-pointer flex items-center"
             >
-              <img src={`../assets/bank/${option.code}.png`} alt={option.label} className='w-[16px] h-[16px] mr-[8px] inline-block' />
+              {option.code && option.value !== '' && (
+                <img
+                  src={`../assets/bank/${option.code}.png`}
+                  alt={option.label}
+                  className="w-[16px] h-[16px] mr-[8px] inline-block"
+                />
+              )}
               {option.label}
             </div>
           ))}
