@@ -22,8 +22,8 @@
     "title": "Để lại Tin nhắn",
     "description": "Bao gồm thông tin liên hệ và tin nhắn cho thành viên của bạn.",
     "mobile": "Di động",
-    "lineId": "ID LINE",
-    "telegram": "Telegram",
+    "line": "ID LINE",
+    "tele": "Telegram",
     "announcement": "Thông báo",
     "placeholder": {
       "message": "Thêm tin nhắn của bạn tại đây..."

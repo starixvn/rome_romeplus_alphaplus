@@ -38,7 +38,13 @@ class MemberSitesService {
     try {
       const { data } = await api.get<MemberSiteResponse>(this.BASE_PATH);
       const mobile = data.mobile ? data.mobile.split('-') : ['', ''];
-      const contacts = JSON.parse(data.contacts);
+      let mappingContacts: { type: string; value: string }[] = [];
+      if (typeof data.contacts === 'string') {
+        mappingContacts = data.contacts.split(',').map((contactStr: string) => {
+          const [type, value] = contactStr.split(':');
+          return { type, value };
+        });
+      }
       const memberSiteManagementData: MemberSiteManagementData = {
         domains: data.domains,
         generalSettings: data.generalSettings,
@@ -46,10 +52,7 @@ class MemberSitesService {
           code: mobile[0],
           phone: mobile[1]
         },
-        contacts: contacts.map((contact: any) => ({
-          type: contact.type,
-          value: contact.value
-        })),
+        contacts: mappingContacts,
         announcement: data.announcement,
         countryCodes: data.countryCodes
       };

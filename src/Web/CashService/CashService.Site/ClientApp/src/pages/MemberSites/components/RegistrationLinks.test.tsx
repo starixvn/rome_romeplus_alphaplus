@@ -1,3 +1,4 @@
+import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import RegistrationLinks from './RegistrationLinks';
@@ -33,8 +34,6 @@ describe('RegistrationLinks', () => {
     }
   ];
 
-  const mockOnRequestNewLink = vi.fn();
-
   it('renders all domains with correct data', () => {
     render(<RegistrationLinks domains={mockDomains} loading={false} />);
     
@@ -44,24 +43,24 @@ describe('RegistrationLinks', () => {
     });
   });
 
-  it('shows request new link button only when all domains are blocked', () => {
-    // Test with mixed status domains
-    const { rerender } = render(<RegistrationLinks domains={mockDomains} onRequestNewLink={mockOnRequestNewLink} loading={false} />);
-    expect(screen.queryByText('Request New Link')).not.toBeInTheDocument();
+  // it('shows request new link button only when all domains are blocked', () => {
+  //   // Test with mixed status domains
+  //   const { rerender } = render(<RegistrationLinks domains={mockDomains} loading={false} />);
+  //   expect(screen.queryByText('Request New Link')).not.toBeInTheDocument();
 
-    // Test with all blocked domains
-    const allBlockedDomains = mockDomains.map(d => ({ ...d, status: 'blocked' as const }));
-    rerender(<RegistrationLinks domains={allBlockedDomains} onRequestNewLink={mockOnRequestNewLink} loading={false} />);
-    expect(screen.getByText('Request New Link')).toBeInTheDocument();
-  });
+  //   // Test with all blocked domains
+  //   const allBlockedDomains = mockDomains.map(d => ({ ...d, status: 'blocked' as const }));
+  //   rerender(<RegistrationLinks domains={allBlockedDomains} loading={false} />);
+  //   expect(screen.getByText('Request New Link')).toBeInTheDocument();
+  // });
 
-  it('calls onRequestNewLink when request button is clicked', () => {
-    const allBlockedDomains = mockDomains.map(d => ({ ...d, status: 'blocked' as const }));
-    render(<RegistrationLinks domains={allBlockedDomains} onRequestNewLink={mockOnRequestNewLink} loading={false} />);
+  // it('calls onRequestNewLink when request button is clicked', () => {
+  //   const allBlockedDomains = mockDomains.map(d => ({ ...d, status: 'blocked' as const }));
+  //   render(<RegistrationLinks domains={allBlockedDomains} loading={false} />);
     
-    fireEvent.click(screen.getByText('Request New Link'));
-    expect(mockOnRequestNewLink).toHaveBeenCalled();
-  });
+  //   fireEvent.click(screen.getByText('Request New Link'));
+  //   expect(mockOnRequestNewLink).toHaveBeenCalled();
+  // });
 
   it('handles empty domains array correctly', () => {
     render(<RegistrationLinks domains={[]} loading={false} />);

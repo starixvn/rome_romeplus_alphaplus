@@ -11,7 +11,8 @@ vi.mock('react-i18next', () => ({
         'message.title': 'Message',
         'message.description': 'Description',
         'message.mobile': 'Mobile',
-        'message.lineId': 'LINE ID',
+        'message.line': 'LINE ID',
+        'message.tele': 'Telegram',
         'message.announcement': 'Announcement',
         'message.placeholder.message': 'Enter your message'
       };
@@ -23,7 +24,12 @@ vi.mock('react-i18next', () => ({
 describe('MessageForm', () => {
   const defaultProps = {
     countryCodes: ['66', '84'],
-    contacts: [],
+    contacts: [
+      {
+        type: 'line',
+        value: 'testlineid'
+      }
+    ],
     mobilePhone: {
       code: '',
       phone: ''
@@ -63,11 +69,11 @@ describe('MessageForm', () => {
     render(<MessageForm {...defaultProps} onMessageChange={onMessageChange} loading={false} />);
     
     const lineIdInput = screen.getByLabelText('LINE ID', { exact: false });
-    fireEvent.change(lineIdInput, { target: { value: 'testlineid' } });
+    fireEvent.change(lineIdInput, { target: { value: 'testlineid3' } });
     
     expect(onMessageChange).toHaveBeenCalledWith({contacts: [{
       type: 'line',
-      value: 'testlineid'
+      value: 'testlineid3'
     }]});
   });
 
@@ -86,7 +92,7 @@ describe('MessageForm', () => {
     
     // Initial render with empty values
     expect(screen.getByLabelText('Mobile',{exact: false})).toHaveValue('');
-    expect(screen.getByLabelText('LINE ID', { exact: false })).toHaveValue('testlineid');
+    expect(screen.getByLabelText('LINE ID', { exact: false })).toHaveValue('testlineid3');
     expect(screen.getByLabelText('Announcement')).toHaveValue('');
     
     //Update with new values

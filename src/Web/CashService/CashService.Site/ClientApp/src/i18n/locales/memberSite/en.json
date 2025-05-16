@@ -22,8 +22,8 @@
     "title": "Leave a Message",
     "description": "Include your contact details and a message for your member.",
     "mobile": "Mobile",
-    "lineId": "LINE ID",
-    "telegram": "Telegram",
+    "line": "LINE ID",
+    "tele": "Telegram",
     "announcement": "Announcement",
     "placeholder": {
       "message": "Add your message here..."

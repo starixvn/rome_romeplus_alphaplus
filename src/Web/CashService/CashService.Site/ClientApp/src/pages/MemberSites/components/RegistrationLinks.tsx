@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 
 interface Props {
   domains: Domain[];
-  onRequestNewLink?: () => void;
   loading: boolean;
 }
 
@@ -26,13 +25,11 @@ const RegistrationLinksSkeleton = () => {
   );
 };
 
-const RegistrationLinks: React.FC<Props> = ({ domains, onRequestNewLink, loading }) => {
+const RegistrationLinks: React.FC<Props> = ({ domains, loading }) => {
   const { t } = useTranslation('memberSite');
 
-  // check if all link is blocked
-  const allDomainsBlocked = domains.every(d => d.status === 'blocked');
   if (loading) {
-  return <RegistrationLinksSkeleton />
+    return <RegistrationLinksSkeleton />
   }
 
   return (
@@ -44,20 +41,12 @@ const RegistrationLinks: React.FC<Props> = ({ domains, onRequestNewLink, loading
             {t('registrationLinks.note')}
           </p>
         </div>
-        {allDomainsBlocked && (
-          <button
-            onClick={onRequestNewLink}
-            className="px-4 py-2 text-sm bg-[#1e4d8c] text-white rounded-md hover:bg-[#173d70] transition-colors"
-          >
-            {t('registrationLinks.requestNewLink')}
-          </button>
-        )}
       </div>
 
       <div className="flex gap-[30px] flex-wrap w-[100%] max-[768px]:w-full max-[768px]:flex-col">
         {domains.map((domain, index) => (
-          <DomainCard 
-            key={domain.id} 
+          <DomainCard
+            key={domain.id}
             domain={domain}
             className={domain.status === 'blocked' ? 'opacity-50' : ''}
             index={index}

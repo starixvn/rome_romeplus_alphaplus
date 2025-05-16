@@ -17,7 +17,7 @@ import TitleComponent from '../../components/TitleComponent';
 const MemberSiteManagement: React.FC = () => {
   const { t } = useTranslation('memberSite');
   useCookieLanguage(i18n);
-  const [originalData, setOriginalData] = useState<MemberSiteManagementData>(MemberSiteManagementDataDefault);
+  const [originalData, setOriginalData] = useState<string>(JSON.stringify(MemberSiteManagementDataDefault));
   const [data, setData] = useState<MemberSiteManagementData>(MemberSiteManagementDataDefault);
   const [loading, setLoading] = useState(true);
   const [result, setResult] = useState<{ type: ResultType; text: string } | null>(null);
@@ -33,7 +33,7 @@ const MemberSiteManagement: React.FC = () => {
       setLoading(true);
       const response = await memberSitesService.getMemberSiteData();
       setData(response);
-      setOriginalData(response);
+      setOriginalData(JSON.stringify(response));
       setResult(null);
     } catch (err) {
       setResult({
@@ -53,7 +53,7 @@ const MemberSiteManagement: React.FC = () => {
         setting.id === settingId ? { ...setting, value } : setting
       )
     }
-    const isDirty = JSON.stringify(newData) !== JSON.stringify(originalData);
+    const isDirty = JSON.stringify(newData) !== originalData;
     setData(newData);
     setIsDirty(isDirty);
   };
@@ -63,7 +63,7 @@ const MemberSiteManagement: React.FC = () => {
       ...data,
       ...messages
     }
-    const isDirty = JSON.stringify(newData) !== JSON.stringify(originalData);
+    const isDirty = JSON.stringify(newData) !== originalData;
     setData(newData);
     setIsDirty(isDirty);
   };
@@ -73,7 +73,7 @@ const MemberSiteManagement: React.FC = () => {
       setIsSaving(true);
       const requestData = {
         mobile: `${data.mobilePhone.code}-${data.mobilePhone.phone}`,
-        contacts: JSON.stringify(data.contacts),
+        contacts: data.contacts.map(contact => `${contact.type}:${contact.value}`).join(','),
         announcement: data.announcement,
         generalSettings: data.generalSettings,
         
@@ -87,7 +87,7 @@ const MemberSiteManagement: React.FC = () => {
         text: response.isSuccessful ? t('messages.updateSuccess') : response.message
       });
       setTimeout(() => {
-        setOriginalData(data);
+        setOriginalData(JSON.stringify(data));
         setResult(null);
       }, 3000);
 
@@ -102,10 +102,6 @@ const MemberSiteManagement: React.FC = () => {
     }
   };
 
-  const handleRequestNewLink = () => {
-    // Implement request new link functionality
-    console.log('Requesting new link...');
-  };
 
 
   return (
@@ -134,7 +130,6 @@ const MemberSiteManagement: React.FC = () => {
             <div className="">
               <RegistrationLinks
                 domains={data.domains.map(domain => ({ ...domain, status: 'active' }))}
-                onRequestNewLink={handleRequestNewLink}
                 loading={loading}
               />
             </div>
