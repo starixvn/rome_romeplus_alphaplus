@@ -36,7 +36,7 @@ export interface MemberSiteResponse {
 export interface Contact {
   type: string;
   value: string;
-  isRequired: boolean;
+  isRequired?: boolean;
 }
 
 export interface MobilePhone {

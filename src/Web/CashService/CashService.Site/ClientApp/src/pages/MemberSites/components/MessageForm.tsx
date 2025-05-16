@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Contact, MobilePhone } from '../../../services/interfaces/MemberSites';
 interface MessageFormProps {
@@ -31,11 +31,75 @@ const MessageFormSkeleton = () => {
     </div>
   );
 };
+
+const CountryCodeInput = () => {
+  const [code, setCode] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/[^0-9]/g, '').slice(0, 3);
+    setCode(value);
+  };
+
+  if (!isEditing) {
+    return (
+      <button
+        key={code}
+        onClick={() => setIsEditing(true)}
+        className="focus:outline-none focus:border-[var(--button-border)] h-[100%] w-[40px] cursor-pointer"
+      >
+        {code ? `+${code}` : '+84'}
+      </button>
+    );
+  }
+
+  return (
+    <input
+      type="text"
+      value={code}
+      onChange={handleInputChange}
+      onBlur={() => setIsEditing(false)}
+      className="focus:outline-none focus:border-[var(--button-border)] h-[100%] w-[40px]"
+      maxLength={3}
+      autoFocus
+    />
+  );
+};
+
+
+const ContactInput = (props: {
+  contact: Contact,
+  validateContact: (value: string) => boolean,
+  handleContactChange: (contact: Contact) => void
+}) => {
+  const { t } = useTranslation('memberSite');
+  const { contact, validateContact, handleContactChange } = props;
+  return (<div key={contact.type} className='w-[230px] pt-[4px] max-[768px]:w-[48%]'>
+    <label htmlFor={contact.type} className="block text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:mb-[8px]">
+      {t(`message.${contact.type}`)}
+      <span className='text-[#E25757]'>*</span>
+    </label>
+    <input
+      id={contact.type}
+      type="text"
+      value={contact.value}
+      onChange={(e) => {
+        const validate = validateContact(e.target.value);
+        if (validate) {
+          handleContactChange({ type: contact.type, value: e.target.value, isRequired: contact.isRequired });
+        }
+      }}
+      className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--border-control-focus)] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
+    />
+  </div>)
+
+}
+
+
 const MessageForm: React.FC<MessageFormProps> = ({
   contacts,
   mobilePhone,
   announcement,
-  countryCodes,
   onMessageChange,
   loading
 }) => {
@@ -46,17 +110,17 @@ const MessageForm: React.FC<MessageFormProps> = ({
   }
 
   const validateContact = (value: string) => {
-    const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;  
-    if(value.length === 0) return true;
+    const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    if (value.length === 0) return true;
     return !specialCharRegex.test(value);
   }
 
-  const handleContactChange = (contact: Contact) => {
+  const handleContactChange = (contact: Partial<Contact>) => {
     const newContact = contacts.find(c => c.type === contact.type);
     if (newContact) {
-      newContact.value = contact.value;
+      newContact.value = contact.value || '';
     } else {
-      contacts.push(contact);
+      contacts.push(contact as Contact);
     }
     onMessageChange({ contacts: contacts });
   }
@@ -77,17 +141,7 @@ const MessageForm: React.FC<MessageFormProps> = ({
               {t('message.mobile')}
             </label>
             <div className="flex items-center h-[32px] max-[768px]:h-[40px]  border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--border-control-focus)] cursor-pointer">
-              <select
-                value={mobilePhone.code}
-                onChange={(e) => {
-                  handleMobilePhoneChange({ code: e.target.value });
-                }}
-                className="focus:outline-none focus:border-[var(--button-border)] h-[100%]  cursor-pointer mr-[5px] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
-              >
-                {countryCodes.map((code) => (
-                  <option key={code} value={code} >+{code}</option>
-                ))}
-              </select>
+              <CountryCodeInput />
               <input
                 className="focus:outline-none w-[100%] h-[100%] pl-[10px] border-l-[1px] border-[var(--border-control)] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
                 id="mobile"
@@ -101,26 +155,32 @@ const MessageForm: React.FC<MessageFormProps> = ({
             </div>
           </div>
           {
-            contacts.map(contact => {
+            contacts.map((contact: Contact) => {
               return (
-                <div key={contact.type} className='w-[230px] pt-[4px] max-[768px]:w-[48%]'>
-                  <label htmlFor={contact.type} className="block text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:mb-[8px]">
-                    {t(`message.${contact.type}`)}
-                    {contact.isRequired && <span className='text-[#E25757]'>*</span>}
-                  </label>
-                  <input
-                    id={contact.type}
-                    type="text"
-                    value={contact.value}
-                    onChange={(e) => {
-                      const validate = validateContact(e.target.value);
-                      if (validate) {
-                        handleContactChange({ type: contact.type, value: e.target.value });
-                      }
-                    }}
-                    className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--border-control-focus)] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
-                  />
-                </div>
+                <ContactInput
+                  key={contact.type}
+                  contact={contact}
+                  validateContact={validateContact}
+                  handleContactChange={handleContactChange}
+                />
+                // <div key={contact.type} className='w-[230px] pt-[4px] max-[768px]:w-[48%]'>
+                //   <label htmlFor={contact.type} className="block text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:mb-[8px]">
+                //     {t(`message.${contact.type}`)}
+                //     <span className='text-[#E25757]'>*</span>
+                //   </label>
+                //   <input
+                //     id={contact.type}
+                //     type="text"
+                //     value={contact.value}
+                //     onChange={(e) => {
+                //       const validate = validateContact(e.target.value);
+                //       if (validate) {
+                //         handleContactChange({ type: contact.type, value: e.target.value });
+                //       }
+                //     }}
+                //     className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--border-control-focus)] max-[768px]:text-[16px] max-[768px]:leading-[16px]"
+                //   />
+                // </div>
               )
             })
           }
