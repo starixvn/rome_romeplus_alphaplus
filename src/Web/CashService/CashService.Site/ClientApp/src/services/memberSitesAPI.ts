@@ -41,7 +41,7 @@ class MemberSitesService {
       let mappingContacts: { type: string; value: string, isRequired: boolean }[] = [];
       if (typeof data.contacts === 'string') {
         const jsonContacts = JSON.parse(data.contacts);
-        if(Array.isArray(jsonContacts) && jsonContacts.length > 0) {
+        if (Array.isArray(jsonContacts) && jsonContacts.length > 0) {
           mappingContacts = jsonContacts.map(contact => ({
             type: contact.type,
             value: contact.value,
@@ -53,7 +53,7 @@ class MemberSitesService {
         domains: data.domains,
         generalSettings: data.generalSettings,
         mobilePhone: {
-          code: mobile[0],
+          code: mobile[0] == '' ? data.countryCodes[0] : mobile[0],
           phone: mobile[1]
         },
         contacts: mappingContacts,
