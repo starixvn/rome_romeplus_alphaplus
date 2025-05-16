@@ -18,7 +18,7 @@ class MemberSitesService {
 
   private handleError(error: AxiosError<ErrorResponse>): never {
     let message = 'An error occurred';
-    
+
     if (error.response) {
       // Server responded with error
       message = error.response.data?.message || `Error: ${error.response.status}`;
@@ -40,10 +40,10 @@ class MemberSitesService {
       const mobile = data.mobile ? data.mobile.split('-') : ['', ''];
       let mappingContacts: { type: string; value: string }[] = [];
       if (typeof data.contacts === 'string') {
-        mappingContacts = data.contacts.split(',').map((contactStr: string) => {
-          const [type, value] = contactStr.split(':');
-          return { type, value };
-        });
+        const jsonContacts = JSON.parse(data.contacts);
+        if (Array.isArray(jsonContacts)) {
+          mappingContacts = jsonContacts;
+        }
       }
       const memberSiteManagementData: MemberSiteManagementData = {
         domains: data.domains,

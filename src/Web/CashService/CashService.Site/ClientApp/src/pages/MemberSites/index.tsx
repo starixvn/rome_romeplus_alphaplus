@@ -73,7 +73,8 @@ const MemberSiteManagement: React.FC = () => {
       setIsSaving(true);
       const requestData = {
         mobile: `${data.mobilePhone.code}-${data.mobilePhone.phone}`,
-        contacts: data.contacts.map(contact => `${contact.type}:${contact.value}`).join(','),
+       // contacts: data.contacts.map(contact => `${contact.type}:${contact.value}`).join(','),
+        contacts: JSON.stringify(data.contacts),
         announcement: data.announcement,
         generalSettings: data.generalSettings,
         
