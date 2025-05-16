@@ -19,6 +19,7 @@ import '../../styles/common.css';
 import '../../styles/global.scss';
 
 import Loading from '../../components/LoadingComponent';
+import { ButtonComponent } from '../../components/ButtonComponents';
 declare global {
   interface Window {
     providerSettingsViewModel: any;
@@ -353,8 +354,9 @@ function PaymentProviderSettings() {
             <div>      
             <p className="block text-[12px] font-semibold text-[#333333] my-[8px]">
               {tPaymentProviderSettings('setUpPaymentMethodsForMembers')}
-            </p>
-            <button className="w-[183px] h-[30px] rounded-[5px] text-[var(--button-text)] px-[16px] py-[4px] text-[12px] font-bold border-[1px] border-[var(--button-border)] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] hover:border-[var(--button-border-hover)] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]" onClick={handleAddPaymentMethod}>+{tPaymentProviderSettings('addPaymentMethod')}</button>
+            </p>         
+            <ButtonComponent className="w-[183px] font-bold" type="apply" style="medium" text={`+ ${tPaymentProviderSettings('addPaymentMethod')}`} onClick={handleAddPaymentMethod} />
+            
             </div>
             <div>
               <p className="flex items-center text-[12px] font-semibold text-[#333333] my-[8px]">
@@ -541,18 +543,11 @@ function PaymentProviderSettings() {
               </tbody>
             </table>
           </div>
-          <div className="flex justify-start py-[8px] mt-[8px]">
-            <button className="w-[140px] h-[30px] rounded-[20px] text-[var(--text-color-primary)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)] bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] hover:border-[var(--button-border-cancel-hover)] cursor-pointer " onClick={handleReset}>{tGlobal('reset')}</button>
-            <button 
-              className="w-[140px] h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)] ml-[8px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] hover:border-[var(--button-border-hover)] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]" 
-              onClick={handleUpdate}
-              disabled={updating}
-            >
-              {updating ? tGlobal('updating') : tGlobal('update')}
-            </button>
+          <div className="flex justify-start gap-[8px] py-[8px] mt-[8px]">
+            <ButtonComponent className='w-[140px]' type="cancel" style="rounded" text={tGlobal('reset')} onClick={handleReset}   />
+            <ButtonComponent className="w-[140px]" type="apply" style="rounded" text={updating ? tGlobal('updating') : tGlobal('update')} onClick={handleUpdate}   />
           </div>          
          </div>
-
         </>
       )}
 
