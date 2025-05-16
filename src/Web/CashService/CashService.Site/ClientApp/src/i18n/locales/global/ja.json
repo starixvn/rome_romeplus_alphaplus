@@ -30,5 +30,6 @@
   "invalidAmountFormat": "金額の形式が無効です",
   "minAmountGreaterThanMax": "最小金額は最大金額より大きくなります",
   "amountCannotBeNegative": "金額は負の値になりません",
-  "row": "行"
+  "row": "行",
+  "view": "表示"
 } 

@@ -30,5 +30,6 @@
   "invalidAmountFormat": "Định dạng số tiền không hợp lệ",
   "minAmountGreaterThanMax": "Số tiền tối thiểu không thể lớn hơn số tiền tối đa",
   "amountCannotBeNegative": "Số tiền không thể là số âm",
-  "row": "Hàng"
+  "row": "Hàng",
+  "view": "Xem"
 } 

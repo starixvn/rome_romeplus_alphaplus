@@ -30,5 +30,6 @@
   "invalidAmountFormat": "오류가 발생했습니다",
   "minAmountGreaterThanMax": "오류가 발생했습니다",
   "amountCannotBeNegative": "오류가 발생했습니다",
-  "row": "행"
+  "row": "행",
+  "view": "보기"
 } 

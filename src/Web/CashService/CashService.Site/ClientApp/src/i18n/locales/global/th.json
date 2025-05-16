@@ -30,5 +30,6 @@
   "invalidAmountFormat": "รูปแบบจำนวนเงินไม่ถูกต้อง",
   "minAmountGreaterThanMax": "จำนวนขั้นต่ำไม่สามารถมีค่ามากกว่าจำนวนสูงสุด",
   "amountCannotBeNegative": "จำนวนไม่สามารถเป็นค่าลบ",
-  "row": "แถว"
+  "row": "แถว",
+  "view": "ดู"
 } 

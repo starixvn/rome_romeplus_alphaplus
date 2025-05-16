@@ -173,7 +173,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
                               className="font-bold text-[12px] py-[4px] px-[16px] rounded-[4px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] text-[var(--button-text)] cursor-pointer max-[768px]:text-[16px] "
                               onClick={() => handleFeeClick(provider)}
                             >
-                              {tManagePayments('fee')}
+                              {tGlobal('view')}
                             </button>
                           </td>
                           <td>

@@ -30,5 +30,6 @@
   "invalidAmountFormat": "金额格式无效",
   "minAmountGreaterThanMax": "最小金额不能大于最大金额",
   "amountCannotBeNegative": "金额不能为负",
-  "row": "行"
+  "row": "行",
+  "view": "游览"
 } 
