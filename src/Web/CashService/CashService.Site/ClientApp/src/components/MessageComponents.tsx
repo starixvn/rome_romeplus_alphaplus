@@ -9,6 +9,10 @@ interface ResultMessageProps {
   className?: string;
 }
 
+interface ValidateMessageProps {
+  message: string;
+}
+
 const getResultStyles = (type: ResultType) => {
   const styles = {
     error: ' bg-[#FFF2F2] border-[#FE0000] ',
@@ -51,7 +55,7 @@ export const ResultMessageComponent: React.FC<ResultMessageProps> = ({
   );
 };
 
-export const ValidateMessageComponent: React.FC<ResultMessageProps> = ({
+export const ValidateMessageComponent: React.FC<ValidateMessageProps> = ({
   message,
 }) => {
   return (
