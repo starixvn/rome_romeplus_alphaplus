@@ -36,7 +36,8 @@ public interface IPaymentsService
 public class PaymentsService(
     IDynamicRepository repository,
     ICacheRefService cacheRefService,
-    ICommonService commonService
+    ICommonService commonService,
+    IProviderAPIService providerAPIService
 ) : IPaymentsService
 {
     public async Task<IEnumerable<ProviderModel>> GetProviders(int custId)
@@ -46,6 +47,7 @@ public class PaymentsService(
         foreach (var provider in providers)
         {
             provider.Name = cacheRefService.GetProviderName(provider.Id, provider.Name);
+            // provider.Status = await providerAPIService.GetStatus(provider.Id);
         }
         
         return providers;

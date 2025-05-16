@@ -29,8 +29,6 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
         public override string GetSettingKey() => "Age_CashService_BankAccountAgent_Upd";
 
         public override bool IsValid()
-            => base.IsValid() &&
-                Id > 0 && 
-                !string.IsNullOrWhiteSpace(AccountNickname);
+            => base.IsValid() && Id > 0;
     }
 } 
