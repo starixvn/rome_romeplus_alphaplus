@@ -46,7 +46,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       minLimitAmt: minAmount,
       maxLimitAmt: maxAmount,
       amount: parseFloat(withdrawalAmount),
-      remarks,
+      remark: remarks,
       image: image as File,
       providerId,
     };

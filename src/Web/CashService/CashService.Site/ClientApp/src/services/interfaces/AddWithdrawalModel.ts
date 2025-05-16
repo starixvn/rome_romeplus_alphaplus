@@ -3,7 +3,7 @@ export interface AddWithdrawalModel {
   paymentFrom: string;
   paymentTo: string;
   amount: number;
-  remarks: string;
+  remark: string;
   image: File;
   minLimitAmt: number;
   maxLimitAmt: number;

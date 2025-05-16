@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Mvc.Formatters;
-
 namespace AlphaPlus.CashService.Site.Features.Transactions;
 
 using Core.Models;
@@ -91,7 +89,7 @@ public class TransactionsController(
         }
         request.UplineId = agentId;
         request.Ip = GetClientIp();
-        request.Payslip = request.File != null ? await ToByteArrayAsync(request.File) : null;
+        request.Payslip = request.File != null ? await FileHelper.CompressAndConvertToBase64Async(request.File) : null;
         result = await httpClientHelper.PostAsync<AddWithdrawalParams, ResultModel>("/deposit/create", rq);
         return Json(result);
     }
@@ -109,20 +107,13 @@ public class TransactionsController(
         request.SiteDbGroupId = siteDbGroupId;
         request.CustDbGroupId = custDbGroupId;
         request.Payslip = request.File != null ? await FileHelper.CompressAndConvertToBase64Async(request.File) : null;
-        result = await httpClientHelper.PostAsync<AddWithdrawalParams, ResultModel>("/withdrawal/create", request);
+        result = await httpClientHelper.PostAsync<AddWithdrawalParams, ResultModel>("/api/withdrawal/create", request);
         return Json(result);
-    }
-
-    public async Task<byte[]> ToByteArrayAsync(IFormFile file)
-    {
-        using var ms = new MemoryStream();
-        await file.CopyToAsync(ms);
-        return ms.ToArray();
     }
 
     private static ResultModel VerifyInputParam(AddWithdrawalParams request)
     {
-        var result = new ResultModel();
+        var result = new ResultModel { Code = 0 };
         if (request.Amount <= 0 || (request.MaxLimitAmt > 0 && request.Amount > request.MaxLimitAmt))
         {
             result.Code = 1;

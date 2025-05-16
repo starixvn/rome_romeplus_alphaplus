@@ -146,15 +146,15 @@ public class PendingWithdrawalService(
 
     public async Task<ResultModel> AddManualWithdrawAsync(AddManualWithdrawalModel param)
     {
-        var memberSettings = await GetMemberSettingWithdrawAsync(param.CustId);
+        var memberSettings = await GetLimitAmtWithdrawAsync(new CashLimitAmt { CustId = param.CustId, CustDbGroupId = param.CustDbGroupId, UplineId = param.UplineId, ProviderId = param.ProviderId });
         var command = new CreateManualWithdrawCommand
         {
             CustId = param.CustId,
             UplineId = param.UplineId,
             SubAccId = param.SubAccId,
-            MinLimitAmt = memberSettings.MinLimitAmt,
-            MaxLimitAmt = memberSettings.MaxLimitAmt,
-            WithdrawalLimitCnt = memberSettings.WithdrawalLimitCnt,
+            MinLimitAmt = memberSettings.MinAmt,
+            MaxLimitAmt = memberSettings.MaxAmt,
+            WithdrawalLimitCnt = 0,
             PaymentFrom = param.PaymentFrom,
             PaymentTo = param.PaymentTo,
             Amount = param.Amount,
