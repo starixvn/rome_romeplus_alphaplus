@@ -40,9 +40,11 @@ public static class PendingDepositEndpoints
             Description = "Returns range value the member can deposit (MinAmt - MaxAmt)"
         });
 
-        group.MapGet("/member-setting/{custId}", async (int custId, IPendingDepositService service) =>
+        group.MapGet("/member-setting", async ([FromQuery] int custId,
+            [FromQuery] int custDbGroupId
+            , IPendingDepositService service) =>
         {
-            var memberSettingDeposit = await service.GetMemberSettingDepositAsync(custId);
+            var memberSettingDeposit = await service.GetMemberSettingDepositAsync(custId, custDbGroupId);
             return Results.Ok(memberSettingDeposit);
         })
         .WithName("GetMemberSettingDepositAsync")
@@ -52,13 +54,9 @@ public static class PendingDepositEndpoints
             Description = "Returns deposit setting value for Member - use to validate min-max amount"
         });
 
-        group.MapPost("/create", async (HttpRequest request, IPendingDepositService service) =>
+        group.MapPost("/create", async ([FromBody] CreateManualModel param, IPendingDepositService service) =>
         {
-            using var reader = new StreamReader(request.Body);
-            var body = await reader.ReadToEndAsync();
-            var provider = JsonConvert.DeserializeObject<CreateManualModel>(body);
-
-            var result = await service.AddManualDepositAsync(provider, provider.SiteDbIp);
+            var result = await service.AddManualDepositAsync(param);
             return Results.Ok(result);
         })
         .WithName("CreateManualDepositAsync")

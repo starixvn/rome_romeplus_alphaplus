@@ -33,4 +33,6 @@ public class CreateManualModel
     public int ProviderId { get; set; }
 
     public string SiteDbIp { get; set; } = string.Empty;
+
+    public int CustDbGroupId { get; set; }
 }

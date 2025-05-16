@@ -12,9 +12,9 @@ public interface IPendingDepositService
 
     Task<CreditAmount> GetLimitAmtDepositAsync(int agentId, int custId, int custDbGroupId);
 
-    Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int custId, string siteDbIp = "");
+    Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int custId, int custDbGroupId);
 
-    Task<ResultModel> AddManualDepositAsync(CreateManualModel param, string sitDbIp = "");
+    Task<ResultModel> AddManualDepositAsync(CreateManualModel param);
 }
 
 public class PendingDepositService(IDynamicRepository dynamicRepository,
@@ -52,19 +52,26 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
         return creditAmount;
     }
 
-    public async Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int custId, string siteDbIp = "")
+    public async Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int custId, int custDbGroupId)
     {
+        var memberSetting = new MemberSettingDeposit();
         var criteria = new GetMemberSettingDepositCriteria
         {
             CustId = custId
         };
-        return await dynamicRepository.GetAsync<MemberSettingDeposit>(criteria, siteDbIp);
+        await dynamicRepository.GetAsync<MemberSettingDeposit>(criteria);
+        memberSetting.AgentGivenCredit = criteria.AgentGivenCredit;
+        memberSetting.MemberUsedCredit = criteria.MemberUsedCredit;
+        memberSetting.MinLimitAmt = criteria.MinLimitAmt;
+        memberSetting.MaxLimitAmt = criteria.MaxLimitAmt;
+
+        return await dynamicRepository.GetAsync<MemberSettingDeposit>(criteria);
     }
 
-    public async Task<ResultModel> AddManualDepositAsync(CreateManualModel param, string sitDbIp = "")
+    public async Task<ResultModel> AddManualDepositAsync(CreateManualModel param)
     {
-        var siteDbConf = await commonService.GetServerDBConfigByCustIdAsync(param.CustId);
-        var memberSettings = await GetMemberSettingDepositAsync(param.CustId, siteDbConf.AGIP_DBCUST);
+        //var siteDbConf = await commonService.GetServerDBConfigByCustIdAsync(param.CustId);
+        var memberSettings = await GetMemberSettingDepositAsync(param.CustId, param.CustDbGroupId);
         var command = new CreateManualDepositCommand
         {
             CustId = param.CustId,
@@ -82,12 +89,12 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
             Remark = param.Remark,
         };
 
-        await dynamicRepository.ExecuteAsync(command, siteDbConf.AGIP);
+        //await dynamicRepository.ExecuteAsync(command);
         var result = new ResultModel(command.ErrCode, command.ErrMsg);
-        if (command.ErrCode == 0)
-        {
-            SyncCashAccumulatedCredit(command.CashAccumCreditTbl, siteDbConf.CustDBGroupId);
-        }
+        //if (command.ErrCode == 0)
+        //{
+        //    SyncCashAccumulatedCredit(command.CashAccumCreditTbl, param.CustDbGroupId);
+        //}
         return result;
     }
 

@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc.Formatters;
+
 namespace AlphaPlus.CashService.Site.Features.Transactions;
 
 using Core.Models;
@@ -74,9 +76,23 @@ public class TransactionsController(
         return Json(limitAmtDeposit);
     }
 
-    public async Task<IActionResult> AddManualDeposit([FromBody] object request)
+    public async Task<IActionResult> AddManualDeposit([FromBody] AddWithdrawalParams request)
     {
-        var result = await httpClientHelper.PostAsync<object, ResultModel>("/deposit/create", request);
+        var rq = new AddWithdrawalParams
+        {
+            UplineId = AgentId,
+            CustId = 1176092
+        };
+
+        var result = VerifyInputParam(request);
+        if (result.Code != 0)
+        {
+            return Json(result);
+        }
+        request.UplineId = AgentId;
+        request.IP = GetClientIp();
+        request.Payslip = request.File != null ? await ToByteArrayAsync(request.File) : null;
+        result = await httpClientHelper.PostAsync<AddWithdrawalParams, ResultModel>("/deposit/create", rq);
         return Json(result);
     }
 

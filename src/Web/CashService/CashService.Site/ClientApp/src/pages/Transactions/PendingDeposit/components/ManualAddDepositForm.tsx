@@ -63,13 +63,25 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
     setMemberId(newMemberId);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const getParams = () => {
+    const params = {
+      custId: memberId,
+      paymentFrom: paymentFrom,
+      paymentTo: paymentTo,
+      amount: Number(depositAmount),
+      paySlipBase64: imageBase64 || '',
+      remark: remarks
+    }
+    return params;
   };
 
-  // console.log('image', image);
-  // console.log('imageBase64', imageBase64);
-  // console.log('creditAmount', creditAmount);
+  const handleSubmit = async (e: React.FormEvent) => {
+    var params = getParams();
+    console.log('params', params);
+    const response = await pendingDepositAPI.createDepositManual(params);
+    console.log('response', response);
+    e.preventDefault();
+  };
 
   return (
     <div className="fixed inset-0 bg-white flex flex-col z-50">

@@ -93,7 +93,7 @@
 
     <Function Name="Deposit">
         <Setting Key="Age_CashDeposit_ManualAdd" SpName="Age_CashDeposit_ManualAdd_UAT2" DbName="DBCust.CustDB.wsv_CashService" Plain="0"></Setting>
-        <Setting Key="Age_CashDeposit_MemberSettingSel" SpName="Age_CashDeposit_MemberSettingSel_UAT2" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="CustDb_0_Age_CashDeposit_MemberSettingSel" SpName="Age_CashDeposit_MemberSettingSel" DbName="DBCust.CustDB.wsv_CashService" Plain="0"></Setting>
         <Setting Key="CustDb_0_Age_CashAccumCredit_SyncData" SpName="Age_CashAccumCredit_SyncData_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0"></Setting>
     </Function>
 
