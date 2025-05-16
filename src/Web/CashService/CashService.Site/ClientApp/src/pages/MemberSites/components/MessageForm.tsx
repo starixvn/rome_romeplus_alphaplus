@@ -46,8 +46,9 @@ const MessageForm: React.FC<MessageFormProps> = ({
   }
 
   const validateContact = (value: string) => {
-    const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;    
-    return value.length > 0 && !specialCharRegex.test(value);
+    const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;  
+    if(value.length === 0) return true;
+    return !specialCharRegex.test(value);
   }
 
   const handleContactChange = (contact: Contact) => {
