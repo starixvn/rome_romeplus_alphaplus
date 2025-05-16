@@ -23,8 +23,15 @@
                 }
                 else if (isAgentLevel || data.IsDirectMember)
                 {
-                    <a href="javascript:;" class="open-link"
+                    if (data.NumberOfTickets == 0)
+                    {
+                        @data.CustName
+                    }
+                    else
+                    {
+                        <a href="javascript:;" class="open-link"
                         data-url="@Model.GetBetListUrl(data.CustId, data.CustName)">@data.CustName</a>
+                    }
                 }
                 else
                 {
