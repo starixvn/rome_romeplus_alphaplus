@@ -27,7 +27,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     Omit<TransactionsHistoryParams, 'searchText' | 'column'>
   >(() => ({
     dateRange: ['04/10/2025', '04/16/2025'],
-    status: 'All',
+    status: -1,
     account: '',
     pageIndex: 1,
     pageSize: 50,
@@ -97,7 +97,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     setApiParams((prev) => ({ ...prev, dateRange: dates, pageIndex: 1 }));
   };
 
-  const handleStatusChange = (value: string) => {
+  const handleStatusChange = (value: number) => {
     setApiParams((prev) => ({ ...prev, status: value, pageIndex: 1 }));
   };
 

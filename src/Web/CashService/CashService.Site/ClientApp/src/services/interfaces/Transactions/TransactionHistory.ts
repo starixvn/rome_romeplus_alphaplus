@@ -25,7 +25,7 @@ export interface TransactionsHistoryResponse {
 
 export interface TransactionsHistoryParams {
   dateRange: [string, string];
-  status: string;
+  status: number;
   searchText: string;
   account: string;
   pageIndex: number;

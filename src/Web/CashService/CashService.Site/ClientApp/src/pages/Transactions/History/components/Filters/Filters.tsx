@@ -6,12 +6,12 @@ import DateRangeFilter from './DateRangeFilter';
 
 interface FiltersProps {
   dateRange: [string, string];
-  status: string;
+  status: number;
   column: string[];
   account: string;
   transactionType: number;
   onDateRangeChange: (dates: [string, string]) => void;
-  onStatusChange: (value: string) => void;
+  onStatusChange: (value: number) => void;
   onColumnChange: (value: string[]) => void;
   onAccountChange: (value: string) => void;
   onMenuClose?: () => void;
