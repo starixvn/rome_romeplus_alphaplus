@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Domain } from '../../../services/interfaces/MemberSites/memberSite';
+import { Domain } from '../../../services/interfaces/MemberSites';
 import { QRCodeCanvas } from 'qrcode.react';
 import { useTranslation } from 'react-i18next';
 
