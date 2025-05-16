@@ -13,6 +13,7 @@ import i18n from '../../../i18n/i18n-pendingWithdrawal';
 import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
 import '../../../styles/common.css';
 import '../../../styles/global.scss';
+import { AddWithdrawalModel } from '../../../services/interfaces/AddWithdrawalModel.ts';
 
 const PendingWithdrawal: React.FC = () => {
   const { t } = useTranslation('pendingWithdrawal');
@@ -39,22 +40,15 @@ const PendingWithdrawal: React.FC = () => {
     setShowManualAddWithdrawalForm(false);
   };
 
-  const handleSubmitManualWithdrawal = (data: {
-    custId: number;
-    from: string;
-    to: string;
-    withdrawalAmount: number;
-    remarks: string;
-    image?: File;
-  }) => {
+  const handleSubmitManualWithdrawal = (data: AddWithdrawalModel) => {
     const manualWithdrawalData: AddManualWithdrawalAccountInfo = {
       custId: data.custId,
-      from: data.from,
-      to: data.to,
-      amount: data.withdrawalAmount,
+      from: data.paymentFrom,
+      to: data.paymentTo,
+      amount: data.amount,
       remarks: data.remarks,
       image: data.image,
-      providerId: isNaN(parseInt(data.from)) ? 0 : parseInt(data.from),
+      providerId: isNaN(parseInt(data.paymentFrom)) ? 0 : parseInt(data.paymentFrom),
     };
     console.log(manualWithdrawalData);
   };
