@@ -17,7 +17,7 @@ export const transactionAPI = {
       const queryParams = new URLSearchParams({
         pageIndex: params.pageIndex.toString(),
         pageSize: params.pageSize.toString(),
-        paymentStatus: params.status,
+        paymentStatus: params.status.toString(),
         searchText: params.searchText,
         account: params.account,
         fromDate: params.dateRange[0],
