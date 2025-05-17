@@ -45,7 +45,7 @@ public class MemberSitesController : Controller
             var baseUrl = _configuration["CashServiceAPIUrl"];
             var response = await _httpClient.GetFromJsonAsync<MemberSiteManagementModel>(
                 //$"{baseUrl}/api/member-site-info?custId={1176086}",
-                $"{baseUrl}/member-site-info?custId={1176086}&site={_userSession.Site}",
+                $"{baseUrl}/member-site-info?custId={_userSession.CustId}&site={_userSession.Site}",
                 cancellationToken);
             return Ok(response);
         }
@@ -66,15 +66,12 @@ public class MemberSitesController : Controller
 
         try
         {
-            //model.CustId = _userSession.CustId;
-            model.CustId = 1176086;
+            model.CustId = _userSession.CustId;
+            //model.CustId = 1176086;
             model.SubAccId = _userSession.SubAccId;
             model.IP = _userSession.UserLoginIp;
             model.Language = _userSession.Language;
-            var response = await _httpClient.PutAsJsonAsync(
-                $"{_apiBaseUrl}/member-site-info",
-                model,
-                cancellationToken);
+            var response = await _httpClient.PutAsJsonAsync($"{_apiBaseUrl}/member-site-info",model,cancellationToken);
 
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadFromJsonAsync<Result>(cancellationToken);
