@@ -131,9 +131,9 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
 
   return (
     <div className="bg-[#00000066] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-start justify-center" tabIndex={-1}>
-      <div className="p-[30px] bg-[#ffffff] mt-[100px] max-w-[500px] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
+      <div className="p-[30px] bg-[#ffffff] mt-[100px] max-w-[500px] max-[768px]:max-w-[90%] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
         <div className="relative">
-            <h5 className="text-[16px] text-[var(--text-color-primary)] font-bold leading-[21.6px] pb-[4px]">{tManagePayments('transactionLimitPreferences')}</h5>
+            <h5 className="text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] max-[768px]:text-[20px] max-[768px]:leading-[26px]">{tManagePayments('transactionLimitPreferences')}</h5>
             <button
               type="button"
               className="absolute top-[-20px] right-[-20px] cursor-pointer"
@@ -144,7 +144,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
             </button>
           </div>
           <form onSubmit={handleSubmit}>
-            <div className="text-[12px] leading-[14px] mb-[16px]">
+            <div className="mb-[16px]">
               <div className='my-[8px]'>      
                 { error && <ResultMessageComponent type="error" message={error} />}
                 { success && <ResultMessageComponent type="success" message={successMessage} />}   
@@ -155,12 +155,12 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
               <div className="text-[var(--text-color-primary)] my-[8px] font-semibold">
                 {tManagePayments('deposit')}
               </div>
-              <div className='flex justify-between'>
-              <div className="w-[48%]">
+              <div className='flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full'>
+              <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                 <label className="block font-bold text-[#333333] my-[8px]">{tManagePayments('minPerTransaction')}</label>
                 <input
                   type="text"
-                  className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none ${
+                  className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none ${
                     fieldErrors.minDeposit 
                       ? 'border-[#ff0000] focus:border-[#ff0000]' 
                       : 'border-[var(--border-control)] focus:border-[var(--button-border)]'
@@ -172,11 +172,11 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   required
                 />
               </div>
-              <div className="w-[48%]">
+              <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                 <label className="block font-bold text-[#333333] my-[8px]">{tManagePayments('maxPerTransaction')}</label>
                 <input
                   type="text"
-                  className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none ${
+                  className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none ${
                     fieldErrors.maxDeposit 
                       ? 'border-[#ff0000] focus:border-[#ff0000]' 
                       : 'border-[var(--border-control)] focus:border-[var(--button-border)]'
@@ -190,12 +190,12 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
               </div>
               </div>
               <div className="text-[var(--text-color-primary)] my-[8px] font-semibold">{tManagePayments('withdrawal')}</div>
-              <div className='flex justify-between'>
-              <div className="w-[48%]">
+              <div className='flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full'>
+              <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                 <label className="block font-bold text-[#333333] my-[8px]">{tManagePayments('minPerTransaction')}</label>
                 <input
                   type="text"
-                  className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none ${
+                  className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none ${
                     fieldErrors.minWithdrawal 
                       ? 'border-[#ff0000] focus:border-[#ff0000]' 
                       : 'border-[var(--border-control)] focus:border-[var(--button-border)]'
@@ -207,11 +207,11 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   required
                 />
               </div>
-              <div className="w-[48%]">
+              <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                 <label className="block font-bold text-[#333333] my-[8px]">{tManagePayments('maxPerTransaction')}</label>
                 <input
                   type="text"
-                  className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none ${
+                  className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none ${
                     fieldErrors.maxWithdrawal 
                       ? 'border-[#ff0000] focus:border-[#ff0000]' 
                       : 'border-[var(--border-control)] focus:border-[var(--button-border)]'
@@ -224,26 +224,24 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                 />
               </div>
               </div>
-              <div className='flex justify-between'>
-              <div className="w-[48%]">
+              <div className='flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full'>
+              <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                 <label className="block font-bold text-[#333333] my-[8px]">{tManagePayments('dailyWithdrawalCount')}</label>
                 <input
                   type="text"
-                  className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)]"
+                  className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)]"
                   value={dailyWithdrawalCount}
                   onChange={(e) => handleIntegerInput(e.target.value, setDailyWithdrawalCount)}
                   min="0"
                   required
                 />
-                <label className=" block mt-[4px] text-[#828282] text-[11px] leading-[12px] font-semibold">{tManagePayments('dailyWithdrawalCountTip')}</label>
+                <label className=" block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold">{tManagePayments('dailyWithdrawalCountTip')}</label>
               </div>
               
               </div>
             </div>
-            <div className="flex justify-center gap-[8px]">
-              
-              <ButtonComponent className='w-[140px]' type="cancel" style="rounded" text={tGlobal('cancel')} onClick={onClose} disabled={loading} />
-             
+            <div className="flex justify-center gap-[8px]">              
+              <ButtonComponent className='w-[140px]' type="cancel" style="rounded" text={tGlobal('cancel')} onClick={onClose}  />             
               <ButtonComponent className='w-[140px]' type="apply" style="rounded" disabled={loading} text={loading ? tGlobal('saving') : tGlobal('save')}/>
             </div>
           </form>

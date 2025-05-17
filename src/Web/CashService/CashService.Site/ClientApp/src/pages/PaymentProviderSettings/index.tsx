@@ -337,7 +337,7 @@ function PaymentProviderSettings() {
       ) : (
         <>        
         <BackComponent onClose={handleBackNavigation} />
-        {updateMessage && (<ResultMessageComponent type={updateMessage.type} message={updateMessage.text} />   )} 
+        {updateMessage && (<ResultMessageComponent className='my-[16px] max-[768px]:mx-[16px] max-[768px]:my-0' type={updateMessage.type} message={updateMessage.text} /> )} 
         <div className='bg-[#ffffff] px-[16px] py-[10px] mb-[8px]'>
           <div className="settings-header">
             <h2 className='pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold max-[768px]:text-[20px] '>{window.providerSettingsViewModel.Provider.Name}</h2>
