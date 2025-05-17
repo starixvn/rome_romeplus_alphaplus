@@ -175,11 +175,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
     if (maxAmount === 0) {
       return '';
     }
-    return (
-      <span className="text-xs text-gray-500 pl-3">
-        ({minAmount} - {maxAmount})
-      </span>
-    );
+    return <span className="text-xs text-gray-500 pl-3">(Member cash balance: {maxAmount})</span>;
   };
 
   return (

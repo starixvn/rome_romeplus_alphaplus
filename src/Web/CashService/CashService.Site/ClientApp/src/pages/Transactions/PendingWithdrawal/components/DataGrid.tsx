@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory.ts';
-import { displayAmount, renderBankAccount } from '../../../../common/commonFunctions.tsx';
+import {
+  CurrentCurrency,
+  displayAmount,
+  renderBankAccount,
+} from '../../../../common/commonFunctions.tsx';
 import PendingWithdrawalModal from './PendingWithdrawalModal.tsx';
 
 interface DataGridProps {
@@ -46,26 +50,20 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
                 scope="col"
                 className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
               >
-                {t('dataGrid.username')}
+                <div>{t('dataGrid.username')}</div>
+                <div>{t('dataGrid.nickname')}</div>
               </th>
               <th
                 scope="col"
                 className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
               >
                 <div>{t('dataGrid.firstName')}</div>
-                <div>{t('dataGrid.lastName')}</div>
               </th>
               <th
                 scope="col"
                 className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
               >
-                {t('dataGrid.amount')}
-              </th>
-              <th
-                scope="col"
-                className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
-              >
-                {t('dataGrid.currency')}
+                {t('dataGrid.amount')} ({CurrentCurrency})
               </th>
               <th
                 scope="col"
@@ -113,9 +111,6 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
                   </td>
                   <td className="py-1 px-2 border border-[#dee2e6] text-center">
                     {displayAmount(withdrawal.amount)}
-                  </td>
-                  <td className="py-1 px-2 border border-[#dee2e6] text-center">
-                    {withdrawal.currency}
                   </td>
                   <td className="py-1 px-2 border border-[#dee2e6] text-center">
                     {renderBankAccount(withdrawal.paymentFrom)}

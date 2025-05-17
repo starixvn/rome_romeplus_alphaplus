@@ -16,9 +16,8 @@
   "dataGrid": {
     "member": "Member",
     "username": "Username",
-    "loginName": "Login Name",
-    "firstName": "First Name",
-    "lastName": "Last Name",
+    "firstName": "First & Last Name",
+    "nickname": "Nickname",
     "amount": "Amount",
     "currency": "Currency",
     "from": "From",
@@ -76,7 +75,7 @@
     "memberLoginNameRequired": "Member Login Name is required",
     "agentBankSelectionRequired": "From is required",
     "memberBankSelectionRequired": "To is required",
-    "amountRangeError": "Amount must be between min and max amount",
+    "amountRangeError": "Amount must less than or equal to member cash balance",
     "imageSizeError": "Image size must be less than 1 MB",
     "addWithdrawalSuccess": "Add withdrawal successfully!!!"
   },

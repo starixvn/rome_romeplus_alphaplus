@@ -8,6 +8,7 @@ import {
   getStatusStyle,
   mappingStatus,
   renderBankAccount,
+  CurrentCurrency,
 } from '../../../../common/commonFunctions';
 
 interface TableProps {
@@ -80,9 +81,10 @@ const Table: React.FC<TableProps> = ({
         </th>
         <th
           scope="col"
-          className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
+          className="px-4 py-2 text-center text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
         >
-          {t('table.username')}
+          <div>{t('table.username')}</div>
+          <div>{t('table.nickname')}</div>
         </th>
         {shouldShowColumn(t('table.name')) && (
           <th
@@ -97,15 +99,7 @@ const Table: React.FC<TableProps> = ({
             scope="col"
             className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
           >
-            {t('table.amount')}
-          </th>
-        )}
-        {shouldShowColumn(t('table.currency')) && (
-          <th
-            scope="col"
-            className="px-4 py-2 text-left text-sm font-medium text-gray-700 border border-gray-300 bg-gray-50"
-          >
-            {t('table.currency')}
+            {t('table.amount')} ({CurrentCurrency})
           </th>
         )}
         {shouldShowColumn(t('table.from')) && (
@@ -181,11 +175,6 @@ const Table: React.FC<TableProps> = ({
       {shouldShowColumn(t('table.amount')) && (
         <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-right">
           {displayAmount(item.amount)}
-        </td>
-      )}
-      {shouldShowColumn(t('table.currency')) && (
-        <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
-          {item.currency}
         </td>
       )}
       {shouldShowColumn(t('table.from')) && (

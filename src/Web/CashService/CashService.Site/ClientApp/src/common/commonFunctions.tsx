@@ -77,3 +77,5 @@ export const formatDateTime = (dateTimeStr: string) => {
   hours = hours ? hours : 12;
   return `${month}/${day}/${year} ${hours}:${minutes}:${seconds} ${ampm}`;
 };
+
+export const CurrentCurrency = document.getElementById('user-currency')?.textContent;

@@ -19,7 +19,8 @@
   "table": {
     "no": "#",
     "username": "Username",
-    "name": "Name",
+    "nickname": "Nickname",
+    "name": "First & Last Name",
     "amount": "Amount",
     "currency": "Currency",
     "from": "From",
