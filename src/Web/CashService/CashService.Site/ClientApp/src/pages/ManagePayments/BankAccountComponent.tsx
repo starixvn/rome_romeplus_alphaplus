@@ -282,14 +282,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                     <ButtonComponent className='shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] w-[183px]' type="cancel" style="medium" text={tManagePayments('setLimit')} onClick={handleSetLimit} />
                   </div>
                 </div>
-
-                {loading && (
-                  <Loading />
-                )}
-                
-              
-                {!loading && !error && banks.length > 0 && (
-                 
+                {loading && (<Loading />)}              
+                {!loading && !error && banks.length > 0 && (                 
                   <>                    
                     <div className="flex px-[14px] bg-[#ffffff]">
                       <div className="w-[230px] pr-[14px]">
@@ -406,13 +400,9 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                                   disabled={deleting === account.id}
                                 >
                                   {deleting === account.id ? (
-                                    <>
                                       <IconSync className='w-[16px] h-[16px] fill-[var(--primary-color)] animate-spin duration-2000 ease-linear animate-infinite' />
-                                    </>
                                   ) : (
-                                    <>
                                       <IconDelete />
-                                    </>
                                   )}
                                 </button>
                               </div>
