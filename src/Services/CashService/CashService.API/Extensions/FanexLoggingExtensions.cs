@@ -26,8 +26,7 @@ public static class FanexLoggingExtensions
         {
             yield return new SentryLogging(new SentryEngineOptions
             {
-                Dsn = sentryUrl,
-                FrontEndDsn = configuration["Fanex.Logging:SentryUrl"]
+                Dsn = sentryUrl
             });
         }
     }
