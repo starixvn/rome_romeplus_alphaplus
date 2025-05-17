@@ -13,6 +13,7 @@ import '../../styles/common.css';
 import '../../styles/global.scss';
 
 import TitleComponent from '../../components/TitleComponent';
+import { ButtonComponent } from '../../components/ButtonComponents';
 
 const MemberSiteManagement: React.FC = () => {
   const { t } = useTranslation('memberSite');
@@ -151,17 +152,7 @@ const MemberSiteManagement: React.FC = () => {
             </div>
 
             <div className="flex justify-start py-[8px] mt-[8px]">
-              <button
-                type="submit"
-                disabled={!isDirty || isSaving}
-                onClick={handleSave}
-                className={`w-[140px] h-[30px] rounded-[20px] text-[var(--button-text)] px-[16px] py-[4px] text-[12px] border-[1px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:h-[38px] font-bold
-                  ${isDirty && !isSaving
-                    ? 'border-[var(--button-border)] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] hover:border-[#375A8A] cursor-pointer disabled:opacity-70'
-                    : 'bg-[var(--button-background-hover)] border-[var(--button-border-hover)] cursor-not-allowed disabled:opacity-70'}`}
-              >
-                {isSaving ? t('actions.saving') : t('actions.save')}
-              </button>
+              <ButtonComponent className='w-[140px]' type="apply" style="rounded" disabled={!isDirty || isSaving} text={isSaving ? t('actions.saving') : t('actions.save')} onClick={handleSave}/>
             </div>
           </div>
         </div>

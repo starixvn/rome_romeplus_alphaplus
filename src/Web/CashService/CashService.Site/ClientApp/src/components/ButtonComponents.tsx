@@ -16,9 +16,9 @@ interface ButtonProps {
 const getType = (type: ButtonType) => {
     switch (type) {
       case 'apply':
-        return "border-[1px] border-red-500 bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] hover:border-[var(--button-border-hover)]  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] text-[var(--button-text)]";  
+        return "border-[1px] border-[var(--button-border)] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] hover:border-[var(--button-border-hover)]  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] text-[var(--button-text)]";  
       default:
-        return "border-[1px] border-red-500 bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] hover:border-[var(--button-border-cancel-hover)] text-[var(--button-text-cancel)]";
+        return "border-[1px] border-[var(--button-border)] bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] hover:border-[var(--button-border-cancel-hover)] text-[var(--button-text-cancel)]";
     }
   };
 
@@ -36,7 +36,7 @@ const getStyle = (style: ButtonStyle) => {
 
 const getDisabled = (disabled: boolean) => {
     if (disabled) {
-        return 'cursor-not-allowed disabled:opacity-70';
+        return 'cursor-not-allowed disabled:bg-[var(--button-background-hover)] disabled:border-[var(--button-border-hover)]';
     }
     return 'cursor-pointer';
 }
