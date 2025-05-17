@@ -3,13 +3,17 @@ import { createRoot } from 'react-dom/client';
 import ManualAddWithdrawalForm from './components/ManualAddWithdrawalForm.tsx';
 import Filter from './components/Filter.tsx';
 import DataGrid from './components/DataGrid.tsx';
-import { getBankWithdrawalAccounts } from '../../../services/pendingWithdrawalAPI';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../../i18n/i18n-pendingWithdrawal';
 import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
 import '../../../styles/common.css';
 import '../../../styles/global.scss';
-import { WithdrawalAccountInfo } from '../../../services/interfaces/WithdrawalAccountInfo.ts';
+import {
+  TransactionsHistoryParams,
+  TransactionItem,
+} from '../../../services/interfaces/Transactions/TransactionHistory.ts';
+import { transactionAPI } from '../../../services/transactionsHistoryAPI.ts';
+import { TransactionType } from '../../../common/commonFunctions.tsx';
 
 const PendingWithdrawal: React.FC = () => {
   const { t } = useTranslation('pendingWithdrawal');
@@ -17,16 +21,53 @@ const PendingWithdrawal: React.FC = () => {
   const [recentWithdrawals, setRecentWithdrawals] = useState<string>('All');
   const [toFilter, setToFilter] = useState<string>('All');
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [withdrawals, setWithdrawals] = useState<WithdrawalAccountInfo[]>([]);
+  const [withdrawals, setWithdrawals] = useState<TransactionItem[]>([]);
   const [showManualAddWithdrawalForm, setShowManualAddWithdrawalForm] = useState<boolean>(false);
 
   React.useEffect(() => {
     const fetchWithdrawals = async () => {
-      const withdrawals = await getBankWithdrawalAccounts();
-      setWithdrawals(withdrawals);
+      try {
+        const [fromDate, toDate] = calculateDateRange();
+        const params: TransactionsHistoryParams = {
+          dateRange: [fromDate, toDate],
+          status: 2,
+          searchText: searchTerm,
+          account: toFilter !== 'All' ? toFilter : '',
+          pageIndex: 1,
+          pageSize: 100,
+          transactionType: TransactionType.Withdrawal,
+        };
+        const response = await transactionAPI.getTransactions(params);
+        setWithdrawals(response.items);
+      } catch (error) {
+        console.error('Error fetching withdrawals:', error);
+      }
     };
     fetchWithdrawals();
-  }, []);
+  }, [recentWithdrawals, toFilter, searchTerm]);
+
+  const calculateDateRange = (): [string, string] => {
+    const today = new Date();
+    let startDate = new Date();
+
+    switch (recentWithdrawals) {
+      case 'Today':
+        startDate.setHours(0, 0, 0, 0);
+        break;
+      case 'Yesterday':
+        startDate.setDate(today.getDate() - 1);
+        startDate.setHours(0, 0, 0, 0);
+        break;
+      case 'Last7Days':
+        startDate.setDate(today.getDate() - 7);
+        startDate.setHours(0, 0, 0, 0);
+        break;
+      default:
+        return ['', ''];
+    }
+
+    return [startDate.toISOString().split('T')[0], today.toISOString().split('T')[0]];
+  };
 
   const handleAddManualWithdrawal = () => {
     setShowManualAddWithdrawalForm(true);

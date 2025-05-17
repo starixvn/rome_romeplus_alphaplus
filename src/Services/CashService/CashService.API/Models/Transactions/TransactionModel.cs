@@ -4,6 +4,7 @@ public class TransactionModel
 {
     public long TransId { get; set; }
 
+    public int CustId { get; set; }
     public string Username { get; set; }
 
     public string FirstName { get; set; }
@@ -12,7 +13,7 @@ public class TransactionModel
 
     public decimal Amount { get; set; }
 
-    public string currency { get; set; }
+    public string Currency { get; set; }
 
     public string PaymentFrom { get; set; }
 

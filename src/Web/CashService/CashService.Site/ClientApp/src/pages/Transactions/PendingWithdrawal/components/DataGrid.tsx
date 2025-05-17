@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { WithdrawalAccountInfo } from '../../../../services/interfaces/WithdrawalAccountInfo';
-import PendingWithdrawalModal from './PendingWithdrawalModal.tsx';
 import { useTranslation } from 'react-i18next';
+import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory.ts';
+import { displayAmount, renderBankAccount } from '../../../../common/commonFunctions.tsx';
+import PendingWithdrawalModal from './PendingWithdrawalModal.tsx';
 
 interface DataGridProps {
-  withdrawals: WithdrawalAccountInfo[];
+  withdrawals: TransactionItem[];
 }
 
 const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
   const { t } = useTranslation('pendingWithdrawal');
-  const [processingWithdrawal, setProcessingWithdrawal] = useState<WithdrawalAccountInfo | null>(null);
+  const [processingWithdrawal, setProcessingWithdrawal] = useState<TransactionItem | null>(null);
 
-  const handleProcessClick = (withdrawal: WithdrawalAccountInfo) => {
+  const handleProcessClick = (withdrawal: TransactionItem) => {
     setProcessingWithdrawal(withdrawal);
   };
 
@@ -19,12 +20,12 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
     setProcessingWithdrawal(null);
   };
 
-  const handleApproveWithdrawal = (withdrawal: WithdrawalAccountInfo) => {
+  const handleApproveWithdrawal = (withdrawal: TransactionItem) => {
     console.log('Approving withdrawal:', withdrawal);
     setProcessingWithdrawal(null);
   };
 
-  const handleRejectWithdrawal = (withdrawal: WithdrawalAccountInfo) => {
+  const handleRejectWithdrawal = (withdrawal: TransactionItem) => {
     console.log('Rejecting withdrawal:', withdrawal);
     setProcessingWithdrawal(null);
   };
@@ -35,45 +36,101 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
         <table className="text-[14px] w-full border-collapse border border-[#0000001f] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
           <thead className="sticky top-0 shadow-[0_2px_5px_#0003]">
             <tr>
-              <th scope="col" className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700">#</th>
-              <th scope="col" className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700">{t('dataGrid.username')}</th>
-              <th scope="col" className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700">{t('dataGrid.loginName')}</th>
-              <th scope="col" className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700">
+              <th
+                scope="col"
+                className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
+              >
+                #
+              </th>
+              <th
+                scope="col"
+                className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
+              >
+                {t('dataGrid.username')}
+              </th>
+              <th
+                scope="col"
+                className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
+              >
                 <div>{t('dataGrid.firstName')}</div>
                 <div>{t('dataGrid.lastName')}</div>
               </th>
-              <th scope="col" className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700">{t('dataGrid.amount')}</th>
-              <th scope="col" className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700">{t('dataGrid.currency')}</th>
-              <th scope="col" className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700">{t('dataGrid.from')}</th>
-              <th scope="col" className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700">{t('dataGrid.to')}</th>
-              <th scope="col" className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700">{t('dataGrid.referenceNo')}</th>
-              <th scope="col" className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700">{t('dataGrid.dateAndTime')}</th>
-              <th scope="col" className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700">{t('dataGrid.actions')}</th>
+              <th
+                scope="col"
+                className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
+              >
+                {t('dataGrid.amount')}
+              </th>
+              <th
+                scope="col"
+                className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
+              >
+                {t('dataGrid.currency')}
+              </th>
+              <th
+                scope="col"
+                className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
+              >
+                {t('dataGrid.from')}
+              </th>
+              <th
+                scope="col"
+                className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
+              >
+                {t('dataGrid.to')}
+              </th>
+              <th
+                scope="col"
+                className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
+              >
+                {t('dataGrid.referenceNo')}
+              </th>
+              <th
+                scope="col"
+                className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
+              >
+                {t('dataGrid.dateAndTime')}
+              </th>
+              <th
+                scope="col"
+                className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
+              >
+                {t('dataGrid.actions')}
+              </th>
             </tr>
           </thead>
           <tbody className="font-[500]">
             {withdrawals.length > 0 ? (
               withdrawals.map((withdrawal, index) => (
-                <tr key={withdrawal.id}>
+                <tr key={withdrawal.transId}>
                   <td className="py-1 px-2 border border-[#dee2e6] text-center">{index + 1}</td>
-                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{withdrawal.username}</td>
-                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{withdrawal.loginName}</td>
+                  <td className="py-1 px-2 border border-[#dee2e6] text-center">
+                    {withdrawal.username}
+                  </td>
                   <td className="py-1 px-2 border border-[#dee2e6] text-center">
                     <div>{withdrawal.firstName}</div>
                     <div>{withdrawal.lastName}</div>
                   </td>
-                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{withdrawal.amount.toFixed(2)}</td>
-                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{withdrawal.currency}</td>
-                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{withdrawal.from}</td>
-                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{withdrawal.to}</td>
-                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{withdrawal.referenceNo}</td>
                   <td className="py-1 px-2 border border-[#dee2e6] text-center">
-                    {typeof withdrawal.dateAndTime === 'string' 
-                      ? withdrawal.dateAndTime 
-                      : withdrawal.dateAndTime.toISOString().replace('T', '').replace(/\.\d+Z$/, '')}
+                    {displayAmount(withdrawal.amount)}
                   </td>
                   <td className="py-1 px-2 border border-[#dee2e6] text-center">
-                    <button 
+                    {withdrawal.currency}
+                  </td>
+                  <td className="py-1 px-2 border border-[#dee2e6] text-center">
+                    {renderBankAccount(withdrawal.paymentFrom)}
+                  </td>
+                  <td className="py-1 px-2 border border-[#dee2e6] text-center">
+                    {renderBankAccount(withdrawal.paymentTo)}
+                  </td>
+                  <td className="py-1 px-2 border border-[#dee2e6] text-center">
+                    {withdrawal.transId}
+                  </td>
+                  <td className="py-1 px-2 border border-[#dee2e6] text-center">
+                    {withdrawal.createdTime}
+                  </td>
+                  <td className="py-1 px-2 border border-[#dee2e6] text-center">
+                    <button
                       className="font-bold text-[13px] tracking-[0.12px] leading-[26px] px-3 rounded-[4px] bg-[#163f78] hover:bg-[var(--button-background-hover)] text-[#ffffff] cursor-pointer"
                       onClick={() => handleProcessClick(withdrawal)}
                     >

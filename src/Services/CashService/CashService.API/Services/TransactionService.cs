@@ -5,8 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using AlphaPlus.CashService.API.Features.Shared.Models;
 using Criteria.Transactions;
-using Enum;
-using Extensions;
 using Fanex.Data.Repository;
 using Models.Transactions;
 
@@ -14,7 +12,7 @@ public interface ITransactionService
 {
     Task<TransactionResponse> GetTransactionsAsync(GetAllTransactionsWithPagingCriteria criteria);
 
-    Task<TransactionModel> GetTransactionByIdAsync(int transactionId);
+    Task<TransactionModel> GetTransactionByIdAsync(long transactionId, int custId, int siteDbGroupId);
 
     Task<ResultModel> UpdateTransactionStatus(UpdateTransactionStatusRemarkCommand command);
 
@@ -39,9 +37,16 @@ public class TransactionService(IDynamicRepository dynamicRepository)
         };
     }
 
-    public async Task<TransactionModel> GetTransactionByIdAsync(int transactionId)
+    public async Task<TransactionModel> GetTransactionByIdAsync(long transactionId, int custId, int siteDbGroupId)
     {
-        return await Task.FromResult(GetMockTransactions().FirstOrDefault(t => t.TransId == transactionId));
+        var criteria = new GetTransactionDetailCriteria
+        {
+            TransId = transactionId,
+            CustId = custId,
+            SiteDbGroupId = siteDbGroupId
+        };
+        var transaction = await dynamicRepository.GetAsync<TransactionModel>(criteria);
+        return transaction;
     }
 
     public async Task<ResultModel> UpdateTransactionStatus(UpdateTransactionStatusRemarkCommand command)
@@ -54,56 +59,6 @@ public class TransactionService(IDynamicRepository dynamicRepository)
             return new ResultModel(1, "Transaction status updated successfully.");
         }
         return await Task.FromResult(new ResultModel(randomValue, errMsg));
-    }
-
-    private static List<TransactionModel> GetMockTransactions()
-    {
-        var random = new Random();
-        var baseTime = DateTime.Now.AddDays(-30);
-        var transactions = new List<TransactionModel>();
-
-        var firstNames = new[] { "Sophia", "Jackson", "Olivia", "Liam", "Emma", "Noah", "Ava", "Isabella", "Mia", "Aiden" };
-        var lastNames = new[] { "Miller", "Davis", "Garcia", "Rodriguez", "Martinez", "Hernandez", "Wilson", "Moore", "Taylor", "Anderson" };
-        var statuses = new[] { TransactionStatus.Completed, TransactionStatus.Rejected, TransactionStatus.ProviderRejected, TransactionStatus.Expired };
-        var currencies = new[] { "TB", "USD", "EUR", "GBP" };
-        var amounts = new[] { 20.0M, 50.0M, 100.0M, 200.0M, 500.0M, 1000.0M };
-        var betCredits = new[] { 0.0M, 10.0M, 20.0M, 50.0M, 100.0M, 200.0M, 500.0M };
-        var fromAccounts = new[] { "143399301B", "143399302B", "143399303B", "143399304B" };
-        var toAccounts = new[] { "12345678", "87654321", "11223344", "44332211" };
-
-        for (var i = 1; i <= 1000; i++)
-        {
-            var isDeposit = random.Next(2) == 0;
-            var transactionType = isDeposit ? TransactionType.AutoDeposit : TransactionType.AutoWithdrawal;
-            var status = statuses[random.Next(statuses.Length)];
-            var amount = amounts[random.Next(amounts.Length)];
-            var currency = currencies[random.Next(currencies.Length)];
-            var from = fromAccounts[random.Next(fromAccounts.Length)];
-            var to = toAccounts[random.Next(toAccounts.Length)];
-            var firstName = firstNames[random.Next(firstNames.Length)];
-            var lastName = lastNames[random.Next(lastNames.Length)];
-            var username = $"999bb20a{i:D5}";
-            var referenceNumber = $"QW{random.Next(100000, 999999)}{random.Next(100000, 999999)}";
-            var createdDate = baseTime.AddMinutes(random.Next(43200)); // Random time within last 30 days
-
-            transactions.Add(new TransactionModel
-            {
-                TransId = i,
-                Username = username,
-                FirstName = firstName,
-                LastName = lastName,
-                Amount = amount,
-                currency = currency,
-                PaymentFrom = from,
-                PaymentTo = to,
-                Status = EnumHelper.GetDescription(status),
-                TransactionType = EnumHelper.GetDescription(transactionType),
-                CreatedTime = createdDate,
-                Remark = $"Transaction remarks for {referenceNumber}"
-            });
-        }
-
-        return transactions;
     }
 
     public async Task<IEnumerable<MemberInfo>> GetMembersAsync(int agentId, int custDbGroupId)

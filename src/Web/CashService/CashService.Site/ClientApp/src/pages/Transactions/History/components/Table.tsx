@@ -41,10 +41,12 @@ const Table: React.FC<TableProps> = ({
 }) => {
   const { t } = useTranslation('transactionHistory');
   const [selectedTransactionId, setSelectedTransactionId] = useState<number | null>(null);
+  const [selectedCustId, setSelectedCustId] = useState<number | null>(null);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
 
-  const handleViewTransaction = (transactionId: number) => {
+  const handleViewTransaction = (transactionId: number, custId: number) => {
     setSelectedTransactionId(transactionId);
+    setSelectedCustId(custId);
     setIsDetailModalOpen(true);
   };
 
@@ -257,7 +259,7 @@ const Table: React.FC<TableProps> = ({
       )}
       <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
         <button
-          onClick={() => handleViewTransaction(item.transId)}
+          onClick={() => handleViewTransaction(item.transId, item.custId)}
           className="bg-blue-800 hover:bg-blue-900 text-white text-xs font-semibold py-1 px-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50 cursor-pointer"
         >
           {t('table.view')}
@@ -300,6 +302,7 @@ const Table: React.FC<TableProps> = ({
 
       <TransactionDetail
         transactionId={selectedTransactionId}
+        custId={selectedCustId}
         isOpen={isDetailModalOpen}
         onClose={handleCloseModal}
         onRevertSuccess={handleRevertSuccess}

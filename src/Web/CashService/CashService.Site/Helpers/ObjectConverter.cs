@@ -1,6 +1,6 @@
-﻿using System.Reflection;
+﻿namespace AlphaPlus.CashService.Site.Helpers;
 
-namespace AlphaPlus.CashService.Site.Helpers;
+using System.Reflection;
 
 public static class ObjectConverter
 {
@@ -13,10 +13,10 @@ public static class ObjectConverter
 
         return obj.GetType()
             .GetProperties(BindingFlags.Public | BindingFlags.Instance)
-            .Where(p => p.GetValue(obj) != null) // Exclude null values
+            .Where(p => p.GetValue(obj) != null)
             .ToDictionary(
-                prop => prop.Name, // Use property name as the key
-                prop => prop.GetValue(obj)?.ToString() // Convert value to string
+                prop => prop.Name,
+                prop => prop.GetValue(obj)?.ToString()
             );
     }
 }

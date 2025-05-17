@@ -27,14 +27,14 @@ public class TransactionsController(
 
     public async Task<IActionResult> GetAll([FromQuery] GetTransactionFilter filter)
     {
-        var url = $"/transactions/history?transactionType={filter.TransactionType}&paymentStatus={filter.PaymentStatus}&fromDate={filter.FromDate}&toDate={filter.ToDate}&pageIndex={filter.PageIndex}&pageSize={filter.PageSize}";
-        var result = await httpClientHelper.GetAsync<object>(url);
+        var url = $"/transactions/history";
+        var result = await httpClientHelper.GetAsync<object>(url, ObjectConverter.ToDictionary(filter));
         return Json(result);
     }
 
-    public async Task<IActionResult> Detail(int transactionId)
+    public async Task<IActionResult> Detail(long transactionId, int custId)
     {
-        var url = $"/transactions/{transactionId}";
+        var url = $"/transactions/detail?transactionId={transactionId}&custId={custId}&siteDbGroupId={siteDbGroupId}";
         var result = await httpClientHelper.GetAsync<object>(url);
         return Ok(result);
     }

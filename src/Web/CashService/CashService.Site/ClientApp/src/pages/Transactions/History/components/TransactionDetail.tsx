@@ -9,6 +9,7 @@ import { displayAmount } from '../../../../common/commonFunctions';
 
 interface TransactionDetailProps {
   transactionId: number | null;
+  custId: number | null;
   isOpen: boolean;
   onClose: () => void;
   onRevertSuccess?: () => void;
@@ -30,6 +31,7 @@ const formatDateTime = (dateTimeStr: string): string => {
 
 const TransactionDetail: React.FC<TransactionDetailProps> = ({
   transactionId,
+  custId,
   isOpen,
   onClose,
   onRevertSuccess,
@@ -46,13 +48,13 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
   const [remarks, setRemarks] = useState('');
 
   useEffect(() => {
-    if (isOpen && transactionId !== null) {
+    if (isOpen && transactionId !== null && custId !== null) {
       setLoadingDetail(true);
       setDetailError(null);
       setDetailData(null);
       setRevertAlert({ type: null, message: '' });
       transactionAPI
-        .getTransactionDetail(transactionId)
+        .getTransactionDetail(transactionId, custId)
         .then((data) => {
           setDetailData(data);
           setRemarks(data.remark || '');

@@ -39,12 +39,14 @@ public static class TransactionsEndpoints
             Description = "Returns a list of transaction base on filter"
         });
 
-        group.MapGet("/details/{transactionId:int}", async (int transactionId, ITransactionService service) =>
+        group.MapGet("/detail", async ([FromQuery] long transactionId
+                , [FromQuery] int custId
+                , [FromQuery] int siteDbGroupId
+                , ITransactionService service) =>
         {
-            var transactionDetail = await service.GetTransactionByIdAsync(transactionId);
+            var transactionDetail = await service.GetTransactionByIdAsync(transactionId, custId, siteDbGroupId);
             return Results.Ok(transactionDetail);
-        })
-        .WithName("GetTransactionDetail")
+        }).WithName("GetTransactionDetail")
         .WithOpenApi(operation => new OpenApiOperation(operation)
         {
             Summary = "Get Transaction details",

@@ -1,13 +1,16 @@
 ﻿namespace AlphaPlus.CashService.API.Criteria.Transactions;
 
+using Fanex.Data;
 using Fanex.Data.Repository;
 
 public class GetAllTransactionsWithPagingCriteria : CriteriaBase
 {
-    public int TransactionType { get; set; }    
+    public int TransactionType { get; set; }
 
+    [SpParam(AllowNull = true)]
     public DateTime? FromDate { get; set; }
 
+    [SpParam(AllowNull = true)]
     public DateTime? ToDate { get; set; }
 
     public string PaymentFrom { get; set; }
