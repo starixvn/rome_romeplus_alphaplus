@@ -6,6 +6,7 @@ import { BankInfo } from '../../../../services/interfaces/Transactions/BankInfo'
 import { CreditAmount } from '../../../../services/interfaces/Transactions/CreditAmount';
 import pendingDepositAPI from '../../../../services/pendingDepositAPI';
 import UploadImage from '../../Components/UploadImage';
+
 interface ManualAddDepositFormProps {
   cashAgentOptions: BankInfo[];
   onClose: () => void;

@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { DepositAccountInfo } from '../../../../services/interfaces/DepositAccountInfo';
 import PendingDepositModal from './PendingDepositModal';
 import { useTranslation } from 'react-i18next';
+import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
+import { renderBankAccount } from '../../common.functions';
 
 interface DataGridProps {
-  deposits: DepositAccountInfo[];
+  deposits: TransactionItem[];
 }
 
 const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
   const { t } = useTranslation('pendingDeposit');
-  const [processingDeposit, setProcessingDeposit] = useState<DepositAccountInfo | null>(null);
+  const [processingDeposit, setProcessingDeposit] = useState<TransactionItem | null>(null);
 
-  const handleProcessClick = (deposit: DepositAccountInfo) => {
+  const handleProcessClick = (deposit: TransactionItem) => {
     setProcessingDeposit(deposit);
   };
 
@@ -19,12 +20,12 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
     setProcessingDeposit(null);
   };
 
-  const handleApproveDeposit = (deposit: DepositAccountInfo) => {
+  const handleApproveDeposit = (deposit: TransactionItem) => {
     console.log('Approving deposit:', deposit);
     setProcessingDeposit(null);
   };
 
-  const handleRejectDeposit = (deposit: DepositAccountInfo) => {
+  const handleRejectDeposit = (deposit: TransactionItem) => {
     console.log('Rejecting deposit:', deposit);
     setProcessingDeposit(null);
   };
@@ -54,21 +55,21 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
           <tbody className="font-[500]">
             {deposits.length > 0 ? (
               deposits.map((deposit, index) => (
-                <tr key={deposit.id}>
+                <tr key={deposit.transactionId}>
                   <td className="py-1 px-2 border border-[#dee2e6] text-center">{index + 1}</td>
                   <td className="py-1 px-2 border border-[#dee2e6] text-center">{deposit.username}</td>
-                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{deposit.loginName}</td>
+                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{}</td>
                   <td className="py-1 px-2 border border-[#dee2e6] text-center">
                     <div>{deposit.firstName}</div>
                     <div>{deposit.lastName}</div>
                   </td>
                   <td className="py-1 px-2 border border-[#dee2e6] text-center">{deposit.amount.toFixed(2)}</td>
                   <td className="py-1 px-2 border border-[#dee2e6] text-center">{deposit.currency}</td>
-                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{deposit.from}</td>
-                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{deposit.to}</td>
-                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{deposit.referenceNo}</td>
+                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{renderBankAccount(deposit.paymentFrom)}</td>
+                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{renderBankAccount(deposit.paymentTo)}</td>
+                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{deposit.transactionId}</td>
                   <td className="py-1 px-2 border border-[#dee2e6] text-center">
-                    {deposit.dateAndTimeStr}
+                    {deposit.createdTime}
                   </td>
                   <td className="py-1 px-2 border border-[#dee2e6] text-center">
                     <button 

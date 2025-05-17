@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { DepositAccountInfo } from '../../../../services/interfaces/DepositAccountInfo';
+import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 
 interface PendingDepositModalProps {
-  deposit: DepositAccountInfo;
+  deposit: TransactionItem;
   onClose: () => void;
-  onApprove: (deposit: DepositAccountInfo) => void;
-  onReject: (deposit: DepositAccountInfo) => void;
+  onApprove: (deposit: TransactionItem) => void;
+  onReject: (deposit: TransactionItem) => void;
 }
 const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ 
   deposit, 
@@ -40,7 +40,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
       <div className="p-[30px] bg-white max-w-[600px] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
         <div className="relative">
           <h5 className="text-[16px] text-[#163f78] font-bold leading-[21.6px] tracking-[0.2px] pb-[15px]">
-            {t('pendingDepositModal.title')} ({deposit.referenceNo})
+            {t('pendingDepositModal.title')} ({deposit.transferRefNo})
           </h5>
           <button type="button" className="absolute top-[-20px] right-[-20px] cursor-pointer" onClick={onClose}>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -63,7 +63,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
               <tbody>
                 <tr>
                   <td className="text-sm p-3">{deposit.username}</td>
-                  <td className="text-sm p-3">{deposit.loginName}</td>
+                  <td className="text-sm p-3">{}</td>
                   <td className="text-sm p-3">{formattedName}</td>
                   <td className="text-sm p-3">{deposit.amount.toFixed(2)}</td>
                 </tr>
@@ -79,14 +79,14 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
                   <div className="mr-2 flex items-center justify-center w-8 h-8 rounded-full bg-green-100 text-green-600">
                     <span>🔄</span>
                   </div>
-                  <span>{deposit.from}</span>
+                  <span>{deposit.paymentFrom}</span>
                 </div>
               </div>
 
               <div>
                 <div className="text-sm font-medium mb-1">Date and Time</div>
                 <div>
-                  {deposit.dateAndTimeStr}
+                  {deposit.createdTime}
                 </div>
               </div>
             </div>
@@ -98,7 +98,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
                   <div className="mr-2 flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 text-blue-600">
                     <span>🔄</span>
                   </div>
-                  <span>{deposit.to}</span>
+                  <span>{deposit.paymentTo}</span>
                 </div>
               </div>
 

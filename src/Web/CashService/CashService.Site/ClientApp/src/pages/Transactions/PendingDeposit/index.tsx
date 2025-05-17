@@ -3,8 +3,6 @@ import { createRoot } from 'react-dom/client';
 import ManualAddDepositForm from './components/ManualAddDepositForm';
 import Filter from './components/Filter';
 import DataGrid from './components/DataGrid';
-import { DepositAccountInfo } from '../../../services/interfaces/DepositAccountInfo';
-import { pendingDepositAPI } from '../../../services/pendingDepositAPI';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../../i18n/i18n-pendingDeposit';
 import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
@@ -13,6 +11,7 @@ import '../../../styles/global.scss';
 import { BankInfo } from '../../../services/interfaces/Transactions/BankInfo';
 import { TransactionType } from '../common.functions';
 import { transactionAPI } from '../../../services/transactionsHistoryAPI';
+import { TransactionsHistoryParams, TransactionsHistoryResponse } from '../../../services/interfaces/Transactions/TransactionHistory';
 
 const PendingDeposit: React.FC = () => {
   const { t } = useTranslation('pendingDeposit');
@@ -21,14 +20,33 @@ const PendingDeposit: React.FC = () => {
   const [cashAgentOptions, setCashAgentOptions] = useState<BankInfo[]>([]);
   const [cashAgentTo, setCashAgentTo] = useState<string>('');
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [deposits, setDeposits] = useState<DepositAccountInfo[]>([]);
+  const [deposits, setDeposits] = useState<TransactionsHistoryResponse>({
+    items: [],
+    totalCount: 0,
+  });
   const [showManualAddDepositForm, setShowManualAddDepositForm] = useState<boolean>(false);
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
 
   useEffect(() => {
     const fetchDeposits = async () => {
-      const deposits = await pendingDepositAPI.getMemberBankAccounts();
-      setDeposits(deposits);
+      //const deposits = await pendingDepositAPI.getMemberBankAccounts();
+      //setDeposits([]);
+
+      const today = new Date();
+      const sevenDaysAgo = new Date();
+      sevenDaysAgo.setDate(today.getDate() - 7);
+      const params: TransactionsHistoryParams = {
+        dateRange: [sevenDaysAgo.toLocaleDateString('en-US'), today.toLocaleDateString('en-US')],
+        status: 2,
+        searchText: '',
+        account: '',
+        pageIndex: 1,
+        pageSize: 100,
+        transactionType: 1,
+      };
+      const response = await transactionAPI.getTransactions(params);
+      setDeposits(response);
+      console.log('response', response);
     };
     const fetchCashAgentBankInfo = async () => {
       const bankInfo = await transactionAPI.getCashAgentBankInfo(TransactionType.Deposit);
@@ -56,32 +74,32 @@ const PendingDeposit: React.FC = () => {
   }, [searchTerm]);
   
   const filteredDeposits = useMemo(() => {
-    let result = [...deposits];
-    if (recentDeposits === 'Last30Mins') {
-      const thirtyMinsAgo = new Date();
-      thirtyMinsAgo.setMinutes(thirtyMinsAgo.getMinutes() - 30);
-      result = result.filter(deposit => {
-        const depositDate = new Date(deposit.dateAndTime);
-        return depositDate > thirtyMinsAgo;
-      });
-    } else if (recentDeposits === 'Last60Mins') {
-      const sixtyMinsAgo = new Date();
-      sixtyMinsAgo.setMinutes(sixtyMinsAgo.getMinutes() - 60);
-      result = result.filter(deposit => {
-        const depositDate = new Date(deposit.dateAndTime);
-        return depositDate > sixtyMinsAgo;
-      });
-    }
+    let result = [...deposits.items];
+    // if (recentDeposits === 'Last30Mins') {
+    //   const thirtyMinsAgo = new Date();
+    //   thirtyMinsAgo.setMinutes(thirtyMinsAgo.getMinutes() - 30);
+    //   result = result.filter(deposit => {
+    //     const depositDate = new Date(deposit.dateAndTime);
+    //     return depositDate > thirtyMinsAgo;
+    //   });
+    // } else if (recentDeposits === 'Last60Mins') {
+    //   const sixtyMinsAgo = new Date();
+    //   sixtyMinsAgo.setMinutes(sixtyMinsAgo.getMinutes() - 60);
+    //   result = result.filter(deposit => {
+    //     const depositDate = new Date(deposit.dateAndTime);
+    //     return depositDate > sixtyMinsAgo;
+    //   });
+    // }
 
-    if (cashAgentTo !== 'All') {
-      result = result.filter(deposit => deposit.to.toString() === cashAgentTo);
-    }
+    // if (cashAgentTo !== 'All') {
+    //   result = result.filter(deposit => deposit.to.toString() === cashAgentTo);
+    // }
     
     if (debouncedSearchTerm.trim()) {
       const term = debouncedSearchTerm.toLowerCase().trim();
       result = result.filter(deposit => 
         deposit.username.toLowerCase().includes(term) || 
-        deposit.referenceNo.toLowerCase().includes(term)
+        deposit.transferRefNo.toLowerCase().includes(term)
       );
     }
     
