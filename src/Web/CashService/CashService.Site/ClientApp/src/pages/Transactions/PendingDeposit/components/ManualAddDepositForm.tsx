@@ -9,6 +9,7 @@ import UploadImage from '../../Components/UploadImage';
 import { AddDepositManualModel } from '../../../../services/interfaces/AddDepositManualModel';
 import Loading from '../../../../components/LoadingComponent';
 import { ResultMessageComponent } from '../../../../components/MessageComponents';
+import AccountInformation from './AccountInformation';
 
 interface ManualAddDepositFormProps {
   cashAgentOptions: BankInfo[];
@@ -192,131 +193,22 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
               />
             )}
             <div className="flex flex-row space-x-10">
-              <div className="">
-                <div className="mb-5 w-[900px]">
-                  <h3 className="text-md font-medium text-blue-900 mb-4">
-                    {t('manualDepositForm.accountInformation')}
-                  </h3>
-
-                  <div className="flex flex-col space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label
-                          htmlFor="memberLoginName"
-                          className="block text-sm font-medium text-gray-700 mb-1 relative"
-                        >
-                          {t('manualDepositForm.memberLoginName')}
-                          <span className="text-red-500 absolute">*</span>
-                        </label>
-                        <div className="relative">
-                          <select
-                            id="memberLoginName"
-                            value={memberId}
-                            onChange={handleMemberChange}
-                            className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
-                          >
-                            {memberLoginOptions.map((data, key) => (
-                              <option key={`${key}-${data.custId}`} value={data.custId}>
-                                {data.username}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
-
-                      <div>
-                        <label
-                          htmlFor="paymentFrom"
-                          className="block text-sm font-medium text-gray-700 mb-1 relative"
-                        >
-                          {t('manualDepositForm.from')}
-                          <span className="text-red-500 absolute">*</span>
-                        </label>
-                        <div className="relative">
-                          <select
-                            id="paymentFrom"
-                            value={paymentFrom}
-                            onChange={(e) => setPaymentFrom(e.target.value)}
-                            className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
-                          >
-                            {cashMemberOptions.map((option, key) => (
-                              <option key={`${key}-${option.bankAccountNumber}`} value={option.bankAccountNumber}>
-                                {option.bankAccountNumber}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label
-                          htmlFor="paymentTo"
-                          className="block text-sm font-medium text-gray-700 mb-1 relative"
-                        >
-                          {t('manualDepositForm.to')}
-                          <span className="text-red-500 absolute">*</span>
-                        </label>
-                        <div className="relative">
-                          <select
-                            id="paymentTo"
-                            value={paymentTo}
-                            onChange={(e) => setPaymentTo(e.target.value)}
-                            className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
-                          >
-                            {cashAgentOptions.map((option, key) => (
-                              <option key={`${key}-${option.bankAccountNumber}`} value={option.bankAccountNumber}>
-                                {option.bankAccountNumber}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
-
-                      <div>
-                        <label
-                          htmlFor="depositAmount"
-                          className="block text-sm font-medium text-gray-700 mb-1 relative"
-                        >
-                          {t('manualDepositForm.depositAmount')}
-                          <span className="text-red-500 absolute">*</span>
-                          <span className="text-sm pl-3">
-                            <span className="text-blue-900">
-                              (Agent Available Credit:
-                                <span className="text-red-500">
-                                  {` ${creditAmount.minAmt} - ${creditAmount.maxAmt}`}
-                                </span>
-                              )
-                            </span>
-                          </span>
-                        </label>
-                        <input
-                          id="depositAmount"
-                          type="number"
-                          value={depositAmount}
-                          onChange={(e) => setDepositAmount(e.target.value)}
-                          className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184]"
-                          placeholder="0"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label htmlFor="remarks" className="block text-sm font-medium text-gray-700 mb-1">
-                        {t('manualDepositForm.remarks')}
-                      </label>
-                      <textarea
-                        id="remarks"
-                        value={remarks}
-                        onChange={(e) => setRemarks(e.target.value)}
-                        className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] min-h-[120px]"
-                        placeholder={t('manualDepositForm.remarksPlaceholder')}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <AccountInformation
+                memberLoginOptions={memberLoginOptions}
+                memberId={memberId}
+                onMemberChange={handleMemberChange}
+                paymentFrom={paymentFrom}
+                onPaymentFromChange={(e) => setPaymentFrom(e.target.value)}
+                cashMemberOptions={cashMemberOptions}
+                paymentTo={paymentTo}
+                onPaymentToChange={(e) => setPaymentTo(e.target.value)}
+                cashAgentOptions={cashAgentOptions}
+                depositAmount={depositAmount}
+                onDepositAmountChange={(e) => setDepositAmount(e.target.value)}
+                creditAmount={creditAmount}
+                remarks={remarks}
+                onRemarksChange={(e) => setRemarks(e.target.value)}
+              />
 
               <div className="flex flex-col items-center pl-20">
                 <UploadImage
