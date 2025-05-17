@@ -12,7 +12,7 @@ import { ResultMessageComponent } from '../../../../components/MessageComponents
 
 interface ManualAddDepositFormProps {
   cashAgentOptions: BankInfo[];
-  onClose: () => void;
+  onClose: (isSuccess: boolean) => void;
 }
 
 const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOptions, onClose }) => {
@@ -149,17 +149,25 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
 
     try {
       const response = await pendingDepositAPI.createDepositManual(params);
-      setValidationMessage({
-        type: 'success',
-        message: 'Deposit request submitted successfully'
-      });
-      console.log('response', response);
+      if (response.isSuccessful) {
+        setValidationMessage({
+          type: 'success',
+          message: 'Deposit request submitted successfully'
+        });      
+        setTimeout(() => {
+          onClose(true);
+        }, 3000);
+      } else {
+        setValidationMessage({
+          type: 'error',
+          message: response.message || 'Failed to submit deposit request'
+        });
+      }
     } catch (error) {
       setValidationMessage({
         type: 'error',
         message: 'Failed to submit deposit request'
       });
-      console.error('Error submitting deposit:', error);
     }
   };
 
@@ -318,7 +326,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
                 <div className="flex justify-center space-x-4 mt-3 w-full">
                   <button
                     type="button"
-                    onClick={onClose}
+                    onClick={() => onClose(false)}
                     className="w-[140px] h-[32px] max-[768px]:h-[40px] border border-gray-300 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none"
                   >
                     {t('manualDepositForm.cancel')}

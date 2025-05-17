@@ -34,55 +34,70 @@ const PendingDeposit: React.FC = () => {
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  const calculateDateRange = (): [string, string] => {
+    const today = new Date();
+    let startDate = new Date();
+
+    switch (recentDeposits) {
+      case 'Last30Mins':
+        startDate.setMinutes(today.getMinutes() - 30);
+        break;
+      case 'Last60Mins':
+        startDate.setMinutes(today.getMinutes() - 60);
+        break;
+      default:
+        return ['', ''];
+    }
+    return [startDate.toISOString().split('T')[0], today.toISOString().split('T')[0]];
+  };
+
+  const fetchDeposits = async () => {
+    setIsLoading(true);
+    try {
+      const [fromDate, toDate] = calculateDateRange();
+      const params: TransactionsHistoryParams = {
+        dateRange: [fromDate, toDate],
+        status: 2,
+        searchText: '',
+        account: '',
+        pageIndex: 1,
+        pageSize: 100,
+        transactionType: 1,
+      };
+      const depositsResponse = await transactionAPI.getTransactions(params);
+      setDeposits(depositsResponse);
+    } catch (error) {
+      console.error('Error fetching deposits:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
+    fetchDeposits();
+  }, [recentDeposits]);
+
+  useEffect(() => {
+    const fetchBankInfo = async () => {
       try {
-        const [depositsResponse, bankInfo] = await Promise.all([
-          (async () => {
-            const today = new Date();
-            let startDate = new Date();
-            
-            if (recentDeposits === 'Last30Mins') {
-              startDate.setMinutes(today.getMinutes() - 30);
-            } else if (recentDeposits === 'Last60Mins') {
-              startDate.setMinutes(today.getMinutes() - 60);
-            } else {
-              startDate.setDate(today.getDate() - 7);
-            }
-
-            const params: TransactionsHistoryParams = {
-              dateRange: [startDate.toLocaleDateString('en-US'), today.toLocaleDateString('en-US')],
-              status: 2,
-              searchText: '',
-              account: '',
-              pageIndex: 1,
-              pageSize: 100,
-              transactionType: 1,
-            };
-            return await transactionAPI.getTransactions(params);
-          })(),
-          transactionAPI.getCashAgentBankInfo(TransactionType.Deposit)
-        ]);
-
-        setDeposits(depositsResponse);
+        const bankInfo = await transactionAPI.getCashAgentBankInfo(TransactionType.Deposit);
         setCashAgentOptions(bankInfo);
       } catch (error) {
-        console.error('Error fetching data:', error);
-      } finally {
-        setIsLoading(false);
+        console.error('Error fetching bank info:', error);
       }
     };
-
-    fetchData();
-  }, [recentDeposits]);
+    fetchBankInfo();
+  }, []);
 
   const handleAddManualDeposit = () => {
     setShowManualAddDepositForm(true);
   };
 
-  const handleCloseManualDepositForm = () => {
+  const handleCloseManualDepositForm = (isSuccess: boolean) => {
     setShowManualAddDepositForm(false);
+    if (isSuccess) {
+      fetchDeposits();
+    }
   };
 
   useEffect(() => {
@@ -152,7 +167,7 @@ const PendingDeposit: React.FC = () => {
       {showManualAddDepositForm && (
         <ManualAddDepositForm
           cashAgentOptions={cashAgentOptions}
-          onClose={handleCloseManualDepositForm}
+          onClose={() => handleCloseManualDepositForm(false)}
         />
       )}
     </div>
