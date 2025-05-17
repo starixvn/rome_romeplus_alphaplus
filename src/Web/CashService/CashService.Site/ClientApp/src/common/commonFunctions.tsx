@@ -22,7 +22,7 @@ export const renderBankAccount = (bankAccount: string) => {
         alt={bankCode}
         className="w-[16px] h-[16px] mr-[8px] inline-block"
       />
-      <span>{accountNumber}</span>
+      <span className="overflow-hidden text-ellipsis whitespace-nowrap">{accountNumber}</span>
     </div>
   );
 };

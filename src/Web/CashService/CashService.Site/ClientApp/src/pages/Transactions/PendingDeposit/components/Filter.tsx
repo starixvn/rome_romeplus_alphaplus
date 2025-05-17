@@ -35,7 +35,7 @@ const Filter: React.FC<FilterProps> = ({
           <select
             value={recentDeposits}
             onChange={(e) => setRecentDeposits(e.target.value)}
-            className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
+            className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer "
             style={{ height: '32px' }}
           >
             <option value="All">{t('filter.all')}</option>
@@ -51,7 +51,7 @@ const Filter: React.FC<FilterProps> = ({
           <select
             value={cashAgentTo}
             onChange={(e) => setCashAgentTo(e.target.value)}
-            className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
+            className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
             style={{ height: '32px' }}
           >
             <option value="All">{t('filter.all')}</option>
