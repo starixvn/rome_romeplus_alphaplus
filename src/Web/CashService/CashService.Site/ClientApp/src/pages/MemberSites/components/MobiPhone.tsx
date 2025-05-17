@@ -6,7 +6,6 @@ interface MobiCodeProps {
     onChange: (code: string) => void;
 }
 const MobiCode = (props: MobiCodeProps) => {
-
     const { code, onChange } = props;
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
@@ -56,9 +55,11 @@ export const MobilePhone = (props: MobilePhoneInputProps) => {
                     type="text"
                     value={mobilePhone.phone}
                     onChange={(e) => {
-                        handleMobilePhoneChange({ phone: e.target.value, code: mobilePhone.code });
+                        const value = e.target.value.replace(/[^0-9]/g, '');
+                        handleMobilePhoneChange({ phone: value, code: mobilePhone.code });
                     }}
                     placeholder=""
+                    maxLength={40}
                 />
             </div>
         </>
