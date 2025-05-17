@@ -285,8 +285,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                   <>                    
                     <div className="flex px-[14px] bg-[#ffffff] flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
 
-                      <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                        <div className="form-group mb-[8px]">
+                      <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
+                     
                           <label htmlFor="bankSelect" className="block font-semibold text-[#333333] my-[8px]">{tManagePayments('bank')}</label>                           
                           
                           <CustomDropdown                           
@@ -299,11 +299,11 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                             })()}
                             onSelect={(option) => handleBankChange({ target: { value: option.value.toString() } } as React.ChangeEvent<HTMLSelectElement>)}
                           />
-                        </div>
+                      
                       </div>
 
-                      <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                        <div className="form-group mb-[8px]">
+                      <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
+                    
                           <label htmlFor="transactionTypeSelect" className="block font-semibold text-[#333333] my-[8px]">{tManagePayments('transactionType')}</label>
                           <select
                             id="transactionTypeSelect"
@@ -320,11 +320,11 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                               ))
                             )}
                           </select>
-                        </div>
+                     
                       </div>
 
-                      <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                        <div className="form-group mb-[8px]">
+                      <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
+                        
                           <label htmlFor="statusSelect" className="block font-semibold text-[#333333] my-[8px]">{tManagePayments('status')}</label>
                           <select
                             id="statusSelect"
@@ -339,12 +339,12 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                             ))}
                           </select>
                         </div>
-                      </div>
+                     
                     </div>
                     <div className="flex px-[14px] pb-[16px] bg-[#ffffff]">
                       <div className="w-[250px] ml-auto">
                         <div className="relative">
-                          <span className='absolute top-[10px] left-[5px] z-[10] max-[768px]:top-[12px]'>
+                          <span className='absolute top-[8px] left-[8px] z-[10] max-[768px]:top-[12px]'>
                           <IconSearch />
                           </span>
                           <input

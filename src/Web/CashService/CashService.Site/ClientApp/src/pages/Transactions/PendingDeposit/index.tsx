@@ -16,6 +16,8 @@ import {
   TransactionsHistoryResponse,
 } from '../../../services/interfaces/Transactions/TransactionHistory';
 import Loading from '../../../components/LoadingComponent';
+import TitleComponent from '../../../components/TitleComponent';
+import { ButtonComponent } from '../../../components/ButtonComponents';
 
 const PendingDeposit: React.FC = () => {
   const { t } = useTranslation('pendingDeposit');
@@ -116,15 +118,15 @@ const PendingDeposit: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       <div className="mx-auto space-y-6">
         <div className="bg-white rounded-lg shadow-sm p-2">
-          <h1 className="text-xl font-semibold mb-6">{t('pendingDeposit')}</h1>
-
-          <div className="mb-6">
-            <button
+          <TitleComponent title={t('pendingDeposit')} />          
+          <div className="mb-[8px]">
+            <ButtonComponent
+              type="cancel"
+              style="medium"
+              text={`+${t('addManualDeposit')}`}
               onClick={handleAddManualDeposit}
-              className="bg-[#1e4d8c] text-white px-8 py-2 rounded-lg text-sm font-medium hover:bg-[#173d70] transition-colors flex items-center cursor-pointer"
-            >
-              <span className="mr-1">+</span> {t('addManualDeposit')}
-            </button>
+              className="w-[183px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
+            />
           </div>
 
           <Filter
