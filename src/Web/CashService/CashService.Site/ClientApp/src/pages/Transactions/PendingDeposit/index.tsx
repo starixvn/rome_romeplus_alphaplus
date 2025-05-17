@@ -15,13 +15,14 @@ import {
   TransactionsHistoryParams,
   TransactionsHistoryResponse,
 } from '../../../services/interfaces/Transactions/TransactionHistory';
+import Loading from '../../../components/LoadingComponent';
 
 const PendingDeposit: React.FC = () => {
   const { t } = useTranslation('pendingDeposit');
   useCookieLanguage(i18n);
   const [recentDeposits, setRecentDeposits] = useState<string>('All');
   const [cashAgentOptions, setCashAgentOptions] = useState<BankInfo[]>([]);
-  const [cashAgentTo, setCashAgentTo] = useState<string>('');
+  const [cashAgentTo, setCashAgentTo] = useState<string>('All');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [deposits, setDeposits] = useState<TransactionsHistoryResponse>({
     items: [],
@@ -29,40 +30,49 @@ const PendingDeposit: React.FC = () => {
   });
   const [showManualAddDepositForm, setShowManualAddDepositForm] = useState<boolean>(false);
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    const fetchDeposits = async () => {
-      const today = new Date();
-      let startDate = new Date();
-      
-      if (recentDeposits === 'Last30Mins') {
-        startDate.setMinutes(today.getMinutes() - 30);
-      } else if (recentDeposits === 'Last60Mins') {
-        startDate.setMinutes(today.getMinutes() - 60);
-      } else {
-        startDate.setDate(today.getDate() - 7);
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const [depositsResponse, bankInfo] = await Promise.all([
+          (async () => {
+            const today = new Date();
+            let startDate = new Date();
+            
+            if (recentDeposits === 'Last30Mins') {
+              startDate.setMinutes(today.getMinutes() - 30);
+            } else if (recentDeposits === 'Last60Mins') {
+              startDate.setMinutes(today.getMinutes() - 60);
+            } else {
+              startDate.setDate(today.getDate() - 7);
+            }
+
+            const params: TransactionsHistoryParams = {
+              dateRange: [startDate.toLocaleDateString('en-US'), today.toLocaleDateString('en-US')],
+              status: 2,
+              searchText: '',
+              account: '',
+              pageIndex: 1,
+              pageSize: 100,
+              transactionType: 1,
+            };
+            return await transactionAPI.getTransactions(params);
+          })(),
+          transactionAPI.getCashAgentBankInfo(TransactionType.Deposit)
+        ]);
+
+        setDeposits(depositsResponse);
+        setCashAgentOptions(bankInfo);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setIsLoading(false);
       }
-
-      const params: TransactionsHistoryParams = {
-        dateRange: [startDate.toLocaleDateString('en-US'), today.toLocaleDateString('en-US')],
-        status: 2,
-        searchText: '',
-        account: '',
-        pageIndex: 1,
-        pageSize: 100,
-        transactionType: 1,
-      };
-      const response = await transactionAPI.getTransactions(params);
-      setDeposits(response);
-      console.log('response', response);
-    };
-    const fetchCashAgentBankInfo = async () => {
-      const bankInfo = await transactionAPI.getCashAgentBankInfo(TransactionType.Deposit);
-      setCashAgentOptions(bankInfo);
     };
 
-    fetchDeposits();
-    fetchCashAgentBankInfo();
+    fetchData();
   }, [recentDeposits]);
 
   const handleAddManualDeposit = () => {
@@ -99,6 +109,9 @@ const PendingDeposit: React.FC = () => {
     return result;
   }, [deposits, cashAgentTo, debouncedSearchTerm]);
 
+  console.log('filteredDeposits', filteredDeposits);
+  console.log('deposits.items', deposits.items);
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="mx-auto space-y-6">
@@ -124,7 +137,13 @@ const PendingDeposit: React.FC = () => {
             setSearchTerm={setSearchTerm}
           />
 
-          <DataGrid deposits={filteredDeposits} />
+          {isLoading ? (
+            <div className="flex justify-center items-center py-8">
+              <Loading />
+            </div>
+          ) : (
+            <DataGrid deposits={filteredDeposits} />
+          )}
         </div>
       </div>
 

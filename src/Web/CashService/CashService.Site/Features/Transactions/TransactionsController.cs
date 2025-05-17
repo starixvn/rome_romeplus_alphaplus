@@ -83,6 +83,8 @@ public class TransactionsController(
         }
         request.UplineId = agentId;
         request.Ip = GetClientIp();
+        request.SiteDbGroupId = siteDbGroupId;
+        request.CustDbGroupId = custDbGroupId;
         request.Payslip = request.File != null ? await FileHelper.CompressAndConvertToBase64Async(request.File) : null;
         result = await httpClientHelper.PostAsync<AddWithdrawalParams, ResultModel>("/api/deposit/create", request);
         return Json(result);

@@ -25,9 +25,9 @@ export const pendingDepositAPI = {
     }
   },
 
-  createDepositManual: async (createManual: AddDepositManualModel): Promise<ResultModel> => {
+  createDepositManual: async (manualDepositAdd: AddDepositManualModel): Promise<ResultModel> => {
     try {
-      const response = await api.post<ResultModel>('CreateManual', createManual);
+      const response = await api.post<ResultModel>('AddManualDeposit', manualDepositAdd);
       return response.data;
     } catch (error) {
       console.error('Error creating manual:', error);
@@ -36,4 +36,4 @@ export const pendingDepositAPI = {
   }
 };
 
-export default pendingDepositAPI; 
+export default pendingDepositAPI;

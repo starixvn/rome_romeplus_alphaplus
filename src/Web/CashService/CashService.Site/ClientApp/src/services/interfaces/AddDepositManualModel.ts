@@ -4,8 +4,5 @@ export interface AddDepositManualModel {
     paymentTo: string;
     amount: number;
     remark: string;
-    image: File;
-    minLimitAmt: number;
-    maxLimitAmt: number;
+    file: File;
 };
-  

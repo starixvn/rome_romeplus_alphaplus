@@ -12,7 +12,7 @@ public class GetMemberSettingDepositCriteria : CriteriaBase
 
     public decimal AgentGivenCredit { get; set; }
 
-    public decimal MemberUsedCredit { get; set; }
+    public decimal CreditMembers_GivenCredit { get; set; }
 
     public decimal MinLimitAmt { get; set; }
 

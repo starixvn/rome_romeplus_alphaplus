@@ -57,15 +57,16 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
         var memberSetting = new MemberSettingDeposit();
         var criteria = new GetMemberSettingDepositCriteria
         {
-            CustId = custId
+            CustId = custId,
+            CustDbGroupId = custDbGroupId
         };
         await dynamicRepository.GetAsync<MemberSettingDeposit>(criteria);
         memberSetting.AgentGivenCredit = criteria.AgentGivenCredit;
-        memberSetting.MemberUsedCredit = criteria.MemberUsedCredit;
+        memberSetting.CreditMembers_GivenCredit = criteria.CreditMembers_GivenCredit;
         memberSetting.MinLimitAmt = criteria.MinLimitAmt;
         memberSetting.MaxLimitAmt = criteria.MaxLimitAmt;
 
-        return await dynamicRepository.GetAsync<MemberSettingDeposit>(criteria);
+        return memberSetting;
     }
 
     public async Task<ResultModel> AddManualDepositAsync(CreateManualModel param)
@@ -78,23 +79,23 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
             UplineId = param.UplineId,
             SubAccId = param.SubAccId,
             AgentGivenCredit = memberSettings.AgentGivenCredit,
-            MemberUsedCredit = memberSettings.MemberUsedCredit,
+            CreditMembers_GivenCredit = memberSettings.CreditMembers_GivenCredit,
             MinLimitAmt = memberSettings.MinLimitAmt,
             MaxLimitAmt = memberSettings.MaxLimitAmt,
             PaymentFrom = param.PaymentFrom,
             PaymentTo = param.PaymentTo,
             Amount = param.Amount,
-            PaySlip = param.PaySlip,
+            Payslip = param.Payslip,
             Ip = param.Ip,
             Remark = param.Remark,
         };
 
-        //await dynamicRepository.ExecuteAsync(command);
+        await dynamicRepository.ExecuteAsync(command);
         var result = new ResultModel(command.ErrCode, command.ErrMsg);
-        //if (command.ErrCode == 0)
-        //{
-        //    SyncCashAccumulatedCredit(command.CashAccumCreditTbl, param.CustDbGroupId);
-        //}
+        if (command.ErrCode == 0)
+        {
+            SyncCashAccumulatedCredit(command.CashAccumCreditTbl, param.CustDbGroupId);
+        }
         return result;
     }
 
