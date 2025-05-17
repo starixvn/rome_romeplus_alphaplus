@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { WithdrawalAgentBankDropDown } from '../../../../services/interfaces/Transactions/BankInfo';
-import { MemberLoginName } from '../../../../services/interfaces/Transactions/MemberLoginName';
 import { TransactionTypes } from '../../../../utils/constants';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import {
@@ -11,9 +10,10 @@ import {
 import { AddWithdrawalModel } from '../../../../services/interfaces/AddWithdrawalModel';
 import { Alert } from '../../../../components/ui/Alert';
 import UploadImage from '../../Components/UploadImage';
+import DropdownComponent, { DropdownOption } from '../../../../components/DropdownComponent';
 
 interface ManualAddWithdrawalFormProps {
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClose }) => {
@@ -27,13 +27,14 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
   const [minAmount, setMinAmount] = useState(0);
   const [maxAmount, setMaxAmount] = useState(0);
   const [providerId, setProviderId] = useState(0);
-  const [memberLoginNames, setMemberLoginNames] = useState<MemberLoginName[]>([]);
+  const [paymentMethodId, setPaymentMethodId] = useState(0);
   const [agentBankInfo, setBankInfo] = useState<WithdrawalAgentBankDropDown[]>([]);
   const [memberBankInfo, setMemberBankInfo] = useState<WithdrawalAgentBankDropDown[]>([]);
   const [alert, setAlert] = useState<{ type: 'success' | 'error' | null; message: string }>({
     type: null,
     message: '',
   });
+  const [memberOptions, setMemberOptions] = useState<DropdownOption[]>([]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,12 +51,15 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       image: image as File,
       providerId,
     };
+
     const addWithdrawalResponse = await manualAddWithdrawal(manualWithdrawalData);
     if (addWithdrawalResponse.isSuccessful) {
       setAlert({ type: 'success', message: t('addWithdrawalSuccess') });
-      setTimeout(() => {
-        onClose();
-      }, 3000);
+      if (onClose) {
+        setTimeout(() => {
+          onClose();
+        }, 3000);
+      }
     } else {
       setAlert({ type: 'error', message: addWithdrawalResponse.message });
     }
@@ -99,6 +103,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       memberBanks.map((bank) => ({
         value: `${bank.bankCode}_${bank.bankAccountNumber}`,
         label: bank.bankAccountNumber,
+        code: bank.bankCode,
         providerId: 0,
         paymentMethodId: 0,
       }))
@@ -106,23 +111,20 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
     await handleUpdateLimitWithdrawalAmt();
   };
 
-  const handleFromChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedFrom = e.target.value;
-    setFrom(selectedFrom);
-    await handleUpdateLimitWithdrawalAmt();
+  const handleFromSelect = (option: DropdownOption) => {
+    setFrom(option.value.toString());
+    setProviderId(option.attributes?.providerId || 0);
+    setPaymentMethodId(option.attributes?.paymentMethodId || 0);
+    handleUpdateLimitWithdrawalAmt();
+  };
+
+  const handleToSelect = (option: DropdownOption) => {
+    setTo(option.value.toString());
   };
 
   const handleUpdateLimitWithdrawalAmt = async () => {
     if (!custId) return;
 
-    const fromSelect = document.getElementById('from') as HTMLSelectElement;
-    const selectedOption = fromSelect?.options[fromSelect.selectedIndex];
-    const providerId = selectedOption
-      ? parseInt(selectedOption.getAttribute('data-provider-id') || '0')
-      : 0;
-    const paymentMethodId = selectedOption
-      ? parseInt(selectedOption.getAttribute('data-payment-method-id') || '0')
-      : 0;
     const limits = await getSettingLimitAmtWithdrawal({
       custId,
       providerId,
@@ -130,25 +132,31 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
     });
     setMinAmount(limits.minAmt);
     setMaxAmount(limits.maxAmt);
-    setProviderId(providerId);
   };
 
   useEffect(() => {
     const fetchData = async () => {
       const memberNames = await transactionAPI.getMemberLoginName();
-      setMemberLoginNames(memberNames);
+      setMemberOptions(
+        memberNames.map((member) => ({
+          value: member.custId.toString(),
+          label: member.username,
+        }))
+      );
 
       const bankInfo = await transactionAPI.getCashAgentBankInfo(TransactionTypes.Withdrawal);
       const providerInfo = await transactionAPI.getCashAgentProvider(TransactionTypes.Withdrawal);
       const banks: WithdrawalAgentBankDropDown[] = bankInfo.map((bank) => ({
         value: `${bank.bankCode}_${bank.bankAccountNumber}`,
         label: bank.bankAccountNumber,
+        code: bank.bankCode,
         providerId: 0,
         paymentMethodId: 0,
       }));
       const mappedProviderInfo: WithdrawalAgentBankDropDown[] = providerInfo.map((provider) => ({
         value: `${provider.providerName}_${provider.providerName}`,
         label: provider.providerName,
+        code: provider.providerName,
         providerId: provider.providerId,
         paymentMethodId: provider.paymentMethodId,
       }));
@@ -158,6 +166,10 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
 
     fetchData();
   }, []);
+
+  const handleMemberSelect = (option: DropdownOption) => {
+    handleMemberChange(parseInt(option.value.toString()));
+  };
 
   const renderMinMaxAmount = () => {
     if (maxAmount === 0) {
@@ -202,21 +214,13 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       {t('manualWithdrawalForm.memberLoginName')}
                       <span className="text-red-500 absolute">*</span>
                     </label>
-                    <select
-                      id="memberLoginName"
-                      value={custId ?? ''}
-                      onChange={(e) => handleMemberChange(parseInt(e.target.value))}
-                      className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
-                    >
-                      <option value="" disabled hidden>
-                        {t('manualWithdrawalForm.selectMember')}
-                      </option>
-                      {memberLoginNames.map((name) => (
-                        <option key={name.custId} value={name.custId}>
-                          {name.username}
-                        </option>
-                      ))}
-                    </select>
+                    <DropdownComponent
+                      options={memberOptions}
+                      onSelect={handleMemberSelect}
+                      initialValue={custId?.toString()}
+                      showOptionAll={false}
+                      searchable={true}
+                    />
                   </div>
 
                   <div>
@@ -227,26 +231,20 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       {t('manualWithdrawalForm.from')}
                       <span className="text-red-500 absolute">*</span>
                     </label>
-                    <select
-                      id="from"
-                      value={from}
-                      onChange={handleFromChange}
-                      className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
-                    >
-                      <option value="" disabled hidden>
-                        {t('manualWithdrawalForm.selectBank')}
-                      </option>
-                      {agentBankInfo.map((bank) => (
-                        <option
-                          key={bank.value}
-                          value={bank.value}
-                          data-provider-id={bank.providerId}
-                          data-payment-method-id={bank.paymentMethodId}
-                        >
-                          {bank.label}
-                        </option>
-                      ))}
-                    </select>
+                    <DropdownComponent
+                      options={agentBankInfo.map((bank) => ({
+                        value: bank.value,
+                        label: bank.label,
+                        code: bank.code,
+                        attributes: {
+                          providerId: bank.providerId,
+                          paymentMethodId: bank.paymentMethodId,
+                        },
+                      }))}
+                      onSelect={handleFromSelect}
+                      initialValue={from}
+                      showOptionAll={false}
+                    />
                   </div>
                 </div>
 
@@ -259,22 +257,21 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       {t('manualWithdrawalForm.to')}
                       <span className="text-red-500 absolute">*</span>
                     </label>
-                    <select
-                      id="to"
-                      value={to}
-                      onChange={(e) => setTo(e.target.value)}
-                      className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
-                      disabled={!custId}
-                    >
-                      <option value="" disabled hidden>
-                        {t('manualWithdrawalForm.selectMemberBank')}
-                      </option>
-                      {memberBankInfo.map((bank) => (
-                        <option key={bank.value} value={bank.value}>
-                          {bank.label}
-                        </option>
-                      ))}
-                    </select>
+                    <DropdownComponent
+                      options={memberBankInfo.map((bank) => ({
+                        value: bank.value,
+                        label: bank.label,
+                        code: bank.code,
+                        attributes: {
+                          providerId: bank.providerId,
+                          paymentMethodId: bank.paymentMethodId,
+                        },
+                      }))}
+                      onSelect={handleToSelect}
+                      initialValue={to}
+                      showOptionAll={false}
+                      disable={!custId}
+                    />
                   </div>
 
                   <div>
