@@ -5,7 +5,13 @@ import { Alert } from '../../../../components/ui/Alert';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import { useTranslation } from 'react-i18next';
-import { displayAmount, mappingStatus } from '../../../../common/commonFunctions';
+import {
+  displayAmount,
+  formatDateTime,
+  getStatusStyle,
+  mappingStatus,
+  renderBankAccount,
+} from '../../../../common/commonFunctions';
 
 interface TransactionDetailProps {
   transactionId: number | null;
@@ -14,20 +20,6 @@ interface TransactionDetailProps {
   onClose: () => void;
   onRevertSuccess?: () => void;
 }
-
-const formatDateTime = (dateTimeStr: string): string => {
-  const date = new Date(dateTimeStr);
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const day = date.getDate().toString().padStart(2, '0');
-  const year = date.getFullYear();
-  let hours = date.getHours();
-  const minutes = date.getMinutes().toString().padStart(2, '0');
-  const seconds = date.getSeconds().toString().padStart(2, '0');
-  const ampm = hours >= 12 ? 'PM' : 'AM';
-  hours = hours % 12;
-  hours = hours ? hours : 12;
-  return `${month}/${day}/${year} ${hours}:${minutes}:${seconds} ${ampm}`;
-};
 
 const TransactionDetail: React.FC<TransactionDetailProps> = ({
   transactionId,
@@ -154,7 +146,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
               <div className="text-sm text-gray-600">{t('detail.from')}</div>
               <div className="flex items-center gap-2">
                 <div className="w-4 h-4 rounded-full bg-green-500"></div>
-                <span className="font-medium">{detailData.paymentFrom}</span>
+                <span className="font-medium">{renderBankAccount(detailData.paymentFrom)}</span>
               </div>
             </div>
             <div className="mb-4">
@@ -167,7 +159,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
             </div>
             <div className="mb-4">
               <div className="text-sm text-gray-600">{t('detail.operatedBy')}</div>
-              <div className="font-medium">{detailData.username?.substring(0, 9)}</div>
+              <div className="font-medium">{detailData.username}</div>
             </div>
           </div>
           <div>
@@ -175,7 +167,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
               <div className="text-sm text-gray-600">{t('detail.to')}</div>
               <div className="flex items-center gap-2">
                 <div className="w-4 h-4 rounded-full bg-green-500"></div>
-                <span className="font-medium">{detailData.paymentTo}</span>
+                <span className="font-medium">{renderBankAccount(detailData.paymentTo)}</span>
               </div>
             </div>
             <div className="mb-4">
@@ -184,7 +176,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
             </div>
             <div className="mb-4">
               <div className="text-sm text-gray-600">{t('detail.amount')}</div>
-              <div className="font-medium">{`${detailData.amount.toFixed(2)} ${detailData.currency}`}</div>
+              <div className="font-medium">{displayAmount(detailData.amount)}</div>
             </div>
           </div>
         </div>
@@ -211,10 +203,10 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
       title={
         <div className="flex items-center gap-2">
           <span>
-            {t('detail.title')} ({detailData?.transId.toString() ?? t('detail.loading')})
+            {t('detail.title')} ({transactionId?.toString() ?? t('detail.loading')})
           </span>
           {detailData && (
-            <span className={`status-badge ${mappingStatus(detailData.statusId).toLowerCase()}`}>
+            <span className={`status-badge ${getStatusStyle(detailData.statusId)}`}>
               {mappingStatus(detailData.statusId)}
             </span>
           )}

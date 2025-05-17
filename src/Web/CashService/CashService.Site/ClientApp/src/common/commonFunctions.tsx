@@ -36,7 +36,7 @@ export const mappingStatus = (status: number) => {
     case 2:
       return 'Pending';
     case 3:
-      return 'EXPIRED';
+      return 'Expired';
     case 4:
       return 'Completed';
     case 5:
@@ -46,4 +46,34 @@ export const mappingStatus = (status: number) => {
     default:
       return '';
   }
+};
+
+export const getStatusStyle = (statusId: number) => {
+  switch (statusId) {
+    case 4:
+      return 'bg-[#DCFCE7] text-[#166534]';
+    case 3:
+      return 'bg-[#F3F4F6] text-[#374151]';
+    case 5:
+    case 6:
+      return 'bg-[#FEE2E2] text-[#991B1B]';
+    default:
+      return 'bg-gray-100 text-gray-800';
+  }
+};
+
+export const formatDateTime = (dateTimeStr: string) => {
+  if (!dateTimeStr) return 'N/A';
+
+  const date = new Date(dateTimeStr);
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  const year = date.getFullYear();
+  let hours = date.getHours();
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+  const seconds = date.getSeconds().toString().padStart(2, '0');
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  return `${month}/${day}/${year} ${hours}:${minutes}:${seconds} ${ampm}`;
 };

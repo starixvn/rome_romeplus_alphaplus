@@ -5,6 +5,7 @@ import { NoRecordsIcon } from '../../../../components/Icons';
 import { useTranslation } from 'react-i18next';
 import {
   displayAmount,
+  getStatusStyle,
   mappingStatus,
   renderBankAccount,
 } from '../../../../common/commonFunctions';
@@ -62,22 +63,6 @@ const Table: React.FC<TableProps> = ({
   const handleRevertSuccess = () => {
     handleCloseModal();
     onRefreshNeeded?.();
-  };
-
-  const getStatusStyle = (statusId: number) => {
-    const status = mappingStatus(statusId);
-
-    switch (status.toUpperCase()) {
-      case 'COMPLETED':
-        return 'bg-[#DCFCE7] text-[#166534]';
-      case 'EXPIRED':
-        return 'bg-[#F3F4F6] text-[#374151]';
-      case 'REJECTED':
-      case 'PROVIDER_REJECTED':
-        return 'bg-[#FEE2E2] text-[#991B1B]';
-      default:
-        return 'bg-gray-100 text-gray-800';
-    }
   };
 
   const shouldShowColumn = (columnName: string) => {

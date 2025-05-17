@@ -1,8 +1,15 @@
 namespace AlphaPlus.CashService.API.Models.Transactions;
 
+using System.Numerics;
+using System.Text.Json.Serialization;
+
 public class TransactionModel
 {
-    public long TransId { get; set; }
+    [JsonIgnore]
+    public BigInteger TransId { get; set; }
+
+    [JsonPropertyName("transId")]
+    public string TransIdString => TransId.ToString();
 
     public int CustId { get; set; }
     public string Username { get; set; }
