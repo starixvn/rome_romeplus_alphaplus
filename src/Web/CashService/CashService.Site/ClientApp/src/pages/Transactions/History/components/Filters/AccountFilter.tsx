@@ -48,7 +48,7 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
       </label>
       <CustomDropdown
         options={accountOptions.map((option) => ({
-          value: option.bankId,
+          value: `${option.bankCode}_${option.bankAccountNumber}`,
           label: option.bankAccountNumber,
           code: option.bankCode,
         }))}

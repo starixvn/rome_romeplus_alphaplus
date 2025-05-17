@@ -5,6 +5,7 @@ export interface DropdownOption {
   value: string | number;
   label: string;
   code?: string;
+  attributes?: Record<string, any>;
 }
 
 export interface CustomDropdownComponentProps {
@@ -23,19 +24,19 @@ const CustomDropdownComponent = ({
   showOptionAll = false,
 }: CustomDropdownComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState<DropdownOption | null>(() => {
+  const [selected, setSelected] = useState<DropdownOption | ''>(() => {
     if (initialValue) {
       const option = options.find((opt) => opt.value === initialValue);
-      return option || null;
+      return option || '';
     }
-    return null;
+    return '';
   });
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (initialValue) {
       const option = options.find((opt) => opt.value === initialValue);
-      setSelected(option || null);
+      setSelected(option || '');
     }
   }, [initialValue, options]);
 
@@ -80,7 +81,7 @@ const CustomDropdownComponent = ({
             className="w-[16px] h-[16px] mr-[8px] inline-block"
           />
         )}
-        {selected ? selected.label : options[0]?.label || ''}
+        {selected ? selected.label : 'All'}
         <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[10px] " />
       </div>
 

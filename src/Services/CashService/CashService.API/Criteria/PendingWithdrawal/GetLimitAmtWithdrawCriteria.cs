@@ -19,7 +19,6 @@ public class GetLimitAmtWithdrawCriteria : CriteriaBase
 
     public decimal MinAmt { get; set; }
     public decimal MaxAmt { get; set; }
-    public bool IsReachLimitCnt { get; set; }
 
     public override string GetSettingKey() => $"CustDb_{CustDbGroupId}_Age_CashWithdrawal_LimitAmtSel";
 

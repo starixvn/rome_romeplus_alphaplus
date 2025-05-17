@@ -10,6 +10,7 @@ import Search from './Search';
 import Table from './Table';
 import Pagination from './Pagination';
 import { useTranslation } from 'react-i18next';
+import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
 
 interface TransactionListProps {
   transactionType: number;
@@ -130,8 +131,6 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     setApiParams((prev) => ({ ...prev, pageSize: newSize, pageIndex: 1 }));
   };
 
-  const pageSizeOptions = [100, 200, 500, 1000];
-
   return (
     <div className="transaction-list-container">
       {error && (
@@ -177,7 +176,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           currentPage={apiParams.pageIndex}
           totalCount={apiData.totalCount}
           pageSize={apiParams.pageSize}
-          pageSizeOptions={pageSizeOptions}
+          pageSizeOptions={PAGE_SIZE_OPTIONS}
           onPageChange={handlePageChange}
           onPageSizeChange={handlePageSizeChange}
         />

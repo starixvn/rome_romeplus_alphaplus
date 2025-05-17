@@ -11,8 +11,6 @@ public class CreateManualWithdrawCommand : NonQueryCommand
 
     public decimal MaxLimitAmt { get; set; }
 
-    public int WithdrawalLimitCnt { get; set; }
-
     public string PaymentFrom { get; set; }
 
     public string PaymentTo { get; set; }
@@ -27,10 +25,8 @@ public class CreateManualWithdrawCommand : NonQueryCommand
 
     public int ProviderId { get; set; }
 
-    [SpParam(Ignored = true)]
-    public int TransId { get; set; }
+    public long TransId { get; set; }
 
-    [SpParam(Ignored = true)]
     public string CashAccumCreditTbl { get; set; }
 
     [SpParam(Ignored = true)]

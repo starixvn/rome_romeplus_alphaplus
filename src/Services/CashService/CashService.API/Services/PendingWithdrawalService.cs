@@ -16,8 +16,6 @@ public interface IPendingWithdrawalService
 
     Task<MemberSettingWithdraw> GetMemberSettingWithdrawAsync(int custId);
 
-    Task<(ResultModel, int, string)> CreateManualWithdrawAsync(CreateManualModel param);
-
     Task<ResultModel> AddManualWithdrawAsync(AddManualWithdrawalModel param);
 }
 
@@ -106,8 +104,7 @@ public class PendingWithdrawalService(
 
         {
             MaxAmt = random.Next(0, 101),
-            MinAmt = criteria.MinAmt,
-            IsReachLimitCnt = criteria.IsReachLimitCnt
+            MinAmt = criteria.MinAmt
         };
     }
 
@@ -120,33 +117,16 @@ public class PendingWithdrawalService(
         return await dynamicRepository.GetAsync<MemberSettingWithdraw>(criteria);
     }
 
-    public async Task<(ResultModel, int, string)> CreateManualWithdrawAsync(CreateManualModel param)
-    {
-        var command = new CreateManualWithdrawCommand
-        {
-            CustId = param.CustId,
-            UplineId = param.UplineId,
-            SubAccId = param.SubAccId,
-            MinLimitAmt = param.MinLimitAmt,
-            MaxLimitAmt = param.MaxLimitAmt,
-            WithdrawalLimitCnt = param.WithdrawalLimitCnt,
-            PaymentFrom = param.PaymentFrom,
-            PaymentTo = param.PaymentTo,
-            Amount = param.Amount,
-            Payslip = param.PaySlip,
-            Ip = param.Ip,
-            Remark = param.Remark,
-            ProviderId = param.ProviderId,
-        };
-        await dynamicRepository.ExecuteAsync(command);
-        var result = new ResultModel(command.ErrCode, command.ErrMsg);
-
-        return (result, command.TransId, command.CashAccumCreditTbl);
-    }
-
     public async Task<ResultModel> AddManualWithdrawAsync(AddManualWithdrawalModel param)
     {
-        var memberSettings = await GetLimitAmtWithdrawAsync(new CashLimitAmt { CustId = param.CustId, CustDbGroupId = param.CustDbGroupId, UplineId = param.UplineId, ProviderId = param.ProviderId });
+        var memberSettings = await GetLimitAmtWithdrawAsync(
+            new CashLimitAmt
+            {
+                CustId = param.CustId,
+                CustDbGroupId = param.CustDbGroupId,
+                UplineId = param.UplineId,
+                ProviderId = param.ProviderId
+            });
         var command = new CreateManualWithdrawCommand
         {
             CustId = param.CustId,
@@ -154,7 +134,6 @@ public class PendingWithdrawalService(
             SubAccId = param.SubAccId,
             MinLimitAmt = memberSettings.MinAmt,
             MaxLimitAmt = memberSettings.MaxAmt,
-            WithdrawalLimitCnt = 0,
             PaymentFrom = param.PaymentFrom,
             PaymentTo = param.PaymentTo,
             Amount = param.Amount,
