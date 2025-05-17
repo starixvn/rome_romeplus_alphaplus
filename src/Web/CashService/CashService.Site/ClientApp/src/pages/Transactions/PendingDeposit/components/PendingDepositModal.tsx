@@ -8,11 +8,11 @@ interface PendingDepositModalProps {
   onApprove: (deposit: TransactionItem) => void;
   onReject: (deposit: TransactionItem) => void;
 }
-const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ 
-  deposit, 
-  onClose, 
-  onApprove, 
-  onReject 
+const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
+  deposit,
+  onClose,
+  onApprove,
+  onReject,
 }) => {
   const { t } = useTranslation('pendingDeposit');
   const [remarks, setRemarks] = useState('');
@@ -21,14 +21,14 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
   const handleApprove = () => {
     onApprove({
       ...deposit,
-      amount: parseFloat(depositAmount)
+      amount: parseFloat(depositAmount),
     });
   };
 
   const handleReject = () => {
     onReject({
       ...deposit,
-      amount: parseFloat(depositAmount)
+      amount: parseFloat(depositAmount),
     });
   };
 
@@ -40,11 +40,26 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
       <div className="p-[30px] bg-white max-w-[600px] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
         <div className="relative">
           <h5 className="text-[16px] text-[#163f78] font-bold leading-[21.6px] tracking-[0.2px] pb-[15px]">
-            {t('pendingDepositModal.title')} ({deposit.transferRefNo})
+            {t('pendingDepositModal.title')} ({deposit.transId})
           </h5>
-          <button type="button" className="absolute top-[-20px] right-[-20px] cursor-pointer" onClick={onClose}>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          <button
+            type="button"
+            className="absolute top-[-20px] right-[-20px] cursor-pointer"
+            onClick={onClose}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </div>
@@ -85,9 +100,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
 
               <div>
                 <div className="text-sm font-medium mb-1">Date and Time</div>
-                <div>
-                  {deposit.createdTime}
-                </div>
+                <div>{deposit.createdTime}</div>
               </div>
             </div>
 
@@ -105,9 +118,9 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
               <div>
                 <div className="text-sm font-medium mb-1">Deposit Amount</div>
                 <div className="relative">
-                  <input 
+                  <input
                     type="text"
-                    value={depositAmount} 
+                    value={depositAmount}
                     onChange={(e) => setDepositAmount(e.target.value)}
                     className="border border-gray-300 rounded-md py-1 px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184]"
                   />
@@ -118,7 +131,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
 
           <div className="mb-6">
             <div className="text-sm font-medium mb-1">Remarks</div>
-            <textarea 
+            <textarea
               value={remarks}
               onChange={(e) => setRemarks(e.target.value)}
               placeholder="Add a remark here..."
@@ -126,7 +139,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
             />
           </div>
         </div>
-        
+
         <div className="flex justify-end space-x-3 mt-[-10px]">
           <button
             onClick={handleReject}
@@ -146,4 +159,4 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
   );
 };
 
-export default PendingDepositModal; 
+export default PendingDepositModal;

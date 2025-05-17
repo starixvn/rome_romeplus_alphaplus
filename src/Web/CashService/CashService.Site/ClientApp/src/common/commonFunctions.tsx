@@ -8,6 +8,11 @@ export const displayAmount = (amount: number): string => {
   return amount.toFixed(2);
 };
 
+export const TransactionType = {
+  Deposit: 1,
+  Withdrawal: 2,
+};
+
 export const renderBankAccount = (bankAccount: string) => {
   const [bankCode, accountNumber] = bankAccount.split('_');
   return (

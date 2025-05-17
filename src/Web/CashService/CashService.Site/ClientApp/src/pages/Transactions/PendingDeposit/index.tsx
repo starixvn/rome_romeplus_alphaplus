@@ -9,9 +9,12 @@ import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
 import '../../../styles/common.css';
 import '../../../styles/global.scss';
 import { BankInfo } from '../../../services/interfaces/Transactions/BankInfo';
-import { TransactionType } from '../common.functions';
+import { TransactionType } from '../../../common/commonFunctions';
 import { transactionAPI } from '../../../services/transactionsHistoryAPI';
-import { TransactionsHistoryParams, TransactionsHistoryResponse } from '../../../services/interfaces/Transactions/TransactionHistory';
+import {
+  TransactionsHistoryParams,
+  TransactionsHistoryResponse,
+} from '../../../services/interfaces/Transactions/TransactionHistory';
 
 const PendingDeposit: React.FC = () => {
   const { t } = useTranslation('pendingDeposit');
@@ -69,10 +72,10 @@ const PendingDeposit: React.FC = () => {
     const timer = setTimeout(() => {
       setDebouncedSearchTerm(searchTerm);
     }, 500);
-    
+
     return () => clearTimeout(timer);
   }, [searchTerm]);
-  
+
   const filteredDeposits = useMemo(() => {
     let result = [...deposits.items];
     // if (recentDeposits === 'Last30Mins') {
@@ -94,15 +97,16 @@ const PendingDeposit: React.FC = () => {
     // if (cashAgentTo !== 'All') {
     //   result = result.filter(deposit => deposit.to.toString() === cashAgentTo);
     // }
-    
+
     if (debouncedSearchTerm.trim()) {
       const term = debouncedSearchTerm.toLowerCase().trim();
-      result = result.filter(deposit => 
-        deposit.username.toLowerCase().includes(term) || 
-        deposit.transferRefNo.toLowerCase().includes(term)
+      result = result.filter(
+        (deposit) =>
+          deposit.username.toLowerCase().includes(term) ||
+          deposit.transId.toString().toLowerCase().includes(term)
       );
     }
-    
+
     return result;
   }, [deposits, recentDeposits, cashAgentTo, debouncedSearchTerm]);
 
