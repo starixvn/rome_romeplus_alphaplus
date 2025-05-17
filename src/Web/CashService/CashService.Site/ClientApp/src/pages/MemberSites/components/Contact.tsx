@@ -10,7 +10,7 @@ export const Contact = (props: ContactProps) => {
   const { t } = useTranslation('memberSite');
   const { contact, handleContactChange } = props;
   return (<div key={contact.type} className='w-[230px] pt-[4px] max-[768px]:w-[48%]'>
-    <label htmlFor={contact.type} className="block text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:mb-[8px]">
+    <label htmlFor={contact.type} className="block pt-[4px] mb-[8px] font-semibold max-[768px]:mb-[8px]">
       {t(`message.${contact.type}`)}
       {contact.isRequired && <span className='text-[#E25757]'>*</span>}
     </label>

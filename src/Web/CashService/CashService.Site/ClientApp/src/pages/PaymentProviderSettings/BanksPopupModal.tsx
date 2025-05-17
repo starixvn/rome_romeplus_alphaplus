@@ -4,6 +4,7 @@ import { Bank } from '../../services/interfaces/Payments/Bank';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { IconClose } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
+import { ButtonComponent } from '../../components/ButtonComponents';
 interface BanksPopupModalProps {
   onClose: () => void;
   transactionType: number;
@@ -36,9 +37,9 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
 
   return (
     <div className="bg-[#00000066] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-start justify-center">
-      <div className="p-[30px] bg-[#ffffff] mt-[100px] w-full max-w-[560px] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
+      <div className="p-[30px] bg-[#ffffff] mt-[100px] w-full max-w-[560px] max-[768px]:max-w-[90%] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f] text-[12px] max-[768px]:text-[16px]">
         <div className="relative">
-          <h5 className="text-[16px] text-[var(--text-color-primary)] font-bold leading-[21.6px]">{tPaymentProviderSettings('listOfBanks')}</h5>
+          <h5 className="text-[16px] text-[var(--text-color-primary)] font-bold leading-[21.6px] max-[768px]:text-[20px]">{tPaymentProviderSettings('listOfBanks')}</h5>
           <button type="button" className="absolute top-[-20px] right-[-20px] cursor-pointer" onClick={onClose}>
             <IconClose />
           </button>
@@ -56,9 +57,9 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
             </div>
           ) : (
             <>
-              <label className='block text-[var(--text-color-primary)] text-[12px] leading-[13px] my-[16px] font-semibold'>{tPaymentProviderSettings(`transaction-${transactionType}`)}</label>
+              <label className='block text-[var(--text-color-primary)] my-[16px] font-semibold'>{tPaymentProviderSettings(`transaction-${transactionType}`)}</label>
               <div className="table-fixed-header max-h-[300px] overflow-y-auto">
-                <table className="w-full text-[12px]">
+                <table className="w-full">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -83,10 +84,8 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
             </>
           )}
         </div>
-        <div className="flex justify-center">
-          <button type="button" className="w-[140px] capitalize font-bold h-[30px] rounded-[20px] text-[var(--button-text)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)] mx-[4px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] hover:border-[var(--button-border-hover)] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]" onClick={onClose}>
-            {tGlobal('close')}
-          </button>
+        <div className="flex justify-center">      
+          <ButtonComponent className='w-[140px]' type='apply' style='rounded' text={tGlobal('close')} onClick={onClose} />
         </div>
       </div>
     </div>

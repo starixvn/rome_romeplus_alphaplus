@@ -43,7 +43,7 @@ const DomainCard: React.FC<DomainCardProps> = ({ domain,  index }) => {
       <div className="flex justify-between items-center  ">
         <div className="leading-[15px] max-[768px]:leading-[22px]">
           <p className="text-[14px] font-bold max-[768px]:text-[18px]">{t('registrationLinks.domain')} {index + 1}</p>
-          <p className="text-[12px] max-[768px]:text-[16px]">{domain.url}</p>
+          <p>{domain.url}</p>
         </div>
         
       </div>
@@ -66,7 +66,7 @@ const DomainCard: React.FC<DomainCardProps> = ({ domain,  index }) => {
           <button 
           disabled={domain.status === 'blocked'}
           onClick={(e) => downloadQRCode(e)}
-          className={`cursor-pointer whitespace-nowrap text-[var(--text-color-primary)] text-[12px] font-bold bg-[#ffffff] rounded-[5px] p-[6px] max-[768px]:text-[16px]  ${
+          className={`cursor-pointer whitespace-nowrap text-[var(--text-color-primary)]  font-bold bg-[#ffffff] rounded-[5px] p-[6px]  ${
             domain.status === 'active'
               ? 'hover:bg-gray-50 dark:hover:bg-gray-300'
               : 'opacity-50 cursor-not-allowed'

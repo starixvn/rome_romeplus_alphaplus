@@ -65,7 +65,7 @@ const MessageForm: React.FC<MessageFormProps> = ({
   return (
     <div className="">
       <h2 className="text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] max-[768px]:text-[20px] max-[768px]:leading-[26px] ">{t('message.title')}</h2>
-      <p className="text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px]">{t('message.description')}</p>
+      <p className="pt-[4px] mb-[8px] font-semibold">{t('message.description')}</p>
       <div className="max-w-[785px]">
         <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap">
           <div className='w-[230px] pt-[4px] max-[768px]:w-[48%]'>
@@ -89,7 +89,7 @@ const MessageForm: React.FC<MessageFormProps> = ({
         </div>
 
         <div className='w-[476px] max-[768px]:w-[100%]'>
-          <label className="block text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:mb-[8px]" htmlFor="announcement">
+          <label className="block pt-[4px] mb-[8px] font-semibold max-[768px]:mb-[8px]" htmlFor="announcement">
             {t('message.announcement')}
           </label>
           <textarea

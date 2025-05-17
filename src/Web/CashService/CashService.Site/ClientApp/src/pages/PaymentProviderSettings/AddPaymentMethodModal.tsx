@@ -4,8 +4,9 @@ import { TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { PaymentMethod } from '../../services/interfaces/Payments/PaymentMethod';
 import { QRCodeCanvas } from 'qrcode.react';
-import { ResultMessageComponent } from '../../components/MessageComponents';
+import { ResultMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import { IconClose } from '../../components/Icons';
+import { ButtonComponent } from '../../components/ButtonComponents';
 
 interface AddPaymentMethodModalProps {
   onClose: () => void;
@@ -142,7 +143,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
     <div className="bg-[#00000066] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-center justify-center">
       <div className="p-[30px] bg-[#ffffff] w-full max-w-[560px] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
         <div className="relative">
-          <h3 className="text-[16px] text-[var(--text-color-primary)] font-bold leading-[21.6px] pb-[4px]">{tPaymentProviderSettings('setUpPaymentMethods')}</h3>
+          <h3 className="text-[16px] max-[768px]:text-[20px] text-[var(--text-color-primary)] font-bold pb-[4px]">{tPaymentProviderSettings('setUpPaymentMethods')}</h3>
           <button type="button" className="absolute top-[-20px] right-[-20px] cursor-pointer" onClick={onClose}>
             <IconClose />
           </button>
@@ -150,12 +151,12 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
         <form onSubmit={handleSubmit}>
           <div className="modal-body"> 
             <div>
-              <h4 className="text-[14px] pt-[16px] text-[var(--text-color-primary)] font-semibold pb-[4px]">{tPaymentProviderSettings('addPaymentMethodStep1')}</h4>
-              <div className='flex gap-[10px]'>
-              <div className="w-[48%]">
-                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('transactionType')}<span className='text-[#E25757]'>*</span></label>
+              <h4 className="text-[14px] max-[768px]:text-[18px] pt-[16px] text-[var(--text-color-primary)] font-semibold pb-[4px]">{tPaymentProviderSettings('addPaymentMethodStep1')}</h4>
+              <div className='flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full'>
+              <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
+                <label className="block  font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('transactionType')}<span className='text-[#E25757]'>*</span></label>
                 <select 
-                  className={`h-[32px] max-[768px]:h-[40px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.selectedTransactionType ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
+                  className={`h-[32px] max-[768px]:h-[40px] max-[768px]:leading-[40px] w-full border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.selectedTransactionType ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                   value={formState.selectedTransactionType}
                   onChange={(e) => {
                     handleInputChange('selectedTransactionType', e.target.value);
@@ -167,14 +168,14 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
                   ))}
                 </select>
                 {fieldErrors.selectedTransactionType && (
-                  <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.selectedTransactionType}</div>
+                  <ValidateMessageComponent message={fieldErrors.selectedTransactionType}  />
                 )}
               </div>
             
-              <div className="w-[48%]">
-                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('paymentMethod')}<span className='text-[#E25757]'>*</span></label>
+              <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
+                <label className="block font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('paymentMethod')}<span className='text-[#E25757]'>*</span></label>
                 <select 
-                  className={`h-[32px] max-[768px]:h-[40px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.selectedPaymentMethod ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
+                  className={`h-[32px] max-[768px]:h-[40px] max-[768px]:leading-[40px] w-full border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.selectedPaymentMethod ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                   value={formState.selectedPaymentMethod}
                   onChange={(e) => {
                     handleInputChange('selectedPaymentMethod', e.target.value);
@@ -191,70 +192,68 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
                     </option>
                   ))}
                 </select>
-                {fieldErrors.selectedPaymentMethod && (
-                  <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.selectedPaymentMethod}</div>
-                )}
+                {fieldErrors.selectedPaymentMethod && (<ValidateMessageComponent message={fieldErrors.selectedPaymentMethod}  /> )}
               </div>
               </div>
             </div>
             <div>
               <hr className='mt-[16px] border-[#0000001F]'  />
-              <h4 className="text-[14px] pt-[16px] text-[var(--text-color-primary)] font-semibold pb-[4px]">{tPaymentProviderSettings('addPaymentMethodStep2')}</h4>
-              <p className='mt-[8px] text-[12px]'>{tPaymentProviderSettings('clickLinkOrScanQRCode')}</p>
-              <a href={telegramAssistantUrl} className='text-[12px] text-[var(--text-color-primary)] font-semibold' target="_blank" rel="noopener noreferrer">{telegramAssistantUrl}</a>
-              <div style={{ marginTop: '16px', textAlign: 'center' }}>
+              <h4 className="text-[14px] max-[768px]:text-[18px] pt-[16px] text-[var(--text-color-primary)] font-semibold pb-[4px]">{tPaymentProviderSettings('addPaymentMethodStep2')}</h4>
+              <p className='mt-[8px] '>{tPaymentProviderSettings('clickLinkOrScanQRCode')}</p>
+              <a href={telegramAssistantUrl} className=' text-[var(--text-color-primary)] font-semibold' target="_blank" rel="noopener noreferrer">{telegramAssistantUrl}</a>
+              <div className='mt-[16px] flex justify-center'>
                 {telegramAssistantUrl && <QRCodeCanvas value={telegramAssistantUrl} size={128} />}
               </div>
             </div>
             <div>
             <hr className='mt-[16px] mb-[16px] border-[#0000001F]'  />
-              <label className="text-[14px] pt-[16px] text-[var(--text-color-primary)] font-semibold pb-[4px]">{tPaymentProviderSettings('addPaymentMethodStep3')}</label>
-              <div className='flex flex-wrap gap-[10px]'>
-              <div className="w-[48%]">
-                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('apiKey')}<span className='text-[#E25757]'>*</span></label>
-                <input
-                  type="text"
-                  className={`h-[32px] max-[768px]:h-[40px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.apiKey ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
-                  id="apiKey"
-                  value={formState.apiKey}
-                  onChange={(e) => {
-                    handleInputChange('apiKey', e.target.value);
-                  }}
-                />
-                {fieldErrors.apiKey && (
-                  <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.apiKey}</div>
-                )}
-              </div>
-              <div className="w-[48%]">
-                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('merchantID')}<span className='text-[#E25757]'>*</span></label>
-                <input
-                  type="text"
-                  className={`h-[32px] max-[768px]:h-[40px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.merchantID ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
-                  id="merchantID"
-                  value={formState.merchantID}
-                  onChange={(e) => {
-                    handleInputChange('merchantID', e.target.value);
-                  }}
-                />
-                {fieldErrors.merchantID && (
-                  <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.merchantID}</div>
-                )}
-              </div>
-              <div className="w-[48%]">
-                <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('appSecret')}<span className='text-[#E25757]'>*</span></label>
-                <input
-                  type="text"
-                  className={`h-[32px] max-[768px]:h-[40px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.appSecret ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
-                  id="appSecret"
-                  value={formState.appSecret}
-                  onChange={(e) => {
-                    handleInputChange('appSecret', e.target.value);
-                  }}
-                />
-                {fieldErrors.appSecret && (
-                  <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.appSecret}</div>
-                )}
-              </div>
+              <label className="text-[14px] max-[768px]:text-[18px] pt-[16px] text-[var(--text-color-primary)] font-semibold pb-[4px]">{tPaymentProviderSettings('addPaymentMethodStep3')}</label>
+              <div className='flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full'>
+                <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
+                  <label className="block  font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('apiKey')}<span className='text-[#E25757]'>*</span></label>
+                  <input
+                    type="text"
+                    className={`h-[32px] max-[768px]:h-[40px] max-[768px]:leading-[40px] w-full border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.apiKey ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
+                    id="apiKey"
+                    value={formState.apiKey}
+                    onChange={(e) => {
+                      handleInputChange('apiKey', e.target.value);
+                    }}
+                  />
+                  {fieldErrors.apiKey && (
+                    <ValidateMessageComponent message={fieldErrors.apiKey}  />
+                  )}
+                </div>
+                <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
+                  <label className="block  font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('merchantID')}<span className='text-[#E25757]'>*</span></label>
+                  <input
+                    type="text"
+                    className={`h-[32px] max-[768px]:h-[40px] max-[768px]:leading-[40px] w-full border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.merchantID ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
+                    id="merchantID"
+                    value={formState.merchantID}
+                    onChange={(e) => {
+                      handleInputChange('merchantID', e.target.value);
+                    }}
+                  />
+                  {fieldErrors.merchantID && (
+                    <ValidateMessageComponent message={fieldErrors.merchantID}  />
+                  )}
+                </div>
+                <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
+                  <label className="block font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('appSecret')}<span className='text-[#E25757]'>*</span></label>
+                  <input
+                    type="text"
+                    className={`h-[32px] max-[768px]:h-[40px] max-[768px]:leading-[40px] w-full border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.appSecret ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
+                    id="appSecret"
+                    value={formState.appSecret}
+                    onChange={(e) => {
+                      handleInputChange('appSecret', e.target.value);
+                    }}
+                  />
+                  {fieldErrors.appSecret && (
+                    <ValidateMessageComponent message={fieldErrors.appSecret}  />
+                  )}
+                </div>
               </div>
             </div>
            
@@ -262,35 +261,39 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
             {successMessage && <ResultMessageComponent message={successMessage} type='success' />}
           </div>
           <div className="flex flex-wrap mt-[16px] mb-[16px]">
-            <label className="w-full flex items-center justify-center cursor-pointer text-[#333] text-[12px] leading-[14px]">
+            <label className="w-full flex items-center justify-center cursor-pointer text-[#333]">
               <input
                 type="checkbox"
-                className="w-[18px] h-[18px]"
+                className="w-[18px] h-[18px] cursor-pointer"
                 id="agreeToTerms"
                 checked={formState.agreeToTerms}
                 onChange={(e) => {
                   handleInputChange('agreeToTerms', e.target.checked);
                 }}
               />
-              <span className="flex-1 pl-[6px]">
+              <span className="flex-1 pl-[6px] max-[768px]:leading-[18px]">
                 {tPaymentProviderSettings('agreeTermsAndConditions')}
               </span>
             </label>
             {fieldErrors.agreeToTerms && (
-              <div className="w-full text-[#FE0000] text-[11px] mt-1 text-center">{fieldErrors.agreeToTerms}</div>
+              <ValidateMessageComponent message={fieldErrors.agreeToTerms}  />              
             )}
             </div>
-            <div className='flex justify-center'>
-            <button type="button" className="w-[140px] h-[30px] rounded-[20px] text-[var(--text-color-primary)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)] mx-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer " onClick={onClose}>
-              {tPaymentProviderSettings('setUpLater')}
-            </button>
-            <button 
-              type="submit" 
-              className="w-[140px] capitalize font-bold h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)] mx-[4px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] disabled:bg-[#375A8A]"
+          <div className='flex justify-center gap-[8px]'>
+            <ButtonComponent 
+              className='w-[140px]'
+              type="cancel"
+              style="rounded"
+              text={tPaymentProviderSettings('setUpLater')}             
+              onClick={onClose}
+            />          
+            <ButtonComponent 
+              className='w-[140px]'
+              type="apply"
+              style="rounded"
+              text={tGlobal('save')}
               disabled={isLoading || allMethodsInactive}
-            >
-              {isLoading ? tGlobal('loading') : tGlobal('save')}
-            </button>
+            />
           </div>
         </form>
       </div>

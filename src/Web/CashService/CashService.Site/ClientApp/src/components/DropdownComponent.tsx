@@ -72,7 +72,7 @@ const CustomDropdownComponent = ({
   return (
     <div className="relative z-20" ref={dropdownRef}>
       <div
-        className={`flex items-center h-[35px] w-[100%] border-[1px] rounded-[4px] px-[12px] text-[12px] leading-[13px] border-[var(--border-control)] ${disable ? 'cursor-not-allowed bg-[#f4f4f4]' : ' bg-[var(--background-control)] cursor-pointer'} focus:outline-none focus:border-[var(--border-control-focus)] relative`}
+        className={`flex items-center h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[12px] border-[var(--border-control)] ${disable ? 'cursor-not-allowed bg-[#f4f4f4]' : ' bg-[var(--background-control)] cursor-pointer'} focus:outline-none focus:border-[var(--border-control-focus)] relative`}
         onClick={handleToggle}
       >
         {selected && selected.code && selected.value !== '' && (
@@ -81,17 +81,19 @@ const CustomDropdownComponent = ({
             className="w-[16px] h-[16px] mr-[8px] inline-block"
           />
         )}
+        <span className='block whitespace-nowrap overflow-hidden text-ellipsis pr-[12px]'>
         {selected ? selected.label : 'All'}
-        <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[10px] " />
+        </span>
+        <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[10px] max-[768px]:top-[12px] " />
       </div>
 
       {isOpen && (
-        <div className="max-h-[200px] overflow-y-auto absolute top-[36px] text-[12px] left-0 w-[100%] bg-[#fff] border-[1px] border-[#0000003D] rounded-[8px]">
+        <div className="max-h-[200px] overflow-y-auto absolute top-[33px] left-0 w-[100%] bg-[#fff] border-[1px] border-[#0000003D] rounded-[8px]">
           {displayOptions.map((option) => (
             <div
               key={option.value}
               onClick={() => handleSelect(option)}
-              className="py-[3px] px-[12px] hover:bg-[#1967D2] hover:text-[#fff] cursor-pointer flex items-center"
+              className="py-[3px] px-[12px] hover:bg-[#1967D2] hover:text-[#fff] cursor-pointer flex items-center max-[768px]:py-[6px]"
             >
               {option.code && option.value !== '' && (
                 <img

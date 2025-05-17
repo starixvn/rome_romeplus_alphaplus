@@ -10,7 +10,7 @@ import UpdatePaymentMethodModal from './UpdatePaymentMethodModal';
 import { PaymentProvider } from '../../services/interfaces/Payments/PaymentProvider';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { formatNumber, formatInputValue } from '../../utils/numberFormatting';
-import { IconBack, IconInfo } from '../../components/Icons';
+import { IconInfo } from '../../components/Icons';
 import Tippy from '@tippyjs/react';
 import i18n from '../../i18n/i18n-paymentProviderSettings';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
@@ -21,6 +21,7 @@ import '../../styles/global.scss';
 import Loading from '../../components/LoadingComponent';
 import { ButtonComponent } from '../../components/ButtonComponents';
 import { PaymentMethod } from '../../services/interfaces/Payments';
+import BackComponent from '../../components/BackComponent';
 declare global {
   interface Window {
     providerSettingsViewModel: any;
@@ -315,6 +316,15 @@ function PaymentProviderSettings() {
     return paymentMethod.status !== 3 && paymentMethod.status !== 4;
   }
 
+  const handleBackNavigation = () => {
+    const previousUrl = localStorage.getItem('cashsite_previousUrl');
+    if (previousUrl) {
+      localStorage.removeItem('cashsite_previousUrl');
+      window.location.href = previousUrl;
+    } else {
+      window.history.back();
+    }
+  };
 
   return (
     <div className="payment-provider-settings h-full">       
@@ -323,48 +333,25 @@ function PaymentProviderSettings() {
           <Loading />
         </div>
       ) : error ? (
-        <div className="error-container">
-          <p className="error-message" dangerouslySetInnerHTML={{ __html: error }}></p>
-        </div>
+        <ResultMessageComponent type='error' message={error} />
       ) : (
-        <>
-        <div className='text-[var(--text-color-primary)] px-[8px] py-[4px] border-b-[2px] border-[#cfcfcf] border-dotted mb-[4px]'>
-          <span className='cursor-pointer inline-flex items-center py-[8px]' onClick={() => {
-              const previousUrl = localStorage.getItem('cashsite_previousUrl');
-              if (previousUrl) {
-                localStorage.removeItem('cashsite_previousUrl');
-                window.location.href = previousUrl;
-              } else {
-                window.history.back();
-              }
-            }
-          }>
-            <IconBack className='w-[18px] h-[18px] fill-[var(--primary-color)] mr-[8px]'  />
-            <span className='text-[12px] text-[var(--text-color-primary)] font-semibold'>{tGlobal('back')}</span>
-          </span>
-        </div>
-        <div className='my-[8px]'>
-          {updateMessage && (
-            <ResultMessageComponent
-              type={updateMessage.type}
-              message={updateMessage.text}
-            />           
-          )}
-        </div>
+        <>        
+        <BackComponent onClose={handleBackNavigation} />
+        {updateMessage && (<ResultMessageComponent type={updateMessage.type} message={updateMessage.text} />   )} 
         <div className='bg-[#ffffff] px-[16px] py-[10px] mb-[8px]'>
           <div className="settings-header">
-            <h2 className='pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] '>{window.providerSettingsViewModel.Provider.Name}</h2>
+            <h2 className='pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold max-[768px]:text-[20px] '>{window.providerSettingsViewModel.Provider.Name}</h2>
           </div>
-          <div className="flex gap-[24px]">
+          <div className="flex gap-[24px] max-[768px]:flex-col max-[768px]:gap-[8px]">
             <div>      
-            <p className="block text-[12px] font-semibold text-[#333333] my-[8px]">
+            <p className="block font-semibold text-[#333333] my-[8px]">
               {tPaymentProviderSettings('setUpPaymentMethodsForMembers')}
             </p>         
-            <ButtonComponent className="w-[183px] font-bold" type="apply" style="medium" text={`+ ${tPaymentProviderSettings('addPaymentMethod')}`} onClick={handleAddPaymentMethod} />
+            <ButtonComponent className="w-[183px] font-bold max-[768px]:w-[300px]" type="apply" style="medium" text={`+ ${tPaymentProviderSettings('addPaymentMethod')}`} onClick={handleAddPaymentMethod} />
             
             </div>
             <div>
-              <p className="flex items-center text-[12px] font-semibold text-[#333333] my-[8px]">
+              <p className="flex items-center font-semibold text-[#333333] my-[8px]">
                 {tGlobal('enable')}/{tGlobal('disable')}
                 <Tippy
                   content={
@@ -402,11 +389,12 @@ function PaymentProviderSettings() {
         </div>
         <div className='bg-[#ffffff] px-[16px] py-[10px]'>
           <div className='flex flex-wrap mb-[8px]'>
-          <h2 className='w-[100%] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] '>{window.providerSettingsViewModel.Provider.Name}</h2>
-            <div className="w-[230px] pr-[14px]">
-              <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('paymentMethod')}</label>
+            <h2 className='w-[100%] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold max-[768px]:text-[20px] '>{window.providerSettingsViewModel.Provider.Name}</h2>
+            <div className='flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full'>
+            <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
+              <label className="block font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('paymentMethod')}</label>
               <select 
-                className="h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer" 
+                className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer" 
                 value={selectedPaymentMethod}
                 onChange={handlePaymentMethodChange}
               >
@@ -416,10 +404,10 @@ function PaymentProviderSettings() {
               </select>
             </div>
 
-            <div className="w-[230px] pr-[14px]">
-              <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('status')}</label>
+            <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
+              <label className="block font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('status')}</label>
               <select 
-                className="h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer" 
+                className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer" 
                 value={selectedStatus}
                 onChange={handleStatusChange}
               >
@@ -429,10 +417,10 @@ function PaymentProviderSettings() {
               </select>
             </div>
 
-            <div className="w-[230px] pr-[14px]">
-              <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('transactionType')}</label>
+            <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
+              <label className="block  font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('transactionType')}</label>
               <select 
-                className="h-[35px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer" 
+                className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer" 
                 value={selectedTransactionType}
                 onChange={handleTransactionTypeChange}
               >
@@ -440,12 +428,13 @@ function PaymentProviderSettings() {
                   <option key={type.id} value={type.id}>{type.id === 0 ? tGlobal('all') : tPaymentProviderSettings(`transaction-${type.id}`)}</option>
                 ))}
               </select>
-            </div>        
+            </div> 
+            </div>       
             <ButtonComponent className="ml-auto mt-auto" type="cancel" style="medium" text={tPaymentProviderSettings('viewProviderFees', {providerName: window.providerSettingsViewModel.Provider.Name})} onClick={handleViewFees} />
           </div>
           
           <div className="table-fixed-header table-fixed-body">
-            <table className="text-[12px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
+            <table className=" w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
               <thead>
                 <tr>
                   <th className='col-shadown col-payment-method'><span className='relative z-3'>{tPaymentProviderSettings('paymentMethod')}</span></th>
@@ -496,15 +485,15 @@ function PaymentProviderSettings() {
                     <td className='font-semibold'>{tPaymentProviderSettings(`transaction-${setting.transactionType}`)}</td>
                     <td>
                       {isEditable(setting) ? (
-                      <div className='flex flex-col'>
+                      <div className='flex flex-col max-[768px]:w-[150px]'>
                         <input 
                           type="text" 
-                          className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer mb-2px] ${validationErrors[`minAmount-${index}`] ? 'border-[#dc3545]' : 'border-[var(--border-control)]'}`}
+                          className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer mb-2px] ${validationErrors[`minAmount-${index}`] ? 'border-[#dc3545]' : 'border-[var(--border-control)]'}`}
                           value={formatNumber(setting.minAmount)} 
                           onChange={(e) => handleMinAmountChange(index, e.target.value)}
                           placeholder={tPaymentProviderSettings('minimum')}
                         />
-                        <label className="text-left text-[11px] text-[#828282] font-semibold">{tPaymentProviderSettings('minAmount')} {formatNumber(setting.minAmountTrans)}</label>
+                        <label className="text-left text-[11px] max-[768px]:text-[15px] text-[#828282] font-semibold mt-[4px]">{tPaymentProviderSettings('minAmount')} {formatNumber(setting.minAmountTrans)}</label>
                       </div>
                       ) : (
                         <div className='flex flex-col'>-</div>
@@ -512,15 +501,15 @@ function PaymentProviderSettings() {
                     </td>
                     <td>
                       {isEditable(setting) ? (
-                      <div className='flex flex-col'>
+                      <div className='flex flex-col max-[768px]:w-[150px]'>
                       <input 
                         type="text" 
-                        className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer mb-2px] ${validationErrors[`maxAmount-${index}`] ? 'border-[#dc3545]' : 'border-[var(--border-control)]'}`}
+                        className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer mb-2px] ${validationErrors[`maxAmount-${index}`] ? 'border-[#dc3545]' : 'border-[var(--border-control)]'}`}
                         value={formatNumber(setting.maxAmount)} 
                         onChange={(e) => handleMaxAmountChange(index, e.target.value)}
                         placeholder={tPaymentProviderSettings('maximum')}
                         />
-                        <label className="text-left text-[11px] text-[#828282] font-semibold">{tPaymentProviderSettings('maxAmount')} {formatNumber(setting.maxAmountTrans)}</label>
+                        <label className="text-left text-[11px] max-[768px]:text-[15px] text-[#828282] font-semibold mt-[4px]">{tPaymentProviderSettings('maxAmount')} {formatNumber(setting.maxAmountTrans)}</label>
                       </div>
                       ) : (
                         <div className='flex flex-col'>-</div>

@@ -50,8 +50,7 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
     className = '',
     disabled = false
 }) => {
-    console.log(disabled)
   return (
-    <button className={`${className} ${getType(type)} ${getStyle(style)} ${getDisabled(disabled)} h-[30px] px-[16px] font-bold py-[4px] text-[12px] `} onClick={onClick} disabled={disabled}>{text}</button>
+    <button className={`${className} ${getType(type)} ${getStyle(style)} ${getDisabled(disabled)} h-[30px] px-[16px] font-semibold py-[4px] text-[12px] max-[768px]:text-[16px] max-[768px]:h-[34px]`} onClick={onClick} disabled={disabled}>{text}</button>
   );
 };

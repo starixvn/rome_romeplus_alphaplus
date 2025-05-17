@@ -77,11 +77,11 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({
                 aria-pressed={setting.value}
               >
                 <div className="flex-1 min-w-0">
-                  <p className="text-[12px] font-semibold my-[8px] leading-[14px] max-[768px]:text-[16px] max-[768px]:leading-[16px]">
+                  <p className="font-semibold my-[8px]">
                     {t(`generalSettings.${setting.id}.title`)}
                   </p>
                   {setting.description && (
-                    <p className="text-[12px] leading-[12px] mb-[8px] max-[768px]:text-[16px] max-[768px]:leading-[16px]">
+                    <p className="mb-[8px]">
                       {t(`generalSettings.${setting.id}.description`)}
                     </p>
                   )}

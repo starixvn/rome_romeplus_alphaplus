@@ -12,7 +12,7 @@ export default function BackComponent({ onClose }: BackComponentProps) {
         <div className='text-[var(--text-color-primary)] px-[8px] py-[4px] border-b-[2px] border-[#cfcfcf] border-dotted mb-[4px]'>
             <span className='cursor-pointer inline-flex items-center py-[8px]' onClick={onClose}>
             <IconBack className='w-[18px] h-[18px] fill-[var(--primary-color)] mr-[8px]'  />
-            <span className='text-[12px] text-[var(--text-color-primary)] font-semibold'>{tGlobal('back')}</span>
+            <span className='text-[var(--text-color-primary)] font-semibold max-w-[100px]'>{tGlobal('back')}</span>
             </span>
         </div>
       </>

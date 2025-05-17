@@ -27,15 +27,15 @@ const getResultIcon = (type: ResultType) => {
   switch (type) {
     case 'error':
       return (
-        <IconError className="w-[20px] h-[20px] fill-[#D42020] absolute top-[7px] left-[10px]" />
+        <IconError className="w-[20px] h-[20px] fill-[#D42020] absolute top-[7px] left-[10px] max-[768px]:top-[10px] max-[768px]:left-[12px]" />
       );
     case 'warning':
       return (
-        <IconWarning className="w-[20px] h-[20px] fill-[#7F3D1D] absolute top-[7px] left-[10px]" />
+        <IconWarning className="w-[20px] h-[20px] fill-[#7F3D1D] absolute top-[7px] left-[10px] max-[768px]:top-[10px] max-[768px]:left-[12px]" />
       );
     default:
       return (
-        <IconCheck className="w-[20px] h-[20px] fill-[#5CB774] absolute top-[7px] left-[10px]" />
+        <IconCheck className="w-[20px] h-[20px] fill-[#5CB774] absolute top-[7px] left-[10px] max-[768px]:top-[10px] max-[768px]:left-[12px]" />
       );
   }
 };
@@ -46,8 +46,8 @@ export const ResultMessageComponent: React.FC<ResultMessageProps> = ({
   className = ''
 }) => {
   return (
-    <div className={`${className} `} role="alert">
-      <div className={`${getResultStyles(type)} relative font-bold text-[12px] text-[#333] border-[1px] rounded-[10px] pl-[36px] pr-[12px] py-[8px] leading-[18px] block capitalize max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:pl-[32px] max-[768px]:pr-[12px] max-[768px]:py-[8px]`}>
+    <div className={`${className} max-[768px]:py-[12px]`} role="alert">
+      <div className={`${getResultStyles(type)} relative font-bold text-[12px] text-[#333] border-[1px] rounded-[10px] pl-[36px] pr-[12px] py-[8px] leading-[18px] block capitalize max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:pl-[40px] max-[768px]:pr-[12px] max-[768px]:py-[12px]`}>
         {getResultIcon(type)}         
         <div dangerouslySetInnerHTML={{ __html: message }}></div>
       </div>
@@ -59,6 +59,6 @@ export const ValidateMessageComponent: React.FC<ValidateMessageProps> = ({
   message,
 }) => {
   return (
-    <div className="text-[#FE0000] text-[12px]">{message}</div>
+    <div className="text-[#FE0000]">{message}</div>
   );
 };

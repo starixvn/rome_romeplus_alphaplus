@@ -125,8 +125,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
               <div className="pb-[8px] text-[12px] max-[768px]:text-[16px] ">
                 {tManagePayments('setDailyWithdrawalCountForYourMembers')}
               </div>
-              <div className="mt-[8px] mb-[8px]">
-            
+              <div className="mt-[8px] mb-[8px]">            
                 <ButtonComponent className='shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]' type="cancel" style="medium" text={tManagePayments('setLimit')} onClick={() => handleSetLimitClick()} />
               </div>
               <span className="block w-[100%] h-[1px] bg-[#e0e0e0] my-[10px]"></span>

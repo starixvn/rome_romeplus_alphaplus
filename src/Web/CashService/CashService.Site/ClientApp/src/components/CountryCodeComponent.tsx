@@ -1,5 +1,6 @@
 import React from 'react';
 import { ensureNumericKeyPress } from '../utils/inputHandlers';
+import { ValidateMessageComponent } from './MessageComponents';
 
 interface CountryCodeComponentProps {
   label: string;
@@ -17,7 +18,6 @@ interface CountryCodeComponentProps {
 
 const MobileInputComponent: React.FC<CountryCodeComponentProps> = ({
   label,
-  countryCode,
   mobile,
   countryCodes,
   fieldErrors,
@@ -27,12 +27,12 @@ const MobileInputComponent: React.FC<CountryCodeComponentProps> = ({
 }) => {
   return (
     <div className="mb-[8px]">
-      <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{label}<span className='text-[#E25757]'>*</span></label>
-      <div className="flex items-center h-[32px] max-[768px]:h-[40px] w-[470px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer before:content-['+']">
+      <label className="block font-semibold text-[#333333] my-[8px]">{label}<span className='text-[#E25757]'>*</span></label>
+      <div className="flex items-center h-[32px] max-[768px]:h-[40px] w-[470px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer before:content-['+']">
         <input
           type="text"
           className={`focus:outline-none h-[100%] cursor-pointer mr-[5px] w-[30px] text-[#333] placeholder:text-[#333]  ${fieldErrors.countryCode ? 'border-[#FE0000]' : ''}`}
-          value={countryCode}
+          value={countryCodes[0]}
           onChange={onCountryCodeChange}
           onKeyPress={ensureNumericKeyPress}
           pattern="[0-9]*"
@@ -50,7 +50,7 @@ const MobileInputComponent: React.FC<CountryCodeComponentProps> = ({
         />
       </div>
       {(fieldErrors.mobile || fieldErrors.countryCode) && (
-        <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.mobile || fieldErrors.countryCode}</div>
+        <ValidateMessageComponent message={(fieldErrors.mobile || fieldErrors.countryCode) || ''}  />
       )}
     </div>
   );

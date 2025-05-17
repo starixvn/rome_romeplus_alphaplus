@@ -4,7 +4,7 @@ import { TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { PaymentMethod } from '../../services/interfaces/Payments/PaymentMethod';
 import { QRCodeCanvas } from 'qrcode.react';
-import { ResultMessageComponent } from '../../components/MessageComponents';
+import { ResultMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import { IconClose } from '../../components/Icons';
 
 interface UpdatePaymentMethodModalProps {
@@ -171,7 +171,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                   ))}
                 </select>
                 {fieldErrors.selectedTransactionType && (
-                  <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.selectedTransactionType}</div>
+                  <ValidateMessageComponent message={fieldErrors.selectedTransactionType}  />
                 )}
               </div>
             
@@ -196,7 +196,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                   ))}
                 </select>
                 {fieldErrors.selectedPaymentMethod && (
-                  <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.selectedPaymentMethod}</div>
+                  <ValidateMessageComponent message={fieldErrors.selectedPaymentMethod}  />
                 )}
               </div>
               </div>
@@ -227,7 +227,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                   }}
                 />
                 {fieldErrors.apiKey && (
-                  <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.apiKey}</div>
+                  <ValidateMessageComponent message={fieldErrors.apiKey}  />
                 )}
               </div>
               <div className="w-[48%]">
@@ -242,7 +242,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                   }}
                 />
                 {fieldErrors.merchantID && (
-                  <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.merchantID}</div>
+                  <ValidateMessageComponent message={fieldErrors.merchantID}  />
                 )}
               </div>
               <div className="w-[48%]">
@@ -257,7 +257,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                   }}
                 />
                 {fieldErrors.appSecret && (
-                  <div className="text-[#FE0000] text-[11px] mt-1">{fieldErrors.appSecret}</div>
+                  <ValidateMessageComponent message={fieldErrors.appSecret}  />
                 )}
               </div>
               </div>
@@ -281,7 +281,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
               </span>
             </label>
             {fieldErrors.agreeToTerms && (
-              <div className="w-full text-[#FE0000] text-[11px] mt-1 text-center">{fieldErrors.agreeToTerms}</div>
+              <ValidateMessageComponent message={fieldErrors.agreeToTerms}  />
             )}
             </div>
             <div className='flex justify-center'>
