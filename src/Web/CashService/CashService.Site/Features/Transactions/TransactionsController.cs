@@ -76,12 +76,6 @@ public class TransactionsController(
 
     public async Task<IActionResult> AddManualDeposit([FromBody] AddWithdrawalParams request)
     {
-        var rq = new AddWithdrawalParams
-        {
-            UplineId = agentId,
-            CustId = 1176092
-        };
-
         var result = VerifyInputParam(request);
         if (result.Code != 0)
         {
@@ -90,7 +84,7 @@ public class TransactionsController(
         request.UplineId = agentId;
         request.Ip = GetClientIp();
         request.Payslip = request.File != null ? await FileHelper.CompressAndConvertToBase64Async(request.File) : null;
-        result = await httpClientHelper.PostAsync<AddWithdrawalParams, ResultModel>("/deposit/create", rq);
+        result = await httpClientHelper.PostAsync<AddWithdrawalParams, ResultModel>("/api/deposit/create", request);
         return Json(result);
     }
 

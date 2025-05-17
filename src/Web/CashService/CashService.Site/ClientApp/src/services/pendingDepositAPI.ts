@@ -2,7 +2,7 @@ import { api } from '../config/axios';
 import { DepositAccountInfo } from './interfaces/DepositAccountInfo';
 import { CreditAmount } from './interfaces/Transactions/CreditAmount';
 import { ResultModel } from './interfaces/ResultModel';
-import { CreateManualModel } from './interfaces/Transactions/CreateManualModel';
+import { AddDepositManualModel } from './interfaces/AddDepositManualModel';
 
 export const pendingDepositAPI = {
   getMemberBankAccounts: async (): Promise<DepositAccountInfo[]> => {
@@ -25,13 +25,13 @@ export const pendingDepositAPI = {
     }
   },
 
-  createDepositManual: async (createManual: CreateManualModel): Promise<ResultModel> => {
+  createDepositManual: async (createManual: AddDepositManualModel): Promise<ResultModel> => {
     try {
       const response = await api.post<ResultModel>('CreateManual', createManual);
       return response.data;
     } catch (error) {
       console.error('Error creating manual:', error);
-      throw error;
+      return { code: 1, isSuccessful: false, message: 'Error add manual deposit' };
     }
   }
 };

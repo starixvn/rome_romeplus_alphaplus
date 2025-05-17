@@ -6,6 +6,7 @@ import { BankInfo } from '../../../../services/interfaces/Transactions/BankInfo'
 import { CreditAmount } from '../../../../services/interfaces/Transactions/CreditAmount';
 import pendingDepositAPI from '../../../../services/pendingDepositAPI';
 import UploadImage from '../../Components/UploadImage';
+import { AddDepositManualModel } from '../../../../services/interfaces/AddDepositManualModel';
 
 interface ManualAddDepositFormProps {
   cashAgentOptions: BankInfo[];
@@ -23,6 +24,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
   const [depositAmount, setDepositAmount] = useState('');
   const [remarks, setRemarks] = useState('');
   const [imageBase64, setImageBase64] = useState<string | null>(null);
+  const [image, setImage] = useState<File | null>(null);
 
   console.log('imageBase64imageBase64imageBase64', imageBase64);
 
@@ -65,13 +67,15 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
   };
 
   const getParams = () => {
-    const params = {
+    const params : AddDepositManualModel = {
       custId: memberId,
       paymentFrom: paymentFrom,
       paymentTo: paymentTo,
       amount: Number(depositAmount),
-      paySlipBase64: imageBase64 || '',
-      remark: remarks
+      remark: remarks,
+      image: image as File,
+      minLimitAmt: creditAmount.minAmt,
+      maxLimitAmt: creditAmount.maxAmt,
     }
     return params;
   };

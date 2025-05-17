@@ -32,14 +32,19 @@ const PendingDeposit: React.FC = () => {
 
   useEffect(() => {
     const fetchDeposits = async () => {
-      //const deposits = await pendingDepositAPI.getMemberBankAccounts();
-      //setDeposits([]);
-
       const today = new Date();
-      const sevenDaysAgo = new Date();
-      sevenDaysAgo.setDate(today.getDate() - 7);
+      let startDate = new Date();
+      
+      if (recentDeposits === 'Last30Mins') {
+        startDate.setMinutes(today.getMinutes() - 30);
+      } else if (recentDeposits === 'Last60Mins') {
+        startDate.setMinutes(today.getMinutes() - 60);
+      } else {
+        startDate.setDate(today.getDate() - 7);
+      }
+
       const params: TransactionsHistoryParams = {
-        dateRange: [sevenDaysAgo.toLocaleDateString('en-US'), today.toLocaleDateString('en-US')],
+        dateRange: [startDate.toLocaleDateString('en-US'), today.toLocaleDateString('en-US')],
         status: 2,
         searchText: '',
         account: '',
@@ -58,7 +63,7 @@ const PendingDeposit: React.FC = () => {
 
     fetchDeposits();
     fetchCashAgentBankInfo();
-  }, []);
+  }, [recentDeposits]);
 
   const handleAddManualDeposit = () => {
     setShowManualAddDepositForm(true);
@@ -78,25 +83,9 @@ const PendingDeposit: React.FC = () => {
 
   const filteredDeposits = useMemo(() => {
     let result = [...deposits.items];
-    // if (recentDeposits === 'Last30Mins') {
-    //   const thirtyMinsAgo = new Date();
-    //   thirtyMinsAgo.setMinutes(thirtyMinsAgo.getMinutes() - 30);
-    //   result = result.filter(deposit => {
-    //     const depositDate = new Date(deposit.dateAndTime);
-    //     return depositDate > thirtyMinsAgo;
-    //   });
-    // } else if (recentDeposits === 'Last60Mins') {
-    //   const sixtyMinsAgo = new Date();
-    //   sixtyMinsAgo.setMinutes(sixtyMinsAgo.getMinutes() - 60);
-    //   result = result.filter(deposit => {
-    //     const depositDate = new Date(deposit.dateAndTime);
-    //     return depositDate > sixtyMinsAgo;
-    //   });
-    // }
-
-    // if (cashAgentTo !== 'All') {
-    //   result = result.filter(deposit => deposit.to.toString() === cashAgentTo);
-    // }
+    if (cashAgentTo !== 'All') {
+      result = result.filter(deposit => deposit.paymentTo.toString() === cashAgentTo);
+    }
 
     if (debouncedSearchTerm.trim()) {
       const term = debouncedSearchTerm.toLowerCase().trim();
@@ -108,7 +97,7 @@ const PendingDeposit: React.FC = () => {
     }
 
     return result;
-  }, [deposits, recentDeposits, cashAgentTo, debouncedSearchTerm]);
+  }, [deposits, cashAgentTo, debouncedSearchTerm]);
 
   return (
     <div className="min-h-screen bg-gray-50">
