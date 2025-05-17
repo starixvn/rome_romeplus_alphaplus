@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { MobilePhone as MobilePhoneType } from "../../../services/interfaces/MemberSites";
 import { useTranslation } from "react-i18next";
 
@@ -8,7 +7,6 @@ interface MobiCodeProps {
 }
 const MobiCode = (props: MobiCodeProps) => {
 
-    const [isEditing, setIsEditing] = useState(false);
     const { code, onChange } = props;
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
@@ -16,31 +14,21 @@ const MobiCode = (props: MobiCodeProps) => {
         onChange(value);
     }
 
-    if (!isEditing) {
-        return (
-            <button
-                id="numberCode"
-                key="numberCode"
-                onClick={() => setIsEditing(true)}
-                className="focus:outline-none focus:border-[var(--button-border)] h-[100%] w-[30px] min-w-[30px] cursor-pointer"
-            >
-                {code ? `+${code}` : ''}
-            </button>
-        );
-    }
-
     return (
-        <input
-            id="numberPhone"
-            key="numberPhone"
-            type="text"
-            value={code}
-            onChange={handleInputChange}
-            onBlur={() => setIsEditing(false)}
-            className="focus:outline-none focus:border-[var(--button-border)] h-[100%] w-[30px] min-w-[30px]"
-            maxLength={3}
-            autoFocus
-        />
+        <>
+            <span>+</span>
+            <input
+                id="numberPhone"
+                key="numberPhone"
+                type="text"
+                value={code}
+                onChange={handleInputChange}
+                className="focus:outline-none focus:border-[var(--button-border)] h-[100%] w-[30px] min-w-[30px]"
+                maxLength={3}
+                autoFocus
+            />
+        </>
+
     );
 };
 
@@ -70,7 +58,7 @@ export const MobilePhone = (props: MobilePhoneInputProps) => {
                     onChange={(e) => {
                         handleMobilePhoneChange({ phone: e.target.value, code: mobilePhone.code });
                     }}
-                    placeholder="XXXXXXXXX"
+                    placeholder=""
                 />
             </div>
         </>
