@@ -2,7 +2,7 @@ namespace AlphaPlus.CashService.API.Models.Transactions;
 
 public class TransactionModel
 {
-    public int TransactionId { get; set; }
+    public long TransId { get; set; }
 
     public string Username { get; set; }
 
@@ -12,7 +12,7 @@ public class TransactionModel
 
     public decimal Amount { get; set; }
 
-    public string Currency { get; set; }
+    public string currency { get; set; }
 
     public string PaymentFrom { get; set; }
 
@@ -27,8 +27,6 @@ public class TransactionModel
     public int TransactionTypeId { get; set; }
 
     public string TransactionType { get; set; }
-
-    public string TransferRefNo { get; set; }
 
     public string Remark { get; set; }
 

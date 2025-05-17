@@ -5,6 +5,7 @@ import { Alert } from '../../../../components/ui/Alert';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import { useTranslation } from 'react-i18next';
+import { displayAmount } from '../../../../common/commonFunctions';
 
 interface TransactionDetailProps {
   transactionId: number | null;
@@ -140,7 +141,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
             </div>
             <div>
               <div className="text-sm text-gray-600">{t('detail.betCredit')}</div>
-              <div className="font-medium">{detailData.betCredit.toFixed(2)}</div>
+              <div className="font-medium">{displayAmount(detailData.betCredit)}</div>
             </div>
           </div>
         </div>
@@ -208,7 +209,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
       title={
         <div className="flex items-center gap-2">
           <span>
-            {t('detail.title')} ({detailData?.transferRefNo ?? t('detail.loading')})
+            {t('detail.title')} ({detailData?.transId.toString() ?? t('detail.loading')})
           </span>
           {detailData && (
             <span className={`status-badge ${detailData.status.toLowerCase()}`}>

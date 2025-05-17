@@ -41,7 +41,7 @@ public class TransactionService(IDynamicRepository dynamicRepository)
 
     public async Task<TransactionModel> GetTransactionByIdAsync(int transactionId)
     {
-        return await Task.FromResult(GetMockTransactions().FirstOrDefault(t => t.TransactionId == transactionId));
+        return await Task.FromResult(GetMockTransactions().FirstOrDefault(t => t.TransId == transactionId));
     }
 
     public async Task<ResultModel> UpdateTransactionStatus(UpdateTransactionStatusRemarkCommand command)
@@ -77,7 +77,6 @@ public class TransactionService(IDynamicRepository dynamicRepository)
             var transactionType = isDeposit ? TransactionType.AutoDeposit : TransactionType.AutoWithdrawal;
             var status = statuses[random.Next(statuses.Length)];
             var amount = amounts[random.Next(amounts.Length)];
-            var betCredit = betCredits[random.Next(betCredits.Length)];
             var currency = currencies[random.Next(currencies.Length)];
             var from = fromAccounts[random.Next(fromAccounts.Length)];
             var to = toAccounts[random.Next(toAccounts.Length)];
@@ -86,21 +85,19 @@ public class TransactionService(IDynamicRepository dynamicRepository)
             var username = $"999bb20a{i:D5}";
             var referenceNumber = $"QW{random.Next(100000, 999999)}{random.Next(100000, 999999)}";
             var createdDate = baseTime.AddMinutes(random.Next(43200)); // Random time within last 30 days
-            var lastUpdatedTime = createdDate.AddMinutes(random.Next(1, 60)); // Random time after created date
 
             transactions.Add(new TransactionModel
             {
-                TransactionId = i,
+                TransId = i,
                 Username = username,
                 FirstName = firstName,
                 LastName = lastName,
                 Amount = amount,
-                Currency = currency,
+                currency = currency,
                 PaymentFrom = from,
                 PaymentTo = to,
                 Status = EnumHelper.GetDescription(status),
                 TransactionType = EnumHelper.GetDescription(transactionType),
-                TransferRefNo = referenceNumber,
                 CreatedTime = createdDate,
                 Remark = $"Transaction remarks for {referenceNumber}"
             });

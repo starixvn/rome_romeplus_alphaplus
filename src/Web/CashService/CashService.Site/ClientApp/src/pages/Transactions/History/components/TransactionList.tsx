@@ -93,7 +93,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
       const filtered = apiData.items.filter(
         (item) =>
           item.username.toLowerCase().includes(lowerCaseSearchText) ||
-          item.transferRefNo.toLowerCase().includes(lowerCaseSearchText)
+          item.transId.toString().toLowerCase().includes(lowerCaseSearchText)
       );
       setDisplayedItems(filtered);
     }

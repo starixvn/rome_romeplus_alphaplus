@@ -1,5 +1,5 @@
 export interface TransactionItem {
-  transactionId: number;
+  transId: number;
   username: string;
   firstName: string;
   lastName: string;
@@ -12,7 +12,6 @@ export interface TransactionItem {
   betCredit: number;
   transactionTypeId: number;
   transactionType: string;
-  transferRefNo: string;
   remark: string;
   createdTime: string;
   lastUpdatedDate: string;

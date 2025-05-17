@@ -3,7 +3,7 @@ import TransactionDetail from './TransactionDetail';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { NoRecordsIcon } from '../../../../components/Icons';
 import { useTranslation } from 'react-i18next';
-import { renderBankAccount } from '../../common.functions';
+import { displayAmount, renderBankAccount } from '../../../../common/commonFunctions';
 
 interface TableProps {
   items: TransactionItem[];
@@ -197,7 +197,7 @@ const Table: React.FC<TableProps> = ({
   );
 
   const buildRow = (item: TransactionItem, index: number) => (
-    <tr key={item.transactionId} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+    <tr key={item.transId} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
       <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
         {index + 1}
       </td>
@@ -210,7 +210,7 @@ const Table: React.FC<TableProps> = ({
       )}
       {shouldShowColumn(t('table.amount')) && (
         <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-right">
-          {item.amount.toFixed(2)}
+          {displayAmount(item.amount)}
         </td>
       )}
       {shouldShowColumn(t('table.currency')) && (
@@ -246,7 +246,7 @@ const Table: React.FC<TableProps> = ({
       )}
       {shouldShowColumn(t('table.referenceNo')) && (
         <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
-          {item.transferRefNo}
+          {item.transId}
         </td>
       )}
       {shouldShowColumn(t('table.dateAndTime')) && (
@@ -257,7 +257,7 @@ const Table: React.FC<TableProps> = ({
       )}
       <td className="px-4 py-0.5 text-sm text-gray-700 border border-gray-300 text-center">
         <button
-          onClick={() => handleViewTransaction(item.transactionId)}
+          onClick={() => handleViewTransaction(item.transId)}
           className="bg-blue-800 hover:bg-blue-900 text-white text-xs font-semibold py-1 px-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50 cursor-pointer"
         >
           {t('table.view')}
