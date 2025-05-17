@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { IconClose, } from '../../components/Icons';
 import { ResultMessageComponent } from '../../components/MessageComponents';
+import { ButtonComponent } from '../../components/ButtonComponents';
 
 
 interface SetDailyLimitPopupModalProps {
@@ -90,13 +91,9 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
               />              
             </div>
           </div>
-          <div className="flex justify-center">
-            <button type="button" className="w-[140px] h-[30px] rounded-[20px] text-[var(--button-text-cancel)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)] mx-[4px] bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] cursor-pointer " onClick={onClose}>
-              {t('global:cancel')}
-            </button>
-            <button type="submit" className="w-[140px] h-[30px] rounded-[20px] text-[var(--button-text)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)] mx-[4px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] hover:border-[var(--button-border-hover)] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]" disabled={isLoading}>
-              {isLoading ? t('global:loading') : t('global:save')}
-            </button>
+          <div className="flex justify-center gap-[8px]">
+            <ButtonComponent className='shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] w-[140px] ' type="cancel" style="rounded" text={t('global:cancel')} onClick={onClose} />             
+            <ButtonComponent className='shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] w-[140px] ' type="apply" style="rounded" text={isLoading ? t('global:loading') : t('global:save')}   disabled={isLoading}/>
           </div>
         </form>
       </div>

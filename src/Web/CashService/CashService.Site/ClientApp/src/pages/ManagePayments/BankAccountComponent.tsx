@@ -14,6 +14,7 @@ import { ResultMessageComponent } from '../../components/MessageComponents';
 
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import { ButtonComponent } from '../../components/ButtonComponents';
 
 interface BankAccountComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
@@ -276,19 +277,9 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                 </div>
                   <div className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px] ">{tManagePayments('manageBankAccountAndLimits')}</div>
                   <div className="text-[12px] leading-[14px]">{tManagePayments('addBankAccountAndLimit')}</div>
-                  <div className="my-[8px]">
-                    <button 
-                      className="w-[183px] h-[30px] rounded-[5px] text-[var(--button-text)] px-[16px] py-[4px] text-[12px] font-bold mr-[8px] border-[1px] border-[var(--button-border)] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] hover:border-[var(--button-border-hover)] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
-                      onClick={handleAddBankAccount}
-                    >
-                    +{tManagePayments('addBankAccount')}
-                    </button>
-                    <button 
-                      className="w-[183px] h-[30px] rounded-[5px] text-[var(--text-color-primary)] px-[16px] py-[4px] text-[12px] font-bold border-[1px] border-[var(--button-border)] mr-[8px] bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
-                      onClick={handleSetLimit}
-                    >
-                      {tManagePayments('setLimit')}
-                    </button>
+                  <div className="my-[8px] flex gap-[8px]">                    
+                    <ButtonComponent className='w-[183px]' type="apply" style="medium" text={`+${tManagePayments('addBankAccount')}`} onClick={handleAddBankAccount} />                    
+                    <ButtonComponent className='shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] w-[183px]' type="cancel" style="medium" text={tManagePayments('setLimit')} onClick={handleSetLimit} />
                   </div>
                 </div>
 

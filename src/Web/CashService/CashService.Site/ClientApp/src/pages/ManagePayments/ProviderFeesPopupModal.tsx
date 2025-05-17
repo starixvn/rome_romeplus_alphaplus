@@ -4,6 +4,7 @@ import { PaymentProvider, PaymentProviderFeeGroup } from '../../services/interfa
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { IconClose } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
+import { ButtonComponent } from '../../components/ButtonComponents';
 
 interface ProviderFeesPopupModalProps {
   provider: PaymentProvider;
@@ -98,10 +99,8 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
             </>
           )}
         </div>
-        <div className="flex justify-center">
-          <button type="button" className="w-[140px] capitalize font-bold h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)] mx-[4px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] hover:border-[var(--button-border-hover)] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]" onClick={onClose}>
-            {tGlobal('close')}
-          </button>
+        <div className="flex justify-center">           
+          <ButtonComponent className='w-[140px]' type="apply" style="rounded" text={tGlobal('close')} onClick={onClose} />
         </div>
       </div>
     </div>

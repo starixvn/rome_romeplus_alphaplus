@@ -17,6 +17,7 @@ import BackComponent from '../../components/BackComponent';
 import { ResultMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import CountryCodeComponent from '../../components/CountryCodeComponent';
 import { ensureNumericKeyPress, preventSpecialCharacter } from '../../utils/inputHandlers';
+import { ButtonComponent } from '../../components/ButtonComponents';
 
 interface AddBankAccountComponentProps {
   onClose: () => void;
@@ -436,22 +437,9 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   />
                 )}
               </div>
-              <div className="flex justify-end py-[8px] mt-[8px]">            
-                <button
-                  type="button"
-                  className="w-[140px] h-[30px] rounded-[20px] text-[var(--button-text-cancel)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)]  bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] cursor-pointer ml-[8px]"
-                  onClick={onClose}
-                  disabled={loading}
-                >
-                  {tGlobal('cancel')}
-                </button>
-                <button
-                  type="submit"
-                  className="w-[140px] h-[30px] rounded-[20px] text-[var(--button-text)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)] ml-[8px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] hover:border-[var(--button-background-hover)] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
-                  disabled={loading}
-                >
-                  {loading ? tGlobal('saving') : tGlobal('save')}
-                </button>
+              <div className="flex justify-start py-[8px] mt-[8px] gap-[8px]"> 
+                <ButtonComponent className='w-[140px]' type="cancel" style="rounded" text={tGlobal('cancel')} onClick={onClose} disabled={loading} />
+                <ButtonComponent className='w-[140px]' type="apply" style="rounded" disabled={loading} text={loading ? tGlobal('saving') : tGlobal('save')}/>
               </div>
             </form>
           )}

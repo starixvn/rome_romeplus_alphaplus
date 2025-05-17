@@ -8,6 +8,7 @@ import TitleComponent from '../../components/TitleComponent';
 import { IconPen } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
 import { ResultMessageComponent } from '../../components/MessageComponents';
+import { ButtonComponent } from '../../components/ButtonComponents';
 
 interface PaymentGatewayComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
@@ -125,13 +126,8 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
                 {tManagePayments('setDailyWithdrawalCountForYourMembers')}
               </div>
               <div className="mt-[8px] mb-[8px]">
-                <button
-                  type="button"
-                  className=" bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] cursor-pointer  text-[var(--text-color-primary)] border-[1px] border-[var(--button-border)] rounded-[5px] px-[16px] py-[4px] text-[12px] font-bold leading-[20.58px] tracking-[0.12px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] max-[768px]:text-[16px] max-[768px]:py-[6px]"
-                  onClick={() => handleSetLimitClick()} // Default values, should be updated with actual values
-                >
-                  {tManagePayments('setLimit')}
-                </button>
+            
+                <ButtonComponent className='shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]' type="cancel" style="medium" text={tManagePayments('setLimit')} onClick={() => handleSetLimitClick()} />
               </div>
               <span className="block w-[100%] h-[1px] bg-[#e0e0e0] my-[10px]"></span>
               <div className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] max-[768px]:text-[20px] max-[768px]:leading-[24px] ">
@@ -168,13 +164,8 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
                             </div>
                           </td>
                           <td>{provider.name}</td>
-                          <td>
-                            <button
-                              className="font-bold text-[12px] py-[4px] px-[16px] rounded-[4px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] text-[var(--button-text)] cursor-pointer max-[768px]:text-[16px] "
-                              onClick={() => handleFeeClick(provider)}
-                            >
-                              {tGlobal('view')}
-                            </button>
+                          <td>                           
+                            <ButtonComponent className='' type="apply" style="medium" text={tGlobal('view')} onClick={() => handleFeeClick(provider)} />
                           </td>
                           <td>
                           <span
