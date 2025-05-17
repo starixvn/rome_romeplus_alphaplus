@@ -87,7 +87,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
   return (
     <form id='add-promotion-form' onSubmit={handleSubmit}>
     <div className="bg-[#ffffff] p-[16px] rounded-[5px] ">
-      <h2 className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px] ">Current Promotion</h2>
+      <h2 className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] ">Current Promotion</h2>
       <p className="pb-[8px] text-[12px] font-semibold">
         Do you want to keep your promotion active? You can only run one promotion at a time.
       </p>
@@ -107,7 +107,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
       </div>
       <hr className='my-[16px] border-[#E0E0E0]' />   
       
-      <h3 className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px] flex">Promotion Settings <span className="" title="Promotion runs on a weekly basis."><IconInfo className='w-[20px] cursor-pointer h-[20px] ml-[4px] fill-[#163f78]' /></span></h3>
+      <h3 className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] flex">Promotion Settings <span className="" title="Promotion runs on a weekly basis."><IconInfo className='w-[20px] cursor-pointer h-[20px] ml-[4px] fill-[#163f78]' /></span></h3>
       <p className="text-[12px] text-[#333333] font-semibold">Promotion runs on a weekly basis.</p>
       <div className="flex no-wrap gap-[16px]">
         <div className="w-[100%] max-w-[250px]">

@@ -239,7 +239,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                 {error && (<ResultMessageComponent message={error} type='error' />)}
                 {success && (<ResultMessageComponent message={successMessage} type='success' />)}                
                 <div className="mb-3">
-                  <div className="pb-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px]">{tManagePayments('bankStatus')}</div>
+                  <div className="pb-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px]">{tManagePayments('bankStatus')}</div>
                   <p className="text-[12px] my-[8px]">{tManagePayments('bankNote1')}</p>
                   <div className="btn-group" role="group">
                     <button
@@ -259,7 +259,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   </div>
                 </div>
 
-                <div className="mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px]">{tManagePayments('accountInformation')}</div>
+                <div className="mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px]">{tManagePayments('accountInformation')}</div>
                 
                 
                 <div className='mb-[16px]'>
@@ -404,7 +404,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                 </div>
 
                 <div className="mb-3">
-                  <div className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px]">{tManagePayments('promptPay')}</div>
+                  <div className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px]">{tManagePayments('promptPay')}</div>
                   <p className="pb-[8px] text-[12px]">{tManagePayments('linkMobile')}</p>
                   <div className="btn-group" role="group">
                     <button

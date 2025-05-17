@@ -353,7 +353,7 @@ function PaymentProviderSettings() {
         </div>
         <div className='bg-[#ffffff] px-[16px] py-[10px] mb-[8px]'>
           <div className="settings-header">
-            <h2 className='pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px] '>{window.providerSettingsViewModel.Provider.Name}</h2>
+            <h2 className='pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] '>{window.providerSettingsViewModel.Provider.Name}</h2>
           </div>
           <div className="flex gap-[24px]">
             <div>      
@@ -402,7 +402,7 @@ function PaymentProviderSettings() {
         </div>
         <div className='bg-[#ffffff] px-[16px] py-[10px]'>
           <div className='flex flex-wrap mb-[8px]'>
-          <h2 className='w-[100%] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px] '>{window.providerSettingsViewModel.Provider.Name}</h2>
+          <h2 className='w-[100%] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] '>{window.providerSettingsViewModel.Provider.Name}</h2>
             <div className="w-[230px] pr-[14px]">
               <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('paymentMethod')}</label>
               <select 

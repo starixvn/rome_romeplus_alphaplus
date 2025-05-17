@@ -284,7 +284,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
               {success && <ResultMessageComponent message={successMessage} type="success" />}
 
               <div className="mb-[8px]">
-                <div className="pb-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px]">
+                <div className="pb-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px]">
                   {tManagePayments('bankStatus')}
                 </div>
                 <p className="pb-[8px] text-[12px]">{tManagePayments('bankNote1')}</p>
@@ -306,7 +306,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 </div>
               </div>
 
-              <div className="mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px]">
+              <div className="mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px]">
                 {tManagePayments('accountInformation')}
               </div>
               <div className="mb-[16px]">
@@ -327,7 +327,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 </div>
               </div>
 
-              <div className="pb-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px]">
+              <div className="pb-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px]">
                 {tManagePayments('transactionType')}
                 <span className="text-[#E25757]">*</span>
               </div>
@@ -514,7 +514,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
               </div>
 
               <div className="mb-[8px]">
-                <div className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px]">
+                <div className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px]">
                   {tManagePayments('promptPay')}
                 </div>
                 <div className="block text-[12px] font-semibold text-[#333333] mb-[8px]">
