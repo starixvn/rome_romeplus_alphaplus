@@ -23,10 +23,9 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
   const [creditAmount, setCreditAmount] = useState<CreditAmount>({ minAmt: 0, maxAmt: 0 });
   const [depositAmount, setDepositAmount] = useState('');
   const [remarks, setRemarks] = useState('');
-  const [imageBase64, setImageBase64] = useState<string | null>(null);
   const [image, setImage] = useState<File | null>(null);
 
-  console.log('imageBase64imageBase64imageBase64', imageBase64);
+  console.log('imageimageimage', image);
 
   useEffect(() => {
     const fetchMemberLoginName = async () => {
@@ -224,7 +223,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
 
           <div className="flex flex-col items-center pl-20">
             <UploadImage
-              setImageBase64={setImageBase64}
+              setImage={setImage}
             />
 
             <div className="flex justify-center space-x-4 mt-3 w-full">

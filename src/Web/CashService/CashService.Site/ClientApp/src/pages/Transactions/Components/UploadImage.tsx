@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
 interface UploadImageProps {
-  setImageBase64: (base64: string | null) => void;
+  setImage: (image: File | null) => void;
 }
 
-const MAX_FILE_SIZE = 1024 * 1024; // 1MB in bytes
 const ACCEPTED_FILE_TYPES = '.jpeg,.jpg,.png';
 
-const UploadImage: React.FC<UploadImageProps> = ({ setImageBase64 }) => {
+const UploadImage: React.FC<UploadImageProps> = ({ setImage }) => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
 
@@ -21,15 +20,9 @@ const UploadImage: React.FC<UploadImageProps> = ({ setImageBase64 }) => {
   }, []);
 
   const processFile = useCallback(async (file: File) => {
-    if (file.size > MAX_FILE_SIZE) {
-      alert('File size exceeds 1MB limit');
-      return;
-    }
-
-    const base64 = await convertToBase64(file);
-    setImageBase64(base64);
     setImageUrl(URL.createObjectURL(file));
-  }, [convertToBase64, setImageBase64]);
+    setImage(file);
+  }, [convertToBase64, setImage]);
 
   const handleImageUpload = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.[0]) {
@@ -48,7 +41,6 @@ const UploadImage: React.FC<UploadImageProps> = ({ setImageBase64 }) => {
   }, [processFile]);
 
   const handleDragEvents = useCallback((e: React.DragEvent<HTMLDivElement>, isDragging: boolean) => {
-    console.log('isDragging', isDragging);
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(isDragging);
@@ -59,13 +51,13 @@ const UploadImage: React.FC<UploadImageProps> = ({ setImageBase64 }) => {
       URL.revokeObjectURL(imageUrl);
     }
     setImageUrl(null);
-    setImageBase64(null);
+    setImage(null);
 
     const fileInput = document.getElementById('image-upload') as HTMLInputElement;
     if (fileInput) {
       fileInput.value = '';
     }
-  }, [imageUrl, setImageBase64]);
+  }, [imageUrl, setImage]);
 
   useEffect(() => {
     return () => {
