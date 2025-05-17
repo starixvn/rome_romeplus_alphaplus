@@ -83,7 +83,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
   };
 
   return (
-    <div className="p-[12px]">
+    <div className="py-[12px]">
       <TitleComponent title={tManagePayments('managePayments')} Tippy >
         <div>
           <div>

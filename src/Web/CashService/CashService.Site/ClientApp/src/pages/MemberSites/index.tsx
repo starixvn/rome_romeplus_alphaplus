@@ -111,7 +111,7 @@ const MemberSiteManagement: React.FC = () => {
       className=""
      
     >
-      <div className="p-[12px]">
+      <div className="py-[12px]">
         <div className='mb-[8px]'>
           <TitleComponent title={t('title')} Tippy={false} />
         </div>

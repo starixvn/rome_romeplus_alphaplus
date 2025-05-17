@@ -225,7 +225,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
 
  
   return (
-    <div className="p-[12px]" tabIndex={-1}>
+    <div tabIndex={-1}>
       <div className="modal-dialog">
         <div className="modal-content max-w-[1200px]">
           <BackComponent onClose={onClose} />                     

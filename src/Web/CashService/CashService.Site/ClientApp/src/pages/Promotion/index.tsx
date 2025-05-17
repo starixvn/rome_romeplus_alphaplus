@@ -65,7 +65,7 @@ const Promotion: React.FC = () => {
 
     return (
      
-            <div className="p-[12px] h-full flex flex-col promotion-page">
+            <div className="py-[12px] h-full flex flex-col promotion-page">
                 <div className="mb-[8px]">                      
                     <TitleComponent title='Manage Promotion' Tippy={false} />                 
                 </div>
