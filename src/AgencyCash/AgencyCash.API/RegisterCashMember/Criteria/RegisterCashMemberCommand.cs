@@ -6,6 +6,7 @@ public class RegisterCashMemberCommand : INonQueryCommand
 {
     public int AgentId { get; }
     public string UserName { get; }
+    public string UserName2 { get; }
     public string FirstName { get; }
     public string LastName { get; }
     public string PhoneNumber { get; }

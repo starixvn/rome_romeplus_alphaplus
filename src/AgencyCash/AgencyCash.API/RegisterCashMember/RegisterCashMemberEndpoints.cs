@@ -25,6 +25,6 @@ public static class RegisterCashMemberEndpoints
             request.UserName,
             request.FirstName,
             request.LastName,
-            request.PhoneNumber)));
+            request.Mobile)));
     }
 }
