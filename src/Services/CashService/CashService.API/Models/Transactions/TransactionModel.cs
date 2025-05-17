@@ -21,8 +21,6 @@ public class TransactionModel
 
     public int StatusId { get; set; }
 
-    public string Status { get; set; }
-
     public decimal BetCredit { get; set; }
 
     public int TransactionTypeId { get; set; }

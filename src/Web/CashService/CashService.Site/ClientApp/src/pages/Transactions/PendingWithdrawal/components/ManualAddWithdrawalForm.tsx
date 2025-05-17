@@ -10,6 +10,7 @@ import {
 } from '../../../../services/pendingWithdrawalAPI';
 import { AddWithdrawalModel } from '../../../../services/interfaces/AddWithdrawalModel';
 import { Alert } from '../../../../components/ui/Alert';
+import UploadImage from '../../Components/UploadImage';
 
 interface ManualAddWithdrawalFormProps {
   onClose: () => void;
@@ -23,7 +24,6 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
   const [withdrawalAmount, setWithdrawalAmount] = useState('');
   const [remarks, setRemarks] = useState('');
   const [image, setImage] = useState<File | null>(null);
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [minAmount, setMinAmount] = useState(0);
   const [maxAmount, setMaxAmount] = useState(0);
   const [providerId, setProviderId] = useState(0);
@@ -133,16 +133,6 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
     setProviderId(providerId);
   };
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const selectedFile = e.target.files[0];
-
-      setImage(selectedFile);
-      const objectUrl = URL.createObjectURL(selectedFile);
-      setImageUrl(objectUrl);
-    }
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       const memberNames = await transactionAPI.getMemberLoginName();
@@ -168,27 +158,6 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
 
     fetchData();
   }, []);
-
-  useEffect(() => {
-    return () => {
-      if (imageUrl) {
-        URL.revokeObjectURL(imageUrl);
-      }
-    };
-  }, [imageUrl]);
-
-  const resetImageUpload = () => {
-    if (imageUrl) {
-      URL.revokeObjectURL(imageUrl);
-    }
-    setImage(null);
-    setImageUrl(null);
-
-    const fileInput = document.getElementById('image-upload') as HTMLInputElement;
-    if (fileInput) {
-      fileInput.value = '';
-    }
-  };
 
   const renderMinMaxAmount = () => {
     if (maxAmount === 0) {
@@ -346,69 +315,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
           </div>
 
           <div className="flex flex-col items-center pl-20">
-            <div className="w-[350px] h-[450px] border-[2px] border-dashed border-[#163f78] rounded-[5px] flex flex-col items-center justify-center mb-6 relative">
-              {imageUrl ? (
-                <div className="absolute inset-0 flex flex-col items-center">
-                  <img src={imageUrl} alt="Preview" className="w-full h-full object-contain" />
-                  <button
-                    type="button"
-                    onClick={resetImageUpload}
-                    className="absolute top-2 right-2 bg-white rounded-full p-1 shadow hover:bg-gray-200 z-20 cursor-pointer"
-                    title={t('manualWithdrawalForm.removeImage')}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5 text-gray-600"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              ) : (
-                <div className="flex flex-col items-center justify-center text-center p-6">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-8 w-8 text-[#163f78] mb-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                    />
-                  </svg>
-                  <p className="text-sm font-medium mb-1">
-                    <span className="text-[#163f78] cursor-pointer underline">Click to upload</span>{' '}
-                    <span className="text-[#333]">or drag</span>
-                  </p>
-                  <span className="text-sm font-medium text-[#333] mb-2">and drop</span>
-                  <span className="text-xs font-medium text-[#333]">Upload jpeg, jpg, png</span>
-                  <span className="text-xs font-medium text-[#333]">(Max 1 MB)</span>
-                </div>
-              )}
-              <input
-                id="image-upload"
-                type="file"
-                accept=".jpeg,.jpg,.png"
-                onChange={handleImageUpload}
-                className="hidden"
-              />
-              <label
-                htmlFor="image-upload"
-                className={`absolute inset-0 w-full h-full ${imageUrl ? 'opacity-0 z-0' : 'opacity-0 cursor-pointer z-10'}`}
-              />
-            </div>
+            <UploadImage setImage={setImage} />
 
             <div className="flex justify-center space-x-4 mt-3 w-full">
               <button

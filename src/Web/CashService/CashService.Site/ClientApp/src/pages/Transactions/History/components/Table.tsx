@@ -3,7 +3,11 @@ import TransactionDetail from './TransactionDetail';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { NoRecordsIcon } from '../../../../components/Icons';
 import { useTranslation } from 'react-i18next';
-import { displayAmount, renderBankAccount } from '../../../../common/commonFunctions';
+import {
+  displayAmount,
+  mappingStatus,
+  renderBankAccount,
+} from '../../../../common/commonFunctions';
 
 interface TableProps {
   items: TransactionItem[];
@@ -60,29 +64,8 @@ const Table: React.FC<TableProps> = ({
     onRefreshNeeded?.();
   };
 
-  const getStatusById = (id: number) => {
-    switch (id) {
-      case 0:
-        return 'Waiting';
-      case 1:
-        return 'Cancelled';
-      case 2:
-        return 'Pending';
-      case 3:
-        return 'EXPIRED';
-      case 4:
-        return 'Completed';
-      case 5:
-        return 'Rejected';
-      case 6:
-        return 'Provider Rejected';
-      default:
-        return 'All';
-    }
-  };
-
   const getStatusStyle = (statusId: number) => {
-    const status = getStatusById(statusId);
+    const status = mappingStatus(statusId);
 
     switch (status.toUpperCase()) {
       case 'COMPLETED':
@@ -237,7 +220,7 @@ const Table: React.FC<TableProps> = ({
           <span
             className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusStyle(item.statusId)}`}
           >
-            {getStatusById(item.statusId).toUpperCase()}
+            {mappingStatus(item.statusId).toUpperCase()}
           </span>
         </td>
       )}

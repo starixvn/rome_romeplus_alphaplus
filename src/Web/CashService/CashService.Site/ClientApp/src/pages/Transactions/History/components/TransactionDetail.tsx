@@ -5,7 +5,7 @@ import { Alert } from '../../../../components/ui/Alert';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import { useTranslation } from 'react-i18next';
-import { displayAmount } from '../../../../common/commonFunctions';
+import { displayAmount, mappingStatus } from '../../../../common/commonFunctions';
 
 interface TransactionDetailProps {
   transactionId: number | null;
@@ -214,8 +214,8 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
             {t('detail.title')} ({detailData?.transId.toString() ?? t('detail.loading')})
           </span>
           {detailData && (
-            <span className={`status-badge ${detailData.status.toLowerCase()}`}>
-              {detailData.status}
+            <span className={`status-badge ${mappingStatus(detailData.statusId).toLowerCase()}`}>
+              {mappingStatus(detailData.statusId)}
             </span>
           )}
         </div>

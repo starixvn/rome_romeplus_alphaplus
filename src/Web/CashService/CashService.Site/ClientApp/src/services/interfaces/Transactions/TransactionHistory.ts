@@ -9,7 +9,6 @@ export interface TransactionItem {
   paymentFrom: string;
   paymentTo: string;
   statusId: number;
-  status: 'COMPLETED' | 'REJECTED' | 'PROVIDER_REJECTED' | 'EXPIRED';
   betCredit: number;
   transactionTypeId: number;
   transactionType: string;

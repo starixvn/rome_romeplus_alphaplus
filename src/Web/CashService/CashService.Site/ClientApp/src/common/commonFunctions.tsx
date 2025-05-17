@@ -26,3 +26,24 @@ export const renderBankAccount = (bankAccount: string) => {
     </div>
   );
 };
+
+export const mappingStatus = (status: number) => {
+  switch (status) {
+    case 0:
+      return 'Waiting';
+    case 1:
+      return 'Cancelled';
+    case 2:
+      return 'Pending';
+    case 3:
+      return 'EXPIRED';
+    case 4:
+      return 'Completed';
+    case 5:
+      return 'Rejected';
+    case 6:
+      return 'Provider Rejected';
+    default:
+      return '';
+  }
+};
