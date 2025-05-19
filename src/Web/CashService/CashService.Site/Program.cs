@@ -7,6 +7,7 @@ using AlphaPlus.Core.Middlewares;
 using AlphaPlus.RequestInfo;
 using AlphaPlus.SecurityCode.Extensions;
 using AlphaPlus.SecurityCode.Filters;
+using Fanex.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -31,6 +32,7 @@ AlphaPlus.Core.Configurations.ConfigurationManager.Init(builder.Configuration);
 
 // Add services to the container.
 builder.Services
+    .AddFanexData(configuration)
     .AddRequestInfo()
     .AddFanexLogging(configuration)
     .AddAlphaPlusCore(configuration)
