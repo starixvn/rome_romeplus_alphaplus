@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
 using Serilog;
+using Microsoft.AspNetCore.SignalR;
+using AlphaPlus.CashService.Site.Features.ChatHub;
 
 const string pathBase = "/cash-service";
 const string sharedSettings = "sharedSettings.json";
@@ -67,6 +69,7 @@ builder.Services.AddHttpClient<HttpClientHelper>();
 
 
 builder.Services.AddHealthChecks();
+builder.Services.AddSignalR();
 
 builder.Services
     .Configure<ForwardedHeadersOptions>(options =>
@@ -114,6 +117,9 @@ app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute());
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Payments}/{action=Index}/{id?}");
+
+// Add SignalR hub endpoint
+app.MapHub<ChatHub>("/chathub");
 
 try
 {
