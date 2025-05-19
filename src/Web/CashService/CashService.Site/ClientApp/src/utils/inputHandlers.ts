@@ -12,7 +12,7 @@ export const handleIntegerInput = (value: string, setter: (value: string) => voi
   }
 };
 
-export const ensureNumericKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+export const ensureNumericKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
   if (!/[0-9]/.test(e.key) && 
       e.key !== 'Delete' && 
       e.key !== 'Backspace' &&

@@ -16,7 +16,7 @@ import Loading from '../../components/LoadingComponent';
 import BackComponent from '../../components/BackComponent';
 import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import MobileComponent from '../../components/MobileComponent';
-import { ensureNumericKeyPress, ensureNameInput } from '../../utils/inputHandlers';
+import { ensureNumericKeyDown, ensureNameInput } from '../../utils/inputHandlers';
 import { ButtonComponent } from '../../components/ButtonComponents';
 import TitleComponent from '../../components/TitleComponent';
 
@@ -377,7 +377,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                       className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountNumber ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
                       value={accountNumber}
                       onChange={(e) => setAccountNumber(e.target.value)}
-                      onKeyDown={ensureNumericKeyPress}
+                      onKeyDown={ensureNumericKeyDown}
                       maxLength={50}
                     />
                     <ValidateMessageComponent message={fieldErrors.accountNumber} />
