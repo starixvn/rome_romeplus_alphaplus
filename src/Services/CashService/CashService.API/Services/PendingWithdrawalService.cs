@@ -139,7 +139,7 @@ public class PendingWithdrawalService(
             PaymentFrom = param.PaymentFrom,
             PaymentTo = param.PaymentTo,
             Amount = param.Amount,
-            Payslip = param.Payslip,
+            PaySlip = param.Payslip,
             Ip = param.Ip,
             Remark = param.Remark,
             ProviderId = param.ProviderId,

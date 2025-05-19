@@ -85,13 +85,13 @@ public class TransactionsController(
         request.Ip = GetClientIp();
         request.SiteDbGroupId = siteDbGroupId;
         request.CustDbGroupId = custDbGroupId;
-        request.Payslip = request.File != null ? await FileHelper.CompressAndConvertToBase64Async(request.File) : null;
+        request.Payslip = request.Image != null ? await FileHelper.CompressAndConvertToBase64Async(request.Image) : null;
         result = await httpClientHelper.PostAsync<AddWithdrawalParams, ResultModel>("/api/deposit/create", request);
         return Json(result);
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddManualWithdrawal([FromBody] AddWithdrawalParams request)
+    public async Task<IActionResult> AddManualWithdrawal([FromForm] AddWithdrawalParams request)
     {
         var result = VerifyInputParam(request);
         if (result.Code != 0)
@@ -102,7 +102,7 @@ public class TransactionsController(
         request.Ip = GetClientIp();
         request.SiteDbGroupId = siteDbGroupId;
         request.CustDbGroupId = custDbGroupId;
-        request.Payslip = request.File != null ? await FileHelper.CompressAndConvertToBase64Async(request.File) : null;
+        request.Payslip = request.Image != null ? await FileHelper.CompressAndConvertToBase64Async(request.Image) : null;
         result = await httpClientHelper.PostAsync<AddWithdrawalParams, ResultModel>("/api/withdrawal/create", request);
         return Json(result);
     }
@@ -133,7 +133,7 @@ public class TransactionsController(
             result.Message = "Please select Member Bank account";
         }
 
-        if (!IsValidFile(request.File))
+        if (!IsValidFile(request.Image))
         {
             result.Code = 1;
             result.Message = "File upload must be less than 1MB";

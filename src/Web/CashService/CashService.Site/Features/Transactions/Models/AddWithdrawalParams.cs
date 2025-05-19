@@ -16,5 +16,5 @@ public class AddWithdrawalParams
     public string Ip { get; set; }
     public int SiteDbGroupId { get; set; }
     public int CustDbGroupId { get; set; }
-    public IFormFile File { get; set; }
+    public IFormFile Image { get; set; }
 }

@@ -55,7 +55,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
 
       const addWithdrawalResponse = await manualAddWithdrawal(manualWithdrawalData);
       if (addWithdrawalResponse.isSuccessful) {
-        setAlert({ type: 'success', message: t('addWithdrawalSuccess') });
+        setAlert({ type: 'success', message: t('manualWithdrawalForm.addWithdrawalSuccess') });
         if (onClose) {
           setTimeout(() => {
             onClose();

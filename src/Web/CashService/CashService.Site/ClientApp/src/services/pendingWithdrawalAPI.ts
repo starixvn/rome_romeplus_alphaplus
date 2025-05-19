@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { WithdrawalAccountInfo } from './interfaces/WithdrawalAccountInfo';
 import { CreditAmount } from './interfaces/Transactions/CreditAmount';
-import { CashLimitAmt } from './interfaces/Transactions/CashLimitAmt';
 import { ResultModel } from './interfaces/ResultModel';
 import { AddWithdrawalModel } from './interfaces/AddWithdrawalModel';
 
@@ -33,17 +32,27 @@ export const getCashBalance = async (): Promise<number> => {
   }
 };
 
-export const getSettingLimitAmtWithdrawal = async (
-  cashLimitAmt: CashLimitAmt
-): Promise<CreditAmount> => {
+export const getSettingLimitAmtWithdrawal = async ({
+  custId,
+  providerId,
+  paymentMethodId,
+}: {
+  custId: number;
+  providerId: number;
+  paymentMethodId: number;
+}): Promise<CreditAmount> => {
   try {
     const response = await api.get<CreditAmount>('GetSettingLimitAmtWithdrawal', {
-      params: cashLimitAmt,
+      params: {
+        custId,
+        providerId,
+        paymentMethodId,
+      },
     });
     return response.data;
   } catch (error) {
     console.error('Error fetching credit amount:', error);
-    return { minAmt: 0, maxAmt: 0 };
+    return { minAmt: 0, maxAmt: null };
   }
 };
 
@@ -51,7 +60,23 @@ export const manualAddWithdrawal = async (
   manualAddWithdrawal: AddWithdrawalModel
 ): Promise<ResultModel> => {
   try {
-    const response = await api.post<ResultModel>('AddManualWithdrawal', manualAddWithdrawal);
+    const formData = new FormData();
+    formData.append('custId', manualAddWithdrawal.custId.toString());
+    formData.append('paymentFrom', manualAddWithdrawal.paymentFrom);
+    formData.append('paymentTo', manualAddWithdrawal.paymentTo);
+    formData.append('amount', manualAddWithdrawal.amount.toString());
+    formData.append('remark', manualAddWithdrawal.remark);
+    formData.append('providerId', manualAddWithdrawal.providerId.toString());
+
+    if (manualAddWithdrawal.image) {
+      formData.append('image', manualAddWithdrawal.image);
+    }
+
+    const response = await api.post<ResultModel>('AddManualWithdrawal', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     return response.data;
   } catch (error) {
     console.error('Error fetching credit amount:', error);
