@@ -17,7 +17,7 @@ namespace AlphaPlus.CashService.API.Features.Payments.Models
 
         public string ToJsonString()
         {
-            return $"{{\"MethodID\": {Method}, \"Status\": {Status}, \"MinAmount\": {MinAmount}, \"MaxAmount\": {MaxAmount}, \"Enabled\": {(IsEnabled ? 1 : 0)}}}";
+            return $"{{\"MethodID\": {Method}, \"TransactionType\": {TransactionType}, \"MinAmount\": {MinAmount}, \"MaxAmount\": {MaxAmount}, \"Enabled\": {(IsEnabled ? 1 : 0)}}}";
         }
     }
 } 
