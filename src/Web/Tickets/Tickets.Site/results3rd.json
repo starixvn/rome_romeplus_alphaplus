@@ -5,6 +5,12 @@
       "VendorId": 129,
       "Url": "http://saba-wallet-group-004.3rd-party.t2p.nebula.prod:22080/api/PlayTechLiveInternal/GetBetHistoryUrl",
       "Debug": 0
+    },
+    {
+      "Name": "RichGaming",
+      "VendorId": 123,
+      "Url": "http://saba-wallet-group-001.3rd-party.t2p.nebula.prod:22080/api/RichGamingInternal/GetBetHistoryUrl",
+      "Debug": 0
     }
   ]
 }
