@@ -108,7 +108,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
     }
 
     if (hasError) {
-      setError(errorMessages.join('< br />'));
+      setError(errorMessages.join('<br />'));
       setLoading(false);
       return;
     }

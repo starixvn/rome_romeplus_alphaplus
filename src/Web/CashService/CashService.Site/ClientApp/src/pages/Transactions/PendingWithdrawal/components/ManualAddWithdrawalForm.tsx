@@ -10,7 +10,7 @@ import {
 import { AddWithdrawalModel } from '../../../../services/interfaces/AddWithdrawalModel';
 import { Alert } from '../../../../components/ui/Alert';
 import UploadImage from '../../Components/UploadImage';
-import DropdownComponent, { DropdownOption } from '../../../../components/DropdownComponent';
+import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 
 interface ManualAddWithdrawalFormProps {
   onClose?: () => void;

@@ -8,7 +8,7 @@ import AddBankAccountComponent from './AddBankAccountComponent';
 import UpdateBankAccountComponent from './UpdateBankAccountComponent';
 import TitleComponent from '../../components/TitleComponent';
 import { IconDelete,  IconPen, IconSearch, IconSync } from '../../components/Icons';
-import CustomDropdown from '../../components/DropdownComponent';
+import CustomDropdown from '../../components/CustomDropdownComponent';
 import Loading from '../../components/LoadingComponent';
 import { ResultMessageComponent } from '../../components/MessageComponents';
 
@@ -82,6 +82,18 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
       try {
         setLoading(true);
         const fetchedBanks = await paymentProviderService.getBanksByCust();
+        fetchedBanks.unshift({ 
+          id: 0, 
+          name: tGlobal('all'),
+          code: '',
+          transactionTypes: '',
+          depositMatchingMode: {
+            sourceType: '',
+            mappingTypes: [],
+            sourceTypeName: ''
+          }
+        });
+
         setBanks(fetchedBanks);
         setError(null);
 

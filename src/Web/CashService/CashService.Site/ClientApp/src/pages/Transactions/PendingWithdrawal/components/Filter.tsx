@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import { TransactionTypes } from '../../../../utils/constants';
-import DropdownComponent, { DropdownOption } from '../../../../components/DropdownComponent';
+import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 
 interface FilterProps {
   recentWithdrawals: string;

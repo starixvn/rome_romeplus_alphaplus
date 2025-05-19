@@ -25,21 +25,17 @@ const CustomDropdownComponent = ({
   showOptionAll = false,
   searchable = false,
 }: CustomDropdownComponentProps) => {
+  console.log('initialValue', initialValue);
+
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState<DropdownOption | ''>(() => {
-    if (initialValue) {
-      const option = options.find((opt) => opt.value === initialValue);
-      return option || '';
-    }
-    return '';
-  });
+  const [selected, setSelected] = useState<DropdownOption | ''>('');
   const [searchTerm, setSearchTerm] = useState('');
   const dropdownRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (initialValue) {
-      const option = options.find((opt) => opt.value === initialValue);
+      const option = options.find((opt) => opt.value == initialValue);
       setSelected(option || '');
     }
   }, [initialValue, options]);

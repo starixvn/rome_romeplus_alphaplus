@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { transactionAPI } from '../../../../../services/transactionsHistoryAPI';
-import CustomDropdown from '../../../../../components/DropdownComponent';
+import CustomDropdown from '../../../../../components/CustomDropdownComponent';
 import { BankInfo } from '../../../../../services/interfaces/Transactions/BankInfo';
 
 interface AccountFilterProps {
