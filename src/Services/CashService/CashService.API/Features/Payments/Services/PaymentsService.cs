@@ -36,8 +36,7 @@ public interface IPaymentsService
 public class PaymentsService(
     IDynamicRepository repository,
     ICacheRefService cacheRefService,
-    ICommonService commonService,
-    IProviderAPIService providerAPIService
+    ICommonService commonService
 ) : IPaymentsService
 {
     public async Task<IEnumerable<ProviderModel>> GetProviders(int custId)
@@ -47,7 +46,6 @@ public class PaymentsService(
         foreach (var provider in providers)
         {
             provider.Name = cacheRefService.GetProviderName(provider.Id, provider.Name);
-            // provider.Status = await providerAPIService.GetStatus(provider.Id);
         }
         
         return providers;
@@ -226,7 +224,6 @@ public class PaymentsService(
     public async Task<TransactionLimitModel> GetTransactionLimit(int custId)
     {
         var (limits, count) = await repository.FetchMultipleAsync<DailyLimitDTO, Int16>(new GetDailyLimitCriteria(custId, ModeViewConstants.BankAccount));
-
         var depositLimit = limits.FirstOrDefault(l => l.IsDeposit) ?? new DailyLimitDTO();
         var withdrawalLimit = limits.FirstOrDefault(l => !l.IsDeposit) ?? new DailyLimitDTO();
 
@@ -236,7 +233,7 @@ public class PaymentsService(
             MaxPerDepositTransaction = depositLimit.MaxPer,
             MinPerWithdrawalTransaction = withdrawalLimit.MinPer,
             MaxPerWithdrawalTransaction = withdrawalLimit.MaxPer,
-        } ;
+        };
     }
     
     public async Task<ResultModel> SetTransactionLimit(SetTransactionLimitRequest request)

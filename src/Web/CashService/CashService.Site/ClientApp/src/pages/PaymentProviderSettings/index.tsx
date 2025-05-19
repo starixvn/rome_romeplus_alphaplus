@@ -316,6 +316,10 @@ function PaymentProviderSettings() {
     return paymentMethod.status !== 3 && paymentMethod.status !== 4;
   }
 
+  const hasEditableSettings = () => {
+    return providerSettings.some(setting => isEditable(setting));
+  };
+
   const handleBackNavigation = () => {
     const previousUrl = localStorage.getItem('cashsite_previousUrl');
     if (previousUrl) {
@@ -545,7 +549,7 @@ function PaymentProviderSettings() {
           </div>
           <div className="flex justify-start gap-[8px] py-[8px] mt-[8px]">
             <ButtonComponent className='w-[140px]' type="cancel" style="rounded" text={tGlobal('reset')} onClick={handleReset}   />
-            <ButtonComponent className="w-[140px]" type="apply" style="rounded" text={updating ? tGlobal('updating') : tGlobal('update')} onClick={handleUpdate} disabled={updating}  />
+            <ButtonComponent className="w-[140px]" type="apply" style="rounded" text={updating ? tGlobal('updating') : tGlobal('update')} onClick={handleUpdate} disabled={updating || !hasEditableSettings()}  />
           </div>          
          </div>
         </>

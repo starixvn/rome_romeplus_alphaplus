@@ -37,6 +37,12 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
     setError('');
     setSuccessMessage('');
 
+    if(dailyLimit < 0 || dailyLimit > 32767) {
+      setError(t('managePayments:dailyWithdrawalCountOutOfRange'));
+      setIsLoading(false);
+      return;
+    }
+
     try {
       const response = await paymentProviderService.setDailyWithdrawalCount(dailyLimit);
       if (response.isSuccessful) {

@@ -21,11 +21,12 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
         public override string GetSettingKey() => "Age_CashService_AgentBankAccountLimit_Upd";
 
         public override bool IsValid()
-            => base.IsValid() &&
-                DailyWithdrawalCount >= 0 && 
-                MinPerDeposit >= 0 &&
-                MaxPerDeposit >= 0 &&
-                MinPerWithdrawal >= 0 &&
-                MaxPerWithdrawal >= 0;
+            => base.IsValid()
+                && DailyWithdrawalCount >= 0 
+                && DailyWithdrawalCount <= 32767
+                && MinPerDeposit >= 0 
+                && MaxPerDeposit >= 0
+                && MinPerWithdrawal >= 0 
+                && MaxPerWithdrawal >= 0;
     }
 } 

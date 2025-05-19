@@ -140,5 +140,6 @@
   "minAmountLessThanMinTrans": "最小金额不能小于最小交易金额",
   "maxAmountGreaterThanMaxTrans": "最大金额不能大于最大交易金额",
   "minDepositMustBeLessThanOrEqualMaxDeposit": "最小入金不能小于或等于最大入金",
-  "minWithdrawalMustBeLessThanOrEqualMaxWithdrawal": "最小出金不能小于或等于最大出金"
+  "minWithdrawalMustBeLessThanOrEqualMaxWithdrawal": "最小出金不能小于或等于最大出金",
+  "dailyWithdrawalCountOutOfRange": "每日提款次数必须在0到32767之间"
 }

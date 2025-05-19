@@ -140,5 +140,6 @@
   "minAmountLessThanMinTrans": "Số tiền tối thiểu không thể nhỏ hơn số tiền tối thiểu của giao dịch",
   "maxAmountGreaterThanMaxTrans": "Số tiền tối đa không thể lớn hơn số tiền tối đa của giao dịch",
   "minDepositMustBeLessThanOrEqualMaxDeposit": "Số tiền tối thiểu không thể nhỏ hơn số tiền tối đa của giao dịch",
-  "minWithdrawalMustBeLessThanOrEqualMaxWithdrawal": "Số tiền tối thiểu không thể nhỏ hơn số tiền tối đa của giao dịch"
+  "minWithdrawalMustBeLessThanOrEqualMaxWithdrawal": "Số tiền tối thiểu không thể nhỏ hơn số tiền tối đa của giao dịch",
+  "dailyWithdrawalCountOutOfRange": "Số lần rút tiền hàng ngày phải nằm trong khoảng từ 0 đến 32767"
 }

@@ -75,9 +75,9 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
     const minWithdrawalNum = parseFloat(minWithdrawal) || 0;
     const maxWithdrawalNum = parseFloat(maxWithdrawal) || 0;
     var hasError = false;
-    var errorMessage = '';
+    var errorMessages = [];
     if (minDepositNum > maxDepositNum) {
-      errorMessage = tManagePayments('minDepositMustBeLessThanOrEqualMaxDeposit');
+      errorMessages.push(tManagePayments('minDepositMustBeLessThanOrEqualMaxDeposit'));
       setFieldErrors(prev => ({
         ...prev,
         minDeposit: true,
@@ -88,7 +88,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
     }
 
     if (minWithdrawalNum > maxWithdrawalNum) {
-      errorMessage += "<br />" + tManagePayments('minWithdrawalMustBeLessThanOrEqualMaxWithdrawal');
+      errorMessages.push(tManagePayments('minWithdrawalMustBeLessThanOrEqualMaxWithdrawal'));
       setFieldErrors(prev => ({
         ...prev,
         minWithdrawal: true,
@@ -98,8 +98,18 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
       hasError = true;
     }
 
+    if(parseInt(dailyWithdrawalCount) < 0 || parseInt(dailyWithdrawalCount) > 32767) {
+      errorMessages.push(tManagePayments('dailyWithdrawalCountOutOfRange'));
+      setFieldErrors(prev => ({
+        ...prev,
+        dailyWithdrawalCount: true
+      }));
+      hasError = true;
+    }
+
     if (hasError) {
-      setError(errorMessage);
+      setError(errorMessages.join('< br />'));
+      setLoading(false);
       return;
     }
 

@@ -140,5 +140,6 @@
   "minAmountLessThanMinTrans": "จำนวนขั้นต่ำไม่สามารถมีค่าน้อยกว่าจำนวนขั้นต่ำของการทำธุรกรรม",
   "maxAmountGreaterThanMaxTrans": "จำนวนสูงสุดไม่สามารถมีค่ามากกว่าจำนวนสูงสุดของการทำธุรกรรม",
   "minDepositMustBeLessThanOrEqualMaxDeposit": "จำนวนขั้นต่ำฝากไม่สามารถมีค่าน้อยกว่าหรือเท่ากับจำนวนสูงสุดฝาก",
-  "minWithdrawalMustBeLessThanOrEqualMaxWithdrawal": "จำนวนขั้นต่ำถอนไม่สามารถมีค่าน้อยกว่าหรือเท่ากับจำนวนสูงสุดถอน"
+  "minWithdrawalMustBeLessThanOrEqualMaxWithdrawal": "จำนวนขั้นต่ำถอนไม่สามารถมีค่าน้อยกว่าหรือเท่ากับจำนวนสูงสุดถอน",
+  "dailyWithdrawalCountOutOfRange": "จำนวนการถอนรายวันต้องอยู่ระหว่าง 0 และ 32767"
 }

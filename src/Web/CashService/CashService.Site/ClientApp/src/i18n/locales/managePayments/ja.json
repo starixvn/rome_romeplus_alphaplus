@@ -140,5 +140,6 @@
   "minAmountLessThanMinTrans": "最小金額は最小取引金額より小さくなります",
   "maxAmountGreaterThanMaxTrans": "最大金額は最大取引金額より大きくなります",
   "minDepositMustBeLessThanOrEqualMaxDeposit": "最小入金は最大入金以下でなければなりません",
-  "minWithdrawalMustBeLessThanOrEqualMaxWithdrawal": "最小出金は最大出金以下でなければなりません"
+  "minWithdrawalMustBeLessThanOrEqualMaxWithdrawal": "最小出金は最大出金以下でなければなりません",
+  "dailyWithdrawalCountOutOfRange": "1日の出金回数は0から32767の間でなければなりません"
 }
