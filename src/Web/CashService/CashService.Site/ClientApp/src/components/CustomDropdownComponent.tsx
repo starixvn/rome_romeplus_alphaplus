@@ -25,8 +25,6 @@ const CustomDropdownComponent = ({
   showOptionAll = false,
   searchable = false,
 }: CustomDropdownComponentProps) => {
-  console.log('initialValue', initialValue);
-
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<DropdownOption | ''>('');
   const [searchTerm, setSearchTerm] = useState('');

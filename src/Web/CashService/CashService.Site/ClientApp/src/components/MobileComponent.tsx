@@ -2,7 +2,7 @@ import React from 'react';
 import { ensureNumericKeyPress } from '../utils/inputHandlers';
 import { ValidateMessageComponent } from './MessageComponents';
 
-interface CountryCodeComponentProps {
+interface MobileComponentProps {
   label: string;
   countryCode: string;
   mobile: string;
@@ -16,10 +16,11 @@ interface CountryCodeComponentProps {
   placeholder: string;
 }
 
-const MobileInputComponent: React.FC<CountryCodeComponentProps> = ({
+const MobileComponent: React.FC<MobileComponentProps> = ({
   label,
   mobile,
   countryCodes,
+  countryCode,
   fieldErrors,
   onCountryCodeChange,
   onMobileChange,
@@ -32,10 +33,9 @@ const MobileInputComponent: React.FC<CountryCodeComponentProps> = ({
         <input
           type="text"
           className={`focus:outline-none h-[100%] cursor-pointer mr-[5px] w-[30px] text-[#333] placeholder:text-[#333]  ${fieldErrors.countryCode ? 'border-[#FE0000]' : ''}`}
-          value={countryCodes[0]}
+          value={countryCode}
           onChange={onCountryCodeChange}
-          onKeyPress={ensureNumericKeyPress}
-          pattern="[0-9]*"
+          onKeyDown={ensureNumericKeyPress}
           maxLength={3}
           placeholder={`${countryCodes[0]}`}
           style={{ maxWidth: '120px' }}
@@ -56,4 +56,4 @@ const MobileInputComponent: React.FC<CountryCodeComponentProps> = ({
   );
 };
 
-export default MobileInputComponent; 
+export default MobileComponent; 

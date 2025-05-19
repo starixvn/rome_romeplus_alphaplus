@@ -15,7 +15,7 @@ import CustomDropdown, { DropdownOption } from '../../components/CustomDropdownC
 import Loading from '../../components/LoadingComponent';
 import BackComponent from '../../components/BackComponent';
 import { ResultMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
-import CountryCodeComponent from '../../components/CountryCodeComponent';
+import MobileComponent from '../../components/MobileComponent';
 import { ensureNumericKeyPress, preventSpecialCharacter } from '../../utils/inputHandlers';
 import { ButtonComponent } from '../../components/ButtonComponents';
 import TitleComponent from '../../components/TitleComponent';
@@ -425,13 +425,16 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                 </div>
 
                 {promptPay && (
-                  <CountryCodeComponent
+                  <MobileComponent
                     label={tManagePayments('mobile')}
                     countryCode={countryCode}
                     mobile={mobile}
                     countryCodes={countryCodes}
                     fieldErrors={fieldErrors}
-                    onCountryCodeChange={(e) => setCountryCode(e.target.value)}
+                    onCountryCodeChange={(e) => {
+                      console.log('e.target.value', e.target.value);
+                      setCountryCode(e.target.value);
+                    }}
                     onMobileChange={(e) => setMobile(e.target.value)}
                     placeholder={tManagePayments('enterMobileNumber')}
                   />

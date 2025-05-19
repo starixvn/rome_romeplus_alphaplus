@@ -15,7 +15,7 @@ import CustomDropdown, { DropdownOption } from '../../components/CustomDropdownC
 import Loading from '../../components/LoadingComponent';
 import BackComponent from '../../components/BackComponent';
 import { ResultMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
-import CountryCodeComponent from '../../components/CountryCodeComponent';
+import MobileComponent from '../../components/MobileComponent';
 import { ButtonComponent } from '../../components/ButtonComponents';
 import TitleComponent from '../../components/TitleComponent';
 
@@ -538,7 +538,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
               </div>
 
               {promptPay && (
-                <CountryCodeComponent
+                <MobileComponent
                   label={tManagePayments('mobile')}
                   countryCode={countryCode}
                   mobile={mobile}

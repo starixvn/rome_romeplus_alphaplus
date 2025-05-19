@@ -447,4 +447,7 @@
   <data name="newDirectMember" xml:space="preserve">
     <value>創建直系會員</value>
   </data>
+  <data name="ManagePayments" xml:space="preserve">
+    <value>管理支付</value>
+  </data>
 </root>
