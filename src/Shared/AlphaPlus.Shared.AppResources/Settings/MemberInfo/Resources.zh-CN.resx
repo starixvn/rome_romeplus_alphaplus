@@ -1267,4 +1267,7 @@
   <data name="AvailableCreditSlashBetCredit" xml:space="preserve">
     <value>可用信用额/&lt;br/&gt;投注额度</value>
   </data>
+  <data name="CreateDirectMember" xml:space="preserve">
+    <value>创建直系会员</value>
+  </data>
 </root>

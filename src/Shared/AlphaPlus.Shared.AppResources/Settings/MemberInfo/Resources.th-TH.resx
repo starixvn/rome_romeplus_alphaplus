@@ -1267,4 +1267,7 @@
   <data name="AvailableCreditSlashBetCredit" xml:space="preserve">
     <value>เครดิตที่มีอยู่/&lt;br/&gt;เครดิตสำหรับเดิมพัน</value>
   </data>
+  <data name="CreateDirectMember" xml:space="preserve">
+    <value>สร้างสมาชิกโดยตรง</value>
+  </data>
 </root>
