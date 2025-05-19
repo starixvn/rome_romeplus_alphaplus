@@ -13,7 +13,6 @@ using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.OnlineList;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Update.Balance;
 using AlphaPlus.AccountInfo.Site.Features.Shared;
 using AlphaPlus.Core.Models;
-using AlphaPlus.Core.Services;
 using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using AlphaPlus.Utilities.IP;
 using Fanex.Data.Repository;
@@ -54,13 +53,12 @@ public interface ISearchAccountService
 public class SearchAccountService(
     IDynamicRepository dynamicRepository,
     IPService ipService,
-    HttpClient httpClient,
-    IIdentityClient identityClient) : ISearchAccountService
+    HttpClient httpClient) : ISearchAccountService
 {
     private readonly IDynamicRepository dynamicRepository = dynamicRepository;
     private readonly IPService ipService = ipService;
     private readonly HttpClient httpClient = httpClient;
-    private readonly IIdentityClient identityClient = identityClient;
+    //private readonly IIdentityClient identityClient = identityClient;
     private const string English = "en-US";
     private const string ChineseTraditional = "zh-TW";
     private const string ChineseSimplified = "zh-CN";
@@ -298,9 +296,14 @@ public class SearchAccountService(
 
     public async Task<bool> CheckMultipleCustomersBelonging(int actorId, int subAccountId, string custIds)
     {
-        var belongingInfo = await identityClient.CheckBelongingMultiple(actorId, subAccountId, custIds);
+        var criteria = new CheckMultipleCustomersBelongingCriteria(actorId, subAccountId, custIds);
+        await dynamicRepository.ExecuteAsync(criteria);
 
-        return belongingInfo.IsActive;
+        return criteria.RoleId > 0 && criteria.IsActive;
+
+        // var belongingInfo = await identityClient.CheckBelongingMultiple(actorId, subAccountId, custIds);
+
+        // return belongingInfo.IsActive;
     }
 
     public async Task<Result> UpdateAllDayBalanceTransfer(UpdateAllDayBalanceTransferParam param)

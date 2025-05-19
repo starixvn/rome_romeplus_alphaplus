@@ -8,20 +8,20 @@ using Fanex.Data.Repository;
 namespace AgencyCash.API.Payments.Services;
 
 public abstract class PaymentService(
-    IDynamicRepository dynamicRepository,
+    IDynamicRepository repository,
     ISiteDBService siteDBService,
     Fanex.Logging.ILogger logger)
 {
     private const byte CashServiceType = 1;
 
-    protected readonly IDynamicRepository dynamicRepository = dynamicRepository;
+    protected readonly IDynamicRepository repository = repository;
     protected readonly ISiteDBService siteDBService = siteDBService;
     protected readonly Fanex.Logging.ILogger logger = logger;
 
     public async Task<bool> IsEnableCashService(int agentId, int custDBGroupId)
     {
         var criteria = new GetAgentServiceTypeCriteria(agentId, custDBGroupId);
-        await dynamicRepository.ExecuteAsync(criteria);
+        await repository.ExecuteAsync(criteria);
 
         return criteria.ServiceType == CashServiceType;
     }
@@ -33,7 +33,7 @@ public abstract class PaymentService(
             var criteria = new SyncCashAccumCreditCriteria(cashAccumCreditTbl, custDbGroupId);
             try
             {
-                await dynamicRepository.ExecuteAsync(criteria);
+                await repository.ExecuteAsync(criteria);
             }
             catch (Exception ex)
             {
@@ -97,7 +97,7 @@ public abstract class PaymentService(
     {
         try
         {
-            await dynamicRepository.ExecuteAsync(criteria);
+            await repository.ExecuteAsync(criteria);
             return true;
         }
         catch (Exception ex)

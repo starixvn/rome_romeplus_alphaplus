@@ -1,5 +1,7 @@
 using AlphaPlus.Core.Configurations;
+using AlphaPlus.Core.Criteria;
 using AlphaPlus.Core.Models;
+using Fanex.Data.Repository;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 
@@ -7,9 +9,9 @@ namespace AlphaPlus.Core.Services;
 
 public interface IAuthorizationService
 {
-    Task<bool> IsAccountActive();
-
     Task<AccountStatus> GetAccountStatus();
+
+    Task<bool> IsAccountActive();
 
     bool IsAuthorized(string url = null);
 
@@ -18,11 +20,12 @@ public interface IAuthorizationService
     Task<KickOutInfo> IsKickedOut();
 }
 
-internal class AuthorizationService(
+public class AuthorizationService(
     IOptions<AuthorizationOptions> options,
     IRequestContext requestContext,
     IMemoryCache cacheService,
-    IIdentityClient identityClient) : IAuthorizationService
+    IDynamicRepository dynamicRepository)
+    : IAuthorizationService
 {
     private const string AccountStatusCacheKey = "AlphaPlus.Auth.CustContext.AccountStatusCacheKey_{0}_{1}";
     private const string RecheckInCacheKey = "AlphaPlus.Auth.CustContext.RecheckInCacheKey_{0}_{1}_{2}";
@@ -30,21 +33,37 @@ internal class AuthorizationService(
     private readonly AuthorizationOptions options = options.Value;
     private readonly IRequestContext requestContext = requestContext;
     private readonly IMemoryCache cacheService = cacheService;
-    private readonly IIdentityClient identityClient = identityClient;
-
-    public async Task<bool> IsAccountActive() => (await GetAccountStatus()).IsActive;
+    private readonly IDynamicRepository dynamicRepository = dynamicRepository;
 
     public Task<AccountStatus> GetAccountStatus()
     {
-        var userSession = requestContext.UserSession;
+        if (requestContext.UserSession.IsInternal)
+        {
+            return Task.FromResult(new AccountStatus(true, 0));
+        }
 
+        var userSession = requestContext.UserSession;
+        var command = new GetAccountStatusCommand(userSession.CustId, userSession.SubAccId);
         return cacheService.GetOrCreateAsync(
             string.Format(AccountStatusCacheKey, userSession.CustId, userSession.SubAccId),
             cacheEntry =>
             {
                 cacheEntry.SetAbsoluteExpiration(TimeSpan.FromSeconds(options.CachedExpireTime));
-                return identityClient.GetCustomerStatus(userSession.CustId, userSession.SubAccId);
+                return GetAccountStatus(userSession.CustId, userSession.SubAccId);
             });
+    }
+
+    private async Task<AccountStatus> GetAccountStatus(int custId, int subAccId)
+    {
+        var command = new GetAccountStatusCommand(custId, subAccId);
+        await dynamicRepository.ExecuteAsync(command);
+        return new AccountStatus(command.IsActive, command.Locked);
+    }
+
+    public async Task<bool> IsAccountActive()
+    {
+        var accountStatus = await GetAccountStatus();
+        return accountStatus.IsActive;
     }
 
     public bool IsAuthorized(string url = null)
@@ -88,7 +107,7 @@ internal class AuthorizationService(
 
                         if (!string.IsNullOrEmpty(requestContext.CustIds))
                         {
-                            return await IsMultipleCustomersBelonging(requestContext);
+                            return (await IsMultipleCustomersBelonging(requestContext)).IsActive;
                         }
                     }
                 }
@@ -100,6 +119,11 @@ internal class AuthorizationService(
 
     public async Task<KickOutInfo> IsKickedOut()
     {
+        if (requestContext.UserSession.IsInternal)
+        {
+            return new KickOutInfo(false);
+        }
+
         if (options.IgnoreReCheckInCustIds.Contains(requestContext.UserSession.CustId))
         {
             return new KickOutInfo(false);
@@ -117,7 +141,7 @@ internal class AuthorizationService(
 
         if (kickOutInfo == null)
         {
-            kickOutInfo = await identityClient.ReCheckIn(onlineUserId);
+            kickOutInfo = await IsKickedOut(onlineUserId);
             if (!kickOutInfo.IsKickedOut)
             {
                 cacheService.Set(key, kickOutInfo, new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(options.CachedExpireTime)));
@@ -202,12 +226,14 @@ internal class AuthorizationService(
             return belongingInfoGroupHeadline.IsActive;
         }
 
-        return await IsBelonging(requestContext, pageAccess);
+        return requestContext.IsDataStoreInDataWarehouse
+            ? await IsBelongingInDataWarehouse(requestContext)
+            : await IsBelonging(requestContext, pageAccess);
     }
 
     internal async Task<bool> IsBelonging(IRequestContext requestContext, Configurations.PageAccess pageAccess)
     {
-        var belongingInfo = await identityClient.CheckBelonging(requestContext.UserSession.CustId, requestContext.UserSession.SubAccId, requestContext.TransId, requestContext.CustId);
+        var belongingInfo = await IsBelonging(requestContext);
 
         if (belongingInfo.RoleId == 0 || belongingInfo.RoleId > requestContext.UserSession.RoleId)
         {
@@ -227,13 +253,49 @@ internal class AuthorizationService(
         return belongingInfo.IsActive;
     }
 
-    private Task<BelongingInfo> IsCustomerConsolidatedGroupBelonging(IRequestContext requestContext)
-        => identityClient.CheckBelongingConsolidatedGroup(requestContext.UserSession.CustId, requestContext.UserSession.SubAccId, requestContext.TransId, requestContext.CustId);
-
-    private async Task<bool> IsMultipleCustomersBelonging(IRequestContext requestContext)
+    private async Task<BelongingInfo> IsBelonging(IRequestContext requestContext)
     {
-        var belongingInfo = await identityClient.CheckBelongingMultiple(requestContext.UserSession.CustId, requestContext.UserSession.SubAccId, requestContext.CustIds);
+        var command = new CheckBelongingCommand(
+            requestContext.UserSession.CustId,
+            requestContext.UserSession.SubAccId,
+            requestContext.TransId,
+            requestContext.CustId);
+        await dynamicRepository.ExecuteAsync(command);
+        return new BelongingInfo(command.RoleId, requestContext.UserSession.IsInternal || command.RoleId > 0 && command.IsActive);
+    }
 
-        return belongingInfo.IsActive;
+    private async Task<bool> IsBelongingInDataWarehouse(IRequestContext requestContext)
+    {
+        var command = new CheckBelongingInDataWarehouseCommand(requestContext.UserSession.CustId, requestContext.TransId, requestContext.CustId);
+        await dynamicRepository.ExecuteAsync(command);
+        return command.RoleId > 0;
+    }
+
+    private async Task<BelongingInfo> IsCustomerConsolidatedGroupBelonging(IRequestContext requestContext)
+    {
+        var command = new CheckConsolidateGroupBelongingCommand(
+            requestContext.UserSession.CustId,
+            requestContext.UserSession.SubAccId,
+            requestContext.TransId,
+            requestContext.CustId);
+        await dynamicRepository.ExecuteAsync(command);
+        return new BelongingInfo(command.RoleId, requestContext.UserSession.IsInternal || command.RoleId > 0 && command.IsActive);
+    }
+
+    private async Task<BelongingInfo> IsMultipleCustomersBelonging(IRequestContext requestContext)
+    {
+        var command = new CheckMultipleCustomerBelongingCommand(
+            requestContext.UserSession.CustId,
+            requestContext.UserSession.SubAccId,
+            requestContext.CustIds);
+        await dynamicRepository.ExecuteAsync(command);
+        return new BelongingInfo(command.RoleId, requestContext.UserSession.IsInternal || command.RoleId > 0 && command.IsActive);
+    }
+
+    private async Task<KickOutInfo> IsKickedOut(int onlineUserId)
+    {
+        var command = new ReCheckInCommand(onlineUserId);
+        await dynamicRepository.ExecuteAsync(command);
+        return new KickOutInfo(command.IsKickedOut, command.KickOutReason);
     }
 }

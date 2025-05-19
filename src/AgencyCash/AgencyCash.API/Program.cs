@@ -1,5 +1,6 @@
 using AgencyCash.API.Payments;
 using AgencyCash.API.RegisterCashMember;
+using AgencyCash.API.Shared;
 using AgencyCash.API.Shared.Helpers;
 using Fanex.Data.Repository;
 using Fanex.Data.SqlServer;
@@ -12,6 +13,7 @@ builder.Services
     .AddProblemDetails()
     .AddFanexSql(configuration)
     .AddSingleton<IDynamicRepository, DynamicRepository>()
+    .AddSingleton<ISiteDBService, SiteDBService>()
     .AddSingleton<IRegisterCashMemberService, RegisterCashMemberService>()
     .RegisterPaymentsModule()
     .AddSwaggerGen()

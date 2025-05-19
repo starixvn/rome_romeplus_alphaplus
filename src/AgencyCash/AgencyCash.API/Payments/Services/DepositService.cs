@@ -9,18 +9,23 @@ namespace AgencyCash.API.Payments.Services;
 
 public interface IDepositService
 {
+    Task<IEnumerable<DepositMethod>> GetDepositMethods(int agentId);
+
     Task<MemberSetting> GetMemberSetting(int memberId, int custDBGroupId);
 }
 
 public class DepositService(
-    IDynamicRepository dynamicRepository,
+    IDynamicRepository repository,
     ISiteDBService siteDBService,
-    Fanex.Logging.ILogger logger) : PaymentService(dynamicRepository, siteDBService, logger), IDepositService
+    Fanex.Logging.ILogger logger) : PaymentService(repository, siteDBService, logger), IDepositService
 {
+    public Task<IEnumerable<DepositMethod>> GetDepositMethods(int agentId)
+        => repository.FetchAsync<DepositMethod>(new GetDepositMethodsCriteria(agentId));
+
     public async Task<MemberSetting> GetMemberSetting(int memberId, int custDBGroupId)
     {
         var criteria = new GetMemberSettingCriteria(memberId, custDBGroupId);
-        await dynamicRepository.ExecuteAsync(criteria);
+        await repository.ExecuteAsync(criteria);
 
         return new MemberSetting(criteria.AgentGivenCredit, criteria.CreditMembers_GivenCredit, criteria.MinLimitAmt, criteria.MaxLimitAmt);
     }
@@ -53,7 +58,7 @@ public class DepositService(
             request.PaySlip,
             request.IP,
             siteDBConfig.SiteDBGroupId);
-        var logEntries = await dynamicRepository.FetchAsync<LogEntry>(createManualDepositCriteria);
+        var logEntries = await repository.FetchAsync<LogEntry>(createManualDepositCriteria);
         var result = new Result(
             createManualDepositCriteria.ErrCode,
             createManualDepositCriteria.ErrMsg);

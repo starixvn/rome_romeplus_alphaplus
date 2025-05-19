@@ -9,7 +9,8 @@ using MediatR;
 using AlphaPlus.Core.Models;
 using Fanex.Customer.Client.Services;
 using Fanex.Customer.Client.Params;
-using AlphaPlus.Core.Services;
+using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Params;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn;
 
@@ -26,21 +27,24 @@ public class QRCodeMemberSignInHandler :
     private readonly QRCodeMemberSignInService qrCodeMemberSignInService;
     private readonly ICustomerService customerService;
     private readonly PasswordService passwordService;
-    private readonly IIdentityClient identityClient;
+    private readonly CheckBelongingService checkBelongingService;
+    //private readonly IIdentityClient identityClient;
 
     public QRCodeMemberSignInHandler(
         QrCodeAdapter qrCodeAdapter,
         ICustomerService customerService,
         QRCodeMemberSignInService qrCodeMemberSignInService,
         PasswordService passwordService,
-        IIdentityClient identityClient,
+        CheckBelongingService checkBelongingService,
+        //IIdentityClient identityClient,
         QRCodeLoginConfigsHelper qrCodeLoginConfigsHelper)
     {
         this.qrCodeAdapter = qrCodeAdapter;
         this.customerService = customerService;
         this.qrCodeMemberSignInService = qrCodeMemberSignInService;
         this.passwordService = passwordService;
-        this.identityClient = identityClient;
+        this.checkBelongingService = checkBelongingService;
+        //this.identityClient = identityClient;
         this.qrCodeLoginConfigsHelper = qrCodeLoginConfigsHelper;
     }
 
@@ -143,11 +147,16 @@ public class QRCodeMemberSignInHandler :
 
     public async Task<ShowQRCodeViewModel> Handle(ShowQRCodeRequest message, CancellationToken cancellationToken)
     {
-        var belongingInfo = await identityClient.CheckBelongingInDBCust(message.ViewerId, message.SubAccId, 0, message.SearchAccountId);
+        //var belongingInfo = await identityClient.CheckBelongingInDBCust(message.ViewerId, message.SubAccId, 0, message.SearchAccountId);
+        var belongingInfo = checkBelongingService.GetBelongingInfo(
+            new CheckBelongingParam(message.ViewerId, message.SearchAccountId, message.SubAccId));
 
-        if (belongingInfo.IsActive && belongingInfo.IsCrossLevel(message.ViewerLevelId)
+        if (belongingInfo.IsValid(message.ViewerLevelId)
             && qrCodeMemberSignInService.IsNotFirstLoginByQRCode(message.SearchAccountId))
         {
+            // if (belongingInfo.IsActive && belongingInfo.IsCrossLevel(message.ViewerLevelId)
+            //     && qrCodeMemberSignInService.IsNotFirstLoginByQRCode(message.SearchAccountId))
+            // {
             var rawPassword = message.RawPassword;
 
             if (!message.CreateMode)

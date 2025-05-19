@@ -171,6 +171,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
             services
                 .AddSingleton<QrCodeAdapter, QrCodeAdapterImpl>()
                 .AddScoped<PasswordService, PasswordServiceImpl>()
+                .AddScoped<CheckBelongingService, CheckBelongingServiceImpl>()
                 .AddSingleton<QRCodeMemberSignInService, QRCodeMemberSignInServiceImpl>()
                 .AddHttpClient<IQRCodeService, QRCodeService>(httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("QRCode:API")));
 

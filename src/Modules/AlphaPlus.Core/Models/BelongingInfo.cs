@@ -1,10 +1,11 @@
 namespace AlphaPlus.Core.Models;
 
-public class BelongingInfo
+public class BelongingInfo(byte roleId, bool isActive)
 {
-    public byte RoleId { get; init; }
+    public byte RoleId { get; } = roleId;
 
-    public bool IsActive { get; init; }
+    public bool IsActive { get; } = isActive;
 
-    public bool IsCrossLevel(byte uplineRoleId) => uplineRoleId - RoleId > 1;
+    public bool IsCrossLevel(byte uplineRoleId)
+        => uplineRoleId - RoleId > 1;
 }
