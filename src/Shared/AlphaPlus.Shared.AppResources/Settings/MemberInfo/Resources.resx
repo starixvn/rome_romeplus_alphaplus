@@ -1277,6 +1277,6 @@ Notes: your password is cAsE sEnSiTiVe.</value>
     <value>Create Direct Member</value>
   </data>
   <data name="CreateCashMember" xml:space="preserve">
-    <value>Create Cash Member</value>
+    <value>Add New Cash member</value>
   </data>
 </root>
