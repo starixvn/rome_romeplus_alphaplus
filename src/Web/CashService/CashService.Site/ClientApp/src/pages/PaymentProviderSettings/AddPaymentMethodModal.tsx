@@ -55,8 +55,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
     agreeToTerms: '',
   });
 
-  const inactiveStatus = 0;
-  const activeStatus = 1;
+  const inactiveStatus = 4;
   
   // Load payment methods when component mounts
   React.useEffect(() => {
@@ -112,7 +111,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
         providerId,
         method: parseInt(formState.selectedPaymentMethod),
         transactionType: parseInt(formState.selectedTransactionType),
-        status: activeStatus,
+        status: 1,
         custId: 0,
         apiMethodKey: formState.apiKey,
         merchantID: formState.merchantID,
