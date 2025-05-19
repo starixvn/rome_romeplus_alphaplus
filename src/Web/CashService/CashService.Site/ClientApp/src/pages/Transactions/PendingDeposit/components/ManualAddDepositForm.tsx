@@ -10,6 +10,7 @@ import { AddDepositManualModel } from '../../../../services/interfaces/AddDeposi
 import Loading from '../../../../components/LoadingComponent';
 import { ResultMessageComponent } from '../../../../components/MessageComponents';
 import AccountInformation from './AccountInformation';
+import TitleComponent from '../../../../components/TitleComponent';
 
 interface ManualAddDepositFormProps {
   cashAgentOptions: BankInfo[];
@@ -173,16 +174,15 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
   };
 
   return (
-    <div className="fixed inset-0 bg-white flex flex-col z-50">
+    <div className="">
       {initialLoading ? (
         <div className="flex items-center justify-center h-full">
           <Loading />
         </div>
       ) : (
         <>
-          <div className="bg-gray-100 p-4">
-            <h2 className="text-lg font-medium">{t('manualDepositForm.title')}</h2>
-          </div>
+          
+          <TitleComponent title={t('manualDepositForm.title')} /> 
 
           <form id="manual-deposit-form" onSubmit={handleSubmit} className="p-6 flex-1">
             {validationMessage && (

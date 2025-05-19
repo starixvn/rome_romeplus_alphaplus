@@ -132,6 +132,12 @@ const PendingDeposit: React.FC = () => {
 
   return (
     <>  
+    {showManualAddDepositForm ? (
+      <ManualAddDepositForm
+        cashAgentOptions={cashAgentOptions}
+        onClose={() => handleCloseManualDepositForm(false)}
+      />
+      ) : (
       <div className=" py-[12px] flex h-full flex-col">
         <TitleComponent title={t('pendingDeposit')} />          
         <div className="mb-[8px]">
@@ -161,15 +167,9 @@ const PendingDeposit: React.FC = () => {
         ) : (
           <DataGrid deposits={filteredDeposits} />
         )}
-      </div>
-   
-
-      {showManualAddDepositForm && (
-        <ManualAddDepositForm
-          cashAgentOptions={cashAgentOptions}
-          onClose={() => handleCloseManualDepositForm(false)}
-        />
+      </div>   
       )}
+      
     </>
   );
 };
