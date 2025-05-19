@@ -63,8 +63,6 @@ const Filter: React.FC<FilterProps> = ({
           </select>
         </div>
       </div>
-
-      
     </div>
     <div className="flex mb-[16px]">
       <div className="w-[250px] ml-auto">
