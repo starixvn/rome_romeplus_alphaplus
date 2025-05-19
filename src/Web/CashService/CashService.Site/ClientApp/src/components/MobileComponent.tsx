@@ -1,5 +1,5 @@
 import React from 'react';
-import { ensureNumericKeyDown } from '../utils/inputHandlers';
+import { ensureNumericInput } from '../utils/inputHandlers';
 import { ValidateMessageComponent } from './MessageComponents';
 
 interface MobileComponentProps {
@@ -32,8 +32,7 @@ const MobileComponent: React.FC<MobileComponentProps> = ({
           type="text"
           className={`focus:outline-none h-[100%] cursor-pointer mr-[5px] w-[30px] text-[#333] placeholder:text-[#333]  ${fieldErrors.countryCode ? 'border-[#FE0000]' : ''}`}
           value={countryCode}
-          onChange={onCountryCodeChange}
-          onKeyDown={ensureNumericKeyDown}
+          onChange={(e) => onCountryCodeChange(ensureNumericInput(e))}
           maxLength={3}
           style={{ maxWidth: '120px' }}
           inputMode="numeric"
@@ -42,8 +41,7 @@ const MobileComponent: React.FC<MobileComponentProps> = ({
           type="text"
           className={`focus:outline-none w-[100%] h-[100%] pl-[10px] border-l-[1px] ${fieldErrors.mobile ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
           value={mobile}
-          onKeyDown={ensureNumericKeyDown}
-          onChange={onMobileChange}
+          onChange={(e) => onMobileChange(ensureNumericInput(e))}
           placeholder={placeholder}
         />
       </div>
