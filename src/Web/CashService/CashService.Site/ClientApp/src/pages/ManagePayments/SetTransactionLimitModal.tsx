@@ -98,7 +98,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
       hasError = true;
     }
 
-    if(parseInt(dailyWithdrawalCount) < 0 || parseInt(dailyWithdrawalCount) > 32767) {
+    if(parseInt(dailyWithdrawalCount) < 1 || parseInt(dailyWithdrawalCount) > 32767) {
       errorMessages.push(tManagePayments('dailyWithdrawalCountOutOfRange'));
       setFieldErrors(prev => ({
         ...prev,

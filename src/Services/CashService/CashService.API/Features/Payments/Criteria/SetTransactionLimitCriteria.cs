@@ -22,7 +22,7 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
 
         public override bool IsValid()
             => base.IsValid()
-                && DailyWithdrawalCount >= 0 
+                && DailyWithdrawalCount > 0 
                 && DailyWithdrawalCount <= 32767
                 && MinPerDeposit >= 0 
                 && MaxPerDeposit >= 0
