@@ -4,6 +4,7 @@ import { TransactionItem } from '../../../../services/interfaces/Transactions/Tr
 import {
   CurrentCurrency,
   displayAmount,
+  formatDateTime,
   renderBankAccount,
 } from '../../../../common/commonFunctions.tsx';
 import PendingWithdrawalModal from './PendingWithdrawalModal.tsx';
@@ -122,7 +123,7 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
                     {withdrawal.transId}
                   </td>
                   <td className="py-1 px-2 border border-[#dee2e6] text-center">
-                    {withdrawal.createdTime}
+                    {formatDateTime(withdrawal.createdTime)}
                   </td>
                   <td className="py-1 px-2 border border-[#dee2e6] text-center">
                     <button

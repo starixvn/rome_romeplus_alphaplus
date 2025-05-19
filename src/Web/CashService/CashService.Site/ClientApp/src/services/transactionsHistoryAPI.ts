@@ -29,7 +29,7 @@ export const transactionAPI = {
       }
 
       const response = await api.get<TransactionsHistoryResponse>(
-        `GetAll?${queryParams.toString()}`
+        `GetHistory?${queryParams.toString()}`
       );
       return response.data;
     } catch (error) {

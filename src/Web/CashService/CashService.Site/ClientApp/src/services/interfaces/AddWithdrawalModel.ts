@@ -5,7 +5,5 @@ export interface AddWithdrawalModel {
   amount: number;
   remark: string;
   image: File;
-  minLimitAmt: number;
-  maxLimitAmt: number;
   providerId: number;
 }

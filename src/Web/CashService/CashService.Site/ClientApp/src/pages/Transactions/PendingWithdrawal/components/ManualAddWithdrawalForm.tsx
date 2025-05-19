@@ -25,7 +25,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
   const [remarks, setRemarks] = useState('');
   const [image, setImage] = useState<File | null>(null);
   const [minAmount, setMinAmount] = useState(0);
-  const [maxAmount, setMaxAmount] = useState(0);
+  const [maxAmount, setMaxAmount] = useState<number | null>(null);
   const [providerId, setProviderId] = useState(0);
   const [paymentMethodId, setPaymentMethodId] = useState(0);
   const [agentBankInfo, setBankInfo] = useState<WithdrawalAgentBankDropDown[]>([]);
@@ -35,33 +35,37 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
     message: '',
   });
   const [memberOptions, setMemberOptions] = useState<DropdownOption[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!verifyParam()) return;
 
-    const manualWithdrawalData: AddWithdrawalModel = {
-      custId: custId as number,
-      paymentFrom: from,
-      paymentTo: to,
-      minLimitAmt: minAmount,
-      maxLimitAmt: maxAmount,
-      amount: parseFloat(withdrawalAmount),
-      remark: remarks,
-      image: image as File,
-      providerId,
-    };
+    setIsSubmitting(true);
+    try {
+      const manualWithdrawalData: AddWithdrawalModel = {
+        custId: custId as number,
+        paymentFrom: from,
+        paymentTo: to,
+        amount: parseFloat(withdrawalAmount),
+        remark: remarks,
+        image: image as File,
+        providerId,
+      };
 
-    const addWithdrawalResponse = await manualAddWithdrawal(manualWithdrawalData);
-    if (addWithdrawalResponse.isSuccessful) {
-      setAlert({ type: 'success', message: t('addWithdrawalSuccess') });
-      if (onClose) {
-        setTimeout(() => {
-          onClose();
-        }, 3000);
+      const addWithdrawalResponse = await manualAddWithdrawal(manualWithdrawalData);
+      if (addWithdrawalResponse.isSuccessful) {
+        setAlert({ type: 'success', message: t('addWithdrawalSuccess') });
+        if (onClose) {
+          setTimeout(() => {
+            onClose();
+          }, 3000);
+        }
+      } else {
+        setAlert({ type: 'error', message: addWithdrawalResponse.message });
       }
-    } else {
-      setAlert({ type: 'error', message: addWithdrawalResponse.message });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -82,7 +86,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
     }
 
     const amount = parseFloat(withdrawalAmount);
-    if (isNaN(amount) || amount <= minAmount || amount > maxAmount) {
+    if (isNaN(amount) || amount <= minAmount || (maxAmount && amount > maxAmount)) {
       setAlert({ type: 'error', message: t('manualWithdrawalForm.amountRangeError') });
       return false;
     }
@@ -172,10 +176,10 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
   };
 
   const renderMinMaxAmount = () => {
-    if (maxAmount === 0) {
-      return '';
-    }
-    return <span className="text-xs text-gray-500 pl-3">(Member cash balance: {maxAmount})</span>;
+    let displayMaxAmount = maxAmount ? maxAmount : 'unlimited';
+    return (
+      <span className="text-xs text-gray-500 pl-3">(Member cash balance: {displayMaxAmount})</span>
+    );
   };
 
   return (
@@ -307,22 +311,27 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
             </div>
           </div>
 
-          <div className="flex flex-col items-center pl-20">
+          <div>
             <UploadImage setImage={setImage} />
 
             <div className="flex justify-center space-x-4 mt-3 w-full">
               <button
                 type="button"
                 onClick={onClose}
-                className="w-[140px] h-[32px] max-[768px]:h-[40px] border border-gray-300 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none"
+                className="w-[140px] h-[32px] max-[768px]:h-[40px] border border-gray-300 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-gray-100 focus:outline-none transition-colors duration-200"
               >
                 {t('manualWithdrawalForm.cancel')}
               </button>
               <button
                 type="submit"
-                className="w-[140px] h-[32px] max-[768px]:h-[40px] border border-transparent rounded-full text-sm font-medium text-white bg-[#163f78] hover:bg-[#0f2d5c] focus:outline-none"
+                disabled={isSubmitting}
+                className={`w-[140px] h-[32px] max-[768px]:h-[40px] border border-transparent rounded-full text-sm font-medium text-white bg-[#163f78] hover:bg-[#0f2d5c] focus:outline-none transition-colors duration-200 ${
+                  isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
               >
-                {t('manualWithdrawalForm.approve')}
+                {isSubmitting
+                  ? t('manualWithdrawalForm.processing')
+                  : t('manualWithdrawalForm.approve')}
               </button>
             </div>
           </div>

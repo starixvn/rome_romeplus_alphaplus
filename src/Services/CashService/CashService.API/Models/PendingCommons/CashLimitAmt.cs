@@ -10,7 +10,7 @@ public class CashLimitAmt
 
     public int UplineId { get; set; }
 
-    public int PaymentMethodId { get; set; }
+    public decimal CashBalance { get; set; }
 
     [SpParam(Ignored = true)]
     public int CustDbGroupId { get; set; }

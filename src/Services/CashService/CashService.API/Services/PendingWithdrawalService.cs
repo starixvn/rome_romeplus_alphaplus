@@ -10,7 +10,7 @@ public interface IPendingWithdrawalService
 {
     Task<IEnumerable<BankAccountInfo>> GetBankWithdrawalAccounts();
 
-    Task<decimal> GetCashBalanceAsync(int custId);
+    Task<decimal> GetCashBalanceAsync(int custId, int siteDbGroupId);
 
     Task<CreditAmount> GetLimitAmtWithdrawAsync(CashLimitAmt param);
 
@@ -79,13 +79,15 @@ public class PendingWithdrawalService(
         };
     }
 
-    public async Task<decimal> GetCashBalanceAsync(int custId)
+    public async Task<decimal> GetCashBalanceAsync(int custId, int siteDbGroupId)
     {
         var criteria = new GetCashBalanceCriteria
         {
-            CustId = custId
+            CustId = custId,
+            SiteDbGroupId = siteDbGroupId
         };
-        return await dynamicRepository.GetAsync<decimal>(criteria);
+        await dynamicRepository.ExecuteAsync(criteria);
+        return criteria.TotalCash;
     }
 
     public async Task<CreditAmount> GetLimitAmtWithdrawAsync(CashLimitAmt param)
@@ -95,15 +97,15 @@ public class PendingWithdrawalService(
             CustId = param.CustId,
             ProviderId = param.ProviderId,
             UplineId = param.UplineId,
-            PaymentMethodId = param.PaymentMethodId,
             CustDbGroupId = param.CustDbGroupId
         };
         await dynamicRepository.GetAsync<CreditAmount>(criteria);
         var random = new Random();
+        var chance = random.Next(0, 10);
         return new CreditAmount
-
         {
-            MaxAmt = random.Next(0, 101),
+            //MaxAmt = chance == 0 ? null : random.Next(0, 100),
+            MaxAmt = criteria.MaxAmt,
             MinAmt = criteria.MinAmt
         };
     }
@@ -143,7 +145,7 @@ public class PendingWithdrawalService(
             ProviderId = param.ProviderId,
             SiteDbGroupId = param.SiteDbGroupId
         };
-        await dynamicRepository.ExecuteAsync(command);
+        var logResoponse = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command);
         var result = new ResultModel(command.ErrCode, command.ErrMsg);
         if (command.ErrCode == 0)
         {

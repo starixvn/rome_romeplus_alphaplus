@@ -6,8 +6,6 @@ public class AddManualWithdrawalModel
     public int UplineId { get; set; }
     public int SubAccId { get; set; }
     public int ProviderId { get; set; }
-    public decimal MinLimitAmt { get; set; }
-    public decimal MaxLimitAmt { get; set; }
     public string PaymentFrom { get; set; }
     public string PaymentTo { get; set; }
     public decimal Amount { get; set; }

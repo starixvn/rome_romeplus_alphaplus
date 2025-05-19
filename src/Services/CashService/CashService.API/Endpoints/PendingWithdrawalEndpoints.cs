@@ -23,30 +23,21 @@ public static class PendingWithdrawalEndpoints
             Description = "Returns a list of bank withdrawal accounts"
         });
 
-        group.MapGet("/cash-balance/{custId}", async (int custId, IPendingWithdrawalService service) =>
-        {
-            var cashBalance = await service.GetCashBalanceAsync(custId);
-            return Results.Ok(cashBalance);
-        })
-        .WithName("GetCashBalanceAsync")
-        .WithOpenApi(operation => new(operation)
-        {
-            Summary = "Get cash balance of member",
-            Description = "Returns cash balance of member"
-        });
-
         group.MapGet("/limit-amount", async ([FromQuery] int custId,
                 [FromQuery] int uplineId,
                 [FromQuery] int providerId,
-                [FromQuery] int paymentMethodId,
+                [FromQuery] int siteDbGroupId,
+                [FromQuery] int custDbGroupId,
                 IPendingWithdrawalService service) =>
         {
+            var cashBalance = await service.GetCashBalanceAsync(custId, siteDbGroupId);
             var cashLimit = await service.GetLimitAmtWithdrawAsync(new CashLimitAmt
             {
                 CustId = custId,
                 UplineId = uplineId,
                 ProviderId = providerId,
-                PaymentMethodId = paymentMethodId
+                CashBalance = cashBalance,
+                CustDbGroupId = custDbGroupId
             });
             return Results.Ok(cashLimit);
         })

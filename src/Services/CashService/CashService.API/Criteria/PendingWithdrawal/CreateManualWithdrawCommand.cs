@@ -1,15 +1,16 @@
-﻿using Fanex.Data;
+﻿namespace AlphaPlus.CashService.API.Criteria.PendingWithdrawal;
+
+using Fanex.Data;
 using Fanex.Data.Repository;
 
-namespace AlphaPlus.CashService.API.Criteria.PendingWithdrawal;
-
-public class CreateManualWithdrawCommand : NonQueryCommand
+public class CreateManualWithdrawCommand : CriteriaBase
 {
     public int UplineId { get; set; }
 
     public decimal MinLimitAmt { get; set; }
 
-    public decimal MaxLimitAmt { get; set; }
+    [SpParam(AllowNull = true)]
+    public decimal? MaxLimitAmt { get; set; }
 
     public string PaymentFrom { get; set; }
 

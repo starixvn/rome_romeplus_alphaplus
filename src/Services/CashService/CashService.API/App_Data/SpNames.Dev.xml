@@ -26,6 +26,7 @@
             <Mapping DataField="PaymentMethodEnable" ObjectProperty="IsEnabled"></Mapping>
             <Mapping DataField="RequiresBank" ObjectProperty="BankRequired"></Mapping>
         </Setting>
+        <Setting Key="Age_CashService_PaymentProvider_Ins" SpName="Age_CashService_PaymentProvider_Ins" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
         <Setting Key="Age_CashService_PaymentMethod_Config" SpName="Age_CashService_PaymentMethod_Config" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
         <Setting Key="Age_CashService_BankList" SpName="Age_CashService_BankList_UAT2" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="BankID" ObjectProperty="Id"></Mapping>
@@ -96,7 +97,8 @@
     </Function>
 
     <Function Name="Withdrawal">
-        <Setting Key="SiteDb_0_Age_CashWithdrawal_ManualAdd" SpName="Age_CashWithdrawal_ManualAdd" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="SiteDb_0_Age_CashWithdrawal_ManualAdd" SpName="Age_CashWithdrawal_ManualAdd_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="SiteDb_0_Acc_CustomerSelCash_CaptureBalance" SpName="Acc_CustomerSelCash_CaptureBalance_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
         <Setting Key="CustDb_0_Age_CashWithdrawal_LimitAmtSel" SpName="Age_CashWithdrawal_LimitAmtSel" DbName="DBCust.CustDB.wsv_CashService" Plain="0"></Setting>
     </Function>
 

@@ -72,6 +72,7 @@
     "removeImage": "Remove image",
     "cancel": "Cancel",
     "approve": "Approve",
+    "processing": "Processing...",
     "memberLoginNameRequired": "Member Login Name is required",
     "agentBankSelectionRequired": "From is required",
     "memberBankSelectionRequired": "To is required",

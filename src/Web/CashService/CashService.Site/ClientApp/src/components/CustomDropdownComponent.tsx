@@ -103,7 +103,7 @@ const CustomDropdownComponent = ({
       </div>
 
       {isOpen && (
-        <div className="max-h-[200px] overflow-y-auto absolute top-[33px] left-0 w-[100%] bg-[#fff] border-[1px] border-[#0000003D] rounded-[8px]">
+        <div className="max-h-[200px] overflow-y-auto absolute top-[33px] left-0 w-[100%] bg-[#fff] border-[1px] border-[#0000003D] rounded-[8px] z-[9999]">
           {searchable && (
             <div className="sticky top-0 bg-white p-2 border-b border-gray-200">
               <input

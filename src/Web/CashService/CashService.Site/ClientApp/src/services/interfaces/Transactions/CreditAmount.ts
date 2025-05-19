@@ -1,4 +1,4 @@
 export interface CreditAmount {
-    minAmt: number;
-    maxAmt: number;
+  minAmt: number;
+  maxAmt: number | null;
 }

@@ -25,7 +25,7 @@ public class TransactionsController(
 
     public IActionResult History() => View();
 
-    public async Task<IActionResult> GetAll([FromQuery] GetTransactionFilter filter)
+    public async Task<IActionResult> GetHistory([FromQuery] GetTransactionFilter filter)
     {
         var url = $"/transactions/history";
         var result = await httpClientHelper.GetAsync<object>(url, ObjectConverter.ToDictionary(filter));
@@ -60,14 +60,14 @@ public class TransactionsController(
         return Json(limitAmtDeposit);
     }
 
-    public async Task<IActionResult> GetSettingLimitAmtWithdrawal(int custId, int providerId, int paymentMethodId)
+    public async Task<IActionResult> GetSettingLimitAmtWithdrawal(int custId, int providerId)
     {
         var data = new Dictionary<string, string> {
             { "uplineId", agentId.ToString() },
             { "custId", custId.ToString() },
             { "custDbGroupId", custDbGroupId.ToString() },
             { "providerId", providerId.ToString() },
-            { "paymentMethodId", paymentMethodId.ToString() }
+            { "siteDbGroupId", siteDbGroupId.ToString() }
         };
         var url = $"/withdrawal/limit-amount";
         var limitAmtDeposit = await httpClientHelper.GetAsync<object>(url, data);
