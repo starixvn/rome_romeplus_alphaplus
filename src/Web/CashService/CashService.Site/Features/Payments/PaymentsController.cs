@@ -118,6 +118,19 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             return Json(result);
         }
 
+        public async Task<IActionResult> UpdatePaymentMethod(
+            [FromBody] UpdatePaymentMethodRequest request,
+            CancellationToken cancellationToken)
+        {
+            request.SetUserSession(_userSession);
+            var url = $"{_apiBaseUrl}/payments/update-payment-method";
+
+            var response = await _httpClient.PostAsJsonAsync(url, request, cancellationToken);
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
+            return Json(result);
+        }
+
         public async Task<IActionResult> GetBanksByTransactionType(int transactionType, CancellationToken cancellationToken)
         {
             var url = $"{_apiBaseUrl}/payments/banks?transactionType={transactionType}";

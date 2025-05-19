@@ -31,5 +31,7 @@
   "minAmountGreaterThanMax": "จำนวนขั้นต่ำไม่สามารถมีค่ามากกว่าจำนวนสูงสุด",
   "amountCannotBeNegative": "จำนวนไม่สามารถเป็นค่าลบ",
   "row": "แถว",
-  "view": "ดู"
+  "view": "ดู",
+  "addSuccess": "เพิ่มสำเร็จ",
+  "addFailed": "เพิ่มไม่สำเร็จ"
 } 

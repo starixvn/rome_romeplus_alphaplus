@@ -31,5 +31,7 @@
   "minAmountGreaterThanMax": "最小金額は最大金額より大きくなります",
   "amountCannotBeNegative": "金額は負の値になりません",
   "row": "行",
-  "view": "表示"
+  "view": "表示",
+  "addSuccess": "追加に成功しました",
+  "addFailed": "追加に失敗しました"
 } 

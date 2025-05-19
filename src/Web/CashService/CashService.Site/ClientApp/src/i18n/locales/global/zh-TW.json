@@ -31,5 +31,7 @@
   "minAmountGreaterThanMax": "最小金額不能大於最大金額",
   "amountCannotBeNegative": "金額不能為負",
   "row": "行",
-  "view": "瀏覽"
+  "view": "瀏覽",
+  "addSuccess": "添加成功",
+  "addFailed": "添加失败"
 } 

@@ -122,7 +122,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
         appSecret: formState.appSecret
       };
 
-      const response = await paymentProviderService.addPaymentMethod(updatedSetting);
+      const response = await paymentProviderService.updatePaymentMethod(updatedSetting);
       
       if (response.isSuccessful) {
         setSuccessMessage(tGlobal('updateSuccess'));

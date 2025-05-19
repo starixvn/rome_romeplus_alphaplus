@@ -31,6 +31,8 @@ public interface IPaymentsService
     Task<BankAccountModel> GetBankAccountById(int accountId);
     Task<ResultModel> UpdateBankAccount(UpdateBankAccountRequest request);
     Task<ResultModel> DeleteBankAccount(DeleteBankAccountRequest request);
+
+    Task<ResultModel> UpdatePaymentMethod(UpdatePaymentMethodRequest request);
 }
 
 public class PaymentsService(
@@ -279,6 +281,21 @@ public class PaymentsService(
     {
         var criteria = new DeleteBankAccountCriteria(request);
         var result = await commonService.RunDBCommand(request, criteria);
+        return result;
+    }
+    
+    public async Task<ResultModel> UpdatePaymentMethod(UpdatePaymentMethodRequest request)
+    {
+        if (!request.IsValid())
+        {
+            return new ResultModel(1, "Invalid customer ID or provider ID");
+        }
+
+        var criteria = new UpdatePaymentMethodCriteria(request) {
+            APIConfig = $"{{\"APIMethodKey\":\"{request.APIMethodKey}\",\"MerchantID\":\"{request.MerchantID}\",\"AppSecret\":\"{request.AppSecret}\"}}",
+        };
+
+        var result = await commonService.RunDBCommand(request, criteria); 
         return result;
     }
 } 

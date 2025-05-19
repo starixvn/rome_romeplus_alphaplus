@@ -31,5 +31,7 @@
   "minAmountGreaterThanMax": "오류가 발생했습니다",
   "amountCannotBeNegative": "오류가 발생했습니다",
   "row": "행",
-  "view": "보기"
+  "view": "보기",
+  "addSuccess": "추가 성공",
+  "addFailed": "추가 실패"
 } 

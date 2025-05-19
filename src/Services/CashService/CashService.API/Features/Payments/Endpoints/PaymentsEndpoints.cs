@@ -137,6 +137,21 @@ public static class PaymentsEndpoints
             Description = "Adds a new payment method to the system"
         });
 
+        app.MapPost("/api/payments/update-payment-method", async (HttpRequest request, IPaymentsService service) =>
+        {
+            using var reader = new StreamReader(request.Body);
+            var body = await reader.ReadToEndAsync();
+            var method = JsonConvert.DeserializeObject<UpdatePaymentMethodRequest>(body);
+            var result = await service.UpdatePaymentMethod(method);
+            return Results.Ok(result);
+        })
+        .WithName("UpdatePaymentMethod")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Update payment method",
+            Description = "Updates an existing payment method"
+        });
+
         app.MapGet("/api/payments/banks", async (int transactionType, IPaymentsService service) =>
         {
             var banks = await service.GetBanks(transactionType);

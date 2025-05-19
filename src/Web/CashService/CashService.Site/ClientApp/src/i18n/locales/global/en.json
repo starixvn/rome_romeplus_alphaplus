@@ -32,5 +32,7 @@
   "minAmountGreaterThanMax": "Minimum amount cannot be greater than maximum amount",
   "amountCannotBeNegative": "Amount cannot be negative",
   "row": "Row",
-  "view": "View"
+  "view": "View",
+  "addSuccess": "Add successfully",
+  "addFailed": "Add failed"
 }

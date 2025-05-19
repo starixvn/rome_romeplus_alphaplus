@@ -109,6 +109,17 @@ export const paymentProviderService = {
     }
   },
 
+  // Update a payment method
+  updatePaymentMethod: async (paymentMethod: PaymentMethod): Promise<ResultModel> => {
+    try {
+      const response = await api.post('UpdatePaymentMethod', paymentMethod);
+      return response.data;
+    } catch (error) {
+      console.error('Error updating payment method:', error);
+      throw error;
+    }
+  },
+
   // Get all banks
   getBanksByTransactionType: async (transactionType: number): Promise<Bank[]> => {
     try {

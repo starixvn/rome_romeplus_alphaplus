@@ -31,5 +31,7 @@
   "minAmountGreaterThanMax": "Số tiền tối thiểu không thể lớn hơn số tiền tối đa",
   "amountCannotBeNegative": "Số tiền không thể là số âm",
   "row": "Hàng",
-  "view": "Xem"
+  "view": "Xem",
+  "addSuccess": "Thêm thành công",
+  "addFailed": "Thêm thất bại"
 } 

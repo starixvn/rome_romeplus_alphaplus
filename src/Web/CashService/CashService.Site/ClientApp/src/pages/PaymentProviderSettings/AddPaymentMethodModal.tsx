@@ -104,10 +104,12 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
     }
 
     try {
-      const selectedMethod = paymentMethods.find(method => method.id === parseInt(formState.selectedPaymentMethod));
+      const selectedMethod = paymentMethods.find(method => method.id === parseInt(formState.selectedPaymentMethod)) 
+        || {status: 0, name: ''};
+
       const newSetting = {
         id: 0,
-        name: selectedMethod?.name || '',
+        name: selectedMethod.name || '',
         providerId,
         method: parseInt(formState.selectedPaymentMethod),
         transactionType: parseInt(formState.selectedTransactionType),
@@ -118,13 +120,16 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
         appSecret: formState.appSecret
       };
 
-      const response = await paymentProviderService.addPaymentMethod(newSetting);
+      const isUpdate = selectedMethod.status == 3;
+      const response = isUpdate 
+        ? await paymentProviderService.updatePaymentMethod(newSetting) 
+        : await paymentProviderService.addPaymentMethod(newSetting);
       
       if (response.isSuccessful) {
-        setSuccessMessage(tGlobal('updateSuccess'));
+        setSuccessMessage(isUpdate ? tGlobal('updateSuccess') : tGlobal('addSuccess'));
         setTimeout(() => { onClose(); }, 3000);
       } else {
-        setError(response.message || tGlobal('updateFailed'));
+        setError(response.message || (isUpdate ? tGlobal('updateFailed') : tGlobal('addFailed')));
       }
     } catch (err) {
       setError(tGlobal('errorOccurred'));
