@@ -42,6 +42,7 @@ const MobileComponent: React.FC<MobileComponentProps> = ({
           type="text"
           className={`focus:outline-none w-[100%] h-[100%] pl-[10px] border-l-[1px] ${fieldErrors.mobile ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
           value={mobile}
+          onKeyDown={ensureNumericKeyPress}
           onChange={onMobileChange}
           placeholder={placeholder}
         />

@@ -50,7 +50,6 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
             base.IsValid() &&
             BankId > 0 && 
             !string.IsNullOrWhiteSpace(AccountNumber) && 
-            !string.IsNullOrWhiteSpace(AccountHolderName) &&
-            !string.IsNullOrWhiteSpace(AccountNickname);
+            !string.IsNullOrWhiteSpace(AccountHolderName);
     }
 } 
