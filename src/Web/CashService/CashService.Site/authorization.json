@@ -1,6 +1,5 @@
 {
     "Authorization": {
-        "EnableCheckBelonging": false,
         "CustIdQueryStringParamNames": [
             "subaccid",
             "subAccountId",
