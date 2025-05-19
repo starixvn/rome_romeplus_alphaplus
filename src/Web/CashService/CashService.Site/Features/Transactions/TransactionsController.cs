@@ -74,7 +74,7 @@ public class TransactionsController(
         return Json(limitAmtDeposit);
     }
 
-    public async Task<IActionResult> AddManualDeposit([FromBody] AddWithdrawalParams request)
+    public async Task<IActionResult> AddManualDeposit([FromForm] AddWithdrawalParams request)
     {
         var result = VerifyInputParam(request);
         if (result.Code != 0)
@@ -85,7 +85,7 @@ public class TransactionsController(
         request.Ip = GetClientIp();
         request.SiteDbGroupId = siteDbGroupId;
         request.CustDbGroupId = custDbGroupId;
-        request.Payslip = request.Image != null ? await FileHelper.CompressAndConvertToBase64Async(request.Image) : null;
+        request.PaySlip = request.Image != null ? await FileHelper.CompressAndConvertToBase64Async(request.Image) : null;
         result = await httpClientHelper.PostAsync<AddWithdrawalParams, ResultModel>("/api/deposit/create", request);
         return Json(result);
     }
@@ -102,7 +102,7 @@ public class TransactionsController(
         request.Ip = GetClientIp();
         request.SiteDbGroupId = siteDbGroupId;
         request.CustDbGroupId = custDbGroupId;
-        request.Payslip = request.Image != null ? await FileHelper.CompressAndConvertToBase64Async(request.Image) : null;
+        request.PaySlip = request.Image != null ? await FileHelper.CompressAndConvertToBase64Async(request.Image) : null;
         result = await httpClientHelper.PostAsync<AddWithdrawalParams, ResultModel>("/api/withdrawal/create", request);
         return Json(result);
     }

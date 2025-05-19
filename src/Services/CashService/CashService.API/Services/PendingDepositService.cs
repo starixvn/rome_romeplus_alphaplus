@@ -85,7 +85,7 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
             PaymentFrom = param.PaymentFrom,
             PaymentTo = param.PaymentTo,
             Amount = param.Amount,
-            Payslip = param.Payslip,
+            PaySlip = param.PaySlip,
             Ip = param.Ip,
             Remark = param.Remark,
         };
