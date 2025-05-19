@@ -8,8 +8,6 @@ import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 import '../../styles/common.css';
 import '../../styles/global.scss';
 
-
- 
 function ManagePayments() {
   useCookieLanguage(i18n);
   const [activeTab, setActiveTab] = React.useState('paymentGateway');

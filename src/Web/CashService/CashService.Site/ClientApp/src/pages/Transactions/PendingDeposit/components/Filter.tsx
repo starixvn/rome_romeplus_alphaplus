@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { BankInfo } from '../../../../services/interfaces/Transactions/BankInfo';
 import { IconSearch } from '../../../../components/Icons';
-import CustomDropdown from '../../../../components/DropdownComponent';
+import CustomDropdown from '../../../../components/CustomDropdownComponent';
 
 interface FilterProps {
   recentDeposits: string;

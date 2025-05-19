@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { IconClose } from '../../components/Icons';
-import { ResultMessageComponent } from '../../components/MessageComponents';
+import { ErrorMessageComponent, SuccessMessageComponent } from '../../components/MessageComponents';
 import { handleNumericInput, handleIntegerInput } from '../../utils/inputHandlers';
 import { ButtonComponent } from '../../components/ButtonComponents';
 
@@ -156,8 +156,8 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
           <form onSubmit={handleSubmit}>
             <div className="mb-[16px]">
               <div className='my-[8px]'>      
-                { error && <ResultMessageComponent type="error" message={error} />}
-                { success && <ResultMessageComponent type="success" message={successMessage} />}   
+                { error && <ErrorMessageComponent message={error} />}
+                { success && <SuccessMessageComponent message={successMessage} />}   
               </div>
               <div className="pt-[4px]">
                  {tManagePayments('customizeTransactionLimitPreferences')}

@@ -7,7 +7,7 @@ import DailyLimitPopupModal from './SetDailyLimitPopupModal';
 import TitleComponent from '../../components/TitleComponent';
 import { IconPen } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
-import { ResultMessageComponent } from '../../components/MessageComponents';
+import { ErrorMessageComponent } from '../../components/MessageComponents';
 import { ButtonComponent } from '../../components/ButtonComponents';
 
 interface PaymentGatewayComponentProps {
@@ -50,8 +50,8 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
         return tManagePayments('disabled');
       case 1:
         return tManagePayments('enabled');
-        case 2:
-          return tManagePayments('-');
+      case 2:
+        return tManagePayments('-');
       default:
         return tManagePayments('unknown');
     }
@@ -134,7 +134,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
               </div>
             </div>
             {loading ? (<Loading />) 
-              : error ? (<ResultMessageComponent type="error" message={error} />) : (
+              : error ? (<ErrorMessageComponent message={error} />) : (
               <div className="table-fixed-header">
                 <table className="text-[12px] max-[768px]:text-[16px] w-full border-collapse border border-[#0000001f] border-t-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
                   <thead>

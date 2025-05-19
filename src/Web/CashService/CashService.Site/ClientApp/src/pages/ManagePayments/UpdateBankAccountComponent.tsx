@@ -14,7 +14,7 @@ import { baseAPI } from '../../services/commonAPI';
 import CustomDropdown, { DropdownOption } from '../../components/CustomDropdownComponent';
 import Loading from '../../components/LoadingComponent';
 import BackComponent from '../../components/BackComponent';
-import { ResultMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
+import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import MobileComponent from '../../components/MobileComponent';
 import { ButtonComponent } from '../../components/ButtonComponents';
 import TitleComponent from '../../components/TitleComponent';
@@ -279,8 +279,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
             className="bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
           >
             <div className="modal-body">
-              {error && <ResultMessageComponent message={error} type="error" />}
-              {success && <ResultMessageComponent message={successMessage} type="success" />}
+              {error && <ErrorMessageComponent message={error} />}
+              {success && <SuccessMessageComponent message={successMessage} />}
 
               <div className="mb-[8px]">
                 <div className="pb-[8px] text-[16px] max-[768px]:text-[20px] text-[var(--text-color-primary)] font-semibold ">
@@ -330,9 +330,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 {tManagePayments('transactionType')}
                 <span className="text-[#E25757]">*</span>
               </div>
-              {fieldErrors.selectedTransactionType && (
-                <ValidateMessageComponent message={fieldErrors.selectedTransactionType} />
-              )}
+              <ValidateMessageComponent message={fieldErrors.selectedTransactionType} />
               <div className="inline-block border-[1px] border-[var(--border-control)] rounded-[4px] px-[16px] pb-[16px] bg-[#f8f8f8] mb-[8px]">
                 {hasDepositTransactionType(selectedBank, banks) && (
                   <div className="mb-[8px]">
@@ -453,11 +451,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                           </>
                         )}
                       </div>
-                      {fieldErrors.selectedDepositMatchingMode && (
-                        <ValidateMessageComponent
-                          message={fieldErrors.selectedDepositMatchingMode}
-                        />
-                      )}
+                      <ValidateMessageComponent message={fieldErrors.selectedDepositMatchingMode} />
                     </div>
                   )
                 );

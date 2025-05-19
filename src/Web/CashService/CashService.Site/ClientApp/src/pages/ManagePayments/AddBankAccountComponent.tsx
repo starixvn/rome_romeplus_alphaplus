@@ -14,7 +14,7 @@ import { baseAPI } from '../../services/commonAPI';
 import CustomDropdown, { DropdownOption } from '../../components/CustomDropdownComponent';
 import Loading from '../../components/LoadingComponent';
 import BackComponent from '../../components/BackComponent';
-import { ResultMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
+import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import MobileComponent from '../../components/MobileComponent';
 import { ensureNumericKeyPress, preventSpecialCharacter } from '../../utils/inputHandlers';
 import { ButtonComponent } from '../../components/ButtonComponents';
@@ -235,8 +235,8 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
             : (
             <form onSubmit={handleSubmit} className='bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]'>
               <div className="modal-body">
-                {error && (<ResultMessageComponent message={error} type='error' />)}
-                {success && (<ResultMessageComponent message={successMessage} type='success' />)}                
+                {error && (<ErrorMessageComponent message={error} />)}
+                {success && (<SuccessMessageComponent message={successMessage} />)}                
                 <div className="mb-3">
                   <div className="pb-[8px] text-[16px] max-[768px]:text-[20px] text-[var(--text-color-primary)] font-semibold">{tManagePayments('bankStatus')}</div>
                   <p className=" my-[8px]">{tManagePayments('bankNote1')}</p>
@@ -275,7 +275,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                       initialValue={selectedBank}
                     />
                   </div>
-                  {fieldErrors.selectedBank && (<ValidateMessageComponent message={fieldErrors.selectedBank}  />)}
+                  <ValidateMessageComponent message={fieldErrors.selectedBank}  />
                 </div>
 
                 <div className=''>
@@ -351,9 +351,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                           </label>
                         )}
                       </div>
-                      {fieldErrors.selectedDepositMatchingMode && (
-                        <ValidateMessageComponent message={fieldErrors.selectedDepositMatchingMode} />
-                      )}
+                      <ValidateMessageComponent message={fieldErrors.selectedDepositMatchingMode} />
                     </div>
                   );
                 })()}
@@ -369,9 +367,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                       onKeyDown={preventSpecialCharacter}
                       maxLength={255}
                     />
-                    {fieldErrors.accountHolderName && (
-                      <ValidateMessageComponent message={fieldErrors.accountHolderName} />
-                    )}
+                    <ValidateMessageComponent message={fieldErrors.accountHolderName} />
                     <label className="block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold">{tManagePayments('provideFullName')}</label>
                   </div>
 
@@ -385,9 +381,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                       onKeyDown={ensureNumericKeyPress}
                       maxLength={50}
                     />
-                    {fieldErrors.accountNumber && ( 
-                      <ValidateMessageComponent message={fieldErrors.accountNumber} />
-                    )}
+                    <ValidateMessageComponent message={fieldErrors.accountNumber} />
                   </div>
 
                   <div className='w-[230px] pt-[4px] max-[768px]:w-[48%]'>
@@ -432,7 +426,6 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     countryCodes={countryCodes}
                     fieldErrors={fieldErrors}
                     onCountryCodeChange={(e) => {
-                      console.log('e.target.value', e.target.value);
                       setCountryCode(e.target.value);
                     }}
                     onMobileChange={(e) => setMobile(e.target.value)}
