@@ -13,6 +13,7 @@ export interface TransactionItem {
   transactionTypeId: number;
   transactionType: string;
   remark: string;
+  payslip: string;
   createdTime: string;
   lastUpdatedDate: string;
 }

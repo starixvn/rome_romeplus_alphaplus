@@ -35,6 +35,9 @@ public class TransactionModel
     public string TransactionType { get; set; }
 
     public string Remark { get; set; }
+    public byte[] Payslip { get; set; }
+
+    public string Base64Payslip => Payslip is null ? string.Empty : Convert.ToBase64String(Payslip);
 
     public DateTime CreatedTime { get; set; }
 

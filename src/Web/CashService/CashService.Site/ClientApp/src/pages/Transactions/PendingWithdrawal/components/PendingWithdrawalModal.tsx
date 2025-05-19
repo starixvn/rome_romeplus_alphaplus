@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory.ts';
-import { displayAmount, renderBankAccount } from '../../../../common/commonFunctions.tsx';
+import {
+  displayAmount,
+  formatDateTime,
+  renderBankAccount,
+} from '../../../../common/commonFunctions.tsx';
 interface PendingWithdrawalModalProps {
   withdrawal: TransactionItem;
   onClose: () => void;
@@ -172,7 +176,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
                   <div className="text-sm font-medium mb-1">
                     {t('pendingWithdrawalModal.dateAndTime')}
                   </div>
-                  <div>{withdrawal.createdTime}</div>
+                  <div>{formatDateTime(withdrawal.createdTime)}</div>
                 </div>
               </div>
             </div>
@@ -180,7 +184,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
             <div className="mt-6 h-full">
               <div className="text-sm font-medium mb-1">{t('pendingWithdrawalModal.remarks')}</div>
               <textarea
-                value={remarks}
+                value={withdrawal.remark}
                 onChange={(e) => setRemarks(e.target.value)}
                 placeholder={t('pendingWithdrawalModal.remarksPlaceholder')}
                 className="border border-gray-300 rounded-md p-2 w-full h-[120px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] text-gray-700"
@@ -193,7 +197,11 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
             <div className="w-full h-full border-[2px] border-dashed border-[#163f78] rounded-[5px] flex flex-col items-center justify-center relative">
               {imageUrl ? (
                 <div className="absolute inset-0 flex flex-col items-center">
-                  <img src={imageUrl} alt="Preview" className="w-full h-full object-contain" />
+                  <img
+                    src={withdrawal.payslip}
+                    alt="Preview"
+                    className="w-full h-full object-contain"
+                  />
                   <button
                     type="button"
                     onClick={resetImageUpload}

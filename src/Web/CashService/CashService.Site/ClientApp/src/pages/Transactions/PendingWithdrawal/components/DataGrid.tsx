@@ -8,6 +8,8 @@ import {
   renderBankAccount,
 } from '../../../../common/commonFunctions.tsx';
 import PendingWithdrawalModal from './PendingWithdrawalModal.tsx';
+import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
+import NoRecordFound from '../../../../components/Table/NoRecordFound';
 
 interface DataGridProps {
   withdrawals: TransactionItem[];
@@ -16,13 +18,29 @@ interface DataGridProps {
 const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
   const { t } = useTranslation('pendingWithdrawal');
   const [processingWithdrawal, setProcessingWithdrawal] = useState<TransactionItem | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleProcessClick = (withdrawal: TransactionItem) => {
-    setProcessingWithdrawal(withdrawal);
+  const handleProcessClick = async (withdrawal: TransactionItem) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const detail = await transactionAPI.getTransactionDetail(
+        withdrawal.transId,
+        withdrawal.custId
+      );
+      setProcessingWithdrawal(detail);
+    } catch (err) {
+      console.error('Error fetching transaction detail:', err);
+      setError(t('dataGrid.errorFetchingDetail'));
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleCloseProcess = () => {
     setProcessingWithdrawal(null);
+    setError(null);
   };
 
   const handleApproveWithdrawal = (withdrawal: TransactionItem) => {
@@ -127,69 +145,25 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
                   </td>
                   <td className="py-1 px-2 border border-[#dee2e6] text-center">
                     <button
-                      className="font-bold text-[13px] tracking-[0.12px] leading-[26px] px-3 rounded-[4px] bg-[#163f78] hover:bg-[var(--button-background-hover)] text-[#ffffff] cursor-pointer"
+                      className={`font-bold text-[13px] tracking-[0.12px] leading-[26px] px-3 rounded-[4px] bg-[#163f78] hover:bg-[var(--button-background-hover)] text-[#ffffff] cursor-pointer ${
+                        isLoading ? 'opacity-50 cursor-not-allowed' : ''
+                      }`}
                       onClick={() => handleProcessClick(withdrawal)}
+                      disabled={isLoading}
                     >
-                      {t('dataGrid.process')}
+                      {isLoading ? t('dataGrid.loading') : t('dataGrid.process')}
                     </button>
                   </td>
                 </tr>
               ))
             ) : (
-              <tr>
-                <td colSpan={11} className="p-3 text-center border border-[#dee2e6]">
-                  <div className="flex flex-col items-center justify-center py-16">
-                    <svg
-                      width="70"
-                      height="70"
-                      viewBox="0 0 70 70"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="mb-4 text-gray-400"
-                    >
-                      <g opacity="0.5">
-                        <path
-                          d="M55 15H15C12.2386 15 10 17.2386 10 20V50C10 52.7614 12.2386 55 15 55H55C57.7614 55 60 52.7614 60 50V20C60 17.2386 57.7614 15 55 15Z"
-                          stroke="#9CA3AF"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <circle cx="35" cy="35" r="5" stroke="#9CA3AF" strokeWidth="2" />
-                        <path
-                          d="M35 35L45 45"
-                          stroke="#9CA3AF"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                        />
-                        <path
-                          d="M20 26V26.01"
-                          stroke="#9CA3AF"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                        />
-                        <path
-                          d="M26 26V26.01"
-                          stroke="#9CA3AF"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                        />
-                        <path
-                          d="M32 26V26.01"
-                          stroke="#9CA3AF"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                        />
-                      </g>
-                    </svg>
-                    <div className="text-sm text-gray-500">{t('dataGrid.noWithdrawalsFound')}</div>
-                  </div>
-                </td>
-              </tr>
+              <NoRecordFound colSpan={9} message={t('dataGrid.noWithdrawalsFound')} />
             )}
           </tbody>
         </table>
       </div>
+
+      {error && <div className="mt-4 p-4 bg-red-100 text-red-700 rounded-md">{error}</div>}
 
       {processingWithdrawal && (
         <PendingWithdrawalModal
