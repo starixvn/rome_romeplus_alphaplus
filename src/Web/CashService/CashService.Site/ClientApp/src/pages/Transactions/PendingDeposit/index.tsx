@@ -24,7 +24,7 @@ const PendingDeposit: React.FC = () => {
   useCookieLanguage(i18n);
   const [recentDeposits, setRecentDeposits] = useState<string>('All');
   const [cashAgentOptions, setCashAgentOptions] = useState<BankInfo[]>([]);
-  const [cashAgentTo, setCashAgentTo] = useState<string>('All');
+  const [cashAgentTo, setCashAgentTo] = useState<string>('');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [deposits, setDeposits] = useState<TransactionsHistoryResponse>({
     items: [],
@@ -110,7 +110,8 @@ const PendingDeposit: React.FC = () => {
 
   const filteredDeposits = useMemo(() => {
     let result = [...deposits.items];
-    if (cashAgentTo !== 'All') {
+    if (cashAgentTo !== '') {
+      console.log('cashAgentTo', cashAgentTo);
       result = result.filter(deposit => deposit.paymentTo.toString() === cashAgentTo);
     }
 

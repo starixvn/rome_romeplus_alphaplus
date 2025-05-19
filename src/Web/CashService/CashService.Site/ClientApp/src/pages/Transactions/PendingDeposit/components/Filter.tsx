@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { BankInfo } from '../../../../services/interfaces/Transactions/BankInfo';
 import { IconSearch } from '../../../../components/Icons';
+import CustomDropdown from '../../../../components/DropdownComponent';
 
 interface FilterProps {
   recentDeposits: string;
@@ -23,7 +24,8 @@ const Filter: React.FC<FilterProps> = ({
   setSearchTerm,
 }) => {
   const { t } = useTranslation('pendingDeposit');
-  
+  console.log('cashAgentTo', cashAgentTo);
+  console.log('`${option.bankCode}_${option.bankAccountNumber}`', `${cashAgentOptions[0]?.bankCode}_${cashAgentOptions[0]?.bankAccountNumber}`);
   return (
     <>
     <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
@@ -47,21 +49,15 @@ const Filter: React.FC<FilterProps> = ({
 
       <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
         <label className="block font-semibold text-[#333333] my-[8px]">{t('filter.to')}</label>
-        <div className="select-wrapper relative">
-          <select
-            value={cashAgentTo}
-            onChange={(e) => setCashAgentTo(e.target.value)}
-            className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
-            style={{ height: '32px' }}
-          >
-            <option value="All">{t('filter.all')}</option>
-            {cashAgentOptions.map((option) => (
-              <option key={option.bankId} value={option.bankId}>
-                {option.bankAccountNumber}
-              </option>
-            ))}
-          </select>
-        </div>
+        <CustomDropdown
+          options={cashAgentOptions.map((option) => ({
+            value: `${option.bankCode}_${option.bankAccountNumber}`,
+            label: option.bankAccountNumber,
+            code: option.bankCode,
+          }))}
+          onSelect={(selected) => setCashAgentTo(String(selected.value))}
+          showOptionAll={true}
+        />
       </div>
     </div>
     <div className="flex mb-[16px]">
