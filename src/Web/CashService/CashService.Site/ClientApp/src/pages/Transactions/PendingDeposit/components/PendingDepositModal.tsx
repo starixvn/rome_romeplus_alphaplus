@@ -35,9 +35,6 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
     });
   };
 
-  // Format name for display
-  const formattedName = `${deposit.firstName} ${deposit.lastName}`;
-  console.log(deposit);
   return (
     <div className="bg-[#00000066] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-start justify-center">
       <div className="p-[30px] bg-[#ffffff] mt-[100px] max-w-[540px] max-[768px]:max-w-[90%] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
@@ -69,7 +66,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
                 <tr>
                   <td className="px-[8px] py-[4px]">{deposit.username}</td>
                   <td className="px-[8px] py-[4px]">{}</td>
-                  <td className="px-[8px] py-[4px]">{formattedName}</td>
+                  <td className="px-[8px] py-[4px]">{`${deposit.firstName} ${deposit.lastName}`}</td>
                   <td className="px-[8px] py-[4px] text-[var(--text-color-primary)] font-semibold">{deposit.amount.toFixed(2)}</td>
                 </tr>
               </tbody>

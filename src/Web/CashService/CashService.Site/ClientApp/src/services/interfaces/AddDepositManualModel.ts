@@ -4,5 +4,5 @@ export interface AddDepositManualModel {
     paymentTo: string;
     amount: number;
     remark: string;
-    file: File;
+    image: File;
 };

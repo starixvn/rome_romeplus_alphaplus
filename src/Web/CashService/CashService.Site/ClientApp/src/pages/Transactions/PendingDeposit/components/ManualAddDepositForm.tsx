@@ -22,7 +22,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
   const [memberLoginOptions, setMemberLoginOptions] = useState<MemberLoginName[]>([]);
   const [memberId, setMemberId] = useState<number>(0);
   const [paymentFrom, setPaymentFrom] = useState('');
-  const [paymentTo, setPaymentTo] = useState(cashAgentOptions[0].bankAccountNumber);
+  const [paymentTo, setPaymentTo] = useState(`${cashAgentOptions[0]?.bankCode}_${cashAgentOptions[0]?.bankAccountNumber}`);
   const [cashMemberOptions, setCashMemberOptions] = useState<BankInfo[]>([]);
   const [creditAmount, setCreditAmount] = useState<CreditAmount>({ minAmt: 0, maxAmt: 0 });
   const [depositAmount, setDepositAmount] = useState('');
@@ -31,7 +31,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
   const [initialLoading, setInitialLoading] = useState(true);
   const [validationMessage, setValidationMessage] = useState<{ type: 'error' | 'success' | 'warning', message: string } | null>(null);
 
-  console.log('imageimageimage', image);
+  console.log('paymentTo', paymentTo);
 
   useEffect(() => {
     const fetchMemberLoginName = async () => {
@@ -39,7 +39,6 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
         const memberLoginNames = await transactionAPI.getMemberLoginName();
         setMemberLoginOptions(memberLoginNames);
         setMemberId(memberLoginNames[0]?.custId);
-        console.log('memberLoginNames', memberLoginNames);
       } catch (error) {
         console.error('Error fetching member login names:', error);
       }
@@ -54,7 +53,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
           const bankInfo = await transactionAPI.getCashMemberBankInfo(memberId);
           setCashMemberOptions(bankInfo);
           if (bankInfo.length > 0) {
-            setPaymentFrom(bankInfo[0].bankAccountNumber);
+            setPaymentFrom(`${bankInfo[0]?.bankCode}_${bankInfo[0]?.bankAccountNumber}`);
           }
         } catch (error) {
           console.error('Error fetching cash member bank info:', error);
@@ -92,7 +91,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
       paymentTo: paymentTo,
       amount: parseFloat(depositAmount),
       remark: remarks,
-      file: image as File,
+      image: image as File,
     }
     return params;
   };
@@ -129,8 +128,16 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
       });
       return false;
     }
+
+    if (params.amount > creditAmount.maxAmt) {
+      setValidationMessage({
+        type: 'error',
+        message: `Deposit amount cannot exceed maximum agent available credit: ${creditAmount.maxAmt}`
+      });
+      return false;
+    }
     
-    if (params.file && params.file.size > 1048576) {
+    if (params.image && params.image.size > 1048576) {
       setValidationMessage({
         type: 'error',
         message: 'File size must be less than 1MB'
@@ -198,10 +205,10 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
                 memberId={memberId}
                 onMemberChange={handleMemberChange}
                 paymentFrom={paymentFrom}
-                onPaymentFromChange={(e) => setPaymentFrom(e.target.value)}
+                onPaymentFromChange={(selected) => setPaymentFrom(String(selected.value))}
                 cashMemberOptions={cashMemberOptions}
                 paymentTo={paymentTo}
-                onPaymentToChange={(e) => setPaymentTo(e.target.value)}
+                onPaymentToChange={(selected) => setPaymentTo(String(selected.value))}
                 cashAgentOptions={cashAgentOptions}
                 depositAmount={depositAmount}
                 onDepositAmountChange={(e) => setDepositAmount(e.target.value)}

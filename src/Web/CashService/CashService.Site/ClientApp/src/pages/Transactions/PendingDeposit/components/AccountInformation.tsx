@@ -3,16 +3,17 @@ import { useTranslation } from 'react-i18next';
 import { MemberLoginName } from '../../../../services/interfaces/Transactions/MemberLoginName';
 import { BankInfo } from '../../../../services/interfaces/Transactions/BankInfo';
 import { CreditAmount } from '../../../../services/interfaces/Transactions/CreditAmount';
+import CustomDropdown, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 
 interface AccountInformationProps {
   memberLoginOptions: MemberLoginName[];
   memberId: number;
   onMemberChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   paymentFrom: string;
-  onPaymentFromChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onPaymentFromChange: (selected: DropdownOption) => void;
   cashMemberOptions: BankInfo[];
   paymentTo: string;
-  onPaymentToChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onPaymentToChange: (selected: DropdownOption) => void;
   cashAgentOptions: BankInfo[];
   depositAmount: string;
   onDepositAmountChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -79,7 +80,17 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
               {t('manualDepositForm.from')}
               <span className="text-red-500 absolute">*</span>
             </label>
-            <div className="relative">
+            <CustomDropdown
+              options={cashMemberOptions.map((option) => ({
+                value: `${option.bankCode}_${option.bankAccountNumber}`,
+                label: option.bankAccountNumber,
+                code: option.bankCode,
+              }))}
+              onSelect={(selected) => onPaymentFromChange(selected)}
+              initialValue={paymentFrom}
+              showOptionAll={false}
+            />
+            {/* <div className="relative">
               <select
                 id="paymentFrom"
                 value={paymentFrom}
@@ -92,7 +103,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
                   </option>
                 ))}
               </select>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -105,20 +116,16 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
               {t('manualDepositForm.to')}
               <span className="text-red-500 absolute">*</span>
             </label>
-            <div className="relative">
-              <select
-                id="paymentTo"
-                value={paymentTo}
-                onChange={onPaymentToChange}
-                className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
-              >
-                {cashAgentOptions.map((option, key) => (
-                  <option key={`${key}-${option.bankAccountNumber}`} value={option.bankAccountNumber}>
-                    {option.bankAccountNumber}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <CustomDropdown
+              options={cashAgentOptions.map((option) => ({
+                value: `${option.bankCode}_${option.bankAccountNumber}`,
+                label: option.bankAccountNumber,
+                code: option.bankCode,
+              }))}
+              onSelect={(selected) => onPaymentToChange(selected)}
+              initialValue={paymentTo}
+              showOptionAll={false}
+            />
           </div>
 
           <div>
@@ -132,7 +139,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
                 <span className="text-blue-900">
                   (Agent Available Credit:
                     <span className="text-red-500">
-                      {` ${creditAmount.minAmt} - ${creditAmount.maxAmt}`}
+                      {` ${creditAmount.maxAmt}`}
                     </span>
                   )
                 </span>

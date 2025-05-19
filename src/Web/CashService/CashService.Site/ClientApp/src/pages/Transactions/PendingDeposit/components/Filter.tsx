@@ -25,7 +25,6 @@ const Filter: React.FC<FilterProps> = ({
 }) => {
   const { t } = useTranslation('pendingDeposit');
   console.log('cashAgentTo', cashAgentTo);
-  console.log('`${option.bankCode}_${option.bankAccountNumber}`', `${cashAgentOptions[0]?.bankCode}_${cashAgentOptions[0]?.bankAccountNumber}`);
   return (
     <>
     <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
