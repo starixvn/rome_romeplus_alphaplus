@@ -6,7 +6,6 @@ interface MobileComponentProps {
   label: string;
   countryCode: string;
   mobile: string;
-  countryCodes: string[];
   fieldErrors: {
     mobile?: string;
     countryCode?: string;
@@ -19,7 +18,6 @@ interface MobileComponentProps {
 const MobileComponent: React.FC<MobileComponentProps> = ({
   label,
   mobile,
-  countryCodes,
   countryCode,
   fieldErrors,
   onCountryCodeChange,
@@ -37,7 +35,6 @@ const MobileComponent: React.FC<MobileComponentProps> = ({
           onChange={onCountryCodeChange}
           onKeyDown={ensureNumericKeyPress}
           maxLength={3}
-          placeholder={`${countryCodes[0]}`}
           style={{ maxWidth: '120px' }}
           inputMode="numeric"
         />

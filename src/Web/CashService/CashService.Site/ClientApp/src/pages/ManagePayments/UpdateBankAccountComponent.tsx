@@ -41,7 +41,6 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   const [mobile, setMobile] = useState<string>(bankAccount.mobile);
   const [countryCode, setCountryCode] = useState<string>(bankAccount.countryCode || '');
   const [creator, setCreator] = useState<string>(bankAccount.creator || '');
-  const [countryCodes, setCountryCodes] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<string>('');
@@ -100,11 +99,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
           var m = fetchedBankAccount.mobile;
           var countryCode = m.includes('-') ? fetchedBankAccount.mobile.split('-')[0] : '';
           var mobile = m.includes('-') ? fetchedBankAccount.mobile.split('-')[1] : m;
+          setCountryCode(countryCode);
           setMobile(mobile);
-
-          if (countryCodes.includes(countryCode)) {
-            setCountryCode(countryCode);
-          }
         }
       } catch (err) {
         setError(tManagePayments('failedToLoadBankAccount'));
@@ -116,11 +112,9 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
     const fetchCountryCodes = async () => {
       try {
-        const prefixes = await baseAPI.getCountryCodes();
-        setCountryCodes(prefixes);
-
-        if (!countryCode && prefixes.length > 0) {
-          setCountryCode(prefixes[0]);
+        const countryCodes = await baseAPI.getCountryCodes();
+        if (!countryCode && countryCodes.length > 0) {
+          setCountryCode(countryCodes[0]);
         }
       } catch (err) {
         console.error('Error fetching mobile prefixes:', err);
@@ -536,7 +530,6 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                   label={tManagePayments('mobile')}
                   countryCode={countryCode}
                   mobile={mobile}
-                  countryCodes={countryCodes}
                   fieldErrors={fieldErrors}
                   onCountryCodeChange={(e) => setCountryCode(e.target.value)}
                   onMobileChange={(e) => setMobile(e.target.value)}

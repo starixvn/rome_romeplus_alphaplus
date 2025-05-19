@@ -41,7 +41,6 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
   const [promptPay, setPromptPay] = useState<boolean>(true);
   const [mobile, setMobile] = useState<string>('');
   const [countryCode, setCountryCode] = useState<string>('');
-  const [countryCodes, setCountryCodes] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<string>('');
@@ -100,7 +99,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
     const fetchCountryCodes = async () => {
       try {
         const prefixes = await baseAPI.getCountryCodes();
-        setCountryCodes(prefixes);
+        setCountryCode(prefixes[0]);
       } catch (err) {
         console.error('Error fetching mobile prefixes:', err);
       }
@@ -423,7 +422,6 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     label={tManagePayments('mobile')}
                     countryCode={countryCode}
                     mobile={mobile}
-                    countryCodes={countryCodes}
                     fieldErrors={fieldErrors}
                     onCountryCodeChange={(e) => {
                       setCountryCode(e.target.value);
