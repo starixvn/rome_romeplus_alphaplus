@@ -131,7 +131,7 @@ const PendingDeposit: React.FC = () => {
 
   return (
     <>  
-      <div className="bg-white rounded-lg shadow-sm p-2 flex h-full flex-col">
+      <div className=" py-[12px] flex h-full flex-col">
         <TitleComponent title={t('pendingDeposit')} />          
         <div className="mb-[8px]">
           <ButtonComponent
@@ -139,7 +139,7 @@ const PendingDeposit: React.FC = () => {
             style="medium"
             text={`+${t('addManualDeposit')}`}
             onClick={handleAddManualDeposit}
-            className="w-[183px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
+            className="min-w-[183px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
           />
         </div>
 

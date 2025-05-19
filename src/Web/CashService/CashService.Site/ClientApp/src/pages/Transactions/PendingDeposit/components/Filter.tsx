@@ -28,7 +28,7 @@ const Filter: React.FC<FilterProps> = ({
     <>
     <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
       <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
-        <label className="block  font-semibold text-[#333333] my-[8px]">
+        <label className="block font-semibold text-[#333333] my-[8px]">
           {t('filter.recentDeposits')}
         </label>
         <div className="select-wrapper relative">
@@ -46,7 +46,7 @@ const Filter: React.FC<FilterProps> = ({
       </div>
 
       <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
-        <label className="block  font-semibold text-[#333333] my-[8px]">{t('filter.to')}</label>
+        <label className="block font-semibold text-[#333333] my-[8px]">{t('filter.to')}</label>
         <div className="select-wrapper relative">
           <select
             value={cashAgentTo}
@@ -74,7 +74,7 @@ const Filter: React.FC<FilterProps> = ({
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="h-[32px] max-[768px]:h-[40px] w-[100%] pl-[30px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] shadow-[0_0_6px_rgba(0,0,0,0.16)]"
+            className="h-[32px] max-[768px]:h-[40px] w-[100%] pl-[30px] bg-[#ffffff] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] shadow-[0_0_6px_rgba(0,0,0,0.16)]"
             placeholder={t('filter.usernamePlaceholder')}
           />
         </div>
