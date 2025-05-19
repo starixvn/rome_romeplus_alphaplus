@@ -129,7 +129,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
       return false;
     }
 
-    if (params.amount > creditAmount.maxAmt) {
+    if (creditAmount.maxAmt && params.amount > creditAmount.maxAmt) {
       setValidationMessage({
         type: 'error',
         message: `Deposit amount cannot exceed maximum agent available credit: ${creditAmount.maxAmt}`
