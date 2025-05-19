@@ -3,6 +3,7 @@ import PendingDepositModal from './PendingDepositModal';
 import { useTranslation } from 'react-i18next';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { displayAmount, renderBankAccount } from '../../../../common/commonFunctions';
+import { ButtonComponent } from '../../../../components/ButtonComponents';
 
 interface DataGridProps {
   deposits: TransactionItem[];
@@ -33,11 +34,11 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
   return (
     <>
       <div className="table-fixed-header table-fixed-body bg-[#ffffff] h-full">
-        <table className="text-[12px] max-[600px]:text-[17px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
-          <thead>
+        <table className="max-[600px]:text-[17px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
+          <thead className='z-11!'>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">{t('dataGrid.username')}</th>
+              <th scope="col" className="w-[32px] min-w-[32px] sticky left-0 bg-[#ffffff] z-11">#</th>
+              <th scope="col" className="w-[150px] min-w-[150px] sticky left-[32px] bg-[#ffffff] z-11 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">{t('dataGrid.username')}</th>
               <th scope="col"><div>{t('dataGrid.firstName')}</div>                <div>{t('dataGrid.lastName')}</div></th>
               <th scope="col">{t('dataGrid.amount')}</th>
               <th scope="col">{t('dataGrid.currency')}</th>
@@ -52,8 +53,8 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
             {deposits.length > 0 ? (
               deposits.map((deposit, index) => (
                 <tr key={deposit.transId}>
-                  <td>{index + 1}</td>
-                  <td>
+                  <td className="w-[32px] min-w-[32px] sticky left-0 bg-[#ffffff] z-10">{index + 1}</td>
+                  <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[#ffffff] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
                     {deposit.username}
                   </td>
                   <td>
@@ -79,12 +80,13 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
                     {deposit.createdTime}
                   </td>
                   <td>
-                    <button
-                      className="font-bold text-[13px] tracking-[0.12px] leading-[26px] px-3 rounded-[4px] bg-[#163f78] hover:bg-[var(--button-background-hover)] text-[#ffffff] cursor-pointer"
+                    <ButtonComponent
+                      type="apply"
+                      style="medium"
+                      text={t('dataGrid.process')}
                       onClick={() => handleProcessClick(deposit)}
-                    >
-                      {t('dataGrid.process')}
-                    </button>
+                      className=""
+                    />
                   </td>
                 </tr>
               ))

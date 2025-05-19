@@ -130,39 +130,38 @@ const PendingDeposit: React.FC = () => {
   console.log('deposits.items', deposits.items);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="mx-auto space-y-6">
-        <div className="bg-white rounded-lg shadow-sm p-2">
-          <TitleComponent title={t('pendingDeposit')} />          
-          <div className="mb-[8px]">
-            <ButtonComponent
-              type="cancel"
-              style="medium"
-              text={`+${t('addManualDeposit')}`}
-              onClick={handleAddManualDeposit}
-              className="w-[183px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
-            />
-          </div>
-
-          <Filter
-            recentDeposits={recentDeposits}
-            setRecentDeposits={setRecentDeposits}
-            cashAgentOptions={cashAgentOptions}
-            cashAgentTo={cashAgentTo}
-            setCashAgentTo={setCashAgentTo}
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
+    <>  
+      <div className="bg-white rounded-lg shadow-sm p-2 flex h-full flex-col">
+        <TitleComponent title={t('pendingDeposit')} />          
+        <div className="mb-[8px]">
+          <ButtonComponent
+            type="cancel"
+            style="medium"
+            text={`+${t('addManualDeposit')}`}
+            onClick={handleAddManualDeposit}
+            className="w-[183px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
           />
-
-          {isLoading ? (
-            <div className="flex justify-center items-center py-8">
-              <Loading />
-            </div>
-          ) : (
-            <DataGrid deposits={filteredDeposits} />
-          )}
         </div>
+
+        <Filter
+          recentDeposits={recentDeposits}
+          setRecentDeposits={setRecentDeposits}
+          cashAgentOptions={cashAgentOptions}
+          cashAgentTo={cashAgentTo}
+          setCashAgentTo={setCashAgentTo}
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+        />
+
+        {isLoading ? (
+          <div className="flex justify-center items-center py-8">
+            <Loading />
+          </div>
+        ) : (
+          <DataGrid deposits={filteredDeposits} />
+        )}
       </div>
+   
 
       {showManualAddDepositForm && (
         <ManualAddDepositForm
@@ -170,7 +169,7 @@ const PendingDeposit: React.FC = () => {
           onClose={() => handleCloseManualDepositForm(false)}
         />
       )}
-    </div>
+    </>
   );
 };
 
