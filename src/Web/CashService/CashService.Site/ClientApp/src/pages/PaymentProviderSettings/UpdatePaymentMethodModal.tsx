@@ -43,7 +43,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
     apiKey: existingPaymentMethod.apiMethodKey || '',
     merchantID: existingPaymentMethod.merchantID || '',
     appSecret: existingPaymentMethod.appSecret || '',
-    agreeToTerms: false,
+    agreeToTerms: true,
     telegramAssistantUrl: orgTelegramAssistantUrl
   });
 
@@ -262,6 +262,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                 className="w-[18px] h-[18px]"
                 id="agreeToTerms"
                 checked={formState.agreeToTerms}
+                disabled={true}
                 onChange={(e) => {
                   handleInputChange('agreeToTerms', e.target.checked);
                 }}
