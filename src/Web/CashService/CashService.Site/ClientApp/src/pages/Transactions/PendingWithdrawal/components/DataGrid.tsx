@@ -43,135 +43,131 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
     setError(null);
   };
 
-  const handleApproveWithdrawal = (withdrawal: TransactionItem) => {
-    console.log('Approving withdrawal:', withdrawal);
-    setProcessingWithdrawal(null);
+  const buildHeader = () => {
+    return (
+      <thead className="sticky top-0 shadow-[0_2px_5px_#0003]">
+        <tr>
+          <th
+            scope="col"
+            className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
+          >
+            #
+          </th>
+          <th
+            scope="col"
+            className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
+          >
+            <div>{t('dataGrid.username')}</div>
+            <div>{t('dataGrid.nickname')}</div>
+          </th>
+          <th
+            scope="col"
+            className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
+          >
+            <div>{t('dataGrid.firstName')}</div>
+          </th>
+          <th
+            scope="col"
+            className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
+          >
+            {t('dataGrid.amount')} ({CurrentCurrency})
+          </th>
+          <th
+            scope="col"
+            className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
+          >
+            {t('dataGrid.from')}
+          </th>
+          <th
+            scope="col"
+            className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
+          >
+            {t('dataGrid.to')}
+          </th>
+          <th
+            scope="col"
+            className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
+          >
+            {t('dataGrid.referenceNo')}
+          </th>
+          <th
+            scope="col"
+            className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
+          >
+            {t('dataGrid.dateAndTime')}
+          </th>
+          <th
+            scope="col"
+            className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
+          >
+            {t('dataGrid.actions')}
+          </th>
+        </tr>
+      </thead>
+    );
   };
 
-  const handleRejectWithdrawal = (withdrawal: TransactionItem) => {
-    console.log('Rejecting withdrawal:', withdrawal);
-    setProcessingWithdrawal(null);
+  const buildBody = () => {
+    return (
+      <tbody className="font-[500]">
+        {withdrawals.length > 0 ? (
+          withdrawals.map((withdrawal, index) => (
+            <tr key={withdrawal.transId}>
+              <td className="py-1 px-2 border border-[#dee2e6] text-center">{index + 1}</td>
+              <td className="py-1 px-2 border border-[#dee2e6] text-center">
+                {withdrawal.username}
+              </td>
+              <td className="py-1 px-2 border border-[#dee2e6] text-center">
+                <div>{withdrawal.firstName}</div>
+                <div>{withdrawal.lastName}</div>
+              </td>
+              <td className="py-1 px-2 border border-[#dee2e6] text-center">
+                {displayAmount(withdrawal.amount)}
+              </td>
+              <td className="py-1 px-2 border border-[#dee2e6] text-center">
+                {renderBankAccount(withdrawal.paymentFrom)}
+              </td>
+              <td className="py-1 px-2 border border-[#dee2e6] text-center">
+                {renderBankAccount(withdrawal.paymentTo)}
+              </td>
+              <td className="py-1 px-2 border border-[#dee2e6] text-center">
+                {withdrawal.transId}
+              </td>
+              <td className="py-1 px-2 border border-[#dee2e6] text-center">
+                {formatDateTime(withdrawal.createdTime)}
+              </td>
+              <td className="py-1 px-2 border border-[#dee2e6] text-center">
+                <button
+                  className={`font-bold text-[13px] tracking-[0.12px] leading-[26px] px-3 rounded-[4px] bg-[#163f78] hover:bg-[var(--button-background-hover)] text-[#ffffff] cursor-pointer ${
+                    isLoading ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
+                  onClick={() => handleProcessClick(withdrawal)}
+                  disabled={isLoading}
+                >
+                  {isLoading ? t('dataGrid.loading') : t('dataGrid.process')}
+                </button>
+              </td>
+            </tr>
+          ))
+        ) : (
+          <NoRecordFound colSpan={9} message={t('dataGrid.noWithdrawalsFound')} />
+        )}
+      </tbody>
+    );
   };
-
   return (
     <>
       <div className="max-h-[50vh] overflow-auto shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
         <table className="text-[14px] w-full border-collapse border border-[#0000001f] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
-          <thead className="sticky top-0 shadow-[0_2px_5px_#0003]">
-            <tr>
-              <th
-                scope="col"
-                className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
-              >
-                #
-              </th>
-              <th
-                scope="col"
-                className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
-              >
-                <div>{t('dataGrid.username')}</div>
-                <div>{t('dataGrid.nickname')}</div>
-              </th>
-              <th
-                scope="col"
-                className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
-              >
-                <div>{t('dataGrid.firstName')}</div>
-              </th>
-              <th
-                scope="col"
-                className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
-              >
-                {t('dataGrid.amount')} ({CurrentCurrency})
-              </th>
-              <th
-                scope="col"
-                className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
-              >
-                {t('dataGrid.from')}
-              </th>
-              <th
-                scope="col"
-                className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
-              >
-                {t('dataGrid.to')}
-              </th>
-              <th
-                scope="col"
-                className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
-              >
-                {t('dataGrid.referenceNo')}
-              </th>
-              <th
-                scope="col"
-                className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
-              >
-                {t('dataGrid.dateAndTime')}
-              </th>
-              <th
-                scope="col"
-                className="bg-white py-1 px-2 text-center font-bold border border-[#dee2e6] text-gray-700"
-              >
-                {t('dataGrid.actions')}
-              </th>
-            </tr>
-          </thead>
-          <tbody className="font-[500]">
-            {withdrawals.length > 0 ? (
-              withdrawals.map((withdrawal, index) => (
-                <tr key={withdrawal.transId}>
-                  <td className="py-1 px-2 border border-[#dee2e6] text-center">{index + 1}</td>
-                  <td className="py-1 px-2 border border-[#dee2e6] text-center">
-                    {withdrawal.username}
-                  </td>
-                  <td className="py-1 px-2 border border-[#dee2e6] text-center">
-                    <div>{withdrawal.firstName}</div>
-                    <div>{withdrawal.lastName}</div>
-                  </td>
-                  <td className="py-1 px-2 border border-[#dee2e6] text-center">
-                    {displayAmount(withdrawal.amount)}
-                  </td>
-                  <td className="py-1 px-2 border border-[#dee2e6] text-center">
-                    {renderBankAccount(withdrawal.paymentFrom)}
-                  </td>
-                  <td className="py-1 px-2 border border-[#dee2e6] text-center">
-                    {renderBankAccount(withdrawal.paymentTo)}
-                  </td>
-                  <td className="py-1 px-2 border border-[#dee2e6] text-center">
-                    {withdrawal.transId}
-                  </td>
-                  <td className="py-1 px-2 border border-[#dee2e6] text-center">
-                    {formatDateTime(withdrawal.createdTime)}
-                  </td>
-                  <td className="py-1 px-2 border border-[#dee2e6] text-center">
-                    <button
-                      className={`font-bold text-[13px] tracking-[0.12px] leading-[26px] px-3 rounded-[4px] bg-[#163f78] hover:bg-[var(--button-background-hover)] text-[#ffffff] cursor-pointer ${
-                        isLoading ? 'opacity-50 cursor-not-allowed' : ''
-                      }`}
-                      onClick={() => handleProcessClick(withdrawal)}
-                      disabled={isLoading}
-                    >
-                      {isLoading ? t('dataGrid.loading') : t('dataGrid.process')}
-                    </button>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <NoRecordFound colSpan={9} message={t('dataGrid.noWithdrawalsFound')} />
-            )}
-          </tbody>
+          {buildHeader()}
+          {buildBody()}
         </table>
       </div>
 
       {error && <div className="mt-4 p-4 bg-red-100 text-red-700 rounded-md">{error}</div>}
 
       {processingWithdrawal && (
-        <PendingWithdrawalModal
-          withdrawal={processingWithdrawal}
-          onClose={handleCloseProcess}
-          onApprove={handleApproveWithdrawal}
-          onReject={handleRejectWithdrawal}
-        />
+        <PendingWithdrawalModal withdrawal={processingWithdrawal} onClose={handleCloseProcess} />
       )}
     </>
   );

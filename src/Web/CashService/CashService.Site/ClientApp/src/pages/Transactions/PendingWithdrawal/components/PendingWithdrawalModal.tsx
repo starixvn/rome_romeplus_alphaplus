@@ -9,16 +9,9 @@ import {
 interface PendingWithdrawalModalProps {
   withdrawal: TransactionItem;
   onClose: () => void;
-  onApprove: (withdrawal: TransactionItem) => void;
-  onReject: (withdrawal: TransactionItem) => void;
 }
 
-const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
-  withdrawal,
-  onClose,
-  onApprove,
-  onReject,
-}) => {
+const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdrawal, onClose }) => {
   const { t } = useTranslation('pendingWithdrawal');
   const [remarks, setRemarks] = useState('');
   const [withdrawalAmount, setWithdrawalAmount] = useState(withdrawal.amount.toString());
@@ -26,17 +19,13 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   const handleApprove = () => {
-    onApprove({
-      ...withdrawal,
-      amount: parseFloat(withdrawalAmount),
-    });
+    console.log('Approve' + remarks);
+    console.log('Approve' + withdrawalAmount);
   };
 
   const handleReject = () => {
-    onReject({
-      ...withdrawal,
-      amount: parseFloat(withdrawalAmount),
-    });
+    console.log('Reject' + remarks);
+    console.log('Reject' + withdrawalAmount);
   };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,7 +38,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
     }
   };
 
-  const handleChangeForm = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChangePaymentFrom = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
     setWithdrawalAmount(value.toString());
   };
@@ -161,7 +150,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
                     <select
                       className="border border-gray-300 rounded py-1 px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184]"
                       value={withdrawal.paymentFrom}
-                      onChange={handleChangeForm}
+                      onChange={handleChangePaymentFrom}
                     >
                       <option value={withdrawal.paymentFrom}>
                         {renderBankAccount(withdrawal.paymentFrom)}
