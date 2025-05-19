@@ -265,5 +265,8 @@
         "OfferedSites": "",
         "BackOfficeApiUrl": "http://vn-s1-alpha-api-prod.nebula.prod/api/"
     },
-    "OfferProfilePictureTour": true
+    "OfferProfilePictureTour": true,
+    "CashService": {
+        "OfferedSites": "222227"
+    }
 }

@@ -262,5 +262,8 @@
         "OfferedSites": "",
         "BackOfficeApiUrl": "https://s1-alpha-api-service.playonesit.com/api/"
     },
-    "OfferProfilePictureTour": true
+    "OfferProfilePictureTour": true,
+    "CashService": {
+        "OfferedSites": "755555,222227"
+    }
 }

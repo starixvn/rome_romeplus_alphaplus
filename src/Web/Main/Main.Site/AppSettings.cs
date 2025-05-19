@@ -80,6 +80,14 @@ namespace AlphaPlus.Main.Site
             }
         }
 
+        public static bool IsOfferedCashService(string site)
+            => CashServiceOfferedSites.Contains("*") || CashServiceOfferedSites.Contains(site);
+
+        public static IEnumerable<string> CashServiceOfferedSites { get; } = new HashSet<string>(
+            (GetValue<string>("CashService:OfferedSites") ?? string.Empty)
+               .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+               .Select(site => site.Trim()), StringComparer.OrdinalIgnoreCase);
+
         public static bool IsOfferedWhiteLabel(string site)
             => WhiteLabelOfferedSites.Contains("*") || WhiteLabelOfferedSites.Contains(site);
 
