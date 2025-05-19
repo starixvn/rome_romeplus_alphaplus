@@ -26,14 +26,13 @@
             <Mapping DataField="PaymentMethodEnable" ObjectProperty="IsEnabled"></Mapping>
             <Mapping DataField="RequiresBank" ObjectProperty="BankRequired"></Mapping>
         </Setting>
-        <Setting Key="Age_CashService_PaymentProvider_Ins" SpName="Age_CashService_PaymentProvider_Ins" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
-        <Setting Key="Age_ManagementPayments_UpdMethod" SpName="Age_ManagementPayments_UpdMethod" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="Age_CashService_PaymentMethod_Config" SpName="Age_CashService_PaymentMethod_Config" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
         <Setting Key="Age_CashService_BankList" SpName="Age_CashService_BankList" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="BankID" ObjectProperty="Id"></Mapping>
             <Mapping DataField="Bankcode" ObjectProperty="Code"></Mapping>
         </Setting>
         <Setting Key="Age_CashService_PaymentProviderStatus_Upd" SpName="Age_CashService_PaymentProviderStatus_Upd" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
-        <Setting Key="Age_CashService_PaymentProvider_Upd" SpName="Age_CashService_PaymentProvider_Upd" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="Age_CashService_PaymentMethod_Upd" SpName="Age_CashService_PaymentMethod_Upd" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
 
         <Setting Key="Age_ManagementPayments_SelProvidersFees" SpName="Age_ManagementPayments_SelProvidersFees" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
         <Setting Key="Age_ManagementPayments_SetDailyWithdrawalCount" SpName="Age_ManagementPayments_SetDailyWithdrawalCount" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />

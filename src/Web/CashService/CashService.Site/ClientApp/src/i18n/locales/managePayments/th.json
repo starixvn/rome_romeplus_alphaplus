@@ -107,6 +107,11 @@
   "enable-status-0": "ทั้งหมด",
   "enable-status-1": "เปิดใช้งาน",
   "enable-status-2": "ปิดใช้งาน",
+
+  "bank-status-0": "ทั้งหมด",
+  "bank-status-1": "เปิดใช้งาน",
+  "bank-status-2": "ปิดใช้งาน",
+
   "transaction-0": "ทั้งหมด",
   "transaction-1": "ฝาก",
   "transaction-2": "ถอน",

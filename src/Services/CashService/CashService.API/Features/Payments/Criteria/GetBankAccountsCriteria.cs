@@ -19,7 +19,7 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
         public string TransactionType { get; } = transactionType.HasValue && transactionType.Value != 0 ? transactionType.ToString() : null;
 
         [SpParam(SqlParamName = "BankAccountStatus")]
-        public int? Status { get; } = status;
+        public int? Status { get; } = status == 2 ? null : status;
 
         [SpParam(SqlParamName = "SearchAccount")]
         public string SearchText { get; } = searchText;

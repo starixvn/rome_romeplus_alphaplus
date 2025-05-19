@@ -107,6 +107,11 @@
   "enable-status-0": "전체",
   "enable-status-1": "활성화",
   "enable-status-2": "비활성화",
+
+  "bank-status-0": "전체",
+  "bank-status-1": "활성화",
+  "bank-status-2": "비활성화",
+
   "transaction-0": "전체",
   "transaction-1": "입금",
   "transaction-2": "출금",

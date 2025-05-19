@@ -107,6 +107,11 @@
   "enable-status-0": "Tất cả",
   "enable-status-1": "Bật",
   "enable-status-2": "Tắt",
+
+  "bank-status-0": "Tất cả",
+  "bank-status-1": "Bật",
+  "bank-status-2": "Tắt",
+
   "transaction-0": "Tất cả",
   "transaction-1": "Nạp tiền",
   "transaction-2": "Rút tiền",

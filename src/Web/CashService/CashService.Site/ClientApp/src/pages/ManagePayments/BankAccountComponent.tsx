@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Bank, BankAccount } from '../../services/interfaces/Payments';
 import { paymentProviderService } from '../../services/paymentsAPI';
-import { ENABLED_STATUS_OPTIONS } from '../../constants/paymentConstants';
+import { BANK_STATUS_OPTIONS } from '../../constants/paymentConstants';
 import SetTransactionLimitModal from './SetTransactionLimitModal';
 import AddBankAccountComponent from './AddBankAccountComponent';
 import UpdateBankAccountComponent from './UpdateBankAccountComponent';
@@ -28,7 +28,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
   const [bankAccounts, setBankAccounts] = useState<BankAccount[]>([]);
   const [selectedBank, setSelectedBank] = useState<string>('0');
   const [selectedTransactionType, setSelectedTransactionType] = useState<string>('0');
-  const [selectedStatus, setSelectedStatus] = useState<string>('0');
+  const [selectedStatus, setSelectedStatus] = useState<string>('2');
   const [searchInput, setSearchInput] = useState<string>('');
   const [searchText, setSearchText] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
@@ -344,9 +344,9 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                             value={selectedStatus}
                             onChange={handleStatusChange}
                           >
-                            {ENABLED_STATUS_OPTIONS.map((status) => (
+                            {BANK_STATUS_OPTIONS.map((status) => (
                               <option key={status.id} value={status.id}>
-                                {tManagePayments(`enable-status-${status.id}`)}
+                                {tManagePayments(`bank-status-${status.id}`)}
                               </option>
                             ))}
                           </select>
