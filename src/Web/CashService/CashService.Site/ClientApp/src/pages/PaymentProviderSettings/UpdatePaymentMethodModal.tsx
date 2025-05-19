@@ -209,7 +209,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
             <div>
             <hr className='mt-[16px] mb-[16px] border-[#0000001F]'  />
               <label className="text-[14px] pt-[16px] text-[var(--text-color-primary)] font-semibold pb-[4px]">{tPaymentProviderSettings('addPaymentMethodStep3')}</label>
-              <label className='text-[12px] text-[#333333] font-semibold pb-[4px]'>{tPaymentProviderSettings('failToSetupPaymentMethodWarning')}</label>
+              <ValidateMessageComponent message={tPaymentProviderSettings('failToSetupPaymentMethodWarning')} />
               <div className='flex flex-wrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full'>
               <div className="w-[48%]">
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('apiKey')}<span className='text-[#E25757]'>*</span></label>
