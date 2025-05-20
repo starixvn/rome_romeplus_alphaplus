@@ -14,7 +14,6 @@ import {
 } from '../../../services/interfaces/Transactions/TransactionHistory.ts';
 import { transactionAPI } from '../../../services/transactionsHistoryAPI.ts';
 import { TransactionType } from '../../../common/commonFunctions.tsx';
-import { BankInfo } from '../../../services/interfaces/Transactions/BankInfo';
 import Loading from '../../../components/LoadingComponent';
 import TitleComponent from '../../../components/TitleComponent';
 import { ButtonComponent } from '../../../components/ButtonComponents';
@@ -23,7 +22,6 @@ const PendingWithdrawal: React.FC = () => {
   const { t } = useTranslation('pendingWithdrawal');
   useCookieLanguage(i18n);
   const [recentWithdrawals, setRecentWithdrawals] = useState<string>('All');
-  const [cashAgentOptions, setCashAgentOptions] = useState<BankInfo[]>([]);
   const [cashAgentTo, setCashAgentTo] = useState<string>('');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [withdrawals, setWithdrawals] = useState<TransactionsHistoryResponse>({
@@ -81,18 +79,6 @@ const PendingWithdrawal: React.FC = () => {
   useEffect(() => {
     fetchWithdrawals();
   }, [recentWithdrawals]);
-
-  useEffect(() => {
-    const fetchBankInfo = async () => {
-      try {
-        const bankInfo = await transactionAPI.getCashAgentBankInfo(TransactionType.Withdrawal);
-        setCashAgentOptions(bankInfo);
-      } catch (error) {
-        console.error('Error fetching bank info:', error);
-      }
-    };
-    fetchBankInfo();
-  }, []);
 
   const handleAddManualWithdrawal = () => {
     setShowManualAddWithdrawalForm(true);
