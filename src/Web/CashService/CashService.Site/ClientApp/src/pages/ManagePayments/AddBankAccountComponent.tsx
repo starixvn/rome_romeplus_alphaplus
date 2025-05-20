@@ -17,7 +17,7 @@ import BackComponent from '../../components/BackComponent';
 import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import MobileComponent from '../../components/MobileComponent';
 import { ensureNumericInput, ensureNameInput } from '../../utils/inputHandlers';
-import { ButtonComponent } from '../../components/ButtonComponents';
+import { ButtonApply, ButtonCancel } from '../../components/ButtonComponents';
 import TitleComponent from '../../components/TitleComponent';
 
 interface AddBankAccountComponentProps {
@@ -428,8 +428,8 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                 )}
               </div>
               <div className="flex justify-start py-[8px] mt-[8px] gap-[8px]"> 
-                <ButtonComponent className='w-[140px]' type="cancel" style="rounded" text={tGlobal('cancel')} onClick={onClose} disabled={loading} />
-                <ButtonComponent className='w-[140px]' type="apply" style="rounded" disabled={loading} text={loading ? tGlobal('saving') : tGlobal('save')}/>
+                <ButtonCancel text={tGlobal('cancel')} onClick={onClose}  />
+                <ButtonApply text={loading ? tGlobal('saving') : tGlobal('save')} onClick={() =>handleSubmit} disabled={loading} />
               </div>
             </form>
           )}

@@ -17,7 +17,7 @@ import {
 } from '../../../services/interfaces/Transactions/TransactionHistory';
 import Loading from '../../../components/LoadingComponent';
 import TitleComponent from '../../../components/TitleComponent';
-import { ButtonComponent } from '../../../components/ButtonComponents';
+import { ButtonOutline } from '../../../components/ButtonComponents';
 
 const PendingDeposit: React.FC = () => {
   const { t } = useTranslation('pendingDeposit');
@@ -141,12 +141,10 @@ const PendingDeposit: React.FC = () => {
       <div className=" py-[12px] flex h-full flex-col">
         <TitleComponent title={t('pendingDeposit')} />          
         <div className="mb-[8px]">
-          <ButtonComponent
-            type="cancel"
-            style="medium"
-            text={`+${t('addManualDeposit')}`}
+          <ButtonOutline 
+            text={`+ ${t('addManualDeposit')}`}
             onClick={handleAddManualDeposit}
-            className="min-w-[183px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
+            className="min-w-[183px] [&>*]:min-w-[183px] [&>*]:inline-block" 
           />
         </div>
 
@@ -165,7 +163,10 @@ const PendingDeposit: React.FC = () => {
             <Loading />
           </div>
         ) : (
-          <DataGrid deposits={filteredDeposits} />
+          <div className='p-[4px]'>
+            <DataGrid deposits={filteredDeposits} />
+         
+          </div>
         )}
       </div>   
       )}

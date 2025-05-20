@@ -6,6 +6,7 @@ import { PaymentMethod } from '../../services/interfaces/Payments/PaymentMethod'
 import { QRCodeCanvas } from 'qrcode.react';
 import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import { IconClose } from '../../components/Icons';
+import { ButtonApply, ButtonCancel } from '../../components/ButtonComponents';
 
 interface UpdatePaymentMethodModalProps {
   onClose: () => void;
@@ -151,6 +152,8 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
             <IconClose />
           </button>
         </div>
+        <ErrorMessageComponent className='mt-[8px]' message={error} />
+        <SuccessMessageComponent className='mt-[8px]' message={successMessage} />
         <form onSubmit={handleSubmit}>
           <div className="modal-body"> 
             <div>
@@ -252,8 +255,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
               </div>
               </div>
             </div>
-            <ErrorMessageComponent className='mt-[8px]' message={error} />
-            <SuccessMessageComponent className='mt-[8px]' message={successMessage} />
+            
           </div>
           <div className="flex flex-wrap mt-[16px] mb-[16px]">
             <label className="w-full flex items-center justify-center cursor-pointer text-[#333] text-[12px] leading-[14px]">
@@ -273,17 +275,9 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
             </label>
             <ValidateMessageComponent message={fieldErrors.agreeToTerms}  />
             </div>
-            <div className='flex justify-center'>
-            <button type="button" className="w-[140px] h-[30px] rounded-[20px] text-[var(--text-color-primary)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)] mx-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] cursor-pointer " onClick={onClose}>
-              {tPaymentProviderSettings('setUpLater')}
-            </button>
-            <button 
-              type="submit" 
-              className="w-[140px] capitalize font-bold h-[30px] rounded-[20px] text-[#ffffff] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)] mx-[4px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] disabled:bg-[#375A8A]"
-              disabled={isLoading || allMethodsInactive}
-            >
-              {isLoading ? tGlobal('loading') : tGlobal('update')}
-            </button>
+            <div className='flex justify-center gap-[8px]'>
+            <ButtonCancel text={tPaymentProviderSettings('setUpLater')} onClick={onClose} />
+            <ButtonApply text={isLoading ? tGlobal('loading') : tGlobal('update')} onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent)} disabled={isLoading || allMethodsInactive} />
           </div>
         </form>
       </div>

@@ -45,9 +45,7 @@ const MobileComponent: React.FC<MobileComponentProps> = ({
           placeholder={placeholder}
         />
       </div>
-      {(fieldErrors.mobile || fieldErrors.countryCode) && (
-        <ValidateMessageComponent message={(fieldErrors.mobile || fieldErrors.countryCode) || ''}  />
-      )}
+      <ValidateMessageComponent message={(fieldErrors.mobile || fieldErrors.countryCode) || ''}  />
     </div>
   );
 };

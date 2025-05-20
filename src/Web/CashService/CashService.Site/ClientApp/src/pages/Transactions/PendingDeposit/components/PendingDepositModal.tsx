@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { IconClose } from '../../../../components/Icons';
-import { ButtonComponent } from '../../../../components/ButtonComponents';
+import { ButtonApply, ButtonCancel } from '../../../../components/ButtonComponents';
 import { renderBankAccount } from '../../../../common/commonFunctions';
 
 interface PendingDepositModalProps {
@@ -120,17 +120,11 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
         </div>
 
         <div className="flex justify-center gap-[8px]">
-          <ButtonComponent
-            className="w-[140px]"
-            type="cancel"
-            style="rounded"
+        <ButtonCancel
             text="Reject"
             onClick={handleReject}
           />
-          <ButtonComponent
-            className="w-[140px]"
-            type="apply"
-            style="rounded"
+            <ButtonApply
             text="Approve"
             onClick={handleApprove}
           />

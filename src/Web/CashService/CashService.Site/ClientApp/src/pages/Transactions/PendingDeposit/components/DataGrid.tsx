@@ -3,7 +3,7 @@ import PendingDepositModal from './PendingDepositModal';
 import { useTranslation } from 'react-i18next';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { displayAmount, renderBankAccount } from '../../../../common/commonFunctions';
-import { ButtonComponent } from '../../../../components/ButtonComponents';
+import { ButtonFull } from '../../../../components/ButtonComponents';
 import NoRecordFound from '../../../../components/Table/NoRecordFound';
 
 interface DataGridProps {
@@ -80,9 +80,8 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
                   <td>{deposit.transId}</td>
                   <td>{deposit.createdTime}</td>
                   <td>
-                    <ButtonComponent
-                      type="apply"
-                      style="medium"
+                   
+                    <ButtonFull
                       text={t('dataGrid.process')}
                       onClick={() => handleProcessClick(deposit)}
                       className=""

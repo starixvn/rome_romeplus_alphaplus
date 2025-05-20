@@ -13,7 +13,7 @@ import '../../styles/common.css';
 import '../../styles/global.scss';
 
 import TitleComponent from '../../components/TitleComponent';
-import { ButtonComponent } from '../../components/ButtonComponents';
+import { ButtonApply } from '../../components/ButtonComponents';
 
 const MemberSiteManagement: React.FC = () => {
   const { t } = useTranslation('memberSite');
@@ -152,7 +152,7 @@ const MemberSiteManagement: React.FC = () => {
             </div>
 
             <div className="flex justify-start py-[8px] mt-[8px]">
-              <ButtonComponent className='w-[140px]' type="apply" style="rounded" disabled={!isDirty || isSaving} text={isSaving ? t('actions.saving') : t('actions.save')} onClick={handleSave}/>
+              <ButtonApply className='w-[140px] [&>*]:w-[100%]' text={isSaving ? t('actions.saving') : t('actions.save')} disabled={!isDirty || isSaving} onClick={handleSave}/>
             </div>
           </div>
         </div>

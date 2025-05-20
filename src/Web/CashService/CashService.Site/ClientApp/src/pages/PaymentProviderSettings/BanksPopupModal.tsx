@@ -4,7 +4,7 @@ import { Bank } from '../../services/interfaces/Payments/Bank';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { IconClose } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
-import { ButtonComponent } from '../../components/ButtonComponents';
+import { ButtonApply } from '../../components/ButtonComponents';
 interface BanksPopupModalProps {
   onClose: () => void;
   transactionType: number;
@@ -84,8 +84,8 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
             </>
           )}
         </div>
-        <div className="flex justify-center">      
-          <ButtonComponent className='w-[140px]' type='apply' style='rounded' text={tGlobal('close')} onClick={onClose} />
+        <div className="flex justify-center">  
+          <ButtonApply text={tGlobal('close')} onClick={onClose} />
         </div>
       </div>
     </div>

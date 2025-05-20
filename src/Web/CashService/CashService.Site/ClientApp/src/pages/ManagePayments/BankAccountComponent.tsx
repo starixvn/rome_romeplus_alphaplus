@@ -14,7 +14,7 @@ import { ErrorMessageComponent, SuccessMessageComponent } from '../../components
 
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import { ButtonComponent } from '../../components/ButtonComponents';
+import { ButtonFull, ButtonOutline } from '../../components/ButtonComponents';
 
 interface BankAccountComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
@@ -286,9 +286,9 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                   <SuccessMessageComponent message={successMessage} />
                   <div className="pb-[8px] mt-[8px] text-[16px] max-[768px]:text-[20px] text-[var(--text-color-primary)] font-semibold">{tManagePayments('manageBankAccountAndLimits')}</div>
                   <div className="">{tManagePayments('addBankAccountAndLimit')}</div>
-                  <div className="my-[8px] flex gap-[8px]">                    
-                    <ButtonComponent className='w-[183px]' type="apply" style="medium" text={`+${tManagePayments('addBankAccount')}`} onClick={handleAddBankAccount} />                    
-                    <ButtonComponent className='shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] w-[183px]' type="cancel" style="medium" text={tManagePayments('setLimit')} onClick={handleSetLimit} />
+                  <div className="my-[8px] flex gap-[8px]">                        
+                    <ButtonFull className='w-[183px] [&>*]:w-[100%]' text={`+${tManagePayments('addBankAccount')}`} onClick={handleAddBankAccount} />
+                    <ButtonOutline className='w-[183px] [&>*]:w-[100%]'  text={tManagePayments('setLimit')} onClick={handleSetLimit} />
                   </div>
                 </div>
                 {loading && (<Loading />)}              

@@ -16,7 +16,7 @@ import { transactionAPI } from '../../../services/transactionsHistoryAPI.ts';
 import { TransactionType } from '../../../common/commonFunctions.tsx';
 import Loading from '../../../components/LoadingComponent';
 import TitleComponent from '../../../components/TitleComponent';
-import { ButtonComponent } from '../../../components/ButtonComponents';
+import { ButtonOutline } from '../../../components/ButtonComponents';
 
 const PendingWithdrawal: React.FC = () => {
   const { t } = useTranslation('pendingWithdrawal');
@@ -125,12 +125,10 @@ const PendingWithdrawal: React.FC = () => {
         <div className="py-[12px] flex h-full flex-col">
           <TitleComponent title={t('pendingWithdrawal')} />
           <div className="mb-[8px]">
-            <ButtonComponent
-              type="cancel"
-              style="medium"
+            <ButtonOutline
               text={`+${t('addManualWithdrawal')}`}
               onClick={handleAddManualWithdrawal}
-              className="min-w-[183px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
+              className="min-w-[183px] [&>*]:min-w-[183px] [&>*]:inline-block"
             />
           </div>
 

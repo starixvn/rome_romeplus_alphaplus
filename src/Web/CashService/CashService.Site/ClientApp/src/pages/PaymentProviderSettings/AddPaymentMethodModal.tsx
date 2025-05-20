@@ -6,7 +6,7 @@ import { PaymentMethod } from '../../services/interfaces/Payments/PaymentMethod'
 import { QRCodeCanvas } from 'qrcode.react';
 import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import { IconClose } from '../../components/Icons';
-import { ButtonComponent } from '../../components/ButtonComponents';
+import { ButtonApply, ButtonCancel } from '../../components/ButtonComponents';
 
 interface AddPaymentMethodModalProps {
   onClose: () => void;
@@ -152,8 +152,10 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
             <IconClose />
           </button>
         </div>
+        <ErrorMessageComponent className='mt-[8px]' message={error} />
+            <SuccessMessageComponent className='mt-[8px]' message={successMessage} />
         <form onSubmit={handleSubmit}>
-          <div className="modal-body "> 
+          <div className="modal-body ">
             <div>
               <h4 className="text-[14px] max-[768px]:text-[18px] pt-[8px] text-[var(--text-color-primary)] font-semibold pb-[4px]">{tPaymentProviderSettings('addPaymentMethodStep1')}</h4>
               <div className='flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full'>
@@ -251,10 +253,8 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
                   <ValidateMessageComponent message={fieldErrors.appSecret}  />
                 </div>
               </div>
-            </div>
-           
-            <ErrorMessageComponent className='mt-[8px]' message={error} />
-            <SuccessMessageComponent className='mt-[8px]' message={successMessage} />
+            </div>          
+            
           </div>
           <div className="flex flex-wrap mt-[16px] mb-[16px]">
             <label className="w-full flex items-center justify-center cursor-pointer text-[#333]">
@@ -274,20 +274,8 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
             <ValidateMessageComponent message={fieldErrors.agreeToTerms}  />
             </div>
           <div className='flex justify-center gap-[8px]'>
-            <ButtonComponent 
-              className='w-[140px]'
-              type="cancel"
-              style="rounded"
-              text={tPaymentProviderSettings('setUpLater')}             
-              onClick={onClose}
-            />          
-            <ButtonComponent 
-              className='w-[140px]'
-              type="apply"
-              style="rounded"
-              text={tGlobal('save')}
-              disabled={isLoading || allMethodsInactive}
-            />
+            <ButtonCancel text={tGlobal('cancel')} onClick={onClose} />
+            <ButtonApply text={tGlobal('save')} onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent)} disabled={isLoading || allMethodsInactive} />
           </div>
         </form>
       </div>
