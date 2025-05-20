@@ -1847,7 +1847,8 @@
             gameId3rd?: string,
             custId?: number,
             transId3rd?: string,
-            siteId?: string
+            siteId?: string,
+            sporttype?: string
         ) => {
             const params = [
                 '?custId=',
@@ -1861,7 +1862,9 @@
                 '&BetType=',
                 betTypeId,
                 '&SportTypeId=',
-                sportTypeId
+                sportTypeId,
+                '&GameId3rd=',
+                gameId3rd
             ].join('');
             Common.PopupDetails.Instance(window.top).Show(
                 `${Common.AppPath.TicketsAppPath}ThirdParty/ViewResult${params}`,
