@@ -78,7 +78,6 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
   const [open, setOpen] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
 
-  // State tạm cho popup
   const [pendingRange, setPendingRange] = React.useState<Range[]>([
     {
       startDate: value[0] ?? new Date(),
@@ -87,7 +86,6 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
     },
   ]);
 
-  // Khi value prop thay đổi từ ngoài, sync lại pendingRange
   React.useEffect(() => {
     setPendingRange([
       {
@@ -98,7 +96,6 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
     ]);
   }, [value[0]?.getTime?.(), value[1]?.getTime?.()]);
 
-  // Đóng popup khi click ngoài
   React.useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (ref.current && !ref.current.contains(event.target as Node)) {
@@ -113,13 +110,11 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
     };
   }, [open]);
 
-  // Khi nhấn Apply
   const handleApply = () => {
     onChange([pendingRange[0].startDate ?? null, pendingRange[0].endDate ?? null]);
     setOpen(false);
   };
 
-  // Dữ liệu hiển thị Selected
   const selectedStart = pendingRange[0].startDate;
   const selectedEnd = pendingRange[0].endDate;
   const days = getDaysCount(selectedStart ?? null, selectedEnd ?? null);

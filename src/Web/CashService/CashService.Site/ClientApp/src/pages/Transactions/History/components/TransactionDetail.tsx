@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Dialog } from '../../../../components/ui/Dialog';
 import { Spinner } from '../../../../components/Icons';
-import { Alert } from '../../../../components/ui/Alert';
+import { ResultMessageComponent } from '../../../../components/MessageComponents';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import { useTranslation } from 'react-i18next';
@@ -103,20 +103,21 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
       );
     }
     if (detailError) {
-      return <Alert message={detailError} type="error" showIcon className="mb-4" />;
+      return <ResultMessageComponent type="error" message={detailError} className="mb-4" />;
     }
     if (!detailData) {
-      return <Alert message={t('detail.noDetails')} type="warning" showIcon className="mb-4" />;
+      return (
+        <ResultMessageComponent type="warning" message={t('detail.noDetails')} className="mb-4" />
+      );
     }
 
     return (
       <div className="p-4">
         {revertAlert.type && (
-          <Alert
-            message={revertAlert.message}
+          <ResultMessageComponent
             type={revertAlert.type}
-            showIcon
-            style={{ marginBottom: '20px' }}
+            message={revertAlert.message}
+            className="mb-4"
           />
         )}
         <div className="bg-white rounded-lg border border-gray-200 p-4 mb-4">
