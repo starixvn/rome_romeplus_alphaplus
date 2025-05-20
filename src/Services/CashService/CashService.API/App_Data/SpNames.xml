@@ -91,15 +91,15 @@
     </Function>
 
     <Function Name="Deposit">
-        <Setting Key="SiteDb_0_Age_CashDeposit_ManualAdd" SpName="Age_CashDeposit_ManualAdd" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
-        <Setting Key="CustDb_0_Age_CashDeposit_MemberSettingSel" SpName="Age_CashDeposit_MemberSettingSel" DbName="DBCust.CustDB.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="SiteDb_0_Age_CashDeposit_ManualAdd" SpName="Age_CashDeposit_ManualAdd_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="CustDb_0_Age_CashDeposit_MemberSettingSel" SpName="Age_CashDeposit_MemberSettingSel_UAT2" DbName="DBCust.CustDB.wsv_CashService" Plain="0"></Setting>
         <Setting Key="CustDb_0_Age_CashAccumCredit_SyncData" SpName="Age_CashAccumCredit_SyncData_UAT2" DbName="DBCust.CustDB.wsv_CashService" Plain="0"></Setting>
     </Function>
 
     <Function Name="Withdrawal">
         <Setting Key="SiteDb_0_Age_CashWithdrawal_ManualAdd" SpName="Age_CashWithdrawal_ManualAdd_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
         <Setting Key="SiteDb_0_Acc_CustomerSelCash_CaptureBalance" SpName="Acc_CustomerSelCash_CaptureBalance_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
-        <Setting Key="CustDb_0_Age_CashWithdrawal_LimitAmtSel" SpName="Age_CashWithdrawal_LimitAmtSel" DbName="DBCust.CustDB.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="CustDb_0_Age_CashWithdrawal_LimitAmtSel" SpName="Age_CashWithdrawal_LimitAmtSel_UAT2" DbName="DBCust.CustDB.wsv_CashService" Plain="0"></Setting>
     </Function>
 
     <Function Name="Member Site Info">
