@@ -1,7 +1,4 @@
 import React from 'react';
-
-export type ButtonType = 'cancel' | 'apply';
-export type ButtonStyle = 'rounded' | 'medium';
 interface ButtonProps {
   text: string;
   className?: string;
