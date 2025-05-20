@@ -1,15 +1,16 @@
-using AlphaPlus.CashService.API.Criteria.PendingWithdrawal;
+namespace AlphaPlus.CashService.API.Services;
+
+using System.Numerics;
+using AlphaPlus.CashService.API.Criteria.Transactions;
 using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Services;
-using AlphaPlus.CashService.API.Models.PendingCommons;
+using Criteria.PendingWithdrawal;
 using Fanex.Data.Repository;
-
-namespace AlphaPlus.CashService.API.Services;
+using Models.PendingCommons;
+using Models.Transactions;
 
 public interface IPendingWithdrawalService
 {
-    Task<IEnumerable<BankAccountInfo>> GetBankWithdrawalAccounts();
-
     Task<decimal> GetCashBalanceAsync(int custId, int siteDbGroupId);
 
     Task<CreditAmount> GetLimitAmtWithdrawAsync(CashLimitAmt param);
@@ -17,6 +18,8 @@ public interface IPendingWithdrawalService
     Task<MemberSettingWithdraw> GetMemberSettingWithdrawAsync(int custId);
 
     Task<ResultModel> AddManualWithdrawAsync(AddManualWithdrawalModel param);
+
+    Task<ResultModel> ProcessWithdrawAsync(ProcessTransactionModel param);
 }
 
 public class PendingWithdrawalService(
@@ -24,61 +27,6 @@ public class PendingWithdrawalService(
     ICommonService commonService,
     ITransactionService transactionService) : IPendingWithdrawalService
 {
-    public async Task<IEnumerable<BankAccountInfo>> GetBankWithdrawalAccounts()
-    {
-        return GetDummyBankAccountInfo();
-        //return await dynamicRepository.FetchAsync<BankAccountInfo>(new GetMemberBankAccountCriteria());
-    }
-
-    private static IEnumerable<BankAccountInfo> GetDummyBankAccountInfo()
-    {
-        return new List<BankAccountInfo>
-        {
-            new()
-            {
-                Id = 1,
-                Username = "Alice Williams",
-                LoginName = "awilliams321",
-                FirstName = "Alice",
-                LastName = "Williams",
-                Amount = 3200.00m,
-                Currency = "USD",
-                From = 44556677,
-                To = 77665544,
-                ReferenceNo = "REF004",
-                DateAndTime = DateTime.Now
-            },
-            new()
-            {
-                Id = 2,
-                Username = "Michael Brown",
-                LoginName = "mbrown555",
-                FirstName = "Michael",
-                LastName = "Brown",
-                Amount = 750.50m,
-                Currency = "JPY",
-                From = 11223344,
-                To = 55667788,
-                ReferenceNo = "REF005",
-                DateAndTime = DateTime.Now.AddHours(-1)
-            },
-            new()
-            {
-                Id = 3,
-                Username = "Emma Davis",
-                LoginName = "edavis789",
-                FirstName = "Emma",
-                LastName = "Davis",
-                Amount = 1850.25m,
-                Currency = "CAD",
-                From = 99887766,
-                To = 66778899,
-                ReferenceNo = "REF006",
-                DateAndTime = DateTime.Now.AddMinutes(-20)
-            }
-        };
-    }
-
     public async Task<decimal> GetCashBalanceAsync(int custId, int siteDbGroupId)
     {
         var criteria = new GetCashBalanceCriteria
@@ -104,8 +52,8 @@ public class PendingWithdrawalService(
         var chance = random.Next(0, 10);
         return new CreditAmount
         {
-            //MaxAmt = chance == 0 ? null : random.Next(0, 100),
-            MaxAmt = criteria.MaxAmt,
+            MaxAmt = chance == 0 ? null : random.Next(0, 100),
+            //MaxAmt = criteria.MaxAmt,
             MinAmt = criteria.MinAmt
         };
     }
@@ -151,6 +99,21 @@ public class PendingWithdrawalService(
         {
             SyncCashAccumulatedCredit(command.CashAccumCreditTbl, param.CustDbGroupId);
         }
+        return result;
+    }
+
+    public async Task<ResultModel> ProcessWithdrawAsync(ProcessTransactionModel param)
+    {
+        var command = new ProcessTransactionCommand
+        {
+            TransId = BigInteger.Parse(param.TransactionId),
+            PaymentFrom = param.PaymentFrom,
+            Remark = param.Remark,
+            StatusId = param.StatusId,
+            Payslip = param.Payslip
+        };
+        await dynamicRepository.ExecuteAsync(command);
+        var result = new ResultModel(command.ErrCode, command.ErrMsg);
         return result;
     }
 

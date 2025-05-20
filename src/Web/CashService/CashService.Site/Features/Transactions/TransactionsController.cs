@@ -4,7 +4,6 @@ using Core.Models;
 using Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Models;
-using Newtonsoft.Json;
 using Shared.Models;
 
 public class TransactionsController(
@@ -206,6 +205,46 @@ public class TransactionsController(
         try
         {
             var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/transactions/revert", request);
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error reverting transaction");
+            return StatusCode(StatusCodes.Status500InternalServerError,
+                new { Code = StatusCodes.Status500InternalServerError, Message = "An unexpected error occurred" });
+        }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> ApproveWithdrawal([FromBody] ProcessTransactionModel request)
+    {
+        try
+        {
+            if (request.Image != null)
+            {
+                request.Payslip = await FileHelper.CompressAndConvertToBase64Async(request.Image);
+            }
+            var result = await httpClientHelper.PostAsync<ProcessTransactionModel, ResultModel>("/withdrawal/approve", request);
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error reverting transaction");
+            return StatusCode(StatusCodes.Status500InternalServerError,
+                new { Code = StatusCodes.Status500InternalServerError, Message = "An unexpected error occurred" });
+        }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> RejectWithdrawal([FromBody] ProcessTransactionModel request)
+    {
+        try
+        {
+            if (request.Image != null)
+            {
+                request.Payslip = await FileHelper.CompressAndConvertToBase64Async(request.Image);
+            }
+            var result = await httpClientHelper.PostAsync<ProcessTransactionModel, ResultModel>("/withdrawal/reject", request);
             return Ok(result);
         }
         catch (Exception ex)

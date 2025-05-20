@@ -16,6 +16,7 @@ export interface CustomDropdownComponentProps {
   initialValue?: string | number;
   showOptionAll?: boolean;
   searchable?: boolean;
+  placeholder?: string;
 }
 
 const CustomDropdownComponent = ({
@@ -25,6 +26,7 @@ const CustomDropdownComponent = ({
   initialValue,
   showOptionAll = false,
   searchable = false,
+  placeholder = '',
 }: CustomDropdownComponentProps) => {
   const { t } = useTranslation('global');
   
@@ -91,15 +93,21 @@ const CustomDropdownComponent = ({
       )
     : displayOptions;
 
+  const displaySelected = () => {
+    if (selected) return selected.label;
+    if (showOptionAll) return 'All';
+    return placeholder;
+  };
+
   return (
-    <div className="relative z-20" ref={dropdownRef}>
+    <div className="relative" ref={dropdownRef}>
       <div
         className={`flex items-center h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[12px] border-[var(--border-control)] ${disable ? 'cursor-not-allowed bg-[#f4f4f4]' : ' bg-[var(--background-control)] cursor-pointer'} focus:outline-none focus:border-[var(--border-control-focus)] relative`}
         onClick={handleToggle}
       >
         {selected && selected.icon }
         <span className="block whitespace-nowrap overflow-hidden text-ellipsis pr-[12px]">
-          {selected ? selected.label : t('all')}
+          {displaySelected()}
         </span>
         <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[10px] max-[768px]:top-[12px] " />
       </div>

@@ -84,4 +84,68 @@ export const manualAddWithdrawal = async (
   }
 };
 
+export const approveWithdrawal = async ({
+  transId,
+  paymentFrom,
+  remark,
+  image,
+}: {
+  transId: number;
+  paymentFrom: string;
+  remark: string;
+  image: File | null;
+}): Promise<ResultModel> => {
+  try {
+    const formData = new FormData();
+    formData.append('transactionId', transId.toString());
+    formData.append('paymentFrom', paymentFrom);
+    formData.append('remark', remark);
+    if (image) {
+      formData.append('image', image);
+    }
+
+    const response = await api.post<ResultModel>('ApproveWithdrawal', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error approving withdrawal:', error);
+    return { code: 1, isSuccessful: false, message: 'Error approving withdrawal' };
+  }
+};
+
+export const rejectWithdrawal = async ({
+  transId,
+  paymentFrom,
+  remark,
+  image,
+}: {
+  transId: number;
+  paymentFrom: string;
+  remark: string;
+  image: File | null;
+}): Promise<ResultModel> => {
+  try {
+    const formData = new FormData();
+    formData.append('transactionId', transId.toString());
+    formData.append('paymentFrom', paymentFrom);
+    formData.append('remark', remark);
+    if (image) {
+      formData.append('image', image);
+    }
+
+    const response = await api.post<ResultModel>('RejectWithdrawal', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error rejecting withdrawal:', error);
+    return { code: 1, isSuccessful: false, message: 'Error rejecting withdrawal' };
+  }
+};
+
 export default api;

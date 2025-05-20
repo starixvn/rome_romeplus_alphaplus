@@ -2,11 +2,12 @@ import React, { useState, useEffect, useCallback } from 'react';
 
 interface UploadImageProps {
   setImage: (image: File | null) => void;
+  disabled?: boolean;
 }
 
 const ACCEPTED_FILE_TYPES = '.jpeg,.jpg,.png';
 
-const UploadImage: React.FC<UploadImageProps> = ({ setImage }) => {
+const UploadImage: React.FC<UploadImageProps> = ({ setImage, disabled = false }) => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
 
@@ -19,32 +20,44 @@ const UploadImage: React.FC<UploadImageProps> = ({ setImage }) => {
     });
   }, []);
 
-  const processFile = useCallback(async (file: File) => {
-    setImageUrl(URL.createObjectURL(file));
-    setImage(file);
-  }, [convertToBase64, setImage]);
+  const processFile = useCallback(
+    async (file: File) => {
+      setImageUrl(URL.createObjectURL(file));
+      setImage(file);
+    },
+    [convertToBase64, setImage]
+  );
 
-  const handleImageUpload = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files?.[0]) {
-      await processFile(e.target.files[0]);
-    }
-  }, [processFile]);
+  const handleImageUpload = useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files?.[0]) {
+        await processFile(e.target.files[0]);
+      }
+    },
+    [processFile]
+  );
 
-  const handleDrop = useCallback(async (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(false);
+  const handleDrop = useCallback(
+    async (e: React.DragEvent<HTMLDivElement>) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setIsDragging(false);
 
-    if (e.dataTransfer.files?.[0]) {
-      await processFile(e.dataTransfer.files[0]);
-    }
-  }, [processFile]);
+      if (e.dataTransfer.files?.[0]) {
+        await processFile(e.dataTransfer.files[0]);
+      }
+    },
+    [processFile]
+  );
 
-  const handleDragEvents = useCallback((e: React.DragEvent<HTMLDivElement>, isDragging: boolean) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(isDragging);
-  }, []);
+  const handleDragEvents = useCallback(
+    (e: React.DragEvent<HTMLDivElement>, isDragging: boolean) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setIsDragging(isDragging);
+    },
+    []
+  );
 
   const resetImageUpload = useCallback(() => {
     if (imageUrl) {
@@ -137,6 +150,7 @@ const UploadImage: React.FC<UploadImageProps> = ({ setImage }) => {
           accept={ACCEPTED_FILE_TYPES}
           onChange={handleImageUpload}
           className="hidden"
+          disabled={disabled}
         />
         <label
           htmlFor="image-upload"

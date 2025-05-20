@@ -8,7 +8,7 @@ import {
   manualAddWithdrawal,
 } from '../../../../services/pendingWithdrawalAPI';
 import { AddWithdrawalModel } from '../../../../services/interfaces/AddWithdrawalModel';
-import { Alert } from '../../../../components/ui/Alert';
+import { ResultMessageComponent } from '../../../../components/MessageComponents';
 import UploadImage from '../../Components/UploadImage';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import BankIcon from '../../../../components/BankComponents';
@@ -30,7 +30,10 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
   const [paymentMethodId, setPaymentMethodId] = useState(0);
   const [agentBankInfo, setBankInfo] = useState<WithdrawalAgentBankDropDown[]>([]);
   const [memberBankInfo, setMemberBankInfo] = useState<WithdrawalAgentBankDropDown[]>([]);
-  const [alert, setAlert] = useState<{ type: 'success' | 'error' | null; message: string }>({
+  const [resultMessage, setResultMessage] = useState<{
+    type: 'success' | 'error' | 'warning' | null;
+    message: string;
+  }>({
     type: null,
     message: '',
   });
@@ -55,14 +58,17 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
 
       const addWithdrawalResponse = await manualAddWithdrawal(manualWithdrawalData);
       if (addWithdrawalResponse.isSuccessful) {
-        setAlert({ type: 'success', message: t('manualWithdrawalForm.addWithdrawalSuccess') });
+        setResultMessage({
+          type: 'success',
+          message: t('manualWithdrawalForm.addWithdrawalSuccess'),
+        });
         if (onClose) {
           setTimeout(() => {
             onClose();
           }, 3000);
         }
       } else {
-        setAlert({ type: 'error', message: addWithdrawalResponse.message });
+        setResultMessage({ type: 'error', message: addWithdrawalResponse.message });
       }
     } finally {
       setIsSubmitting(false);
@@ -71,28 +77,37 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
 
   const verifyParam = (): boolean => {
     if (!custId || custId <= 0) {
-      setAlert({ type: 'error', message: t('manualWithdrawalForm.memberLoginNameRequired') });
+      setResultMessage({
+        type: 'error',
+        message: t('manualWithdrawalForm.memberLoginNameRequired'),
+      });
       return false;
     }
 
     if (!from) {
-      setAlert({ type: 'error', message: t('manualWithdrawalForm.agentBankSelectionRequired') });
+      setResultMessage({
+        type: 'error',
+        message: t('manualWithdrawalForm.agentBankSelectionRequired'),
+      });
       return false;
     }
 
     if (!to) {
-      setAlert({ type: 'error', message: t('manualWithdrawalForm.memberBankSelectionRequired') });
+      setResultMessage({
+        type: 'error',
+        message: t('manualWithdrawalForm.memberBankSelectionRequired'),
+      });
       return false;
     }
 
     const amount = parseFloat(withdrawalAmount);
     if (isNaN(amount) || amount <= minAmount || (maxAmount && amount > maxAmount)) {
-      setAlert({ type: 'error', message: t('manualWithdrawalForm.amountRangeError') });
+      setResultMessage({ type: 'error', message: t('manualWithdrawalForm.amountRangeError') });
       return false;
     }
 
     if (image && image.size > 1024 * 1024) {
-      setAlert({ type: 'error', message: t('manualWithdrawalForm.imageSizeError') });
+      setResultMessage({ type: 'error', message: t('manualWithdrawalForm.imageSizeError') });
       return false;
     }
 
@@ -189,12 +204,11 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       </div>
 
       <form id="manual-withdrawal-form" onSubmit={handleSubmit} className="p-6 flex-1">
-        {alert.type && (
-          <Alert
-            message={alert.message}
-            type={alert.type}
-            showIcon
-            style={{ marginBottom: '20px' }}
+        {resultMessage.type && (
+          <ResultMessageComponent
+            type={resultMessage.type}
+            message={resultMessage.message}
+            className="mb-5"
           />
         )}
         <div className="flex flex-row space-x-10">
@@ -221,6 +235,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                         initialValue={custId?.toString()}
                         showOptionAll={false}
                         searchable={true}
+                      placeholder={t('manualWithdrawalForm.selectMember')}
                       />
                     </div>
                   </div>
@@ -246,6 +261,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       onSelect={handleFromSelect}
                       initialValue={from}
                       showOptionAll={false}
+                      placeholder={t('manualWithdrawalForm.selectBank')}
                     />
                   </div>
                 </div>
@@ -273,6 +289,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       initialValue={to}
                       showOptionAll={false}
                       disable={!custId}
+                      placeholder={t('manualWithdrawalForm.selectMemberBank')}
                     />
                   </div>
 
@@ -320,7 +337,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
               <button
                 type="button"
                 onClick={onClose}
-                className="w-[140px] h-[32px] max-[768px]:h-[40px] border border-gray-300 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-gray-100 focus:outline-none transition-colors duration-200"
+                className="w-[140px] h-[32px] max-[768px]:h-[40px] border border-gray-300 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-gray-100 focus:outline-none transition-colors duration-200 cursor-pointer"
               >
                 {t('manualWithdrawalForm.cancel')}
               </button>
@@ -328,7 +345,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                 type="submit"
                 disabled={isSubmitting}
                 className={`w-[140px] h-[32px] max-[768px]:h-[40px] border border-transparent rounded-full text-sm font-medium text-white bg-[#163f78] hover:bg-[#0f2d5c] focus:outline-none transition-colors duration-200 ${
-                  isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                  isSubmitting ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
                 }`}
               >
                 {isSubmitting

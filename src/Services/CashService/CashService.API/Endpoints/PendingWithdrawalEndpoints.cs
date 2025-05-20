@@ -1,8 +1,11 @@
 using AlphaPlus.CashService.API.Models.PendingCommons;
+using AlphaPlus.CashService.API.Models.Transactions;
 using AlphaPlus.CashService.API.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.CashService.API.Endpoints;
+
+using Enum;
 
 public static class PendingWithdrawalEndpoints
 {
@@ -10,18 +13,6 @@ public static class PendingWithdrawalEndpoints
     {
         var group = app.MapGroup("/api/withdrawal")
             .WithTags("Pending Withdrawal");
-
-        group.MapGet("/bank-withdrawal-accounts", async (IPendingWithdrawalService service) =>
-        {
-            var bankAccounts = await service.GetBankWithdrawalAccounts();
-            return Results.Ok(bankAccounts);
-        })
-        .WithName("GetBankWithdrawalAccounts")
-        .WithOpenApi(operation => new(operation)
-        {
-            Summary = "Get bank withdrawal accounts",
-            Description = "Returns a list of bank withdrawal accounts"
-        });
 
         group.MapGet("/limit-amount", async ([FromQuery] int custId,
                 [FromQuery] int uplineId,
@@ -71,5 +62,31 @@ public static class PendingWithdrawalEndpoints
             Summary = "Create manual withdrawal",
             Description = "Adding manual withdrawal transaction on Agency site"
         });
+
+        group.MapPost("/transaction/approve", async ([FromBody] ProcessTransactionModel model, IPendingWithdrawalService service) =>
+            {
+                model.StatusId = (int)TransactionStatus.Completed;
+                var result = await service.ProcessWithdrawAsync(model);
+                return Results.Ok(result);
+            })
+            .WithName("ApproveTransactionAsync")
+            .WithOpenApi(operation => new(operation)
+            {
+                Summary = "Approve withdrawal (completed)",
+                Description = "Approve withdrawal"
+            });
+
+        group.MapPost("/transaction/reject", async ([FromBody] ProcessTransactionModel model, IPendingWithdrawalService service) =>
+            {
+                model.StatusId = (int)TransactionStatus.Rejected;
+                var result = await service.ProcessWithdrawAsync(model);
+                return Results.Ok(result);
+            })
+            .WithName("RejectTransactionAsync")
+            .WithOpenApi(operation => new(operation)
+            {
+                Summary = "Reject withdrawal",
+                Description = "Reject withdrawal"
+            });
     }
 }
