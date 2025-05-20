@@ -220,7 +220,6 @@ public class PaymentsService(
             }
         }
 
-        Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(accounts));
         return accounts;
     }
     

@@ -95,11 +95,13 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
           setCreator(fetchedBankAccount.creator);
 
-          var m = fetchedBankAccount.mobile;
-          var countryCode = m.includes('-') ? fetchedBankAccount.mobile.split('-')[0] : '';
-          var mobile = m.includes('-') ? fetchedBankAccount.mobile.split('-')[1] : m;
-          setCountryCode(countryCode);
-          setMobile(mobile);
+          if(fetchedBankAccount.promptPay){
+            var m = fetchedBankAccount.mobile;
+            var countryCode = m.includes('-') ? fetchedBankAccount.mobile.split('-')[0] : '';
+            var mobile = m.includes('-') ? fetchedBankAccount.mobile.split('-')[1] : m;
+            setCountryCode(countryCode);
+            setMobile(mobile);
+          }
         }
       } catch (err) {
         setError(tManagePayments('failedToLoadBankAccount'));
