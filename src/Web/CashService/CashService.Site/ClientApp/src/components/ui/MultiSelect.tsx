@@ -110,7 +110,7 @@ const CustomValueContainer = (props: ValueContainerProps<OptionType, true>) => {
         <div
           style={{
             position: 'relative',
-            top: '12px',
+            top: '5px',
             transform: 'translateY(-50%)',
             marginLeft: '2px',
             marginRight: '2px',
@@ -305,7 +305,25 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
     }),
     control: (base) => ({
       ...base,
-      minHeight: '38px',
+      minHeight: '32px',
+      maxHeight: '32px',
+      '@media (max-width: 768px)': {
+        minHeight: '40px',
+        maxHeight: '40px',
+      },
+    }),
+    menu: (base) => ({
+      ...base,
+      zIndex: 100,
+    }),
+    valueContainer: (base) => ({
+      ...base,
+      padding: '0 8px',
+    }),
+    input: (base) => ({
+      ...base,
+      margin: 0,
+      padding: 0,
     }),
   };
   const combinedStyles = { ...defaultStyles, ...styles };
