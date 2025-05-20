@@ -177,6 +177,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   min="0"
                   step="0.01"
                   required
+                  maxLength={12}
                 />
               </div>
               <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
@@ -193,6 +194,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   min="0"
                   step="0.01"
                   required
+                  maxLength={12}
                 />
               </div>
               </div>
@@ -212,6 +214,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   min="0"
                   step="0.01"
                   required
+                  maxLength={12}
                 />
               </div>
               <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
@@ -228,6 +231,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   min="0"
                   step="0.01"
                   required
+                  maxLength={12}
                 />
               </div>
               </div>
@@ -240,6 +244,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   value={dailyWithdrawalCount}
                   onChange={(e) => handleIntegerInput(e.target.value, setDailyWithdrawalCount)}
                   min="0"
+                  maxLength={5}
                   required
                 />
                 <label className=" block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold">{tManagePayments('dailyWithdrawalCountTip')}</label>

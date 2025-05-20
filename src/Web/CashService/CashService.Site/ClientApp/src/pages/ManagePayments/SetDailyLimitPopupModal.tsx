@@ -4,6 +4,7 @@ import { paymentProviderService } from '../../services/paymentsAPI';
 import { IconClose, } from '../../components/Icons';
 import { ErrorMessageComponent, SuccessMessageComponent } from '../../components/MessageComponents';
 import { ButtonApply, ButtonCancel } from '../../components/ButtonComponents';
+import { ensureNumericInput } from '../../utils/inputHandlers';
 
 
 interface SetDailyLimitPopupModalProps {
@@ -82,16 +83,12 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
                 <label htmlFor="dailyLimit" className="pb-[8px] block">{t('managePayments:dailyWithdrawalCount')}</label>
               </div>
               <input
-                type="number"
+                type="text"
+                maxLength={5}
                 className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)]"
                 id="dailyLimit"
                 value={dailyLimit}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  if (value === '' || /^\d+$/.test(value)) {
-                    setDailyLimit(value === '' ? 0 : Number(value));
-                  }
-                }}
+                onChange={(e) => setDailyLimit(Number(ensureNumericInput(e).target.value))}
                 min="0"
                 required
               />              

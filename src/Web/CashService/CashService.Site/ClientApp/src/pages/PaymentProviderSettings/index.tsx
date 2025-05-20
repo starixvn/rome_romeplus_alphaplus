@@ -496,6 +496,7 @@ function PaymentProviderSettings() {
                           value={formatNumber(setting.minAmount)} 
                           onChange={(e) => handleMinAmountChange(index, e.target.value)}
                           placeholder={tPaymentProviderSettings('minimum')}
+                          maxLength={15}
                         />
                         <label className="text-left text-[11px] max-[768px]:text-[15px] text-[#828282] font-semibold mt-[4px]">{tPaymentProviderSettings('minAmount')} {formatNumber(setting.minAmountTrans)}</label>
                       </div>
@@ -512,6 +513,7 @@ function PaymentProviderSettings() {
                         value={formatNumber(setting.maxAmount)} 
                         onChange={(e) => handleMaxAmountChange(index, e.target.value)}
                         placeholder={tPaymentProviderSettings('maximum')}
+                        maxLength={15}
                         />
                         <label className="text-left text-[11px] max-[768px]:text-[15px] text-[#828282] font-semibold mt-[4px]">{tPaymentProviderSettings('maxAmount')} {formatNumber(setting.maxAmountTrans)}</label>
                       </div>

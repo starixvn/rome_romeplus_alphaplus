@@ -75,7 +75,7 @@ export const SuccessMessageComponent: React.FC<ResultMessageProps> = ({
 
 export const WarningMessageComponent: React.FC<ResultMessageProps> = ({
   message,
-  className = ''  
+  className = ''
 }) => {
   return message &&  (    
     <div className={`${className} max-[768px]:py-[12px]`} role="alert">

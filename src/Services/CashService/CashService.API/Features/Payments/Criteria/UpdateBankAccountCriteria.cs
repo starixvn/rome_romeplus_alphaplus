@@ -1,6 +1,7 @@
 using Fanex.Data;
 using AlphaPlus.CashService.API.Features.Payments.Requests;
 using AlphaPlus.CashService.API.Features.Shared.Criteria;
+using System.Text.RegularExpressions;
 
 namespace AlphaPlus.CashService.API.Features.Payments.Criteria
 {
@@ -26,9 +27,18 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
         [SpParam(SqlParamName = "PromptPayMobile")]
         public string Mobile { get; } = request.CountryCode + "-" + request.Mobile;
 
+        [SpParam(Ignored = true)]
+        public string CountryCode { get; } = request.CountryCode;
+        [SpParam(Ignored = true)]
+        public string MobileNumber { get; }= request.Mobile;
+
         public override string GetSettingKey() => "Age_CashService_BankAccountAgent_Upd";
 
         public override bool IsValid()
-            => base.IsValid() && Id > 0;
+            => base.IsValid() && 
+            Id > 0 &&
+            Regex.IsMatch(CountryCode, @"^\d+$") &&
+            Regex.IsMatch(MobileNumber, @"^\d+$") &&
+            AccountNickname.Length <= 255;
     }
 } 

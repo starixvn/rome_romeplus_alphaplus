@@ -16,6 +16,8 @@ public class WriteLogDBCommandCriteria : NonQueryCommand
         ActionId = writeLogDBCommandModel.ActionId;
         TrackingValue = writeLogDBCommandModel.TrackingValue;
         TrackingValue2 = writeLogDBCommandModel.TrackingValue2;
+        TrackingValueMask = writeLogDBCommandModel.TrackingValueMask;
+        TrackingValueMask2 = writeLogDBCommandModel.TrackingValueMask2;
     }
 
     public int CustId { get; }
@@ -23,6 +25,8 @@ public class WriteLogDBCommandCriteria : NonQueryCommand
     public int ActionId { get; }
     public string TrackingValue { get; }
     public string TrackingValue2 { get; }
+    public string TrackingValueMask { get; set; }
+    public string TrackingValueMask2 { get; set; }
 
     [SpParam(Ignored = true)]
     public int SiteDB { get; set; }

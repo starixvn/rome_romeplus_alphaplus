@@ -27,6 +27,8 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
                 && MinPerDeposit >= 0 
                 && MaxPerDeposit >= 0
                 && MinPerWithdrawal >= 0 
-                && MaxPerWithdrawal >= 0;
+                && MaxPerWithdrawal >= 0
+                && MinPerDeposit <= MaxPerDeposit
+                && MinPerWithdrawal <= MaxPerWithdrawal;
     }
 } 

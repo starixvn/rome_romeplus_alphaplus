@@ -13,8 +13,13 @@ export const handleIntegerInput = (value: string, setter: (value: string) => voi
 };
 
 export const ensureNumericInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  var orgValue = e.target.value;
+  const value = orgValue.replace(/[^0-9]/g, '');
+  console.log(orgValue, value);
+  if(orgValue.length != value.length) {
+  }
+  
   e.preventDefault();
-  const value = e.target.value.replace(/[^0-9]/g, '');
   e.target.value = value;
   return e;
 };

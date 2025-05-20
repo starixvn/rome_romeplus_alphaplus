@@ -1,6 +1,7 @@
 using Fanex.Data;
 using AlphaPlus.CashService.API.Features.Payments.Requests;
 using AlphaPlus.CashService.API.Features.Shared.Criteria;
+using System.Text.RegularExpressions;
 
 namespace AlphaPlus.CashService.API.Features.Payments.Criteria
 {
@@ -20,6 +21,9 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
             AccountNumber = request.AccountNumber;
             Mobile = request.CountryCode + "-" + request.Mobile;
             DepositMatchingMode = request.Agent_DepositMatchingMode;
+
+            CountryCode = request.CountryCode;
+            MobileNumber = request.Mobile;
         }
 
         [SpParam(SqlParamName = "Username")]
@@ -44,12 +48,24 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
         [SpParam(SqlParamName = "PromptPayMobile")]
         public string Mobile { get; }
 
+        [SpParam(Ignored = true)]
+        public string CountryCode { get; }
+        [SpParam(Ignored = true)]
+        public string MobileNumber { get; }
+
         public override string GetSettingKey() => "Age_CashService_BankAccountAgent_Ins";
 
         public override bool IsValid() => 
             base.IsValid() &&
             BankId > 0 && 
             !string.IsNullOrWhiteSpace(AccountNumber) && 
-            !string.IsNullOrWhiteSpace(AccountHolderName);
+            !string.IsNullOrWhiteSpace(AccountHolderName) &&
+            Regex.IsMatch(AccountHolderName, @"^[a-zA-Z\s]+$") &&
+            Regex.IsMatch(AccountNumber, @"^\d+$") &&
+            Regex.IsMatch(CountryCode, @"^\d+$") &&
+            Regex.IsMatch(MobileNumber, @"^\d+$") &&
+            AccountHolderName.Length <= 100 &&
+            AccountNumber.Length <= 100 &&
+            AccountNickname.Length <= 255;
     }
 } 
