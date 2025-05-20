@@ -8,7 +8,7 @@ import BankIcon from '../../../../components/BankComponents';
 interface AccountInformationProps {
   memberLoginOptions: MemberLoginName[];
   memberId: number;
-  onMemberChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onMemberChange: (selected: DropdownOption) => void;
   paymentFrom: string;
   onPaymentFromChange: (selected: DropdownOption) => void;
   cashMemberOptions: BankInfo[];
@@ -56,19 +56,17 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
               {t('manualDepositForm.memberLoginName')}
               <span className="text-red-500 absolute">*</span>
             </label>
-            <div className="relative">
-              <select
-                id="memberLoginName"
-                value={memberId}
-                onChange={onMemberChange}
-                className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
-              >
-                {memberLoginOptions.map((data, key) => (
-                  <option key={`${key}-${data.custId}`} value={data.custId}>
-                    {data.username}
-                  </option>
-                ))}
-              </select>
+            <div className="relative z-[9999]">
+              <CustomDropdown
+                options={memberLoginOptions.map((option) => ({
+                  value: option.custId.toString(),
+                  label: option.username,
+                }))}
+                onSelect={(selected) => onMemberChange(selected)}
+                initialValue={memberId?.toString()}
+                showOptionAll={false}
+                searchable={true}
+              />
             </div>
           </div>
 
@@ -90,20 +88,6 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
               initialValue={paymentFrom}
               showOptionAll={false}
             />
-            {/* <div className="relative">
-              <select
-                id="paymentFrom"
-                value={paymentFrom}
-                onChange={onPaymentFromChange}
-                className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] appearance-auto"
-              >
-                {cashMemberOptions.map((option, key) => (
-                  <option key={`${key}-${option.bankAccountNumber}`} value={option.bankAccountNumber}>
-                    {option.bankAccountNumber}
-                  </option>
-                ))}
-              </select>
-            </div> */}
           </div>
         </div>
 
@@ -152,7 +136,6 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
               value={depositAmount}
               onChange={onDepositAmountChange}
               className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184]"
-              placeholder="0"
             />
           </div>
         </div>

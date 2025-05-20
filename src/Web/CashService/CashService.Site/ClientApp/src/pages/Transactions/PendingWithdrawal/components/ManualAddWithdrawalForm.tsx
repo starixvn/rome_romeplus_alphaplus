@@ -214,13 +214,15 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       {t('manualWithdrawalForm.memberLoginName')}
                       <span className="text-red-500 absolute">*</span>
                     </label>
-                    <DropdownComponent
-                      options={memberOptions}
-                      onSelect={handleMemberSelect}
-                      initialValue={custId?.toString()}
-                      showOptionAll={false}
-                      searchable={true}
-                    />
+                    <div className="relative z-[9999]">
+                      <DropdownComponent
+                        options={memberOptions}
+                        onSelect={handleMemberSelect}
+                        initialValue={custId?.toString()}
+                        showOptionAll={false}
+                        searchable={true}
+                      />
+                    </div>
                   </div>
 
                   <div>

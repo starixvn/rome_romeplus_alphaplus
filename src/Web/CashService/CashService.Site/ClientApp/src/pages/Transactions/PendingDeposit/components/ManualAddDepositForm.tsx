@@ -83,11 +83,6 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
     fetchCreditLimitAmount();
   }, [memberId]);
 
-  const handleMemberChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newMemberId = parseInt(e.target.value);
-    setMemberId(newMemberId);
-  };
-
   const getParams = () => {
     const params : AddDepositManualModel = {
       custId: memberId,
@@ -157,7 +152,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
               <AccountInformation
                 memberLoginOptions={memberLoginOptions}
                 memberId={memberId}
-                onMemberChange={handleMemberChange}
+                onMemberChange={(selected) => setMemberId(Number(selected.value))}
                 paymentFrom={paymentFrom}
                 onPaymentFromChange={(selected) => setPaymentFrom(String(selected.value))}
                 cashMemberOptions={cashMemberOptions}
