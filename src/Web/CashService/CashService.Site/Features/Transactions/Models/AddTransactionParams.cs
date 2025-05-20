@@ -1,6 +1,6 @@
 ﻿namespace AlphaPlus.CashService.Site.Features.Transactions.Models;
 
-public class AddWithdrawalParams
+public class AddTransactionParams
 {
     public int CustId { get; set; }
     public int UplineId { get; set; }

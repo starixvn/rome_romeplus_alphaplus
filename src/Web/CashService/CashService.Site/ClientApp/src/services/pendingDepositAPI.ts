@@ -27,10 +27,25 @@ export const pendingDepositAPI = {
 
   createDepositManual: async (manualDepositAdd: AddDepositManualModel): Promise<ResultModel> => {
     try {
-      const response = await api.post<ResultModel>('AddManualDeposit', manualDepositAdd);
+      const formData = new FormData();
+      formData.append('custId', manualDepositAdd.custId.toString());
+      formData.append('paymentFrom', manualDepositAdd.paymentFrom);
+      formData.append('paymentTo', manualDepositAdd.paymentTo);
+      formData.append('amount', manualDepositAdd.amount.toString());
+      formData.append('remark', manualDepositAdd.remark);
+
+      if (manualDepositAdd.image) {
+        formData.append('image', manualDepositAdd.image);
+      }
+
+      const response = await api.post<ResultModel>('AddManualDeposit', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       return response.data;
     } catch (error) {
-      console.error('Error creating manual:', error);
+      console.error('Error creating manual deposit:', error);
       return { code: 1, isSuccessful: false, message: 'Error add manual deposit' };
     }
   }

@@ -148,6 +148,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
             <input
               id="depositAmount"
               type="number"
+              name="depositAmount"
               value={depositAmount}
               onChange={onDepositAmountChange}
               className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184]"

@@ -4,6 +4,7 @@ using Core.Models;
 using Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Newtonsoft.Json;
 using Shared.Models;
 
 public class TransactionsController(
@@ -74,9 +75,9 @@ public class TransactionsController(
         return Json(limitAmtDeposit);
     }
 
-    public async Task<IActionResult> AddManualDeposit([FromForm] AddWithdrawalParams request)
+    public async Task<IActionResult> AddManualDeposit([FromForm] AddTransactionParams request)
     {
-        var result = VerifyInputParam(request);
+        var result = VerifyInputParam(request, false);
         if (result.Code != 0)
         {
             return Json(result);
@@ -86,14 +87,14 @@ public class TransactionsController(
         request.SiteDbGroupId = siteDbGroupId;
         request.CustDbGroupId = custDbGroupId;
         request.PaySlip = request.Image != null ? await FileHelper.CompressAndConvertToBase64Async(request.Image) : null;
-        result = await httpClientHelper.PostAsync<AddWithdrawalParams, ResultModel>("/api/deposit/create", request);
+        result = await httpClientHelper.PostAsync<AddTransactionParams, ResultModel>("/api/deposit/create", request);
         return Json(result);
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddManualWithdrawal([FromForm] AddWithdrawalParams request)
+    public async Task<IActionResult> AddManualWithdrawal([FromForm] AddTransactionParams request)
     {
-        var result = VerifyInputParam(request);
+        var result = VerifyInputParam(request, true);
         if (result.Code != 0)
         {
             return Json(result);
@@ -103,11 +104,11 @@ public class TransactionsController(
         request.SiteDbGroupId = siteDbGroupId;
         request.CustDbGroupId = custDbGroupId;
         request.PaySlip = request.Image != null ? await FileHelper.CompressAndConvertToBase64Async(request.Image) : null;
-        result = await httpClientHelper.PostAsync<AddWithdrawalParams, ResultModel>("/api/withdrawal/create", request);
+        result = await httpClientHelper.PostAsync<AddTransactionParams, ResultModel>("/api/withdrawal/create", request);
         return Json(result);
     }
 
-    private static ResultModel VerifyInputParam(AddWithdrawalParams request)
+    private static ResultModel VerifyInputParam(AddTransactionParams request, bool isWithdrawal)
     {
         var result = new ResultModel { Code = 0 };
         if (request.Amount <= 0 || (request.MaxLimitAmt > 0 && request.Amount > request.MaxLimitAmt))
@@ -121,16 +122,16 @@ public class TransactionsController(
             result.Message = "Please select member login";
         }
 
-        if (string.IsNullOrWhiteSpace(request.PaymentFrom) && request.ProviderId <= 0)
+        if (string.IsNullOrWhiteSpace(request.PaymentFrom) && (request.ProviderId <= 0 && isWithdrawal))
         {
             result.Code = 1;
-            result.Message = "Please select From Payment";
+            result.Message = "Please select PaymentFrom";
         }
 
         if (string.IsNullOrWhiteSpace(request.PaymentTo))
         {
             result.Code = 1;
-            result.Message = "Please select Member Bank account";
+            result.Message = "Please select PaymentTo";
         }
 
         if (!IsValidFile(request.Image))

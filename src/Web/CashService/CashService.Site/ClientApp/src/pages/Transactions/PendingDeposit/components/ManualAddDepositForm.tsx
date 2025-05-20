@@ -29,6 +29,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
   const [remarks, setRemarks] = useState('');
   const [image, setImage] = useState<File | null>(null);
   const [initialLoading, setInitialLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [validationMessage, setValidationMessage] = useState<{ type: 'error' | 'success' | 'warning', message: string } | null>(null);
 
   console.log('paymentTo', paymentTo);
@@ -43,6 +44,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
         console.error('Error fetching member login names:', error);
       }
     };
+    setValidationMessage(null);
     fetchMemberLoginName();
   }, []);
 
@@ -60,6 +62,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
         }
       }
     };
+    setValidationMessage(null);
     fetchCashMemberBankInfo();
   }, [memberId]);
 
@@ -76,6 +79,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
         }
       }
     };
+    setValidationMessage(null);
     fetchCreditLimitAmount();
   }, [memberId]);
 
@@ -89,75 +93,23 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
       custId: memberId,
       paymentFrom: paymentFrom,
       paymentTo: paymentTo,
-      amount: parseFloat(depositAmount),
+      amount: depositAmount === '' ? 0 : Number(depositAmount),
       remark: remarks,
       image: image as File,
     }
     return params;
   };
 
-  const validateParams = (params: AddDepositManualModel): boolean => {
-    if (!params.custId) {
-      setValidationMessage({
-        type: 'error',
-        message: 'Member login name is required'
-      });
-      return false;
-    }
-
-    if (!params.paymentFrom) {
-      setValidationMessage({
-        type: 'error',
-        message: 'Payment from account is required'
-      });
-      return false;
-    }
-
-    if (!params.paymentTo) {
-      setValidationMessage({
-        type: 'error',
-        message: 'Payment to account is required'
-      });
-      return false;
-    }
-
-    if (!params.amount || params.amount <= 0) {
-      setValidationMessage({
-        type: 'error',
-        message: 'Deposit amount must be greater than 0'
-      });
-      return false;
-    }
-
-    if (creditAmount.maxAmt && params.amount > creditAmount.maxAmt) {
-      setValidationMessage({
-        type: 'error',
-        message: `Deposit amount cannot exceed maximum agent available credit: ${creditAmount.maxAmt}`
-      });
-      return false;
-    }
-    
-    if (params.image && params.image.size > 1048576) {
-      setValidationMessage({
-        type: 'error',
-        message: 'File size must be less than 1MB'
-      });
-      return false;
-    }
-
-    return true;
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const params = getParams();
-    
-    if (!validateParams(params)) {
-      return;
-    }
 
+    console.log('params', params);
+
+    setIsSubmitting(true);
     try {
       const response = await pendingDepositAPI.createDepositManual(params);
+      setValidationMessage(null);
       if (response.isSuccessful) {
         setValidationMessage({
           type: 'success',
@@ -177,6 +129,8 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
         type: 'error',
         message: 'Failed to submit deposit request'
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -232,7 +186,12 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
                   </button>
                   <button
                     type="submit"
-                    className="w-[140px] h-[32px] max-[768px]:h-[40px] border border-transparent rounded-full text-sm font-medium text-white bg-[#163f78] hover:bg-[#0f2d5c] focus:outline-none"
+                    disabled={isSubmitting}
+                    className={`w-[140px] h-[32px] max-[768px]:h-[40px] border border-transparent rounded-full text-sm font-medium text-white 
+                      ${isSubmitting 
+                        ? 'bg-gray-400 cursor-not-allowed' 
+                        : 'bg-[#163f78] hover:bg-[#0f2d5c]'
+                      } focus:outline-none`}
                   >
                     {t('manualDepositForm.approve')}
                   </button>
