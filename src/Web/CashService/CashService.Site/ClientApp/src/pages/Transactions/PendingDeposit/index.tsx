@@ -18,6 +18,8 @@ import {
 import Loading from '../../../components/LoadingComponent';
 import TitleComponent from '../../../components/TitleComponents';
 import { ButtonOutlineComponent } from '../../../components/ButtonComponents';
+import PendingDepositModal from './components/PendingDepositModal';
+import { TransactionItem } from '../../../services/interfaces/Transactions/TransactionHistory';
 
 const PendingDeposit: React.FC = () => {
   const { t } = useTranslation('pendingDeposit');
@@ -31,6 +33,8 @@ const PendingDeposit: React.FC = () => {
     totalCount: 0,
   });
   const [showManualAddDepositForm, setShowManualAddDepositForm] = useState<boolean>(false);
+  const [showEditDeposit, setShowEditDeposit] = useState<boolean>(false);
+  const [processingDeposit, setProcessingDeposit] = useState<TransactionItem | null>(null);
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -95,6 +99,7 @@ const PendingDeposit: React.FC = () => {
 
   const handleCloseManualDepositForm = (isSuccess: boolean) => {
     setShowManualAddDepositForm(false);
+    setShowEditDeposit(false);
     if (isSuccess) {
       fetchDeposits();
     }
@@ -109,9 +114,8 @@ const PendingDeposit: React.FC = () => {
   }, [searchTerm]);
 
   const filteredDeposits = useMemo(() => {
-    let result = [...deposits.items];
+    let result = [...deposits?.items];
     if (cashAgentTo !== '') {
-      console.log('cashAgentTo', cashAgentTo);
       result = result.filter(deposit => deposit.paymentTo.toString() === cashAgentTo);
     }
 
@@ -127,8 +131,11 @@ const PendingDeposit: React.FC = () => {
     return result;
   }, [deposits, cashAgentTo, debouncedSearchTerm]);
 
-  console.log('filteredDeposits', filteredDeposits);
-  console.log('deposits.items', deposits.items);
+  const handleClickProcess = (deposit: TransactionItem) => {
+    setShowEditDeposit(true);
+    setProcessingDeposit(deposit);
+  };
+
 
   return (
     <>  
@@ -152,7 +159,6 @@ const PendingDeposit: React.FC = () => {
           recentDeposits={recentDeposits}
           setRecentDeposits={setRecentDeposits}
           cashAgentOptions={cashAgentOptions}
-          cashAgentTo={cashAgentTo}
           setCashAgentTo={setCashAgentTo}
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
@@ -163,14 +169,19 @@ const PendingDeposit: React.FC = () => {
             <Loading />
           </div>
         ) : (
-          <div className='p-[4px]'>
-            <DataGrid deposits={filteredDeposits} />
+          <DataGrid deposits={filteredDeposits} onProcessClick={handleClickProcess} />
          
           </div>
         )}
       </div>   
       )}
       
+      {showEditDeposit && (
+        <PendingDepositModal
+          deposit={processingDeposit}
+          onClose={() => handleCloseManualDepositForm(false)}
+        />
+      )}
     </>
   );
 };

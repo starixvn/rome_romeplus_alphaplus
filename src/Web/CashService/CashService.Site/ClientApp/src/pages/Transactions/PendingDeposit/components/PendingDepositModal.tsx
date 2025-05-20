@@ -3,49 +3,61 @@ import { useTranslation } from 'react-i18next';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { IconClose } from '../../../../components/Icons';
 import { ButtonApplyComponent, ButtonCancelComponent } from '../../../../components/ButtonComponents';
-import { renderBankAccount } from '../../../../common/commonFunctions';
+import { renderBankAccount, displayAmount } from '../../../../common/commonFunctions';
 
 interface PendingDepositModalProps {
-  deposit: TransactionItem;
-  onClose: () => void;
-  onApprove: (deposit: TransactionItem) => void;
-  onReject: (deposit: TransactionItem) => void;
+  deposit: TransactionItem | null;
+  onClose: (isSuccess: boolean) => void;
 }
 const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
   deposit,
-  onClose,
-  onApprove,
-  onReject,
+  onClose
 }) => {
   const { t } = useTranslation('pendingDeposit');
   const [remarks, setRemarks] = useState('');
-  const [depositAmount, setDepositAmount] = useState(deposit.amount.toString());
+  const [depositAmount, setDepositAmount] = useState(deposit?.amount.toString());
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleApprove = () => {
-    onApprove({
-      ...deposit,
-      amount: parseFloat(depositAmount),
-    });
+  const getParams = () => {
+    const params = {
+      custId: deposit?.custId ? deposit.custId : 0,
+      paymentFrom: deposit?.paymentFrom ? deposit.paymentFrom : '',
+      paymentTo: deposit?.paymentTo ? deposit.paymentTo : '',
+      amount: depositAmount === '' ? 0 : Number(depositAmount),
+      remark: remarks,
+      image: null,
+    }
+    return params;
   };
 
-  const handleReject = () => {
-    onReject({
-      ...deposit,
-      amount: parseFloat(depositAmount),
-    });
+  const handleReject = async () => {
+    const params = getParams();
+
+    console.log('params', params);
+
+    setIsSubmitting(true);
   };
+
+  const handleApprove = async () => {
+    const params = getParams();
+
+    console.log('params', params);
+
+    setIsSubmitting(true);
+  };
+
 
   return (
     <div className="bg-[#00000066] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-start justify-center">
       <div className="p-[30px] bg-[#ffffff] mt-[100px] max-w-[540px] max-[768px]:max-w-[90%] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
         <div className="relative mb-[16px]">
           <h5 className="text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] max-[768px]:text-[20px] max-[768px]:leading-[26px]">
-            {t('pendingDepositModal.title')} ({deposit.transId})
+            {t('pendingDepositModal.title')} ({deposit?.transId})
           </h5>
           <button
               type="button"
               className="absolute top-[-20px] right-[-20px] cursor-pointer"
-              onClick={onClose}
+              onClick={() => onClose(false)}
             >
               <IconClose />
             </button>
@@ -64,10 +76,10 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
               </thead>
               <tbody>
                 <tr>
-                  <td className="px-[8px] py-[4px]">{deposit.username}</td>
+                  <td className="px-[8px] py-[4px]">{deposit?.username}</td>
                   <td className="px-[8px] py-[4px]">{}</td>
-                  <td className="px-[8px] py-[4px]">{`${deposit.firstName} ${deposit.lastName}`}</td>
-                  <td className="px-[8px] py-[4px] text-[var(--text-color-primary)] font-semibold">{deposit.amount.toFixed(2)}</td>
+                  <td className="px-[8px] py-[4px]">{`${deposit?.firstName} ${deposit?.lastName}`}</td>
+                  <td className="px-[8px] py-[4px] text-[var(--text-color-primary)] font-semibold">{deposit?.amount && displayAmount(deposit.amount)}</td>
                 </tr>
               </tbody>
             </table>
@@ -78,20 +90,20 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
               <div className="mb-[8px]">
                 <div className="block font-bold text-[#333333] my-[8px]">From</div>
                 <div className="flex items-center">                   
-                  {renderBankAccount(deposit.paymentFrom)}
+                  {deposit?.paymentFrom && renderBankAccount(deposit.paymentFrom)}
                 </div>
               </div>
 
               <div>
                 <div className="block font-bold text-[#333333] my-[8px]">Date and Time</div>
-                <div>{deposit.createdTime}</div>
+                <div>{deposit?.createdTime}</div>
               </div>
             </div>
 
             <div className="w-[230px] max-[768px]:w-[48%]">
               <div className="mb-[8px]">
                 <div className="block font-bold text-[#333333] my-[8px]">To</div>                 
-                {renderBankAccount(deposit.paymentTo)}
+                {deposit?.paymentTo && renderBankAccount(deposit.paymentTo)}
               </div>
 
               <div>
@@ -123,12 +135,13 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
         <ButtonCancelComponent
             text="Reject"
             onClick={handleReject}
+            disabled={isSubmitting}
           />
             <ButtonApplyComponent
             text="Approve"
             onClick={handleApprove}
+            disabled={isSubmitting}
           />
-           
         </div>
       </div>
     </div>

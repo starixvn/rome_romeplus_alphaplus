@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import PendingDepositModal from './PendingDepositModal';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { displayAmount, renderBankAccount } from '../../../../common/commonFunctions';
@@ -8,28 +7,14 @@ import NoRecordFound from '../../../../components/Table/NoRecordFound';
 
 interface DataGridProps {
   deposits: TransactionItem[];
+  onProcessClick: (deposit: TransactionItem) => void;
 }
 
-const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
+const DataGrid: React.FC<DataGridProps> = ({ deposits, onProcessClick }) => {
   const { t } = useTranslation('pendingDeposit');
-  const [processingDeposit, setProcessingDeposit] = useState<TransactionItem | null>(null);
 
   const handleProcessClick = (deposit: TransactionItem) => {
-    setProcessingDeposit(deposit);
-  };
-
-  const handleCloseProcess = () => {
-    setProcessingDeposit(null);
-  };
-
-  const handleApproveDeposit = (deposit: TransactionItem) => {
-    console.log('Approving deposit:', deposit);
-    setProcessingDeposit(null);
-  };
-
-  const handleRejectDeposit = (deposit: TransactionItem) => {
-    console.log('Rejecting deposit:', deposit);
-    setProcessingDeposit(null);
+    onProcessClick(deposit);
   };
 
   return (
@@ -95,15 +80,6 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
           </tbody>
         </table>
       </div>
-
-      {processingDeposit && (
-        <PendingDepositModal
-          deposit={processingDeposit}
-          onClose={handleCloseProcess}
-          onApprove={handleApproveDeposit}
-          onReject={handleRejectDeposit}
-        />
-      )}
     </>
   );
 };

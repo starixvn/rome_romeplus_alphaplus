@@ -8,7 +8,6 @@ interface FilterProps {
   recentDeposits: string;
   setRecentDeposits: (value: string) => void;
   cashAgentOptions: BankInfo[];
-  cashAgentTo: string;
   setCashAgentTo: (value: string) => void;
   searchTerm: string;
   setSearchTerm: (value: string) => void;
@@ -18,13 +17,12 @@ const Filter: React.FC<FilterProps> = ({
   recentDeposits,
   setRecentDeposits,
   cashAgentOptions,
-  cashAgentTo,
   setCashAgentTo,
   searchTerm,
   setSearchTerm,
 }) => {
   const { t } = useTranslation('pendingDeposit');
-  console.log('cashAgentTo', cashAgentTo);
+
   return (
     <>
     <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">

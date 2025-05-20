@@ -32,8 +32,6 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [validationMessage, setValidationMessage] = useState<{ type: 'error' | 'success' | 'warning', message: string } | null>(null);
 
-  console.log('paymentTo', paymentTo);
-
   useEffect(() => {
     const fetchMemberLoginName = async () => {
       try {
@@ -98,8 +96,6 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const params = getParams();
-
-    console.log('params', params);
 
     setIsSubmitting(true);
     try {
