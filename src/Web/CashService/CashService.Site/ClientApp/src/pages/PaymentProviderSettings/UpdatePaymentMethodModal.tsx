@@ -10,6 +10,7 @@ import { ButtonApply, ButtonCancel } from '../../components/ButtonComponents';
 
 interface UpdatePaymentMethodModalProps {
   onClose: () => void;
+  onSuccess: () => void;
   providerId: number;
   orgTelegramAssistantUrl: string;
   existingPaymentMethod: PaymentMethod;
@@ -27,6 +28,7 @@ interface PaymentMethodFormState {
 
 const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({ 
   onClose, 
+  onSuccess,
   providerId, 
   orgTelegramAssistantUrl,
   existingPaymentMethod 
@@ -127,7 +129,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
       
       if (response.isSuccessful) {
         setSuccessMessage(tGlobal('updateSuccess'));
-        setTimeout(() => { onClose(); }, 3000);
+        setTimeout(() => { onClose(); onSuccess(); }, 3000);
       } else {
         setError(response.message || tGlobal('updateFailed'));
       }

@@ -275,8 +275,8 @@ function PaymentProviderSettings() {
           type: 'success',
           text: tGlobal('updateSuccess')
         });
-        // Update original settings to match current settings after successful update
-        setOriginalSettings([...providerSettings]);
+
+        setTimeout(() => { window.location.reload(); }, 3000);
       } else {
         setUpdateMessage({
           type: 'error',
@@ -328,6 +328,10 @@ function PaymentProviderSettings() {
     } else {
       window.history.back();
     }
+  };
+
+  const reloadPage = () => {
+    window.location.reload();
   };
 
   return (
@@ -570,6 +574,7 @@ function PaymentProviderSettings() {
         <AddPaymentMethodModal
           providerId={window.providerSettingsViewModel.Provider.Id}
           onClose={handleCloseAddPaymentMethod}   
+          onSuccess={reloadPage}
           orgTelegramAssistantUrl={window.providerSettingsViewModel.AddPaymentMethodViewModel.ChannelContact.Tele}
         />
       )}
@@ -587,6 +592,7 @@ function PaymentProviderSettings() {
         <UpdatePaymentMethodModal
           providerId={window.providerSettingsViewModel.Provider.Id}
           onClose={handleCloseUpdatePaymentMethod}
+          onSuccess={reloadPage}
           orgTelegramAssistantUrl={window.providerSettingsViewModel.AddPaymentMethodViewModel.ChannelContact.Tele}
           existingPaymentMethod={selectedSetting}
         />
