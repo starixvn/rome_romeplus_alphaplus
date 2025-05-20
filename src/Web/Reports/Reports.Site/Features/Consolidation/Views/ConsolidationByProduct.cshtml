@@ -56,10 +56,14 @@
                 var isFirstRow = true;
                 foreach (var data in date.WinLoss)
                 {
+                    if (data.BetCount == 0)
+                    {
+                        continue;
+                    }
                     <tr>
                         @if (isFirstRow)
                         {
-                            <td class="text-left first-row" rowspan="@date.WinLoss.Count()">@date.BreakDown</td>
+                            <td class="text-left first-row" rowspan="@date.WinLoss.Count(x => x.BetCount > 0)">@date.BreakDown</td>
                             isFirstRow = false;
                         }
                         <td class="text-left @data.CustLevelName.ToLowerInvariant()">@data.CustLevelName</td>
@@ -113,7 +117,8 @@
             }
         </tbody>
     }
-    else
+    
+    @if (!Model.ReportData.Any() || Model.ReportData.All(x => x.WinLoss.All(o => o.BetCount == 0)))
     {
         <no-information colspan="15" />
     }

@@ -133,8 +133,15 @@
                             }
                             else
                             {
-                                <a class="open-link"
+                                if (total.BetCount == 0)
+                                {
+                                    <span>@total.Username</span>
+                                }
+                                else
+                                {
+                                    <a class="open-link"
                                     data-url="@Model.BuildBetListUrl(total.CustId, total.Username)">@total.Username</a>
+                                }
                             }
                         </div>
                     </td>
@@ -146,7 +153,7 @@
                 foreach (var dataByPT in dataByUsername.ConsolidationByPTs)
                 {
                     var ptTotal = dataByPT.Total;
-                    if (isShowPT)
+                    if (isShowPT && ptTotal.BetCount > 0)
                     {
                         <tr class="child-row-@total.CustId consolidation-pt-row hide">
                             <td></td>
@@ -160,6 +167,8 @@
 
                     foreach (var item in dataByPT.WinLoss)
                     {
+                        if (item.BetCount > 0)
+                        {
                         <tr class="child-row-@total.CustId hide">
                             <td></td>
                             <td class="text-left col-product">@item.ProductName</td>
@@ -168,6 +177,7 @@
                                 RenderConsolidateRow(item);
                             }
                         </tr>
+                        }
                     }
                 }
             }

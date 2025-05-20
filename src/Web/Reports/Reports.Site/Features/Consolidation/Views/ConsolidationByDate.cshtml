@@ -68,8 +68,15 @@
                         <td class="text-left">
                             @if (data.IsMemberLevel())
                             {
-                                <a class="open-link"
-                                    data-url="@Model.BuildBetListUrl(data.CustId, data.Username, date.BreakDown)">@data.Username</a>
+                                if (data.BetCount == 0)
+                                {
+                                    <span>@data.Username</span>
+                                }
+                                else
+                                {
+                                    <a class="open-link"
+                                        data-url="@Model.BuildBetListUrl(data.CustId, data.Username, date.BreakDown)">@data.Username</a>
+                                }
                             }
                             else
                             {
