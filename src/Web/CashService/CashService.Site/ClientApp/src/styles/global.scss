@@ -15,6 +15,7 @@
 
   //control
   --border-control: #d1d1d1;
+  --border-control-error: #ff0000;
   --border-control-focus: #163f78;
   --background-control: #ffffff;
 
@@ -49,8 +50,10 @@
   --message-background-fail: #E0E0E0;
   --message-background-maintenance: #fcae7b;
  
+  //
   //color level 
   --color-level: red;
+
 }
 
 html,
