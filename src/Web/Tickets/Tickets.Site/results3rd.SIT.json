@@ -11,6 +11,12 @@
       "VendorId": 123,
       "Url": "http://saba-wallet-group-001.3rd-party.k8s.nebula.sit/api/RichGamingInternal/GetBetHistoryUrl",
       "Debug": 0
+    },
+    {
+      "Name": "MacauGames",
+      "VendorId": 212,
+      "Url": "http://172.16.4.132:7129/api/VoidBridgeInternal/GetBetHistoryUrl",
+      "Debug": 0
     }
   ]
 }
