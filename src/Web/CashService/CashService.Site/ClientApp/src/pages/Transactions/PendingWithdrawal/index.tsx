@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import ManualAddWithdrawalForm from './components/ManualAddWithdrawalForm.tsx';
 import Filter from './components/Filter.tsx';
@@ -10,41 +10,29 @@ import '../../../styles/common.css';
 import '../../../styles/global.scss';
 import {
   TransactionsHistoryParams,
-  TransactionItem,
+  TransactionsHistoryResponse,
 } from '../../../services/interfaces/Transactions/TransactionHistory.ts';
 import { transactionAPI } from '../../../services/transactionsHistoryAPI.ts';
 import { TransactionType } from '../../../common/commonFunctions.tsx';
+import { BankInfo } from '../../../services/interfaces/Transactions/BankInfo';
+import Loading from '../../../components/LoadingComponent';
+import TitleComponent from '../../../components/TitleComponent';
+import { ButtonComponent } from '../../../components/ButtonComponents';
 
 const PendingWithdrawal: React.FC = () => {
   const { t } = useTranslation('pendingWithdrawal');
   useCookieLanguage(i18n);
   const [recentWithdrawals, setRecentWithdrawals] = useState<string>('All');
-  const [toFilter, setToFilter] = useState<string>('All');
+  const [cashAgentOptions, setCashAgentOptions] = useState<BankInfo[]>([]);
+  const [cashAgentTo, setCashAgentTo] = useState<string>('');
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [withdrawals, setWithdrawals] = useState<TransactionItem[]>([]);
+  const [withdrawals, setWithdrawals] = useState<TransactionsHistoryResponse>({
+    items: [],
+    totalCount: 0,
+  });
   const [showManualAddWithdrawalForm, setShowManualAddWithdrawalForm] = useState<boolean>(false);
-
-  React.useEffect(() => {
-    const fetchWithdrawals = async () => {
-      try {
-        const [fromDate, toDate] = calculateDateRange();
-        const params: TransactionsHistoryParams = {
-          dateRange: [fromDate, toDate],
-          status: 2,
-          searchText: searchTerm,
-          account: toFilter !== 'All' ? toFilter : '',
-          pageIndex: 1,
-          pageSize: 100,
-          transactionType: TransactionType.Withdrawal,
-        };
-        const response = await transactionAPI.getTransactions(params);
-        setWithdrawals(response.items);
-      } catch (error) {
-        console.error('Error fetching withdrawals:', error);
-      }
-    };
-    fetchWithdrawals();
-  }, [recentWithdrawals, toFilter, searchTerm]);
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const calculateDateRange = (): [string, string] => {
     const today = new Date();
@@ -65,50 +53,120 @@ const PendingWithdrawal: React.FC = () => {
       default:
         return ['', ''];
     }
-
     return [startDate.toISOString().split('T')[0], today.toISOString().split('T')[0]];
   };
+
+  const fetchWithdrawals = async () => {
+    setIsLoading(true);
+    try {
+      const [fromDate, toDate] = calculateDateRange();
+      const params: TransactionsHistoryParams = {
+        dateRange: [fromDate, toDate],
+        status: 2,
+        searchText: '',
+        account: '',
+        pageIndex: 1,
+        pageSize: 100,
+        transactionType: TransactionType.Withdrawal,
+      };
+      const withdrawalsResponse = await transactionAPI.getTransactions(params);
+      setWithdrawals(withdrawalsResponse);
+    } catch (error) {
+      console.error('Error fetching withdrawals:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchWithdrawals();
+  }, [recentWithdrawals]);
+
+  useEffect(() => {
+    const fetchBankInfo = async () => {
+      try {
+        const bankInfo = await transactionAPI.getCashAgentBankInfo(TransactionType.Withdrawal);
+        setCashAgentOptions(bankInfo);
+      } catch (error) {
+        console.error('Error fetching bank info:', error);
+      }
+    };
+    fetchBankInfo();
+  }, []);
 
   const handleAddManualWithdrawal = () => {
     setShowManualAddWithdrawalForm(true);
   };
 
-  const handleCloseManualWithdrawalForm = () => {
+  const handleCloseManualWithdrawalForm = (isSuccess: boolean) => {
     setShowManualAddWithdrawalForm(false);
+    if (isSuccess) {
+      fetchWithdrawals();
+    }
   };
 
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="mx-auto space-y-6">
-        <div className="bg-white rounded-lg shadow-sm p-2">
-          <h1 className="text-xl font-semibold mb-6">{t('pendingWithdrawal')}</h1>
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 500);
 
-          <div className="mb-6">
-            <button
+    return () => clearTimeout(timer);
+  }, [searchTerm]);
+
+  const filteredWithdrawals = useMemo(() => {
+    let result = [...withdrawals.items];
+    if (cashAgentTo !== '') {
+      result = result.filter((withdrawal) => withdrawal.paymentTo.toString() === cashAgentTo);
+    }
+
+    if (debouncedSearchTerm.trim()) {
+      const term = debouncedSearchTerm.toLowerCase().trim();
+      result = result.filter(
+        (withdrawal) =>
+          withdrawal.username.toLowerCase().includes(term) ||
+          withdrawal.transId.toString().toLowerCase().includes(term)
+      );
+    }
+
+    return result;
+  }, [withdrawals, cashAgentTo, debouncedSearchTerm]);
+
+  return (
+    <>
+      {showManualAddWithdrawalForm ? (
+        <ManualAddWithdrawalForm onClose={() => handleCloseManualWithdrawalForm(false)} />
+      ) : (
+        <div className="py-[12px] flex h-full flex-col">
+          <TitleComponent title={t('pendingWithdrawal')} />
+          <div className="mb-[8px]">
+            <ButtonComponent
+              type="cancel"
+              style="medium"
+              text={`+${t('addManualWithdrawal')}`}
               onClick={handleAddManualWithdrawal}
-              className="bg-[#1e4d8c] text-white px-8 py-2 rounded-lg text-sm font-medium hover:bg-[#173d70] transition-colors flex items-center cursor-pointer"
-            >
-              <span className="mr-1">+</span> {t('addManualWithdrawal')}
-            </button>
+              className="min-w-[183px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
+            />
           </div>
 
           <Filter
             recentWithdrawals={recentWithdrawals}
             setRecentWithdrawals={setRecentWithdrawals}
-            toFilter={toFilter}
-            setToFilter={setToFilter}
+            toFilter={cashAgentTo}
+            setToFilter={setCashAgentTo}
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
           />
 
-          <DataGrid withdrawals={withdrawals} />
+          {isLoading ? (
+            <div className="flex justify-center items-center py-8">
+              <Loading />
+            </div>
+          ) : (
+            <DataGrid withdrawals={filteredWithdrawals} />
+          )}
         </div>
-      </div>
-
-      {showManualAddWithdrawalForm && (
-        <ManualAddWithdrawalForm onClose={handleCloseManualWithdrawalForm} />
       )}
-    </div>
+    </>
   );
 };
 

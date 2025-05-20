@@ -11,7 +11,7 @@ import {
   CurrentCurrency,
 } from '../../../../common/commonFunctions';
 
-interface TableProps {
+interface DataGridProps {
   items: TransactionItem[];
   isLoading: boolean;
   onRefreshNeeded?: () => void;
@@ -39,7 +39,7 @@ const formatDateTime = (dateTimeStr: string): { date: string; time: string } => 
   };
 };
 
-const Table: React.FC<TableProps> = ({
+const DataGrid: React.FC<DataGridProps> = ({
   items,
   isLoading,
   onRefreshNeeded,
@@ -268,4 +268,4 @@ const Table: React.FC<TableProps> = ({
   );
 };
 
-export default Table;
+export default DataGrid;

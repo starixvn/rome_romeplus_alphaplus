@@ -7,7 +7,7 @@ import {
 } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import Filters from './Filters/Filters';
 import Search from './Search';
-import Table from './Table';
+import DataGrid from './DataGrid';
 import Pagination from './Pagination';
 import { useTranslation } from 'react-i18next';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
@@ -166,7 +166,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
       </div>
 
       <div className="table-section">
-        <Table
+        <DataGrid
           items={displayedItems}
           isLoading={loading}
           onRefreshNeeded={handleRefresh}
