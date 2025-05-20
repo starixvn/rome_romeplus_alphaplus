@@ -61,7 +61,6 @@
             <Mapping DataField="BankCode" ObjectProperty="Code"></Mapping>
             <Mapping DataField="TransTypeList" ObjectProperty="TransactionTypeID"></Mapping>
             <Mapping DataField="BankAccountStatus" ObjectProperty="Status"></Mapping>
-            <Mapping DataField="LastUpdated" ObjectProperty="RepUpdateTime"></Mapping>
         </Setting>
 
         <Setting Key="Age_CashService_BankAccountAgent_Ins" SpName="Age_CashService_BankAccountAgent_Ins" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
