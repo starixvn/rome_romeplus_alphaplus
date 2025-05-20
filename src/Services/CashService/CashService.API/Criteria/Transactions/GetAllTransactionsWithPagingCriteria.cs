@@ -5,6 +5,8 @@ using Fanex.Data.Repository;
 
 public class GetAllTransactionsWithPagingCriteria : CriteriaBase
 {
+    public int CustId { get; set; }
+
     public int TransactionType { get; set; }
 
     [SpParam(AllowNull = true)]

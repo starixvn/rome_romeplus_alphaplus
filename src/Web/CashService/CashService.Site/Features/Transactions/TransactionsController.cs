@@ -29,6 +29,7 @@ public class TransactionsController(
     public async Task<IActionResult> GetHistory([FromQuery] GetTransactionFilter filter)
     {
         var url = $"/transactions/history";
+        filter.CustId = agentId;
         var result = await httpClientHelper.GetAsync<object>(url, ObjectConverter.ToDictionary(filter));
         return Json(result);
     }

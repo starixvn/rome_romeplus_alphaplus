@@ -2,6 +2,8 @@
 
 public class GetTransactionFilter
 {
+    public int CustId { get; set; } 
+
     public int TransactionType { get; set; }
 
     public DateTime? FromDate { get; set; }

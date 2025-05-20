@@ -14,6 +14,7 @@ public static class TransactionsEndpoints
 
         group.MapGet("/history", async ([FromQuery] DateTime? fromDate
                 , [FromQuery] DateTime? toDate
+                , [FromQuery] int custId
                 , [FromQuery] int paymentStatus
                 , [FromQuery] int transactionType
                 , [FromQuery] int pageIndex
@@ -24,6 +25,7 @@ public static class TransactionsEndpoints
                 {
                     FromDate = fromDate,
                     ToDate = toDate,
+                    CustId = custId,
                     PaymentStatus = paymentStatus,
                     TransactionType = transactionType,
                     PageIndex = pageIndex,
