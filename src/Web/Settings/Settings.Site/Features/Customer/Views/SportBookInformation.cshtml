@@ -16,11 +16,11 @@
         const appConfig = @Html.Raw(Model.AppConfig);
         const informationPageParams = @Html.Raw(Model.Params);
     </script>
-    <environment include="Development,Production">
+    <environment include="Production">
         <script type="module"
             src="@(Model.CdnUri)sportsbook-information/index.js?version=@(Model.AssetsVersion)"></script>
     </environment>
-    @* <environment include="Development">
+    <environment include="Development">
     <script type="module">
     import RefreshRuntime from "http://localhost:4205/@@react-refresh";
     RefreshRuntime.injectIntoGlobalHook(window);
@@ -30,7 +30,7 @@
     </script>
     <script type="module" src=@("http://localhost:4205/@vite/client")></script>
     <script type="module" src="http://localhost:4205/src/main.tsx"></script>
-    </environment> *@
+    </environment>
 
 </body>
 
