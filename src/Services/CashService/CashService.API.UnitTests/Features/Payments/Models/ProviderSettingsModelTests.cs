@@ -89,4 +89,4 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Models
             Assert.Equal(0m, model.MaxAmountTrans);
         }
     }
-} 
+}
