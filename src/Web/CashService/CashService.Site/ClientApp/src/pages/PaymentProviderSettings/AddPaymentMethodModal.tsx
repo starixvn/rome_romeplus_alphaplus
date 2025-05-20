@@ -154,7 +154,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
           </button>
         </div>
         <ErrorMessageComponent className='mt-[8px]' message={error} />
-            <SuccessMessageComponent className='mt-[8px]' message={successMessage} />
+        <SuccessMessageComponent className='mt-[8px]' message={successMessage} />
         <form onSubmit={handleSubmit}>
           <div className="modal-body ">
             <div>

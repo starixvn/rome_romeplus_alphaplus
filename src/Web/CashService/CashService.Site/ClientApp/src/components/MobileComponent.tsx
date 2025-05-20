@@ -43,7 +43,7 @@ const MobileComponent: React.FC<MobileComponentProps> = ({
           value={mobile}
           onChange={(e) => onMobileChange(ensureNumericInput(e))}
           placeholder={placeholder}
-          maxLength={47}
+          maxLength={40}
         />
       </div>
       <ValidateMessageComponent message={(fieldErrors.mobile || fieldErrors.countryCode) || ''}  />

@@ -276,7 +276,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
 
                 <div className=''>
                   <div className="pb-[8px] text-[16px] max-[768px]:text-[20px] text-[var(--text-color-primary)] font-semibold">{tManagePayments('transactionType')}<span className='text-[#E25757]'>*</span></div>
-                  {fieldErrors.selectedTransactionType && (<ValidateMessageComponent message={fieldErrors.selectedTransactionType}  />)}
+                  <ValidateMessageComponent message={fieldErrors.selectedTransactionType}  />
                     
                   <div className='inline-block border-[1px] border-[var(--border-control)] rounded-[4px] px-[16px] pb-[16px] bg-[#f8f8f8] mb-[8px]'>
                   {hasDepositTransactionType(selectedBank, banks) && (

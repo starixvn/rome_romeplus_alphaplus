@@ -6,7 +6,7 @@ export const baseAPI = {
       const response = await api.get<string[]>('../Payments/GetCountryCodes', { method: 'GET' });
       return response.data;
     } catch (error) {
-      console.error('Error fetching mobile prefixes:', error);
+      console.error('Error fetching country codes:', error);
       return [];
     }
   },
