@@ -6,23 +6,23 @@ import i18n from '../../../i18n/i18n-transactionHistory';
 import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
 import '../../../styles/common.css';
 import '../../../styles/global.scss';
+import TitleComponent from '../../../components/TitleComponent';
+import { useTranslation } from 'react-i18next';
 
 const History: React.FC = () => {
   useCookieLanguage(i18n);
   const [activeTab, setActiveTab] = useState<number>(1);
+  const { t: tTransactionHistory } = useTranslation('transactionHistory');
 
   const handleTabChange = (tab: number) => {
     setActiveTab(tab);
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-white rounded-lg shadow-sm p-4">
-        <HistoryTab activeTab={activeTab} onTabChange={handleTabChange} />
-        <div className="transaction-list">
-          <TransactionList transactionType={activeTab} />
-        </div>
-      </div>
+    <div className="py-[12px] flex h-full flex-col">
+      <TitleComponent title={tTransactionHistory('transactionHistory')} />
+      <HistoryTab activeTab={activeTab} onTabChange={handleTabChange} />
+      <TransactionList transactionType={activeTab} />
     </div>
   );
 };

@@ -35,7 +35,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
       status: -1,
       account: '',
       pageIndex: 1,
-      pageSize: 50,
+      pageSize: PAGE_SIZE_OPTIONS[0],
       transactionType: transactionType,
     };
   });
