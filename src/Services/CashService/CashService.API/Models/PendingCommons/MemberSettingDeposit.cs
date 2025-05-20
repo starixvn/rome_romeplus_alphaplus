@@ -8,5 +8,5 @@ public class MemberSettingDeposit
 
     public decimal MinLimitAmt { get; set; }
 
-    public decimal MaxLimitAmt { get; set; }
+    public decimal? MaxLimitAmt { get; set; }
 }

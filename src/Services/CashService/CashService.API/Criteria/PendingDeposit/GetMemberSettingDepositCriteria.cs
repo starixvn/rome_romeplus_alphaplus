@@ -16,7 +16,7 @@ public class GetMemberSettingDepositCriteria : CriteriaBase
 
     public decimal MinLimitAmt { get; set; }
 
-    public decimal MaxLimitAmt { get; set; }
+    public decimal? MaxLimitAmt { get; set; }
 
     public override string GetSettingKey() => $"CustDb_{CustDbGroupId}_Age_CashDeposit_MemberSettingSel";
 

@@ -17,7 +17,8 @@ public class CreateManualDepositCommand : NonQueryCommand
 
     public decimal MinLimitAmt { get; set; }
 
-    public decimal MaxLimitAmt { get; set; }
+    [SpParam(AllowNull = true)]
+    public decimal? MaxLimitAmt { get; set; }
 
     public string PaymentFrom { get; set; }
 
