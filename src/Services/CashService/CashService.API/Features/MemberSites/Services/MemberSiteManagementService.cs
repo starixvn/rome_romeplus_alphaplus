@@ -3,7 +3,8 @@ using AlphaPlus.CashService.API.Features.MemberSites.Criteria;
 using AlphaPlus.CashService.API.Features.MemberSites.Models;
 using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Criteria;
-
+using AlphaPlus.CashService.API.Features.Shared.Services;
+using AlphaPlus.CashService.API.Features.Shared.Requests;
 
 namespace AlphaPlus.CashService.API.Features.MemberSites.Services;
 
@@ -14,7 +15,7 @@ public interface IMemberSiteManagementService
     Task<ResultModel> UpdateAsync(UpdateMemberSiteModel model);
 }
 
-public class MemberSiteManagementService(IDynamicRepository repository) : IMemberSiteManagementService
+public class MemberSiteManagementService(IDynamicRepository repository, ICommonService commonService) : IMemberSiteManagementService
 {
     public async Task<MemberSiteModel> GetAsync(int custId, string site)
     {
@@ -39,18 +40,21 @@ public class MemberSiteManagementService(IDynamicRepository repository) : IMembe
     {
         if (model == null) throw new ArgumentNullException(nameof(model));
 
-        var command = new UpdateMemberSiteInfoCommand
+        var command = new UpdateMemberSiteInfoCommand(model.CustId, model.SubAccId, model.IP, model.Language)
         {
-            CustId = model.CustId,
-            SubAccId = model.SubAccId,
-            IP = model.IP,
-            Language = model.Language,
             Mobile = model.Mobile,
             Contacts = model.Contacts,
             Announcement = model.Announcement,
             SettingInfo = ConvertToSettingInfo(model.GeneralSettings)
         };
-        await repository.ExecuteAsync(command);
+        var request = new BaseActionRequest(){
+            ActorId = model.UserId,
+            UserId = model.CustId,
+            IP = model.IP,
+            Language = model.Language,
+            SiteDB = model.SiteDB
+        };
+        await commonService.RunDBCommand(request, command);
         return new ResultModel(command.ErrCode, command.ErrMsg);
     }
 

@@ -3,16 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { Contact, MobilePhone } from '../../../services/interfaces/MemberSites';
 import { Contact as ContactComponent } from './Contact';
 import { MobilePhone as MobilePhoneComponent } from './MobiPhone';
+import { useFormContext } from 'react-hook-form';
+
 interface MessageFormProps {
   contacts: Contact[];
   mobilePhone: MobilePhone;
   announcement: string;
   loading: boolean;
-  onMessageChange: (messages: {
-    mobilePhone?: MobilePhone;
-    contacts?: Contact[];
-    announcement?: string
-  }) => void;
 }
 
 const MessageFormSkeleton = () => {
@@ -33,74 +30,70 @@ const MessageFormSkeleton = () => {
   );
 };
 
-const MessageForm: React.FC<MessageFormProps> = ({
-  contacts,
-  mobilePhone,
-  announcement,
-  onMessageChange,
-  loading
-}) => {
+const MessageForm: React.FC<MessageFormProps> = ({loading}) => {
   const { t } = useTranslation('memberSite');
+  const { setValue, watch, register, formState: { errors } } = useFormContext();
 
   if (loading) {
     return <MessageFormSkeleton />
   }
 
-
   const handleContactChange = (contact: Partial<Contact>) => {
-    const newContact = contacts.find(c => c.type === contact.type);
-    if (newContact) {
-      newContact.value = contact.value || '';
-    } else {
-      contacts.push(contact as Contact);
-    }
-    onMessageChange({ contacts: contacts });
+    const currentContacts = watch('contacts');
+    const newContacts = currentContacts.map((c: Contact) =>
+      c.type === contact.type ? { ...c, value: contact.value || '' } : c
+    );
+    setValue('contacts', newContacts, { shouldDirty: true });
   }
 
   const handleMobilePhoneChange = (data: Partial<MobilePhone>) => {
-    const newMobilePhone = { ...mobilePhone, ...data };
-    onMessageChange({ mobilePhone: newMobilePhone });
+    setValue('mobilePhone', { ...watch('mobilePhone'), ...data }, { shouldDirty: true });
   }
 
   return (
     <div className="">
       <h2 className="text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] max-[768px]:text-[20px] max-[768px]:leading-[26px] ">{t('message.title')}</h2>
       <p className="pt-[4px] mb-[8px] font-semibold">{t('message.description')}</p>
-      <div className="max-w-[785px]">
-        <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap">
-          <div className='w-[230px] pt-[4px] max-[768px]:w-[48%]'>
-            <MobilePhoneComponent
-              mobilePhone={mobilePhone}
-              handleMobilePhoneChange={handleMobilePhoneChange}
-            />
-          </div>
-          {
-            contacts.map((contact: Contact) => {
-              return (
-                <ContactComponent
-                  key={contact.type}
-                  contact={contact}
-                  handleContactChange={handleContactChange}
-                />)
-            })
-          }
 
+      <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap">
+        <MobilePhoneComponent
+          mobilePhone={watch('mobilePhone')}
+          handleMobilePhoneChange={handleMobilePhoneChange}
+        />
+        {watch('contacts').map((contact: Contact) => (
+          <ContactComponent
+            key={contact.type}
+            contact={contact}
+            handleContactChange={handleContactChange}
+          />
+        ))}
+      </div>
 
-        </div>
-
-        <div className='w-[476px] max-[768px]:w-[100%]'>
-          <label className="block pt-[4px] mb-[8px] font-semibold max-[768px]:mb-[8px]" htmlFor="announcement">
-            {t('message.announcement')}
-          </label>
+      <div className='w-[476px] max-[768px]:w-[100%]'>
+        <label className="block pt-[4px] mb-[8px] font-semibold max-[768px]:mb-[8px]" htmlFor="announcement">
+          {t('message.announcement')}
+        </label>
+        <div className="relative">
           <textarea
             id="announcement"
-            value={announcement}
-            onChange={(e) => onMessageChange({ announcement: e.target.value })}
+            {...register('announcement', {
+              maxLength: {
+                value: 1000,
+                message: t('validation.maxLength', { length: 1000 })
+              }
+            })}
             rows={4}
-            maxLength={1000}
-            className="p-[8px] h-[100px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--border-control-focus)] max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:w-[100%]"
+            className={`p-[8px] h-[100px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:w-[100%] ${errors.announcement
+              ? 'border-[#E25757] focus:border-[#E25757]'
+              : 'border-[var(--border-control)] focus:border-[var(--border-control-focus)]'
+              }`}
             placeholder={t('message.placeholder.message')}
           />
+          {errors.announcement && (
+            <p className="text-[#E25757] text-[12px] mt-[4px]">
+              {errors.announcement?.message as string}
+            </p>
+          )}
         </div>
       </div>
     </div>

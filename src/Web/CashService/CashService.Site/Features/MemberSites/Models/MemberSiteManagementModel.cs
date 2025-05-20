@@ -16,6 +16,8 @@ public class UpdateMemberSiteManagementModel : MemberSiteManagementModel
     public int SubAccId { get; set; }
     public string IP { get; set; } = string.Empty;
     public string Language { get; set; } = string.Empty;
+    public int UserId { get; set; }
+    public int SiteDB { get; set; }
 }
 
 public class Domain

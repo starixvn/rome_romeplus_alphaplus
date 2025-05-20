@@ -1,18 +1,14 @@
 using Fanex.Data;
-using Fanex.Data.Repository;
+using AlphaPlus.CashService.API.Features.Shared.Criteria;
 
 namespace AlphaPlus.CashService.API.Features.MemberSites.Criteria;
 
-public class UpdateMemberSiteInfoCommand : INonQueryCommand
+public class UpdateMemberSiteInfoCommand : BaseDBCommand
 {
 
-    public int CustId { get; set; }
-
-    public int SubAccId { get; set; }
-
-    public string IP { get; set; }
-
-    public string Language { get; set; }
+    public UpdateMemberSiteInfoCommand(int custId, int subAccId, string ip, string language) : base(custId, subAccId, ip, language)
+    {
+    }
 
     public int SettingInfo { get; set; }
 
@@ -24,11 +20,5 @@ public class UpdateMemberSiteInfoCommand : INonQueryCommand
 
     public string Announcement { get; set; }
 
-    public string GetSettingKey() => "Age_CashService_GeneralSetting_Upd";
-
-    public int ErrCode { get; set; }
-
-    public string ErrMsg { get; set; } = "";
-
-    public bool IsValid() => CustId > 0;
+    public override string GetSettingKey() => "Age_CashService_GeneralSetting_Upd";
 }

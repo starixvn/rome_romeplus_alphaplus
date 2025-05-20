@@ -67,10 +67,13 @@ public class MemberSitesController : Controller
         try
         {
             model.CustId = _userSession.CustId;
+            model.UserId = _userSession.UserId;
             //model.CustId = 1176086;
             model.SubAccId = _userSession.SubAccId;
             model.IP = _userSession.UserLoginIp;
             model.Language = _userSession.Language;
+            model.SiteDB = _userSession.CustDBGroupId;
+
             var response = await _httpClient.PutAsJsonAsync($"{_apiBaseUrl}/member-site-info",model,cancellationToken);
 
             response.EnsureSuccessStatusCode();

@@ -44,5 +44,15 @@
   "messages": {
     "updateSuccess": "Member site data updated successfully",
     "updateFailed": "Failed to update member site data"
+  },
+  "validation": {
+    "required": "This field is required",
+    "lineId": "Invalid LINE ID",
+    "telegram": "Invalid Telegram ID",
+    "email": "Invalid email address",
+    "phoneCode": "Invalid phone code",
+    "phoneNumber": "Invalid phone number",
+    "maxLength": "Maximum length is {maxLength} characters",
+    "pleaseCheckFields": "Please check the fields"
   }
 } 

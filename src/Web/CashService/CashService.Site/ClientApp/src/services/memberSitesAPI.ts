@@ -38,15 +38,20 @@ class MemberSitesService {
     try {
       const { data } = await api.get<MemberSiteResponse>(this.BASE_PATH);
       const mobile = data.mobile ? data.mobile.split('-') : ['', ''];
-      let mappingContacts: { type: string; value: string, isRequired: boolean }[] = [];
+      let mappingContacts: { type: string; value: string, isRequired: boolean }[] =[]
+      // [{type: 'line', value: '', isRequired: true},{type: 'tele', value: '', isRequired: true}];
       if (typeof data.contacts === 'string') {
-        const jsonContacts = JSON.parse(data.contacts);
-        if (Array.isArray(jsonContacts) && jsonContacts.length > 0) {
-          mappingContacts = jsonContacts.map(contact => ({
+        try {
+          const jsonContacts = JSON.parse(data.contacts);
+          if (Array.isArray(jsonContacts) && jsonContacts.length > 0) {
+            mappingContacts = jsonContacts.map(contact => ({
             type: contact.type,
             value: contact.value,
             isRequired: contact.type === 'line' ? true : contact.isRequired
-          }));
+            }));
+          }
+        } catch (error) {
+          console.error('Error parsing contacts:', error);
         }
       }
       const memberSiteManagementData: MemberSiteManagementData = {
