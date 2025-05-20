@@ -213,11 +213,10 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
     
     // Split the comma-separated type IDs
     const typeIds = types.split(',').map(id => parseInt(id.trim()));
-    
+
     // Map each type ID to its name
     const typeNames = typeIds.map(typeId => {
-      const type = transactionTypes.length > 0 ? transactionTypes.find(t => t.id === typeId) : '';
-      return type ? type.name : tManagePayments(`transactionType-${typeId}`);
+      return tManagePayments(`transactionType-${typeId}`)
     });
     
     return typeNames.join(', ');
