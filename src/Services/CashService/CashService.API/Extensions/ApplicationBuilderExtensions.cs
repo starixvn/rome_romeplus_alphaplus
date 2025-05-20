@@ -1,9 +1,7 @@
-using System.Text.Json;
 using AlphaPlus.CashService.API.Features.Shared.Endpoints;
 using AlphaPlus.CashService.API.Features.Payments.Endpoints;
 using AlphaPlus.CashService.API.Features.MemberSites.Endpoints;
 using AlphaPlus.CashService.API.Endpoints;
-using Microsoft.AspNetCore.Diagnostics;
 
 namespace AlphaPlus.CashService.API.Extensions;
 
@@ -28,21 +26,7 @@ public static class ApplicationBuilderExtensions
     {
         app.UseExceptionHandler(errorApp =>
         {
-            errorApp.Run(async context =>
-            {
-                var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
-                var exception = exceptionHandlerPathFeature?.Error;
-
-                var result = JsonSerializer.Serialize(new
-                {
-                    error = exception?.Message ?? "An error occurred",
-                    statusCode = StatusCodes.Status500InternalServerError
-                });
-
-                context.Response.ContentType = "application/json";
-                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-                await context.Response.WriteAsync(result);
-            });
+            errorApp.Run(async context => await ErrorHandlingMiddleware.HandleError(context, app));
         });
 
         return app;
