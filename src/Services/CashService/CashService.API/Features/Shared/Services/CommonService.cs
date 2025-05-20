@@ -57,7 +57,7 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
         try
         {
             var criteria = new WriteLogDBCommandCriteria(request, writeLogDBCommandModel);
-            criteria.SiteDB = 0;
+            criteria.SiteDB = -1;
 
             await repository.ExecuteAsync(criteria);
             isSuccess = true;

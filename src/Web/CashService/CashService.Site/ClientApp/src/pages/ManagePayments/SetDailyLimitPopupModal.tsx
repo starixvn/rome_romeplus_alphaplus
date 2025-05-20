@@ -71,8 +71,8 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
           </button>
         </div>
         <div className='my-[8px]'>
-          { error && <ErrorMessageComponent message={error} />}
-          { successMessage && <SuccessMessageComponent message={successMessage} />}
+          <ErrorMessageComponent message={error} />
+          <SuccessMessageComponent message={successMessage} />
         </div>
         <form onSubmit={handleSubmit}>
           <div className="mb-[16px]">

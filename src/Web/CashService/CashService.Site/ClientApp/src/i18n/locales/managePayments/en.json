@@ -146,5 +146,5 @@
   "maxAmountGreaterThanMaxTrans": "Maximum amount cannot be greater than maximum transaction amount",
   "minDepositMustBeLessThanOrEqualMaxDeposit": "Minimum deposit must be less than or equal to maximum deposit",
   "minWithdrawalMustBeLessThanOrEqualMaxWithdrawal": "Minimum withdrawal must be less than or equal to maximum withdrawal",
-  "dailyWithdrawalCountOutOfRange": "Daily withdrawal count must be between 0 and 32767"
+  "dailyWithdrawalCountOutOfRange": "Daily withdrawal count must be between 1 and 32767"
 } 

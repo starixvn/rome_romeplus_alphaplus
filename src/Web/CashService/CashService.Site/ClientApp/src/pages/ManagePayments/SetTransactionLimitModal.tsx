@@ -24,7 +24,6 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
   const [maxWithdrawal, setMaxWithdrawal] = useState<string>('');
   const [dailyWithdrawalCount, setDailyWithdrawalCount] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [loading, setLoading] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<{
@@ -60,7 +59,6 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    setSuccess(false);
     setLoading(true);
     setFieldErrors({
       minDeposit: false,
@@ -123,7 +121,6 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
       });
 
       if (result.isSuccessful) {
-        setSuccess(true);
         setSuccessMessage(tManagePayments('transactionLimitUpdated'));
         setTimeout(() => {
           onSave();
@@ -156,8 +153,8 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
           <form onSubmit={handleSubmit}>
             <div className="mb-[16px]">
               <div className='my-[8px]'>      
-                { error && <ErrorMessageComponent message={error} />}
-                { success && <SuccessMessageComponent message={successMessage} />}   
+                <ErrorMessageComponent message={error} />
+                <SuccessMessageComponent message={successMessage} />
               </div>
               <div className="pt-[4px]">
                  {tManagePayments('customizeTransactionLimitPreferences')}

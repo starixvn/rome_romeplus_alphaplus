@@ -240,7 +240,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
               <div className="w-[48%]">
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('appSecret')}<span className='text-[#E25757]'>*</span></label>
                 <input
-                  type="text"
+                  type="password"
                   className={`h-[32px] max-[768px]:h-[40px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.appSecret ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                   id="appSecret"
                   value={formState.appSecret}
@@ -252,8 +252,8 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
               </div>
               </div>
             </div>
-            {error && <ErrorMessageComponent className='mt-[8px]' message={error} />}
-            {successMessage && <SuccessMessageComponent className='mt-[8px]' message={successMessage} />}
+            <ErrorMessageComponent className='mt-[8px]' message={error} />
+            <SuccessMessageComponent className='mt-[8px]' message={successMessage} />
           </div>
           <div className="flex flex-wrap mt-[16px] mb-[16px]">
             <label className="w-full flex items-center justify-center cursor-pointer text-[#333] text-[12px] leading-[14px]">

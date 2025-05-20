@@ -10,7 +10,7 @@ import TitleComponent from '../../components/TitleComponent';
 import { IconDelete,  IconPen, IconSearch, IconSync } from '../../components/Icons';
 import CustomDropdown from '../../components/CustomDropdownComponent';
 import Loading from '../../components/LoadingComponent';
-import { ResultMessageComponent } from '../../components/MessageComponents';
+import { ErrorMessageComponent, SuccessMessageComponent } from '../../components/MessageComponents';
 
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
@@ -283,8 +283,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
             <div className="card-body h-full">
               <div className=" h-full flex flex-col">
                 <div className="bg-[#ffffff] px-[14px] py-[8px]">      
-                  {error && (<ResultMessageComponent type="error" message={error} />)}
-                  {successMessage && (<ResultMessageComponent type="success" message={successMessage} />)}
+                  <ErrorMessageComponent message={error} />
+                  <SuccessMessageComponent message={successMessage} />
                   <div className="pb-[8px] mt-[8px] text-[16px] max-[768px]:text-[20px] text-[var(--text-color-primary)] font-semibold">{tManagePayments('manageBankAccountAndLimits')}</div>
                   <div className="">{tManagePayments('addBankAccountAndLimit')}</div>
                   <div className="my-[8px] flex gap-[8px]">                    

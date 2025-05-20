@@ -144,5 +144,5 @@
   "maxAmountGreaterThanMaxTrans": "最大金額不能大於最大交易金額",
   "minDepositMustBeLessThanOrEqualMaxDeposit": "最小入金不能小于或等于最大入金",
   "minWithdrawalMustBeLessThanOrEqualMaxWithdrawal": "最小出金不能小于或等于最大出金",
-  "dailyWithdrawalCountOutOfRange": "每日提款次數必須在0到32767之間"
+  "dailyWithdrawalCountOutOfRange": "每日提款次數必須在1到32767之間"
 }

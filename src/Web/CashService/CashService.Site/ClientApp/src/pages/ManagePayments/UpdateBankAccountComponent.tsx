@@ -42,7 +42,6 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   const [countryCode, setCountryCode] = useState<string>(bankAccount.countryCode || '');
   const [creator, setCreator] = useState<string>(bankAccount.creator || '');
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [initialLoading, setInitialLoading] = useState<boolean>(true);
@@ -133,7 +132,6 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    setSuccess(false);
     setLoading(true);
 
     // Field-level validation
@@ -199,7 +197,6 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
       if (result.isSuccessful) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        setSuccess(true);
         setSuccessMessage(result.message || tManagePayments('bankAccountUpdatedSuccessfully'));
         setTimeout(() => {
           onSave();
@@ -273,8 +270,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
             className="bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
           >
             <div className="modal-body">
-              {error && <ErrorMessageComponent message={error} />}
-              {success && <SuccessMessageComponent message={successMessage} />}
+              <ErrorMessageComponent message={error} />
+              <SuccessMessageComponent message={successMessage} />
 
               <div className="mb-[8px]">
                 <div className="pb-[8px] text-[16px] max-[768px]:text-[20px] text-[var(--text-color-primary)] font-semibold ">
