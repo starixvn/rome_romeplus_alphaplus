@@ -160,12 +160,20 @@ public class ConsolidationByUsernameWorkbook(IWebHostEnvironment webHostEnvironm
 
             foreach (var dataByPT in dataByUsername.ConsolidationByPTs)
             {
+                if (dataByPT.Total.BetCount == 0)
+                {
+                    continue;
+                }
                 row = sheet.GetRow(currentRowIndex++);
                 row.CopyCellsFrom(groupByPTRowTemplate);
                 FillCells(row, dataByPT.Total, groupByPTMapper.Mappings);
 
                 foreach (var data in dataByPT.WinLoss)
                 {
+                    if (data.BetCount == 0)
+                    {
+                        continue;
+                    }
                     row = sheet.GetRow(currentRowIndex++);
                     row.CopyCellsFrom(dataRowTemplate);
                     FillCells(row, data, dataMapper.Mappings);

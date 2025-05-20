@@ -64,6 +64,10 @@ public class ConsolidationWorkbook(IWebHostEnvironment webHostEnvironment) :
         {
             foreach (var item in group.WinLoss)
             {
+                if (item.BetCount == 0 && !isReportByDate)
+                {
+                    continue;
+                }
                 var row = sheet.GetRow(currentRowIndex++);
                 row.CopyCellsFrom(sheet.OddRowTemplate);
 
@@ -72,7 +76,7 @@ public class ConsolidationWorkbook(IWebHostEnvironment webHostEnvironment) :
             }
         }
 
-        MergeCells(sheet, (group) => group.WinLoss.Count());
+        MergeCells(sheet, (group) => group.WinLoss.Count(x => x.BetCount > 0));
     }
 
     private void SetWinLossByUsernameValue(ConsolidationEntity data, Row row, bool isReportByDate)
