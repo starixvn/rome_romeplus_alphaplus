@@ -48,12 +48,15 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
         {transactionType === 1 ? t('filter.to') : t('filter.from')}
       </label>
       <CustomDropdown
-        options={accountOptions.map((option) => ({
-          value: option,
-          label: option,
-          code: option,
+        options={accountOptions.map((option) => {
+          const [bankCode, accountNumber] = option.split('_');
+          return {
+            value: option,
+            label: accountNumber,
+            code: bankCode,
           icon: <BankIcon code={option.bankCode} />
-        }))}
+          };
+        })}
         onSelect={(selected) => onAccountChange(String(selected.value))}
         disable={isLoading}
         initialValue={account}
