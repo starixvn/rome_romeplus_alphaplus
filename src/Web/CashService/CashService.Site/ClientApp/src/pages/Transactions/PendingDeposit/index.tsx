@@ -26,12 +26,10 @@ const PendingDeposit: React.FC = () => {
   useCookieLanguage(i18n);
   const [recentDeposits, setRecentDeposits] = useState<string>('All');
   const [cashAgentOptions, setCashAgentOptions] = useState<BankInfo[]>([]);
+  const [uniquePaymentToOptions, setUniquePaymentToOptions] = useState<string[]>([]);
   const [cashAgentTo, setCashAgentTo] = useState<string>('');
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [deposits, setDeposits] = useState<TransactionsHistoryResponse>({
-    items: [],
-    totalCount: 0,
-  });
+  const [deposits, setDeposits] = useState<TransactionsHistoryResponse>({items: [], totalCount: 0});
   const [showManualAddDepositForm, setShowManualAddDepositForm] = useState<boolean>(false);
   const [showEditDeposit, setShowEditDeposit] = useState<boolean>(false);
   const [processingDeposit, setProcessingDeposit] = useState<TransactionItem | null>(null);
@@ -69,12 +67,21 @@ const PendingDeposit: React.FC = () => {
         transactionType: 1,
       };
       const depositsResponse = await transactionAPI.getTransactions(params);
+      setUniquePaymentToOptions(filterPaymentTo(depositsResponse));
       setDeposits(depositsResponse);
     } catch (error) {
       console.error('Error fetching deposits:', error);
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const filterPaymentTo = (deposits: TransactionsHistoryResponse | null) => {
+    if (!deposits || !deposits.items) {
+      return [];
+    }
+    const uniquePaymentToOptions = [...new Set(deposits.items.map(deposit => deposit.paymentTo))];
+    return uniquePaymentToOptions;
   };
 
   useEffect(() => {
@@ -108,17 +115,21 @@ const PendingDeposit: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedSearchTerm(searchTerm);
-    }, 500);
+    }, 200);
 
     return () => clearTimeout(timer);
   }, [searchTerm]);
 
   const filteredDeposits = useMemo(() => {
-    let result = [...deposits?.items];
-    if (cashAgentTo !== '') {
+    if (!cashAgentTo && !debouncedSearchTerm.trim()) {
+      return deposits?.items || [];
+    }
+    
+    let result = deposits?.items || [];
+    if (cashAgentTo) {
       result = result.filter(deposit => deposit.paymentTo.toString() === cashAgentTo);
     }
-
+  
     if (debouncedSearchTerm.trim()) {
       const term = debouncedSearchTerm.toLowerCase().trim();
       result = result.filter(
@@ -127,7 +138,7 @@ const PendingDeposit: React.FC = () => {
           deposit.transId.toString().toLowerCase().includes(term)
       );
     }
-
+  
     return result;
   }, [deposits, cashAgentTo, debouncedSearchTerm]);
 
@@ -158,7 +169,7 @@ const PendingDeposit: React.FC = () => {
         <Filter
           recentDeposits={recentDeposits}
           setRecentDeposits={setRecentDeposits}
-          cashAgentOptions={cashAgentOptions}
+          uniquePaymentToOptions={uniquePaymentToOptions}
           setCashAgentTo={setCashAgentTo}
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}

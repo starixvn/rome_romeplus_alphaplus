@@ -1,25 +1,24 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { BankInfo } from '../../../../services/interfaces/Transactions/BankInfo';
 import { IconSearch } from '../../../../components/Icons';
 import CustomDropdown from '../../../../components/CustomDropdownComponent';
 import BankIcon from '../../../../components/BankComponents';
 interface FilterProps {
   recentDeposits: string;
   setRecentDeposits: (value: string) => void;
-  cashAgentOptions: BankInfo[];
   setCashAgentTo: (value: string) => void;
   searchTerm: string;
   setSearchTerm: (value: string) => void;
+  uniquePaymentToOptions: string[];
 }
 
 const Filter: React.FC<FilterProps> = ({
   recentDeposits,
   setRecentDeposits,
-  cashAgentOptions,
   setCashAgentTo,
   searchTerm,
   setSearchTerm,
+  uniquePaymentToOptions,
 }) => {
   const { t } = useTranslation('pendingDeposit');
 
@@ -47,9 +46,10 @@ const Filter: React.FC<FilterProps> = ({
       <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
         <label className="block font-semibold text-[#333333] my-[8px]">{t('filter.to')}</label>
         <CustomDropdown
-          options={cashAgentOptions.map((option) => ({
-            value: `${option.bankCode}_${option.bankAccountNumber}`,
-            label: option.bankAccountNumber,
+          options={uniquePaymentToOptions.map((option) => ({
+            value: option,
+            label: option?.split('_')[1],
+            code: option?.split('_')[0],
             icon: <BankIcon code={option.bankCode} />
           }))}
           onSelect={(selected) => setCashAgentTo(String(selected.value))}
