@@ -17,6 +17,8 @@ public class GetAllTransactionsWithPagingCriteria : CriteriaBase
 
     public string PaymentFrom { get; set; }
 
+    public string PaymentTo { get; set; }
+
     public int PaymentStatus { get; set; }
 
     public static int PageIndex => 1;

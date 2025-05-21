@@ -18,6 +18,7 @@ public static class TransactionsEndpoints
                 , [FromQuery] int paymentStatus
                 , [FromQuery] int transactionType
                 , [FromQuery] int siteDbGroupId
+                , [FromQuery] string account    
                 , ITransactionService service) =>
             {
                 var criteria = new GetAllTransactionsWithPagingCriteria
@@ -27,7 +28,9 @@ public static class TransactionsEndpoints
                     CustId = custId,
                     PaymentStatus = paymentStatus,
                     TransactionType = transactionType,
-                    SiteDbGroupId = siteDbGroupId
+                    SiteDbGroupId = siteDbGroupId,
+                    PaymentTo = transactionType == 1 ? account : string.Empty,
+                    PaymentFrom = transactionType == 1 ? string.Empty : account
                 };
                 var transactionHistory = await service.GetTransactionsAsync(criteria);
                 return Results.Ok(transactionHistory);

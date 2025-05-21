@@ -11,5 +11,8 @@ public class GetTransactionFilter
     public DateTime? ToDate { get; set; }
 
     public int PaymentStatus { get; set; }
+
     public int SiteDbGroupId { get; set; }
+
+    public string Account { get; set; }
 }
