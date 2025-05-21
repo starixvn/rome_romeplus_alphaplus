@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
+﻿using AgencyCash.API.Shared.Models;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace AgencyCash.API.Shared.Helpers;
 
@@ -13,7 +14,7 @@ public sealed class GlobalExceptionHandler(Fanex.Logging.ILogger logger) : IExce
         var response = httpContext.Response;
         response.ContentType = "application/json";
         response.StatusCode = StatusCodes.Status500InternalServerError;
-        await response.WriteAsJsonAsync(new { response.StatusCode, exception.Message }, cancellationToken: cancellationToken);
+        await response.WriteAsJsonAsync(Result.SystemError, cancellationToken: cancellationToken);
 
         return false;
     }
