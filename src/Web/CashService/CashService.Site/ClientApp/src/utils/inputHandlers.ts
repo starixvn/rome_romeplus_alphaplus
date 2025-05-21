@@ -22,7 +22,7 @@ export const ensureNumericInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 
 export const ensureNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
   var orgValue = e.target.value;
-  const value = orgValue.replace(/[^a-zA-Z.\s-]/g, '');
+  const value = orgValue.replace(/[0-9]/g, '');
   e.preventDefault();
   e.target.value = value;
   return e;
