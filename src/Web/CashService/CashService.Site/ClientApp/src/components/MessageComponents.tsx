@@ -28,12 +28,12 @@ export const ResultMessageComponent: React.FC<ResultMessageProps> = ({
     return <ErrorMessageComponent message={message} className={className} />;
   }
 
-  if (isSuccess || type === 'success') {
-    return <SuccessMessageComponent message={message} className={className} />;
-  }
-
   if (isWarning || type === 'warning') {
     return <WarningMessageComponent message={message} className={className} />;
+  }
+
+  if (isSuccess || type === 'success') {
+    return <SuccessMessageComponent message={message} className={className} />;
   }
 
   return null;

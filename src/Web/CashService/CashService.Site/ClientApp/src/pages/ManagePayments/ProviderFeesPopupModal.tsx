@@ -81,9 +81,7 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
                                 </td>
                               )}
                               <td>{fee.method}</td>
-                              <td className='text-[var(--text-color-primary)]'>
-                                {fee.rateText}
-                              </td>
+                              <td className='text-[var(--text-color-primary)]'>{fee.rateText}</td>
                             </tr>
                           ))}
                         </React.Fragment>

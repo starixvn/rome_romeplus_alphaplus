@@ -84,7 +84,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
 
   return (
     <div className="py-[12px]">
-      <TitleComponent title={tManagePayments('managePayments')} Tippy >
+      <TitleComponent title={tManagePayments('managePayments')}  showTippy={true} >
         <div>
           <div>
             <i className="bi bi-info-circle fs-4 ico-info inline-elm"></i> 

@@ -248,7 +248,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
       ) : (
         <>
          <div className="py-[12px] h-[calc(100%-250px)]">
-          <TitleComponent title={tManagePayments('managePayments')} Tippy >
+          <TitleComponent title={tManagePayments('managePayments')} showTippy={true} >
             <div>
               <div>
                 <i className="bi bi-info-circle fs-4 ico-info inline-elm"></i> 

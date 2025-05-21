@@ -4,11 +4,11 @@ import { ReactNode } from 'react';
 
 interface TitleComponentProps {
   title: string;
-  Tippy?: boolean;
+  showTippy?: boolean;
   children?: ReactNode;
 }
 
-export default function TitleComponent({ title, Tippy: showTippy, children }: TitleComponentProps) {
+export default function TitleComponent({ title, showTippy, children }: TitleComponentProps) {
     return (
       <>
         <div className="mb-[8px]">

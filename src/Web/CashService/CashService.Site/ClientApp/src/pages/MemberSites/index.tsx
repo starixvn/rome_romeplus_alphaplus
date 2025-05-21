@@ -96,7 +96,7 @@ const MemberSiteManagement: React.FC = () => {
     <div className="">
       <div className="py-[12px]">
         <div className='mb-[8px]'>
-          <TitleComponent title={t('title')} Tippy={false} />
+          <TitleComponent title={t('title')} showTippy={false} />
         </div>
         <div className="bg-[#ffffff] rounded-[4px] max-w-[1200px]">
           {result && (

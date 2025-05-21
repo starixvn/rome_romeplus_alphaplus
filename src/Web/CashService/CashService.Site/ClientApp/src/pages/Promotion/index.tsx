@@ -67,7 +67,7 @@ const Promotion: React.FC = () => {
      
             <div className="py-[12px] h-full flex flex-col promotion-page">
                 <div className="mb-[8px]">                      
-                    <TitleComponent title='Manage Promotion' Tippy={false} />                 
+                    <TitleComponent title='Manage Promotion' showTippy={false} />                 
                 </div>
                 {error && (
                     <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
