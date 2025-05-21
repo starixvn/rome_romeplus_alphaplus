@@ -102,7 +102,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
 
     fetchData();
   }, [
-    apiParams.transactionType,
+    transactionType,
     apiParams.dateRange,
     apiParams.account,
     apiParams.status
