@@ -10,7 +10,7 @@ interface FiltersProps {
   status: number;
   column: string[];
   account: string;
-  paymentInformations: PaymentInformation[];
+  paymentInformations: string[];
   transactionType: number;
   onDateRangeChange: (dates: [string, string]) => void;
   onStatusChange: (value: number) => void;

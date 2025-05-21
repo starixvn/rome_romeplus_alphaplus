@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import CustomDropdown from '../../../../../components/CustomDropdownComponent';
-import { PaymentInformation } from '../../../../../services/interfaces/Transactions/TransactionHistory';
 import BankIcon from '../../../../../components/BankComponents';
 
 interface AccountFilterProps {
   account: string;
   transactionType: number;
-  paymentInformations: PaymentInformation[];
+  paymentInformations: string[];
   onAccountChange: (value: string) => void;
   onAccountsLoaded?: () => void;
 }
@@ -20,7 +19,7 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
   onAccountsLoaded,
 }) => {
   const { t } = useTranslation('transactionHistory');
-  const [accountOptions, setAccountOptions] = useState<PaymentInformation[]>([]);
+  const [accountOptions, setAccountOptions] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -50,9 +49,9 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
       </label>
       <CustomDropdown
         options={accountOptions.map((option) => ({
-          value: transactionType === 1 ? option.paymentFrom : option.paymentTo,
-          label: transactionType === 1 ? option.paymentFrom : option.paymentTo,
-          code: transactionType === 1 ? option.paymentFrom : option.paymentTo,
+          value: option,
+          label: option,
+          code: option,
           icon: <BankIcon code={option.bankCode} />
         }))}
         onSelect={(selected) => onAccountChange(String(selected.value))}

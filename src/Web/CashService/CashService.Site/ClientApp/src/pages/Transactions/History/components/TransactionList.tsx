@@ -3,8 +3,7 @@ import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import {
   TransactionItem,
   TransactionsHistoryResponse,
-  TransactionsHistoryParams,
-  PaymentInformation,
+  TransactionsHistoryParams
 } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import Filters from './Filters/Filters';
 import Search from './Search';
@@ -54,7 +53,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
   const [refreshTrigger, setRefreshTrigger] = useState(0);
   const [localSearchText, setLocalSearchText] = useState('');
   const [displayedItems, setDisplayedItems] = useState<TransactionItem[]>([]);
-  const [paymentInformations, setPaymentInformations] = useState<PaymentInformation[]>([]);
+  const [paymentInformations, setPaymentInformations] = useState<string[]>([]);
 
   useEffect(() => {
     setApiParams((prev) => ({
@@ -75,11 +74,22 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         const response = await transactionAPI.getTransactions(paramsForApi);
         setApiData(response);
         
-        // Map payment information from response
-        const paymentInfo = response.items.map(item => ({
-          paymentFrom: item.paymentFrom,
-          paymentTo: item.paymentTo
-        }));
+        // Map payment information from response with distinct paymentFrom
+        const uniquePayment = new Set();
+        const paymentInfo = response.items
+          .filter(item => {
+            const checkItem = transactionType === 1 ? item.paymentFrom : item.paymentTo;
+            if (uniquePayment.has(checkItem)) {
+              return false;
+            }
+            if(transactionType === 1) {
+              uniquePayment.add(item.paymentFrom);
+            } else {
+              uniquePayment.add(item.paymentTo)
+            }
+            return true;
+          })
+          .map(item => transactionType === 1 ? item.paymentFrom : item.paymentTo);
         setPaymentInformations(paymentInfo);
         
         setError(null);
