@@ -3,7 +3,7 @@ import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import {
   TransactionItem,
   TransactionsHistoryResponse,
-  TransactionsHistoryParams
+  TransactionsHistoryParams,
 } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import Filters from './Filters/Filters';
 import Search from './Search';
@@ -11,6 +11,7 @@ import DataGrid from './DataGrid';
 import Pagination from './Pagination';
 import { useTranslation } from 'react-i18next';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
+import { TransactionType } from '../../../../common/commonFunctions';
 
 interface TransactionListProps {
   transactionType: number;
@@ -73,25 +74,28 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         };
         const response = await transactionAPI.getTransactions(paramsForApi);
         setApiData(response);
-        
+
         // Map payment information from response with distinct paymentFrom
         const uniquePayment = new Set();
         const paymentInfo = response.items
-          .filter(item => {
-            const checkItem = transactionType === 1 ? item.paymentFrom : item.paymentTo;
+          .filter((item) => {
+            const checkItem =
+              transactionType === TransactionType.Deposit ? item.paymentTo : item.paymentFrom;
             if (uniquePayment.has(checkItem)) {
               return false;
             }
-            if(transactionType === 1) {
-              uniquePayment.add(item.paymentFrom);
+            if (transactionType === TransactionType.Deposit) {
+              uniquePayment.add(item.paymentTo);
             } else {
-              uniquePayment.add(item.paymentTo)
+              uniquePayment.add(item.paymentFrom);
             }
             return true;
           })
-          .map(item => transactionType === 1 ? item.paymentFrom : item.paymentTo);
+          .map((item) =>
+            transactionType === TransactionType.Deposit ? item.paymentTo : item.paymentFrom
+          );
         setPaymentInformations(paymentInfo);
-        
+
         setError(null);
       } catch (err) {
         setError('Failed to load transaction history');
