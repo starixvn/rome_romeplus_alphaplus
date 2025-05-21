@@ -38,7 +38,6 @@ public class CreateManualDepositCommand : NonQueryCommand
 
     public string ErrMsg { get; set; }
 
-    [SpParam(Ignored = true)]
     public int SiteDbGroupId { get; set; }
 
     public override string GetSettingKey() => $"SiteDb_{SiteDbGroupId}_Age_CashDeposit_ManualAdd";

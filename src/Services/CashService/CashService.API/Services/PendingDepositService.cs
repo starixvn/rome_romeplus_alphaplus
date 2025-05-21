@@ -71,13 +71,13 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
 
     public async Task<ResultModel> AddManualDepositAsync(CreateManualModel param)
     {
-        //var siteDbConf = await commonService.GetServerDBConfigByCustIdAsync(param.CustId);
         var memberSettings = await GetMemberSettingDepositAsync(param.CustId, param.CustDbGroupId);
         var command = new CreateManualDepositCommand
         {
             CustId = param.CustId,
             UplineId = param.UplineId,
             SubAccId = param.SubAccId,
+            SiteDbGroupId = param.SiteDbGroupId,
             AgentGivenCredit = memberSettings.AgentGivenCredit,
             CreditMembers_GivenCredit = memberSettings.CreditMembers_GivenCredit,
             MinLimitAmt = memberSettings.MinLimitAmt,
@@ -87,7 +87,7 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
             Amount = param.Amount,
             PaySlip = param.PaySlip,
             Ip = param.Ip,
-            Remark = param.Remark,
+            Remark = param.Remark
         };
 
         await dynamicRepository.ExecuteAsync(command);
