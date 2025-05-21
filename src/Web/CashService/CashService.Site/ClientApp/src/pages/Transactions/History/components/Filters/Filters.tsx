@@ -3,7 +3,6 @@ import ColumnFilter from './ColumnFilter';
 import StatusFilter from './StatusFilter';
 import AccountFilter from './AccountFilter';
 import DateRangeFilter from './DateRangeFilter';
-import { PaymentInformation } from '../../../../../services/interfaces/Transactions/TransactionHistory';
 
 interface FiltersProps {
   dateRange: [string, string];
