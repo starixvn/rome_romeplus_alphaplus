@@ -37,21 +37,16 @@ const PendingWithdrawal: React.FC = () => {
     let startDate = new Date();
 
     switch (recentWithdrawals) {
-      case 'Today':
-        startDate.setHours(0, 0, 0, 0);
+      case 'Last30Mins':
+        startDate.setMinutes(today.getMinutes() - 30);
         break;
-      case 'Yesterday':
-        startDate.setDate(today.getDate() - 1);
-        startDate.setHours(0, 0, 0, 0);
-        break;
-      case 'Last7Days':
-        startDate.setDate(today.getDate() - 7);
-        startDate.setHours(0, 0, 0, 0);
+      case 'Last60Mins':
+        startDate.setMinutes(today.getMinutes() - 60);
         break;
       default:
         return ['', ''];
     }
-    return [startDate.toISOString().split('T')[0], today.toISOString().split('T')[0]];
+    return [startDate.toISOString(), today.toISOString()];
   };
 
   const fetchWithdrawals = async () => {

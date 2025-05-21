@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import CustomDropdown from '../../../../../components/CustomDropdownComponent';
+import { TransactionType } from '../../../../../common/commonFunctions';
 import BankIcon from '../../../../../components/BankComponents';
 
 interface AccountFilterProps {
@@ -45,7 +46,7 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
   return (
     <div className="form-group mb-[8px]">
       <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">
-        {transactionType === 1 ? t('filter.to') : t('filter.from')}
+        {transactionType === TransactionType.Deposit ? t('filter.to') : t('filter.from')}
       </label>
       <CustomDropdown
         options={accountOptions.map((option) => {
