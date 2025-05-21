@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { IconClose } from '../../../../components/Icons';
 import { ButtonApplyComponent, ButtonCancelComponent } from '../../../../components/ButtonComponents';
-import { renderBankAccount, displayAmount } from '../../../../common/commonFunctions';
+import { renderBankAccount, displayAmount, formatDateTime } from '../../../../common/commonFunctions';
 import pendingDepositAPI from '../../../../services/pendingDepositAPI';
 import { ApproveRejectDepositModel } from '../../../../services/interfaces/ApproveRejectDepositModel.ts';
 import { ResultMessageComponent } from '../../../../components/MessageComponents.tsx';
@@ -144,7 +144,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
 
               <div>
                 <div className="block font-bold text-[#333333] my-[8px]">Date and Time</div>
-                <div>{deposit?.createdTime}</div>
+                <div>{formatDateTime(deposit?.createdTime || '')}</div>
               </div>
             </div>
 

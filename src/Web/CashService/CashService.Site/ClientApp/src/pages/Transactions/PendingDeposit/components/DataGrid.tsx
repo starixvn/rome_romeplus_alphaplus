@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
-import { displayAmount, renderBankAccount } from '../../../../common/commonFunctions';
+import { displayAmount, renderBankAccount, formatDateTime } from '../../../../common/commonFunctions';
 import { ButtonFullComponent } from '../../../../components/ButtonComponents';
 import NoRecordFound from '../../../../components/Table/NoRecordFound';
 
@@ -63,7 +63,7 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits, onProcessClick }) => {
                   <td>{renderBankAccount(deposit.paymentFrom)}</td>
                   <td>{renderBankAccount(deposit.paymentTo)}</td>
                   <td>{deposit.transId}</td>
-                  <td>{deposit.createdTime}</td>
+                  <td>{formatDateTime(deposit.createdTime)}</td>
                   <td>
                    
                     <ButtonFullComponent
