@@ -34,11 +34,21 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
 
         public override string GetSettingKey() => "Age_CashService_BankAccountAgent_Upd";
 
-        public override bool IsValid()
-            => base.IsValid() && 
+        public override bool IsValid() {
+            var isValid = base.IsValid() && 
             Id > 0 &&
             Regex.IsMatch(CountryCode, @"^\d+$") &&
             Regex.IsMatch(MobileNumber, @"^\d+$") &&
             AccountNickname.Length <= 255;
+
+            if(!isValid || !PromptPay) {
+                return isValid;
+            }
+
+            return !string.IsNullOrWhiteSpace(CountryCode) 
+                && !string.IsNullOrWhiteSpace(MobileNumber) 
+                && Regex.IsMatch(CountryCode, @"^\d+$") 
+                && Regex.IsMatch(MobileNumber, @"^\d+$");
+        }
     }
 } 
