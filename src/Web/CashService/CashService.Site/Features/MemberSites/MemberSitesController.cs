@@ -71,7 +71,7 @@ public class MemberSitesController : Controller
             //model.CustId = 1176086;
             model.SubAccId = _userSession.SubAccId;
             model.IP = _userSession.UserLoginIp;
-            model.Language = _userSession.Language;
+            model.Language = _userSession.LangKey;
             model.SiteDB = _userSession.CustDBGroupId;
 
             var response = await _httpClient.PutAsJsonAsync($"{_apiBaseUrl}/member-site-info",model,cancellationToken);
