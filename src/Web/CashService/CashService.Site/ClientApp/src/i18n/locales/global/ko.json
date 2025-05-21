@@ -35,5 +35,6 @@
   "addSuccess": "추가 성공",
   "addFailed": "추가 실패",
   "updating": "업데이트 중...",
-  "maxLength": "최대 길이는 {0}입니다"
+  "maxLength": "최대 길이는 {0}입니다",
+  "thereNoChangeToUpdate": "업데이트 할 내용이 없습니다"
 } 

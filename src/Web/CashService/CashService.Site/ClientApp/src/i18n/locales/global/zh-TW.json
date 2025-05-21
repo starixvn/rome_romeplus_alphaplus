@@ -35,5 +35,6 @@
   "addSuccess": "添加成功",
   "addFailed": "添加失败",
   "updating": "更新中...",
-  "maxLength": "最大長度是{0}"
+  "maxLength": "最大長度是{0}",
+  "thereNoChangeToUpdate": "沒有任何的變化更新。"
 } 

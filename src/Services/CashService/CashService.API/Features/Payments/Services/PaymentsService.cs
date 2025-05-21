@@ -154,14 +154,18 @@ public class PaymentsService(
 
     public async Task<ResultModel> UpdateProvider(UpdateProviderRequest request)
     {
-        var updateStatusCriteria = new UpdateProviderStatusCriteria(request);
-        var result = await commonService.RunDBCommand(request, updateStatusCriteria);
+        var result = await UpdateProviderStatus(request);
 
         if(!result.IsSuccessful)
         {
             return result;
         }
-        
+
+        return await UpdateProviderPaymentMethods(request);
+    }
+
+    public async Task<ResultModel> UpdateProviderPaymentMethods(UpdateProviderRequest request)
+    {
         if(request.ProviderSettings == null || request.ProviderSettings.Count == 0)
         {  
             return new ResultModel(0, string.Empty); 
@@ -175,8 +179,17 @@ public class PaymentsService(
 
         var jsonSettings = $"[{string.Join(",", jsonSetting)}]";
         var updateProviderSettingsCriteria = new UpdateProviderSettingsCriteria(request, jsonSettings);
-        result = await commonService.RunDBCommand(request, updateProviderSettingsCriteria);
-        return result;
+        return await commonService.RunDBCommand(request, updateProviderSettingsCriteria);
+    }
+
+    public async Task<ResultModel> UpdateProviderStatus(UpdateProviderRequest request)
+    {
+        if(request.Status < 0) {
+            return new ResultModel(0, string.Empty);
+        }
+
+        var updateStatusCriteria = new UpdateProviderStatusCriteria(request);
+        return await commonService.RunDBCommand(request, updateStatusCriteria);
     }
 
     public async Task<IEnumerable<BankModel>> GetBanksByCust(int custId)

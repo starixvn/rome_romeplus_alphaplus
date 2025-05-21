@@ -18,12 +18,14 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string>('');
   const [successMessage, setSuccessMessage] = React.useState<string>('');
+  const [orgDailyLimit, setOrgDailyLimit] = React.useState<number>(0);
 
   React.useEffect(() => {
     const loadDailyWithdrawalCount = async () => {
       try {
         const count = await paymentProviderService.getDailyWithdrawalCount();
         setDailyLimit(count);
+        setOrgDailyLimit(count);
       } catch (err) {
         setError(t('global:errorOccurred'));
       }
@@ -40,6 +42,12 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
 
     if(dailyLimit < 1 || dailyLimit > 32767) {
       setError(t('managePayments:dailyWithdrawalCountOutOfRange'));
+      setIsLoading(false);
+      return;
+    }
+
+    if(orgDailyLimit === dailyLimit) {
+      setError(t('global:thereNoChangeToUpdate'));
       setIsLoading(false);
       return;
     }

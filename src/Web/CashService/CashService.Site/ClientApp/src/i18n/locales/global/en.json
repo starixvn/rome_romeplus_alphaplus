@@ -36,5 +36,6 @@
   "addSuccess": "Add successfully",
   "addFailed": "Add failed",
   "updating": "Updating...",
-  "maxLength": "Max length is {0}"
+  "maxLength": "Max length is {0}",
+  "thereNoChangeToUpdate": "There is no change to update"
 }

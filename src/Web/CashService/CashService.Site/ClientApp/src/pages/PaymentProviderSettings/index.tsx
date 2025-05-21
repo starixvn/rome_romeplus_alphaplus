@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { useTranslation } from 'react-i18next';
 
@@ -28,6 +28,11 @@ declare global {
   }
 }
 
+interface FormState {
+  providerStatus: number;
+  providerSettings: any[];
+}
+
 function PaymentProviderSettings() {
   const { t: tGlobal } = useTranslation('global');
   const { t: tPaymentProviderSettings } = useTranslation('paymentProviderSettings');
@@ -50,6 +55,15 @@ function PaymentProviderSettings() {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = React.useState('');
   const [selectedStatus, setSelectedStatus] = React.useState('');
   const [selectedTransactionType, setSelectedTransactionType] = React.useState('');
+
+  const [formState, setFormState] = useState<FormState>({
+    providerStatus: window.providerSettingsViewModel.Provider.Status,
+    providerSettings: window.providerSettingsViewModel.Provider.ProviderSettings
+  });
+  const [originalFormState] = useState<FormState>({
+    providerStatus: window.providerSettingsViewModel.Provider.Status,
+    providerSettings: window.providerSettingsViewModel.Provider.ProviderSettings
+  });
 
   // Fetch provider settings when component mounts or when dropdowns change
   React.useEffect(() => {
@@ -129,6 +143,10 @@ function PaymentProviderSettings() {
       minAmount: formattedValue
     };
     setProviderSettings(updatedSettings);
+    setFormState(prev => ({
+      ...prev,
+      providerSettings: updatedSettings
+    }));
     
     // Clear validation error for this field
     const newValidationErrors = {...validationErrors};
@@ -147,6 +165,10 @@ function PaymentProviderSettings() {
       maxAmount: formattedValue
     };
     setProviderSettings(updatedSettings);
+    setFormState(prev => ({
+      ...prev,
+      providerSettings: updatedSettings
+    }));
     
     // Clear validation error for this field
     const newValidationErrors = {...validationErrors};
@@ -163,6 +185,10 @@ function PaymentProviderSettings() {
       isEnabled: !updatedSettings[index].isEnabled
     };
     setProviderSettings(updatedSettings);
+    setFormState(prev => ({
+      ...prev,
+      providerSettings: updatedSettings
+    }));
   };
 
   // Handler for reset button
@@ -172,12 +198,21 @@ function PaymentProviderSettings() {
     setSelectedStatus('');
     setSelectedTransactionType('');
     setProviderStatus(window.providerSettingsViewModel.Provider.Status);
+    setFormState(originalFormState);
     setUpdateMessage(null);
   };
 
   // Handler for update button
   const handleUpdate = async () => {
     try {
+      if(!hasFormChanged()) {
+        setUpdateMessage({
+          type: 'error',
+          text: tGlobal('thereNoChangeToUpdate')
+        });
+        return;
+      }
+
       // Validate min and max amounts
       interface ValidationError {
         index: number;
@@ -263,8 +298,8 @@ function PaymentProviderSettings() {
       var provider = {
         providerId: window.providerSettingsViewModel.Provider.Id,
         name: window.providerSettingsViewModel.Provider.Name,
-        status: providerStatus ? 1 : 0,
-        providerSettings: providerSettings
+        status: providerStatus === originalFormState.providerStatus ? -1 : (providerStatus ? 1 : 0),
+        providerSettings: providerSettings.filter(setting => hasChanged(setting))
       };
 
       // Call the API to update provider
@@ -296,8 +331,12 @@ function PaymentProviderSettings() {
 
   // Handler for provider status toggle
   const handleProviderStatusToggle = () => {
-    setProviderStatus(!providerStatus);
-    // You might want to add API call here to update the provider status on the server
+    const newStatus = !providerStatus;
+    setProviderStatus(newStatus);
+    setFormState(prev => ({
+      ...prev,
+      providerStatus: newStatus ? 1 : 0
+    }));
   };
 
   // Handler for retrying setup
@@ -330,8 +369,46 @@ function PaymentProviderSettings() {
     }
   };
 
+  const hasFormChanged = () => {
+    // Check if provider status has changed
+    if (formState.providerStatus !== originalFormState.providerStatus) {
+      return true;
+    }
+
+    // Check if any provider settings have changed
+    if (formState.providerSettings.length !== originalFormState.providerSettings.length) {
+      return true;
+    }
+
+    // Compare each setting's properties
+    return formState.providerSettings.some((setting, index) => {
+      const originalSetting = originalFormState.providerSettings[index];
+      return (
+        setting.isEnabled !== originalSetting.isEnabled ||
+        setting.minAmount !== originalSetting.minAmount ||
+        setting.maxAmount !== originalSetting.maxAmount
+      );
+    });
+  };
+
   const reloadPage = () => {
     window.location.reload();
+  };
+
+  const hasChanged = (setting: any) => {
+    const originalSetting = originalSettings.find(s => 
+      s.methodId === setting.methodId && 
+      s.status === setting.status && 
+      s.transactionType === setting.transactionType
+    );
+
+    if (!originalSetting) return true;
+
+    return (
+      setting.isEnabled !== originalSetting.isEnabled ||
+      setting.minAmount !== originalSetting.minAmount ||
+      setting.maxAmount !== originalSetting.maxAmount
+    );
   };
 
   return (
