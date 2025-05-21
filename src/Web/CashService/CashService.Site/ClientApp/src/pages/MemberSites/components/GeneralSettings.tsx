@@ -3,10 +3,7 @@ import { Setting } from '../../../services/interfaces/MemberSites';
 import { useTranslation } from 'react-i18next';
 import { useFormContext } from 'react-hook-form';
 
-interface GeneralSettingsProps {
-  settings: Setting[];
-  loading: boolean;
-}
+interface GeneralSettingsProps {loading: boolean;}
 
 const GeneralSettingsSkeleton = () => {
   return (
@@ -36,15 +33,12 @@ const GeneralSettingsSkeleton = () => {
   );
 };
 
-const GeneralSettings: React.FC<GeneralSettingsProps> = ({ 
-  settings,
-  loading
-}) => {
+const GeneralSettings: React.FC<GeneralSettingsProps> = ({loading}) => {
   const { t } = useTranslation('memberSite');
   const { setValue, watch } = useFormContext();
 
   // Group settings by category
-  const groupedSettings = settings.reduce((acc, setting) => {
+  const groupedSettings = watch('generalSettings').reduce((acc: Record<string, Setting[]>, setting: Setting) => {
     const category = setting.category || 'General';
     if (!acc[category]) {
       acc[category] = [];
@@ -62,19 +56,19 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({
       <div className="flex items-center justify-between">
         <h2 className="text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] tracking-[0.2px] max-[768px]:text-[20px] max-[768px]:leading-[26px]">{t('generalSettings.title')}</h2>
       </div>
-    
+
       {Object.entries(groupedSettings).map(([category, categorySettings]) => (
         <div key={category}>
           <div className="flex ">
-            {categorySettings.map((setting) => {
-              const currentValue = watch(`generalSettings.${setting.id}.value`);
+            {(categorySettings as Setting[]).map((setting: Setting, index: number) => {
+              const currentValue = setting.value;
               return (
-                <button 
-                  key={setting.id} 
+                <button
+                  key={setting.id}
                   className="text-left w-[25%] min-w-[200px] max-[768px]:w-[48%]"
                   onClick={(e) => {
                     e.preventDefault();
-                    setValue(`generalSettings.${setting.id}.value`, !currentValue, { shouldDirty: true });
+                    setValue(`generalSettings.${index}.value`, !currentValue, { shouldDirty: true });
                   }}
                   aria-pressed={currentValue}
                 >
@@ -87,15 +81,15 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({
                         {t(`generalSettings.${setting.id}.description`)}
                       </p>
                     )}
-                  </div>  
-                  <label className='inline-block'>                  
+                  </div>
+                  <label className='inline-block'>
                     <input
                       type="checkbox"
-                      checked={currentValue}   
+                      checked={currentValue}
                       className="opacity-0 absolute hidden peer"
                       onChange={(e) => {
                         e.preventDefault();
-                        setValue(`generalSettings.${setting.id}.value`, !currentValue, { shouldDirty: true });
+                        setValue(`generalSettings.${index}.value`, !currentValue, { shouldDirty: true });
                       }}
                     />
                     <span className="block cursor-pointer w-[60px] h-[30px] rounded-[20px] bg-[var(--button-switch-background)] relative after:content-[&quot;&quot;] after:absolute after:top-[3px] after:left-[3px] after:w-[24px] after:h-[24px] after:rounded-[50%] after:bg-[var(--button-switch-dot-background)] after:transition-all after:duration-300 after:ease-in-out after:shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] peer-checked:after:left-[32px] peer-checked:bg-[var(--button-switch-background-active)]"></span>

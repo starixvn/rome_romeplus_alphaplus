@@ -3,24 +3,26 @@ import { Contact as ContactType } from "../../../services/interfaces/MemberSites
 import { FieldError, useFormContext } from "react-hook-form";
 
 interface ContactProps {
+  index: number;
   contact: ContactType;
-  handleContactChange: (contact: ContactType) => void;
 }
 
 interface ContactErrors {
-  [key: string]: FieldError;
+  [key: string]: {
+    value?: FieldError;
+  };
 }
 
 export const Contact = (props: ContactProps) => {
   const { t } = useTranslation('memberSite');
-  const { contact } = props;
-  const { register, formState: { errors } } = useFormContext();
-  const getValidationRules = (type: string) => {
+  const { contact, index } = props;
+  const { register, formState: { errors }, setValue, watch } = useFormContext();
+  const getValidationRules = (contact: ContactType) => {
     const rules: any = {
       required: contact.isRequired ? t('validation.required') : false,
     };
 
-    switch (type) {
+    switch (contact.type) {
       case 'line':
         rules.pattern = {
           value: /^[a-zA-Z0-9._-]+$/,
@@ -50,9 +52,10 @@ export const Contact = (props: ContactProps) => {
     return '';
   };
 
-  const fieldName = `contacts.${contact.type}`;
+  const field = `contacts.${index}.value`;
+
   const contactErrors = errors.contacts as ContactErrors | undefined;
-  const fieldError = contactErrors?.[contact.type];
+  const fieldError = contactErrors?.[index];
 
   return (
     <div key={contact.type} className='w-[230px] pt-[4px] max-[768px]:w-[48%]'>
@@ -64,16 +67,26 @@ export const Contact = (props: ContactProps) => {
         <input
           id={contact.type}
           type="text"
-          {...register(fieldName, getValidationRules(contact.type))}
-          className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none max-[768px]:text-[16px] max-[768px]:leading-[16px] ${
-            fieldError 
-              ? 'border-[#E25757] focus:border-[#E25757]' 
-              : 'border-[var(--border-control)] focus:border-[var(--border-control-focus)]'
-          }`}
+          {...register(field, {
+            ...getValidationRules(contact),
+            onChange: (e) => {
+              e.preventDefault();
+              setValue(field, e.target.value, { shouldDirty: true });
+            }
+          })}
+          className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none max-[768px]:text-[16px] max-[768px]:leading-[16px] ${fieldError
+            ? 'border-[#E25757] focus:border-[#E25757]'
+            : 'border-[var(--border-control)] focus:border-[var(--border-control-focus)]'
+            }`}
+        // value={contact.value}
+        // onChange={(e) => {
+        //   e.preventDefault();
+        //   setValue(field, e.target.value, { shouldDirty: true });
+        // }}
         />
         {fieldError && (
           <p className="text-[#E25757] text-[12px] mt-[4px]">
-            {getErrorMessage(fieldError)}
+            {getErrorMessage(fieldError.value)}
           </p>
         )}
       </div>

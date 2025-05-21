@@ -6,9 +6,9 @@ import { MobilePhone as MobilePhoneComponent } from './MobiPhone';
 import { useFormContext } from 'react-hook-form';
 
 interface MessageFormProps {
-  contacts: Contact[];
-  mobilePhone: MobilePhone;
-  announcement: string;
+  // contacts: Contact[];
+  // mobilePhone: MobilePhone;
+  // announcement: string;
   loading: boolean;
 }
 
@@ -60,11 +60,12 @@ const MessageForm: React.FC<MessageFormProps> = ({loading}) => {
           mobilePhone={watch('mobilePhone')}
           handleMobilePhoneChange={handleMobilePhoneChange}
         />
-        {watch('contacts').map((contact: Contact) => (
+        {watch('contacts').map((contact: Contact, index: number) => (
           <ContactComponent
+            index={index}
             key={contact.type}
             contact={contact}
-            handleContactChange={handleContactChange}
+            // handleContactChange={handleContactChange}
           />
         ))}
       </div>
