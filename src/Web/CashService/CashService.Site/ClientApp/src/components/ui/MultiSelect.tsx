@@ -311,6 +311,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
       minHeight: '32px',
       maxHeight: '32px',
       cursor: 'pointer',
+      paddingTop: '7px',
       '@media (max-width: 768px)': {
         minHeight: '40px',
         maxHeight: '40px',
@@ -329,11 +330,20 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
     dropdownIndicator: (base) => ({
       ...base,
       cursor: 'pointer',
-      position: 'relative',
-      right: '0',
-      bottom: '3',
-      left: '5',
-      color: '#2b2323',
+      padding: '0px 4px',
+      '& svg': {
+        width: '16px',
+        height: '16px',
+      },
+    }),
+    clearIndicator: (base) => ({
+      ...base,
+      cursor: 'pointer',
+      padding: '0px 4px',
+      '& svg': {
+        width: '16px',
+        height: '16px',
+      },
     }),
     input: (base) => ({
       ...base,
