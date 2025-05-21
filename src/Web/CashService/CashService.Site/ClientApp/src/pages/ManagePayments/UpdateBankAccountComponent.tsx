@@ -156,6 +156,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
           var fm = fetchedBankAccount.mobile;
           var c = fm.includes('-') ? fm.split('-')[0] : '';
           var m = fm.includes('-') ? fm.split('-')[1] : fm;
+          setCountryCode(c);
+          setMobile(m);
           setFormState(prev => ({ ...prev, countryCode: c, mobile: m }));
           setOrgFormState(prev => ({ ...prev, countryCode: c, mobile: m }));
         }
