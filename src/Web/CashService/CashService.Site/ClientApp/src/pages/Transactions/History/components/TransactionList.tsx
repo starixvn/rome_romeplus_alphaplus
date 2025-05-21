@@ -56,7 +56,6 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
   const [paymentInformations, setPaymentInformations] = useState<string[]>([]);
 
   useEffect(() => {
-      pageSize: PAGE_SIZE_OPTIONS[0],
     const fetchData = async () => {
       try {
         setLoading(true);
@@ -65,7 +64,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           searchText: '',
           transactionType: transactionType,
           pageIndex: 1,
-          pageSize: PAGE_SIZE_OPTIONS[0]
+          pageSize: PAGE_SIZE_OPTIONS[0],
         };
         const response = await transactionAPI.getTransactions(paramsForApi);
         setApiData(response);
