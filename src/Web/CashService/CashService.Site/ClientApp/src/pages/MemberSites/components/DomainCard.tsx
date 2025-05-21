@@ -2,11 +2,10 @@ import React, { useState, useRef } from 'react';
 import { Domain } from '../../../services/interfaces/MemberSites';
 import { QRCodeCanvas } from 'qrcode.react';
 import { useTranslation } from 'react-i18next';
-
+import { QR_CODE_SIZE } from '../../../constants';
 interface DomainCardProps {
   domain: Domain;
   index: number;
-  className?: string;
 }
 
 const DomainCard: React.FC<DomainCardProps> = ({ domain,  index }) => {
@@ -79,7 +78,7 @@ const DomainCard: React.FC<DomainCardProps> = ({ domain,  index }) => {
       
       {/* Hidden QR Code for download */}
       <div ref={qrRef} className="hidden">
-        <QRCodeCanvas value={domain.url} size={256} />
+        <QRCodeCanvas value={domain.url} size={QR_CODE_SIZE} />
       </div>
     </div>
   );

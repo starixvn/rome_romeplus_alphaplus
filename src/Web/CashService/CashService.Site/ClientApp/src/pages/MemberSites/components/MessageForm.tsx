@@ -4,11 +4,9 @@ import { Contact, MobilePhone } from '../../../services/interfaces/MemberSites';
 import { Contact as ContactComponent } from './Contact';
 import { MobilePhone as MobilePhoneComponent } from './MobiPhone';
 import { useFormContext } from 'react-hook-form';
+import { ANNOUNCEMENT_MAX_LENGTH } from '../../../constants';
 
 interface MessageFormProps {
-  // contacts: Contact[];
-  // mobilePhone: MobilePhone;
-  // announcement: string;
   loading: boolean;
 }
 
@@ -57,7 +55,6 @@ const MessageForm: React.FC<MessageFormProps> = ({loading}) => {
             index={index}
             key={contact.type}
             contact={contact}
-            // handleContactChange={handleContactChange}
           />
         ))}
       </div>
@@ -71,8 +68,8 @@ const MessageForm: React.FC<MessageFormProps> = ({loading}) => {
             id="announcement"
             {...register('announcement', {
               maxLength: {
-                value: 1000,
-                message: t('validation.maxLength', { maxLength: 1000 })
+                value: ANNOUNCEMENT_MAX_LENGTH,
+                message: t('validation.maxLength', { maxLength: ANNOUNCEMENT_MAX_LENGTH })
               }
             })}
             rows={4}

@@ -17,7 +17,7 @@
   import { ButtonApply } from '../../components/ButtonComponents';
 
   const MemberSiteManagement: React.FC = () => {
-    const { t } = useTranslation('memberSite');
+    const { t } = useTranslation(['memberSite', 'global']);
     useCookieLanguage(i18n);
     const [loading, setLoading] = useState(true);
     const [result, setResult] = useState<{ type: ResultType; text: string } | null>(null);
@@ -35,6 +35,17 @@
       fetchData();
     }, []);
 
+
+    const showResult = (type: ResultType, text: string) => {
+      setResult({
+        type: type,
+        text: text
+      });
+      setTimeout(() => {
+        setResult(null);
+      }, 3000);
+    }
+
     const fetchData = async () => {
       try {
         setLoading(true);
@@ -42,10 +53,7 @@
         reset(response);
         setResult(null);
       } catch (err) {
-        setResult({
-          type: 'error',
-          text: t('errors.loadFailed')
-        });
+        showResult('error', t('errors.loadFailed'));
         console.error('Error loading data:', err);
       } finally {
         setLoading(false);
@@ -54,12 +62,13 @@
 
     const onSubmit = async (formData: MemberSiteManagementData) => {
       try {
-        // Check if there are any validation errors
+
         if (Object.keys(errors).length > 0) {
-          setResult({
-            type: 'error',
-            text: t('validation.pleaseCheckFields')
-          });
+          showResult('error', t('validation.pleaseCheckFields'));
+          return;
+        }
+        if (!isDirty) {
+          showResult('error', t('global:thereNoChangeToUpdate'));
           return;
         }
 
@@ -72,19 +81,10 @@
         }
         const response = await memberSitesService.updateMemberSiteData(requestData);
 
-        setResult({
-          type: response.isSuccessful ? 'success' : 'error',
-          text: response.isSuccessful ? t('messages.updateSuccess') : response.message
-        });
-        setTimeout(() => {
-          setResult(null);
-        }, 3000);
+        showResult(response.isSuccessful ? 'success' : 'error', response.isSuccessful ? t('messages.updateSuccess') : response.message);
 
       } catch (err) {
-        setResult({
-          type: 'error',
-          text: t('errors.updateFailed')
-        });
+        showResult('error', t('errors.updateFailed'));
         console.error('Error updating data:', err);
       } finally {
         setIsSaving(false);
@@ -132,8 +132,7 @@
                   <ButtonApply 
                     className='w-[140px] [&>*]:w-[100%]' 
                     text={isSaving ? t('actions.saving') : t('actions.save')} 
-                    disabled={!isDirty || isSaving}
-                    // onClick={handleSubmit(onSubmit)}
+                    disabled={isSaving}
                   />
                 </div>
               </form>

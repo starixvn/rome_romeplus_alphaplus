@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Contact as ContactType } from "../../../services/interfaces/MemberSites";
 import { FieldError, useFormContext } from "react-hook-form";
+import { CONTACT_MAX_LENGTH, CONTACT_REGEX } from "../../../constants";
 
 interface ContactProps {
   index: number;
@@ -24,22 +25,11 @@ export const Contact = (props: ContactProps) => {
 
     switch (contact.type) {
       case 'line':
-        rules.pattern = {
-          value: /^[a-zA-Z0-9._-]+$/,
-          message: t('validation.onlyAz09')
-        };
-        break;
       case 'telegram':
       case 'tele':
         rules.pattern = {
-          value: /^[a-zA-Z0-9_]+$/,
+          value: CONTACT_REGEX,
           message: t('validation.onlyAz09')
-        };
-        break;
-      case 'email':
-        rules.pattern = {
-          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-          message: t('validation.email')
         };
         break;
     }
@@ -75,15 +65,11 @@ export const Contact = (props: ContactProps) => {
               setValue(field, e.target.value, { shouldDirty: true });
             }
           })}
+          maxLength={CONTACT_MAX_LENGTH}
           className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none max-[768px]:text-[16px] max-[768px]:leading-[16px] ${fieldError
             ? 'border-[#E25757] focus:border-[#E25757]'
             : 'border-[var(--border-control)] focus:border-[var(--border-control-focus)]'
             }`}
-        // value={contact.value}
-        // onChange={(e) => {
-        //   e.preventDefault();
-        //   setValue(field, e.target.value, { shouldDirty: true });
-        // }}
         />
         {fieldError && (
           <p className="text-[#E25757] text-[12px] mt-[4px]">

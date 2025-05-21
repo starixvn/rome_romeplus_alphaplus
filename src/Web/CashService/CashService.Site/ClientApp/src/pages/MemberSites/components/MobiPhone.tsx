@@ -1,6 +1,7 @@
 import { MobilePhone as MobilePhoneType } from "../../../services/interfaces/MemberSites";
 import { useTranslation } from "react-i18next";
 import { FieldError, useFormContext } from "react-hook-form";
+import { NUMBER_REGEX, PHONE_CODE_MAX_LENGTH, PHONE_NUMBER_MAX_LENGTH } from "../../../constants";
 
 interface MobiCodeProps {
     code: string;
@@ -27,7 +28,7 @@ const MobiCode = (props: MobiCodeProps) => {
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
-        const value = e.target.value.replace(/[^0-9]/g, '').slice(0, 3);
+        const value = e.target.value.replace(NUMBER_REGEX, '').slice(0, PHONE_CODE_MAX_LENGTH);
         onChange(value);
     }
 
@@ -40,16 +41,12 @@ const MobiCode = (props: MobiCodeProps) => {
                 type="text"
                 {...register('mobilePhone.code', {
                     required: t('validation.required'),
-                    // pattern: {
-                    //     value: /^[0-9]{1,3}$/,
-                    //     message: t('validation.phoneCode')
-                    // },
                     onChange: handleInputChange
                 })}
                 className={`focus:outline-none focus:border-[var(--button-border)] h-[100%] w-[30px] min-w-[30px] ${
                     mobilePhoneErrors?.code ? 'border-[#E25757]' : ''
                 }`}
-                maxLength={3}
+                maxLength={PHONE_CODE_MAX_LENGTH}
                 autoFocus
             />
         </div>
@@ -69,7 +66,7 @@ export const MobilePhone = (props: MobilePhoneInputProps) => {
     const mobilePhoneErrors = errors.mobilePhone as MobilePhoneErrors | undefined;
 
     const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value.replace(/[^0-9]/g, '');
+        const value = e.target.value.replace(NUMBER_REGEX, '').slice(0, PHONE_NUMBER_MAX_LENGTH);
         handleMobilePhoneChange({ phone: value, code: mobilePhone.code });
     };
 
@@ -93,14 +90,10 @@ export const MobilePhone = (props: MobilePhoneInputProps) => {
                     type="text"
                     {...register('mobilePhone.phone', {
                         required: isRequired ? t('validation.required') : false,
-                        // pattern: {
-                        //     value: /^[0-9]{8,15}$/,
-                        //     message: t('validation.phoneNumber')
-                        // },
                         onChange: handlePhoneChange
                     })}
                     placeholder=""
-                    maxLength={40}
+                    maxLength={PHONE_NUMBER_MAX_LENGTH}
                 />
             </div>
             {(mobilePhoneErrors?.code || mobilePhoneErrors?.phone) && (

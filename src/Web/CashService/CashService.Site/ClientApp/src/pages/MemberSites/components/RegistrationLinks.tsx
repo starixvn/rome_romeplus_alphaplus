@@ -48,7 +48,6 @@ const RegistrationLinks: React.FC<Props> = ({ domains, loading }) => {
           <DomainCard
             key={domain.id}
             domain={domain}
-            className={domain.status === 'blocked' ? 'opacity-50' : ''}
             index={index}
           />
         ))}
