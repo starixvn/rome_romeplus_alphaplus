@@ -32,3 +32,9 @@ export interface TransactionsHistoryParams {
   pageSize: number;
   transactionType: number;
 }
+
+export interface PaymentInformation
+{
+  paymentFrom: string;
+  paymentTo: string;
+}

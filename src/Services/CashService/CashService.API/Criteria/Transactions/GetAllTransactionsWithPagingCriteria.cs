@@ -19,9 +19,9 @@ public class GetAllTransactionsWithPagingCriteria : CriteriaBase
 
     public int PaymentStatus { get; set; }
 
-    public int PageIndex { get; set; } = 1;
+    public static int PageIndex => 1;
 
-    public int PageSize { get; set; } = 100;
+    public static int PageSize =>  5000;
 
     public int TotalRecords { get; set; }
 

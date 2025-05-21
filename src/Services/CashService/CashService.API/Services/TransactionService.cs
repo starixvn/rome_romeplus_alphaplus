@@ -32,8 +32,6 @@ public class TransactionService(IDynamicRepository dynamicRepository)
         {
             Items = rawData.ToList(),
             TotalCount = criteria.TotalRecords,
-            Page = criteria.PageIndex,
-            PageSize = criteria.PageSize
         };
     }
 

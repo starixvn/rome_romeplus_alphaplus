@@ -4,6 +4,7 @@ import {
   TransactionItem,
   TransactionsHistoryResponse,
   TransactionsHistoryParams,
+  PaymentInformation,
 } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import Filters from './Filters/Filters';
 import Search from './Search';
@@ -53,6 +54,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
   const [refreshTrigger, setRefreshTrigger] = useState(0);
   const [localSearchText, setLocalSearchText] = useState('');
   const [displayedItems, setDisplayedItems] = useState<TransactionItem[]>([]);
+  const [paymentInformations, setPaymentInformations] = useState<PaymentInformation[]>([]);
 
   useEffect(() => {
     setApiParams((prev) => ({
@@ -72,6 +74,14 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         };
         const response = await transactionAPI.getTransactions(paramsForApi);
         setApiData(response);
+        
+        // Map payment information from response
+        const paymentInfo = response.items.map(item => ({
+          paymentFrom: item.paymentFrom,
+          paymentTo: item.paymentTo
+        }));
+        setPaymentInformations(paymentInfo);
+        
         setError(null);
       } catch (err) {
         setError('Failed to load transaction history');
@@ -149,6 +159,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           status={apiParams.status}
           column={columnFilter}
           account={apiParams.account}
+          paymentInformations={paymentInformations}
           transactionType={transactionType}
           onDateRangeChange={handleDateRangeChange}
           onStatusChange={handleStatusChange}

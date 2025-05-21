@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { transactionAPI } from '../../../../../services/transactionsHistoryAPI';
 import CustomDropdown from '../../../../../components/CustomDropdownComponent';
-import { BankInfo } from '../../../../../services/interfaces/Transactions/BankInfo';
+import { PaymentInformation } from '../../../../../services/interfaces/Transactions/TransactionHistory';
 import BankIcon from '../../../../../components/BankComponents';
 
 interface AccountFilterProps {
   account: string;
   transactionType: number;
+  paymentInformations: PaymentInformation[];
   onAccountChange: (value: string) => void;
   onAccountsLoaded?: () => void;
 }
@@ -16,17 +16,18 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
   account,
   transactionType,
   onAccountChange,
+  paymentInformations,
   onAccountsLoaded,
 }) => {
   const { t } = useTranslation('transactionHistory');
-  const [accountOptions, setAccountOptions] = useState<BankInfo[]>([]);
+  const [accountOptions, setAccountOptions] = useState<PaymentInformation[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchAccounts = async () => {
       setIsLoading(true);
       try {
-        const options = await transactionAPI.getCashAgentBankInfo(transactionType);
+        const options = paymentInformations;
         setAccountOptions(options);
         if (onAccountsLoaded) {
           onAccountsLoaded();
@@ -40,7 +41,7 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
     };
 
     fetchAccounts();
-  }, [transactionType, onAccountsLoaded]);
+  }, [transactionType, paymentInformations, onAccountsLoaded]);
 
   return (
     <div className="form-group mb-[8px]">
@@ -49,8 +50,9 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
       </label>
       <CustomDropdown
         options={accountOptions.map((option) => ({
-          value: `${option.bankCode}_${option.bankAccountNumber}`,
-          label: option.bankAccountNumber,
+          value: transactionType === 1 ? option.paymentFrom : option.paymentTo,
+          label: transactionType === 1 ? option.paymentFrom : option.paymentTo,
+          code: transactionType === 1 ? option.paymentFrom : option.paymentTo,
           icon: <BankIcon code={option.bankCode} />
         }))}
         onSelect={(selected) => onAccountChange(String(selected.value))}

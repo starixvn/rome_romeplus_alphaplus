@@ -3,12 +3,14 @@ import ColumnFilter from './ColumnFilter';
 import StatusFilter from './StatusFilter';
 import AccountFilter from './AccountFilter';
 import DateRangeFilter from './DateRangeFilter';
+import { PaymentInformation } from '../../../../../services/interfaces/Transactions/TransactionHistory';
 
 interface FiltersProps {
   dateRange: [string, string];
   status: number;
   column: string[];
   account: string;
+  paymentInformations: PaymentInformation[];
   transactionType: number;
   onDateRangeChange: (dates: [string, string]) => void;
   onStatusChange: (value: number) => void;
@@ -22,6 +24,7 @@ const Filters: React.FC<FiltersProps> = ({
   status,
   column,
   account,
+  paymentInformations,
   transactionType,
   onDateRangeChange,
   onStatusChange,
@@ -37,6 +40,7 @@ const Filters: React.FC<FiltersProps> = ({
         <AccountFilter
           account={account}
           transactionType={transactionType}
+          paymentInformations={paymentInformations}
           onAccountChange={onAccountChange}
         />
       </div>

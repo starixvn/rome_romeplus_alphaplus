@@ -17,8 +17,6 @@ public static class TransactionsEndpoints
                 , [FromQuery] int custId
                 , [FromQuery] int paymentStatus
                 , [FromQuery] int transactionType
-                , [FromQuery] int pageIndex
-                , [FromQuery] int pageSize
                 , ITransactionService service) =>
             {
                 var criteria = new GetAllTransactionsWithPagingCriteria()
@@ -28,8 +26,6 @@ public static class TransactionsEndpoints
                     CustId = custId,
                     PaymentStatus = paymentStatus,
                     TransactionType = transactionType,
-                    PageIndex = pageIndex,
-                    PageSize = pageSize
                 };
                 var transactionHistory = await service.GetTransactionsAsync(criteria);
                 return Results.Ok(transactionHistory);

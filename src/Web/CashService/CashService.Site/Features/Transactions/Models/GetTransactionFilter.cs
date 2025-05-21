@@ -11,8 +11,4 @@ public class GetTransactionFilter
     public DateTime? ToDate { get; set; }
 
     public int PaymentStatus { get; set; }
-
-    public int PageIndex { get; set; }
-
-    public int PageSize { get; set; }
 }
