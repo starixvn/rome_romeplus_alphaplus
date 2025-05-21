@@ -94,6 +94,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
       });
 
       setBanks(fetchedBanks);
+      setSelectedBank('0');
       setError(null);
 
       // Call fetchBankAccounts without setting loading state
@@ -144,11 +145,13 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
   const handleCloseUpdateBankAccountModal = () => {
     setShowUpdateBankAccountModal(false);
     setSelectedBankAccount(null);
+    fetchBankAccounts();
   };
 
   const handleSaveUpdateBankAccount = () => {
     setShowUpdateBankAccountModal(false);
     setSelectedBankAccount(null);
+    fetchBanks();
     fetchBankAccounts();
   };
 
@@ -309,6 +312,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                                 code: bank.code.toLocaleUpperCase()
                               }));
                             })()}
+                            initialValue={selectedBank}
                             onSelect={(option) => handleBankChange({ target: { value: option.value.toString() } } as React.ChangeEvent<HTMLSelectElement>)}
                           />
                       
