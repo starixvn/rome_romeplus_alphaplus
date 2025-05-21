@@ -60,7 +60,7 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
             BankId > 0 && 
             !string.IsNullOrWhiteSpace(AccountNumber) && 
             !string.IsNullOrWhiteSpace(AccountHolderName) &&
-            Regex.IsMatch(AccountHolderName, @"^[a-zA-Z\s]+$") &&
+            Regex.IsMatch(AccountHolderName, @"^[a-zA-Z\s.]+$") &&
             Regex.IsMatch(AccountNumber, @"^\d+$") &&
             AccountHolderName.Length <= 255 &&
             AccountNumber.Length <= 100 &&
