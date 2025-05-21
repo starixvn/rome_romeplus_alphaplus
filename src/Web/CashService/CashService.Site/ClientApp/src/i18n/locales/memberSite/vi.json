@@ -44,5 +44,15 @@
   "messages": {
     "updateSuccess": "Cập nhật dữ liệu trang thành viên thành công",
     "updateFailed": "Không thể cập nhật dữ liệu trang thành viên"
+  },
+  "validation": {
+    "required": "Bắt buộc",
+    "lineId": "LINE ID không hợp lệ",
+    "telegram": "Telegram ID không hợp lệ",
+    "email": "Email không hợp lệ",
+    "phoneCode": "Mã không hợp lệ",
+    "phoneNumber": "Số không hợp lệ",
+    "maxLength": "Tối đa {maxLength} ký tự",
+    "onlyAz09": "Chỉ cho phép a-z, 0-9, _"
   }
 } 

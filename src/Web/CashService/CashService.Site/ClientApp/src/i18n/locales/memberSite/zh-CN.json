@@ -44,5 +44,15 @@
   "messages": {
     "updateSuccess": "会员网站数据更新成功",
     "updateFailed": "无法更新会员网站数据"
+  },
+  "validation": {
+    "required": "必填栏",
+    "lineId": "LINE ID无效",
+    "telegram": "Telegram ID无效",
+    "email": "邮箱无效",
+    "phoneCode": "区号无效",
+    "phoneNumber": "号码无效",
+    "maxLength": "最多{maxLength}字",
+    "onlyAz09": "仅允许 a-z、0-9、_"
   }
 } 

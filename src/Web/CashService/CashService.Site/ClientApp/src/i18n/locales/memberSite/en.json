@@ -53,6 +53,6 @@
     "phoneCode": "Invalid phone code",
     "phoneNumber": "Invalid phone number",
     "maxLength": "Maximum length is {maxLength} characters",
-    "pleaseCheckFields": "Please check the fields"
+    "onlyAz09": "Only a-z, 0-9, underscore are allowed"
   }
 } 

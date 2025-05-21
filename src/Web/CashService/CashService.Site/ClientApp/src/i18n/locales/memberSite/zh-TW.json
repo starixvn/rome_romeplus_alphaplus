@@ -44,5 +44,15 @@
   "messages": {
     "updateSuccess": "會員網站資料更新成功",
     "updateFailed": "無法更新會員網站資料"
+  },
+  "validation": {
+    "required": "必填欄",
+    "lineId": "LINE ID無效",
+    "telegram": "Telegram ID無效",
+    "email": "郵箱無效",
+    "phoneCode": "區號無效",
+    "phoneNumber": "號碼無效",
+    "maxLength": "最多{maxLength}字",
+    "onlyAz09": "僅允許 a-z、0-9、_"
   }
 } 

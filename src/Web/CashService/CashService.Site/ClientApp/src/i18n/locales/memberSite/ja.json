@@ -44,5 +44,15 @@
   "messages": {
     "updateSuccess": "メンバーサイトのデータを更新しました",
     "updateFailed": "メンバーサイトのデータを更新できませんでした"
+  },
+  "validation": {
+    "required": "必須",
+    "lineId": "LINE ID無効",
+    "telegram": "Telegram ID無効",
+    "email": "メール無効",
+    "phoneCode": "コード無効",
+    "phoneNumber": "番号無効",
+    "maxLength": "最大{maxLength}文字",
+    "onlyAz09": "a-z、0-9、_のみ使用可"
   }
 } 

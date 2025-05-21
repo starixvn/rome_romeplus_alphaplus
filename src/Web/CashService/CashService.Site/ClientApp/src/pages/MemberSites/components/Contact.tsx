@@ -26,13 +26,14 @@ export const Contact = (props: ContactProps) => {
       case 'line':
         rules.pattern = {
           value: /^[a-zA-Z0-9._-]+$/,
-          message: t('validation.lineId')
+          message: t('validation.onlyAz09')
         };
         break;
       case 'telegram':
+      case 'tele':
         rules.pattern = {
           value: /^[a-zA-Z0-9_]+$/,
-          message: t('validation.telegram')
+          message: t('validation.onlyAz09')
         };
         break;
       case 'email':
