@@ -52,7 +52,7 @@
     "email": "郵箱無效",
     "phoneCode": "區號無效",
     "phoneNumber": "號碼無效",
-    "maxLength": "最多{maxLength}字",
+    "maxLength": "最多{{maxLength}}字",
     "onlyAz09": "僅允許 a-z、0-9、_"
   }
 } 

@@ -72,7 +72,7 @@ const MessageForm: React.FC<MessageFormProps> = ({loading}) => {
             {...register('announcement', {
               maxLength: {
                 value: 1000,
-                message: t('validation.maxLength', { length: 1000 })
+                message: t('validation.maxLength', { maxLength: 1000 })
               }
             })}
             rows={4}

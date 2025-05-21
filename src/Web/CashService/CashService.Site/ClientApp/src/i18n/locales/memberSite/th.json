@@ -52,7 +52,7 @@
       "email": "อีเมลไม่ถูกต้อง",
       "phoneCode": "รหัสไม่ถูกต้อง",
       "phoneNumber": "เบอร์ไม่ถูกต้อง",
-      "maxLength": "สูงสุด {maxLength} ตัวอักษร",
+      "maxLength": "สูงสุด {{maxLength}} ตัวอักษร",
        "onlyAz09": "ใช้ได้เฉพาะ a-z, 0-9, _"
     }
 } 

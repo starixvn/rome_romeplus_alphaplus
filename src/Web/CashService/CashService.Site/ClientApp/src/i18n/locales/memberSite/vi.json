@@ -52,7 +52,7 @@
     "email": "Email không hợp lệ",
     "phoneCode": "Mã không hợp lệ",
     "phoneNumber": "Số không hợp lệ",
-    "maxLength": "Tối đa {maxLength} ký tự",
+    "maxLength": "Tối đa {{maxLength}} ký tự",
     "onlyAz09": "Chỉ cho phép a-z, 0-9, _"
   }
 } 

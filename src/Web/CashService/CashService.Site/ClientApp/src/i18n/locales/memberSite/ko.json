@@ -52,7 +52,7 @@
     "email": "이메일 오류",
     "phoneCode": "코드 오류",
     "phoneNumber": "번호 오류",
-    "maxLength": "최대 {maxLength}자",
+    "maxLength": "최대 {{maxLength}}자",
     "onlyAz09": "a-z, 0-9, _ 만 사용 가능"
   }
 } 

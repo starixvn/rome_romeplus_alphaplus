@@ -52,7 +52,7 @@
     "email": "Invalid email address",
     "phoneCode": "Invalid phone code",
     "phoneNumber": "Invalid phone number",
-    "maxLength": "Maximum length is {maxLength} characters",
+    "maxLength": "Maximum length is {{maxLength}} characters",
     "onlyAz09": "Only a-z, 0-9, underscore are allowed"
   }
 } 
