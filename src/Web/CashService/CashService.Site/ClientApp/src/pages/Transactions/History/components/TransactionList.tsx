@@ -105,8 +105,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     apiParams.transactionType,
     apiParams.dateRange,
     apiParams.account,
-    apiParams.status,
-    columnFilter,
+    apiParams.status
   ]);
 
   useEffect(() => {
@@ -125,7 +124,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
 
       setDisplayedItems(filtered.slice(startIndex, endIndex));
     }
-  }, [displayedItems, localSearchText, apiParams.pageIndex, apiParams.pageSize]);
+  }, [apiData.items, localSearchText, apiParams.pageIndex, apiParams.pageSize]);
 
   const handleDateRangeChange = (dates: [string, string]) => {
     setApiParams((prev) => ({ ...prev, dateRange: dates, pageIndex: 1 }));
