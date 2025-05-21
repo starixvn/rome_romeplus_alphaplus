@@ -56,7 +56,13 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
   const [displayedItems, setDisplayedItems] = useState<TransactionItem[]>([]);
   const [paymentInformations, setPaymentInformations] = useState<string[]>([]);
 
-
+  useEffect(() => {
+    setApiParams((prev) => ({
+      ...prev,
+      transactionType: transactionType,
+      pageIndex: 1,
+    }));
+  }, [transactionType]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -101,12 +107,20 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     };
 
     fetchData();
-  }, [apiParams.dateRange, apiParams.account, apiParams.status, columnFilter, refreshTrigger]);
+  }, [
+        apiParams.transactionType,
+        apiParams.dateRange,
+        apiParams.account,
+        apiParams.status,
+        columnFilter,
+        refreshTrigger
+      ]);
 
   useEffect(() => {
+    const startIndex = (apiParams.pageIndex - 1) * apiParams.pageSize;
+    const endIndex = startIndex + apiParams.pageSize;
+
     if (!localSearchText) {
-      const startIndex = (apiParams.pageIndex - 1) * apiParams.pageSize;
-      const endIndex = startIndex + apiParams.pageSize;
       setDisplayedItems(apiData.items.slice(startIndex, endIndex));
     } else {
       const lowerCaseSearchText = localSearchText.toLowerCase();
@@ -115,8 +129,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           item.username.toLowerCase().includes(lowerCaseSearchText) ||
           item.transId.toString().toLowerCase().includes(lowerCaseSearchText)
       );
-      const startIndex = (apiParams.pageIndex - 1) * apiParams.pageSize;
-      const endIndex = startIndex + apiParams.pageSize;
+    
       setDisplayedItems(filtered.slice(startIndex, endIndex));
     }
   }, [apiData.items, localSearchText, apiParams.pageIndex, apiParams.pageSize]);
