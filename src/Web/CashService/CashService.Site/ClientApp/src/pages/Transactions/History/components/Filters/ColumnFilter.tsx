@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import MultiSelect from '../../../../../components/ui/MultiSelect';
 import { useTranslation } from 'react-i18next';
+import CustomMultiSelect from '../../../../../components/ui/Multiselect/MultiSelect';
 
 interface ColumnFilterProps {
   column: string[];
@@ -43,7 +43,7 @@ const ColumnFilter: React.FC<ColumnFilterProps> = ({ column, onColumnChange }) =
       <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">
         {t('filter.column')}
       </label>
-      <MultiSelect
+      <CustomMultiSelect
         options={options}
         initialValues={selectedColumns}
         onChange={handleChange}

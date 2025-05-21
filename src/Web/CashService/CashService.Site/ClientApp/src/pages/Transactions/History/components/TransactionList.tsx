@@ -34,7 +34,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     return {
       dateRange: [sevenDaysAgo.toLocaleDateString('en-US'), today.toLocaleDateString('en-US')],
       status: -1,
-      account: 'All',
+      account: '',
       pageIndex: 1,
       pageSize: PAGE_SIZE_OPTIONS[0],
       transactionType: transactionType,
@@ -56,6 +56,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
   const [paymentInformations, setPaymentInformations] = useState<string[]>([]);
 
   useEffect(() => {
+      pageSize: PAGE_SIZE_OPTIONS[0],
     const fetchData = async () => {
       try {
         setLoading(true);
@@ -102,11 +103,11 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
 
     fetchData();
   }, [
-    transactionType,
+    apiParams.transactionType,
     apiParams.dateRange,
     apiParams.account,
     apiParams.status,
-    columnFilter  
+    columnFilter,
   ]);
 
   useEffect(() => {
@@ -122,7 +123,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           item.username.toLowerCase().includes(lowerCaseSearchText) ||
           item.transId.toString().toLowerCase().includes(lowerCaseSearchText)
       );
-    
+
       setDisplayedItems(filtered.slice(startIndex, endIndex));
     }
   }, [displayedItems, localSearchText, apiParams.pageIndex, apiParams.pageSize]);

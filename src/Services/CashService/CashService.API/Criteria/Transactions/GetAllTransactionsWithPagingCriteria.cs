@@ -21,11 +21,14 @@ public class GetAllTransactionsWithPagingCriteria : CriteriaBase
 
     public static int PageIndex => 1;
 
-    public static int PageSize =>  5000;
+    public static int PageSize => 5000;
 
     public int TotalRecords { get; set; }
 
-    public override string GetSettingKey() => "Age_Transaction_GetAll";
+    [SpParam(Ignored = true)]
+    public int SiteDbGroupId { get; set; }
+
+    public override string GetSettingKey() => $"SiteDb_{SiteDbGroupId}_Age_Transaction_GetAll";
 
     public override bool IsValid() => true;
 }

@@ -78,7 +78,7 @@
     </Function>
 
     <Function Name="Cash Service">
-        <Setting Key="Age_Transaction_GetAll" SpName="Age_CashTransaction_Sel_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="SiteDb_0_Age_Transaction_GetAll" SpName="Age_CashTransaction_Sel_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
         <Setting Key="SiteDb_0_Age_CashTransactionDetail_Sel" SpName="Age_CashTransactionDetail_Sel_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
         <Setting Key="GetCashMemberBankInfoCriteria" SpName="GetCashMemberBankInfoCriteria_UAT2" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0"></Setting>
         <Setting Key="CustDb_0_Age_CashService_MemberListSel" SpName="Age_CashService_MemberListSel_UAT2" DbName="DBCust.CustDB.wsv_CashService" Plain="0"></Setting>

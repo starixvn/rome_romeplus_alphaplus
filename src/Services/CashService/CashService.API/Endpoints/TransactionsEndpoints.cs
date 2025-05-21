@@ -17,15 +17,17 @@ public static class TransactionsEndpoints
                 , [FromQuery] int custId
                 , [FromQuery] int paymentStatus
                 , [FromQuery] int transactionType
+                , [FromQuery] int siteDbGroupId
                 , ITransactionService service) =>
             {
-                var criteria = new GetAllTransactionsWithPagingCriteria()
+                var criteria = new GetAllTransactionsWithPagingCriteria
                 {
                     FromDate = fromDate,
                     ToDate = toDate,
                     CustId = custId,
                     PaymentStatus = paymentStatus,
                     TransactionType = transactionType,
+                    SiteDbGroupId = siteDbGroupId
                 };
                 var transactionHistory = await service.GetTransactionsAsync(criteria);
                 return Results.Ok(transactionHistory);

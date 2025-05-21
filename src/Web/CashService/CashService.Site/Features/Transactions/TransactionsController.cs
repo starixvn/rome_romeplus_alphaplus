@@ -29,6 +29,7 @@ public class TransactionsController(
     {
         var url = $"/transactions/history";
         filter.CustId = agentId;
+        filter.SiteDbGroupId = siteDbGroupId;
         var result = await httpClientHelper.GetAsync<object>(url, ObjectConverter.ToDictionary(filter));
         return Json(result);
     }
