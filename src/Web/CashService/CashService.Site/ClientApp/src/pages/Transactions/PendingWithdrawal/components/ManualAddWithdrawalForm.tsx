@@ -197,6 +197,12 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
     );
   };
 
+  const handleSetWithdrawalAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.validity.valid) {
+      setWithdrawalAmount(e.target.value);
+    }
+  };
+
   return (
     <div className="fixed inset-0 bg-white flex flex-col z-50">
       <div className="bg-gray-100 p-4">
@@ -305,10 +311,11 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
 
                     <input
                       id="withdrawalAmount"
-                      type="number"
+                      type="text"
+                      pattern="[0-9]*"
                       value={withdrawalAmount}
-                      onChange={(e) => setWithdrawalAmount(e.target.value)}
-                      className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184]"
+                      onChange={(e) => handleSetWithdrawalAmount(e)}
+                      className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:border-[var(--button-border)]"
                       placeholder="0"
                     />
                   </div>
@@ -322,7 +329,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                     id="remarks"
                     value={remarks}
                     onChange={(e) => setRemarks(e.target.value)}
-                    className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] min-h-[120px]"
+                    className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-[var(--button-border)] min-h-[120px]"
                     placeholder={t('manualWithdrawalForm.remarksPlaceholder')}
                   />
                 </div>
@@ -330,7 +337,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
             </div>
           </div>
 
-          <div>
+          <div className="pl-20">
             <UploadImage setImage={setImage} />
 
             <div className="flex justify-center space-x-4 mt-3 w-full">

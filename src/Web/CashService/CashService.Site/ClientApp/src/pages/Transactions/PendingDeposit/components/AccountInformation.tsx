@@ -42,7 +42,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
 
   return (
     <div className="mb-5 w-[900px]">
-      <h3 className="text-md font-medium text-blue-900 mb-4">
+      <h3 className="text-md font-medium text-blue-900 mb-3">
         {t('manualDepositForm.accountInformation')}
       </h3>
 
@@ -51,7 +51,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
           <div>
             <label
               htmlFor="memberLoginName"
-              className="block text-sm font-medium text-gray-700 mb-1 relative"
+              className="block font-semibold text-[#333333] my-[8px] relative"
             >
               {t('manualDepositForm.memberLoginName')}
               <span className="text-red-500 absolute">*</span>
@@ -73,7 +73,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
           <div>
             <label
               htmlFor="paymentFrom"
-              className="block text-sm font-medium text-gray-700 mb-1 relative"
+              className="block font-semibold text-[#333333] my-[8px] relative"
             >
               {t('manualDepositForm.from')}
               <span className="text-red-500 absolute">*</span>
@@ -95,7 +95,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
           <div>
             <label
               htmlFor="paymentTo"
-              className="block text-sm font-medium text-gray-700 mb-1 relative"
+              className="block font-semibold text-[#333333] my-[8px] relative"
             >
               {t('manualDepositForm.to')}
               <span className="text-red-500 absolute">*</span>
@@ -115,11 +115,11 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
           <div>
             <label
               htmlFor="depositAmount"
-              className="block text-sm font-medium text-gray-700 mb-1 relative"
+              className="block font-semibold text-[#333333] my-[8px] relative"
             >
               {t('manualDepositForm.depositAmount')}
               <span className="text-red-500 absolute">*</span>
-              <span className="text-sm pl-3">
+              <span className="ml-2 inline-block">
                 <span className="text-blue-900">
                   (Agent Available Credit:
                     <span className="text-red-500">
@@ -131,24 +131,26 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
             </label>
             <input
               id="depositAmount"
-              type="number"
+              type="text"
+              pattern="[0-9]*"
               name="depositAmount"
               value={depositAmount}
               onChange={onDepositAmountChange}
-              className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184]"
+              placeholder="0"
+              className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:border-[var(--button-border)] bg-[var(--background-control)]"
             />
           </div>
         </div>
 
         <div>
-          <label htmlFor="remarks" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="remarks" className="block font-semibold text-[#333333] my-[8px]">
             {t('manualDepositForm.remarks')}
           </label>
           <textarea
             id="remarks"
             value={remarks}
             onChange={onRemarksChange}
-            className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] min-h-[120px]"
+            className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-[var(--button-border)] min-h-[120px] bg-[var(--background-control)]"
             placeholder={t('manualDepositForm.remarksPlaceholder')}
           />
         </div>

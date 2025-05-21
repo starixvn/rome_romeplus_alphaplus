@@ -29,6 +29,7 @@
     "dateAndTime": "날짜 및 시간",
     "actions": "동작",
     "approve": "승인",
+    "approving": "승인 중...",
     "reject": "거부",
     "process": "처리",
     "viewDetails": "상세 보기",

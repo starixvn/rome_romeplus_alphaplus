@@ -46,6 +46,11 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
     setIsSubmitting(true);
   };
 
+  const handleSetDepositAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.validity.valid) {
+      setDepositAmount(e.target.value);
+    }
+  };
 
   return (
     <div className="bg-[#00000066] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-start justify-center">
@@ -112,7 +117,9 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
                   <input
                     type="text"
                     value={depositAmount}
-                    onChange={(e) => setDepositAmount(e.target.value)}
+                    pattern="[0-9]*"
+                    placeholder="0"
+                    onChange={(e) => handleSetDepositAmount(e)}
                     className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none border-[var(--border-control)] focus:border-[var(--button-border)]"
                   />
                 </div>
@@ -132,16 +139,8 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
         </div>
 
         <div className="flex justify-center gap-[8px]">
-        <ButtonCancelComponent
-            text="Reject"
-            onClick={handleReject}
-            disabled={isSubmitting}
-          />
-            <ButtonApplyComponent
-            text="Approve"
-            onClick={handleApprove}
-            disabled={isSubmitting}
-          />
+          <ButtonComponent className="w-[140px]" type="cancel" style="rounded" text={t('pendingDepositModal.reject')} onClick={handleReject} disabled={isSubmitting} />
+          <ButtonComponent className="w-[140px]" type="apply" style="rounded" text={t('pendingDepositModal.approve')} onClick={handleApprove} disabled={isSubmitting} />
         </div>
       </div>
     </div>

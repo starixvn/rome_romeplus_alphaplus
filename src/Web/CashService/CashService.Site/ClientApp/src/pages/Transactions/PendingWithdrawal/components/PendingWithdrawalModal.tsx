@@ -248,7 +248,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
             </div>
           </div>
 
-          <div className="w-[240px]">
+          <div className="w-[240px] pl-20">
             <UploadImage setImage={setImage} disabled={isSubmitting} />
           </div>
         </div>

@@ -133,7 +133,7 @@ const UploadImage: React.FC<UploadImageProps> = ({ setImage, disabled = false })
   );
 
   return (
-    <div className="flex flex-col items-center pl-20">
+    <div className="flex flex-col items-center">
       <div
         className={`w-[350px] h-[450px] border-[2px] border-dashed ${
           isDragging ? 'border-blue-500 bg-blue-50' : 'border-[#163f78]'

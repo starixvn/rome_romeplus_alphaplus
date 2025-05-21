@@ -29,6 +29,7 @@
     "dateAndTime": "日期和时间",
     "actions": "操作",
     "approve": "批准",
+    "approving": "批准中...",
     "reject": "拒绝",
     "process": "处理",
     "viewDetails": "查看详情",

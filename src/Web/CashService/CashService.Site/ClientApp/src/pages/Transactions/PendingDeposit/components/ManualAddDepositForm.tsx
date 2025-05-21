@@ -11,6 +11,7 @@ import Loading from '../../../../components/LoadingComponent';
 import { ResultMessageComponent } from '../../../../components/MessageComponents';
 import AccountInformation from './AccountInformation';
 import TitleComponent from '../../../../components/TitleComponents';
+import { ButtonComponent } from '../../../../components/ButtonComponents';
 
 interface ManualAddDepositFormProps {
   cashAgentOptions: BankInfo[];
@@ -125,6 +126,12 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
     }
   };
 
+  const handleSetDepositAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.validity.valid) {
+      setDepositAmount(e.target.value);
+    }
+  };
+
   return (
     <div className="">
       {initialLoading ? (
@@ -136,7 +143,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
           
           <TitleComponent title={t('manualDepositForm.title')} /> 
 
-          <form id="manual-deposit-form" onSubmit={handleSubmit} className="p-6 flex-1">
+          <form id="manual-deposit-form" onSubmit={handleSubmit}>
             {validationMessage && (
               <ResultMessageComponent
                 type={validationMessage.type}
@@ -156,36 +163,20 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
                 onPaymentToChange={(selected) => setPaymentTo(String(selected.value))}
                 cashAgentOptions={cashAgentOptions}
                 depositAmount={depositAmount}
-                onDepositAmountChange={(e) => setDepositAmount(e.target.value)}
+                onDepositAmountChange={(e) => handleSetDepositAmount(e)}
                 creditAmount={creditAmount}
                 remarks={remarks}
                 onRemarksChange={(e) => setRemarks(e.target.value)}
               />
 
-              <div className="flex flex-col items-center pl-20">
+              <div className="pl-20">
                 <UploadImage
                   setImage={setImage}
                 />
 
                 <div className="flex justify-center space-x-4 mt-3 w-full">
-                  <button
-                    type="button"
-                    onClick={() => onClose(false)}
-                    className="w-[140px] h-[32px] max-[768px]:h-[40px] border border-gray-300 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none"
-                  >
-                    {t('manualDepositForm.cancel')}
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className={`w-[140px] h-[32px] max-[768px]:h-[40px] border border-transparent rounded-full text-sm font-medium text-white 
-                      ${isSubmitting 
-                        ? 'bg-gray-400 cursor-not-allowed' 
-                        : 'bg-[#163f78] hover:bg-[#0f2d5c]'
-                      } focus:outline-none`}
-                  >
-                    {t('manualDepositForm.approve')}
-                  </button>
+                  <ButtonComponent className='w-[140px]' type="cancel" style="rounded" text={t('manualDepositForm.cancel')} onClick={() => onClose(false)}   />
+                  <ButtonComponent className="w-[140px]" type="apply" style="rounded" text={isSubmitting ? t('manualDepositForm.approving') : t('manualDepositForm.approve')} disabled={isSubmitting}  />
                 </div>
               </div>
             </div>
