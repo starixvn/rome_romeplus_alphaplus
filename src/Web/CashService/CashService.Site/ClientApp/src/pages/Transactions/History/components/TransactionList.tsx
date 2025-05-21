@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import {
   TransactionItem,
@@ -54,16 +54,9 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
   const [localSearchText, setLocalSearchText] = useState('');
   const [displayedItems, setDisplayedItems] = useState<TransactionItem[]>([]);
   const [paymentInformations, setPaymentInformations] = useState<string[]>([]);
-  const isFirstRender = useRef(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      // Skip the first render in development mode
-      if (isFirstRender.current) {
-        isFirstRender.current = false;
-        return;
-      }
-
       try {
         setLoading(true);
         const paramsForApi: TransactionsHistoryParams = {
