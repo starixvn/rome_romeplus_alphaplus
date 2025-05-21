@@ -77,36 +77,36 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
     }
   };
 
+  const fetchBanks = async () => {
+    try {
+      setLoading(true);
+      const fetchedBanks = await paymentProviderService.getBanksByCust();
+      fetchedBanks.unshift({ 
+        id: 0, 
+        name: tGlobal('all'),
+        code: '',
+        transactionTypes: '',
+        depositMatchingMode: {
+          sourceType: '',
+          mappingTypes: [],
+          sourceTypeName: ''
+        }
+      });
+
+      setBanks(fetchedBanks);
+      setError(null);
+
+      // Call fetchBankAccounts without setting loading state
+      fetchBankAccounts();
+    } catch (err) {
+      setError('Failed to load banks. Please try again later.');
+      console.error('Error fetching banks:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchBanks = async () => {
-      try {
-        setLoading(true);
-        const fetchedBanks = await paymentProviderService.getBanksByCust();
-        fetchedBanks.unshift({ 
-          id: 0, 
-          name: tGlobal('all'),
-          code: '',
-          transactionTypes: '',
-          depositMatchingMode: {
-            sourceType: '',
-            mappingTypes: [],
-            sourceTypeName: ''
-          }
-        });
-
-        setBanks(fetchedBanks);
-        setError(null);
-
-        // Call fetchBankAccounts without setting loading state
-        fetchBankAccounts();
-      } catch (err) {
-        setError('Failed to load banks. Please try again later.');
-        console.error('Error fetching banks:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchTransactionTypes();
     fetchBanks();
   }, []);
@@ -228,6 +228,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
 
   const handleSaveAddBankAccount = () => {
     setShowAddBankAccountModal(false);
+    fetchBanks();
     fetchBankAccounts();
   };
 

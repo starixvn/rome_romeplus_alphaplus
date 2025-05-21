@@ -34,5 +34,6 @@
   "row": "Row",
   "view": "View",
   "addSuccess": "Add successfully",
-  "addFailed": "Add failed"
+  "addFailed": "Add failed",
+  "updating": "Updating..."
 }

@@ -7,7 +7,7 @@
     <Function Name="Management Payments">
         <Setting Key="Age_CashService_PaymentProvider_Sel" SpName="Age_CashService_PaymentProvider_Sel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="ProviderID" ObjectProperty="Id"></Mapping>
-            <Mapping DataField="Provider" ObjectProperty="Name"></Mapping>
+            <Mapping DataField="ProviderName" ObjectProperty="Name"></Mapping>
             <Mapping DataField="ProviderStatus" ObjectProperty="Status"></Mapping>
         </Setting>
         <Setting Key="Age_CashService_AgentBankAccountLimit_Sel" SpName="Age_CashService_AgentBankAccountLimit_Sel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">

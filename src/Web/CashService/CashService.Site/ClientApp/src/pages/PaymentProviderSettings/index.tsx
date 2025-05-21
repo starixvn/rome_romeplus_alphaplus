@@ -313,7 +313,7 @@ function PaymentProviderSettings() {
 
   const failStatus = 3;
   const isEditable = (paymentMethod: PaymentMethod) => {
-    return paymentMethod.status !== 3 && paymentMethod.status !== 4;
+    return paymentMethod.status === 2;
   }
 
   const hasEditableSettings = () => {
@@ -340,9 +340,8 @@ function PaymentProviderSettings() {
         <div className='flex justify-center items-center h-full'>
           <Loading />
         </div>
-      ) : error ? (
-        <ResultMessageComponent type='error' message={error} />
-      ) : (
+      ) : error ? (<ResultMessageComponent type='error' message={error} />) 
+        : (
         <>        
         <BackComponent onClose={handleBackNavigation} />
         {updateMessage && (<ResultMessageComponent className='my-[16px] max-[768px]:mx-[16px] max-[768px]:my-0' type={updateMessage.type} message={updateMessage.text} /> )} 
@@ -357,41 +356,44 @@ function PaymentProviderSettings() {
             </p>   
             <ButtonFull text={`+ ${tPaymentProviderSettings('addPaymentMethod')}`} onClick={handleAddPaymentMethod} />            
             </div>
-            <div>
-              <p className="flex items-center font-semibold text-[#333333] my-[8px]">
-                {tGlobal('enable')}/{tGlobal('disable')}
-                <Tippy
-                  content={
-                    <div>
-                      <div>
-                        <i className="bi bi-info-circle fs-4 ico-info inline-elm"></i> 
-                        {tPaymentProviderSettings('enableDisable')}
-                      </div>
-                      <div>• {tPaymentProviderSettings('enableDisableTip1')}</div>
-                      <div>• {tPaymentProviderSettings('enableDisableTip2')}</div>
-                      <div>• {tPaymentProviderSettings('enableDisableTip3')}</div>
-                    </div>
-                  }
-                  placement="top"
-                  theme="light"
-                  arrow={true}
-                >
-                  <span className='cursor-pointer'><IconInfo className="w-[20px] h-[20px] ml-[4px] fill-[#163f78]" /></span>
-                </Tippy>
-              </p>
-              <label className='inline-block'>
-                <input
-                  type="checkbox"
-                  id="enableToggle"
-                  checked={providerStatus}
-                  onChange={handleProviderStatusToggle}
-                  className="opacity-0 absolute hidden peer " 
-                />
-                <span className='block cursor-pointer w-[60px] h-[30px] rounded-[20px] bg-[var(--button-switch-background)] relative after:content-[""] after:absolute after:top-[3px] after:left-[3px] after:w-[24px] after:h-[24px] after:rounded-[50%] after:bg-[var(--button-switch-dot-background)] after:transition-all after:duration-300 after:ease-in-out after:shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] peer-checked:after:left-[32px] peer-checked:bg-[var(--button-switch-background-active)]'>
 
-                </span>
-              </label>
-            </div>            
+            {providerStatus != 2 && (
+              <div>
+                <p className="flex items-center font-semibold text-[#333333] my-[8px]">
+                  {tGlobal('enable')}/{tGlobal('disable')}
+                  <Tippy
+                    content={
+                      <div>
+                        <div>
+                          <i className="bi bi-info-circle fs-4 ico-info inline-elm"></i> 
+                          {tPaymentProviderSettings('enableDisable')}
+                        </div>
+                        <div>• {tPaymentProviderSettings('enableDisableTip1')}</div>
+                        <div>• {tPaymentProviderSettings('enableDisableTip2')}</div>
+                        <div>• {tPaymentProviderSettings('enableDisableTip3')}</div>
+                      </div>
+                    }
+                    placement="top"
+                    theme="light"
+                    arrow={true}
+                  >
+                    <span className='cursor-pointer'><IconInfo className="w-[20px] h-[20px] ml-[4px] fill-[#163f78]" /></span>
+                  </Tippy>
+                </p>
+                <label className='inline-block'>
+                  <input
+                    type="checkbox"
+                    id="enableToggle"
+                    checked={providerStatus}
+                    onChange={handleProviderStatusToggle}
+                    className="opacity-0 absolute hidden peer " 
+                  />
+                  <span className='block cursor-pointer w-[60px] h-[30px] rounded-[20px] bg-[var(--button-switch-background)] relative after:content-[""] after:absolute after:top-[3px] after:left-[3px] after:w-[24px] after:h-[24px] after:rounded-[50%] after:bg-[var(--button-switch-dot-background)] after:transition-all after:duration-300 after:ease-in-out after:shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] peer-checked:after:left-[32px] peer-checked:bg-[var(--button-switch-background-active)]'>
+
+                  </span>
+                </label>
+              </div> 
+            )}           
           </div>
         </div>
         <div className='bg-[#ffffff] px-[16px] py-[10px]'>
@@ -555,7 +557,9 @@ function PaymentProviderSettings() {
           </div>
           <div className="flex justify-start gap-[8px] py-[8px] mt-[8px]">
             <ButtonCancel text={tGlobal('reset')} onClick={handleReset} />
-            <ButtonApply text={updating ? tGlobal('updating') : tGlobal('update')} onClick={handleUpdate} disabled={updating || !hasEditableSettings()} />
+            <ButtonApply text={updating ? tGlobal('updating') : tGlobal('update')} 
+              onClick={handleUpdate} 
+              disabled={providerStatus == 2 || updating || !hasEditableSettings()} />
           </div>          
          </div>
         </>

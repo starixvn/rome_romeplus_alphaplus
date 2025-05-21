@@ -33,5 +33,6 @@
   "row": "Hàng",
   "view": "Xem",
   "addSuccess": "Thêm thành công",
-  "addFailed": "Thêm thất bại"
+  "addFailed": "Thêm thất bại",
+  "updating": "Đang cập nhật..."
 } 

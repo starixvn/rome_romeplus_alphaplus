@@ -33,5 +33,6 @@
   "row": "행",
   "view": "보기",
   "addSuccess": "추가 성공",
-  "addFailed": "추가 실패"
+  "addFailed": "추가 실패",
+  "updating": "업데이트 중..."
 } 

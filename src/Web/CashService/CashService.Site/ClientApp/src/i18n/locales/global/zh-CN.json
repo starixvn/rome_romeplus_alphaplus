@@ -33,5 +33,6 @@
   "row": "行",
   "view": "游览",
   "addSuccess": "添加成功",
-  "addFailed": "添加失败"
+  "addFailed": "添加失败",
+  "updating": "更新中..."
 } 
