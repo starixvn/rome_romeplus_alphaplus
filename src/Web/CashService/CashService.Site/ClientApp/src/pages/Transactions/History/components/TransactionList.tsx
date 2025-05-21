@@ -34,7 +34,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     return {
       dateRange: [sevenDaysAgo.toLocaleDateString('en-US'), today.toLocaleDateString('en-US')],
       status: -1,
-      account: '',
+      account: 'All',
       pageIndex: 1,
       pageSize: PAGE_SIZE_OPTIONS[0],
       transactionType: transactionType,
@@ -51,7 +51,6 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     t('table.referenceNo'),
     t('table.dateAndTime'),
   ]);
-  const [refreshTrigger, setRefreshTrigger] = useState(0);
   const [localSearchText, setLocalSearchText] = useState('');
   const [displayedItems, setDisplayedItems] = useState<TransactionItem[]>([]);
   const [paymentInformations, setPaymentInformations] = useState<string[]>([]);
@@ -112,8 +111,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         apiParams.dateRange,
         apiParams.account,
         apiParams.status,
-        columnFilter,
-        refreshTrigger
+        columnFilter
       ]);
 
   useEffect(() => {
@@ -132,7 +130,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     
       setDisplayedItems(filtered.slice(startIndex, endIndex));
     }
-  }, [apiData.items, localSearchText, apiParams.pageIndex, apiParams.pageSize]);
+  }, [displayedItems, localSearchText, apiParams.pageIndex, apiParams.pageSize]);
 
   const handleDateRangeChange = (dates: [string, string]) => {
     setApiParams((prev) => ({ ...prev, dateRange: dates, pageIndex: 1 }));
@@ -152,10 +150,6 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
 
   const handleLocalSearchChange = (value: string) => {
     setLocalSearchText(value);
-  };
-
-  const handleRefresh = () => {
-    setRefreshTrigger((prev) => prev + 1);
   };
 
   const handlePageChange = (newPage: number) => {
@@ -207,7 +201,6 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           pageIndex={apiParams.pageIndex}
           pageSize={apiParams.pageSize}
           isLoading={loading}
-          onRefreshNeeded={handleRefresh}
           columnFilter={columnFilter}
         />
         <Pagination
