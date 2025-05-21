@@ -56,13 +56,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
   const [displayedItems, setDisplayedItems] = useState<TransactionItem[]>([]);
   const [paymentInformations, setPaymentInformations] = useState<string[]>([]);
 
-  useEffect(() => {
-    setApiParams((prev) => ({
-      ...prev,
-      transactionType: transactionType,
-      pageIndex: 1,
-    }));
-  }, [transactionType]);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -107,11 +101,13 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     };
 
     fetchData();
-  }, [apiParams, columnFilter, refreshTrigger]);
+  }, [apiParams.dateRange, apiParams.account, apiParams.status, columnFilter, refreshTrigger]);
 
   useEffect(() => {
     if (!localSearchText) {
-      setDisplayedItems(apiData.items);
+      const startIndex = (apiParams.pageIndex - 1) * apiParams.pageSize;
+      const endIndex = startIndex + apiParams.pageSize;
+      setDisplayedItems(apiData.items.slice(startIndex, endIndex));
     } else {
       const lowerCaseSearchText = localSearchText.toLowerCase();
       const filtered = apiData.items.filter(
@@ -119,9 +115,11 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           item.username.toLowerCase().includes(lowerCaseSearchText) ||
           item.transId.toString().toLowerCase().includes(lowerCaseSearchText)
       );
-      setDisplayedItems(filtered);
+      const startIndex = (apiParams.pageIndex - 1) * apiParams.pageSize;
+      const endIndex = startIndex + apiParams.pageSize;
+      setDisplayedItems(filtered.slice(startIndex, endIndex));
     }
-  }, [apiData.items, localSearchText]);
+  }, [apiData.items, localSearchText, apiParams.pageIndex, apiParams.pageSize]);
 
   const handleDateRangeChange = (dates: [string, string]) => {
     setApiParams((prev) => ({ ...prev, dateRange: dates, pageIndex: 1 }));
@@ -193,6 +191,8 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
       <div className="table-section">
         <DataGrid
           items={displayedItems}
+          pageIndex={apiParams.pageIndex}
+          pageSize={apiParams.pageSize}
           isLoading={loading}
           onRefreshNeeded={handleRefresh}
           columnFilter={columnFilter}

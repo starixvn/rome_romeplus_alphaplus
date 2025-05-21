@@ -13,6 +13,8 @@ import {
 
 interface DataGridProps {
   items: TransactionItem[];
+  pageIndex: number;
+  pageSize: number;
   isLoading: boolean;
   onRefreshNeeded?: () => void;
   columnFilter?: string[];
@@ -41,6 +43,8 @@ const formatDateTime = (dateTimeStr: string): { date: string; time: string } => 
 
 const DataGrid: React.FC<DataGridProps> = ({
   items,
+  pageIndex,
+  pageSize,
   isLoading,
   onRefreshNeeded,
   columnFilter = ['All'],
@@ -118,7 +122,7 @@ const DataGrid: React.FC<DataGridProps> = ({
               items.map((item, index) => (
                 <tr key={item.transId}>
                   <td className="w-[32px] min-w-[32px] sticky left-0 bg-[#ffffff] z-10">
-                    {index + 1}
+                    {index + 1 + (pageIndex - 1) * pageSize}
                   </td>
                   <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[#ffffff] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
                     {item.username}
