@@ -34,8 +34,7 @@ export interface TransactionsHistoryParams {
   transactionType: number;
 }
 
-export interface PaymentInformation
-{
+export interface PaymentInformation {
   paymentFrom: string;
   paymentTo: string;
 }

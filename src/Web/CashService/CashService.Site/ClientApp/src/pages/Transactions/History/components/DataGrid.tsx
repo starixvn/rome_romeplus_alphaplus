@@ -125,7 +125,8 @@ const DataGrid: React.FC<DataGridProps> = ({
                     {index + 1 + (pageIndex - 1) * pageSize}
                   </td>
                   <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[#ffffff] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
-                    {item.username}
+                    <div>{item.username}</div>
+                    <div>{item.nickname}</div>
                   </td>
                   {shouldShowColumn(t('table.name')) && (
                     <td>

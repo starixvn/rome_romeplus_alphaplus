@@ -32,6 +32,7 @@ const ColumnFilter: React.FC<ColumnFilterProps> = ({ column, onColumnChange }) =
 
   const handleChange = (values: string[]) => {
     setSelectedColumns(values);
+    onColumnChange(values);
   };
 
   const handleMenuClose = () => {

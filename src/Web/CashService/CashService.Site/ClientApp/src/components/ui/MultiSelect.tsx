@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useMemo, useCallback, useRef, useEffect } from 'react';
 import Select, { MultiValue, ActionMeta, StylesConfig, components } from 'react-select';
 import { CheckboxOption } from './Multiselect/CheckboxOption';
 import { CustomValueContainer } from './Multiselect/CustomValueContainer';
@@ -36,6 +36,24 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
   styles,
   onMenuClose,
 }) => {
+  const selectRef = useRef<any>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      const menuElement = document.querySelector('.react-select__menu');
+      const selectElement = document.querySelector('.react-select__control');
+      if (!menuElement?.contains(target) && !selectElement?.contains(target)) {
+        // selectRef.current?.select?.onMenuClose();
+        // onMenuClose?.();
+        // const currentValues = selectRef.current?.select?.getValue() || [];
+        // onChange(currentValues.map((option: any) => option.value));
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+  }, [onMenuClose, onChange]);
+
   const componentOptions = useMemo(() => {
     return isCheckAll ? [allOption, ...options] : options;
   }, [options, isCheckAll]);
@@ -182,6 +200,8 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
       ...base,
       cursor: 'pointer',
       padding: '0px 4px',
+      position: 'relative',
+      bottom: '3px',
       '& svg': {
         width: '16px',
         height: '16px',
@@ -191,6 +211,8 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
       ...base,
       cursor: 'pointer',
       padding: '0px 4px',
+      position: 'relative',
+      bottom: '3px',
       '& svg': {
         width: '16px',
         height: '16px',
@@ -207,6 +229,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 
   return (
     <Select<OptionType, true>
+      ref={selectRef}
       isMulti
       options={componentOptions}
       value={currentValue}
@@ -218,11 +241,54 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
       className={`react-select-container ${className || ''}`}
       classNamePrefix="react-select"
       components={{
-        Option: CheckboxOption,
+        Option: (props) => (
+          <CheckboxOption
+            {...props}
+            innerProps={{
+              ...props.innerProps,
+              onClick: (e) => {
+                e.stopPropagation();
+                const newSelected = props.isSelected
+                  ? props.getValue().filter((option: any) => option.value !== props.data.value)
+                  : [...props.getValue(), props.data];
+                handleChange(newSelected, {
+                  action: props.isSelected ? 'deselect-option' : 'select-option',
+                  option: props.data,
+                });
+              },
+            }}
+          />
+        ),
         ValueContainer: CustomValueContainer,
         MultiValue: () => null,
-        IndicatorSeparator: () => null,
-        Control: (props) => <components.Control {...props} />,
+        ClearIndicator: () => null,
+        DropdownIndicator: (props) => (
+          <components.DropdownIndicator
+            {...props}
+            innerProps={{
+              ...props.innerProps,
+              onClick: (e) => {
+                e.stopPropagation();
+                e.preventDefault();
+              },
+            }}
+          />
+        ),
+        Control: (props) => (
+          <components.Control
+            {...props}
+            innerProps={{
+              ...props.innerProps,
+              onClick: (e) => {
+                if (!props.selectProps.menuIsOpen) {
+                  props.selectProps.onMenuOpen();
+                } else {
+                  props.selectProps.onMenuClose();
+                }
+              },
+            }}
+          />
+        ),
       }}
       styles={combinedStyles}
       isOptionDisabled={(option) => !!option.disabled}

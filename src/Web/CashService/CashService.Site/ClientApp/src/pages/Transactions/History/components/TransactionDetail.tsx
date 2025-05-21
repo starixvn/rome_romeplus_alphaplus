@@ -146,7 +146,6 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
             <div className="mb-4">
               <div className="text-sm text-gray-600">{t('detail.from')}</div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded-full bg-green-500"></div>
                 <span className="font-medium">{renderBankAccount(detailData.paymentFrom)}</span>
               </div>
             </div>
@@ -167,7 +166,6 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
             <div className="mb-4">
               <div className="text-sm text-gray-600">{t('detail.to')}</div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded-full bg-green-500"></div>
                 <span className="font-medium">{renderBankAccount(detailData.paymentTo)}</span>
               </div>
             </div>
