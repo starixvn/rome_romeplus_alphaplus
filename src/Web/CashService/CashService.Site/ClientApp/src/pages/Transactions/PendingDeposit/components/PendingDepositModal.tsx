@@ -4,6 +4,9 @@ import { TransactionItem } from '../../../../services/interfaces/Transactions/Tr
 import { IconClose } from '../../../../components/Icons';
 import { ButtonApplyComponent, ButtonCancelComponent } from '../../../../components/ButtonComponents';
 import { renderBankAccount, displayAmount } from '../../../../common/commonFunctions';
+import pendingDepositAPI from '../../../../services/pendingDepositAPI';
+import { ApproveRejectDepositModel } from '../../../../services/interfaces/ApproveRejectDepositModel.ts';
+import { ResultMessageComponent } from '../../../../components/MessageComponents.tsx';
 
 interface PendingDepositModalProps {
   deposit: TransactionItem | null;
@@ -17,34 +20,68 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
   const [remarks, setRemarks] = useState('');
   const [depositAmount, setDepositAmount] = useState(deposit?.amount.toString());
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [resultMessage, setResultMessage] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
   const getParams = () => {
-    const params = {
-      custId: deposit?.custId ? deposit.custId : 0,
-      paymentFrom: deposit?.paymentFrom ? deposit.paymentFrom : '',
-      paymentTo: deposit?.paymentTo ? deposit.paymentTo : '',
+    const params: ApproveRejectDepositModel = {
+      transId: deposit?.transId ? deposit.transId : 0,
       amount: depositAmount === '' ? 0 : Number(depositAmount),
       remark: remarks,
-      image: null,
     }
     return params;
   };
 
-  const handleReject = async () => {
-    const params = getParams();
-
-    console.log('params', params);
-
-    setIsSubmitting(true);
-  };
-
   const handleApprove = async () => {
     const params = getParams();
-
-    console.log('params', params);
-
     setIsSubmitting(true);
+
+    try {
+      const response = await pendingDepositAPI.approveDeposit(params);
+      if (response.isSuccessful) {
+        setResultMessage({
+          type: 'success',
+          message: 'Deposit request approved successfully'
+        });
+        setTimeout(() => {
+          onClose(true);
+        }, 3000);
+      } else {
+        setIsSubmitting(false);
+        setResultMessage({
+          type: 'error',
+          message: 'Failed to approve deposit request'
+        });
+      }
+    } catch (error) {
+      console.error('Error processing deposit:', error);
+    }
   };
+
+  const handleReject = async () => {
+    const params = getParams();
+    setIsSubmitting(true);
+
+    try {
+      const response = await pendingDepositAPI.rejectDeposit(params);
+      if (response.isSuccessful) {
+        setResultMessage({
+          type: 'success',
+          message: 'Deposit request rejected successfully'
+        });
+        setTimeout(() => {
+          onClose(true);
+        }, 3000);
+      } else {
+        setIsSubmitting(false);
+        setResultMessage({
+          type: 'error',
+          message: 'Failed to reject deposit request'
+        });
+      }
+    } catch (error) {
+      console.error('Error processing deposit:', error);
+    }
+  };  
 
   const handleSetDepositAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.validity.valid) {
@@ -67,7 +104,13 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
               <IconClose />
             </button>
         </div>
-
+        {resultMessage && (
+          <ResultMessageComponent
+            type={resultMessage.type}
+            message={resultMessage.message}
+            className="mb-4"
+          />
+        )}
         <div className="modal-body">
           <div className="border border-[#333333] rounded mb-[8px] p-[8px]">
             <table className="w-full">

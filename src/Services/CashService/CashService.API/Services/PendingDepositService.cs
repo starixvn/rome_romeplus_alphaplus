@@ -1,5 +1,9 @@
+using AlphaPlus.CashService.API.Models.Transactions;
+
 namespace AlphaPlus.CashService.API.Services;
 
+using AlphaPlus.CashService.API.Criteria.Transactions;
+using System.Numerics;
 using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Services;
 using Criteria.PendingDeposit;
@@ -15,6 +19,8 @@ public interface IPendingDepositService
     Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int custId, int custDbGroupId);
 
     Task<ResultModel> AddManualDepositAsync(CreateManualModel param);
+
+    Task<ResultModel> ProcessDepositAsync(ProcessTransactionModel param);
 }
 
 public class PendingDepositService(IDynamicRepository dynamicRepository,
@@ -113,5 +119,19 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
                 throw;
             }
         });
+    }
+
+    public async Task<ResultModel> ProcessDepositAsync(ProcessTransactionModel param)
+    {
+        var command = new ProcessDepositCommand
+        {
+            TransId = BigInteger.Parse(param.TransId),
+            Amount = param.Amount,
+            Remark = param.Remark,
+            StatusId = param.StatusId
+        };
+        await dynamicRepository.ExecuteAsync(command);
+        var result = new ResultModel(command.ErrCode, command.ErrMsg);
+        return result;
     }
 }

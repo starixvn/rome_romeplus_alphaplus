@@ -1,4 +1,6 @@
+using AlphaPlus.CashService.API.Enum;
 using AlphaPlus.CashService.API.Models.PendingCommons;
+using AlphaPlus.CashService.API.Models.Transactions;
 using AlphaPlus.CashService.API.Services;
 using Newtonsoft.Json;
 
@@ -62,6 +64,32 @@ public static class PendingDepositEndpoints
         {
             Summary = "Create manual deposit",
             Description = "Adding manual deposit transaction on Agency site"
+        });
+
+        group.MapPost("/approve", async ([FromBody] ProcessTransactionModel model, IPendingDepositService service) =>
+        {
+            model.StatusId = (int)TransactionStatus.Completed;
+            var result = await service.ProcessDepositAsync(model);
+            return Results.Ok(result);
+        })
+        .WithName("ProcessDepositAsync")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Approve deposit (completed)",
+            Description = "Approve deposit transaction"
+        });
+
+        group.MapPost("/reject", async ([FromBody] ProcessTransactionModel model, IPendingDepositService service) =>
+        {
+            model.StatusId = (int)TransactionStatus.Rejected;
+            var result = await service.ProcessDepositAsync(model);
+            return Results.Ok(result);
+        })
+        .WithName("ProcessDepositAsync")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Reject deposit",
+            Description = "Reject deposit transaction"
         });
     }
 }

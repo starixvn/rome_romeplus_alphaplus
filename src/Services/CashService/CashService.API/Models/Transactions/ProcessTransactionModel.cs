@@ -2,9 +2,15 @@
 
 public class ProcessTransactionModel
 {
-    public string TransactionId { get; set; }
+    public string TransId { get; set; }
+
+    public decimal Amount { get; set; }
+
     public string PaymentFrom { get; set; }
+
     public string Remark { get; set; }
+
     public byte[] Payslip { get; set; }
+
     public int StatusId { get; set; }
 }

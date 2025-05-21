@@ -77,18 +77,27 @@ public class TransactionsController(
 
     public async Task<IActionResult> AddManualDeposit([FromForm] AddTransactionParams request)
     {
-        var result = VerifyInputParam(request, false);
-        if (result.Code != 0)
+        try
         {
+            var result = VerifyInputParam(request, false);
+            if (result.Code != 0)
+            {
+                return Json(result);
+            }
+            request.UplineId = agentId;
+            request.Ip = GetClientIp();
+            request.SiteDbGroupId = siteDbGroupId;
+            request.CustDbGroupId = custDbGroupId;
+            request.PaySlip = request.Image != null ? await FileHelper.CompressAndConvertToBase64Async(request.Image) : null;
+            result = await httpClientHelper.PostAsync<AddTransactionParams, ResultModel>("/api/deposit/create", request);
             return Json(result);
         }
-        request.UplineId = agentId;
-        request.Ip = GetClientIp();
-        request.SiteDbGroupId = siteDbGroupId;
-        request.CustDbGroupId = custDbGroupId;
-        request.PaySlip = request.Image != null ? await FileHelper.CompressAndConvertToBase64Async(request.Image) : null;
-        result = await httpClientHelper.PostAsync<AddTransactionParams, ResultModel>("/api/deposit/create", request);
-        return Json(result);
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error add manual deposit");
+            return StatusCode(StatusCodes.Status500InternalServerError,
+                new { Code = StatusCodes.Status500InternalServerError, Message = "An unexpected error occurred" });
+        }
     }
 
     [HttpPost]
@@ -210,6 +219,38 @@ public class TransactionsController(
         catch (Exception ex)
         {
             logger.LogError(ex, "Error reverting transaction");
+            return StatusCode(StatusCodes.Status500InternalServerError,
+                new { Code = StatusCodes.Status500InternalServerError, Message = "An unexpected error occurred" });
+        }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> ApproveDeposit([FromBody] ProcessTransactionModel request)
+    {
+        try
+        {
+            var result = await httpClientHelper.PostAsync<ProcessTransactionModel, ResultModel>("/deposit/approve", request);
+            return Json(result);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error approve deposit");
+            return StatusCode(StatusCodes.Status500InternalServerError,
+                new { Code = StatusCodes.Status500InternalServerError, Message = "An unexpected error occurred" });
+        }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> RejectDeposit([FromBody] ProcessTransactionModel request)
+    {
+        try
+        {
+            var result = await httpClientHelper.PostAsync<ProcessTransactionModel, ResultModel>("/deposit/reject", request);
+            return Json(result);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error reject deposit");
             return StatusCode(StatusCodes.Status500InternalServerError,
                 new { Code = StatusCodes.Status500InternalServerError, Message = "An unexpected error occurred" });
         }

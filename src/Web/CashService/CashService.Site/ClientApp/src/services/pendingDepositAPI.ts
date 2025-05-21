@@ -3,6 +3,7 @@ import { DepositAccountInfo } from './interfaces/DepositAccountInfo';
 import { CreditAmount } from './interfaces/Transactions/CreditAmount';
 import { ResultModel } from './interfaces/ResultModel';
 import { AddDepositManualModel } from './interfaces/AddDepositManualModel';
+import { ApproveRejectDepositModel } from './interfaces/ApproveRejectDepositModel';
 
 export const pendingDepositAPI = {
   getMemberBankAccounts: async (): Promise<DepositAccountInfo[]> => {
@@ -47,6 +48,26 @@ export const pendingDepositAPI = {
     } catch (error) {
       console.error('Error creating manual deposit:', error);
       return { code: 1, isSuccessful: false, message: 'Error add manual deposit' };
+    }
+  },
+
+  approveDeposit: async (approveRejectModel: ApproveRejectDepositModel): Promise<ResultModel> => {
+    try {
+      const response = await api.post<ResultModel>('ApproveDeposit', approveRejectModel);
+      return response.data;
+    } catch (error) {
+      console.error('Error approving deposit:', error);
+      return { code: 1, isSuccessful: false, message: 'Error approving deposit' };
+    }
+  },
+
+  rejectDeposit: async (approveRejectModel: ApproveRejectDepositModel): Promise<ResultModel> => {
+    try {
+      const response = await api.post<ResultModel>('RejectDeposit', approveRejectModel);
+      return response.data;
+    } catch (error) {
+      console.error('Error rejecting deposit:', error);
+      return { code: 1, isSuccessful: false, message: 'Error rejecting deposit' };
     }
   }
 };

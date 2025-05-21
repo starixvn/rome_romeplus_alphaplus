@@ -106,7 +106,7 @@ public class PendingWithdrawalService(
     {
         var command = new ProcessTransactionCommand
         {
-            TransId = BigInteger.Parse(param.TransactionId),
+            TransId = BigInteger.Parse(param.TransId),
             PaymentFrom = param.PaymentFrom,
             Remark = param.Remark,
             StatusId = param.StatusId,
