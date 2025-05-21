@@ -16,7 +16,7 @@ interface ContactErrors {
 export const Contact = (props: ContactProps) => {
   const { t } = useTranslation('memberSite');
   const { contact, index } = props;
-  const { register, formState: { errors }, setValue, watch } = useFormContext();
+  const { register, formState: { errors }, setValue } = useFormContext();
   const getValidationRules = (contact: ContactType) => {
     const rules: any = {
       required: contact.isRequired ? t('validation.required') : false,

@@ -38,14 +38,6 @@ const MessageForm: React.FC<MessageFormProps> = ({loading}) => {
     return <MessageFormSkeleton />
   }
 
-  const handleContactChange = (contact: Partial<Contact>) => {
-    const currentContacts = watch('contacts');
-    const newContacts = currentContacts.map((c: Contact) =>
-      c.type === contact.type ? { ...c, value: contact.value || '' } : c
-    );
-    setValue('contacts', newContacts, { shouldDirty: true });
-  }
-
   const handleMobilePhoneChange = (data: Partial<MobilePhone>) => {
     setValue('mobilePhone', { ...watch('mobilePhone'), ...data }, { shouldDirty: true });
   }
