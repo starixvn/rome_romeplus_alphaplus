@@ -88,11 +88,6 @@
     "Url": "http://10.40.40.248:7034/api/OneRngInternal/GetBetHistoryUrl",
     "Debug": 0
   },
-  "VoidbridgeResultConfigs": {
-    "Url": "http://10.40.40.248:8066/api/VoidBridgeInternal/GetBetHistoryUrl",
-    "VendorId": 12,
-    "Debug": 0
-  },
   "PPResultConfigs": {
     "Url": "http://10.40.40.248:7065/api/PragmaticPlayInternal/GetBetHistoryUrl",
     "VendorId": 32,

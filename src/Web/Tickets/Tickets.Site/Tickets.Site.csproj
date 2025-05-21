@@ -38,7 +38,7 @@
     <PackageReference Include="Fanex.BetList.Bitcoin" Version="2.0.0.1" />
     <PackageReference Include="Fanex.BetList.CardClub" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.CG" Version="2.0.0" />
-    <PackageReference Include="Fanex.BetList.Core" Version="3.0.5.2" />
+    <PackageReference Include="Fanex.BetList.Core" Version="3.0.5.3" />
     <PackageReference Include="Fanex.BetList.Core.RemotingRef" Version="2.0.0.2" />
     <PackageReference Include="Fanex.BetList.ESports" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.FACHAI" Version="1.0.0.1" />
@@ -55,7 +55,7 @@
     <PackageReference Include="Fanex.BetList.KenoLottery" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.LeapGaming" Version="2.0.0.1" />
     <PackageReference Include="Fanex.BetList.Live22" Version="1.0.0.1" />
-    <PackageReference Include="Fanex.BetList.LiveCasinoCore" Version="1.0.0.9-wcasino-02" />
+    <PackageReference Include="Fanex.BetList.LiveCasinoCore" Version="1.0.0.9-wcasino-04" />
     <PackageReference Include="Fanex.BetList.MaxGame" Version="2.0.0.2" />
     <PackageReference Include="Fanex.BetList.MetricGaming" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.MGRNGCasino" Version="2.0.0" />
@@ -106,7 +106,7 @@
     <PackageReference Include="Fanex.Result.Core.SabaClub" Version="2.0.1-upgrade-01" />
     <PackageReference Include="Fanex.Result.Core.SAGaming" Version="3.0.0-upgrade-01" />
     <PackageReference Include="Fanex.Result.Core.SportsLottery" Version="2.0.0-beta-02" />
-    <PackageReference Include="Fanex.Result.Core.ThirdPartyResult" Version="2.0.1-upgrade-04" />
+    <PackageReference Include="Fanex.Result.Core.ThirdPartyResult" Version="2.0.1.1" />
     <PackageReference Include="Fanex.Result.Core.VirtualRacing" Version="2.0.0.1" />
     <PackageReference Include="Fanex.Result.Core.WCasino" Version="1.0.0.1-wcasino-03" />
     <PackageReference Include="Fanex.Result.Core.WM" Version="3.0.0-upgrade-01" />
