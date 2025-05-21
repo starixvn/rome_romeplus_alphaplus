@@ -49,7 +49,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
         setIsSubmitting(false);
         setResultMessage({
           type: 'error',
-          message: 'Failed to approve deposit request'
+          message: response.message || 'Failed to approve deposit request'
         });
       }
     } catch (error) {

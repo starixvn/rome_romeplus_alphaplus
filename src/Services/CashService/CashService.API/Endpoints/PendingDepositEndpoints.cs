@@ -72,7 +72,7 @@ public static class PendingDepositEndpoints
             var result = await service.ProcessDepositAsync(model);
             return Results.Ok(result);
         })
-        .WithName("ProcessDepositAsync")
+        .WithName("ProcessApproveDepositAsync")
         .WithOpenApi(operation => new(operation)
         {
             Summary = "Approve deposit (completed)",
@@ -85,7 +85,7 @@ public static class PendingDepositEndpoints
             var result = await service.ProcessDepositAsync(model);
             return Results.Ok(result);
         })
-        .WithName("ProcessDepositAsync")
+        .WithName("ProcessRejectDepositAsync")
         .WithOpenApi(operation => new(operation)
         {
             Summary = "Reject deposit",
