@@ -47,7 +47,6 @@ const MobiCode = (props: MobiCodeProps) => {
                     mobilePhoneErrors?.code ? 'border-[#E25757]' : ''
                 }`}
                 maxLength={PHONE_CODE_MAX_LENGTH}
-                autoFocus
             />
         </div>
     );
