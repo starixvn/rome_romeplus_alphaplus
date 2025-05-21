@@ -35,5 +35,6 @@
   "view": "View",
   "addSuccess": "Add successfully",
   "addFailed": "Add failed",
-  "updating": "Updating..."
+  "updating": "Updating...",
+  "maxLength": "Max length is {0}"
 }

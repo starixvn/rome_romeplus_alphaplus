@@ -34,5 +34,6 @@
   "view": "表示",
   "addSuccess": "追加に成功しました",
   "addFailed": "追加に失敗しました",
-  "updating": "更新中..."
+  "updating": "更新中...",
+  "maxLength": "最大長は{0}です"
 } 

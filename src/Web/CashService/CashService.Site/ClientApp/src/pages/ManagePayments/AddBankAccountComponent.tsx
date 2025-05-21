@@ -359,9 +359,8 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                       type="text"
                       className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountHolderName ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
                       value={accountHolderName}
-                      onChange={(e) => setAccountHolderName(e.target.value)}
-                      onKeyDown={ensureNameInput}
-                      maxLength={100}
+                      onChange={(e) => setAccountHolderName(ensureNameInput(e).target.value)}
+                      maxLength={255}
                     />
                     <ValidateMessageComponent message={fieldErrors.accountHolderName} />
                     <label className="block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold">{tManagePayments('provideFullName')}</label>
@@ -378,6 +377,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                       
                     />
                     <ValidateMessageComponent message={fieldErrors.accountNumber} />
+                    <label className="block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold">{tGlobal('maxLength').replace('{0}', '100')}</label>
                   </div>
 
                   <div className='w-[230px] pt-[4px] max-[768px]:w-[48%]'>

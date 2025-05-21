@@ -34,5 +34,6 @@
   "view": "游览",
   "addSuccess": "添加成功",
   "addFailed": "添加失败",
-  "updating": "更新中..."
+  "updating": "更新中...",
+  "maxLength": "最大长度是{0}"
 } 

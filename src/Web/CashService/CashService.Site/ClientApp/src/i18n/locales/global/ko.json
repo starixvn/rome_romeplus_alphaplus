@@ -34,5 +34,6 @@
   "view": "보기",
   "addSuccess": "추가 성공",
   "addFailed": "추가 실패",
-  "updating": "업데이트 중..."
+  "updating": "업데이트 중...",
+  "maxLength": "최대 길이는 {0}입니다"
 } 

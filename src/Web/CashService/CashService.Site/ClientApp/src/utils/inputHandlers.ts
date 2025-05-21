@@ -20,17 +20,14 @@ export const ensureNumericInput = (e: React.ChangeEvent<HTMLInputElement>) => {
   return e;
 };
 
-export const ensureNameInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
-  if (!/^[a-zA-Z.\s-]$/.test(e.key) && 
-      e.key !== 'Delete' && 
-      e.key !== 'Backspace' &&
-      e.key !== 'ArrowLeft' && 
-      e.key !== 'ArrowRight' && 
-      e.key !== 'Control' && 
-      e.key !== 'Shift') {
-    e.preventDefault();
-  }
-}; 
+export const ensureNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  var orgValue = e.target.value;
+  const value = orgValue.replace(/[^a-zA-Z.\s-]/g, '');
+  e.preventDefault();
+  e.target.value = value;
+  return e;
+};
+
 
 export const preventSpecialCharacter = (e: React.KeyboardEvent<HTMLInputElement>) => {
   // Allow letters, numbers, spaces, basic punctuation, and control keys

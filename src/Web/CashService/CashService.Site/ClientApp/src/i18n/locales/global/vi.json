@@ -34,5 +34,6 @@
   "view": "Xem",
   "addSuccess": "Thêm thành công",
   "addFailed": "Thêm thất bại",
-  "updating": "Đang cập nhật..."
+  "updating": "Đang cập nhật...",
+  "maxLength": "Độ dài tối đa là {0}"
 } 

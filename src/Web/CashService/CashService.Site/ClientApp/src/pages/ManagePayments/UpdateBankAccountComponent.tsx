@@ -461,7 +461,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                     className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer read-only:bg-[#f4f4f4] read-only:cursor-not-allowed read-only:focus:border-[#0000003D]"
                     value={accountHolderName}
                     readOnly
-                    maxLength={100}
+                    maxLength={255}
                   />
                   <label className=" block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold">
                     {tManagePayments('provideFullName')}
@@ -480,6 +480,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                     readOnly
                     maxLength={100}
                   />
+                  <label className="block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold">{tGlobal('maxLength').replace('{0}', '100')}</label>
                 </div>
 
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
