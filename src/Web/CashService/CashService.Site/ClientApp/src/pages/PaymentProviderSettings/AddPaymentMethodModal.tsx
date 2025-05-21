@@ -32,7 +32,8 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string>('');
   const [successMessage, setSuccessMessage] = React.useState<string>('');
-  
+  const [isBlockAction, setIsBlockAction] = React.useState<boolean>(false);
+
   // Combined form state
   const [formState, setFormState] = React.useState<PaymentMethodFormState>({
     selectedPaymentMethod: '',
@@ -126,7 +127,8 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
         ? await paymentProviderService.updatePaymentMethod(newSetting) 
         : await paymentProviderService.addPaymentMethod(newSetting);
       
-      if (response.isSuccessful) {
+      if (response.isSuccessful) { 
+        setIsBlockAction(true);
         setSuccessMessage(isUpdate ? tGlobal('updateSuccess') : tGlobal('addSuccess'));
         setTimeout(() => { onClose(); onSuccess(); }, 3000);
       } else {
@@ -276,7 +278,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
             </div>
           <div className='flex justify-center gap-[8px]'>
             <ButtonCancel text={tGlobal('cancel')} onClick={onClose} />
-            <ButtonApply text={tGlobal('save')} onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent)} disabled={isLoading || allMethodsInactive} />
+            <ButtonApply text={tGlobal('save')} onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent)} disabled={isLoading || allMethodsInactive || isBlockAction} />
           </div>
         </form>
       </div>

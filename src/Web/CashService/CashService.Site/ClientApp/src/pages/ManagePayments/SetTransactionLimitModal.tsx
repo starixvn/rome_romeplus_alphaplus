@@ -36,6 +36,8 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [loading, setLoading] = useState(false);
+  const [isBlockAction, setIsBlockAction] = useState<boolean>(false);
+
   const [formState, setFormState] = useState<FormState>({
     minDeposit: '',
     maxDeposit: '',
@@ -166,7 +168,8 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
         maxPerWithdrawalTransaction: parseFloat(formState.maxWithdrawal) || 0
       });
 
-      if (result.isSuccessful) {
+      if (result.isSuccessful) {  
+        setIsBlockAction(true);
         setSuccessMessage(tManagePayments('transactionLimitUpdated'));
         setTimeout(() => {
           onSave();
@@ -300,7 +303,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
             </div>
             <div className="flex justify-center gap-[8px]">    
               <ButtonCancel text={tGlobal('cancel')} onClick={onClose}  />   
-              <ButtonApply text={loading ? tGlobal('saving') : tGlobal('save')} onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent)} disabled={loading} />
+              <ButtonApply text={loading ? tGlobal('saving') : tGlobal('save')} onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent)} disabled={loading || isBlockAction} />
             </div>
           </form>
         </div>

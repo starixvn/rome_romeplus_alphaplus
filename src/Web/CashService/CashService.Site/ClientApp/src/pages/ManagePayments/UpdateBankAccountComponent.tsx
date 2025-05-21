@@ -65,6 +65,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   const [banks, setBanks] = useState<Bank[]>([]);
   const [countryCode, setCountryCode] = useState<string>('');
   const [mobile, setMobile] = useState<string>('');
+  const [isBlockAction, setIsBlockAction] = useState<boolean>(false);
+
   const [formState, setFormState] = useState<FormState>({
     accountNickname: bankAccount.accountNickname,
     accountHolderName: bankAccount.accountHolderName,
@@ -273,6 +275,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
       });
 
       if (result.isSuccessful) {
+        setIsBlockAction(true);
         window.scrollTo({ top: 0, behavior: 'smooth' });
         setSuccessMessage(result.message || tManagePayments('bankAccountUpdatedSuccessfully'));
         setTimeout(() => {
@@ -622,7 +625,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
             </div>
             <div className="flex justify-start py-[8px] mt-[8px] gap-[8px]">              
               <ButtonCancel text={tGlobal('cancel')} onClick={onClose}  />
-              <ButtonApply text={loading ? tGlobal('saving') : tGlobal('save')} onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent)} disabled={loading} />
+              <ButtonApply text={loading ? tGlobal('saving') : tGlobal('save')} onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent)} disabled={loading || isBlockAction} />
             </div>
           </form>
         </div>

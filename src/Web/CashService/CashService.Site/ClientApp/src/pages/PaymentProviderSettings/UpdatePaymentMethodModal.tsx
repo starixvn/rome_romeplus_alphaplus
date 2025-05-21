@@ -38,17 +38,37 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string>('');
   const [successMessage, setSuccessMessage] = React.useState<string>('');
-  
+  const [isBlockAction, setIsBlockAction] = React.useState<boolean>(false);
+
   // Combined form state
   const [formState, setFormState] = React.useState<PaymentMethodFormState>({
     selectedPaymentMethod: existingPaymentMethod.method.toString(),
     selectedTransactionType: existingPaymentMethod.transactionType.toString(),
-    apiKey: existingPaymentMethod.apiMethodKey || '',
-    merchantID: existingPaymentMethod.merchantID || '',
-    appSecret: existingPaymentMethod.appSecret || '',
+    apiKey: '',
+    merchantID: '',
+    appSecret: '',
     agreeToTerms: true,
     telegramAssistantUrl: orgTelegramAssistantUrl
   });
+
+  const hasFormChanged = (): boolean => {
+    const fieldsToCompare: (keyof PaymentMethodFormState)[] = [
+      'selectedPaymentMethod',
+      'selectedTransactionType'
+    ];
+
+    return fieldsToCompare.some(field => formState[field] !== orgFormState[field]);
+  };
+
+  const orgFormState: PaymentMethodFormState = {
+    selectedPaymentMethod: existingPaymentMethod.method.toString(),
+    selectedTransactionType: existingPaymentMethod.transactionType.toString(),
+    apiKey: '',
+    merchantID: '',
+    appSecret: '',
+    agreeToTerms: true,
+    telegramAssistantUrl: orgTelegramAssistantUrl
+  };
 
   const [paymentMethods, setPaymentMethods] = React.useState<PaymentMethod[]>([]);
   const [allMethodsInactive, setAllMethodsInactive] = React.useState<boolean>(false);
@@ -94,6 +114,12 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
     setError('');
     setSuccessMessage('');
 
+    if(!hasFormChanged()) {
+      setError(tGlobal('thereNoChangeToUpdate'));
+      setIsLoading(false);
+      return;
+    }
+
     // Field-level validation
     const errors: typeof fieldErrors = {
       selectedTransactionType: !formState.selectedTransactionType ? tGlobal('pleaseFillField') : '',
@@ -128,6 +154,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
       const response = await paymentProviderService.updatePaymentMethod(updatedSetting);
       
       if (response.isSuccessful) {
+        setIsBlockAction(true);
         setSuccessMessage(tGlobal('updateSuccess'));
         setTimeout(() => { onClose(); onSuccess(); }, 3000);
       } else {
@@ -279,7 +306,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
             </div>
             <div className='flex justify-center gap-[8px]'>
             <ButtonCancel text={tPaymentProviderSettings('setUpLater')} onClick={onClose} />
-            <ButtonApply text={isLoading ? tGlobal('loading') : tGlobal('update')} onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent)} disabled={isLoading || allMethodsInactive} />
+            <ButtonApply text={isLoading ? tGlobal('loading') : tGlobal('update')} onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent)} disabled={isLoading || allMethodsInactive || isBlockAction} />
           </div>
         </form>
       </div>

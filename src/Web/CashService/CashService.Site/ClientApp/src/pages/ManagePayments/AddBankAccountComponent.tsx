@@ -47,6 +47,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
   const [banks, setBanks] = useState<Bank[]>([]);
   const [selectedBankObj, setSelectedBankObj] = useState<Bank | undefined>(undefined);
   const [isLoadingBanks, setIsLoadingBanks] = useState<boolean>(true);
+  const [isBlockAction, setIsBlockAction] = useState<boolean>(false);
   
   // Add state variables for selected transaction types
   const [selectedManualDeposit, setSelectedManualDeposit] = useState<boolean>(true);
@@ -176,6 +177,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
       });
 
       if (result.isSuccessful) {
+        setIsBlockAction(true);
         setSuccessMessage(result.message || tManagePayments('bankAccountAdded'));
         setTimeout(() => {
           onSave();
@@ -430,7 +432,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
               </div>
               <div className="flex justify-start py-[8px] mt-[8px] gap-[8px]"> 
                 <ButtonCancel text={tGlobal('cancel')} onClick={onClose}  />
-                <ButtonApply text={loading ? tGlobal('saving') : tGlobal('save')} onClick={() =>handleSubmit} disabled={loading} />
+                <ButtonApply text={loading ? tGlobal('saving') : tGlobal('save')} onClick={() =>handleSubmit} disabled={loading||isBlockAction} />
               </div>
             </form>
           )}

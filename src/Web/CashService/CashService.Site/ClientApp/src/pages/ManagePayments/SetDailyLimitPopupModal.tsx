@@ -19,6 +19,7 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
   const [error, setError] = React.useState<string>('');
   const [successMessage, setSuccessMessage] = React.useState<string>('');
   const [orgDailyLimit, setOrgDailyLimit] = React.useState<number>(0);
+  const [isBlockAction, setIsBlockAction] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     const loadDailyWithdrawalCount = async () => {
@@ -55,11 +56,12 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
     try {
       const response = await paymentProviderService.setDailyWithdrawalCount(dailyLimit);
       if (response.isSuccessful) {
+        setIsBlockAction(true);
         setSuccessMessage(t('managePayments:setLimitSuccess'));
         onSave(dailyLimit);
         setTimeout(() => {
           onClose();
-        },3000);
+        }, 3000);
       } else {
         setError(response.message);
       }
@@ -104,7 +106,7 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
           </div>
           <div className="flex justify-center gap-[8px]">         
             <ButtonCancel className="w-[140px] [&>*]:w-[100%]" text={t('global:cancel')} onClick={onClose}  />
-            <ButtonApply className='w-[140px] [&>*]:w-[100%]' text={isLoading ? t('global:loading') : t('global:save')}   disabled={isLoading}/>          
+            <ButtonApply className='w-[140px] [&>*]:w-[100%]' text={isLoading ? t('global:loading') : t('global:save')}   disabled={isLoading || isBlockAction}/>          
           </div>
         </form>
       </div>
