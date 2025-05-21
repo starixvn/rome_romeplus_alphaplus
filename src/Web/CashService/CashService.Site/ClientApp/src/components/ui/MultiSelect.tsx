@@ -1,7 +1,7 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import Select, { MultiValue, ActionMeta, StylesConfig, components } from 'react-select';
-import { CheckboxOption } from './CheckboxOption';
-import { CustomValueContainer } from './CustomValueContainer';
+import { CheckboxOption } from './Multiselect/CheckboxOption';
+import { CustomValueContainer } from './Multiselect/CustomValueContainer';
 
 interface OptionType {
   value: string;
@@ -36,8 +36,6 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
   styles,
   onMenuClose,
 }) => {
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
-
   const componentOptions = useMemo(() => {
     return isCheckAll ? [allOption, ...options] : options;
   }, [options, isCheckAll]);
@@ -219,29 +217,16 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
       hideSelectedOptions={false}
       className={`react-select-container ${className || ''}`}
       classNamePrefix="react-select"
-      menuIsOpen={menuIsOpen}
-      onMenuOpen={() => setMenuIsOpen(true)}
-      onMenuClose={() => {
-        setMenuIsOpen(false);
-        onMenuClose?.();
-      }}
       components={{
         Option: CheckboxOption,
         ValueContainer: CustomValueContainer,
         MultiValue: () => null,
         IndicatorSeparator: () => null,
-        Control: (props) => (
-          <components.Control
-            {...props}
-            innerProps={{
-              ...props.innerProps,
-              onClick: () => setMenuIsOpen(!menuIsOpen),
-            }}
-          />
-        ),
+        Control: (props) => <components.Control {...props} />,
       }}
       styles={combinedStyles}
       isOptionDisabled={(option) => !!option.disabled}
+      onMenuClose={onMenuClose}
     />
   );
 };

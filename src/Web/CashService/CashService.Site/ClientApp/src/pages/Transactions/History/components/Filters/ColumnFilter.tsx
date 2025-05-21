@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import CustomMultiSelect from '../../../../../components/ui/Multiselect/MultiSelect';
+import CustomMultiSelect from '../../../../../components/ui/MultiSelect';
 
 interface ColumnFilterProps {
   column: string[];
