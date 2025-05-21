@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import {
   TransactionItem,
@@ -54,22 +54,24 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
   const [localSearchText, setLocalSearchText] = useState('');
   const [displayedItems, setDisplayedItems] = useState<TransactionItem[]>([]);
   const [paymentInformations, setPaymentInformations] = useState<string[]>([]);
-
-  useEffect(() => {
-    setApiParams((prev) => ({
-      ...prev,
-      transactionType: transactionType,
-      pageIndex: 1,
-    }));
-  }, [transactionType]);
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
     const fetchData = async () => {
+      // Skip the first render in development mode
+      if (isFirstRender.current) {
+        isFirstRender.current = false;
+        return;
+      }
+
       try {
         setLoading(true);
         const paramsForApi: TransactionsHistoryParams = {
           ...apiParams,
           searchText: '',
+          transactionType: transactionType,
+          pageIndex: 1,
+          pageSize: PAGE_SIZE_OPTIONS[0]
         };
         const response = await transactionAPI.getTransactions(paramsForApi);
         setApiData(response);
@@ -107,12 +109,12 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
 
     fetchData();
   }, [
-        apiParams.transactionType,
-        apiParams.dateRange,
-        apiParams.account,
-        apiParams.status,
-        columnFilter
-      ]);
+    transactionType,
+    apiParams.dateRange,
+    apiParams.account,
+    apiParams.status,
+    columnFilter  
+  ]);
 
   useEffect(() => {
     const startIndex = (apiParams.pageIndex - 1) * apiParams.pageSize;
