@@ -21,6 +21,8 @@
     "loginName": "ログイン名",
     "firstName": "名",
     "lastName": "姓",
+    "nickname": "ニックネーム",
+    "firstLastName": "名&姓",
     "amount": "金額",
     "currency": "通貨",
     "from": "から",

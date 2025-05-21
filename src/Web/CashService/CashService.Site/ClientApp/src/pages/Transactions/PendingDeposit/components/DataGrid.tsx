@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
-import { displayAmount, renderBankAccount, formatDateTime } from '../../../../common/commonFunctions';
+import { displayAmount, renderBankAccount, formatDateTime, CurrentCurrency } from '../../../../common/commonFunctions';
 import { ButtonFullComponent } from '../../../../components/ButtonComponents';
 import NoRecordFound from '../../../../components/Table/NoRecordFound';
 
@@ -30,13 +30,13 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits, onProcessClick }) => {
                 scope="col"
                 className="w-[150px] min-w-[150px] sticky left-[32px] bg-[#ffffff] z-11 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]"
               >
-                {t('dataGrid.username')}
+                <div>{t('dataGrid.username')}</div>
+                <div>{t('dataGrid.nickname')}</div>
               </th>
               <th scope="col">
-                <div>{t('dataGrid.firstName')}</div> <div>{t('dataGrid.lastName')}</div>
+                <div>{t('dataGrid.firstLastName')}</div>
               </th>
-              <th scope="col">{t('dataGrid.amount')}</th>
-              <th scope="col">{t('dataGrid.currency')}</th>
+              <th scope="col">{t('dataGrid.amount')} ({CurrentCurrency})</th>
               <th scope="col">{t('dataGrid.from')}</th>
               <th scope="col">{t('dataGrid.to')}</th>
               <th scope="col">{t('dataGrid.referenceNo')}</th>
@@ -52,14 +52,14 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits, onProcessClick }) => {
                     {index + 1}
                   </td>
                   <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[#ffffff] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
-                    {deposit.username}
+                    <div>{deposit.username}</div>
+                    <div>{deposit.nickname}</div>
                   </td>
                   <td>
                     <div>{deposit.firstName}</div>
                     <div>{deposit.lastName}</div>
                   </td>
                   <td>{displayAmount(deposit.amount)}</td>
-                  <td>{deposit.currency}</td>
                   <td>{renderBankAccount(deposit.paymentFrom)}</td>
                   <td>{renderBankAccount(deposit.paymentTo)}</td>
                   <td>{deposit.transId}</td>

@@ -2,6 +2,7 @@ export interface TransactionItem {
   transId: number;
   custId: number;
   username: string;
+  nickname: string;
   firstName: string;
   lastName: string;
   amount: number;

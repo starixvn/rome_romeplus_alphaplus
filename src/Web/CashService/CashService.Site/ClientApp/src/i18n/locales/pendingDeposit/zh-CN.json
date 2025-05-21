@@ -21,6 +21,8 @@
     "loginName": "登录名",
     "firstName": "名字",
     "lastName": "姓氏",
+    "nickname": "昵称",
+    "firstLastName": "名字&姓氏",
     "amount": "金额",
     "currency": "货币",
     "from": "来自",

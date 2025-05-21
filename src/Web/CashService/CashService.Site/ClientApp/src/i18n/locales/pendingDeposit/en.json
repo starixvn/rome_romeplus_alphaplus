@@ -21,6 +21,8 @@
     "loginName": "Login Name",
     "firstName": "First Name",
     "lastName": "Last Name",
+    "nickname": "Nickname",
+    "firstLastName": "First & Last Name",
     "amount": "Amount",
     "currency": "Currency",
     "from": "From",

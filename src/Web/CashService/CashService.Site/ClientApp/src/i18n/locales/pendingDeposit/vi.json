@@ -21,6 +21,8 @@
     "loginName": "Tên đăng nhập",
     "firstName": "Tên",
     "lastName": "Họ",
+    "nickname": "Tên biệt danh",
+    "firstLastName": "Tên & Họ",
     "amount": "Số tiền",
     "currency": "Tiền tệ",
     "from": "Từ",
