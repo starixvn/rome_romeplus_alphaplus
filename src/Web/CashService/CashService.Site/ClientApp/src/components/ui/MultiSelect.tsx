@@ -208,7 +208,10 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
   }, [isOpen, onMenuClose]);
 
   const handleMenuOpen = () => {
-    setIsOpen(true);
+    setIsOpen(!isOpen);
+    if (isOpen) {
+      handleMenuClose();
+    }
   };
 
   const handleMenuClose = () => {
@@ -307,6 +310,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
       ...base,
       minHeight: '32px',
       maxHeight: '32px',
+      cursor: 'pointer',
       '@media (max-width: 768px)': {
         minHeight: '40px',
         maxHeight: '40px',
@@ -315,10 +319,21 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
     menu: (base) => ({
       ...base,
       zIndex: 100,
+      marginTop: '0',
     }),
     valueContainer: (base) => ({
       ...base,
       padding: '0 8px',
+      cursor: 'pointer',
+    }),
+    dropdownIndicator: (base) => ({
+      ...base,
+      cursor: 'pointer',
+      position: 'relative',
+      right: '0',
+      bottom: '3',
+      left: '5',
+      color: '#2b2323',
     }),
     input: (base) => ({
       ...base,
@@ -345,6 +360,17 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
         ValueContainer: CustomValueContainer,
         MultiValue: () => null,
         IndicatorSeparator: () => null,
+        Control: (props) => (
+          <components.Control
+            {...props}
+            innerProps={{
+              ...props.innerProps,
+              onClick: () => {
+                handleMenuOpen();
+              },
+            }}
+          />
+        ),
       }}
       styles={combinedStyles}
       isOptionDisabled={(option) => !!option.disabled}

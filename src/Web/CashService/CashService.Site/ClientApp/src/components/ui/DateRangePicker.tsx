@@ -123,7 +123,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
     <div className={`relative ${className || ''}`} ref={ref}>
       <input
         readOnly
-        className="appearance-none block w-full bg-white border border-gray-300 px-3 py-1.5 pr-8 rounded text-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm h-[32px] max-[768px]:h-[40px] cursor-pointer"
+        className="appearance-none block w-full bg-white border border-gray-300 px-3 py-1.5 pr-8 rounded text-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 h-[32px] max-[768px]:h-[40px] cursor-pointer"
         value={formatRange(value) || 'Select date range'}
         onClick={() => setOpen((v) => !v)}
       />
