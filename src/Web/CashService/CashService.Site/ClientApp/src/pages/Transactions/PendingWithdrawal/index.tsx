@@ -22,6 +22,7 @@ const PendingWithdrawal: React.FC = () => {
   const { t } = useTranslation('pendingWithdrawal');
   useCookieLanguage(i18n);
   const [recentWithdrawals, setRecentWithdrawals] = useState<string>('All');
+  const [uniquePaymentToOptions, setUniquePaymentToOptions] = useState<string[]>([]);
   const [cashAgentTo, setCashAgentTo] = useState<string>('');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [withdrawals, setWithdrawals] = useState<TransactionsHistoryResponse>({
@@ -31,6 +32,14 @@ const PendingWithdrawal: React.FC = () => {
   const [showManualAddWithdrawalForm, setShowManualAddWithdrawalForm] = useState<boolean>(false);
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const filterPaymentTo = (withdrawals: TransactionsHistoryResponse | null) => {
+    if (!withdrawals || !withdrawals.items) {
+      return [];
+    }
+    const uniquePaymentToOptions = [...new Set(withdrawals.items.map(withdrawal => withdrawal.paymentTo))];
+    return uniquePaymentToOptions;
+  };
 
   const calculateDateRange = (): [string, string] => {
     const today = new Date();
@@ -63,6 +72,7 @@ const PendingWithdrawal: React.FC = () => {
         transactionType: TransactionType.Withdrawal,
       };
       const withdrawalsResponse = await transactionAPI.getTransactions(params);
+      setUniquePaymentToOptions(filterPaymentTo(withdrawalsResponse));
       setWithdrawals(withdrawalsResponse);
     } catch (error) {
       console.error('Error fetching withdrawals:', error);
@@ -95,8 +105,12 @@ const PendingWithdrawal: React.FC = () => {
   }, [searchTerm]);
 
   const filteredWithdrawals = useMemo(() => {
-    let result = [...withdrawals.items];
-    if (cashAgentTo !== '') {
+    if (!cashAgentTo && !debouncedSearchTerm.trim()) {
+      return withdrawals?.items || [];
+    }
+
+    let result = withdrawals?.items || [];
+    if (cashAgentTo) {
       result = result.filter((withdrawal) => withdrawal.paymentTo.toString() === cashAgentTo);
     }
 
@@ -130,8 +144,9 @@ const PendingWithdrawal: React.FC = () => {
           <Filter
             recentWithdrawals={recentWithdrawals}
             setRecentWithdrawals={setRecentWithdrawals}
-            toFilter={cashAgentTo}
+            uniquePaymentToOptions={uniquePaymentToOptions}
             setToFilter={setCashAgentTo}
+            toFilter={cashAgentTo}
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
           />
