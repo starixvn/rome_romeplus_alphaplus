@@ -21,7 +21,9 @@ export default defineConfig({
       reporter: ['text', 'json'],
       exclude: [
         '**/*.test.{ts,tsx}',
+        'src/i18n/**',
         'src/services/interfaces/**',
+        'src/constants/**'        
       ],
       include: [
         'src/**/*.{ts,tsx}'    // Only include TypeScript and TSX files in src

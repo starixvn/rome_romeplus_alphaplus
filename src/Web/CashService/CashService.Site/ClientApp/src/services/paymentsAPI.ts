@@ -1,4 +1,6 @@
 import { api } from '../config/axios';
+import { ResultModel } from './interfaces/ResultModel';
+import { TransactionType } from './interfaces/TransactionType';
 import { 
   PaymentProvider,
   PaymentProviderFeeGroup,
@@ -8,8 +10,6 @@ import {
   PaymentTransactionLimit,
   AddPaymentMethodViewModel
 } from './interfaces/Payments';
-import { ResultModel } from './interfaces/ResultModel';
-import { TransactionType } from './interfaces/TransactionType';
 
 // API service for payment providers
 export const paymentProviderService = {

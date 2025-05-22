@@ -1,3 +1,3 @@
-export * from './memberSiteConstant';
+export * from './memberSiteConstants';
 export * from './paymentConstants';
 
