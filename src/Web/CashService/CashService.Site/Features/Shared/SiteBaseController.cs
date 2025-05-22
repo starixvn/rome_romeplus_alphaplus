@@ -1,6 +1,5 @@
 using AlphaPlus.Core;
 using AlphaPlus.Core.Models;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.CashService.Site.Features.Shared
@@ -8,27 +7,37 @@ namespace AlphaPlus.CashService.Site.Features.Shared
     public class SiteBaseController : BaseController
     {
         private const string InvalidPageViewPath = "~/Features/Shared/Views/Invalid.cshtml";
-        protected readonly IMediator mediator;
+        protected readonly IUserSession _userSession;
 
-        protected SiteBaseController(IMediator mediator)
+        protected SiteBaseController(IUserSession userSession)
         {
-            this.mediator = mediator;
+            _userSession = userSession;
         }
 
-        protected async Task<ActionResult> View<TResponse>(IRequest<TResponse> message)
-            => (message as QueryBase).IsValid()
-                ? View(await mediator.Send(message))
+        protected ActionResult View<TResponse>(TResponse response)
+            => IsValidSession()
+                ? View(response)
                 : View(InvalidPageViewPath);
 
-        protected async Task<ActionResult> View<TResponse>(IRequest<TResponse> message, string viewName)
-            => (message as QueryBase).IsValid()
-                ? View(viewName, await mediator.Send(message))
+        protected ActionResult View<TResponse>(TResponse response, string viewName)
+            => IsValidSession()
+                ? View(viewName, response)
                 : View(InvalidPageViewPath);
 
-
-        protected async Task<ActionResult> Json<TResponse>(IRequest<TResponse> message)
-            => (message as QueryBase).IsValid() ?
-                Json(await mediator.Send(message)) :
+        protected ActionResult Json<TResponse>(TResponse response)
+            => IsValidSession() ?
+                Json(response) :
                 Json(Result.CreateErrorResult("You are not authorized on this function.", StatusCodes.Status403Forbidden));
+
+        public bool IsValidSession()
+        {
+            if(_userSession.CustId <= 0)
+            {
+                return false;
+            }
+
+            return AppSettings.IsOfferedCashService(_userSession.Site) 
+                && (!_userSession.IsSubAcc || _userSession.SubPageAccess.GetPermission(PageAccessType.CreateAccount));
+        }
     }
 }

@@ -1,25 +1,24 @@
 using AlphaPlus.CashService.Site.Features.Payments.Models;
 using AlphaPlus.CashService.Site.Features.Payments.Requests;
 using AlphaPlus.CashService.Site.Features.Payments.ViewModels;
+using AlphaPlus.CashService.Site.Features.Shared;
 using AlphaPlus.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.CashService.Site.Features.Payments
 {
-    public class PaymentsController : Controller
+    public class PaymentsController : SiteBaseController
     {
         private readonly string _apiBaseUrl;
         private readonly HttpClient _httpClient;
-        private readonly IUserSession _userSession;
 
         public PaymentsController(
             IConfiguration configuration,
             HttpClient httpClient,
-            IUserSession userSession)
+            IUserSession userSession) : base(userSession)
         {
             _apiBaseUrl = configuration["CashServiceAPIUrl"];
             _httpClient = httpClient;
-            _userSession = userSession;
         }
 
         private int _custId => _userSession.CustId;
