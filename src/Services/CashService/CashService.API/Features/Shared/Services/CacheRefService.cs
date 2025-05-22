@@ -26,6 +26,7 @@ public class CacheRefService(IRemotingRefService remotingRefService) : ICacheRef
 
     public string GetBankName(int bankId, string defaultName) {
         var result = GetResourceDataByRefIdAndResourceId("CashBankList", bankId);
+        Console.WriteLine("GetBankName: " + result + " " + bankId + " " + defaultName);
         return string.IsNullOrWhiteSpace(result) ? defaultName : result;
     }
 

@@ -131,7 +131,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
 
         public async Task<IActionResult> GetBanksByTransactionType(int transactionType, CancellationToken cancellationToken)
         {
-            var url = $"{_apiBaseUrl}/payments/banks?custId={_custId}&transactionType={transactionType}";
+            var url = $"{_apiBaseUrl}/payments/banks?site={_userSession.SiteName}&transactionType={transactionType}";
             var banks = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
             return Json(banks);
         }
