@@ -89,6 +89,8 @@ public class AddBankAccountCriteriaTests
         request.AccountNumber = accountNumber;
         request.AccountNickname = accountNickname;
         request.PromptPay = promptPay;
+        request.CountryCode = "";
+        request.Mobile = "";
 
         var criteria = new AddBankAccountCriteria(request);
 

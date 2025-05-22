@@ -37,8 +37,6 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
         public override bool IsValid() {
             var isValid = base.IsValid() && 
             Id > 0 &&
-            Regex.IsMatch(CountryCode, @"^\d+$") &&
-            Regex.IsMatch(MobileNumber, @"^\d+$") &&
             AccountNickname.Length <= 255;
 
             if(!isValid || !PromptPay) {

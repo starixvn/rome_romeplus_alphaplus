@@ -75,6 +75,9 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
             request.Id = id;
             request.AccountNickname = accountNickname;
             request.PromptPay = promptPay;
+            request.CountryCode = "";
+            request.Mobile = "";
+
 
             var criteria = new UpdateBankAccountCriteria(request);
 

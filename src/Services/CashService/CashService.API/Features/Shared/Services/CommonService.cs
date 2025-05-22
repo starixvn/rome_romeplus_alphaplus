@@ -69,7 +69,7 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
 
         if(isSuccess)
         {
-            return;
+            // return;
         }
 
         try
