@@ -13,7 +13,6 @@ interface DataGridProps {
 
 const DataGrid: React.FC<DataGridProps> = ({ deposits, onProcessClick }) => {
   const { t } = useTranslation('pendingDeposit');
-
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(100);
   const [paginatedDeposits, setPaginatedDeposits] = useState<TransactionItem[]>([]);
@@ -103,14 +102,18 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits, onProcessClick }) => {
           </tbody>
         </table>
       </div>
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        pageSize={pageSize}
-        totalItems={totalItems}
-        onPageChange={handlePageChange}
-        onPageSizeChange={handlePageSizeChange}
-      />
+      {
+        paginatedDeposits.length > 0 && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            pageSize={pageSize}
+            totalItems={totalItems}
+            onPageChange={handlePageChange}
+            onPageSizeChange={handlePageSizeChange}
+          />
+        )
+      }
     </>
   );
 };

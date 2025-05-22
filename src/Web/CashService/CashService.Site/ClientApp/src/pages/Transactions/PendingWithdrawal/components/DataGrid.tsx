@@ -25,7 +25,6 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(100);
   const [paginatedWithdrawals, setPaginatedWithdrawals] = useState<TransactionItem[]>([]);
-  
   const totalItems = withdrawals.length;
   const totalPages = Math.ceil(totalItems / pageSize);
 
@@ -137,14 +136,18 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
         <PendingWithdrawalModal withdrawal={processingWithdrawal} onClose={handleCloseProcess} />
       )}
 
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        pageSize={pageSize}
-        totalItems={totalItems}
-        onPageChange={handlePageChange}
-        onPageSizeChange={handlePageSizeChange}
-      />
+      {
+        paginatedWithdrawals.length > 0 && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            pageSize={pageSize}
+            totalItems={totalItems}
+            onPageChange={handlePageChange}
+            onPageSizeChange={handlePageSizeChange}
+          />
+        )
+      }
     </>
   );
 };

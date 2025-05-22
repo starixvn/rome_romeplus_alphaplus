@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { IconSearch } from '../../../../components/Icons';
 import CustomDropdown from '../../../../components/CustomDropdownComponent';
 import BankIcon from '../../../../components/BankComponents';
+import { CalendarIcon } from '../../../../components/Icons';
 interface FilterProps {
   recentDeposits: string;
   setRecentDeposits: (value: string) => void;
@@ -33,13 +34,16 @@ const Filter: React.FC<FilterProps> = ({
           <select
             value={recentDeposits}
             onChange={(e) => setRecentDeposits(e.target.value)}
-            className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] bg-[var(--background-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer "
+            className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] bg-[var(--background-control)] rounded-[4px] px-[8px] pr-[32px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer appearance-none"
             style={{ height: '32px' }}
           >
             <option value="All">{t('filter.all')}</option>
             <option value="Last30Mins">{t('filter.last30Mins')}</option>
             <option value="Last60Mins">{t('filter.last60Mins')}</option>
           </select>
+          <span className="absolute right-[8px] top-[50%] transform -translate-y-1/2 pointer-events-none">
+            <CalendarIcon />
+          </span>
         </div>
       </div>
 
