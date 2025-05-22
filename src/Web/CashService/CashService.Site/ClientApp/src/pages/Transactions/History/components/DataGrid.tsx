@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import TransactionDetail from './TransactionDetail';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
-import { NoRecordsIcon } from '../../../../components/Icons';
 import { useTranslation } from 'react-i18next';
 import {
   displayAmount,
