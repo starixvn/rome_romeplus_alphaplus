@@ -497,7 +497,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 
         public async Task<IActionResult> GetBanks(CancellationToken cancellationToken)
         {
-            var url = $"{configuration["CashServiceAPIUrl"]}/payments/banks?transactionType={0}";
+            var url = $"{configuration["CashServiceAPIUrl"]}/payments/banks?site={userSession.Site}&transactionType={0}&languageCode={userSession.Language}";
             var banks = await httpClient.GetFromJsonAsync<BankModel[]>(url, cancellationToken);
             return Json(banks, serializeOptions);
         }
