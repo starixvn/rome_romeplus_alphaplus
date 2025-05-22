@@ -37,5 +37,6 @@
   "updating": "更新中...",
   "maxLength": "最大長は{0}です",
   "thereNoChangeToUpdate": "更新する変更はありません。",
-  "cashService": "キャッシュサービス"
+  "cashService": "キャッシュサービス",
+  "valueMustBeGreaterThanZero": "値は0より大きくなければなりません"
 } 

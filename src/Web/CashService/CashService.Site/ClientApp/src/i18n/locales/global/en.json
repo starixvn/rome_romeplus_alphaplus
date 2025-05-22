@@ -38,5 +38,6 @@
   "updating": "Updating...",
   "maxLength": "Max length is {0}",
   "thereNoChangeToUpdate": "There is no change to update",
-  "cashService": "Cash Service"
+  "cashService": "Cash Service",
+  "valueMustBeGreaterThanZero": "Value must be greater than zero"
 }

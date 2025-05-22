@@ -125,6 +125,44 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
     const maxWithdrawalNum = parseFloat(formState.maxWithdrawal) || 0;
     var hasError = false;
     var errorMessages = [];
+    if(minDepositNum <= 0) {
+      errorMessages.push(tGlobal('valueMustBeGreaterThanZero'));
+      setFieldErrors(prev => ({
+        ...prev,
+        minDeposit: true
+      }));
+
+      hasError = true;
+    }
+
+    if(maxDepositNum <= 0) {
+      errorMessages.push(tGlobal('valueMustBeGreaterThanZero'));
+      setFieldErrors(prev => ({
+        ...prev,
+        maxDeposit: true
+      }));
+
+      hasError = true;
+    }
+    
+    if(minWithdrawalNum <= 0) {
+      errorMessages.push(tGlobal('valueMustBeGreaterThanZero'));
+      setFieldErrors(prev => ({
+        ...prev,
+        minWithdrawal: true
+      }));
+      hasError = true;
+    } 
+
+    if(maxWithdrawalNum <= 0) {
+      errorMessages.push(tGlobal('valueMustBeGreaterThanZero'));
+      setFieldErrors(prev => ({
+        ...prev,
+        maxWithdrawal: true
+      }));
+      hasError = true;
+    }
+
     if (minDepositNum > maxDepositNum) {
       errorMessages.push(tManagePayments('minDepositMustBeLessThanOrEqualMaxDeposit'));
       setFieldErrors(prev => ({
@@ -132,7 +170,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
         minDeposit: true,
         maxDeposit: true
       }));
-      setLoading(false);
+
       hasError = true;
     }
 
@@ -143,7 +181,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
         minWithdrawal: true,
         maxWithdrawal: true
       }));
-      setLoading(false);
+
       hasError = true;
     }
 

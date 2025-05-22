@@ -37,5 +37,6 @@
   "updating": "更新中...",
   "maxLength": "最大長度是{0}",
   "thereNoChangeToUpdate": "沒有任何的變化更新。",
-  "cashService": "現金服務"
+  "cashService": "現金服務",
+  "valueMustBeGreaterThanZero": "值必須大於0"
 } 

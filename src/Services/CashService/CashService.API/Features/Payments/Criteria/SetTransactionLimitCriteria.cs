@@ -24,10 +24,10 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
             => base.IsValid()
                 && DailyWithdrawalCount > 0 
                 && DailyWithdrawalCount <= 32767
-                && MinPerDeposit >= 0 
-                && MaxPerDeposit >= 0
-                && MinPerWithdrawal >= 0 
-                && MaxPerWithdrawal >= 0
+                && MinPerDeposit > 0 
+                && MaxPerDeposit > 0
+                && MinPerWithdrawal > 0 
+                && MaxPerWithdrawal > 0
                 && MinPerDeposit <= MaxPerDeposit
                 && MinPerWithdrawal <= MaxPerWithdrawal;
     }

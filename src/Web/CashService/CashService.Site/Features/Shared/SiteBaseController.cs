@@ -14,17 +14,17 @@ namespace AlphaPlus.CashService.Site.Features.Shared
             _userSession = userSession;
         }
 
-        protected ActionResult View<TResponse>(TResponse response)
+        protected ActionResult SiteView<TResponse>(TResponse response)
             => IsValidSession()
                 ? View(response)
                 : View(InvalidPageViewPath);
 
-        protected ActionResult View<TResponse>(TResponse response, string viewName)
+        protected ActionResult SiteView<TResponse>(TResponse response, string viewName)
             => IsValidSession()
                 ? View(viewName, response)
                 : View(InvalidPageViewPath);
 
-        protected ActionResult Json<TResponse>(TResponse response)
+        protected ActionResult SiteJson<TResponse>(TResponse response)
             => IsValidSession() ?
                 Json(response) :
                 Json(Result.CreateErrorResult("You are not authorized on this function.", StatusCodes.Status403Forbidden));

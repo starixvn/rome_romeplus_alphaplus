@@ -37,5 +37,6 @@
   "updating": "업데이트 중...",
   "maxLength": "최대 길이는 {0}입니다",
   "thereNoChangeToUpdate": "업데이트 할 내용이 없습니다",
-  "cashService": "캐시 서비스"
+  "cashService": "캐시 서비스",
+  "valueMustBeGreaterThanZero": "값은 0보다 크거나 같아야 합니다"
 } 

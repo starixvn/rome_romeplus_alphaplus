@@ -37,5 +37,6 @@
   "updating": "กำลังอัปเดต...",
   "maxLength": "ความยาวสูงสุดคือ {0}",
   "thereNoChangeToUpdate": "ไม่มีการเปลี่ยนแปลงในการอัปเดตนี้",
-  "cashService": "บริการเงินสด"
+  "cashService": "บริการเงินสด",
+  "valueMustBeGreaterThanZero": "ค่าต้องมีค่ามากกว่าศูนย์"
 } 
