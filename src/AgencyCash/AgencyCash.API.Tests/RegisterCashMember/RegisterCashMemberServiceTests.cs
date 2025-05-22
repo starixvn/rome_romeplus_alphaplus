@@ -22,8 +22,8 @@ namespace AgencyCash.API.Tests.RegisterCashMember
             var result = await service.RegisterCashMember(command);
 
             // Assert
-            Assert.Equal(0, result.ErrCode);
-            Assert.Equal("Success", result.ErrMsg);
+            Assert.Equal(0, result.Code);
+            Assert.Equal("Success", result.Message);
         }
 
         //[Fact]

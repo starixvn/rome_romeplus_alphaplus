@@ -1,5 +1,6 @@
 using AgencyCash.API.RegisterCashMember.Requests;
 using AgencyCash.API.RegisterCashMember.Criteria;
+using AgencyCash.API.RegisterCashMember.Responses;
 namespace AgencyCash.API.RegisterCashMember;
 
 public static class RegisterCashMemberEndpoints
@@ -7,7 +8,7 @@ public static class RegisterCashMemberEndpoints
     public static void MapRegisterCashMemberEndpoints(this WebApplication app)
     {
         app.MapPost("/api/cash-member/register", async (RegisterCashMemberRequest request, IRegisterCashMemberService service)
-        => HandleAsync(request, service))
+        => await HandleAsync(request, service))
         .WithName("RegisterCashMember")
         .WithTags("Cash Service");
     }
@@ -26,5 +27,6 @@ public static class RegisterCashMemberEndpoints
             request.FirstName,
             request.LastName,
             request.Mobile)));
+
     }
 }
