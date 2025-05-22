@@ -22,5 +22,5 @@ public class GetLimitAmtWithdrawCriteria : CriteriaBase
 
     public override string GetSettingKey() => $"CustDb_{CustDbGroupId}_Age_CashWithdrawal_LimitAmtSel";
 
-    public override bool IsValid() => CustId > 0 && ProviderId > 0;
+    public override bool IsValid() => CustId > 0;
 }
