@@ -29,72 +29,66 @@ const Filter: React.FC<FilterProps> = ({
     setToFilter(option.value.toString());
   };
 
-  const handleRecentWithdrawalsChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setRecentWithdrawals(e.target.value);
-  };
-
   return (
-    <div className="flex flex-wrap gap-6 mb-6">
-      <div className="w-full md:w-48">
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          {t('filter.recentWithdrawals')}
-        </label>
-        <div className="select-wrapper relative">
-          <select
-            value={recentWithdrawals}
-            onChange={handleRecentWithdrawalsChange}
-            className="appearance-none block w-full bg-white border border-gray-300 px-3 py-1 pr-8 rounded text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm h-8"
-            style={{ height: '32px' }}
-          >
-            <option value="All">{t('filter.all')}</option>
-            <option value="Last30Mins">{t('filter.last30Mins')}</option>
-            <option value="Last60Mins">{t('filter.last60Mins')}</option>
-          </select>
-          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
-            <CalendarIcon className="h-4 w-4" />
+    <>
+      <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
+        <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
+          <label className="block font-semibold text-[#333333] my-[8px]">
+            {t('filter.recentWithdrawals')}
+          </label>
+          <div className="select-wrapper relative">
+            <select
+              value={recentWithdrawals}
+              onChange={(e) => setRecentWithdrawals(e.target.value)}
+              className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] bg-[var(--background-control)] rounded-[4px] px-[8px] pr-[32px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer appearance-none"
+            >
+              <option value="All">{t('filter.all')}</option>
+              <option value="Last30Mins">{t('filter.last30Mins')}</option>
+              <option value="Last60Mins">{t('filter.last60Mins')}</option>
+            </select>
+            <span className="absolute right-[8px] top-[50%] transform -translate-y-1/2 pointer-events-none">
+              <CalendarIcon />
+            </span>
           </div>
         </div>
-      </div>
 
-      <div className="w-full md:w-48">
-        <label className="block text-sm font-medium text-gray-700 mb-1">{t('filter.to')}</label>
-        <DropdownComponent
-          options={uniquePaymentToOptions.map((option) => ({
-            value: option,
-            label: option?.split('_')[1],
-            code: option?.split('_')[0],
-          }))}
-          onSelect={handleProviderSelect}
-          initialValue={toFilter}
-          showOptionAll={true}
-        />
-      </div>
-
-      <div className="w-full md:w-auto ml-auto">
-        <label className="block text-sm font-medium text-gray-700 mb-1 opacity-0">
-          {t('filter.search')}
-        </label>
-        <div className="relative">
-          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-            <svg className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-              <path
-                fillRule="evenodd"
-                d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </div>
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="block w-full rounded-md border border-gray-300 py-1 pl-10 pr-3 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm h-8"
-            style={{ height: '32px' }}
-            placeholder={t('filter.usernamePlaceholder')}
+        <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
+          <label className="block font-semibold text-[#333333] my-[8px]">{t('filter.to')}</label>
+          <DropdownComponent
+            options={uniquePaymentToOptions.map((option) => ({
+              value: option,
+              label: option?.split('_')[1],
+              code: option?.split('_')[0],
+            }))}
+            onSelect={handleProviderSelect}
+            initialValue={toFilter}
+            showOptionAll={true}
           />
         </div>
       </div>
-    </div>
+      <div className="flex mb-[16px]">
+        <div className="w-[250px] ml-auto">
+          <div className="relative">
+            <span className='absolute top-[8px] left-[8px] z-[10] max-[768px]:top-[12px]'>
+              <svg className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                <path
+                  fillRule="evenodd"
+                  d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </span>
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="h-[32px] max-[768px]:h-[40px] w-[100%] pl-[30px] bg-[#ffffff] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] shadow-[0_0_6px_rgba(0,0,0,0.16)]"
+              placeholder={t('filter.usernamePlaceholder')}
+            />
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
