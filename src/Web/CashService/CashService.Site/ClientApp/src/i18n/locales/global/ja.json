@@ -36,5 +36,6 @@
   "addFailed": "追加に失敗しました",
   "updating": "更新中...",
   "maxLength": "最大長は{0}です",
-  "thereNoChangeToUpdate": "更新する変更はありません。"
+  "thereNoChangeToUpdate": "更新する変更はありません。",
+  "cashService": "キャッシュサービス"
 } 

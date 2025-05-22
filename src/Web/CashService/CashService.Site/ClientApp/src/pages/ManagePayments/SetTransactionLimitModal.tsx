@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { IconClose } from '../../components/Icons';
 import { ErrorMessageComponent, SuccessMessageComponent } from '../../components/MessageComponents';
-import { handleNumericInput, handleIntegerInput } from '../../utils/inputHandlers';
+import { ensureIntegerInput, ensureDecimalInput } from '../../utils/inputHandlers';
 import { ButtonApplyComponent, ButtonCancelComponent } from '../../components/ButtonComponents';
 
 interface SetTransactionLimitModalProps {
@@ -24,6 +24,7 @@ interface FormErrors {
   maxDeposit: boolean;
   minWithdrawal: boolean;
   maxWithdrawal: boolean;
+  dailyWithdrawalCount: boolean;
 }
 
 const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
@@ -56,7 +57,8 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
     minDeposit: false,
     maxDeposit: false,
     minWithdrawal: false,
-    maxWithdrawal: false
+    maxWithdrawal: false,
+    dailyWithdrawalCount: false
   });
 
   const hasFormChanged = (): boolean => {
@@ -106,7 +108,8 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
       minDeposit: false,
       maxDeposit: false,
       minWithdrawal: false,
-      maxWithdrawal: false
+      maxWithdrawal: false,
+      dailyWithdrawalCount: false
     });
 
     if (!hasFormChanged()) {
@@ -222,8 +225,8 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                       : 'border-[var(--border-control)] focus:border-[var(--button-border)]'
                   }`}
                   value={formState.minDeposit}
-                  onChange={(e) => handleNumericInput(e.target.value, (value) => handleInputChange('minDeposit', value))}
-                  min="0"
+                  onChange={(e) => handleInputChange('minDeposit', ensureDecimalInput(e).target.value)}
+                  min="0" 
                   step="0.01"
                   required
                   maxLength={12}
@@ -239,7 +242,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                       : 'border-[var(--border-control)] focus:border-[var(--button-border)]'
                   }`}
                   value={formState.maxDeposit}
-                  onChange={(e) => handleNumericInput(e.target.value, (value) => handleInputChange('maxDeposit', value))}
+                  onChange={(e) => handleInputChange('maxDeposit', ensureDecimalInput(e).target.value)}
                   min="0"
                   step="0.01"
                   required
@@ -259,7 +262,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                       : 'border-[var(--border-control)] focus:border-[var(--button-border)]'
                   }`}
                   value={formState.minWithdrawal}
-                  onChange={(e) => handleNumericInput(e.target.value, (value) => handleInputChange('minWithdrawal', value))}
+                  onChange={(e) => handleInputChange('minWithdrawal', ensureDecimalInput(e).target.value)}
                   min="0"
                   step="0.01"
                   required
@@ -276,7 +279,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                       : 'border-[var(--border-control)] focus:border-[var(--button-border)]'
                   }`}
                   value={formState.maxWithdrawal}
-                  onChange={(e) => handleNumericInput(e.target.value, (value) => handleInputChange('maxWithdrawal', value))}
+                  onChange={(e) => handleInputChange('maxWithdrawal', ensureDecimalInput(e).target.value)}
                   min="0"
                   step="0.01"
                   required
@@ -291,7 +294,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   type="text"
                   className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)]"
                   value={formState.dailyWithdrawalCount}
-                  onChange={(e) => handleIntegerInput(e.target.value, (value) => handleInputChange('dailyWithdrawalCount', value))}
+                  onChange={(e) => handleInputChange('dailyWithdrawalCount', ensureIntegerInput(e).target.value)}
                   min="0"
                   maxLength={5}
                   required

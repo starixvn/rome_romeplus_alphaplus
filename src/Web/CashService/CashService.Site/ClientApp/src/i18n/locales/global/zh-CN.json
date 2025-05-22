@@ -36,5 +36,6 @@
   "addFailed": "添加失败",
   "updating": "更新中...",
   "maxLength": "最大长度是{0}",
-  "thereNoChangeToUpdate": "没有任何的变化更新。"
+  "thereNoChangeToUpdate": "没有任何的变化更新。",
+  "cashService": "现金服务"
 } 

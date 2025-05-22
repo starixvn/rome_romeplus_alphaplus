@@ -36,5 +36,6 @@
   "addFailed": "เพิ่มไม่สำเร็จ",
   "updating": "กำลังอัปเดต...",
   "maxLength": "ความยาวสูงสุดคือ {0}",
-  "thereNoChangeToUpdate": "ไม่มีการเปลี่ยนแปลงในการอัปเดตนี้"
+  "thereNoChangeToUpdate": "ไม่มีการเปลี่ยนแปลงในการอัปเดตนี้",
+  "cashService": "บริการเงินสด"
 } 

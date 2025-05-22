@@ -36,5 +36,6 @@
   "addFailed": "Thêm thất bại",
   "updating": "Đang cập nhật...",
   "maxLength": "Độ dài tối đa là {0}",
-  "thereNoChangeToUpdate": "Không có thay đổi để cập nhật"
+  "thereNoChangeToUpdate": "Không có thay đổi để cập nhật",
+  "cashService": "Dịch vụ tiền mặt"
 } 

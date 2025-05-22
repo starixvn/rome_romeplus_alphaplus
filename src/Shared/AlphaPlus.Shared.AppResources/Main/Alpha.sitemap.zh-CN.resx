@@ -450,4 +450,7 @@
   <data name="ManagePayments" xml:space="preserve">
     <value>管理支付</value>
   </data>
+  <data name="cashService" xml:space="preserve">
+    <value>现金服务</value>
+  </data>
 </root>

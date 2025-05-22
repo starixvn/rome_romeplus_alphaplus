@@ -373,4 +373,7 @@
   <data name="SettlementReport" xml:space="preserve">
     <value>精算報告書</value>
   </data>
+  <data name="cashService" xml:space="preserve">
+    <value>キャッシュサービス</value>
+  </data>
 </root>

@@ -4,7 +4,7 @@ import { paymentProviderService } from '../../services/paymentsAPI';
 import { IconClose, } from '../../components/Icons';
 import { ErrorMessageComponent, SuccessMessageComponent } from '../../components/MessageComponents';
 import { ButtonApplyComponent, ButtonCancelComponent } from '../../components/ButtonComponents';
-import { ensureNumericInput } from '../../utils/inputHandlers';
+import { ensureIntegerInput } from '../../utils/inputHandlers';
 
 
 interface SetDailyLimitPopupModalProps {
@@ -98,7 +98,7 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
                 className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)]"
                 id="dailyLimit"
                 value={dailyLimit}
-                onChange={(e) => setDailyLimit(Number(ensureNumericInput(e).target.value))}
+                onChange={(e) => setDailyLimit(Number(ensureIntegerInput(e).target.value))}
                 min="0"
                 required
               />              

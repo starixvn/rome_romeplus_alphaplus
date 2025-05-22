@@ -450,4 +450,7 @@
   <data name="ManagePayments" xml:space="preserve">
     <value>支払い管理</value>
   </data>
+  <data name="cashService" xml:space="preserve">
+    <value>Dịch vụ tiền mặt</value>
+  </data>
 </root>

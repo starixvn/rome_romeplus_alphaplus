@@ -16,7 +16,7 @@ import Loading from '../../components/LoadingComponent';
 import { BackButtonComponent, DisableButtonComponent, EnableButtonComponent, OffButtonComponent, OnButtonComponent } from '../../components/ButtonComponents';
 import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import MobileComponent from '../../components/MobileComponent';
-import { ensureNumericInput, ensureNameInput } from '../../utils/inputHandlers';
+import { ensureIntegerInput, ensureNameInput } from '../../utils/inputHandlers';
 import { ButtonApplyComponent, ButtonCancelComponent } from '../../components/ButtonComponents';
 import TitleComponent from '../../components/TitleComponents';
 
@@ -361,7 +361,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                       type="text"
                       className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountNumber ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
                       value={accountNumber}
-                      onChange={(e) => setAccountNumber(ensureNumericInput(e).target.value)}
+                      onChange={(e) => setAccountNumber(ensureIntegerInput(e).target.value)}
                       maxLength={100}
                       
                     />
