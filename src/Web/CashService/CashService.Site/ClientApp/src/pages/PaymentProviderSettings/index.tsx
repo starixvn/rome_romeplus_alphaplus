@@ -21,7 +21,7 @@ import '../../styles/global.scss';
 import Loading from '../../components/LoadingComponent';
 import { ButtonApply, ButtonCancel, ButtonFull, ButtonOutline } from '../../components/ButtonComponents';
 import { PaymentMethod } from '../../services/interfaces/Payments';
-import BackComponent from '../../components/BackComponent';
+import { BackButtonComponent } from '../../components/ButtonComponents';
 declare global {
   interface Window {
     providerSettingsViewModel: any;
@@ -420,8 +420,8 @@ function PaymentProviderSettings() {
       ) : error ? (<ResultMessageComponent type='error' message={error} />) 
         : (
         <>        
-        <BackComponent onClose={handleBackNavigation} />
-        {updateMessage && (<ResultMessageComponent className='my-[16px] max-[768px]:mx-[16px] max-[768px]:my-0' type={updateMessage.type} message={updateMessage.text} /> )} 
+          <BackButtonComponent onClick={handleBackNavigation} />
+          {updateMessage && (<ResultMessageComponent className='my-[16px] max-[768px]:mx-[16px] max-[768px]:my-0' type={updateMessage.type} message={updateMessage.text} /> )} 
         <div className='bg-[#ffffff] px-[16px] py-[10px] mb-[8px]'>
           <div className="settings-header">
             <h2 className='pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold max-[768px]:text-[20px] '>{window.providerSettingsViewModel.Provider.Name}</h2>

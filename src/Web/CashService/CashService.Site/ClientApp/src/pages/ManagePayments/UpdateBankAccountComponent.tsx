@@ -13,7 +13,7 @@ import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { baseAPI } from '../../services/commonAPI';
 import CustomDropdown, { DropdownOption } from '../../components/CustomDropdownComponent';
 import Loading from '../../components/LoadingComponent';
-import BackComponent from '../../components/BackComponent';
+import { BackButtonComponent } from '../../components/ButtonComponents';
 import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import MobileComponent from '../../components/MobileComponent';
 import { ButtonApply, ButtonCancel } from '../../components/ButtonComponents';
@@ -313,7 +313,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
   return (
     <div tabIndex={-1}>
-      <BackComponent onClose={onClose} />
+      <BackButtonComponent onClick={onClose} />      
       <div className="modal-dialog">
         <div className="modal-content max-w-[1200px]">
           <div className="mb-[8px]">           

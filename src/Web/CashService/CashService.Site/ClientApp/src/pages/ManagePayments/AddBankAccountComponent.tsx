@@ -13,7 +13,7 @@ import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { baseAPI } from '../../services/commonAPI';
 import CustomDropdown, { DropdownOption } from '../../components/CustomDropdownComponent';
 import Loading from '../../components/LoadingComponent';
-import BackComponent from '../../components/BackComponent';
+import { BackButtonComponent } from '../../components/ButtonComponents';
 import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import MobileComponent from '../../components/MobileComponent';
 import { ensureNumericInput, ensureNameInput } from '../../utils/inputHandlers';
@@ -226,7 +226,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
     <div tabIndex={-1}>
       <div className="modal-dialog">
         <div className="modal-content max-w-[1200px]">
-          <BackComponent onClose={onClose} />                     
+          <BackButtonComponent onClick={onClose} />                     
           <TitleComponent title={tManagePayments('bankManagement')} />  
           {isLoadingBanks 
             ? ( <Loading /> ) 
