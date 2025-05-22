@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import CustomDropdown from '../../../../../components/CustomDropdownComponent';
 
 interface StatusFilterProps {
   status: number;
@@ -9,24 +10,25 @@ interface StatusFilterProps {
 const StatusFilter: React.FC<StatusFilterProps> = ({ status, onStatusChange }) => {
   const { t } = useTranslation('transactionHistory');
 
+  const statusOptions = [
+    { value: -1, label: t('filter.all') },
+    { value: 4, label: t('status.completed') },
+    { value: 5, label: t('status.rejected') },
+    { value: 6, label: t('status.providerRejected') },
+    { value: 3, label: t('status.expired') },
+  ];
+
   return (
     <div className="form-group mb-[8px]">
       <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">
         {t('filter.status')}
       </label>
-      <div className="select-wrapper relative">
-        <select
-          value={status}
-          onChange={(e) => onStatusChange(parseInt(e.target.value))}
-          className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
-        >
-          <option value="-1">{t('filter.all')}</option>
-          <option value="4">{t('status.completed')}</option>
-          <option value="5">{t('status.rejected')}</option>
-          <option value="6">{t('status.providerRejected')}</option>
-          <option value="3">{t('status.expired')}</option>
-        </select>
-      </div>
+      <CustomDropdown
+        options={statusOptions}
+        onSelect={(option) => onStatusChange(Number(option.value))}
+        initialValue={status}
+        showOptionAll={false}
+      />
     </div>
   );
 };

@@ -18,7 +18,7 @@ public static class TransactionsEndpoints
                 , [FromQuery] int paymentStatus
                 , [FromQuery] int transactionType
                 , [FromQuery] int siteDbGroupId
-                , [FromQuery] string account    
+                , [FromQuery] string account
                 , ITransactionService service) =>
             {
                 var criteria = new GetAllTransactionsWithPagingCriteria
@@ -56,14 +56,10 @@ public static class TransactionsEndpoints
             Description = "Returns transaction details"
         });
 
-        group.MapPost("/revert-pending", async (ITransactionService service, [FromBody] UpdateTransactionStatusRemarkCommand command) =>
+        group.MapPost("/revert-pending", async (ITransactionService service, [FromBody] RevertTransactionToPendingCommand command) =>
         {
-            command.Status = "Pending";
-            var transaction = await service.UpdateTransactionStatus(command);
-            if (transaction == null)
-                return Results.NotFound();
-
-            return Results.Ok(transaction);
+            var result = await service.RevertTransactionToPending(command);
+            return Results.Ok(result);
         })
         .WithName("RevertTransactionToPending")
         .WithOpenApi(operation => new OpenApiOperation(operation)

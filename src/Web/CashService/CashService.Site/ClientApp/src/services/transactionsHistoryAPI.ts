@@ -59,8 +59,8 @@ export const transactionAPI = {
   revertTransaction: async (transactionId: number, remarks: string): Promise<ResultModel> => {
     try {
       const response = await api.post<ResultModel>('RevertTransactionToPending', {
-        transactionId: transactionId,
-        remarks: remarks,
+        transId: transactionId,
+        remark: remarks,
       });
       return response.data;
     } catch (error) {

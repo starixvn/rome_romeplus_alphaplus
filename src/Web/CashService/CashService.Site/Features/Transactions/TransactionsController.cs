@@ -214,7 +214,10 @@ public class TransactionsController(
     {
         try
         {
-            var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/transactions/revert", request);
+            request.SiteDbGroupId = siteDbGroupId;
+            request.UserId = agentId;
+            request.Ip = GetClientIp();
+            var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/api/transactions/revert-pending", request);
             return Ok(result);
         }
         catch (Exception ex)

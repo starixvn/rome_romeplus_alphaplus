@@ -2,6 +2,9 @@
 
 public class RevertTransaction
 {
-    public int TransactionId { get; set; }
+    public long TransId { get; set; }
     public string Remark { get; set; }
+    public int SiteDbGroupId { get; set; }
+    public int UserId { get; set; }
+    public string Ip { get; set; }
 }

@@ -1,7 +1,7 @@
 import React, { useMemo, useCallback, useRef, useEffect } from 'react';
 import Select, { MultiValue, ActionMeta, StylesConfig, components } from 'react-select';
-import { CheckboxOption } from './Multiselect/CheckboxOption';
-import { CustomValueContainer } from './Multiselect/CustomValueContainer';
+import { CheckboxOption } from './CheckboxOption';
+import { CustomValueContainer } from './CustomValueContainer';
 
 interface OptionType {
   value: string;
@@ -36,18 +36,22 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
   styles,
   onMenuClose,
 }) => {
-  const selectRef = useRef<any>(null);
+  const selectRef = useRef<any>('custom-dropdown-multiple');
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
       const menuElement = document.querySelector('.react-select__menu');
-      const selectElement = document.querySelector('.react-select__control');
-      if (!menuElement?.contains(target) && !selectElement?.contains(target)) {
-        // selectRef.current?.select?.onMenuClose();
-        // onMenuClose?.();
-        // const currentValues = selectRef.current?.select?.getValue() || [];
-        // onChange(currentValues.map((option: any) => option.value));
+      const controlElement = document.querySelector('.react-select__control');
+      const selectElement = selectRef.current?.select?.select?.containerRef;
+      if (
+        !menuElement?.contains(target) &&
+        !controlElement?.contains(target) &&
+        !selectElement?.contains(target)
+      ) {
+        if (selectRef.current.props.menuIsOpen) {
+          selectRef.current.props.onMenuClose();
+        }
       }
     };
 
@@ -279,7 +283,9 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
             {...props}
             innerProps={{
               ...props.innerProps,
-              onClick: () => {
+              onClick: (e) => {
+                e.stopPropagation();
+                e.preventDefault();
                 if (!props.selectProps.menuIsOpen) {
                   props.selectProps.onMenuOpen();
                 } else {

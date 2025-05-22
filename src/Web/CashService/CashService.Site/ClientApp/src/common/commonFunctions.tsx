@@ -63,7 +63,7 @@ export const getStatusStyle = (statusId: number) => {
 };
 
 export const formatDateTime = (dateTimeStr: string) => {
-  if (!dateTimeStr) return 'N/A';
+  if (!dateTimeStr) return '-';
 
   const date = new Date(dateTimeStr);
   const month = (date.getMonth() + 1).toString().padStart(2, '0');

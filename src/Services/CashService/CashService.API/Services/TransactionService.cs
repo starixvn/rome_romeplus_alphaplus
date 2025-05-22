@@ -7,6 +7,7 @@ using AlphaPlus.CashService.API.Features.Shared.Models;
 using Criteria.Transactions;
 using Fanex.Data.Repository;
 using Models.Transactions;
+using Newtonsoft.Json;
 
 public interface ITransactionService
 {
@@ -14,7 +15,7 @@ public interface ITransactionService
 
     Task<TransactionModel> GetTransactionByIdAsync(long transactionId, int custId, int siteDbGroupId);
 
-    Task<ResultModel> UpdateTransactionStatus(UpdateTransactionStatusRemarkCommand command);
+    Task<ResultModel> RevertTransactionToPending(RevertTransactionToPendingCommand command);
 
     Task<IEnumerable<MemberInfo>> GetMembersAsync(int agentId, int custDbGroupId);
 
@@ -47,16 +48,15 @@ public class TransactionService(IDynamicRepository dynamicRepository)
         return transaction;
     }
 
-    public async Task<ResultModel> UpdateTransactionStatus(UpdateTransactionStatusRemarkCommand command)
+    public async Task<ResultModel> RevertTransactionToPending(RevertTransactionToPendingCommand command)
     {
-        var random = new Random();
-        var randomValue = random.Next(2);
-        var errMsg = string.Empty;
-        if (randomValue != 0)
+        await dynamicRepository.ExecuteAsync(command);
+        Console.WriteLine(JsonConvert.SerializeObject(command));
+        return new ResultModel
         {
-            return new ResultModel(1, "Transaction status updated successfully.");
-        }
-        return await Task.FromResult(new ResultModel(randomValue, errMsg));
+            Code = command.ErrCode,
+            Message = command.ErrMsg
+        };
     }
 
     public async Task<IEnumerable<MemberInfo>> GetMembersAsync(int agentId, int custDbGroupId)

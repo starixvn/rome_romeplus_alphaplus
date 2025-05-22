@@ -17,6 +17,7 @@ export interface TransactionItem {
   payslip: string;
   createdTime: string;
   lastUpdatedDate: string;
+  isAllowRevert: boolean;
 }
 
 export interface TransactionsHistoryResponse {

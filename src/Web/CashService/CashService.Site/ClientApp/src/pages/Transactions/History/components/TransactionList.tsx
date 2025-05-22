@@ -101,12 +101,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     };
 
     fetchData();
-  }, [
-    transactionType,
-    apiParams.dateRange,
-    apiParams.account,
-    apiParams.status
-  ]);
+  }, [transactionType, apiParams.dateRange, apiParams.account, apiParams.status]);
 
   useEffect(() => {
     const startIndex = (apiParams.pageIndex - 1) * apiParams.pageSize;
@@ -181,7 +176,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         />
       </div>
 
-      <div className="search-section mb-2 w-full">
+      <div className="search-section w-full">
         <Search
           value={localSearchText}
           onChange={handleLocalSearchChange}
