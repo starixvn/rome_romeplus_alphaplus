@@ -28,19 +28,37 @@ const createAxiosInstance = () => {
   instance.interceptors.response.use(
     (response) => response,
     (error) => {
-      if (error.response) {
-        // Handle specific status codes
-        switch (error.response.status) {
-          case 401:
-            // Handle unauthorized
-            break;
-          case 404:
-            // Handle not found
-            break;
-          case 500:
-            // Handle server error
-            break;
+      try {
+        if (error.response) {
+          // Handle specific status codes
+          switch (error.response.status) {
+            case 401:
+              // Handle unauthorized
+              console.error('Unauthorized access');
+              // Optionally redirect to login page or show a message
+              break;
+            case 404:
+              // Handle not found
+              console.error('Resource not found');
+              // Optionally show a message to the user
+              break;
+            case 500:
+              // Handle server error
+              console.error('Server error');
+              // Optionally show a message to the user
+              break;
+            default:
+              console.error('An error occurred:', error.response.data);
+          }
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.error('No response received:', error.request);
+        } else {
+          // Something happened in setting up the request
+          console.error('Error setting up the request:', error.message);
         }
+      } catch (e) {
+        console.error('Error handling response:', e);
       }
       return Promise.reject(error);
     }

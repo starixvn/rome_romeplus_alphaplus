@@ -1,4 +1,4 @@
-import { axiosInstance as api } from './axios';
+import { axiosInstance } from './axios';
 import { AxiosError } from 'axios';
 import { MemberSiteManagementData, MemberSiteResponse, ResponseResult } from '../services/interfaces/MemberSites';
 // Declare the cashServiceAPIUrl property on the Window interface
@@ -8,93 +8,43 @@ declare global {
   }
 }
 
-interface ErrorResponse {
-  message?: string;
-  [key: string]: any;
+interface Contact {
+  type: string;
+  value: string;
+  isRequired: boolean;
 }
 
 class MemberSitesService {
   private readonly BASE_PATH = 'MemberSiteManagement';
 
-  private handleError(error: AxiosError<ErrorResponse>): never {
-    let message = 'An error occurred';
-
-    if (error.response) {
-      // Server responded with error
-      message = error.response.data?.message || `Error: ${error.response.status}`;
-    } else if (error.request) {
-      // Request made but no response
-      message = 'No response from server';
-    } else {
-      // Request setup error
-      message = error.message;
+  private parseContacts(contacts: string): Contact[] {
+    try {
+      const jsonContacts = JSON.parse(contacts);
+      if (Array.isArray(jsonContacts) && jsonContacts.length > 0) {
+        return jsonContacts.map(contact => ({
+          type: contact.type,
+          value: contact.value,
+          isRequired: contact.type === 'line' ? true : contact.isRequired
+        }));
+      }
+    } catch (error) {
+      console.error('Error parsing contacts:', error);
     }
-
-    console.error('API Error:', message);
-    throw new Error(message);
+    return [];
   }
 
-  async getMemberSiteData(): Promise<MemberSiteManagementData> {
-    try {
-      const { data } = await api.get<MemberSiteResponse>(this.BASE_PATH);
-      const mobile = data.mobile ? data.mobile.split('-') : ['', ''];
-      let mappingContacts: { type: string; value: string, isRequired: boolean }[] =[]
-      // [{type: 'line', value: '', isRequired: true},{type: 'tele', value: '', isRequired: true}];
-      if (typeof data.contacts === 'string') {
-        try {
-          const jsonContacts = JSON.parse(data.contacts);
-          if (Array.isArray(jsonContacts) && jsonContacts.length > 0) {
-            mappingContacts = jsonContacts.map(contact => ({
-            type: contact.type,
-            value: contact.value,
-            isRequired: contact.type === 'line' ? true : contact.isRequired
-            }));
-          }
-        } catch (error) {
-          console.error('Error parsing contacts:', error);
-        }
-      }
-      const memberSiteManagementData: MemberSiteManagementData = {
-        domains: data.domains,
-        generalSettings: data.generalSettings,
-        mobilePhone: {
-          code: mobile[0] == '' ? data.countryCodes[0] : mobile[0],
-          phone: mobile[1]
-        },
-        contacts: mappingContacts,
-        announcement: data.announcement,
-        countryCodes: data.countryCodes
-      };
-      return memberSiteManagementData;
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        // Return default data for specific error cases
-        if (error.response?.status === 404) {
-          return this.getDefaultMemberSiteData();
-        }
-        this.handleError(error);
-      }
-      throw error;
-    }
-  }
-
-  async updateMemberSiteData(data: Partial<MemberSiteResponse>): Promise<ResponseResult> {
-    try {
-      const { data: responseData } = await api.put<ResponseResult>(
-        this.BASE_PATH,
-        data
-      );
-      return responseData;
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        this.handleError(error);
-      }
-      throw error;
-    }
+  private parseMobilePhone(mobile: string | undefined, countryCodes: string[]): { code: string; phone: string } {
+    if (!mobile) return { code: countryCodes[0] || '', phone: '' };
+    
+    const [code, phone] = mobile.split('-');
+    return {
+      code: code || countryCodes[0] || '',
+      phone: phone || ''
+    };
   }
 
   private getDefaultMemberSiteData(): MemberSiteManagementData {
-    const defualtMemberSiteData: MemberSiteManagementData = {
+    return {
       domains: [],
       generalSettings: [],
       announcement: '',
@@ -105,10 +55,45 @@ class MemberSitesService {
       contacts: [],
       countryCodes: []
     };
-    return defualtMemberSiteData;
+  }
+
+  async getMemberSiteData(): Promise<MemberSiteManagementData> {
+    try {
+      const { data } = await axiosInstance.get<MemberSiteResponse>(this.BASE_PATH);
+      
+      const mobilePhone = this.parseMobilePhone(data.mobile, data.countryCodes);
+      const contacts = typeof data.contacts === 'string' 
+        ? this.parseContacts(data.contacts)
+        : [];
+
+      return {
+        domains: data.domains,
+        generalSettings: data.generalSettings,
+        mobilePhone,
+        contacts,
+        announcement: data.announcement,
+        countryCodes: data.countryCodes
+      };
+    } catch (error) {
+      if (error instanceof AxiosError && error.response?.status === 404) {
+        return this.getDefaultMemberSiteData();
+      }
+      throw error;
+    }
+  }
+
+  async updateMemberSiteData(data: Partial<MemberSiteResponse>): Promise<ResponseResult> {
+    try {
+      const { data: responseData } = await axiosInstance.put<ResponseResult>(
+        this.BASE_PATH,
+        data
+      );
+      return responseData;
+    } catch (error) {
+      console.error('Error updating member site data:', error);
+      throw error;
+    }
   }
 }
 
 export const memberSitesService = new MemberSitesService();
-
-export default api; 

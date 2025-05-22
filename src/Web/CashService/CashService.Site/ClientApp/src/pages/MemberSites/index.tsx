@@ -80,8 +80,12 @@
           generalSettings: formData.generalSettings,
         }
         const response = await memberSitesService.updateMemberSiteData(requestData);
-
+        
         showResult(response.isSuccessful ? 'success' : 'error', response.isSuccessful ? t('messages.updateSuccess') : response.message);
+        
+        if (response.isSuccessful) {
+          reset(formData);
+        }
 
       } catch (err) {
         showResult('error', t('errors.updateFailed'));
