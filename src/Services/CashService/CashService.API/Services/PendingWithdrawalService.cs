@@ -45,7 +45,8 @@ public class PendingWithdrawalService(
             CustId = param.CustId,
             ProviderId = param.ProviderId,
             UplineId = param.UplineId,
-            CustDbGroupId = param.CustDbGroupId
+            CustDbGroupId = param.CustDbGroupId,
+            CashBalance = param.CashBalance
         };
         await dynamicRepository.GetAsync<CreditAmount>(criteria);
         return new CreditAmount

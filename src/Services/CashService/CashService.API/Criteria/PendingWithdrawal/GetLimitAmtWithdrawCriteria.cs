@@ -12,6 +12,8 @@ public class GetLimitAmtWithdrawCriteria : CriteriaBase
 
     public int UplineId { get; set; }
 
+    public decimal CashBalance { get; set; }
+
     [SpParam(Ignored = true)]
     public int CustDbGroupId { get; set; }
 
