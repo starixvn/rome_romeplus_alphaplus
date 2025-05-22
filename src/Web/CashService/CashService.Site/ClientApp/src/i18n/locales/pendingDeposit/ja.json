@@ -55,7 +55,8 @@
     "remarksPlaceholder": "ここに備考を追加...",
     "approve": "承認",
     "reject": "拒否",
-    "close": "閉じる"
+    "close": "閉じる",
+    "firstLastName": "名/姓"
   },
   
   "manualDepositForm": {
@@ -74,25 +75,10 @@
     "viewFullSize": "フルサイズで表示",
     "removeImage": "画像を削除",
     "cancel": "キャンセル",
-    "approve": "承認"
+    "approve": "承認",
+    "approving": "承認中..."
   },
   
-  "updateDeposit": {
-    "title": "入金を更新",
-    "approveDeposit": "入金を承認",
-    "rejectDeposit": "入金を拒否",
-    "confirmTitle": "アクションの確認",
-    "confirmApproveMessage": "この入金を承認してもよろしいですか？",
-    "confirmRejectMessage": "この入金を拒否してもよろしいですか？",
-    "confirmCancel": "キャンセル",
-    "confirmYes": "はい、続行します",
-    "depositDetails": "入金詳細",
-    "memberInfo": "メンバー情報",
-    "transactionDetails": "取引詳細",
-    "depositApproved": "入金が正常に承認されました",
-    "depositRejected": "入金が正常に拒否されました"
-  },
-
   "status": {
     "pending": "保留中",
     "approved": "承認済み",

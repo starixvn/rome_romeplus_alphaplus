@@ -121,7 +121,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
               <span className="text-red-500 absolute">*</span>
               <span className="ml-2 inline-block">
                 <span className="text-blue-900">
-                  (Agent Available Credit:
+                  ({t('manualDepositForm.agentAvailableCredit')}:
                     <span className="text-red-500">
                       {` ${creditAmount.maxAmt}`}
                     </span>

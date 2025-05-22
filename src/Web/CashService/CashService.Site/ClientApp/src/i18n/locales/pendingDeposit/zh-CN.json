@@ -55,7 +55,8 @@
     "remarksPlaceholder": "在此处添加备注...",
     "approve": "批准",
     "reject": "拒绝",
-    "close": "关闭"
+    "close": "关闭",
+    "firstLastName": "名字/姓氏"
   },
   
   "manualDepositForm": {
@@ -74,23 +75,8 @@
     "viewFullSize": "查看全尺寸",
     "removeImage": "删除图片",
     "cancel": "取消",
-    "approve": "批准"
-  },
-  
-  "updateDeposit": {
-    "title": "更新存款",
-    "approveDeposit": "批准存款",
-    "rejectDeposit": "拒绝存款",
-    "confirmTitle": "确认操作",
-    "confirmApproveMessage": "您确定要批准此存款吗？",
-    "confirmRejectMessage": "您确定要拒绝此存款吗？",
-    "confirmCancel": "取消",
-    "confirmYes": "是，继续",
-    "depositDetails": "存款详情",
-    "memberInfo": "会员信息",
-    "transactionDetails": "交易详情",
-    "depositApproved": "存款已成功批准",
-    "depositRejected": "存款已成功拒绝"
+    "approve": "批准",
+    "approving": "批准中..."
   },
 
   "status": {

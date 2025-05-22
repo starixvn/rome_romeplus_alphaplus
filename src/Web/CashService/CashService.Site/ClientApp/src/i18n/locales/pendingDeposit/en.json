@@ -55,7 +55,8 @@
     "remarksPlaceholder": "Add a remark here...",
     "approve": "Approve",
     "reject": "Reject",
-    "close": "Close"
+    "close": "Close",
+    "firstLastName": "First/Last Name"
   },
   
   "manualDepositForm": {
@@ -74,23 +75,8 @@
     "viewFullSize": "View Full Size",
     "removeImage": "Remove image",
     "cancel": "Cancel",
-    "approve": "Approve"
-  },
-  
-  "updateDeposit": {
-    "title": "Update Deposit",
-    "approveDeposit": "Approve Deposit",
-    "rejectDeposit": "Reject Deposit",
-    "confirmTitle": "Confirm Action",
-    "confirmApproveMessage": "Are you sure you want to approve this deposit?",
-    "confirmRejectMessage": "Are you sure you want to reject this deposit?",
-    "confirmCancel": "Cancel",
-    "confirmYes": "Yes, proceed",
-    "depositDetails": "Deposit Details",
-    "memberInfo": "Member Information",
-    "transactionDetails": "Transaction Details",
-    "depositApproved": "Deposit approved successfully",
-    "depositRejected": "Deposit rejected successfully"
+    "approve": "Approve",
+    "approving": "Approving..."
   },
 
   "status": {
@@ -100,18 +86,15 @@
   },
   
   "errorMessages": {
-    "requiredField": "This field is required",
-    "invalidAmount": "Please enter a valid amount",
-    "amountTooSmall": "Amount must be greater than 0",
-    "failedToSubmit": "Failed to submit deposit",
-    "failedToApprove": "Failed to approve deposit",
-    "failedToReject": "Failed to reject deposit"
+    "failedToSubmit": "Failed to submit deposit request",
+    "failedToApprove": "Failed to approve deposit request",
+    "failedToReject": "Failed to reject deposit request"
   },
   
   "successMessages": {
-    "depositSubmitted": "Deposit submitted successfully",
-    "depositUpdated": "Deposit updated successfully",
-    "depositApproved": "Deposit approved successfully",
-    "depositRejected": "Deposit rejected successfully"
+    "depositSubmitted": "Deposit request submitted successfully!",
+    "depositUpdated": "Deposit request updated successfully!",
+    "depositApproved": "Deposit request approved successfully!",
+    "depositRejected": "Deposit request rejected successfully!"
   }
 } 

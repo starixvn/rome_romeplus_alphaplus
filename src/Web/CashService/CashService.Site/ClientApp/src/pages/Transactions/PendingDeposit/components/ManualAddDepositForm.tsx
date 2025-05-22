@@ -105,7 +105,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
       if (response.isSuccessful) {
         setValidationMessage({
           type: 'success',
-          message: 'Deposit request submitted successfully'
+          message: t('successMessages.depositSubmitted')
         });      
         setTimeout(() => {
           onClose(true);
@@ -113,13 +113,13 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
       } else {
         setValidationMessage({
           type: 'error',
-          message: response.message || 'Failed to submit deposit request'
+          message: response.message || t('errorMessages.failedToSubmit')
         });
       }
     } catch (error) {
       setValidationMessage({
         type: 'error',
-        message: 'Failed to submit deposit request'
+        message: t('errorMessages.failedToSubmit')
       });
     } finally {
       setIsSubmitting(false);

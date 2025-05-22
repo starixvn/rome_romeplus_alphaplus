@@ -1,1 +1,100 @@
-{} 
+{
+  "pendingDeposit": "รายการฝากที่รอดำเนินการ",
+  "addManualDeposit": "เพิ่มรายการฝากด้วยตนเอง",
+  
+  "filter": {
+    "recentDeposits": "รายการฝากล่าสุด",
+    "all": "ทั้งหมด",
+    "today": "วันนี้",
+    "yesterday": "เมื่อวาน",
+    "last7Days": "7 วันที่ผ่านมา",
+    "to": "ถึง",
+    "search": "ค้นหา",
+    "usernamePlaceholder": "ชื่อผู้ใช้/เลขอ้างอิง",
+    "last30Mins": "30 นาทีที่ผ่านมา",
+    "last60Mins": "60 นาทีที่ผ่านมา"
+  },
+  
+  "dataGrid": {
+    "member": "สมาชิก",
+    "username": "ชื่อผู้ใช้",
+    "loginName": "ชื่อเข้าสู่ระบบ",
+    "firstName": "ชื่อ",
+    "lastName": "นามสกุล",
+    "nickname": "ชื่อเล่น",
+    "firstLastName": "ชื่อและนามสกุล",
+    "amount": "จำนวนเงิน",
+    "currency": "สกุลเงิน",
+    "from": "จาก",
+    "to": "ถึง",
+    "referenceNo": "เลขอ้างอิง",
+    "dateAndTime": "วันและเวลา",
+    "actions": "การดำเนินการ",
+    "approve": "อนุมัติ",
+    "approving": "กำลังอนุมัติ...",
+    "reject": "ปฏิเสธ",
+    "process": "ดำเนินการ",
+    "viewDetails": "ดูรายละเอียด",
+    "loading": "กำลังโหลดรายการฝากที่รอดำเนินการ...",
+    "noDepositsFound": "ไม่พบรายการฝากที่รอดำเนินการ"
+  },
+  
+  "pendingDepositModal": {
+    "title": "รายการฝากที่รอดำเนินการ",
+    "username": "ชื่อผู้ใช้",
+    "loginName": "ชื่อเข้าสู่ระบบ",
+    "firstName": "ชื่อ",
+    "lastName": "นามสกุล",
+    "name": "ชื่อ/นามสกุล",
+    "betCredit": "เครดิตการเดิมพัน",
+    "from": "จาก",
+    "to": "ถึง",
+    "depositAmount": "จำนวนเงินฝาก",
+    "dateAndTime": "วันและเวลา",
+    "remarks": "หมายเหตุ",
+    "remarksPlaceholder": "เพิ่มหมายเหตุที่นี่...",
+    "approve": "อนุมัติ",
+    "reject": "ปฏิเสธ",
+    "close": "ปิด",
+    "firstLastName": "ชื่อ/นามสกุล"
+  },
+  
+  "manualDepositForm": {
+    "title": "เพิ่มรายการฝากด้วยตนเอง",
+    "accountInformation": "ข้อมูลบัญชี",
+    "memberLoginName": "ชื่อเข้าสู่ระบบของสมาชิก",
+    "from": "จาก",
+    "to": "ถึง",
+    "depositAmount": "จำนวนเงินฝาก",
+    "remarks": "หมายเหตุ",
+    "remarksPlaceholder": "เพิ่มหมายเหตุที่นี่...",
+    "uploadImage": "คลิกเพื่ออัปโหลด",
+    "dragAndDrop": "หรือลากและวาง",
+    "imageFormat": "อัปโหลด jpeg, jpg, png",
+    "maxSize": "ขนาดสูงสุด 1 MB",
+    "viewFullSize": "ดูขนาดเต็ม",
+    "removeImage": "ลบรูปภาพ",
+    "cancel": "ยกเลิก",
+    "approve": "อนุมัติ",
+    "approving": "กำลังอนุมัติ..."
+  },
+
+  "status": {
+    "pending": "รอดำเนินการ",
+    "approved": "อนุมัติแล้ว",
+    "rejected": "ปฏิเสธแล้ว"
+  },
+  
+  "errorMessages": {
+    "failedToSubmit": "ไม่สามารถส่งคำขอฝากเงินได้",
+    "failedToApprove": "ไม่สามารถอนุมัติคำขอฝากเงินได้",
+    "failedToReject": "ไม่สามารถปฏิเสธคำขอฝากเงินได้"
+  },
+  
+  "successMessages": {
+    "depositSubmitted": "ส่งคำขอฝากเงินสำเร็จ!",
+    "depositUpdated": "อัปเดตคำขอฝากเงินสำเร็จ!",
+    "depositApproved": "อนุมัติคำขอฝากเงินสำเร็จ!",
+    "depositRejected": "ปฏิเสธคำขอฝากเงินสำเร็จ!"
+  }
+}

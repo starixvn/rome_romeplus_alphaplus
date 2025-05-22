@@ -20,9 +20,9 @@
     "username": "사용자 이름",
     "loginName": "로그인 이름",
     "firstName": "이름",
+    "lastName": "성",
     "nickname": "닉네임",
     "firstLastName": "이름&성",
-    "lastName": "성",
     "amount": "금액",
     "currency": "통화",
     "from": "부터",
@@ -55,7 +55,8 @@
     "remarksPlaceholder": "여기에 비고 추가...",
     "approve": "승인",
     "reject": "거부",
-    "close": "닫기"
+    "close": "닫기",
+    "firstLastName": "이름/성"
   },
   
   "manualDepositForm": {
@@ -74,23 +75,8 @@
     "viewFullSize": "전체 크기로 보기",
     "removeImage": "이미지 제거",
     "cancel": "취소",
-    "approve": "승인"
-  },
-  
-  "updateDeposit": {
-    "title": "입금 업데이트",
-    "approveDeposit": "입금 승인",
-    "rejectDeposit": "입금 거부",
-    "confirmTitle": "동작 확인",
-    "confirmApproveMessage": "이 입금을 승인하시겠습니까?",
-    "confirmRejectMessage": "이 입금을 거부하시겠습니까?",
-    "confirmCancel": "취소",
-    "confirmYes": "예, 계속합니다",
-    "depositDetails": "입금 상세 정보",
-    "memberInfo": "회원 정보",
-    "transactionDetails": "거래 상세 정보",
-    "depositApproved": "입금이 성공적으로 승인되었습니다",
-    "depositRejected": "입금이 성공적으로 거부되었습니다"
+    "approve": "승인",
+    "approving": "승인 중..."
   },
 
   "status": {

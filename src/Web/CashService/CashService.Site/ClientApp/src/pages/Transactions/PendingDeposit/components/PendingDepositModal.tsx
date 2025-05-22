@@ -40,7 +40,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
       if (response.isSuccessful) {
         setResultMessage({
           type: 'success',
-          message: 'Deposit request approved successfully'
+          message: t('successMessages.depositApproved')
         });
         setTimeout(() => {
           onClose(true);
@@ -49,7 +49,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
         setIsSubmitting(false);
         setResultMessage({
           type: 'error',
-          message: response.message || 'Failed to approve deposit request'
+          message: response.message || t('errorMessages.failedToApprove')
         });
       }
     } catch (error) {
@@ -66,7 +66,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
       if (response.isSuccessful) {
         setResultMessage({
           type: 'success',
-          message: 'Deposit request rejected successfully'
+          message: t('successMessages.depositRejected')
         });
         setTimeout(() => {
           onClose(true);
@@ -75,7 +75,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
         setIsSubmitting(false);
         setResultMessage({
           type: 'error',
-          message: 'Failed to reject deposit request'
+          message: t('errorMessages.failedToReject')
         });
       }
     } catch (error) {
@@ -116,9 +116,9 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
             <table className="w-full">
               <thead>
                 <tr className="text-left text-[#333333]">
-                  <th className="font-bold px-[8px] py-[4px]">Username</th>
-                  <th className="font-bold px-[8px] py-[4px]">First/Last Name</th>
-                  <th className="font-bold px-[8px] py-[4px]">Bet Credit</th>
+                  <th className="font-bold px-[8px] py-[4px]">{t('pendingDepositModal.username')}</th>
+                  <th className="font-bold px-[8px] py-[4px]">{t('pendingDepositModal.firstLastName')}</th>
+                  <th className="font-bold px-[8px] py-[4px]">{t('pendingDepositModal.betCredit')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -134,26 +134,26 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
           <div className="flex flex-nowrap justify-between gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
             <div className="w-[230px] max-[768px]:w-[48%]">
               <div className="mb-[8px]">
-                <div className="block font-bold text-[#333333] my-[8px]">From</div>
+                <div className="block font-bold text-[#333333] my-[8px]">{t('pendingDepositModal.from')}</div>
                 <div className="flex items-center">                   
                   {deposit?.paymentFrom && renderBankAccount(deposit.paymentFrom)}
                 </div>
               </div>
 
               <div>
-                <div className="block font-bold text-[#333333] my-[8px]">Date and Time</div>
+                <div className="block font-bold text-[#333333] my-[8px]">{t('pendingDepositModal.dateAndTime')}</div>
                 <div>{formatDateTime(deposit?.createdTime || '')}</div>
               </div>
             </div>
 
             <div className="w-[230px] max-[768px]:w-[48%]">
               <div className="mb-[8px]">
-                <div className="block font-bold text-[#333333] my-[8px]">To</div>                 
+                <div className="block font-bold text-[#333333] my-[8px]">{t('pendingDepositModal.to')}</div>                 
                 {deposit?.paymentTo && renderBankAccount(deposit.paymentTo)}
               </div>
 
               <div>
-                <div className="block font-bold text-[#333333] my-[8px]">Deposit Amount</div>
+                <div className="block font-bold text-[#333333] my-[8px]">{t('pendingDepositModal.depositAmount')}</div>
                 <div className="relative">
                   <input
                     type="text"
@@ -169,11 +169,11 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
           </div>
 
           <div className="mb-[16px]">
-            <div className="block font-bold text-[#333333] my-[8px]">Remarks</div>
+            <div className="block font-bold text-[#333333] my-[8px]">{t('pendingDepositModal.remarks')}</div>
             <textarea
               value={remarks}
               onChange={(e) => setRemarks(e.target.value)}
-              placeholder="Add a remark here..."
+              placeholder={t('pendingDepositModal.remarksPlaceholder')}
               className="block h-[150px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] py-[10px] focus:outline-none focus:border-[var(--button-border)]"
             />
           </div>

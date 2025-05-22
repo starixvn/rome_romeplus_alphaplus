@@ -55,7 +55,8 @@
     "remarksPlaceholder": "Thêm ghi chú tại đây...",
     "approve": "Phê duyệt",
     "reject": "Từ chối",
-    "close": "Đóng"
+    "close": "Đóng",
+    "firstLastName": "Tên/Họ"
   },
   
   "manualDepositForm": {
@@ -74,23 +75,8 @@
     "viewFullSize": "Xem kích thước đầy đủ",
     "removeImage": "Xóa hình ảnh",
     "cancel": "Hủy",
-    "approve": "Phê duyệt"
-  },
-  
-  "updateDeposit": {
-    "title": "Cập nhật tiền gửi",
-    "approveDeposit": "Phê duyệt tiền gửi",
-    "rejectDeposit": "Từ chối tiền gửi",
-    "confirmTitle": "Xác nhận hành động",
-    "confirmApproveMessage": "Bạn có chắc chắn muốn phê duyệt khoản tiền gửi này?",
-    "confirmRejectMessage": "Bạn có chắc chắn muốn từ chối khoản tiền gửi này?",
-    "confirmCancel": "Hủy",
-    "confirmYes": "Có, tiếp tục",
-    "depositDetails": "Chi tiết tiền gửi",
-    "memberInfo": "Thông tin thành viên",
-    "transactionDetails": "Chi tiết giao dịch",
-    "depositApproved": "Tiền gửi đã được phê duyệt thành công",
-    "depositRejected": "Tiền gửi đã bị từ chối thành công"
+    "approve": "Phê duyệt",
+    "approving": "Đang phê duyệt..."
   },
 
   "status": {
@@ -103,15 +89,15 @@
     "requiredField": "Trường này là bắt buộc",
     "invalidAmount": "Vui lòng nhập số tiền hợp lệ",
     "amountTooSmall": "Số tiền phải lớn hơn 0",
-    "failedToSubmit": "Không thể gửi tiền",
-    "failedToApprove": "Không thể phê duyệt tiền gửi",
-    "failedToReject": "Không thể từ chối tiền gửi"
+    "failedToSubmit": "Không thể gửi yêu cầu tiền gửi",
+    "failedToApprove": "Không thể phê duyệt yêu cầu tiền gửi",
+    "failedToReject": "Không thể từ chối yêu cầu tiền gửi"
   },
   
   "successMessages": {
-    "depositSubmitted": "Tiền gửi đã được gửi thành công",
-    "depositUpdated": "Tiền gửi đã được cập nhật thành công",
-    "depositApproved": "Tiền gửi đã được phê duyệt thành công",
-    "depositRejected": "Tiền gửi đã bị từ chối thành công"
+    "depositSubmitted": "Yêu cầu tiền gửi đã được gửi thành công!",
+    "depositUpdated": "Yêu cầu tiền gửi đã được cập nhật thành công!",
+    "depositApproved": "Yêu cầu tiền gửi đã được phê duyệt thành công!",
+    "depositRejected": "Yêu cầu tiền gửi đã bị từ chối thành công!"
   }
 } 
