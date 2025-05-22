@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory.ts';
 import {
@@ -11,6 +11,7 @@ import PendingWithdrawalModal from './PendingWithdrawalModal.tsx';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import NoRecordFound from '../../../../components/Table/NoRecordFound';
 import { ButtonFullComponent } from '../../../../components/ButtonComponents';
+import Pagination from '../../Components/Pagination';
 
 interface DataGridProps {
   withdrawals: TransactionItem[];
@@ -21,6 +22,27 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
   const [processingWithdrawal, setProcessingWithdrawal] = useState<TransactionItem | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(100);
+  const [paginatedWithdrawals, setPaginatedWithdrawals] = useState<TransactionItem[]>([]);
+  
+  const totalItems = withdrawals.length;
+  const totalPages = Math.ceil(totalItems / pageSize);
+
+  useEffect(() => {
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    setPaginatedWithdrawals(withdrawals.slice(startIndex, endIndex));
+  }, [withdrawals, currentPage, pageSize]);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const handlePageSizeChange = (newPageSize: number) => {
+    setPageSize(newPageSize);
+    setCurrentPage(1);
+  };
 
   const handleProcessClick = async (withdrawal: TransactionItem) => {
     setIsLoading(true);
@@ -74,8 +96,8 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
             </tr>
           </thead>
           <tbody className="font-[500]">
-            {withdrawals.length > 0 ? (
-              withdrawals.map((withdrawal, index) => (
+            {paginatedWithdrawals.length > 0 ? (
+              paginatedWithdrawals.map((withdrawal, index) => (
                 <tr key={withdrawal.transId}>
                   <td className="w-[32px] min-w-[32px] sticky left-0 bg-[#ffffff] z-10">
                     {index + 1}
@@ -114,6 +136,15 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
       {processingWithdrawal && (
         <PendingWithdrawalModal withdrawal={processingWithdrawal} onClose={handleCloseProcess} />
       )}
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        pageSize={pageSize}
+        totalItems={totalItems}
+        onPageChange={handlePageChange}
+        onPageSizeChange={handlePageSizeChange}
+      />
     </>
   );
 };
