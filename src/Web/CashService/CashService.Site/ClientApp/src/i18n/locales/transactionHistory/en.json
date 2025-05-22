@@ -38,7 +38,7 @@
   "detail": {
     "title": "Transaction Details",
     "username": "Username",
-    "loginName": "Login Name",
+    "nickname": "Nickname",
     "fullName": "First/Last Name",
     "betCredit": "Bet Credit",
     "from": "From",
