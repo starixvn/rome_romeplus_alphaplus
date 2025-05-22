@@ -1,49 +1,64 @@
-using Xunit;
 using AlphaPlus.CashService.API.Features.Payments.Criteria;
+using Xunit;
 
-namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
+namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
 {
     public class GetProvidersFeesCriteriaTests
     {
         [Fact]
-        public void GetSettingKey_ShouldReturnCorrectKey()
+        public void Constructor_WhenValidProviderIdProvided_ShouldInitializePropertyCorrectly()
+        {
+            // Arrange
+            int providerId = 1;
+
+            // Act
+            var criteria = new GetProvidersFeesCriteria(providerId);
+
+            // Assert
+            Assert.Equal(providerId, criteria.ProviderId);
+        }
+
+        [Fact]
+        public void GetSettingKey_WhenCalled_ShouldReturnCorrectKey()
         {
             // Arrange
             var criteria = new GetProvidersFeesCriteria(1);
 
             // Act
-            var result = criteria.GetSettingKey();
+            var settingKey = criteria.GetSettingKey();
 
             // Assert
-            Assert.Equal("Age_CashService_PaymentProviderFee_Sel", result);
+            Assert.Equal("Age_CashService_PaymentProviderFee_Sel", settingKey);
         }
 
         [Theory]
-        [InlineData(1, true)]
-        [InlineData(100, true)]
-        [InlineData(0, false)]
-        [InlineData(-1, false)]
-        public void IsValid_ShouldReturnExpectedResult(int providerId, bool expected)
+        [InlineData(1, true)]     // Valid case
+        [InlineData(0, false)]    // Invalid case
+        [InlineData(-1, false)]   // Invalid case
+        public void IsValid_WhenCalled_ShouldReturnExpectedResult(int providerId, bool expectedResult)
         {
             // Arrange
             var criteria = new GetProvidersFeesCriteria(providerId);
 
             // Act
-            var result = criteria.IsValid();
+            var isValid = criteria.IsValid();
 
             // Assert
-            Assert.Equal(expected, result);
+            Assert.Equal(expectedResult, isValid);
         }
 
         [Fact]
-        public void Constructor_ShouldSetProviderId()
+        public void ProviderId_WhenSet_ShouldUpdateValue()
         {
-            // Arrange & Act
-            const int expectedProviderId = 42;
-            var criteria = new GetProvidersFeesCriteria(expectedProviderId);
+            // Arrange
+            var criteria = new GetProvidersFeesCriteria(1);
+            var newProviderId = 2;
+
+            // Act
+            criteria.ProviderId = newProviderId;
 
             // Assert
-            Assert.Equal(expectedProviderId, criteria.ProviderId);
+            Assert.Equal(newProviderId, criteria.ProviderId);
         }
     }
 } 

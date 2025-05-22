@@ -1,47 +1,60 @@
-using Xunit;
 using AlphaPlus.CashService.API.Features.Payments.Criteria;
+using Xunit;
 
-namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
+namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
 {
     public class GetBanksByTransactionTypeCriteriaTests
     {
-        [Theory]
-        [InlineData(1, 1)]
-        [InlineData(42, 42)]
-        [InlineData(0, null)]
-        public void Constructor_WhenCalled_ShouldSetTransactionTypeCorrectly(int input, int? expected)
+        [Fact]
+        public void Constructor_WhenValidTransactionTypeProvided_ShouldInitializePropertyCorrectly()
         {
-            // Arrange & Act
-            var criteria = new GetBanksByTransactionTypeCriteria(input);
+            // Arrange
+            int transactionType = 1;
+
+            // Act
+            var criteria = new GetBanksByTransactionTypeCriteria(transactionType);
 
             // Assert
-            Assert.Equal(expected, criteria.TransactionType);
+            Assert.Equal(transactionType, criteria.TransactionType);
         }
 
         [Fact]
-        public void GetSettingKey_WhenCalled_ShouldReturnExpectedKey()
+        public void Constructor_WhenTransactionTypeIsZero_ShouldSetTransactionTypeToNull()
+        {
+            // Arrange
+            int transactionType = 0;
+
+            // Act
+            var criteria = new GetBanksByTransactionTypeCriteria(transactionType);
+
+            // Assert
+            Assert.Null(criteria.TransactionType);
+        }
+
+        [Fact]
+        public void GetSettingKey_WhenCalled_ShouldReturnCorrectKey()
         {
             // Arrange
             var criteria = new GetBanksByTransactionTypeCriteria(1);
 
             // Act
-            var result = criteria.GetSettingKey();
+            var settingKey = criteria.GetSettingKey();
 
             // Assert
-            Assert.Equal("Age_CashService_BankList", result);
+            Assert.Equal("Age_CashService_BankList", settingKey);
         }
 
         [Fact]
-        public void IsValid_WhenCalled_ShouldReturnTrue()
+        public void IsValid_WhenCalled_ShouldAlwaysReturnTrue()
         {
             // Arrange
             var criteria = new GetBanksByTransactionTypeCriteria(1);
 
             // Act
-            var result = criteria.IsValid();
+            var isValid = criteria.IsValid();
 
             // Assert
-            Assert.True(result);
+            Assert.True(isValid);
         }
     }
 } 

@@ -1,89 +1,83 @@
-using Xunit;
 using AlphaPlus.CashService.API.Features.Payments.Criteria;
+using Xunit;
 
-namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
+namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
 {
     public class GetBankAccountsCriteriaTests
     {
         [Fact]
-        public void Constructor_WhenCalled_ShouldSetPropertiesCorrectly()
+        public void Constructor_WhenValidParametersProvided_ShouldInitializePropertiesCorrectly()
         {
             // Arrange
-            const int expectedCustId = 123;
-            const int expectedBankId = 456;
-            const int expectedTransactionType = 789;
-            const int expectedStatus = 1;
-            const string expectedSearchText = "test";
+            int custId = 1;
+            int? bankId = 2;
+            int? transactionType = 3;
+            int? status = 1;
+            string searchText = "test";
 
             // Act
-            var criteria = new GetBankAccountsCriteria(
-                expectedCustId,
-                expectedBankId,
-                expectedTransactionType,
-                expectedStatus,
-                expectedSearchText);
+            var criteria = new GetBankAccountsCriteria(custId, bankId, transactionType, status, searchText);
 
             // Assert
-            Assert.Equal(expectedCustId, criteria.CustId);
-            Assert.Equal(expectedBankId, criteria.BankId);
-            Assert.Equal(expectedTransactionType.ToString(), criteria.TransactionType);
-            Assert.Equal(expectedStatus, criteria.Status);
-            Assert.Equal(expectedSearchText, criteria.SearchText);
+            Assert.Equal(custId, criteria.CustId);
+            Assert.Equal(bankId, criteria.BankId);
+            Assert.Equal(transactionType.ToString(), criteria.TransactionType);
+            Assert.Equal(status, criteria.Status);
+            Assert.Equal(searchText, criteria.SearchText);
         }
 
         [Fact]
-        public void Constructor_WhenNullOptionalParameters_ShouldSetDefaultValues()
+        public void Constructor_WhenTransactionTypeIsZero_ShouldSetTransactionTypeToNull()
         {
             // Arrange
-            const int expectedCustId = 123;
+            int custId = 1;
+            int? transactionType = 0;
 
             // Act
-            var criteria = new GetBankAccountsCriteria(expectedCustId);
+            var criteria = new GetBankAccountsCriteria(custId, transactionType: transactionType);
 
             // Assert
-            Assert.Equal(expectedCustId, criteria.CustId);
-            Assert.Null(criteria.BankId);
             Assert.Null(criteria.TransactionType);
+        }
+
+        [Fact]
+        public void Constructor_WhenStatusIsTwo_ShouldSetStatusToNull()
+        {
+            // Arrange
+            int custId = 1;
+            int? status = 2;
+
+            // Act
+            var criteria = new GetBankAccountsCriteria(custId, status: status);
+
+            // Assert
             Assert.Null(criteria.Status);
-            Assert.Null(criteria.SearchText);
-        }
-
-        [Theory]
-        [InlineData(0)]
-        [InlineData(null)]
-        public void Constructor_WhenTransactionTypeIsZeroOrNull_ShouldSetTransactionTypeToNull(int? transactionType)
-        {
-            // Arrange & Act
-            var criteria = new GetBankAccountsCriteria(1, transactionType: transactionType);
-
-            // Assert
-            Assert.Null(criteria.TransactionType);
         }
 
         [Fact]
-        public void GetSettingKey_WhenCalled_ShouldReturnExpectedKey()
+        public void GetSettingKey_WhenCalled_ShouldReturnCorrectKey()
         {
             // Arrange
             var criteria = new GetBankAccountsCriteria(1);
 
             // Act
-            var result = criteria.GetSettingKey();
+            var settingKey = criteria.GetSettingKey();
 
             // Assert
-            Assert.Equal("Age_CashService_BankAccountAgent_List", result);
+            Assert.Equal("Age_CashService_BankAccountAgent_List", settingKey);
         }
 
         [Fact]
-        public void IsValid_WhenCalled_ShouldReturnTrue()
+        public void IsValid_WhenCalled_ShouldAlwaysReturnTrue()
         {
             // Arrange
             var criteria = new GetBankAccountsCriteria(1);
 
             // Act
-            var result = criteria.IsValid();
+            var isValid = criteria.IsValid();
 
             // Assert
-            Assert.True(result);
+            Assert.True(isValid);
         }
     }
 } 

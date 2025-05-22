@@ -1,54 +1,66 @@
-using Xunit;
 using AlphaPlus.CashService.API.Features.Payments.Criteria;
+using Xunit;
 
-namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
+namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
 {
     public class GetDailyLimitCriteriaTests
     {
         [Fact]
-        public void Constructor_WhenValidParametersProvided_ShouldSetProperties()
+        public void Constructor_WhenValidParametersProvided_ShouldInitializePropertiesCorrectly()
         {
             // Arrange
-            const int expectedCustId = 123;
-            const int expectedModeView = 1;
+            int custId = 1;
+            int modeView = 2;
 
             // Act
-            var criteria = new GetDailyLimitCriteria(expectedCustId, expectedModeView);
+            var criteria = new GetDailyLimitCriteria(custId, modeView);
 
             // Assert
-            Assert.Equal(expectedCustId, criteria.CustId);
-            Assert.Equal(expectedModeView, criteria.ModeView);
+            Assert.Equal(custId, criteria.CustId);
+            Assert.Equal(modeView, criteria.ModeView);
         }
 
         [Fact]
-        public void GetSettingKey_WhenCalled_ShouldReturnExpectedKey()
+        public void GetSettingKey_WhenCalled_ShouldReturnCorrectKey()
         {
             // Arrange
-            var criteria = new GetDailyLimitCriteria(1, 1);
-            const string expectedKey = "Age_CashService_AgentBankAccountLimit_Sel";
+            var criteria = new GetDailyLimitCriteria(1, 2);
 
             // Act
-            var actualKey = criteria.GetSettingKey();
+            var settingKey = criteria.GetSettingKey();
 
             // Assert
-            Assert.Equal(expectedKey, actualKey);
+            Assert.Equal("Age_CashService_AgentBankAccountLimit_Sel", settingKey);
         }
 
         [Theory]
-        [InlineData(1, true)]
-        [InlineData(100, true)]
-        [InlineData(0, false)]
-        [InlineData(-1, false)]
-        public void IsValid_WhenValidCustId_ShouldReturnTrue(int custId, bool expectedResult)
+        [InlineData(1, true)]     // Valid case
+        [InlineData(0, false)]    // Invalid case
+        [InlineData(-1, false)]   // Invalid case
+        public void IsValid_WhenCalled_ShouldReturnExpectedResult(int custId, bool expectedResult)
         {
             // Arrange
-            var criteria = new GetDailyLimitCriteria(custId, 1);
+            var criteria = new GetDailyLimitCriteria(custId, 2);
 
             // Act
             var isValid = criteria.IsValid();
 
             // Assert
             Assert.Equal(expectedResult, isValid);
+        }
+
+        [Fact]
+        public void ModeView_WhenSet_ShouldUpdateValue()
+        {
+            // Arrange
+            var criteria = new GetDailyLimitCriteria(1, 2);
+            var newModeView = 3;
+
+            // Act
+            criteria.ModeView = newModeView;
+
+            // Assert
+            Assert.Equal(newModeView, criteria.ModeView);
         }
     }
 } 

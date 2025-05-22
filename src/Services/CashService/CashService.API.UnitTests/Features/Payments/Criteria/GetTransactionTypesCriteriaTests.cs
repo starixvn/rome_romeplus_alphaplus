@@ -1,35 +1,34 @@
-using Xunit;
 using AlphaPlus.CashService.API.Features.Payments.Criteria;
+using Xunit;
 
-namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
+namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
 {
     public class GetTransactionTypesCriteriaTests
     {
-        private readonly GetTransactionTypesCriteria _criteria;
-
-        public GetTransactionTypesCriteriaTests()
+        [Fact]
+        public void GetSettingKey_WhenCalled_ShouldReturnCorrectKey()
         {
-            _criteria = new GetTransactionTypesCriteria();
+            // Arrange
+            var criteria = new GetTransactionTypesCriteria();
+
+            // Act
+            var settingKey = criteria.GetSettingKey();
+
+            // Assert
+            Assert.Equal("Age_CashService_TransTypeControl", settingKey);
         }
 
         [Fact]
-        public void GetSettingKey_WhenCalled_ShouldReturnExpectedKey()
+        public void IsValid_WhenCalled_ShouldAlwaysReturnTrue()
         {
+            // Arrange
+            var criteria = new GetTransactionTypesCriteria();
+
             // Act
-            var result = _criteria.GetSettingKey();
+            var isValid = criteria.IsValid();
 
             // Assert
-            Assert.Equal("Age_CashService_TransTypeControl", result);
-        }
-
-        [Fact]
-        public void IsValid_WhenCalled_ShouldReturnTrue()
-        {
-            // Act
-            var result = _criteria.IsValid();
-
-            // Assert
-            Assert.True(result);
+            Assert.True(isValid);
         }
     }
 } 

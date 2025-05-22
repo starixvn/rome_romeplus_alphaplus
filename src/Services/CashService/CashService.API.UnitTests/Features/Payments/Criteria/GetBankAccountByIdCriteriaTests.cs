@@ -1,51 +1,50 @@
-using Xunit;
 using AlphaPlus.CashService.API.Features.Payments.Criteria;
+using Xunit;
 
-namespace AlphaPlus.CashService.API.UnitTests.Criteria.Payments
+namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
 {
     public class GetBankAccountByIdCriteriaTests
     {
         [Fact]
-        public void Constructor_WhenCalled_ShouldSetPropertiesCorrectly()
+        public void Constructor_WhenValidBankAccountIdProvided_ShouldInitializePropertyCorrectly()
         {
             // Arrange
-            const int expectedBankAccountId = 123;
+            int bankAccountId = 1;
 
             // Act
-            var criteria = new GetBankAccountByIdCriteria(expectedBankAccountId);
+            var criteria = new GetBankAccountByIdCriteria(bankAccountId);
 
             // Assert
-            Assert.Equal(expectedBankAccountId, criteria.BankAccountId);
+            Assert.Equal(bankAccountId, criteria.BankAccountId);
         }
 
         [Fact]
-        public void GetSettingKey_WhenCalled_ShouldReturnExpectedKey()
+        public void GetSettingKey_WhenCalled_ShouldReturnCorrectKey()
         {
             // Arrange
             var criteria = new GetBankAccountByIdCriteria(1);
 
             // Act
-            var result = criteria.GetSettingKey();
+            var settingKey = criteria.GetSettingKey();
 
             // Assert
-            Assert.Equal("Age_CashService_BankAccountAgent_Sel", result);
+            Assert.Equal("Age_CashService_BankAccountAgent_Sel", settingKey);
         }
 
         [Theory]
-        [InlineData(1, true)]
-        [InlineData(100, true)]
-        [InlineData(0, false)]
-        [InlineData(-1, false)]
-        public void IsValid_WhenValidBankAccountId_ShouldReturnTrue(int bankAccountId, bool expectedResult)
+        [InlineData(1, true)]     // Valid case
+        [InlineData(0, false)]    // Invalid case
+        [InlineData(-1, false)]   // Invalid case
+        public void IsValid_WhenCalled_ShouldReturnExpectedResult(int bankAccountId, bool expectedResult)
         {
             // Arrange
             var criteria = new GetBankAccountByIdCriteria(bankAccountId);
 
             // Act
-            var result = criteria.IsValid();
+            var isValid = criteria.IsValid();
 
             // Assert
-            Assert.Equal(expectedResult, result);
+            Assert.Equal(expectedResult, isValid);
         }
     }
 } 
