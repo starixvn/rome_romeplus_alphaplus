@@ -11,6 +11,7 @@ builder.Services
     .AddFanexLogging(configuration)
     .AddExceptionHandler<GlobalExceptionHandler>()
     .AddProblemDetails()
+    .AddMemoryCache()
     .AddFanexSql(configuration)
     .AddSingleton<IDynamicRepository, DynamicRepository>()
     .AddSingleton<ISiteDBService, SiteDBService>()

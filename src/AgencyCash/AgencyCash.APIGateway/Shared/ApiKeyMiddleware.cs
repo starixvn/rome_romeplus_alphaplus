@@ -8,7 +8,7 @@ public sealed class ApiKeyMiddleware(RequestDelegate next, IConfiguration config
 
     public async Task InvokeAsync(HttpContext context)
     {
-        if (context.Request.Headers.TryGetValue(ApiKeyHeaderName, out var userApiKey) || string.IsNullOrWhiteSpace(userApiKey))
+        if (!context.Request.Headers.TryGetValue(ApiKeyHeaderName, out var userApiKey) || string.IsNullOrWhiteSpace(userApiKey))
         {
             await WriteError(context.Response, StatusCodes.Status401Unauthorized, $"{ApiKeyHeaderName} is required.");
             return;
