@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -567,6 +567,9 @@
   <data name="March" xml:space="preserve">
     <value>Tháng 3</value>
   </data>
+  <data name="Master" xml:space="preserve">
+    <value>Master</value>
+  </data>
   <data name="MasterCommNew" xml:space="preserve">
     <value>Hoa hồng của Master</value>
   </data>
@@ -723,6 +726,12 @@
   <data name="November" xml:space="preserve">
     <value>Tháng 11</value>
   </data>
+  <data name="NumberGame" xml:space="preserve">
+    <value>Number Game</value>
+  </data>
+  <data name="NumberGameNo" xml:space="preserve">
+    <value>Number Game No</value>
+  </data>
   <data name="October" xml:space="preserve">
     <value>Tháng 10</value>
   </data>
@@ -770,6 +779,9 @@
   </data>
   <data name="PlayerComm" xml:space="preserve">
     <value>Hoa hồng</value>
+  </data>
+  <data name="PositionTaking" xml:space="preserve">
+    <value>Position Taking</value>
   </data>
   <data name="PreGame" xml:space="preserve">
     <value>Chưa bắt đầu</value>
@@ -872,6 +884,9 @@
   </data>
   <data name="SummaryOfDormantAccounts" xml:space="preserve">
     <value>Tổng hợp tài khoản không hoạt động</value>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>Super</value>
   </data>
   <data name="SuperCommNew" xml:space="preserve">
     <value>Hoa hồng của Super</value>
@@ -1111,21 +1126,6 @@
   <data name="Reward" xml:space="preserve">
     <value>Tiền thưởng</value>
   </data>
-  <data name="Master" xml:space="preserve">
-    <value>Master</value>
-  </data>
-  <data name="NumberGameNo" xml:space="preserve">
-    <value>Number Game No</value>
-  </data>
-  <data name="NumberGame" xml:space="preserve">
-    <value>Number Game</value>
-  </data>
-  <data name="PositionTaking" xml:space="preserve">
-    <value>Position Taking</value>
-  </data>
-  <data name="Super" xml:space="preserve">
-    <value>Super</value>
-  </data>
   <data name="SettlementReport" xml:space="preserve">
     <value>Báo Cáo Quyết Toán</value>
   </data>
@@ -1171,25 +1171,28 @@
   <data name="WhiteLabelSettlementNote" xml:space="preserve">
     <value>Tạo Báo Cáo Quyết Toán sau 5 ngày kể từ cuối tháng để đảm bảo tính chính xác của dữ liệu.</value>
   </data>
-  <data name="DownlineTotal" xml:space="preserve">
-    <value>Tổng giao dịch của cấp dưới</value>
-  </data>
-  <data name="Guidelines_TransferAmt_DirectMember" xml:space="preserve">
-    <value>tổng số tiền chuyển khoản giữa Cấp Trên Trực Tiếp và Member. Nhấn vào để xem chi tiết chuyển khoản.</value>
-  </data>
   <data name="ToWin" xml:space="preserve">
     <value>Dự Kiến Thắng</value>
   </data>
-  <data name="SuperRisk" xml:space="preserve">
-    <value>Rủi Ro Của Super</value>
-  </data>
   <data name="MasterRisk" xml:space="preserve">
     <value>Rủi Ro của Master</value>
+  </data>
+  <data name="SuperRisk" xml:space="preserve">
+    <value>Rủi Ro Của Super</value>
   </data>
   <data name="AgentRisk" xml:space="preserve">
     <value>Rủi Ro Của Agent</value>
   </data>
   <data name="SportsbookRiskAmount" xml:space="preserve">
     <value>Số Tiền Rủi Ro Sportsbook</value>
+  </data>
+  <data name="DownlineTotal" xml:space="preserve">
+    <value>Tổng giao dịch của cấp dưới</value>
+  </data>
+  <data name="Guidelines_TransferAmt_DirectMember" xml:space="preserve">
+    <value>tổng số tiền chuyển khoản giữa Cấp Trên Trực Tiếp và Member. Nhấn vào để xem chi tiết chuyển khoản.</value>
+  </data>
+  <data name="RewardCurrency" xml:space="preserve">
+    <value>Tiền tệ phần thưởng</value>
   </data>
 </root>

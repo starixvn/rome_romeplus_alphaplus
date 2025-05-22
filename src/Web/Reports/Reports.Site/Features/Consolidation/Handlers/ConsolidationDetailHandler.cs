@@ -75,7 +75,7 @@ public class ConsolidationDetailHandler(
             validUserSelectedProductIds,
             productDetailXml,
             Username: null,
-            IsReward: false,
+            IsReward: true,
             message.LevelType,
             message.Site);
 

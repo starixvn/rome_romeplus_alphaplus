@@ -70,6 +70,10 @@ public class ConsolidationEntity
 
     public int BetCount { get; set; }
 
+    public decimal RewardAmount { get; set; }
+
+    public string RewardCurrency { get; set; }
+
     public static ConsolidationEntity operator +(ConsolidationEntity model1, ConsolidationEntity model2)
     {
         model1.Turnover += model2.Turnover;
@@ -83,6 +87,7 @@ public class ConsolidationEntity
         model1.OwnerTotal += model2.OwnerTotal;
         model1.Company += model2.Company;
         model1.BetCount += model2.BetCount;
+        model1.RewardAmount += model2.RewardAmount;
 
         return model1;
     }

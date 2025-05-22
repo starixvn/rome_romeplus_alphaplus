@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -243,6 +243,9 @@
   <data name="ClassicView" xml:space="preserve">
     <value>กลับเป็นมุมมองคลาสสิก</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>ปิด</value>
+  </data>
   <data name="Columns" xml:space="preserve">
     <value>คอลัมน์</value>
   </data>
@@ -286,7 +289,7 @@
     <value>รวม</value>
   </data>
   <data name="ConsolidationPTNote" xml:space="preserve">
-    <value>ค่าความเสี่ยงที่แสดงในรายงานคือ “ค่าความเสี่ยงสูงสุด” ของ{0}</value>
+    <value>ค่าความเสี่ยงที่แสดงในรายงานคือ "ค่าความเสี่ยงสูงสุด" ของ{0}</value>
   </data>
   <data name="ConsolidationReportByDate" xml:space="preserve">
     <value>รายงานงบการเงินประจำวัน</value>
@@ -993,6 +996,9 @@
   <data name="WinLossAbbr" xml:space="preserve">
     <value>ยอดได้เสีย</value>
   </data>
+  <data name="WinLossAnalysis" xml:space="preserve">
+    <value>การวิเคราะห์ยอดได้เสีย</value>
+  </data>
   <data name="WinLossByBetType" xml:space="preserve">
     <value>ชนะ แพ้ โดยชนิดของการวางเดิมพัน</value>
   </data>
@@ -1092,12 +1098,6 @@
   <data name="Reward" xml:space="preserve">
     <value>เงินรางวัล</value>
   </data>
-  <data name="Close" xml:space="preserve">
-    <value>ปิด</value>
-  </data>
-  <data name="WinLossAnalysis" xml:space="preserve">
-    <value>การวิเคราะห์ยอดได้เสีย</value>
-  </data>
   <data name="SettlementReport" xml:space="preserve">
     <value>รายงานการชำระเงิน</value>
   </data>
@@ -1143,25 +1143,28 @@
   <data name="WhiteLabelSettlementNote" xml:space="preserve">
     <value>เพื่อความถูกต้องของข้อมูล รายงานการชำระเงินจะถูกสร้างขึ้น 5 วันหลังจากสิ้นเดือนของแต่ละเดือน</value>
   </data>
-  <data name="DownlineTotal" xml:space="preserve">
-    <value>ดาวน์ไลน์ทั้งหมด</value>
-  </data>
-  <data name="Guidelines_TransferAmt_DirectMember" xml:space="preserve">
-    <value>จำนวนเงินโอนทั้งหมดระหว่างอัพไลน์และสมาชิกโดยตรง คลิ๊กเพื่อดูรายละเอียดการโอนเงิน</value>
-  </data>
   <data name="ToWin" xml:space="preserve">
     <value>จำนวนที่อาจชนะ</value>
   </data>
-  <data name="SuperRisk" xml:space="preserve">
-    <value>ความเสี่ยงของซุปเปอร์</value>
-  </data>
   <data name="MasterRisk" xml:space="preserve">
     <value>ความเสี่ยงของมาสเตอร์</value>
+  </data>
+  <data name="SuperRisk" xml:space="preserve">
+    <value>ความเสี่ยงของซุปเปอร์</value>
   </data>
   <data name="AgentRisk" xml:space="preserve">
     <value>ความเสี่ยงของเอเย่นท์</value>
   </data>
   <data name="SportsbookRiskAmount" xml:space="preserve">
     <value>จำนวนความเสี่ยงของสปอร์ตบุ๊ค</value>
+  </data>
+  <data name="DownlineTotal" xml:space="preserve">
+    <value>ดาวน์ไลน์ทั้งหมด</value>
+  </data>
+  <data name="Guidelines_TransferAmt_DirectMember" xml:space="preserve">
+    <value>จำนวนเงินโอนทั้งหมดระหว่างอัพไลน์และสมาชิกโดยตรง คลิ๊กเพื่อดูรายละเอียดการโอนเงิน</value>
+  </data>
+  <data name="RewardCurrency" xml:space="preserve">
+    <value>สกุลเงินรางวัล</value>
   </data>
 </root>
