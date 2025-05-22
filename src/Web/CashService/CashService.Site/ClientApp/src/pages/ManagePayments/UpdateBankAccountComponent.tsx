@@ -13,11 +13,11 @@ import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { baseAPI } from '../../services/commonAPI';
 import CustomDropdown, { DropdownOption } from '../../components/CustomDropdownComponent';
 import Loading from '../../components/LoadingComponent';
-import { BackButtonComponent } from '../../components/ButtonComponents';
+import { BackButtonComponent, OffButtonComponent, OnButtonComponent } from '../../components/ButtonComponents';
 import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import MobileComponent from '../../components/MobileComponent';
-import { ButtonApplyComponent, ButtonCancelComponent } from '../../components/ButtonComponents';
-import TitleComponent from '../../components/TitleComponent';
+import { ButtonApplyComponent, ButtonCancelComponent, DisableButtonComponent, EnableButtonComponent } from '../../components/ButtonComponents';
+import TitleComponent from '../../components/TitleComponents';
 
 interface UpdateBankAccountComponentProps {
   onClose: () => void;
@@ -361,20 +361,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 </div>
                 <p className="pb-[8px] ">{tManagePayments('bankNote1')}</p>
                 <div className="btn-group" role="group">
-                  <button
-                    type="button"
-                    className={` w-[100px] px-[16px] py-[8px] cursor-pointer rounded-tl-[4px] rounded-bl-[4px] ${formState.status === '1' ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
-                    onClick={() => setFormState({ ...formState, status: '1' })}
-                  >
-                    {tGlobal('enable')}
-                  </button>
-                  <button
-                    type="button"
-                    className={` w-[100px] px-[16px] py-[8px] cursor-pointer rounded-tr-[4px] rounded-br-[4px] ${formState.status === '0' ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
-                    onClick={() => setFormState({ ...formState, status: '0' })}
-                  >
-                    {tGlobal('disable')}
-                  </button>
+                  <EnableButtonComponent isActive={formState.status === '1'} onClick={() => setFormState({ ...formState, status: '1' })} />
+                  <DisableButtonComponent isActive={formState.status === '0'} onClick={() => setFormState({ ...formState, status: '0' })} />
                 </div>
               </div>
 
@@ -590,40 +578,27 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                   {tManagePayments('linkMobile')}
                 </div>
                 <div className="btn-group" role="group">
-                  <button
-                    type="button"
-                    className={` w-[70px] px-[16px] py-[8px] cursor-pointer rounded-tl-[4px] rounded-bl-[4px] ${formState.promptPay ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
-                    onClick={() => setFormState({ ...formState, promptPay: true })}
-                  >
-                    {tGlobal('on')}
-                  </button>
-                  <button
-                    type="button"
-                    className={` w-[70px] px-[16px] py-[8px] cursor-pointer rounded-tr-[4px] rounded-br-[4px] ${!formState.promptPay ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
-                    onClick={() => setFormState({ ...formState, promptPay: false })}
-                  >
-                    {tGlobal('off')}
-                  </button>
+                  <OnButtonComponent isActive={formState.promptPay} onClick={() => setFormState({ ...formState, promptPay: true })} />
+                  <OffButtonComponent isActive={!formState.promptPay} onClick={() => setFormState({ ...formState, promptPay: false })} />
                 </div>
               </div>
 
-              {formState.promptPay && (
-                <MobileComponent
-                  label={tManagePayments('mobile')}
-                  countryCode={countryCode}
-                  mobile={mobile}
-                  fieldErrors={fieldErrors}
-                  onCountryCodeChange={(e) => {
-                    setFormState({ ...formState, countryCode: e.target.value });
-                    setCountryCode(e.target.value);
-                  }}
-                  onMobileChange={(e) => {
-                    setFormState({ ...formState, mobile: e.target.value });
-                    setMobile(e.target.value);
-                  }}
-                  placeholder={tManagePayments('enterMobileNumber')}
-                />
-              )}
+              <MobileComponent
+                isShow={formState.promptPay}
+                label={tManagePayments('mobile')}
+                countryCode={countryCode}
+                mobile={mobile}
+                fieldErrors={fieldErrors}
+                onCountryCodeChange={(e) => {
+                  setFormState({ ...formState, countryCode: e.target.value });
+                  setCountryCode(e.target.value);
+                }}
+                onMobileChange={(e) => {
+                  setFormState({ ...formState, mobile: e.target.value });
+                  setMobile(e.target.value);
+                }}
+                placeholder={tManagePayments('enterMobileNumber')}
+              />
             </div>
             <div className="flex justify-start py-[8px] mt-[8px] gap-[8px]">              
               <ButtonCancelComponent text={tGlobal('cancel')} onClick={onClose}  />

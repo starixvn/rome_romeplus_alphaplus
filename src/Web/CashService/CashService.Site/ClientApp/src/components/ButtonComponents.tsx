@@ -5,8 +5,10 @@ import { useTranslation } from 'react-i18next';
 interface ButtonComponentProps {
   text?: string;
   className?: string;
-  onClick?: () => void;
+  onClick?: any;
   disabled?: boolean;
+
+  isActive?: boolean;
 }
 
 export const ButtonOutlineComponent: React.FC<ButtonComponentProps> = ({
@@ -84,6 +86,74 @@ export const BackButtonComponent: React.FC<ButtonComponentProps> = ({ onClick })
         </span>
       </div>
     </>
+  );
+};
+
+export const EnableButtonComponent: React.FC<ButtonComponentProps> = ({
+  isActive,
+  onClick
+}) => {
+  const { t: tGlobal } = useTranslation('global');
+
+  return (
+    <button
+      type="button"
+      className={` w-[100px] px-[16px] py-[8px] cursor-pointer rounded-tl-[4px] rounded-bl-[4px] ${isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
+      onClick={onClick}
+    >
+      {tGlobal('enable')}
+    </button>
+  );
+};
+
+export const DisableButtonComponent: React.FC<ButtonComponentProps> = ({
+  isActive,
+  onClick
+}) => {
+  const { t: tGlobal } = useTranslation('global');
+
+  return (
+    <button
+      type="button"
+      className={` w-[100px] px-[16px] py-[8px] cursor-pointer rounded-tr-[4px] rounded-br-[4px] ${isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
+      onClick={onClick}
+    >
+      {tGlobal('disable')}
+    </button>
+  );
+};
+
+export const OnButtonComponent: React.FC<ButtonComponentProps> = ({
+  isActive,
+  onClick
+}) => {
+  const { t: tGlobal } = useTranslation('global');
+
+  return (
+    <button
+      type="button"
+      className={` w-[70px] px-[16px] py-[8px] cursor-pointer rounded-tl-[4px] rounded-bl-[4px] ${isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
+      onClick={onClick}
+    >
+      {tGlobal('on')}
+    </button>
+  );
+};
+
+export const OffButtonComponent: React.FC<ButtonComponentProps> = ({
+  isActive,
+  onClick
+}) => {
+  const { t: tGlobal } = useTranslation('global');
+
+  return (
+    <button
+      type="button"
+      className={` w-[70px] px-[16px] py-[8px] cursor-pointer rounded-tr-[4px] rounded-br-[4px] ${isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
+      onClick={onClick}
+    >
+      {tGlobal('off')}
+    </button>
   );
 };
 

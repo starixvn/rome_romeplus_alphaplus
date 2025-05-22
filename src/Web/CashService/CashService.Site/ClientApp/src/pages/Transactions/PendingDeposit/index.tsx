@@ -16,7 +16,7 @@ import {
   TransactionsHistoryResponse,
 } from '../../../services/interfaces/Transactions/TransactionHistory';
 import Loading from '../../../components/LoadingComponent';
-import TitleComponent from '../../../components/TitleComponent';
+import TitleComponent from '../../../components/TitleComponents';
 import { ButtonOutlineComponent } from '../../../components/ButtonComponents';
 
 const PendingDeposit: React.FC = () => {

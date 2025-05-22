@@ -6,7 +6,7 @@ import { BANK_STATUS_OPTIONS } from '../../constants/paymentConstants';
 import SetTransactionLimitModal from './SetTransactionLimitModal';
 import AddBankAccountComponent from './AddBankAccountComponent';
 import UpdateBankAccountComponent from './UpdateBankAccountComponent';
-import TitleComponent from '../../components/TitleComponent';
+import TitleComponent from '../../components/TitleComponents';
 import { IconDelete,  IconPen, IconSearch, IconSync } from '../../components/Icons';
 import CustomDropdown from '../../components/CustomDropdownComponent';
 import Loading from '../../components/LoadingComponent';

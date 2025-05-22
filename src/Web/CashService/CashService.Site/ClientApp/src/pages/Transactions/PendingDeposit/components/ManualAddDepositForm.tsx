@@ -10,7 +10,7 @@ import { AddDepositManualModel } from '../../../../services/interfaces/AddDeposi
 import Loading from '../../../../components/LoadingComponent';
 import { ResultMessageComponent } from '../../../../components/MessageComponents';
 import AccountInformation from './AccountInformation';
-import TitleComponent from '../../../../components/TitleComponent';
+import TitleComponent from '../../../../components/TitleComponents';
 
 interface ManualAddDepositFormProps {
   cashAgentOptions: BankInfo[];

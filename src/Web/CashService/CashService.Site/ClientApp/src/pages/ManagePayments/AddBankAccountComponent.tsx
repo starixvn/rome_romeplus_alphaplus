@@ -13,12 +13,12 @@ import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { baseAPI } from '../../services/commonAPI';
 import CustomDropdown, { DropdownOption } from '../../components/CustomDropdownComponent';
 import Loading from '../../components/LoadingComponent';
-import { BackButtonComponent } from '../../components/ButtonComponents';
+import { BackButtonComponent, DisableButtonComponent, EnableButtonComponent, OffButtonComponent, OnButtonComponent } from '../../components/ButtonComponents';
 import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import MobileComponent from '../../components/MobileComponent';
 import { ensureNumericInput, ensureNameInput } from '../../utils/inputHandlers';
 import { ButtonApplyComponent, ButtonCancelComponent } from '../../components/ButtonComponents';
-import TitleComponent from '../../components/TitleComponent';
+import TitleComponent from '../../components/TitleComponents';
 
 interface AddBankAccountComponentProps {
   onClose: () => void;
@@ -239,25 +239,12 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   <div className="pb-[8px] text-[16px] max-[768px]:text-[20px] text-[var(--text-color-primary)] font-semibold">{tManagePayments('bankStatus')}</div>
                   <p className=" my-[8px]">{tManagePayments('bankNote1')}</p>
                   <div className="btn-group" role="group">
-                    <button
-                      type="button"
-                      className={` w-[100px] px-[16px] py-[8px] cursor-pointer rounded-tl-[4px] rounded-bl-[4px] ${status === '1' ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
-                      onClick={() => setStatus('1')}
-                    >
-                      {tGlobal('enable')}
-                    </button>
-                    <button
-                      type="button"
-                      className={` w-[100px] px-[16px] py-[8px] cursor-pointer rounded-tr-[4px] rounded-br-[4px] ${status === '2' ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
-                      onClick={() => setStatus('2')}
-                    >
-                      {tGlobal('disable')}
-                    </button>
+                    <EnableButtonComponent isActive={status === '1'} onClick={() => setStatus('1')} />
+                    <DisableButtonComponent isActive={status === '2'} onClick={() => setStatus('2')} />
                   </div>
                 </div>
 
                 <div className="mt-[8px] text-[16px] max-[768px]:text-[20px] text-[var(--text-color-primary)] font-semibold">{tManagePayments('accountInformation')}</div>
-                
                 
                 <div className='mb-[16px]'>
                   <label className="block  font-semibold text-[#333333] my-[8px]">{tManagePayments('bank')}<span className='text-[#E25757]'>*</span></label>
@@ -399,40 +386,29 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   <div className="pb-[8px] mt-[8px] text-[16px] max-[768px]:text-[20px] text-[var(--text-color-primary)] font-semibold leading-[21.6px]">{tManagePayments('promptPay')}</div>
                   <p className="pb-[8px] ">{tManagePayments('linkMobile')}</p>
                   <div className="btn-group" role="group">
-                    <button
-                      type="button"
-                      className={` w-[70px] px-[16px] py-[8px] cursor-pointer rounded-tl-[4px] rounded-bl-[4px] ${promptPay ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
-                      onClick={() => setPromptPay(true)}
-                    >
-                      {tGlobal('on')}
-                    </button>
-                    <button
-                      type="button"
-                      className={` w-[70px] px-[16px] py-[8px] cursor-pointer rounded-tr-[4px] rounded-br-[4px] ${!promptPay ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
-                      onClick={() => setPromptPay(false)}
-                    >
-                      {tGlobal('off')}
-                    </button>
+                      <OnButtonComponent isActive={promptPay} onClick={() => setPromptPay(true)} />
+                      <OffButtonComponent isActive={!promptPay} onClick={() => setPromptPay(false)} />
                   </div>
                 </div>
 
-                {promptPay && (
-                  <MobileComponent
-                    label={tManagePayments('mobile')}
-                    countryCode={countryCode}
-                    mobile={mobile}
-                    fieldErrors={fieldErrors}
-                    onCountryCodeChange={(e) => {
-                      setCountryCode(e.target.value);
-                    }}
-                    onMobileChange={(e) => setMobile(e.target.value)}
-                    placeholder={tManagePayments('enterMobileNumber')}
-                  />
-                )}
+                <MobileComponent
+                  isShow={promptPay}
+                  label={tManagePayments('mobile')}
+                  countryCode={countryCode}
+                  mobile={mobile}
+                  fieldErrors={fieldErrors}
+                  onCountryCodeChange={(e) => {
+                    setCountryCode(e.target.value);
+                  }}
+                  onMobileChange={(e) => setMobile(e.target.value)}
+                  placeholder={tManagePayments('enterMobileNumber')}
+                />
               </div>
               <div className="flex justify-start py-[8px] mt-[8px] gap-[8px]"> 
                 <ButtonCancelComponent text={tGlobal('cancel')} onClick={onClose}  />
-                <ButtonApplyComponent text={loading ? tGlobal('saving') : tGlobal('save')} onClick={() =>handleSubmit} disabled={loading||isBlockAction} />
+                <ButtonApplyComponent text={tGlobal(loading ? 'saving' : 'save')}
+                  onClick={() =>handleSubmit} 
+                  disabled={loading||isBlockAction} />
               </div>
             </form>
           )}

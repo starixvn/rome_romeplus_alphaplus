@@ -13,7 +13,7 @@
   import '../../styles/common.css';
   import '../../styles/global.scss';
 
-  import TitleComponent from '../../components/TitleComponent';
+  import TitleComponent from '../../components/TitleComponents';
   import { ButtonApplyComponent } from '../../components/ButtonComponents';
 
   const MemberSiteManagement: React.FC = () => {

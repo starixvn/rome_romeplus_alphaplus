@@ -15,7 +15,7 @@ import {
 import { transactionAPI } from '../../../services/transactionsHistoryAPI.ts';
 import { TransactionType } from '../../../common/commonFunctions.tsx';
 import Loading from '../../../components/LoadingComponent';
-import TitleComponent from '../../../components/TitleComponent';
+import TitleComponent from '../../../components/TitleComponents.tsx';
 import { ButtonOutlineComponent } from '../../../components/ButtonComponents';
 
 const PendingWithdrawal: React.FC = () => {

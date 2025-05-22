@@ -4,7 +4,7 @@ import { paymentProviderService } from '../../services/paymentsAPI';
 import { PaymentProvider } from '../../services/interfaces/Payments/PaymentProvider';
 import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import DailyLimitPopupModal from './SetDailyLimitPopupModal';
-import TitleComponent from '../../components/TitleComponent';
+import TitleComponent from '../../components/TitleComponents';
 import { IconPen } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
 import { ErrorMessageComponent } from '../../components/MessageComponents';
