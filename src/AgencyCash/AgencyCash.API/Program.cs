@@ -17,7 +17,32 @@ builder.Services
     .AddSingleton<ISiteDBService, SiteDBService>()
     .AddSingleton<IRegisterCashMemberService, RegisterCashMemberService>()
     .RegisterPaymentsModule()
-    .AddSwaggerGen()
+    .AddSwaggerGen(c =>
+    {
+        c.SwaggerDoc("v1", new() { Title = "Agency Cash API V1", Version = "v1" });
+        c.AddSecurityDefinition("ApiKey", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+        {
+            Description = "API Key needed to access the endpoints. ApiKey: X-API-KEY: {key}",
+            In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+            Name = "X-API-KEY",
+            Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
+            Scheme = "ApiKey"
+        });
+        c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement {
+            {
+                new Microsoft.OpenApi.Models.OpenApiSecurityScheme {
+                    Reference = new Microsoft.OpenApi.Models.OpenApiReference {
+                        Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
+                        Id = "ApiKey"
+                    },
+                    Scheme = "ApiKey",
+                    Name = "X-API-KEY",
+                    In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+                },
+                new List<string>()
+            }
+        });
+    })
     .AddEndpointsApiExplorer()
     .AddHealthChecks();
 
@@ -35,8 +60,8 @@ app
     .UseSwagger()
     .UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Agency Cash API V1");
-        c.RoutePrefix = string.Empty; // Set Swagger UI at the app's root
+        c.SwaggerEndpoint("v1/swagger.json", "Agency Cash API V1"); // use relative path, no leading slash
+        c.RoutePrefix = "swagger"; // Set Swagger UI at /swagger and /swagger/index.html
     });
 app.MapHealthChecks("/health");
 app.MapRegisterCashMemberEndpoints();
