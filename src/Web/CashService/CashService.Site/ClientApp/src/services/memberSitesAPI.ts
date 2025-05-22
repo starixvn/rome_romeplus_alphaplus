@@ -1,4 +1,4 @@
-import { api } from '../config/axios';
+import { axiosInstance as api } from './axios';
 import { AxiosError } from 'axios';
 import { MemberSiteManagementData, MemberSiteResponse, ResponseResult } from '../services/interfaces/MemberSites';
 // Declare the cashServiceAPIUrl property on the Window interface

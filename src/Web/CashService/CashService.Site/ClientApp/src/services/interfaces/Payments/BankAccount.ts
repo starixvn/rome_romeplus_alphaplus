@@ -23,4 +23,33 @@ export interface BankAccount {
   agent_DepositMatchingMode: number;
   bankDepositMatchingMode: DepositMatchingMode;
   creator: string;
-} 
+}
+
+export const createDefaultBankAccount = (): BankAccount => {
+  return {
+    id: 0,
+    accountNumber: '',
+    accountNickname: '',
+    accountHolderName: '',
+    transactionTypes: '',
+    status: 0,
+    code: '',
+    bankId: 0,
+    bankName: '',
+    lastUpdated: '',
+    lastUpdatedStr: '',
+    depositMatchingMode: 0,
+    promptPay: false,
+    mobile: '',
+    countryCode: '',
+    bank_TransTypeList: '',
+    agent_TransTypeList: '',
+    agent_DepositMatchingMode: 0,
+    bankDepositMatchingMode: {
+      sourceType: '',
+      mappingTypes: [],
+      sourceTypeName: ''
+    },
+    creator: ''
+  };
+}; 

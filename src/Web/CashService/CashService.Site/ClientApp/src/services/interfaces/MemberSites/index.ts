@@ -74,3 +74,17 @@ export const MemberSiteManagementDataDefault: MemberSiteManagementData = {
   countryCodes: []
 };
 
+export const createDefaultMemberSiteResponse = (): MemberSiteResponse => ({
+  domains: [],
+  generalSettings: [],
+  countryCode: '',
+  countryCodes: [],
+  mobile: '',
+  lineId: '',
+  announcement: '',
+  mobileCode: '',
+  mobilePhone: '',
+  contacts: '',
+  telegram: ''
+});
+

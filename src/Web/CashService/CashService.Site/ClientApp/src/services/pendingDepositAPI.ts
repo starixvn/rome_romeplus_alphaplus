@@ -1,4 +1,4 @@
-import { api } from '../config/axios';
+import { axiosInstance as api } from './axios';
 import { DepositAccountInfo } from './interfaces/DepositAccountInfo';
 import { CreditAmount } from './interfaces/Transactions/CreditAmount';
 import { ResultModel } from './interfaces/ResultModel';

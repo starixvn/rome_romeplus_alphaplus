@@ -1,13 +1,7 @@
-import { api } from '../config/axios';
+import { api } from './axios';
 
 export const baseAPI = {
   getCountryCodes: async (): Promise<string[]> => {
-    try {
-      const response = await api.get<string[]>('../Payments/GetCountryCodes', { method: 'GET' });
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching country codes:', error);
-      return [];
-    }
+    return await api.get<string[]>('../Payments/GetCountryCodes', []);
   },
 };

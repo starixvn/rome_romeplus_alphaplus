@@ -1,4 +1,4 @@
-import { api } from '../config/axios';
+import { axiosInstance as api } from './axios';
 import {
   TransactionItem,
   TransactionsHistoryResponse,
