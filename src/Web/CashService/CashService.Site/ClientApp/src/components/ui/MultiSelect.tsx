@@ -279,7 +279,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
             {...props}
             innerProps={{
               ...props.innerProps,
-              onClick: (e) => {
+              onClick: () => {
                 if (!props.selectProps.menuIsOpen) {
                   props.selectProps.onMenuOpen();
                 } else {

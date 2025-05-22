@@ -117,7 +117,6 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
               <thead>
                 <tr className="text-left text-[#333333]">
                   <th className="font-bold px-[8px] py-[4px]">Username</th>
-                  <th className="font-bold px-[8px] py-[4px]">Login Name</th>
                   <th className="font-bold px-[8px] py-[4px]">First/Last Name</th>
                   <th className="font-bold px-[8px] py-[4px]">Bet Credit</th>
                 </tr>
@@ -125,7 +124,6 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
               <tbody>
                 <tr>
                   <td className="px-[8px] py-[4px]">{deposit?.username}</td>
-                  <td className="px-[8px] py-[4px]">{}</td>
                   <td className="px-[8px] py-[4px]">{`${deposit?.firstName} ${deposit?.lastName}`}</td>
                   <td className="px-[8px] py-[4px] text-[var(--text-color-primary)] font-semibold">{deposit?.amount && displayAmount(deposit.amount)}</td>
                 </tr>

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { displayAmount, renderBankAccount, formatDateTime, CurrentCurrency } from '../../../../common/commonFunctions';
 import { ButtonFullComponent } from '../../../../components/ButtonComponents';
 import NoRecordFound from '../../../../components/Table/NoRecordFound';
+import Pagination from '../../Components/Pagination';
 
 interface DataGridProps {
   deposits: TransactionItem[];
@@ -12,6 +13,28 @@ interface DataGridProps {
 
 const DataGrid: React.FC<DataGridProps> = ({ deposits, onProcessClick }) => {
   const { t } = useTranslation('pendingDeposit');
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(100);
+  const [paginatedDeposits, setPaginatedDeposits] = useState<TransactionItem[]>([]);
+
+  const totalItems = deposits.length;
+  const totalPages = Math.ceil(totalItems / pageSize);
+
+  useEffect(() => {
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    setPaginatedDeposits(deposits.slice(startIndex, endIndex));
+  }, [deposits, currentPage, pageSize]);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const handlePageSizeChange = (newPageSize: number) => {
+    setPageSize(newPageSize);
+    setCurrentPage(1);
+  };
 
   const handleProcessClick = (deposit: TransactionItem) => {
     onProcessClick(deposit);
@@ -45,8 +68,8 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits, onProcessClick }) => {
             </tr>
           </thead>
           <tbody className="font-[500]">
-            {deposits.length > 0 ? (
-              deposits.map((deposit, index) => (
+            {paginatedDeposits.length > 0 ? (
+              paginatedDeposits.map((deposit, index) => (
                 <tr key={deposit.transId}>
                   <td className="w-[32px] min-w-[32px] sticky left-0 bg-[#ffffff] z-10">
                     {index + 1}
@@ -80,6 +103,14 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits, onProcessClick }) => {
           </tbody>
         </table>
       </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        pageSize={pageSize}
+        totalItems={totalItems}
+        onPageChange={handlePageChange}
+        onPageSizeChange={handlePageSizeChange}
+      />
     </>
   );
 };
