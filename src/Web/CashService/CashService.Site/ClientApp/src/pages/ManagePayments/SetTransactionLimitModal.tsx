@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { IconClose } from '../../components/Icons';
-import { ErrorMessageComponent, SuccessMessageComponent } from '../../components/MessageComponents';
+import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import { ensureIntegerInput, ensureDecimalInput } from '../../utils/inputHandlers';
 import { ButtonApplyComponent, ButtonCancelComponent } from '../../components/ButtonComponents';
 
@@ -20,11 +20,11 @@ interface FormState {
 }
 
 interface FormErrors {
-  minDeposit: boolean;
-  maxDeposit: boolean;
-  minWithdrawal: boolean;
-  maxWithdrawal: boolean;
-  dailyWithdrawalCount: boolean;
+  minDeposit: string;
+  maxDeposit: string;
+  minWithdrawal: string;
+  maxWithdrawal: string;
+  dailyWithdrawalCount: string;
 }
 
 const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
@@ -54,11 +54,11 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
     dailyWithdrawalCount: ''
   });
   const [fieldErrors, setFieldErrors] = useState<FormErrors>({
-    minDeposit: false,
-    maxDeposit: false,
-    minWithdrawal: false,
-    maxWithdrawal: false,
-    dailyWithdrawalCount: false
+    minDeposit: '',
+    maxDeposit: '',
+    minWithdrawal: '',
+    maxWithdrawal: '',
+    dailyWithdrawalCount: ''
   });
 
   const hasFormChanged = (): boolean => {
@@ -105,11 +105,11 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
     setError(null);
     setLoading(true);
     setFieldErrors({
-      minDeposit: false,
-      maxDeposit: false,
-      minWithdrawal: false,
-      maxWithdrawal: false,
-      dailyWithdrawalCount: false
+      minDeposit: '',
+      maxDeposit: '',
+      minWithdrawal: '',
+      maxWithdrawal: '',
+      dailyWithdrawalCount: ''
     });
 
     if (!hasFormChanged()) {
@@ -124,78 +124,71 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
     const minWithdrawalNum = parseFloat(formState.minWithdrawal) || 0;
     const maxWithdrawalNum = parseFloat(formState.maxWithdrawal) || 0;
     var hasError = false;
-    var errorMessages = [];
     if(minDepositNum <= 0) {
-      errorMessages.push(tGlobal('valueMustBeGreaterThanZero'));
       setFieldErrors(prev => ({
         ...prev,
-        minDeposit: true
+        minDeposit: tGlobal('valueMustBeGreaterThanZero')
       }));
 
       hasError = true;
     }
 
     if(maxDepositNum <= 0) {
-      errorMessages.push(tGlobal('valueMustBeGreaterThanZero'));
       setFieldErrors(prev => ({
         ...prev,
-        maxDeposit: true
+        maxDeposit: tGlobal('valueMustBeGreaterThanZero')
       }));
 
       hasError = true;
     }
     
     if(minWithdrawalNum <= 0) {
-      errorMessages.push(tGlobal('valueMustBeGreaterThanZero'));
       setFieldErrors(prev => ({
         ...prev,
-        minWithdrawal: true
+        minWithdrawal: tGlobal('valueMustBeGreaterThanZero')
       }));
+
       hasError = true;
     } 
 
     if(maxWithdrawalNum <= 0) {
-      errorMessages.push(tGlobal('valueMustBeGreaterThanZero'));
       setFieldErrors(prev => ({
         ...prev,
-        maxWithdrawal: true
+        maxWithdrawal: tGlobal('valueMustBeGreaterThanZero')
       }));
+
       hasError = true;
     }
 
     if (minDepositNum > maxDepositNum) {
-      errorMessages.push(tManagePayments('minDepositMustBeLessThanOrEqualMaxDeposit'));
       setFieldErrors(prev => ({
         ...prev,
-        minDeposit: true,
-        maxDeposit: true
+        minDeposit: tManagePayments('minDepositMustBeLessThanOrEqualMaxDeposit'),
+        maxDeposit: tManagePayments('minDepositMustBeLessThanOrEqualMaxDeposit')
       }));
 
       hasError = true;
     }
 
     if (minWithdrawalNum > maxWithdrawalNum) {
-      errorMessages.push(tManagePayments('minWithdrawalMustBeLessThanOrEqualMaxWithdrawal'));
       setFieldErrors(prev => ({
         ...prev,
-        minWithdrawal: true,
-        maxWithdrawal: true
+        minWithdrawal: tManagePayments('minWithdrawalMustBeLessThanOrEqualMaxWithdrawal'),
+        maxWithdrawal: tManagePayments('minWithdrawalMustBeLessThanOrEqualMaxWithdrawal')
       }));
 
       hasError = true;
     }
 
     if(parseInt(formState.dailyWithdrawalCount) < 1 || parseInt(formState.dailyWithdrawalCount) > 32767) {
-      errorMessages.push(tManagePayments('dailyWithdrawalCountOutOfRange'));
       setFieldErrors(prev => ({
         ...prev,
-        dailyWithdrawalCount: true
+        dailyWithdrawalCount: tManagePayments('dailyWithdrawalCountOutOfRange')
       }));
       hasError = true;
     }
 
     if (hasError) {
-      setError(errorMessages.join('<br />'));
       setLoading(false);
       return;
     }
@@ -269,6 +262,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   required
                   maxLength={12}
                 />
+                <ValidateMessageComponent message={fieldErrors.minDeposit} />
               </div>
               <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                 <label className="block font-bold text-[#333333] my-[8px]">{tManagePayments('maxPerTransaction')}</label>
@@ -286,6 +280,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   required
                   maxLength={12}
                 />
+                <ValidateMessageComponent message={fieldErrors.maxDeposit} />
               </div>
               </div>
               <div className="text-[var(--text-color-primary)] my-[8px] font-semibold">{tManagePayments('withdrawal')}</div>
@@ -306,6 +301,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   required
                   maxLength={12}
                 />
+                <ValidateMessageComponent message={fieldErrors.minWithdrawal} />
               </div>
               <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                 <label className="block font-bold text-[#333333] my-[8px]">{tManagePayments('maxPerTransaction')}</label>
@@ -323,6 +319,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   required
                   maxLength={12}
                 />
+                <ValidateMessageComponent message={fieldErrors.maxWithdrawal} />
               </div>
               </div>
               <div className='flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full'>
@@ -337,6 +334,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   maxLength={5}
                   required
                 />
+                <ValidateMessageComponent message={fieldErrors.dailyWithdrawalCount} />
                 <label className=" block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold">{tManagePayments('dailyWithdrawalCountTip')}</label>
               </div>
               
