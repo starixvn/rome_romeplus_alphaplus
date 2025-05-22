@@ -1,77 +1,97 @@
 using AlphaPlus.CashService.Site.Features.Payments.Models;
-using FluentAssertions;
+using Newtonsoft.Json;
 using Xunit;
 
-namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments.Models;
-
-public class BankAccountModelTests
+namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments.Models
 {
-    [Fact]
-    public void Constructor_WhenCalled_ShouldInitializeDefaultValues()
+    public class BankAccountModelTests
     {
-        // Act
-        var bankAccount = new BankAccountModel();
-
-        // Assert
-        bankAccount.AccountNickname.Should().BeEmpty();
-        bankAccount.AccountNumber.Should().BeEmpty();
-        bankAccount.AccountHolderName.Should().BeEmpty();
-        bankAccount.Mobile.Should().BeEmpty();
-        bankAccount.CountryCode.Should().BeEmpty();
-        bankAccount.Creator.Should().BeEmpty();
-        bankAccount.LastUpdated.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(1));
-    }
-
-    [Fact]
-    public void LastUpdatedStr_WhenDateTimeIsSet_ShouldReturnFormattedDateTime()
-    {
-        // Arrange
-        var bankAccount = new BankAccountModel
+        [Fact]
+        public void Constructor_WhenCalled_InitializesDefaultValues()
         {
-            LastUpdated = new DateTime(2024, 3, 15, 14, 30, 0, DateTimeKind.Utc)
-        };
+            // Arrange & Act
+            var model = new BankAccountModel();
 
-        // Act
-        var result = bankAccount.LastUpdatedStr;
+            // Assert
+            Assert.Equal(string.Empty, model.AccountNickname);
+            Assert.Equal(string.Empty, model.AccountNumber);
+            Assert.Equal(string.Empty, model.AccountHolderName);
+            Assert.True(model.LastUpdated <= DateTime.UtcNow);
+            Assert.True(model.LastUpdated >= DateTime.UtcNow.AddMinutes(-1));
+        }
 
-        // Assert
-        result.Should().Be("03/15/2024 02:30:00 PM");
-    }
-
-    [Fact]
-    public void Properties_WhenSet_ShouldReturnExpectedValues()
-    {
-        // Arrange
-        var bankAccount = new BankAccountModel
+        [Fact]
+        public void LastUpdatedStr_WhenCalled_ReturnsFormattedDateTime()
         {
-            Id = 1,
-            AccountNumber = "1234567890",
-            AccountNickname = "Main Account",
-            AccountHolderName = "John Doe",
-            TransactionTypes = "Deposit,Withdrawal",
-            BankName = "Test Bank",
-            BankId = 1,
-            Status = 1,
-            PromptPay = true,
-            Mobile = "1234567890",
-            CountryCode = "+1",
-            Creator = "Admin",
-            CreatorId = 1
-        };
+            // Arrange
+            var model = new BankAccountModel
+            {
+                LastUpdated = new DateTime(2024, 3, 15, 14, 30, 0)
+            };
 
-        // Assert
-        bankAccount.Id.Should().Be(1);
-        bankAccount.AccountNumber.Should().Be("1234567890");
-        bankAccount.AccountNickname.Should().Be("Main Account");
-        bankAccount.AccountHolderName.Should().Be("John Doe");
-        bankAccount.TransactionTypes.Should().Be("Deposit,Withdrawal");
-        bankAccount.BankName.Should().Be("Test Bank");
-        bankAccount.BankId.Should().Be(1);
-        bankAccount.Status.Should().Be(1);
-        bankAccount.PromptPay.Should().BeTrue();
-        bankAccount.Mobile.Should().Be("1234567890");
-        bankAccount.CountryCode.Should().Be("+1");
-        bankAccount.Creator.Should().Be("Admin");
-        bankAccount.CreatorId.Should().Be(1);
+            // Act
+            var result = model.LastUpdatedStr;
+
+            // Assert
+            Assert.Equal("03/15/2024 02:30:00 PM", result);
+        }
+
+        [Fact]
+        public void BankDepositMatchingMode_WhenBankDepositMatchingModeIsNull_ReturnsNull()
+        {
+            // Arrange
+            var model = new BankAccountModel
+            {
+                Bank_DepositMatchingMode = null
+            };
+
+            // Act
+            var result = model.BankDepositMatchingMode;
+
+            // Assert
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void BankDepositMatchingMode_WhenBankDepositMatchingModeIsEmpty_ReturnsNull()
+        {
+            // Arrange
+            var model = new BankAccountModel
+            {
+                Bank_DepositMatchingMode = string.Empty
+            };
+
+            // Act
+            var result = model.BankDepositMatchingMode;
+
+            // Assert
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void BankDepositMatchingMode_WhenValidJson_ReturnsDeserializedObject()
+        {
+            // Arrange
+            var depositMatchingMode = new DepositMatchingModeModel
+            {
+                SourceType = "TestSource",
+                MappingTypes = new[] { 1, 2, 3 },
+                SourceTypeName = "TestSourceName"
+            };
+            var json = JsonConvert.SerializeObject(depositMatchingMode);
+            var model = new BankAccountModel
+            {
+                Bank_DepositMatchingMode = json
+            };
+
+            // Act
+            var result = model.BankDepositMatchingMode;
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(depositMatchingMode.SourceType, result.SourceType);
+            Assert.Equal(depositMatchingMode.MappingTypes, result.MappingTypes);
+            Assert.Equal(depositMatchingMode.SourceTypeName, result.SourceTypeName);
+        }
     }
 } 

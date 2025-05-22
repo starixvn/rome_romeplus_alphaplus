@@ -1,4 +1,3 @@
-using System.Text.Json;
 using AlphaPlus.CashService.Site.Features.Payments.Models;
 using AlphaPlus.CashService.Site.Features.Payments.Requests;
 using AlphaPlus.CashService.Site.Features.Payments.ViewModels;
@@ -23,7 +22,6 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             _userSession = userSession;
         }
 
-        // private int _custId => 1176086;
         private int _custId => _userSession.CustId;
 
         public IActionResult Index()

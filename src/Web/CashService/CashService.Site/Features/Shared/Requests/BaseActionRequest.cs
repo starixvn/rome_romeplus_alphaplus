@@ -7,7 +7,6 @@ public class BaseActionRequest
     public void SetUserSession(IUserSession userSession)
     {
         ActorId = userSession.CustId;
-        // ActorId = 1176086;
 
         SubAccId = userSession.SubAccId;
         IP = userSession.UserLoginIp;
