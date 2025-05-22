@@ -63,25 +63,15 @@ app.MapReverseProxy(config =>
         .UseMiddleware<UMMiddleware>();
 });
 
-// Set PathBase dynamically from environment variable or config
-var pathBase = configuration["PathBase"] ?? string.Empty;
-if (!string.IsNullOrEmpty(pathBase))
-{
-    app.UsePathBase(pathBase);
-}
-
 // Register Gateway Swagger UI at a unique path to avoid conflict with proxy
 app.UseSwagger(c =>
 {
-    c.RouteTemplate = (string.IsNullOrEmpty(pathBase) ? "gateway-swagger/{documentName}/swagger.json" : $"{pathBase.TrimStart('/')}/gateway-swagger/{{documentName}}/swagger.json");
+    c.RouteTemplate = "gateway-swagger/{documentName}/swagger.json";
 });
 app.UseSwaggerUI(c =>
 {
-    var swaggerJson = string.IsNullOrEmpty(pathBase)
-        ? "/gateway-swagger/v1/swagger.json"
-        : $"{pathBase}/gateway-swagger/v1/swagger.json";
-    c.SwaggerEndpoint(swaggerJson, "API Gateway");
-    c.RoutePrefix = pathBase.TrimStart('/'); // Serve at /main, /v1, etc.
+    c.SwaggerEndpoint("/gateway-swagger/v1/swagger.json", "API Gateway");
+    c.RoutePrefix = ""; // Serve Gateway Swagger UI at root
 });
 
 await app.RunAsync();
