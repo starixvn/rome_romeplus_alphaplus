@@ -8,7 +8,7 @@ import TitleComponent from '../../components/TitleComponent';
 import { IconPen } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
 import { ErrorMessageComponent } from '../../components/MessageComponents';
-import { ButtonOutline, ButtonFull } from '../../components/ButtonComponents';
+import { ButtonOutlineComponent, ButtonFullComponent } from '../../components/ButtonComponents';
 
 interface PaymentGatewayComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
@@ -126,7 +126,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
                 {tManagePayments('setDailyWithdrawalCountForYourMembers')}
               </div>
                      
-              <ButtonOutline text={tManagePayments('setLimit')} onClick={() => handleSetLimitClick()}/>
+              <ButtonOutlineComponent text={tManagePayments('setLimit')} onClick={() => handleSetLimitClick()}/>
              
               <span className="block w-[100%] h-[1px] bg-[#e0e0e0] my-[10px]"></span>
               <div className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] max-[768px]:text-[20px] max-[768px]:leading-[24px] ">
@@ -164,7 +164,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
                           </td>
                           <td>{provider.name}</td>
                           <td>                            
-                            <ButtonFull text={tGlobal('view')} onClick={() => handleFeeClick(provider)} />
+                            <ButtonFullComponent text={tGlobal('view')} onClick={() => handleFeeClick(provider)} />
                           </td>
                           <td>
                           <span

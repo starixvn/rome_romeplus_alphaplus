@@ -6,7 +6,7 @@ import { PaymentMethod } from '../../services/interfaces/Payments/PaymentMethod'
 import { QRCodeCanvas } from 'qrcode.react';
 import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import { IconClose } from '../../components/Icons';
-import { ButtonApply, ButtonCancel } from '../../components/ButtonComponents';
+import { ButtonApplyComponent, ButtonCancelComponent } from '../../components/ButtonComponents';
 
 interface UpdatePaymentMethodModalProps {
   onClose: () => void;
@@ -305,8 +305,8 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
             <ValidateMessageComponent message={fieldErrors.agreeToTerms}  />
             </div>
             <div className='flex justify-center gap-[8px]'>
-            <ButtonCancel text={tPaymentProviderSettings('setUpLater')} onClick={onClose} />
-            <ButtonApply text={isLoading ? tGlobal('loading') : tGlobal('update')} onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent)} disabled={isLoading || allMethodsInactive || isBlockAction} />
+            <ButtonCancelComponent text={tPaymentProviderSettings('setUpLater')} onClick={onClose} />
+            <ButtonApplyComponent text={isLoading ? tGlobal('loading') : tGlobal('update')} onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent)} disabled={isLoading || allMethodsInactive || isBlockAction} />
           </div>
         </form>
       </div>

@@ -19,7 +19,7 @@ import '../../styles/common.css';
 import '../../styles/global.scss';
 
 import Loading from '../../components/LoadingComponent';
-import { ButtonApply, ButtonCancel, ButtonFull, ButtonOutline } from '../../components/ButtonComponents';
+import { ButtonApplyComponent, ButtonCancelComponent, ButtonFullComponent, ButtonOutlineComponent } from '../../components/ButtonComponents';
 import { PaymentMethod } from '../../services/interfaces/Payments';
 import { BackButtonComponent } from '../../components/ButtonComponents';
 declare global {
@@ -431,7 +431,7 @@ function PaymentProviderSettings() {
             <p className="block font-semibold text-[#333333] my-[8px]">
               {tPaymentProviderSettings('setUpPaymentMethodsForMembers')}
             </p>   
-            <ButtonFull text={`+ ${tPaymentProviderSettings('addPaymentMethod')}`} onClick={handleAddPaymentMethod} />            
+            <ButtonFullComponent text={`+ ${tPaymentProviderSettings('addPaymentMethod')}`} onClick={handleAddPaymentMethod} />            
             </div>
 
             {providerStatus != 2 && (
@@ -517,7 +517,7 @@ function PaymentProviderSettings() {
             </div> 
             </div>   
         
-            <ButtonOutline className="ml-auto mt-auto" text={tPaymentProviderSettings('viewProviderFees', {providerName: window.providerSettingsViewModel.Provider.Name})} onClick={handleViewFees} />
+            <ButtonOutlineComponent className="ml-auto mt-auto" text={tPaymentProviderSettings('viewProviderFees', {providerName: window.providerSettingsViewModel.Provider.Name})} onClick={handleViewFees} />
           </div>
           
           <div className="table-fixed-header table-fixed-body">
@@ -624,7 +624,7 @@ function PaymentProviderSettings() {
                     </td>
                     <td>     
                       {!isEditable(setting) ? <>-</> : setting.bankRequired ? (                        
-                        <ButtonOutline text={tPaymentProviderSettings('listOfBanks')} onClick={() => handleViewBanks(setting)} />                   
+                        <ButtonOutlineComponent text={tPaymentProviderSettings('listOfBanks')} onClick={() => handleViewBanks(setting)} />                   
                       ) : ( <span className='font-semibold color-[#333333]'>{tPaymentProviderSettings('noBankRequired')} </span>) }
                     </td>
                   </tr>
@@ -633,8 +633,8 @@ function PaymentProviderSettings() {
             </table>
           </div>
           <div className="flex justify-start gap-[8px] py-[8px] mt-[8px]">
-            <ButtonCancel text={tGlobal('reset')} onClick={handleReset} />
-            <ButtonApply text={updating ? tGlobal('updating') : tGlobal('update')} 
+            <ButtonCancelComponent text={tGlobal('reset')} onClick={handleReset} />
+            <ButtonApplyComponent text={updating ? tGlobal('updating') : tGlobal('update')} 
               onClick={handleUpdate} 
               disabled={providerStatus == 2 || updating || !hasEditableSettings()} />
           </div>          

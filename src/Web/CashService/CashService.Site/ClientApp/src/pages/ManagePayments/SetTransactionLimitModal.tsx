@@ -4,7 +4,7 @@ import { paymentProviderService } from '../../services/paymentsAPI';
 import { IconClose } from '../../components/Icons';
 import { ErrorMessageComponent, SuccessMessageComponent } from '../../components/MessageComponents';
 import { handleNumericInput, handleIntegerInput } from '../../utils/inputHandlers';
-import { ButtonApply, ButtonCancel } from '../../components/ButtonComponents';
+import { ButtonApplyComponent, ButtonCancelComponent } from '../../components/ButtonComponents';
 
 interface SetTransactionLimitModalProps {
   onClose: () => void;
@@ -302,8 +302,8 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
               </div>
             </div>
             <div className="flex justify-center gap-[8px]">    
-              <ButtonCancel text={tGlobal('cancel')} onClick={onClose}  />   
-              <ButtonApply text={loading ? tGlobal('saving') : tGlobal('save')} onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent)} disabled={loading || isBlockAction} />
+              <ButtonCancelComponent text={tGlobal('cancel')} onClick={onClose}  />   
+              <ButtonApplyComponent text={loading ? tGlobal('saving') : tGlobal('save')} onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent)} disabled={loading || isBlockAction} />
             </div>
           </form>
         </div>

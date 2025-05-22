@@ -16,7 +16,7 @@ import Loading from '../../components/LoadingComponent';
 import { BackButtonComponent } from '../../components/ButtonComponents';
 import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import MobileComponent from '../../components/MobileComponent';
-import { ButtonApply, ButtonCancel } from '../../components/ButtonComponents';
+import { ButtonApplyComponent, ButtonCancelComponent } from '../../components/ButtonComponents';
 import TitleComponent from '../../components/TitleComponent';
 
 interface UpdateBankAccountComponentProps {
@@ -626,8 +626,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
               )}
             </div>
             <div className="flex justify-start py-[8px] mt-[8px] gap-[8px]">              
-              <ButtonCancel text={tGlobal('cancel')} onClick={onClose}  />
-              <ButtonApply text={loading ? tGlobal('saving') : tGlobal('save')} onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent)} disabled={loading || isBlockAction} />
+              <ButtonCancelComponent text={tGlobal('cancel')} onClick={onClose}  />
+              <ButtonApplyComponent text={loading ? tGlobal('saving') : tGlobal('save')} onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent)} disabled={loading || isBlockAction} />
             </div>
           </form>
         </div>

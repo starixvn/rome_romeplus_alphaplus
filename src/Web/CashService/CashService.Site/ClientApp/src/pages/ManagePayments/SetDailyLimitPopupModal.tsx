@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { IconClose, } from '../../components/Icons';
 import { ErrorMessageComponent, SuccessMessageComponent } from '../../components/MessageComponents';
-import { ButtonApply, ButtonCancel } from '../../components/ButtonComponents';
+import { ButtonApplyComponent, ButtonCancelComponent } from '../../components/ButtonComponents';
 import { ensureNumericInput } from '../../utils/inputHandlers';
 
 
@@ -105,8 +105,8 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
             </div>
           </div>
           <div className="flex justify-center gap-[8px]">         
-            <ButtonCancel className="w-[140px] [&>*]:w-[100%]" text={t('global:cancel')} onClick={onClose}  />
-            <ButtonApply className='w-[140px] [&>*]:w-[100%]' text={isLoading ? t('global:loading') : t('global:save')}   disabled={isLoading || isBlockAction}/>          
+            <ButtonCancelComponent className="w-[140px] [&>*]:w-[100%]" text={t('global:cancel')} onClick={onClose}  />
+            <ButtonApplyComponent className='w-[140px] [&>*]:w-[100%]' text={isLoading ? t('global:loading') : t('global:save')}   disabled={isLoading || isBlockAction}/>          
           </div>
         </form>
       </div>

@@ -14,7 +14,7 @@
   import '../../styles/global.scss';
 
   import TitleComponent from '../../components/TitleComponent';
-  import { ButtonApply } from '../../components/ButtonComponents';
+  import { ButtonApplyComponent } from '../../components/ButtonComponents';
 
   const MemberSiteManagement: React.FC = () => {
     const { t } = useTranslation(['memberSite', 'global']);
@@ -129,7 +129,7 @@
                 </div>
 
                 <div className="flex justify-start py-[8px] mt-[8px]">
-                  <ButtonApply 
+                  <ButtonApplyComponent 
                     className='w-[140px] [&>*]:w-[100%]' 
                     text={isSaving ? t('actions.saving') : t('actions.save')} 
                     disabled={isSaving}

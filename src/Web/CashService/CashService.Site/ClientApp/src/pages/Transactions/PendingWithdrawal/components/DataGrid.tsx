@@ -10,7 +10,7 @@ import {
 import PendingWithdrawalModal from './PendingWithdrawalModal.tsx';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import NoRecordFound from '../../../../components/Table/NoRecordFound';
-import { ButtonFull } from '../../../../components/ButtonComponents';
+import { ButtonFullComponent } from '../../../../components/ButtonComponents';
 
 interface DataGridProps {
   withdrawals: TransactionItem[];
@@ -94,7 +94,7 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
                   <td>{formatDateTime(withdrawal.createdTime)}</td>
                   <td>
                 
-                    <ButtonFull
+                    <ButtonFullComponent
                       text={t('dataGrid.process')}
                       disabled={isLoading}
                       onClick={() => handleProcessClick(withdrawal)}

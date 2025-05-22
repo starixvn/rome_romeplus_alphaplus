@@ -17,7 +17,7 @@ import {
 } from '../../../services/interfaces/Transactions/TransactionHistory';
 import Loading from '../../../components/LoadingComponent';
 import TitleComponent from '../../../components/TitleComponent';
-import { ButtonOutline } from '../../../components/ButtonComponents';
+import { ButtonOutlineComponent } from '../../../components/ButtonComponents';
 
 const PendingDeposit: React.FC = () => {
   const { t } = useTranslation('pendingDeposit');
@@ -141,7 +141,7 @@ const PendingDeposit: React.FC = () => {
       <div className=" py-[12px] flex h-full flex-col">
         <TitleComponent title={t('pendingDeposit')} />          
         <div className="mb-[8px]">
-          <ButtonOutline 
+          <ButtonOutlineComponent 
             text={`+ ${t('addManualDeposit')}`}
             onClick={handleAddManualDeposit}
             className="min-w-[183px] [&>*]:min-w-[183px] [&>*]:inline-block" 
