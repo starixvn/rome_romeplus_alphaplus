@@ -15,7 +15,7 @@ export interface TransactionItem {
   transactionType: string;
   remark: string;
   payslip: string;
-  base64payslip: string;
+  base64Payslip: string;
   createdTime: string;
   lastUpdatedDate: string;
   isAllowRevert: boolean;

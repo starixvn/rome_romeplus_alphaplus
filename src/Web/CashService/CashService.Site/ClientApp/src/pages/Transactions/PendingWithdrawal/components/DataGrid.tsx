@@ -101,7 +101,8 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
                     {index + 1}
                   </td>
                   <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[#ffffff] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
-                    {withdrawal.username}
+                    <div>{withdrawal.username}</div>
+                    <div>{withdrawal.nickname}</div>
                   </td>
                   <td>
                     <div>{withdrawal.firstName}</div>

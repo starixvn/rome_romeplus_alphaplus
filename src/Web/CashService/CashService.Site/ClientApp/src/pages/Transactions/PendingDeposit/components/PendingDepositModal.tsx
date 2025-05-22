@@ -3,7 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { IconClose } from '../../../../components/Icons';
 import { ButtonApplyComponent, ButtonCancelComponent } from '../../../../components/ButtonComponents';
-import { renderBankAccount, displayAmount, formatDateTime } from '../../../../common/commonFunctions';
+import {
+  renderBankAccount,
+  displayAmount,
+  formatDateTime,
+} from '../../../../common/commonFunctions';
 import pendingDepositAPI from '../../../../services/pendingDepositAPI';
 import { ApproveRejectDepositModel } from '../../../../services/interfaces/ApproveRejectDepositModel.ts';
 import { ResultMessageComponent } from '../../../../components/MessageComponents.tsx';
@@ -12,22 +16,22 @@ interface PendingDepositModalProps {
   deposit: TransactionItem | null;
   onClose: (isSuccess: boolean) => void;
 }
-const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
-  deposit,
-  onClose
-}) => {
+const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ deposit, onClose }) => {
   const { t } = useTranslation('pendingDeposit');
   const [remarks, setRemarks] = useState('');
   const [depositAmount, setDepositAmount] = useState(deposit?.amount.toString());
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [resultMessage, setResultMessage] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [resultMessage, setResultMessage] = useState<{
+    type: 'success' | 'error';
+    message: string;
+  } | null>(null);
 
   const getParams = () => {
     const params: ApproveRejectDepositModel = {
       transId: deposit?.transId ? deposit.transId : 0,
       amount: depositAmount === '' ? 0 : Number(depositAmount),
       remark: remarks,
-    }
+    };
     return params;
   };
 
@@ -40,7 +44,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
       if (response.isSuccessful) {
         setResultMessage({
           type: 'success',
-          message: t('successMessages.depositApproved')
+          message: t('successMessages.depositApproved'),
         });
         setTimeout(() => {
           onClose(true);
@@ -49,7 +53,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
         setIsSubmitting(false);
         setResultMessage({
           type: 'error',
-          message: response.message || t('errorMessages.failedToApprove')
+          message: response.message || t('errorMessages.failedToApprove'),
         });
       }
     } catch (error) {
@@ -66,7 +70,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
       if (response.isSuccessful) {
         setResultMessage({
           type: 'success',
-          message: t('successMessages.depositRejected')
+          message: t('successMessages.depositRejected'),
         });
         setTimeout(() => {
           onClose(true);
@@ -75,13 +79,13 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
         setIsSubmitting(false);
         setResultMessage({
           type: 'error',
-          message: t('errorMessages.failedToReject')
+          message: t('errorMessages.failedToReject'),
         });
       }
     } catch (error) {
       console.error('Error processing deposit:', error);
     }
-  };  
+  };
 
   const handleSetDepositAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.validity.valid) {
@@ -97,12 +101,12 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
             {t('pendingDepositModal.title')} ({deposit?.transId})
           </h5>
           <button
-              type="button"
-              className="absolute top-[-20px] right-[-20px] cursor-pointer"
-              onClick={() => onClose(false)}
-            >
-              <IconClose />
-            </button>
+            type="button"
+            className="absolute top-[-20px] right-[-20px] cursor-pointer"
+            onClick={() => onClose(false)}
+          >
+            <IconClose />
+          </button>
         </div>
         {resultMessage && (
           <ResultMessageComponent
@@ -116,16 +120,24 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
             <table className="w-full">
               <thead>
                 <tr className="text-left text-[#333333]">
-                  <th className="font-bold px-[8px] py-[4px]">{t('pendingDepositModal.username')}</th>
-                  <th className="font-bold px-[8px] py-[4px]">{t('pendingDepositModal.firstLastName')}</th>
-                  <th className="font-bold px-[8px] py-[4px]">{t('pendingDepositModal.betCredit')}</th>
+                  <th className="font-bold px-[8px] py-[4px]">
+                    {t('pendingDepositModal.username')}
+                  </th>
+                  <th className="font-bold px-[8px] py-[4px]">
+                    {t('pendingDepositModal.firstLastName')}
+                  </th>
+                  <th className="font-bold px-[8px] py-[4px]">
+                    {t('pendingDepositModal.betCredit')}
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td className="px-[8px] py-[4px]">{deposit?.username}</td>
                   <td className="px-[8px] py-[4px]">{`${deposit?.firstName} ${deposit?.lastName}`}</td>
-                  <td className="px-[8px] py-[4px] text-[var(--text-color-primary)] font-semibold">{deposit?.amount && displayAmount(deposit.amount)}</td>
+                  <td className="px-[8px] py-[4px] text-[var(--text-color-primary)] font-semibold">
+                    {deposit?.amount && displayAmount(deposit.amount)}
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -134,26 +146,34 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
           <div className="flex flex-nowrap justify-between gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
             <div className="w-[230px] max-[768px]:w-[48%]">
               <div className="mb-[8px]">
-                <div className="block font-bold text-[#333333] my-[8px]">{t('pendingDepositModal.from')}</div>
-                <div className="flex items-center">                   
+                <div className="block font-bold text-[#333333] my-[8px]">
+                  {t('pendingDepositModal.from')}
+                </div>
+                <div className="flex items-center">
                   {deposit?.paymentFrom && renderBankAccount(deposit.paymentFrom)}
                 </div>
               </div>
 
               <div>
-                <div className="block font-bold text-[#333333] my-[8px]">{t('pendingDepositModal.dateAndTime')}</div>
+                <div className="block font-bold text-[#333333] my-[8px]">
+                  {t('pendingDepositModal.dateAndTime')}
+                </div>
                 <div>{formatDateTime(deposit?.createdTime || '')}</div>
               </div>
             </div>
 
             <div className="w-[230px] max-[768px]:w-[48%]">
               <div className="mb-[8px]">
-                <div className="block font-bold text-[#333333] my-[8px]">{t('pendingDepositModal.to')}</div>                 
+                <div className="block font-bold text-[#333333] my-[8px]">
+                  {t('pendingDepositModal.to')}
+                </div>
                 {deposit?.paymentTo && renderBankAccount(deposit.paymentTo)}
               </div>
 
               <div>
-                <div className="block font-bold text-[#333333] my-[8px]">{t('pendingDepositModal.depositAmount')}</div>
+                <div className="block font-bold text-[#333333] my-[8px]">
+                  {t('pendingDepositModal.depositAmount')}
+                </div>
                 <div className="relative">
                   <input
                     type="text"
@@ -169,7 +189,9 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
           </div>
 
           <div className="mb-[16px]">
-            <div className="block font-bold text-[#333333] my-[8px]">{t('pendingDepositModal.remarks')}</div>
+            <div className="block font-bold text-[#333333] my-[8px]">
+              {t('pendingDepositModal.remarks')}
+            </div>
             <textarea
               value={remarks}
               onChange={(e) => setRemarks(e.target.value)}
@@ -180,8 +202,22 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
         </div>
 
         <div className="flex justify-center gap-[8px]">
-          <ButtonComponent className="w-[140px]" type="cancel" style="rounded" text={t('pendingDepositModal.reject')} onClick={handleReject} disabled={isSubmitting} />
-          <ButtonComponent className="w-[140px]" type="apply" style="rounded" text={t('pendingDepositModal.approve')} onClick={handleApprove} disabled={isSubmitting} />
+          <ButtonComponent
+            className="w-[140px]"
+            type="cancel"
+            style="rounded"
+            text={t('pendingDepositModal.reject')}
+            onClick={handleReject}
+            disabled={isSubmitting}
+          />
+          <ButtonComponent
+            className="w-[140px]"
+            type="apply"
+            style="rounded"
+            text={t('pendingDepositModal.approve')}
+            onClick={handleApprove}
+            disabled={isSubmitting}
+          />
         </div>
       </div>
     </div>

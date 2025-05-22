@@ -184,22 +184,20 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         />
       </div>
 
-      <div className="table-fixed-header table-fixed-body bg-[#ffffff] h-full">
-        <DataGrid
-          items={displayedItems}
-          pageIndex={apiParams.pageIndex}
-          pageSize={apiParams.pageSize}
-          isLoading={loading}
-          columnFilter={columnFilter}
-        />
-        <Pagination
-          currentPage={apiParams.pageIndex}
-          totalItems={apiData.totalCount}
-          pageSize={apiParams.pageSize}
-          onPageChange={handlePageChange}
-          onPageSizeChange={handlePageSizeChange}
-        />
-      </div>
+      <DataGrid
+        items={displayedItems}
+        pageIndex={apiParams.pageIndex}
+        pageSize={apiParams.pageSize}
+        isLoading={loading}
+        columnFilter={columnFilter}
+      />
+      <Pagination
+        currentPage={apiParams.pageIndex}
+        totalItems={apiData.totalCount}
+        pageSize={apiParams.pageSize}
+        onPageChange={handlePageChange}
+        onPageSizeChange={handlePageSizeChange}
+      />
     </div>
   );
 };

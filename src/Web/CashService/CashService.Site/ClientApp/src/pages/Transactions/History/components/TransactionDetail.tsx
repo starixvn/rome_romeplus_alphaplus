@@ -96,17 +96,15 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
 
   if (!isOpen) return null;
 
-  const bodyClassName = detailData?.base64payslip
-    ? 'p-[20px] bg-white w-[850px]'
-    : 'p-[30px] bg-[#ffffff] mt-[100px] max-w-[540px] max-[768px]:max-w-[90%] ';
+  const bodyClassName =
+    detailData && detailData.base64Payslip
+      ? 'bg-white w-[850px]'
+      : 'bg-[#ffffff] mt-[100px] max-w-[540px] max-[768px]:max-w-[90%] ';
 
-  const modalClassName = detailData?.base64payslip
-    ? 'bg-[#00000066] fixed inset-0 flex items-center justify-center z-50'
-    : 'bg-[#00000066] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-start justify-center';
   return (
-    <div className={modalClassName}>
+    <div className="bg-[#00000066] fixed inset-0 flex items-center justify-center z-50">
       <div
-        className={`${bodyClassName} rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]`}
+        className={`${bodyClassName} p-[20px] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]`}
       >
         <div className="relative">
           <h5 className="text-[16px] text-[#163f78] font-bold pb-[15px]">
@@ -121,7 +119,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
           </h5>
           <button
             type="button"
-            className="absolute top-[-20px] right-[-20px] cursor-pointer"
+            className="absolute top-[-15px] right-[-15px] cursor-pointer"
             onClick={onClose}
             disabled={reverting}
           >
@@ -150,29 +148,23 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
             <div className="flex gap-6">
               <div className="w-[460px] h-full">
                 <div className="border border-[#214184] rounded mb-6">
-                  <table className="w-full h-full">
+                  <table className="w-full">
                     <thead>
-                      <tr>
-                        <th className="text-sm text-center p-2 text-gray-700">
-                          <div>{t('detail.username')}</div>
-                          <div>{t('detail.nickname')}</div>
-                        </th>
-                        <th className="text-sm text-center p-2 text-gray-700">
-                          {t('detail.fullName')}
-                        </th>
-                        <th className="text-sm text-center p-2 text-gray-700">
-                          {t('detail.betCredit')}
-                        </th>
+                      <tr className="text-left text-[#333333]">
+                        <th className="font-bold px-[8px] py-[4px]">{t('detail.username')}</th>
+                        <th className="font-bold px-[8px] py-[4px]">{t('detail.nickname')}</th>
+                        <th className="font-bold px-[8px] py-[4px]">{t('detail.fullName')}</th>
+                        <th className="font-bold px-[8px] py-[4px]">{t('detail.betCredit')}</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td className="text-sm p-2 text-left">
+                        <td className="px-[8px] py-[4px]">
                           <div>{detailData.username}</div>
-                          <div>{detailData.nickname}</div>
                         </td>
-                        <td className="text-sm p-2">{`${detailData.firstName} ${detailData.lastName}`}</td>
-                        <td className="text-sm p-2 text-[var(--text-color-primary)] font-semibold">
+                        <td className="px-[8px] py-[4px]">{detailData.nickname}</td>
+                        <td className="px-[8px] py-[4px]">{`${detailData.firstName} ${detailData.lastName}`}</td>
+                        <td className="px-[8px] py-[4px] text-[var(--text-color-primary)] font-semibold">
                           {displayAmount(detailData.betCredit)}
                         </td>
                       </tr>
@@ -232,17 +224,17 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
                     onChange={(e) => setRemarks(e.target.value)}
                     placeholder={t('detail.remarksPlaceholder')}
                     className="block h-[150px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] py-[10px] focus:outline-none focus:border-[var(--button-border)]"
-                    disabled={reverting}
+                    disabled={reverting || !detailData?.isAllowRevert}
                   />
                 </div>
               </div>
 
-              {detailData.base64payslip && (
-                <div className="w-[240px] pl-20">
+              {detailData.base64Payslip && (
+                <div className="w-[400px] h-full">
                   <img
-                    src={`data:image/png;base64,${detailData.base64payslip}`}
+                    src={`data:image/png;base64,${detailData.base64Payslip}`}
                     alt={detailData.transId.toString()}
-                    className="w-[240px] h-[240px] object-contain"
+                    className="w-full h-full object-contain"
                   />
                 </div>
               )}
