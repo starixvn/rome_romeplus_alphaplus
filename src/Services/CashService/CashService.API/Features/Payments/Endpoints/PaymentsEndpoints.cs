@@ -14,9 +14,9 @@ public static class PaymentsEndpoints
 
     private static void MapPaymentProviderEndpoints(WebApplication app)
     {
-        app.MapGet("/api/payments/providers-by-custid/{custId}", async (int custId, IPaymentsService service) =>
+        app.MapGet("/api/payments/providers-by-custid/{custId}", async (int custId, string languageCode, IPaymentsService service) =>
         {
-            var providers = await service.GetProviders(custId);
+            var providers = await service.GetProviders(custId, languageCode);
             return Results.Ok(providers);
         })
         .WithName("GetPaymentProviders")
@@ -59,9 +59,9 @@ public static class PaymentsEndpoints
             Description = "Sets the daily withdrawal count for a specific customer"
         });
 
-        app.MapGet("/api/payments/provider-fees/{providerId}", async (int providerId, IPaymentsService service) =>
+        app.MapGet("/api/payments/provider-fees/{providerId}", async (int providerId, string languageCode, IPaymentsService service) =>
         {
-            var fees = await service.GetProviderFees(providerId);
+            var fees = await service.GetProviderFees(providerId, languageCode);
             return Results.Ok(fees);
         })
         .WithName("GetPaymentProviderFees")
@@ -71,9 +71,9 @@ public static class PaymentsEndpoints
             Description = "Returns the fees for a specific payment provider"
         });
 
-        app.MapGet("/api/payments/providers/{custId}/{providerId}", async (int custId, int providerId, IPaymentsService service) =>
+        app.MapGet("/api/payments/providers/{custId}/{providerId}", async (int custId, int providerId, string languageCode, IPaymentsService service) =>
         {
-            var provider = await service.GetProviderById(custId, providerId);
+            var provider = await service.GetProviderById(custId, providerId, languageCode);
             return Results.Ok(provider);
         })
         .WithName("GetPaymentProviderById")
@@ -83,9 +83,9 @@ public static class PaymentsEndpoints
             Description = "Returns a specific payment provider by its ID"
         });
 
-        app.MapGet("/api/payments/provider-settings", async (int providerId, int custId, int method, int status, int transactionType, IPaymentsService service) =>
+        app.MapGet("/api/payments/provider-settings", async (int providerId, int custId, int method, int status, int transactionType, string languageCode, IPaymentsService service) =>
         {
-            var settings = await service.GetProviderSettings(providerId, custId, method, status, transactionType);
+            var settings = await service.GetProviderSettings(providerId, custId, method, status, transactionType, languageCode);
             return Results.Ok(settings);
         })
         .WithName("GetPaymentProviderSettings")
@@ -95,9 +95,9 @@ public static class PaymentsEndpoints
             Description = "Returns the settings for a specific payment provider based on method, status, and transaction type"
         });
 
-        app.MapGet("/api/payments/get-add-payment-method-info", async (int custId, int providerId, int transactionType, IPaymentsService service) =>
+        app.MapGet("/api/payments/get-add-payment-method-info", async (int custId, int providerId, int transactionType, string languageCode, IPaymentsService service) =>
         {
-            var methods = await service.GetAddPaymentMethodInfo(custId, providerId, transactionType);
+            var methods = await service.GetAddPaymentMethodInfo(custId, providerId, transactionType, languageCode);
             return Results.Ok(methods);
         })
         .WithName("GetAddPaymentMethodInfo")
@@ -152,9 +152,9 @@ public static class PaymentsEndpoints
             Description = "Updates an existing payment method"
         });
 
-        app.MapGet("/api/payments/banks", async (string site, int transactionType, IPaymentsService service) =>
+        app.MapGet("/api/payments/banks", async (string site, int transactionType, string languageCode, IPaymentsService service) =>
         {
-            var banks = await service.GetBanks(site, transactionType);
+            var banks = await service.GetBanks(site, transactionType, languageCode);
             return Results.Ok(banks);
         })
         .WithName("GetAllBanks")
@@ -167,9 +167,9 @@ public static class PaymentsEndpoints
 
     private static void MapBankAccountEndpoints(WebApplication app)
     {
-        app.MapGet("/api/payments/banks/{custId}", async (int custId, IPaymentsService service) =>
+        app.MapGet("/api/payments/banks/{custId}", async (int custId, string languageCode, IPaymentsService service) =>
         {
-            var banks = await service.GetBanksByCust(custId);
+            var banks = await service.GetBanksByCust(custId, languageCode);
             return Results.Ok(banks);
         })
         .WithName("GetBanksByCust")
@@ -197,9 +197,10 @@ public static class PaymentsEndpoints
             int transactionType,
             int status,
             string searchText,
+            string languageCode,
             IPaymentsService service) =>
         {
-            var bankAccounts = await service.GetBankAccounts(custId, bankId, transactionType, status, searchText);
+            var bankAccounts = await service.GetBankAccounts(custId, bankId, transactionType, status, searchText, languageCode);
             return Results.Ok(bankAccounts);
         })
         .WithName("GetBankAccounts")
@@ -251,9 +252,9 @@ public static class PaymentsEndpoints
             Description = "Adds a new bank account for a customer"
         });
 
-        app.MapGet("/api/payments/bank-accounts/{accountId}", async (int accountId, IPaymentsService service) =>
+        app.MapGet("/api/payments/bank-accounts/{accountId}", async (int accountId, string languageCode, IPaymentsService service) =>
         {
-            var bankAccount = await service.GetBankAccountById(accountId);
+            var bankAccount = await service.GetBankAccountById(accountId, languageCode);
             return Results.Ok(bankAccount);
         })
         .WithName("GetBankAccountById")
