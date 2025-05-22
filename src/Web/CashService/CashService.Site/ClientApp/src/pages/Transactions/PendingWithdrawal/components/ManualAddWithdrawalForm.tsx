@@ -155,16 +155,21 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
 
   useEffect(() => {
     const fetchData = async () => {
-      const memberNames = await transactionAPI.getMemberLoginName();
+      const [memberNames, bankInfo, providerInfo] = await Promise.all([
+        transactionAPI.getMemberLoginName(),
+        transactionAPI.getCashAgentBankInfo(TransactionTypes.Withdrawal),
+        transactionAPI.getCashAgentProvider(TransactionTypes.Withdrawal),
+      ]);
+
       setMemberOptions(
         memberNames.map((member) => ({
           value: member.custId.toString(),
           label: member.username,
         }))
       );
+      const firstMember = memberNames[0];
+      setCustId(firstMember?.custId);
 
-      const bankInfo = await transactionAPI.getCashAgentBankInfo(TransactionTypes.Withdrawal);
-      const providerInfo = await transactionAPI.getCashAgentProvider(TransactionTypes.Withdrawal);
       const banks: WithdrawalAgentBankDropDown[] = bankInfo.map((bank) => ({
         value: `${bank.bankCode}_${bank.bankAccountNumber}`,
         label: bank.bankAccountNumber,
@@ -179,8 +184,25 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
         providerId: provider.providerId,
         paymentMethodId: provider.paymentMethodId,
       }));
-
+      const agentBankOptions = [...banks, ...mappedProviderInfo];
       setBankInfo([...banks, ...mappedProviderInfo]);
+      setFrom(agentBankOptions[0]?.value.toString());
+      setProviderId(agentBankOptions[0]?.providerId || 0);
+      setPaymentMethodId(agentBankOptions[0]?.paymentMethodId || 0);
+
+      handleUpdateLimitWithdrawalAmt();
+
+      const memberBanks = await transactionAPI.getCashMemberBankInfo(firstMember?.custId);
+      const memberBankOptions = memberBanks.map((bank) => ({
+        value: `${bank.bankCode}_${bank.bankAccountNumber}`,
+        label: bank.bankAccountNumber,
+        code: bank.bankCode,
+        providerId: 0,
+        paymentMethodId: 0,
+      }));
+      setMemberBankInfo(memberBankOptions);
+      setTo(memberBankOptions[0]?.value.toString());
+      await handleUpdateLimitWithdrawalAmt();
     };
 
     fetchData();
@@ -239,9 +261,8 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                         options={memberOptions}
                         onSelect={handleMemberSelect}
                         initialValue={custId?.toString()}
-                        showOptionAll={false}
                         searchable={true}
-                      placeholder={t('manualWithdrawalForm.selectMember')}
+                        placeholder={t('manualWithdrawalForm.selectMember')}
                       />
                     </div>
                   </div>
@@ -266,8 +287,6 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       }))}
                       onSelect={handleFromSelect}
                       initialValue={from}
-                      showOptionAll={false}
-                      placeholder={t('manualWithdrawalForm.selectBank')}
                     />
                   </div>
                 </div>

@@ -48,12 +48,9 @@ public class PendingWithdrawalService(
             CustDbGroupId = param.CustDbGroupId
         };
         await dynamicRepository.GetAsync<CreditAmount>(criteria);
-        var random = new Random();
-        var chance = random.Next(0, 10);
         return new CreditAmount
         {
-            MaxAmt = chance == 0 ? null : random.Next(0, 100),
-            //MaxAmt = criteria.MaxAmt,
+            MaxAmt = criteria.MaxAmt,
             MinAmt = criteria.MinAmt
         };
     }
