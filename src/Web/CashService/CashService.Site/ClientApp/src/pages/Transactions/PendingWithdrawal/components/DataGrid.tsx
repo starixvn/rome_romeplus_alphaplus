@@ -26,8 +26,7 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
   const [pageSize, setPageSize] = useState(100);
   const [paginatedWithdrawals, setPaginatedWithdrawals] = useState<TransactionItem[]>([]);
   const totalItems = withdrawals.length;
-  const totalPages = Math.ceil(totalItems / pageSize);
-
+  
   useEffect(() => {
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
