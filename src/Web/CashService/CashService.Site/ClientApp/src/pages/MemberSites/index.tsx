@@ -97,7 +97,7 @@
           <div className='mb-[8px]'>
             <TitleComponent title={t('title')} showTippy={false} />
           </div>
-          <div className="bg-[#ffffff] rounded-[4px] max-w-[1200px]">
+          <div className="bg-[var(--background-color)] rounded-[4px] max-w-[1200px]">
             {result && (
               <div className='pt-[24px] mx-[24px] max-[768px]:mx-[12px] max-[768px]:pt-[12px]'>
                 <ResultMessageComponent

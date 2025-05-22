@@ -14,16 +14,16 @@ const MessageFormSkeleton = () => {
   return (
     <div>
       {/* Title skeleton */}
-      <div className="h-[22px] w-[160px] bg-gray-200 rounded mb-2 animate-pulse"></div>
+      <div className="h-[22px] w-[160px] bg-gray-200 dark:bg-gray-700 rounded mb-2 animate-pulse"></div>
       {/* Subtitle skeleton */}
-      <div className="h-[16px] w-[340px] bg-gray-100 rounded mb-4 animate-pulse"></div>
+      <div className="h-[16px] w-[340px] bg-gray-100 dark:bg-gray-700 rounded mb-4 animate-pulse"></div>
       {/* Input skeletons */}
       <div className="flex gap-4 mb-4">
-        <div className="h-[38px] w-[190px] bg-gray-200 rounded animate-pulse"></div>
-        <div className="h-[38px] w-[190px] bg-gray-200 rounded animate-pulse"></div>
+        <div className="h-[38px] w-[190px] bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
+        <div className="h-[38px] w-[190px] bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
       </div>
       {/* Textarea skeleton */}
-      <div className="h-[80px] w-[400px] bg-gray-200 rounded animate-pulse"></div>
+      <div className="h-[80px] w-[400px] bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
     </div>
   );
 };

@@ -10,23 +10,23 @@ const GeneralSettingsSkeleton = () => {
     <div>
       {/* Title skeleton */}
       <div className="flex items-center justify-between">
-        <div className="h-[22px] w-[150px] bg-gray-200 rounded mb-2 animate-pulse"></div>
+        <div className="h-[22px] w-[150px] bg-gray-200 dark:bg-gray-700 rounded mb-2 animate-pulse"></div>
       </div>
       {/* Switch skeletons */}
       <div className="flex">
         <button className="text-left w-[25%] min-w-[200px] max-[768px]:w-[48%]">
           <div className="flex-1 min-w-0">
-            <div className="h-[12px] w-[90px] bg-gray-100 rounded my-[8px] animate-pulse"></div>
-            <div className="h-[12px] w-[120px] bg-gray-100 rounded mb-[8px] animate-pulse"></div>
+            <div className="h-[12px] w-[90px] bg-gray-100 dark:bg-gray-700 rounded my-[8px] animate-pulse"></div>
+            <div className="h-[12px] w-[120px] bg-gray-100 dark:bg-gray-700 rounded mb-[8px] animate-pulse"></div>
           </div>
-          <span className="block w-[60px] h-[30px] rounded-[20px] bg-gray-200 relative animate-pulse"></span>
+          <span className="block w-[60px] h-[30px] rounded-[20px] bg-gray-200 dark:bg-gray-700 relative animate-pulse"></span>
         </button>
         <button className="text-left w-[25%] min-w-[200px] max-[768px]:w-[48%]">
           <div className="flex-1 min-w-0">
-            <div className="h-[12px] w-[70px] bg-gray-100 rounded my-[8px] animate-pulse"></div>
-            <div className="h-[12px] w-[100px] bg-gray-100 rounded mb-[8px] animate-pulse"></div>
+            <div className="h-[12px] w-[70px] bg-gray-100 dark:bg-gray-700 rounded my-[8px] animate-pulse"></div>
+            <div className="h-[12px] w-[100px] bg-gray-100 dark:bg-gray-700 rounded mb-[8px] animate-pulse"></div>
           </div>
-          <span className="block w-[60px] h-[30px] rounded-[20px] bg-gray-200 relative animate-pulse"></span>
+          <span className="block w-[60px] h-[30px] rounded-[20px] bg-gray-200 dark:bg-gray-700 relative animate-pulse"></span>
         </button>
       </div>
     </div>

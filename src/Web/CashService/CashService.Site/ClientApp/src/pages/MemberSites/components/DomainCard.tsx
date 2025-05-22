@@ -49,7 +49,7 @@ const DomainCard: React.FC<DomainCardProps> = ({ domain,  index }) => {
       <div className="flex items-center ">
         <button 
             onClick={(e) => handleCopy(e)}
-            className="cursor-pointer p-1.5 rounded-[4px] hover:bg-[#2a5da0] transition-colors"
+            className="cursor-pointer p-1.5 rounded-[4px] hover:bg-[#2a5da0] dark:hover:bg-[var(--button-background-hover)] transition-colors"
             title="Copy URL"
           >
             {copied ? (
@@ -65,9 +65,9 @@ const DomainCard: React.FC<DomainCardProps> = ({ domain,  index }) => {
           <button 
           disabled={domain.status === 'blocked'}
           onClick={(e) => downloadQRCode(e)}
-          className={`cursor-pointer whitespace-nowrap text-[var(--text-color-primary)]  font-bold bg-[#ffffff] rounded-[5px] p-[6px]  ${
+          className={`cursor-pointer whitespace-nowrap text-[var(--text-color-primary)]  font-bold bg-[#ffffff] dark:bg-[var(--button-background)] rounded-[5px] p-[6px]  ${
             domain.status === 'active'
-              ? 'hover:bg-gray-50 dark:hover:bg-gray-300'
+              ? 'hover:bg-gray-50 dark:hover:bg-[var(--button-background-hover)]'
               : 'opacity-50 cursor-not-allowed'
           }`}
         >
