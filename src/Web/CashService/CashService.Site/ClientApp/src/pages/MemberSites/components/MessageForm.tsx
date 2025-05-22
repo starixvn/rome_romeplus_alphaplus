@@ -78,6 +78,7 @@ const MessageForm: React.FC<MessageFormProps> = ({loading}) => {
               : 'border-[var(--border-control)] focus:border-[var(--border-control-focus)]'
               }`}
             placeholder={t('message.placeholder.message')}
+            maxLength={ANNOUNCEMENT_MAX_LENGTH}
           />
           {errors.announcement && (
             <p className="text-[#E25757] text-[12px] mt-[4px]">
