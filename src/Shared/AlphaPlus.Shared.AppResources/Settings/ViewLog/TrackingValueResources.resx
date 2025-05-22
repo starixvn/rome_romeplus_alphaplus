@@ -3486,4 +3486,13 @@
   <data name="CommForMaster" xml:space="preserve">
     <value>Comm for Master</value>
   </data>
+  <data name="WinLimit" xml:space="preserve">
+    <value>Win Limit</value>
+  </data>
+  <data name="IsAutoReset" xml:space="preserve">
+    <value>Is Auto Reset</value>
+  </data>
+  <data name="PotentialWinLimit" xml:space="preserve">
+    <value>Potential Win Limit</value>
+  </data>
 </root>

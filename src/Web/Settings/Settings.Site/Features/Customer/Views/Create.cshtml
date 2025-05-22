@@ -42,8 +42,8 @@ else
         </script>
         <environment names="Development,Production">
             <script type="module" src="@(Model.CdnUri)create-customer/index.js?version=@(Model.AssetsVersion)"></script>
-        </environment>
-        @* <environment names="Development">
+        </environment>@*
+         <environment names="Development">
 <script type="module">
 import RefreshRuntime from "http://localhost:4201/@@react-refresh";
 RefreshRuntime.injectIntoGlobalHook(window);
@@ -53,7 +53,7 @@ window.__vite_plugin_react_preamble_installed__ = true;
 </script>
 <script type="module" src=@("http://localhost:4201/@vite/client")></script>
 <script type="module" src="http://localhost:4201/src/main.tsx"></script>
-</environment> *@
-
+</environment> 
+*@
     }
 }

@@ -12421,5 +12421,36 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog
                 return ResourceManager.GetString("zh-TW", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to WinLimit.
+        /// </summary>
+        public static string WinLimit
+        {
+            get
+            {
+                return ResourceManager.GetString("WinLimit", resourceCulture);
+            }
+        }
+        /// <summary>
+        ///   Looks up a localized string similar to IsAutoReset.
+        /// </summary>
+        public static string IsAutoReset
+        {
+            get
+            {
+                return ResourceManager.GetString("IsAutoReset", resourceCulture);
+            }
+        }
+        /// <summary>
+        ///   Looks up a localized string similar to PotentialWinLimit.
+        /// </summary>
+        public static string PotentialWinLimit
+        {
+            get
+            {
+                return ResourceManager.GetString("PotentialWinLimit", resourceCulture);
+            }
+        }
     }
 }
