@@ -144,8 +144,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Settings", "Settings", "{DE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Settings.Site", "src\Web\Settings\Settings.Site\Settings.Site.csproj", "{59B0E569-4C8C-0605-5100-89305F2058BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Settings.Site.Tests", "src\Web\Settings\Settings.Site.Tests\Settings.Site.Tests.csproj", "{F7A9D7B2-A677-D23C-2A29-7C9883E8F426}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tickets", "Tickets", "{5B1FC7D0-398E-44E1-AC1A-8F297A0A970D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetLists.Builders", "src\Web\Tickets\BetLists.Builders\BetLists.Builders.csproj", "{633298D1-DA65-967C-A15A-526CE96AC707}"
