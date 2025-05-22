@@ -76,7 +76,8 @@
     "removeImage": "ลบรูปภาพ",
     "cancel": "ยกเลิก",
     "approve": "อนุมัติ",
-    "approving": "กำลังอนุมัติ..."
+    "approving": "กำลังอนุมัติ...",
+    "agentAvailableCredit": "คูปองสำหรับสมาชิก"
   },
 
   "status": {

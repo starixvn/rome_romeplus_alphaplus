@@ -76,7 +76,8 @@
     "removeImage": "이미지 제거",
     "cancel": "취소",
     "approve": "승인",
-    "approving": "승인 중..."
+    "approving": "승인 중...",
+    "agentAvailableCredit": "에이전트 사용 가능 크레딧"
   },
 
   "status": {

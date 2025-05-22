@@ -76,7 +76,8 @@
     "removeImage": "Xóa hình ảnh",
     "cancel": "Hủy",
     "approve": "Phê duyệt",
-    "approving": "Đang phê duyệt..."
+    "approving": "Đang phê duyệt...",
+    "agentAvailableCredit": "Tín dụng cược có sẵn của đại lý"
   },
 
   "status": {

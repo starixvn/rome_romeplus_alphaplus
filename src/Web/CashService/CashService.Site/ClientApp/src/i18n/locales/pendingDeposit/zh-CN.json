@@ -76,7 +76,8 @@
     "removeImage": "删除图片",
     "cancel": "取消",
     "approve": "批准",
-    "approving": "批准中..."
+    "approving": "批准中...",
+    "agentAvailableCredit": "代理可用信用"
   },
 
   "status": {

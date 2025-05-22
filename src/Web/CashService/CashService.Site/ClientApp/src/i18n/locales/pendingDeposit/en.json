@@ -76,7 +76,8 @@
     "removeImage": "Remove image",
     "cancel": "Cancel",
     "approve": "Approve",
-    "approving": "Approving..."
+    "approving": "Approving...",
+    "agentAvailableCredit": "Agent Available Credit"
   },
 
   "status": {

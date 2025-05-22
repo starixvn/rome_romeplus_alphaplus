@@ -76,7 +76,8 @@
     "removeImage": "画像を削除",
     "cancel": "キャンセル",
     "approve": "承認",
-    "approving": "承認中..."
+    "approving": "承認中...",
+    "agentAvailableCredit": "エージェント利用可能クレジット"
   },
   
   "status": {
