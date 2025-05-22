@@ -12,8 +12,6 @@ public interface IDepositService
     Task<IEnumerable<DepositMethod>> GetDepositMethods(int agentId);
 
     Task<MemberSetting> GetMemberSetting(int memberId, int custDBGroupId);
-
-    Task<Result> CreateManualDeposit(CreateManualDepositRequest request);
 }
 
 public class DepositService(

@@ -26,14 +26,6 @@ public abstract class PaymentService(
         return criteria.ServiceType == CashServiceType;
     }
 
-    public async Task<MemberSetting> GetMemberSetting(int memberId, int custDBGroupId)
-    {
-        var criteria = new GetMemberSettingCriteria(memberId, custDBGroupId);
-        await repository.ExecuteAsync(criteria);
-
-        return new MemberSetting(criteria.AgentGivenCredit, criteria.CreditMembers_GivenCredit, criteria.MinLimitAmt, criteria.MaxLimitAmt);
-    }
-
     public void SyncCashAccumCredit(string cashAccumCreditTbl, int custDbGroupId)
     {
         _ = Task.Run(async () =>
