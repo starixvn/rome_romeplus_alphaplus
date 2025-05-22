@@ -9,6 +9,7 @@ public sealed class GlobalExceptionHandler(Fanex.Logging.ILogger logger) : IExce
 
     public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
     {
+        httpContext.Request.EnableBuffering();
         await logger.ErrorAsync(await ExceptionHelper.BuildError(httpContext.Request, exception));
 
         var response = httpContext.Response;
@@ -16,6 +17,6 @@ public sealed class GlobalExceptionHandler(Fanex.Logging.ILogger logger) : IExce
         response.StatusCode = StatusCodes.Status500InternalServerError;
         await response.WriteAsJsonAsync(Result.SystemError, cancellationToken: cancellationToken);
 
-        return false;
+        return true;
     }
 }
