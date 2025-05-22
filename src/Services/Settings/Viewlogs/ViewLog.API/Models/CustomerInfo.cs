@@ -14,5 +14,7 @@
         public bool IsSubAcc { get; }
 
         public int RoleId { get; }
+
+        public string SiteName { get; set; }
     }
 }

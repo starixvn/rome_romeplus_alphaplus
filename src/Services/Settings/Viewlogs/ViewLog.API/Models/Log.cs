@@ -41,5 +41,7 @@
         public string Details { get; set; }
 
         public bool IsHideNickname { get; set; }
+
+        public bool IsSupportPotentialWinLimit { get; set; }
     }
 }

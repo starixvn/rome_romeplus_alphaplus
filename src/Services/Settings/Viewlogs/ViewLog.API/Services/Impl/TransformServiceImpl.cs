@@ -19,7 +19,8 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
             string trackingValue,
             int logActionId,
             TransformParam transformParam,
-            bool isHideNickname = false)
+            bool isHideNickname = false,
+            bool isSupportPotentialWinLimit = false)
         {
             if (transformParam == null ||
                 string.IsNullOrWhiteSpace(trackingValue)
@@ -36,7 +37,7 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
             }
 
             // Need be reviewed code here, AssignParams should not in formatter class
-            logFormatter.Init(transformParam, isHideNickname);
+            logFormatter.Init(transformParam, isHideNickname, isSupportPotentialWinLimit);
 
             var xsltArguments = new XsltArgumentList();
             xsltArguments.AddExtensionObject("urn:LogFormat", logFormatter);

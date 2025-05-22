@@ -11,6 +11,8 @@ using MediatR;
 using AlphaPlus.Settings.Site.Features.ViewLogs.Requests.Setting;
 using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels;
 using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels.Setting;
+using AlphaPlus.Core.Configurations;
+using AppSettings = AlphaPlus.Settings.Site.Features.ViewLogs.Configurations.AppSettings;
 
 namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
 {
@@ -19,6 +21,7 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
         private readonly TrackingValueFormatter trackingValueFormatter;
         private readonly TransformService transformService;
         private readonly Fanex.Logging.ILogger logger;
+        private static readonly IReadOnlyList<int> PotentialWinLimitActionIds = new[] { 265000, 854 };
 
         public SettingHandler(
             [FromKeyedServices("settingLogSvc")] LogService logService,
@@ -62,12 +65,16 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
                 MinReportDate = message.MinReportDate,
                 IsShowOldValue = message.IsShowOldValue,
                 ActionTypeId = string.IsNullOrWhiteSpace(message.ActionTypeId) ? ActionType.All : Converter.ToInt(message.ActionTypeId),
-                LimitedDateToShowInfo = message.LimitedDateForShowInfo
+                LimitedDateToShowInfo = message.LimitedDateForShowInfo,
+                IsSupportPotentialWinLimit = AppSettings.IsSupportPotentialWinLimit(message.Site)
             };
 
             var pagingLogs = await LogService.GetPagingLogs(logsParam);
+            pagingLogs.Logs = pagingLogs.Logs.Where(i => IsSupportPotentialWinLimit(i));
+            var logsUnsupportPotentialWinLimit = pagingLogs.Logs.Where(i => !IsSupportPotentialWinLimit(i));
+            var totalRecords = pagingLogs.TotalRecords - logsUnsupportPotentialWinLimit.Count();
 
-            var viewModel = new IndexViewModel(logsParam, pagingLogs.TotalRecords)
+            var viewModel = new IndexViewModel(logsParam, totalRecords)
             {
                 LogActionTypes = await BuildLogActionTypeViewModels(message),
                 ActionTypeId = message.ActionTypeId
@@ -76,6 +83,16 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
             await TransformLogs(pagingLogs, message, viewModel);
 
             return viewModel;
+        }
+
+        private static bool IsSupportPotentialWinLimit(Log log)
+        {
+            if (!PotentialWinLimitActionIds.Any(i => i == log.ActionId))
+            {
+                return true;
+            }
+
+            return log.IsSupportPotentialWinLimit;
         }
 
         private async Task<IEnumerable<LogActionTypeViewModel>> BuildLogActionTypeViewModels(IndexQuery message)
@@ -113,7 +130,7 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
                 try
                 {
                     var formattedTrackingValue = trackingValueFormatter.GetFormattedDiffTrackingValue(log, message.IsShowOldValue);
-                    var htmlTrackingValue = transformService.TransformTrackingValue(formattedTrackingValue, log.ActionId, transformParam, log.IsHideNickname);
+                    var htmlTrackingValue = transformService.TransformTrackingValue(formattedTrackingValue, log.ActionId, transformParam, log.IsHideNickname, log.IsSupportPotentialWinLimit);
 
                     if (htmlTrackingValue != null)
                     {

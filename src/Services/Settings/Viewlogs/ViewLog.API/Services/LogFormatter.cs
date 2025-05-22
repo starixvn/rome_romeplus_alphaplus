@@ -4,7 +4,7 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services
 {
     public interface LogFormatter
     {
-        void Init(TransformParam transformParam, bool isHideNickname = false);
+        void Init(TransformParam transformParam, bool isHideNickname = false, bool isSupportPotentialWinLimit = false);
 
         string FormatIP(string ip);
 
@@ -79,5 +79,7 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services
         string FormatWinLossLimit(decimal value);
 
         string FormatAutoTransferSchedule(string schedulesDiff);
+
+        bool IsSupportPotentialWinLimit();
     }
 }

@@ -35,5 +35,7 @@
         public DateTime MinReportDate { get; set; }
 
         public DateTime LimitedDateToShowInfo { get; set; }
+
+        public bool IsSupportPotentialWinLimit { get; set; }
     }
 }
