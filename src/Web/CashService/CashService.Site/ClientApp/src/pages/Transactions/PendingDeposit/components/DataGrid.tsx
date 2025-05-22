@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
-import { displayAmount, renderBankAccount, formatDateTime, CurrentCurrency } from '../../../../common/commonFunctions';
-import { ButtonFullComponent } from '../../../../components/ButtonComponents';
+import {
+  displayAmount,
+  renderBankAccount,
+  formatDateTime,
+  CurrentCurrency,
+} from '../../../../common/commonFunctions';
 import NoRecordFound from '../../../../components/Table/NoRecordFound';
 import Pagination from '../../Components/Pagination';
 
@@ -58,7 +62,9 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits, onProcessClick }) => {
               <th scope="col">
                 <div>{t('dataGrid.firstLastName')}</div>
               </th>
-              <th scope="col">{t('dataGrid.amount')} ({CurrentCurrency})</th>
+              <th scope="col">
+                {t('dataGrid.amount')} ({CurrentCurrency})
+              </th>
               <th scope="col">{t('dataGrid.from')}</th>
               <th scope="col">{t('dataGrid.to')}</th>
               <th scope="col">{t('dataGrid.referenceNo')}</th>
@@ -102,18 +108,15 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits, onProcessClick }) => {
           </tbody>
         </table>
       </div>
-      {
-        paginatedDeposits.length > 0 && (
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            pageSize={pageSize}
-            totalItems={totalItems}
-            onPageChange={handlePageChange}
-            onPageSizeChange={handlePageSizeChange}
-          />
-        )
-      }
+      {paginatedDeposits.length > 0 && (
+        <Pagination
+          currentPage={currentPage}
+          pageSize={pageSize}
+          totalItems={totalItems}
+          onPageChange={handlePageChange}
+          onPageSizeChange={handlePageSizeChange}
+        />
+      )}
     </>
   );
 };

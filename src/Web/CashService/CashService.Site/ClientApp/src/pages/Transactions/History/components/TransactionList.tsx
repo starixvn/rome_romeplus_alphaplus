@@ -8,10 +8,10 @@ import {
 import Filters from './Filters/Filters';
 import Search from './Search';
 import DataGrid from './DataGrid';
-import Pagination from './Pagination';
 import { useTranslation } from 'react-i18next';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
 import { TransactionType } from '../../../../common/commonFunctions';
+import Pagination from '../../Components/Pagination';
 
 interface TransactionListProps {
   transactionType: number;
@@ -184,7 +184,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         />
       </div>
 
-      <div className="table-section">
+      <div className="table-fixed-header table-fixed-body bg-[#ffffff] h-full">
         <DataGrid
           items={displayedItems}
           pageIndex={apiParams.pageIndex}
@@ -194,9 +194,8 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         />
         <Pagination
           currentPage={apiParams.pageIndex}
-          totalCount={apiData.totalCount}
+          totalItems={apiData.totalCount}
           pageSize={apiParams.pageSize}
-          pageSizeOptions={PAGE_SIZE_OPTIONS}
           onPageChange={handlePageChange}
           onPageSizeChange={handlePageSizeChange}
         />
