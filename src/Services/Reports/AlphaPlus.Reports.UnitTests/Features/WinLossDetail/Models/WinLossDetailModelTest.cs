@@ -114,7 +114,7 @@ public class WinLossDetailModelTest
         Assert.Equal(typeof(string), type.GetProperty("LastName").PropertyType);
         Assert.Equal(typeof(string), type.GetProperty("FullName").PropertyType);
         Assert.Equal(typeof(bool), type.GetProperty("IsExistedWatchlist").PropertyType);
-        Assert.Equal(typeof(decimal?), type.GetProperty("RewardAmount").PropertyType);
+        Assert.Equal(typeof(decimal), type.GetProperty("RewardAmount").PropertyType);
         Assert.Equal(typeof(string), type.GetProperty("RewardCurrency").PropertyType);
         Assert.Equal(typeof(decimal), type.GetProperty("NetTurnover").PropertyType);
         Assert.Equal(typeof(decimal), type.GetProperty("GrossComm").PropertyType);
