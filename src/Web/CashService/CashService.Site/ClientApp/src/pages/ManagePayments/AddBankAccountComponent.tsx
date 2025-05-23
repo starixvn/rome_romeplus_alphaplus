@@ -19,6 +19,7 @@ import MobileComponent from '../../components/MobileComponent';
 import { ensureIntegerInput, ensureNameInput } from '../../utils/inputHandlers';
 import { ButtonApplyComponent, ButtonCancelComponent } from '../../components/ButtonComponents';
 import TitleComponent from '../../components/TitleComponents';
+import BankIcon from '../../components/BankComponents';
 
 interface AddBankAccountComponentProps {
   onClose: () => void;
@@ -68,41 +69,45 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
   useEffect(() => {
     const fetchBanks = async () => {
       setIsLoadingBanks(true);
-      try {
-        const fetchedBanks = await paymentProviderService.getBanksByTransactionType(0);
-        setBanks(fetchedBanks);
-        
-        // Set first bank data if available
-        if (fetchedBanks.length > 0) {
-          const firstBank = fetchedBanks[0];
-          setSelectedBank(firstBank.id.toString());
-          setSelectedBankObj(firstBank);
-          
-          // Set transaction types based on first bank's capabilities
-          setSelectedManualDeposit(true);
-          setSelectedAutoDeposit(false);
-          setSelectedManualWithdrawal(false);
-          
-          // Set deposit matching mode based on bank's capabilities
-          if (firstBank.depositMatchingMode?.mappingTypes?.length > 0) {
-            setDepositMatchingMode(0);
-          }
-        }
-      } catch (err) {
-        console.error('Error fetching banks:', err);
-        setError(tManagePayments('failedToFetchBanks'));
-      } finally {
+
+      const response = await paymentProviderService.getBanksByTransactionType(0);
+
+      if(response.error) {
+        setError(response.error.message);
         setIsLoadingBanks(false);
+        return;
       }
+
+      const fetchedBanks = response.data || [];
+      setBanks(fetchedBanks);
+      if (fetchedBanks.length > 0) {
+        const firstBank = fetchedBanks[0];
+        setSelectedBank(firstBank.id.toString());
+        setSelectedBankObj(firstBank);
+        
+        // Set transaction types based on first bank's capabilities
+        setSelectedManualDeposit(true);
+        setSelectedAutoDeposit(false);
+        setSelectedManualWithdrawal(false);
+        
+        // Set deposit matching mode based on bank's capabilities
+        if (firstBank.depositMatchingMode?.mappingTypes?.length > 0) {
+          setDepositMatchingMode(0);
+        }
+      }
+
+      setIsLoadingBanks(false);
     };
 
     const fetchCountryCodes = async () => {
-      try {
-        const prefixes = await baseAPI.getCountryCodes();
-        setCountryCode(prefixes[0]);
-      } catch (err) {
-        console.error('Error fetching mobile prefixes:', err);
+      const response = await baseAPI.getCountryCodes();
+      if(response.error) {
+        setError(response.error.message);
+        return;
       }
+
+      const prefixes = response.data || [];
+      setCountryCode(prefixes[0]);
     };
 
     fetchBanks();
@@ -131,83 +136,94 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
       return;
     }
 
-    try {
-      // Combine selected transaction types into a comma-separated string
-      const selectedTransactionTypes: string[] = [];
-      
-      if (selectedManualDeposit) {
-        selectedTransactionTypes.push(BANK_TRANSACTION_TYPES[1].id.toString());
-      }
-      
-      if (selectedAutoDeposit) {
-        selectedTransactionTypes.push(BANK_TRANSACTION_TYPES[2].id.toString());
-      }
-      
-      if (selectedManualWithdrawal) {
-        selectedTransactionTypes.push(BANK_TRANSACTION_TYPES[3].id.toString());
-      }
-      
-      const transactionTypesString = selectedTransactionTypes.join(',');
-
-      const result = await paymentProviderService.addBankAccount({
-        id: 0, // Temporary ID for new bank account
-        accountNickname,
-        accountHolderName,
-        accountNumber,
-        bankId: parseInt(selectedBank),
-        bankName: banks.find(b => b.id === parseInt(selectedBank))?.name || '',
-        status: parseInt(status),
-        promptPay,
-        mobile: mobile,
-        countryCode: countryCode,
-        lastUpdated: new Date().toISOString(),
-        lastUpdatedStr: new Date().toLocaleString(),
-        code: '',
-        creator: '',
-        transactionTypes: '',
-        depositMatchingMode: 0,
-        bank_TransTypeList: '',
-        agent_TransTypeList: transactionTypesString,
-        agent_DepositMatchingMode: depositMatchingMode,
-        bankDepositMatchingMode: {
-          sourceType: 'BANK',
-          mappingTypes: [depositMatchingMode],
-          sourceTypeName: ''
-        }
-      });
-
-      if (result.isSuccessful) {
-        setIsBlockAction(true);
-        setSuccessMessage(result.message || tManagePayments('bankAccountAdded'));
-        setTimeout(() => {
-          onSave();
-        }, 3000);
-      } else {
-        setError(result.message || tManagePayments('failedToAddBankAccount'));
-      }
-    } catch (err) {
-      setError(tManagePayments('failedToAddBankAccount'));
-      console.error('Error adding bank account:', err);
-    } finally {
-      setLoading(false);
+    // Combine selected transaction types into a comma-separated string
+    const selectedTransactionTypes: string[] = [];
+    
+    if (selectedManualDeposit) {
+      selectedTransactionTypes.push(BANK_TRANSACTION_TYPES[1].id.toString());
     }
+    
+    if (selectedAutoDeposit) {
+      selectedTransactionTypes.push(BANK_TRANSACTION_TYPES[2].id.toString());
+    }
+    
+    if (selectedManualWithdrawal) {
+      selectedTransactionTypes.push(BANK_TRANSACTION_TYPES[3].id.toString());
+    }
+      
+    const transactionTypesString = selectedTransactionTypes.join(',');
+
+    const response = await paymentProviderService.addBankAccount({
+      id: 0, // Temporary ID for new bank account
+      accountNickname,
+      accountHolderName,
+      accountNumber,
+      bankId: parseInt(selectedBank),
+      bankName: banks.find(b => b.id === parseInt(selectedBank))?.name || '',
+      status: parseInt(status),
+      promptPay,
+      mobile: mobile,
+      countryCode: countryCode,
+      lastUpdated: new Date().toISOString(),
+      lastUpdatedStr: new Date().toLocaleString(),
+      code: '',
+      creator: '',
+      transactionTypes: '',
+      depositMatchingMode: 0,
+      bank_TransTypeList: '',
+      agent_TransTypeList: transactionTypesString,
+      agent_DepositMatchingMode: depositMatchingMode,
+      bankDepositMatchingMode: {
+        sourceType: 'BANK',
+        mappingTypes: [depositMatchingMode],
+        sourceTypeName: ''
+      }
+    });
+
+    if(response.error) {
+      setError(response.error.message);
+      setLoading(false);
+      return;
+    }
+
+    const result = response.data || {};
+    if (result.isSuccessful) {
+      setIsBlockAction(true);
+      setSuccessMessage(result.message || tManagePayments('bankAccountAdded'));
+      setTimeout(() => {
+        onSave();
+      }, 3000);
+    } else {
+      setError(result.message || tManagePayments('failedToAddBankAccount'));
+    }
+
+    setLoading(false);
   };
 
+  const updateSelectTransactionTypeError = () => {
+    setFieldErrors({
+      ...fieldErrors,
+      selectedTransactionType: !selectedManualDeposit && !selectedAutoDeposit && !selectedManualWithdrawal ? tManagePayments('pleaseSelectTransactionType') : ''
+    });
+  };
   // Toggle handlers for transaction type buttons
   const toggleManualDeposit = () => {
     setSelectedManualDeposit(!selectedManualDeposit);
+    updateSelectTransactionTypeError();
   };
 
   const toggleAutoDeposit = () => {
     setSelectedAutoDeposit(!selectedAutoDeposit);
+    updateSelectTransactionTypeError();
   };
 
   const toggleManualWithdrawal = () => {
     setSelectedManualWithdrawal(!selectedManualWithdrawal);
+    updateSelectTransactionTypeError();
   };
 
   // Handler for bank selection changes
-  const handleBankChange = (option: DropdownOption) => {
+  const onBankChange = (option: DropdownOption) => {
     const newBankId = option.value.toString();
     setSelectedBank(newBankId);
     
@@ -221,7 +237,42 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
     setSelectedManualWithdrawal(false);
   };
 
- 
+  const onAccountHolderNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { target: { value } } = ensureNameInput(e);
+    setAccountHolderName(value);
+    setFieldErrors(prev => ({
+      ...prev,
+      accountHolderName: value ? '' : tGlobal('pleaseFillField')
+    }));
+  };
+
+  const onAccountNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { target: { value } } = ensureIntegerInput(e);
+    setAccountNumber(value);
+    setFieldErrors(prev => ({
+      ...prev,
+      accountNumber: value ? '' : tGlobal('pleaseFillField')
+    }));
+  };
+
+  const onCountryCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setCountryCode(value);
+    setFieldErrors(prev => ({
+      ...prev,
+      countryCode: value ? '' : tGlobal('pleaseFillField')
+    }));
+  };
+
+  const onMobileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setMobile(value);
+    setFieldErrors(prev => ({
+      ...prev,
+      mobile: value ? '' : tGlobal('pleaseFillField')
+    }));
+  };
+
   return (
     <div tabIndex={-1}>
       <div className="modal-dialog">
@@ -253,9 +304,9 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                       options={banks.map(bank => ({
                         value: bank.id,
                         label: bank.name,
-                        code: bank.code
+                        icon: <BankIcon code={bank.code} />
                       }))}
-                      onSelect={handleBankChange}
+                      onSelect={onBankChange}
                       disable={status === '0'}
                       initialValue={selectedBank}
                     />
@@ -348,7 +399,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                       type="text"
                       className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountHolderName ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
                       value={accountHolderName}
-                      onChange={(e) => setAccountHolderName(ensureNameInput(e).target.value)}
+                      onChange={onAccountHolderNameChange}
                       maxLength={255}
                     />
                     <ValidateMessageComponent message={fieldErrors.accountHolderName} />
@@ -361,7 +412,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                       type="text"
                       className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountNumber ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
                       value={accountNumber}
-                      onChange={(e) => setAccountNumber(ensureIntegerInput(e).target.value)}
+                      onChange={onAccountNumberChange}
                       maxLength={100}
                       
                     />
@@ -397,10 +448,8 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   countryCode={countryCode}
                   mobile={mobile}
                   fieldErrors={fieldErrors}
-                  onCountryCodeChange={(e) => {
-                    setCountryCode(e.target.value);
-                  }}
-                  onMobileChange={(e) => setMobile(e.target.value)}
+                  onCountryCodeChange={onCountryCodeChange}
+                  onMobileChange={onMobileChange}
                   placeholder={tManagePayments('enterMobileNumber')}
                 />
               </div>

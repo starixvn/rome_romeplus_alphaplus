@@ -2,9 +2,10 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { IconClose, } from '../../components/Icons';
-import { ErrorMessageComponent, SuccessMessageComponent } from '../../components/MessageComponents';
+import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import { ButtonApplyComponent, ButtonCancelComponent } from '../../components/ButtonComponents';
 import { ensureIntegerInput } from '../../utils/inputHandlers';
+import { useState } from 'react';
 
 
 interface SetDailyLimitPopupModalProps {
@@ -20,56 +21,85 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
   const [successMessage, setSuccessMessage] = React.useState<string>('');
   const [orgDailyLimit, setOrgDailyLimit] = React.useState<number>(0);
   const [isBlockAction, setIsBlockAction] = React.useState<boolean>(false);
+  const [fieldErrors, setFieldErrors] = useState({ dailyLimit: '' });
+
+  const onDailyLimitChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(ensureIntegerInput(e).target.value);
+    setDailyLimit(value);
+  };
 
   React.useEffect(() => {
     const loadDailyWithdrawalCount = async () => {
-      try {
-        const count = await paymentProviderService.getDailyWithdrawalCount();
-        setDailyLimit(count);
-        setOrgDailyLimit(count);
-      } catch (err) {
-        setError(t('global:errorOccurred'));
+      const response = await paymentProviderService.getDailyWithdrawalCount(); 
+
+      if(response.error) {
+        setError(response.error.message);
+        return;
       }
+
+      const count = response.data || 0;
+      setDailyLimit(count);
+      setOrgDailyLimit(count);
     };
 
     loadDailyWithdrawalCount();
   }, [t]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError('');
-    setSuccessMessage('');
+  React.useEffect(() => {
+    validateState();
+  }, [dailyLimit]);
+
+  const validateState = () => {
+    setFieldErrors({ dailyLimit: '' });
 
     if(dailyLimit < 1 || dailyLimit > 32767) {
-      setError(t('managePayments:dailyWithdrawalCountOutOfRange'));
-      setIsLoading(false);
-      return;
+      setFieldErrors({
+        ...fieldErrors,
+        dailyLimit: t('managePayments:dailyWithdrawalCountOutOfRange')
+      });
+
+      return false;
     }
+
+    return true;
+  };
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setSuccessMessage('');
+    setError('');
 
     if(orgDailyLimit === dailyLimit) {
       setError(t('global:thereNoChangeToUpdate'));
+      return false;
+    }
+
+    const isValid = validateState();
+    if(!isValid) {
+      setIsLoading(false);
+      return;
+    } 
+
+    const response = await paymentProviderService.setDailyWithdrawalCount(dailyLimit);
+    if(response.error) {
+      setError(response.error.message);
       setIsLoading(false);
       return;
     }
 
-    try {
-      const response = await paymentProviderService.setDailyWithdrawalCount(dailyLimit);
-      if (response.isSuccessful) {
-        setIsBlockAction(true);
-        setSuccessMessage(t('managePayments:setLimitSuccess'));
-        onSave(dailyLimit);
-        setTimeout(() => {
-          onClose();
-        }, 3000);
-      } else {
-        setError(response.message);
-      }
-    } catch (err) {
-      setError(t('global:errorOccurred'));
-    } finally {
-      setIsLoading(false);
+    const result = response.data || { isSuccessful: false, code: 1, message: t('global:errorOccurred') };
+
+    if (result.isSuccessful) {
+      setIsBlockAction(true);
+      setSuccessMessage(t('managePayments:setLimitSuccess'));
+      onSave(dailyLimit);
+      setTimeout(() => { onClose(); }, 3000);
+    } else {
+      setError(result.message);
     }
+
+    setIsLoading(false);
   };
 
   return (
@@ -85,7 +115,7 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
           <ErrorMessageComponent message={error} />
           <SuccessMessageComponent message={successMessage} />
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={onSubmit}>
           <div className="mb-[16px]">
             <div className=" ">
               <div className="pb-[8px] mb-[20px] block">{t('managePayments:setMaxDailyWithdrawalCountForYourMembers')} </div>
@@ -98,15 +128,16 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
                 className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)]"
                 id="dailyLimit"
                 value={dailyLimit}
-                onChange={(e) => setDailyLimit(Number(ensureIntegerInput(e).target.value))}
+                onChange={onDailyLimitChange}
                 min="0"
                 required
-              />              
+              />    
+              <ValidateMessageComponent message={fieldErrors.dailyLimit} />          
             </div>
           </div>
           <div className="flex justify-center gap-[8px]">         
             <ButtonCancelComponent className="w-[140px] [&>*]:w-[100%]" text={t('global:cancel')} onClick={onClose}  />
-            <ButtonApplyComponent className='w-[140px] [&>*]:w-[100%]' text={isLoading ? t('global:loading') : t('global:save')}   disabled={isLoading || isBlockAction}/>          
+            <ButtonApplyComponent className='w-[140px] [&>*]:w-[100%]' text={isLoading ? t('global:loading') : t('global:save')}  disabled={isLoading || isBlockAction}/>          
           </div>
         </form>
       </div>

@@ -19,7 +19,7 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
 
             AccountHolderName = request.AccountHolderName;
             AccountNumber = request.AccountNumber;
-            Mobile = request.CountryCode + "-" + request.Mobile;
+            Mobile = PromptPay ? request.CountryCode + "-" + request.Mobile : string.Empty;
             DepositMatchingMode = request.Agent_DepositMatchingMode;
 
             CountryCode = request.CountryCode;

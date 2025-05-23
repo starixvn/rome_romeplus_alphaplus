@@ -38,5 +38,6 @@
   "maxLength": "ความยาวสูงสุดคือ {0}",
   "thereNoChangeToUpdate": "ไม่มีการเปลี่ยนแปลงในการอัปเดตนี้",
   "cashService": "บริการเงินสด",
-  "valueMustBeGreaterThanZero": "ค่าต้องมีค่ามากกว่าศูนย์"
+  "valueMustBeGreaterThanZero": "ค่าต้องมีค่ามากกว่าศูนย์",
+  "search": "ค้นหา..."
 } 

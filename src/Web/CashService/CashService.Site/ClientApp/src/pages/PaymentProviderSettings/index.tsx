@@ -33,6 +33,12 @@ interface FormState {
   providerSettings: any[];
 }
 
+interface ValidationError {
+  index: number;
+  field: string;
+  error: string;
+}
+
 function PaymentProviderSettings() {
   const { t: tGlobal } = useTranslation('global');
   const { t: tPaymentProviderSettings } = useTranslation('paymentProviderSettings');
@@ -68,73 +74,62 @@ function PaymentProviderSettings() {
   // Fetch provider settings when component mounts or when dropdowns change
   React.useEffect(() => {
     const fetchProviderSettings = async () => {
-      try {
-        setLoading(true);
-        const method = selectedPaymentMethod ? parseInt(selectedPaymentMethod) : 0;
-        const status = selectedStatus ? parseInt(selectedStatus) : 0;
-        const transactionType = selectedTransactionType ? parseInt(selectedTransactionType) : 0;
-        
-        const settings = await paymentProviderService.getProviderSettings(
-          window.providerSettingsViewModel.Provider.Id,
-          method,
-          status,
-          transactionType
-        );
-        setProviderSettings(settings);
-        setOriginalSettings(settings);
-        setError(null);
-      } catch (err) {
-        console.error('Failed to fetch provider settings:', err);
-        setError('Failed to load provider settings. Please try again later.');
-      } finally {
+      setLoading(true);
+      const method = selectedPaymentMethod ? parseInt(selectedPaymentMethod) : 0;
+      const status = selectedStatus ? parseInt(selectedStatus) : 0;
+      const transactionType = selectedTransactionType ? parseInt(selectedTransactionType) : 0;
+      const response = await paymentProviderService.getProviderSettings(
+        window.providerSettingsViewModel.Provider.Id,
+        method,
+        status,
+        transactionType
+      );
+
+      if(response.error) {
+        setError(response.error.message);
         setLoading(false);
+        return;
       }
+
+      const settings = response.data || [];
+      setProviderSettings(settings);
+      setOriginalSettings(settings);
+      setError(null);
+      setLoading(false);
     };
 
     fetchProviderSettings();
   }, [selectedPaymentMethod, selectedStatus, selectedTransactionType]);
 
-  const handlePaymentMethodChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const onPaymentMethodChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedPaymentMethod(event.target.value);
   };
 
-  const handleStatusChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const onStatusChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedStatus(event.target.value);
   };
 
-  const handleTransactionTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const onTransactionTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedTransactionType(event.target.value);
   };
 
-  const handleViewFees = () => {
-    setShowFeePopup(true);
-  };
+  const onViewFees = () => { setShowFeePopup(true); };
+  const onCloseFeePopup = () => {setShowFeePopup(false); };
+  const onAddPaymentMethod = () => { setShowAddPaymentMethod(true); };
+  const onCloseAddPaymentMethod = () => { setShowAddPaymentMethod(false); };
 
-  const handleCloseFeePopup = () => {
-    setShowFeePopup(false);
-  };
-
-  const handleAddPaymentMethod = () => {
-    setShowAddPaymentMethod(true);
-  };
-
-  const handleCloseAddPaymentMethod = () => {
-    setShowAddPaymentMethod(false);
-  };
-
-  // Handler for viewing banks
-  const handleViewBanks = (setting: any) => {
+  const onViewBanks = (setting: any) => {
     setSelectedSetting(setting);
     setShowBanksPopup(true);
   };
 
-  const handleCloseBanksPopup = () => {
+  const onCloseBanksPopup = () => {
     setShowBanksPopup(false);
     setSelectedSetting(null);
   };
 
   // Handler for minimum amount change
-  const handleMinAmountChange = (index: number, value: string) => {
+  const onMinAmountChange = (index: number, value: string) => {
     const formattedValue = formatInputValue(value);
     
     const updatedSettings = [...providerSettings];
@@ -156,7 +151,7 @@ function PaymentProviderSettings() {
   };
 
   // Handler for maximum amount change
-  const handleMaxAmountChange = (index: number, value: string) => {
+  const onMaxAmountChange = (index: number, value: string) => {
     const formattedValue = formatInputValue(value);
     
     const updatedSettings = [...providerSettings];
@@ -177,8 +172,7 @@ function PaymentProviderSettings() {
     setValidationErrors(newValidationErrors);
   };
 
-  // Handler for toggle change
-  const handleSettingToggle = (index: number) => {
+  const onSettingToggle = (index: number) => {
     const updatedSettings = [...providerSettings];
     updatedSettings[index] = {
       ...updatedSettings[index],
@@ -192,7 +186,7 @@ function PaymentProviderSettings() {
   };
 
   // Handler for reset button
-  const handleReset = () => {
+  const onReset = () => {
     setProviderSettings([...originalSettings]);
     setSelectedPaymentMethod('');
     setSelectedStatus('');
@@ -200,137 +194,150 @@ function PaymentProviderSettings() {
     setProviderStatus(window.providerSettingsViewModel.Provider.Status);
     setFormState(originalFormState);
     setUpdateMessage(null);
+    setValidationErrors({});
+  };
+
+  const hasChanged = (setting: any) => {
+    const originalSetting = originalSettings.find(s => 
+      s.methodId === setting.methodId && 
+      s.status === setting.status && 
+      s.transactionType === setting.transactionType
+    );
+
+    if (!originalSetting) return true;
+
+    return (
+      setting.isEnabled !== originalSetting.isEnabled ||
+      setting.minAmount !== originalSetting.minAmount ||
+      setting.maxAmount !== originalSetting.maxAmount
+    );
+  };
+
+  const validateFormState = (): ValidationError[] => {
+    const validationErrors: ValidationError[] = [];
+    providerSettings.forEach((setting, index) => {
+      const minAmount = parseFloat(setting.minAmount);
+      const maxAmount = parseFloat(setting.maxAmount);
+      
+      if (isNaN(minAmount) || isNaN(maxAmount)) {
+        validationErrors.push({
+          index,
+          field: 'minAmount',
+          error: tGlobal('invalidAmountFormat')
+        });
+      }
+      
+      if (minAmount > maxAmount) {
+        validationErrors.push({
+          index,
+          field: 'minAmount',
+          error: tGlobal('minAmountGreaterThanMax')
+        });
+      }
+
+      if (minAmount < 0) {
+        validationErrors.push({
+          index,
+          field: 'minAmount',
+          error: tGlobal('amountCannotBeNegative')
+        });
+      }
+
+      if (maxAmount < 0) {
+        validationErrors.push({
+          index,
+          field: 'maxAmount',
+          error: tGlobal('amountCannotBeNegative')
+        });
+      }
+
+      if (minAmount < setting.minAmountTrans) {
+        validationErrors.push({
+          index,
+          field: 'minAmount',
+          error: tPaymentProviderSettings('minAmountLessThanMinTrans')
+        });
+      }
+
+      if (maxAmount > setting.maxAmountTrans) {
+        validationErrors.push({
+          index,  
+          field: 'maxAmount',
+          error: tPaymentProviderSettings('maxAmountGreaterThanMaxTrans')
+        });
+      }
+    });
+
+    return validationErrors;
   };
 
   // Handler for update button
-  const handleUpdate = async () => {
-    try {
-      if(!hasFormChanged()) {
-        setUpdateMessage({
-          type: 'error',
-          text: tGlobal('thereNoChangeToUpdate')
-        });
-        return;
-      }
-
-      // Validate min and max amounts
-      interface ValidationError {
-        index: number;
-        field: string;
-        error: string;
-      }
-
-      const validationErrors: ValidationError[] = [];
-      providerSettings.forEach((setting, index) => {
-        const minAmount = parseFloat(setting.minAmount);
-        const maxAmount = parseFloat(setting.maxAmount);
-        
-        if (isNaN(minAmount) || isNaN(maxAmount)) {
-          validationErrors.push({
-            index,
-            field: 'minAmount',
-            error: tGlobal('invalidAmountFormat')
-          } as ValidationError);
-        }
-        
-        if (minAmount > maxAmount) {
-          validationErrors.push({
-            index,
-            field: 'minAmount',
-            error: tGlobal('minAmountGreaterThanMax')
-          } as ValidationError);
-        }
-
-        if (minAmount < 0 ) {
-          validationErrors.push({
-            index,
-            field: 'minAmount',
-            error: tGlobal('amountCannotBeNegative')
-          } as ValidationError);
-        }
-
-        if ( maxAmount < 0) {
-          validationErrors.push({
-            index,
-            field: 'maxAmount',
-            error: tGlobal('amountCannotBeNegative')
-          } as ValidationError);
-        }
-
-        if (minAmount < setting.minAmountTrans) {
-          validationErrors.push({
-            index,
-            field: 'minAmount',
-            error: tPaymentProviderSettings('minAmountLessThanMinTrans')
-          } as ValidationError);
-        }
-
-        if (maxAmount > setting.maxAmountTrans) {
-          validationErrors.push({
-            index,  
-            field: 'maxAmount',
-            error: tPaymentProviderSettings('maxAmountGreaterThanMaxTrans')
-          } as ValidationError);
-        }
-      });
-
-      // Create error map for input fields
-      const errorMap: {[key: string]: string} = {};
-      validationErrors.forEach(err => {
-        errorMap[`${err.field}-${err.index}`] = err.error;
-      });
-      setValidationErrors(errorMap);
-
-      if (validationErrors.length > 0) {
-        setUpdateMessage({
-          type: 'error',
-          text: validationErrors.map(err => 
-            `${tGlobal('row')} ${err.index + 1}: ${err.error}`
-          ).join('<br />')
-        });
-        return;
-      }
-
-      setValidationErrors({});
-      setUpdating(true);
-      setUpdateMessage(null);
-      
-      var provider = {
-        providerId: window.providerSettingsViewModel.Provider.Id,
-        name: window.providerSettingsViewModel.Provider.Name,
-        status: providerStatus === originalFormState.providerStatus ? -1 : (providerStatus ? 1 : 0),
-        providerSettings: providerSettings.filter(setting => hasChanged(setting))
-      };
-
-      // Call the API to update provider
-      const result = await paymentProviderService.updateProvider(provider);
-      
-      if (result.isSuccessful) {
-        setUpdateMessage({
-          type: 'success',
-          text: tGlobal('updateSuccess')
-        });
-
-        setTimeout(() => { window.location.reload(); }, 3000);
-      } else {
-        setUpdateMessage({
-          type: 'error',
-          text: result.message || tGlobal('updateFailed')
-        });
-      }
-    } catch (err) {
-      console.error('Failed to update provider:', err);
+  const onUpdate = async () => {
+    if(!hasFormChanged()) {
       setUpdateMessage({
         type: 'error',
-        text: tGlobal('updateFailed')
+        text: tGlobal('thereNoChangeToUpdate')
       });
-    } finally {
-      setUpdating(false);
+      return;
     }
+
+    const validationErrors = validateFormState();
+    const errorMap: {[key: string]: string} = {};
+    validationErrors.forEach(err => {
+      errorMap[`${err.field}-${err.index}`] = err.error;
+    });
+    setValidationErrors(errorMap);
+
+    if (validationErrors.length > 0) {
+      setUpdateMessage({
+        type: 'error',
+        text: validationErrors.map(err => 
+          `${tGlobal('row')} ${err.index + 1}: ${err.error}`
+        ).join('<br />')
+      });
+      return;
+    }
+
+    setValidationErrors({});
+    setUpdating(true);
+    setUpdateMessage(null);
+    
+    var provider = {
+      providerId: window.providerSettingsViewModel.Provider.Id,
+      name: window.providerSettingsViewModel.Provider.Name,
+      status: providerStatus === originalFormState.providerStatus ? -1 : (providerStatus ? 1 : 0),
+      providerSettings: providerSettings.filter(setting => hasChanged(setting))
+    };
+
+    const response = await paymentProviderService.updateProvider(provider);
+    if(response.error) {
+      setUpdateMessage({
+        type: 'error',
+        text: response.error.message
+      });
+      return;
+    }
+    
+    const result = response.data;
+    if (result.isSuccessful) {
+      setUpdateMessage({
+        type: 'success',
+        text: tGlobal('updateSuccess')
+      });
+
+      setTimeout(() => { window.location.reload(); }, 3000);
+    } else {
+      setUpdateMessage({
+        type: 'error',
+        text: result.message || tGlobal('updateFailed')
+      });
+    }
+  
+    setUpdating(false);
   };
 
   // Handler for provider status toggle
-  const handleProviderStatusToggle = () => {
+  const onProviderStatusToggle = () => {
     const newStatus = !providerStatus;
     setProviderStatus(newStatus);
     setFormState(prev => ({
@@ -340,26 +347,21 @@ function PaymentProviderSettings() {
   };
 
   // Handler for retrying setup
-  const handleRetrySetup = async (index: number) => {
+  const onRetrySetup = async (index: number) => {
     setSelectedSetting(providerSettings[index]);
     setShowUpdatePaymentMethod(true);
   };
 
-  const handleCloseUpdatePaymentMethod = () => {
+  const onCloseUpdatePaymentMethod = () => {
     setShowUpdatePaymentMethod(false);
     setSelectedSetting(null);
   };
 
   const failStatus = 3;
-  const isEditable = (paymentMethod: PaymentMethod) => {
-    return paymentMethod.status === 2;
-  }
+  const isEditable = (paymentMethod: PaymentMethod) => { return paymentMethod.status === 2; }
+  const hasEditableSettings = () => { return providerSettings.some(setting => isEditable(setting)); };
 
-  const hasEditableSettings = () => {
-    return providerSettings.some(setting => isEditable(setting));
-  };
-
-  const handleBackNavigation = () => {
+  const onBackNavigation = () => {
     const previousUrl = localStorage.getItem('cashsite_previousUrl');
     if (previousUrl) {
       localStorage.removeItem('cashsite_previousUrl');
@@ -391,25 +393,7 @@ function PaymentProviderSettings() {
     });
   };
 
-  const reloadPage = () => {
-    window.location.reload();
-  };
-
-  const hasChanged = (setting: any) => {
-    const originalSetting = originalSettings.find(s => 
-      s.methodId === setting.methodId && 
-      s.status === setting.status && 
-      s.transactionType === setting.transactionType
-    );
-
-    if (!originalSetting) return true;
-
-    return (
-      setting.isEnabled !== originalSetting.isEnabled ||
-      setting.minAmount !== originalSetting.minAmount ||
-      setting.maxAmount !== originalSetting.maxAmount
-    );
-  };
+  const reloadPage = () => { window.location.reload(); };
 
   return (
     <div className="payment-provider-settings h-full">       
@@ -420,7 +404,7 @@ function PaymentProviderSettings() {
       ) : error ? (<ResultMessageComponent type='error' message={error} />) 
         : (
         <>        
-          <BackButtonComponent onClick={handleBackNavigation} />
+          <BackButtonComponent onClick={onBackNavigation} />
           {updateMessage && (<ResultMessageComponent className='my-[16px] max-[768px]:mx-[16px] max-[768px]:my-0' type={updateMessage.type} message={updateMessage.text} /> )} 
         <div className='bg-[#ffffff] px-[16px] py-[10px] mb-[8px]'>
           <div className="settings-header">
@@ -431,7 +415,7 @@ function PaymentProviderSettings() {
             <p className="block font-semibold text-[#333333] my-[8px]">
               {tPaymentProviderSettings('setUpPaymentMethodsForMembers')}
             </p>   
-            <ButtonFullComponent text={`+ ${tPaymentProviderSettings('addPaymentMethod')}`} onClick={handleAddPaymentMethod} />            
+            <ButtonFullComponent text={`+ ${tPaymentProviderSettings('addPaymentMethod')}`} onClick={onAddPaymentMethod} />            
             </div>
 
             {providerStatus != 2 && (
@@ -462,7 +446,7 @@ function PaymentProviderSettings() {
                     type="checkbox"
                     id="enableToggle"
                     checked={providerStatus}
-                    onChange={handleProviderStatusToggle}
+                        onChange={onProviderStatusToggle}
                     className="opacity-0 absolute hidden peer " 
                   />
                   <span className='block cursor-pointer w-[60px] h-[30px] rounded-[20px] bg-[var(--button-switch-background)] relative after:content-[""] after:absolute after:top-[3px] after:left-[3px] after:w-[24px] after:h-[24px] after:rounded-[50%] after:bg-[var(--button-switch-dot-background)] after:transition-all after:duration-300 after:ease-in-out after:shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] peer-checked:after:left-[32px] peer-checked:bg-[var(--button-switch-background-active)]'>
@@ -482,7 +466,7 @@ function PaymentProviderSettings() {
               <select 
                 className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer" 
                 value={selectedPaymentMethod}
-                onChange={handlePaymentMethodChange}
+                onChange={onPaymentMethodChange}
               >
                 {window.providerSettingsViewModel.AddPaymentMethodViewModel.PaymentMethods.map((method: any) => (
                   <option key={method.Id} value={method.Id}>{method.Id === 0 ? tGlobal('all') : method.Name}</option>
@@ -495,7 +479,7 @@ function PaymentProviderSettings() {
               <select 
                 className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer" 
                 value={selectedStatus}
-                onChange={handleStatusChange}
+                onChange={onStatusChange}
               >
                 {STATUS_OPTIONS.map(status => (
                   <option key={status.id} value={status.id}>{tPaymentProviderSettings(`status-${status.id}`)}</option>
@@ -508,7 +492,7 @@ function PaymentProviderSettings() {
               <select 
                 className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer" 
                 value={selectedTransactionType}
-                onChange={handleTransactionTypeChange}
+                onChange={onTransactionTypeChange}
               >
                 {TRANSACTION_TYPES.map(type => (
                   <option key={type.id} value={type.id}>{type.id === 0 ? tGlobal('all') : tPaymentProviderSettings(`transaction-${type.id}`)}</option>
@@ -517,7 +501,7 @@ function PaymentProviderSettings() {
             </div> 
             </div>   
         
-            <ButtonOutlineComponent className="ml-auto mt-auto" text={tPaymentProviderSettings('viewProviderFees', {providerName: window.providerSettingsViewModel.Provider.Name})} onClick={handleViewFees} />
+            <ButtonOutlineComponent className="ml-auto mt-auto" text={tPaymentProviderSettings('viewProviderFees', {providerName: window.providerSettingsViewModel.Provider.Name})} onClick={onViewFees} />
           </div>
           
           <div className="table-fixed-header table-fixed-body">
@@ -567,7 +551,7 @@ function PaymentProviderSettings() {
                         setting.status === 4 ? 'bg-[#fcae7b]' :
                         'bg-[#E0E0E0]'
                       }`}>{tPaymentProviderSettings(`status-${setting.status}`)}</span>
-                      {setting.status === failStatus && <><br /><span className='inline-block mt-[4px] cursor-pointer text-[var(--text-color-primary)] font-semibold underline' onClick={() => handleRetrySetup(index)}>{tPaymentProviderSettings('retrySetup')}</span></>}
+                      {setting.status === failStatus && <><br /><span className='inline-block mt-[4px] cursor-pointer text-[var(--text-color-primary)] font-semibold underline' onClick={() => onRetrySetup(index)}>{tPaymentProviderSettings('retrySetup')}</span></>}
                     </td>
                     <td className='font-semibold'>{tPaymentProviderSettings(`transaction-${setting.transactionType}`)}</td>
                     <td>
@@ -577,7 +561,7 @@ function PaymentProviderSettings() {
                           type="text" 
                           className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer mb-2px] ${validationErrors[`minAmount-${index}`] ? 'border-[#dc3545]' : 'border-[var(--border-control)]'}`}
                           value={formatNumber(setting.minAmount)} 
-                          onChange={(e) => handleMinAmountChange(index, e.target.value)}
+                          onChange={(e) => onMinAmountChange(index, e.target.value)}
                           placeholder={tPaymentProviderSettings('minimum')}
                           maxLength={15}
                         />
@@ -594,7 +578,7 @@ function PaymentProviderSettings() {
                         type="text" 
                         className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer mb-2px] ${validationErrors[`maxAmount-${index}`] ? 'border-[#dc3545]' : 'border-[var(--border-control)]'}`}
                         value={formatNumber(setting.maxAmount)} 
-                        onChange={(e) => handleMaxAmountChange(index, e.target.value)}
+                        onChange={(e) => onMaxAmountChange(index, e.target.value)}
                         placeholder={tPaymentProviderSettings('maximum')}
                         maxLength={15}
                         />
@@ -612,7 +596,7 @@ function PaymentProviderSettings() {
                             type="checkbox"
                             id={`toggle-${index}`}
                             checked={setting.isEnabled || false}
-                            onChange={() => handleSettingToggle(index)}
+                            onChange={() => onSettingToggle(index)}
                             className="opacity-0 absolute hidden peer"
                           />
                           <span className='block cursor-pointer w-[60px] h-[30px] rounded-[20px] bg-[var(--button-switch-background)] relative after:content-[""] after:absolute after:top-[3px] after:left-[3px] after:w-[24px] after:h-[24px] after:rounded-[50%] after:bg-[var(--button-switch-dot-background)] after:transition-all after:duration-300 after:ease-in-out after:shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] peer-checked:after:left-[32px] peer-checked:bg-[var(--button-switch-background-active)]'></span>
@@ -624,7 +608,7 @@ function PaymentProviderSettings() {
                     </td>
                     <td>     
                       {!isEditable(setting) ? <>-</> : setting.bankRequired ? (                        
-                        <ButtonOutlineComponent text={tPaymentProviderSettings('listOfBanks')} onClick={() => handleViewBanks(setting)} />                   
+                        <ButtonOutlineComponent text={tPaymentProviderSettings('listOfBanks')} onClick={() => onViewBanks(setting)} />                   
                       ) : ( <span className='font-semibold color-[#333333]'>{tPaymentProviderSettings('noBankRequired')} </span>) }
                     </td>
                   </tr>
@@ -633,9 +617,9 @@ function PaymentProviderSettings() {
             </table>
           </div>
           <div className="flex justify-start gap-[8px] py-[8px] mt-[8px]">
-            <ButtonCancelComponent text={tGlobal('reset')} onClick={handleReset} />
+            <ButtonCancelComponent text={tGlobal('reset')} onClick={onReset} />
             <ButtonApplyComponent text={updating ? tGlobal('updating') : tGlobal('update')} 
-              onClick={handleUpdate} 
+              onClick={onUpdate} 
               disabled={providerStatus == 2 || updating || !hasEditableSettings()} />
           </div>          
          </div>
@@ -646,7 +630,7 @@ function PaymentProviderSettings() {
       {showFeePopup && (
         <ProviderFeesPopupModal
           provider={{id: window.providerSettingsViewModel.Provider.Id, name: window.providerSettingsViewModel.Provider.Name} as PaymentProvider}
-          onClose={handleCloseFeePopup}
+          onClose={onCloseFeePopup}
         />
       )}
 
@@ -654,7 +638,7 @@ function PaymentProviderSettings() {
       {showAddPaymentMethod && (
         <AddPaymentMethodModal
           providerId={window.providerSettingsViewModel.Provider.Id}
-          onClose={handleCloseAddPaymentMethod}   
+          onClose={onCloseAddPaymentMethod}   
           onSuccess={reloadPage}
           orgTelegramAssistantUrl={window.providerSettingsViewModel.AddPaymentMethodViewModel.ChannelContact.Tele}
         />
@@ -663,7 +647,7 @@ function PaymentProviderSettings() {
       {/* Banks Popup Modal */}
       {showBanksPopup && selectedSetting && (
         <BanksPopupModal
-          onClose={handleCloseBanksPopup} 
+          onClose={onCloseBanksPopup} 
           transactionType={selectedSetting.transactionType}
         />
       )}
@@ -672,7 +656,7 @@ function PaymentProviderSettings() {
       {showUpdatePaymentMethod && selectedSetting && (
         <UpdatePaymentMethodModal
           providerId={window.providerSettingsViewModel.Provider.Id}
-          onClose={handleCloseUpdatePaymentMethod}
+          onClose={onCloseUpdatePaymentMethod}
           onSuccess={reloadPage}
           orgTelegramAssistantUrl={window.providerSettingsViewModel.AddPaymentMethodViewModel.ChannelContact.Tele}
           existingPaymentMethod={selectedSetting}

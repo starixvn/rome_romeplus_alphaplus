@@ -68,45 +68,45 @@ const createAxiosInstance = () => {
 };
 
 const createAPI = () => {
+  function handleError(url: string,error: any) {
+    console.error(`Error calling: ${url}`, error);
+
+    if (error.response) {
+      return {code: error.response.status, message: error.message};
+    } 
+
+    return {code: 1, message: error.message};
+  }
+
   const api = createAxiosInstance();
 
   return {
-    get: async <T = any>(url: string, config?: any, onError?: any) => { 
+    get: async <T = any>(url: string, config?: any) => { 
       try {
         const cfg = config || { method: 'GET' };
         const response = await api.get<T>(url, cfg);
-        return response.data;
+        return { data: response.data, error: null, response: response };
       } catch (error) {
-        console.error(`Error get: ${url}`, error);
-        onError && onError(error);
+        return { data: undefined, error: handleError(url, error), response: undefined };
       }
-
-      return null;
     },
-    post: async <T = any>(url: string, data?: any, onError?: any) => {
+    post: async <T = any>(url: string, data?: any) => {
       try {
         const response = await api.post<T>(url, data);
-        return response.data;
+        return { data: response.data, error: null, response: response  };
       } catch (error) {
-        console.error(`Error post: ${url}`, error);
-        onError && onError(error);
+        return { data: undefined, error: handleError(url, error), response: undefined };
       }
-
-      return undefined;
     },
 
-    put: async <T = any>(url: string, data?: any, onError?: any) => {
+    put: async <T = any>(url: string, data?: any) => {
       try {
         const response = await api.put<T>(url, data);
-        return response.data;
+        return { data: response.data, error: null, response: response };
       } catch (error) {
-        console.error(`Error put: ${url}`, error);
-        onError && onError(error);
+        return { data: undefined, error: handleError(url, error), response: undefined };
       }
-
-      return undefined;
     },    
-
   };
 };
 

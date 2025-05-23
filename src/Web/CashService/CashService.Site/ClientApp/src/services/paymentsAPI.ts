@@ -1,38 +1,24 @@
 import { api } from './axios';
 import { ResultModel } from './interfaces/ResultModel';
 import { TransactionType } from './interfaces/TransactionType';
-import { 
-  PaymentProvider,
-  PaymentProviderFeeGroup,
-  PaymentMethod,
-  Bank,
-  BankAccount,
-  PaymentTransactionLimit,
-  AddPaymentMethodViewModel,
-  createDefaultBankAccount,
-  createDefaultPaymentTransactionLimit
-} from './interfaces/Payments';
+import * as PaymentsInterfaces from './interfaces/Payments';
 
 // API service for payment providers
 export const paymentProviderService = {
-  getProviders: async (): Promise<PaymentProvider[]> => {
-    const result = await api.get<PaymentProvider[]>('GetProviders');
-    return result || [];
+  getProviders: async (): Promise<any> => {
+    return await api.get<PaymentsInterfaces.PaymentProvider[]>('GetProviders');
   },
 
-  getDailyWithdrawalCount: async (): Promise<number> => {
-    const result = await api.get<number>('GetDailyWithdrawalCount');
-    return result || 0;
+  getDailyWithdrawalCount: async (): Promise<any> => {
+    return await api.get<number>('GetDailyWithdrawalCount');
   },
 
-  setDailyWithdrawalCount: async (count: number): Promise<ResultModel> => {
-    const result = await api.post<ResultModel>('SetDailyWithdrawalCount', { count });
-    return result || { code: 1, message: 'Failed to set daily withdrawal count', isSuccessful: false };
+  setDailyWithdrawalCount: async (count: number): Promise<any> => {
+    return await api.post<ResultModel>('SetDailyWithdrawalCount', { count });
   }, 
 
-  getProviderFees: async (providerId: number): Promise<PaymentProviderFeeGroup[]> => {
-    const result = await api.get<PaymentProviderFeeGroup[]>(`GetProviderFees?providerId=${providerId}`);
-    return result || [];
+  getProviderFees: async (providerId: number): Promise<any> => {
+    return await api.get<PaymentsInterfaces.PaymentProviderFeeGroup[]>(`GetProviderFees?providerId=${providerId}`);
   },
 
   getProviderSettings: async (
@@ -41,46 +27,38 @@ export const paymentProviderService = {
     status: number,
     transactionType: number
   ): Promise<any> => {    
-    const result = await api.get<any>(`ProviderSettings?providerId=${providerId}&method=${method}&status=${status}&transactionType=${transactionType}`);
-    return result || [];
+    return await api.get<any>(`ProviderSettings?providerId=${providerId}&method=${method}&status=${status}&transactionType=${transactionType}`);
   },
 
   getAddPaymentMethodInfo: async (
     providerId: number,
     transactionType: number
-  ): Promise<AddPaymentMethodViewModel> => {
-    const result = await api.get<AddPaymentMethodViewModel>(`GetAddPaymentMethodInfo?providerId=${providerId}&transactionType=${transactionType}`);
-    return result || { paymentMethods: [], channelContact: {tele: ''} };
+  ): Promise<any> => {
+    return await api.get<PaymentsInterfaces.AddPaymentMethodViewModel>(`GetAddPaymentMethodInfo?providerId=${providerId}&transactionType=${transactionType}`);
   },
 
-  addPaymentMethod: async (paymentMethod: PaymentMethod): Promise<ResultModel> => {
-    const result = await api.post('AddPaymentMethod', paymentMethod);
-    return result || { code: 1, message: 'Failed to add payment method', isSuccessful: false };
+  addPaymentMethod: async (paymentMethod: PaymentsInterfaces.PaymentMethod): Promise<any> => {
+    return await api.post('AddPaymentMethod', paymentMethod);
   },
 
-  updatePaymentMethod: async (paymentMethod: PaymentMethod): Promise<ResultModel> => {
-    const result = await api.post('UpdatePaymentMethod', paymentMethod);
-    return result || { code: 1, message: 'Failed to update payment method', isSuccessful: false };
+  updatePaymentMethod: async (paymentMethod: PaymentsInterfaces.PaymentMethod): Promise<any> => {
+    return await api.post('UpdatePaymentMethod', paymentMethod);
   },
 
-  getBanksByTransactionType: async (transactionType: number): Promise<Bank[]> => {
-    const result = await api.get<Bank[]>(`GetBanksByTransactionType?transactionType=${transactionType}`);
-    return result || [];
+  getBanksByTransactionType: async (transactionType: number): Promise<any> => {
+    return await api.get<PaymentsInterfaces.Bank[]>(`GetBanksByTransactionType?transactionType=${transactionType}`);
   },
 
-  updateProvider: async (provider: any): Promise<ResultModel> => {
-    const result = await api.post(`UpdateProvider`, provider);
-    return result || { code: 1, message: 'Failed to update provider', isSuccessful: false };
+  updateProvider: async (provider: any): Promise<any> => {
+    return await api.post(`UpdateProvider`, provider);
   },
 
-  getBanksByCust: async (): Promise<Bank[]> => {
-    const result = await api.get<Bank[]>(`GetBanksByCust`);
-    return result || [];
+  getBanksByCust: async (): Promise<any> => {
+    return await api.get<PaymentsInterfaces.Bank[]>(`GetBanksByCust`);
   },
 
-  getTransactionTypes: async (): Promise<TransactionType[]> => {
-    const result = await api.get<TransactionType[]>(`GetTransactionTypes`);
-    return result || [];
+  getTransactionTypes: async (): Promise<any> => {
+    return await api.get<TransactionType[]>(`GetTransactionTypes`);
   },
 
   getBankAccounts: async (
@@ -88,38 +66,31 @@ export const paymentProviderService = {
     transactionType: number,
     status: number,
     searchText: string
-  ): Promise<BankAccount[]> => {
-    const result = await api.get<BankAccount[]>(`GetBankAccounts?bankId=${bankId}&transactionType=${transactionType}&status=${status}&searchText=${searchText}`);
-    return result || [];     
+  ): Promise<any> => {
+    return await api.get<PaymentsInterfaces.BankAccount[]>(`GetBankAccounts?bankId=${bankId}&transactionType=${transactionType}&status=${status}&searchText=${searchText}`);
   },
 
-  getTransactionLimit: async (): Promise<PaymentTransactionLimit> => {
-    const result = await api.get<PaymentTransactionLimit>(`GetTransactionLimit`);
-    return result || createDefaultPaymentTransactionLimit();
+  getTransactionLimit: async (): Promise<any> => {
+    return await api.get<PaymentsInterfaces.PaymentTransactionLimit>(`GetTransactionLimit`);
   },
 
-  setTransactionLimit: async (limit: PaymentTransactionLimit): Promise<ResultModel> => {  
-    const result = await api.post(`SetTransactionLimit`, limit);
-    return result || { code: 1, message: 'Failed to set transaction limit', isSuccessful: false };
+  setTransactionLimit: async (limit: PaymentsInterfaces.PaymentTransactionLimit): Promise<any> => {  
+    return await api.post(`SetTransactionLimit`, limit);
   },
 
-  addBankAccount: async (bankAccount: BankAccount): Promise<ResultModel> => {
-    const result = await api.post('AddBankAccount', bankAccount);
-    return result || { code: 1, message: 'Failed to add bank account', isSuccessful: false };
+  addBankAccount: async (bankAccount: PaymentsInterfaces.BankAccount): Promise<any> => {
+    return await api.post('AddBankAccount', bankAccount);
   },
 
-  getBankAccountById: async (bankAccountId: number): Promise<BankAccount> => {
-    const result = await api.get<BankAccount>(`GetBankAccountById?bankAccountId=${bankAccountId}`);
-    return result || createDefaultBankAccount();
+  getBankAccountById: async (bankAccountId: number): Promise<any> => {
+    return await api.get<PaymentsInterfaces.BankAccount>(`GetBankAccountById?bankAccountId=${bankAccountId}`);
   },
 
-  updateBankAccount: async (bankAccount: BankAccount): Promise<ResultModel> => {
-    const result = await api.put(`UpdateBankAccount`, bankAccount);
-    return result || { code: 1, message: 'Failed to update bank account', isSuccessful: false };
+  updateBankAccount: async (bankAccount: PaymentsInterfaces.BankAccount): Promise<any> => {
+    return await api.put(`UpdateBankAccount`, bankAccount);
   },
 
-  deleteBankAccount: async (bankAccountId: number): Promise<ResultModel> => {
-    const result = await api.post(`DeleteBankAccount`, { bankAccountId });
-    return result || { code: 1, message: 'Failed to delete bank account', isSuccessful: false };
+  deleteBankAccount: async (bankAccountId: number): Promise<any> => {
+    return await api.post(`DeleteBankAccount`, { bankAccountId });
   },
 };

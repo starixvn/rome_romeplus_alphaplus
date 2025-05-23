@@ -19,17 +19,19 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
 
   React.useEffect(() => {
     const fetchBanks = async () => {
-      try {
-        setLoading(true);
-        const fetchedBanks = await paymentProviderService.getBanksByTransactionType(transactionType);
-        setBanks(fetchedBanks);
-        setError(null);
-      } catch (err) {
-        setError(tPaymentProviderSettings('failedToLoadBanks'));
-        console.error('Error fetching banks:', err);
-      } finally {
+      setLoading(true);
+      const response = await paymentProviderService.getBanksByTransactionType(transactionType);
+
+      if(response.error) {
+        setError(response.error.message);
         setLoading(false);
+        return;
       }
+
+      const fetchedBanks = response.data || [];
+      setBanks(fetchedBanks);
+      setError(null);
+      setLoading(false);
     };
 
     fetchBanks();
@@ -45,17 +47,10 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
           </button>
         </div>
         <div className="mb-[12px]">
-          {loading ? (
-            <Loading />
-          ) : error ? (
-            <div className="alert alert-danger" role="alert">
-              {error}
-            </div>
-          ) : banks.length === 0 ? (
-            <div className="alert alert-info" role="alert">
-              {tGlobal('noData')}
-            </div>
-          ) : (
+          {loading ? ( <Loading /> ) 
+            : error ? (<div className="alert alert-danger" role="alert">{error}</div>) 
+            : banks.length === 0 ? (<div className="alert alert-info" role="alert">{tGlobal('noData')}</div>) 
+            : (
             <>
               <label className='block text-[var(--text-color-primary)] my-[16px] font-semibold'>{tPaymentProviderSettings(`transaction-${transactionType}`)}</label>
               <div className="table-fixed-header max-h-[300px] overflow-y-auto">
@@ -72,7 +67,7 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
                         <td>{index + 1}</td>
                         <td className='text-left!'>
                           <div className='flex items-center'>
-                            <img src={`../assets/bank/${bank.code}.png`} alt={bank.name} className='w-[20px] h-[20px] mr-[8px]' />
+                            <img src={`../assets/bank/${bank.code.toUpperCase()}.png`} alt={bank.name} className='w-[20px] h-[20px] mr-[8px]' />
                             {bank.name}
                           </div>
                         </td>

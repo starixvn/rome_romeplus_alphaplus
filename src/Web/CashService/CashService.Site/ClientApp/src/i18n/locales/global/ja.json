@@ -38,5 +38,6 @@
   "maxLength": "最大長は{0}です",
   "thereNoChangeToUpdate": "更新する変更はありません。",
   "cashService": "キャッシュサービス",
-  "valueMustBeGreaterThanZero": "値は0より大きくなければなりません"
+  "valueMustBeGreaterThanZero": "値は0より大きくなければなりません",
+  "search": "検索..."
 } 

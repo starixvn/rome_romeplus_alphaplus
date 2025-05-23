@@ -18,6 +18,7 @@ import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponen
 import MobileComponent from '../../components/MobileComponent';
 import { ButtonApplyComponent, ButtonCancelComponent, DisableButtonComponent, EnableButtonComponent } from '../../components/ButtonComponents';
 import TitleComponent from '../../components/TitleComponents';
+import BankIcon from '../../components/BankComponents';
 
 interface UpdateBankAccountComponentProps {
   onClose: () => void;
@@ -378,7 +379,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                     options={banks.map((bank) => ({
                       value: bank.id,
                       label: bank.name,
-                      code: bank.code,
+                      icon: <BankIcon code={bank.code} />
                     }))}
                     onSelect={handleBankChange}
                     disable

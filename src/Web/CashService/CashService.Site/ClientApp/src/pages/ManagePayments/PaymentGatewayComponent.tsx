@@ -27,18 +27,19 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
 
   React.useEffect(() => {
     const fetchProviders = async () => {
-      
-      try {
-        setLoading(true);
-        const data = await paymentProviderService.getProviders();
-        setProviders(data);
-        setError(null);
-      } catch (err) {
-        console.error('Failed to fetch payment providers:', err);
-        setError('Failed to load payment providers. Please try again later.');
-      } finally {
+      setLoading(true);
+      const response = await paymentProviderService.getProviders();
+
+      if(response.error) {
+        setError(response.error.message);
         setLoading(false);
+        return;
       }
+
+      const data = response.data || [];
+      setProviders(data);
+      setError(null);
+      setLoading(false);
     };
 
     fetchProviders();
@@ -57,27 +58,27 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
     }
   };
 
-  const handleFeeClick = (provider: PaymentProvider) => {
+  const onFeeClick = (provider: PaymentProvider) => {
     setSelectedProvider(provider);
     setShowFeePopup(true);
   };
 
-  const handleClosePopup = () => {
+  const onCloseFeePopup = () => {
     setShowFeePopup(false);
     setSelectedProvider(null);
   };
 
-  const handleSetLimitClick = () => {
+  const onSetLimitClick = () => {
     setShowDailyLimitPopup(true);
   };
 
-  const handleCloseDailyLimitPopup = () => {
+  const onCloseDailyLimitPopup = () => {
     setShowDailyLimitPopup(false);
   };
 
-  const handleSaveDailyLimit = () => {};
+  const onSaveDailyLimit = () => {};
 
-  const handleEditClick = (provider: PaymentProvider) => {
+  const onEditClick = (provider: PaymentProvider) => {
     localStorage.setItem('cashsite_previousUrl', window.location.href);
     location.href = 'ManageProviderSettings?id=' + provider.id;
   };
@@ -126,7 +127,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
                 {tManagePayments('setDailyWithdrawalCountForYourMembers')}
               </div>
                      
-              <ButtonOutlineComponent text={tManagePayments('setLimit')} onClick={() => handleSetLimitClick()}/>
+              <ButtonOutlineComponent text={tManagePayments('setLimit')} onClick={() => onSetLimitClick()}/>
              
               <span className="block w-[100%] h-[1px] bg-[#e0e0e0] my-[10px]"></span>
               <div className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] max-[768px]:text-[20px] max-[768px]:leading-[24px] ">
@@ -156,7 +157,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
                             <div className='flex justify-center items-center'>
                               <button
                                   className="mx-[4px] cursor-pointer p-[4px] rounded-[4px] hover:bg-[var(--button-background-cancel-hover)] text-[var(--text-color-primary)]"
-                                  onClick={() => handleEditClick(provider)}
+                                  onClick={() => onEditClick(provider)}
                                 >
                                   <IconPen />
                               </button>
@@ -164,7 +165,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
                           </td>
                           <td>{provider.name}</td>
                           <td>                            
-                            <ButtonFullComponent text={tGlobal('view')} onClick={() => handleFeeClick(provider)} />
+                            <ButtonFullComponent text={tGlobal('view')} onClick={() => onFeeClick(provider)} />
                           </td>
                           <td>
                           <span
@@ -189,14 +190,10 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
             )}
 
             {/* Fee Popup Modal */}
-            {showFeePopup && selectedProvider && (
-              <ProviderFeesPopupModal provider={selectedProvider} onClose={handleClosePopup} />
-            )}
+            {showFeePopup && selectedProvider && (<ProviderFeesPopupModal provider={selectedProvider}  onClose={onCloseFeePopup} />)}
 
             {/* Daily Limit Popup Modal */}
-            {showDailyLimitPopup && (
-              <DailyLimitPopupModal onClose={handleCloseDailyLimitPopup} onSave={handleSaveDailyLimit} />
-            )}
+            {showDailyLimitPopup && (<DailyLimitPopupModal onClose={onCloseDailyLimitPopup} onSave={onSaveDailyLimit} />)}
           </div>
         </div>
       </div>

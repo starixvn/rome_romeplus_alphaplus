@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import { TransactionTypes } from '../../../../utils/constants';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
-
+import BankIcon from '../../../../components/BankComponents';
 interface FilterProps {
   recentWithdrawals: string;
   setRecentWithdrawals: (value: string) => void;
@@ -42,6 +42,7 @@ const Filter: React.FC<FilterProps> = ({
           value: `${bank.bankCode}_${bank.bankAccountNumber}`,
           label: bank.bankAccountNumber,
           code: bank.bankCode,
+          icon: <BankIcon code={bank.bankCode} />
         }));
 
         // Combine both options

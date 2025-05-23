@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { transactionAPI } from '../../../../../services/transactionsHistoryAPI';
 import CustomDropdown from '../../../../../components/CustomDropdownComponent';
 import { BankInfo } from '../../../../../services/interfaces/Transactions/BankInfo';
+import BankIcon from '../../../../../components/BankComponents';
 
 interface AccountFilterProps {
   account: string;
@@ -50,7 +51,7 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
         options={accountOptions.map((option) => ({
           value: `${option.bankCode}_${option.bankAccountNumber}`,
           label: option.bankAccountNumber,
-          code: option.bankCode,
+          icon: <BankIcon code={option.bankCode} />
         }))}
         onSelect={(selected) => onAccountChange(String(selected.value))}
         disable={isLoading}

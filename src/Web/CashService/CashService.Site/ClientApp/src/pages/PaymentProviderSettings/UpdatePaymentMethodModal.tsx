@@ -70,6 +70,21 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
     telegramAssistantUrl: orgTelegramAssistantUrl
   };
 
+  const validateFormState = () => {
+    const errors: typeof fieldErrors = {
+      selectedTransactionType: !formState.selectedTransactionType ? tGlobal('pleaseFillField') : '',
+      selectedPaymentMethod: !formState.selectedPaymentMethod ? tGlobal('pleaseFillField') : '',
+      apiKey: !formState.apiKey ? tGlobal('pleaseFillField') : '',
+      merchantID: !formState.merchantID ? tGlobal('pleaseFillField') : '',
+      appSecret: !formState.appSecret ? tGlobal('pleaseFillField') : '',
+      agreeToTerms: !formState.agreeToTerms ? tGlobal('pleaseAgreeTerms') : '',
+    };
+
+    const hasError = Object.values(errors).some(Boolean);
+    setFieldErrors(errors);
+    return !hasError;
+  };
+
   const [paymentMethods, setPaymentMethods] = React.useState<PaymentMethod[]>([]);
   const [allMethodsInactive, setAllMethodsInactive] = React.useState<boolean>(false);
   const [telegramAssistantUrl, setTelegramAssistantUrl] = React.useState<string>(orgTelegramAssistantUrl);
@@ -87,28 +102,28 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
   // Load payment methods when component mounts
   React.useEffect(() => {
     const loadPaymentMethods = async () => {
-      try {
-        if (formState.selectedTransactionType) {
-          const response = await paymentProviderService.getAddPaymentMethodInfo(providerId, parseInt(formState.selectedTransactionType));
-          
-          setPaymentMethods(response.paymentMethods);
-          setTelegramAssistantUrl(response.channelContact.tele || '');
-
-          setAllMethodsInactive(response.paymentMethods.length > 0 && response.paymentMethods.every(method => method.status === inactiveStatus));
-        } else {
-          setPaymentMethods([]);
-          setAllMethodsInactive(false);
-        }
-      } catch (err) {
-        console.error('Failed to load payment methods:', err);
-        setError(tGlobal('errorOccurred'));
+      if (!formState.selectedTransactionType) {
+        setPaymentMethods([]);
+        setAllMethodsInactive(false);
+        return;
       }
+
+      const response = await paymentProviderService.getAddPaymentMethodInfo(providerId, parseInt(formState.selectedTransactionType));
+      if(response.error) {
+        setError(response.error.message);
+        return;
+      }
+
+      const addPaymentMethodInfo = response.data || {paymentMethods: [], channelContact: {tele: ''}};
+      setPaymentMethods(addPaymentMethodInfo.paymentMethods);
+      setTelegramAssistantUrl(addPaymentMethodInfo.channelContact.tele || '');
+      setAllMethodsInactive(addPaymentMethodInfo.paymentMethods.length > 0 && addPaymentMethodInfo.paymentMethods.every((method: PaymentMethod) => method.status === inactiveStatus));
     };
 
     loadPaymentMethods();
   }, [formState.selectedTransactionType]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
@@ -120,54 +135,46 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
       return;
     }
 
-    // Field-level validation
-    const errors: typeof fieldErrors = {
-      selectedTransactionType: !formState.selectedTransactionType ? tGlobal('pleaseFillField') : '',
-      selectedPaymentMethod: !formState.selectedPaymentMethod ? tGlobal('pleaseFillField') : '',
-      apiKey: !formState.apiKey ? tGlobal('pleaseFillField') : '',
-      merchantID: !formState.merchantID ? tGlobal('pleaseFillField') : '',
-      appSecret: !formState.appSecret ? tGlobal('pleaseFillField') : '',
-      agreeToTerms: !formState.agreeToTerms ? tGlobal('pleaseAgreeTerms') : '',
-    };
-    setFieldErrors(errors);
-    const hasError = Object.values(errors).some(Boolean);
-    if (hasError) {
+    const isValid = validateFormState();
+    if (!isValid) {
       setIsLoading(false);
       return;
     }
 
-    try {
-      const selectedMethod = paymentMethods.find(method => method.id === parseInt(formState.selectedPaymentMethod));
-      const updatedSetting = {
-        id: existingPaymentMethod.id,
-        name: selectedMethod?.name || '',
-        providerId,
-        method: parseInt(formState.selectedPaymentMethod),
-        transactionType: parseInt(formState.selectedTransactionType),
-        status: existingPaymentMethod.status,
-        custId: existingPaymentMethod.custId || 0,
-        apiMethodKey: formState.apiKey,
-        merchantID: formState.merchantID,
-        appSecret: formState.appSecret
-      };
+    const selectedMethod = paymentMethods.find(method => method.id === parseInt(formState.selectedPaymentMethod));
+    const updatedSetting = {
+      id: existingPaymentMethod.id,
+      name: selectedMethod?.name || '',
+      providerId,
+      method: parseInt(formState.selectedPaymentMethod),
+      transactionType: parseInt(formState.selectedTransactionType),
+      status: existingPaymentMethod.status,
+      custId: existingPaymentMethod.custId || 0,
+      apiMethodKey: formState.apiKey,
+      merchantID: formState.merchantID,
+      appSecret: formState.appSecret
+    };
 
-      const response = await paymentProviderService.updatePaymentMethod(updatedSetting);
-      
-      if (response.isSuccessful) {
-        setIsBlockAction(true);
-        setSuccessMessage(tGlobal('updateSuccess'));
-        setTimeout(() => { onClose(); onSuccess(); }, 3000);
-      } else {
-        setError(response.message || tGlobal('updateFailed'));
-      }
-    } catch (err) {
-      setError(tGlobal('errorOccurred'));
-    } finally {
+    const response = await paymentProviderService.updatePaymentMethod(updatedSetting);
+    if(response.error) {
+      setError(response.error.message);
       setIsLoading(false);
+      return;
     }
+
+    const result = response.data || {isSuccessful: false, code: 1, message: tGlobal('errorOccurred')};
+    if (result.isSuccessful) {
+      setIsBlockAction(true);
+      setSuccessMessage(tGlobal('updateSuccess'));
+      setTimeout(() => { onClose(); onSuccess(); }, 3000);
+    } else {
+      setError(result.message || tGlobal('updateFailed'));
+    }
+    
+    setIsLoading(false);
   };
 
-  const handleInputChange = (field: keyof PaymentMethodFormState, value: string | boolean) => {
+  const onInputChange = (field: keyof PaymentMethodFormState, value: string | boolean) => {
     setFormState(prev => ({ ...prev, [field]: value }));
     setFieldErrors(prev => ({ ...prev, [field]: '' }));
   };
@@ -183,7 +190,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
         </div>
         <ErrorMessageComponent className='mt-[8px]' message={error} />
         <SuccessMessageComponent className='mt-[8px]' message={successMessage} />
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={onSubmit}>
           <div className="modal-body"> 
             <div>
               <h4 className="text-[14px] pt-[16px] text-[var(--text-color-primary)] font-semibold pb-[4px]">{tPaymentProviderSettings('addPaymentMethodStep1')}</h4>
@@ -194,7 +201,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                   className={`h-[32px] max-[768px]:h-[40px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.selectedTransactionType ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                   value={formState.selectedTransactionType}
                   onChange={(e) => {
-                    handleInputChange('selectedTransactionType', e.target.value);
+                    onInputChange('selectedTransactionType', e.target.value);
                   }}
                 >
                   <option value="">{tGlobal('select')}</option>
@@ -211,7 +218,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                   className={`h-[32px] max-[768px]:h-[40px] w-full border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.selectedPaymentMethod ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                   value={formState.selectedPaymentMethod}
                   onChange={(e) => {
-                    handleInputChange('selectedPaymentMethod', e.target.value);
+                    onInputChange('selectedPaymentMethod', e.target.value);
                   }}
                 >
                   <option value="">{tGlobal('select')}</option>
@@ -251,7 +258,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                   id="apiKey"
                   value={formState.apiKey}
                   onChange={(e) => {
-                    handleInputChange('apiKey', e.target.value);
+                    onInputChange('apiKey', e.target.value);
                   }}
                 />
                 <ValidateMessageComponent message={fieldErrors.apiKey}  />
@@ -264,7 +271,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                   id="merchantID"
                   value={formState.merchantID}
                   onChange={(e) => {
-                    handleInputChange('merchantID', e.target.value);
+                    onInputChange('merchantID', e.target.value);
                   }}
                 />
                 <ValidateMessageComponent message={fieldErrors.merchantID}  />
@@ -277,7 +284,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                   id="appSecret"
                   value={formState.appSecret}
                   onChange={(e) => {
-                    handleInputChange('appSecret', e.target.value);
+                    onInputChange('appSecret', e.target.value);
                   }}
                 />
                 <ValidateMessageComponent message={fieldErrors.appSecret}  />
@@ -295,7 +302,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                 checked={formState.agreeToTerms}
                 disabled={true}
                 onChange={(e) => {
-                  handleInputChange('agreeToTerms', e.target.checked);
+                  onInputChange('agreeToTerms', e.target.checked);
                 }}
               />
               <span className="flex-1 pl-[6px]">
@@ -306,7 +313,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
             </div>
             <div className='flex justify-center gap-[8px]'>
             <ButtonCancelComponent text={tPaymentProviderSettings('setUpLater')} onClick={onClose} />
-            <ButtonApplyComponent text={isLoading ? tGlobal('loading') : tGlobal('update')} onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent)} disabled={isLoading || allMethodsInactive || isBlockAction} />
+            <ButtonApplyComponent text={isLoading ? tGlobal('loading') : tGlobal('update')} onClick={() => onSubmit({ preventDefault: () => {} } as React.FormEvent)} disabled={isLoading || allMethodsInactive || isBlockAction} />
           </div>
         </form>
       </div>

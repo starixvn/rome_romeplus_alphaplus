@@ -11,7 +11,7 @@ interface ProviderFeesPopupModalProps {
   onClose: () => void;
 }
 
-const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provider, onClose }) => {
+const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({  provider, onClose }) => {
   const { t: tGlobal } = useTranslation('global');
   const { t: tManagePayments } = useTranslation('managePayments');
   const [isLoading, setIsLoading] = React.useState(true);
@@ -19,15 +19,16 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
 
   React.useEffect(() => {
     const loadFeeData = async () => {
-      try {
-        setIsLoading(true);
-        const fees = await paymentProviderService.getProviderFees(provider.id);
-        setFeeData(fees);
-      } catch (error) {
-        console.error('Error loading fee data:', error);
-      } finally {
+      setIsLoading(true);
+      const response = await paymentProviderService.getProviderFees(provider.id);
+      if(response.error) {
         setIsLoading(false);
+        return;
       }
+
+      const fees = response.data || [];
+      setFeeData(fees);
+      setIsLoading(false);
     };
 
     loadFeeData();

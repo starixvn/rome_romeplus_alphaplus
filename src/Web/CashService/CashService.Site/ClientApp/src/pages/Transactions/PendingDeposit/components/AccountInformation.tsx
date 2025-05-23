@@ -4,7 +4,7 @@ import { MemberLoginName } from '../../../../services/interfaces/Transactions/Me
 import { BankInfo } from '../../../../services/interfaces/Transactions/BankInfo';
 import { CreditAmount } from '../../../../services/interfaces/Transactions/CreditAmount';
 import CustomDropdown, { DropdownOption } from '../../../../components/CustomDropdownComponent';
-
+import BankIcon from '../../../../components/BankComponents';
 interface AccountInformationProps {
   memberLoginOptions: MemberLoginName[];
   memberId: number;
@@ -84,7 +84,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
               options={cashMemberOptions.map((option) => ({
                 value: `${option.bankCode}_${option.bankAccountNumber}`,
                 label: option.bankAccountNumber,
-                code: option.bankCode,
+                icon: <BankIcon code={option.bankCode} />
               }))}
               onSelect={(selected) => onPaymentFromChange(selected)}
               initialValue={paymentFrom}

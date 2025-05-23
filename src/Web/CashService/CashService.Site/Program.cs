@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
 using Serilog;
-using Microsoft.AspNetCore.SignalR;
 using AlphaPlus.CashService.Site.Features.ChatHub;
 
 const string pathBase = "/cash-service";

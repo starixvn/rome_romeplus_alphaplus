@@ -20,15 +20,17 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
 
   React.useEffect(() => {
     const loadFeeData = async () => {
-      try {
-        setIsLoading(true);
-        const fees = await paymentProviderService.getProviderFees(provider.id);
-        setFeeData(fees);
-      } catch (error) {
-        console.error('Error loading fee data:', error);
-      } finally {
+      setIsLoading(true);
+      const response = await paymentProviderService.getProviderFees(provider.id);
+      
+      if(response.error) {
         setIsLoading(false);
+        return;
       }
+      
+      const fees = response.data || [];
+      setFeeData(fees);
+      setIsLoading(false);
     };
 
     loadFeeData();

@@ -5,6 +5,7 @@ import { IconClose } from '../../components/Icons';
 import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import { ensureIntegerInput, ensureDecimalInput } from '../../utils/inputHandlers';
 import { ButtonApplyComponent, ButtonCancelComponent } from '../../components/ButtonComponents';
+import { createDefaultPaymentTransactionLimit } from '../../services/interfaces/Payments';
 
 interface SetTransactionLimitModalProps {
   onClose: () => void;
@@ -71,39 +72,14 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
     );
   };
 
-  useEffect(() => {
-    const fetchTransactionLimit = async () => {
-      try {
-        const limit = await paymentProviderService.getTransactionLimit();
-        const newFormState = {
-          minDeposit: limit.minPerDepositTransaction.toString(),
-          maxDeposit: limit.maxPerDepositTransaction.toString(),
-          minWithdrawal: limit.minPerWithdrawalTransaction.toString(),
-          maxWithdrawal: limit.maxPerWithdrawalTransaction.toString(),
-          dailyWithdrawalCount: limit.dailyWithdrawalCount.toString()
-        };
-        setFormState(newFormState);
-        setOriginalFormState(newFormState);
-      } catch (err) {
-        setError(tManagePayments('failedToFetchLimit'));
-        console.error('Error fetching transaction limit:', err);
-      }
-    };
+  const validateFormState = (): boolean => {
+    const minDepositNum = parseFloat(formState.minDeposit) || 0;
+    const maxDepositNum = parseFloat(formState.maxDeposit) || 0;
+    const minWithdrawalNum = parseFloat(formState.minWithdrawal) || 0;
+    const maxWithdrawalNum = parseFloat(formState.maxWithdrawal) || 0;
+    let hasError = false;
 
-    fetchTransactionLimit();
-  }, [tManagePayments]);
-
-  const handleInputChange = (field: keyof FormState, value: string) => {
-    setFormState(prev => ({
-      ...prev,
-      [field]: value
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
-    setLoading(true);
+    // Reset all field errors
     setFieldErrors({
       minDeposit: '',
       maxDeposit: '',
@@ -112,74 +88,63 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
       dailyWithdrawalCount: ''
     });
 
-    if (!hasFormChanged()) {
-      setError(tGlobal('thereNoChangeToUpdate'));
-      setLoading(false);
-      return;
-    }
-
-    // Validate min < max
-    const minDepositNum = parseFloat(formState.minDeposit) || 0;
-    const maxDepositNum = parseFloat(formState.maxDeposit) || 0;
-    const minWithdrawalNum = parseFloat(formState.minWithdrawal) || 0;
-    const maxWithdrawalNum = parseFloat(formState.maxWithdrawal) || 0;
-    var hasError = false;
+    // Validate min deposit
     if(minDepositNum <= 0) {
       setFieldErrors(prev => ({
         ...prev,
         minDeposit: tGlobal('valueMustBeGreaterThanZero')
       }));
-
       hasError = true;
     }
 
+    // Validate max deposit
     if(maxDepositNum <= 0) {
       setFieldErrors(prev => ({
         ...prev,
         maxDeposit: tGlobal('valueMustBeGreaterThanZero')
       }));
-
       hasError = true;
     }
     
+    // Validate min withdrawal
     if(minWithdrawalNum <= 0) {
       setFieldErrors(prev => ({
         ...prev,
         minWithdrawal: tGlobal('valueMustBeGreaterThanZero')
       }));
-
       hasError = true;
     } 
 
+    // Validate max withdrawal
     if(maxWithdrawalNum <= 0) {
       setFieldErrors(prev => ({
         ...prev,
         maxWithdrawal: tGlobal('valueMustBeGreaterThanZero')
       }));
-
       hasError = true;
     }
 
+    // Validate min deposit <= max deposit
     if (minDepositNum > maxDepositNum) {
       setFieldErrors(prev => ({
         ...prev,
         minDeposit: tManagePayments('minDepositMustBeLessThanOrEqualMaxDeposit'),
         maxDeposit: tManagePayments('minDepositMustBeLessThanOrEqualMaxDeposit')
       }));
-
       hasError = true;
     }
 
+    // Validate min withdrawal <= max withdrawal
     if (minWithdrawalNum > maxWithdrawalNum) {
       setFieldErrors(prev => ({
         ...prev,
         minWithdrawal: tManagePayments('minWithdrawalMustBeLessThanOrEqualMaxWithdrawal'),
         maxWithdrawal: tManagePayments('minWithdrawalMustBeLessThanOrEqualMaxWithdrawal')
       }));
-
       hasError = true;
     }
 
+    // Validate daily withdrawal count
     if(parseInt(formState.dailyWithdrawalCount) < 1 || parseInt(formState.dailyWithdrawalCount) > 32767) {
       setFieldErrors(prev => ({
         ...prev,
@@ -188,35 +153,80 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
       hasError = true;
     }
 
-    if (hasError) {
+    return !hasError;
+  };
+
+  useEffect(() => {
+    const fetchTransactionLimit = async () => {
+      const response = await paymentProviderService.getTransactionLimit();
+      if(response.error) {
+        setError(response.error.message);
+        return;
+      }
+
+      const limit = response.data || createDefaultPaymentTransactionLimit();
+      const newFormState = {
+        minDeposit: limit.minPerDepositTransaction.toString(),
+        maxDeposit: limit.maxPerDepositTransaction.toString(),
+        minWithdrawal: limit.minPerWithdrawalTransaction.toString(),
+        maxWithdrawal: limit.maxPerWithdrawalTransaction.toString(),
+        dailyWithdrawalCount: limit.dailyWithdrawalCount.toString()
+      };
+      setFormState(newFormState);
+      setOriginalFormState(newFormState);
+    };
+
+    fetchTransactionLimit();
+  }, [tManagePayments]);
+
+  const onInputChange = (field: keyof FormState, value: string) => {
+    setFormState(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setLoading(true);
+
+    if (!hasFormChanged()) {
+      setError(tGlobal('thereNoChangeToUpdate'));
       setLoading(false);
       return;
     }
 
-    try {
-      const result = await paymentProviderService.setTransactionLimit({
-        dailyWithdrawalCount: parseInt(formState.dailyWithdrawalCount) || 0,
-        minPerDepositTransaction: parseFloat(formState.minDeposit) || 0,
-        maxPerDepositTransaction: parseFloat(formState.maxDeposit) || 0,
-        minPerWithdrawalTransaction: parseFloat(formState.minWithdrawal) || 0,
-        maxPerWithdrawalTransaction: parseFloat(formState.maxWithdrawal) || 0
-      });
-
-      if (result.isSuccessful) {  
-        setIsBlockAction(true);
-        setSuccessMessage(tManagePayments('transactionLimitUpdated'));
-        setTimeout(() => {
-          onSave();
-        }, 3000);
-      } else {
-        setError(result.message || tManagePayments('failedToSetLimit'));
-      }
-    } catch (err) {
-      setError(tManagePayments('failedToSetLimit'));
-      console.error('Error setting transaction limit:', err);
-    } finally {
+    if (!validateFormState()) {
       setLoading(false);
+      return;
     }
+
+    const response = await paymentProviderService.setTransactionLimit({
+      dailyWithdrawalCount: parseInt(formState.dailyWithdrawalCount) || 0,
+      minPerDepositTransaction: parseFloat(formState.minDeposit) || 0,
+      maxPerDepositTransaction: parseFloat(formState.maxDeposit) || 0,
+      minPerWithdrawalTransaction: parseFloat(formState.minWithdrawal) || 0,
+      maxPerWithdrawalTransaction: parseFloat(formState.maxWithdrawal) || 0
+    });
+
+    if(response.error) {
+      setError(response.error.message);
+      setLoading(false);
+      return;
+    }
+
+    const result = response.data || {isSuccessful: false, code: 1, message: tManagePayments('failedToSetLimit')};
+
+    if (result.isSuccessful) {  
+      setIsBlockAction(true);
+      setSuccessMessage(tManagePayments('transactionLimitUpdated'));
+      setTimeout(() => { onSave(); }, 3000);
+    } else {
+      setError(result.message || tManagePayments('failedToSetLimit'));
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -233,7 +243,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
               <IconClose />
             </button>
           </div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={onSubmit}>
             <div className="mb-[16px]">
               <div className='my-[8px]'>      
                 <ErrorMessageComponent message={error} />
@@ -256,7 +266,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                       : 'border-[var(--border-control)] focus:border-[var(--button-border)]'
                   }`}
                   value={formState.minDeposit}
-                  onChange={(e) => handleInputChange('minDeposit', ensureDecimalInput(e).target.value)}
+                  onChange={(e) => onInputChange('minDeposit', ensureDecimalInput(e).target.value)}
                   min="0" 
                   step="0.01"
                   required
@@ -274,7 +284,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                       : 'border-[var(--border-control)] focus:border-[var(--button-border)]'
                   }`}
                   value={formState.maxDeposit}
-                  onChange={(e) => handleInputChange('maxDeposit', ensureDecimalInput(e).target.value)}
+                  onChange={(e) => onInputChange('maxDeposit', ensureDecimalInput(e).target.value)}
                   min="0"
                   step="0.01"
                   required
@@ -295,7 +305,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                       : 'border-[var(--border-control)] focus:border-[var(--button-border)]'
                   }`}
                   value={formState.minWithdrawal}
-                  onChange={(e) => handleInputChange('minWithdrawal', ensureDecimalInput(e).target.value)}
+                  onChange={(e) => onInputChange('minWithdrawal', ensureDecimalInput(e).target.value)}
                   min="0"
                   step="0.01"
                   required
@@ -313,7 +323,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                       : 'border-[var(--border-control)] focus:border-[var(--button-border)]'
                   }`}
                   value={formState.maxWithdrawal}
-                  onChange={(e) => handleInputChange('maxWithdrawal', ensureDecimalInput(e).target.value)}
+                  onChange={(e) => onInputChange('maxWithdrawal', ensureDecimalInput(e).target.value)}
                   min="0"
                   step="0.01"
                   required
@@ -329,7 +339,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                   type="text"
                   className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)]"
                   value={formState.dailyWithdrawalCount}
-                  onChange={(e) => handleInputChange('dailyWithdrawalCount', ensureIntegerInput(e).target.value)}
+                  onChange={(e) => onInputChange('dailyWithdrawalCount', ensureIntegerInput(e).target.value)}
                   min="0"
                   maxLength={5}
                   required
@@ -342,7 +352,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
             </div>
             <div className="flex justify-center gap-[8px]">    
               <ButtonCancelComponent text={tGlobal('cancel')} onClick={onClose}  />   
-              <ButtonApplyComponent text={loading ? tGlobal('saving') : tGlobal('save')} onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent)} disabled={loading || isBlockAction} />
+              <ButtonApplyComponent text={loading ? tGlobal('saving') : tGlobal('save')} onClick={() => onSubmit({ preventDefault: () => {} } as React.FormEvent)} disabled={loading || isBlockAction} />
             </div>
           </form>
         </div>

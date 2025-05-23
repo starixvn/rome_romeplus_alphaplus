@@ -11,7 +11,7 @@ import { AddWithdrawalModel } from '../../../../services/interfaces/AddWithdrawa
 import { Alert } from '../../../../components/ui/Alert';
 import UploadImage from '../../Components/UploadImage';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
-
+import BankIcon from '../../../../components/BankComponents';
 interface ManualAddWithdrawalFormProps {
   onClose?: () => void;
 }
@@ -235,7 +235,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       options={agentBankInfo.map((bank) => ({
                         value: bank.value,
                         label: bank.label,
-                        code: bank.code,
+                        icon: <BankIcon code={bank.code} />,
                         attributes: {
                           providerId: bank.providerId,
                           paymentMethodId: bank.paymentMethodId,
@@ -261,7 +261,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       options={memberBankInfo.map((bank) => ({
                         value: bank.value,
                         label: bank.label,
-                        code: bank.code,
+                        icon: <BankIcon code={bank.code} />,
                         attributes: {
                           providerId: bank.providerId,
                           paymentMethodId: bank.paymentMethodId,

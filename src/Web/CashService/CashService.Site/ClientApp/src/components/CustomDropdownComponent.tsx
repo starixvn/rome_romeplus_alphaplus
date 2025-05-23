@@ -1,10 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
 import { IconArrowDown } from './Icons';
+import { useTranslation } from 'react-i18next';
 
 export interface DropdownOption {
   value: string | number;
   label: string;
-  code?: string;
+  icon?: any;
   attributes?: Record<string, any>;
 }
 
@@ -25,6 +26,8 @@ const CustomDropdownComponent = ({
   showOptionAll = false,
   searchable = false,
 }: CustomDropdownComponentProps) => {
+  const { t } = useTranslation('global');
+  
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<DropdownOption | ''>('');
   const [searchTerm, setSearchTerm] = useState('');
@@ -45,21 +48,25 @@ const CustomDropdownComponent = ({
   }, [isOpen, searchable]);
 
   const handleToggle = () => {
-    if (!disable) {
-      setIsOpen(!isOpen);
-      if (!isOpen) {
-        setSearchTerm('');
-      }
+    if (disable) {
+      return;
+    }
+
+    setIsOpen(!isOpen);
+    if (!isOpen) {
+      setSearchTerm('');
     }
   };
 
   const handleSelect = (option: DropdownOption) => {
-    if (!disable) {
-      setSelected(option);
-      setIsOpen(false);
-      setSearchTerm('');
-      if (onSelect) onSelect(option);
+    if (disable) {
+      return;
     }
+
+    setSelected(option);
+    setIsOpen(false);
+    setSearchTerm('');
+    if (onSelect) onSelect(option);
   };
 
   useEffect(() => {
@@ -75,7 +82,7 @@ const CustomDropdownComponent = ({
   }, []);
 
   const displayOptions = showOptionAll
-    ? [{ value: '', label: 'All', code: 'all' }, ...options]
+    ? [{ value: '', label: t('all') }, ...options]
     : options;
 
   const filteredOptions = searchTerm
@@ -90,14 +97,9 @@ const CustomDropdownComponent = ({
         className={`flex items-center h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[12px] border-[var(--border-control)] ${disable ? 'cursor-not-allowed bg-[#f4f4f4]' : ' bg-[var(--background-control)] cursor-pointer'} focus:outline-none focus:border-[var(--border-control-focus)] relative`}
         onClick={handleToggle}
       >
-        {selected && selected.code && selected.value !== '' && (
-          <img
-            src={`../assets/bank/${selected.code}.png`}
-            className="w-[16px] h-[16px] mr-[8px] inline-block"
-          />
-        )}
+        {selected && selected.icon }
         <span className="block whitespace-nowrap overflow-hidden text-ellipsis pr-[12px]">
-          {selected ? selected.label : 'All'}
+          {selected ? selected.label : t('all')}
         </span>
         <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[10px] max-[768px]:top-[12px] " />
       </div>
@@ -111,7 +113,7 @@ const CustomDropdownComponent = ({
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search..."
+                placeholder={t('search')}
                 className="w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:border-[var(--border-control-focus)]"
                 onClick={(e) => e.stopPropagation()}
               />
@@ -124,13 +126,7 @@ const CustomDropdownComponent = ({
                 onClick={() => handleSelect(option)}
                 className="py-[3px] px-[12px] hover:bg-[#1967D2] hover:text-[#fff] cursor-pointer flex items-center max-[768px]:py-[6px]"
               >
-                {option.code && option.value !== '' && (
-                  <img
-                    src={`../assets/bank/${option.code}.png`}
-                    alt={option.label}
-                    className="w-[16px] h-[16px] mr-[8px] inline-block"
-                  />
-                )}
+                {option.icon}
                 {option.label}
               </div>
             ))

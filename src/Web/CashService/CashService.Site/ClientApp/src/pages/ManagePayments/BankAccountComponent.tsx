@@ -11,7 +11,7 @@ import { IconDelete,  IconPen, IconSearch, IconSync } from '../../components/Ico
 import CustomDropdown from '../../components/CustomDropdownComponent';
 import Loading from '../../components/LoadingComponent';
 import { ErrorMessageComponent, SuccessMessageComponent } from '../../components/MessageComponents';
-
+import BankIcon from '../../components/BankComponents';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { ButtonFullComponent, ButtonOutlineComponent } from '../../components/ButtonComponents';
@@ -43,68 +43,73 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   const fetchTransactionTypes = async () => {
-    try {
-      setLoading(true);
-      const fetchedTransactionTypes = await paymentProviderService.getTransactionTypes();
-      setTransactionTypes(fetchedTransactionTypes);
-      setError(null);
-    } catch (err) {
-      setError('Failed to load transaction types. Please try again later.');
-      console.error('Error fetching transaction types:', err);
-    } finally {
+    setLoading(true);
+    const response = await paymentProviderService.getTransactionTypes();
+    if(response.error) {
+      setError(response.error.message);
       setLoading(false);
+      return;
     }
+
+    const fetchedTransactionTypes = response.data || [];
+    setTransactionTypes(fetchedTransactionTypes);
+    setError(null);
+    setLoading(false);
   };
 
   const fetchBankAccounts = async () => {
-    try {
-      const fetchedBankAccounts = await paymentProviderService.getBankAccounts(
-        parseInt(selectedBank) ,
-        parseInt(selectedTransactionType),
-        parseInt(selectedStatus),
-        searchText
-      );
-      setBankAccounts(fetchedBankAccounts);
-      setError(null);
-      
-      // Set focus on the search input after loading
-      if (searchInputRef.current) {
-        searchInputRef.current.focus();
-      }
-    } catch (err) {
-      setError('Failed to load bank accounts. Please try again later.');
-      console.error('Error fetching bank accounts:', err);
+    const response = await paymentProviderService.getBankAccounts(
+      parseInt(selectedBank) ,
+      parseInt(selectedTransactionType),
+      parseInt(selectedStatus),
+      searchText
+    );
+
+    if(response.error) {
+      setError(response.error.message);
+      setLoading(false);
+      return;
+    }
+
+    const fetchedBankAccounts = response.data || [];
+    setBankAccounts(fetchedBankAccounts);
+    setError(null);
+    
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
     }
   };
 
   const fetchBanks = async () => {
-    try {
-      setLoading(true);
-      const fetchedBanks = await paymentProviderService.getBanksByCust();
-      fetchedBanks.unshift({ 
-        id: 0, 
-        name: tGlobal('all'),
-        code: '',
-        transactionTypes: '',
-        depositMatchingMode: {
-          sourceType: '',
-          mappingTypes: [],
-          sourceTypeName: ''
-        }
-      });
+    setLoading(true);
+    const response = await paymentProviderService.getBanksByCust();
 
-      setBanks(fetchedBanks);
-      setSelectedBank('0');
-      setError(null);
-
-      // Call fetchBankAccounts without setting loading state
-      fetchBankAccounts();
-    } catch (err) {
-      setError('Failed to load banks. Please try again later.');
-      console.error('Error fetching banks:', err);
-    } finally {
+    if(response.error) {
+      setError(response.error.message);
       setLoading(false);
+      return;
     }
+
+    const fetchedBanks = response.data || [];
+    fetchedBanks.unshift({ 
+      id: 0, 
+      name: tGlobal('all'),
+      code: '',
+      transactionTypes: '',
+      depositMatchingMode: {
+        sourceType: '',
+        mappingTypes: [],
+        sourceTypeName: ''
+      }
+    });
+
+    setBanks(fetchedBanks);
+    setSelectedBank('0');
+    setError(null);
+
+    // Call fetchBankAccounts without setting loading state
+    fetchBankAccounts();
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -118,23 +123,12 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
     }
   }, [selectedBank, selectedTransactionType, selectedStatus, searchText]);
 
-  const handleAddBankAccount = () => {
-    setShowAddBankAccountModal(true);
-  };
+  const onAddBankAccount = () => { setShowAddBankAccountModal(true); };
+  const onSetLimit = () => { setShowSetLimitModal(true); };
+  const onCloseSetLimitModal = () => { setShowSetLimitModal(false); };
+  const onSaveSetLimit = () => { setShowSetLimitModal(false); };
 
-  const handleSetLimit = () => {
-    setShowSetLimitModal(true);
-  };
-
-  const handleCloseSetLimitModal = () => {
-    setShowSetLimitModal(false);
-  };
-
-  const handleSaveSetLimit = () => {
-    setShowSetLimitModal(false);
-  };
-
-  const handleEditBankAccount = (accountId: number) => {
+  const onEditBankAccount = (accountId: number) => {
     const account = bankAccounts.find(acc => acc.id === accountId);
     if (account) {
       setSelectedBankAccount(account);
@@ -142,20 +136,20 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
     }
   };
 
-  const handleCloseUpdateBankAccountModal = () => {
+  const onCloseUpdateBankAccountModal = () => {
     setShowUpdateBankAccountModal(false);
     setSelectedBankAccount(null);
     fetchBankAccounts();
   };
 
-  const handleSaveUpdateBankAccount = () => {
+  const onSaveUpdateBankAccount = () => {
     setShowUpdateBankAccountModal(false);
     setSelectedBankAccount(null);
     fetchBanks();
     fetchBankAccounts();
   };
 
-  const handleDeleteBankAccount = async (account: BankAccount) => {
+  const onDeleteBankAccount = async (account: BankAccount) => {
     confirmAlert({
       title: tManagePayments('deleteBankAccount'),
       message: tManagePayments('confirmDeleteBankAccount').replace('{{bankAccount}}', account.accountNumber || ''),
@@ -163,27 +157,30 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
         {
           label: tGlobal('confirm'),
           onClick: async () => {
-            try {
-              setDeleting(account.id);
-              setError(null);
-              setSuccessMessage(null);
-              const result = await paymentProviderService.deleteBankAccount(account.id);
-              if (result.isSuccessful) {
-                setSuccessMessage(tManagePayments('bankAccountDeletedSuccessfully'));
-                // Clear success message and refresh list again after 3 seconds
-                setTimeout(() => {
-                  setSuccessMessage(null);
-                  fetchBankAccounts();
-                }, 3000);
-              } else {
-                setError(result.message || tManagePayments('failedToDeleteBankAccount'));
-              }
-            } catch (err) {
-              setError(tManagePayments('failedToDeleteBankAccount'));
-              console.error('Error deleting bank account:', err);
-            } finally {
+            setDeleting(account.id);
+            setError(null);
+            setSuccessMessage(null);
+            const response = await paymentProviderService.deleteBankAccount(account.id);
+
+            if(response.error) {
+              setError(response.error.message);
               setDeleting(null);
+              return;
             }
+
+            const result = response.data || {isSuccessful: false, code: 1, message: tGlobal('errorOccurred')};
+            if (result.isSuccessful) {
+              setSuccessMessage(tManagePayments('bankAccountDeletedSuccessfully'));
+              // Clear success message and refresh list again after 3 seconds
+              setTimeout(() => {
+                setSuccessMessage(null);
+                fetchBankAccounts();
+              }, 3000);
+            } else {
+              setError(result.message || tManagePayments('failedToDeleteBankAccount'));
+            }
+            
+            setDeleting(null);
           }
         },
         {
@@ -194,19 +191,19 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
     });
   };
 
-  const handleBankChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const onBankChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedBank(event.target.value);
   };
 
-  const handleTransactionTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const onTransactionTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedTransactionType(event.target.value);
   };
 
-  const handleStatusChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const onStatusChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedStatus(event.target.value);
   };
 
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(event.target.value);
     setSearchText(event.target.value);
   };
@@ -225,11 +222,11 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
     return typeNames.join(', ');
   };
 
-  const handleCloseAddBankAccountModal = () => {
+  const onCloseAddBankAccountModal = () => {
     setShowAddBankAccountModal(false);
   };
 
-  const handleSaveAddBankAccount = () => {
+  const onSaveAddBankAccount = () => {
     setShowAddBankAccountModal(false);
     fetchBanks();
     fetchBankAccounts();
@@ -239,13 +236,13 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
     <>
       {showAddBankAccountModal ? (
         <AddBankAccountComponent
-          onClose={handleCloseAddBankAccountModal}
-          onSave={handleSaveAddBankAccount}
+          onClose={onCloseAddBankAccountModal}
+          onSave={onSaveAddBankAccount}
         />
       ) : showUpdateBankAccountModal && selectedBankAccount ? (
         <UpdateBankAccountComponent
-          onClose={handleCloseUpdateBankAccountModal}
-          onSave={handleSaveUpdateBankAccount}
+          onClose={onCloseUpdateBankAccountModal}
+          onSave={onSaveUpdateBankAccount}
           bankAccount={selectedBankAccount}
         />
       ) : (
@@ -291,8 +288,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                   <div className="pb-[8px] mt-[8px] text-[16px] max-[768px]:text-[20px] text-[var(--text-color-primary)] font-semibold">{tManagePayments('manageBankAccountAndLimits')}</div>
                   <div className="">{tManagePayments('addBankAccountAndLimit')}</div>
                   <div className="my-[8px] flex gap-[8px]">                        
-                    <ButtonFullComponent className='w-[183px] [&>*]:w-[100%]' text={`+${tManagePayments('addBankAccount')}`} onClick={handleAddBankAccount} />
-                    <ButtonOutlineComponent className='w-[183px] [&>*]:w-[100%]'  text={tManagePayments('setLimit')} onClick={handleSetLimit} />
+                    <ButtonFullComponent className='w-[183px] [&>*]:w-[100%]' text={`+${tManagePayments('addBankAccount')}`} onClick={onAddBankAccount} />
+                    <ButtonOutlineComponent className='w-[183px] [&>*]:w-[100%]'  text={tManagePayments('setLimit')} onClick={onSetLimit} />
                   </div>
                 </div>
                 {loading && (<Loading />)}              
@@ -309,11 +306,11 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                               return banks.map(bank => ({
                                 value: bank.id,
                                 label: bank.id === 0 ? tGlobal('all') : bank.name,
-                                code: bank.code.toLocaleUpperCase()
+                                icon: <BankIcon code={bank.code} />
                               }));
                             })()}
                             initialValue={selectedBank}
-                            onSelect={(option) => handleBankChange({ target: { value: option.value.toString() } } as React.ChangeEvent<HTMLSelectElement>)}
+                            onSelect={(option) => onBankChange({ target: { value: option.value.toString() } } as React.ChangeEvent<HTMLSelectElement>)}
                           />
                       
                       </div>
@@ -325,7 +322,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                             id="transactionTypeSelect"
                             className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
                             value={selectedTransactionType}
-                            onChange={handleTransactionTypeChange}
+                            onChange={onTransactionTypeChange}
                           >
                             <option key="0" value="0">{tGlobal('all')}</option>
                             {transactionTypes.length && (
@@ -346,7 +343,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                             id="statusSelect"
                             className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
                             value={selectedStatus}
-                            onChange={handleStatusChange}
+                            onChange={onStatusChange}
                           >
                             {BANK_STATUS_OPTIONS.map((status) => (
                               <option key={status.id} value={status.id}>
@@ -369,7 +366,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                             className="h-[32px] max-[768px]:h-[40px] w-[100%] pl-[30px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] shadow-[0_0_6px_rgba(0,0,0,0.16)]"
                             placeholder={tManagePayments('searchAccountNumberOrName')}
                             value={searchInput}
-                            onChange={handleSearchChange}
+                            onChange={onSearchChange}
                             ref={searchInputRef}
                           />
                         </div>
@@ -403,14 +400,14 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                               <div className="flex">
                                 <button 
                                   className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
-                                  onClick={() => handleEditBankAccount(account.id)}
+                                  onClick={() => onEditBankAccount(account.id)}
                                   title={tGlobal('edit')}
                                 >                            
                                   <IconPen />
                                 </button>
                                 <button 
                                   className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
-                                  onClick={() => handleDeleteBankAccount(account)}
+                                  onClick={() => onDeleteBankAccount(account)}
                                   title={tGlobal('delete')}
                                   disabled={deleting === account.id}
                                 >
@@ -425,7 +422,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                             <td className='text-left'>{account.accountNickname}</td>
                             <td className='text-left'>
                               <div className='flex items-center relative pl-[25px]'>
-                                <img src={`../assets/bank/${account.code}.png`} alt={account.bankName} className='w-[20px] h-[20px] absolute top-[0] left-[0]' />
+                                <img src={`../assets/bank/${account.code.toUpperCase()}.png`} alt={account.bankName} className='w-[20px] h-[20px] absolute top-[0] left-[0]' />
                                 {account.bankName}
                               </div>
                               </td>
@@ -455,8 +452,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
 
                 {showSetLimitModal && (
                   <SetTransactionLimitModal
-                    onClose={handleCloseSetLimitModal}
-                    onSave={handleSaveSetLimit}
+                    onClose={onCloseSetLimitModal}
+                    onSave={onSaveSetLimit}
                   />
                 )}
                 </div>

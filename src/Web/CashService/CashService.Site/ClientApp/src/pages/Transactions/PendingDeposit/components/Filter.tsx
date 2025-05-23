@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { BankInfo } from '../../../../services/interfaces/Transactions/BankInfo';
 import { IconSearch } from '../../../../components/Icons';
 import CustomDropdown from '../../../../components/CustomDropdownComponent';
-
+import BankIcon from '../../../../components/BankComponents';
 interface FilterProps {
   recentDeposits: string;
   setRecentDeposits: (value: string) => void;
@@ -52,7 +52,7 @@ const Filter: React.FC<FilterProps> = ({
           options={cashAgentOptions.map((option) => ({
             value: `${option.bankCode}_${option.bankAccountNumber}`,
             label: option.bankAccountNumber,
-            code: option.bankCode,
+            icon: <BankIcon code={option.bankCode} />
           }))}
           onSelect={(selected) => setCashAgentTo(String(selected.value))}
           showOptionAll={true}
