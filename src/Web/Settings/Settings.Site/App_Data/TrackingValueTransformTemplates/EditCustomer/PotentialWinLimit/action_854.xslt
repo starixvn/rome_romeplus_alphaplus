@@ -10,7 +10,7 @@
           </td>
         </tr>
         <tr>
-          <td colspan="3">
+          <td colspan="6">
             <table class="tblDesc">
               <tr class="headerSportTypeDetail" style="text-align:center;">
                 <td>
