@@ -27,6 +27,11 @@ public static class PaymentsEndpoints
             .Produces<Result>()
             .WithTags("Payments")
             .WithName("Manual Withdrawal");
+
+        withdrawal.MapPost("/auto", AutoWithdrawal)
+            .Produces<Result>()
+            .WithTags("Payments")
+            .WithName("Automatic Withdrawal");
     }
 
     private static async Task<IResult> GetDepositMethods(int agentId, IDepositService depositService)
@@ -37,4 +42,7 @@ public static class PaymentsEndpoints
 
     private static async Task<IResult> ManualWithdrawal(CreateManualWithdrawalRequest request, IWithdrawalService withdrawalService)
         => Results.Ok(await withdrawalService.CreateManualWithdrawal(request));
+
+    private static async Task<IResult> AutoWithdrawal(CreateAutoWithdrawalRequest request, IWithdrawalService withdrawalService)
+        => Results.Ok(await withdrawalService.CreateAutoWithdrawal(request));
 }
