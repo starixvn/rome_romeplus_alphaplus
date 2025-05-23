@@ -1,4 +1,5 @@
 using AgencyCash.API.Payments.Models;
+using AgencyCash.API.Payments.Requests;
 using AgencyCash.API.Payments.Services;
 using AgencyCash.API.Shared.Models;
 
@@ -8,31 +9,32 @@ public static class PaymentsEndpoints
 {
     public static void MapPaymentsEndpoints(this WebApplication app)
     {
-        var payments = app.MapGroup("/api/payments/deposit");
+        var payments = app.MapGroup("/api/payments");
 
-        payments.MapGet("/methods", GetDepositMethods)
+        var deposit = payments.MapGroup("/deposit");
+        deposit.MapGet("/methods", GetDepositMethods)
             .Produces<IEnumerable<DepositMethod>>()
             .WithTags("Payments")
             .WithName("Get Deposit Methods");
 
-        payments.MapPost("/manual", ManualDeposit)
+        deposit.MapPost("/manual", ManualDeposit)
             .Produces<Result>()
             .WithTags("Payments")
             .WithName("Manual Deposit");
+
+        var withdrawal = payments.MapGroup("/withdraw");
+        withdrawal.MapPost("/manual", ManualWithdrawal)
+            .Produces<Result>()
+            .WithTags("Payments")
+            .WithName("Manual Withdrawal");
     }
 
     private static async Task<IResult> GetDepositMethods(int agentId, IDepositService depositService)
-    {
-        var depositMethods = await depositService.GetDepositMethods(agentId);
-        return TypedResults.Ok(depositMethods);
-    }
+        => Results.Ok(await depositService.GetDepositMethods(agentId));
 
-    private static async Task<IResult> ManualDeposit()
-    {
-        var result = new Result(
-            0,
-            "Manual deposit endpoint hit successfully."
-        );
-        return Results.Ok(result);
-    }
+    private static async Task<IResult> ManualDeposit(CreateManualDepositRequest request, IDepositService depositService)
+        => Results.Ok(await depositService.CreateManualDeposit(request));
+
+    private static async Task<IResult> ManualWithdrawal(CreateManualWithdrawalRequest request, IWithdrawalService withdrawalService)
+        => Results.Ok(await withdrawalService.CreateManualWithdrawal(request));
 }

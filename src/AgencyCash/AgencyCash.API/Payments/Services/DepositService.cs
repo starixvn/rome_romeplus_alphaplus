@@ -11,7 +11,7 @@ public interface IDepositService
 {
     Task<IEnumerable<DepositMethod>> GetDepositMethods(int agentId);
 
-    Task<MemberSetting> GetMemberSetting(int memberId, int custDBGroupId);
+    Task<Result> CreateManualDeposit(CreateManualDepositRequest request);
 }
 
 public class DepositService(
@@ -21,14 +21,6 @@ public class DepositService(
 {
     public Task<IEnumerable<DepositMethod>> GetDepositMethods(int agentId)
         => repository.FetchAsync<DepositMethod>(new GetDepositMethodsCriteria(agentId));
-
-    public async Task<MemberSetting> GetMemberSetting(int memberId, int custDBGroupId)
-    {
-        var criteria = new GetMemberSettingCriteria(memberId, custDBGroupId);
-        await repository.ExecuteAsync(criteria);
-
-        return new MemberSetting(criteria.AgentGivenCredit, criteria.CreditMembers_GivenCredit, criteria.MinLimitAmt, criteria.MaxLimitAmt);
-    }
 
     public async Task<Result> CreateManualDeposit(CreateManualDepositRequest request)
     {
