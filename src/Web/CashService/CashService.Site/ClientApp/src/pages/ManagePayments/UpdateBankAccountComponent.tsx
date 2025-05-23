@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Bank, BankAccount, DepositMatchingMode } from '../../services/interfaces/Payments';
+import { Bank, BankAccount, createDefaultBankAccount, DepositMatchingMode } from '../../services/interfaces/Payments';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import {
   hasDepositTransactionType,
@@ -127,71 +127,110 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
     selectedDepositMatchingMode: ''
   });
 
-  const fetchBankAccount = async () => {
-    try {
-      setLoading(true);
-      const fetchedBankAccount = await paymentProviderService.getBankAccountById(bankAccount.id);
-      if (fetchedBankAccount) {
-        const newFormState = {
-          accountNickname: fetchedBankAccount.accountNickname,
-          accountHolderName: fetchedBankAccount.accountHolderName,
-          accountNumber: fetchedBankAccount.accountNumber,
-          status: fetchedBankAccount.status.toString(),
-          promptPay: fetchedBankAccount.promptPay,
-          selectedBank: fetchedBankAccount.bankId.toString(),
-          bankDepositMatchingMode: fetchedBankAccount.bankDepositMatchingMode,
-          bank_TransTypeList: fetchedBankAccount.bank_TransTypeList,
-          agent_DepositMatchingMode: fetchedBankAccount.agent_DepositMatchingMode,
-          selectedManualDeposit: fetchedBankAccount.agent_TransTypeList.split(',').includes(BANK_TRANSACTION_TYPES[1].id.toString()),
-          selectedAutoDeposit: fetchedBankAccount.agent_TransTypeList.split(',').includes(BANK_TRANSACTION_TYPES[2].id.toString()),
-          selectedManualWithdrawal: fetchedBankAccount.agent_TransTypeList.split(',').includes(BANK_TRANSACTION_TYPES[3].id.toString()),
-          creator: fetchedBankAccount.creator,
+  const validateFormState = () => {
+    const errors: FormErrors = {
+      mobile: '',
+      countryCode: '',
+      selectedTransactionType: '',
+      selectedDepositMatchingMode: ''
+    };
 
-          mobile: mobile,
-          countryCode: countryCode
-        };
-        setFormState(newFormState);
-        setOrgFormState(newFormState);
-
-        if(fetchedBankAccount.promptPay){
-          var fm = fetchedBankAccount.mobile;
-          var c = fm.includes('-') ? fm.split('-')[0] : '';
-          var m = fm.includes('-') ? fm.split('-')[1] : fm;
-          setCountryCode(c);
-          setMobile(m);
-          setFormState(prev => ({ ...prev, countryCode: c, mobile: m }));
-          setOrgFormState(prev => ({ ...prev, countryCode: c, mobile: m }));
-        }
-      }
-    } catch (err) {
-      setError(tManagePayments('failedToLoadBankAccount'));
-      console.error('Error fetching bank account:', err);
-    } finally {
-      setLoading(false);
+    // Validate transaction type selection
+    if (!formState.selectedManualDeposit && !formState.selectedAutoDeposit && !formState.selectedManualWithdrawal) {
+      errors.selectedTransactionType = tManagePayments('pleaseSelectTransactionType');
     }
+
+    // Validate deposit matching mode for auto deposit
+    if (formState.selectedAutoDeposit && !formState.agent_DepositMatchingMode) {
+      errors.selectedDepositMatchingMode = tManagePayments('pleaseSelectDepositMatchingMode');
+    }
+
+    // Validate mobile and country code for PromptPay
+    if (formState.promptPay) {
+      if (!mobile) {
+        errors.mobile = tGlobal('pleaseFillField');
+      }
+      if (!countryCode) {
+        errors.countryCode = tGlobal('pleaseFillField');
+      }
+    }
+
+    setFieldErrors(errors);
+    const hasError = Object.values(errors).some(Boolean);
+    return !hasError;
+  };
+
+  const fetchBankAccount = async () => {
+    setLoading(true);
+    const response = await paymentProviderService.getBankAccountById(bankAccount.id);
+    if(response.error) {
+      setError(response.error.message);
+      setLoading(false);
+      return;
+    }
+
+    const fetchedBankAccount = response.data || createDefaultBankAccount();
+
+    if (fetchedBankAccount) {
+      const newFormState = {
+        accountNickname: fetchedBankAccount.accountNickname,
+        accountHolderName: fetchedBankAccount.accountHolderName,
+        accountNumber: fetchedBankAccount.accountNumber,
+        status: fetchedBankAccount.status.toString(),
+        promptPay: fetchedBankAccount.promptPay,
+        selectedBank: fetchedBankAccount.bankId.toString(),
+        bankDepositMatchingMode: fetchedBankAccount.bankDepositMatchingMode,
+        bank_TransTypeList: fetchedBankAccount.bank_TransTypeList,
+        agent_DepositMatchingMode: fetchedBankAccount.agent_DepositMatchingMode,
+        selectedManualDeposit: fetchedBankAccount.agent_TransTypeList.split(',').includes(BANK_TRANSACTION_TYPES[1].id.toString()),
+        selectedAutoDeposit: fetchedBankAccount.agent_TransTypeList.split(',').includes(BANK_TRANSACTION_TYPES[2].id.toString()),
+        selectedManualWithdrawal: fetchedBankAccount.agent_TransTypeList.split(',').includes(BANK_TRANSACTION_TYPES[3].id.toString()),
+        creator: fetchedBankAccount.creator,
+
+        mobile: mobile,
+        countryCode: countryCode
+      };
+      setFormState(newFormState);
+      setOrgFormState(newFormState);
+
+      if(fetchedBankAccount.promptPay){
+        var fm = fetchedBankAccount.mobile;
+        var c = fm.includes('-') ? fm.split('-')[0] : '';
+        var m = fm.includes('-') ? fm.split('-')[1] : fm;
+        setCountryCode(c);
+        setMobile(m);
+        setFormState(prev => ({ ...prev, countryCode: c, mobile: m }));
+        setOrgFormState(prev => ({ ...prev, countryCode: c, mobile: m }));
+      }
+    }
+    setLoading(false);
   };
   const fetchBanks = async () => {
-    try {
-      const fetchedBanks = await paymentProviderService.getBanksByTransactionType(0);
-      setBanks(fetchedBanks);
-    } catch (err) {
-      console.error('Error fetching banks:', err);
-      setError(tManagePayments('failedToFetchBanks'));
+    const response = await paymentProviderService.getBanksByTransactionType(0);
+    if(response.error) {
+      setError(response.error.message);
+      return;
     }
+
+    const fetchedBanks = response.data || [];
+    setBanks(fetchedBanks);
   };
 
   const fetchCountryCodes = async () => {
-    try {
-      const countryCodes = await baseAPI.getCountryCodes();
-      if (!formState.countryCode && countryCodes.length > 0) {
-        setCountryCode(countryCodes[0]);
-        setMobile('');
+    const response = await baseAPI.getCountryCodes();
+    if(response.error) {
+      setError(response.error.message);
+      return;
+    }
 
-        setFormState(prev => ({ ...prev, countryCode: countryCodes[0] }));
-        setOrgFormState(prev => ({ ...prev, countryCode: countryCodes[0] }));
-      }
-    } catch (err) {
-      console.error('Error fetching mobile prefixes:', err);
+    const countryCodes = response.data || [];
+
+    if (!formState.countryCode && countryCodes.length > 0) {
+      setCountryCode(countryCodes[0]);
+      setMobile('');
+
+      setFormState(prev => ({ ...prev, countryCode: countryCodes[0] }));
+      setOrgFormState(prev => ({ ...prev, countryCode: countryCodes[0] }));
     }
   };
 
@@ -205,7 +244,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
     return <Loading />;
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     setLoading(true);
@@ -216,83 +255,69 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
       return;
     }
 
-    // Field-level validation
-    const errors = {
-      mobile: formState.promptPay && !mobile ? tGlobal('pleaseFillField') : '',
-      countryCode: formState.promptPay && !countryCode ? tGlobal('pleaseFillField') : '',
-      selectedTransactionType:
-        !formState.selectedManualDeposit && !formState.selectedAutoDeposit && !formState.selectedManualWithdrawal
-          ? tManagePayments('pleaseSelectTransactionType')
-          : '',
-      selectedDepositMatchingMode:
-        formState.selectedAutoDeposit && !formState.agent_DepositMatchingMode
-          ? tManagePayments('pleaseSelectDepositMatchingMode')
-          : '',
-    };
-    setFieldErrors(errors);
-    const hasError = Object.values(errors).some(Boolean);
-    if (hasError) {
+    const isValid = validateFormState();
+    if (!isValid) {
       setLoading(false);
       return;
     }
 
-    try {
-      // Combine selected transaction types into a comma-separated string
-      const selectedTransactionTypes: string[] = [];
+    // Combine selected transaction types into a comma-separated string
+    const selectedTransactionTypes: string[] = [];
 
-      if (formState.selectedManualDeposit) {
-        selectedTransactionTypes.push(BANK_TRANSACTION_TYPES[1].id.toString());
-      }
-
-      if (formState.selectedAutoDeposit) {
-        selectedTransactionTypes.push(BANK_TRANSACTION_TYPES[2].id.toString());
-      }
-
-      if (formState.selectedManualWithdrawal) {
-        selectedTransactionTypes.push(BANK_TRANSACTION_TYPES[3].id.toString());
-      }
-
-      const transactionTypesString = selectedTransactionTypes.join(',');
-
-      const result = await paymentProviderService.updateBankAccount({
-        id: bankAccount.id,
-        accountNickname: formState.accountNickname,
-        accountHolderName: formState.accountHolderName,
-        accountNumber: formState.accountNumber,
-        bankId: parseInt(formState.selectedBank),
-        bankName: banks.find((b) => b.id === parseInt(formState.selectedBank))?.name || '',
-        status: parseInt(formState.status),
-        promptPay: formState.promptPay,
-        mobile: mobile,
-        countryCode: countryCode,
-        lastUpdated: new Date().toISOString(),
-        lastUpdatedStr: new Date().toLocaleString(),
-        code: '',
-        creator: formState.creator,
-        transactionTypes: '',
-        depositMatchingMode: 0,
-        bank_TransTypeList: formState.bank_TransTypeList,
-        agent_TransTypeList: transactionTypesString,
-        agent_DepositMatchingMode: formState.agent_DepositMatchingMode,
-        bankDepositMatchingMode: formState.bankDepositMatchingMode,
-      });
-
-      if (result.isSuccessful) {
-        setIsBlockAction(true);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        setSuccessMessage(result.message || tManagePayments('bankAccountUpdatedSuccessfully'));
-        setTimeout(() => {
-          onSave();
-        }, 3000);
-      } else {
-        setError(result.message || tManagePayments('failedToUpdateBankAccount'));
-      }
-    } catch (err) {
-      setError(tManagePayments('failedToUpdateBankAccount'));
-      console.error('Error updating bank account:', err);
-    } finally {
-      setLoading(false);
+    if (formState.selectedManualDeposit) {
+      selectedTransactionTypes.push(BANK_TRANSACTION_TYPES[1].id.toString());
     }
+
+    if (formState.selectedAutoDeposit) {
+      selectedTransactionTypes.push(BANK_TRANSACTION_TYPES[2].id.toString());
+    }
+
+    if (formState.selectedManualWithdrawal) {
+      selectedTransactionTypes.push(BANK_TRANSACTION_TYPES[3].id.toString());
+    }
+
+    const transactionTypesString = selectedTransactionTypes.join(',');
+
+    const response = await paymentProviderService.updateBankAccount({
+      id: bankAccount.id,
+      accountNickname: formState.accountNickname,
+      accountHolderName: formState.accountHolderName,
+      accountNumber: formState.accountNumber,
+      bankId: parseInt(formState.selectedBank),
+      bankName: banks.find((b) => b.id === parseInt(formState.selectedBank))?.name || '',
+      status: parseInt(formState.status),
+      promptPay: formState.promptPay,
+      mobile: mobile,
+      countryCode: countryCode,
+      lastUpdated: new Date().toISOString(),
+      lastUpdatedStr: new Date().toLocaleString(),
+      code: '',
+      creator: formState.creator,
+      transactionTypes: '',
+      depositMatchingMode: 0,
+      bank_TransTypeList: formState.bank_TransTypeList,
+      agent_TransTypeList: transactionTypesString,
+      agent_DepositMatchingMode: formState.agent_DepositMatchingMode,
+      bankDepositMatchingMode: formState.bankDepositMatchingMode,
+    });
+
+    if(response.error) {
+      setError(response.error.message);
+      setLoading(false);
+      return;
+    }
+
+    const result = response.data || {isSuccessful: false, code: 1, message: tGlobal('errorOccurred')};
+
+    if (result.isSuccessful) {
+      setIsBlockAction(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setSuccessMessage(result.message || tManagePayments('bankAccountUpdatedSuccessfully'));
+      setTimeout(() => { onSave(); }, 3000);
+    } else {
+      setError(result.message || tManagePayments('failedToUpdateBankAccount'));
+    }
+    setLoading(false);
   };
 
   // Toggle handlers for transaction type buttons
@@ -308,7 +333,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
     setFormState({ ...formState, selectedManualWithdrawal: !formState.selectedManualWithdrawal });
   };
 
-  const handleBankChange = (option: DropdownOption) => {
+  const onBankChange = (option: DropdownOption) => {
     setFormState({ ...formState, selectedBank: option.value.toString() });
   };
 
@@ -349,7 +374,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
           </div>
 
           <form
-            onSubmit={handleSubmit}
+            onSubmit={onSubmit}
             className="bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
           >
             <div className="modal-body">
@@ -381,7 +406,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                       label: bank.name,
                       icon: <BankIcon code={bank.code} />
                     }))}
-                    onSelect={handleBankChange}
+                    onSelect={onBankChange}
                     disable
                     initialValue={parseInt(formState.selectedBank)}
                   />
@@ -603,7 +628,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
             </div>
             <div className="flex justify-start py-[8px] mt-[8px] gap-[8px]">              
               <ButtonCancelComponent text={tGlobal('cancel')} onClick={onClose}  />
-              <ButtonApplyComponent text={loading ? tGlobal('saving') : tGlobal('save')} onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent)} disabled={loading || isBlockAction} />
+              <ButtonApplyComponent text={loading ? tGlobal('saving') : tGlobal('save')} onClick={() => onSubmit({ preventDefault: () => {} } as React.FormEvent)} disabled={loading || isBlockAction} />
             </div>
           </form>
         </div>
