@@ -40,19 +40,21 @@ public class PendingWithdrawalService(
 
     public async Task<CreditAmount> GetLimitAmtWithdrawAsync(CashLimitAmt param)
     {
+        var cashBalance = await GetCashBalanceAsync(param.CustId, param.SiteDbGroupId);
+
         var criteria = new GetLimitAmtWithdrawCriteria
         {
             CustId = param.CustId,
             ProviderId = param.ProviderId,
             UplineId = param.UplineId,
             CustDbGroupId = param.CustDbGroupId,
-            CashBalance = param.CashBalance
+            CashBalance = cashBalance
         };
         await dynamicRepository.GetAsync<CreditAmount>(criteria);
         return new CreditAmount
         {
             MaxAmt = criteria.MaxAmt,
-            MinAmt = criteria.MinAmt
+            MinAmt = criteria.MinAmt,
         };
     }
 
@@ -73,7 +75,8 @@ public class PendingWithdrawalService(
                 CustId = param.CustId,
                 CustDbGroupId = param.CustDbGroupId,
                 UplineId = param.UplineId,
-                ProviderId = param.ProviderId
+                ProviderId = param.ProviderId,
+                SiteDbGroupId = param.SiteDbGroupId
             });
         var command = new CreateManualWithdrawCommand
         {
@@ -97,6 +100,7 @@ public class PendingWithdrawalService(
         {
             SyncCashAccumulatedCredit(command.CashAccumCreditTbl, param.CustDbGroupId);
         }
+
         return result;
     }
 

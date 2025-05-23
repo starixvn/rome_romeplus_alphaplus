@@ -1,11 +1,10 @@
-using AlphaPlus.CashService.API.Models.PendingCommons;
-using AlphaPlus.CashService.API.Models.Transactions;
-using AlphaPlus.CashService.API.Services;
-using Microsoft.AspNetCore.Mvc;
-
 namespace AlphaPlus.CashService.API.Endpoints;
 
 using Enum;
+using Microsoft.AspNetCore.Mvc;
+using Models.PendingCommons;
+using Models.Transactions;
+using Services;
 
 public static class PendingWithdrawalEndpoints
 {
@@ -21,14 +20,13 @@ public static class PendingWithdrawalEndpoints
                 [FromQuery] int custDbGroupId,
                 IPendingWithdrawalService service) =>
         {
-            var cashBalance = await service.GetCashBalanceAsync(custId, siteDbGroupId);
             var cashLimit = await service.GetLimitAmtWithdrawAsync(new CashLimitAmt
             {
                 CustId = custId,
                 UplineId = uplineId,
                 ProviderId = providerId,
-                CashBalance = cashBalance,
-                CustDbGroupId = custDbGroupId
+                CustDbGroupId = custDbGroupId,
+                SiteDbGroupId = siteDbGroupId
             });
             return Results.Ok(cashLimit);
         })
