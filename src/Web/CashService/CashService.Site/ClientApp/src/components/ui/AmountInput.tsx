@@ -15,12 +15,10 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   isDisabled,
   id,
 }) => {
-  const displayValue = value === 0 ? '' : value.toString();
-
   return (
     <input
       type="number"
-      value={displayValue}
+      value={value}
       inputMode="decimal"
       placeholder="0"
       onChange={(e) => onChange(parseFloat(e.target.value) || 0)}
