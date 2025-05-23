@@ -16,8 +16,11 @@ public interface IWithdrawalService
 public class WithdrawalService(
     IDynamicRepository repository,
     ISiteDBService siteDBService,
-    Fanex.Logging.ILogger logger) : PaymentService(repository, siteDBService, logger), IWithdrawalService
+    Fanex.Logging.ILogger logger,
+    IEnumerable<IPaymentProviderService> paymentProviders) : PaymentService(repository, siteDBService, logger), IWithdrawalService
 {
+    private readonly IEnumerable<IPaymentProviderService> _paymentProviders = paymentProviders;
+
     public async Task<Result> CreateManualWithdrawal(CreateManualWithdrawalRequest request)
     {
         var siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
@@ -31,6 +34,24 @@ public class WithdrawalService(
         }
 
         var memberSetting = await GetMemberSetting(request.CustId, siteDBConfig.CustDBGroupId);
+
+        // Process withdrawal through payment provider
+        var provider = GetPaymentProvider(request.PaymentFrom);
+        if (provider == null)
+        {
+            return new Result(606, "Invalid payment provider");
+        }
+
+        var providerResult = await provider.ProcessWithdrawal(
+            request.PaymentTo,
+            request.Amount,
+            "USD", // TODO: Get currency from configuration
+            false);
+
+        if (!providerResult.IsSuccess)
+        {
+            return providerResult;
+        }
 
         var createManualWithdrawalCriteria = new CreateManualWithdrawalCriteria(
             request.CustId,
@@ -77,6 +98,24 @@ public class WithdrawalService(
 
         var memberSetting = await GetMemberSetting(request.CustId, siteDBConfig.CustDBGroupId);
 
+        // Process withdrawal through payment provider
+        var provider = GetPaymentProvider(request.PaymentFrom);
+        if (provider == null)
+        {
+            return new Result(606, "Invalid payment provider");
+        }
+
+        var providerResult = await provider.ProcessWithdrawal(
+            request.PaymentTo,
+            request.Amount,
+            "USD", // TODO: Get currency from configuration
+            request.IsAutoApprove);
+
+        if (!providerResult.IsSuccess)
+        {
+            return providerResult;
+        }
+
         var createAutoWithdrawalCriteria = new CreateAutoWithdrawalCriteria(
             request.CustId,
             request.AgentId,
@@ -107,5 +146,20 @@ public class WithdrawalService(
         }
 
         return result;
+    }
+
+    private IPaymentProviderService GetPaymentProvider(string paymentFrom)
+    {
+        // TODO: Implement logic to determine provider based on paymentFrom
+        // This is a placeholder implementation
+        if (paymentFrom.StartsWith("U2"))
+        {
+            return _paymentProviders.FirstOrDefault(p => p.Provider == PaymentProvider.U2Pay);
+        }
+        else if (paymentFrom.StartsWith("DIR"))
+        {
+            return _paymentProviders.FirstOrDefault(p => p.Provider == PaymentProvider.DirePay);
+        }
+        return null;
     }
 } 

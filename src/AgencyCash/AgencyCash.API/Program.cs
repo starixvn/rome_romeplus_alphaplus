@@ -16,7 +16,7 @@ builder.Services
     .AddSingleton<IDynamicRepository, DynamicRepository>()
     .AddSingleton<ISiteDBService, SiteDBService>()
     .AddSingleton<IRegisterCashMemberService, RegisterCashMemberService>()
-    .RegisterPaymentsModule()
+    .RegisterPaymentsModule(configuration)
     .AddSwaggerGen(c =>
     {
         c.SwaggerDoc("v1", new() { Title = "Agency Cash API V1", Version = "v1" });
