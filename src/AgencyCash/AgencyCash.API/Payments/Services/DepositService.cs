@@ -55,7 +55,7 @@ public class DepositService(
             createManualDepositCriteria.ErrCode,
             createManualDepositCriteria.ErrMsg);
 
-        if (result.IsSuccess)
+        if (result.IsSuccessful)
         {
             SyncCashAccumCredit(
                 createManualDepositCriteria.CashAccumCreditTbl,

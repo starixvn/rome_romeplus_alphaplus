@@ -48,7 +48,7 @@ public class WithdrawalService(
             "USD", // TODO: Get currency from configuration
             false);
 
-        if (!providerResult.IsSuccess)
+        if (!providerResult.IsSuccessful)
         {
             return providerResult;
         }
@@ -72,7 +72,7 @@ public class WithdrawalService(
             createManualWithdrawalCriteria.ErrCode,
             createManualWithdrawalCriteria.ErrMsg);
 
-        if (result.IsSuccess)
+        if (result.IsSuccessful)
         {
             SyncCashAccumCredit(
                 createManualWithdrawalCriteria.CashAccumCreditTbl,
@@ -111,7 +111,7 @@ public class WithdrawalService(
             "USD", // TODO: Get currency from configuration
             request.IsAutoApprove);
 
-        if (!providerResult.IsSuccess)
+        if (!providerResult.IsSuccessful)
         {
             return providerResult;
         }
@@ -136,7 +136,7 @@ public class WithdrawalService(
             createAutoWithdrawalCriteria.ErrCode,
             createAutoWithdrawalCriteria.ErrMsg);
 
-        if (result.IsSuccess)
+        if (result.IsSuccessful)
         {
             SyncCashAccumCredit(
                 createAutoWithdrawalCriteria.CashAccumCreditTbl,
