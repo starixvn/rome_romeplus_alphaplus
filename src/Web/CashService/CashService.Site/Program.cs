@@ -1,5 +1,4 @@
 using System.Text.Json;
-using AlphaPlus.CashService.Site.Features.Transactions.Handlers;
 using AlphaPlus.CashService.Site.Helpers;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Filters;
@@ -13,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
 using Serilog;
 using AlphaPlus.CashService.Site.Features.ChatHub;
+using Fanex.Data;
 
 const string pathBase = "/cash-service";
 const string sharedSettings = "sharedSettings.json";
@@ -42,7 +42,6 @@ builder.Services
     .AddMediatR(cfg =>
     {
         cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
-        cfg.RegisterServicesFromAssembly(typeof(GetTransactionsQueryHandler).Assembly);
     })
     .AddControllersWithViews(options =>
     {

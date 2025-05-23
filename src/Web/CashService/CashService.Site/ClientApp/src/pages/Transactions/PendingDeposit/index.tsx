@@ -181,8 +181,6 @@ const PendingDeposit: React.FC = () => {
           </div>
         ) : (
           <DataGrid deposits={filteredDeposits} onProcessClick={handleClickProcess} />
-         
-          </div>
         )}
       </div>   
       )}

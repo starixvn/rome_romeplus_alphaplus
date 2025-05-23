@@ -16,7 +16,7 @@ var app = builder.Build();
 app.UseCashServiceSwagger()
     .UseCashServiceExceptionHandler()
     .UseCashServiceCors()
-    .MapAPIEndpoints();
+    .MapApiEndpoints();
 
 app.MapControllerRoute(
     "default",
