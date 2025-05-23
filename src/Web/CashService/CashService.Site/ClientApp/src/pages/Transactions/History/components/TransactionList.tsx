@@ -191,13 +191,15 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         isLoading={loading}
         columnFilter={columnFilter}
       />
-      <Pagination
-        currentPage={apiParams.pageIndex}
-        totalItems={apiData.totalCount}
-        pageSize={apiParams.pageSize}
-        onPageChange={handlePageChange}
-        onPageSizeChange={handlePageSizeChange}
-      />
+      {!loading && (
+        <Pagination
+          currentPage={apiParams.pageIndex}
+          totalItems={apiData.totalCount}
+          pageSize={apiParams.pageSize}
+          onPageChange={handlePageChange}
+          onPageSizeChange={handlePageSizeChange}
+        />
+      )}
     </div>
   );
 };

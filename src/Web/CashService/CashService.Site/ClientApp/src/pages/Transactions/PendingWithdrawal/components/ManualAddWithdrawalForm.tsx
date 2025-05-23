@@ -12,6 +12,7 @@ import { ResultMessageComponent } from '../../../../components/MessageComponents
 import UploadImage from '../../Components/UploadImage';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import BankIcon from '../../../../components/BankComponents';
+import { AmountInput } from '../../../../components/ui/AmountInput';
 interface ManualAddWithdrawalFormProps {
   onClose?: () => void;
 }
@@ -21,7 +22,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
   const [custId, setCustId] = useState<number | null>(null);
   const [from, setFrom] = useState<string>('');
   const [to, setTo] = useState<string>('');
-  const [withdrawalAmount, setWithdrawalAmount] = useState('');
+  const [withdrawalAmount, setWithdrawalAmount] = useState<number>(0);
   const [remarks, setRemarks] = useState('');
   const [image, setImage] = useState<File | null>(null);
   const [minAmount, setMinAmount] = useState(0);
@@ -50,7 +51,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
         custId: custId as number,
         paymentFrom: from,
         paymentTo: to,
-        amount: parseFloat(withdrawalAmount),
+        amount: withdrawalAmount,
         remark: remarks,
         image: image as File,
         providerId,
@@ -100,8 +101,11 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       return false;
     }
 
-    const amount = parseFloat(withdrawalAmount);
-    if (isNaN(amount) || amount <= minAmount || (maxAmount && amount > maxAmount)) {
+    if (
+      isNaN(withdrawalAmount) ||
+      withdrawalAmount <= minAmount ||
+      (maxAmount && withdrawalAmount > maxAmount)
+    ) {
       setResultMessage({ type: 'error', message: t('manualWithdrawalForm.amountRangeError') });
       return false;
     }
@@ -221,10 +225,8 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
     );
   };
 
-  const handleSetWithdrawalAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.validity.valid) {
-      setWithdrawalAmount(e.target.value);
-    }
+  const handleSetWithdrawalAmount = (value: number) => {
+    setWithdrawalAmount(value);
   };
 
   return (
@@ -289,6 +291,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       }))}
                       onSelect={handleFromSelect}
                       initialValue={from}
+                      searchable={true}
                     />
                   </div>
                 </div>
@@ -317,6 +320,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       showOptionAll={false}
                       disable={!custId}
                       placeholder={t('manualWithdrawalForm.selectMemberBank')}
+                      searchable={true}
                     />
                   </div>
 
@@ -330,14 +334,11 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       {renderMinMaxAmount()}
                     </label>
 
-                    <input
+                    <AmountInput
                       id="withdrawalAmount"
-                      type="text"
-                      pattern="[0-9]*"
                       value={withdrawalAmount}
                       onChange={(e) => handleSetWithdrawalAmount(e)}
                       className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:border-[var(--button-border)]"
-                      placeholder="0"
                     />
                   </div>
                 </div>

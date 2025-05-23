@@ -11,6 +11,7 @@ import {
   formatDateTime,
 } from '../../../../common/commonFunctions';
 import NoRecordFound from '../../../../components/Table/NoRecordFound';
+import LoadingComponent from '../../../../components/LoadingComponent';
 
 interface DataGridProps {
   items: TransactionItem[];
@@ -57,7 +58,7 @@ const DataGrid: React.FC<DataGridProps> = ({
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="loading-spinner"></div>
+        <LoadingComponent />
       </div>
     );
   }

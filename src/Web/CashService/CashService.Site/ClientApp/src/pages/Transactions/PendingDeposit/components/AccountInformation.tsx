@@ -5,6 +5,7 @@ import { BankInfo } from '../../../../services/interfaces/Transactions/BankInfo'
 import { CreditAmount } from '../../../../services/interfaces/Transactions/CreditAmount';
 import CustomDropdown, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import BankIcon from '../../../../components/BankComponents';
+import { AmountInput } from '../../../../components/ui/AmountInput';
 interface AccountInformationProps {
   memberLoginOptions: MemberLoginName[];
   memberId: number;
@@ -15,8 +16,8 @@ interface AccountInformationProps {
   paymentTo: string;
   onPaymentToChange: (selected: DropdownOption) => void;
   cashAgentOptions: BankInfo[];
-  depositAmount: string;
-  onDepositAmountChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  depositAmount: number;
+  onDepositAmountChange: (value: number) => void;
   creditAmount: CreditAmount;
   remarks: string;
   onRemarksChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
@@ -122,21 +123,14 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
               <span className="ml-2 inline-block">
                 <span className="text-blue-900">
                   ({t('manualDepositForm.agentAvailableCredit')}:
-                    <span className="text-red-500">
-                      {` ${creditAmount.maxAmt}`}
-                    </span>
-                  )
+                  <span className="text-red-500">{` ${creditAmount.maxAmt}`}</span>)
                 </span>
               </span>
             </label>
-            <input
+            <AmountInput
               id="depositAmount"
-              type="text"
-              pattern="[0-9]*"
-              name="depositAmount"
               value={depositAmount}
               onChange={onDepositAmountChange}
-              placeholder="0"
               className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:border-[var(--button-border)] bg-[var(--background-control)]"
             />
           </div>

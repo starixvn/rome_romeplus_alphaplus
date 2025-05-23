@@ -221,6 +221,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
                       initialValue={withdrawal.paymentFrom}
                       placeholder={t('pendingWithdrawalModal.selectBank')}
                       disable={isSubmitting}
+                      searchable={true}
                     />
                   </div>
                 </div>

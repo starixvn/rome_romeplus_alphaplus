@@ -15,7 +15,7 @@ import {
   TransactionsHistoryParams,
   TransactionsHistoryResponse,
 } from '../../../services/interfaces/Transactions/TransactionHistory';
-import Loading from '../../../components/LoadingComponent';
+import { LoadingComponent } from '../../../components/LoadingComponent';
 import TitleComponent from '../../../components/TitleComponents';
 import { ButtonOutlineComponent } from '../../../components/ButtonComponents';
 import PendingDepositModal from './components/PendingDepositModal';
@@ -29,7 +29,10 @@ const PendingDeposit: React.FC = () => {
   const [uniquePaymentToOptions, setUniquePaymentToOptions] = useState<string[]>([]);
   const [cashAgentTo, setCashAgentTo] = useState<string>('');
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [deposits, setDeposits] = useState<TransactionsHistoryResponse>({items: [], totalCount: 0});
+  const [deposits, setDeposits] = useState<TransactionsHistoryResponse>({
+    items: [],
+    totalCount: 0,
+  });
   const [showManualAddDepositForm, setShowManualAddDepositForm] = useState<boolean>(false);
   const [showEditDeposit, setShowEditDeposit] = useState<boolean>(false);
   const [processingDeposit, setProcessingDeposit] = useState<TransactionItem | null>(null);
@@ -80,7 +83,7 @@ const PendingDeposit: React.FC = () => {
     if (!deposits || !deposits.items) {
       return [];
     }
-    const uniquePaymentToOptions = [...new Set(deposits.items.map(deposit => deposit.paymentTo))];
+    const uniquePaymentToOptions = [...new Set(deposits.items.map((deposit) => deposit.paymentTo))];
     return uniquePaymentToOptions;
   };
 
@@ -124,12 +127,12 @@ const PendingDeposit: React.FC = () => {
     if (!cashAgentTo && !debouncedSearchTerm.trim()) {
       return deposits?.items || [];
     }
-    
+
     let result = deposits?.items || [];
     if (cashAgentTo) {
-      result = result.filter(deposit => deposit.paymentTo.toString() === cashAgentTo);
+      result = result.filter((deposit) => deposit.paymentTo.toString() === cashAgentTo);
     }
-  
+
     if (debouncedSearchTerm.trim()) {
       const term = debouncedSearchTerm.toLowerCase().trim();
       result = result.filter(
@@ -138,7 +141,7 @@ const PendingDeposit: React.FC = () => {
           deposit.transId.toString().toLowerCase().includes(term)
       );
     }
-  
+
     return result;
   }, [deposits, cashAgentTo, debouncedSearchTerm]);
 
@@ -147,44 +150,43 @@ const PendingDeposit: React.FC = () => {
     setProcessingDeposit(deposit);
   };
 
-
   return (
-    <>  
-    {showManualAddDepositForm ? (
-      <ManualAddDepositForm
-        cashAgentOptions={cashAgentOptions}
-        onClose={() => handleCloseManualDepositForm(false)}
-      />
-      ) : (
-      <div className=" py-[12px] flex h-full flex-col">
-        <TitleComponent title={t('pendingDeposit')} />          
-        <div className="mb-[8px]">
-          <ButtonOutlineComponent 
-            text={`+ ${t('addManualDeposit')}`}
-            onClick={handleAddManualDeposit}
-            className="min-w-[183px] [&>*]:min-w-[183px] [&>*]:inline-block" 
-          />
-        </div>
-
-        <Filter
-          recentDeposits={recentDeposits}
-          setRecentDeposits={setRecentDeposits}
-          uniquePaymentToOptions={uniquePaymentToOptions}
-          setCashAgentTo={setCashAgentTo}
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
+    <>
+      {showManualAddDepositForm ? (
+        <ManualAddDepositForm
+          cashAgentOptions={cashAgentOptions}
+          onClose={() => handleCloseManualDepositForm(false)}
         />
-
-        {isLoading ? (
-          <div className="flex justify-center items-center py-8">
-            <Loading />
+      ) : (
+        <div className=" py-[12px] flex h-full flex-col">
+          <TitleComponent title={t('pendingDeposit')} />
+          <div className="mb-[8px]">
+            <ButtonOutlineComponent
+              text={`+ ${t('addManualDeposit')}`}
+              onClick={handleAddManualDeposit}
+              className="min-w-[183px] [&>*]:min-w-[183px] [&>*]:inline-block"
+            />
           </div>
-        ) : (
-          <DataGrid deposits={filteredDeposits} onProcessClick={handleClickProcess} />
-        )}
-      </div>   
+
+          <Filter
+            recentDeposits={recentDeposits}
+            setRecentDeposits={setRecentDeposits}
+            uniquePaymentToOptions={uniquePaymentToOptions}
+            setCashAgentTo={setCashAgentTo}
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+          />
+
+          {isLoading ? (
+            <div className="flex justify-center items-center py-8">
+              <LoadingComponent />
+            </div>
+          ) : (
+            <DataGrid deposits={filteredDeposits} onProcessClick={handleClickProcess} />
+          )}
+        </div>
       )}
-      
+
       {showEditDeposit && (
         <PendingDepositModal
           deposit={processingDeposit}

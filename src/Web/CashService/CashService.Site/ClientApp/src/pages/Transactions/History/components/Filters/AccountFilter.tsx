@@ -62,6 +62,7 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
         disable={isLoading}
         initialValue={account}
         showOptionAll={true}
+        searchable={true}
       />
     </div>
   );

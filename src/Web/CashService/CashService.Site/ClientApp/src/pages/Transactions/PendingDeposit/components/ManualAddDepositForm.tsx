@@ -11,7 +11,10 @@ import Loading from '../../../../components/LoadingComponent';
 import { ResultMessageComponent } from '../../../../components/MessageComponents';
 import AccountInformation from './AccountInformation';
 import TitleComponent from '../../../../components/TitleComponents';
-import { OnButtonComponent } from '../../../../components/ButtonComponents';
+import {
+  ButtonCancelComponent,
+  ButtonApplyComponent,
+} from '../../../../components/ButtonComponents';
 
 interface ManualAddDepositFormProps {
   cashAgentOptions: BankInfo[];
@@ -31,7 +34,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
   );
   const [cashMemberOptions, setCashMemberOptions] = useState<BankInfo[]>([]);
   const [creditAmount, setCreditAmount] = useState<CreditAmount>({ minAmt: 0, maxAmt: 0 });
-  const [depositAmount, setDepositAmount] = useState('');
+  const [depositAmount, setDepositAmount] = useState<number>(0);
   const [remarks, setRemarks] = useState('');
   const [image, setImage] = useState<File | null>(null);
   const [initialLoading, setInitialLoading] = useState(true);
@@ -95,7 +98,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
       custId: memberId,
       paymentFrom: paymentFrom,
       paymentTo: paymentTo,
-      amount: depositAmount === '' ? 0 : Number(depositAmount),
+      amount: depositAmount,
       remark: remarks,
       image: image as File,
     };
@@ -134,10 +137,8 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
     }
   };
 
-  const handleSetDepositAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.validity.valid) {
-      setDepositAmount(e.target.value);
-    }
+  const handleSetDepositAmount = (value: number) => {
+    setDepositAmount(value);
   };
 
   return (
@@ -180,12 +181,12 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
                 <UploadImage setImage={setImage} />
 
                 <div className="flex justify-center space-x-4 mt-3 w-full">
-                  <OnButtonComponent
+                  <ButtonCancelComponent
                     className="w-[140px]"
                     text={t('manualDepositForm.cancel')}
                     onClick={() => onClose(false)}
                   />
-                  <OnButtonComponent
+                  <ButtonApplyComponent
                     className="w-[140px]"
                     text={
                       isSubmitting

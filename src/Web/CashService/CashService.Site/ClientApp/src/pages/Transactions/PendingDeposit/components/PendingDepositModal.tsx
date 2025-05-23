@@ -14,6 +14,7 @@ import {
 import pendingDepositAPI from '../../../../services/pendingDepositAPI';
 import { ApproveRejectDepositModel } from '../../../../services/interfaces/ApproveRejectDepositModel.ts';
 import { ResultMessageComponent } from '../../../../components/MessageComponents.tsx';
+import { AmountInput } from '../../../../components/ui/AmountInput.tsx';
 
 interface PendingDepositModalProps {
   deposit: TransactionItem | null;
@@ -22,7 +23,7 @@ interface PendingDepositModalProps {
 const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ deposit, onClose }) => {
   const { t } = useTranslation('pendingDeposit');
   const [remarks, setRemarks] = useState('');
-  const [depositAmount, setDepositAmount] = useState(deposit?.amount.toString());
+  const [depositAmount, setDepositAmount] = useState<number>(deposit?.amount || 0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [resultMessage, setResultMessage] = useState<{
     type: 'success' | 'error';
@@ -32,7 +33,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ deposit, onCl
   const getParams = () => {
     const params: ApproveRejectDepositModel = {
       transId: deposit?.transId ? deposit.transId : 0,
-      amount: depositAmount === '' ? 0 : Number(depositAmount),
+      amount: depositAmount,
       remark: remarks,
     };
     return params;
@@ -90,10 +91,8 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ deposit, onCl
     }
   };
 
-  const handleSetDepositAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.validity.valid) {
-      setDepositAmount(e.target.value);
-    }
+  const handleSetDepositAmount = (value: number) => {
+    setDepositAmount(value);
   };
 
   return (
@@ -178,13 +177,11 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ deposit, onCl
                   {t('pendingDepositModal.depositAmount')}
                 </div>
                 <div className="relative">
-                  <input
-                    type="text"
+                  <AmountInput
                     value={depositAmount}
-                    pattern="[0-9]*"
-                    placeholder="0"
                     onChange={(e) => handleSetDepositAmount(e)}
-                    className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none border-[var(--border-control)] focus:border-[var(--button-border)]"
+                    isDisabled={isSubmitting}
+                    className="border border-gray-300 rounded-md py-1 px-2 w-full h-[32px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184]"
                   />
                 </div>
               </div>

@@ -12,6 +12,10 @@ import {
 import { IconClose } from '../../../../components/Icons';
 import { ResultMessageComponent } from '../../../../components/MessageComponents';
 import { Spinner } from '../../../../components/Icons';
+import {
+  ButtonCancelComponent,
+  ButtonApplyComponent,
+} from '../../../../components/ButtonComponents';
 
 interface TransactionDetailProps {
   transactionId: number | null;
@@ -243,22 +247,13 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
         )}
 
         <div className="flex justify-center gap-[8px] mt-6">
-          <button
-            onClick={onClose}
-            className="w-[140px] capitalize font-bold h-[32px] max-[768px]:h-[40px] rounded-[20px] px-[16px] text-[#163f78] py-[4px] text-[12px] border-[1px] border-[#163f78] mx-[4px] bg-[#ffffff] hover:bg-[#dee2e7] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] disabled:opacity-50 disabled:cursor-not-allowed"
-            disabled={reverting}
-          >
-            {t('detail.cancel')}
-          </button>
+          <ButtonCancelComponent onClick={onClose} disabled={reverting} text={t('detail.cancel')} />
           {detailData?.isAllowRevert && (
-            <button
+            <ButtonApplyComponent
               onClick={handleRevert}
-              className="w-[140px] capitalize font-bold h-[32px] max-[768px]:h-[40px] rounded-[20px] text-white px-[16px] py-[4px] text-[12px] border-[1px] border-[#163f78] mx-[4px] bg-[#163f78] hover:bg-[var(--button-background-hover)] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={reverting || !detailData}
-            >
-              {reverting ? <Spinner size="small" className="mr-2" /> : null}
-              {t('detail.revertToPending')}
-            </button>
+              text={t('detail.revertToPending')}
+            />
           )}
         </div>
       </div>

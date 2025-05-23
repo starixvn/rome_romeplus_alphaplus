@@ -4,6 +4,7 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { enUS } from 'date-fns/locale';
 import { CalendarIcon } from '../Icons';
+import { ButtonApplyComponent } from '../ButtonComponents';
 
 export interface DateRangePickerProps {
   value: [Date | null, Date | null];
@@ -131,7 +132,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
         <CalendarIcon className="w-5 h-5" />
       </span>
       {open && (
-        <div className="absolute z-50 mt-2 bg-white border border-gray-200 rounded shadow-lg left-0">
+        <div className="absolute z-50 bg-white border border-gray-200 rounded shadow-lg left-0">
           <div className="flex">
             <div className="flex flex-col border-r pr-1 mr-1 min-w-[110px] pt-3">
               {quickRanges.map((item) => (
@@ -150,11 +151,10 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
               onChange={(item: RangeKeyDict) => setPendingRange([item.selection])}
               moveRangeOnFirstSelection={false}
               ranges={pendingRange}
-              rangeColors={['#2563eb']}
+              rangeColors={['#163f78']}
               showDateDisplay={false}
               months={1}
-              direction="horizontal"
-              className="border-none"
+              direction="vertical"
               locale={enUS}
             />
           </div>
@@ -164,13 +164,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
               {selectedStart && selectedEnd
                 ? `${selectedStart.toLocaleDateString('en-US')} - ${selectedEnd.toLocaleDateString('en-US')} (${days} days)`
                 : 'No range selected'}
-              <button
-                className="ml-4 bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-1.5 rounded transition"
-                onClick={handleApply}
-                disabled={!selectedStart || !selectedEnd}
-              >
-                Apply
-              </button>
+              <ButtonApplyComponent text="Apply" onClick={handleApply} />
             </div>
           </div>
         </div>
