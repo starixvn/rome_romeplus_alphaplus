@@ -15,23 +15,16 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   isDisabled,
   id,
 }) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.value;
-    if (inputValue === '' || /^\d*\.?\d*$/.test(inputValue)) {
-      const numberValue = inputValue === '' ? 0 : parseFloat(inputValue);
-      onChange(numberValue);
-    }
-  };
+  const displayValue = value === 0 ? '' : value.toString();
 
   return (
     <input
-      type="text"
-      value={value}
-      pattern="[0-9]*\.?[0-9]*"
+      type="number"
+      value={displayValue}
       inputMode="decimal"
       placeholder="0"
-      onChange={handleChange}
-      className={`${className || ''}`}
+      onChange={(e) => onChange(parseFloat(e.target.value) || 0)}
+      className={`${className || ''} [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none`}
       disabled={isDisabled}
       id={id}
     />
