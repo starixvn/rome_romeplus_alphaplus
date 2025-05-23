@@ -53,7 +53,13 @@ RUN if [ "${TRANSFORM_CONFIG}" = "PRO" ] \
   || [ "${TRANSFORM_CONFIG}" = "PRO2" ] \
   || [ "${TRANSFORM_CONFIG}" = "PRO3" ] \
   || [ "${TRANSFORM_CONFIG}" = "PRO4" ] \
-  || [ "${TRANSFORM_CONFIG}" = "PRO5" ]; \
+  || [ "${TRANSFORM_CONFIG}" = "PRO5" ] \
+  || [ "${TRANSFORM_CONFIG}" = "DR" ] \
+  || [ "${TRANSFORM_CONFIG}" = "DR2" ] \
+  || [ "${TRANSFORM_CONFIG}" = "DR3" ] \
+  || [ "${TRANSFORM_CONFIG}" = "DRINT" ] \
+  || [ "${TRANSFORM_CONFIG}" = "DRINT2" ] \
+  || [ "${TRANSFORM_CONFIG}" = "DRINT3" ]; \
   then cd /build/tmp && curl --fail -o ${TRANSFORM_CONFIG}.domainmappings.json --header "PRIVATE-TOKEN:${CI_JOB_TOKEN}" https://gitlab.nexdev.net/api/v4/projects/alpha-config%2Flogin-domains/repository/files/src%2F${TRANSFORM_CONFIG}.domainmappings.json/raw?ref=main \
   && cd - && cp -r tmp/${TRANSFORM_CONFIG}.domainmappings.json src/Web/Settings/Settings.Site/Domains/domainmappings.json; fi
 
