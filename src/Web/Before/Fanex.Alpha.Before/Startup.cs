@@ -105,8 +105,6 @@ namespace Fanex.Alpha.Before
                 app.UseExceptionHandler("/Common/Error");
             }
 
-            app.UseDeveloperExceptionPage(); // For development only - remove in production
-
             app.UseStatusCodePagesWithRedirects("/Common/Error?code={0}");
 
             app.UseForwardedHeaders();

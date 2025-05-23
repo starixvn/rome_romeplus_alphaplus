@@ -33,7 +33,7 @@ else
     app.UseMiddleware<ExceptionMiddleware>();
 }
 
-app.UseDeveloperExceptionPage();
+//app.UseHttpsRedirection();
 
 app.MapHealthChecks("/health");
 app.MapAuthEndpoints();

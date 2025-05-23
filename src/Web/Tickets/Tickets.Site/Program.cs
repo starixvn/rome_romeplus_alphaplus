@@ -116,8 +116,6 @@ else
     app.UseMiddleware<ExceptionMiddleware>();
 }
 
-app.UseDeveloperExceptionPage(); // For development only - remove in production
-
 app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute(), new DisableNetThrottlingAttribute());
 
 app.Use(async (context, next) =>
