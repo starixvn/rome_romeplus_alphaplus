@@ -9,6 +9,7 @@ import {
 } from '../../../../common/commonFunctions';
 import NoRecordFound from '../../../../components/Table/NoRecordFound';
 import Pagination from '../../Components/Pagination';
+import { OnButtonComponent } from '../../../../components/ButtonComponents';
 
 interface DataGridProps {
   deposits: TransactionItem[];
@@ -91,8 +92,7 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits, onProcessClick }) => {
                   <td>{deposit.transId}</td>
                   <td>{formatDateTime(deposit.createdTime)}</td>
                   <td>
-                   
-                    <ButtonFullComponent
+                    <OnButtonComponent
                       text={t('dataGrid.process')}
                       onClick={() => handleProcessClick(deposit)}
                       className=""

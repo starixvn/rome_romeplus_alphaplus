@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ButtonComponent } from '../../../../components/ButtonComponents';
+import { OnButtonComponent } from '../../../../components/ButtonComponents';
+import { TransactionType } from '../../../../common/commonFunctions';
 
 interface HistoryTabProps {
   activeTab: number;
@@ -9,23 +10,19 @@ interface HistoryTabProps {
 
 const HistoryTab: React.FC<HistoryTabProps> = ({ activeTab, onTabChange }) => {
   const { t } = useTranslation('transactionHistory');
-
+  console.log(activeTab);
   return (
     <>
       <div className="flex gap-[8px]">
-        <ButtonComponent
+        <OnButtonComponent
           className="w-[183px]"
-          type={activeTab === 1 ? 'apply' : 'cancel'}
-          style="medium"
           text={t('deposit')}
-          onClick={() => onTabChange(1)}
+          onClick={() => onTabChange(TransactionType.Deposit)}
         />
-        <ButtonComponent
+        <OnButtonComponent
           className="w-[183px]"
-          type={activeTab === 2 ? 'apply' : 'cancel'}
-          style="medium"
           text={t('withdrawal')}
-          onClick={() => onTabChange(2)}
+          onClick={() => onTabChange(TransactionType.Withdrawal)}
         />
       </div>
     </>

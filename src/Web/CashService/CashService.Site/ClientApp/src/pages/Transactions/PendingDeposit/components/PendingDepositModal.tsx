@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { IconClose } from '../../../../components/Icons';
-import { ButtonApplyComponent, ButtonCancelComponent } from '../../../../components/ButtonComponents';
+import {
+  ButtonApplyComponent,
+  ButtonCancelComponent,
+} from '../../../../components/ButtonComponents';
 import {
   renderBankAccount,
   displayAmount,
@@ -202,18 +205,14 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ deposit, onCl
         </div>
 
         <div className="flex justify-center gap-[8px]">
-          <ButtonComponent
+          <ButtonCancelComponent
             className="w-[140px]"
-            type="cancel"
-            style="rounded"
             text={t('pendingDepositModal.reject')}
             onClick={handleReject}
             disabled={isSubmitting}
           />
-          <ButtonComponent
+          <ButtonApplyComponent
             className="w-[140px]"
-            type="apply"
-            style="rounded"
             text={t('pendingDepositModal.approve')}
             onClick={handleApprove}
             disabled={isSubmitting}

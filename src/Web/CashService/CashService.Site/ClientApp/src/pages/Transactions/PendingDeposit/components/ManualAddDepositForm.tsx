@@ -11,19 +11,24 @@ import Loading from '../../../../components/LoadingComponent';
 import { ResultMessageComponent } from '../../../../components/MessageComponents';
 import AccountInformation from './AccountInformation';
 import TitleComponent from '../../../../components/TitleComponents';
-import { ButtonComponent } from '../../../../components/ButtonComponents';
+import { OnButtonComponent } from '../../../../components/ButtonComponents';
 
 interface ManualAddDepositFormProps {
   cashAgentOptions: BankInfo[];
   onClose: (isSuccess: boolean) => void;
 }
 
-const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOptions, onClose }) => {
+const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
+  cashAgentOptions,
+  onClose,
+}) => {
   const { t } = useTranslation('pendingDeposit');
   const [memberLoginOptions, setMemberLoginOptions] = useState<MemberLoginName[]>([]);
   const [memberId, setMemberId] = useState<number>(0);
   const [paymentFrom, setPaymentFrom] = useState('');
-  const [paymentTo, setPaymentTo] = useState(`${cashAgentOptions[0]?.bankCode}_${cashAgentOptions[0]?.bankAccountNumber}`);
+  const [paymentTo, setPaymentTo] = useState(
+    `${cashAgentOptions[0]?.bankCode}_${cashAgentOptions[0]?.bankAccountNumber}`
+  );
   const [cashMemberOptions, setCashMemberOptions] = useState<BankInfo[]>([]);
   const [creditAmount, setCreditAmount] = useState<CreditAmount>({ minAmt: 0, maxAmt: 0 });
   const [depositAmount, setDepositAmount] = useState('');
@@ -31,7 +36,10 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
   const [image, setImage] = useState<File | null>(null);
   const [initialLoading, setInitialLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [validationMessage, setValidationMessage] = useState<{ type: 'error' | 'success' | 'warning', message: string } | null>(null);
+  const [validationMessage, setValidationMessage] = useState<{
+    type: 'error' | 'success' | 'warning';
+    message: string;
+  } | null>(null);
 
   useEffect(() => {
     const fetchMemberLoginName = async () => {
@@ -83,14 +91,14 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
   }, [memberId]);
 
   const getParams = () => {
-    const params : AddDepositManualModel = {
+    const params: AddDepositManualModel = {
       custId: memberId,
       paymentFrom: paymentFrom,
       paymentTo: paymentTo,
       amount: depositAmount === '' ? 0 : Number(depositAmount),
       remark: remarks,
       image: image as File,
-    }
+    };
     return params;
   };
 
@@ -105,21 +113,21 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
       if (response.isSuccessful) {
         setValidationMessage({
           type: 'success',
-          message: t('successMessages.depositSubmitted')
-        });      
+          message: t('successMessages.depositSubmitted'),
+        });
         setTimeout(() => {
           onClose(true);
         }, 3000);
       } else {
         setValidationMessage({
           type: 'error',
-          message: response.message || t('errorMessages.failedToSubmit')
+          message: response.message || t('errorMessages.failedToSubmit'),
         });
       }
     } catch (error) {
       setValidationMessage({
         type: 'error',
-        message: t('errorMessages.failedToSubmit')
+        message: t('errorMessages.failedToSubmit'),
       });
     } finally {
       setIsSubmitting(false);
@@ -140,8 +148,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
         </div>
       ) : (
         <>
-          
-          <TitleComponent title={t('manualDepositForm.title')} /> 
+          <TitleComponent title={t('manualDepositForm.title')} />
 
           <form id="manual-deposit-form" onSubmit={handleSubmit}>
             {validationMessage && (
@@ -170,13 +177,23 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({ cashAgentOp
               />
 
               <div className="pl-20">
-                <UploadImage
-                  setImage={setImage}
-                />
+                <UploadImage setImage={setImage} />
 
                 <div className="flex justify-center space-x-4 mt-3 w-full">
-                  <ButtonComponent className='w-[140px]' type="cancel" style="rounded" text={t('manualDepositForm.cancel')} onClick={() => onClose(false)}   />
-                  <ButtonComponent className="w-[140px]" type="apply" style="rounded" text={isSubmitting ? t('manualDepositForm.approving') : t('manualDepositForm.approve')} disabled={isSubmitting}  />
+                  <OnButtonComponent
+                    className="w-[140px]"
+                    text={t('manualDepositForm.cancel')}
+                    onClick={() => onClose(false)}
+                  />
+                  <OnButtonComponent
+                    className="w-[140px]"
+                    text={
+                      isSubmitting
+                        ? t('manualDepositForm.approving')
+                        : t('manualDepositForm.approve')
+                    }
+                    disabled={isSubmitting}
+                  />
                 </div>
               </div>
             </div>
