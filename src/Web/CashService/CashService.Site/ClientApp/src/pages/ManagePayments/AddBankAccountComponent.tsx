@@ -18,7 +18,7 @@ import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponen
 import MobileComponent from '../../components/MobileComponent';
 import { ensureIntegerInput, ensureNameInput } from '../../utils/inputHandlers';
 import { ButtonApplyComponent, ButtonCancelComponent } from '../../components/ButtonComponents';
-import TitleComponent from '../../components/TitleComponents';
+import TitleComponent, { TitleMediumComponent } from '../../components/TitleComponents';
 import BankIcon from '../../components/BankComponents';
 
 interface AddBankAccountComponentProps {
@@ -277,8 +277,10 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
     <div tabIndex={-1}>
       <div className="modal-dialog">
         <div className="modal-content max-w-[1200px]">
-          <BackButtonComponent onClick={onClose} />                     
-          <TitleComponent title={tManagePayments('bankManagement')} />  
+          <div className='flex items-center justify-flex-start mb-[16px] pt-[8px] border-[#cfcfcf] border-dotted border-b-[2px]'>
+            <BackButtonComponent onClick={onClose} />                     
+            <TitleComponent title={tManagePayments('bankManagement')} />  
+          </div>
           {isLoadingBanks 
             ? ( <Loading /> ) 
             : (
@@ -286,17 +288,15 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
               <div className="modal-body">
                 <ErrorMessageComponent message={error} />
                 <SuccessMessageComponent message={successMessage} />          
-                <div className="mb-3">
-                  <div className="pb-[8px] text-[16px] max-[768px]:text-[20px] text-[var(--text-color-primary)] font-semibold">{tManagePayments('bankStatus')}</div>
-                  <p className=" my-[8px]">{tManagePayments('bankNote1')}</p>
-                  <div className="btn-group" role="group">
-                    <EnableButtonComponent isActive={status === '1'} onClick={() => setStatus('1')} />
-                    <DisableButtonComponent isActive={status === '2'} onClick={() => setStatus('2')} />
-                  </div>
+                 
+                <TitleMediumComponent title={tManagePayments('bankStatus')} />                  
+                <p className=" my-[8px]">{tManagePayments('bankNote1')}</p>
+                <div className="mb-[16px]" role="group">
+                  <EnableButtonComponent isActive={status === '1'} onClick={() => setStatus('1')} />
+                  <DisableButtonComponent isActive={status === '2'} onClick={() => setStatus('2')} />
                 </div>
-
-                <div className="mt-[8px] text-[16px] max-[768px]:text-[20px] text-[var(--text-color-primary)] font-semibold">{tManagePayments('accountInformation')}</div>
-                
+                              
+                <TitleMediumComponent title={tManagePayments('accountInformation')} />
                 <div className='mb-[16px]'>
                   <label className="block  font-semibold text-[#333333] my-[8px]">{tManagePayments('bank')}<span className='text-[#E25757]'>*</span></label>
                   <div className='w-[470px]'>
@@ -315,9 +315,8 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                 </div>
 
                 <div className=''>
-                  <div className="pb-[8px] text-[16px] max-[768px]:text-[20px] text-[var(--text-color-primary)] font-semibold">{tManagePayments('transactionType')}<span className='text-[#E25757]'>*</span></div>
+                  <TitleMediumComponent className='mb-[8px]' title={tManagePayments('transactionType')} required={true} />
                   <ValidateMessageComponent message={fieldErrors.selectedTransactionType}  />
-                    
                   <div className='inline-block border-[1px] border-[var(--border-control)] rounded-[4px] px-[16px] pb-[16px] bg-[#f8f8f8] mb-[8px]'>
                   {hasDepositTransactionType(selectedBank, banks) && (
                     <div className="mb-3">
@@ -392,7 +391,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   );
                 })()}
 
-                <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
+                <div className="flex flex-nowrap gap-[16px] mb-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                   <div className='w-[230px] pt-[4px] max-[768px]:w-[48%]'>
                     <label className="block  font-semibold text-[#333333] my-[8px]">{tManagePayments('accountHolderName')}<span className='text-[#E25757]'>*</span></label>                
                     <input
@@ -432,15 +431,13 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                     <label className="block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold">{tManagePayments('accountNicknameNote1')}</label>
                   </div>
                 </div>
-
-                <div className="mb-3">
-                  <div className="pb-[8px] mt-[8px] text-[16px] max-[768px]:text-[20px] text-[var(--text-color-primary)] font-semibold leading-[21.6px]">{tManagePayments('promptPay')}</div>
-                  <p className="pb-[8px] ">{tManagePayments('linkMobile')}</p>
-                  <div className="btn-group" role="group">
-                      <OnButtonComponent isActive={promptPay} onClick={() => setPromptPay(true)} />
-                      <OffButtonComponent isActive={!promptPay} onClick={() => setPromptPay(false)} />
-                  </div>
-                </div>
+                
+                <TitleMediumComponent title={tManagePayments('promptPay')} />             
+                <p className="pb-[8px] ">{tManagePayments('linkMobile')}</p>
+                <div className="btn-group mb-[16px]" role="group">
+                    <OnButtonComponent isActive={promptPay} onClick={() => setPromptPay(true)} />
+                    <OffButtonComponent isActive={!promptPay} onClick={() => setPromptPay(false)} />
+                </div>             
 
                 <MobileComponent
                   isShow={promptPay}

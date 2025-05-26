@@ -4,8 +4,9 @@ import { paymentProviderService } from '../../services/paymentsAPI';
 import { IconClose } from '../../components/Icons';
 import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import { ensureIntegerInput, ensureDecimalInput } from '../../utils/inputHandlers';
-import { ButtonApplyComponent, ButtonCancelComponent } from '../../components/ButtonComponents';
+import { ButtonApplyComponent, ButtonCancelComponent, ButtonClosePopupComponent } from '../../components/ButtonComponents';
 import { createDefaultPaymentTransactionLimit } from '../../services/interfaces/Payments';
+import { TitleMediumComponent } from '../../components/TitleComponents';
 
 interface SetTransactionLimitModalProps {
   onClose: () => void;
@@ -232,16 +233,9 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
   return (
     <div className="bg-[#00000066] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-start justify-center" tabIndex={-1}>
       <div className="p-[30px] bg-[#ffffff] mt-[100px] max-w-[540px] max-[768px]:max-w-[90%] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
-        <div className="relative">
-            <h5 className="text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] max-[768px]:text-[20px] max-[768px]:leading-[26px]">{tManagePayments('transactionLimitPreferences')}</h5>
-            <button
-              type="button"
-              className="absolute top-[-20px] right-[-20px] cursor-pointer"
-              onClick={onClose}
-              disabled={loading}
-            >
-              <IconClose />
-            </button>
+        <div className="relative">            
+            <TitleMediumComponent title={tManagePayments('transactionLimitPreferences')} />
+            <ButtonClosePopupComponent onClick={onClose}  />
           </div>
           <form onSubmit={onSubmit}>
             <div className="mb-[16px]">

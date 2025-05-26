@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconBack } from "./Icons";
+import { IconBack, IconClose } from "./Icons";
 import { useTranslation } from 'react-i18next';
 
 interface ButtonComponentProps {
@@ -79,10 +79,10 @@ export const BackButtonComponent: React.FC<ButtonComponentProps> = ({ onClick })
 
   return (
     <>
-      <div className='text-[var(--text-color-primary)] px-[8px] py-[4px] border-b-[2px] border-[#cfcfcf] border-dotted mb-[4px]'>
-        <span className='cursor-pointer inline-flex items-center py-[8px]' onClick={onClick}>
-          <IconBack className='w-[18px] h-[18px] fill-[var(--primary-color)] mr-[8px]'  />
-          <span className='text-[var(--text-color-primary)] font-semibold max-w-[100px]'>{tGlobal('back')}</span>
+      <div className='text-[var(--text-color-primary)] border-[1px] border-[var(--primary-color)] rounded-[20px] mr-[16px] hover:bg-[var(--primary-color)] hover:text-[#ffffff] group mb-[8px]'>
+        <span className='cursor-pointer inline-flex items-center py-[4px] pl-[8px] pr-[16px] ' onClick={onClick}>
+          <IconBack className='w-[18px] h-[18px] fill-[var(--primary-color)] mr-[8px] group-hover:fill-[#ffffff]'  />
+          <span className='font-semibold max-w-[100px]'>{tGlobal('back')}</span>
         </span>
       </div>
     </>
@@ -157,3 +157,10 @@ export const OffButtonComponent: React.FC<ButtonComponentProps> = ({
   );
 };
 
+export const ButtonClosePopupComponent: React.FC<ButtonComponentProps> = ({
+  onClick,
+  }) => {
+  return (
+    <button type="button" className="absolute top-[-20px] right-[-20px] cursor-pointer" onClick={onClick}><IconClose /></button>
+  );
+};

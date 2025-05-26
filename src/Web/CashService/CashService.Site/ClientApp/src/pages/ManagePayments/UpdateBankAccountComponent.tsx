@@ -17,7 +17,7 @@ import { BackButtonComponent, OffButtonComponent, OnButtonComponent } from '../.
 import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import MobileComponent from '../../components/MobileComponent';
 import { ButtonApplyComponent, ButtonCancelComponent, DisableButtonComponent, EnableButtonComponent } from '../../components/ButtonComponents';
-import TitleComponent from '../../components/TitleComponents';
+import TitleComponent, { TitleMediumComponent } from '../../components/TitleComponents';
 import BankIcon from '../../components/BankComponents';
 
 interface UpdateBankAccountComponentProps {
@@ -339,10 +339,11 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
   return (
     <div tabIndex={-1}>
-      <BackButtonComponent onClick={onClose} />      
+      
       <div className="modal-dialog">
         <div className="modal-content max-w-[1200px]">
-          <div className="mb-[8px]">           
+          <div className="flex items-center justify-flex-start mb-[16px] pt-[8px] border-[#cfcfcf] border-dotted border-b-[2px] ">
+            <BackButtonComponent onClick={onClose} />
             <TitleComponent  title={tManagePayments('bankManagement')} />
           </div>
           <div
@@ -381,20 +382,16 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
               <ErrorMessageComponent message={error} />
               <SuccessMessageComponent message={successMessage} />
 
-              <div className="mb-[8px]">
-                <div className="pb-[8px] text-[16px] max-[768px]:text-[20px] text-[var(--text-color-primary)] font-semibold ">
-                  {tManagePayments('bankStatus')}
-                </div>
+              <div className="mb-[8px]">               
+                <TitleMediumComponent title={tManagePayments('bankStatus')} />
                 <p className="pb-[8px] ">{tManagePayments('bankNote1')}</p>
                 <div className="btn-group" role="group">
                   <EnableButtonComponent isActive={formState.status === '1'} onClick={() => setFormState({ ...formState, status: '1' })} />
                   <DisableButtonComponent isActive={formState.status === '0'} onClick={() => setFormState({ ...formState, status: '0' })} />
                 </div>
               </div>
-
-              <div className="mt-[8px] text-[16px] max-[768px]:text-[20px] text-[var(--text-color-primary)] font-semibold ">
-                {tManagePayments('accountInformation')}
-              </div>
+          
+              <TitleMediumComponent title={tManagePayments('accountInformation')} />
               <div className="mb-[16px]">
                 <label className="block  font-semibold text-[#333333] my-[8px]">
                   {tManagePayments('bank')}
@@ -416,7 +413,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
               <div className="pb-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold ">
                 {tManagePayments('transactionType')}
                 <span className="text-[#E25757]">*</span>
-              </div>
+              <TitleMediumComponent title={tManagePayments('transactionType')} required={true} />
               <ValidateMessageComponent message={fieldErrors.selectedTransactionType} />
               <div className="inline-block border-[1px] border-[var(--border-control)] rounded-[4px] px-[16px] pb-[16px] bg-[#f8f8f8] mb-[8px]">
                 {hasDepositTransactionType(formState.selectedBank, banks) && (
@@ -543,7 +540,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 );
               })()}
 
-              <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
+              <div className="flex flex-nowrap mb-[16px] gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                   <label className="block  font-semibold text-[#333333] my-[8px]">
                     {tManagePayments('accountHolderName')}
@@ -597,9 +594,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
               </div>
 
               <div className="mb-[8px]">
-                <div className="pb-[8px] mt-[8px] text-[16px] max-[768px]:text-[20px] text-[var(--text-color-primary)] font-semibold ">
-                  {tManagePayments('promptPay')}
-                </div>
+                <TitleMediumComponent title={tManagePayments('promptPay')} />
+               
                 <div className="block  font-semibold text-[#333333] mb-[8px]">
                   {tManagePayments('linkMobile')}
                 </div>

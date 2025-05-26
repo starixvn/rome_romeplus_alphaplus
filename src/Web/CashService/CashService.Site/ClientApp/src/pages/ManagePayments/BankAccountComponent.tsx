@@ -7,7 +7,7 @@ import SetTransactionLimitModal from './SetTransactionLimitModal';
 import AddBankAccountComponent from './AddBankAccountComponent';
 import UpdateBankAccountComponent from './UpdateBankAccountComponent';
 import TitleComponent from '../../components/TitleComponents';
-import { IconDelete,  IconPen, IconSearch, IconSync } from '../../components/Icons';
+import { IconDelete,  IconInfo,  IconPen, IconSearch, IconSync } from '../../components/Icons';
 import CustomDropdown from '../../components/CustomDropdownComponent';
 import Loading from '../../components/LoadingComponent';
 import { ErrorMessageComponent, SuccessMessageComponent } from '../../components/MessageComponents';
@@ -250,8 +250,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
          <div className="py-[12px] h-[calc(100%-250px)]">
           <TitleComponent title={tManagePayments('managePayments')} showTippy={true} >
             <div>
-              <div>
-                <i className="bi bi-info-circle fs-4 ico-info inline-elm"></i> 
+              <div >
+                <IconInfo className="w-[18px] h-[18px] fill-[#ffffff] inline-block vertical-middle mr-[4px] relative top-[-2px]" />
                 {tManagePayments('managePayments')}
               </div>
               <div>• {tManagePayments('managePaymentsTip1')}</div>

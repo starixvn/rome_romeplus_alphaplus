@@ -4,7 +4,8 @@ import { PaymentProvider, PaymentProviderFeeGroup } from '../../services/interfa
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { IconClose } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
-import { ButtonApplyComponent } from '../../components/ButtonComponents';
+import { ButtonApplyComponent, ButtonClosePopupComponent } from '../../components/ButtonComponents';
+import { TitleMediumComponent } from '../../components/TitleComponents';
 
 interface ProviderFeesPopupModalProps {
   provider: PaymentProvider;
@@ -38,10 +39,8 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({  provid
     <div className="bg-[#00000066] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-start justify-center">
       <div className="p-[30px] bg-[#ffffff] mt-[100px] max-w-[600px] max-[768px]:max-w-[90%] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f] text-[12px] max-[768px]:text-[16px]">
         <div className="relative">
-          <h5 className="text-[16px] text-center text-[var(--text-color-primary)] font-bold leading-[21.6px] pb-[4px]">{tManagePayments('feeDetails')} - {provider.name}</h5>
-          <button type="button" className="absolute top-[-20px] right-[-20px] cursor-pointer" onClick={onClose}>
-            <IconClose />
-          </button>
+            <TitleMediumComponent className='text-center font-bold!' title={`${tManagePayments('feeDetails')} - ${provider.name}`} />
+            <ButtonClosePopupComponent onClick={onClose} />
         </div>
         <div className="mb-[12px]">
           {isLoading ? (<Loading />) : (

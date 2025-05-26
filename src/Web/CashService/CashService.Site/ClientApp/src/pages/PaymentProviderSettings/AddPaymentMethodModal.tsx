@@ -6,7 +6,8 @@ import { PaymentMethod } from '../../services/interfaces/Payments/PaymentMethod'
 import { QRCodeCanvas } from 'qrcode.react';
 import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import { IconClose } from '../../components/Icons';
-import { ButtonApplyComponent, ButtonCancelComponent } from '../../components/ButtonComponents';
+import { ButtonApplyComponent, ButtonCancelComponent, ButtonClosePopupComponent } from '../../components/ButtonComponents';
+import { TitleMediumComponent, TitleNormalComponent } from '../../components/TitleComponents';
 
 interface AddPaymentMethodModalProps {
   onClose: () => void;
@@ -159,17 +160,15 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
     <div className="bg-[#00000066] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-center justify-center">
       <div className="p-[30px] max-h-[750px] overflow-y-auto bg-[#ffffff] w-full max-w-[560px] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
         <div className="relative">
-          <h3 className="text-[16px] max-[768px]:text-[20px] text-[var(--text-color-primary)] font-bold pb-[4px]">{tPaymentProviderSettings('setUpPaymentMethods')}</h3>
-          <button type="button" className="absolute top-[-20px] right-[-20px] cursor-pointer" onClick={onClose}>
-            <IconClose />
-          </button>
+          <TitleMediumComponent className='font-bold!' title={tPaymentProviderSettings('setUpPaymentMethods')} />
+          <ButtonClosePopupComponent onClick={onClose} />
         </div>
         <ErrorMessageComponent className='mt-[8px]' message={error} />
         <SuccessMessageComponent className='mt-[8px]' message={successMessage} />
         <form onSubmit={onSubmit}>
           <div className="modal-body ">
             <div>
-              <h4 className="text-[14px] max-[768px]:text-[18px] pt-[8px] text-[var(--text-color-primary)] font-semibold pb-[4px]">{tPaymentProviderSettings('addPaymentMethodStep1')}</h4>
+              <TitleNormalComponent title={tPaymentProviderSettings('addPaymentMethodStep1')} />
               <div className='flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full'>
               <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                 <label className="block  font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('transactionType')}<span className='text-[#E25757]'>*</span></label>
@@ -213,8 +212,8 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
               </div>
             </div>
             <div>
-              <hr className='mt-[16px] border-[#0000001F]'  />
-              <h4 className="text-[14px] max-[768px]:text-[18px] pt-[16px] text-[var(--text-color-primary)] font-semibold pb-[4px]">{tPaymentProviderSettings('addPaymentMethodStep2')}</h4>
+              <hr className='mt-[16px] mb-[8px] border-[#0000001F]'  />
+              <TitleNormalComponent title={tPaymentProviderSettings('addPaymentMethodStep2')} />
               <p className='mt-[8px] '>{tPaymentProviderSettings('clickLinkOrScanQRCode')}</p>
               <a href={telegramAssistantUrl} className=' text-[var(--text-color-primary)] font-semibold' target="_blank" rel="noopener noreferrer">{telegramAssistantUrl}</a>
               <div className='mt-[16px] flex justify-center'>
@@ -222,8 +221,8 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
               </div>
             </div>
             <div>
-            <hr className='mt-[16px] mb-[16px] border-[#0000001F]'  />
-              <label className="text-[14px] max-[768px]:text-[18px] pt-[16px] text-[var(--text-color-primary)] font-semibold pb-[4px]">{tPaymentProviderSettings('addPaymentMethodStep3')}</label>
+            <hr className='mt-[16px] mb-[8px] border-[#0000001F]'  />
+              <TitleNormalComponent title={tPaymentProviderSettings('addPaymentMethodStep3')} />
               <div className='flex flex-wrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full'>
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                   <label className="block  font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('apiKey')}<span className='text-[#E25757]'>*</span></label>

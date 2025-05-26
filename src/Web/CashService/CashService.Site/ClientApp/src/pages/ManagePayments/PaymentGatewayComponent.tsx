@@ -5,7 +5,7 @@ import { PaymentProvider } from '../../services/interfaces/Payments/PaymentProvi
 import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import DailyLimitPopupModal from './SetDailyLimitPopupModal';
 import TitleComponent from '../../components/TitleComponents';
-import { IconPen } from '../../components/Icons';
+import { IconInfo, IconPen } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
 import { ErrorMessageComponent } from '../../components/MessageComponents';
 import { ButtonOutlineComponent, ButtonFullComponent } from '../../components/ButtonComponents';
@@ -88,7 +88,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
       <TitleComponent title={tManagePayments('managePayments')}  showTippy={true} >
         <div>
           <div>
-            <i className="bi bi-info-circle fs-4 ico-info inline-elm"></i> 
+            <IconInfo className="w-[18px] h-[18px] fill-[#ffffff] inline-block vertical-middle mr-[4px] relative top-[-2px]" />
             {tManagePayments('managePayments')}
           </div>
           <div>• {tManagePayments('managePaymentsTip1')}</div>

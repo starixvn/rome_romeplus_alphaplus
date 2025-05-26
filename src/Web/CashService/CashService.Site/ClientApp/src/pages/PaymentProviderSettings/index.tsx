@@ -22,6 +22,7 @@ import Loading from '../../components/LoadingComponent';
 import { ButtonApplyComponent, ButtonCancelComponent, ButtonFullComponent, ButtonOutlineComponent } from '../../components/ButtonComponents';
 import { PaymentMethod } from '../../services/interfaces/Payments';
 import { BackButtonComponent } from '../../components/ButtonComponents';
+import TitleComponent, { TitleMediumComponent } from '../../components/TitleComponents';
 declare global {
   interface Window {
     providerSettingsViewModel: any;
@@ -404,11 +405,15 @@ function PaymentProviderSettings() {
       ) : error ? (<ResultMessageComponent type='error' message={error} />) 
         : (
         <>        
-          <BackButtonComponent onClick={onBackNavigation} />
+          
           {updateMessage && (<ResultMessageComponent className='my-[16px] max-[768px]:mx-[16px] max-[768px]:my-0' type={updateMessage.type} message={updateMessage.text} /> )} 
         <div className='bg-[#ffffff] px-[16px] py-[10px] mb-[8px]'>
           <div className="settings-header">
-            <h2 className='pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold max-[768px]:text-[20px] '>{window.providerSettingsViewModel.Provider.Name}</h2>
+            <div className='flex items-center justify-flex-start pt-[8px] border-[#cfcfcf] border-dotted border-b-[2px]'>
+              <BackButtonComponent onClick={onBackNavigation} />
+              <TitleComponent title={window.providerSettingsViewModel.Provider.Name} />
+            </div>
+            
           </div>
           <div className="flex gap-[24px] max-[768px]:flex-col max-[768px]:gap-[8px]">
             <div>      
@@ -417,7 +422,6 @@ function PaymentProviderSettings() {
             </p>   
             <ButtonFullComponent text={`+ ${tPaymentProviderSettings('addPaymentMethod')}`} onClick={onAddPaymentMethod} />            
             </div>
-
             {providerStatus != 2 && (
               <div>
                 <p className="flex items-center font-semibold text-[#333333] my-[8px]">
@@ -426,7 +430,7 @@ function PaymentProviderSettings() {
                     content={
                       <div>
                         <div>
-                          <i className="bi bi-info-circle fs-4 ico-info inline-elm"></i> 
+                          <IconInfo className="w-[18px] h-[18px] fill-[#ffffff] inline-block vertical-middle mr-[4px] relative top-[-2px]" />
                           {tPaymentProviderSettings('enableDisable')}
                         </div>
                         <div>• {tPaymentProviderSettings('enableDisableTip1')}</div>
@@ -459,7 +463,7 @@ function PaymentProviderSettings() {
         </div>
         <div className='bg-[#ffffff] px-[16px] py-[10px]'>
           <div className='flex flex-wrap mb-[8px]'>
-            <h2 className='w-[100%] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold max-[768px]:text-[20px] '>{window.providerSettingsViewModel.Provider.Name}</h2>
+            <TitleMediumComponent title={window.providerSettingsViewModel.Provider.Name} />
             <div className='flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full'>
             <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
               <label className="block font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('paymentMethod')}</label>
@@ -520,7 +524,7 @@ function PaymentProviderSettings() {
                         content={
                           <div>
                             <div>
-                              <i className="bi bi-info-circle fs-4 ico-info inline-elm"></i> 
+                              <IconInfo className="w-[18px] h-[18px] fill-[#ffffff] inline-block vertical-middle mr-[4px] relative top-[-2px]" />
                               {tPaymentProviderSettings('enableDisable')}
                             </div>
                             <div>• {tPaymentProviderSettings('enableDisableTip1')}</div>
