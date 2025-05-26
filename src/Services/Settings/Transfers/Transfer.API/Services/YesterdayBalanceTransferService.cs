@@ -8,6 +8,10 @@ namespace AlphaPlus.Settings.Transfer.API.Services;
 
 public interface IYesterdayBalanceTransferService
 {
+    Task<Result> ResetPotentialWinLimit(IEnumerable<int> custIds, string agIP);
+
+    Task<Result> ResetPotentialWinLimit(string custIds, string agIP);
+
     Task<MemberTransfer> GetMemberTransfer(int custId, bool allowTotalBalanceTransfer, string agIP);
 
     Task<Result> Transfer(TransferYesterdayBalanceParam param);
@@ -24,6 +28,24 @@ public interface IYesterdayBalanceTransferService
 public class YesterdayBalanceTransferService(IDynamicRepository repository) : IYesterdayBalanceTransferService
 {
     private readonly IDynamicRepository repository = repository;
+
+    public async Task<Result> ResetPotentialWinLimit(string custIds, string agIP)
+    {
+        var criteria = new SelectMemberWinLimitCriteria(custIds);
+        var membersNeedReset = await repository.FetchAsync<PotentialWinLimitModel>(criteria, agIP);
+
+        if (membersNeedReset != null)
+        {
+            var resetCriteria = new ResetPotentialWinLimit(membersNeedReset.Select(i => i.CustId));
+            await repository.ExecuteAsync(resetCriteria, agIP);
+            return new Result { Code = resetCriteria.ErrCode, Message = resetCriteria.ErrMsg };
+        }
+
+        return new Result { Code = 0, Message = "Success" };
+    }
+
+    public async Task<Result> ResetPotentialWinLimit(IEnumerable<int> custIds, string agIP)
+    => await ResetPotentialWinLimit(string.Join(",", custIds), agIP);
 
     public async Task<MemberTransfer> GetMemberTransfer(int custId, bool allowTotalBalanceTransfer, string agIP)
     {
