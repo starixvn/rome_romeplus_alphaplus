@@ -39,7 +39,7 @@ public static class PaymentsEndpoints
 
     private static Task<IResult> AutoDeposit(AutoDepositRequest request, IDepositService depositService)
     {
-        return Task.FromResult(Results.Ok(new PaymentResult(0, "", 123456789)));
+        return Task.FromResult(Results.Ok(new Result(0, "")));
     }
 
     private static async Task<IResult> ManualWithdrawal(CreateManualWithdrawalRequest request, IWithdrawalService withdrawalService)
