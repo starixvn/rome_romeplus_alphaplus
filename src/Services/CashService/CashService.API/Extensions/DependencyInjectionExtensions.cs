@@ -1,15 +1,15 @@
-using AlphaPlus.CashService.API.Features.Payments.Services;
-using AlphaPlus.CashService.API.Features.MemberSites.Services;
-using AlphaPlus.CashService.API.Features.Shared.Services;
-using AlphaPlus.CashService.API.Services;
+namespace AlphaPlus.CashService.API.Extensions;
+
 using Fanex.Data.Repository;
 using Fanex.Data.SqlServer;
 using Fanex.RemotingRef;
-using AlphaPlus.CashService.API.Features.PendingDeposit.Services;
-using AlphaPlus.CashService.API.Features.Transactions.Services;
-using AlphaPlus.CashService.API.Features.Promotion.Services;
-
-namespace AlphaPlus.CashService.API.Extensions;
+using Features.MemberSites.Services;
+using Features.Payments.Services;
+using Features.PendingDeposit.Services;
+using Features.PendingWithdrawal.Services;
+using Features.Promotion.Services;
+using Features.Shared.Services;
+using Features.Transactions.Services;
 
 public static class DependencyInjectionExtensions
 {
@@ -17,8 +17,8 @@ public static class DependencyInjectionExtensions
     {
         services.AddFanexSql(configuration)
             .AddSingleton<IDynamicRepository, DynamicRepository>();
-            
-        FanexLoggingExtensions.AddFanexLogging(services, configuration);
+
+        services.AddFanexLogging(configuration);
 
         services.AddRemotingRef(configuration);
 

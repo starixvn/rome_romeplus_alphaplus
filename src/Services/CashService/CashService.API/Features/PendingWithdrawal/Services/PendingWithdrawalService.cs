@@ -1,14 +1,14 @@
-namespace AlphaPlus.CashService.API.Services;
+namespace AlphaPlus.CashService.API.Features.PendingWithdrawal.Services;
 
 using System.Numerics;
+using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Services;
+using AlphaPlus.CashService.API.Features.Transactions.Criteria;
+using AlphaPlus.CashService.API.Features.Transactions.Models;
 using AlphaPlus.CashService.API.Features.Transactions.Services;
+using Criteria;
 using Fanex.Data.Repository;
-using Features.PendingWithdrawal.Criteria;
-using Features.PendingWithdrawal.Models;
-using Features.Shared.Models;
-using Features.Transactions.Criteria;
-using Features.Transactions.Models;
+using Models;
 
 public interface IPendingWithdrawalService
 {
@@ -95,8 +95,9 @@ public class PendingWithdrawalService(
             ProviderId = param.ProviderId,
             SiteDbGroupId = param.SiteDbGroupId
         };
-        var logResoponse = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command);
+        var logResponse = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command);
         var result = new ResultModel(command.ErrCode, command.ErrMsg);
+
         if (command.ErrCode == 0)
         {
             SyncCashAccumulatedCredit(command.CashAccumCreditTbl, param.CustDbGroupId);

@@ -20,6 +20,8 @@ public interface ITransactionService
     Task<IEnumerable<MemberInfo>> GetMembersAsync(int agentId, int custDbGroupId);
 
     Task<ResultModel> SyncCashAccumCreditAsync(string cashAccumCreditTbl, int custDbGroupId);
+
+    Task WriteTransactionLog(TransactionLog transactionLog, int? siteDbGroupId);
 }
 
 public class TransactionService(IDynamicRepository dynamicRepository)
@@ -78,5 +80,11 @@ public class TransactionService(IDynamicRepository dynamicRepository)
         };
         await dynamicRepository.ExecuteAsync(command);
         return new ResultModel(command.ErrCode, command.ErrMsg);
+    }
+
+    public async Task WriteTransactionLog(TransactionLog transactionLog, int? siteDbGroupId)
+    {
+        var command = new InsertTransactionLogTransferCommand(transactionLog, siteDbGroupId);
+        await dynamicRepository.ExecuteAsync(command);
     }
 }

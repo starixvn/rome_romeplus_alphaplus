@@ -1,7 +1,7 @@
-﻿using Fanex.Data;
-using Fanex.Data.Repository;
+﻿namespace AlphaPlus.CashService.API.Features.PendingDeposit.Criteria;
 
-namespace AlphaPlus.CashService.API.Criteria.PendingDeposit;
+using Fanex.Data;
+using Fanex.Data.Repository;
 
 public class CreateManualDepositCommand : NonQueryCommand
 {
