@@ -3,7 +3,7 @@
 using Fanex.Data;
 using Fanex.Data.Repository;
 
-public class RevertTransactionToPendingCommand : NonQueryCommand
+public class RevertDepositTransactionToPendingCommand : NonQueryCommand
 {
     public long TransId { get; set; }
     public string Remark { get; set; }
@@ -16,7 +16,7 @@ public class RevertTransactionToPendingCommand : NonQueryCommand
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; }
 
-    public override string GetSettingKey() => $"SiteDb_{SiteDbGroupId}_Age_CashTransaction_RevertPending";
+    public override string GetSettingKey() => $"SiteDb_{SiteDbGroupId}_Age_CashTransaction_RevertDeposit_Upd";
 
     public override bool IsValid() => TransId > 0;
 }

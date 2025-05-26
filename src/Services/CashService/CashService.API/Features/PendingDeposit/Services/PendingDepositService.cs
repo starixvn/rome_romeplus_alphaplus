@@ -96,29 +96,17 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
             Remark = param.Remark
         };
 
-        await dynamicRepository.ExecuteAsync(command);
+        var logs = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command);
         var result = new ResultModel(command.ErrCode, command.ErrMsg);
         if (command.ErrCode == 0)
         {
-            SyncCashAccumulatedCredit(command.CashAccumCreditTbl, param.CustDbGroupId);
+            transactionService.OnAfterUpdateTransactionSuccess(command.CashAccumCreditTbl, param.CustDbGroupId, logs.ToList());
+        }
+        else
+        {
+            transactionService.OnAfterUpdateTransactionFailed(param.SiteDbGroupId, logs.ToList());
         }
         return result;
-    }
-
-    private void SyncCashAccumulatedCredit(string cashAccumulatedCreditTbl, int custDbGroupId)
-    {
-        _ = Task.Run(async () =>
-        {
-            try
-            {
-                await transactionService.SyncCashAccumCreditAsync(cashAccumulatedCreditTbl, custDbGroupId);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-        });
     }
 
     public async Task<ResultModel> ProcessDepositAsync(ProcessTransactionModel param)

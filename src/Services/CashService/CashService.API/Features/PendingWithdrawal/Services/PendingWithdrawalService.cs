@@ -2,7 +2,6 @@ namespace AlphaPlus.CashService.API.Features.PendingWithdrawal.Services;
 
 using System.Numerics;
 using AlphaPlus.CashService.API.Features.Shared.Models;
-using AlphaPlus.CashService.API.Features.Shared.Services;
 using AlphaPlus.CashService.API.Features.Transactions.Criteria;
 using AlphaPlus.CashService.API.Features.Transactions.Models;
 using AlphaPlus.CashService.API.Features.Transactions.Services;
@@ -25,7 +24,6 @@ public interface IPendingWithdrawalService
 
 public class PendingWithdrawalService(
     IDynamicRepository dynamicRepository,
-    ICommonService commonService,
     ITransactionService transactionService) : IPendingWithdrawalService
 {
     public async Task<decimal> GetCashBalanceAsync(int custId, int siteDbGroupId)
@@ -93,14 +91,19 @@ public class PendingWithdrawalService(
             Ip = param.Ip,
             Remark = param.Remark,
             ProviderId = param.ProviderId,
-            SiteDbGroupId = param.SiteDbGroupId
+            SiteDbGroupId = param.SiteDbGroupId,
         };
-        var logResponse = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command);
+        var responseLogs = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command) ?? new List<WriteLogDBCommandModel>();
+
         var result = new ResultModel(command.ErrCode, command.ErrMsg);
 
         if (command.ErrCode == 0)
         {
-            SyncCashAccumulatedCredit(command.CashAccumCreditTbl, param.CustDbGroupId);
+            transactionService.OnAfterUpdateTransactionSuccess(command.CashAccumCreditTbl, param.CustDbGroupId, responseLogs.ToList());
+        }
+        else
+        {
+            transactionService.OnAfterUpdateTransactionFailed(param.SiteDbGroupId, responseLogs.ToList());
         }
 
         return result;
@@ -119,21 +122,5 @@ public class PendingWithdrawalService(
         await dynamicRepository.ExecuteAsync(command);
         var result = new ResultModel(command.ErrCode, command.ErrMsg);
         return result;
-    }
-
-    private void SyncCashAccumulatedCredit(string cashAccumulatedCreditTbl, int custDbGroupId)
-    {
-        _ = Task.Run(async () =>
-        {
-            try
-            {
-                await transactionService.SyncCashAccumCreditAsync(cashAccumulatedCreditTbl, custDbGroupId);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-        });
     }
 }

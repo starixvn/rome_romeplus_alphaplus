@@ -56,7 +56,7 @@ public static class TransactionsEndpoints
             Description = "Returns transaction details"
         });
 
-        group.MapPost("/revert-pending", async (ITransactionService service, [FromBody] RevertTransactionToPendingCommand command) =>
+        group.MapPost("/revert-pending", async (ITransactionService service, [FromBody] RevertDepositTransactionToPendingCommand command) =>
         {
             var result = await service.RevertTransactionToPending(command);
             return Results.Ok(result);

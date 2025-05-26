@@ -3,7 +3,7 @@
 using Fanex.Data;
 using Fanex.Data.Repository;
 
-public class CreateManualDepositCommand : NonQueryCommand
+public class CreateManualDepositCommand : CriteriaBase
 {
     public int CustId { get; set; }
 
