@@ -123,10 +123,15 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
       custId: 0,
       apiMethodKey: formState.apiKey,
       merchantID: formState.merchantID,
-      appSecret: formState.appSecret
+        appSecret: formState.appSecret,
+        isValidFromProvider: false
     };
 
+      const isValidFromProvider = true; // call provider api to check if the payment method is valid
+      newSetting.isValidFromProvider = isValidFromProvider;
+
     const isUpdate = selectedMethod.status == 3;
+
     const response = isUpdate 
       ? await paymentProviderService.updatePaymentMethod(newSetting) 
       : await paymentProviderService.addPaymentMethod(newSetting);

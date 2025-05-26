@@ -158,9 +158,12 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
       custId: existingPaymentMethod.custId || 0,
       apiMethodKey: formState.apiKey,
       merchantID: formState.merchantID,
-      appSecret: formState.appSecret
+        appSecret: formState.appSecret,
+        isValidFromProvider: false
     };
     
+      const isValidFromProvider = true; // call provider api to check if the payment method is valid
+      updatedSetting.isValidFromProvider = isValidFromProvider;
     const response = await paymentProviderService.updatePaymentMethod(updatedSetting);
     if(response.error) {
       setError(response.error.message);
