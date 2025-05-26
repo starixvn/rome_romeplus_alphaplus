@@ -1,7 +1,10 @@
-using AlphaPlus.CashService.API.Endpoints;
 using AlphaPlus.CashService.API.Features.MemberSites.Endpoints;
 using AlphaPlus.CashService.API.Features.Payments.Endpoints;
+using AlphaPlus.CashService.API.Features.PendingDeposit.Endpoints;
+using AlphaPlus.CashService.API.Features.PendingWithdrawal.Endpoints;
+using AlphaPlus.CashService.API.Features.Promotion.Endpoints;
 using AlphaPlus.CashService.API.Features.Shared.Endpoints;
+using AlphaPlus.CashService.API.Features.Transactions.Endpoints;
 
 namespace AlphaPlus.CashService.API.Extensions;
 

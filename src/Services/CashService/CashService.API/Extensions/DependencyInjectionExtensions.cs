@@ -5,6 +5,9 @@ using AlphaPlus.CashService.API.Services;
 using Fanex.Data.Repository;
 using Fanex.Data.SqlServer;
 using Fanex.RemotingRef;
+using AlphaPlus.CashService.API.Features.PendingDeposit.Services;
+using AlphaPlus.CashService.API.Features.Transactions.Services;
+using AlphaPlus.CashService.API.Features.Promotion.Services;
 
 namespace AlphaPlus.CashService.API.Extensions;
 
