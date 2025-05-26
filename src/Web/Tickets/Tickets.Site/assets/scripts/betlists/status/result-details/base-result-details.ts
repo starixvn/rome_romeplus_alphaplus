@@ -95,13 +95,6 @@
                 return this.sexyGamingResult;
             }
 
-            // if ((betTypeId >= 4001 && betTypeId <= 4100) || (betTypeId >= 5800 && betTypeId <= 5999)) {
-            //     this.macauGamesResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.macauGamesResult)
-            //         ? new MacauGamesResultDetails()
-            //         : this.macauGamesResult;
-            //     return this.macauGamesResult;
-            // }
-
             if (
                 (betTypeId >= 2401 && betTypeId <= 2499) ||
                 (betTypeId >= 3001 && betTypeId <= 3099) ||
