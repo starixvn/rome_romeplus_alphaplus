@@ -15,7 +15,7 @@ public sealed class GlobalExceptionHandler(Fanex.Logging.ILogger logger) : IExce
         var response = httpContext.Response;
         response.ContentType = "application/json";
         response.StatusCode = StatusCodes.Status500InternalServerError;
-        await response.WriteAsJsonAsync(Result.CreateErrorResult("Internal server error", 500), cancellationToken: cancellationToken);
+        await response.WriteAsJsonAsync(new Result(StatusCodes.Status500InternalServerError, "Internal Server Error"), cancellationToken);
 
         return true;
     }

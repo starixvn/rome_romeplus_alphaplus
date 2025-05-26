@@ -1,7 +1,7 @@
+using AgencyCash.API.Payments.Models;
 using AgencyCash.API.Payments.Requests;
 using AgencyCash.API.Payments.Services;
 using AgencyCash.API.Shared.Helpers;
-using AgencyCash.API.Shared.Models;
 
 namespace AgencyCash.API.Payments;
 
@@ -13,20 +13,20 @@ public static class PaymentsEndpoints
         deposit
             .MapPost("/manual", ManualDeposit)
             .AddEndpointFilter<ModelValidationFilter<ManualDepositRequest>>()
-            .Produces<Result>()
+            .Produces<PaymentResult>()
             .WithTags("Deposit");
         deposit
             .MapPost("/auto", AutoDeposit)
             .AddEndpointFilter<ModelValidationFilter<AutoDepositRequest>>()
-            .Produces<Result>()
+            .Produces<PaymentResult>()
             .WithTags("Deposit");
     }
 
     private static async Task<IResult> ManualDeposit(ManualDepositRequest request, IDepositService depositService)
-        => Results.Ok(await depositService.Manual(request));
+        => TypedResults.Ok(await depositService.Manual(request));
 
-    private static Task<IResult> AutoDeposit(AutoDepositRequest request, IDepositService depositService)
+    private static async Task<IResult> AutoDeposit(AutoDepositRequest request, IDepositService depositService)
     {
-        return Task.FromResult(Results.Ok(new Result(0, "")));
+        return await Task.FromResult(TypedResults.Ok(new PaymentResult(0, "", 123456789)));
     }
 }

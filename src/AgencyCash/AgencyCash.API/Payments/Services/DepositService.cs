@@ -2,14 +2,13 @@ using AgencyCash.API.Payments.Criteria;
 using AgencyCash.API.Payments.Models;
 using AgencyCash.API.Payments.Requests;
 using AgencyCash.API.Shared;
-using AgencyCash.API.Shared.Models;
 using Fanex.Data.Repository;
 
 namespace AgencyCash.API.Payments.Services;
 
 public interface IDepositService
 {
-    Task<Result> Manual(ManualDepositRequest request);
+    Task<PaymentResult> Manual(ManualDepositRequest request);
 }
 
 public class DepositService(
@@ -17,16 +16,17 @@ public class DepositService(
     ISiteDBService siteDBService,
     Fanex.Logging.ILogger logger) : PaymentService(repository, siteDBService, logger), IDepositService
 {
-    public async Task<Result> Manual(ManualDepositRequest request)
+    public async Task<PaymentResult> Manual(ManualDepositRequest request)
     {
         var siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
 
         var isEnableCashService = await IsEnableCashService(request.AgentId, siteDBConfig.CustDBGroupId);
         if (!isEnableCashService)
         {
-            return new Result(
+            return new PaymentResult(
                 601,
-                "Cash service is not enabled for this agent.");
+                "Cash service is not enabled for this agent.",
+                0);
         }
 
         var memberSetting = await GetMemberSetting(request.CustId, siteDBConfig.CustDBGroupId);
@@ -46,16 +46,17 @@ public class DepositService(
             request.IP,
             siteDBConfig.SiteDBGroupId);
         var logEntries = await repository.FetchAsync<LogEntry>(criteria);
-        var result = new Result(
+        var result = new PaymentResult(
             criteria.ErrCode,
-            criteria.ErrMsg).Data = criteria.TransId;
+            criteria.ErrMsg,
+            criteria.TransId);
 
-        // if (result.IsSuccessful)
-        // {
-        SyncCashAccumCredit(criteria.CashAccumCreditTbl, siteDBConfig.CustDBGroupId);
+        if (result.IsSuccess)
+        {
+            SyncCashAccumCredit(criteria.CashAccumCreditTbl, siteDBConfig.CustDBGroupId);
 
-        await WriteLogs(logEntries, siteDBConfig);
-        //}
+            await WriteLogs(logEntries, siteDBConfig);
+        }
 
         return null;
     }
