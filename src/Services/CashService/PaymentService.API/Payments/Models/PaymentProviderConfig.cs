@@ -1,4 +1,4 @@
-namespace AgencyCash.API.Payments.Models;
+namespace PaymentService.API.Payments.Models;
 
 public class PaymentProviderConfig
 {

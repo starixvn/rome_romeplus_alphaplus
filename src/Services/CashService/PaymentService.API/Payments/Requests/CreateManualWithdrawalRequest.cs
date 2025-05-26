@@ -1,4 +1,4 @@
-namespace AgencyCash.API.Payments.Requests;
+namespace PaymentService.API.Payments.Requests;
 
 public class CreateManualWithdrawalRequest
 {

@@ -1,8 +1,8 @@
-using AgencyCash.API.Payments.Models;
-using AgencyCash.API.Shared.Helpers;
+using PaymentService.API.Payments.Models;
+using PaymentService.API.Shared.Helpers;
 using Fanex.Data.Repository;
 
-namespace AgencyCash.API.Payments.Criteria;
+namespace PaymentService.API.Payments.Criteria;
 
 public class GetPaymentProviderConfigCriteria(PaymentProvider provider, int siteDBGroupId) : CriteriaBase
 {

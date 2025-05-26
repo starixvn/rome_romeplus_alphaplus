@@ -1,7 +1,7 @@
-using AgencyCash.API.Payments.Models;
-using AgencyCash.API.Shared.Models;
+using PaymentService.API.Payments.Models;
+using PaymentService.API.Shared.Models;
 
-namespace AgencyCash.API.Payments.Services;
+namespace PaymentService.API.Payments.Services;
 
 public interface IPaymentProviderService
 {

@@ -4,9 +4,9 @@ using System.Text;
 using System.Security.Cryptography;
 using System.Linq;
 using System.Text.Json.Serialization;
-using AgencyCash.API.Payments.Services;
+using PaymentService.API.Payments.Services;
 
-namespace AgencyCash.API.Payments.Models
+namespace PaymentService.API.Payments.Models
 {
     public class DirePayPayoutRequest
     {

@@ -1,9 +1,9 @@
-using AgencyCash.API.Shared.Helpers;
+using PaymentService.API.Shared.Helpers;
 using Fanex.Data.Repository;
 
-namespace AgencyCash.API.Payments.Criteria;
+namespace PaymentService.API.Payments.Criteria;
 
-public class CreateManualWithdrawalCriteria(
+public class CreateAutoWithdrawalCriteria(
     int custId,
     int uplineId,
     decimal agentGivenCredit,
@@ -15,6 +15,7 @@ public class CreateManualWithdrawalCriteria(
     decimal exchangeRate,
     decimal amount,
     string ip,
+    bool isAutoApprove,
     int siteDBGroupId) : CriteriaBase
 {
     public int CustId { get; } = custId;
@@ -28,6 +29,7 @@ public class CreateManualWithdrawalCriteria(
     public decimal ExchangeRate { get; } = exchangeRate;
     public decimal Amount { get; } = amount;
     public string IP { get; } = ip;
+    public bool IsAutoApprove { get; } = isAutoApprove;
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; }
     public long TransId { get; set; }

@@ -1,10 +1,10 @@
-using AgencyCash.API.Payments.Criteria;
-using AgencyCash.API.Payments.Models;
-using AgencyCash.API.Shared;
+using PaymentService.API.Payments.Criteria;
+using PaymentService.API.Payments.Models;
+using PaymentService.API.Shared;
 using Fanex.Data.Repository;
 using Microsoft.Extensions.Caching.Memory;
 
-namespace AgencyCash.API.Payments.Services;
+namespace PaymentService.API.Payments.Services;
 
 public interface IPaymentProviderConfigService
 {
@@ -14,7 +14,7 @@ public interface IPaymentProviderConfigService
 public class PaymentProviderConfigService : IPaymentProviderConfigService
 {
     private const int ConfigCacheInMinutes = 5;
-    private const string ConfigCacheKey = "AgencyCash.API.PaymentProviderConfig";
+    private const string ConfigCacheKey = "PaymentService.API.PaymentProviderConfig";
 
     private readonly IDynamicRepository _repository;
     private readonly ISiteDBService _siteDBService;

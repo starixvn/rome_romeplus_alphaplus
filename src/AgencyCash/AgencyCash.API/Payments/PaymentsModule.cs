@@ -1,6 +1,4 @@
-using AgencyCash.API.Payments.Models;
 using AgencyCash.API.Payments.Services;
-using Microsoft.Extensions.Configuration;
 
 namespace AgencyCash.API.Payments;
 
@@ -22,11 +20,7 @@ public static class PaymentsModule
         });
 
         // Register services
-        services.AddSingleton<IPaymentProviderConfigService, PaymentProviderConfigService>();
-        services.AddSingleton<IPaymentProviderService, U2PayProviderService>();
-        services.AddSingleton<IPaymentProviderService, DirePayProviderService>();
         services.AddSingleton<IDepositService, DepositService>();
-        services.AddSingleton<IWithdrawalService, WithdrawalService>();
 
         return services;
     }

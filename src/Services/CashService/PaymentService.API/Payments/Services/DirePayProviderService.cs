@@ -1,9 +1,9 @@
-using AgencyCash.API.Payments.Models;
-using AgencyCash.API.Shared.Models;
+using PaymentService.API.Payments.Models;
+using PaymentService.API.Shared.Models;
 using System.Text;
 using System.Text.Json;
 
-namespace AgencyCash.API.Payments.Services;
+namespace PaymentService.API.Payments.Services;
 
 public class DirePayProviderService : IPaymentProviderService
 {

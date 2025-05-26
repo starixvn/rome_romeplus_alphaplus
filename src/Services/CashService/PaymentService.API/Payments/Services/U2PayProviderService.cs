@@ -1,11 +1,11 @@
-using AgencyCash.API.Payments.Models;
-using AgencyCash.API.Shared.Models;
+using PaymentService.API.Payments.Models;
+using PaymentService.API.Shared.Models;
 using System.Text;
 using System.Text.Json;
 using System.Net.Http;
 using System.Collections.Generic;
 
-namespace AgencyCash.API.Payments.Services;
+namespace PaymentService.API.Payments.Services;
 
 public class U2PayProviderService : IPaymentProviderService
 {

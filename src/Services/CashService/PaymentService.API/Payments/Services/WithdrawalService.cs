@@ -1,11 +1,11 @@
-using AgencyCash.API.Payments.Criteria;
-using AgencyCash.API.Payments.Models;
-using AgencyCash.API.Payments.Requests;
-using AgencyCash.API.Shared;
-using AgencyCash.API.Shared.Models;
+using PaymentService.API.Payments.Criteria;
+using PaymentService.API.Payments.Models;
+using PaymentService.API.Payments.Requests;
+using PaymentService.API.Shared;
+using PaymentService.API.Shared.Models;
 using Fanex.Data.Repository;
 
-namespace AgencyCash.API.Payments.Services;
+namespace PaymentService.API.Payments.Services;
 
 public interface IWithdrawalService
 {

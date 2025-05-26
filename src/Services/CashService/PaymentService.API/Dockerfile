@@ -10,6 +10,7 @@ RUN --mount=type=cache,target=/root/.nuget/packages \
 # Copy the entire project and publish it
 COPY ["src/Services/CashService/PaymentService.API", "src/Services/CashService/PaymentService.API"]
 COPY ["src/Shared/Extensions/FanexLoggingExtensions.cs", "src/Shared/Extensions/FanexLoggingExtensions.cs"]
+COPY ["src/Shared/ExceptionHelper.cs", "src/Shared/ExceptionHelper.cs"]
 WORKDIR /build/src/Services/CashService/PaymentService.API
 RUN --mount=type=cache,target=/root/.nuget/packages \
   dotnet publish -c Release -o /app --no-restore
