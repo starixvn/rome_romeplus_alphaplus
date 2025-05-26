@@ -397,7 +397,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                           <tr key={account.id}>
                             <td className="col-no bg-[#ffffff]">{index + 1}</td> 
                             <td className="col-action bg-[#ffffff]">
-                              <div className="flex">
+                              <div className="flex justify-center">
                                 <button 
                                   className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
                                   onClick={() => onEditBankAccount(account.id)}
@@ -421,8 +421,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                             </td>
                             <td className='text-left'>{account.accountNickname}</td>
                             <td className='text-left'>
-                              <div className='flex items-center relative pl-[25px]'>
-                                <img src={`../assets/bank/${account.code.toUpperCase()}.png`} alt={account.bankName} className='w-[20px] h-[20px] absolute top-[0] left-[0]' />
+                              <div className='flex items-center relative pl-[25px]'>                                 
+                                <span className='absolute top-[-2px] left-[0]'><BankIcon code={account.code} /></span>
                                 {account.bankName}
                               </div>
                               </td>

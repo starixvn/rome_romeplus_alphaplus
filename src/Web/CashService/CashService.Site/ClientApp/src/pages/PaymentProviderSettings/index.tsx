@@ -18,7 +18,7 @@ import { ResultMessageComponent } from '../../components/MessageComponents';
 import '../../styles/common.css';
 import '../../styles/global.scss';
 
-import Loading from '../../components/LoadingComponent';
+import { LoadingFullComponent } from '../../components/LoadingComponent';
 import { ButtonApplyComponent, ButtonCancelComponent, ButtonFullComponent, ButtonOutlineComponent } from '../../components/ButtonComponents';
 import { PaymentMethod } from '../../services/interfaces/Payments';
 import { BackButtonComponent } from '../../components/ButtonComponents';
@@ -398,10 +398,8 @@ function PaymentProviderSettings() {
 
   return (
     <div className="payment-provider-settings h-full">       
-      {loading ? (
-        <div className='flex justify-center items-center h-full'>
-          <Loading />
-        </div>
+      {loading ? (        
+          <LoadingFullComponent />     
       ) : error ? (<ResultMessageComponent type='error' message={error} />) 
         : (
         <>        

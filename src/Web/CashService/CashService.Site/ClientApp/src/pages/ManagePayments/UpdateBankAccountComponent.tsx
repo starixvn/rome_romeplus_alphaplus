@@ -338,8 +338,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   };
 
   return (
-    <div tabIndex={-1}>
-      
+    <div tabIndex={-1}>      
       <div className="modal-dialog">
         <div className="modal-content max-w-[1200px]">
           <div className="flex items-center justify-flex-start mb-[16px] pt-[8px] border-[#cfcfcf] border-dotted border-b-[2px] ">
@@ -389,8 +388,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                   <EnableButtonComponent isActive={formState.status === '1'} onClick={() => setFormState({ ...formState, status: '1' })} />
                   <DisableButtonComponent isActive={formState.status === '0'} onClick={() => setFormState({ ...formState, status: '0' })} />
                 </div>
-              </div>
-          
+              </div>          
               <TitleMediumComponent title={tManagePayments('accountInformation')} />
               <div className="mb-[16px]">
                 <label className="block  font-semibold text-[#333333] my-[8px]">
@@ -409,10 +407,6 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                   />
                 </div>
               </div>
-
-              <div className="pb-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold ">
-                {tManagePayments('transactionType')}
-                <span className="text-[#E25757]">*</span>
               <TitleMediumComponent title={tManagePayments('transactionType')} required={true} />
               <ValidateMessageComponent message={fieldErrors.selectedTransactionType} />
               <div className="inline-block border-[1px] border-[var(--border-control)] rounded-[4px] px-[16px] pb-[16px] bg-[#f8f8f8] mb-[8px]">

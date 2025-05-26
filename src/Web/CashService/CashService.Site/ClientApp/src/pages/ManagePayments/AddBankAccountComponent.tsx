@@ -12,7 +12,7 @@ import {
 import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { baseAPI } from '../../services/commonAPI';
 import CustomDropdown, { DropdownOption } from '../../components/CustomDropdownComponent';
-import Loading from '../../components/LoadingComponent';
+import { LoadingFullComponent } from '../../components/LoadingComponent';
 import { BackButtonComponent, DisableButtonComponent, EnableButtonComponent, OffButtonComponent, OnButtonComponent } from '../../components/ButtonComponents';
 import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import MobileComponent from '../../components/MobileComponent';
@@ -282,7 +282,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
             <TitleComponent title={tManagePayments('bankManagement')} />  
           </div>
           {isLoadingBanks 
-            ? ( <Loading /> ) 
+            ? ( <LoadingFullComponent /> ) 
             : (
             <form onSubmit={handleSubmit} className='bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]'>
               <div className="modal-body">

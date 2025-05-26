@@ -5,7 +5,6 @@ import { paymentProviderService } from '../../services/paymentsAPI';
 import { PaymentMethod } from '../../services/interfaces/Payments/PaymentMethod';
 import { QRCodeCanvas } from 'qrcode.react';
 import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
-import { IconClose } from '../../components/Icons';
 import { ButtonApplyComponent, ButtonCancelComponent, ButtonClosePopupComponent } from '../../components/ButtonComponents';
 import { TitleMediumComponent, TitleNormalComponent } from '../../components/TitleComponents';
 

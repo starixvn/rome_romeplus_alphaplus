@@ -6,6 +6,7 @@ import { IconClose } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
 import { ButtonApplyComponent, ButtonClosePopupComponent } from '../../components/ButtonComponents';
 import { TitleMediumComponent } from '../../components/TitleComponents';
+import BankIcon from '../../components/BankComponents';
 interface BanksPopupModalProps {
   onClose: () => void;
   transactionType: number;
@@ -51,10 +52,10 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
             : banks.length === 0 ? (<div className="alert alert-info" role="alert">{tGlobal('noData')}</div>) 
             : (
             <>
-              <label className='block text-[var(--text-color-primary)] my-[16px] font-semibold'>{tPaymentProviderSettings(`transaction-${transactionType}`)}</label>
+              <p className='block text-[var(--text-color-primary)] my-[16px] font-semibold'>{tPaymentProviderSettings(`transaction-${transactionType}`)}</p>
               <div className="table-fixed-header max-h-[300px] overflow-y-auto">
                 <table className="w-full">
-                  <thead>
+                  <thead className='z-10'>
                     <tr>
                       <th>#</th>
                       <th>{tPaymentProviderSettings('bankName')}</th>
@@ -65,8 +66,8 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
                       <tr key={bank.id}>
                         <td>{index + 1}</td>
                         <td className='text-left!'>
-                          <div className='flex items-center'>
-                            <img src={`../assets/bank/${bank.code.toUpperCase()}.png`} alt={bank.name} className='w-[20px] h-[20px] mr-[8px]' />
+                          <div className='flex items-center relative pl-[25px]'>
+                            <span className='absolute top-[-2px] left-[0]'><BankIcon code={bank.code} /></span>
                             {bank.name}
                           </div>
                         </td>

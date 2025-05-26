@@ -43,64 +43,56 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
         <div className="relative">
           <TitleMediumComponent className='text-center font-bold!' title={`${tPaymentProviderSettings('feeDetails')} - ${provider.name}`} />
           <ButtonClosePopupComponent onClick={onClose} />
-        </div>
-        <div className="mb-[12px]">
-          {isLoading ? (<Loading />) : (
-            <>
-              <div className="">
-                <div>
-                  <label className="font-semibold">{provider.name} {tPaymentProviderSettings('fees')}</label>
-                </div>
-                <div>
-                  <label className="form-label">{tPaymentProviderSettings('howItWorks')}</label>
-                </div>
-                <p>{tPaymentProviderSettings('feesInfo1')}</p>
-          
-                <ul className='list-disc pl-[24px] mb-[16px]'>
-                  <li>{tPaymentProviderSettings('feesFormula')}</li>
-                </ul>
-                <p className='mb-[16px]'>{tPaymentProviderSettings('feesInfo2')}</p>
-              </div>
-              
-              <div className="form-group mb-3">
-                <table className="table-striped">
-                  <thead>
-                    <tr>
-                      <th>{tPaymentProviderSettings('transactionType')}</th>
-                      <th>{tPaymentProviderSettings('paymentMethod')}</th>
-                      <th>{tPaymentProviderSettings('feeRate')}</th>
-                    </tr>
-                  </thead>
-                  <tbody className='font-[500]'>
-                    {feeData.length > 0 ? (
-                      feeData.map((feeGroup, groupIndex) => (
-                        <React.Fragment key={groupIndex}>
-                          {feeGroup.fees.map((fee, feeIndex) => (
-                            <tr key={`${groupIndex}-${feeIndex}`} className={feeIndex === 0 ? "table-primary" : ""}>
-                              {feeIndex === 0 && (
-                                <td rowSpan={feeGroup.fees.length}>
-                                  {tPaymentProviderSettings(`transaction-${feeGroup.transactionType}`)}
-                                </td>
-                              )}
-                              <td>{fee.method}</td>
-                              <td className='text-[var(--text-color-primary)]'>
-                                {fee.rateText}
+        </div>        
+        {isLoading ? (<Loading />) : (
+          <>
+            <div className="mb-[16px]">              
+              <p className="font-semibold">{provider.name} {tPaymentProviderSettings('fees')}</p>          
+              <p>{tPaymentProviderSettings('howItWorks')}</p>           
+              <p>{tPaymentProviderSettings('feesInfo1')}</p>          
+              <ul className='list-disc pl-[24px] mb-[16px]'>
+                <li>{tPaymentProviderSettings('feesFormula')}</li>
+              </ul>
+              <p>{tPaymentProviderSettings('feesInfo2')}</p>
+            </div>            
+            <div className="mb-[16px]">
+              <table className="table-striped">
+                <thead>
+                  <tr>
+                    <th>{tPaymentProviderSettings('transactionType')}</th>
+                    <th>{tPaymentProviderSettings('paymentMethod')}</th>
+                    <th>{tPaymentProviderSettings('feeRate')}</th>
+                  </tr>
+                </thead>
+                <tbody className='font-[500]'>
+                  {feeData.length > 0 ? (
+                    feeData.map((feeGroup, groupIndex) => (
+                      <React.Fragment key={groupIndex}>
+                        {feeGroup.fees.map((fee, feeIndex) => (
+                          <tr key={`${groupIndex}-${feeIndex}`} className={feeIndex === 0 ? "table-primary" : ""}>
+                            {feeIndex === 0 && (
+                              <td rowSpan={feeGroup.fees.length}>
+                                {tPaymentProviderSettings(`transaction-${feeGroup.transactionType}`)}
                               </td>
-                            </tr>
-                          ))}
-                        </React.Fragment>
-                      ))
-                    ) : (
-                      <tr>
-                        <td colSpan={3} className="text-center">{tGlobal('noData')}</td>
-                      </tr>
-                    )}
-                  </tbody>
-                </table>
-              </div>
-            </>
-          )}
-        </div>
+                            )}
+                            <td>{fee.method}</td>
+                            <td className='text-[var(--text-color-primary)]'>
+                              {fee.rateText}
+                            </td>
+                          </tr>
+                        ))}
+                      </React.Fragment>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan={3} className="text-center">{tGlobal('noData')}</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}     
         <div className="flex justify-center">   
           <ButtonApplyComponent text={tGlobal('close')} onClick={onClose} />
         </div>
