@@ -1,15 +1,15 @@
 using AlphaPlus.CashService.Site.Features.MemberSites.Models;
 using AlphaPlus.CashService.Site.Features.MemberSites.ViewModels;
 using AlphaPlus.Core.Models;
+using AlphaPlus.CashService.Site.Features.Shared;
 
 using Microsoft.AspNetCore.Mvc;
 namespace AlphaPlus.CashService.Site.Features.MemberSites;
 
-public class MemberSitesController : Controller
+public class MemberSitesController : SiteBaseController
 {
     private readonly string _apiBaseUrl;
     private readonly ILogger<MemberSitesController> _logger;
-    private readonly IUserSession _userSession;
     private readonly IConfiguration _configuration;
 
     private readonly HttpClient _httpClient;
@@ -18,11 +18,10 @@ public class MemberSitesController : Controller
         IConfiguration configuration,
          ILogger<MemberSitesController> logger,
           IUserSession userSession,
-          HttpClient httpClient)
+          HttpClient httpClient) : base(userSession)
     {
         _apiBaseUrl = configuration["CashServiceAPIUrl"];
         _logger = logger;
-        _userSession = userSession;
         _configuration = configuration;
         _httpClient = httpClient;
     }
@@ -74,7 +73,7 @@ public class MemberSitesController : Controller
             model.Language = _userSession.LangKey;
             model.SiteDB = _userSession.CustDBGroupId;
 
-            var response = await _httpClient.PutAsJsonAsync($"{_apiBaseUrl}/member-site-info",model,cancellationToken);
+            var response = await _httpClient.PutAsJsonAsync($"{_apiBaseUrl}/member-site-info", model, cancellationToken);
 
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadFromJsonAsync<Result>(cancellationToken);
