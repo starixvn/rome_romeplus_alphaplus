@@ -3,7 +3,7 @@ using Fanex.Data.Repository;
 
 namespace AgencyCash.API.Payments.Criteria;
 
-public class CreateManualDepositCriteria(
+public class ManualDepositCriteria(
     int custId,
     int uplineId,
     decimal agentGivenCredit,

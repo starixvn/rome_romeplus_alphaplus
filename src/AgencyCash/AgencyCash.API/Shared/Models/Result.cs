@@ -1,5 +1,3 @@
-using System;
-
 namespace AgencyCash.API.Shared.Models;
 
 public class Result
@@ -61,5 +59,3 @@ public class Result<T> : Result
         set => base.Data = value;
     }
 }
-
-

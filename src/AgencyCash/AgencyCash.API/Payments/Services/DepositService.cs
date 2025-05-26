@@ -9,9 +9,7 @@ namespace AgencyCash.API.Payments.Services;
 
 public interface IDepositService
 {
-    Task<IEnumerable<DepositMethod>> GetDepositMethods(int agentId);
-
-    Task<Result> CreateManualDeposit(CreateManualDepositRequest request);
+    Task<Result> Manual(ManualDepositRequest request);
 }
 
 public class DepositService(
@@ -19,10 +17,7 @@ public class DepositService(
     ISiteDBService siteDBService,
     Fanex.Logging.ILogger logger) : PaymentService(repository, siteDBService, logger), IDepositService
 {
-    public Task<IEnumerable<DepositMethod>> GetDepositMethods(int agentId)
-        => repository.FetchAsync<DepositMethod>(new GetDepositMethodsCriteria(agentId));
-
-    public async Task<Result> CreateManualDeposit(CreateManualDepositRequest request)
+    public async Task<Result> Manual(ManualDepositRequest request)
     {
         var siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
 
@@ -36,7 +31,7 @@ public class DepositService(
 
         var memberSetting = await GetMemberSetting(request.CustId, siteDBConfig.CustDBGroupId);
 
-        var createManualDepositCriteria = new CreateManualDepositCriteria(
+        var criteria = new ManualDepositCriteria(
             request.CustId,
             request.AgentId,
             memberSetting.AgentGivenCredit,
@@ -50,20 +45,18 @@ public class DepositService(
             request.PaySlip,
             request.IP,
             siteDBConfig.SiteDBGroupId);
-        var logEntries = await repository.FetchAsync<LogEntry>(createManualDepositCriteria);
+        var logEntries = await repository.FetchAsync<LogEntry>(criteria);
         var result = new Result(
-            createManualDepositCriteria.ErrCode,
-            createManualDepositCriteria.ErrMsg);
+            criteria.ErrCode,
+            criteria.ErrMsg).Data = criteria.TransId;
 
-        if (result.IsSuccessful)
-        {
-            SyncCashAccumCredit(
-                createManualDepositCriteria.CashAccumCreditTbl,
-                siteDBConfig.CustDBGroupId);
+        // if (result.IsSuccessful)
+        // {
+        SyncCashAccumCredit(criteria.CashAccumCreditTbl, siteDBConfig.CustDBGroupId);
 
-            await WriteLogs(logEntries, siteDBConfig);
-        }
+        await WriteLogs(logEntries, siteDBConfig);
+        //}
 
-        return result;
+        return null;
     }
 }
