@@ -9,12 +9,12 @@ public static class RegisterCashMemberEndpoints
 {
     public static void MapRegisterCashMemberEndpoints(this WebApplication app)
     {
-        app.MapPost("/api/cash-member/register", HandleAsync)
+        app.MapPost("/api/cash-members/register", HandleAsync)
             .AddEndpointFilter<ValidationFilter<RegisterCashMemberRequest>>()
             .WithName("Register Cash Member")
             .WithTags("Cash Service");
 
-        app.MapGet("/api/cash-member/check-username", async (string username, IRegisterCashMemberService service) =>
+        app.MapGet("/api/cash-members/check-username", async (string username, IRegisterCashMemberService service) =>
         {
             var result = await service.CheckUsernameAvailable(new CheckUsernameCommand(username));
             return Results.Ok(result);
