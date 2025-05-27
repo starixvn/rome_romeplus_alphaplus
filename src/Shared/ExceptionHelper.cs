@@ -1,6 +1,4 @@
-using Microsoft.Data.SqlClient;
 using System.Text;
-using Fanex.Data;
 
 internal static class ExceptionHelper
 {
@@ -27,12 +25,6 @@ internal static class ExceptionHelper
             .Append(GetCookiesValues(request))
             .Append(TwoBreakLine);
 
-        if (exception is ObjectDbException objectDbException
-            && exception.InnerException is SqlException sqlException)
-        {
-            errorBuilder.Append(BuildDbException(objectDbException, sqlException));
-        }
-
         errorBuilder
             .Append("EXCEPTION: ")
             .Append(exception.ToString());
@@ -52,20 +44,6 @@ internal static class ExceptionHelper
 
     private static string GetCookiesValues(HttpRequest request)
         => string.Join(BreakLine, request.Cookies.Select(header => $"{header.Key}:{header.Value}"));
-
-    private static string BuildDbException(ObjectDbException dbException, SqlException sqlException)
-    {
-        var errorBuilder = new StringBuilder();
-        errorBuilder
-            .Append("DATABASE INFO:").Append(BreakLine)
-            .Append("Server: ").Append(sqlException.Server).Append(BreakLine)
-            .Append("DbName: ").Append(dbException.DbName).Append(BreakLine)
-            .Append("SpName: ").Append(dbException.SpName).Append(BreakLine)
-            .Append("Parameters: ").Append(BreakLine).Append(GetSpParameters(dbException.Parameters)).Append(BreakLine)
-            .Append("Line: ").Append(sqlException.LineNumber).Append(TwoBreakLine);
-
-        return errorBuilder.ToString();
-    }
 
     private static string GetSpParameters(IDictionary<string, object> parameters)
         => string.Join(BreakLine, parameters.Select(p => $"{p.Key}={p.Value}"));

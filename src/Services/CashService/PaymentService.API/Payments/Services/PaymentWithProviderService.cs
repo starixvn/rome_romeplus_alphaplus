@@ -1,8 +1,6 @@
 using AlphaPlus.PaymentService.API.Payments.Models;
 using AlphaPlus.PaymentService.API.Payments.Requests;
-using AlphaPlus.PaymentService.API.Shared;
 using AlphaPlus.PaymentService.API.Shared.Models;
-using Fanex.Data.Repository;
 
 namespace AlphaPlus.PaymentService.API.Payments.Services;
 
@@ -11,18 +9,15 @@ public interface IPaymentWithProviderService
     Task<Result> ProcessPayout(CreateManualWithdrawalRequest request);
 }
 
-public class PaymentWithProviderService : PaymentService, IPaymentWithProviderService
+public class PaymentWithProviderService : IPaymentWithProviderService
 {
     private readonly IEnumerable<IPaymentProviderService> _paymentProviders;
     private readonly PaymentProviderConfig _paymentProviderConfig;
 
     public PaymentWithProviderService(
-        IDynamicRepository repository,
-        ISiteDBService siteDBService,
         Fanex.Logging.ILogger logger,
         IEnumerable<IPaymentProviderService> paymentProviders,
-        PaymentProviderConfig paymentProviderConfig) 
-        : base(repository, siteDBService, logger)
+        PaymentProviderConfig paymentProviderConfig)
     {
         _paymentProviders = paymentProviders;
         _paymentProviderConfig = paymentProviderConfig;

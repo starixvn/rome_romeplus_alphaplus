@@ -7,38 +7,34 @@ namespace AlphaPlus.PaymentService.API.Payments.Services;
 
 public class U2PayProviderService : IPaymentProviderService
 {
-    private readonly IPaymentProviderConfigService _configService;
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly Fanex.Logging.ILogger _logger;
 
     public PaymentProvider Provider => PaymentProvider.U2Pay;
 
     public U2PayProviderService(
-        IPaymentProviderConfigService configService,
         IHttpClientFactory httpClientFactory,
         Fanex.Logging.ILogger logger)
     {
-        _configService = configService;
         _httpClientFactory = httpClientFactory;
         _logger = logger;
     }
 
-    public async Task<Result> ProcessDeposit(string accountNumber, decimal amount, string currency)
+    public async Task<Result> ProcessDeposit(string accountNumber, decimal amount, string currency, PaymentProviderConfig config)
     {
         try
         {
-            var config = await _configService.GetConfig(Provider, 0); // TODO: Get agentId from context
             if (config == null || !config.IsEnabled)
             {
                 return new Result(602, "U2Pay provider is not enabled");
             }
 
-            if (!await ValidateAccount(accountNumber))
+            if (!await ValidateAccount(accountNumber, config))
             {
                 return new Result(603, "Invalid account number");
             }
 
-            var fee = await CalculateFee(amount);
+            var fee = CalculateFee(amount, config);
             var totalAmount = amount + fee;
 
             if (totalAmount < config.MinAmount || totalAmount > config.MaxAmount)
@@ -94,9 +90,8 @@ public class U2PayProviderService : IPaymentProviderService
         }
     }
 
-    public async Task<decimal> CalculateFee(decimal amount)
+    public decimal CalculateFee(decimal amount, PaymentProviderConfig config)
     {
-        var config = await _configService.GetConfig(Provider, 0); // TODO: Get agentId from context
         if (config == null)
         {
             return 0;
@@ -109,11 +104,10 @@ public class U2PayProviderService : IPaymentProviderService
         return config.Fee;
     }
 
-    public async Task<bool> ValidateAccount(string accountNumber)
+    public async Task<bool> ValidateAccount(string accountNumber, PaymentProviderConfig config)
     {
         try
         {
-            var config = await _configService.GetConfig(Provider, 0); // TODO: Get agentId from context
             if (config == null)
             {
                 return false;

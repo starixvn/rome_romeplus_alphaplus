@@ -18,8 +18,6 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.1" />
     <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
     <PackageReference Include="Fanex.Logging.Sentry" Version="5.0.0.1" />
-    <PackageReference Include="Fanex.Data.Repository" Version="4.3.3" />
-    <PackageReference Include="Fanex.Data.SqlServer" Version="4.3.3" />
   </ItemGroup>
 
 </Project>

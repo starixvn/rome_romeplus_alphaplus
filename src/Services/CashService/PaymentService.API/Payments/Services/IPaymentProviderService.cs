@@ -7,9 +7,9 @@ namespace AlphaPlus.PaymentService.API.Payments.Services;
 public interface IPaymentProviderService
 {
     PaymentProvider Provider { get; }
-    Task<Result> ProcessDeposit(string accountNumber, decimal amount, string currency);
-    Task<decimal> CalculateFee(decimal amount);
-    Task<bool> ValidateAccount(string accountNumber);
+    Task<Result> ProcessDeposit(string accountNumber, decimal amount, string currency, PaymentProviderConfig config);
+    decimal CalculateFee(decimal amount, PaymentProviderConfig config);
+    Task<bool> ValidateAccount(string accountNumber, PaymentProviderConfig config);
     Task<Result> ProcessPayout(PayoutRequest request, PaymentProviderConfig config);
     Task<Result<IPayoutStatusResponse>> CheckPayoutStatusAsync(string tradeNo, string orderNo, PaymentProviderConfig config);
     Task<Result<IPayoutBalanceResponse>> GetBalanceAsync(PaymentProviderConfig config);
