@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { paymentProviderService } from '../../services/paymentsAPI';
-import { IconClose } from '../../components/Icons';
 import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import { ensureIntegerInput, ensureDecimalInput } from '../../utils/inputHandlers';
 import { ButtonApplyComponent, ButtonCancelComponent, ButtonClosePopupComponent } from '../../components/ButtonComponents';

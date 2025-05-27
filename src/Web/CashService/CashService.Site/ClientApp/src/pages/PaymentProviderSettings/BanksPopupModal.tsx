@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Bank } from '../../services/interfaces/Payments/Bank';
 import { paymentProviderService } from '../../services/paymentsAPI';
-import { IconClose } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
 import { ButtonApplyComponent, ButtonClosePopupComponent } from '../../components/ButtonComponents';
 import { TitleMediumComponent } from '../../components/TitleComponents';
