@@ -2,8 +2,6 @@ using PaymentService.API.Payments.Models;
 using PaymentService.API.Shared.Models;
 using System.Text;
 using System.Text.Json;
-using System.Net.Http;
-using System.Collections.Generic;
 
 namespace PaymentService.API.Payments.Services;
 
@@ -23,78 +21,6 @@ public class U2PayProviderService : IPaymentProviderService
         _configService = configService;
         _httpClientFactory = httpClientFactory;
         _logger = logger;
-    }
-
-    public async Task<Result> ProcessWithdrawal(string accountNumber, decimal amount, string currency, bool isAutoApprove)
-    {
-        try
-        {
-            var config = await _configService.GetConfig(Provider, 0); // TODO: Get agentId from context
-            if (config == null || !config.IsEnabled)
-            {
-                return new Result(602, "U2Pay provider is not enabled");
-            }
-
-            if (!await ValidateAccount(accountNumber))
-            {
-                return new Result(603, "Invalid account number");
-            }
-
-            var fee = await CalculateFee(amount);
-            var totalAmount = amount + fee;
-
-            if (totalAmount < config.MinAmount || totalAmount > config.MaxAmount)
-            {
-                return new Result(604, $"Amount must be between {config.MinAmount} and {config.MaxAmount}");
-            }
-
-            var client = _httpClientFactory.CreateClient("U2Pay");
-            
-            // Prepare withdrawal request
-            var request = new
-            {
-                accountNumber,
-                amount = totalAmount,
-                currency,
-                autoApprove = isAutoApprove,
-                timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
-            };
-
-            // Generate signature
-            var signature = GenerateSignature(request, config.ApiSecret);
-
-            // Add headers
-            client.DefaultRequestHeaders.Add("X-Signature", signature);
-
-            // Send request
-            var content = new StringContent(
-                JsonSerializer.Serialize(request),
-                Encoding.UTF8,
-                "application/json");
-
-            var response = await client.PostAsync("/api/v1/withdrawals", content);
-            var responseContent = await response.Content.ReadAsStringAsync();
-
-            if (!response.IsSuccessStatusCode)
-            {
-                await _logger.ErrorAsync($"U2Pay withdrawal failed: {responseContent}");
-                return new Result(605, "Failed to process withdrawal");
-            }
-
-            // Parse response
-            var result = JsonSerializer.Deserialize<U2PayResponse>(responseContent);
-            if (result?.Status != "success")
-            {
-                return new Result(605, result?.Message ?? "Failed to process withdrawal");
-            }
-
-            return new Result(0, "Withdrawal processed successfully");
-        }
-        catch (Exception ex)
-        {
-            await _logger.ErrorAsync($"U2Pay withdrawal failed: {ex.Message}", ex);
-            return new Result(605, "Failed to process withdrawal");
-        }
     }
 
     public async Task<Result> ProcessDeposit(string accountNumber, decimal amount, string currency)
@@ -242,7 +168,7 @@ public class U2PayProviderService : IPaymentProviderService
         return Convert.ToBase64String(hash);
     }
 
-    public async Task<Result> ProcessPayoutAsync(U2PayPayoutRequest payoutRequest, PaymentProviderConfig config)
+    public async Task<Result> ProcessPayout(PayoutRequest payoutRequest, PaymentProviderConfig config)
     {
         try
         {
@@ -264,7 +190,7 @@ public class U2PayProviderService : IPaymentProviderService
                 ["extra"] = payoutRequest.Extra,
                 ["time"] = payoutRequest.Time
             };
-            payoutRequest.Sign = U2PaySignatureUtil.GenerateSignature(parameters, config.ApiSecret);
+            payoutRequest.Sign = PaySignatureUtil.GenerateSignature(parameters, config.ApiSecret);
 
             // Remove appSecret from payload
             payoutRequest.AppSecret = null;
@@ -280,7 +206,7 @@ public class U2PayProviderService : IPaymentProviderService
                 return new Result(605, "Failed to process payout");
             }
 
-            var payoutResponse = JsonSerializer.Deserialize<U2PayPayoutResponse>(responseContent);
+            var payoutResponse = JsonSerializer.Deserialize<PayoutResponse>(responseContent);
             if (payoutResponse == null || payoutResponse.Code != 0)
             {
                 return new Result(605, payoutResponse?.Text ?? "Failed to process payout");
@@ -299,7 +225,7 @@ public class U2PayProviderService : IPaymentProviderService
     {
         try
         {
-            var request = new U2PayPayoutStatusRequest
+            var request = new PayoutStatusRequest
             {
                 MerchantNo = config.ApiKey,
                 TradeNo = tradeNo,
@@ -315,7 +241,7 @@ public class U2PayProviderService : IPaymentProviderService
                 ["orderNo"] = request.OrderNo,
                 ["time"] = request.Time
             };
-            request.Sign = U2PaySignatureUtil.GenerateSignature(parameters, config.ApiSecret);
+            request.Sign = PaySignatureUtil.GenerateSignature(parameters, config.ApiSecret);
 
             var client = _httpClientFactory.CreateClient("U2Pay");
             var content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
@@ -328,7 +254,7 @@ public class U2PayProviderService : IPaymentProviderService
                 return new Result<IPayoutStatusResponse>(605, "Failed to check payout status");
             }
 
-            var statusResponse = JsonSerializer.Deserialize<U2PayPayoutStatusResponse>(responseContent);
+            var statusResponse = JsonSerializer.Deserialize<PayoutStatusResponse>(responseContent);
             if (statusResponse == null || statusResponse.Code != 0)
             {
                 return new Result<IPayoutStatusResponse>(605, statusResponse?.Text ?? "Failed to check payout status");
@@ -349,7 +275,7 @@ public class U2PayProviderService : IPaymentProviderService
     {
         try
         {
-            var request = new U2PayPayoutBalanceRequest
+            var request = new PayoutBalanceRequest
             {
                 MerchantNo = config.ApiKey,
                 Time = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
@@ -361,7 +287,7 @@ public class U2PayProviderService : IPaymentProviderService
                 ["merchantNo"] = request.MerchantNo,
                 ["time"] = request.Time
             };
-            request.Sign = U2PaySignatureUtil.GenerateSignature(parameters, config.ApiSecret);
+            request.Sign = PaySignatureUtil.GenerateSignature(parameters, config.ApiSecret);
 
             var client = _httpClientFactory.CreateClient("U2Pay");
             var content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
@@ -374,7 +300,7 @@ public class U2PayProviderService : IPaymentProviderService
                 return new Result<IPayoutBalanceResponse>(605, "Failed to check balance");
             }
 
-            var balanceResponse = JsonSerializer.Deserialize<U2PayPayoutBalanceResponse>(responseContent);
+            var balanceResponse = JsonSerializer.Deserialize<PayoutBalanceResponse>(responseContent);
             if (balanceResponse == null || balanceResponse.Code != 0)
             {
                 return new Result<IPayoutBalanceResponse>(605, balanceResponse?.Text ?? "Failed to check balance");

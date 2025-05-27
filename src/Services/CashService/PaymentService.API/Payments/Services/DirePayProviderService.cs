@@ -23,86 +23,56 @@ public class DirePayProviderService : IPaymentProviderService
         _logger = logger;
     }
 
-    public async Task<Result> ProcessWithdrawal(string accountNumber, decimal amount, string currency, bool isAutoApprove)
+    public async Task<Result> ProcessPayout(PayoutRequest payoutRequest, PaymentProviderConfig config)
     {
         try
         {
-            var config = await _configService.GetConfig(Provider, 0); // TODO: Get agentId from context
-            if (config == null || !config.IsEnabled)
-            {
-                return new Result(602, "DirePay provider is not enabled");
-            }
-
-            if (!await ValidateAccount(accountNumber))
-            {
-                return new Result(603, "Invalid account number");
-            }
-
-            var fee = await CalculateFee(amount);
-            var totalAmount = amount + fee;
-
-            if (totalAmount < config.MinAmount || totalAmount > config.MaxAmount)
-            {
-                return new Result(604, $"Amount must be between {config.MinAmount} and {config.MaxAmount}");
-            }
-
-            var client = _httpClientFactory.CreateClient("DirePay");
-            
-            // Prepare withdrawal request
-            var request = new DirePayPayoutRequest
-            {
-                MerchantId = config.ApiKey,
-                OrderId = Guid.NewGuid().ToString("N"),
-                Amount = totalAmount,
-                Currency = currency,
-                AccountNumber = accountNumber,
-                CreatedAt = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss"),
-                CallbackUrl = config.BaseUrl + "/api/payments/direpay/callback",
-                Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
-            };
-
             // Build parameters dictionary for signature
             var parameters = new Dictionary<string, object>
             {
-                ["merchantId"] = request.MerchantId,
-                ["orderId"] = request.OrderId,
-                ["amount"] = request.Amount,
-                ["currency"] = request.Currency,
-                ["accountNumber"] = request.AccountNumber,
-                ["createdAt"] = request.CreatedAt,
-                ["callbackUrl"] = request.CallbackUrl,
-                ["timestamp"] = request.Timestamp
+                ["merchantNo"] = payoutRequest.MerchantNo,
+                ["orderNo"] = payoutRequest.OrderNo,
+                ["amount"] = payoutRequest.Amount,
+                ["name"] = payoutRequest.Name,
+                ["bankName"] = payoutRequest.BankName,
+                ["bankAccount"] = payoutRequest.BankAccount,
+                ["bankBranch"] = payoutRequest.BankBranch,
+                ["memo"] = payoutRequest.Memo,
+                ["mobile"] = payoutRequest.Mobile,
+                ["datetime"] = payoutRequest.Datetime,
+                ["notifyUrl"] = payoutRequest.NotifyUrl,
+                ["reverseUrl"] = payoutRequest.ReverseUrl,
+                ["extra"] = payoutRequest.Extra,
+                ["time"] = payoutRequest.Time
             };
-            request.Signature = DirePaySignatureUtil.GenerateSignature(parameters, config.ApiSecret);
+            payoutRequest.Sign = DirePaySignatureUtil.GenerateSignature(parameters, config.ApiSecret);
 
-            // Send request
-            var content = new StringContent(
-                JsonSerializer.Serialize(request),
-                Encoding.UTF8,
-                "application/json");
+            // Remove appSecret from payload
+            payoutRequest.AppSecret = null;
 
-            var response = await client.PostAsync("/api/v1/payouts", content);
+            var client = _httpClientFactory.CreateClient("DirePay");
+            var content = new StringContent(JsonSerializer.Serialize(payoutRequest), Encoding.UTF8, "application/json");
+            var response = await client.PostAsync("/payout/create", content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
             if (!response.IsSuccessStatusCode)
             {
-                await _logger.ErrorAsync($"DirePay withdrawal failed: {responseContent}");
-                return new Result(605, "Failed to process withdrawal");
+                await _logger.ErrorAsync($"DirePay payout failed: {responseContent}");
+                return new Result(605, "Failed to process payout");
             }
 
-            // Parse response
-            var result = JsonSerializer.Deserialize<DirePayPayoutResponse>(responseContent);
-            if (result?.StatusCode != 0)
+            var payoutResponse = JsonSerializer.Deserialize<PayoutResponse>(responseContent);
+            if (payoutResponse == null || payoutResponse.Code != 0)
             {
-                return new Result(605, result?.Message ?? "Failed to process withdrawal");
+                return new Result(605, payoutResponse?.Text ?? "Failed to process payout");
             }
 
-            return new Result(0, "Withdrawal processed successfully");
+            return new Result(0, "Payout processed successfully");
         }
         catch (Exception ex)
         {
-            await _logger.ErrorAsync($"DirePay withdrawal failed: {ex.Message}", ex);
-            return new Result(605, "Failed to process withdrawal");
+            await _logger.ErrorAsync($"DirePay payout failed: {ex.Message}", ex);
+            return new Result(605, "Failed to process payout");
         }
     }
 

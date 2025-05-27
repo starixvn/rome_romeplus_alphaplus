@@ -21,6 +21,7 @@ public static class PaymentsModule
 
         // Register services
         services.AddSingleton<IDepositService, DepositService>();
+        services.AddSingleton<IWithdrawalService, WithdrawalService>();
 
         return services;
     }

@@ -1,4 +1,3 @@
-using PaymentService.API.Payments.Criteria;
 using PaymentService.API.Payments.Models;
 using PaymentService.API.Payments.Requests;
 using PaymentService.API.Shared;
@@ -9,95 +8,28 @@ namespace PaymentService.API.Payments.Services;
 
 public interface IWithdrawalService
 {
-    Task<Result> CreateManualWithdrawal(CreateManualWithdrawalRequest request);
-    Task<Result> CreateAutoWithdrawal(CreateAutoWithdrawalRequest request);
+    Task<Result> ProcessPayout(CreateManualWithdrawalRequest request);
 }
 
-public class WithdrawalService(
-    IDynamicRepository repository,
-    ISiteDBService siteDBService,
-    Fanex.Logging.ILogger logger,
-    IEnumerable<IPaymentProviderService> paymentProviders) : PaymentService(repository, siteDBService, logger), IWithdrawalService
+public class WithdrawalService : PaymentService, IWithdrawalService
 {
-    private readonly IEnumerable<IPaymentProviderService> _paymentProviders = paymentProviders;
+    private readonly IEnumerable<IPaymentProviderService> _paymentProviders;
+    private readonly PaymentProviderConfig _paymentProviderConfig;
 
-    public async Task<Result> CreateManualWithdrawal(CreateManualWithdrawalRequest request)
+    public WithdrawalService(
+        IDynamicRepository repository,
+        ISiteDBService siteDBService,
+        Fanex.Logging.ILogger logger,
+        IEnumerable<IPaymentProviderService> paymentProviders,
+        PaymentProviderConfig paymentProviderConfig) 
+        : base(repository, siteDBService, logger)
     {
-        var siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
-
-        var isEnableCashService = await IsEnableCashService(request.AgentId, siteDBConfig.CustDBGroupId);
-        if (!isEnableCashService)
-        {
-            return new Result(
-                601,
-                "Cash service is not enabled for this agent.");
-        }
-
-        var memberSetting = await GetMemberSetting(request.CustId, siteDBConfig.CustDBGroupId);
-
-        // Process withdrawal through payment provider
-        var provider = GetPaymentProvider(request.PaymentFrom);
-        if (provider == null)
-        {
-            return new Result(606, "Invalid payment provider");
-        }
-
-        var providerResult = await provider.ProcessWithdrawal(
-            request.PaymentTo,
-            request.Amount,
-            "USD", // TODO: Get currency from configuration
-            false);
-
-        if (!providerResult.IsSuccessful)
-        {
-            return providerResult;
-        }
-
-        var createManualWithdrawalCriteria = new CreateManualWithdrawalCriteria(
-            request.CustId,
-            request.AgentId,
-            memberSetting.AgentGivenCredit,
-            memberSetting.CreditMembersGivenCredit,
-            memberSetting.MinLimitAmount,
-            memberSetting.MaxLimitAmount,
-            request.PaymentFrom,
-            request.PaymentTo,
-            1,
-            request.Amount,
-            request.IP,
-            siteDBConfig.SiteDBGroupId);
-
-        var logEntries = await repository.FetchAsync<LogEntry>(createManualWithdrawalCriteria);
-        var result = new Result(
-            createManualWithdrawalCriteria.ErrCode,
-            createManualWithdrawalCriteria.ErrMsg);
-
-        if (result.IsSuccessful)
-        {
-            SyncCashAccumCredit(
-                createManualWithdrawalCriteria.CashAccumCreditTbl,
-                siteDBConfig.CustDBGroupId);
-
-            await WriteLogs(logEntries, siteDBConfig);
-        }
-
-        return result;
+        _paymentProviders = paymentProviders;
+        _paymentProviderConfig = paymentProviderConfig;
     }
 
-    public async Task<Result> CreateAutoWithdrawal(CreateAutoWithdrawalRequest request)
+    public async Task<Result> ProcessPayout(CreateManualWithdrawalRequest request)
     {
-        var siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
-
-        var isEnableCashService = await IsEnableCashService(request.AgentId, siteDBConfig.CustDBGroupId);
-        if (!isEnableCashService)
-        {
-            return new Result(
-                601,
-                "Cash service is not enabled for this agent.");
-        }
-
-        var memberSetting = await GetMemberSetting(request.CustId, siteDBConfig.CustDBGroupId);
-
         // Process withdrawal through payment provider
         var provider = GetPaymentProvider(request.PaymentFrom);
         if (provider == null)
@@ -105,47 +37,25 @@ public class WithdrawalService(
             return new Result(606, "Invalid payment provider");
         }
 
-        var providerResult = await provider.ProcessWithdrawal(
-            request.PaymentTo,
-            request.Amount,
-            "USD", // TODO: Get currency from configuration
-            request.IsAutoApprove);
+        var providerResult = await provider.ProcessPayout(new PayoutRequest{
+            MerchantNo = request.MerchantNo,
+            OrderNo = request.PaymentTo,
+            Amount = (int)request.Amount,
+            Name = request.PaymentTo,
+            BankName = request.PaymentTo,
+            BankAccount = request.PaymentTo,
+            BankBranch = request.PaymentTo,
+            Memo = request.PaymentTo,
+            Mobile = request.PaymentTo,
+            Datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+            NotifyUrl = request.PaymentTo,
+            ReverseUrl = request.PaymentTo,
+            Extra = request.PaymentTo,
+            Time = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
+            },
+            _paymentProviderConfig);
 
-        if (!providerResult.IsSuccessful)
-        {
-            return providerResult;
-        }
-
-        var createAutoWithdrawalCriteria = new CreateAutoWithdrawalCriteria(
-            request.CustId,
-            request.AgentId,
-            memberSetting.AgentGivenCredit,
-            memberSetting.CreditMembersGivenCredit,
-            memberSetting.MinLimitAmount,
-            memberSetting.MaxLimitAmount,
-            request.PaymentFrom,
-            request.PaymentTo,
-            1,
-            request.Amount,
-            request.IP,
-            request.IsAutoApprove,
-            siteDBConfig.SiteDBGroupId);
-
-        var logEntries = await repository.FetchAsync<LogEntry>(createAutoWithdrawalCriteria);
-        var result = new Result(
-            createAutoWithdrawalCriteria.ErrCode,
-            createAutoWithdrawalCriteria.ErrMsg);
-
-        if (result.IsSuccessful)
-        {
-            SyncCashAccumCredit(
-                createAutoWithdrawalCriteria.CashAccumCreditTbl,
-                siteDBConfig.CustDBGroupId);
-
-            await WriteLogs(logEntries, siteDBConfig);
-        }
-
-        return result;
+        return providerResult;
     }
 
     private IPaymentProviderService GetPaymentProvider(string paymentFrom)

@@ -24,6 +24,12 @@ public static class PaymentsEndpoints
             .MapPost("/auto", AutoDeposit)
             .AddEndpointFilter<ModelValidationFilter<AutoDepositRequest>>()
             .Produces<PaymentResult>();
+
+        var withdrawal = app.MapGroup("/api/withdrawal").WithTags("Withdrawal");
+        withdrawal
+            .MapPost("/manual", ManualWithdrawal)
+            .AddEndpointFilter<ModelValidationFilter<CreateManualWithdrawalRequest>>()
+            .Produces<Result>();
     }
 
     private static async Task<IResult> GetLimitDeposit([AsParameters] GetLimitDepositRequest request, IDepositService depositService)
@@ -62,6 +68,30 @@ public static class PaymentsEndpoints
         }
 
         return TypedResults.Ok(await Task.FromResult(new PaymentResult(0, string.Empty, 123456789)));
+    }
+
+    private static async Task<IResult> ManualWithdrawal(
+        CreateManualWithdrawalRequest request, 
+        IWithdrawalService withdrawalService)
+    {
+        if (request is null)
+        {
+            return BadRequest("Request cannot be null.");
+        }
+
+        // Convert to PaymentService.API request
+        var paymentServiceRequest = new CreateManualWithdrawalRequest
+        {
+            CustId = request.CustId,
+            AgentId = request.AgentId,
+            PaymentFrom = request.PaymentFrom,
+            PaymentTo = request.PaymentTo,
+            Amount = request.Amount,
+            IP = request.IP
+        };
+
+        var result = await withdrawalService.CreateManualWithdrawal(paymentServiceRequest);
+        return TypedResults.Ok(result);
     }
 
     private static IResult BadRequest(string error)

@@ -8,7 +8,7 @@ using PaymentService.API.Payments.Services;
 
 namespace PaymentService.API.Payments.Models
 {
-    public class U2PayPayoutRequest
+    public class PayoutRequest
     {
         public string MerchantNo { get; set; }
         public string OrderNo { get; set; }
@@ -28,7 +28,7 @@ namespace PaymentService.API.Payments.Models
         public string Sign { get; set; }
     }
 
-    public class U2PayPayoutResponse
+    public class PayoutResponse
     {
         public int Code { get; set; }
         public string Text { get; set; }
@@ -37,7 +37,7 @@ namespace PaymentService.API.Payments.Models
         public int Amount { get; set; }
     }
 
-    public class U2PayPayoutStatusRequest
+    public class PayoutStatusRequest
     {
         public string MerchantNo { get; set; }
         public string TradeNo { get; set; }
@@ -47,7 +47,7 @@ namespace PaymentService.API.Payments.Models
         public string Sign { get; set; }
     }
 
-    public class U2PayPayoutStatusResponse : IPayoutStatusResponse
+    public class PayoutStatusResponse : IPayoutStatusResponse
     {
         public int Code { get; set; }
         public string Text { get; set; }
@@ -62,7 +62,7 @@ namespace PaymentService.API.Payments.Models
         string IPayoutStatusResponse.OrderId => OrderNo;
     }
 
-    public class U2PayPayoutBalanceRequest
+    public class PayoutBalanceRequest
     {
         public string MerchantNo { get; set; }
         public long Time { get; set; }
@@ -70,7 +70,7 @@ namespace PaymentService.API.Payments.Models
         public string Sign { get; set; }
     }
 
-    public class U2PayPayoutBalanceResponse : IPayoutBalanceResponse
+    public class PayoutBalanceResponse : IPayoutBalanceResponse
     {
         public int Code { get; set; }
         public string Text { get; set; }
@@ -90,7 +90,7 @@ namespace PaymentService.API.Payments.Models
         string IPayoutBalanceResponse.LastUpdated => Datetime;
     }
 
-    public static class U2PaySignatureUtil
+    public static class PaySignatureUtil
     {
         public static string GenerateSignature(IDictionary<string, object> parameters, string secret)
         {

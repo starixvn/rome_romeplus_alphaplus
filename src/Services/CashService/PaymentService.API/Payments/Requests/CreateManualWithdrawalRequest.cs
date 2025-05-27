@@ -8,4 +8,5 @@ public class CreateManualWithdrawalRequest
     public string PaymentTo { get; init; }
     public decimal Amount { get; init; }
     public string IP { get; init; }
-} 
+    public string MerchantNo { get; init; }
+}
