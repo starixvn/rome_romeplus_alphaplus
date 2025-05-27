@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using AgencyCash.API.Shared.DataAnnotations;
 
 namespace AgencyCash.API.RegisterCashMember.Requests;
 
@@ -21,6 +22,5 @@ public class RegisterCashMemberRequest
     public string LastName { get; set; }
 
     [Required]
-    [RegularExpression("^[0-9]+$", ErrorMessage = "Mobile must be numeric only.")]
     public string Mobile { get; set; }
 }
