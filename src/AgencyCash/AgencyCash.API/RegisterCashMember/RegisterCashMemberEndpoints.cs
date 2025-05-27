@@ -10,7 +10,7 @@ public static class RegisterCashMemberEndpoints
 {
     public static void MapRegisterCashMemberEndpoints(this WebApplication app)
     {
-        app.MapPost("/api/cash-members/register", HandleAsync)
+        app.MapPost("/api/cash-members", HandleAsync)
             .AddEndpointFilter<ModelValidationFilter<RegisterCashMemberRequest>>()
             .WithName("Register Cash Member")
             .WithTags("Cash Service");
