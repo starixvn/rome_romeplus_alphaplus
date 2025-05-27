@@ -2,6 +2,7 @@ using AgencyCash.API.RegisterCashMember.Requests;
 using AgencyCash.API.RegisterCashMember.Criteria;
 using AgencyCash.API.RegisterCashMember.Responses;
 using System.ComponentModel.DataAnnotations;
+using AgencyCash.API.Shared.DataAnnotations;
 
 namespace AgencyCash.API.RegisterCashMember;
 
@@ -10,7 +11,7 @@ public static class RegisterCashMemberEndpoints
     public static void MapRegisterCashMemberEndpoints(this WebApplication app)
     {
         app.MapPost("/api/cash-members/register", HandleAsync)
-            .AddEndpointFilter<ValidationFilter<RegisterCashMemberRequest>>()
+            .AddEndpointFilter<ModelValidationFilter<RegisterCashMemberRequest>>()
             .WithName("Register Cash Member")
             .WithTags("Cash Service");
 
@@ -38,26 +39,5 @@ public static class RegisterCashMemberEndpoints
             request.LastName,
             request.Mobile)));
 
-    }
-}
-
-public class ValidationFilter<T> : IEndpointFilter where T : class
-{
-    public async ValueTask<object> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
-    {
-        var model = context.Arguments.OfType<T>().FirstOrDefault();
-        if (model != null)
-        {
-            var validationResults = new List<ValidationResult>();
-            var validationContext = new ValidationContext(model, null, null);
-            if (!Validator.TryValidateObject(model, validationContext, validationResults, true))
-            {
-                return Results.ValidationProblem(validationResults.ToDictionary(
-                    v => v.MemberNames.FirstOrDefault() ?? string.Empty,
-                    v => new[] { v.ErrorMessage ?? "Invalid" }
-                ));
-            }
-        }
-        return await next(context);
     }
 }
