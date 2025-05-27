@@ -47,8 +47,14 @@ app.UseRouting();
 app.UseAuthorization();
 app.UseSession();
 app.UseMiddleware<RequestCultureMiddleware>();
-
-app.UseDeveloperExceptionPage();
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseMiddleware<ExceptionMiddleware>();
+}
 
 app.MapControllerRoute(
     name: "default",
