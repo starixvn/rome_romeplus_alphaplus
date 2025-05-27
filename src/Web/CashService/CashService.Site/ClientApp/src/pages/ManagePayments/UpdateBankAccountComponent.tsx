@@ -187,8 +187,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
         selectedManualWithdrawal: fetchedBankAccount.agent_TransTypeList.split(',').includes(BANK_TRANSACTION_TYPES[3].id.toString()),
         creator: fetchedBankAccount.creator,
 
-        mobile: mobile,
-        countryCode: countryCode
+        mobile: fetchedBankAccount.mobile.split('-')[1],
+        countryCode: fetchedBankAccount.mobile.split('-')[0]
       };
       setFormState(newFormState);
       setOrgFormState(newFormState);
