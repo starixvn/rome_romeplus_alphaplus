@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using AgencyCash.API.Shared.Models;
 
-namespace AgencyCash.API.Shared.Helpers;
+namespace AgencyCash.API.Shared.DataAnnotations;
 
 public class ModelValidationFilter<T> : IEndpointFilter where T : class
 {
