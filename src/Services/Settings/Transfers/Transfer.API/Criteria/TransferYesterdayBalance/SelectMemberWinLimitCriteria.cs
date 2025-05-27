@@ -1,12 +1,12 @@
+using Fanex.Data;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferYesterdayBalance;
 
-public class SelectMemberWinLimitCriteria(string custIds, byte settingStatus = 0) : CriteriaBase
+public class SelectMemberWinLimitCriteria(string custIds) : CriteriaBase
 {
+    [SpParam(SqlParamName ="ListCustId")]
     public string CustIds { get; } = custIds;
-
-    public byte SettingStatus { get; } = settingStatus;
 
     public override bool IsValid() => !string.IsNullOrEmpty(CustIds);
 

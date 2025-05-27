@@ -32,9 +32,9 @@ public class YesterdayBalanceTransferService(IDynamicRepository repository) : IY
     public async Task<Result> ResetPotentialWinLimit(string custIds, string agIP)
     {
         var criteria = new SelectMemberWinLimitCriteria(custIds);
-        var membersNeedReset = await repository.FetchAsync<PotentialWinLimitModel>(criteria, agIP);
+        var membersNeedReset = await repository.FetchAsync<PotentialWinLimitModel>(criteria);
 
-        if (membersNeedReset != null)
+        if (membersNeedReset.Any())
         {
             var resetCriteria = new ResetPotentialWinLimit(membersNeedReset.Select(i => i.CustId));
             await repository.ExecuteAsync(resetCriteria, agIP);
