@@ -13,15 +13,23 @@ export const TransactionType = {
   Withdrawal: 2,
 };
 
+export const renderBankOptionValue = (bankCode: string, bankAccount: string) => {
+  if (!bankAccount) return '';
+  return `${bankCode}-${bankAccount}`;
+};
+
 export const renderBankAccount = (bankAccount: string) => {
   const [bankCode, accountNumber] = bankAccount.split('-');
+  if (!accountNumber) return <div className="flex items-center">-</div>;
   return (
     <div className="flex items-center">
-      <img
-        src={`../assets/bank/${bankCode}.png`}
-        alt={bankCode}
-        className="w-[16px] h-[16px] mr-[8px] inline-block"
-      />
+      {bankCode && (
+        <img
+          src={`../assets/bank/${bankCode}.png`}
+          alt={bankCode}
+          className="w-[16px] h-[16px] mr-[8px] inline-block"
+        />
+      )}
       <span className="overflow-hidden text-ellipsis whitespace-nowrap">{accountNumber}</span>
     </div>
   );

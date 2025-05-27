@@ -6,6 +6,7 @@ import { CreditAmount } from '../../../../services/interfaces/Transactions/Credi
 import CustomDropdown, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import BankIcon from '../../../../components/BankComponents';
 import { AmountInput } from '../../../../components/ui/AmountInput';
+import { renderBankOptionValue } from '../../../../common/commonFunctions';
 interface AccountInformationProps {
   memberLoginOptions: MemberLoginName[];
   memberId: number;
@@ -81,7 +82,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
             </label>
             <CustomDropdown
               options={cashMemberOptions.map((option) => ({
-                value: `${option.bankCode}_${option.bankAccountNumber}`,
+                value: renderBankOptionValue(option.bankCode, option.bankAccountNumber),
                 label: option.bankAccountNumber,
                 icon: <BankIcon code={option.bankCode} />
               }))}
@@ -103,7 +104,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
             </label>
             <CustomDropdown
               options={cashAgentOptions.map((option) => ({
-                value: `${option.bankCode}_${option.bankAccountNumber}`,
+                value: renderBankOptionValue(option.bankCode, option.bankAccountNumber),
                 label: option.bankAccountNumber,
                 code: option.bankCode,
               }))}

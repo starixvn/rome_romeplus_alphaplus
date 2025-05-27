@@ -15,6 +15,7 @@ import {
   ButtonCancelComponent,
   ButtonApplyComponent,
 } from '../../../../components/ButtonComponents';
+import { renderBankOptionValue } from '../../../../common/commonFunctions';
 
 interface ManualAddDepositFormProps {
   cashAgentOptions: BankInfo[];
@@ -30,7 +31,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
   const [memberId, setMemberId] = useState<number>(0);
   const [paymentFrom, setPaymentFrom] = useState('');
   const [paymentTo, setPaymentTo] = useState(
-    `${cashAgentOptions[0]?.bankCode}_${cashAgentOptions[0]?.bankAccountNumber}`
+    renderBankOptionValue(cashAgentOptions[0]?.bankCode, cashAgentOptions[0]?.bankAccountNumber)
   );
   const [cashMemberOptions, setCashMemberOptions] = useState<BankInfo[]>([]);
   const [creditAmount, setCreditAmount] = useState<CreditAmount>({ minAmt: 0, maxAmt: 0 });
@@ -65,7 +66,9 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
           const bankInfo = await transactionAPI.getCashMemberBankInfo(memberId);
           setCashMemberOptions(bankInfo);
           if (bankInfo.length > 0) {
-            setPaymentFrom(`${bankInfo[0]?.bankCode}_${bankInfo[0]?.bankAccountNumber}`);
+            setPaymentFrom(
+              renderBankOptionValue(bankInfo[0]?.bankCode, bankInfo[0]?.bankAccountNumber)
+            );
           }
         } catch (error) {
           console.error('Error fetching cash member bank info:', error);
@@ -126,13 +129,13 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
           type: 'error',
           message: response.message || t('errorMessages.failedToSubmit'),
         });
+        setIsSubmitting(false);
       }
     } catch (error) {
       setValidationMessage({
         type: 'error',
         message: t('errorMessages.failedToSubmit'),
       });
-    } finally {
       setIsSubmitting(false);
     }
   };

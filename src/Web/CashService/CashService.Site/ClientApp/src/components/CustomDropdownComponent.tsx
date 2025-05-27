@@ -98,7 +98,6 @@ const CustomDropdownComponent = ({
     if (showOptionAll) return 'All';
     return placeholder;
   };
-
   return (
     <div className="relative" ref={dropdownRef}>
       <div

@@ -13,6 +13,7 @@ import UploadImage from '../../Components/UploadImage';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import BankIcon from '../../../../components/BankComponents';
 import { AmountInput } from '../../../../components/ui/AmountInput';
+import { renderBankOptionValue } from '../../../../common/commonFunctions';
 interface ManualAddWithdrawalFormProps {
   onClose?: () => void;
 }
@@ -123,7 +124,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
     setTo('');
     const memberBanks = await transactionAPI.getCashMemberBankInfo(selectedMemberId);
     const memberBankOptions = memberBanks.map((bank) => ({
-      value: `${bank.bankCode}_${bank.bankAccountNumber}`,
+      value: renderBankOptionValue(bank.bankCode, bank.bankAccountNumber),
       label: bank.bankAccountNumber,
       code: bank.bankCode,
       providerId: 0,
@@ -177,16 +178,16 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       setCustId(firstMember?.custId);
 
       const banks: WithdrawalAgentBankDropDown[] = bankInfo.map((bank) => ({
-        value: `${bank.bankCode}_${bank.bankAccountNumber}`,
+        value: renderBankOptionValue(bank.bankCode, bank.bankAccountNumber),
         label: bank.bankAccountNumber,
         code: bank.bankCode,
         providerId: 0,
         paymentMethodId: 0,
       }));
       const mappedProviderInfo: WithdrawalAgentBankDropDown[] = providerInfo.map((provider) => ({
-        value: `${provider.providerName}_${provider.providerName}`,
+        value: renderBankOptionValue('', provider.providerName),
         label: provider.providerName,
-        code: provider.providerName,
+        code: '',
         providerId: provider.providerId,
         paymentMethodId: provider.paymentMethodId,
       }));
@@ -200,7 +201,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
 
       const memberBanks = await transactionAPI.getCashMemberBankInfo(firstMember?.custId);
       const memberBankOptions = memberBanks.map((bank) => ({
-        value: `${bank.bankCode}_${bank.bankAccountNumber}`,
+        value: renderBankOptionValue(bank.bankCode, bank.bankAccountNumber),
         label: bank.bankAccountNumber,
         code: bank.bankCode,
         providerId: 0,

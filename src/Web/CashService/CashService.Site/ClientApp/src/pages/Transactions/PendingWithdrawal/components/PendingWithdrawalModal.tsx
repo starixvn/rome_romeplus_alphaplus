@@ -5,6 +5,7 @@ import {
   displayAmount,
   formatDateTime,
   renderBankAccount,
+  renderBankOptionValue,
 } from '../../../../common/commonFunctions.tsx';
 import CustomDropdownComponent, {
   DropdownOption,
@@ -45,13 +46,13 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
         ]);
 
         const providerOptions = providers.map((provider) => ({
-          value: `${provider.providerName}_${provider.providerName}`,
+          value: renderBankOptionValue('', provider.providerName),
           label: provider.providerName,
-          code: provider.providerName,
+          code: '',
         }));
 
         const bankOptions = bankInfo.map((bank) => ({
-          value: `${bank.bankCode}_${bank.bankAccountNumber}`,
+          value: renderBankOptionValue(bank.bankCode, bank.bankAccountNumber),
           label: bank.bankAccountNumber,
           code: bank.bankCode,
         }));
