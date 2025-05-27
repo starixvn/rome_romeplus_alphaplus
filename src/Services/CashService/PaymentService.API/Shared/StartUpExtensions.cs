@@ -27,7 +27,8 @@ public static class StartUpExtensions
             .AddFanexSql(configuration)
             .AddSingleton<IDynamicRepository, DynamicRepository>()
             .AddSingleton<ISiteDBService, SiteDBService>()
-            .AddSingleton<IWithdrawalService, WithdrawalService>()
+            .AddKeyedSingleton<IWithdrawalService, WithdrawalService>("U2Pay")
+            .AddKeyedSingleton<IWithdrawalService, WithdrawalService>("DirePay")
             .AddSingleton<IPaymentProviderService, U2PayProviderService>()
             .AddSingleton<IPaymentProviderService, DirePayProviderService>();
 
