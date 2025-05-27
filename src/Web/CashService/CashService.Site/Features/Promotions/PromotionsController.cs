@@ -24,7 +24,7 @@ namespace AlphaPlus.CashService.Site.Features.Promotions
             _userSession = userSession;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             var viewModel = new PromotionBaseViewModel
             {
@@ -46,11 +46,11 @@ namespace AlphaPlus.CashService.Site.Features.Promotions
 
         [HttpDelete]
         public async Task<IActionResult> DeletePromotion(string id, CancellationToken cancellationToken)
-        {           
+        {
             var url = $"{_apiBaseUrl}/promotion/delete/{_userSession.CustId}/{id}";
-            var response = await _httpClient.DeleteAsync(url, cancellationToken);    
+            var response = await _httpClient.DeleteAsync(url, cancellationToken);
             response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);        
+            var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
             return Json(result);
         }
     }

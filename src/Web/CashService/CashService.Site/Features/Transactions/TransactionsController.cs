@@ -153,7 +153,7 @@ public class TransactionsController(
         return result;
     }
 
-    private static bool IsValidFile(IFormFile? file)
+    private static bool IsValidFile(IFormFile file)
     {
         if (file == null) return true;
         const long maxFileSize = 1 * 1024 * 1024;

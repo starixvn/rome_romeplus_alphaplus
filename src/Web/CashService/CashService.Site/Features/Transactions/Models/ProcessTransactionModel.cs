@@ -8,7 +8,7 @@ public class ProcessTransactionModel
 
     public string Remark { get; set; }
 
-    public IFormFile? Image { get; set; }
+    public IFormFile Image { get; set; }
 
     public byte[] Payslip { get; set; }
 }

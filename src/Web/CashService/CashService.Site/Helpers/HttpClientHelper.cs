@@ -95,17 +95,17 @@ public class HttpClientHelper
 
 public class CustomHttpClientException : HttpRequestException
 {
-    public Uri? RequestUri { get; }
-    public string? RequestContent { get; }
+    public Uri RequestUri { get; }
+    public string RequestContent { get; }
 
-    public CustomHttpClientException(string message, Exception? innerException, Uri? requestUri, string? requestContent, HttpStatusCode statusCode)
+    public CustomHttpClientException(string message, Exception innerException, Uri requestUri, string requestContent, HttpStatusCode statusCode)
         : base(message, innerException, statusCode)
     {
         RequestUri = requestUri;
         RequestContent = requestContent;
     }
 
-    public CustomHttpClientException(Uri? requestUri, string? requestContent, HttpStatusCode statusCode, string? reasonPhrase)
+    public CustomHttpClientException(Uri requestUri, string requestContent, HttpStatusCode statusCode, string reasonPhrase)
         : base($"Response status code does not indicate success: {(int)statusCode} ({reasonPhrase ?? "Unknown reason"}).", null, statusCode)
     {
         RequestUri = requestUri;
