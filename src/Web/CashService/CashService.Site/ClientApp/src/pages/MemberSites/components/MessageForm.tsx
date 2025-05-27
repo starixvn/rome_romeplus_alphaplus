@@ -5,7 +5,7 @@ import { Contact as ContactComponent } from './Contact';
 import { MobilePhone as MobilePhoneComponent } from './MobiPhone';
 import { useFormContext } from 'react-hook-form';
 import { ANNOUNCEMENT_MAX_LENGTH } from '../../../constants';
-import { TitleMediumComponent } from '../../../components/TitleComponents';
+import { MediumTitleComponent } from '../../../components/TitleComponents';
 
 interface MessageFormProps {
   loading: boolean;
@@ -43,7 +43,7 @@ const MessageForm: React.FC<MessageFormProps> = ({loading}) => {
 
   return (
     <div className="">
-      <TitleMediumComponent title={t('message.title')} />
+      <MediumTitleComponent text={t('message.title')} />
       <p className="pt-[4px] mb-[8px] font-semibold">{t('message.description')}</p>
 
       <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap">

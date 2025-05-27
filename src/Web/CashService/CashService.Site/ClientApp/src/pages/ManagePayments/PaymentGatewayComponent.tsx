@@ -4,7 +4,7 @@ import { paymentProviderService } from '../../services/paymentsAPI';
 import { PaymentProvider } from '../../services/interfaces/Payments/PaymentProvider';
 import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import DailyLimitPopupModal from './SetDailyLimitPopupModal';
-import TitleComponent from '../../components/TitleComponents';
+import TitleComponent, { MediumTitleComponent } from '../../components/TitleComponents';
 import { IconInfo, IconPen } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
 import { ErrorMessageComponent } from '../../components/MessageComponents';
@@ -120,19 +120,13 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
         <div className="card-body">
           <div className="bg-[#ffffff] max-w-[1000px]">
             <div className="px-[14px] py-[8px]">
-              <div className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] max-[768px]:text-[20px] max-[768px]:leading-[24px] ">
-                {tManagePayments('setDailyWithdrawalCount')}
-              </div>
+              <MediumTitleComponent className='mb-[8px]' text={tManagePayments('setDailyWithdrawalCount')} />
               <div className="pb-[8px] text-[12px] max-[768px]:text-[16px] ">
                 {tManagePayments('setDailyWithdrawalCountForYourMembers')}
-              </div>
-                     
+              </div>                     
               <ButtonOutlineComponent text={tManagePayments('setLimit')} onClick={() => onSetLimitClick()}/>
-             
               <span className="block w-[100%] h-[1px] bg-[#e0e0e0] my-[10px]"></span>
-              <div className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] max-[768px]:text-[20px] max-[768px]:leading-[24px] ">
-                {tManagePayments('managePaymentProviders')}
-              </div>
+              <MediumTitleComponent className='my-[8px]' text={tManagePayments('managePaymentProviders')} />
             </div>
             {loading ? (<Loading />) 
               : error ? (<ErrorMessageComponent message={error} />) : (

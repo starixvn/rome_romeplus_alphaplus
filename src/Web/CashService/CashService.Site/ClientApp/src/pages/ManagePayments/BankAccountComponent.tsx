@@ -6,7 +6,7 @@ import { BANK_STATUS_OPTIONS } from '../../constants/paymentConstants';
 import SetTransactionLimitModal from './SetTransactionLimitModal';
 import AddBankAccountComponent from './AddBankAccountComponent';
 import UpdateBankAccountComponent from './UpdateBankAccountComponent';
-import TitleComponent from '../../components/TitleComponents';
+import TitleComponent, { MediumTitleComponent } from '../../components/TitleComponents';
 import { IconDelete,  IconInfo,  IconPen, IconSearch, IconSync } from '../../components/Icons';
 import CustomDropdown from '../../components/CustomDropdownComponent';
 import Loading from '../../components/LoadingComponent';
@@ -280,12 +280,12 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                 </li>
               </ul>
             </div>
-            <div className="card-body h-full">
+            <div className="card-body h-full 123123">
               <div className=" h-full flex flex-col">
                 <div className="bg-[#ffffff] px-[14px] py-[8px]">      
                   <ErrorMessageComponent message={error} />
-                  <SuccessMessageComponent message={successMessage} />
-                  <div className="pb-[8px] mt-[8px] text-[16px] max-[768px]:text-[20px] text-[var(--text-color-primary)] font-semibold">{tManagePayments('manageBankAccountAndLimits')}</div>
+                  <SuccessMessageComponent message={successMessage} />                   
+                  <MediumTitleComponent className='my-[8px]' text={tManagePayments('manageBankAccountAndLimits')} />
                   <div className="">{tManagePayments('addBankAccountAndLimit')}</div>
                   <div className="my-[8px] flex gap-[8px]">                        
                     <ButtonFullComponent className='w-[183px] [&>*]:w-[100%]' text={`+${tManagePayments('addBankAccount')}`} onClick={onAddBankAccount} />

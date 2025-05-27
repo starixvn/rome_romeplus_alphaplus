@@ -2,7 +2,7 @@ import React from 'react';
 import { Domain } from '../../../services/interfaces/MemberSites';
 import DomainCard from './DomainCard';
 import { useTranslation } from 'react-i18next';
-import { TitleMediumComponent } from '../../../components/TitleComponents';
+import { MediumTitleComponent } from '../../../components/TitleComponents';
 
 interface Props {
   domains: Domain[];
@@ -37,7 +37,7 @@ const RegistrationLinks: React.FC<Props> = ({ domains, loading }) => {
     <div className="">
       <div className="flex justify-between items-center">
         <div>
-          <TitleMediumComponent title={t('registrationLinks.title')} />          
+          <MediumTitleComponent text={t('registrationLinks.title')} />          
           <p className="text-[var(--text-color-primary)] pt-[4px] mb-[16px] font-semibold">
             {t('registrationLinks.note')}
           </p>

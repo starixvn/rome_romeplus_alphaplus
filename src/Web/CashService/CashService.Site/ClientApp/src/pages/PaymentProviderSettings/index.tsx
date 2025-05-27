@@ -22,7 +22,7 @@ import { LoadingFullComponent } from '../../components/LoadingComponent';
 import { ButtonApplyComponent, ButtonCancelComponent, ButtonFullComponent, ButtonOutlineComponent } from '../../components/ButtonComponents';
 import { PaymentMethod } from '../../services/interfaces/Payments';
 import { BackButtonComponent } from '../../components/ButtonComponents';
-import TitleComponent, { TitleMediumComponent } from '../../components/TitleComponents';
+import TitleComponent, { MediumTitleComponent } from '../../components/TitleComponents';
 declare global {
   interface Window {
     providerSettingsViewModel: any;
@@ -461,7 +461,7 @@ function PaymentProviderSettings() {
         </div>
         <div className='bg-[#ffffff] px-[16px] py-[10px]'>
           <div className='flex flex-wrap mb-[8px]'>
-            <TitleMediumComponent title={window.providerSettingsViewModel.Provider.Name} />
+            <MediumTitleComponent text={window.providerSettingsViewModel.Provider.Name} />
             <div className='flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full'>
             <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
               <label className="block font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('paymentMethod')}</label>

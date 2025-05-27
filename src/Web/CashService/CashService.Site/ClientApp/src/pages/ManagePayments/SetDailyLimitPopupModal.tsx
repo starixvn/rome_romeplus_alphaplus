@@ -5,7 +5,7 @@ import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponen
 import { ButtonApplyComponent, ButtonCancelComponent, ButtonClosePopupComponent } from '../../components/ButtonComponents';
 import { ensureIntegerInput } from '../../utils/inputHandlers';
 import { useState } from 'react';
-import { TitleMediumComponent } from '../../components/TitleComponents';
+import { MediumTitleComponent } from '../../components/TitleComponents';
 
 
 interface SetDailyLimitPopupModalProps {
@@ -105,8 +105,8 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
   return (
     <div className="bg-[#00000066] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-start justify-center">
       <div className="p-[30px] bg-[#ffffff] mt-[100px] max-w-[400px] max-[768px]:max-w-[90%] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f] text-[12px] max-[768px]:text-[16px]">
-        <div className="relative">         
-          <TitleMediumComponent title={t('managePayments:setDailyWithdrawalCount')} />
+        <div className="relative">
+          <MediumTitleComponent text={t('managePayments:setDailyWithdrawalCount')} />
           <ButtonClosePopupComponent onClick={onClose} />
         </div>
         <div className='my-[8px]'>

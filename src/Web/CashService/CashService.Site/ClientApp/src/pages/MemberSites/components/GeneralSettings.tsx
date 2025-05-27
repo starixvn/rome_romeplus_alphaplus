@@ -2,7 +2,7 @@ import React from 'react';
 import { Setting } from '../../../services/interfaces/MemberSites';
 import { useTranslation } from 'react-i18next';
 import { useFormContext } from 'react-hook-form';
-import { TitleMediumComponent } from '../../../components/TitleComponents';
+import { MediumTitleComponent } from '../../../components/TitleComponents';
 
 interface GeneralSettingsProps {loading: boolean;}
 
@@ -55,7 +55,7 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({loading}) => {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <TitleMediumComponent title={t('generalSettings.title')} />
+        <MediumTitleComponent text={t('generalSettings.title')} />
       </div>
 
       {Object.entries(groupedSettings).map(([category, categorySettings]) => (

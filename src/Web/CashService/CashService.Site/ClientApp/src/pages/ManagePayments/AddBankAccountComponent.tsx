@@ -18,7 +18,7 @@ import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponen
 import MobileComponent from '../../components/MobileComponent';
 import { ensureIntegerInput, ensureNameInput } from '../../utils/inputHandlers';
 import { ButtonApplyComponent, ButtonCancelComponent } from '../../components/ButtonComponents';
-import TitleComponent, { TitleMediumComponent } from '../../components/TitleComponents';
+import TitleComponent, { MediumTitleComponent } from '../../components/TitleComponents';
 import BankIcon from '../../components/BankComponents';
 
 interface AddBankAccountComponentProps {
@@ -289,14 +289,14 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                 <ErrorMessageComponent message={error} />
                 <SuccessMessageComponent message={successMessage} />          
                  
-                <TitleMediumComponent title={tManagePayments('bankStatus')} />                  
+                <MediumTitleComponent text={tManagePayments('bankStatus')} />                  
                 <p className=" my-[8px]">{tManagePayments('bankNote1')}</p>
                 <div className="mb-[16px]" role="group">
                   <EnableButtonComponent isActive={status === '1'} onClick={() => setStatus('1')} />
                   <DisableButtonComponent isActive={status === '2'} onClick={() => setStatus('2')} />
                 </div>
                               
-                <TitleMediumComponent title={tManagePayments('accountInformation')} />
+                <MediumTitleComponent text={tManagePayments('accountInformation')} />
                 <div className='mb-[16px]'>
                   <label className="block  font-semibold text-[#333333] my-[8px]">{tManagePayments('bank')}<span className='text-[#E25757]'>*</span></label>
                   <div className='w-[470px]'>
@@ -315,7 +315,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                 </div>
 
                 <div className=''>
-                  <TitleMediumComponent className='mb-[8px]' title={tManagePayments('transactionType')} required={true} />
+                  <MediumTitleComponent className='mb-[8px]' text={tManagePayments('transactionType')} required={true} />
                   <ValidateMessageComponent message={fieldErrors.selectedTransactionType}  />
                   <div className='inline-block border-[1px] border-[var(--border-control)] rounded-[4px] px-[16px] pb-[16px] bg-[#f8f8f8] mb-[8px]'>
                   {hasDepositTransactionType(selectedBank, banks) && (
@@ -432,7 +432,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   </div>
                 </div>
                 
-                <TitleMediumComponent title={tManagePayments('promptPay')} />             
+                <MediumTitleComponent text={tManagePayments('promptPay')} />             
                 <p className="pb-[8px] ">{tManagePayments('linkMobile')}</p>
                 <div className="btn-group mb-[16px]" role="group">
                     <OnButtonComponent isActive={promptPay} onClick={() => setPromptPay(true)} />
