@@ -8,6 +8,8 @@ namespace AgencyCash.API.Payments.Services;
 
 public interface IDepositService
 {
+    Task<DepositLimit> GetLimit(GetDepositLimitRequest request);
+
     Task<PaymentResult> Manual(ManualDepositRequest request);
 }
 
@@ -16,6 +18,19 @@ public class DepositService(
     ISiteDBService siteDBService,
     Fanex.Logging.ILogger logger) : PaymentService(repository, siteDBService, logger), IDepositService
 {
+    public async Task<DepositLimit> GetLimit(GetDepositLimitRequest request)
+    {
+        var criteria = new GetDepositLimitCriteria(
+            request.AgentId,
+            request.CustId,
+            request.PaymentType,
+            request.ProviderId,
+            request.PaymentMethodId);
+        await repository.ExecuteAsync(criteria);
+
+        return new DepositLimit(criteria.MinAmt, criteria.MaxAmt);
+    }
+
     public async Task<PaymentResult> Manual(ManualDepositRequest request)
     {
         var siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
@@ -32,8 +47,8 @@ public class DepositService(
         var memberSetting = await GetMemberSetting(request.CustId, siteDBConfig.CustDBGroupId);
 
         var criteria = new ManualDepositCriteria(
-            request.CustId,
             request.AgentId,
+            request.CustId,
             memberSetting.AgentGivenCredit,
             memberSetting.CreditMembersGivenCredit,
             memberSetting.MinLimitAmount,

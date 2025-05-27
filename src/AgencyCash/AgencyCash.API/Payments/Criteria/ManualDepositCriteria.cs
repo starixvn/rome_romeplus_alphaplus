@@ -4,8 +4,8 @@ using Fanex.Data.Repository;
 namespace AgencyCash.API.Payments.Criteria;
 
 public class ManualDepositCriteria(
+    int agentId,
     int custId,
-    int uplineId,
     decimal agentGivenCredit,
     decimal creditMembersGivenCredit,
     decimal minLimitAmount,
@@ -18,9 +18,9 @@ public class ManualDepositCriteria(
     string ip,
     int siteDBGroupId) : CriteriaBase
 {
-    public int CustId { get; } = custId;
+    public int AgentId { get; } = agentId;
 
-    public int UplineId { get; } = uplineId;
+    public int CustId { get; } = custId;
 
     public decimal AgentGivenCredit { get; } = agentGivenCredit;
 

@@ -13,9 +13,9 @@ public static class PaymentsEndpoints
     {
         var deposit = app.MapGroup("/api/deposit").WithTags("Deposit");
         deposit
-            .MapGet("/limit", GetLimitDeposit)
-            .AddEndpointFilter<ModelValidationFilter<GetLimitDepositRequest>>()
-            .Produces<LimitDeposit>();
+            .MapGet("/limit", GetDepositLimit)
+            .AddEndpointFilter<ModelValidationFilter<GetDepositLimitRequest>>()
+            .Produces<DepositLimit>();
         deposit
             .MapPost("/manual", ManualDeposit)
             .AddEndpointFilter<ModelValidationFilter<ManualDepositRequest>>()
@@ -32,14 +32,16 @@ public static class PaymentsEndpoints
             .Produces<Result>();
     }
 
-    private static async Task<IResult> GetLimitDeposit([AsParameters] GetLimitDepositRequest request, IDepositService depositService)
+    private static async Task<IResult> GetDepositLimit([AsParameters] GetDepositLimitRequest request, IDepositService depositService)
     {
         if (request == null)
         {
             return BadRequest("Request cannot be null.");
         }
 
-        return TypedResults.Ok(await Task.FromResult(new LimitDeposit(1, 1000)));
+        return TypedResults.Ok(await Task.FromResult(new DepositLimit(1, 1000)));
+
+        //return TypedResults.Ok(await depositService.GetLimit(request));
     }
 
     private static async Task<IResult> ManualDeposit(ManualDepositRequest request, IDepositService depositService)
@@ -71,7 +73,7 @@ public static class PaymentsEndpoints
     }
 
     private static async Task<IResult> ManualWithdrawal(
-        CreateManualWithdrawalRequest request, 
+        CreateManualWithdrawalRequest request,
         IWithdrawalService withdrawalService)
     {
         if (request is null)
