@@ -1,20 +1,26 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace AgencyCash.API.RegisterCashMember.Requests;
 
 public class RegisterCashMemberRequest
 {
-    public required int AgentId { get; set; }
-    public required string UserName { get; set; }
-    public required string Password { get; set; }
-    public required string FirstName { get; set; }
-    public required string LastName { get; set; }
-    public required string Mobile { get; set; }
+    [Required]
+    [Range(1, int.MaxValue, ErrorMessage = "AgentId must be greater than 0.")]
+    public int AgentId { get; set; }
 
-    public IEnumerable<string> Validate()
-    {
-        if (AgentId <= 0)
-            yield return "AgentId must be greater than 0.";
-        if (!Mobile.All(char.IsDigit))
-            yield return "Mobile must be numeric only.";
-        // ...add other validations as needed...
-    }
+    [Required]
+    public string UserName { get; set; }
+
+    [Required]
+    public string Password { get; set; }
+
+    [Required]
+    public string FirstName { get; set; }
+
+    [Required]
+    public string LastName { get; set; }
+
+    [Required]
+    [RegularExpression("^[0-9]+$", ErrorMessage = "Mobile must be numeric only.")]
+    public string Mobile { get; set; }
 }

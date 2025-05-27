@@ -4,12 +4,7 @@ using Fanex.Data.Repository;
 
 namespace AgencyCash.API.RegisterCashMember;
 
-public interface IRegisterCashMemberService
-{
-    Task<RegisterCashMemberResult> RegisterCashMember(RegisterCashMemberCommand command);
-}
-
-public class RegisterCashMemberService: IRegisterCashMemberService
+public class RegisterCashMemberService : IRegisterCashMemberService
 {
     private readonly IDynamicRepository _dynamicRepository;
 
@@ -71,5 +66,12 @@ public class RegisterCashMemberService: IRegisterCashMemberService
             Code = 0,
             Message = "Registration Successful"
         };
+    }
+
+    public Task<CheckUsernameResult> CheckUsernameAvailable(CheckUsernameCommand criteria)
+    {
+        // TODO: Replace with actual repository/database check
+        var isAvailable = true;
+        return Task.FromResult(new CheckUsernameResult(isAvailable));
     }
 }
