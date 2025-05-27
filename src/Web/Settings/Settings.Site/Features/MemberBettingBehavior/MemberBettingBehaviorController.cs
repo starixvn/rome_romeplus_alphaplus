@@ -1,4 +1,5 @@
 using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
 using AlphaPlus.Settings.Site.Features.MemberBettingBehavior.BettingStatistic;
 using AlphaPlus.Settings.Site.Features.MemberBettingBehavior.Profile;
 using AlphaPlus.Settings.Site.Features.Shared;
