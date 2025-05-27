@@ -13,7 +13,7 @@ import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { baseAPI } from '../../services/commonAPI';
 import CustomDropdown, { DropdownOption } from '../../components/CustomDropdownComponent';
 import Loading from '../../components/LoadingComponent';
-import { BackButtonComponent, OffButtonComponent, OnButtonComponent } from '../../components/ButtonComponents';
+import { BackButtonComponent, ButtonOffComponent, ButtonOnComponent } from '../../components/ButtonComponents';
 import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import MobileComponent from '../../components/MobileComponent';
 import { ButtonApplyComponent, ButtonCancelComponent, DisableButtonComponent, EnableButtonComponent } from '../../components/ButtonComponents';
@@ -593,8 +593,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                   {tManagePayments('linkMobile')}
                 </div>
                 <div className="btn-group" role="group">
-                  <OnButtonComponent isActive={formState.promptPay} onClick={() => setFormState({ ...formState, promptPay: true })} />
-                  <OffButtonComponent isActive={!formState.promptPay} onClick={() => setFormState({ ...formState, promptPay: false })} />
+                  <ButtonOnComponent isActive={formState.promptPay} onClick={() => setFormState({ ...formState, promptPay: true })} />
+                  <ButtonOffComponent isActive={!formState.promptPay} onClick={() => setFormState({ ...formState, promptPay: false })} />
                 </div>
               </div>
 

@@ -13,7 +13,7 @@ import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { baseAPI } from '../../services/commonAPI';
 import CustomDropdown, { DropdownOption } from '../../components/CustomDropdownComponent';
 import { LoadingFullComponent } from '../../components/LoadingComponent';
-import { BackButtonComponent, DisableButtonComponent, EnableButtonComponent, OffButtonComponent, OnButtonComponent } from '../../components/ButtonComponents';
+import { BackButtonComponent, DisableButtonComponent, EnableButtonComponent, ButtonOffComponent, ButtonOnComponent } from '../../components/ButtonComponents';
 import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import MobileComponent from '../../components/MobileComponent';
 import { ensureIntegerInput, ensureNameInput } from '../../utils/inputHandlers';
@@ -435,8 +435,8 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                 <MediumTitleComponent text={tManagePayments('promptPay')} />             
                 <p className="pb-[8px] ">{tManagePayments('linkMobile')}</p>
                 <div className="btn-group mb-[16px]" role="group">
-                    <OnButtonComponent isActive={promptPay} onClick={() => setPromptPay(true)} />
-                    <OffButtonComponent isActive={!promptPay} onClick={() => setPromptPay(false)} />
+                    <ButtonOnComponent isActive={promptPay} onClick={() => setPromptPay(true)} />
+                    <ButtonOffComponent isActive={!promptPay} onClick={() => setPromptPay(false)} />
                 </div>             
 
                 <MobileComponent

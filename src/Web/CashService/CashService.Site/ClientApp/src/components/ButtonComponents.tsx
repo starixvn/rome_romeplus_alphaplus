@@ -123,7 +123,7 @@ export const DisableButtonComponent: React.FC<ButtonComponentProps> = ({
   );
 };
 
-export const OnButtonComponent: React.FC<ButtonComponentProps> = ({
+export const ButtonOnComponent: React.FC<ButtonComponentProps> = ({
   isActive,
   onClick
 }) => {
@@ -140,7 +140,7 @@ export const OnButtonComponent: React.FC<ButtonComponentProps> = ({
   );
 };
 
-export const OffButtonComponent: React.FC<ButtonComponentProps> = ({
+export const ButtonOffComponent: React.FC<ButtonComponentProps> = ({
   isActive,
   onClick
 }) => {
