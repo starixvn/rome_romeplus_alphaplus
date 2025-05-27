@@ -1,7 +1,7 @@
 {
   "pendingDeposit": "Pending Deposit",
   "addManualDeposit": "Add Manual Deposit",
-  
+
   "filter": {
     "recentDeposits": "Recent Deposits",
     "all": "All",
@@ -14,7 +14,7 @@
     "last30Mins": "Last 30 Mins",
     "last60Mins": "Last 60 Mins"
   },
-  
+
   "dataGrid": {
     "member": "Member",
     "username": "Username",
@@ -38,7 +38,7 @@
     "loading": "Loading pending deposits...",
     "noDepositsFound": "No pending deposits found"
   },
-  
+
   "pendingDepositModal": {
     "title": "Pending Deposit",
     "username": "Username",
@@ -58,7 +58,7 @@
     "close": "Close",
     "firstLastName": "First/Last Name"
   },
-  
+
   "manualDepositForm": {
     "title": "Add Manual Deposit",
     "accountInformation": "Account Information",
@@ -85,17 +85,17 @@
     "approved": "Approved",
     "rejected": "Rejected"
   },
-  
+
   "errorMessages": {
     "failedToSubmit": "Failed to submit deposit request",
     "failedToApprove": "Failed to approve deposit request",
     "failedToReject": "Failed to reject deposit request"
   },
-  
+
   "successMessages": {
     "depositSubmitted": "Deposit request submitted successfully!",
     "depositUpdated": "Deposit request updated successfully!",
     "depositApproved": "Deposit request approved successfully!",
     "depositRejected": "Deposit request rejected successfully!"
   }
-} 
+}

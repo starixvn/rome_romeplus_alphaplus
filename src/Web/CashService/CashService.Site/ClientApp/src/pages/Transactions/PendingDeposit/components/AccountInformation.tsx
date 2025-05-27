@@ -84,7 +84,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
               options={cashMemberOptions.map((option) => ({
                 value: renderBankOptionValue(option.bankCode, option.bankAccountNumber),
                 label: option.bankAccountNumber,
-                icon: <BankIcon code={option.bankCode} />
+                icon: <BankIcon code={option.bankCode} />,
               }))}
               onSelect={(selected) => onPaymentFromChange(selected)}
               initialValue={paymentFrom}
@@ -106,7 +106,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
               options={cashAgentOptions.map((option) => ({
                 value: renderBankOptionValue(option.bankCode, option.bankAccountNumber),
                 label: option.bankAccountNumber,
-                code: option.bankCode,
+                icon: <BankIcon code={option.bankCode} />,
               }))}
               onSelect={(selected) => onPaymentToChange(selected)}
               initialValue={paymentTo}

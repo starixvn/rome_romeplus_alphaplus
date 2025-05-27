@@ -7,15 +7,14 @@ import {
   renderBankAccount,
   renderBankOptionValue,
 } from '../../../../common/commonFunctions.tsx';
-import CustomDropdownComponent, {
-  DropdownOption,
-} from '../../../../components/CustomDropdownComponent';
+import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import UploadImage from '../../Components/UploadImage';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI.ts';
 import { TransactionTypes } from '../../../../utils/constants.ts';
 import { IconClose } from '../../../../components/Icons.tsx';
 import { ResultMessageComponent } from '../../../../components/MessageComponents.tsx';
 import { approveWithdrawal, rejectWithdrawal } from '../../../../services/pendingWithdrawalAPI.ts';
+import BankIcon from '../../../../components/BankComponents.tsx';
 
 interface PendingWithdrawalModalProps {
   withdrawal: TransactionItem;
@@ -55,6 +54,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
           value: renderBankOptionValue(bank.bankCode, bank.bankAccountNumber),
           label: bank.bankAccountNumber,
           code: bank.bankCode,
+          icon: <BankIcon code={bank.bankCode} />,
         }));
 
         setBankOptions([...bankOptions, ...providerOptions]);
@@ -216,7 +216,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
                     <span className="text-red-500 ml-1">*</span>
                   </div>
                   <div className="w-full md:w-48">
-                    <CustomDropdownComponent
+                    <DropdownComponent
                       options={bankOptions}
                       onSelect={handleChangePaymentFrom}
                       initialValue={withdrawal.paymentFrom}

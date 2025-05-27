@@ -101,7 +101,7 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits, onProcessClick }) => {
                 </tr>
               ))
             ) : (
-              <NoRecordFound colSpan={11} message={t('datagrid.noDepositsFound')} />
+              <NoRecordFound colSpan={11} message={t('dataGrid.noDepositsFound')} />
             )}
           </tbody>
         </table>

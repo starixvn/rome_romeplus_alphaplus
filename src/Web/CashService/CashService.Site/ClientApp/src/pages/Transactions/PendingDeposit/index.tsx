@@ -15,11 +15,11 @@ import {
   TransactionsHistoryParams,
   TransactionsHistoryResponse,
 } from '../../../services/interfaces/Transactions/TransactionHistory';
-import { LoadingFullComponent } from '../../../components/LoadingComponent';
 import TitleComponent from '../../../components/TitleComponents';
 import { ButtonOutlineComponent } from '../../../components/ButtonComponents';
 import PendingDepositModal from './components/PendingDepositModal';
 import { TransactionItem } from '../../../services/interfaces/Transactions/TransactionHistory';
+import { LoadingFullComponent } from '../../../components/LoadingComponent';
 
 const PendingDeposit: React.FC = () => {
   const { t } = useTranslation('pendingDeposit');

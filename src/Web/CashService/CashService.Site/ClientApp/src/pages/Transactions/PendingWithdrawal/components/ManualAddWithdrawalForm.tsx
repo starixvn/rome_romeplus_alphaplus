@@ -71,8 +71,10 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
         }
       } else {
         setResultMessage({ type: 'error', message: addWithdrawalResponse.message });
+        setIsSubmitting(false);
       }
-    } finally {
+    } catch (error) {
+      setResultMessage({ type: 'error', message: t('manualWithdrawalForm.error') });
       setIsSubmitting(false);
     }
   };
