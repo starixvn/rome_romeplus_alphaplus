@@ -39,5 +39,9 @@
   "thereNoChangeToUpdate": "업데이트 할 내용이 없습니다",
   "cashService": "캐시 서비스",
   "valueMustBeGreaterThanZero": "값은 0보다 크거나 같아야 합니다",
-  "search": "검색..."
+  "search": "검색...",
+  "completed": "완료됨",
+  "processing": "처리 중",
+  "failed": "실패",
+  "maintenance": "유지보수"
 } 

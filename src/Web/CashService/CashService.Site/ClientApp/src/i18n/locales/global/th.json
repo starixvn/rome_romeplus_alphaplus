@@ -39,5 +39,9 @@
   "thereNoChangeToUpdate": "ไม่มีการเปลี่ยนแปลงในการอัปเดตนี้",
   "cashService": "บริการเงินสด",
   "valueMustBeGreaterThanZero": "ค่าต้องมีค่ามากกว่าศูนย์",
-  "search": "ค้นหา..."
+  "search": "ค้นหา...",
+  "completed": "เสร็จสมบูรณ์",
+  "processing": "กำลังประมวลผล",
+  "failed": "ล้มเหลว",
+  "maintenance": "บำรุงรักษา"
 } 

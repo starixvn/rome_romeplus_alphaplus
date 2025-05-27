@@ -39,5 +39,9 @@
   "thereNoChangeToUpdate": "更新する変更はありません。",
   "cashService": "キャッシュサービス",
   "valueMustBeGreaterThanZero": "値は0より大きくなければなりません",
-  "search": "検索..."
+  "search": "検索...",
+  "completed": "完了",
+  "processing": "処理中",
+  "failed": "失敗",
+  "maintenance": "メンテナンス"
 } 

@@ -40,5 +40,9 @@
   "thereNoChangeToUpdate": "There is no change to update",
   "cashService": "Cash Service",
   "valueMustBeGreaterThanZero": "Value must be greater than zero",
-  "search": "Search..."
+  "search": "Search...",
+  "completed": "Completed",
+  "processing": "Processing",
+  "failed": "Failed",
+  "maintenance": "Maintenance"
 }

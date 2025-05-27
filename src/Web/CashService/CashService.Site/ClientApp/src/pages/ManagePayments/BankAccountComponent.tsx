@@ -15,6 +15,7 @@ import BankIcon from '../../components/BankComponents';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { ButtonFullComponent, ButtonOutlineComponent } from '../../components/ButtonComponents';
+import { StatusDisabledComponent ,StatusEnabledComponent } from '../../components/StatusComponents';
 
 interface BankAccountComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
@@ -430,9 +431,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                             <td>{account.accountNumber}</td>
                             <td>{getTransactionTypeNames(account.transactionTypes)}</td>
                             <td>
-                              <span className={`rounded-[20px] px-[10px] py-[3px] ${account.status === 1 ? 'bg-[#D4E7D9]' : 'bg-[#FBD8D8]'}`}>
-                                {account.status === 1 ? tGlobal('enabled') : tGlobal('disabled')}
-                              </span>
+                            {account.status === 1 ? <StatusEnabledComponent /> : <StatusDisabledComponent />}
                             </td>
                             <td>{account.lastUpdatedStr}</td>
                           </tr>

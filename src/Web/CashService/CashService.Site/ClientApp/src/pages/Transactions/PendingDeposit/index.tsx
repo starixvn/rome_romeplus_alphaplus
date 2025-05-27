@@ -15,7 +15,7 @@ import {
   TransactionsHistoryParams,
   TransactionsHistoryResponse,
 } from '../../../services/interfaces/Transactions/TransactionHistory';
-import { LoadingComponent } from '../../../components/LoadingComponent';
+import { LoadingFullComponent } from '../../../components/LoadingComponent';
 import TitleComponent from '../../../components/TitleComponents';
 import { ButtonOutlineComponent } from '../../../components/ButtonComponents';
 import PendingDepositModal from './components/PendingDepositModal';
@@ -178,9 +178,9 @@ const PendingDeposit: React.FC = () => {
           />
 
           {isLoading ? (
-            <div className="flex justify-center items-center py-8">
-              <LoadingComponent />
-            </div>
+            
+              <LoadingFullComponent />
+             
           ) : (
             <DataGrid deposits={filteredDeposits} onProcessClick={handleClickProcess} />
           )}

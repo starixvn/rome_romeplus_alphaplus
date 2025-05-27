@@ -39,5 +39,9 @@
   "thereNoChangeToUpdate": "沒有任何的變化更新。",
   "cashService": "現金服務",
   "valueMustBeGreaterThanZero": "值必須大於0",
-  "search": "搜尋..."
+  "search": "搜尋...",
+  "completed": "已完成",
+  "processing": "處理中",
+  "failed": "失敗",
+  "maintenance": "維護"
 } 

@@ -14,7 +14,7 @@ import {
 } from '../../../services/interfaces/Transactions/TransactionHistory.ts';
 import { transactionAPI } from '../../../services/transactionsHistoryAPI.ts';
 import { TransactionType } from '../../../common/commonFunctions.tsx';
-import { LoadingComponent } from '../../../components/LoadingComponent';
+import { LoadingFullComponent } from '../../../components/LoadingComponent';
 import TitleComponent from '../../../components/TitleComponents.tsx';
 import { ButtonOutlineComponent } from '../../../components/ButtonComponents';
 
@@ -135,9 +135,9 @@ const PendingWithdrawal: React.FC = () => {
           />
 
           {isLoading ? (
-            <div className="flex justify-center items-center py-8">
-              <LoadingComponent />
-            </div>
+            
+              <LoadingFullComponent />
+         
           ) : (
             <DataGrid withdrawals={filteredWithdrawals} />
           )}

@@ -9,6 +9,7 @@ import { IconInfo, IconPen } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
 import { ErrorMessageComponent } from '../../components/MessageComponents';
 import { ButtonOutlineComponent, ButtonFullComponent } from '../../components/ButtonComponents';
+import { StatusEnabledComponent, StatusDisabledComponent, StatusNoneComponent } from '../../components/StatusComponents';
 
 interface PaymentGatewayComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
@@ -45,18 +46,6 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
     fetchProviders();
   }, []);
 
-  const getStatusText = (status: number) => {
-    switch (status) {
-      case 0:
-        return tManagePayments('disabled');
-      case 1:
-        return tManagePayments('enabled');
-      case 2:
-        return tManagePayments('-');
-      default:
-        return tManagePayments('unknown');
-    }
-  };
 
   const onFeeClick = (provider: PaymentProvider) => {
     setSelectedProvider(provider);
@@ -162,11 +151,11 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
                             <ButtonFullComponent text={tGlobal('view')} onClick={() => onFeeClick(provider)} />
                           </td>
                           <td>
-                          <span
-                              className={` inline-block rounded-[20px] min-w-[70px] text-center px-[10px] py-[3px] ${provider.status === 0 ? 'bg-[#FBD8D8]' : provider.status === 1 ? 'bg-[#D4E7D9]': 'bg-[#E0E0E0]'}`}
-                            >
-                              {getStatusText(provider.status)}
-                            </span>
+                          {provider.status === 0
+                          ? <StatusDisabledComponent />
+                          : provider.status === 1
+                            ? <StatusEnabledComponent />
+                            : <StatusNoneComponent />}
                           </td>
                           <td>{provider.lastUpdatedStr}</td>
                         </tr>

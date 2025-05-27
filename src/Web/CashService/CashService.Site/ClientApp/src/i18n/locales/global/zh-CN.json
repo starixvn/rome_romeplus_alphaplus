@@ -39,5 +39,9 @@
   "thereNoChangeToUpdate": "没有任何的变化更新。",
   "cashService": "现金服务",
   "valueMustBeGreaterThanZero": "值必须大于0",
-  "search": "搜索..."
+  "search": "搜索...",
+  "completed": "已完成",
+  "processing": "处理中",
+  "failed": "失败",
+  "maintenance": "维护"
 } 
