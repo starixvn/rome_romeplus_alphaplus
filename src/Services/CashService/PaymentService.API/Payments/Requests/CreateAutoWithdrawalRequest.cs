@@ -1,4 +1,4 @@
-namespace PaymentService.API.Payments.Requests;
+namespace AlphaPlus.PaymentService.API.Payments.Requests;
 
 public class CreateAutoWithdrawalRequest
 {

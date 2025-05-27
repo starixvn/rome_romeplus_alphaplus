@@ -1,9 +1,9 @@
-using PaymentService.API.Shared.Criteria;
-using PaymentService.API.Shared.Models;
+using AlphaPlus.PaymentService.API.Shared.Criteria;
+using AlphaPlus.PaymentService.API.Shared.Models;
 using Fanex.Data.Repository;
 using Microsoft.Extensions.Caching.Memory;
 
-namespace PaymentService.API.Shared;
+namespace AlphaPlus.PaymentService.API.Shared;
 
 public interface ISiteDBService
 {

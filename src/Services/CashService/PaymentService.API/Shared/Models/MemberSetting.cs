@@ -1,4 +1,4 @@
-namespace PaymentService.API.Payments.Models;
+namespace AlphaPlus.PaymentService.API.Payments.Models;
 
 public record MemberSetting(
     decimal AgentGivenCredit,

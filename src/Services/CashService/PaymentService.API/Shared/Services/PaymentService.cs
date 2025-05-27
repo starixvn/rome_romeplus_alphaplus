@@ -1,11 +1,11 @@
-using PaymentService.API.Payments.Criteria;
-using PaymentService.API.Payments.Models;
-using PaymentService.API.Shared;
-using PaymentService.API.Shared.Helpers;
-using PaymentService.API.Shared.Models;
+using AlphaPlus.PaymentService.API.Payments.Criteria;
+using AlphaPlus.PaymentService.API.Payments.Models;
+using AlphaPlus.PaymentService.API.Shared;
+using AlphaPlus.PaymentService.API.Shared.Helpers;
+using AlphaPlus.PaymentService.API.Shared.Models;
 using Fanex.Data.Repository;
 
-namespace PaymentService.API.Payments.Services;
+namespace AlphaPlus.PaymentService.API.Payments.Services;
 
 public abstract class PaymentService(
     IDynamicRepository repository,

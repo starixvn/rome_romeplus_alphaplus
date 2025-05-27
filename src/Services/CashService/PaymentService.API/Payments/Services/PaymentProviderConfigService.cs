@@ -1,10 +1,10 @@
-using PaymentService.API.Payments.Criteria;
-using PaymentService.API.Payments.Models;
-using PaymentService.API.Shared;
+using AlphaPlus.PaymentService.API.Payments.Criteria;
+using AlphaPlus.PaymentService.API.Payments.Models;
+using AlphaPlus.PaymentService.API.Shared;
 using Fanex.Data.Repository;
 using Microsoft.Extensions.Caching.Memory;
 
-namespace PaymentService.API.Payments.Services;
+namespace AlphaPlus.PaymentService.API.Payments.Services;
 
 public interface IPaymentProviderConfigService
 {

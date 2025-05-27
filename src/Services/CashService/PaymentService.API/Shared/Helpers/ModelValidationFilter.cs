@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using PaymentService.API.Shared.Models;
+using AlphaPlus.PaymentService.API.Shared.Models;
 
-namespace PaymentService.API.Shared.Helpers;
+namespace AlphaPlus.PaymentService.API.Shared.Helpers;
 
 public class ModelValidationFilter<T> : IEndpointFilter where T : class
 {

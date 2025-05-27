@@ -1,10 +1,10 @@
-using PaymentService.API.Payments.Models;
-using PaymentService.API.Payments.Requests;
-using PaymentService.API.Shared;
-using PaymentService.API.Shared.Models;
+using AlphaPlus.PaymentService.API.Payments.Models;
+using AlphaPlus.PaymentService.API.Payments.Requests;
+using AlphaPlus.PaymentService.API.Shared;
+using AlphaPlus.PaymentService.API.Shared.Models;
 using Fanex.Data.Repository;
 
-namespace PaymentService.API.Payments.Services;
+namespace AlphaPlus.PaymentService.API.Payments.Services;
 
 public interface IWithdrawalService
 {

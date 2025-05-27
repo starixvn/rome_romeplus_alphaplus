@@ -1,8 +1,8 @@
-using PaymentService.API.Payments.Models;
-using PaymentService.API.Shared.Helpers;
+using AlphaPlus.PaymentService.API.Payments.Models;
+using AlphaPlus.PaymentService.API.Shared.Helpers;
 using Fanex.Data.Repository;
 
-namespace PaymentService.API.Payments.Criteria;
+namespace AlphaPlus.PaymentService.API.Payments.Criteria;
 
 public class GetPaymentProviderConfigCriteria(PaymentProvider provider, int siteDBGroupId) : CriteriaBase
 {

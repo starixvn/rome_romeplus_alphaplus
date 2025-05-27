@@ -1,6 +1,6 @@
 using Fanex.Data.Repository;
 
-namespace PaymentService.API.Shared.Criteria;
+namespace AlphaPlus.PaymentService.API.Shared.Criteria;
 
 public class GetSiteDBConfigCriteria(int custId) : CriteriaBase
 {

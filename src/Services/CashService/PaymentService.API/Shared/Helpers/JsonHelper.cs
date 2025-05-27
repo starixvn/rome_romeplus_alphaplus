@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace PaymentService.API.Shared.Helpers;
+namespace AlphaPlus.PaymentService.API.Shared.Helpers;
 
 public static class JsonHelper
 {

@@ -1,4 +1,4 @@
-namespace PaymentService.API.Shared.Models;
+namespace AlphaPlus.PaymentService.API.Shared.Models;
 
 public class Result
 {

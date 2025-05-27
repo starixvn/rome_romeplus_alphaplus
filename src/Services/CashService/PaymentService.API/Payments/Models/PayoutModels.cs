@@ -4,9 +4,9 @@ using System.Text;
 using System.Security.Cryptography;
 using System.Linq;
 using System.Text.Json.Serialization;
-using PaymentService.API.Payments.Services;
+using AlphaPlus.PaymentService.API.Payments.Services;
 
-namespace PaymentService.API.Payments.Models
+namespace AlphaPlus.PaymentService.API.Payments.Models
 {
     public class PayoutRequest
     {
