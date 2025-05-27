@@ -6,17 +6,17 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.PaymentService.API.Payments.Services;
 
-public interface IWithdrawalService
+public interface IPaymentWithProviderService
 {
     Task<Result> ProcessPayout(CreateManualWithdrawalRequest request);
 }
 
-public class WithdrawalService : PaymentService, IWithdrawalService
+public class PaymentWithProviderService : PaymentService, IPaymentWithProviderService
 {
     private readonly IEnumerable<IPaymentProviderService> _paymentProviders;
     private readonly PaymentProviderConfig _paymentProviderConfig;
 
-    public WithdrawalService(
+    public PaymentWithProviderService(
         IDynamicRepository repository,
         ISiteDBService siteDBService,
         Fanex.Logging.ILogger logger,

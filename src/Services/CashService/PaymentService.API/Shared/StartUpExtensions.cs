@@ -30,8 +30,8 @@ public static class StartUpExtensions
             .AddSingleton<IPaymentProviderConfigService, PaymentProviderConfigService>()
             .AddSingleton<IDynamicRepository, DynamicRepository>()
             .AddSingleton<ISiteDBService, SiteDBService>()
-            .AddKeyedSingleton<IWithdrawalService, WithdrawalService>("U2Pay")
-            .AddKeyedSingleton<IWithdrawalService, WithdrawalService>("DirePay")
+            .AddKeyedSingleton<IPaymentWithProviderService, PaymentWithProviderService>("U2Pay")
+            .AddKeyedSingleton<IPaymentWithProviderService, PaymentWithProviderService>("DirePay")
             .AddHttpClient<IPaymentProviderService, U2PayProviderService>("http://localhost:5000/api/u2pay/")
             .AddHttpClient<IPaymentProviderService, DirePayProviderService>("http://localhost:5000/api/dire/");
 
