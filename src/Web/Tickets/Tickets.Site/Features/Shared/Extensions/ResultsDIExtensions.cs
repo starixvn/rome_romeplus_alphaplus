@@ -9,6 +9,7 @@ using Fanex.Result.Core.RemotingRef;
 using Fanex.Result.Core.SabaClub;
 using Fanex.Result.Core.SAGaming;
 using Fanex.Result.Core.SportsLottery;
+using Fanex.Result.Core.WCasino;
 using Fanex.Result.Core.WM;
 
 namespace AlphaPlus.Tickets.Site.Features.Shared.Extensions;
@@ -21,6 +22,7 @@ public static class ResultsDIExtensions
 
         return services
             .AddScoped<IConfigurationHelper, ConfigurationHelper>()
+            .AddSingleton<IWCasinoResultBuilder>(_ => new WCasinoResultBuilder(configuration.GetValue<string>("WMResultImagePath")))
             .AddSingleton<IWMResultBuilder>(_ => new WMResultBuilder(configuration.GetValue<string>("WMResultImagePath")))
             .AddSingleton<IGTCasinoResultBuilder>(_ => new GTCasinoResultBuilder(configuration.GetValue<string>("GTCasinoResultImagePath")))
             .AddSingleton<ISAGamingResultBuilder>(_ => new SAGamingResultBuilder(configuration.GetValue<string>("SAGamingResultImagePath")))

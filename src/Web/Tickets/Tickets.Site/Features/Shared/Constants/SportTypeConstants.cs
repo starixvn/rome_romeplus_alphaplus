@@ -1,3 +1,4 @@
+using AlphaPlus.Tickets.Site.Features.Results.Normal;
 using Fanex.Result.Core.Base;
 
 namespace AlphaPlus.Tickets.Site.Features.Shared.Constants;
@@ -26,5 +27,6 @@ internal static class SportTypeConstants
     public const int VirtualSteepleChase = (int)SportType.VirtualSteepleChase;
     public const int VirtualHarnessRacing = (int)SportType.VirtualHarnessRacing;
     public const int VirtualMotorRacingVS7 = (int)SportType.VirtualMotorRacingVS7;
+    public const int WCasino = 136;
     public static readonly HashSet<int> SportListUsingLeague3rd = [Bitcoin, VirtuallySports, VirtualSteepleChase, VirtualHarnessRacing, VirtualMotorRacingVS7];
 }

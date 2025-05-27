@@ -78,7 +78,7 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
         ThirdPartyConfigs GetThirdPartyConfig(int sportTypeId)
         {
             var configs = configuration.GetSection("Result3rdConfig").Get<List<ThirdPartyConfigs>>();
-            return configs.FirstOrDefault(x => x.VendorId == sportTypeId);
+            return configs.FirstOrDefault(x => x.SportTypeId == sportTypeId);
         }
     }
 

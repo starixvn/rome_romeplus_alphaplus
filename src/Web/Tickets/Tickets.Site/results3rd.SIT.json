@@ -2,14 +2,21 @@
   "Result3rdConfig": [
     {
       "Name": "PlaytechLive",
-      "VendorId": 129,
+      "SportTypeId": 129,
       "Url": "http://saba-wallet-group-004.3rd-party.k8s.nebula.sit/api/PlayTechLiveInternal/GetBetHistoryUrl",
       "Debug": 0
     },
     {
       "Name": "RichGaming",
-      "VendorId": 123,
+      "SportTypeId": 123,
       "Url": "http://saba-wallet-group-001.3rd-party.k8s.nebula.sit/api/RichGamingInternal/GetBetHistoryUrl",
+      "Debug": 0
+    },
+    {
+      "Name": "MacauGames",
+      "SportTypeId": 212,
+      "VendorId": 12,
+      "Url": "http://172.16.4.41:7129/api/VoidBridgeInternal/GetBetHistoryUrl",
       "Debug": 0
     }
   ]
