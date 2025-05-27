@@ -6,6 +6,7 @@ using AlphaPlus.PaymentService.API.DirePay;
 using Fanex.Data.Repository;
 using AlphaPlus.PaymentService.API.Payments.Services;
 using Fanex.Data.SqlServer;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.PaymentService.API.Shared;
 
@@ -25,12 +26,14 @@ public static class StartUpExtensions
 
         services
             .AddFanexSql(configuration)
+            .AddSingleton<IMemoryCache, MemoryCache>()
+            .AddSingleton<IPaymentProviderConfigService, PaymentProviderConfigService>()
             .AddSingleton<IDynamicRepository, DynamicRepository>()
             .AddSingleton<ISiteDBService, SiteDBService>()
             .AddKeyedSingleton<IWithdrawalService, WithdrawalService>("U2Pay")
             .AddKeyedSingleton<IWithdrawalService, WithdrawalService>("DirePay")
-            .AddSingleton<IPaymentProviderService, U2PayProviderService>()
-            .AddSingleton<IPaymentProviderService, DirePayProviderService>();
+            .AddHttpClient<IPaymentProviderService, U2PayProviderService>("http://localhost:5000/api/u2pay/")
+            .AddHttpClient<IPaymentProviderService, DirePayProviderService>("http://localhost:5000/api/dire/");
 
         return services;
     }
