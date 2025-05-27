@@ -12,7 +12,7 @@ public interface IWithdrawalService
     Task<Result> CreateManualWithdrawal(CreateManualWithdrawalRequest request);
 }
 
-public class WithdrawalService : AgencyCashService, IWithdrawalService
+public class WithdrawalService : PaymentService, IWithdrawalService
 {
     private readonly IDynamicRepository _repository;
     private readonly ISiteDBService _siteDBService;
@@ -67,7 +67,7 @@ public class WithdrawalService : AgencyCashService, IWithdrawalService
         {
             SyncCashAccumCredit(
                 createManualWithdrawalCriteria.CashAccumCreditTbl,
-                siteDBConfig.CustDBGroupId.ToString());
+                siteDBConfig.CustDBGroupId);
 
             await WriteLogs(logEntries, siteDBConfig);
         }
