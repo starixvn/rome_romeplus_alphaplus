@@ -14,7 +14,7 @@ export const TransactionType = {
 };
 
 export const renderBankAccount = (bankAccount: string) => {
-  const [bankCode, accountNumber] = bankAccount.split('_');
+  const [bankCode, accountNumber] = bankAccount.split('-');
   return (
     <div className="flex items-center">
       <img
