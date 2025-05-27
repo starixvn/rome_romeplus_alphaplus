@@ -57,7 +57,9 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
       'selectedTransactionType',
       'apiKey',
       'merchantID',
-      'appSecret'
+      'appSecret',
+      'agreeToTerms',
+      'telegramAssistantUrl'
     ];
 
     return fieldsToCompare.some(field => formState[field] !== orgFormState[field]);
@@ -66,9 +68,9 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
   const orgFormState: PaymentMethodFormState = {
     selectedPaymentMethod: existingPaymentMethod.method.toString(),
     selectedTransactionType: existingPaymentMethod.transactionType.toString(),
-    apiKey: '123',
-    merchantID: '123',
-    appSecret: '123',
+    apiKey: '',
+    merchantID: '',
+    appSecret: '',
     agreeToTerms: true,
     telegramAssistantUrl: orgTelegramAssistantUrl
   };
@@ -85,7 +87,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
 
     const hasError = Object.values(errors).some(Boolean);
     setFieldErrors(errors);
-    return hasError;
+    return !hasError;
   };
 
   const [paymentMethods, setPaymentMethods] = React.useState<PaymentMethod[]>([]);
@@ -112,7 +114,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
       }
 
       const response = await paymentProviderService.getAddPaymentMethodInfo(providerId, parseInt(formState.selectedTransactionType));
-      console.log(response);
+      
       if(response.error) {
         setError(response.error.message);
         return;
@@ -250,61 +252,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
             <div>
             <hr className='mt-[16px] mb-[16px] border-[#0000001F]'  />
               <TitleNormalComponent title={tPaymentProviderSettings('addPaymentMethodStep3')} />  123
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-              {
-                error && (
-                  <ValidateMessageComponent message={tPaymentProviderSettings('failToSetupPaymentMethodWarning')} />
-                )
-              }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+              <ValidateMessageComponent message={error} />
               <div className='flex flex-wrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full'>
               <div className="w-[48%]">
                 <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('apiKey')}<span className='text-[#E25757]'>*</span></label>
