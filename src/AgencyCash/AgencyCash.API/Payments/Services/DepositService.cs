@@ -42,7 +42,7 @@ public class DepositService(
             request.PaymentTo,
             1,
             request.Amount,
-            request.PaySlip,
+            request.PaySlipBuffer,
             request.IP,
             siteDBConfig.SiteDBGroupId);
         var logEntries = await repository.FetchAsync<LogEntry>(criteria);

@@ -22,8 +22,9 @@ public class ManualDepositRequest
     [PositiveNumber]
     public decimal Amount { get; init; }
 
-    [Length(0, 1024 * 1024, ErrorMessage = "{0} cannot exceed 1MB.")]
-    public byte[] PaySlip { get; init; }
+    public string PaySlip { get; init; }
+
+    public byte[] PaySlipBuffer { get; set; }
 
     public string Remark { get; init; }
 
