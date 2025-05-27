@@ -9,8 +9,6 @@ public class RevertDepositTransactionToPendingCommand : NonQueryCommand
     public string Remark { get; set; }
     public int UserId { get; set; }
     public string Ip { get; set; }
-
-    [SpParam(Ignored = true)]
     public int SiteDbGroupId { get; set; }
 
     public int ErrCode { get; set; }

@@ -18,6 +18,7 @@ interface DataGridProps {
   pageIndex: number;
   pageSize: number;
   isLoading: boolean;
+  transactionType: number;
   onRefreshNeeded?: () => void;
   columnFilter?: string[];
 }
@@ -27,6 +28,7 @@ const DataGrid: React.FC<DataGridProps> = ({
   pageIndex,
   pageSize,
   isLoading,
+  transactionType,
   onRefreshNeeded,
   columnFilter = ['All'],
 }) => {
@@ -170,6 +172,7 @@ const DataGrid: React.FC<DataGridProps> = ({
           transactionId={selectedTransactionId}
           custId={selectedCustId}
           isOpen={isDetailModalOpen}
+          transactionType={transactionType}
           onClose={handleCloseModal}
           onRevertSuccess={handleRevertSuccess}
         />

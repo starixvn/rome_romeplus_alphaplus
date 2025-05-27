@@ -17,7 +17,9 @@ public interface ITransactionService
 
     Task<TransactionModel> GetTransactionByIdAsync(long transactionId, int custId, int siteDbGroupId);
 
-    Task<ResultModel> RevertTransactionToPending(RevertDepositTransactionToPendingCommand command);
+    Task<ResultModel> RevertDepositTransactionToPending(RevertDepositTransactionToPendingCommand command);
+
+    Task<ResultModel> RevertWithdrawalTransactionToPending(RevertWithdrawalTransactionToPendingCommand command);
 
     Task<IEnumerable<MemberInfo>> GetMembersAsync(int agentId, int custDbGroupId);
 
@@ -55,10 +57,19 @@ public class TransactionService(IDynamicRepository dynamicRepository, ICommonSer
         return transaction;
     }
 
-    public async Task<ResultModel> RevertTransactionToPending(RevertDepositTransactionToPendingCommand command)
+    public async Task<ResultModel> RevertDepositTransactionToPending(RevertDepositTransactionToPendingCommand command)
     {
         await dynamicRepository.ExecuteAsync(command);
-        Console.WriteLine(JsonConvert.SerializeObject(command));
+        return new ResultModel
+        {
+            Code = command.ErrCode,
+            Message = command.ErrMsg
+        };
+    }
+
+    public async Task<ResultModel> RevertWithdrawalTransactionToPending(RevertWithdrawalTransactionToPendingCommand command)
+    {
+        await dynamicRepository.ExecuteAsync(command);
         return new ResultModel
         {
             Code = command.ErrCode,

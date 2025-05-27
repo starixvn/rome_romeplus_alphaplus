@@ -56,12 +56,24 @@ public static class TransactionsEndpoints
             Description = "Returns transaction details"
         });
 
-        group.MapPost("/revert-pending", async (ITransactionService service, [FromBody] RevertDepositTransactionToPendingCommand command) =>
+        group.MapPost("/revert-pending-deposit", async (ITransactionService service, [FromBody] RevertDepositTransactionToPendingCommand command) =>
         {
-            var result = await service.RevertTransactionToPending(command);
+            var result = await service.RevertDepositTransactionToPending(command);
             return Results.Ok(result);
         })
-        .WithName("RevertTransactionToPending")
+        .WithName("RevertDepositTransactionToPending")
+        .WithOpenApi(operation => new OpenApiOperation(operation)
+        {
+            Summary = "Revert transaction to pending",
+            Description = "Revert transaction to pending"
+        });
+
+        group.MapPost("/revert-pending-withdrawal", async (ITransactionService service, [FromBody] RevertWithdrawalTransactionToPendingCommand command) =>
+        {
+            var result = await service.RevertWithdrawalTransactionToPending(command);
+            return Results.Ok(result);
+        })
+        .WithName("RevertWithdrawalTransactionToPending")
         .WithOpenApi(operation => new OpenApiOperation(operation)
         {
             Summary = "Revert transaction to pending",

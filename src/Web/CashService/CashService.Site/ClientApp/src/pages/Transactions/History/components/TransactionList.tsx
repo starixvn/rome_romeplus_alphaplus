@@ -190,6 +190,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         pageSize={apiParams.pageSize}
         isLoading={loading}
         columnFilter={columnFilter}
+        transactionType={transactionType}
       />
       {!loading && (
         <Pagination

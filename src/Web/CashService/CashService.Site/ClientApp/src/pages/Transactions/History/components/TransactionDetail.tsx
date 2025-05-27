@@ -8,6 +8,7 @@ import {
   getStatusStyle,
   mappingStatus,
   renderBankAccount,
+  TransactionType,
 } from '../../../../common/commonFunctions';
 import { IconClose } from '../../../../components/Icons';
 import { ResultMessageComponent } from '../../../../components/MessageComponents';
@@ -21,6 +22,7 @@ interface TransactionDetailProps {
   transactionId: number | null;
   custId: number | null;
   isOpen: boolean;
+  transactionType: number;
   onClose: () => void;
   onRevertSuccess?: () => void;
 }
@@ -29,6 +31,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
   transactionId,
   custId,
   isOpen,
+  transactionType,
   onClose,
   onRevertSuccess,
 }) => {
@@ -77,7 +80,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
     setReverting(true);
     setRevertAlert({ type: null, message: '' });
     try {
-      var result = await transactionAPI.revertTransaction(transactionId, remarks);
+      var result = await transactionAPI.revertTransaction(transactionId, remarks, transactionType === TransactionType.Deposit);
       if (result.isSuccessful) {
         setRevertAlert({
           type: 'success',

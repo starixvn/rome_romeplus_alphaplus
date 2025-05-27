@@ -16,6 +16,7 @@ public class TransactionsController(
     private readonly int agentId = userSession.CustId;
     private readonly int custDbGroupId = userSession.CustDBGroupId;
     private readonly int siteDbGroupId = userSession.SiteDBGroupId;
+    private readonly int userId = userSession.UserId;
 
     public IActionResult Index() => Ok("Transactions");
 
@@ -210,19 +211,38 @@ public class TransactionsController(
     }
 
     [HttpPost]
-    public async Task<IActionResult> RevertTransactionToPending([FromBody] RevertTransaction request)
+    public async Task<IActionResult> RevertDepositTransactionToPending([FromBody] RevertTransaction request)
     {
         try
         {
             request.SiteDbGroupId = siteDbGroupId;
-            request.UserId = agentId;
+            request.UserId = userId;
             request.Ip = GetClientIp();
-            var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/api/transactions/revert-pending", request);
+            var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/api/transactions/revert-pending-deposit", request);
             return Ok(result);
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Error reverting transaction");
+            logger.LogError(ex, "Error reverting deposit transaction");
+            return StatusCode(StatusCodes.Status500InternalServerError,
+                new { Code = StatusCodes.Status500InternalServerError, Message = "An unexpected error occurred" });
+        }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> RevertWithdrawalTransactionToPending([FromBody] RevertTransaction request)
+    {
+        try
+        {
+            request.SiteDbGroupId = siteDbGroupId;
+            request.UserId = userId;
+            request.Ip = GetClientIp();
+            var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/api/transactions/revert-pending-withdrawal", request);
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error reverting withdrawal transaction");
             return StatusCode(StatusCodes.Status500InternalServerError,
                 new { Code = StatusCodes.Status500InternalServerError, Message = "An unexpected error occurred" });
         }
