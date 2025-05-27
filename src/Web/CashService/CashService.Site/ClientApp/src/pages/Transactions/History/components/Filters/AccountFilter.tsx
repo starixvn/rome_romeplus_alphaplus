@@ -50,12 +50,13 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
       </label>
       <CustomDropdown
         options={accountOptions.map((option) => {
+          console.log(option);
           const [bankCode, accountNumber] = option.split('_');
           return {
             value: option,
             label: accountNumber,
             code: bankCode,
-          icon: <BankIcon code={option.bankCode} />
+          icon: <BankIcon code={bankCode} />
           };
         })}
         onSelect={(selected) => onAccountChange(String(selected.value))}

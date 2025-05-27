@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { CalendarIcon, SearchIcon } from '../../../../components/Icons';
-import BankIcon from '../../../../components/BankComponents';
+
 interface FilterProps {
   recentWithdrawals: string;
   setRecentWithdrawals: (value: string) => void;
@@ -16,7 +16,6 @@ const Filter: React.FC<FilterProps> = ({
   setSearchTerm,
 }) => {
   const { t } = useTranslation('pendingWithdrawal');
-          icon: <BankIcon code={bank.bankCode} />
 
   return (
     <>

@@ -54,7 +54,7 @@ const Filter: React.FC<FilterProps> = ({
               value: option,
               label: option?.split('_')[1],
               code: option?.split('_')[0],
-            icon: <BankIcon code={option.bankCode} />
+            icon: <BankIcon code={option?.split('_')[0]} />
             }))}
             onSelect={(selected) => setCashAgentTo(String(selected.value))}
             showOptionAll={true}
