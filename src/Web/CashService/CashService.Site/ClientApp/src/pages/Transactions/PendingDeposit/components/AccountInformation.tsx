@@ -89,6 +89,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
               onSelect={(selected) => onPaymentFromChange(selected)}
               initialValue={paymentFrom}
               showOptionAll={false}
+              searchable={true}
             />
           </div>
         </div>
@@ -111,6 +112,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
               onSelect={(selected) => onPaymentToChange(selected)}
               initialValue={paymentTo}
               showOptionAll={false}
+              searchable={true}
             />
           </div>
 
