@@ -13,8 +13,7 @@
           <td colspan="6">
             <table class="tblDesc">
               <tr class="headerSportTypeDetail" style="text-align:center;">
-                <td>
-                </td>                
+                <td></td>
                 <td>
                   <xsl:value-of select="xslLogFormat:GetLogResource('WinLimit')" />
                 </td>
@@ -22,19 +21,23 @@
                   <xsl:value-of select="xslLogFormat:GetLogResource('IsAutoReset')" />
                 </td>                
               </tr>
-              <xsl:for-each select="potentialwinlimit">
-                <tr>
-                  <td class="colW1">
-                    <xsl:value-of select="xslLogFormat:GetProductName(@productid)" />
-                  </td>                  
-                  <td class="colW2">
-                    <xsl:value-of select="xslLogFormat:FormatWinLossLimit(@winlimit)" />
-                  </td>
-                  <td class="colW2">
-                    <xsl:value-of select="@isautoreset" />
-                  </td>                  
-                </tr>
-              </xsl:for-each>
+              <xsl:for-each select="winlimit">
+                <xsl:for-each select="r">
+                  <tr>
+                    <td class="colW1">
+                      <xsl:if test="@productid">
+                        <xsl:value-of select="xslLogFormat:GetProductName(@productid)" />
+                      </xsl:if>                      
+                    </td>
+                    <td class="colW2">
+                      <xsl:value-of select="xslLogFormat:FormatWinLossLimit(@winlimit)" />
+                    </td>
+                    <td class="colW2">
+                      <xsl:value-of select="@isautoreset" />
+                    </td>                  
+                  </tr>
+                </xsl:for-each>
+              </xsl:for-each>         
             </table>
           </td>
         </tr>
