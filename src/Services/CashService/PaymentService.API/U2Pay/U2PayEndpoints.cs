@@ -13,7 +13,7 @@ public static class U2PayEndpoints
         group.MapPost("/deposit-callback", ManualDeposit);
         //.Produces<IEnumerable<int>>();
 
-        group.MapPost("/payout", (IPaymentWithProviderService paymentWithProviderService, CreateManualWithdrawalRequest request) => Payout(paymentWithProviderService, request));
+        group.MapPost("/payout", ([FromKeyedServices("U2Pay")] IPaymentWithProviderService paymentWithProviderService, CreateManualWithdrawalRequest request) => Payout(paymentWithProviderService, request));
 
         return app;
     }
@@ -23,7 +23,7 @@ public static class U2PayEndpoints
         return Results.Ok(paymentService.Deposit());
     }
 
-    static IResult Payout(IPaymentWithProviderService paymentWithProviderService, CreateManualWithdrawalRequest request)
+    static IResult Payout([FromKeyedServices("U2Pay")] IPaymentWithProviderService paymentWithProviderService, CreateManualWithdrawalRequest request)
     {
         return Results.Ok(paymentWithProviderService.ProcessPayout(request));
     }

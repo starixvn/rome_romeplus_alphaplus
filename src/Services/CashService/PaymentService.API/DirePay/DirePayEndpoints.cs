@@ -12,7 +12,7 @@ public static class DirePayEndpoints
         group.MapPost("/deposit-callback", ManualDeposit);
         //.Produces<IEnumerable<int>>();
 
-        group.MapPost("/payout", (IPaymentWithProviderService paymentWithProviderService, CreateManualWithdrawalRequest request) => Payout(paymentWithProviderService, request));
+        group.MapPost("/payout", ([FromKeyedServices("DirePay")] IPaymentWithProviderService paymentWithProviderService, CreateManualWithdrawalRequest request) => Payout(paymentWithProviderService, request));
 
         return app;
     }
@@ -22,7 +22,7 @@ public static class DirePayEndpoints
         return Results.Ok(paymentService.Deposit());
     }
 
-    static IResult Payout(IPaymentWithProviderService paymentWithProviderService, CreateManualWithdrawalRequest request)
+    static IResult Payout([FromKeyedServices("DirePay")] IPaymentWithProviderService paymentWithProviderService, CreateManualWithdrawalRequest request)
     {
         return Results.Ok(paymentWithProviderService.ProcessPayout(request));
     }
