@@ -6,7 +6,7 @@ import { PaymentMethod } from '../../services/interfaces/Payments/PaymentMethod'
 import { QRCodeCanvas } from 'qrcode.react';
 import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
 import { ButtonApplyComponent, ButtonCancelComponent, ButtonClosePopupComponent } from '../../components/ButtonComponents';
-import { MediumTitleComponent, NormalTitleComponent } from '../../components/TitleComponents';
+import { LableTitleComponent, MediumTitleComponent, NormalTitleComponent } from '../../components/TitleComponents';
 
 interface AddPaymentMethodModalProps {
   onClose: () => void;
@@ -175,7 +175,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
               <NormalTitleComponent text={tPaymentProviderSettings('addPaymentMethodStep1')} />
               <div className='flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full'>
               <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                <label className="block  font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('transactionType')}<span className='text-[#E25757]'>*</span></label>
+                <LableTitleComponent text={`${tPaymentProviderSettings('transactionType')}`} required={true} />
                 <select 
                   className={`h-[32px] max-[768px]:h-[40px] max-[768px]:leading-[40px] w-full border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.selectedTransactionType ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                   value={formState.selectedTransactionType}
@@ -192,7 +192,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
               </div>
             
               <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                <label className="block font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('paymentMethod')}<span className='text-[#E25757]'>*</span></label>
+                <LableTitleComponent text={`${tPaymentProviderSettings('paymentMethod')}`} required={true} />
                 <select 
                   className={`h-[32px] max-[768px]:h-[40px] max-[768px]:leading-[40px] w-full border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.selectedPaymentMethod ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                   value={formState.selectedPaymentMethod}
@@ -229,7 +229,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
               <NormalTitleComponent text={tPaymentProviderSettings('addPaymentMethodStep3')} />
               <div className='flex flex-wrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full'>
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <label className="block  font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('apiKey')}<span className='text-[#E25757]'>*</span></label>
+                  <LableTitleComponent text={`${tPaymentProviderSettings('apiKey')}`} required={true} />
                   <input
                     type="text"
                     className={`h-[32px] max-[768px]:h-[40px] max-[768px]:leading-[40px] w-full border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.apiKey ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
@@ -242,7 +242,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
                   <ValidateMessageComponent message={fieldErrors.apiKey}  />
                 </div>
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <label className="block  font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('merchantID')}<span className='text-[#E25757]'>*</span></label>
+                  <LableTitleComponent text={`${tPaymentProviderSettings('merchantID')}`} required={true} />
                   <input
                     type="text"
                     className={`h-[32px] max-[768px]:h-[40px] max-[768px]:leading-[40px] w-full border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.merchantID ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
@@ -255,7 +255,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({ onClose, 
                   <ValidateMessageComponent message={fieldErrors.merchantID}  />
                 </div>
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <label className="block font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('appSecret')}<span className='text-[#E25757]'>*</span></label>
+                  <LableTitleComponent text={`${tPaymentProviderSettings('appSecret')}`} required={true} />
                   <input
                     type="password"
                     className={`h-[32px] max-[768px]:h-[40px] max-[768px]:leading-[40px] w-full border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.appSecret ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}

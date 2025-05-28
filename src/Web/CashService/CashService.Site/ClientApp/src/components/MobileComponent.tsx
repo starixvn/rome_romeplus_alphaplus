@@ -1,7 +1,7 @@
 import React from 'react';
 import { ensureIntegerInput } from '../utils/inputHandlers';
 import { ValidateMessageComponent } from './MessageComponents';
-
+import { LableTitleComponent } from './TitleComponents';
 interface MobileComponentProps {
   isShow: boolean;
   label: string;
@@ -28,7 +28,7 @@ const MobileComponent: React.FC<MobileComponentProps> = ({
 }) => {
   return isShow &&(
     <div className="mb-[8px]">
-      <label className="block font-semibold text-[#333333] my-[8px]">{label}<span className='text-[#E25757]'>*</span></label>
+      <LableTitleComponent text={label} required={true} />
       <div className="flex items-center h-[32px] max-[768px]:h-[40px] w-[470px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer before:content-['+']">
         <input
           type="text"

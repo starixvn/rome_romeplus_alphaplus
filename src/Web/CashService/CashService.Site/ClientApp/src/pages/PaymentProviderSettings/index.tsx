@@ -22,7 +22,7 @@ import { LoadingFullComponent } from '../../components/LoadingComponent';
 import { ButtonApplyComponent, ButtonCancelComponent, ButtonFullComponent, ButtonOutlineComponent } from '../../components/ButtonComponents';
 import { PaymentMethod } from '../../services/interfaces/Payments';
 import { BackButtonComponent } from '../../components/ButtonComponents';
-import TitleComponent, { MediumTitleComponent } from '../../components/TitleComponents';
+import TitleComponent, { LableTitleComponent, MediumTitleComponent } from '../../components/TitleComponents';
 import { StatusCompletedComponent, StatusDisabledComponent, StatusFailedComponent, StatusMaintenanceComponent, StatusProcessingComponent } from '../../components/StatusComponents';
 declare global {
   interface Window {
@@ -415,16 +415,14 @@ function PaymentProviderSettings() {
             
           </div>
           <div className="flex gap-[24px] max-[768px]:flex-col max-[768px]:gap-[8px]">
-            <div>      
-            <p className="block font-semibold text-[#333333] my-[8px]">
-              {tPaymentProviderSettings('setUpPaymentMethodsForMembers')}
-            </p>   
+            <div>
+            <LableTitleComponent text={tPaymentProviderSettings('setUpPaymentMethodsForMembers')} />            
             <ButtonFullComponent text={`+ ${tPaymentProviderSettings('addPaymentMethod')}`} onClick={onAddPaymentMethod} />            
             </div>
             {providerStatus != 2 && (
               <div>
-                <p className="flex items-center font-semibold text-[#333333] my-[8px]">
-                  {tGlobal('enable')}/{tGlobal('disable')}
+                <p className="flex items-center">
+                  <LableTitleComponent text={`${tGlobal('enable')}/${tGlobal('disable')}`} />
                   <Tippy
                     content={
                       <div>
@@ -465,7 +463,7 @@ function PaymentProviderSettings() {
             <MediumTitleComponent text={window.providerSettingsViewModel.Provider.Name} />
             <div className='flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full'>
             <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-              <label className="block font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('paymentMethod')}</label>
+              <LableTitleComponent text={tPaymentProviderSettings('paymentMethod')} />
               <select 
                 className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer" 
                 value={selectedPaymentMethod}
@@ -478,7 +476,7 @@ function PaymentProviderSettings() {
             </div>
 
             <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-              <label className="block font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('status')}</label>
+              <LableTitleComponent text={tPaymentProviderSettings('status')} />
               <select 
                 className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer" 
                 value={selectedStatus}
@@ -491,7 +489,7 @@ function PaymentProviderSettings() {
             </div>
 
             <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-              <label className="block  font-semibold text-[#333333] my-[8px]">{tPaymentProviderSettings('transactionType')}</label>
+              <LableTitleComponent text={tPaymentProviderSettings('transactionType')} />
               <select 
                 className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer" 
                 value={selectedTransactionType}

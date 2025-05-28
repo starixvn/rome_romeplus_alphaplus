@@ -5,7 +5,7 @@ import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponen
 import { ensureIntegerInput, ensureDecimalInput } from '../../utils/inputHandlers';
 import { ButtonApplyComponent, ButtonCancelComponent, ButtonClosePopupComponent } from '../../components/ButtonComponents';
 import { createDefaultPaymentTransactionLimit } from '../../services/interfaces/Payments';
-import { MediumTitleComponent } from '../../components/TitleComponents';
+import { LableTitleComponent, MediumTitleComponent } from '../../components/TitleComponents';
 
 interface SetTransactionLimitModalProps {
   onClose: () => void;
@@ -250,7 +250,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
               </div>
               <div className='flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full'>
               <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                <label className="block font-bold text-[#333333] my-[8px]">{tManagePayments('minPerTransaction')}</label>
+                <LableTitleComponent text={tManagePayments('minPerTransaction')} />
                 <input
                   type="text"
                   className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none ${
@@ -268,7 +268,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                 <ValidateMessageComponent message={fieldErrors.minDeposit} />
               </div>
               <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                <label className="block font-bold text-[#333333] my-[8px]">{tManagePayments('maxPerTransaction')}</label>
+                <LableTitleComponent text={tManagePayments('maxPerTransaction')} />
                 <input
                   type="text"
                   className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none ${
@@ -289,7 +289,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
               <div className="text-[var(--text-color-primary)] my-[8px] font-semibold">{tManagePayments('withdrawal')}</div>
               <div className='flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full'>
               <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                <label className="block font-bold text-[#333333] my-[8px]">{tManagePayments('minPerTransaction')}</label>
+                <LableTitleComponent text={tManagePayments('minPerTransaction')} />
                 <input
                   type="text"
                   className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none ${
@@ -307,7 +307,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
                 <ValidateMessageComponent message={fieldErrors.minWithdrawal} />
               </div>
               <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                <label className="block font-bold text-[#333333] my-[8px]">{tManagePayments('maxPerTransaction')}</label>
+                <LableTitleComponent text={tManagePayments('maxPerTransaction')} />
                 <input
                   type="text"
                   className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none ${
@@ -327,7 +327,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({
               </div>
               <div className='flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full'>
               <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                <label className="block font-bold text-[#333333] my-[8px]">{tManagePayments('dailyWithdrawalCount')}</label>
+                <LableTitleComponent text={tManagePayments('dailyWithdrawalCount')} />
                 <input
                   type="text"
                   className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)]"

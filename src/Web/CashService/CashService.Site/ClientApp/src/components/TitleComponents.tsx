@@ -61,3 +61,16 @@ export const NormalTitleComponent: React.FC<MediumTitleComponentProps> = ({
     </h3>
   );
 };
+
+export const LableTitleComponent: React.FC<MediumTitleComponentProps> = ({
+  text,
+  required = false,
+  className = '',
+}) => {
+  return text &&  (    
+    <label className={`${className} block font-semibold text-[#333333] my-[8px] `}>
+      {text}
+      {required && <span className="text-[#FF0000]">*</span>}
+    </label>
+  );
+};

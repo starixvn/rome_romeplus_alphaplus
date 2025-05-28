@@ -18,7 +18,7 @@ import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponen
 import MobileComponent from '../../components/MobileComponent';
 import { ensureIntegerInput, ensureNameInput } from '../../utils/inputHandlers';
 import { ButtonApplyComponent, ButtonCancelComponent } from '../../components/ButtonComponents';
-import TitleComponent, { MediumTitleComponent } from '../../components/TitleComponents';
+import TitleComponent, { LableTitleComponent, MediumTitleComponent } from '../../components/TitleComponents';
 import BankIcon from '../../components/BankComponents';
 
 interface AddBankAccountComponentProps {
@@ -298,7 +298,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                               
                 <MediumTitleComponent text={tManagePayments('accountInformation')} />
                 <div className='mb-[16px]'>
-                  <label className="block  font-semibold text-[#333333] my-[8px]">{tManagePayments('bank')}<span className='text-[#E25757]'>*</span></label>
+                  <LableTitleComponent text={tManagePayments('bank')} required={true} />
                   <div className='w-[470px]'>
                     <CustomDropdown
                       options={banks.map(bank => ({
@@ -320,7 +320,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   <div className='inline-block border-[1px] border-[var(--border-control)] rounded-[4px] px-[16px] pb-[16px] bg-[#f8f8f8] mb-[8px]'>
                   {hasDepositTransactionType(selectedBank, banks) && (
                     <div className="mb-3">
-                      <label className="block  font-semibold text-[#333333] my-[8px]">{tManagePayments('depositType')}</label>
+                      <LableTitleComponent text={tManagePayments('depositType')} />
                       <div className="flex gap-[10px]" role="group">
                         {hasManualDepositTransactionType(selectedBank, banks) && (
                           <button
@@ -350,7 +350,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
 
                   {hasWithdrawalTransactionType(selectedBank, banks) && (
                     <div>
-                      <label className="block  font-semibold text-[#333333] my-[8px]">{tManagePayments('withdrawalType')}</label>
+                      <LableTitleComponent text={tManagePayments('withdrawalType')} />
                       <div className="btn-group" role="group">
                         {hasManualWithdrawalTransactionType(selectedBank, banks) && (
                           <button
@@ -371,7 +371,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   const mappingTypes = selectedBankObj?.depositMatchingMode?.mappingTypes || [];  
                   return selectedBank && selectedBankObj && mappingTypes.length > 0 && selectedAutoDeposit && (
                     <div className="mb-3">
-                      <label className="block  font-semibold text-[#333333] my-[8px]">{tManagePayments('depositMatchingMode')}</label>
+                      <LableTitleComponent text={tManagePayments('depositMatchingMode')} />
                       <div className="flex gap-[8px]" role="group">
                         {mappingTypes.includes(1) && (   
                           <label className='flex items-center cursor-pointer capitalize' htmlFor="manualMatching1" onClick={() => setDepositMatchingMode(1)}>
@@ -393,7 +393,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
 
                 <div className="flex flex-nowrap gap-[16px] mb-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                   <div className='w-[230px] pt-[4px] max-[768px]:w-[48%]'>
-                    <label className="block  font-semibold text-[#333333] my-[8px]">{tManagePayments('accountHolderName')}<span className='text-[#E25757]'>*</span></label>                
+                    <LableTitleComponent text={tManagePayments('accountHolderName')} required={true} />                
                     <input
                       type="text"
                       className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountHolderName ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
@@ -406,7 +406,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   </div>
 
                   <div className='w-[230px] pt-[4px] max-[768px]:w-[48%]'>
-                    <label className="block  font-semibold text-[#333333] my-[8px]">{tManagePayments('bankAccountNumber')}<span className='text-[#E25757]'>*</span></label>
+                    <LableTitleComponent text={tManagePayments('bankAccountNumber')} required={true} />
                     <input
                       type="text"
                       className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountNumber ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
@@ -420,7 +420,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({
                   </div>
 
                   <div className='w-[230px] pt-[4px] max-[768px]:w-[48%]'>
-                    <label className="block  font-semibold text-[#333333] my-[8px]">{tManagePayments('accountNickname')}</label>
+                    <LableTitleComponent text={tManagePayments('accountNickname')} />
                     <input
                       type="text"
                       className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer`}

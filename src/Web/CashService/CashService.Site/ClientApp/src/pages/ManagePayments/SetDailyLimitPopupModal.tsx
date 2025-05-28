@@ -5,7 +5,7 @@ import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponen
 import { ButtonApplyComponent, ButtonCancelComponent, ButtonClosePopupComponent } from '../../components/ButtonComponents';
 import { ensureIntegerInput } from '../../utils/inputHandlers';
 import { useState } from 'react';
-import { MediumTitleComponent } from '../../components/TitleComponents';
+import { LableTitleComponent, MediumTitleComponent } from '../../components/TitleComponents';
 
 
 interface SetDailyLimitPopupModalProps {
@@ -116,10 +116,8 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
         <form onSubmit={onSubmit}>
           <div className="mb-[16px]">
             <div className=" ">
-              <div className="pb-[8px] mb-[20px] block">{t('managePayments:setMaxDailyWithdrawalCountForYourMembers')} </div>
-              <div>
-                <label htmlFor="dailyLimit" className="pb-[8px] block">{t('managePayments:dailyWithdrawalCount')}</label>
-              </div>
+              <div className="pb-[8px] mb-[8px] block">{t('managePayments:setMaxDailyWithdrawalCountForYourMembers')} </div>           
+              <LableTitleComponent text={`${t('managePayments:dailyWithdrawalCount')}`} />
               <input
                 type="text"
                 maxLength={5}

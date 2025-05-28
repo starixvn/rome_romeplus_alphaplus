@@ -6,7 +6,7 @@ import { BANK_STATUS_OPTIONS } from '../../constants/paymentConstants';
 import SetTransactionLimitModal from './SetTransactionLimitModal';
 import AddBankAccountComponent from './AddBankAccountComponent';
 import UpdateBankAccountComponent from './UpdateBankAccountComponent';
-import TitleComponent, { MediumTitleComponent } from '../../components/TitleComponents';
+import TitleComponent, { LableTitleComponent, MediumTitleComponent } from '../../components/TitleComponents';
 import { IconDelete,  IconInfo,  IconPen, IconSearch, IconSync } from '../../components/Icons';
 import CustomDropdown from '../../components/CustomDropdownComponent';
 import Loading from '../../components/LoadingComponent';
@@ -291,9 +291,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                     <div className="flex px-[14px] bg-[#ffffff] flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
 
                       <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
-                     
-                          <label htmlFor="bankSelect" className="block font-semibold text-[#333333] my-[8px]">{tManagePayments('bank')}</label>                           
-                          
+                          <LableTitleComponent text={tManagePayments('bank')} />                          
                           <CustomDropdown                           
                             options={(() => {                              
                               return banks.map(bank => ({
@@ -309,8 +307,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                       </div>
 
                       <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
-                    
-                          <label htmlFor="transactionTypeSelect" className="block font-semibold text-[#333333] my-[8px]">{tManagePayments('transactionType')}</label>
+                          <LableTitleComponent text={tManagePayments('transactionType')} />
                           <select
                             id="transactionTypeSelect"
                             className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
@@ -330,8 +327,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                       </div>
 
                       <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
-                        
-                          <label htmlFor="statusSelect" className="block font-semibold text-[#333333] my-[8px]">{tManagePayments('status')}</label>
+                          <LableTitleComponent text={tManagePayments('status')} />
                           <select
                             id="statusSelect"
                             className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
