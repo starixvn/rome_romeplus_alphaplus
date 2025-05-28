@@ -4,6 +4,7 @@ using AlphaPlus.PaymentService.API.Shared;
 using AlphaPlus.PaymentService.API.U2Pay;
 using AlphaPlus.PaymentService.API.DirePay;
 using AlphaPlus.PaymentService.API.Payments.Services;
+using AlphaPlus.PaymentService.API.Payments.Models;
 
 namespace AlphaPlus.PaymentService.API.Shared;
 
@@ -11,11 +12,13 @@ public static class StartUpExtensions
 {
     public static IServiceCollection AddPaymentServices(this IServiceCollection services, IConfiguration configuration)
     {
+        var paymentProviderConfig = configuration.GetSection("PaymentProviderConfig").Get<PaymentProviderConfig>();
         services
+            .AddSingleton(paymentProviderConfig)
             .AddKeyedSingleton<IPaymentWithProviderService, PaymentWithProviderService>("U2Pay")
             .AddKeyedSingleton<IPaymentWithProviderService, PaymentWithProviderService>("DirePay")
-            .AddHttpClient<IPaymentProviderService, U2PayProviderService>("http://localhost:5000/api/u2pay/") // TODO: Change to configuration
-            .AddHttpClient<IPaymentProviderService, DirePayProviderService>("http://localhost:5000/api/direpay/"); // TODO: Change to configuration
+            .AddHttpClient<IPaymentProviderService, U2PayProviderService>(paymentProviderConfig.BaseUrl)
+            .AddHttpClient<IPaymentProviderService, DirePayProviderService>(paymentProviderConfig.BaseUrl);
 
         return services;
     }

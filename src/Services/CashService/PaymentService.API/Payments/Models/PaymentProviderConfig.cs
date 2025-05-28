@@ -2,6 +2,8 @@ namespace AlphaPlus.PaymentService.API.Payments.Models;
 
 public class PaymentProviderConfig
 {
+    public string MerchantName { get; set; }
+    public string MerchantNo { get; set; }
     public string ApiKey { get; set; }
     public string ApiSecret { get; set; }
     public string BaseUrl { get; set; }
