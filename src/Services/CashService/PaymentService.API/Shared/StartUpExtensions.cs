@@ -12,20 +12,10 @@ public static class StartUpExtensions
     public static IServiceCollection AddPaymentServices(this IServiceCollection services, IConfiguration configuration)
     {
         services
-            .AddKeyedScoped<IPaymentService, U2PayPaymentService>("U2Pay")
-            .AddHttpClient<IPaymentService, U2PayPaymentService>("http://localhost:5000/api/u2pay/");
-        services
-            .AddKeyedScoped<IPaymentService, DirePayPaymentService>("Dire")
-            .AddHttpClient<U2PayPaymentService>(client =>
-            {
-                client.BaseAddress = new Uri("http://localhost:5000/api/dire/");
-            });
-
-        services
             .AddKeyedSingleton<IPaymentWithProviderService, PaymentWithProviderService>("U2Pay")
             .AddKeyedSingleton<IPaymentWithProviderService, PaymentWithProviderService>("DirePay")
-            .AddHttpClient<IPaymentProviderService, U2PayProviderService>("http://localhost:5000/api/u2pay/")
-            .AddHttpClient<IPaymentProviderService, DirePayProviderService>("http://localhost:5000/api/dire/");
+            .AddHttpClient<IPaymentProviderService, U2PayProviderService>("http://localhost:5000/api/u2pay/") // TODO: Change to configuration
+            .AddHttpClient<IPaymentProviderService, DirePayProviderService>("http://localhost:5000/api/direpay/"); // TODO: Change to configuration
 
         return services;
     }
