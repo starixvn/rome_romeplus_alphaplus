@@ -79,7 +79,9 @@
     "amountRangeError": "Amount must less than or equal to member cash balance",
     "imageSizeError": "Image size must be less than 1 MB",
     "addWithdrawalSuccess": "Add withdrawal successfully!!!",
-    "memberCashBalance": "Member Cash Balance"
+    "memberCashBalance": "Member Cash Balance",
+    "minAmount": "Min",
+    "maxAmount": "Max"
   },
 
   "updateWithdrawal": {

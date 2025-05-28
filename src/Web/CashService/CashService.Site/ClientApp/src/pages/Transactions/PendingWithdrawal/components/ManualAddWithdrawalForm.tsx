@@ -113,11 +113,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       return false;
     }
 
-    if (
-      isNaN(withdrawalAmount) ||
-      withdrawalAmount <= minAmount ||
-      (maxAmount && withdrawalAmount > maxAmount)
-    ) {
+    if (isNaN(withdrawalAmount) || withdrawalAmount > memberCashBalance) {
       setResultMessage({ type: 'error', message: t('manualWithdrawalForm.amountRangeError') });
       return false;
     }
