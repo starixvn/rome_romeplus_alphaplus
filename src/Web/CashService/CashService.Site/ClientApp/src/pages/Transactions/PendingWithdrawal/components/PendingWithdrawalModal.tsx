@@ -11,12 +11,18 @@ import DropdownComponent, { DropdownOption } from '../../../../components/Custom
 import UploadImage from '../../Components/UploadImage';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI.ts';
 import { TransactionTypes } from '../../../../utils/constants.ts';
-import { IconClose } from '../../../../components/Icons.tsx';
 import { ResultMessageComponent } from '../../../../components/MessageComponents.tsx';
 import { approveWithdrawal, rejectWithdrawal } from '../../../../services/pendingWithdrawalAPI.ts';
 import BankIcon from '../../../../components/BankComponents.tsx';
-import { LableTitleComponent, MediumTitleComponent } from '../../../../components/TitleComponents.tsx';
-import { ButtonApplyComponent, ButtonCancelComponent, ButtonClosePopupComponent } from '../../../../components/ButtonComponents.tsx';
+import {
+  LableTitleComponent,
+  MediumTitleComponent,
+} from '../../../../components/TitleComponents.tsx';
+import {
+  ButtonApplyComponent,
+  ButtonCancelComponent,
+  ButtonClosePopupComponent,
+} from '../../../../components/ButtonComponents.tsx';
 
 interface PendingWithdrawalModalProps {
   withdrawal: TransactionItem;
@@ -146,8 +152,10 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
     <div className="bg-[#00000066] fixed inset-0 flex items-start justify-center z-50 max-[768px]:items-start">
       <div className="p-[30px] w-full bg-[#ffffff] mt-[50px] max-w-[900px] max-[768px]:max-w-[90%] max-[768px]:h-[90%] overflow-auto rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f] max-[768px]:mt-[16px]">
         <div className="relative mb-[16px]">
-          <MediumTitleComponent text={` ${t('pendingWithdrawalModal.title')} (${withdrawal.transId})`} />
-          <ButtonClosePopupComponent onClick={onClose} />           
+          <MediumTitleComponent
+            text={` ${t('pendingWithdrawalModal.title')} (${withdrawal.transId})`}
+          />
+          <ButtonClosePopupComponent onClick={onClose} />
         </div>
         {resultMessage.type && (
           <ResultMessageComponent
@@ -162,22 +170,18 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
               <table className="w-full h-full">
                 <thead>
                   <tr className="text-left text-[#333333] font-semibold">
-                    <th className="px-[8px] py-[4px]">
-                      {t('pendingWithdrawalModal.username')}
-                    </th>
-                    <th className="px-[8px] py-[4px]">
-                      {t('pendingWithdrawalModal.name')}
-                    </th>
-                    <th className="px-[8px] py-[4px]">
-                      {t('pendingWithdrawalModal.betCredit')}
-                    </th>
+                    <th className="px-[8px] py-[4px]">{t('pendingWithdrawalModal.username')}</th>
+                    <th className="px-[8px] py-[4px]">{t('pendingWithdrawalModal.name')}</th>
+                    <th className="px-[8px] py-[4px]">{t('pendingWithdrawalModal.betCredit')}</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td className="px-[8px] py-[4px]">{withdrawal.username}</td>
                     <td className="px-[8px] py-[4px]">{`${withdrawal.firstName} ${withdrawal.lastName}`}</td>
-                    <td className="px-[8px] py-[4px] text-[var(--text-color-primary)] font-semibold">{displayAmount(withdrawal.amount)}</td>
+                    <td className="px-[8px] py-[4px] text-[var(--text-color-primary)] font-semibold">
+                      {displayAmount(withdrawal.amount)}
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -242,8 +246,16 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
         </div>
 
         <div className="flex gap-[8px]">
-          <ButtonCancelComponent text={t('pendingWithdrawalModal.reject')} onClick={handleReject} disabled={isSubmitting} />
-          <ButtonApplyComponent text={t('pendingWithdrawalModal.approve')} onClick={handleApprove} disabled={isSubmitting} />
+          <ButtonCancelComponent
+            text={t('pendingWithdrawalModal.reject')}
+            onClick={handleReject}
+            disabled={isSubmitting}
+          />
+          <ButtonApplyComponent
+            text={t('pendingWithdrawalModal.approve')}
+            onClick={handleApprove}
+            disabled={isSubmitting}
+          />
         </div>
       </div>
     </div>

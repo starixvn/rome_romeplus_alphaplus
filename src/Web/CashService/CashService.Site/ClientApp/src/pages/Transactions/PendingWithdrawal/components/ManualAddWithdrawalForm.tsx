@@ -15,7 +15,11 @@ import DropdownComponent, { DropdownOption } from '../../../../components/Custom
 import BankIcon from '../../../../components/BankComponents';
 import { AmountInput } from '../../../../components/ui/AmountInput';
 import { renderBankOptionValue } from '../../../../common/commonFunctions';
-import { BackButtonComponent, ButtonApplyComponent, ButtonCancelComponent } from '../../../../components/ButtonComponents';
+import {
+  BackButtonComponent,
+  ButtonApplyComponent,
+  ButtonCancelComponent,
+} from '../../../../components/ButtonComponents';
 import { MediumTitleComponent, LableTitleComponent } from '../../../../components/TitleComponents';
 import TitleComponent from '../../../../components/TitleComponents';
 interface ManualAddWithdrawalFormProps {
@@ -254,7 +258,11 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
         <TitleComponent title={t('manualWithdrawalForm.title')} />
       </div>
 
-      <form id="manual-withdrawal-form" onSubmit={handleSubmit} className="w-[1100px] bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] max-[768px]:w-full">
+      <form
+        id="manual-withdrawal-form"
+        onSubmit={handleSubmit}
+        className="w-[1100px] bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] max-[768px]:w-full"
+      >
         {resultMessage.type && (
           <ResultMessageComponent
             type={resultMessage.type}
@@ -263,97 +271,102 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
           />
         )}
         <div className="flex max-[768px]:flex-col">
-          <div className="flex-1 max-w-[700px]">              
-              <MediumTitleComponent text={t('manualWithdrawalForm.accountInformation')} />
-              <div className="flex flex-wrap">
-                <div className="flex flex-nowrap gap-[16px] mb-[4px] justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
-                  <div className='min-w-[230px] pt-[4px] w-[48%] mb-[8px]'>
-                    <LableTitleComponent text={t('manualWithdrawalForm.memberLoginName')} required />
-                   
-                    <div className="relative z-[9999]">
-                      <DropdownComponent
-                        options={memberOptions}
-                        onSelect={handleMemberSelect}
-                        initialValue={custId?.toString()}
-                        searchable={true}
-                        placeholder={t('manualWithdrawalForm.selectMember')}
-                      />
-                    </div>
-                  </div>
-                  <div className='min-w-[230px] pt-[4px] w-[48%] mb-[8px]'>
-                    <LableTitleComponent text={t('manualWithdrawalForm.from')} required />                  
-                    <DropdownComponent
-                      options={agentBankInfo.map((bank) => ({
-                        value: bank.value,
-                        label: bank.label,
-                        icon: <BankIcon code={bank.code} />,
-                        attributes: {
-                          providerId: bank.providerId,
-                          paymentMethodId: bank.paymentMethodId,
-                        },
-                      }))}
-                      onSelect={handleFromSelect}
-                      initialValue={from}
-                      searchable={true}
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-nowrap gap-[16px] mb-[4px] justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full ">
-                  <div className='min-w-[230px] pt-[4px] w-[48%] mb-[8px]'>
-                    <LableTitleComponent text={t('manualWithdrawalForm.to')} required />                     
-                    <DropdownComponent
-                      options={memberBankInfo.map((bank) => ({
-                        value: bank.value,
-                        label: bank.label,
-                        icon: <BankIcon code={bank.code} />,
-                        attributes: {
-                          providerId: bank.providerId,
-                          paymentMethodId: bank.paymentMethodId,
-                        },
-                      }))}
-                      onSelect={handleToSelect}
-                      initialValue={to}
-                      showOptionAll={false}
-                      disable={!custId}
-                      placeholder={t('manualWithdrawalForm.selectMemberBank')}
-                      searchable={true}
-                    />
-                  </div>
+          <div className="flex-1 max-w-[700px]">
+            <MediumTitleComponent text={t('manualWithdrawalForm.accountInformation')} />
+            <div className="flex flex-wrap">
+              <div className="flex flex-nowrap gap-[16px] mb-[4px] justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
+                <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
+                  <LableTitleComponent text={t('manualWithdrawalForm.memberLoginName')} required />
 
-                  <div className='min-w-[230px] pt-[4px] w-[48%] mb-[8px]'>
-                    <LableTitleComponent text={t('manualWithdrawalForm.withdrawalAmount')} required />
-                    <AmountInput
-                      id="withdrawalAmount"
-                      value={withdrawalAmount}
-                      onChange={(e) => handleSetWithdrawalAmount(e)}
-                      className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:border-[var(--button-border)]"
+                  <div className="relative z-[9999]">
+                    <DropdownComponent
+                      options={memberOptions}
+                      onSelect={handleMemberSelect}
+                      initialValue={custId?.toString()}
+                      searchable={true}
+                      placeholder={t('manualWithdrawalForm.selectMember')}
                     />
-                    <label className='block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold'>{renderMinMaxAmount()}</label>
                   </div>
                 </div>
-                <div className='w-full'>
-                  <LableTitleComponent text={t('manualWithdrawalForm.remarks')}  />
-                  <textarea
-                    id="remarks"
-                    value={remarks}
-                    onChange={(e) => setRemarks(e.target.value)}
-                    className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-[var(--button-border)] min-h-[120px]"
-                    placeholder={t('manualWithdrawalForm.remarksPlaceholder')}
+                <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
+                  <LableTitleComponent text={t('manualWithdrawalForm.from')} required />
+                  <DropdownComponent
+                    options={agentBankInfo.map((bank) => ({
+                      value: bank.value,
+                      label: bank.label,
+                      icon: <BankIcon code={bank.code} />,
+                      attributes: {
+                        providerId: bank.providerId,
+                        paymentMethodId: bank.paymentMethodId,
+                      },
+                    }))}
+                    onSelect={handleFromSelect}
+                    initialValue={from}
+                    searchable={true}
+                  />
+                  {renderMinMaxAmount()}
+                </div>
+              </div>
+              <div className="flex flex-nowrap gap-[16px] mb-[4px] justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full ">
+                <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
+                  <LableTitleComponent text={t('manualWithdrawalForm.to')} required />
+                  <DropdownComponent
+                    options={memberBankInfo.map((bank) => ({
+                      value: bank.value,
+                      label: bank.label,
+                      icon: <BankIcon code={bank.code} />,
+                      attributes: {
+                        providerId: bank.providerId,
+                        paymentMethodId: bank.paymentMethodId,
+                      },
+                    }))}
+                    onSelect={handleToSelect}
+                    initialValue={to}
+                    showOptionAll={false}
+                    disable={!custId}
+                    placeholder={t('manualWithdrawalForm.selectMemberBank')}
+                    searchable={true}
                   />
                 </div>
-              </div>         
+
+                <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
+                  <LableTitleComponent text={t('manualWithdrawalForm.withdrawalAmount')} required />
+                  <AmountInput
+                    id="withdrawalAmount"
+                    value={withdrawalAmount}
+                    onChange={(e) => handleSetWithdrawalAmount(e)}
+                    className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:border-[var(--button-border)]"
+                  />
+                  <label className="block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold">
+                    {t('manualWithdrawalForm.memberCashBalance')}: {memberCashBalance}
+                  </label>
+                </div>
+              </div>
+              <div className="w-full">
+                <LableTitleComponent text={t('manualWithdrawalForm.remarks')} />
+                <textarea
+                  id="remarks"
+                  value={remarks}
+                  onChange={(e) => setRemarks(e.target.value)}
+                  className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-[var(--button-border)] min-h-[120px]"
+                  placeholder={t('manualWithdrawalForm.remarksPlaceholder')}
+                />
+              </div>
+            </div>
           </div>
           <div className="pl-[32px] max-[768px]:pl-0 max-[768px]:mt-[16px]">
-            <UploadImage setImage={setImage} />            
+            <UploadImage setImage={setImage} />
           </div>
         </div>
-        <div className="flex gap-[16px]"> 
+        <div className="flex gap-[16px]">
           <ButtonCancelComponent onClick={onClose} text={t('manualWithdrawalForm.cancel')} />
-          <ButtonApplyComponent 
+          <ButtonApplyComponent
             disabled={isSubmitting}
-            text={isSubmitting
-              ? t('manualWithdrawalForm.processing')
-              : t('manualWithdrawalForm.approve')}
+            text={
+              isSubmitting
+                ? t('manualWithdrawalForm.processing')
+                : t('manualWithdrawalForm.approve')
+            }
             onClick={handleSubmit}
           />
         </div>
