@@ -4,6 +4,7 @@ import { IconSearch } from '../../../../components/Icons';
 import CustomDropdown from '../../../../components/CustomDropdownComponent';
 import BankIcon from '../../../../components/BankComponents';
 import { CalendarIcon } from '../../../../components/Icons';
+import { LableTitleComponent } from '../../../../components/TitleComponents';
 interface FilterProps {
   recentDeposits: string;
   setRecentDeposits: (value: string) => void;
@@ -26,10 +27,8 @@ const Filter: React.FC<FilterProps> = ({
   return (
     <>
       <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
-        <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
-          <label className="block font-semibold text-[#333333] my-[8px]">
-            {t('filter.recentDeposits')}
-          </label>
+        <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">         
+            <LableTitleComponent text={`${t('filter.recentDeposits')}`} />     
           <div className="select-wrapper relative">
             <select
               value={recentDeposits}
@@ -48,7 +47,7 @@ const Filter: React.FC<FilterProps> = ({
         </div>
 
         <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
-          <label className="block font-semibold text-[#333333] my-[8px]">{t('filter.to')}</label>
+          <LableTitleComponent text={`${t('filter.to')}`} />
           <CustomDropdown
             options={uniquePaymentToOptions.map((option) => ({
               value: option,

@@ -14,6 +14,7 @@ import TitleComponent from '../../../../components/TitleComponents';
 import {
   ButtonCancelComponent,
   ButtonApplyComponent,
+  BackButtonComponent,
 } from '../../../../components/ButtonComponents';
 import { renderBankOptionValue } from '../../../../common/commonFunctions';
 
@@ -158,10 +159,13 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
           <Loading />
         </div>
       ) : (
-        <>
-          <TitleComponent title={t('manualDepositForm.title')} />
+        <div className="py-[12px]">
+          <div className="flex items-center justify-flex-start mb-[16px] pt-[8px] border-[#cfcfcf] border-dotted border-b-[2px]">
+            <BackButtonComponent onClick={onClose} />
+            <TitleComponent title={t('manualDepositForm.title')} />  
+          </div>
 
-          <form id="manual-deposit-form" onSubmit={handleSubmit}>
+          <form id="manual-deposit-form" className="w-[1100px] bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] max-[768px]:w-full" onSubmit={handleSubmit}>
             {validationMessage && (
               <ResultMessageComponent
                 type={validationMessage.type}
@@ -169,7 +173,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
                 className="mb-4"
               />
             )}
-            <div className="flex flex-row space-x-10">
+            <div className="flex max-[768px]:flex-col">
               <AccountInformation
                 memberLoginOptions={memberLoginOptions}
                 memberId={memberId}
@@ -187,10 +191,11 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
                 onRemarksChange={(e) => setRemarks(e.target.value)}
               />
 
-              <div className="pl-20">
-                <UploadImage setImage={setImage} />
-
-                <div className="flex justify-center space-x-4 mt-3 w-full">
+              <div className="pl-[32px] max-[768px]:pl-0 max-[768px]:mt-[16px]">
+                <UploadImage setImage={setImage} />                
+              </div>
+            </div>
+            <div className="flex gap-[16px]">
                   <ButtonCancelComponent
                     className="w-[140px]"
                     text={t('manualDepositForm.cancel')}
@@ -206,10 +211,9 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
                     disabled={isSubmitting}
                   />
                 </div>
-              </div>
-            </div>
           </form>
-        </>
+        </div>
+       
       )}
     </div>
   );

@@ -7,6 +7,7 @@ import CustomDropdown, { DropdownOption } from '../../../../components/CustomDro
 import BankIcon from '../../../../components/BankComponents';
 import { AmountInput } from '../../../../components/ui/AmountInput';
 import { renderBankOptionValue } from '../../../../common/commonFunctions';
+import { LableTitleComponent, MediumTitleComponent } from '../../../../components/TitleComponents';
 interface AccountInformationProps {
   memberLoginOptions: MemberLoginName[];
   memberId: number;
@@ -43,21 +44,12 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
   const { t } = useTranslation('pendingDeposit');
 
   return (
-    <div className="mb-5 w-[900px]">
-      <h3 className="text-md font-medium text-blue-900 mb-3">
-        {t('manualDepositForm.accountInformation')}
-      </h3>
-
-      <div className="flex flex-col space-y-4">
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label
-              htmlFor="memberLoginName"
-              className="block font-semibold text-[#333333] my-[8px] relative"
-            >
-              {t('manualDepositForm.memberLoginName')}
-              <span className="text-red-500 absolute">*</span>
-            </label>
+    <div className="flex-1 max-w-[700px]">
+      <MediumTitleComponent text={`${t('manualDepositForm.accountInformation')}`} />
+      <div className="flex flex-wrap">
+        <div className="flex flex-nowrap gap-[16px] mb-[4px] justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
+          <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
+            <LableTitleComponent text={`${t('manualDepositForm.memberLoginName')}`} required={true} />
             <div className="relative z-[9999]">
               <CustomDropdown
                 options={memberLoginOptions.map((option) => ({
@@ -72,14 +64,8 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
             </div>
           </div>
 
-          <div>
-            <label
-              htmlFor="paymentFrom"
-              className="block font-semibold text-[#333333] my-[8px] relative"
-            >
-              {t('manualDepositForm.from')}
-              <span className="text-red-500 absolute">*</span>
-            </label>
+          <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]"> 
+            <LableTitleComponent text={`${t('manualDepositForm.from')}`} required={true} />
             <CustomDropdown
               options={cashMemberOptions.map((option) => ({
                 value: renderBankOptionValue(option.bankCode, option.bankAccountNumber),
@@ -94,15 +80,9 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label
-              htmlFor="paymentTo"
-              className="block font-semibold text-[#333333] my-[8px] relative"
-            >
-              {t('manualDepositForm.to')}
-              <span className="text-red-500 absolute">*</span>
-            </label>
+        <div className="flex flex-nowrap gap-[16px] mb-[4px] justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full ">
+          <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
+            <LableTitleComponent text={`${t('manualDepositForm.to')}`} required={true} />
             <CustomDropdown
               options={cashAgentOptions.map((option) => ({
                 value: renderBankOptionValue(option.bankCode, option.bankAccountNumber),
@@ -115,34 +95,21 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
               searchable={true}
             />
           </div>
-
-          <div>
-            <label
-              htmlFor="depositAmount"
-              className="block font-semibold text-[#333333] my-[8px] relative"
-            >
-              {t('manualDepositForm.depositAmount')}
-              <span className="text-red-500 absolute">*</span>
-              <span className="ml-2 inline-block">
-                <span className="text-blue-900">
-                  ({t('manualDepositForm.agentAvailableCredit')}:
-                  <span className="text-red-500">{` ${creditAmount.maxAmt}`}</span>)
-                </span>
-              </span>
-            </label>
+          <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">            
+            <LableTitleComponent text={`${t('manualDepositForm.depositAmount')}`} required={true} />
             <AmountInput
               id="depositAmount"
               value={depositAmount}
               onChange={onDepositAmountChange}
               className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:border-[var(--button-border)] bg-[var(--background-control)]"
             />
+              <label className="block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold"> ({t('manualDepositForm.agentAvailableCredit')}:
+              <span className="font-bold text-[#444]">{` ${creditAmount.maxAmt}`}</span>)</label>
           </div>
         </div>
 
-        <div>
-          <label htmlFor="remarks" className="block font-semibold text-[#333333] my-[8px]">
-            {t('manualDepositForm.remarks')}
-          </label>
+        <div className="w-full">
+          <LableTitleComponent text={`${t('manualDepositForm.remarks')}`} required={true} />
           <textarea
             id="remarks"
             value={remarks}
