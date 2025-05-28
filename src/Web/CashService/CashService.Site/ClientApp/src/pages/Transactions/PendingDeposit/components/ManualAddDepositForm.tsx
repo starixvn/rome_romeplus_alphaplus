@@ -7,7 +7,7 @@ import { CreditAmount } from '../../../../services/interfaces/Transactions/Credi
 import pendingDepositAPI from '../../../../services/pendingDepositAPI';
 import UploadImage from '../../Components/UploadImage';
 import { AddDepositManualModel } from '../../../../services/interfaces/AddDepositManualModel';
-import Loading from '../../../../components/LoadingComponent';
+import { LoadingFullComponent } from '../../../../components/LoadingComponent';
 import { ResultMessageComponent } from '../../../../components/MessageComponents';
 import AccountInformation from './AccountInformation';
 import TitleComponent from '../../../../components/TitleComponents';
@@ -153,11 +153,9 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
   };
 
   return (
-    <div className="">
-      {initialLoading ? (
-        <div className="flex items-center justify-center h-full">
-          <Loading />
-        </div>
+    <>
+      {initialLoading ? (        
+          <LoadingFullComponent />    
       ) : (
         <div className="py-[12px]">
           <div className="flex items-center justify-flex-start mb-[16px] pt-[8px] border-[#cfcfcf] border-dotted border-b-[2px]">
@@ -215,7 +213,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
         </div>
        
       )}
-    </div>
+    </>
   );
 };
 
