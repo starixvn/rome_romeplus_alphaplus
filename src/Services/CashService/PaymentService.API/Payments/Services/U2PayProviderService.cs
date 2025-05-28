@@ -57,12 +57,16 @@ public class U2PayProviderService : IPaymentProviderService
             // Add headers
             _httpClient.DefaultRequestHeaders.Add("X-Signature", signature);
 
-            // Send request
-            var content = new StringContent(
-                JsonSerializer.Serialize(request),
-                Encoding.UTF8,
-                "application/json");
+            // Send request as form data
+            var formData = new Dictionary<string, string>
+            {
+                ["accountNumber"] = request.accountNumber,
+                ["amount"] = request.amount.ToString(),
+                ["currency"] = request.currency,
+                ["timestamp"] = request.timestamp.ToString()
+            };
 
+            var content = new FormUrlEncodedContent(formData);
             var response = await _httpClient.PostAsync("/api/v1/deposits", content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
@@ -124,12 +128,14 @@ public class U2PayProviderService : IPaymentProviderService
             // Add headers
             _httpClient.DefaultRequestHeaders.Add("X-Signature", signature);
 
-            // Send request
-            var content = new StringContent(
-                JsonSerializer.Serialize(request),
-                Encoding.UTF8,
-                "application/json");
+            // Send request as form data
+            var formData = new Dictionary<string, string>
+            {
+                ["accountNumber"] = request.accountNumber,
+                ["timestamp"] = request.timestamp.ToString()
+            };
 
+            var content = new FormUrlEncodedContent(formData);
             var response = await _httpClient.PostAsync("/api/v1/validate-account", content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
@@ -185,7 +191,27 @@ public class U2PayProviderService : IPaymentProviderService
             // Remove appSecret from payload
             payoutRequest.AppSecret = null;
 
-            var content = new StringContent(JsonSerializer.Serialize(payoutRequest), Encoding.UTF8, "application/json");
+            // Convert to form data
+            var formData = new Dictionary<string, string>
+            {
+                ["merchantNo"] = payoutRequest.MerchantNo,
+                ["orderNo"] = payoutRequest.OrderNo,
+                ["amount"] = payoutRequest.Amount.ToString(),
+                ["name"] = payoutRequest.Name,
+                ["bankName"] = payoutRequest.BankName,
+                ["bankAccount"] = payoutRequest.BankAccount,
+                ["bankBranch"] = payoutRequest.BankBranch,
+                ["memo"] = payoutRequest.Memo,
+                ["mobile"] = payoutRequest.Mobile,
+                ["datetime"] = payoutRequest.Datetime,
+                ["notifyUrl"] = payoutRequest.NotifyUrl,
+                ["reverseUrl"] = payoutRequest.ReverseUrl,
+                ["extra"] = payoutRequest.Extra,
+                ["time"] = payoutRequest.Time.ToString(),
+                ["sign"] = payoutRequest.Sign
+            };
+
+            var content = new FormUrlEncodedContent(formData);
             var response = await _httpClient.PostAsync("/payout/create", content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
@@ -232,7 +258,17 @@ public class U2PayProviderService : IPaymentProviderService
             };
             request.Sign = PaySignatureUtil.GenerateSignature(parameters, config.U2Pay.ApiSecret);
 
-            var content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
+            // Convert to form data
+            var formData = new Dictionary<string, string>
+            {
+                ["merchantNo"] = request.MerchantNo,
+                ["tradeNo"] = request.TradeNo,
+                ["orderNo"] = request.OrderNo,
+                ["time"] = request.Time.ToString(),
+                ["sign"] = request.Sign
+            };
+
+            var content = new FormUrlEncodedContent(formData);
             var response = await _httpClient.PostAsync("/payout/status", content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
@@ -277,7 +313,15 @@ public class U2PayProviderService : IPaymentProviderService
             };
             request.Sign = PaySignatureUtil.GenerateSignature(parameters, config.U2Pay.ApiSecret);
 
-            var content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
+            // Convert to form data
+            var formData = new Dictionary<string, string>
+            {
+                ["merchantNo"] = request.MerchantNo,
+                ["time"] = request.Time.ToString(),
+                ["sign"] = request.Sign
+            };
+
+            var content = new FormUrlEncodedContent(formData);
             var response = await _httpClient.PostAsync("/payout/balance", content);
             var responseContent = await response.Content.ReadAsStringAsync();
 

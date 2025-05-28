@@ -47,7 +47,27 @@ public class DirePayProviderService : IPaymentProviderService
             // Remove appSecret from payload
             payoutRequest.AppSecret = null;
 
-            var content = new StringContent(JsonSerializer.Serialize(payoutRequest), Encoding.UTF8, "application/json");
+            // Convert to form data
+            var formData = new Dictionary<string, string>
+            {
+                ["merchantNo"] = payoutRequest.MerchantNo,
+                ["orderNo"] = payoutRequest.OrderNo,
+                ["amount"] = payoutRequest.Amount.ToString(),
+                ["name"] = payoutRequest.Name,
+                ["bankName"] = payoutRequest.BankName,
+                ["bankAccount"] = payoutRequest.BankAccount,
+                ["bankBranch"] = payoutRequest.BankBranch,
+                ["memo"] = payoutRequest.Memo,
+                ["mobile"] = payoutRequest.Mobile,
+                ["datetime"] = payoutRequest.Datetime,
+                ["notifyUrl"] = payoutRequest.NotifyUrl,
+                ["reverseUrl"] = payoutRequest.ReverseUrl,
+                ["extra"] = payoutRequest.Extra,
+                ["time"] = payoutRequest.Time.ToString(),
+                ["sign"] = payoutRequest.Sign
+            };
+
+            var content = new FormUrlEncodedContent(formData);
             var response = await _httpClient.PostAsync("/payout/create", content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
@@ -121,12 +141,21 @@ public class DirePayProviderService : IPaymentProviderService
             };
             request.Signature = DirePaySignatureUtil.GenerateSignature(parameters, config.DirePay.ApiSecret);
 
-            // Send request
-            var content = new StringContent(
-                JsonSerializer.Serialize(request),
-                Encoding.UTF8,
-                "application/json");
+            // Convert to form data
+            var formData = new Dictionary<string, string>
+            {
+                ["merchantId"] = request.MerchantId,
+                ["orderId"] = request.OrderId,
+                ["amount"] = request.Amount.ToString(),
+                ["currency"] = request.Currency,
+                ["accountNumber"] = request.AccountNumber,
+                ["createdAt"] = request.CreatedAt,
+                ["callbackUrl"] = request.CallbackUrl,
+                ["timestamp"] = request.Timestamp.ToString(),
+                ["signature"] = request.Signature
+            };
 
+            var content = new FormUrlEncodedContent(formData);
             var response = await _httpClient.PostAsync("/api/v1/deposits", content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
@@ -195,12 +224,15 @@ public class DirePayProviderService : IPaymentProviderService
             // Add headers
             _httpClient.DefaultRequestHeaders.Add("X-Signature", signature);
 
-            // Send request
-            var content = new StringContent(
-                JsonSerializer.Serialize(request),
-                Encoding.UTF8,
-                "application/json");
+            // Convert to form data
+            var formData = new Dictionary<string, string>
+            {
+                ["merchantId"] = request.merchantId,
+                ["accountNumber"] = request.accountNumber,
+                ["timestamp"] = request.timestamp.ToString()
+            };
 
+            var content = new FormUrlEncodedContent(formData);
             var response = await _httpClient.PostAsync("/api/v1/validate-account", content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
@@ -243,7 +275,17 @@ public class DirePayProviderService : IPaymentProviderService
             };
             request.Signature = DirePaySignatureUtil.GenerateSignature(parameters, config.DirePay.ApiSecret);
 
-            var content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
+            // Convert to form data
+            var formData = new Dictionary<string, string>
+            {
+                ["merchantId"] = request.MerchantId,
+                ["transactionId"] = request.TransactionId,
+                ["orderId"] = request.OrderId,
+                ["timestamp"] = request.Timestamp.ToString(),
+                ["signature"] = request.Signature
+            };
+
+            var content = new FormUrlEncodedContent(formData);
             var response = await _httpClient.PostAsync("/api/v1/payouts/status", content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
@@ -288,7 +330,15 @@ public class DirePayProviderService : IPaymentProviderService
             };
             request.Signature = DirePaySignatureUtil.GenerateSignature(parameters, config.DirePay.ApiSecret);
 
-            var content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
+            // Convert to form data
+            var formData = new Dictionary<string, string>
+            {
+                ["merchantId"] = request.MerchantId,
+                ["timestamp"] = request.Timestamp.ToString(),
+                ["signature"] = request.Signature
+            };
+
+            var content = new FormUrlEncodedContent(formData);
             var response = await _httpClient.PostAsync("/api/v1/balance", content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
