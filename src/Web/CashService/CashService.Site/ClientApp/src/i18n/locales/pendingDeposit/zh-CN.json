@@ -92,7 +92,8 @@
     "amountTooSmall": "金额必须大于0",
     "failedToSubmit": "提交存款失败",
     "failedToApprove": "批准存款失败",
-    "failedToReject": "拒绝存款失败"
+    "failedToReject": "拒绝存款失败",
+    "failedToFetchData": "获取数据失败"
   },
   
   "successMessages": {

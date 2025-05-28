@@ -89,7 +89,8 @@
   "errorMessages": {
     "failedToSubmit": "Failed to submit deposit request",
     "failedToApprove": "Failed to approve deposit request",
-    "failedToReject": "Failed to reject deposit request"
+    "failedToReject": "Failed to reject deposit request",
+    "failedToFetchData": "Failed to fetch data"
   },
 
   "successMessages": {

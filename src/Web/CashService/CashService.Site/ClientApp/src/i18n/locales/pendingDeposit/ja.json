@@ -92,7 +92,8 @@
     "amountTooSmall": "金額は0より大きくなければなりません",
     "failedToSubmit": "入金の送信に失敗しました",
     "failedToApprove": "入金の承認に失敗しました",
-    "failedToReject": "入金の拒否に失敗しました"
+    "failedToReject": "入金の拒否に失敗しました",
+    "failedToFetchData": "データの取得に失敗しました"
   },
   
   "successMessages": {

@@ -46,54 +46,61 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
   } | null>(null);
 
   useEffect(() => {
-    const fetchMemberLoginName = async () => {
+    const fetchInitialData = async () => {
       try {
         const memberLoginNames = await transactionAPI.getMemberLoginName();
         setMemberLoginOptions(memberLoginNames);
-        setMemberId(memberLoginNames[0]?.custId);
-      } catch (error) {
-        console.error('Error fetching member login names:', error);
-      }
-    };
-    setValidationMessage(null);
-    fetchMemberLoginName();
-  }, []);
 
-  useEffect(() => {
-    const fetchCashMemberBankInfo = async () => {
-      if (memberId) {
-        try {
-          const bankInfo = await transactionAPI.getCashMemberBankInfo(memberId);
+        if (memberLoginNames?.length > 0) {
+          const selectedMemberId = memberLoginNames[0].custId;
+          setMemberId(selectedMemberId);
+
+          const [bankInfo, creditAmountData] = await Promise.all([
+            transactionAPI.getCashMemberBankInfo(selectedMemberId),
+            pendingDepositAPI.getLimitAmtDeposit(selectedMemberId)
+          ]);
+
           setCashMemberOptions(bankInfo);
           if (bankInfo.length > 0) {
             setPaymentFrom(
-              renderBankOptionValue(bankInfo[0]?.bankCode, bankInfo[0]?.bankAccountNumber)
+              renderBankOptionValue(bankInfo[0].bankCode, bankInfo[0].bankAccountNumber)
             );
           }
-        } catch (error) {
-          console.error('Error fetching cash member bank info:', error);
+          setCreditAmount(creditAmountData);
         }
+      } catch {
+        setValidationMessage({
+          type: 'error',
+          message: t('errorMessages.failedToFetchData')
+        });
+      } finally {
+        setInitialLoading(false);
       }
     };
-    setValidationMessage(null);
-    fetchCashMemberBankInfo();
-  }, [memberId]);
+
+    fetchInitialData();
+  }, []);
 
   useEffect(() => {
-    const fetchCreditLimitAmount = async () => {
-      if (memberId) {
-        try {
-          const creditAmount = await pendingDepositAPI.getLimitAmtDeposit(memberId);
-          setCreditAmount(creditAmount);
-        } catch (error) {
-          console.error('Error fetching credit limit amount:', error);
-        } finally {
-          setInitialLoading(false);
-        }
+    const fetchMemberData = async () => {
+      if (!memberId) return;
+      
+      setValidationMessage(null);
+      const [bankInfo, creditAmountData] = await Promise.all([
+        transactionAPI.getCashMemberBankInfo(memberId),
+        pendingDepositAPI.getLimitAmtDeposit(memberId)
+      ]);
+
+      setCashMemberOptions(bankInfo);
+      if (bankInfo.length > 0) {
+        setPaymentFrom(
+          renderBankOptionValue(bankInfo[0].bankCode, bankInfo[0].bankAccountNumber)
+        );
       }
+      setCreditAmount(creditAmountData);
     };
-    setValidationMessage(null);
-    fetchCreditLimitAmount();
+
+    fetchMemberData();
   }, [memberId]);
 
   const getParams = () => {

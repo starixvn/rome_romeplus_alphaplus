@@ -89,7 +89,8 @@
   "errorMessages": {
     "failedToSubmit": "ไม่สามารถส่งคำขอฝากเงินได้",
     "failedToApprove": "ไม่สามารถอนุมัติคำขอฝากเงินได้",
-    "failedToReject": "ไม่สามารถปฏิเสธคำขอฝากเงินได้"
+    "failedToReject": "ไม่สามารถปฏิเสธคำขอฝากเงินได้",
+    "failedToFetchData": "ไม่สามารถดึงข้อมูลได้"
   },
   
   "successMessages": {

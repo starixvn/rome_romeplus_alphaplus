@@ -92,7 +92,8 @@
     "amountTooSmall": "금액은 0보다 커야 합니다",
     "failedToSubmit": "입금 제출에 실패했습니다",
     "failedToApprove": "입금 승인에 실패했습니다",
-    "failedToReject": "입금 거부에 실패했습니다"
+    "failedToReject": "입금 거부에 실패했습니다",
+    "failedToFetchData": "데이터를 가져오는 데 실패했습니다"
   },
   
   "successMessages": {

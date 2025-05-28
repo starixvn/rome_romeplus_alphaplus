@@ -92,7 +92,8 @@
     "amountTooSmall": "Số tiền phải lớn hơn 0",
     "failedToSubmit": "Không thể gửi yêu cầu tiền gửi",
     "failedToApprove": "Không thể phê duyệt yêu cầu tiền gửi",
-    "failedToReject": "Không thể từ chối yêu cầu tiền gửi"
+    "failedToReject": "Không thể từ chối yêu cầu tiền gửi",
+    "failedToFetchData": "Không thể lấy dữ liệu"
   },
   
   "successMessages": {
