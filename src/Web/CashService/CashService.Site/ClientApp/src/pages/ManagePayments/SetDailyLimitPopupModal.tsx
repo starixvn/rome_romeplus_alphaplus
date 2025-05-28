@@ -1,12 +1,19 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { paymentProviderService } from '../../services/paymentsAPI';
-import { ErrorMessageComponent, SuccessMessageComponent, ValidateMessageComponent } from '../../components/MessageComponents';
-import { ButtonApplyComponent, ButtonCancelComponent, ButtonClosePopupComponent } from '../../components/ButtonComponents';
-import { ensureIntegerInput } from '../../utils/inputHandlers';
-import { useState } from 'react';
-import { LableTitleComponent, MediumTitleComponent } from '../../components/TitleComponents';
 
+import {
+  ButtonApplyComponent,
+  ButtonCancelComponent,
+  ButtonClosePopupComponent,
+} from '../../components/ButtonComponents';
+import {
+  ErrorMessageComponent,
+  SuccessMessageComponent,
+  ValidateMessageComponent,
+} from '../../components/MessageComponents';
+import { LableTitleComponent, MediumTitleComponent } from '../../components/TitleComponents';
+import { paymentProviderService } from '../../services/paymentsAPI';
+import { ensureIntegerInput } from '../../utils/inputHandlers';
 
 interface SetDailyLimitPopupModalProps {
   onClose: () => void;
@@ -19,9 +26,9 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string>('');
   const [successMessage, setSuccessMessage] = React.useState<string>('');
-  const [orgDailyLimit, setOrgDailyLimit] = React.useState<number>(0);
+  const [orgDailyLimit, setOrgDailyLimit] = React.useState<number>(1);
   const [isBlockAction, setIsBlockAction] = React.useState<boolean>(false);
-  const [fieldErrors, setFieldErrors] = useState({ dailyLimit: '' });
+  const [fieldErrors, setFieldErrors] = React.useState({ dailyLimit: '' });
 
   const onDailyLimitChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(ensureIntegerInput(e).target.value);
@@ -30,14 +37,14 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
 
   React.useEffect(() => {
     const loadDailyWithdrawalCount = async () => {
-      const response = await paymentProviderService.getDailyWithdrawalCount(); 
+      const response = await paymentProviderService.getDailyWithdrawalCount();
 
-      if(response.error) {
+      if (response.error) {
         setError(response.error.message);
         return;
       }
 
-      const count = response.data || 0;
+      const count = response.data ?? 0;
       setDailyLimit(count);
       setOrgDailyLimit(count);
     };
@@ -52,10 +59,10 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
   const validateState = () => {
     setFieldErrors({ dailyLimit: '' });
 
-    if(dailyLimit < 1 || dailyLimit > 32767) {
+    if (dailyLimit < 1 || dailyLimit > 32767) {
       setFieldErrors({
         ...fieldErrors,
-        dailyLimit: t('managePayments:dailyWithdrawalCountOutOfRange')
+        dailyLimit: t('managePayments:dailyWithdrawalCountOutOfRange'),
       });
 
       return false;
@@ -70,31 +77,37 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
     setSuccessMessage('');
     setError('');
 
-    if(orgDailyLimit === dailyLimit) {
+    if (orgDailyLimit === dailyLimit) {
       setError(t('global:thereNoChangeToUpdate'));
       return false;
     }
 
     const isValid = validateState();
-    if(!isValid) {
+    if (!isValid) {
       setIsLoading(false);
       return;
-    } 
+    }
 
     const response = await paymentProviderService.setDailyWithdrawalCount(dailyLimit);
-    if(response.error) {
+    if (response.error) {
       setError(response.error.message);
       setIsLoading(false);
       return;
     }
 
-    const result = response.data || { isSuccessful: false, code: 1, message: t('global:errorOccurred') };
+    const result = response.data ?? {
+      isSuccessful: false,
+      code: 1,
+      message: t('global:errorOccurred'),
+    };
 
     if (result.isSuccessful) {
       setIsBlockAction(true);
       setSuccessMessage(t('managePayments:setLimitSuccess'));
       onSave(dailyLimit);
-      setTimeout(() => { onClose(); }, 3000);
+      setTimeout(() => {
+        onClose();
+      }, 3000);
     } else {
       setError(result.message);
     }
@@ -109,14 +122,16 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
           <MediumTitleComponent text={t('managePayments:setDailyWithdrawalCount')} />
           <ButtonClosePopupComponent onClick={onClose} />
         </div>
-        <div className='my-[8px]'>
+        <div className="my-[8px]">
           <ErrorMessageComponent message={error} />
           <SuccessMessageComponent message={successMessage} />
         </div>
         <form onSubmit={onSubmit}>
           <div className="mb-[16px]">
             <div className=" ">
-              <div className="pb-[8px] mb-[8px] block">{t('managePayments:setMaxDailyWithdrawalCountForYourMembers')} </div>           
+              <div className="pb-[8px] mb-[8px] block">
+                {t('managePayments:setMaxDailyWithdrawalCountForYourMembers')}{' '}
+              </div>
               <LableTitleComponent text={`${t('managePayments:dailyWithdrawalCount')}`} />
               <input
                 type="text"
@@ -127,13 +142,21 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
                 onChange={onDailyLimitChange}
                 min="0"
                 required
-              />    
-              <ValidateMessageComponent message={fieldErrors.dailyLimit} />          
+              />
+              <ValidateMessageComponent message={fieldErrors.dailyLimit} />
             </div>
           </div>
-          <div className="flex justify-center gap-[8px]">         
-            <ButtonCancelComponent className="w-[140px] [&>*]:w-[100%]" text={t('global:cancel')} onClick={onClose}  />
-            <ButtonApplyComponent className='w-[140px] [&>*]:w-[100%]' text={isLoading ? t('global:loading') : t('global:save')}  disabled={isLoading || isBlockAction}/>          
+          <div className="flex justify-center gap-[8px]">
+            <ButtonCancelComponent
+              className="w-[140px] [&>*]:w-[100%]"
+              text={t('global:cancel')}
+              onClick={onClose}
+            />
+            <ButtonApplyComponent
+              className="w-[140px] [&>*]:w-[100%]"
+              text={isLoading ? t('global:loading') : t('global:save')}
+              disabled={isLoading || isBlockAction}
+            />
           </div>
         </form>
       </div>
@@ -141,4 +164,4 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
   );
 };
 
-export default SetDailyLimitPopupModal; 
+export default SetDailyLimitPopupModal;

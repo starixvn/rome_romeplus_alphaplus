@@ -194,7 +194,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
         return;
       }
 
-      const fetchedBankAccount = response.data || createDefaultBankAccount();
+      const fetchedBankAccount = response.data ?? createDefaultBankAccount();
 
       if (fetchedBankAccount) {
         const newFormState = {
@@ -244,29 +244,11 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
         return;
       }
 
-      const fetchedBanks = response.data || [];
+      const fetchedBanks = response.data ?? [];
       setBanks(fetchedBanks);
     };
 
-    const fetchCountryCodes = async () => {
-      const response = await baseAPI.getCountryCodes();
-      if (response.error) {
-        setError(response.error.message);
-        return;
-      }
-
-      const countryCodes = response.data || [];
-
-      if (!formState.countryCode && countryCodes.length > 0) {
-        setCountryCode(countryCodes[0]);
-        setMobile('');
-
-        setFormState((prev) => ({ ...prev, countryCode: countryCodes[0] }));
-        setOrgFormState((prev) => ({ ...prev, countryCode: countryCodes[0] }));
-      }
-    };
-
-    Promise.all([fetchBanks(), fetchBankAccount(), fetchCountryCodes()]).finally(() => {
+    Promise.all([fetchBanks(), fetchBankAccount()]).finally(() => {
       setInitialLoading(false);
     });
   }, [bankAccount.id, tManagePayments]);
@@ -347,12 +329,12 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
     if (result.isSuccessful) {
       setIsBlockAction(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      setSuccessMessage(result.message || tManagePayments('bankAccountUpdatedSuccessfully'));
+      setSuccessMessage(result.message ?? tManagePayments('bankAccountUpdatedSuccessfully'));
       setTimeout(() => {
         onSave();
       }, 3000);
     } else {
-      setError(result.message || tManagePayments('failedToUpdateBankAccount'));
+      setError(result.message ?? tManagePayments('failedToUpdateBankAccount'));
     }
     setLoading(false);
   };
@@ -554,27 +536,25 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                           </label>
                         )}
                         {mappingTypes.includes(2) && (
-                          <>
-                            <label
-                              className="flex items-center cursor-pointer capitalize"
-                              htmlFor="manualMatching2"
-                              onClick={() =>
-                                setFormState({ ...formState, agent_DepositMatchingMode: 2 })
-                              }
-                            >
-                              <input
-                                className="w-[20px] h-[20px] m-[10px] cursor-pointer accent-[var(--primary-color)]"
-                                id="manualMatching2"
-                                type="radio"
-                                name="depositMatchingMode"
-                                value={formState.agent_DepositMatchingMode}
-                                checked={formState.agent_DepositMatchingMode == 2}
-                              />
-                              <span className=" leading-[14px] text-[#333333]">
-                                {tManagePayments('bankMatching')}
-                              </span>
-                            </label>
-                          </>
+                          <label
+                            className="flex items-center cursor-pointer capitalize"
+                            htmlFor="manualMatching2"
+                            onClick={() =>
+                              setFormState({ ...formState, agent_DepositMatchingMode: 2 })
+                            }
+                          >
+                            <input
+                              className="w-[20px] h-[20px] m-[10px] cursor-pointer accent-[var(--primary-color)]"
+                              id="manualMatching2"
+                              type="radio"
+                              name="depositMatchingMode"
+                              value={formState.agent_DepositMatchingMode}
+                              checked={formState.agent_DepositMatchingMode == 2}
+                            />
+                            <span className=" leading-[14px] text-[#333333]">
+                              {tManagePayments('bankMatching')}
+                            </span>
+                          </label>
                         )}
                       </div>
                       <ValidateMessageComponent message={fieldErrors.selectedDepositMatchingMode} />
