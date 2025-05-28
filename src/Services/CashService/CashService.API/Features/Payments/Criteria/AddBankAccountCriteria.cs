@@ -1,13 +1,13 @@
-using Fanex.Data;
+using System.Text.RegularExpressions;
 using AlphaPlus.CashService.API.Features.Payments.Requests;
 using AlphaPlus.CashService.API.Features.Shared.Criteria;
-using System.Text.RegularExpressions;
+using Fanex.Data;
 
 namespace AlphaPlus.CashService.API.Features.Payments.Criteria
 {
     public class AddBankAccountCriteria : BaseDBCommand
     {
-        public AddBankAccountCriteria(AddBankAccountRequest request) : 
+        public AddBankAccountCriteria(AddBankAccountRequest request) :
             base(request.ActorId, request.SubAccId, request.IP, request.Language)
         {
             CreatorName = request.Creator;
@@ -31,6 +31,7 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
 
         [SpParam(SqlParamName = "BankId")]
         public int BankId { get; }
+
         [SpParam(SqlParamName = "BankAccountStatus")]
         public int Status { get; }
 
@@ -40,8 +41,8 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
         public string AccountNickname { get; }
 
         [SpParam(SqlParamName = "TransTypeList")]
-        public string TransactionTypeIDs {get; }
-        public int DepositMatchingMode {get; }
+        public string TransactionTypeIDs { get; }
+        public int DepositMatchingMode { get; }
 
         [SpParam(SqlParamName = "PromptPayEnabled")]
         public bool PromptPay { get; }
@@ -55,10 +56,11 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
 
         public override string GetSettingKey() => "Age_CashService_BankAccountAgent_Ins";
 
-        public override bool IsValid() {
+        public override bool IsValid()
+        {
             var isValid = base.IsValid() &&
-            BankId > 0 && 
-            !string.IsNullOrWhiteSpace(AccountNumber) && 
+            BankId > 0 &&
+            !string.IsNullOrWhiteSpace(AccountNumber) &&
             !string.IsNullOrWhiteSpace(AccountHolderName) &&
             !Regex.IsMatch(AccountHolderName, @"^\d+$") &&
             Regex.IsMatch(AccountNumber, @"^\d+$") &&
@@ -66,14 +68,15 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
             AccountNumber.Length <= 100 &&
             AccountNickname.Length <= 255;
 
-            if(!isValid || !PromptPay) {
+            if (!isValid || !PromptPay)
+            {
                 return isValid;
             }
 
-            return !string.IsNullOrWhiteSpace(CountryCode) 
-                && !string.IsNullOrWhiteSpace(MobileNumber) 
-                && Regex.IsMatch(CountryCode, @"^\d+$") 
+            return !string.IsNullOrWhiteSpace(CountryCode)
+                && !string.IsNullOrWhiteSpace(MobileNumber)
+                && Regex.IsMatch(CountryCode, @"^\d+$")
                 && Regex.IsMatch(MobileNumber, @"^\d+$");
         }
     }
-} 
+}
