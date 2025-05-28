@@ -24,7 +24,6 @@ import TitleComponent, {
   MediumTitleComponent,
 } from '../../components/TitleComponents';
 import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
-import { baseAPI } from '../../services/commonAPI';
 import {
   Bank,
   BankAccount,
