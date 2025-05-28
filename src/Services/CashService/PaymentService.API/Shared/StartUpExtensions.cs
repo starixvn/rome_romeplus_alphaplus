@@ -4,7 +4,6 @@ using AlphaPlus.PaymentService.API.Shared;
 using AlphaPlus.PaymentService.API.U2Pay;
 using AlphaPlus.PaymentService.API.DirePay;
 using AlphaPlus.PaymentService.API.Payments.Services;
-using PaymentService.API.Payments.Services;
 
 namespace AlphaPlus.PaymentService.API.Shared;
 

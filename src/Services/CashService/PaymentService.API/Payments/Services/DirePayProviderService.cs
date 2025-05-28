@@ -4,7 +4,7 @@ using AlphaPlus.PaymentService.API.Shared.Models;
 using System.Text;
 using System.Text.Json;
 
-namespace PaymentService.API.Payments.Services;
+namespace AlphaPlus.PaymentService.API.Payments.Services;
 
 public class DirePayProviderService : IPaymentProviderService
 {

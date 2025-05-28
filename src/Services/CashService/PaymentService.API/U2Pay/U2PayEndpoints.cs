@@ -1,6 +1,5 @@
 using AlphaPlus.PaymentService.API.Shared;
 using AlphaPlus.PaymentService.API.Payments.Services;
-using AlphaPlus.PaymentService.API.Payments.Models;
 using AlphaPlus.PaymentService.API.Payments.Requests;
 
 namespace AlphaPlus.PaymentService.API.U2Pay;
@@ -14,7 +13,7 @@ public static class U2PayEndpoints
         group.MapPost("/deposit-callback", ManualDeposit);
         //.Produces<IEnumerable<int>>();
 
-        group.MapPost("/payout", (IPaymentWithProviderService withdrawalService, CreateManualWithdrawalRequest request) => Payout(withdrawalService, request));
+        group.MapPost("/payout", (IPaymentWithProviderService paymentWithProviderService, CreateManualWithdrawalRequest request) => Payout(paymentWithProviderService, request));
 
         return app;
     }
@@ -24,8 +23,8 @@ public static class U2PayEndpoints
         return Results.Ok(paymentService.Deposit());
     }
 
-    static IResult Payout(IPaymentWithProviderService withdrawalService, CreateManualWithdrawalRequest request)
+    static IResult Payout(IPaymentWithProviderService paymentWithProviderService, CreateManualWithdrawalRequest request)
     {
-        return Results.Ok(withdrawalService.ProcessPayout(request));
+        return Results.Ok(paymentWithProviderService.ProcessPayout(request));
     }
 }
