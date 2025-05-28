@@ -9,7 +9,7 @@ public class GetCashBalanceCriteria : NonQueryCommand
     public decimal TotalCash { get; set; }
     [SpParam(Ignored = true)] public int SiteDbGroupId { get; set; }
 
-    public override string GetSettingKey() => $"SiteDb_{SiteDbGroupId}_Acc_CustomerSelCash_CaptureBalance";
+    public override string GetSettingKey() => $"SiteDb_{SiteDbGroupId}_Age_CashService_CashBalance_Sel";
 
     public override bool IsValid() => CustId > 0;
 }

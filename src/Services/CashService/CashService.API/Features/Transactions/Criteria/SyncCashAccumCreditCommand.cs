@@ -15,5 +15,5 @@ public class SyncCashAccumCreditCommand : NonQueryCommand
 
     public override string GetSettingKey() => $"CustDb_{CustDbGroupId}_Age_CashAccumCredit_SyncData";
 
-    public override bool IsValid() => true;
+    public override bool IsValid() => !string.IsNullOrWhiteSpace(CashAccumCreditTbl);
 }

@@ -89,8 +89,7 @@
         <Setting Key="CustDb_0_Age_CashAgentProviderSel" SpName="Age_CashAgentProviderSel_UAT2" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0"></Setting>
         <Setting Key="Age_CashAccumCredit_AgSel" SpName="Age_CashAccumCredit_AgSel_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
         <Setting Key="CustDb_0_Age_CashDeposit_LimitAmtSel" SpName="Age_CashDeposit_LimitAmtSel_UAT2" DbName="DBCust.CustDB.wsv_CashService" Plain="0"></Setting>
-        <Setting Key="Acc_ServerDBConfigSelByCust" SpName="Acc_ServerDBConfigSelByCust_UAT2" DbName="DBGLOB.GlobCustDB.wsv_CashService" Plain="0"></Setting>
-        <Setting Key="WriteLog_CashService_UserLog_Transfer" SpName="WriteLog_CashService_UserLog_Transfer_UAT2" DbName="DBGLOB.GlobCustDB.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="WriteLog_CashService_UserLog_Transfer" SpName="WriteLog_CashService_UserLog_Transfer_UAT2" DbName="DBGLOB.bodb_CustomerLog.wsv_CashService" Plain="0"></Setting>
         <Setting Key="SiteDb_3_WriteLog_CashService_UserLog_Transfer" SpName="WriteLog_CashService_UserLog_Transfer_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
     </Function>
 
@@ -102,7 +101,7 @@
 
     <Function Name="Withdrawal">
         <Setting Key="SiteDb_3_Age_CashWithdrawal_ManualAdd" SpName="Age_CashWithdrawal_ManualAdd_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
-        <Setting Key="SiteDb_3_Acc_CustomerSelCash_CaptureBalance" SpName="Acc_CustomerSelCash_CaptureBalance_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="SiteDb_3_Age_CashService_CashBalance_Sel" SpName="Age_CashService_CashBalance_Sel_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
         <Setting Key="CustDb_0_Age_CashWithdrawal_LimitAmtSel" SpName="Age_CashWithdrawal_LimitAmtSel_UAT2" DbName="DBCust.CustDB.wsv_CashService" Plain="0"></Setting>
     </Function>
 

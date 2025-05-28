@@ -56,6 +56,18 @@ export const getSettingLimitAmtWithdrawal = async ({
   }
 };
 
+export const getWithdrawlMemberCashBalance = async (custId: number): Promise<number> => {
+  try {
+    const response = await api.get<number>('GetWithdrawlMemberCashBalance', {
+      params: { custId },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching withdrawl member cash balance:', error);
+    return 0;
+  }
+};
+
 export const manualAddWithdrawal = async (
   manualAddWithdrawal: AddWithdrawalModel
 ): Promise<ResultModel> => {

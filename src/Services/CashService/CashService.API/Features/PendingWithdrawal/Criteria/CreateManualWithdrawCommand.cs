@@ -5,6 +5,8 @@ using Fanex.Data.Repository;
 
 public class CreateManualWithdrawCommand : CriteriaBase
 {
+    public int CustId { get; set; }
+    public int SubAccId { get; set; }
     public int UplineId { get; set; }
     public decimal MinLimitAmt { get; set; }
 
@@ -18,11 +20,11 @@ public class CreateManualWithdrawCommand : CriteriaBase
     public string Ip { get; set; }
     public string Remark { get; set; }
     public int ProviderId { get; set; }
+    public int PaymentMethodId { get; set; }
+    public int SiteDbGroupId { get; set; }
+
     public long TransId { get; set; }
     public string CashAccumCreditTbl { get; set; }
-    public int SiteDbGroupId { get; set; }
-    public int CustId { get; set; }
-    public int SubAccId { get; set; }
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; }
 

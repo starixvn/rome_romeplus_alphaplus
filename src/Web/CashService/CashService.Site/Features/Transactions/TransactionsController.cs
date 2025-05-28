@@ -8,7 +8,6 @@ using Shared.Models;
 
 public class TransactionsController(
     HttpClientHelper httpClientHelper,
-    ILogger<TransactionsController> logger,
     IUserSession userSession,
     IHttpContextAccessor httpContextAccessor)
     : Controller
@@ -70,36 +69,33 @@ public class TransactionsController(
             { "custId", custId.ToString() },
             { "custDbGroupId", custDbGroupId.ToString() },
             { "providerId", providerId.ToString() },
-            { "siteDbGroupId", siteDbGroupId.ToString() }
         };
         var url = $"/withdrawal/limit-amount";
         var limitAmtDeposit = await httpClientHelper.GetAsync<object>(url, data);
         return Json(limitAmtDeposit);
     }
 
+    public async Task<IActionResult> GetWithdrawlMemberCashBalance(int custId)
+    {
+        var url = $"/withdrawal/member-cash-balance?custId={custId}&siteDbGroupId={siteDbGroupId}";
+        var balance = await httpClientHelper.GetAsync<object>(url);
+        return Json(balance);
+    }
+
     public async Task<IActionResult> AddManualDeposit([FromForm] AddTransactionParams request)
     {
-        try
+        var result = VerifyInputParam(request, false);
+        if (result.Code != 0)
         {
-            var result = VerifyInputParam(request, false);
-            if (result.Code != 0)
-            {
-                return Json(result);
-            }
-            request.UplineId = agentId;
-            request.Ip = GetClientIp();
-            request.SiteDbGroupId = siteDbGroupId;
-            request.CustDbGroupId = custDbGroupId;
-            request.PaySlip = request.Image != null ? await FileHelper.CompressAndConvertToBase64Async(request.Image) : null;
-            result = await httpClientHelper.PostAsync<AddTransactionParams, ResultModel>("/api/deposit/create", request);
             return Json(result);
         }
-        catch (Exception ex)
-        {
-            logger.LogError(ex, "Error add manual deposit");
-            return StatusCode(StatusCodes.Status500InternalServerError,
-                new { Code = StatusCodes.Status500InternalServerError, Message = "An unexpected error occurred" });
-        }
+        request.UplineId = agentId;
+        request.Ip = GetClientIp();
+        request.SiteDbGroupId = siteDbGroupId;
+        request.CustDbGroupId = custDbGroupId;
+        request.PaySlip = request.Image != null ? await FileHelper.CompressAndConvertToBase64Async(request.Image) : null;
+        result = await httpClientHelper.PostAsync<AddTransactionParams, ResultModel>("/api/deposit/create", request);
+        return Json(result);
     }
 
     [HttpPost]
@@ -213,110 +209,56 @@ public class TransactionsController(
     [HttpPost]
     public async Task<IActionResult> RevertDepositTransactionToPending([FromBody] RevertTransaction request)
     {
-        try
-        {
-            request.SiteDbGroupId = siteDbGroupId;
-            request.UserId = userId;
-            request.Ip = GetClientIp();
-            var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/api/transactions/revert-pending-deposit", request);
-            return Ok(result);
-        }
-        catch (Exception ex)
-        {
-            logger.LogError(ex, "Error reverting deposit transaction");
-            return StatusCode(StatusCodes.Status500InternalServerError,
-                new { Code = StatusCodes.Status500InternalServerError, Message = "An unexpected error occurred" });
-        }
+        request.SiteDbGroupId = siteDbGroupId;
+        request.UserId = userId;
+        request.Ip = GetClientIp();
+        var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/api/transactions/revert-pending-deposit", request);
+        return Ok(result);
     }
 
     [HttpPost]
     public async Task<IActionResult> RevertWithdrawalTransactionToPending([FromBody] RevertTransaction request)
     {
-        try
-        {
-            request.SiteDbGroupId = siteDbGroupId;
-            request.UserId = userId;
-            request.Ip = GetClientIp();
-            var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/api/transactions/revert-pending-withdrawal", request);
-            return Ok(result);
-        }
-        catch (Exception ex)
-        {
-            logger.LogError(ex, "Error reverting withdrawal transaction");
-            return StatusCode(StatusCodes.Status500InternalServerError,
-                new { Code = StatusCodes.Status500InternalServerError, Message = "An unexpected error occurred" });
-        }
+        request.SiteDbGroupId = siteDbGroupId;
+        request.UserId = userId;
+        request.Ip = GetClientIp();
+        var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/api/transactions/revert-pending-withdrawal", request);
+        return Ok(result);
     }
 
     [HttpPost]
     public async Task<IActionResult> ApproveDeposit([FromBody] ProcessTransactionModel request)
     {
-        try
-        {
-            var result = await httpClientHelper.PostAsync<ProcessTransactionModel, ResultModel>("/deposit/approve", request);
-            return Json(result);
-        }
-        catch (Exception ex)
-        {
-            logger.LogError(ex, "Error approve deposit");
-            return StatusCode(StatusCodes.Status500InternalServerError,
-                new { Code = StatusCodes.Status500InternalServerError, Message = "An unexpected error occurred" });
-        }
+        var result = await httpClientHelper.PostAsync<ProcessTransactionModel, ResultModel>("/deposit/approve", request);
+        return Json(result);
     }
 
     [HttpPost]
     public async Task<IActionResult> RejectDeposit([FromBody] ProcessTransactionModel request)
     {
-        try
-        {
-            var result = await httpClientHelper.PostAsync<ProcessTransactionModel, ResultModel>("/deposit/reject", request);
-            return Json(result);
-        }
-        catch (Exception ex)
-        {
-            logger.LogError(ex, "Error reject deposit");
-            return StatusCode(StatusCodes.Status500InternalServerError,
-                new { Code = StatusCodes.Status500InternalServerError, Message = "An unexpected error occurred" });
-        }
+        var result = await httpClientHelper.PostAsync<ProcessTransactionModel, ResultModel>("/deposit/reject", request);
+        return Json(result);
     }
 
     [HttpPost]
     public async Task<IActionResult> ApproveWithdrawal([FromBody] ProcessTransactionModel request)
     {
-        try
+        if (request.Image != null)
         {
-            if (request.Image != null)
-            {
-                request.Payslip = await FileHelper.CompressAndConvertToBase64Async(request.Image);
-            }
-            var result = await httpClientHelper.PostAsync<ProcessTransactionModel, ResultModel>("/withdrawal/approve", request);
-            return Ok(result);
+            request.Payslip = await FileHelper.CompressAndConvertToBase64Async(request.Image);
         }
-        catch (Exception ex)
-        {
-            logger.LogError(ex, "Error reverting transaction");
-            return StatusCode(StatusCodes.Status500InternalServerError,
-                new { Code = StatusCodes.Status500InternalServerError, Message = "An unexpected error occurred" });
-        }
+        var result = await httpClientHelper.PostAsync<ProcessTransactionModel, ResultModel>("/withdrawal/approve", request);
+        return Ok(result);
     }
 
     [HttpPost]
     public async Task<IActionResult> RejectWithdrawal([FromBody] ProcessTransactionModel request)
     {
-        try
+        if (request.Image != null)
         {
-            if (request.Image != null)
-            {
-                request.Payslip = await FileHelper.CompressAndConvertToBase64Async(request.Image);
-            }
-            var result = await httpClientHelper.PostAsync<ProcessTransactionModel, ResultModel>("/withdrawal/reject", request);
-            return Ok(result);
+            request.Payslip = await FileHelper.CompressAndConvertToBase64Async(request.Image);
         }
-        catch (Exception ex)
-        {
-            logger.LogError(ex, "Error reverting transaction");
-            return StatusCode(StatusCodes.Status500InternalServerError,
-                new { Code = StatusCodes.Status500InternalServerError, Message = "An unexpected error occurred" });
-        }
+        var result = await httpClientHelper.PostAsync<ProcessTransactionModel, ResultModel>("/withdrawal/reject", request);
+        return Ok(result);
     }
 }

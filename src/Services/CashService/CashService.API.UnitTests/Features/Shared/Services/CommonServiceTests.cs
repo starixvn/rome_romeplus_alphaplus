@@ -1,5 +1,4 @@
 using AlphaPlus.CashService.API.Features.Shared.Criteria;
-using AlphaPlus.CashService.API.Features.Shared.DTOs;
 using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Requests;
 using AlphaPlus.CashService.API.Features.Shared.Services;
@@ -41,39 +40,14 @@ public class CommonServiceTests
     }
 
     [Fact]
-    public async Task GetServerDBConfigByCustIdAsync_WhenValidCustIdProvided_ReturnsSiteDbConfig()
-    {
-        // Arrange
-        var custId = 123;
-        var expectedConfig = new SiteDbConfig 
-        { 
-            SiteDBGroupId = 1,
-            LinkedServerName = "TestServer",
-            ClientAccessName = "TestClient",
-            AGIP = "192.168.1.1",
-            CustDBGroupId = 1,
-            AGIP_DBCUST = "192.168.1.2"
-        };
-        _repositoryMock.Setup(x => x.GetAsync<SiteDbConfig>(It.Is<GetServerDBConfigByCustIdCriteria>(c => c.CustId == custId), string.Empty, CancellationToken.None))
-            .ReturnsAsync(expectedConfig);
-
-        // Act
-        var result = await _commonService.GetServerDBConfigByCustIdAsync(custId);
-
-        // Assert
-        Assert.Equal(expectedConfig, result);
-        _repositoryMock.Verify(x => x.GetAsync<SiteDbConfig>(It.Is<GetServerDBConfigByCustIdCriteria>(c => c.CustId == custId), string.Empty, CancellationToken.None), Times.Once);
-    }
-
-    [Fact]
     public async Task RunDBCommand_WhenCommandHasError_ReturnsErrorResult()
     {
         // Arrange
         var request = new BaseActionRequest { ActorId = 1, UserId = 2, SiteDB = 3 };
-        var baseDBCommand = new BaseDBCommand(1, 0, "192.168.1.1", "en") 
-        { 
-            ErrCode = 1, 
-            ErrMsg = "Test Error" 
+        var baseDBCommand = new BaseDBCommand(1, 0, "192.168.1.1", "en")
+        {
+            ErrCode = 1,
+            ErrMsg = "Test Error"
         };
 
         // Act
@@ -109,8 +83,8 @@ public class CommonServiceTests
     {
         // Arrange
         var request = new BaseActionRequest { ActorId = 1, UserId = 2, SiteDB = 3 };
-        var writeLogModel = new WriteLogDBCommandModel 
-        { 
+        var writeLogModel = new WriteLogDBCommandModel
+        {
             ActionId = 1,
             TrackingValue = "test",
             TrackingValue2 = "test2",
@@ -133,15 +107,15 @@ public class CommonServiceTests
     {
         // Arrange
         var request = new BaseActionRequest { ActorId = 1, UserId = 2, SiteDB = 3 };
-        var writeLogModel = new WriteLogDBCommandModel 
-        { 
+        var writeLogModel = new WriteLogDBCommandModel
+        {
             ActionId = 1,
             TrackingValue = "test",
             TrackingValue2 = "test2",
             TrackingValueMask = "mask",
             TrackingValueMask2 = "mask2"
         };
-        
+
         _repositoryMock.Setup(x => x.ExecuteAsync(It.Is<WriteLogDBCommandCriteria>(c => c.SiteDB == -1), string.Empty, CancellationToken.None))
             .ThrowsAsync(new Exception("First attempt fails"));
         _repositoryMock.Setup(x => x.ExecuteAsync(It.Is<WriteLogDBCommandCriteria>(c => c.SiteDB != -1), string.Empty, CancellationToken.None))
@@ -155,4 +129,4 @@ public class CommonServiceTests
         _repositoryMock.Verify(x => x.ExecuteAsync(It.Is<WriteLogDBCommandCriteria>(c => c.SiteDB != -1), string.Empty, CancellationToken.None), Times.Once);
         _loggerMock.Verify(x => x.Error(It.IsAny<string>(), It.IsAny<Exception>()), Times.Once);
     }
-} 
+}

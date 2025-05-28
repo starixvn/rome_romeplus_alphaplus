@@ -6,6 +6,7 @@ import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import {
   getSettingLimitAmtWithdrawal,
   manualAddWithdrawal,
+  getWithdrawlMemberCashBalance,
 } from '../../../../services/pendingWithdrawalAPI';
 import { AddWithdrawalModel } from '../../../../services/interfaces/AddWithdrawalModel';
 import { ResultMessageComponent } from '../../../../components/MessageComponents';
@@ -28,6 +29,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
   const [image, setImage] = useState<File | null>(null);
   const [minAmount, setMinAmount] = useState(0);
   const [maxAmount, setMaxAmount] = useState<number | null>(null);
+  const [memberCashBalance, setMemberCashBalance] = useState<number>(0);
   const [providerId, setProviderId] = useState(0);
   const [paymentMethodId, setPaymentMethodId] = useState(0);
   const [agentBankInfo, setBankInfo] = useState<WithdrawalAgentBankDropDown[]>([]);
@@ -136,6 +138,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
     if (memberBankOptions.length > 0) {
       setTo(memberBankOptions[0].value);
     }
+    await handleUpdateMemberCashBalance(selectedMemberId);
     await handleUpdateLimitWithdrawalAmt(selectedMemberId);
   };
 
@@ -151,8 +154,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
   };
 
   const handleUpdateLimitWithdrawalAmt = async (memberCustId: number | null) => {
-    if (!memberCustId) return;
-
+    if (!memberCustId || providerId <= 0) return;
     const limits = await getSettingLimitAmtWithdrawal({
       custId: memberCustId,
       providerId,
@@ -160,6 +162,12 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
     });
     setMinAmount(limits.minAmt);
     setMaxAmount(limits.maxAmt);
+  };
+
+  const handleUpdateMemberCashBalance = async (memberCustId: number | null) => {
+    if (!memberCustId) return;
+    const memberCashBalance = await getWithdrawlMemberCashBalance(memberCustId);
+    setMemberCashBalance(memberCashBalance);
   };
 
   useEffect(() => {
@@ -222,9 +230,13 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
   };
 
   const renderMinMaxAmount = () => {
+    if (providerId <= 0) return null;
     let displayMaxAmount = maxAmount ? maxAmount : 'unlimited';
     return (
-      <span className="text-xs text-gray-500 pl-3">(Member cash balance: {displayMaxAmount})</span>
+      <span className="text-xs text-gray-500 pl-3">
+        ({t('manualWithdrawalForm.minAmount')}: {minAmount} - {t('manualWithdrawalForm.maxAmount')}:{' '}
+        {displayMaxAmount})
+      </span>
     );
   };
 
@@ -296,6 +308,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       initialValue={from}
                       searchable={true}
                     />
+                    {renderMinMaxAmount()}
                   </div>
                 </div>
 
@@ -334,7 +347,6 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                     >
                       {t('manualWithdrawalForm.withdrawalAmount')}
                       <span className="text-red-500 absolute">*</span>
-                      {renderMinMaxAmount()}
                     </label>
 
                     <AmountInput
@@ -343,6 +355,9 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       onChange={(e) => handleSetWithdrawalAmount(e)}
                       className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:border-[var(--button-border)]"
                     />
+                    <span className="text-xs text-gray-500 pl-3">
+                      ({t('manualWithdrawalForm.memberCashBalance')}: {memberCashBalance})
+                    </span>
                   </div>
                 </div>
 

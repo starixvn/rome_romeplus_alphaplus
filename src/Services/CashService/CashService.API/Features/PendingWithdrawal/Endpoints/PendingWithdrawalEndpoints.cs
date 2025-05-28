@@ -26,7 +26,6 @@ public static class PendingWithdrawalEndpoints
                 UplineId = uplineId,
                 ProviderId = providerId,
                 CustDbGroupId = custDbGroupId,
-                SiteDbGroupId = siteDbGroupId
             });
             return Results.Ok(cashLimit);
         })
@@ -36,6 +35,13 @@ public static class PendingWithdrawalEndpoints
             Summary = "Get limit amount withdrawal information",
             Description = "Returns range value the member can withdrawal (MinAmt - MaxAmt)"
         });
+
+        group.MapGet("/member-cash-balance",
+            async (int custId, int siteDbGroupId, IPendingWithdrawalService service) =>
+            {
+                var cashBalance = await service.GetCashBalanceAsync(custId, siteDbGroupId);
+                return Results.Ok(cashBalance);
+            });
 
         group.MapGet("/member-setting/{custId}", async (int custId, IPendingWithdrawalService service) =>
         {

@@ -39,15 +39,12 @@ public class PendingWithdrawalService(
 
     public async Task<CreditAmount> GetLimitAmtWithdrawAsync(GetCashLimitAmt param)
     {
-        var cashBalance = await GetCashBalanceAsync(param.CustId, param.SiteDbGroupId);
-
         var criteria = new GetLimitAmtWithdrawCriteria
         {
             CustId = param.CustId,
             ProviderId = param.ProviderId,
             UplineId = param.UplineId,
             CustDbGroupId = param.CustDbGroupId,
-            CashBalance = cashBalance
         };
         await dynamicRepository.GetAsync<CreditAmount>(criteria);
         return new CreditAmount
@@ -75,13 +72,13 @@ public class PendingWithdrawalService(
                 CustDbGroupId = param.CustDbGroupId,
                 UplineId = param.UplineId,
                 ProviderId = param.ProviderId,
-                SiteDbGroupId = param.SiteDbGroupId
             });
         var command = new CreateManualWithdrawCommand
         {
             CustId = param.CustId,
             UplineId = param.UplineId,
             SubAccId = param.SubAccId,
+            SiteDbGroupId = param.SiteDbGroupId,
             MinLimitAmt = memberSettings.MinAmt,
             MaxLimitAmt = memberSettings.MaxAmt,
             PaymentFrom = param.PaymentFrom,
@@ -91,20 +88,13 @@ public class PendingWithdrawalService(
             Ip = param.Ip,
             Remark = param.Remark,
             ProviderId = param.ProviderId,
-            SiteDbGroupId = param.SiteDbGroupId,
+            PaymentMethodId = param.PaymentMethodId,
         };
-        var responseLogs = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command) ?? new List<WriteLogDBCommandModel>();
+        var responseLogs = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command) ?? [];
 
         var result = new ResultModel(command.ErrCode, command.ErrMsg);
 
-        if (command.ErrCode == 0)
-        {
-            transactionService.OnAfterUpdateTransactionSuccess(command.CashAccumCreditTbl, param.CustDbGroupId, responseLogs.ToList());
-        }
-        else
-        {
-            transactionService.OnAfterUpdateTransactionFailed(param.SiteDbGroupId, responseLogs.ToList());
-        }
+        transactionService.OnAfterUpdateTransaction(command.CashAccumCreditTbl, param.SiteDbGroupId, param.CustDbGroupId, responseLogs.ToList());
 
         return result;
     }

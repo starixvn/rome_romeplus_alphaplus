@@ -1,5 +1,4 @@
 using AlphaPlus.CashService.API.Features.Shared.Criteria;
-using AlphaPlus.CashService.API.Features.Shared.DTOs;
 using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Requests;
 using Fanex.Data.Repository;
@@ -9,8 +8,6 @@ namespace AlphaPlus.CashService.API.Features.Shared.Services;
 public interface ICommonService
 {
     Task<IEnumerable<string>> GetCountryCodes(string siteName);
-
-    Task<SiteDbConfig> GetServerDBConfigByCustIdAsync(int custId);
 
     Task<ResultModel> RunDBCommand(BaseActionRequest request, BaseDBCommand baseDBCommand);
 
@@ -26,18 +23,11 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
         return result;
     }
 
-    public async Task<SiteDbConfig> GetServerDBConfigByCustIdAsync(int custId)
-    {
-        var criteria = new GetServerDBConfigByCustIdCriteria { CustId = custId };
-        var siteDbConfig = await repository.GetAsync<SiteDbConfig>(criteria);
-        return siteDbConfig;
-    }
-
     public async Task<ResultModel> RunDBCommand(BaseActionRequest request, BaseDBCommand baseDBCommand)
     {
         var writeLLogDBCommandModels = await repository.FetchAsync<WriteLogDBCommandModel>(baseDBCommand);
-        
-        if(baseDBCommand.ErrCode != 0)
+
+        if (baseDBCommand.ErrCode != 0)
         {
             return new ResultModel(baseDBCommand.ErrCode, baseDBCommand.ErrMsg);
         }
@@ -67,7 +57,7 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
             logger.Error(e.Message, e);
         }
 
-        if(isSuccess)
+        if (isSuccess)
         {
             return;
         }

@@ -6,5 +6,4 @@ public class GetCashLimitAmt
     public int ProviderId { get; set; }
     public int UplineId { get; set; }
     public int CustDbGroupId { get; set; }
-    public int SiteDbGroupId { get; set; }
 }

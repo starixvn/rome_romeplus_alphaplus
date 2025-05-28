@@ -12,13 +12,11 @@ public class GetLimitAmtWithdrawCriteria : CriteriaBase
 
     public int UplineId { get; set; }
 
-    public decimal CashBalance { get; set; }
-
     [SpParam(Ignored = true)]
     public int CustDbGroupId { get; set; }
 
     public decimal MinAmt { get; set; }
-    public decimal? MaxAmt { get; set; }
+    public decimal MaxAmt { get; set; }
 
     public override string GetSettingKey() => $"CustDb_{CustDbGroupId}_Age_CashWithdrawal_LimitAmtSel";
 

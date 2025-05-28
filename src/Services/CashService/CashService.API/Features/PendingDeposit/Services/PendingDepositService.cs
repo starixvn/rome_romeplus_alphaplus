@@ -2,7 +2,6 @@ namespace AlphaPlus.CashService.API.Features.PendingDeposit.Services;
 
 using System.Numerics;
 using AlphaPlus.CashService.API.Features.Shared.Models;
-using AlphaPlus.CashService.API.Features.Shared.Services;
 using AlphaPlus.CashService.API.Features.Transactions.Models;
 using AlphaPlus.CashService.API.Features.Transactions.Services;
 using Criteria;
@@ -21,7 +20,6 @@ public interface IPendingDepositService
 }
 
 public class PendingDepositService(IDynamicRepository dynamicRepository,
-    ICommonService commonService,
     ITransactionService transactionService) : IPendingDepositService
 {
     public async Task<decimal> GetAccumulateCreditAsync(int agentId)
@@ -85,14 +83,9 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
 
         var logs = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command);
         var result = new ResultModel(command.ErrCode, command.ErrMsg);
-        if (command.ErrCode == 0)
-        {
-            transactionService.OnAfterUpdateTransactionSuccess(command.CashAccumCreditTbl, param.CustDbGroupId, logs.ToList());
-        }
-        else
-        {
-            transactionService.OnAfterUpdateTransactionFailed(param.SiteDbGroupId, logs.ToList());
-        }
+
+        transactionService.OnAfterUpdateTransaction(command.CashAccumCreditTbl, param.SiteDbGroupId, param.CustDbGroupId, logs.ToList());
+
         return result;
     }
 

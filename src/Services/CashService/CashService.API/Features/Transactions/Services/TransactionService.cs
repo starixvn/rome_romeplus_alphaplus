@@ -7,8 +7,8 @@ using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Services;
 using Criteria;
 using Fanex.Data.Repository;
+using Fanex.Logging;
 using Models;
-using Newtonsoft.Json;
 using Shared.Requests;
 
 public interface ITransactionService
@@ -23,15 +23,10 @@ public interface ITransactionService
 
     Task<IEnumerable<MemberInfo>> GetMembersAsync(int agentId, int custDbGroupId);
 
-    Task<ResultModel> SyncCashAccumCreditAsync(string cashAccumCreditTbl, int custDbGroupId);
-
-    void OnAfterUpdateTransactionSuccess(string cashAccumCreditTbl, int custDbGroupId,
-        List<WriteLogDBCommandModel> logs);
-
-    void OnAfterUpdateTransactionFailed(int siteDbGroupId, List<WriteLogDBCommandModel> logs);
+    void OnAfterUpdateTransaction(string cashAccumCreditTbl, int siteDbGroupId, int custDbGroupId, List<WriteLogDBCommandModel> logs);
 }
 
-public class TransactionService(IDynamicRepository dynamicRepository, ICommonService commonService)
+public class TransactionService(IDynamicRepository dynamicRepository, ICommonService commonService, ILogger logger)
     : ITransactionService
 {
     public async Task<TransactionResponse> GetTransactionsAsync(GetAllTransactionsWithPagingCriteria criteria)
@@ -87,91 +82,91 @@ public class TransactionService(IDynamicRepository dynamicRepository, ICommonSer
         return await dynamicRepository.FetchAsync<MemberInfo>(criteria);
     }
 
-    public async Task<ResultModel> SyncCashAccumCreditAsync(string cashAccumCreditTbl, int custDbGroupId)
+    public void OnAfterUpdateTransaction(string cashAccumCreditTbl, int siteDbGroupId, int custDbGroupId, List<WriteLogDBCommandModel> logs)
     {
-        var command = new SyncCashAccumCreditCommand
+        _ = Task.Run(async () =>
         {
-            CashAccumCreditTbl = cashAccumCreditTbl,
-            CustDbGroupId = custDbGroupId
-        };
-        await dynamicRepository.ExecuteAsync(command);
-        return new ResultModel(command.ErrCode, command.ErrMsg);
+            try
+            {
+                await SyncCashAccumulateCreditAsync(cashAccumCreditTbl, custDbGroupId);
+                await WriteLogAsync(logs, siteDbGroupId, custDbGroupId);
+            }
+            catch (Exception exception)
+            {
+                await logger.ErrorAsync(exception.Message, exception);
+            }
+        });
+    }
+
+    private async Task SyncCashAccumulateCreditAsync(string cashAccumCreditTbl, int custDbGroupId)
+    {
+        if (!string.IsNullOrWhiteSpace(cashAccumCreditTbl))
+        {
+            var command = new SyncCashAccumCreditCommand
+            {
+                CashAccumCreditTbl = cashAccumCreditTbl,
+                CustDbGroupId = custDbGroupId
+            };
+            await dynamicRepository.ExecuteAsync(command);
+
+            if (command.ErrCode != 0)
+            {
+                await logger.ErrorAsync($"SyncCashAccumulateCreditAsync failed: {command.ErrMsg}");
+            }
+        }
+    }
+
+    private async Task WriteLogAsync(List<WriteLogDBCommandModel> logs, int siteDbGroupId, int custDbGroupId)
+    {
+        if (logs.Count > 0)
+        {
+            foreach (var logItem in logs)
+            {
+                switch (logItem.LogTypeId)
+                {
+                    case 1:
+                        var logModel = new TransactionLog
+                        {
+                            UserId = logItem.UserId,
+                            FromCustId = logItem.FromCustId,
+                            ToCustId = logItem.ToCustId,
+                            IP = logItem.Ip,
+                            Doing = logItem.Doing,
+                        };
+                        await WriteTransactionLog(logModel, siteDbGroupId);
+                        break;
+
+                    case 2 or 3 or 4:
+                        await WriteLogRunSp(logItem, siteDbGroupId);
+                        break;
+                }
+            }
+        }
     }
 
     private async Task WriteTransactionLog(TransactionLog transactionLog, int siteDbGroupId)
     {
-        var command = new InsertTransactionLogTransferCommand(transactionLog, siteDbGroupId);
-        await dynamicRepository.ExecuteAsync(command);
-    }
-
-    public void OnAfterUpdateTransactionSuccess(string cashAccumCreditTbl, int custDbGroupId, List<WriteLogDBCommandModel> logs)
-    {
-        _ = Task.Run(async () =>
+        try
         {
-            try
-            {
-                await SyncCashAccumCreditAsync(cashAccumCreditTbl, custDbGroupId);
-                await WriteLogTransfer(logs, -1);
-                await WriteLogRunSp(logs, siteDbGroupId: -1);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-        });
-    }
-
-    public void OnAfterUpdateTransactionFailed(int siteDbGroupId, List<WriteLogDBCommandModel> logs)
-    {
-        _ = Task.Run(async () =>
+            var command = new InsertTransactionLogTransferCommand(transactionLog, -1);
+            await dynamicRepository.ExecuteAsync(command);
+        }
+        catch (Exception exception)
         {
-            try
-            {
-                await WriteLogTransfer(logs, siteDbGroupId);
-                await WriteLogRunSp(logs, siteDbGroupId);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-        });
-    }
-
-    private async Task WriteLogTransfer(List<WriteLogDBCommandModel> logs, int siteDbGroupId)
-    {
-        if (logs.Count > 0)
-        {
-            foreach (var logItem in logs)
-            {
-                var logModel = new TransactionLog
-                {
-                    UserId = logItem.UserId,
-                    FromCustId = logItem.FromCustId,
-                    ToCustId = logItem.ToCustId,
-                    IP = logItem.Ip,
-                    Doing = logItem.Doing,
-                };
-                await WriteTransactionLog(logModel, siteDbGroupId);
-            }
+            await logger.ErrorAsync(exception.Message, exception);
+            var command = new InsertTransactionLogTransferCommand(transactionLog, siteDbGroupId);
+            await dynamicRepository.ExecuteAsync(command);
         }
     }
 
-    private async Task WriteLogRunSp(List<WriteLogDBCommandModel> logs, int siteDbGroupId)
+    private async Task WriteLogRunSp(WriteLogDBCommandModel log, int siteDbGroupId)
     {
-        if (logs.Count > 0)
+        var request = new BaseActionRequest
         {
-            foreach (var logItem in logs)
-            {
-                var request = new BaseActionRequest
-                {
-                    ActorId = logItem.CustId,
-                    SiteDB = siteDbGroupId,
-                    UserId = logItem.UserId,
-                };
-                await commonService.WriteLogDBCommand(request, logItem);
-            }
-        }
+            ActorId = log.CustId,
+            SiteDB = siteDbGroupId,
+            UserId = log.UserId,
+        };
+        await commonService.WriteLogDBCommand(request, log);
     }
 }

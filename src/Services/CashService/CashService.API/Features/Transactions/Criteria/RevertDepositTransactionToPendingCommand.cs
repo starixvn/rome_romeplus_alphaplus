@@ -1,6 +1,5 @@
 ﻿namespace AlphaPlus.CashService.API.Features.Transactions.Criteria;
 
-using Fanex.Data;
 using Fanex.Data.Repository;
 
 public class RevertDepositTransactionToPendingCommand : NonQueryCommand
@@ -10,7 +9,6 @@ public class RevertDepositTransactionToPendingCommand : NonQueryCommand
     public int UserId { get; set; }
     public string Ip { get; set; }
     public int SiteDbGroupId { get; set; }
-
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; }
 

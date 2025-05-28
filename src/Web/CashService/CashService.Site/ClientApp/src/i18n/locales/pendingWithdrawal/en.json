@@ -78,7 +78,8 @@
     "memberBankSelectionRequired": "To is required",
     "amountRangeError": "Amount must less than or equal to member cash balance",
     "imageSizeError": "Image size must be less than 1 MB",
-    "addWithdrawalSuccess": "Add withdrawal successfully!!!"
+    "addWithdrawalSuccess": "Add withdrawal successfully!!!",
+    "memberCashBalance": "Member Cash Balance"
   },
 
   "updateWithdrawal": {
