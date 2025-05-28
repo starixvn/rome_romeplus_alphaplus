@@ -11,22 +11,22 @@ public interface IPaymentWithProviderService
 
 public class PaymentWithProviderService : IPaymentWithProviderService
 {
-    private readonly IEnumerable<IPaymentProviderService> _paymentProviders;
+    private readonly IPaymentProviderService _paymentProvider;
     private readonly PaymentProviderConfig _paymentProviderConfig;
 
     public PaymentWithProviderService(
         Fanex.Logging.ILogger logger,
-        IEnumerable<IPaymentProviderService> paymentProviders,
+        IPaymentProviderService paymentProvider,
         PaymentProviderConfig paymentProviderConfig)
     {
-        _paymentProviders = paymentProviders;
+        _paymentProvider = paymentProvider;
         _paymentProviderConfig = paymentProviderConfig;
     }
 
     public async Task<Result> ProcessPayout(CreateManualWithdrawalRequest request)
     {
         // Process withdrawal through payment provider
-        var provider = GetPaymentProvider(request.PaymentFrom);
+        var provider = _paymentProvider;
         if (provider == null)
         {
             return new Result(606, "Invalid payment provider");
@@ -51,20 +51,5 @@ public class PaymentWithProviderService : IPaymentWithProviderService
             _paymentProviderConfig);
 
         return providerResult;
-    }
-
-    private IPaymentProviderService GetPaymentProvider(string paymentFrom)
-    {
-        // TODO: Implement logic to determine provider based on paymentFrom
-        // This is a placeholder implementation
-        if (paymentFrom.StartsWith("U2"))
-        {
-            return _paymentProviders.FirstOrDefault(p => p.Provider == PaymentProvider.U2Pay);
-        }
-        else if (paymentFrom.StartsWith("DIR"))
-        {
-            return _paymentProviders.FirstOrDefault(p => p.Provider == PaymentProvider.DirePay);
-        }
-        return null;
     }
 } 

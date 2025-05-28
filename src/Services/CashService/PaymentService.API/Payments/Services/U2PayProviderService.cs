@@ -7,16 +7,16 @@ namespace AlphaPlus.PaymentService.API.Payments.Services;
 
 public class U2PayProviderService : IPaymentProviderService
 {
-    private readonly IHttpClientFactory _httpClientFactory;
+    private readonly HttpClient _httpClient;
     private readonly Fanex.Logging.ILogger _logger;
 
     public PaymentProvider Provider => PaymentProvider.U2Pay;
 
     public U2PayProviderService(
-        IHttpClientFactory httpClientFactory,
+        HttpClient httpClient,
         Fanex.Logging.ILogger logger)
     {
-        _httpClientFactory = httpClientFactory;
+        _httpClient = httpClient;
         _logger = logger;
     }
 
@@ -24,7 +24,7 @@ public class U2PayProviderService : IPaymentProviderService
     {
         try
         {
-            if (config == null || !config.IsEnabled)
+            if (config == null || !config.U2Pay.IsEnabled)
             {
                 return new Result(602, "U2Pay provider is not enabled");
             }
@@ -37,13 +37,11 @@ public class U2PayProviderService : IPaymentProviderService
             var fee = CalculateFee(amount, config);
             var totalAmount = amount + fee;
 
-            if (totalAmount < config.MinAmount || totalAmount > config.MaxAmount)
+            if (totalAmount < config.U2Pay.MinAmount || totalAmount > config.U2Pay.MaxAmount)
             {
-                return new Result(604, $"Amount must be between {config.MinAmount} and {config.MaxAmount}");
+                return new Result(604, $"Amount must be between {config.U2Pay.MinAmount} and {config.U2Pay.MaxAmount}");
             }
 
-            var client = _httpClientFactory.CreateClient("U2Pay");
-            
             // Prepare deposit request
             var request = new
             {
@@ -54,10 +52,10 @@ public class U2PayProviderService : IPaymentProviderService
             };
 
             // Generate signature
-            var signature = GenerateSignature(request, config.ApiSecret);
+            var signature = GenerateSignature(request, config.U2Pay.ApiSecret);
 
             // Add headers
-            client.DefaultRequestHeaders.Add("X-Signature", signature);
+            _httpClient.DefaultRequestHeaders.Add("X-Signature", signature);
 
             // Send request
             var content = new StringContent(
@@ -65,7 +63,7 @@ public class U2PayProviderService : IPaymentProviderService
                 Encoding.UTF8,
                 "application/json");
 
-            var response = await client.PostAsync("/api/v1/deposits", content);
+            var response = await _httpClient.PostAsync("/api/v1/deposits", content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
             if (!response.IsSuccessStatusCode)
@@ -97,11 +95,11 @@ public class U2PayProviderService : IPaymentProviderService
             return 0;
         }
 
-        if (config.FeeType.ToLower() == "percentage")
+        if (config.U2Pay.FeeType.ToLower() == "percentage")
         {
-            return amount * (config.Fee / 100);
+            return amount * (config.U2Pay.Fee / 100);
         }
-        return config.Fee;
+        return config.U2Pay.Fee;
     }
 
     public async Task<bool> ValidateAccount(string accountNumber, PaymentProviderConfig config)
@@ -113,8 +111,6 @@ public class U2PayProviderService : IPaymentProviderService
                 return false;
             }
 
-            var client = _httpClientFactory.CreateClient("U2Pay");
-            
             // Prepare validation request
             var request = new
             {
@@ -123,10 +119,10 @@ public class U2PayProviderService : IPaymentProviderService
             };
 
             // Generate signature
-            var signature = GenerateSignature(request, config.ApiSecret);
+            var signature = GenerateSignature(request, config.U2Pay.ApiSecret);
 
             // Add headers
-            client.DefaultRequestHeaders.Add("X-Signature", signature);
+            _httpClient.DefaultRequestHeaders.Add("X-Signature", signature);
 
             // Send request
             var content = new StringContent(
@@ -134,7 +130,7 @@ public class U2PayProviderService : IPaymentProviderService
                 Encoding.UTF8,
                 "application/json");
 
-            var response = await client.PostAsync("/api/v1/validate-account", content);
+            var response = await _httpClient.PostAsync("/api/v1/validate-account", content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
             if (!response.IsSuccessStatusCode)
@@ -184,14 +180,13 @@ public class U2PayProviderService : IPaymentProviderService
                 ["extra"] = payoutRequest.Extra,
                 ["time"] = payoutRequest.Time
             };
-            payoutRequest.Sign = PaySignatureUtil.GenerateSignature(parameters, config.ApiSecret);
+            payoutRequest.Sign = PaySignatureUtil.GenerateSignature(parameters, config.U2Pay.ApiSecret);
 
             // Remove appSecret from payload
             payoutRequest.AppSecret = null;
 
-            var client = _httpClientFactory.CreateClient("U2Pay");
             var content = new StringContent(JsonSerializer.Serialize(payoutRequest), Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("/payout/create", content);
+            var response = await _httpClient.PostAsync("/payout/create", content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
             if (!response.IsSuccessStatusCode)
@@ -221,7 +216,7 @@ public class U2PayProviderService : IPaymentProviderService
         {
             var request = new PayoutStatusRequest
             {
-                MerchantNo = config.ApiKey,
+                MerchantNo = config.U2Pay.ApiKey,
                 TradeNo = tradeNo,
                 OrderNo = orderNo,
                 Time = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
@@ -235,11 +230,10 @@ public class U2PayProviderService : IPaymentProviderService
                 ["orderNo"] = request.OrderNo,
                 ["time"] = request.Time
             };
-            request.Sign = PaySignatureUtil.GenerateSignature(parameters, config.ApiSecret);
+            request.Sign = PaySignatureUtil.GenerateSignature(parameters, config.U2Pay.ApiSecret);
 
-            var client = _httpClientFactory.CreateClient("U2Pay");
             var content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("/payout/status", content);
+            var response = await _httpClient.PostAsync("/payout/status", content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
             if (!response.IsSuccessStatusCode)
@@ -271,7 +265,7 @@ public class U2PayProviderService : IPaymentProviderService
         {
             var request = new PayoutBalanceRequest
             {
-                MerchantNo = config.ApiKey,
+                MerchantNo = config.U2Pay.ApiKey,
                 Time = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
             };
 
@@ -281,11 +275,10 @@ public class U2PayProviderService : IPaymentProviderService
                 ["merchantNo"] = request.MerchantNo,
                 ["time"] = request.Time
             };
-            request.Sign = PaySignatureUtil.GenerateSignature(parameters, config.ApiSecret);
+            request.Sign = PaySignatureUtil.GenerateSignature(parameters, config.U2Pay.ApiSecret);
 
-            var client = _httpClientFactory.CreateClient("U2Pay");
             var content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("/payout/balance", content);
+            var response = await _httpClient.PostAsync("/payout/balance", content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
             if (!response.IsSuccessStatusCode)

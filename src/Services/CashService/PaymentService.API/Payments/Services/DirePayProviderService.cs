@@ -1,5 +1,4 @@
 using AlphaPlus.PaymentService.API.Payments.Models;
-using AlphaPlus.PaymentService.API.Payments.Services;
 using AlphaPlus.PaymentService.API.Shared.Models;
 using System.Text;
 using System.Text.Json;
@@ -8,16 +7,16 @@ namespace AlphaPlus.PaymentService.API.Payments.Services;
 
 public class DirePayProviderService : IPaymentProviderService
 {
-    private readonly IHttpClientFactory _httpClientFactory;
+    private readonly HttpClient _httpClient;
     private readonly Fanex.Logging.ILogger _logger;
 
     public PaymentProvider Provider => PaymentProvider.DirePay;
 
     public DirePayProviderService(
-        IHttpClientFactory httpClientFactory,
+        HttpClient httpClient,
         Fanex.Logging.ILogger logger)
     {
-        _httpClientFactory = httpClientFactory;
+        _httpClient = httpClient;
         _logger = logger;
     }
 
@@ -43,14 +42,13 @@ public class DirePayProviderService : IPaymentProviderService
                 ["extra"] = payoutRequest.Extra,
                 ["time"] = payoutRequest.Time
             };
-            payoutRequest.Sign = DirePaySignatureUtil.GenerateSignature(parameters, config.ApiSecret);
+            payoutRequest.Sign = DirePaySignatureUtil.GenerateSignature(parameters, config.DirePay.ApiSecret);
 
             // Remove appSecret from payload
             payoutRequest.AppSecret = null;
 
-            var client = _httpClientFactory.CreateClient("DirePay");
             var content = new StringContent(JsonSerializer.Serialize(payoutRequest), Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("/payout/create", content);
+            var response = await _httpClient.PostAsync("/payout/create", content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
             if (!response.IsSuccessStatusCode)
@@ -78,7 +76,7 @@ public class DirePayProviderService : IPaymentProviderService
     {
         try
         {
-            if (config == null || !config.IsEnabled)
+            if (config == null || !config.DirePay.IsEnabled)
             {
                 return new Result(602, "DirePay provider is not enabled");
             }
@@ -91,23 +89,21 @@ public class DirePayProviderService : IPaymentProviderService
             var fee = CalculateFee(amount, config);
             var totalAmount = amount + fee;
 
-            if (totalAmount < config.MinAmount || totalAmount > config.MaxAmount)
+            if (totalAmount < config.DirePay.MinAmount || totalAmount > config.DirePay.MaxAmount)
             {
-                return new Result(604, $"Amount must be between {config.MinAmount} and {config.MaxAmount}");
+                return new Result(604, $"Amount must be between {config.DirePay.MinAmount} and {config.DirePay.MaxAmount}");
             }
 
-            var client = _httpClientFactory.CreateClient("DirePay");
-            
             // Prepare deposit request
             var request = new DirePayPayoutRequest
             {
-                MerchantId = config.ApiKey,
+                MerchantId = config.DirePay.ApiKey,
                 OrderId = Guid.NewGuid().ToString("N"),
                 Amount = totalAmount,
                 Currency = currency,
                 AccountNumber = accountNumber,
                 CreatedAt = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss"),
-                CallbackUrl = config.BaseUrl + "/api/payments/direpay/callback",
+                CallbackUrl = config.DirePay.BaseUrl + "/api/payments/direpay/callback",
                 Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
             };
 
@@ -123,7 +119,7 @@ public class DirePayProviderService : IPaymentProviderService
                 ["callbackUrl"] = request.CallbackUrl,
                 ["timestamp"] = request.Timestamp
             };
-            request.Signature = DirePaySignatureUtil.GenerateSignature(parameters, config.ApiSecret);
+            request.Signature = DirePaySignatureUtil.GenerateSignature(parameters, config.DirePay.ApiSecret);
 
             // Send request
             var content = new StringContent(
@@ -131,7 +127,7 @@ public class DirePayProviderService : IPaymentProviderService
                 Encoding.UTF8,
                 "application/json");
 
-            var response = await client.PostAsync("/api/v1/deposits", content);
+            var response = await _httpClient.PostAsync("/api/v1/deposits", content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
             if (!response.IsSuccessStatusCode)
@@ -163,11 +159,11 @@ public class DirePayProviderService : IPaymentProviderService
             return 0;
         }
 
-        if (config.FeeType.ToLower() == "percentage")
+        if (config.DirePay.FeeType.ToLower() == "percentage")
         {
-            return amount * (config.Fee / 100);
+            return amount * (config.DirePay.Fee / 100);
         }
-        return config.Fee;
+        return config.DirePay.Fee;
     }
 
     public async Task<bool> ValidateAccount(string accountNumber, PaymentProviderConfig config)
@@ -179,12 +175,10 @@ public class DirePayProviderService : IPaymentProviderService
                 return false;
             }
 
-            var client = _httpClientFactory.CreateClient("DirePay");
-            
             // Prepare validation request
             var request = new
             {
-                merchantId = config.ApiKey,
+                merchantId = config.DirePay.ApiKey,
                 accountNumber,
                 timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
             };
@@ -196,10 +190,10 @@ public class DirePayProviderService : IPaymentProviderService
                 ["accountNumber"] = request.accountNumber,
                 ["timestamp"] = request.timestamp
             };
-            var signature = DirePaySignatureUtil.GenerateSignature(parameters, config.ApiSecret);
+            var signature = DirePaySignatureUtil.GenerateSignature(parameters, config.DirePay.ApiSecret);
 
             // Add headers
-            client.DefaultRequestHeaders.Add("X-Signature", signature);
+            _httpClient.DefaultRequestHeaders.Add("X-Signature", signature);
 
             // Send request
             var content = new StringContent(
@@ -207,7 +201,7 @@ public class DirePayProviderService : IPaymentProviderService
                 Encoding.UTF8,
                 "application/json");
 
-            var response = await client.PostAsync("/api/v1/validate-account", content);
+            var response = await _httpClient.PostAsync("/api/v1/validate-account", content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
             if (!response.IsSuccessStatusCode)
@@ -233,7 +227,7 @@ public class DirePayProviderService : IPaymentProviderService
         {
             var request = new DirePayPayoutStatusRequest
             {
-                MerchantId = config.ApiKey,
+                MerchantId = config.DirePay.ApiKey,
                 TransactionId = tradeNo,
                 OrderId = orderNo,
                 Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
@@ -247,11 +241,10 @@ public class DirePayProviderService : IPaymentProviderService
                 ["orderId"] = request.OrderId,
                 ["timestamp"] = request.Timestamp
             };
-            request.Signature = DirePaySignatureUtil.GenerateSignature(parameters, config.ApiSecret);
+            request.Signature = DirePaySignatureUtil.GenerateSignature(parameters, config.DirePay.ApiSecret);
 
-            var client = _httpClientFactory.CreateClient("DirePay");
             var content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("/api/v1/payouts/status", content);
+            var response = await _httpClient.PostAsync("/api/v1/payouts/status", content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
             if (!response.IsSuccessStatusCode)
@@ -283,7 +276,7 @@ public class DirePayProviderService : IPaymentProviderService
         {
             var request = new DirePayPayoutBalanceRequest
             {
-                MerchantId = config.ApiKey,
+                MerchantId = config.DirePay.ApiKey,
                 Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
             };
 
@@ -293,11 +286,10 @@ public class DirePayProviderService : IPaymentProviderService
                 ["merchantId"] = request.MerchantId,
                 ["timestamp"] = request.Timestamp
             };
-            request.Signature = DirePaySignatureUtil.GenerateSignature(parameters, config.ApiSecret);
+            request.Signature = DirePaySignatureUtil.GenerateSignature(parameters, config.DirePay.ApiSecret);
 
-            var client = _httpClientFactory.CreateClient("DirePay");
             var content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("/api/v1/balance", content);
+            var response = await _httpClient.PostAsync("/api/v1/balance", content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
             if (!response.IsSuccessStatusCode)
