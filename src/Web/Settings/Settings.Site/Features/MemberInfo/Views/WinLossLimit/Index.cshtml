@@ -10,14 +10,12 @@
 @using AlphaPlus.Settings.MemberInfo.Domain.Extensions
 @model WinLossLimitViewModel
 @{
+    Layout = "~/Features/MemberInfo/Views/WinLossLimit/_Layout.cshtml";
     ViewBag.Title = "Member Win/Loss Limit";
 }
 @section Styles {
     @StaticResources.RenderStylesWithDarkMode("~/Features/MemberInfo/assets/bundles/win-loss-limit")
 }
-<div class="page-title">
-    <span class="pull-left">@Resources.MemberWinLossLimit</span>
-</div>
 <form id="win-loss-limit-form" class="form-inline demo-form-inline filter" role="form">
     <div class="form-group">
         <select id="dropdown-product">

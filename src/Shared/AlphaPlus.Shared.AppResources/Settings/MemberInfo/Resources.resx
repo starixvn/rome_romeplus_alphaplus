@@ -1279,4 +1279,22 @@ Notes: your password is cAsE sEnSiTiVe.</value>
   <data name="CreateCashMember" xml:space="preserve">
     <value>Add New Cash member</value>
   </data>
+  <data name="PotentialWin" xml:space="preserve">
+    <value>Potential Win</value>
+  </data>
+  <data name="SportsbookPotentialWinLimit" xml:space="preserve">
+    <value>Sportsbook Potential Win Limit</value>
+  </data>
+  <data name="MaxPotentialWinLimit" xml:space="preserve">
+    <value>Max Potential Win Limit</value>
+  </data>
+  <data name="CurrentPotentialWin" xml:space="preserve">
+    <value>Current Potential Win (%)</value>
+  </data>
+  <data name="ToWin" xml:space="preserve">
+    <value>To Win</value>
+  </data>
+  <data name="AccumulatedWinLoss" xml:space="preserve">
+    <value>Accumulated Win/Loss</value>
+  </data>
 </root>

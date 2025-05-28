@@ -1,0 +1,12 @@
+@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
+@using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.WinLossLimit
+@model TabViewModel
+
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="@(Model.SelectedTabName == "index" ? "active" : string.Empty)">
+        <a id="tabWinLossLimit" href="/settings/WinLossLimit/index">@Resources.MemberWinLossLimit</a>
+    </li>
+    <li role="presentation" class="@(Model.SelectedTabName == "sportsbookpotentialwinlimit" ? "active" : string.Empty)">
+        <a id="tabSportsbookPotentialWinLimit" href="/settings/WinLossLimit/sportsbookpotentialwinlimit">@Resources.SportsbookPotentialWinLimit</a>
+    </li>
+</ul>

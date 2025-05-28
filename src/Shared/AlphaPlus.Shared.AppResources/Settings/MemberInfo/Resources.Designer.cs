@@ -4295,5 +4295,68 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
                 return ResourceManager.GetString("AvailableCreditSlashBetCredit", resourceCulture);
             }
         }
+
+        public static string SportsbookPotentialWinLimit
+        {
+            get
+            {
+                return ResourceManager.GetString("SportsbookPotentialWinLimit", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Potential Win.
+        /// </summary>
+        public static string PotentialWin
+        {
+            get
+            {
+                return ResourceManager.GetString("PotentialWin", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Max Potential Win Limit.
+        /// </summary>
+        public static string MaxPotentialWinLimit
+        {
+            get
+            {
+                return ResourceManager.GetString("MaxPotentialWinLimit", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Current Potential Win.
+        /// </summary>
+        public static string CurrentPotentialWin
+        {
+            get
+            {
+                return ResourceManager.GetString("CurrentPotentialWin", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to To Win.
+        /// </summary>
+        public static string ToWin
+        {
+            get
+            {
+                return ResourceManager.GetString("ToWin", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Accumulated Win Loss.
+        /// </summary>
+        public static string AccumulatedWinLoss
+        {
+            get
+            {
+                return ResourceManager.GetString("AccumulatedWinLoss", resourceCulture);
+            }
+        }
     }
 }
