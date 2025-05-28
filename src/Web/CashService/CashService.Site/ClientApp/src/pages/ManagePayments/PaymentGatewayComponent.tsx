@@ -8,7 +8,7 @@ import TitleComponent, { MediumTitleComponent } from '../../components/TitleComp
 import { IconInfo, IconPen } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
 import { ErrorMessageComponent } from '../../components/MessageComponents';
-import { ButtonOutlineComponent, ButtonFullComponent } from '../../components/ButtonComponents';
+import { ButtonOutlineComponent, ButtonFullComponent, ButtonTabComponent, ButtonTabActiveComponent } from '../../components/ButtonComponents';
 import { StatusEnabledComponent, StatusDisabledComponent, StatusNoneComponent } from '../../components/StatusComponents';
 
 interface PaymentGatewayComponentProps {
@@ -17,6 +17,7 @@ interface PaymentGatewayComponentProps {
 }
 
 const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setActiveTab, activeTab }) => {
+  
   const { t: tGlobal } = useTranslation('global');
   const { t: tManagePayments } = useTranslation('managePayments');
   const [providers, setProviders] = React.useState<PaymentProvider[]>([]);
@@ -88,21 +89,13 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({ setAc
       <div className="card">
         <div className="card-header">
           <ul className="flex">
-            <li className="mr-[8px]">
-              <button
-                  className={`font-bold text-[12px] leading-[36px] max-[768px]:text-[16px] px-[16px] rounded-t-[4px] ${activeTab === 'paymentGateway' ? ' bg-[var(--button-background)] text-[#ffffff] cursor-pointer' : 'bg-[#dbe2ef] text-[var(--text-color-primary)] cursor-pointer'}`}
-                  onClick={() => setActiveTab('paymentGateway')}
-                >
-                {tManagePayments('paymentGateway')}
-              </button>
+            <li className="mr-[8px]">             
+              {activeTab === 'paymentGateway' &&
+                <ButtonTabActiveComponent text={tManagePayments('paymentGateway')} />
+              }
             </li>
-            <li>
-              <button
-                  className={`font-bold text-[12px] leading-[36px] max-[768px]:text-[16px] px-[16px] rounded-t-[4px] ${activeTab === 'bankAccount' ? ' bg-[var(--button-background)] text-[#ffffff] cursor-pointer' : 'bg-[#dbe2ef] text-[var(--text-color-primary)] cursor-pointer'}`}
-                  onClick={() => setActiveTab('bankAccount')}
-                >
-                {tManagePayments('bankAccount')}
-              </button>
+            <li>             
+                <ButtonTabComponent text={tManagePayments('bankAccount')} onClick={() => setActiveTab('bankAccount')}  />
             </li>
           </ul>
         </div>

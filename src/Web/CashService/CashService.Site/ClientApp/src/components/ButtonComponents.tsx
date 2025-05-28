@@ -164,3 +164,26 @@ export const ButtonClosePopupComponent: React.FC<ButtonComponentProps> = ({
     <button type="button" className="absolute top-[-20px] right-[-20px] cursor-pointer outline-none" onClick={onClick}><IconClose /></button>
   );
 };
+
+export const ButtonTabComponent: React.FC<ButtonComponentProps> = ({
+  text,
+  onClick,
+  }) => {    
+  return (
+    <button
+      className="font-bold text-[12px] leading-[36px] max-[768px]:text-[16px] px-[16px] rounded-t-[4px] bg-[#dbe2ef] text-[var(--text-color-primary)] cursor-pointer" onClick={onClick}>    
+      {text}
+    </button>
+  );
+};
+
+export const ButtonTabActiveComponent: React.FC<ButtonComponentProps> = ({
+  text
+  }) => {    
+  return (
+    <button
+      className="font-bold text-[12px] leading-[36px] max-[768px]:text-[16px] px-[16px] rounded-t-[4px]  bg-[var(--button-background)] text-[#ffffff]" >    
+      {text}
+    </button>
+  );
+};

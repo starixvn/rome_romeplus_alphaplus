@@ -14,7 +14,7 @@ import { ErrorMessageComponent, SuccessMessageComponent } from '../../components
 import BankIcon from '../../components/BankComponents';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import { ButtonFullComponent, ButtonOutlineComponent } from '../../components/ButtonComponents';
+import { ButtonFullComponent, ButtonOutlineComponent, ButtonTabActiveComponent, ButtonTabComponent } from '../../components/ButtonComponents';
 import { StatusDisabledComponent ,StatusEnabledComponent } from '../../components/StatusComponents';
 
 interface BankAccountComponentProps {
@@ -263,21 +263,13 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
           <div className="card h-[calc(100%-40px)] flex flex-col">
             <div className="card-header">
               <ul className="flex">
-                <li className="mr-[8px]">
-                  <button
-                      className={`font-bold leading-[36px] pr-[16px] pl-[16px] rounded-t-[4px] ${activeTab === 'paymentGateway' ? ' bg-[var(--button-background)] text-[#ffffff] cursor-pointer' : 'bg-[#dbe2ef] text-[var(--text-color-primary)] cursor-pointer'}`}
-                      onClick={() => setActiveTab('paymentGateway')}
-                    >
-                    {tManagePayments('paymentGateway')}
-                  </button>
+                <li className="mr-[8px]">                  
+                    <ButtonTabComponent text={tManagePayments('paymentGateway')} onClick={() => setActiveTab('paymentGateway')} />
                 </li>
                 <li>
-                  <button
-                      className={`font-bold leading-[36px] pr-[16px] pl-[16px] rounded-t-[4px] ${activeTab === 'bankAccount' ? ' bg-[var(--button-background)] text-[#ffffff] cursor-pointer' : 'bg-[#dbe2ef] text-[var(--text-color-primary)] cursor-pointer'}`}
-                      onClick={() => setActiveTab('bankAccount')}
-                    >
-                    {tManagePayments('bankAccount')}
-                  </button>
+                  {activeTab === 'bankAccount' && 
+                    <ButtonTabActiveComponent text={tManagePayments('bankAccount')} />
+                  }                 
                 </li>
               </ul>
             </div>
