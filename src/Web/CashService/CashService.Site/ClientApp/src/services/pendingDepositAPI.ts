@@ -1,28 +1,16 @@
 import { axiosInstance as api } from './axios';
-import { DepositAccountInfo } from './interfaces/DepositAccountInfo';
-import { CreditAmount } from './interfaces/Transactions/CreditAmount';
 import { ResultModel } from './interfaces/ResultModel';
 import { AddDepositManualModel } from './interfaces/AddDepositManualModel';
 import { ApproveRejectDepositModel } from './interfaces/ApproveRejectDepositModel';
 
 export const pendingDepositAPI = {
-  getMemberBankAccounts: async (): Promise<DepositAccountInfo[]> => {
+  getLimitAmtDeposit: async (custId: number): Promise<number> => {
     try {
-      const response = await api.get<DepositAccountInfo[]>('GetMemberBankAccounts');
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching member bank accounts:', error);
-      return [];
-    }
-  },
-
-  getLimitAmtDeposit: async (custId: number): Promise<CreditAmount> => {
-    try {
-      const response = await api.get<CreditAmount>(`GetLimitAmtDeposit?custId=${custId}`);
+      const response = await api.get<number>(`GetLimitAmtDeposit?custId=${custId}`);
       return response.data;
     } catch (error) {
       console.error('Error fetching credit amount:', error);
-      return { minAmt: 0, maxAmt: 0 };
+      return 0;
     }
   },
 

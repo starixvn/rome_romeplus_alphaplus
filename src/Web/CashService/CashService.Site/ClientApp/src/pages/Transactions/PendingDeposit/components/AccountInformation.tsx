@@ -2,7 +2,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { MemberLoginName } from '../../../../services/interfaces/Transactions/MemberLoginName';
 import { BankInfo } from '../../../../services/interfaces/Transactions/BankInfo';
-import { CreditAmount } from '../../../../services/interfaces/Transactions/CreditAmount';
 import CustomDropdown, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import BankIcon from '../../../../components/BankComponents';
 import { AmountInput } from '../../../../components/ui/AmountInput';
@@ -20,7 +19,7 @@ interface AccountInformationProps {
   cashAgentOptions: BankInfo[];
   depositAmount: number;
   onDepositAmountChange: (value: number) => void;
-  creditAmount: CreditAmount;
+  agentAvailableCredit: number;
   remarks: string;
   onRemarksChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
@@ -37,7 +36,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
   cashAgentOptions,
   depositAmount,
   onDepositAmountChange,
-  creditAmount,
+  agentAvailableCredit,
   remarks,
   onRemarksChange,
 }) => {
@@ -103,8 +102,8 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
               onChange={onDepositAmountChange}
               className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:border-[var(--button-border)] bg-[var(--background-control)]"
             />
-              <label className="block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold"> ({t('manualDepositForm.agentAvailableCredit')}:
-              <span className="font-bold text-[#444]">{` ${creditAmount.maxAmt}`}</span>)</label>
+            <p className="text-xs my-[8px] text-gray-500 font-bold">{t('manualDepositForm.agentAvailableCredit')}:
+            <span className="text-black font-bold">{` ${agentAvailableCredit}`}</span></p>
           </div>
         </div>
 

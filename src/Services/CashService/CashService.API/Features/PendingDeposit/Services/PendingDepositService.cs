@@ -5,16 +5,13 @@ using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Services;
 using AlphaPlus.CashService.API.Features.Transactions.Models;
 using AlphaPlus.CashService.API.Features.Transactions.Services;
-using API.Criteria.PendingDeposit;
 using Criteria;
 using Fanex.Data.Repository;
 using Models;
 
 public interface IPendingDepositService
 {
-    Task<IEnumerable<BankAccountInfo>> GetMemberBankAccountInfo();
-
-    Task<CreditAmount> GetLimitAmtDepositAsync(int agentId, int custId, int custDbGroupId);
+    Task<decimal> GetLimitAmtDepositAsync(int agentId, int custId, int custDbGroupId);
 
     Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int custId, int custDbGroupId);
 
@@ -27,9 +24,6 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
     ICommonService commonService,
     ITransactionService transactionService) : IPendingDepositService
 {
-    public async Task<IEnumerable<BankAccountInfo>> GetMemberBankAccountInfo()
-        => await dynamicRepository.FetchAsync<BankAccountInfo>(new GetMemberBankAccountCriteria());
-
     public async Task<decimal> GetAccumulateCreditAsync(int agentId)
     {
         var criteria = new GetAccumulateCreditCriteria
@@ -41,9 +35,8 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
         return criteria.AccumCreditReturn;
     }
 
-    public async Task<CreditAmount> GetLimitAmtDepositAsync(int agentId, int custId, int custDbGroupId)
+    public async Task<decimal> GetLimitAmtDepositAsync(int agentId, int custId, int custDbGroupId)
     {
-        var creditAmount = new CreditAmount();
         var acCumCreditReturn = await GetAccumulateCreditAsync(agentId);
 
         var criteria = new GetLimitAmtDepositCriteria
@@ -52,10 +45,8 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
             AccumCreditReturn = acCumCreditReturn
         };
         await dynamicRepository.GetAsync<CreditAmount>(criteria);
-        creditAmount.MaxAmt = criteria.MaxAmt;
-        creditAmount.MinAmt = criteria.MinAmt;
 
-        return creditAmount;
+        return criteria.AgentAvailableCredit;
     }
 
     public async Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int custId, int custDbGroupId)
@@ -69,8 +60,6 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
         await dynamicRepository.GetAsync<MemberSettingDeposit>(criteria);
         memberSetting.AgentGivenCredit = criteria.AgentGivenCredit;
         memberSetting.CreditMembers_GivenCredit = criteria.CreditMembers_GivenCredit;
-        memberSetting.MinLimitAmt = criteria.MinLimitAmt;
-        memberSetting.MaxLimitAmt = criteria.MaxLimitAmt;
 
         return memberSetting;
     }
@@ -86,8 +75,6 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
             SiteDbGroupId = param.SiteDbGroupId,
             AgentGivenCredit = memberSettings.AgentGivenCredit,
             CreditMembers_GivenCredit = memberSettings.CreditMembers_GivenCredit,
-            MinLimitAmt = memberSettings.MinLimitAmt,
-            MaxLimitAmt = memberSettings.MaxLimitAmt,
             PaymentFrom = param.PaymentFrom,
             PaymentTo = param.PaymentTo,
             Amount = param.Amount,

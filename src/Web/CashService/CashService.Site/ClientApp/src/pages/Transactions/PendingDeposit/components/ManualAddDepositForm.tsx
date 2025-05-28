@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import { MemberLoginName } from '../../../../services/interfaces/Transactions/MemberLoginName';
 import { BankInfo } from '../../../../services/interfaces/Transactions/BankInfo';
-import { CreditAmount } from '../../../../services/interfaces/Transactions/CreditAmount';
 import pendingDepositAPI from '../../../../services/pendingDepositAPI';
 import UploadImage from '../../Components/UploadImage';
 import { AddDepositManualModel } from '../../../../services/interfaces/AddDepositManualModel';
@@ -35,7 +34,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
     renderBankOptionValue(cashAgentOptions[0]?.bankCode, cashAgentOptions[0]?.bankAccountNumber)
   );
   const [cashMemberOptions, setCashMemberOptions] = useState<BankInfo[]>([]);
-  const [creditAmount, setCreditAmount] = useState<CreditAmount>({ minAmt: 0, maxAmt: 0 });
+  const [agentAvailableCredit, setAgentAvailableCredit] = useState<number>(0);
   const [depositAmount, setDepositAmount] = useState<number>(0);
   const [remarks, setRemarks] = useState('');
   const [image, setImage] = useState<File | null>(null);
@@ -56,7 +55,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
           const selectedMemberId = memberLoginNames[0].custId;
           setMemberId(selectedMemberId);
 
-          const [bankInfo, creditAmountData] = await Promise.all([
+          const [bankInfo, agentAC] = await Promise.all([
             transactionAPI.getCashMemberBankInfo(selectedMemberId),
             pendingDepositAPI.getLimitAmtDeposit(selectedMemberId)
           ]);
@@ -67,7 +66,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
               renderBankOptionValue(bankInfo[0].bankCode, bankInfo[0].bankAccountNumber)
             );
           }
-          setCreditAmount(creditAmountData);
+          setAgentAvailableCredit(agentAC);
         }
       } catch {
         setValidationMessage({
@@ -87,7 +86,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
       if (!memberId) return;
       
       setValidationMessage(null);
-      const [bankInfo, creditAmountData] = await Promise.all([
+      const [bankInfo, agentAC] = await Promise.all([
         transactionAPI.getCashMemberBankInfo(memberId),
         pendingDepositAPI.getLimitAmtDeposit(memberId)
       ]);
@@ -98,7 +97,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
           renderBankOptionValue(bankInfo[0].bankCode, bankInfo[0].bankAccountNumber)
         );
       }
-      setCreditAmount(creditAmountData);
+      setAgentAvailableCredit(agentAC);
     };
 
     fetchMemberData();
@@ -184,7 +183,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
                 cashAgentOptions={cashAgentOptions}
                 depositAmount={depositAmount}
                 onDepositAmountChange={(e) => handleSetDepositAmount(e)}
-                creditAmount={creditAmount}
+                agentAvailableCredit={agentAvailableCredit}
                 remarks={remarks}
                 onRemarksChange={(e) => setRemarks(e.target.value)}
               />

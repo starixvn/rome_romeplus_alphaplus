@@ -3,7 +3,6 @@ using AlphaPlus.CashService.API.Features.PendingDeposit.Services;
 using AlphaPlus.CashService.API.Features.Transactions.Enum;
 using AlphaPlus.CashService.API.Features.Transactions.Models;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace AlphaPlus.CashService.API.Features.PendingDeposit.Endpoints;
 
@@ -13,18 +12,6 @@ public static class PendingDepositEndpoints
     {
         var group = app.MapGroup("/api/deposit")
             .WithTags("Pending Deposit");
-
-        group.MapGet("/member-bank-accounts", async (IPendingDepositService service) =>
-        {
-            var bankAccounts = await service.GetMemberBankAccountInfo();
-            return Results.Ok(bankAccounts);
-        })
-        .WithName("GetMemberBankAccounts")
-        .WithOpenApi(operation => new(operation)
-        {
-            Summary = "Get member bank accounts",
-            Description = "Returns a list of bank accounts for members"
-        });
 
         group.MapGet("/limit-amount", async ([FromQuery] int agentId
             , [FromQuery] int custId
