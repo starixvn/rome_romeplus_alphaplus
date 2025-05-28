@@ -167,7 +167,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
               <ResultMessageComponent
                 type={validationMessage.type}
                 message={validationMessage.message}
-                className="mb-4"
+                className="mb-[16px] max-[768px]:mb-[0]"
               />
             )}
             <div className="flex max-[768px]:flex-col">

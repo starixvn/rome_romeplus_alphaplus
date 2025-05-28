@@ -107,7 +107,7 @@ const UploadImage: React.FC<UploadImageProps> = ({ setImage, disabled = false })
   );
 
   const renderUploadPlaceholder = () => (
-    <div className="flex flex-col items-center justify-center text-center p-6">
+    <div className="flex flex-col items-center justify-center text-center p-6 text-[#333]">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-8 w-8 text-[#163f78] mb-4"
@@ -124,18 +124,18 @@ const UploadImage: React.FC<UploadImageProps> = ({ setImage, disabled = false })
       </svg>
       <p className="text-sm font-medium mb-1">
         <span className="text-[#163f78] cursor-pointer underline">Click to upload</span>{' '}
-        <span className="text-[#333]">or drag</span>
+        <span className="">or drag</span>
       </p>
-      <span className="text-sm font-medium text-[#333] mb-2">and drop</span>
-      <span className="text-xs font-medium text-[#333]">Upload jpeg, jpg, png</span>
-      <span className="text-xs font-medium text-[#333]">(Max 1 MB)</span>
+      <span className="text-sm font-medium mb-2">and drop</span>
+      <span className="text-xs font-medium">Upload jpeg, jpg, png</span>
+      <span className="text-xs font-medium">(Max 1 MB)</span>
     </div>
   );
 
   return (
     <div className="flex flex-col items-center">
       <div
-        className={`w-[350px] h-[450px] border-[2px] border-dashed ${
+        className={`w-[350px] h-[450px] max-[768px]:w-[250px] max-[768px]:h-[250px] border-[2px] border-dashed ${
           isDragging ? 'border-blue-500 bg-blue-50' : 'border-[#163f78]'
         } rounded-[5px] flex flex-col items-center justify-center mb-6 relative`}
         onDrop={handleDrop}

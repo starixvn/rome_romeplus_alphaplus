@@ -15,6 +15,8 @@ import { IconClose } from '../../../../components/Icons.tsx';
 import { ResultMessageComponent } from '../../../../components/MessageComponents.tsx';
 import { approveWithdrawal, rejectWithdrawal } from '../../../../services/pendingWithdrawalAPI.ts';
 import BankIcon from '../../../../components/BankComponents.tsx';
+import { LableTitleComponent, MediumTitleComponent } from '../../../../components/TitleComponents.tsx';
+import { ButtonApplyComponent, ButtonCancelComponent, ButtonClosePopupComponent } from '../../../../components/ButtonComponents.tsx';
 
 interface PendingWithdrawalModalProps {
   withdrawal: TransactionItem;
@@ -141,50 +143,41 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
   };
 
   return (
-    <div className="bg-[#00000066] fixed inset-0 flex items-center justify-center z-50">
-      <div className="p-[20px] bg-white w-[850px] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
-        <div className="relative">
-          <h5 className="text-[16px] text-[#163f78] font-bold pb-[15px]">
-            {t('pendingWithdrawalModal.title')} ({withdrawal.transId})
-          </h5>
-          <button
-            type="button"
-            className="absolute top-0 right-0 cursor-pointer"
-            onClick={onClose}
-            disabled={isSubmitting}
-          >
-            <IconClose />
-          </button>
+    <div className="bg-[#00000066] fixed inset-0 flex items-start justify-center z-50 max-[768px]:items-start">
+      <div className="p-[30px] w-full bg-[#ffffff] mt-[50px] max-w-[900px] max-[768px]:max-w-[90%] max-[768px]:h-[90%] overflow-auto rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f] max-[768px]:mt-[16px]">
+        <div className="relative mb-[16px]">
+          <MediumTitleComponent text={` ${t('pendingWithdrawalModal.title')} (${withdrawal.transId})`} />
+          <ButtonClosePopupComponent onClick={onClose} />           
         </div>
         {resultMessage.type && (
           <ResultMessageComponent
             type={resultMessage.type}
             message={resultMessage.message}
-            className="mb-5"
+            className="mb-[16px] max-[768px]:mb-[0]"
           />
         )}
-        <div className="flex gap-6">
-          <div className="w-[460px] h-full">
-            <div className="border border-[#214184] rounded mb-6">
+        <div className="flex max-[768px]:flex-wrap">
+          <div className="flex-1 h-full max-[768px]:mb-[16px]">
+            <div className="border border-[#333333] rounded mb-[8px] p-[8px]">
               <table className="w-full h-full">
                 <thead>
-                  <tr>
-                    <th className="text-sm text-left p-2 text-gray-700">
+                  <tr className="text-left text-[#333333] font-semibold">
+                    <th className="px-[8px] py-[4px]">
                       {t('pendingWithdrawalModal.username')}
                     </th>
-                    <th className="text-sm text-left p-2 text-gray-700">
+                    <th className="px-[8px] py-[4px]">
                       {t('pendingWithdrawalModal.name')}
                     </th>
-                    <th className="text-sm text-left p-2 text-gray-700">
+                    <th className="px-[8px] py-[4px]">
                       {t('pendingWithdrawalModal.betCredit')}
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="text-sm p-2">{withdrawal.username}</td>
-                    <td className="text-sm p-2">{`${withdrawal.firstName} ${withdrawal.lastName}`}</td>
-                    <td className="text-sm p-2">{displayAmount(withdrawal.amount)}</td>
+                    <td className="px-[8px] py-[4px]">{withdrawal.username}</td>
+                    <td className="px-[8px] py-[4px]">{`${withdrawal.firstName} ${withdrawal.lastName}`}</td>
+                    <td className="px-[8px] py-[4px] text-[var(--text-color-primary)] font-semibold">{displayAmount(withdrawal.amount)}</td>
                   </tr>
                 </tbody>
               </table>
@@ -192,17 +185,15 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
 
             <div className="grid grid-cols-2 gap-6">
               <div>
-                <div className="mb-4">
-                  <div className="text-sm font-medium mb-1">{t('pendingWithdrawalModal.to')}</div>
+                <div className="mb-[16px]">
+                  <LableTitleComponent text={t('pendingWithdrawalModal.to')} />
                   <div className="flex items-center">
                     <span>{renderBankAccount(withdrawal.paymentTo)}</span>
                   </div>
                 </div>
 
-                <div className="mb-4">
-                  <div className="text-sm font-medium mb-1">
-                    {t('pendingWithdrawalModal.withdrawalAmount')}
-                  </div>
+                <div className="mb-[16px]">
+                  <LableTitleComponent text={t('pendingWithdrawalModal.withdrawalAmount')} />
                   <div className="mt-1">
                     <span>
                       {displayAmount(withdrawal.amount)} {withdrawal.currency}
@@ -211,11 +202,8 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
                 </div>
 
                 <div>
-                  <div className="text-sm font-medium mb-1 relative">
-                    {t('pendingWithdrawalModal.from')}
-                    <span className="text-red-500 ml-1">*</span>
-                  </div>
-                  <div className="w-full md:w-48">
+                  <LableTitleComponent text={t('pendingWithdrawalModal.from')} required />
+                  <div className="w-full">
                     <DropdownComponent
                       options={bankOptions}
                       onSelect={handleChangePaymentFrom}
@@ -229,47 +217,33 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
               </div>
 
               <div>
-                <div className="mb-4">
-                  <div className="text-sm font-medium mb-1">
-                    {t('pendingWithdrawalModal.dateAndTime')}
-                  </div>
+                <div className="mb-[16px]">
+                  <LableTitleComponent text={t('pendingWithdrawalModal.dateAndTime')} />
                   <div>{formatDateTime(withdrawal.createdTime)}</div>
                 </div>
               </div>
             </div>
 
             <div className="mt-6 h-full">
-              <div className="text-sm font-medium mb-1">{t('pendingWithdrawalModal.remarks')}</div>
+              <LableTitleComponent text={t('pendingWithdrawalModal.remarks')} />
               <textarea
                 value={remarks}
                 onChange={(e) => setRemarks(e.target.value)}
                 placeholder={t('pendingWithdrawalModal.remarksPlaceholder')}
-                className="border border-gray-300 rounded-md p-2 w-full h-[120px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184] text-gray-700"
+                className="block h-[150px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] py-[10px] focus:outline-none focus:border-[var(--button-border)]"
                 disabled={isSubmitting}
               />
             </div>
           </div>
 
-          <div className="w-[240px] pl-20">
+          <div className="pl-[32px] max-[768px]:pl-[0] max-[768px]:w-full">
             <UploadImage setImage={setImage} disabled={isSubmitting} />
           </div>
         </div>
 
-        <div className="flex justify-end space-x-3 mt-6">
-          <button
-            onClick={handleReject}
-            className="w-[140px] capitalize font-bold h-[32px] max-[768px]:h-[40px] rounded-[20px] px-[16px] text-[#163f78] py-[4px] text-[12px] border-[1px] border-[#163f78] mx-[4px] bg-[#ffffff] hover:bg-[#dee2e7] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] disabled:opacity-50 disabled:cursor-not-allowed"
-            disabled={isSubmitting}
-          >
-            {t('pendingWithdrawalModal.reject')}
-          </button>
-          <button
-            onClick={handleApprove}
-            className="w-[140px] capitalize font-bold h-[32px] max-[768px]:h-[40px] rounded-[20px] text-white px-[16px] py-[4px] text-[12px] border-[1px] border-[#163f78] mx-[4px] bg-[#163f78] hover:bg-[var(--button-background-hover)] cursor-pointer shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] disabled:opacity-50 disabled:cursor-not-allowed"
-            disabled={isSubmitting}
-          >
-            {t('pendingWithdrawalModal.approve')}
-          </button>
+        <div className="flex gap-[8px]">
+          <ButtonCancelComponent text={t('pendingWithdrawalModal.reject')} onClick={handleReject} disabled={isSubmitting} />
+          <ButtonApplyComponent text={t('pendingWithdrawalModal.approve')} onClick={handleApprove} disabled={isSubmitting} />
         </div>
       </div>
     </div>

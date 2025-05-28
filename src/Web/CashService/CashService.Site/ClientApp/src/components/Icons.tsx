@@ -187,7 +187,7 @@ export const Spinner: React.FC<{ size?: 'small' | 'large'; className?: string }>
 
 export const CalendarIcon: React.FC<{ className?: string }> = ({ className = '' }) => (
   <svg className={`w-5 h-5 ${className}`} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M16 2V4H8V2H6V4H5C3.89 4 3.01 4.9 3.01 6L3 20C3 21.1 3.89 22 5 22H19C20.1 22 21 21.1 21 20V6C21 4.9 20.1 4 19 4H18V2H16ZM17 13H12V18H17V13ZM5.00001 20H19V9.00001H5.00001V20Z" fill="#444444"/>
+    <path fillRule="evenodd" clipRule="evenodd" d="M16 2V4H8V2H6V4H5C3.89 4 3.01 4.9 3.01 6L3 20C3 21.1 3.89 22 5 22H19C20.1 22 21 21.1 21 20V6C21 4.9 20.1 4 19 4H18V2H16ZM17 13H12V18H17V13ZM5.00001 20H19V9.00001H5.00001V20Z" fill="#444444"/>
   </svg>
 );
 export const IconSearch: React.FC = () => (

@@ -15,6 +15,9 @@ import DropdownComponent, { DropdownOption } from '../../../../components/Custom
 import BankIcon from '../../../../components/BankComponents';
 import { AmountInput } from '../../../../components/ui/AmountInput';
 import { renderBankOptionValue } from '../../../../common/commonFunctions';
+import { BackButtonComponent, ButtonApplyComponent, ButtonCancelComponent } from '../../../../components/ButtonComponents';
+import { MediumTitleComponent, LableTitleComponent } from '../../../../components/TitleComponents';
+import TitleComponent from '../../../../components/TitleComponents';
 interface ManualAddWithdrawalFormProps {
   onClose?: () => void;
 }
@@ -245,36 +248,28 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
   };
 
   return (
-    <div className="fixed inset-0 bg-white flex flex-col z-50">
-      <div className="bg-gray-100 p-4">
-        <h2 className="text-lg font-medium">{t('manualWithdrawalForm.title')}</h2>
+    <div className="py-[12px]">
+      <div className="flex items-center justify-flex-start mb-[16px] pt-[8px] border-[#cfcfcf] border-dotted border-b-[2px]">
+        <BackButtonComponent onClick={onClose} />
+        <TitleComponent title={t('manualWithdrawalForm.title')} />
       </div>
 
-      <form id="manual-withdrawal-form" onSubmit={handleSubmit} className="p-6 flex-1">
+      <form id="manual-withdrawal-form" onSubmit={handleSubmit} className="w-[1100px] bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] max-[768px]:w-full">
         {resultMessage.type && (
           <ResultMessageComponent
             type={resultMessage.type}
             message={resultMessage.message}
-            className="mb-5"
+            className="mb-[16px] max-[768px]:mb-[0]"
           />
         )}
-        <div className="flex flex-row space-x-10">
-          <div className="">
-            <div className="mb-5 w-[900px]">
-              <h3 className="text-md font-medium text-blue-900 mb-4">
-                {t('manualWithdrawalForm.accountInformation')}
-              </h3>
-
-              <div className="flex flex-col space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label
-                      htmlFor="memberLoginName"
-                      className="block text-sm font-medium text-gray-700 mb-1 relative"
-                    >
-                      {t('manualWithdrawalForm.memberLoginName')}
-                      <span className="text-red-500 absolute">*</span>
-                    </label>
+        <div className="flex max-[768px]:flex-col">
+          <div className="flex-1 max-w-[700px]">              
+              <MediumTitleComponent text={t('manualWithdrawalForm.accountInformation')} />
+              <div className="flex flex-wrap">
+                <div className="flex flex-nowrap gap-[16px] mb-[4px] justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
+                  <div className='min-w-[230px] pt-[4px] w-[48%] mb-[8px]'>
+                    <LableTitleComponent text={t('manualWithdrawalForm.memberLoginName')} required />
+                   
                     <div className="relative z-[9999]">
                       <DropdownComponent
                         options={memberOptions}
@@ -285,15 +280,8 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       />
                     </div>
                   </div>
-
-                  <div>
-                    <label
-                      htmlFor="from"
-                      className="block text-sm font-medium text-gray-700 mb-1 relative"
-                    >
-                      {t('manualWithdrawalForm.from')}
-                      <span className="text-red-500 absolute">*</span>
-                    </label>
+                  <div className='min-w-[230px] pt-[4px] w-[48%] mb-[8px]'>
+                    <LableTitleComponent text={t('manualWithdrawalForm.from')} required />                  
                     <DropdownComponent
                       options={agentBankInfo.map((bank) => ({
                         value: bank.value,
@@ -308,19 +296,11 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                       initialValue={from}
                       searchable={true}
                     />
-                    {renderMinMaxAmount()}
                   </div>
                 </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label
-                      htmlFor="to"
-                      className="block text-sm font-medium text-gray-700 mb-1 relative"
-                    >
-                      {t('manualWithdrawalForm.to')}
-                      <span className="text-red-500 absolute">*</span>
-                    </label>
+                <div className="flex flex-nowrap gap-[16px] mb-[4px] justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full ">
+                  <div className='min-w-[230px] pt-[4px] w-[48%] mb-[8px]'>
+                    <LableTitleComponent text={t('manualWithdrawalForm.to')} required />                     
                     <DropdownComponent
                       options={memberBankInfo.map((bank) => ({
                         value: bank.value,
@@ -340,31 +320,19 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                     />
                   </div>
 
-                  <div>
-                    <label
-                      htmlFor="withdrawalAmount"
-                      className="block text-sm font-medium text-gray-700 mb-1 relative"
-                    >
-                      {t('manualWithdrawalForm.withdrawalAmount')}
-                      <span className="text-red-500 absolute">*</span>
-                    </label>
-
+                  <div className='min-w-[230px] pt-[4px] w-[48%] mb-[8px]'>
+                    <LableTitleComponent text={t('manualWithdrawalForm.withdrawalAmount')} required />
                     <AmountInput
                       id="withdrawalAmount"
                       value={withdrawalAmount}
                       onChange={(e) => handleSetWithdrawalAmount(e)}
                       className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:border-[var(--button-border)]"
                     />
-                    <span className="text-xs text-gray-500 pl-3">
-                      ({t('manualWithdrawalForm.memberCashBalance')}: {memberCashBalance})
-                    </span>
+                    <label className='block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold'>{renderMinMaxAmount()}</label>
                   </div>
                 </div>
-
-                <div>
-                  <label htmlFor="remarks" className="block text-sm font-medium text-gray-700 mb-1">
-                    {t('manualWithdrawalForm.remarks')}
-                  </label>
+                <div className='w-full'>
+                  <LableTitleComponent text={t('manualWithdrawalForm.remarks')}  />
                   <textarea
                     id="remarks"
                     value={remarks}
@@ -373,34 +341,21 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                     placeholder={t('manualWithdrawalForm.remarksPlaceholder')}
                   />
                 </div>
-              </div>
-            </div>
+              </div>         
           </div>
-
-          <div className="pl-20">
-            <UploadImage setImage={setImage} />
-
-            <div className="flex justify-center space-x-4 mt-3 w-full">
-              <button
-                type="button"
-                onClick={onClose}
-                className="w-[140px] h-[32px] max-[768px]:h-[40px] border border-gray-300 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-gray-100 focus:outline-none transition-colors duration-200 cursor-pointer"
-              >
-                {t('manualWithdrawalForm.cancel')}
-              </button>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={`w-[140px] h-[32px] max-[768px]:h-[40px] border border-transparent rounded-full text-sm font-medium text-white bg-[#163f78] hover:bg-[#0f2d5c] focus:outline-none transition-colors duration-200 ${
-                  isSubmitting ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
-                }`}
-              >
-                {isSubmitting
-                  ? t('manualWithdrawalForm.processing')
-                  : t('manualWithdrawalForm.approve')}
-              </button>
-            </div>
+          <div className="pl-[32px] max-[768px]:pl-0 max-[768px]:mt-[16px]">
+            <UploadImage setImage={setImage} />            
           </div>
+        </div>
+        <div className="flex gap-[16px]"> 
+          <ButtonCancelComponent onClick={onClose} text={t('manualWithdrawalForm.cancel')} />
+          <ButtonApplyComponent 
+            disabled={isSubmitting}
+            text={isSubmitting
+              ? t('manualWithdrawalForm.processing')
+              : t('manualWithdrawalForm.approve')}
+            onClick={handleSubmit}
+          />
         </div>
       </form>
     </div>
