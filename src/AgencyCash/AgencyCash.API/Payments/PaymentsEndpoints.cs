@@ -74,9 +74,9 @@ public static class PaymentsEndpoints
         ManualWithdrawalRequest request,
         IWithdrawalService withdrawalService)
     {
-        if (request is null)
+        if (request is null || !request.IsValid())
         {
-            return BadRequest("Request cannot be null.");
+            return BadRequest("Request parameters is invalid.");
         }
 
         // Convert to PaymentService.API request

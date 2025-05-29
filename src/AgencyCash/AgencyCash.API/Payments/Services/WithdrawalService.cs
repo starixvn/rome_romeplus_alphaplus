@@ -28,50 +28,75 @@ public class WithdrawalService : PaymentService, IWithdrawalService
 
     public async Task<Result> CreateManualWithdrawal(ManualWithdrawalRequest request)
     {
-        if (request is null)
+        SiteDBConfig siteDBConfig = null;
+        try
         {
-            return new Result(400, "Request cannot be null.");
+            siteDBConfig = await _siteDBService.GetSiteDBConfig(request.AgentId);
+
+            var isEnableCashService = await IsEnableCashService(request.AgentId, siteDBConfig.CustDBGroupId);
+            if (!isEnableCashService)
+            {
+                return new Result(601, "Cash service is not enabled for this agent.");
+            }
+
+            var memberSetting = await GetMemberSetting(request.CustId, siteDBConfig.CustDBGroupId);
+            if (request.Amount < memberSetting.MinLimitAmount || request.Amount > memberSetting.MaxLimitAmount)
+            {
+                return new Result(602, $"Amount must be between {memberSetting.MinLimitAmount} and {memberSetting.MaxLimitAmount}.");
+            }
+
+            if (request.Amount > memberSetting.AgentGivenCredit)
+            {
+                return new Result(603, $"Amount cannot exceed agent given credit of {memberSetting.AgentGivenCredit}.");
+            }
+
+            var manualWithdrawalCriteria = new ManualWithdrawalCriteria(
+                request.CustId,
+                request.AgentId,
+                memberSetting.AgentGivenCredit,
+                memberSetting.CreditMembersGivenCredit,
+                memberSetting.MinLimitAmount,
+                memberSetting.MaxLimitAmount,
+                request.PaymentFrom,
+                request.PaymentTo,
+                1,
+                request.Amount,
+                request.IP,
+                siteDBConfig.SiteDBGroupId);
+
+            var logEntries = await _repository.FetchAsync<LogEntry>(manualWithdrawalCriteria);
+            var result = new Result(
+                manualWithdrawalCriteria.ErrCode,
+                manualWithdrawalCriteria.ErrMsg);
+
+            if (result.IsSuccess)
+            {
+                SyncCashAccumCredit(
+                    manualWithdrawalCriteria.CashAccumCreditTbl,
+                    siteDBConfig.CustDBGroupId);
+
+                await WriteLogs(logEntries, siteDBConfig);
+            }
+
+            return result;
         }
-
-
-        var siteDBConfig = await _siteDBService.GetSiteDBConfig(request.AgentId);
-
-        var isEnableCashService = await IsEnableCashService(request.AgentId, siteDBConfig.CustDBGroupId);
-        if (!isEnableCashService)
+        catch (Exception ex)
         {
-            return new Result(601, "Cash service is not enabled for this agent.");
+            if (siteDBConfig != null)
+            {
+                await WriteLogs(new[] { new LogEntry { 
+                    LogTypeId = 4, 
+                    UserId = request.CustId, 
+                    CustId = request.CustId, 
+                    ActionId = 1, 
+                    TrackingValue = request.Amount.ToString(), 
+                    IP = request.IP, 
+                    Doing = $"Manual withdrawal error: {ex.Message}" 
+                } }, siteDBConfig);
+            }
+
+            await logger.ErrorAsync(ex.Message, ex);
+            return new Result(604, "An error occurred while processing withdrawal request.");
         }
-
-        var memberSetting = await GetMemberSetting(request.CustId, siteDBConfig.CustDBGroupId);
-
-        var manualWithdrawalCriteria = new ManualWithdrawalCriteria(
-            request.CustId,
-            request.AgentId,
-            memberSetting.AgentGivenCredit,
-            memberSetting.CreditMembersGivenCredit,
-            memberSetting.MinLimitAmount,
-            memberSetting.MaxLimitAmount,
-            request.PaymentFrom,
-            request.PaymentTo,
-            1,
-            request.Amount,
-            request.IP,
-            siteDBConfig.SiteDBGroupId);
-
-        var logEntries = await _repository.FetchAsync<LogEntry>(manualWithdrawalCriteria);
-        var result = new Result(
-            manualWithdrawalCriteria.ErrCode,
-            manualWithdrawalCriteria.ErrMsg);
-
-        if (result.IsSuccess)
-        {
-            SyncCashAccumCredit(
-                manualWithdrawalCriteria.CashAccumCreditTbl,
-                siteDBConfig.CustDBGroupId);
-
-            await WriteLogs(logEntries, siteDBConfig);
-        }
-
-        return result;
     }
-} 
+}

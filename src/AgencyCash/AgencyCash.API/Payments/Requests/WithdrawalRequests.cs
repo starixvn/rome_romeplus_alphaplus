@@ -8,4 +8,11 @@ public class ManualWithdrawalRequest
     public string PaymentTo { get; set; }
     public decimal Amount { get; set; }
     public string IP { get; set; }
+    public bool IsValid() =>
+        CustId > 0 &&
+        AgentId > 0 &&
+        !string.IsNullOrEmpty(PaymentFrom) &&
+        !string.IsNullOrEmpty(PaymentTo) &&
+        Amount > 0 &&
+        !string.IsNullOrEmpty(IP);
 }
