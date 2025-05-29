@@ -5,15 +5,15 @@ namespace AgencyCash.API.RegisterCashMember.Criteria;
 public class CheckUsernameCommand : INonQueryCommand
 {
     public string Username { get; }
-
-    public string ServiceType { get; set; }
+    public int ErrCode { get; set; }
+    public string ErrMsg { get; set; }
 
     public CheckUsernameCommand(string username)
     {
         Username = username;
     }
 
-    public string GetSettingKey() => "CheckUsername";
+    public string GetSettingKey() => "API_CustomerInsMember_CashMember_CheckUsername";
 
     public bool IsValid() => true;
 }

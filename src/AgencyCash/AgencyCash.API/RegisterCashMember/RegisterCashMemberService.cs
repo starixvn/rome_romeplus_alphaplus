@@ -58,9 +58,8 @@ public class RegisterCashMemberService : IRegisterCashMemberService
 
     public Task<CheckUsernameResult> CheckUsernameAvailable(CheckUsernameCommand criteria)
     {
-        // TODO: Replace with actual repository/database check
-        var isAvailable = true;
-        return Task.FromResult(new CheckUsernameResult(isAvailable));
+        _dynamicRepository.Execute(criteria);
+        return Task.FromResult(new CheckUsernameResult(criteria.ErrCode == 0));
     }
 
     internal async Task<ValidateCashMemberResult> ValidateSetting(string username, string domain, int agentId)
