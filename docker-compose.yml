@@ -102,7 +102,7 @@ services:
     image: ${REGISTRY:-alphaplus}/cash.service.api:${PLATFORM:-linux}-${TAG:-latest}
     build:
       context: .
-      dockerfile: src/Services/CashService/CashService.API/Dockerfile
+      dockerfile: src/AgencyCash/AgencyCash.API/Dockerfile
     restart: always
     ports:
       - 5300:5000

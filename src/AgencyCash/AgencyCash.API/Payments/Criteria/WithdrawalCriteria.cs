@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AgencyCash.API.Payments.Criteria;
 
-public class CreateManualWithdrawalCriteria : ICriteria
+public class ManualWithdrawalCriteria : ICriteria
 {
     public int CustId { get; }
     public int AgentId { get; }
@@ -16,11 +16,11 @@ public class CreateManualWithdrawalCriteria : ICriteria
     public decimal Amount { get; }
     public string IP { get; }
     public int SiteDBGroupId { get; }
-    public string CashAccumCreditTbl { get; private set; }
-    public int ErrCode { get; private set; }
-    public string ErrMsg { get; private set; }
+    public string CashAccumCreditTbl { get; }
+    public int ErrCode { get; set; }
+    public string ErrMsg { get; set; }
 
-    public CreateManualWithdrawalCriteria(
+    public ManualWithdrawalCriteria(
         int custId,
         int agentId,
         decimal agentGivenCredit,

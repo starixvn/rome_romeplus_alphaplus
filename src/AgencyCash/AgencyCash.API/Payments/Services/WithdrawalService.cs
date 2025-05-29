@@ -9,7 +9,7 @@ namespace AgencyCash.API.Payments.Services;
 
 public interface IWithdrawalService
 {
-    Task<Result> CreateManualWithdrawal(CreateManualWithdrawalRequest request);
+    Task<Result> CreateManualWithdrawal(ManualWithdrawalRequest request);
 }
 
 public class WithdrawalService : PaymentService, IWithdrawalService
@@ -26,7 +26,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
         _siteDBService = siteDBService;
     }
 
-    public async Task<Result> CreateManualWithdrawal(CreateManualWithdrawalRequest request)
+    public async Task<Result> CreateManualWithdrawal(ManualWithdrawalRequest request)
     {
         if (request is null)
         {
@@ -44,7 +44,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
 
         var memberSetting = await GetMemberSetting(request.CustId, siteDBConfig.CustDBGroupId);
 
-        var createManualWithdrawalCriteria = new CreateManualWithdrawalCriteria(
+        var manualWithdrawalCriteria = new ManualWithdrawalCriteria(
             request.CustId,
             request.AgentId,
             memberSetting.AgentGivenCredit,
@@ -58,15 +58,15 @@ public class WithdrawalService : PaymentService, IWithdrawalService
             request.IP,
             siteDBConfig.SiteDBGroupId);
 
-        var logEntries = await _repository.FetchAsync<LogEntry>(createManualWithdrawalCriteria);
+        var logEntries = await _repository.FetchAsync<LogEntry>(manualWithdrawalCriteria);
         var result = new Result(
-            createManualWithdrawalCriteria.ErrCode,
-            createManualWithdrawalCriteria.ErrMsg);
+            manualWithdrawalCriteria.ErrCode,
+            manualWithdrawalCriteria.ErrMsg);
 
         if (result.IsSuccess)
         {
             SyncCashAccumCredit(
-                createManualWithdrawalCriteria.CashAccumCreditTbl,
+                manualWithdrawalCriteria.CashAccumCreditTbl,
                 siteDBConfig.CustDBGroupId);
 
             await WriteLogs(logEntries, siteDBConfig);

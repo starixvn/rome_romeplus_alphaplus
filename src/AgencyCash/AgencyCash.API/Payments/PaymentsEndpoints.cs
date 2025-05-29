@@ -28,7 +28,7 @@ public static class PaymentsEndpoints
         var withdrawal = app.MapGroup("/api/withdrawal").WithTags("Withdrawal");
         withdrawal
             .MapPost("/manual", ManualWithdrawal)
-            .AddEndpointFilter<ModelValidationFilter<CreateManualWithdrawalRequest>>()
+            .AddEndpointFilter<ModelValidationFilter<ManualWithdrawalRequest>>()
             .Produces<Result>();
     }
 
@@ -71,7 +71,7 @@ public static class PaymentsEndpoints
     }
 
     private static async Task<IResult> ManualWithdrawal(
-        CreateManualWithdrawalRequest request,
+        ManualWithdrawalRequest request,
         IWithdrawalService withdrawalService)
     {
         if (request is null)
@@ -80,7 +80,7 @@ public static class PaymentsEndpoints
         }
 
         // Convert to PaymentService.API request
-        var paymentServiceRequest = new CreateManualWithdrawalRequest
+        var paymentServiceRequest = new ManualWithdrawalRequest
         {
             CustId = request.CustId,
             AgentId = request.AgentId,
