@@ -19,6 +19,7 @@ public class ManualWithdrawalCriteria : INonQueryCommand
     public string CashAccumCreditTbl { get; }
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; }
+    public long TransId { get; set; }
 
     public ManualWithdrawalCriteria(
         int custId,

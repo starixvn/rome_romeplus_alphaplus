@@ -65,9 +65,10 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                 siteDBConfig.SiteDBGroupId);
 
             await _repository.ExecuteAsync(manualWithdrawalCriteria);
-            var result = new Result(
+            var result = new PaymentResult(
                 manualWithdrawalCriteria.ErrCode,
-                manualWithdrawalCriteria.ErrMsg);
+                manualWithdrawalCriteria.ErrMsg,
+                manualWithdrawalCriteria.TransId);
 
             if (result.IsSuccess)
             {
