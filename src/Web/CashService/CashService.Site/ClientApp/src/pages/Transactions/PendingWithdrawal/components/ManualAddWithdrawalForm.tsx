@@ -68,6 +68,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
         remark: remarks,
         image: image as File,
         providerId,
+        paymentMethodId,
       };
 
       const addWithdrawalResponse = await manualAddWithdrawal(manualWithdrawalData);

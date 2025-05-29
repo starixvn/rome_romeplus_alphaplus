@@ -79,6 +79,7 @@ export const manualAddWithdrawal = async (
     formData.append('amount', manualAddWithdrawal.amount.toString());
     formData.append('remark', manualAddWithdrawal.remark);
     formData.append('providerId', manualAddWithdrawal.providerId.toString());
+    formData.append('paymentMethodId', manualAddWithdrawal.paymentMethodId.toString());
 
     if (manualAddWithdrawal.image) {
       formData.append('image', manualAddWithdrawal.image);

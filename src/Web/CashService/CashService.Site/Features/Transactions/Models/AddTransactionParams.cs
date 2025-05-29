@@ -6,6 +6,7 @@ public class AddTransactionParams
     public int UplineId { get; set; }
     public int SubAccId { get; set; }
     public int ProviderId { get; set; }
+    public int PaymentMethodId { get; set; }
     public decimal MinLimitAmt { get; set; }
     public decimal MaxLimitAmt { get; set; }
     public string PaymentFrom { get; set; }

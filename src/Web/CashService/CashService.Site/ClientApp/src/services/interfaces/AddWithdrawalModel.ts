@@ -6,4 +6,5 @@ export interface AddWithdrawalModel {
   remark: string;
   image: File;
   providerId: number;
+  paymentMethodId: number;
 }
