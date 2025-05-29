@@ -105,7 +105,7 @@ export const calculateDateRange = (recentTransactions: string): [string, string]
     default:
       return ['', ''];
   }
-  return [startDate.toISOString(), today.toISOString()];
+  return [startDate.toLocaleString('en-US'), today.toLocaleString('en-US')];
 };
 
 export const convertToGMT4 = (date: Date): Date => {
