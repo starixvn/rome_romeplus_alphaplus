@@ -622,11 +622,11 @@ function PaymentProviderSettings() {
                         ) : setting.status === 2 ? (
                           <StatusCompletedComponent />
                         ) : setting.status === 3 ? (
-                          <StatusDisabledComponent />
+                          <StatusFailedComponent />
                         ) : setting.status === 4 ? (
                           <StatusMaintenanceComponent />
                         ) : (
-                          <StatusFailedComponent />
+                          <StatusDisabledComponent />
                         )}
                         {setting.status === failStatus && (
                           <>

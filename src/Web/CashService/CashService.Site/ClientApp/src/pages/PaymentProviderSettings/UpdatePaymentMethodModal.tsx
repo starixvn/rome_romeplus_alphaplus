@@ -116,7 +116,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
     agreeToTerms: '',
   });
 
-  const inactiveStatus = 0;
+  const inactiveStatus = 4;
 
   // Load payment methods when component mounts
   React.useEffect(() => {
@@ -275,7 +275,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                   >
                     <option value="">{tGlobal('select')}</option>
                     {paymentMethods
-                      .filter((p) => p.id !== 0)
+                      .filter((p) => p.id !== 0 && p.status === 3)
                       .map((method) => (
                         <option
                           key={method.id}
