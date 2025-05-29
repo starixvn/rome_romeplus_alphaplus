@@ -2,6 +2,6 @@
 {
     public class SettingParam : LogParam
     {
-        public int ActionTypeId { get; set; }
+        public int ActionTypeId { get; set; }        
     }
 }

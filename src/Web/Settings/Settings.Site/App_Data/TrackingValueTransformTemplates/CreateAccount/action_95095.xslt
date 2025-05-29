@@ -10,6 +10,7 @@
   <xsl:include href="./memberCommission.xslt" />
   <xsl:include href="./winLossLimit.xslt" />
   <xsl:include href="./betLimit.xslt" />
+  <xsl:include href="./potentialWinLimit.xslt" />
   <xsl:param name="IsInternal" select="0"></xsl:param>
   <xsl:output method="html" indent="no" />
   <xsl:key name="pt-by-sporttype" match="pt/r" use="@sporttype" />
@@ -38,6 +39,7 @@
                   </xsl:attribute>
                 </xsl:if>
                 <xsl:apply-templates select="discount" />
+                <xsl:apply-templates select="potentialwinlimit" />
                 <xsl:apply-templates select="betsetting" />
                 <xsl:apply-templates select="parlaymaxpayout" />
                 <xsl:call-template name="memberPT">

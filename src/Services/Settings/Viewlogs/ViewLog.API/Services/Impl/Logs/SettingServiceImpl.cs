@@ -13,7 +13,7 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs
     public class SettingServiceImpl : BaseService, LogService
     {
         private const int RNGSlotBetLimitActionId = 391;
-
+        
         public SettingServiceImpl(
              IDynamicRepository dynamicRepository,
              CustomerService customerService,
@@ -73,5 +73,6 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs
         static private bool IsBetLimitOfRNGSlot(Log log)
             => log.ActionId == RNGSlotBetLimitActionId &&
             (log.TrackingValue != null && log.TrackingValue.Contains("ProductID=\"18\"") || log.TrackingValue != null && log.TrackingValue.Contains("ProductID=\"22\""));
+        
     }
 }

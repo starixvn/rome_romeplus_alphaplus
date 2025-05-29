@@ -63,7 +63,10 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Requests
             IsInternal = false;
             UplineId = currentUserSession.CustId;
             PreviousUsername = Username;
+            Site = currentUserSession.Site;
         }
+
+        public string Site { get; set; }
 
         public string PreviousUsername { get; set; }
 
