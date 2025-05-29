@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AgencyCash.API.Payments.Criteria;
 
-public class ManualWithdrawalCriteria : ICriteria
+public class ManualWithdrawalCriteria : INonQueryCommand
 {
     public int CustId { get; }
     public int AgentId { get; }

@@ -64,7 +64,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                 request.IP,
                 siteDBConfig.SiteDBGroupId);
 
-            var logEntries = await _repository.FetchAsync<LogEntry>(manualWithdrawalCriteria);
+            await _repository.ExecuteAsync(manualWithdrawalCriteria);
             var result = new Result(
                 manualWithdrawalCriteria.ErrCode,
                 manualWithdrawalCriteria.ErrMsg);
@@ -74,9 +74,23 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                 SyncCashAccumCredit(
                     manualWithdrawalCriteria.CashAccumCreditTbl,
                     siteDBConfig.CustDBGroupId);
-
-                await WriteLogs(logEntries, siteDBConfig);
             }
+
+            await WriteLogs([ new LogEntry {
+                LogTypeId = 4,
+                UserId = request.AgentId,
+                CustId = request.CustId,
+                FromCustId = request.AgentId,
+                ToCustId = request.CustId,
+                ActionId = 1,
+                TrackingValue = $@"<root>
+                    <paymentFrom>{request.PaymentFrom}</paymentFrom>
+                    <paymentTo>{request.PaymentTo}</paymentTo>
+                    <amount>{request.Amount}</amount>
+                </root>",
+                IP = request.IP,
+                Doing = "Manual withdrawal"
+            } ], siteDBConfig);
 
             return result;
         }
@@ -84,15 +98,21 @@ public class WithdrawalService : PaymentService, IWithdrawalService
         {
             if (siteDBConfig != null)
             {
-                await WriteLogs(new[] { new LogEntry { 
-                    LogTypeId = 4, 
-                    UserId = request.CustId, 
-                    CustId = request.CustId, 
-                    ActionId = 1, 
-                    TrackingValue = request.Amount.ToString(), 
-                    IP = request.IP, 
-                    Doing = $"Manual withdrawal error: {ex.Message}" 
-                } }, siteDBConfig);
+                await WriteLogs([ new LogEntry {
+                    LogTypeId = 4,
+                    UserId = request.AgentId,
+                    CustId = request.CustId,
+                    FromCustId = request.AgentId,
+                    ToCustId = request.CustId,
+                    ActionId = 1,
+                    TrackingValue = $@"<root>
+                        <paymentFrom>{request.PaymentFrom}</paymentFrom>
+                        <paymentTo>{request.PaymentTo}</paymentTo>
+                        <amount>{request.Amount}</amount>
+                    </root>",
+                    IP = request.IP,
+                    Doing = $"Manual withdrawal error: {ex.Message}"
+                } ], siteDBConfig);
             }
 
             await logger.ErrorAsync(ex.Message, ex);
