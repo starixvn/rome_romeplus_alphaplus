@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Functions>
   <Function Name="Shared">
-    <Setting Key="Acc_ServerDBConfigSelByCust" SpName="Acc_ServerDBConfigSelByCust" DbName="DBGLOB.GlobCustDB.asv_CashService" />
+    <Setting Key="Acc_ServerDBConfigSelByCust" SpName="Acc_ServerDBConfigSelByCust_uat2" DbName="DBGLOB.GlobCustDB.asv_CashService" />
   </Function>
   <Function Name="Register Cash Member">
     <Setting Key="API_CustomerInsMember_CashMember_CheckUsername" SpName="API_CustomerInsMember_CashMember_CheckUsername_UAT2" DbName="DBGLOB.GlobCustDB.asv_CashService" />
@@ -13,7 +13,7 @@
   </Function>
   <Function Name="Payments: Deposit and Withdraw">
     <Setting Key="SiteDB3_Age_CashAccumCredit_AgSel" SpName="Age_CashAccumCredit_AgSel" DbName="DBSite03.bodb02.asv_CashService" />
-    <Setting Key="CustDB0_Age_CashDeposit_LimitAmtSel" SpName="Age_CashDeposit_LimitAmtSel" DbName="DBCust.CustDB.asv_CashService" />
+    <Setting Key="Age_CashDeposit_LimitAmtSel" SpName="Age_CashDeposit_LimitAmtSel" DbName="DBCust.CustDB.asv_CashService" />
     <Setting Key="Age_CashService_CustServiceTypeSel" SpName="Age_CashService_CustServiceTypeSel" DbName="DBCust.CustDB.asv_CashService" />
     <Setting Key="Age_CashDeposit_MemberSettingSel" SpName="Age_CashDeposit_MemberSettingSel" DbName="DBCust.CustDB.asv_CashService" />
     <Setting Key="WriteLog_UserLog_Transfer" SpName="WriteLog_UserLog_Transfer" DbName="DBLOG.bodb_CustomerLog.asv_CashService" />

@@ -49,13 +49,21 @@ public static class PaymentsEndpoints
             return BadRequest("Request cannot be null.");
         }
 
-        const int MaxPaySlipSize = 1024 * 1024;
-        request.PaySlipBuffer = Base64StringHelper.ConvertToByte(request.PaySlip);
-        if (request.PaySlipBuffer != null && request.PaySlipBuffer.Length > MaxPaySlipSize)
+        if (!string.IsNullOrWhiteSpace(request.PaySlip))
         {
-            return BadRequest($"{nameof(request.PaySlip)} cannot exceed 1MB.");
-        }
+            if (!Base64StringHelper.TryConvertToByte(request.PaySlip, out var paySlipBuffer))
+            {
+                return BadRequest($"{nameof(request.PaySlip)} is not a valid Base64 string.");
+            }
 
+            const int MaxPaySlipSize = 1024 * 1024;
+            if (paySlipBuffer.Length > MaxPaySlipSize)
+            {
+                return BadRequest($"{nameof(request.PaySlip)} cannot exceed 1MB.");
+            }
+
+            request.PaySlipBuffer = paySlipBuffer;
+        }
 
         return TypedResults.Ok(await depositService.Manual(request));
     }

@@ -2,6 +2,7 @@ using AgencyCash.API.Payments.Criteria;
 using AgencyCash.API.Payments.Models;
 using AgencyCash.API.Payments.Requests;
 using AgencyCash.API.Shared;
+using AgencyCash.API.Shared.Models;
 using Fanex.Data.Repository;
 
 namespace AgencyCash.API.Payments.Services;
@@ -28,8 +29,8 @@ public class DepositService(
         var limitCriteria = new GetDepositLimitCriteria(
             request.CustId,
             request.PaymentType,
-            request.ProviderId,
-            request.PaymentMethodId,
+            request.ProviderId ?? 0,
+            request.PaymentMethodId ?? 0,
             accumCreditCriteria.AccumCreditReturn,
             siteDBConfig.CustDBGroupId);
         await repository.ExecuteAsync(limitCriteria);

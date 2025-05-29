@@ -17,7 +17,7 @@ public interface ISiteDBService
 public class SiteDBService(IDynamicRepository dynamicRepository, IMemoryCache memoryCache) : ISiteDBService
 {
     private const int SiteDBConfigCacheInMinutes = 5;
-    private const string SiteDBConfigCacheKey = "AgencyCash.API.CustDBGroupId";
+    private const string SiteDBConfigCacheKey = "AgencyCash.API.SiteDBConfig";
 
     private readonly IDynamicRepository dynamicRepository = dynamicRepository;
     private readonly IMemoryCache memoryCache = memoryCache;
