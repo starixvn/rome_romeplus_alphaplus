@@ -84,17 +84,12 @@ public class TransactionsController(
 
     public async Task<IActionResult> AddManualDeposit([FromForm] AddTransactionParams request)
     {
-        var result = VerifyInputParam(request, false);
-        if (result.Code != 0)
-        {
-            return Json(result);
-        }
         request.UplineId = agentId;
         request.Ip = GetClientIp();
         request.SiteDbGroupId = siteDbGroupId;
         request.CustDbGroupId = custDbGroupId;
         request.PaySlip = request.Image != null ? await FileHelper.CompressAndConvertToBase64Async(request.Image) : null;
-        result = await httpClientHelper.PostAsync<AddTransactionParams, ResultModel>("/api/deposit/create", request);
+        var result = await httpClientHelper.PostAsync<AddTransactionParams, ResultModel>("/api/deposit/create", request);
         return Json(result);
     }
 

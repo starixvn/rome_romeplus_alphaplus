@@ -15,11 +15,6 @@ public class CreateManualDepositCommand : CriteriaBase
 
     public decimal CreditMembers_GivenCredit { get; set; }
 
-    public decimal MinLimitAmt { get; set; }
-
-    [SpParam(AllowNull = true)]
-    public decimal? MaxLimitAmt { get; set; }
-
     public string PaymentFrom { get; set; }
 
     public string PaymentTo { get; set; }

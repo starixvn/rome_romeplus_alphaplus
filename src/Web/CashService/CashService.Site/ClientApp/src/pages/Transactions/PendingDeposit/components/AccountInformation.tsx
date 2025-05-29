@@ -115,12 +115,12 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
         </div>
 
         <div className="w-full">
-          <LabelTitleComponent text={`${t('manualDepositForm.remarks')}`} required={true} />
+          <LabelTitleComponent text={`${t('manualDepositForm.remarks')}`} required={false} />
           <textarea
             id="remarks"
             value={remarks}
             onChange={onRemarksChange}
-            className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-[var(--button-border)] min-h-[120px] bg-[var(--background-control)]"
+            className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-[var(--button-border)] min-h-[200px] bg-[var(--background-control)]"
             placeholder={t('manualDepositForm.remarksPlaceholder')}
           />
         </div>
