@@ -17,8 +17,6 @@ import {
 } from '../../../services/interfaces/Transactions/TransactionHistory';
 import TitleComponent from '../../../components/TitleComponents';
 import { ButtonOutlineComponent } from '../../../components/ButtonComponents';
-import PendingDepositModal from './components/PendingDepositModal';
-import { TransactionItem } from '../../../services/interfaces/Transactions/TransactionHistory';
 import { LoadingFullComponent } from '../../../components/LoadingComponent';
 
 const PendingDeposit: React.FC = () => {
@@ -34,8 +32,6 @@ const PendingDeposit: React.FC = () => {
     totalCount: 0,
   });
   const [showManualAddDepositForm, setShowManualAddDepositForm] = useState<boolean>(false);
-  const [showEditDeposit, setShowEditDeposit] = useState<boolean>(false);
-  const [processingDeposit, setProcessingDeposit] = useState<TransactionItem | null>(null);
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -92,7 +88,6 @@ const PendingDeposit: React.FC = () => {
 
   const handleCloseManualDepositForm = (isSuccess: boolean) => {
     setShowManualAddDepositForm(false);
-    setShowEditDeposit(false);
     if (isSuccess) {
       fetchDeposits();
     }
@@ -128,11 +123,6 @@ const PendingDeposit: React.FC = () => {
     return result;
   }, [deposits, cashAgentTo, debouncedSearchTerm]);
 
-  const handleClickProcess = (deposit: TransactionItem) => {
-    setShowEditDeposit(true);
-    setProcessingDeposit(deposit);
-  };
-
   return (
     <>
       {showManualAddDepositForm ? (
@@ -165,16 +155,9 @@ const PendingDeposit: React.FC = () => {
               <LoadingFullComponent />
              
           ) : (
-            <DataGrid deposits={filteredDeposits} onProcessClick={handleClickProcess} />
+            <DataGrid deposits={filteredDeposits}/>
           )}
         </div>
-      )}
-
-      {showEditDeposit && (
-        <PendingDepositModal
-          deposit={processingDeposit}
-          onClose={() => handleCloseManualDepositForm(false)}
-        />
       )}
     </>
   );

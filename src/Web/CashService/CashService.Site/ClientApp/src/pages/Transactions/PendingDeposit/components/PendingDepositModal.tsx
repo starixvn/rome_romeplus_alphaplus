@@ -129,7 +129,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ deposit, onCl
                   <td className="px-[8px] py-[4px]">{deposit?.username}</td>
                   <td className="px-[8px] py-[4px]">{`${deposit?.firstName} ${deposit?.lastName}`}</td>
                   <td className="px-[8px] py-[4px] text-[var(--text-color-primary)] font-semibold">
-                    {deposit?.amount && displayAmount(deposit.amount)}
+                    {deposit?.betCredit && displayAmount(deposit.betCredit)}
                   </td>
                 </tr>
               </tbody>

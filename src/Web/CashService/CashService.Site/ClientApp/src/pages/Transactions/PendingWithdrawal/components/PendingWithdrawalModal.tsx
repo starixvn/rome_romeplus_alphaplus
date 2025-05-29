@@ -181,7 +181,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
                     <td className="px-[8px] py-[4px]">{withdrawal.username}</td>
                     <td className="px-[8px] py-[4px]">{`${withdrawal.firstName} ${withdrawal.lastName}`}</td>
                     <td className="px-[8px] py-[4px] text-[var(--text-color-primary)] font-semibold">
-                      {displayAmount(withdrawal.amount)}
+                      {displayAmount(withdrawal.betCredit)}
                     </td>
                   </tr>
                 </tbody>
