@@ -20,15 +20,21 @@ public class DepositService(
 {
     public async Task<DepositLimit> GetLimit(GetDepositLimitRequest request)
     {
-        var criteria = new GetDepositLimitCriteria(
-            request.AgentId,
+        var siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
+
+        var accumCreditCriteria = new GetAgentCashAccumCreditCriteria(request.AgentId, siteDBConfig.SiteDBGroupId);
+        await repository.ExecuteAsync(accumCreditCriteria);
+
+        var limitCriteria = new GetDepositLimitCriteria(
             request.CustId,
             request.PaymentType,
             request.ProviderId,
-            request.PaymentMethodId);
-        await repository.ExecuteAsync(criteria);
+            request.PaymentMethodId,
+            accumCreditCriteria.AccumCreditReturn,
+            siteDBConfig.CustDBGroupId);
+        await repository.ExecuteAsync(limitCriteria);
 
-        return new DepositLimit(criteria.MinAmt, criteria.MaxAmt);
+        return new DepositLimit(limitCriteria.MinAmt, limitCriteria.MaxAmt, limitCriteria.AgentAvailableCredit);
     }
 
     public async Task<PaymentResult> Manual(ManualDepositRequest request)

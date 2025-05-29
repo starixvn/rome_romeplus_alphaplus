@@ -39,9 +39,7 @@ public static class PaymentsEndpoints
             return BadRequest("Request cannot be null.");
         }
 
-        return TypedResults.Ok(await Task.FromResult(new DepositLimit(1, 1000)));
-
-        //return TypedResults.Ok(await depositService.GetLimit(request));
+        return TypedResults.Ok(await depositService.GetLimit(request));
     }
 
     private static async Task<IResult> ManualDeposit(ManualDepositRequest request, IDepositService depositService)

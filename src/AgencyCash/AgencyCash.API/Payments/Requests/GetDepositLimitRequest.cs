@@ -13,7 +13,6 @@ public class GetDepositLimitRequest
     [PositiveNumber]
     public byte PaymentType { get; init; }
 
-    [PositiveNumber]
     public short ProviderId { get; init; }
 
     [PositiveNumber]
