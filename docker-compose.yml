@@ -104,6 +104,8 @@ services:
       context: .
       dockerfile: src/Services/CashService/CashService.API/Dockerfile
     restart: always
+    ports:
+      - 5300:5000
 
   payment-service-api:
     image: ${REGISTRY:-alphaplus}/payment.service.api:${PLATFORM:-linux}-${TAG:-latest}
