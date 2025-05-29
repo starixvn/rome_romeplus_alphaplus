@@ -183,18 +183,20 @@ public class TransferYesterdayBalanceHandler(
             message.IP,
             message.SubAccId,
             message.AGIP);
-        var custIds = new List<int> { message.CustId };
-        var result = await yesterdayBalanceTransferService.ResetPotentialWinLimit(custIds, message.AGIP);
+
+        var result = message.ActorLevel.IsAgentLevel()
+                   ? await yesterdayBalanceTransferService.MemberTransfer(param)
+                   : await yesterdayBalanceTransferService.DirectMemberTransfer(param);
+        transferCacheService.CacheRemoveSuccessTransferCustIds(cacheKey, [message.CustId], message.AdminId, message.AdminName);
+
         if (result.IsSuccessful)
         {
-            result = message.ActorLevel.IsAgentLevel()
-                       ? await yesterdayBalanceTransferService.MemberTransfer(param)
-                       : await yesterdayBalanceTransferService.DirectMemberTransfer(param);
-            transferCacheService.CacheRemoveSuccessTransferCustIds(cacheKey, [message.CustId], message.AdminId, message.AdminName);
-
-            if (result.IsSuccessful)
+            result.Message = Resources.TransferSuccessfully;
+            var custIds = new List<int> { message.CustId };
+            var resultReset = await yesterdayBalanceTransferService.ResetPotentialWinLimit(custIds, message.AGIP);
+            if (!resultReset.IsSuccessful)
             {
-                result.Message = Resources.TransferSuccessfully;
+                result = Result.CreateErrorResult(resultReset.Message, resultReset.Code);
             }
         }
 
@@ -208,28 +210,32 @@ public class TransferYesterdayBalanceHandler(
             return Result.CreateErrorResult(Resources.NotAuthorized, 403);
         }
 
-        var result = await yesterdayBalanceTransferService.ResetPotentialWinLimit(message.CustIds, message.AGIP);
+        var param = new AgentTransferMultipleYesterdayBalanceParam(
+            message.ViewerId,
+            message.ActorLevel,
+            message.CustIds,
+            message.Username,
+            message.Status,
+            message.AutoTransfer,
+            message.AllYesterdayBalance,
+            message.AllowTotalBalanceTransfer,
+            message.IsAllPages,
+            message.LangKey,
+            message.IP,
+            message.SubAccId,
+            message.AGIP,
+            message.AdminId,
+            message.AdminName);
+        var service = new AgentTransferMultipleYesterdayBalanceService(param, transferCacheService, transferService, transferListService, yesterdayBalanceTransferService);
+
+        var result = await service.ProcessTransfer();
         if (result.IsSuccessful)
         {
-            var param = new AgentTransferMultipleYesterdayBalanceParam(
-                message.ViewerId,
-                message.ActorLevel,
-                message.CustIds,
-                message.Username,
-                message.Status,
-                message.AutoTransfer,
-                message.AllYesterdayBalance,
-                message.AllowTotalBalanceTransfer,
-                message.IsAllPages,
-                message.LangKey,
-                message.IP,
-                message.SubAccId,
-                message.AGIP,
-                message.AdminId,
-                message.AdminName);
-            var service = new AgentTransferMultipleYesterdayBalanceService(param, transferCacheService, transferService, transferListService, yesterdayBalanceTransferService);
-
-            return await service.ProcessTransfer();
+            var resultReset = await yesterdayBalanceTransferService.ResetPotentialWinLimit(message.CustIds, message.AGIP);
+            if (!resultReset.IsSuccessful)
+            {
+                return Result.CreateErrorResult(resultReset.Message, resultReset.Code);
+            }
         }
 
         return Result.CreateErrorResult(result.Message, result.Code);
