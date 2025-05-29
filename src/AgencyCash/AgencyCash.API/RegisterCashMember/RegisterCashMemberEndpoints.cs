@@ -23,7 +23,7 @@ public static class RegisterCashMemberEndpoints
             .WithTags("Cash Service");
     }
 
-    public static async Task<IResult> RegisterCashMemberAsync([AsParameters] RegisterCashMemberRequest request, IRegisterCashMemberService service)
+    public static async Task<IResult> RegisterCashMemberAsync(RegisterCashMemberRequest request, IRegisterCashMemberService service)
     {
         Fanex.Logging.LogService.Info(JsonSerializer.Serialize(request));
         return Results.Ok(await service.RegisterCashMember(request));
