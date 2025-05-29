@@ -60,8 +60,8 @@ app
     .UseSwagger()
     .UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("v1/swagger.json", "Agency Cash API V1"); // use relative path, no leading slash
-        c.RoutePrefix = "swagger"; // Set Swagger UI at /swagger and /swagger/index.html
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Agency Cash API V1");
+        c.RoutePrefix = string.Empty; // Serve Swagger UI at application root
     });
 app.MapHealthChecks("/health");
 app.MapRegisterCashMemberEndpoints();

@@ -4,10 +4,11 @@
     <Settings Key="Acc_ServerDBConfigSelByCust" SpName="Acc_ServerDBConfigSelByCust" DbName="DBGLOB.GlobCustDB.asv_CashService" />
   </Function>
   <Function Name="Register Cash Member">
-	  <Settings Key="API_CustomerIns_CashMember_Register" SpName="API_CustomerIns_CashMember_Register" DbName="DBGLOB.GlobCustDB.asv_CashService" />
+    <Settings Key="API_CustomerInsMember_CashMember_Validate" SpName="API_CustomerInsMember_CashMember_Validate_UAT2" DbName="DBCust.CustDB.asv_CashService" />
+    <Settings Key="Age_CustomerSelSuggestUsernameNew" SpName="Age_CustomerSelSuggestUsernameNew" DbName="DBCust.CustDB.asv_CashService" />
+    <Settings Key="API_CustomerIns_CashMember_Register" SpName="API_CustomerIns_CashMember_Register_UAT2" DbName="DBGLOB.GlobCustDB.asv_CashService" />
+	  <Settings Key="API_CustomerInsMember_CashMember" SpName="API_CustomerInsMember_CashMember_UAT2" DbName="DBCust.CustDB.asv_CashService" />
 	  <Settings Key="Acc_CustomerIns_Rollback" SpName="Acc_CustomerIns_Rollback" DbName="DBGLOB.GlobCustDB.asv_CashService" />
-    <Settings Key="RegisterCashMember" SpName="RegisterCashMember" DbName="DBCust.CustDB.asv_CashService" />
-    <Settings Key="API_CashMember_WriteLog" SpName="API_CashMember_WriteLog" DbName="DBCust.CustDB.asv_CashService" />
   </Function>
   <Function Name="Payments: Deposit and Withdraw">
     <Settings Key="Age_CashService_CustServiceTypeSel" SpName="Age_CashService_CustServiceTypeSel" DbName="DBCust.CustDB.asv_CashService" />

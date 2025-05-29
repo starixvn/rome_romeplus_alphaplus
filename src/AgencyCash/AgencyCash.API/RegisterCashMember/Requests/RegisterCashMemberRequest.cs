@@ -23,4 +23,9 @@ public class RegisterCashMemberRequest
 
     [Required]
     public string Mobile { get; set; }
+
+    [Required]
+    public string Domain { get; set; }
+
+    public string Ip { get; set; }
 }

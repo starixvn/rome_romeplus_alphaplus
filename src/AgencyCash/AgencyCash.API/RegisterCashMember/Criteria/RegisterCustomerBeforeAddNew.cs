@@ -2,9 +2,9 @@
 
 namespace AgencyCash.API.RegisterCashMember.Criteria
 {
-    public class RegisterCustomerBeforeAddNew : INonQueryCommand
+    public class RegisterCustomerBeforeAddNewCommand : INonQueryCommand
     {
-        public RegisterCustomerBeforeAddNew(string username, string username2, byte roleId, int uplineId)
+        public RegisterCustomerBeforeAddNewCommand(string username, string username2, byte roleId, int uplineId)
         {
             Username = username;
             Username2 = username2;

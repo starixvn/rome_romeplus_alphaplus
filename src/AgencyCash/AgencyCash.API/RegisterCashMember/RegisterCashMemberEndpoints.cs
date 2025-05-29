@@ -3,6 +3,8 @@ using AgencyCash.API.RegisterCashMember.Criteria;
 using AgencyCash.API.RegisterCashMember.Responses;
 using System.ComponentModel.DataAnnotations;
 using AgencyCash.API.Shared.DataAnnotations;
+using System.Text.Json;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AgencyCash.API.RegisterCashMember;
 
@@ -10,34 +12,27 @@ public static class RegisterCashMemberEndpoints
 {
     public static void MapRegisterCashMemberEndpoints(this WebApplication app)
     {
-        app.MapPost("/api/cash-members", HandleAsync)
+        app.MapPost("/api/cash-members", RegisterCashMemberAsync)
             .AddEndpointFilter<ModelValidationFilter<RegisterCashMemberRequest>>()
             .WithName("Register Cash Member")
             .WithTags("Cash Service");
 
-        app.MapGet("/api/cash-members/check-username", async (string username, IRegisterCashMemberService service) =>
-        {
-            var result = await service.CheckUsernameAvailable(new CheckUsernameCommand(username));
-            return Results.Ok(result);
-        })
-        .WithName("Check Cash Member Username")
-        .WithTags("Cash Service");
+        app.MapGet("/api/cash-members/check-username", CheckUsernameAsync)
+            .AddEndpointFilter<ModelValidationFilter<CheckUsernameRequest>>()
+            .WithName("Check Cash Member Username")
+            .WithTags("Cash Service");
     }
 
-    public static async Task<IResult> HandleAsync(RegisterCashMemberRequest request, IRegisterCashMemberService service)
+    public static async Task<IResult> RegisterCashMemberAsync([AsParameters] RegisterCashMemberRequest request, IRegisterCashMemberService service)
     {
-        // Fanex.Logging.LogService.Info(JsonSerializer.Serialize(request));
-        // if (!service.ValidateRequest(request))
-        // {
-        //     return Results.Ok(Shared.Models.Result.CreateError(StaticResources.Get("InvalidParameterValue", request.Context.Language ?? LanguageUtils.DefaultLanguage)));
-        // }
+        Fanex.Logging.LogService.Info(JsonSerializer.Serialize(request));
+        return Results.Ok(await service.RegisterCashMember(request));
 
-        return Results.Ok(await service.RegisterCashMember(new RegisterCashMemberCommand(
-            request.AgentId,
-            request.UserName,
-            request.FirstName,
-            request.LastName,
-            request.Mobile)));
+    }
 
+    private static async Task<IResult> CheckUsernameAsync([AsParameters] CheckUsernameRequest request, IRegisterCashMemberService service)
+    {
+        var result = await service.CheckUsernameAvailable(new CheckUsernameCommand(request.Username));
+        return Results.Ok(result);
     }
 }
