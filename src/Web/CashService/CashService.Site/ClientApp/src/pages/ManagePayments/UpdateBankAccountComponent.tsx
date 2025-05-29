@@ -24,6 +24,7 @@ import TitleComponent, {
   MediumTitleComponent,
 } from '../../components/TitleComponents';
 import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
+import { baseAPI } from '../../services/commonAPI';
 import {
   Bank,
   BankAccount,
@@ -193,7 +194,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
         return;
       }
 
-      const fetchedBankAccount = response.data ?? createDefaultBankAccount();
+      const fetchedBankAccount = response.data || createDefaultBankAccount();
 
       if (fetchedBankAccount) {
         const newFormState = {
@@ -243,7 +244,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
         return;
       }
 
-      const fetchedBanks = response.data ?? [];
+      const fetchedBanks = response.data || [];
       setBanks(fetchedBanks);
     };
 
@@ -251,6 +252,33 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
       setInitialLoading(false);
     });
   }, [bankAccount.id, tManagePayments]);
+
+  useEffect(() => {
+    const fetchCountryCodes = async () => {
+      const response = await baseAPI.getCountryCodes();
+      if (response.error) {
+        setError(response.error.message);
+        return;
+      }
+
+      const countryCodes = response.data || [];
+
+      if (countryCodes.length > 0) {
+        setCountryCode(countryCodes[0]);
+        setMobile('');
+
+        setFormState((prev) => ({ ...prev, countryCode: countryCodes[0] }));
+        setOrgFormState((prev) => ({ ...prev, countryCode: countryCodes[0] }));
+      }
+    };
+
+    if (!formState.promptPay && !formState.countryCode) {
+      setLoading(true);
+      fetchCountryCodes().finally(() => {
+        setLoading(false);
+      });
+    }
+  }, [formState.promptPay]);
 
   if (initialLoading) {
     return <Loading />;
@@ -299,8 +327,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
       bankName: banks.find((b) => b.id === parseInt(formState.selectedBank))?.name || '',
       status: parseInt(formState.status),
       promptPay: formState.promptPay,
-      mobile: mobile,
-      countryCode: countryCode,
+      mobile: formState.promptPay ? '' : mobile,
+      countryCode: formState.promptPay ? '' : countryCode,
       lastUpdated: new Date().toISOString(),
       lastUpdatedStr: new Date().toLocaleString(),
       code: '',

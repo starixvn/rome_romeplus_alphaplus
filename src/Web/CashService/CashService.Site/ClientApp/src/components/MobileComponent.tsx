@@ -51,7 +51,7 @@ const MobileComponent: React.FC<MobileComponentProps> = ({
             maxLength={40}
           />
         </div>
-        <ValidateMessageComponent message={fieldErrors.mobile ?? fieldErrors.countryCode ?? ''} />
+        <ValidateMessageComponent message={(fieldErrors.mobile || fieldErrors.countryCode) ?? ''} />
       </div>
     )
   );
