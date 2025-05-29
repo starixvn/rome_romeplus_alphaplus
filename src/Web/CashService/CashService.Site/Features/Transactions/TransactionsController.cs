@@ -62,20 +62,21 @@ public class TransactionsController(
         return Json(limitAmtDeposit);
     }
 
-    public async Task<IActionResult> GetSettingLimitAmtWithdrawal(int custId, int providerId)
+    public async Task<IActionResult> GetSettingLimitAmtWithdrawal(int custId, int providerId, int paymentMethodId)
     {
         var data = new Dictionary<string, string> {
             { "uplineId", agentId.ToString() },
             { "custId", custId.ToString() },
             { "custDbGroupId", custDbGroupId.ToString() },
+            { "paymentMethodId", paymentMethodId.ToString() },
             { "providerId", providerId.ToString() },
         };
-        var url = $"/withdrawal/limit-amount";
+        var url = "/withdrawal/limit-amount";
         var limitAmtDeposit = await httpClientHelper.GetAsync<object>(url, data);
         return Json(limitAmtDeposit);
     }
 
-    public async Task<IActionResult> GetWithdrawlMemberCashBalance(int custId)
+    public async Task<IActionResult> GetWithdrawalMemberCashBalance(int custId)
     {
         var url = $"/withdrawal/member-cash-balance?custId={custId}&siteDbGroupId={siteDbGroupId}";
         var balance = await httpClientHelper.GetAsync<object>(url);

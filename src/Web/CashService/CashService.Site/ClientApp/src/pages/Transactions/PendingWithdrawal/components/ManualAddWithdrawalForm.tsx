@@ -1,6 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { WithdrawalAgentBankDropDown } from '../../../../services/interfaces/Transactions/BankInfo';
+import { TransactionTypes } from '../../../../utils/constants';
+import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
+import {
+  getSettingLimitAmtWithdrawal,
+  manualAddWithdrawal,
+  getWithdrawalMemberCashBalance,
+} from '../../../../services/pendingWithdrawalAPI';
+import { AddWithdrawalModel } from '../../../../services/interfaces/AddWithdrawalModel';
+import { ResultMessageComponent } from '../../../../components/MessageComponents';
+import UploadImage from '../../Components/UploadImage';
+import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
+import BankIcon from '../../../../components/BankComponents';
+import { AmountInput } from '../../../../components/ui/AmountInput';
 import { renderBankOptionValue } from '../../../../common/commonFunctions';
 import BankIcon from '../../../../components/BankComponents';
 import {
@@ -117,7 +131,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       return false;
     }
 
-    if (isNaN(withdrawalAmount) || withdrawalAmount > memberCashBalance) {
+    if (isNaN(withdrawalAmount) || withdrawalAmount <= 0 || withdrawalAmount > memberCashBalance) {
       setResultMessage({ type: 'error', message: t('manualWithdrawalForm.amountRangeError') });
       return false;
     }
@@ -150,18 +164,28 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
   };
 
   const handleFromSelect = (option: DropdownOption) => {
+    let providerId = option.attributes?.providerId || 0;
+    let paymentMethodId = option.attributes?.paymentMethodId || 0;
     setFrom(option.value.toString());
-    setProviderId(option.attributes?.providerId || 0);
-    setPaymentMethodId(option.attributes?.paymentMethodId || 0);
-    handleUpdateLimitWithdrawalAmt(custId);
+    setProviderId(providerId);
+    setPaymentMethodId(paymentMethodId);
   };
+
+  useEffect(() => {
+    if (providerId > 0 && custId) {
+      handleUpdateLimitWithdrawalAmt(custId);
+    }
+  }, [providerId, custId]);
 
   const handleToSelect = (option: DropdownOption) => {
     setTo(option.value.toString());
   };
 
   const handleUpdateLimitWithdrawalAmt = async (memberCustId: number | null) => {
-    if (!memberCustId || providerId <= 0) return;
+    if (!memberCustId || providerId <= 0) {
+      console.log('providerId', providerId);
+      return;
+    }
     const limits = await getSettingLimitAmtWithdrawal({
       custId: memberCustId,
       providerId,
@@ -173,7 +197,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
 
   const handleUpdateMemberCashBalance = async (memberCustId: number | null) => {
     if (!memberCustId) return;
-    const memberCashBalance = await getWithdrawlMemberCashBalance(memberCustId);
+    const memberCashBalance = await getWithdrawalMemberCashBalance(memberCustId);
     setMemberCashBalance(memberCashBalance);
   };
 
@@ -214,8 +238,6 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       setProviderId(agentBankOptions[0]?.providerId || 0);
       setPaymentMethodId(agentBankOptions[0]?.paymentMethodId || 0);
 
-      handleUpdateLimitWithdrawalAmt(firstMember?.custId);
-
       const memberBanks = await transactionAPI.getCashMemberBankInfo(firstMember?.custId);
       const memberBankOptions = memberBanks.map((bank) => ({
         value: renderBankOptionValue(bank.bankCode, bank.bankAccountNumber),
@@ -227,6 +249,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       setMemberBankInfo(memberBankOptions);
       setTo(memberBankOptions[0]?.value.toString());
       await handleUpdateLimitWithdrawalAmt(firstMember?.custId);
+      await handleUpdateMemberCashBalance(firstMember?.custId);
     };
 
     fetchData();

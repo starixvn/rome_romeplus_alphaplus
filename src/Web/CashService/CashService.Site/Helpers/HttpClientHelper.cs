@@ -31,7 +31,7 @@ public class HttpClientHelper
         }
 
         throw new CustomHttpClientException(
-            requestUri: new Uri(path),
+            requestUri: new Uri(url),
             requestContent: JsonConvert.SerializeObject(queryParams),
             statusCode: response.StatusCode,
             reasonPhrase: response.ReasonPhrase

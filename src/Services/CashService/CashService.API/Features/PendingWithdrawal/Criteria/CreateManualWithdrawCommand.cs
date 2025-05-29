@@ -8,7 +8,9 @@ public class CreateManualWithdrawCommand : CriteriaBase
     public int CustId { get; set; }
     public int SubAccId { get; set; }
     public int UplineId { get; set; }
-    public decimal MinLimitAmt { get; set; }
+
+    [SpParam(AllowNull = true)]
+    public decimal? MinLimitAmt { get; set; }
 
     [SpParam(AllowNull = true)]
     public decimal? MaxLimitAmt { get; set; }

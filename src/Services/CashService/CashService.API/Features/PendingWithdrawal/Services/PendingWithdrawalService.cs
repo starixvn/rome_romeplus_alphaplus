@@ -45,6 +45,7 @@ public class PendingWithdrawalService(
             ProviderId = param.ProviderId,
             UplineId = param.UplineId,
             CustDbGroupId = param.CustDbGroupId,
+            PaymentMethodId = param.PaymentMethodId
         };
         await dynamicRepository.GetAsync<CreditAmount>(criteria);
         return new CreditAmount
@@ -65,14 +66,24 @@ public class PendingWithdrawalService(
 
     public async Task<ResultModel> AddManualWithdrawAsync(AddManualWithdrawalModel param)
     {
-        var memberSettings = await GetLimitAmtWithdrawAsync(
-            new GetCashLimitAmt
-            {
-                CustId = param.CustId,
-                CustDbGroupId = param.CustDbGroupId,
-                UplineId = param.UplineId,
-                ProviderId = param.ProviderId,
-            });
+        var memberSettings = new CreditAmount
+        {
+            MinAmt = null,
+            MaxAmt = null
+        };
+
+        if (param.ProviderId > 0)
+        {
+            memberSettings = await GetLimitAmtWithdrawAsync(
+                new GetCashLimitAmt
+                {
+                    CustId = param.CustId,
+                    CustDbGroupId = param.CustDbGroupId,
+                    UplineId = param.UplineId,
+                    ProviderId = param.ProviderId,
+                });
+        }
+
         var command = new CreateManualWithdrawCommand
         {
             CustId = param.CustId,

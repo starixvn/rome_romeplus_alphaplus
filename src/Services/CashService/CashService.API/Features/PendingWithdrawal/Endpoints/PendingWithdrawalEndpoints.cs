@@ -16,7 +16,7 @@ public static class PendingWithdrawalEndpoints
         group.MapGet("/limit-amount", async ([FromQuery] int custId,
                 [FromQuery] int uplineId,
                 [FromQuery] int providerId,
-                [FromQuery] int siteDbGroupId,
+                [FromQuery] int paymentMethodId,
                 [FromQuery] int custDbGroupId,
                 IPendingWithdrawalService service) =>
         {
@@ -26,6 +26,7 @@ public static class PendingWithdrawalEndpoints
                 UplineId = uplineId,
                 ProviderId = providerId,
                 CustDbGroupId = custDbGroupId,
+                PaymentMethodId = paymentMethodId
             });
             return Results.Ok(cashLimit);
         })

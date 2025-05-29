@@ -137,7 +137,7 @@ public class TransactionService(IDynamicRepository dynamicRepository, ICommonSer
                         break;
 
                     case 2 or 3 or 4:
-                        await WriteLogRunSp(logItem, siteDbGroupId);
+                        await WriteLogRunSp(logItem, custDbGroupId);
                         break;
                 }
             }
