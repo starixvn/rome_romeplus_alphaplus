@@ -1,10 +1,12 @@
-import React from 'react';
-import { DateRange, Range, RangeKeyDict } from 'react-date-range';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
+
 import { enUS } from 'date-fns/locale';
+import React from 'react';
+import { DateRange, Range, RangeKeyDict } from 'react-date-range';
+
+import { ButtonFullComponent } from '../ButtonComponents';
 import { CalendarIcon } from '../Icons';
-import { ButtonApplyComponent, ButtonFullComponent } from '../ButtonComponents';
 
 export interface DateRangePickerProps {
   value: [Date | null, Date | null];
@@ -161,10 +163,19 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
           <div className="border-t border-[var(--datarangepicker-border)] p-[10px] flex justify-between items-center">
             <div className="">
               <span className="">Selected:</span>{' '}
-              <span className="text-[var(--datarangepicker-color-selected-days)] bg-[var(--datarangepicker-cell-background)] px-[4px] py-[3px] rounded-[4px]" >
-              {selectedStart && selectedEnd
-                ? <><span className="font-semibold">{selectedStart.toLocaleDateString('en-US')}</span> - <span className="font-semibold">{selectedEnd.toLocaleDateString('en-US')}</span><span className="italic"> ({days} days)</span></>
-                : 'No range selected'}
+              <span className="text-[var(--datarangepicker-color-selected-days)] bg-[var(--datarangepicker-cell-background)] px-[4px] py-[3px] rounded-[4px]">
+                {selectedStart && selectedEnd ? (
+                  <>
+                    <span className="font-semibold">
+                      {selectedStart.toLocaleDateString('en-US')}
+                    </span>{' '}
+                    -{' '}
+                    <span className="font-semibold">{selectedEnd.toLocaleDateString('en-US')}</span>
+                    <span className="italic"> ({days} days)</span>
+                  </>
+                ) : (
+                  'No range selected'
+                )}
               </span>
             </div>
             <ButtonFullComponent text="Apply" onClick={handleApply} />
