@@ -5,8 +5,9 @@ import { enUS } from 'date-fns/locale';
 import React from 'react';
 import { DateRange, Range, RangeKeyDict } from 'react-date-range';
 
-import { ButtonFullComponent } from '../ButtonComponents';
-import { CalendarIcon } from '../Icons';
+import { ButtonFullComponent } from './ButtonComponents';
+import { CalendarIcon } from './Icons';
+import './DateRangePickerComponent.scss'
 
 export interface DateRangePickerProps {
   value: [Date | null, Date | null];
@@ -126,7 +127,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
     <div className={`relative text-[13px] custom-datarangepicker ${className || ''}`} ref={ref}>
       <input
         readOnly
-        className="appearance-none block w-full bg-white border border-gray-300 px-3 py-1.5 pr-8 rounded text-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 h-[32px] max-[768px]:h-[40px] cursor-pointer"
+        className="flex items-center h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[12px] border-[var(--border-control)]  bg-[var(--background-control)] cursor-pointer focus:outline-none focus:border-[var(--border-control-focus)] relative"
         value={formatRange(value) || 'Select date range'}
         onClick={() => setOpen((v) => !v)}
       />
@@ -134,7 +135,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
         <CalendarIcon className="w-5 h-5" />
       </span>
       {open && (
-        <div className="absolute z-50 bg-white  border border-[var(--datarangepicker-border)] left-0 mt-[7px]">
+        <div className="absolute z-50 bg-white dropdown-custom-datarangepicker border border-[var(--datarangepicker-border)] left-0 mt-[7px]">
           <div className="flex">
             <div className="flex flex-col w-[158px] py-[10px] border-r border-[var(--datarangepicker-border)]">
               {quickRanges.map((item) => (

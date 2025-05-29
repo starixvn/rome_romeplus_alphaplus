@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import DateRangePicker from '../../../../../components/ui/DateRangePicker';
+import DateRangePickerComponent from '../../../../../components/DateRangePickerComponent';
 
 interface DateRangeFilterProps {
   dateRange: [string, string];
@@ -26,7 +26,7 @@ const DateRangeFilter: React.FC<DateRangeFilterProps> = ({ dateRange, onDateRang
       <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">
         {t('filter.dateRange')}
       </label>
-      <DateRangePicker value={value} onChange={handleChange} />
+      <DateRangePickerComponent value={value} onChange={handleChange} />
     </div>
   );
 };

@@ -1,0 +1,254 @@
+:root {
+    // datarangepicker
+    --datarangepicker-color-icon: #808080;
+    --datarangepicker-border: #d1d1d1;
+    --datarangepicker-color: #333;
+    --datarangepicker-color-hover: #ededed;
+    --datarangepicker-background: #fff;
+    --datarangepicker-arrow-color-after: #fff;
+    --datarangepicker-arrow-color-before: #d1d1d1;
+    --datarangepicker-cell-background-active: #0b599c;
+    --datarangepicker-cell-background: #e8f4fd;
+    --datarangepicker-cell-background-hover: #e6e6e6;
+    --datarangepicker-color-selected-days: #0b599c;
+    --datarangepicker-date-range-length-background: #fff;
+
+}
+
+.dropdown-custom-datarangepicker {
+    &:after {
+        position: absolute;
+        content: "";
+        top: -6px;
+        left: 10px;
+        display: inline-block;
+        border-right: 6px solid transparent;
+        border-bottom: 6px solid var(--datarangepicker-arrow-color-after);
+        border-left: 6px solid transparent;
+    }
+
+    &:before {
+        position: absolute;
+        content: "";
+        top: -7px;
+        left: 9px;
+        border-right: 7px solid transparent;
+        border-left: 7px solid transparent;
+        border-bottom: 7px solid var(--datarangepicker-arrow-color-before);
+    }
+}
+
+.custom-datarangepicker {
+
+    color: var(--datarangepicker-color);
+    font-weight: 400;
+
+    .rdrCalendarWrapper {
+        padding: 10px 5px;
+    }
+
+    .rdrDayStartPreview,
+    .rdrDayEndPreview {
+        background-color: transparent !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+    }
+
+    .rdrDayInPreview {
+        background-color: var(--datarangepicker-cell-background);
+        border: 0;
+        color: var(--datarangepicker-color);
+    }
+
+    .rdrMonth {
+        width: 260px !important;
+        padding: 0;
+    }
+
+    .rdrDay {
+        height: 32px;
+        margin-bottom: 5px;
+
+        &:not(.rdrDayPassive) {
+            .rdrInRange {
+                ~ {
+                    .rdrDayNumber {
+                        span {
+                            color: var(--datarangepicker-color);
+                        }
+                    }
+                }
+            }
+
+            .rdrStartEdge {
+                ~ {
+                    .rdrDayNumber {
+                        span {
+                            color: #ededed;
+                        }
+                    }
+                }
+            }
+
+            .rdrEndEdge {
+                ~ {
+                    .rdrDayNumber {
+                        span {
+                            color: #ededed;
+                        }
+                    }
+                }
+            }
+
+            .rdrSelected {
+                ~ {
+                    .rdrDayNumber {
+                        span {
+                            color: var(--datarangepicker-color);
+                        }
+                    }
+                }
+            }
+        }
+
+        * {
+            font-weight: 400;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1;
+        }
+
+        .rdrDayInPreview {
+            background-color: var(--datarangepicker-cell-background);
+        }
+
+        .rdrInRange {
+            background-color: var(--datarangepicker-cell-background);
+
+        }
+
+        .rdrStartEdge,
+        .rdrEndEdge {
+            background-color: var(--datarangepicker-cell-background-active);
+            color: #EDEDED;
+            border-radius: 0;
+        }
+
+    }
+
+    .rdrDayStartOfMonth,
+    .rdrDayEndOfMonth {
+
+        .rdrInRange,
+        .rdrEndEdge,
+        .rdrDayInPreview {
+            border-radius: 0;
+        }
+    }
+
+    .rdrDayStartOfWeek,
+    .rdrDayEndOfWeek {
+
+        .rdrInRange,
+        .rdrEndEdge,
+        .rdrDayInPreview {
+            border-radius: 0;
+        }
+    }
+
+    .rdrDayHovered {
+
+        .rdrDayEndPreview,
+        .rdrDayStartPreview {
+            background-color: var(--datarangepicker-cell-background-active) !important;
+
+            +.rdrDayNumber span {
+                color: #ededed !important;
+            }
+        }
+
+    }
+
+    .rdrDayToday .rdrDayNumber {
+        span {
+            &:after {
+                content: "";
+                position: absolute;
+                width: 4px;
+                height: 4px;
+                bottom: 2px;
+                left: 50%;
+                border-radius: 6px;
+                background: #2197ff !important;
+            }
+        }
+    }
+
+    .rdrDayPassive {
+        opacity: 0;
+    }
+
+    .rdrWeekDay {
+        color: var(--datarangepicker-color);
+        font-weight: 500;
+    }
+
+    .rdrMonthAndYearWrapper {
+        padding: 0 5px;
+        height: auto;
+
+        .rdrNextPrevButton {
+            position: relative;
+            height: 32px;
+            width: 35px;
+            background-color: transparent;
+            margin: 0;
+            border-radius: 0;
+
+            &:hover {
+                background-color: var(--datarangepicker-cell-background-hover);
+            }
+
+            * {
+                opacity: 0;
+                display: none;
+            }
+
+            &:after {
+                width: 8px;
+                height: 8px;
+                border-left: 2px solid var(--datarangepicker-color);
+                border-top: 2px solid var(--datarangepicker-color);
+                content: "";
+                display: block;
+                transform: rotate(-45deg);
+                position: absolute;
+                top: 11px;
+                left: 16px;
+            }
+
+            &.rdrNextButton {
+                &:after {
+                    transform: rotate(135deg);
+                    left: 13px;
+                }
+            }
+        }
+
+        .rdrMonthPicker,
+        .rdrYearPicker {
+            margin: 0;
+            select {
+                text-decoration: underline;
+                color: var(--datarangepicker-color);
+                text-transform: uppercase;
+                padding: 0 3px;
+                background: none;
+                font-size: 14px;
+                text-decoration: underline;
+            }
+        }
+    }
+}

@@ -54,89 +54,14 @@
   --message-background-fail: #E0E0E0;
   --message-background-maintenance: #fcae7b;
  
-  // datarangepicker
-  --datarangepicker-color-icon: #808080;
-  --datarangepicker-border: #d1d1d1;
-  --datarangepicker-color: #333;
-  --datarangepicker-color-hover: #ededed;
-  --datarangepicker-background: #fff;
-  --datarangepicker-arrow-color-after: #fff;
-  --datarangepicker-arrow-color-before: #d1d1d1;
-  --datarangepicker-cell-background-active: #0b599c;
-  --datarangepicker-cell-background: #e8f4fd;
-  --datarangepicker-cell-background-hover: #e6e6e6;
-  --datarangepicker-color-selected-days: #0b599c;
-  --datarangepicker-date-range-length-background: #fff;
-
 }
-.custom-datarangepicker{
-  font-weight: semibold;
-  color: var(--datarangepicker-color);
-  font-weight: 400;
- 
-  .rdrDayStartPreview, .rdrDayEndPreview{
-    background-color: transparent !important;
-    border: 0 !important;
-    border-radius: 0 !important;
-  }
-  .rdrDayInPreview{
-    background-color: var(--datarangepicker-cell-background);
-    border: 0;
-    color: var(--datarangepicker-color);
-  }
-  .rdrMonth{
-    width: 260px !important;
-    padding: 10px 5px;
-  }
-  .rdrDay{
-    height: 32px;
-    margin-bottom: 5px;
-    *{
-      font-weight: 400;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
-    .rdrDayInPreview{
-      background-color: var(--datarangepicker-cell-background);
-    }
-    .rdrInRange{
-      background-color: var(--datarangepicker-cell-background);
-      
-    }
-    .rdrStartEdge, .rdrEndEdge{
-      background-color: var(--datarangepicker-cell-background-active);
-      color: #EDEDED;
-      border-radius: 0;
-    }
-    
-  }
-  .rdrDayStartOfMonth,.rdrDayEndOfMonth {
-    .rdrInRange,.rdrEndEdge{
-      border-radius: 0;
-    }
-  }
-  .rdrDayStartOfWeek,.rdrDayEndOfWeek  {
-    .rdrInRange,.rdrEndEdge{
-      border-radius: 0;
-    }
-  }
 
-
-
- 
-  
-  .rdrDay:not(.rdrDayPassive) .rdrInRange ~ .rdrDayNumber span{
-    color: var(--datarangepicker-color);
-  }
-}
 html,
 body {
   height: 100%;
 }
 body{
-  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  //font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   font-size: 12px;
   line-height: 1.41;
 }
