@@ -622,4 +622,7 @@
   <data name="AvailableCreditSlashBetCredit" xml:space="preserve">
     <value>利用可能なクレジット/&lt;br/&gt;ベットクレジット</value>
   </data>
+  <data name="CreateCashMember" xml:space="preserve">
+    <value>新規現金会員を追加</value>
+  </data>
 </root>

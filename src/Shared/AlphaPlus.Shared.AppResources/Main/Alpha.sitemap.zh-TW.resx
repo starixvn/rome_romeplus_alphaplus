@@ -453,4 +453,10 @@
   <data name="cashService" xml:space="preserve">
     <value>現金服務</value>
   </data>
+  <data name="newCashMember" xml:space="preserve">
+    <value>新現金用戶</value>
+  </data>
+  <data name="MemberSiteManagement" xml:space="preserve">
+    <value>會員網站管理</value>
+  </data>
 </root>

@@ -1270,4 +1270,7 @@
   <data name="CreateDirectMember" xml:space="preserve">
     <value>创建直系会员</value>
   </data>
+  <data name="CreateCashMember" xml:space="preserve">
+    <value>添加新现金用户</value>
+  </data>
 </root>

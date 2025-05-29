@@ -453,4 +453,10 @@
   <data name="cashService" xml:space="preserve">
     <value>บริการเงินสด</value>
   </data>
+  <data name="newCashMember" xml:space="preserve">
+    <value>สมาชิกเงินสดใหม</value>
+  </data>
+  <data name="MemberSiteManagement" xml:space="preserve">
+    <value>จัดการเว็บไซต์สมาชิก</value>
+  </data>
 </root>

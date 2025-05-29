@@ -1270,4 +1270,7 @@
   <data name="CreateDirectMember" xml:space="preserve">
     <value>สร้างสมาชิกโดยตรง</value>
   </data>
+  <data name="CreateCashMember" xml:space="preserve">
+    <value>เพิ่มสมาชิกเงินสดใหม่</value>
+  </data>
 </root>

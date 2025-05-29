@@ -453,4 +453,10 @@
   <data name="cashService" xml:space="preserve">
     <value>Dịch vụ tiền mặt</value>
   </data>
+  <data name="newCashMember" xml:space="preserve">
+    <value>Thành viên tiền mặt mới</value>
+  </data>
+  <data name="MemberSiteManagement" xml:space="preserve">
+    <value>Quản lý trang thành viên</value>
+  </data>
 </root>

@@ -520,4 +520,7 @@
   <data name="lblUsername" xml:space="preserve">
     <value>사용자 이름</value>
   </data>
+  <data name="CreateCashMember" xml:space="preserve">
+    <value>신규 현금 회원 추가</value>
+  </data>
 </root>
