@@ -335,7 +335,6 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
                         icon: <BankIcon code={bank.code} />,
                       }))}
                       onSelect={onBankChange}
-                      disable={status === 0}
                       initialValue={selectedBank}
                     />
                   </div>
