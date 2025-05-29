@@ -12,7 +12,7 @@ using Xunit;
 
 public class PendingWithdrawalEndpointsTests
 {
-    private readonly Mock<IPendingWithdrawalService> _mockService = new();
+    private readonly Mock<IPendingWithdrawalService> mockService = new();
 
     [Fact]
     public async Task GetLimitAmtWithdraw_Logic_ShouldReturnCorrectResult()
@@ -30,7 +30,7 @@ public class PendingWithdrawalEndpointsTests
             MinAmt = 100m
         };
 
-        _mockService.Setup(x => x.GetLimitAmtWithdrawAsync(It.Is<GetCashLimitAmt>(g =>
+        mockService.Setup(x => x.GetLimitAmtWithdrawAsync(It.Is<GetCashLimitAmt>(g =>
             g.CustId == custId &&
             g.UplineId == uplineId &&
             g.ProviderId == providerId &&
@@ -39,7 +39,7 @@ public class PendingWithdrawalEndpointsTests
             .ReturnsAsync(expectedResult);
 
         // Act - Simulate the endpoint logic
-        var cashLimit = await _mockService.Object.GetLimitAmtWithdrawAsync(new GetCashLimitAmt
+        var cashLimit = await mockService.Object.GetLimitAmtWithdrawAsync(new GetCashLimitAmt
         {
             CustId = custId,
             UplineId = uplineId,
@@ -53,7 +53,7 @@ public class PendingWithdrawalEndpointsTests
         var okResult = Assert.IsType<Ok<CreditAmount>>(result);
         Assert.Equal(expectedResult.MaxAmt, okResult.Value.MaxAmt);
         Assert.Equal(expectedResult.MinAmt, okResult.Value.MinAmt);
-        _mockService.Verify(x => x.GetLimitAmtWithdrawAsync(It.IsAny<GetCashLimitAmt>()), Times.Once);
+        mockService.Verify(x => x.GetLimitAmtWithdrawAsync(It.IsAny<GetCashLimitAmt>()), Times.Once);
     }
 
     [Fact]
@@ -64,17 +64,17 @@ public class PendingWithdrawalEndpointsTests
         var siteDbGroupId = 1;
         var expectedBalance = 1000m;
 
-        _mockService.Setup(x => x.GetCashBalanceAsync(custId, siteDbGroupId))
+        mockService.Setup(x => x.GetCashBalanceAsync(custId, siteDbGroupId))
             .ReturnsAsync(expectedBalance);
 
         // Act - Simulate the endpoint logic
-        var cashBalance = await _mockService.Object.GetCashBalanceAsync(custId, siteDbGroupId);
+        var cashBalance = await mockService.Object.GetCashBalanceAsync(custId, siteDbGroupId);
         var result = Results.Ok(cashBalance);
 
         // Assert
         var okResult = Assert.IsType<Ok<decimal>>(result);
         Assert.Equal(expectedBalance, okResult.Value);
-        _mockService.Verify(x => x.GetCashBalanceAsync(custId, siteDbGroupId), Times.Once);
+        mockService.Verify(x => x.GetCashBalanceAsync(custId, siteDbGroupId), Times.Once);
     }
 
     [Fact]
@@ -89,11 +89,11 @@ public class PendingWithdrawalEndpointsTests
             MaxLimitAmt = 1000m
         };
 
-        _mockService.Setup(x => x.GetMemberSettingWithdrawAsync(custId))
+        mockService.Setup(x => x.GetMemberSettingWithdrawAsync(custId))
             .ReturnsAsync(expectedSettings);
 
         // Act - Simulate the endpoint logic
-        var memberSettingWithdraw = await _mockService.Object.GetMemberSettingWithdrawAsync(custId);
+        var memberSettingWithdraw = await mockService.Object.GetMemberSettingWithdrawAsync(custId);
         var result = Results.Ok(memberSettingWithdraw);
 
         // Assert
@@ -101,7 +101,7 @@ public class PendingWithdrawalEndpointsTests
         Assert.Equal(expectedSettings.WithdrawalLimitCnt, okResult.Value.WithdrawalLimitCnt);
         Assert.Equal(expectedSettings.MinLimitAmt, okResult.Value.MinLimitAmt);
         Assert.Equal(expectedSettings.MaxLimitAmt, okResult.Value.MaxLimitAmt);
-        _mockService.Verify(x => x.GetMemberSettingWithdrawAsync(custId), Times.Once);
+        mockService.Verify(x => x.GetMemberSettingWithdrawAsync(custId), Times.Once);
     }
 
     [Fact]
@@ -127,18 +127,18 @@ public class PendingWithdrawalEndpointsTests
 
         var expectedResult = new ResultModel(0, "Success");
 
-        _mockService.Setup(x => x.AddManualWithdrawAsync(model))
+        mockService.Setup(x => x.AddManualWithdrawAsync(model))
             .ReturnsAsync(expectedResult);
 
         // Act - Simulate the endpoint logic
-        var serviceResult = await _mockService.Object.AddManualWithdrawAsync(model);
+        var serviceResult = await mockService.Object.AddManualWithdrawAsync(model);
         var result = Results.Ok(serviceResult);
 
         // Assert
         var okResult = Assert.IsType<Ok<ResultModel>>(result);
         Assert.Equal(expectedResult.Code, okResult.Value?.Code);
         Assert.Equal(expectedResult.Message, okResult.Value?.Message);
-        _mockService.Verify(x => x.AddManualWithdrawAsync(model), Times.Once);
+        mockService.Verify(x => x.AddManualWithdrawAsync(model), Times.Once);
     }
 
     [Fact]
@@ -155,13 +155,13 @@ public class PendingWithdrawalEndpointsTests
 
         var expectedResult = new ResultModel(0, "Success");
 
-        _mockService.Setup(x => x.ProcessWithdrawAsync(It.Is<ProcessTransactionModel>(m =>
+        mockService.Setup(x => x.ProcessWithdrawAsync(It.Is<ProcessTransactionModel>(m =>
             m.StatusId == (int)TransactionStatus.Completed)))
             .ReturnsAsync(expectedResult);
 
         // Act - Simulate the endpoint logic
         model.StatusId = (int)TransactionStatus.Completed;
-        var serviceResult = await _mockService.Object.ProcessWithdrawAsync(model);
+        var serviceResult = await mockService.Object.ProcessWithdrawAsync(model);
         var result = Results.Ok(serviceResult);
 
         // Assert
@@ -169,7 +169,7 @@ public class PendingWithdrawalEndpointsTests
         var okResult = Assert.IsType<Ok<ResultModel>>(result);
         Assert.Equal(expectedResult.Code, okResult.Value?.Code);
         Assert.Equal(expectedResult.Message, okResult.Value?.Message);
-        _mockService.Verify(x => x.ProcessWithdrawAsync(It.Is<ProcessTransactionModel>(m =>
+        mockService.Verify(x => x.ProcessWithdrawAsync(It.Is<ProcessTransactionModel>(m =>
             m.StatusId == (int)TransactionStatus.Completed)), Times.Once);
     }
 
@@ -187,13 +187,13 @@ public class PendingWithdrawalEndpointsTests
 
         var expectedResult = new ResultModel(0, "Success");
 
-        _mockService.Setup(x => x.ProcessWithdrawAsync(It.Is<ProcessTransactionModel>(m =>
+        mockService.Setup(x => x.ProcessWithdrawAsync(It.Is<ProcessTransactionModel>(m =>
             m.StatusId == (int)TransactionStatus.Rejected)))
             .ReturnsAsync(expectedResult);
 
         // Act - Simulate the endpoint logic
         model.StatusId = (int)TransactionStatus.Rejected;
-        var serviceResult = await _mockService.Object.ProcessWithdrawAsync(model);
+        var serviceResult = await mockService.Object.ProcessWithdrawAsync(model);
         var result = Results.Ok(serviceResult);
 
         // Assert
@@ -201,7 +201,7 @@ public class PendingWithdrawalEndpointsTests
         var okResult = Assert.IsType<Ok<ResultModel>>(result);
         Assert.Equal(expectedResult.Code, okResult.Value?.Code);
         Assert.Equal(expectedResult.Message, okResult.Value?.Message);
-        _mockService.Verify(x => x.ProcessWithdrawAsync(It.Is<ProcessTransactionModel>(m =>
+        mockService.Verify(x => x.ProcessWithdrawAsync(It.Is<ProcessTransactionModel>(m =>
             m.StatusId == (int)TransactionStatus.Rejected)), Times.Once);
     }
 }
