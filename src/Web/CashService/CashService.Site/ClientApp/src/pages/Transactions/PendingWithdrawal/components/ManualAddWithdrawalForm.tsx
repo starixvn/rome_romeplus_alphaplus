@@ -1,27 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { WithdrawalAgentBankDropDown } from '../../../../services/interfaces/Transactions/BankInfo';
-import { TransactionTypes } from '../../../../utils/constants';
-import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
-import {
-  getSettingLimitAmtWithdrawal,
-  manualAddWithdrawal,
-  getWithdrawlMemberCashBalance,
-} from '../../../../services/pendingWithdrawalAPI';
-import { AddWithdrawalModel } from '../../../../services/interfaces/AddWithdrawalModel';
-import { ResultMessageComponent } from '../../../../components/MessageComponents';
-import UploadImage from '../../Components/UploadImage';
-import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
-import BankIcon from '../../../../components/BankComponents';
-import { AmountInput } from '../../../../components/ui/AmountInput';
+
 import { renderBankOptionValue } from '../../../../common/commonFunctions';
+import BankIcon from '../../../../components/BankComponents';
 import {
   BackButtonComponent,
   ButtonApplyComponent,
   ButtonCancelComponent,
 } from '../../../../components/ButtonComponents';
-import { MediumTitleComponent, LableTitleComponent } from '../../../../components/TitleComponents';
-import TitleComponent from '../../../../components/TitleComponents';
+import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
+import { ResultMessageComponent } from '../../../../components/MessageComponents';
+import TitleComponent, {
+  LabelTitleComponent,
+  MediumTitleComponent,
+} from '../../../../components/TitleComponents';
+import { AmountInput } from '../../../../components/ui/AmountInput';
+import { AddWithdrawalModel } from '../../../../services/interfaces/AddWithdrawalModel';
+import { WithdrawalAgentBankDropDown } from '../../../../services/interfaces/Transactions/BankInfo';
+import {
+  getSettingLimitAmtWithdrawal,
+  getWithdrawlMemberCashBalance,
+  manualAddWithdrawal,
+} from '../../../../services/pendingWithdrawalAPI';
+import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
+import { TransactionTypes } from '../../../../utils/constants';
+import UploadImage from '../../Components/UploadImage';
+
 interface ManualAddWithdrawalFormProps {
   onClose?: () => void;
 }
@@ -272,7 +276,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
             <div className="flex flex-wrap">
               <div className="flex flex-nowrap gap-[16px] mb-[4px] justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
-                  <LableTitleComponent text={t('manualWithdrawalForm.memberLoginName')} required />
+                  <LabelTitleComponent text={t('manualWithdrawalForm.memberLoginName')} required />
 
                   <div className="relative z-[9999]">
                     <DropdownComponent
@@ -285,7 +289,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                   </div>
                 </div>
                 <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
-                  <LableTitleComponent text={t('manualWithdrawalForm.from')} required />
+                  <LabelTitleComponent text={t('manualWithdrawalForm.from')} required />
                   <DropdownComponent
                     options={agentBankInfo.map((bank) => ({
                       value: bank.value,
@@ -305,7 +309,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
               </div>
               <div className="flex flex-nowrap gap-[16px] mb-[4px] justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full ">
                 <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
-                  <LableTitleComponent text={t('manualWithdrawalForm.to')} required />
+                  <LabelTitleComponent text={t('manualWithdrawalForm.to')} required />
                   <DropdownComponent
                     options={memberBankInfo.map((bank) => ({
                       value: bank.value,
@@ -326,7 +330,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                 </div>
 
                 <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
-                  <LableTitleComponent text={t('manualWithdrawalForm.withdrawalAmount')} required />
+                  <LabelTitleComponent text={t('manualWithdrawalForm.withdrawalAmount')} required />
                   <AmountInput
                     id="withdrawalAmount"
                     value={withdrawalAmount}
@@ -339,7 +343,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                 </div>
               </div>
               <div className="w-full">
-                <LableTitleComponent text={t('manualWithdrawalForm.remarks')} />
+                <LabelTitleComponent text={t('manualWithdrawalForm.remarks')} />
                 <textarea
                   id="remarks"
                   value={remarks}

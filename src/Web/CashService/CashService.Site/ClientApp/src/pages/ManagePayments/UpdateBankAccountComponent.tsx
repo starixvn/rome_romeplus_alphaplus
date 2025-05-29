@@ -20,7 +20,7 @@ import {
 } from '../../components/MessageComponents';
 import MobileComponent from '../../components/MobileComponent';
 import TitleComponent, {
-  LableTitleComponent,
+  LabelTitleComponent,
   MediumTitleComponent,
 } from '../../components/TitleComponents';
 import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
@@ -381,14 +381,14 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
             <div className="flex text-[#333333] font-semibold">
               <div className="flex flex-col mr-[32px]">
-                <LableTitleComponent
+                <LabelTitleComponent
                   className="my-[0]! font-bold!"
                   text={tManagePayments('createdBy')}
                 />
                 <label>{formState.creator}</label>
               </div>
               <div className="flex flex-col">
-                <LableTitleComponent
+                <LabelTitleComponent
                   className="my-[0]! font-bold!"
                   text={tManagePayments('lastUpdated')}
                 />
@@ -421,7 +421,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
               </div>
               <MediumTitleComponent text={tManagePayments('accountInformation')} />
               <div className="mb-[16px]">
-                <LableTitleComponent text={tManagePayments('bank')} />
+                <LabelTitleComponent text={tManagePayments('bank')} />
                 <div className="w-[470px]">
                   <CustomDropdown
                     options={banks.map((bank) => ({
@@ -444,7 +444,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
               <div className="inline-block border-[1px] border-[var(--border-control)] rounded-[4px] px-[16px] pb-[16px] bg-[#f8f8f8] mb-[8px]">
                 {hasDepositTransactionType(formState.selectedBank, banks) && (
                   <div className="mb-[8px]">
-                    <LableTitleComponent text={tManagePayments('depositType')} />
+                    <LabelTitleComponent text={tManagePayments('depositType')} />
                     <div className="flex gap-[10px]" role="group">
                       {hasManualDepositTransactionType(formState.selectedBank, banks) && (
                         <button
@@ -482,7 +482,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
                 {hasWithdrawalTransactionType(formState.selectedBank, banks) && (
                   <div className="mb-[8px]">
-                    <LableTitleComponent text={tManagePayments('withdrawalType')} />
+                    <LabelTitleComponent text={tManagePayments('withdrawalType')} />
                     <div className="btn-group" role="group">
                       {hasManualWithdrawalTransactionType(formState.selectedBank, banks) && (
                         <button
@@ -511,7 +511,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                   mappingTypes.length > 0 &&
                   formState.selectedAutoDeposit && (
                     <div className="mb-[8px]">
-                      <LableTitleComponent text={tManagePayments('depositMatchingMode')} />
+                      <LabelTitleComponent text={tManagePayments('depositMatchingMode')} />
                       <div className="flex gap-[10px]" role="group">
                         {mappingTypes.includes(1) && (
                           <label
@@ -564,7 +564,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
               <div className="flex flex-nowrap mb-[16px] gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <LableTitleComponent
+                  <LabelTitleComponent
                     text={tManagePayments('accountHolderName')}
                     required={true}
                   />
@@ -581,7 +581,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 </div>
 
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <LableTitleComponent
+                  <LabelTitleComponent
                     text={tManagePayments('bankAccountNumber')}
                     required={true}
                   />
@@ -598,7 +598,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 </div>
 
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <LableTitleComponent text={tManagePayments('accountNickname')} />
+                  <LabelTitleComponent text={tManagePayments('accountNickname')} />
                   <input
                     type="text"
                     className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer `}

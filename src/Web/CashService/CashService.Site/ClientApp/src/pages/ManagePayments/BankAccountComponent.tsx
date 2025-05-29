@@ -17,7 +17,7 @@ import Loading from '../../components/LoadingComponent';
 import { ErrorMessageComponent, SuccessMessageComponent } from '../../components/MessageComponents';
 import { StatusDisabledComponent, StatusEnabledComponent } from '../../components/StatusComponents';
 import TitleComponent, {
-  LableTitleComponent,
+  LabelTitleComponent,
   MediumTitleComponent,
 } from '../../components/TitleComponents';
 import { BANK_STATUS_OPTIONS } from '../../constants/paymentConstants';
@@ -329,7 +329,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                     <>
                       <div className="flex px-[14px] bg-[#ffffff] flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                         <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
-                          <LableTitleComponent text={tManagePayments('bank')} />
+                          <LabelTitleComponent text={tManagePayments('bank')} />
                           <CustomDropdown
                             options={(() => {
                               return banks.map((bank) => ({
@@ -348,7 +348,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                         </div>
 
                         <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
-                          <LableTitleComponent text={tManagePayments('transactionType')} />
+                          <LabelTitleComponent text={tManagePayments('transactionType')} />
                           <select
                             id="transactionTypeSelect"
                             className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
@@ -368,7 +368,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                         </div>
 
                         <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
-                          <LableTitleComponent text={tManagePayments('status')} />
+                          <LabelTitleComponent text={tManagePayments('status')} />
                           <select
                             id="statusSelect"
                             className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"

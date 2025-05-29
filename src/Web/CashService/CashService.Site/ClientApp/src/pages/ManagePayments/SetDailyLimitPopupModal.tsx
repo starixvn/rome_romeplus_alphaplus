@@ -11,7 +11,7 @@ import {
   SuccessMessageComponent,
   ValidateMessageComponent,
 } from '../../components/MessageComponents';
-import { LableTitleComponent, MediumTitleComponent } from '../../components/TitleComponents';
+import { LabelTitleComponent, MediumTitleComponent } from '../../components/TitleComponents';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { ensureIntegerInput } from '../../utils/inputHandlers';
 
@@ -22,7 +22,7 @@ interface SetDailyLimitPopupModalProps {
 
 const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClose, onSave }) => {
   const { t } = useTranslation(['managePayments', 'global']);
-  const [dailyLimit, setDailyLimit] = React.useState<number>(0);
+  const [dailyLimit, setDailyLimit] = React.useState<number>(1);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string>('');
   const [successMessage, setSuccessMessage] = React.useState<string>('');
@@ -79,7 +79,8 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
 
     if (orgDailyLimit === dailyLimit) {
       setError(t('global:thereNoChangeToUpdate'));
-      return false;
+      setIsLoading(false);
+      return;
     }
 
     const isValid = validateState();
@@ -132,7 +133,7 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
               <div className="pb-[8px] mb-[8px] block">
                 {t('managePayments:setMaxDailyWithdrawalCountForYourMembers')}{' '}
               </div>
-              <LableTitleComponent text={`${t('managePayments:dailyWithdrawalCount')}`} />
+              <LabelTitleComponent text={`${t('managePayments:dailyWithdrawalCount')}`} />
               <input
                 type="text"
                 maxLength={5}

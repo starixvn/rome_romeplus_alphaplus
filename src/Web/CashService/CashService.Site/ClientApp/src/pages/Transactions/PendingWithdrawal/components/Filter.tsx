@@ -1,7 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+
 import { CalendarIcon, SearchIcon } from '../../../../components/Icons';
-import { LableTitleComponent } from '../../../../components/TitleComponents';
+import { LabelTitleComponent } from '../../../../components/TitleComponents';
+
 interface FilterProps {
   recentWithdrawals: string;
   setRecentWithdrawals: (value: string) => void;
@@ -21,7 +23,7 @@ const Filter: React.FC<FilterProps> = ({
     <>
       <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
         <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
-          <LableTitleComponent text={t('filter.recentWithdrawals')} />
+          <LabelTitleComponent text={t('filter.recentWithdrawals')} />
           <div className="select-wrapper relative">
             <select
               value={recentWithdrawals}

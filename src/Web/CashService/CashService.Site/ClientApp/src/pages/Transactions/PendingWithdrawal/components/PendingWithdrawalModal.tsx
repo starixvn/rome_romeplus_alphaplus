@@ -1,28 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory.ts';
+
 import {
   displayAmount,
   formatDateTime,
   renderBankAccount,
   renderBankOptionValue,
 } from '../../../../common/commonFunctions.tsx';
-import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
-import UploadImage from '../../Components/UploadImage';
-import { transactionAPI } from '../../../../services/transactionsHistoryAPI.ts';
-import { TransactionTypes } from '../../../../utils/constants.ts';
-import { ResultMessageComponent } from '../../../../components/MessageComponents.tsx';
-import { approveWithdrawal, rejectWithdrawal } from '../../../../services/pendingWithdrawalAPI.ts';
 import BankIcon from '../../../../components/BankComponents.tsx';
-import {
-  LableTitleComponent,
-  MediumTitleComponent,
-} from '../../../../components/TitleComponents.tsx';
 import {
   ButtonApplyComponent,
   ButtonCancelComponent,
   ButtonClosePopupComponent,
 } from '../../../../components/ButtonComponents.tsx';
+import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
+import { ResultMessageComponent } from '../../../../components/MessageComponents.tsx';
+import {
+  LabelTitleComponent,
+  MediumTitleComponent,
+} from '../../../../components/TitleComponents.tsx';
+import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory.ts';
+import { approveWithdrawal, rejectWithdrawal } from '../../../../services/pendingWithdrawalAPI.ts';
+import { transactionAPI } from '../../../../services/transactionsHistoryAPI.ts';
+import { TransactionTypes } from '../../../../utils/constants.ts';
+import UploadImage from '../../Components/UploadImage';
 
 interface PendingWithdrawalModalProps {
   withdrawal: TransactionItem;
@@ -190,14 +191,14 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
             <div className="grid grid-cols-2 gap-6">
               <div>
                 <div className="mb-[16px]">
-                  <LableTitleComponent text={t('pendingWithdrawalModal.to')} />
+                  <LabelTitleComponent text={t('pendingWithdrawalModal.to')} />
                   <div className="flex items-center">
                     <span>{renderBankAccount(withdrawal.paymentTo)}</span>
                   </div>
                 </div>
 
                 <div className="mb-[16px]">
-                  <LableTitleComponent text={t('pendingWithdrawalModal.withdrawalAmount')} />
+                  <LabelTitleComponent text={t('pendingWithdrawalModal.withdrawalAmount')} />
                   <div className="mt-1">
                     <span>
                       {displayAmount(withdrawal.amount)} {withdrawal.currency}
@@ -206,7 +207,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
                 </div>
 
                 <div>
-                  <LableTitleComponent text={t('pendingWithdrawalModal.from')} required />
+                  <LabelTitleComponent text={t('pendingWithdrawalModal.from')} required />
                   <div className="w-full">
                     <DropdownComponent
                       options={bankOptions}
@@ -222,14 +223,14 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
 
               <div>
                 <div className="mb-[16px]">
-                  <LableTitleComponent text={t('pendingWithdrawalModal.dateAndTime')} />
+                  <LabelTitleComponent text={t('pendingWithdrawalModal.dateAndTime')} />
                   <div>{formatDateTime(withdrawal.createdTime)}</div>
                 </div>
               </div>
             </div>
 
             <div className="mt-6 h-full">
-              <LableTitleComponent text={t('pendingWithdrawalModal.remarks')} />
+              <LabelTitleComponent text={t('pendingWithdrawalModal.remarks')} />
               <textarea
                 value={remarks}
                 onChange={(e) => setRemarks(e.target.value)}

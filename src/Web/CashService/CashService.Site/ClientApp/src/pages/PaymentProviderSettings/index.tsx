@@ -1,29 +1,45 @@
+import '../../styles/common.css';
+import '../../styles/global.scss';
+
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { useTranslation } from 'react-i18next';
 
+import Tippy from '@tippyjs/react';
+
+import {
+  BackButtonComponent,
+  ButtonApplyComponent,
+  ButtonCancelComponent,
+  ButtonFullComponent,
+  ButtonOutlineComponent,
+} from '../../components/ButtonComponents';
+import { IconInfo } from '../../components/Icons';
+import { LoadingFullComponent } from '../../components/LoadingComponent';
+import { ResultMessageComponent } from '../../components/MessageComponents';
+import {
+  StatusCompletedComponent,
+  StatusDisabledComponent,
+  StatusFailedComponent,
+  StatusMaintenanceComponent,
+  StatusProcessingComponent,
+} from '../../components/StatusComponents';
+import TitleComponent, {
+  LabelTitleComponent,
+  MediumTitleComponent,
+} from '../../components/TitleComponents';
 import { STATUS_OPTIONS, TRANSACTION_TYPES } from '../../constants/paymentConstants';
-import ProviderFeesPopupModal from './ProviderFeesPopupModal';
-import AddPaymentMethodModal from './AddPaymentMethodModal';
-import BanksPopupModal from './BanksPopupModal';
-import UpdatePaymentMethodModal from './UpdatePaymentMethodModal';
+import { useCookieLanguage } from '../../hooks/useCookieLanguage';
+import i18n from '../../i18n/i18n-paymentProviderSettings';
+import { PaymentMethod } from '../../services/interfaces/Payments';
 import { PaymentProvider } from '../../services/interfaces/Payments/PaymentProvider';
 import { paymentProviderService } from '../../services/paymentsAPI';
-import { formatNumber, formatInputValue } from '../../utils/numberFormatting';
-import { IconInfo } from '../../components/Icons';
-import Tippy from '@tippyjs/react';
-import i18n from '../../i18n/i18n-paymentProviderSettings';
-import { useCookieLanguage } from '../../hooks/useCookieLanguage';
-import { ResultMessageComponent } from '../../components/MessageComponents';
-import '../../styles/common.css';
-import '../../styles/global.scss';
+import { formatInputValue, formatNumber } from '../../utils/numberFormatting';
+import AddPaymentMethodModal from './AddPaymentMethodModal';
+import BanksPopupModal from './BanksPopupModal';
+import ProviderFeesPopupModal from './ProviderFeesPopupModal';
+import UpdatePaymentMethodModal from './UpdatePaymentMethodModal';
 
-import { LoadingFullComponent } from '../../components/LoadingComponent';
-import { ButtonApplyComponent, ButtonCancelComponent, ButtonFullComponent, ButtonOutlineComponent } from '../../components/ButtonComponents';
-import { PaymentMethod } from '../../services/interfaces/Payments';
-import { BackButtonComponent } from '../../components/ButtonComponents';
-import TitleComponent, { LableTitleComponent, MediumTitleComponent } from '../../components/TitleComponents';
-import { StatusCompletedComponent, StatusDisabledComponent, StatusFailedComponent, StatusMaintenanceComponent, StatusProcessingComponent } from '../../components/StatusComponents';
 declare global {
   interface Window {
     providerSettingsViewModel: any;
@@ -55,10 +71,15 @@ function PaymentProviderSettings() {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
   const [updating, setUpdating] = React.useState(false);
-  const [updateMessage, setUpdateMessage] = React.useState<{type: 'success' | 'error', text: string} | null>(null);
-  const [providerStatus, setProviderStatus] = React.useState(window.providerSettingsViewModel.Provider.Status);
-  const [validationErrors, setValidationErrors] = React.useState<{[key: string]: string}>({});
-  
+  const [updateMessage, setUpdateMessage] = React.useState<{
+    type: 'success' | 'error';
+    text: string;
+  } | null>(null);
+  const [providerStatus, setProviderStatus] = React.useState(
+    window.providerSettingsViewModel.Provider.Status
+  );
+  const [validationErrors, setValidationErrors] = React.useState<{ [key: string]: string }>({});
+
   // State for dropdowns
   const [selectedPaymentMethod, setSelectedPaymentMethod] = React.useState('');
   const [selectedStatus, setSelectedStatus] = React.useState('');
@@ -66,11 +87,11 @@ function PaymentProviderSettings() {
 
   const [formState, setFormState] = useState<FormState>({
     providerStatus: window.providerSettingsViewModel.Provider.Status,
-    providerSettings: window.providerSettingsViewModel.Provider.ProviderSettings
+    providerSettings: window.providerSettingsViewModel.Provider.ProviderSettings,
   });
   const [originalFormState] = useState<FormState>({
     providerStatus: window.providerSettingsViewModel.Provider.Status,
-    providerSettings: window.providerSettingsViewModel.Provider.ProviderSettings
+    providerSettings: window.providerSettingsViewModel.Provider.ProviderSettings,
   });
 
   // Fetch provider settings when component mounts or when dropdowns change
@@ -87,7 +108,7 @@ function PaymentProviderSettings() {
         transactionType
       );
 
-      if(response.error) {
+      if (response.error) {
         setError(response.error.message);
         setLoading(false);
         return;
@@ -115,10 +136,18 @@ function PaymentProviderSettings() {
     setSelectedTransactionType(event.target.value);
   };
 
-  const onViewFees = () => { setShowFeePopup(true); };
-  const onCloseFeePopup = () => {setShowFeePopup(false); };
-  const onAddPaymentMethod = () => { setShowAddPaymentMethod(true); };
-  const onCloseAddPaymentMethod = () => { setShowAddPaymentMethod(false); };
+  const onViewFees = () => {
+    setShowFeePopup(true);
+  };
+  const onCloseFeePopup = () => {
+    setShowFeePopup(false);
+  };
+  const onAddPaymentMethod = () => {
+    setShowAddPaymentMethod(true);
+  };
+  const onCloseAddPaymentMethod = () => {
+    setShowAddPaymentMethod(false);
+  };
 
   const onViewBanks = (setting: any) => {
     setSelectedSetting(setting);
@@ -133,20 +162,20 @@ function PaymentProviderSettings() {
   // Handler for minimum amount change
   const onMinAmountChange = (index: number, value: string) => {
     const formattedValue = formatInputValue(value);
-    
+
     const updatedSettings = [...providerSettings];
     updatedSettings[index] = {
       ...updatedSettings[index],
-      minAmount: formattedValue
+      minAmount: formattedValue,
     };
     setProviderSettings(updatedSettings);
-    setFormState(prev => ({
+    setFormState((prev) => ({
       ...prev,
-      providerSettings: updatedSettings
+      providerSettings: updatedSettings,
     }));
-    
+
     // Clear validation error for this field
-    const newValidationErrors = {...validationErrors};
+    const newValidationErrors = { ...validationErrors };
     delete newValidationErrors[`minAmount-${index}`];
     delete newValidationErrors[`maxAmount-${index}`];
     setValidationErrors(newValidationErrors);
@@ -155,20 +184,20 @@ function PaymentProviderSettings() {
   // Handler for maximum amount change
   const onMaxAmountChange = (index: number, value: string) => {
     const formattedValue = formatInputValue(value);
-    
+
     const updatedSettings = [...providerSettings];
     updatedSettings[index] = {
       ...updatedSettings[index],
-      maxAmount: formattedValue
+      maxAmount: formattedValue,
     };
     setProviderSettings(updatedSettings);
-    setFormState(prev => ({
+    setFormState((prev) => ({
       ...prev,
-      providerSettings: updatedSettings
+      providerSettings: updatedSettings,
     }));
-    
+
     // Clear validation error for this field
-    const newValidationErrors = {...validationErrors};
+    const newValidationErrors = { ...validationErrors };
     delete newValidationErrors[`minAmount-${index}`];
     delete newValidationErrors[`maxAmount-${index}`];
     setValidationErrors(newValidationErrors);
@@ -178,12 +207,12 @@ function PaymentProviderSettings() {
     const updatedSettings = [...providerSettings];
     updatedSettings[index] = {
       ...updatedSettings[index],
-      isEnabled: !updatedSettings[index].isEnabled
+      isEnabled: !updatedSettings[index].isEnabled,
     };
     setProviderSettings(updatedSettings);
-    setFormState(prev => ({
+    setFormState((prev) => ({
       ...prev,
-      providerSettings: updatedSettings
+      providerSettings: updatedSettings,
     }));
   };
 
@@ -200,10 +229,11 @@ function PaymentProviderSettings() {
   };
 
   const hasChanged = (setting: any) => {
-    const originalSetting = originalSettings.find(s => 
-      s.methodId === setting.methodId && 
-      s.status === setting.status && 
-      s.transactionType === setting.transactionType
+    const originalSetting = originalSettings.find(
+      (s) =>
+        s.methodId === setting.methodId &&
+        s.status === setting.status &&
+        s.transactionType === setting.transactionType
     );
 
     if (!originalSetting) return true;
@@ -220,20 +250,20 @@ function PaymentProviderSettings() {
     providerSettings.forEach((setting, index) => {
       const minAmount = parseFloat(setting.minAmount);
       const maxAmount = parseFloat(setting.maxAmount);
-      
+
       if (isNaN(minAmount) || isNaN(maxAmount)) {
         validationErrors.push({
           index,
           field: 'minAmount',
-          error: tGlobal('invalidAmountFormat')
+          error: tGlobal('invalidAmountFormat'),
         });
       }
-      
+
       if (minAmount > maxAmount) {
         validationErrors.push({
           index,
           field: 'minAmount',
-          error: tGlobal('minAmountGreaterThanMax')
+          error: tGlobal('minAmountGreaterThanMax'),
         });
       }
 
@@ -241,7 +271,7 @@ function PaymentProviderSettings() {
         validationErrors.push({
           index,
           field: 'minAmount',
-          error: tGlobal('amountCannotBeNegative')
+          error: tGlobal('amountCannotBeNegative'),
         });
       }
 
@@ -249,7 +279,7 @@ function PaymentProviderSettings() {
         validationErrors.push({
           index,
           field: 'maxAmount',
-          error: tGlobal('amountCannotBeNegative')
+          error: tGlobal('amountCannotBeNegative'),
         });
       }
 
@@ -257,15 +287,15 @@ function PaymentProviderSettings() {
         validationErrors.push({
           index,
           field: 'minAmount',
-          error: tPaymentProviderSettings('minAmountLessThanMinTrans')
+          error: tPaymentProviderSettings('minAmountLessThanMinTrans'),
         });
       }
 
       if (maxAmount > setting.maxAmountTrans) {
         validationErrors.push({
-          index,  
+          index,
           field: 'maxAmount',
-          error: tPaymentProviderSettings('maxAmountGreaterThanMaxTrans')
+          error: tPaymentProviderSettings('maxAmountGreaterThanMaxTrans'),
         });
       }
     });
@@ -275,17 +305,17 @@ function PaymentProviderSettings() {
 
   // Handler for update button
   const onUpdate = async () => {
-    if(!hasFormChanged()) {
+    if (!hasFormChanged()) {
       setUpdateMessage({
         type: 'error',
-        text: tGlobal('thereNoChangeToUpdate')
+        text: tGlobal('thereNoChangeToUpdate'),
       });
       return;
     }
 
     const validationErrors = validateFormState();
-    const errorMap: {[key: string]: string} = {};
-    validationErrors.forEach(err => {
+    const errorMap: { [key: string]: string } = {};
+    validationErrors.forEach((err) => {
       errorMap[`${err.field}-${err.index}`] = err.error;
     });
     setValidationErrors(errorMap);
@@ -293,9 +323,9 @@ function PaymentProviderSettings() {
     if (validationErrors.length > 0) {
       setUpdateMessage({
         type: 'error',
-        text: validationErrors.map(err => 
-          `${tGlobal('row')} ${err.index + 1}: ${err.error}`
-        ).join('<br />')
+        text: validationErrors
+          .map((err) => `${tGlobal('row')} ${err.index + 1}: ${err.error}`)
+          .join('<br />'),
       });
       return;
     }
@@ -303,38 +333,40 @@ function PaymentProviderSettings() {
     setValidationErrors({});
     setUpdating(true);
     setUpdateMessage(null);
-    
+
     var provider = {
       providerId: window.providerSettingsViewModel.Provider.Id,
       name: window.providerSettingsViewModel.Provider.Name,
-      status: providerStatus === originalFormState.providerStatus ? -1 : (providerStatus ? 1 : 0),
-      providerSettings: providerSettings.filter(setting => hasChanged(setting))
+      status: providerStatus === originalFormState.providerStatus ? -1 : providerStatus ? 1 : 0,
+      providerSettings: providerSettings.filter((setting) => hasChanged(setting)),
     };
 
     const response = await paymentProviderService.updateProvider(provider);
-    if(response.error) {
+    if (response.error) {
       setUpdateMessage({
         type: 'error',
-        text: response.error.message
+        text: response.error.message,
       });
       return;
     }
-    
+
     const result = response.data;
     if (result.isSuccessful) {
       setUpdateMessage({
         type: 'success',
-        text: tGlobal('updateSuccess')
+        text: tGlobal('updateSuccess'),
       });
 
-      setTimeout(() => { window.location.reload(); }, 3000);
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
     } else {
       setUpdateMessage({
         type: 'error',
-        text: result.message || tGlobal('updateFailed')
+        text: result.message || tGlobal('updateFailed'),
       });
     }
-  
+
     setUpdating(false);
   };
 
@@ -342,9 +374,9 @@ function PaymentProviderSettings() {
   const onProviderStatusToggle = () => {
     const newStatus = !providerStatus;
     setProviderStatus(newStatus);
-    setFormState(prev => ({
+    setFormState((prev) => ({
       ...prev,
-      providerStatus: newStatus ? 1 : 0
+      providerStatus: newStatus ? 1 : 0,
     }));
   };
 
@@ -360,8 +392,12 @@ function PaymentProviderSettings() {
   };
 
   const failStatus = 3;
-  const isEditable = (paymentMethod: PaymentMethod) => { return paymentMethod.status === 2; }
-  const hasEditableSettings = () => { return providerSettings.some(setting => isEditable(setting)); };
+  const isEditable = (paymentMethod: PaymentMethod) => {
+    return paymentMethod.status === 2;
+  };
+  const hasEditableSettings = () => {
+    return providerSettings.some((setting) => isEditable(setting));
+  };
 
   const onBackNavigation = () => {
     const previousUrl = localStorage.getItem('cashsite_previousUrl');
@@ -395,242 +431,316 @@ function PaymentProviderSettings() {
     });
   };
 
-  const reloadPage = () => { window.location.reload(); };
+  const reloadPage = () => {
+    window.location.reload();
+  };
 
   return (
-    <div className="payment-provider-settings h-full">       
-      {loading ? (        
-          <LoadingFullComponent />     
-      ) : error ? (<ResultMessageComponent type='error' message={error} />) 
-        : (
-        <>        
-          
-          {updateMessage && (<ResultMessageComponent className='my-[16px] max-[768px]:mx-[16px] max-[768px]:my-0' type={updateMessage.type} message={updateMessage.text} /> )} 
-        <div className='bg-[#ffffff] px-[16px] py-[10px] mb-[8px]'>
-          <div className="settings-header">
-            <div className='flex items-center justify-flex-start pt-[8px] border-[#cfcfcf] border-dotted border-b-[2px]'>
-              <BackButtonComponent onClick={onBackNavigation} />
-              <TitleComponent title={window.providerSettingsViewModel.Provider.Name} />
+    <div className="payment-provider-settings h-full">
+      {loading ? (
+        <LoadingFullComponent />
+      ) : error ? (
+        <ResultMessageComponent type="error" message={error} />
+      ) : (
+        <>
+          {updateMessage && (
+            <ResultMessageComponent
+              className="my-[16px] max-[768px]:mx-[16px] max-[768px]:my-0"
+              type={updateMessage.type}
+              message={updateMessage.text}
+            />
+          )}
+          <div className="bg-[#ffffff] px-[16px] py-[10px] mb-[8px]">
+            <div className="settings-header">
+              <div className="flex items-center justify-flex-start pt-[8px] border-[#cfcfcf] border-dotted border-b-[2px]">
+                <BackButtonComponent onClick={onBackNavigation} />
+                <TitleComponent title={window.providerSettingsViewModel.Provider.Name} />
+              </div>
             </div>
-            
-          </div>
-          <div className="flex gap-[24px] max-[768px]:flex-col max-[768px]:gap-[8px]">
-            <div>
-            <LableTitleComponent text={tPaymentProviderSettings('setUpPaymentMethodsForMembers')} />            
-            <ButtonFullComponent text={`+ ${tPaymentProviderSettings('addPaymentMethod')}`} onClick={onAddPaymentMethod} />            
-            </div>
-            {providerStatus != 2 && (
+            <div className="flex gap-[24px] max-[768px]:flex-col max-[768px]:gap-[8px]">
               <div>
-                <p className="flex items-center">
-                  <LableTitleComponent text={`${tGlobal('enable')}/${tGlobal('disable')}`} />
-                  <Tippy
-                    content={
-                      <div>
+                <LabelTitleComponent
+                  text={tPaymentProviderSettings('setUpPaymentMethodsForMembers')}
+                />
+                <ButtonFullComponent
+                  text={`+ ${tPaymentProviderSettings('addPaymentMethod')}`}
+                  onClick={onAddPaymentMethod}
+                />
+              </div>
+              {providerStatus != 2 && (
+                <div>
+                  <p className="flex items-center">
+                    <LabelTitleComponent text={`${tGlobal('enable')}/${tGlobal('disable')}`} />
+                    <Tippy
+                      content={
                         <div>
-                          <IconInfo className="w-[18px] h-[18px] fill-[#ffffff] inline-block vertical-middle mr-[4px] relative top-[-2px]" />
-                          {tPaymentProviderSettings('enableDisable')}
-                        </div>
-                        <div>• {tPaymentProviderSettings('enableDisableTip1')}</div>
-                        <div>• {tPaymentProviderSettings('enableDisableTip2')}</div>
-                        <div>• {tPaymentProviderSettings('enableDisableTip3')}</div>
-                      </div>
-                    }
-                    placement="top"
-                    theme="light"
-                    arrow={true}
-                  >
-                    <span className='cursor-pointer'><IconInfo className="w-[20px] h-[20px] ml-[4px] fill-[#163f78]" /></span>
-                  </Tippy>
-                </p>
-                <label className='inline-block'>
-                  <input
-                    type="checkbox"
-                    id="enableToggle"
-                    checked={providerStatus}
-                        onChange={onProviderStatusToggle}
-                    className="opacity-0 absolute hidden peer " 
-                  />
-                  <span className='block cursor-pointer w-[60px] h-[30px] rounded-[20px] bg-[var(--button-switch-background)] relative after:content-[""] after:absolute after:top-[3px] after:left-[3px] after:w-[24px] after:h-[24px] after:rounded-[50%] after:bg-[var(--button-switch-dot-background)] after:transition-all after:duration-300 after:ease-in-out after:shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] peer-checked:after:left-[32px] peer-checked:bg-[var(--button-switch-background-active)]'>
-
-                  </span>
-                </label>
-              </div> 
-            )}           
-          </div>
-        </div>
-        <div className='bg-[#ffffff] px-[16px] py-[10px]'>
-          <div className='flex flex-wrap mb-[8px]'>
-            <MediumTitleComponent text={window.providerSettingsViewModel.Provider.Name} />
-            <div className='flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full'>
-            <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-              <LableTitleComponent text={tPaymentProviderSettings('paymentMethod')} />
-              <select 
-                className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer" 
-                value={selectedPaymentMethod}
-                onChange={onPaymentMethodChange}
-              >
-                {window.providerSettingsViewModel.AddPaymentMethodViewModel.PaymentMethods.map((method: any) => (
-                  <option key={method.Id} value={method.Id}>{method.Id === 0 ? tGlobal('all') : method.Name}</option>
-                ))}
-              </select>
-            </div>
-
-            <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-              <LableTitleComponent text={tPaymentProviderSettings('status')} />
-              <select 
-                className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer" 
-                value={selectedStatus}
-                onChange={onStatusChange}
-              >
-                {STATUS_OPTIONS.map(status => (
-                  <option key={status.id} value={status.id}>{tPaymentProviderSettings(`status-${status.id}`)}</option>
-                ))}
-              </select>
-            </div>
-
-            <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-              <LableTitleComponent text={tPaymentProviderSettings('transactionType')} />
-              <select 
-                className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer" 
-                value={selectedTransactionType}
-                onChange={onTransactionTypeChange}
-              >
-                {TRANSACTION_TYPES.map(type => (
-                  <option key={type.id} value={type.id}>{type.id === 0 ? tGlobal('all') : tPaymentProviderSettings(`transaction-${type.id}`)}</option>
-                ))}
-              </select>
-            </div> 
-            </div>   
-        
-            <ButtonOutlineComponent className="ml-auto mt-auto" text={tPaymentProviderSettings('viewProviderFees', {providerName: window.providerSettingsViewModel.Provider.Name})} onClick={onViewFees} />
-          </div>
-          
-          <div className="table-fixed-header table-fixed-body">
-            <table className=" w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
-              <thead>
-                <tr>
-                  <th className='col-shadown col-payment-method'><span className='relative z-3'>{tPaymentProviderSettings('paymentMethod')}</span></th>
-                  <th>{tPaymentProviderSettings('status')}</th>
-                  <th>{tPaymentProviderSettings('transactionType')}</th>
-                  <th>{tPaymentProviderSettings('minimum')}</th>
-                  <th>{tPaymentProviderSettings('maximum')}</th>
-                  <th>
-                    <div className='flex items-center justify-center'>
-                      {tGlobal('enable')}/{tGlobal('disable')}
-                      <Tippy
-                        content={
                           <div>
-                            <div>
-                              <IconInfo className="w-[18px] h-[18px] fill-[#ffffff] inline-block vertical-middle mr-[4px] relative top-[-2px]" />
-                              {tPaymentProviderSettings('enableDisable')}
-                            </div>
-                            <div>• {tPaymentProviderSettings('enableDisableTip1')}</div>
-                            <div>• {tPaymentProviderSettings('enableDisableTip2')}</div>
-                            <div>• {tPaymentProviderSettings('enableDisableTip3')}</div>
+                            <IconInfo className="w-[18px] h-[18px] fill-[#ffffff] inline-block vertical-middle mr-[4px] relative top-[-2px]" />
+                            {tPaymentProviderSettings('enableDisable')}
                           </div>
-                        }
-                        placement="top"
-                        theme="light"
-                        arrow={true}
-                      >
-                        <span className='cursor-pointer'><IconInfo className="w-[20px] h-[20px] ml-[4px] fill-[#163f78]" /></span>
-                      </Tippy>
-                    </div>
-                </th>
-                  <th>{tPaymentProviderSettings('bank')}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {providerSettings.map((setting, index) => (
-                  <tr key={index}>
-                    <td className='col-shadown col-payment-method font-semibold'><span className='relative z-3'>{setting.methodName}</span></td>
-                    <td>
-                      {
-                        setting.status === 1 ? <StatusProcessingComponent /> :
-                        setting.status === 2 ? <StatusCompletedComponent /> :
-                        setting.status === 3 ? <StatusDisabledComponent /> :
-                        setting.status === 4 ? <StatusMaintenanceComponent /> :
-                        <StatusFailedComponent />
+                          <div>• {tPaymentProviderSettings('enableDisableTip1')}</div>
+                          <div>• {tPaymentProviderSettings('enableDisableTip2')}</div>
+                          <div>• {tPaymentProviderSettings('enableDisableTip3')}</div>
+                        </div>
                       }
-                      {setting.status === failStatus && <><br /><span className='inline-block mt-[4px] cursor-pointer text-[var(--text-color-primary)] font-semibold underline' onClick={() => onRetrySetup(index)}>{tPaymentProviderSettings('retrySetup')}</span></>}
-                    </td>
-                    <td className='font-semibold'>{tPaymentProviderSettings(`transaction-${setting.transactionType}`)}</td>
-                    <td>
-                      {isEditable(setting) ? (
-                      <div className='flex flex-col max-[768px]:w-[150px]'>
-                        <input 
-                          type="text" 
-                          className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer mb-2px] ${validationErrors[`minAmount-${index}`] ? 'border-[#dc3545]' : 'border-[var(--border-control)]'}`}
-                          value={formatNumber(setting.minAmount)} 
-                          onChange={(e) => onMinAmountChange(index, e.target.value)}
-                          placeholder={tPaymentProviderSettings('minimum')}
-                          maxLength={15}
-                        />
-                        <label className="text-left text-[11px] max-[768px]:text-[15px] text-[#828282] font-semibold mt-[4px]">{tPaymentProviderSettings('minAmount')} {formatNumber(setting.minAmountTrans)}</label>
-                      </div>
-                      ) : (
-                        <div className='flex flex-col'>-</div>
-                      )}
-                    </td>
-                    <td>
-                      {isEditable(setting) ? (
-                      <div className='flex flex-col max-[768px]:w-[150px]'>
-                      <input 
-                        type="text" 
-                        className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer mb-2px] ${validationErrors[`maxAmount-${index}`] ? 'border-[#dc3545]' : 'border-[var(--border-control)]'}`}
-                        value={formatNumber(setting.maxAmount)} 
-                        onChange={(e) => onMaxAmountChange(index, e.target.value)}
-                        placeholder={tPaymentProviderSettings('maximum')}
-                        maxLength={15}
-                        />
-                        <label className="text-left text-[11px] max-[768px]:text-[15px] text-[#828282] font-semibold mt-[4px]">{tPaymentProviderSettings('maxAmount')} {formatNumber(setting.maxAmountTrans)}</label>
-                      </div>
-                      ) : (
-                        <div className='flex flex-col'>-</div>
-                      )}
-                    </td>
-                    <td>   
-                      {isEditable(setting) ? (
-                      <div className="flex items-center justify-center">
-                        <label className='cursor-pointer '>
-                          <input
-                            type="checkbox"
-                            id={`toggle-${index}`}
-                            checked={setting.isEnabled || false}
-                            onChange={() => onSettingToggle(index)}
-                            className="opacity-0 absolute hidden peer"
-                          />
-                          <span className='block cursor-pointer w-[60px] h-[30px] rounded-[20px] bg-[var(--button-switch-background)] relative after:content-[""] after:absolute after:top-[3px] after:left-[3px] after:w-[24px] after:h-[24px] after:rounded-[50%] after:bg-[var(--button-switch-dot-background)] after:transition-all after:duration-300 after:ease-in-out after:shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] peer-checked:after:left-[32px] peer-checked:bg-[var(--button-switch-background-active)]'></span>
-                        </label>                        
-                      </div>
-                      ) : (
-                        <div className='flex flex-col'>-</div>
-                      )}
-                    </td>
-                    <td>     
-                      {!isEditable(setting) ? <>-</> : setting.bankRequired ? (                        
-                        <ButtonOutlineComponent text={tPaymentProviderSettings('listOfBanks')} onClick={() => onViewBanks(setting)} />                   
-                      ) : ( <span className='font-semibold color-[#333333]'>{tPaymentProviderSettings('noBankRequired')} </span>) }
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                      placement="top"
+                      theme="light"
+                      arrow={true}
+                    >
+                      <span className="cursor-pointer">
+                        <IconInfo className="w-[20px] h-[20px] ml-[4px] fill-[#163f78]" />
+                      </span>
+                    </Tippy>
+                  </p>
+                  <label className="inline-block">
+                    <input
+                      type="checkbox"
+                      id="enableToggle"
+                      checked={providerStatus}
+                      onChange={onProviderStatusToggle}
+                      className="opacity-0 absolute hidden peer "
+                    />
+                    <span className='block cursor-pointer w-[60px] h-[30px] rounded-[20px] bg-[var(--button-switch-background)] relative after:content-[""] after:absolute after:top-[3px] after:left-[3px] after:w-[24px] after:h-[24px] after:rounded-[50%] after:bg-[var(--button-switch-dot-background)] after:transition-all after:duration-300 after:ease-in-out after:shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] peer-checked:after:left-[32px] peer-checked:bg-[var(--button-switch-background-active)]'></span>
+                  </label>
+                </div>
+              )}
+            </div>
           </div>
-          <div className="flex justify-start gap-[8px] py-[8px] mt-[8px]">
-            <ButtonCancelComponent text={tGlobal('reset')} onClick={onReset} />
-            <ButtonApplyComponent text={updating ? tGlobal('updating') : tGlobal('update')} 
-              onClick={onUpdate} 
-              disabled={providerStatus == 2 || updating || !hasEditableSettings()} />
-          </div>          
-         </div>
+          <div className="bg-[#ffffff] px-[16px] py-[10px]">
+            <div className="flex flex-wrap mb-[8px]">
+              <MediumTitleComponent text={window.providerSettingsViewModel.Provider.Name} />
+              <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
+                <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
+                  <LabelTitleComponent text={tPaymentProviderSettings('paymentMethod')} />
+                  <select
+                    className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
+                    value={selectedPaymentMethod}
+                    onChange={onPaymentMethodChange}
+                  >
+                    {window.providerSettingsViewModel.AddPaymentMethodViewModel.PaymentMethods.map(
+                      (method: any) => (
+                        <option key={method.Id} value={method.Id}>
+                          {method.Id === 0 ? tGlobal('all') : method.Name}
+                        </option>
+                      )
+                    )}
+                  </select>
+                </div>
+
+                <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
+                  <LabelTitleComponent text={tPaymentProviderSettings('status')} />
+                  <select
+                    className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
+                    value={selectedStatus}
+                    onChange={onStatusChange}
+                  >
+                    {STATUS_OPTIONS.map((status) => (
+                      <option key={status.id} value={status.id}>
+                        {tPaymentProviderSettings(`status-${status.id}`)}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
+                  <LabelTitleComponent text={tPaymentProviderSettings('transactionType')} />
+                  <select
+                    className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
+                    value={selectedTransactionType}
+                    onChange={onTransactionTypeChange}
+                  >
+                    {TRANSACTION_TYPES.map((type) => (
+                      <option key={type.id} value={type.id}>
+                        {type.id === 0
+                          ? tGlobal('all')
+                          : tPaymentProviderSettings(`transaction-${type.id}`)}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <ButtonOutlineComponent
+                className="ml-auto mt-auto"
+                text={tPaymentProviderSettings('viewProviderFees', {
+                  providerName: window.providerSettingsViewModel.Provider.Name,
+                })}
+                onClick={onViewFees}
+              />
+            </div>
+
+            <div className="table-fixed-header table-fixed-body">
+              <table className=" w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
+                <thead>
+                  <tr>
+                    <th className="col-shadown col-payment-method">
+                      <span className="relative z-3">
+                        {tPaymentProviderSettings('paymentMethod')}
+                      </span>
+                    </th>
+                    <th>{tPaymentProviderSettings('status')}</th>
+                    <th>{tPaymentProviderSettings('transactionType')}</th>
+                    <th>{tPaymentProviderSettings('minimum')}</th>
+                    <th>{tPaymentProviderSettings('maximum')}</th>
+                    <th>
+                      <div className="flex items-center justify-center">
+                        {tGlobal('enable')}/{tGlobal('disable')}
+                        <Tippy
+                          content={
+                            <div>
+                              <div>
+                                <IconInfo className="w-[18px] h-[18px] fill-[#ffffff] inline-block vertical-middle mr-[4px] relative top-[-2px]" />
+                                {tPaymentProviderSettings('enableDisable')}
+                              </div>
+                              <div>• {tPaymentProviderSettings('enableDisableTip1')}</div>
+                              <div>• {tPaymentProviderSettings('enableDisableTip2')}</div>
+                              <div>• {tPaymentProviderSettings('enableDisableTip3')}</div>
+                            </div>
+                          }
+                          placement="top"
+                          theme="light"
+                          arrow={true}
+                        >
+                          <span className="cursor-pointer">
+                            <IconInfo className="w-[20px] h-[20px] ml-[4px] fill-[#163f78]" />
+                          </span>
+                        </Tippy>
+                      </div>
+                    </th>
+                    <th>{tPaymentProviderSettings('bank')}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {providerSettings.map((setting, index) => (
+                    <tr key={index}>
+                      <td className="col-shadown col-payment-method font-semibold">
+                        <span className="relative z-3">{setting.methodName}</span>
+                      </td>
+                      <td>
+                        {setting.status === 1 ? (
+                          <StatusProcessingComponent />
+                        ) : setting.status === 2 ? (
+                          <StatusCompletedComponent />
+                        ) : setting.status === 3 ? (
+                          <StatusDisabledComponent />
+                        ) : setting.status === 4 ? (
+                          <StatusMaintenanceComponent />
+                        ) : (
+                          <StatusFailedComponent />
+                        )}
+                        {setting.status === failStatus && (
+                          <>
+                            <br />
+                            <span
+                              className="inline-block mt-[4px] cursor-pointer text-[var(--text-color-primary)] font-semibold underline"
+                              onClick={() => onRetrySetup(index)}
+                            >
+                              {tPaymentProviderSettings('retrySetup')}
+                            </span>
+                          </>
+                        )}
+                      </td>
+                      <td className="font-semibold">
+                        {tPaymentProviderSettings(`transaction-${setting.transactionType}`)}
+                      </td>
+                      <td>
+                        {isEditable(setting) ? (
+                          <div className="flex flex-col max-[768px]:w-[150px]">
+                            <input
+                              type="text"
+                              className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer mb-2px] ${validationErrors[`minAmount-${index}`] ? 'border-[#dc3545]' : 'border-[var(--border-control)]'}`}
+                              value={formatNumber(setting.minAmount)}
+                              onChange={(e) => onMinAmountChange(index, e.target.value)}
+                              placeholder={tPaymentProviderSettings('minimum')}
+                              maxLength={15}
+                            />
+                            <label className="text-left text-[11px] max-[768px]:text-[15px] text-[#828282] font-semibold mt-[4px]">
+                              {tPaymentProviderSettings('minAmount')}{' '}
+                              {formatNumber(setting.minAmountTrans)}
+                            </label>
+                          </div>
+                        ) : (
+                          <div className="flex flex-col">-</div>
+                        )}
+                      </td>
+                      <td>
+                        {isEditable(setting) ? (
+                          <div className="flex flex-col max-[768px]:w-[150px]">
+                            <input
+                              type="text"
+                              className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer mb-2px] ${validationErrors[`maxAmount-${index}`] ? 'border-[#dc3545]' : 'border-[var(--border-control)]'}`}
+                              value={formatNumber(setting.maxAmount)}
+                              onChange={(e) => onMaxAmountChange(index, e.target.value)}
+                              placeholder={tPaymentProviderSettings('maximum')}
+                              maxLength={15}
+                            />
+                            <label className="text-left text-[11px] max-[768px]:text-[15px] text-[#828282] font-semibold mt-[4px]">
+                              {tPaymentProviderSettings('maxAmount')}{' '}
+                              {formatNumber(setting.maxAmountTrans)}
+                            </label>
+                          </div>
+                        ) : (
+                          <div className="flex flex-col">-</div>
+                        )}
+                      </td>
+                      <td>
+                        {isEditable(setting) ? (
+                          <div className="flex items-center justify-center">
+                            <label className="cursor-pointer ">
+                              <input
+                                type="checkbox"
+                                id={`toggle-${index}`}
+                                checked={setting.isEnabled || false}
+                                onChange={() => onSettingToggle(index)}
+                                className="opacity-0 absolute hidden peer"
+                              />
+                              <span className='block cursor-pointer w-[60px] h-[30px] rounded-[20px] bg-[var(--button-switch-background)] relative after:content-[""] after:absolute after:top-[3px] after:left-[3px] after:w-[24px] after:h-[24px] after:rounded-[50%] after:bg-[var(--button-switch-dot-background)] after:transition-all after:duration-300 after:ease-in-out after:shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] peer-checked:after:left-[32px] peer-checked:bg-[var(--button-switch-background-active)]'></span>
+                            </label>
+                          </div>
+                        ) : (
+                          <div className="flex flex-col">-</div>
+                        )}
+                      </td>
+                      <td>
+                        {!isEditable(setting) ? (
+                          <>-</>
+                        ) : setting.bankRequired ? (
+                          <ButtonOutlineComponent
+                            text={tPaymentProviderSettings('listOfBanks')}
+                            onClick={() => onViewBanks(setting)}
+                          />
+                        ) : (
+                          <span className="font-semibold color-[#333333]">
+                            {tPaymentProviderSettings('noBankRequired')}{' '}
+                          </span>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="flex justify-start gap-[8px] py-[8px] mt-[8px]">
+              <ButtonCancelComponent text={tGlobal('reset')} onClick={onReset} />
+              <ButtonApplyComponent
+                text={updating ? tGlobal('updating') : tGlobal('update')}
+                onClick={onUpdate}
+                disabled={providerStatus == 2 || updating || !hasEditableSettings()}
+              />
+            </div>
+          </div>
         </>
       )}
 
       {/* Fee Popup Modal */}
       {showFeePopup && (
         <ProviderFeesPopupModal
-          provider={{id: window.providerSettingsViewModel.Provider.Id, name: window.providerSettingsViewModel.Provider.Name} as PaymentProvider}
+          provider={
+            {
+              id: window.providerSettingsViewModel.Provider.Id,
+              name: window.providerSettingsViewModel.Provider.Name,
+            } as PaymentProvider
+          }
           onClose={onCloseFeePopup}
         />
       )}
@@ -639,16 +749,18 @@ function PaymentProviderSettings() {
       {showAddPaymentMethod && (
         <AddPaymentMethodModal
           providerId={window.providerSettingsViewModel.Provider.Id}
-          onClose={onCloseAddPaymentMethod}   
+          onClose={onCloseAddPaymentMethod}
           onSuccess={reloadPage}
-          orgTelegramAssistantUrl={window.providerSettingsViewModel.AddPaymentMethodViewModel.ChannelContact.Tele}
+          orgTelegramAssistantUrl={
+            window.providerSettingsViewModel.AddPaymentMethodViewModel.ChannelContact.Tele
+          }
         />
       )}
 
       {/* Banks Popup Modal */}
       {showBanksPopup && selectedSetting && (
         <BanksPopupModal
-          onClose={onCloseBanksPopup} 
+          onClose={onCloseBanksPopup}
           transactionType={selectedSetting.transactionType}
         />
       )}
@@ -659,16 +771,18 @@ function PaymentProviderSettings() {
           providerId={window.providerSettingsViewModel.Provider.Id}
           onClose={onCloseUpdatePaymentMethod}
           onSuccess={reloadPage}
-          orgTelegramAssistantUrl={window.providerSettingsViewModel.AddPaymentMethodViewModel.ChannelContact.Tele}
+          orgTelegramAssistantUrl={
+            window.providerSettingsViewModel.AddPaymentMethodViewModel.ChannelContact.Tele
+          }
           existingPaymentMethod={selectedSetting}
         />
       )}
     </div>
   );
-};
+}
 
 createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <PaymentProviderSettings />
   </React.StrictMode>
-); 
+);
