@@ -10,7 +10,7 @@ import Search from './Search';
 import DataGrid from './DataGrid';
 import { useTranslation } from 'react-i18next';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
-import { TransactionType } from '../../../../common/commonFunctions';
+import { convertToGMT4, TransactionType } from '../../../../common/commonFunctions';
 import Pagination from '../../Components/Pagination';
 
 interface TransactionListProps {
@@ -29,10 +29,15 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     Omit<TransactionsHistoryParams, 'searchText' | 'column'>
   >(() => {
     const today = new Date();
+    today.setHours(23, 59, 59, 0);
     const sevenDaysAgo = new Date();
-    sevenDaysAgo.setDate(today.getDate() - 7);
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+    sevenDaysAgo.setHours(0, 1, 0, 0);
     return {
-      dateRange: [sevenDaysAgo.toLocaleDateString('en-US'), today.toLocaleDateString('en-US')],
+      dateRange: [
+        convertToGMT4(sevenDaysAgo).toLocaleDateString('en-US'),
+        convertToGMT4(today).toLocaleDateString('en-US'),
+      ],
       status: -1,
       account: '',
       pageIndex: 1,

@@ -32,4 +32,4 @@ export const BANK_TRANSACTION_TYPES = [
   { id: 4, name: 'Auto Withdrawal' },
 ];
 
-export const PAGE_SIZE_OPTIONS = [100, 200, 500, 1000];
+export const PAGE_SIZE_OPTIONS = [10, 50, 100, 500];
