@@ -4,7 +4,7 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { enUS } from 'date-fns/locale';
 import { CalendarIcon } from '../Icons';
-import { ButtonApplyComponent } from '../ButtonComponents';
+import { ButtonApplyComponent, ButtonFullComponent } from '../ButtonComponents';
 
 export interface DateRangePickerProps {
   value: [Date | null, Date | null];
@@ -121,7 +121,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
   const days = getDaysCount(selectedStart ?? null, selectedEnd ?? null);
 
   return (
-    <div className={`relative ${className || ''}`} ref={ref}>
+    <div className={`relative text-[13px] custom-datarangepicker ${className || ''}`} ref={ref}>
       <input
         readOnly
         className="appearance-none block w-full bg-white border border-gray-300 px-3 py-1.5 pr-8 rounded text-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 h-[32px] max-[768px]:h-[40px] cursor-pointer"
@@ -132,13 +132,13 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
         <CalendarIcon className="w-5 h-5" />
       </span>
       {open && (
-        <div className="absolute z-50 bg-white border border-gray-200 rounded shadow-lg left-0">
+        <div className="absolute z-50 bg-white  border border-[var(--datarangepicker-border)] left-0 mt-[7px]">
           <div className="flex">
-            <div className="flex flex-col border-r pr-1 mr-1 min-w-[110px] pt-3">
+            <div className="flex flex-col w-[158px] py-[10px] border-r border-[var(--datarangepicker-border)]">
               {quickRanges.map((item) => (
                 <button
                   key={item.label}
-                  className="text-left px-2 py-1 text-xs text-gray-700 hover:bg-blue-100 hover:text-blue-700 rounded transition cursor-pointer"
+                  className="font-semibold transition cursor-pointer block w-full text-left px-[10px] py-[5px] leading-[20px]  text-[var(--datarangepicker-color)] hover:bg-[var(--datarangepicker-cell-background-active)] hover:text-[var(--datarangepicker-color-hover)]"
                   onClick={() => setPendingRange([{ ...item.range(), key: 'selection' }])}
                   type="button"
                 >
@@ -158,14 +158,16 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
               locale={enUS}
             />
           </div>
-          <div className="px-4 py-2">
-            <div className="flex items-center justify-between text-xs text-gray-700 mb-2">
-              <span className="font-semibold">Selected:</span>{' '}
+          <div className="border-t border-[var(--datarangepicker-border)] p-[10px] flex justify-between items-center">
+            <div className="">
+              <span className="">Selected:</span>{' '}
+              <span className="text-[var(--datarangepicker-color-selected-days)] bg-[var(--datarangepicker-cell-background)] px-[4px] py-[3px] rounded-[4px]" >
               {selectedStart && selectedEnd
-                ? `${selectedStart.toLocaleDateString('en-US')} - ${selectedEnd.toLocaleDateString('en-US')} (${days} days)`
+                ? <><span className="font-semibold">{selectedStart.toLocaleDateString('en-US')}</span> - <span className="font-semibold">{selectedEnd.toLocaleDateString('en-US')}</span><span className="italic"> ({days} days)</span></>
                 : 'No range selected'}
-              <ButtonApplyComponent text="Apply" onClick={handleApply} />
+              </span>
             </div>
+            <ButtonFullComponent text="Apply" onClick={handleApply} />
           </div>
         </div>
       )}
