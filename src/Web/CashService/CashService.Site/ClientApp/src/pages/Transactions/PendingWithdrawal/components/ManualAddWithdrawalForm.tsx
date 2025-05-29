@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
 import { WithdrawalAgentBankDropDown } from '../../../../services/interfaces/Transactions/BankInfo';
 import { TransactionTypes } from '../../../../utils/constants';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
@@ -12,33 +11,19 @@ import {
 import { AddWithdrawalModel } from '../../../../services/interfaces/AddWithdrawalModel';
 import { ResultMessageComponent } from '../../../../components/MessageComponents';
 import UploadImage from '../../Components/UploadImage';
-import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import BankIcon from '../../../../components/BankComponents';
-import { AmountInput } from '../../../../components/ui/AmountInput';
 import { renderBankOptionValue } from '../../../../common/commonFunctions';
-import BankIcon from '../../../../components/BankComponents';
 import {
   BackButtonComponent,
   ButtonApplyComponent,
   ButtonCancelComponent,
 } from '../../../../components/ButtonComponents';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
-import { ResultMessageComponent } from '../../../../components/MessageComponents';
 import TitleComponent, {
   LabelTitleComponent,
   MediumTitleComponent,
 } from '../../../../components/TitleComponents';
 import { AmountInput } from '../../../../components/ui/AmountInput';
-import { AddWithdrawalModel } from '../../../../services/interfaces/AddWithdrawalModel';
-import { WithdrawalAgentBankDropDown } from '../../../../services/interfaces/Transactions/BankInfo';
-import {
-  getSettingLimitAmtWithdrawal,
-  getWithdrawlMemberCashBalance,
-  manualAddWithdrawal,
-} from '../../../../services/pendingWithdrawalAPI';
-import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
-import { TransactionTypes } from '../../../../utils/constants';
-import UploadImage from '../../Components/UploadImage';
 
 interface ManualAddWithdrawalFormProps {
   onClose?: () => void;
