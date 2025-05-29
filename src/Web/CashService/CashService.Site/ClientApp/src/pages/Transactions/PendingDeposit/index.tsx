@@ -9,7 +9,7 @@ import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
 import '../../../styles/common.css';
 import '../../../styles/global.scss';
 import { BankInfo } from '../../../services/interfaces/Transactions/BankInfo';
-import { TransactionType } from '../../../common/commonFunctions';
+import { calculateDateRange, TransactionType } from '../../../common/commonFunctions';
 import { transactionAPI } from '../../../services/transactionsHistoryAPI';
 import {
   TransactionsHistoryParams,
@@ -39,27 +39,10 @@ const PendingDeposit: React.FC = () => {
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const calculateDateRange = (): [string, string] => {
-    const today = new Date();
-    let startDate = new Date();
-
-    switch (recentDeposits) {
-      case 'Last30Mins':
-        startDate.setMinutes(today.getMinutes() - 30);
-        break;
-      case 'Last60Mins':
-        startDate.setMinutes(today.getMinutes() - 60);
-        break;
-      default:
-        return ['', ''];
-    }
-    return [startDate.toISOString().split('T')[0], today.toISOString().split('T')[0]];
-  };
-
   const fetchDeposits = async () => {
     setIsLoading(true);
     try {
-      const [fromDate, toDate] = calculateDateRange();
+      const [fromDate, toDate] = calculateDateRange(recentDeposits);
       const params: TransactionsHistoryParams = {
         dateRange: [fromDate, toDate],
         status: 2,

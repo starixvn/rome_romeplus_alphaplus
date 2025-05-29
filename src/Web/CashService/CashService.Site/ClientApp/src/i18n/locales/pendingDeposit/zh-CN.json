@@ -77,7 +77,12 @@
     "cancel": "取消",
     "approve": "批准",
     "approving": "批准中...",
-    "agentAvailableCredit": "代理可用信用"
+    "agentAvailableCredit": "代理可用信用",
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "金额必须大于0且小于最大限额",
+    "imageSizeError": "图片必须小于1MB",
+    "memberLoginNameRequired": "请选择会员登录名",
+    "agentBankSelectionRequired": "请选择付款来源",
+    "memberBankSelectionRequired": "请选择付款目标"
   },
 
   "status": {

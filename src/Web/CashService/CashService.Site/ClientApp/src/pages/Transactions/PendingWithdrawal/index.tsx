@@ -13,7 +13,7 @@ import {
   TransactionsHistoryResponse,
 } from '../../../services/interfaces/Transactions/TransactionHistory.ts';
 import { transactionAPI } from '../../../services/transactionsHistoryAPI.ts';
-import { TransactionType } from '../../../common/commonFunctions.tsx';
+import { calculateDateRange, TransactionType } from '../../../common/commonFunctions.tsx';
 import { LoadingFullComponent } from '../../../components/LoadingComponent';
 import TitleComponent from '../../../components/TitleComponents.tsx';
 import { ButtonOutlineComponent } from '../../../components/ButtonComponents';
@@ -31,27 +31,10 @@ const PendingWithdrawal: React.FC = () => {
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const calculateDateRange = (): [string, string] => {
-    const today = new Date();
-    let startDate = new Date();
-
-    switch (recentWithdrawals) {
-      case 'Last30Mins':
-        startDate.setMinutes(today.getMinutes() - 30);
-        break;
-      case 'Last60Mins':
-        startDate.setMinutes(today.getMinutes() - 60);
-        break;
-      default:
-        return ['', ''];
-    }
-    return [startDate.toISOString(), today.toISOString()];
-  };
-
   const fetchWithdrawals = async () => {
     setIsLoading(true);
     try {
-      const [fromDate, toDate] = calculateDateRange();
+      const [fromDate, toDate] = calculateDateRange(recentWithdrawals);
       const params: TransactionsHistoryParams = {
         dateRange: [fromDate, toDate],
         status: 2,

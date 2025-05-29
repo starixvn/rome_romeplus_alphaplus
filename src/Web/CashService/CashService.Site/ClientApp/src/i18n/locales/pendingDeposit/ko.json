@@ -77,7 +77,12 @@
     "cancel": "취소",
     "approve": "승인",
     "approving": "승인 중...",
-    "agentAvailableCredit": "에이전트 사용 가능 크레딧"
+    "agentAvailableCredit": "에이전트 사용 가능 크레딧",
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "금액은 0보다 커야 하고 최대 한도보다 작아야 합니다",
+    "imageSizeError": "이미지는 1MB 이하여야 합니다",
+    "memberLoginNameRequired": "회원 로그인 이름을 선택해주세요",
+    "agentBankSelectionRequired": "PaymentFrom을 선택해주세요",
+    "memberBankSelectionRequired": "PaymentTo을 선택해주세요"
   },
 
   "status": {

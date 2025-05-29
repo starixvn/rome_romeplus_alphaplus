@@ -77,7 +77,12 @@
     "cancel": "Cancel",
     "approve": "Approve",
     "approving": "Approving...",
-    "agentAvailableCredit": "Agent Available Credit"
+    "agentAvailableCredit": "Agent Available Credit",
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "Amount must be greater than 0 and less than MaxLimit",
+    "imageSizeError": "Image must be less than 1MB",
+    "memberLoginNameRequired": "Please select member login",
+    "agentBankSelectionRequired": "Please select PaymentFrom",
+    "memberBankSelectionRequired": "Please select PaymentTo"
   },
 
   "status": {

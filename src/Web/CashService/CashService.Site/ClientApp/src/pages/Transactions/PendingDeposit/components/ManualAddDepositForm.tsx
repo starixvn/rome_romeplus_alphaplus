@@ -16,7 +16,6 @@ import {
   BackButtonComponent,
 } from '../../../../components/ButtonComponents';
 import { renderBankOptionValue } from '../../../../common/commonFunctions';
-import { ResultMessage } from '../../../../services/interfaces/ResultMessage';
 
 interface ManualAddDepositFormProps {
   cashAgentOptions: BankInfo[];
@@ -41,11 +40,16 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
   const [image, setImage] = useState<File | null>(null);
   const [initialLoading, setInitialLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [validationMessages, setValidationMessages] = useState<ResultMessage[]>([]);
+  const [validationMessage, setValidationMessage] = useState<{
+    type: 'error' | 'success' | 'warning';
+    message: string;
+  } | null>(null);
+
 
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
+        setValidationMessage(null);
         const memberLoginNames = await transactionAPI.getMemberLoginName();
         setMemberLoginOptions(memberLoginNames);
 
@@ -67,10 +71,10 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
           setAgentAvailableCredit(agentAC);
         }
       } catch {
-        setValidationMessages([{
+        setValidationMessage({
           type: 'error',
           message: t('errorMessages.failedToFetchData')
-        }]);
+        });
       } finally {
         setInitialLoading(false);
       }
@@ -83,7 +87,6 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
     const fetchMemberData = async () => {
       if (!memberId) return;
       
-      setValidationMessages([]);
       const [bankInfo, agentAC] = await Promise.all([
         transactionAPI.getCashMemberBankInfo(memberId),
         pendingDepositAPI.getLimitAmtDeposit(memberId)
@@ -113,84 +116,95 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
     return params;
   };
 
-  const validateForm = (params: AddDepositManualModel) => {
-    const validationMessages: ResultMessage[] = [];
-
-    if (params.custId <= 0) {
-      validationMessages.push({ type: 'error', message: "Please select member login" });
-    }
-    if (!params.paymentFrom) {
-      validationMessages.push({ type: 'error', message: "Please select PaymentFrom" });
-    }
-    if (!params.paymentTo) {
-      validationMessages.push({ type: 'error', message: "Please select PaymentTo" });
-    }
-    if (params.amount <= 0 || params.amount > agentAvailableCredit) {
-      validationMessages.push({ type: 'error', message: "Amount must be greater than 0 and less than MaxLimit" });
-    }
-    if (!IsValidFile(params.image)) {
-      validationMessages.push({ type: 'error', message: "Image must be less than 1MB" });
+  const validateForm = ():boolean => {
+    if (!memberId || memberId <= 0) {
+      setValidationMessage({
+        type: 'error',
+        message: t('manualDepositForm.memberLoginNameRequired'),
+      });
+      return false;
     }
 
-    return validationMessages;
+    if (!paymentFrom) {
+      setValidationMessage({
+        type: 'error',
+        message: t('manualDepositForm.agentBankSelectionRequired'),
+      });
+      return false;
+    }
+
+    if (!paymentTo) {
+      setValidationMessage({
+        type: 'error',
+        message: t('manualDepositForm.memberBankSelectionRequired'),
+      });
+      return false;
+    }
+
+    if (depositAmount <= 0 || depositAmount > agentAvailableCredit) {
+      setValidationMessage({
+        type: 'error',
+        message: t('manualDepositForm.amountMustBeGreaterThan0AndLessThanMaxLimit')
+      });
+      return false;
+    }
+
+    if (image && image.size > 1024 * 1024) {
+      setValidationMessage({
+        type: 'error',
+        message: t('manualDepositForm.imageSizeError')
+      });
+      return false;
+    }
+
+    return true;
   };
-
-  const IsValidFile = (file: File) => {
-    if (file == null) return true;
-    const maxFileSize = 1 * 1024 * 1024;
-    return file.size <= maxFileSize;
-  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const params = getParams();
-    
-    const messages = validateForm(params);
-    setValidationMessages(messages);
-    if (messages.length > 0) {
+    const isValid = validateForm();
+    if (!isValid) {
       return;
     }
+    const params = getParams();
 
     setIsSubmitting(true);
     try {
       const response = await pendingDepositAPI.createDepositManual(params);
-      setValidationMessages([]);
+      setValidationMessage(null);
       if (response.isSuccessful) {
-        setValidationMessages([{
+        setValidationMessage({
           type: 'success',
           message: t('successMessages.depositSubmitted'),
-        }]);
+        });
         setTimeout(() => {
           onClose(true);
         }, 3000);
       } else {
-        setValidationMessages([{
+        setValidationMessage({
           type: 'error',
           message: response.message || t('errorMessages.failedToSubmit'),
-        }]);
+        });
         setIsSubmitting(false);
       }
     } catch (error) {
-      setValidationMessages([{
+      setValidationMessage({
         type: 'error',
         message: t('errorMessages.failedToSubmit'),
-      }]);
+      });
       setIsSubmitting(false);
     }
   };
 
   const handleSetDepositAmount = (value: number) => {
-    setValidationMessages([]);
     setDepositAmount(value);
   };
 
   const handlePaymentFromChange = (selected: any) => {
-    setValidationMessages([]);
     setPaymentFrom(String(selected.value));
   };
 
   const handlePaymentToChange = (selected: any) => {
-    setValidationMessages([]);
     setPaymentTo(String(selected.value));
   };
 
@@ -206,14 +220,13 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
           </div>
 
           <form id="manual-deposit-form" className="w-[1100px] bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] max-[768px]:w-full" onSubmit={handleSubmit}>
-            {validationMessages.length > 0 && validationMessages.map((message, index) => (
+            {validationMessage && (
               <ResultMessageComponent
-                key={index}
-                message={message.message}
-                type={message.type}
+                message={validationMessage.message}
+                type={validationMessage.type}
                 className="mb-[16px] max-[768px]:mb-[0]"
               />
-            ))}
+            )}
             <div className="flex max-[768px]:flex-col">
               <AccountInformation
                 memberLoginOptions={memberLoginOptions}

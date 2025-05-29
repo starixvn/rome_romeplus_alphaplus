@@ -77,7 +77,12 @@
     "cancel": "ยกเลิก",
     "approve": "อนุมัติ",
     "approving": "กำลังอนุมัติ...",
-    "agentAvailableCredit": "คูปองสำหรับสมาชิก"
+    "agentAvailableCredit": "คูปองสำหรับสมาชิก",
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "จำนวนเงินต้องมีค่ามากกว่า 0 และน้อยกว่าค่าสูงสุด",
+    "imageSizeError": "รูปภาพต้องมีขนาดน้อยกว่า 1 MB",
+    "memberLoginNameRequired": "กรุณาเลือกชื่อเข้าสู่ระบบของสมาชิก",
+    "agentBankSelectionRequired": "กรุณาเลือกธนาคารจากธนาคารสำหรับสมาชิก",
+    "memberBankSelectionRequired": "กรุณาเลือกธนาคารจากธนาคารสำหรับสมาชิก"
   },
 
   "status": {

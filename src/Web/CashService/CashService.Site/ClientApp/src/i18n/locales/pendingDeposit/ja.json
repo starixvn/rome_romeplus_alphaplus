@@ -77,7 +77,12 @@
     "cancel": "キャンセル",
     "approve": "承認",
     "approving": "承認中...",
-    "agentAvailableCredit": "エージェント利用可能クレジット"
+    "agentAvailableCredit": "エージェント利用可能クレジット",
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "金額は0より大きく、最大限度額より小さくなければなりません",
+    "imageSizeError": "画像は1MB以下でなければなりません",
+    "memberLoginNameRequired": "メンバーログイン名を選択してください",
+    "agentBankSelectionRequired": "PaymentFromを選択してください",
+    "memberBankSelectionRequired": "PaymentToを選択してください"
   },
   
   "status": {

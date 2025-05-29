@@ -87,3 +87,33 @@ export const formatDateTime = (dateTimeStr: string) => {
 };
 
 export const CurrentCurrency = document.getElementById('user-currency')?.textContent;
+
+export const calculateDateRange = (recentTransactions: string): [string, string] => {
+  let today = new Date();
+  let startDate = new Date();
+
+  today = convertToGMT4(today);
+  startDate = convertToGMT4(startDate);
+
+  switch (recentTransactions) {
+    case 'Last30Mins':
+      startDate.setMinutes(today.getMinutes() - 30);
+      break;
+    case 'Last60Mins':
+      startDate.setMinutes(today.getMinutes() - 60);
+      break;
+    default:
+      return ['', ''];
+  }
+  return [startDate.toISOString(), today.toISOString()];
+};
+
+export const convertToGMT4 = (date: Date): Date => {
+  const newDate = new Date(date);
+  const gmtOffset = -4;
+  const clientOffset = date.getTimezoneOffset() / 60;
+  const offsetDiff = gmtOffset - (-clientOffset);
+  
+  newDate.setHours(newDate.getHours() + offsetDiff);
+  return newDate;
+};

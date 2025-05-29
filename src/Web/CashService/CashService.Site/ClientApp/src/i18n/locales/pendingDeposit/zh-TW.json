@@ -77,7 +77,12 @@
     "cancel": "取消",
     "approve": "批准",
     "approving": "批准中...",
-    "agentAvailableCredit": "代理可用信用"
+    "agentAvailableCredit": "代理可用信用",
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "金額必須大於0且小於最大限額",
+    "imageSizeError": "圖片必須小於1MB",
+    "memberLoginNameRequired": "請選擇會員登錄名",
+    "agentBankSelectionRequired": "請選擇付款來源",
+    "memberBankSelectionRequired": "請選擇付款目標"
   },
   
   "status": {

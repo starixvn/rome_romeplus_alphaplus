@@ -77,7 +77,12 @@
     "cancel": "Hủy",
     "approve": "Phê duyệt",
     "approving": "Đang phê duyệt...",
-    "agentAvailableCredit": "Tín dụng cược có sẵn của đại lý"
+    "agentAvailableCredit": "Tín dụng cược có sẵn của đại lý",
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "Số tiền phải lớn hơn 0 và nhỏ hơn giới hạn tối đa",
+    "imageSizeError": "Hình ảnh phải nhỏ hơn 1MB",
+    "memberLoginNameRequired": "Vui lòng chọn tên đăng nhập thành viên",
+    "agentBankSelectionRequired": "Vui lòng chọn tài khoản đại lý",
+    "memberBankSelectionRequired": "Vui lòng chọn tài khoản thành viên"
   },
 
   "status": {
