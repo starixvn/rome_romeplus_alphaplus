@@ -12,10 +12,9 @@ public class InsertTransactionLogTransferCommand(TransactionLog logItem, int sit
     public string IP { get; set; } = logItem.IP;
     public string Doing { get; set; } = logItem.Doing;
 
-    [SpParam(Ignored = true)]
-    public int SiteDbGroupId { get; set; }
+    [SpParam(Ignored = true)] public int SiteDbGroupId { get; set; } = siteDbGroupId;
 
-    public override string GetSettingKey() => $"{(SiteDbGroupId > 0 ? $"SiteDb_{SiteDbGroupId}_" : string.Empty)}WriteLog_CashService_UserLog_Transfer";
+    public override string GetSettingKey() => $"{(SiteDbGroupId >= 0 ? $"SiteDb_{SiteDbGroupId}_" : string.Empty)}WriteLog_CashService_UserLog_Transfer";
 
     public override bool IsValid() => UserId > 0 && FromCustId > 0 && ToCustId > 0;
 }

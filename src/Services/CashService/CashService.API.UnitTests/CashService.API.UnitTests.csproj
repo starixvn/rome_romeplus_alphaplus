@@ -29,4 +29,9 @@
     <ProjectReference Include="..\CashService.API\CashService.API.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Transactions\" />
+    <Folder Include="Features\PendingWithdrawal\" />
+  </ItemGroup>
+
 </Project> 
