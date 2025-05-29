@@ -317,7 +317,6 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
     }
 
     const transactionTypesString = selectedTransactionTypes.join(',');
-
     const response = await paymentProviderService.updateBankAccount({
       id: bankAccount.id,
       accountNickname: formState.accountNickname,
@@ -327,8 +326,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
       bankName: banks.find((b) => b.id === parseInt(formState.selectedBank))?.name || '',
       status: parseInt(formState.status),
       promptPay: formState.promptPay,
-      mobile: formState.promptPay ? '' : mobile,
-      countryCode: formState.promptPay ? '' : countryCode,
+      mobile: formState.promptPay ? mobile : '',
+      countryCode: formState.promptPay ? countryCode : '',
       lastUpdated: new Date().toISOString(),
       lastUpdatedStr: new Date().toLocaleString(),
       code: '',
@@ -346,22 +345,20 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
       setLoading(false);
       return;
     }
-
     const result = response.data || {
       isSuccessful: false,
       code: 1,
       message: tGlobal('errorOccurred'),
     };
-
     if (result.isSuccessful) {
       setIsBlockAction(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      setSuccessMessage(result.message ?? tManagePayments('bankAccountUpdatedSuccessfully'));
+      setSuccessMessage(result.message || tManagePayments('bankAccountUpdatedSuccessfully'));
       setTimeout(() => {
         onSave();
       }, 3000);
     } else {
-      setError(result.message ?? tManagePayments('failedToUpdateBankAccount'));
+      setError(result.message || tManagePayments('failedToUpdateBankAccount'));
     }
     setLoading(false);
   };
