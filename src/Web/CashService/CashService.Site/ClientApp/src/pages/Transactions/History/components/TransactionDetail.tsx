@@ -200,7 +200,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
 
                     <div className="mb-4">
                       <div className="text-sm font-medium mb-1">{t('detail.operatedBy')}</div>
-                      <div>{detailData.username}</div>
+                      <div>{detailData.operatedBy}</div>
                     </div>
                   </div>
 
@@ -214,7 +214,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
 
                     <div className="mb-4">
                       <div className="text-sm font-medium mb-1">{t('detail.processedOn')}</div>
-                      <div>{formatDateTime(detailData.lastUpdatedDate)}</div>
+                      <div>{formatDateTime(detailData.operatedTime)}</div>
                     </div>
 
                     <div className="mb-4">

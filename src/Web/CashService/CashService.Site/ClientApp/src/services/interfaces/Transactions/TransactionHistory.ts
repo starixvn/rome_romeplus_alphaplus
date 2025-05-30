@@ -19,6 +19,8 @@ export interface TransactionItem {
   createdTime: string;
   lastUpdatedDate: string;
   isAllowRevert: boolean;
+  operatedBy: string;
+  operatedTime: string;
 }
 
 export interface TransactionsHistoryResponse {
