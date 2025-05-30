@@ -349,7 +349,8 @@
                 return this.playtechResult;
             }
 
-            if (betTypeId >= 11400 && betTypeId <= 11499) {
+            if (betTypeId >= 11400 && betTypeId <= 11499
+                || betTypeId >= 15900 && betTypeId <= 16099) {
                 this.gpiResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.gpiResult)
                     ? new GPIResultDetails()
                     : this.gpiResult;
