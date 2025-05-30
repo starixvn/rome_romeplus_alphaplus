@@ -1,4 +1,5 @@
 using System.Text.Json;
+using AlphaPlus.CashService.Site.Features.ChatHub;
 using AlphaPlus.CashService.Site.Helpers;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Filters;
@@ -7,12 +8,11 @@ using AlphaPlus.Core.Middlewares;
 using AlphaPlus.RequestInfo;
 using AlphaPlus.SecurityCode.Extensions;
 using AlphaPlus.SecurityCode.Filters;
+using Fanex.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
 using Serilog;
-using AlphaPlus.CashService.Site.Features.ChatHub;
-using Fanex.Data;
 
 const string pathBase = "/cash-service";
 const string sharedSettings = "sharedSettings.json";
@@ -65,7 +65,6 @@ builder.Services
     });
 
 builder.Services.AddHttpClient<HttpClientHelper>();
-
 
 builder.Services.AddHealthChecks();
 builder.Services.AddSignalR();
