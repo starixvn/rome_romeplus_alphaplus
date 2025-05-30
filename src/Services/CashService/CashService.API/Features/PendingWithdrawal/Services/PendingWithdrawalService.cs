@@ -81,6 +81,7 @@ public class PendingWithdrawalService(
                     CustDbGroupId = param.CustDbGroupId,
                     UplineId = param.UplineId,
                     ProviderId = param.ProviderId,
+                    PaymentMethodId = param.PaymentMethodId
                 });
         }
 

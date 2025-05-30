@@ -46,15 +46,17 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
 
         try
         {
-            var criteria = new WriteLogDBCommandCriteria(request, writeLogDBCommandModel);
-            criteria.SiteDB = -1;
+            var criteria = new WriteLogDBCommandCriteria(request, writeLogDBCommandModel)
+            {
+                SiteDB = -1
+            };
 
             await repository.ExecuteAsync(criteria);
             isSuccess = true;
         }
         catch (Exception e)
         {
-            logger.Error(e.Message, e);
+            await logger.ErrorAsync(e.Message, e);
         }
 
         if (isSuccess)
@@ -69,7 +71,7 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
         }
         catch (Exception e)
         {
-            logger.Error(e.Message, e);
+            await logger.ErrorAsync(e.Message, e);
         }
     }
 }

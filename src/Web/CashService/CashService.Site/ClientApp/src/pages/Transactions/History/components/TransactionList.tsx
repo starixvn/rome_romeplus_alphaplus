@@ -74,7 +74,6 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         const response = await transactionAPI.getTransactions(paramsForApi);
         setApiData(response);
 
-        // Map payment information from response with distinct paymentFrom
         const uniquePayment = new Set();
         const paymentInfo = response.items
           .filter((item) => {

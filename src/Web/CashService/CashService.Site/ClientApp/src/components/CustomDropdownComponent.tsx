@@ -29,7 +29,7 @@ const CustomDropdownComponent = ({
   placeholder = '',
 }: CustomDropdownComponentProps) => {
   const { t } = useTranslation('global');
-  
+
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<DropdownOption | ''>('');
   const [searchTerm, setSearchTerm] = useState('');
@@ -83,9 +83,7 @@ const CustomDropdownComponent = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const displayOptions = showOptionAll
-    ? [{ value: '', label: t('all') }, ...options]
-    : options;
+  const displayOptions = showOptionAll ? [{ value: '', label: t('all') }, ...options] : options;
 
   const filteredOptions = searchTerm
     ? displayOptions.filter((option) =>
@@ -104,7 +102,7 @@ const CustomDropdownComponent = ({
         className={`flex items-center h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[12px] border-[var(--border-control)] ${disable ? 'cursor-not-allowed bg-[#f4f4f4]' : ' bg-[var(--background-control)] cursor-pointer'} focus:outline-none focus:border-[var(--border-control-focus)] relative`}
         onClick={handleToggle}
       >
-        {selected && selected.icon }
+        {selected && selected.icon}
         <span className="block whitespace-nowrap overflow-hidden text-ellipsis pr-[12px]">
           {displaySelected()}
         </span>

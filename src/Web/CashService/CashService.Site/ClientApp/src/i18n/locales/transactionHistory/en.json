@@ -47,7 +47,7 @@
     "transactionType": "Transaction Type",
     "operatedBy": "Operated By",
     "processedOn": "Processed On",
-    "amount": "Deposit Amount",
+    "amount": "Amount",
     "remarks": "Remarks",
     "remarksPlaceholder": "Add a remark here...",
     "close": "Close",

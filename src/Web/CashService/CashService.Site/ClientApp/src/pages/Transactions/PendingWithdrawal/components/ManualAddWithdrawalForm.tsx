@@ -267,9 +267,8 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
         <TitleComponent title={t('manualWithdrawalForm.title')} />
       </div>
 
-      <form
+      <div
         id="manual-withdrawal-form"
-        onSubmit={handleSubmit}
         className="w-[1100px] bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] max-[768px]:w-full"
       >
         {resultMessage.type && (
@@ -379,7 +378,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
             onClick={handleSubmit}
           />
         </div>
-      </form>
+      </div>
     </div>
   );
 };
