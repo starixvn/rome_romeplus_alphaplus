@@ -47,6 +47,10 @@
     {
       "Before": "alp12.nexdev.net",
       "After": "http://mbp12.nexdev.net/main"
+    },
+    {
+      "Before": "alp21.nexdev.net",
+      "After": "http://mbp1.nexdev.net/main"
     }
   ]
 }
