@@ -17,7 +17,6 @@ const ColumnFilter: React.FC<ColumnFilterProps> = ({ column, onColumnChange }) =
   const columns = [
     t('table.name'),
     t('table.amount'),
-    t('table.currency'),
     t('table.from'),
     t('table.to'),
     t('table.status'),
