@@ -27,7 +27,7 @@ interface PendingDepositModalProps {
 }
 const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ deposit, onClose }) => {
   const { t } = useTranslation('pendingDeposit');
-  const [remarks, setRemarks] = useState('');
+  const [remark, setRemark] = useState('');
   const [depositAmount, setDepositAmount] = useState<number>(deposit?.amount || 0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [resultMessage, setResultMessage] = useState<{
@@ -39,7 +39,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ deposit, onCl
     const params: ApproveRejectDepositModel = {
       transId: deposit?.transId ? deposit.transId : 0,
       amount: depositAmount,
-      remark: remarks,
+      remark: remark,
     };
     return params;
   };
@@ -175,8 +175,8 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ deposit, onCl
           <div className="mb-[16px]">
             <LabelTitleComponent text={t('pendingDepositModal.remarks')} />
             <textarea
-              value={remarks}
-              onChange={(e) => setRemarks(e.target.value)}
+              value={deposit?.remark}
+              onChange={(e) => setRemark(e.target.value)}
               placeholder={t('pendingDepositModal.remarksPlaceholder')}
               className="block h-[150px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] py-[10px] focus:outline-none focus:border-[var(--button-border)]"
             />

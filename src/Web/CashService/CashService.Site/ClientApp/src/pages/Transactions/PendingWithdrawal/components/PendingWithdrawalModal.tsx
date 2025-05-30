@@ -32,7 +32,7 @@ interface PendingWithdrawalModalProps {
 
 const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdrawal, onClose }) => {
   const { t } = useTranslation('pendingWithdrawal');
-  const [remarks, setRemarks] = useState(withdrawal.remark);
+  const [remark, setRemark] = useState(withdrawal.remark);
   const [withdrawalFrom, setWithdrawalFrom] = useState('');
   const [bankOptions, setBankOptions] = useState<DropdownOption[]>([]);
   const [image, setImage] = useState<File | null>(null);
@@ -89,7 +89,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
       const response = await approveWithdrawal({
         transId: withdrawal.transId,
         paymentFrom: withdrawalFrom,
-        remark: remarks,
+        remark: remark,
         image: image,
       });
       if (response.isSuccessful) {
@@ -118,7 +118,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
     const response = await rejectWithdrawal({
       transId: withdrawal.transId,
       paymentFrom: withdrawalFrom,
-      remark: remarks,
+      remark: remark,
       image: image,
     });
     if (response.isSuccessful) {
@@ -234,8 +234,8 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
             <div className="mt-6 h-full">
               <LabelTitleComponent text={t('pendingWithdrawalModal.remarks')} />
               <textarea
-                value={remarks}
-                onChange={(e) => setRemarks(e.target.value)}
+                value={withdrawal.remark}
+                onChange={(e) => setRemark(e.target.value)}
                 placeholder={t('pendingWithdrawalModal.remarksPlaceholder')}
                 className="block h-[150px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] py-[10px] focus:outline-none focus:border-[var(--button-border)]"
                 disabled={isSubmitting}
