@@ -2,6 +2,7 @@
 <Functions>
   <Function Name="Shared">
     <Setting Key="Acc_ServerDBConfigSelByCust" SpName="Acc_ServerDBConfigSelByCust_uat2" DbName="DBGLOB.GlobCustDB.asv_CashService" />
+    <Setting Key="Age_CashService_CustServiceTypeSel" SpName="Age_CashService_CustServiceTypeSel" DbName="DBCust.CustDB.asv_CashService" />
   </Function>
   <Function Name="Register Cash Member">
     <Setting Key="API_CustomerInsMember_CashMember_CheckUsername" SpName="API_CustomerInsMember_CashMember_CheckUsername_UAT2" DbName="DBGLOB.GlobCustDB.asv_CashService" />
@@ -11,11 +12,16 @@
 	  <Setting Key="API_CustomerInsMember_CashMember" SpName="API_CustomerInsMember_CashMember_UAT2" DbName="DBCust.CustDB.asv_CashService" />
 	  <Setting Key="Acc_CustomerIns_Rollback" SpName="Acc_CustomerIns_Rollback" DbName="DBGLOB.GlobCustDB.wsv_alp" />
   </Function>
-  <Function Name="Payments: Deposit and Withdraw">
+  <Function Name="Payments: Deposit">
     <Setting Key="SiteDB3_Age_CashAccumCredit_AgSel" SpName="Age_CashAccumCredit_AgSel" DbName="DBSite03.bodb02.asv_CashService" />
     <Setting Key="Age_CashDeposit_LimitAmtSel" SpName="Age_CashDeposit_LimitAmtSel" DbName="DBCust.CustDB.asv_CashService" />
-    <Setting Key="Age_CashService_CustServiceTypeSel" SpName="Age_CashService_CustServiceTypeSel" DbName="DBCust.CustDB.asv_CashService" />
-    <Setting Key="Age_CashDeposit_MemberSettingSel" SpName="Age_CashDeposit_MemberSettingSel" DbName="DBCust.CustDB.asv_CashService" />
+    <Setting Key="Age_CashService_AgentPermissionSel" SpName="Age_CashService_AgentPermissionSel" DbName="DBCust.CustDB.asv_CashService" />
+    <Setting Key="SiteDB3_API_CashDeposit_AddTransaction" SpName="API_CashDeposit_AddTransaction" DbName="DBSite03.bodb02.asv_CashService" />
+    <!-- <Setting Key="Age_CashDeposit_MemberSettingSel" SpName="Age_CashDeposit_MemberSettingSel" DbName="DBCust.CustDB.asv_CashService" /> -->
+  </Function>
+  <Function Name="Payments: Withdraw">
+  </Function>
+  <Function Name="Payments: Write Logs">
     <Setting Key="WriteLog_UserLog_Transfer" SpName="WriteLog_UserLog_Transfer" DbName="DBLOG.bodb_CustomerLog.asv_CashService" />
     <Setting Key="SiteDB3_WriteLog_UserLog_Transfer" SpName="WriteLog_UserLog_Transfer" DbName="DBSite03.bodb02.asv_CashService" />
     <Setting Key="WriteLog_UserLog_RunSP" SpName="WriteLog_UserLog_RunSP" DbName="DBLOG.bodb_CustomerLog.asv_CashService" />
