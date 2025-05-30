@@ -26,12 +26,12 @@ public class U2PayProviderService : IPaymentProviderService
         {
             if (config == null || !config.U2Pay.IsEnabled)
             {
-                return new Result(602, "U2Pay provider is not enabled");
+                return new Result(601, "U2Pay provider is not enabled");
             }
 
             if (!await ValidateAccount(accountNumber, config))
             {
-                return new Result(603, "Invalid account number");
+                return new Result(602, "Invalid account number");
             }
 
             var fee = CalculateFee(amount, config);
@@ -39,7 +39,7 @@ public class U2PayProviderService : IPaymentProviderService
 
             if (totalAmount < config.U2Pay.MinAmount || totalAmount > config.U2Pay.MaxAmount)
             {
-                return new Result(604, $"Amount must be between {config.U2Pay.MinAmount} and {config.U2Pay.MaxAmount}");
+                return new Result(603, $"Amount must be between {config.U2Pay.MinAmount} and {config.U2Pay.MaxAmount}");
             }
 
             // Prepare deposit request
@@ -73,14 +73,14 @@ public class U2PayProviderService : IPaymentProviderService
             if (!response.IsSuccessStatusCode)
             {
                 await _logger.ErrorAsync($"U2Pay deposit failed: {responseContent}");
-                return new Result(605, "Failed to process deposit");
+                return new Result(604, "Failed to process deposit");
             }
 
             // Parse response
             var result = JsonSerializer.Deserialize<U2PayResponse>(responseContent);
             if (result?.Status != "success")
             {
-                return new Result(605, result?.Message ?? "Failed to process deposit");
+                return new Result(604, result?.Message ?? "Failed to process deposit");
             }
 
             return new Result(0, "Deposit processed successfully");
@@ -88,7 +88,7 @@ public class U2PayProviderService : IPaymentProviderService
         catch (Exception ex)
         {
             await _logger.ErrorAsync($"U2Pay deposit failed: {ex.Message}", ex);
-            return new Result(605, "Failed to process deposit");
+            return new Result(500, "An error occurred while processing deposit request.");
         }
     }
 
@@ -218,13 +218,13 @@ public class U2PayProviderService : IPaymentProviderService
             if (!response.IsSuccessStatusCode)
             {
                 await _logger.ErrorAsync($"U2Pay payout failed: {responseContent}");
-                return new Result(605, "Failed to process payout");
+                return new Result(601, "Failed to process payout");
             }
 
             var payoutResponse = JsonSerializer.Deserialize<PayoutResponse>(responseContent);
             if (payoutResponse == null || payoutResponse.Code != 0)
             {
-                return new Result(605, payoutResponse?.Text ?? "Failed to process payout");
+                return new Result(601, payoutResponse?.Text ?? "Failed to process payout");
             }
 
             return new Result(0, "Payout processed successfully");
@@ -232,7 +232,7 @@ public class U2PayProviderService : IPaymentProviderService
         catch (Exception ex)
         {
             await _logger.ErrorAsync($"U2Pay payout failed: {ex.Message}", ex);
-            return new Result(605, "Failed to process payout");
+            return new Result(500, "An error occurred while processing payout request.");
         }
     }
 
@@ -275,13 +275,13 @@ public class U2PayProviderService : IPaymentProviderService
             if (!response.IsSuccessStatusCode)
             {
                 await _logger.ErrorAsync($"U2Pay payout status check failed: {responseContent}");
-                return new Result<IPayoutStatusResponse>(605, "Failed to check payout status");
+                return new Result<IPayoutStatusResponse>(601, "Failed to check payout status");
             }
 
             var statusResponse = JsonSerializer.Deserialize<PayoutStatusResponse>(responseContent);
             if (statusResponse == null || statusResponse.Code != 0)
             {
-                return new Result<IPayoutStatusResponse>(605, statusResponse?.Text ?? "Failed to check payout status");
+                return new Result<IPayoutStatusResponse>(601, statusResponse?.Text ?? "Failed to check payout status");
             }
 
             var result = new Result<IPayoutStatusResponse>(0, "Payout status checked successfully");
@@ -291,7 +291,7 @@ public class U2PayProviderService : IPaymentProviderService
         catch (Exception ex)
         {
             await _logger.ErrorAsync($"U2Pay payout status check failed: {ex.Message}", ex);
-            return new Result<IPayoutStatusResponse>(605, "Failed to check payout status");
+            return new Result<IPayoutStatusResponse>(500, "An error occurred while processing payout status check.");
         }
     }
 
@@ -328,13 +328,13 @@ public class U2PayProviderService : IPaymentProviderService
             if (!response.IsSuccessStatusCode)
             {
                 await _logger.ErrorAsync($"U2Pay balance check failed: {responseContent}");
-                return new Result<IPayoutBalanceResponse>(605, "Failed to check balance");
+                return new Result<IPayoutBalanceResponse>(601, "Failed to check balance");
             }
 
             var balanceResponse = JsonSerializer.Deserialize<PayoutBalanceResponse>(responseContent);
             if (balanceResponse == null || balanceResponse.Code != 0)
             {
-                return new Result<IPayoutBalanceResponse>(605, balanceResponse?.Text ?? "Failed to check balance");
+                return new Result<IPayoutBalanceResponse>(601, balanceResponse?.Text ?? "Failed to check balance");
             }
 
             var result = new Result<IPayoutBalanceResponse>(0, "Balance checked successfully");
@@ -344,7 +344,7 @@ public class U2PayProviderService : IPaymentProviderService
         catch (Exception ex)
         {
             await _logger.ErrorAsync($"U2Pay balance check failed: {ex.Message}", ex);
-            return new Result<IPayoutBalanceResponse>(605, "Failed to check balance");
+            return new Result<IPayoutBalanceResponse>(500, "An error occurred while processing withdrawal request.");
         }
     }
 

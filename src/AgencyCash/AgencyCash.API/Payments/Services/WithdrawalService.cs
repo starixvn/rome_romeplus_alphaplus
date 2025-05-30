@@ -33,21 +33,15 @@ public class WithdrawalService : PaymentService, IWithdrawalService
         {
             siteDBConfig = await _siteDBService.GetSiteDBConfig(request.AgentId);
 
-            var isEnableCashService = await IsEnableCashService(request.AgentId, siteDBConfig.CustDBGroupId);
-            if (!isEnableCashService)
-            {
-                return new Result(601, "Cash service is not enabled for this agent.");
-            }
-
             var memberSetting = await GetMemberSetting(request.CustId, siteDBConfig.CustDBGroupId);
             if (request.Amount < memberSetting.MinLimitAmount || request.Amount > memberSetting.MaxLimitAmount)
             {
-                return new Result(602, $"Amount must be between {memberSetting.MinLimitAmount} and {memberSetting.MaxLimitAmount}.");
+                return new Result(601, $"Amount must be between {memberSetting.MinLimitAmount} and {memberSetting.MaxLimitAmount}.");
             }
 
             if (request.Amount > memberSetting.AgentGivenCredit)
             {
-                return new Result(603, $"Amount cannot exceed agent given credit of {memberSetting.AgentGivenCredit}.");
+                return new Result(602, $"Amount cannot exceed agent given credit of {memberSetting.AgentGivenCredit}.");
             }
 
             var manualWithdrawalCriteria = new ManualWithdrawalCriteria(
@@ -70,13 +64,6 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                 manualWithdrawalCriteria.ErrMsg,
                 manualWithdrawalCriteria.TransId);
 
-            if (result.IsSuccess)
-            {
-                SyncCashAccumCredit(
-                    manualWithdrawalCriteria.CashAccumCreditTbl,
-                    siteDBConfig.CustDBGroupId);
-            }
-
             await WriteLogs([ new LogEntry {
                 LogTypeId = 4,
                 UserId = request.AgentId,
@@ -88,6 +75,8 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                     <paymentFrom>{request.PaymentFrom}</paymentFrom>
                     <paymentTo>{request.PaymentTo}</paymentTo>
                     <amount>{request.Amount}</amount>
+                    <errCode>{result.Code}</errCode>
+                    <errMsg>{result.Message}</errMsg>
                 </root>",
                 IP = request.IP,
                 Doing = "Manual withdrawal"
@@ -110,6 +99,8 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                         <paymentFrom>{request.PaymentFrom}</paymentFrom>
                         <paymentTo>{request.PaymentTo}</paymentTo>
                         <amount>{request.Amount}</amount>
+                        <errCode>500</errCode>
+                        <errMsg>An error occurred while processing withdrawal request.</errMsg>
                     </root>",
                     IP = request.IP,
                     Doing = $"Manual withdrawal error: {ex.Message}"
@@ -117,7 +108,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
             }
 
             await logger.ErrorAsync(ex.Message, ex);
-            return new Result(604, "An error occurred while processing withdrawal request.");
+            return new Result(500, "An error occurred while processing withdrawal request.");
         }
     }
 }

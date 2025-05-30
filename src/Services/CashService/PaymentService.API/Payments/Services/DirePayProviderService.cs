@@ -73,13 +73,13 @@ public class DirePayProviderService : IPaymentProviderService
             if (!response.IsSuccessStatusCode)
             {
                 await _logger.ErrorAsync($"DirePay payout failed: {responseContent}");
-                return new Result(605, "Failed to process payout");
+                return new Result(601, "Failed to process payout");
             }
 
             var payoutResponse = JsonSerializer.Deserialize<PayoutResponse>(responseContent);
             if (payoutResponse == null || payoutResponse.Code != 0)
             {
-                return new Result(605, payoutResponse?.Text ?? "Failed to process payout");
+                return new Result(601, payoutResponse?.Text ?? "Failed to process payout");
             }
 
             return new Result(0, "Payout processed successfully");
@@ -87,7 +87,7 @@ public class DirePayProviderService : IPaymentProviderService
         catch (Exception ex)
         {
             await _logger.ErrorAsync($"DirePay payout failed: {ex.Message}", ex);
-            return new Result(605, "Failed to process payout");
+            return new Result(500, "An error occurred while processing payout request.");
         }
     }
 
@@ -97,12 +97,12 @@ public class DirePayProviderService : IPaymentProviderService
         {
             if (config == null || !config.DirePay.IsEnabled)
             {
-                return new Result(602, "DirePay provider is not enabled");
+                return new Result(601, "DirePay provider is not enabled");
             }
 
             if (!await ValidateAccount(accountNumber, config))
             {
-                return new Result(603, "Invalid account number");
+                return new Result(602, "Invalid account number");
             }
 
             var fee = CalculateFee(amount, config);
@@ -110,7 +110,7 @@ public class DirePayProviderService : IPaymentProviderService
 
             if (totalAmount < config.DirePay.MinAmount || totalAmount > config.DirePay.MaxAmount)
             {
-                return new Result(604, $"Amount must be between {config.DirePay.MinAmount} and {config.DirePay.MaxAmount}");
+                return new Result(603, $"Amount must be between {config.DirePay.MinAmount} and {config.DirePay.MaxAmount}");
             }
 
             // Prepare deposit request
@@ -161,14 +161,14 @@ public class DirePayProviderService : IPaymentProviderService
             if (!response.IsSuccessStatusCode)
             {
                 await _logger.ErrorAsync($"DirePay deposit failed: {responseContent}");
-                return new Result(605, "Failed to process deposit");
+                return new Result(604, "Failed to process deposit");
             }
 
             // Parse response
             var result = JsonSerializer.Deserialize<DirePayPayoutResponse>(responseContent);
             if (result?.StatusCode != 0)
             {
-                return new Result(605, result?.Message ?? "Failed to process deposit");
+                return new Result(604, result?.Message ?? "Failed to process deposit");
             }
 
             return new Result(0, "Deposit processed successfully");
@@ -176,7 +176,7 @@ public class DirePayProviderService : IPaymentProviderService
         catch (Exception ex)
         {
             await _logger.ErrorAsync($"DirePay deposit failed: {ex.Message}", ex);
-            return new Result(605, "Failed to process deposit");
+            return new Result(500, "An error occurred while processing deposit request.");
         }
     }
 
@@ -291,13 +291,13 @@ public class DirePayProviderService : IPaymentProviderService
             if (!response.IsSuccessStatusCode)
             {
                 await _logger.ErrorAsync($"DirePay payout status check failed: {responseContent}");
-                return new Result<IPayoutStatusResponse>(605, "Failed to check payout status");
+                return new Result<IPayoutStatusResponse>(601, "Failed to check payout status");
             }
 
             var statusResponse = JsonSerializer.Deserialize<DirePayPayoutStatusResponse>(responseContent);
             if (statusResponse == null || statusResponse.StatusCode != 0)
             {
-                return new Result<IPayoutStatusResponse>(605, statusResponse?.Message ?? "Failed to check payout status");
+                return new Result<IPayoutStatusResponse>(601, statusResponse?.Message ?? "Failed to check payout status");
             }
 
             var result = new Result<IPayoutStatusResponse>(0, "Payout status checked successfully");
@@ -307,7 +307,7 @@ public class DirePayProviderService : IPaymentProviderService
         catch (Exception ex)
         {
             await _logger.ErrorAsync($"DirePay payout status check failed: {ex.Message}", ex);
-            return new Result<IPayoutStatusResponse>(605, "Failed to check payout status");
+            return new Result<IPayoutStatusResponse>(500, "An error occurred while processing payout status check.");
         }
     }
 
@@ -344,13 +344,13 @@ public class DirePayProviderService : IPaymentProviderService
             if (!response.IsSuccessStatusCode)
             {
                 await _logger.ErrorAsync($"DirePay balance check failed: {responseContent}");
-                return new Result<IPayoutBalanceResponse>(605, "Failed to check balance");
+                return new Result<IPayoutBalanceResponse>(601, "Failed to check balance");
             }
 
             var balanceResponse = JsonSerializer.Deserialize<DirePayPayoutBalanceResponse>(responseContent);
             if (balanceResponse == null || balanceResponse.StatusCode != 0)
             {
-                return new Result<IPayoutBalanceResponse>(605, balanceResponse?.Message ?? "Failed to check balance");
+                return new Result<IPayoutBalanceResponse>(601, balanceResponse?.Message ?? "Failed to check balance");
             }
 
             var result = new Result<IPayoutBalanceResponse>(0, "Balance checked successfully");
@@ -360,7 +360,7 @@ public class DirePayProviderService : IPaymentProviderService
         catch (Exception ex)
         {
             await _logger.ErrorAsync($"DirePay balance check failed: {ex.Message}", ex);
-            return new Result<IPayoutBalanceResponse>(605, "Failed to check balance");
+            return new Result<IPayoutBalanceResponse>(500, "An error occurred while processing balance check.");
         }
     }
 }
