@@ -1,23 +1,22 @@
 using AlphaPlus.CashService.Site.Features.Promotions.ViewModels;
+using AlphaPlus.CashService.Site.Features.Shared.Filters;
 using AlphaPlus.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.CashService.Site.Features.Promotions
 {
+    [SiteAuthorizationFilter]
     public class PromotionsController : Controller
     {
-        private readonly ILogger<PromotionsController> _logger;
         private readonly string _apiBaseUrl;
-        private static HttpClient _httpClient;
+        private readonly HttpClient _httpClient;
         private readonly IUserSession _userSession;
 
         public PromotionsController(
-            ILogger<PromotionsController> logger,
             HttpClient httpClient,
             IConfiguration configuration,
             IUserSession userSession)
         {
-            _logger = logger;
             _apiBaseUrl = configuration["CashServiceAPIUrl"];
             _httpClient = httpClient;
             _userSession = userSession;

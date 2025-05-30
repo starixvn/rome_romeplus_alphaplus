@@ -1,11 +1,13 @@
 namespace AlphaPlus.CashService.Site.Features.Transactions;
 
+using AlphaPlus.CashService.Site.Features.Shared.Filters;
 using Core.Models;
 using Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using Shared.Models;
 
+[SiteAuthorizationFilter]
 public class TransactionsController(
     HttpClientHelper httpClientHelper,
     IUserSession userSession,
@@ -83,8 +85,14 @@ public class TransactionsController(
         return Json(balance);
     }
 
+    [HttpPost]
     public async Task<IActionResult> AddManualDeposit([FromForm] AddTransactionParams request)
     {
+        if (userSession.IsInternal)
+        {
+            return Unauthorized();
+        }
+
         request.UplineId = agentId;
         request.Ip = GetClientIp();
         request.SiteDbGroupId = siteDbGroupId;
@@ -97,6 +105,11 @@ public class TransactionsController(
     [HttpPost]
     public async Task<IActionResult> AddManualWithdrawal([FromForm] AddTransactionParams request)
     {
+        if (userSession.IsInternal)
+        {
+            return Unauthorized();
+        }
+
         var result = VerifyInputParam(request, true);
         if (result.Code != 0)
         {
@@ -205,6 +218,11 @@ public class TransactionsController(
     [HttpPost]
     public async Task<IActionResult> RevertDepositTransactionToPending([FromBody] RevertTransaction request)
     {
+        if (userSession.IsInternal)
+        {
+            return Unauthorized();
+        }
+
         request.SiteDbGroupId = siteDbGroupId;
         request.UserId = userId;
         request.Ip = GetClientIp();
@@ -215,6 +233,11 @@ public class TransactionsController(
     [HttpPost]
     public async Task<IActionResult> RevertWithdrawalTransactionToPending([FromBody] RevertTransaction request)
     {
+        if (userSession.IsInternal)
+        {
+            return Unauthorized();
+        }
+
         request.SiteDbGroupId = siteDbGroupId;
         request.UserId = userId;
         request.Ip = GetClientIp();
@@ -225,6 +248,11 @@ public class TransactionsController(
     [HttpPost]
     public async Task<IActionResult> ApproveDeposit([FromBody] ProcessTransactionModel request)
     {
+        if (userSession.IsInternal)
+        {
+            return Unauthorized();
+        }
+
         var result = await httpClientHelper.PostAsync<ProcessTransactionModel, ResultModel>("/deposit/approve", request);
         return Json(result);
     }
@@ -232,6 +260,11 @@ public class TransactionsController(
     [HttpPost]
     public async Task<IActionResult> RejectDeposit([FromBody] ProcessTransactionModel request)
     {
+        if (userSession.IsInternal)
+        {
+            return Unauthorized();
+        }
+
         var result = await httpClientHelper.PostAsync<ProcessTransactionModel, ResultModel>("/deposit/reject", request);
         return Json(result);
     }
@@ -239,6 +272,11 @@ public class TransactionsController(
     [HttpPost]
     public async Task<IActionResult> ApproveWithdrawal([FromBody] ProcessTransactionModel request)
     {
+        if (userSession.IsInternal)
+        {
+            return Unauthorized();
+        }
+
         if (request.Image != null)
         {
             request.Payslip = await FileHelper.CompressAndConvertToBase64Async(request.Image);
@@ -250,6 +288,11 @@ public class TransactionsController(
     [HttpPost]
     public async Task<IActionResult> RejectWithdrawal([FromBody] ProcessTransactionModel request)
     {
+        if (userSession.IsInternal)
+        {
+            return Unauthorized();
+        }
+
         if (request.Image != null)
         {
             request.Payslip = await FileHelper.CompressAndConvertToBase64Async(request.Image);
