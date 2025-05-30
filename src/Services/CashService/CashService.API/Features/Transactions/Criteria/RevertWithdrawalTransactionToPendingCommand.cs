@@ -1,6 +1,5 @@
 ﻿namespace AlphaPlus.CashService.API.Features.Transactions.Criteria;
 
-using Fanex.Data;
 using Fanex.Data.Repository;
 
 public class RevertWithdrawalTransactionToPendingCommand : NonQueryCommand

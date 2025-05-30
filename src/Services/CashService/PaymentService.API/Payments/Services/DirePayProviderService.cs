@@ -1,7 +1,6 @@
+using System.Text.Json;
 using AlphaPlus.PaymentService.API.Payments.Models;
 using AlphaPlus.PaymentService.API.Shared.Models;
-using System.Text;
-using System.Text.Json;
 
 namespace AlphaPlus.PaymentService.API.Payments.Services;
 
@@ -364,4 +363,4 @@ public class DirePayProviderService : IPaymentProviderService
             return new Result<IPayoutBalanceResponse>(605, "Failed to check balance");
         }
     }
-} 
+}

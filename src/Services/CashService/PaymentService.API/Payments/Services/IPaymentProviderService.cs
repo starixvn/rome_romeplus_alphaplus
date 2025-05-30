@@ -1,5 +1,4 @@
 using AlphaPlus.PaymentService.API.Payments.Models;
-using AlphaPlus.PaymentService.API.Payments.Requests;
 using AlphaPlus.PaymentService.API.Shared.Models;
 
 namespace AlphaPlus.PaymentService.API.Payments.Services;
@@ -31,4 +30,4 @@ public interface IPayoutBalanceResponse
     decimal AvailableBalance { get; }
     string Currency { get; }
     string LastUpdated { get; }
-} 
+}

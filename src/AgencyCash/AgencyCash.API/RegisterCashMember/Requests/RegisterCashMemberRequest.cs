@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using AgencyCash.API.Shared.DataAnnotations;
 
 namespace AgencyCash.API.RegisterCashMember.Requests;
 

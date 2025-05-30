@@ -1,10 +1,8 @@
-using Xunit;
-using Moq;
 using AgencyCash.API.RegisterCashMember;
 using AgencyCash.API.RegisterCashMember.Criteria;
-using AgencyCash.API.RegisterCashMember.Responses;
+using AgencyCash.API.RegisterCashMember.Requests;
 using Fanex.Data.Repository;
-using System.Threading.Tasks;
+using Moq;
 
 namespace AgencyCash.API.Tests.RegisterCashMember
 {
@@ -16,10 +14,20 @@ namespace AgencyCash.API.Tests.RegisterCashMember
             // Arrange
             var mockRepo = new Mock<IDynamicRepository>();
             var service = new RegisterCashMemberService(mockRepo.Object);
-            var command = new RegisterCashMemberCommand(1, "user", "first", "last", "123456789");
-            
+            var request = new RegisterCashMemberRequest
+            {
+                AgentId = 1,
+                UserName = "user",
+                Password = "password",
+                FirstName = "first",
+                LastName = "last",
+                Mobile = "123456789",
+                Domain = "domain.com",
+                Ip = "127.0.0.1"
+            };
+
             // Act
-            var result = await service.RegisterCashMember(command);
+            var result = await service.RegisterCashMember(request);
 
             // Assert
             Assert.Equal(0, result.Code);
@@ -33,7 +41,7 @@ namespace AgencyCash.API.Tests.RegisterCashMember
         //    var mockRepo = new Mock<IDynamicRepository>();
         //    var service = new RegisterCashMemberService(mockRepo.Object);
         //    var command = new RegisterCashMemberCommand(1, "user", "first", "last", "123456789");
-            
+
         //    // Act
         //    var result = await service.RegisterCashMember(command);
 

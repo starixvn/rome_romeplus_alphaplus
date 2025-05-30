@@ -1,4 +1,3 @@
-using AlphaPlus.CashService.Site.Features.Promotions.Models;
 using AlphaPlus.CashService.Site.Features.Promotions.ViewModels;
 using AlphaPlus.Core.Models;
 using Microsoft.AspNetCore.Mvc;

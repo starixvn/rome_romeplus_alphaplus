@@ -1,4 +1,3 @@
-using Xunit;
 using AgencyCash.API.Shared.Models;
 
 namespace AgencyCash.API.Tests.Shared.Models

@@ -1,4 +1,3 @@
-using AlphaPlus.BetLists.Shared.Criteria;
 using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.BetLists.Shared.Services;
 using Fanex.Data.Repository;

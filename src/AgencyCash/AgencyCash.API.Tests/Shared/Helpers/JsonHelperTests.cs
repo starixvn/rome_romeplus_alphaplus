@@ -1,4 +1,3 @@
-using Xunit;
 using AgencyCash.API.Shared.Helpers;
 
 namespace AgencyCash.API.Tests.Shared.Helpers

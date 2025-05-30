@@ -1,7 +1,6 @@
 using AlphaPlus.CashService.API.Features.MemberSites.Criteria;
 using AlphaPlus.CashService.API.Features.MemberSites.Models;
 using AlphaPlus.CashService.API.Features.MemberSites.Services;
-using AlphaPlus.CashService.API.Features.Shared.Criteria;
 using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Requests;
 using AlphaPlus.CashService.API.Features.Shared.Services;

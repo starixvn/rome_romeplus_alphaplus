@@ -1,4 +1,3 @@
-using Xunit;
 using AgencyCash.API.RegisterCashMember.Requests;
 
 namespace AgencyCash.API.Tests.RegisterCashMember.Requests

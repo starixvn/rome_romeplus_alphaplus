@@ -1,6 +1,5 @@
 ﻿namespace AlphaPlus.CashService.API.Features.PendingDeposit.Criteria;
 
-using Fanex.Data;
 using Fanex.Data.Repository;
 
 public class CreateManualDepositCommand : CriteriaBase

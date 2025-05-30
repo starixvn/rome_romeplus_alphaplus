@@ -1,6 +1,5 @@
-using AlphaPlus.CashService.API.Features.PendingDeposit.Criteria;
-using System;
 using System.Numerics;
+using AlphaPlus.CashService.API.Features.PendingDeposit.Criteria;
 using Xunit;
 
 namespace CashService.API.UnitTests.Features.PendingDeposit.Criteria;

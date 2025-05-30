@@ -1,5 +1,3 @@
-using AlphaPlus.Core.Models;
-
 namespace AlphaPlus.BetLists.LastBets;
 
 public record GetLastBetsNewParam(

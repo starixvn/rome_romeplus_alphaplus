@@ -1,10 +1,7 @@
-using AgencyCash.API.RegisterCashMember.Requests;
-using AgencyCash.API.RegisterCashMember.Criteria;
-using AgencyCash.API.RegisterCashMember.Responses;
-using System.ComponentModel.DataAnnotations;
-using AgencyCash.API.Shared.DataAnnotations;
 using System.Text.Json;
-using Microsoft.AspNetCore.Mvc;
+using AgencyCash.API.RegisterCashMember.Criteria;
+using AgencyCash.API.RegisterCashMember.Requests;
+using AgencyCash.API.Shared.DataAnnotations;
 
 namespace AgencyCash.API.RegisterCashMember;
 
