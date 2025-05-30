@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Contact as ContactType } from "../../../services/interfaces/MemberSites";
 import { FieldError, useFormContext } from "react-hook-form";
-import { CONTACT_MAX_LENGTH, CONTACT_REGEX } from "../../../constants";
+import { CONTACT_MAX_LENGTH, CONTACT_REGEX, LINE_REGEX } from "../../../constants";
 
 interface ContactProps {
   index: number;
@@ -25,6 +25,11 @@ export const Contact = (props: ContactProps) => {
 
     switch (contact.type) {
       case 'line':
+        rules.pattern = {
+          value: LINE_REGEX,
+          message: t('validation.onlyAz09')
+        };
+        break;
       case 'telegram':
       case 'tele':
         rules.pattern = {
