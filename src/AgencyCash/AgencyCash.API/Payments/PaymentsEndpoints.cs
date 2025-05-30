@@ -30,49 +30,57 @@ public static class PaymentsEndpoints
             .MapPost("/manual", ManualWithdrawal)
             .AddEndpointFilter<ModelValidationFilter<ManualWithdrawalRequest>>()
             .Produces<Result>();
+
+        var transactions = app.MapGroup("/api/transactions").WithTags("Transactions");
+        transactions
+            .MapPut("/{transId}/status", UpdateTransactionStatus)
+            .AddEndpointFilter<ModelValidationFilter<UpdateTransactionStatusRequest>>()
+            .Produces<Result>();
     }
 
     private static async Task<IResult> GetDepositLimit([AsParameters] GetDepositLimitRequest request, IDepositService depositService)
     {
         if (request == null)
         {
-            return BadRequest("Request cannot be null.");
+            return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
         }
 
-        return TypedResults.Ok(await depositService.GetLimit(request));
+        return TypedResults.Ok(await Task.FromResult(new DepositLimit(1, 1000, 5000)));
+        //return TypedResults.Ok(await depositService.GetLimit(request));
     }
 
     private static async Task<IResult> ManualDeposit(ManualDepositRequest request, IDepositService depositService)
     {
         if (request == null)
         {
-            return BadRequest("Request cannot be null.");
+            return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
         }
 
         if (!string.IsNullOrWhiteSpace(request.PaySlip))
         {
             if (!Base64StringHelper.TryConvertToByte(request.PaySlip, out var paySlipBuffer))
             {
-                return BadRequest($"{nameof(request.PaySlip)} is not a valid Base64 string.");
+                return BadRequest(nameof(request.PaySlip), $"{nameof(request.PaySlip)} is not a valid Base64 string.");
             }
 
             const int MaxPaySlipSize = 1024 * 1024;
             if (paySlipBuffer.Length > MaxPaySlipSize)
             {
-                return BadRequest($"{nameof(request.PaySlip)} cannot exceed 1MB.");
+                return BadRequest(nameof(request.PaySlip), $"{nameof(request.PaySlip)} cannot exceed 1MB.");
             }
 
             request.PaySlipBuffer = paySlipBuffer;
         }
 
-        return TypedResults.Ok(await depositService.Manual(request));
+        return TypedResults.Ok(await Task.FromResult(new PaymentResult(0, string.Empty, 123456789)));
+        //return TypedResults.Ok(await depositService.Manual(request));
     }
 
     private static async Task<IResult> AutoDeposit(AutoDepositRequest request, IDepositService depositService)
     {
         if (request == null)
         {
-            return BadRequest("Request cannot be null.");
+            return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
         }
 
         return TypedResults.Ok(await Task.FromResult(new PaymentResult(0, string.Empty, 123456789)));
@@ -84,7 +92,7 @@ public static class PaymentsEndpoints
     {
         if (request is null || !request.IsValid())
         {
-            return BadRequest("Request parameters is invalid.");
+            return BadRequest(nameof(request), "Request parameters is invalid.");
         }
 
         // Convert to PaymentService.API request
@@ -102,6 +110,23 @@ public static class PaymentsEndpoints
         return TypedResults.Ok(result);
     }
 
-    private static IResult BadRequest(string error)
-        => TypedResults.BadRequest(new Result(StatusCodes.Status400BadRequest, error));
+    private static async Task<IResult> UpdateTransactionStatus(
+        long transId,
+        UpdateTransactionStatusRequest request)
+    {
+        if (request == null)
+        {
+            return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
+        }
+
+        if (transId <= 0)
+        {
+            return BadRequest(nameof(transId), $"{nameof(transId)} must be a positive number.");
+        }
+
+        return TypedResults.Ok(await Task.FromResult(new Result(0, "Transaction status updated successfully.")));
+    }
+
+    private static IResult BadRequest(string key, string error)
+        => TypedResults.BadRequest(new ModelValidationResult(key, error));
 }

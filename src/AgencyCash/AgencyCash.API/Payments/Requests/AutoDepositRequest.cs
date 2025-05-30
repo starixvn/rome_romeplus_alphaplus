@@ -1,11 +1,13 @@
 using System.ComponentModel.DataAnnotations;
-using AgencyCash.API.Payments.Constants;
 using AgencyCash.API.Shared.DataAnnotations;
 
 namespace AgencyCash.API.Payments.Requests;
 
 public class AutoDepositRequest
 {
+    private const byte AutoPaymentGateway = 1;
+    private const byte AutoDecimalOrBankAccount = 2;
+
     [Range(1, 2, ErrorMessage = "{0} must be {1} (Payment Gateway) or {2} (Decimal or Bank Account).")]
     public byte DepositMethod { get; init; }
 
@@ -15,22 +17,22 @@ public class AutoDepositRequest
     [PositiveNumber]
     public int CustId { get; init; }
 
-    [RequiredIf(nameof(DepositMethod), DepositMethodConst.AutoPaymentGateway)]
+    [RequiredIf(nameof(DepositMethod), AutoPaymentGateway)]
     [PositiveNumber]
     public short? ProviderId { get; init; }
 
     [PositiveNumber]
     public short PaymentMethodId { get; init; }
 
-    [RequiredIf(nameof(DepositMethod), DepositMethodConst.AutoDecimalOrBankAccount)]
+    [RequiredIf(nameof(DepositMethod), AutoDecimalOrBankAccount)]
     [PositiveNumber]
     public byte? MachingMode { get; init; }
 
-    [RequiredIf(nameof(DepositMethod), DepositMethodConst.AutoDecimalOrBankAccount)]
+    [RequiredIf(nameof(DepositMethod), AutoDecimalOrBankAccount)]
     [StringLength(maximumLength: 100, ErrorMessage = "{0} cannot exceed {1} characters.")]
     public string PaymentFrom { get; init; }
 
-    [RequiredIf(nameof(DepositMethod), DepositMethodConst.AutoDecimalOrBankAccount)]
+    [RequiredIf(nameof(DepositMethod), AutoDecimalOrBankAccount)]
     [StringLength(maximumLength: 100, ErrorMessage = "{0} cannot exceed {1} characters.")]
     public string PaymentTo { get; init; }
 
