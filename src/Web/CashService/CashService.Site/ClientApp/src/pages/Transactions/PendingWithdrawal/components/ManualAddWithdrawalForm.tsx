@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDebouncedCallback } from '../../../../hooks/useDebouncedCallback';
 import { WithdrawalAgentBankDropDown } from '../../../../services/interfaces/Transactions/BankInfo';
 import { TransactionTypes } from '../../../../utils/constants';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
@@ -54,7 +55,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
   const [memberOptions, setMemberOptions] = useState<DropdownOption[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmitBase = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!verifyParam()) return;
 
@@ -91,6 +92,8 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       setIsSubmitting(false);
     }
   };
+
+  const handleSubmit = useDebouncedCallback(handleSubmitBase, 500);
 
   const verifyParam = (): boolean => {
     if (!custId || custId <= 0) {

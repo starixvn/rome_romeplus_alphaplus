@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
+import { useDebouncedCallback } from '../../../hooks/useDebouncedCallback';
 import ManualAddWithdrawalForm from './components/ManualAddWithdrawalForm.tsx';
 import Filter from './components/Filter.tsx';
 import DataGrid from './components/DataGrid.tsx';
@@ -28,7 +29,6 @@ const PendingWithdrawal: React.FC = () => {
     totalCount: 0,
   });
   const [showManualAddWithdrawalForm, setShowManualAddWithdrawalForm] = useState<boolean>(false);
-  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const fetchWithdrawals = async () => {
@@ -68,23 +68,24 @@ const PendingWithdrawal: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedSearchTerm(searchTerm);
-    }, 500);
+  const debouncedSetSearchTerm = useDebouncedCallback((value: string) => {
+    setSearchTerm(value);
+  }, 500);
 
-    return () => clearTimeout(timer);
-  }, [searchTerm]);
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value);
+    debouncedSetSearchTerm(value);
+  };
 
   const filteredWithdrawals = useMemo(() => {
-    if (!debouncedSearchTerm.trim()) {
+    if (!searchTerm.trim()) {
       return withdrawals?.items || [];
     }
 
     let result = withdrawals?.items || [];
 
-    if (debouncedSearchTerm.trim()) {
-      const term = debouncedSearchTerm.toLowerCase().trim();
+    if (searchTerm.trim()) {
+      const term = searchTerm.toLowerCase().trim();
       result = result.filter(
         (withdrawal) =>
           withdrawal.username.toLowerCase().includes(term) ||
@@ -93,7 +94,7 @@ const PendingWithdrawal: React.FC = () => {
     }
 
     return result;
-  }, [withdrawals, debouncedSearchTerm]);
+  }, [withdrawals, searchTerm]);
 
   return (
     <>
@@ -114,7 +115,7 @@ const PendingWithdrawal: React.FC = () => {
             recentWithdrawals={recentWithdrawals}
             setRecentWithdrawals={setRecentWithdrawals}
             searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
+            setSearchTerm={handleSearchChange}
           />
 
           {isLoading ? (

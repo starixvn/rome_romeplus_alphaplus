@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
+import { useDebouncedCallback } from '../../../hooks/useDebouncedCallback';
 import ManualAddDepositForm from './components/ManualAddDepositForm';
 import Filter from './components/Filter';
 import DataGrid from './components/DataGrid';
@@ -32,7 +33,6 @@ const PendingDeposit: React.FC = () => {
     totalCount: 0,
   });
   const [showManualAddDepositForm, setShowManualAddDepositForm] = useState<boolean>(false);
-  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const fetchDeposits = async () => {
@@ -93,16 +93,17 @@ const PendingDeposit: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedSearchTerm(searchTerm);
-    }, 200);
+  const debouncedSetSearchTerm = useDebouncedCallback((value: string) => {
+    setSearchTerm(value);
+  }, 500);
 
-    return () => clearTimeout(timer);
-  }, [searchTerm]);
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value);
+    debouncedSetSearchTerm(value);
+  };
 
   const filteredDeposits = useMemo(() => {
-    if (!cashAgentTo && !debouncedSearchTerm.trim()) {
+    if (!cashAgentTo && !searchTerm.trim()) {
       return deposits?.items || [];
     }
 
@@ -111,8 +112,8 @@ const PendingDeposit: React.FC = () => {
       result = result.filter((deposit) => deposit.paymentTo.toString() === cashAgentTo);
     }
 
-    if (debouncedSearchTerm.trim()) {
-      const term = debouncedSearchTerm.toLowerCase().trim();
+    if (searchTerm.trim()) {
+      const term = searchTerm.toLowerCase().trim();
       result = result.filter(
         (deposit) =>
           deposit.username.toLowerCase().includes(term) ||
@@ -121,7 +122,7 @@ const PendingDeposit: React.FC = () => {
     }
 
     return result;
-  }, [deposits, cashAgentTo, debouncedSearchTerm]);
+  }, [deposits, cashAgentTo, searchTerm]);
 
   return (
     <>
@@ -147,7 +148,7 @@ const PendingDeposit: React.FC = () => {
             uniquePaymentToOptions={uniquePaymentToOptions}
             setCashAgentTo={setCashAgentTo}
             searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
+            setSearchTerm={handleSearchChange}
           />
 
           {isLoading ? (

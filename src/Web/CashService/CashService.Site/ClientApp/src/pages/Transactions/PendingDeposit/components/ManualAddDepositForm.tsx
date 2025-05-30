@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDebouncedCallback } from '../../../../hooks/useDebouncedCallback';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import { MemberLoginName } from '../../../../services/interfaces/Transactions/MemberLoginName';
 import { BankInfo } from '../../../../services/interfaces/Transactions/BankInfo';
@@ -160,7 +161,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
     return true;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmitBase = async (e: React.FormEvent) => {
     e.preventDefault();
     const isValid = validateForm();
     if (!isValid) {
@@ -195,6 +196,8 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
       setIsSubmitting(false);
     }
   };
+
+  const handleSubmit = useDebouncedCallback(handleSubmitBase, 500);
 
   const handleSetDepositAmount = (value: number) => {
     setDepositAmount(value);
