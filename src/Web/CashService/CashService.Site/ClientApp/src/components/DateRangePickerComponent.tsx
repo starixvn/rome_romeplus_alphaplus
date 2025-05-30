@@ -7,7 +7,8 @@ import { DateRange, Range, RangeKeyDict } from 'react-date-range';
 
 import { ButtonFullComponent } from './ButtonComponents';
 import { CalendarIcon } from './Icons';
-import './DateRangePickerComponent.scss'
+import './DateRangePickerComponent.scss';
+import { convertToGMT4 } from '../common/commonFunctions';
 
 export interface DateRangePickerProps {
   value: [Date | null, Date | null];
@@ -31,15 +32,19 @@ const quickRanges = [
     label: 'Today',
     range: () => {
       const today = new Date();
-      return { startDate: today, endDate: today };
+      const todayInGMT4 = convertToGMT4(today);
+      todayInGMT4.setHours(23, 59, 59, 0);
+      return { startDate: todayInGMT4, endDate: todayInGMT4 };
     },
   },
   {
     label: 'Yesterday',
     range: () => {
       const yesterday = new Date();
-      yesterday.setDate(yesterday.getDate() - 1);
-      return { startDate: yesterday, endDate: yesterday };
+      const yesterdayInGMT4 = convertToGMT4(yesterday);
+      yesterdayInGMT4.setDate(yesterdayInGMT4.getDate() - 1);
+      yesterdayInGMT4.setHours(0, 1, 0, 0);
+      return { startDate: yesterdayInGMT4, endDate: yesterdayInGMT4 };
     },
   },
   {
@@ -47,8 +52,15 @@ const quickRanges = [
     range: () => {
       const end = new Date();
       const start = new Date();
-      start.setDate(end.getDate() - 6);
-      return { startDate: start, endDate: end };
+      const sevenDaysAgo = new Date();
+      const sevenDaysAgoInGMT4 = convertToGMT4(sevenDaysAgo);
+      sevenDaysAgoInGMT4.setDate(sevenDaysAgoInGMT4.getDate() - 7);
+      sevenDaysAgoInGMT4.setHours(0, 1, 0, 0);
+      const startInGMT4 = convertToGMT4(start);
+      const endInGMT4 = convertToGMT4(end);
+      startInGMT4.setDate(sevenDaysAgoInGMT4.getDate());
+      endInGMT4.setDate(end.getDate());
+      return { startDate: startInGMT4, endDate: endInGMT4 };
     },
   },
   {
@@ -56,24 +68,30 @@ const quickRanges = [
     range: () => {
       const end = new Date();
       const start = new Date();
-      start.setDate(end.getDate() - 29);
-      return { startDate: start, endDate: end };
+      const startInGMT4 = convertToGMT4(start);
+      const endInGMT4 = convertToGMT4(end);
+      startInGMT4.setDate(endInGMT4.getDate() - 29);
+      return { startDate: startInGMT4, endDate: endInGMT4 };
     },
   },
   {
     label: 'This Month',
     range: () => {
       const now = new Date();
-      return { startDate: new Date(now.getFullYear(), now.getMonth(), 1), endDate: now };
+      const nowInGMT4 = convertToGMT4(now);
+      const startInGMT4 = new Date(nowInGMT4.getFullYear(), nowInGMT4.getMonth(), 1);
+      const endInGMT4 = new Date(nowInGMT4.getFullYear(), nowInGMT4.getMonth() + 1, 0);
+      return { startDate: startInGMT4, endDate: endInGMT4 };
     },
   },
   {
     label: 'Last Month',
     range: () => {
       const now = new Date();
-      const start = new Date(now.getFullYear(), now.getMonth() - 1, 1);
-      const end = new Date(now.getFullYear(), now.getMonth(), 0);
-      return { startDate: start, endDate: end };
+      const nowInGMT4 = convertToGMT4(now);
+      const startInGMT4 = new Date(nowInGMT4.getFullYear(), nowInGMT4.getMonth() - 1, 1);
+      const endInGMT4 = new Date(nowInGMT4.getFullYear(), nowInGMT4.getMonth(), 0);
+      return { startDate: startInGMT4, endDate: endInGMT4 };
     },
   },
 ];

@@ -29,14 +29,16 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     Omit<TransactionsHistoryParams, 'searchText' | 'column'>
   >(() => {
     const today = new Date();
-    today.setHours(23, 59, 59, 0);
+    const todayInGMT4 = convertToGMT4(today);
+    todayInGMT4.setHours(23, 59, 59, 0);
     const sevenDaysAgo = new Date();
-    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-    sevenDaysAgo.setHours(0, 1, 0, 0);
+    const sevenDaysAgoInGMT4 = convertToGMT4(sevenDaysAgo);
+    sevenDaysAgoInGMT4.setDate(sevenDaysAgoInGMT4.getDate() - 7);
+    sevenDaysAgoInGMT4.setHours(0, 1, 0, 0);
     return {
       dateRange: [
-        convertToGMT4(sevenDaysAgo).toLocaleDateString('en-US'),
-        convertToGMT4(today).toLocaleDateString('en-US'),
+        sevenDaysAgoInGMT4.toLocaleDateString('en-US'),
+        todayInGMT4.toLocaleDateString('en-US'),
       ],
       status: -1,
       account: '',
