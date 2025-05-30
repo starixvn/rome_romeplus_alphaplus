@@ -172,13 +172,15 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
                 <thead>
                   <tr className="text-left text-[#333333] font-semibold">
                     <th className="px-[8px] py-[4px]">{t('pendingWithdrawalModal.username')}</th>
-                    <th className="px-[8px] py-[4px]">{t('pendingWithdrawalModal.name')}</th>
+                    <th className="px-[8px] py-[4px]">{t('dataGrid.nickname')}</th>
+                    <th className="px-[8px] py-[4px]">{t('dataGrid.firstName')}</th>
                     <th className="px-[8px] py-[4px]">{t('pendingWithdrawalModal.betCredit')}</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td className="px-[8px] py-[4px]">{withdrawal.username}</td>
+                    <td className="px-[8px] py-[4px]">{withdrawal.nickname}</td>
                     <td className="px-[8px] py-[4px]">{`${withdrawal.firstName} ${withdrawal.lastName}`}</td>
                     <td className="px-[8px] py-[4px] text-[var(--text-color-primary)] font-semibold">
                       {displayAmount(withdrawal.betCredit)}

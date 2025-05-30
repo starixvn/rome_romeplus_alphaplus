@@ -120,13 +120,15 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ deposit, onCl
               <thead>
                 <tr className="text-left text-[#333333] font-semibold">
                   <th className="px-[8px] py-[4px]">{t('pendingDepositModal.username')}</th>
-                  <th className="px-[8px] py-[4px]">{t('pendingDepositModal.firstLastName')}</th>
+                  <th className="px-[8px] py-[4px]">{t('dataGrid.nickname')}</th>
+                  <th className="px-[8px] py-[4px]">{t('dataGrid.firstLastName')}</th>
                   <th className="px-[8px] py-[4px]">{t('pendingDepositModal.betCredit')}</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td className="px-[8px] py-[4px]">{deposit?.username}</td>
+                  <td className="px-[8px] py-[4px]">{deposit?.nickname}</td>
                   <td className="px-[8px] py-[4px]">{`${deposit?.firstName} ${deposit?.lastName}`}</td>
                   <td className="px-[8px] py-[4px] text-[var(--text-color-primary)] font-semibold">
                     {deposit?.betCredit && displayAmount(deposit.betCredit)}
