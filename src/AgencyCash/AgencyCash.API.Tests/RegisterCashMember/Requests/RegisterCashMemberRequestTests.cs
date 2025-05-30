@@ -14,7 +14,9 @@ namespace AgencyCash.API.Tests.RegisterCashMember.Requests
                 Password = "pass",
                 FirstName = "first",
                 LastName = "last",
-                Mobile = "123456789"
+                Mobile = "123456789",
+                Domain = "domain",
+                Ip = "127.0.0.1"
             };
             Assert.Equal(1, req.AgentId);
             Assert.Equal("user", req.UserName);
@@ -22,6 +24,8 @@ namespace AgencyCash.API.Tests.RegisterCashMember.Requests
             Assert.Equal("first", req.FirstName);
             Assert.Equal("last", req.LastName);
             Assert.Equal("123456789", req.Mobile);
+            Assert.Equal("domain", req.Domain);
+            Assert.Equal("127.0.0.1", req.Ip);
         }
     }
 }
