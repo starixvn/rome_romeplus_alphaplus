@@ -15,7 +15,7 @@ namespace AlphaPlus.CashService.Site.Features.Shared.Filters
         {
             public void OnAuthorization(AuthorizationFilterContext context)
             {
-                if(!IsValidSession())
+                if (!IsValidSession())
                 {
                     context.Result = new UnauthorizedObjectResult("You are not authorized on this function.");
                 }
@@ -23,14 +23,14 @@ namespace AlphaPlus.CashService.Site.Features.Shared.Filters
 
             private bool IsValidSession()
             {
-                if(userSession.CustId <= 0)
+                if (userSession.CustId <= 0)
                 {
                     return false;
                 }
 
-                return AppSettings.IsOfferedCashService(userSession.Site) 
+                return AppSettings.IsOfferedCashService(userSession.Site)
                     && (!userSession.IsSubAcc || userSession.SubPageAccess.GetPermission(PageAccessType.CreateAccount));
             }
         }
     }
-} 
+}

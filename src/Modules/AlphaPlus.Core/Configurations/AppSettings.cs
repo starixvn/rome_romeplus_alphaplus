@@ -161,4 +161,12 @@ public static class AppSettings
             ? default(DateTime?)
             : DateTime.ParseExact(forceLoginNicknameDate4SubAccountValue, "dd/MM/yyyy", null);
     }
+
+    public static bool IsOfferedCashService(string site)
+            => CashServiceOfferedSites.Contains("*") || CashServiceOfferedSites.Contains(site);
+
+    public static IEnumerable<string> CashServiceOfferedSites { get; } = new HashSet<string>(
+        (ConfigurationManager.GetValue<string>("CashService:OfferedSites") ?? string.Empty)
+           .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+           .Select(site => site.Trim()), StringComparer.OrdinalIgnoreCase);
 }
