@@ -273,7 +273,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
         />
       ) : (
         <>
-          <div className="py-[12px] h-[calc(100%-250px)]">
+          <div className="h-full flex flex-col">
             <TitleComponent title={tManagePayments('managePayments')} showTippy={true}>
               <div>
                 <div>
@@ -383,8 +383,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                           </select>
                         </div>
                       </div>
-                      <div className="flex px-[14px] pb-[16px] bg-[#ffffff]">
-                        <div className="w-[250px] ml-auto">
+                      <div className="flex px-[14px] pb-[16px] w-full">
+                        <div className="w-[250px] ml-auto ">
                           <div className="relative">
                             <span className="absolute top-[8px] left-[8px] z-[10] max-[768px]:top-[12px]">
                               <IconSearch />
@@ -405,13 +405,13 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                   )}
 
                   {!loading && !error && bankAccounts.length > 0 && (
-                    <div className="flex-1 h-full">
-                      <div className="table-fixed-header table-fixed-body bg-[#ffffff] h-full">
-                        <table className="text-[12px] max-[600px]:text-[17px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
+                    
+                      <div className="table-fixed-header table-fixed-body flex-1">
+                        <table className="w-full whitespace-nowrap border-collapse  ">
                           <thead>
                             <tr>
-                              <th className="col-no bg-[#ffffff]">#</th>
-                              <th className="col-action bg-[#ffffff]">{tGlobal('action')}</th>
+                              <th className="col-no z-10 bg-[var(--table-header-background)]">#</th>
+                              <th className="col-action z-10 bg-[var(--table-header-background)]">{tGlobal('action')}</th>
                               <th>{tManagePayments('accountNickname')}</th>
                               <th>{tManagePayments('bank')}</th>
                               <th>{tManagePayments('accountHolderName')}</th>
@@ -422,6 +422,486 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                             </tr>
                           </thead>
                           <tbody className="font-[500]">
+                          {bankAccounts.map((account, index) => (
+                              <tr key={account.id}>
+                                <td className="col-no bg-[#ffffff]">{index + 1}</td>
+                                <td className="col-action bg-[#ffffff]">
+                                  <div className="flex justify-center">
+                                    <button
+                                      className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
+                                      onClick={() => onEditBankAccount(account.id)}
+                                      title={tGlobal('edit')}
+                                    >
+                                      <IconPen />
+                                    </button>
+                                    <button
+                                      className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
+                                      onClick={() => onDeleteBankAccount(account)}
+                                      title={tGlobal('delete')}
+                                      disabled={deleting === account.id}
+                                    >
+                                      {deleting === account.id ? (
+                                        <IconSync className="w-[16px] h-[16px] fill-[var(--primary-color)] animate-spin duration-2000 ease-linear animate-infinite" />
+                                      ) : (
+                                        <IconDelete />
+                                      )}
+                                    </button>
+                                  </div>
+                                </td>
+                                <td className="text-left">{account.accountNickname}</td>
+                                <td className="text-left">
+                                  <div className="flex items-center relative pl-[25px]">
+                                    <span className="absolute top-[-2px] left-[0]">
+                                      <BankIcon code={account.code} />
+                                    </span>
+                                    {account.bankName}
+                                  </div>
+                                </td>
+                                <td className="text-left">{account.accountHolderName}</td>
+                                <td>{account.accountNumber}</td>
+                                <td>{getTransactionTypeNames(account.transactionTypes)}</td>
+                                <td>
+                                  {account.status === 1 ? (
+                                    <StatusEnabledComponent />
+                                  ) : (
+                                    <StatusDisabledComponent />
+                                  )}
+                                </td>
+                                <td>{account.lastUpdatedStr}</td>
+                              </tr>
+                            ))}
+                            {bankAccounts.map((account, index) => (
+                              <tr key={account.id}>
+                                <td className="col-no bg-[#ffffff]">{index + 1}</td>
+                                <td className="col-action bg-[#ffffff]">
+                                  <div className="flex justify-center">
+                                    <button
+                                      className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
+                                      onClick={() => onEditBankAccount(account.id)}
+                                      title={tGlobal('edit')}
+                                    >
+                                      <IconPen />
+                                    </button>
+                                    <button
+                                      className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
+                                      onClick={() => onDeleteBankAccount(account)}
+                                      title={tGlobal('delete')}
+                                      disabled={deleting === account.id}
+                                    >
+                                      {deleting === account.id ? (
+                                        <IconSync className="w-[16px] h-[16px] fill-[var(--primary-color)] animate-spin duration-2000 ease-linear animate-infinite" />
+                                      ) : (
+                                        <IconDelete />
+                                      )}
+                                    </button>
+                                  </div>
+                                </td>
+                                <td className="text-left">{account.accountNickname}</td>
+                                <td className="text-left">
+                                  <div className="flex items-center relative pl-[25px]">
+                                    <span className="absolute top-[-2px] left-[0]">
+                                      <BankIcon code={account.code} />
+                                    </span>
+                                    {account.bankName}
+                                  </div>
+                                </td>
+                                <td className="text-left">{account.accountHolderName}</td>
+                                <td>{account.accountNumber}</td>
+                                <td>{getTransactionTypeNames(account.transactionTypes)}</td>
+                                <td>
+                                  {account.status === 1 ? (
+                                    <StatusEnabledComponent />
+                                  ) : (
+                                    <StatusDisabledComponent />
+                                  )}
+                                </td>
+                                <td>{account.lastUpdatedStr}</td>
+                              </tr>
+                            ))}
+                            {bankAccounts.map((account, index) => (
+                              <tr key={account.id}>
+                                <td className="col-no bg-[#ffffff]">{index + 1}</td>
+                                <td className="col-action bg-[#ffffff]">
+                                  <div className="flex justify-center">
+                                    <button
+                                      className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
+                                      onClick={() => onEditBankAccount(account.id)}
+                                      title={tGlobal('edit')}
+                                    >
+                                      <IconPen />
+                                    </button>
+                                    <button
+                                      className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
+                                      onClick={() => onDeleteBankAccount(account)}
+                                      title={tGlobal('delete')}
+                                      disabled={deleting === account.id}
+                                    >
+                                      {deleting === account.id ? (
+                                        <IconSync className="w-[16px] h-[16px] fill-[var(--primary-color)] animate-spin duration-2000 ease-linear animate-infinite" />
+                                      ) : (
+                                        <IconDelete />
+                                      )}
+                                    </button>
+                                  </div>
+                                </td>
+                                <td className="text-left">{account.accountNickname}</td>
+                                <td className="text-left">
+                                  <div className="flex items-center relative pl-[25px]">
+                                    <span className="absolute top-[-2px] left-[0]">
+                                      <BankIcon code={account.code} />
+                                    </span>
+                                    {account.bankName}
+                                  </div>
+                                </td>
+                                <td className="text-left">{account.accountHolderName}</td>
+                                <td>{account.accountNumber}</td>
+                                <td>{getTransactionTypeNames(account.transactionTypes)}</td>
+                                <td>
+                                  {account.status === 1 ? (
+                                    <StatusEnabledComponent />
+                                  ) : (
+                                    <StatusDisabledComponent />
+                                  )}
+                                </td>
+                                <td>{account.lastUpdatedStr}</td>
+                              </tr>
+                            ))}
+                            {bankAccounts.map((account, index) => (
+                              <tr key={account.id}>
+                                <td className="col-no bg-[#ffffff]">{index + 1}</td>
+                                <td className="col-action bg-[#ffffff]">
+                                  <div className="flex justify-center">
+                                    <button
+                                      className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
+                                      onClick={() => onEditBankAccount(account.id)}
+                                      title={tGlobal('edit')}
+                                    >
+                                      <IconPen />
+                                    </button>
+                                    <button
+                                      className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
+                                      onClick={() => onDeleteBankAccount(account)}
+                                      title={tGlobal('delete')}
+                                      disabled={deleting === account.id}
+                                    >
+                                      {deleting === account.id ? (
+                                        <IconSync className="w-[16px] h-[16px] fill-[var(--primary-color)] animate-spin duration-2000 ease-linear animate-infinite" />
+                                      ) : (
+                                        <IconDelete />
+                                      )}
+                                    </button>
+                                  </div>
+                                </td>
+                                <td className="text-left">{account.accountNickname}</td>
+                                <td className="text-left">
+                                  <div className="flex items-center relative pl-[25px]">
+                                    <span className="absolute top-[-2px] left-[0]">
+                                      <BankIcon code={account.code} />
+                                    </span>
+                                    {account.bankName}
+                                  </div>
+                                </td>
+                                <td className="text-left">{account.accountHolderName}</td>
+                                <td>{account.accountNumber}</td>
+                                <td>{getTransactionTypeNames(account.transactionTypes)}</td>
+                                <td>
+                                  {account.status === 1 ? (
+                                    <StatusEnabledComponent />
+                                  ) : (
+                                    <StatusDisabledComponent />
+                                  )}
+                                </td>
+                                <td>{account.lastUpdatedStr}</td>
+                              </tr>
+                            ))}
+                            {bankAccounts.map((account, index) => (
+                              <tr key={account.id}>
+                                <td className="col-no bg-[#ffffff]">{index + 1}</td>
+                                <td className="col-action bg-[#ffffff]">
+                                  <div className="flex justify-center">
+                                    <button
+                                      className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
+                                      onClick={() => onEditBankAccount(account.id)}
+                                      title={tGlobal('edit')}
+                                    >
+                                      <IconPen />
+                                    </button>
+                                    <button
+                                      className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
+                                      onClick={() => onDeleteBankAccount(account)}
+                                      title={tGlobal('delete')}
+                                      disabled={deleting === account.id}
+                                    >
+                                      {deleting === account.id ? (
+                                        <IconSync className="w-[16px] h-[16px] fill-[var(--primary-color)] animate-spin duration-2000 ease-linear animate-infinite" />
+                                      ) : (
+                                        <IconDelete />
+                                      )}
+                                    </button>
+                                  </div>
+                                </td>
+                                <td className="text-left">{account.accountNickname}</td>
+                                <td className="text-left">
+                                  <div className="flex items-center relative pl-[25px]">
+                                    <span className="absolute top-[-2px] left-[0]">
+                                      <BankIcon code={account.code} />
+                                    </span>
+                                    {account.bankName}
+                                  </div>
+                                </td>
+                                <td className="text-left">{account.accountHolderName}</td>
+                                <td>{account.accountNumber}</td>
+                                <td>{getTransactionTypeNames(account.transactionTypes)}</td>
+                                <td>
+                                  {account.status === 1 ? (
+                                    <StatusEnabledComponent />
+                                  ) : (
+                                    <StatusDisabledComponent />
+                                  )}
+                                </td>
+                                <td>{account.lastUpdatedStr}</td>
+                              </tr>
+                            ))}
+                            {bankAccounts.map((account, index) => (
+                              <tr key={account.id}>
+                                <td className="col-no bg-[#ffffff]">{index + 1}</td>
+                                <td className="col-action bg-[#ffffff]">
+                                  <div className="flex justify-center">
+                                    <button
+                                      className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
+                                      onClick={() => onEditBankAccount(account.id)}
+                                      title={tGlobal('edit')}
+                                    >
+                                      <IconPen />
+                                    </button>
+                                    <button
+                                      className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
+                                      onClick={() => onDeleteBankAccount(account)}
+                                      title={tGlobal('delete')}
+                                      disabled={deleting === account.id}
+                                    >
+                                      {deleting === account.id ? (
+                                        <IconSync className="w-[16px] h-[16px] fill-[var(--primary-color)] animate-spin duration-2000 ease-linear animate-infinite" />
+                                      ) : (
+                                        <IconDelete />
+                                      )}
+                                    </button>
+                                  </div>
+                                </td>
+                                <td className="text-left">{account.accountNickname}</td>
+                                <td className="text-left">
+                                  <div className="flex items-center relative pl-[25px]">
+                                    <span className="absolute top-[-2px] left-[0]">
+                                      <BankIcon code={account.code} />
+                                    </span>
+                                    {account.bankName}
+                                  </div>
+                                </td>
+                                <td className="text-left">{account.accountHolderName}</td>
+                                <td>{account.accountNumber}</td>
+                                <td>{getTransactionTypeNames(account.transactionTypes)}</td>
+                                <td>
+                                  {account.status === 1 ? (
+                                    <StatusEnabledComponent />
+                                  ) : (
+                                    <StatusDisabledComponent />
+                                  )}
+                                </td>
+                                <td>{account.lastUpdatedStr}</td>
+                              </tr>
+                            ))}
+                            {bankAccounts.map((account, index) => (
+                              <tr key={account.id}>
+                                <td className="col-no bg-[#ffffff]">{index + 1}</td>
+                                <td className="col-action bg-[#ffffff]">
+                                  <div className="flex justify-center">
+                                    <button
+                                      className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
+                                      onClick={() => onEditBankAccount(account.id)}
+                                      title={tGlobal('edit')}
+                                    >
+                                      <IconPen />
+                                    </button>
+                                    <button
+                                      className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
+                                      onClick={() => onDeleteBankAccount(account)}
+                                      title={tGlobal('delete')}
+                                      disabled={deleting === account.id}
+                                    >
+                                      {deleting === account.id ? (
+                                        <IconSync className="w-[16px] h-[16px] fill-[var(--primary-color)] animate-spin duration-2000 ease-linear animate-infinite" />
+                                      ) : (
+                                        <IconDelete />
+                                      )}
+                                    </button>
+                                  </div>
+                                </td>
+                                <td className="text-left">{account.accountNickname}</td>
+                                <td className="text-left">
+                                  <div className="flex items-center relative pl-[25px]">
+                                    <span className="absolute top-[-2px] left-[0]">
+                                      <BankIcon code={account.code} />
+                                    </span>
+                                    {account.bankName}
+                                  </div>
+                                </td>
+                                <td className="text-left">{account.accountHolderName}</td>
+                                <td>{account.accountNumber}</td>
+                                <td>{getTransactionTypeNames(account.transactionTypes)}</td>
+                                <td>
+                                  {account.status === 1 ? (
+                                    <StatusEnabledComponent />
+                                  ) : (
+                                    <StatusDisabledComponent />
+                                  )}
+                                </td>
+                                <td>{account.lastUpdatedStr}</td>
+                              </tr>
+                            ))}
+                            {bankAccounts.map((account, index) => (
+                              <tr key={account.id}>
+                                <td className="col-no bg-[#ffffff]">{index + 1}</td>
+                                <td className="col-action bg-[#ffffff]">
+                                  <div className="flex justify-center">
+                                    <button
+                                      className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
+                                      onClick={() => onEditBankAccount(account.id)}
+                                      title={tGlobal('edit')}
+                                    >
+                                      <IconPen />
+                                    </button>
+                                    <button
+                                      className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
+                                      onClick={() => onDeleteBankAccount(account)}
+                                      title={tGlobal('delete')}
+                                      disabled={deleting === account.id}
+                                    >
+                                      {deleting === account.id ? (
+                                        <IconSync className="w-[16px] h-[16px] fill-[var(--primary-color)] animate-spin duration-2000 ease-linear animate-infinite" />
+                                      ) : (
+                                        <IconDelete />
+                                      )}
+                                    </button>
+                                  </div>
+                                </td>
+                                <td className="text-left">{account.accountNickname}</td>
+                                <td className="text-left">
+                                  <div className="flex items-center relative pl-[25px]">
+                                    <span className="absolute top-[-2px] left-[0]">
+                                      <BankIcon code={account.code} />
+                                    </span>
+                                    {account.bankName}
+                                  </div>
+                                </td>
+                                <td className="text-left">{account.accountHolderName}</td>
+                                <td>{account.accountNumber}</td>
+                                <td>{getTransactionTypeNames(account.transactionTypes)}</td>
+                                <td>
+                                  {account.status === 1 ? (
+                                    <StatusEnabledComponent />
+                                  ) : (
+                                    <StatusDisabledComponent />
+                                  )}
+                                </td>
+                                <td>{account.lastUpdatedStr}</td>
+                              </tr>
+                            ))}
+                            {bankAccounts.map((account, index) => (
+                              <tr key={account.id}>
+                                <td className="col-no bg-[#ffffff]">{index + 1}</td>
+                                <td className="col-action bg-[#ffffff]">
+                                  <div className="flex justify-center">
+                                    <button
+                                      className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
+                                      onClick={() => onEditBankAccount(account.id)}
+                                      title={tGlobal('edit')}
+                                    >
+                                      <IconPen />
+                                    </button>
+                                    <button
+                                      className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
+                                      onClick={() => onDeleteBankAccount(account)}
+                                      title={tGlobal('delete')}
+                                      disabled={deleting === account.id}
+                                    >
+                                      {deleting === account.id ? (
+                                        <IconSync className="w-[16px] h-[16px] fill-[var(--primary-color)] animate-spin duration-2000 ease-linear animate-infinite" />
+                                      ) : (
+                                        <IconDelete />
+                                      )}
+                                    </button>
+                                  </div>
+                                </td>
+                                <td className="text-left">{account.accountNickname}</td>
+                                <td className="text-left">
+                                  <div className="flex items-center relative pl-[25px]">
+                                    <span className="absolute top-[-2px] left-[0]">
+                                      <BankIcon code={account.code} />
+                                    </span>
+                                    {account.bankName}
+                                  </div>
+                                </td>
+                                <td className="text-left">{account.accountHolderName}</td>
+                                <td>{account.accountNumber}</td>
+                                <td>{getTransactionTypeNames(account.transactionTypes)}</td>
+                                <td>
+                                  {account.status === 1 ? (
+                                    <StatusEnabledComponent />
+                                  ) : (
+                                    <StatusDisabledComponent />
+                                  )}
+                                </td>
+                                <td>{account.lastUpdatedStr}</td>
+                              </tr>
+                            ))}
+                            {bankAccounts.map((account, index) => (
+                              <tr key={account.id}>
+                                <td className="col-no bg-[#ffffff]">{index + 1}</td>
+                                <td className="col-action bg-[#ffffff]">
+                                  <div className="flex justify-center">
+                                    <button
+                                      className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
+                                      onClick={() => onEditBankAccount(account.id)}
+                                      title={tGlobal('edit')}
+                                    >
+                                      <IconPen />
+                                    </button>
+                                    <button
+                                      className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
+                                      onClick={() => onDeleteBankAccount(account)}
+                                      title={tGlobal('delete')}
+                                      disabled={deleting === account.id}
+                                    >
+                                      {deleting === account.id ? (
+                                        <IconSync className="w-[16px] h-[16px] fill-[var(--primary-color)] animate-spin duration-2000 ease-linear animate-infinite" />
+                                      ) : (
+                                        <IconDelete />
+                                      )}
+                                    </button>
+                                  </div>
+                                </td>
+                                <td className="text-left">{account.accountNickname}</td>
+                                <td className="text-left">
+                                  <div className="flex items-center relative pl-[25px]">
+                                    <span className="absolute top-[-2px] left-[0]">
+                                      <BankIcon code={account.code} />
+                                    </span>
+                                    {account.bankName}
+                                  </div>
+                                </td>
+                                <td className="text-left">{account.accountHolderName}</td>
+                                <td>{account.accountNumber}</td>
+                                <td>{getTransactionTypeNames(account.transactionTypes)}</td>
+                                <td>
+                                  {account.status === 1 ? (
+                                    <StatusEnabledComponent />
+                                  ) : (
+                                    <StatusDisabledComponent />
+                                  )}
+                                </td>
+                                <td>{account.lastUpdatedStr}</td>
+                              </tr>
+                            ))}
                             {bankAccounts.map((account, index) => (
                               <tr key={account.id}>
                                 <td className="col-no bg-[#ffffff]">{index + 1}</td>
@@ -473,7 +953,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                           </tbody>
                         </table>
                       </div>
-                    </div>
+                  
                   )}
 
                   {!loading && !error && banks.length > 0 && bankAccounts.length === 0 && (

@@ -20,7 +20,7 @@ function ManagePayments() {
         </div>
       )}
       {activeTab === 'bankAccount' && (
-        <div className="bank-account-content h-[calc(100%-24px)]">
+        <div className="bank-account-content h-full">
           <BankAccountComponent setActiveTab={setActiveTab} activeTab={activeTab} />
         </div>
       )}
