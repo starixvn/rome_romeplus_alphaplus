@@ -2,7 +2,7 @@ using AgencyCash.API.RegisterCashMember.Constants;
 using AgencyCash.API.RegisterCashMember.Criteria;
 using AgencyCash.API.RegisterCashMember.Requests;
 using AgencyCash.API.RegisterCashMember.Responses;
-using AgencyCash.Shared.Helpers;
+using AgencyCash.API.Shared.Helpers;
 using Fanex.Data.Repository;
 
 namespace AgencyCash.API.RegisterCashMember;

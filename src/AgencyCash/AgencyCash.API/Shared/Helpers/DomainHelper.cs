@@ -1,6 +1,6 @@
 using System;
 
-namespace AgencyCash.Shared.Helpers
+namespace AgencyCash.API.Shared.Helpers
 {
     public static class DomainHelper
     {
