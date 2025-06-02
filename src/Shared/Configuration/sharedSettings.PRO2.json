@@ -264,5 +264,6 @@
     "OfferProfilePictureTour": true,
     "CashService": {
         "OfferedSites": "222227"
-    }
+    },
+    "CashServiceAPIUrl": "http://alphaplus_api_cashservice_alphaprod_2:5000/api"
 }

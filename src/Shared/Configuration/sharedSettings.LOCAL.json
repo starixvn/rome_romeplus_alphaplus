@@ -280,5 +280,6 @@
     "OfferProfilePictureTour": true,
     "CashService": {
         "OfferedSites": "755555,222227,BEST-ODDS,733333"
-    }
+    },
+    "CashServiceAPIUrl": "http://alphaplus_api_cashservice_local:5000/api"
 }
