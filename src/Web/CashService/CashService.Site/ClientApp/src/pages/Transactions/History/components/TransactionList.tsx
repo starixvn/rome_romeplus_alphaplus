@@ -102,6 +102,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
   useEffect(() => {
     const paramsForFilterOrTypeChange: TransactionsHistoryParams = {
       ...apiParams,
+      account: '',
       pageIndex: 1,
       pageSize: PAGE_SIZE_OPTIONS[0],
       searchText: '',
