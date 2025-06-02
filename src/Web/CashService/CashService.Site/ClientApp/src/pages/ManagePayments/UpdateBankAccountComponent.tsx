@@ -262,13 +262,16 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
       }
 
       const countryCodes = response.data || [];
+      if (countryCodes.length == 0) {
+        return;
+      }
 
-      if (countryCodes.length > 0) {
-        setCountryCode(countryCodes[0]);
+      if(!formState.countryCode && !formState.mobile) {
+        var c = countryCodes[0];
+        setCountryCode(c);
+        setFormState((prev) => ({ ...prev, countryCode: c }));
+        setOrgFormState((prev) => ({ ...prev, countryCode: c }));
         setMobile('');
-
-        setFormState((prev) => ({ ...prev, countryCode: countryCodes[0] }));
-        setOrgFormState((prev) => ({ ...prev, countryCode: countryCodes[0] }));
       }
     };
 

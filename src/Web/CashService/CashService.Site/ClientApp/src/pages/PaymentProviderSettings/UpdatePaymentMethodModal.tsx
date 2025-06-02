@@ -90,8 +90,8 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
 
   const validateFormState = () => {
     const errors: typeof fieldErrors = {
-      selectedTransactionType: !formState.selectedTransactionType ? tGlobal('pleaseFillField') : '',
-      selectedPaymentMethod: !formState.selectedPaymentMethod ? tGlobal('pleaseFillField') : '',
+      selectedTransactionType: !parseInt(formState.selectedTransactionType) ? tGlobal('pleaseFillField') : '',
+      selectedPaymentMethod: !parseInt(formState.selectedPaymentMethod) ? tGlobal('pleaseFillField') : '',
       apiKey: !formState.apiKey ? tGlobal('pleaseFillField') : '',
       merchantID: !formState.merchantID ? tGlobal('pleaseFillField') : '',
       appSecret: !formState.appSecret ? tGlobal('pleaseFillField') : '',
@@ -123,7 +123,8 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
     const loadPaymentMethods = async () => {
       if (!formState.selectedTransactionType) {
         setPaymentMethods([]);
-        setAllMethodsInactive(false);
+        setAllMethodsInactive(false);    
+        setFormState({ ...formState, 'selectedPaymentMethod': '0' });
         return;
       }
 
@@ -141,6 +142,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
         paymentMethods: [],
         channelContact: { tele: '' },
       };
+
       setPaymentMethods(addPaymentMethodInfo.paymentMethods);
       setTelegramAssistantUrl(addPaymentMethodInfo.channelContact.tele || '');
       setAllMethodsInactive(
@@ -149,6 +151,9 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
             (method: PaymentMethod) => method.status === inactiveStatus
           )
       );
+      
+      var ms = addPaymentMethodInfo.paymentMethods.filter((p: any) => p.id !== 0 && p.status === 3);
+      setFormState({ ...formState, 'selectedPaymentMethod': ms.length > 0 ? ms[0].id.toString() : '0' });
     };
 
     loadPaymentMethods();
