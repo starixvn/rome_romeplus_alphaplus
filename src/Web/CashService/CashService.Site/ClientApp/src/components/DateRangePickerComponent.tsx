@@ -33,7 +33,7 @@ const quickRanges = [
     range: () => {
       const todayStart = new Date();
       const todayStartInGMT4 = convertToGMT4(todayStart);
-      todayStartInGMT4.setHours(0, 1, 0, 0);
+      todayStartInGMT4.setHours(0, 0, 0, 0);
 
       const todayEnd = new Date();
       const todayEndInGMT4 = convertToGMT4(todayEnd);
@@ -47,7 +47,7 @@ const quickRanges = [
       const yesterdayStart = new Date();
       const yesterdayStartInGMT4 = convertToGMT4(yesterdayStart);
       yesterdayStartInGMT4.setDate(yesterdayStartInGMT4.getDate() - 1);
-      yesterdayStartInGMT4.setHours(0, 1, 0, 0);
+      yesterdayStartInGMT4.setHours(0, 0, 0, 0);
 
       const yesterdayEnd = new Date();
       const yesterdayEndInGMT4 = convertToGMT4(yesterdayEnd);
@@ -66,7 +66,7 @@ const quickRanges = [
       const sevenDaysAgo = new Date();
       const sevenDaysAgoInGMT4 = convertToGMT4(sevenDaysAgo);
       sevenDaysAgoInGMT4.setDate(sevenDaysAgoInGMT4.getDate() - 6);
-      sevenDaysAgoInGMT4.setHours(0, 1, 0, 0);
+      sevenDaysAgoInGMT4.setHours(0, 0, 0, 0);
       return { startDate: sevenDaysAgoInGMT4, endDate: endInGMT4 };
     },
   },
@@ -78,7 +78,7 @@ const quickRanges = [
       const startInGMT4 = convertToGMT4(start);
       const endInGMT4 = convertToGMT4(end);
       startInGMT4.setDate(endInGMT4.getDate() - 29);
-      startInGMT4.setHours(0, 1, 0, 0);
+      startInGMT4.setHours(0, 0, 0, 0);
       endInGMT4.setHours(23, 59, 59, 0);
       return { startDate: startInGMT4, endDate: endInGMT4 };
     },
@@ -89,7 +89,7 @@ const quickRanges = [
       const now = new Date();
       const nowInGMT4 = convertToGMT4(now);
       const startInGMT4 = new Date(nowInGMT4.getFullYear(), nowInGMT4.getMonth(), 1);
-      startInGMT4.setHours(0, 1, 0, 0);
+      startInGMT4.setHours(0, 0, 0, 0);
 
       const endInGMT4 = new Date(nowInGMT4.getFullYear(), nowInGMT4.getMonth() + 1, 0);
       if (endInGMT4 > nowInGMT4) {
@@ -106,7 +106,7 @@ const quickRanges = [
       const now = new Date();
       const nowInGMT4 = convertToGMT4(now);
       const startInGMT4 = new Date(nowInGMT4.getFullYear(), nowInGMT4.getMonth() - 1, 1);
-      startInGMT4.setHours(0, 1, 0, 0);
+      startInGMT4.setHours(0, 0, 0, 0);
       const endInGMT4 = new Date(nowInGMT4.getFullYear(), nowInGMT4.getMonth(), 0);
       endInGMT4.setHours(23, 59, 59, 0);
       return { startDate: startInGMT4, endDate: endInGMT4 };
@@ -139,7 +139,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
   React.useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (ref.current && !ref.current.contains(event.target as Node)) {
-        setOpen(false);
+        handleApply();
       }
     }
     if (open) {
@@ -148,10 +148,16 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [open]);
+  }, [open, onChange, pendingRange]);
 
   const handleApply = () => {
     onChange([pendingRange[0].startDate ?? null, pendingRange[0].endDate ?? null]);
+    setOpen(false);
+  };
+
+  const handleQuickRangeClick = (range: Range) => {
+    setPendingRange([{ ...range, key: 'selection' }]);
+    onChange([range.startDate ?? null, range.endDate ?? null]);
     setOpen(false);
   };
 
@@ -178,7 +184,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
                 <button
                   key={item.label}
                   className="font-semibold transition cursor-pointer block w-full text-left px-[10px] py-[5px] leading-[20px]  text-[var(--datarangepicker-color)] hover:bg-[var(--datarangepicker-cell-background-active)] hover:text-[var(--datarangepicker-color-hover)]"
-                  onClick={() => setPendingRange([{ ...item.range(), key: 'selection' }])}
+                  onClick={() => handleQuickRangeClick(item.range())}
                   type="button"
                 >
                   {item.label}

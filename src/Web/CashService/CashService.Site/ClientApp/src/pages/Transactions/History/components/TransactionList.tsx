@@ -34,7 +34,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     const sevenDaysAgo = new Date();
     const sevenDaysAgoInGMT4 = convertToGMT4(sevenDaysAgo);
     sevenDaysAgoInGMT4.setDate(sevenDaysAgoInGMT4.getDate() - 6);
-    sevenDaysAgoInGMT4.setHours(0, 1, 0, 0);
+    sevenDaysAgoInGMT4.setHours(0, 0, 0, 0);
     return {
       dateRange: [sevenDaysAgoInGMT4.toLocaleString('en-US'), todayInGMT4.toLocaleString('en-US')],
       status: -1,
