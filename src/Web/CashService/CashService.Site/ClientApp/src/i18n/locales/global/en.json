@@ -44,5 +44,6 @@
   "completed": "Completed",
   "processing": "Processing",
   "failed": "Failed",
-  "maintenance": "Maintenance"
+  "maintenance": "Maintenance",
+  "somethingWentWrong": "Something went wrong. Please try again or contact the provider directly for assistance."
 }

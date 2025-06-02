@@ -43,5 +43,6 @@
   "completed": "Hoàn thành",
   "processing": "Đang xử lý",
   "failed": "Thất bại",
-  "maintenance": "Bảo trì"
+  "maintenance": "Bảo trì",
+  "somethingWentWrong": "Đã xảy ra lỗi. Vui lòng thử lại hoặc liên hệ nhà cung cấp trực tiếp để được hỗ trợ."
 } 

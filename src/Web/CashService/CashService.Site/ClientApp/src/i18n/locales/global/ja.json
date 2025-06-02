@@ -43,5 +43,6 @@
   "completed": "完了",
   "processing": "処理中",
   "failed": "失敗",
-  "maintenance": "メンテナンス"
+  "maintenance": "メンテナンス",
+  "somethingWentWrong": "何かがおかしいです。もう一度試してください、または提供者に直接連絡して支援を受けてください。"
 } 

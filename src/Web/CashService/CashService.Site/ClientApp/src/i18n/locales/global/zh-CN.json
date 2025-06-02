@@ -43,5 +43,6 @@
   "completed": "已完成",
   "processing": "处理中",
   "failed": "失败",
-  "maintenance": "维护"
+  "maintenance": "维护",
+  "somethingWentWrong": "发生了错误。请再试一次，或直接联系提供者寻求帮助。"
 } 
