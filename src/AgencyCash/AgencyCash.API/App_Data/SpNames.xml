@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Functions>
   <Function Name="Shared">
-    <Setting Key="Acc_ServerDBConfigSelByCust" SpName="Acc_ServerDBConfigSelByCust_uat2" DbName="DBGLOB.GlobCustDB.asv_CashService" />
+    <Setting Key="Acc_ServerDBConfigSelByCust" SpName="Acc_ServerDBConfigSelByCust" DbName="DBGLOB.GlobCustDB.asv_CashService" />
     <Setting Key="Age_CashService_CustServiceTypeSel" SpName="Age_CashService_CustServiceTypeSel" DbName="DBCust.CustDB.asv_CashService" />
   </Function>
   <Function Name="Register Cash Member">
-    <Setting Key="API_CustomerInsMember_CashMember_CheckUsername" SpName="API_CustomerInsMember_CashMember_CheckUsername_UAT2" DbName="DBGLOB.GlobCustDB.asv_CashService" />
-	  <Setting Key="API_CustomerInsMember_CashMember_Validate" SpName="API_CustomerInsMember_CashMember_Validate_UAT2" DbName="DBCust.CustDB.asv_CashService" />
+    <Setting Key="API_CustomerInsMember_CashMember_CheckUsername" SpName="API_CustomerInsMember_CashMember_CheckUsername" DbName="DBGLOB.GlobCustDB.asv_CashService" />
+	  <Setting Key="API_CustomerInsMember_CashMember_Validate" SpName="API_CustomerInsMember_CashMember_Validate" DbName="DBCust.CustDB.asv_CashService" />
     <Setting Key="Age_CustomerSelSuggestUsernameNew" SpName="Age_CustomerSelSuggestUsernameNew" DbName="DBGLOB.GlobCustDB.asv_CashService" />
-    <Setting Key="API_CustomerIns_CashMember_Register" SpName="API_CustomerIns_CashMember_Register_UAT2" DbName="DBGLOB.GlobCustDB.asv_CashService" />
-	  <Setting Key="API_CustomerInsMember_CashMember" SpName="API_CustomerInsMember_CashMember_UAT2" DbName="DBCust.CustDB.asv_CashService" />
+    <Setting Key="API_CustomerIns_CashMember_Register" SpName="API_CustomerIns_CashMember_Register" DbName="DBGLOB.GlobCustDB.asv_CashService" />
+	  <Setting Key="API_CustomerInsMember_CashMember" SpName="API_CustomerInsMember_CashMember" DbName="DBCust.CustDB.asv_CashService" />
 	  <Setting Key="Acc_CustomerIns_Rollback" SpName="Acc_CustomerIns_Rollback" DbName="DBGLOB.GlobCustDB.asv_CashService" />
   </Function>
   <Function Name="Payments: Deposit">
