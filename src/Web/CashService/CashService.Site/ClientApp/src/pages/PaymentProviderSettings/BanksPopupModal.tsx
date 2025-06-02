@@ -67,7 +67,7 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
                         <td className='text-left!'>
                           <div className='flex items-center relative pl-[25px]'>
                             <span className='absolute top-[-2px] left-[0]'><BankIcon code={bank.code} /></span>
-                            {bank.name}
+                            {tGlobal(bank.code)}
                           </div>
                         </td>
                       </tr>

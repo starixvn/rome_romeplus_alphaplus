@@ -329,7 +329,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
                     <CustomDropdown
                       options={banks.map((bank) => ({
                         value: bank.id,
-                        label: bank.name,
+                        label: tGlobal(bank.code),
                         icon: <BankIcon code={bank.code} />,
                       }))}
                       onSelect={onBankChange}

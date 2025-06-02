@@ -31,6 +31,7 @@ interface ManualAddWithdrawalFormProps {
 
 const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClose }) => {
   const { t } = useTranslation('pendingWithdrawal');
+  const { t: tGlobal } = useTranslation('global');
   const [custId, setCustId] = useState<number | null>(null);
   const [from, setFrom] = useState<string>('');
   const [to, setTo] = useState<string>('');
@@ -301,7 +302,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                   <DropdownComponent
                     options={agentBankInfo.map((bank) => ({
                       value: bank.value,
-                      label: bank.label,
+                      label: tGlobal(bank.code),
                       icon: <BankIcon code={bank.code} />,
                       attributes: {
                         providerId: bank.providerId,
@@ -321,7 +322,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                   <DropdownComponent
                     options={memberBankInfo.map((bank) => ({
                       value: bank.value,
-                      label: bank.label,
+                      label: tGlobal(bank.code),
                       icon: <BankIcon code={bank.code} />,
                       attributes: {
                         providerId: bank.providerId,

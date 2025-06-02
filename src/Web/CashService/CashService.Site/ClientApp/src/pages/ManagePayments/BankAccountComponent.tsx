@@ -334,7 +334,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                             options={(() => {
                               return banks.map((bank) => ({
                                 value: bank.id,
-                                label: bank.id === 0 ? tGlobal('all') : bank.name,
+                                label: bank.id === 0 ? tGlobal('all') : tGlobal(bank.code),
                                 icon: <BankIcon code={bank.code} />,
                               }));
                             })()}
