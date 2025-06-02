@@ -87,6 +87,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   const [countryCode, setCountryCode] = useState<string>('');
   const [mobile, setMobile] = useState<string>('');
   const [isBlockAction, setIsBlockAction] = useState<boolean>(false);
+  const [suggestedCountryCode, setSuggestedCountryCode] = useState<string>('');
 
   const [formState, setFormState] = useState<FormState>({
     accountNickname: bankAccount.accountNickname,
@@ -184,104 +185,93 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
     return !hasError;
   };
 
-  useEffect(() => {
-    const fetchBankAccount = async () => {
-      setLoading(true);
-      const response = await paymentProviderService.getBankAccountById(bankAccount.id);
-      if (response.error) {
-        setError(response.error.message);
-        setLoading(false);
-        return;
-      }
-
-      const fetchedBankAccount = response.data || createDefaultBankAccount();
-
-      if (fetchedBankAccount) {
-        const newFormState = {
-          accountNickname: fetchedBankAccount.accountNickname,
-          accountHolderName: fetchedBankAccount.accountHolderName,
-          accountNumber: fetchedBankAccount.accountNumber,
-          status: fetchedBankAccount.status.toString(),
-          promptPay: fetchedBankAccount.promptPay,
-          selectedBank: fetchedBankAccount.bankId.toString(),
-          bankDepositMatchingMode: fetchedBankAccount.bankDepositMatchingMode,
-          bank_TransTypeList: fetchedBankAccount.bank_TransTypeList,
-          agent_DepositMatchingMode: fetchedBankAccount.agent_DepositMatchingMode,
-          selectedManualDeposit: fetchedBankAccount.agent_TransTypeList
-            .split(',')
-            .includes(BANK_TRANSACTION_TYPES[1].id.toString()),
-          selectedAutoDeposit: fetchedBankAccount.agent_TransTypeList
-            .split(',')
-            .includes(BANK_TRANSACTION_TYPES[2].id.toString()),
-          selectedManualWithdrawal: fetchedBankAccount.agent_TransTypeList
-            .split(',')
-            .includes(BANK_TRANSACTION_TYPES[3].id.toString()),
-          creator: fetchedBankAccount.creator,
-
-          mobile: fetchedBankAccount.mobile.split('-')[1],
-          countryCode: fetchedBankAccount.mobile.split('-')[0],
-        };
-        setFormState(newFormState);
-        setOrgFormState(newFormState);
-
-        if (fetchedBankAccount.promptPay) {
-          const fm = fetchedBankAccount.mobile;
-          const c = fm.includes('-') ? fm.split('-')[0] : '';
-          const m = fm.includes('-') ? fm.split('-')[1] : fm;
-          setCountryCode(c);
-          setMobile(m);
-          setFormState({ ...formState, countryCode: c, mobile: m });
-          setOrgFormState({ ...orgFormState, countryCode: c, mobile: m });
-        }
-      }
+  const fetchBankAccount = async () => {
+    setLoading(true);
+    const response = await paymentProviderService.getBankAccountById(bankAccount.id);
+    if (response.error) {
+      setError(response.error.message);
       setLoading(false);
-    };
+      return;
+    }
 
-    const fetchBanks = async () => {
-      const response = await paymentProviderService.getBanksByTransactionType(0);
-      if (response.error) {
-        setError(response.error.message);
-        return;
+    const fetchedBankAccount = response.data || createDefaultBankAccount();
+
+    if (fetchedBankAccount) {
+      var c, m;
+      if (fetchedBankAccount.promptPay) {
+        const fm = fetchedBankAccount.mobile;
+        c = fm.includes('-') ? fm.split('-')[0] : '';
+        m = fm.includes('-') ? fm.split('-')[1] : fm;
+        setCountryCode(c);
+        setMobile(m);
+      } else {
+        c = suggestedCountryCode;
+        m = '';
       }
 
-      const fetchedBanks = response.data || [];
-      setBanks(fetchedBanks);
-    };
+      const newFormState = {
+        accountNickname: fetchedBankAccount.accountNickname,
+        accountHolderName: fetchedBankAccount.accountHolderName,
+        accountNumber: fetchedBankAccount.accountNumber,
+        status: fetchedBankAccount.status.toString(),
+        promptPay: fetchedBankAccount.promptPay,
+        selectedBank: fetchedBankAccount.bankId.toString(),
+        bankDepositMatchingMode: fetchedBankAccount.bankDepositMatchingMode,
+        bank_TransTypeList: fetchedBankAccount.bank_TransTypeList,
+        agent_DepositMatchingMode: fetchedBankAccount.agent_DepositMatchingMode,
+        selectedManualDeposit: fetchedBankAccount.agent_TransTypeList
+          .split(',')
+          .includes(BANK_TRANSACTION_TYPES[1].id.toString()),
+        selectedAutoDeposit: fetchedBankAccount.agent_TransTypeList
+          .split(',')
+          .includes(BANK_TRANSACTION_TYPES[2].id.toString()),
+        selectedManualWithdrawal: fetchedBankAccount.agent_TransTypeList
+          .split(',')
+          .includes(BANK_TRANSACTION_TYPES[3].id.toString()),
+        creator: fetchedBankAccount.creator,
 
-    Promise.all([fetchBanks(), fetchBankAccount()]).finally(() => {
+        mobile: m,
+        countryCode: c,
+      };
+
+      setFormState(newFormState);
+      setOrgFormState(newFormState);
+    }
+    setLoading(false);
+  };
+
+  const fetchBanks = async () => {
+    const response = await paymentProviderService.getBanksByTransactionType(0);
+    if (response.error) {
+      setError(response.error.message);
+      return;
+    }
+
+    const fetchedBanks = response.data || [];
+    setBanks(fetchedBanks);
+  };
+
+  const fetchCountryCodes = async () => {
+    const response = await baseAPI.getCountryCodes();
+    if (response.error) {
+      setError(response.error.message);
+      return;
+    }
+
+    const countryCodes = response.data || [];
+    if (countryCodes.length == 0) {
+      return;
+    }
+
+    setSuggestedCountryCode(countryCodes[0]);
+  };
+
+  useEffect(() => {
+    Promise.all([fetchBanks(), fetchBankAccount(), fetchCountryCodes()]).finally(() => {
       setInitialLoading(false);
     });
-  }, [bankAccount.id, tManagePayments]);
+  }, []);
 
-  useEffect(() => {
-    const fetchCountryCodes = async () => {
-      const response = await baseAPI.getCountryCodes();
-      if (response.error) {
-        setError(response.error.message);
-        return;
-      }
-
-      const countryCodes = response.data || [];
-      if (countryCodes.length == 0) {
-        return;
-      }
-
-      if(!formState.countryCode && !formState.mobile) {
-        var c = countryCodes[0];
-        setCountryCode(c);
-        setMobile('');
-        setFormState({ ...formState, countryCode: c, mobile: '' });
-        setOrgFormState({ ...orgFormState, countryCode: c, mobile: '' });
-      }
-    };
-
-    if (!formState.promptPay && !formState.countryCode) {
-      setLoading(true);
-      fetchCountryCodes().finally(() => {
-        setLoading(false);
-      });
-    }
-  }, [formState.promptPay]);
 
   if (initialLoading) {
     return <Loading />;

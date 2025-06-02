@@ -218,29 +218,33 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
     setLoading(false);
   };
 
-  const updateSelectTransactionTypeError = () => {
-    setFieldErrors({
-      ...fieldErrors,
-      selectedTransactionType:
-        !selectedManualDeposit && !selectedAutoDeposit && !selectedManualWithdrawal
-          ? tManagePayments('pleaseSelectTransactionType')
-          : '',
-    });
-  };
   // Toggle handlers for transaction type buttons
   const toggleManualDeposit = () => {
+    var isValid = (!selectedManualDeposit) || selectedAutoDeposit || selectedManualWithdrawal;
     setSelectedManualDeposit(!selectedManualDeposit);
-    updateSelectTransactionTypeError();
+
+    setFieldErrors({
+      ...fieldErrors,
+      selectedTransactionType: !isValid ? tManagePayments('pleaseSelectTransactionType') : '',
+    });
   };
 
   const toggleAutoDeposit = () => {
+    var isValid = selectedManualDeposit || !selectedAutoDeposit || selectedManualWithdrawal;
     setSelectedAutoDeposit(!selectedAutoDeposit);
-    updateSelectTransactionTypeError();
+    setFieldErrors({
+      ...fieldErrors,
+      selectedTransactionType: !isValid ? tManagePayments('pleaseSelectTransactionType') : '',
+    });
   };
 
   const toggleManualWithdrawal = () => {
+    var isValid = selectedManualDeposit || selectedAutoDeposit || !selectedManualWithdrawal;
     setSelectedManualWithdrawal(!selectedManualWithdrawal);
-    updateSelectTransactionTypeError();
+    setFieldErrors({
+      ...fieldErrors,
+      selectedTransactionType: !isValid ? tManagePayments('pleaseSelectTransactionType') : '',
+    });
   };
 
   // Handler for bank selection changes
