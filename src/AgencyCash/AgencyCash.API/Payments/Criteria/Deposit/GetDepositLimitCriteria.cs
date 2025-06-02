@@ -26,11 +26,15 @@ public class GetDepositLimitCriteria : NonQueryCommand
         int agentId,
         int custId,
         byte paymentType,
-        short custDBGroupId)
+        short providerId = 0,
+        short paymentMethodId = 0,
+        short custDBGroupId = 0)
     {
         AgentId = agentId;
         CustId = custId;
         PaymentType = paymentType;
+        ProviderId = providerId;
+        PaymentMethodId = paymentMethodId;
         CustDBGroupId = custDBGroupId;
     }
 

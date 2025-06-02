@@ -3,7 +3,7 @@ using Fanex.Data.Repository;
 
 namespace AgencyCash.API.Payments.Criteria.Deposit;
 
-public class ManualDepositCriteria(
+public class AddTransactionDepositCriteria(
     int agentId,
     int custId,
     short siteDBGroupId,
@@ -16,7 +16,7 @@ public class ManualDepositCriteria(
     short paymentMethodId,
     string paymentFrom,
     string paymentTo,
-    decimal exchangeRate,
+    //decimal exchangeRate,
     decimal amount,
     byte[] paySlip,
     string ip,
@@ -46,7 +46,7 @@ public class ManualDepositCriteria(
 
     public string PaymentTo { get; } = paymentTo;
 
-    public decimal ExchangeRate { get; } = exchangeRate;
+    public decimal ExchangeRate { get; }// = exchangeRate;
 
     public decimal Amount { get; } = amount;
 

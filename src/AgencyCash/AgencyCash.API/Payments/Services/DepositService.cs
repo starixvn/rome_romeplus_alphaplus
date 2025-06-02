@@ -12,6 +12,8 @@ public interface IDepositService
     Task<DepositLimit> GetLimit(GetDepositLimitRequest request);
 
     Task<Result> Manual(ManualDepositRequest request);
+
+    Task<Result> Auto(AutoDepositRequest request);
 }
 
 public class DepositService(
@@ -52,11 +54,11 @@ public class DepositService(
         var limitCriteria = new GetDepositLimitCriteria(
             request.AgentId,
             request.CustId,
-            BankAccount,
-            siteDBConfig.CustDBGroupId);
+            paymentType: BankAccount,
+            custDBGroupId: siteDBConfig.CustDBGroupId);
         await repository.ExecuteAsync(limitCriteria);
 
-        var criteria = new ManualDepositCriteria(
+        var criteria = new AddTransactionDepositCriteria(
             request.AgentId,
             request.CustId,
             siteDBConfig.SiteDBGroupId,
@@ -69,7 +71,6 @@ public class DepositService(
             request.PaymentMethodId,
             request.PaymentFrom,
             request.PaymentTo,
-            1,
             request.Amount,
             request.PaySlipBuffer,
             request.IP,
@@ -85,5 +86,44 @@ public class DepositService(
         return result;
     }
 
+    public async Task<Result> Auto(AutoDepositRequest request)
+    {
+        var siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
+        var validateResult = await ValidatePayment(request.AgentId, request.CustId, Deposit, siteDBConfig.CustDBGroupId);
 
+        if (!validateResult.IsSuccess)
+        {
+            return validateResult;
+        }
+
+        const byte Gateway = 1;
+        var limitCriteria = new GetDepositLimitCriteria(
+            request.AgentId,
+            request.CustId,
+            paymentType: Gateway,
+            providerId: request.ProviderId ?? 0,
+            paymentMethodId: request.PaymentMethodId,
+            custDBGroupId: siteDBConfig.CustDBGroupId);
+        await repository.ExecuteAsync(limitCriteria);
+
+        // var criteria = new AddTransactionDepositCriteria(
+        //     request.AgentId,
+        //     request.CustId,
+        //     siteDBConfig.SiteDBGroupId,
+        //     limitCriteria.AgentGivenCredit,
+        //     limitCriteria.CreditMembers_GivenCredit,
+        //     limitCriteria.MinAmt,
+        //     limitCriteria.MaxAmt,
+        //     Deposit,
+        //     Gateway,
+        //     request.PaymentMethodId,
+        //     request.PaymentFrom,
+        //     request.PaymentTo,
+        //     request.Amount,
+        //     request.PaySlipBuffer,
+        //     request.IP,
+        //     request.Remark);
+
+        throw new NotImplementedException("Auto deposit is not implemented yet.");
+    }
 }
