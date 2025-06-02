@@ -230,8 +230,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
           const m = fm.includes('-') ? fm.split('-')[1] : fm;
           setCountryCode(c);
           setMobile(m);
-          setFormState((prev) => ({ ...prev, countryCode: c, mobile: m }));
-          setOrgFormState((prev) => ({ ...prev, countryCode: c, mobile: m }));
+          setFormState({ ...formState, countryCode: c, mobile: m });
+          setOrgFormState({ ...orgFormState, countryCode: c, mobile: m });
         }
       }
       setLoading(false);
@@ -269,9 +269,9 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
       if(!formState.countryCode && !formState.mobile) {
         var c = countryCodes[0];
         setCountryCode(c);
-        setFormState((prev) => ({ ...prev, countryCode: c }));
-        setOrgFormState((prev) => ({ ...prev, countryCode: c }));
         setMobile('');
+        setFormState({ ...formState, countryCode: c, mobile: '' });
+        setOrgFormState({ ...orgFormState, countryCode: c, mobile: '' });
       }
     };
 
