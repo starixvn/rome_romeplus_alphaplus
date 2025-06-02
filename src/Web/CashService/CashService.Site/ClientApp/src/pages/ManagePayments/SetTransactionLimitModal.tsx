@@ -151,10 +151,8 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
     }
 
     // Validate daily withdrawal count
-    if (
-      parseInt(formState.dailyWithdrawalCount) < 1 ||
-      parseInt(formState.dailyWithdrawalCount) > 32767
-    ) {
+    var dailyWithdrawalCountNum = parseInt(formState.dailyWithdrawalCount) || 0;
+    if (dailyWithdrawalCountNum < 1 || dailyWithdrawalCountNum > 32767) {
       setFieldErrors((prev) => ({
         ...prev,
         dailyWithdrawalCount: tManagePayments('dailyWithdrawalCountOutOfRange'),
@@ -280,7 +278,6 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
                   onChange={(e) => onInputChange('minDeposit', ensureDecimalInput(e).target.value)}
                   min="0"
                   step="0.01"
-                  required
                   maxLength={12}
                 />
                 <ValidateMessageComponent message={fieldErrors.minDeposit} />
@@ -298,7 +295,6 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
                   onChange={(e) => onInputChange('maxDeposit', ensureDecimalInput(e).target.value)}
                   min="0"
                   step="0.01"
-                  required
                   maxLength={12}
                 />
                 <ValidateMessageComponent message={fieldErrors.maxDeposit} />
@@ -323,7 +319,6 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
                   }
                   min="0"
                   step="0.01"
-                  required
                   maxLength={12}
                 />
                 <ValidateMessageComponent message={fieldErrors.minWithdrawal} />
@@ -343,7 +338,6 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
                   }
                   min="0"
                   step="0.01"
-                  required
                   maxLength={12}
                 />
                 <ValidateMessageComponent message={fieldErrors.maxWithdrawal} />
@@ -361,7 +355,6 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
                   }
                   min="0"
                   maxLength={5}
-                  required
                 />
                 <ValidateMessageComponent message={fieldErrors.dailyWithdrawalCount} />
                 <label className=" block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold">

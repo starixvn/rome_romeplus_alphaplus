@@ -142,7 +142,6 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
                 value={dailyLimit}
                 onChange={onDailyLimitChange}
                 min="0"
-                required
               />
               <ValidateMessageComponent message={fieldErrors.dailyLimit} />
             </div>
