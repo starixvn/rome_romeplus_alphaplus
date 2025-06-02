@@ -454,7 +454,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                                     <span className="absolute top-[-2px] left-[0]">
                                       <BankIcon code={account.code} />
                                     </span>
-                                    {account.bankName}
+                                    {tGlobal(account.code)} 
                                   </div>
                                 </td>
                                 <td className="text-left">{account.accountHolderName}</td>

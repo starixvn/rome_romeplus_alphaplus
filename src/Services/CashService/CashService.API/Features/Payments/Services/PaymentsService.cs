@@ -228,6 +228,8 @@ public class PaymentsService(
 
         foreach (var bank in accounts)
         {
+            bank.BankName = cacheRefService.GetBankName(bank.BankId, bank.BankName, languageCode);
+            
             if(bank.Bank_DepositMatchingMode != null)
             {
                 bank.BankDepositMatchingMode = Newtonsoft.Json.JsonConvert.DeserializeObject<DepositMatchingModeModel>(bank.Bank_DepositMatchingMode);
