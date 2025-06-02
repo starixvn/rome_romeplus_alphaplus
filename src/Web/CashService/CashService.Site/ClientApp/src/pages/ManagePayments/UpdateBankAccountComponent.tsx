@@ -207,7 +207,10 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
       } else {
         c = suggestedCountryCode;
         m = '';
+        setCountryCode(c);
+        setMobile(m);
       }
+
 
       const newFormState = {
         accountNickname: fetchedBankAccount.accountNickname,
@@ -267,11 +270,10 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   };
 
   useEffect(() => {
-    Promise.all([fetchBanks(), fetchBankAccount(), fetchCountryCodes()]).finally(() => {
+    Promise.all([fetchBanks(), fetchCountryCodes(), fetchBankAccount()]).finally(() => {
       setInitialLoading(false);
     });
   }, []);
-
 
   if (initialLoading) {
     return <Loading />;
@@ -640,7 +642,11 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 <div className="btn-group" role="group">
                   <ButtonOnComponent
                     isActive={formState.promptPay}
-                    onClick={() => setFormState({ ...formState, promptPay: true })}
+                    onClick={() =>  {
+                      setCountryCode(suggestedCountryCode);
+                      setMobile('');
+                      setFormState({ ...formState, promptPay: true, countryCode: suggestedCountryCode, mobile: '' });
+                    }}
                   />
                   <ButtonOffComponent
                     isActive={!formState.promptPay}
