@@ -88,6 +88,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   const [mobile, setMobile] = useState<string>('');
   const [isBlockAction, setIsBlockAction] = useState<boolean>(false);
   const [suggestedCountryCode, setSuggestedCountryCode] = useState<string>('');
+  const [fetchedBankAccount, setFetchedBankAccount] = useState<BankAccount | null>(null);
 
   const [formState, setFormState] = useState<FormState>({
     accountNickname: bankAccount.accountNickname,
@@ -195,6 +196,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
     }
 
     const fetchedBankAccount = response.data || createDefaultBankAccount();
+    setFetchedBankAccount(fetchedBankAccount);
 
     if (fetchedBankAccount) {
       var c, m;
@@ -210,7 +212,6 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
         setCountryCode(c);
         setMobile(m);
       }
-
 
       const newFormState = {
         accountNickname: fetchedBankAccount.accountNickname,
@@ -643,9 +644,18 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                   <ButtonOnComponent
                     isActive={formState.promptPay}
                     onClick={() =>  {
-                      setCountryCode(suggestedCountryCode);
-                      setMobile('');
-                      setFormState({ ...formState, promptPay: true, countryCode: suggestedCountryCode, mobile: '' });
+                      if(fetchedBankAccount?.promptPay) { 
+                        const fm = fetchedBankAccount.mobile;
+                        const c = fm.includes('-') ? fm.split('-')[0] : '';
+                        const m = fm.includes('-') ? fm.split('-')[1] : fm;
+                        setCountryCode(c);
+                        setMobile(m);
+                        setFormState({ ...formState, promptPay: true, countryCode: c, mobile: m });
+                      } else {
+                        setCountryCode(suggestedCountryCode);
+                        setMobile('');
+                        setFormState({ ...formState, promptPay: true, countryCode: suggestedCountryCode, mobile: '' });
+                      }
                     }}
                   />
                   <ButtonOffComponent
