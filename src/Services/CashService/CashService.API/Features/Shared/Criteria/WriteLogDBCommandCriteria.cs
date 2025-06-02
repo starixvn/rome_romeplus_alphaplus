@@ -11,7 +11,7 @@ public class WriteLogDBCommandCriteria : NonQueryCommand
     {
         CustId = request.ActorId;
         UserId = request.UserId;
-        SiteDB = request.SiteDB;
+        SiteDB = request.CustDBGroupId;
         
         ActionId = writeLogDBCommandModel.ActionId;
         TrackingValue = writeLogDBCommandModel.TrackingValue;

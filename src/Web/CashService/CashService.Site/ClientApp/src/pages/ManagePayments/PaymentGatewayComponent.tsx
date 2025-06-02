@@ -5,7 +5,7 @@ import {
   ButtonFullComponent,
   ButtonOutlineComponent,
   ButtonTabActiveComponent,
-  ButtonTabComponent,
+  ButtonTabInactiveComponent,
 } from '../../components/ButtonComponents';
 import { IconInfo, IconPen } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
@@ -106,7 +106,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
               )}
             </li>
             <li>
-              <ButtonTabComponent
+              <ButtonTabInactiveComponent
                 text={tManagePayments('bankAccount')}
                 onClick={() => setActiveTab('bankAccount')}
               />

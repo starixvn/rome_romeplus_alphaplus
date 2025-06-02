@@ -34,7 +34,7 @@ import {
   hasManualWithdrawalTransactionType,
   hasWithdrawalTransactionType,
 } from '../../utils/bankTransactionUtils';
-import { ensureIntegerInput, ensureNameInput } from '../../utils/inputHandlers';
+import { ensureIntegerInput } from '../../utils/inputHandlers';
 
 interface AddBankAccountComponentProps {
   onClose: () => void;
@@ -259,9 +259,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
   };
 
   const onAccountHolderNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const {
-      target: { value },
-    } = ensureNameInput(e);
+    var value = e.target.value;
     setAccountHolderName(value);
     setFieldErrors((prev) => ({
       ...prev,

@@ -52,7 +52,7 @@ public class MemberSiteManagementService(IDynamicRepository repository, ICommonS
             UserId = model.CustId,
             IP = model.IP,
             Language = model.Language,
-            SiteDB = model.SiteDB
+            CustDBGroupId = model.SiteDB
         };
         await commonService.RunDBCommand(request, command);
         return new ResultModel(command.ErrCode, command.ErrMsg);

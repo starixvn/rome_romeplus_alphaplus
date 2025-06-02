@@ -164,7 +164,7 @@ public class TransactionService(IDynamicRepository dynamicRepository, ICommonSer
         var request = new BaseActionRequest
         {
             ActorId = log.CustId,
-            SiteDB = siteDbGroupId,
+            CustDBGroupId = siteDbGroupId,
             UserId = log.UserId,
         };
         await commonService.WriteLogDBCommand(request, log);

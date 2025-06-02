@@ -9,7 +9,7 @@ import {
   ButtonFullComponent,
   ButtonOutlineComponent,
   ButtonTabActiveComponent,
-  ButtonTabComponent,
+  ButtonTabInactiveComponent,
 } from '../../components/ButtonComponents';
 import CustomDropdown from '../../components/CustomDropdownComponent';
 import { IconDelete, IconInfo, IconPen, IconSearch, IconSync } from '../../components/Icons';
@@ -289,7 +289,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
               <div className="card-header">
                 <ul className="flex">
                   <li className="mr-[8px]">
-                    <ButtonTabComponent
+                    <ButtonTabInactiveComponent
                       text={tManagePayments('paymentGateway')}
                       onClick={() => setActiveTab('paymentGateway')}
                     />

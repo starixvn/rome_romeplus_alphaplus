@@ -13,7 +13,8 @@ public class BaseActionRequest
         Language = userSession.LangKey;
         UserId = userSession.UserId;
         
-        SiteDB = userSession.CustDBGroupId;
+        SiteDBGroupId = userSession.SiteDBGroupId;
+        CustDBGroupId = userSession.CustDBGroupId;
     }
 
     public int ActorId { get; set; }
@@ -21,5 +22,7 @@ public class BaseActionRequest
     public string IP { get; set; }
     public string Language { get; set; }
     public int UserId { get; set; }
-    public int SiteDB { get; set; }
+
+    public int SiteDBGroupId { get; set; }
+    public int CustDBGroupId { get; set; }
 } 
