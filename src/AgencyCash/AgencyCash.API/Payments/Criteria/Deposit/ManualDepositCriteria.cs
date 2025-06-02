@@ -11,6 +11,8 @@ public class ManualDepositCriteria(
     decimal creditMembersGivenCredit,
     decimal minAmount,
     decimal maxAmount,
+    byte transactionTypeId,
+    byte paymentType,
     short paymentMethodId,
     string paymentFrom,
     string paymentTo,
@@ -34,7 +36,9 @@ public class ManualDepositCriteria(
 
     public decimal MaxAmt { get; } = maxAmount;
 
-    public byte TransactionTypeId { get; } = 1; // Manual Deposit
+    public byte TransactionTypeId { get; } = transactionTypeId;
+
+    public byte PaymentType { get; } = paymentType;
 
     public short PaymentMethodId { get; } = paymentMethodId;
 

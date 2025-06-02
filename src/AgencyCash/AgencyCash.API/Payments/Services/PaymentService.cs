@@ -1,6 +1,7 @@
 using AgencyCash.API.Payments.Criteria;
 using AgencyCash.API.Payments.Models;
 using AgencyCash.API.Shared;
+using AgencyCash.API.Shared.Models;
 using AgencyCash.API.Shared.Helpers;
 using Fanex.Data.Repository;
 
@@ -11,25 +12,35 @@ public abstract class PaymentService(
     ISiteDBService siteDBService,
     Fanex.Logging.ILogger logger)
 {
-    private const byte CashServiceType = 1;
+    protected const byte Deposit = 1;
+    protected const byte Withdrawal = 2;
 
     protected readonly IDynamicRepository repository = repository;
     protected readonly ISiteDBService siteDBService = siteDBService;
     protected readonly Fanex.Logging.ILogger logger = logger;
 
-    public async Task<bool> IsEnableCashService(int agentId, short custDBGroupId)
+    // public async Task<bool> IsEnableCashService(int agentId, short custDBGroupId)
+    // {
+    //     var criteria = new GetAgentServiceTypeCriteria(agentId, custDBGroupId);
+    //     await repository.ExecuteAsync(criteria);
+
+    //     return criteria.ServiceType == CashServiceType;
+    // }
+
+    public async Task<Result> ValidatePayment(int agentId, int custId, byte transType, short custDBGroupId)
     {
-        var criteria = new GetAgentServiceTypeCriteria(agentId, custDBGroupId);
+        var criteria = new ValidatePaymentCriteria(agentId, custId, transType, custDBGroupId);
         await repository.ExecuteAsync(criteria);
 
-        return criteria.ServiceType == CashServiceType;
+        return new Result(criteria.ErrCode, criteria.ErrMsg);
     }
 
-    public Task WriteLogs(IEnumerable<LogEntry> logs, short custDBGroupId)
+    public async Task WriteLogs(IEnumerable<LogEntry> logs, short custDBGroupId)
     {
-        var tasks = logs.Select(log => WriteLogRunSP(log, custDBGroupId));
-
-        return Task.WhenAll(tasks);
+        foreach (var item in logs)
+        {
+            await WriteLogRunSP(item, custDBGroupId);
+        }
     }
 
     public async Task WriteLogRunSP(LogEntry log, short custDBGroupId)
