@@ -28,7 +28,6 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
   const [apiParams, setApiParams] = useState<
     Omit<TransactionsHistoryParams, 'searchText' | 'column'>
   >(() => {
-    console.log('apiParams');
     const today = new Date();
     const todayInGMT4 = convertToGMT4(today);
     todayInGMT4.setHours(23, 59, 59, 0);
@@ -48,6 +47,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
       transactionType: transactionType,
     };
   });
+
   const [columnFilter, setColumnFilter] = useState<string[]>([
     t('table.name'),
     t('table.amount'),
@@ -63,52 +63,52 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
   const [displayedItems, setDisplayedItems] = useState<TransactionItem[]>([]);
   const [paymentInformations, setPaymentInformations] = useState<string[]>([]);
 
+  const fetchTransactions = async (params: TransactionsHistoryParams) => {
+    try {
+      setLoading(true);
+      const response = await transactionAPI.getTransactions(params);
+      setApiData(response);
+
+      const uniquePayment = new Set();
+      const paymentInfo = response.items
+        .filter((item) => {
+          const checkItem =
+            params.transactionType === TransactionType.Deposit ? item.paymentTo : item.paymentFrom;
+          if (uniquePayment.has(checkItem)) {
+            return false;
+          }
+          if (params.transactionType === TransactionType.Deposit) {
+            uniquePayment.add(item.paymentTo);
+          } else {
+            uniquePayment.add(item.paymentFrom);
+          }
+          return true;
+        })
+        .map((item) =>
+          params.transactionType === TransactionType.Deposit ? item.paymentTo : item.paymentFrom
+        );
+      setPaymentInformations(paymentInfo);
+
+      setError(null);
+    } catch (err) {
+      setError('Failed to load transaction history');
+      console.error('Error loading data:', err);
+      setApiData({ items: [], totalCount: 0 });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const paramsForApi: TransactionsHistoryParams = {
-          ...apiParams,
-          searchText: '',
-          transactionType: transactionType,
-          pageIndex: 1,
-          pageSize: PAGE_SIZE_OPTIONS[0],
-        };
-        const response = await transactionAPI.getTransactions(paramsForApi);
-        setApiData(response);
-
-        const uniquePayment = new Set();
-        const paymentInfo = response.items
-          .filter((item) => {
-            const checkItem =
-              transactionType === TransactionType.Deposit ? item.paymentTo : item.paymentFrom;
-            if (uniquePayment.has(checkItem)) {
-              return false;
-            }
-            if (transactionType === TransactionType.Deposit) {
-              uniquePayment.add(item.paymentTo);
-            } else {
-              uniquePayment.add(item.paymentFrom);
-            }
-            return true;
-          })
-          .map((item) =>
-            transactionType === TransactionType.Deposit ? item.paymentTo : item.paymentFrom
-          );
-        setPaymentInformations(paymentInfo);
-
-        setError(null);
-      } catch (err) {
-        setError('Failed to load transaction history');
-        console.error('Error loading data:', err);
-        setApiData({ items: [], totalCount: 0 });
-      } finally {
-        setLoading(false);
-      }
+    const paramsForFilterOrTypeChange: TransactionsHistoryParams = {
+      ...apiParams,
+      pageIndex: 1,
+      pageSize: PAGE_SIZE_OPTIONS[0],
+      searchText: '',
+      transactionType: transactionType,
     };
-
-    fetchData();
-  }, [transactionType, apiParams.dateRange, apiParams.account, apiParams.status]);
+    fetchTransactions(paramsForFilterOrTypeChange);
+  }, [transactionType, apiParams.dateRange, apiParams.status]);
 
   useEffect(() => {
     const startIndex = (apiParams.pageIndex - 1) * apiParams.pageSize;
@@ -127,6 +127,21 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
       setDisplayedItems(filtered.slice(startIndex, endIndex));
     }
   }, [apiData.items, localSearchText, apiParams.pageIndex, apiParams.pageSize]);
+
+  useEffect(() => {
+    const startIndex = (apiParams.pageIndex - 1) * apiParams.pageSize;
+    const endIndex = startIndex + apiParams.pageSize;
+    if (!apiParams.account) {
+      setDisplayedItems(apiData.items.slice(startIndex, endIndex));
+    } else {
+      const filtered = apiData.items.filter(
+        (item) =>
+          (transactionType === TransactionType.Deposit ? item.paymentTo : item.paymentFrom) ===
+          apiParams.account
+      );
+      setDisplayedItems(filtered.slice(startIndex, endIndex));
+    }
+  }, [apiParams.account]);
 
   const handleDateRangeChange = (dates: [string, string]) => {
     setApiParams((prev) => ({ ...prev, dateRange: dates, pageIndex: 1 }));
@@ -154,6 +169,15 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
 
   const handlePageSizeChange = (newSize: number) => {
     setApiParams((prev) => ({ ...prev, pageSize: newSize, pageIndex: 1 }));
+  };
+
+  const onRefreshNeeded = () => {
+    const paramsForRefresh: TransactionsHistoryParams = {
+      ...apiParams,
+      searchText: localSearchText,
+      transactionType: transactionType,
+    };
+    fetchTransactions(paramsForRefresh);
   };
 
   return (
@@ -198,9 +222,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         isLoading={loading}
         columnFilter={columnFilter}
         transactionType={transactionType}
-        onRefreshNeeded={() => {
-          setApiParams((prev) => ({ ...prev, pageIndex: 1 }));
-        }}
+        onRefreshNeeded={onRefreshNeeded}
       />
       {!loading && (
         <Pagination
