@@ -44,7 +44,7 @@ export default defineConfig({
         paymentProviderSettings: 'src/pages/PaymentProviderSettings/index.tsx'
       },
       output:{
-        assetFileNames: '[name]-[hash][extname]'
+        assetFileNames: 'index-[hash][extname]'
       }
     }
   },
