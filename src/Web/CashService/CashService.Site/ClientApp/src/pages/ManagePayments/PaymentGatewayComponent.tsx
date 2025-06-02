@@ -85,7 +85,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
   };
 
   return (
-    <div className="py-[12px]">
+    <div className="">
       <TitleComponent title={tManagePayments('managePayments')} showTippy={true}>
         <div>
           <div>
@@ -101,12 +101,13 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
         <div className="card-header">
           <ul className="flex">
             <li className="mr-[8px]">
-              {activeTab === 'paymentGateway' && (
-                <ButtonTabActiveComponent text={tManagePayments('paymentGateway')} />
+            {activeTab === 'paymentGateway' && (
+                <ButtonTabInactiveComponent text={tManagePayments('paymentGateway')} />
               )}
+            
             </li>
             <li>
-              <ButtonTabInactiveComponent
+            <ButtonTabActiveComponent
                 text={tManagePayments('bankAccount')}
                 onClick={() => setActiveTab('bankAccount')}
               />
