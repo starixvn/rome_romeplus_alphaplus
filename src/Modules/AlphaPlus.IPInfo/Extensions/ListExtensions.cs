@@ -2,7 +2,7 @@ using AlphaPlus.IPInfo.Models;
 
 namespace AlphaPlus.IPInfo.Extensions;
 
-internal static class ListExtensions
+public static class ListExtensions
 {
     public static IPRange BinarySearch2(this IList<IPRange> ipRanges, long value)
     {

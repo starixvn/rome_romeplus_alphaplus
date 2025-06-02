@@ -22,11 +22,12 @@ namespace AlphaPlus.Settings.Site.Features.Customer.ViewModels
             string cndUri,
             string assetsVersion,
             string secretKey,
-            string suggestUsername = "")
+            string suggestUsername = "",
+            int productGroupId = 1)
             : base(appConfig, cndUri, assetsVersion)
         {
             SecretKey = secretKey;
-            Params = JsonSerializer.Serialize(new { uplineId = query.CustId, uplineRoleId = query.CustLevelId, suggestUsername });
+            Params = JsonSerializer.Serialize(new { uplineId = query.CustId, uplineRoleId = query.CustLevelId, suggestUsername, productGroupId });
             ActorId = query.ViewerId;
             SubAccId = query.SubAccId;
             ActorLevel = query.ViewerLevel;

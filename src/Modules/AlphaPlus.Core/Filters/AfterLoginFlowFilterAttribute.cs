@@ -1,8 +1,7 @@
-using AlphaPlus.Core.Models;
 using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Http;
 
 namespace AlphaPlus.Core.Filters;
 
@@ -12,17 +11,17 @@ public sealed class AfterLoginFlowFilterAttribute(IUserSession userSession, INic
     private readonly IUserSession userSession = userSession;
     private readonly INicknameChecker nicknameChecker = nicknameChecker;
 
-    public override void OnActionExecuting(ActionExecutingContext filterContext)
+    public override void OnActionExecuting(ActionExecutingContext context)
     {
-        base.OnActionExecuting(filterContext);
+        base.OnActionExecuting(context);
 
-        if (IsValidSession(filterContext))
+        if (IsValidSession(context))
         {
-            var redirectUrl = GetAfterLoginFlowUrl(filterContext);
+            var redirectUrl = GetAfterLoginFlowUrl(context);
 
             if (redirectUrl != null)
             {
-                filterContext.Result = new RedirectResult(redirectUrl);
+                context.Result = new RedirectResult(redirectUrl);
             }
         }
     }
@@ -94,7 +93,4 @@ public sealed class AfterLoginFlowFilterAttribute(IUserSession userSession, INic
         => currentUrl.Equals("Nickname/Index", StringComparison.OrdinalIgnoreCase)
         ? null
         : MicroSites.MainUrl("~/Nickname/Index");
-
-    private static bool IsAjaxRequest(HttpRequest request)
-        => request.Headers != null && (request.Headers.XRequestedWith == "XMLHttpRequest" || request.Method == "POST");
 }

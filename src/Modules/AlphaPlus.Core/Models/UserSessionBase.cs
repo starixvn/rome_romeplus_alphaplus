@@ -11,10 +11,12 @@ public class UserSessionBase : IUserSession, IDisposable
 {
     private const string DEFAULT_LANGUAGE = "en-US";
     private const string ISBELONGTO9CURRENCY = "ISBELONGTO9CURRENCY";
+
     /// <summary>
     /// Values: E,J,CT,CS,TH,KO.
     /// </summary>
     private const string LANGKEY = "LANGKEY";
+
     private const string CAPTCHACODE = "CAPTCHACODE";
     private const string ADMINID = "ADMINID";
     private const string ADMINNAME = "ADMINNAME";

@@ -1,0 +1,107 @@
+{
+  "pendingDeposit": "Pending Deposit",
+  "addManualDeposit": "Add Manual Deposit",
+
+  "filter": {
+    "recentDeposits": "Recent Deposits",
+    "all": "All",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "last7Days": "Last 7 Days",
+    "to": "To",
+    "search": "Search",
+    "usernamePlaceholder": "Username/Reference No.",
+    "last30Mins": "Last 30 Mins",
+    "last60Mins": "Last 60 Mins"
+  },
+
+  "dataGrid": {
+    "member": "Member",
+    "username": "Username",
+    "loginName": "Login Name",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "nickname": "Nickname",
+    "firstLastName": "First & Last Name",
+    "amount": "Amount",
+    "currency": "Currency",
+    "from": "From",
+    "to": "To",
+    "referenceNo": "Reference No.",
+    "dateAndTime": "Date & Time",
+    "actions": "Actions",
+    "approve": "Approve",
+    "approving": "Approving...",
+    "reject": "Reject",
+    "process": "Process",
+    "viewDetails": "View Details",
+    "loading": "Loading pending deposits...",
+    "noDepositsFound": "No pending deposits found"
+  },
+
+  "pendingDepositModal": {
+    "title": "Pending Deposit",
+    "username": "Username",
+    "loginName": "Login Name",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "name": "First/Last Name",
+    "betCredit": "Bet Credit",
+    "from": "From",
+    "to": "To",
+    "depositAmount": "Deposit Amount",
+    "dateAndTime": "Date and Time",
+    "remarks": "Remarks",
+    "remarksPlaceholder": "Add a remark here...",
+    "approve": "Approve",
+    "reject": "Reject",
+    "close": "Close",
+    "firstLastName": "First/Last Name"
+  },
+
+  "manualDepositForm": {
+    "title": "Add Manual Deposit",
+    "accountInformation": "Account Information",
+    "memberLoginName": "Member Login Name",
+    "from": "From",
+    "to": "To",
+    "depositAmount": "Deposit Amount",
+    "remarks": "Remarks",
+    "remarksPlaceholder": "Add a remark here...",
+    "uploadImage": "Click to upload",
+    "dragAndDrop": "or drag and drop",
+    "imageFormat": "Upload jpeg, jpg, png",
+    "maxSize": "Max 1 MB",
+    "viewFullSize": "View Full Size",
+    "removeImage": "Remove image",
+    "cancel": "Cancel",
+    "approve": "Approve",
+    "approving": "Approving...",
+    "agentAvailableCredit": "Agent Available Credit",
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "Amount must be greater than 0 and less than MaxLimit",
+    "imageSizeError": "Image must be less than 1MB",
+    "memberLoginNameRequired": "Please select member login",
+    "agentBankSelectionRequired": "Please select PaymentFrom",
+    "memberBankSelectionRequired": "Please select PaymentTo"
+  },
+
+  "status": {
+    "pending": "Pending",
+    "approved": "Approved",
+    "rejected": "Rejected"
+  },
+
+  "errorMessages": {
+    "failedToSubmit": "Failed to submit deposit request",
+    "failedToApprove": "Failed to approve deposit request",
+    "failedToReject": "Failed to reject deposit request",
+    "failedToFetchData": "Failed to fetch data"
+  },
+
+  "successMessages": {
+    "depositSubmitted": "Deposit request submitted successfully!",
+    "depositUpdated": "Deposit request updated successfully!",
+    "depositApproved": "Deposit request approved successfully!",
+    "depositRejected": "Deposit request rejected successfully!"
+  }
+}

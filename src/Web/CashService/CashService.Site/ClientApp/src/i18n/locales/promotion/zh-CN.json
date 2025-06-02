@@ -1,0 +1,21 @@
+{
+    "table": {
+        "no": "序号",
+        "action": "操作",
+        "promotionTitle": "促销标题",
+        "promotionType": "促销类型",
+        "percentage": "百分比 (%)",
+        "maxPayout": "最大派彩",
+        "sports": "体育",
+        "virtualSports": "虚拟体育",
+        "liveCasino": "真人娱乐场",
+        "games": "游戏",
+        "period": "期间",
+        "provider": "供应商",
+        "status": "状态",
+        "lastUpdated": "最后更新"
+    },
+    "search": {
+        "placeholder": "按标题或类型搜索..."
+    }
+}

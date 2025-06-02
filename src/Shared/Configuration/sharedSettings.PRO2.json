@@ -140,6 +140,7 @@
         "SystemId": 6
     },
     "SystemId": 2,
+    "IdentityUrl": "http://alphaplus_api_identity_ALPHAPROD:5000/",
     "AssetAppPath": "/stcdn",
     "JsVersion": "2025052901",
     "AssetsApp:StaticResourcesVersion": "20250423",
@@ -260,5 +261,8 @@
         "OfferedSites": "",
         "BackOfficeApiUrl": "http://vn-s1-alpha-api-prod.nebula.prod/api/"
     },
-    "OfferProfilePictureTour": true
+    "OfferProfilePictureTour": true,
+    "CashService": {
+        "OfferedSites": "222227"
+    }
 }

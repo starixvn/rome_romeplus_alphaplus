@@ -1,10 +1,10 @@
-﻿using AlphaPlus.AccountInfo.Site.Features.Shared;
+﻿using AlphaPlus.AccountInfo.Site.Features.OpenDownlines.ViewModels;
+using AlphaPlus.Core;
 using MediatR;
-using AlphaPlus.AccountInfo.Site.Features.OpenDownlines.ViewModels;
 
 namespace AlphaPlus.AccountInfo.Site.Features.OpenDownlines.Requests
 {
-    public class OpenMultipleRequest : BaseQuery, IRequest<OpenMultipleViewModel>
+    public class OpenMultipleRequest : QueryBase, IRequest<OpenMultipleViewModel>
     {
         public string CustIds { get; set; }
 

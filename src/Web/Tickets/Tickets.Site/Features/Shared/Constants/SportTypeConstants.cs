@@ -1,4 +1,3 @@
-using AlphaPlus.Tickets.Site.Features.Results.Normal;
 using Fanex.Result.Core.Base;
 
 namespace AlphaPlus.Tickets.Site.Features.Shared.Constants;

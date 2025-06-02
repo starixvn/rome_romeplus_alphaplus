@@ -1,0 +1,21 @@
+{
+    "table": {
+        "no": "序號",
+        "action": "操作",
+        "promotionTitle": "促銷標題",
+        "promotionType": "促銷類型",
+        "percentage": "百分比 (%)",
+        "maxPayout": "最大派彩",
+        "sports": "體育",
+        "virtualSports": "虛擬體育",
+        "liveCasino": "真人娛樂場",
+        "games": "遊戲",
+        "period": "期間",
+        "provider": "供應商",
+        "status": "狀態",
+        "lastUpdated": "最後更新"
+    },
+    "search": {
+        "placeholder": "按標題或類型搜索..."
+    }
+}

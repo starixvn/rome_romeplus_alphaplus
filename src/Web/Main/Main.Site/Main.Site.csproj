@@ -11,6 +11,10 @@
     </Content>
 
   </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="AlphaPlus.Main.Site.UnitTests" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\..\Shared\Extensions\HttpClientExtensions.cs" Link="Extensions\HttpClientExtensions.cs" />
     <Compile Include="..\..\..\Shared\Extensions\FanexLoggingExtensions.cs" Link="Extensions\FanexLoggingExtensions.cs" />
@@ -23,8 +27,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.Cryptography.Aes" Version="1.0.0.6" />
-    <PackageReference Include="Fanex.Logging" Version="2.0.1.1" />
-    <PackageReference Include="Fanex.RemotingRef" Version="1.5.4" />
+    <PackageReference Include="Fanex.Logging" Version="2.0.2" />
+    <PackageReference Include="Fanex.RemotingRef" Version="1.5.5.1" />
     <PackageReference Include="ONEbook.OTP" Version="2.0.0" />
     <PackageReference Include="TelegramBot.Client" Version="1.0.2" />
     <PackageReference Include="MediatR" Version="12.3.0" />

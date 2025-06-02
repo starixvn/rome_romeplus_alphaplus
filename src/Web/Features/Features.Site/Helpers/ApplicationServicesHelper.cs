@@ -1,6 +1,7 @@
 using Alpha.Announcements.Models;
 using Alpha.Announcements.Services;
 using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Features.Handbook.API.Services;
@@ -14,10 +15,8 @@ using AlphaPlus.RequestInfo;
 using Fanex.Data;
 using Fanex.Data.Repository;
 using Fanex.RemotingRef;
-using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using RestSharp;
-using AlphaPlus.Core.Filters;
 
 namespace AlphaPlus.Features.Site.Helpers
 {

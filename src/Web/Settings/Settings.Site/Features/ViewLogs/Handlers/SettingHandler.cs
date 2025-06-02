@@ -1,17 +1,16 @@
 ﻿using System.Web;
-using AlphaPlus.Shared.AppResources.Settings.ViewLog;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Helpers;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Requests.Setting;
+using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels;
+using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels.Setting;
 using AlphaPlus.Settings.ViewLogs.API.Constants;
 using AlphaPlus.Settings.ViewLogs.API.Helpers;
 using AlphaPlus.Settings.ViewLogs.API.Models;
 using AlphaPlus.Settings.ViewLogs.API.Params;
 using AlphaPlus.Settings.ViewLogs.API.Services;
+using AlphaPlus.Shared.AppResources.Settings.ViewLog;
 using Fanex.Common;
-using AlphaPlus.Settings.Site.Features.ViewLogs.Helpers;
 using MediatR;
-using AlphaPlus.Settings.Site.Features.ViewLogs.Requests.Setting;
-using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels;
-using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels.Setting;
-using AlphaPlus.Core.Configurations;
 using AppSettings = AlphaPlus.Settings.Site.Features.ViewLogs.Configurations.AppSettings;
 
 namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers

@@ -1,5 +1,4 @@
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Models;
-using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Transfer.Requests;
 
 namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance
 {

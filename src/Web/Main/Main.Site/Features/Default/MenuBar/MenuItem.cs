@@ -77,7 +77,8 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
                     }
 
                     if ((link.IndexOf("PTTemplate/Index", StringComparison.OrdinalIgnoreCase) > -1)
-                    || (link.IndexOf("Customer/CreateDirectMember", StringComparison.OrdinalIgnoreCase) > -1))
+                    || (link.IndexOf("Customer/CreateDirectMember", StringComparison.OrdinalIgnoreCase) > -1)
+                    || (link.IndexOf("Customer/CreateCashMember", StringComparison.OrdinalIgnoreCase) > -1))
                     {
                         var languageParam = buildLanguageQueryStringFunc();
                         var darkModeParam = buildDarkModeQueryStringFunc();

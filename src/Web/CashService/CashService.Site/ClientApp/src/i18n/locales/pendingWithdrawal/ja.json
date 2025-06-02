@@ -1,0 +1,112 @@
+{
+    "pendingWithdrawal": "保留中の出金",
+    "addManualWithdrawal": "手動出金を追加",
+    
+    "filter": {
+      "recentWithdrawals": "最近の出金",
+      "all": "すべて",
+      "today": "今日",
+      "yesterday": "昨日",
+      "last7Days": "過去7日間",
+      "to": "まで",
+      "search": "検索",
+      "usernamePlaceholder": "ユーザー名/参照番号"
+    },
+    
+    "dataGrid": {
+      "member": "メンバー",
+      "username": "ユーザー名",
+      "loginName": "ログイン名",
+      "firstName": "名",
+      "lastName": "姓",
+      "amount": "金額",
+      "currency": "通貨",
+      "from": "から",
+      "to": "まで",
+      "referenceNo": "参照番号",
+      "dateAndTime": "日付と時間",
+      "actions": "アクション",
+      "approve": "承認",
+      "reject": "拒否",
+      "process": "処理",
+      "viewDetails": "詳細を表示",
+      "loading": "保留中の出金を読み込んでいます...",
+      "noWithdrawalsFound": "保留中の出金が見つかりません"
+    },
+    
+    "pendingWithdrawalModal": {
+      "title": "保留中の出金",
+      "username": "ユーザー名",
+      "loginName": "ログイン名",
+      "firstName": "名",
+      "lastName": "姓",
+      "name": "名/姓",
+      "betCredit": "ベットクレジット",
+      "from": "から",
+      "to": "まで",
+      "withdrawalAmount": "出金額",
+      "dateAndTime": "日付と時間",
+      "remarks": "備考",
+      "remarksPlaceholder": "ここに備考を追加...",
+      "approve": "承認",
+      "reject": "拒否",
+      "close": "閉じる"
+    },
+    
+    "manualWithdrawalForm": {
+      "title": "手動出金を追加",
+      "accountInformation": "アカウント情報",
+      "memberLoginName": "メンバーログイン名",
+      "from": "から",
+      "to": "まで",
+      "withdrawalAmount": "出金額",
+      "remarks": "備考",
+      "remarksPlaceholder": "ここに備考を追加...",
+      "uploadImage": "クリックしてアップロード",
+      "dragAndDrop": "またはドラッグ＆ドロップ",
+      "imageFormat": "jpeg、jpg、pngをアップロード",
+      "maxSize": "最大1 MB",
+      "viewFullSize": "フルサイズで表示",
+      "removeImage": "画像を削除",
+      "cancel": "キャンセル",
+      "approve": "承認"
+    },
+    
+    "updateWithdrawal": {
+      "title": "出金を更新",
+      "approveWithdrawal": "出金を承認",
+      "rejectWithdrawal": "出金を拒否",
+      "confirmTitle": "アクションの確認",
+      "confirmApproveMessage": "この出金を承認してもよろしいですか？",
+      "confirmRejectMessage": "この出金を拒否してもよろしいですか？",
+      "confirmCancel": "キャンセル",
+      "confirmYes": "はい、続行します",
+      "withdrawalDetails": "出金詳細",
+      "memberInfo": "メンバー情報",
+      "transactionDetails": "取引詳細",
+      "withdrawalApproved": "出金が正常に承認されました",
+      "withdrawalRejected": "出金が正常に拒否されました"
+    },
+  
+    "status": {
+      "pending": "保留中",
+      "approved": "承認済み",
+      "rejected": "拒否済み"
+    },
+    
+    "errorMessages": {
+      "requiredField": "このフィールドは必須です",
+      "invalidAmount": "有効な金額を入力してください",
+      "amountTooSmall": "金額は0より大きくなければなりません",
+      "failedToSubmit": "出金の送信に失敗しました",
+      "failedToApprove": "出金の承認に失敗しました",
+      "failedToReject": "出金の拒否に失敗しました"
+    },
+    
+    "successMessages": {
+      "withdrawalSubmitted": "出金が正常に送信されました",
+      "withdrawalUpdated": "出金が正常に更新されました",
+      "withdrawalApproved": "出金が正常に承認されました",
+      "withdrawalRejected": "出金が正常に拒否されました"
+    }
+}

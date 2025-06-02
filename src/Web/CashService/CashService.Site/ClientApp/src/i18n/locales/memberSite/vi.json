@@ -1,0 +1,58 @@
+{
+  "title": "Quản lý Trang Thành viên",
+  "registrationLinks": {
+    "title": "Liên kết Đăng ký",
+    "note": "Nếu cả hai liên kết đều bị chặn, hãy yêu cầu liên kết mới.",
+    "domain": "Tên miền",
+    "downloadQRCode": "Tải mã QR",
+    "requestNewLink": "Yêu cầu Liên kết Mới"
+  },
+  "generalSettings": {
+    "title": "Cài đặt Chung",
+    "allowRegistration": {
+      "title": "Đăng ký",
+      "description": "Cho phép thành viên đăng ký"
+    },
+    "allowDeposit": {
+      "title": "Nạp tiền",
+      "description": "Cho phép thành viên nạp tiền"
+    }
+  },
+  "message": {
+    "title": "Để lại Tin nhắn",
+    "description": "Bao gồm thông tin liên hệ và tin nhắn cho thành viên của bạn.",
+    "mobile": "Di động",
+    "line": "ID LINE",
+    "tele": "Telegram",
+    "announcement": "Thông báo",
+    "placeholder": {
+      "message": "Thêm tin nhắn của bạn tại đây..."
+    }
+  },
+  "actions": {
+    "save": "Lưu Thay đổi",
+    "saving": "Đang lưu..."
+  },
+  "errors": {
+    "title": "Lỗi!",
+    "loadFailed": "Không thể tải dữ liệu trang thành viên",
+    "updateFailed": "Không thể cập nhật dữ liệu trang thành viên"
+  },
+  "loading": {
+    "title": "Đang tải..."
+  },
+  "messages": {
+    "updateSuccess": "Cập nhật dữ liệu trang thành viên thành công",
+    "updateFailed": "Không thể cập nhật dữ liệu trang thành viên"
+  },
+  "validation": {
+    "required": "Bắt buộc",
+    "lineId": "LINE ID không hợp lệ",
+    "telegram": "Telegram ID không hợp lệ",
+    "email": "Email không hợp lệ",
+    "phoneCode": "Mã không hợp lệ",
+    "phoneNumber": "Số không hợp lệ",
+    "maxLength": "Tối đa {{maxLength}} ký tự",
+    "onlyAz09": "Chỉ cho phép a-z, 0-9, _"
+  }
+} 

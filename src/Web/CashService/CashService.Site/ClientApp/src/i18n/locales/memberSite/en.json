@@ -1,0 +1,58 @@
+{
+  "title": "Member Site Management",
+  "registrationLinks": {
+    "title": "Registration Links",
+    "note": "If both links are blocked, request a new link.",
+    "domain": "Domain",
+    "downloadQRCode": "Download QR Code",
+    "requestNewLink": "Request New Link"
+  },
+  "generalSettings": {
+    "title": "General Settings",
+    "allowRegistration": {
+      "title": "Registration",
+      "description": "Allow member to register"
+    },
+    "allowDeposit": {
+      "title": "Deposit",
+      "description": "Allow member to deposit"
+    }
+  },
+  "message": {
+    "title": "Leave a Message",
+    "description": "Include your contact details and a message for your member.",
+    "mobile": "Mobile",
+    "line": "LINE ID",
+    "tele": "Telegram",
+    "announcement": "Announcement",
+    "placeholder": {
+      "message": "Add your message here..."
+    }
+  },
+  "actions": {
+    "save": "Save Changes",
+    "saving": "Saving..."
+  },
+  "errors": {
+    "title": "Error!",
+    "loadFailed": "Failed to load member site data",
+    "updateFailed": "Failed to update member site data"
+  },
+  "loading": {
+    "title": "Loading..."
+  },
+  "messages": {
+    "updateSuccess": "Member site data updated successfully",
+    "updateFailed": "Failed to update member site data"
+  },
+  "validation": {
+    "required": "This field is required",
+    "lineId": "Invalid LINE ID",
+    "telegram": "Invalid Telegram ID",
+    "email": "Invalid email address",
+    "phoneCode": "Invalid phone code",
+    "phoneNumber": "Invalid phone number",
+    "maxLength": "Maximum length is {{maxLength}} characters",
+    "onlyAz09": "Only a-z, 0-9, underscore are allowed"
+  }
+} 

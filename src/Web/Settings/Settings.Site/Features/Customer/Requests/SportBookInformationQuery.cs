@@ -10,12 +10,15 @@ namespace AlphaPlus.Settings.Site.Features.Customer.Requests
         public int TabIndex { get; set; }
         public string SiteLabel { get; set; }
 
+        public bool IsCashMember { get; set; }
+
         internal string ToJson() => JsonSerializer.Serialize(new
         {
             tabs = BuildTabs(),
             roleId = RoleId,
             site = Site,
             siteLabel = SiteLabel,
+            isCashMember = IsCashMember
         });
 
         private object BuildTabs()

@@ -11,8 +11,6 @@ public interface ICustomerService
     Breadcrumb BuildBreadcrumb(CustomerLevel customerLevel);
 
     IEnumerable<Breadcrumb> BuildBreadcrumbs(CustomerLevel customerLevel, byte viewerLevelId);
-
-    Task UpdateUserSearch(int viewerId, UsernameSuggestion param);
 }
 
 public class CustomerService(IDynamicRepository repository) : ICustomerService
@@ -71,12 +69,4 @@ public class CustomerService(IDynamicRepository repository) : ICustomerService
             yield return new Breadcrumb(customerLevel.AgentId.Value, customerLevel.AgentName, RoleIdConstants.Agent);
         }
     }
-
-    public Task UpdateUserSearch(int viewerId, UsernameSuggestion param)
-        => repository.ExecuteAsync(new UpdateUserSearchCriteria(
-            viewerId,
-            param.Username,
-            param.FirstName,
-            param.LastName,
-            param.Username2));
 }

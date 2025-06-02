@@ -1,7 +1,7 @@
 using System.Text;
 using Newtonsoft.Json;
 
-public static class HttpClientExtensions
+internal static class HttpClientExtensions
 {
     public static async Task<T> GetAsJsonAsync<T>(this HttpClient httpClient, string requestUri)
     {

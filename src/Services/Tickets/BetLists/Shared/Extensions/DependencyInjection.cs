@@ -30,9 +30,11 @@ using AlphaPlus.BetLists.Shared.Helpers;
 using Fanex.RemotingRef;
 using AlphaPlus.BetLists.RunningBetList;
 using AlphaPlus.BetLists.MemberBetList;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AlphaPlus.BetLists.Shared.Extensions;
 
+[ExcludeFromCodeCoverage]
 public static class DependencyInjection
 {
     public static IServiceCollection AddBetListsServices(this IServiceCollection services, IConfiguration configuration)

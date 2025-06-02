@@ -1,0 +1,58 @@
+{
+  "title": "會員網站管理",
+  "registrationLinks": {
+    "title": "註冊連結",
+    "note": "如果兩個連結都被封鎖，請申請新連結。",
+    "domain": "網域",
+    "downloadQRCode": "下載 QR 碼",
+    "requestNewLink": "申請新連結"
+  },
+  "generalSettings": {
+    "title": "一般設定",
+    "allowRegistration": {
+      "title": "註冊",
+      "description": "允許會員註冊"
+    },
+    "allowDeposit": {
+      "title": "存款",
+      "description": "允許會員存款"
+    }
+  },
+  "message": {
+    "title": "留言",
+    "description": "請包含您的聯絡方式和給會員的訊息。",
+    "mobile": "手機號碼",
+    "line": "LINE ID",
+    "tele": "Telegram",
+    "announcement": "公告",
+    "placeholder": {
+      "message": "在此輸入您的訊息..."
+    }
+  },
+  "actions": {
+    "save": "儲存變更",
+    "saving": "儲存中..."
+  },
+  "errors": {
+    "title": "錯誤！",
+    "loadFailed": "無法載入會員網站資料",
+    "updateFailed": "無法更新會員網站資料"
+  },
+  "loading": {
+    "title": "載入中..."
+  },
+  "messages": {
+    "updateSuccess": "會員網站資料更新成功",
+    "updateFailed": "無法更新會員網站資料"
+  },
+  "validation": {
+    "required": "必填欄",
+    "lineId": "LINE ID無效",
+    "telegram": "Telegram ID無效",
+    "email": "郵箱無效",
+    "phoneCode": "區號無效",
+    "phoneNumber": "號碼無效",
+    "maxLength": "最多{{maxLength}}字",
+    "onlyAz09": "僅允許 a-z、0-9、_"
+  }
+} 

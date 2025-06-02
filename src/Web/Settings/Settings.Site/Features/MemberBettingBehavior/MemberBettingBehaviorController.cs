@@ -7,73 +7,91 @@ using AlphaPlus.Settings.Site.Features.Shared.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AlphaPlus.Settings.Site.Features.MemberBettingBehavior
+namespace AlphaPlus.Settings.Site.Features.MemberBettingBehavior;
+
+public class MemberBettingBehaviorController : SiteBaseController
 {
-    public class MemberBettingBehaviorController : SiteBaseController
+    private readonly IUser viewer;
+    private readonly CheckBelongingService checkBelongingService;
+    //private readonly IIdentityClient identityClient;
+
+    public MemberBettingBehaviorController(
+        IMediator mediator,
+        IUser viewer,
+        CheckBelongingService checkBelongingService) : base(mediator)
     {
-        private readonly IUser viewer;
-        private readonly CheckBelongingService checkBelongingService;
+        this.viewer = viewer;
+        this.checkBelongingService = checkBelongingService;
+        //this.identityClient = identityClient;
+    }
 
-        public MemberBettingBehaviorController(IMediator mediator, IUser viewer, CheckBelongingService checkBelongingService)
-            : base(mediator)
+    public ActionResult Index()
+    {
+        var isDarkMode = !string.IsNullOrWhiteSpace(viewer.DarkModeName);
+        var viewModel = new MemberBettingBehaviorViewModel(isDarkMode, viewer.Language);
+
+        return View(viewModel);
+    }
+
+    [HttpGet]
+    public async Task<ActionResult> MemberProfile(MemberProfileQuery message)
+    {
+        var memberCustId = await GetMemberDownlineCustId(message.ViewerId, message.SubAccId, message.UserName);
+
+        if (memberCustId > 0)
         {
-            this.viewer = viewer;
-            this.checkBelongingService = checkBelongingService;
+            message.MemberCustId = memberCustId;
+            return await Json(message);
         }
 
-        public ActionResult Index()
+        return Json(Result.CreateErrorResult(""));
+    }
+
+    [HttpGet]
+    public async Task<ActionResult> MemberBettingStatistic(MemberBettingStatisticQuery message)
+    {
+        var memberCustId = await GetMemberDownlineCustId(message.ViewerId, message.SubAccId, message.UserName);
+
+        if (memberCustId > 0)
         {
-            var isDarkMode = !string.IsNullOrWhiteSpace(viewer.DarkModeName);
-            var viewModel = new MemberBettingBehaviorViewModel(isDarkMode, viewer.Language);
-            return View(viewModel);
+            message.MemberCustId = memberCustId;
+            return await Json(message);
         }
 
-        [HttpGet]
-        public async Task<ActionResult> MemberProfile(MemberProfileQuery message)
+        return Json(Result.CreateErrorResult(""));
+    }
+
+    [HttpGet]
+    public async Task<ActionResult> Excel(MemberBettingBehaviorExcelQuery message)
+    {
+        var memberCustId = await GetMemberDownlineCustId(message.ViewerId, message.SubAccId, message.UserName);
+
+        if (memberCustId > 0)
         {
-            var memberCustId = await GetMemberDownlineCustId(message.ViewerId, message.SubAccId, message.UserName);
-            if (memberCustId > 0)
-            {
-                message.MemberCustId = memberCustId;
-                return await Json(message);
-            }
-            return Json(Result.CreateErrorResult(""));
+            message.MemberCustId = memberCustId;
+            return await ExcelView(message);
         }
 
-        [HttpGet]
-        public async Task<ActionResult> MemberBettingStatistic(MemberBettingStatisticQuery message)
-        {
-            var memberCustId = await GetMemberDownlineCustId(message.ViewerId, message.SubAccId, message.UserName);
-            if (memberCustId > 0)
-            {
-                message.MemberCustId = memberCustId;
-                return await Json(message);
-            }
+        return Json(Result.CreateErrorResult(""));
+    }
 
-            return Json(Result.CreateErrorResult(""));
+    private async Task<int> GetMemberDownlineCustId(int custId, int subAccId, string username)
+    {
+        var downlineInfo = await checkBelongingService.CheckBelongingByUsername(custId, subAccId, username);
+        if (downlineInfo.CustId > 0 && Enumeration.FromValue<UserLevel>(downlineInfo.RoleId).IsMemberLevel())
+        {
+            return downlineInfo.CustId;
         }
 
-        [HttpGet]
-        public async Task<ActionResult> Excel(MemberBettingBehaviorExcelQuery message)
-        {
-            var memberCustId = await GetMemberDownlineCustId(message.ViewerId, message.SubAccId, message.UserName);
-            if (memberCustId > 0)
-            {
-                message.MemberCustId = memberCustId;
-                return await ExcelView(message);
-            }
-            return Json(Result.CreateErrorResult(""));
-        }
+        return 0;
 
-        private async Task<int> GetMemberDownlineCustId(int custId, int subAccId, string username)
-        {
-            var downlineInfo = await checkBelongingService.CheckBelongingByUsername(custId, subAccId, username);
-            if (downlineInfo.CustId > 0 && Enumeration.FromValue<UserLevel>(downlineInfo.RoleId).IsMemberLevel())
-            {
-                return downlineInfo.CustId;
-            }
+        // var downlineInfo = await identityClient.CheckBelongingByUsername(custId, subAccId, username);
 
-            return 0;
-        }
+        // if (downlineInfo.IsActive && Enumeration.FromValue<UserLevel>(downlineInfo.RoleId).IsMemberLevel())
+        // {
+        //     return downlineInfo.CustId;
+        // }
+
+        // return 0;
     }
 }

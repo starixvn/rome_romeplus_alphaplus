@@ -73,6 +73,7 @@ services:
             - features-site
             - account-info
             - tickets-site
+            - cash-site
 
     reports-site:
         image: ${REGISTRY:-alphaplus}/reports.site:${PLATFORM:-linux}-${TAG:-latest}
@@ -87,3 +88,28 @@ services:
             context: .
             dockerfile: src/Web/Features/Features.Site/Dockerfile
         restart: always
+
+    cash-site:
+        image: ${REGISTRY:-alphaplus}/cash.site:${PLATFORM:-linux}-${TAG:-latest}
+        build:
+            context: .
+            dockerfile: src/Web/CashService/CashService.Site/Dockerfile
+        restart: always
+        depends_on:
+            - cash-service-api
+
+    cash-service-api:
+        image: ${REGISTRY:-alphaplus}/cash.service.api:${PLATFORM:-linux}-${TAG:-latest}
+        build:
+            context: .
+            dockerfile: src/Services/CashService/CashService.API/Dockerfile
+        restart: always
+
+    payment-service-api:
+        image: ${REGISTRY:-alphaplus}/payment.service.api:${PLATFORM:-linux}-${TAG:-latest}
+        build:
+            context: .
+            dockerfile: src/Services/CashService/PaymentService.API/Dockerfile
+        restart: always
+        ports:
+            - 5301:5000

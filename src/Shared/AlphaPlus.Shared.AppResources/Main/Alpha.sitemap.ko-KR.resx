@@ -366,4 +366,10 @@
   <data name="Old" xml:space="preserve">
     <value>Old</value>
   </data>
+  <data name="newCashMember" xml:space="preserve">
+    <value>신규 현금 회원</value>
+  </data>
+  <data name="MemberSiteManagement" xml:space="preserve">
+    <value>회원 사이트 관리</value>
+  </data>
 </root>

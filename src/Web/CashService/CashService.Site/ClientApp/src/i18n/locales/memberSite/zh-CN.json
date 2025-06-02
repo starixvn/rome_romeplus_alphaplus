@@ -1,0 +1,58 @@
+{
+  "title": "会员网站管理",
+  "registrationLinks": {
+    "title": "注册链接",
+    "note": "如果两个链接都被封锁，请申请新链接。",
+    "domain": "域名",
+    "downloadQRCode": "下载二维码",
+    "requestNewLink": "申请新链接"
+  },
+  "generalSettings": {
+    "title": "常规设置",
+    "allowRegistration": {
+      "title": "注册",
+      "description": "允许会员注册"
+    },
+    "allowDeposit": {
+      "title": "存款",
+      "description": "允许会员存款"
+    }
+  },
+  "message": {
+    "title": "留言",
+    "description": "请包含您的联系方式和给会员的信息。",
+    "mobile": "手机号码",
+    "line": "LINE ID",
+    "tele": "Telegram",
+    "announcement": "公告",
+    "placeholder": {
+      "message": "在此输入您的信息..."
+    }
+  },
+  "actions": {
+    "save": "保存更改",
+    "saving": "保存中..."
+  },
+  "errors": {
+    "title": "错误！",
+    "loadFailed": "无法加载会员网站数据",
+    "updateFailed": "无法更新会员网站数据"
+  },
+  "loading": {
+    "title": "加载中..."
+  },
+  "messages": {
+    "updateSuccess": "会员网站数据更新成功",
+    "updateFailed": "无法更新会员网站数据"
+  },
+  "validation": {
+    "required": "必填栏",
+    "lineId": "LINE ID无效",
+    "telegram": "Telegram ID无效",
+    "email": "邮箱无效",
+    "phoneCode": "区号无效",
+    "phoneNumber": "号码无效",
+    "maxLength": "最多{{maxLength}}字",
+    "onlyAz09": "仅允许 a-z、0-9、_"
+  }
+} 

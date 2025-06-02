@@ -65,9 +65,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.OpenDownlines
         public async Task<OpenMultipleResultViewModel> Handle(OpenMultipleCommand message, CancellationToken cancellationToken)
         {
             var custIds = string.Join("^", message.OpenList.Select(opened => opened.SearchAccountId));
-
-            var isValidCheckMultipleCustomesBelonging = await searchAccountService.CheckMultipleCustomersBelonging(
-                message.ViewerId, message.SubAccountId, custIds, message.IsInternal);
+            var isValidCheckMultipleCustomesBelonging = await searchAccountService.CheckMultipleCustomersBelonging(message.ViewerId, message.SubAccountId, custIds);
 
             if (isValidCheckMultipleCustomesBelonging)
             {

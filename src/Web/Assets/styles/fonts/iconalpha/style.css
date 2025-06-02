@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'Iconalpha';
-  src:  url('../fonts/iconalpha/fonts/Iconalpha.eot?h9rfzu');
-  src:  url('../fonts/iconalpha/fonts/Iconalpha.eot?h9rfzu#iefix') format('embedded-opentype'),
-    url('../fonts/iconalpha/fonts/Iconalpha.ttf?h9rfzu') format('truetype'),
-    url('../fonts/iconalpha/fonts/Iconalpha.woff?h9rfzu') format('woff'),
-    url('../fonts/iconalpha/fonts/Iconalpha.svg?h9rfzu#Iconalpha') format('svg');
+  src:  url('../fonts/iconalpha/fonts/Iconalpha.eot?oqk14');
+  src:  url('../fonts/iconalpha/fonts/Iconalpha.eot?oqk14#iefix') format('embedded-opentype'),
+    url('../fonts/iconalpha/fonts/Iconalpha.ttf?oqk14') format('truetype'),
+    url('../fonts/iconalpha/fonts/Iconalpha.woff?oqk14') format('woff'),
+    url('../fonts/iconalpha/fonts/Iconalpha.svg?oqk14#Iconalpha') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-cashservice:before {
+  content: "\e99a";
+}
+.icon-promotion:before {
+  content: "\e99b";
+}
 .icon-directmember:before {
   content: "\e999";
 }

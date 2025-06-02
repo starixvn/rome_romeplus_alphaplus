@@ -1,0 +1,24 @@
+using Fanex.Data;
+using Fanex.Data.Repository;
+
+namespace AgencyCash.API.RegisterCashMember.Criteria
+{
+    public class GetSuggestUsernameCommand : NonQueryCommand
+    {
+        public GetSuggestUsernameCommand(string actorName, byte roleId)
+        {
+            ActorName = actorName;
+            RoleId = roleId;
+        }
+
+        [SpParam(SqlParamName = "Prefix")]
+        public string ActorName { get; }
+        public byte RoleId { get; }
+        public string SeqName { get; set; }
+        public int ErrCode { get; set; }
+        public string ErrMsg { get; set; }
+
+        public override string GetSettingKey() => "Age_CustomerSelSuggestUsernameNew";
+        public override bool IsValid() => !string.IsNullOrEmpty(ActorName);
+    }
+}

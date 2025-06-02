@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory;
 
-public class GetLogActionsCriteria : CriteriaBase
+internal class GetLogActionsCriteria : CriteriaBase
 {
     public override string GetSettingKey() => "Acc_UserLog_LogActionSel";
 

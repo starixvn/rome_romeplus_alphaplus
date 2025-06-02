@@ -1,10 +1,11 @@
 using AlphaPlus.AccountInfo.Site.Features.Shared;
+using AlphaPlus.Core;
 using AlphaPlus.Core.Models;
 using MediatR;
 
 namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.CustomerStatus
 {
-    public class CustomerNonProductStatusCommand : BaseQuery, IRequest<Result>
+    public class CustomerNonProductStatusCommand : QueryBase, IRequest<Result>
     {
         public int SearchAccountId { get; set; }
 

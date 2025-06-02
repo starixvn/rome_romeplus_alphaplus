@@ -10,7 +10,7 @@ public class CheckBelongingInDataWarehouseCommand(int sessionCustId, long transI
 
     public int? CustId { get; } = custId;
 
-    public byte RoleId { get; set; } = 0;
+    public byte RoleId { get; set; }
 
     public override string GetSettingKey() => "Age_CustomerSelCheckBelonging_OLD";
 

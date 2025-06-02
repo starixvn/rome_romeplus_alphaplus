@@ -1,0 +1,28 @@
+@using AlphaPlus.CashService.Site.Features.Payments.ViewModels
+@using Newtonsoft.Json
+@{
+    ViewData["Title"] = "Manage Provider Settings";
+    Layout = "_Layout";
+}
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+@model ProviderSettingsViewModel
+@section Styles {
+    <environment names="Production">
+        <link rel="stylesheet" asp-href-include="/index-*.css" />
+    </environment>
+}
+
+<div id="root"></div>
+
+<script>
+    window.providerSettingsViewModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+</script>
+
+<environment names="Development">
+    <script type="module" src="http://localhost:5173/src/pages/PaymentProviderSettings/index.tsx"></script>
+</environment>
+<environment names="Production">
+    <script type="module" asp-src-include="/paymentProviderSettings-*.js"></script>
+</environment>
+
+<input type="hidden" name="__RequestVerificationToken" value="@ViewData["RequestVerificationToken"]" />

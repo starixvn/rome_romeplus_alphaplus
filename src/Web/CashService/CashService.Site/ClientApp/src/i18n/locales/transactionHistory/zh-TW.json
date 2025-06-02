@@ -1,0 +1,82 @@
+{
+  "transactionHistory": "交易歷史",
+  "deposit": "存款",
+  "withdrawal": "取款",
+
+  "filter": {
+    "recentTransactions": "最近交易",
+    "all": "全部",
+    "today": "今天",
+    "yesterday": "昨天",
+    "last7Days": "過去7天",
+    "to": "到",
+    "from": "來源",
+    "selectAccount": "選擇帳戶",
+    "allColumns": "所有欄位 (9)",
+    "column": "欄位",
+    "search": "搜索",
+    "usernamePlaceholder": "用戶名/參考號",
+    "status": "狀態",
+    "transactionType": "交易類型",
+    "dateRange": "日期範圍"
+  },
+
+  "table": {
+    "no": "序號",
+    "username": "用戶名",
+    "name": "姓名",
+    "amount": "金額",
+    "currency": "貨幣",
+    "from": "來源",
+    "to": "目標",
+    "status": "狀態",
+    "type": "類型",
+    "referenceNo": "參考號",
+    "dateAndTime": "日期和時間",
+    "actions": "操作",
+    "view": "查看",
+    "loading": "正在加載交易...",
+    "noRecords": "未找到記錄"
+  },
+
+  "detail": {
+    "title": "交易詳情",
+    "username": "用戶名",
+    "loginName": "登錄名",
+    "fullName": "姓名",
+    "betCredit": "投注額度",
+    "from": "來源",
+    "to": "目標",
+    "dateAndTime": "日期和時間",
+    "transactionType": "交易類型",
+    "operatedBy": "操作人",
+    "processedOn": "處理時間",
+    "amount": "交易金額",
+    "remarks": "備註",
+    "remarksPlaceholder": "添加備註...",
+    "close": "關閉",
+    "revertToPending": "恢復到待處理",
+    "loading": "正在加載交易詳情...",
+    "noDetails": "沒有可用的交易詳情。",
+    "error": "加載交易詳情失敗"
+  },
+
+  "status": {
+    "completed": "已完成",
+    "rejected": "已拒絕",
+    "providerRejected": "提供商拒絕",
+    "expired": "已過期"
+  },
+
+  "errorMessages": {
+    "requiredField": "此欄位為必填項",
+    "invalidAmount": "請輸入有效金額",
+    "amountTooSmall": "金額必須大於0",
+    "failedToLoad": "加載交易歷史失敗",
+    "failedToRevert": "恢復交易失敗"
+  },
+
+  "successMessages": {
+    "reverted": "交易已成功恢復到待處理狀態！"
+  }
+}

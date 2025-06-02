@@ -1,0 +1,58 @@
+{
+    "title": "จัดการเว็บไซต์สมาชิก",
+    "registrationLinks": {
+      "title": "ลิงก์ลงทะเบียน",
+      "note": "หากลิงก์ทั้งสองถูกบล็อก ให้ขอลิงก์ใหม่",
+      "domain": "โดเมน",
+      "downloadQRCode": "ดาวน์โหลด QR Code",
+      "requestNewLink": "ขอลิงก์ใหม่"
+    },
+    "generalSettings": {
+      "title": "การตั้งค่าทั่วไป",
+      "allowRegistration": {
+        "title": "การลงทะเบียน",
+        "description": "อนุญาตให้สมาชิกลงทะเบียน"
+      },
+      "allowDeposit": {
+        "title": "การฝากเงิน",
+        "description": "อนุญาตให้สมาชิกฝากเงิน"
+      }
+    },
+    "message": {
+      "title": "ฝากข้อความ",
+      "description": "รวมรายละเอียดการติดต่อและข้อความสำหรับสมาชิกของคุณ",
+      "mobile": "มือถือ",
+      "line": "ไอดีไลน์",
+      "tele": "เทเลแกรม",
+      "announcement": "ประกาศ",
+      "placeholder": {
+        "message": "เพิ่มข้อความของคุณที่นี่..."
+      }
+    },
+    "actions": {
+      "save": "บันทึกการเปลี่ยนแปลง",
+      "saving": "กำลังบันทึก..."
+    },
+    "errors": {
+      "title": "เกิดข้อผิดพลาด!",
+      "loadFailed": "ไม่สามารถโหลดข้อมูลเว็บไซต์สมาชิก",
+      "updateFailed": "ไม่สามารถอัปเดตข้อมูลเว็บไซต์สมาชิก"
+    },
+    "loading": {
+      "title": "กำลังโหลด..."
+    },
+    "messages": {
+      "updateSuccess": "อัปเดตข้อมูลเว็บไซต์สมาชิกสำเร็จ",
+      "updateFailed": "ไม่สามารถอัปเดตข้อมูลเว็บไซต์สมาชิก"
+    },
+    "validation": {
+      "required": "จำเป็น",
+      "lineId": "LINE ID ไม่ถูกต้อง",
+      "telegram": "Telegram ID ไม่ถูกต้อง",
+      "email": "อีเมลไม่ถูกต้อง",
+      "phoneCode": "รหัสไม่ถูกต้อง",
+      "phoneNumber": "เบอร์ไม่ถูกต้อง",
+      "maxLength": "สูงสุด {{maxLength}} ตัวอักษร",
+       "onlyAz09": "ใช้ได้เฉพาะ a-z, 0-9, _"
+    }
+} 

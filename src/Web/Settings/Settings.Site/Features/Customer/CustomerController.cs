@@ -1,4 +1,4 @@
-using System.Text.Json;
+// using System.Text.Json;
 using AlphaPlus.Core;
 using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Helpers;
@@ -6,6 +6,7 @@ using AlphaPlus.Core.Models;
 using AlphaPlus.Core.Utils;
 using AlphaPlus.Products.Models;
 using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+using AlphaPlus.Settings.Site.Features.Customer.Models;
 using AlphaPlus.Settings.Site.Features.Customer.Requests;
 using AlphaPlus.Settings.Site.Features.Customer.ViewModels;
 using AlphaPlus.Settings.Site.Features.ProductStatus;
@@ -17,6 +18,8 @@ using Fanex.Customer.Client.Params;
 using Fanex.Customer.Client.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using Newtonsoft.Json;
+
 
 namespace AlphaPlus.Settings.Site.Features.Customer
 {
@@ -33,11 +36,12 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         private readonly IProductStatusService productStatusService;
         private readonly IUserSession userSession;
         private readonly IMemoryCache memoryCache;
-
-        private readonly JsonSerializerOptions serializeOptions = new()
+        private readonly HttpClient httpClient;
+        private readonly IConfiguration configuration;
+        private readonly JsonSerializerSettings serializeOptions = new()
         {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            WriteIndented = true
+            ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver(),
+            Formatting = Newtonsoft.Json.Formatting.Indented
         };
 
         public CustomerController(
@@ -48,7 +52,9 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             ICustomerService customerService,
             IProductStatusService productStatusService,
             IUserSession userSession,
-            IMemoryCache memoryCache)
+            IMemoryCache memoryCache,
+            IConfiguration configuration,
+            HttpClient httpClient)
         {
             this.encryption = encryption;
             this.sessionManager = sessionManager;
@@ -58,6 +64,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             this.productStatusService = productStatusService;
             this.userSession = userSession;
             this.memoryCache = memoryCache;
+            this.httpClient = httpClient;
+            this.configuration = configuration;
         }
 
         private string GetAssetsVersion()
@@ -89,6 +97,32 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 
             return View(viewModel);
         }
+
+        public async Task<ActionResult> CreateCashMember(CreateCustomerQuery query)
+        {
+            if (!AppSettings.IsOfferedCashService(userSession.Site)
+                || (userSession.IsSubAcc && !userSession.SubPageAccess.GetPermission(PageAccessType.CreateAccount))
+                || !query.IsValid())
+            {
+                return UnAuthorized();
+            }
+
+            var limitedRulesResult = await customerService.CheckAllLimitedRules(query.ViewerId, query.ViewerLevelId, query.ActorUsername, false, query.Language);
+
+            var viewModel = limitedRulesResult.IsFailed
+                ? new CreateCustomerViewModel(query, true, limitedRulesResult.Message)
+                : new CreateCustomerViewModel(
+                query,
+                new AppConfiguration(GetApplicationPath(), systemId),
+                CDNUri,
+                GetAssetsVersion(),
+                GetHashKey(),
+                await customerService.GetSuggestUsername(query.CustName, query.ViewerLevelId),
+                productGroupId: 0);
+
+            return View(viewModel);
+        }
+
         public async Task<ActionResult> Create(CreateCustomerQuery query)
         {
             var limitedRulesResult = await customerService.CheckAllLimitedRules(query.ViewerId, query.ViewerLevelId, query.ActorUsername, false, query.Language);
@@ -192,6 +226,42 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         }
 
         [HttpPost, ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateCashCustomer([FromBody] CreateCustomerRequest request)
+        {
+            if (!AppSettings.IsOfferedCashService(userSession.Site)
+                || (userSession.IsSubAcc && !userSession.SubPageAccess.GetPermission(PageAccessType.CreateAccount))
+                || request.IsInternal
+                || !request.IsValid())
+            {
+                return UnAuthorized();
+            }
+
+            var generalInfo = request.GeneralInfo;
+            var rawPassword = aesService.Decrypt(generalInfo.Password, sessionManager.Get<string>(HashKeySessionKey));
+            generalInfo.Password = rawPassword;
+            generalInfo.UpLineRoleId = request.ViewerLevelId;
+            generalInfo.Site = request.Site;
+            generalInfo.SiteLabel = AppSettings.SiteLabel;
+
+            var response = await customerService.CreateCashCustomer(new CreateCustomerParam(
+                generalInfo,
+                request.ProductGroups,
+                request.ViewerId,
+                request.SubAccId,
+                request.IP,
+                request.Site,
+                AppSettings.SiteLabel,
+                request.CustDBGroupId,
+                request.Group,
+                request.NumberOfAccounts,
+                CreationModes.FullMode,
+                request.Language));
+
+            return Content(response);
+        }
+
+
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> Update([FromBody] UpdateCustomerRequest request)
         {
             if (request.IsInternal)
@@ -253,8 +323,23 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         public async Task<ActionResult> SearchSuggestDirectMembers(DirectMemberSuggestionQuery request)
             => Json(await customerService.SearchSuggestDirectMembers(request.ViewerId, request.SearchUsername));
 
+        public async Task<ActionResult> SearchSuggestCashMembers(DirectMemberSuggestionQuery request)
+        {
+            if (!AppSettings.IsOfferedCashService(userSession.Site) || !request.IsValid())
+            {
+                return UnAuthorized();
+            }
+
+            return Json(await customerService.SearchSuggestCashMembers(request.ViewerId, request.SearchUsername));
+        }
+
         public async Task<int> CheckDirectMemberUserName(DirectMemberSuggestionQuery request)
             => await customerService.CheckDirectMemberUserName(request.ViewerId, request.SearchUsername);
+
+        public async Task<int> CheckCashMemberUserName(DirectMemberSuggestionQuery request)
+        {
+            return await customerService.CheckCashMemberUserName(request.ViewerId, request.SearchUsername);
+        }
 
         public async Task<ActionResult> GetCustomerSetting(GetCustomerSettingRequest request)
             => Content(await customerService.GetCustomerSetting(
@@ -267,6 +352,25 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 request.ProductGroupId,
                 request.SiteLabel,
                 agentId: request.AgentId));
+
+        public async Task<ActionResult> GetCashCustomerSetting(GetCustomerSettingRequest request)
+        {
+            if (!AppSettings.IsOfferedCashService(userSession.Site) || !request.IsValid())
+            {
+                return UnAuthorized();
+            }
+
+            return Content(await customerService.GetCashCustomerSetting(
+                request.CustId,
+                request.RoleId,
+                systemId,
+                request.UplineRoleId,
+                request.Language,
+                request.IsGetUpLine,
+                request.ProductGroupId,
+                request.SiteLabel));
+        }
+
 
         public async Task<ActionResult> GetCurrentWinLossAmount(CustomerWinLossAmountQuery request)
          => Content(await customerService.GetCustomerCurrentWinLossAmounts(request.CustId, request.SportType, request.BetType, request.Language));
@@ -362,7 +466,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             return applicationPath;
         }
 
-        private ContentResult UnAuthorized() => Content(JsonSerializer.Serialize(Result.CreateErrorResult(Resources.NotAuthorized), serializeOptions));
+        private ContentResult UnAuthorized() => Content(JsonConvert.SerializeObject(Result.CreateErrorResult(Resources.NotAuthorized), serializeOptions));
 
         private SettingProductTab BuildAccountInfoTab(int customerId, int customerLevel, bool isDarkMode)
         {
@@ -408,6 +512,30 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 productGroupId,
                 userSession.Language,
                 isDarkMode.ToString().ToLowerInvariant()));
+        }
+
+        public async Task<IActionResult> GetCountryCodes(CancellationToken cancellationToken)
+        {
+            if (!AppSettings.IsOfferedCashService(userSession.Site))
+            {
+                return UnAuthorized();
+            }
+
+            var url = $"{configuration["CashServiceAPIUrl"]}/common/country-codes/{userSession.Site}";
+            var countryCodes = await httpClient.GetFromJsonAsync<string[]>(url, cancellationToken);
+            return Json(countryCodes);
+        }
+
+        public async Task<IActionResult> GetBanks(CancellationToken cancellationToken)
+        {
+            if (!AppSettings.IsOfferedCashService(userSession.Site))
+            {
+                return UnAuthorized();
+            }
+
+            var url = $"{configuration["CashServiceAPIUrl"]}/payments/banks?site={userSession.Site}&transactionType={0}&languageCode={userSession.Language}";
+            var banks = await httpClient.GetFromJsonAsync<BankModel[]>(url, cancellationToken);
+            return Json(banks, serializeOptions);
         }
     }
 }

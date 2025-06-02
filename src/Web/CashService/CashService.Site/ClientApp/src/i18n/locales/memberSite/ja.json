@@ -1,0 +1,58 @@
+{
+  "title": "メンバーサイト管理",
+  "registrationLinks": {
+    "title": "登録リンク",
+    "note": "両方のリンクがブロックされている場合は、新しいリンクをリクエストしてください。",
+    "domain": "ドメイン",
+    "downloadQRCode": "QRコードをダウンロード",
+    "requestNewLink": "新しいリンクをリクエスト"
+  },
+  "generalSettings": {
+    "title": "一般設定",
+    "allowRegistration": {
+      "title": "登録",
+      "description": "メンバー登録を許可"
+    },
+    "allowDeposit": {
+      "title": "入金",
+      "description": "メンバーの入金を許可"
+    }
+  },
+  "message": {
+    "title": "メッセージを残す",
+    "description": "連絡先とメンバーへのメッセージを含めてください。",
+    "mobile": "携帯電話",
+    "line": "LINE ID",
+    "tele": "Telegram",
+    "announcement": "お知らせ",
+    "placeholder": {
+      "message": "メッセージを入力してください..."
+    }
+  },
+  "actions": {
+    "save": "変更を保存",
+    "saving": "保存中..."
+  },
+  "errors": {
+    "title": "エラー！",
+    "loadFailed": "メンバーサイトのデータを読み込めませんでした",
+    "updateFailed": "メンバーサイトのデータを更新できませんでした"
+  },
+  "loading": {
+    "title": "読み込み中..."
+  },
+  "messages": {
+    "updateSuccess": "メンバーサイトのデータを更新しました",
+    "updateFailed": "メンバーサイトのデータを更新できませんでした"
+  },
+  "validation": {
+    "required": "必須",
+    "lineId": "LINE ID無効",
+    "telegram": "Telegram ID無効",
+    "email": "メール無効",
+    "phoneCode": "コード無効",
+    "phoneNumber": "番号無効",
+    "maxLength": "最大{{maxLength}}文字",
+    "onlyAz09": "a-z、0-9、_のみ使用可"
+  }
+} 

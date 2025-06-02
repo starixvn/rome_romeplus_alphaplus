@@ -1,5 +1,3 @@
-using AlphaPlus.Core.Models;
-
 namespace AlphaPlus.Settings.Transfer.API.Criteria.Reward;
 
 internal class GetRewardPaymentMemberCriteria(

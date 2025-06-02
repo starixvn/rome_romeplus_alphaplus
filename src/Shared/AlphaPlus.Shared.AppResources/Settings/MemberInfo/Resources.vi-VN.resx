@@ -1231,4 +1231,10 @@ Lưu ý:  Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
   <data name="AvailableCreditSlashBetCredit" xml:space="preserve">
     <value>Hạn Mức Khả Dụng/&lt;br/&gt;Hạn Mức Cược</value>
   </data>
+  <data name="CreateDirectMember" xml:space="preserve">
+    <value>Tạo Member Trực Tiếp</value>
+  </data>
+  <data name="CreateCashMember" xml:space="preserve">
+    <value>Thêm thành viên tiền mặt mới</value>
+  </data>
 </root>
