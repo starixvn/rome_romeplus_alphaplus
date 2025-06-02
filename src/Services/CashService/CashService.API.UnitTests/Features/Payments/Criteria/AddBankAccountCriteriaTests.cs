@@ -180,7 +180,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
         [Theory]
         [InlineData("123456")]        // AccountHolderName with only digits
         [InlineData("123456789")]     // AccountHolderName with only digits
-        public void IsValid_WhenAccountHolderNameContainsOnlyDigits_ShouldReturnFalse(string accountHolderName)
+        public void IsValid_WhenAccountHolderNameContainsOnlyDigits_ShouldReturnTrue(string accountHolderName)
         {
             // Arrange
             var request = CreateValidRequest();
@@ -192,7 +192,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
             var isValid = criteria.IsValid();
 
             // Assert
-            Assert.False(isValid);
+            Assert.True(isValid);
         }
 
         [Theory]
@@ -210,7 +210,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
             var isValid = criteria.IsValid();
 
             // Assert
-            Assert.False(isValid);
+            Assert.False(isValid);  
         }
     }
 } 

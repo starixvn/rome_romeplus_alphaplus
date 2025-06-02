@@ -43,7 +43,7 @@ public class CommonServiceTests
     public async Task RunDBCommand_WhenCommandHasError_ReturnsErrorResult()
     {
         // Arrange
-        var request = new BaseActionRequest { ActorId = 1, UserId = 2, SiteDB = 3 };
+        var request = new BaseActionRequest { ActorId = 1, UserId = 2, CustDBGroupId = 3 };
         var baseDBCommand = new BaseDBCommand(1, 0, "192.168.1.1", "en")
         {
             ErrCode = 1,
@@ -63,7 +63,7 @@ public class CommonServiceTests
     public async Task RunDBCommand_WhenCommandSuccessful_ReturnsSuccessResult()
     {
         // Arrange
-        var request = new BaseActionRequest { ActorId = 1, UserId = 2, SiteDB = 3 };
+        var request = new BaseActionRequest { ActorId = 1, UserId = 2, CustDBGroupId = 3 };
         var baseDBCommand = new BaseDBCommand(1, 0, "192.168.1.1", "en") { ErrCode = 0 };
         var writeLogModels = new List<WriteLogDBCommandModel>();
         _repositoryMock.Setup(x => x.FetchAsync<WriteLogDBCommandModel>(It.Is<BaseDBCommand>(c => c.CustId == 1 && c.SubAccId == 0), string.Empty, CancellationToken.None))
@@ -82,7 +82,7 @@ public class CommonServiceTests
     public async Task WriteLogDBCommand_WhenFirstAttemptSucceeds_DoesNotRetry()
     {
         // Arrange
-        var request = new BaseActionRequest { ActorId = 1, UserId = 2, SiteDB = 3 };
+        var request = new BaseActionRequest { ActorId = 1, UserId = 2, CustDBGroupId = 3 };
         var writeLogModel = new WriteLogDBCommandModel
         {
             ActionId = 1,
@@ -106,7 +106,7 @@ public class CommonServiceTests
     public async Task WriteLogDBCommand_WhenFirstAttemptFails_RetriesWithDefaultSiteDB()
     {
         // Arrange
-        var request = new BaseActionRequest { ActorId = 1, UserId = 2, SiteDB = 3 };
+        var request = new BaseActionRequest { ActorId = 1, UserId = 2, CustDBGroupId = 3 };
         var writeLogModel = new WriteLogDBCommandModel
         {
             ActionId = 1,
@@ -127,6 +127,6 @@ public class CommonServiceTests
         // Assert
         _repositoryMock.Verify(x => x.ExecuteAsync(It.Is<WriteLogDBCommandCriteria>(c => c.SiteDB == -1), string.Empty, CancellationToken.None), Times.Once);
         _repositoryMock.Verify(x => x.ExecuteAsync(It.Is<WriteLogDBCommandCriteria>(c => c.SiteDB != -1), string.Empty, CancellationToken.None), Times.Once);
-        _loggerMock.Verify(x => x.Error(It.IsAny<string>(), It.IsAny<Exception>()), Times.Once);
+        _loggerMock.Verify(x => x.ErrorAsync(It.IsAny<string>(), It.IsAny<Exception>()), Times.Once);
     }
 }

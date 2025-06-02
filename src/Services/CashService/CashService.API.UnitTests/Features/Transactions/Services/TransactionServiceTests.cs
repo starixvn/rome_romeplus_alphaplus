@@ -121,7 +121,7 @@ public class TransactionServiceTests
         Assert.NotNull(result);
         Assert.Equal(command.ErrCode, result.Code);
         Assert.Equal(command.ErrMsg, result.Message);
-        mockDynamicRepository.Verify(repo => repo.ExecuteAsync(command, It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
+        mockDynamicRepository.Verify(repo => repo.FetchAsync<WriteLogDBCommandModel>(command, It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
     }
 
     [Fact]
@@ -186,7 +186,7 @@ public class TransactionServiceTests
         // Assert
         mockDynamicRepository.Verify(r => r.ExecuteAsync(It.Is<SyncCashAccumCreditCommand>(c => c.CashAccumCreditTbl == cashAccumCreditTbl && c.CustDbGroupId == custDbGroupId), It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
         mockDynamicRepository.Verify(r => r.ExecuteAsync(It.Is<InsertTransactionLogTransferCommand>(c => c.UserId == logs[0].UserId && c.SiteDbGroupId == -1), It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once); // SiteDbGroupId is -1 in the first attempt inside WriteTransactionLog
-        mockCommonService.Verify(s => s.WriteLogDBCommand(It.Is<BaseActionRequest>(br => br.ActorId == logs[1].CustId && br.SiteDB == custDbGroupId && br.UserId == logs[1].UserId), It.Is<WriteLogDBCommandModel>(l => l == logs[1])), Times.Once);
+        mockCommonService.Verify(s => s.WriteLogDBCommand(It.Is<BaseActionRequest>(br => br.ActorId == logs[1].CustId && br.SiteDBGroupId == custDbGroupId && br.UserId == logs[1].UserId), It.Is<WriteLogDBCommandModel>(l => l == logs[1])), Times.Once);
         mockLogger.Verify(l => l.ErrorAsync(It.IsAny<string>(), It.IsAny<Exception>()), Times.Never);
     }
 

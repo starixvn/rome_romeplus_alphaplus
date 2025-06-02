@@ -15,7 +15,7 @@ public class WriteLogDBCommandCriteriaTests
         {
             ActorId = 123,
             UserId = 456,
-            SiteDB = 789
+            CustDBGroupId = 789
         };
 
         var model = new WriteLogDBCommandModel
@@ -45,7 +45,7 @@ public class WriteLogDBCommandCriteriaTests
     public void GetSettingKey_WhenSiteDBIsNegative_ShouldReturnDefaultKey()
     {
         // Arrange
-        var request = new BaseActionRequest { SiteDB = -1 };
+        var request = new BaseActionRequest { CustDBGroupId = -1 };
         var model = new WriteLogDBCommandModel { ActionId = 1 };
         var criteria = new WriteLogDBCommandCriteria(request, model);
 
@@ -60,7 +60,7 @@ public class WriteLogDBCommandCriteriaTests
     public void GetSettingKey_WhenSiteDBIsPositive_ShouldReturnSiteSpecificKey()
     {
         // Arrange
-        var request = new BaseActionRequest { SiteDB = 123 };
+        var request = new BaseActionRequest { CustDBGroupId = 123 };
         var model = new WriteLogDBCommandModel { ActionId = 1 };
         var criteria = new WriteLogDBCommandCriteria(request, model);
 

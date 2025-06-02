@@ -1,9 +1,9 @@
-﻿namespace AlphaPlus.CashService.API.Features.Transactions.Criteria;
-
-using Fanex.Data;
+﻿using Fanex.Data;
 using Fanex.Data.Repository;
 
-public class RevertWithdrawalTransactionToPendingCommand : CriteriaBase
+namespace AlphaPlus.CashService.API.Features.Transactions.Criteria;
+
+public class RevertWithdrawalTransactionToPendingCommand : INonQueryCommand
 {
     public long TransId { get; set; }
     public string Remark { get; set; }
@@ -17,7 +17,7 @@ public class RevertWithdrawalTransactionToPendingCommand : CriteriaBase
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; }
 
-    public override string GetSettingKey() => $"SiteDb_{SiteDbGroupId}_Age_CashTransaction_RevertWithdrawal_Upd";
+    public string GetSettingKey() => $"SiteDb_{SiteDbGroupId}_Age_CashTransaction_RevertWithdrawal_Upd";
 
-    public override bool IsValid() => TransId > 0;
+    public bool IsValid() => TransId > 0;
 }

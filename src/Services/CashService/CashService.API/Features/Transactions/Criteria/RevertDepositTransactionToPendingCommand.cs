@@ -1,9 +1,9 @@
-﻿namespace AlphaPlus.CashService.API.Features.Transactions.Criteria;
-
-using Fanex.Data;
+﻿using Fanex.Data;
 using Fanex.Data.Repository;
 
-public class RevertDepositTransactionToPendingCommand : CriteriaBase
+namespace AlphaPlus.CashService.API.Features.Transactions.Criteria;
+
+public class RevertDepositTransactionToPendingCommand : INonQueryCommand
 {
     public long TransId { get; set; }
     public string Remark { get; set; }
@@ -16,7 +16,7 @@ public class RevertDepositTransactionToPendingCommand : CriteriaBase
     [SpParam(Ignored = true)]
     public int CustDbGroupId { get; set; }
 
-    public override string GetSettingKey() => $"SiteDb_{SiteDbGroupId}_Age_CashTransaction_RevertDeposit_Upd";
+    public string GetSettingKey() => $"SiteDb_{SiteDbGroupId}_Age_CashTransaction_RevertDeposit_Upd";
 
-    public override bool IsValid() => TransId > 0;
+    public bool IsValid() => TransId > 0;
 }

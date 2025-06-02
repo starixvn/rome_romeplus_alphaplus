@@ -129,7 +129,7 @@ public class MemberSiteManagementServiceTest
                 r.UserId == model.CustId &&
                 r.IP == model.IP &&
                 r.Language == model.Language &&
-                r.SiteDB == model.SiteDB),
+                r.CustDBGroupId == model.SiteDB),
             It.Is<UpdateMemberSiteInfoCommand>(c =>
                 c.CustId == model.CustId &&
                 c.SubAccId == model.SubAccId &&
