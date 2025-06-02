@@ -54,7 +54,9 @@ public class TransactionService(IDynamicRepository dynamicRepository, ICommonSer
 
     public async Task<ResultModel> RevertDepositTransactionToPending(RevertDepositTransactionToPendingCommand command)
     {
-        await dynamicRepository.ExecuteAsync(command);
+        var logs = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command);
+        OnAfterUpdateTransaction(string.Empty, command.SiteDbGroupId, command.CustDbGroupId, logs.ToList());
+
         return new ResultModel
         {
             Code = command.ErrCode,
@@ -64,7 +66,8 @@ public class TransactionService(IDynamicRepository dynamicRepository, ICommonSer
 
     public async Task<ResultModel> RevertWithdrawalTransactionToPending(RevertWithdrawalTransactionToPendingCommand command)
     {
-        await dynamicRepository.ExecuteAsync(command);
+        var logs = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command);
+        OnAfterUpdateTransaction(string.Empty, command.SiteDbGroupId, command.CustDbGroupId, logs.ToList());
         return new ResultModel
         {
             Code = command.ErrCode,

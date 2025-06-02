@@ -224,6 +224,7 @@ public class TransactionsController(
         }
 
         request.SiteDbGroupId = siteDbGroupId;
+        request.CustDbGroupId = custDbGroupId;
         request.UserId = userId;
         request.Ip = GetClientIp();
         var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/api/transactions/revert-pending-deposit", request);
