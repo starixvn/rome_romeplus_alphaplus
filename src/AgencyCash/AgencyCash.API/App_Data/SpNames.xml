@@ -7,10 +7,10 @@
   <Function Name="Register Cash Member">
     <Setting Key="API_CustomerInsMember_CashMember_CheckUsername" SpName="API_CustomerInsMember_CashMember_CheckUsername_UAT2" DbName="DBGLOB.GlobCustDB.asv_CashService" />
 	  <Setting Key="API_CustomerInsMember_CashMember_Validate" SpName="API_CustomerInsMember_CashMember_Validate_UAT2" DbName="DBCust.CustDB.asv_CashService" />
-    <Setting Key="Age_CustomerSelSuggestUsernameNew" SpName="Age_CustomerSelSuggestUsernameNew" DbName="DBGLOB.GlobCustDB.wsv_alp" />
+    <Setting Key="Age_CustomerSelSuggestUsernameNew" SpName="Age_CustomerSelSuggestUsernameNew" DbName="DBGLOB.GlobCustDB.asv_CashService" />
     <Setting Key="API_CustomerIns_CashMember_Register" SpName="API_CustomerIns_CashMember_Register_UAT2" DbName="DBGLOB.GlobCustDB.asv_CashService" />
 	  <Setting Key="API_CustomerInsMember_CashMember" SpName="API_CustomerInsMember_CashMember_UAT2" DbName="DBCust.CustDB.asv_CashService" />
-	  <Setting Key="Acc_CustomerIns_Rollback" SpName="Acc_CustomerIns_Rollback" DbName="DBGLOB.GlobCustDB.wsv_alp" />
+	  <Setting Key="Acc_CustomerIns_Rollback" SpName="Acc_CustomerIns_Rollback" DbName="DBGLOB.GlobCustDB.asv_CashService" />
   </Function>
   <Function Name="Payments: Deposit">
     <Setting Key="SiteDB3_Age_CashAccumCredit_AgSel" SpName="Age_CashAccumCredit_AgSel" DbName="DBSite03.bodb02.asv_CashService" />
