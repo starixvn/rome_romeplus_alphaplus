@@ -49,8 +49,8 @@ const DataGrid: React.FC<DataGridProps> = ({
   };
 
   const handleRevertSuccess = () => {
-    handleCloseModal();
     onRefreshNeeded?.();
+    handleCloseModal();
   };
 
   const shouldShowColumn = (columnName: string) => {

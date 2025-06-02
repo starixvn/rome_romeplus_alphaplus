@@ -28,12 +28,13 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
   const [apiParams, setApiParams] = useState<
     Omit<TransactionsHistoryParams, 'searchText' | 'column'>
   >(() => {
+    console.log('apiParams');
     const today = new Date();
     const todayInGMT4 = convertToGMT4(today);
     todayInGMT4.setHours(23, 59, 59, 0);
     const sevenDaysAgo = new Date();
     const sevenDaysAgoInGMT4 = convertToGMT4(sevenDaysAgo);
-    sevenDaysAgoInGMT4.setDate(sevenDaysAgoInGMT4.getDate() - 7);
+    sevenDaysAgoInGMT4.setDate(sevenDaysAgoInGMT4.getDate() - 6);
     sevenDaysAgoInGMT4.setHours(0, 1, 0, 0);
     return {
       dateRange: [
@@ -197,6 +198,9 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         isLoading={loading}
         columnFilter={columnFilter}
         transactionType={transactionType}
+        onRefreshNeeded={() => {
+          setApiParams((prev) => ({ ...prev, pageIndex: 1 }));
+        }}
       />
       {!loading && (
         <Pagination

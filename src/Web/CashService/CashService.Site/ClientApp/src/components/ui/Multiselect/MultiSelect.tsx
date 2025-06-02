@@ -49,7 +49,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
         !controlElement?.contains(target) &&
         !selectElement?.contains(target)
       ) {
-        if (selectRef.current.props.menuIsOpen) {
+        if (selectRef?.current?.props?.menuIsOpen) {
           selectRef.current.props.onMenuClose();
         }
       }

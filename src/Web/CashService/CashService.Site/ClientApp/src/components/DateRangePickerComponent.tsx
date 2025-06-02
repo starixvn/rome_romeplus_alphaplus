@@ -51,16 +51,12 @@ const quickRanges = [
     label: 'Last 7 Days',
     range: () => {
       const end = new Date();
-      const start = new Date();
+      const endInGMT4 = convertToGMT4(end);
+
       const sevenDaysAgo = new Date();
       const sevenDaysAgoInGMT4 = convertToGMT4(sevenDaysAgo);
-      sevenDaysAgoInGMT4.setDate(sevenDaysAgoInGMT4.getDate() - 7);
-      sevenDaysAgoInGMT4.setHours(0, 1, 0, 0);
-      const startInGMT4 = convertToGMT4(start);
-      const endInGMT4 = convertToGMT4(end);
-      startInGMT4.setDate(sevenDaysAgoInGMT4.getDate());
-      endInGMT4.setDate(end.getDate());
-      return { startDate: startInGMT4, endDate: endInGMT4 };
+      sevenDaysAgoInGMT4.setDate(sevenDaysAgoInGMT4.getDate() - 6);
+      return { startDate: sevenDaysAgoInGMT4, endDate: endInGMT4 };
     },
   },
   {
@@ -81,6 +77,10 @@ const quickRanges = [
       const nowInGMT4 = convertToGMT4(now);
       const startInGMT4 = new Date(nowInGMT4.getFullYear(), nowInGMT4.getMonth(), 1);
       const endInGMT4 = new Date(nowInGMT4.getFullYear(), nowInGMT4.getMonth() + 1, 0);
+      if (endInGMT4 > nowInGMT4) {
+        endInGMT4.setDate(nowInGMT4.getDate());
+      }
+
       return { startDate: startInGMT4, endDate: endInGMT4 };
     },
   },
