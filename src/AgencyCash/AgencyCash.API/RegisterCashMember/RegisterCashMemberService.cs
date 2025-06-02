@@ -2,6 +2,7 @@ using AgencyCash.API.RegisterCashMember.Constants;
 using AgencyCash.API.RegisterCashMember.Criteria;
 using AgencyCash.API.RegisterCashMember.Requests;
 using AgencyCash.API.RegisterCashMember.Responses;
+using AgencyCash.Shared.Helpers;
 using Fanex.Data.Repository;
 
 namespace AgencyCash.API.RegisterCashMember;
@@ -17,7 +18,8 @@ public class RegisterCashMemberService : IRegisterCashMemberService
 
     public async Task<RegisterCashMemberResult> RegisterCashMember(RegisterCashMemberRequest request)
     {
-        var validateResult = await ValidateSetting(request.UserName, request.Domain, request.AgentId);
+        var sanitizedDomain = DomainHelper.RemoveProtocol(request.Domain);
+        var validateResult = await ValidateSetting(request.UserName, sanitizedDomain, request.AgentId);
         if (!validateResult.IsSuccess)
             return new RegisterCashMemberResult(validateResult.Code, validateResult.Message);
         string actorName = validateResult.AgentUsername;
