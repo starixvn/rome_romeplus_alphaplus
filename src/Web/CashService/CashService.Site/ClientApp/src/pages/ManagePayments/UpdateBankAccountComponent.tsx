@@ -465,7 +465,6 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 text={tManagePayments('transactionType')}
                 required={true}
               />
-              <ValidateMessageComponent message={fieldErrors.selectedTransactionType} />
               <div className="inline-block border-[1px] border-[var(--border-control)] rounded-[4px] px-[16px] pb-[16px] bg-[#f8f8f8] mb-[8px]">
                 {hasDepositTransactionType(formState.selectedBank, banks) && (
                   <div className="mb-[8px]">
@@ -524,6 +523,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                   </div>
                 )}
               </div>
+              <ValidateMessageComponent message={fieldErrors.selectedTransactionType} />
 
               {(() => {
                 const selectedBankObj = banks.find(

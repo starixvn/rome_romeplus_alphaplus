@@ -87,7 +87,7 @@ export const paymentProviderService = {
   },
 
   updateBankAccount: async (bankAccount: PaymentsInterfaces.BankAccount): Promise<any> => {
-    return await api.put(`UpdateBankAccount`, bankAccount);
+    return await api.post(`UpdateBankAccount`, bankAccount);
   },
 
   deleteBankAccount: async (bankAccountId: number): Promise<any> => {

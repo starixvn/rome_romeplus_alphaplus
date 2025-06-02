@@ -12,7 +12,7 @@ import Loading from '../../components/LoadingComponent';
 import { ErrorMessageComponent } from '../../components/MessageComponents';
 import {
   StatusEnabledComponent,
-  StatusFailedComponent,
+  StatusDisabledComponent,
   StatusNoneComponent,
 } from '../../components/StatusComponents';
 import TitleComponent, { MediumTitleComponent } from '../../components/TitleComponents';
@@ -174,7 +174,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
                           </td>
                           <td>
                             {provider.status === 0 ? (
-                              <StatusFailedComponent />
+                              <StatusDisabledComponent />
                             ) : provider.status === 1 ? (
                               <StatusEnabledComponent />
                             ) : (

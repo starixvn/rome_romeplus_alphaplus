@@ -311,7 +311,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
             </div>
             <div>
               <hr className="mt-[16px] mb-[16px] border-[#0000001F]" />
-              <NormalTitleComponent text={tPaymentProviderSettings('addPaymentMethodStep3')} /> 123
+              <NormalTitleComponent text={tPaymentProviderSettings('addPaymentMethodStep3')} />
               <ValidateMessageComponent message={error} />
               <div className="flex flex-wrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="w-[48%]">

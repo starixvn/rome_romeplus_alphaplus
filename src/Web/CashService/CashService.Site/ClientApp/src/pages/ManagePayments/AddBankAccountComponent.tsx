@@ -345,7 +345,6 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
                     text={tManagePayments('transactionType')}
                     required={true}
                   />
-                  <ValidateMessageComponent message={fieldErrors.selectedTransactionType} />
                   <div className="inline-block border-[1px] border-[var(--border-control)] rounded-[4px] px-[16px] pb-[16px] bg-[#f8f8f8] mb-[8px]">
                     {hasDepositTransactionType(selectedBank, banks) && (
                       <div className="mb-3">
@@ -400,6 +399,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
                       </div>
                     )}
                   </div>
+                  <ValidateMessageComponent message={fieldErrors.selectedTransactionType} />
                 </div>
 
                 {(() => {

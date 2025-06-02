@@ -324,7 +324,7 @@ function PaymentProviderSettings() {
       setUpdateMessage({
         type: 'error',
         text: validationErrors
-          .map((err) => `${tGlobal('row')} ${err.index + 1}: ${err.error}`)
+          .map((err) => `${providerSettings[err.index].methodName}: ${err.error}`)
           .join('<br />'),
       });
       return;
