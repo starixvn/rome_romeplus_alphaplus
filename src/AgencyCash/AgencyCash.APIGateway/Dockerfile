@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS builder
 WORKDIR /build
 
 # Copy only necessary files for restoring dependencies
-COPY ["src/NuGet.config", "src/"]
+COPY ["src/NuGet.config", "src/NuGet.config"]
 COPY ["src/AgencyCash/AgencyCash.APIGateway/AgencyCash.APIGateway.csproj", "src/AgencyCash/AgencyCash.APIGateway/AgencyCash.APIGateway.csproj"]
 RUN --mount=type=cache,target=/root/.nuget/packages \
   dotnet restore "src/AgencyCash/AgencyCash.APIGateway/AgencyCash.APIGateway.csproj" -v d
