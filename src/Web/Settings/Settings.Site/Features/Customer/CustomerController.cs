@@ -175,6 +175,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 
         public ActionResult SportBookInformation(SportBookInformationQuery query)
         {
+            query.IsCashMember = AppSettings.IsOfferedCashService(userSession.Site);
             var viewModel = new SportBookInformationViewModel(
                 query,
                 new AppConfiguration(GetApplicationPath(), systemId),
