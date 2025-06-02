@@ -36,7 +36,8 @@ public class YesterdayBalanceTransferService(IDynamicRepository repository) : IY
 
         if (membersNeedReset.Any())
         {
-            var resetCriteria = new ResetPotentialWinLimit(membersNeedReset.Select(i => i.CustId));
+            var ids = membersNeedReset.Select(i => i.CustId).ToList();
+            var resetCriteria = new ResetPotentialWinLimit(ids);
             await repository.ExecuteAsync(resetCriteria, agIP);
             return new Result { Code = resetCriteria.ErrCode, Message = resetCriteria.ErrMsg };
         }
