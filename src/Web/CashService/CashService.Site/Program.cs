@@ -78,6 +78,12 @@ builder.Services
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddSharedCookie();
 
+builder.Services.AddAntiforgery(options =>
+{
+    options.HeaderName = "X-CSRF-TOKEN";
+    options.Cookie.Name = "CSRF-TOKEN";
+});
+
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 app.UseForwardedHeaders();

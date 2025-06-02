@@ -4,6 +4,7 @@ using AlphaPlus.CashService.Site.Features.Payments.ViewModels;
 using AlphaPlus.CashService.Site.Features.Shared;
 using AlphaPlus.CashService.Site.Features.Shared.Filters;
 using AlphaPlus.Core.Models;
+using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.CashService.Site.Features.Payments
@@ -17,7 +18,8 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         public PaymentsController(
             IConfiguration configuration,
             HttpClient httpClient,
-            IUserSession userSession) : base(userSession)
+            IUserSession userSession,
+            IAntiforgery antiforgery) : base(userSession, antiforgery)
         {
             _apiBaseUrl = configuration["CashServiceAPIUrl"];
             _httpClient = httpClient;

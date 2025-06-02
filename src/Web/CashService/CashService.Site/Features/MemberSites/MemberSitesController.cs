@@ -3,6 +3,7 @@ using AlphaPlus.CashService.Site.Features.MemberSites.ViewModels;
 using AlphaPlus.CashService.Site.Features.Shared;
 using AlphaPlus.Core.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Antiforgery;
 namespace AlphaPlus.CashService.Site.Features.MemberSites;
 
 public class MemberSitesController : SiteBaseController
@@ -13,7 +14,8 @@ public class MemberSitesController : SiteBaseController
     public MemberSitesController(
         IConfiguration configuration,
         IUserSession userSession,
-        HttpClient httpClient) : base(userSession)
+        HttpClient httpClient,
+        IAntiforgery antiforgery) : base(userSession, antiforgery)
     {
         _apiBaseUrl = configuration["CashServiceAPIUrl"];
         _httpClient = httpClient;

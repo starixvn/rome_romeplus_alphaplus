@@ -19,6 +19,13 @@ const createAxiosInstance = () => {
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
+
+      // Add CSRF token if exists
+      const csrfToken = document.querySelector<HTMLInputElement>('input[name="__RequestVerificationToken"]')?.value;
+      if (csrfToken) {
+        config.headers['X-CSRF-TOKEN'] = csrfToken;
+      }
+
       return config;
     },
     (error) => Promise.reject(error)
@@ -68,20 +75,20 @@ const createAxiosInstance = () => {
 };
 
 const createAPI = () => {
-  function handleError(url: string,error: any) {
+  function handleError(url: string, error: any) {
     console.error(`Error calling: ${url}`, error);
 
     if (error.response) {
-      return {code: error.response.status, message: error.message};
-    } 
+      return { code: error.response.status, message: error.message };
+    }
 
-    return {code: 1, message: error.message};
+    return { code: 1, message: error.message };
   }
 
   const api = createAxiosInstance();
 
   return {
-    get: async <T = any>(url: string, config?: any) => { 
+    get: async <T = any>(url: string, config?: any) => {
       try {
         const cfg = config || { method: 'GET' };
         const response = await api.get<T>(url, cfg);
@@ -93,7 +100,7 @@ const createAPI = () => {
     post: async <T = any>(url: string, data?: any) => {
       try {
         const response = await api.post<T>(url, data);
-        return { data: response.data, error: null, response: response  };
+        return { data: response.data, error: null, response: response };
       } catch (error) {
         return { data: undefined, error: handleError(url, error), response: undefined };
       }
@@ -106,9 +113,9 @@ const createAPI = () => {
       } catch (error) {
         return { data: undefined, error: handleError(url, error), response: undefined };
       }
-    },    
+    },
   };
 };
 
-export const axiosInstance = createAxiosInstance(); 
+export const axiosInstance = createAxiosInstance();
 export const api = createAPI(); 
