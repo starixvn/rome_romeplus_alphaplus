@@ -31,20 +31,29 @@ const quickRanges = [
   {
     label: 'Today',
     range: () => {
-      const today = new Date();
-      const todayInGMT4 = convertToGMT4(today);
-      todayInGMT4.setHours(23, 59, 59, 0);
-      return { startDate: todayInGMT4, endDate: todayInGMT4 };
+      const todayStart = new Date();
+      const todayStartInGMT4 = convertToGMT4(todayStart);
+      todayStartInGMT4.setHours(0, 1, 0, 0);
+
+      const todayEnd = new Date();
+      const todayEndInGMT4 = convertToGMT4(todayEnd);
+      todayEndInGMT4.setHours(23, 59, 59, 0);
+      return { startDate: todayStartInGMT4, endDate: todayEndInGMT4 };
     },
   },
   {
     label: 'Yesterday',
     range: () => {
-      const yesterday = new Date();
-      const yesterdayInGMT4 = convertToGMT4(yesterday);
-      yesterdayInGMT4.setDate(yesterdayInGMT4.getDate() - 1);
-      yesterdayInGMT4.setHours(0, 1, 0, 0);
-      return { startDate: yesterdayInGMT4, endDate: yesterdayInGMT4 };
+      const yesterdayStart = new Date();
+      const yesterdayStartInGMT4 = convertToGMT4(yesterdayStart);
+      yesterdayStartInGMT4.setDate(yesterdayStartInGMT4.getDate() - 1);
+      yesterdayStartInGMT4.setHours(0, 1, 0, 0);
+
+      const yesterdayEnd = new Date();
+      const yesterdayEndInGMT4 = convertToGMT4(yesterdayEnd);
+      yesterdayEndInGMT4.setDate(yesterdayEndInGMT4.getDate() - 1);
+      yesterdayEndInGMT4.setHours(23, 59, 59, 0);
+      return { startDate: yesterdayStartInGMT4, endDate: yesterdayEndInGMT4 };
     },
   },
   {
@@ -52,10 +61,12 @@ const quickRanges = [
     range: () => {
       const end = new Date();
       const endInGMT4 = convertToGMT4(end);
+      endInGMT4.setHours(23, 59, 59, 0);
 
       const sevenDaysAgo = new Date();
       const sevenDaysAgoInGMT4 = convertToGMT4(sevenDaysAgo);
       sevenDaysAgoInGMT4.setDate(sevenDaysAgoInGMT4.getDate() - 6);
+      sevenDaysAgoInGMT4.setHours(0, 1, 0, 0);
       return { startDate: sevenDaysAgoInGMT4, endDate: endInGMT4 };
     },
   },
@@ -67,6 +78,8 @@ const quickRanges = [
       const startInGMT4 = convertToGMT4(start);
       const endInGMT4 = convertToGMT4(end);
       startInGMT4.setDate(endInGMT4.getDate() - 29);
+      startInGMT4.setHours(0, 1, 0, 0);
+      endInGMT4.setHours(23, 59, 59, 0);
       return { startDate: startInGMT4, endDate: endInGMT4 };
     },
   },
@@ -76,10 +89,13 @@ const quickRanges = [
       const now = new Date();
       const nowInGMT4 = convertToGMT4(now);
       const startInGMT4 = new Date(nowInGMT4.getFullYear(), nowInGMT4.getMonth(), 1);
+      startInGMT4.setHours(0, 1, 0, 0);
+
       const endInGMT4 = new Date(nowInGMT4.getFullYear(), nowInGMT4.getMonth() + 1, 0);
       if (endInGMT4 > nowInGMT4) {
         endInGMT4.setDate(nowInGMT4.getDate());
       }
+      endInGMT4.setHours(23, 59, 59, 0);
 
       return { startDate: startInGMT4, endDate: endInGMT4 };
     },
@@ -90,7 +106,9 @@ const quickRanges = [
       const now = new Date();
       const nowInGMT4 = convertToGMT4(now);
       const startInGMT4 = new Date(nowInGMT4.getFullYear(), nowInGMT4.getMonth() - 1, 1);
+      startInGMT4.setHours(0, 1, 0, 0);
       const endInGMT4 = new Date(nowInGMT4.getFullYear(), nowInGMT4.getMonth(), 0);
+      endInGMT4.setHours(23, 59, 59, 0);
       return { startDate: startInGMT4, endDate: endInGMT4 };
     },
   },

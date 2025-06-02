@@ -16,8 +16,8 @@ const DateRangeFilter: React.FC<DateRangeFilterProps> = ({ dateRange, onDateRang
 
   const handleChange = (val: [Date | null, Date | null]) => {
     onDateRangeChange([
-      val[0] ? val[0].toLocaleDateString('en-US') : '',
-      val[1] ? val[1].toLocaleDateString('en-US') : '',
+      val[0] ? val[0].toLocaleString('en-US') : '',
+      val[1] ? val[1].toLocaleString('en-US') : '',
     ]);
   };
 
