@@ -1,34 +1,42 @@
 using AgencyCash.API.Shared.Helpers;
 using Fanex.Data.Repository;
 
-namespace AgencyCash.API.Payments.Criteria;
+namespace AgencyCash.API.Payments.Criteria.Deposit;
 
 public class ManualDepositCriteria(
     int agentId,
     int custId,
+    short siteDBGroupId,
     decimal agentGivenCredit,
     decimal creditMembersGivenCredit,
-    decimal minLimitAmount,
-    decimal maxLimitAmount,
+    decimal minAmount,
+    decimal maxAmount,
+    short paymentMethodId,
     string paymentFrom,
     string paymentTo,
     decimal exchangeRate,
     decimal amount,
     byte[] paySlip,
     string ip,
-    int siteDBGroupId) : CriteriaBase
+    string remark) : CriteriaBase
 {
     public int AgentId { get; } = agentId;
 
     public int CustId { get; } = custId;
 
+    public short SiteDBGroupId { get; } = siteDBGroupId;
+
     public decimal AgentGivenCredit { get; } = agentGivenCredit;
 
     public decimal CreditMembers_GivenCredit { get; } = creditMembersGivenCredit;
 
-    public decimal MinLimitAmt { get; } = minLimitAmount;
+    public decimal MinAmt { get; } = minAmount;
 
-    public decimal MaxLimitAmt { get; } = maxLimitAmount;
+    public decimal MaxAmt { get; } = maxAmount;
+
+    public byte TransactionTypeId { get; } = 1; // Manual Deposit
+
+    public short PaymentMethodId { get; } = paymentMethodId;
 
     public string PaymentFrom { get; } = paymentFrom;
 
@@ -42,6 +50,8 @@ public class ManualDepositCriteria(
 
     public string IP { get; } = ip;
 
+    public string Remark { get; } = remark;
+
     public int ErrCode { get; set; }
 
     public string ErrMsg { get; set; }
@@ -51,7 +61,7 @@ public class ManualDepositCriteria(
     public string CashAccumCreditTbl { get; set; }
 
     public override string GetSettingKey()
-        => SPNameHelper.SiteDBPrefix("", siteDBGroupId);
+        => SPNameHelper.SiteDBPrefix("API_CashDeposit_AddTransaction", SiteDBGroupId);
 
     public override bool IsValid() => CustId > 0;
 }

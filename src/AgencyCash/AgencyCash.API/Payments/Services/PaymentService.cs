@@ -2,7 +2,6 @@ using AgencyCash.API.Payments.Criteria;
 using AgencyCash.API.Payments.Models;
 using AgencyCash.API.Shared;
 using AgencyCash.API.Shared.Helpers;
-using AgencyCash.API.Shared.Models;
 using Fanex.Data.Repository;
 
 namespace AgencyCash.API.Payments.Services;
@@ -18,7 +17,7 @@ public abstract class PaymentService(
     protected readonly ISiteDBService siteDBService = siteDBService;
     protected readonly Fanex.Logging.ILogger logger = logger;
 
-    public async Task<bool> IsEnableCashService(int agentId, int custDBGroupId)
+    public async Task<bool> IsEnableCashService(int agentId, short custDBGroupId)
     {
         var criteria = new GetAgentServiceTypeCriteria(agentId, custDBGroupId);
         await repository.ExecuteAsync(criteria);
@@ -26,69 +25,21 @@ public abstract class PaymentService(
         return criteria.ServiceType == CashServiceType;
     }
 
-    public async Task<MemberSetting> GetMemberSetting(int memberId, int custDBGroupId)
+    public Task WriteLogs(IEnumerable<LogEntry> logs, short custDBGroupId)
     {
-        var criteria = new GetMemberSettingCriteria(memberId, custDBGroupId);
-        await repository.ExecuteAsync(criteria);
+        var tasks = logs.Select(log => WriteLogRunSP(log, custDBGroupId));
 
-        return new MemberSetting(criteria.AgentGivenCredit, criteria.CreditMembers_GivenCredit, criteria.MinLimitAmt, criteria.MaxLimitAmt);
+        return Task.WhenAll(tasks);
     }
 
-    public void SyncCashAccumCredit(string cashAccumCreditTbl, int custDbGroupId)
-    {
-        _ = Task.Run(async () =>
-        {
-            var criteria = new SyncCashAccumCreditCriteria(cashAccumCreditTbl, custDbGroupId);
-            try
-            {
-                await repository.ExecuteAsync(criteria);
-            }
-            catch (Exception ex)
-            {
-                await logger.ErrorAsync($"{ex.Message}. {nameof(SyncCashAccumCredit)} failed. Criteria: {JsonHelper.ToJson(criteria)}", ex);
-            }
-        });
-    }
-
-    public async Task WriteLogs(IEnumerable<LogEntry> logEntries, SiteDBConfig siteDBConfig)
-    {
-        foreach (var item in logEntries)
-        {
-            if (item.LogTypeId == 1)
-            {
-                await WriteLogTransfer(item, siteDBConfig.SiteDBGroupId);
-            }
-            else if (item.LogTypeId is 2 or 3 or 4)
-            {
-                await WriteLogRunSP(item, siteDBConfig.CustDBGroupId);
-            }
-        }
-    }
-
-    public async Task WriteLogTransfer(LogEntry log, int siteDBGroupId)
-    {
-        var criteria = new WriteLogTransferCriteria(
-            log.UserId,
-            log.FromCustId,
-            log.ToCustId,
-            log.IP,
-            log.Doing);
-        var functionName = nameof(WriteLogTransfer);
-        var isSuccess = await WriteLog(criteria, functionName);
-
-        if (!isSuccess)
-        {
-            criteria.SiteDBGroupId = siteDBGroupId;
-            await WriteLog(criteria, functionName);
-        }
-    }
-
-    public async Task WriteLogRunSP(LogEntry log, int custDBGroupId)
+    public async Task WriteLogRunSP(LogEntry log, short custDBGroupId)
     {
         var criteria = new WriteLogRunSPCriteria(
             log.UserId,
             log.CustId,
             log.ActionId,
+            log.TrackingValueMask,
+            log.TrackingValueMask2,
             log.TrackingValue,
             log.TrackingValue2);
         var functionName = nameof(WriteLogRunSP);

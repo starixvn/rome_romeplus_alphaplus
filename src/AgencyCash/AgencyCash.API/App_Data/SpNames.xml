@@ -17,14 +17,11 @@
     <Setting Key="Age_CashDeposit_LimitAmtSel" SpName="Age_CashDeposit_LimitAmtSel" DbName="DBCust.CustDB.asv_CashService" />
     <Setting Key="Age_CashService_AgentPermissionSel" SpName="Age_CashService_AgentPermissionSel" DbName="DBCust.CustDB.asv_CashService" />
     <Setting Key="SiteDB3_API_CashDeposit_AddTransaction" SpName="API_CashDeposit_AddTransaction" DbName="DBSite03.bodb02.asv_CashService" />
-    <!-- <Setting Key="Age_CashDeposit_MemberSettingSel" SpName="Age_CashDeposit_MemberSettingSel" DbName="DBCust.CustDB.asv_CashService" /> -->
   </Function>
   <Function Name="Payments: Withdraw">
   </Function>
   <Function Name="Payments: Write Logs">
-    <Setting Key="WriteLog_UserLog_Transfer" SpName="WriteLog_UserLog_Transfer" DbName="DBLOG.bodb_CustomerLog.asv_CashService" />
-    <Setting Key="SiteDB3_WriteLog_UserLog_Transfer" SpName="WriteLog_UserLog_Transfer" DbName="DBSite03.bodb02.asv_CashService" />
-    <Setting Key="WriteLog_UserLog_RunSP" SpName="WriteLog_UserLog_RunSP" DbName="DBLOG.bodb_CustomerLog.asv_CashService" />
-    <Setting Key="CustDB0_WriteLog_UserLog_RunSP" SpName="WriteLog_UserLog_RunSP" DbName="DBCust.CustDB.asv_CashService" />
+    <Setting Key="DBLOG_WriteLog_CashService_UserLog_RunSP" SpName="WriteLog_CashService_UserLog_RunSP" DbName="DBLOG.bodb_CustomerLog.asv_CashService" />
+    <Setting Key="WriteLog_CashService_UserLog_RunSP" SpName="WriteLog_CashService_UserLog_RunSP" DbName="DBCust.CustDB.asv_CashService" />
   </Function>
 </Functions>

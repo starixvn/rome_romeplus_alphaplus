@@ -3,7 +3,7 @@ using Fanex.Data.Repository;
 
 namespace AgencyCash.API.Payments.Criteria;
 
-public class GetAgentServiceTypeCriteria(int custId, int custDBGroupId) : NonQueryCommand
+public class GetAgentServiceTypeCriteria(int custId, short custDBGroupId) : NonQueryCommand
 {
     public int CustId { get; } = custId;
 

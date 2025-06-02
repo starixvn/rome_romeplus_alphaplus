@@ -9,7 +9,7 @@ namespace AgencyCash.API.Payments.Services;
 
 public interface IWithdrawalService
 {
-    Task<Result> CreateManualWithdrawal(ManualWithdrawalRequest request);
+    Task<PaymentResult> CreateManualWithdrawal(ManualWithdrawalRequest request);
 }
 
 public class WithdrawalService : PaymentService, IWithdrawalService
@@ -26,8 +26,10 @@ public class WithdrawalService : PaymentService, IWithdrawalService
         _siteDBService = siteDBService;
     }
 
-    public async Task<Result> CreateManualWithdrawal(ManualWithdrawalRequest request)
+    public async Task<PaymentResult> CreateManualWithdrawal(ManualWithdrawalRequest request)
     {
+        return new PaymentResult(0, string.Empty, 123456789);
+        /*
         SiteDBConfig siteDBConfig = null;
         try
         {
@@ -110,5 +112,6 @@ public class WithdrawalService : PaymentService, IWithdrawalService
             await logger.ErrorAsync(ex.Message, ex);
             return new Result(500, "An error occurred while processing withdrawal request.");
         }
+        */
     }
 }

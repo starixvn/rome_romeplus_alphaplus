@@ -1,4 +1,4 @@
-using AgencyCash.API.Payments.Criteria;
+using AgencyCash.API.Payments.Criteria.Deposit;
 using AgencyCash.API.Payments.Models;
 using AgencyCash.API.Payments.Requests;
 using AgencyCash.API.Shared;
@@ -18,6 +18,8 @@ public class DepositService(
     ISiteDBService siteDBService,
     Fanex.Logging.ILogger logger) : PaymentService(repository, siteDBService, logger), IDepositService
 {
+    private const int UnableDeposit = 403;
+
     public async Task<DepositLimit> GetLimit(GetDepositLimitRequest request)
     {
         var siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
@@ -41,44 +43,45 @@ public class DepositService(
     {
         var siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
 
-        var isEnableCashService = await IsEnableCashService(request.AgentId, siteDBConfig.CustDBGroupId);
-        if (!isEnableCashService)
+        if (!await IsEnableCashService(request.AgentId, siteDBConfig.CustDBGroupId) ||
+            !await IsAllowDeposit(request.AgentId, siteDBConfig.CustDBGroupId))
         {
-            return new PaymentResult(
-                601,
-                "Cash service is not enabled for this agent.",
-                0);
+            return new PaymentResult(UnableDeposit, "Unable to process deposits.", 0);
         }
-
-        var memberSetting = await GetMemberSetting(request.CustId, siteDBConfig.CustDBGroupId);
 
         var criteria = new ManualDepositCriteria(
             request.AgentId,
             request.CustId,
-            memberSetting.AgentGivenCredit,
-            memberSetting.CreditMembersGivenCredit,
-            memberSetting.MinLimitAmount,
-            memberSetting.MaxLimitAmount,
+            siteDBConfig.CustDBGroupId,
+            0, 0, 0, 0,
+            // memberSetting.AgentGivenCredit,
+            // memberSetting.CreditMembersGivenCredit,
+            // memberSetting.MinLimitAmount,
+            // memberSetting.MaxLimitAmount,
+            request.PaymentMethodId,
             request.PaymentFrom,
             request.PaymentTo,
             1,
             request.Amount,
             request.PaySlipBuffer,
             request.IP,
-            siteDBConfig.SiteDBGroupId);
-        var logEntries = await repository.FetchAsync<LogEntry>(criteria);
-        var result = new PaymentResult(
-            criteria.ErrCode,
-            criteria.ErrMsg,
-            criteria.TransId);
+            request.Remark);
+        var logs = await repository.FetchAsync<LogEntry>(criteria);
+        var result = new PaymentResult(criteria.ErrCode, criteria.ErrMsg, criteria.TransId);
 
         if (result.IsSuccess)
         {
-            SyncCashAccumCredit(criteria.CashAccumCreditTbl, siteDBConfig.CustDBGroupId);
-
-            await WriteLogs(logEntries, siteDBConfig);
+            await WriteLogs(logs, siteDBConfig.CustDBGroupId);
         }
 
-        return null;
+        return result;
+    }
+
+    private async Task<bool> IsAllowDeposit(int agentId, short custDBGroupId)
+    {
+        var criteria = new CheckAllowDepositCriteria(agentId, custDBGroupId);
+        await repository.ExecuteAsync(criteria);
+
+        return criteria.IsAllowDeposit;
     }
 }

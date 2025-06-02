@@ -1,9 +1,9 @@
 using AgencyCash.API.Shared.Helpers;
 using Fanex.Data.Repository;
 
-namespace AgencyCash.API.Payments.Criteria;
+namespace AgencyCash.API.Payments.Criteria.Deposit;
 
-public class GetAgentCashAccumCreditCriteria(int custId, int siteDBGroupId) : NonQueryCommand
+public class GetAgentCashAccumCreditCriteria(int custId, short siteDBGroupId) : NonQueryCommand
 {
     public int CustId { get; } = custId;
 

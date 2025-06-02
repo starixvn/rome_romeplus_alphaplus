@@ -1,7 +1,7 @@
 using AgencyCash.API.Shared.Helpers;
 using Fanex.Data.Repository;
 
-namespace AgencyCash.API.Payments.Criteria;
+namespace AgencyCash.API.Payments.Criteria.Deposit;
 
 public class GetDepositLimitCriteria(
     int custId,
@@ -9,7 +9,7 @@ public class GetDepositLimitCriteria(
     short providerId,
     short paymentMethodId,
     decimal accumCreditReturn,
-    int custDBGroupId) : NonQueryCommand
+    short custDBGroupId) : NonQueryCommand
 {
     public int CustId { get; } = custId;
 
