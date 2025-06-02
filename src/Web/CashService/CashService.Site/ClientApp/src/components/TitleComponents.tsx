@@ -1,8 +1,7 @@
 import { ReactNode } from 'react';
-
 import Tippy from '@tippyjs/react';
-
 import { IconInfo } from './Icons';
+import './TitleComponents.scss';
 
 interface TitleComponentProps {
   title: string;
@@ -20,13 +19,13 @@ interface MediumTitleComponentProps {
 
 export default function TitleComponent({ title, showTippy, children }: TitleComponentProps) {
   return (
-    <div className="mb-[8px]">
-      <h2 className="flex items-center font-bold text-[15px] text-[#333333] dark:text-[#ffffff] max-[768px]:text-[19px]">
+    <div className="mb-[12px]">
+      <h2 className="flex items-center uppercase text-[var(--titleComponent-color)] border-b border-[var(--titleComponent-border-color)] leading-[39px]">
         {title}
         {showTippy && (
           <Tippy content={children} placement="top" theme="light" arrow={true}>
             <span>
-              <IconInfo className="w-[20px] cursor-pointer h-[20px] ml-[4px] fill-[#163f78]" />
+              <IconInfo className="w-[18px] cursor-pointer h-[18px] ml-[10px] fill-[#118AF2]" />
             </span>
           </Tippy>
         )}
@@ -74,7 +73,7 @@ export const LabelTitleComponent: React.FC<MediumTitleComponentProps> = ({
 }) => {
   return (
     text && (
-      <label className={`${className} block font-semibold text-[#333333] my-[8px] `}>
+      <label className={`${className} block font-bold text-[var(--titleComponent-label-color)] mb-[4px] `}>
         {text}
         {required && <span className="text-[#FF0000]">*</span>}
       </label>
