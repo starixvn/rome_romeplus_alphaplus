@@ -3,10 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { Bank } from '../../services/interfaces/Payments/Bank';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import Loading from '../../components/LoadingComponent';
-import { ButtonApplyComponent, ButtonClosePopupComponent } from '../../components/ButtonComponents';
-import { MediumTitleComponent } from '../../components/TitleComponents';
 import BankIcon from '../../components/BankComponents';
 import { ErrorMessageComponent, WarningMessageComponent } from '../../components/MessageComponents';
+import PopupModalComponent from '../../components/PopupModalComponent';
 
 interface BanksPopupModalProps {
   onClose: () => void;
@@ -41,14 +40,8 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
   }, [tPaymentProviderSettings]);
 
   return (
-    <div className="bg-[#00000066] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-start justify-center">
-      <div className="p-[30px] bg-[#ffffff] mt-[100px] w-full max-w-[560px] max-[768px]:max-w-[90%] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f] text-[12px] max-[768px]:text-[16px]">
-        <div className="relative">
-          <MediumTitleComponent className='font-bold!' text={tPaymentProviderSettings('listOfBanks')} />
-          <ButtonClosePopupComponent onClick={onClose} />
-        </div>
-        <div className="mb-[12px]">
-          {loading ? ( <Loading /> ) 
+    <PopupModalComponent title={tPaymentProviderSettings('listOfBanks')} onClose={onClose}>
+        {loading ? ( <Loading /> ) 
             : error ? (<ErrorMessageComponent message={error} />) 
             : banks.length === 0 ? (<WarningMessageComponent message={tGlobal('noData')} />) 
             : (
@@ -79,12 +72,7 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
               </div>
             </>
           )}
-        </div>
-        <div className="flex justify-center">  
-          <ButtonApplyComponent text={tGlobal('close')} onClick={onClose} />
-        </div>
-      </div>
-    </div>
+    </PopupModalComponent>
   );
 };
 
