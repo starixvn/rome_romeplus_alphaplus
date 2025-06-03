@@ -522,7 +522,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 return UnAuthorized();
             }
 
-            var url = $"{configuration["CashServiceAPIUrl"]}/common/country-codes/{userSession.Site}";
+            var url = $"{configuration["CashService:APIUrl"]}/common/country-codes/{userSession.Site}";
             var countryCodes = await httpClient.GetFromJsonAsync<string[]>(url, cancellationToken);
             return Json(countryCodes);
         }
@@ -534,7 +534,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 return UnAuthorized();
             }
 
-            var url = $"{configuration["CashServiceAPIUrl"]}/payments/banks?site={userSession.Site}&transactionType={0}&languageCode={userSession.Language}";
+            var url = $"{configuration["CashService:APIUrl"]}/payments/banks?site={userSession.Site}&transactionType={0}&languageCode={userSession.Language}";
             var banks = await httpClient.GetFromJsonAsync<BankModel[]>(url, cancellationToken);
             return Json(banks, serializeOptions);
         }

@@ -279,7 +279,7 @@
     },
     "OfferProfilePictureTour": true,
     "CashService": {
-        "OfferedSites": "*"
-    },
-    "CashServiceAPIUrl": "http://cash-service-api:5000/api"
+        "OfferedSites": "*",
+        "APIUrl": "http://cash-service-api:5000/api"
+    }
 }

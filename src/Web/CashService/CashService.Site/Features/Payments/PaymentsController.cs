@@ -21,7 +21,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             IUserSession userSession,
             IAntiforgery antiforgery) : base(userSession, antiforgery)
         {
-            _apiBaseUrl = configuration["CashServiceAPIUrl"];
+            _apiBaseUrl = configuration["CashService:APIUrl"];
             _httpClient = httpClient;
         }
 

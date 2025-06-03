@@ -17,7 +17,7 @@ namespace AlphaPlus.CashService.Site.Features.Promotions
             IConfiguration configuration,
             IUserSession userSession)
         {
-            _apiBaseUrl = configuration["CashServiceAPIUrl"];
+            _apiBaseUrl = configuration["CashService:APIUrl"];
             _httpClient = httpClient;
             _userSession = userSession;
         }
