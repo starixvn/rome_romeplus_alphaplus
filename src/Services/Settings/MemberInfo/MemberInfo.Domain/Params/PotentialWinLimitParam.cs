@@ -17,7 +17,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Params
             BetType = betType;
             SportType = sportType;
             Username = username;
-            Status = status;
+            Status = string.IsNullOrEmpty(status) ? "All" : status;
             ProblemAccount = problemAccount;
             PageSize = pageSize;
             PageIndex = pageIndex;

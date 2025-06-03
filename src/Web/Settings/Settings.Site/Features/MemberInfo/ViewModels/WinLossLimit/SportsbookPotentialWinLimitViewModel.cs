@@ -92,6 +92,7 @@ public class SportsbookPotentialWinLimitViewModel
 
     public IEnumerable<ItemListOption> StatusOptions { get; } =
     [
+        new ItemListOption("All", Resources.All),
         new ItemListOption("Open", Resources.Open),
         new ItemListOption("Disabled", Resources.Disabled),
         new ItemListOption("Closed", Resources.Closed),

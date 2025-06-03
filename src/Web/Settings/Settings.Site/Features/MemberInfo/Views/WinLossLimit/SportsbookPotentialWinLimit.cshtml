@@ -87,7 +87,7 @@
                             <td class="text-left" title="@winLossLimitDetail.LastLogged?.ToString("MM/dd/yyyy hh:mm:ss tt")">
                                 @winLossLimitDetail.LastLogged?.ToString("MM/dd/yyyy hh:mm:ss tt")
                             </td>
-                            <td class="text-left">@SportsbookPotentialWinLimitViewModel.GetStatusText(winLossLimitDetail.Status)</td>
+                            <td class="text-center">@SportsbookPotentialWinLimitViewModel.GetStatusText(winLossLimitDetail.Status)</td>
                             <td class="text-center">@(winLossLimitDetail.IsProblemAccount ? Resources.Yes : Resources.No2)</td>
                             <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.Credit)</td>
                             <td class="text-center">@(winLossLimitDetail.IsAutoReset ? Resources.Yes : Resources.No2)</td>

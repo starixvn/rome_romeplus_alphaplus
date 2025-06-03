@@ -87,7 +87,6 @@ public class PotentialWinLimitWorkbook :
         }
 
         var currentRowIndex = TemplateInfo.BodyStartIndex;
-        currentRowIndex++;
 
         foreach (var item in Data.PotentialWinLimitPage.PotentialWinLimitDetail)
         {

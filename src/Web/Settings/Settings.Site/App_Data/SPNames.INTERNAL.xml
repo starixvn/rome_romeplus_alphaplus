@@ -2,6 +2,8 @@
 <Functions>
     <Function Name="Member Win Loss Limit">
         <Setting Key="Age_CustomerSelWinlimit_Outstanding" SpName="Age_CustomerSelWinlimit_Outstanding" DbName="DBBOF.bodb02.wsv_alpv" Plain="0" />
+        <Setting Key="Age_CustomerSelPotentialWinlimit" SpName="Age_CustomerSelPotentialWinlimit" DbName="DBCust.CustDB.wsv_alpv" Plain="0" />
+        <Setting Key="SiteDB_Age_CustomerSelPotentialWinlimitAmount" SpName="Age_CustomerSelPotentialWinlimitAmount" DbName="SiteDB.bodb02.wsv_alpv" Plain="0" />
     </Function>
     <Function Name="Account Info">
         <Setting Key="Acc_OutstandingMemberSel" SpName="Acc_OutstandingMemberSel" DbName="DBBOF.bodb02.wsv_alpv" Plain="0" />
