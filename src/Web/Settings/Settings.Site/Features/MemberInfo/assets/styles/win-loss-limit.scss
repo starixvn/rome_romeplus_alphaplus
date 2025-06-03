@@ -103,7 +103,9 @@
 .col-loss-percent {
     width: 100px;
 }
-
+.potential-win-limit-table-container{
+    width: 100%;
+}
 .potential-win-limit-table{
     display: flex;
     flex-direction: column;
@@ -118,4 +120,27 @@
     .list-icon li{
         margin-right: 10px;
     }
+}
+.nav-tabs{
+    &.super{
+        --tab-text-color: #97141e;
+        --tab-line-background: #67151b;
+    }
+    &.master{
+        --tab-text-color: #209656;
+        --tab-line-background: #276443;
+    }
+    &.agent{
+        --tab-text-color: #2267b6;
+        --tab-line-background: #516e8f;
+    }
+}
+.nav-tabs>li.active>a{
+    color: var(--tab-text-color);
+}
+.nav.nav-tabs>li:hover > a{
+    color: var(--tab-text-color);
+}
+.nav.nav-tabs>li.active:after, .nav.nav-tabs>li:hover:after{
+    background-color: var(--tab-line-background);
 }

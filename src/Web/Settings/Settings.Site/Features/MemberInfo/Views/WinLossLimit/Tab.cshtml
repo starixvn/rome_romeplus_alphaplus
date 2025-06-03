@@ -1,8 +1,9 @@
 @using AlphaPlus.Shared.AppResources.Settings.MemberInfo
 @using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.WinLossLimit
 @model TabViewModel
+@inject AlphaPlus.Core.Models.IUserSession userSession
 
-<ul class="nav nav-tabs" role="tablist">
+<ul class="nav nav-tabs @userSession.SiteName.ToLowerInvariant()" role="tablist">
     <li role="presentation" class="@(Model.SelectedTabName == "index" ? "active" : string.Empty)">
         <a id="tabWinLossLimit" href="/settings/WinLossLimit/index">@Resources.MemberWinLossLimit</a>
     </li>
