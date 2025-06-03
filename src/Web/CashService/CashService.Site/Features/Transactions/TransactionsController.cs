@@ -1,8 +1,10 @@
 namespace AlphaPlus.CashService.Site.Features.Transactions;
 
+using AlphaPlus.CashService.Site.Features.Shared;
 using AlphaPlus.CashService.Site.Features.Shared.Filters;
 using Core.Models;
 using Helpers;
+using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using Shared.Models;
@@ -11,8 +13,10 @@ using Shared.Models;
 public class TransactionsController(
     HttpClientHelper httpClientHelper,
     IUserSession userSession,
-    IHttpContextAccessor httpContextAccessor)
-    : Controller
+    IHttpContextAccessor httpContextAccessor,
+    IAntiforgery antiforgery)
+
+    : SiteBaseController (userSession, antiforgery)
 {
     private readonly int agentId = userSession.CustId;
     private readonly int custDbGroupId = userSession.CustDBGroupId;
