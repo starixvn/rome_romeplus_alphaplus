@@ -71,12 +71,12 @@ const DataGrid: React.FC<DataGridProps> = ({
         <table className="max-[600px]:text-[17px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
           <thead className="z-11!">
             <tr>
-              <th scope="col" className="w-[32px] min-w-[32px] sticky left-0 bg-[#ffffff] z-11">
+              <th scope="col" className="w-[32px] min-w-[32px] sticky left-0 z-11">
                 {t('table.no')}
               </th>
               <th
                 scope="col"
-                className="w-[150px] min-w-[150px] sticky left-[32px] bg-[#ffffff] z-11 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]"
+                className="w-[150px] min-w-[150px] sticky left-[32px] z-11 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]"
               >
                 <div>{t('table.username')}</div>
                 <div>{t('table.nickname')}</div>
