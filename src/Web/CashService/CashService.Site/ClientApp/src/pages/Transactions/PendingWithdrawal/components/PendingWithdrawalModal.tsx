@@ -248,7 +248,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
           </div>
         </div>
 
-        <div className="flex gap-[8px]">
+        <div className="flex justify-center gap-[8px]">
           <ButtonCancelComponent
             text={t('pendingWithdrawalModal.reject')}
             onClick={handleReject}
