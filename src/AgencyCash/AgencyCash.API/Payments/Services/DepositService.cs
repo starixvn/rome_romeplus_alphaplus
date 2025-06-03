@@ -1,3 +1,4 @@
+using AgencyCash.API.Payments.Constants;
 using AgencyCash.API.Payments.Criteria.Deposit;
 using AgencyCash.API.Payments.Models;
 using AgencyCash.API.Payments.Requests;
@@ -43,7 +44,7 @@ public class DepositService(
     public async Task<Result> Manual(ManualDepositRequest request)
     {
         var siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
-        var validateResult = await ValidatePayment(request.AgentId, request.CustId, Deposit, siteDBConfig.CustDBGroupId);
+        var validateResult = await ValidatePayment(request.AgentId, request.CustId, TransactionType.Deposit, siteDBConfig.CustDBGroupId);
 
         if (!validateResult.IsSuccess)
         {
@@ -66,64 +67,64 @@ public class DepositService(
             limitCriteria.CreditMembers_GivenCredit,
             limitCriteria.MinAmt,
             limitCriteria.MaxAmt,
-            Deposit,
-            BankAccount,
-            request.PaymentMethodId,
+            transactionTypeId: TransactionType.Deposit,
+            paymentType: BankAccount,
+            paymentMethodId: request.PaymentMethodId,
             request.PaymentFrom,
             request.PaymentTo,
             request.Amount,
             request.PaySlipBuffer,
             request.IP,
             request.Remark);
-        var logs = await repository.FetchAsync<LogEntry>(criteria);
-        var result = new PaymentResult(criteria.ErrCode, criteria.ErrMsg, criteria.TransId);
 
-        if (result.IsSuccess)
-        {
-            _ = Task.Run(async () => await WriteLogs(logs, siteDBConfig.CustDBGroupId));
-        }
-
-        return result;
+        return await AddTransactionAndWriteLogs(criteria, siteDBConfig.CustDBGroupId);
     }
 
     public async Task<Result> Auto(AutoDepositRequest request)
     {
         var siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
-        var validateResult = await ValidatePayment(request.AgentId, request.CustId, Deposit, siteDBConfig.CustDBGroupId);
+        var validateResult = await ValidatePayment(request.AgentId, request.CustId, TransactionType.Deposit, siteDBConfig.CustDBGroupId);
 
         if (!validateResult.IsSuccess)
         {
             return validateResult;
         }
 
-        const byte Gateway = 1;
         var limitCriteria = new GetDepositLimitCriteria(
             request.AgentId,
             request.CustId,
-            paymentType: Gateway,
+            paymentType: request.DepositMethod,
             providerId: request.ProviderId ?? 0,
             paymentMethodId: request.PaymentMethodId,
             custDBGroupId: siteDBConfig.CustDBGroupId);
         await repository.ExecuteAsync(limitCriteria);
 
-        // var criteria = new AddTransactionDepositCriteria(
-        //     request.AgentId,
-        //     request.CustId,
-        //     siteDBConfig.SiteDBGroupId,
-        //     limitCriteria.AgentGivenCredit,
-        //     limitCriteria.CreditMembers_GivenCredit,
-        //     limitCriteria.MinAmt,
-        //     limitCriteria.MaxAmt,
-        //     Deposit,
-        //     Gateway,
-        //     request.PaymentMethodId,
-        //     request.PaymentFrom,
-        //     request.PaymentTo,
-        //     request.Amount,
-        //     request.PaySlipBuffer,
-        //     request.IP,
-        //     request.Remark);
+        var criteria = new AddTransactionDepositCriteria(
+            request.AgentId,
+            request.CustId,
+            siteDBConfig.SiteDBGroupId,
+            limitCriteria.AgentGivenCredit,
+            limitCriteria.CreditMembers_GivenCredit,
+            limitCriteria.MinAmt,
+            limitCriteria.MaxAmt,
+            transactionTypeId: TransactionType.AutoDeposit,
+            paymentType: request.DepositMethod,
+            paymentMethodId: request.PaymentMethodId,
+            request.PaymentFrom,
+            request.PaymentTo,
+            request.Amount,
+            paySlip: null,
+            request.IP,
+            request.Remark);
 
-        throw new NotImplementedException("Auto deposit is not implemented yet.");
+        return await AddTransactionAndWriteLogs(criteria, siteDBConfig.CustDBGroupId);
+    }
+
+    private async Task<Result> AddTransactionAndWriteLogs(AddTransactionDepositCriteria criteria, short custDBGroupId)
+    {
+        var logs = await repository.FetchAsync<LogEntry>(criteria);
+        _ = Task.Run(async () => await WriteLogs(logs, custDBGroupId));
+
+        return new PaymentResult(criteria.ErrCode, criteria.ErrMsg, criteria.TransId);
     }
 }

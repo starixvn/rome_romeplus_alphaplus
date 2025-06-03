@@ -62,7 +62,7 @@ public static class PaymentsEndpoints
                 return BadRequest(nameof(request.PaySlip), $"{nameof(request.PaySlip)} is not a valid Base64 string.");
             }
 
-            const int MaxPaySlipSize = 1024 * 1024;
+            const int MaxPaySlipSize = 1024 * 1024; // 1MB
             if (paySlipBuffer.Length > MaxPaySlipSize)
             {
                 return BadRequest(nameof(request.PaySlip), $"{nameof(request.PaySlip)} cannot exceed 1MB.");

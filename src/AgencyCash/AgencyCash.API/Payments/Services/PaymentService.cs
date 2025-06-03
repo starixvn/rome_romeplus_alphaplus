@@ -12,9 +12,6 @@ public abstract class PaymentService(
     ISiteDBService siteDBService,
     Fanex.Logging.ILogger logger)
 {
-    protected const byte Deposit = 1;
-    protected const byte Withdrawal = 2;
-
     protected readonly IDynamicRepository repository = repository;
     protected readonly ISiteDBService siteDBService = siteDBService;
     protected readonly Fanex.Logging.ILogger logger = logger;
@@ -37,9 +34,12 @@ public abstract class PaymentService(
 
     public async Task WriteLogs(IEnumerable<LogEntry> logs, short custDBGroupId)
     {
-        foreach (var item in logs)
+        if (logs != null)
         {
-            await WriteLogRunSP(item, custDBGroupId);
+            foreach (var item in logs)
+            {
+                await WriteLogRunSP(item, custDBGroupId);
+            }
         }
     }
 
