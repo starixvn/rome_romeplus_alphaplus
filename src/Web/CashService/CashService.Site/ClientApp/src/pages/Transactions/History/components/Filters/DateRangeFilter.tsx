@@ -30,7 +30,7 @@ const DateRangeFilter: React.FC<DateRangeFilterProps> = ({ dateRange, onDateRang
         value={value}
         onChange={handleChange}
         minYear={currentYear - 3}
-        maxRangeDays={90}
+        maxRangeDays={92}
       />
     </div>
   );

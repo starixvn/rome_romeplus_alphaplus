@@ -2,10 +2,10 @@ import axios from 'axios';
 
 const createAxiosInstance = () => {
   const instance = axios.create({
-    baseURL: "",
+    baseURL: '',
     headers: {
       'Content-Type': 'application/json',
-      'Accept': 'application/json'
+      Accept: 'application/json',
     },
     withCredentials: true,
     timeout: 120000, // Timeout after 120s
@@ -21,7 +21,9 @@ const createAxiosInstance = () => {
       }
 
       // Add CSRF token if exists
-      const csrfToken = document.querySelector<HTMLInputElement>('input[name="__RequestVerificationToken"]')?.value;
+      const csrfToken = document.querySelector<HTMLInputElement>(
+        'input[name="__RequestVerificationToken"]'
+      )?.value;
       if (csrfToken) {
         config.headers['X-CSRF-TOKEN'] = csrfToken;
       }
@@ -97,9 +99,10 @@ const createAPI = () => {
         return { data: undefined, error: handleError(url, error), response: undefined };
       }
     },
-    post: async <T = any>(url: string, data?: any) => {
+    post: async <T = any>(url: string, data?: any, config?: any) => {
       try {
-        const response = await api.post<T>(url, data);
+        const cfg = config || { method: 'POST' };
+        const response = await api.post<T>(url, data, cfg);
         return { data: response.data, error: null, response: response };
       } catch (error) {
         return { data: undefined, error: handleError(url, error), response: undefined };
@@ -118,4 +121,4 @@ const createAPI = () => {
 };
 
 export const axiosInstance = createAxiosInstance();
-export const api = createAPI(); 
+export const api = createAPI();

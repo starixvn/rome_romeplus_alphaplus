@@ -44,8 +44,7 @@ const Pagination: React.FC<PaginationProps> = ({
 
   const startItem = (currentPage - 1) * pageSize + 1;
   const endItem = Math.min(currentPage * pageSize, totalItems);
-  console.log(totalPages);
-  console.log(currentPage);
+
   return (
     <div className="flex items-center gap-2 py-2 px-4 bg-white text-sm">
       <div className="flex items-center gap-2">

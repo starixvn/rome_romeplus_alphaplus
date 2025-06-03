@@ -70,7 +70,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
         providerId,
         paymentMethodId,
       };
-
+      console.log(manualWithdrawalData);
       const addWithdrawalResponse = await manualAddWithdrawal(manualWithdrawalData);
       if (addWithdrawalResponse.isSuccessful) {
         setResultMessage({

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 interface AmountInputProps {
-  value: number;
+  value: number; // This remains number for the external API
   onChange: (value: number) => void;
   isDisabled?: boolean;
   id?: string;

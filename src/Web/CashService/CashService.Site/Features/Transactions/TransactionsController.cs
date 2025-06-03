@@ -1,12 +1,12 @@
 namespace AlphaPlus.CashService.Site.Features.Transactions;
 
-using AlphaPlus.CashService.Site.Features.Shared;
-using AlphaPlus.CashService.Site.Features.Shared.Filters;
 using Core.Models;
 using Helpers;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Shared;
+using Shared.Filters;
 using Shared.Models;
 
 [SiteAuthorizationFilter]
@@ -15,7 +15,7 @@ public class TransactionsController(
     IUserSession userSession,
     IHttpContextAccessor httpContextAccessor,
     IAntiforgery antiforgery)
-    : SiteBaseController (userSession, antiforgery)
+    : SiteBaseController(userSession, antiforgery)
 {
     private readonly int agentId = userSession.CustId;
     private readonly int custDbGroupId = userSession.CustDBGroupId;

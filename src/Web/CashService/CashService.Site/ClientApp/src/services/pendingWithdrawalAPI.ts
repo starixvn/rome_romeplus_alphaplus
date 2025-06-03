@@ -1,16 +1,8 @@
-import axios from 'axios';
+import { axiosInstance as api } from './axios';
 import { WithdrawalAccountInfo } from './interfaces/WithdrawalAccountInfo';
 import { CreditAmount } from './interfaces/Transactions/CreditAmount';
 import { ResultModel } from './interfaces/ResultModel';
 import { AddWithdrawalModel } from './interfaces/AddWithdrawalModel';
-
-const api = axios.create({
-  baseURL: '',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  withCredentials: true,
-});
 
 export const getBankWithdrawalAccounts = async (): Promise<WithdrawalAccountInfo[]> => {
   try {
