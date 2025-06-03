@@ -20,7 +20,7 @@ interface DataGridProps {
 const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
   const { t } = useTranslation('pendingDeposit');
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(100);
+  const [pageSize, setPageSize] = useState(10);
   const [error, setError] = useState<string | null>(null);
   const [paginatedDeposits, setPaginatedDeposits] = useState<TransactionItem[]>([]);
   const [processingDeposit, setProcessingDeposit] = useState<TransactionItem | null>(null);
@@ -65,7 +65,7 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
 
   return (
     <>
-      <div className="table-fixed-header table-fixed-body  h-full">
+      <div className="table-fixed-header table-fixed-body min-h-0">
         <table className="max-[600px]:text-[17px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
           <thead className="z-11!">
             <tr>
@@ -136,13 +136,15 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
       )}
 
       {paginatedDeposits.length > 0 && (
-        <Pagination
-          currentPage={currentPage}
-          pageSize={pageSize}
-          totalItems={totalItems}
-          onPageChange={handlePageChange}
-          onPageSizeChange={handlePageSizeChange}
-        />
+        <div className="mt-0">
+          <Pagination
+            currentPage={currentPage}
+            pageSize={pageSize}
+            totalItems={totalItems}
+            onPageChange={handlePageChange}
+            onPageSizeChange={handlePageSizeChange}
+          />
+        </div>
       )}
     </>
   );

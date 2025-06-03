@@ -223,13 +223,15 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         onRefreshNeeded={onRefreshNeeded}
       />
       {!loading && (
-        <Pagination
-          currentPage={apiParams.pageIndex}
-          totalItems={apiData.totalCount}
-          pageSize={apiParams.pageSize}
-          onPageChange={handlePageChange}
-          onPageSizeChange={handlePageSizeChange}
-        />
+        <div className="mt-0">
+          <Pagination
+            currentPage={apiParams.pageIndex}
+            totalItems={apiData.totalCount}
+            pageSize={apiParams.pageSize}
+            onPageChange={handlePageChange}
+            onPageSizeChange={handlePageSizeChange}
+          />
+        </div>
       )}
     </div>
   );
