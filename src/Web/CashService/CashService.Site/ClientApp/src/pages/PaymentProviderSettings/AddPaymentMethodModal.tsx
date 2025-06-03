@@ -187,10 +187,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
     <div className="bg-[#00000066] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-center justify-center">
       <div className="p-[30px] max-h-[750px] overflow-y-auto bg-[#ffffff] w-full max-w-[560px] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
         <div className="relative">
-          <MediumTitleComponent
-            className="font-bold!"
-            text={tPaymentProviderSettings('setUpPaymentMethods')}
-          />
+          <MediumTitleComponent className="font-bold" text={tPaymentProviderSettings('setUpPaymentMethods')} />
           <ButtonClosePopupComponent onClick={onClose} />
         </div>
         <ErrorMessageComponent className="mt-[8px]" message={error} />
@@ -201,16 +198,11 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
               <NormalTitleComponent text={tPaymentProviderSettings('addPaymentMethodStep1')} />
               <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <LabelTitleComponent
-                    text={`${tPaymentProviderSettings('transactionType')}`}
-                    required={true}
-                  />
+                  <LabelTitleComponent text={`${tPaymentProviderSettings('transactionType')}`} required={true} />
                   <select
                     className={`h-[32px] max-[768px]:h-[40px] max-[768px]:leading-[40px] w-full border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.selectedTransactionType ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                     value={formState.selectedTransactionType}
-                    onChange={(e) => {
-                      onInputChange('selectedTransactionType', e.target.value);
-                    }}
+                    onChange={(e) => { onInputChange('selectedTransactionType', e.target.value); }}
                   >
                     <option value="">{tGlobal('select')}</option>
                     {TRANSACTION_TYPES.filter((type) => type.id !== 0).map((type) => (
@@ -223,16 +215,11 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
                 </div>
 
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <LabelTitleComponent
-                    text={`${tPaymentProviderSettings('paymentMethod')}`}
-                    required={true}
-                  />
+                  <LabelTitleComponent text={`${tPaymentProviderSettings('paymentMethod')}`} required={true} />
                   <select
                     className={`h-[32px] max-[768px]:h-[40px] max-[768px]:leading-[40px] w-full border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.selectedPaymentMethod ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                     value={formState.selectedPaymentMethod}
-                    onChange={(e) => {
-                      onInputChange('selectedPaymentMethod', e.target.value);
-                    }}
+                    onChange={(e) => { onInputChange('selectedPaymentMethod', e.target.value); }}
                   >
                     <option value="">{tGlobal('select')}</option>
                     {paymentMethods
@@ -244,9 +231,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
                           disabled={method.status === inactiveStatus}
                         >
                           {method.name}
-                          {method.status === inactiveStatus
-                            ? ` (${tGlobal('underMaintenance')})`
-                            : ''}
+                          {method.status === inactiveStatus ? ` (${tGlobal('underMaintenance')})` : ''}
                         </option>
                       ))}
                   </select>
@@ -275,50 +260,35 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
               <NormalTitleComponent text={tPaymentProviderSettings('addPaymentMethodStep3')} />
               <div className="flex flex-wrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <LabelTitleComponent
-                    text={`${tPaymentProviderSettings('apiKey')}`}
-                    required={true}
-                  />
+                  <LabelTitleComponent text={`${tPaymentProviderSettings('apiKey')}`} required={true} />
                   <input
                     type="text"
                     className={`h-[32px] max-[768px]:h-[40px] max-[768px]:leading-[40px] w-full border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.apiKey ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                     id="apiKey"
                     value={formState.apiKey}
-                    onChange={(e) => {
-                      onInputChange('apiKey', e.target.value);
-                    }}
+                    onChange={(e) => { onInputChange('apiKey', e.target.value); }}
                   />
                   <ValidateMessageComponent message={fieldErrors.apiKey} />
                 </div>
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <LabelTitleComponent
-                    text={`${tPaymentProviderSettings('merchantID')}`}
-                    required={true}
-                  />
+                  <LabelTitleComponent text={`${tPaymentProviderSettings('merchantID')}`} required={true} />
                   <input
                     type="text"
                     className={`h-[32px] max-[768px]:h-[40px] max-[768px]:leading-[40px] w-full border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.merchantID ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                     id="merchantID"
                     value={formState.merchantID}
-                    onChange={(e) => {
-                      onInputChange('merchantID', e.target.value);
-                    }}
+                    onChange={(e) => { onInputChange('merchantID', e.target.value); }}
                   />
                   <ValidateMessageComponent message={fieldErrors.merchantID} />
                 </div>
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <LabelTitleComponent
-                    text={`${tPaymentProviderSettings('appSecret')}`}
-                    required={true}
-                  />
+                  <LabelTitleComponent text={`${tPaymentProviderSettings('appSecret')}`} required={true} />
                   <input
                     type="password"
                     className={`h-[32px] max-[768px]:h-[40px] max-[768px]:leading-[40px] w-full border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.appSecret ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
                     id="appSecret"
                     value={formState.appSecret}
-                    onChange={(e) => {
-                      onInputChange('appSecret', e.target.value);
-                    }}
+                    onChange={(e) => { onInputChange('appSecret', e.target.value); }}
                   />
                   <ValidateMessageComponent message={fieldErrors.appSecret} />
                 </div>
@@ -332,9 +302,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
                 className="w-[18px] h-[18px] cursor-pointer"
                 id="agreeToTerms"
                 checked={formState.agreeToTerms}
-                onChange={(e) => {
-                  onInputChange('agreeToTerms', e.target.checked);
-                }}
+                onChange={(e) => { onInputChange('agreeToTerms', e.target.checked); }}
               />
               <span className="flex-1 pl-[6px] max-[768px]:leading-[18px]">
                 {tPaymentProviderSettings('agreeTermsAndConditions')}

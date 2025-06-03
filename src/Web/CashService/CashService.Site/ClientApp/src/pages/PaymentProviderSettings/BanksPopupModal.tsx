@@ -6,6 +6,8 @@ import Loading from '../../components/LoadingComponent';
 import { ButtonApplyComponent, ButtonClosePopupComponent } from '../../components/ButtonComponents';
 import { MediumTitleComponent } from '../../components/TitleComponents';
 import BankIcon from '../../components/BankComponents';
+import { ErrorMessageComponent, WarningMessageComponent } from '../../components/MessageComponents';
+
 interface BanksPopupModalProps {
   onClose: () => void;
   transactionType: number;
@@ -47,8 +49,8 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
         </div>
         <div className="mb-[12px]">
           {loading ? ( <Loading /> ) 
-            : error ? (<div className="alert alert-danger" role="alert">{error}</div>) 
-            : banks.length === 0 ? (<div className="alert alert-info" role="alert">{tGlobal('noData')}</div>) 
+            : error ? (<ErrorMessageComponent message={error} />) 
+            : banks.length === 0 ? (<WarningMessageComponent message={tGlobal('noData')} />) 
             : (
             <>
               <p className='block text-[var(--text-color-primary)] my-[16px] font-semibold'>{tPaymentProviderSettings(`transaction-${transactionType}`)}</p>
