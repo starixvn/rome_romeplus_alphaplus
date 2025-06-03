@@ -15,7 +15,6 @@ public class TransactionsController(
     IUserSession userSession,
     IHttpContextAccessor httpContextAccessor,
     IAntiforgery antiforgery)
-
     : SiteBaseController (userSession, antiforgery)
 {
     private readonly int agentId = userSession.CustId;
