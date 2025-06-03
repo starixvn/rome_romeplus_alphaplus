@@ -159,7 +159,33 @@ class WinLossDetailView extends BaseReportNew {
                 window.top['popupManager'].open(url, undefined, width, height, 'modal-mobile-friendly');
             });
         this.winLossDetailColumns.showHideColumns(this.$tblReport);
+
+        this.$tblReport
+            .find('.cash-fee-link')
+            .off()
+            .click((e) => {
+                const $this = $(e.target);
+                const custId = $this.data('custid');
+                const custName = $this.data('custname').toString();
+                const custLevelId = $this.data('custlevelid');
+                const custInfo: any = { custId, custName };
+                //const breadcrumbs = this.breadcrumbLevelComponent.getBreadcrumbs();
+
+                //if (custLevelId === this.MemberLevel) {
+                $.blockUI();
+                // breadcrumbs.push(custInfo);
+                //  const breadcrumbsJson = JSON.stringify(breadcrumbs);
+                //const visibleColumns = this.winLossDetailColumns.getShowColumns().join(',');
+
+                // $this.attr('href', `${$('#hidden-getCashFee').attr('href')}`);
+                //} else {
+                //e.preventDefault();
+                // custInfo.breadcrumbsJson = JSON.stringify(breadcrumbs);
+                // this.getWinLossDetailUpOrDownline(custInfo);
+                //}
+            });
     }
+
 
     getWinLossDetail() {
         this.clearActiveWeek();

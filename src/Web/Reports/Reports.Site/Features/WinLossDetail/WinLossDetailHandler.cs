@@ -5,6 +5,7 @@ using AlphaPlus.Reports.Features.EnteredResult;
 using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLossDetail;
+using AlphaPlus.Reports.Features.WinLossDetail.Models;
 using AlphaPlus.Reports.Site.Features.Customer;
 using AlphaPlus.Reports.Site.Features.Shared;
 using AlphaPlus.Reports.Site.Features.Shared.Helpers;
@@ -277,4 +278,21 @@ public class WinLossDetailHandler(
 
         return workbook.BuildExcelFile(message, reportData, productNames);
     }
+
+    protected override async Task<IEnumerable<Product>> GetProducts(BaseQuery message)
+    {
+        var products = await base.GetProducts(message);
+        var productExtras = await winlossDetailService.GetProduct(message.CustId);
+
+        return products.Concat(productExtras);
+    }
+
+    public async Task<CashFeeViewModel> Handle(CashFeeQuery message, CancellationToken cancellationToken)
+    {
+        var cashFeeParam = new CashFeeParam();
+
+        var cashFeeModel = await winlossDetailService.GetCashFee(cashFeeParam);
+        return new CashFeeViewModel(message, cashFeeModel);
+    }
+
 }
