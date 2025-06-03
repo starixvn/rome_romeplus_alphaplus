@@ -308,9 +308,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
             <BackButtonComponent onClick={onClose} />
             <TitleComponent title={tManagePayments('bankManagement')} />
           </div>
-          {isLoadingBanks ? (
-            <LoadingFullComponent />
-          ) : (
+          {isLoadingBanks ? (<LoadingFullComponent />) : (
             <form
               onSubmit={handleSubmit}
               className="bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
@@ -453,9 +451,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
                             </label>
                           )}
                         </div>
-                        <ValidateMessageComponent
-                          message={fieldErrors.selectedDepositMatchingMode}
-                        />
+                        <ValidateMessageComponent message={fieldErrors.selectedDepositMatchingMode} />
                       </div>
                     )
                   );
@@ -463,10 +459,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
 
                 <div className="flex flex-nowrap gap-[16px] mb-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                   <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                    <LabelTitleComponent
-                      text={tManagePayments('accountHolderName')}
-                      required={true}
-                    />
+                    <LabelTitleComponent text={tManagePayments('accountHolderName')} required={true} />
                     <input
                       type="text"
                       className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountHolderName ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
@@ -481,10 +474,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
                   </div>
 
                   <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                    <LabelTitleComponent
-                      text={tManagePayments('bankAccountNumber')}
-                      required={true}
-                    />
+                    <LabelTitleComponent text={tManagePayments('bankAccountNumber')} required={true} />
                     <input
                       type="text"
                       className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountNumber ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
