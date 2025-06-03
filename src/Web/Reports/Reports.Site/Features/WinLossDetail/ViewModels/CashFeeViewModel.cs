@@ -5,7 +5,7 @@ using AlphaPlus.Reports.Site.Features.WinLossDetail.Requests;
 
 namespace AlphaPlus.Reports.Site.Features.WinLossDetail.ViewModels;
 
-public class CashFeeViewModel(CashFeeQuery cashFeeQuery, CashFeeModel cashFeeModel)
+public class CashFeeViewModel(CashFeeQuery cashFeeQuery, CashFeeModel cashFeeModel, IEnumerable<Reports.Features.Shared.Models.Breadcrumb> breadcrumbs)
 {
     public PageHeaderViewModel PageHeader { get; } = new PageHeaderViewModel(
         Title: "",
@@ -18,7 +18,7 @@ public class CashFeeViewModel(CashFeeQuery cashFeeQuery, CashFeeModel cashFeeMod
         SystemTime.Today.AddDays(1),
         cashFeeQuery.Language);
 
-    //public IEnumerable<Reports.Features.Shared.Models.Breadcrumb> Breadcrumbs { get; } = breadcrumbs;
+    public IEnumerable<Reports.Features.Shared.Models.Breadcrumb> Breadcrumbs { get; } = breadcrumbs;
 
     public CashFeeModel CashFee { get; } = cashFeeModel;
 }

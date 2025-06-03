@@ -14,4 +14,10 @@ public class CashFeeQuery : DefaultDateRangeQuery, IRequest<CashFeeViewModel>
         : LimitedDateToShowInfo;
 
     public bool IsFilterVisible { get; set; }
+
+    public DateTime FromDate { get; set; }
+
+    public DateTime ToDate { get; set; }    
+
+    public int CustId { get; set; }
 }

@@ -10,7 +10,6 @@ class CashFeeView extends BaseReportNew {
     private isGettingData = false;
 
     private MemberLevel = 1;
-    private winLossDetailColumns: WinLossDetailColumns;
     private winLossDetailCopyHtml: WinLossDetailCopyHtml;
     private $tblReportContainer: JQuery;
     private $tblReport: JQuery;
@@ -27,15 +26,24 @@ class CashFeeView extends BaseReportNew {
     }
 
     init() {
-        super.initReportLegend();
         super.initShowHideFilter();
         this.$reportTitle = $('#report-title');
         this.$tblReportContainer = $('#tbl-report-container');
         this.$tblReport = this.$tblReportContainer.find('#tbl-report');
 
-        this.dateRangeComponent.render({ maxDays: 92, onClosed: () => this.getWinLossDetail() });
-       
-        this.winLossDetailColumns.init(() => this.updateQueryString());
+        this.dateRangeComponent.render({ maxDays: 92, onClosed: () => this.getCashFee() });
+        this.breadcrumbLevelComponent.init(breadcrumbParam => {
+
+            $.blockUI();
+            //const breadcrumbLevels = this.breadcrumbLevelComponent.getBreadcrumbLevels(breadcrumbParam.CustLevelId);
+            //if (breadcrumbLevels.length) {
+            //    reportParams.breadcrumbsJson = JSON.stringify(breadcrumbLevels);
+            //}
+            //reportParams.visibleColumns = $('#hidden-show-columns').val();
+            //$.extend(reportParams, this.globalFormData, breadcrumbParam, this.dateRangeComponent.getDateRangeValues());
+
+            location.href = $('#winloss-detail-report-path').val();
+        });
         this.registerEvents();
         $('.flex').removeAttr('style');
 
@@ -63,7 +71,7 @@ class CashFeeView extends BaseReportNew {
                 }
 
                 let excelParams = {
-                    showFullName: this.winLossDetailColumns.isShowFullName()
+                   
                 };
                 $.extend(excelParams, this.globalFormData, excelParams);
                 $iconExcel.attr('href', `${excelUrl}?${$.param(excelParams)}`);
@@ -74,24 +82,6 @@ class CashFeeView extends BaseReportNew {
             .tooltip()
             .attr('href', 'javascript:;');
 
-        this.initTableSorter();
-
-        this.$tblReport.find('[data-toggle="tooltip"]').tooltip();
-        this.$tblReport
-            .find('.icon-plus-box')
-            .off('click')
-            .click((e) => {
-                window.top['reloadMyWatchlistDataTable'] = () => this.getData(this.globalFormData, true);
-                const custName = $(e.target).data('custname');
-                const url = `${$(
-                    '#hidden-settingsUrl'
-                ).val()}MyWatchlistAccounts/ManageWatchlistAccounts?usernames=${custName}`;
-                const width = 820;
-                const height = 550;
-                window.top['popupManager'].open(url, undefined, width, height, 'modal-mobile-friendly');
-            });
-        this.winLossDetailColumns.showHideColumns(this.$tblReport);
-
         this.$tblReport
             .find('.cash-fee-link')
             .off()
@@ -101,40 +91,49 @@ class CashFeeView extends BaseReportNew {
                 const custName = $this.data('custname').toString();
                 const custLevelId = $this.data('custlevelid');
                 const custInfo: any = { custId, custName };
-                //const breadcrumbs = this.breadcrumbLevelComponent.getBreadcrumbs();
+                const breadcrumbs = this.breadcrumbLevelComponent.getBreadcrumbs();
 
-                //if (custLevelId === this.MemberLevel) {
+                if (custLevelId === this.MemberLevel) {
                 $.blockUI();
-                // breadcrumbs.push(custInfo);
-                //  const breadcrumbsJson = JSON.stringify(breadcrumbs);
-                //const visibleColumns = this.winLossDetailColumns.getShowColumns().join(',');
+                breadcrumbs.push(custInfo);
+                const breadcrumbsJson = JSON.stringify(breadcrumbs);
 
-                // $this.attr('href', `${$('#hidden-getCashFee').attr('href')}`);
-                //} else {
-                //e.preventDefault();
-                // custInfo.breadcrumbsJson = JSON.stringify(breadcrumbs);
-                // this.getWinLossDetailUpOrDownline(custInfo);
-                //}
+                let cashFeeParams = $.extend({}, this.globalFormData, custInfo, {
+                    breadcrumbsJson
+                });
+                    $this.attr('href', `${$('#hidden-cashFeeUrl').val()}?${$.param(cashFeeParams)}`);
+                } else {
+                e.preventDefault();
+                custInfo.breadcrumbsJson = JSON.stringify(breadcrumbs);
+               }
             });
     }
 
-    getWinLossDetail() {
-        this.clearActiveWeek();
+    getCashFee() {
         const dateRange = this.dateRangeComponent.getDateRangeValues();
+
+        const formData = $.extend({}, dateRange);
+        if (
+            formData.custLevelId > viewerLevelId ||
+            this.isGettingData
+        ) {
+            return;
+        }
+
+        this.getData(formData);
     }
 
-    getData(formData, isGetWeeks: boolean) {
+    getData(formData) {
         this.$tblReportContainer.block();
         this.isGettingData = true;
         const queryStringObject = $.extend({}, this.globalFormData, formData);
         const queryString = $.param(queryStringObject);
-        const url = $('#hidden-getReportDataUrl').attr('href') || 'GetData';
+        const url = $('#hidden-cashFeeUrl').attr('href') || 'GetData';
         $.get(`${url}?${queryString}`, (html) => {
             this.$tblReportContainer.html(html);
             this.$tblReport = this.$tblReportContainer.find('#tbl-report');
             this.getDataSuccess();
             this.globalFormData = queryStringObject;
-            this.updateQueryString(queryString);
             this.isGettingData = false;
             this.$tblReportContainer.unblock();
         }).fail((jqXHR) => {
@@ -148,48 +147,6 @@ class CashFeeView extends BaseReportNew {
     getDataSuccess() {
         this.breadcrumbLevelComponent.bindEvents();
         this.registerEvents();
-    }
-    
-    private updateQueryString(queryString: string = undefined) {
-        queryString = queryString || $.param(this.globalFormData);
-        const visibleColumns = this.winLossDetailColumns.getShowColumns().join(',');
-        alphaReports.updateQueryString(`${queryString}&visibleColumns=${visibleColumns}`);
-    }
-
-    private clearActiveWeek() {
-        delete this.globalFormData.weekFromDate;
-        delete this.globalFormData.weekToDate;
-    }
-
-
-    private changeObjectKey(obj, oldKey, newKey) {
-        if (oldKey !== newKey && obj.hasOwnProperty(oldKey)) {
-            obj[newKey] = obj[oldKey];
-            delete obj[oldKey];
-        }
-
-        return obj;
-    }
-
-    private initTableSorter() {
-        this.tableSorter(this.$tblReport, undefined, () => {
-            const dormantAccountsRow = this.$tblReport.find('.dormant-accounts-mark');
-            dormantAccountsRow.length && this.$tblReport.append(dormantAccountsRow);
-        });
-    }
-
-    protected mapSortColumnIndex() {
-        const tableHeaderCells = this.$tblReport.find(`thead th[data-colname=${this.sortColumnName}]`);
-        if (tableHeaderCells.length) {
-            this.sortColumnIndex = tableHeaderCells.eq(0).data('colindex');
-        } else {
-            // reset to default
-            this.sortColumnName = 'username';
-            this.sortColumnIndex = 0;
-            this.sortIndicator = 0;
-        }
-
-        return this.sortColumnIndex;
     }
 }
 

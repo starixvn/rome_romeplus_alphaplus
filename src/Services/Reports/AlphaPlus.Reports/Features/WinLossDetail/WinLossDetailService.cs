@@ -134,106 +134,37 @@ public class WinLossDetailService(
     public async Task<CashFeeModel> GetCashFee(CashFeeParam param)
     {
         var result = new CashFeeModel();
-        var grandTotal = new CashFeeItemModel
-        {
-            TransactionType = "Grand Total",
-            Fee = 10,
-            Count = 20,
-            Agent = -15,
-            Company = 15
-        };
+        var grandTotal = new CashFeeItemModel();
 
-        var groupData = new CashFeeGroupModel
-        {
-            GroupName = "Transaction Fee",
-            FeeItems = new List<CashFeeItemModel>
-            {
-                new CashFeeItemModel
-                {
-                    TransactionType = "Manual Deposit Transaction",
-                    Fee = 0,
-                    Count = 10,
-                    Agent = -1,
-                    Company = 1
+        var reportDate = await reportDateService.GetBalanceUpDayAndMoveBetsDay();
 
-                },
-                new CashFeeItemModel
-                {
-                    TransactionType = "Promotion approval",
-                    Fee = 1,
-                    Count = 10,
-                    Agent = -2,
-                    Company = 2
-                }
-            },
-            Total = new CashFeeItemModel
+        var criteria = new CashBillingCriteria(param.custId, param.fromDate, param.toDate, reportDate.BalanceUpDay, reportDate.MoveBetsDay);
+        var rawData = await repository.FetchAsync<CashFeeItemModel>(criteria);
+
+        var groups = rawData.GroupBy(x => x.FeeType);
+
+        foreach (var group in groups)
+        {
+            var groupItem = new CashFeeGroupModel
             {
-                TransactionType = "Transaction Fee",
-                Fee = 10,
-                Count = 15,
-                Agent = -5,
-                Company = 5
+                GroupName = group.Key
+            };
+
+            var total = new CashFeeItemModel
+            {
+                Type = group.Key
+            };
+
+            foreach (var item in group)
+            {
+                groupItem.FeeItems.Add(item);
+                total += item;
+                grandTotal += item;
             }
-        };
 
-        var groupData1 = new CashFeeGroupModel
-        {
-            GroupName = "Cash Service Fee",
-            FeeItems = new List<CashFeeItemModel>
-            {
-                new CashFeeItemModel
-                {
-                    TransactionType = "Manual Deposit Transaction",
-                    Fee = 0,
-                    Count = 10,
-                    Agent = -1,
-                    Company = 1
-
-                },
-                new CashFeeItemModel
-                {
-                    TransactionType = "Promotion approval",
-                    Fee = 1,
-                    Count = 10,
-                    Agent = -2,
-                    Company = 2
-                }
-            },
-            Total = new CashFeeItemModel
-            {
-                TransactionType = "Cash Service Fee",
-                Fee = 10,
-                Count = 15,
-                Agent = -5,
-                Company = 5
-            }
-        };
-
-        //var criteria = new CashBillingCriteria();
-        //var rawData = await repository.FetchAsync<CashFeeItemModel>(criteria);
-
-        //var groups = rawData.GroupBy(x => x.TransactionType);
-
-        //foreach (var group in groups)
-        //{
-        //    var groupItem = new CashFeeGroupModel
-        //    {
-        //        GroupName = group.Key
-        //    };
-
-        //    var total = new CashFeeItemModel();
-
-        //    foreach (var item in group)
-        //    {
-        //        groupItem.FeeItems.Add(item);
-        //        total += item;
-        //        grandTotal += item;
-        //    }
-
-        //    result.FeeGroups.Add(groupItem);
-        //}
-
-        result.FeeGroups.AddRange(new[] { groupData, groupData1 });
+            groupItem.Total = total;
+            result.FeeGroups.Add(groupItem);
+        }
 
         result.GrandTotal = grandTotal;
 

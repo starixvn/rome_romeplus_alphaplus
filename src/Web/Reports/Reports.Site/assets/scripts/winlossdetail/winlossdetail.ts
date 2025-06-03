@@ -165,23 +165,16 @@ class WinLossDetailView extends BaseReportNew {
             .click((e) => {
                 const $this = $(e.target);
                 const custId = $this.data('custid');
-                const custName = $this.data('custname').toString();
-                const custLevelId = $this.data('custlevelid');
-                const custInfo: any = { custId, custName };
+                //const custName = $this.data('custname').toString();
+                //const custInfo: any = { custId };
                 //const breadcrumbs = this.breadcrumbLevelComponent.getBreadcrumbs();
-
-                //if (custLevelId === this.MemberLevel) {
+                
                 $.blockUI();
-                // breadcrumbs.push(custInfo);
-                //  const breadcrumbsJson = JSON.stringify(breadcrumbs);
-                //const visibleColumns = this.winLossDetailColumns.getShowColumns().join(',');
+                //breadcrumbs.push(custInfo);
+                //const breadcrumbsJson = JSON.stringify(breadcrumbs);
 
-                // $this.attr('href', `${$('#hidden-getCashFee').attr('href')}`);
-                //} else {
-                //e.preventDefault();
-                // custInfo.breadcrumbsJson = JSON.stringify(breadcrumbs);
-                // this.getWinLossDetailUpOrDownline(custInfo);
-                //}
+                let cashFeeParams = $.extend({}, this.globalFormData);
+                $this.attr('href', `${$('#hidden-cashFeeUrl').val()}?${$.param(cashFeeParams)}`);
             });
     }
 

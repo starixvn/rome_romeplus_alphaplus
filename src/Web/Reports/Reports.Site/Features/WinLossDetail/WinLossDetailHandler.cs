@@ -13,6 +13,7 @@ using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using AlphaPlus.Reports.Site.Features.WinLossDetail.Requests;
 using AlphaPlus.Reports.Site.Features.WinLossDetail.ViewModels;
 using AlphaPlus.Shared.AppResources.Report;
+using EasyNetQ;
 using MediatR;
 using Microsoft.Extensions.Options;
 
@@ -31,7 +32,8 @@ public class WinLossDetailHandler(
         IRequestHandler<WinLossDetailGetDataQuery, WinLossDetailGetDataViewModel>,
         IRequestHandler<WinLossDetailGetWeeksQuery, IEnumerable<WinLossDetailWeekViewModel>>,
         IRequestHandler<WinLossDetailExcelQuery, ExcelFileViewModel>,
-        IRequestHandler<CashFeeQuery, CashFeeViewModel>
+        IRequestHandler<CashFeeQuery, CashFeeViewModel>,
+        IRequestHandler<CashFeeExcelQuery, ExcelFileViewModel>
 {
     private readonly IEnteredResultService enteredResultService = enteredResultService;
     private readonly ICustomerService customerService = customerService;
@@ -293,10 +295,21 @@ public class WinLossDetailHandler(
 
     public async Task<CashFeeViewModel> Handle(CashFeeQuery message, CancellationToken cancellationToken)
     {
-        var cashFeeParam = new CashFeeParam();
+        var breadcrumbs = new List<Reports.Features.Shared.Models.Breadcrumb>
+        {
+            new(message.ViewerId, message.CustName, message.ViewerLevelId)
+        };
+        
+        breadcrumbs.Add(new Reports.Features.Shared.Models.Breadcrumb(message.CustId, "CASH SERVICE BILLING", message.CustLevelId));
+
+        var cashFeeParam = new CashFeeParam(message.CustId, message.FromDate, message.ToDate);
 
         var cashFeeModel = await winlossDetailService.GetCashFee(cashFeeParam);
-        return new CashFeeViewModel(message, cashFeeModel);
+        return new CashFeeViewModel(message, cashFeeModel, breadcrumbs);
     }
 
+    public Task<ExcelFileViewModel> Handle(CashFeeExcelQuery request, CancellationToken cancellationToken)
+    {
+       throw new NotImplementedException();
+    }
 }
