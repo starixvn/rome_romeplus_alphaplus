@@ -60,6 +60,8 @@ public class AddTransactionDepositCriteria(
 
     public string ErrMsg { get; set; }
 
+    public string ErrExtraInfo { get; set; }
+
     public long TransId { get; set; }
 
     public string CashAccumCreditTbl { get; set; }

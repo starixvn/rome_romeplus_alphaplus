@@ -13,9 +13,9 @@
 	  <Setting Key="Acc_CustomerIns_Rollback" SpName="Acc_CustomerIns_Rollback" DbName="DBGLOB.GlobCustDB.asv_CashService" />
   </Function>
   <Function Name="Payments: Deposit">
-    <Setting Key="SiteDB3_Age_CashAccumCredit_AgSel" SpName="Age_CashAccumCredit_AgSel" DbName="DBSite03.bodb02.asv_CashService" />
+    <Setting Key="SiteDB3_Age_CashAccumCredit_AgSel" SpName="Age_CashAccumCredit_AgSel" DbName="DBSITE03.bodb02.asv_CashService" />
     <Setting Key="Age_CashDeposit_LimitAmtSel" SpName="Age_CashDeposit_LimitAmtSel" DbName="DBCust.CustDB.asv_CashService" />
-    <Setting Key="SiteDB3_API_CashDeposit_AddTransaction" SpName="API_CashDeposit_AddTransaction" DbName="DBSite03.bodb02.asv_CashService" />
+    <Setting Key="SiteDB3_API_CashDeposit_AddTransaction" SpName="API_CashDeposit_AddTransaction" DbName="DBSITE03.bodb02.asv_CashService" />
   </Function>
   <Function Name="Payments: Withdraw">
   </Function>

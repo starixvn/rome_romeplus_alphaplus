@@ -72,7 +72,7 @@ public abstract class PaymentService(
         }
         catch (Exception ex)
         {
-            await logger.ErrorAsync($"{ex.Message}. {functionName} failed. Criteria {JsonHelper.ToJson(criteria)}", ex);
+            await logger.ErrorAsync($"{ex.Message}. {functionName} failed. Criteria: {JsonHelper.ToJson(criteria)}", ex);
             return false;
         }
     }

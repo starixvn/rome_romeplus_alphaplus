@@ -4,6 +4,7 @@ using AgencyCash.API.Payments.Models;
 using AgencyCash.API.Payments.Requests;
 using AgencyCash.API.Shared;
 using AgencyCash.API.Shared.Models;
+using AgencyCash.API.Shared.Helpers;
 using Fanex.Data.Repository;
 
 namespace AgencyCash.API.Payments.Services;
@@ -124,6 +125,11 @@ public class DepositService(
     {
         var logs = await repository.FetchAsync<LogEntry>(criteria);
         _ = Task.Run(async () => await WriteLogs(logs, custDBGroupId));
+
+        if (!string.IsNullOrWhiteSpace(criteria.ErrExtraInfo))
+        {
+            await logger.ErrorAsync($"Deposit failed for AgentId: {criteria.AgentId}, CustId: {criteria.CustId}, ErrCode: {criteria.ErrCode}, ErrMsg: {criteria.ErrMsg}, ExtraInfo: {criteria.ErrExtraInfo}, Criteria: {JsonHelper.ToJson(criteria)}");
+        }
 
         return new PaymentResult(criteria.ErrCode, criteria.ErrMsg, criteria.TransId);
     }

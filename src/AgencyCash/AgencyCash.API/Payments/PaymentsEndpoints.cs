@@ -55,24 +55,13 @@ public static class PaymentsEndpoints
             return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
         }
 
-        if (!string.IsNullOrWhiteSpace(request.PaySlip))
+        var paySlipValidationResult = request.ValidatePaySlip();
+        if (paySlipValidationResult != null)
         {
-            if (!Base64StringHelper.TryConvertToByte(request.PaySlip, out var paySlipBuffer))
-            {
-                return BadRequest(nameof(request.PaySlip), $"{nameof(request.PaySlip)} is not a valid Base64 string.");
-            }
-
-            const int MaxPaySlipSize = 1024 * 1024; // 1MB
-            if (paySlipBuffer.Length > MaxPaySlipSize)
-            {
-                return BadRequest(nameof(request.PaySlip), $"{nameof(request.PaySlip)} cannot exceed 1MB.");
-            }
-
-            request.PaySlipBuffer = paySlipBuffer;
+            return TypedResults.BadRequest(paySlipValidationResult);
         }
 
-        return TypedResults.Ok(await Task.FromResult(new PaymentResult(0, string.Empty, 123456789)));
-        //return TypedResults.Ok(await depositService.Manual(request));
+        return TypedResults.Ok(await depositService.Manual(request));
     }
 
     private static async Task<IResult> AutoDeposit(AutoDepositRequest request, IDepositService depositService)
