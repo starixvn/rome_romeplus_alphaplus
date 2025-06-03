@@ -1,9 +1,11 @@
 
+using System.Diagnostics.CodeAnalysis;
 using AlphaPlus.BetsForecast.Infrastructure.Forecast;
 using AlphaPlus.BetsForecast.Infrastructure.Forecast.Params;
 
 namespace AlphaPlus.Tickets.API.Endpoints;
 
+[ExcludeFromCodeCoverage]
 public class ForecastEndpoint : IEndpoint
 {
     public void MapEndpoints(IEndpointRouteBuilder endpoints)

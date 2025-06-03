@@ -1,10 +1,10 @@
 ﻿using AlphaPlus.AccountInfo.Site.Features.OpenDownlines.ViewModels;
-using AlphaPlus.AccountInfo.Site.Features.Shared;
+using AlphaPlus.Core;
 using MediatR;
 
 namespace AlphaPlus.AccountInfo.Site.Features.OpenDownlines.Requests
 {
-    public class OpenViewListRequest : BaseQuery, IRequest<OpenListViewModel>
+    public class OpenViewListRequest : QueryBase, IRequest<OpenListViewModel>
     {
         public int SearchAccountId { get; set; }
 

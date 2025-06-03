@@ -144,7 +144,6 @@ public interface IUserSession
 
     int[] OfferedProductGroupIds { get; set; }
 
-
     T GetProperty<T>(string propertyName, T defaultValue = default);
 
     void SetProperty(string propertyName, object value);

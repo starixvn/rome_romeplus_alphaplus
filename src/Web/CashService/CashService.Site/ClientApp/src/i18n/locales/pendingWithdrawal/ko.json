@@ -1,0 +1,112 @@
+{
+    "pendingWithdrawal": "대기 중인 출금",
+    "addManualWithdrawal": "수동 출금 추가",
+    
+    "filter": {
+      "recentWithdrawals": "최근 출금",
+      "all": "모두",
+      "today": "오늘",
+      "yesterday": "어제",
+      "last7Days": "지난 7일",
+      "to": "까지",
+      "search": "검색",
+      "usernamePlaceholder": "사용자 이름/참조 번호"
+    },
+    
+    "dataGrid": {
+      "member": "회원",
+      "username": "사용자 이름",
+      "loginName": "로그인 이름",
+      "firstName": "이름",
+      "lastName": "성",
+      "amount": "금액",
+      "currency": "통화",
+      "from": "부터",
+      "to": "까지",
+      "referenceNo": "참조 번호",
+      "dateAndTime": "날짜 및 시간",
+      "actions": "동작",
+      "approve": "승인",
+      "reject": "거부",
+      "process": "처리",
+      "viewDetails": "상세 보기",
+      "loading": "대기 중인 출금을 불러오는 중...",
+      "noWithdrawalsFound": "대기 중인 출금을 찾을 수 없습니다"
+    },
+    
+    "pendingWithdrawalModal": {
+      "title": "대기 중인 출금",
+      "username": "사용자 이름",
+      "loginName": "로그인 이름",
+      "firstName": "이름",
+      "lastName": "성",
+      "name": "이름/성",
+      "betCredit": "베팅 크레딧",
+      "from": "부터",
+      "to": "까지",
+      "withdrawalAmount": "출금액",
+      "dateAndTime": "날짜 및 시간",
+      "remarks": "비고",
+      "remarksPlaceholder": "여기에 비고 추가...",
+      "approve": "승인",
+      "reject": "거부",
+      "close": "닫기"
+    },
+    
+    "manualWithdrawalForm": {
+      "title": "수동 출금 추가",
+      "accountInformation": "계정 정보",
+      "memberLoginName": "회원 로그인 이름",
+      "from": "부터",
+      "to": "까지",
+      "withdrawalAmount": "출금액",
+      "remarks": "비고",
+      "remarksPlaceholder": "여기에 비고 추가...",
+      "uploadImage": "업로드하려면 클릭",
+      "dragAndDrop": "또는 끌어다 놓기",
+      "imageFormat": "jpeg, jpg, png 업로드",
+      "maxSize": "최대 1 MB",
+      "viewFullSize": "전체 크기로 보기",
+      "removeImage": "이미지 제거",
+      "cancel": "취소",
+      "approve": "승인"
+    },
+    
+    "updateWithdrawal": {
+      "title": "출금 업데이트",
+      "approveWithdrawal": "출금 승인",
+      "rejectWithdrawal": "출금 거부",
+      "confirmTitle": "동작 확인",
+      "confirmApproveMessage": "이 출금을 승인하시겠습니까?",
+      "confirmRejectMessage": "이 출금을 거부하시겠습니까?",
+      "confirmCancel": "취소",
+      "confirmYes": "예, 계속합니다",
+      "withdrawalDetails": "출금 상세 정보",
+      "memberInfo": "회원 정보",
+      "transactionDetails": "거래 상세 정보",
+      "withdrawalApproved": "출금이 성공적으로 승인되었습니다",
+      "withdrawalRejected": "출금이 성공적으로 거부되었습니다"
+    },
+  
+    "status": {
+      "pending": "대기 중",
+      "approved": "승인됨",
+      "rejected": "거부됨"
+    },
+    
+    "errorMessages": {
+      "requiredField": "이 필드는 필수입니다",
+      "invalidAmount": "유효한 금액을 입력하세요",
+      "amountTooSmall": "금액은 0보다 커야 합니다",
+      "failedToSubmit": "출금 제출에 실패했습니다",
+      "failedToApprove": "출금 승인에 실패했습니다",
+      "failedToReject": "출금 거부에 실패했습니다"
+    },
+    
+    "successMessages": {
+      "withdrawalSubmitted": "출금이 성공적으로 제출되었습니다",
+      "withdrawalUpdated": "출금이 성공적으로 업데이트되었습니다",
+      "withdrawalApproved": "출금이 성공적으로 승인되었습니다",
+      "withdrawalRejected": "출금이 성공적으로 거부되었습니다"
+    }
+}

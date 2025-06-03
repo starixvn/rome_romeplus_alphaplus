@@ -1273,4 +1273,10 @@ Notes: your password is cAsE sEnSiTiVe.</value>
   <data name="AvailableCreditSlashBetCredit" xml:space="preserve">
     <value>Available Credit/&lt;br/&gt;Bet Credit</value>
   </data>
+  <data name="CreateDirectMember" xml:space="preserve">
+    <value>Create Direct Member</value>
+  </data>
+  <data name="CreateCashMember" xml:space="preserve">
+    <value>Add New Cash member</value>
+  </data>
 </root>

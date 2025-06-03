@@ -1,9 +1,9 @@
-using AlphaPlus.AccountInfo.Site.Features.Shared;
+using AlphaPlus.Core;
 using MediatR;
 
 namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.OnlineList
 {
-    public class OnlineListQuery : BaseQuery, IRequest<IEnumerable<OnlineUser>>
+    public class OnlineListQuery : QueryBase, IRequest<IEnumerable<OnlineUser>>
     {
         public virtual int SearchAccountId { get; set; }
 

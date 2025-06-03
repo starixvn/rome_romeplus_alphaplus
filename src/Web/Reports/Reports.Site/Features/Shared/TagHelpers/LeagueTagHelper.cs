@@ -1,9 +1,7 @@
 using System.Text;
-using System.Text.Encodings.Web;
 using AlphaPlus.Reports.Site.Features.MatchWinLossDetail;
-using Microsoft.AspNetCore.Mvc.TagHelpers;
-using Microsoft.AspNetCore.Razor.TagHelpers;
 using AlphaPlus.Shared.AppResources.Report;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AlphaPlus.Reports.Site.Features.Shared.TagHelpers;
 
@@ -18,8 +16,8 @@ public class LeagueTagHelper : TagHelper
 
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
-    
-        output.Attributes.Add("class", "form-group product-multiselect-container product-multiselect-long product-multiselect-two-col"); 
+
+        output.Attributes.Add("class", "form-group product-multiselect-container product-multiselect-long product-multiselect-two-col");
         output.Attributes.Add("id", "dropdown-league-container");
 
         var sb = new StringBuilder();

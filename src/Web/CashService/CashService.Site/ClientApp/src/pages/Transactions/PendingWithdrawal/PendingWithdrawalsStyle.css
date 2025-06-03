@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+/* Custom dropdown styles */
+.select-wrapper select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.select-wrapper select::-ms-expand {
+    display: none;
+}

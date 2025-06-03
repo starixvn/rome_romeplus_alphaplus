@@ -1,10 +1,10 @@
-using AlphaPlus.AccountInfo.Site.Features.Shared;
+using AlphaPlus.Core;
 using AlphaPlus.Core.Models;
 using MediatR;
 
 namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCredit.Update;
 
-public class GivenCreditCommand : BaseQuery, IRequest<Result>
+public class GivenCreditCommand : QueryBase, IRequest<Result>
 {
     public virtual int SearchAccountId { get; set; }
 

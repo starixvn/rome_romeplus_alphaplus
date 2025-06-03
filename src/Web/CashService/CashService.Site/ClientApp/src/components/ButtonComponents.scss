@@ -1,0 +1,26 @@
+:root, :root [data-theme='light'] {
+    --tab-component-color: #333;
+    --tab-component-border-color: #516e8f;
+    &.view-super{
+        --tab-component-color-active: #97141e;
+        --tab-component-border-color: #67151b;    
+    }
+    &.view-master{
+        --tab-component-color-active: #209656;
+        --tab-component-border-color: #276443;
+    }
+    &.view-agent{
+        --tab-component-color-active: #2267b6;
+        --tab-component-border-color: #516e8f;
+    }
+    
+    
+}
+:root [data-theme='dark'] {
+    --titleComponent-color: #999;
+    --titleComponent-border-color: #ededed;
+    &.view-super, &.view-master, &.view-agent{
+        --tab-component-color: #ededed;
+        --tab-component-border-color: #ededed;
+    }
+}

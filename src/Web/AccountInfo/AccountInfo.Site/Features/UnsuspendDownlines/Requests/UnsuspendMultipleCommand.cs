@@ -1,5 +1,5 @@
-using AlphaPlus.AccountInfo.Site.Features.Shared;
 using AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines.ViewModels;
+using AlphaPlus.Core;
 using MediatR;
 
 namespace AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines.Requests
@@ -13,9 +13,8 @@ namespace AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines.Requests
         public bool Suspended { get; set; }
     }
 
-    public class UnsuspendMultipleCommand : BaseQuery, IRequest<UnsuspendMultipleResultViewModel>
+    public class UnsuspendMultipleCommand : QueryBase, IRequest<UnsuspendMultipleResultViewModel>
     {
-
         public IEnumerable<UnsuspendCustomerInfo> UnsuspendList { get; set; }
 
         public int RoleId { get; set; }

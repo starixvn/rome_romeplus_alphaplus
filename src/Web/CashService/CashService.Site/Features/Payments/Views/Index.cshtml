@@ -1,0 +1,25 @@
+@{
+    ViewData["Title"] = "Manage Payments";
+    Layout = "_Layout";
+}
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+@using AlphaPlus.CashService.Site.Features.Payments.ViewModels
+@inject AlphaPlus.Core.Models.IUserSession userSession
+
+@model PaymentBaseViewModel
+
+@section Styles {
+    <environment names="Production">
+        <link rel="stylesheet" asp-href-include="/index-*.css" />
+    </environment>
+}
+
+<div id="root" class="view-@userSession.SiteName.ToLowerInvariant()" data-theme="@(string.IsNullOrWhiteSpace(Model.DarkModeName) ? "light" : "dark")"></div>
+<environment names="Development">
+    <script type="module" src="http://localhost:5173/src/pages/ManagePayments/index.tsx"></script>
+</environment>
+<environment names="Production">
+    <script type="module" asp-src-include="/managePayments-*.js"></script>
+</environment>
+
+<input type="hidden" name="__RequestVerificationToken" value="@ViewData["RequestVerificationToken"]" />

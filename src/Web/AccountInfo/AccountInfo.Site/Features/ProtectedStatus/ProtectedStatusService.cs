@@ -35,19 +35,12 @@ namespace AlphaPlus.AccountInfo.Site.Features.ProtectedStatus
 
         public async Task<IEnumerable<Result>> UpdateMultiple(UpdateMultipleProtectedStatusParam param)
         {
-            var isValidCheckMultipleCustomersBelonging = await CheckMultipleCustomersBelonging(param);
+            var custIds = string.Join("^", param.ProtectedStatus.Select(p => p.CustId));
+            var isValidCheckMultipleCustomersBelonging = await searchAccountService.CheckMultipleCustomersBelonging(param.ActorId, param.SubAccId, custIds);
 
             return isValidCheckMultipleCustomersBelonging
                 ? await UpdateMultipleProtectedStatus(param)
                 : [Result.CreateErrorResult("You are not authorized on this function.", StatusCodes.Status403Forbidden)];
-        }
-
-        private Task<bool> CheckMultipleCustomersBelonging(UpdateMultipleProtectedStatusParam param)
-        {
-            var custIds = string.Join("^", param.ProtectedStatus.Select(p => p.CustId));
-
-            return searchAccountService.CheckMultipleCustomersBelonging(
-                param.ActorId, param.SubAccId, custIds, param.IsInternal);
         }
 
         private async Task<IEnumerable<Result>> UpdateMultipleProtectedStatus(UpdateMultipleProtectedStatusParam param)

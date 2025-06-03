@@ -1,0 +1,242 @@
+import React from 'react';
+import classNames from 'classnames';
+export interface IconProps {
+  className?: string;
+}
+
+export const NoRecordsIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg
+    width="70"
+    height="70"
+    viewBox="0 0 70 70"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
+    <g opacity="0.5">
+      <path
+        d="M55 15H15C12.2386 15 10 17.2386 10 20V50C10 52.7614 12.2386 55 15 55H55C57.7614 55 60 52.7614 60 50V20C60 17.2386 57.7614 15 55 15Z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="35" cy="35" r="5" stroke="currentColor" strokeWidth="2" />
+      <path d="M35 35L45 45" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M20 26V26.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M26 26V26.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M32 26V26.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </g>
+  </svg>
+);
+
+// Search Icon
+export const SearchIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className ?? 'text-gray-500'}
+  >
+    <circle cx="11" cy="11" r="8"></circle>
+    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+);
+
+// Download Icon
+export const DownloadIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className ?? 'text-gray-600'}
+  >
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+    <polyline points="7 10 12 15 17 10"></polyline>
+    <line x1="12" y1="15" x2="12" y2="3"></line>
+  </svg>
+);
+
+// Copy Icon
+export const CopyIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className ?? 'text-gray-600'}
+  >
+    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+  </svg>
+);
+
+// Edit Icon
+export const IconEdit: React.FC<{ className?: string }> = ({ className }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className ?? 'text-gray-600'}
+  >
+    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+  </svg>
+);
+
+export const InfoIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className ?? 'text-gray-600'}
+  >
+    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+  </svg>
+);
+
+export const ChevronDownIcon: React.FC<IconProps> = ({ className = '' }) => (
+  <svg className={className} fill="currentColor" viewBox="0 0 20 20">
+    <path
+      fillRule="evenodd"
+      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+      clipRule="evenodd"
+    />
+  </svg>
+);
+export const IconPen: React.FC = () => (
+  <svg
+    className="w-[16px] h-[16px] fill-[#163f78]"
+    xmlns="http://www.w3.org/2000/svg"
+    version="1.1"
+    viewBox="0 0 32 32"
+  >
+    <path d="M0 25.2v6.8h6.8l19.6-19.8-6.8-6.6-19.6 19.6zM31.4 7.2c0.8-0.8 0.8-1.8 0-2.4l-4-4c-0.8-0.8-1.8-0.8-2.4 0l-3.2 3.2 6.8 6.8 2.8-3.6z" />
+  </svg>
+);
+
+export const IconClose: React.FC = () => (
+  <svg
+    className="w-[22px] h-[22px] fill-[#163f78]"
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 32 32"
+  >
+    <path d="M25.333 8.547l-1.88-1.88-7.453 7.453-7.453-7.453-1.88 1.88 7.453 7.453-7.453 7.453 1.88 1.88 7.453-7.453 7.453 7.453 1.88-1.88-7.453-7.453 7.453-7.453z"></path>
+  </svg>
+);
+
+export const Spinner: React.FC<{ size?: 'small' | 'large'; className?: string }> = ({
+  size = 'large',
+  className = '',
+}) => {
+  const spinnerSize = size === 'small' ? 'h-5 w-5' : 'h-8 w-8';
+  return (
+    <svg
+      className={`animate-spin text-blue-600 ${spinnerSize} ${className}`}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+      ></circle>
+      <path
+        className="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+      ></path>
+    </svg>
+  );
+};
+
+export const CalendarIcon: React.FC<{ className?: string }> = ({ className = '' }) => (
+  <svg className={`w-5 h-5 ${className}`} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fillRule="evenodd" clipRule="evenodd" d="M16 2V4H8V2H6V4H5C3.89 4 3.01 4.9 3.01 6L3 20C3 21.1 3.89 22 5 22H19C20.1 22 21 21.1 21 20V6C21 4.9 20.1 4 19 4H18V2H16ZM17 13H12V18H17V13ZM5.00001 20H19V9.00001H5.00001V20Z" fill="#444444"/>
+  </svg>
+);
+export const IconSearch: React.FC = () => (
+  <svg className='w-[16px] h-[16px] fill-[#828282] ' version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path  d="M23 20.2h-1.4l-0.6-0.6c1.8-2 3-4.8 3-7.6 0-6.6-5.4-12-12-12-6.4 0-11.8 5.4-11.8 11.8 0 6.6 5.4 11.8 11.8 11.8 3 0 5.6-1 7.6-3l0.6 0.6v1.4l9.2 9.2 2.8-2.8-9.2-8.8zM12 20.2c-4.6 0-8.2-3.6-8.2-8.2s3.8-8.4 8.2-8.4 8.2 3.6 8.2 8.2-3.6 8.4-8.2 8.4z"></path>
+  </svg>
+);
+export const IconDelete: React.FC = () => (
+  <svg className='w-[16px] h-[16px] fill-[#163f78]' version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path  d="M4 10v20c0 1.1 0.9 2 2 2h18c1.1 0 2-0.9 2-2v-20h-22zM10 28h-2v-14h2v14zM14 28h-2v-14h2v14zM18 28h-2v-14h2v14zM22 28h-2v-14h2v14z"></path>
+    <path  d="M26.5 4h-6.5v-2.5c0-0.825-0.675-1.5-1.5-1.5h-7c-0.825 0-1.5 0.675-1.5 1.5v2.5h-6.5c-0.825 0-1.5 0.675-1.5 1.5v2.5h26v-2.5c0-0.825-0.675-1.5-1.5-1.5zM18 4h-6v-1.975h6v1.975z"></path>
+  </svg>
+);
+export const IconCheck  = ({ className }: { className?: string }) => (
+  <svg className={classNames(className)} version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path d="M16 2.667c7.364 0 13.333 5.97 13.333 13.333s-5.97 13.333-13.333 13.333c-7.364 0-13.333-5.97-13.333-13.333s5.97-13.333 13.333-13.333zM14.667 22l9.333-9.333-1.88-1.88-7.453 7.44-4.12-4.107-1.88 1.88 6 6z"></path>
+  </svg>
+);
+export const IconError = ({ className }: { className?: string }) => (
+  <svg className={classNames(className)} version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path d="M16 2.667c7.373 0 13.333 5.96 13.333 13.333s-5.96 13.333-13.333 13.333c-7.373 0-13.333-5.96-13.333-13.333s5.96-13.333 13.333-13.333zM20.787 9.333l-4.787 4.787-4.787-4.787-1.88 1.88 4.787 4.787-4.787 4.787 1.88 1.88 4.787-4.787 4.787 4.787 1.88-1.88-4.787-4.787 4.787-4.787-1.88-1.88z"></path>
+  </svg>
+);
+export const IconSync = ({ className }: { className?: string }) => (
+  <svg className={classNames(className)} viewBox="0 0 701 534" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M624.867 228.226C625.85 239.619 635.04 248.675 646.84 248.675L688.888 248.675C698.586 248.675 704.114 259.443 698.281 266.984L601.232 391.845C592.45 403.14 574.986 403.174 566.204 391.88L468.849 266.984C462.983 259.476 468.51 248.675 478.208 248.675L517.001 248.675C530.531 248.675 541.043 236.887 539.042 223.881C524.766 132.572 434.126 65.6284 332.329 86.5047C311.916 90.6865 292.791 98.6883 275.734 109.653C257.05 121.639 231.957 116.865 219.004 99.1166L218.529 98.4249C205.27 80.2816 209 54.4011 228.058 42.0202C268.613 15.7438 317.273 0.333235 369.698 0.333237C503.912 0.333243 613.982 100.598 624.867 228.226ZM76.4662 305.773C75.4828 294.38 66.2933 285.325 54.4927 285.325L12.4449 285.325C2.74673 285.325 -2.7804 274.557 3.05206 267.016L100.101 142.155C108.884 130.86 126.347 130.826 135.13 142.12L232.484 267.016C238.35 274.524 232.823 285.325 223.125 285.325L184.332 285.325C170.802 285.325 160.291 297.113 162.291 310.119C176.567 401.428 267.207 468.371 369.004 447.495C389.417 443.313 408.542 435.311 425.599 424.346C444.283 412.361 469.376 417.135 482.33 434.883L482.804 435.575C496.063 453.718 492.333 479.599 473.276 491.98C432.72 518.256 384.06 533.667 331.636 533.667C197.422 533.667 87.3511 433.402 76.4662 305.773Z"/>
+  </svg>
+);
+export const IconBack = ({ className }: { className?: string }) => (
+  <svg className={classNames(className)} xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 18 18" width="18px" height="18px" data-v-75a2fae7="" ><path d="M5.5 9.5c-.3-.3-.3-.8 0-1.1l6-6c.3-.3.8-.3 1.1 0s.3.8 0 1.1L7.1 9l5.5 5.5c.3.3.3.8 0 1.1s-.8.3-1.1 0l-6-6.1z" ></path></svg>
+);
+export const IconArrowDown = ({ className }: { className?: string }) => (
+  <svg className={classNames(className)} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <path d="M15.8909 23.6457C15.3613 23.6435 14.8543 23.4313 14.4809 23.0557L4.48091 13.0557C4.15326 12.6731 3.98205 12.1809 4.00149 11.6776C4.02093 11.1742 4.2296 10.6967 4.58579 10.3406C4.94198 9.98437 5.88727 9.16523 6.39062 9.14579C6.39062 9.14579 7.00802 8.81802 7.39062 9.14567L15.8906 17.6456L24.3906 9.14559C24.7732 8.81794 25.8906 9.14569 25.8906 9.14569C26.394 9.16513 26.8399 9.98437 27.196 10.3406C27.5522 10.6967 27.7609 11.1742 27.7803 11.6776C27.7998 12.1809 27.6286 12.6731 27.3009 13.0557L17.3009 23.0557C16.9276 23.4313 16.4205 23.6435 15.8909 23.6457Z" />
+  </svg>
+);
+export const IconInfo = ({ className }: { className?: string }) => (
+  <svg
+    className={classNames(className)}
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 32 32"
+  >
+    <path d="M14.667 12h2.667v-2.667h-2.667zM16 26.667c-5.88 0-10.667-4.787-10.667-10.667s4.787-10.667 10.667-10.667c5.88 0 10.667 4.787 10.667 10.667s-4.787 10.667-10.667 10.667zM16 2.667c-7.364 0-13.333 5.97-13.333 13.333s5.97 13.333 13.333 13.333c7.364 0 13.333-5.97 13.333-13.333s-5.97-13.333-13.333-13.333zM14.667 22.667h2.667v-8h-2.667v8z"></path>
+  </svg>
+);
+
+export const IconWarning = ({ className }: { className?: string }) => (
+  <svg className={classNames(className)} version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path d="M29.013 21.227l-8.533-15.36c-1.147-2.067-2.733-3.2-4.48-3.2s-3.333 1.133-4.48 3.2l-8.533 15.36c-1.080 1.96-1.2 3.84-0.333 5.32s2.573 2.293 4.813 2.293h17.067c2.24 0 3.947-0.813 4.813-2.293s0.747-3.373-0.333-5.32zM15 12c0-0.547 0.453-1 1-1s1 0.453 1 1v6.667c0 0.547-0.453 1-1 1s-1-0.453-1-1v-6.667zM16.947 23.613c-0.067 0.053-0.133 0.107-0.2 0.16-0.080 0.053-0.16 0.093-0.24 0.12-0.080 0.040-0.16 0.067-0.253 0.080-0.080 0.013-0.173 0.027-0.253 0.027s-0.173-0.013-0.267-0.027c-0.080-0.013-0.16-0.040-0.24-0.080-0.080-0.027-0.16-0.067-0.24-0.12-0.067-0.053-0.133-0.107-0.2-0.16-0.24-0.253-0.387-0.6-0.387-0.947s0.147-0.693 0.387-0.947c0.067-0.053 0.133-0.107 0.2-0.16 0.080-0.053 0.16-0.093 0.24-0.12 0.080-0.040 0.16-0.067 0.24-0.080 0.173-0.040 0.36-0.040 0.52 0 0.093 0.013 0.173 0.040 0.253 0.080 0.080 0.027 0.16 0.067 0.24 0.12 0.067 0.053 0.133 0.107 0.2 0.16 0.24 0.253 0.387 0.6 0.387 0.947s-0.147 0.693-0.387 0.947z"></path>
+  </svg>
+);

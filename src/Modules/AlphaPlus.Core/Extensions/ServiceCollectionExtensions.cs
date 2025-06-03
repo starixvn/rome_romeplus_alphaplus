@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Net;
 using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
@@ -30,6 +32,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IBrowserHelper, BrowserHelper>();
         services.AddTransient<IRequestContext, RequestContext>();
         services.TryAddSingleton<INicknameChecker, NicknameChecker>();
+        //services.AddHttpClient<IIdentityClient, IdentityClient>(configuration.GetValue<string>("IdentityUrl"));
         services.AddTransient<IAuthorizationService, AuthorizationService>();
         services.AddONEbookUM(configuration);
         services.AddControllersWithViews(options => options.Filters.Add<CheckUMFilterAttribute>());
@@ -86,6 +89,28 @@ public static class ServiceCollectionExtensions
         services.AddHttpContextAccessor();
         services.AddSingleton<IHttpContextHelper, HttpContextHelper>();
         services.AddSingleton<IMaintenanceService, MaintenanceService>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddHttpClient<TClient, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(
+        this IServiceCollection services,
+        string baseUrl,
+        int pooledConnectionLifetime = 15)
+            where TClient : class
+            where TImplementation : class, TClient
+    {
+        services
+            .AddHttpClient<TClient, TImplementation>(httpClient => httpClient.BaseAddress = new Uri(baseUrl))
+            .ConfigurePrimaryHttpMessageHandler(_ => new HttpClientHandler
+            {
+                AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip
+            })
+            .ConfigurePrimaryHttpMessageHandler(_ => new SocketsHttpHandler
+            {
+                PooledConnectionLifetime = TimeSpan.FromMinutes(pooledConnectionLifetime)
+            })
+            .SetHandlerLifetime(Timeout.InfiniteTimeSpan);
 
         return services;
     }

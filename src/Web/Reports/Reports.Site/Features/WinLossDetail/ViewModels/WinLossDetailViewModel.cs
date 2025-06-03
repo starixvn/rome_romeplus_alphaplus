@@ -13,7 +13,7 @@ public class WinLossDetailViewModel(
     WinLossDetailQuery message,
     EnteredResultSport totalEnteredResults,
     ReportData<WinLossDetailModel> reportData,
-    IEnumerable<Breadcrumb> breadcrumbs,
+    IEnumerable<Reports.Features.Shared.Models.Breadcrumb> breadcrumbs,
     ProductMultiSelectionViewModel productViewModel,
     IEnumerable<WinLossDetailWeekViewModel> weeks) : WinLossDetailGetDataViewModel(message, totalEnteredResults, reportData, breadcrumbs)
 {

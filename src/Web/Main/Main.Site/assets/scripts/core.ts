@@ -38,7 +38,11 @@ var alpha = {
         transferRootPath:
             top.document.getElementById('transferRootPath') != null
                 ? (<HTMLInputElement>top.document.getElementById('transferRootPath')).value
-                : '/site-transfer/'
+                : '/site-transfer/',
+        cashServiceRootPath:
+            top.document.getElementById('cashServiceRootPath') != null
+                ? (<HTMLInputElement>top.document.getElementById('cashServiceRootPath')).value
+                : '/site-cash-service/'
     },
     user: {
         onUserId:

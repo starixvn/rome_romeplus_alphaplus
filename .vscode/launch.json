@@ -1,0 +1,141 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "AccountInfo Launch (Docker)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-accountinfo",
+      "program": "${workspaceFolder}/src/Web/AccountInfo/AccountInfo.Site/bin/Debug/net8.0/AlphaPlus.AccountInfo.Site.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Web/AccountInfo/AccountInfo.Site",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+          "action": "openExternally",
+          "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+          "/Views": "${workspaceFolder}/Views"
+      }
+    },
+    {
+      "name": "Features Launch (Docker)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-features",
+      "program": "${workspaceFolder}/src/Web/Features/Features.Site/bin/Debug/net8.0/AlphaPlus.Features.Site.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Web/Features/Features.Site",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+          "action": "openExternally",
+          "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+          "/Views": "${workspaceFolder}/Views"
+      }
+    },
+    {
+      "name": "Main Launch (Docker)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-main",
+      "program": "${workspaceFolder}/src/Web/Main/Main.Site/bin/Debug/net8.0/AlphaPlus.Main.Site.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Web/Main/Main.Site",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+          "action": "openExternally",
+          "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+          "/Views": "${workspaceFolder}/Views"
+      }
+    },
+    {
+      "name": "Reports Launch (Docker)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-reports",
+      "program": "${workspaceFolder}/src/Web/Reports/Reports.Site/bin/Debug/net8.0/AlphaPlus.Reports.Site.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Web/Reports/Reports.Site",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+          "action": "openExternally",
+          "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+          "/Views": "${workspaceFolder}/Views"
+      }
+    },
+    {
+      "name": "Settings Launch (Docker)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-settings",
+      "program": "${workspaceFolder}/src/Web/Settings/Settings.Site/bin/Debug/net8.0/AlphaPlus.Settings.Site.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Web/Settings/Settings.Site",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+          "action": "openExternally",
+          "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+          "/Views": "${workspaceFolder}/Views"
+      }
+    },
+    {
+      "name": "Tickets Launch (Docker)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-tickets",
+      "program": "${workspaceFolder}/src/Web/Tickets/Tickets.Site/bin/Debug/net8.0/AlphaPlus.Tickets.Site.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Web/Tickets/Tickets.Site",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+          "action": "openExternally",
+          "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+          "/Views": "${workspaceFolder}/Views"
+      }
+    }
+  ],
+  "compounds": [
+      {
+          "name": "Alpha+",
+          "configurations": [
+            "AccountInfo Launch (Docker)",
+            "Features Launch (Docker)",
+            "Main Launch (Docker)",
+            "Reports Launch (Docker)",
+            "Settings Launch (Docker)",
+            "Tickets Launch (Docker)"
+          ]
+      }
+  ]
+}

@@ -12,7 +12,7 @@ public class CheckMultipleCustomerBelongingCommand(int sessionCustId, int subAcc
     [SpParam(SqlParamName = "custid")]
     public string CustIds { get; } = custIds;
 
-    public byte RoleId { get; set; } = 0;
+    public byte RoleId { get; set; }
 
     public bool IsActive { get; set; } = true;
 

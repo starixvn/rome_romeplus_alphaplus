@@ -1,8 +1,10 @@
-using System.Net;
 using System.Text.Json;
-using AlphaPlus.Core.Services;
 using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Constants;
+using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Core.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
@@ -10,8 +12,6 @@ using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Options;
-using AlphaPlus.Core.Helpers;
-using AlphaPlus.Core.Extensions;
 
 namespace AlphaPlus.Core.Filters;
 
@@ -38,6 +38,11 @@ public class CheckBelongingFilterAttribute : TypeFilterAttribute
                 context.HttpContext.Session.Get<int>("CUSTID") == 0)
             {
                 await UnAuthorization(context);
+                return;
+            }
+
+            if (UserSession.Current.IsInternal)
+            {
                 return;
             }
 

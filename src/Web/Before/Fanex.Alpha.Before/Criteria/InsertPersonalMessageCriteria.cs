@@ -1,4 +1,3 @@
-using Fanex.Common.Extensions;
 using Fanex.Data;
 using Fanex.Data.Repository;
 

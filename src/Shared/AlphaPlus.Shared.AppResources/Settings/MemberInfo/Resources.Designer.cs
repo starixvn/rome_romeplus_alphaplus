@@ -4253,6 +4253,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Add New Cash member.
+        /// </summary>
+        public static string CreateCashMember
+        {
+            get
+            {
+                return ResourceManager.GetString("CreateCashMember", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Cash/&lt;br/&gt;Balance.
         /// </summary>
         public static string CashSlashBalance

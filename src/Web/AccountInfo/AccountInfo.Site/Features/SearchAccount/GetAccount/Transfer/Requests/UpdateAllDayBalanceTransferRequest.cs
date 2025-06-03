@@ -1,10 +1,10 @@
-using AlphaPlus.AccountInfo.Site.Features.Shared;
+using AlphaPlus.Core;
 using AlphaPlus.Core.Models;
 using MediatR;
 
 namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Transfer.Requests;
 
-public class UpdateAllDayBalanceTransferRequest : BaseQuery, IRequest<Result>
+public class UpdateAllDayBalanceTransferRequest : QueryBase, IRequest<Result>
 {
     public bool StatusValue { get; set; }
 

@@ -30,7 +30,7 @@ public class RequestContext(IRequestAnalyst requestAnalyst, IOptions<Authorizati
     public string Url
     {
         get
-        {   
+        {
             if (string.IsNullOrWhiteSpace(_url))
             {
                 var routeValues = AlphaContext.Current.Request.RouteValues;

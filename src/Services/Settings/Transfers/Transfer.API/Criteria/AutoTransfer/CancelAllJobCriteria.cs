@@ -1,5 +1,4 @@
-﻿using AlphaPlus.Settings.Transfer.API.Params.AutoTransfer;
-using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
 namespace AlphaPlus.Settings.Transfer.API.Criteria.AutoTransfer
 {

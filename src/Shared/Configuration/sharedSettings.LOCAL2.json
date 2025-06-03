@@ -140,6 +140,7 @@
         "SystemId": 6
     },
     "SystemId": 2,
+    "IdentityUrl": "http://alp1-id.nexdev.net/",
     "AssetAppPath": "/stcdn",
     "JsVersion": "20250415",
     "AssetsApp:StaticResourcesVersion": "20250415",
@@ -264,5 +265,9 @@
         "OfferedSites": "",
         "BackOfficeApiUrl": "https://s1-alpha-api-service.starixnet.com/api/"
     },
-    "OfferProfilePictureTour": true
+    "OfferProfilePictureTour": true,
+    "CashService": {
+        "OfferedSites": "755555,222227"
+    },
+    "CashServiceAPIUrl": "http://alphaplus_api_cashservice_local_2:5000/api"
 }

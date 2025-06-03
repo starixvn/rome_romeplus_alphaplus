@@ -1,11 +1,11 @@
-using AlphaPlus.AccountInfo.Site.Features.Shared;
 using AlphaPlus.AccountInfo.Site.Features.Shared.Helpers;
+using AlphaPlus.Core;
 using AlphaPlus.Core.Models;
 using MediatR;
 
 namespace AlphaPlus.AccountInfo.Site.Features.ProfilePicture.Update
 {
-    public class UpdateActorProfilePictureRequest : BaseQuery, IRequest<Result>
+    public class UpdateActorProfilePictureRequest : QueryBase, IRequest<Result>
     {
         public int ImageId { get; set; }
 

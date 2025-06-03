@@ -1,6 +1,5 @@
 using System.Text;
 using System.Text.Encodings.Web;
-using AlphaPlus.Tickets.Site.Features.Shared.Models;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
@@ -10,7 +9,7 @@ namespace AlphaPlus.Tickets.Site.Features.Shared.TagHelpers;
 public class BreadcrumbLevelTagHelper : TagHelper
 {
     [HtmlAttributeName("model")]
-    public IEnumerable<Breadcrumb> BreadcrumbLevels { get; set; }
+    public IEnumerable<Models.Breadcrumb> BreadcrumbLevels { get; set; }
 
     public override void Process(TagHelperContext context, TagHelperOutput output)
     {

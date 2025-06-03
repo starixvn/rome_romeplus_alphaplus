@@ -1,10 +1,17 @@
 namespace AlphaPlus.Core.Models;
 
 [Serializable]
-public class KickOutInfo(bool isKickedOut, byte kickOutReason = 0)
+public class KickOutInfo
 {
+    public KickOutInfo() { }
 
-    public bool IsKickedOut { get; } = isKickedOut;
+    public KickOutInfo(bool isKickedOut, byte kickOutReason = 0)
+    {
+        IsKickedOut = isKickedOut;
+        KickOutReason = kickOutReason;
+    }
 
-    public byte KickOutReason { get; } = kickOutReason;
+    public bool IsKickedOut { get; set; }
+
+    public byte KickOutReason { get; set; }
 }

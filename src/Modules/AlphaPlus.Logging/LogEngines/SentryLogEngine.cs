@@ -1,7 +1,6 @@
 ﻿using AlphaPlus.Logging.Configurations;
 using Fanex.Logging;
 using Fanex.Logging.Sentry;
-using Sentry;
 
 namespace AlphaPlus.Logging.LogEngines
 {
@@ -11,8 +10,8 @@ namespace AlphaPlus.Logging.LogEngines
         {
             var sentryOptions = new SentryEngineOptions
             {
-                Dsn = new Dsn(AppSettings.SentryBackendUrl),
-                FrontEndDsn = new Dsn(AppSettings.SentryUrl)
+                Dsn = AppSettings.SentryBackendUrl,
+                FrontEndDsn = AppSettings.SentryUrl
             };
 
             return new SentryLogging(sentryOptions, string.IsNullOrWhiteSpace(ravenScriptPath) ? $"{AppSettings.AssetAppPath}/bundles/common/raven.min.js" : ravenScriptPath);

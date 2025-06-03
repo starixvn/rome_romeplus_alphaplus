@@ -13,7 +13,6 @@ using ONEbook.UM.Configurations;
 using ONEbook.UM.Helpers;
 using ONEbook.UM.Services;
 using ONEbook.UM.Transport;
-using Sentry;
 
 namespace Fanex.Alpha.Before.Extensions;
 
@@ -44,7 +43,7 @@ public static class ServiceCollectionExtensions
         {
             logEngines.Add(new SentryLogging(new SentryEngineOptions
             {
-                Dsn = new Dsn(sentryUrl)
+                Dsn = sentryUrl
             }));
         }
 

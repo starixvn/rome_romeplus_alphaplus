@@ -2,16 +2,16 @@ using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.Consolidation;
 using AlphaPlus.Reports.Features.EnteredResult;
+using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLossDetail;
 using AlphaPlus.Reports.Site.Features.Shared;
 using AlphaPlus.Reports.Site.Features.Shared.Helpers;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
+using AlphaPlus.Shared.AppResources.Report;
 using MediatR;
 using Microsoft.Extensions.Options;
-using AlphaPlus.Shared.AppResources.Report;
-using AlphaPlus.Reports.Features.Products;
 
 namespace AlphaPlus.Reports.Site.Features.Consolidation;
 
@@ -84,12 +84,12 @@ public class ConsolidationDetailHandler(
 
     private static BreadcrumbViewModel BuildBreadcrumbViewModel(BaseQuery message)
     {
-        var breadcrumbs = new List<Breadcrumb>
+        var breadcrumbs = new List<Reports.Features.Shared.Models.Breadcrumb>
         {
-            new Breadcrumb(message.ViewerId, Resources.Consolidation, message.ViewerLevelId, IsConsolidation: true)
+            new(message.ViewerId, Resources.Consolidation, message.ViewerLevelId, IsConsolidation: true)
         };
 
-        if (JsonHelper.TryParse<Breadcrumb[]>(message.BreadcrumbsJson, out var breadcrumbList) && breadcrumbList != null)
+        if (JsonHelper.TryParse<Reports.Features.Shared.Models.Breadcrumb[]>(message.BreadcrumbsJson, out var breadcrumbList) && breadcrumbList != null)
         {
             for (int i = 1, max = breadcrumbList.Length; i < max; i++)
             {
@@ -102,7 +102,7 @@ public class ConsolidationDetailHandler(
             }
         }
 
-        breadcrumbs.Add(new Breadcrumb(message.CustId, message.CustName, message.CustLevelId));
+        breadcrumbs.Add(new Reports.Features.Shared.Models.Breadcrumb(message.CustId, message.CustName, message.CustLevelId));
 
         return new BreadcrumbViewModel(breadcrumbs, JsonHelper.ToJson(breadcrumbs));
     }

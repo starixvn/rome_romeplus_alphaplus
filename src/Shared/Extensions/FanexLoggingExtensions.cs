@@ -1,7 +1,6 @@
 using Fanex.Logging;
 using Fanex.Logging.RabbitMQ;
 using Fanex.Logging.Sentry;
-using Sentry;
 
 internal static class FanexLoggingExtensions
 {
@@ -27,8 +26,8 @@ internal static class FanexLoggingExtensions
         {
             yield return new SentryLogging(new SentryEngineOptions
             {
-                Dsn = new Dsn(sentryUrl),
-                FrontEndDsn = new Dsn(configuration["Fanex.Logging:SentryUrl"])
+                Dsn = sentryUrl,
+                FrontEndDsn = configuration["Fanex.Logging:SentryUrl"]
             });
         }
     }

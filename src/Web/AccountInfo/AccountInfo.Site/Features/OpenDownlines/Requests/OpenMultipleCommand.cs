@@ -1,6 +1,6 @@
-﻿using MediatR;
-using AlphaPlus.AccountInfo.Site.Features.Shared;
-using AlphaPlus.AccountInfo.Site.Features.OpenDownlines.ViewModels;
+﻿using AlphaPlus.AccountInfo.Site.Features.OpenDownlines.ViewModels;
+using AlphaPlus.Core;
+using MediatR;
 
 namespace AlphaPlus.AccountInfo.Site.Features.OpenDownlines.Requests
 {
@@ -13,7 +13,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.OpenDownlines.Requests
         public bool IsClosed { get; set; }
     }
 
-    public class OpenMultipleCommand : BaseQuery, IRequest<OpenMultipleResultViewModel>
+    public class OpenMultipleCommand : QueryBase, IRequest<OpenMultipleResultViewModel>
     {
         public IEnumerable<OpenCustomerInfo> OpenList { get; set; }
 

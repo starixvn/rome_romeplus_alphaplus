@@ -106,17 +106,13 @@ public static class AppSettings
         {
             var siteLabel = SiteLabel.ToLowerInvariant();
 
-            switch (siteLabel)
+            return siteLabel switch
             {
-                case "mbc":
-                    return "cdkl";
-                case "789y":
-                    return "ahzk";
-                case "ibc":
-                    return "defg";
-                default:
-                    return "cdkl";
-            }
+                "mbc" => "cdkl",
+                "789y" => "ahzk",
+                "ibc" => "defg",
+                _ => "cdkl",
+            };
         }
     }
 
@@ -132,14 +128,13 @@ public static class AppSettings
             return true;
         }
 
-        return config
-            .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-            .Any(s => string.Equals(s.Trim(), value, StringComparison.OrdinalIgnoreCase));
+        return Array.Exists(config.Split([','], StringSplitOptions.RemoveEmptyEntries),
+            s => string.Equals(s.Trim(), value, StringComparison.OrdinalIgnoreCase));
     }
 
     public static bool IsIncluded(int[] config, int value)
     {
-        return config.Any(c => c == value);
+        return Array.Exists(config, c => c == value);
     }
 
     private static HashSet<string> MarketsSupportedNewHandbook { get; } = new HashSet<string>(
@@ -166,4 +161,12 @@ public static class AppSettings
             ? default(DateTime?)
             : DateTime.ParseExact(forceLoginNicknameDate4SubAccountValue, "dd/MM/yyyy", null);
     }
+
+    public static bool IsOfferedCashService(string site)
+            => CashServiceOfferedSites.Contains("*") || CashServiceOfferedSites.Contains(site);
+
+    public static IEnumerable<string> CashServiceOfferedSites { get; } = new HashSet<string>(
+        (ConfigurationManager.GetValue<string>("CashService:OfferedSites") ?? string.Empty)
+           .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+           .Select(site => site.Trim()), StringComparer.OrdinalIgnoreCase);
 }

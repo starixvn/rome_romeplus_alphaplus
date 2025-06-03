@@ -447,4 +447,16 @@
   <data name="newDirectMember" xml:space="preserve">
     <value>Tạo Member Trực Tiếp</value>
   </data>
+  <data name="ManagePayments" xml:space="preserve">
+    <value>支払い管理</value>
+  </data>
+  <data name="cashService" xml:space="preserve">
+    <value>Dịch vụ tiền mặt</value>
+  </data>
+  <data name="newCashMember" xml:space="preserve">
+    <value>Thành viên tiền mặt mới</value>
+  </data>
+  <data name="MemberSiteManagement" xml:space="preserve">
+    <value>Quản lý trang thành viên</value>
+  </data>
 </root>

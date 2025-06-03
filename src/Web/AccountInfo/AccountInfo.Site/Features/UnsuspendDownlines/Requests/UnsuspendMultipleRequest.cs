@@ -1,10 +1,10 @@
-using AlphaPlus.AccountInfo.Site.Features.Shared;
 using AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines.ViewModels;
+using AlphaPlus.Core;
 using MediatR;
 
 namespace AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines.Requests
 {
-    public class UnsuspendMultipleRequest : BaseQuery, IRequest<UnsuspendMultipleViewModel>
+    public class UnsuspendMultipleRequest : QueryBase, IRequest<UnsuspendMultipleViewModel>
     {
         public string CustIds { get; set; }
 

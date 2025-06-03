@@ -1,0 +1,79 @@
+{
+  "transactionHistory": "Transaction History",
+  "deposit": "Deposit",
+  "withdrawal": "Withdrawal",
+
+  "filter": {
+    "all": "All",
+    "to": "To",
+    "from": "From",
+    "selectAccount": "Select Account",
+    "allColumns": "All Columns (8)",
+    "column": "Column",
+    "search": "Search",
+    "usernamePlaceholder": "Username/Reference No.",
+    "status": "Status",
+    "dateRange": "Date Range"
+  },
+
+  "table": {
+    "no": "#",
+    "username": "Username",
+    "nickname": "Nickname",
+    "name": "First & Last Name",
+    "amount": "Amount",
+    "currency": "Currency",
+    "from": "From",
+    "to": "To",
+    "status": "Status",
+    "type": "Transaction Type",
+    "referenceNo": "Reference No.",
+    "dateAndTime": "Date & Time",
+    "actions": "Action",
+    "view": "View",
+    "loading": "Loading transactions...",
+    "noRecords": "No records found"
+  },
+
+  "detail": {
+    "title": "Transaction Details",
+    "username": "Username",
+    "nickname": "Nickname",
+    "fullName": "First/Last Name",
+    "betCredit": "Bet Credit",
+    "from": "From",
+    "to": "To",
+    "dateAndTime": "Date and Time",
+    "transactionType": "Transaction Type",
+    "operatedBy": "Operated By",
+    "processedOn": "Processed On",
+    "amount": "Amount",
+    "remarks": "Remarks",
+    "remarksPlaceholder": "Add a remark here...",
+    "close": "Close",
+    "revertToPending": "Revert To Pending",
+    "loading": "Loading transaction details...",
+    "noDetails": "No transaction details available.",
+    "error": "Failed to load transaction details.",
+    "cancel": "Cancel"
+  },
+
+  "status": {
+    "completed": "Completed",
+    "rejected": "Rejected",
+    "providerRejected": "Provider Rejected",
+    "expired": "Expired"
+  },
+
+  "errorMessages": {
+    "requiredField": "This field is required",
+    "invalidAmount": "Please enter a valid amount",
+    "amountTooSmall": "Amount must be greater than 0",
+    "failedToLoad": "Failed to load transaction history",
+    "failedToRevert": "Failed to revert transaction"
+  },
+
+  "successMessages": {
+    "reverted": "Transaction reverted to pending successfully!"
+  }
+}

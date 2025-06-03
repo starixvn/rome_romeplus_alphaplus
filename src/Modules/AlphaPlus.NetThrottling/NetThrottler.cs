@@ -53,14 +53,11 @@ namespace AlphaPlus.NetThrottling
 
         public ThrottlePolicy[] Policies { get; private set; }
 
-        private readonly NetThrottlingConfiguration configuration;
-
         private readonly IMemoryCache cacheService;
-
 
         public NetThrottler(IOptions<NetThrottlingConfiguration> options, IMemoryCache cacheService, IClock clock, IResolverFactory resolverFactory)
         {
-            configuration = options.Value;
+            var configuration = options.Value;
             this.clock = clock;
             Resolver = resolverFactory.GetResolver(configuration.Resolver);
             Policies = configuration.Policies;
@@ -96,14 +93,7 @@ namespace AlphaPlus.NetThrottling
         public TimeSpan GetBlockRemainingTime(ThrottlePolicy policy, CacheIdentity cacheIdentity)
         {
             var isHasValue = cacheService.TryGetValue(cacheIdentity.BlockKey, out DateTime blockTime);
-            if (isHasValue)
-            {
-                return blockTime.AddSeconds(policy.BlockDuration) - clock.UtcNow;
-            }
-            else
-            {
-                return TimeSpan.Zero;
-            }
+            return isHasValue ? (blockTime.AddSeconds(policy.BlockDuration) - clock.UtcNow) : TimeSpan.Zero;
         }
 
         public ThrottleResult Throttle(HttpContext httpContext, ThrottlePolicy policy, IFilter filter)
@@ -124,7 +114,10 @@ namespace AlphaPlus.NetThrottling
         public ThrottleResult Throttle(ThrottlePolicy policy, CacheIdentity cacheIdentity, bool blockImmediately)
         {
             if (cacheIdentity == null)
+            {
                 return ThrottleResult.Allowed;
+            }
+
             if (IsBlacklist(cacheIdentity))
             {
                 return ThrottleResult.Blocked;

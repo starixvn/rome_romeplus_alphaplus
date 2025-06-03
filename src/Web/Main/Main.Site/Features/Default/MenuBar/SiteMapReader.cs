@@ -14,7 +14,7 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
         public SiteMap GetRootNode()
         {
             var serializer = new XmlSerializer(typeof(SiteMap));
-            using var reader = new StreamReader(string.Concat(environment.ContentRootPath, "/App_Data/Alpha.sitemap"));
+            using var reader = new StreamReader(string.Concat(environment.ContentRootPath, "/App_Data/Alpha.sitemap.xml"));
             return (SiteMap)serializer.Deserialize(reader);
         }
     }

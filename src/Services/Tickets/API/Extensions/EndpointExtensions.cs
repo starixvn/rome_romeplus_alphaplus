@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using AlphaPlus.Tickets.API.Endpoints;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace AlphaPlus.Tickets.API.Extensions;
 
+[ExcludeFromCodeCoverage]
 public static class EndpointExtensions
 {
     public static IServiceCollection AddEndpoints(this IServiceCollection services, Assembly assembly)

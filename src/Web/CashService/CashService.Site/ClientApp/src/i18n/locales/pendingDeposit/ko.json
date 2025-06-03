@@ -1,0 +1,110 @@
+{
+  "pendingDeposit": "대기 중인 입금",
+  "addManualDeposit": "수동 입금 추가",
+  
+  "filter": {
+    "recentDeposits": "최근 입금",
+    "all": "모두",
+    "today": "오늘",
+    "yesterday": "어제",
+    "last7Days": "지난 7일",
+    "to": "까지",
+    "search": "검색",
+    "usernamePlaceholder": "사용자 이름/참조 번호",
+    "last30Mins": "지난 30분",
+    "last60Mins": "지난 60분"
+  },
+  
+  "dataGrid": {
+    "member": "회원",
+    "username": "사용자 이름",
+    "loginName": "로그인 이름",
+    "firstName": "이름",
+    "lastName": "성",
+    "nickname": "닉네임",
+    "firstLastName": "이름&성",
+    "amount": "금액",
+    "currency": "통화",
+    "from": "부터",
+    "to": "까지",
+    "referenceNo": "참조 번호",
+    "dateAndTime": "날짜 및 시간",
+    "actions": "동작",
+    "approve": "승인",
+    "approving": "승인 중...",
+    "reject": "거부",
+    "process": "처리",
+    "viewDetails": "상세 보기",
+    "loading": "대기 중인 입금을 불러오는 중...",
+    "noDepositsFound": "대기 중인 입금을 찾을 수 없습니다"
+  },
+  
+  "pendingDepositModal": {
+    "title": "대기 중인 입금",
+    "username": "사용자 이름",
+    "loginName": "로그인 이름",
+    "firstName": "이름",
+    "lastName": "성",
+    "name": "이름/성",
+    "betCredit": "베팅 크레딧",
+    "from": "부터",
+    "to": "까지",
+    "depositAmount": "입금액",
+    "dateAndTime": "날짜 및 시간",
+    "remarks": "비고",
+    "remarksPlaceholder": "여기에 비고 추가...",
+    "approve": "승인",
+    "reject": "거부",
+    "close": "닫기",
+    "firstLastName": "이름/성"
+  },
+  
+  "manualDepositForm": {
+    "title": "수동 입금 추가",
+    "accountInformation": "계정 정보",
+    "memberLoginName": "회원 로그인 이름",
+    "from": "부터",
+    "to": "까지",
+    "depositAmount": "입금액",
+    "remarks": "비고",
+    "remarksPlaceholder": "여기에 비고 추가...",
+    "uploadImage": "업로드하려면 클릭",
+    "dragAndDrop": "또는 끌어다 놓기",
+    "imageFormat": "jpeg, jpg, png 업로드",
+    "maxSize": "최대 1 MB",
+    "viewFullSize": "전체 크기로 보기",
+    "removeImage": "이미지 제거",
+    "cancel": "취소",
+    "approve": "승인",
+    "approving": "승인 중...",
+    "agentAvailableCredit": "에이전트 사용 가능 크레딧",
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "금액은 0보다 커야 하고 최대 한도보다 작아야 합니다",
+    "imageSizeError": "이미지는 1MB 이하여야 합니다",
+    "memberLoginNameRequired": "회원 로그인 이름을 선택해주세요",
+    "agentBankSelectionRequired": "PaymentFrom을 선택해주세요",
+    "memberBankSelectionRequired": "PaymentTo을 선택해주세요"
+  },
+
+  "status": {
+    "pending": "대기 중",
+    "approved": "승인됨",
+    "rejected": "거부됨"
+  },
+  
+  "errorMessages": {
+    "requiredField": "이 필드는 필수입니다",
+    "invalidAmount": "유효한 금액을 입력하세요",
+    "amountTooSmall": "금액은 0보다 커야 합니다",
+    "failedToSubmit": "입금 제출에 실패했습니다",
+    "failedToApprove": "입금 승인에 실패했습니다",
+    "failedToReject": "입금 거부에 실패했습니다",
+    "failedToFetchData": "데이터를 가져오는 데 실패했습니다"
+  },
+  
+  "successMessages": {
+    "depositSubmitted": "입금이 성공적으로 제출되었습니다",
+    "depositUpdated": "입금이 성공적으로 업데이트되었습니다",
+    "depositApproved": "입금이 성공적으로 승인되었습니다",
+    "depositRejected": "입금이 성공적으로 거부되었습니다"
+  }
+} 

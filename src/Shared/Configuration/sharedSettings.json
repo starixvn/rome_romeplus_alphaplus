@@ -135,11 +135,12 @@
     "RedisConfiguration": "10.18.200.194:16410,Password=foo1@bared,Name=AlphaPlus,abortConnect=false,configChannel=__Booksleeve_MasterChanged,connectTimeout=6300",
     "RemotingRefUrl": "http://remotingref-api-core.nexdev.net/",
     "Fanex.Customer": {
-        "ServiceUri": "https://customer.nexdev.net/local5/api/",
-        "CdnUri": "https://cdn-customer.nexdev.net/v5/",
+        "ServiceUri": "https://customer.nexdev.net/local1/api/",
+        "CdnUri": "https://cdn-customer.nexdev.net/v1/",
         "SystemId": 2
     },
     "SystemId": 2,
+    "IdentityUrl": "http://host.docker.internal:5000/",
     "AssetAppPath": "//localhost:5101",
     "JsVersion": "20250415",
     "AssetsApp:StaticResourcesVersion": "20250415",
@@ -276,5 +277,9 @@
         "OfferedSites": "755555",
         "BackOfficeApiUrl": "https://s1-alpha-api-service.starixnet.com/api/"
     },
-    "OfferProfilePictureTour": true
+    "OfferProfilePictureTour": true,
+    "CashService": {
+        "OfferedSites": "*"
+    },
+    "CashServiceAPIUrl": "http://cash-service-api:5000/api"
 }

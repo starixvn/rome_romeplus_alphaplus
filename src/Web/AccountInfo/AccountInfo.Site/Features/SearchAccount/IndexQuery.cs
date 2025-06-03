@@ -1,9 +1,9 @@
-using AlphaPlus.AccountInfo.Site.Features.Shared;
+using AlphaPlus.Core;
 using MediatR;
 
 namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
 {
-    public class IndexQuery : BaseQuery, IRequest<IndexViewModel>
+    public class IndexQuery : QueryBase, IRequest<IndexViewModel>
     {
         public bool MobileView { get; set; }
 
