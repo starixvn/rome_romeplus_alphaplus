@@ -219,7 +219,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
             <TitleComponent title={t('manualDepositForm.title')} />  
           </div>
 
-          <form id="manual-deposit-form" className="w-[1100px] bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] max-[768px]:w-full" onSubmit={handleSubmit}>
+          <div id="manual-deposit-form" className="w-[1100px] bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] max-[768px]:w-full">
             {validationMessage && (
               <ResultMessageComponent
                 message={validationMessage.message}
@@ -263,9 +263,10 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
                         : t('manualDepositForm.approve')
                     }
                     disabled={isSubmitting}
+                    onClick={handleSubmit}
                   />
                 </div>
-          </form>
+          </div>
         </div>
        
       )}
