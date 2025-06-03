@@ -113,3 +113,13 @@ services:
         restart: always
         ports:
             - 5301:5000
+
+    agency-cash-api:
+        image: ${REGISTRY:-alphaplus}/agency-cash.api:${PLATFORM:-linux}-${TAG:-latest}
+        build:
+            context: .
+            dockerfile: src/AgencyCash/AgencyCash.API/Dockerfile
+        restart: always
+        ports:
+            - 5302:5000
+
