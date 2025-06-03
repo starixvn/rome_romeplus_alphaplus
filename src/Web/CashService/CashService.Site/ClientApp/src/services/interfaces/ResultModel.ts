@@ -5,7 +5,7 @@ export interface ResultModel {
   code: number;
 } 
 
-export const createErrorResultModel = (message: string, code: number = 400): ResultModel => {
+export const createErrorResultModel = (code: number, message: string): ResultModel => {
   return {
     isSuccessful: false,
     message,

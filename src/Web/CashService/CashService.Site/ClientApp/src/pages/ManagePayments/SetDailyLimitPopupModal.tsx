@@ -14,6 +14,7 @@ import {
 import { LabelTitleComponent, MediumTitleComponent } from '../../components/TitleComponents';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { ensureIntegerInput } from '../../utils/inputHandlers';
+import { createErrorResultModel } from '../../services/interfaces/ResultModel';
 
 interface SetDailyLimitPopupModalProps {
   onClose: () => void;
@@ -96,11 +97,7 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
       return;
     }
 
-    const result = response.data ?? {
-      isSuccessful: false,
-      code: 1,
-      message: t('global:errorOccurred'),
-    };
+    const result = response.data ?? createErrorResultModel(1, t('global:errorOccurred'));
 
     if (result.isSuccessful) {
       setIsBlockAction(true);

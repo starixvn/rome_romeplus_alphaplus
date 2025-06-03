@@ -15,7 +15,7 @@ import { LabelTitleComponent, MediumTitleComponent } from '../../components/Titl
 import { createDefaultPaymentTransactionLimit } from '../../services/interfaces/Payments';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { ensureDecimalInput, ensureIntegerInput } from '../../utils/inputHandlers';
-
+import { createErrorResultModel } from '../../services/interfaces/ResultModel';
 interface SetTransactionLimitModalProps {
   onClose: () => void;
   onSave: () => void;
@@ -223,11 +223,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
       return;
     }
 
-    const result = response.data || {
-      isSuccessful: false,
-      code: 1,
-      message: tManagePayments('failedToSetLimit'),
-    };
+    const result = response.data || createErrorResultModel(1, tManagePayments('failedToSetLimit'));
 
     if (result.isSuccessful) {
       setIsBlockAction(true);

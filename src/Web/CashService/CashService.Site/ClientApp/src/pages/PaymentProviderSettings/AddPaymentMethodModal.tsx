@@ -162,7 +162,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
       return;
     }
 
-    const result = response.data || createErrorResultModel(tGlobal('errorOccurred'), 1);
+    const result = response.data || createErrorResultModel(1, tGlobal('errorOccurred'));
 
     if (result.isSuccessful) {
       setIsBlockAction(true);
