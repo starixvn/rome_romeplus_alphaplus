@@ -30,7 +30,8 @@ public class WinLossDetailHandler(
         IRequestHandler<WinLossDetailQuery, WinLossDetailViewModel>,
         IRequestHandler<WinLossDetailGetDataQuery, WinLossDetailGetDataViewModel>,
         IRequestHandler<WinLossDetailGetWeeksQuery, IEnumerable<WinLossDetailWeekViewModel>>,
-        IRequestHandler<WinLossDetailExcelQuery, ExcelFileViewModel>
+        IRequestHandler<WinLossDetailExcelQuery, ExcelFileViewModel>,
+        IRequestHandler<CashFeeQuery, CashFeeViewModel>
 {
     private readonly IEnteredResultService enteredResultService = enteredResultService;
     private readonly ICustomerService customerService = customerService;

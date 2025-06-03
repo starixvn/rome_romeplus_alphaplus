@@ -178,7 +178,7 @@ public class WinLossDetailService(
 
         var groupData1 = new CashFeeGroupModel
         {
-            GroupName = "Transaction Fee",
+            GroupName = "Cash Service Fee",
             FeeItems = new List<CashFeeItemModel>
             {
                 new CashFeeItemModel
@@ -201,7 +201,7 @@ public class WinLossDetailService(
             },
             Total = new CashFeeItemModel
             {
-                TransactionType = "Transaction Fee",
+                TransactionType = "Cash Service Fee",
                 Fee = 10,
                 Count = 15,
                 Agent = -5,

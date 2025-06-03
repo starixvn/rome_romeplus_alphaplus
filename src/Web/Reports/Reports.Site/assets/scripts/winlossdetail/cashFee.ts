@@ -2,11 +2,6 @@
     entries: any;
 }
 
-declare var productList: any;
-declare var productDetailList: any;
-declare var currentFromData: any;
-declare var viewerLevelId: number;
-
 class CashFeeView extends BaseReportNew {
     private dateRangeComponent: DateRangePickerJQueryComponent;
     private breadcrumbLevelComponent: BreadcrumbLevelComponent;
@@ -35,7 +30,6 @@ class CashFeeView extends BaseReportNew {
         super.initReportLegend();
         super.initShowHideFilter();
         this.$reportTitle = $('#report-title');
-        this.globalFormData = currentFromData;
         this.$tblReportContainer = $('#tbl-report-container');
         this.$tblReport = this.$tblReportContainer.find('#tbl-report');
 
@@ -132,7 +126,6 @@ class CashFeeView extends BaseReportNew {
     getData(formData, isGetWeeks: boolean) {
         this.$tblReportContainer.block();
         this.isGettingData = true;
-        const currentCustLevelId = this.globalFormData.custLevelId;
         const queryStringObject = $.extend({}, this.globalFormData, formData);
         const queryString = $.param(queryStringObject);
         const url = $('#hidden-getReportDataUrl').attr('href') || 'GetData';

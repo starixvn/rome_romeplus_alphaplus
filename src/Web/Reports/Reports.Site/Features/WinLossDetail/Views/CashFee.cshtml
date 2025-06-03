@@ -15,9 +15,9 @@
 
     void RenderFeeItemRow(CashFeeItemModel item, bool isTotalRow = false)
     {
-        var rowClass = isTotalRow ? "tbl-footer" : "";
+        var rowClass = isTotalRow ? "sub-total-row" : "";
         <tr class="@rowClass">
-            <td>@item.Name</td>
+            <td>@item.TransactionType</td>
             <td>@item.Fee.FormatNumber()</td>
             <td>@item.Count.FormatNumber()</td>
             <td>@item.Agent.FormatNumber()</td>
@@ -68,7 +68,7 @@
             <tr class="tbl-footer">
                 <td colspan="3">@Resources.Total</td>
                 <td>@Model.CashFee.GrandTotal.Agent.FormatNumber()</td>
-                <td>@Model.CashFee.GrandTotal.Company..FormatNumber()</td>
+                <td>@Model.CashFee.GrandTotal.Company.FormatNumber()</td>
             </tr>
         </tfoot>
     }
