@@ -34,3 +34,24 @@ export const compareObjects = (obj1: any, obj2: any): boolean => {
 export const reloadPage = () => {
   window.location.reload();
 };
+
+export const splitMobile = (mobile: string) => {
+  const fm = mobile.includes('-') ? mobile.split('-')[0] : '';
+  const m = mobile.includes('-') ? mobile.split('-')[1] : mobile;
+  return { countryCode: fm, mobile: m };
+};
+
+export const isNumberIncludes = (str: string, search: number) => {
+  return str.split(',').includes(search.toString());
+};
+
+
+
+
+
+
+
+
+
+
+

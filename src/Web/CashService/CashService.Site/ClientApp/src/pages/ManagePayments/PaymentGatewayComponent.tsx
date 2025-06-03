@@ -23,12 +23,10 @@ import DailyLimitPopupModal from './SetDailyLimitPopupModal';
 
 interface PaymentGatewayComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
-  activeTab: string;
 }
 
 const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
-  setActiveTab,
-  activeTab,
+  setActiveTab
 }) => {
   const { t: tGlobal } = useTranslation('global');
   const { t: tManagePayments } = useTranslation('managePayments');
@@ -79,6 +77,18 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
 
   const onSaveDailyLimit = () => {};
 
+  const renderProviderStatus = (status: number) => {
+    switch (status) {
+      case 0:
+        return <StatusDisabledComponent />;
+      case 1:
+        return <StatusEnabledComponent />;
+      default:
+        return <StatusNoneComponent />;
+    }
+  };
+
+
   const onEditClick = (provider: PaymentProvider) => {
     localStorage.setItem('cashsite_previousUrl', window.location.href);
     location.href = 'ManageProviderSettings?id=' + provider.id;
@@ -96,48 +106,27 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
           <div>• {tManagePayments('managePaymentsTip2')}</div>
         </div>
       </TitleComponent>
-
-      
           <ul className="flex">
             <li className="mr-[8px]">
-            {activeTab === 'paymentGateway' && (
-                <ButtonTabInactiveComponent text={tManagePayments('paymentGateway')} />
-              )}
-            
+              <ButtonTabInactiveComponent text={tManagePayments('paymentGateway')} />
             </li>
             <li>
-            <ButtonTabActiveComponent
-                text={tManagePayments('bankAccount')}
-                onClick={() => setActiveTab('bankAccount')}
-              />
+              <ButtonTabActiveComponent text={tManagePayments('bankAccount')} onClick={() => setActiveTab('bankAccount')} />
             </li>
           </ul>
        
-      
           <div className="bg-[#ffffff] max-w-[1000px]">
             <div className="px-[14px] py-[8px]">
-              <MediumTitleComponent
-                className="mb-[8px]"
-                text={tManagePayments('setDailyWithdrawalCount')}
-              />
+              <MediumTitleComponent className="mb-[8px]" text={tManagePayments('setDailyWithdrawalCount')} />
               <div className="pb-[8px]">
                 {tManagePayments('setDailyWithdrawalCountForYourMembers')}
               </div>
-              <ButtonOutlineComponent
-                text={tManagePayments('setLimit')}
-                onClick={() => onSetLimitClick()}
-              />
+              <ButtonOutlineComponent text={tManagePayments('setLimit')} onClick={() => onSetLimitClick()} />
               <span className="block w-[100%] h-[1px] bg-[#e0e0e0] my-[10px]"></span>
-              <MediumTitleComponent
-                className="my-[8px]"
-                text={tManagePayments('managePaymentProviders')}
-              />
+              <MediumTitleComponent className="my-[8px]" text={tManagePayments('managePaymentProviders')} />
             </div>
-            {loading ? (
-              <Loading />
-            ) : error ? (
-              <ErrorMessageComponent message={error} />
-            ) : (
+            {loading ? (<Loading />) : 
+              error ? (<ErrorMessageComponent message={error} />) : (
               <div className="table-fixed-header">
                 <table className=" w-full border-collapse">
                   <thead>
@@ -151,7 +140,13 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
                     </tr>
                   </thead>
                   <tbody className="font-[500]">
-                    {providers.length > 0 ? (
+                    {providers.length === 0 && (
+                      <tr>
+                        <td colSpan={6} className="text-center">{tGlobal('noData')}</td>
+                      </tr>
+                    )}
+                    
+                    {providers.length > 0 && (
                       providers.map((provider, index) => (
                         <tr key={provider.id}>
                           <td>{index + 1}</td>
@@ -167,29 +162,12 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
                           </td>
                           <td>{provider.name}</td>
                           <td>
-                            <ButtonFullComponent
-                              text={tGlobal('view')}
-                              onClick={() => onFeeClick(provider)}
-                            />
+                            <ButtonFullComponent text={tGlobal('view')} onClick={() => onFeeClick(provider)} />
                           </td>
-                          <td>
-                            {provider.status === 0 ? (
-                              <StatusDisabledComponent />
-                            ) : provider.status === 1 ? (
-                              <StatusEnabledComponent />
-                            ) : (
-                              <StatusNoneComponent />
-                            )}
-                          </td>
+                          <td>{renderProviderStatus(provider.status)}</td>
                           <td>{provider.lastUpdatedStr}</td>
                         </tr>
                       ))
-                    ) : (
-                      <tr>
-                        <td colSpan={6} className="text-center">
-                          {tGlobal('noData')}
-                        </td>
-                      </tr>
                     )}
                   </tbody>
                 </table>

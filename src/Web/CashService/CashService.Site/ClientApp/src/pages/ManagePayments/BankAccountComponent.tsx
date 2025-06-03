@@ -26,13 +26,13 @@ import { paymentProviderService } from '../../services/paymentsAPI';
 import AddBankAccountComponent from './AddBankAccountComponent';
 import SetTransactionLimitModal from './SetTransactionLimitModal';
 import UpdateBankAccountComponent from './UpdateBankAccountComponent';
+import { createErrorResultModel } from '../../services/interfaces/ResultModel';
 
 interface BankAccountComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
-  activeTab: string;
 }
 
-const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTab, activeTab }) => {
+const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTab }) => {
   const { t: tManagePayments } = useTranslation('managePayments');
   const { t: tGlobal } = useTranslation('global');
   const [banks, setBanks] = useState<Bank[]>([]);
@@ -190,11 +190,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
               return;
             }
 
-            const result = response.data ?? {
-              isSuccessful: false,
-              code: 1,
-              message: tGlobal('errorOccurred'),
-            };
+            const result = response.data ?? createErrorResultModel(1, tGlobal('errorOccurred'));
             if (result.isSuccessful) {
               setSuccessMessage(tManagePayments('bankAccountDeletedSuccessfully'));
               // Clear success message and refresh list again after 3 seconds
@@ -289,15 +285,10 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
               <div className="card-header">
                 <ul className="flex">
                   <li className="mr-[8px]">
-                  <ButtonTabActiveComponent
-                text={tManagePayments('paymentGateway')}
-                onClick={() => setActiveTab('paymentGateway')}
-              />
+                    <ButtonTabActiveComponent text={tManagePayments('paymentGateway')} onClick={() => setActiveTab('paymentGateway')} />
                   </li>
                   <li>
-                  {activeTab === 'bankAccount' && (
-                <ButtonTabInactiveComponent text={tManagePayments('bankAccount')} />
-              )}
+                    <ButtonTabInactiveComponent text={tManagePayments('bankAccount')} />
                   </li>
                 </ul>
               </div>
@@ -306,10 +297,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                   <div className="bg-[#ffffff] px-[14px] py-[8px]">
                     <ErrorMessageComponent message={error} />
                     <SuccessMessageComponent message={successMessage} />
-                    <MediumTitleComponent
-                      className="my-[8px]"
-                      text={tManagePayments('manageBankAccountAndLimits')}
-                    />
+                    <MediumTitleComponent className="my-[8px]" text={tManagePayments('manageBankAccountAndLimits')} />
                     <div className="">{tManagePayments('addBankAccountAndLimit')}</div>
                     <div className="my-[8px] flex gap-[8px]">
                       <ButtonFullComponent
@@ -461,16 +449,11 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                                 <td>{account.accountNumber}</td>
                                 <td>{getTransactionTypeNames(account.transactionTypes)}</td>
                                 <td>
-                                  {account.status === 1 ? (
-                                    <StatusEnabledComponent />
-                                  ) : (
-                                    <StatusDisabledComponent />
-                                  )}
+                                  {account.status === 1 ? (<StatusEnabledComponent />) : (<StatusDisabledComponent />)}
                                 </td>
                                 <td>{account.lastUpdatedStr}</td>
                               </tr>
                             ))}
-                            
                           </tbody>
                         </table>
                       </div>

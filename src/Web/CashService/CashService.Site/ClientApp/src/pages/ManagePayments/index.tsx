@@ -16,12 +16,12 @@ function ManagePayments() {
     <>
       {activeTab === 'paymentGateway' && (
         <div className="payment-gateway-content">
-          <PaymentGatewayComponent setActiveTab={setActiveTab} activeTab={activeTab} />
+          <PaymentGatewayComponent setActiveTab={setActiveTab} />
         </div>
       )}
       {activeTab === 'bankAccount' && (
         <div className="bank-account-content h-full">
-          <BankAccountComponent setActiveTab={setActiveTab} activeTab={activeTab} />
+          <BankAccountComponent setActiveTab={setActiveTab} />
         </div>
       )}
     </>

@@ -47,3 +47,9 @@ export const paymentProviderStatusConstant = {
   enabled: 1,
   disabled: 2,
 };
+
+export const bankStatusConstant = {
+  enabled: 1,
+  disabled: 0,
+};
+
