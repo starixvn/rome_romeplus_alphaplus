@@ -8,6 +8,8 @@
 @using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components
 @using AlphaPlus.Settings.MemberInfo.Domain.Models
 @using AlphaPlus.Settings.MemberInfo.Domain.Extensions
+@using AlphaPlus.Core.Configurations
+@inject AlphaPlus.Core.Models.IUserSession userSession
 @model WinLossLimitViewModel
 @{
     Layout = "~/Features/MemberInfo/Views/WinLossLimit/_Layout.cshtml";
@@ -15,6 +17,12 @@
 }
 @section Styles {
     @StaticResources.RenderStylesWithDarkMode("~/Features/MemberInfo/assets/bundles/win-loss-limit")
+}
+@if (!AppSettings.IsSupportPotentialWinLimit(userSession.Site))
+{
+    <div class="page-title">
+        <span class="pull-left">@Resources.MemberWinLossLimit</span>
+    </div>
 }
 <form id="win-loss-limit-form" class="form-inline demo-form-inline filter" role="form">
     <div class="form-group">

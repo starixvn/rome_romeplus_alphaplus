@@ -95,7 +95,7 @@
                             <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.AccumWinLoss)</td>
                             <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.PotentialWin)</td>
                             <td class="text-right">@Model.GetMaxWinLimit(winLossLimitDetail.PotentialWinLimit)</td>
-                            <td class="text-center @((winLossLimitDetail.Credit == 0 && winLossLimitDetail.AccumToWin > 0 || winLossLimitDetail.PotentialWinPercent >= 100 || winLossLimitDetail.PotentialWinPercent == -2) ? "negative-value" : "")">
+                            <td class="text-center @(winLossLimitDetail.PotentialWinPercent >= 100 ? "negative-value" : "")">
                                 @Model.GetWinPercent(winLossLimitDetail.PotentialWinPercent, winLossLimitDetail.PotentialWinLimit)
                             </td>
                         </tr>

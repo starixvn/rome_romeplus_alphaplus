@@ -6,10 +6,12 @@ using AlphaPlus.Core.Filters;
 using AlphaPlus.Settings.Site.Features.MemberInfo.Excel;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using AlphaPlus.Core.Configurations;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Controllers;
 
-public partial class WinLossLimitController(IMediator mediator) : SiteBaseController(mediator)
+public partial class WinLossLimitController(IMediator mediator, IUserSession userSession) : SiteBaseController(mediator)
 {
     public Task<ActionResult> Index(WinLossLimitQuery message)
     {
@@ -18,12 +20,21 @@ public partial class WinLossLimitController(IMediator mediator) : SiteBaseContro
 
     public Task<ActionResult> SportsbookPotentialWinLimit(SportsbookPotentialWinLimitQuery message)
     {
+        if (!AppSettings.IsSupportPotentialWinLimit(userSession.Site))
+        {
+            return Task.FromResult<ActionResult>(Unauthorized());
+        }
+
         return View(message, "~/Features/MemberInfo/Views/WinLossLimit/SportsbookPotentialWinLimit.cshtml");
     }
 
-    [AllowProtectedMode]
-    public async Task<IActionResult> PotentialExcel(ExcelSportsbookPotentialWinLimitQuery message)
-    {
+    public async Task<ActionResult> PotentialExcel(ExcelSportsbookPotentialWinLimitQuery message)
+    {   
+        if (!AppSettings.IsSupportPotentialWinLimit(userSession.Site))
+        {
+            return Unauthorized();
+        }
+
         return await ExcelView(message);
     }
 }

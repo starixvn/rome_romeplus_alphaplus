@@ -171,7 +171,7 @@ public static class AppSettings
            .Select(site => site.Trim()), StringComparer.OrdinalIgnoreCase);
 
     public static bool IsSupportPotentialWinLimit(string site)
-    => SiteSupportPotentialWinLimit.Contains("*") || SiteSupportPotentialWinLimit.Contains(site);
+        => SiteSupportPotentialWinLimit.Contains("*") || SiteSupportPotentialWinLimit.Contains(site);
 
     private static HashSet<string> SiteSupportPotentialWinLimit { get; } = new HashSet<string>(
         ConfigurationManager

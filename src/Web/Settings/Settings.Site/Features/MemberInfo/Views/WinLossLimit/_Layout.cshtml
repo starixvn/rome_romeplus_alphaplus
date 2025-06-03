@@ -1,5 +1,7 @@
 @using AlphaPlus.Core.Helpers
+@using AlphaPlus.Core.Configurations
 @using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.WinLossLimit
+@inject AlphaPlus.Core.Models.IUserSession userSession
 
 @{
     Layout = "~/Features/MemberInfo/Views/Shared/_Layout.cshtml";
@@ -11,10 +13,17 @@
 }
 
 <div class="win-loss-limit-container">
-    @await Component.InvokeAsync("Tab", new { tabName = action.ToLowerInvariant() })
-    <div class="tab-content">
+    @if (AppSettings.IsSupportPotentialWinLimit(userSession.Site))
+    {
+        @await Component.InvokeAsync("Tab", new { tabName = action.ToLowerInvariant() })
+        <div class="tab-content">
+            @RenderBody()
+        </div>
+    }
+    else
+    {
         @RenderBody()
-    </div>
+    }
 </div>
 
 @section Scripts {
