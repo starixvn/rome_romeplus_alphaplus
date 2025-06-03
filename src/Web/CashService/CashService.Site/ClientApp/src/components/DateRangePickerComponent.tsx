@@ -19,9 +19,17 @@ export interface DateRangePickerProps {
   maxRangeDays?: number;
 }
 
+function formatDateWithLeadingZeros(date: Date | null): string {
+  if (!date) return '';
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  return `${String(month).padStart(2, '0')}/${String(day).padStart(2, '0')}/${year}`;
+}
+
 function formatRange(value: [Date | null, Date | null]) {
   if (!value[0] || !value[1]) return '';
-  return value[0].toLocaleDateString('en-US') + ' - ' + value[1].toLocaleDateString('en-US');
+  return formatDateWithLeadingZeros(value[0]) + ' - ' + formatDateWithLeadingZeros(value[1]);
 }
 
 function getDaysCount(start: Date | null, end: Date | null) {
@@ -296,10 +304,10 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
                 {selectedStart && selectedEnd ? (
                   <>
                     <span className="font-semibold">
-                      {selectedStart.toLocaleDateString('en-US')}
+                      {formatDateWithLeadingZeros(selectedStart)}
                     </span>{' '}
                     -{' '}
-                    <span className="font-semibold">{selectedEnd.toLocaleDateString('en-US')}</span>
+                    <span className="font-semibold">{formatDateWithLeadingZeros(selectedEnd)}</span>
                     <span className="italic"> ({days} days)</span>
                   </>
                 ) : (
