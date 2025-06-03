@@ -14,6 +14,8 @@ export interface DateRangePickerProps {
   value: [Date | null, Date | null];
   onChange: (value: [Date | null, Date | null]) => void;
   className?: string;
+  minYear?: number;
+  maxRangeDays?: number;
 }
 
 function formatRange(value: [Date | null, Date | null]) {
@@ -25,6 +27,43 @@ function getDaysCount(start: Date | null, end: Date | null) {
   if (!start || !end) return 0;
   const diff = Math.abs(end.getTime() - start.getTime());
   return Math.floor(diff / (1000 * 60 * 60 * 24)) + 1;
+}
+
+// Helper function to apply max range constraint
+function applyMaxRangeConstraint(
+  currentSelection: Range,
+  maxDays?: number,
+  previousSelection?: Range
+): Range {
+  let { startDate, endDate, ...rest } = currentSelection;
+
+  if (startDate && endDate && maxDays && maxDays > 0) {
+    if (getDaysCount(startDate, endDate) > maxDays) {
+      const prevStartDate = previousSelection?.startDate;
+      const prevEndDate = previousSelection?.endDate;
+
+      // Determine which end was likely moved or if it's a new range (like a quick select)
+      if (previousSelection && prevStartDate && prevEndDate) {
+        const startDateChanged = startDate.getTime() !== prevStartDate.getTime();
+        const endDateChanged = endDate.getTime() !== prevEndDate.getTime();
+
+        if (startDateChanged && !endDateChanged) {
+          // Start date changed, anchor end date
+          startDate = new Date(endDate.getTime() - (maxDays - 1) * 24 * 60 * 60 * 1000);
+        } else if (!startDateChanged && endDateChanged) {
+          // End date changed, anchor start date
+          endDate = new Date(startDate.getTime() + (maxDays - 1) * 24 * 60 * 60 * 1000);
+        } else {
+          // Both changed or couldn't determine anchor, default to adjusting end date based on start date
+          endDate = new Date(startDate.getTime() + (maxDays - 1) * 24 * 60 * 60 * 1000);
+        }
+      } else {
+        // No previous selection to infer from (e.g. quick range or first selection), adjust end date based on start date
+        endDate = new Date(startDate.getTime() + (maxDays - 1) * 24 * 60 * 60 * 1000);
+      }
+    }
+  }
+  return { ...rest, startDate, endDate };
 }
 
 const quickRanges = [
@@ -114,9 +153,24 @@ const quickRanges = [
   },
 ];
 
-const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, className }) => {
+const DateRangePicker: React.FC<DateRangePickerProps> = ({
+  value,
+  onChange,
+  className,
+  minYear,
+  maxRangeDays,
+}) => {
   const [open, setOpen] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
+
+  const minDate = minYear ? new Date(minYear, 0, 1) : undefined;
+
+  const today = new Date();
+  const tomorrow = new Date(convertToGMT4(today));
+  tomorrow.setDate(today.getDate() + 1);
+  tomorrow.setHours(23, 59, 59, 999);
+
+  let maxDate: Date = tomorrow;
 
   const [pendingRange, setPendingRange] = React.useState<Range[]>([
     {
@@ -155,9 +209,16 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
     setOpen(false);
   };
 
-  const handleQuickRangeClick = (range: Range) => {
-    setPendingRange([{ ...range, key: 'selection' }]);
-    onChange([range.startDate ?? null, range.endDate ?? null]);
+  const handleQuickRangeClick = (item: {
+    label: string;
+    range: () => { startDate: Date; endDate: Date };
+  }) => {
+    const proposedRange = item.range();
+
+    const selectionWithKey: Range = { ...proposedRange, key: 'selection' };
+    const finalRange = applyMaxRangeConstraint(selectionWithKey, maxRangeDays);
+    setPendingRange([finalRange]);
+    onChange([finalRange.startDate ?? null, finalRange.endDate ?? null]);
     setOpen(false);
   };
 
@@ -184,7 +245,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
                 <button
                   key={item.label}
                   className="font-semibold transition cursor-pointer block w-full text-left px-[10px] py-[5px] leading-[20px]  text-[var(--datarangepicker-color)] hover:bg-[var(--datarangepicker-cell-background-active)] hover:text-[var(--datarangepicker-color-hover)]"
-                  onClick={() => handleQuickRangeClick(item.range())}
+                  onClick={() => handleQuickRangeClick(item)}
                   type="button"
                 >
                   {item.label}
@@ -193,7 +254,14 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
             </div>
             <DateRange
               editableDateInputs={true}
-              onChange={(item: RangeKeyDict) => setPendingRange([item.selection])}
+              onChange={(item: RangeKeyDict) => {
+                const newSelection = applyMaxRangeConstraint(
+                  item.selection,
+                  maxRangeDays,
+                  pendingRange[0]
+                );
+                setPendingRange([newSelection]);
+              }}
               moveRangeOnFirstSelection={false}
               ranges={pendingRange}
               rangeColors={['#163f78']}
@@ -201,6 +269,8 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
               months={1}
               direction="vertical"
               locale={enUS}
+              minDate={minDate}
+              maxDate={maxDate}
             />
           </div>
           <div className="border-t border-[var(--datarangepicker-border)] p-[10px] flex justify-between items-center">
