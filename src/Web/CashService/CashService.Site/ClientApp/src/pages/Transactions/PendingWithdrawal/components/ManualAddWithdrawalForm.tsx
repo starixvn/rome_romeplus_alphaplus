@@ -31,7 +31,6 @@ interface ManualAddWithdrawalFormProps {
 
 const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClose }) => {
   const { t } = useTranslation('pendingWithdrawal');
-  const { t: tGlobal } = useTranslation('global');
   const [custId, setCustId] = useState<number | null>(null);
   const [from, setFrom] = useState<string>('');
   const [to, setTo] = useState<string>('');
@@ -367,7 +366,11 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
           </div>
         </div>
         <div className="flex gap-[16px]">
-          <ButtonCancelComponent onClick={onClose} text={t('manualWithdrawalForm.cancel')} />
+          <ButtonCancelComponent
+            onClick={onClose}
+            disabled={isSubmitting}
+            text={t('manualWithdrawalForm.cancel')}
+          />
           <ButtonApplyComponent
             disabled={isSubmitting}
             text={

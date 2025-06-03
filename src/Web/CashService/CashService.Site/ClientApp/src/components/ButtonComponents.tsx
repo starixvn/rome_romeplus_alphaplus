@@ -174,12 +174,13 @@ export const ButtonClosePopupComponent: React.FC<ButtonComponentProps> = ({ onCl
 export const ButtonTabActiveComponent: React.FC<ButtonComponentProps> = ({ text, onClick }) => {
   return (
     <button
-      className="font-semibold px-[20px] pt-[10px] pb-[13px] text-[var(--tab-component-color)] cursor-pointer relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[3px] after:bg-[var(--tab-component-border-color)] after:transition-all after:duration-500 after:ease-in-out after:opacity-0 hover:after:opacity-100 hover:after:w-full hover:text-[var(--tab-component-color-active)]" onClick={onClick}>    
+      className="font-semibold px-[20px] pt-[10px] pb-[13px] text-[var(--tab-component-color)] cursor-pointer relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[3px] after:bg-[var(--tab-component-border-color)] after:transition-all after:duration-500 after:ease-in-out after:opacity-0 hover:after:opacity-100 hover:after:w-full hover:text-[var(--tab-component-color-active)]"
+      onClick={onClick}
+    >
       {text}
     </button>
   );
 };
-
 
 export const ButtonTabInactiveComponent: React.FC<ButtonComponentProps> = ({ text, onClick }) => {
   return (
@@ -192,6 +193,10 @@ export const ButtonTabInactiveComponent: React.FC<ButtonComponentProps> = ({ tex
   );
 };
 
-export const ButtonTabComponent: React.FC<ButtonComponentProps> = ({ text, onClick , isActive}) => {
-  return isActive ? <ButtonTabActiveComponent text={text} onClick={onClick} /> : <ButtonTabInactiveComponent text={text} onClick={onClick} />;
+export const ButtonTabComponent: React.FC<ButtonComponentProps> = ({ text, onClick, isActive }) => {
+  return isActive ? (
+    <ButtonTabActiveComponent text={text} onClick={onClick} />
+  ) : (
+    <ButtonTabInactiveComponent text={text} onClick={onClick} />
+  );
 };

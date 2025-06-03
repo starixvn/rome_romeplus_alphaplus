@@ -8,7 +8,6 @@ import {
 import Filters from './Filters/Filters';
 import Search from './Search';
 import DataGrid from './DataGrid';
-import { useTranslation } from 'react-i18next';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
 import { convertToGMT4, TransactionType } from '../../../../common/commonFunctions';
 import Pagination from '../../Components/Pagination';
@@ -18,7 +17,6 @@ interface TransactionListProps {
 }
 
 const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) => {
-  const { t } = useTranslation('transactionHistory');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [apiData, setApiData] = useState<TransactionsHistoryResponse>({
