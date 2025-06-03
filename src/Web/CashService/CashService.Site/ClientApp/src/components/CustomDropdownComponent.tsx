@@ -136,7 +136,7 @@ const CustomDropdownComponent = ({
               </div>
             ))
           ) : (
-            <div className="py-[3px] px-[12px] text-gray-500">No options found</div>
+            <div className="py-[3px] px-[12px] text-gray-500">{t('noData')}</div>
           )}
         </div>
       )}

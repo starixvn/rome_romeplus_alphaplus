@@ -22,7 +22,7 @@ import {
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory.ts';
 import { approveWithdrawal, rejectWithdrawal } from '../../../../services/pendingWithdrawalAPI.ts';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI.ts';
-import { TransactionTypes } from '../../../../utils/constants.ts';
+import { TransactionTypes } from '../../../../constants/transaction-type-constants.ts';
 import UploadImage from '../../Components/UploadImage';
 
 interface PendingWithdrawalModalProps {

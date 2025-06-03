@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { WithdrawalAgentBankDropDown } from '../../../../services/interfaces/Transactions/BankInfo';
-import { TransactionTypes } from '../../../../utils/constants';
+import { TransactionTypes } from '../../../../constants/transaction-type-constants';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import {
   getSettingLimitAmtWithdrawal,
