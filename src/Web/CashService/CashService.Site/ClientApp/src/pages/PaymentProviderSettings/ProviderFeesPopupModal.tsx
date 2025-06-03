@@ -4,8 +4,7 @@ import { PaymentProvider } from '../../services/interfaces/Payments/PaymentProvi
 import { PaymentProviderFeeGroup } from '../../services/interfaces/Payments/PaymentProviderFeeGroup';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import Loading from '../../components/LoadingComponent';
-import { ButtonApplyComponent, ButtonClosePopupComponent } from '../../components/ButtonComponents';
-import { MediumTitleComponent } from '../../components/TitleComponents';
+import PopupModalComponent from '../../components/PopupModalComponent';
 
 interface ProviderFeesPopupModalProps {
   provider: PaymentProvider;
@@ -37,12 +36,7 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
   }, [provider.id]);
 
   return (
-    <div className="bg-[#00000066] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-start justify-center">
-      <div className="p-[30px] bg-[#ffffff] mt-[100px] max-w-[600px] max-[768px]:max-w-[90%] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f] text-[12px] max-[768px]:text-[16px]">
-        <div className="relative">
-          <MediumTitleComponent className='text-center font-bold!' text={`${tPaymentProviderSettings('feeDetails')} - ${provider.name}`} />
-          <ButtonClosePopupComponent onClick={onClose} />
-        </div>
+    <PopupModalComponent title={tPaymentProviderSettings('feeDetails')} onClose={onClose}>
         {isLoading ? (<Loading />) : (
           <>
             <div className="mb-[16px]">              
@@ -64,7 +58,12 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
                   </tr>
                 </thead>
                 <tbody className='font-[500]'>
-                  {feeData.length > 0 ? (
+                  {feeData.length === 0 && (
+                    <tr>
+                      <td colSpan={3} className="text-center">{tGlobal('noData')}</td>
+                    </tr>
+                  )}
+                  {feeData.length > 0 && (
                     feeData.map((feeGroup, groupIndex) => (
                       <React.Fragment key={groupIndex}>
                         {feeGroup.fees.map((fee, feeIndex) => (
@@ -82,21 +81,13 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
                         ))}
                       </React.Fragment>
                     ))
-                  ) : (
-                    <tr>
-                      <td colSpan={3} className="text-center">{tGlobal('noData')}</td>
-                    </tr>
                   )}
                 </tbody>
               </table>
             </div>
           </>
-        )}     
-        <div className="flex justify-center">   
-          <ButtonApplyComponent text={tGlobal('close')} onClick={onClose} />
-        </div>
-      </div>
-    </div>
+        )}
+    </PopupModalComponent>
   );
 };
 
