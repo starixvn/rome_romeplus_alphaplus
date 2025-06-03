@@ -1,4 +1,5 @@
 using AgencyCash.API.Shared.Helpers;
+using Fanex.Data;
 using Fanex.Data.Repository;
 
 namespace AgencyCash.API.Payments.Criteria;
@@ -20,6 +21,7 @@ public class WithdrawalLimitAmountCriteria : NonQueryCommand
     public int CustId { get; }
     public int UplineId { get; }
     public bool IsMemberSite { get; }
+    [SpParam(Ignored = true)]
     public short CustDBGroupId { get; }
 
     public decimal MinAmt { get; set; }

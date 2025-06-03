@@ -14,14 +14,16 @@
   </Function>
   <Function Name="Payments: Deposit">
     <Setting Key="SiteDB3_Age_CashAccumCredit_AgSel" SpName="Age_CashAccumCredit_AgSel" DbName="DBSITE03.bodb02.asv_CashService" />
-    <Setting Key="Age_CashDeposit_LimitAmtSel" SpName="Age_CashDeposit_LimitAmtSel" DbName="DBCust.CustDB.asv_CashService" />
+    <Setting Key="Age_CashDeposit_LimitAmtSel" SpName="Age_CashDeposit_LimitAmtSel" DbName="DBCust.AgencyCashService.asv_CashService" />
     <Setting Key="SiteDB3_API_CashDeposit_AddTransaction" SpName="API_CashDeposit_AddTransaction" DbName="DBSITE03.bodb02.asv_CashService" />
   </Function>
   <Function Name="Payments: Withdraw">
+    <Setting Key="SiteDB3_API_CashWithdrawal_AddTransaction" SpName="API_CashWithdrawal_AddTransaction" DbName="DBSITE03.bodb02.asv_CashService" />
+    <Setting Key="Age_CashWithdrawal_LimitAmtSel" SpName="Age_CashWithdrawal_LimitAmtSel" DbName="DBCust.AgencyCashService.asv_CashService" />
   </Function>
   <Function Name="Payments: Validate and Write Logs">
     <Setting Key="API_CashService_CustPaymentValidate" SpName="API_CashService_CustPaymentValidate" DbName="DBCust.CustDB.asv_CashService" />
     <Setting Key="DBLOG_WriteLog_CashService_UserLog_RunSP" SpName="WriteLog_CashService_UserLog_RunSP" DbName="DBLOG.bodb_CustomerLog.asv_CashService" />
-    <Setting Key="WriteLog_CashService_UserLog_RunSP" SpName="WriteLog_CashService_UserLog_RunSP" DbName="DBCust.CustDB.asv_CashService" />
+    <Setting Key="WriteLog_CashService_UserLog_RunSP" SpName="WriteLog_CashService_UserLog_RunSP" DbName="DBCust.bodb_CustomerLog.asv_CashService" />
   </Function>
 </Functions>

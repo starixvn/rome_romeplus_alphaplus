@@ -78,26 +78,17 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                 request.Amount,
                 request.IP);
 
-            await _repository.ExecuteAsync(withdrawalTransactionCriteria);
+            //TODOawait _repository.ExecuteAsync(withdrawalTransactionCriteria);
             if (withdrawalTransactionCriteria.ErrCode != 0)
             {
                 return new PaymentResult(withdrawalTransactionCriteria.ErrCode, withdrawalTransactionCriteria.ErrMsg, 0);
             }
 
-            // Step 5: Insert transfer
-            var transferCriteria = new ManualWithdrawalTransferCriteria(
-                request.CustId,
-                request.AgentId,
-                1, // ExchangeRate
-                request.IP,
-                request.Amount,
-                siteDBConfig.SiteDBGroupId);
-
-            await _repository.ExecuteAsync(transferCriteria);
-            if (transferCriteria.ErrCode != 0)
+            // Step 5: Log transfer failure
+            if (withdrawalTransactionCriteria.ErrCode != 0)
             {
                 // Log transfer failure
-                await WriteLogs(new[] { new LogEntry
+                /*TODOawait WriteLogs(new[] { new LogEntry
                 {
                     LogTypeId = 4,
                     UserId = request.AgentId,
@@ -114,13 +105,13 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                     </root>",
                     IP = request.IP,
                     Doing = "Manual withdrawal transfer failed"
-                }}, siteDBConfig.CustDBGroupId);
+                }}, siteDBConfig.CustDBGroupId);*/
 
-                return new PaymentResult(transferCriteria.ErrCode, transferCriteria.ErrMsg, 0);
+                return new PaymentResult(withdrawalTransactionCriteria.ErrCode, withdrawalTransactionCriteria.ErrMsg, 0);
             }
 
             // Step 6: Log successful transfer
-            await WriteLogs(new[] { new LogEntry
+            /*TODOawait WriteLogs(new[] { new LogEntry
             {
                 LogTypeId = 4,
                 UserId = request.AgentId,
@@ -195,7 +186,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                 CustDBGroupId = siteDBConfig.CustDBGroupId
             };
 
-            await _repository.ExecuteAsync(siteDBLogCriteria);
+            await _repository.ExecuteAsync(siteDBLogCriteria);*/
 
             return new PaymentResult(0, string.Empty, withdrawalTransactionCriteria.TransId);
         }
@@ -204,7 +195,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
             if (siteDBConfig != null)
             {
                 // Log error to both DBLOG and SiteDB
-                var errorLogEntry = new LogEntry
+                /*TODOvar errorLogEntry = new LogEntry
                 {
                     LogTypeId = 4,
                     UserId = request.AgentId,
@@ -243,7 +234,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                     </root>",
                     string.Empty);
 
-                await _repository.ExecuteAsync(dbLogErrorCriteria);
+                await _repository.ExecuteAsync(dbLogErrorCriteria);*/
             }
 
             await logger.ErrorAsync(ex.Message, ex);
