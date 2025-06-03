@@ -86,7 +86,6 @@ class PotentialWinLimit {
                     this.$iconExcel.attr('href', 'javascript:;');
                 }, 1000);
             })
-            .tooltip()
             .attr('href', 'javascript:;');
     };
 

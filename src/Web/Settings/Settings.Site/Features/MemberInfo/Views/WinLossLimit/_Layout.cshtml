@@ -11,9 +11,7 @@
 }
 
 <div class="win-loss-limit-container">
-    <ul class="nav nav-tabs" role="tablist">
-        @await Component.InvokeAsync("Tab", new { tabName = action.ToLowerInvariant() })
-    </ul>
+    @await Component.InvokeAsync("Tab", new { tabName = action.ToLowerInvariant() })
     <div class="tab-content">
         @RenderBody()
     </div>

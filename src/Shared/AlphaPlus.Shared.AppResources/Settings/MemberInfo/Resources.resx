@@ -1297,4 +1297,10 @@ Notes: your password is cAsE sEnSiTiVe.</value>
   <data name="AccumulatedWinLoss" xml:space="preserve">
     <value>Accumulated Win/Loss</value>
   </data>
+  <data name="PotentialWinLimitNote1" xml:space="preserve">
+    <value>Display only members whose Potential Win Limit is not set to 'Unlimited'.</value>
+  </data>
+  <data name="PotentialWinLimitNote2" xml:space="preserve">
+    <value>Due to result amendments, settlement delays, and other factors, the accumulated Potential Win Limit may temporarily exceed the configured threshold.</value>
+  </data>
 </root>

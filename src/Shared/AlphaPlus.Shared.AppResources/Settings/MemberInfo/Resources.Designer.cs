@@ -4358,5 +4358,23 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
                 return ResourceManager.GetString("AccumulatedWinLoss", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Potential Win Limit is calculated based on the sum of To Win and Accumulated Win/Loss.
+        /// </summary>
+        public static string PotentialWinLimitNote1 {
+            get {
+                return ResourceManager.GetString("PotentialWinLimitNote1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Potential Win (%) shows the percentage of Potential Win against Max Potential Win Limit.
+        /// </summary>
+        public static string PotentialWinLimitNote2 {
+            get {
+                return ResourceManager.GetString("PotentialWinLimitNote2", resourceCulture);
+            }
+        }
     }
 }
