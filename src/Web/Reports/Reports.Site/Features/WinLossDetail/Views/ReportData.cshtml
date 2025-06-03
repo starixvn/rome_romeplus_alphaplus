@@ -65,7 +65,11 @@
                 }
                 else if (Model.CanDrilldown)
                 {
-                    if ((isAgentLevel || data.IsDirectMember) && data.NumberOfTickets == 0)
+                    if (isAgentLevel && data.CustName.Equals("CASH SERVICE BILLING", StringComparison.OrdinalIgnoreCase))
+                    {
+                        <a href="@MicroSites.ReportsUrl("~/WinLossDetail/GetCashFee")" class="cash-fee-link" data-custid="@data.CustId" data-custname="@data.CustName">@data.CustName</a>
+                    }
+                    else if ((isAgentLevel || data.IsDirectMember) && data.NumberOfTickets == 0)
                     {
                         @:@data.CustName
                     }

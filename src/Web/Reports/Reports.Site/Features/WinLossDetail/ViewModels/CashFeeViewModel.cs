@@ -18,5 +18,7 @@ public class CashFeeViewModel(CashFeeQuery cashFeeQuery, CashFeeModel cashFeeMod
         SystemTime.Today.AddDays(1),
         cashFeeQuery.Language);
 
+    //public IEnumerable<Reports.Features.Shared.Models.Breadcrumb> Breadcrumbs { get; } = breadcrumbs;
+
     public CashFeeModel CashFee { get; } = cashFeeModel;
 }

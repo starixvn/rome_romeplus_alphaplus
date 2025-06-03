@@ -159,7 +159,6 @@ class WinLossDetailView extends BaseReportNew {
                 window.top['popupManager'].open(url, undefined, width, height, 'modal-mobile-friendly');
             });
         this.winLossDetailColumns.showHideColumns(this.$tblReport);
-
         this.$tblReport
             .find('.cash-fee-link')
             .off()
@@ -185,7 +184,6 @@ class WinLossDetailView extends BaseReportNew {
                 //}
             });
     }
-
 
     getWinLossDetail() {
         this.clearActiveWeek();
