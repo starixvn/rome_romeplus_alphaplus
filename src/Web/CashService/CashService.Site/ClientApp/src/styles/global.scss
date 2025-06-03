@@ -136,7 +136,8 @@ body{
   width: 100%;
   font-size: 12px;
   thead {
-    box-shadow: 0 2px 5px #0003;
+    box-shadow: var(--table-box-shadow);
+    background-color: var(--table-header-background);
   }
   th,
   td {
@@ -348,6 +349,10 @@ body{
     }
    }
 }
+
+
+
+
 @media (max-width: 768px) {
   body{
     font-size: 16px;

@@ -85,7 +85,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
   };
 
   return (
-    <div className="">
+    <>
       <TitleComponent title={tManagePayments('managePayments')} showTippy={true}>
         <div>
           <div>
@@ -97,8 +97,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
         </div>
       </TitleComponent>
 
-      <div className="card">
-        <div className="card-header">
+      
           <ul className="flex">
             <li className="mr-[8px]">
             {activeTab === 'paymentGateway' && (
@@ -113,15 +112,15 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
               />
             </li>
           </ul>
-        </div>
-        <div className="card-body">
+       
+      
           <div className="bg-[#ffffff] max-w-[1000px]">
             <div className="px-[14px] py-[8px]">
               <MediumTitleComponent
                 className="mb-[8px]"
                 text={tManagePayments('setDailyWithdrawalCount')}
               />
-              <div className="pb-[8px] text-[12px] max-[768px]:text-[16px] ">
+              <div className="pb-[8px]">
                 {tManagePayments('setDailyWithdrawalCountForYourMembers')}
               </div>
               <ButtonOutlineComponent
@@ -206,10 +205,9 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
             {showDailyLimitPopup && (
               <DailyLimitPopupModal onClose={onCloseDailyLimitPopup} onSave={onSaveDailyLimit} />
             )}
-          </div>
-        </div>
-      </div>
-    </div>
+          </div>    
+     
+    </>
   );
 };
 

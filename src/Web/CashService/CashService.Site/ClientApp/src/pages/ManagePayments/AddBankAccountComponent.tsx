@@ -304,7 +304,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
     <div tabIndex={-1}>
       <div className="modal-dialog">
         <div className="modal-content max-w-[1200px]">
-          <div className="flex items-center justify-flex-start mb-[16px] pt-[8px] border-[#cfcfcf] border-dotted border-b-[2px]">
+          <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[#cfcfcf] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
             <BackButtonComponent onClick={onClose} />
             <TitleComponent title={tManagePayments('bankManagement')} />
           </div>
