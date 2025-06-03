@@ -41,3 +41,9 @@ export const paymentMethodStatusConstant = {
   fail: 3,
   maintenance: 4,
 };
+
+export const paymentProviderStatusConstant = {
+  all: 0,
+  enabled: 1,
+  disabled: 2,
+};

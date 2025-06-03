@@ -19,22 +19,23 @@ import { LoadingFullComponent } from '../../components/LoadingComponent';
 import { ResultMessageComponent } from '../../components/MessageComponents';
 import {
   StatusCompletedComponent,
-  StatusDisabledComponent,
   StatusFailedComponent,
   StatusMaintenanceComponent,
+  StatusNoneComponent,
   StatusProcessingComponent,
 } from '../../components/StatusComponents';
 import TitleComponent, {
   LabelTitleComponent,
   MediumTitleComponent,
 } from '../../components/TitleComponents';
-import { STATUS_OPTIONS, TRANSACTION_TYPES } from '../../constants/paymentConstants';
+import { paymentMethodStatusConstant, paymentProviderStatusConstant, STATUS_OPTIONS, TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 import i18n from '../../i18n/i18n-paymentProviderSettings';
 import { PaymentMethod } from '../../services/interfaces/Payments';
 import { PaymentProvider } from '../../services/interfaces/Payments/PaymentProvider';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { formatInputValue, formatNumber } from '../../utils/numberFormatting';
+import { onBackNavigation, reloadPage } from '../../utils/sharedUtils';
 import AddPaymentMethodModal from './AddPaymentMethodModal';
 import BanksPopupModal from './BanksPopupModal';
 import ProviderFeesPopupModal from './ProviderFeesPopupModal';
@@ -60,7 +61,6 @@ interface ValidationError {
 function PaymentProviderSettings() {
   const { t: tGlobal } = useTranslation('global');
   const { t: tPaymentProviderSettings } = useTranslation('paymentProviderSettings');
-  useCookieLanguage(i18n);
   const [showFeePopup, setShowFeePopup] = React.useState(false);
   const [showAddPaymentMethod, setShowAddPaymentMethod] = React.useState(false);
   const [showBanksPopup, setShowBanksPopup] = React.useState(false);
@@ -94,6 +94,7 @@ function PaymentProviderSettings() {
     providerSettings: window.providerSettingsViewModel.Provider.ProviderSettings,
   });
 
+  useCookieLanguage(i18n);
   // Fetch provider settings when component mounts or when dropdowns change
   React.useEffect(() => {
     const fetchProviderSettings = async () => {
@@ -358,7 +359,7 @@ function PaymentProviderSettings() {
       });
 
       setTimeout(() => {
-        window.location.reload();
+        reloadPage();
       }, 3000);
     } else {
       setUpdateMessage({
@@ -391,22 +392,12 @@ function PaymentProviderSettings() {
     setSelectedSetting(null);
   };
 
-  const failStatus = 3;
+  const failStatus = paymentMethodStatusConstant.fail;
   const isEditable = (paymentMethod: PaymentMethod) => {
-    return paymentMethod.status === 2;
+    return paymentMethod.status === paymentMethodStatusConstant.completed;
   };
   const hasEditableSettings = () => {
     return providerSettings.some((setting) => isEditable(setting));
-  };
-
-  const onBackNavigation = () => {
-    const previousUrl = localStorage.getItem('cashsite_previousUrl');
-    if (previousUrl) {
-      localStorage.removeItem('cashsite_previousUrl');
-      window.location.href = previousUrl;
-    } else {
-      window.history.back();
-    }
   };
 
   const hasFormChanged = () => {
@@ -431,17 +422,26 @@ function PaymentProviderSettings() {
     });
   };
 
-  const reloadPage = () => {
-    window.location.reload();
+  const renderStatusComponent = (status: number) => {
+    switch (status) {
+      case paymentMethodStatusConstant.processing:
+        return <StatusProcessingComponent />;
+      case paymentMethodStatusConstant.completed:
+        return <StatusCompletedComponent />;
+      case paymentMethodStatusConstant.fail:
+        return <StatusFailedComponent />;
+      case paymentMethodStatusConstant.maintenance:
+        return <StatusMaintenanceComponent />;
+      default:
+        return <StatusNoneComponent />;
+    }
   };
 
   return (
     <div className="payment-provider-settings h-full">
-      {loading ? (
-        <LoadingFullComponent />
-      ) : error ? (
-        <ResultMessageComponent type="error" message={error} />
-      ) : (
+      {loading ? (<LoadingFullComponent />) : 
+        error ? (<ResultMessageComponent type="error" message={error} />) : 
+        (
         <>
           {updateMessage && (
             <ResultMessageComponent
@@ -459,15 +459,13 @@ function PaymentProviderSettings() {
             </div>
             <div className="flex gap-[24px] max-[768px]:flex-col max-[768px]:gap-[8px]">
               <div>
-                <LabelTitleComponent
-                  text={tPaymentProviderSettings('setUpPaymentMethodsForMembers')}
-                />
+                <LabelTitleComponent text={tPaymentProviderSettings('setUpPaymentMethodsForMembers')} />
                 <ButtonFullComponent
                   text={`+ ${tPaymentProviderSettings('addPaymentMethod')}`}
                   onClick={onAddPaymentMethod}
                 />
               </div>
-              {providerStatus != 2 && (
+              {providerStatus == paymentProviderStatusConstant.enabled && (
                 <div>
                   <p className="flex items-center">
                     <LabelTitleComponent text={`${tGlobal('enable')}/${tGlobal('disable')}`} />
@@ -562,9 +560,7 @@ function PaymentProviderSettings() {
 
               <ButtonOutlineComponent
                 className="ml-auto mt-auto"
-                text={tPaymentProviderSettings('viewProviderFees', {
-                  providerName: window.providerSettingsViewModel.Provider.Name,
-                })}
+                text={tPaymentProviderSettings('viewProviderFees', { providerName: window.providerSettingsViewModel.Provider.Name })}
                 onClick={onViewFees}
               />
             </div>
@@ -617,17 +613,7 @@ function PaymentProviderSettings() {
                         <span className="relative z-3">{setting.methodName}</span>
                       </td>
                       <td>
-                        {setting.status === 1 ? (
-                          <StatusProcessingComponent />
-                        ) : setting.status === 2 ? (
-                          <StatusCompletedComponent />
-                        ) : setting.status === 3 ? (
-                          <StatusFailedComponent />
-                        ) : setting.status === 4 ? (
-                          <StatusMaintenanceComponent />
-                        ) : (
-                          <StatusDisabledComponent />
-                        )}
+                        {renderStatusComponent(setting.status)}
                         {setting.status === failStatus && (
                           <>
                             <br />
@@ -702,18 +688,11 @@ function PaymentProviderSettings() {
                         )}
                       </td>
                       <td>
-                        {!isEditable(setting) ? (
-                          <>-</>
-                        ) : setting.bankRequired ? (
-                          <ButtonOutlineComponent
-                            text={tPaymentProviderSettings('listOfBanks')}
-                            onClick={() => onViewBanks(setting)}
-                          />
-                        ) : (
-                          <span className="font-semibold color-[#333333]">
-                            {tPaymentProviderSettings('noBankRequired')}{' '}
-                          </span>
-                        )}
+                        {!isEditable(setting) ? (<>-</>) : 
+                          setting.bankRequired ? 
+                            (<ButtonOutlineComponent text={tPaymentProviderSettings('listOfBanks')} onClick={() => onViewBanks(setting)} />) : 
+                            (<span className="font-semibold color-[#333333]">{tPaymentProviderSettings('noBankRequired')}{' '}</span>)
+                        }
                       </td>
                     </tr>
                   ))}
@@ -725,7 +704,7 @@ function PaymentProviderSettings() {
               <ButtonApplyComponent
                 text={updating ? tGlobal('updating') : tGlobal('update')}
                 onClick={onUpdate}
-                disabled={providerStatus == 2 || updating || !hasEditableSettings()}
+                disabled={providerStatus == paymentProviderStatusConstant.disabled || updating || !hasEditableSettings()}
               />
             </div>
           </div>
@@ -759,10 +738,7 @@ function PaymentProviderSettings() {
 
       {/* Banks Popup Modal */}
       {showBanksPopup && selectedSetting && (
-        <BanksPopupModal
-          onClose={onCloseBanksPopup}
-          transactionType={selectedSetting.transactionType}
-        />
+        <BanksPopupModal onClose={onCloseBanksPopup} transactionType={selectedSetting.transactionType} />
       )}
 
       {/* Update Payment Method Modal */}

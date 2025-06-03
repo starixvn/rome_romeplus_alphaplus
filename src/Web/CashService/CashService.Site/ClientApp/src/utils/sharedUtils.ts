@@ -1,0 +1,36 @@
+export const onBackNavigation = () => {
+  const cacheKey = 'cashsite_previousUrl';
+  const previousUrl = localStorage.getItem(cacheKey);
+  
+  if (previousUrl) {
+    localStorage.removeItem(cacheKey);
+    window.location.href = previousUrl;
+  } else {
+    window.history.back();
+  }
+};
+
+export const compareObjects = (obj1: any, obj2: any): boolean => {
+  if (obj1 === obj2) return false;
+  if (!obj1 || !obj2) return true;
+
+  const keys1 = Object.keys(obj1);
+  const keys2 = Object.keys(obj2);
+
+  if (keys1.length !== keys2.length) return true;
+
+  return keys1.some(key => {
+    const val1 = obj1[key];
+    const val2 = obj2[key];
+
+    if (typeof val1 === 'object' && val1 !== null && typeof val2 === 'object' && val2 !== null) {
+      return compareObjects(val1, val2);
+    }
+
+    return val1 !== val2;
+  });
+};
+
+export const reloadPage = () => {
+  window.location.reload();
+};
