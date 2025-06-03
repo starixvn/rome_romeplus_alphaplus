@@ -170,7 +170,6 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
 
   const handleUpdateLimitWithdrawalAmt = async (memberCustId: number | null) => {
     if (!memberCustId || providerId <= 0) {
-      console.log('providerId', providerId);
       return;
     }
     const limits = await getSettingLimitAmtWithdrawal({
@@ -302,7 +301,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                   <DropdownComponent
                     options={agentBankInfo.map((bank) => ({
                       value: bank.value,
-                      label: tGlobal(bank.code),
+                      label: bank.label,
                       icon: <BankIcon code={bank.code} />,
                       attributes: {
                         providerId: bank.providerId,
@@ -322,7 +321,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                   <DropdownComponent
                     options={memberBankInfo.map((bank) => ({
                       value: bank.value,
-                      label: tGlobal(bank.code),
+                      label: bank.label,
                       icon: <BankIcon code={bank.code} />,
                       attributes: {
                         providerId: bank.providerId,

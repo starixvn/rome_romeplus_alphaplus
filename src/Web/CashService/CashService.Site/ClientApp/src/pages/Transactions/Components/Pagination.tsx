@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PAGE_SIZE_OPTIONS } from '../../../constants/paymentConstants';
+import { useTranslation } from 'react-i18next';
 
 interface PaginationProps {
   currentPage: number;
@@ -16,6 +17,7 @@ const Pagination: React.FC<PaginationProps> = ({
   onPageChange,
   onPageSizeChange,
 }) => {
+  const { t } = useTranslation('global');
   const [inputPage, setInputPage] = useState(currentPage.toString());
   const totalPages = pageSize > 0 ? Math.ceil(totalItems / pageSize) : 1;
 
@@ -46,7 +48,7 @@ const Pagination: React.FC<PaginationProps> = ({
   return (
     <div className="flex items-center gap-2 py-2 px-4 bg-white text-sm">
       <div className="flex items-center gap-2">
-        <span>Page size</span>
+        <span>{t('pageSize')}</span>
         <select
           value={pageSize}
           onChange={(e) => onPageSizeChange(Number(e.target.value))}
@@ -82,7 +84,7 @@ const Pagination: React.FC<PaginationProps> = ({
         </span>
 
         <div className="border-r border-[#ccc] h-[14px] mx-1 my-auto"></div>
-        <span className="h-[24px] flex items-center">Page</span>
+        <span className="h-[24px] flex items-center">{t('page')}</span>
         <div className="pl-1">
           <input
             type="text"
@@ -116,7 +118,20 @@ const Pagination: React.FC<PaginationProps> = ({
       </div>
 
       <div className="ml-auto">
-        Display {startItem} to {endItem} of {totalItems} item(s)
+        {endItem > 0 &&
+          t('display') +
+            ' ' +
+            startItem +
+            ' ' +
+            t('to') +
+            ' ' +
+            endItem +
+            ' ' +
+            t('of') +
+            ' ' +
+            totalItems +
+            ' ' +
+            t('items')}
       </div>
     </div>
   );
