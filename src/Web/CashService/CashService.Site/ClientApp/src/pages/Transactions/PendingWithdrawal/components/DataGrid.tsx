@@ -98,7 +98,7 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
               paginatedWithdrawals.map((withdrawal, index) => (
                 <tr key={withdrawal.transId}>
                   <td className="w-[32px] min-w-[32px] sticky left-0 bg-[#ffffff] z-10">
-                    {index + 1}
+                    {index + 1 + (currentPage - 1) * pageSize}
                   </td>
                   <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[#ffffff] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
                     <div>{withdrawal.username}</div>
@@ -114,7 +114,6 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
                   <td>{withdrawal.transId}</td>
                   <td>{formatDateTime(withdrawal.createdTime)}</td>
                   <td>
-                
                     <ButtonFullComponent
                       text={t('dataGrid.process')}
                       disabled={isLoading}

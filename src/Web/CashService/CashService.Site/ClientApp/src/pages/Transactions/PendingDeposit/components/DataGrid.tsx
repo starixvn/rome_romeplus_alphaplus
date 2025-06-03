@@ -46,10 +46,7 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
     setIsLoading(true);
     setError(null);
     try {
-      const detail = await transactionAPI.getTransactionDetail(
-        deposit.transId,
-        deposit.custId
-      );
+      const detail = await transactionAPI.getTransactionDetail(deposit.transId, deposit.custId);
       setProcessingDeposit(detail);
     } catch (err) {
       setError(t('dataGrid.errorFetchingDetail'));
@@ -97,7 +94,7 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
               paginatedDeposits.map((deposit, index) => (
                 <tr key={deposit.transId}>
                   <td className="w-[32px] min-w-[32px] sticky left-0 bg-[#ffffff] z-10">
-                    {index + 1}
+                    {index + 1 + (currentPage - 1) * pageSize}
                   </td>
                   <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[#ffffff] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
                     <div>{deposit.username}</div>
