@@ -93,7 +93,7 @@ const CustomDropdownComponent = ({
 
   const displaySelected = () => {
     if (selected) return selected.label;
-    if (showOptionAll) return 'All';
+    if (showOptionAll) return t('all');
     return placeholder;
   };
   return (

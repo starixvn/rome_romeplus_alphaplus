@@ -13,7 +13,8 @@
     "search": "Search",
     "usernamePlaceholder": "Username/Reference No.",
     "status": "Status",
-    "dateRange": "Date Range"
+    "dateRange": "Date Range",
+    "maxRecords": "Up to 5000 latest records will be displayed"
   },
 
   "table": {

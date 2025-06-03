@@ -81,22 +81,18 @@ const DataGrid: React.FC<DataGridProps> = ({
                 <div>{t('table.username')}</div>
                 <div>{t('table.nickname')}</div>
               </th>
-              {shouldShowColumn(t('table.name')) && <th scope="col">{t('table.name')}</th>}
-              {shouldShowColumn(t('table.amount')) && (
+              {shouldShowColumn('name') && <th scope="col">{t('table.name')}</th>}
+              {shouldShowColumn('amount') && (
                 <th scope="col">
                   {t('table.amount')} ({CurrentCurrency})
                 </th>
               )}
-              {shouldShowColumn(t('table.from')) && <th scope="col">{t('table.from')}</th>}
-              {shouldShowColumn(t('table.to')) && <th scope="col">{t('table.to')}</th>}
-              {shouldShowColumn(t('table.status')) && <th scope="col">{t('table.status')}</th>}
-              {shouldShowColumn(t('table.type')) && <th scope="col">{t('table.type')}</th>}
-              {shouldShowColumn(t('table.referenceNo')) && (
-                <th scope="col">{t('table.referenceNo')}</th>
-              )}
-              {shouldShowColumn(t('table.dateAndTime')) && (
-                <th scope="col">{t('table.dateAndTime')}</th>
-              )}
+              {shouldShowColumn('from') && <th scope="col">{t('table.from')}</th>}
+              {shouldShowColumn('to') && <th scope="col">{t('table.to')}</th>}
+              {shouldShowColumn('status') && <th scope="col">{t('table.status')}</th>}
+              {shouldShowColumn('type') && <th scope="col">{t('table.type')}</th>}
+              {shouldShowColumn('referenceNo') && <th scope="col">{t('table.referenceNo')}</th>}
+              {shouldShowColumn('dateAndTime') && <th scope="col">{t('table.dateAndTime')}</th>}
               <th scope="col">{t('table.actions')}</th>
             </tr>
           </thead>
@@ -111,26 +107,26 @@ const DataGrid: React.FC<DataGridProps> = ({
                     <div>{item.username}</div>
                     <div>{item.nickname}</div>
                   </td>
-                  {shouldShowColumn(t('table.name')) && (
+                  {shouldShowColumn('name') && (
                     <td>
                       <div>{item.firstName}</div>
                       <div>{item.lastName}</div>
                     </td>
                   )}
-                  {shouldShowColumn(t('table.amount')) && <td>{displayAmount(item.amount)}</td>}
-                  {shouldShowColumn(t('table.from')) && (
+                  {shouldShowColumn('amount') && <td>{displayAmount(item.amount)}</td>}
+                  {shouldShowColumn('from') && (
                     <td>
                       <div className="flex items-center">
                         {item.paymentFrom ? <>{renderBankAccount(item.paymentFrom)}</> : '-'}
                       </div>
                     </td>
                   )}
-                  {shouldShowColumn(t('table.to')) && (
+                  {shouldShowColumn('to') && (
                     <td>
                       <div className="flex items-center">{renderBankAccount(item.paymentTo)}</div>
                     </td>
                   )}
-                  {shouldShowColumn(t('table.status')) && (
+                  {shouldShowColumn('status') && (
                     <td className="text-center">
                       <span
                         className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusStyle(item.statusId)}`}
@@ -139,13 +135,13 @@ const DataGrid: React.FC<DataGridProps> = ({
                       </span>
                     </td>
                   )}
-                  {shouldShowColumn(t('table.type')) && (
+                  {shouldShowColumn('type') && (
                     <td className="text-center">{item.transactionType}</td>
                   )}
-                  {shouldShowColumn(t('table.referenceNo')) && (
+                  {shouldShowColumn('referenceNo') && (
                     <td className="text-center">{item.transId}</td>
                   )}
-                  {shouldShowColumn(t('table.dateAndTime')) && (
+                  {shouldShowColumn('dateAndTime') && (
                     <td className="text-center">
                       <div>{formatDateTime(item.createdTime)}</div>
                     </td>

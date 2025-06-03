@@ -21,9 +21,7 @@ const Search: React.FC<SearchProps> = ({ value, onChange }) => {
 
   return (
     <div className="flex items-center w-full">
-      <div className="text-sm text-gray-500 italic flex-shrink-0">
-        *Up to 5000 latest records will be displayed
-      </div>
+      <div className="text-sm text-gray-500 italic flex-shrink-0">* {t('filter.maxRecords')}</div>
       <div className="flex items-center space-x-2 ml-auto">
         <button
           onClick={handleDownload}

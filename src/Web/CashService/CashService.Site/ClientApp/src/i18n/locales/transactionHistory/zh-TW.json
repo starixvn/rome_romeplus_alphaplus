@@ -24,6 +24,7 @@
   "table": {
     "no": "序號",
     "username": "用戶名",
+    "nickname": "暱稱",
     "name": "姓名",
     "amount": "金額",
     "currency": "貨幣",

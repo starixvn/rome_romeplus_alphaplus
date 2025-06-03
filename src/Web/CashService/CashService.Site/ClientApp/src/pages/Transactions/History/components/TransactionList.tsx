@@ -46,15 +46,15 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
   });
 
   const [columnFilter, setColumnFilter] = useState<string[]>([
-    t('table.name'),
-    t('table.amount'),
-    t('table.currency'),
-    t('table.from'),
-    t('table.to'),
-    t('table.status'),
-    t('table.type'),
-    t('table.referenceNo'),
-    t('table.dateAndTime'),
+    'name',
+    'amount',
+    'currency',
+    'from',
+    'to',
+    'status',
+    'type',
+    'referenceNo',
+    'dateAndTime',
   ]);
   const [localSearchText, setLocalSearchText] = useState('');
   const [displayedItems, setDisplayedItems] = useState<TransactionItem[]>([]);

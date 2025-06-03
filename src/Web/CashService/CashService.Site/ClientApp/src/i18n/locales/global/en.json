@@ -1,5 +1,6 @@
 {
   "action": "Action",
+  "allSelected": "All Selected",
   "edit": "Edit",
   "delete": "Delete",
   "close": "Close",
