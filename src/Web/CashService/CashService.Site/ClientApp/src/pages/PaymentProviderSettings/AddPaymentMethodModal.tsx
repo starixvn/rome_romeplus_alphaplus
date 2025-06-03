@@ -17,9 +17,11 @@ import {
   MediumTitleComponent,
   NormalTitleComponent,
 } from '../../components/TitleComponents';
-import { TRANSACTION_TYPES } from '../../constants/paymentConstants';
+import { TRANSACTION_TYPES, paymentMethodStatusConstant } from '../../constants/paymentConstants';
 import { PaymentMethod } from '../../services/interfaces/Payments/PaymentMethod';
 import { paymentProviderService } from '../../services/paymentsAPI';
+import { createDefaultAddPaymentMethodViewModel } from '../../services/interfaces/Payments/AddPaymentMethodViewModel';
+import { createErrorResultModel } from '../../services/interfaces/ResultModel';
 
 interface AddPaymentMethodModalProps {
   onClose: () => void;
@@ -75,7 +77,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
     agreeToTerms: '',
   });
 
-  const inactiveStatus = 4;
+  const inactiveStatus = paymentMethodStatusConstant.maintenance;
 
   const validateFormState = () => {
     const errors: typeof fieldErrors = {
@@ -101,27 +103,21 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
         return;
       }
 
-      const response = await paymentProviderService.getAddPaymentMethodInfo(
-        providerId,
-        parseInt(formState.selectedTransactionType)
-      );
+      const transactionType = parseInt(formState.selectedTransactionType);
+      const response = await paymentProviderService.getAddPaymentMethodInfo(providerId, transactionType);
       if (response.error) {
         setError(response.error.message);
         return;
       }
 
-      const addPaymentMethodInfo = response.data || {
-        paymentMethods: [],
-        channelContact: { tele: '' },
-      };
+      const addPaymentMethodInfo = response.data || createDefaultAddPaymentMethodViewModel();
       setPaymentMethods(addPaymentMethodInfo.paymentMethods);
       setTelegramAssistantUrl(addPaymentMethodInfo.channelContact.tele || '');
-      setAllMethodsInactive(
+
+      const isAllMethodsInactive =
         addPaymentMethodInfo.paymentMethods.length > 0 &&
-          addPaymentMethodInfo.paymentMethods.every(
-            (m: PaymentMethod) => m.status === inactiveStatus
-          )
-      );
+        addPaymentMethodInfo.paymentMethods.every((m: PaymentMethod) => m.status === inactiveStatus);
+      setAllMethodsInactive(isAllMethodsInactive);
     };
 
     loadPaymentMethods();
@@ -139,9 +135,8 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
       return;
     }
 
-    const selectedMethod = paymentMethods.find(
-      (method) => method.id === parseInt(formState.selectedPaymentMethod)
-    ) || { status: 0, name: '' };
+    const selectedMethod = paymentMethods.find((method) => method.id === parseInt(formState.selectedPaymentMethod)) 
+      || { status: 0, name: '' };
 
     const newSetting = {
       id: 0,
@@ -149,19 +144,14 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
       providerId,
       method: parseInt(formState.selectedPaymentMethod),
       transactionType: parseInt(formState.selectedTransactionType),
-      status: 1,
+      status: paymentMethodStatusConstant.processing,
       custId: 0,
       apiMethodKey: formState.apiKey,
       merchantID: formState.merchantID,
-      appSecret: formState.appSecret,
-      isValidFromProvider: false,
+      appSecret: formState.appSecret
     };
 
-    const isValidFromProvider = true; // call provider api to check if the payment method is valid
-    newSetting.isValidFromProvider = isValidFromProvider;
-
-    const isUpdate = selectedMethod.status == 3;
-
+    const isUpdate = selectedMethod.status == paymentMethodStatusConstant.fail;
     const response = isUpdate
       ? await paymentProviderService.updatePaymentMethod(newSetting)
       : await paymentProviderService.addPaymentMethod(newSetting);
@@ -172,11 +162,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
       return;
     }
 
-    const result = response.data || {
-      isSuccessful: false,
-      code: 1,
-      message: tGlobal('errorOccurred'),
-    };
+    const result = response.data || createErrorResultModel(tGlobal('errorOccurred'), 1);
 
     if (result.isSuccessful) {
       setIsBlockAction(true);

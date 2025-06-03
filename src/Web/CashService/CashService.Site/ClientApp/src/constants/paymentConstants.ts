@@ -33,3 +33,11 @@ export const BANK_TRANSACTION_TYPES = [
 ];
 
 export const PAGE_SIZE_OPTIONS = [10, 50, 100, 500];
+
+export const paymentMethodStatusConstant = {
+  all: 0,
+  processing: 1,
+  completed: 2,
+  fail: 3,
+  maintenance: 4,
+};

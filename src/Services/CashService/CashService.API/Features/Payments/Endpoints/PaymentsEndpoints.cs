@@ -264,7 +264,7 @@ public static class PaymentsEndpoints
             Description = "Returns a specific bank account by its ID"
         });
 
-        app.MapPut("/api/payments/update-bank-account", async (HttpRequest request, IPaymentsService service) =>
+        app.MapPost("/api/payments/update-bank-account", async (HttpRequest request, IPaymentsService service) =>
         {
             using var reader = new StreamReader(request.Body);
             var body = await reader.ReadToEndAsync();
