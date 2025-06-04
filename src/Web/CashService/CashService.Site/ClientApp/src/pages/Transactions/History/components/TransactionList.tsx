@@ -56,12 +56,14 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
   const [localSearchText, setLocalSearchText] = useState('');
   const [displayedItems, setDisplayedItems] = useState<TransactionItem[]>([]);
   const [paymentInformations, setPaymentInformations] = useState<string[]>([]);
+  const [tempTotalCount, setTempTotalCount] = useState(0);
 
   const fetchTransactions = async (params: TransactionsHistoryParams) => {
     try {
       setLoading(true);
       const response = await transactionAPI.getTransactions(params);
       setApiData(response);
+      setTempTotalCount(response.totalCount);
 
       const uniquePayment = new Set();
       const paymentInfo = response.items
@@ -129,6 +131,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     const endIndex = startIndex + apiParams.pageSize;
     if (!apiParams.account) {
       setDisplayedItems(apiData.items.slice(startIndex, endIndex));
+      setTempTotalCount(apiData.totalCount);
     } else {
       const filtered = apiData.items.filter(
         (item) =>
@@ -136,8 +139,9 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           apiParams.account
       );
       setDisplayedItems(filtered.slice(startIndex, endIndex));
+      setTempTotalCount(filtered.length);
     }
-  }, [apiParams.account]);
+  }, [apiParams.account, apiParams.pageIndex, apiParams.pageSize]);
 
   const handleDateRangeChange = (dates: [string, string]) => {
     setApiParams((prev) => ({ ...prev, dateRange: dates, pageIndex: 1 }));
@@ -226,7 +230,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         <div className="mt-0">
           <Pagination
             currentPage={apiParams.pageIndex}
-            totalItems={apiData.totalCount}
+            totalItems={tempTotalCount}
             pageSize={apiParams.pageSize}
             onPageChange={handlePageChange}
             onPageSizeChange={handlePageSizeChange}
