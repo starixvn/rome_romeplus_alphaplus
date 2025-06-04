@@ -377,17 +377,17 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
             <TitleComponent title={tManagePayments('bankManagement')} />
           </div>
           <div
-            className={`bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] mb-[20px] ${bankAccount.status === 1 ? 'border-l-[12px] border-[#5cb774]' : 'bg-[#D4E7D9]'}`}
+            className={`bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] mb-[20px] ${fetchedBankAccount?.status === 1 ? 'border-l-[12px] border-[#5cb774]' : 'bg-[#D4E7D9]'}`}
           >
             <div className="flex mb-[12px]">
               <label className="font-semibold text-[16px] max-[768px]:text-[20px] mr-[5px] text-[var(--text-color-primary)]">
-                {bankAccount.accountNickname}
+                {fetchedBankAccount?.accountNickname}
               </label>
               <div>
                 <span
-                  className={`font-semibold rounded-[20px] px-[10px] py-[3px] uppercase ${bankAccount.status === bankStatusConstant.enabled ? 'bg-[#D4E7D9]' : 'bg-[#FBD8D8]'}`}
+                  className={`font-semibold rounded-[20px] px-[10px] py-[3px] uppercase ${fetchedBankAccount?.status === bankStatusConstant.enabled ? 'bg-[#D4E7D9]' : 'bg-[#FBD8D8]'}`}
                 >
-                  {bankAccount.status === bankStatusConstant.enabled ? tGlobal('enabled') : tGlobal('disabled')}
+                  {fetchedBankAccount?.status === bankStatusConstant.enabled ? tGlobal('enabled') : tGlobal('disabled')}
                 </span>
               </div>
             </div>
