@@ -226,7 +226,8 @@ export const IconArrowDown = ({ className }: { className?: string }) => (
 );
 export const IconInfo = ({ className }: { className?: string }) => (
   <svg
-    className={classNames(className)}
+   
+    className={`w-[20px] h-[20px] ml-[4px] fill-[#118AF2] ${className}`}
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"

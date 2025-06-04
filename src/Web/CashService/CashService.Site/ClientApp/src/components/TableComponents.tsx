@@ -13,6 +13,7 @@ interface TableComponentProps {
   headerStyle?: string;
   headerRows: string[][];
   bodyRows: TableRowProps[];
+  className?: string;
 }
 
 export const TableComponent: React.FC<TableComponentProps> = ({ 
@@ -21,11 +22,12 @@ export const TableComponent: React.FC<TableComponentProps> = ({
   headerRows,
   headerStyle,
   bodyRows,
+  className,
   }) => {
   const { t } = useTranslation('global');
 
   return (
-    <table className="table-striped">
+    <table className={`w-full ${className}`}>
       <thead className={headerStyle || ''}>
         {headerRows.map((headerRow) => (
           <tr>

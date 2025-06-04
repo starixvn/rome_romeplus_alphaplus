@@ -80,7 +80,8 @@ namespace AlphaPlus.CashService.Site.Features.Payments
                     PaymentMethods = allPaymentMethods,
                     ChannelContact = addPaymentMethodViewModel.ChannelContact
                 },
-                Language = _userSession.Language
+                Language = _userSession.Language,
+                DarkModeName = _userSession.DarkModeName
             };
 
             return View(viewModel);

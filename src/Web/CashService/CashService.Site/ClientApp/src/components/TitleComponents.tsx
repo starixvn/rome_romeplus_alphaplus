@@ -42,7 +42,7 @@ export const MediumTitleComponent: React.FC<MediumTitleComponentProps> = ({
   return (
     text && (
       <h3
-        className={`${className} w-[100%] font-semibold text-[14px] text-[var(--text-color-primary)]`}
+        className={`${className} w-[100%] font-semibold text-[14px] text-[#094980] dark:text-[#459be5]`}
       >
         {text}
         {required && <span className="text-[#FF0000]">*</span>}

@@ -39,7 +39,7 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
     <PopupModalComponent title={tPaymentProviderSettings('feeDetails')} onClose={onClose}>
         {isLoading ? (<Loading />) : (
           <>
-            <div className="mb-[16px]">              
+            <div className="mb-[16px]">           
               <p className="font-semibold">{provider.name} {tPaymentProviderSettings('fees')}</p>          
               <p>{tPaymentProviderSettings('howItWorks')}</p>           
               <p>{tPaymentProviderSettings('feesInfo1')}</p>          
@@ -50,6 +50,7 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
             </div>            
             <div className="mb-[16px]">
               <TableComponent
+                className='table-striped'
                 numOfColumns={3}
                 resourcesTranslation={tPaymentProviderSettings}
                 headerRows={[['transactionType', 'paymentMethod', 'feeRate']]}

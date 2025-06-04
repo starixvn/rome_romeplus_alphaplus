@@ -2,7 +2,7 @@
 //@import './roboto/roboto.css';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400..700;1,400..700&display=swap');
 
-:root {
+:root, :root [data-theme='light'] {
   
   --primary-color: #163f78;
   --font-weight-semibold: 500;
@@ -13,6 +13,7 @@
 
   //text 
   --text-color-primary: #163f78;
+  --text-color: #333;
   --text-16px: 16px;
   //border
   --border-color: #cecece;
@@ -22,6 +23,8 @@
   --border-control-error: #ff0000;
   --border-control-focus: #163f78;
   --background-control: #ffffff;
+  //button 
+  --button-icon-hover: rgba(0,0,0,.1);
 
   
   //button switch-toggle
@@ -31,7 +34,7 @@
   --button-switch-toggle-background-color-active: #ffffff;
 
   //button switch
-  --button-switch-background-active: #163f78;
+  --button-switch-background-active: #0b599c;
   --button-switch-dot-background: #ffffff;
   --button-switch-background: #c2c2c2;
 
@@ -58,14 +61,33 @@
 
 }
 :root [data-theme='dark'] {
+  --text-color: #ededed;
   //border
   --border-color: #313334;
+  --text-color-primary: #36587D;
+
+  //control
+  --border-control: #474747;
+  --border-control-error: #CC7070;
+  --border-control-focus: #163f78;
+  --background-control: #2b2b2b;
+
+
+  //button 
+  --button-icon-hover: rgba(255,255,255,.1);
+
+  //button switch
+  --button-switch-background-active: #36587D;
+  --button-switch-dot-background: #ededed;
+  --button-switch-background: #2b2b2b;
+
+
   // table
   --table-header-background: #303740;
   --table-background: #171717;
   --table-header-shadow: none;
   --table-border-color: #696969;
-  --table-header-color: #1a1a1a;
+  --table-header-color: #ffffff;
   
   //modal
   --modal-title-color: #459BE5;
@@ -74,6 +96,7 @@
   --modal-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
 
 }
+
 html,
 body {
   height: 100%;
@@ -82,7 +105,7 @@ body{
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   font-size: 13px;
   line-height: 1.41;
-  color: #333;
+  color: var(--text-color);
 }
 #root {
   height: 100%;
@@ -92,9 +115,10 @@ body{
 
  
 
-.table-fixed-header {
+.table-fixed-header {   
   overflow: auto;
   table {
+    color: var(--text-color);
     text-align: center;
     border-spacing: 0;
     border-collapse: separate;
@@ -141,9 +165,11 @@ body{
 .table-striped {
   width: 100%;
   font-size: 12px;
+  color: var(--text-color);
   thead {
     box-shadow: var(--table-header-shadow);
     background-color: var(--table-header-background);
+    color: var(--table-header-color);
   }
   th,
   td {
@@ -186,7 +212,7 @@ body{
           display: block;
           width: 100%;
           height: 100%;
-          background-color: #fff;
+          
           position: absolute;
           top: 0;
           left: 0;

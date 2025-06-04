@@ -19,7 +19,7 @@ export const ButtonOutlineComponent: React.FC<ButtonComponentProps> = ({
   return (
     <div className={`${className}`}>
       <button
-        className="border-[1px] border-[var(--button-outline-border)] bg-[var(--button-outline-background)]  hover:bg-[var(--button-outline-background-hover)] hover:text-[var(--button-outline-text-hover)] text-[var(--button-outline-text)] rounded-[5px] cursor-pointer h-[30px] px-[16px] font-semibold outline-none"
+        className="border-[1px] border-[var(--button-outline-border)] bg-[var(--button-outline-background)]  hover:bg-[var(--button-outline-background-hover)] hover:text-[var(--button-outline-text-hover)] text-[var(--button-outline-text)] hover:border-[var(--button-outline-border-hover)] rounded-[5px] cursor-pointer h-[30px] px-[16px] font-semibold outline-none"
         onClick={onClick}
       >
         {text}
@@ -90,12 +90,12 @@ export const BackButtonComponent: React.FC<ButtonComponentProps> = ({ onClick })
 
   return (
     <>
-      <div className="text-[var(--text-color-primary)] border-[1px] border-[var(--primary-color)] rounded-[20px] mr-[16px] hover:bg-[var(--primary-color)] hover:text-[#ffffff] group mb-[8px]">
+      <div className="text-[var(--button-back-text)] hover:text-[var(--button-back-text-hover)] border-[1px] border-[var(--button-back-border)] rounded-[20px] mr-[16px] bg-[var(--button-back-background)] hover:bg-[var(--button-back-background-hover)] hover:border-[var(--button-back-border-hover)] group mb-[8px] ">
         <span
           className="cursor-pointer inline-flex items-center py-[4px] pl-[8px] pr-[16px] "
           onClick={onClick}
         >
-          <IconBack className="w-[18px] h-[18px] fill-[var(--primary-color)] mr-[8px] group-hover:fill-[#ffffff]" />
+          <IconBack className="w-[18px] h-[18px] fill-[var(--button-back-text)] mr-[8px] group-hover:fill-[var(--button-back-text-hover)]" />
           <span className="font-semibold max-w-[100px]">{tGlobal('back')}</span>
         </span>
       </div>

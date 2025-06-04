@@ -153,7 +153,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
                       <td>
                         <div className="flex justify-center items-center">
                           <button
-                            className="mx-[4px] cursor-pointer p-[4px] rounded-[4px] hover:bg-[var(--button-background-cancel-hover)] text-[var(--text-color-primary)]"
+                            className="mx-[4px] cursor-pointer p-[4px] rounded-[4px] hover:bg-[var(--button-icon-hover)] text-[var(--text-color-primary)]"
                             onClick={() => onEditClick(provider)}
                           >
                             <IconPen />

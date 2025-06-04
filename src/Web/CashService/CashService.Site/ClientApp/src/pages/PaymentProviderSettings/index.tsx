@@ -450,7 +450,7 @@ function PaymentProviderSettings() {
               message={updateMessage.text}
             />
           )}
-          <div className="px-[16px] py-[10px] mb-[8px]">
+          <div className="py-[10px] mb-[8px]">
             <div className="settings-header">
               <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-color)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
                 <BackButtonComponent onClick={onBackNavigation} />
@@ -486,7 +486,7 @@ function PaymentProviderSettings() {
                       arrow={true}
                     >
                       <span className="cursor-pointer">
-                        <IconInfo className="w-[20px] h-[20px] ml-[4px] fill-[#163f78]" />
+                        <IconInfo className="w-[20px] h-[20px] ml-[4px] fill-[#118AF2]" />
                       </span>
                     </Tippy>
                   </p>
@@ -504,14 +504,14 @@ function PaymentProviderSettings() {
               )}
             </div>
           </div>
-          <div className="bg-[#ffffff] px-[16px] py-[10px]">
+          <div className="py-[10px]">
             <div className="flex flex-wrap mb-[8px]">
               <MediumTitleComponent text={window.providerSettingsViewModel.Provider.Name} />
               <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                   <LabelTitleComponent text={tPaymentProviderSettings('paymentMethod')} />
                   <select
-                    className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
+                    className="h-[32px] max-[768px]:h-[40px] w-[100%] bg-[var(--background-control)] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
                     value={selectedPaymentMethod}
                     onChange={onPaymentMethodChange}
                   >
@@ -528,7 +528,7 @@ function PaymentProviderSettings() {
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                   <LabelTitleComponent text={tPaymentProviderSettings('status')} />
                   <select
-                    className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
+                    className="h-[32px] max-[768px]:h-[40px] w-[100%] bg-[var(--background-control)] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
                     value={selectedStatus}
                     onChange={onStatusChange}
                   >
@@ -543,7 +543,7 @@ function PaymentProviderSettings() {
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                   <LabelTitleComponent text={tPaymentProviderSettings('transactionType')} />
                   <select
-                    className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
+                    className="h-[32px] max-[768px]:h-[40px] w-[100%] bg-[var(--background-control)] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
                     value={selectedTransactionType}
                     onChange={onTransactionTypeChange}
                   >
@@ -566,7 +566,7 @@ function PaymentProviderSettings() {
             </div>
 
             <div className="table-fixed-header table-fixed-body">
-              <table className=" w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
+              <table className=" w-full">
                 <thead>
                   <tr>
                     <th className="col-shadown col-payment-method">
@@ -598,7 +598,7 @@ function PaymentProviderSettings() {
                           arrow={true}
                         >
                           <span className="cursor-pointer">
-                            <IconInfo className="w-[20px] h-[20px] ml-[4px] fill-[#163f78]" />
+                            <IconInfo />
                           </span>
                         </Tippy>
                       </div>
@@ -660,7 +660,7 @@ function PaymentProviderSettings() {
                               placeholder={tPaymentProviderSettings('maximum')}
                               maxLength={15}
                             />
-                            <label className="text-left text-[11px] max-[768px]:text-[15px] text-[#828282] font-semibold mt-[4px]">
+                            <label className="text-left text-[11px] max-[768px]:text-[15px] text-[#666666] font-semibold mt-[4px]">
                               {tPaymentProviderSettings('maxAmount')}{' '}
                               {formatNumber(setting.maxAmountTrans)}
                             </label>

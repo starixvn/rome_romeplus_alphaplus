@@ -50,6 +50,7 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({  provid
             
             <div className="form-group mb-3">
               <TableComponent
+                className='table-striped'
                 numOfColumns={3}
                 resourcesTranslation={tManagePayments}
                 headerRows={[['transactionType', 'paymentMethod', 'feeRate']]}
@@ -76,7 +77,7 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({  provid
                       className: "",
                       columns: [
                         (<td>{fee.method}</td>),
-                        (<td className='text-[var(--text-color-primary)]'>{fee.rateText}</td>)
+                        (<td className='text-[#094980] dark:text-[#459be5]'>{fee.rateText}</td>)
                       ]
                     });
                   });
