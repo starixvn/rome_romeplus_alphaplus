@@ -1,6 +1,7 @@
 using AlphaPlus.Core.Filters;
 using AlphaPlus.Reports.Site.Features.Shared;
 using AlphaPlus.Reports.Site.Features.WinLossDetail.Requests;
+using AlphaPlus.Reports.Site.Features.WinLossDetail.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +20,5 @@ public class WinLossDetailController(IMediator mediator) : ReportBaseController(
 
     public Task<IActionResult> Excel(WinLossDetailExcelQuery message) => ExcelView(message);
 
-    public Task<IActionResult> GetCashFee(CashFeeQuery message)
-       => View(message, "CashFee");
+    public Task<IActionResult> CashFee(CashFeeQuery message) => View<CashFeeViewModel>(message);
 }

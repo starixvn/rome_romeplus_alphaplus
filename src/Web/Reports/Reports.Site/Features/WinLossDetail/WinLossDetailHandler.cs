@@ -13,7 +13,6 @@ using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using AlphaPlus.Reports.Site.Features.WinLossDetail.Requests;
 using AlphaPlus.Reports.Site.Features.WinLossDetail.ViewModels;
 using AlphaPlus.Shared.AppResources.Report;
-using EasyNetQ;
 using MediatR;
 using Microsoft.Extensions.Options;
 
@@ -288,28 +287,29 @@ public class WinLossDetailHandler(
     protected override async Task<IEnumerable<Product>> GetProducts(BaseQuery message)
     {
         var products = await base.GetProducts(message);
-        var productExtras = await winlossDetailService.GetProduct(message.CustId);
 
-        return products.Concat(productExtras);
+        if (Core.Configurations.AppSettings.IsOfferedCashService(message.Site))
+        {
+            var productExtras = await winlossDetailService.GetProduct(message.CustId, message.MinDate, message.Language);
+            return products.Concat(productExtras);
+        }
+
+        return products;
     }
 
     public async Task<CashFeeViewModel> Handle(CashFeeQuery message, CancellationToken cancellationToken)
     {
-        var breadcrumbs = new List<Reports.Features.Shared.Models.Breadcrumb>
-        {
-            new(message.ViewerId, message.CustName, message.ViewerLevelId)
-        };
-        
-        breadcrumbs.Add(new Reports.Features.Shared.Models.Breadcrumb(message.CustId, "CASH SERVICE BILLING", message.CustLevelId));
+        var breadcrumbs = BreadcrumbHelper.BuildBreadcrumbs(message).ToList();
+        breadcrumbs.Add(new Reports.Features.Shared.Models.Breadcrumb(0, "CASH SERVICE BILLING", 0));
 
         var cashFeeParam = new CashFeeParam(message.CustId, message.FromDate, message.ToDate);
-
         var cashFeeModel = await winlossDetailService.GetCashFee(cashFeeParam);
+
         return new CashFeeViewModel(message, cashFeeModel, breadcrumbs);
     }
 
     public Task<ExcelFileViewModel> Handle(CashFeeExcelQuery request, CancellationToken cancellationToken)
     {
-       throw new NotImplementedException();
+        throw new NotImplementedException();
     }
 }

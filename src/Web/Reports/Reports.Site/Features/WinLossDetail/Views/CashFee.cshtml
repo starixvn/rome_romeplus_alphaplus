@@ -30,12 +30,24 @@
 	<link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" />
 }
 @section Scripts {
+	<script type="text/javascript">
+		var winlossDetailFromData = {
+			custId: @Model.CustId,
+			custName: '@Model.CustName',
+			custLevelId: @Model.CustLevelId,
+			weekFromDate: '@Model.WeekFromDate',
+			weekToDate: '@Model.WeekToDate',
+			fromDate: '@Model.DateRangePicker.FromDate',
+			toDate: '@Model.DateRangePicker.ToDate',
+			levelType: @Model.LevelType,
+			username: '@Model.Username',
+			visibleColumns = '@Model.VisibleColumns'
+		}
+	</script>
 	@StaticResources.AssetScripts.RenderCommon("/bundles/site-reports/winlossdetail")
 	<script src="~/bundles/winlossdetail/cashFee.js"></script>
 }
 @model CashFeeViewModel
-
-
 
 <div class="title-has-info title-has-entered">
 	<report-title-new model="Model.PageHeader" />
@@ -62,7 +74,7 @@
 					index++;
 					<li>
 						<a href="javascript:;" class="upline-link" data-custid="@item.CustId" data-custname="@item.CustName"
-						   data-custlevelid="@item.CustLevelId">@item.CustName</a>
+							data-custlevelid="@item.CustLevelId">@item.CustName</a>
 					</li>
 				}
 			}
@@ -72,18 +84,19 @@
 		<ul>
 			<li>
 				<span id="icon-copy" class="ic-copy" data-toggle="tooltip" data-placement="top"
-					  title="@Resources.Copy"></span>
+					title="@Resources.Copy"></span>
 			</li>
 			<li>
 				<a id="icon-excel" class="ic-excel" data-toggle="tooltip" data-placement="top"
-				   title="@Resources.ExportToExcel" asp-action="Excel"></a>
+					title="@Resources.ExportToExcel" asp-action="Excel"></a>
 			</li>
 		</ul>
 	</div>
 </div>
 <div id="tbl-report-container">
-	<table class="tb tb-bordered tb-hover w-full tbl-win-loss-by-product@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty) "
-		   id="tbl-report">
+	<table
+		class="tb tb-bordered tb-hover w-full tbl-win-loss-by-product@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty) "
+		id="tbl-report">
 		<thead>
 			<tr>
 				<th>Type</th>

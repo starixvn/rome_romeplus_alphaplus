@@ -163,18 +163,9 @@ class WinLossDetailView extends BaseReportNew {
             .find('.cash-fee-link')
             .off()
             .click((e) => {
-                const $this = $(e.target);
-                const custId = $this.data('custid');
-                //const custName = $this.data('custname').toString();
-                //const custInfo: any = { custId };
-                //const breadcrumbs = this.breadcrumbLevelComponent.getBreadcrumbs();
-                
                 $.blockUI();
-                //breadcrumbs.push(custInfo);
-                //const breadcrumbsJson = JSON.stringify(breadcrumbs);
-
-                let cashFeeParams = $.extend({}, this.globalFormData);
-                $this.attr('href', `${$('#hidden-cashFeeUrl').val()}?${$.param(cashFeeParams)}`);
+                const $this = $(e.target);
+                $this.attr('href', `${$('#hidden-cashFeeUrl').val()}?${$.param(this.globalFormData)}`);
             });
     }
 

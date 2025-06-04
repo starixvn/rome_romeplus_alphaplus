@@ -2,16 +2,11 @@
 
 namespace AlphaPlus.Reports.Features.WinLossDetail.Criteria;
 
-public class WinLossDetailExtraProductCriteria : CriteriaBase
+public class WinLossDetailExtraProductCriteria(int custId) : CriteriaBase
 {
-    public WinLossDetailExtraProductCriteria(int custId)
-    {
-        CustId = custId;
-    }
-
-    public int CustId { get; set; }
+    public int CustId { get; } = custId;
 
     public override string GetSettingKey() => "Age_GetOfferedProductByCust_Extra";
 
-    public override bool IsValid() => true;
+    public override bool IsValid() => CustId > 0;
 }

@@ -15,7 +15,7 @@ public interface IWinLossDetailService
 
     Task<ReportData<WinLossDetailModel>> GetWinLossDetail(WinLossDetailParam param);
 
-    Task<IEnumerable<Product>> GetProduct(int custId);
+    Task<IEnumerable<Product>> GetProduct(int custId, DateTime minReportDate, string language);
 
     Task<CashFeeModel> GetCashFee(CashFeeParam param);
 }
@@ -114,22 +114,31 @@ public class WinLossDetailService(
             param.LevelType);
     }
 
-    public async Task<IEnumerable<Product>> GetProduct(int custId)
-            => await cacheService.GetOrCreateAsync(
-                $"{ProductsCacheKey}.{custId}",
-                async cacheEntry =>
-                {
-                    cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(ExpiredTimeOfferedProductMinutes));
-                    var products = await repository.FetchAsync<Product>(new WinLossDetailExtraProductCriteria(custId));
+    public async Task<IEnumerable<Product>> GetProduct(int custId, DateTime minReportDate, string language)
+    {
+        var products = await cacheService.GetOrCreateAsync(
+            $"{ProductsCacheKey}-{custId}-{language}",
+            async cacheEntry =>
+            {
+                cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(ExpiredTimeOfferedProductMinutes));
+                var products = await repository.FetchAsync<Product>(new WinLossDetailExtraProductCriteria(custId));
 
-                    return products
+                return products
                     .Where(product => !product.IsHide)
                     .Select(product =>
                     {
                         product.Name = cacheRefService.GetProductName(product.Id);
                         return product;
                     });
-                });
+            });
+
+        return products.Where(i => IsRemainSupportProduct(i, minReportDate));
+    }
+
+    private static bool IsRemainSupportProduct(Product product, DateTime? minReportDate)
+        => !minReportDate.HasValue
+        || !product.EndOfSupportDate.HasValue
+        || minReportDate.Value <= product.EndOfSupportDate.Value;
 
     public async Task<CashFeeModel> GetCashFee(CashFeeParam param)
     {
