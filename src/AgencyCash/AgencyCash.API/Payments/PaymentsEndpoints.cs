@@ -88,7 +88,6 @@ public static class PaymentsEndpoints
         {
             CustId = request.CustId,
             AgentId = request.AgentId,
-            PaymentFrom = request.PaymentFrom,
             PaymentTo = request.PaymentTo,
             Amount = request.Amount,
             IP = request.IP

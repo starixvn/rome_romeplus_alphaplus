@@ -1,4 +1,5 @@
 using AgencyCash.API.Payments.Criteria;
+using AgencyCash.API.Payments.Criteria.Withdrawal;
 using AgencyCash.API.Payments.Models;
 using AgencyCash.API.Shared;
 using AgencyCash.API.Shared.Models;
@@ -24,13 +25,24 @@ public abstract class PaymentService(
         return new Result(criteria.ErrCode, criteria.ErrMsg);
     }
 
-    public async Task WriteLogs(IEnumerable<LogEntry> logs, short custDBGroupId)
+    public async Task WriteLogsRunSP(IEnumerable<LogEntry> logs, short custDBGroupId)
     {
         if (logs != null)
         {
             foreach (var item in logs)
             {
                 await WriteLogRunSP(item, custDBGroupId);
+            }
+        }
+    }
+
+    public async Task WriteLogsTransfer(IEnumerable<LogEntry> logs, short siteDBGroupId)
+    {
+        if (logs != null)
+        {
+            foreach (var item in logs)
+            {
+                await WriteLogTransfer(item, siteDBGroupId);
             }
         }
     }
@@ -55,7 +67,39 @@ public abstract class PaymentService(
         }
     }
 
+    public async Task WriteLogTransfer(LogEntry log, short siteDBGroupId)
+    {
+        var criteria = new WriteLogTransferCriteria(
+            log.UserId,
+            log.FromCustId,
+            log.ToCustId,
+            log.IP,
+            log.Doing);
+        var functionName = nameof(WriteLogTransfer);
+        var isSuccess = await WriteLogTransfer(criteria, functionName);
+
+        if (!isSuccess)
+        {
+            criteria.SiteDBGroupId = siteDBGroupId;
+            await WriteLogTransfer(criteria, functionName);
+        }
+    }
+
     private async Task<bool> WriteLog(INonQueryCommand criteria, string functionName)
+    {
+        try
+        {
+            await repository.ExecuteAsync(criteria);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            await logger.ErrorAsync($"{ex.Message}. {functionName} failed. Criteria: {JsonHelper.ToJson(criteria)}", ex);
+            return false;
+        }
+    }
+
+    private async Task<bool> WriteLogTransfer(INonQueryCommand criteria, string functionName)
     {
         try
         {

@@ -85,7 +85,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                 await ProcessWithdrawalLogs(firstResultSet.ToList(), siteDBConfig);
             }
 
-            return new PaymentResult(withdrawalTransactionCriteria.ErrCode, withdrawalTransactionCriteria.ErrExtraInfo, withdrawalTransactionCriteria.TransId);
+            return new PaymentResult(withdrawalTransactionCriteria.ErrCode, withdrawalTransactionCriteria.ErrCode == 0 ? "Ok" : withdrawalTransactionCriteria.ErrExtraInfo, withdrawalTransactionCriteria.TransId);
         }
         catch (Exception ex)
         {
@@ -101,42 +101,16 @@ public class WithdrawalService : PaymentService, IWithdrawalService
             if (log.LogTypeId == 1)
             {
                 // Step 5.1: Log transfer success
-                var writeLogTransferCriteria = new WriteLogTransferCriteria(
-                    log.UserId,
-                    log.FromCustId,
-                    log.ToCustId,
-                    log.IP,
-                    log.Doing);
-
-                await _repository.ExecuteAsync(writeLogTransferCriteria);
-
                 // Step 5.2: Log transfer failure
-                if (writeLogTransferCriteria.ErrCode != 0)
-                {
-                    writeLogTransferCriteria.SiteDBGroupId = siteDBConfig.SiteDBGroupId;
-                    await _repository.ExecuteAsync(writeLogTransferCriteria);
-                }
+
+                await WriteLogsTransfer(logs, siteDBConfig.SiteDBGroupId);
             }
             else
             {
                 // Step 6.1: Log run SP success
-                var writeLogRunSPCriteria = new WriteLogRunSPCriteria(
-                log.UserId,
-                log.CustId,
-                log.ActionId,
-                log.TrackingValueMask,
-                log.TrackingValueMask2,
-                log.TrackingValue,
-                log.TrackingValue2);
-
-                await _repository.ExecuteAsync(writeLogRunSPCriteria);
-
                 // Step 6.2: Log run SP failure
-                if (writeLogRunSPCriteria.ErrCode != 0)
-                {
-                    writeLogRunSPCriteria.CustDBGroupId = siteDBConfig.CustDBGroupId;
-                    await _repository.ExecuteAsync(writeLogRunSPCriteria);
-                }
+
+                await WriteLogsRunSP(logs, siteDBConfig.CustDBGroupId);
             }
         }
     }

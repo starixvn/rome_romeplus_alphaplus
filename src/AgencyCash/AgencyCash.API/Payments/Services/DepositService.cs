@@ -124,7 +124,7 @@ public class DepositService(
     private async Task<Result> AddTransactionAndWriteLogs(AddTransactionDepositCriteria criteria, short custDBGroupId)
     {
         var logs = await repository.FetchAsync<LogEntry>(criteria);
-        _ = Task.Run(async () => await WriteLogs(logs, custDBGroupId));
+        _ = Task.Run(async () => await WriteLogsRunSP(logs, custDBGroupId));
 
         if (!string.IsNullOrWhiteSpace(criteria.ErrExtraInfo))
         {
