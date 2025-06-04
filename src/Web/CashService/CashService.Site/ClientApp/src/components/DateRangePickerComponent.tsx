@@ -166,40 +166,60 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   const { t } = useTranslation('global');
   const [open, setOpen] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
-  const [isConstraintLifted, setIsConstraintLifted] = React.useState(false);
 
-  const overallMinDate = minYear ? new Date(minYear, 0, 1) : undefined;
+  const overallMinDate = React.useMemo(() => {
+    return minYear ? new Date(minYear, 0, 1) : undefined;
+  }, [minYear]);
 
-  const nowInGMT4 = convertToGMT4(new Date());
-  const overallMaxDate = new Date(nowInGMT4);
-  overallMaxDate.setDate(nowInGMT4.getDate() + 1);
-  overallMaxDate.setHours(23, 59, 59, 999);
+  const todayForMaxDateDep = new Date(); // Use stable parts of today for dependency
+  const overallMaxDate = React.useMemo(() => {
+    const freshNowInGMT4 = convertToGMT4(new Date());
+    const maxDate = new Date(freshNowInGMT4);
+    maxDate.setDate(freshNowInGMT4.getDate() + 1);
+    maxDate.setHours(23, 59, 59, 999);
+    return maxDate;
+  }, [
+    todayForMaxDateDep.getFullYear(),
+    todayForMaxDateDep.getMonth(),
+    todayForMaxDateDep.getDate(),
+  ]);
 
   const [pendingRange, setPendingRange] = React.useState<Range[]>([
     {
-      startDate: value[0] ?? new Date(),
-      endDate: value[1] ?? new Date(),
+      startDate: value[0] ?? undefined,
+      endDate: value[1] ?? undefined,
       key: 'selection',
     },
   ]);
 
+  const [calendarMinDate, setCalendarMinDate] = React.useState<Date | undefined>(overallMinDate);
+  const [calendarMaxDate, setCalendarMaxDate] = React.useState<Date | undefined>(overallMaxDate);
+
+  const val0Time = value[0]?.getTime();
+  const val1Time = value[1]?.getTime();
   React.useEffect(() => {
-    const newStartDate = value[0] ?? new Date();
-    const newEndDate = value[1] ?? new Date();
-    if (
-      pendingRange[0].startDate?.getTime() !== newStartDate.getTime() ||
-      pendingRange[0].endDate?.getTime() !== newEndDate.getTime()
-    ) {
-      setPendingRange([
-        {
-          startDate: newStartDate,
-          endDate: newEndDate,
-          key: 'selection',
-        },
-      ]);
-      setIsConstraintLifted(false);
+    setPendingRange([
+      {
+        startDate: value[0] ?? undefined,
+        endDate: value[1] ?? undefined,
+        key: 'selection',
+      },
+    ]);
+    setCalendarMinDate(overallMinDate);
+    setCalendarMaxDate(overallMaxDate);
+  }, [val0Time, val1Time, overallMinDate, overallMaxDate]);
+
+  React.useEffect(() => {
+    if (!open) {
+      setCalendarMinDate(overallMinDate);
+      setCalendarMaxDate(overallMaxDate);
     }
-  }, [value[0]?.getTime?.(), value[1]?.getTime?.()]);
+  }, [open, overallMinDate, overallMaxDate]);
+
+  const handleApply = React.useCallback(() => {
+    onChange([pendingRange[0].startDate ?? null, pendingRange[0].endDate ?? null]);
+    setOpen(false);
+  }, [onChange, pendingRange]);
 
   React.useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -213,41 +233,67 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [open, onChange, pendingRange]);
-
-  const handleApply = () => {
-    onChange([pendingRange[0].startDate ?? null, pendingRange[0].endDate ?? null]);
-    setOpen(false);
-    setIsConstraintLifted(true);
-  };
+  }, [open, handleApply]);
 
   const handleQuickRangeClick = (item: {
     label: string;
     range: () => { startDate: Date; endDate: Date };
   }) => {
     const proposedRange = item.range();
-
     const selectionWithKey: Range = { ...proposedRange, key: 'selection' };
-    const finalRange = applyMaxRangeConstraint(selectionWithKey, maxRangeDays);
+    const finalRange = applyMaxRangeConstraint(selectionWithKey, maxRangeDays, undefined);
+
     setPendingRange([finalRange]);
     onChange([finalRange.startDate ?? null, finalRange.endDate ?? null]);
     setOpen(false);
   };
 
-  const currentStartDate = pendingRange[0]?.startDate;
-  let dynamicMaxDateForRangeComponent = overallMaxDate;
+  const handleCalendarChange = (item: RangeKeyDict) => {
+    const { startDate: newStartDate, endDate: newEndDate } = item.selection;
 
-  if (currentStartDate && maxRangeDays && !isConstraintLifted) {
-    const maxEndDateFromRangeLogic = new Date(
-      currentStartDate.getTime() + (maxRangeDays - 1) * 24 * 60 * 60 * 1000
+    let currentRangeToProcess: Range = {
+      startDate: newStartDate,
+      endDate: newEndDate,
+      key: 'selection',
+    };
+
+    currentRangeToProcess = applyMaxRangeConstraint(
+      currentRangeToProcess,
+      maxRangeDays,
+      pendingRange[0]
     );
-    if (overallMaxDate) {
-      dynamicMaxDateForRangeComponent =
-        maxEndDateFromRangeLogic < overallMaxDate ? maxEndDateFromRangeLogic : overallMaxDate;
+
+    setPendingRange([currentRangeToProcess]);
+
+    const finalSelectedStartDate = currentRangeToProcess.startDate;
+    const finalSelectedEndDate = currentRangeToProcess.endDate;
+
+    if (
+      finalSelectedStartDate &&
+      finalSelectedEndDate &&
+      finalSelectedStartDate.getTime() === finalSelectedEndDate.getTime()
+    ) {
+      setCalendarMinDate(finalSelectedStartDate);
+      if (maxRangeDays && maxRangeDays > 0) {
+        const potentialMaxEndDate = new Date(
+          finalSelectedStartDate.getTime() + (maxRangeDays - 1) * 24 * 60 * 60 * 1000
+        );
+        setCalendarMaxDate(
+          overallMaxDate && potentialMaxEndDate > overallMaxDate
+            ? overallMaxDate
+            : potentialMaxEndDate
+        );
+      } else {
+        setCalendarMaxDate(overallMaxDate);
+      }
+    } else if (finalSelectedStartDate && finalSelectedEndDate) {
+      setCalendarMinDate(overallMinDate);
+      setCalendarMaxDate(overallMaxDate);
     } else {
-      dynamicMaxDateForRangeComponent = maxEndDateFromRangeLogic;
+      setCalendarMinDate(overallMinDate);
+      setCalendarMaxDate(overallMaxDate);
     }
-  }
+  };
 
   const selectedStart = pendingRange[0].startDate;
   const selectedEnd = pendingRange[0].endDate;
@@ -281,15 +327,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
             </div>
             <DateRange
               editableDateInputs={true}
-              onChange={(item: RangeKeyDict) => {
-                setIsConstraintLifted(false);
-                const newSelection = applyMaxRangeConstraint(
-                  item.selection,
-                  maxRangeDays,
-                  pendingRange[0]
-                );
-                setPendingRange([newSelection]);
-              }}
+              onChange={handleCalendarChange}
               moveRangeOnFirstSelection={false}
               ranges={pendingRange}
               rangeColors={['#163f78']}
@@ -297,8 +335,8 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
               months={1}
               direction="vertical"
               locale={enUS}
-              minDate={overallMinDate}
-              maxDate={dynamicMaxDateForRangeComponent}
+              minDate={calendarMinDate}
+              maxDate={calendarMaxDate}
             />
           </div>
           <div className="border-t border-[var(--datarangepicker-border)] p-[10px] flex justify-between items-center">

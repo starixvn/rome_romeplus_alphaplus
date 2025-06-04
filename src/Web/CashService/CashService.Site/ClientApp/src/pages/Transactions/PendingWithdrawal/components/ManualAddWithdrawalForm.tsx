@@ -195,7 +195,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       setMemberOptions(
         memberNames.map((member) => ({
           value: member.custId.toString(),
-          label: member.username + (member.nickname ? ' (' + member.nickname + ')' : ''),
+          label: member.username + (member.nickName ? ' (' + member.nickName + ')' : ''),
         }))
       );
       const firstMember = memberNames[0];
