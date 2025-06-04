@@ -70,7 +70,6 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
         providerId,
         paymentMethodId,
       };
-      console.log(manualWithdrawalData);
       const addWithdrawalResponse = await manualAddWithdrawal(manualWithdrawalData);
       if (addWithdrawalResponse.isSuccessful) {
         setResultMessage({
@@ -196,7 +195,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       setMemberOptions(
         memberNames.map((member) => ({
           value: member.custId.toString(),
-          label: member.username,
+          label: member.username + (member.nickname ? ' (' + member.nickname + ')' : ''),
         }))
       );
       const firstMember = memberNames[0];

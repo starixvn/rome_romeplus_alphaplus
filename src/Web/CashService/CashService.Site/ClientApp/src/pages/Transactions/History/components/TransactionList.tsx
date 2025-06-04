@@ -38,7 +38,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
       status: -1,
       account: '',
       pageIndex: 1,
-      pageSize: PAGE_SIZE_OPTIONS[0],
+      pageSize: PAGE_SIZE_OPTIONS[2],
       transactionType: transactionType,
     };
   });
@@ -46,7 +46,6 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
   const [columnFilter, setColumnFilter] = useState<string[]>([
     'name',
     'amount',
-    'currency',
     'from',
     'to',
     'status',
@@ -209,6 +208,8 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           value={localSearchText}
           onChange={handleLocalSearchChange}
           placeholder="Username/Reference No."
+          items={displayedItems}
+          columnFilter={columnFilter}
         />
       </div>
 

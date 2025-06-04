@@ -12,6 +12,7 @@ import Pagination from '../../Components/Pagination';
 import { ButtonFullComponent } from '../../../../components/ButtonComponents';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import PendingDepositModal from './PendingDepositModal';
+import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
 
 interface DataGridProps {
   deposits: TransactionItem[];
@@ -20,7 +21,7 @@ interface DataGridProps {
 const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
   const { t } = useTranslation('pendingDeposit');
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(PAGE_SIZE_OPTIONS[2]);
   const [error, setError] = useState<string | null>(null);
   const [paginatedDeposits, setPaginatedDeposits] = useState<TransactionItem[]>([]);
   const [processingDeposit, setProcessingDeposit] = useState<TransactionItem | null>(null);

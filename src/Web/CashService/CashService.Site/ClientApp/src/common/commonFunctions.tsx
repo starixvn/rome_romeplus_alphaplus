@@ -20,7 +20,8 @@ export const renderBankOptionValue = (bankCode: string, bankAccount: string) => 
 
 export const renderBankAccount = (bankAccount: string) => {
   const [bankCode, accountNumber] = bankAccount.split('-');
-  if (!accountNumber) return <div className="flex items-center">-</div>;
+  if (!accountNumber && !bankCode) return <div className="flex items-center">-</div>;
+  if (bankCode && !accountNumber) return <div className="flex items-center">{bankCode}</div>;
   return (
     <div className="flex items-center">
       {bankCode && (
@@ -112,8 +113,8 @@ export const convertToGMT4 = (date: Date): Date => {
   const newDate = new Date(date);
   const gmtOffset = -4;
   const clientOffset = date.getTimezoneOffset() / 60;
-  const offsetDiff = gmtOffset - (-clientOffset);
-  
+  const offsetDiff = gmtOffset - -clientOffset;
+
   newDate.setHours(newDate.getHours() + offsetDiff);
   return newDate;
 };

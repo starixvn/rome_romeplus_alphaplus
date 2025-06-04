@@ -12,6 +12,7 @@ import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import NoRecordFound from '../../../../components/Table/NoRecordFound';
 import { ButtonFullComponent } from '../../../../components/ButtonComponents';
 import Pagination from '../../Components/Pagination';
+import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
 
 interface DataGridProps {
   withdrawals: TransactionItem[];
@@ -23,7 +24,7 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(PAGE_SIZE_OPTIONS[2]);
   const [paginatedWithdrawals, setPaginatedWithdrawals] = useState<TransactionItem[]>([]);
   const totalItems = withdrawals.length;
 

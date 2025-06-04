@@ -166,6 +166,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   const { t } = useTranslation('global');
   const [open, setOpen] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
+  const [isConstraintLifted, setIsConstraintLifted] = React.useState(false);
 
   const overallMinDate = minYear ? new Date(minYear, 0, 1) : undefined;
 
@@ -196,8 +197,9 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
           key: 'selection',
         },
       ]);
+      setIsConstraintLifted(false);
     }
-  }, [value[0]?.getTime?.(), value[1]?.getTime?.()]); // Depend on time to catch date changes
+  }, [value[0]?.getTime?.(), value[1]?.getTime?.()]);
 
   React.useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -216,6 +218,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   const handleApply = () => {
     onChange([pendingRange[0].startDate ?? null, pendingRange[0].endDate ?? null]);
     setOpen(false);
+    setIsConstraintLifted(true);
   };
 
   const handleQuickRangeClick = (item: {
@@ -234,7 +237,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   const currentStartDate = pendingRange[0]?.startDate;
   let dynamicMaxDateForRangeComponent = overallMaxDate;
 
-  if (currentStartDate && maxRangeDays) {
+  if (currentStartDate && maxRangeDays && !isConstraintLifted) {
     const maxEndDateFromRangeLogic = new Date(
       currentStartDate.getTime() + (maxRangeDays - 1) * 24 * 60 * 60 * 1000
     );
@@ -279,6 +282,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
             <DateRange
               editableDateInputs={true}
               onChange={(item: RangeKeyDict) => {
+                setIsConstraintLifted(false);
                 const newSelection = applyMaxRangeConstraint(
                   item.selection,
                   maxRangeDays,
