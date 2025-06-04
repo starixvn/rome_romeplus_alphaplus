@@ -10,6 +10,7 @@ export interface TableRowProps {
 interface TableComponentProps {
   numOfColumns: number;
   resourcesTranslation: any;
+  headerStyle?: string;
   headerRows: string[][];
   bodyRows: TableRowProps[];
 }
@@ -18,13 +19,14 @@ export const TableComponent: React.FC<TableComponentProps> = ({
   numOfColumns,
   resourcesTranslation,
   headerRows,
+  headerStyle,
   bodyRows,
   }) => {
   const { t } = useTranslation('global');
 
   return (
     <table className="table-striped">
-      <thead>
+      <thead className={headerStyle || ''}>
         {headerRows.map((headerRow) => (
           <tr>
             {headerRow.map((header) => (<th>{resourcesTranslation(header) || header}</th>))}

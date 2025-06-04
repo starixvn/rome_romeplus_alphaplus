@@ -52,6 +52,7 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
                   numOfColumns={2}
                   resourcesTranslation={tPaymentProviderSettings}
                   headerRows={[['#', 'bankName']]}
+                  headerStyle="z-10"
                   bodyRows={banks?.map((bank, index) => {
                     return {
                       key: bank.id.toString(),
