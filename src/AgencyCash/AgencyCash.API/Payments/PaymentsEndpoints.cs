@@ -71,7 +71,7 @@ public static class PaymentsEndpoints
             return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
         }
 
-        return TypedResults.Ok(await Task.FromResult(new PaymentResult(0, string.Empty, 123456789)));
+        return TypedResults.Ok(await depositService.Auto(request));
     }
 
     private static async Task<IResult> ManualWithdrawal(

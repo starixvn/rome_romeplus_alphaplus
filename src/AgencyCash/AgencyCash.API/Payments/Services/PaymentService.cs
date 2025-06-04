@@ -16,14 +16,6 @@ public abstract class PaymentService(
     protected readonly ISiteDBService siteDBService = siteDBService;
     protected readonly Fanex.Logging.ILogger logger = logger;
 
-    // public async Task<bool> IsEnableCashService(int agentId, short custDBGroupId)
-    // {
-    //     var criteria = new GetAgentServiceTypeCriteria(agentId, custDBGroupId);
-    //     await repository.ExecuteAsync(criteria);
-
-    //     return criteria.ServiceType == CashServiceType;
-    // }
-
     public async Task<Result> ValidatePayment(int agentId, int custId, byte transType, short custDBGroupId)
     {
         var criteria = new ValidatePaymentCriteria(agentId, custId, transType, custDBGroupId);

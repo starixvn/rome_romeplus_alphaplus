@@ -26,11 +26,11 @@ public class AutoDepositRequest
     [PositiveNumber]
     public byte? MachingMode { get; init; }
 
-    [RequiredIf(nameof(DepositMethod), AutoDepositType.DecimalBankAccount)]
+    [Required(ErrorMessage = "{0} is required.")]
     [StringLength(maximumLength: 100, ErrorMessage = "{0} cannot exceed {1} characters.")]
     public string PaymentFrom { get; init; }
 
-    [RequiredIf(nameof(DepositMethod), AutoDepositType.DecimalBankAccount)]
+    [Required(ErrorMessage = "{0} is required.")]
     [StringLength(maximumLength: 100, ErrorMessage = "{0} cannot exceed {1} characters.")]
     public string PaymentTo { get; init; }
 
