@@ -4,8 +4,9 @@ import { Bank } from '../../services/interfaces/Payments/Bank';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import Loading from '../../components/LoadingComponent';
 import BankIcon from '../../components/BankComponents';
-import { ErrorMessageComponent, WarningMessageComponent } from '../../components/MessageComponents';
+import { ErrorMessageComponent } from '../../components/MessageComponents';
 import PopupModalComponent from '../../components/PopupModalComponent';
+import { TableComponent } from '../../components/TableComponents';
 
 interface BanksPopupModalProps {
   onClose: () => void;
@@ -43,32 +44,30 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
     <PopupModalComponent title={tPaymentProviderSettings('listOfBanks')} onClose={onClose}>
         {loading ? ( <Loading /> ) 
             : error ? (<ErrorMessageComponent message={error} />) 
-            : banks.length === 0 ? (<WarningMessageComponent message={tGlobal('noData')} />) 
             : (
             <>
               <p className='block text-[var(--text-color-primary)] my-[16px] font-semibold'>{tPaymentProviderSettings(`transaction-${transactionType}`)}</p>
               <div className="table-fixed-header max-h-[300px] overflow-y-auto">
-                <table className="w-full">
-                  <thead className='z-10'>
-                    <tr>
-                      <th>#</th>
-                      <th>{tPaymentProviderSettings('bankName')}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {banks.map((bank, index) => (
-                      <tr key={bank.id}>
-                        <td>{index + 1}</td>
-                        <td className='text-left!'>
+                <TableComponent 
+                  numOfColumns={2}
+                  resourcesTranslation={tPaymentProviderSettings}
+                  headerRows={[['#', 'bankName']]}
+                  bodyRows={banks?.map((bank, index) => {
+                    return {
+                      key: bank.id.toString(),
+                      className: "",
+                      columns: [
+                        (<td>{index + 1}</td>),
+                        (<td className='text-left!'>
                           <div className='flex items-center relative pl-[25px]'>
                             <span className='absolute top-[-2px] left-[0]'><BankIcon code={bank.code} /></span>
                             {tGlobal(bank.code)}
                           </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                        </td>)
+                      ]
+                    };
+                  })}
+                />
               </div>
             </>
           )}

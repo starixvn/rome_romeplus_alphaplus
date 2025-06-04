@@ -4,6 +4,8 @@ import { PaymentProvider, PaymentProviderFeeGroup } from '../../services/interfa
 import { paymentProviderService } from '../../services/paymentsAPI';
 import Loading from '../../components/LoadingComponent';
 import PopupModalComponent from '../../components/PopupModalComponent';
+import { TableRowProps } from '../../components/TableComponents';
+import { TableComponent } from '../../components/TableComponents';
 
 interface ProviderFeesPopupModalProps {
   provider: PaymentProvider;
@@ -11,7 +13,6 @@ interface ProviderFeesPopupModalProps {
 }
 
 const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({  provider, onClose }) => {
-  const { t: tGlobal } = useTranslation('global');
   const { t: tManagePayments } = useTranslation('managePayments');
   const [isLoading, setIsLoading] = React.useState(true);
   const [feeData, setFeeData] = React.useState<PaymentProviderFeeGroup[]>([]);
@@ -53,40 +54,41 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({  provid
             </div>
             
             <div className="form-group mb-3">
-              <table className="table-striped">
-                <thead>
-                  <tr>
-                    <th>{tManagePayments('transactionType')}</th>
-                    <th>{tManagePayments('paymentMethod')}</th>
-                    <th>{tManagePayments('feeRate')}</th>
-                  </tr>
-                </thead>
-                <tbody className='font-[500]'>
-                  {feeData.length === 0 && (
-                    <tr>
-                      <td colSpan={3} className="text-center">{tGlobal('noData')}</td>
-                    </tr>
-                  )}
-                  
-                  {feeData.length > 0 && (
-                    feeData.map((feeGroup, groupIndex) => (
-                      <React.Fragment key={groupIndex}>
-                        {feeGroup.fees.map((fee, feeIndex) => (
-                          <tr key={`${groupIndex}-${feeIndex}`} className={feeIndex === 0 ? "table-primary" : ""}>
-                            {feeIndex === 0 && (
-                              <td rowSpan={feeGroup.fees.length}>
-                                {tManagePayments(`transaction-${feeGroup.transactionType}`)}
-                              </td>
-                            )}
-                            <td>{fee.method}</td>
-                            <td className='text-[var(--text-color-primary)]'>{fee.rateText}</td>
-                          </tr>
-                        ))}
-                      </React.Fragment>
-                    ))
-                  )}
-                </tbody>
-              </table>
+              <TableComponent
+                numOfColumns={3}
+                resourcesTranslation={tManagePayments}
+                headerRows={[['transactionType', 'paymentMethod', 'feeRate']]}
+                bodyRows={feeData.flatMap((feeGroup, groupIndex) => {
+                  var rows: TableRowProps[] = [];
+
+                  feeGroup.fees.forEach((fee, feeIndex) => {
+                    if(feeIndex === 0) {
+                      rows.push({
+                        key: `${groupIndex}-${feeIndex}`,
+                        className: "table-primary",
+                        columns: [
+                          (<td rowSpan={feeGroup.fees.length}>{tManagePayments(`transaction-${feeGroup.transactionType}`)}</td>),
+                          (<td>{fee.method}</td>),
+                          (<td className='text-[var(--text-color-primary)]'>{fee.rateText}</td>)
+                        ]
+                      });
+                      
+                      return;
+                    }
+
+                    rows.push({
+                      key: `${groupIndex}-${feeIndex}`,
+                      className: "",
+                      columns: [
+                        (<td>{fee.method}</td>),
+                        (<td className='text-[var(--text-color-primary)]'>{fee.rateText}</td>)
+                      ]
+                    });
+                  });
+
+                  return rows;
+                })}
+              />
             </div>
           </>
         )}

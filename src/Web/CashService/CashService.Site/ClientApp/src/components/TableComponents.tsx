@@ -27,7 +27,7 @@ export const TableComponent: React.FC<TableComponentProps> = ({
       <thead>
         {headerRows.map((headerRow) => (
           <tr>
-            {headerRow.map((header) => (<th>{resourcesTranslation(header)}</th>))}
+            {headerRow.map((header) => (<th>{resourcesTranslation(header) || header}</th>))}
           </tr>
         ))}
       </thead>
