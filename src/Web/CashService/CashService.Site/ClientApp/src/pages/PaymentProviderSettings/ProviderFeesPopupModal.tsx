@@ -5,6 +5,7 @@ import { PaymentProviderFeeGroup } from '../../services/interfaces/Payments/Paym
 import { paymentProviderService } from '../../services/paymentsAPI';
 import Loading from '../../components/LoadingComponent';
 import PopupModalComponent from '../../components/PopupModalComponent';
+import { TableComponent, TableRowProps } from '../../components/TableComponents';
 
 interface ProviderFeesPopupModalProps {
   provider: PaymentProvider;
@@ -12,7 +13,6 @@ interface ProviderFeesPopupModalProps {
 }
 
 const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provider, onClose }) => {
-  const { t: tGlobal } = useTranslation('global');
   const { t: tPaymentProviderSettings } = useTranslation('paymentProviderSettings');
   const [isLoading, setIsLoading] = React.useState(true);
   const [feeData, setFeeData] = React.useState<PaymentProviderFeeGroup[]>([]);
@@ -49,41 +49,41 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
               <p>{tPaymentProviderSettings('feesInfo2')}</p>
             </div>            
             <div className="mb-[16px]">
-              <table className="table-striped">
-                <thead>
-                  <tr>
-                    <th>{tPaymentProviderSettings('transactionType')}</th>
-                    <th>{tPaymentProviderSettings('paymentMethod')}</th>
-                    <th>{tPaymentProviderSettings('feeRate')}</th>
-                  </tr>
-                </thead>
-                <tbody className='font-[500]'>
-                  {feeData.length === 0 && (
-                    <tr>
-                      <td colSpan={3} className="text-center">{tGlobal('noData')}</td>
-                    </tr>
-                  )}
-                  {feeData.length > 0 && (
-                    feeData.map((feeGroup, groupIndex) => (
-                      <React.Fragment key={groupIndex}>
-                        {feeGroup.fees.map((fee, feeIndex) => (
-                          <tr key={`${groupIndex}-${feeIndex}`} className={feeIndex === 0 ? "table-primary" : ""}>
-                            {feeIndex === 0 && (
-                              <td rowSpan={feeGroup.fees.length}>
-                                {tPaymentProviderSettings(`transaction-${feeGroup.transactionType}`)}
-                              </td>
-                            )}
-                            <td>{fee.method}</td>
-                            <td className='text-[var(--text-color-primary)]'>
-                              {fee.rateText}
-                            </td>
-                          </tr>
-                        ))}
-                      </React.Fragment>
-                    ))
-                  )}
-                </tbody>
-              </table>
+              <TableComponent
+                numOfColumns={3}
+                resourcesTranslation={tPaymentProviderSettings}
+                headerRows={[['transactionType', 'paymentMethod', 'feeRate']]}
+                bodyRows={feeData.flatMap((feeGroup, groupIndex) => {
+                  var rows: TableRowProps[] = [];
+
+                  feeGroup.fees.forEach((fee, feeIndex) => {
+                    if(feeIndex === 0) {
+                      rows.push({
+                        key: `${groupIndex}-${feeIndex}`,
+                        className: "table-primary",
+                        columns: [
+                          (<td rowSpan={feeGroup.fees.length}>{tPaymentProviderSettings(`transaction-${feeGroup.transactionType}`)}</td>),
+                          (<td>{fee.method}</td>),
+                          (<td className='text-[var(--text-color-primary)]'>{fee.rateText}</td>)
+                        ]
+                      });
+                      
+                      return;
+                    }
+
+                    rows.push({
+                      key: `${groupIndex}-${feeIndex}`,
+                      className: "",
+                      columns: [
+                        (<td>{fee.method}</td>),
+                        (<td className='text-[var(--text-color-primary)]'>{fee.rateText}</td>)
+                      ]
+                    });
+                  });
+
+                  return rows;
+                })}
+              />
             </div>
           </>
         )}
