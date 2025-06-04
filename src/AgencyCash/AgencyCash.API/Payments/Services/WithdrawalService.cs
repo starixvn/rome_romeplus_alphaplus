@@ -43,13 +43,18 @@ public class WithdrawalService : PaymentService, IWithdrawalService
             var validatePaymentCriteria = new ValidatePaymentCriteria(
                 request.AgentId,
                 request.CustId,
-                1, // TransType for withdrawal
+                2, // TransType for withdrawal
                 siteDBConfig.CustDBGroupId);
+
+            if (!validatePaymentCriteria.IsValid())
+            {
+                return new PaymentResult(400, "Bad Request", 0);
+            }
 
             await _repository.ExecuteAsync(validatePaymentCriteria);
             if (validatePaymentCriteria.ErrCode != 0)
             {
-                return new PaymentResult(validatePaymentCriteria.ErrCode, validatePaymentCriteria.ErrMsg, 0);
+                return new PaymentResult(600, "Withdrawal validation failed");
             }
 
             // Step 3: Get withdrawal limits
@@ -62,7 +67,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
             await _repository.ExecuteAsync(withdrawalLimitCriteria);
             if (request.Amount < withdrawalLimitCriteria.MinAmt || request.Amount > withdrawalLimitCriteria.MaxAmt)
             {
-                return new PaymentResult(601, $"Amount must be between {withdrawalLimitCriteria.MinAmt} and {withdrawalLimitCriteria.MaxAmt}.", 0);
+                return new PaymentResult(601, $"Amount must be between {withdrawalLimitCriteria.MinAmt} and {withdrawalLimitCriteria.MaxAmt}.");
             }
 
             // Step 4: Add withdrawal transaction
@@ -70,7 +75,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                 request.CustId,
                 request.AgentId,
                 siteDBConfig.SiteDBGroupId,
-                1, // TransactionTypeId for withdrawal
+                3, // TransactionTypeId for withdrawal
                 withdrawalLimitCriteria.MinAmt,
                 withdrawalLimitCriteria.MaxAmt,
                 withdrawalLimitCriteria.DailyWithdrawalCnt_Setting,
@@ -78,16 +83,12 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                 request.Amount,
                 request.IP);
 
-            //TODOawait _repository.ExecuteAsync(withdrawalTransactionCriteria);
-            if (withdrawalTransactionCriteria.ErrCode != 0)
-            {
-                return new PaymentResult(withdrawalTransactionCriteria.ErrCode, withdrawalTransactionCriteria.ErrMsg, 0);
-            }
+            await _repository.ExecuteAsync(withdrawalTransactionCriteria);
 
-            // Step 5: Log transfer failure
-            if (withdrawalTransactionCriteria.ErrCode != 0)
+            // Step 5.1: Log transfer success
+            if (withdrawalTransactionCriteria.ErrCode == 0)
             {
-                // Log transfer failure
+                // Log transfer success
                 /*TODOawait WriteLogs(new[] { new LogEntry
                 {
                     LogTypeId = 4,
@@ -104,13 +105,11 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                         <errMsg>{transferCriteria.ErrMsg}</errMsg>
                     </root>",
                     IP = request.IP,
-                    Doing = "Manual withdrawal transfer failed"
+                    Doing = "Manual withdrawal transfer successful"
                 }}, siteDBConfig.CustDBGroupId);*/
-
-                return new PaymentResult(withdrawalTransactionCriteria.ErrCode, withdrawalTransactionCriteria.ErrMsg, 0);
             }
 
-            // Step 6: Log successful transfer
+            // Step 5.2: Log Log transfer when step 5.1 is not success
             /*TODOawait WriteLogs(new[] { new LogEntry
             {
                 LogTypeId = 4,
@@ -129,7 +128,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                 Doing = "Manual withdrawal transfer successful"
             }}, siteDBConfig.CustDBGroupId);
 
-            // Step 7: Log successful transaction
+            // Step 6.1: Purpose : Insert Log when step 3 success
             var writeLogCriteria = new WriteLogRunSPCriteria(
                 request.AgentId,
                 request.CustId,
@@ -147,7 +146,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
 
             await _repository.ExecuteAsync(writeLogCriteria);
 
-            // Step 8: Log to DBLOG database
+            // Step 6.2: Purpose : Insert Log When step 6.1  failed
             var dbLogCriteria = new WriteLogRunSPCriteria(
                 request.AgentId,
                 request.CustId,
@@ -164,81 +163,19 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                 </root>",
                 string.Empty);
 
-            await _repository.ExecuteAsync(dbLogCriteria);
+            await _repository.ExecuteAsync(dbLogCriteria);*/
 
-            // Step 9: Log to SiteDB database
-            var siteDBLogCriteria = new WriteLogRunSPCriteria(
-                request.AgentId,
-                request.CustId,
-                1,
-                string.Empty,
-                string.Empty,
-                $@"<root>
-                    <paymentFrom>{request.PaymentFrom}</paymentFrom>
-                    <paymentTo>{request.PaymentTo}</paymentTo>
-                    <amount>{request.Amount}</amount>
-                    <transId>{withdrawalTransactionCriteria.TransId}</transId>
-                    <transferRefNo>{transferCriteria.TransferRefNo}</transferRefNo>
-                    <status>success</status>
-                </root>",
-                string.Empty)
+            if (withdrawalTransactionCriteria.ErrCode != 0)
             {
-                CustDBGroupId = siteDBConfig.CustDBGroupId
-            };
-
-            await _repository.ExecuteAsync(siteDBLogCriteria);*/
+                return new PaymentResult(602, "Withdrawal insert transaction failed");
+            }
 
             return new PaymentResult(0, string.Empty, withdrawalTransactionCriteria.TransId);
         }
         catch (Exception ex)
         {
-            if (siteDBConfig != null)
-            {
-                // Log error to both DBLOG and SiteDB
-                /*TODOvar errorLogEntry = new LogEntry
-                {
-                    LogTypeId = 4,
-                    UserId = request.AgentId,
-                    CustId = request.CustId,
-                    FromCustId = request.AgentId,
-                    ToCustId = request.CustId,
-                    ActionId = 1,
-                    TrackingValue = $@"<root>
-                        <paymentFrom>{request.PaymentFrom}</paymentFrom>
-                        <paymentTo>{request.PaymentTo}</paymentTo>
-                        <amount>{request.Amount}</amount>
-                        <errCode>500</errCode>
-                        <errMsg>An error occurred while processing withdrawal request.</errMsg>
-                    </root>",
-                    IP = request.IP,
-                    Doing = $"Manual withdrawal error: {ex.Message}"
-                };
-
-                // Log to SiteDB
-                await WriteLogs(new[] { errorLogEntry }, siteDBConfig.CustDBGroupId);
-
-                // Log to DBLOG
-                var dbLogErrorCriteria = new WriteLogRunSPCriteria(
-                    request.AgentId,
-                    request.CustId,
-                    1,
-                    string.Empty,
-                    string.Empty,
-                    $@"<root>
-                        <paymentFrom>{request.PaymentFrom}</paymentFrom>
-                        <paymentTo>{request.PaymentTo}</paymentTo>
-                        <amount>{request.Amount}</amount>
-                        <errCode>500</errCode>
-                        <errMsg>An error occurred while processing withdrawal request.</errMsg>
-                        <status>error</status>
-                    </root>",
-                    string.Empty);
-
-                await _repository.ExecuteAsync(dbLogErrorCriteria);*/
-            }
-
             await logger.ErrorAsync(ex.Message, ex);
-            return new PaymentResult(500, "An error occurred while processing withdrawal request.", 0);
+            return new PaymentResult(500, "An error occurred while processing withdrawal request.");
         }
     }
 }

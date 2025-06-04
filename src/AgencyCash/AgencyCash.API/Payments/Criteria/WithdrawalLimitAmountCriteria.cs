@@ -31,5 +31,5 @@ public class WithdrawalLimitAmountCriteria : NonQueryCommand
     public override string GetSettingKey()
         => SPNameHelper.CustDBPrefix("Age_CashWithdrawal_LimitAmtSel", CustDBGroupId);
 
-    public override bool IsValid() => CustId > 0;
+    public override bool IsValid() => CustId > 0 && UplineId > 0;
 } 
