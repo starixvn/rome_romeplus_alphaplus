@@ -13,21 +13,6 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Configurations
         private static Dictionary<string, int> statusMappings;
         private static Dictionary<string, int> resourcesByBetTypeCacheRef;
         private static Dictionary<string, int> resourcesBySportTypeCacheRef;
-
-        public static string SiteSupportPotentialWinLimit
-            => GetConfigValue("SiteSupportPotentialWinLimit");
-
-        public static bool IsSupportPotentialWinLimit(string siteName)
-        {
-            var sites = SiteSupportPotentialWinLimit;
-            if (string.IsNullOrWhiteSpace(sites) || sites.Equals("*"))
-            { 
-                return true; 
-            }
-
-            return sites.Split(',').Any(s => s.Equals(siteName, StringComparison.CurrentCultureIgnoreCase));
-        }
-
         public static string VirtualDirectory
         {
             get

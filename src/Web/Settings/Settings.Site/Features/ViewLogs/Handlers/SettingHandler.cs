@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using AlphaPlus.Core.Configurations;
 using AlphaPlus.Settings.Site.Features.ViewLogs.Helpers;
 using AlphaPlus.Settings.Site.Features.ViewLogs.Requests.Setting;
 using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels;
@@ -11,7 +12,6 @@ using AlphaPlus.Settings.ViewLogs.API.Services;
 using AlphaPlus.Shared.AppResources.Settings.ViewLog;
 using Fanex.Common;
 using MediatR;
-using AppSettings = AlphaPlus.Settings.Site.Features.ViewLogs.Configurations.AppSettings;
 
 namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
 {
