@@ -37,7 +37,7 @@ const CustomDropdownComponent = ({
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (initialValue) {
+    if (initialValue !== undefined) {
       const option = options.find((opt) => opt.value == initialValue);
       setSelected(option || '');
     }

@@ -83,6 +83,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           params.transactionType === TransactionType.Deposit ? item.paymentTo : item.paymentFrom
         );
       setPaymentInformations(paymentInfo);
+      setApiParams((prev) => ({ ...prev, account: '' }));
 
       setError(null);
     } catch (err) {
