@@ -41,7 +41,7 @@ export const ResultMessageComponent: React.FC<ResultMessageProps> = ({
 };
 
 export const ValidateMessageComponent: React.FC<ValidateMessageProps> = ({ message }) => {
-  return message && <div className="text-[#FE0000]">{message}</div>;
+  return message && <div className="text-[#FE0000] dark:text-[#EB5757]">{message}</div>;
 };
 
 export const ErrorMessageComponent: React.FC<ResultMessageProps> = ({

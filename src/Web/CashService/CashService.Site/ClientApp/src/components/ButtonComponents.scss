@@ -1,4 +1,5 @@
 :root, :root [data-theme='light'] {
+    //tab
     --tab-component-color: #333;
     --tab-component-border-color: #516e8f;
     &.view-super{
@@ -13,14 +14,43 @@
         --tab-component-color-active: #2267b6;
         --tab-component-border-color: #516e8f;
     }
-    
-    
+
+    //button
+    --button-text: #ffffff;
+
+    --button-background: #0b599c;
+    --button-background-hover: #0a5494;
+
+    --button-outline-background: #ffffff;
+    --button-outline-text: #0a5494;
+    --button-outline-background-hover: #0a5494;
+    --button-outline-text-hover: #ffffff;
+    --button-outline-border: #0a5494;
+
+    --button-background-cancel: #696969;
+    --button-background-cancel-hover: #636363;    
 }
 :root [data-theme='dark'] {
+    //tab
     --titleComponent-color: #999;
     --titleComponent-border-color: #ededed;
     &.view-super, &.view-master, &.view-agent{
         --tab-component-color: #ededed;
         --tab-component-border-color: #ededed;
     }
+
+    //button
+    --button-text: #ffffff;
+
+    --button-background: #36587D;
+    --button-background-hover: #335376;
+
+    --button-outline-background: #171717;
+    --button-outline-text: #36587D;
+    --button-outline-background-hover: #36587D;
+    --button-outline-text-hover: #ffffff;
+    --button-outline-border: #36587D;
+
+    --button-background-cancel: #696969;
+    --button-background-cancel-hover: #636363;
 }

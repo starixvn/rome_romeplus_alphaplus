@@ -136,7 +136,7 @@ export const ChevronDownIcon: React.FC<IconProps> = ({ className = '' }) => (
 );
 export const IconPen: React.FC = () => (
   <svg
-    className="w-[16px] h-[16px] fill-[#163f78]"
+    className="w-[16px] h-[16px] fill-[#0b599c] dark:fill-[#41a4ff]"
     xmlns="http://www.w3.org/2000/svg"
     version="1.1"
     viewBox="0 0 32 32"
