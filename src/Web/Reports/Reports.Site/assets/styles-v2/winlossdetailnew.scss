@@ -1,7 +1,7 @@
 ﻿:root, :root [data-theme='light'] {
-    --label-week-color: #727272;
+    --label-week-color: #000000;
     --label-week-background: #ffffff;
-    --label-week-border: #ffffff;
+    --label-week-border: #d1d1d1;
     --label-week-active-color: #0B599C;
     --label-week-active-background: #E8F4FD;
     --label-week-active-border: #0B599C;
@@ -10,16 +10,18 @@
     --label-week-disabled-border: #D9D9D9;
     --label-week-disabled-shadow: none;
     --icon-dormant-account-color: #0b599c;
-    --tb-sub-total-row-background: #F1F1F1;
+    --tb-sub-total-row-background: var(--table-bg);
     --tb-match-title-color: #F6731B;
-    --tb-match-title-background: #D3DAE2;
-    --tb-total-row-background: #D3DAE2;
+    --tb-match-title-background: var(--table-bg);
+    --tb-total-row-background: var(--table-bg);
+
+    --table-text-bold: #1A1A1A;
 }
 
 :root [data-theme='dark'] {
     --label-week-color: #C5C5C5;
     --label-week-background: #373737;
-    --label-week-border: #373737;
+    --label-week-border: #474747;
     --label-week-active-color: #41A4FF;
     --label-week-active-background: #183049;
     --label-week-active-border: #41A4FF;
@@ -28,11 +30,13 @@
     --label-week-disabled-border: #292929;
     --label-week-disabled-shadow: none;
     --icon-dormant-account-color: #41a4ff;
-    --tb-sub-total-row-background: #404040;
+    --tb-sub-total-row-background: var(--table-bg);
     --tb-match-title-color: #D96518;
-    --tb-total-row-background: #41474F;
-    --tb-match-title-background: #41474F;
+    --tb-total-row-background: var(--table-bg);
+    --tb-match-title-background: var(--table-bg);
+    --table-text-bold: #ffffff;
 }
+
 
 
 .label-week-box {
@@ -55,6 +59,7 @@
         box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.25);
         border-radius: 3px;
         height: 24px;
+        
 
         &[disable], &.disabled {
             color: var(--label-week-disabled-color) !important;
@@ -167,6 +172,9 @@
             }           
         }
     }
+    .sub-total-row ,.league-title ,.username-row .bold,.pt-row .bold ,.pt-product-row .bold,.consolidation{
+        color: var(--table-text-bold);
+    }
 
     .match-title-row {
         text-align: left;
@@ -215,10 +223,16 @@
                 background: var(--tb-sub-total-row-background);
                 
             }
+            
         }
         &.username-row, &.product-row, &.pt-row {
             td {
                 background: var(--tb-total-row-background);
+            }
+        }
+        &.tbl-footer, &.sub-total-row{
+            .text-left{
+                text-align: right!important;
             }
         }
     }

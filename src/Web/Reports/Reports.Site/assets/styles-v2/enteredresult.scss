@@ -22,9 +22,9 @@
     thead {
         .total-row {
             font-weight: bold;
-
+            background: var(--table-bg);
             td {
-                background-color: var(--table-total-row-background);
+                //background-color: var(--table-total-row-background);
                 height: 28px;
                 padding: 3px 6px;
                 white-space: nowrap;
@@ -35,11 +35,14 @@
                 color: var(--table-total-row-color);
             }
         }
+        tr.thead-row2 th:first-child{
+            border-left: 1px solid var(--table-border)!important;
+        }
     }
 
     tbody {
         .col-first {
-            background: var(--table-total-row-col-first-background);
+            //background: var(--table-total-row-col-first-background);
         }
     }
 }

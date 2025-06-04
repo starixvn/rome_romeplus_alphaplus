@@ -1,5 +1,5 @@
 ﻿:root, :root [data-theme='light'] {
-    --head-title-color: #404040;
+    --head-title-color: #97141e;
     --breadcrumb-background: rgba(0,0,0,0.05);
     --breadcrumb-link-color: #0F7CD9;
     --breadcrumb-color: #333;
@@ -14,6 +14,7 @@
     --title-icon-information: #118AF2;
     --title-icon-toggle-up-color: #404040;
     --title-icon-toggle-up-background: rgba(0, 0, 0, 0.05);
+
 }
 
 :root [data-theme='dark'] {
@@ -48,6 +49,7 @@
 
     .text-title {
         margin-right: 10px;
+        color: var(--head-title-color);
     }
 
     &.tabs {
@@ -191,6 +193,7 @@
         display: flex;
         align-items: center;
         color: var(--entered-color);
+        border: 1px solid var(--input-border);
         background: var(--entered-background);
         box-shadow: 1px 2px 2px rgba(0, 0, 0, .25);
         border-radius: 3px;

@@ -55,7 +55,7 @@ $color-green: #33cc33;
         }
 
         .header {
-            color: $header-color;
+            //color: $header-color;
             background-color: $header-background;
         }
 
@@ -94,7 +94,7 @@ table {
                 font-weight: normal;
                 vertical-align: middle;
                 text-align: center;
-                color: #fff !important;
+                //color: #fff !important;
 
                 &.cl-title {
                     color: $league-color;
@@ -117,19 +117,19 @@ table {
             }
 
             td {
-                border: solid 1px $border-color;
+                //border: solid 1px $border-color;
                 padding: 1px;
                 vertical-align: middle;
             }
 
             .cl-league {
-                color: $league-color;
-                background: $league-background;
+                //color: $league-color;
+                //background: $league-background;
                 vertical-align: middle;
                 font-weight: bold;
                 text-align: left;
                 line-height: 7px;
-                height: 21px;
+                
 
                 &.sub {
                 }
@@ -141,7 +141,7 @@ table {
                 vertical-align: middle;
                 font-weight: bold;
                 line-height: 17px;
-                height: 21px;
+                 
                 text-align: center;
             }
 
@@ -263,23 +263,23 @@ table {
         .cl-s,
         .cl-ot,
         .cl-ei {
-            width: 40px;
+            width: 55px;
         }
 
         .cl-totalgames,
         .cl-totalpoint {
-            width: 42px;
+            width: 100px;
             color: $color-blue;
         }
 
         .cl-totalset {
-            width: 38px;
+            width: 100px;
             color: #fd537d;
         }
 
         .cl-ht-score,
         .cl-f-score {
-            width: 38px;
+            width: 100px;
         }
 
         .cl-status {
@@ -546,7 +546,7 @@ table {
         }
     }
     .row-noinfo {
-        border: 1px solid $border-color;
+        //border: 1px solid $border-color;
         border-top: 0;
         text-align: center;
         padding: 4px;

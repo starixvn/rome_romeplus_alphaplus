@@ -53,103 +53,105 @@
     <input type="hidden" asp-for="CustLevelId" />
     <input type="hidden" asp-for="ProductIds" />
 </form>
-<table class="tb tb-bordered tb-hover w-full text-right" id="tbl-report">
-    <thead>
-        <tr>
-            <th>@Resources.Date</th>
-            <th class="full-title">@Resources.OpeningBalance</th>
-            <th class="short-title">@Resources.OpeningBal</th>
-            <th>@Resources.Turnover</th>
-            <th>@Resources.Void/@Resources.Rejected</th>
-            <th>@Resources.Outstanding</th>
-            <th>@Resources.WinLoss</th>
-            <th class="full-title">@Resources.Commission</th>
-            <th class="short-title">@Resources.Comm</th>
-            <th>@Resources.GrandPrize</th>
-            <th class="full-title">@Resources.TransferAmt</th>
-            <th class="short-title">@Resources.Transfer</th>
-            <th class="full-title">@Resources.AccumulatedTotal</th>
-            <th class="short-title">@Resources.AccumTotal</th>
-        </tr>
-    </thead>
-    @if (Model.Pager.TotalRecords > 0)
-    {
-        StatementModel prevStatement = null;
-        <tbody>
-            @foreach (var data in Model.ReportData)
-            {
-                var winLossDateString = data.WinLossDate.ToShortDateWithSlash();
-                <tr class="hide">
-                    <td class="text-center">@winLossDateString</td>
-                    <td class="@(data.IsNotedBalance(prevStatement) ? "note-opening-balance" : string.Empty)">
-                        @{
-                            RenderNegativeNumberCell(data.OpeningBalance);
-                        }
-                    </td>
-                    <td>@{
-                            RenderNumberCell(data.Turnover);
-                        }</td>
-                    <td>
-                        <span class="@(Model.IsNegative(data.VoidAmount) ? "format-negative" : string.Empty)
-                              @(data.VoidAmount.HasValue ? " col-void-amount" : string.Empty)"
-                            data-transfer-date="@winLossDateString">
+<div class="tbl-statement-report w-full">
+    <table class="tb tb-bordered tb-hover w-full text-right" id="tbl-report">
+        <thead>
+            <tr>
+                <th>@Resources.Date</th>
+                <th class="full-title">@Resources.OpeningBalance</th>
+                <th class="short-title">@Resources.OpeningBal</th>
+                <th>@Resources.Turnover</th>
+                <th>@Resources.Void/@Resources.Rejected</th>
+                <th>@Resources.Outstanding</th>
+                <th>@Resources.WinLoss</th>
+                <th class="full-title">@Resources.Commission</th>
+                <th class="short-title">@Resources.Comm</th>
+                <th>@Resources.GrandPrize</th>
+                <th class="full-title">@Resources.TransferAmt</th>
+                <th class="short-title">@Resources.Transfer</th>
+                <th class="full-title">@Resources.AccumulatedTotal</th>
+                <th class="short-title">@Resources.AccumTotal</th>
+            </tr>
+        </thead>
+        @if (Model.Pager.TotalRecords > 0)
+        {
+            StatementModel prevStatement = null;
+            <tbody>
+                @foreach (var data in Model.ReportData)
+                {
+                    var winLossDateString = data.WinLossDate.ToShortDateWithSlash();
+                    <tr class="hide">
+                        <td class="text-center">@winLossDateString</td>
+                        <td class="@(data.IsNotedBalance(prevStatement) ? "note-opening-balance" : string.Empty)">
                             @{
-                                RenderNullableNumber(data.VoidAmount);
+                                RenderNegativeNumberCell(data.OpeningBalance);
                             }
-                        </span>
-                    </td>
-                    <td>
-                        <span class="@(Model.IsNegative(data.Outstanding) ? "format-negative" : string.Empty)
-                              @(data.Outstanding.HasValue ? " col-outstanding" : string.Empty)"
-                            data-transfer-date="@winLossDateString">
-                            @{
-                                RenderNullableNumber(data.Outstanding);
-                            }
-                        </span>
-                    </td>
-                    <td>
-                        <span class="@(Model.IsNegative(data.WinLoss) ? "format-negative" : string.Empty)
-                              @(data.WinLoss.HasValue ? " col-win-loss" : string.Empty)"
-                            data-transfer-date="@winLossDateString">
-                            @{
-                                RenderNullableNumber(data.WinLoss);
-                            }
-                        </span>
-                    </td>
-                    <td>@{
-                            RenderNegativeNumberCell(data.Commission);
-                        }</td>
-                    <td>
-                        <span class="@(Model.IsNegative(data.GrandPrize) ? "format-negative" : string.Empty)
-                              @(data.GrandPrize.HasValue ? " col-grand-prize" : string.Empty)"
-                            data-transfer-date="@winLossDateString">
-                            @{
-                                RenderNullableNumber(data.GrandPrize);
-                            }
-                        </span>
-                    </td>
-                    <td>
-                        <span class=" @(data.TransferAmount.HasValue ? "column-transfer-amount" : string.Empty)
-                              @(Model.IsNegative(data.TransferAmount) ? "format-negative" : string.Empty) "
-                            data-transfer-date="@winLossDateString">
-                            @{
-                                RenderNullableNumber(data.TransferAmount);
-                            }
-                        </span>
-                    </td>
-                    <td>@{
-                            RenderNegativeNumberCell(data.ClosingBalance);
-                        }</td>
-                </tr>
-                prevStatement = data;
-            }
-        </tbody>
-    }
-    else
-    {
-        <no-information colspan="10" />
-    }
-</table>
+                        </td>
+                        <td>@{
+                                RenderNumberCell(data.Turnover);
+                            }</td>
+                        <td>
+                            <span class="@(Model.IsNegative(data.VoidAmount) ? "format-negative" : string.Empty)
+                                @(data.VoidAmount.HasValue ? " col-void-amount" : string.Empty)"
+                                data-transfer-date="@winLossDateString">
+                                @{
+                                    RenderNullableNumber(data.VoidAmount);
+                                }
+                            </span>
+                        </td>
+                        <td>
+                            <span class="@(Model.IsNegative(data.Outstanding) ? "format-negative" : string.Empty)
+                                @(data.Outstanding.HasValue ? " col-outstanding" : string.Empty)"
+                                data-transfer-date="@winLossDateString">
+                                @{
+                                    RenderNullableNumber(data.Outstanding);
+                                }
+                            </span>
+                        </td>
+                        <td>
+                            <span class="@(Model.IsNegative(data.WinLoss) ? "format-negative" : string.Empty)
+                                @(data.WinLoss.HasValue ? " col-win-loss" : string.Empty)"
+                                data-transfer-date="@winLossDateString">
+                                @{
+                                    RenderNullableNumber(data.WinLoss);
+                                }
+                            </span>
+                        </td>
+                        <td>@{
+                                RenderNegativeNumberCell(data.Commission);
+                            }</td>
+                        <td>
+                            <span class="@(Model.IsNegative(data.GrandPrize) ? "format-negative" : string.Empty)
+                                @(data.GrandPrize.HasValue ? " col-grand-prize" : string.Empty)"
+                                data-transfer-date="@winLossDateString">
+                                @{
+                                    RenderNullableNumber(data.GrandPrize);
+                                }
+                            </span>
+                        </td>
+                        <td>
+                            <span class=" @(data.TransferAmount.HasValue ? "column-transfer-amount" : string.Empty)
+                                @(Model.IsNegative(data.TransferAmount) ? "format-negative" : string.Empty) "
+                                data-transfer-date="@winLossDateString">
+                                @{
+                                    RenderNullableNumber(data.TransferAmount);
+                                }
+                            </span>
+                        </td>
+                        <td>@{
+                                RenderNegativeNumberCell(data.ClosingBalance);
+                            }</td>
+                    </tr>
+                    prevStatement = data;
+                }
+            </tbody>
+        }
+        else
+        {
+            <no-information colspan="10" />
+        }
+    </table>
+</div>
 <pager model="Model.Pager" />
 <a class="hide" id="LoadLegendURL" asp-action="MemberReportLegend" asp-route-IsDirectMember="@Model.IsDirectMember"></a>
 <a class="hide" id="StatementDetailsURL" asp-action="StatementDetails"></a>

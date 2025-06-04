@@ -11,7 +11,7 @@
     @GoogleAnalyticHelper.GtagScript()
 </head>
 
-<body data-theme="@(string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark")">
+<body class="@userSession.SiteName.ToLowerInvariant()" data-theme="@(string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark")">
     @GoogleAnalyticHelper.GtagNoScript()
     @RenderBody()
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
