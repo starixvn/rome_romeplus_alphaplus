@@ -8,6 +8,8 @@ namespace AlphaPlus.Settings.Transfer.API.Services;
 
 public interface IYesterdayBalanceTransferService
 {
+    Task<Result> ResetPotentialWinLimit(int custIds, string agIP);
+
     Task<Result> ResetPotentialWinLimit(IEnumerable<int> custIds, string agIP);
 
     Task<Result> ResetPotentialWinLimit(string custIds, string agIP);
@@ -47,6 +49,9 @@ public class YesterdayBalanceTransferService(IDynamicRepository repository) : IY
 
     public async Task<Result> ResetPotentialWinLimit(IEnumerable<int> custIds, string agIP)
     => await ResetPotentialWinLimit(string.Join(",", custIds), agIP);
+
+    public async Task<Result> ResetPotentialWinLimit(int custIds, string agIP)
+    => await ResetPotentialWinLimit(custIds.ToString(), agIP);
 
     public async Task<MemberTransfer> GetMemberTransfer(int custId, bool allowTotalBalanceTransfer, string agIP)
     {

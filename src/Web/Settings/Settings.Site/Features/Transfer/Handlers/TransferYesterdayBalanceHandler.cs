@@ -192,8 +192,7 @@ public class TransferYesterdayBalanceHandler(
         if (result.IsSuccessful)
         {
             result.Message = Resources.TransferSuccessfully;
-            var custIds = new List<int> { message.CustId };
-            var resultReset = await yesterdayBalanceTransferService.ResetPotentialWinLimit(custIds, message.AGIP);
+            var resultReset = await yesterdayBalanceTransferService.ResetPotentialWinLimit(message.CustId, message.AGIP);
             if (!resultReset.IsSuccessful)
             {
                 result = Result.CreateErrorResult(resultReset.Message, resultReset.Code);

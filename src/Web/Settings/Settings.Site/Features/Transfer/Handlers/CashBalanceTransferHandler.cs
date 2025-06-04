@@ -10,11 +10,13 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers;
 
 public class CashBalanceTransferHandler(
     ICashBalanceTransferService cashBalanceTransferService,
-    ITransferService transferService) :
+    ITransferService transferService,
+    IYesterdayBalanceTransferService yesterdayBalanceTransferService) :
         IRequestHandler<CashBalanceTransferQuery, CashBalanceTransferViewModel>,
         IRequestHandler<CashBalanceTransferCommand, Result>,
         IRequestHandler<HintTransferQuery, HintTransferViewModel>
 {
+    private readonly IYesterdayBalanceTransferService yesterdayBalanceTransferService = yesterdayBalanceTransferService;
     private readonly ICashBalanceTransferService cashBalanceTransferService = cashBalanceTransferService;
     private readonly ITransferService transferService = transferService;
 
@@ -33,7 +35,7 @@ public class CashBalanceTransferHandler(
             return Result.CreateErrorResult(Resources.DisallowedAllDayBalanceTransferError, 6001);
         }
 
-        return await cashBalanceTransferService.AddCashBalanceTransfer(
+        var result = await cashBalanceTransferService.AddCashBalanceTransfer(
             message.ViewerId,
             message.CustId,
             message.Amount,
@@ -44,6 +46,16 @@ public class CashBalanceTransferHandler(
             message.LanguageKey,
             message.AGIP,
             message.IsDirectMember);
+        if (result.IsSuccessful)
+        {
+            var resultReset = await yesterdayBalanceTransferService.ResetPotentialWinLimit(message.CustId, message.AGIP);
+            if (!resultReset.IsSuccessful)
+            {
+                return Result.CreateErrorResult(resultReset.Message, resultReset.Code);
+            }
+        }
+
+        return result;
     }
 
     public async Task<HintTransferViewModel> Handle(HintTransferQuery message, CancellationToken cancellation)
