@@ -142,9 +142,8 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       paymentMethodId: 0,
     }));
     setMemberBankInfo(memberBankOptions);
-    if (memberBankOptions.length > 0) {
-      setTo(memberBankOptions[0].value);
-    }
+    setTo(memberBankOptions[0]?.value || '');
+
     await handleUpdateMemberCashBalance(selectedMemberId);
     await handleUpdateLimitWithdrawalAmt(selectedMemberId);
   };
