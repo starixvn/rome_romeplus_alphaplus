@@ -30,6 +30,10 @@ public class WriteLogRunSPCriteria(
     [SpParam(Ignored = true)]
     public short? CustDBGroupId { get; set; }
 
+    public int ErrCode { get; set; }
+    
+    public string ErrMsg { get; set; }
+
     public override string GetSettingKey()
         => CustDBGroupId.HasValue
         ? SPNameHelper.CustDBPrefix("WriteLog_CashService_UserLog_RunSP", CustDBGroupId.Value)
