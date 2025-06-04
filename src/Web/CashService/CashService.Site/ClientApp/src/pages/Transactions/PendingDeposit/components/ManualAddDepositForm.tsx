@@ -93,11 +93,9 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
       ]);
 
       setCashMemberOptions(bankInfo);
-      if (bankInfo.length > 0) {
-        setPaymentFrom(
-          renderBankOptionValue(bankInfo[0].bankCode, bankInfo[0].bankAccountNumber)
-        );
-      }
+      setPaymentFrom(
+        renderBankOptionValue(bankInfo[0]?.bankCode, bankInfo[0]?.bankAccountNumber)
+      );
       setAgentAvailableCredit(agentAC);
     };
 
