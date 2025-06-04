@@ -147,7 +147,7 @@ export const IconPen: React.FC = () => (
 
 export const IconClose: React.FC = () => (
   <svg
-    className="w-[22px] h-[22px] fill-[#163f78]"
+    className="w-[22px] h-[22px] fill-[#333333] dark:fill-[#ededed]"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"

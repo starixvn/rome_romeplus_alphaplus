@@ -1,4 +1,19 @@
 :root, :root [data-theme='light'] {
+    //button
+    --button-text: #ffffff;
+
+    --button-background: #0b599c;
+    --button-background-hover: #0a5494;
+
+    --button-outline-background: #ffffff;
+    --button-outline-text: #0a5494;
+    --button-outline-background-hover: #0a5494;
+    --button-outline-text-hover: #ffffff;
+    --button-outline-border: #0a5494;
+
+    --button-background-cancel: #696969;
+    --button-background-cancel-hover: #636363;  
+    
     //tab
     --tab-component-color: #333;
     --tab-component-border-color: #516e8f;
@@ -14,31 +29,8 @@
         --tab-component-color-active: #2267b6;
         --tab-component-border-color: #516e8f;
     }
-
-    //button
-    --button-text: #ffffff;
-
-    --button-background: #0b599c;
-    --button-background-hover: #0a5494;
-
-    --button-outline-background: #ffffff;
-    --button-outline-text: #0a5494;
-    --button-outline-background-hover: #0a5494;
-    --button-outline-text-hover: #ffffff;
-    --button-outline-border: #0a5494;
-
-    --button-background-cancel: #696969;
-    --button-background-cancel-hover: #636363;    
 }
-:root [data-theme='dark'] {
-    //tab
-    --titleComponent-color: #999;
-    --titleComponent-border-color: #ededed;
-    &.view-super, &.view-master, &.view-agent{
-        --tab-component-color: #ededed;
-        --tab-component-border-color: #ededed;
-    }
-
+:root [data-theme='dark'] {   
     //button
     --button-text: #ffffff;
 
@@ -53,4 +45,12 @@
 
     --button-background-cancel: #696969;
     --button-background-cancel-hover: #636363;
+    
+     //tab
+     --titleComponent-color: #999;
+     --titleComponent-border-color: #ededed;
+     &.view-super, &.view-master, &.view-agent{
+         --tab-component-color: #ededed;
+         --tab-component-border-color: #ededed;
+     }
 }

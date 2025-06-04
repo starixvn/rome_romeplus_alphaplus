@@ -52,9 +52,9 @@ export const ErrorMessageComponent: React.FC<ResultMessageProps> = ({
     message && (
       <div className={`${className} max-[768px]:py-[12px]`} role="alert">
         <div
-          className={`bg-[#FFF2F2] border-[#FE0000] relative font-bold text-[12px] text-[#333] border-[1px] rounded-[10px] pl-[36px] pr-[12px] py-[8px] leading-[18px] block max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:pl-[40px] max-[768px]:pr-[12px] max-[768px]:py-[12px]`}
+          className={`bg-[#FFE8E8] dark:bg-[#501B1B] border-[#E2B6B6] dark:border-[#FF8C8C] relative font-[500] border-[1px] rounded-[3px] pl-[35px] pr-[7px] py-[8px] leading-[18px]`}
         >
-          <IconError className="w-[20px] h-[20px] fill-[#D42020] absolute top-[7px] left-[10px] max-[768px]:top-[10px] max-[768px]:left-[12px]" />
+          <IconError className="w-[20px] h-[20px] fill-[#CC0000] dark:fill-[#FF6D6D] absolute top-[7px] left-[10px]" />
           <div dangerouslySetInnerHTML={{ __html: message }}></div>
         </div>
       </div>

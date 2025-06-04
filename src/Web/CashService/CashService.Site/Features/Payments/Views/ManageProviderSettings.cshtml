@@ -1,5 +1,6 @@
 @using AlphaPlus.CashService.Site.Features.Payments.ViewModels
 @using Newtonsoft.Json
+@inject AlphaPlus.Core.Models.IUserSession userSession
 @{
     ViewData["Title"] = "Manage Provider Settings";
     Layout = "_Layout";
@@ -12,7 +13,7 @@
     </environment>
 }
 
-<div id="root"></div>
+<div id="root" class="view-@userSession.SiteName.ToLowerInvariant()" data-theme="@(string.IsNullOrWhiteSpace(Model.DarkModeName) ? "light" : "dark")"></div>
 
 <script>
     window.providerSettingsViewModel = @Html.Raw(JsonConvert.SerializeObject(Model));

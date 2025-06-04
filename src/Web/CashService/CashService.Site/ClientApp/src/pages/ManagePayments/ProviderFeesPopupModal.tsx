@@ -38,15 +38,10 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({  provid
     <PopupModalComponent title={`${tManagePayments('feeDetails')} - ${provider.name}`} onClose={onClose}>
       {isLoading ? (<Loading />) : (
           <>
-            <div className="">
-              <div>
-                <label className="font-semibold">{provider.name} {tManagePayments('fees')}</label>
-              </div>
-              <div>
-                <label className="form-label">{tManagePayments('howItWorks')}</label>
-              </div>
-              <p>{tManagePayments('feesInfo1')}</p>
-        
+            <div className="">               
+              <p className="font-semibold">{provider.name} {tManagePayments('fees')}</p>                
+              <p>{tManagePayments('howItWorks')}</p>              
+              <p>{tManagePayments('feesInfo1')}</p>        
               <ul className='list-disc pl-[24px] mb-[16px]'>
                 <li>{tManagePayments('feesFormula')}</li>
               </ul>

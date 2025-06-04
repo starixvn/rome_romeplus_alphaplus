@@ -450,9 +450,9 @@ function PaymentProviderSettings() {
               message={updateMessage.text}
             />
           )}
-          <div className="bg-[#ffffff] px-[16px] py-[10px] mb-[8px]">
+          <div className="px-[16px] py-[10px] mb-[8px]">
             <div className="settings-header">
-              <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[#cfcfcf] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
+              <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-color)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
                 <BackButtonComponent onClick={onBackNavigation} />
                 <TitleComponent title={window.providerSettingsViewModel.Provider.Name} />
               </div>
