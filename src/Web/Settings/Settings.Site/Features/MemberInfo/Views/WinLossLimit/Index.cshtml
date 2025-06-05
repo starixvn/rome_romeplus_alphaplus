@@ -18,7 +18,7 @@
 @section Styles {
     @StaticResources.RenderStylesWithDarkMode("~/Features/MemberInfo/assets/bundles/win-loss-limit")
 }
-@if (!AppSettings.IsSupportPotentialWinLimit(userSession.Site))
+@if (!userSession.IsAgent || !AppSettings.IsSupportPotentialWinLimit(userSession.Site))
 {
     <div class="page-title">
         <span class="pull-left">@Resources.MemberWinLossLimit</span>

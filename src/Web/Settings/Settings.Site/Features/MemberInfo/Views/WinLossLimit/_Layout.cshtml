@@ -13,7 +13,7 @@
 }
 
 <div class="win-loss-limit-container">
-    @if (AppSettings.IsSupportPotentialWinLimit(userSession.Site))
+    @if (userSession.IsAgent && AppSettings.IsSupportPotentialWinLimit(userSession.Site))
     {
         @await Component.InvokeAsync("Tab", new { tabName = action.ToLowerInvariant() })
         <div class="tab-content">

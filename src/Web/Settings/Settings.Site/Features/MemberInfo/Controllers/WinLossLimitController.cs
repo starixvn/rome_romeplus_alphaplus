@@ -20,7 +20,7 @@ public partial class WinLossLimitController(IMediator mediator, IUserSession use
 
     public Task<ActionResult> SportsbookPotentialWinLimit(SportsbookPotentialWinLimitQuery message)
     {
-        if (!AppSettings.IsSupportPotentialWinLimit(userSession.Site))
+        if (!userSession.IsAgent || !AppSettings.IsSupportPotentialWinLimit(userSession.Site))
         {
             return Task.FromResult<ActionResult>(Unauthorized());
         }
@@ -30,7 +30,7 @@ public partial class WinLossLimitController(IMediator mediator, IUserSession use
 
     public async Task<ActionResult> PotentialExcel(ExcelSportsbookPotentialWinLimitQuery message)
     {   
-        if (!AppSettings.IsSupportPotentialWinLimit(userSession.Site))
+        if (!userSession.IsAgent || !AppSettings.IsSupportPotentialWinLimit(userSession.Site))
         {
             return Unauthorized();
         }
