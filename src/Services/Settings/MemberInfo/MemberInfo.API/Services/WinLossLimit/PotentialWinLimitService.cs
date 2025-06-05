@@ -39,14 +39,17 @@ public class PotentialWinLimitService(IDynamicRepository repository) : IPotentia
         var potentialWinLimitAmount = await _repository.FetchAsync<PotentialWinLimitDetail>(potentialWinLimitAmountCriteria, param.AGIP);
 
         var potentialWinLimitDetail = winLossLimitDetail
-            .Join(potentialWinLimitAmount,
+            .GroupJoin(potentialWinLimitAmount,
                 x => x.CustId,
                 y => y.CustId,
-                (x, y) =>
+                (x, y) => new { x, y })
+            .SelectMany(
+                xy => xy.y.DefaultIfEmpty(),
+                (xy, y) =>
                 {
-                    x.AccumWinLoss = y.AccumWinLoss;
-                    x.AccumToWin = y.AccumToWin;
-                    return x;
+                    xy.x.AccumWinLoss = y?.AccumWinLoss ?? 0;
+                    xy.x.AccumToWin = y?.AccumToWin ?? 0;
+                    return xy.x;
                 })
             .ToList();
 

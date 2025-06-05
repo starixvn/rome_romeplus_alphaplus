@@ -5,6 +5,12 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.WinLossLimit;
 
 public class SportsbookPotentialWinLimitQuery : MemberInfoBaseQuery, IRequest<SportsbookPotentialWinLimitViewModel>
 {
+    private const int AllProblemAccount = 2;
+    public SportsbookPotentialWinLimitQuery()
+    {
+        ProblemAccount = AllProblemAccount;
+    }
+
     public int BetType { get; set; }
 
     public int SportType { get; set; }
