@@ -1,4 +1,6 @@
-namespace AgencyCash.API.Shared.Helpers.Tests;
+using AgencyCash.API.Shared.Helpers;
+
+namespace AgencyCash.API.Tests.Shared.Helpers;
 
 [Trait("Category", "Shared")]
 public class Base64StringHelperTests

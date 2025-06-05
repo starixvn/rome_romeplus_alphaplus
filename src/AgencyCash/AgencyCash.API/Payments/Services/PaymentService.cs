@@ -2,7 +2,6 @@ using AgencyCash.API.Payments.Criteria;
 using AgencyCash.API.Payments.Criteria.Withdrawal;
 using AgencyCash.API.Payments.Models;
 using AgencyCash.API.Shared;
-using AgencyCash.API.Shared.Models;
 using AgencyCash.API.Shared.Helpers;
 using Fanex.Data.Repository;
 

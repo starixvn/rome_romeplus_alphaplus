@@ -1,7 +1,7 @@
 using AgencyCash.API.Payments.Criteria.Deposit;
 using AgencyCash.API.Shared.Helpers;
 
-namespace AgencyCash.API.Payments.Tests.Criteria;
+namespace AgencyCash.API.Tests.Payments.Criteria.Deposit;
 
 [Trait("Category", "Deposit")]
 public class AddTransactionDepositCriteriaTests
