@@ -4,6 +4,7 @@ import {
   TransactionItem,
   TransactionsHistoryResponse,
   TransactionsHistoryParams,
+  ExportExcelParams,
 } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import Filters from './Filters/Filters';
 import Search from './Search';
@@ -171,6 +172,15 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     setApiParams((prev) => ({ ...prev, pageSize: newSize, pageIndex: 1 }));
   };
 
+  const onDownload = () => {
+    const paramsForDownload: ExportExcelParams = {
+      fromDate: apiParams.dateRange[0],
+      toDate: apiParams.dateRange[1],
+      status: apiParams.status,
+      transactionType: transactionType,
+    };
+    transactionAPI.exportExcel(paramsForDownload);
+  };
   const onRefreshNeeded = () => {
     const paramsForRefresh: TransactionsHistoryParams = {
       ...apiParams,
@@ -214,6 +224,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           placeholder="Username/Reference No."
           items={displayedItems}
           columnFilter={columnFilter}
+          onDownload={onDownload}
         />
       </div>
 

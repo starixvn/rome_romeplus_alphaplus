@@ -19,9 +19,10 @@ export const renderBankOptionValue = (bankCode: string, bankAccount: string) => 
 };
 
 export const renderBankAccount = (bankAccount: string) => {
+  if (!bankAccount) return <div className="flex items-center">-</div>;
   const [bankCode, accountNumber] = bankAccount.split('-');
-  if (!accountNumber && !bankCode) return <div className="flex items-center">-</div>;
   if (bankCode && !accountNumber) return <div className="flex items-center">{bankCode}</div>;
+  if (!accountNumber && !bankCode) return <div className="flex items-center">-</div>;
   return (
     <div className="flex items-center">
       {bankCode && (

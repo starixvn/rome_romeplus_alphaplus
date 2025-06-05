@@ -16,9 +16,10 @@ interface SearchProps {
   placeholder?: string;
   items: TransactionItem[];
   columnFilter: string[];
+  onDownload: () => void;
 }
 
-const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter }) => {
+const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, onDownload }) => {
   const { t } = useTranslation('transactionHistory');
   const [showAlert, setShowAlert] = useState(false);
 
@@ -48,12 +49,15 @@ const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter })
   const handleCopy = () => {
     const headers = [
       t('table.no'),
-      `${t('table.username')}/${t('table.nickname')}`,
+      `${t('table.username')} & ${t('table.nickname')}`,
       ...columnFilter.map(getColumnHeader),
     ];
 
     const rows = items.map((item, index) => {
-      const rowData: string[] = [(index + 1).toString(), `${item.username} / ${item.nickname}`];
+      const rowData: string[] = [
+        (index + 1).toString(),
+        `${item.username} ${item.nickname ? `(${item.nickname})` : ''}`,
+      ];
       columnFilter.forEach((col) => {
         switch (col) {
           case 'name':
@@ -101,8 +105,8 @@ const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter })
       });
   };
 
-  const handleDownload = () => {
-    // TODO: Implement download functionality
+  const handleDownload = async () => {
+    onDownload();
   };
 
   return (

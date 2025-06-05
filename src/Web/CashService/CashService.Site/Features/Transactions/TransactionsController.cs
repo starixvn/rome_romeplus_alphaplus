@@ -32,11 +32,29 @@ public class TransactionsController(
 
     public async Task<IActionResult> GetHistory([FromQuery] GetTransactionFilter filter)
     {
-        var url = $"/transactions/history";
+        var url = "/transactions/history";
         filter.CustId = agentId;
         filter.SiteDbGroupId = siteDbGroupId;
         var result = await httpClientHelper.GetAsync<object>(url, ObjectConverter.ToDictionary(filter));
         return Json(result);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> ExportExcel([FromBody] ExportExcelParams param)
+    {
+        var filter = new GetTransactionFilter
+        {
+            FromDate = param.FromDate,
+            ToDate = param.ToDate,
+            PaymentStatus = param.Status,
+            TransactionType = param.TransactionType,
+            SiteDbGroupId = siteDbGroupId,
+            CustId = agentId,
+            Account = string.Empty
+        };
+        var transactions = await httpClientHelper.GetAsync<Transaction>("/transactions/history", ObjectConverter.ToDictionary(filter));
+
+        return Json(transactions);
     }
 
     public async Task<IActionResult> Detail(long transactionId, int custId)
