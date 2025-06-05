@@ -22,10 +22,6 @@ public class AutoDepositRequest
     [PositiveNumber]
     public short PaymentMethodId { get; init; }
 
-    [RequiredIf(nameof(DepositMethod), AutoDepositType.DecimalBankAccount)]
-    [PositiveNumber]
-    public byte? MachingMode { get; init; }
-
     [Required(ErrorMessage = "{0} is required.")]
     [StringLength(maximumLength: 100, ErrorMessage = "{0} cannot exceed {1} characters.")]
     public string PaymentFrom { get; init; }
@@ -36,6 +32,18 @@ public class AutoDepositRequest
 
     [PositiveNumber]
     public decimal Amount { get; init; }
+
+    [RequiredIf(nameof(MatchingMode), (byte)1)]
+    [PositiveNumber]
+    public decimal? ConfirmAmount { get; init; }
+
+    /// <summary>
+    /// 1: Decimal
+    /// 2: Bank Matching
+    /// </summary>
+    [RequiredIf(nameof(DepositMethod), AutoDepositType.DecimalBankAccount)]
+    [PositiveNumber]
+    public byte? MatchingMode { get; init; }
 
     public string Remark { get; init; }
 

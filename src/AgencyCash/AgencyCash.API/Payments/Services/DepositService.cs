@@ -74,15 +74,17 @@ public class DepositService(
             request.PaymentFrom,
             request.PaymentTo,
             request.Amount,
-            request.PaySlipBuffer,
-            request.IP,
-            request.Remark);
+            paySlip: request.PaySlipBuffer,
+            ip: request.IP,
+            remark: request.Remark);
 
         return await AddTransactionAndWriteLogs(criteria, siteDBConfig.CustDBGroupId);
     }
 
     public async Task<Result> Auto(AutoDepositRequest request)
     {
+        const byte AutoDeposit = 2;
+
         var siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
         var validateResult = await ValidatePayment(request.AgentId, request.CustId, TransactionType.Deposit, siteDBConfig.CustDBGroupId);
 
@@ -108,15 +110,16 @@ public class DepositService(
             limitCriteria.CreditMembers_GivenCredit,
             limitCriteria.MinAmt,
             limitCriteria.MaxAmt,
-            transactionTypeId: TransactionType.AutoDeposit,
+            transactionTypeId: AutoDeposit,
             paymentType: request.DepositMethod,
             paymentMethodId: request.PaymentMethodId,
             request.PaymentFrom,
             request.PaymentTo,
             request.Amount,
-            paySlip: null,
-            request.IP,
-            request.Remark);
+            confirmAmount: request.ConfirmAmount,
+            matchingMode: request.MatchingMode,
+            ip: request.IP,
+            remark: request.Remark);
 
         return await AddTransactionAndWriteLogs(criteria, siteDBConfig.CustDBGroupId);
     }

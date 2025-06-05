@@ -76,30 +76,16 @@ public abstract class PaymentService(
             log.IP,
             log.Doing);
         var functionName = nameof(WriteLogTransfer);
-        var isSuccess = await WriteLogTransfer(criteria, functionName);
+        var isSuccess = await WriteLog(criteria, functionName);
 
         if (!isSuccess)
         {
             criteria.SiteDBGroupId = siteDBGroupId;
-            await WriteLogTransfer(criteria, functionName);
+            await WriteLog(criteria, functionName);
         }
     }
 
     private async Task<bool> WriteLog(INonQueryCommand criteria, string functionName)
-    {
-        try
-        {
-            await repository.ExecuteAsync(criteria);
-            return true;
-        }
-        catch (Exception ex)
-        {
-            await logger.ErrorAsync($"{ex.Message}. {functionName} failed. Criteria: {JsonHelper.ToJson(criteria)}", ex);
-            return false;
-        }
-    }
-
-    private async Task<bool> WriteLogTransfer(INonQueryCommand criteria, string functionName)
     {
         try
         {
