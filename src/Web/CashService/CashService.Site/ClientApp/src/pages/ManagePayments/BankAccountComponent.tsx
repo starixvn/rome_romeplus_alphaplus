@@ -8,11 +8,13 @@ import BankIcon from '../../components/BankComponents';
 import {
   ButtonFullComponent,
   ButtonOutlineComponent,
+  ButtonPenComponent,
+  ButtonDeleteComponent,
   ButtonTabActiveComponent,
   ButtonTabInactiveComponent,
 } from '../../components/ButtonComponents';
 import CustomDropdown from '../../components/CustomDropdownComponent';
-import { IconDelete, IconInfo, IconPen, IconSearch, IconSync } from '../../components/Icons';
+import { IconInfo, IconSearch } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
 import { ErrorMessageComponent, SuccessMessageComponent } from '../../components/MessageComponents';
 import { StatusDisabledComponent, StatusEnabledComponent } from '../../components/StatusComponents';
@@ -294,7 +296,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
           
               <div className="card-body h-full">
                 <div className=" h-full flex flex-col">
-                  <div className="px-[14px] py-[8px]">
+                  <div className="py-[8px]">
                     <ErrorMessageComponent message={error} />
                     <SuccessMessageComponent message={successMessage} />
                     <MediumTitleComponent className="my-[8px]" text={tManagePayments('manageBankAccountAndLimits')} />
@@ -315,7 +317,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                   {loading && <Loading />}
                   {!loading && !error && banks.length > 0 && (
                     <>
-                      <div className="flex px-[14px] flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
+                      <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                         <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
                           <LabelTitleComponent text={tManagePayments('bank')} />
                           <CustomDropdown
@@ -371,7 +373,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                           </select>
                         </div>
                       </div>
-                      <div className="flex px-[14px] pb-[16px] w-full">
+                      <div className="flex pb-[16px] w-full">
                         <div className="w-[250px] ml-auto ">
                           <div className="relative">
                             <span className="absolute transform-[translatey(-50%)] z-[10] top-1/2 left-[8px]">
@@ -412,28 +414,11 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                           <tbody className="font-[500]">
                           {bankAccounts.map((account, index) => (
                               <tr key={account.id}>
-                                <td className="col-no bg-[#ffffff]">{index + 1}</td>
-                                <td className="col-action bg-[#ffffff]">
+                                <td className="col-no ">{index + 1}</td>
+                                <td className="col-action ">
                                   <div className="flex justify-center">
-                                    <button
-                                      className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
-                                      onClick={() => onEditBankAccount(account.id)}
-                                      title={tGlobal('edit')}
-                                    >
-                                      <IconPen />
-                                    </button>
-                                    <button
-                                      className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
-                                      onClick={() => onDeleteBankAccount(account)}
-                                      title={tGlobal('delete')}
-                                      disabled={deleting === account.id}
-                                    >
-                                      {deleting === account.id ? (
-                                        <IconSync className="w-[16px] h-[16px] fill-[var(--primary-color)] animate-spin duration-2000 ease-linear animate-infinite" />
-                                      ) : (
-                                        <IconDelete />
-                                      )}
-                                    </button>
+                                    <ButtonPenComponent disabled={deleting === account.id} onClick={() => onEditBankAccount(account.id)} />
+                                    <ButtonDeleteComponent onClick={() => onDeleteBankAccount(account)} />
                                   </div>
                                 </td>
                                 <td className="text-left">{account.accountNickname}</td>

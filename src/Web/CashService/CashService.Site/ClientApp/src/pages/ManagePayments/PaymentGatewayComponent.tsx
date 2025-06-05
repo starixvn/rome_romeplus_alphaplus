@@ -4,10 +4,11 @@ import { useTranslation } from 'react-i18next';
 import {
   ButtonFullComponent,
   ButtonOutlineComponent,
+  ButtonPenComponent,
   ButtonTabActiveComponent,
   ButtonTabInactiveComponent,
 } from '../../components/ButtonComponents';
-import { IconInfo, IconPen } from '../../components/Icons';
+import { IconInfo } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
 import { ErrorMessageComponent } from '../../components/MessageComponents';
 import {
@@ -151,13 +152,8 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
                     <tr key={provider.id}>
                       <td>{index + 1}</td>
                       <td>
-                        <div className="flex justify-center items-center">
-                          <button
-                            className="mx-[4px] cursor-pointer p-[4px] rounded-[4px] hover:bg-[var(--button-icon-hover)] text-[var(--text-color-primary)]"
-                            onClick={() => onEditClick(provider)}
-                          >
-                            <IconPen />
-                          </button>
+                        <div className="flex justify-center items-center">                          
+                          <ButtonPenComponent onClick={() => onEditClick(provider)} />
                         </div>
                       </td>
                       <td>{provider.name}</td>

@@ -2,14 +2,12 @@
 //@import './roboto/roboto.css';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400..700;1,400..700&display=swap');
 
-:root, :root [data-theme='light'] {
-  
+:root, :root [data-theme='light'] {  
   --primary-color: #163f78;
   --font-weight-semibold: 500;
   
   //background
   --background-color: #ffffff;
-
 
   //text 
   --text-color-primary: #163f78;
@@ -25,20 +23,11 @@
   --border-control-error: #ff0000;
   --border-control-focus: #163f78;
   --background-control: #ffffff;
-  //button 
+  --background-control-disabled-background: #e6e6e6;
+  --background-control-disabled-border: #d1d1d1;
+
+  //icon 
   --button-icon-hover: rgba(0,0,0,.1);
-
-  
-  //button switch-toggle
-  --button-switch-toggle-background: #eeeeee;
-  --button-switch-toggle-background-active: #163f78;
-  --button-switch-toggle-background-color: #163f78;
-  --button-switch-toggle-background-color-active: #ffffff;
-
-  //button switch
-  --button-switch-background-active: #0b599c;
-  --button-switch-dot-background: #ffffff;
-  --button-switch-background: #c2c2c2;
 
   //message
   --message-background-processing: #90d3ff;
@@ -50,6 +39,7 @@
   // table
   --table-header-background: #EFF3F8;
   --table-background: #ffffff;
+  --table-background-hover: #E5E2D3;
   --table-header-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   --table-border-color: #A6A6A6;
   --table-header-color: #1a1a1a;
@@ -74,27 +64,22 @@
   //border
   --border-color: #313334;
   --text-color-primary: #36587D;
-  
 
   //control
   --border-control: #474747;
   --border-control-error: #CC7070;
   --border-control-focus: #163f78;
   --background-control: #2b2b2b;
+  --background-control-disabled-background: #1c1c1c;
+  --background-control-disabled-border: #262626;
 
-
-  //button 
+  //icon 
   --button-icon-hover: rgba(255,255,255,.1);
-
-  //button switch
-  --button-switch-background-active: #36587D;
-  --button-switch-dot-background: #ededed;
-  --button-switch-background: #2b2b2b;
-
 
   // table
   --table-header-background: #303740;
   --table-background: #171717;
+  --table-background-hover: #4D4A41;
   --table-header-shadow: none;
   --table-border-color: #696969;
   --table-header-color: #ffffff;
@@ -104,6 +89,7 @@
   --modal-background: #171717;
   --modal-border-color: #515151;
   --modal-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
+  
   //loading
   --loading-color: #ededed;
 }
@@ -122,7 +108,15 @@ body{
   height: 100%;
   padding: 0 3px;
 }
-
+table{
+  tr{
+    &:hover{
+      th,td{
+        background-color: var(--table-background-hover);
+      }
+    }
+  }
+}
 .table-fixed-header {   
   overflow: auto;
   table {
@@ -257,13 +251,18 @@ body{
   background-color: var(--background-control);
   border: 1px solid var(--border-control);
   border-radius: 3px;
-  padding-inline: 12px;
+  padding-inline: 8px;
   height: 28px;
   width: 100%; 
   outline: none;
   cursor: pointer;
   &.error{
     border-color: var(--border-control-error);
+  }
+  &.disabled{
+    
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 }
 
@@ -359,32 +358,53 @@ body{
   }
 }
 .react-confirm-alert-overlay{
-  background: #00000066;
+  background-color: #00000080;
+  align-items: flex-start;
+  width: 100%;
+  .react-confirm-alert{
+    width: 100%;
+  }
 }
 .react-confirm-alert-blur{
   filter: blur(0px);
 }
 .react-confirm-alert-body{
-  border-radius: 4px;
-  font-size: 12px;
-  color: #333333;
+  margin-top: 100px;
+  border-radius: 3px;
+  color: var(--text-color);
   box-shadow: none;
   font-family: inherit;
+  padding: 1px 20px 10px;
+  background-color: var(--modal-background);
+  box-shadow: var(--modal-box-shadow);
+  border: 1px solid var(--modal-border-color);
+  margin: 100px auto 0;
+  @media (max-width: 768px) {
+    max-width: 90%;
+  }
   h1{
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--text-color-primary);
+    margin: 10px 0;
   }
-   .react-confirm-alert-button-group{
-    button{
-      font-size: 12px;
+  .react-confirm-alert-button-group{
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-direction: row-reverse;
+    
+    button{   
       font-weight: 600;
       color: var(--button-text);
       background-color: var(--button-background);
       border: 1px solid var(--button-border);
-      border-radius: 15px;
+      border-radius: 3px;
       padding: 4px 16px;
       cursor: pointer;
+      height: 28px;
+      margin: 0;
+      outline: none;
       &:nth-child(1){
         &:hover{
           background-color: var(--button-background-hover);
@@ -392,34 +412,17 @@ body{
       }
       &:nth-child(2){
         background-color: var(--button-background-cancel);
-        color: var(--button-text-cancel);        
-        box-shadow:  0 1px 5px #0003,  0 2px 2px #00000024,  0 3px 1px -2px #0000001f;
         &:hover{
           background-color: var(--button-background-cancel-hover); 
         }
       }
-
     }
-   }
+  }
 }
 
 
 
 
 @media (max-width: 768px) {
-  body{
-    font-size: 16px;
-    color: #ededed;
-  }
-  .table-fixed-header{
-    th,td{
-      padding: 8px 10px;
-    }
-  }
-  .table-striped {
-    font-size: 16px;
-  }
-  .tippy-box{
-    font-size: 16px;
-  }
+ 
 }

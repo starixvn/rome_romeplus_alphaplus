@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconBack, IconClose } from './Icons';
+import { IconBack, IconClose, IconDelete, IconPen } from './Icons';
 import { useTranslation } from 'react-i18next';
 import './ButtonComponents.scss';
 interface ButtonComponentProps {
@@ -109,7 +109,7 @@ export const EnableButtonComponent: React.FC<ButtonComponentProps> = ({ isActive
   return (
     <button
       type="button"
-      className={` w-[100px] px-[16px] py-[8px] cursor-pointer rounded-tl-[4px] rounded-bl-[4px] outline-none ${isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
+      className={` w-[100px] px-[16px] py-[8px] cursor-pointer rounded-tl-[4px] rounded-bl-[4px] outline-none ${isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-color)]'}`}
       onClick={onClick}
     >
       {tGlobal('enable')}
@@ -123,7 +123,7 @@ export const DisableButtonComponent: React.FC<ButtonComponentProps> = ({ isActiv
   return (
     <button
       type="button"
-      className={` w-[100px] px-[16px] py-[8px] cursor-pointer rounded-tr-[4px] rounded-br-[4px] outline-none ${isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
+      className={` w-[100px] px-[16px] py-[8px] cursor-pointer rounded-tr-[4px] rounded-br-[4px] outline-none ${isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-color)]'}`}
       onClick={onClick}
     >
       {tGlobal('disable')}
@@ -137,7 +137,7 @@ export const ButtonOnComponent: React.FC<ButtonComponentProps> = ({ isActive, on
   return (
     <button
       type="button"
-      className={` w-[70px] px-[16px] py-[8px] cursor-pointer rounded-tl-[4px] rounded-bl-[4px] outline-none ${isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
+      className={`w-[70px] px-[16px] py-[8px] cursor-pointer rounded-tl-[4px] rounded-bl-[4px] outline-none ${isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-color)]'}`}
       onClick={onClick}
     >
       {tGlobal('on')}
@@ -151,7 +151,7 @@ export const ButtonOffComponent: React.FC<ButtonComponentProps> = ({ isActive, o
   return (
     <button
       type="button"
-      className={` w-[70px] px-[16px] py-[8px] cursor-pointer rounded-tr-[4px] rounded-br-[4px] outline-none ${isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
+      className={`w-[70px] px-[16px] py-[8px] cursor-pointer rounded-tr-[4px] rounded-br-[4px] outline-none ${isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-color)]'}`}
       onClick={onClick}
     >
       {tGlobal('off')}
@@ -198,5 +198,26 @@ export const ButtonTabComponent: React.FC<ButtonComponentProps> = ({ text, onCli
     <ButtonTabActiveComponent text={text} onClick={onClick} />
   ) : (
     <ButtonTabInactiveComponent text={text} onClick={onClick} />
+  );
+};
+
+export const ButtonPenComponent: React.FC<ButtonComponentProps> = ({ onClick }) => {
+  return (
+    <button
+      className="mx-[4px] cursor-pointer p-[4px] rounded-[4px] hover:bg-[var(--button-icon-hover)] text-[var(--text-color-primary)]"
+      onClick={onClick}
+    >
+      <IconPen />
+    </button>
+  );
+};
+export const ButtonDeleteComponent: React.FC<ButtonComponentProps> = ({ onClick }) => {
+  return (
+    <button
+      className="mx-[4px] cursor-pointer p-[4px] rounded-[4px] hover:bg-[var(--button-icon-hover)] text-[var(--text-color-primary)]"
+      onClick={onClick}
+    >
+      <IconDelete />
+    </button>
   );
 };

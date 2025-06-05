@@ -618,7 +618,7 @@ function PaymentProviderSettings() {
                           <>
                             <br />
                             <span
-                              className="inline-block mt-[4px] cursor-pointer text-[var(--text-color-primary)] font-semibold underline"
+                              className="inline-block mt-[4px] cursor-pointer text-[var(--text-link-color)] font-semibold underline"
                               onClick={() => onRetrySetup(index)}
                             >
                               {tPaymentProviderSettings('retrySetup')}
