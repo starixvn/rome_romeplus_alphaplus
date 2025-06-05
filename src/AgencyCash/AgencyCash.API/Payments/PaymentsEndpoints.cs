@@ -2,8 +2,8 @@ using AgencyCash.API.Payments.Models;
 using AgencyCash.API.Payments.Requests;
 using AgencyCash.API.Payments.Services;
 using AgencyCash.API.Shared.DataAnnotations;
-using AgencyCash.API.Shared.Helpers;
 using AgencyCash.API.Shared.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AgencyCash.API.Payments;
 
@@ -29,7 +29,11 @@ public static class PaymentsEndpoints
         withdrawal
             .MapPost("/manual", ManualWithdrawal)
             .AddEndpointFilter<ModelValidationFilter<ManualWithdrawalRequest>>()
-            .Produces<Result>();
+            .Produces<PaymentResult>();
+        withdrawal
+            .MapGet("/limit", GetWithdrawalLimitAmount)
+            .AddEndpointFilter<ModelValidationFilter<GetWithdrawalLimitRequest>>()
+            .Produces<WithdrawalLimitResult>();
 
         var transactions = app.MapGroup("/api/transactions").WithTags("Transactions");
         transactions
@@ -48,7 +52,7 @@ public static class PaymentsEndpoints
         return TypedResults.Ok(await depositService.GetLimit(request));
     }
 
-    private static async Task<IResult> ManualDeposit(ManualDepositRequest request, IDepositService depositService)
+    private static async Task<IResult> ManualDeposit([FromBody] ManualDepositRequest request, IDepositService depositService)
     {
         if (request == null)
         {
@@ -64,7 +68,7 @@ public static class PaymentsEndpoints
         return TypedResults.Ok(await depositService.Manual(request));
     }
 
-    private static async Task<IResult> AutoDeposit(AutoDepositRequest request, IDepositService depositService)
+    private static async Task<IResult> AutoDeposit([FromBody] AutoDepositRequest request, IDepositService depositService)
     {
         if (request == null)
         {
@@ -74,27 +78,25 @@ public static class PaymentsEndpoints
         return TypedResults.Ok(await depositService.Auto(request));
     }
 
-    private static async Task<IResult> ManualWithdrawal(
-        ManualWithdrawalRequest request,
-        IWithdrawalService withdrawalService)
+    private static async Task<IResult> ManualWithdrawal([FromBody] ManualWithdrawalRequest request, IWithdrawalService withdrawalService)
     {
-        if (request is null || !request.IsValid())
+        if (request is null)
         {
-            return BadRequest(nameof(request), "Request parameters is invalid.");
+            return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
         }
 
-        // Convert to PaymentService.API request
-        var paymentServiceRequest = new ManualWithdrawalRequest
-        {
-            CustId = request.CustId,
-            AgentId = request.AgentId,
-            PaymentTo = request.PaymentTo,
-            Amount = request.Amount,
-            IP = request.IP
-        };
-
-        var result = await withdrawalService.CreateManualWithdrawal(paymentServiceRequest);
+        var result = await withdrawalService.CreateManualWithdrawal(request);
         return TypedResults.Ok(result);
+    }
+
+    private static async Task<IResult> GetWithdrawalLimitAmount([AsParameters] GetWithdrawalLimitRequest request, IWithdrawalService withdrawalService)
+    {
+        if (request is null)
+        {
+            return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
+        }
+
+        return TypedResults.Ok(await withdrawalService.GetWithdrawalLimitAmount(request));
     }
 
     private static async Task<IResult> UpdateTransactionStatus(

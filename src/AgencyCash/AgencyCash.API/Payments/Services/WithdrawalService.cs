@@ -11,6 +11,7 @@ namespace AgencyCash.API.Payments.Services;
 public interface IWithdrawalService
 {
     Task<PaymentResult> CreateManualWithdrawal(ManualWithdrawalRequest request);
+    Task<WithdrawalLimitResult> GetWithdrawalLimitAmount(GetWithdrawalLimitRequest request);
 }
 
 public class WithdrawalService : PaymentService, IWithdrawalService
@@ -57,11 +58,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                 siteDBConfig.CustDBGroupId);
 
             await _repository.ExecuteAsync(withdrawalLimitCriteria);
-            if (withdrawalLimitCriteria.ErrCode != 0)
-            {
-                return new PaymentResult(withdrawalLimitCriteria.ErrCode, withdrawalLimitCriteria.ErrMsg);
-            }
-
+            
             // Step 4: Add withdrawal transaction
             var withdrawalTransactionCriteria = new ManualWithdrawalTransactionCriteria(
                 request.CustId,
@@ -88,6 +85,35 @@ public class WithdrawalService : PaymentService, IWithdrawalService
         {
             await logger.ErrorAsync(ex.Message, ex);
             return new PaymentResult(500, "An error occurred while processing withdrawal request.");
+        }
+    }
+
+    public async Task<WithdrawalLimitResult> GetWithdrawalLimitAmount(GetWithdrawalLimitRequest request)
+    {
+        try
+        {
+            // Step 1: Get site DB config
+            SiteDBConfig siteDBConfig = await _siteDBService.GetSiteDBConfig(request.AgentId);
+
+            // Step 2: Get member cash balance
+            var getMemberCashBalanceCriteria = new GetMemberCashBalanceCriteria(request.CustId, siteDBConfig.SiteDBGroupId);
+            await _repository.ExecuteAsync(getMemberCashBalanceCriteria);
+
+            // Step 3: Get daily withdrawal count
+            var getDailyWithdrawalCriteria = new GetDailyWithdrawalCriteria(request.CustId, siteDBConfig.SiteDBGroupId);
+            await _repository.ExecuteAsync(getDailyWithdrawalCriteria);
+
+            // Step 4: Get withdrawal limits
+            var withdrawalLimitCriteria = new WithdrawalLimitAmountCriteria(request.CustId, request.AgentId, isMemberSite: true, siteDBConfig.CustDBGroupId);
+
+            await _repository.ExecuteAsync(withdrawalLimitCriteria);
+
+            return new WithdrawalLimitResult(0, string.Empty, withdrawalLimitCriteria.MinAmt, withdrawalLimitCriteria.MaxAmt, getDailyWithdrawalCriteria.WithdrawalCnt, getMemberCashBalanceCriteria.TotalCash);
+        }
+        catch (Exception ex)
+        {
+            await logger.ErrorAsync(ex.Message, ex);
+            return new WithdrawalLimitResult(500, "An error occurred while getting withdrawal limit amount.");
         }
     }
 
