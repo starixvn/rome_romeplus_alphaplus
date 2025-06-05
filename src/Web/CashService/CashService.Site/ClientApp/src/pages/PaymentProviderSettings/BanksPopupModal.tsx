@@ -46,7 +46,7 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
             : error ? (<ErrorMessageComponent message={error} />) 
             : (
             <>
-              <p className='block text-[var(--text-color-primary)] my-[16px] font-semibold'>{tPaymentProviderSettings(`transaction-${transactionType}`)}</p>
+              <p className='block text-[var(--text-label-color)] my-[16px] font-semibold'>{tPaymentProviderSettings(`transaction-${transactionType}`)}</p>
               <div className="table-fixed-header max-h-[309px] overflow-y-auto">
                 <TableComponent 
                   numOfColumns={2}

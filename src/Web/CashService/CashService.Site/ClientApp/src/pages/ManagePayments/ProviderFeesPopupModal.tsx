@@ -37,17 +37,15 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({  provid
   return (
     <PopupModalComponent title={`${tManagePayments('feeDetails')} - ${provider.name}`} onClose={onClose}>
       {isLoading ? (<Loading />) : (
-          <>
-            <div className="">               
-              <p className="font-semibold">{provider.name} {tManagePayments('fees')}</p>                
-              <p>{tManagePayments('howItWorks')}</p>              
-              <p>{tManagePayments('feesInfo1')}</p>        
-              <ul className='list-disc pl-[24px] mb-[16px]'>
-                <li>{tManagePayments('feesFormula')}</li>
-              </ul>
-              <p className='mb-[16px]'>{tManagePayments('feesInfo2')}</p>
-            </div>
-            
+          <>                         
+            <p className="font-semibold text-[var(--text-label-color)]">{provider.name} {tManagePayments('fees')}</p>                
+            <p>{tManagePayments('howItWorks')}</p>              
+            <p>{tManagePayments('feesInfo1')}</p>        
+            <ul className='list-disc pl-[24px] mb-[16px]'>
+              <li>{tManagePayments('feesFormula')}</li>
+            </ul>
+            <p className='mb-[16px]'>{tManagePayments('feesInfo2')}</p>
+                       
             <div className="form-group mb-3">
               <TableComponent
                 className='table-striped'
@@ -65,7 +63,7 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({  provid
                         columns: [
                           (<td rowSpan={feeGroup.fees.length}>{tManagePayments(`transaction-${feeGroup.transactionType}`)}</td>),
                           (<td>{fee.method}</td>),
-                          (<td className='text-[var(--text-color-primary)]'>{fee.rateText}</td>)
+                          (<td className='text-[#094980] dark:text-[#459be5]'>{fee.rateText}</td>)
                         ]
                       });
                       

@@ -65,7 +65,7 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
                         columns: [
                           (<td rowSpan={feeGroup.fees.length}>{tPaymentProviderSettings(`transaction-${feeGroup.transactionType}`)}</td>),
                           (<td>{fee.method}</td>),
-                          (<td className='text-[var(--text-color-primary)]'>{fee.rateText}</td>)
+                          (<td className='text-[#094980] dark:text-[#459be5]'>{fee.rateText}</td>)
                         ]
                       });
                       
@@ -77,7 +77,7 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
                       className: "",
                       columns: [
                         (<td>{fee.method}</td>),
-                        (<td className='text-[var(--text-color-primary)]'>{fee.rateText}</td>)
+                        (<td className='text-[#094980] dark:text-[#459be5]'>{fee.rateText}</td>)
                       ]
                     });
                   });
