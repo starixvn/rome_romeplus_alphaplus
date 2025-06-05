@@ -27,6 +27,8 @@ public class WithdrawalLimitAmountCriteria : NonQueryCommand
     public decimal MinAmt { get; set; }
     public decimal MaxAmt { get; set; }
     public short DailyWithdrawalCnt_Setting { get; set; }
+    public int ErrCode { get; set; }
+    public string ErrMsg { get; set; }
 
     public override string GetSettingKey()
         => SPNameHelper.CustDBPrefix("Age_CashWithdrawal_LimitAmtSel", CustDBGroupId);

@@ -38,31 +38,28 @@ public class WithdrawalService : PaymentService, IWithdrawalService
             var validatePaymentCriteria = new ValidatePaymentCriteria(
             request.AgentId,
             request.CustId,
-            2, // TransType for withdrawal
-            siteDBConfig.CustDBGroupId);
-
-            if (!validatePaymentCriteria.IsValid())
-            {
-                return new PaymentResult(400, "Bad Request.", 0);
-            }
+            transType: 2,
+            siteDBConfig.CustDBGroupId,
+            isManual: true,
+            paymentTo: request.PaymentTo);
 
             await _repository.ExecuteAsync(validatePaymentCriteria);
             if (validatePaymentCriteria.ErrCode != 0)
             {
-                return new PaymentResult(600, "Withdrawal validation failed.");
+                return new PaymentResult(validatePaymentCriteria.ErrCode, validatePaymentCriteria.ErrMsg);
             }
 
             // Step 3: Get withdrawal limits
             var withdrawalLimitCriteria = new WithdrawalLimitAmountCriteria(
                 request.CustId,
                 request.AgentId,
-                true, // IsMemberSite
+                isMemberSite: true,
                 siteDBConfig.CustDBGroupId);
 
             await _repository.ExecuteAsync(withdrawalLimitCriteria);
-            if (request.Amount < withdrawalLimitCriteria.MinAmt || request.Amount > withdrawalLimitCriteria.MaxAmt)
+            if (withdrawalLimitCriteria.ErrCode != 0)
             {
-                return new PaymentResult(601, $"Amount must be between {withdrawalLimitCriteria.MinAmt} and {withdrawalLimitCriteria.MaxAmt}.");
+                return new PaymentResult(withdrawalLimitCriteria.ErrCode, withdrawalLimitCriteria.ErrMsg);
             }
 
             // Step 4: Add withdrawal transaction
@@ -70,7 +67,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                 request.CustId,
                 request.AgentId,
                 siteDBConfig.SiteDBGroupId,
-                3, // TransactionTypeId for withdrawal
+                transactionTypeId: 3,
                 withdrawalLimitCriteria.MinAmt,
                 withdrawalLimitCriteria.MaxAmt,
                 withdrawalLimitCriteria.DailyWithdrawalCnt_Setting,
@@ -85,7 +82,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                 await ProcessWithdrawalLogs(firstResultSet.ToList(), siteDBConfig);
             }
 
-            return new PaymentResult(withdrawalTransactionCriteria.ErrCode, withdrawalTransactionCriteria.ErrCode == 0 ? "Ok" : withdrawalTransactionCriteria.ErrExtraInfo, withdrawalTransactionCriteria.TransId);
+            return new PaymentResult(withdrawalTransactionCriteria.ErrCode, withdrawalTransactionCriteria.ErrCode == 0 ? "Ok" : withdrawalTransactionCriteria.ErrMsg, withdrawalTransactionCriteria.TransId);
         }
         catch (Exception ex)
         {
