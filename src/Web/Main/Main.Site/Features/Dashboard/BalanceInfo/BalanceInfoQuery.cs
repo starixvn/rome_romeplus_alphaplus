@@ -12,6 +12,7 @@ namespace AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo
             Currency = userSession.Currency;
             CanViewReports = userSession.SubPageAccess.ViewReports;
             CanViewProduct = canViewProduct;
+            Site = userSession.Site;
         }
 
         public int CustId { get; }
@@ -23,5 +24,7 @@ namespace AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo
         public bool CanViewReports { get; }
 
         public Func<int, bool> CanViewProduct { get; }
+
+        public string Site { get; }
     }
 }

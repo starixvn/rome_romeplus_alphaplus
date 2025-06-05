@@ -104,5 +104,14 @@ namespace AlphaPlus.Main.Site.Features.Dashboard
                 currentTime.Second
             });
         }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateCashServiceStatus(bool isEnableCash)
+        {
+
+            var result = await mediator.Send(new UpdateCashServiceStatusCommand(userSession, isEnableCash));
+
+            return result;
+        }
     }
 }

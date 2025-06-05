@@ -75,6 +75,7 @@ public class UserSessionBase : IUserSession, IDisposable
     private const string SITEDBGROUPIDSESSIONKEY = "SITEDBGROUPID";
     private const string CUSTDBGROUPIDSESSIONKEY = "CUSTDBGROUPID";
     private const string OFFEREDPRODUCTGROUPIDS = "OFFEREDPRODUCTGROUPIDS";
+    private const string ISCASHSERVICEENABLEDSESSIONKEY = "ISCASHSERVICEENABLED";
 
     public string NetSessionId => AlphaContext.Current.Session.Id;
 
@@ -479,5 +480,11 @@ public class UserSessionBase : IUserSession, IDisposable
         {
             SetProperty(p[i].Name.ToUpper(), null);
         }
+    }
+
+    public bool? IsCashServiceEnabled
+    {
+        get => GetProperty<bool?>(ISCASHSERVICEENABLEDSESSIONKEY);
+        set => SetProperty(ISCASHSERVICEENABLEDSESSIONKEY, value);
     }
 }

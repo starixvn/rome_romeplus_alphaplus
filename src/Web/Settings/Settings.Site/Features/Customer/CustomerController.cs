@@ -14,11 +14,13 @@ using AlphaPlus.Shared.AppResources.Settings;
 using Fanex.Cryptography.Aes;
 using Fanex.Customer.Client.Configurations;
 using Fanex.Customer.Client.Constants;
+using Fanex.Customer.Client.Models;
 using Fanex.Customer.Client.Params;
 using Fanex.Customer.Client.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
+using Result = AlphaPlus.Core.Models.Result;
 
 
 namespace AlphaPlus.Settings.Site.Features.Customer
@@ -372,9 +374,14 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 request.SiteLabel));
         }
 
+        public async Task<int> GetCashServiceStatus(GetCustomerSettingRequest request)
+            => await customerService.GetCashServiceStatus(request.CustId);
+
+        public async Task<int> GetCashServiceTotalDownline(GetCustomerSettingRequest request)
+            => await customerService.GetCashServiceTotalDownline(request.CustId);
 
         public async Task<ActionResult> GetCurrentWinLossAmount(CustomerWinLossAmountQuery request)
-         => Content(await customerService.GetCustomerCurrentWinLossAmounts(request.CustId, request.SportType, request.BetType, request.Language));
+            => Content(await customerService.GetCustomerCurrentWinLossAmounts(request.CustId, request.SportType, request.BetType, request.Language));
 
         public async Task<ActionResult> GetPTSettingInformation(SportBookInformationQuery request)
             => Content(await customerService.GetPTSettingInformation(request.CustId, AppSettings.LocalTest, request.Site, request.Language));
@@ -537,6 +544,40 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             var url = $"{configuration["CashService:APIUrl"]}/payments/banks?site={userSession.Site}&transactionType={0}&languageCode={userSession.Language}";
             var banks = await httpClient.GetFromJsonAsync<BankModel[]>(url, cancellationToken);
             return Json(banks, serializeOptions);
+        }
+
+        public async Task<IActionResult> GetCashServiceStatusAndTotalDownline(GetCustomerSettingRequest request, CancellationToken cancellationToken)
+        {
+            var status = await customerService.GetCashServiceStatus(request.CustId);
+            var totalDownline = await customerService.GetCashServiceTotalDownline(request.CustId);
+
+            return Json(new { status, totalDownline }, serializeOptions);
+        }
+   
+        [HttpPost]
+        public async Task<IActionResult> EnableCashService(UpdateCashCustomerInfoRequest request)
+        {
+            if (!AppSettings.IsOfferedCashService(userSession.Site))
+            {
+                return UnAuthorized();
+            }
+
+            var result = await customerService.UpdateCashServiceStatus(new UpdateCashServiceStatusRequest
+            {
+                CustId = request.CustId,
+                ServiceType = 1,
+                Language = request.Language,
+                IP = request.IP,
+                SubAccId = request.SubAccId,
+                Site = request.Site,
+            });
+            
+            if (result.IsSuccessful)
+            {
+                userSession.IsCashServiceEnabled = true;
+            }
+            
+            return Json(result, serializeOptions);
         }
     }
 }

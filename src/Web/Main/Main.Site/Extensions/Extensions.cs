@@ -24,6 +24,7 @@ using AlphaPlus.Main.Site.Shared.Services;
 using AlphaPlus.RequestInfo;
 using AlphaPlus.SecurityCode.Extensions;
 using Fanex.Cryptography.Aes;
+using Fanex.Customer.Client.Configurations;
 using Fanex.Data;
 using Fanex.Data.Repository;
 using Fanex.RemotingRef;
@@ -73,6 +74,12 @@ public static class Extensions
         services.AddSingleton<INetThrottlingService, NetThrottlingService>();
 
         services.AddSingleton<ICustomerService, CustomerService>();
+        services.AddSingleton(new CustomerClientConfiguration(
+            configuration.GetValue<string>("Fanex.Customer:ServiceUri"),
+            configuration.GetValue("Fanex.Customer:SystemId", 2),
+            configuration.GetValue("Fanex.Customer:AccessDeniedUrl", "~/User/AccessDenied")));
+        services.AddSingleton<Fanex.Customer.Client.Services.ICustomerService, Fanex.Customer.Client.Services.CustomerService>();
+
         services.AddScoped<INovaCasinoService, NovaCasinoService>();
 
         services.AddHttpClient<IApiKeyService, ApiKeyService>(httpClient => httpClient.BaseAddress = new Uri(configuration["ApiKey:ServiceUrl"]));

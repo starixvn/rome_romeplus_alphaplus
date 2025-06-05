@@ -24,13 +24,38 @@
             </div>
         </div>
     }
+
+    void CashServiceSession(bool isCashServiceEnabled, int totalCashMember)
+    {
+        <div class="group-title">Cash service</div>
+        <div class='row'>
+            <div class='col-xs-7'>Cash service</div>
+            <div class='col-xs-5 value-toggle'>
+                <div id='cash-service-toggle' class='switch-toggle' data-state='@(isCashServiceEnabled ? "on" : "off")'>
+                    <div class='toggle'></div>
+                </div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-xs-7'>Total cash member</div>
+            <div class='col-xs-5 value'>
+                <strong>@totalCashMember</strong>
+            </div>
+        </div>
+    }
 }
+
 
 <div class="container">
     <div class="panel-title"><span class="icon-balance"></span>@Resources.balanceInfo</div>
     @{
         TextRow(label: Model.UserLevelLabel, text: balanceInfo.UserName);
         TextRow(label: Resources.currency, text: Model.Currency);
+    }
+
+    @if (Model.IsOfferedCashService)
+    {
+        CashServiceSession(Model.CashServiceInfo.IsCashServiceEnabled, Model.CashServiceInfo.TotalCashMember);
     }
 
     <div class="group-title">@Resources.balance</div>
@@ -41,17 +66,17 @@
     @Html.NumericRow(Resources.PendingTransfer3rd, balanceInfo.PendingTransfer3rd)
     <div class="group-title">@Resources.winloss</div>
     @Html.NumericRow(
-            $"{Resources.todayWinLoss} ({DateTime.Today.ToString("MM/dd/yyyy")})",
-            balanceInfo.TodayWinLoss,
-            Model.CanViewReports,
-            Model.MemberTodayWinLossReportPath,
-            "dashboard-winloss")
+    $"{Resources.todayWinLoss} ({DateTime.Today.ToString("MM/dd/yyyy")})",
+        balanceInfo.TodayWinLoss,
+        Model.CanViewReports,
+        Model.MemberTodayWinLossReportPath,
+        "dashboard-winloss")
     @Html.NumericRow(
-            $"{Resources.yesterdayWinLoss} ({DateTime.Today.AddDays(-1).ToString("MM/dd/yyyy")})",
-            balanceInfo.YesterdayWinLoss,
-            Model.CanViewReports,
-            Model.MemberYesterdayWinLossReportPath,
-            "dashboard-yesterday-winloss")
+        $"{Resources.yesterdayWinLoss} ({DateTime.Today.AddDays(-1).ToString("MM/dd/yyyy")})",
+        balanceInfo.YesterdayWinLoss,
+        Model.CanViewReports,
+        Model.MemberYesterdayWinLossReportPath,
+        "dashboard-yesterday-winloss")
 
     <div class="group-title">
         @Resources.credit
@@ -70,8 +95,73 @@
         Resources.RewardPayableTooltip);
     }
 </div>
+
+@Html.Partial("StatusCashModal")
+
 <script>
     $(document).ready(function () {
         $(".open-link").unbind().bind('click', function (event) { alpha.viewDataURL(event); });
+        $("#cash-service-toggle").unbind().bind('click', function (event) { onClickCashServiceToggle(); });
+
+        $("#confirmEnableCashService").click(function () {
+            $.ajax({
+                url: '/main/Dashboard/UpdateCashServiceStatus',
+                type: 'POST',
+                data: {
+                    IsEnableCash: true
+                },
+                headers: {
+                    'RequestVerificationToken': $('input[name="RequestVerificationToken"]').val()
+                },
+                success: function (response) {
+                    if (response.isSuccessful) {
+                        const toggle = $("#cash-service-toggle");
+                        toggle.attr("data-state", "on");
+                        toggle.addClass("active");
+                        $("#enableCashServiceModal").modal('hide');
+                    } else {
+                        console.error("enable cash service failed");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error calling cash service status API:', error);
+                }
+            });
+        });
+
+        $("#confirmDisableCashService").click(function () {
+            $.ajax({
+                url: '/main/Dashboard/UpdateCashServiceStatus',
+                type: 'POST',
+                data: {
+                    IsEnableCash: false
+                },
+                success: function (response) {
+                    if (response.isSuccessful) {
+                        const toggle = $("#cash-service-toggle");
+                        toggle.attr("data-state", "off");
+                        toggle.removeClass("active");
+                        $("#disableCashServiceModal").modal('hide');
+                    } else {
+                        console.error("disable cash service failed");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error calling cash service status API:', error);
+                }
+            });
+        });
     });
+
+    function onClickCashServiceToggle() {
+        const toggle = $("#cash-service-toggle");
+        const isChecked = toggle.attr("data-state");
+        if (isChecked === "on") {
+            // Mở modal xác nhận tắt
+            $("#disableCashServiceModal").modal('show');
+        } else {
+            // Mở modal enable như cũ
+            $("#enableCashServiceModal").modal('show');
+        }
+    }
 </script>

@@ -12,6 +12,7 @@ namespace AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo
 
         public BalanceInfoViewModel(
             BalanceInfo balanceInfo,
+            CashServiceInfo cashServiceInfo,
             UserLevel userLevel,
             string currency,
             int custId,
@@ -19,6 +20,7 @@ namespace AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo
             Func<int, bool> canViewProduct)
         {
             BalanceInfo = balanceInfo;
+            CashServiceInfo = cashServiceInfo;
             Currency = currency;
             this.userLevel = userLevel;
             CustId = custId;
@@ -29,6 +31,7 @@ namespace AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo
         }
 
         public BalanceInfo BalanceInfo { get; }
+        public CashServiceInfo CashServiceInfo { get; }
 
         public string Currency { get; } = DefaultCurrency;
 
@@ -85,5 +88,7 @@ namespace AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo
 
             return path;
         }
+
+        public bool IsOfferedCashService { get; set; }
     }
 }
