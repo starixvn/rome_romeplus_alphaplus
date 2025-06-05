@@ -14,7 +14,7 @@ import {
   ButtonTabInactiveComponent,
 } from '../../components/ButtonComponents';
 import CustomDropdown from '../../components/CustomDropdownComponent';
-import { IconInfo, IconSearch } from '../../components/Icons';
+import { IconInfo, IconSearch, NoDataIcon } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
 import { ErrorMessageComponent, SuccessMessageComponent } from '../../components/MessageComponents';
 import { StatusDisabledComponent, StatusEnabledComponent } from '../../components/StatusComponents';
@@ -446,8 +446,9 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                   )}
 
                   {!loading && !error && banks.length > 0 && bankAccounts.length === 0 && (
-                    <div className="alert alert-info mt-4" role="alert">
-                      {tGlobal('noData')}
+                    <div className="p-[16px] flex flex-col items-center gap-[8px] justify-center text-center" role="alert">
+                      <NoDataIcon />
+                      <MediumTitleComponent text={tGlobal('noData')} />
                     </div>
                   )}
 

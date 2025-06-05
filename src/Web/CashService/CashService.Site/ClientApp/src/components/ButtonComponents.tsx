@@ -201,10 +201,10 @@ export const ButtonTabComponent: React.FC<ButtonComponentProps> = ({ text, onCli
   );
 };
 
-export const ButtonPenComponent: React.FC<ButtonComponentProps> = ({ onClick }) => {
+export const ButtonPenComponent: React.FC<ButtonComponentProps> = ({ onClick, disabled }) => {
   return (
     <button
-      className="mx-[4px] cursor-pointer p-[4px] rounded-[4px] hover:bg-[var(--button-icon-hover)] text-[var(--text-color-primary)]"
+      className={` mx-[4px] cursor-pointer p-[4px] rounded-[4px] hover:bg-[var(--button-icon-hover)] text-[var(--text-color-primary)] ${disabled ? 'cursor-not-allowed opacity-80' : ''}`}
       onClick={onClick}
     >
       <IconPen />
