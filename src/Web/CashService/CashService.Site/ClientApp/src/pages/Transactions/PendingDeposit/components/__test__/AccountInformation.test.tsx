@@ -36,8 +36,8 @@ describe('AccountInformation', () => {
   const mockOnRemarksChange = vi.fn();
 
   const mockMemberLoginOptions: MemberLoginName[] = [
-    { custId: 1, username: 'user1' },
-    { custId: 2, username: 'user2' },
+    { custId: 1, username: 'user1', nickName: 'nickname1' },
+    { custId: 2, username: 'user2', nickName: 'nickname2' },
   ];
 
   const mockCashMemberOptions: BankInfo[] = [
