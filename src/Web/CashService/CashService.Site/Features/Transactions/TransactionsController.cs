@@ -1,10 +1,12 @@
 namespace AlphaPlus.CashService.Site.Features.Transactions;
 
+using AlphaPlus.CashService.Site.Features.Transactions.Services;
 using Core.Models;
 using Helpers;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Newtonsoft.Json;
 using Shared;
 using Shared.Filters;
 using Shared.Models;
@@ -14,7 +16,8 @@ public class TransactionsController(
     HttpClientHelper httpClientHelper,
     IUserSession userSession,
     IHttpContextAccessor httpContextAccessor,
-    IAntiforgery antiforgery)
+    IAntiforgery antiforgery,
+    ITransactionHistoryWorkbook transactionHistoryWorkbook)
     : SiteBaseController(userSession, antiforgery)
 {
     private readonly int agentId = userSession.CustId;
@@ -40,7 +43,7 @@ public class TransactionsController(
     }
 
     [HttpPost]
-    public async Task<IActionResult> ExportExcel([FromBody] ExportExcelParams param)
+    public async Task<IActionResult> ExportExcel([FromForm] ExportExcelParams param)
     {
         var filter = new GetTransactionFilter
         {
@@ -52,9 +55,10 @@ public class TransactionsController(
             CustId = agentId,
             Account = string.Empty
         };
-        var transactions = await httpClientHelper.GetAsync<Transaction>("/transactions/history", ObjectConverter.ToDictionary(filter));
-
-        return Json(transactions);
+        var response = await httpClientHelper.GetAsync<TransactionResponse>("/transactions/history", ObjectConverter.ToDictionary(filter));
+        Console.WriteLine(JsonConvert.SerializeObject(response.Items));
+        var excelFileViewModel = transactionHistoryWorkbook.BuildExcelFile(param, response.Items);
+        return File(excelFileViewModel.Content, excelFileViewModel.ContentType, excelFileViewModel.Name);
     }
 
     public async Task<IActionResult> Detail(long transactionId, int custId)

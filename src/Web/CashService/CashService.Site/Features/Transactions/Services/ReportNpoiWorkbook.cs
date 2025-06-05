@@ -4,7 +4,7 @@ using ONEbook.SpreadSheets.BetListNPOI;
 
 public class ReportNpoiWorkbook<T>(IWebHostEnvironment webHostEnvironment) : NpoiWorkbook<T> where T : class
 {
-    private const string ExcelTemplateDir = "App_Data/ExcelTemplates/{0}/{1}.{2}";
+    private const string ExcelTemplateDir = "App_Data/ExcelTemplates/{0}.{1}";
 
     protected string GetExcelTemplatePath(string templateName, string fileExtension = "xls")
     {
@@ -13,7 +13,7 @@ public class ReportNpoiWorkbook<T>(IWebHostEnvironment webHostEnvironment) : Npo
             throw new ArgumentNullException(nameof(templateName), "Template Name cannot be null or empty");
         }
 
-        var relativePath = string.Format(ExcelTemplateDir, GetExcelTemplateFolder(), templateName, fileExtension);
+        var relativePath = string.Format(ExcelTemplateDir, templateName, fileExtension);
         var absolutePath = Path.Combine(webHostEnvironment.ContentRootPath, relativePath);
 
         if (File.Exists(absolutePath))
@@ -22,18 +22,5 @@ public class ReportNpoiWorkbook<T>(IWebHostEnvironment webHostEnvironment) : Npo
         }
 
         throw new FileNotFoundException($"Template {absolutePath} does not exist");
-    }
-
-    protected string GetExcelTemplateFolder()
-    {
-        var reportNamespace = GetType().Namespace ?? string.Empty;
-        var lastIndexOfDot = reportNamespace.LastIndexOf(".", StringComparison.Ordinal) + 1;
-
-        if (lastIndexOfDot <= 0)
-        {
-            throw new ArgumentException("Namespace does not contain any dot character, wrong report convention.");
-        }
-
-        return reportNamespace[lastIndexOfDot..];
     }
 }

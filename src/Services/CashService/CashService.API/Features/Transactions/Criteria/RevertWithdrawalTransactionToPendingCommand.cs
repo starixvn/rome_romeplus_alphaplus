@@ -10,6 +10,7 @@ public class RevertWithdrawalTransactionToPendingCommand : INonQueryCommand
     public int UserId { get; set; }
     public string Ip { get; set; }
     public int SiteDbGroupId { get; set; }
+    public string CashAccumCreditTbl { get; set; }
 
     [SpParam(Ignored = true)]
     public int CustDbGroupId { get; set; }

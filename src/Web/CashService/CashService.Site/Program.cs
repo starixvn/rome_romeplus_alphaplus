@@ -1,5 +1,6 @@
 using System.Text.Json;
 using AlphaPlus.CashService.Site.Features.ChatHub;
+using AlphaPlus.CashService.Site.Features.Transactions.Services;
 using AlphaPlus.CashService.Site.Helpers;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Filters;
@@ -83,6 +84,8 @@ builder.Services.AddAntiforgery(options =>
     options.HeaderName = "X-CSRF-TOKEN";
     options.Cookie.Name = "CSRF-TOKEN";
 });
+
+builder.Services.AddTransient<ITransactionHistoryWorkbook, TransactionHistoryWorkbook>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

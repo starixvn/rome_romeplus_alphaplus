@@ -12,6 +12,7 @@ public class RevertDepositTransactionToPendingCommand : INonQueryCommand
     public int SiteDbGroupId { get; set; }
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; }
+    public string CashAccumCreditTbl { get; set; }
 
     [SpParam(Ignored = true)]
     public int CustDbGroupId { get; set; }
