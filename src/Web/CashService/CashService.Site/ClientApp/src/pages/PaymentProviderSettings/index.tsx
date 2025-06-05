@@ -465,7 +465,7 @@ function PaymentProviderSettings() {
                   onClick={onAddPaymentMethod}
                 />
               </div>
-              {providerStatus == paymentProviderStatusConstant.enabled && (
+              {providerStatus != paymentProviderStatusConstant.notConfigured && (
                 <div>
                   <p className="flex items-center">
                     <LabelTitleComponent text={`${tGlobal('enable')}/${tGlobal('disable')}`} />
@@ -704,7 +704,7 @@ function PaymentProviderSettings() {
               <ButtonApplyComponent
                 text={updating ? tGlobal('updating') : tGlobal('update')}
                 onClick={onUpdate}
-                disabled={providerStatus == paymentProviderStatusConstant.disabled || updating || !hasEditableSettings()}
+                disabled={providerStatus == paymentProviderStatusConstant.notConfigured || updating || !hasEditableSettings()}
               />
             </div>
           </div>
