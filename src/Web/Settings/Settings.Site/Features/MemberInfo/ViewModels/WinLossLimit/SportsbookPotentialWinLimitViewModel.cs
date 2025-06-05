@@ -10,8 +10,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.WinLossLimit;
 public class SportsbookPotentialWinLimitViewModel
 {
     private const int MaxItemToShowPager = 100;
-    private const decimal MaxWinLimitToShowNotAvailable = -3.00m;
-    private const int SportsbookNumberOfColumns = 9;
+    private const int SportsbookNumberOfColumns = 12;
 
     public SportsbookPotentialWinLimitViewModel(
         SportsbookPotentialWinLimitQuery message,
@@ -60,22 +59,10 @@ public class SportsbookPotentialWinLimitViewModel
     public static string GetStatusText(string statusKey) => Resources.ResourceManager.GetString(statusKey);
 
     public string GetMaxWinLimit(decimal maxWinLimit)
-    {
-        if (maxWinLimit == MaxWinLimitToShowNotAvailable)
-        {
-            return "N/A";
-        }
-
-        return maxWinLimit == 0 ? Lang.Unlimited : $"{maxWinLimit.ToString("#,##0")}";
-    }
+    => maxWinLimit == 0 ? Lang.Unlimited : $"{maxWinLimit.ToString("#,##0")}";
 
     public string GetWinPercent(decimal? winPercent, decimal maxWinLimit)
     {
-        if (maxWinLimit == MaxWinLimitToShowNotAvailable)
-        {
-            return "N/A";
-        }
-
         if (!winPercent.HasValue)
         {
             return Lang.Unlimited;
@@ -83,6 +70,7 @@ public class SportsbookPotentialWinLimitViewModel
 
         return winPercent > 0 ? $"{winPercent.Value.ToString("#,##0.##")}%" : "0%";
     }
+
     public class ItemListOption(string value, string text)
     {
         public string Value { get; } = value;
@@ -101,8 +89,8 @@ public class SportsbookPotentialWinLimitViewModel
     ];
     public IEnumerable<ItemListOption> ProblemAccountOptions { get; } =
     [
-        new ItemListOption("0", Resources.All),
+        new ItemListOption("2", Resources.All),
         new ItemListOption("1", Resources.Yes),
-        new ItemListOption("2", Resources.No2)
+        new ItemListOption("0", Resources.No2)
     ];
 } 

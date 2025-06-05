@@ -1,12 +1,7 @@
-using AlphaPlus.Core.Models;
-using AlphaPlus.Settings.MemberInfo.API.Services;
 using AlphaPlus.Settings.MemberInfo.API.Services.WinLossLimit;
-using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
-using AlphaPlus.Settings.MemberInfo.Domain.Models.WinLossLimit;
 using AlphaPlus.Settings.MemberInfo.Domain.Params;
 using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.WinLossLimit;
 using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.WinLossLimit;
-using AlphaPlus.Shared.AppResources.Common;
 using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers;
@@ -20,8 +15,7 @@ public class SportsbookPotentialWinLimitHandler(IPotentialWinLimitService potent
     {
         var param = new PotentialWinLimitParam(
             message.CustId,
-            0,
-            0,
+            message.LimitedDateToShowInfo,
             message.Username,
             message.Status,
             message.ProblemAccount,

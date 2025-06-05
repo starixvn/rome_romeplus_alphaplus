@@ -63,7 +63,6 @@
                 <tr>
                     <th><div class="col-no">@Resources.No</div></th>
                     <th class="col-username">@Resources.Username</th>
-                    <th class="col-last-login">@Resources.LastLogin</th>
                     <th class="col-status">@Resources.Status</th>
                     <th class="col-problem-account">@Resources.ProblemAccount</th>
                     <th><div class="col-credit">@Resources.Credit</div></th>
@@ -73,6 +72,7 @@
                     <th><div class="col-potential-win">@Resources.PotentialWin</div></th>
                     <th><div class="col-max-potential-win-limit">@Resources.MaxPotentialWinLimit</div></th>
                     <th><div class="col-cur-potential-win-limit">@Resources.CurrentPotentialWin</div></th>
+                    <th class="col-last-login">@Resources.LastLogin</th>
                 </tr>
             </thead>
             @if (Model.HasData)
@@ -84,9 +84,6 @@
                         <tr>
                             <td class="text-center">@index</td>
                             <td class="text-left" title="@winLossLimitDetail.Username">@winLossLimitDetail.Username</td>
-                            <td class="text-left" title="@winLossLimitDetail.LastLogged?.ToString("MM/dd/yyyy hh:mm:ss tt")">
-                                @winLossLimitDetail.LastLogged?.ToString("MM/dd/yyyy hh:mm:ss tt")
-                            </td>
                             <td class="text-center">@SportsbookPotentialWinLimitViewModel.GetStatusText(winLossLimitDetail.Status)</td>
                             <td class="text-center">@(winLossLimitDetail.IsProblemAccount ? Resources.Yes : Resources.No2)</td>
                             <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.Credit)</td>
@@ -97,6 +94,9 @@
                             <td class="text-right">@Model.GetMaxWinLimit(winLossLimitDetail.PotentialWinLimit)</td>
                             <td class="text-center @(winLossLimitDetail.PotentialWinPercent >= 100 ? "negative-value" : "")">
                                 @Model.GetWinPercent(winLossLimitDetail.PotentialWinPercent, winLossLimitDetail.PotentialWinLimit)
+                            </td>
+                            <td class="text-left" title="@winLossLimitDetail.LastLogged?.ToString("MM/dd/yyyy hh:mm:ss tt")">
+                                @winLossLimitDetail.LastLogged?.ToString("MM/dd/yyyy hh:mm:ss tt")
                             </td>
                         </tr>
                         index++;

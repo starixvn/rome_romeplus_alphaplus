@@ -21,8 +21,7 @@ public class SportsbookPotentialWinLimitExcelHandler(
     {
         var param = new PotentialWinLimitParam(
             request.CustId,
-            0,
-            0,
+            request.LimitedDateToShowInfo,
             request.Username,
             request.Status,
             request.ProblemAccount,
@@ -49,20 +48,22 @@ public class SportsbookPotentialWinLimitExcelHandler(
         protected override string GetExcelTemplateDir() => $"{AppDomain.CurrentDomain.BaseDirectory}/App_Data/ExcelTemplates/WinLossLimit";
 
 
-        private static Mapper<PotentialWinLimitDetail> GetNormalRowMapper(Func<decimal, string> getMaxWinLimit, Func<decimal?, decimal, string> getWinPercent, Func<string, string> getStatusText)
-        => new Mapper<PotentialWinLimitDetail>()
-                .Map(A, potentialWinLimitDetail => potentialWinLimitDetail.Username)
-                .Map(B, potentialWinLimitDetail => potentialWinLimitDetail.LastLogged?.ToString("MM/dd/yyyy hh:mm:ss tt") ?? "")
-                .Map(C, potentialWinLimitDetail => getStatusText(potentialWinLimitDetail.Status))
-                .Map(D, potentialWinLimitDetail => potentialWinLimitDetail.IsProblemAccount ? Resources.Yes : Resources.No2)
-                .Map(E, potentialWinLimitDetail => potentialWinLimitDetail.Credit)
-                .Map(F, potentialWinLimitDetail => potentialWinLimitDetail.IsAutoReset ? Resources.Yes : Resources.No2)
-                .Map(G, potentialWinLimitDetail => potentialWinLimitDetail.AccumToWin)
-                .Map(H, potentialWinLimitDetail => potentialWinLimitDetail.AccumWinLoss)
-                .Map(I, potentialWinLimitDetail => potentialWinLimitDetail.PotentialWin)
-                .Map(J, potentialWinLimitDetail => getMaxWinLimit(potentialWinLimitDetail.PotentialWinLimit))
-                .Map(K, potentialWinLimitDetail => getWinPercent(potentialWinLimitDetail.PotentialWinPercent, potentialWinLimitDetail.PotentialWinLimit));
-    
+    private static Mapper<PotentialWinLimitDetail> GetNormalRowMapper(Func<decimal, string> getMaxWinLimit, Func<decimal?, decimal, string> getWinPercent, Func<string, string> getStatusText)
+    => new Mapper<PotentialWinLimitDetail>()
+            .Map(A, potentialWinLimitDetail => potentialWinLimitDetail.Username)
+            .Map(B, potentialWinLimitDetail => getStatusText(potentialWinLimitDetail.Status))
+            .Map(C, potentialWinLimitDetail => potentialWinLimitDetail.IsProblemAccount ? Resources.Yes : Resources.No2)
+            .Map(D, potentialWinLimitDetail => potentialWinLimitDetail.Credit)
+            .Map(E, potentialWinLimitDetail => potentialWinLimitDetail.IsAutoReset ? Resources.Yes : Resources.No2)
+            .Map(F, potentialWinLimitDetail => potentialWinLimitDetail.AccumToWin)
+            .Map(G, potentialWinLimitDetail => potentialWinLimitDetail.AccumWinLoss)
+            .Map(H, potentialWinLimitDetail => potentialWinLimitDetail.PotentialWin)
+            .Map(I, potentialWinLimitDetail => getMaxWinLimit(potentialWinLimitDetail.PotentialWinLimit))
+            .Map(J, potentialWinLimitDetail => getWinPercent(potentialWinLimitDetail.PotentialWinPercent, potentialWinLimitDetail.PotentialWinLimit))
+            .Map(K, potentialWinLimitDetail => potentialWinLimitDetail.LastLogged?.ToString("MM/dd/yyyy hh:mm:ss tt") ?? "");
+
+
+
         private TemplateInfo GetTemplateInfo()
             => new(GetExcelTemplatePath("SportsbookPotentialWinLimit"), Resources.NoInformationIsAvailable, headerStartIndex: 2, bodyStartIndex: 3);
 } 

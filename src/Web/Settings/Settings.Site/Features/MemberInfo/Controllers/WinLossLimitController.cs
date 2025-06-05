@@ -1,13 +1,8 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.WinLossLimit;
-using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.WinLossLimit;
-using AlphaPlus.Core.Filters;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Excel;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using AlphaPlus.Core.Configurations;
+﻿using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.WinLossLimit;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Controllers;
 
