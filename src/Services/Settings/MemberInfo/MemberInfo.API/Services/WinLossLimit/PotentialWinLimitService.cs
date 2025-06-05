@@ -23,6 +23,7 @@ public class PotentialWinLimitService : IPotentialWinLimitService
     {
         var criteria = new GetPotentialWinLimitCriteria
         {
+            AgentId = param.CustId,
             Username = param.Username,
             Status = param.Status,
             ProblemAccount = param.ProblemAccount,
