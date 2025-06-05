@@ -28,9 +28,7 @@
             "Customer/Create",
             "Customer/EditCustomer",
             "Customer/EditMultiple",
-            "SearchAccount/GivenCredit",
-            "WinLossLimit/SportsbookPotentialWinLimit",
-            "WinLossLimit/PotentialExcel"
+            "SearchAccount/GivenCredit"
       ],
         "BetListsPaths": [],
         "StatementPaths": [],
