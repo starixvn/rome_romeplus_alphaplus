@@ -18,6 +18,18 @@
       "VendorId": 12,
       "Url": "http://saba-wallet-group-001.3rd-party.t2p.nebula.prod:22080/api/VoidBridgeInternal/GetBetHistoryUrl",
       "Debug": 0
+    },
+    {
+      "Name": "AIGaming",
+      "SportTypeId": 123,
+      "Url": "http://saba-wallet-group-001.3rd-party.t2p.nebula.prod:22080/api/AIGamingInternal/GetBetHistoryUrl",
+      "Debug": 0
+    },
+    {
+      "Name": "ClotPlay",
+      "SportTypeId": 122,
+      "Url": "http://saba-wallet-group-001.3rd-party.t2p.nebula.prod:22080/api/ClotPlayInternal/GetBetHistoryUrl",
+      "Debug": 0
     }
   ]
 }
