@@ -1,7 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AgencyCash.API.Shared.DataAnnotations;
 
+[ExcludeFromCodeCoverage]
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = true)]
 public class RequiredIfAttribute(string dependentProperty, object targetValue) : ValidationAttribute("{0} is required.")
 {

@@ -1,8 +1,10 @@
-﻿using AgencyCash.API.Shared.Models;
+﻿using System.Diagnostics.CodeAnalysis;
+using AgencyCash.API.Shared.Models;
 using Microsoft.AspNetCore.Diagnostics;
 
 namespace AgencyCash.API.Shared.Helpers;
 
+[ExcludeFromCodeCoverage]
 public sealed class GlobalExceptionHandler(Fanex.Logging.ILogger logger) : IExceptionHandler
 {
     private readonly Fanex.Logging.ILogger logger = logger;

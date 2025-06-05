@@ -15,9 +15,9 @@ public class ManualDepositRequest
 
     /// <summary>
     /// 3: PromptPay
-    /// 6: Bank Transfer
+    /// 0: Bank Transfer
     /// </summary>
-    [PositiveNumber]
+    [Range(0, short.MaxValue, ErrorMessage = "{0} must be between {1} and {2}.")]
     public short PaymentMethodId { get; init; }
 
     [Required(ErrorMessage = "{0} is required.")]

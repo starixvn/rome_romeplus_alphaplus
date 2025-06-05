@@ -1,5 +1,3 @@
-using System;
-
 namespace AgencyCash.API.Shared.Helpers
 {
     public static class DomainHelper
