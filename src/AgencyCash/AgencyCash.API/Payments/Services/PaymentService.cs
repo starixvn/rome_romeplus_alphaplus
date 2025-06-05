@@ -17,12 +17,16 @@ public abstract class PaymentService(
     protected readonly ISiteDBService siteDBService = siteDBService;
     protected readonly Fanex.Logging.ILogger logger = logger;
 
-    public async Task<Result> ValidatePayment(int agentId, int custId, byte transType, short custDBGroupId)
+    public async Task<PaymentResult> ValidatePayment(ValidatePaymentCriteria criteria)
     {
-        var criteria = new ValidatePaymentCriteria(agentId, custId, transType, custDBGroupId);
         await repository.ExecuteAsync(criteria);
 
-        return new Result(criteria.ErrCode, criteria.ErrMsg);
+        if (!string.IsNullOrWhiteSpace(criteria.ErrExtraInfo))
+        {
+            await logger.ErrorAsync($"ValidatePayment failed for AgentId: {criteria.AgentId}, CustId: {criteria.CustId}, ErrCode: {criteria.ErrCode}, ErrMsg: {criteria.ErrMsg}, ExtraInfo: {criteria.ErrExtraInfo}, Criteria: {JsonHelper.ToJson(criteria)}");
+        }
+
+        return new PaymentResult(criteria.ErrCode, criteria.ErrMsg);
     }
 
     public async Task WriteLogsRunSP(IEnumerable<LogEntry> logs, short custDBGroupId)

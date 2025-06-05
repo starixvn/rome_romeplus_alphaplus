@@ -6,6 +6,7 @@ using AgencyCash.API.Shared;
 using AgencyCash.API.Shared.Models;
 using AgencyCash.API.Shared.Helpers;
 using Fanex.Data.Repository;
+using AgencyCash.API.Payments.Criteria;
 
 namespace AgencyCash.API.Payments.Services;
 
@@ -13,9 +14,9 @@ public interface IDepositService
 {
     Task<DepositLimit> GetLimit(GetDepositLimitRequest request);
 
-    Task<Result> Manual(ManualDepositRequest request);
+    Task<PaymentResult> Manual(ManualDepositRequest request);
 
-    Task<Result> Auto(AutoDepositRequest request);
+    Task<PaymentResult> Auto(AutoDepositRequest request);
 }
 
 public class DepositService(
@@ -42,10 +43,18 @@ public class DepositService(
         return new DepositLimit(limitCriteria.MinAmt, limitCriteria.MaxAmt, limitCriteria.AgentAvailableCredit);
     }
 
-    public async Task<Result> Manual(ManualDepositRequest request)
+    public async Task<PaymentResult> Manual(ManualDepositRequest request)
     {
         var siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
-        var validateResult = await ValidatePayment(request.AgentId, request.CustId, TransactionType.Deposit, siteDBConfig.CustDBGroupId);
+        var validateResult = await ValidatePayment(new ValidatePaymentCriteria(
+            request.AgentId,
+            request.CustId,
+            TransactionType.Deposit,
+            siteDBConfig.CustDBGroupId,
+            paymentFrom: request.PaymentFrom,
+            isManual: true,
+            paymentMethodId: request.PaymentMethodId,
+            paymentTo: request.PaymentTo));
 
         if (!validateResult.IsSuccess)
         {
@@ -81,12 +90,20 @@ public class DepositService(
         return await AddTransactionAndWriteLogs(criteria, siteDBConfig.CustDBGroupId);
     }
 
-    public async Task<Result> Auto(AutoDepositRequest request)
+    public async Task<PaymentResult> Auto(AutoDepositRequest request)
     {
         const byte AutoDeposit = 2;
 
         var siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
-        var validateResult = await ValidatePayment(request.AgentId, request.CustId, TransactionType.Deposit, siteDBConfig.CustDBGroupId);
+        var validateResult = await ValidatePayment(new ValidatePaymentCriteria(
+            request.AgentId,
+            request.CustId,
+            TransactionType.Deposit,
+            siteDBConfig.CustDBGroupId,
+            paymentFrom: request.PaymentFrom,
+            providerId: request.ProviderId ?? 0,
+            paymentMethodId: request.PaymentMethodId,
+            paymentTo: request.PaymentTo));
 
         if (!validateResult.IsSuccess)
         {
@@ -124,7 +141,7 @@ public class DepositService(
         return await AddTransactionAndWriteLogs(criteria, siteDBConfig.CustDBGroupId);
     }
 
-    private async Task<Result> AddTransactionAndWriteLogs(AddTransactionDepositCriteria criteria, short custDBGroupId)
+    private async Task<PaymentResult> AddTransactionAndWriteLogs(AddTransactionDepositCriteria criteria, short custDBGroupId)
     {
         var logs = await repository.FetchAsync<LogEntry>(criteria);
         _ = Task.Run(async () => await WriteLogsRunSP(logs, custDBGroupId));
