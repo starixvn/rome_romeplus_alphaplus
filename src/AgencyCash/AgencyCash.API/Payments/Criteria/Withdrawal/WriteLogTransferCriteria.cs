@@ -33,10 +33,6 @@ public class WriteLogTransferCriteria : NonQueryCommand
 
     public string Doing { get; }
 
-    public int ErrCode { get; set; }
-    
-    public string ErrMsg { get; set; }
-
     public override string GetSettingKey()
         => SiteDBGroupId.HasValue
         ? SPNameHelper.SiteDBPrefix("WriteLog_CashService_UserLog_Transfer", SiteDBGroupId.Value)

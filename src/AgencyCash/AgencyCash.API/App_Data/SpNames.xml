@@ -27,6 +27,6 @@
     <Setting Key="DBLOG_WriteLog_CashService_UserLog_RunSP" SpName="WriteLog_CashService_UserLog_RunSP_uat2" DbName="DBLOG.bodb_CustomerLog.asv_CashService" />
     <Setting Key="WriteLog_CashService_UserLog_RunSP" SpName="WriteLog_CashService_UserLog_RunSP_uat2" DbName="DBCust.bodb_CustomerLog.asv_CashService" />
     <Setting Key="DBLOG_WriteLog_CashService_UserLog_Transfer" SpName="WriteLog_CashService_UserLog_Transfer_uat2" DbName="DBLOG.bodb_CustomerLog.asv_CashService" />
-    <Setting Key="WriteLog_CashService_UserLog_Transfer" SpName="WriteLog_CashService_UserLog_Transfer_uat2" DbName="DBSITE03.bodb_CustomerLog.asv_CashService" />
+    <Setting Key="SiteDB3_WriteLog_CashService_UserLog_Transfer" SpName="WriteLog_CashService_UserLog_Transfer_uat2" DbName="DBSITE03.bodb_CustomerLog.asv_CashService" />
   </Function>
 </Functions>
