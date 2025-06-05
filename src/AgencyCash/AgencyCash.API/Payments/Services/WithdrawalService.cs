@@ -44,10 +44,11 @@ public class WithdrawalService : PaymentService, IWithdrawalService
             isManual: true,
             paymentTo: request.PaymentTo);
 
-            await _repository.ExecuteAsync(validatePaymentCriteria);
-            if (validatePaymentCriteria.ErrCode != 0)
+            var result = await ValidatePayment(validatePaymentCriteria);
+            
+            if (result.Code != 0)
             {
-                return new PaymentResult(validatePaymentCriteria.ErrCode, validatePaymentCriteria.ErrMsg);
+                return result;
             }
 
             // Step 3: Get withdrawal limits
@@ -108,12 +109,12 @@ public class WithdrawalService : PaymentService, IWithdrawalService
 
             await _repository.ExecuteAsync(withdrawalLimitCriteria);
 
-            return new WithdrawalLimitResult(0, string.Empty, withdrawalLimitCriteria.MinAmt, withdrawalLimitCriteria.MaxAmt, getDailyWithdrawalCriteria.WithdrawalCnt, getMemberCashBalanceCriteria.TotalCash);
+            return new WithdrawalLimitResult(withdrawalLimitCriteria.MinAmt, withdrawalLimitCriteria.MaxAmt, withdrawalLimitCriteria.WithdrawalLimitCnt, getMemberCashBalanceCriteria.TotalCash);
         }
         catch (Exception ex)
         {
             await logger.ErrorAsync(ex.Message, ex);
-            return new WithdrawalLimitResult(500, "An error occurred while getting withdrawal limit amount.");
+            return new WithdrawalLimitResult();
         }
     }
 
