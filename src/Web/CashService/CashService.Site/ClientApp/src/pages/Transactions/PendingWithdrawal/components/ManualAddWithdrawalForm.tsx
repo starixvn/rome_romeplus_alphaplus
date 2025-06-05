@@ -353,6 +353,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                   id="remarks"
                   value={remarks}
                   onChange={(e) => setRemarks(e.target.value)}
+                  maxLength={1000}
                   className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-[var(--button-border)] min-h-[120px]"
                   placeholder={t('manualWithdrawalForm.remarksPlaceholder')}
                 />

@@ -83,7 +83,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ deposit, onCl
         });
         setTimeout(() => {
           onClose(true);
-        }, 3111000);
+        }, 3000);
       } else {
         setIsSubmitting(false);
         setResultMessage({
@@ -180,6 +180,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ deposit, onCl
                 <textarea
                   value={deposit?.remark}
                   onChange={(e) => setRemark(e.target.value)}
+                  maxLength={1000}
                   placeholder={t('pendingDepositModal.remarksPlaceholder')}
                   className="block h-[230px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] py-[10px] focus:outline-none focus:border-[var(--button-border)]"
                 />

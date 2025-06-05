@@ -236,6 +236,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
               <textarea
                 value={withdrawal.remark}
                 onChange={(e) => setRemark(e.target.value)}
+                maxLength={1000}
                 placeholder={t('pendingWithdrawalModal.remarksPlaceholder')}
                 className="block h-[150px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] py-[10px] focus:outline-none focus:border-[var(--button-border)]"
                 disabled={isSubmitting}

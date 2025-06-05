@@ -119,6 +119,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
           <textarea
             id="remarks"
             value={remarks}
+            maxLength={1000}
             onChange={onRemarksChange}
             className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-[var(--button-border)] min-h-[200px] bg-[var(--background-control)]"
             placeholder={t('manualDepositForm.remarksPlaceholder')}
