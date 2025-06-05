@@ -29,29 +29,31 @@ public class PotentialWinLimitService(IDynamicRepository repository) : IPotentia
             PageIndex = param.PageIndex,
             IsGetAll = isGetAll,
         };
-        var winLossLimitDetail = await _repository.FetchAsync<PotentialWinLimitDetail>(criteria);
-        var custIds = string.Join(",", winLossLimitDetail.Select(x => x.CustId.ToString()));
+        var potentialLimitDetail = await _repository.FetchAsync<PotentialWinLimitDetail>(criteria);
+        var custIds = string.Join(",", potentialLimitDetail.Select(x => x.CustId.ToString()));
 
         var potentialWinLimitAmountCriteria = new GetPotentialWinLimitAmountCriteria
         {
             CustIds = custIds,
         };
         var potentialWinLimitAmount = await _repository.FetchAsync<PotentialWinLimitDetail>(potentialWinLimitAmountCriteria, param.AGIP);
-
-        var potentialWinLimitDetail = winLossLimitDetail
-            .GroupJoin(potentialWinLimitAmount,
-                x => x.CustId,
-                y => y.CustId,
-                (x, y) => new { x, y })
-            .SelectMany(
-                xy => xy.y.DefaultIfEmpty(),
-                (xy, y) =>
-                {
-                    xy.x.AccumWinLoss = y?.AccumWinLoss ?? 0;
-                    xy.x.AccumToWin = y?.AccumToWin ?? 0;
-                    return xy.x;
-                })
-            .ToList();
+        
+        var potentialWinLimitDetail = (from x in potentialLimitDetail
+                                     join y in potentialWinLimitAmount on x.CustId equals y.CustId into joined
+                                     from y in joined.DefaultIfEmpty()
+                                     select new
+                                     {
+                                         x,
+                                         AccumWinLoss = y?.AccumWinLoss ?? 0,
+                                         AccumToWin = y?.AccumToWin ?? 0
+                                     })
+                                     .Select(result =>
+                                     {
+                                         result.x.AccumWinLoss = result.AccumWinLoss;
+                                         result.x.AccumToWin = result.AccumToWin;
+                                         return result.x;
+                                     })
+                                     .ToList();
 
         return new PotentialWinLimitPage(criteria.TotalRows, potentialWinLimitDetail);
     }
