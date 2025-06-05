@@ -200,7 +200,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                   <LabelTitleComponent text={`${tPaymentProviderSettings('transactionType')}`} required={true} />
                   <select
-                    className={`h-[32px] max-[768px]:h-[40px] w-[100%] bg-[var(--background-control)] border-[1px]  rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.selectedTransactionType ? 'border-[var(--border-control-error)]' : 'border-[var(--border-control)]'}`}
+                    className={`control-field ${fieldErrors.selectedTransactionType ? 'error' : ''}`}
                     value={formState.selectedTransactionType}
                     onChange={(e) => { onInputChange('selectedTransactionType', e.target.value); }}
                   >
@@ -217,7 +217,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                   <LabelTitleComponent text={`${tPaymentProviderSettings('paymentMethod')}`} required={true} />
                   <select
-                    className={`h-[32px] max-[768px]:h-[40px] w-[100%] bg-[var(--background-control)] border-[1px]  rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.selectedPaymentMethod ? 'border-[var(--border-control-error)]' : 'border-[var(--border-control)]'}`}
+                    className={`control-field ${fieldErrors.selectedPaymentMethod ? 'error' : ''}`}
                     value={formState.selectedPaymentMethod}
                     onChange={(e) => { onInputChange('selectedPaymentMethod', e.target.value); }}
                   >
@@ -263,7 +263,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
                   <LabelTitleComponent text={`${tPaymentProviderSettings('apiKey')}`} required={true} />
                   <input
                     type="text"
-                    className={`h-[32px] max-[768px]:h-[40px] max-[768px]:leading-[40px] w-full border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.apiKey ? 'border-[var(--border-control-error)]' : 'border-[var(--border-control)]'}`}
+                    className={`control-field ${fieldErrors.apiKey ? 'error' : ''}`}
                     id="apiKey"
                     value={formState.apiKey}
                     onChange={(e) => { onInputChange('apiKey', e.target.value); }}
@@ -274,7 +274,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
                   <LabelTitleComponent text={`${tPaymentProviderSettings('merchantID')}`} required={true} />
                   <input
                     type="text"
-                    className={`h-[32px] max-[768px]:h-[40px] max-[768px]:leading-[40px] w-full border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.merchantID ? 'border-[var(--border-control-error)]' : 'border-[var(--border-control)]'}`}
+                    className={`control-field ${fieldErrors.merchantID ? 'error' : ''}`}
                     id="merchantID"
                     
                     value={formState.merchantID}
@@ -286,7 +286,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
                   <LabelTitleComponent text={`${tPaymentProviderSettings('appSecret')}`} required={true} />
                   <input
                     type="password"
-                    className={`h-[32px] max-[768px]:h-[40px] max-[768px]:leading-[40px] w-full border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.appSecret ? 'border-[var(--border-control-error)]' : 'border-[var(--border-control)]'}`}
+                    className={`control-field ${fieldErrors.appSecret ? 'error' : ''}`}
                     id="appSecret"
                     value={formState.appSecret}
                     onChange={(e) => { onInputChange('appSecret', e.target.value); }}

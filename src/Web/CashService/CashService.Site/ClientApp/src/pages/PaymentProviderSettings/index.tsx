@@ -511,7 +511,7 @@ function PaymentProviderSettings() {
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                   <LabelTitleComponent text={tPaymentProviderSettings('paymentMethod')} />
                   <select
-                    className="h-[32px] max-[768px]:h-[40px] w-[100%] bg-[var(--background-control)] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
+                    className="control-field"
                     value={selectedPaymentMethod}
                     onChange={onPaymentMethodChange}
                   >
@@ -528,7 +528,7 @@ function PaymentProviderSettings() {
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                   <LabelTitleComponent text={tPaymentProviderSettings('status')} />
                   <select
-                    className="h-[32px] max-[768px]:h-[40px] w-[100%] bg-[var(--background-control)] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
+                    className="control-field"
                     value={selectedStatus}
                     onChange={onStatusChange}
                   >
@@ -543,7 +543,7 @@ function PaymentProviderSettings() {
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                   <LabelTitleComponent text={tPaymentProviderSettings('transactionType')} />
                   <select
-                    className="h-[32px] max-[768px]:h-[40px] w-[100%] bg-[var(--background-control)] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
+                    className="control-field"
                     value={selectedTransactionType}
                     onChange={onTransactionTypeChange}
                   >
@@ -634,7 +634,7 @@ function PaymentProviderSettings() {
                           <div className="flex flex-col max-[768px]:w-[150px]">
                             <input
                               type="text"
-                              className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer mb-2px] ${validationErrors[`minAmount-${index}`] ? 'border-[#dc3545]' : 'border-[var(--border-control)]'}`}
+                              className={`control-field ${validationErrors[`minAmount-${index}`] ? 'error' : ''}`}
                               value={formatNumber(setting.minAmount)}
                               onChange={(e) => onMinAmountChange(index, e.target.value)}
                               placeholder={tPaymentProviderSettings('minimum')}
@@ -654,7 +654,7 @@ function PaymentProviderSettings() {
                           <div className="flex flex-col max-[768px]:w-[150px]">
                             <input
                               type="text"
-                              className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer mb-2px] ${validationErrors[`maxAmount-${index}`] ? 'border-[#dc3545]' : 'border-[var(--border-control)]'}`}
+                              className={`control-field ${validationErrors[`maxAmount-${index}`] ? 'error' : ''}`}
                               value={formatNumber(setting.maxAmount)}
                               onChange={(e) => onMaxAmountChange(index, e.target.value)}
                               placeholder={tPaymentProviderSettings('maximum')}

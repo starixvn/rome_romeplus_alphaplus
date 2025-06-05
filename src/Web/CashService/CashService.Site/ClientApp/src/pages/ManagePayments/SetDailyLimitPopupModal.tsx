@@ -134,7 +134,7 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
               <input
                 type="text"
                 maxLength={5}
-                className="mb-[4px] h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)]"
+                className="control-field"
                 id="dailyLimit"
                 value={dailyLimit}
                 onChange={onDailyLimitChange}

@@ -282,8 +282,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
             </TitleComponent>
 
             <div className="card h-[calc(100%-40px)] flex flex-col">
-              <div className="card-header">
-                <ul className="flex">
+           
+                <ul className="flex mt-[-12px] border-b border-[var(--border-color)]">
                   <li className="mr-[8px]">
                     <ButtonTabActiveComponent text={tManagePayments('paymentGateway')} onClick={() => setActiveTab('paymentGateway')} />
                   </li>
@@ -291,10 +291,10 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                     <ButtonTabInactiveComponent text={tManagePayments('bankAccount')} />
                   </li>
                 </ul>
-              </div>
+          
               <div className="card-body h-full">
                 <div className=" h-full flex flex-col">
-                  <div className="bg-[#ffffff] px-[14px] py-[8px]">
+                  <div className="px-[14px] py-[8px]">
                     <ErrorMessageComponent message={error} />
                     <SuccessMessageComponent message={successMessage} />
                     <MediumTitleComponent className="my-[8px]" text={tManagePayments('manageBankAccountAndLimits')} />
@@ -315,7 +315,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                   {loading && <Loading />}
                   {!loading && !error && banks.length > 0 && (
                     <>
-                      <div className="flex px-[14px] bg-[#ffffff] flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
+                      <div className="flex px-[14px] flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                         <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
                           <LabelTitleComponent text={tManagePayments('bank')} />
                           <CustomDropdown
@@ -339,7 +339,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                           <LabelTitleComponent text={tManagePayments('transactionType')} />
                           <select
                             id="transactionTypeSelect"
-                            className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
+                            className="control-field"
                             value={selectedTransactionType}
                             onChange={onTransactionTypeChange}
                           >
@@ -359,7 +359,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                           <LabelTitleComponent text={tManagePayments('status')} />
                           <select
                             id="statusSelect"
-                            className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
+                            className="control-field"
                             value={selectedStatus}
                             onChange={onStatusChange}
                           >
@@ -371,16 +371,16 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                           </select>
                         </div>
                       </div>
-                      <div className="flex px-[14px] pb-[16px] w-full bg-[#ffffff]">
+                      <div className="flex px-[14px] pb-[16px] w-full">
                         <div className="w-[250px] ml-auto ">
                           <div className="relative">
-                            <span className="absolute top-[8px] left-[8px] z-[10] max-[768px]:top-[12px]">
+                            <span className="absolute transform-[translatey(-50%)] z-[10] top-1/2 left-[8px]">
                               <IconSearch />
                             </span>
                             <input
                               type="text"
                               id="searchInput"
-                              className="h-[32px] max-[768px]:h-[40px] w-[100%] pl-[30px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] shadow-[0_0_6px_rgba(0,0,0,0.16)]"
+                              className="control-field pl-[30px]!"
                               placeholder={tManagePayments('searchAccountNumberOrName')}
                               value={searchInput}
                               onChange={onSearchChange}

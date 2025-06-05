@@ -123,9 +123,6 @@ body{
   padding: 0 3px;
 }
 
-
- 
-
 .table-fixed-header {   
   overflow: auto;
   table {
@@ -255,6 +252,19 @@ body{
   animation: mulShdSpin 1s infinite linear;
   transform: translateZ(0);
   display: inline-block;
+}
+.control-field{
+  background-color: var(--background-control);
+  border: 1px solid var(--border-control);
+  border-radius: 3px;
+  padding-inline: 12px;
+  height: 28px;
+  width: 100%; 
+  outline: none;
+  cursor: pointer;
+  &.error{
+    border-color: var(--border-control-error);
+  }
 }
 
 @keyframes mulShdSpin {

@@ -19,7 +19,7 @@ export const ButtonOutlineComponent: React.FC<ButtonComponentProps> = ({
   return (
     <div className={`${className}`}>
       <button
-        className="border-[1px] border-[var(--button-outline-border)] bg-[var(--button-outline-background)]  hover:bg-[var(--button-outline-background-hover)] hover:text-[var(--button-outline-text-hover)] text-[var(--button-outline-text)] hover:border-[var(--button-outline-border-hover)] rounded-[5px] cursor-pointer h-[30px] px-[16px] font-semibold outline-none"
+        className="border-[1px] border-[var(--button-outline-border)] bg-[var(--button-outline-background)]  hover:bg-[var(--button-outline-background-hover)] hover:text-[var(--button-outline-text-hover)] text-[var(--button-outline-text)] hover:border-[var(--button-outline-border-hover)] rounded-[5px] cursor-pointer h-[28px] px-[16px] font-semibold outline-none"
         onClick={onClick}
       >
         {text}
@@ -36,7 +36,7 @@ export const ButtonFullComponent: React.FC<ButtonComponentProps> = ({
   return (
     <div className={`${className}`}>
       <button
-        className={`bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] text-[var(--button-text)] rounded-[3px] cursor-pointer h-[30px] px-[16px] font-semibold outline-none
+        className={`bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] text-[var(--button-text)] rounded-[3px] cursor-pointer h-[28px] px-[16px] font-semibold outline-none
         ${disabled ? 'cursor-not-allowed opacity-80' : 'cursor-pointer'}`}
         onClick={onClick}
         disabled={disabled}
@@ -55,7 +55,7 @@ export const ButtonCancelComponent: React.FC<ButtonComponentProps> = ({
   return (
     <div className={`${className}`}>
       <button
-        className="min-w-[90px] bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] text-[var(--button-text)] rounded-[3px] cursor-pointer h-[30px] px-[16px] font-semibold outline-none"
+        className="min-w-[90px] bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] text-[var(--button-text)] rounded-[3px] cursor-pointer h-[28px] px-[16px] font-semibold outline-none"
         onClick={onClick}
         disabled={disabled}
       >
@@ -74,7 +74,7 @@ export const ButtonApplyComponent: React.FC<ButtonComponentProps> = ({
   return (
     <div className={`${className}`}>
       <button
-        className={`min-w-[90px] text-[var(--button-text)] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] rounded-[3px] h-[30px] px-[16px] font-semibold  max-[768px]:h-[34px] outline-none
+        className={`min-w-[90px] text-[var(--button-text)] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] rounded-[3px] h-[28px] px-[16px] font-semibold  max-[768px]:h-[34px] outline-none
         ${disabled ? 'cursor-not-allowed opacity-80' : 'cursor-pointer'}`}
         onClick={onClick}
         disabled={disabled}
