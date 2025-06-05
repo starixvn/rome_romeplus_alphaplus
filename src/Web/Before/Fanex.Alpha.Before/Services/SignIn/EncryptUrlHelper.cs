@@ -104,7 +104,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
 
             var url = $"{afterUrl}/Account/SSO?parameter={EncryptParameter(JsonSerializer.Serialize(parameter))}";
 
-            return url;
+            return AddUMToken(httpContext, url);
         }
 
         private static bool NumberCrossCookie(HttpContext httpContext)
@@ -116,6 +116,15 @@ namespace Fanex.Alpha.Before.Services.SignIn
 
         private static string EncryptParameter(string parameter)
             => AesService.Default.Encrypt(parameter, SecretKey);
+
+        private static string AddUMToken(HttpContext httpContext, string url)
+        {
+            var umToken = GetUMToken(httpContext);
+
+            return umToken == null
+                ? url
+                : $"{url}&UMToken={umToken}";
+        }
 
         private static string GetUMToken(HttpContext httpContext)
             => httpContext.Session.GetString("UMToken");
