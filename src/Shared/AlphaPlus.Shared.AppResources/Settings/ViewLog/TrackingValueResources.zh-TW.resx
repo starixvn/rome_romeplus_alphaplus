@@ -3438,10 +3438,10 @@
   <data name="MinBv151" xml:space="preserve">
     <value>南非南非賽馬-最低投注</value>
   </data>
-  <data name="accountname" xml:space="preserve">
-    <value>用戶名</value>
+  <data name="accnumber" xml:space="preserve">
+    <value>賬號</value>
   </data>
-  <data name="Bank" xml:space="preserve">
+  <data name="bank" xml:space="preserve">
     <value>銀行</value>
   </data>
 </root>

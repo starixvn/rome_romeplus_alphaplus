@@ -2751,7 +2751,7 @@
   <data name="Unlimited" xml:space="preserve">
     <value>무제한</value>
   </data>
-  <data name="Bank" xml:space="preserve">
+  <data name="bank" xml:space="preserve">
     <value>은행</value>
   </data>
 </root>

@@ -3145,7 +3145,7 @@
     <value>เลือกดูทั้งดาวน์ไลน์</value>
   </data>
   <data name="Account" xml:space="preserve">
-    <value>บัญชี</value>
+    <value>หมายเลขบัญชี</value>
   </data>
   <data name="DownlineSubAcc" xml:space="preserve">
     <value>บัญชีย่อยดาวน์ไลน์</value>
@@ -3429,10 +3429,10 @@
   <data name="DisableOpenTote" xml:space="preserve">
     <value>ปิดการใช้งาน การทายผล การแข่งขันม้าของสนาม UK/Irish โต๊ด</value>
   </data>
-  <data name="accountname" xml:space="preserve">
+  <data name="accnumber" xml:space="preserve">
     <value>ชื่อบัญชี</value>
   </data>
-  <data name="Bank" xml:space="preserve">
+  <data name="bank" xml:space="preserve">
     <value>ธนาคาร</value>
   </data>
 </root>

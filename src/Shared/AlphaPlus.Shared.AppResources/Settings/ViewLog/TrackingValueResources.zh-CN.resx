@@ -3438,10 +3438,10 @@
   <data name="disableot" xml:space="preserve">
     <value>关闭英国/爱尔兰赛马彩池</value>
   </data>
-  <data name="accountname" xml:space="preserve">
-    <value>用戶名</value>
+  <data name="accnumber" xml:space="preserve">
+    <value>账号</value>
   </data>
-  <data name="Bank" xml:space="preserve">
+  <data name="bank" xml:space="preserve">
     <value>银行</value>
   </data>
 </root>

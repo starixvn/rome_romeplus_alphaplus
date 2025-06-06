@@ -3180,10 +3180,10 @@
   <data name="DisableOpenTote" xml:space="preserve">
     <value>Không cho phép chơi UK/Irish Tote</value>
   </data>
-  <data name="accountname" xml:space="preserve">
-    <value>Tên tài khoản</value>
+  <data name="accnumber" xml:space="preserve">
+    <value>Số tài khoản</value>
   </data>
-  <data name="Bank" xml:space="preserve">
+  <data name="bank" xml:space="preserve">
     <value>Ngân hàng</value>
   </data>
 </root>

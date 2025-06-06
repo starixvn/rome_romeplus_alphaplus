@@ -2724,10 +2724,10 @@
   <data name="CommForSuper" xml:space="preserve">
     <value>スーパーコミッション</value>
   </data>
-  <data name="accountname" xml:space="preserve">
+  <data name="accnumber" xml:space="preserve">
     <value>アカウント名</value>
   </data>
-  <data name="Bank" xml:space="preserve">
+  <data name="bank" xml:space="preserve">
     <value>銀行</value>
   </data>
 </root>
