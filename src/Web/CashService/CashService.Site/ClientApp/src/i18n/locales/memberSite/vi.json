@@ -5,7 +5,8 @@
     "note": "Nếu cả hai liên kết đều bị chặn, hãy yêu cầu liên kết mới.",
     "domain": "Tên miền",
     "downloadQRCode": "Tải mã QR",
-    "requestNewLink": "Yêu cầu Liên kết Mới"
+    "requestNewLink": "Yêu cầu Liên kết Mới",
+    "noRegistrationLinks": "Không có liên kết đăng ký"
   },
   "generalSettings": {
     "title": "Cài đặt Chung",

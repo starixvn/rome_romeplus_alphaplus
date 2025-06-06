@@ -34,17 +34,17 @@ const RegistrationLinks: React.FC<Props> = ({ domains, loading }) => {
   }
 
   return (
-    <div className="">
+    <>
       <div className="flex justify-between items-center">
         <div>
           <MediumTitleComponent text={t('registrationLinks.title')} />          
-          <p className="text-[var(--text-color-primary)] pt-[4px] mb-[16px] font-semibold">
+          <p className="pt-[4px] mb-[16px]">
             {t('registrationLinks.note')}
           </p>
         </div>
       </div>
 
-      <div className="flex gap-[30px] flex-wrap w-[100%] max-[768px]:w-full max-[768px]:flex-col">
+      <div className="flex gap-[30px] flex-wrap w-[100%] max-[768px]:flex-col">
         {domains.map((domain, index) => (
           <DomainCard
             key={`${domain.id}-${index}`}
@@ -55,11 +55,11 @@ const RegistrationLinks: React.FC<Props> = ({ domains, loading }) => {
       </div>
 
       {domains.length === 0 && (
-        <div className="text-center py-8 bg-gray-50 rounded-lg">
-          <p className="text-gray-500">No registration links available</p>
+        <div className="text-center py-8 bg-[var(--background-button)] border-[1px] border-[var(--border-color)] rounded-[3px]">           
+          <MediumTitleComponent text={t('registrationLinks.noRegistrationLinks')} />
         </div>
       )}
-    </div>
+    </>
   );
 };
 

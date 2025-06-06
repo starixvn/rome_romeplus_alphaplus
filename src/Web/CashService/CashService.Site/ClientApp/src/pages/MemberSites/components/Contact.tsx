@@ -2,6 +2,8 @@ import { useTranslation } from "react-i18next";
 import { Contact as ContactType } from "../../../services/interfaces/MemberSites";
 import { FieldError, useFormContext } from "react-hook-form";
 import { CONTACT_MAX_LENGTH, CONTACT_REGEX, LINE_REGEX } from "../../../constants";
+import { LabelTitleComponent } from "../../../components/TitleComponents";
+import { ValidateMessageComponent } from "../../../components/MessageComponents";
 
 interface ContactProps {
   index: number;
@@ -55,10 +57,8 @@ export const Contact = (props: ContactProps) => {
 
   return (
     <div key={contact.type} className='w-[230px] pt-[4px] max-[768px]:w-[48%]'>
-      <label htmlFor={contact.type} className="block pt-[4px] mb-[8px] font-semibold max-[768px]:mb-[8px]">
-        {t(`message.${contact.type}`)}
-        {contact.isRequired && <span className='text-[#E25757]'>*</span>}
-      </label>
+       
+      <LabelTitleComponent text={t(`message.${contact.type}`)}  required={contact.isRequired}/>
       <div className="relative">
         <input
           id={contact.type}
@@ -71,16 +71,10 @@ export const Contact = (props: ContactProps) => {
             }
           })}
           maxLength={CONTACT_MAX_LENGTH}
-          className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none max-[768px]:text-[16px] max-[768px]:leading-[16px] ${fieldError
-            ? 'border-[#E25757] focus:border-[#E25757]'
-            : 'border-[var(--border-control)] focus:border-[var(--border-control-focus)]'
-            }`}
-        />
-        {fieldError && (
-          <p className="text-[#E25757] text-[12px] mt-[4px]">
-            {getErrorMessage(fieldError.value)}
-          </p>
-        )}
+          className={`control-field ${fieldError ? 'error' : '' }`}
+        />       
+        <ValidateMessageComponent message={getErrorMessage(fieldError?.value)} />
+       
       </div>
     </div>
   );

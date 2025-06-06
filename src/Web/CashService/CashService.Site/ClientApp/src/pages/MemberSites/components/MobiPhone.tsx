@@ -2,6 +2,8 @@ import { MobilePhone as MobilePhoneType } from "../../../services/interfaces/Mem
 import { useTranslation } from "react-i18next";
 import { FieldError, useFormContext } from "react-hook-form";
 import { NUMBER_REGEX, PHONE_CODE_MAX_LENGTH, PHONE_NUMBER_MAX_LENGTH } from "../../../constants";
+import { LabelTitleComponent } from "../../../components/TitleComponents";
+import { ValidateMessageComponent } from "../../../components/MessageComponents";
 
 interface MobiCodeProps {
     code: string;
@@ -34,7 +36,7 @@ const MobiCode = (props: MobiCodeProps) => {
 
     return (
         <div className="flex items-center">
-            <span>+</span>
+            <span className="relative top-[1px]">+</span>
             <input
                 id="numberPhone"
                 key="numberPhone"
@@ -44,7 +46,7 @@ const MobiCode = (props: MobiCodeProps) => {
                     onChange: handleInputChange
                 })}
                 className={`focus:outline-none focus:border-[var(--button-border)] h-[100%] w-[30px] min-w-[30px] ${
-                    mobilePhoneErrors?.code ? 'border-[#E25757]' : ''
+                    mobilePhoneErrors?.code ? 'border-[var(--border-control-error)]' : ''
                 }`}
                 maxLength={PHONE_CODE_MAX_LENGTH}
             />
@@ -70,13 +72,10 @@ export const MobilePhone = (props: MobilePhoneInputProps) => {
     };
 
     return (
-        <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-            <label className="block text-[12px] pt-[4px] mb-[8px] font-semibold max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:mb-[8px]" htmlFor="mobile">
-                {t('message.mobile')}
-                {isRequired && <span className='text-[#E25757]'>*</span>}
-            </label>
-            <div className={`flex items-center h-[32px] max-[768px]:h-[40px] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--border-control-focus)] cursor-pointer ${
-                mobilePhoneErrors ? 'border-[#E25757]' : 'border-[var(--border-control)]'
+        <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">             
+            <LabelTitleComponent text={t('message.mobile')}  required={isRequired}/>
+            <div className={`flex items-center h-[28px] max-[768px]:h-[40px] w-[230px] border-[1px] border-[var(--border-control)] rounded-[3px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer bg-[var(--background-control)] ${
+                mobilePhoneErrors ? 'border-[var(--border-control-error)]' : ''
             }`}>
                 <MobiCode code={mobilePhone.code} onChange={(code) => {
                     handleMobilePhoneChange({ phone: mobilePhone.phone, code: code });
@@ -96,9 +95,7 @@ export const MobilePhone = (props: MobilePhoneInputProps) => {
                 />
             </div>
             {(mobilePhoneErrors?.code || mobilePhoneErrors?.phone) && (
-                <p className="text-[#E25757] text-[12px] mt-[4px]">
-                    {getErrorMessage(mobilePhoneErrors?.code || mobilePhoneErrors?.phone)}
-                </p>
+                <ValidateMessageComponent message={getErrorMessage(mobilePhoneErrors?.code || mobilePhoneErrors?.phone)} />
             )}
         </div>
     );

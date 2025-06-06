@@ -1,0 +1,10 @@
+:root, :root [data-theme='light'] {
+    --domain-card-color1: #0b599c;
+    --domain-card-color2: #ffffff;
+    --domain-card-color3: #ededed;
+}
+:root [data-theme='dark'] {
+    --domain-card-color1: #36587D;
+    --domain-card-color2: #ededed;
+    --domain-card-color3: #ffffff;
+}

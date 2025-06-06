@@ -5,7 +5,8 @@
     "note": "如果兩個連結都被封鎖，請申請新連結。",
     "domain": "網域",
     "downloadQRCode": "下載 QR 碼",
-    "requestNewLink": "申請新連結"
+    "requestNewLink": "申請新連結",
+    "noRegistrationLinks": "暫無註冊連結"
   },
   "generalSettings": {
     "title": "一般設定",

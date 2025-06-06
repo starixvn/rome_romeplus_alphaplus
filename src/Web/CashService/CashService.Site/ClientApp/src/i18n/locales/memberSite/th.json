@@ -5,7 +5,8 @@
       "note": "หากลิงก์ทั้งสองถูกบล็อก ให้ขอลิงก์ใหม่",
       "domain": "โดเมน",
       "downloadQRCode": "ดาวน์โหลด QR Code",
-      "requestNewLink": "ขอลิงก์ใหม่"
+      "requestNewLink": "ขอลิงก์ใหม่",
+      "noRegistrationLinks": "ไม่มีลิงก์ลงทะเบียน"
     },
     "generalSettings": {
       "title": "การตั้งค่าทั่วไป",

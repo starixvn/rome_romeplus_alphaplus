@@ -5,7 +5,8 @@
     "note": "両方のリンクがブロックされている場合は、新しいリンクをリクエストしてください。",
     "domain": "ドメイン",
     "downloadQRCode": "QRコードをダウンロード",
-    "requestNewLink": "新しいリンクをリクエスト"
+    "requestNewLink": "新しいリンクをリクエスト",
+    "noRegistrationLinks": "登録リンクがありません"
   },
   "generalSettings": {
     "title": "一般設定",
