@@ -642,10 +642,4 @@
   <data name="CreateDirectMember" xml:space="preserve">
     <value>สร้างสมาชิกโดยตรง</value>
   </data>
-  <data name="Bank" xml:space="preserve">
-    <value>ธนาคาร</value>
-  </data>
-  <data name="AccountName" xml:space="preserve">
-    <value>ชื่อบัญชี</value>
-  </data>
 </root>

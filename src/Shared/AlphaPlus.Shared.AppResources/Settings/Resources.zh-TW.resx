@@ -645,10 +645,4 @@
   <data name="String" xml:space="preserve">
     <value>暂停</value>
   </data>
-  <data name="Bank" xml:space="preserve">
-    <value>銀行</value>
-  </data>
-  <data name="AccountName" xml:space="preserve">
-    <value>用戶名</value>
-  </data>
 </root>

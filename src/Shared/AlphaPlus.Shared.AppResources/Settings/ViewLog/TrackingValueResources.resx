@@ -3495,4 +3495,10 @@
   <data name="PotentialWinLimit" xml:space="preserve">
     <value>Potential Win Limit</value>
   </data>
+  <data name="accountname" xml:space="preserve">
+    <value>Account name</value>
+  </data>
+  <data name="Bank" xml:space="preserve">
+    <value>Bank</value>
+  </data>
 </root>

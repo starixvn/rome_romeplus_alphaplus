@@ -1125,6 +1125,9 @@
   <data name="disableoutright" xml:space="preserve">
     <value>Không cho phép chơi Cược  Thắng</value>
   </data>
+  <data name="DisableCasino" xml:space="preserve">
+    <value>Không cho phép chơi Casino</value>
+  </data>
   <data name="minV99PT_1" xml:space="preserve">
     <value>PT nhỏ nhất cho Cược Chấp</value>
   </data>
@@ -2199,9 +2202,6 @@
   <data name="AgentPT" xml:space="preserve">
     <value>PT của Agent</value>
   </data>
-  <data name="DisableOpenTote" xml:space="preserve">
-    <value>Không cho phép chơi UK/Irish Tote</value>
-  </data>
   <data name="login_message_log" xml:space="preserve">
     <value>Nhật ký đăng nhập của  thành viên hiện chưa có.</value>
   </data>
@@ -2520,9 +2520,6 @@
   <data name="maxv99pt_9" xml:space="preserve">
     <value>PT lớn nhất cho thể loại Cược tổng hợp</value>
   </data>
-  <data name="DisableCasino" xml:space="preserve">
-    <value>Không cho phép chơi Casino</value>
-  </data>
   <data name="showOldValue" xml:space="preserve">
     <value>Hiển thị giá trị cũ</value>
   </data>
@@ -2781,6 +2778,9 @@
   <data name="isdisabled" xml:space="preserve">
     <value>Không cho phép</value>
   </data>
+  <data name="isdisableddownline" xml:space="preserve">
+    <value>Không cho phép thành viên cấp dưới</value>
+  </data>
   <data name="IsLive" xml:space="preserve">
     <value>Is Live</value>
   </data>
@@ -2798,9 +2798,6 @@
   </data>
   <data name="MaxPerNumber" xml:space="preserve">
     <value>Tiền Cược tối đa cho mỗi số</value>
-  </data>
-  <data name="isdisableddownline" xml:space="preserve">
-    <value>Không cho phép thành viên cấp dưới</value>
   </data>
   <data name="checkedotp" xml:space="preserve">
     <value>Checked OTP</value>
@@ -2865,17 +2862,17 @@
   <data name="zh-CN" xml:space="preserve">
     <value>Tiếng Trung Giản Thể</value>
   </data>
-  <data name="th-TH" xml:space="preserve">
-    <value>Tiếng Thái</value>
-  </data>
-  <data name="vi-VN" xml:space="preserve">
-    <value>Tiếng Việt</value>
-  </data>
   <data name="ja-JP" xml:space="preserve">
     <value>Tiếng Nhật</value>
   </data>
+  <data name="th-TH" xml:space="preserve">
+    <value>Tiếng Thái</value>
+  </data>
   <data name="ko-KR" xml:space="preserve">
     <value>Tiếng Hàn</value>
+  </data>
+  <data name="vi-VN" xml:space="preserve">
+    <value>Tiếng Việt</value>
   </data>
   <data name="period" xml:space="preserve">
     <value>Thời gian</value>
@@ -2916,14 +2913,14 @@
   <data name="CopyCustomer" xml:space="preserve">
     <value>Tạo mới tài khoản Member dựa trên thiết lập của tài khoản có sẵn.</value>
   </data>
-  <data name="MPMv164" xml:space="preserve">
-    <value>Tiền cược lớn nhất cho mỗi trận  Happy 5</value>
+  <data name="MinBv164" xml:space="preserve">
+    <value>Tiền cược nhỏ nhất cho Happy 5</value>
   </data>
   <data name="MaxBv164" xml:space="preserve">
     <value>Tiền cược lớn nhất cho Happy 5</value>
   </data>
-  <data name="MinBv164" xml:space="preserve">
-    <value>Tiền cược nhỏ nhất cho Happy 5</value>
+  <data name="MPMv164" xml:space="preserve">
+    <value>Tiền cược lớn nhất cho mỗi trận  Happy 5</value>
   </data>
   <data name="UMMBv164" xml:space="preserve">
     <value>Cập nhật tiền cược nhỏ nhất / lớn nhất của Happy 5</value>
@@ -2949,6 +2946,12 @@
   <data name="Locked" xml:space="preserve">
     <value>Đã Khoá</value>
   </data>
+  <data name="SourceAccount" xml:space="preserve">
+    <value>Tài Khoản Nguồn</value>
+  </data>
+  <data name="SoccerSMP" xml:space="preserve">
+    <value>Bóng Đá (SMP)</value>
+  </data>
   <data name="Soccer2" xml:space="preserve">
     <value>Bóng Đá (2)</value>
   </data>
@@ -2958,11 +2961,8 @@
   <data name="Soccer6pSP" xml:space="preserve">
     <value>Bóng Đá (6+) &amp; SP</value>
   </data>
-  <data name="SourceAccount" xml:space="preserve">
-    <value>Tài Khoản Nguồn</value>
-  </data>
-  <data name="SoccerSMP" xml:space="preserve">
-    <value>Bóng Đá (SMP)</value>
+  <data name="MixSportsSMP" xml:space="preserve">
+    <value>Thể Thao Tổng Hợp (SMP)</value>
   </data>
   <data name="MixSport2" xml:space="preserve">
     <value>Thể Thao Tổng Hợp (2)</value>
@@ -2972,9 +2972,6 @@
   </data>
   <data name="MixSports6pSP" xml:space="preserve">
     <value>Thể Thao Tổng Hợp (6+) &amp; SP</value>
-  </data>
-  <data name="MixSportsSMP" xml:space="preserve">
-    <value>Thể Thao Tổng Hợp (SMP)</value>
   </data>
   <data name="UpdateParlayMaxPayout" xml:space="preserve">
     <value>Cập Nhật Thanh Toán Tối Đa Cho Cược Xiên</value>
@@ -3105,17 +3102,14 @@
   <data name="DisableNumber" xml:space="preserve">
     <value>Không cho phép chơi Number Game</value>
   </data>
-  <data name="MasterPT" xml:space="preserve">
-    <value>PT của Master</value>
+  <data name="TemplateName" xml:space="preserve">
+    <value>Tên Mẫu</value>
   </data>
   <data name="SuperPT" xml:space="preserve">
     <value>PT của Super</value>
   </data>
-  <data name="lblAgentPT" xml:space="preserve">
-    <value>PT của Agent</value>
-  </data>
-  <data name="IsAuto" xml:space="preserve">
-    <value>Auto PT</value>
+  <data name="SelectedByDefault" xml:space="preserve">
+    <value>Chọn Mặc Định</value>
   </data>
   <data name="Commision" xml:space="preserve">
     <value>Hoa hồng</value>
@@ -3123,26 +3117,38 @@
   <data name="BetSetting" xml:space="preserve">
     <value>Tiền Cược</value>
   </data>
+  <data name="MaxPayoutPerMatch" xml:space="preserve">
+    <value>Thanh Toán Tối Đa Mỗi Trận</value>
+  </data>
   <data name="ParlayMaxPayout" xml:space="preserve">
     <value>Thanh toán tối đa cho Cược Xiên</value>
+  </data>
+  <data name="SingleMatchParlay" xml:space="preserve">
+    <value>Cược Xiên Một Trận</value>
+  </data>
+  <data name="ComboOver6" xml:space="preserve">
+    <value>Combo 6+ &amp; Cược Tổng Hợp</value>
+  </data>
+  <data name="IsAuto" xml:space="preserve">
+    <value>Auto PT</value>
   </data>
   <data name="AllowAutoPT" xml:space="preserve">
     <value>Cho Auto PT</value>
   </data>
-  <data name="MaxPayoutPerMatch" xml:space="preserve">
-    <value>Thanh Toán Tối Đa Mỗi Trận</value>
+  <data name="PositionTakingTemplate" xml:space="preserve">
+    <value>Mẫu Position Taking</value>
+  </data>
+  <data name="MasterPT" xml:space="preserve">
+    <value>PT của Master</value>
+  </data>
+  <data name="lblAgentPT" xml:space="preserve">
+    <value>PT của Agent</value>
   </data>
   <data name="CommForAgent" xml:space="preserve">
     <value>Hoa hồng cho Agent</value>
   </data>
   <data name="CommForMember" xml:space="preserve">
     <value>Hoa hồng cho Member</value>
-  </data>
-  <data name="ComboOver6" xml:space="preserve">
-    <value>Combo 6+ &amp; Cược Tổng Hợp</value>
-  </data>
-  <data name="SingleMatchParlay" xml:space="preserve">
-    <value>Cược Xiên Một Trận</value>
   </data>
   <data name="WinLossLimit" xml:space="preserve">
     <value>Giới hạn thắng thua</value>
@@ -3152,15 +3158,6 @@
   </data>
   <data name="BetLimit" xml:space="preserve">
     <value>Giới hạn cược</value>
-  </data>
-  <data name="TemplateName" xml:space="preserve">
-    <value>Tên Mẫu</value>
-  </data>
-  <data name="SelectedByDefault" xml:space="preserve">
-    <value>Chọn Mặc Định</value>
-  </data>
-  <data name="PositionTakingTemplate" xml:space="preserve">
-    <value>Mẫu Position Taking</value>
   </data>
   <data name="ParlayMaxPayoutPerBet" xml:space="preserve">
     <value>Thanh Toán Tối Đa Cho Mỗi Cược Xiên</value>
@@ -3179,5 +3176,14 @@
   </data>
   <data name="CommForMaster" xml:space="preserve">
     <value>Hoa hồng Master</value>
+  </data>
+  <data name="DisableOpenTote" xml:space="preserve">
+    <value>Không cho phép chơi UK/Irish Tote</value>
+  </data>
+  <data name="accountname" xml:space="preserve">
+    <value>Tên tài khoản</value>
+  </data>
+  <data name="Bank" xml:space="preserve">
+    <value>Ngân hàng</value>
   </data>
 </root>

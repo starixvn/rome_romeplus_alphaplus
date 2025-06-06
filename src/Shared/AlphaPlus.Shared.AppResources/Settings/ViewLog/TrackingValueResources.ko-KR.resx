@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="subAccID" xml:space="preserve">
+    <value>Sub Account ID</value>
+  </data>
   <data name="syncCS" xml:space="preserve">
     <value>Is Casino-synchronized</value>
   </data>
@@ -1097,6 +1100,9 @@
   </data>
   <data name="playerdiscountcs" xml:space="preserve">
     <value>Player's Other Discount</value>
+  </data>
+  <data name="DisableCasino" xml:space="preserve">
+    <value>카지노 비활성화하기</value>
   </data>
   <data name="minV99PT_1" xml:space="preserve">
     <value>Min Hdp</value>
@@ -2427,9 +2433,6 @@
   <data name="maxv99pt_9" xml:space="preserve">
     <value>Max Mix Parlay</value>
   </data>
-  <data name="DisableCasino" xml:space="preserve">
-    <value>카지노 비활성화하기</value>
-  </data>
   <data name="showOldValue" xml:space="preserve">
     <value>Show old values</value>
   </data>
@@ -2703,9 +2706,6 @@
   <data name="product" xml:space="preserve">
     <value>Product</value>
   </data>
-  <data name="subAccID" xml:space="preserve">
-    <value>Sub Account ID</value>
-  </data>
   <data name="MaxPerNumber" xml:space="preserve">
     <value>Max Per Number</value>
   </data>
@@ -2750,5 +2750,8 @@
   </data>
   <data name="Unlimited" xml:space="preserve">
     <value>무제한</value>
+  </data>
+  <data name="Bank" xml:space="preserve">
+    <value>은행</value>
   </data>
 </root>

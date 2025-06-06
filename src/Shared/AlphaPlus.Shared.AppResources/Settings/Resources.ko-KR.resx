@@ -567,7 +567,4 @@
   <data name="SuperEditsMultipleMembers_Note" xml:space="preserve">
     <value>You can only change member status (open/closed) and your Position Taking taken on those members.</value>
   </data>
-  <data name="Bank" xml:space="preserve">
-    <value>은행</value>
-  </data>
 </root>

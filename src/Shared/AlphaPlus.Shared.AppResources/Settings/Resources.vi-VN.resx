@@ -636,10 +636,4 @@
   <data name="CreateDirectMember" xml:space="preserve">
     <value>Tạo Member Trực Tiếp</value>
   </data>
-  <data name="Bank" xml:space="preserve">
-    <value>Ngân hàng</value>
-  </data>
-  <data name="AccountName" xml:space="preserve">
-    <value>Tên tài khoản</value>
-  </data>
 </root>

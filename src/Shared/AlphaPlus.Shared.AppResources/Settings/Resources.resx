@@ -651,10 +651,4 @@
   <data name="CreateDirectMember" xml:space="preserve">
     <value>Create Direct Member</value>
   </data>
-  <data name="Bank" xml:space="preserve">
-    <value>Bank</value>
-  </data>
-  <data name="AccountName" xml:space="preserve">
-    <value>Account name</value>
-  </data>
 </root>

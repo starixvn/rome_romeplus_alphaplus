@@ -573,10 +573,4 @@
   <data name="All" xml:space="preserve">
     <value>すべて</value>
   </data>
-  <data name="Bank" xml:space="preserve">
-    <value>銀行</value>
-  </data>
-  <data name="AccountName" xml:space="preserve">
-    <value>アカウント名</value>
-  </data>
 </root>
