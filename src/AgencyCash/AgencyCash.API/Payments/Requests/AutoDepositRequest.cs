@@ -35,7 +35,7 @@ public class AutoDepositRequest
 
     [RequiredIf(nameof(MatchingMode), (byte)1)]
     [PositiveNumber]
-    public decimal? ConfirmAmount { get; init; }
+    public decimal? UserInputAmount { get; init; }
 
     /// <summary>
     /// 1: Decimal

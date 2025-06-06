@@ -133,7 +133,7 @@ public class DepositService(
             request.PaymentFrom,
             request.PaymentTo,
             request.Amount,
-            confirmAmount: request.ConfirmAmount,
+            userInputAmount: request.UserInputAmount,
             matchingMode: request.MatchingMode,
             ip: request.IP,
             remark: request.Remark);

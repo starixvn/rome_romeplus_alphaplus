@@ -18,7 +18,7 @@ public class AddTransactionDepositCriteria(
     string paymentTo,
     //decimal exchangeRate,
     decimal amount,
-    decimal? confirmAmount = null,
+    decimal? userInputAmount = null,
     byte? matchingMode = null,
     byte[] paySlip = null,
     string ip = null,
@@ -52,7 +52,7 @@ public class AddTransactionDepositCriteria(
 
     public decimal Amount { get; } = amount;
 
-    public decimal? UserInput_Amount { get; } = confirmAmount;
+    public decimal? UserInput_Amount { get; } = userInputAmount;
 
     public byte? MachingMode { get; } = matchingMode;
 
