@@ -109,7 +109,7 @@ body{
   padding: 0 3px;
 }
 table{
-  tr{
+  tbody tr{
     &:hover{
       th,td{
         background-color: var(--table-background-hover);

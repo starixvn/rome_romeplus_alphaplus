@@ -414,8 +414,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                           <tbody className="font-[500]">
                           {bankAccounts.map((account, index) => (
                               <tr key={account.id}>
-                                <td className="col-no ">{index + 1}</td>
-                                <td className="col-action ">
+                                <td className="col-no bg-[var(--table-background)]">{index + 1}</td>
+                                <td className="col-action bg-[var(--table-background)]">
                                   <div className="flex justify-center">
                                     <ButtonPenComponent disabled={deleting === account.id} onClick={() => onEditBankAccount(account.id)} />
                                     <ButtonDeleteComponent onClick={() => onDeleteBankAccount(account)} />
