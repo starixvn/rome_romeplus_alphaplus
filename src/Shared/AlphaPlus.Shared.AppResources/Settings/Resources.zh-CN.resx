@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -119,487 +119,366 @@
   </resheader>
   <data name="Active" xml:space="preserve">
     <value>活跃</value>
-    <comment />
   </data>
   <data name="Agent" xml:space="preserve">
     <value>代理</value>
-    <comment />
   </data>
   <data name="AgentList" xml:space="preserve">
     <value>代理名单</value>
-    <comment />
   </data>
   <data name="AgentOutstanding" xml:space="preserve">
     <value>代理未结束交易</value>
-    <comment />
   </data>
   <data name="BalanceInfo" xml:space="preserve">
     <value>余额资料</value>
-    <comment />
   </data>
   <data name="BetCredit" xml:space="preserve">
     <value>投注额度</value>
-    <comment />
   </data>
   <data name="BetList" xml:space="preserve">
     <value>投注历史</value>
-    <comment />
   </data>
   <data name="BetSettingViewModelText" xml:space="preserve">
     <value>投注设定</value>
-    <comment />
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>取消</value>
-    <comment />
   </data>
   <data name="CommissionViewModelText" xml:space="preserve">
     <value>佣金</value>
-    <comment />
   </data>
   <data name="ConfirmAllowAutoMasterPTViewModelInCaseDisabledMessage" xml:space="preserve">
     <value>您确定要禁用总代自动占成功能吗？</value>
-    <comment />
   </data>
   <data name="ConfirmAllowAutoMasterPTViewModelInCaseEnabledMessage" xml:space="preserve">
     <value>您确定要启用总代自动占成功能吗？</value>
-    <comment />
   </data>
   <data name="ConfirmAllowAutoMasterPTViewModelText" xml:space="preserve">
     <value>允许自动占成</value>
-    <comment />
   </data>
   <data name="ConfirmAllowOutrightViewModelInCaseDisabledMessage" xml:space="preserve">
     <value>您确定要禁止此客户的优胜冠军投注吗？</value>
-    <comment />
   </data>
   <data name="ConfirmAllowOutrightViewModelInCaseEnabledMessage" xml:space="preserve">
     <value>您确定要允许优胜冠军状况给个客户吗？</value>
-    <comment />
-  </data>
-  <data name="ConfirmClosedViewModelInCaseChangeClosedStatusMessage" xml:space="preserve">
-    <value>您确定要更改这个客户的关闭状态？</value>
-    <comment />
-  </data>
-  <data name="ConfirmClosedViewModelInCaseClosedDownlinesMessage" xml:space="preserve">
-    <value>您确定要更改这个客户的关闭状态？警告！所有下线将被关闭！</value>
-    <comment />
-  </data>
-  <data name="ConfirmClosedViewModelInCaseOpenedMemberMessage" xml:space="preserve">
-    <value>您确定要开启此账号？</value>
-    <comment />
-  </data>
-  <data name="ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage" xml:space="preserve">
-    <value>您确定要禁止此客户的双倍佣金功能于体育博彩之输额注单? 警告, 所有附属此代理之会员也将被禁止!</value>
-    <comment />
-  </data>
-  <data name="ConfirmDoubleCommViewModelInCaseDisabledMemberMessage" xml:space="preserve">
-    <value>您确定要关闭此客户的双倍佣金功能于体育博彩之输额注单?</value>
-    <comment />
-  </data>
-  <data name="ConfirmDoubleCommViewModelInCaseEnabledMemberMessage" xml:space="preserve">
-    <value>您确定要开启此客户的双倍佣金功能于体育博彩之输额注单?</value>
-    <comment />
-  </data>
-  <data name="ConfirmDoubleCommViewModelInCaseEnableMasterOrAgentMessage" xml:space="preserve">
-    <value>您确定要允许此客户的双倍佣金功能于体育博彩之输额注单?</value>
-    <comment />
-  </data>
-  <data name="ConfirmSuspendedViewModelInCaseSuspendedMasterOrAgentMessage" xml:space="preserve">
-    <value>您确定要更改这个客户暂停状态吗？警告，所有代理的会员不能投注！</value>
-    <comment />
-  </data>
-  <data name="ConfirmSuspendedViewModelInCaseSuspendedMemberMessage" xml:space="preserve">
-    <value>您确定要更改这个客户暂停状态吗？会员将无法投注。</value>
-    <comment />
-  </data>
-  <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage" xml:space="preserve">
-    <value>您确定要更改这个客户暂停状态吗？所有下线将取消暂停.</value>
-    <comment />
-  </data>
-  <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMemberMessage" xml:space="preserve">
-    <value>您确定要更改这个客户暂停状态吗？</value>
-    <comment />
-  </data>
-  <data name="CreatedDate" xml:space="preserve">
-    <value>新增日期</value>
-    <comment />
-  </data>
-  <data name="Customer" xml:space="preserve">
-    <value>会员</value>
-    <comment />
-  </data>
-  <data name="DownlineList" xml:space="preserve">
-    <value>下线名单</value>
-    <comment />
-  </data>
-  <data name="Fax" xml:space="preserve">
-    <value>传真</value>
-    <comment />
-  </data>
-  <data name="GivenCredit" xml:space="preserve">
-    <value>信用额度</value>
-    <comment />
-  </data>
-  <data name="IP" xml:space="preserve">
-    <value>IP</value>
-    <comment />
-  </data>
-  <data name="LastLogin" xml:space="preserve">
-    <value>最后登入</value>
-    <comment />
-  </data>
-  <data name="LastTxn" xml:space="preserve">
-    <value>最后交易</value>
-    <comment />
-  </data>
-  <data name="LoginIP" xml:space="preserve">
-    <value>最后登入IP</value>
-    <comment />
-  </data>
-  <data name="LoginTime" xml:space="preserve">
-    <value>登入时间</value>
-    <comment />
-  </data>
-  <data name="Master" xml:space="preserve">
-    <value>总代理</value>
-    <comment />
-  </data>
-  <data name="MasterOutstanding" xml:space="preserve">
-    <value>总代理未结束交易</value>
-    <comment />
-  </data>
-  <data name="Member" xml:space="preserve">
-    <value>会员</value>
-    <comment />
-  </data>
-  <data name="MemberList" xml:space="preserve">
-    <value>会员名单</value>
-    <comment />
-  </data>
-  <data name="MemberMaxCredit" xml:space="preserve">
-    <value>会员最高信用额</value>
-    <comment />
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>名</value>
-    <comment />
-  </data>
-  <data name="NetPosition" xml:space="preserve">
-    <value>最低净赢</value>
-    <comment />
-  </data>
-  <data name="NoDataChange" xml:space="preserve">
-    <value>没有任何的变化更新。</value>
-    <comment />
-  </data>
-  <data name="NoInformationIsAvailable" xml:space="preserve">
-    <value>没资料显示</value>
-    <comment />
-  </data>
-  <data name="NotAuthorized" xml:space="preserve">
-    <value>您没有使用此功能的权限</value>
-    <comment />
-  </data>
-  <data name="NumberOrder" xml:space="preserve">
-    <value>#</value>
-    <comment />
-  </data>
-  <data name="OnlineList" xml:space="preserve">
-    <value>上线名单</value>
-    <comment />
-  </data>
-  <data name="Outstanding" xml:space="preserve">
-    <value>未完成交易</value>
-    <comment />
-  </data>
-  <data name="Phone" xml:space="preserve">
-    <value>电话</value>
-    <comment />
-  </data>
-  <data name="Setting" xml:space="preserve">
-    <value>设定</value>
-    <comment />
-  </data>
-  <data name="Statement" xml:space="preserve">
-    <value>账目</value>
-    <comment />
-  </data>
-  <data name="Status" xml:space="preserve">
-    <value>状态</value>
-    <comment />
-  </data>
-  <data name="Submit" xml:space="preserve">
-    <value>提交</value>
-    <comment />
-  </data>
-  <data name="Super" xml:space="preserve">
-    <value>超级</value>
-    <comment />
-  </data>
-  <data name="ThisUserIsNotOnline" xml:space="preserve">
-    <value>此会员没上线</value>
-    <comment />
-  </data>
-  <data name="TotalAgentActiveClosed" xml:space="preserve">
-    <value>代理总数"活跃/关闭/暫停"</value>
-    <comment />
-  </data>
-  <data name="TotalBalance" xml:space="preserve">
-    <value>总平均</value>
-    <comment />
-  </data>
-  <data name="TotalCash" xml:space="preserve">
-    <value>馀额总数</value>
-    <comment />
-  </data>
-  <data name="TotalMemberActiveClosed" xml:space="preserve">
-    <value>会员总数"活跃/关闭/暫停"</value>
-    <comment />
-  </data>
-  <data name="UsedCredit" xml:space="preserve">
-    <value>已用額度</value>
-    <comment />
-  </data>
-  <data name="UserNamePlaceHolder" xml:space="preserve">
-    <value>用户名或名/姓</value>
-    <comment />
-  </data>
-  <data name="YesterdayBalance" xml:space="preserve">
-    <value>昨天余额</value>
-    <comment />
-  </data>
-  <data name="YesterdayCash" xml:space="preserve">
-    <value>昨天馀额</value>
-    <comment />
   </data>
   <data name="ConfirmAllowOutrightViewModelText" xml:space="preserve">
     <value>允许优胜冠军</value>
-    <comment />
+  </data>
+  <data name="ConfirmClosedViewModelInCaseChangeClosedStatusMessage" xml:space="preserve">
+    <value>您确定要更改这个客户的关闭状态？</value>
+  </data>
+  <data name="ConfirmClosedViewModelInCaseClosedDownlinesMessage" xml:space="preserve">
+    <value>您确定要更改这个客户的关闭状态？警告！所有下线将被关闭！</value>
+  </data>
+  <data name="ConfirmClosedViewModelInCaseOpenedMemberMessage" xml:space="preserve">
+    <value>您确定要开启此账号？</value>
   </data>
   <data name="ConfirmClosedViewModelText" xml:space="preserve">
     <value>关闭</value>
-    <comment />
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage" xml:space="preserve">
+    <value>您确定要禁止此客户的双倍佣金功能于体育博彩之输额注单? 警告, 所有附属此代理之会员也将被禁止!</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseDisabledMemberMessage" xml:space="preserve">
+    <value>您确定要关闭此客户的双倍佣金功能于体育博彩之输额注单?</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseEnabledMemberMessage" xml:space="preserve">
+    <value>您确定要开启此客户的双倍佣金功能于体育博彩之输额注单?</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseEnableMasterOrAgentMessage" xml:space="preserve">
+    <value>您确定要允许此客户的双倍佣金功能于体育博彩之输额注单?</value>
   </data>
   <data name="ConfirmDoubleCommViewModelText" xml:space="preserve">
     <value>双倍佣金</value>
-    <comment />
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseSuspendedMasterOrAgentMessage" xml:space="preserve">
+    <value>您确定要更改这个客户暂停状态吗？警告，所有代理的会员不能投注！</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseSuspendedMemberMessage" xml:space="preserve">
+    <value>您确定要更改这个客户暂停状态吗？会员将无法投注。</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage" xml:space="preserve">
+    <value>您确定要更改这个客户暂停状态吗？所有下线将取消暂停.</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMemberMessage" xml:space="preserve">
+    <value>您确定要更改这个客户暂停状态吗？</value>
   </data>
   <data name="ConfirmSuspendedViewModelText" xml:space="preserve">
     <value>暫停</value>
-    <comment />
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>新增日期</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>会员</value>
+  </data>
+  <data name="DownlineList" xml:space="preserve">
+    <value>下线名单</value>
   </data>
   <data name="EditInfoViewModelText" xml:space="preserve">
     <value>资料</value>
-    <comment />
   </data>
-  <data name="NoInfo" xml:space="preserve">
+  <data name="Fax" xml:space="preserve">
+    <value>传真</value>
+  </data>
+  <data name="GivenCredit" xml:space="preserve">
+    <value>信用额度</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>最后登入</value>
+  </data>
+  <data name="LastTxn" xml:space="preserve">
+    <value>最后交易</value>
+  </data>
+  <data name="LoginIP" xml:space="preserve">
+    <value>最后登入IP</value>
+  </data>
+  <data name="LoginTime" xml:space="preserve">
+    <value>登入时间</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>总代理</value>
+  </data>
+  <data name="MasterOutstanding" xml:space="preserve">
+    <value>总代理未结束交易</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>会员</value>
+  </data>
+  <data name="MemberList" xml:space="preserve">
+    <value>会员名单</value>
+  </data>
+  <data name="MemberMaxCredit" xml:space="preserve">
+    <value>会员最高信用额</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名</value>
+  </data>
+  <data name="NetPosition" xml:space="preserve">
+    <value>最低净赢</value>
+  </data>
+  <data name="NoDataChange" xml:space="preserve">
+    <value>没有任何的变化更新。</value>
+  </data>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>没资料显示</value>
-    <comment />
   </data>
-  <data name="Page" xml:space="preserve">
-    <value>页</value>
-    <comment />
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>您没有使用此功能的权限</value>
   </data>
-  <data name="RemoveOtpViewModelText" xml:space="preserve">
-    <value>刪除OTP</value>
-    <comment />
+  <data name="NumberOrder" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="OnlineList" xml:space="preserve">
+    <value>上线名单</value>
+  </data>
+  <data name="Outstanding" xml:space="preserve">
+    <value>未完成交易</value>
   </data>
   <data name="ResetPasswordViewModelText" xml:space="preserve">
     <value>修改密码</value>
-    <comment />
   </data>
   <data name="ResetSecurityCodeViewModelText" xml:space="preserve">
     <value>重置保安码</value>
-    <comment />
   </data>
-  <data name="ShowContactInfo" xml:space="preserve">
-    <value>联系资料</value>
-    <comment />
+  <data name="Setting" xml:space="preserve">
+    <value>设定</value>
   </data>
   <data name="SportsbookMinPTViewModelText" xml:space="preserve">
     <value>体育博彩最低占成</value>
-    <comment />
+  </data>
+  <data name="Statement" xml:space="preserve">
+    <value>账目</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>超级</value>
+  </data>
+  <data name="ThisUserIsNotOnline" xml:space="preserve">
+    <value>此会员没上线</value>
+  </data>
+  <data name="TotalAgentActiveClosed" xml:space="preserve">
+    <value>代理总数"活跃/关闭/暫停"</value>
+  </data>
+  <data name="TotalBalance" xml:space="preserve">
+    <value>总平均</value>
+  </data>
+  <data name="TotalCash" xml:space="preserve">
+    <value>馀额总数</value>
+  </data>
+  <data name="TotalMemberActiveClosed" xml:space="preserve">
+    <value>会员总数"活跃/关闭/暫停"</value>
   </data>
   <data name="TransferViewModelText" xml:space="preserve">
     <value>转账</value>
-    <comment />
+  </data>
+  <data name="UsedCredit" xml:space="preserve">
+    <value>已用額度</value>
+  </data>
+  <data name="UserNamePlaceHolder" xml:space="preserve">
+    <value>用户名或名/姓</value>
+  </data>
+  <data name="YesterdayBalance" xml:space="preserve">
+    <value>昨天余额</value>
+  </data>
+  <data name="YesterdayCash" xml:space="preserve">
+    <value>昨天馀额</value>
+  </data>
+  <data name="NoInfo" xml:space="preserve">
+    <value>没资料显示</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>页</value>
+  </data>
+  <data name="RemoveOtpViewModelText" xml:space="preserve">
+    <value>刪除OTP</value>
+  </data>
+  <data name="ShowContactInfo" xml:space="preserve">
+    <value>联系资料</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>更新成功！</value>
-    <comment />
   </data>
   <data name="GivenCreditPopupTitle" xml:space="preserve">
     <value>更新信用额度</value>
-    <comment />
   </data>
   <data name="LoginInfo" xml:space="preserve">
     <value>登入资料</value>
-    <comment />
   </data>
   <data name="ClosedByAdmin" xml:space="preserve">
     <value>此账号已被管理员关闭。</value>
-    <comment />
   </data>
   <data name="LockedByFalsePassword" xml:space="preserve">
     <value>由于多次输入错误密码，导致此账号已被锁定，</value>
-    <comment />
   </data>
   <data name="LockedByFalseOTPSC" xml:space="preserve">
     <value>由于一次性密码/保安码多次验证失败，导致此账号已被锁定。</value>
-    <comment />
   </data>
   <data name="ClosedByUpline" xml:space="preserve">
     <value>此账号已被上线关闭。</value>
-    <comment />
   </data>
   <data name="Viewlog" xml:space="preserve">
     <value>察看日志</value>
-    <comment />
   </data>
   <data name="ThisAccountWasDisabled" xml:space="preserve">
     <value>这个帐号禁用</value>
-    <comment />
   </data>
   <data name="ThisAccountWasSuspended" xml:space="preserve">
     <value>此账号已经被暂停。</value>
-    <comment />
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>电话</value>
   </data>
   <data name="And" xml:space="preserve">
     <value>和</value>
-    <comment />
   </data>
   <data name="Update" xml:space="preserve">
     <value>更改</value>
-    <comment />
   </data>
   <data name="Agents" xml:space="preserve">
     <value>代理们 (活跃/关闭/暫停)</value>
-    <comment />
   </data>
   <data name="Members" xml:space="preserve">
     <value>会员们 (活跃/关闭/暫停)</value>
-    <comment />
   </data>
   <data name="AccountNotFound" xml:space="preserve">
     <value>用户名不存在！</value>
-    <comment />
   </data>
   <data name="Nickname" xml:space="preserve">
     <value>昵称</value>
-    <comment />
   </data>
   <data name="OutrightDisabledUpline" xml:space="preserve">
     <value>优胜冠军投注已被上线禁用</value>
-    <comment />
   </data>
   <data name="Back" xml:space="preserve">
     <value>退回</value>
-    <comment />
   </data>
   <data name="Sportsbook2ViewModelText" xml:space="preserve">
     <value>体育博彩 2</value>
-    <comment />
   </data>
   <data name="UnuspendStatusPopupHeader" xml:space="preserve">
     <value>&lt;username&gt; 取消暂停</value>
-    <comment />
   </data>
   <data name="SuspendedByUplineTooltip" xml:space="preserve">
     <value>此账号被上线间接暂停</value>
-    <comment />
   </data>
   <data name="ConfirmTransferBalanceDailyViewModelText" xml:space="preserve">
     <value>全天余额转账</value>
-    <comment />
   </data>
   <data name="ConfirmTransferBalanceDailyViewModelMessage" xml:space="preserve">
     <value>您确定要更改{0}的转账模式吗？</value>
-    <comment />
   </data>
   <data name="ConfirmTransferBalanceDailyViewModelTooltip" xml:space="preserve">
     <value>检查以允许全天余额转账模式</value>
-    <comment />
   </data>
   <data name="CreateMemberWithQRCode" xml:space="preserve">
     <value>用二维码创建会员</value>
-    <comment />
   </data>
   <data name="FirstLoginQRCode" xml:space="preserve">
     <value>首次登入二维码</value>
-    <comment />
   </data>
   <data name="PendingTransfer3rd" xml:space="preserve">
     <value>第三方待定转账</value>
-    <comment />
   </data>
   <data name="ClosedByArchive" xml:space="preserve">
     <value>此户口因不活跃而被关闭。</value>
-    <comment />
   </data>
   <data name="DisallowedAllDayBalanceTransferError" xml:space="preserve">
     <value>您的上线不允许您使用全天余额转账。该页面将自动刷新。</value>
-    <comment />
   </data>
   <data name="ShowMore" xml:space="preserve">
     <value>显示更多</value>
-    <comment />
   </data>
   <data name="ShowLess" xml:space="preserve">
     <value>显示更少</value>
-    <comment />
   </data>
   <data name="ADBTChangeToastMessage" xml:space="preserve">
     <value>您的账号现已启用全天余额转账。 因此，自动转账日程已被清除，并且您为下线设置的自动转账配置将被禁用，以确保数据准确性。</value>
-    <comment />
-  </data>
-  <data name="ADBTChangeFailed_AutoJobRunning" xml:space="preserve">
-    <value>当前正在进行自动转账的过程。请等待过程在几分钟后完成，再更改转账模式。</value>
-    <comment />
   </data>
   <data name="ADBTChangeToastTitle" xml:space="preserve">
     <value>自动转账配置</value>
-    <comment />
+  </data>
+  <data name="ADBTChangeFailed_AutoJobRunning" xml:space="preserve">
+    <value>当前正在进行自动转账的过程。请等待过程在几分钟后完成，再更改转账模式。</value>
   </data>
   <data name="ADBTConditionChange_PersonalMessage" xml:space="preserve">
     <value>您的账号现已启用全天余额转账。 因此，自动转账日程已被清除，并且以下客户：{0} 的下线自动转账已禁用。內容可以在转账功能查询。</value>
-    <comment />
   </data>
   <data name="ProductStatusWarningMessage" xml:space="preserve">
     <value>根据公司的政策, 您不允許禁用此产品于下線。</value>
-    <comment />
   </data>
   <data name="AddNewMaster" xml:space="preserve">
     <value>新增总代理</value>
-    <comment />
   </data>
   <data name="AddNewAgent" xml:space="preserve">
     <value>新增代理</value>
-    <comment />
   </data>
   <data name="AddNewMember" xml:space="preserve">
     <value>增加会员</value>
-    <comment />
   </data>
   <data name="SearchAndCopy" xml:space="preserve">
     <value>搜索与复制</value>
-    <comment />
   </data>
   <data name="FullMode" xml:space="preserve">
     <value>完全版</value>
-    <comment />
   </data>
   <data name="QRCode" xml:space="preserve">
     <value>二维码</value>
-    <comment />
   </data>
   <data name="LiteMode" xml:space="preserve">
     <value>精简模式</value>
-    <comment />
   </data>
   <data name="lblNew" xml:space="preserve">
     <value>新增</value>
-    <comment />
   </data>
   <data name="FirstName" xml:space="preserve">
     <value>名</value>
@@ -762,5 +641,11 @@
   </data>
   <data name="CreateDirectMember" xml:space="preserve">
     <value>创建直系会员</value>
+  </data>
+  <data name="Bank" xml:space="preserve">
+    <value>银行</value>
+  </data>
+  <data name="AccountName" xml:space="preserve">
+    <value>用戶名</value>
   </data>
 </root>

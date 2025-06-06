@@ -9,6 +9,7 @@
   <xsl:include href="./PositionTaking/member.xslt" />
   <xsl:include href="./memberCommission.xslt" />
   <xsl:include href="./winLossLimit.xslt" />
+  <xsl:include href="./winLimit.xslt" />
   <xsl:include href="./betLimit.xslt" />
   <xsl:include href="./potentialWinLimit.xslt" />
   <xsl:param name="IsInternal" select="0"></xsl:param>
@@ -45,6 +46,7 @@
                 <xsl:call-template name="memberPT">
                   <xsl:with-param name="groupid" select="$groupid" />
                 </xsl:call-template>
+				<xsl:apply-templates select="winlimit" />
                 <xsl:apply-templates select="winlosslimit" />
                 <xsl:call-template name="betLimit" />
               </table>
