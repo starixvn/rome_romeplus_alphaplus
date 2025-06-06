@@ -615,6 +615,16 @@
         ]
     },
     {
+        "outputFileName": "bundles-v2/site-memberinfo/default.css",
+        "inputFiles": [
+            "styles-v2/components/tab.css",
+            "styles-v2/components/multiselect.css",
+            "styles-v2/components/fanex-multiselect.css",
+            "styles-v2/components/tables.css",
+            "styles-v2/components/tooltip.css"
+        ]
+    },
+    {
         "outputFileName": "bundles/site-memberinfo/problem-account-Super.css",
         "inputFiles": [
             "styles/base/reset.css",
@@ -1507,6 +1517,22 @@
     },
     {
         "outputFileName": "bundles/site-memberinfo/default-dark.css",
+        "inputFiles": [
+            "styles/vendors-extensions/site-main/bootstrap-material-ex.css",
+            "styles/base/roboto-fonts.css",
+            "styles/components/tables-dark.css",
+            "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
+            "styles/vendors/jquery-easyui-1.5/easyui.css",
+            "styles/components/tablesorter.css",
+            "styles/vendors/bootstrap-multiselect.css",
+            "styles/components/bootstrap-multiselect-dark.css",
+            "styles/components/pagination-dark.css",
+            "styles/components/icon-dark.css",
+            "styles/themes/customer-status-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles-v2/site-memberinfo/default-dark.css",
         "inputFiles": [
             "styles/vendors-extensions/site-main/bootstrap-material-ex.css",
             "styles/base/roboto-fonts.css",

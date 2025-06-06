@@ -13,9 +13,6 @@
     Layout = "~/Features/MemberInfo/Views/WinLossLimit/_Layout.cshtml";
     ViewBag.Title = "Sportsbook Potential Win Limit";
 }
-@section Styles {
-    @StaticResources.RenderStylesWithDarkMode("~/Features/MemberInfo/assets/bundles/win-loss-limit")
-}
 <form id="potential-win-limit-form" class="form-inline demo-form-inline filter" role="form">
     <div class="form-group status-box">
         <label>@Resources.Status</label>
@@ -39,26 +36,33 @@
         <label>@Resources.Username</label>
         <input type="text" id="txt-username" name="Username" placeholder="@Resources.Username" value="@Model.Username" maxlength="50" autocomplete="off" />
     </div>
-    <div class="potential-win-limit-table">
-        <div class="breadcrumb-table">
-            <div class="breadcrumb-container">
-                <div class="note">
-                    <span class="star"></span>@Resources.PotentialWinLimitNote1
-                </div>
-                <div class="note">
-                    <span class="star"></span>@Resources.PotentialWinLimitNote2
-                </div>
+
+    @Html.Hidden("Status", Model.Status)
+    @Html.Hidden("SportType", Model.SportType)
+    @Html.Hidden("BetType", Model.BetType)
+    @Html.Hidden("ProblemAccount", Model.ProblemAccount)
+</form>
+<div class="potential-win-limit-table">
+    <div class="breadcrumb-table">
+        <div class="breadcrumb-container">
+            <div class="note">
+                <span class="star">*</span>@Resources.PotentialWinLimitNote1
             </div>
-            <div class="list-icon">
-                <ul>
-                    <li>
-                        <a id="icon-excel" class="icon-excel"
-                            title="@Resources.ExportToExcel" href="/settings/WinLossLimit/potentialexcel"></a>
-                    </li>
-                </ul>
+            <div class="note">
+                <span class="star">*</span>@Resources.PotentialWinLimitNote2
             </div>
         </div>
-        <table id="tbl-report" class="tblRpt tblRpt-bordered tblRpt-hover tablesorter alternative-row-table" data-has-data="@Model.PotentialWinLimitPage.PotentialWinLimitDetail.Any()">
+        <div class="list-icon">
+            <ul>
+                <li>
+                    <a id="icon-excel" class="ic-excel" data-placement="top" data-original-title="Export to Excel"
+                        title="@Resources.ExportToExcel" href="/settings/WinLossLimit/potentialexcel"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="wrapper-table-scrollable">
+        <table id="tbl-report" class="tb tb-bordered w-full tablesorter tb-hover tb-freeze-header" data-has-data="@Model.PotentialWinLimitPage.PotentialWinLimitDetail.Any()">
             <thead>
                 <tr>
                     <th><div class="col-no">@Resources.No</div></th>
@@ -120,15 +124,10 @@
                         </td>
                     </tr>
                 </tfoot>
-            }
+                }
         </table>
     </div>
-    
-    @Html.Hidden("Status", Model.Status)
-    @Html.Hidden("SportType", Model.SportType)
-    @Html.Hidden("BetType", Model.BetType)
-    @Html.Hidden("ProblemAccount", Model.ProblemAccount)
-</form>
+</div>
 @section Scripts {
     @StaticResources.RenderScripts("~/Features/MemberInfo/assets/bundles/win-loss-limit/potential-win-limit")
 } 
