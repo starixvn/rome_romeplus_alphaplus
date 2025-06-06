@@ -3,7 +3,6 @@ using AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit;
 using AlphaPlus.Settings.MemberInfo.Domain.Models.WinLossLimit;
 using AlphaPlus.Settings.MemberInfo.Domain.Params;
 using Fanex.Data.Repository;
-using System.Data.SqlTypes;
 
 namespace AlphaPlus.Settings.MemberInfo.API.Services.WinLossLimit;
 
@@ -21,7 +20,6 @@ public class PotentialWinLimitService(IDynamicRepository repository) : IPotentia
         var criteria = new GetPotentialWinLimitCriteria
         {
             AgentId = param.CustId,
-            MinDate = SqlDateTime.MinValue.Value.GetGreaterDate(param.MinDate),
             Username = param.Username,
             Status = param.Status,
             ProblemAccount = param.ProblemAccount,

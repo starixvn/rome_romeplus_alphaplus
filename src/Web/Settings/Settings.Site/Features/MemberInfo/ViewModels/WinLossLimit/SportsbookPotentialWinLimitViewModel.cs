@@ -17,6 +17,7 @@ public class SportsbookPotentialWinLimitViewModel
         PotentialWinLimitPage potentialWinLimitPage,
         PotentialWinLimitParam param)
     {
+
         ViewerLevel = message.ActorLevel;
         ProblemAccount = param.ProblemAccount;
         Status = param.Status;
@@ -28,7 +29,10 @@ public class SportsbookPotentialWinLimitViewModel
 
         SportType = param.SportType;
         BetType = param.BetType;
+        LimitedDateTime = message.LimitedDateToShowInfo;
     }
+
+    private DateTime LimitedDateTime { get; }
 
     public UserLevel ViewerLevel { get; }
 
@@ -93,4 +97,8 @@ public class SportsbookPotentialWinLimitViewModel
         new ItemListOption("1", Resources.Yes),
         new ItemListOption("0", Resources.No2)
     ];
-} 
+
+    public string GetLastLoginDate(DateTime? lastLogged)
+        => lastLogged.HasValue && lastLogged.Value > LimitedDateTime ? lastLogged.Value.ToString("yyyy-MM-dd HH:mm:ss") : string.Empty;
+
+}

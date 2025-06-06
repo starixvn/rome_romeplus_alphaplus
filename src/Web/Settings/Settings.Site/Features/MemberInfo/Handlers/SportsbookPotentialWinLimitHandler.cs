@@ -15,7 +15,6 @@ public class SportsbookPotentialWinLimitHandler(IPotentialWinLimitService potent
     {
         var param = new PotentialWinLimitParam(
             message.CustId,
-            message.LimitedDateToShowInfo,
             message.Username,
             message.Status,
             message.ProblemAccount,

@@ -4,7 +4,6 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Params
     {
         public PotentialWinLimitParam(
             int custId,
-            DateTime minDate,
             string username,
             string status,
             byte problemAccount,
@@ -15,7 +14,6 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Params
             int sportType = 0)
         {
             CustId = custId;
-            MinDate = minDate;
             BetType = betType;
             SportType = sportType;
             Username = username;
@@ -27,8 +25,6 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Params
         }
 
         public int CustId { get; set; }
-
-        public DateTime MinDate { get; set; }
 
         public int BetType { get; set; }
 

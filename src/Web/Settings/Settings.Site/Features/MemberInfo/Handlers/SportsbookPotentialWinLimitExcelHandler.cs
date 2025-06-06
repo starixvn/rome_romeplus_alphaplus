@@ -21,7 +21,6 @@ public class SportsbookPotentialWinLimitExcelHandler(
     {
         var param = new PotentialWinLimitParam(
             request.CustId,
-            request.LimitedDateToShowInfo,
             request.Username,
             request.Status,
             request.ProblemAccount,
@@ -36,7 +35,7 @@ public class SportsbookPotentialWinLimitExcelHandler(
 
         var fileContent = workbook
                 .SetData(viewModel)
-                .SetRowMappers(GetNormalRowMapper(viewModel.GetMaxWinLimit, viewModel.GetWinPercent, SportsbookPotentialWinLimitViewModel.GetStatusText))
+                .SetRowMappers(GetNormalRowMapper(viewModel.GetLastLoginDate, viewModel.GetMaxWinLimit, viewModel.GetWinPercent, SportsbookPotentialWinLimitViewModel.GetStatusText))
                 .UseTemplate(GetTemplateInfo())
                 .Title(fileName)
                 .Sheet("Sheet1")
@@ -48,7 +47,7 @@ public class SportsbookPotentialWinLimitExcelHandler(
         protected override string GetExcelTemplateDir() => $"{AppDomain.CurrentDomain.BaseDirectory}/App_Data/ExcelTemplates/WinLossLimit";
 
 
-    private static Mapper<PotentialWinLimitDetail> GetNormalRowMapper(Func<decimal, string> getMaxWinLimit, Func<decimal?, decimal, string> getWinPercent, Func<string, string> getStatusText)
+    private static Mapper<PotentialWinLimitDetail> GetNormalRowMapper(Func<DateTime?,string> getLastLoginDate, Func<decimal, string> getMaxWinLimit, Func<decimal?, decimal, string> getWinPercent, Func<string, string> getStatusText)
     => new Mapper<PotentialWinLimitDetail>()
             .Map(A, potentialWinLimitDetail => potentialWinLimitDetail.Username)
             .Map(B, potentialWinLimitDetail => getStatusText(potentialWinLimitDetail.Status))
@@ -60,7 +59,7 @@ public class SportsbookPotentialWinLimitExcelHandler(
             .Map(H, potentialWinLimitDetail => potentialWinLimitDetail.PotentialWin)
             .Map(I, potentialWinLimitDetail => getMaxWinLimit(potentialWinLimitDetail.PotentialWinLimit))
             .Map(J, potentialWinLimitDetail => getWinPercent(potentialWinLimitDetail.PotentialWinPercent, potentialWinLimitDetail.PotentialWinLimit))
-            .Map(K, potentialWinLimitDetail => potentialWinLimitDetail.LastLogged?.ToString("MM/dd/yyyy hh:mm:ss tt") ?? "");
+            .Map(K, potentialWinLimitDetail => getLastLoginDate(potentialWinLimitDetail.LastLogged));
 
 
 

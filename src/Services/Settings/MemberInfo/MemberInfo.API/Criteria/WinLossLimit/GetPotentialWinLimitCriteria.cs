@@ -4,9 +4,7 @@ namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit
 {
     public class GetPotentialWinLimitCriteria : CriteriaBase
     {
-        public int AgentId { get; set; }
-        public DateTime MinDate { get; set; }
-        
+        public int AgentId { get; set; }        
         public string Username { get; set; }
         public byte ProblemAccount { get; set; }
         public string Status { get; set; }

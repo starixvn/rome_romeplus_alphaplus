@@ -95,8 +95,8 @@
                             <td class="text-center @(winLossLimitDetail.PotentialWinPercent >= 100 ? "negative-value" : "")">
                                 @Model.GetWinPercent(winLossLimitDetail.PotentialWinPercent, winLossLimitDetail.PotentialWinLimit)
                             </td>
-                            <td class="text-left" title="@winLossLimitDetail.LastLogged?.ToString("MM/dd/yyyy hh:mm:ss tt")">
-                                @winLossLimitDetail.LastLogged?.ToString("MM/dd/yyyy hh:mm:ss tt")
+                            <td class="text-left" title="@Model.GetLastLoginDate(winLossLimitDetail.LastLogged)">
+                                @Model.GetLastLoginDate(winLossLimitDetail.LastLogged)
                             </td>
                         </tr>
                         index++;
