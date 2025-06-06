@@ -1,5 +1,6 @@
 ﻿@using AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo
 @model BalanceInfoViewModel
+@using Fanex.Customer.Client.Models
 
 @{
     var balanceInfo = Model.BalanceInfo;
@@ -25,21 +26,43 @@
         </div>
     }
 
-    void CashServiceSession(bool isCashServiceEnabled, int totalCashMember)
+    void CashService(string label, bool isCashServiceEnabled)
     {
-        <div class="group-title">Cash service</div>
-        <div class='row'>
-            <div class='col-xs-7'>Cash service</div>
+         <div class='row'>
+            <div class='col-xs-7'>@label</div>
             <div class='col-xs-5 value-toggle'>
                 <div id='cash-service-toggle' class='switch-toggle' data-state='@(isCashServiceEnabled ? "on" : "off")'>
                     <div class='toggle'></div>
                 </div>
             </div>
         </div>
-        <div class='row'>
-            <div class='col-xs-7'>Total cash member</div>
-            <div class='col-xs-5 value'>
-                <strong>@totalCashMember</strong>
+    }
+
+    @* void TotalCashMember(string label, TotalCashMember total)
+    {
+        <div class="row">
+            <div class="col-xs-7 lable">@label</div>
+            <div class="col-xs-5 value">
+                <strong data-toggle="tooltip" data-placement="top"
+                    title="<div class='nowrap'>@Resources.active: <span class='active'>@total.TotalCashMemberActive</span></div><div class='nowrap'>@Resources.closed: <span class='closed'>@total.TotalCashMemberClosed</span></div><div class='nowrap'>@Resources.suspended: <span class='suspended'>@total.TotalCashMemberSuspended</span></div>">
+                    <span class="active">@total.TotalCashMemberActive</span>|
+                    <span class="closed">@total.TotalCashMemberClosed</span>|
+                    <span class="suspended">@total.TotalCashMemberSuspended</span>
+                </strong>
+            </div>
+        </div>
+    } *@
+     void RenderTotalMemberInfo(string labelName, int memberActive, int memberClosed, int memberSuspended)
+    {
+        <div class="row">
+            <div class="col-xs-7 lable">@labelName</div>
+            <div class="col-xs-5 value">
+                <strong data-toggle="tooltip" data-placement="top"
+                    title="<div class='nowrap'>@Resources.active: <span class='active'>@memberActive</span></div><div class='nowrap'>@Resources.closed: <span class='closed'>@memberClosed</span></div><div class='nowrap'>@Resources.suspended: <span class='suspended'>@memberSuspended</span></div>">
+                    <span class="active">@memberActive</span>|
+                    <span class="closed">@memberClosed</span>|
+                    <span class="suspended">@memberSuspended</span>
+                </strong>
             </div>
         </div>
     }
@@ -55,7 +78,9 @@
 
     @if (Model.IsOfferedCashService)
     {
-        CashServiceSession(Model.CashServiceInfo.IsCashServiceEnabled, Model.CashServiceInfo.TotalCashMember);
+        <div class="group-title">@Resources.CashService</div>
+        CashService(Resources.CashService, Model.CashServiceInfo.IsCashServiceEnabled);
+        RenderTotalMemberInfo(Resources.TotalCashMember, Model.CashServiceInfo.TotalCashMember.TotalCashMemberActive, Model.CashServiceInfo.TotalCashMember.TotalCashMemberClosed, Model.CashServiceInfo.TotalCashMember.TotalCashMemberSuspended);
     }
 
     <div class="group-title">@Resources.balance</div>

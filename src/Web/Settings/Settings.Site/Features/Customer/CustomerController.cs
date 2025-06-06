@@ -377,8 +377,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         public async Task<int> GetCashServiceStatus(GetCustomerSettingRequest request)
             => await customerService.GetCashServiceStatus(request.CustId);
 
-        public async Task<int> GetCashServiceTotalDownline(GetCustomerSettingRequest request)
-            => await customerService.GetCashServiceTotalDownline(request.CustId);
+        // public async Task<int> GetCashServiceTotalDownline(GetCustomerSettingRequest request)
+        //     => await customerService.GetCashServiceTotalDownline(request.CustId);
 
         public async Task<ActionResult> GetCurrentWinLossAmount(CustomerWinLossAmountQuery request)
             => Content(await customerService.GetCustomerCurrentWinLossAmounts(request.CustId, request.SportType, request.BetType, request.Language));

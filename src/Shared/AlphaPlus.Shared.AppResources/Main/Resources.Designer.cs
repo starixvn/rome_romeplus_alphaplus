@@ -2991,6 +2991,27 @@ namespace AlphaPlus.Shared.AppResources.Main
             {
                 return ResourceManager.GetString("RewardTakeATour", resourceCulture);
             }
+        }   
+        /// <summary>
+        ///   Looks up a localized string similar to Take a tour.
+        /// </summary>
+        public static string TotalCashMember
+        {
+            get
+            {
+                return ResourceManager.GetString("TotalCashMember", resourceCulture);
+            }
+        }   
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Take a tour.
+        /// </summary>
+        public static string CashService
+        {
+            get
+            {
+                return ResourceManager.GetString("CashService", resourceCulture);
+            }
         }
     }
 }
