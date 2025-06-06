@@ -112,14 +112,14 @@ const CustomDropdownComponent = ({
       {isOpen && (
         <div className="max-h-[200px] overflow-y-auto absolute top-[29px] left-0 w-[100%] bg-[var(--background-control)] border-[1px] border-[var(--border-control)] rounded-[8px] z-[9999]">
           {searchable && (
-            <div className="sticky top-0 bg-white p-2 border-b border-gray-200">
+            <div className="sticky top-0 p-2 border-b border-[var(--border-control)]">
               <input
                 ref={searchInputRef}
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder={t('search')}
-                className="w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:border-[var(--border-control-focus)]"
+                className="control-field"
                 onClick={(e) => e.stopPropagation()}
               />
             </div>

@@ -211,7 +211,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
       {initialLoading ? (        
           <LoadingFullComponent />    
       ) : (
-        <div className="py-[12px]">
+        <div className="">
           <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[#cfcfcf] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
             <BackButtonComponent onClick={onClose} />
             <TitleComponent title={t('manualDepositForm.title')} />  
@@ -248,13 +248,11 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
               </div>
             </div>
             <div className="flex gap-[16px]">
-                  <ButtonCancelComponent
-                    className="w-[140px]"
+                  <ButtonCancelComponent                    
                     text={t('manualDepositForm.cancel')}
                     onClick={() => onClose(false)}
                   />
                   <ButtonApplyComponent
-                    className="w-[140px]"
                     text={
                       isSubmitting
                         ? t('manualDepositForm.approving')
