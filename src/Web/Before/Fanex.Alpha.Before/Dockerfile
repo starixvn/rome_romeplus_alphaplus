@@ -29,6 +29,16 @@ RUN if [ "$TRANSFORM_CONFIG" = "PRO" ] \
   || [ "$TRANSFORM_CONFIG" = "DR3" ] \
   || [ "$TRANSFORM_CONFIG" = "DR4" ] \
   || [ "$TRANSFORM_CONFIG" = "DR5" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLPROD" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLPROD2" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLPROD3" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLPROD4" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLPROD5" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLE" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLE2" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLE3" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLE4" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLE5" ] \
   || [ "$TRANSFORM_CONFIG" = "STG" ] \
   || [ "$TRANSFORM_CONFIG" = "STG2" ] \
   || [ "$TRANSFORM_CONFIG" = "STG3" ] \
@@ -91,7 +101,7 @@ RUN mkdir -p /usr/share/fonts/truetype/ && \
     install -m644 src/Web/Before/Fanex.Alpha.Before/arialbd.ttf /usr/share/fonts/truetype/ && \
     rm src/Web/Before/Fanex.Alpha.Before/arialbd.ttf
 
-# Don’t run as root
+# Don't run as root
 RUN adduser --disabled-password \
   --home /app \
   --gecos '' dotnetuser && chown -R dotnetuser /app && chown -R dotnetuser /tmp

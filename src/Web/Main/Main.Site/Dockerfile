@@ -54,8 +54,24 @@ RUN if [ "$TRANSFORM_CONFIG" = "PRO" ] \
   || [ "$TRANSFORM_CONFIG" = "DRINT" ] \
   || [ "$TRANSFORM_CONFIG" = "DRINT2" ] \
   || [ "$TRANSFORM_CONFIG" = "DRINT3" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLPRODINT" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLPRODINT2" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLPRODINT3" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLEINT" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLEINT2" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLEINT3" ] \
   || [ "$TRANSFORM_CONFIG" = "DR4" ] \
   || [ "$TRANSFORM_CONFIG" = "DR5" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLPROD" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLPROD2" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLPROD3" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLPROD4" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLPROD5" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLE" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLE2" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLE3" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLE4" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLE5" ] \
   || [ "$TRANSFORM_CONFIG" = "STG" ] \
   || [ "$TRANSFORM_CONFIG" = "STG2" ] \
   || [ "$TRANSFORM_CONFIG" = "STG3" ] \
@@ -89,7 +105,7 @@ RUN --mount=type=cache,target=/root/.nuget/packages \
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine-25h1 AS base
 
-# Don’t run as root
+# Don't run as root
 RUN adduser --disabled-password \
   --home /app \
   --gecos '' dotnetuser && chown -R dotnetuser /app && chown -R dotnetuser /tmp
