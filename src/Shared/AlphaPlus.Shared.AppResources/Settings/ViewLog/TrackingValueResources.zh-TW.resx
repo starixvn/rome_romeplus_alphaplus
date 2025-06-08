@@ -3444,4 +3444,7 @@
   <data name="bank" xml:space="preserve">
     <value>銀行</value>
   </data>
+  <data name="PotentialWinLimit" xml:space="preserve">
+    <value>潛在獲勝上限</value>
+  </data>
 </root>

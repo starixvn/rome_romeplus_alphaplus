@@ -1273,4 +1273,25 @@
   <data name="CreateCashMember" xml:space="preserve">
     <value>เพิ่มสมาชิกเงินสดใหม่</value>
   </data>
+  <data name="PotentialWin" xml:space="preserve">
+    <value>ชัยชนะที่เป็นไปได้</value>
+  </data>
+  <data name="MaxPotentialWinLimit" xml:space="preserve">
+    <value>ขีดจำกัดการชนะสูงสุดที่เป็นไปได้</value>
+  </data>
+  <data name="CurrentPotentialWin" xml:space="preserve">
+    <value>จำนวนเงินชนะที่เป็นไปได้ในปัจจุบัน</value>
+  </data>
+  <data name="PotentialWinLimitNote1" xml:space="preserve">
+    <value>แสดงเฉพาะสมาชิกที่ยังไม่ได้ตั้งค่าขีดจำกัดการชนะที่เป็นไปได้เป็น "ไม่จำกัด"</value>
+  </data>
+  <data name="PotentialWinLimitNote2" xml:space="preserve">
+    <value>เนื่องจากการแก้ไขผลลัพธ์ ความล่าช้าในการตัดบัญชี และปัจจัยอื่น ๆ ขีดจำกัดการชนะที่เป็นไปได้แบบสะสมอาจเกินเกณฑ์ที่กำหนดไว้ชั่วคราว</value>
+  </data>
+  <data name="ToWin" xml:space="preserve">
+    <value>จำนวนที่อาจชนะ</value>
+  </data>
+  <data name="AccumulatedWinLoss" xml:space="preserve">
+    <value>การชนะ/แพ้สะสม</value>
+  </data>
 </root>

@@ -1273,4 +1273,25 @@
   <data name="CreateCashMember" xml:space="preserve">
     <value>添加新现金用户</value>
   </data>
+  <data name="PotentialWin" xml:space="preserve">
+    <value>潜在获胜</value>
+  </data>
+  <data name="MaxPotentialWinLimit" xml:space="preserve">
+    <value>最大潜在获胜上限</value>
+  </data>
+  <data name="CurrentPotentialWin" xml:space="preserve">
+    <value>当前潜在获胜金额</value>
+  </data>
+  <data name="PotentialWinLimitNote1" xml:space="preserve">
+    <value>仅显示潜在获胜上限未设为“无限”的会员</value>
+  </data>
+  <data name="PotentialWinLimitNote2" xml:space="preserve">
+    <value>由于赛果调整、结算延迟及其他因素，累计的潜在获胜上限可能会暂时超过设定的阈值。</value>
+  </data>
+  <data name="ToWin" xml:space="preserve">
+    <value>赢取金额</value>
+  </data>
+  <data name="AccumulatedWinLoss" xml:space="preserve">
+    <value>累计赢/输</value>
+  </data>
 </root>

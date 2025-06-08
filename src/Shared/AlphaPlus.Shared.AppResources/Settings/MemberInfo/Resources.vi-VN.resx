@@ -1237,4 +1237,10 @@ Lưu ý:  Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
   <data name="CreateCashMember" xml:space="preserve">
     <value>Thêm thành viên tiền mặt mới</value>
   </data>
+  <data name="MaxPotentialWinLimit" xml:space="preserve">
+    <value>Giới Hạn Thắng Tối Đa </value>
+  </data>
+  <data name="ToWin" xml:space="preserve">
+    <value>Dự Kiến Thắng</value>
+  </data>
 </root>
