@@ -8,7 +8,6 @@ import {
   renderBankAccount,
 } from '../../../../utils/commonFunctions.tsx';
 import PendingWithdrawalModal from './PendingWithdrawalModal.tsx';
-import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import NoRecordFound from '../../../../components/Table/NoRecordFound';
 import { ButtonFullComponent } from '../../../../components/ButtonComponents';
 import Pagination from '../../Components/Pagination';
@@ -21,8 +20,8 @@ interface DataGridProps {
 
 const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
   const { t } = useTranslation('pendingWithdrawal');
-  const [processingWithdrawal, setProcessingWithdrawal] = useState<TransactionItem | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [showWithdrawalPopup, setShowWithdrawalPopup] = useState<boolean>(false);
+  const [selectedWithdrawal, setSelectedWithdrawal] = useState<TransactionItem | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(PAGE_SIZE_OPTIONS[2]);
@@ -45,24 +44,24 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
   };
 
   const handleProcessClick = async (withdrawal: TransactionItem) => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const detail = await transactionAPI.getTransactionDetail(
-        withdrawal.transId,
-        withdrawal.custId
-      );
-      setProcessingWithdrawal(detail);
-    } catch (err) {
-      console.error('Error fetching transaction detail:', err);
-      setError(t('dataGrid.errorFetchingDetail'));
-    } finally {
-      setIsLoading(false);
-    }
+    setShowWithdrawalPopup(true);
+    setSelectedWithdrawal(withdrawal);
+    // try {
+    //   const detail = await transactionAPI.getTransactionDetail(
+    //     withdrawal.transId,
+    //     withdrawal.custId
+    //   );
+    //   setProcessingWithdrawal(detail);
+    // } catch (err) {
+    //   console.error('Error fetching transaction detail:', err);
+    //   setError(t('dataGrid.errorFetchingDetail'));
+    // } finally {
+    //   setIsLoading(false);
+    // }
   };
 
   const handleCloseProcess = () => {
-    setProcessingWithdrawal(null);
+    setShowWithdrawalPopup(false);
     setError(null);
   };
 
@@ -118,7 +117,6 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
                   <td>
                     <ButtonFullComponent
                       text={t('dataGrid.process')}
-                      disabled={isLoading}
                       onClick={() => handleProcessClick(withdrawal)}
                     />
                   </td>
@@ -138,8 +136,8 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
         )
       }
 
-      {processingWithdrawal && (
-        <PendingWithdrawalModal withdrawal={processingWithdrawal} onClose={handleCloseProcess} />
+      {showWithdrawalPopup && selectedWithdrawal && (
+        <PendingWithdrawalModal transId={selectedWithdrawal.transId} custId={selectedWithdrawal.custId} onClose={handleCloseProcess} />
       )}
       {paginatedWithdrawals.length > 0 && (    
         <Pagination

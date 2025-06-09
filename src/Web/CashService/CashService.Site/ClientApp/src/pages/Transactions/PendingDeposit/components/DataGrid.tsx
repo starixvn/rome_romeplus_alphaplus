@@ -10,7 +10,6 @@ import {
 import NoRecordFound from '../../../../components/Table/NoRecordFound';
 import Pagination from '../../Components/Pagination';
 import { ButtonFullComponent } from '../../../../components/ButtonComponents';
-import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import PendingDepositModal from './PendingDepositModal';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
 
@@ -24,9 +23,9 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
   const [pageSize, setPageSize] = useState(PAGE_SIZE_OPTIONS[2]);
   const [error, setError] = useState<string | null>(null);
   const [paginatedDeposits, setPaginatedDeposits] = useState<TransactionItem[]>([]);
-  const [processingDeposit, setProcessingDeposit] = useState<TransactionItem | null>(null);
+  const [showDepositPopup, setShowDepositPopup] = useState<boolean>(false);
+  const [selectedDeposit, setSelectedDeposit] = useState<TransactionItem | null>(null);
   const totalItems = deposits.length;
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const startIndex = (currentPage - 1) * pageSize;
@@ -44,20 +43,14 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
   };
 
   const handleProcessClick = async (deposit: TransactionItem) => {
-    setIsLoading(true);
+    setShowDepositPopup(true);
+    setSelectedDeposit(deposit);
     setError(null);
-    try {
-      const detail = await transactionAPI.getTransactionDetail(deposit.transId, deposit.custId);
-      setProcessingDeposit(detail);
-    } catch (err) {
-      setError(t('dataGrid.errorFetchingDetail'));
-    } finally {
-      setIsLoading(false);
-    }
+    
   };
 
   const handleCloseProcess = () => {
-    setProcessingDeposit(null);
+    setShowDepositPopup(false);
     setError(null);
   };
 
@@ -113,7 +106,6 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
                   <td>
                     <ButtonFullComponent
                       text={t('dataGrid.process')}
-                      disabled={isLoading}
                       onClick={() => handleProcessClick(deposit)}
                       className=""
                     />
@@ -129,8 +121,8 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
 
       {error && <div className="mt-4 p-4 bg-red-100 text-red-700 rounded-md">{error}</div>}
 
-      {processingDeposit && (
-        <PendingDepositModal deposit={processingDeposit} onClose={handleCloseProcess} />
+      {showDepositPopup && selectedDeposit && (
+        <PendingDepositModal transId={selectedDeposit.transId} custId={selectedDeposit.custId} onClose={handleCloseProcess} />
       )}
 
       {paginatedDeposits.length > 0 && (

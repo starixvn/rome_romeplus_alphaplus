@@ -42,12 +42,12 @@ export const transactionAPI = {
     }
   },
 
-  getTransactionDetail: async (transactionId: number, custId: number): Promise<TransactionItem> => {
+  getTransactionDetail: async (transactionId: number, custId: number): Promise<any> => {
     try {
       const response = await api.get<TransactionItem>(
         `Detail?transactionId=${transactionId}&custId=${custId}`
       );
-      return response.data;
+      return response;
     } catch (error) {
       console.error(
         `Error fetching transaction detail for ID ${transactionId}:, custId: ${custId}`,
