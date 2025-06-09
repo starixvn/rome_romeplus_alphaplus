@@ -82,7 +82,8 @@
     "imageSizeError": "Hình ảnh phải nhỏ hơn 1MB",
     "memberLoginNameRequired": "Vui lòng chọn tên đăng nhập thành viên",
     "agentBankSelectionRequired": "Vui lòng chọn tài khoản đại lý",
-    "memberBankSelectionRequired": "Vui lòng chọn tài khoản thành viên"
+    "memberBankSelectionRequired": "Vui lòng chọn tài khoản thành viên",
+    "invalidFileType": "Định dạng tệp không hợp lệ. Vui lòng tải lên tệp jpeg, jpg, hoặc png."
   },
 
   "status": {

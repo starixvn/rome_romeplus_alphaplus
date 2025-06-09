@@ -69,7 +69,8 @@
       "viewFullSize": "전체 크기로 보기",
       "removeImage": "이미지 제거",
       "cancel": "취소",
-      "approve": "승인"
+      "approve": "승인",
+      "invalidFileType": "유효하지 않은 파일 형식입니다. jpeg, jpg, png 파일을 업로드해주세요."
     },
     
     "updateWithdrawal": {

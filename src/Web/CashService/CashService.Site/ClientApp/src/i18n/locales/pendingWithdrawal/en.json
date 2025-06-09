@@ -81,7 +81,8 @@
     "addWithdrawalSuccess": "Add withdrawal successfully!!!",
     "memberCashBalance": "Member Cash Balance",
     "minAmount": "Min",
-    "maxAmount": "Max"
+    "maxAmount": "Max",
+    "invalidFileType": "Invalid file type. Please upload a jpeg, jpg, or png file."
   },
 
   "updateWithdrawal": {

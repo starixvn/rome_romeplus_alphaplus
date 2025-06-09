@@ -126,6 +126,15 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       return false;
     }
 
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+    if (image && !allowedTypes.includes(image.type)) {
+      setResultMessage({
+        type: 'error',
+        message: t('manualWithdrawalForm.invalidFileType')
+      });
+      return false;
+    }
+
     return true;
   };
 
@@ -354,7 +363,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                   value={remarks}
                   onChange={(e) => setRemarks(e.target.value)}
                   maxLength={1000}
-                  className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-[var(--button-border)] min-h-[120px]"
+                  className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-[var(--button-border)] min-h-[200px]"
                   placeholder={t('manualWithdrawalForm.remarksPlaceholder')}
                 />
               </div>

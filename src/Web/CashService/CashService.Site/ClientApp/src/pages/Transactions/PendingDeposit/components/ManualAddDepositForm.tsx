@@ -155,6 +155,15 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
       return false;
     }
 
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+    if (image && !allowedTypes.includes(image.type)) {
+      setValidationMessage({
+        type: 'error',
+        message: t('manualDepositForm.invalidFileType')
+      });
+      return false;
+    }
+
     return true;
   };
 

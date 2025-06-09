@@ -82,7 +82,8 @@
     "imageSizeError": "Image must be less than 1MB",
     "memberLoginNameRequired": "Please select member login",
     "agentBankSelectionRequired": "Please select PaymentFrom",
-    "memberBankSelectionRequired": "Please select PaymentTo"
+    "memberBankSelectionRequired": "Please select PaymentTo",
+    "invalidFileType": "Invalid file type. Please upload a jpeg, jpg, or png file."
   },
 
   "status": {

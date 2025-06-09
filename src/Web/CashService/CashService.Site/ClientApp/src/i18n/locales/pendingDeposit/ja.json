@@ -82,7 +82,8 @@
     "imageSizeError": "画像は1MB以下でなければなりません",
     "memberLoginNameRequired": "メンバーログイン名を選択してください",
     "agentBankSelectionRequired": "PaymentFromを選択してください",
-    "memberBankSelectionRequired": "PaymentToを選択してください"
+    "memberBankSelectionRequired": "PaymentToを選択してください",
+    "invalidFileType": "無効なファイルタイプです。jpeg、jpg、またはpngファイルをアップロードしてください。"
   },
   
   "status": {
