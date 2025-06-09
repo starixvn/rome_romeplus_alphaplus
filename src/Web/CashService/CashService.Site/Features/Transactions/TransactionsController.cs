@@ -6,7 +6,6 @@ using Helpers;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 using Models;
-using Newtonsoft.Json;
 using Shared;
 using Shared.Filters;
 using Shared.Models;
@@ -56,7 +55,6 @@ public class TransactionsController(
             Account = string.Empty
         };
         var response = await httpClientHelper.GetAsync<TransactionResponse>("/transactions/history", ObjectConverter.ToDictionary(filter));
-        Console.WriteLine(JsonConvert.SerializeObject(response.Items));
         var excelFileViewModel = transactionHistoryWorkbook.BuildExcelFile(param, response.Items);
         return File(excelFileViewModel.Content, excelFileViewModel.ContentType, excelFileViewModel.Name);
     }

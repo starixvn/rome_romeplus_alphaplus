@@ -28,6 +28,10 @@ const createAxiosInstance = () => {
         config.headers['X-CSRF-TOKEN'] = csrfToken;
       }
 
+      if (config.data instanceof FormData) {
+        delete config.headers['Content-Type'];
+      }
+
       return config;
     },
     (error) => Promise.reject(error)

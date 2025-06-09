@@ -136,14 +136,21 @@ export const transactionAPI = {
 
   exportExcel: async (params: ExportExcelParams): Promise<void> => {
     try {
+      var formData = new FormData();
+      formData.append('transactionType', params.transactionType.toString());
+      formData.append('fromDate', params.fromDate);
+      formData.append('toDate', params.toDate);
+      formData.append('status', params.status.toString());
+
       await api
-        .post('ExportExcel', params, {
+        .post('ExportExcel', formData, {
           responseType: 'blob',
         })
         .then((response) => {
           const fileName = response.headers['content-disposition']
             .split('filename=')[1]
-            .split(';')[0];
+            .split(';')[0]
+            .replace(/"/g, '');
 
           const url = window.URL.createObjectURL(new Blob([response.data]));
           const link = document.createElement('a');

@@ -1,6 +1,8 @@
 ﻿namespace AlphaPlus.CashService.Site.Features.Transactions.Services;
 
+using AlphaPlus.Shared.AppResources.Common;
 using AlphaPlus.Shared.AppResources.Report;
+using Core.Extensions;
 using Core.Models;
 using Models;
 using ONEbook.SpreadSheets;
@@ -14,6 +16,18 @@ public interface ITransactionHistoryWorkbook
 public class TransactionHistoryWorkbook(IWebHostEnvironment webHostEnvironment) : ReportNpoiWorkbook<Transaction>(webHostEnvironment),
     ITransactionHistoryWorkbook
 {
+    private readonly Mapper<Transaction> rowMapper
+        = new Mapper<Transaction>()
+        .Map(A, item => item.Username + WriteNickname(item.Nickname))
+        .Map(B, item => item.FirstName + item.LastName)
+        .Map(C, item => item.Amount)
+        .Map(D, item => item.PaymentFrom)
+        .Map(E, item => item.PaymentTo)
+        .Map(F, item => MappingStatusId(item.StatusId))
+        .Map(G, item => item.TransactionType)
+        .Map(H, item => item.TransId)
+        .Map(I, item => item.CreatedTime.ToLongDateTime24HWithSlash());
+
     public ExcelFileViewModel BuildExcelFile(ExportExcelParams param, IEnumerable<Transaction> reportData)
     {
         var fileContent = UseTemplate(
@@ -22,37 +36,47 @@ public class TransactionHistoryWorkbook(IWebHostEnvironment webHostEnvironment) 
                     noInfomationText: Resources.NoInformationIsAvailable,
                     bodyStartIndex: 3,
                     bodyEndIndex: 4))
-            .Title($"Transaction History {param.FromDate} --> {param.ToDate}")
+            .Title(GetTitle(param))
             .Header(Resources.ResourceManager.GetString)
-            .Body(reportData, new Mapper<Transaction>()
-                .Map(B, item => item.Username + WriteNickname(item.Nickname))
-                .Map(C, item => item.FirstName + item.LastName)
-                .Map(D, item => item.Amount)
-                .Map(E, item => item.PaymentFrom)
-                .Map(F, item => item.PaymentTo)
-                .Map(G, item => item.StatusId)
-                .Map(H, item => item.TransactionType)
-                .Map(I, item => item.TransId)
-                .Map(J, item => item.CreatedTime)
-            )
-            .Sheet("Transaction_History")
+            .Body(reportData, rowMapper)
+            .Sheet(Resources.DefaultSheetName)
             .ExportToBytes();
 
-        return new ExcelFileViewModel($"Transaction History-{param.FromDate}-{param.ToDate}", fileContent);
+        return new ExcelFileViewModel($"TransactionHistory-{param.FromDate.Value.ToShortDateWithSlash()}-{param.ToDate.Value.ToShortDateWithSlash()}", fileContent);
+    }
+
+    private static string GetTitle(ExportExcelParams param)
+        => $"Transaction History {param.FromDate.Value.ToShortDateWithSlash()} --> {param.ToDate.Value.ToShortDateWithSlash()}";
+
+    private static string MappingStatusId(int statusId)
+    => statusId switch
+    {
+        0 => "Waiting",
+        1 => "Cancelled",
+        2 => "Pending",
+        3 => "Expired",
+        4 => "Completed",
+        5 => "Rejected",
+        6 => "Provider Rejected",
+        _ => ""
+    };
+
+    protected override void FillHeader(Sheet sheet)
+    {
+        var row = sheet.GetRow(TemplateInfo.HeaderStartIndex);
+        int colIndex = row.FirstCellIndex;
+
+        row.SetCellValue(colIndex++, $"{Resources.Username}\n{CommonResx.Nickname}");
+        row.SetCellValue(colIndex++, Resources.FirstLastName);
+        row.SetCellValue(colIndex++, Resources.Amount);
+        row.SetCellValue(colIndex++, Resources.From);
+        row.SetCellValue(colIndex++, Resources.To);
+        row.SetCellValue(colIndex++, Resources.Status);
+        row.SetCellValue(colIndex++, "Transaction Type");
+        row.SetCellValue(colIndex++, Resources.refno);
+        row.SetCellValue(colIndex, Resources.CreatedDate);
     }
 
     private static string WriteNickname(string nickName)
     => string.IsNullOrWhiteSpace(nickName) ? string.Empty : " (" + nickName + ")";
-
-    protected override void FillBodyRows(Sheet sheet)
-    {
-        var currentRowIndex = TemplateInfo.BodyStartIndex;
-
-        foreach (var data in SpreadSheet.BodyRows)
-        {
-            var row = sheet.GetRow(currentRowIndex);
-            row.CopyCellsFrom(sheet.OddRowTemplate);
-            FillCells(row, data, SpreadSheet.RowMapper.Mappings);
-        }
-    }
 }
