@@ -133,7 +133,7 @@
         "SentryBackendUrl": "https://2260e85fe1c54d2fa5592b84dcbd9936@10.143.8.200:9005/21"
     },
     "RedisConfiguration": "10.143.8.100:16379,Password=foo1@bared,Name=AlphaPlus,abortConnect=false,configChannel=__Booksleeve_MasterChanged,connectTimeout=6300",
-    "RemotingRefUrl": "http://vn-remotingref.gamora.prod/",
+    "RemotingRefUrl": "http://vn-remotingref.starix-alphaklprod.gamora.prod/",
     "Fanex.Customer": {
         "ServiceUri": "http://fanex_customer_api_alphaklprod_2:5000/api/",
         "CdnUri": "/stdcsv1/",
