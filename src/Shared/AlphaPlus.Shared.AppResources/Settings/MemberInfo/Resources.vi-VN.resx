@@ -1250,12 +1250,15 @@ Lưu ý:  Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
     <value>Thắng/Thua Tích Lũy</value>
   </data>
   <data name="PotentialWin" xml:space="preserve">
-    <value>Dự Kiến Thắng</value>
+    <value>Thắng Tối Đa</value>
   </data>
   <data name="CurrentPotentialWin" xml:space="preserve">
-    <value>Tỷ Lệ Dự Kiến Thắng Hiện Tại (%)</value>
+    <value>Tỷ Lệ Thắng Tối Đa Hiện Tại (%)</value>
   </data>
   <data name="SportsbookPotentialWinLimit" xml:space="preserve">
     <value>Giới Hạn Thắng Tối Đa của Sportsbook</value>
+  </data>
+  <data name="PotentialWinLimitNote1" xml:space="preserve">
+    <value>Chỉ hiển thị các Member cài đặt “Không giới hạn” Giới Hạn Thắng Tối Đa.</value>
   </data>
 </root>
