@@ -3436,6 +3436,6 @@
     <value>ธนาคาร</value>
   </data>
   <data name="PotentialWinLimit" xml:space="preserve">
-    <value>ขีดจำกัดการชนะที่เป็นไปได้</value>
+    <value>ขีดจำกัดการชนะสูงสุด</value>
   </data>
 </root>

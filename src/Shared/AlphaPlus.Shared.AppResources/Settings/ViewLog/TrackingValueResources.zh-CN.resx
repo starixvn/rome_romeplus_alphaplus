@@ -3445,6 +3445,6 @@
     <value>银行</value>
   </data>
   <data name="PotentialWinLimit" xml:space="preserve">
-    <value>潜在获胜上限</value>
+    <value>赢额上限</value>
   </data>
 </root>

@@ -1238,9 +1238,24 @@ Lưu ý:  Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
     <value>Thêm thành viên tiền mặt mới</value>
   </data>
   <data name="MaxPotentialWinLimit" xml:space="preserve">
-    <value>Giới Hạn Thắng Tối Đa </value>
+    <value>Giới Hạn Thắng Tối Đa Cho Phép</value>
   </data>
   <data name="ToWin" xml:space="preserve">
     <value>Dự Kiến Thắng</value>
+  </data>
+  <data name="PotentialWinLimitNote2" xml:space="preserve">
+    <value>Do thay đổi kết quả, xử lý chậm hoặc các lý do khác, tổng Giới Hạn Thắng Tối Đa có thể tạm thời vượt quá giới hạn đã cài đặt.</value>
+  </data>
+  <data name="AccumulatedWinLoss" xml:space="preserve">
+    <value>Thắng/Thua Tích Lũy</value>
+  </data>
+  <data name="PotentialWin" xml:space="preserve">
+    <value>Dự Kiến Thắng</value>
+  </data>
+  <data name="CurrentPotentialWin" xml:space="preserve">
+    <value>Tỷ Lệ Dự Kiến Thắng Hiện Tại (%)</value>
+  </data>
+  <data name="SportsbookPotentialWinLimit" xml:space="preserve">
+    <value>Giới Hạn Thắng Tối Đa của Sportsbook</value>
   </data>
 </root>
