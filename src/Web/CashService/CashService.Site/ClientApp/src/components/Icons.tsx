@@ -303,3 +303,25 @@ export const IconCopy = ({ className }: { className?: string }) => (
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
     </svg>
 );
+
+export const IconFirst = ({ className }: { className?: string }) => (
+  <svg className={`w-[20px] h-[20px] fill-[var(--pager-color)]  sf ${className}`} version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path d="M24.547 22.12l-6.12-6.12 6.12-6.12-1.88-1.88-8 8 8 8 1.88-1.88zM8 8h2.667v16h-2.667v-16z"></path>
+  </svg>
+)
+export const IconPrev = ({ className }: { className?: string }) => (
+  <svg className={`w-[20px] h-[20px] fill-[var(--pager-color)] ${className}`} version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path d="M20.547 9.88l-1.88-1.88-8 8 8 8 1.88-1.88-6.107-6.12 6.107-6.12z"></path>
+  </svg>
+)
+export const IconNext = ({ className }: { className?: string }) => (
+  <svg className={`w-[20px] h-[20px] fill-[var(--pager-color)] ${className}`} version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path d="M13.333 8l-1.88 1.88 6.107 6.12-6.107 6.12 1.88 1.88 8-8-8-8z"></path>
+  </svg>
+)
+export const IconLast = ({ className }: { className?: string }) => (
+  <svg className={`w-[20px] h-[20px] fill-[var(--pager-color)] ${className}`} version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path d="M7.453 9.88l6.12 6.12-6.12 6.12 1.88 1.88 8-8-8-8-1.88 1.88zM21.333 8h2.667v16h-2.667v-16z"></path>
+  </svg>
+
+)

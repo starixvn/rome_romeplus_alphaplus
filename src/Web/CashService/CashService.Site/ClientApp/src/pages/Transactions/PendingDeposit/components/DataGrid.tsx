@@ -64,7 +64,7 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
   return (
     <>
       <div className="table-fixed-header table-fixed-body min-h-0">
-        <table className="max-[600px]:text-[17px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
+        <table className="max-[600px]:text-[17px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333]">
           <thead className="z-11!">
             <tr>
               <th scope="col" className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-header-background)] z-11">

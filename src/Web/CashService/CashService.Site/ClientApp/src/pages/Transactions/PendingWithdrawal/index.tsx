@@ -101,7 +101,7 @@ const PendingWithdrawal: React.FC = () => {
       {showManualAddWithdrawalForm ? (
         <ManualAddWithdrawalForm onClose={() => handleCloseManualWithdrawalForm(false)} />
       ) : (
-        <div className="py-[12px] flex h-full flex-col">
+        <div className="flex h-full flex-col">
           <TitleComponent title={t('pendingWithdrawal')} />
           <div className="mb-[8px]">
             <ButtonOutlineComponent

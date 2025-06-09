@@ -11,7 +11,7 @@ const NoRecordFound: React.FC<NoRecordFoundProps> = ({ colSpan, message }) => {
 
   return (
     <tr>
-      <td colSpan={colSpan} className="p-3 text-center border border-[#dee2e6]">
+      <td colSpan={colSpan} className="p-3 text-center">
         <div className="flex flex-col items-center justify-center py-16">
           <svg
             width="70"

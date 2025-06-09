@@ -132,7 +132,7 @@ const PendingDeposit: React.FC = () => {
           onClose={() => handleCloseManualDepositForm(false)}
         />
       ) : (
-        <div className=" py-[12px] flex h-full flex-col">
+        <div className="flex h-full flex-col">
           <TitleComponent title={t('pendingDeposit')} />
           <div className="mb-[8px]">
             <ButtonOutlineComponent

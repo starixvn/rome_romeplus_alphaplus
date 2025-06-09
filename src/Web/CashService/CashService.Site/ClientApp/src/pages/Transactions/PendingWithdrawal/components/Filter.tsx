@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { CalendarIcon, SearchIcon } from '../../../../components/Icons';
+import { CalendarIcon, IconSearch } from '../../../../components/Icons';
 import { LabelTitleComponent } from '../../../../components/TitleComponents';
 
 interface FilterProps {
@@ -43,14 +43,14 @@ const Filter: React.FC<FilterProps> = ({
       <div className="flex mb-[16px]">
         <div className="w-[250px] ml-auto">
           <div className="relative">
-            <span className="absolute top-[8px] left-[8px] z-[10] max-[768px]:top-[12px]">
-              <SearchIcon />
+            <span className="absolute transform-[translatey(-50%)] z-[10] top-1/2 left-[8px]">
+              <IconSearch />
             </span>
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="h-[32px] max-[768px]:h-[40px] w-[100%] pl-[30px] bg-[#ffffff] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] shadow-[0_0_6px_rgba(0,0,0,0.16)]"
+              className="control-field pl-[30px]!"
               placeholder={t('filter.usernamePlaceholder')}
             />
           </div>

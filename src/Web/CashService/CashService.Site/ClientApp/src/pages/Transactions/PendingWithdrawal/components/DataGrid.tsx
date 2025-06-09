@@ -13,6 +13,7 @@ import NoRecordFound from '../../../../components/Table/NoRecordFound';
 import { ButtonFullComponent } from '../../../../components/ButtonComponents';
 import Pagination from '../../Components/Pagination';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
+import { ValidateMessageComponent } from '../../../../components/MessageComponents.tsx';
 
 interface DataGridProps {
   withdrawals: TransactionItem[];
@@ -67,16 +68,16 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
 
   return (
     <>
-      <div className="table-fixed-header table-fixed-body bg-[#ffffff] min-h-0">
-        <table className="max-[600px]:text-[17px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px] border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
+      <div className="table-fixed-header table-fixed-body min-h-0">
+        <table className="max-[600px]:text-[17px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px] border-l-[0px] text-[#333333]">
           <thead className="z-11!">
             <tr>
-              <th scope="col" className="w-[32px] min-w-[32px] sticky left-0  z-11">
+              <th scope="col" className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-header-background)] z-11">
                 #
               </th>
               <th
                 scope="col"
-                className="w-[150px] min-w-[150px] sticky left-[32px]  z-11 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]"
+                className="w-[150px] min-w-[150px] sticky left-[32px] bg-[var(--table-header-background)] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]"
               >
                 <div>{t('dataGrid.username')}</div>
                 <div>{t('dataGrid.nickname')}</div>
@@ -98,10 +99,10 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
             {paginatedWithdrawals.length > 0 ? (
               paginatedWithdrawals.map((withdrawal, index) => (
                 <tr key={withdrawal.transId}>
-                  <td className="w-[32px] min-w-[32px] sticky left-0 bg-[#ffffff] z-10">
+                  <td className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-background)] z-10">
                     {index + 1 + (currentPage - 1) * pageSize}
                   </td>
-                  <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[#ffffff] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
+                  <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[var(--table-background)] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
                     <div>{withdrawal.username}</div>
                     <div>{withdrawal.nickname}</div>
                   </td>
@@ -127,26 +128,28 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
               <NoRecordFound colSpan={9} message={t('dataGrid.noWithdrawalsFound')} />
             )}
           </tbody>
-        </table>
+        </table>        
       </div>
 
       {error && <div className="mt-4 p-4 bg-red-100 text-red-700 rounded-md">{error}</div>}
+      {
+        error && (
+          <ValidateMessageComponent message={error} />
+        )
+      }
 
       {processingWithdrawal && (
         <PendingWithdrawalModal withdrawal={processingWithdrawal} onClose={handleCloseProcess} />
       )}
-
-      {paginatedWithdrawals.length > 0 && (
-        <div className="mt-0">
-          <Pagination
-            currentPage={currentPage}
-            pageSize={pageSize}
-            totalItems={totalItems}
-            onPageChange={handlePageChange}
-            onPageSizeChange={handlePageSizeChange}
-          />
-        </div>
-      )}
+      {paginatedWithdrawals.length > 0 && (    
+        <Pagination
+          currentPage={currentPage}
+          pageSize={pageSize}
+          totalItems={totalItems}
+          onPageChange={handlePageChange}
+          onPageSizeChange={handlePageSizeChange}
+        />      
+      )}      
     </>
   );
 };
