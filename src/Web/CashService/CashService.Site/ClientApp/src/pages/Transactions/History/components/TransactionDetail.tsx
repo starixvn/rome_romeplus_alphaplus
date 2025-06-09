@@ -54,9 +54,9 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
       setRevertAlert({ type: null, message: '' });
       transactionAPI
         .getTransactionDetail(transactionId, custId)
-        .then((data) => {
-          setDetailData(data);
-          setRemarks(data.remark || '');
+        .then((response) => {
+          setDetailData(response.data);
+          setRemarks(response.data.remark || '');
         })
         .catch((err) => {
           console.error(err);
