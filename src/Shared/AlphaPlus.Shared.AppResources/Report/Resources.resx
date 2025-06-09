@@ -1320,4 +1320,7 @@
   <data name="Fee" xml:space="preserve">
     <value>Fee</value>
   </data>
+  <data name="Count" xml:space="preserve">
+    <value>Count</value>
+  </data>
 </root>

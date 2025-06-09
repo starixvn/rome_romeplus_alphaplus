@@ -3443,5 +3443,38 @@ namespace AlphaPlus.Shared.AppResources.Report {
                 return ResourceManager.GetString("Yesterday", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string Type.
+        /// </summary>
+        public static string Type
+        {
+            get
+            {
+                return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string Fee.
+        /// </summary>
+        public static string Fee
+        {
+            get
+            {
+                return ResourceManager.GetString("Fee", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string Count.
+        /// </summary>
+        public static string Count
+        {
+            get
+            {
+                return ResourceManager.GetString("Count", resourceCulture);
+            }
+        }
     }
 }
