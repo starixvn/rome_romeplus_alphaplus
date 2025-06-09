@@ -38,25 +38,11 @@
         </div>
     }
 
-    @* void TotalCashMember(string label, TotalCashMember total)
-    {
-        <div class="row">
-            <div class="col-xs-7 lable">@label</div>
-            <div class="col-xs-5 value">
-                <strong data-toggle="tooltip" data-placement="top"
-                    title="<div class='nowrap'>@Resources.active: <span class='active'>@total.TotalCashMemberActive</span></div><div class='nowrap'>@Resources.closed: <span class='closed'>@total.TotalCashMemberClosed</span></div><div class='nowrap'>@Resources.suspended: <span class='suspended'>@total.TotalCashMemberSuspended</span></div>">
-                    <span class="active">@total.TotalCashMemberActive</span>|
-                    <span class="closed">@total.TotalCashMemberClosed</span>|
-                    <span class="suspended">@total.TotalCashMemberSuspended</span>
-                </strong>
-            </div>
-        </div>
-    } *@
-     void RenderTotalMemberInfo(string labelName, int memberActive, int memberClosed, int memberSuspended)
+    void RenderTotalMemberInfo(string labelName, int memberActive, int memberClosed, int memberSuspended)
     {
         <div class="row">
             <div class="col-xs-7 lable">@labelName</div>
-            <div class="col-xs-5 value">
+            <div class="col-xs-5 value down-line-total">
                 <strong data-toggle="tooltip" data-placement="top"
                     title="<div class='nowrap'>@Resources.active: <span class='active'>@memberActive</span></div><div class='nowrap'>@Resources.closed: <span class='closed'>@memberClosed</span></div><div class='nowrap'>@Resources.suspended: <span class='suspended'>@memberSuspended</span></div>">
                     <span class="active">@memberActive</span>|
@@ -126,67 +112,5 @@
 <script>
     $(document).ready(function () {
         $(".open-link").unbind().bind('click', function (event) { alpha.viewDataURL(event); });
-        $("#cash-service-toggle").unbind().bind('click', function (event) { onClickCashServiceToggle(); });
-
-        $("#confirmEnableCashService").click(function () {
-            $.ajax({
-                url: '/main/Dashboard/UpdateCashServiceStatus',
-                type: 'POST',
-                data: {
-                    IsEnableCash: true
-                },
-                headers: {
-                    'RequestVerificationToken': $('input[name="RequestVerificationToken"]').val()
-                },
-                success: function (response) {
-                    if (response.isSuccessful) {
-                        const toggle = $("#cash-service-toggle");
-                        toggle.attr("data-state", "on");
-                        toggle.addClass("active");
-                        $("#enableCashServiceModal").modal('hide');
-                    } else {
-                        console.error("enable cash service failed");
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error('Error calling cash service status API:', error);
-                }
-            });
-        });
-
-        $("#confirmDisableCashService").click(function () {
-            $.ajax({
-                url: '/main/Dashboard/UpdateCashServiceStatus',
-                type: 'POST',
-                data: {
-                    IsEnableCash: false
-                },
-                success: function (response) {
-                    if (response.isSuccessful) {
-                        const toggle = $("#cash-service-toggle");
-                        toggle.attr("data-state", "off");
-                        toggle.removeClass("active");
-                        $("#disableCashServiceModal").modal('hide');
-                    } else {
-                        console.error("disable cash service failed");
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error('Error calling cash service status API:', error);
-                }
-            });
-        });
     });
-
-    function onClickCashServiceToggle() {
-        const toggle = $("#cash-service-toggle");
-        const isChecked = toggle.attr("data-state");
-        if (isChecked === "on") {
-            // Mở modal xác nhận tắt
-            $("#disableCashServiceModal").modal('show');
-        } else {
-            // Mở modal enable như cũ
-            $("#enableCashServiceModal").modal('show');
-        }
-    }
 </script>
