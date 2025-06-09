@@ -85,7 +85,8 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           params.transactionType === TransactionType.Deposit ? item.paymentTo : item.paymentFrom
         );
       setPaymentInformations(paymentInfo);
-      setApiParams((prev) => ({ ...prev, account: '' }));
+      setApiParams((prev) => ({ ...prev, account: '', pageIndex: 1 }));
+      setLocalSearchText('');
 
       setError(null);
     } catch (err) {
@@ -123,7 +124,8 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           item.transId.toString().toLowerCase().includes(lowerCaseSearchText)
       );
 
-      setDisplayedItems(filtered.slice(startIndex, endIndex));
+      setDisplayedItems(filtered.slice(0, apiParams.pageSize));
+      setTempTotalCount(filtered.length);
     }
   }, [apiData.items, localSearchText, apiParams.pageIndex, apiParams.pageSize]);
 
@@ -166,10 +168,12 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
 
   const handlePageChange = (newPage: number) => {
     setApiParams((prev) => ({ ...prev, pageIndex: newPage }));
+    setLocalSearchText(localSearchText);
   };
 
   const handlePageSizeChange = (newSize: number) => {
     setApiParams((prev) => ({ ...prev, pageSize: newSize, pageIndex: 1 }));
+    setLocalSearchText('');
   };
 
   const onDownload = () => {
