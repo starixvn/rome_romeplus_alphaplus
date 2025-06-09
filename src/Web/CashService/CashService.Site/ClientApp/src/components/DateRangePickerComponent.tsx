@@ -303,7 +303,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
     <div className={`relative text-[13px] custom-datarangepicker ${className || ''}`} ref={ref}>
       <input
         readOnly
-        className="flex items-center h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[12px] border-[var(--border-control)]  bg-[var(--background-control)] cursor-pointer focus:outline-none focus:border-[var(--border-control-focus)] relative"
+        className="control-field"
         value={formatRange(value) || 'Select date range'}
         onClick={() => setOpen((v) => !v)}
       />

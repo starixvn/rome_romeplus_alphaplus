@@ -28,7 +28,7 @@ const Filter: React.FC<FilterProps> = ({
             <select
               value={recentWithdrawals}
               onChange={(e) => setRecentWithdrawals(e.target.value)}
-              className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] bg-[var(--background-control)] rounded-[4px] px-[8px] pr-[32px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer appearance-none"
+              className="control-field"
             >
               <option value="All">{t('filter.all')}</option>
               <option value="Last30Mins">{t('filter.last30Mins')}</option>

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import CustomDropdown from '../../../../../components/CustomDropdownComponent';
 import { TransactionType } from '../../../../../utils/commonFunctions';
 import BankIcon from '../../../../../components/BankComponents';
+import { LabelTitleComponent } from '../../../../../components/TitleComponents';
 
 interface AccountFilterProps {
   account: string;
@@ -44,10 +45,8 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
   }, [transactionType, paymentInformations, onAccountsLoaded]);
 
   return (
-    <div className="form-group mb-[8px]">
-      <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">
-        {transactionType === TransactionType.Deposit ? t('filter.to') : t('filter.from')}
-      </label>
+    <div className="form-group"> 
+      <LabelTitleComponent text={transactionType === TransactionType.Deposit ? t('filter.to') : t('filter.from')} />
       <CustomDropdown
         options={accountOptions.map((option) => {
           const [bankCode, accountNumber] = option.split('-');
