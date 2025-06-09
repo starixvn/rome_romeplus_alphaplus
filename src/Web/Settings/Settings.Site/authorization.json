@@ -341,6 +341,18 @@
                         "IsAllowToDoByThemselves": true
                     },
                     {
+                        "Url": "Customer/CreateDirectMember",
+                        "Permission": "[A]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "Customer/CreateCashMember",
+                        "Permission": "[A]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
                         "Url": "Customer/Update",
                         "Permission": "[B]",
                         "IsCheckBelonging": true,
