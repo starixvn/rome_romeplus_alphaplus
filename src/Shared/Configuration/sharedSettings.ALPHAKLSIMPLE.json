@@ -135,7 +135,7 @@
     "RedisConfiguration": "10.143.8.100:16379,Password=foo1@bared,Name=AlphaPlus,abortConnect=false,configChannel=__Booksleeve_MasterChanged,connectTimeout=6300",
     "RemotingRefUrl": "http://vn-remotingref.gamora.prod/",
     "Fanex.Customer": {
-        "ServiceUri": "http://fanex_customer_api_ALPHAKLDR:5000/api/",
+        "ServiceUri": "http://fanex_customer_api_alphaklprod_2:5000/api/",
         "CdnUri": "/stdcsv1/",
         "SystemId": 2
     },
@@ -276,5 +276,5 @@
     "CashService": {
         "OfferedSites": "222227"
     },
-    "CashServiceAPIUrl": "http://alphaplus_api_cashservice_alphakldr:5000/api"
+    "CashServiceAPIUrl": "http://alphaplus_api_cashservice_alphaklprod_2:5000/api"
 }
