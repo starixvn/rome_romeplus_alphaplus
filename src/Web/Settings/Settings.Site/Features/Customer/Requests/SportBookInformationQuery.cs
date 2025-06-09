@@ -48,6 +48,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer.Requests
             name = "BetSetting",
             id = "BetSettingTab",
             isActive = TabIndex == 0,
+            url = MicroSites.SettingUrl("~/Customer/GetBetLimitInformation?site=" + Site + "&siteLabel=" + SiteLabel),
         };
 
         private object MaxPayoutSettingTab => new
