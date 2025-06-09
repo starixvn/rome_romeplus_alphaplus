@@ -32,7 +32,8 @@ public class WinLossDetailHandler(
         IRequestHandler<WinLossDetailGetWeeksQuery, IEnumerable<WinLossDetailWeekViewModel>>,
         IRequestHandler<WinLossDetailExcelQuery, ExcelFileViewModel>,
         IRequestHandler<CashFeeQuery, CashFeeViewModel>,
-        IRequestHandler<CashFeeExcelQuery, ExcelFileViewModel>
+        IRequestHandler<CashFeeExcelQuery, ExcelFileViewModel>,
+        IRequestHandler<CashFeeGetDataQuery, CashFeeModel>
 {
     private readonly IEnteredResultService enteredResultService = enteredResultService;
     private readonly ICustomerService customerService = customerService;
@@ -311,5 +312,11 @@ public class WinLossDetailHandler(
     public Task<ExcelFileViewModel> Handle(CashFeeExcelQuery request, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
+    }
+
+    public async Task<CashFeeModel> Handle(CashFeeGetDataQuery message, CancellationToken cancellationToken)
+    {
+        var cashFeeParam = new CashFeeParam(message.CustId, message.FromDate, message.ToDate);
+        return await winlossDetailService.GetCashFee(cashFeeParam);
     }
 }

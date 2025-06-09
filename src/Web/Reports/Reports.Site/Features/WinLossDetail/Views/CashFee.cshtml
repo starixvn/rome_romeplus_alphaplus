@@ -97,41 +97,7 @@
 	</div>
 </div>
 <div id="tbl-report-container">
-	<table
-		class="tb tb-bordered tb-hover w-full tbl-win-loss-by-product@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty) "
-		id="tbl-report">
-		<thead>
-			<tr>
-				<th>@Resources.Type</th>
-				<th>@Resources.Fee</th>
-				<th>@Resources.Count</th>
-				<th>@Resources.Agent</th>
-				<th>@Resources.Company</th>
-			</tr>
-		</thead>
-		@if (Model.CashFee.FeeGroups.Any())
-		{
-			<tbody>
-				@{
-					foreach (var group in Model.CashFee.FeeGroups)
-					{
-						RenderCashFeeGroup(group);
-					}
-				}
-			</tbody>
-			<tfoot>
-				<tr class="tbl-footer">
-					<td colspan="3">@Resources.Total</td>
-					<td>@Model.CashFee.GrandTotal.Agent.FormatNumber()</td>
-					<td>@Model.CashFee.GrandTotal.Company.FormatNumber()</td>
-				</tr>
-			</tfoot>
-		}
-		else
-		{
-			<no-information colspan="5" />
-		}
-	</table>
+	<partial name="CashFeeData" model="@Model.CashFee"/>
 </div>
 <input type="hidden" id="hidden-breadcrumbsJson" value="@JsonHelper.ToJson(Model.Breadcrumbs)" />
 <input type="hidden" id="winloss-detail-report-path" value="@MicroSites.ReportsUrl("~/WinLossDetail/Index")" />

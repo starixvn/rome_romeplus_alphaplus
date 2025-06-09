@@ -68,25 +68,19 @@ class CashFeeView extends BaseReportNew {
     getCashFee() {
         this.$tblReportContainer.block();
         const queryStringObject = $.extend(
-            { custId: winlossDetailFromData.CustId, custName: winlossDetailFromData.CustName },
+            { custId: winlossDetailFromData.custId, custName: winlossDetailFromData.custName },
             this.dateRangeComponent.getDateRangeValues()
         );
         const queryString = $.param(queryStringObject);
-        const url = $('#hidden-cashFeeUrl').attr('href') || 'GetData';
+        const url = 'GetCashFeeData';
         $.get(`${url}?${queryString}`, (html) => {
             this.$tblReportContainer.html(html);
-            //this.getDataSuccess();
             this.$tblReportContainer.unblock();
         }).fail((jqXHR) => {
             alphaReports.ajaxFail(jqXHR);
             this.$tblReportContainer.unblock();
         });
     }
-
-    // getDataSuccess() {
-    //     this.breadcrumbLevelComponent.bindEvents();
-    //     this.registerEvents();
-    // }
 }
 
 $(function () {
