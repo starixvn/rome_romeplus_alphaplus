@@ -1,4 +1,3 @@
-using AlphaPlus.CashService.Site.Features.Shared.Filters;
 using AlphaPlus.Core;
 using AlphaPlus.Core.Models;
 using Microsoft.AspNetCore.Antiforgery;
@@ -7,13 +6,12 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace AlphaPlus.CashService.Site.Features.Shared
 {
-    [SiteAuthorizationFilter]
     [AutoValidateAntiforgeryToken]
     public class SiteBaseController : BaseController
     {
         protected readonly IUserSession _userSession;
         protected readonly IAntiforgery _antiforgery;
-        
+
         protected SiteBaseController(IUserSession userSession, IAntiforgery antiforgery)
         {
             _userSession = userSession;

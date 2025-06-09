@@ -11,7 +11,7 @@ using Shared;
 using Shared.Filters;
 using Shared.Models;
 
-[SiteAuthorizationFilter]
+[SiteAuthorizationFilter(PageAccessType.CashService)]
 public class TransactionsController(
     HttpClientHelper httpClientHelper,
     IUserSession userSession,

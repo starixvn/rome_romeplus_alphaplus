@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.CashService.Site.Features.Payments
 {
-    [SiteAuthorizationFilter]
+    [SiteAuthorizationFilter(PageAccessType.CashService)]
     public class PaymentsController : SiteBaseController
     {
         private readonly string _apiBaseUrl;
@@ -200,9 +200,9 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         }
 
         private async Task<IActionResult> DoAction<TResult>(
-            string url, 
-            Shared.Requests.BaseActionRequest request, 
-            CancellationToken cancellationToken) 
+            string url,
+            Shared.Requests.BaseActionRequest request,
+            CancellationToken cancellationToken)
         {
             if (_userSession.IsInternal)
             {

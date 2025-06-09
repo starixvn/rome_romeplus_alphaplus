@@ -1,25 +1,26 @@
 using AlphaPlus.CashService.Site.Features.Promotions.ViewModels;
+using AlphaPlus.CashService.Site.Features.Shared;
 using AlphaPlus.CashService.Site.Features.Shared.Filters;
 using AlphaPlus.Core.Models;
+using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.CashService.Site.Features.Promotions
 {
-    [SiteAuthorizationFilter]
-    public class PromotionsController : Controller
+    [SiteAuthorizationFilter(PageAccessType.CashPromotion)]
+    public class PromotionsController : SiteBaseController
     {
         private readonly string _apiBaseUrl;
         private readonly HttpClient _httpClient;
-        private readonly IUserSession _userSession;
 
         public PromotionsController(
             HttpClient httpClient,
             IConfiguration configuration,
-            IUserSession userSession)
+            IUserSession userSession,
+            IAntiforgery antiforgery) : base(userSession, antiforgery)
         {
             _apiBaseUrl = configuration["CashService:APIUrl"];
             _httpClient = httpClient;
-            _userSession = userSession;
         }
 
         public IActionResult Index()

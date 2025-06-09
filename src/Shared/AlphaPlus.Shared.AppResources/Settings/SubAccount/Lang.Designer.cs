@@ -8,10 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AlphaPlus.Shared.AppResources.Settings.SubAccount {
+namespace AlphaPlus.Shared.AppResources.Settings.SubAccount
+{
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -22,292 +23,356 @@ namespace AlphaPlus.Shared.AppResources.Settings.SubAccount {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Lang {
-        
+    public class Lang
+    {
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Lang() {
+        internal Lang()
+        {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
-            get {
-                if (object.ReferenceEquals(resourceMan, null)) {
+        public static global::System.Resources.ResourceManager ResourceManager
+        {
+            get
+            {
+                if (object.ReferenceEquals(resourceMan, null))
+                {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Shared.AppResources.Settings.SubAccount.Lang", typeof(Lang).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
-            get {
+        public static global::System.Globalization.CultureInfo Culture
+        {
+            get
+            {
                 return resourceCulture;
             }
-            set {
+            set
+            {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Sorry, password cannot be empty!!!.
         /// </summary>
-        public static string alertPasswordEmpty {
-            get {
+        public static string alertPasswordEmpty
+        {
+            get
+            {
                 return ResourceManager.GetString("alertPasswordEmpty", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Bet Lists.
         /// </summary>
-        public static string BetLists {
-            get {
+        public static string BetLists
+        {
+            get
+            {
                 return ResourceManager.GetString("BetLists", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to First Name.
         /// </summary>
-        public static string firstname {
-            get {
+        public static string firstname
+        {
+            get
+            {
                 return ResourceManager.GetString("firstname", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to IP.
         /// </summary>
-        public static string ip {
-            get {
+        public static string ip
+        {
+            get
+            {
                 return ResourceManager.GetString("ip", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Last Name.
         /// </summary>
-        public static string lastname {
-            get {
+        public static string lastname
+        {
+            get
+            {
                 return ResourceManager.GetString("lastname", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to No permission for sub-account..
         /// </summary>
-        public static string lblconfirmclosesubacc {
-            get {
+        public static string lblconfirmclosesubacc
+        {
+            get
+            {
                 return ResourceManager.GetString("lblconfirmclosesubacc", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to You are not authorized on this function.
         /// </summary>
-        public static string lblNotAuthorized {
-            get {
+        public static string lblNotAuthorized
+        {
+            get
+            {
                 return ResourceManager.GetString("lblNotAuthorized", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Password must be at least 8 characters without white-space and contain at least 3 of the following:  • Uppercase letter [A-Z]   • Lowercase letter [a-z]   • Numeric [0-9]   • Special character (!,@,#,etc..)For example: 59D7!4$h, 493abcDENotes: your password is cAsE sEnSiTiVe.
         /// </summary>
-        public static string lblPasswordRequire {
-            get {
+        public static string lblPasswordRequire
+        {
+            get
+            {
                 return ResourceManager.GetString("lblPasswordRequire", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Your password does not meet the minimum security requirement..
         /// </summary>
-        public static string lblPasswordWrongRule {
-            get {
+        public static string lblPasswordWrongRule
+        {
+            get
+            {
                 return ResourceManager.GetString("lblPasswordWrongRule", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Member information.
         /// </summary>
-        public static string memberinfo {
-            get {
+        public static string memberinfo
+        {
+            get
+            {
                 return ResourceManager.GetString("memberinfo", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Password is not empty.
         /// </summary>
-        public static string msgErrPassWord {
-            get {
+        public static string msgErrPassWord
+        {
+            get
+            {
                 return ResourceManager.GetString("msgErrPassWord", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Username is not empty.
         /// </summary>
-        public static string msgErrUsername {
-            get {
+        public static string msgErrUsername
+        {
+            get
+            {
                 return ResourceManager.GetString("msgErrUsername", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Please input username and password.
         /// </summary>
-        public static string msgErrUsernamePassWord {
-            get {
+        public static string msgErrUsernamePassWord
+        {
+            get
+            {
                 return ResourceManager.GetString("msgErrUsernamePassWord", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Nickname.
         /// </summary>
-        public static string nickname {
-            get {
+        public static string nickname
+        {
+            get
+            {
                 return ResourceManager.GetString("nickname", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to There is no change to update..
         /// </summary>
-        public static string noChangeToUpdate {
-            get {
+        public static string noChangeToUpdate
+        {
+            get
+            {
                 return ResourceManager.GetString("noChangeToUpdate", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to No information is available.
         /// </summary>
-        public static string noInfo {
-            get {
+        public static string noInfo
+        {
+            get
+            {
                 return ResourceManager.GetString("noInfo", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Sorry, You don&apos;t have permission to update Sub-Account!.
         /// </summary>
-        public static string notAccessSubAccount {
-            get {
+        public static string notAccessSubAccount
+        {
+            get
+            {
                 return ResourceManager.GetString("notAccessSubAccount", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to This user does not exist.
         /// </summary>
-        public static string notExist {
-            get {
+        public static string notExist
+        {
+            get
+            {
                 return ResourceManager.GetString("notExist", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
-        public static string password {
-            get {
+        public static string password
+        {
+            get
+            {
                 return ResourceManager.GetString("password", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Status-Closed.
         /// </summary>
-        public static string statusclosed {
-            get {
+        public static string statusclosed
+        {
+            get
+            {
                 return ResourceManager.GetString("statusclosed", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Sorry, You don&apos;t have permission to access this page..
         /// </summary>
-        public static string strNotAccessPage {
-            get {
+        public static string strNotAccessPage
+        {
+            get
+            {
                 return ResourceManager.GetString("strNotAccessPage", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Sub Account.
         /// </summary>
-        public static string subaccount {
-            get {
+        public static string subaccount
+        {
+            get
+            {
                 return ResourceManager.GetString("subaccount", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Submit.
         /// </summary>
-        public static string submit {
-            get {
+        public static string submit
+        {
+            get
+            {
                 return ResourceManager.GetString("submit", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Transfer.
         /// </summary>
-        public static string transfer {
-            get {
+        public static string transfer
+        {
+            get
+            {
                 return ResourceManager.GetString("transfer", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Username.
         /// </summary>
-        public static string username {
-            get {
+        public static string username
+        {
+            get
+            {
                 return ResourceManager.GetString("username", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to This username is not available..
         /// </summary>
-        public static string UsernameIsNotAvailableError {
-            get {
+        public static string UsernameIsNotAvailableError
+        {
+            get
+            {
                 return ResourceManager.GetString("UsernameIsNotAvailableError", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to View.
         /// </summary>
-        public static string view {
-            get {
+        public static string view
+        {
+            get
+            {
                 return ResourceManager.GetString("view", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to View Log.
         /// </summary>
-        public static string viewlog {
-            get {
+        public static string viewlog
+        {
+            get
+            {
                 return ResourceManager.GetString("viewlog", resourceCulture);
             }
         }
@@ -315,8 +380,10 @@ namespace AlphaPlus.Shared.AppResources.Settings.SubAccount {
         /// <summary>
         ///   Looks up a localized string similar to Bets & Forecast.
         /// </summary>
-        public static string BetsAndForecast {
-            get {
+        public static string BetsAndForecast
+        {
+            get
+            {
                 return ResourceManager.GetString("BetsAndForecast", resourceCulture);
             }
         }
@@ -324,8 +391,10 @@ namespace AlphaPlus.Shared.AppResources.Settings.SubAccount {
         /// <summary>
         ///   Looks up a localized string similar to Reports.
         /// </summary>
-        public static string Reports {
-            get {
+        public static string Reports
+        {
+            get
+            {
                 return ResourceManager.GetString("Reports", resourceCulture);
             }
         }
@@ -333,8 +402,10 @@ namespace AlphaPlus.Shared.AppResources.Settings.SubAccount {
         /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
-        public static string Edit {
-            get {
+        public static string Edit
+        {
+            get
+            {
                 return ResourceManager.GetString("Edit", resourceCulture);
             }
         }
@@ -342,8 +413,10 @@ namespace AlphaPlus.Shared.AppResources.Settings.SubAccount {
         /// <summary>
         ///   Looks up a localized string Security Code.
         /// </summary>
-        public static string SecurityCode {
-            get {
+        public static string SecurityCode
+        {
+            get
+            {
                 return ResourceManager.GetString("SecurityCode", resourceCulture);
             }
         }
@@ -351,8 +424,10 @@ namespace AlphaPlus.Shared.AppResources.Settings.SubAccount {
         /// <summary>
         ///   Looks up a localized string Add Sub Account.
         /// </summary>
-        public static string addsubaccount {
-            get {
+        public static string addsubaccount
+        {
+            get
+            {
                 return ResourceManager.GetString("addsubaccount", resourceCulture);
             }
         }
@@ -360,8 +435,10 @@ namespace AlphaPlus.Shared.AppResources.Settings.SubAccount {
         /// <summary>
         ///   Looks up a localized string Full Control.
         /// </summary>
-        public static string FullControl {
-            get {
+        public static string FullControl
+        {
+            get
+            {
                 return ResourceManager.GetString("FullControl", resourceCulture);
             }
         }
@@ -369,8 +446,10 @@ namespace AlphaPlus.Shared.AppResources.Settings.SubAccount {
         /// <summary>
         ///   Looks up a localized string Update.
         /// </summary>
-        public static string Update {
-            get {
+        public static string Update
+        {
+            get
+            {
                 return ResourceManager.GetString("Update", resourceCulture);
             }
         }
@@ -378,8 +457,10 @@ namespace AlphaPlus.Shared.AppResources.Settings.SubAccount {
         /// <summary>
         ///   Looks up a localized string None.
         /// </summary>
-        public static string None {
-            get {
+        public static string None
+        {
+            get
+            {
                 return ResourceManager.GetString("None", resourceCulture);
             }
         }
@@ -387,8 +468,10 @@ namespace AlphaPlus.Shared.AppResources.Settings.SubAccount {
         /// <summary>
         ///   Looks up a localized string Reset.
         /// </summary>
-        public static string Reset {
-            get {
+        public static string Reset
+        {
+            get
+            {
                 return ResourceManager.GetString("Reset", resourceCulture);
             }
         }
@@ -396,8 +479,10 @@ namespace AlphaPlus.Shared.AppResources.Settings.SubAccount {
         /// <summary>
         ///   Looks up a localized string Account Permission.
         /// </summary>
-        public static string accpermission {
-            get {
+        public static string accpermission
+        {
+            get
+            {
                 return ResourceManager.GetString("accpermission", resourceCulture);
             }
         }
@@ -405,8 +490,10 @@ namespace AlphaPlus.Shared.AppResources.Settings.SubAccount {
         /// <summary>
         ///   Looks up a localized string Add.
         /// </summary>
-        public static string Add {
-            get {
+        public static string Add
+        {
+            get
+            {
                 return ResourceManager.GetString("Add", resourceCulture);
             }
         }
@@ -414,8 +501,10 @@ namespace AlphaPlus.Shared.AppResources.Settings.SubAccount {
         /// <summary>
         ///   Looks up a localized string Edit Sub Account.
         /// </summary>
-        public static string editsubacc {
-            get {
+        public static string editsubacc
+        {
+            get
+            {
                 return ResourceManager.GetString("editsubacc", resourceCulture);
             }
         }
@@ -423,18 +512,44 @@ namespace AlphaPlus.Shared.AppResources.Settings.SubAccount {
         /// <summary>
         ///   Looks up a localized string similar to Your password must be different from sample password..
         /// </summary>
-        public static string lblPasswordCSample {
-            get {
+        public static string lblPasswordCSample
+        {
+            get
+            {
                 return ResourceManager.GetString("lblPasswordCSample", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Your password must not contain your username or nickname..
         /// </summary>
-        public static string lblPasswordDAccountName {
-            get {
+        public static string lblPasswordDAccountName
+        {
+            get
+            {
                 return ResourceManager.GetString("lblPasswordDAccountName", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Cash Service.
+        /// </summary>
+        public static string CashService
+        {
+            get
+            {
+                return ResourceManager.GetString("CashService", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Cash Promotion.
+        /// </summary>
+        public static string CashPromotion
+        {
+            get
+            {
+                return ResourceManager.GetString("CashPromotion", resourceCulture);
             }
         }
     }

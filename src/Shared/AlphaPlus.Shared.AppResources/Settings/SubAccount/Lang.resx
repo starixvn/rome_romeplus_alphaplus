@@ -249,4 +249,10 @@
   <data name="lblPasswordDAccountName" xml:space="preserve">
     <value>Your password must not contain your username or nickname.</value>
   </data>
+  <data name="CashService" xml:space="preserve">
+    <value>Cash Service</value>
+  </data>
+  <data name="CashPromotion" xml:space="preserve">
+    <value>Cash Promotion</value>
+  </data>
 </root>

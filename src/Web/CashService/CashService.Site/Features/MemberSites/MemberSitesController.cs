@@ -1,11 +1,13 @@
 using AlphaPlus.CashService.Site.Features.MemberSites.Models;
 using AlphaPlus.CashService.Site.Features.MemberSites.ViewModels;
 using AlphaPlus.CashService.Site.Features.Shared;
+using AlphaPlus.CashService.Site.Features.Shared.Filters;
 using AlphaPlus.Core.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Antiforgery;
+using Microsoft.AspNetCore.Mvc;
 namespace AlphaPlus.CashService.Site.Features.MemberSites;
 
+[SiteAuthorizationFilter(PageAccessType.CashService)]
 public class MemberSitesController : SiteBaseController
 {
     private readonly string _apiBaseUrl;
