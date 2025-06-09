@@ -37,7 +37,7 @@ const CustomDropdownComponent = ({
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (initialValue) {
+    if (initialValue !== undefined) {
       const option = options.find((opt) => opt.value == initialValue);
       setSelected(option || '');
     }
@@ -93,33 +93,33 @@ const CustomDropdownComponent = ({
 
   const displaySelected = () => {
     if (selected) return selected.label;
-    if (showOptionAll) return 'All';
+    if (showOptionAll) return t('all');
     return placeholder;
   };
   return (
     <div className="relative" ref={dropdownRef}>
       <div
-        className={`flex items-center h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[12px] border-[var(--border-control)] ${disable ? 'cursor-not-allowed bg-[#f4f4f4]' : ' bg-[var(--background-control)] cursor-pointer'} focus:outline-none focus:border-[var(--border-control-focus)] relative`}
+        className={`flex items-center control-field relative ${disable ? 'disabled' : ''}`}
         onClick={handleToggle}
       >
         {selected && selected.icon}
         <span className="block whitespace-nowrap overflow-hidden text-ellipsis pr-[12px]">
           {displaySelected()}
         </span>
-        <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[10px] max-[768px]:top-[12px] " />
+        <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
       </div>
 
       {isOpen && (
-        <div className="max-h-[200px] overflow-y-auto absolute top-[33px] left-0 w-[100%] bg-[#fff] border-[1px] border-[#0000003D] rounded-[8px] z-[9999]">
+        <div className="max-h-[200px] overflow-y-auto absolute top-[29px] left-0 w-[100%] bg-[var(--background-control)] border-[1px] border-[var(--border-control)] rounded-[8px] z-[9999]">
           {searchable && (
-            <div className="sticky top-0 bg-white p-2 border-b border-gray-200">
+            <div className="sticky top-0 p-2 border-b border-[var(--border-control)]">
               <input
                 ref={searchInputRef}
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder={t('search')}
-                className="w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:border-[var(--border-control-focus)]"
+                className="control-field"
                 onClick={(e) => e.stopPropagation()}
               />
             </div>
@@ -136,7 +136,7 @@ const CustomDropdownComponent = ({
               </div>
             ))
           ) : (
-            <div className="py-[3px] px-[12px] text-gray-500">No options found</div>
+            <div className="py-[3px] px-[12px] text-gray-500">{t('noData')}</div>
           )}
         </div>
       )}

@@ -576,9 +576,6 @@
   <data name="NewAgentId" xml:space="preserve">
     <value>新代理編號</value>
   </data>
-  <data name="MinBv151" xml:space="preserve">
-    <value>南非南非賽馬-最低投注</value>
-  </data>
   <data name="returnErrCode" xml:space="preserve">
     <value>返回錯誤代碼</value>
   </data>
@@ -1017,9 +1014,6 @@
   <data name="mpm" xml:space="preserve">
     <value>足球-最高單場</value>
   </data>
-  <data name="hrmpm" xml:space="preserve">
-    <value>南非賽馬- 最高單場</value>
-  </data>
   <data name="iam" xml:space="preserve">
     <value>是總代自動占成對代理</value>
   </data>
@@ -1223,6 +1217,9 @@
   </data>
   <data name="disableoutright" xml:space="preserve">
     <value>禁用優勝冠軍</value>
+  </data>
+  <data name="DisableCasino" xml:space="preserve">
+    <value>禁用娛樂城</value>
   </data>
   <data name="minV99PT_1" xml:space="preserve">
     <value>最低亞洲盤</value>
@@ -2730,9 +2727,6 @@
   <data name="maxv99pt_9" xml:space="preserve">
     <value>混合過關最高投注</value>
   </data>
-  <data name="DisableCasino" xml:space="preserve">
-    <value>禁用娛樂城</value>
-  </data>
   <data name="showOldValue" xml:space="preserve">
     <value>顯示舊數值</value>
   </data>
@@ -2997,6 +2991,9 @@
   <data name="isdisabled" xml:space="preserve">
     <value>已禁用</value>
   </data>
+  <data name="isdisableddownline" xml:space="preserve">
+    <value>下線被禁用</value>
+  </data>
   <data name="IsLive" xml:space="preserve">
     <value>Is Live</value>
   </data>
@@ -3015,11 +3012,11 @@
   <data name="isa_v5spt_20" xml:space="preserve">
     <value>勝負盤</value>
   </data>
+  <data name="AllbetNormalGames" xml:space="preserve">
+    <value>百家樂，輪盤，骰寶，龍虎, 炸金花, 牛牛</value>
+  </data>
   <data name="MaxPerNumber" xml:space="preserve">
     <value>最高數額</value>
-  </data>
-  <data name="isdisableddownline" xml:space="preserve">
-    <value>下線被禁用</value>
   </data>
   <data name="checkedotp" xml:space="preserve">
     <value>Checked OTP</value>
@@ -3084,17 +3081,17 @@
   <data name="zh-CN" xml:space="preserve">
     <value>簡體中文</value>
   </data>
-  <data name="th-TH" xml:space="preserve">
-    <value>泰國</value>
-  </data>
-  <data name="vi-VN" xml:space="preserve">
-    <value>越南</value>
-  </data>
   <data name="ja-JP" xml:space="preserve">
     <value>日本</value>
   </data>
+  <data name="th-TH" xml:space="preserve">
+    <value>泰國</value>
+  </data>
   <data name="ko-KR" xml:space="preserve">
     <value>朝鮮的</value>
+  </data>
+  <data name="vi-VN" xml:space="preserve">
+    <value>越南</value>
   </data>
   <data name="period" xml:space="preserve">
     <value>期限</value>
@@ -3135,17 +3132,14 @@
   <data name="CopyCustomer" xml:space="preserve">
     <value>從現有的賬號復制新的會員。</value>
   </data>
-  <data name="MPMv164" xml:space="preserve">
-    <value>快樂5-單場限額</value>
+  <data name="MinBv164" xml:space="preserve">
+    <value>快樂5-最低投注</value>
   </data>
   <data name="MaxBv164" xml:space="preserve">
     <value>快樂5-最高投注</value>
   </data>
-  <data name="MinBv164" xml:space="preserve">
-    <value>快樂5-最低投注</value>
-  </data>
-  <data name="AllbetNormalGames" xml:space="preserve">
-    <value>百家樂，輪盤，骰寶，龍虎, 炸金花, 牛牛</value>
+  <data name="MPMv164" xml:space="preserve">
+    <value>快樂5-單場限額</value>
   </data>
   <data name="IsAllAffectedDownlines" xml:space="preserve">
     <value>是否影響所有下線</value>
@@ -3330,17 +3324,14 @@
   <data name="AutoTransfer" xml:space="preserve">
     <value>自動轉賬</value>
   </data>
-  <data name="MasterPT" xml:space="preserve">
-    <value>总代理占成数</value>
+  <data name="TemplateName" xml:space="preserve">
+    <value>模板名稱</value>
   </data>
   <data name="SuperPT" xml:space="preserve">
     <value>超级总代理占成数</value>
   </data>
-  <data name="lblAgentPT" xml:space="preserve">
-    <value>代理占成数</value>
-  </data>
-  <data name="IsAuto" xml:space="preserve">
-    <value>是自動 </value>
+  <data name="SelectedByDefault" xml:space="preserve">
+    <value>選擇默認</value>
   </data>
   <data name="Commision" xml:space="preserve">
     <value>佣金</value>
@@ -3348,23 +3339,14 @@
   <data name="BetSetting" xml:space="preserve">
     <value>投注設定</value>
   </data>
-  <data name="ParlayMaxPayout" xml:space="preserve">
-    <value>串關最高派彩</value>
-  </data>
-  <data name="AllowAutoPT" xml:space="preserve">
-    <value>允許自動佔成</value>
-  </data>
   <data name="MaxPayoutPerMatch" xml:space="preserve">
     <value>單場最高派彩</value>
   </data>
-  <data name="PositionTaking" xml:space="preserve">
-    <value>佔成數</value>
+  <data name="ParlayMaxPayout" xml:space="preserve">
+    <value>串關最高派彩</value>
   </data>
-  <data name="CommForAgent" xml:space="preserve">
-    <value>代理佣金</value>
-  </data>
-  <data name="CommForMember" xml:space="preserve">
-    <value>會員的佣金</value>
+  <data name="SingleMatchParlay" xml:space="preserve">
+    <value>單場串關</value>
   </data>
   <data name="Combo2" xml:space="preserve">
     <value>複選 2</value>
@@ -3375,8 +3357,29 @@
   <data name="ComboOver6" xml:space="preserve">
     <value>複選 6+ &amp; 系統串關</value>
   </data>
-  <data name="SingleMatchParlay" xml:space="preserve">
-    <value>單場串關</value>
+  <data name="IsAuto" xml:space="preserve">
+    <value>是自動 </value>
+  </data>
+  <data name="AllowAutoPT" xml:space="preserve">
+    <value>允許自動佔成</value>
+  </data>
+  <data name="PositionTakingTemplate" xml:space="preserve">
+    <value>佔成數模板</value>
+  </data>
+  <data name="MasterPT" xml:space="preserve">
+    <value>总代理占成数</value>
+  </data>
+  <data name="lblAgentPT" xml:space="preserve">
+    <value>代理占成数</value>
+  </data>
+  <data name="PositionTaking" xml:space="preserve">
+    <value>佔成數</value>
+  </data>
+  <data name="CommForAgent" xml:space="preserve">
+    <value>代理佣金</value>
+  </data>
+  <data name="CommForMember" xml:space="preserve">
+    <value>會員的佣金</value>
   </data>
   <data name="WinLossLimit" xml:space="preserve">
     <value>輸贏限額</value>
@@ -3387,20 +3390,11 @@
   <data name="BetLimit" xml:space="preserve">
     <value>投注限額</value>
   </data>
-  <data name="SelectedByDefault" xml:space="preserve">
-    <value>選擇默認</value>
-  </data>
-  <data name="PositionTakingTemplate" xml:space="preserve">
-    <value>佔成數模板</value>
-  </data>
-  <data name="TemplateName" xml:space="preserve">
-    <value>模板名稱</value>
+  <data name="ParlayMaxPayoutPerBet" xml:space="preserve">
+    <value>串關最高派彩</value>
   </data>
   <data name="Schedule" xml:space="preserve">
     <value>日程表</value>
-  </data>
-  <data name="ParlayMaxPayoutPerBet" xml:space="preserve">
-    <value>串關最高派彩</value>
   </data>
   <data name="MaxBv1Virtual" xml:space="preserve">
     <value>虚擬足球-最高投注</value>
@@ -3437,5 +3431,17 @@
   </data>
   <data name="CommForMaster" xml:space="preserve">
     <value>總代理佣金</value>
+  </data>
+  <data name="hrmpm" xml:space="preserve">
+    <value>南非賽馬- 最高單場</value>
+  </data>
+  <data name="MinBv151" xml:space="preserve">
+    <value>南非南非賽馬-最低投注</value>
+  </data>
+  <data name="accnumber" xml:space="preserve">
+    <value>賬號</value>
+  </data>
+  <data name="bank" xml:space="preserve">
+    <value>銀行</value>
   </data>
 </root>

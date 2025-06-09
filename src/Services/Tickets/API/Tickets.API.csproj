@@ -17,8 +17,8 @@
     <PackageReference Include="Fanex.Data.SqlServer" Version="4.3.3" />
     <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
     <PackageReference Include="Fanex.Logging.Sentry" Version="5.0.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.15" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.16" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BetsForecast\Infrastructure\BetsForecast.Infrastructure.csproj" />

@@ -3,6 +3,6 @@
 public class MemberInfo
 {
     public string Username { get; set; }
-
+    public string NickName { get; set; }
     public int CustId { get; set; }
 }

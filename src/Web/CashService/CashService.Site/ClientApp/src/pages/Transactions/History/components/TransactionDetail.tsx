@@ -80,7 +80,11 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
     setReverting(true);
     setRevertAlert({ type: null, message: '' });
     try {
-      var result = await transactionAPI.revertTransaction(transactionId, remarks, transactionType === TransactionType.Deposit);
+      var result = await transactionAPI.revertTransaction(
+        transactionId,
+        remarks,
+        transactionType === TransactionType.Deposit
+      );
       if (result.isSuccessful) {
         setRevertAlert({
           type: 'success',
@@ -197,10 +201,9 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
                       <div className="text-sm font-medium mb-1">{t('detail.transactionType')}</div>
                       <div>{detailData.transactionType}</div>
                     </div>
-
                     <div className="mb-4">
-                      <div className="text-sm font-medium mb-1">{t('detail.operatedBy')}</div>
-                      <div>{detailData.operatedBy}</div>
+                      <div className="text-sm font-medium mb-1">{t('detail.processedOn')}</div>
+                      <div>{formatDateTime(detailData.operatedTime)}</div>
                     </div>
                   </div>
 
@@ -213,8 +216,8 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
                     </div>
 
                     <div className="mb-4">
-                      <div className="text-sm font-medium mb-1">{t('detail.processedOn')}</div>
-                      <div>{formatDateTime(detailData.operatedTime)}</div>
+                      <div className="text-sm font-medium mb-1">{t('detail.operatedBy')}</div>
+                      <div>{detailData.operatedBy}</div>
                     </div>
 
                     <div className="mb-4">

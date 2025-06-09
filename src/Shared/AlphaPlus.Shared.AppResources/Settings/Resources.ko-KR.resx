@@ -162,6 +162,9 @@
   <data name="ConfirmAllowOutrightViewModelInCaseEnabledMessage" xml:space="preserve">
     <value>이 고객의 기타 상태 설정을 허용하시겠습니까?</value>
   </data>
+  <data name="ConfirmAllowOutrightViewModelText" xml:space="preserve">
+    <value>기타베팅 허용</value>
+  </data>
   <data name="ConfirmClosedViewModelInCaseChangeClosedStatusMessage" xml:space="preserve">
     <value>이 고객의 계정을 비활성화 상태로 바꾸시겠습니까?</value>
   </data>
@@ -170,6 +173,9 @@
   </data>
   <data name="ConfirmClosedViewModelInCaseOpenedMemberMessage" xml:space="preserve">
     <value>Are you sure you want to open this account?</value>
+  </data>
+  <data name="ConfirmClosedViewModelText" xml:space="preserve">
+    <value>중지</value>
   </data>
   <data name="ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage" xml:space="preserve">
     <value>고객님의 스포츠 북에 해당하는 진 티켓에 대한 더블 커미션 기능을 허용하지 않겠습니까 ? 알림 :  에이젼트에 해당하는 모든 회원 또한 허용되지 않습니다.</value>
@@ -183,6 +189,9 @@
   <data name="ConfirmDoubleCommViewModelInCaseEnableMasterOrAgentMessage" xml:space="preserve">
     <value>고객님의 스포츠 북에 해당하는 진 티켓의 더블 커미션 기능을 끄시겠습니까?</value>
   </data>
+  <data name="ConfirmDoubleCommViewModelText" xml:space="preserve">
+    <value>더블 커미션</value>
+  </data>
   <data name="ConfirmSuspendedViewModelInCaseSuspendedMasterOrAgentMessage" xml:space="preserve">
     <value>이 고객의 계정을 일시정지로 바꾸시겠습니까? 주의! 이 에이젼트 소속의 모든 회원의 계정도 일시정지 되어집니다.</value>
   </data>
@@ -195,6 +204,9 @@
   <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMemberMessage" xml:space="preserve">
     <value>이 고객의 계정을 일시정지로 바꾸시겠습니까?</value>
   </data>
+  <data name="ConfirmSuspendedViewModelText" xml:space="preserve">
+    <value>보류</value>
+  </data>
   <data name="CreatedDate" xml:space="preserve">
     <value>작성일</value>
   </data>
@@ -203,6 +215,9 @@
   </data>
   <data name="DownlineList" xml:space="preserve">
     <value>하부라인 목록</value>
+  </data>
+  <data name="EditInfoViewModelText" xml:space="preserve">
+    <value>고객</value>
   </data>
   <data name="Fax" xml:space="preserve">
     <value>팩스</value>
@@ -264,11 +279,17 @@
   <data name="Outstanding" xml:space="preserve">
     <value>대기 포인트</value>
   </data>
-  <data name="Phone" xml:space="preserve">
-    <value>전화</value>
+  <data name="ResetPasswordViewModelText" xml:space="preserve">
+    <value>비밀번호 재설정</value>
+  </data>
+  <data name="ResetSecurityCodeViewModelText" xml:space="preserve">
+    <value>Reset Security Code</value>
   </data>
   <data name="Setting" xml:space="preserve">
     <value>설정</value>
+  </data>
+  <data name="SportsbookMinPTViewModelText" xml:space="preserve">
+    <value>최소조건 수정</value>
   </data>
   <data name="Statement" xml:space="preserve">
     <value>기록</value>
@@ -297,6 +318,9 @@
   <data name="TotalMemberActiveClosed" xml:space="preserve">
     <value>총 회원 접속/중지/보류됨</value>
   </data>
+  <data name="TransferViewModelText" xml:space="preserve">
+    <value>전송</value>
+  </data>
   <data name="UsedCredit" xml:space="preserve">
     <value>사용된 크레딧</value>
   </data>
@@ -309,21 +333,6 @@
   <data name="YesterdayCash" xml:space="preserve">
     <value>어제의 현금</value>
   </data>
-  <data name="ConfirmAllowOutrightViewModelText" xml:space="preserve">
-    <value>기타베팅 허용</value>
-  </data>
-  <data name="ConfirmClosedViewModelText" xml:space="preserve">
-    <value>중지</value>
-  </data>
-  <data name="ConfirmDoubleCommViewModelText" xml:space="preserve">
-    <value>더블 커미션</value>
-  </data>
-  <data name="ConfirmSuspendedViewModelText" xml:space="preserve">
-    <value>보류</value>
-  </data>
-  <data name="EditInfoViewModelText" xml:space="preserve">
-    <value>고객</value>
-  </data>
   <data name="NoInfo" xml:space="preserve">
     <value>가능한 정보가 없습니다</value>
   </data>
@@ -333,20 +342,8 @@
   <data name="RemoveOtpViewModelText" xml:space="preserve">
     <value>Remove OTP</value>
   </data>
-  <data name="ResetPasswordViewModelText" xml:space="preserve">
-    <value>비밀번호 재설정</value>
-  </data>
-  <data name="ResetSecurityCodeViewModelText" xml:space="preserve">
-    <value>Reset Security Code</value>
-  </data>
   <data name="ShowContactInfo" xml:space="preserve">
     <value>Contact Info</value>
-  </data>
-  <data name="SportsbookMinPTViewModelText" xml:space="preserve">
-    <value>최소조건 수정</value>
-  </data>
-  <data name="TransferViewModelText" xml:space="preserve">
-    <value>전송</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>Successfully updated!</value>
@@ -377,6 +374,9 @@
   </data>
   <data name="ThisAccountWasSuspended" xml:space="preserve">
     <value>This account was suspended.</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>전화</value>
   </data>
   <data name="And" xml:space="preserve">
     <value>and</value>
@@ -423,20 +423,20 @@
   <data name="ClosedByArchive" xml:space="preserve">
     <value>This account was closed by inactivity.</value>
   </data>
+  <data name="ShowMore" xml:space="preserve">
+    <value>Show More</value>
+  </data>
   <data name="ShowLess" xml:space="preserve">
     <value>Show Less</value>
   </data>
-  <data name="ShowMore" xml:space="preserve">
-    <value>Show More</value>
+  <data name="lblNew" xml:space="preserve">
+    <value>새로운</value>
   </data>
   <data name="FirstName" xml:space="preserve">
     <value>이름</value>
   </data>
   <data name="LastName" xml:space="preserve">
     <value>성</value>
-  </data>
-  <data name="lblNew" xml:space="preserve">
-    <value>새로운</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>Reset</value>

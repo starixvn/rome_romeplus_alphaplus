@@ -17,7 +17,7 @@ public class MemberSitesController : SiteBaseController
         HttpClient httpClient,
         IAntiforgery antiforgery) : base(userSession, antiforgery)
     {
-        _apiBaseUrl = configuration["CashServiceAPIUrl"];
+        _apiBaseUrl = configuration["CashService:APIUrl"];
         _httpClient = httpClient;
     }
 

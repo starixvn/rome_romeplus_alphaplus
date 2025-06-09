@@ -4,10 +4,11 @@ import { useTranslation } from 'react-i18next';
 import {
   ButtonFullComponent,
   ButtonOutlineComponent,
+  ButtonPenComponent,
   ButtonTabActiveComponent,
   ButtonTabInactiveComponent,
 } from '../../components/ButtonComponents';
-import { IconInfo, IconPen } from '../../components/Icons';
+import { IconInfo } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
 import { ErrorMessageComponent } from '../../components/MessageComponents';
 import {
@@ -23,12 +24,10 @@ import DailyLimitPopupModal from './SetDailyLimitPopupModal';
 
 interface PaymentGatewayComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
-  activeTab: string;
 }
 
 const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
-  setActiveTab,
-  activeTab,
+  setActiveTab
 }) => {
   const { t: tGlobal } = useTranslation('global');
   const { t: tManagePayments } = useTranslation('managePayments');
@@ -79,13 +78,25 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
 
   const onSaveDailyLimit = () => {};
 
+  const renderProviderStatus = (status: number) => {
+    switch (status) {
+      case 0:
+        return <StatusDisabledComponent />;
+      case 1:
+        return <StatusEnabledComponent />;
+      default:
+        return <StatusNoneComponent />;
+    }
+  };
+
+
   const onEditClick = (provider: PaymentProvider) => {
     localStorage.setItem('cashsite_previousUrl', window.location.href);
     location.href = 'ManageProviderSettings?id=' + provider.id;
   };
 
   return (
-    <div className="">
+    <>
       <TitleComponent title={tManagePayments('managePayments')} showTippy={true}>
         <div>
           <div>
@@ -96,120 +107,81 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
           <div>• {tManagePayments('managePaymentsTip2')}</div>
         </div>
       </TitleComponent>
-
-      <div className="card">
-        <div className="card-header">
-          <ul className="flex">
-            <li className="mr-[8px]">
-            {activeTab === 'paymentGateway' && (
-                <ButtonTabInactiveComponent text={tManagePayments('paymentGateway')} />
-              )}
-            
-            </li>
-            <li>
-            <ButtonTabActiveComponent
-                text={tManagePayments('bankAccount')}
-                onClick={() => setActiveTab('bankAccount')}
-              />
-            </li>
-          </ul>
-        </div>
-        <div className="card-body">
-          <div className="bg-[#ffffff] max-w-[1000px]">
-            <div className="px-[14px] py-[8px]">
-              <MediumTitleComponent
-                className="mb-[8px]"
-                text={tManagePayments('setDailyWithdrawalCount')}
-              />
-              <div className="pb-[8px] text-[12px] max-[768px]:text-[16px] ">
-                {tManagePayments('setDailyWithdrawalCountForYourMembers')}
-              </div>
-              <ButtonOutlineComponent
-                text={tManagePayments('setLimit')}
-                onClick={() => onSetLimitClick()}
-              />
-              <span className="block w-[100%] h-[1px] bg-[#e0e0e0] my-[10px]"></span>
-              <MediumTitleComponent
-                className="my-[8px]"
-                text={tManagePayments('managePaymentProviders')}
-              />
-            </div>
-            {loading ? (
-              <Loading />
-            ) : error ? (
-              <ErrorMessageComponent message={error} />
-            ) : (
-              <div className="table-fixed-header">
-                <table className=" w-full border-collapse">
-                  <thead>
-                    <tr>
-                      <th scope="col" className="border-l border-[var(--border-color)]">#</th>
-                      <th scope="col">{tGlobal('action')}</th>
-                      <th scope="col">{tManagePayments('provider')}</th>
-                      <th scope="col">{tManagePayments('fee')}</th>
-                      <th scope="col">{tManagePayments('providerStatus')}</th>
-                      <th scope="col">{tManagePayments('lastUpdated')}</th>
-                    </tr>
-                  </thead>
-                  <tbody className="font-[500]">
-                    {providers.length > 0 ? (
-                      providers.map((provider, index) => (
-                        <tr key={provider.id}>
-                          <td>{index + 1}</td>
-                          <td>
-                            <div className="flex justify-center items-center">
-                              <button
-                                className="mx-[4px] cursor-pointer p-[4px] rounded-[4px] hover:bg-[var(--button-background-cancel-hover)] text-[var(--text-color-primary)]"
-                                onClick={() => onEditClick(provider)}
-                              >
-                                <IconPen />
-                              </button>
-                            </div>
-                          </td>
-                          <td>{provider.name}</td>
-                          <td>
-                            <ButtonFullComponent
-                              text={tGlobal('view')}
-                              onClick={() => onFeeClick(provider)}
-                            />
-                          </td>
-                          <td>
-                            {provider.status === 0 ? (
-                              <StatusDisabledComponent />
-                            ) : provider.status === 1 ? (
-                              <StatusEnabledComponent />
-                            ) : (
-                              <StatusNoneComponent />
-                            )}
-                          </td>
-                          <td>{provider.lastUpdatedStr}</td>
-                        </tr>
-                      ))
-                    ) : (
-                      <tr>
-                        <td colSpan={6} className="text-center">
-                          {tGlobal('noData')}
-                        </td>
-                      </tr>
-                    )}
-                  </tbody>
-                </table>
-              </div>
-            )}
-
-            {/* Fee Popup Modal */}
-            {showFeePopup && selectedProvider && (
-              <ProviderFeesPopupModal provider={selectedProvider} onClose={onCloseFeePopup} />
-            )}
-
-            {/* Daily Limit Popup Modal */}
-            {showDailyLimitPopup && (
-              <DailyLimitPopupModal onClose={onCloseDailyLimitPopup} onSave={onSaveDailyLimit} />
-            )}
+      <ul className="flex mt-[-12px] border-b border-[var(--border-color)]">
+        <li className="mr-[8px]">
+          <ButtonTabInactiveComponent text={tManagePayments('paymentGateway')} />
+        </li>
+        <li>
+          <ButtonTabActiveComponent text={tManagePayments('bankAccount')} onClick={() => setActiveTab('bankAccount')} />
+        </li>
+      </ul>
+       
+      <div className="max-w-[1000px]">
+        <div className="py-[8px]">
+          <MediumTitleComponent className="mb-[8px]" text={tManagePayments('setDailyWithdrawalCount')} />
+          <div className="mb-[8px]">
+            {tManagePayments('setDailyWithdrawalCountForYourMembers')}
           </div>
+          <ButtonOutlineComponent text={tManagePayments('setLimit')} onClick={() => onSetLimitClick()} />
+          <span className="block w-[100%] h-[1px] bg-[var(--border-color)] my-[10px]"></span>
+          <MediumTitleComponent className="my-[8px]" text={tManagePayments('managePaymentProviders')} />
         </div>
-      </div>
-    </div>
+        {loading ? (<Loading />) : 
+          error ? (<ErrorMessageComponent message={error} />) : (
+          <div className="table-fixed-header">
+            <table className=" w-full border-collapse">
+              <thead>
+                <tr>
+                  <th scope="col" className="border-l border-[var(--border-color)]">#</th>
+                  <th scope="col">{tGlobal('action')}</th>
+                  <th scope="col">{tManagePayments('provider')}</th>
+                  <th scope="col">{tManagePayments('fee')}</th>
+                  <th scope="col">{tManagePayments('providerStatus')}</th>
+                  <th scope="col">{tManagePayments('lastUpdated')}</th>
+                </tr>
+              </thead>
+              <tbody className="font-[500]">
+                {providers.length === 0 && (
+                  <tr>
+                    <td colSpan={6} className="text-center">{tGlobal('noData')}</td>
+                  </tr>
+                )}
+                
+                {providers.length > 0 && (
+                  providers.map((provider, index) => (
+                    <tr key={provider.id}>
+                      <td>{index + 1}</td>
+                      <td>
+                        <div className="flex justify-center items-center">                          
+                          <ButtonPenComponent onClick={() => onEditClick(provider)} />
+                        </div>
+                      </td>
+                      <td>{provider.name}</td>
+                      <td>
+                        <ButtonFullComponent text={tGlobal('view')} onClick={() => onFeeClick(provider)} />
+                      </td>
+                      <td>{renderProviderStatus(provider.status)}</td>
+                      <td>{provider.lastUpdatedStr}</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        {/* Fee Popup Modal */}
+        {showFeePopup && selectedProvider && (
+          <ProviderFeesPopupModal provider={selectedProvider} onClose={onCloseFeePopup} />
+        )}
+
+        {/* Daily Limit Popup Modal */}
+        {showDailyLimitPopup && (
+          <DailyLimitPopupModal onClose={onCloseDailyLimitPopup} onSave={onSaveDailyLimit} />
+        )}
+      </div>    
+     
+    </>
   );
 };
 

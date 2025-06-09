@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { WithdrawalAgentBankDropDown } from '../../../../services/interfaces/Transactions/BankInfo';
-import { TransactionTypes } from '../../../../utils/constants';
+import { TransactionTypes } from '../../../../constants/sharedConstants';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import {
   getSettingLimitAmtWithdrawal,
@@ -31,7 +31,6 @@ interface ManualAddWithdrawalFormProps {
 
 const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClose }) => {
   const { t } = useTranslation('pendingWithdrawal');
-  const { t: tGlobal } = useTranslation('global');
   const [custId, setCustId] = useState<number | null>(null);
   const [from, setFrom] = useState<string>('');
   const [to, setTo] = useState<string>('');
@@ -71,7 +70,6 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
         providerId,
         paymentMethodId,
       };
-
       const addWithdrawalResponse = await manualAddWithdrawal(manualWithdrawalData);
       if (addWithdrawalResponse.isSuccessful) {
         setResultMessage({
@@ -128,6 +126,15 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       return false;
     }
 
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+    if (image && !allowedTypes.includes(image.type)) {
+      setResultMessage({
+        type: 'error',
+        message: t('manualWithdrawalForm.invalidFileType')
+      });
+      return false;
+    }
+
     return true;
   };
 
@@ -143,9 +150,8 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       paymentMethodId: 0,
     }));
     setMemberBankInfo(memberBankOptions);
-    if (memberBankOptions.length > 0) {
-      setTo(memberBankOptions[0].value);
-    }
+    setTo(memberBankOptions[0]?.value || '');
+
     await handleUpdateMemberCashBalance(selectedMemberId);
     await handleUpdateLimitWithdrawalAmt(selectedMemberId);
   };
@@ -170,7 +176,6 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
 
   const handleUpdateLimitWithdrawalAmt = async (memberCustId: number | null) => {
     if (!memberCustId || providerId <= 0) {
-      console.log('providerId', providerId);
       return;
     }
     const limits = await getSettingLimitAmtWithdrawal({
@@ -199,7 +204,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       setMemberOptions(
         memberNames.map((member) => ({
           value: member.custId.toString(),
-          label: member.username,
+          label: member.username + (member.nickName ? ' (' + member.nickName + ')' : ''),
         }))
       );
       const firstMember = memberNames[0];
@@ -263,7 +268,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
 
   return (
     <div className="py-[12px]">
-      <div className="flex items-center justify-flex-start mb-[16px] pt-[8px] border-[#cfcfcf] border-dotted border-b-[2px]">
+      <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[#cfcfcf] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
         <BackButtonComponent onClick={onClose} />
         <TitleComponent title={t('manualWithdrawalForm.title')} />
       </div>
@@ -302,7 +307,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                   <DropdownComponent
                     options={agentBankInfo.map((bank) => ({
                       value: bank.value,
-                      label: tGlobal(bank.code),
+                      label: bank.label,
                       icon: <BankIcon code={bank.code} />,
                       attributes: {
                         providerId: bank.providerId,
@@ -322,7 +327,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                   <DropdownComponent
                     options={memberBankInfo.map((bank) => ({
                       value: bank.value,
-                      label: tGlobal(bank.code),
+                      label: bank.label,
                       icon: <BankIcon code={bank.code} />,
                       attributes: {
                         providerId: bank.providerId,
@@ -357,7 +362,8 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                   id="remarks"
                   value={remarks}
                   onChange={(e) => setRemarks(e.target.value)}
-                  className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-[var(--button-border)] min-h-[120px]"
+                  maxLength={1000}
+                  className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-[var(--button-border)] min-h-[200px]"
                   placeholder={t('manualWithdrawalForm.remarksPlaceholder')}
                 />
               </div>
@@ -368,7 +374,11 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
           </div>
         </div>
         <div className="flex gap-[16px]">
-          <ButtonCancelComponent onClick={onClose} text={t('manualWithdrawalForm.cancel')} />
+          <ButtonCancelComponent
+            onClick={onClose}
+            disabled={isSubmitting}
+            text={t('manualWithdrawalForm.cancel')}
+          />
           <ButtonApplyComponent
             disabled={isSubmitting}
             text={

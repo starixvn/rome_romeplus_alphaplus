@@ -17,9 +17,11 @@ import {
   MediumTitleComponent,
   NormalTitleComponent,
 } from '../../components/TitleComponents';
-import { TRANSACTION_TYPES } from '../../constants/paymentConstants';
+import { TRANSACTION_TYPES, paymentMethodStatusConstant } from '../../constants/paymentConstants';
 import { PaymentMethod } from '../../services/interfaces/Payments/PaymentMethod';
 import { paymentProviderService } from '../../services/paymentsAPI';
+import { createDefaultAddPaymentMethodViewModel } from '../../services/interfaces/Payments/AddPaymentMethodViewModel';
+import { createErrorResultModel } from '../../services/interfaces/ResultModel';
 
 interface AddPaymentMethodModalProps {
   onClose: () => void;
@@ -75,7 +77,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
     agreeToTerms: '',
   });
 
-  const inactiveStatus = 4;
+  const inactiveStatus = paymentMethodStatusConstant.maintenance;
 
   const validateFormState = () => {
     const errors: typeof fieldErrors = {
@@ -101,27 +103,21 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
         return;
       }
 
-      const response = await paymentProviderService.getAddPaymentMethodInfo(
-        providerId,
-        parseInt(formState.selectedTransactionType)
-      );
+      const transactionType = parseInt(formState.selectedTransactionType);
+      const response = await paymentProviderService.getAddPaymentMethodInfo(providerId, transactionType);
       if (response.error) {
         setError(response.error.message);
         return;
       }
 
-      const addPaymentMethodInfo = response.data || {
-        paymentMethods: [],
-        channelContact: { tele: '' },
-      };
+      const addPaymentMethodInfo = response.data || createDefaultAddPaymentMethodViewModel();
       setPaymentMethods(addPaymentMethodInfo.paymentMethods);
       setTelegramAssistantUrl(addPaymentMethodInfo.channelContact.tele || '');
-      setAllMethodsInactive(
+
+      const isAllMethodsInactive =
         addPaymentMethodInfo.paymentMethods.length > 0 &&
-          addPaymentMethodInfo.paymentMethods.every(
-            (m: PaymentMethod) => m.status === inactiveStatus
-          )
-      );
+        addPaymentMethodInfo.paymentMethods.every((m: PaymentMethod) => m.status === inactiveStatus);
+      setAllMethodsInactive(isAllMethodsInactive);
     };
 
     loadPaymentMethods();
@@ -139,9 +135,8 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
       return;
     }
 
-    const selectedMethod = paymentMethods.find(
-      (method) => method.id === parseInt(formState.selectedPaymentMethod)
-    ) || { status: 0, name: '' };
+    const selectedMethod = paymentMethods.find((method) => method.id === parseInt(formState.selectedPaymentMethod)) 
+      || { status: 0, name: '' };
 
     const newSetting = {
       id: 0,
@@ -149,19 +144,14 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
       providerId,
       method: parseInt(formState.selectedPaymentMethod),
       transactionType: parseInt(formState.selectedTransactionType),
-      status: 1,
+      status: paymentMethodStatusConstant.processing,
       custId: 0,
       apiMethodKey: formState.apiKey,
       merchantID: formState.merchantID,
-      appSecret: formState.appSecret,
-      isValidFromProvider: false,
+      appSecret: formState.appSecret
     };
 
-    const isValidFromProvider = true; // call provider api to check if the payment method is valid
-    newSetting.isValidFromProvider = isValidFromProvider;
-
-    const isUpdate = selectedMethod.status == 3;
-
+    const isUpdate = selectedMethod.status == paymentMethodStatusConstant.fail;
     const response = isUpdate
       ? await paymentProviderService.updatePaymentMethod(newSetting)
       : await paymentProviderService.addPaymentMethod(newSetting);
@@ -172,11 +162,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
       return;
     }
 
-    const result = response.data || {
-      isSuccessful: false,
-      code: 1,
-      message: tGlobal('errorOccurred'),
-    };
+    const result = response.data || createErrorResultModel(1, tGlobal('errorOccurred'));
 
     if (result.isSuccessful) {
       setIsBlockAction(true);
@@ -198,13 +184,10 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
   };
 
   return (
-    <div className="bg-[#00000066] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-center justify-center">
-      <div className="p-[30px] max-h-[750px] overflow-y-auto bg-[#ffffff] w-full max-w-[560px] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
-        <div className="relative">
-          <MediumTitleComponent
-            className="font-bold!"
-            text={tPaymentProviderSettings('setUpPaymentMethods')}
-          />
+    <div className="bg-[#00000080] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+      <div className="px-[20px] py-[10px] max-h-[750px] overflow-y-auto bg-[var(--modal-background)] w-full max-w-[560px] rounded-[3px] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)]">
+        <div className="relative ">
+          <MediumTitleComponent className="text-[16px] text-[var(--modal-title-color)]!" text={tPaymentProviderSettings('setUpPaymentMethods')} />
           <ButtonClosePopupComponent onClick={onClose} />
         </div>
         <ErrorMessageComponent className="mt-[8px]" message={error} />
@@ -215,16 +198,11 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
               <NormalTitleComponent text={tPaymentProviderSettings('addPaymentMethodStep1')} />
               <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <LabelTitleComponent
-                    text={`${tPaymentProviderSettings('transactionType')}`}
-                    required={true}
-                  />
+                  <LabelTitleComponent text={`${tPaymentProviderSettings('transactionType')}`} required={true} />
                   <select
-                    className={`h-[32px] max-[768px]:h-[40px] max-[768px]:leading-[40px] w-full border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.selectedTransactionType ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
+                    className={`control-field ${fieldErrors.selectedTransactionType ? 'error' : ''}`}
                     value={formState.selectedTransactionType}
-                    onChange={(e) => {
-                      onInputChange('selectedTransactionType', e.target.value);
-                    }}
+                    onChange={(e) => { onInputChange('selectedTransactionType', e.target.value); }}
                   >
                     <option value="">{tGlobal('select')}</option>
                     {TRANSACTION_TYPES.filter((type) => type.id !== 0).map((type) => (
@@ -237,16 +215,11 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
                 </div>
 
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <LabelTitleComponent
-                    text={`${tPaymentProviderSettings('paymentMethod')}`}
-                    required={true}
-                  />
+                  <LabelTitleComponent text={`${tPaymentProviderSettings('paymentMethod')}`} required={true} />
                   <select
-                    className={`h-[32px] max-[768px]:h-[40px] max-[768px]:leading-[40px] w-full border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.selectedPaymentMethod ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
+                    className={`control-field ${fieldErrors.selectedPaymentMethod ? 'error' : ''}`}
                     value={formState.selectedPaymentMethod}
-                    onChange={(e) => {
-                      onInputChange('selectedPaymentMethod', e.target.value);
-                    }}
+                    onChange={(e) => { onInputChange('selectedPaymentMethod', e.target.value); }}
                   >
                     <option value="">{tGlobal('select')}</option>
                     {paymentMethods
@@ -258,9 +231,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
                           disabled={method.status === inactiveStatus}
                         >
                           {method.name}
-                          {method.status === inactiveStatus
-                            ? ` (${tGlobal('underMaintenance')})`
-                            : ''}
+                          {method.status === inactiveStatus ? ` (${tGlobal('underMaintenance')})` : ''}
                         </option>
                       ))}
                   </select>
@@ -269,70 +240,58 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
               </div>
             </div>
             <div>
-              <hr className="mt-[16px] mb-[8px] border-[#0000001F]" />
-              <NormalTitleComponent text={tPaymentProviderSettings('addPaymentMethodStep2')} />
-              <p className="mt-[8px] ">{tPaymentProviderSettings('clickLinkOrScanQRCode')}</p>
-              <a
-                href={telegramAssistantUrl}
-                className=" text-[var(--text-color-primary)] font-semibold"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {telegramAssistantUrl}
-              </a>
-              <div className="mt-[16px] flex justify-center">
-                {telegramAssistantUrl && <QRCodeCanvas value={telegramAssistantUrl} size={128} />}
-              </div>
+            <hr className="mt-[16px] mb-[8px] border-[#0000001F]" />
+            <NormalTitleComponent text={tPaymentProviderSettings('addPaymentMethodStep2')} />
+            <p className="mt-[8px] ">{tPaymentProviderSettings('clickLinkOrScanQRCode')}</p>
+            <a
+              href={telegramAssistantUrl}
+              className=" text-[var(--text-link-color)] font-semibold"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {telegramAssistantUrl}
+            </a>
+            <div className="mt-[16px] flex justify-center">
+              {telegramAssistantUrl && <QRCodeCanvas value={telegramAssistantUrl} size={128} />}
+            </div>
             </div>
             <div>
               <hr className="mt-[16px] mb-[8px] border-[#0000001F]" />
               <NormalTitleComponent text={tPaymentProviderSettings('addPaymentMethodStep3')} />
               <div className="flex flex-wrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <LabelTitleComponent
-                    text={`${tPaymentProviderSettings('apiKey')}`}
-                    required={true}
-                  />
+                  <LabelTitleComponent text={`${tPaymentProviderSettings('apiKey')}`} required={true} />
                   <input
                     type="text"
-                    className={`h-[32px] max-[768px]:h-[40px] max-[768px]:leading-[40px] w-full border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.apiKey ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
+                    className={`control-field ${fieldErrors.apiKey ? 'error' : ''}`}
                     id="apiKey"
                     value={formState.apiKey}
-                    onChange={(e) => {
-                      onInputChange('apiKey', e.target.value);
-                    }}
+                    onChange={(e) => { onInputChange('apiKey', e.target.value); }}
                   />
                   <ValidateMessageComponent message={fieldErrors.apiKey} />
                 </div>
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <LabelTitleComponent
-                    text={`${tPaymentProviderSettings('merchantID')}`}
-                    required={true}
-                  />
+                  <LabelTitleComponent text={`${tPaymentProviderSettings('merchantID')}`} required={true} />
                   <input
                     type="text"
-                    className={`h-[32px] max-[768px]:h-[40px] max-[768px]:leading-[40px] w-full border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.merchantID ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
+                    className={`control-field ${fieldErrors.merchantID ? 'error' : ''}`}
                     id="merchantID"
+                    
                     value={formState.merchantID}
-                    onChange={(e) => {
-                      onInputChange('merchantID', e.target.value);
-                    }}
+                    onChange={(e) => { onInputChange('merchantID', e.target.value); }}
                   />
                   <ValidateMessageComponent message={fieldErrors.merchantID} />
                 </div>
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <LabelTitleComponent
-                    text={`${tPaymentProviderSettings('appSecret')}`}
-                    required={true}
-                  />
+                  <LabelTitleComponent text={`${tPaymentProviderSettings('appSecret')}`} required={true} />
                   <input
                     type="password"
-                    className={`h-[32px] max-[768px]:h-[40px] max-[768px]:leading-[40px] w-full border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.appSecret ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
+                    className={`control-field ${fieldErrors.appSecret ? 'error' : ''}`}
                     id="appSecret"
                     value={formState.appSecret}
-                    onChange={(e) => {
-                      onInputChange('appSecret', e.target.value);
-                    }}
+                    onChange={(e) => { onInputChange('appSecret', e.target.value); }}
+                    name="password "
+                    autoComplete="new-password "
                   />
                   <ValidateMessageComponent message={fieldErrors.appSecret} />
                 </div>
@@ -340,17 +299,15 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
             </div>
           </div>
           <div className="flex flex-wrap mt-[16px] mb-[16px]">
-            <label className="w-full flex items-center justify-center cursor-pointer text-[#333]">
+            <label className="w-full flex items-center justify-center cursor-pointer">
               <input
                 type="checkbox"
                 className="w-[18px] h-[18px] cursor-pointer"
                 id="agreeToTerms"
                 checked={formState.agreeToTerms}
-                onChange={(e) => {
-                  onInputChange('agreeToTerms', e.target.checked);
-                }}
+                onChange={(e) => { onInputChange('agreeToTerms', e.target.checked); }}
               />
-              <span className="flex-1 pl-[6px] max-[768px]:leading-[18px]">
+              <span className="flex-1 pl-[6px]">
                 {tPaymentProviderSettings('agreeTermsAndConditions')}
               </span>
             </label>

@@ -1,0 +1,172 @@
+@* PartialView: EnableCashModal *@
+<style lang="scss">
+#enableCashServiceModal,
+#disableCashServiceModal {
+    display: none;
+    position: fixed;
+    z-index: 1050;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    .modal-dialog {
+        margin-top: 20px;
+        width: 460px;
+        max-width: 95vw;
+    }
+
+    .modal-content {
+        border-radius: 22px;
+        box-shadow: 0 3px 24px rgba(0, 0, 0, 0.12);
+        border: none;
+    }
+
+    .cash-modal {
+        &-body {
+            text-align: center;
+            padding: 20px 25px 10px 25px !important;
+        }
+
+        &-icon {
+            margin-bottom: 10px;
+        }
+
+        &-title {
+            font-weight: 700;
+            font-size: 17px;
+            color: #1A3365;
+            margin-bottom: 8px;
+        }
+
+        &-line {
+            width: 48px;
+            height: 2px;
+            background: #E5EAF2;
+            margin: 0 auto 20px auto;
+        }
+
+        &-desc {
+            color: #1A3365;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        &-list {
+            text-align: center;
+            display: inline-block;
+            color: #1A3365;
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+
+        &-highlight {
+            color: #0070C9;
+            font-weight: 600;
+        }
+
+        &-footer {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            border-top: none;
+            padding-top: 0;
+            padding-bottom: 32px;
+        }
+    }
+
+    .custom {
+        &-cancel {
+            min-width: 110px;
+            border-radius: 22px;
+            border: 1px solid #1A3365;
+            color: #1A3365;
+            background: #fff;
+            font-weight: 600;
+        }
+
+        &-confirm {
+            min-width: 110px;
+            border-radius: 22px;
+            background: #1A3365;
+            font-weight: 600;
+            border: none;
+        }
+    }
+
+    .btn {
+        outline-offset: 0px !important;
+
+        &:active {
+            box-shadow: none;
+        }
+
+        &:focus-visible {
+            outline: none;
+        }
+    }
+}
+
+#disableCashServiceModal {
+    .cash-modal-title {
+        color: #C82333;
+    }
+}
+</style>
+
+<div id="enableCashServiceModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body cash-modal-body">
+                <div class="cash-modal-icon">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="28" cy="28" r="28" fill="#F5F8FA" />
+                        <path d="M18 29.5L25 36.5L38 21.5" stroke="#1A3365" stroke-width="3" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="cash-modal-title">Are you sure you want to activate Cash Service?</div>
+                <div class="cash-modal-line"></div>
+                <div class="cash-modal-desc">Start your <span class="cash-modal-highlight">14-days free trial</span>
+                    with no transaction fees (excludes payment
+                    gateway transactions).</div>
+                <div class="cash-modal-desc">After the trial:</div>
+                <ul class="cash-modal-list">
+                    <li><span class="cash-modal-highlight">THB 200</span> per day.</li>
+                    <li><span class="cash-modal-highlight">THB 0.15</span> per transaction via your linked bank account
+                        and per promotion.</li>
+                </ul>
+            </div>
+            <div class="modal-footer cash-modal-footer">
+                <button type="button" class="btn-outline-primary custom-cancel" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn-primary custom-confirm" id="confirmEnableCashService">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="disableCashServiceModal" class="modal fade cash-modal-danger" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body cash-modal-body">
+                <div class="cash-modal-icon">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                        <circle cx="28" cy="28" r="28" fill="#FDECEA" />
+                        <polygon points="24,16 32,16 30,34 26,34" fill="#C82333" />
+                        <circle cx="28" cy="39" r="3" fill="#C82333" />
+                    </svg>
+                </div>
+                <div class="cash-modal-title">Are you sure you want to deactivate Cash Service?</div>
+                <div class="cash-modal-line"></div>
+                <div class="cash-modal-desc">
+                    Cash Service will be turned off for your account, and charges will stop as of tomorrow
+                </div>
+            </div>
+            <div class="modal-footer cash-modal-footer">
+                <button type="button" class="btn-outline-primary custom-cancel" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn-primary custom-confirm" id="confirmDisableCashService">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.AntiForgeryToken()

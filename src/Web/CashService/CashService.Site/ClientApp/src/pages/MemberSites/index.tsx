@@ -105,35 +105,32 @@ const MemberSiteManagement: React.FC = () => {
 
   return (
     <div className="">
-      <div className="py-[12px]">
+ 
         <div className="mb-[8px]">
           <TitleComponent title={t('title')} showTippy={false} />
         </div>
-        <div className="bg-[var(--background-color)] rounded-[4px] max-w-[1200px]">
-          {result && (
-            <div className="pt-[24px] mx-[24px] max-[768px]:mx-[12px] max-[768px]:pt-[12px]">
-              <ResultMessageComponent type={result.type} message={result.text} />
-            </div>
-          )}
+        <div className="max-w-[1200px]">
+         
+            
+              {result && <ResultMessageComponent className="mb-[10px]" type={result.type} message={result.text} />}
+           
+   
 
           <FormProvider {...methods}>
-            <form onSubmit={handleSubmit(onSubmit)} className="p-[24px] max-[768px]:p-[12px]">
-              <div className="">
+            <form onSubmit={handleSubmit(onSubmit)} className="py-[5px] ">
+              
                 <RegistrationLinks
                   domains={methods
                     .watch('domains')
                     .map((domain) => ({ ...domain, status: 'active' }))}
                   loading={loading}
                 />
-              </div>
-              <hr className="my-[16px] border-[#0000001F]" />
-              <div className="">
-                <GeneralSettings loading={loading} />
-              </div>
-              <hr className="my-[16px] border-[#0000001F]" />
-              <div className="">
-                <MessageForm loading={loading} />
-              </div>
+             
+              <div className="block w-[100%] h-[1px] bg-[var(--border-color)] my-[10px]" ></div>              
+              <GeneralSettings loading={loading} />
+               
+              <div className="block w-[100%] h-[1px] bg-[var(--border-color)] my-[10px]" ></div>             
+              <MessageForm loading={loading} />           
 
               <div className="flex justify-start py-[8px] mt-[8px]">
                 <ButtonApplyComponent
@@ -145,7 +142,7 @@ const MemberSiteManagement: React.FC = () => {
             </form>
           </FormProvider>
         </div>
-      </div>
+   
     </div>
   );
 };

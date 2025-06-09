@@ -4,3 +4,13 @@ export interface ResultModel {
   message: string;
   code: number;
 } 
+
+export const createErrorResultModel = (code: number, message: string): ResultModel => {
+  return {
+    isSuccessful: false,
+    message,
+    code
+  };
+};
+
+

@@ -15,18 +15,18 @@ const ColumnFilter: React.FC<ColumnFilterProps> = ({ column, onColumnChange }) =
   const [selectedColumns, setSelectedColumns] = useState<string[]>(column);
 
   const columns = [
-    t('table.name'),
-    t('table.amount'),
-    t('table.from'),
-    t('table.to'),
-    t('table.status'),
-    t('table.type'),
-    t('table.referenceNo'),
-    t('table.dateAndTime'),
+    { name: 'name', label: t('table.name') },
+    { name: 'amount', label: t('table.amount') },
+    { name: 'from', label: t('table.from') },
+    { name: 'to', label: t('table.to') },
+    { name: 'status', label: t('table.status') },
+    { name: 'type', label: t('table.type') },
+    { name: 'referenceNo', label: t('table.referenceNo') },
+    { name: 'dateAndTime', label: t('table.dateAndTime') },
   ];
   const options: MultiselectOption[] = columns.map((col) => ({
-    value: col,
-    label: col,
+    value: col.name,
+    label: col.label,
   }));
 
   const handleChange = (values: string[]) => {

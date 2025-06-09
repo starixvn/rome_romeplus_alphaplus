@@ -1,5 +1,6 @@
 {
   "action": "動作",
+  "allSelected": "全部選擇",
   "edit": "修改",
   "delete": "刪除",
   "close": "關閉",
@@ -71,4 +72,4 @@
   "TCRB": "THE THAI CREDIT RETAIL BANK",
   "TISCO": "Tisco Bank",
   "TTB": "TMBThanachart Bank"
-} 
+}

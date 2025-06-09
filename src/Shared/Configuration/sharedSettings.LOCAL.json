@@ -135,8 +135,8 @@
     "RedisConfiguration": "10.18.200.194:16410,Password=foo1@bared,Name=AlphaPlus,abortConnect=false,configChannel=__Booksleeve_MasterChanged,connectTimeout=6300",
     "RemotingRefUrl": "http://remotingref-api-core.nexdev.net/",
     "Fanex.Customer": {
-        "ServiceUri": "https://customer.nexdev.net/local1/api/",
-        "CdnUri": "https://cdn-customer.nexdev.net/v1/",
+        "ServiceUri": "https://customer.nexdev.net/local3/api/",
+        "CdnUri": "https://cdn-customer.nexdev.net/v3/",
         "SystemId": 2
     },
     "SystemId": 2,
@@ -279,7 +279,7 @@
     },
     "OfferProfilePictureTour": true,
     "CashService": {
-        "OfferedSites": "755555,222227,BEST-ODDS,733333"
-    },
-    "CashServiceAPIUrl": "http://alphaplus_api_cashservice_local:5000/api"
+        "OfferedSites": "755555,222227,BEST-ODDS,733333",
+        "APIUrl": "http://alphaplus_api_cashservice_local:5000/api"
+    }
 }

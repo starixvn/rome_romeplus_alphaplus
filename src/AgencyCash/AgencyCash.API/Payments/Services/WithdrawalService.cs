@@ -1,4 +1,5 @@
 using AgencyCash.API.Payments.Criteria;
+using AgencyCash.API.Payments.Criteria.Withdrawal;
 using AgencyCash.API.Payments.Models;
 using AgencyCash.API.Payments.Requests;
 using AgencyCash.API.Shared;
@@ -10,6 +11,7 @@ namespace AgencyCash.API.Payments.Services;
 public interface IWithdrawalService
 {
     Task<PaymentResult> CreateManualWithdrawal(ManualWithdrawalRequest request);
+    Task<WithdrawalLimitResult> GetWithdrawalLimitAmount(GetWithdrawalLimitRequest request);
 }
 
 public class WithdrawalService : PaymentService, IWithdrawalService
@@ -28,90 +30,112 @@ public class WithdrawalService : PaymentService, IWithdrawalService
 
     public async Task<PaymentResult> CreateManualWithdrawal(ManualWithdrawalRequest request)
     {
-        return new PaymentResult(0, string.Empty, 123456789);
-        /*
-        SiteDBConfig siteDBConfig = null;
         try
         {
-            siteDBConfig = await _siteDBService.GetSiteDBConfig(request.AgentId);
+            // Step 1: Get site DB config
+            SiteDBConfig siteDBConfig = await _siteDBService.GetSiteDBConfig(request.AgentId);
 
-            var memberSetting = await GetMemberSetting(request.CustId, siteDBConfig.CustDBGroupId);
-            if (request.Amount < memberSetting.MinLimitAmount || request.Amount > memberSetting.MaxLimitAmount)
+            // Step 2: Validate payment
+            var validatePaymentCriteria = new ValidatePaymentCriteria(
+            request.AgentId,
+            request.CustId,
+            transType: 2,
+            siteDBConfig.CustDBGroupId,
+            isManual: true,
+            paymentTo: request.PaymentTo);
+
+            var result = await ValidatePayment(validatePaymentCriteria);
+            
+            if (result.Code != 0)
             {
-                return new Result(601, $"Amount must be between {memberSetting.MinLimitAmount} and {memberSetting.MaxLimitAmount}.");
+                return result;
             }
 
-            if (request.Amount > memberSetting.AgentGivenCredit)
-            {
-                return new Result(602, $"Amount cannot exceed agent given credit of {memberSetting.AgentGivenCredit}.");
-            }
-
-            var manualWithdrawalCriteria = new ManualWithdrawalCriteria(
+            // Step 3: Get withdrawal limits
+            var withdrawalLimitCriteria = new WithdrawalLimitAmountCriteria(
                 request.CustId,
                 request.AgentId,
-                memberSetting.AgentGivenCredit,
-                memberSetting.CreditMembersGivenCredit,
-                memberSetting.MinLimitAmount,
-                memberSetting.MaxLimitAmount,
-                request.PaymentFrom,
+                isMemberSite: true,
+                siteDBConfig.CustDBGroupId);
+
+            await _repository.ExecuteAsync(withdrawalLimitCriteria);
+            
+            // Step 4: Add withdrawal transaction
+            var withdrawalTransactionCriteria = new ManualWithdrawalTransactionCriteria(
+                request.CustId,
+                request.AgentId,
+                siteDBConfig.SiteDBGroupId,
+                transactionTypeId: 3,
+                withdrawalLimitCriteria.MinAmt,
+                withdrawalLimitCriteria.MaxAmt,
+                withdrawalLimitCriteria.DailyWithdrawalCnt_Setting,
                 request.PaymentTo,
-                1,
                 request.Amount,
-                request.IP,
-                siteDBConfig.SiteDBGroupId);
+                request.IP);
 
-            await _repository.ExecuteAsync(manualWithdrawalCriteria);
-            var result = new PaymentResult(
-                manualWithdrawalCriteria.ErrCode,
-                manualWithdrawalCriteria.ErrMsg,
-                manualWithdrawalCriteria.TransId);
+            var (firstResultSet, _) = await _repository.FetchMultipleAsync<LogEntry, ManualWithdrawalTransactionCriteria>(withdrawalTransactionCriteria);
 
-            await WriteLogs([ new LogEntry {
-                LogTypeId = 4,
-                UserId = request.AgentId,
-                CustId = request.CustId,
-                FromCustId = request.AgentId,
-                ToCustId = request.CustId,
-                ActionId = 1,
-                TrackingValue = $@"<root>
-                    <paymentFrom>{request.PaymentFrom}</paymentFrom>
-                    <paymentTo>{request.PaymentTo}</paymentTo>
-                    <amount>{request.Amount}</amount>
-                    <errCode>{result.Code}</errCode>
-                    <errMsg>{result.Message}</errMsg>
-                </root>",
-                IP = request.IP,
-                Doing = "Manual withdrawal"
-            } ], siteDBConfig);
+            if (withdrawalTransactionCriteria.ErrCode == 0)
+            {
+                await ProcessWithdrawalLogs(firstResultSet.ToList(), siteDBConfig);
+            }
 
-            return result;
+            return new PaymentResult(withdrawalTransactionCriteria.ErrCode, withdrawalTransactionCriteria.ErrCode == 0 ? "Ok" : withdrawalTransactionCriteria.ErrMsg, withdrawalTransactionCriteria.TransId);
         }
         catch (Exception ex)
         {
-            if (siteDBConfig != null)
-            {
-                await WriteLogs([ new LogEntry {
-                    LogTypeId = 4,
-                    UserId = request.AgentId,
-                    CustId = request.CustId,
-                    FromCustId = request.AgentId,
-                    ToCustId = request.CustId,
-                    ActionId = 1,
-                    TrackingValue = $@"<root>
-                        <paymentFrom>{request.PaymentFrom}</paymentFrom>
-                        <paymentTo>{request.PaymentTo}</paymentTo>
-                        <amount>{request.Amount}</amount>
-                        <errCode>500</errCode>
-                        <errMsg>An error occurred while processing withdrawal request.</errMsg>
-                    </root>",
-                    IP = request.IP,
-                    Doing = $"Manual withdrawal error: {ex.Message}"
-                } ], siteDBConfig);
-            }
-
             await logger.ErrorAsync(ex.Message, ex);
-            return new Result(500, "An error occurred while processing withdrawal request.");
+            return new PaymentResult(500, "An error occurred while processing withdrawal request.");
         }
-        */
+    }
+
+    public async Task<WithdrawalLimitResult> GetWithdrawalLimitAmount(GetWithdrawalLimitRequest request)
+    {
+        try
+        {
+            // Step 1: Get site DB config
+            SiteDBConfig siteDBConfig = await _siteDBService.GetSiteDBConfig(request.AgentId);
+
+            // Step 2: Get member cash balance
+            var getMemberCashBalanceCriteria = new GetMemberCashBalanceCriteria(request.CustId, siteDBConfig.SiteDBGroupId);
+            await _repository.ExecuteAsync(getMemberCashBalanceCriteria);
+
+            // Step 3: Get daily withdrawal count
+            var getDailyWithdrawalCriteria = new GetDailyWithdrawalCriteria(request.CustId, siteDBConfig.SiteDBGroupId);
+            await _repository.ExecuteAsync(getDailyWithdrawalCriteria);
+
+            // Step 4: Get withdrawal limits
+            var withdrawalLimitCriteria = new WithdrawalLimitAmountCriteria(request.CustId, request.AgentId, isMemberSite: true, siteDBConfig.CustDBGroupId);
+
+            await _repository.ExecuteAsync(withdrawalLimitCriteria);
+
+            return new WithdrawalLimitResult(withdrawalLimitCriteria.MinAmt, withdrawalLimitCriteria.MaxAmt, withdrawalLimitCriteria.WithdrawalLimitCnt, getMemberCashBalanceCriteria.TotalCash);
+        }
+        catch (Exception ex)
+        {
+            await logger.ErrorAsync(ex.Message, ex);
+            return new WithdrawalLimitResult();
+        }
+    }
+
+    private async Task ProcessWithdrawalLogs(IList<LogEntry> logs, SiteDBConfig siteDBConfig)
+    {
+        foreach (var log in logs)
+        {
+            if (log.LogTypeId == 1)
+            {
+                // Step 5.1: Log transfer success
+                // Step 5.2: Log transfer failure
+
+                await WriteLogsTransfer(logs, siteDBConfig.SiteDBGroupId);
+            }
+            else
+            {
+                // Step 6.1: Log run SP success
+                // Step 6.2: Log run SP failure
+
+                await WriteLogsRunSP(logs, siteDBConfig.CustDBGroupId);
+            }
+        }
     }
 }

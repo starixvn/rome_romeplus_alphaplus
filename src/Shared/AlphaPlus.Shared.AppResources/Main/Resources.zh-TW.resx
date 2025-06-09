@@ -836,4 +836,7 @@
   <data name="RebateAndRetentionTour_Page1_Row5" xml:space="preserve">
     <value>輸贏資料報告現在包括一個新的獎勵欄位。</value>
   </data>
+  <data name="CashService" xml:space="preserve">
+    <value>Cash Service</value>
+  </data>
 </root>

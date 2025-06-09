@@ -93,11 +93,9 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
       ]);
 
       setCashMemberOptions(bankInfo);
-      if (bankInfo.length > 0) {
-        setPaymentFrom(
-          renderBankOptionValue(bankInfo[0].bankCode, bankInfo[0].bankAccountNumber)
-        );
-      }
+      setPaymentFrom(
+        renderBankOptionValue(bankInfo[0]?.bankCode, bankInfo[0]?.bankAccountNumber)
+      );
       setAgentAvailableCredit(agentAC);
     };
 
@@ -153,6 +151,15 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
       setValidationMessage({
         type: 'error',
         message: t('manualDepositForm.imageSizeError')
+      });
+      return false;
+    }
+
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+    if (image && !allowedTypes.includes(image.type)) {
+      setValidationMessage({
+        type: 'error',
+        message: t('manualDepositForm.invalidFileType')
       });
       return false;
     }
@@ -213,13 +220,13 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
       {initialLoading ? (        
           <LoadingFullComponent />    
       ) : (
-        <div className="py-[12px]">
-          <div className="flex items-center justify-flex-start mb-[16px] pt-[8px] border-[#cfcfcf] border-dotted border-b-[2px]">
+        <div className="">
+          <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[#cfcfcf] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
             <BackButtonComponent onClick={onClose} />
             <TitleComponent title={t('manualDepositForm.title')} />  
           </div>
 
-          <form id="manual-deposit-form" className="w-[1100px] bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] max-[768px]:w-full" onSubmit={handleSubmit}>
+          <div id="manual-deposit-form" className="w-[1100px] bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] max-[768px]:w-full">
             {validationMessage && (
               <ResultMessageComponent
                 message={validationMessage.message}
@@ -250,22 +257,21 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
               </div>
             </div>
             <div className="flex gap-[16px]">
-                  <ButtonCancelComponent
-                    className="w-[140px]"
+                  <ButtonCancelComponent                    
                     text={t('manualDepositForm.cancel')}
                     onClick={() => onClose(false)}
                   />
                   <ButtonApplyComponent
-                    className="w-[140px]"
                     text={
                       isSubmitting
                         ? t('manualDepositForm.approving')
                         : t('manualDepositForm.approve')
                     }
                     disabled={isSubmitting}
+                    onClick={handleSubmit}
                   />
                 </div>
-          </form>
+          </div>
         </div>
        
       )}

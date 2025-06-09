@@ -17,3 +17,5 @@
 <environment names="Production">
     <script type="module" asp-src-include="/pendingWithdrawal-*.js"></script>
 </environment>
+
+<input type="hidden" name="__RequestVerificationToken" value="@ViewData["RequestVerificationToken"]" />

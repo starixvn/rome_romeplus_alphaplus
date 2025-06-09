@@ -5,7 +5,8 @@
     "note": "두 링크가 모두 차단된 경우 새 링크를 요청하세요.",
     "domain": "도메인",
     "downloadQRCode": "QR 코드 다운로드",
-    "requestNewLink": "새 링크 요청"
+    "requestNewLink": "새 링크 요청",
+    "noRegistrationLinks": "등록 링크가 없습니다"
   },
   "generalSettings": {
     "title": "일반 설정",

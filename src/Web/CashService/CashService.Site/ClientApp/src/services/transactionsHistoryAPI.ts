@@ -3,6 +3,7 @@ import {
   TransactionItem,
   TransactionsHistoryResponse,
   TransactionsHistoryParams,
+  ExportExcelParams,
 } from './interfaces/Transactions/TransactionHistory';
 import { AccountOption } from './interfaces/Transactions/AccountOption';
 import { ResultModel } from './interfaces/ResultModel';
@@ -130,6 +131,32 @@ export const transactionAPI = {
     } catch (error) {
       console.error('Error fetching cash agent bank info:', error);
       return [];
+    }
+  },
+
+  exportExcel: async (params: ExportExcelParams): Promise<void> => {
+    try {
+      await api
+        .post('ExportExcel', params, {
+          responseType: 'blob',
+        })
+        .then((response) => {
+          const fileName = response.headers['content-disposition']
+            .split('filename=')[1]
+            .split(';')[0];
+
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', fileName);
+          document.body.appendChild(link);
+          link.click();
+          link.parentNode?.removeChild(link);
+          window.URL.revokeObjectURL(url);
+        });
+    } catch (error) {
+      console.error('Error exporting excel:', error);
+      throw error;
     }
   },
 };

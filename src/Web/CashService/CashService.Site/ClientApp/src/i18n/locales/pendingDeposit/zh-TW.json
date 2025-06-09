@@ -82,7 +82,8 @@
     "imageSizeError": "圖片必須小於1MB",
     "memberLoginNameRequired": "請選擇會員登錄名",
     "agentBankSelectionRequired": "請選擇付款來源",
-    "memberBankSelectionRequired": "請選擇付款目標"
+    "memberBankSelectionRequired": "請選擇付款目標",
+    "invalidFileType": "無效的文件類型。請上傳jpeg、jpg或png文件。"
   },
   
   "status": {

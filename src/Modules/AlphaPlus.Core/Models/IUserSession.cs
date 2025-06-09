@@ -149,4 +149,6 @@ public interface IUserSession
     void SetProperty(string propertyName, object value);
 
     bool HasProperty(string propertyName);
+
+    bool? IsCashServiceEnabled { get; set; }
 }

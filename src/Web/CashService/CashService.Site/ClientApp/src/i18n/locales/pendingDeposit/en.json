@@ -10,7 +10,7 @@
     "last7Days": "Last 7 Days",
     "to": "To",
     "search": "Search",
-    "usernamePlaceholder": "Username/Reference No.",
+    "usernamePlaceholder": "Username/Ref No",
     "last30Mins": "Last 30 Mins",
     "last60Mins": "Last 60 Mins"
   },
@@ -27,8 +27,8 @@
     "currency": "Currency",
     "from": "From",
     "to": "To",
-    "referenceNo": "Reference No.",
-    "dateAndTime": "Date & Time",
+    "referenceNo": "Ref No",
+    "dateAndTime": "Created Date",
     "actions": "Actions",
     "approve": "Approve",
     "approving": "Approving...",
@@ -45,12 +45,12 @@
     "loginName": "Login Name",
     "firstName": "First Name",
     "lastName": "Last Name",
-    "name": "First/Last Name",
+    "name": "First & Last Name",
     "betCredit": "Bet Credit",
     "from": "From",
     "to": "To",
     "depositAmount": "Deposit Amount",
-    "dateAndTime": "Date and Time",
+    "dateAndTime": "Created Date",
     "remarks": "Remarks",
     "remarksPlaceholder": "Add a remark here...",
     "approve": "Approve",
@@ -62,7 +62,7 @@
   "manualDepositForm": {
     "title": "Add Manual Deposit",
     "accountInformation": "Account Information",
-    "memberLoginName": "Member Login Name",
+    "memberLoginName": "Member Username",
     "from": "From",
     "to": "To",
     "depositAmount": "Deposit Amount",
@@ -82,7 +82,8 @@
     "imageSizeError": "Image must be less than 1MB",
     "memberLoginNameRequired": "Please select member login",
     "agentBankSelectionRequired": "Please select PaymentFrom",
-    "memberBankSelectionRequired": "Please select PaymentTo"
+    "memberBankSelectionRequired": "Please select PaymentTo",
+    "invalidFileType": "Invalid file type. Please upload a jpeg, jpg, or png file."
   },
 
   "status": {

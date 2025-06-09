@@ -5,7 +5,8 @@ import { Contact as ContactComponent } from './Contact';
 import { MobilePhone as MobilePhoneComponent } from './MobiPhone';
 import { useFormContext } from 'react-hook-form';
 import { ANNOUNCEMENT_MAX_LENGTH } from '../../../constants';
-import { MediumTitleComponent } from '../../../components/TitleComponents';
+import { LabelTitleComponent, MediumTitleComponent } from '../../../components/TitleComponents';
+import { ValidateMessageComponent } from '../../../components/MessageComponents';
 
 interface MessageFormProps {
   loading: boolean;
@@ -46,7 +47,7 @@ const MessageForm: React.FC<MessageFormProps> = ({loading}) => {
       <MediumTitleComponent text={t('message.title')} />
       <p className="pt-[4px] mb-[8px] font-semibold">{t('message.description')}</p>
 
-      <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap">
+      <div className="flex flex-nowrap gap-[16px] mb-[10px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap">
         <MobilePhoneComponent
           mobilePhone={watch('mobilePhone')}
           handleMobilePhoneChange={handleMobilePhoneChange}
@@ -61,9 +62,8 @@ const MessageForm: React.FC<MessageFormProps> = ({loading}) => {
       </div>
 
       <div className='w-[476px] max-[768px]:w-[100%]'>
-        <label className="block pt-[4px] mb-[8px] font-semibold max-[768px]:mb-[8px]" htmlFor="announcement">
-          {t('message.announcement')}
-        </label>
+       
+        <LabelTitleComponent text={t('message.announcement')}  />
         <div className="relative">
           <textarea
             id="announcement"
@@ -74,17 +74,15 @@ const MessageForm: React.FC<MessageFormProps> = ({loading}) => {
               }
             })}
             rows={4}
-            className={`p-[8px] h-[100px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none max-[768px]:text-[16px] max-[768px]:leading-[16px] max-[768px]:w-[100%] ${errors.announcement
-              ? 'border-[#E25757] focus:border-[#E25757]'
-              : 'border-[var(--border-control)] focus:border-[var(--border-control-focus)]'
+            className={`p-[8px] h-[100px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none max-[768px]:w-[100%] bg-[var(--background-control)] resize ${errors.announcement
+              ? 'border-[var(--border-control-error)]'
+              : 'border-[var(--border-control)]'
               }`}
             placeholder={t('message.placeholder.message')}
             maxLength={ANNOUNCEMENT_MAX_LENGTH}
           />
           {errors.announcement && (
-            <p className="text-[#E25757] text-[12px] mt-[4px]">
-              {errors.announcement?.message as string}
-            </p>
+            <ValidateMessageComponent message={errors.announcement?.message as string} />
           )}
         </div>
       </div>

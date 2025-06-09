@@ -19,22 +19,23 @@ import { LoadingFullComponent } from '../../components/LoadingComponent';
 import { ResultMessageComponent } from '../../components/MessageComponents';
 import {
   StatusCompletedComponent,
-  StatusDisabledComponent,
   StatusFailedComponent,
   StatusMaintenanceComponent,
+  StatusNoneComponent,
   StatusProcessingComponent,
 } from '../../components/StatusComponents';
 import TitleComponent, {
   LabelTitleComponent,
   MediumTitleComponent,
 } from '../../components/TitleComponents';
-import { STATUS_OPTIONS, TRANSACTION_TYPES } from '../../constants/paymentConstants';
+import { paymentMethodStatusConstant, paymentProviderStatusConstant, STATUS_OPTIONS, TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 import i18n from '../../i18n/i18n-paymentProviderSettings';
 import { PaymentMethod } from '../../services/interfaces/Payments';
 import { PaymentProvider } from '../../services/interfaces/Payments/PaymentProvider';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { formatInputValue, formatNumber } from '../../utils/numberFormatting';
+import { onBackNavigation, reloadPage } from '../../utils/sharedUtils';
 import AddPaymentMethodModal from './AddPaymentMethodModal';
 import BanksPopupModal from './BanksPopupModal';
 import ProviderFeesPopupModal from './ProviderFeesPopupModal';
@@ -60,7 +61,6 @@ interface ValidationError {
 function PaymentProviderSettings() {
   const { t: tGlobal } = useTranslation('global');
   const { t: tPaymentProviderSettings } = useTranslation('paymentProviderSettings');
-  useCookieLanguage(i18n);
   const [showFeePopup, setShowFeePopup] = React.useState(false);
   const [showAddPaymentMethod, setShowAddPaymentMethod] = React.useState(false);
   const [showBanksPopup, setShowBanksPopup] = React.useState(false);
@@ -94,6 +94,7 @@ function PaymentProviderSettings() {
     providerSettings: window.providerSettingsViewModel.Provider.ProviderSettings,
   });
 
+  useCookieLanguage(i18n);
   // Fetch provider settings when component mounts or when dropdowns change
   React.useEffect(() => {
     const fetchProviderSettings = async () => {
@@ -358,7 +359,7 @@ function PaymentProviderSettings() {
       });
 
       setTimeout(() => {
-        window.location.reload();
+        reloadPage();
       }, 3000);
     } else {
       setUpdateMessage({
@@ -391,22 +392,12 @@ function PaymentProviderSettings() {
     setSelectedSetting(null);
   };
 
-  const failStatus = 3;
+  const failStatus = paymentMethodStatusConstant.fail;
   const isEditable = (paymentMethod: PaymentMethod) => {
-    return paymentMethod.status === 2;
+    return paymentMethod.status === paymentMethodStatusConstant.completed;
   };
   const hasEditableSettings = () => {
     return providerSettings.some((setting) => isEditable(setting));
-  };
-
-  const onBackNavigation = () => {
-    const previousUrl = localStorage.getItem('cashsite_previousUrl');
-    if (previousUrl) {
-      localStorage.removeItem('cashsite_previousUrl');
-      window.location.href = previousUrl;
-    } else {
-      window.history.back();
-    }
   };
 
   const hasFormChanged = () => {
@@ -431,17 +422,26 @@ function PaymentProviderSettings() {
     });
   };
 
-  const reloadPage = () => {
-    window.location.reload();
+  const renderStatusComponent = (status: number) => {
+    switch (status) {
+      case paymentMethodStatusConstant.processing:
+        return <StatusProcessingComponent />;
+      case paymentMethodStatusConstant.completed:
+        return <StatusCompletedComponent />;
+      case paymentMethodStatusConstant.fail:
+        return <StatusFailedComponent />;
+      case paymentMethodStatusConstant.maintenance:
+        return <StatusMaintenanceComponent />;
+      default:
+        return <StatusNoneComponent />;
+    }
   };
 
   return (
     <div className="payment-provider-settings h-full">
-      {loading ? (
-        <LoadingFullComponent />
-      ) : error ? (
-        <ResultMessageComponent type="error" message={error} />
-      ) : (
+      {loading ? (<LoadingFullComponent />) : 
+        error ? (<ResultMessageComponent type="error" message={error} />) : 
+        (
         <>
           {updateMessage && (
             <ResultMessageComponent
@@ -450,24 +450,22 @@ function PaymentProviderSettings() {
               message={updateMessage.text}
             />
           )}
-          <div className="bg-[#ffffff] px-[16px] py-[10px] mb-[8px]">
+          <div className="py-[10px] mb-[8px]">
             <div className="settings-header">
-              <div className="flex items-center justify-flex-start pt-[8px] border-[#cfcfcf] border-dotted border-b-[2px]">
+              <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-color)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
                 <BackButtonComponent onClick={onBackNavigation} />
                 <TitleComponent title={window.providerSettingsViewModel.Provider.Name} />
               </div>
             </div>
             <div className="flex gap-[24px] max-[768px]:flex-col max-[768px]:gap-[8px]">
               <div>
-                <LabelTitleComponent
-                  text={tPaymentProviderSettings('setUpPaymentMethodsForMembers')}
-                />
+                <LabelTitleComponent text={tPaymentProviderSettings('setUpPaymentMethodsForMembers')} />
                 <ButtonFullComponent
                   text={`+ ${tPaymentProviderSettings('addPaymentMethod')}`}
                   onClick={onAddPaymentMethod}
                 />
               </div>
-              {providerStatus != 2 && (
+              {providerStatus != paymentProviderStatusConstant.notConfigured && (
                 <div>
                   <p className="flex items-center">
                     <LabelTitleComponent text={`${tGlobal('enable')}/${tGlobal('disable')}`} />
@@ -488,7 +486,7 @@ function PaymentProviderSettings() {
                       arrow={true}
                     >
                       <span className="cursor-pointer">
-                        <IconInfo className="w-[20px] h-[20px] ml-[4px] fill-[#163f78]" />
+                        <IconInfo className="w-[20px] h-[20px] ml-[4px] fill-[#118AF2]" />
                       </span>
                     </Tippy>
                   </p>
@@ -506,14 +504,14 @@ function PaymentProviderSettings() {
               )}
             </div>
           </div>
-          <div className="bg-[#ffffff] px-[16px] py-[10px]">
+          <div className="py-[10px]">
             <div className="flex flex-wrap mb-[8px]">
               <MediumTitleComponent text={window.providerSettingsViewModel.Provider.Name} />
               <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                   <LabelTitleComponent text={tPaymentProviderSettings('paymentMethod')} />
                   <select
-                    className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
+                    className="control-field"
                     value={selectedPaymentMethod}
                     onChange={onPaymentMethodChange}
                   >
@@ -530,7 +528,7 @@ function PaymentProviderSettings() {
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                   <LabelTitleComponent text={tPaymentProviderSettings('status')} />
                   <select
-                    className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
+                    className="control-field"
                     value={selectedStatus}
                     onChange={onStatusChange}
                   >
@@ -545,7 +543,7 @@ function PaymentProviderSettings() {
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                   <LabelTitleComponent text={tPaymentProviderSettings('transactionType')} />
                   <select
-                    className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer"
+                    className="control-field"
                     value={selectedTransactionType}
                     onChange={onTransactionTypeChange}
                   >
@@ -562,15 +560,13 @@ function PaymentProviderSettings() {
 
               <ButtonOutlineComponent
                 className="ml-auto mt-auto"
-                text={tPaymentProviderSettings('viewProviderFees', {
-                  providerName: window.providerSettingsViewModel.Provider.Name,
-                })}
+                text={tPaymentProviderSettings('viewProviderFees', { providerName: window.providerSettingsViewModel.Provider.Name })}
                 onClick={onViewFees}
               />
             </div>
 
             <div className="table-fixed-header table-fixed-body">
-              <table className=" w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
+              <table className=" w-full">
                 <thead>
                   <tr>
                     <th className="col-shadown col-payment-method">
@@ -602,7 +598,7 @@ function PaymentProviderSettings() {
                           arrow={true}
                         >
                           <span className="cursor-pointer">
-                            <IconInfo className="w-[20px] h-[20px] ml-[4px] fill-[#163f78]" />
+                            <IconInfo />
                           </span>
                         </Tippy>
                       </div>
@@ -617,22 +613,12 @@ function PaymentProviderSettings() {
                         <span className="relative z-3">{setting.methodName}</span>
                       </td>
                       <td>
-                        {setting.status === 1 ? (
-                          <StatusProcessingComponent />
-                        ) : setting.status === 2 ? (
-                          <StatusCompletedComponent />
-                        ) : setting.status === 3 ? (
-                          <StatusFailedComponent />
-                        ) : setting.status === 4 ? (
-                          <StatusMaintenanceComponent />
-                        ) : (
-                          <StatusDisabledComponent />
-                        )}
+                        {renderStatusComponent(setting.status)}
                         {setting.status === failStatus && (
                           <>
                             <br />
                             <span
-                              className="inline-block mt-[4px] cursor-pointer text-[var(--text-color-primary)] font-semibold underline"
+                              className="inline-block mt-[4px] cursor-pointer text-[var(--text-link-color)] font-semibold underline"
                               onClick={() => onRetrySetup(index)}
                             >
                               {tPaymentProviderSettings('retrySetup')}
@@ -648,7 +634,7 @@ function PaymentProviderSettings() {
                           <div className="flex flex-col max-[768px]:w-[150px]">
                             <input
                               type="text"
-                              className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer mb-2px] ${validationErrors[`minAmount-${index}`] ? 'border-[#dc3545]' : 'border-[var(--border-control)]'}`}
+                              className={`control-field ${validationErrors[`minAmount-${index}`] ? 'error' : ''}`}
                               value={formatNumber(setting.minAmount)}
                               onChange={(e) => onMinAmountChange(index, e.target.value)}
                               placeholder={tPaymentProviderSettings('minimum')}
@@ -668,13 +654,13 @@ function PaymentProviderSettings() {
                           <div className="flex flex-col max-[768px]:w-[150px]">
                             <input
                               type="text"
-                              className={`h-[35px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer mb-2px] ${validationErrors[`maxAmount-${index}`] ? 'border-[#dc3545]' : 'border-[var(--border-control)]'}`}
+                              className={`control-field ${validationErrors[`maxAmount-${index}`] ? 'error' : ''}`}
                               value={formatNumber(setting.maxAmount)}
                               onChange={(e) => onMaxAmountChange(index, e.target.value)}
                               placeholder={tPaymentProviderSettings('maximum')}
                               maxLength={15}
                             />
-                            <label className="text-left text-[11px] max-[768px]:text-[15px] text-[#828282] font-semibold mt-[4px]">
+                            <label className="text-left text-[11px] max-[768px]:text-[15px] text-[#666666] font-semibold mt-[4px]">
                               {tPaymentProviderSettings('maxAmount')}{' '}
                               {formatNumber(setting.maxAmountTrans)}
                             </label>
@@ -702,18 +688,11 @@ function PaymentProviderSettings() {
                         )}
                       </td>
                       <td>
-                        {!isEditable(setting) ? (
-                          <>-</>
-                        ) : setting.bankRequired ? (
-                          <ButtonOutlineComponent
-                            text={tPaymentProviderSettings('listOfBanks')}
-                            onClick={() => onViewBanks(setting)}
-                          />
-                        ) : (
-                          <span className="font-semibold color-[#333333]">
-                            {tPaymentProviderSettings('noBankRequired')}{' '}
-                          </span>
-                        )}
+                        {!isEditable(setting) ? (<>-</>) : 
+                          setting.bankRequired ? 
+                            (<ButtonOutlineComponent text={tPaymentProviderSettings('listOfBanks')} onClick={() => onViewBanks(setting)} />) : 
+                            (<span className="font-semibold color-[#333333]">{tPaymentProviderSettings('noBankRequired')}{' '}</span>)
+                        }
                       </td>
                     </tr>
                   ))}
@@ -725,7 +704,7 @@ function PaymentProviderSettings() {
               <ButtonApplyComponent
                 text={updating ? tGlobal('updating') : tGlobal('update')}
                 onClick={onUpdate}
-                disabled={providerStatus == 2 || updating || !hasEditableSettings()}
+                disabled={providerStatus == paymentProviderStatusConstant.notConfigured || updating || !hasEditableSettings()}
               />
             </div>
           </div>
@@ -759,10 +738,7 @@ function PaymentProviderSettings() {
 
       {/* Banks Popup Modal */}
       {showBanksPopup && selectedSetting && (
-        <BanksPopupModal
-          onClose={onCloseBanksPopup}
-          transactionType={selectedSetting.transactionType}
-        />
+        <BanksPopupModal onClose={onCloseBanksPopup} transactionType={selectedSetting.transactionType} />
       )}
 
       {/* Update Payment Method Modal */}

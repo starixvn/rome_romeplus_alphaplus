@@ -7,24 +7,66 @@ import { DateRange, Range, RangeKeyDict } from 'react-date-range';
 
 import { ButtonFullComponent } from './ButtonComponents';
 import { CalendarIcon } from './Icons';
-import './DateRangePickerComponent.scss';
 import { convertToGMT4 } from '../common/commonFunctions';
+import './DateRangePickerComponent.scss';
+import { useTranslation } from 'react-i18next';
 
 export interface DateRangePickerProps {
   value: [Date | null, Date | null];
   onChange: (value: [Date | null, Date | null]) => void;
   className?: string;
+  minYear?: number;
+  maxRangeDays?: number;
+}
+
+function formatDateWithLeadingZeros(date: Date | null): string {
+  if (!date) return '';
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  return `${String(month).padStart(2, '0')}/${String(day).padStart(2, '0')}/${year}`;
 }
 
 function formatRange(value: [Date | null, Date | null]) {
   if (!value[0] || !value[1]) return '';
-  return value[0].toLocaleDateString('en-US') + ' - ' + value[1].toLocaleDateString('en-US');
+  return formatDateWithLeadingZeros(value[0]) + ' - ' + formatDateWithLeadingZeros(value[1]);
 }
 
 function getDaysCount(start: Date | null, end: Date | null) {
   if (!start || !end) return 0;
   const diff = Math.abs(end.getTime() - start.getTime());
   return Math.floor(diff / (1000 * 60 * 60 * 24)) + 1;
+}
+
+function applyMaxRangeConstraint(
+  currentSelection: Range,
+  maxDays?: number,
+  previousSelection?: Range
+): Range {
+  let { startDate, endDate, ...rest } = currentSelection;
+
+  if (startDate && endDate && maxDays && maxDays > 0) {
+    if (getDaysCount(startDate, endDate) > maxDays) {
+      const prevStartDate = previousSelection?.startDate;
+      const prevEndDate = previousSelection?.endDate;
+
+      if (previousSelection && prevStartDate && prevEndDate) {
+        const startDateChanged = startDate.getTime() !== prevStartDate.getTime();
+        const endDateChanged = endDate.getTime() !== prevEndDate.getTime();
+
+        if (startDateChanged && !endDateChanged) {
+          startDate = new Date(endDate.getTime() - (maxDays - 1) * 24 * 60 * 60 * 1000);
+        } else if (!startDateChanged && endDateChanged) {
+          endDate = new Date(startDate.getTime() + (maxDays - 1) * 24 * 60 * 60 * 1000);
+        } else {
+          endDate = new Date(startDate.getTime() + (maxDays - 1) * 24 * 60 * 60 * 1000);
+        }
+      } else {
+        endDate = new Date(startDate.getTime() + (maxDays - 1) * 24 * 60 * 60 * 1000);
+      }
+    }
+  }
+  return { ...rest, startDate, endDate };
 }
 
 const quickRanges = [
@@ -114,27 +156,70 @@ const quickRanges = [
   },
 ];
 
-const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, className }) => {
+const DateRangePicker: React.FC<DateRangePickerProps> = ({
+  value,
+  onChange,
+  className,
+  minYear,
+  maxRangeDays,
+}) => {
+  const { t } = useTranslation('global');
   const [open, setOpen] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
 
+  const overallMinDate = React.useMemo(() => {
+    return minYear ? new Date(minYear, 0, 1) : undefined;
+  }, [minYear]);
+
+  const todayForMaxDateDep = new Date(); // Use stable parts of today for dependency
+  const overallMaxDate = React.useMemo(() => {
+    const freshNowInGMT4 = convertToGMT4(new Date());
+    const maxDate = new Date(freshNowInGMT4);
+    maxDate.setDate(freshNowInGMT4.getDate() + 1);
+    maxDate.setHours(23, 59, 59, 999);
+    return maxDate;
+  }, [
+    todayForMaxDateDep.getFullYear(),
+    todayForMaxDateDep.getMonth(),
+    todayForMaxDateDep.getDate(),
+  ]);
+
   const [pendingRange, setPendingRange] = React.useState<Range[]>([
     {
-      startDate: value[0] ?? new Date(),
-      endDate: value[1] ?? new Date(),
+      startDate: value[0] ?? undefined,
+      endDate: value[1] ?? undefined,
       key: 'selection',
     },
   ]);
 
+  const [calendarMinDate, setCalendarMinDate] = React.useState<Date | undefined>(overallMinDate);
+  const [calendarMaxDate, setCalendarMaxDate] = React.useState<Date | undefined>(overallMaxDate);
+
+  const val0Time = value[0]?.getTime();
+  const val1Time = value[1]?.getTime();
   React.useEffect(() => {
     setPendingRange([
       {
-        startDate: value[0] ?? new Date(),
-        endDate: value[1] ?? new Date(),
+        startDate: value[0] ?? undefined,
+        endDate: value[1] ?? undefined,
         key: 'selection',
       },
     ]);
-  }, [value[0]?.getTime?.(), value[1]?.getTime?.()]);
+    setCalendarMinDate(overallMinDate);
+    setCalendarMaxDate(overallMaxDate);
+  }, [val0Time, val1Time, overallMinDate, overallMaxDate]);
+
+  React.useEffect(() => {
+    if (!open) {
+      setCalendarMinDate(overallMinDate);
+      setCalendarMaxDate(overallMaxDate);
+    }
+  }, [open, overallMinDate, overallMaxDate]);
+
+  const handleApply = React.useCallback(() => {
+    onChange([pendingRange[0].startDate ?? null, pendingRange[0].endDate ?? null]);
+    setOpen(false);
+  }, [onChange, pendingRange]);
 
   React.useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -148,17 +233,66 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [open, onChange, pendingRange]);
+  }, [open, handleApply]);
 
-  const handleApply = () => {
-    onChange([pendingRange[0].startDate ?? null, pendingRange[0].endDate ?? null]);
+  const handleQuickRangeClick = (item: {
+    label: string;
+    range: () => { startDate: Date; endDate: Date };
+  }) => {
+    const proposedRange = item.range();
+    const selectionWithKey: Range = { ...proposedRange, key: 'selection' };
+    const finalRange = applyMaxRangeConstraint(selectionWithKey, maxRangeDays, undefined);
+
+    setPendingRange([finalRange]);
+    onChange([finalRange.startDate ?? null, finalRange.endDate ?? null]);
     setOpen(false);
   };
 
-  const handleQuickRangeClick = (range: Range) => {
-    setPendingRange([{ ...range, key: 'selection' }]);
-    onChange([range.startDate ?? null, range.endDate ?? null]);
-    setOpen(false);
+  const handleCalendarChange = (item: RangeKeyDict) => {
+    const { startDate: newStartDate, endDate: newEndDate } = item.selection;
+
+    let currentRangeToProcess: Range = {
+      startDate: newStartDate,
+      endDate: newEndDate,
+      key: 'selection',
+    };
+
+    currentRangeToProcess = applyMaxRangeConstraint(
+      currentRangeToProcess,
+      maxRangeDays,
+      pendingRange[0]
+    );
+
+    setPendingRange([currentRangeToProcess]);
+
+    const finalSelectedStartDate = currentRangeToProcess.startDate;
+    const finalSelectedEndDate = currentRangeToProcess.endDate;
+
+    if (
+      finalSelectedStartDate &&
+      finalSelectedEndDate &&
+      finalSelectedStartDate.getTime() === finalSelectedEndDate.getTime()
+    ) {
+      setCalendarMinDate(finalSelectedStartDate);
+      if (maxRangeDays && maxRangeDays > 0) {
+        const potentialMaxEndDate = new Date(
+          finalSelectedStartDate.getTime() + (maxRangeDays - 1) * 24 * 60 * 60 * 1000
+        );
+        setCalendarMaxDate(
+          overallMaxDate && potentialMaxEndDate > overallMaxDate
+            ? overallMaxDate
+            : potentialMaxEndDate
+        );
+      } else {
+        setCalendarMaxDate(overallMaxDate);
+      }
+    } else if (finalSelectedStartDate && finalSelectedEndDate) {
+      setCalendarMinDate(overallMinDate);
+      setCalendarMaxDate(overallMaxDate);
+    } else {
+      setCalendarMinDate(overallMinDate);
+      setCalendarMaxDate(overallMaxDate);
+    }
   };
 
   const selectedStart = pendingRange[0].startDate;
@@ -184,7 +318,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
                 <button
                   key={item.label}
                   className="font-semibold transition cursor-pointer block w-full text-left px-[10px] py-[5px] leading-[20px]  text-[var(--datarangepicker-color)] hover:bg-[var(--datarangepicker-cell-background-active)] hover:text-[var(--datarangepicker-color-hover)]"
-                  onClick={() => handleQuickRangeClick(item.range())}
+                  onClick={() => handleQuickRangeClick(item)}
                   type="button"
                 >
                   {item.label}
@@ -193,7 +327,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
             </div>
             <DateRange
               editableDateInputs={true}
-              onChange={(item: RangeKeyDict) => setPendingRange([item.selection])}
+              onChange={handleCalendarChange}
               moveRangeOnFirstSelection={false}
               ranges={pendingRange}
               rangeColors={['#163f78']}
@@ -201,6 +335,8 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
               months={1}
               direction="vertical"
               locale={enUS}
+              minDate={calendarMinDate}
+              maxDate={calendarMaxDate}
             />
           </div>
           <div className="border-t border-[var(--datarangepicker-border)] p-[10px] flex justify-between items-center">
@@ -210,10 +346,10 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
                 {selectedStart && selectedEnd ? (
                   <>
                     <span className="font-semibold">
-                      {selectedStart.toLocaleDateString('en-US')}
+                      {formatDateWithLeadingZeros(selectedStart)}
                     </span>{' '}
                     -{' '}
-                    <span className="font-semibold">{selectedEnd.toLocaleDateString('en-US')}</span>
+                    <span className="font-semibold">{formatDateWithLeadingZeros(selectedEnd)}</span>
                     <span className="italic"> ({days} days)</span>
                   </>
                 ) : (
@@ -221,7 +357,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({ value, onChange, clas
                 )}
               </span>
             </div>
-            <ButtonFullComponent text="Apply" onClick={handleApply} />
+            <ButtonFullComponent text={t('apply')} onClick={handleApply} />
           </div>
         </div>
       )}

@@ -12,6 +12,7 @@ import Pagination from '../../Components/Pagination';
 import { ButtonFullComponent } from '../../../../components/ButtonComponents';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import PendingDepositModal from './PendingDepositModal';
+import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
 
 interface DataGridProps {
   deposits: TransactionItem[];
@@ -20,7 +21,7 @@ interface DataGridProps {
 const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
   const { t } = useTranslation('pendingDeposit');
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(100);
+  const [pageSize, setPageSize] = useState(PAGE_SIZE_OPTIONS[2]);
   const [error, setError] = useState<string | null>(null);
   const [paginatedDeposits, setPaginatedDeposits] = useState<TransactionItem[]>([]);
   const [processingDeposit, setProcessingDeposit] = useState<TransactionItem | null>(null);
@@ -46,10 +47,7 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
     setIsLoading(true);
     setError(null);
     try {
-      const detail = await transactionAPI.getTransactionDetail(
-        deposit.transId,
-        deposit.custId
-      );
+      const detail = await transactionAPI.getTransactionDetail(deposit.transId, deposit.custId);
       setProcessingDeposit(detail);
     } catch (err) {
       setError(t('dataGrid.errorFetchingDetail'));
@@ -65,16 +63,16 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
 
   return (
     <>
-      <div className="table-fixed-header table-fixed-body  h-full">
+      <div className="table-fixed-header table-fixed-body min-h-0">
         <table className="max-[600px]:text-[17px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
           <thead className="z-11!">
             <tr>
-              <th scope="col" className="w-[32px] min-w-[32px] sticky left-0  z-11">
+              <th scope="col" className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-header-background)] z-11">
                 #
               </th>
               <th
                 scope="col"
-                className="w-[150px] min-w-[150px] sticky left-[32px]  shadow-[3px_0_4px_0_rgba(99,84,84,0.3)] "
+                className="w-[150px] min-w-[150px] sticky left-[32px] bg-[var(--table-header-background)] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]"
               >
                 <div>{t('dataGrid.username')}</div>
                 <div>{t('dataGrid.nickname')}</div>
@@ -96,10 +94,10 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
             {paginatedDeposits.length > 0 ? (
               paginatedDeposits.map((deposit, index) => (
                 <tr key={deposit.transId}>
-                  <td className="w-[32px] min-w-[32px] sticky left-0 bg-[#ffffff] z-10">
-                    {index + 1}
+                  <td className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-background)] z-10">
+                    {index + 1 + (currentPage - 1) * pageSize}
                   </td>
-                  <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[#ffffff] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
+                  <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[var(--table-background)] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
                     <div>{deposit.username}</div>
                     <div>{deposit.nickname}</div>
                   </td>
@@ -136,13 +134,15 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
       )}
 
       {paginatedDeposits.length > 0 && (
-        <Pagination
-          currentPage={currentPage}
-          pageSize={pageSize}
-          totalItems={totalItems}
-          onPageChange={handlePageChange}
-          onPageSizeChange={handlePageSizeChange}
-        />
+        <div className="mt-0">
+          <Pagination
+            currentPage={currentPage}
+            pageSize={pageSize}
+            totalItems={totalItems}
+            onPageChange={handlePageChange}
+            onPageSizeChange={handlePageSizeChange}
+          />
+        </div>
       )}
     </>
   );

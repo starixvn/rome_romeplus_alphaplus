@@ -15,7 +15,7 @@ import { LabelTitleComponent, MediumTitleComponent } from '../../components/Titl
 import { createDefaultPaymentTransactionLimit } from '../../services/interfaces/Payments';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { ensureDecimalInput, ensureIntegerInput } from '../../utils/inputHandlers';
-
+import { createErrorResultModel } from '../../services/interfaces/ResultModel';
 interface SetTransactionLimitModalProps {
   onClose: () => void;
   onSave: () => void;
@@ -223,11 +223,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
       return;
     }
 
-    const result = response.data || {
-      isSuccessful: false,
-      code: 1,
-      message: tManagePayments('failedToSetLimit'),
-    };
+    const result = response.data || createErrorResultModel(1, tManagePayments('failedToSetLimit'));
 
     if (result.isSuccessful) {
       setIsBlockAction(true);
@@ -244,10 +240,10 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
 
   return (
     <div
-      className="bg-[#00000066] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-start justify-center"
+      className="bg-[#00000080] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-start justify-center"
       tabIndex={-1}
     >
-      <div className="p-[30px] bg-[#ffffff] mt-[100px] max-w-[540px] max-[768px]:max-w-[90%] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
+      <div className="px-[20px] py-[10px] bg-[var(--modal-background)] mt-[100px] max-w-[540px] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] max-[768px]:max-w-[90%] rounded-[3px] ">
         <div className="relative">
           <MediumTitleComponent text={tManagePayments('transactionLimitPreferences')} />
           <ButtonClosePopupComponent onClick={onClose} />
@@ -261,7 +257,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
             <div className="pt-[4px]">
               {tManagePayments('customizeTransactionLimitPreferences')}
             </div>
-            <div className="text-[var(--text-color-primary)] my-[8px] font-semibold">
+            <div className="text-[var(--text-label-color)] my-[8px] font-semibold">
               {tManagePayments('deposit')}
             </div>
             <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
@@ -269,11 +265,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
                 <LabelTitleComponent text={tManagePayments('minPerTransaction')} />
                 <input
                   type="text"
-                  className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none ${
-                    fieldErrors.minDeposit
-                      ? 'border-[#ff0000] focus:border-[#ff0000]'
-                      : 'border-[var(--border-control)] focus:border-[var(--button-border)]'
-                  }`}
+                  className={`control-field ${fieldErrors.minDeposit ? 'error' : ''}`}
                   value={formState.minDeposit}
                   onChange={(e) => onInputChange('minDeposit', ensureDecimalInput(e).target.value)}
                   min="0"
@@ -286,11 +278,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
                 <LabelTitleComponent text={tManagePayments('maxPerTransaction')} />
                 <input
                   type="text"
-                  className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none ${
-                    fieldErrors.maxDeposit
-                      ? 'border-[#ff0000] focus:border-[#ff0000]'
-                      : 'border-[var(--border-control)] focus:border-[var(--button-border)]'
-                  }`}
+                  className={`control-field ${fieldErrors.maxDeposit ? 'error' : ''}`}
                   value={formState.maxDeposit}
                   onChange={(e) => onInputChange('maxDeposit', ensureDecimalInput(e).target.value)}
                   min="0"
@@ -300,7 +288,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
                 <ValidateMessageComponent message={fieldErrors.maxDeposit} />
               </div>
             </div>
-            <div className="text-[var(--text-color-primary)] my-[8px] font-semibold">
+            <div className="text-[var(--text-label-color)] my-[8px] font-semibold">
               {tManagePayments('withdrawal')}
             </div>
             <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
@@ -308,11 +296,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
                 <LabelTitleComponent text={tManagePayments('minPerTransaction')} />
                 <input
                   type="text"
-                  className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none ${
-                    fieldErrors.minWithdrawal
-                      ? 'border-[#ff0000] focus:border-[#ff0000]'
-                      : 'border-[var(--border-control)] focus:border-[var(--button-border)]'
-                  }`}
+                  className={`control-field ${fieldErrors.minWithdrawal ? 'error' : ''}`}
                   value={formState.minWithdrawal}
                   onChange={(e) =>
                     onInputChange('minWithdrawal', ensureDecimalInput(e).target.value)
@@ -327,11 +311,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
                 <LabelTitleComponent text={tManagePayments('maxPerTransaction')} />
                 <input
                   type="text"
-                  className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none ${
-                    fieldErrors.maxWithdrawal
-                      ? 'border-[#ff0000] focus:border-[#ff0000]'
-                      : 'border-[var(--border-control)] focus:border-[var(--button-border)]'
-                  }`}
+                  className={`control-field ${fieldErrors.maxWithdrawal ? 'error' : ''}`}
                   value={formState.maxWithdrawal}
                   onChange={(e) =>
                     onInputChange('maxWithdrawal', ensureDecimalInput(e).target.value)
@@ -348,7 +328,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
                 <LabelTitleComponent text={tManagePayments('dailyWithdrawalCount')} />
                 <input
                   type="text"
-                  className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)]"
+                  className="control-field"
                   value={formState.dailyWithdrawalCount}
                   onChange={(e) =>
                     onInputChange('dailyWithdrawalCount', ensureIntegerInput(e).target.value)

@@ -2,6 +2,7 @@ import React, { useMemo, useCallback, useRef, useEffect } from 'react';
 import Select, { MultiValue, ActionMeta, StylesConfig, components } from 'react-select';
 import { CheckboxOption } from './CheckboxOption';
 import { CustomValueContainer } from './CustomValueContainer';
+import { useTranslation } from 'react-i18next';
 
 interface OptionType {
   value: string;
@@ -23,8 +24,6 @@ interface MultiSelectProps {
 
 const ALL_OPTION_VALUE = '__ALL__';
 
-const allOption: OptionType = { value: ALL_OPTION_VALUE, label: 'All', disabled: false };
-
 const MultiSelect: React.FC<MultiSelectProps> = ({
   options,
   isCheckAll = false,
@@ -36,6 +35,17 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
   styles,
   onMenuClose,
 }) => {
+  const { t } = useTranslation('global');
+
+  const allOption: OptionType = useMemo(
+    () => ({
+      value: ALL_OPTION_VALUE,
+      label: t('all'),
+      disabled: false,
+    }),
+    [t]
+  );
+
   const selectRef = useRef<any>('custom-dropdown-multiple');
 
   useEffect(() => {
@@ -60,7 +70,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 
   const componentOptions = useMemo(() => {
     return isCheckAll ? [allOption, ...options] : options;
-  }, [options, isCheckAll]);
+  }, [options, isCheckAll, allOption]);
 
   const enabledOptions = useMemo(
     () => componentOptions.filter((opt) => !opt.disabled),

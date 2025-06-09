@@ -21,7 +21,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             IUserSession userSession,
             IAntiforgery antiforgery) : base(userSession, antiforgery)
         {
-            _apiBaseUrl = configuration["CashServiceAPIUrl"];
+            _apiBaseUrl = configuration["CashService:APIUrl"];
             _httpClient = httpClient;
         }
 
@@ -56,19 +56,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         public async Task<IActionResult> SetDailyWithdrawalCount(
             [FromBody] SetDailyWithdrawalCountRequest request,
             CancellationToken cancellationToken)
-        {
-            if (_userSession.IsInternal)
-            {
-                return Unauthorized();
-            }
-
-            request.SetUserSession(_userSession);
-            var url = $"{_apiBaseUrl}/payments/set-daily-withdrawal-count";
-            var response = await _httpClient.PostAsJsonAsync(url, request, cancellationToken);
-            response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
-            return Json(result);
-        }
+            => await DoAction<object>($"{_apiBaseUrl}/payments/set-daily-withdrawal-count", request, cancellationToken);
 
         public async Task<IActionResult> GetProviderFees(int providerId, CancellationToken cancellationToken)
         {
@@ -92,7 +80,8 @@ namespace AlphaPlus.CashService.Site.Features.Payments
                     PaymentMethods = allPaymentMethods,
                     ChannelContact = addPaymentMethodViewModel.ChannelContact
                 },
-                Language = _userSession.Language
+                Language = _userSession.Language,
+                DarkModeName = _userSession.DarkModeName
             };
 
             return View(viewModel);
@@ -116,39 +105,13 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         public async Task<IActionResult> AddPaymentMethod(
             [FromBody] InsertPaymentMethodRequest request,
             CancellationToken cancellationToken)
-        {
-            if (_userSession.IsInternal)
-            {
-                return Unauthorized();
-            }
-
-            request.SetUserSession(_userSession);
-            var url = $"{_apiBaseUrl}/payments/add-payment-method";
-
-            var response = await _httpClient.PostAsJsonAsync(url, request, cancellationToken);
-            response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
-            return Json(result);
-        }
+            => await DoAction<object>($"{_apiBaseUrl}/payments/add-payment-method", request, cancellationToken);
 
         [HttpPost]
         public async Task<IActionResult> UpdatePaymentMethod(
             [FromBody] UpdatePaymentMethodRequest request,
             CancellationToken cancellationToken)
-        {
-            if (_userSession.IsInternal)
-            {
-                return Unauthorized();
-            }
-
-            request.SetUserSession(_userSession);
-            var url = $"{_apiBaseUrl}/payments/update-payment-method";
-
-            var response = await _httpClient.PostAsJsonAsync(url, request, cancellationToken);
-            response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
-            return Json(result);
-        }
+            => await DoAction<object>($"{_apiBaseUrl}/payments/update-payment-method", request, cancellationToken);
 
         public async Task<IActionResult> GetBanksByTransactionType(int transactionType, CancellationToken cancellationToken)
         {
@@ -161,20 +124,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         public async Task<IActionResult> UpdateProvider(
             [FromBody] UpdateProviderRequest request,
             CancellationToken cancellationToken)
-        {
-            if (_userSession.IsInternal)
-            {
-                return Unauthorized();
-            }
-
-            request.SetUserSession(_userSession);
-            var url = $"{_apiBaseUrl}/payments/update-provider";
-
-            var response = await _httpClient.PostAsJsonAsync(url, request, cancellationToken);
-            response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
-            return Json(result);
-        }
+            => await DoAction<object>($"{_apiBaseUrl}/payments/update-provider", request, cancellationToken);
 
         public async Task<IActionResult> GetBanksByCust(CancellationToken cancellationToken)
         {
@@ -213,39 +163,13 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         public async Task<IActionResult> SetTransactionLimit(
             [FromBody] SetTransactionLimitRequest request,
             CancellationToken cancellationToken)
-        {
-            if (_userSession.IsInternal)
-            {
-                return Unauthorized();
-            }
-
-            request.SetUserSession(_userSession);
-            var url = $"{_apiBaseUrl}/payments/set-transaction-limit";
-            var response = await _httpClient.PostAsJsonAsync(url, request, cancellationToken);
-            response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
-            return Json(result);
-        }
+            => await DoAction<object>($"{_apiBaseUrl}/payments/set-transaction-limit", request, cancellationToken);
 
         [HttpPost]
         public async Task<IActionResult> AddBankAccount(
             [FromBody] AddBankAccountRequest request,
             CancellationToken cancellationToken)
-        {
-            if (_userSession.IsInternal)
-            {
-                return Unauthorized();
-            }
-
-            request.SetUserSession(_userSession);
-            request.Creator = _userSession.UserName;
-
-            var url = $"{_apiBaseUrl}/payments/add-bank-account";
-            var response = await _httpClient.PostAsJsonAsync(url, request, cancellationToken);
-            response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
-            return Json(result);
-        }
+            => await DoAction<object>($"{_apiBaseUrl}/payments/add-bank-account", request, cancellationToken);
 
         public async Task<IActionResult> GetBankAccountById(
             int bankAccountId,
@@ -260,43 +184,36 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         public async Task<IActionResult> UpdateBankAccount(
             [FromBody] UpdateBankAccountRequest request,
             CancellationToken cancellationToken)
-        {
-            if (_userSession.IsInternal)
-            {
-                return Unauthorized();
-            }
-
-            request.SetUserSession(_userSession);
-            var url = $"{_apiBaseUrl}/payments/update-bank-account";
-            var response = await _httpClient.PutAsJsonAsync(url, request, cancellationToken);
-            response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
-            return Json(result);
-        }
+            => await DoAction<object>($"{_apiBaseUrl}/payments/update-bank-account", request, cancellationToken);
 
         [HttpPost]
         public async Task<IActionResult> DeleteBankAccount(
             [FromBody] DeleteBankAccountRequest request,
             CancellationToken cancellationToken)
-        {
-            if (_userSession.IsInternal)
-            {
-                return Unauthorized();
-            }
-
-            request.SetUserSession(_userSession);
-            var url = $"{_apiBaseUrl}/payments/bank-accounts/delete";
-            var response = await _httpClient.PostAsJsonAsync(url, request, cancellationToken);
-            response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
-            return Json(result);
-        }
+            => await DoAction<object>($"{_apiBaseUrl}/payments/bank-accounts/delete", request, cancellationToken);
 
         public async Task<IActionResult> GetCountryCodes(CancellationToken cancellationToken)
         {
             var url = $"{_apiBaseUrl}/common/country-codes/{_userSession.Site}";
             var countryCodes = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
             return Json(countryCodes);
+        }
+
+        private async Task<IActionResult> DoAction<TResult>(
+            string url, 
+            Shared.Requests.BaseActionRequest request, 
+            CancellationToken cancellationToken) 
+        {
+            if (_userSession.IsInternal)
+            {
+                return Unauthorized();
+            }
+
+            request.SetUserSession(_userSession);
+            var response = await _httpClient.PostAsJsonAsync(url, request, cancellationToken);
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadFromJsonAsync<TResult>(cancellationToken: cancellationToken);
+            return Json(result);
         }
     }
 }

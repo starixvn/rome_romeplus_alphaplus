@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { components, ValueContainerProps } from 'react-select';
 
 interface OptionType {
@@ -12,6 +13,7 @@ const ALL_OPTION_VALUE = '__ALL__';
 export const CustomValueContainer = (props: ValueContainerProps<OptionType, true>) => {
   const { children, getValue, hasValue, selectProps } = props;
   const selectedOptions = getValue();
+  const { t } = useTranslation('global');
 
   const childrenToRender = React.Children.toArray(children).filter((child) => {
     if (!React.isValidElement(child)) return false;
@@ -63,7 +65,7 @@ export const CustomValueContainer = (props: ValueContainerProps<OptionType, true
       enabledOriginalOptions.length > 0 &&
       selectedEnabledOriginalCount === enabledOriginalOptions.length
     ) {
-      valueText = 'All Selected';
+      valueText = t('allSelected');
     } else if (nonAllSelectedCount > 0) {
       valueText = `${nonAllSelectedCount} selected`;
     }

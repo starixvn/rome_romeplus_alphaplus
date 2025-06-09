@@ -2,7 +2,7 @@ import React from 'react';
 import { Setting } from '../../../services/interfaces/MemberSites';
 import { useTranslation } from 'react-i18next';
 import { useFormContext } from 'react-hook-form';
-import { MediumTitleComponent } from '../../../components/TitleComponents';
+import { LabelTitleComponent, MediumTitleComponent } from '../../../components/TitleComponents';
 
 interface GeneralSettingsProps { loading: boolean; }
 
@@ -53,7 +53,7 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({ loading }) => {
   }
 
   return (
-    <div>
+    <>
       <div className="flex items-center justify-between">
         <MediumTitleComponent text={t('generalSettings.title')} />
       </div>
@@ -69,10 +69,8 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({ loading }) => {
                   className="text-left w-[25%] min-w-[200px] max-[768px]:w-[48%]"
                   // aria-pressed={currentValue}
                 >
-                  <div className="flex-1 min-w-0">
-                    <p className="font-semibold my-[8px]">
-                      {t(`generalSettings.${setting.id}.title`)}
-                    </p>
+                  <div className="flex-1 min-w-0">                
+                    <LabelTitleComponent text={t(`generalSettings.${setting.id}.title`)} />
                     {setting.description && (
                       <p className="mb-[8px]">
                         {t(`generalSettings.${setting.id}.description`)}
@@ -94,7 +92,7 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({ loading }) => {
                         setValue(`generalSettings.${index}.value`, !currentValue, { shouldDirty: true });
                       }}
                     />
-                    <span className="block cursor-pointer w-[60px] h-[30px] rounded-[20px] bg-[var(--button-switch-background)] relative after:content-[&quot;&quot;] after:absolute after:top-[3px] after:left-[3px] after:w-[24px] after:h-[24px] after:rounded-[50%] after:bg-[var(--button-switch-dot-background)] after:transition-all after:duration-300 after:ease-in-out after:shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] peer-checked:after:left-[32px] peer-checked:bg-[var(--button-switch-background-active)]"></span>
+                    <span className="block cursor-pointer w-[60px] h-[30px] rounded-[20px] bg-[var(--button-switch-background)] relative after:content-[''] after:absolute after:top-[3px] after:left-[3px] after:w-[24px] after:h-[24px] after:rounded-[50%] after:bg-[var(--button-switch-dot-background)] after:transition-all after:duration-300 after:ease-in-out after:shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] peer-checked:after:left-[32px] peer-checked:bg-[var(--button-switch-background-active)]"></span>
                   </label>
                 </div>
               );
@@ -102,7 +100,7 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({ loading }) => {
           </div>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 

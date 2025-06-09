@@ -914,4 +914,10 @@ Note: Please change your &lt;b&gt;password&lt;/b&gt; the first time you click 'A
   <data name="RebateAndRetentionTour_Page1_Row5" xml:space="preserve">
     <value>The Win/Loss Detail report now includes a new Reward column.</value>
   </data>
+  <data name="TotalCashMember" xml:space="preserve">
+    <value>Total Cash Member</value>
+  </data>
+  <data name="CashService" xml:space="preserve">
+    <value>Cash Service</value>
+  </data>
 </root>

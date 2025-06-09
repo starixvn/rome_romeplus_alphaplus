@@ -1,12 +1,12 @@
 using AlphaPlus.Core.Extensions;
-using MediatR;
-using AlphaPlus.Reports.Features.Shared.Models;
-using Microsoft.Extensions.Options;
-using AlphaPlus.Shared.AppResources.Report;
-using AlphaPlus.Reports.Features.Shared;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.Products;
+using AlphaPlus.Reports.Features.Shared;
+using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Shared.AppResources.Common;
+using AlphaPlus.Shared.AppResources.Report;
+using MediatR;
+using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Reports.Site.Features.Legends;
 
@@ -26,14 +26,14 @@ public class LegendHandler(
     private readonly ICacheRefService cacheRefService = cacheRefService;
     private readonly Fanex.Logging.ILogger logger = logger;
 
-    public async Task<LegendViewModel> Handle(OutstandingLegendQuery message, CancellationToken cancellationToken)
+    public Task<LegendViewModel> Handle(OutstandingLegendQuery message, CancellationToken cancellationToken)
     {
         var legends = new List<string>
         {
             $"- {CommonResx.MemberWinNote}"
         };
 
-        return new LegendViewModel(legends);
+        return Task.FromResult(new LegendViewModel(legends));
     }
 
     public async Task<LegendViewModel> Handle(LegendQuery message, CancellationToken cancellationToken)

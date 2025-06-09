@@ -69,7 +69,8 @@
       "viewFullSize": "フルサイズで表示",
       "removeImage": "画像を削除",
       "cancel": "キャンセル",
-      "approve": "承認"
+      "approve": "承認",
+      "invalidFileType": "無効なファイルタイプです。jpeg、jpg、またはpngファイルをアップロードしてください。"
     },
     
     "updateWithdrawal": {

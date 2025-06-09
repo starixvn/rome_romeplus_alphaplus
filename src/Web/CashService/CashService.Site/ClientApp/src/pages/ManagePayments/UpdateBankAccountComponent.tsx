@@ -23,7 +23,7 @@ import TitleComponent, {
   LabelTitleComponent,
   MediumTitleComponent,
 } from '../../components/TitleComponents';
-import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
+import { BANK_TRANSACTION_TYPES, bankStatusConstant } from '../../constants/paymentConstants';
 import { baseAPI } from '../../services/commonAPI';
 import {
   Bank,
@@ -39,6 +39,10 @@ import {
   hasManualWithdrawalTransactionType,
   hasWithdrawalTransactionType,
 } from '../../utils/bankTransactionUtils';
+import { isNumberIncludes } from '../../utils/sharedUtils';
+import { createErrorResultModel } from '../../services/interfaces/ResultModel';
+import { StatusDisabledComponent } from '../../components/StatusComponents';
+import { StatusEnabledComponent } from '../../components/StatusComponents';
 
 interface UpdateBankAccountComponentProps {
   onClose: () => void;
@@ -223,17 +227,10 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
         bankDepositMatchingMode: fetchedBankAccount.bankDepositMatchingMode,
         bank_TransTypeList: fetchedBankAccount.bank_TransTypeList,
         agent_DepositMatchingMode: fetchedBankAccount.agent_DepositMatchingMode,
-        selectedManualDeposit: fetchedBankAccount.agent_TransTypeList
-          .split(',')
-          .includes(BANK_TRANSACTION_TYPES[1].id.toString()),
-        selectedAutoDeposit: fetchedBankAccount.agent_TransTypeList
-          .split(',')
-          .includes(BANK_TRANSACTION_TYPES[2].id.toString()),
-        selectedManualWithdrawal: fetchedBankAccount.agent_TransTypeList
-          .split(',')
-          .includes(BANK_TRANSACTION_TYPES[3].id.toString()),
+        selectedManualDeposit: isNumberIncludes(fetchedBankAccount.agent_TransTypeList, BANK_TRANSACTION_TYPES[1].id),
+        selectedAutoDeposit: isNumberIncludes(fetchedBankAccount.agent_TransTypeList, BANK_TRANSACTION_TYPES[2].id),
+        selectedManualWithdrawal: isNumberIncludes(fetchedBankAccount.agent_TransTypeList, BANK_TRANSACTION_TYPES[3].id),
         creator: fetchedBankAccount.creator,
-
         mobile: m,
         countryCode: c,
       };
@@ -341,11 +338,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
       setLoading(false);
       return;
     }
-    const result = response.data || {
-      isSuccessful: false,
-      code: 1,
-      message: tGlobal('errorOccurred'),
-    };
+    const result = response.data || createErrorResultModel(1, tGlobal('errorOccurred'));
+
     if (result.isSuccessful) {
       setIsBlockAction(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -378,58 +372,42 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
   return (
     <div tabIndex={-1}>
-      <div className="modal-dialog">
+       
         <div className="modal-content max-w-[1200px]">
-          <div className="flex items-center justify-flex-start mb-[16px] pt-[8px] border-[#cfcfcf] border-dotted border-b-[2px] ">
+          <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
             <BackButtonComponent onClick={onClose} />
             <TitleComponent title={tManagePayments('bankManagement')} />
           </div>
-          <div
-            className={`bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] mb-[20px] ${bankAccount.status === 1 ? 'border-l-[12px] border-[#5cb774]' : 'bg-[#D4E7D9]'}`}
-          >
+          <div className={`bg-[#ffffff] dark:bg-[#2b2b2b] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] mb-[15px] border-l-[12px] ${fetchedBankAccount?.status === 1 ? ' border-[#5cb774]' : 'border-[#af4646]'}`} >
             <div className="flex mb-[12px]">
-              <label className="font-semibold text-[16px] max-[768px]:text-[20px] mr-[5px] text-[var(--text-color-primary)]">
-                {bankAccount.accountNickname}
+              <label className="font-semibold text-[16px] mr-[10px] text-[#094980] dark:text-[#459be5]">
+                {fetchedBankAccount?.accountNickname}
               </label>
-              <div>
-                <span
-                  className={`font-semibold rounded-[20px] px-[10px] py-[3px] uppercase ${bankAccount.status === 1 ? 'bg-[#D4E7D9]' : 'bg-[#FBD8D8]'}`}
-                >
-                  {bankAccount.status === 1 ? tGlobal('enabled') : tGlobal('disabled')}
-                </span>
+              <div>                
+                {fetchedBankAccount?.status === bankStatusConstant.enabled ? <StatusEnabledComponent /> : <StatusDisabledComponent />}
               </div>
             </div>
 
-            <div className="flex text-[#333333] font-semibold">
+            <div className="flex">
               <div className="flex flex-col mr-[32px]">
-                <LabelTitleComponent
-                  className="my-[0]! font-bold!"
-                  text={tManagePayments('createdBy')}
-                />
+                <LabelTitleComponent className="my-[0]! font-semibold!" text={tManagePayments('createdBy')} />
                 <label>{formState.creator}</label>
               </div>
               <div className="flex flex-col">
-                <LabelTitleComponent
-                  className="my-[0]! font-bold!"
-                  text={tManagePayments('lastUpdated')}
-                />
+                <LabelTitleComponent className="my-[0]! font-semibold!" text={tManagePayments('lastUpdated')} />
                 <label>{bankAccount.lastUpdatedStr}</label>
               </div>
             </div>
           </div>
-
-          <form
-            onSubmit={onSubmit}
-            className="bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
-          >
+          <div className="block w-[100%] h-[1px] bg-[var(--border-color)]"></div>
+          <form onSubmit={onSubmit} className="py-[16px]">
             <div className="modal-body">
               <ErrorMessageComponent message={error} />
               <SuccessMessageComponent message={successMessage} />
-
               <div className="mb-[8px]">
                 <MediumTitleComponent text={tManagePayments('bankStatus')} />
                 <p className="pb-[8px] ">{tManagePayments('bankNote1')}</p>
-                <div className="btn-group" role="group">
+                <div className="mb-[16px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]" role="group">
                   <EnableButtonComponent
                     isActive={formState.status === '1'}
                     onClick={() => setFormState({ ...formState, status: '1' })}
@@ -461,7 +439,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 text={tManagePayments('transactionType')}
                 required={true}
               />
-              <div className="inline-block border-[1px] border-[var(--border-control)] rounded-[4px] px-[16px] pb-[16px] bg-[#f8f8f8] mb-[8px]">
+              <div className="inline-block border-[1px] border-[var(--border-control)] rounded-[4px] px-[16px] pt-[5px] pb-[16px] bg-[#f8f8f8] dark:bg-[#2b2b2b] mb-[8px]">
                 {hasDepositTransactionType(formState.selectedBank, banks) && (
                   <div className="mb-[8px]">
                     <LabelTitleComponent text={tManagePayments('depositType')} />
@@ -469,7 +447,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                       {hasManualDepositTransactionType(formState.selectedBank, banks) && (
                         <button
                           type="button"
-                          className={`block w-[230px] cursor-pointer h-[120px]  rounded-[4px] border-[1px] border-[var(--button-border)]  ${formState.selectedManualDeposit ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[var(--text-color-primary)] bg-[#ffffff]'}`}
+                          className={`block w-[230px] cursor-pointer h-[120px]  rounded-[4px] border-[1px] border-[var(--border-control)] outline-none ${formState.selectedManualDeposit ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[#0b599c] bg-[#D3DFEC] dark:bg-[#303740] dark:text-[#459be5]'}`}
                           onClick={() => {
                             toggleManualDeposit();
                           }}
@@ -484,7 +462,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                       {hasAutoDepositTransactionType(formState.selectedBank, banks) && (
                         <button
                           type="button"
-                          className={`block w-[230px] cursor-pointer h-[120px] rounded-[4px] border-[1px] border-[var(--button-border)] ${formState.selectedAutoDeposit ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[var(--text-color-primary)] bg-[#ffffff]'}`}
+                          className={`block w-[230px] cursor-pointer h-[120px]  rounded-[4px] border-[1px] border-[var(--border-control)] outline-none ${formState.selectedAutoDeposit ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[#0b599c] bg-[#D3DFEC] dark:bg-[#303740] dark:text-[#459be5]'}`}
                           onClick={() => {
                             toggleAutoDeposit();
                           }}
@@ -507,7 +485,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                       {hasManualWithdrawalTransactionType(formState.selectedBank, banks) && (
                         <button
                           type="button"
-                          className={`block cursor-pointer w-[230px] h-[120px] rounded-[4px] border-[1px] border-[var(--button-border)] ${formState.selectedManualWithdrawal ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[var(--text-color-primary)] bg-[#ffffff]'}`}
+                          className={`block w-[230px] cursor-pointer h-[120px]  rounded-[4px] border-[1px] border-[var(--border-control)] outline-none ${formState.selectedManualWithdrawal ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[#0b599c] bg-[#D3DFEC] dark:bg-[#303740] dark:text-[#459be5]'}`}
                           onClick={toggleManualWithdrawal}
                         >
                           <span className="text-[14px] font-bold">
@@ -585,13 +563,10 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
               <div className="flex flex-nowrap mb-[16px] gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <LabelTitleComponent
-                    text={tManagePayments('accountHolderName')}
-                    required={true}
-                  />
+                  <LabelTitleComponent text={tManagePayments('accountHolderName')} required={true} />
                   <input
                     type="text"
-                    className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer read-only:bg-[#f4f4f4] read-only:cursor-not-allowed read-only:focus:border-[#0000003D]"
+                    className="control-field"
                     value={formState.accountHolderName}
                     readOnly
                     maxLength={255}
@@ -602,13 +577,10 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 </div>
 
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <LabelTitleComponent
-                    text={tManagePayments('bankAccountNumber')}
-                    required={true}
-                  />
+                  <LabelTitleComponent text={tManagePayments('bankAccountNumber')} required={true} />
                   <input
                     type="text"
-                    className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer read-only:bg-[#f4f4f4] read-only:cursor-not-allowed read-only:focus:border-[#0000003D]"
+                    className="control-field"
                     value={formState.accountNumber}
                     readOnly
                     maxLength={100}
@@ -622,7 +594,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                   <LabelTitleComponent text={tManagePayments('accountNickname')} />
                   <input
                     type="text"
-                    className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer `}
+                    className="control-field"
                     value={formState.accountNickname}
                     onChange={(e) => {
                       setFormState({ ...formState, accountNickname: e.target.value });
@@ -637,10 +609,10 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
 
               <div className="mb-[8px]">
                 <MediumTitleComponent text={tManagePayments('promptPay')} />
-                <div className="block  font-semibold text-[#333333] mb-[8px]">
+                <div className="font-semibold mb-[8px]">
                   {tManagePayments('linkMobile')}
                 </div>
-                <div className="btn-group" role="group">
+                <div className="mb-[8px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]" role="group">
                   <ButtonOnComponent
                     isActive={formState.promptPay}
                     onClick={() =>  {
@@ -692,7 +664,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
             </div>
           </form>
         </div>
-      </div>
+  
     </div>
   );
 };

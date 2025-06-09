@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PAGE_SIZE_OPTIONS } from '../../../constants/paymentConstants';
+import { useTranslation } from 'react-i18next';
 
 interface PaginationProps {
   currentPage: number;
@@ -16,6 +17,7 @@ const Pagination: React.FC<PaginationProps> = ({
   onPageChange,
   onPageSizeChange,
 }) => {
+  const { t } = useTranslation('global');
   const [inputPage, setInputPage] = useState(currentPage.toString());
   const totalPages = pageSize > 0 ? Math.ceil(totalItems / pageSize) : 1;
 
@@ -46,7 +48,7 @@ const Pagination: React.FC<PaginationProps> = ({
   return (
     <div className="flex items-center gap-2 py-2 px-4 bg-white text-sm">
       <div className="flex items-center gap-2">
-        <span>Page size</span>
+        <span>{t('pageSize')}</span>
         <select
           value={pageSize}
           onChange={(e) => onPageSizeChange(Number(e.target.value))}
@@ -62,9 +64,9 @@ const Pagination: React.FC<PaginationProps> = ({
 
       <div className="flex items-center h-[24px] space-x-1">
         <span
-          onClick={() => currentPage !== 1 && onPageChange(1)}
+          onClick={() => currentPage !== 1 && totalPages !== 0 && onPageChange(1)}
           className={`text-black text-xl h-[24px] flex items-center translate-y-[-1px] cursor-pointer select-none ${
-            currentPage === 1 ? 'opacity-40' : 'hover:opacity-70'
+            currentPage === 1 || totalPages === 0 ? 'opacity-40' : 'hover:opacity-70'
           }`}
           style={{ transform: 'scaleX(-1)' }}
         >
@@ -72,9 +74,9 @@ const Pagination: React.FC<PaginationProps> = ({
         </span>
 
         <span
-          onClick={() => currentPage !== 1 && onPageChange(currentPage - 1)}
+          onClick={() => currentPage !== 1 && totalPages !== 0 && onPageChange(currentPage - 1)}
           className={`text-black text-xl h-[24px] flex items-center translate-y-[-1px] cursor-pointer select-none ${
-            currentPage === 1 ? 'opacity-40' : 'hover:opacity-70'
+            currentPage === 1 || totalPages === 0 ? 'opacity-40' : 'hover:opacity-70'
           }`}
           style={{ transform: 'scaleX(-1)' }}
         >
@@ -82,7 +84,7 @@ const Pagination: React.FC<PaginationProps> = ({
         </span>
 
         <div className="border-r border-[#ccc] h-[14px] mx-1 my-auto"></div>
-        <span className="h-[24px] flex items-center">Page</span>
+        <span className="h-[24px] flex items-center">{t('page')}</span>
         <div className="pl-1">
           <input
             type="text"
@@ -97,18 +99,20 @@ const Pagination: React.FC<PaginationProps> = ({
         <div className="border-r border-[#ccc] h-[14px] mx-1 my-auto"></div>
 
         <span
-          onClick={() => currentPage !== totalPages && onPageChange(currentPage + 1)}
+          onClick={() =>
+            currentPage !== totalPages && totalPages !== 0 && onPageChange(currentPage + 1)
+          }
           className={`text-black text-xl h-[24px] flex items-center translate-y-[-1px] cursor-pointer select-none ${
-            currentPage === totalPages ? 'opacity-40' : 'hover:opacity-70'
+            currentPage === totalPages || totalPages === 0 ? 'opacity-40' : 'hover:opacity-70'
           }`}
         >
           ›
         </span>
 
         <span
-          onClick={() => currentPage !== totalPages && onPageChange(totalPages)}
+          onClick={() => currentPage !== totalPages && totalPages !== 0 && onPageChange(totalPages)}
           className={`text-black text-xl h-[24px] flex items-center translate-y-[-1px] cursor-pointer select-none ${
-            currentPage === totalPages ? 'opacity-40' : 'hover:opacity-70'
+            currentPage === totalPages || totalPages === 0 ? 'opacity-40' : 'hover:opacity-70'
           }`}
         >
           »
@@ -116,7 +120,20 @@ const Pagination: React.FC<PaginationProps> = ({
       </div>
 
       <div className="ml-auto">
-        Display {startItem} to {endItem} of {totalItems} item(s)
+        {endItem > 0 &&
+          t('display') +
+            ' ' +
+            startItem +
+            ' ' +
+            t('to') +
+            ' ' +
+            endItem +
+            ' ' +
+            t('of') +
+            ' ' +
+            totalItems +
+            ' ' +
+            t('items')}
       </div>
     </div>
   );

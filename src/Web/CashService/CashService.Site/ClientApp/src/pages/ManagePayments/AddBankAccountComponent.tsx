@@ -302,18 +302,16 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
 
   return (
     <div tabIndex={-1}>
-      <div className="modal-dialog">
+      
         <div className="modal-content max-w-[1200px]">
-          <div className="flex items-center justify-flex-start mb-[16px] pt-[8px] border-[#cfcfcf] border-dotted border-b-[2px]">
+          <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
             <BackButtonComponent onClick={onClose} />
             <TitleComponent title={tManagePayments('bankManagement')} />
           </div>
-          {isLoadingBanks ? (
-            <LoadingFullComponent />
-          ) : (
+          {isLoadingBanks ? (<LoadingFullComponent />) : (
             <form
               onSubmit={handleSubmit}
-              className="bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
+              className="pb-[16px] pt-[10px]"
             >
               <div className="modal-body">
                 <ErrorMessageComponent message={error} />
@@ -321,7 +319,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
 
                 <MediumTitleComponent text={tManagePayments('bankStatus')} />
                 <p className=" my-[8px]">{tManagePayments('bankNote1')}</p>
-                <div className="mb-[16px]" role="group">
+                <div className="mb-[16px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]" role="group">
                   <EnableButtonComponent isActive={status === 1} onClick={() => setStatus(1)} />
                   <DisableButtonComponent isActive={status === 0} onClick={() => setStatus(0)} />
                 </div>
@@ -349,7 +347,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
                     text={tManagePayments('transactionType')}
                     required={true}
                   />
-                  <div className="inline-block border-[1px] border-[var(--border-control)] rounded-[4px] px-[16px] pb-[16px] bg-[#f8f8f8] mb-[8px]">
+                  <div className="inline-block border-[1px] border-[var(--border-control)] rounded-[4px] px-[16px] pt-[5px] pb-[16px] bg-[#f8f8f8] dark:bg-[#2b2b2b] mb-[8px]">
                     {hasDepositTransactionType(selectedBank, banks) && (
                       <div className="mb-3">
                         <LabelTitleComponent text={tManagePayments('depositType')} />
@@ -357,10 +355,10 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
                           {hasManualDepositTransactionType(selectedBank, banks) && (
                             <button
                               type="button"
-                              className={`block w-[230px] cursor-pointer h-[120px]  rounded-[4px] border-[1px] border-[var(--button-border)]  ${selectedManualDeposit ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[var(--text-color-primary)] bg-[#ffffff]'}`}
+                              className={`block w-[230px] cursor-pointer h-[120px]  rounded-[4px] border-[1px] border-[var(--border-control)] outline-none ${selectedManualDeposit ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[#0b599c] bg-[#D3DFEC] dark:bg-[#303740] dark:text-[#459be5]'}`}
                               onClick={toggleManualDeposit}
                             >
-                              <span className="text-[14px] font-bold ">
+                              <span className="text-[110%] font-bold ">
                                 {tManagePayments('slipUpload')}
                               </span>
                               <br />
@@ -370,10 +368,10 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
                           {hasAutoDepositTransactionType(selectedBank, banks) && (
                             <button
                               type="button"
-                              className={`block w-[230px] cursor-pointer h-[120px] rounded-[4px] border-[1px] border-[var(--button-border)] ${selectedAutoDeposit ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[var(--text-color-primary)] bg-[#ffffff]'}`}
+                              className={`block w-[230px] cursor-pointer h-[120px] rounded-[4px] border-[1px] border-[var(--border-control)] outline-none ${selectedAutoDeposit ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[#0b599c] bg-[#D3DFEC] dark:bg-[#303740] dark:text-[#459be5]'}`}
                               onClick={toggleAutoDeposit}
                             >
-                              <span className="text-[14px] font-bold">
+                              <span className="text-[110%] font-bold">
                                 {selectedBankObj?.depositMatchingMode.sourceTypeName}
                               </span>
                               <br />
@@ -391,10 +389,10 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
                           {hasManualWithdrawalTransactionType(selectedBank, banks) && (
                             <button
                               type="button"
-                              className={`block cursor-pointer w-[230px] h-[120px] rounded-[4px] border-[1px] border-[var(--button-border)] ${selectedManualWithdrawal ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[var(--text-color-primary)] bg-[#ffffff]'}`}
+                              className={`block cursor-pointer w-[230px] h-[120px] rounded-[4px] border-[1px] border-[var(--border-control)] outline-none ${selectedManualWithdrawal ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[#0b599c] bg-[#D3DFEC] dark:bg-[#303740] dark:text-[#459be5]'}`}
                               onClick={toggleManualWithdrawal}
                             >
-                              <span className="text-[14px] font-bold">
+                              <span className="text-[110%] font-bold">
                                 {tManagePayments('manualWithdrawal')}
                               </span>
                             </button>
@@ -453,9 +451,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
                             </label>
                           )}
                         </div>
-                        <ValidateMessageComponent
-                          message={fieldErrors.selectedDepositMatchingMode}
-                        />
+                        <ValidateMessageComponent message={fieldErrors.selectedDepositMatchingMode} />
                       </div>
                     )
                   );
@@ -463,13 +459,10 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
 
                 <div className="flex flex-nowrap gap-[16px] mb-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                   <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                    <LabelTitleComponent
-                      text={tManagePayments('accountHolderName')}
-                      required={true}
-                    />
+                    <LabelTitleComponent text={tManagePayments('accountHolderName')} required={true} />
                     <input
                       type="text"
-                      className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountHolderName ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
+                      className={`control-field ${fieldErrors.accountHolderName ? 'error' : ''}`}
                       value={accountHolderName}
                       onChange={onAccountHolderNameChange}
                       maxLength={255}
@@ -481,13 +474,10 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
                   </div>
 
                   <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                    <LabelTitleComponent
-                      text={tManagePayments('bankAccountNumber')}
-                      required={true}
-                    />
+                    <LabelTitleComponent text={tManagePayments('bankAccountNumber')} required={true} />
                     <input
                       type="text"
-                      className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer ${fieldErrors.accountNumber ? 'border-[#FE0000]' : 'border-[var(--border-control)]'}`}
+                      className={`control-field ${fieldErrors.accountNumber ? 'error' : ''}`}
                       value={accountNumber}
                       onChange={onAccountNumberChange}
                       maxLength={100}
@@ -502,7 +492,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
                     <LabelTitleComponent text={tManagePayments('accountNickname')} />
                     <input
                       type="text"
-                      className={`h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px]  focus:outline-none focus:border-[var(--button-border)] cursor-pointer`}
+                      className={`control-field`}
                       value={accountNickname}
                       onChange={(e) => setAccountNickname(e.target.value)}
                       maxLength={255}
@@ -515,7 +505,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
 
                 <MediumTitleComponent text={tManagePayments('promptPay')} />
                 <p className="pb-[8px] ">{tManagePayments('linkMobile')}</p>
-                <div className="btn-group mb-[16px]" role="group">
+                <div className="mb-[16px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]" role="group">
                   <ButtonOnComponent isActive={promptPay} onClick={() => setPromptPay(true)} />
                   <ButtonOffComponent isActive={!promptPay} onClick={() => setPromptPay(false)} />
                 </div>
@@ -542,7 +532,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
             </form>
           )}
         </div>
-      </div>
+     
     </div>
   );
 };

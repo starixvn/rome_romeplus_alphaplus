@@ -18,9 +18,11 @@ public class AddTransactionDepositCriteria(
     string paymentTo,
     //decimal exchangeRate,
     decimal amount,
-    byte[] paySlip,
-    string ip,
-    string remark) : CriteriaBase
+    decimal? userInputAmount = null,
+    byte? matchingMode = null,
+    byte[] paySlip = null,
+    string ip = null,
+    string remark = null) : CriteriaBase
 {
     public int AgentId { get; } = agentId;
 
@@ -50,6 +52,10 @@ public class AddTransactionDepositCriteria(
 
     public decimal Amount { get; } = amount;
 
+    public decimal? UserInput_Amount { get; } = userInputAmount;
+
+    public byte? MachingMode { get; } = matchingMode;
+
     public byte[] PaySlip { get; } = paySlip;
 
     public string IP { get; } = ip;
@@ -59,6 +65,8 @@ public class AddTransactionDepositCriteria(
     public int ErrCode { get; set; }
 
     public string ErrMsg { get; set; }
+
+    public string ErrExtraInfo { get; set; }
 
     public long TransId { get; set; }
 

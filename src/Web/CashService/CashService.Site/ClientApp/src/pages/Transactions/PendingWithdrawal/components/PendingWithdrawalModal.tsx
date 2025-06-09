@@ -22,7 +22,7 @@ import {
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory.ts';
 import { approveWithdrawal, rejectWithdrawal } from '../../../../services/pendingWithdrawalAPI.ts';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI.ts';
-import { TransactionTypes } from '../../../../utils/constants.ts';
+import { TransactionTypes } from '../../../../constants/sharedConstants.ts';
 import UploadImage from '../../Components/UploadImage';
 
 interface PendingWithdrawalModalProps {
@@ -236,6 +236,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
               <textarea
                 value={withdrawal.remark}
                 onChange={(e) => setRemark(e.target.value)}
+                maxLength={1000}
                 placeholder={t('pendingWithdrawalModal.remarksPlaceholder')}
                 className="block h-[150px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] py-[10px] focus:outline-none focus:border-[var(--button-border)]"
                 disabled={isSubmitting}
@@ -248,7 +249,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
           </div>
         </div>
 
-        <div className="flex gap-[8px]">
+        <div className="flex justify-center gap-[8px]">
           <ButtonCancelComponent
             text={t('pendingWithdrawalModal.reject')}
             onClick={handleReject}

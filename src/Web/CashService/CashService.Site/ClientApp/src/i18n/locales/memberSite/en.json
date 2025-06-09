@@ -5,7 +5,8 @@
     "note": "If both links are blocked, request a new link.",
     "domain": "Domain",
     "downloadQRCode": "Download QR Code",
-    "requestNewLink": "Request New Link"
+    "requestNewLink": "Request New Link",
+    "noRegistrationLinks": "No registration links available"
   },
   "generalSettings": {
     "title": "General Settings",

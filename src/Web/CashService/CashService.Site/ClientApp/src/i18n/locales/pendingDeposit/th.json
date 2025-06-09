@@ -82,7 +82,8 @@
     "imageSizeError": "รูปภาพต้องมีขนาดน้อยกว่า 1 MB",
     "memberLoginNameRequired": "กรุณาเลือกชื่อเข้าสู่ระบบของสมาชิก",
     "agentBankSelectionRequired": "กรุณาเลือกธนาคารจากธนาคารสำหรับสมาชิก",
-    "memberBankSelectionRequired": "กรุณาเลือกธนาคารจากธนาคารสำหรับสมาชิก"
+    "memberBankSelectionRequired": "กรุณาเลือกธนาคารจากธนาคารสำหรับสมาชิก",
+    "invalidFileType": "รูปภาพต้องมีรูปแบบ jpeg, jpg, png"
   },
 
   "status": {

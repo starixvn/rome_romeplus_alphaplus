@@ -833,4 +833,7 @@
   <data name="RebateAndRetentionTour_Page1_Row5" xml:space="preserve">
     <value>输赢资料报告现在包括一个新的奖金栏目。</value>
   </data>
+  <data name="CashService" xml:space="preserve">
+    <value>Cash Service</value>
+  </data>
 </root>

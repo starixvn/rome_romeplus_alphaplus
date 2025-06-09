@@ -20,13 +20,18 @@ const DateRangeFilter: React.FC<DateRangeFilterProps> = ({ dateRange, onDateRang
       val[1] ? val[1].toLocaleString('en-US') : '',
     ]);
   };
-
+  const currentYear = new Date().getFullYear();
   return (
     <div className="form-group mb-[8px]">
       <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">
         {t('filter.dateRange')}
       </label>
-      <DateRangePickerComponent value={value} onChange={handleChange} />
+      <DateRangePickerComponent
+        value={value}
+        onChange={handleChange}
+        minYear={currentYear - 3}
+        maxRangeDays={92}
+      />
     </div>
   );
 };

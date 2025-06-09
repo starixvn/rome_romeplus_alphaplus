@@ -42,3 +42,10 @@ export interface PaymentInformation {
   paymentFrom: string;
   paymentTo: string;
 }
+
+export interface ExportExcelParams {
+  fromDate: string;
+  toDate: string;
+  transactionType: number;
+  status: number;
+}

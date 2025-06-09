@@ -12,6 +12,7 @@ import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import NoRecordFound from '../../../../components/Table/NoRecordFound';
 import { ButtonFullComponent } from '../../../../components/ButtonComponents';
 import Pagination from '../../Components/Pagination';
+import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
 
 interface DataGridProps {
   withdrawals: TransactionItem[];
@@ -23,7 +24,7 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(100);
+  const [pageSize, setPageSize] = useState(PAGE_SIZE_OPTIONS[2]);
   const [paginatedWithdrawals, setPaginatedWithdrawals] = useState<TransactionItem[]>([]);
   const totalItems = withdrawals.length;
 
@@ -66,7 +67,7 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
 
   return (
     <>
-      <div className="table-fixed-header table-fixed-body bg-[#ffffff] h-full">
+      <div className="table-fixed-header table-fixed-body bg-[#ffffff] min-h-0">
         <table className="max-[600px]:text-[17px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px] border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
           <thead className="z-11!">
             <tr>
@@ -98,7 +99,7 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
               paginatedWithdrawals.map((withdrawal, index) => (
                 <tr key={withdrawal.transId}>
                   <td className="w-[32px] min-w-[32px] sticky left-0 bg-[#ffffff] z-10">
-                    {index + 1}
+                    {index + 1 + (currentPage - 1) * pageSize}
                   </td>
                   <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[#ffffff] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
                     <div>{withdrawal.username}</div>
@@ -114,7 +115,6 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
                   <td>{withdrawal.transId}</td>
                   <td>{formatDateTime(withdrawal.createdTime)}</td>
                   <td>
-                
                     <ButtonFullComponent
                       text={t('dataGrid.process')}
                       disabled={isLoading}
@@ -137,13 +137,15 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
       )}
 
       {paginatedWithdrawals.length > 0 && (
-        <Pagination
-          currentPage={currentPage}
-          pageSize={pageSize}
-          totalItems={totalItems}
-          onPageChange={handlePageChange}
-          onPageSizeChange={handlePageSizeChange}
-        />
+        <div className="mt-0">
+          <Pagination
+            currentPage={currentPage}
+            pageSize={pageSize}
+            totalItems={totalItems}
+            onPageChange={handlePageChange}
+            onPageSizeChange={handlePageSizeChange}
+          />
+        </div>
       )}
     </>
   );

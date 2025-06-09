@@ -2,8 +2,8 @@ using AgencyCash.API.Payments.Models;
 using AgencyCash.API.Payments.Requests;
 using AgencyCash.API.Payments.Services;
 using AgencyCash.API.Shared.DataAnnotations;
-using AgencyCash.API.Shared.Helpers;
 using AgencyCash.API.Shared.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AgencyCash.API.Payments;
 
@@ -29,7 +29,11 @@ public static class PaymentsEndpoints
         withdrawal
             .MapPost("/manual", ManualWithdrawal)
             .AddEndpointFilter<ModelValidationFilter<ManualWithdrawalRequest>>()
-            .Produces<Result>();
+            .Produces<PaymentResult>();
+        withdrawal
+            .MapGet("/limit", GetWithdrawalLimitAmount)
+            .AddEndpointFilter<ModelValidationFilter<GetWithdrawalLimitRequest>>()
+            .Produces<WithdrawalLimitResult>();
 
         var transactions = app.MapGroup("/api/transactions").WithTags("Transactions");
         transactions
@@ -48,65 +52,51 @@ public static class PaymentsEndpoints
         return TypedResults.Ok(await depositService.GetLimit(request));
     }
 
-    private static async Task<IResult> ManualDeposit(ManualDepositRequest request, IDepositService depositService)
+    private static async Task<IResult> ManualDeposit([FromBody] ManualDepositRequest request, IDepositService depositService)
     {
         if (request == null)
         {
             return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
         }
 
-        if (!string.IsNullOrWhiteSpace(request.PaySlip))
+        var paySlipValidationResult = request.ValidatePaySlip();
+        if (paySlipValidationResult != null)
         {
-            if (!Base64StringHelper.TryConvertToByte(request.PaySlip, out var paySlipBuffer))
-            {
-                return BadRequest(nameof(request.PaySlip), $"{nameof(request.PaySlip)} is not a valid Base64 string.");
-            }
-
-            const int MaxPaySlipSize = 1024 * 1024;
-            if (paySlipBuffer.Length > MaxPaySlipSize)
-            {
-                return BadRequest(nameof(request.PaySlip), $"{nameof(request.PaySlip)} cannot exceed 1MB.");
-            }
-
-            request.PaySlipBuffer = paySlipBuffer;
+            return TypedResults.BadRequest(paySlipValidationResult);
         }
 
-        return TypedResults.Ok(await Task.FromResult(new PaymentResult(0, string.Empty, 123456789)));
-        //return TypedResults.Ok(await depositService.Manual(request));
+        return TypedResults.Ok(await depositService.Manual(request));
     }
 
-    private static async Task<IResult> AutoDeposit(AutoDepositRequest request, IDepositService depositService)
+    private static async Task<IResult> AutoDeposit([FromBody] AutoDepositRequest request, IDepositService depositService)
     {
         if (request == null)
         {
             return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
         }
 
-        return TypedResults.Ok(await Task.FromResult(new PaymentResult(0, string.Empty, 123456789)));
+        return TypedResults.Ok(await depositService.Auto(request));
     }
 
-    private static async Task<IResult> ManualWithdrawal(
-        ManualWithdrawalRequest request,
-        IWithdrawalService withdrawalService)
+    private static async Task<IResult> ManualWithdrawal([FromBody] ManualWithdrawalRequest request, IWithdrawalService withdrawalService)
     {
-        if (request is null || !request.IsValid())
+        if (request is null)
         {
-            return BadRequest(nameof(request), "Request parameters is invalid.");
+            return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
         }
 
-        // Convert to PaymentService.API request
-        var paymentServiceRequest = new ManualWithdrawalRequest
-        {
-            CustId = request.CustId,
-            AgentId = request.AgentId,
-            PaymentFrom = request.PaymentFrom,
-            PaymentTo = request.PaymentTo,
-            Amount = request.Amount,
-            IP = request.IP
-        };
-
-        var result = await withdrawalService.CreateManualWithdrawal(paymentServiceRequest);
+        var result = await withdrawalService.CreateManualWithdrawal(request);
         return TypedResults.Ok(result);
+    }
+
+    private static async Task<IResult> GetWithdrawalLimitAmount([AsParameters] GetWithdrawalLimitRequest request, IWithdrawalService withdrawalService)
+    {
+        if (request is null)
+        {
+            return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
+        }
+
+        return TypedResults.Ok(await withdrawalService.GetWithdrawalLimitAmount(request));
     }
 
     private static async Task<IResult> UpdateTransactionStatus(

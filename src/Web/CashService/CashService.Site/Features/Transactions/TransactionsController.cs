@@ -1,18 +1,24 @@
 namespace AlphaPlus.CashService.Site.Features.Transactions;
 
-using AlphaPlus.CashService.Site.Features.Shared.Filters;
+using AlphaPlus.CashService.Site.Features.Transactions.Services;
 using Core.Models;
 using Helpers;
+using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Newtonsoft.Json;
+using Shared;
+using Shared.Filters;
 using Shared.Models;
 
 [SiteAuthorizationFilter]
 public class TransactionsController(
     HttpClientHelper httpClientHelper,
     IUserSession userSession,
-    IHttpContextAccessor httpContextAccessor)
-    : Controller
+    IHttpContextAccessor httpContextAccessor,
+    IAntiforgery antiforgery,
+    ITransactionHistoryWorkbook transactionHistoryWorkbook)
+    : SiteBaseController(userSession, antiforgery)
 {
     private readonly int agentId = userSession.CustId;
     private readonly int custDbGroupId = userSession.CustDBGroupId;
@@ -29,11 +35,30 @@ public class TransactionsController(
 
     public async Task<IActionResult> GetHistory([FromQuery] GetTransactionFilter filter)
     {
-        var url = $"/transactions/history";
+        var url = "/transactions/history";
         filter.CustId = agentId;
         filter.SiteDbGroupId = siteDbGroupId;
         var result = await httpClientHelper.GetAsync<object>(url, ObjectConverter.ToDictionary(filter));
         return Json(result);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> ExportExcel([FromForm] ExportExcelParams param)
+    {
+        var filter = new GetTransactionFilter
+        {
+            FromDate = param.FromDate,
+            ToDate = param.ToDate,
+            PaymentStatus = param.Status,
+            TransactionType = param.TransactionType,
+            SiteDbGroupId = siteDbGroupId,
+            CustId = agentId,
+            Account = string.Empty
+        };
+        var response = await httpClientHelper.GetAsync<TransactionResponse>("/transactions/history", ObjectConverter.ToDictionary(filter));
+        Console.WriteLine(JsonConvert.SerializeObject(response.Items));
+        var excelFileViewModel = transactionHistoryWorkbook.BuildExcelFile(param, response.Items);
+        return File(excelFileViewModel.Content, excelFileViewModel.ContentType, excelFileViewModel.Name);
     }
 
     public async Task<IActionResult> Detail(long transactionId, int custId)

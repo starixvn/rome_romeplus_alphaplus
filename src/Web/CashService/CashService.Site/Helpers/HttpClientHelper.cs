@@ -13,7 +13,7 @@ public class HttpClientHelper
     public HttpClientHelper(HttpClient httpClient, IConfiguration configuration)
     {
         this.httpClient = httpClient;
-        this.httpClient.BaseAddress = new Uri(configuration.GetValue<string>("CashServiceAPIUrl"));
+        this.httpClient.BaseAddress = new Uri(configuration.GetValue<string>("CashService:APIUrl"));
         jsonOptions = new JsonSerializerOptions
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,

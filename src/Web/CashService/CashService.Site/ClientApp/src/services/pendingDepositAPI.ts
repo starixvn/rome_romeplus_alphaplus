@@ -57,7 +57,7 @@ export const pendingDepositAPI = {
       console.error('Error rejecting deposit:', error);
       return { code: 1, isSuccessful: false, message: 'Error rejecting deposit' };
     }
-  }
+  },
 };
 
 export default pendingDepositAPI;

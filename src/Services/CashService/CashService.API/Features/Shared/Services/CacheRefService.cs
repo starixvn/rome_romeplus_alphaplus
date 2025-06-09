@@ -11,7 +11,7 @@ public interface ICacheRefService
     string GetResourceDataByRefIdAndResourceId(string refId, int resourceId, string languageCode);
 }
 
-public class CacheRefService(IRemotingRefService remotingRefService) : ICacheRefService
+public class CacheRefService(IRemotingRefService remotingRefService, Fanex.Logging.ILogger logger) : ICacheRefService
 {
     public string GetProviderName(int providerId, string defaultName, string languageCode) {
         var result = GetResourceDataByRefIdAndResourceId("CashPaymentProvider", providerId, languageCode);
@@ -36,10 +36,17 @@ public class CacheRefService(IRemotingRefService remotingRefService) : ICacheRef
     public string GetResourceDataByRefIdAndResourceId(string refId, int resourceId, string languageCode)
         => GetResourceDataByRefIdAndResourceId(refId, resourceId.ToString(), languageCode);
 
-    private string GetResourceDataByRefIdAndResourceId(string refId, string resourceId, string languageCode)
-        => remotingRefService.GetResourceDataByRefIdAndResourceId(
-        refId,
-        resourceId,
-        languageCode,
-        string.Empty);
+    private string GetResourceDataByRefIdAndResourceId(string refId, string resourceId, string languageCode) {
+        try {
+            return remotingRefService.GetResourceDataByRefIdAndResourceId(
+                refId,
+                resourceId,
+                languageCode,
+                string.Empty);
+        }
+        catch (Exception e) {
+            logger.Error(e.Message, e);
+            return string.Empty;
+        }
+    }
 }

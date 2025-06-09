@@ -5,7 +5,8 @@
     "note": "如果两个链接都被封锁，请申请新链接。",
     "domain": "域名",
     "downloadQRCode": "下载二维码",
-    "requestNewLink": "申请新链接"
+    "requestNewLink": "申请新链接",
+    "noRegistrationLinks": "暂无注册链接"
   },
   "generalSettings": {
     "title": "常规设置",

@@ -69,7 +69,8 @@
       "viewFullSize": "查看全尺寸",
       "removeImage": "刪除圖片",
       "cancel": "取消",
-      "approve": "批准"
+      "approve": "批准",
+      "invalidFileType": "無效的文件類型。請上傳jpeg、jpg或png文件。"
     },
     
     "updateWithdrawal": {

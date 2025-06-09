@@ -9,7 +9,7 @@
     "last60Mins": "Last 60 Mins",
     "to": "To",
     "search": "Search",
-    "usernamePlaceholder": "Username/Reference No."
+    "usernamePlaceholder": "Username/Ref No"
   },
 
   "dataGrid": {
@@ -21,8 +21,8 @@
     "currency": "Currency",
     "from": "From",
     "to": "To",
-    "referenceNo": "Reference No.",
-    "dateAndTime": "Date & Time",
+    "referenceNo": "Ref No",
+    "dateAndTime": "Created Date",
     "actions": "Actions",
     "approve": "Approve",
     "reject": "Reject",
@@ -38,12 +38,12 @@
     "loginName": "Login Name",
     "firstName": "First Name",
     "lastName": "Last Name",
-    "name": "First/Last Name",
+    "name": "First &Last Name",
     "betCredit": "Bet Credit",
     "from": "From",
     "to": "To",
     "withdrawalAmount": "Withdrawal Amount",
-    "dateAndTime": "Date and Time",
+    "dateAndTime": "Created Date",
     "remarks": "Remarks",
     "remarksPlaceholder": "Add a remark here...",
     "approve": "Approve",
@@ -55,7 +55,7 @@
   "manualWithdrawalForm": {
     "title": "Add Manual Withdrawal",
     "accountInformation": "Account Information",
-    "memberLoginName": "Member Login Name",
+    "memberLoginName": "Member Username",
     "from": "From",
     "to": "To",
     "selectMember": "Select Member",
@@ -81,7 +81,8 @@
     "addWithdrawalSuccess": "Add withdrawal successfully!!!",
     "memberCashBalance": "Member Cash Balance",
     "minAmount": "Min",
-    "maxAmount": "Max"
+    "maxAmount": "Max",
+    "invalidFileType": "Invalid file type. Please upload a jpeg, jpg, or png file."
   },
 
   "updateWithdrawal": {

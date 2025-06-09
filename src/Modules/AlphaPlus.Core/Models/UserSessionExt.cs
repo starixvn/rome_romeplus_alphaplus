@@ -375,4 +375,10 @@ public class UserSessionExt : IUserSession
     public T GetProperty<T>(string propertyName, T defaultValue = default) => UserSession.Current.GetProperty(propertyName, defaultValue);
 
     public bool HasProperty(string propertyName) => UserSession.Current.HasProperty(propertyName);
+
+    public bool? IsCashServiceEnabled
+    {
+        get => UserSession.Current.IsCashServiceEnabled;
+        set => UserSession.Current.IsCashServiceEnabled = value;
+    }
 }

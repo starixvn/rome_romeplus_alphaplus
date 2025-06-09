@@ -22,7 +22,7 @@
     </environment>
 </head>
 
-<body>
+<body data-theme="@(string.IsNullOrWhiteSpace(UserSession.DarkModeName) ? "light" : "dark")">
     <span id="user-currency" hidden="">@UserSession.Currency</span>
 
     @RenderBody()

@@ -1,7 +1,7 @@
 using AgencyCash.API.Payments.Criteria;
+using AgencyCash.API.Payments.Criteria.Withdrawal;
 using AgencyCash.API.Payments.Models;
 using AgencyCash.API.Shared;
-using AgencyCash.API.Shared.Models;
 using AgencyCash.API.Shared.Helpers;
 using Fanex.Data.Repository;
 
@@ -12,34 +12,41 @@ public abstract class PaymentService(
     ISiteDBService siteDBService,
     Fanex.Logging.ILogger logger)
 {
-    protected const byte Deposit = 1;
-    protected const byte Withdrawal = 2;
-
     protected readonly IDynamicRepository repository = repository;
     protected readonly ISiteDBService siteDBService = siteDBService;
     protected readonly Fanex.Logging.ILogger logger = logger;
 
-    // public async Task<bool> IsEnableCashService(int agentId, short custDBGroupId)
-    // {
-    //     var criteria = new GetAgentServiceTypeCriteria(agentId, custDBGroupId);
-    //     await repository.ExecuteAsync(criteria);
-
-    //     return criteria.ServiceType == CashServiceType;
-    // }
-
-    public async Task<Result> ValidatePayment(int agentId, int custId, byte transType, short custDBGroupId)
+    public async Task<PaymentResult> ValidatePayment(ValidatePaymentCriteria criteria)
     {
-        var criteria = new ValidatePaymentCriteria(agentId, custId, transType, custDBGroupId);
         await repository.ExecuteAsync(criteria);
 
-        return new Result(criteria.ErrCode, criteria.ErrMsg);
+        if (!string.IsNullOrWhiteSpace(criteria.ErrExtraInfo))
+        {
+            await logger.ErrorAsync($"ValidatePayment failed for AgentId: {criteria.AgentId}, CustId: {criteria.CustId}, ErrCode: {criteria.ErrCode}, ErrMsg: {criteria.ErrMsg}, ExtraInfo: {criteria.ErrExtraInfo}, Criteria: {JsonHelper.ToJson(criteria)}");
+        }
+
+        return new PaymentResult(criteria.ErrCode, criteria.ErrMsg);
     }
 
-    public async Task WriteLogs(IEnumerable<LogEntry> logs, short custDBGroupId)
+    public async Task WriteLogsRunSP(IEnumerable<LogEntry> logs, short custDBGroupId)
     {
-        foreach (var item in logs)
+        if (logs != null)
         {
-            await WriteLogRunSP(item, custDBGroupId);
+            foreach (var item in logs)
+            {
+                await WriteLogRunSP(item, custDBGroupId);
+            }
+        }
+    }
+
+    public async Task WriteLogsTransfer(IEnumerable<LogEntry> logs, short siteDBGroupId)
+    {
+        if (logs != null)
+        {
+            foreach (var item in logs)
+            {
+                await WriteLogTransfer(item, siteDBGroupId);
+            }
         }
     }
 
@@ -63,6 +70,24 @@ public abstract class PaymentService(
         }
     }
 
+    public async Task WriteLogTransfer(LogEntry log, short siteDBGroupId)
+    {
+        var criteria = new WriteLogTransferCriteria(
+            log.UserId,
+            log.FromCustId,
+            log.ToCustId,
+            log.IP,
+            log.Doing);
+        var functionName = nameof(WriteLogTransfer);
+        var isSuccess = await WriteLog(criteria, functionName);
+
+        if (!isSuccess)
+        {
+            criteria.SiteDBGroupId = siteDBGroupId;
+            await WriteLog(criteria, functionName);
+        }
+    }
+
     private async Task<bool> WriteLog(INonQueryCommand criteria, string functionName)
     {
         try
@@ -72,7 +97,7 @@ public abstract class PaymentService(
         }
         catch (Exception ex)
         {
-            await logger.ErrorAsync($"{ex.Message}. {functionName} failed. Criteria {JsonHelper.ToJson(criteria)}", ex);
+            await logger.ErrorAsync($"{ex.Message}. {functionName} failed. Criteria: {JsonHelper.ToJson(criteria)}", ex);
             return false;
         }
     }

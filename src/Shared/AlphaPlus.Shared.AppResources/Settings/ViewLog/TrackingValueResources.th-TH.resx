@@ -1218,6 +1218,9 @@
   <data name="disableoutright" xml:space="preserve">
     <value>ปิดการใช้งานเอาท์ไรท์</value>
   </data>
+  <data name="DisableCasino" xml:space="preserve">
+    <value>ปิดการใช้งาน คาซิโน</value>
+  </data>
   <data name="minV99PT_1" xml:space="preserve">
     <value>แต้มต่อ ต่ำสุด </value>
   </data>
@@ -2409,9 +2412,6 @@
   <data name="AgentPT" xml:space="preserve">
     <value>แบ่งสู้ของเอเย่น</value>
   </data>
-  <data name="DisableOpenTote" xml:space="preserve">
-    <value>ปิดการใช้งาน การทายผล การแข่งขันม้าของสนาม UK/Irish โต๊ด</value>
-  </data>
   <data name="login_message_log" xml:space="preserve">
     <value>The member Login Log is not available.</value>
   </data>
@@ -2727,9 +2727,6 @@
   <data name="maxv99pt_9" xml:space="preserve">
     <value>สูงสุด บอลชุด</value>
   </data>
-  <data name="DisableCasino" xml:space="preserve">
-    <value>ปิดการใช้งาน คาซิโน</value>
-  </data>
   <data name="showOldValue" xml:space="preserve">
     <value>แสดงค่าเก่า</value>
   </data>
@@ -2994,6 +2991,9 @@
   <data name="isdisabled" xml:space="preserve">
     <value>ปิดการใช้งานแล้ว</value>
   </data>
+  <data name="isdisableddownline" xml:space="preserve">
+    <value>ปิดการใช้งานดาวน์ไลน์แล้ว</value>
+  </data>
   <data name="IsLive" xml:space="preserve">
     <value>Is Live</value>
   </data>
@@ -3012,11 +3012,11 @@
   <data name="isa_v5spt_20" xml:space="preserve">
     <value>การทายผู้เล่นหรือทีมที่จะชนะ</value>
   </data>
+  <data name="AllbetNormalGames" xml:space="preserve">
+    <value>บาคาร่า, รูเล็ต, Sicbo, มังกรเสือ, Win 3 Cards, Bull Bull</value>
+  </data>
   <data name="MaxPerNumber" xml:space="preserve">
     <value>ค่าเดิมพันสูงสุดต่อหมายเลข</value>
-  </data>
-  <data name="isdisableddownline" xml:space="preserve">
-    <value>ปิดการใช้งานดาวน์ไลน์แล้ว</value>
   </data>
   <data name="checkedotp" xml:space="preserve">
     <value>Checked OTP</value>
@@ -3081,17 +3081,17 @@
   <data name="zh-CN" xml:space="preserve">
     <value>จีนตัวย่อ</value>
   </data>
-  <data name="th-TH" xml:space="preserve">
-    <value>ไทย</value>
-  </data>
-  <data name="vi-VN" xml:space="preserve">
-    <value>เวียตนาม</value>
-  </data>
   <data name="ja-JP" xml:space="preserve">
     <value>ประเทศญี่ปุ่น</value>
   </data>
+  <data name="th-TH" xml:space="preserve">
+    <value>ไทย</value>
+  </data>
   <data name="ko-KR" xml:space="preserve">
     <value>เกาหลี</value>
+  </data>
+  <data name="vi-VN" xml:space="preserve">
+    <value>เวียตนาม</value>
   </data>
   <data name="period" xml:space="preserve">
     <value>ระยะเวลา</value>
@@ -3132,23 +3132,20 @@
   <data name="CopyCustomer" xml:space="preserve">
     <value>สร้างสมาชิกใหม่จากบัญชีที่มีอยู่</value>
   </data>
-  <data name="MPMv164" xml:space="preserve">
-    <value>Happy 5-ค่าเดิมพันสูงสุดต่อคู่การแข่งขัน</value>
+  <data name="MinBv164" xml:space="preserve">
+    <value>Happy 5-ค่าเดิมพันต้ำสุด</value>
   </data>
   <data name="MaxBv164" xml:space="preserve">
     <value>Happy 5-ค่าเดิมพันสูงสุด</value>
   </data>
-  <data name="MinBv164" xml:space="preserve">
-    <value>Happy 5-ค่าเดิมพันต้ำสุด</value>
-  </data>
-  <data name="AllbetNormalGames" xml:space="preserve">
-    <value>บาคาร่า, รูเล็ต, Sicbo, มังกรเสือ, Win 3 Cards, Bull Bull</value>
+  <data name="MPMv164" xml:space="preserve">
+    <value>Happy 5-ค่าเดิมพันสูงสุดต่อคู่การแข่งขัน</value>
   </data>
   <data name="IsAllAffectedDownlines" xml:space="preserve">
     <value>เลือกดูทั้งดาวน์ไลน์</value>
   </data>
   <data name="Account" xml:space="preserve">
-    <value>บัญชี</value>
+    <value>หมายเลขบัญชี</value>
   </data>
   <data name="DownlineSubAcc" xml:space="preserve">
     <value>บัญชีย่อยดาวน์ไลน์</value>
@@ -3321,17 +3318,14 @@
   <data name="AutoTransfer" xml:space="preserve">
     <value>โอนอัตโนมัติ</value>
   </data>
-  <data name="MasterPT" xml:space="preserve">
-    <value>ค่าคอมมาสเตอร์</value>
+  <data name="TemplateName" xml:space="preserve">
+    <value>ชื่อเทมเพลต</value>
   </data>
   <data name="SuperPT" xml:space="preserve">
     <value>ค่าคอมซุปเปอร์</value>
   </data>
-  <data name="lblAgentPT" xml:space="preserve">
-    <value>ค่าคอมเอเย่นต์</value>
-  </data>
-  <data name="IsAuto" xml:space="preserve">
-    <value>คืออัตโนมัติ</value>
+  <data name="SelectedByDefault" xml:space="preserve">
+    <value>เลือกเป็นค่าเริ่มต้น</value>
   </data>
   <data name="Commision" xml:space="preserve">
     <value>คอมมิชชั่น</value>
@@ -3339,23 +3333,14 @@
   <data name="BetSetting" xml:space="preserve">
     <value>การกำหนดการวางเดิมพัน</value>
   </data>
-  <data name="ParlayMaxPayout" xml:space="preserve">
-    <value>การจ่ายเงินสูงสุดของพาร์เลย์</value>
-  </data>
-  <data name="AllowAutoPT" xml:space="preserve">
-    <value>อนุญาตให้ใช้ค่าความเสี่ยงอัตโนมัติ</value>
-  </data>
   <data name="MaxPayoutPerMatch" xml:space="preserve">
     <value>การจ่ายเงินสูงสุดต่อคู่การแข่งขัน</value>
   </data>
-  <data name="PositionTaking" xml:space="preserve">
-    <value>ค่าความเสี่ยง</value>
+  <data name="ParlayMaxPayout" xml:space="preserve">
+    <value>การจ่ายเงินสูงสุดของพาร์เลย์</value>
   </data>
-  <data name="CommForAgent" xml:space="preserve">
-    <value>ค่าคอมมิชชั่น จาก ตัวแทน</value>
-  </data>
-  <data name="CommForMember" xml:space="preserve">
-    <value>ค่าคอมมิชชั่นสำหรับสมาชิก</value>
+  <data name="SingleMatchParlay" xml:space="preserve">
+    <value>พาร์เลย์การแข่งขันนัดเดียว</value>
   </data>
   <data name="Combo2" xml:space="preserve">
     <value>คอมโบ 2</value>
@@ -3366,8 +3351,29 @@
   <data name="ComboOver6" xml:space="preserve">
     <value>คอมโบ 6+ และ ระบบพาร์เลย์</value>
   </data>
-  <data name="SingleMatchParlay" xml:space="preserve">
-    <value>พาร์เลย์การแข่งขันนัดเดียว</value>
+  <data name="IsAuto" xml:space="preserve">
+    <value>คืออัตโนมัติ</value>
+  </data>
+  <data name="AllowAutoPT" xml:space="preserve">
+    <value>อนุญาตให้ใช้ค่าความเสี่ยงอัตโนมัติ</value>
+  </data>
+  <data name="PositionTakingTemplate" xml:space="preserve">
+    <value>เทมเพลตค่าแบ่งสู้</value>
+  </data>
+  <data name="MasterPT" xml:space="preserve">
+    <value>ค่าคอมมาสเตอร์</value>
+  </data>
+  <data name="lblAgentPT" xml:space="preserve">
+    <value>ค่าคอมเอเย่นต์</value>
+  </data>
+  <data name="PositionTaking" xml:space="preserve">
+    <value>ค่าความเสี่ยง</value>
+  </data>
+  <data name="CommForAgent" xml:space="preserve">
+    <value>ค่าคอมมิชชั่น จาก ตัวแทน</value>
+  </data>
+  <data name="CommForMember" xml:space="preserve">
+    <value>ค่าคอมมิชชั่นสำหรับสมาชิก</value>
   </data>
   <data name="WinLossLimit" xml:space="preserve">
     <value>วงเงินแพ้ชนะ</value>
@@ -3377,15 +3383,6 @@
   </data>
   <data name="BetLimit" xml:space="preserve">
     <value>วงเงินเดิมพัน</value>
-  </data>
-  <data name="SelectedByDefault" xml:space="preserve">
-    <value>เลือกเป็นค่าเริ่มต้น</value>
-  </data>
-  <data name="PositionTakingTemplate" xml:space="preserve">
-    <value>เทมเพลตค่าแบ่งสู้</value>
-  </data>
-  <data name="TemplateName" xml:space="preserve">
-    <value>ชื่อเทมเพลต</value>
   </data>
   <data name="ParlayMaxPayoutPerBet" xml:space="preserve">
     <value>การจ่ายเงินสูงสุดต่อเดิมพันชุด</value>
@@ -3428,5 +3425,14 @@
   </data>
   <data name="CommForMaster" xml:space="preserve">
     <value>ค่าคอมมิชชั่น จากตัวแทนหลัก</value>
+  </data>
+  <data name="DisableOpenTote" xml:space="preserve">
+    <value>ปิดการใช้งาน การทายผล การแข่งขันม้าของสนาม UK/Irish โต๊ด</value>
+  </data>
+  <data name="accnumber" xml:space="preserve">
+    <value>ชื่อบัญชี</value>
+  </data>
+  <data name="bank" xml:space="preserve">
+    <value>ธนาคาร</value>
   </data>
 </root>

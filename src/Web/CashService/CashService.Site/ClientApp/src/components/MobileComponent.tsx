@@ -32,10 +32,10 @@ const MobileComponent: React.FC<MobileComponentProps> = ({
     isShow && (
       <div className="mb-[8px]">
         <LabelTitleComponent text={label} required={true} />
-        <div className="flex items-center h-[32px] max-[768px]:h-[40px] w-[470px] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer before:content-['+']">
+        <div className="flex items-center h-[32px] max-[768px]:h-[40px] w-[470px] border-[1px] border-[var(--border-control)] rounded-[3px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer before:content-['+'] bg-[var(--background-control)]">
           <input
             type="text"
-            className={`focus:outline-none h-[100%] cursor-pointer mr-[5px] w-[30px] text-[#333] placeholder:text-[#333]  ${fieldErrors.countryCode ? 'border-[#FE0000]' : ''}`}
+            className={`focus:outline-none h-[100%] cursor-pointer mr-[5px] w-[30px]  ${fieldErrors.countryCode ? 'border-[var(--border-control-error)]' : ''}`}
             value={countryCode}
             onChange={(e) => onCountryCodeChange(ensureIntegerInput(e))}
             maxLength={3}
@@ -44,7 +44,7 @@ const MobileComponent: React.FC<MobileComponentProps> = ({
           />
           <input
             type="text"
-            className={`focus:outline-none w-[100%] h-[100%] pl-[10px] border-l-[1px] ${fieldErrors.mobile ? 'border-[#FE0000]' : 'border-[#0000003D]'}`}
+            className={`focus:outline-none w-[100%] h-[100%] pl-[10px] border-l-[1px] ${fieldErrors.mobile ? 'border-[var(--border-control-error)]' : 'border-[var(--border-control)]'}`}
             value={mobile}
             onChange={(e) => onMobileChange(ensureIntegerInput(e))}
             placeholder={placeholder}

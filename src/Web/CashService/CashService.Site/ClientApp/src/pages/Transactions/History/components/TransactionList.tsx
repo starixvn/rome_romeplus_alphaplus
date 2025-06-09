@@ -4,11 +4,11 @@ import {
   TransactionItem,
   TransactionsHistoryResponse,
   TransactionsHistoryParams,
+  ExportExcelParams,
 } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import Filters from './Filters/Filters';
 import Search from './Search';
 import DataGrid from './DataGrid';
-import { useTranslation } from 'react-i18next';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
 import { convertToGMT4, TransactionType } from '../../../../common/commonFunctions';
 import Pagination from '../../Components/Pagination';
@@ -18,7 +18,6 @@ interface TransactionListProps {
 }
 
 const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) => {
-  const { t } = useTranslation('transactionHistory');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [apiData, setApiData] = useState<TransactionsHistoryResponse>({
@@ -40,31 +39,32 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
       status: -1,
       account: '',
       pageIndex: 1,
-      pageSize: PAGE_SIZE_OPTIONS[0],
+      pageSize: PAGE_SIZE_OPTIONS[2],
       transactionType: transactionType,
     };
   });
 
   const [columnFilter, setColumnFilter] = useState<string[]>([
-    t('table.name'),
-    t('table.amount'),
-    t('table.currency'),
-    t('table.from'),
-    t('table.to'),
-    t('table.status'),
-    t('table.type'),
-    t('table.referenceNo'),
-    t('table.dateAndTime'),
+    'name',
+    'amount',
+    'from',
+    'to',
+    'status',
+    'type',
+    'referenceNo',
+    'dateAndTime',
   ]);
   const [localSearchText, setLocalSearchText] = useState('');
   const [displayedItems, setDisplayedItems] = useState<TransactionItem[]>([]);
   const [paymentInformations, setPaymentInformations] = useState<string[]>([]);
+  const [tempTotalCount, setTempTotalCount] = useState(0);
 
   const fetchTransactions = async (params: TransactionsHistoryParams) => {
     try {
       setLoading(true);
       const response = await transactionAPI.getTransactions(params);
       setApiData(response);
+      setTempTotalCount(response.totalCount);
 
       const uniquePayment = new Set();
       const paymentInfo = response.items
@@ -85,6 +85,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           params.transactionType === TransactionType.Deposit ? item.paymentTo : item.paymentFrom
         );
       setPaymentInformations(paymentInfo);
+      setApiParams((prev) => ({ ...prev, account: '' }));
 
       setError(null);
     } catch (err) {
@@ -131,6 +132,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     const endIndex = startIndex + apiParams.pageSize;
     if (!apiParams.account) {
       setDisplayedItems(apiData.items.slice(startIndex, endIndex));
+      setTempTotalCount(apiData.totalCount);
     } else {
       const filtered = apiData.items.filter(
         (item) =>
@@ -138,8 +140,9 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           apiParams.account
       );
       setDisplayedItems(filtered.slice(startIndex, endIndex));
+      setTempTotalCount(filtered.length);
     }
-  }, [apiParams.account]);
+  }, [apiParams.account, apiParams.pageIndex, apiParams.pageSize]);
 
   const handleDateRangeChange = (dates: [string, string]) => {
     setApiParams((prev) => ({ ...prev, dateRange: dates, pageIndex: 1 }));
@@ -169,6 +172,15 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     setApiParams((prev) => ({ ...prev, pageSize: newSize, pageIndex: 1 }));
   };
 
+  const onDownload = () => {
+    const paramsForDownload: ExportExcelParams = {
+      fromDate: apiParams.dateRange[0],
+      toDate: apiParams.dateRange[1],
+      status: apiParams.status,
+      transactionType: transactionType,
+    };
+    transactionAPI.exportExcel(paramsForDownload);
+  };
   const onRefreshNeeded = () => {
     const paramsForRefresh: TransactionsHistoryParams = {
       ...apiParams,
@@ -210,6 +222,9 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           value={localSearchText}
           onChange={handleLocalSearchChange}
           placeholder="Username/Reference No."
+          items={displayedItems}
+          columnFilter={columnFilter}
+          onDownload={onDownload}
         />
       </div>
 
@@ -223,13 +238,15 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         onRefreshNeeded={onRefreshNeeded}
       />
       {!loading && (
-        <Pagination
-          currentPage={apiParams.pageIndex}
-          totalItems={apiData.totalCount}
-          pageSize={apiParams.pageSize}
-          onPageChange={handlePageChange}
-          onPageSizeChange={handlePageSizeChange}
-        />
+        <div className="mt-0">
+          <Pagination
+            currentPage={apiParams.pageIndex}
+            totalItems={tempTotalCount}
+            pageSize={apiParams.pageSize}
+            onPageChange={handlePageChange}
+            onPageSizeChange={handlePageSizeChange}
+          />
+        </div>
       )}
     </div>
   );

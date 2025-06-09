@@ -69,7 +69,8 @@
       "viewFullSize": "Xem kích thước đầy đủ",
       "removeImage": "Xóa hình ảnh",
       "cancel": "Hủy",
-      "approve": "Phê duyệt"
+      "approve": "Phê duyệt",
+      "invalidFileType": "Định dạng tệp không hợp lệ. Vui lòng tải lên tệp jpeg, jpg, hoặc png."
     },
     
     "updateWithdrawal": {

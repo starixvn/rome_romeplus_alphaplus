@@ -849,4 +849,10 @@ Lưu ý: Vui lòng thay đổi &lt;b&gt;mật khẩu&lt;/b&gt; Nova Casino Back 
   <data name="RebateAndRetentionTour_Page1_Row5" xml:space="preserve">
     <value>Báo cáo Chi tiết Thắng Thua hiện tại sẽ thêm một cột Tiền thưởng mới.</value>
   </data>
+  <data name="TotalCashMember" xml:space="preserve">
+    <value>Total Cash Member</value>
+  </data>
+  <data name="CashService" xml:space="preserve">
+    <value>Cash Service</value>
+  </data>
 </root>

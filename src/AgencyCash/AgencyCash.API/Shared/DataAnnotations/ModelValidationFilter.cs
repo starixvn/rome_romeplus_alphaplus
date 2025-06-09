@@ -1,8 +1,10 @@
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using AgencyCash.API.Shared.Models;
 
 namespace AgencyCash.API.Shared.DataAnnotations;
 
+[ExcludeFromCodeCoverage]
 public class ModelValidationFilter<T> : IEndpointFilter where T : class
 {
     public async ValueTask<object> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)

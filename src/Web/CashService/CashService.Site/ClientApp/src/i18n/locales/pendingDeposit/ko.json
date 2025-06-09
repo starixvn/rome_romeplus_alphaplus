@@ -82,7 +82,8 @@
     "imageSizeError": "이미지는 1MB 이하여야 합니다",
     "memberLoginNameRequired": "회원 로그인 이름을 선택해주세요",
     "agentBankSelectionRequired": "PaymentFrom을 선택해주세요",
-    "memberBankSelectionRequired": "PaymentTo을 선택해주세요"
+    "memberBankSelectionRequired": "PaymentTo을 선택해주세요",
+    "invalidFileType": "유효하지 않은 파일 형식입니다. jpeg, jpg, png 파일을 업로드해주세요."
   },
 
   "status": {
