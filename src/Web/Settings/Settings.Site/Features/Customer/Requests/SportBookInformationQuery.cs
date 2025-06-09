@@ -2,6 +2,7 @@ using System.Text.Json;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Settings.Site.Features.Shared;
 using AlphaPlus.Core.Configurations;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.Customer.Requests
 {
@@ -34,7 +35,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer.Requests
                 WinLossLimitTab
             };
 
-            if (AppSettings.IsSupportPotentialWinLimit(Site))
+            if (ViewerLevel.IsAgentLevel() && AppSettings.IsSupportPotentialWinLimit(Site))
             {
                 tabs.Add(PotentialWinLimitTab);
             }
