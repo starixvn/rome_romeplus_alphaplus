@@ -32,6 +32,7 @@
 @section Scripts {
 	<script type="text/javascript">
 		var winlossDetailFromData = {
+			userSelectedProductIds: '@Model.UserSelectedProductIds',
 			custId: @Model.CustId,
 			custName: '@Model.CustName',
 			custLevelId: @Model.CustLevelId,
@@ -41,7 +42,9 @@
 			toDate: '@Model.DateRangePicker.ToDate',
 			levelType: @Model.LevelType,
 			username: '@Model.Username',
-			visibleColumns = '@Model.VisibleColumns'
+			visibleColumns: '@Model.VisibleColumns',
+			userSelectedResourceIds: '@Model.UserSelectedResourceIds'
+
 		}
 	</script>
 	@StaticResources.AssetScripts.RenderCommon("/bundles/site-reports/winlossdetail")

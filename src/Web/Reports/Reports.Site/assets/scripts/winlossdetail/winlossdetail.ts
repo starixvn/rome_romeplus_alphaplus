@@ -165,7 +165,11 @@ class WinLossDetailView extends BaseReportNew {
             .click((e) => {
                 $.blockUI();
                 const $this = $(e.target);
-                $this.attr('href', `${$('#hidden-cashFeeUrl').val()}?${$.param(this.globalFormData)}`);
+                const visibleColumns = this.winLossDetailColumns.getShowColumns().join(',');
+                let cashFeeParams = $.extend({}, this.globalFormData, {
+                    visibleColumns
+                });
+                $this.attr('href', `${$('#hidden-cashFeeUrl').val()}?${$.param(cashFeeParams)}`);
             });
     }
 
@@ -285,6 +289,8 @@ class WinLossDetailView extends BaseReportNew {
         this.tableSorter(this.$tblReport, undefined, () => {
             const dormantAccountsRow = this.$tblReport.find('.dormant-accounts-mark');
             dormantAccountsRow.length && this.$tblReport.append(dormantAccountsRow);
+            const cashFeeRow = this.$tblReport.find('.cash-fee-row');
+            cashFeeRow.length && this.$tblReport.append(cashFeeRow);
         });
     }
 

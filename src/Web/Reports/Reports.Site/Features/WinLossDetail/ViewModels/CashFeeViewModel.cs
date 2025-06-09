@@ -40,4 +40,8 @@ public class CashFeeViewModel(CashFeeQuery message, CashFeeModel cashFeeModel, I
     public string Username { get; } = message.Username;
 
     public string VisibleColumns { get; } = message.VisibleColumns;
+
+    public string UserSelectedProductIds { get; } = message.UserSelectedProductIds;
+
+    public string UserSelectedResourceIds { get; } = message.UserSelectedResourceIds;
 }

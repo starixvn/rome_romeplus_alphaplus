@@ -47,6 +47,27 @@
             <td data-colname="reward">@data.RewardAmount.FormatNumber()</td>
         </tr>
     }
+
+    void RenderCashFeeRow(WinLossDetailModel data)
+    {
+        <tr class="cash-fee-row">
+            <td class="text-left">
+                <a href="javascript:;" class="cash-fee-link" data-custid="@data.CustId" data-custname="@data.CustName">@data.CustName</a>
+            </td>
+            <td data-colname="betcount">@data.NumberOfTickets.FormatNumber()</td>
+            <td data-colname="turnover">@data.Turnover.FormatNumber()</td>
+            <td data-colname="netturnover">@data.NetTurnover.FormatNumber()</td>
+            <td data-colname="grosscomm">@data.GrossComm.FormatNumber()</td>
+            <td data-colname="pwinloss">@data.MemberWinLoss.FormatNumber()</td>
+            <td data-colname="pcomm">@data.MemberComm.FormatNumber()</td>
+            <td data-colname="ptotal" class="bold">@data.MemberTotal.FormatNumber()</td>
+            <td data-colname="awinloss">@data.AgWinLoss.FormatNumber()</td>
+            <td data-colname="acomm">@data.AgComm.FormatNumber()</td>
+            <td data-colname="atotal" class="bold">@data.AgTotal.FormatNumber()</td>
+            <td data-colname="company">@data.Company.FormatNumber()</td>
+            <td data-colname="reward">@data.RewardAmount.FormatNumber()</td>
+        </tr>
+    }
     void RenderUsernameColumn(WinLossDetailModel data, bool isTotalRow, bool isDormantAccounts)
     {
         if (isTotalRow)
@@ -61,22 +82,18 @@
                 {
                     <span class="pull-left">@Resources.DormantAccounts</span>
                     <span class="icon icon-information-outline icon-dormant-accounts" data-toggle="tooltip" data-placement="right"
-                        title="@Resources.SummaryOfDormantAccounts"></span>
+                    title="@Resources.SummaryOfDormantAccounts"></span>
                 }
                 else if (Model.CanDrilldown)
                 {
-                    if (isAgentLevel && data.CustName.Equals("CASH SERVICE BILLING", StringComparison.OrdinalIgnoreCase))
-                    {
-                        <a href="javascript:;" class="cash-fee-link" data-custid="@data.CustId" data-custname="@data.CustName">@data.CustName</a>
-                    }
-                    else if ((isAgentLevel || data.IsDirectMember) && data.NumberOfTickets == 0)
+                    if ((isAgentLevel || data.IsDirectMember) && data.NumberOfTickets == 0)
                     {
                         @:@data.CustName
                     }
                     else
                     {
                         <a href="javascript:;" class="downline-link" data-custid="@data.CustId" data-custname="@data.CustName"
-                            data-custlevelid="@(data.IsDirectMember ? UserLevel.Member.Value : Model.DownlineLevelId)">@data.CustName</a>
+                        data-custlevelid="@(data.IsDirectMember ? UserLevel.Member.Value : Model.DownlineLevelId)">@data.CustName</a>
                     }
                 }
                 else
@@ -88,12 +105,12 @@
                     if (data.IsExistedWatchlist)
                     {
                         <span class="icon-mywatchlist" data-toggle="tooltip" data-placement="right"
-                            title="@Resources.MonitoredMember"></span>
+                        title="@Resources.MonitoredMember"></span>
                     }
                     else if (Model.CanUpdateAccount)
                     {
                         <span class="icon-plus-box" data-toggle="tooltip" data-placement="right" title="@Resources.AddToMyWatchlist"
-                            data-custname="@data.CustName"></span>
+                        data-custname="@data.CustName"></span>
                     }
                 }
             </td>
@@ -121,7 +138,7 @@
                 {
                     index++;
                     <li><a href="javascript:;" class="upline-link" data-custid="@item.CustId" data-custname="@item.CustName"
-                            data-custlevelid="@item.CustLevelId">@item.CustName</a></li>
+                        data-custlevelid="@item.CustLevelId">@item.CustName</a></li>
                 }
             }
         </ul>
@@ -129,25 +146,25 @@
     <div class="list-icon">
         <ul>
             <li><span id="icon-copy" class="ic-copy" data-toggle="tooltip" data-placement="top"
-                    title="@Resources.Copy"></span></li>
+                title="@Resources.Copy"></span></li>
             <li>
                 <a id="icon-excel" class="ic-excel" data-toggle="tooltip" data-placement="top"
-                    title="@Resources.ExportToExcel" asp-action="Excel"></a>
+                title="@Resources.ExportToExcel" asp-action="Excel"></a>
             </li>
         </ul>
     </div>
 </div>
 <div class="wrapper-table-scrollable">
     <table class="tb tb-bordered w-full tablesorter tb-hover tb-freeze-body tb-freeze-header"
-        data-cansort="@Model.ReportData.MoreThanOne" id="tbl-report">
+    data-cansort="@Model.ReportData.MoreThanOne" id="tbl-report">
         <thead>
             <tr>
                 <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="username"
-                    data-sorttype="text">
+                data-sorttype="text">
                     @Resources.Username
                 </th>
                 <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="fullname"
-                    data-sorttype="text">
+                data-sorttype="text">
                     @Resources.FirstLastName</th>
                 <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="betcount">
                     @Resources.BetCount
@@ -200,7 +217,13 @@
             <tbody>
                 @foreach (var data in Model.ReportData.DataSource)
                 {
-                    RenderRow(data);
+                    if (isAgentLevel && data.CustName.Equals("CASH SERVICE BILLING", StringComparison.OrdinalIgnoreCase))
+                    {
+                        RenderCashFeeRow(data);
+                    }
+                    else {
+                        RenderRow(data);
+                    }
                 }
             </tbody>
             <tfoot>
