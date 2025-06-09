@@ -56,7 +56,11 @@
     "loading": "Loading transaction details...",
     "noDetails": "No transaction details available.",
     "error": "Failed to load transaction details.",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "confirmRevert": "Revert Transaction",
+    "confirmRevertMessage": "Are you sure you want to revert transaction #{{transactionId}} to pending status?",
+    "revertSuccess": "Transaction has been reverted successfully",
+    "revertError": "Failed to revert transaction"
   },
 
   "status": {

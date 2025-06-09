@@ -58,7 +58,12 @@
     "revertToPending": "Hoàn trả về chờ xử lý",
     "loading": "Đang tải chi tiết giao dịch...",
     "noDetails": "Không có thông tin chi tiết giao dịch.",
-    "error": "Không thể tải chi tiết giao dịch."
+    "error": "Không thể tải chi tiết giao dịch.",
+    "cancel": "Hủy",
+    "confirmRevert": "Hoàn trả giao dịch",
+    "confirmRevertMessage": "Bạn có chắc chắn muốn hoàn trả giao dịch #{{transactionId}} về trạng thái chờ xử lý?",
+    "revertSuccess": "Hoàn trả giao dịch về trạng thái chờ xử lý thành công!",
+    "revertError": "Không thể hoàn trả giao dịch"
   },
 
   "status": {

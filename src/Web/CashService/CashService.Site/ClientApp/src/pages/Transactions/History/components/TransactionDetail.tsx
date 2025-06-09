@@ -17,6 +17,8 @@ import {
   ButtonCancelComponent,
   ButtonApplyComponent,
 } from '../../../../components/ButtonComponents';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import { confirmAlert } from 'react-confirm-alert';
 
 interface TransactionDetailProps {
   transactionId: number | null;
@@ -36,6 +38,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
   onRevertSuccess,
 }) => {
   const { t } = useTranslation('transactionHistory');
+  const { t: tGlobal } = useTranslation('global');
   const [detailData, setDetailData] = useState<TransactionItem | null>(null);
   const [loadingDetail, setLoadingDetail] = useState(false);
   const [detailError, setDetailError] = useState<string | null>(null);
@@ -74,35 +77,66 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
     }
   }, [isOpen, transactionId, t]);
 
-  const handleRevert = async () => {
+  const handleConfirmRevert = async () => {
     if (transactionId === null) return;
-
     setReverting(true);
     setRevertAlert({ type: null, message: '' });
     try {
-      var result = await transactionAPI.revertTransaction(
+      const response = await transactionAPI.revertTransaction(
         transactionId,
         remarks,
         transactionType === TransactionType.Deposit
       );
-      if (result.isSuccessful) {
+      if (response.isSuccessful) {
         setRevertAlert({
           type: 'success',
-          message: t('successMessages.reverted'),
+          message: t('detail.revertSuccess'),
         });
         setTimeout(() => {
           onRevertSuccess?.();
           onClose();
         }, 3000);
       } else {
-        setRevertAlert({ type: 'error', message: result.message });
-        setReverting(false);
+        setRevertAlert({ type: 'error', message: response.message });
       }
     } catch (err) {
       console.error(err);
-      setRevertAlert({ type: 'error', message: t('errorMessages.failedToRevert') });
+      setRevertAlert({ type: 'error', message: t('detail.revertError') });
+    } finally {
       setReverting(false);
     }
+  };
+
+  const renderConfirmUI = ({ onClose: closeConfirm }: { onClose: () => void }) => (
+    <div className="fixed inset-0 flex items-center justify-center bg-[#00000080] z-[1000]">
+      <div className="bg-white rounded-[4px] p-[20px] pt-[4px] pb-[10px] w-[400px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
+        <h1 className="font-[500] text-[var(--text-color-primary)] text-[16px] my-[10px]">{t('detail.confirmRevert')}</h1>
+        <p className="mb-6 text-[#333333]">{t('detail.confirmRevertMessage').replace('{{transactionId}}', detailData?.transId?.toString() || '')}</p>
+        <div className="flex justify-center gap-2">
+          <button 
+            className="min-w-[90px] bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] text-[var(--button-text)] rounded-[3px] cursor-pointer h-[28px] px-[16px] font-semibold" 
+            onClick={closeConfirm}
+          >
+            {tGlobal('cancel')}
+          </button>
+          <button 
+            className="min-w-[90px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] text-[var(--button-text)] rounded-[3px] cursor-pointer h-[28px] px-[16px] font-semibold"
+            onClick={() => {
+              closeConfirm();
+              handleConfirmRevert();
+            }}
+          >
+            {tGlobal('confirm')}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
+  const handleRevert = () => {
+    confirmAlert({
+      customUI: renderConfirmUI
+    });
   };
 
   if (!isOpen) return null;

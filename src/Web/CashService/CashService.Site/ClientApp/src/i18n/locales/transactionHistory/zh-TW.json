@@ -59,7 +59,12 @@
     "revertToPending": "恢復到待處理",
     "loading": "正在加載交易詳情...",
     "noDetails": "沒有可用的交易詳情。",
-    "error": "加載交易詳情失敗"
+    "error": "加載交易詳情失敗",
+    "cancel": "取消",
+    "confirmRevert": "恢復交易",
+    "confirmRevertMessage": "確定要恢復交易 #{{transactionId}} 到待處理狀態嗎？",
+    "revertSuccess": "交易已成功恢復到待處理狀態！",
+    "revertError": "恢復交易失敗"
   },
 
   "status": {

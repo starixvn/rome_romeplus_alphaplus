@@ -1,1 +1,88 @@
-{} 
+{
+  "transactionHistory": "ประวัติการทำรายการ",
+  "deposit": "ฝาก",
+  "withdrawal": "ถอน",
+
+  "filter": {
+    "all": "ทั้งหมด",
+    "to": "ถึง",
+    "from": "จาก",
+    "selectAccount": "เลือกบัญชี",
+    "allColumns": "ทุกคอลัมน์ (8)",
+    "column": "คอลัมน์",
+    "search": "ค้นหา",
+    "usernamePlaceholder": "ชื่อผู้ใช้/หมายเลขอ้างอิง",
+    "status": "สถานะ",
+    "dateRange": "ช่วงวันที่",
+    "maxRecords": "แสดงรายการล่าสุดสูงสุด 5000 รายการ"
+  },
+
+  "table": {
+    "no": "ลำดับ",
+    "username": "ชื่อผู้ใช้",
+    "nickname": "ชื่อเล่น",
+    "name": "ชื่อ-นามสกุล",
+    "amount": "จำนวนเงิน",
+    "currency": "สกุลเงิน",
+    "from": "จาก",
+    "to": "ถึง",
+    "status": "สถานะ",
+    "type": "ประเภทธุรกรรม",
+    "referenceNo": "หมายเลขอ้างอิง",
+    "dateAndTime": "วันที่สร้าง",
+    "actions": "การดำเนินการ",
+    "view": "ดู",
+    "loading": "กำลังโหลดรายการ...",
+    "noRecords": "ไม่พบรายการ"
+  },
+
+  "detail": {
+    "title": "รายละเอียดธุรกรรม",
+    "username": "ชื่อผู้ใช้",
+    "nickname": "ชื่อเล่น",
+    "fullName": "ชื่อ-นามสกุล",
+    "betCredit": "เครดิตการเดิมพัน",
+    "from": "จาก",
+    "to": "ถึง",
+    "dateAndTime": "วันที่สร้าง",
+    "transactionType": "ประเภทธุรกรรม",
+    "operatedBy": "สร้างโดย",
+    "processedOn": "อัปเดตล่าสุด",
+    "amount": "จำนวนเงิน",
+    "remarks": "หมายเหตุ",
+    "remarksPlaceholder": "เพิ่มหมายเหตุที่นี่...",
+    "close": "ปิด",
+    "revertToPending": "เปลี่ยนกลับเป็นรอดำเนินการ",
+    "loading": "กำลังโหลดรายละเอียดธุรกรรม...",
+    "noDetails": "ไม่มีรายละเอียดธุรกรรม",
+    "error": "ไม่สามารถโหลดรายละเอียดธุรกรรมได้",
+    "cancel": "ยกเลิก",
+    "confirmRevert": "ย้อนกลับธุรกรรม",
+    "confirmRevertMessage": "คุณแน่ใจหรือไม่ที่จะย้อนกลับธุรกรรม #{{transactionId}} เป็นสถานะรอดำเนินการ?",
+    "revertSuccess": "ย้อนกลับธุรกรรมสำเร็จ",
+    "revertError": "ไม่สามารถย้อนกลับธุรกรรมได้"
+  },
+
+  "status": {
+    "completed": "เสร็จสมบูรณ์",
+    "rejected": "ปฏิเสธ",
+    "providerRejected": "ผู้ให้บริการปฏิเสธ",
+    "expired": "หมดอายุ"
+  },
+
+  "errorMessages": {
+    "requiredField": "จำเป็นต้องกรอกข้อมูลนี้",
+    "invalidAmount": "กรุณาใส่จำนวนเงินที่ถูกต้อง",
+    "amountTooSmall": "จำนวนเงินต้องมากกว่า 0",
+    "failedToLoad": "ไม่สามารถโหลดประวัติธุรกรรมได้",
+    "failedToRevert": "ไม่สามารถย้อนกลับธุรกรรมได้"
+  },
+
+  "successMessages": {
+    "reverted": "ย้อนกลับธุรกรรมเป็นสถานะรอดำเนินการสำเร็จ!"
+  },
+
+  "messages": {
+    "copiedToClipboard": "คัดลอกข้อความไปยังคลิปบอร์ดสำเร็จ!"
+  }
+}

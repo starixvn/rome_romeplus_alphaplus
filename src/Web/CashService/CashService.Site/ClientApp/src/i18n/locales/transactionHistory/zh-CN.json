@@ -58,7 +58,12 @@
     "revertToPending": "恢复到待处理",
     "loading": "正在加载交易详情...",
     "noDetails": "没有可用的交易详情。",
-    "error": "加载交易详情失败"
+    "error": "加载交易详情失败",
+    "cancel": "取消",
+    "confirmRevert": "恢复交易",
+    "confirmRevertMessage": "确定要恢复交易 #{{transactionId}} 到待处理状态吗？",
+    "revertSuccess": "交易已成功恢复到待处理状态！",
+    "revertError": "恢复交易失败"
   },
 
   "status": {
