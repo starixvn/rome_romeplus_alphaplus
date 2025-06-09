@@ -1,7 +1,8 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
-using AlphaPlus.Core.Models;
-
 using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Main.Site.Features.Account;
 public interface IUserSessionService
@@ -40,6 +41,7 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         {
             var subPageAccess = new PageAccess();
             subPageAccess.SetFullPermission();
+            subPageAccess.SetCashServicePermission();
             userSession.SubPageAccess = subPageAccess;
         }
 

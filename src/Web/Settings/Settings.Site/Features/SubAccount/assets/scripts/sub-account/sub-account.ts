@@ -146,7 +146,7 @@ class SubAccount {
     UpdatePageAccess = (subAccId: number, item: any) => {
         this.$.blockUI();
 
-        var pageAccess = this.$(item.currentTarget).data('pageaccess');
+        let pageAccess = this.$(item.currentTarget).data('pageaccess');
 
         if (this.$('#' + subAccId + '-D').is(':checked')) {
             pageAccess += '[D]';
@@ -168,12 +168,20 @@ class SubAccount {
             pageAccess += '[G]';
         }
 
-        var data = {
+        if (this.$('#' + subAccId + '-M').is(':checked')) {
+            pageAccess += '[M]';
+        }
+
+        if (this.$('#' + subAccId + '-N').is(':checked')) {
+            pageAccess += '[N]';
+        }
+
+        const data = {
             subAccId: subAccId,
             pageAccess: pageAccess
         };
 
-        var updateUrl = '/settings/SubAccount/UpdatePageAccess';
+        const updateUrl = '/settings/SubAccount/UpdatePageAccess';
 
         this.$.ajax({
             headers: {
@@ -306,10 +314,12 @@ class SubAccount {
                 break;
         }
 
-        this.$('input[type=radio]').unbind('change').change((item) => {
-            var subAccId = this.$(evt.currentTarget).data('subaccid');
-            this.UpdatePageAccess(subAccId, item);
-        });
+        this.$('input[type=radio]')
+            .unbind('change')
+            .change((item) => {
+                var subAccId = this.$(evt.currentTarget).data('subaccid');
+                this.UpdatePageAccess(subAccId, item);
+            });
 
         var popup = this.$('#Popup');
         popup.css({

@@ -1,5 +1,4 @@
 using System.Collections;
-using AlphaPlus.Core.Configurations;
 
 namespace AlphaPlus.Core.Models;
 
@@ -28,19 +27,6 @@ public struct PageAccessType
         [ViewBetLists] = false
     };
 
-    private static Hashtable cashServiceAccessTypes = new Hashtable
-    {
-        [CreateAccount] = false,
-        [UpdateAccount] = false,
-        [Transfer] = false,
-        [ViewTotalBets] = false,
-        [ViewReports] = false,
-        [ViewLog] = false,
-        [ViewMemberInfo] = false,
-        [ViewBetLists] = false,
-        [CashService] = false,
-        [CashPromotion] = false
-    };
 
     public static Hashtable AccessTypes
     {
@@ -49,6 +35,8 @@ public struct PageAccessType
             return accessTypes;
         }
     }
+
+    public static string[] CashServiceAccessTypes => [CashService, CashPromotion];
 
     public static bool IsValidType(string type)
     {
