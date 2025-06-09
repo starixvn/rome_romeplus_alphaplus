@@ -6,7 +6,7 @@ import {
   displayAmount,
   formatDateTime,
   renderBankAccount,
-} from '../../../../common/commonFunctions.tsx';
+} from '../../../../utils/commonFunctions.tsx';
 import PendingWithdrawalModal from './PendingWithdrawalModal.tsx';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import NoRecordFound from '../../../../components/Table/NoRecordFound';

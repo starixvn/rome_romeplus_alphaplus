@@ -5,7 +5,7 @@ import {
   displayAmount,
   formatDateTime,
   renderBankAccount,
-} from '../../../../common/commonFunctions';
+} from '../../../../utils/commonFunctions.tsx';
 import {
   ButtonApplyComponent,
   ButtonCancelComponent,

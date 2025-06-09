@@ -12,7 +12,7 @@ import { AddWithdrawalModel } from '../../../../services/interfaces/AddWithdrawa
 import { ResultMessageComponent } from '../../../../components/MessageComponents';
 import UploadImage from '../../Components/UploadImage';
 import BankIcon from '../../../../components/BankComponents';
-import { renderBankOptionValue } from '../../../../common/commonFunctions';
+import { renderBankOptionValue } from '../../../../utils/commonFunctions';
 import {
   BackButtonComponent,
   ButtonApplyComponent,

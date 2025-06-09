@@ -10,7 +10,7 @@ import Filters from './Filters/Filters';
 import Search from './Search';
 import DataGrid from './DataGrid';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
-import { convertToGMT4, TransactionType } from '../../../../common/commonFunctions';
+import { convertToGMT4, TransactionType } from '../../../../utils/commonFunctions';
 import Pagination from '../../Components/Pagination';
 
 interface TransactionListProps {

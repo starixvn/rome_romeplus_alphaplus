@@ -10,7 +10,7 @@ import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
 import '../../../styles/common.css';
 import '../../../styles/global.scss';
 import { BankInfo } from '../../../services/interfaces/Transactions/BankInfo';
-import { calculateDateRange, TransactionType } from '../../../common/commonFunctions';
+import { calculateDateRange, TransactionType } from '../../../utils/commonFunctions';
 import { transactionAPI } from '../../../services/transactionsHistoryAPI';
 import {
   TransactionsHistoryParams,

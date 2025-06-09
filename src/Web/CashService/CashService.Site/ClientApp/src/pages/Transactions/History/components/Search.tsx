@@ -7,7 +7,7 @@ import {
   mappingStatus,
   formatDateTime,
   CurrentCurrency,
-} from '../../../../common/commonFunctions';
+} from '../../../../utils/commonFunctions';
 import { Alert } from '../../../../components/ui/Alert';
 
 interface SearchProps {

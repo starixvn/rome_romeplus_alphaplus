@@ -6,7 +6,7 @@ import {
   formatDateTime,
   renderBankAccount,
   renderBankOptionValue,
-} from '../../../../common/commonFunctions.tsx';
+} from '../../../../utils/commonFunctions.tsx';
 import BankIcon from '../../../../components/BankComponents.tsx';
 import {
   ButtonApplyComponent,

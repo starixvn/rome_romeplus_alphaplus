@@ -7,7 +7,7 @@ import { DateRange, Range, RangeKeyDict } from 'react-date-range';
 
 import { ButtonFullComponent } from './ButtonComponents';
 import { CalendarIcon } from './Icons';
-import { convertToGMT4 } from '../common/commonFunctions';
+import { convertToGMT4 } from '../utils/commonFunctions';
 import './DateRangePickerComponent.scss';
 import { useTranslation } from 'react-i18next';
 

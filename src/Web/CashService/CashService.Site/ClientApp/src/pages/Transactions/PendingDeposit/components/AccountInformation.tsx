@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { renderBankOptionValue } from '../../../../common/commonFunctions';
+import { renderBankOptionValue } from '../../../../utils/commonFunctions';
 import BankIcon from '../../../../components/BankComponents';
 import CustomDropdown, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import { LabelTitleComponent, MediumTitleComponent } from '../../../../components/TitleComponents';

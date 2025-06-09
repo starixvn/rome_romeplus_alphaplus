@@ -9,7 +9,7 @@ import {
   renderBankAccount,
   CurrentCurrency,
   formatDateTime,
-} from '../../../../common/commonFunctions';
+} from '../../../../utils/commonFunctions';
 import NoRecordFound from '../../../../components/Table/NoRecordFound';
 import LoadingComponent from '../../../../components/LoadingComponent';
 

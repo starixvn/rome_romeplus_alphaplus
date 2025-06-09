@@ -4,7 +4,7 @@ import {
   ButtonCancelComponent,
   ButtonApplyComponent,
 } from '../../../../components/ButtonComponents';
-import { TransactionType } from '../../../../common/commonFunctions';
+import { TransactionType } from '../../../../utils/commonFunctions';
 
 interface HistoryTabProps {
   activeTab: number;

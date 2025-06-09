@@ -15,7 +15,7 @@ import {
   ButtonApplyComponent,
   BackButtonComponent,
 } from '../../../../components/ButtonComponents';
-import { renderBankOptionValue } from '../../../../common/commonFunctions';
+import { renderBankOptionValue } from '../../../../utils/commonFunctions';
 
 interface ManualAddDepositFormProps {
   cashAgentOptions: BankInfo[];

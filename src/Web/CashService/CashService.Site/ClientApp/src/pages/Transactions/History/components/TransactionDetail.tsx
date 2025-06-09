@@ -9,7 +9,7 @@ import {
   mappingStatus,
   renderBankAccount,
   TransactionType,
-} from '../../../../common/commonFunctions';
+} from '../../../../utils/commonFunctions';
 import { IconClose } from '../../../../components/Icons';
 import { ResultMessageComponent } from '../../../../components/MessageComponents';
 import { Spinner } from '../../../../components/Icons';

@@ -6,7 +6,7 @@ import {
   renderBankAccount,
   formatDateTime,
   CurrentCurrency,
-} from '../../../../common/commonFunctions';
+} from '../../../../utils/commonFunctions';
 import NoRecordFound from '../../../../components/Table/NoRecordFound';
 import Pagination from '../../Components/Pagination';
 import { ButtonFullComponent } from '../../../../components/ButtonComponents';

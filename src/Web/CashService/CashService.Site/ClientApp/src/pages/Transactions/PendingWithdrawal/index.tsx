@@ -14,7 +14,7 @@ import {
   TransactionsHistoryResponse,
 } from '../../../services/interfaces/Transactions/TransactionHistory.ts';
 import { transactionAPI } from '../../../services/transactionsHistoryAPI.ts';
-import { calculateDateRange, TransactionType } from '../../../common/commonFunctions.tsx';
+import { calculateDateRange, TransactionType } from '../../../utils/commonFunctions.tsx';
 import { LoadingFullComponent } from '../../../components/LoadingComponent';
 import TitleComponent from '../../../components/TitleComponents.tsx';
 import { ButtonOutlineComponent } from '../../../components/ButtonComponents';
