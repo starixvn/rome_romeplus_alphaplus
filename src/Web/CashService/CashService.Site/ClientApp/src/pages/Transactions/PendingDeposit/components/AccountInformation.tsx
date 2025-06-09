@@ -105,11 +105,11 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
               id="depositAmount"
               value={depositAmount}
               onChange={onDepositAmountChange}
-              className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:border-[var(--button-border)] bg-[var(--background-control)]"
+              className="control-field"
             />
-            <p className="text-xs my-[8px] text-gray-500 font-bold">
+            <p className="text-[12px] my-[8px]">
               {t('manualDepositForm.agentAvailableCredit')}:
-              <span className="text-black font-bold">{` ${agentAvailableCredit}`}</span>
+              <span className="font-[500] text-[var(--text-color-secondary)]">{` ${agentAvailableCredit}`}</span>
             </p>
           </div>
         </div>
@@ -121,7 +121,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
             value={remarks}
             maxLength={1000}
             onChange={onRemarksChange}
-            className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-[var(--button-border)] min-h-[200px] bg-[var(--background-control)]"
+            className="control-field h-[200px]! py-[8px]!"
             placeholder={t('manualDepositForm.remarksPlaceholder')}
           />
         </div>

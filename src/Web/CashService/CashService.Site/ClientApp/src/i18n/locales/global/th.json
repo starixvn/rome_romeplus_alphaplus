@@ -70,5 +70,9 @@
   "SMBC": "Bank Sumitomo",
   "TCRB": "THE THAI CREDIT RETAIL BANK",
   "TISCO": "ธนาคารทิสโก้ จำกัด (มหาชน)(Tisco Bank)",
-  "TTB": "ทีเอ็มบีธนชาต"
+  "TTB": "ทีเอ็มบีธนชาต",
+  "uploadImage": "คลิกเพื่ออัปโหลด",
+  "dragAndDrop": "หรือลากและวาง",
+  "imageFormat": "อัปโหลด jpeg, jpg, png",
+  "maxSize": "ขนาดสูงสุด 1 MB"
 } 

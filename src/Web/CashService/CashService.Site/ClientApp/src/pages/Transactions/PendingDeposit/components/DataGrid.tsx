@@ -126,7 +126,7 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
       )}
 
       {paginatedDeposits.length > 0 && (
-        <div className="mt-0">
+        <div className="mt-[-1px]">
           <Pagination
             currentPage={currentPage}
             pageSize={pageSize}

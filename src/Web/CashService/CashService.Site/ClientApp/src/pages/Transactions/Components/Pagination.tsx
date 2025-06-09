@@ -46,11 +46,9 @@ const Pagination: React.FC<PaginationProps> = ({
   const startItem = (currentPage - 1) * pageSize + 1;
   const endItem = Math.min(currentPage * pageSize, totalItems);
   const pager = Math.ceil(totalItems / pageSize);
-  console.log(pager);
-  
  
   return (
-    <div className="flex items-center py-[6px] px-[10px] border border-[var(--pager-border)] border-t-0 mb-[2px]">
+    <div className="flex items-center py-[6px] px-[10px] border border-[var(--pager-border)] border-t-0 mb-[2px] shadow-[inset_0px_1px_0px_0px_var(--pager-border)]">
       <div className="mr-[6px]">    
         <select
           value={pageSize}

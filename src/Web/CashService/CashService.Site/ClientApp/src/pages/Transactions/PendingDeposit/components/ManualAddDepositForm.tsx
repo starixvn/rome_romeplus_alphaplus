@@ -220,13 +220,13 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
       {initialLoading ? (        
           <LoadingFullComponent />    
       ) : (
-        <div className="">
-          <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[#cfcfcf] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
+        <>
+          <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
             <BackButtonComponent onClick={onClose} />
             <TitleComponent title={t('manualDepositForm.title')} />  
           </div>
 
-          <div id="manual-deposit-form" className="w-[1100px] bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] max-[768px]:w-full">
+          <div id="manual-deposit-form" className="w-[1100px] max-[768px]:w-full pb-[16px] pt-[10px]">
             {validationMessage && (
               <ResultMessageComponent
                 message={validationMessage.message}
@@ -257,22 +257,22 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
               </div>
             </div>
             <div className="flex gap-[16px]">
-                  <ButtonCancelComponent                    
-                    text={t('manualDepositForm.cancel')}
-                    onClick={() => onClose(false)}
-                  />
-                  <ButtonApplyComponent
-                    text={
-                      isSubmitting
-                        ? t('manualDepositForm.approving')
-                        : t('manualDepositForm.approve')
-                    }
-                    disabled={isSubmitting}
-                    onClick={handleSubmit}
-                  />
-                </div>
+              <ButtonCancelComponent                    
+                text={t('manualDepositForm.cancel')}
+                onClick={() => onClose(false)}
+              />
+              <ButtonApplyComponent
+                text={
+                  isSubmitting
+                    ? t('manualDepositForm.approving')
+                    : t('manualDepositForm.approve')
+                }
+                disabled={isSubmitting}
+                onClick={handleSubmit}
+              />
+            </div>
           </div>
-        </div>
+        </>
        
       )}
     </>

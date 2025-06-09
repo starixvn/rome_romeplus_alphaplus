@@ -70,5 +70,9 @@
   "SMBC": "Bank Sumitomo",
   "TCRB": "THE THAI CREDIT RETAIL BANK",
   "TISCO": "Tisco Bank",
-  "TTB": "TMBThanachart Bank"
+  "TTB": "TMBThanachart Bank",
+  "uploadImage": "Nhấp để tải lên",
+  "dragAndDrop": "hoặc kéo và thả",
+  "imageFormat": "Tải lên jpeg, jpg, png",
+  "maxSize": "Tối đa 1 MB"
 } 

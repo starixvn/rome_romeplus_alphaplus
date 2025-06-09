@@ -139,7 +139,8 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
       {showWithdrawalPopup && selectedWithdrawal && (
         <PendingWithdrawalModal transId={selectedWithdrawal.transId} custId={selectedWithdrawal.custId} onClose={handleCloseProcess} />
       )}
-      {paginatedWithdrawals.length > 0 && (    
+      {paginatedWithdrawals.length > 0 && (  
+        <div className="mt-[-1px] relative z-12">
         <Pagination
           currentPage={currentPage}
           pageSize={pageSize}
@@ -147,6 +148,7 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
           onPageChange={handlePageChange}
           onPageSizeChange={handlePageSizeChange}
         />      
+        </div>
       )}      
     </>
   );

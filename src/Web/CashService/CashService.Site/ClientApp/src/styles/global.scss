@@ -13,6 +13,7 @@
   //text 
   --text-color-primary: #163f78;
   --text-color: #333;
+  --text-color-secondary: #000;
   --text-label-color: #163f78;
   --text-link-color: #163f78;
 
@@ -62,6 +63,7 @@
   //text 
   --text-color-primary: #459be5;
   --text-color: #ededed;
+  --text-color-secondary: #fff;
   --text-label-color: #459be5;
   --text-link-color: #459be5;
 
@@ -187,7 +189,7 @@ body{
   height: 100%;
   padding: 0 3px;
 }
-table{
+table:not(.no-hover){
   tbody tr{
     &:hover{
       th,td{

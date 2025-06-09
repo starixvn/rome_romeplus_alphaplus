@@ -123,9 +123,9 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
   const classBase64 = deposit?.base64Payslip ? 'max-w-[900px]' : 'max-w-[540px]';
 
   return (
-    <div className="bg-[#00000066] fixed inset-0 flex items-start justify-center z-50 max-[768px]:items-start">
-      <div className={`p-[30px] w-full bg-[#ffffff] mt-[50px] ${classBase64} max-[768px]:max-w-[90%] max-[768px]:h-[90%] overflow-auto rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f] max-[768px]:mt-[16px]`}>
-        <div className="relative mb-[16px]">
+    <div className="bg-[#00000080] fixed inset-0 flex items-start justify-center z-50">
+      <div className={` ${classBase64} px-[20px] pb-[10px] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-[768px]:max-w-[90%] max-[768px]:h-[90%] overflow-auto rounded-[4px]`}>
+        <div className="relative my-[10px]">
           <MediumTitleComponent text={` ${t('pendingDepositModal.title')} (${deposit?.transId})`} />
           <ButtonClosePopupComponent onClick={() => onClose(false)} />
         </div>
@@ -144,10 +144,10 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
             ) : (
                 <>
                   <div className="flex-1 h-full max-[768px]:mb-[16px]">
-                    <div className="border border-[#333333] rounded mb-[8px] p-[8px]">
-                      <table className="w-full h-full">
+              <div className="border border-[var(--border-control)] rounded mb-[8px] p-[8px]">
+                <table className="w-full h-full no-hover">
                         <thead>
-                          <tr className="text-left text-[#333333] font-semibold">
+                    <tr className="text-left font-semibold text-[var(--text-color-secondary)]">
                             <th className="px-[8px] py-[4px]">{t('pendingDepositModal.username')}</th>
                             <th className="px-[8px] py-[4px]">{t('dataGrid.nickname')}</th>
                             <th className="px-[8px] py-[4px]">{t('dataGrid.firstLastName')}</th>
@@ -159,7 +159,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
                             <td className="px-[8px] py-[4px]">{deposit?.username}</td>
                             <td className="px-[8px] py-[4px]">{deposit?.nickname}</td>
                             <td className="px-[8px] py-[4px]">{`${deposit?.firstName} ${deposit?.lastName}`}</td>
-                            <td className="px-[8px] py-[4px] text-[var(--text-color-primary)] font-semibold">
+                      <td className="px-[8px] py-[4px] text-[var(--text-link-color)] font-semibold">
                               {deposit?.betCredit && displayAmount(deposit.betCredit)}
                             </td>
                           </tr>
@@ -194,7 +194,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
                               value={depositAmount}
                               onChange={(e) => handleSetDepositAmount(e)}
                               isDisabled={isSubmitting}
-                              className="border border-gray-300 rounded-md py-1 px-2 w-full h-[32px] focus:outline-none focus:ring-1 focus:ring-[#214184] focus:border-[#214184]"
+                        className="control-field"
                             />
                           </div>
                         </div>
@@ -208,7 +208,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
                         onChange={(e) => setRemark(e.target.value)}
                         maxLength={1000}
                         placeholder={t('pendingDepositModal.remarksPlaceholder')}
-                        className="block h-[230px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] py-[10px] focus:outline-none focus:border-[var(--button-border)]"
+                  className="block h-[230px]! py-[10px] control-field"
                       />
                     </div>
                   </div>
@@ -232,13 +232,11 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
 
         <div className="flex justify-center gap-[8px]">
           <ButtonCancelComponent
-            className="w-[140px]"
             text={t('pendingDepositModal.reject')}
             onClick={handleReject}
             disabled={isSubmitting}
           />
           <ButtonApplyComponent
-            className="w-[140px]"
             text={t('pendingDepositModal.approve')}
             onClick={handleApprove}
             disabled={isSubmitting}

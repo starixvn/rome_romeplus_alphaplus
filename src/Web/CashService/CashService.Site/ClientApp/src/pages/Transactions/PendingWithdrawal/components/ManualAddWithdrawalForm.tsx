@@ -190,6 +190,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
   const handleUpdateMemberCashBalance = async (memberCustId: number | null) => {
     if (!memberCustId) return;
     const memberCashBalance = await getWithdrawalMemberCashBalance(memberCustId);
+    console.log(memberCashBalance);
     setMemberCashBalance(memberCashBalance);
   };
 
@@ -267,15 +268,15 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
   };
 
   return (
-    <div className="py-[12px]">
-      <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[#cfcfcf] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
+    <div className="">
+      <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
         <BackButtonComponent onClick={onClose} />
         <TitleComponent title={t('manualWithdrawalForm.title')} />
       </div>
 
       <div
         id="manual-withdrawal-form"
-        className="w-[1100px] bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] max-[768px]:w-full"
+        className="w-[1100px] max-[768px]:w-full pb-[16px] pt-[10px]"
       >
         {resultMessage.type && (
           <ResultMessageComponent
@@ -349,11 +350,12 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                     id="withdrawalAmount"
                     value={withdrawalAmount}
                     onChange={(e) => handleSetWithdrawalAmount(e)}
-                    className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:border-[var(--button-border)]"
-                  />
-                  <label className="block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold">
-                    {t('manualWithdrawalForm.memberCashBalance')}: {memberCashBalance}
-                  </label>
+                    className="control-field"
+                  />                
+                  <p className="text-[12px] my-[8px]">
+                    {t('manualWithdrawalForm.memberCashBalance')}:
+                    <span className="font-[500] text-[var(--text-color-secondary)]">{` ${memberCashBalance}`}</span>
+                  </p>
                 </div>
               </div>
               <div className="w-full">
@@ -363,7 +365,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                   value={remarks}
                   onChange={(e) => setRemarks(e.target.value)}
                   maxLength={1000}
-                  className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-[var(--button-border)] min-h-[200px]"
+                  className="control-field h-[200px]! py-[8px]!"
                   placeholder={t('manualWithdrawalForm.remarksPlaceholder')}
                 />
               </div>
