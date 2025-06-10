@@ -45,7 +45,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
             paymentTo: request.PaymentTo);
 
             var result = await ValidatePayment(validatePaymentCriteria);
-            
+
             if (result.Code != 0)
             {
                 return result;
@@ -59,7 +59,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                 siteDBConfig.CustDBGroupId);
 
             await _repository.ExecuteAsync(withdrawalLimitCriteria);
-            
+
             // Step 4: Add withdrawal transaction
             var withdrawalTransactionCriteria = new ManualWithdrawalTransactionCriteria(
                 request.CustId,
@@ -74,11 +74,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                 request.IP);
 
             var (firstResultSet, _) = await _repository.FetchMultipleAsync<LogEntry, ManualWithdrawalTransactionCriteria>(withdrawalTransactionCriteria);
-
-            if (withdrawalTransactionCriteria.ErrCode == 0)
-            {
-                await ProcessWithdrawalLogs(firstResultSet.ToList(), siteDBConfig);
-            }
+            await WriteLogsTransferAndRunSP(firstResultSet, siteDBConfig);
 
             return new PaymentResult(withdrawalTransactionCriteria.ErrCode, withdrawalTransactionCriteria.ErrCode == 0 ? "Ok" : withdrawalTransactionCriteria.ErrMsg, withdrawalTransactionCriteria.TransId);
         }
@@ -115,27 +111,6 @@ public class WithdrawalService : PaymentService, IWithdrawalService
         {
             await logger.ErrorAsync(ex.Message, ex);
             return new WithdrawalLimitResult();
-        }
-    }
-
-    private async Task ProcessWithdrawalLogs(IList<LogEntry> logs, SiteDBConfig siteDBConfig)
-    {
-        foreach (var log in logs)
-        {
-            if (log.LogTypeId == 1)
-            {
-                // Step 5.1: Log transfer success
-                // Step 5.2: Log transfer failure
-
-                await WriteLogsTransfer(logs, siteDBConfig.SiteDBGroupId);
-            }
-            else
-            {
-                // Step 6.1: Log run SP success
-                // Step 6.2: Log run SP failure
-
-                await WriteLogsRunSP(logs, siteDBConfig.CustDBGroupId);
-            }
         }
     }
 }

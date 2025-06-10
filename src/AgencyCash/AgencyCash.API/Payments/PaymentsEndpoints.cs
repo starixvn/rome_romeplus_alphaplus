@@ -24,6 +24,10 @@ public static class PaymentsEndpoints
             .MapPost("/auto", AutoDeposit)
             .AddEndpointFilter<ModelValidationFilter<AutoDepositRequest>>()
             .Produces<PaymentResult>();
+        deposit
+            .MapPut("/{transId}/status", UpdateDepositStatus)
+            .AddEndpointFilter<ModelValidationFilter<UpdateTransactionStatusRequest>>()
+            .Produces<Result>();
 
         var withdrawal = app.MapGroup("/api/withdrawal").WithTags("Withdrawal");
         withdrawal
@@ -34,10 +38,8 @@ public static class PaymentsEndpoints
             .MapGet("/limit", GetWithdrawalLimitAmount)
             .AddEndpointFilter<ModelValidationFilter<GetWithdrawalLimitRequest>>()
             .Produces<WithdrawalLimitResult>();
-
-        var transactions = app.MapGroup("/api/transactions").WithTags("Transactions");
-        transactions
-            .MapPut("/{transId}/status", UpdateTransactionStatus)
+        withdrawal
+            .MapPut("/{transId}/status", UpdateWithdrawalStatus)
             .AddEndpointFilter<ModelValidationFilter<UpdateTransactionStatusRequest>>()
             .Produces<Result>();
     }
@@ -78,6 +80,23 @@ public static class PaymentsEndpoints
         return TypedResults.Ok(await depositService.Auto(request));
     }
 
+    private static async Task<IResult> UpdateDepositStatus(
+        long transId,
+        UpdateTransactionStatusRequest request)
+    {
+        if (request == null)
+        {
+            return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
+        }
+
+        if (transId <= 0)
+        {
+            return BadRequest(nameof(transId), $"{nameof(transId)} must be a positive number.");
+        }
+
+        return TypedResults.Ok(await Task.FromResult(new Result(0, "Deposit status updated successfully.")));
+    }
+
     private static async Task<IResult> ManualWithdrawal([FromBody] ManualWithdrawalRequest request, IWithdrawalService withdrawalService)
     {
         if (request is null)
@@ -99,7 +118,7 @@ public static class PaymentsEndpoints
         return TypedResults.Ok(await withdrawalService.GetWithdrawalLimitAmount(request));
     }
 
-    private static async Task<IResult> UpdateTransactionStatus(
+    private static async Task<IResult> UpdateWithdrawalStatus(
         long transId,
         UpdateTransactionStatusRequest request)
     {

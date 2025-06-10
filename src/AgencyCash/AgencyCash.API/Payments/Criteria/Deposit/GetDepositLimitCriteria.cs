@@ -38,6 +38,13 @@ public class GetDepositLimitCriteria : NonQueryCommand
         CustDBGroupId = custDBGroupId;
     }
 
+    public GetDepositLimitCriteria(int agentId, int custId, short custDBGroupId)
+    {
+        AgentId = agentId;
+        CustId = custId;
+        CustDBGroupId = custDBGroupId;
+    }
+
     public int? AgentId { get; }
 
     public int CustId { get; }
