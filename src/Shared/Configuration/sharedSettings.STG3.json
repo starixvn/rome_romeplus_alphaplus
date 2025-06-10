@@ -17,7 +17,7 @@
             "ConnectionString": "packet size=4096; Data Source=10.40.40.91;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
-        {
+        {   
             "Name": "DBAGE.bodb02.wsv_alp",
             "ConnectionString": "packet size=4096; Data Source=10.40.40.94;Initial Catalog=bodb02;Connect Timeout=600;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
@@ -278,6 +278,7 @@
         "BackOfficeApiUrl": "http://vn-s1-alpha-api-prod.nebula.prod/api/"
     },
     "OfferProfilePictureTour": true,
+    "SiteSupportPotentialWinLimit": "222227",
     "CashService": {
         "OfferedSites": "755555,222227",
         "APIUrl": "http://alphaplus_staging_api_cashservice_alphaprod_3:5000/api"
