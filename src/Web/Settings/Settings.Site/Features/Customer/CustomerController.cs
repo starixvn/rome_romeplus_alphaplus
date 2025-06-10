@@ -554,7 +554,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             return Json(new { status, totalDownline }, serializeOptions);
         }
    
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> EnableCashService(UpdateCashCustomerInfoRequest request)
         {
             if (!AppSettings.IsOfferedCashService(userSession.Site) || request.IsInternal)
