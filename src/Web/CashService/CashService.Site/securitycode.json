@@ -4,8 +4,7 @@
         "Paths": [
             "MemberSites",
             "Payments",
-            "Transactions/Deposit",
-            "Transactions/Withdrawal"
+            "Transactions"
         ],
         "BetListsPaths": [],
         "StatementPaths": [],
