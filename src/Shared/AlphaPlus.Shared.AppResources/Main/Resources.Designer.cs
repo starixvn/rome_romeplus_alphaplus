@@ -862,6 +862,28 @@ namespace AlphaPlus.Shared.AppResources.Main
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Filter tickets on Bet List.
+        /// </summary>
+        public static string HighlightPopupNewFeatureIntro5
+        {
+            get
+            {
+                return ResourceManager.GetString("HighlightPopupNewFeatureIntro5", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Filter tickets on Bet List.
+        /// </summary>
+        public static string HighlightPopupNewFeatureIntro6
+        {
+            get
+            {
+                return ResourceManager.GetString("HighlightPopupNewFeatureIntro6", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Welcome to &lt;b&gt;Member Betting Behavior&lt;/b&gt;!.
         /// </summary>
         public static string HighlightPopupNewFeatureTitle

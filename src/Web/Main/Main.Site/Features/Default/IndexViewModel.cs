@@ -176,14 +176,22 @@ public class IndexViewModel
         get
         {
             var actorLevel = Enumeration.FromValue<UserLevel>(message.RoleId);
-
-                return actorLevel.IsNotAgentLevel() && (!IsSubAccount || message.ViewBetList ); 
+            
+            return actorLevel.IsAgentLevel() && Core.Configurations.AppSettings.IsSupportPotentialWinLimit(UserSession.Current.Site); 
         }
     }
 
     public string HightLightFeatureImageName => "new_feature" + DarkModeName;
 
-    public string HightLightFeatureUrl => MicroSites.TicketUrl($"~/LastBets/IndexNew");
+    public string HightLightFeatureUrl
+    {
+        get
+        {
+            var theme = !string.IsNullOrWhiteSpace(UserSession.Current.DarkModeName) ? "dark" : "light";
+
+            return MicroSites.SettingUrl($"~/Customer/SportBookInformation?tabindex=6&theme={theme}&custId={CustId}&roleId={RoleId}&site={UserSession.Current.Site}&siteLabel={AppSettings.SiteLabel}&lng={UserSession.Current.Language}");
+        }
+    }
 
     public bool IsShowRewardTour { get; }
 

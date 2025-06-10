@@ -16,6 +16,13 @@
             <div>
                 <p class="pc"><span>@Html.Raw(Resources.HighlightPopupNewFeatureTitle)</span></p>
                 <p>@Html.Raw(Resources.HighlightPopupNewFeatureIntro)</p>
+                <ul>
+                    <li>@Html.Raw(Resources.HighlightPopupNewFeatureIntro2)</li>
+                    <li>@Html.Raw(Resources.HighlightPopupNewFeatureIntro3)</li>
+                    <li>@Html.Raw(Resources.HighlightPopupNewFeatureIntro4)</li>
+                    <li>@Html.Raw(Resources.HighlightPopupNewFeatureIntro5)</li>
+                </ul>
+                <p>@Html.Raw(Resources.HighlightPopupNewFeatureIntro6)</p>
             </div>
         </div>
         <div class="action">
@@ -23,7 +30,7 @@
                 <input id="chkHideHighlightPopupNewFeature" type="checkbox" />
                 <span>@Resources.doNotShowAgain</span>
             </label>
-            <a class="btn-submit" id="linkHighlightPopupCheckOut" href="@Model.HightLightFeatureUrl" target="main" >@Resources.GetStarted</a>
+            <a class="btn-submit" id="linkHighlightPopupCheckOut" target="_blank" href="@Model.HightLightFeatureUrl" target="main">@Resources.TakeATour</a>
         </div>
     </div>
 }
