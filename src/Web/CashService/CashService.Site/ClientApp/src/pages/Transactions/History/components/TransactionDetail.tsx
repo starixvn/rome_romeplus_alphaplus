@@ -110,16 +110,23 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
   const renderConfirmUI = ({ onClose: closeConfirm }: { onClose: () => void }) => (
     <div className="fixed inset-0 flex items-center justify-center bg-[#00000080] z-[1000]">
       <div className="bg-white rounded-[4px] p-[20px] pt-[4px] pb-[10px] w-[400px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
-        <h1 className="font-[500] text-[var(--text-color-primary)] text-[16px] my-[10px]">{t('detail.confirmRevert')}</h1>
-        <p className="mb-6 text-[#333333]">{t('detail.confirmRevertMessage').replace('{{transactionId}}', detailData?.transId?.toString() || '')}</p>
+        <h1 className="font-[500] text-[var(--text-color-primary)] text-[16px] my-[10px]">
+          {t('detail.confirmRevert')}
+        </h1>
+        <p className="mb-6 text-[#333333]">
+          {t('detail.confirmRevertMessage').replace(
+            '{{transactionId}}',
+            detailData?.transId?.toString() || ''
+          )}
+        </p>
         <div className="flex justify-center gap-2">
-          <button 
-            className="min-w-[90px] bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] text-[var(--button-text)] rounded-[3px] cursor-pointer h-[28px] px-[16px] font-semibold" 
+          <button
+            className="min-w-[90px] bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] text-[var(--button-text)] rounded-[3px] cursor-pointer h-[28px] px-[16px] font-semibold"
             onClick={closeConfirm}
           >
             {tGlobal('cancel')}
           </button>
-          <button 
+          <button
             className="min-w-[90px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] text-[var(--button-text)] rounded-[3px] cursor-pointer h-[28px] px-[16px] font-semibold"
             onClick={() => {
               closeConfirm();
@@ -135,7 +142,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
 
   const handleRevert = () => {
     confirmAlert({
-      customUI: renderConfirmUI
+      customUI: renderConfirmUI,
     });
   };
 
@@ -155,9 +162,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
           <h5 className="text-[16px] text-[#163f78] font-bold pb-[15px]">
             {t('detail.title')} ({transactionId?.toString() ?? t('detail.loading')})
             {detailData && (
-              <span
-                className={`ml-2 px-2 py-1 rounded-full text-xs font-medium ${getStatusStyle(detailData.statusId)}`}
-              >
+              <span className={'text-xs font-medium inline-block ml-2'}>
                 {mappingStatus(detailData.statusId)}
               </span>
             )}
