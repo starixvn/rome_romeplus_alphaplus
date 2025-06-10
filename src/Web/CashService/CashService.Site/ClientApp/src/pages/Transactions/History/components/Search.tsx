@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { CopyIcon, DownloadIcon, SearchIcon } from '../../../../components/Icons';
+import { IconCopy, IconExcel, IconSearch } from '../../../../components/Icons';
 import { Alert } from '../../../../components/ui/Alert';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import {
     CurrentCurrency, displayAmount, formatDateTime, mappingStatus
 } from '../../../../utils/commonFunctions';
+import Tippy from '@tippyjs/react';
 
 interface SearchProps {
   value: string;
@@ -120,24 +121,27 @@ const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, o
       <div className="flex items-center space-x-2 ml-auto">
         <button
           onClick={handleDownload}
-          className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors cursor-pointer relative bottom-[7px]"
+          className="p-[4px] bg-black/10 rounded-[3px] cursor-pointer"
           title="Download"
         >
-          <DownloadIcon />
+          <IconExcel />
         </button>
         <button
           onClick={handleCopy}
-          className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors cursor-pointer relative bottom-[7px]"
+          className="p-[4px] bg-black/10 rounded-[3px] cursor-pointer"
           title="Copy"
         >
-          <CopyIcon />
+          <Tippy  placement="top" theme="light" arrow={true}>
+            <IconCopy className="fill-[var(--pager-color)]" />
+          </Tippy>
+          
         </button>
 
-        <div className="flex mb-[16px]">
+        <div className="flex">
           <div className="w-[250px] ml-auto">
             <div className="relative">
               <span className="absolute transform-[translatey(-50%)] z-[10] top-1/2 left-[8px]">
-                <SearchIcon />
+                <IconSearch />
               </span>
               <input
                 type="text"

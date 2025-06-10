@@ -30,64 +30,6 @@ export const NoRecordsIcon: React.FC<{ className?: string }> = ({ className }) =
   </svg>
 );
 
-// Search Icon
-export const SearchIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className ?? 'text-gray-500'}
-  >
-    <circle cx="11" cy="11" r="8"></circle>
-    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-  </svg>
-);
-
-// Download Icon
-export const DownloadIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className ?? 'text-gray-600'}
-  >
-    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-    <polyline points="7 10 12 15 17 10"></polyline>
-    <line x1="12" y1="15" x2="12" y2="3"></line>
-  </svg>
-);
-
-// Copy Icon
-export const CopyIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className ?? 'text-gray-600'}
-  >
-    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-  </svg>
-);
-
 // Edit Icon
 export const IconEdit: React.FC<{ className?: string }> = ({ className }) => (
   <svg
@@ -294,18 +236,18 @@ export const NoDataIcon = () => (
 );
 
 export const IconCopied = ({ className }: { className?: string }) => (
-  <svg className={classNames(className)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <svg className={`w-[20px] h-[20px] ${className}`}  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
   </svg>
 );
 export const IconCopy = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" className={classNames(className)} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-    </svg>
+  <svg className={`w-[20px] h-[20px] fill-[#444] dark:fill-[#ededed] ${className}`} version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path d="M21.143 26v2.083c0 0.69-0.576 1.25-1.286 1.25h-14.571c-0.71 0-1.286-0.56-1.286-1.25v-19.167c0-0.69 0.576-1.25 1.286-1.25h3.857v15.417c0 1.608 1.346 2.917 3 2.917h9zM21.143 8.083v-5.417h-9c-0.71 0-1.286 0.56-1.286 1.25v19.167c0 0.69 0.576 1.25 1.286 1.25h14.571c0.71 0 1.286-0.56 1.286-1.25v-13.75h-5.571c-0.707 0-1.286-0.563-1.286-1.25zM27.623 6.467l-3.533-3.434c-0.241-0.234-0.568-0.366-0.909-0.366h-0.325v5h5.143v-0.316c0-0.332-0.135-0.649-0.377-0.884z"></path>
+  </svg>
 );
 
 export const IconFirst = ({ className }: { className?: string }) => (
-  <svg className={`w-[20px] h-[20px] fill-[var(--pager-color)]  sf ${className}`} version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <svg className={`w-[20px] h-[20px] fill-[var(--pager-color)] ${className}`} version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
     <path d="M24.547 22.12l-6.12-6.12 6.12-6.12-1.88-1.88-8 8 8 8 1.88-1.88zM8 8h2.667v16h-2.667v-16z"></path>
   </svg>
 )
@@ -331,7 +273,7 @@ export const IconImage = () => (
   </svg>
 )
 export const IconExcel = ({ className }: { className?: string }) => (
-  <svg className={`w-[20px] h-[20px] fill-[var(--pager-color)] ${className}`} version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <svg className={`w-[20px] h-[20px] fill-[#2e9e60] ${className}`} version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
     <path d="M27.994 6.4h-8.794v2.861h2.909v1.949h-2.909v1.91h2.88v1.92h-2.88v1.92h2.88v1.92h-2.88v1.92h2.88v1.92h-2.88v2.88h8.794c0.442 0 0.806-0.374 0.806-0.835v-17.53c0-0.461-0.365-0.835-0.806-0.835zM26.88 22.72h-3.84v-1.92h3.84v1.92zM26.88 18.88h-3.84v-1.92h3.84v1.92zM26.88 15.040h-3.84v-1.92h3.84v1.92zM26.88 11.2h-3.84v-1.92h3.84v1.92z"></path>
     <path d="M3.2 6.046v19.909l14.4 2.846v-25.6l-14.4 2.846zM12.31 21.002l-1.67-3.249c-0.067-0.118-0.125-0.345-0.192-0.67h-0.038c-0.029 0.148-0.106 0.384-0.221 0.699l-1.68 3.22h-2.611l3.101-4.982-2.842-4.992h2.669l1.392 2.993c0.106 0.236 0.202 0.512 0.288 0.837h0.029c0.058-0.197 0.154-0.482 0.307-0.866l1.546-2.964h2.438l-2.918 4.943 2.995 5.031h-2.592z"></path>
   </svg>
