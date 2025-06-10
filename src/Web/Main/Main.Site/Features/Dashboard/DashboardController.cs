@@ -7,6 +7,7 @@ using AlphaPlus.Core;
 using AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo;
 using AlphaPlus.Main.Site.Features.ContactUs;
 using AlphaPlus.Core.Configurations;
+using AlphaPlus.Shared.AppResources.Common;
 
 namespace AlphaPlus.Main.Site.Features.Dashboard
 {
@@ -111,7 +112,7 @@ namespace AlphaPlus.Main.Site.Features.Dashboard
             
             if (userSession.IsInternal || !isOfferedCashService)
             {
-                return Unauthorized();
+                return Json(Result.CreateErrorResult(CommonResx.NotAuthorized));
             }
             
             var result = await mediator.Send(new UpdateCashServiceStatusCommand(userSession, isEnableCash));

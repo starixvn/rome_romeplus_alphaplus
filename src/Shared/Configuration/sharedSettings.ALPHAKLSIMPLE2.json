@@ -16,7 +16,7 @@
             "Name": "DBACC.bodb02.wsv_alp",
             "ConnectionString": "packet size=4096; Data Source=10.147.33.22;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
-        },
+        },  
         {
             "Name": "DBAGE.bodb02.wsv_alp",
             "ConnectionString": "packet size=4096; Data Source=10.147.33.20;Initial Catalog=bodb02;Connect Timeout=600;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
@@ -273,6 +273,7 @@
         "BackOfficeApiUrl": "http://vn-s1-alpha-api-prod.gamora.prod/api/"
     },
     "OfferProfilePictureTour": true,
+    "SiteSupportPotentialWinLimit": "222227",
     "CashService": {
         "OfferedSites": "222227",
         "APIUrl": "http://alphaplus_api_cashservice_alphaklprod_2_2:5000/api"

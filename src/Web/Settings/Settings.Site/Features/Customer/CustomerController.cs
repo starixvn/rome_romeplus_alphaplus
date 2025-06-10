@@ -554,9 +554,9 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         [HttpPost]
         public async Task<IActionResult> EnableCashService(UpdateCashCustomerInfoRequest request)
         {
-            if (!AppSettings.IsOfferedCashService(userSession.Site))
+            if (!AppSettings.IsOfferedCashService(userSession.Site) || request.IsInternal)
             {
-                return UnAuthorized();
+                return Json(Result.CreateErrorResult(Resources.NotAuthorized), serializeOptions);
             }
 
             var result = await customerService.UpdateCashServiceStatus(new UpdateCashServiceStatusRequest
