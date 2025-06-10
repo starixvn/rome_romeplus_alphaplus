@@ -62,6 +62,15 @@ RUN if [ "${TRANSFORM_CONFIG}" = "UAT" ] || \
     cp -r src/Web/Tickets/Tickets.Site/results.UAT.json src/Web/Tickets/Tickets.Site/results.json; \
 fi
 
+RUN if [ "${TRANSFORM_CONFIG}" = "ALPHAKLPROD" ] || \
+  [ "${TRANSFORM_CONFIG}" = "ALPHAKLPROD2" ] || \
+  [ "${TRANSFORM_CONFIG}" = "ALPHAKLPROD3" ] || \
+  [ "${TRANSFORM_CONFIG}" = "ALPHAKLPROD4" ] || \
+  [ "${TRANSFORM_CONFIG}" = "ALPHAKLPROD5" ]; then \
+    cp -r src/Web/Tickets/Tickets.Site/results.ALPHAKLPROD.json src/Web/Tickets/Tickets.Site/results.json; \
+    cp -r src/Web/Tickets/Tickets.Site/results3rd.ALPHAKLPROD.json src/Web/Tickets/Tickets.Site/results3rd.json; \
+fi
+
 WORKDIR /build/src/Web/Tickets/Tickets.Site
 
 RUN --mount=type=cache,target=/root/.yarn \
