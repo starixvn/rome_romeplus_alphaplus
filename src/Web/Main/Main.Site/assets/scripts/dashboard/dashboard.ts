@@ -66,7 +66,7 @@
                     toggle.addClass("active");
                     this.$("#enableCashServiceModal").modal('hide');
                 } else {
-                    console.error("enable cash service failed");
+                    alert(response.message);
                 }
             }
         });
@@ -79,6 +79,9 @@
             data: {
                 IsEnableCash: false
             },
+            headers: {
+                'RequestVerificationToken': this.$('input[name="RequestVerificationToken"]').val()
+            },
             success: (response) => {
                 if (response.isSuccessful) {
                     const toggle = this.$("#cash-service-toggle");
@@ -86,7 +89,7 @@
                     toggle.removeClass("active");
                     this.$("#disableCashServiceModal").modal('hide');
                 } else {
-                    console.error("disable cash service failed");
+                    alert(response.message);
                 }
             }
         });
