@@ -67,6 +67,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
       setTempTotalCount(response.totalCount);
 
       const uniquePayment = new Set();
+      console.log(response);
       const paymentInfo = response.items
         .filter((item) => {
           const checkItem =

@@ -52,7 +52,7 @@ const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, o
     ];
 
     const rows = items.map((item, index) => {
-      const rowData: string[] = [
+      const rowData: any[] = [
         (index + 1).toString(),
         `${item.username} ${item.nickname ? `(${item.nickname})` : ''}`,
       ];
@@ -71,7 +71,7 @@ const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, o
             rowData.push(item.paymentTo ? item.paymentTo : '-');
             break;
           case 'status':
-            rowData.push(mappingStatus(item.statusId).toUpperCase());
+            rowData.push(mappingStatus(item.statusId));
             break;
           case 'type':
             rowData.push(item.transactionType?.toString() || '-');
