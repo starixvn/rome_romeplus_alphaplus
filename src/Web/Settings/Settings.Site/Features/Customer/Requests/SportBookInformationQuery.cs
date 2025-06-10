@@ -1,6 +1,8 @@
 using System.Text.Json;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Settings.Site.Features.Shared;
+using AlphaPlus.Core.Configurations;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.Customer.Requests
 {
@@ -23,7 +25,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer.Requests
 
         private object BuildTabs()
         {
-            return new[]
+            var tabs = new List<object>
             {
                 BetSettingTab,
                 MaxPayoutSettingTab,
@@ -32,6 +34,13 @@ namespace AlphaPlus.Settings.Site.Features.Customer.Requests
                 ProductCategorySettingTab,
                 WinLossLimitTab
             };
+
+            if (ViewerLevel.IsAgentLevel() && AppSettings.IsSupportPotentialWinLimit(Site))
+            {
+                tabs.Add(PotentialWinLimitTab);
+            }
+
+            return tabs;
         }
 
         private object BetSettingTab => new
@@ -78,6 +87,13 @@ namespace AlphaPlus.Settings.Site.Features.Customer.Requests
             name = "WinLossLimit",
             id = "WinLossLimitTab",
             isActive = TabIndex == 5,
+        };
+
+        private object PotentialWinLimitTab => new
+        {
+            name = "PotentialWinLimit",
+            id = "PotentialWinLimitSettingTab",
+            isActive = TabIndex == 6,
         };
     }
 }

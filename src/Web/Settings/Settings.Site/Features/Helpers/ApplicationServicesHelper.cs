@@ -187,6 +187,9 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                 .AddScoped<CreditBalanceService, CreditBalanceServiceImpl>();
 
             services
+                .AddScoped<IPotentialWinLimitService, PotentialWinLimitService>();
+
+            services
                 .AddSingleton<IProductService, Settings.MemberInfo.API.Features.Shared.ProductService>()
                 .AddSingleton<IAccountService, AccountService>()
                 .AddSingleton<ICommissionService, CommissionService>()

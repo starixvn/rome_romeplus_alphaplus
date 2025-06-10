@@ -1,0 +1,133 @@
+@using AlphaPlus.Shared.AppResources.Common
+@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Core.Extensions
+@using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.WinLossLimit
+@using AlphaPlus.Settings.Site.Features.MemberInfo.Helpers
+@using AlphaPlus.Settings.Site.Features.Shared.Helpers
+@using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components
+@using AlphaPlus.Settings.MemberInfo.Domain.Models
+@using AlphaPlus.Settings.MemberInfo.Domain.Extensions
+@model SportsbookPotentialWinLimitViewModel
+@{
+    Layout = "~/Features/MemberInfo/Views/WinLossLimit/_Layout.cshtml";
+    ViewBag.Title = "Sportsbook Potential Win Limit";
+}
+<form id="potential-win-limit-form" class="form-inline demo-form-inline filter" role="form">
+    <div class="form-group status-box">
+        <label>@Resources.Status</label>
+        <select id="dropdown-status" name="Status">
+            @foreach (var option in Model.StatusOptions)
+            {
+                <option value="@option.Value" selected="@option.Value.Equals(Model.Status)">@option.Text</option>
+            }
+        </select>
+    </div>
+    <div class="form-group status-box">
+        <label>@Resources.ProblemAccount</label>
+        <select id="dropdown-problem-account" name="ProblemAccount">
+                @foreach (var option in Model.ProblemAccountOptions)
+                {
+                    <option value="@option.Value" selected="@option.Value.Equals(Model.ProblemAccount.ToString())">@option.Text</option>
+                }
+            </select>
+    </div>
+    <div class="form-group">
+        <label>@Resources.Username</label>
+        <input type="text" id="txt-username" name="Username" placeholder="@Resources.Username" value="@Model.Username" maxlength="50" autocomplete="off" />
+    </div>
+
+    @Html.Hidden("Status", Model.Status)
+    @Html.Hidden("SportType", Model.SportType)
+    @Html.Hidden("BetType", Model.BetType)
+    @Html.Hidden("ProblemAccount", Model.ProblemAccount)
+</form>
+<div class="potential-win-limit-table">
+    <div class="breadcrumb-table">
+        <div class="breadcrumb-container">
+            <div class="note">
+                <span class="star">*</span>@Resources.PotentialWinLimitNote1
+            </div>
+            <div class="note">
+                <span class="star">*</span>@Resources.PotentialWinLimitNote2
+            </div>
+        </div>
+        <div class="list-icon">
+            <ul>
+                <li>
+                    <a id="icon-excel" class="ic-excel" data-placement="top" data-original-title="Export to Excel"
+                        title="@Resources.ExportToExcel" href="/settings/WinLossLimit/potentialexcel"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="wrapper-table-scrollable">
+        <table id="tbl-report" class="tb tb-bordered w-full tablesorter tb-hover tb-freeze-header" data-has-data="@Model.PotentialWinLimitPage.PotentialWinLimitDetail.Any()">
+            <thead>
+                <tr>
+                    <th><div class="col-no">@Resources.No</div></th>
+                    <th class="col-username">@Resources.Username</th>
+                    <th class="col-status">@Resources.Status</th>
+                    <th class="col-problem-account">@Resources.ProblemAccount</th>
+                    <th><div class="col-credit">@Resources.Credit</div></th>
+                    <th><div class="col-auto-daily-reset-limit">@Resources.AutoDailyResetLimit</div></th>
+                    <th><div class="col-to-win">@Resources.ToWin</div></th>
+                    <th><div class="col-accumulated-win-loss">@Resources.AccumulatedWinLoss</div></th>
+                    <th><div class="col-potential-win">@Resources.PotentialWin</div></th>
+                    <th><div class="col-max-potential-win-limit">@Resources.MaxPotentialWinLimit</div></th>
+                    <th><div class="col-cur-potential-win-limit">@Resources.CurrentPotentialWin</div></th>
+                    <th class="col-last-login">@Resources.LastLogin</th>
+                </tr>
+            </thead>
+            @if (Model.HasData)
+            {
+                int index = (Model.PageIndex - 1) * Model.PageSize + 1;
+                <tbody>
+                    @foreach (var winLossLimitDetail in Model.PotentialWinLimitPage.PotentialWinLimitDetail)
+                    {
+                        <tr>
+                            <td class="text-center">@index</td>
+                            <td class="text-left" title="@winLossLimitDetail.Username">@winLossLimitDetail.Username</td>
+                            <td class="text-center">@SportsbookPotentialWinLimitViewModel.GetStatusText(winLossLimitDetail.Status)</td>
+                            <td class="text-center">@(winLossLimitDetail.IsProblemAccount ? Resources.Yes : Resources.No2)</td>
+                            <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.Credit)</td>
+                            <td class="text-center">@(winLossLimitDetail.IsAutoReset ? Resources.Yes : Resources.No2)</td>
+                            <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.AccumToWin)</td>
+                            <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.AccumWinLoss)</td>
+                            <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.PotentialWin)</td>
+                            <td class="text-right">@Model.GetMaxWinLimit(winLossLimitDetail.PotentialWinLimit)</td>
+                            <td class="text-center @(winLossLimitDetail.PotentialWinPercent >= 100 ? "negative-value" : "")">
+                                @Model.GetWinPercent(winLossLimitDetail.PotentialWinPercent, winLossLimitDetail.PotentialWinLimit)
+                            </td>
+                            <td class="text-left" title="@Model.GetLastLoginDate(winLossLimitDetail.LastLogged)">
+                                @Model.GetLastLoginDate(winLossLimitDetail.LastLogged)
+                            </td>
+                        </tr>
+                        index++;
+                    }
+                </tbody>
+            }
+            else
+            {
+                <tbody>
+                    @NoInformation.Render(Model.NumberOfColumns)
+                </tbody>
+            }
+            @if (Model.ShowPager)
+            {
+                <tfoot>
+                    <tr>
+                        <td colspan="@Model.NumberOfColumns">
+                            <div>
+                                @Pager.Render(Model.PagerViewModel)
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+                }
+        </table>
+    </div>
+</div>
+@section Scripts {
+    @StaticResources.RenderScripts("~/Features/MemberInfo/assets/bundles/win-loss-limit/potential-win-limit")
+} 

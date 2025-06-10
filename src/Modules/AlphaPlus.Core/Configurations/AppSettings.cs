@@ -169,4 +169,12 @@ public static class AppSettings
         (ConfigurationManager.GetValue<string>("CashService:OfferedSites") ?? string.Empty)
            .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
            .Select(site => site.Trim()), StringComparer.OrdinalIgnoreCase);
+
+    public static bool IsSupportPotentialWinLimit(string site)
+        => SiteSupportPotentialWinLimit.Contains("*") || SiteSupportPotentialWinLimit.Contains(site);
+
+    private static HashSet<string> SiteSupportPotentialWinLimit { get; } = new HashSet<string>(
+        ConfigurationManager
+            .GetValue<string>("SiteSupportPotentialWinLimit")
+            .Split(','), StringComparer.OrdinalIgnoreCase);
 }

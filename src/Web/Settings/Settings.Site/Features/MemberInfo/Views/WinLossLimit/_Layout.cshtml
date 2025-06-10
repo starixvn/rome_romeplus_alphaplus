@@ -1,0 +1,50 @@
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Core.Configurations
+@using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.WinLossLimit
+@inject AlphaPlus.Core.Models.IUserSession userSession
+
+@{
+    var action = ViewContext.RouteData.Values["action"].ToString();
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>@(ViewBag.Title ?? "Alpha - Member Information")</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
+
+        @StaticResources.AssetStyles.Render("/bundles-v2/common/common")
+        @StaticResources.AssetStyles.Render("/bundles-v2/site-memberinfo/default")
+        @RenderSection("Styles", required: false)
+        @AlphaPlus.Core.Helpers.GoogleAnalyticHelper.GtagScript()
+    </head>
+    <body class="@userSession.SiteName.ToLowerInvariant()" data-theme="@(string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark")">
+        @AlphaPlus.Core.Helpers.GoogleAnalyticHelper.GtagNoScript()
+        <div class="win-loss-limit-container">
+        @if (userSession.IsAgent && AppSettings.IsSupportPotentialWinLimit(userSession.Site))
+        {
+            <div class="page-title tabs @userSession.SiteName.ToLowerInvariant()">
+                @await Component.InvokeAsync("Tab", new { tabName = action.ToLowerInvariant() })
+            </div>
+            <div class="tab-content">
+                @RenderBody()
+            </div>
+        }
+        else
+        {
+            @RenderBody()
+        }
+        </div>
+        @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+        @StaticResources.AssetScripts.Render("/bundles/site-memberinfo/default")
+        @RenderSection("Scripts", required: false)
+        <script>
+            $(document).ready(function () {
+                $(".open-link").unbind().bind('click', function (event) { top.alpha.viewDataURL(event); });
+            });
+        </script>
+    </body>
+</html>

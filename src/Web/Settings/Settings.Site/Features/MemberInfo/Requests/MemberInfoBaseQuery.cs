@@ -26,7 +26,10 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests
             SubAccId = this.viewer.SubAccId;
             SubUsername = this.viewer.SubAccName;
             BreadcrumbLevel = [];
+            LimitedDateToShowInfo = this.viewer.LimitedDateToShowInfo;
         }
+
+        public DateTime LimitedDateToShowInfo { get; }
 
         public string ActorUsername => viewer.Name;
 

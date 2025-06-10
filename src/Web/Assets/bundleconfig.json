@@ -615,6 +615,16 @@
         ]
     },
     {
+        "outputFileName": "bundles-v2/site-memberinfo/default.css",
+        "inputFiles": [
+            "styles-v2/components/tab.css",
+            "styles-v2/components/multiselect.css",
+            "styles-v2/components/fanex-multiselect.css",
+            "styles-v2/components/tables.css",
+            "styles-v2/components/tooltip.css"
+        ]
+    },
+    {
         "outputFileName": "bundles/site-memberinfo/problem-account-Super.css",
         "inputFiles": [
             "styles/base/reset.css",

@@ -146,6 +146,14 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/win-loss-limit/potential-win-limit.js",
+    "inputFiles": [
+      "Features/MemberInfo/assets/scripts/components/single-selection-dropdown.js",
+      "Features/MemberInfo/assets/scripts/components/pager.js",
+      "Features/MemberInfo/assets/scripts/win-loss-limit/potential-win-limit.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/credit-balance/credit-balance.js",
     "inputFiles": [
       "Features/MemberInfo/assets/scripts/components/single-selection-dropdown.js",
@@ -929,6 +937,12 @@
     "outputFileName": "wwwroot/MemberInfo/assets/bundles/CustomerList/MultipleEditSportsBookGuideline/guideline.css",
     "inputFiles": [
       "Features/CustomerList/MultipleEditSportsBookGuideline/assets/guideline.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles-v2/win-loss-limit.css",
+    "inputFiles": [
+      "Features/MemberInfo/assets/styles-v2/win-loss-limit.css"
     ]
   }
 ]

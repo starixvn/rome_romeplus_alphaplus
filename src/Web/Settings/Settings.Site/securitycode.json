@@ -29,7 +29,7 @@
             "Customer/EditCustomer",
             "Customer/EditMultiple",
             "SearchAccount/GivenCredit"
-        ],
+      ],
         "BetListsPaths": [],
         "StatementPaths": [],
         "Sites": [],

@@ -8,18 +8,25 @@
 @using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components
 @using AlphaPlus.Settings.MemberInfo.Domain.Models
 @using AlphaPlus.Settings.MemberInfo.Domain.Extensions
+@using AlphaPlus.Core.Configurations
+@inject AlphaPlus.Core.Models.IUserSession userSession
 @model WinLossLimitViewModel
 @{
+    Layout = "~/Features/MemberInfo/Views/WinLossLimit/_Layout.cshtml";
     ViewBag.Title = "Member Win/Loss Limit";
 }
 @section Styles {
-    @StaticResources.RenderStylesWithDarkMode("~/Features/MemberInfo/assets/bundles/win-loss-limit")
+    @StaticResources.RenderStyles("~/Features/MemberInfo/assets/bundles-v2/win-loss-limit")
 }
-<div class="page-title">
-    <span class="pull-left">@Resources.MemberWinLossLimit</span>
-</div>
-<form id="win-loss-limit-form" class="form-inline demo-form-inline filter" role="form">
+@if (!userSession.IsAgent || !AppSettings.IsSupportPotentialWinLimit(userSession.Site))
+{
+    <div class="page-title">
+        <span class="pull-left">@Resources.MemberWinLossLimit</span>
+    </div>
+}
+<form id="win-loss-limit-form" class="form-inline demo-form-inline filter">
     <div class="form-group">
+        <label>@Resources.Product</label>
         <select id="dropdown-product">
             @foreach (var group in Model.GroupProducts)
             {
@@ -58,7 +65,7 @@
     @if (Model.ViewerLevel.IsSuperLevel())
     {
         <div class="form-group">
-            <label>@Resources.SelectDirectDownline</label>
+            <label for="dropdown-master">@Resources.SelectDirectDownline</label>
             <select id="dropdown-master">
                 @if (Model.MasterList.Any())
                 {
@@ -77,7 +84,7 @@
     @if (Model.ViewerLevel.IsMasterOrSuperLevel())
     {
         <div class="form-group">
-            <label>@(Model.ViewerLevel.IsSuperLevel() ? Resources.SelectAgent : Resources.SelectDirectDownline)</label>
+            <label for="dropdown-agent">@(Model.ViewerLevel.IsSuperLevel() ? Resources.SelectAgent : Resources.SelectDirectDownline)</label>
             <select id="dropdown-agent" @(Model.ViewerLevel.IsSuperLevel() && Model.MasterId == 0 ? "disabled=disabled" : string.Empty)>
                 @if (Model.AgentList.Any())
                 {
@@ -99,7 +106,7 @@
         </div>
     }
     <div class="form-group">
-        <label>@Resources.Username</label>
+        <label for="txt-username">@Resources.Username</label>
         <input type="text" id="txt-username" name="Username" placeholder="@Resources.Username" value="@Model.Username" maxlength="50" autocomplete="off" />
     </div>
     @if (Model.IsBBin)
@@ -109,11 +116,18 @@
     @if (Model.IsSabaclub)
     {
         <div class="form-group">
-            <label>@Resources.PlayerId</label>
+            <label for="txt-player-id">@Resources.PlayerId</label>
             <input type="text" id="txt-player-id" name="PlayerId" value="@Model.PlayerId" />
         </div>
     }
-    <table id="tbl-report" class="tblRpt tblRpt-bordered tblRpt-hover tablesorter alternative-row-table" data-has-data="@Model.WinLossLimitPage.WinLossLimitDetail.Any()">
+    @Html.Hidden("UserSelectedProductId", Model.UserSelectedId)
+    @Html.Hidden("SportType", Model.SportType)
+    @Html.Hidden("BetType", Model.BetType)
+    @Html.Hidden("MasterId", Model.MasterId)
+    @Html.Hidden("RecommendId", Model.RecommendId)
+</form>
+<div class="wrapper-table-scrollable">
+    <table id="tbl-report" class="tb tb-bordered w-full tablesorter tb-hover tb-freeze-header" data-has-data="@Model.WinLossLimitPage.WinLossLimitDetail.Any()">
         <thead>
             <tr>
                 <th><div class="col-no">@Resources.No</div></th>
@@ -203,12 +217,7 @@
             </tfoot>
         }
     </table>
-    @Html.Hidden("UserSelectedProductId", Model.UserSelectedId)
-    @Html.Hidden("SportType", Model.SportType)
-    @Html.Hidden("BetType", Model.BetType)
-    @Html.Hidden("MasterId", Model.MasterId)
-    @Html.Hidden("RecommendId", Model.RecommendId)
-</form>
+</div>
 @section Scripts {
     @StaticResources.RenderScripts("~/Features/MemberInfo/assets/bundles/win-loss-limit/win-loss-limit")
 }
