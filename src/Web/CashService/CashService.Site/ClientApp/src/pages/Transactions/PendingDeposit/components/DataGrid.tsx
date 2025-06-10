@@ -18,15 +18,12 @@ interface DataGridProps {
 }
 
 const TableHeader: React.FC<{ t: (key: string) => string }> = ({ t }) => (
-    if (deposits.length <= pageSize) {
-      setCurrentPage(1);
-    }
   <thead className="z-11!">
     <tr>
-              <th
-                scope="col"
-                className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-header-background)] z-11"
-              >
+      <th
+        scope="col"
+        className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-header-background)] z-11"
+      >
         #
       </th>
       <th
@@ -60,7 +57,14 @@ interface TableRowProps {
   t: (key: string) => string;
 }
 
-const TableRow: React.FC<TableRowProps> = ({ deposit, index, currentPage, pageSize, onProcess, t }) => (
+const TableRow: React.FC<TableRowProps> = ({
+  deposit,
+  index,
+  currentPage,
+  pageSize,
+  onProcess,
+  t,
+}) => (
   <tr key={deposit.transId}>
     <td className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-background)] z-10">
       {index + 1 + (currentPage - 1) * pageSize}
@@ -99,6 +103,9 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
   const totalItems = deposits.length;
 
   useEffect(() => {
+    if (deposits.length <= pageSize) {
+      setCurrentPage(1);
+    }
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
     setPaginatedDeposits(deposits.slice(startIndex, endIndex));
