@@ -14,8 +14,6 @@ namespace AlphaPlus.Reports.Site.Features.WinLossDetail;
 public interface IWinLossDetailWorkbook
 {
     ExcelFileViewModel BuildExcelFile(WinLossDetailExcelQuery message, ReportData<WinLossDetailModel> reportData, string productNames);
-    
-   // ExcelFileViewModel BuildCashFeeExcelFile(CashFeeExcelQuery message, ReportData<CashFeeModel> reportData);
 }
 
 public class WinLossDetailWorkbook(IWebHostEnvironment webHostEnvironment) :
@@ -161,38 +159,4 @@ public class WinLossDetailWorkbook(IWebHostEnvironment webHostEnvironment) :
 
         return mapper;
     }
-
-    //public ExcelFileViewModel BuildCashFeeExcelFile(CashFeeExcelQuery message, ReportData<CashFeeModel> reportData)
-    //{
-    //    var fromDateString = message.FromDate.ToShortDateWithSlash();
-    //    var toDateString = message.ToDate.ToShortDateWithSlash();
-    //    var cashBillingService = "CASH BILLING SERVICE";
-
-    //    var fileContent = UseTemplate(
-    //        new TemplateInfo(
-    //            GetExcelTemplatePath("CashFeeTemplate"),
-    //            noInfomationText: Resources.NoInformationIsAvailable))
-    //        .Title($"{cashBillingService} {fromDateString} --> {toDateString}")
-    //        .Header(key => Resources.ResourceManager.GetString(key))
-    //        .Body(reportData.DataSource, GetRowMapper(custLevel))
-    //        .Footer(reportData.Total, GetRowMapper(custLevel))
-    //        .Sheet(Resources.DefaultSheetName)
-    //        .ExportToBytes();
-
-    //    return new ExcelFileViewModel($"{"CASH-BILLING-SERVICE"}-{message.CustName}-{fromDateString}-{toDateString}", fileContent);
-    //}
-
-    //internal Mapper<CashFeeItemModel> GetRowMapper(CashFeeItemModel item)
-    //{
-    //    var mapper = new Mapper<CashFeeItemModel>();
-
-    //    mapper
-    //        .Map(A, winLossDetail => item.Type)
-    //        .Map(B, winLossDetail => item.Fee)
-    //        .Map(C, winLossDetail => item.Count)
-    //        .Map(D, winLossDetail => item.Agent)
-    //        .Map(E, winLossDetail => item.Company);
-
-    //    return mapper;
-    //}
 }

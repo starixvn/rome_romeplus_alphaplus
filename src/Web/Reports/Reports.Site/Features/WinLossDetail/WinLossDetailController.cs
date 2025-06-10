@@ -25,4 +25,6 @@ public class WinLossDetailController(IMediator mediator) : ReportBaseController(
 
     public Task<IActionResult> GetCashFeeData(CashFeeGetDataQuery message)
        => View<CashFeeModel>(message, "CashFeeData");
+
+    public Task<IActionResult> CashFeeExcel(CashFeeExcelQuery message) => ExcelView(message);
 }

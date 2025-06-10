@@ -25,7 +25,8 @@ public class WinLossDetailHandler(
     ICustomerService customerService,
     IWinLossDetailService winlossDetailService,
     IWinLossDetailWorkbook workbook,
-    ICustomerClient customerClient) :
+    ICustomerClient customerClient,
+    ICashFeeWorkbook cashFeeWorkbook) :
         BaseHandler(productService, options),
         IRequestHandler<WinLossDetailQuery, WinLossDetailViewModel>,
         IRequestHandler<WinLossDetailGetDataQuery, WinLossDetailGetDataViewModel>,
@@ -40,6 +41,7 @@ public class WinLossDetailHandler(
     private readonly IWinLossDetailService winlossDetailService = winlossDetailService;
     private readonly IWinLossDetailWorkbook workbook = workbook;
     private readonly ICustomerClient customerClient = customerClient;
+    private readonly ICashFeeWorkbook cashFeeWorkbook = cashFeeWorkbook;
 
     public async Task<WinLossDetailViewModel> Handle(WinLossDetailQuery message, CancellationToken cancellationToken)
     {
@@ -301,7 +303,7 @@ public class WinLossDetailHandler(
     public async Task<CashFeeViewModel> Handle(CashFeeQuery message, CancellationToken cancellationToken)
     {
         var breadcrumbs = BreadcrumbHelper.BuildBreadcrumbs(message).ToList();
-        breadcrumbs.Add(new Reports.Features.Shared.Models.Breadcrumb(0, "CASH SERVICE BILLING", 0));
+        breadcrumbs.Add(new Reports.Features.Shared.Models.Breadcrumb(0, Resources.CashServiceBilling.ToUpper(), 0));
 
         var cashFeeParam = new CashFeeParam(message.CustId, message.FromDate, message.ToDate);
         var cashFeeModel = await winlossDetailService.GetCashFee(cashFeeParam);
@@ -309,9 +311,13 @@ public class WinLossDetailHandler(
         return new CashFeeViewModel(message, cashFeeModel, breadcrumbs);
     }
 
-    public Task<ExcelFileViewModel> Handle(CashFeeExcelQuery request, CancellationToken cancellationToken)
+    public async Task<ExcelFileViewModel> Handle(CashFeeExcelQuery message, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var cashFeeParam = new CashFeeParam(message.CustId, message.FromDate, message.ToDate);
+
+        var reportData = await winlossDetailService.GetCashFee(cashFeeParam);
+
+        return cashFeeWorkbook.BuildCashFeeExcelFile(message, reportData);
     }
 
     public async Task<CashFeeModel> Handle(CashFeeGetDataQuery message, CancellationToken cancellationToken)

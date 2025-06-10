@@ -2,28 +2,6 @@
 @using AlphaPlus.Reports.Site.Features.WinLossDetail.ViewModels
 @{
 	Layout = "_Layout";
-
-	void RenderCashFeeGroup(CashFeeGroupModel cashFeeGroup)
-	{
-		RenderFeeItemRow(cashFeeGroup.Total, true);
-
-		foreach (var item in cashFeeGroup.FeeItems)
-		{
-			RenderFeeItemRow(item);
-		}
-	}
-
-	void RenderFeeItemRow(CashFeeItemModel item, bool isTotalRow = false)
-	{
-		var rowClass = isTotalRow ? "sub-total-row" : "";
-		<tr class="@rowClass">
-			<td>@item.Type</td>
-			<td>@item.Fee.FormatNumber()</td>
-			<td>@item.Count.FormatNumber()</td>
-			<td>@item.Agent.FormatNumber()</td>
-			<td>@item.Company.FormatNumber()</td>
-		</tr>
-	}
 }
 @section Styles {
 	@StaticResources.AssetStyles.Render("/bundles-v2/site-reports/winlossdetailnew")
@@ -53,7 +31,7 @@
 @model CashFeeViewModel
 
 <div class="title-has-info title-has-entered">
-	<report-title-new model="Model.PageHeader" />
+	<report-title-new model="@Model.PageHeader" />
 </div>
 <form class="form-inline filter" role="form" id="report-form">
 	<daterange-picker-jquery model="@Model.DateRangePicker" />
@@ -91,7 +69,7 @@
 			</li>
 			<li>
 				<a id="icon-excel" class="ic-excel" data-toggle="tooltip" data-placement="top"
-					title="@Resources.ExportToExcel" asp-action="Excel"></a>
+				   title="@Resources.ExportToExcel" asp-action="CashFeeExcel"></a>
 			</li>
 		</ul>
 	</div>

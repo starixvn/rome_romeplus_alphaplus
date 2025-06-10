@@ -3,13 +3,14 @@ using AlphaPlus.Core.Utils;
 using AlphaPlus.Reports.Features.WinLossDetail.Models;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using AlphaPlus.Reports.Site.Features.WinLossDetail.Requests;
+using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Site.Features.WinLossDetail.ViewModels;
 
 public class CashFeeViewModel(CashFeeQuery message, CashFeeModel cashFeeModel, IEnumerable<Reports.Features.Shared.Models.Breadcrumb> breadcrumbs)
 {
     public PageHeaderViewModel PageHeader { get; } = new PageHeaderViewModel(
-        Title: "",
+        Title: GetCashFeeTitle(message),
         IsFilterVisible: message.IsFilterVisible);
 
     public DateRangePickerJQueryViewModel DateRangePicker { get; } = new DateRangePickerJQueryViewModel(
@@ -44,4 +45,9 @@ public class CashFeeViewModel(CashFeeQuery message, CashFeeModel cashFeeModel, I
     public string UserSelectedProductIds { get; } = message.UserSelectedProductIds;
 
     public string UserSelectedResourceIds { get; } = message.UserSelectedResourceIds;
+
+    private static string GetCashFeeTitle(CashFeeQuery message)
+    {
+        return $"{message.CustName} - {Resources.CashServiceBilling.ToUpper()}";
+    }
 }

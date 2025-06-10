@@ -52,8 +52,8 @@ class CashFeeView extends BaseReportNew {
         $iconExcel
             .click((e) => {
                 let excelParams = {
-                    custId: winlossDetailFromData.CustId,
-                    custName: winlossDetailFromData.CustName
+                    custId: winlossDetailFromData.custId,
+                    custName: winlossDetailFromData.custName
                 };
                 $.extend(excelParams, this.dateRangeComponent.getDateRangeValues());
                 $iconExcel.attr('href', `${excelUrl}?${$.param(excelParams)}`);

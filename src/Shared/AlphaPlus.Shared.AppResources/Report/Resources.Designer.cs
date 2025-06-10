@@ -3476,5 +3476,16 @@ namespace AlphaPlus.Shared.AppResources.Report {
                 return ResourceManager.GetString("Count", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string CashServiceBilling.
+        /// </summary>
+        public static string CashServiceBilling
+        {
+            get
+            {
+                return ResourceManager.GetString("CashServiceBilling", resourceCulture);
+            }
+        }
     }
 }

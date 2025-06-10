@@ -1323,4 +1323,7 @@
   <data name="Count" xml:space="preserve">
     <value>Count</value>
   </data>
+  <data name="CashServiceBilling" xml:space="preserve">
+    <value>Cash Service Billing</value>
+  </data>
 </root>

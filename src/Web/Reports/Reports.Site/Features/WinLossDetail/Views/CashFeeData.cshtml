@@ -5,7 +5,7 @@
 
 	void RenderCashFeeGroup(CashFeeGroupModel cashFeeGroup)
 	{
-		RenderFeeItemRow(cashFeeGroup.Total, true);
+		RenderFeeTypeRow(cashFeeGroup.Total);
 
 		foreach (var item in cashFeeGroup.FeeItems)
 		{
@@ -13,10 +13,20 @@
 		}
 	}
 
-	void RenderFeeItemRow(CashFeeItemModel item, bool isTotalRow = false)
+	void RenderFeeTypeRow(CashFeeItemModel item)
 	{
-		var rowClass = isTotalRow ? "sub-total-row" : "";
-		<tr class="@rowClass">
+		<tr class="sub-total-row">
+			<td>@item.Type</td>
+			<td></td>
+			<td>@item.Count.FormatNumber()</td>
+			<td>@item.Agent.FormatNumber()</td>
+			<td>@item.Company.FormatNumber()</td>
+		</tr>
+	}
+
+	void RenderFeeItemRow(CashFeeItemModel item)
+	{
+		<tr >
 			<td>@item.Type</td>
 			<td>@item.Fee.FormatNumber()</td>
 			<td>@item.Count.FormatNumber()</td>
