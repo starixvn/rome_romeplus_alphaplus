@@ -35,7 +35,7 @@ body {
     margin: 0 0 4px 2px;
 }
 
-.tab-content > .tab-pane {
+.tab-content>.tab-pane {
     padding: 8px 0;
 
     .pointer {
@@ -62,12 +62,12 @@ body {
 
         .btn-link {
             @include border-radius(2px);
-            background: #ffffff; /* Old browsers */
-            background: linear-gradient(
-                to bottom,
-                #ffffff 0%,
-                #e1e1e1 100%
-            ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            background: #ffffff;
+            /* Old browsers */
+            background: linear-gradient(to bottom,
+                    #ffffff 0%,
+                    #e1e1e1 100%);
+            /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
             border: 1px solid #9d9d9d;
             color: #068200;
             padding: 2px 8px;
@@ -119,6 +119,7 @@ body {
     }
 
     .down-line-total {
+
         .active,
         .closed,
         .suspended {
@@ -158,6 +159,7 @@ body {
             }
         }
     }
+
     // Announcement
     &.notice {
         %group {
@@ -265,6 +267,7 @@ body {
 
     .ver2 & {
         .tooltip-arrow {
+
             &:after,
             &:before {
                 display: none;
@@ -302,6 +305,7 @@ body {
 
     &.top {
         .tooltip-arrow {
+
             &:after,
             &:before {
                 bottom: 0;
@@ -332,10 +336,10 @@ body {
     }
 
     &.right {
-        .tooltip-inner {
-        }
+        .tooltip-inner {}
 
         .tooltip-arrow {
+
             &:after,
             &:before {
                 bottom: 0;
@@ -380,7 +384,7 @@ body {
         flex-wrap: wrap;
     }
 
-    .tab-content > .tab-pane {
+    .tab-content>.tab-pane {
         display: block;
         margin-top: 12px;
         padding: 0 4px;
@@ -474,7 +478,7 @@ body {
 }
 
 @media only screen and (min-device-width: $screen-device-greater1200) {
-    .tab-content > .tab-pane {
+    .tab-content>.tab-pane {
         .row:hover {
             background-color: $table-td-hover-color;
         }
@@ -490,7 +494,7 @@ body {
         display: none;
     }
 
-    .tab-content > .tab-pane {
+    .tab-content>.tab-pane {
         display: block;
         margin-top: 12px;
         padding: 0 4px;
@@ -650,9 +654,10 @@ body {
     }
 
     .modal-content {
-        border-radius: 22px;
+        border-radius: 3px;
         box-shadow: 0 3px 24px rgba(0, 0, 0, 0.12);
         border: none;
+        padding: 0 0 15px 0;
     }
 
     .cash-modal {
@@ -667,7 +672,7 @@ body {
 
         &-title {
             font-weight: 700;
-            font-size: 17px;
+            font-size: 16px;
             color: #1A3365;
             margin-bottom: 8px;
         }
@@ -681,7 +686,7 @@ body {
 
         &-desc {
             color: #1A3365;
-            font-size: 14px;
+            font-size: 13px;
             margin-bottom: 5px;
         }
 
@@ -689,7 +694,7 @@ body {
             text-align: center;
             display: inline-block;
             color: #1A3365;
-            font-size: 14px;
+            font-size: 13px;
             margin-bottom: 0;
         }
 
@@ -701,34 +706,37 @@ body {
         &-footer {
             display: flex;
             justify-content: center;
-            gap: 16px;
-            border-top: none;
-            padding-top: 0;
-            padding-bottom: 32px;
+            gap: 8px;
         }
     }
 
     .custom {
         &-cancel {
-            min-width: 110px;
-            border-radius: 22px;
-            border: 1px solid #1A3365;
-            color: #1A3365;
-            background: #fff;
-            font-weight: 600;
+            min-width: 90px;
+            background: #696969;
+            &:hover {
+                background: #636363;
+            }
         }
 
         &-confirm {
-            min-width: 110px;
-            border-radius: 22px;
-            background: #1A3365;
-            font-weight: 600;
-            border: none;
+            min-width: 90px;
+            background: #0b599c;
+            &:hover {
+                background: #0b5494;
+            }
         }
     }
 
     .btn {
-        outline-offset: 0px !important;
+        height: 28px;
+        min-width: 90px;
+        outline-style: none !important;
+        border-radius: 3px;
+        border: 0 solid;
+        color: #fff;
+        font-weight: 500;
+        padding: 0 16px;
 
         &:active {
             box-shadow: none;

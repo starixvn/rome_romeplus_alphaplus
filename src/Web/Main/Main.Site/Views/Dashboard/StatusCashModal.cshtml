@@ -1,118 +1,4 @@
 @* PartialView: EnableCashModal *@
-<style lang="scss">
-#enableCashServiceModal,
-#disableCashServiceModal {
-    display: none;
-    position: fixed;
-    z-index: 1050;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-
-    .modal-dialog {
-        margin-top: 20px;
-        width: 460px;
-        max-width: 95vw;
-    }
-
-    .modal-content {
-        border-radius: 22px;
-        box-shadow: 0 3px 24px rgba(0, 0, 0, 0.12);
-        border: none;
-    }
-
-    .cash-modal {
-        &-body {
-            text-align: center;
-            padding: 20px 25px 10px 25px !important;
-        }
-
-        &-icon {
-            margin-bottom: 10px;
-        }
-
-        &-title {
-            font-weight: 700;
-            font-size: 17px;
-            color: #1A3365;
-            margin-bottom: 8px;
-        }
-
-        &-line {
-            width: 48px;
-            height: 2px;
-            background: #E5EAF2;
-            margin: 0 auto 20px auto;
-        }
-
-        &-desc {
-            color: #1A3365;
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-
-        &-list {
-            text-align: center;
-            display: inline-block;
-            color: #1A3365;
-            font-size: 14px;
-            margin-bottom: 0;
-        }
-
-        &-highlight {
-            color: #0070C9;
-            font-weight: 600;
-        }
-
-        &-footer {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            border-top: none;
-            padding-top: 0;
-            padding-bottom: 32px;
-        }
-    }
-
-    .custom {
-        &-cancel {
-            min-width: 110px;
-            border-radius: 22px;
-            border: 1px solid #1A3365;
-            color: #1A3365;
-            background: #fff;
-            font-weight: 600;
-        }
-
-        &-confirm {
-            min-width: 110px;
-            border-radius: 22px;
-            background: #1A3365;
-            font-weight: 600;
-            border: none;
-        }
-    }
-
-    .btn {
-        outline-offset: 0px !important;
-
-        &:active {
-            box-shadow: none;
-        }
-
-        &:focus-visible {
-            outline: none;
-        }
-    }
-}
-
-#disableCashServiceModal {
-    .cash-modal-title {
-        color: #C82333;
-    }
-}
-</style>
 
 <div id="enableCashServiceModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -137,9 +23,9 @@
                         and per promotion.</li>
                 </ul>
             </div>
-            <div class="modal-footer cash-modal-footer">
-                <button type="button" class="btn-outline-primary custom-cancel" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn-primary custom-confirm" id="confirmEnableCashService">Confirm</button>
+            <div class="cash-modal-footer">
+                <button type="button" class="btn custom-cancel" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn custom-confirm" id="confirmEnableCashService">Confirm</button>
             </div>
         </div>
     </div>
@@ -162,9 +48,9 @@
                     Cash Service will be turned off for your account, and charges will stop as of tomorrow
                 </div>
             </div>
-            <div class="modal-footer cash-modal-footer">
-                <button type="button" class="btn-outline-primary custom-cancel" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn-primary custom-confirm" id="confirmDisableCashService">Confirm</button>
+            <div class="cash-modal-footer">
+                <button type="button" class="btn custom-cancel" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn custom-confirm" id="confirmDisableCashService">Confirm</button>
             </div>
         </div>
     </div>
