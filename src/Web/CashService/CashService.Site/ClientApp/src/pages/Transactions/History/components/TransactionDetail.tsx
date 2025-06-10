@@ -1,24 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+
+import React, { useEffect, useState } from 'react';
+import { confirmAlert } from 'react-confirm-alert';
 import { useTranslation } from 'react-i18next';
+
+import {
+    ButtonApplyComponent, ButtonCancelComponent
+} from '../../../../components/ButtonComponents';
+import { IconClose, Spinner } from '../../../../components/Icons';
+import { ResultMessageComponent } from '../../../../components/MessageComponents';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import {
-  displayAmount,
-  formatDateTime,
-  getStatusStyle,
-  mappingStatus,
-  renderBankAccount,
-  TransactionType,
+    displayAmount, formatDateTime, mappingStatus, renderBankAccount, TransactionType
 } from '../../../../utils/commonFunctions';
-import { IconClose } from '../../../../components/Icons';
-import { ResultMessageComponent } from '../../../../components/MessageComponents';
-import { Spinner } from '../../../../components/Icons';
-import {
-  ButtonCancelComponent,
-  ButtonApplyComponent,
-} from '../../../../components/ButtonComponents';
-import 'react-confirm-alert/src/react-confirm-alert.css';
-import { confirmAlert } from 'react-confirm-alert';
 
 interface TransactionDetailProps {
   transactionId: number | null;
