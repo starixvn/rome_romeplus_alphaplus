@@ -326,18 +326,13 @@ export const IconLast = ({ className }: { className?: string }) => (
 
 )
 export const IconImage = () => (
-  <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-8 w-8 text-[var(--text-link-color)] mb-[5px]"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-      />
-    </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-[var(--text-link-color)] mb-[5px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+  </svg>
+)
+export const IconExcel = ({ className }: { className?: string }) => (
+  <svg className={`w-[20px] h-[20px] fill-[var(--pager-color)] ${className}`} version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path d="M27.994 6.4h-8.794v2.861h2.909v1.949h-2.909v1.91h2.88v1.92h-2.88v1.92h2.88v1.92h-2.88v1.92h2.88v1.92h-2.88v2.88h8.794c0.442 0 0.806-0.374 0.806-0.835v-17.53c0-0.461-0.365-0.835-0.806-0.835zM26.88 22.72h-3.84v-1.92h3.84v1.92zM26.88 18.88h-3.84v-1.92h3.84v1.92zM26.88 15.040h-3.84v-1.92h3.84v1.92zM26.88 11.2h-3.84v-1.92h3.84v1.92z"></path>
+    <path d="M3.2 6.046v19.909l14.4 2.846v-25.6l-14.4 2.846zM12.31 21.002l-1.67-3.249c-0.067-0.118-0.125-0.345-0.192-0.67h-0.038c-0.029 0.148-0.106 0.384-0.221 0.699l-1.68 3.22h-2.611l3.101-4.982-2.842-4.992h2.669l1.392 2.993c0.106 0.236 0.202 0.512 0.288 0.837h0.029c0.058-0.197 0.154-0.482 0.307-0.866l1.546-2.964h2.438l-2.918 4.943 2.995 5.031h-2.592z"></path>
+  </svg>
 )

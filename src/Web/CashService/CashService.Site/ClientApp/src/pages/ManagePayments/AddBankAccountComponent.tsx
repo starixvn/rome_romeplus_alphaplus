@@ -314,8 +314,8 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
               className="pb-[16px]"
             >
               <div className="modal-body">
-                <ErrorMessageComponent message={error} />
-                <SuccessMessageComponent message={successMessage} />
+                <ErrorMessageComponent className='mb-[16px] max-[768px]:mb-[0]' message={error} />
+                <SuccessMessageComponent className='mb-[16px] max-[768px]:mb-[0]' message={successMessage} />
 
                 <MediumTitleComponent text={tManagePayments('bankStatus')} />
                 <p className=" my-[8px]">{tManagePayments('bankNote1')}</p>
