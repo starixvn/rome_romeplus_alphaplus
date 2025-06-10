@@ -32,6 +32,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
   const [remark, setRemark] = useState('');
   const [deposit, setDeposit] = useState<TransactionItem | null>(null);
   const [depositAmount, setDepositAmount] = useState<number>(deposit?.amount || 0);
+  const [agentAvailableCredit, setAgentAvailableCredit] = useState<number>(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [resultMessage, setResultMessage] = useState<{
@@ -42,15 +43,20 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
   useEffect(() => {
     const fetchDeposit = async () => {
       setIsLoading(true);
-      const response = await transactionAPI.getTransactionDetail(transId, custId);
-      if(response.error) {
+      const [response, agentAC] = await Promise.all([
+        transactionAPI.getTransactionDetail(transId, custId),
+        pendingDepositAPI.getLimitAmtDeposit(custId),
+      ]);
+      if (response.error) {
         setIsLoading(false);
         return;
       }
       setDeposit(response.data);
       setDepositAmount(response.data.amount);
+      setAgentAvailableCredit(agentAC);
       setIsLoading(false);
     };
+
     fetchDeposit();
   }, [transId, custId]);
 
@@ -123,7 +129,9 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
 
   return (
     <div className="bg-[#00000080] fixed inset-0 flex items-start justify-center z-50">
-      <div className={` ${classBase64} px-[20px] pb-[10px] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-[768px]:max-w-[90%] max-[768px]:h-[90%] overflow-auto rounded-[4px]`}>
+      <div
+        className={` ${classBase64} px-[20px] pb-[10px] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-[768px]:max-w-[90%] max-[768px]:h-[90%] overflow-auto rounded-[4px]`}
+      >
         <div className="relative my-[10px]">
           <MediumTitleComponent text={` ${t('pendingDepositModal.title')} (${deposit?.transId})`} />
           <ButtonClosePopupComponent onClick={() => onClose(false)} />
@@ -136,98 +144,99 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
           />
         )}
         <div className="flex max-[768px]:flex-wrap">
-            {isLoading ? (
-                <div className="w-full flex items-center justify-center min-h-[200px]">
-                    <LoadingFullComponent />
+          {isLoading ? (
+            <div className="w-full flex items-center justify-center min-h-[200px]">
+              <LoadingFullComponent />
+            </div>
+          ) : (
+            <>
+              <div className="flex-1 h-full max-[768px]:mb-[16px]">
+                <div className="border border-[var(--border-control)] rounded mb-[8px] p-[8px]">
+                  <table className="w-full h-full no-hover">
+                    <thead>
+                      <tr className="text-left font-semibold text-[var(--text-color-secondary)]">
+                        <th className="px-[8px] py-[4px]">{t('pendingDepositModal.username')}</th>
+                        <th className="px-[8px] py-[4px]">{t('dataGrid.nickname')}</th>
+                        <th className="px-[8px] py-[4px]">{t('dataGrid.firstLastName')}</th>
+                        <th className="px-[8px] py-[4px]">{t('pendingDepositModal.betCredit')}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="px-[8px] py-[4px]">{deposit?.username}</td>
+                        <td className="px-[8px] py-[4px]">{deposit?.nickname}</td>
+                        <td className="px-[8px] py-[4px]">{`${deposit?.firstName} ${deposit?.lastName}`}</td>
+                        <td className="px-[8px] py-[4px] text-[var(--text-link-color)] font-semibold">
+                          {deposit?.betCredit && displayAmount(deposit.betCredit)}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-            ) : (
-                <>
-                  <div className="flex-1 h-full max-[768px]:mb-[16px]">
-              <div className="border border-[var(--border-control)] rounded mb-[8px] p-[8px]">
-                <table className="w-full h-full no-hover">
-                        <thead>
-                    <tr className="text-left font-semibold text-[var(--text-color-secondary)]">
-                            <th className="px-[8px] py-[4px]">{t('pendingDepositModal.username')}</th>
-                            <th className="px-[8px] py-[4px]">{t('dataGrid.nickname')}</th>
-                            <th className="px-[8px] py-[4px]">{t('dataGrid.firstLastName')}</th>
-                            <th className="px-[8px] py-[4px]">{t('pendingDepositModal.betCredit')}</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td className="px-[8px] py-[4px]">{deposit?.username}</td>
-                            <td className="px-[8px] py-[4px]">{deposit?.nickname}</td>
-                            <td className="px-[8px] py-[4px]">{`${deposit?.firstName} ${deposit?.lastName}`}</td>
-                      <td className="px-[8px] py-[4px] text-[var(--text-link-color)] font-semibold">
-                              {deposit?.betCredit && displayAmount(deposit.betCredit)}
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
 
-                    <div className="grid grid-cols-2 gap-6">
-                      <div className="w-[230px] max-[768px]:w-[48%]">
-                        <div className="mb-[16px]">
-                          <LabelTitleComponent text={t('pendingDepositModal.from')} />
-                          <div className="flex items-center">
-                            {deposit?.paymentFrom && renderBankAccount(deposit.paymentFrom)}
-                          </div>
-                        </div>
-                        <div>
-                          <LabelTitleComponent text={t('pendingDepositModal.dateAndTime')} />
-                          <div>{formatDateTime(deposit?.createdTime || '')}</div>
-                        </div>
-                      </div>
-
-                      <div className="">
-                        <div className="mb-[16px]">
-                          <LabelTitleComponent text={t('pendingDepositModal.to')} />
-                          {deposit?.paymentTo && renderBankAccount(deposit.paymentTo)}
-                        </div>
-
-                        <div>
-                          <LabelTitleComponent text={t('pendingDepositModal.depositAmount')} />
-                          <div className="relative">
-                            <AmountInput
-                              value={depositAmount}
-                              onChange={(e) => handleSetDepositAmount(e)}
-                              isDisabled={isSubmitting}
-                        className="control-field"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="w-[230px] max-[768px]:w-[48%]">
                     <div className="mb-[16px]">
-                      <LabelTitleComponent text={t('pendingDepositModal.remarks')} />
-                      <textarea
-                        value={deposit?.remark}
-                        onChange={(e) => setRemark(e.target.value)}
-                        maxLength={1000}
-                        placeholder={t('pendingDepositModal.remarksPlaceholder')}
-                  className="block h-[230px]! py-[10px] control-field"
-                      />
+                      <LabelTitleComponent text={t('pendingDepositModal.from')} />
+                      <div className="flex items-center">
+                        {deposit?.paymentFrom && renderBankAccount(deposit.paymentFrom)}
+                      </div>
+                    </div>
+                    <div>
+                      <LabelTitleComponent text={t('pendingDepositModal.dateAndTime')} />
+                      <div>{formatDateTime(deposit?.createdTime || '')}</div>
                     </div>
                   </div>
-                  {
-                    deposit?.base64Payslip && (
-                      <div className='pl-[32px] max-[768px]:pl-[0] max-[768px]:w-full'>
-                        <div className="w-[350px] h-[450px] max-[768px]:w-[250px] max-[768px]:h-[250px] rounded-[5px] mb-6">
-                          <img
-                            src={`data:image/png;base64,${deposit?.base64Payslip}`}
-                            alt={deposit?.transId.toString()}
-                            className="w-full h-full object-contain"
-                          />
-                        </div>
-                      </div>
-                    )
-                  }
-                </>
-            )}
-        </div>
 
+                  <div className="">
+                    <div className="mb-[16px]">
+                      <LabelTitleComponent text={t('pendingDepositModal.to')} />
+                      {deposit?.paymentTo && renderBankAccount(deposit.paymentTo)}
+                    </div>
+
+                    <div>
+                      <LabelTitleComponent text={t('pendingDepositModal.depositAmount')} />
+                      <div className="relative">
+                        <AmountInput
+                          value={depositAmount}
+                          onChange={(e) => handleSetDepositAmount(e)}
+                          isDisabled={isSubmitting}
+                          className="control-field"
+                        />
+                        <p className="text-[12px] my-[8px]">
+                          {t('manualDepositForm.agentAvailableCredit')}:
+                          <span className="font-[500] text-[var(--text-color-secondary)]">{` ${displayAmount(agentAvailableCredit)}`}</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mb-[16px]">
+                  <LabelTitleComponent text={t('pendingDepositModal.remarks')} />
+                  <textarea
+                    value={deposit?.remark}
+                    onChange={(e) => setRemark(e.target.value)}
+                    maxLength={1000}
+                    placeholder={t('pendingDepositModal.remarksPlaceholder')}
+                    className="block h-[230px]! py-[10px] control-field"
+                  />
+                </div>
+              </div>
+              {deposit?.base64Payslip && (
+                <div className="pl-[32px] max-[768px]:pl-[0] max-[768px]:w-full">
+                  <div className="w-[350px] h-[450px] max-[768px]:w-[250px] max-[768px]:h-[250px] rounded-[5px] mb-6">
+                    <img
+                      src={`data:image/png;base64,${deposit?.base64Payslip}`}
+                      alt={deposit?.transId.toString()}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                </div>
+              )}
+            </>
+          )}
+        </div>
 
         <div className="flex justify-center gap-[8px]">
           <ButtonCancelComponent
