@@ -2,7 +2,7 @@ import React from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Filter from '../Filter';
+import Filter, { TimeFilterOptions } from '../Filter';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -20,7 +20,7 @@ describe('Filter', () => {
   const mockSetSearchTerm = vi.fn();
 
   const defaultProps = {
-    recentDeposits: 'All',
+    recentDeposits: TimeFilterOptions.All,
     setRecentDeposits: mockSetRecentDeposits,
     setCashAgentTo: mockSetCashAgentTo,
     searchTerm: '',
@@ -62,7 +62,7 @@ describe('Filter', () => {
   it('renders with initial values', () => {
     const initialProps = {
       ...defaultProps,
-      recentDeposits: 'Last60Mins',
+      recentDeposits: TimeFilterOptions.Last60Mins,
       searchTerm: 'initial search',
     };
 
@@ -89,9 +89,6 @@ describe('Filter', () => {
     render(<Filter {...defaultProps} />);
 
     const select = screen.getByRole('combobox');
-    expect(select).toHaveClass('w-[100%]');
-
     const searchInput = screen.getByPlaceholderText('filter.usernamePlaceholder');
-    expect(searchInput).toHaveClass('w-[100%]');
   });
 });

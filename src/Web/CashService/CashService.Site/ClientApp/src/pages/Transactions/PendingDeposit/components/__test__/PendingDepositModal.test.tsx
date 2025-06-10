@@ -4,6 +4,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import PendingDepositModal from '../PendingDepositModal';
 import pendingDepositAPI from '../../../../../services/pendingDepositAPI';
+import { transactionAPI } from '../../../../../services/transactionsHistoryAPI';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -15,6 +16,12 @@ vi.mock('../../../../../services/pendingDepositAPI', () => ({
   default: {
     approveDeposit: vi.fn(),
     rejectDeposit: vi.fn(),
+  },
+}));
+
+vi.mock('../../../../../services/transactionsHistoryAPI', () => ({
+  transactionAPI: {
+    getTransactionDetail: vi.fn(),
   },
 }));
 
@@ -47,21 +54,28 @@ describe('PendingDepositModal', () => {
   };
 
   const defaultProps = {
-    deposit: mockDeposit,
+    transId: mockDeposit.transId,
+    custId: mockDeposit.custId,
     onClose: mockOnClose,
   };
 
   beforeEach(() => {
     vi.clearAllMocks();
+    vi.mocked(transactionAPI.getTransactionDetail).mockResolvedValue({
+      error: false,
+      data: mockDeposit
+    });
   });
 
-  it('renders modal with deposit information correctly', () => {
+  it('renders modal with deposit information correctly', async () => {
     render(<PendingDepositModal {...defaultProps} />);
 
-    expect(screen.getByText(`pendingDepositModal.title (${mockDeposit.transId})`)).toBeInTheDocument();
-    expect(screen.getByText(mockDeposit.username)).toBeInTheDocument();
-    expect(screen.getByText(mockDeposit.nickname)).toBeInTheDocument();
-    expect(screen.getByText(`${mockDeposit.firstName} ${mockDeposit.lastName}`)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText(`pendingDepositModal.title (${mockDeposit.transId})`)).toBeInTheDocument();
+      expect(screen.getByText(mockDeposit.username)).toBeInTheDocument();
+      expect(screen.getByText(mockDeposit.nickname)).toBeInTheDocument();
+      expect(screen.getByText(`${mockDeposit.firstName} ${mockDeposit.lastName}`)).toBeInTheDocument();
+    });
   });
 
   it('handles approve deposit successfully', async () => {
@@ -72,6 +86,11 @@ describe('PendingDepositModal', () => {
     });
 
     render(<PendingDepositModal {...defaultProps} />);
+
+    // Wait for initial data loading
+    await waitFor(() => {
+      expect(screen.getByText(`pendingDepositModal.title (${mockDeposit.transId})`)).toBeInTheDocument();
+    });
 
     const approveButton = screen.getByText('pendingDepositModal.approve');
     fireEvent.click(approveButton);
@@ -95,6 +114,11 @@ describe('PendingDepositModal', () => {
     });
 
     render(<PendingDepositModal {...defaultProps} />);
+
+    // Wait for initial data loading
+    await waitFor(() => {
+      expect(screen.getByText(`pendingDepositModal.title (${mockDeposit.transId})`)).toBeInTheDocument();
+    });
 
     const rejectButton = screen.getByText('pendingDepositModal.reject');
     fireEvent.click(rejectButton);
@@ -127,8 +151,13 @@ describe('PendingDepositModal', () => {
     });
   });
 
-  it('allows amount modification', () => {
+  it('allows amount modification', async () => {
     render(<PendingDepositModal {...defaultProps} />);
+
+    // Wait for initial data loading
+    await waitFor(() => {
+      expect(screen.getByText(`pendingDepositModal.title (${mockDeposit.transId})`)).toBeInTheDocument();
+    });
 
     const amountInput = screen.getByPlaceholderText('0');
     fireEvent.change(amountInput, { target: { value: '1000' } });
@@ -145,8 +174,13 @@ describe('PendingDepositModal', () => {
     expect(mockOnClose).toHaveBeenCalledWith(false);
   });
 
-  it('renders payslip image when base64Payslip is provided', () => {
+  it('renders payslip image when base64Payslip is provided', async () => {
     render(<PendingDepositModal {...defaultProps} />);
+
+    // Wait for initial data loading
+    await waitFor(() => {
+      expect(screen.getByText(`pendingDepositModal.title (${mockDeposit.transId})`)).toBeInTheDocument();
+    });
 
     const image = screen.getByAltText(mockDeposit.transId.toString());
     expect(image).toBeInTheDocument();

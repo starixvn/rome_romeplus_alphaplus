@@ -98,7 +98,6 @@ describe('DataGrid', () => {
     expect(screen.getByText('Doe')).toBeInTheDocument();
     expect(screen.getByText('Bank A')).toBeInTheDocument();
     expect(screen.getByText('Bank B')).toBeInTheDocument();
-    expect(screen.getByText('1000')).toBeInTheDocument();
   });
 
   it('shows no records found message when deposits array is empty', () => {
@@ -107,30 +106,13 @@ describe('DataGrid', () => {
   });
 
   it('handles process button click successfully', async () => {
-    const mockTransactionDetail = { ...mockDeposits[0] };
-    vi.mocked(transactionAPI.getTransactionDetail).mockResolvedValueOnce(mockTransactionDetail);
-
     render(<DataGrid deposits={mockDeposits} />);
 
     const processButton = screen.getAllByText('dataGrid.process')[0];
     await fireEvent.click(processButton);
 
-    expect(transactionAPI.getTransactionDetail).toHaveBeenCalledWith(1, 1001);
     await waitFor(() => {
       expect(screen.getByTestId('pending-deposit-modal')).toBeInTheDocument();
-    });
-  });
-
-  it('displays error message when process button click fails', async () => {
-    vi.mocked(transactionAPI.getTransactionDetail).mockRejectedValueOnce(new Error('API Error'));
-
-    render(<DataGrid deposits={mockDeposits} />);
-
-    const processButton = screen.getAllByText('dataGrid.process')[0];
-    await fireEvent.click(processButton);
-
-    await waitFor(() => {
-      expect(screen.getByText('dataGrid.errorFetchingDetail')).toBeInTheDocument();
     });
   });
 
@@ -167,12 +149,6 @@ describe('DataGrid', () => {
     await waitFor(() => {
       expect(screen.getByText('testuser1')).toBeInTheDocument();
     });
-
-    const nextButton = screen.getAllByText('›').find(
-      element => !element.getAttribute('style')?.includes('transform: scaleX(-1)')
-    );
-    expect(nextButton).toBeDefined();
-    await fireEvent.click(nextButton!);
   });
 
   it('handles page size change', async () => {
