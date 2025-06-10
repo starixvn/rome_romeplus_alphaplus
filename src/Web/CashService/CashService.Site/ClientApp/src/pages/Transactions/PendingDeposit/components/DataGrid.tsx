@@ -18,9 +18,15 @@ interface DataGridProps {
 }
 
 const TableHeader: React.FC<{ t: (key: string) => string }> = ({ t }) => (
+    if (deposits.length <= pageSize) {
+      setCurrentPage(1);
+    }
   <thead className="z-11!">
     <tr>
-      <th scope="col" className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-header-background)] z-11">
+              <th
+                scope="col"
+                className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-header-background)] z-11"
+              >
         #
       </th>
       <th

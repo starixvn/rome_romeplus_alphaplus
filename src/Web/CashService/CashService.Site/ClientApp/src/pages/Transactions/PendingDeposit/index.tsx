@@ -168,11 +168,7 @@ const PendingDeposit: React.FC = () => {
             setSearchTerm={handleSearchChange}
           />
 
-          {isLoading ? (
-            <LoadingFullComponent />
-          ) : (
-            <DataGrid deposits={filteredDeposits} />
-          )}
+          {isLoading ? <LoadingFullComponent /> : <DataGrid deposits={filteredDeposits} />}
         </div>
       )}
     </>

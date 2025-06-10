@@ -29,6 +29,9 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
   const totalItems = withdrawals.length;
 
   useEffect(() => {
+    if (withdrawals.length <= pageSize) {
+      setCurrentPage(1);
+    }
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
     setPaginatedWithdrawals(withdrawals.slice(startIndex, endIndex));
@@ -71,7 +74,10 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
         <table className="max-[600px]:text-[17px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px] border-l-[0px] text-[#333333]">
           <thead className="z-11!">
             <tr>
-              <th scope="col" className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-header-background)] z-11">
+              <th
+                scope="col"
+                className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-header-background)] z-11"
+              >
                 #
               </th>
               <th
@@ -126,30 +132,30 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
               <NoRecordFound colSpan={9} message={t('dataGrid.noWithdrawalsFound')} />
             )}
           </tbody>
-        </table>        
+        </table>
       </div>
 
       {error && <div className="mt-4 p-4 bg-red-100 text-red-700 rounded-md">{error}</div>}
-      {
-        error && (
-          <ValidateMessageComponent message={error} />
-        )
-      }
+      {error && <ValidateMessageComponent message={error} />}
 
       {showWithdrawalPopup && selectedWithdrawal && (
-        <PendingWithdrawalModal transId={selectedWithdrawal.transId} custId={selectedWithdrawal.custId} onClose={handleCloseProcess} />
+        <PendingWithdrawalModal
+          transId={selectedWithdrawal.transId}
+          custId={selectedWithdrawal.custId}
+          onClose={handleCloseProcess}
+        />
       )}
-      {paginatedWithdrawals.length > 0 && (  
+      {paginatedWithdrawals.length > 0 && (
         <div className="mt-[-1px] relative z-12">
-        <Pagination
-          currentPage={currentPage}
-          pageSize={pageSize}
-          totalItems={totalItems}
-          onPageChange={handlePageChange}
-          onPageSizeChange={handlePageSizeChange}
-        />      
+          <Pagination
+            currentPage={currentPage}
+            pageSize={pageSize}
+            totalItems={totalItems}
+            onPageChange={handlePageChange}
+            onPageSizeChange={handlePageSizeChange}
+          />
         </div>
-      )}      
+      )}
     </>
   );
 };
