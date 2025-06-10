@@ -1,13 +1,21 @@
-import { StatusCompletedComponent, StatusDisabledComponent, StatusFailedComponent, StatusMaintenanceComponent, StatusNoneComponent, StatusProcessingComponent } from "../components/StatusComponents";
+import {
+  StatusCompletedComponent,
+  StatusDisabledComponent,
+  StatusFailedComponent,
+  StatusMaintenanceComponent,
+  StatusNoneComponent,
+  StatusProcessingComponent,
+} from '../components/StatusComponents';
 
 export const displayAmount = (amount: number): string => {
   if (amount >= 1000) {
-    return amount.toLocaleString('en-US', {
+    const roundedAmount = Math.floor(amount * 100) / 100;
+    return roundedAmount.toLocaleString('en-US', {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     });
   }
-  return amount.toFixed(2);
+  return (Math.floor(amount * 100) / 100).toFixed(2);
 };
 
 export const TransactionType = {
@@ -42,7 +50,7 @@ export const renderBankAccount = (bankAccount: string) => {
 export const mappingStatus = (status: number) => {
   switch (status) {
     case 0:
-      return <StatusProcessingComponent text='Waiting' />;
+      return <StatusProcessingComponent text="Waiting" />;
     case 1:
       return <StatusFailedComponent text="Cancelled" />;
     case 2:
@@ -50,7 +58,7 @@ export const mappingStatus = (status: number) => {
     case 3:
       return <StatusFailedComponent text="Expired" />;
     case 4:
-      return <StatusCompletedComponent/>;
+      return <StatusCompletedComponent />;
     case 5:
       return <StatusDisabledComponent text="Rejected" />;
     case 6:

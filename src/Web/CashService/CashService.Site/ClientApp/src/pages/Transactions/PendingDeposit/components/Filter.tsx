@@ -8,7 +8,7 @@ import { LabelTitleComponent } from '../../../../components/TitleComponents';
 export enum TimeFilterOptions {
   All = 'All',
   Last30Mins = 'Last30Mins',
-  Last60Mins = 'Last60Mins'
+  Last60Mins = 'Last60Mins',
 }
 
 interface FilterProps {
@@ -31,13 +31,14 @@ const TimeFilter: React.FC<{
       <select
         value={value}
         onChange={(e) => onChange(e.target.value as TimeFilterOptions)}
-        className="control-field appearance-none">
+        className="control-field appearance-none"
+      >
         <option value={TimeFilterOptions.All}>{t('filter.all')}</option>
         <option value={TimeFilterOptions.Last30Mins}>{t('filter.last30Mins')}</option>
         <option value={TimeFilterOptions.Last60Mins}>{t('filter.last60Mins')}</option>
       </select>
       <span className="absolute right-[8px] top-[50%] transform -translate-y-1/2 pointer-events-none">
-        <CalendarIcon className='fill-[#333333] dark:fill-[#ededed]'/>
+        <CalendarIcon className="fill-[#333333] dark:fill-[#ededed]" />
       </span>
     </div>
   </div>
@@ -51,12 +52,15 @@ const BankFilter: React.FC<{
   <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
     <LabelTitleComponent text={t('filter.to')} />
     <CustomDropdown
-      options={options.map((option) => ({
-        value: option,
-        label: option?.split('-')[1],
-        code: option?.split('-')[0],
-        icon: <BankIcon code={option?.split('-')[0]} />,
-      }))}
+      options={options.map((option) => {
+        const [bankCode, accountNumber] = option.split('-');
+        return {
+          value: option,
+          label: accountNumber || bankCode,
+          code: bankCode,
+          icon: bankCode && accountNumber ? <BankIcon code={bankCode} /> : null,
+        };
+      })}
       onSelect={(selected) => onSelect(String(selected.value))}
       showOptionAll={true}
       searchable={true}
@@ -100,16 +104,12 @@ const Filter: React.FC<FilterProps> = ({
   return (
     <>
       <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
-        <TimeFilter 
+        <TimeFilter
           value={recentDeposits as TimeFilterOptions}
           onChange={setRecentDeposits}
           t={t}
         />
-        <BankFilter 
-          options={uniquePaymentToOptions}
-          onSelect={setCashAgentTo}
-          t={t}
-        />
+        <BankFilter options={uniquePaymentToOptions} onSelect={setCashAgentTo} t={t} />
       </div>
       <SearchInput
         value={searchTerm}

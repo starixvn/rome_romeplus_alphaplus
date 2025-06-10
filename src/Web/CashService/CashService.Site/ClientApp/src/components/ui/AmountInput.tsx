@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 interface AmountInputProps {
-  value: number; // This remains number for the external API
+  value: number;
   onChange: (value: number) => void;
   isDisabled?: boolean;
   id?: string;
@@ -15,21 +15,32 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   isDisabled,
   id,
 }) => {
-  const [displayValue, setDisplayValue] = useState<string>(value.toString());
+  const formatNumberWithCommas = (number: string) => {
+    const parts = number.split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return parts.join('.');
+  };
+
+  const removeCommas = (number: string) => {
+    return number.replace(/,/g, '');
+  };
+
+  const [displayValue, setDisplayValue] = useState<string>(
+    formatNumberWithCommas(value.toString())
+  );
 
   useEffect(() => {
-    const currentDisplayNumber = parseFloat(displayValue);
-    if (
-      currentDisplayNumber !== value ||
-      !/^\d*\.?\d{0,2}$/.test(displayValue) ||
-      displayValue.endsWith('.')
-    ) {
-      setDisplayValue(value.toFixed(2).replace(/\.00$/, ''));
+    const currentDisplayNumber = parseFloat(removeCommas(displayValue));
+    if (currentDisplayNumber !== value && !displayValue.endsWith('.')) {
+      const formattedValue = value.toFixed(2).replace(/\.00$/, '');
+      setDisplayValue(formatNumberWithCommas(formattedValue));
     }
   }, [value]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let inputValue = e.target.value;
+
+    inputValue = removeCommas(inputValue);
 
     inputValue = inputValue.replace(/[^\d.]/g, '');
     const parts = inputValue.split('.');
@@ -45,7 +56,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
       inputValue = '0.';
     }
 
-    setDisplayValue(inputValue);
+    setDisplayValue(formatNumberWithCommas(inputValue));
 
     if (
       (!isNaN(parseFloat(inputValue)) && parseFloat(inputValue) !== value) ||

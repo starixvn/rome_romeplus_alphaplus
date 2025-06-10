@@ -49,18 +49,6 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
   const handleProcessClick = async (withdrawal: TransactionItem) => {
     setShowWithdrawalPopup(true);
     setSelectedWithdrawal(withdrawal);
-    // try {
-    //   const detail = await transactionAPI.getTransactionDetail(
-    //     withdrawal.transId,
-    //     withdrawal.custId
-    //   );
-    //   setProcessingWithdrawal(detail);
-    // } catch (err) {
-    //   console.error('Error fetching transaction detail:', err);
-    //   setError(t('dataGrid.errorFetchingDetail'));
-    // } finally {
-    //   setIsLoading(false);
-    // }
   };
 
   const handleCloseProcess = () => {

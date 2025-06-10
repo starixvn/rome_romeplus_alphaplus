@@ -12,7 +12,7 @@ import { AddWithdrawalModel } from '../../../../services/interfaces/AddWithdrawa
 import { ResultMessageComponent } from '../../../../components/MessageComponents';
 import UploadImage from '../../Components/UploadImage';
 import BankIcon from '../../../../components/BankComponents';
-import { renderBankOptionValue } from '../../../../utils/commonFunctions';
+import { displayAmount, renderBankOptionValue } from '../../../../utils/commonFunctions';
 import {
   BackButtonComponent,
   ButtonApplyComponent,
@@ -130,7 +130,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
     if (image && !allowedTypes.includes(image.type)) {
       setResultMessage({
         type: 'error',
-        message: t('manualWithdrawalForm.invalidFileType')
+        message: t('manualWithdrawalForm.invalidFileType'),
       });
       return false;
     }
@@ -189,7 +189,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
 
   const handleUpdateMemberCashBalance = async (memberCustId: number | null) => {
     if (!memberCustId) return;
-    const memberCashBalance = await getWithdrawalMemberCashBalance(memberCustId); 
+    const memberCashBalance = await getWithdrawalMemberCashBalance(memberCustId);
     setMemberCashBalance(memberCashBalance);
   };
 
@@ -350,10 +350,10 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                     value={withdrawalAmount}
                     onChange={(e) => handleSetWithdrawalAmount(e)}
                     className="control-field"
-                  />                
+                  />
                   <p className="text-[12px] my-[8px]">
                     {t('manualWithdrawalForm.memberCashBalance')}:
-                    <span className="font-[500] text-[var(--text-color-secondary)]">{` ${memberCashBalance}`}</span>
+                    <span className="font-[500] text-[var(--text-color-secondary)]">{` ${displayAmount(memberCashBalance)}`}</span>
                   </p>
                 </div>
               </div>

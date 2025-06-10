@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { renderBankOptionValue } from '../../../../utils/commonFunctions';
+import { displayAmount, renderBankOptionValue } from '../../../../utils/commonFunctions';
 import BankIcon from '../../../../components/BankComponents';
 import CustomDropdown, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import { LabelTitleComponent, MediumTitleComponent } from '../../../../components/TitleComponents';
@@ -109,7 +109,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
             />
             <p className="text-[12px] my-[8px]">
               {t('manualDepositForm.agentAvailableCredit')}:
-              <span className="font-[500] text-[var(--text-color-secondary)]">{` ${agentAvailableCredit}`}</span>
+              <span className="font-[500] text-[var(--text-color-secondary)]">{` ${displayAmount(agentAvailableCredit)}`}</span>
             </p>
           </div>
         </div>
