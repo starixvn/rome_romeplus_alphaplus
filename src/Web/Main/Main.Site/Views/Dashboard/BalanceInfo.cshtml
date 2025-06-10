@@ -62,7 +62,7 @@
         TextRow(label: Resources.currency, text: Model.Currency);
     }
 
-    @if (Model.IsOfferedCashService)
+    @if (Model.CashServiceInfo.IsOfferedCashService)
     {
         <div class="group-title">@Resources.CashService</div>
         CashService(Resources.CashService, Model.CashServiceInfo.IsCashServiceEnabled);

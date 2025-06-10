@@ -3,11 +3,10 @@ using AlphaPlus.Core.Models;
 using MediatR;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Core.Filters;
-using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core;
 using AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo;
 using AlphaPlus.Main.Site.Features.ContactUs;
-
+using AlphaPlus.Core.Configurations;
 
 namespace AlphaPlus.Main.Site.Features.Dashboard
 {
@@ -108,7 +107,13 @@ namespace AlphaPlus.Main.Site.Features.Dashboard
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateCashServiceStatus(bool isEnableCash)
         {
-
+            var isOfferedCashService = AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(userSession.Site) && userSession.IsAgent;
+            
+            if (userSession.IsInternal || !isOfferedCashService)
+            {
+                return Unauthorized();
+            }
+            
             var result = await mediator.Send(new UpdateCashServiceStatusCommand(userSession, isEnableCash));
 
             return result;
