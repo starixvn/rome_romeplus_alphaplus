@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import { SearchIcon, DownloadIcon, CopyIcon } from '../../../../components/Icons';
 import { useTranslation } from 'react-i18next';
+
+import { CopyIcon, DownloadIcon, SearchIcon } from '../../../../components/Icons';
+import { Alert } from '../../../../components/ui/Alert';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import {
-  displayAmount,
-  mappingStatus,
-  formatDateTime,
-  CurrentCurrency,
+    CurrentCurrency, displayAmount, formatDateTime, mappingStatus
 } from '../../../../utils/commonFunctions';
-import { Alert } from '../../../../components/ui/Alert';
 
 interface SearchProps {
   value: string;

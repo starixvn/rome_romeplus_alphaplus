@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
-import TransactionDetail from './TransactionDetail';
-import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { useTranslation } from 'react-i18next';
-import {
-  displayAmount,
-  getStatusStyle,
-  mappingStatus,
-  renderBankAccount,
-  CurrentCurrency,
-  formatDateTime,
-} from '../../../../utils/commonFunctions';
-import NoRecordFound from '../../../../components/Table/NoRecordFound';
+
 import LoadingComponent from '../../../../components/LoadingComponent';
+import NoRecordFound from '../../../../components/Table/NoRecordFound';
+import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
+import {
+    CurrentCurrency, displayAmount, formatDateTime, mappingStatus, renderBankAccount
+} from '../../../../utils/commonFunctions';
+import TransactionDetail from './TransactionDetail';
 
 interface DataGridProps {
   items: TransactionItem[];
@@ -71,7 +67,10 @@ const DataGrid: React.FC<DataGridProps> = ({
         <table className="w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px]">
           <thead className="z-11!">
             <tr>
-              <th scope="col" className="w-[32px] min-w-[32px] bg-[var(--table-header-background)] sticky left-0 z-11">
+              <th
+                scope="col"
+                className="w-[32px] min-w-[32px] bg-[var(--table-header-background)] sticky left-0 z-11"
+              >
                 {t('table.no')}
               </th>
               <th
