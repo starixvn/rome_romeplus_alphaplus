@@ -569,7 +569,7 @@ function PaymentProviderSettings() {
               <table className=" w-full">
                 <thead>
                   <tr>
-                    <th className="col-shadown col-payment-method">
+                    <th className="col-shadown bg-[var(--table-header-background)] left-0 min-w-[113px] sticky z-11">
                       <span className="relative z-3">
                         {tPaymentProviderSettings('paymentMethod')}
                       </span>
@@ -609,7 +609,7 @@ function PaymentProviderSettings() {
                 <tbody>
                   {providerSettings.map((setting, index) => (
                     <tr key={index}>
-                      <td className="col-shadown col-payment-method font-semibold">
+                      <td className="col-shadown bg-[var(--table-background)] left-0 min-w-[113px] sticky z-11 font-semibold">
                         <span className="relative z-3">{setting.methodName}</span>
                       </td>
                       <td>
@@ -640,7 +640,7 @@ function PaymentProviderSettings() {
                               placeholder={tPaymentProviderSettings('minimum')}
                               maxLength={15}
                             />
-                            <label className="text-left text-[11px] max-[768px]:text-[15px] text-[#828282] font-semibold mt-[4px]">
+                            <label className="text-left text-[#828282] font-semibold mt-[4px]">
                               {tPaymentProviderSettings('minAmount')}{' '}
                               {formatNumber(setting.minAmountTrans)}
                             </label>
@@ -660,7 +660,7 @@ function PaymentProviderSettings() {
                               placeholder={tPaymentProviderSettings('maximum')}
                               maxLength={15}
                             />
-                            <label className="text-left text-[11px] max-[768px]:text-[15px] text-[#666666] font-semibold mt-[4px]">
+                            <label className="text-left text-[#666666] font-semibold mt-[4px]">
                               {tPaymentProviderSettings('maxAmount')}{' '}
                               {formatNumber(setting.maxAmountTrans)}
                             </label>

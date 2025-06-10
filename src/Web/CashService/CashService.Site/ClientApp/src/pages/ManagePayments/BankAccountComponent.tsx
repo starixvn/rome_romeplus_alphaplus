@@ -400,8 +400,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                         <table className="w-full whitespace-nowrap border-collapse  ">
                           <thead>
                             <tr>
-                              <th className="col-no z-10 bg-[var(--table-header-background)]">#</th>
-                              <th className="col-action z-10 bg-[var(--table-header-background)]">{tGlobal('action')}</th>
+                              <th className="bg-[var(--table-header-background)] left-0 min-w-[32px] sticky z-21">#</th>
+                              <th className="col-shadown bg-[var(--table-header-background)] left-[32px] min-w-[82px] sticky z-21">{tGlobal('action')}</th>
                               <th>{tManagePayments('accountNickname')}</th>
                               <th>{tManagePayments('bank')}</th>
                               <th>{tManagePayments('accountHolderName')}</th>
@@ -414,8 +414,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                           <tbody className="font-[500]">
                           {bankAccounts.map((account, index) => (
                               <tr key={account.id}>
-                                <td className="col-no bg-[var(--table-background)]">{index + 1}</td>
-                                <td className="col-action bg-[var(--table-background)]">
+                                <td className="bg-[var(--table-background)] left-0 min-w-[32px] sticky z-11">{index + 1}</td>
+                                <td className="col-shadown bg-[var(--table-background)] left-[32px] min-w-[82px] sticky z-11">
                                   <div className="flex justify-center">
                                     <ButtonPenComponent disabled={deleting === account.id} onClick={() => onEditBankAccount(account.id)} />
                                     <ButtonDeleteComponent onClick={() => onDeleteBankAccount(account)} />

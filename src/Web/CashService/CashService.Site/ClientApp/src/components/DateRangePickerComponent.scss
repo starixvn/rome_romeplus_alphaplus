@@ -10,8 +10,6 @@
     --datarangepicker-cell-background-active: #0b599c;
     --datarangepicker-cell-background: #e8f4fd;
     --datarangepicker-cell-background-hover: #e6e6e6;
-    --datarangepicker-color-selected-days: #0b599c;
-    --datarangepicker-date-range-length-background: #fff;
 }
 :root [data-theme='dark'] {
     --datarangepicker-color-icon: #ffffff;
@@ -23,8 +21,7 @@
     --datarangepicker-cell-background-active: #36587d;
     --datarangepicker-cell-background: #233950;
     --datarangepicker-cell-background-hover: #474747;
-    --datarangepicker-color-selected-days: #fff;
-    --datarangepicker-date-range-length-background: #282828;
+
 }
 .rdrDayDisabled{
     background: transparent !important;

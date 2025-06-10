@@ -337,7 +337,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
                   maxLength={5}
                 />
                 <ValidateMessageComponent message={fieldErrors.dailyWithdrawalCount} />
-                <label className=" block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold">
+                <label className=" block mt-[4px] text-[#828282] font-semibold">
                   {tManagePayments('dailyWithdrawalCountTip')}
                 </label>
               </div>

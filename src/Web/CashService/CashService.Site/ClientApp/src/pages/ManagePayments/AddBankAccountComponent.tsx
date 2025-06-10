@@ -468,7 +468,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
                       maxLength={255}
                     />
                     <ValidateMessageComponent message={fieldErrors.accountHolderName} />
-                    <label className="block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold">
+                    <label className="block mt-[4px] text-[#828282] font-semibold">
                       {tManagePayments('provideFullName')}
                     </label>
                   </div>
@@ -483,7 +483,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
                       maxLength={100}
                     />
                     <ValidateMessageComponent message={fieldErrors.accountNumber} />
-                    <label className="block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold">
+                    <label className="block mt-[4px] text-[#828282] font-semibold">
                       {tGlobal('maxLength').replace('{0}', '100')}
                     </label>
                   </div>
@@ -497,7 +497,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
                       onChange={(e) => setAccountNickname(e.target.value)}
                       maxLength={255}
                     />
-                    <label className="block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold">
+                    <label className="block mt-[4px] text-[#828282] font-semibold">
                       {tManagePayments('accountNicknameNote1')}
                     </label>
                   </div>

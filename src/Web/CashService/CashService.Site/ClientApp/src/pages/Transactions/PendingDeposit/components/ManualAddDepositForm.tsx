@@ -244,7 +244,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
   return (
     <>
       <Header onClose={() => onClose(false)} title={t('manualDepositForm.title')} />
-      <div id="manual-deposit-form" className="w-[1100px] max-[768px]:w-full pb-[16px] pt-[10px]">
+      <div id="manual-deposit-form" className="max-w-[1100px] w-full max-[768px]:w-full pb-[16px] pt-[10px]">
         {status.validationMessage && (
           <ResultMessageComponent
             message={status.validationMessage.message}

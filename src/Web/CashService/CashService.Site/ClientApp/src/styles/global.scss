@@ -264,41 +264,21 @@ table:not(.no-hover){
   }
 }
 .table-fixed-body table {
-  thead,
   tbody {
     th,
     td {
-      &.col-no {
-        left: 0;
-        min-width: 32px;
-        position: sticky;
-        z-index: 6;
-      }
-      &.col-action {
-        left: 32px;
-        min-width: 32px;
-        position: sticky;
-        z-index: 6;
-        box-shadow: 3px 0 4px 0 rgba(99, 84, 84, 0.3) !important;
-      }
-      &.col-payment-method {
-        left: 0;
-        min-width: 113px;
-        position: sticky;
-        z-index: 6;
-      }
       &.col-shadown {
-        box-shadow: 3px 0 4px 0 rgba(99, 84, 84, 0.3) !important;
+        box-shadow: 3px 0 4px 0 rgba(99, 84, 84, 0.3), 1px 0 0 0 var(--table-border-color) !important;
 
         &:after {
           content: '';
           display: block;
           width: 100%;
-          height: 100%;
-          
+          height: 100%;          
           position: absolute;
           top: 0;
           left: 0;
+          pointer-events: none;
         }
       }
     }
@@ -306,14 +286,14 @@ table:not(.no-hover){
   thead {
     th {
       &.col-shadown {
-        box-shadow: 3px 0 4px 0 rgba(99, 84, 84, 0.3) !important;
+        box-shadow: 3px 0 4px 0 rgba(99, 84, 84, 0.3), 1px 0 0 0 var(--table-border-color) !important;
       }
     }
   }
 }
 .table-fixed-body.table-fixed-header {
   thead {
-    z-index: 10;
+    z-index: 20;
   }
 }
 .loader {

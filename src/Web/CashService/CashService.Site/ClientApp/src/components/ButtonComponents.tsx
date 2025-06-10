@@ -74,7 +74,7 @@ export const ButtonApplyComponent: React.FC<ButtonComponentProps> = ({
   return (
     <div className={`${className}`}>
       <button
-        className={`min-w-[90px] text-[var(--button-text)] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] rounded-[3px] h-[28px] px-[16px] font-semibold  max-[768px]:h-[34px] outline-none
+        className={`min-w-[90px] text-[var(--button-text)] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] rounded-[3px] h-[28px] px-[16px] font-semibold outline-none
         ${disabled ? 'cursor-not-allowed opacity-80' : 'cursor-pointer'}`}
         onClick={onClick}
         disabled={disabled}
