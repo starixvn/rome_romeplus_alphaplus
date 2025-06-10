@@ -189,8 +189,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
 
   const handleUpdateMemberCashBalance = async (memberCustId: number | null) => {
     if (!memberCustId) return;
-    const memberCashBalance = await getWithdrawalMemberCashBalance(memberCustId);
-    console.log(memberCashBalance);
+    const memberCashBalance = await getWithdrawalMemberCashBalance(memberCustId); 
     setMemberCashBalance(memberCashBalance);
   };
 

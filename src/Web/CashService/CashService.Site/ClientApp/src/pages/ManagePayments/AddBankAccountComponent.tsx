@@ -311,7 +311,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
           {isLoadingBanks ? (<LoadingFullComponent />) : (
             <form
               onSubmit={handleSubmit}
-              className="pb-[16px] pt-[10px]"
+              className="pb-[16px]"
             >
               <div className="modal-body">
                 <ErrorMessageComponent message={error} />

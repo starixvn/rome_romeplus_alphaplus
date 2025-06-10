@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import CustomMultiSelect from '../../../../../components/ui/Multiselect/MultiSelect';
+import CustomMultiSelect from '../../../../../components/Multiselect/MultiSelect';
 import { LabelTitleComponent } from '../../../../../components/TitleComponents';
 
 interface ColumnFilterProps {
@@ -43,6 +43,7 @@ const ColumnFilter: React.FC<ColumnFilterProps> = ({ column, onColumnChange }) =
     <div className="form-group">
       <LabelTitleComponent text={t('filter.column')} />
       <CustomMultiSelect
+        className='react-select-custom control-field p-0!'
         options={options}
         initialValues={selectedColumns}
         onChange={handleChange}

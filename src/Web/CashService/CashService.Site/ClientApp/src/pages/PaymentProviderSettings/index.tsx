@@ -445,12 +445,12 @@ function PaymentProviderSettings() {
         <>
           {updateMessage && (
             <ResultMessageComponent
-              className="my-[16px] max-[768px]:mx-[16px] max-[768px]:my-0"
+              className="mt-[10px] max-[768px]:mx-[16px] max-[768px]:my-0"
               type={updateMessage.type}
               message={updateMessage.text}
             />
           )}
-          <div className="py-[10px] mb-[8px]">
+          <div className="pb-[10px] mb-[8px]">
             <div className="settings-header">
               <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-color)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
                 <BackButtonComponent onClick={onBackNavigation} />

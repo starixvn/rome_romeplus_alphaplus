@@ -3,6 +3,7 @@ import Select, { MultiValue, ActionMeta, StylesConfig, components } from 'react-
 import { CheckboxOption } from './CheckboxOption';
 import { CustomValueContainer } from './CustomValueContainer';
 import { useTranslation } from 'react-i18next';
+import './MultiSelect.scss';
 
 interface OptionType {
   value: string;

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  ButtonCancelComponent,
   ButtonApplyComponent,
+  ButtonOutlineComponent,
 } from '../../../../components/ButtonComponents';
 import { TransactionType } from '../../../../utils/commonFunctions';
 
@@ -15,17 +15,17 @@ const HistoryTab: React.FC<HistoryTabProps> = ({ activeTab, onTabChange }) => {
   const { t } = useTranslation('transactionHistory');
   const renderButtonApply = (text: string, onClick: () => void) => {
     if (activeTab == TransactionType.Deposit) {
-      return <ButtonApplyComponent text={text} onClick={onClick} />;
+      return <ButtonApplyComponent className="[&>*]:min-w-[150px]" text={text} onClick={onClick} />;
     } else {
-      return <ButtonCancelComponent text={text} onClick={onClick} />;
+      return <ButtonOutlineComponent className="[&>*]:min-w-[150px]" text={text} onClick={onClick} />;
     }
   };
 
   const renderButtonCancel = (text: string, onClick: () => void) => {
     if (activeTab == TransactionType.Deposit) {
-      return <ButtonCancelComponent text={text} onClick={onClick} />;
+      return <ButtonOutlineComponent className="[&>*]:min-w-[150px]" text={text} onClick={onClick} />;
     } else {
-      return <ButtonApplyComponent text={text} onClick={onClick} />;
+      return <ButtonApplyComponent className="[&>*]:min-w-[150px]" text={text} onClick={onClick} />;
     }
   };
   return (

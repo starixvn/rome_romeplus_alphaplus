@@ -307,11 +307,11 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
         value={formatRange(value) || 'Select date range'}
         onClick={() => setOpen((v) => !v)}
       />
-      <span className="pointer-events-none absolute inset-y-0 right-2 flex items-center text-gray-400">
-        <CalendarIcon className="w-5 h-5" />
+      <span className="pointer-events-none absolute right-[2px] top-[3px]">
+        <CalendarIcon className="w-[22px] h-[22px] fill-[var(--datarangepicker-color-icon)]" />
       </span>
       {open && (
-        <div className="absolute z-50 bg-white dropdown-custom-datarangepicker border border-[var(--datarangepicker-border)] left-0 mt-[7px]">
+        <div className="absolute z-50 bg-[var(--datarangepicker-background)] dropdown-custom-datarangepicker border border-[var(--datarangepicker-border)] left-0 mt-[7px]">
           <div className="flex">
             <div className="flex flex-col w-[158px] py-[10px] border-r border-[var(--datarangepicker-border)]">
               {quickRanges.map((item) => (
