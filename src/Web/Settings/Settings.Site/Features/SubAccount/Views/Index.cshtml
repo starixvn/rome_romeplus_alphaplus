@@ -7,7 +7,7 @@
     Layout = "~/Features/SubAccount/Views/_Layout.cshtml";
     var index = 0;
     var hasnotPerm = UserSession.Current.IsLimitedHostPermissionOnSubAccountFunction;
-    var isOfferCashService = AppSettings.IsOfferedCashService(UserSession.Current.Site);
+    var isOfferCashService = UserSession.Current.RoleId == RoleIdConstants.Agent && AppSettings.IsOfferedCashService(UserSession.Current.Site);
 }
 @model IEnumerable<SubAccountViewModel>
 <div>
