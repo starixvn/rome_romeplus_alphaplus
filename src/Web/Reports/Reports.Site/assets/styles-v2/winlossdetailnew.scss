@@ -14,8 +14,8 @@
     --tb-match-title-color: #F6731B;
     --tb-match-title-background: var(--table-bg);
     --tb-total-row-background: var(--table-bg);
-
     --table-text-bold: #1A1A1A;
+    --tb-cash-fee--total-row-background: #eda85f;
 }
 
 :root [data-theme='dark'] {
@@ -35,6 +35,7 @@
     --tb-total-row-background: var(--table-bg);
     --tb-match-title-background: var(--table-bg);
     --table-text-bold: #ffffff;
+    --tb-cash-fee--total-row-background: #eda85f;
 }
 
 
@@ -162,17 +163,20 @@
 
 .tb {
     text-align: right;
-    tr {       
+
+    tr {
         td {
             a {
                 color: #118AF2 !important;
             }
+
             &.col-product {
                 padding-left: 20px;
-            }           
+            }
         }
     }
-    .sub-total-row ,.league-title ,.username-row .bold,.pt-row .bold ,.pt-product-row .bold,.consolidation{
+
+    .sub-total-row, .league-title, .username-row .bold, .pt-row .bold, .pt-product-row .bold, .consolidation {
         color: var(--table-text-bold);
     }
 
@@ -219,20 +223,29 @@
 
         &.sub-total-row {
             font-weight: bold;
+
             td {
                 background: var(--tb-sub-total-row-background);
-                
             }
-            
         }
+
         &.username-row, &.product-row, &.pt-row {
             td {
                 background: var(--tb-total-row-background);
             }
         }
-        &.tbl-footer, &.sub-total-row{
-            .text-left{
-                text-align: right!important;
+
+        &.tbl-footer, &.sub-total-row {
+            .text-left {
+                text-align: right !important;
+            }
+        }
+
+        &.cash-fee-total-row {
+            font-weight: bold;
+
+            td {
+                background: var(--tb-cash-fee--total-row-background);
             }
         }
     }
@@ -253,7 +266,6 @@
         &.super, &.master, &.agent, &.member {
             border-left: 0 !important;
         }
-      
     }
 
     .ic-percent {
@@ -267,8 +279,9 @@
             width: 20%;
         }
     }
-    .product-row{
-        .col-username{
+
+    .product-row {
+        .col-username {
             cursor: pointer;
         }
     }
