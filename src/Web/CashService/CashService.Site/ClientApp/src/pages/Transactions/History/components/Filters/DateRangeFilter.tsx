@@ -23,7 +23,7 @@ const DateRangeFilter: React.FC<DateRangeFilterProps> = ({ dateRange, onDateRang
   };
   const currentYear = new Date().getFullYear();
   return (
-    <div className="form-group">
+    <div className="form-group ">
       <LabelTitleComponent text={t('filter.dateRange')} />
       <DateRangePickerComponent
         value={value}

@@ -206,7 +206,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         </div>
       )}
 
-      <div className="filters-container mb-4">
+      <div className="filters-container mb-[5px]">
         <Filters
           dateRange={apiParams.dateRange}
           status={apiParams.status}
@@ -221,7 +221,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         />
       </div>
 
-      <div className="search-section w-full">
+      <div className="search-section w-full border border-[var(--table-border-color)] border-b-0 p-[6px]">
         <Search
           value={localSearchText}
           onChange={handleLocalSearchChange}
@@ -242,8 +242,8 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         onRefreshNeeded={onRefreshNeeded}
       />
       {!loading && (
-        <div className="mt-0">
-          <Pagination
+        <div className="mt-[-1px]">
+          <Pagination 
             currentPage={apiParams.pageIndex}
             totalItems={tempTotalCount}
             pageSize={apiParams.pageSize}

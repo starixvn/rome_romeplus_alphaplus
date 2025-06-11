@@ -83,5 +83,12 @@
 
   "successMessages": {
     "reverted": "交易已成功恢复到待处理状态！"
+  },
+
+  "messages": {
+    "copiedToClipboard": "文字已成功复制到剪贴板！",
+    "copy": "复制",
+    "copied": "已复制",
+    "exportToExcel": "导出到Excel"
   }
 }

@@ -83,6 +83,9 @@
   },
 
   "messages": {
-    "copiedToClipboard": "Text copied to clipboard successfully!"
+    "copiedToClipboard": "Text copied to clipboard successfully!",
+    "copy": "Copy",
+    "copied": "Copied",
+    "exportToExcel": "Export to Excel"
   }
 }

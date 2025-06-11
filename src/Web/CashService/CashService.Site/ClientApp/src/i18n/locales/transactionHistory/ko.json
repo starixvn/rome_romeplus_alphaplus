@@ -83,5 +83,12 @@
 
   "successMessages": {
     "reverted": "거래가 성공적으로 대기 상태로 되돌려졌습니다!"
+  },
+
+  "messages": {
+    "copiedToClipboard": "텍스트가 클립보드에 성공적으로 복사되었습니다!",
+    "copy": "복사",
+    "copied": "복사됨",
+    "exportToExcel": "Excel로 내보내기"
   }
 }

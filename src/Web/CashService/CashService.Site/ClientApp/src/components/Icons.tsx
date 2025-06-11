@@ -86,7 +86,6 @@ export const IconPen: React.FC = () => (
     <path d="M0 25.2v6.8h6.8l19.6-19.8-6.8-6.6-19.6 19.6zM31.4 7.2c0.8-0.8 0.8-1.8 0-2.4l-4-4c-0.8-0.8-1.8-0.8-2.4 0l-3.2 3.2 6.8 6.8 2.8-3.6z" />
   </svg>
 );
-
 export const IconClose: React.FC = () => (
   <svg
     className="w-[22px] h-[22px] fill-[#333333] dark:fill-[#ededed]"
@@ -96,37 +95,7 @@ export const IconClose: React.FC = () => (
   >
     <path d="M25.333 8.547l-1.88-1.88-7.453 7.453-7.453-7.453-1.88 1.88 7.453 7.453-7.453 7.453 1.88 1.88 7.453-7.453 7.453 7.453 1.88-1.88-7.453-7.453 7.453-7.453z"></path>
   </svg>
-);
-
-export const Spinner: React.FC<{ size?: 'small' | 'large'; className?: string }> = ({
-  size = 'large',
-  className = '',
-}) => {
-  const spinnerSize = size === 'small' ? 'h-5 w-5' : 'h-8 w-8';
-  return (
-    <svg
-      className={`animate-spin text-blue-600 ${spinnerSize} ${className}`}
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-    >
-      <circle
-        className="opacity-25"
-        cx="12"
-        cy="12"
-        r="10"
-        stroke="currentColor"
-        strokeWidth="4"
-      ></circle>
-      <path
-        className="opacity-75"
-        fill="currentColor"
-        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-      ></path>
-    </svg>
-  );
-};
-
+); 
 export const CalendarIcon: React.FC<{ className?: string }> = ({ className = '' }) => (
   <svg className={`w-5 h-5 ${className}`} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path fillRule="evenodd" clipRule="evenodd" d="M16 2V4H8V2H6V4H5C3.89 4 3.01 4.9 3.01 6L3 20C3 21.1 3.89 22 5 22H19C20.1 22 21 21.1 21 20V6C21 4.9 20.1 4 19 4H18V2H16ZM17 13H12V18H17V13ZM5.00001 20H19V9.00001H5.00001V20Z" />

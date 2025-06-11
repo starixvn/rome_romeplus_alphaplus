@@ -5,15 +5,18 @@ import { confirmAlert } from 'react-confirm-alert';
 import { useTranslation } from 'react-i18next';
 
 import {
-    ButtonApplyComponent, ButtonCancelComponent
+    ButtonApplyComponent, ButtonCancelComponent,
+    ButtonClosePopupComponent
 } from '../../../../components/ButtonComponents';
-import { IconClose, Spinner } from '../../../../components/Icons';
+
 import { ResultMessageComponent } from '../../../../components/MessageComponents';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import {
     displayAmount, formatDateTime, mappingStatus, renderBankAccount, TransactionType
 } from '../../../../utils/commonFunctions';
+import { LabelTitleComponent, MediumTitleComponent } from '../../../../components/TitleComponents';
+import LoadingComponent from '../../../../components/LoadingComponent';
 
 interface TransactionDetailProps {
   transactionId: number | null;
@@ -103,33 +106,24 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
   };
 
   const renderConfirmUI = ({ onClose: closeConfirm }: { onClose: () => void }) => (
-    <div className="fixed inset-0 flex items-center justify-center bg-[#00000080] z-[1000]">
-      <div className="bg-white rounded-[4px] p-[20px] pt-[4px] pb-[10px] w-[400px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]">
-        <h1 className="font-[500] text-[var(--text-color-primary)] text-[16px] my-[10px]">
-          {t('detail.confirmRevert')}
-        </h1>
-        <p className="mb-6 text-[#333333]">
+    <div className="bg-[#00000080] fixed inset-0 flex items-start justify-center z-50">
+      <div className="px-[20px] pb-[10px] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-[768px]:max-w-[90%] overflow-auto rounded-[4px]">   
+      <div className="relative my-[20px]">   
+        <MediumTitleComponent text={t('detail.confirmRevert')} />
+        <ButtonClosePopupComponent onClick={closeConfirm} />
+      </div>
+        <p className="mb-[20px]">
           {t('detail.confirmRevertMessage').replace(
             '{{transactionId}}',
             detailData?.transId?.toString() || ''
           )}
         </p>
-        <div className="flex justify-center gap-2">
-          <button
-            className="min-w-[90px] bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] text-[var(--button-text)] rounded-[3px] cursor-pointer h-[28px] px-[16px] font-semibold"
-            onClick={closeConfirm}
-          >
-            {tGlobal('cancel')}
-          </button>
-          <button
-            className="min-w-[90px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] text-[var(--button-text)] rounded-[3px] cursor-pointer h-[28px] px-[16px] font-semibold"
-            onClick={() => {
-              closeConfirm();
-              handleConfirmRevert();
-            }}
-          >
-            {tGlobal('confirm')}
-          </button>
+        <div className="flex justify-center gap-[8px]">
+          <ButtonCancelComponent onClick={closeConfirm} text={tGlobal('cancel')} />
+          <ButtonApplyComponent onClick={() => {
+            closeConfirm();
+            handleConfirmRevert();
+          }} text={t('confirm')} />             
         </div>
       </div>
     </div>
@@ -145,31 +139,21 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
 
   const bodyClassName =
     detailData && detailData.base64Payslip
-      ? 'bg-white w-[850px]'
-      : 'bg-[#ffffff] mt-[100px] max-w-[540px] max-[768px]:max-w-[90%] ';
+      ? 'w-[850px]'
+      : 'max-w-[540px] max-[768px]:max-w-[90%] ';
 
   return (
-    <div className="bg-[#00000066] fixed inset-0 flex items-center justify-center z-50">
+    <div className="bg-[#00000080] fixed inset-0 flex items-start justify-center z-50">
       <div
-        className={`${bodyClassName} p-[20px] rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f]`}
+        className={`${bodyClassName} px-[20px] pb-[10px] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-[768px]:max-w-[90%] overflow-auto rounded-[4px]`}
       >
-        <div className="relative">
-          <h5 className="text-[16px] text-[#163f78] font-bold pb-[15px]">
-            {t('detail.title')} ({transactionId?.toString() ?? t('detail.loading')})
-            {detailData && (
-              <span className={'text-xs font-medium inline-block ml-2'}>
-                {mappingStatus(detailData.statusId)}
-              </span>
-            )}
-          </h5>
-          <button
-            type="button"
-            className="absolute top-[-15px] right-[-15px] cursor-pointer"
-            onClick={onClose}
-            disabled={reverting}
-          >
-            <IconClose />
-          </button>
+        <div className="relative my-[10px] flex items-center">
+          <MediumTitleComponent className='w-auto!' text={`${t('detail.title')} (${transactionId?.toString() ?? t('detail.loading')})`} />
+          <div className='relative ml-[10px]'>
+            {detailData && (mappingStatus(detailData.statusId))}
+          </div>
+          <ButtonClosePopupComponent onClick={onClose} />
+          
         </div>
 
         {revertAlert.type && (
@@ -181,9 +165,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
         )}
 
         {loadingDetail ? (
-          <div className="text-center p-10">
-            <Spinner size="large" />
-          </div>
+          <LoadingComponent />
         ) : detailError ? (
           <ResultMessageComponent type="error" message={detailError} className="mb-4" />
         ) : !detailData ? (
@@ -192,14 +174,14 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
           <>
             <div className="flex gap-6">
               <div className="w-[460px] h-full">
-                <div className="border border-[#214184] rounded mb-6">
-                  <table className="w-full">
+                <div className="border border-[var(--border-control)] rounded mb-[8px] p-[8px]">
+                  <table className="w-full h-full no-hover">
                     <thead>
-                      <tr className="text-left text-[#333333]">
-                        <th className="font-bold px-[8px] py-[4px]">{t('detail.username')}</th>
-                        <th className="font-bold px-[8px] py-[4px]">{t('detail.nickname')}</th>
-                        <th className="font-bold px-[8px] py-[4px]">{t('detail.fullName')}</th>
-                        <th className="font-bold px-[8px] py-[4px]">{t('detail.betCredit')}</th>
+                      <tr className="text-left font-semibold text-[var(--text-color-secondary)]">
+                        <th className="px-[8px] py-[4px]">{t('detail.username')}</th>
+                        <th className="px-[8px] py-[4px]">{t('detail.nickname')}</th>
+                        <th className="px-[8px] py-[4px]">{t('detail.fullName')}</th>
+                        <th className="px-[8px] py-[4px]">{t('detail.betCredit')}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -209,65 +191,55 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
                         </td>
                         <td className="px-[8px] py-[4px]">{detailData.nickname}</td>
                         <td className="px-[8px] py-[4px]">{`${detailData.firstName} ${detailData.lastName}`}</td>
-                        <td className="px-[8px] py-[4px] text-[var(--text-color-primary)] font-semibold">
+                        <td className="px-[8px] py-[4px] text-[var(--text-link-color)] font-semibold">
                           {displayAmount(detailData.betCredit)}
                         </td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-
-                <div className="grid grid-cols-2 gap-6">
-                  <div>
-                    <div className="mb-4">
-                      <div className="text-sm font-medium mb-1">{t('detail.from')}</div>
-                      <div className="flex items-center">
-                        {renderBankAccount(detailData.paymentFrom)}
-                      </div>
-                    </div>
-
-                    <div className="mb-4">
-                      <div className="text-sm font-medium mb-1">{t('detail.dateAndTime')}</div>
-                      <div>{formatDateTime(detailData.createdTime)}</div>
-                    </div>
-
-                    <div className="mb-4">
-                      <div className="text-sm font-medium mb-1">{t('detail.transactionType')}</div>
-                      <div>{detailData.transactionType}</div>
-                    </div>
-                    <div className="mb-4">
-                      <div className="text-sm font-medium mb-1">{t('detail.processedOn')}</div>
-                      <div>{formatDateTime(detailData.operatedTime)}</div>
+                <div className="grid grid-cols-2 gap-3 mb-[10px]">                   
+                  <div className="w-[230px] max-[768px]:w-[48%]">
+                    <LabelTitleComponent text={t('detail.from')} />
+                    <div className="flex items-center">
+                      {renderBankAccount(detailData.paymentFrom)}
                     </div>
                   </div>
+                  <div className="w-[230px] max-[768px]:w-[48%]">
+                    <LabelTitleComponent text={t('detail.dateAndTime')} />
+                    <div>{formatDateTime(detailData.createdTime)}</div>
+                  </div>
 
-                  <div>
-                    <div className="mb-4">
-                      <div className="text-sm font-medium mb-1">{t('detail.to')}</div>
-                      <div className="flex items-center">
-                        {renderBankAccount(detailData.paymentTo)}
-                      </div>
+                  <div className="w-[230px] max-[768px]:w-[48%]">
+                    <LabelTitleComponent text={t('detail.transactionType')} />
+                    <div>{detailData.transactionType}</div>
+                  </div>
+                  <div className="w-[230px] max-[768px]:w-[48%]">
+                    <LabelTitleComponent text={t('detail.processedOn')} />
+                    <div>{formatDateTime(detailData.operatedTime)}</div>
+                  </div>                   
+                  <div className="w-[230px] max-[768px]:w-[48%]">
+                    <LabelTitleComponent text={t('detail.to')} />
+                    <div className="flex items-center">
+                      {renderBankAccount(detailData.paymentTo)}
                     </div>
-
-                    <div className="mb-4">
-                      <div className="text-sm font-medium mb-1">{t('detail.operatedBy')}</div>
-                      <div>{detailData.operatedBy}</div>
-                    </div>
-
-                    <div className="mb-4">
-                      <div className="text-sm font-medium mb-1">{t('detail.amount')}</div>
-                      <div>{displayAmount(detailData.amount)}</div>
-                    </div>
+                  </div>
+                  <div className="w-[230px] max-[768px]:w-[48%]">
+                    <LabelTitleComponent text={t('detail.operatedBy')} />
+                    <div>{detailData.operatedBy}</div>
+                  </div>
+                  <div className="w-[230px] max-[768px]:w-[48%]">
+                    <LabelTitleComponent text={t('detail.amount')} />
+                    <div>{displayAmount(detailData.amount)}</div>
                   </div>
                 </div>
-
-                <div className="mb-4">
-                  <div className="text-sm font-medium mb-1">{t('detail.remarks')}</div>
+                <div className="mb-[10px]">
+                  <LabelTitleComponent text={t('detail.remarks')} />
                   <textarea
                     value={remarks}
                     onChange={(e) => setRemarks(e.target.value)}
                     placeholder={t('detail.remarksPlaceholder')}
-                    className="block h-[150px] max-[768px]:h-[40px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] py-[10px] focus:outline-none focus:border-[var(--button-border)]"
+                    className="block h-[150px]! py-[10px] control-field"
                     disabled={reverting || !detailData?.isAllowRevert}
                   />
                 </div>
@@ -286,7 +258,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
           </>
         )}
 
-        <div className="flex justify-center gap-[8px] mt-6">
+        <div className="flex justify-center gap-[8px]">
           <ButtonCancelComponent onClick={onClose} disabled={reverting} text={t('detail.cancel')} />
           {detailData?.isAllowRevert && (
             <ButtonApplyComponent

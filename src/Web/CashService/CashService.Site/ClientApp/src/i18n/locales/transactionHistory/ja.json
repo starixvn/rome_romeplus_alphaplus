@@ -83,5 +83,12 @@
 
   "successMessages": {
     "reverted": "取引が正常に保留状態に戻されました！"
+  },
+
+  "messages": {
+    "copiedToClipboard": "テキストがクリップボードに正常にコピーされました！",
+    "copy": "コピー",
+    "copied": "コピー済み",
+    "exportToExcel": "Excelにエクスポート"
   }
 }

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { IconCopy, IconExcel, IconSearch } from '../../../../components/Icons';
-import { Alert } from '../../../../components/ui/Alert';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import {
     CurrentCurrency, displayAmount, formatDateTime, mappingStatus
@@ -20,7 +19,8 @@ interface SearchProps {
 
 const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, onDownload }) => {
   const { t } = useTranslation('transactionHistory');
-  const [showAlert, setShowAlert] = useState(false);
+  const [TextCopy, setTextCopy] = useState(t('messages.copy'));
+ 
 
   const getColumnHeader = (columnName: string): string => {
     switch (columnName) {
@@ -93,11 +93,8 @@ const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, o
     const finalText = [headers.join('\t'), ...rows].join('\n');
     navigator.clipboard
       .writeText(finalText)
-      .then(() => {
-        setShowAlert(true);
-        setTimeout(() => {
-          setShowAlert(false);
-        }, 1000);
+      .then(() => {       
+        setTextCopy(t('messages.copied'));
       })
       .catch((err) => {
         console.error('Failed to copy text: ', err);
@@ -107,35 +104,27 @@ const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, o
   const handleDownload = async () => {
     onDownload();
   };
-
+  console.log(TextCopy);
   return (
-    <div className="flex items-center w-full">
-      <div className="text-sm text-gray-500 italic flex-shrink-0">* {t('filter.maxRecords')}</div>
-      {showAlert && (
-        <Alert
-          style={{ position: 'absolute', marginLeft: '550px' }}
-          message={t('messages.copiedToClipboard')}
-          showIcon={false}
-        />
-      )}
-      <div className="flex items-center space-x-2 ml-auto">
-        <button
-          onClick={handleDownload}
-          className="p-[4px] bg-black/10 rounded-[3px] cursor-pointer"
-          title="Download"
-        >
-          <IconExcel />
-        </button>
-        <button
-          onClick={handleCopy}
-          className="p-[4px] bg-black/10 rounded-[3px] cursor-pointer"
-          title="Copy"
-        >
-          <Tippy  placement="top" theme="light" arrow={true}>
-            <IconCopy className="fill-[var(--pager-color)]" />
-          </Tippy>
-          
-        </button>
+    <div className="flex items-center w-full justify-between">
+      <div className="italic "><span className="text-[#ff0101] dark:text-[#e54748]" >*</span> {t('filter.maxRecords')}</div>
+      <div className="flex items-center gap-[8px]">
+        <Tippy content={t('messages.exportToExcel')} placement="top" theme="light" arrow={true} hideOnClick={false}>
+          <button
+            onClick={handleDownload}
+            className="p-[4px] bg-black/10 rounded-[3px] cursor-pointer"
+          >
+            <IconExcel />
+          </button>
+        </Tippy>        
+        <Tippy content={TextCopy} placement="top" theme="light" arrow={true} hideOnClick={false}>
+          <button
+            onClick={handleCopy}
+            className="p-[4px] bg-black/10 rounded-[3px] cursor-pointer"
+          >
+            <IconCopy  />
+          </button>
+        </Tippy>   
 
         <div className="flex">
           <div className="w-[250px] ml-auto">

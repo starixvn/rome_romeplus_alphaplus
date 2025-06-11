@@ -8,6 +8,7 @@ import {
     CurrentCurrency, displayAmount, formatDateTime, mappingStatus, renderBankAccount
 } from '../../../../utils/commonFunctions';
 import TransactionDetail from './TransactionDetail';
+import { ButtonFullComponent } from '../../../../components/ButtonComponents';
 
 interface DataGridProps {
   items: TransactionItem[];
@@ -140,12 +141,8 @@ const DataGrid: React.FC<DataGridProps> = ({
                     </td>
                   )}
                   <td className="text-center">
-                    <button
-                      onClick={() => handleViewTransaction(item.transId, item.custId)}
-                      className="bg-[#163f78] hover:bg-[var(--button-background-hover)] text-white text-xs font-semibold py-1 px-3 rounded-[20px] focus:outline-none focus:ring-2 focus:ring-[#163f78] focus:ring-opacity-50 cursor-pointer"
-                    >
-                      {t('table.view')}
-                    </button>
+                    <ButtonFullComponent text={t('table.view')} onClick={() => handleViewTransaction (item.transId, item.custId)}                     
+                    />
                   </td>
                 </tr>
               ))

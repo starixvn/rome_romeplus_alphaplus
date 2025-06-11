@@ -83,6 +83,9 @@
   },
 
   "messages": {
-    "copiedToClipboard": "คัดลอกข้อความไปยังคลิปบอร์ดสำเร็จ!"
+    "copiedToClipboard": "คัดลอกข้อความไปยังคลิปบอร์ดสำเร็จแล้ว!",
+    "copy": "คัดลอก",
+    "copied": "คัดลอกแล้ว",
+    "exportToExcel": "ส่งออกเป็นExcel"
   }
 }

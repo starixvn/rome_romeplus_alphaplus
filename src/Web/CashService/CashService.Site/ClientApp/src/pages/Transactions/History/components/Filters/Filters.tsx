@@ -32,7 +32,7 @@ const Filters: React.FC<FiltersProps> = ({
 }) => {
   return (
     <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
-      <div className="w-[190px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
+      <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
         <DateRangeFilter dateRange={dateRange} onDateRangeChange={onDateRangeChange} />
       </div>
       <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
