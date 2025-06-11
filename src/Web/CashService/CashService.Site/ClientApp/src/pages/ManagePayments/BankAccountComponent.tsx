@@ -12,6 +12,9 @@ import {
   ButtonDeleteComponent,
   ButtonTabActiveComponent,
   ButtonTabInactiveComponent,
+  ButtonClosePopupComponent,
+  ButtonApplyComponent,
+  ButtonCancelComponent,
 } from '../../components/ButtonComponents';
 import CustomDropdown from '../../components/CustomDropdownComponent';
 import { IconInfo, IconSearch, NoDataIcon } from '../../components/Icons';
@@ -170,48 +173,57 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
     fetchBankAccounts();
   };
 
+  const handleDeleteBankAccount = async (account: BankAccount) => {
+    setDeleting(account.id);
+      setError(null);
+      setSuccessMessage(null);
+      const response = await paymentProviderService.deleteBankAccount(account.id);
+
+      if (response.error) {
+        setError(response.error.message);
+        setDeleting(null);
+        return;
+      }
+
+      const result = response.data ?? createErrorResultModel(1, tGlobal('errorOccurred'));
+      if (result.isSuccessful) {
+        setSuccessMessage(tManagePayments('bankAccountDeletedSuccessfully'));
+        // Clear success message and refresh list again after 3 seconds
+        setTimeout(() => {
+          setSuccessMessage(null);
+          fetchBankAccounts();
+        }, 3000);
+      } else {
+        setError(result.message ?? tManagePayments('failedToDeleteBankAccount'));
+      }
+
+      setDeleting(null);
+  };
+
+  const renderConfirmUI = ({ onClose: closeConfirm }: { onClose: () => void }, account: BankAccount) => (
+    <div className="bg-[#00000080] fixed inset-0 flex items-start justify-center z-50">
+      <div className="px-[20px] pb-[10px] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-w-[400px] w-full max-[768px]:max-w-[90%] rounded-[3px]">   
+      <div className="relative my-[10px]">
+        <MediumTitleComponent text={tManagePayments('deleteBankAccount')} />
+        <ButtonClosePopupComponent onClick={closeConfirm} />
+      </div>
+        <p className="mb-[20px]">
+          { tManagePayments('confirmDeleteBankAccount').replace(
+            '{{bankAccount}}',
+            account.accountNumber || ''
+          ) }
+        </p>
+        <div className="flex justify-center gap-[8px]">
+          <ButtonCancelComponent onClick={closeConfirm} text={tGlobal('cancel')} />
+          <ButtonApplyComponent onClick={() => {closeConfirm(); handleDeleteBankAccount(account);}} text={tGlobal('confirm')} />                      
+        </div>
+      </div>
+    </div>
+  );
+
   const onDeleteBankAccount = async (account: BankAccount) => {
     confirmAlert({
-      title: tManagePayments('deleteBankAccount'),
-      message: tManagePayments('confirmDeleteBankAccount').replace(
-        '{{bankAccount}}',
-        account.accountNumber || ''
-      ),
-      buttons: [
-        {
-          label: tGlobal('confirm'),
-          onClick: async () => {
-            setDeleting(account.id);
-            setError(null);
-            setSuccessMessage(null);
-            const response = await paymentProviderService.deleteBankAccount(account.id);
-
-            if (response.error) {
-              setError(response.error.message);
-              setDeleting(null);
-              return;
-            }
-
-            const result = response.data ?? createErrorResultModel(1, tGlobal('errorOccurred'));
-            if (result.isSuccessful) {
-              setSuccessMessage(tManagePayments('bankAccountDeletedSuccessfully'));
-              // Clear success message and refresh list again after 3 seconds
-              setTimeout(() => {
-                setSuccessMessage(null);
-                fetchBankAccounts();
-              }, 3000);
-            } else {
-              setError(result.message ?? tManagePayments('failedToDeleteBankAccount'));
-            }
-
-            setDeleting(null);
-          },
-        },
-        {
-          label: tGlobal('cancel'),
-          onClick: () => {},
-        },
-      ],
+      customUI: ({ onClose }) => renderConfirmUI({ onClose }, account),
     });
   };
 

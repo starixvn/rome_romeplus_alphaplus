@@ -418,67 +418,9 @@ table:not(.no-hover){
       -2em -2em 0 0.2em;
   }
 }
+// react confirm alert
 .react-confirm-alert-overlay{
-  background-color: #00000080;
-  align-items: flex-start;
-  width: 100%;
-  .react-confirm-alert{
-    width: 100%;
-  }
-}
-.react-confirm-alert-blur{
-  filter: blur(0px);
-}
-.react-confirm-alert-body{
-  margin-top: 100px;
-  border-radius: 3px;
-  color: var(--text-color);
-  box-shadow: none;
-  font-family: inherit;
-  padding: 1px 20px 10px;
-  background-color: var(--modal-background);
-  box-shadow: var(--modal-box-shadow);
-  border: 1px solid var(--modal-border-color);
-  margin: 100px auto 0;
-  @media (max-width: 768px) {
-    max-width: 90%;
-  }
-  h1{
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--text-color-primary);
-    margin: 10px 0;
-  }
-  .react-confirm-alert-button-group{
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    flex-direction: row-reverse;
-    
-    button{   
-      font-weight: 600;
-      color: var(--button-text);
-      background-color: var(--button-background);
-      border: 1px solid var(--button-border);
-      border-radius: 3px;
-      padding: 4px 16px;
-      cursor: pointer;
-      height: 28px;
-      margin: 0;
-      outline: none;
-      &:nth-child(1){
-        &:hover{
-          background-color: var(--button-background-hover);
-        }
-      }
-      &:nth-child(2){
-        background-color: var(--button-background-cancel);
-        &:hover{
-          background-color: var(--button-background-cancel-hover); 
-        }
-      }
-    }
-  }
+  background: transparent!important;
 }
 // tippy
 .tippy-box{

@@ -108,7 +108,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
   const renderConfirmUI = ({ onClose: closeConfirm }: { onClose: () => void }) => (
     <div className="bg-[#00000080] fixed inset-0 flex items-start justify-center z-50">
       <div className="px-[20px] pb-[10px] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-[768px]:max-w-[90%] overflow-auto rounded-[4px]">   
-      <div className="relative my-[20px]">   
+      <div className="relative my-[10px]">   
         <MediumTitleComponent text={t('detail.confirmRevert')} />
         <ButtonClosePopupComponent onClick={closeConfirm} />
       </div>
