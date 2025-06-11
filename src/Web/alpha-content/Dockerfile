@@ -1,5 +1,5 @@
 # Creating multi-stage build for production
-FROM hub.nexdev.net/base/node:18.16-alpine AS builder
+FROM hub.nexdev.net/base/node:18-alpine-25h1 AS builder
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev git > /dev/null 2>&1
 ENV NODE_ENV=production
 
@@ -21,7 +21,7 @@ COPY "src/Web/alpha-content/.env.$TRANSFORM_CONFIG" .env
 RUN  yarn build
 
 # Creating final production image
-FROM hub.nexdev.net/base/node:18.16-alpine
+FROM hub.nexdev.net/base/node:18-alpine-25h1
 
 RUN apk add --no-cache vips-dev
 ENV NODE_ENV=production
