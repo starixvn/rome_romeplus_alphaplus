@@ -1,0 +1,58 @@
+[
+  {
+    "outputFileName": "wwwroot/assets/bundles/handbook/common.css",
+    "inputFiles": [
+        "assets/styles/handbook/base/reset.css",
+        "assets/styles/handbook/base/fonts/iconhandbook/style.css",
+        "assets/styles/handbook/base/fonts/roboto/roboto.css",
+        "assets/styles/handbook/base/scaffolding.css",
+        "assets/styles/handbook/base/utilities.css",
+        "assets/styles/handbook/pages/page-handbook.css"
+    ]
+  },
+  {
+      "outputFileName": "wwwroot/assets/bundles/handbook/page-default.css",
+      "inputFiles": [
+        "assets/styles/handbook/pages/page-default.css"
+      ]
+  },
+  {
+      "outputFileName": "wwwroot/assets/bundles/handbook/page-home.css",
+      "inputFiles": [
+          "assets/styles/handbook/pages/page-home.css"
+      ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/handbook/articles/get-by-slug.css",
+    "inputFiles": [
+      "assets/styles/handbook/pages/artiles/get-by-slug.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/handbook/default.js",
+    "inputFiles": [
+      "assets/scripts/handbook/auto-suggestion.js",
+      "assets/scripts/handbook/old-main.js",
+      "assets/scripts/handbook/default.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/handbook/home.js",
+    "inputFiles": [
+      "assets/scripts/handbook/auto-suggestion.js",
+      "assets/scripts/handbook/home.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/handbook/glossary.js",
+    "inputFiles": [
+      "assets/scripts/handbook/glossary.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/handbook/articles/get-by-slug.js",
+    "inputFiles": [
+      "assets/scripts/handbook/articles/get-by-slug.js"
+    ]
+  }
+]

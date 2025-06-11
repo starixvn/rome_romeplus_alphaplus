@@ -123,6 +123,26 @@
       "sourceFileMap": {
           "/Views": "${workspaceFolder}/Views"
       }
+    },
+    {
+      "name": "Alpha Handbook Demo Launch (Docker)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-handbook-demo",
+      "program": "${workspaceFolder}/src/Web/alpha-handbook-demo/bin/Debug/net8.0/Alpha.Handbook.Demo.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Web/alpha-handbook-demo",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+          "action": "openExternally",
+          "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+          "/Views": "${workspaceFolder}/Views"
+      }
     }
   ],
   "compounds": [

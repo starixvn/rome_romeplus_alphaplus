@@ -1,0 +1,71 @@
+﻿@using Alpha.Handbook.Demo.Models
+@using Alpha.Handbook.Demo.Resources
+@using Alpha.Handbook.Demo.ViewModels;
+
+@model ArticleViewModel
+
+@{
+    Layout = null;
+    var article = Model.Article ?? new ArticleModel();
+    var parentCategory = Model != null && article.Categories != null && article.Categories.Any() 
+        ? article.Categories.First() : null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Resources.AngencyHandbook</title>
+    <link rel="stylesheet" href="~/assets/bundles/handbook/common.css" />   
+    <link rel="stylesheet" href="~/assets/bundles/handbook/articles/get-by-slug.css" />   
+</head>
+<body class="@Model.Language">
+    <div class="container">
+        <div class="left-container"></div> <!-- keep this this to prevent break layout -->
+        <div class="center-container">
+            @if (Model == null || string.IsNullOrWhiteSpace(article.Slug))
+            {
+                @Resources.NoRecords
+            }
+            else
+            {
+                <div class="main-article" id="main-article">
+                    <div class="detail-article" id="detail-article">
+                        <h2 class="title-page">@article.Title</h2>
+                        <div class="top-info">
+                            <div class="item-info">
+                                <span class="icon-calendar"></span>
+                                @Resources.PublishedOn @article.PublishedAtStr
+                            </div>
+                            <div class="item-info item-info-folder">
+                                <a @(parentCategory == null ? "" : "href=" + parentCategory.GetUrl("../") + "")>
+                                    <span class="icon-folder"></span>
+                                    @(parentCategory == null ? string.Empty : parentCategory.ShortName)
+                                </a>
+                            </div>
+                        </div>
+                        <div class="article-content">
+                            @Html.Raw(article.Content)
+                        </div>
+
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="right-container">
+            <div class="inner">
+                @if (Model != null && !string.IsNullOrWhiteSpace(article.Slug))
+                {
+                    <h2 class="title-category">@Resources.Contents</h2>
+                }
+                <div id="float-content">
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="icon-back-to-top" href="#" id="back-to-top"></a>
+    <div class="zoomed-img-container hidden"></div>
+    @Html.Hidden("RootPath", "../")
+    <script src="~/assets/bundles/handbook/articles/get-by-slug.js"></script>
+</body>
+</html>

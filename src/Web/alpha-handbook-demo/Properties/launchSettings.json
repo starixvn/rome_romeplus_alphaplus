@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Alpha.Handbook.Demo": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:61064;http://localhost:61065"
+    }
+  }
+}

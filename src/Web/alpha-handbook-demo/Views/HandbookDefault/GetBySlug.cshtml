@@ -1,0 +1,148 @@
+﻿@using Alpha.Handbook.Demo.Models
+@using Alpha.Handbook.Demo.Resources
+@using Alpha.Handbook.Demo.ViewModels
+@model GetBySlugViewModel
+
+@{
+    Layout = null;
+    var relativePath = "../";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Resources.AngencyHandbook</title>
+    <link rel="stylesheet" href="~/assets/bundles/handbook/common.css" />
+</head>
+<body data-lang="@Model.LanguageKey">
+    <header class="header">
+        <h1 class="logo">
+            <a target="main" href="../HandbookHome/Index" class="hover">
+                <img src="~/assets/bundles/handbook/images/logo.svg" alt="@Resources.Handbook" />
+            </a>
+        </h1>
+        <div class="search">
+            <input id="txt-search" type="text" name="name" value="" placeholder="@Resources.Search" />
+            <div class="box-suggestion hidden">
+                <ul></ul>
+            </div>
+            <button class="btn-search hover">
+                <span class="icon-search"></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="aside">
+            <div class="menu">
+                @await Html.PartialAsync("./BriefProfile.cshtml", Model.BriefProfile)
+
+                <ul class="list-menu">
+                    <li class="item-menu">
+                        <a target="main" href="../HandbookHome/Index">
+                            <span class="icon-home"></span>
+                            @Resources.Home
+                        </a>
+                    </li>
+                    <li class="item-menu">
+                        <a target="main" href="../HandbookGlossary/Index">
+                            <span class="icon-glossary"></span>
+                            @Resources.Glossary
+                        </a>
+                    </li>
+                </ul>
+                <div class="language language-container">
+                    <span class="spn-lang">@Model.LanguageName</span>
+                    <span class="icon-right"></span>
+                    <ul class="dropdown-language">
+                        <li><a data-val="e" href="#">English</a></li>
+                        <li><a data-val="ct" href="#">繁體中文</a></li>
+                        <li><a data-val="cs" href="#">简体中文</a></li>
+                        <li><a data-val="j" href="#">Japanese</a></li>
+                        <li><a data-val="th" href="#">ภาษาไทย</a></li>
+                        <li><a data-val="ko" href="#">Korean</a></li>
+                        <li><a data-val="vi" href="#">Tiếng Việt</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="category">
+                <h2 class="title-category">@Resources.AllCategories</h2>
+                <ul class="list-item-cat">                    
+                    @foreach (var c in Model.Categories)
+                    {
+                        RenderCategory(c, relativePath);
+                    }
+                </ul>
+            </div>
+        </div>
+        <iframe id="ifr-main" name="main" src="../HandbookArticle/GetById?id=@Model.Id"></iframe>
+    </main>
+
+    @Html.Hidden("MainRootPath", Model.MainRootPath)
+    @Html.Hidden("MessageRootPath", Model.MessageRootPath)
+    @Html.Hidden("RootPath", "../")
+    @Html.Hidden("NoRecords", Resources.NoRecords)
+    @Html.Hidden("SetCurrentURL", 0)
+    <script src="~/assets/bundles/handbook/default.js"></script>
+</body>
+</html>
+
+@{
+    void RenderCategory(CategoryModel category, string relativePath)
+    {
+        if (category.Categories == null || !category.Categories.Any())
+        {
+            var articles = category.Articles ?? new List<ArticleModel>();
+
+            <li class="@category.Slug">
+                <div class="item-cat">
+                    <span class="icon-right"></span>
+                    <a class="text" target="main" href="@category.GetUrl(relativePath)">
+                        <span class="icon-folder"></span>@category.ShortName
+                    </a>
+                    <span class="count">@articles.Count()</span>
+                </div>
+
+                <ul class="list-item-article">
+                    @foreach (var a in articles)
+                    {
+                        RenderAticle(a, relativePath);
+                    }
+                </ul>
+            </li>
+
+            return;
+        }
+
+        <li>
+            <div class="item-cat">
+                <span class="icon-right"></span>
+                <a class="text" target="main" href="@category.GetUrl(relativePath)">
+                    <span class="icon-folder"></span>@category.ShortName
+                </a>
+                <span class="count">@category.Categories.Count()</span>
+            </div>
+            <ul class="list-item-cat">                 
+                @foreach (var c in category.Categories)
+                {
+                    RenderCategory(c, relativePath);
+                }
+            </ul>
+        </li>
+    }
+
+    void RenderAticle(ArticleModel a, string relativePath)
+    {
+        <li>
+            <div class="item-cat">
+                <a class="text item-slug" target="@a.GetTargetFrame()" href="@a.GetUrl(relativePath)">
+                    <span class="icon-article"></span>@a.Title
+                </a>
+            </div>
+        </li>
+    }
+}
+
+
