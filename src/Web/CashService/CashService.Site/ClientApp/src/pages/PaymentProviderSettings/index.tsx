@@ -660,7 +660,7 @@ function PaymentProviderSettings() {
                               placeholder={tPaymentProviderSettings('maximum')}
                               maxLength={15}
                             />
-                            <label className="text-left text-[#666666] font-semibold mt-[4px]">
+                            <label className="text-left text-[#828282] font-semibold mt-[4px]">
                               {tPaymentProviderSettings('maxAmount')}{' '}
                               {formatNumber(setting.maxAmountTrans)}
                             </label>
@@ -691,7 +691,7 @@ function PaymentProviderSettings() {
                         {!isEditable(setting) ? (<>-</>) : 
                           setting.bankRequired ? 
                             (<ButtonOutlineComponent text={tPaymentProviderSettings('listOfBanks')} onClick={() => onViewBanks(setting)} />) : 
-                            (<span className="font-semibold color-[#333333]">{tPaymentProviderSettings('noBankRequired')}{' '}</span>)
+                            (<span className="font-semibold">{tPaymentProviderSettings('noBankRequired')}{' '}</span>)
                         }
                       </td>
                     </tr>

@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import BankIcon from '../../../../components/BankComponents';
 import CustomDropdown from '../../../../components/CustomDropdownComponent';
-import { CalendarIcon, IconSearch } from '../../../../components/Icons';
+import { IconSearch } from '../../../../components/Icons';
 import { LabelTitleComponent } from '../../../../components/TitleComponents';
 
 export enum TimeFilterOptions {
@@ -31,15 +31,13 @@ const TimeFilter: React.FC<{
       <select
         value={value}
         onChange={(e) => onChange(e.target.value as TimeFilterOptions)}
-        className="control-field appearance-none"
+        className="control-field"
       >
         <option value={TimeFilterOptions.All}>{t('filter.all')}</option>
         <option value={TimeFilterOptions.Last30Mins}>{t('filter.last30Mins')}</option>
         <option value={TimeFilterOptions.Last60Mins}>{t('filter.last60Mins')}</option>
       </select>
-      <span className="absolute right-[8px] top-[50%] transform -translate-y-1/2 pointer-events-none">
-        <CalendarIcon className="fill-[#333333] dark:fill-[#ededed]" />
-      </span>
+      
     </div>
   </div>
 );
