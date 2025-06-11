@@ -224,7 +224,7 @@
         ]
     },
     "ONEbook.UM": {
-        "ServiceUri": "http://10.143.8.100:7446/api",
+        "ServiceUri": "http://onebookum.starix-alphaklprod.gamora.prod/api",
         "EnableCheckUM": true,
         "SiteId": 3100000,
         "EnableUnscheduledUM": false,
