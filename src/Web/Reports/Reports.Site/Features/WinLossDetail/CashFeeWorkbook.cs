@@ -28,7 +28,7 @@ public class CashFeeWorkbook(IWebHostEnvironment webHostEnvironment) :
     public ExcelFileViewModel BuildCashFeeExcelFile(CashFeeExcelQuery message, CashFeeModel cashFeeModel)
     {
         var fromDateString = message.FromDate.ToShortDateWithSlash();
-        var toDateString =  message.ToDate.ToShortDateWithSlash();
+        var toDateString = message.ToDate.ToShortDateWithSlash();
         var custName = message.CustName;
         this.cashFeeModel = cashFeeModel;
         cashFeeItemMapper = GetRowMapper();
@@ -36,10 +36,10 @@ public class CashFeeWorkbook(IWebHostEnvironment webHostEnvironment) :
         var fileContent = UseTemplate(
             new TemplateInfo(
                 GetExcelTemplatePath("CashFee"),
-                noInfomationText: Resources.NoInformationIsAvailable, 
+                noInfomationText: Resources.NoInformationIsAvailable,
                 bodyStartIndex: BodyStartRowIndex))
             .Title($"{custName} --> {Resources.CashServiceBilling} {fromDateString} --> {toDateString}")
-            .Header(key => Resources.ResourceManager.GetString(key))
+            .Header(Resources.ResourceManager.GetString)
             .Footer(cashFeeModel.GrandTotal, GetTotalRowMapper())
             .Sheet(Resources.DefaultSheetName)
             .ExportToBytes();
@@ -62,7 +62,7 @@ public class CashFeeWorkbook(IWebHostEnvironment webHostEnvironment) :
     private static Mapper<CashFeeItemModel> GetTotalRowMapper()
     {
         var mapper = new Mapper<CashFeeItemModel>()
-            //.Map(A, cashFeeItem => Resources.Total)
+            .Map(A, cashFeeItem => Resources.Total)
             .Map(D, cashFeeItem => cashFeeItem.Agent)
             .Map(E, cashFeeItem => cashFeeItem.Company);
 
@@ -86,7 +86,10 @@ public class CashFeeWorkbook(IWebHostEnvironment webHostEnvironment) :
         sheet.RemoveRow(cashFeeTypeRowTemplate);
         sheet.RemoveRow(cashFeeItemRowTemplate);
 
-        base.RemoveTemplateRows(sheet);
+        foreach (Row item in sheet.FooterRowsTemplate)
+        {
+            sheet.RemoveRow(item);
+        }
     }
 
     protected override void FillBody(Sheet sheet)
