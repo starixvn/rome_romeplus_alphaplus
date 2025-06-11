@@ -32,7 +32,11 @@ interface PendingWithdrawalModalProps {
   onClose: () => void;
 }
 
-const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ transId, custId, onClose }) => {
+const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
+  transId,
+  custId,
+  onClose,
+}) => {
   const { t } = useTranslation('pendingWithdrawal');
   const [withdrawal, setWithdrawal] = useState<TransactionItem | null>(null);
   const [remark, setRemark] = useState('');
@@ -53,7 +57,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ transId
     const fetchWithdrawal = async () => {
       setIsLoading(true);
       const response = await transactionAPI.getTransactionDetail(transId, custId);
-      if(response.error) {
+      if (response.error) {
         setIsLoading(false);
         return;
       }
@@ -86,7 +90,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ transId
         }));
 
         setBankOptions([...bankOptions, ...providerOptions]);
-        
+
         if (
           withdrawal?.paymentFrom &&
           bankOptions.find((option) => option.value === withdrawal.paymentFrom)
@@ -168,7 +172,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ transId
   const handleChangePaymentFrom = (option: DropdownOption) => {
     setWithdrawalFrom(option.value.toString());
   };
-
+  console.log(isSubmitting);
   return (
     <div className="bg-[#00000080] fixed inset-0 flex items-start justify-center z-50">
       <div className="px-[20px] pb-[10px] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-[768px]:max-w-[90%] max-[768px]:h-[90%] overflow-auto rounded-[4px]">
@@ -193,14 +197,18 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ transId
           ) : (
             <>
               <div className="flex-1 h-full max-[768px]:mb-[16px]">
-            <div className="border border-[var(--border-control)] rounded mb-[8px] p-[8px]">
-              <table className="w-full h-full no-hover">
+                <div className="border border-[var(--border-control)] rounded mb-[8px] p-[8px]">
+                  <table className="w-full h-full no-hover">
                     <thead>
-                  <tr className="text-left font-semibold text-[var(--text-color-secondary)]">
-                        <th className="px-[8px] py-[4px]">{t('pendingWithdrawalModal.username')}</th>
+                      <tr className="text-left font-semibold text-[var(--text-color-secondary)]">
+                        <th className="px-[8px] py-[4px]">
+                          {t('pendingWithdrawalModal.username')}
+                        </th>
                         <th className="px-[8px] py-[4px]">{t('dataGrid.nickname')}</th>
                         <th className="px-[8px] py-[4px]">{t('dataGrid.firstName')}</th>
-                        <th className="px-[8px] py-[4px]">{t('pendingWithdrawalModal.betCredit')}</th>
+                        <th className="px-[8px] py-[4px]">
+                          {t('pendingWithdrawalModal.betCredit')}
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -208,7 +216,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ transId
                         <td className="px-[8px] py-[4px]">{withdrawal?.username}</td>
                         <td className="px-[8px] py-[4px]">{withdrawal?.nickname}</td>
                         <td className="px-[8px] py-[4px]">{`${withdrawal?.firstName} ${withdrawal?.lastName}`}</td>
-                    <td className="px-[8px] py-[4px] text-[var(--text-link-color)] font-semibold">
+                        <td className="px-[8px] py-[4px] text-[var(--text-link-color)] font-semibold">
                           {displayAmount(withdrawal?.betCredit || 0)}
                         </td>
                       </tr>
@@ -260,11 +268,11 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ transId
                 <div className="mt-6 h-full">
                   <LabelTitleComponent text={t('pendingWithdrawalModal.remarks')} />
                   <textarea
-                    value={withdrawal?.remark || ''}
+                    value={remark}
                     onChange={(e) => setRemark(e.target.value)}
                     maxLength={1000}
                     placeholder={t('pendingWithdrawalModal.remarksPlaceholder')}
-                className="block h-[150px]! py-[10px] control-field"
+                    className="block h-[150px]! py-[10px] control-field"
                     disabled={isSubmitting}
                   />
                 </div>

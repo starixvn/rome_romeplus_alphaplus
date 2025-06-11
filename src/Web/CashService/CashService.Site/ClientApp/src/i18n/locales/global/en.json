@@ -82,5 +82,14 @@
   "uploadImage": "Click to upload",
   "dragAndDrop": "or drag and drop",
   "imageFormat": "Upload jpeg, jpg, png",
-  "maxSize": "Max 1 MB"
+  "maxSize": "Max 1 MB",
+  "status": {
+    "waiting": "Waiting",
+    "cancelled": "Cancelled",
+    "pending": "Pending",
+    "expired": "Expired",
+    "completed": "Completed",
+    "rejected": "Rejected",
+    "providerRejected": "Provider Rejected"
+  }
 }

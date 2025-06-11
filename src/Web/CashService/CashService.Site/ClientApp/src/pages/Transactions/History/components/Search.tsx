@@ -4,7 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { IconCopy, IconExcel, IconSearch } from '../../../../components/Icons';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import {
-    CurrentCurrency, displayAmount, formatDateTime, mappingStatus
+  CurrentCurrency,
+  displayAmount,
+  formatDateTime,
+  mappingStatus,
 } from '../../../../utils/commonFunctions';
 import Tippy from '@tippyjs/react';
 
@@ -19,7 +22,7 @@ interface SearchProps {
 
 const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, onDownload }) => {
   const { t } = useTranslation('transactionHistory');
-  const [TextCopy, setTextCopy] = useState(t('messages.copy'));
+  const { t: tGlobal } = useTranslation('global');
  
 
   const getColumnHeader = (columnName: string): string => {
@@ -72,7 +75,7 @@ const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, o
             rowData.push(item.paymentTo ? item.paymentTo : '-');
             break;
           case 'status':
-            rowData.push(mappingStatus(item.statusId));
+            rowData.push(tGlobal(mappingStatus(item.statusId).props.text));
             break;
           case 'type':
             rowData.push(item.transactionType?.toString() || '-');

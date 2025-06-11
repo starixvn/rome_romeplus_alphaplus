@@ -50,35 +50,21 @@ export const renderBankAccount = (bankAccount: string) => {
 export const mappingStatus = (status: number) => {
   switch (status) {
     case 0:
-      return <StatusProcessingComponent text="Waiting" />;
+      return <StatusProcessingComponent text="status.waiting" />;
     case 1:
-      return <StatusFailedComponent text="Cancelled" />;
+      return <StatusFailedComponent text="status.cancelled" />;
     case 2:
-      return <StatusMaintenanceComponent text="Pending" />;
+      return <StatusMaintenanceComponent text="status.pending" />;
     case 3:
-      return <StatusFailedComponent text="Expired" />;
+      return <StatusFailedComponent text="status.expired" />;
     case 4:
-      return <StatusCompletedComponent />;
+      return <StatusCompletedComponent text="status.completed" />;
     case 5:
-      return <StatusDisabledComponent text="Rejected" />;
+      return <StatusDisabledComponent text="status.rejected" />;
     case 6:
-      return <StatusDisabledComponent text="Provider Rejected" />;
+      return <StatusDisabledComponent text="status.providerRejected" />;
     default:
       return <StatusNoneComponent />;
-  }
-};
-
-export const getStatusStyle = (statusId: number) => {
-  switch (statusId) {
-    case 4:
-      return 'bg-[#DCFCE7] text-[#166534]';
-    case 3:
-      return 'bg-[#F3F4F6] text-[#374151]';
-    case 5:
-    case 6:
-      return 'bg-[#FEE2E2] text-[#991B1B]';
-    default:
-      return 'bg-gray-100 text-gray-800';
   }
 };
 

@@ -214,7 +214,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
                 <div className="mb-[16px]">
                   <LabelTitleComponent text={t('pendingDepositModal.remarks')} />
                   <textarea
-                    value={deposit?.remark}
+                    value={remark}
                     onChange={(e) => setRemark(e.target.value)}
                     maxLength={1000}
                     placeholder={t('pendingDepositModal.remarksPlaceholder')}
