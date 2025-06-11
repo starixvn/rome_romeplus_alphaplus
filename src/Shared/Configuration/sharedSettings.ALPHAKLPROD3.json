@@ -124,7 +124,7 @@
         }
     ],
     "StoredProcedurePath": "~/App_Data/SPNames.MAIN.xml",
-    "FanexDataServiceApi": "http://vn-fanexdataservice.gamora.prod",
+    "FanexDataServiceApi": "http://alpha_data_service_ALPHAKLPROD:5000",
     "LogLibs": "Sentry,Rabbit",
     "Fanex.Logging": {
         "DefaultCategory": "Alpha-IBC-KLDR-Linux",
