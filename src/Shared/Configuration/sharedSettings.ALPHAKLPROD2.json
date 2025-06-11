@@ -129,8 +129,8 @@
     "Fanex.Logging": {
         "DefaultCategory": "Alpha-789y-KLDR-Linux",
         "RabbitMQConnectionStrings": "host=10.143.8.200;virtualHost=/fanex_logging;username=fanexlogging;password=VKREKUBBd2T3DAtosbDPojl4YQFDnDp7Yilb8JGcLQ8=",
-        "SentryUrl": "https://2260e85fe1c54d2fa5592b84dcbd9936@vn-st-sentry.byb6181.com/21",
-        "SentryBackendUrl": "https://2260e85fe1c54d2fa5592b84dcbd9936@10.143.8.200:9005/21"
+        "SentryUrl": "https://2260e85fe1c54d2fa5592b84dcbd9936@sentry.starixplay.com/21",
+        "SentryBackendUrl": "https://2260e85fe1c54d2fa5592b84dcbd9936@sentry-stklprod-ovs.ops-klprod.gamora.prod/21"
     },
     "RedisConfiguration": "vn-alpha-state383.gamora.prod:16383,Password=foo1@bared,Name=AlphaPlus,abortConnect=false,configChannel=__Booksleeve_MasterChanged,connectTimeout=6300",
     "RemotingRefUrl": "http://vn-remotingref.starix-alphaklprod.gamora.prod/",
