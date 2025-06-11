@@ -48,4 +48,5 @@ export interface ExportExcelParams {
   toDate: string;
   transactionType: number;
   status: number;
+  account: string;
 }

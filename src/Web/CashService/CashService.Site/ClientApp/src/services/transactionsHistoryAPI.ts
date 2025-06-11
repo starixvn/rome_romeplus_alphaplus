@@ -141,6 +141,7 @@ export const transactionAPI = {
       formData.append('fromDate', params.fromDate);
       formData.append('toDate', params.toDate);
       formData.append('status', params.status.toString());
+      formData.append('account', params.account);
 
       await api
         .post('ExportExcel', formData, {

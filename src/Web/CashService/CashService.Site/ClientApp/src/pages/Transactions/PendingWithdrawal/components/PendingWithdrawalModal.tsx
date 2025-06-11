@@ -172,7 +172,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
   const handleChangePaymentFrom = (option: DropdownOption) => {
     setWithdrawalFrom(option.value.toString());
   };
-  console.log(isSubmitting);
+
   return (
     <div className="bg-[#00000080] fixed inset-0 flex items-start justify-center z-50">
       <div className="px-[20px] pb-[10px] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-[768px]:max-w-[90%] max-[768px]:h-[90%] overflow-auto rounded-[4px]">

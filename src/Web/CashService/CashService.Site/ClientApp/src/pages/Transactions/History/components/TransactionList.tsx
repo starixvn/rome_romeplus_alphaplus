@@ -182,6 +182,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
       toDate: apiParams.dateRange[1],
       status: apiParams.status,
       transactionType: transactionType,
+      account: apiParams.account,
     };
     transactionAPI.exportExcel(paramsForDownload);
   };
@@ -243,7 +244,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
       />
       {!loading && (
         <div className="mt-[-1px]">
-          <Pagination 
+          <Pagination
             currentPage={apiParams.pageIndex}
             totalItems={tempTotalCount}
             pageSize={apiParams.pageSize}

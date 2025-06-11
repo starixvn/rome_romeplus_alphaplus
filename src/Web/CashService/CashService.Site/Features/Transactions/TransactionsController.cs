@@ -1,11 +1,11 @@
 namespace AlphaPlus.CashService.Site.Features.Transactions;
 
-using AlphaPlus.CashService.Site.Features.Transactions.Services;
 using Core.Models;
 using Helpers;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Services;
 using Shared;
 using Shared.Filters;
 using Shared.Models;
@@ -52,8 +52,9 @@ public class TransactionsController(
             TransactionType = param.TransactionType,
             SiteDbGroupId = siteDbGroupId,
             CustId = agentId,
-            Account = string.Empty
+            Account = param.Account
         };
+
         var response = await httpClientHelper.GetAsync<TransactionResponse>("/transactions/history", ObjectConverter.ToDictionary(filter));
         var excelFileViewModel = transactionHistoryWorkbook.BuildExcelFile(param, response.Items);
         return File(excelFileViewModel.Content, excelFileViewModel.ContentType, excelFileViewModel.Name);
