@@ -23,7 +23,7 @@ interface SearchProps {
 const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, onDownload }) => {
   const { t } = useTranslation('transactionHistory');
   const { t: tGlobal } = useTranslation('global');
- 
+  const [textCopy, setTextCopy] = useState(t('messages.copy'));
 
   const getColumnHeader = (columnName: string): string => {
     switch (columnName) {
@@ -96,7 +96,7 @@ const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, o
     const finalText = [headers.join('\t'), ...rows].join('\n');
     navigator.clipboard
       .writeText(finalText)
-      .then(() => {       
+      .then(() => {
         setTextCopy(t('messages.copied'));
       })
       .catch((err) => {
@@ -107,27 +107,32 @@ const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, o
   const handleDownload = async () => {
     onDownload();
   };
-  console.log(TextCopy);
+
   return (
     <div className="flex items-center w-full justify-between">
-      <div className="italic "><span className="text-[#ff0101] dark:text-[#e54748]" >*</span> {t('filter.maxRecords')}</div>
+      <div className="italic ">
+        <span className="text-[#ff0101] dark:text-[#e54748]">*</span> {t('filter.maxRecords')}
+      </div>
       <div className="flex items-center gap-[8px]">
-        <Tippy content={t('messages.exportToExcel')} placement="top" theme="light" arrow={true} hideOnClick={false}>
+        <Tippy
+          content={t('messages.exportToExcel')}
+          placement="top"
+          theme="light"
+          arrow={true}
+          hideOnClick={false}
+        >
           <button
             onClick={handleDownload}
             className="p-[4px] bg-black/10 rounded-[3px] cursor-pointer"
           >
             <IconExcel />
           </button>
-        </Tippy>        
-        <Tippy content={TextCopy} placement="top" theme="light" arrow={true} hideOnClick={false}>
-          <button
-            onClick={handleCopy}
-            className="p-[4px] bg-black/10 rounded-[3px] cursor-pointer"
-          >
-            <IconCopy  />
+        </Tippy>
+        <Tippy content={textCopy} placement="top" theme="light" arrow={true} hideOnClick={false}>
+          <button onClick={handleCopy} className="p-[4px] bg-black/10 rounded-[3px] cursor-pointer">
+            <IconCopy />
           </button>
-        </Tippy>   
+        </Tippy>
 
         <div className="flex">
           <div className="w-[250px] ml-auto">
