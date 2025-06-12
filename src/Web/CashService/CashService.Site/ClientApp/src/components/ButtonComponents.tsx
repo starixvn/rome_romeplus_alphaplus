@@ -19,6 +19,7 @@ export const ButtonOutlineComponent: React.FC<ButtonComponentProps> = ({
   return (
     <div className={`${className}`}>
       <button
+        type='button'
         className="border-[1px] border-[var(--button-outline-border)] bg-[var(--button-outline-background)]  hover:bg-[var(--button-outline-background-hover)] hover:text-[var(--button-outline-text-hover)] text-[var(--button-outline-text)] rounded-[5px] cursor-pointer h-[28px] px-[16px] font-semibold outline-none"
         onClick={onClick}
       >
@@ -36,6 +37,7 @@ export const ButtonFullComponent: React.FC<ButtonComponentProps> = ({
   return (
     <div className={`${className}`}>
       <button
+        type='button'
         className={`bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] text-[var(--button-text)] rounded-[3px] cursor-pointer h-[28px] px-[16px] font-semibold outline-none
         ${disabled ? 'cursor-not-allowed opacity-80' : 'cursor-pointer'}`}
         onClick={onClick}
@@ -55,6 +57,7 @@ export const ButtonCancelComponent: React.FC<ButtonComponentProps> = ({
   return (
     <div className={`${className}`}>
       <button
+        type='button'
         className="min-w-[90px] bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] text-[var(--button-text)] rounded-[3px] cursor-pointer h-[28px] px-[16px] font-semibold outline-none"
         onClick={onClick}
         disabled={disabled}
@@ -74,6 +77,7 @@ export const ButtonApplyComponent: React.FC<ButtonComponentProps> = ({
   return (
     <div className={`${className}`}>
       <button
+        type='button'
         className={`min-w-[90px] text-[var(--button-text)] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] rounded-[3px] h-[28px] px-[16px] font-semibold outline-none
         ${disabled ? 'cursor-not-allowed opacity-80' : 'cursor-pointer'}`}
         onClick={onClick}
@@ -174,6 +178,7 @@ export const ButtonClosePopupComponent: React.FC<ButtonComponentProps> = ({ onCl
 export const ButtonTabActiveComponent: React.FC<ButtonComponentProps> = ({ text, onClick }) => {
   return (
     <button
+      type='button'
       className="font-semibold px-[20px] pt-[10px] pb-[13px] text-[var(--tab-component-color)] cursor-pointer relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[3px] after:bg-[var(--tab-component-border-color)] after:transition-all after:duration-500 after:ease-in-out after:opacity-0 hover:after:opacity-100 hover:after:w-full hover:text-[var(--tab-component-color-active)]"
       onClick={onClick}
     >
@@ -185,6 +190,7 @@ export const ButtonTabActiveComponent: React.FC<ButtonComponentProps> = ({ text,
 export const ButtonTabInactiveComponent: React.FC<ButtonComponentProps> = ({ text, onClick }) => {
   return (
     <button
+      type='button'
       className="font-semibold px-[20px] pt-[10px] pb-[13px] text-[var(--tab-component-color-active)] cursor-pointer relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[3px] after:bg-[var(--tab-component-border-color)]"
       onClick={onClick}
     >
@@ -204,6 +210,7 @@ export const ButtonTabComponent: React.FC<ButtonComponentProps> = ({ text, onCli
 export const ButtonPenComponent: React.FC<ButtonComponentProps> = ({ onClick, disabled }) => {
   return (
     <button
+      type='button'
       className={` mx-[4px] cursor-pointer p-[4px] rounded-[4px] hover:bg-[var(--button-icon-hover)] text-[var(--text-color-primary)] ${disabled ? 'cursor-not-allowed opacity-80' : ''}`}
       onClick={onClick}
     >
@@ -214,6 +221,7 @@ export const ButtonPenComponent: React.FC<ButtonComponentProps> = ({ onClick, di
 export const ButtonDeleteComponent: React.FC<ButtonComponentProps> = ({ onClick }) => {
   return (
     <button
+      type='button'
       className="mx-[4px] cursor-pointer p-[4px] rounded-[4px] hover:bg-[var(--button-icon-hover)] text-[var(--text-color-primary)]"
       onClick={onClick}
     >

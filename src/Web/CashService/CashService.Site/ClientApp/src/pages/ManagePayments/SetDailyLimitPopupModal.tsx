@@ -137,6 +137,11 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
                 className="control-field"
                 id="dailyLimit"
                 value={dailyLimit}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") { 
+                    e.preventDefault(); 
+                  }
+                }}
                 onChange={onDailyLimitChange}
                 min="0"
               />
