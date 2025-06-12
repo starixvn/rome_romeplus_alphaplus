@@ -347,6 +347,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
             <ButtonCancelComponent text={tGlobal('cancel')} onClick={onClose} />
             <ButtonApplyComponent
               text={loading ? tGlobal('saving') : tGlobal('save')}
+              type='submit'
               onClick={() => onSubmit({ preventDefault: () => {} } as React.FormEvent)}
               disabled={loading || isBlockAction}
             />

@@ -525,6 +525,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
                 <ButtonCancelComponent text={tGlobal('cancel')} onClick={onClose} />
                 <ButtonApplyComponent
                   text={tGlobal(loading ? 'saving' : 'save')}
+                  type='submit'
                   onClick={() => handleSubmit}
                   disabled={loading || isBlockAction}
                 />

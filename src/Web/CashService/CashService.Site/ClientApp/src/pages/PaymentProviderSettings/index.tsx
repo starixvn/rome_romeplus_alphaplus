@@ -700,6 +700,7 @@ function PaymentProviderSettings() {
               <ButtonCancelComponent text={tGlobal('reset')} onClick={onReset} />
               <ButtonApplyComponent
                 text={updating ? tGlobal('updating') : tGlobal('update')}
+                type='submit'
                 onClick={onUpdate}
                 disabled={providerStatus == paymentProviderStatusConstant.notConfigured || updating || !hasEditableSettings()}
               />

@@ -56,7 +56,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         public async Task<IActionResult> SetDailyWithdrawalCount(
             [FromBody] SetDailyWithdrawalCountRequest request,
             CancellationToken cancellationToken)
-            => await DoAction<SetDailyWithdrawalCountRequest>($"{_apiBaseUrl}/payments/set-daily-withdrawal-count", request, cancellationToken);
+            => await DoAction<SetDailyWithdrawalCountRequest, object>($"{_apiBaseUrl}/payments/set-daily-withdrawal-count", request, cancellationToken);
 
         public async Task<IActionResult> GetProviderFees(int providerId, CancellationToken cancellationToken)
         {
@@ -105,13 +105,13 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         public async Task<IActionResult> AddPaymentMethod(
             [FromBody] InsertPaymentMethodRequest request,
             CancellationToken cancellationToken)
-            => await DoAction<InsertPaymentMethodRequest>($"{_apiBaseUrl}/payments/add-payment-method", request, cancellationToken);
+            => await DoAction<InsertPaymentMethodRequest, object>($"{_apiBaseUrl}/payments/add-payment-method", request, cancellationToken);
 
         [HttpPost]
         public async Task<IActionResult> UpdatePaymentMethod(
             [FromBody] UpdatePaymentMethodRequest request,
             CancellationToken cancellationToken)
-            => await DoAction<UpdatePaymentMethodRequest>($"{_apiBaseUrl}/payments/update-payment-method", request, cancellationToken);
+            => await DoAction<UpdatePaymentMethodRequest, object>($"{_apiBaseUrl}/payments/update-payment-method", request, cancellationToken);
 
         public async Task<IActionResult> GetBanksByTransactionType(int transactionType, CancellationToken cancellationToken)
         {
@@ -124,7 +124,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         public async Task<IActionResult> UpdateProvider(
             [FromBody] UpdateProviderRequest request,
             CancellationToken cancellationToken)
-            => await DoAction<UpdateProviderRequest>($"{_apiBaseUrl}/payments/update-provider", request, cancellationToken);
+            => await DoAction<UpdateProviderRequest, object>($"{_apiBaseUrl}/payments/update-provider", request, cancellationToken);
 
         public async Task<IActionResult> GetBanksByCust(CancellationToken cancellationToken)
         {
@@ -163,13 +163,13 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         public async Task<IActionResult> SetTransactionLimit(
             [FromBody] SetTransactionLimitRequest request,
             CancellationToken cancellationToken)
-            => await DoAction<SetTransactionLimitRequest>($"{_apiBaseUrl}/payments/set-transaction-limit", request, cancellationToken);
+            => await DoAction<SetTransactionLimitRequest, object>($"{_apiBaseUrl}/payments/set-transaction-limit", request, cancellationToken);
 
         [HttpPost]
         public async Task<IActionResult> AddBankAccount(
             [FromBody] AddBankAccountRequest request,
             CancellationToken cancellationToken)
-            => await DoAction<AddBankAccountRequest>($"{_apiBaseUrl}/payments/add-bank-account", request, cancellationToken);
+            => await DoAction<AddBankAccountRequest, object>($"{_apiBaseUrl}/payments/add-bank-account", request, cancellationToken);
 
         public async Task<IActionResult> GetBankAccountById(
             int bankAccountId,
@@ -184,13 +184,13 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         public async Task<IActionResult> UpdateBankAccount(
             [FromBody] UpdateBankAccountRequest request,
             CancellationToken cancellationToken)
-            => await DoAction<UpdateBankAccountRequest>($"{_apiBaseUrl}/payments/update-bank-account", request, cancellationToken);
+            => await DoAction<UpdateBankAccountRequest, object>($"{_apiBaseUrl}/payments/update-bank-account", request, cancellationToken);
 
         [HttpPost]
         public async Task<IActionResult> DeleteBankAccount(
             [FromBody] DeleteBankAccountRequest request,
             CancellationToken cancellationToken)
-            => await DoAction<DeleteBankAccountRequest>($"{_apiBaseUrl}/payments/bank-accounts/delete", request, cancellationToken);
+            => await DoAction<DeleteBankAccountRequest, object>($"{_apiBaseUrl}/payments/bank-accounts/delete", request, cancellationToken);
 
         public async Task<IActionResult> GetCountryCodes(CancellationToken cancellationToken)
         {
@@ -199,7 +199,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             return Json(countryCodes);
         }
 
-        private async Task<IActionResult> DoAction<TRequest>(
+        private async Task<IActionResult> DoAction<TRequest, TResult>(
             string url,
             TRequest request,
             CancellationToken cancellationToken) where TRequest : Shared.Requests.BaseActionRequest
@@ -212,7 +212,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             request.SetUserSession(_userSession);
             var response = await _httpClient.PostAsJsonAsync(url, request, cancellationToken);
             response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
+            var result = await response.Content.ReadFromJsonAsync<TResult>(cancellationToken: cancellationToken);
             return Json(result);
         }
     }
