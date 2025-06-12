@@ -227,10 +227,10 @@ export const ButtonDeleteComponent: React.FC<ButtonComponentProps> = ({ onClick,
   return (
     <button
       type={type}
-      className="mx-[4px] cursor-pointer p-[4px] rounded-[4px] hover:bg-[var(--button-icon-hover)] text-[var(--text-color-primary)]"
+      className="mx-[4px] cursor-pointer p-[4px] rounded-[4px] hover:bg-[var(--button-icon-hover)]"
       onClick={onClick}
     >
-      <IconDelete />
+      <IconDelete className='fill-[#d33]' />
     </button>
   );
 };

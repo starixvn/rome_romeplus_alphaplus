@@ -13,7 +13,7 @@ import {
   ButtonCancelComponent,
   ButtonFullComponent,
 } from '../../components/ButtonComponents';
-import { IconInfo } from '../../components/Icons';
+import { IconArrowDown, IconInfo, IconReload } from '../../components/Icons';
 import { LoadingFullComponent } from '../../components/LoadingComponent';
 import { ResultMessageComponent } from '../../components/MessageComponents';
 import {
@@ -505,38 +505,45 @@ function PaymentProviderSettings() {
               <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                   <LabelTitleComponent text={tPaymentProviderSettings('paymentMethod')} />
-                  <select
-                    className="control-field"
-                    value={selectedPaymentMethod}
-                    onChange={onPaymentMethodChange}
-                  >
-                    {window.providerSettingsViewModel.AddPaymentMethodViewModel.PaymentMethods.map(
-                      (method: any) => (
-                        <option key={method.Id} value={method.Id}>
-                          {method.Id === 0 ? tGlobal('all') : method.Name}
-                        </option>
-                      )
-                    )}
-                  </select>
+                  <div className="relative">
+                    <select
+                      className="control-field"
+                      value={selectedPaymentMethod}
+                      onChange={onPaymentMethodChange}
+                    >
+                      {window.providerSettingsViewModel.AddPaymentMethodViewModel.PaymentMethods.map(
+                        (method: any) => (
+                          <option key={method.Id} value={method.Id}>
+                            {method.Id === 0 ? tGlobal('all') : method.Name}
+                          </option>
+                        )
+                      )}
+                    </select>
+                    <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
+                  </div>
                 </div>
 
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                   <LabelTitleComponent text={tPaymentProviderSettings('status')} />
-                  <select
-                    className="control-field"
-                    value={selectedStatus}
-                    onChange={onStatusChange}
-                  >
-                    {STATUS_OPTIONS.map((status) => (
-                      <option key={status.id} value={status.id}>
-                        {tPaymentProviderSettings(`status-${status.id}`)}
-                      </option>
-                    ))}
-                  </select>
+                  <div className="relative">
+                    <select
+                      className="control-field"
+                      value={selectedStatus}
+                      onChange={onStatusChange}
+                    >
+                      {STATUS_OPTIONS.map((status) => (
+                        <option key={status.id} value={status.id}>
+                          {tPaymentProviderSettings(`status-${status.id}`)}
+                        </option>
+                      ))}
+                    </select>
+                    <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
+                  </div>
                 </div>
 
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                   <LabelTitleComponent text={tPaymentProviderSettings('transactionType')} />
+                  <div className="relative">
                   <select
                     className="control-field"
                     value={selectedTransactionType}
@@ -550,6 +557,8 @@ function PaymentProviderSettings() {
                       </option>
                     ))}
                   </select>
+                  <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
+                  </div>
                 </div>
               </div>
 
@@ -560,8 +569,8 @@ function PaymentProviderSettings() {
               />
             </div>
 
-            <div className="table-fixed-header table-fixed-body">
-              <table className=" w-full">
+            <div className="table table-fixed-body">
+              <table className="w-full">
                 <thead>
                   <tr>
                     <th className="col-shadown bg-[var(--table-header-background)] left-0 min-w-[113px] sticky z-11">
@@ -604,7 +613,7 @@ function PaymentProviderSettings() {
                         <span className="relative z-3">{setting.methodName}</span>
                       </td>
                       <td>
-                        <div className="flex items-center">
+                        <div className="flex items-center justify-center">
                         {renderStatusComponent(setting.status)}
                         {setting.status === failStatus && (
                           <>
@@ -615,7 +624,7 @@ function PaymentProviderSettings() {
                             arrow={true}
                           >
                             <span className="cursor-pointer" onClick={() => onRetrySetup(index)} >
-                              <IconInfo className='fill-[var(--icon-color-error)] cursor-pointer' />
+                              <IconReload className='fill-[var(--icon-color-error)] cursor-pointer' />
                             </span>
                           </Tippy>
                           </>
@@ -628,7 +637,7 @@ function PaymentProviderSettings() {
                       </td>
                       <td className="w-[240px]">
                         {isEditable(setting) ? (
-                          <div className="flex items-center w-[100%] text-[12px]">
+                          <div className="flex items-center justify-start w-[220px] text-[12px]">
                             <input
                               type="text"
                               className={`control-field  w-[50%]! ${validationErrors[`minAmount-${index}`] ? 'error' : ''}`}
@@ -648,7 +657,7 @@ function PaymentProviderSettings() {
                       </td>
                       <td className="w-[240px]">
                         {isEditable(setting) ? (
-                          <div className="flex items-center w-[100%] text-[12px]">
+                          <div className="flex items-center justify-start w-[220px] text-[12px]">
                             <input
                               type="text"
                               className={`control-field w-[50%]! ${validationErrors[`maxAmount-${index}`] ? 'error' : ''}`}
@@ -693,6 +702,7 @@ function PaymentProviderSettings() {
                       </td>
                     </tr>
                   ))}
+                  
                 </tbody>
               </table>
             </div>

@@ -119,7 +119,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
           <div className="search-section w-full border border-[var(--table-border-color)] border-b-0 p-[6px] flex">
             <ButtonFullComponent text={tManagePayments('setLimit')} onClick={() => onSetLimitClick()} />
           </div>
-          <div className="table-fixed-header">
+          <div className="table">
             <table className=" w-full border-collapse">
               <thead>
                 <tr>
