@@ -279,7 +279,11 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
               </div>
 
               <div className="pl-[32px] max-[768px]:pl-[0] max-[768px]:w-full">
-                <UploadImage setImage={setImage} disabled={isSubmitting} />
+                <UploadImage
+                  setImage={setImage}
+                  prevImage={withdrawal?.payslip}
+                  disabled={isSubmitting}
+                />
               </div>
             </>
           )}

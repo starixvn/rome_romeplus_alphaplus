@@ -91,5 +91,14 @@
     "completed": "Completed",
     "rejected": "Rejected",
     "providerRejected": "Provider Rejected"
+  },
+  "dateRangePicker": {
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "last7days": "Last 7 Days",
+    "last30days": "Last 30 Days",
+    "thismonth": "This Month",
+    "lastmonth": "Last Month",
+    "days": "days"
   }
 }

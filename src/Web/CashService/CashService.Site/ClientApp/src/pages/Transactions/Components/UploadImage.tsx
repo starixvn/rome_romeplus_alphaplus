@@ -4,16 +4,18 @@ import { IconImage } from '../../../components/Icons';
 
 interface UploadImageProps {
   setImage: (image: File | null) => void;
+  prevImage?: string | null;
   disabled?: boolean;
 }
 
 const ACCEPTED_FILE_TYPES = '.jpeg,.jpg,.png';
 
-const UploadImage: React.FC<UploadImageProps> = ({ setImage, disabled = false }) => {
- 
+const UploadImage: React.FC<UploadImageProps> = ({ setImage, prevImage, disabled = false }) => {
   const { t: tGlobal } = useTranslation('global');
-  
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
+
+  const [imageUrl, setImageUrl] = useState<string | null>(
+    prevImage ? `data:image/png;base64,${prevImage}` : null
+  );
   const [isDragging, setIsDragging] = useState(false);
 
   const convertToBase64 = useCallback((file: File): Promise<string> => {
@@ -115,11 +117,14 @@ const UploadImage: React.FC<UploadImageProps> = ({ setImage, disabled = false })
     <div className="flex flex-col items-center justify-center text-center p-6 text-[var(--text-color)] ">
       <IconImage />
       <p className="mb-[10px]">
-        <span className="text-[var(--text-link-color)] cursor-pointer underline">{tGlobal('uploadImage')}</span><br />
+        <span className="text-[var(--text-link-color)] cursor-pointer underline">
+          {tGlobal('uploadImage')}
+        </span>
+        <br />
         <span className="text-[110%]">{tGlobal('dragAndDrop')}</span>
-      </p>     
+      </p>
       <span>{tGlobal('imageFormat')}</span>
-      <span className='font-[500]'>({tGlobal('maxSize')})</span>
+      <span className="font-[500]">({tGlobal('maxSize')})</span>
     </div>
   );
 

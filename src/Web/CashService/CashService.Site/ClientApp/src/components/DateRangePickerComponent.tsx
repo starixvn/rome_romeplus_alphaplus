@@ -46,7 +46,8 @@ function applyMaxRangeConstraint(
   let { startDate, endDate, ...rest } = currentSelection;
 
   if (startDate && endDate && maxDays && maxDays > 0) {
-    if (getDaysCount(startDate, endDate) > maxDays) {
+    const daysCount = getDaysCount(startDate, endDate);
+    if (daysCount > maxDays) {
       const prevStartDate = previousSelection?.startDate;
       const prevEndDate = previousSelection?.endDate;
 
@@ -54,14 +55,21 @@ function applyMaxRangeConstraint(
         const startDateChanged = startDate.getTime() !== prevStartDate.getTime();
         const endDateChanged = endDate.getTime() !== prevEndDate.getTime();
 
+        if (endDate < startDate) {
+          [startDate, endDate] = [endDate, startDate];
+        }
+
         if (startDateChanged && !endDateChanged) {
-          startDate = new Date(endDate.getTime() - (maxDays - 1) * 24 * 60 * 60 * 1000);
-        } else if (!startDateChanged && endDateChanged) {
           endDate = new Date(startDate.getTime() + (maxDays - 1) * 24 * 60 * 60 * 1000);
+        } else if (!startDateChanged && endDateChanged) {
+          startDate = new Date(endDate.getTime() - (maxDays - 1) * 24 * 60 * 60 * 1000);
         } else {
           endDate = new Date(startDate.getTime() + (maxDays - 1) * 24 * 60 * 60 * 1000);
         }
       } else {
+        if (endDate < startDate) {
+          [startDate, endDate] = [endDate, startDate];
+        }
         endDate = new Date(startDate.getTime() + (maxDays - 1) * 24 * 60 * 60 * 1000);
       }
     }
@@ -71,7 +79,7 @@ function applyMaxRangeConstraint(
 
 const quickRanges = [
   {
-    label: 'Today',
+    label: 'today',
     range: () => {
       const todayStart = new Date();
       const todayStartInGMT4 = convertToGMT4(todayStart);
@@ -84,7 +92,7 @@ const quickRanges = [
     },
   },
   {
-    label: 'Yesterday',
+    label: 'yesterday',
     range: () => {
       const yesterdayStart = new Date();
       const yesterdayStartInGMT4 = convertToGMT4(yesterdayStart);
@@ -99,7 +107,7 @@ const quickRanges = [
     },
   },
   {
-    label: 'Last 7 Days',
+    label: 'last7days',
     range: () => {
       const end = new Date();
       const endInGMT4 = convertToGMT4(end);
@@ -113,7 +121,7 @@ const quickRanges = [
     },
   },
   {
-    label: 'Last 30 Days',
+    label: 'last30days',
     range: () => {
       const end = new Date();
       const start = new Date();
@@ -126,7 +134,7 @@ const quickRanges = [
     },
   },
   {
-    label: 'This Month',
+    label: 'thismonth',
     range: () => {
       const now = new Date();
       const nowInGMT4 = convertToGMT4(now);
@@ -143,7 +151,7 @@ const quickRanges = [
     },
   },
   {
-    label: 'Last Month',
+    label: 'lastmonth',
     range: () => {
       const now = new Date();
       const nowInGMT4 = convertToGMT4(now);
@@ -171,7 +179,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
     return minYear ? new Date(minYear, 0, 1) : undefined;
   }, [minYear]);
 
-  const todayForMaxDateDep = new Date(); // Use stable parts of today for dependency
+  const todayForMaxDateDep = new Date();
   const overallMaxDate = React.useMemo(() => {
     const freshNowInGMT4 = convertToGMT4(new Date());
     const maxDate = new Date(freshNowInGMT4);
@@ -257,6 +265,14 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
       key: 'selection',
     };
 
+    if (currentRangeToProcess.startDate && currentRangeToProcess.endDate) {
+      const [start, end] = [currentRangeToProcess.startDate, currentRangeToProcess.endDate].sort(
+        (a, b) => a.getTime() - b.getTime()
+      );
+      currentRangeToProcess.startDate = start;
+      currentRangeToProcess.endDate = end;
+    }
+
     currentRangeToProcess = applyMaxRangeConstraint(
       currentRangeToProcess,
       maxRangeDays,
@@ -266,29 +282,20 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
     setPendingRange([currentRangeToProcess]);
 
     const finalSelectedStartDate = currentRangeToProcess.startDate;
-    const finalSelectedEndDate = currentRangeToProcess.endDate;
 
-    if (
-      finalSelectedStartDate &&
-      finalSelectedEndDate &&
-      finalSelectedStartDate.getTime() === finalSelectedEndDate.getTime()
-    ) {
-      setCalendarMinDate(finalSelectedStartDate);
-      if (maxRangeDays && maxRangeDays > 0) {
-        const potentialMaxEndDate = new Date(
-          finalSelectedStartDate.getTime() + (maxRangeDays - 1) * 24 * 60 * 60 * 1000
-        );
-        setCalendarMaxDate(
-          overallMaxDate && potentialMaxEndDate > overallMaxDate
-            ? overallMaxDate
-            : potentialMaxEndDate
-        );
-      } else {
-        setCalendarMaxDate(overallMaxDate);
-      }
-    } else if (finalSelectedStartDate && finalSelectedEndDate) {
-      setCalendarMinDate(overallMinDate);
-      setCalendarMaxDate(overallMaxDate);
+    if (finalSelectedStartDate) {
+      const minDate = new Date(
+        finalSelectedStartDate.getTime() - ((maxRangeDays || 0) - 1) * 24 * 60 * 60 * 1000
+      );
+      const maxDate = new Date(
+        finalSelectedStartDate.getTime() + (maxRangeDays || 0) * 24 * 60 * 60 * 1000
+      );
+
+      const finalMinDate = overallMinDate && minDate < overallMinDate ? overallMinDate : minDate;
+      const finalMaxDate = overallMaxDate && maxDate > overallMaxDate ? overallMaxDate : maxDate;
+
+      setCalendarMinDate(finalMinDate);
+      setCalendarMaxDate(finalMaxDate);
     } else {
       setCalendarMinDate(overallMinDate);
       setCalendarMaxDate(overallMaxDate);
@@ -316,12 +323,12 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
             <div className="flex flex-col w-[158px] py-[10px] border-r border-[var(--datarangepicker-border)]">
               {quickRanges.map((item) => (
                 <button
-                  key={item.label}
+                  key={t(`dateRangePicker.${item.label}`)}
                   className="font-semibold transition cursor-pointer block w-full text-left px-[10px] py-[5px] leading-[20px]  text-[var(--datarangepicker-color)] hover:bg-[var(--datarangepicker-cell-background-active)] hover:text-[var(--datarangepicker-color-hover)]"
                   onClick={() => handleQuickRangeClick(item)}
                   type="button"
                 >
-                  {item.label}
+                  {t(`dateRangePicker.${item.label}`)}
                 </button>
               ))}
             </div>
@@ -350,7 +357,10 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
                     </span>{' '}
                     -{' '}
                     <span className="font-semibold">{formatDateWithLeadingZeros(selectedEnd)}</span>
-                    <span className="italic"> ({days} days)</span>
+                    <span className="italic">
+                      {' '}
+                      ({days} {t('dateRangePicker.days')})
+                    </span>
                   </>
                 ) : (
                   'No range selected'
