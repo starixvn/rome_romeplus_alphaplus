@@ -295,7 +295,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
               </div>
             </TitleComponent>
 
-            <div className="card h-[calc(100%-40px)] flex flex-col">
+        
            
                 <ul className="flex mt-[-12px] border-b border-[var(--border-color)]">
                   <li className="mr-[8px]">
@@ -306,8 +306,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                   </li>
                 </ul>
           
-              <div className="card-body h-full">
-                <div className=" h-full flex flex-col">
+           
+                
                   <div className="py-[8px]">
                     <ErrorMessageComponent message={error} />
                     <SuccessMessageComponent message={successMessage} />
@@ -470,9 +470,9 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                       onSave={onSaveSetLimit}
                     />
                   )}
-                </div>
-              </div>
-            </div>
+                
+             
+          
           </div>
         </>
       )}

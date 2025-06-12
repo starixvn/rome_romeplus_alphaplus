@@ -616,7 +616,6 @@ function PaymentProviderSettings() {
                         {renderStatusComponent(setting.status)}
                         {setting.status === failStatus && (
                           <>
-                            <br />
                             <span
                               className="inline-block mt-[4px] cursor-pointer text-[var(--text-link-color)] font-semibold underline"
                               onClick={() => onRetrySetup(index)}
