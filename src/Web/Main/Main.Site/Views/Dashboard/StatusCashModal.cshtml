@@ -1,5 +1,6 @@
 @* PartialView: EnableCashModal *@
-
+@using AlphaPlus.Main.Site.Features.Dashboard.CashService
+@model CashServiceInfoViewModel
 <div id="enableCashServiceModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -25,7 +26,7 @@
             </div>
             <div class="cash-modal-footer">
                 <button type="button" class="btn custom-cancel" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn custom-confirm" id="confirmEnableCashService">Confirm</button>
+                <button type="button" class="btn custom-confirm" disabled="@(!Model.IsCanUpdateCashServiceStatus)" id="confirmEnableCashService">Confirm</button>
             </div>
         </div>
     </div>
@@ -50,7 +51,7 @@
             </div>
             <div class="cash-modal-footer">
                 <button type="button" class="btn custom-cancel" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn custom-confirm" id="confirmDisableCashService">Confirm</button>
+                <button type="button" class="btn custom-confirm" disabled="@(!Model.IsCanUpdateCashServiceStatus)" id="confirmDisableCashService">Confirm</button>
             </div>
         </div>
     </div>

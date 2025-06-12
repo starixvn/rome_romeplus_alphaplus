@@ -26,12 +26,12 @@
         </div>
     }
 
-    void CashService(string label, bool isCashServiceEnabled)
+    void CashService(string label, bool isCashServiceEnabled, bool canUpdateCashServiceStatus)
     {
          <div class='row'>
             <div class='col-xs-7'>@label</div>
             <div class='col-xs-5 value-toggle'>
-                <div id='cash-service-toggle' class='switch-toggle' data-state='@(isCashServiceEnabled ? "on" : "off")'>
+                <div id='cash-service-toggle' class='switch-toggle @(canUpdateCashServiceStatus ? "" : "disabled")' data-state='@(isCashServiceEnabled ? "on" : "off")'>
                     <div class='toggle'></div>
                 </div>
             </div>
@@ -62,11 +62,11 @@
         TextRow(label: Resources.currency, text: Model.Currency);
     }
 
-    @if (Model.CashServiceInfo.IsOfferedCashService)
+    @if (Model.CashServiceInfoViewModel.IsOfferedCashService)
     {
         <div class="group-title">@Resources.CashService</div>
-        CashService(Resources.CashService, Model.CashServiceInfo.IsCashServiceEnabled);
-        RenderTotalMemberInfo(Resources.TotalCashMember, Model.CashServiceInfo.TotalCashMember.TotalCashMemberActive, Model.CashServiceInfo.TotalCashMember.TotalCashMemberClosed, Model.CashServiceInfo.TotalCashMember.TotalCashMemberSuspended);
+        CashService(Resources.CashService, Model.CashServiceInfoViewModel.IsCashServiceEnabled, Model.CashServiceInfoViewModel.IsCanUpdateCashServiceStatus);
+        RenderTotalMemberInfo(Resources.TotalCashMember, Model.CashServiceInfoViewModel.TotalCashMember.TotalCashMemberActive, Model.CashServiceInfoViewModel.TotalCashMember.TotalCashMemberClosed, Model.CashServiceInfoViewModel.TotalCashMember.TotalCashMemberSuspended);
     }
 
     <div class="group-title">@Resources.balance</div>
@@ -107,7 +107,7 @@
     }
 </div>
 
-<partial name="StatusCashModal" />
+@await Html.PartialAsync("StatusCashModal", Model.CashServiceInfoViewModel)
 
 <script>
     $(document).ready(function () {

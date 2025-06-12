@@ -657,8 +657,12 @@ body {
 }
 
 .switch-toggle {
+    cursor: pointer;
+    
+    &.disabled {
+        cursor: not-allowed;
+    }
     &[data-state='on'] {
-        cursor: pointer;
         display: flex;
         justify-content: flex-end;
         width: 45px;
@@ -670,7 +674,6 @@ body {
         box-sizing: border-box;
 
         .toggle {
-            cursor: pointer;
             display: inline-block;
             height: 14px;
             width: 14px;
@@ -681,7 +684,6 @@ body {
     }
 
     &[data-state='off'] {
-        cursor: pointer;
         display: flex;
         justify-content: flex-start;
         width: 45px;
@@ -693,7 +695,6 @@ body {
         box-sizing: border-box;
 
         .toggle {
-            cursor: pointer;
             display: inline-block;
             height: 14px;
             width: 14px;

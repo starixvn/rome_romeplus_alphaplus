@@ -5,6 +5,7 @@ using Microsoft.Extensions.Options;
 using AlphaPlus.Core.Filters;
 using AlphaPlus.Core;
 using AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo;
+using AlphaPlus.Main.Site.Features.Dashboard.CashService;
 using AlphaPlus.Main.Site.Features.ContactUs;
 using AlphaPlus.Core.Configurations;
 using AlphaPlus.Shared.AppResources.Common;
@@ -76,7 +77,9 @@ namespace AlphaPlus.Main.Site.Features.Dashboard
         public async Task<IActionResult> BalanceInfo()
         {
             var viewModel = await mediator.Send(new BalanceInfoQuery(userSession, UserPermission.HasPermissionOnProduct));
+            var cashServiceInfoViewModel = await mediator.Send(new GetCashServiceStatusQuery(userSession));
 
+            viewModel.CashServiceInfoViewModel = cashServiceInfoViewModel;
             return PartialView(viewModel);
         }
 
@@ -108,15 +111,7 @@ namespace AlphaPlus.Main.Site.Features.Dashboard
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateCashServiceStatus(bool isEnableCash)
         {
-            var isOfferedCashService = AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(userSession.Site) && userSession.IsAgent;
-            
-            if (userSession.IsInternal || !isOfferedCashService)
-            {
-                return Json(Result.CreateErrorResult(CommonResx.NotAuthorized));
-            }
-            
             var result = await mediator.Send(new UpdateCashServiceStatusCommand(userSession, isEnableCash));
-
             return result;
         }
     }

@@ -96,7 +96,13 @@
     };
 
     initializeCashService = () => {
-        this.$("#cash-service-toggle").unbind().bind('click', () => this.onClickCashServiceToggle());
+        this.$("#cash-service-toggle").unbind().bind('click', () => {
+            if (this.$("#cash-service-toggle").hasClass("disabled")) {
+                return;
+            }
+
+            this.onClickCashServiceToggle();
+        });
         this.$("#confirmEnableCashService").click(() => this.handleEnableCashService());
         this.$("#confirmDisableCashService").click(() => this.handleDisableCashService());
     };
