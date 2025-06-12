@@ -449,7 +449,7 @@ function PaymentProviderSettings() {
               message={updateMessage.text}
             />
           )}
-          <div className="pb-[10px] mb-[8px]">
+          <div>
             <div className="settings-header">
               <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-color)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
                 <BackButtonComponent onClick={onBackNavigation} />
@@ -457,13 +457,7 @@ function PaymentProviderSettings() {
               </div>
             </div>
             <div className="flex gap-[24px] max-[768px]:flex-col max-[768px]:gap-[8px]">
-              <div>
-                <LabelTitleComponent text={tPaymentProviderSettings('setUpPaymentMethodsForMembers')} />
-                <ButtonFullComponent
-                  text={`${tPaymentProviderSettings('addPaymentMethod')}`}
-                  onClick={onAddPaymentMethod}
-                />
-              </div>
+             
               {providerStatus != paymentProviderStatusConstant.notConfigured && (
                 <div>
                   <p className="flex items-center">
@@ -562,13 +556,19 @@ function PaymentProviderSettings() {
                 </div>
               </div>
 
+              
+            </div>
+            <div className="w-full border border-[var(--table-border-color)] border-b-0 p-[6px] flex">
               <ButtonFullComponent
-                className="ml-auto mt-auto"
+                  text={`${tPaymentProviderSettings('addPaymentMethod')}`}
+                  onClick={onAddPaymentMethod}
+                />
+                <ButtonFullComponent
+                className="ml-auto"
                 text={tPaymentProviderSettings('viewProviderFees', { providerName: window.providerSettingsViewModel.Provider.Name })}
                 onClick={onViewFees}
               />
             </div>
-
             <div className="table table-fixed-body">
               <table className="w-full">
                 <thead>
@@ -624,7 +624,7 @@ function PaymentProviderSettings() {
                             arrow={true}
                           >
                             <span className="cursor-pointer" onClick={() => onRetrySetup(index)} >
-                              <IconReload className='fill-[var(--icon-color-error)] cursor-pointer' />
+                              <IconReload className='fill-[var(--icon-color-error)] cursor-pointer ml-[4px]' />
                             </span>
                           </Tippy>
                           </>

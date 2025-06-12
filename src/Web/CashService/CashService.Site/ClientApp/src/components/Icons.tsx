@@ -167,7 +167,7 @@ export const NoDataIcon = () => (
       </g>
       <path d="M55.6563 62.3801C55.655 62.3813 55.653 62.3813 55.6518 62.3801C53.9761 60.7031 53.3387 58.7346 53.7264 56.4701L53.9205 55.3862C54.1324 54.3823 54.2291 53.6359 54.2106 53.1472C54.1922 52.6584 53.9961 52.2227 53.6179 51.8445C52.6657 50.8923 51.3954 51.2105 49.8069 52.799C49.0703 53.5356 48.405 54.3967 47.8198 55.3823C47.0227 56.7088 45.1214 57.1565 44.0271 56.0622L43.6958 55.7309C43.0432 55.0783 42.817 54.0976 43.2231 53.2688C44.042 51.5974 45.1831 50.0278 46.6508 48.5602C48.6652 46.5457 50.6853 45.371 52.711 45.0361C54.7367 44.7012 56.497 45.2812 57.992 46.7762C58.8285 47.6127 59.3229 48.4798 59.4619 49.3731C59.6009 50.2664 59.5403 51.4838 59.2847 53.0297C59.1218 54.0825 59.0206 54.86 58.9814 55.3798C58.9421 55.8996 59.0005 56.3751 59.1566 56.8063C59.3172 57.242 59.6066 57.6734 60.0337 58.1005C60.2917 58.3585 60.2917 58.7769 60.0337 59.0349L56.4327 62.6359C56.2902 62.7785 56.0591 62.7785 55.9166 62.6359L55.6607 62.3801C55.6595 62.3789 55.6575 62.3789 55.6563 62.3801ZM62.0598 67.7764C61.1889 67.7752 60.4331 67.4542 59.7924 66.8135C59.1517 66.1728 58.8085 65.3947 58.8162 64.5328C58.8239 63.6708 59.1561 62.9114 59.8084 62.2591C60.4606 61.6069 61.2111 61.2924 62.0953 61.2803C62.9795 61.2682 63.7442 61.5803 64.3849 62.221C65.0256 62.8617 65.3377 63.6264 65.3256 64.5106C65.309 65.3992 64.9857 66.1586 64.3468 66.7975C63.7078 67.4365 62.9262 67.782 62.0598 67.7764Z" fill="url(#paint5_radial_12052_32750)"></path>
       <defs>
-          <filter id="filter0_i_12052_32750" x="30.2285" y="32.1328" width="51.1328" height="51.1328" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <filter id="filter0_i_12052_32750" x="30.2285" y="32.1328" width="51.1328" height="51.1328" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
               <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
               <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
               <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
@@ -177,7 +177,7 @@ export const NoDataIcon = () => (
               <feBlend mode="normal" in2="shape" result="effect1_innerShadow_12052_32750"></feBlend>
           </filter>
           <radialGradient id="paint0_radial_12052_32750" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(37.2971 66.8942) rotate(-29.9136) scale(52.9626)">
-              <stop stop-color="#50749B"></stop>
+              <stop stopColor="#50749B"></stop>
               <stop offset="1" stop-color="#D1DFE8"></stop>
           </radialGradient>
           <radialGradient id="paint1_radial_12052_32750" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(59.5926 63.3565) rotate(-18.166) scale(50.3371 50.3371)">

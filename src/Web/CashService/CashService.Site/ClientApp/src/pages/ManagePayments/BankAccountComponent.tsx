@@ -17,7 +17,7 @@ import {
   ButtonCancelComponent,
 } from '../../components/ButtonComponents';
 import CustomDropdown from '../../components/CustomDropdownComponent';
-import { IconSearch, NoDataIcon } from '../../components/Icons';
+import { IconArrowDown, IconSearch, NoDataIcon } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
 import { ErrorMessageComponent, SuccessMessageComponent } from '../../components/MessageComponents';
 import { StatusDisabledComponent, StatusEnabledComponent } from '../../components/StatusComponents';
@@ -342,6 +342,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
 
                       <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
                         <LabelTitleComponent text={tManagePayments('transactionType')} />
+                        <div className="relative">
                         <select
                           id="transactionTypeSelect"
                           className="control-field"
@@ -358,10 +359,13 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                               </option>
                             ))}
                         </select>
+                        <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
+                        </div>
                       </div>
 
                       <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px] ">
                         <LabelTitleComponent text={tManagePayments('status')} />
+                        <div className="relative">
                         <select
                           id="statusSelect"
                           className="control-field"
@@ -374,6 +378,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                             </option>
                           ))}
                         </select>
+                        <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
+                        </div>
                       </div>
                     </div>
                     <div className="flex pb-[16px] w-full">

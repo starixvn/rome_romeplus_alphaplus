@@ -116,7 +116,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
         {loading ? (<Loading />) : 
           error ? (<ErrorMessageComponent message={error} />) : (
           <>
-          <div className="search-section w-full border border-[var(--table-border-color)] border-b-0 p-[6px] flex">
+          <div className="w-full border border-[var(--table-border-color)] border-b-0 p-[6px] flex">
             <ButtonFullComponent text={tManagePayments('setLimit')} onClick={() => onSetLimitClick()} />
           </div>
           <div className="table">
@@ -128,7 +128,6 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
                   <th scope="col">{tManagePayments('provider')}</th>
                   <th scope="col">{tManagePayments('fee')}</th>
                   <th scope="col">{tManagePayments('providerStatus')}</th>
-                  <th scope="col">{tManagePayments('lastUpdated')}</th>
                 </tr>
               </thead>
               <tbody className="font-[500]">
@@ -152,7 +151,6 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
                         <ButtonFullComponent text={tGlobal('view')} onClick={() => onFeeClick(provider)} />
                       </td>
                       <td>{renderProviderStatus(provider.status)}</td>
-                      <td>{provider.lastUpdatedStr}</td>
                     </tr>
                   ))
                 )}

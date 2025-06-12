@@ -38,17 +38,8 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
   return (
     <PopupModalComponent title={`${tPaymentProviderSettings('feeDetails')} - ${provider.name}`} onClose={onClose}>
         {isLoading ? (<Loading />) : (
-          <>
-            <div className="mb-[16px]">           
-                       
-              <p>{tPaymentProviderSettings('howItWorks')}</p>           
-              <p>{tPaymentProviderSettings('feesInfo1')}</p>          
-              <ul className='list-disc pl-[24px] mb-[16px]'>
-                <li>{tPaymentProviderSettings('feesFormula')}</li>
-              </ul>
-              <p>{tPaymentProviderSettings('feesInfo2')}</p>
-            </div>            
-            <div className="mb-[16px]">
+          <>                       
+            <div className="my-[10px]">
               <TableComponent
                 className='table-striped'
                 numOfColumns={3}
@@ -86,6 +77,14 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
                 })}
               />
             </div>
+            <div className="mb-[16px]">                       
+              <p>{tPaymentProviderSettings('howItWorks')}</p>           
+              <p>{tPaymentProviderSettings('feesInfo1')}</p>          
+              <ul className='list-disc pl-[24px] mb-[10px]'>
+                <li>{tPaymentProviderSettings('feesFormula')}</li>
+              </ul>
+              <p>{tPaymentProviderSettings('feesInfo2')}</p>
+            </div> 
           </>
         )}
     </PopupModalComponent>

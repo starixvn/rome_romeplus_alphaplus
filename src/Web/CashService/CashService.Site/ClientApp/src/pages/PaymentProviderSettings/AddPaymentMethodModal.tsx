@@ -187,7 +187,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
     <div className="bg-[#00000080] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-center justify-center">
       <div className="px-[20px] py-[10px] max-h-[750px] overflow-y-auto bg-[var(--modal-background)] w-full max-w-[560px] rounded-[3px] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)]">
         <div className="relative ">
-          <MediumTitleComponent className="text-[16px] text-[var(--modal-title-color)]!" text={tPaymentProviderSettings('setUpPaymentMethods')} />
+          <MediumTitleComponent text={tPaymentProviderSettings('setUpPaymentMethods')} />
           <ButtonClosePopupComponent onClick={onClose} />
         </div>
         <ErrorMessageComponent className="mt-[8px]" message={error} />
