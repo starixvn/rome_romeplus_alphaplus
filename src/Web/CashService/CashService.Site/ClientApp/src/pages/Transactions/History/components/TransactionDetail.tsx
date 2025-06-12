@@ -198,41 +198,40 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
                     </tbody>
                   </table>
                 </div>
-                <div className="grid grid-cols-2 gap-3 mb-[10px]">                   
-                  <div className="w-[230px] max-[768px]:w-[48%]">
+                <div className="flex flex-wrap gap-[10px] mb-[10px]">                   
+                  <div className="w-[48%]">
                     <LabelTitleComponent text={t('detail.from')} />
                     <div className="flex items-center">
                       {renderBankAccount(detailData.paymentFrom)}
                     </div>
                   </div>
-                  <div className="w-[230px] max-[768px]:w-[48%]">
-                    <LabelTitleComponent text={t('detail.dateAndTime')} />
-                    <div>{formatDateTime(detailData.createdTime)}</div>
-                  </div>
-
-                  <div className="w-[230px] max-[768px]:w-[48%]">
-                    <LabelTitleComponent text={t('detail.transactionType')} />
-                    <div>{detailData.transactionType}</div>
-                  </div>
-                  <div className="w-[230px] max-[768px]:w-[48%]">
-                    <LabelTitleComponent text={t('detail.processedOn')} />
-                    <div>{formatDateTime(detailData.operatedTime)}</div>
-                  </div>                   
-                  <div className="w-[230px] max-[768px]:w-[48%]">
+                  <div className="w-[48%]">
                     <LabelTitleComponent text={t('detail.to')} />
                     <div className="flex items-center">
                       {renderBankAccount(detailData.paymentTo)}
                     </div>
                   </div>
-                  <div className="w-[230px] max-[768px]:w-[48%]">
+                  <div className="w-[48%]">
+                    <LabelTitleComponent text={t('detail.dateAndTime')} />
+                    <div>{formatDateTime(detailData.createdTime)}</div>
+                  </div>
+                  <div className="w-[48%]">
                     <LabelTitleComponent text={t('detail.operatedBy')} />
                     <div>{detailData.operatedBy}</div>
                   </div>
-                  <div className="w-[230px] max-[768px]:w-[48%]">
+                  <div className="w-[48%]">
+                    <LabelTitleComponent text={t('detail.transactionType')} />
+                    <div>{detailData.transactionType}</div>
+                  </div>
+                  <div className="w-[48%]">
                     <LabelTitleComponent text={t('detail.amount')} />
                     <div>{displayAmount(detailData.amount)}</div>
+                  </div>                    
+                  <div className="w-[48%]">
+                    <LabelTitleComponent text={t('detail.processedOn')} />
+                    <div>{formatDateTime(detailData.operatedTime)}</div>
                   </div>
-                </div>
+                </div>                
                 <div className="mb-[10px]">
                   <LabelTitleComponent text={t('detail.remarks')} />
                   <textarea

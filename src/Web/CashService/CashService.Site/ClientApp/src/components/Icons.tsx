@@ -76,14 +76,14 @@ export const ChevronDownIcon: React.FC<IconProps> = ({ className = '' }) => (
     />
   </svg>
 );
-export const IconPen: React.FC = () => (
+export const IconPen: React.FC<{ className?: string }> = ({ className }) => (
   <svg
-    className="w-[16px] h-[16px] fill-[#0b599c] dark:fill-[#41a4ff]"
+    className={`w-[20px] h-[20px] ${className}`}
     xmlns="http://www.w3.org/2000/svg"
     version="1.1"
     viewBox="0 0 32 32"
   >
-    <path d="M0 25.2v6.8h6.8l19.6-19.8-6.8-6.6-19.6 19.6zM31.4 7.2c0.8-0.8 0.8-1.8 0-2.4l-4-4c-0.8-0.8-1.8-0.8-2.4 0l-3.2 3.2 6.8 6.8 2.8-3.6z" />
+    <path d="M6.667 25.333h1.885l12.419-12.419-1.885-1.885-12.419 12.419v1.885zM28 28h-24v-5.657l17.913-17.913c0.25-0.25 0.589-0.39 0.943-0.39s0.693 0.14 0.943 0.39l3.772 3.772c0.25 0.25 0.39 0.589 0.39 0.943s-0.14 0.693-0.39 0.943l-15.247 15.247h15.676v2.667zM20.971 9.144l1.885 1.885 1.885-1.885-1.885-1.885-1.885 1.885z"></path>
   </svg>
 );
 export const IconClose: React.FC = () => (

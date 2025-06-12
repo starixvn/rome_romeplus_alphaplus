@@ -17,7 +17,7 @@ import {
   ButtonCancelComponent,
 } from '../../components/ButtonComponents';
 import CustomDropdown from '../../components/CustomDropdownComponent';
-import { IconInfo, IconSearch, NoDataIcon } from '../../components/Icons';
+import { IconSearch, NoDataIcon } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
 import { ErrorMessageComponent, SuccessMessageComponent } from '../../components/MessageComponents';
 import { StatusDisabledComponent, StatusEnabledComponent } from '../../components/StatusComponents';
@@ -286,10 +286,6 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
           <div className="h-full flex flex-col">
             <TitleComponent title={tManagePayments('managePayments')} showTippy={true}>
               <div>
-                <div>
-                  <IconInfo className="w-[18px] h-[18px] fill-[#ffffff] inline-block vertical-middle mr-[4px] relative top-[-2px]" />
-                  {tManagePayments('managePayments')}
-                </div>
                 <div>• {tManagePayments('managePaymentsTip1')}</div>
                 <div>• {tManagePayments('managePaymentsTip2')}</div>
               </div>

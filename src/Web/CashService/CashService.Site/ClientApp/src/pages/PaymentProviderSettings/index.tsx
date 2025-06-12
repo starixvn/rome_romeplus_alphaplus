@@ -12,7 +12,6 @@ import {
   ButtonApplyComponent,
   ButtonCancelComponent,
   ButtonFullComponent,
-  ButtonOutlineComponent,
 } from '../../components/ButtonComponents';
 import { IconInfo } from '../../components/Icons';
 import { LoadingFullComponent } from '../../components/LoadingComponent';
@@ -461,7 +460,7 @@ function PaymentProviderSettings() {
               <div>
                 <LabelTitleComponent text={tPaymentProviderSettings('setUpPaymentMethodsForMembers')} />
                 <ButtonFullComponent
-                  text={`+ ${tPaymentProviderSettings('addPaymentMethod')}`}
+                  text={`${tPaymentProviderSettings('addPaymentMethod')}`}
                   onClick={onAddPaymentMethod}
                 />
               </div>
@@ -471,11 +470,7 @@ function PaymentProviderSettings() {
                     <LabelTitleComponent text={`${tGlobal('enable')}/${tGlobal('disable')}`} />
                     <Tippy
                       content={
-                        <div>
-                          <div>
-                            <IconInfo className="w-[18px] h-[18px] fill-[#ffffff] inline-block vertical-middle mr-[4px] relative top-[-2px]" />
-                            {tPaymentProviderSettings('enableDisable')}
-                          </div>
+                        <div>                           
                           <div>• {tPaymentProviderSettings('enableDisableTip1')}</div>
                           <div>• {tPaymentProviderSettings('enableDisableTip2')}</div>
                           <div>• {tPaymentProviderSettings('enableDisableTip3')}</div>
@@ -558,7 +553,7 @@ function PaymentProviderSettings() {
                 </div>
               </div>
 
-              <ButtonOutlineComponent
+              <ButtonFullComponent
                 className="ml-auto mt-auto"
                 text={tPaymentProviderSettings('viewProviderFees', { providerName: window.providerSettingsViewModel.Provider.Name })}
                 onClick={onViewFees}
@@ -583,11 +578,7 @@ function PaymentProviderSettings() {
                         {tGlobal('enable')}/{tGlobal('disable')}
                         <Tippy
                           content={
-                            <div>
-                              <div>
-                                <IconInfo className="w-[18px] h-[18px] fill-[#ffffff] inline-block vertical-middle mr-[4px] relative top-[-2px]" />
-                                {tPaymentProviderSettings('enableDisable')}
-                              </div>
+                            <div>                            
                               <div>• {tPaymentProviderSettings('enableDisableTip1')}</div>
                               <div>• {tPaymentProviderSettings('enableDisableTip2')}</div>
                               <div>• {tPaymentProviderSettings('enableDisableTip3')}</div>
@@ -613,34 +604,41 @@ function PaymentProviderSettings() {
                         <span className="relative z-3">{setting.methodName}</span>
                       </td>
                       <td>
+                        <div className="flex items-center">
                         {renderStatusComponent(setting.status)}
                         {setting.status === failStatus && (
                           <>
-                            <span
-                              className="inline-block mt-[4px] cursor-pointer text-[var(--text-link-color)] font-semibold underline"
-                              onClick={() => onRetrySetup(index)}
-                            >
-                              {tPaymentProviderSettings('retrySetup')}
+                            <Tippy
+                            content={<div>{tPaymentProviderSettings('retrySetup')}</div>}
+                            placement="top"
+                            theme="light"
+                            arrow={true}
+                          >
+                            <span className="cursor-pointer" onClick={() => onRetrySetup(index)} >
+                              <IconInfo className='fill-[var(--icon-color-error)] cursor-pointer' />
                             </span>
+                          </Tippy>
                           </>
                         )}
+                        
+                        </div>
                       </td>
                       <td className="font-semibold">
                         {tPaymentProviderSettings(`transaction-${setting.transactionType}`)}
                       </td>
-                      <td>
+                      <td className="w-[240px]">
                         {isEditable(setting) ? (
-                          <div className="flex flex-col max-[768px]:w-[150px]">
+                          <div className="flex items-center w-[100%] text-[12px]">
                             <input
                               type="text"
-                              className={`control-field ${validationErrors[`minAmount-${index}`] ? 'error' : ''}`}
+                              className={`control-field  w-[50%]! ${validationErrors[`minAmount-${index}`] ? 'error' : ''}`}
                               value={formatNumber(setting.minAmount)}
                               onChange={(e) => onMinAmountChange(index, e.target.value)}
                               placeholder={tPaymentProviderSettings('minimum')}
                               maxLength={15}
                             />
-                            <label className="text-left text-[#828282] font-semibold mt-[4px]">
-                              {tPaymentProviderSettings('minAmount')}{' '}
+                            <label className="text-left text-[var(--text-color)]">
+                            <span className="text-[14px] px-[4px]">&gt;</span>
                               {formatNumber(setting.minAmountTrans)}
                             </label>
                           </div>
@@ -648,19 +646,19 @@ function PaymentProviderSettings() {
                           <div className="flex flex-col">-</div>
                         )}
                       </td>
-                      <td>
+                      <td className="w-[240px]">
                         {isEditable(setting) ? (
-                          <div className="flex flex-col max-[768px]:w-[150px]">
+                          <div className="flex items-center w-[100%] text-[12px]">
                             <input
                               type="text"
-                              className={`control-field ${validationErrors[`maxAmount-${index}`] ? 'error' : ''}`}
+                              className={`control-field w-[50%]! ${validationErrors[`maxAmount-${index}`] ? 'error' : ''}`}
                               value={formatNumber(setting.maxAmount)}
                               onChange={(e) => onMaxAmountChange(index, e.target.value)}
                               placeholder={tPaymentProviderSettings('maximum')}
                               maxLength={15}
                             />
-                            <label className="text-left text-[#828282] font-semibold mt-[4px]">
-                              {tPaymentProviderSettings('maxAmount')}{' '}
+                            <label className="text-left text-[var(--text-color)]">
+                              <span className="text-[14px] px-[4px]">&lt;</span>
                               {formatNumber(setting.maxAmountTrans)}
                             </label>
                           </div>
@@ -689,7 +687,7 @@ function PaymentProviderSettings() {
                       <td>
                         {!isEditable(setting) ? (<>-</>) : 
                           setting.bankRequired ? 
-                            (<ButtonOutlineComponent text={tPaymentProviderSettings('listOfBanks')} onClick={() => onViewBanks(setting)} />) : 
+                            (<ButtonFullComponent text={tPaymentProviderSettings('listOfBanks')} onClick={() => onViewBanks(setting)} />) : 
                             (<span className="font-semibold">{tPaymentProviderSettings('noBankRequired')}{' '}</span>)
                         }
                       </td>
