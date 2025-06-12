@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory.ts';
 import {
-  CurrentCurrency,
   displayAmount,
   formatDateTime,
   renderBankAccount,
@@ -78,9 +77,7 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
               <th scope="col">
                 <div>{t('dataGrid.firstName')}</div>
               </th>
-              <th scope="col">
-                {t('dataGrid.amount')} ({CurrentCurrency})
-              </th>
+              <th scope="col">{t('dataGrid.amount')}</th>
               <th scope="col">{t('dataGrid.from')}</th>
               <th scope="col">{t('dataGrid.to')}</th>
               <th scope="col">{t('dataGrid.referenceNo')}</th>

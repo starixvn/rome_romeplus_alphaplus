@@ -5,7 +5,10 @@ import LoadingComponent from '../../../../components/LoadingComponent';
 import NoRecordFound from '../../../../components/Table/NoRecordFound';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import {
-    CurrentCurrency, displayAmount, formatDateTime, mappingStatus, renderBankAccount
+  displayAmount,
+  formatDateTime,
+  mappingStatus,
+  renderBankAccount,
 } from '../../../../utils/commonFunctions';
 import TransactionDetail from './TransactionDetail';
 import { ButtonFullComponent } from '../../../../components/ButtonComponents';
@@ -82,11 +85,7 @@ const DataGrid: React.FC<DataGridProps> = ({
                 <div>{t('table.nickname')}</div>
               </th>
               {shouldShowColumn('name') && <th scope="col">{t('table.name')}</th>}
-              {shouldShowColumn('amount') && (
-                <th scope="col">
-                  {t('table.amount')} ({CurrentCurrency})
-                </th>
-              )}
+              {shouldShowColumn('amount') && <th scope="col">{t('table.amount')}</th>}
               {shouldShowColumn('from') && <th scope="col">{t('table.from')}</th>}
               {shouldShowColumn('to') && <th scope="col">{t('table.to')}</th>}
               {shouldShowColumn('status') && <th scope="col">{t('table.status')}</th>}
@@ -141,7 +140,9 @@ const DataGrid: React.FC<DataGridProps> = ({
                     </td>
                   )}
                   <td className="text-center">
-                    <ButtonFullComponent text={t('table.view')} onClick={() => handleViewTransaction (item.transId, item.custId)}                     
+                    <ButtonFullComponent
+                      text={t('table.view')}
+                      onClick={() => handleViewTransaction(item.transId, item.custId)}
                     />
                   </td>
                 </tr>

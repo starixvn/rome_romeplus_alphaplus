@@ -236,8 +236,8 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
                     <div className="mb-[16px]">
                       <LabelTitleComponent text={t('pendingWithdrawalModal.withdrawalAmount')} />
                       <div className="mt-1">
-                        <span>
-                          {displayAmount(withdrawal?.amount || 0)} {withdrawal?.currency}
+                        <span className="py-[4px] text-[var(--text-link-color)] font-semibold">
+                          {displayAmount(withdrawal?.amount || 0)}
                         </span>
                       </div>
                     </div>

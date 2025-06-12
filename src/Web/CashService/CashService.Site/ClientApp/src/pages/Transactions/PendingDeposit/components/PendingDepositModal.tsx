@@ -15,7 +15,6 @@ import {
   LabelTitleComponent,
   MediumTitleComponent,
 } from '../../../../components/TitleComponents.tsx';
-import { AmountInput } from '../../../../components/ui/AmountInput.tsx';
 import { ApproveRejectDepositModel } from '../../../../services/interfaces/ApproveRejectDepositModel.ts';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
@@ -32,7 +31,6 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
   const [remark, setRemark] = useState('');
   const [deposit, setDeposit] = useState<TransactionItem | null>(null);
   const [depositAmount, setDepositAmount] = useState<number>(deposit?.amount || 0);
-  const [agentAvailableCredit, setAgentAvailableCredit] = useState<number>(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [resultMessage, setResultMessage] = useState<{
@@ -43,10 +41,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
   useEffect(() => {
     const fetchDeposit = async () => {
       setIsLoading(true);
-      const [response, agentAC] = await Promise.all([
-        transactionAPI.getTransactionDetail(transId, custId),
-        pendingDepositAPI.getLimitAmtDeposit(custId),
-      ]);
+      const response = await transactionAPI.getTransactionDetail(transId, custId);
       if (response.error) {
         setIsLoading(false);
         return;
@@ -54,7 +49,6 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
       setDeposit(response.data);
       setDepositAmount(response.data.amount);
       setRemark(response.data.remark || '');
-      setAgentAvailableCredit(agentAC);
       setIsLoading(false);
     };
 
@@ -120,10 +114,6 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
     } catch (error) {
       console.error('Error processing deposit:', error);
     }
-  };
-
-  const handleSetDepositAmount = (value: number) => {
-    setDepositAmount(value);
   };
 
   const classBase64 = deposit?.base64Payslip ? 'max-w-[900px]' : 'max-w-[540px]';
@@ -198,22 +188,14 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
                     <div>
                       <LabelTitleComponent text={t('pendingDepositModal.depositAmount')} />
                       <div className="relative">
-                        <AmountInput
-                          value={depositAmount}
-                          onChange={(e) => handleSetDepositAmount(e)}
-                          isDisabled={isSubmitting}
-                          className="control-field"
-                        />
-                        <p className="text-[12px] my-[8px]">
-                          {t('manualDepositForm.agentAvailableCredit')}:
-                          <span className="font-[500] text-[var(--text-color-secondary)]">{` ${displayAmount(agentAvailableCredit)}`}</span>
-                        </p>
+                        <span className="py-[4px] text-[var(--text-link-color)] font-semibold">
+                          {deposit?.amount && displayAmount(deposit.amount)}
+                        </span>
                       </div>
                     </div>
                   </div>
                 </div>
-
-                <div className="mb-[16px]">
+                <div className="mb-[16px] mt-[16px]">
                   <LabelTitleComponent text={t('pendingDepositModal.remarks')} />
                   <textarea
                     value={remark}

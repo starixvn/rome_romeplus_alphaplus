@@ -5,7 +5,6 @@ import {
   displayAmount,
   renderBankAccount,
   formatDateTime,
-  CurrentCurrency,
 } from '../../../../utils/commonFunctions';
 import NoRecordFound from '../../../../components/Table/NoRecordFound';
 import Pagination from '../../Components/Pagination';
@@ -36,9 +35,7 @@ const TableHeader: React.FC<{ t: (key: string) => string }> = ({ t }) => (
       <th scope="col">
         <div>{t('dataGrid.firstLastName')}</div>
       </th>
-      <th scope="col">
-        {t('dataGrid.amount')} ({CurrentCurrency})
-      </th>
+      <th scope="col">{t('dataGrid.amount')}</th>
       <th scope="col">{t('dataGrid.from')}</th>
       <th scope="col">{t('dataGrid.to')}</th>
       <th scope="col">{t('dataGrid.referenceNo')}</th>
