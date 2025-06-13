@@ -4,7 +4,7 @@ using AgencyCash.API.Shared.Helpers;
 namespace AgencyCash.API.Tests.Payments.Criteria.Deposit;
 
 [Trait("Category", "Deposit")]
-public class UpdateDepositStatusCriteriaTests
+public class UpdateDepositTransStatusCriteriaTests
 {
     [Fact]
     public void Constructor_ShouldInitializeProperties_WithCorrectValues()
@@ -20,7 +20,7 @@ public class UpdateDepositStatusCriteriaTests
         string ip = "192.168.1.1";
 
         // Act
-        var criteria = new UpdateDepositStatusCriteria(
+        var criteria = new UpdateDepositTransStatusCriteria(
             agentId,
             custId,
             transId,
@@ -46,8 +46,8 @@ public class UpdateDepositStatusCriteriaTests
     {
         // Arrange
         short siteDBGroupId = 42;
-        var criteria = new UpdateDepositStatusCriteria(1, 2, 3, 4, siteDBGroupId, 100, 200, "127.0.0.1");
-        string expected = SPNameHelper.SiteDBPrefix("API_CashDeposit_AddTransaction", siteDBGroupId);
+        var criteria = new UpdateDepositTransStatusCriteria(1, 2, 3, 4, siteDBGroupId, 100, 200, "127.0.0.1");
+        string expected = SPNameHelper.SiteDBPrefix("API_CashDeposit_UpdateTransStatus", siteDBGroupId);
 
         // Act
         string actual = criteria.GetSettingKey();
@@ -65,7 +65,7 @@ public class UpdateDepositStatusCriteriaTests
     public void IsValid_ShouldValidateCorrectly(int agentId, int custId, long transId, bool expected)
     {
         // Arrange
-        var criteria = new UpdateDepositStatusCriteria(
+        var criteria = new UpdateDepositTransStatusCriteria(
             agentId,
             custId,
             transId,
@@ -86,7 +86,7 @@ public class UpdateDepositStatusCriteriaTests
     public void ErrorProperties_ShouldBeSettableAndGettable()
     {
         // Arrange
-        var criteria = new UpdateDepositStatusCriteria(1, 2, 3, 4, 5, 100, 200, "127.0.0.1");
+        var criteria = new UpdateDepositTransStatusCriteria(1, 2, 3, 4, 5, 100, 200, "127.0.0.1");
         int errCode = 500;
         string errMsg = "Test Error Message";
         string errExtraInfo = "Extra error details";

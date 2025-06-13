@@ -188,7 +188,7 @@ public class DepositService(
         var limitCriteria = new GetDepositLimitCriteria(request.AgentId, request.CustId, siteDBConfig.CustDBGroupId);
         await repository.ExecuteAsync(limitCriteria);
 
-        var criteria = new UpdateDepositStatusCriteria(
+        var criteria = new UpdateDepositTransStatusCriteria(
             request.AgentId,
             request.CustId,
             transId,

@@ -22,6 +22,7 @@
     <Setting Key="Age_CashWithdrawal_LimitAmtSel" SpName="Age_CashWithdrawal_LimitAmtSel" DbName="DBCust.AgencyCashService.asv_CashService" />
     <Setting Key="SiteDB3_Age_CashService_CashBalance_Sel" SpName="Age_CashService_CashBalance_Sel" DbName="DBSITE03.bodb02.asv_CashService" />
     <Setting Key="SiteDB3_Age_CashMember_DailyWithdrawalCount_Sel" SpName="Age_CashMember_DailyWithdrawalCount_Sel" DbName="DBSITE03.bodb02.asv_CashService" />
+    <Setting Key="SiteDB3_API_CashWithdrawal_UpdateTransStatus" SpName="API_CashWithdrawal_UpdateTransStatus" DbName="DBSITE03.bodb02.asv_CashService" />
   </Function>
   <Function Name="Payments: Validate and Write Logs">
     <Setting Key="API_CashService_CustPaymentValidate" SpName="API_CashService_CustPaymentValidate" DbName="DBCust.CustDB.asv_CashService" />

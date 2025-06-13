@@ -1,16 +1,14 @@
 using AgencyCash.API.Shared.Helpers;
 using Fanex.Data.Repository;
 
-namespace AgencyCash.API.Payments.Criteria.Deposit;
+namespace AgencyCash.API.Payments.Criteria.Withdrawal;
 
-public class UpdateDepositStatusCriteria(
+public class UpdateWithdrawalTransStatusCriteria(
     int agentId,
     int custId,
     long transId,
     byte statusId,
     short siteDBGroupId,
-    decimal agentGivenCredit,
-    decimal creditMembersGivenCredit,
     string ip) : CriteriaBase
 {
     public int AgentId { get; } = agentId;
@@ -23,10 +21,6 @@ public class UpdateDepositStatusCriteria(
 
     public short SiteDBGroupId { get; } = siteDBGroupId;
 
-    public decimal AgentGivenCredit { get; } = agentGivenCredit;
-
-    public decimal CreditMembers_GivenCredit { get; } = creditMembersGivenCredit;
-
     public string IP { get; } = ip;
 
     public int ErrCode { get; set; }
@@ -38,7 +32,7 @@ public class UpdateDepositStatusCriteria(
     public string CashAccumCreditTbl { get; set; }
 
     public override string GetSettingKey()
-        => SPNameHelper.SiteDBPrefix("API_CashDeposit_AddTransaction", SiteDBGroupId);
+        => SPNameHelper.SiteDBPrefix("API_CashWithdrawal_UpdateTransStatus", SiteDBGroupId);
 
     public override bool IsValid() => AgentId > 0 && CustId > 0 && TransId > 0;
 }

@@ -104,7 +104,7 @@ public abstract class PaymentService(
         await repository.ExecuteAsync(criteria);
         var result = new Result(criteria.ErrCode, criteria.ErrMsg);
 
-        if (!result.IsSuccess && !string.IsNullOrWhiteSpace(result.Message))
+        if (!result.IsSuccess)
         {
             await logger.ErrorAsync($"SyncCashAccumCredit failed. Criteria: {JsonHelper.ToJson(criteria)}");
         }

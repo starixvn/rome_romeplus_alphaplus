@@ -199,4 +199,130 @@ public class WithdrawalServiceTests
         Assert.Equal(0, result.MemberCashBalance);
         _mockLogger.Verify(l => l.ErrorAsync(It.IsAny<string>(), It.IsAny<Exception>()), Times.Once);
     }
+
+    [Fact]
+    public async Task UpdateTransactionStatus_Should_Return_Success_Result_When_Valid_Request()
+    {
+        // Arrange
+        long transId = 12345;
+        var request = new UpdateTransactionStatusRequest
+        {
+            AgentId = 100,
+            CustId = 200,
+            StatusId = 1,
+            IP = "192.168.1.1"
+        };
+
+        var siteDBConfig = new SiteDBConfig
+        {
+            SiteDBGroupId = 1,
+            CustDBGroupId = 2
+        };
+
+        var logs = new List<LogEntry> { new LogEntry() };
+
+        _mockSiteDBService.Setup(s => s.GetSiteDBConfig(request.AgentId))
+            .ReturnsAsync(siteDBConfig);
+
+        _mockRepository.Setup(r => r.FetchAsync<LogEntry>(It.IsAny<ICriteria>(), string.Empty, default))
+            .ReturnsAsync(logs)
+            .Callback<ICriteria, string, CancellationToken>((c, s, t) =>
+            {
+                var criteria = c as UpdateWithdrawalTransStatusCriteria;
+                criteria.ErrCode = 0;
+                criteria.ErrMsg = string.Empty;
+                criteria.CashAccumCreditTbl = "SomeTable";
+            });
+
+        // Act
+        var result = await _service.UpdateTransactionStatus(transId, request);
+
+        // Assert
+        Assert.True(result.IsSuccess);
+        Assert.Equal(0, result.Code);
+        Assert.Equal(string.Empty, result.Message);
+    }
+
+    [Fact]
+    public async Task UpdateTransactionStatus_Should_Return_Error_Result_When_Update_Fails()
+    {
+        // Arrange
+        long transId = 12345;
+        var request = new UpdateTransactionStatusRequest
+        {
+            AgentId = 100,
+            CustId = 200,
+            StatusId = 1,
+            IP = "192.168.1.1"
+        };
+
+        var siteDBConfig = new SiteDBConfig
+        {
+            SiteDBGroupId = 1,
+            CustDBGroupId = 2
+        };
+
+        var logs = new List<LogEntry> { new LogEntry() };
+
+        _mockSiteDBService.Setup(s => s.GetSiteDBConfig(request.AgentId))
+            .ReturnsAsync(siteDBConfig);
+
+        _mockRepository.Setup(r => r.FetchAsync<LogEntry>(It.IsAny<ICriteria>(), string.Empty, default))
+            .ReturnsAsync(logs)
+            .Callback<ICriteria, string, CancellationToken>((c, s, t) =>
+            {
+                var criteria = c as UpdateWithdrawalTransStatusCriteria;
+                criteria.ErrCode = 1001;
+                criteria.ErrMsg = "Failed to update transaction status";
+            });
+
+        // Act
+        var result = await _service.UpdateTransactionStatus(transId, request);
+
+        // Assert
+        Assert.False(result.IsSuccess);
+        Assert.Equal(1001, result.Code);
+        Assert.Equal("Failed to update transaction status", result.Message);
+    }
+
+    [Fact]
+    public async Task UpdateTransactionStatus_Should_Log_Error_When_ErrExtraInfo_Is_Not_Empty()
+    {
+        // Arrange
+        long transId = 12345;
+        var request = new UpdateTransactionStatusRequest
+        {
+            AgentId = 100,
+            CustId = 200,
+            StatusId = 1,
+            IP = "192.168.1.1"
+        };
+
+        var siteDBConfig = new SiteDBConfig
+        {
+            SiteDBGroupId = 1,
+            CustDBGroupId = 2
+        };
+
+        var logs = new List<LogEntry> { new LogEntry() };
+
+        _mockSiteDBService.Setup(s => s.GetSiteDBConfig(request.AgentId))
+            .ReturnsAsync(siteDBConfig);
+
+        _mockRepository.Setup(r => r.FetchAsync<LogEntry>(It.IsAny<ICriteria>(), string.Empty, default))
+            .ReturnsAsync(logs)
+            .Callback<ICriteria, string, CancellationToken>((c, s, t) =>
+            {
+                var criteria = c as UpdateWithdrawalTransStatusCriteria;
+                criteria.ErrCode = 0;
+                criteria.ErrMsg = string.Empty;
+                criteria.ErrExtraInfo = "Extra error information";
+            });
+
+        // Act
+        var result = await _service.UpdateTransactionStatus(transId, request);
+
+        // Assert
+        _mockLogger.Verify(l => l.ErrorAsync(It.IsAny<string>()), Times.Once);
+    }
 }

@@ -292,7 +292,7 @@ public class DepositServiceTests
             .ReturnsAsync(logs)
             .Callback<ICriteria, string, CancellationToken>((c, s, t) =>
             {
-                var criteria = c as UpdateDepositStatusCriteria;
+                var criteria = c as UpdateDepositTransStatusCriteria;
                 criteria.ErrCode = 0;
                 criteria.ErrMsg = string.Empty;
             });
@@ -334,7 +334,7 @@ public class DepositServiceTests
             .ReturnsAsync(new List<LogEntry>())
             .Callback<ICriteria, string, CancellationToken>((c, s, t) =>
             {
-                var criteria = c as UpdateDepositStatusCriteria;
+                var criteria = c as UpdateDepositTransStatusCriteria;
                 criteria.ErrCode = 100;
                 criteria.ErrMsg = "Error occurred";
             });
@@ -381,7 +381,7 @@ public class DepositServiceTests
             .ReturnsAsync(logs)
             .Callback<ICriteria, string, CancellationToken>((c, s, t) =>
             {
-                var criteria = c as UpdateDepositStatusCriteria;
+                var criteria = c as UpdateDepositTransStatusCriteria;
                 criteria.ErrCode = 0;
                 criteria.ErrMsg = string.Empty;
                 criteria.CashAccumCreditTbl = "AccumCreditTable";
@@ -427,7 +427,7 @@ public class DepositServiceTests
             .ReturnsAsync(new List<LogEntry>())
             .Callback<ICriteria, string, CancellationToken>((c, ip, t) =>
             {
-                var criteria = c as UpdateDepositStatusCriteria;
+                var criteria = c as UpdateDepositTransStatusCriteria;
                 criteria.ErrCode = 0;
                 criteria.ErrMsg = string.Empty;
                 criteria.ErrExtraInfo = "Additional error information";

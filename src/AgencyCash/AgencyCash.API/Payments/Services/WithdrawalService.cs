@@ -4,6 +4,7 @@ using AgencyCash.API.Payments.Criteria.Withdrawal;
 using AgencyCash.API.Payments.Models;
 using AgencyCash.API.Payments.Requests;
 using AgencyCash.API.Shared;
+using AgencyCash.API.Shared.Helpers;
 using AgencyCash.API.Shared.Models;
 using Fanex.Data.Repository;
 
@@ -13,6 +14,7 @@ public interface IWithdrawalService
 {
     Task<PaymentResult> CreateManualWithdrawal(ManualWithdrawalRequest request);
     Task<WithdrawalLimitResult> GetWithdrawalLimitAmount(GetWithdrawalLimitRequest request);
+    Task<Result> UpdateTransactionStatus(long transId, UpdateTransactionStatusRequest request);
 }
 
 public class WithdrawalService : PaymentService, IWithdrawalService
@@ -113,5 +115,35 @@ public class WithdrawalService : PaymentService, IWithdrawalService
             await logger.ErrorAsync(ex.Message, ex);
             return new WithdrawalLimitResult();
         }
+    }
+
+    public async Task<Result> UpdateTransactionStatus(long transId, UpdateTransactionStatusRequest request)
+    {
+        var tasks = new List<Task>();
+        var siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
+
+        var criteria = new UpdateWithdrawalTransStatusCriteria(
+            request.AgentId,
+            request.CustId,
+            transId,
+            request.StatusId,
+            siteDBConfig.SiteDBGroupId,
+            request.IP);
+        var logs = await repository.FetchAsync<LogEntry>(criteria);
+        var result = new Result(criteria.ErrCode, criteria.ErrMsg);
+
+        if (result.IsSuccess && !string.IsNullOrWhiteSpace(criteria.CashAccumCreditTbl))
+        {
+            tasks.Add(SyncCashAccumCredit(criteria.CashAccumCreditTbl, siteDBConfig.CustDBGroupId));
+        }
+
+        tasks.Add(WriteLogsTransferAndRunSP(logs, siteDBConfig));
+
+        if (!string.IsNullOrWhiteSpace(criteria.ErrExtraInfo))
+        {
+            tasks.Add(logger.ErrorAsync($"Update Withdrawal Transaction Status failed for TransId: {criteria.TransId}, Criteria: {JsonHelper.ToJson(criteria)}"));
+        }
+
+        return result;
     }
 }

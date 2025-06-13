@@ -136,7 +136,7 @@ public static class PaymentsEndpoints
             return BadRequest(nameof(transId), $"{nameof(transId)} must be a positive number.");
         }
 
-        return TypedResults.Ok(await Task.FromResult(new Result(0, "Transaction status updated successfully.")));
+        return TypedResults.Ok(await withdrawalService.UpdateTransactionStatus(transId, request));
     }
 
     private static IResult BadRequest(string key, string error)
