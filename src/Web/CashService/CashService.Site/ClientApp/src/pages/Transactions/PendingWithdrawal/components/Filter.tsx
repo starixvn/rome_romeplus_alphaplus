@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { CalendarIcon, IconSearch } from '../../../../components/Icons';
+import { IconArrowDown, IconSearch } from '../../../../components/Icons';
 import { LabelTitleComponent } from '../../../../components/TitleComponents';
 
 interface FilterProps {
@@ -34,9 +34,7 @@ const Filter: React.FC<FilterProps> = ({
               <option value="Last30Mins">{t('filter.last30Mins')}</option>
               <option value="Last60Mins">{t('filter.last60Mins')}</option>
             </select>
-            <span className="absolute right-[8px] top-[50%] transform -translate-y-1/2 pointer-events-none">
-              <CalendarIcon />
-            </span>
+            <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
           </div>
         </div>
       </div>

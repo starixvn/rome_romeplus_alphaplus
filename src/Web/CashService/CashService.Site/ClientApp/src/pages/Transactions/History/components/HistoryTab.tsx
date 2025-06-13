@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  ButtonApplyComponent,
-  ButtonOutlineComponent,
+  ButtonTabActiveComponent,
+  ButtonTabInactiveComponent,
 } from '../../../../components/ButtonComponents';
 import { TransactionType } from '../../../../utils/commonFunctions';
 
@@ -15,25 +15,29 @@ const HistoryTab: React.FC<HistoryTabProps> = ({ activeTab, onTabChange }) => {
   const { t } = useTranslation('transactionHistory');
   const renderButtonApply = (text: string, onClick: () => void) => {
     if (activeTab == TransactionType.Deposit) {
-      return <ButtonApplyComponent className="[&>*]:min-w-[150px]" text={text} onClick={onClick} />;
+      return <> <ButtonTabInactiveComponent text={text} onClick={onClick} /></>;
     } else {
-      return <ButtonOutlineComponent className="[&>*]:min-w-[150px]" text={text} onClick={onClick} />;
+      return <><ButtonTabActiveComponent text={text} onClick={onClick} /></>;
     }
   };
 
   const renderButtonCancel = (text: string, onClick: () => void) => {
     if (activeTab == TransactionType.Deposit) {
-      return <ButtonOutlineComponent className="[&>*]:min-w-[150px]" text={text} onClick={onClick} />;
+      return <><ButtonTabActiveComponent text={text} onClick={onClick} /></>;
     } else {
-      return <ButtonApplyComponent className="[&>*]:min-w-[150px]" text={text} onClick={onClick} />;
+      return <><ButtonTabInactiveComponent text={text} onClick={onClick} /></>;
     }
   };
   return (
     <>
-      <div className="flex gap-[8px]">
+      <ul className='flex mt-[-12px] border-b border-[var(--border-color)] mb-[15px]'>
+        <li>
         {renderButtonApply(t('deposit'), () => onTabChange(TransactionType.Deposit))}
+        </li>
+        <li>
         {renderButtonCancel(t('withdrawal'), () => onTabChange(TransactionType.Withdrawal))}
-      </div>
+        </li>
+      </ul>      
     </>
   );
 };

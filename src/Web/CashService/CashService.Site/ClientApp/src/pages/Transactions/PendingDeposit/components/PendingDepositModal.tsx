@@ -7,7 +7,6 @@ import {
 } from '../../../../utils/commonFunctions.tsx';
 import {
   ButtonApplyComponent,
-  ButtonCancelComponent,
   ButtonClosePopupComponent,
   ButtonRejectComponent,
 } from '../../../../components/ButtonComponents';

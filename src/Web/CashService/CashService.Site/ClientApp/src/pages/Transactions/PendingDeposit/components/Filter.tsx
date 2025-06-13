@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import BankIcon from '../../../../components/BankComponents';
 import CustomDropdown from '../../../../components/CustomDropdownComponent';
-import { IconSearch } from '../../../../components/Icons';
+import { IconArrowDown, IconSearch } from '../../../../components/Icons';
 import { LabelTitleComponent } from '../../../../components/TitleComponents';
 
 export enum TimeFilterOptions {
@@ -37,7 +37,7 @@ const TimeFilter: React.FC<{
         <option value={TimeFilterOptions.Last30Mins}>{t('filter.last30Mins')}</option>
         <option value={TimeFilterOptions.Last60Mins}>{t('filter.last60Mins')}</option>
       </select>
-      
+      <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
     </div>
   </div>
 );

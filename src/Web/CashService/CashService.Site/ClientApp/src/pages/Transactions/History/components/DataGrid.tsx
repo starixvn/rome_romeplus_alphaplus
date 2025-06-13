@@ -112,7 +112,7 @@ const DataGrid: React.FC<DataGridProps> = ({
                       <div>{item.lastName}</div>
                     </td>
                   )}
-                  {shouldShowColumn('amount') && <td>{displayAmount(item.amount)}</td>}
+                  {shouldShowColumn('amount') && <td className='text-right'>{displayAmount(item.amount)}</td>}
                   {shouldShowColumn('from') && (
                     <td>
                       <div className="flex items-center">
