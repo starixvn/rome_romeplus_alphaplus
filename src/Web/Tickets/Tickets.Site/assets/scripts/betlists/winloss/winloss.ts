@@ -149,7 +149,6 @@ class WinLossBetListView {
         if(prevSelectedProductIds.includes('111')) {
             reportFormData.productIds += ',111';
         }
-        console.log(reportFormData.productIds);
         reportFormData = this.changeObjectKey(reportFormData, 'productIds', 'userSelectedProductIds');
         reportFormData = this.changeObjectKey(reportFormData, 'resourceIds', 'userSelectedResourceIds');
         return `${$('#winloss-detail-report-path').val()}?${$.param(reportFormData)}`;

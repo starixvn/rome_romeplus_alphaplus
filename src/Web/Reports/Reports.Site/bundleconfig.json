@@ -81,14 +81,14 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/bundles/winlossdetail/cashFee.js",
+    "outputFileName": "wwwroot/bundles/winlossdetail/cashfee.js",
     "inputFiles": [
       "assets/scripts/core.js",
       "assets/scripts/base-report-new.js",
       "assets/scripts/components/daterangepicker-jquery.js",
       "assets/scripts/components/breadcrumb-level.js",
-      "assets/scripts/winlossdetail/winlossdetail-copyhtml.js",
-      "assets/scripts/winlossdetail/cashFee.js"
+      "assets/scripts/winlossdetail/cashfee-copyhtml.js",
+      "assets/scripts/winlossdetail/cashfee.js"
     ]
   },
   {

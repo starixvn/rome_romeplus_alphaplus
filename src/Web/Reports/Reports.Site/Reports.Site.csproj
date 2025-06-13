@@ -21,9 +21,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Remove="assets\scripts\winlossdetail\cashFee.ts" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
     <ProjectReference Include="..\..\..\Services\Reports\AlphaPlus.Reports\AlphaPlus.Reports.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.SecurityCode\AlphaPlus.SecurityCode.csproj" />
@@ -39,8 +36,5 @@
     <PackageReference Include="MediatR" Version="12.3.0" />
     <PackageReference Include="ONEbook.SpreadSheets.BetListNPOI" Version="2.0.0-netstandard01" />
     <PackageReference Include="System.Text.Encodings.Web" Version="4.5.1" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="assets\scripts\winlossdetail\cashFee.ts" />
   </ItemGroup>
 </Project>

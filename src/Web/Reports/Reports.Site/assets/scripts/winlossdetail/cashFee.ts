@@ -8,18 +8,18 @@ class CashFeeView extends BaseReportNew {
     private dateRangeComponent: DateRangePickerJQueryComponent;
     private breadcrumbLevelComponent: BreadcrumbLevelComponent;
 
-    private winLossDetailCopyHtml: WinLossDetailCopyHtml;
+    private cashFeeCopyHtml: CashFeeCopyHtml;
     private $tblReportContainer: JQuery;
 
     constructor(
         dateRangeComponent: DateRangePickerJQueryComponent,
         breadcrumbLevelComponent: BreadcrumbLevelComponent,
-        winLossDetailCopyHtml: WinLossDetailCopyHtml
+        cashFeeCopyHtml: CashFeeCopyHtml
     ) {
         super();
         this.dateRangeComponent = dateRangeComponent;
         this.breadcrumbLevelComponent = breadcrumbLevelComponent;
-        this.winLossDetailCopyHtml = winLossDetailCopyHtml;
+        this.cashFeeCopyHtml = cashFeeCopyHtml;
     }
 
     init() {
@@ -45,7 +45,7 @@ class CashFeeView extends BaseReportNew {
     }
 
     registerEvents() {
-        this.winLossDetailCopyHtml.bindEvent($('#tbl-report'));
+        this.cashFeeCopyHtml.bindEvent($('#tbl-report'));
 
         const $iconExcel = $('#icon-excel');
         const excelUrl = $iconExcel.attr('href');
@@ -87,6 +87,6 @@ $(function () {
     new CashFeeView(
         new DateRangePickerJQueryComponent(),
         new BreadcrumbLevelComponent(),
-        new WinLossDetailCopyHtml(Clipboard)
+        new CashFeeCopyHtml(Clipboard)
     ).init();
 });
