@@ -198,34 +198,34 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
             <>
               <div className="flex-1 h-full max-[768px]:mb-[16px]">
                 <div className="border border-[var(--border-control)] rounded-[4px] mb-[8px] p-[8px] flex flex-wrap">
-                  <div className='w-[50%] mb-[8px]'>
+                  <div className='w-[50%] mb-[8px] flex flex-col'>
                     <label className="font-semibold text-[var(--text-color-secondary)]">{t('pendingWithdrawalModal.username')}:</label>
-                    <span className="ml-[4px]">{withdrawal?.username}</span>
+                    <span>{withdrawal?.username}</span>
                   </div>
-                  <div className='w-[50%] mb-[8px]'>
+                  <div className='w-[50%] mb-[8px] flex flex-col'>
                     <label className="font-semibold  text-[var(--text-color-secondary)]">{t('dataGrid.nickname')}:</label>
-                    <span className="ml-[4px]">{withdrawal?.nickname}</span>
+                    <span>{withdrawal?.nickname}</span>
                   </div>
-                  <div className='w-[50%]'>
+                  <div className='w-[50%] flex flex-col'>
                     <label className="font-semibold text-[var(--text-color-secondary)]">{t('dataGrid.firstName')}:</label>
-                    <span className="ml-[4px]">{`${withdrawal?.firstName} ${withdrawal?.lastName}`}</span>
+                    <span>{`${withdrawal?.firstName} ${withdrawal?.lastName}`}</span>
                   </div>
-                  <div className='w-[50%]'>
+                  <div className='w-[50%] flex flex-col'>
                     <label className="font-semibold text-[var(--text-color-secondary)]">{t('pendingWithdrawalModal.betCredit')}:</label>
-                    <span className='ml-[4px] text-[var(--text-link-color)] font-semibold'>{displayAmount(withdrawal?.betCredit || 0)}</span>
+                    <span className='text-[var(--text-link-color)] font-semibold'>{displayAmount(withdrawal?.betCredit || 0)}</span>
                   </div>                   
                 </div>
 
                 <div className="grid grid-cols-2 gap-6">
                   <div>
-                    <div className="mb-[16px]">
+                    <div className="mb-[10px]">
                       <LabelTitleComponent text={t('pendingWithdrawalModal.to')} />
                       <div className="flex items-center">
                         <span>{renderBankAccount(withdrawal?.paymentTo || '')}</span>
                       </div>
                     </div>
 
-                    <div className="mb-[16px]">
+                    <div className="mb-[10px]">
                       <LabelTitleComponent text={t('pendingWithdrawalModal.withdrawalAmount')} />
                       <div className="mt-1">
                         <span className="py-[4px] text-[var(--text-link-color)] font-semibold">
@@ -264,7 +264,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
                     onChange={(e) => setRemark(e.target.value)}
                     maxLength={1000}
                     placeholder={t('pendingWithdrawalModal.remarksPlaceholder')}
-                    className="block h-[150px]! py-[10px] control-field"
+                    className="block h-[140px]! py-[10px] control-field resize-none"
                     disabled={isSubmitting}
                   />
                 </div>

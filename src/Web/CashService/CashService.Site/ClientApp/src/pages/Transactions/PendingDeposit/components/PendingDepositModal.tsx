@@ -143,27 +143,27 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
             <>
               <div className="flex-1 h-full max-[768px]:mb-[16px]">
                 <div className="border border-[var(--border-control)] rounded-[4px] mb-[8px] p-[8px] flex flex-wrap ">
-                  <div className='w-[50%] mb-[8px]'>
+                  <div className='w-[50%] mb-[8px] flex flex-col'>
                     <label className="font-semibold">{t('pendingDepositModal.username')}:</label>
-                    <span className="ml-[4px]">{deposit?.username}</span>
+                    <span>{deposit?.username}</span>
                   </div>
-                  <div className='w-[50%] mb-[8px]'>
+                  <div className='w-[50%] mb-[8px] flex flex-col'>
                     <label className="font-semibold">{t('dataGrid.nickname')}:</label>
-                    <span className="ml-[4px]">{deposit?.nickname}</span>
+                    <span>{deposit?.nickname}</span>
                   </div>
-                  <div className='w-[50%]'>
+                  <div className='w-[50%] flex flex-col'>
                     <label className="font-semibold">{t('dataGrid.firstLastName')}:</label>
-                    <span className="ml-[4px]">{`${deposit?.firstName} ${deposit?.lastName}`}</span>
+                    <span>{`${deposit?.firstName} ${deposit?.lastName}`}</span>
                   </div>
-                  <div className='w-[50%]'>
+                  <div className='w-[50%] flex flex-col'>
                     <label className="font-semibold">{t('pendingDepositModal.betCredit')}:</label>
-                    <span className='ml-[4px] text-[var(--text-link-color)] font-semibold'>{deposit?.betCredit && displayAmount(deposit.betCredit)}</span>
+                    <span className='text-[var(--text-link-color)] font-semibold'>{deposit?.betCredit && displayAmount(deposit.betCredit)}</span>
                   </div>                   
                 </div>
 
                 <div className="grid grid-cols-2 gap-6">
                   <div className="w-[230px] max-[768px]:w-[48%]">
-                    <div className="mb-[16px]">
+                    <div className="mb-[10px]">
                       <LabelTitleComponent text={t('pendingDepositModal.from')} />
                       <div className="flex items-center">
                         {deposit?.paymentFrom && renderBankAccount(deposit.paymentFrom)}
@@ -175,8 +175,8 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
                     </div>
                   </div>
 
-                  <div className="">
-                    <div className="mb-[16px]">
+                  <div>
+                    <div className="mb-[10px]">
                       <LabelTitleComponent text={t('pendingDepositModal.to')} />
                       {deposit?.paymentTo && renderBankAccount(deposit.paymentTo)}
                     </div>
@@ -191,7 +191,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
                     </div>
                   </div>
                 </div>
-                <div className="mb-[16px] mt-[16px]">
+                <div className="mb-[16px] mt-[10px]">
                   <LabelTitleComponent text={t('pendingDepositModal.remarks')} />
                   <textarea
                     value={remark}

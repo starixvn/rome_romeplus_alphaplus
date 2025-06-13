@@ -175,26 +175,26 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
             <div className="flex gap-6">
               <div className="w-[460px] h-full">
                 <div className="border border-[var(--border-control)] rounded-[4px] mb-[8px] p-[8px] flex flex-wrap ">
-                  <div className='w-[50%] mb-[8px]'>
+                  <div className='w-[50%] mb-[8px] flex flex-col'>
                     <label className="font-semibold text-[var(--text-color-secondary)]">{t('detail.username')}:</label>
-                    <span className="ml-[4px]">{detailData.username}</span>
+                    <span>{detailData.username}</span>
                   </div>
-                  <div className='w-[50%] mb-[8px]'>
+                  <div className='w-[50%] mb-[8px] flex flex-col'>
                     <label className="font-semibold text-[var(--text-color-secondary)]">{t('detail.nickname')}:</label>
-                    <span className="ml-[4px]">{detailData.nickname}</span>
+                    <span>{detailData.nickname}</span>
                   </div>
-                  <div className='w-[50%] mb-[8px]'>
+                  <div className='w-[50%] mb-[8px] flex flex-col'>
                     <label className="font-semibold text-[var(--text-color-secondary)]">{t('detail.fullName')}:</label>
-                    <span className="ml-[4px]">{`${detailData.firstName} ${detailData.lastName}`}</span>
+                    <span>{`${detailData.firstName} ${detailData.lastName}`}</span>
                   </div>
-                  <div className='w-[50%] mb-[8px]'>
+                  <div className='w-[50%] mb-[8px] flex flex-col  '>
                     <label className="font-semibold text-[var(--text-color-secondary)]">{t('detail.betCredit')}:</label>
                     <span className="ml-[4px] text-[var(--text-link-color)] font-semibold">{displayAmount(detailData.betCredit)}</span>
                   </div>
                 
                 </div>
                 <div className="flex flex-wrap gap-[10px] mb-[10px]">                   
-                  <div className="w-[48%]">
+                  <div className="w-[48%] flex flex-col">
                     <LabelTitleComponent text={t('detail.from')} />
                     <div className="flex items-center">
                       {renderBankAccount(detailData.paymentFrom)}
