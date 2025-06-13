@@ -2,7 +2,7 @@ using AgencyCash.API.Shared.Helpers;
 using Fanex.Data;
 using Fanex.Data.Repository;
 
-namespace AgencyCash.API.Payments.Criteria.Withdrawal;
+namespace AgencyCash.API.Payments.Criteria;
 
 public class WriteLogTransferCriteria : NonQueryCommand
 {
