@@ -84,7 +84,7 @@
             footerRows.each(function () {
                 const $this = $(this);
 
-                html.push('<td>');
+                html.push('<td');
 
                 const colspan = $this.attr('colspan');
 
