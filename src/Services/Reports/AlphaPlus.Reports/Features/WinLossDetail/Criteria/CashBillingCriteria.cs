@@ -2,7 +2,7 @@
 
 namespace AlphaPlus.Reports.Features.WinLossDetail.Criteria;
 
-internal class CashBillingCriteria(int custId, DateTime fromDate, DateTime toDate, DateTime balanceUpDay, DateTime moveBetDay) : CriteriaBase
+internal class CashBillingCriteria(int custId, DateTime fromDate, DateTime toDate, DateTime balanceUpDay, DateTime moveBetsDay) : CriteriaBase
 {
     public int CustId { get; } = custId;
 
@@ -12,7 +12,7 @@ internal class CashBillingCriteria(int custId, DateTime fromDate, DateTime toDat
 
     public DateTime BalanceUpDay { get; } = balanceUpDay;
 
-    public DateTime MoveBetDay { get; } = moveBetDay;
+    public DateTime MoveBetsDay { get; } = moveBetsDay;
 
     public override string GetSettingKey() => "Age_Rpt_CashServiceBilling";
 
