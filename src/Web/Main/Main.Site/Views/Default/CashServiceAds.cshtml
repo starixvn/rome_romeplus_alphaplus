@@ -49,13 +49,14 @@
         box-shadow: 0 8px 32px rgba(0,0,0,0.18);
         animation: fadeInPopup 0.35s;
         background: #b4d2e8;
+        top: 15%;
     }
 
     .closeButton {
         position: absolute;
         top: 16px;
         right: 16px;
-        background: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.411);
         border: none;
         border-radius: 50%;
         width: 32px;
@@ -65,7 +66,7 @@
         justify-content: center;
         cursor: pointer;
         z-index: 1;
-        color: white;
+        color: #000000;
         font-size: 20px;
         font-weight: bold;
         transition: background 0.2s;
@@ -87,7 +88,7 @@
         align-items: center;
         justify-content: center;
         padding: 20px 32px;
-        background: linear-gradient(90deg,rgba(182, 218, 236, 0.56) 40%, rgba(180, 210, 232, 0) 60%);
+        background: linear-gradient(90deg, rgba(182, 218, 236, 0.56) 40%, rgba(180, 210, 232, 0) 60%);
         box-sizing: border-box;
     }
 
@@ -96,20 +97,19 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        color: #0a2c4d;
-        padding: 12px 16px;
+        padding: 16px;
         background: white;
         border-radius: 16px;
         box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         max-width: 480px;
         margin: 0 auto;
+        max-width: fit-content;
     }
 
     .title {
         font-weight: 600;
         font-size: 18px;
         color: #0a2c4d;
-        text-align: center;
         margin-bottom: 14px;
     }
 
@@ -124,11 +124,10 @@
     .description {
         font-size: 14px;
         color: #222;
-        text-align: center;
         margin-bottom: 5px;
         font-weight: 400;
-        max-width: 400px;
     }
+
 
     .buttonContainer {
         display: flex;
@@ -136,6 +135,7 @@
         justify-content: center;
         width: 100%;
         margin-top: 20px;
+
         button[disabled] {
             cursor: not-allowed;
         }
@@ -180,7 +180,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(90deg,rgba(182, 218, 236, 0.56) 40%, rgba(180, 210, 232, 0) 60%);
+        background: linear-gradient(90deg, rgba(182, 218, 236, 0.56) 40%, rgba(180, 210, 232, 0) 60%);
         box-sizing: border-box;
     }
 
@@ -255,11 +255,11 @@
         background: #eee;
         color: #fff;
         cursor: not-allowed;
-    }
 
-    .backButton:not(:disabled) {
-        background: #286fa1;
-        cursor: pointer;
+        &:not(:disabled) {
+            background: #286fa1;
+            cursor: pointer;
+        }
     }
 
     .nextButton {
@@ -270,6 +270,15 @@
     .stepCounter {
         color: #9a9a9a;
         font-weight: 500;
+    }
+
+    .icon-check {
+        color: #fff;
+        background: #18965b;
+        font-size: 12px;
+        padding: 2px;
+        margin-left: 10px;
+        border-radius: 50px;
     }
 </style>
 
@@ -299,21 +308,24 @@
         <div id="activeCashContent" class="activeCashContent" style="display: none;">
             <div class="contentBox">
                 <div class="title">
-                    Ready to unlock faster cash flow?
+                    Supercharge Your Cash Flow!
                 </div>
                 <div class="divider"></div>
                 <div class="description">
-                    <span class="highlight">14-days free trial</span> – save THB 2,800.
+                    Start your <span class="highlight">14-days FREE trial</span> today and enjoy instant savings of <strong>THB 2,800</strong>.
                 </div>
-                <div class="description">
-                    No platform fee (THB 200/day).
-                    <br />
-                    Only THB 0.15 per transaction and promotion.
-                    <br />
-                    Don't miss this chance to elevate your cash flow. 
-                    <br />
-                    The sooner you start, the sooner you profit.
-                </div>
+                <ul class="description">
+                    <li>
+                        <span class="icon-check"></span>
+                        <strong>No platform fee</strong> - save THB 200/day during the trial.</li>
+                    <li>
+                        <span class="icon-check"></span>
+                        Just <strong>THB 0.15 per transaction</strong> via your linked bank account.</li>
+                    <li>
+                        <span class="icon-check"></span>
+                        Get results. Stay if you love it. Cancel anytime.</li>
+                </ul>
+                <div class="description"> Don't miss out – activate your free trial now and take your cash flow to the next level.</div>
                 <div class="buttonContainer">
                     <button class="primaryButton" onclick="confirmActivation()" disabled="@(!Model.IsCanUpdateCashServiceStatus)">
                         Confirm
