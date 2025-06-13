@@ -150,4 +150,7 @@
   <data name="_ProductStatus" xml:space="preserve">
     <value>สถานะโปรดักส์</value>
   </data>
+  <data name="JackpotStatusTooltip" xml:space="preserve">
+    <value>สถานะแจ็คพอตนี้ใช้ได้เฉพาะ{0}แจ็คพอตเท่านั้น เมื่อปิดแจ็คพอตแล้ว สมาชิกยังสามารถเล่นเกมแจ็คพอตทั้งหมดได้ตามปกติ แต่จะไม่สามารถเข้าร่วมแจ็คพอตได้</value>
+  </data>
 </root>

@@ -54,6 +54,7 @@ class ProductStatusPopup {
     };
 
     registerEvents = () => {
+        this.$('#icon-information').tooltip();
         this.$formProductStatus.submit(this.updateProductStatus);
     };
 

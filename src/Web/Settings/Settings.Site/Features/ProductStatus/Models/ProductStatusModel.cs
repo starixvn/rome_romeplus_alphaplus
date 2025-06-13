@@ -31,5 +31,7 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus.Models
         public bool IsDisabledUpline { get; set; }
 
         public string Name { get; set; }
+
+        public string TooltipMessage { get; set; }
     }
 }

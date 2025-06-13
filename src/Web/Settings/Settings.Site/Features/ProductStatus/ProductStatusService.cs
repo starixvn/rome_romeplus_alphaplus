@@ -11,6 +11,7 @@ using AlphaPlus.Shared.AppResources.Settings;
 using AlphaPlus.Settings.Site.Features.Shared.Services;
 using Fanex.Data.Repository;
 using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+using AlphaPlus.Core.Configurations;
 
 namespace AlphaPlus.Settings.Site.Features.ProductStatus
 {
@@ -56,8 +57,8 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus
         {
             ICriteria criteria = new SelectProductGroupStatusCriteria(custId, roleId, groupId);
             var rawData = await repository.FetchAsync<ProductStatusModel>(criteria).ConfigureAwait(false);
-
-            return SetProductGroupStatusName(rawData);
+            var withNames = SetProductGroupStatusName(rawData);
+            return await SetTooltipMessage(withNames, custId);
         }
 
         private async Task<IEnumerable<ProductStatusModel>> GetProductStatus(int productId, int custId, UserLevel custRole)
@@ -142,6 +143,40 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus
             }
         }
 
+        private async Task<IEnumerable<ProductStatusModel>> SetTooltipMessage(IEnumerable<ProductStatusModel> rawData, int custId)
+        {
+            string jackpotTooltip = null;
+            var result = new List<ProductStatusModel>();
+            foreach (var item in rawData)
+            {
+                if (item.SportType == SportTypeConstants.Jackpot && item.BetType == 4001)
+                {
+                    if (jackpotTooltip == null)
+                    {
+                        var criteria = new GetJackpotStatusTooltipCriteria(custId, AppSettings.SettingStatus);
+                        var jackpotProducts = await repository.FetchAsync<JackpotStatusTooltipProduct>(criteria).ConfigureAwait(false);
+                        var productNames = jackpotProducts
+                            .Select(jp => cacheRefService.GetProductName(jp.RealProductId))
+                            .ToList();
+                        var joinedNames = string.Join(", ", productNames);
+                        jackpotTooltip = string.Format(GetResource("JackpotStatusTooltip"), joinedNames);
+                    }
+                    item.TooltipMessage = jackpotTooltip;
+                }
+                result.Add(item);
+            }
+            return result;
+        }
+
+        private static async IAsyncEnumerable<T> ToAsyncEnumerable<T>(IEnumerable<T> source)
+        {
+            foreach (var item in source)
+            {
+                yield return item;
+                await Task.Yield(); // ensure async context
+            }
+        }
+
         public Task<IEnumerable<Result>> UpdateProductStatus(ProductStatusCommandParam commandParam)
         {
             var authorizationParam = new ProductStatusAuthorizationParam(
@@ -223,6 +258,9 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus
                message.SettingType == 0 ? GetResource("CustomerSettings", language) : GetResource("_ProductStatus", language),
                ToUMDateTime(message.BeginTime),
                ToUMDateTime(message.EndTime));
+
+        private static string GetResource(string name)
+            => AlphaPlus.Shared.AppResources.Settings.ProductStatus.ProductStatus.ResourceManager.GetString(name);
 
         private static string GetResource(string name, string language)
             => AlphaPlus.Shared.AppResources.Settings.ProductStatus.ProductStatus.ResourceManager.GetString(name, new CultureInfo(language));
