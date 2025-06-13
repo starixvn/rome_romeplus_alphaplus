@@ -161,7 +161,7 @@ public class DepositService(
 
         if (!string.IsNullOrWhiteSpace(criteria.ErrExtraInfo))
         {
-            tasks.Add(logger.ErrorAsync($"Deposit failed for AgentId: {criteria.AgentId}, CustId: {criteria.CustId}, Criteria: {JsonHelper.ToJson(criteria)}"));
+            tasks.Add(logger.ErrorAsync($"Deposit failed. Key: {criteria.GetSettingKey()}, Criteria: {JsonHelper.ToJson(criteria)}"));
         }
 
         await Task.WhenAll(tasks);
@@ -209,7 +209,7 @@ public class DepositService(
 
         if (!string.IsNullOrWhiteSpace(criteria.ErrExtraInfo))
         {
-            tasks.Add(logger.ErrorAsync($"Update Deposit Transaction Status failed for TransId: {criteria.TransId}, Criteria: {JsonHelper.ToJson(criteria)}"));
+            tasks.Add(logger.ErrorAsync($"Deposit - {nameof(UpdateTransactionStatus)} failed. Key: {criteria.GetSettingKey()}, Criteria: {JsonHelper.ToJson(criteria)}"));
         }
 
         return result;

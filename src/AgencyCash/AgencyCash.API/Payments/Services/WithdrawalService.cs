@@ -141,7 +141,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
 
         if (!string.IsNullOrWhiteSpace(criteria.ErrExtraInfo))
         {
-            tasks.Add(logger.ErrorAsync($"Update Withdrawal Transaction Status failed for TransId: {criteria.TransId}, Criteria: {JsonHelper.ToJson(criteria)}"));
+            tasks.Add(logger.ErrorAsync($"Withdrawal - {nameof(UpdateTransactionStatus)} failed. Key: {criteria.GetSettingKey()}, Criteria: {JsonHelper.ToJson(criteria)}"));
         }
 
         return result;

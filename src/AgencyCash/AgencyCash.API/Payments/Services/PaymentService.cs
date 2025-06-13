@@ -22,7 +22,7 @@ public abstract class PaymentService(
 
         if (!string.IsNullOrWhiteSpace(criteria.ErrExtraInfo))
         {
-            await logger.ErrorAsync($"ValidatePayment failed for AgentId: {criteria.AgentId}, CustId: {criteria.CustId}, Criteria: {JsonHelper.ToJson(criteria)}");
+            await logger.ErrorAsync($"{nameof(ValidatePayment)} failed. Key: {criteria.GetSettingKey()}, Criteria: {JsonHelper.ToJson(criteria)}");
         }
 
         return new PaymentResult(criteria.ErrCode, criteria.ErrMsg);
@@ -93,7 +93,7 @@ public abstract class PaymentService(
         }
         catch (Exception ex)
         {
-            await logger.ErrorAsync($"{ex.Message}. {functionName} failed. Criteria: {JsonHelper.ToJson(criteria)}", ex);
+            await logger.ErrorAsync($"{functionName} failed. Key: {criteria.GetSettingKey()}, Criteria: {JsonHelper.ToJson(criteria)}", ex);
             return false;
         }
     }
@@ -106,7 +106,7 @@ public abstract class PaymentService(
 
         if (!result.IsSuccess)
         {
-            await logger.ErrorAsync($"SyncCashAccumCredit failed. Criteria: {JsonHelper.ToJson(criteria)}");
+            await logger.ErrorAsync($"{nameof(SyncCashAccumCredit)} failed. Key: {criteria.GetSettingKey()} Criteria: {JsonHelper.ToJson(criteria)}");
         }
 
         return result;
