@@ -9,6 +9,7 @@ import {
   ButtonApplyComponent,
   ButtonCancelComponent,
   ButtonClosePopupComponent,
+  ButtonRejectComponent,
 } from '../../../../components/ButtonComponents';
 import { ResultMessageComponent } from '../../../../components/MessageComponents.tsx';
 import {
@@ -142,27 +143,23 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
           ) : (
             <>
               <div className="flex-1 h-full max-[768px]:mb-[16px]">
-                <div className="border border-[var(--border-control)] rounded mb-[8px] p-[8px]">
-                  <table className="w-full h-full no-hover">
-                    <thead>
-                      <tr className="text-left font-semibold text-[var(--text-color-secondary)]">
-                        <th className="px-[8px] py-[4px]">{t('pendingDepositModal.username')}</th>
-                        <th className="px-[8px] py-[4px]">{t('dataGrid.nickname')}</th>
-                        <th className="px-[8px] py-[4px]">{t('dataGrid.firstLastName')}</th>
-                        <th className="px-[8px] py-[4px]">{t('pendingDepositModal.betCredit')}</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="px-[8px] py-[4px]">{deposit?.username}</td>
-                        <td className="px-[8px] py-[4px]">{deposit?.nickname}</td>
-                        <td className="px-[8px] py-[4px]">{`${deposit?.firstName} ${deposit?.lastName}`}</td>
-                        <td className="px-[8px] py-[4px] text-[var(--text-link-color)] font-semibold">
-                          {deposit?.betCredit && displayAmount(deposit.betCredit)}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                <div className="border border-[var(--border-control)] rounded-[4px] mb-[8px] p-[8px] flex flex-wrap ">
+                  <div className='w-[50%] mb-[8px]'>
+                    <label className="font-semibold">{t('pendingDepositModal.username')}:</label>
+                    <span className="ml-[4px]">{deposit?.username}</span>
+                  </div>
+                  <div className='w-[50%] mb-[8px]'>
+                    <label className="font-semibold">{t('dataGrid.nickname')}:</label>
+                    <span className="ml-[4px]">{deposit?.nickname}</span>
+                  </div>
+                  <div className='w-[50%]'>
+                    <label className="font-semibold">{t('dataGrid.firstLastName')}:</label>
+                    <span className="ml-[4px]">{`${deposit?.firstName} ${deposit?.lastName}`}</span>
+                  </div>
+                  <div className='w-[50%]'>
+                    <label className="font-semibold">{t('pendingDepositModal.betCredit')}:</label>
+                    <span className='ml-[4px] text-[var(--text-link-color)] font-semibold'>{deposit?.betCredit && displayAmount(deposit.betCredit)}</span>
+                  </div>                   
                 </div>
 
                 <div className="grid grid-cols-2 gap-6">
@@ -222,7 +219,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
         </div>
 
         <div className="flex justify-center gap-[8px]">
-          <ButtonCancelComponent
+          <ButtonRejectComponent
             text={t('pendingDepositModal.reject')}
             onClick={handleReject}
             disabled={isSubmitting}

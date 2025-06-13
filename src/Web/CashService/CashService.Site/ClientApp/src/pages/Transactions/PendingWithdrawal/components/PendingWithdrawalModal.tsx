@@ -197,31 +197,23 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
           ) : (
             <>
               <div className="flex-1 h-full max-[768px]:mb-[16px]">
-                <div className="border border-[var(--border-control)] rounded mb-[8px] p-[8px]">
-                  <table className="w-full h-full no-hover">
-                    <thead>
-                      <tr className="text-left font-semibold text-[var(--text-color-secondary)]">
-                        <th className="px-[8px] py-[4px]">
-                          {t('pendingWithdrawalModal.username')}
-                        </th>
-                        <th className="px-[8px] py-[4px]">{t('dataGrid.nickname')}</th>
-                        <th className="px-[8px] py-[4px]">{t('dataGrid.firstName')}</th>
-                        <th className="px-[8px] py-[4px]">
-                          {t('pendingWithdrawalModal.betCredit')}
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="px-[8px] py-[4px]">{withdrawal?.username}</td>
-                        <td className="px-[8px] py-[4px]">{withdrawal?.nickname}</td>
-                        <td className="px-[8px] py-[4px]">{`${withdrawal?.firstName} ${withdrawal?.lastName}`}</td>
-                        <td className="px-[8px] py-[4px] text-[var(--text-link-color)] font-semibold">
-                          {displayAmount(withdrawal?.betCredit || 0)}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                <div className="border border-[var(--border-control)] rounded-[4px] mb-[8px] p-[8px] flex flex-wrap">
+                  <div className='w-[50%] mb-[8px]'>
+                    <label className="font-semibold text-[var(--text-color-secondary)]">{t('pendingWithdrawalModal.username')}:</label>
+                    <span className="ml-[4px]">{withdrawal?.username}</span>
+                  </div>
+                  <div className='w-[50%] mb-[8px]'>
+                    <label className="font-semibold  text-[var(--text-color-secondary)]">{t('dataGrid.nickname')}:</label>
+                    <span className="ml-[4px]">{withdrawal?.nickname}</span>
+                  </div>
+                  <div className='w-[50%]'>
+                    <label className="font-semibold text-[var(--text-color-secondary)]">{t('dataGrid.firstName')}:</label>
+                    <span className="ml-[4px]">{`${withdrawal?.firstName} ${withdrawal?.lastName}`}</span>
+                  </div>
+                  <div className='w-[50%]'>
+                    <label className="font-semibold text-[var(--text-color-secondary)]">{t('pendingWithdrawalModal.betCredit')}:</label>
+                    <span className='ml-[4px] text-[var(--text-link-color)] font-semibold'>{displayAmount(withdrawal?.betCredit || 0)}</span>
+                  </div>                   
                 </div>
 
                 <div className="grid grid-cols-2 gap-6">

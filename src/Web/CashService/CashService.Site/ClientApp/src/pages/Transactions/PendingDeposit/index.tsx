@@ -17,7 +17,7 @@ import {
   TransactionsHistoryResponse,
 } from '../../../services/interfaces/Transactions/TransactionHistory';
 import TitleComponent from '../../../components/TitleComponents';
-import { ButtonOutlineComponent } from '../../../components/ButtonComponents';
+import { ButtonFullComponent } from '../../../components/ButtonComponents';
 import { LoadingFullComponent } from '../../../components/LoadingComponent';
 
 const useDeposits = (recentDeposits: string) => {
@@ -152,8 +152,8 @@ const PendingDeposit: React.FC = () => {
         <div className="flex h-full flex-col">
           <TitleComponent title={t('pendingDeposit')} />
           <div className="mb-[8px]">
-            <ButtonOutlineComponent
-              text={`+ ${t('addManualDeposit')}`}
+            <ButtonFullComponent
+              text={`${t('addManualDeposit')}`}
               onClick={handleAddManualDeposit}
               className="min-w-[183px] [&>*]:min-w-[183px] [&>*]:inline-block"
             />
