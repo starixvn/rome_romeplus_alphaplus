@@ -68,7 +68,7 @@
     {
         @await Html.PartialAsync("SuggestEnableTelegramOtpPopup")
     }
-    @if (Model.CashServiceInfoViewModel.IsOfferedCashService)
+    @if (Model.CashServiceInfoViewModel.IsOfferedCashService && !Model.CashServiceInfoViewModel.IsCashServiceEnabled)
     {
         @await Html.PartialAsync("CashServiceAds", Model.CashServiceInfoViewModel)
     }
