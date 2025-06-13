@@ -48,7 +48,7 @@ public static class PaymentsEndpoints
     {
         if (request == null)
         {
-            return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
+            return BadRequest(nameof(GetDepositLimitRequest), $"{nameof(request)} cannot be null.");
         }
 
         return TypedResults.Ok(await depositService.GetLimit(request));
@@ -58,7 +58,7 @@ public static class PaymentsEndpoints
     {
         if (request == null)
         {
-            return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
+            return BadRequest(nameof(ManualDepositRequest), $"{nameof(request)} cannot be null.");
         }
 
         var paySlipValidationResult = request.ValidatePaySlip();
@@ -74,7 +74,7 @@ public static class PaymentsEndpoints
     {
         if (request == null)
         {
-            return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
+            return BadRequest(nameof(AutoDepositRequest), $"{nameof(request)} cannot be null.");
         }
 
         return TypedResults.Ok(await depositService.Auto(request));
@@ -88,7 +88,7 @@ public static class PaymentsEndpoints
     {
         if (request == null)
         {
-            return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
+            return BadRequest(nameof(UpdateTransactionStatusRequest), $"{nameof(request)} cannot be null.");
         }
 
         if (transId <= 0)
@@ -103,7 +103,7 @@ public static class PaymentsEndpoints
     {
         if (request is null)
         {
-            return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
+            return BadRequest(nameof(ManualWithdrawalRequest), $"{nameof(request)} cannot be null.");
         }
 
         var result = await withdrawalService.CreateManualWithdrawal(request);
@@ -114,7 +114,7 @@ public static class PaymentsEndpoints
     {
         if (request is null)
         {
-            return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
+            return BadRequest(nameof(GetWithdrawalLimitRequest), $"{nameof(request)} cannot be null.");
         }
 
         return TypedResults.Ok(await withdrawalService.GetWithdrawalLimitAmount(request));
@@ -128,7 +128,7 @@ public static class PaymentsEndpoints
     {
         if (request == null)
         {
-            return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
+            return BadRequest(nameof(UpdateTransactionStatusRequest), $"{nameof(request)} cannot be null.");
         }
 
         if (transId <= 0)
