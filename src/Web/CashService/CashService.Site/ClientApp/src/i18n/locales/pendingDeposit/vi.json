@@ -1,7 +1,7 @@
 {
   "pendingDeposit": "Tiền gửi đang chờ xử lý",
   "addManualDeposit": "Thêm tiền gửi thủ công",
-  
+
   "filter": {
     "recentDeposits": "Tiền gửi gần đây",
     "all": "Tất cả",
@@ -14,7 +14,7 @@
     "last30Mins": "30 phút qua",
     "last60Mins": "60 phút qua"
   },
-  
+
   "dataGrid": {
     "member": "Thành viên",
     "username": "Tên người dùng",
@@ -38,7 +38,7 @@
     "loading": "Đang tải tiền gửi đang chờ xử lý...",
     "noDepositsFound": "Không tìm thấy tiền gửi nào đang chờ xử lý"
   },
-  
+
   "pendingDepositModal": {
     "title": "Tiền gửi đang chờ xử lý",
     "username": "Tên người dùng",
@@ -58,7 +58,7 @@
     "close": "Đóng",
     "firstLastName": "Tên/Họ"
   },
-  
+
   "manualDepositForm": {
     "title": "Thêm tiền gửi thủ công",
     "accountInformation": "Thông tin tài khoản",
@@ -91,7 +91,7 @@
     "approved": "Đã phê duyệt",
     "rejected": "Đã từ chối"
   },
-  
+
   "errorMessages": {
     "requiredField": "Trường này là bắt buộc",
     "invalidAmount": "Vui lòng nhập số tiền hợp lệ",
@@ -101,11 +101,11 @@
     "failedToReject": "Không thể từ chối yêu cầu tiền gửi",
     "failedToFetchData": "Không thể lấy dữ liệu"
   },
-  
+
   "successMessages": {
     "depositSubmitted": "Yêu cầu tiền gửi đã được gửi thành công!",
     "depositUpdated": "Yêu cầu tiền gửi đã được cập nhật thành công!",
     "depositApproved": "Yêu cầu tiền gửi đã được phê duyệt thành công!",
     "depositRejected": "Yêu cầu tiền gửi đã bị từ chối thành công!"
   }
-} 
+}

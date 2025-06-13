@@ -1,97 +1,97 @@
 {
   "pendingDeposit": "待處理存款",
-  "addManualDeposit": "添加手動存款",
-  
+  "addManualDeposit": "新增手動存款",
+
   "filter": {
     "recentDeposits": "最近存款",
     "all": "全部",
     "today": "今天",
     "yesterday": "昨天",
-    "last7Days": "過去7天",
-    "to": "到",
-    "search": "搜索",
+    "last7Days": "最近7天",
+    "to": "至",
+    "search": "搜尋",
     "usernamePlaceholder": "用戶名/參考號",
-    "last30Mins": "過去30分鐘",
-    "last60Mins": "過去60分鐘"
+    "last30Mins": "最近30分鐘",
+    "last60Mins": "最近60分鐘"
   },
-  
+
   "dataGrid": {
     "member": "會員",
     "username": "用戶名",
-    "loginName": "登錄名",
+    "loginName": "登入名稱",
     "firstName": "名字",
     "lastName": "姓氏",
-    "nickname": "昵稱",
-    "firstLastName": "名字&姓氏",
+    "nickname": "暱稱",
+    "firstLastName": "姓名",
     "amount": "金額",
     "currency": "貨幣",
-    "from": "來自",
-    "to": "到",
-    "referenceNo": "參考編號",
-    "dateAndTime": "日期和時間",
+    "from": "從",
+    "to": "至",
+    "referenceNo": "參考號",
+    "dateAndTime": "創建日期",
     "actions": "操作",
     "approve": "批准",
     "approving": "批准中...",
     "reject": "拒絕",
     "process": "處理",
     "viewDetails": "查看詳情",
-    "loading": "正在加載待處理存款...",
+    "loading": "載入待處理存款中...",
     "noDepositsFound": "未找到待處理存款"
   },
-  
+
   "pendingDepositModal": {
     "title": "待處理存款",
     "username": "用戶名",
-    "loginName": "登錄名",
+    "loginName": "登入名稱",
     "firstName": "名字",
     "lastName": "姓氏",
-    "name": "名字/姓氏",
+    "name": "姓名",
     "betCredit": "投注額度",
-    "from": "來自",
-    "to": "到",
+    "from": "從",
+    "to": "至",
     "depositAmount": "存款金額",
-    "dateAndTime": "日期和時間",
+    "dateAndTime": "創建日期",
     "remarks": "備註",
-    "remarksPlaceholder": "在此處添加備註...",
+    "remarksPlaceholder": "在此添加備註...",
     "approve": "批准",
     "reject": "拒絕",
     "close": "關閉",
-    "firstLastName": "名字/姓氏"
+    "firstLastName": "姓名"
   },
-  
+
   "manualDepositForm": {
-    "title": "添加手動存款",
-    "accountInformation": "賬戶信息",
-    "memberLoginName": "會員登錄名",
-    "from": "來自",
-    "to": "到",
+    "title": "新增手動存款",
+    "accountInformation": "帳戶資訊",
+    "memberLoginName": "會員用戶名",
+    "from": "從",
+    "to": "至",
     "depositAmount": "存款金額",
     "remarks": "備註",
-    "remarksPlaceholder": "在此處添加備註...",
+    "remarksPlaceholder": "在此添加備註...",
     "uploadImage": "點擊上傳",
     "dragAndDrop": "或拖放",
-    "imageFormat": "上傳jpeg、jpg、png",
-    "maxSize": "最大1 MB",
-    "viewFullSize": "查看全尺寸",
-    "removeImage": "刪除圖片",
+    "imageFormat": "上傳 jpeg, jpg, png",
+    "maxSize": "最大 1 MB",
+    "viewFullSize": "查看原圖",
+    "removeImage": "移除圖片",
     "cancel": "取消",
     "approve": "批准",
     "approving": "批准中...",
-    "agentAvailableCredit": "代理可用信用",
+    "agentAvailableCredit": "代理可用額度",
     "amountMustBeGreaterThan0AndLessThanMaxLimit": "金額必須大於0且小於最大限額",
     "imageSizeError": "圖片必須小於1MB",
-    "memberLoginNameRequired": "請選擇會員登錄名",
+    "memberLoginNameRequired": "請選擇會員登入",
     "agentBankSelectionRequired": "請選擇付款來源",
     "memberBankSelectionRequired": "請選擇付款目標",
-    "invalidFileType": "無效的文件類型。請上傳jpeg、jpg或png文件。"
+    "invalidFileType": "無效的文件類型。請上傳 jpeg、jpg 或 png 文件。"
   },
-  
+
   "status": {
     "pending": "待處理",
     "approved": "已批准",
     "rejected": "已拒絕"
   },
-  
+
   "errorMessages": {
     "requiredField": "此字段為必填項",
     "invalidAmount": "請輸入有效金額",
@@ -101,11 +101,11 @@
     "failedToReject": "拒絕存款失敗",
     "failedToFetchData": "獲取數據失敗"
   },
-  
+
   "successMessages": {
     "depositSubmitted": "存款已成功提交！",
     "depositUpdated": "存款已成功更新！",
     "depositApproved": "存款已成功批准！",
     "depositRejected": "存款已成功拒絕！"
   }
-} 
+}

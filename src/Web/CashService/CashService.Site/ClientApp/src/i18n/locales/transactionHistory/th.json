@@ -1,17 +1,17 @@
 {
-  "transactionHistory": "ประวัติการทำรายการ",
-  "deposit": "ฝาก",
-  "withdrawal": "ถอน",
+  "transactionHistory": "ประวัติการทำธุรกรรม",
+  "deposit": "ฝากเงิน",
+  "withdrawal": "ถอนเงิน",
 
   "filter": {
     "all": "ทั้งหมด",
     "to": "ถึง",
     "from": "จาก",
     "selectAccount": "เลือกบัญชี",
-    "allColumns": "ทุกคอลัมน์ (8)",
+    "allColumns": "คอลัมน์ทั้งหมด (8)",
     "column": "คอลัมน์",
     "search": "ค้นหา",
-    "usernamePlaceholder": "ชื่อผู้ใช้/หมายเลขอ้างอิง",
+    "usernamePlaceholder": "ชื่อผู้ใช้/เลขที่อ้างอิง",
     "status": "สถานะ",
     "dateRange": "ช่วงวันที่",
     "maxRecords": "แสดงรายการล่าสุดสูงสุด 5000 รายการ"
@@ -28,11 +28,11 @@
     "to": "ถึง",
     "status": "สถานะ",
     "type": "ประเภทธุรกรรม",
-    "referenceNo": "หมายเลขอ้างอิง",
+    "referenceNo": "เลขที่อ้างอิง",
     "dateAndTime": "วันที่สร้าง",
     "actions": "การดำเนินการ",
     "view": "ดู",
-    "loading": "กำลังโหลดรายการ...",
+    "loading": "กำลังโหลดธุรกรรม...",
     "noRecords": "ไม่พบรายการ"
   },
 
@@ -41,7 +41,7 @@
     "username": "ชื่อผู้ใช้",
     "nickname": "ชื่อเล่น",
     "fullName": "ชื่อ-นามสกุล",
-    "betCredit": "เครดิตการเดิมพัน",
+    "betCredit": "เครดิตเดิมพัน",
     "from": "จาก",
     "to": "ถึง",
     "dateAndTime": "วันที่สร้าง",
@@ -52,7 +52,7 @@
     "remarks": "หมายเหตุ",
     "remarksPlaceholder": "เพิ่มหมายเหตุที่นี่...",
     "close": "ปิด",
-    "revertToPending": "เปลี่ยนกลับเป็นรอดำเนินการ",
+    "revertToPending": "ย้อนกลับเป็นรอดำเนินการ",
     "loading": "กำลังโหลดรายละเอียดธุรกรรม...",
     "noDetails": "ไม่มีรายละเอียดธุรกรรม",
     "error": "ไม่สามารถโหลดรายละเอียดธุรกรรมได้",
@@ -71,21 +71,21 @@
   },
 
   "errorMessages": {
-    "requiredField": "จำเป็นต้องกรอกข้อมูลนี้",
-    "invalidAmount": "กรุณาใส่จำนวนเงินที่ถูกต้อง",
+    "requiredField": "กรุณากรอกข้อมูลในช่องนี้",
+    "invalidAmount": "กรุณาระบุจำนวนเงินที่ถูกต้อง",
     "amountTooSmall": "จำนวนเงินต้องมากกว่า 0",
     "failedToLoad": "ไม่สามารถโหลดประวัติธุรกรรมได้",
     "failedToRevert": "ไม่สามารถย้อนกลับธุรกรรมได้"
   },
 
   "successMessages": {
-    "reverted": "ย้อนกลับธุรกรรมเป็นสถานะรอดำเนินการสำเร็จ!"
+    "reverted": "ย้อนกลับธุรกรรมเป็นรอดำเนินการสำเร็จ!"
   },
 
   "messages": {
-    "copiedToClipboard": "คัดลอกข้อความไปยังคลิปบอร์ดสำเร็จแล้ว!",
+    "copiedToClipboard": "คัดลอกข้อความไปยังคลิปบอร์ดสำเร็จ!",
     "copy": "คัดลอก",
     "copied": "คัดลอกแล้ว",
-    "exportToExcel": "ส่งออกเป็นExcel"
+    "exportToExcel": "ส่งออกเป็น Excel"
   }
 }

@@ -1,7 +1,7 @@
 {
-  "pendingDeposit": "保留中の入金",
+  "pendingDeposit": "入金保留中",
   "addManualDeposit": "手動入金を追加",
-  
+
   "filter": {
     "recentDeposits": "最近の入金",
     "all": "すべて",
@@ -11,10 +11,10 @@
     "to": "まで",
     "search": "検索",
     "usernamePlaceholder": "ユーザー名/参照番号",
-    "last30Mins": "過去30分間",
-    "last60Mins": "過去60分間"
+    "last30Mins": "過去30分",
+    "last60Mins": "過去60分"
   },
-  
+
   "dataGrid": {
     "member": "メンバー",
     "username": "ユーザー名",
@@ -22,43 +22,43 @@
     "firstName": "名",
     "lastName": "姓",
     "nickname": "ニックネーム",
-    "firstLastName": "名&姓",
+    "firstLastName": "氏名",
     "amount": "金額",
     "currency": "通貨",
     "from": "から",
     "to": "まで",
     "referenceNo": "参照番号",
-    "dateAndTime": "日付と時間",
-    "actions": "アクション",
+    "dateAndTime": "作成日時",
+    "actions": "操作",
     "approve": "承認",
     "approving": "承認中...",
     "reject": "拒否",
     "process": "処理",
     "viewDetails": "詳細を表示",
-    "loading": "保留中の入金を読み込んでいます...",
-    "noDepositsFound": "保留中の入金が見つかりません"
+    "loading": "入金保留中のデータを読み込み中...",
+    "noDepositsFound": "入金保留中のデータが見つかりません"
   },
-  
+
   "pendingDepositModal": {
-    "title": "保留中の入金",
+    "title": "入金保留中",
     "username": "ユーザー名",
     "loginName": "ログイン名",
     "firstName": "名",
     "lastName": "姓",
-    "name": "名/姓",
+    "name": "氏名",
     "betCredit": "ベットクレジット",
     "from": "から",
     "to": "まで",
     "depositAmount": "入金額",
-    "dateAndTime": "日付と時間",
+    "dateAndTime": "作成日時",
     "remarks": "備考",
-    "remarksPlaceholder": "ここに備考を追加...",
+    "remarksPlaceholder": "ここに備考を入力...",
     "approve": "承認",
     "reject": "拒否",
     "close": "閉じる",
-    "firstLastName": "名/姓"
+    "firstLastName": "氏名"
   },
-  
+
   "manualDepositForm": {
     "title": "手動入金を追加",
     "accountInformation": "アカウント情報",
@@ -67,45 +67,45 @@
     "to": "まで",
     "depositAmount": "入金額",
     "remarks": "備考",
-    "remarksPlaceholder": "ここに備考を追加...",
+    "remarksPlaceholder": "ここに備考を入力...",
     "uploadImage": "クリックしてアップロード",
     "dragAndDrop": "またはドラッグ＆ドロップ",
     "imageFormat": "jpeg、jpg、pngをアップロード",
-    "maxSize": "最大1 MB",
-    "viewFullSize": "フルサイズで表示",
+    "maxSize": "最大1MB",
+    "viewFullSize": "原寸大で表示",
     "removeImage": "画像を削除",
     "cancel": "キャンセル",
     "approve": "承認",
     "approving": "承認中...",
     "agentAvailableCredit": "エージェント利用可能クレジット",
-    "amountMustBeGreaterThan0AndLessThanMaxLimit": "金額は0より大きく、最大限度額より小さくなければなりません",
-    "imageSizeError": "画像は1MB以下でなければなりません",
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "金額は0より大きく、最大制限未満である必要があります",
+    "imageSizeError": "画像は1MB未満である必要があります",
     "memberLoginNameRequired": "メンバーログイン名を選択してください",
-    "agentBankSelectionRequired": "PaymentFromを選択してください",
-    "memberBankSelectionRequired": "PaymentToを選択してください",
-    "invalidFileType": "無効なファイルタイプです。jpeg、jpg、またはpngファイルをアップロードしてください。"
+    "agentBankSelectionRequired": "支払い元を選択してください",
+    "memberBankSelectionRequired": "支払い先を選択してください",
+    "invalidFileType": "無効なファイル形式です。jpeg、jpg、またはpngファイルをアップロードしてください。"
   },
-  
+
   "status": {
     "pending": "保留中",
     "approved": "承認済み",
     "rejected": "拒否済み"
   },
-  
+
   "errorMessages": {
     "requiredField": "このフィールドは必須です",
     "invalidAmount": "有効な金額を入力してください",
     "amountTooSmall": "金額は0より大きくなければなりません",
-    "failedToSubmit": "入金の送信に失敗しました",
-    "failedToApprove": "入金の承認に失敗しました",
-    "failedToReject": "入金の拒否に失敗しました",
+    "failedToSubmit": "入金リクエストの送信に失敗しました",
+    "failedToApprove": "入金リクエストの承認に失敗しました",
+    "failedToReject": "入金リクエストの拒否に失敗しました",
     "failedToFetchData": "データの取得に失敗しました"
   },
-  
+
   "successMessages": {
-    "depositSubmitted": "入金が正常に送信されました",
-    "depositUpdated": "入金が正常に更新されました",
-    "depositApproved": "入金が正常に承認されました",
-    "depositRejected": "入金が正常に拒否されました"
+    "depositSubmitted": "入金リクエストの送信に成功しました！",
+    "depositUpdated": "入金リクエストの更新に成功しました！",
+    "depositApproved": "入金リクエストの承認に成功しました！",
+    "depositRejected": "入金リクエストの拒否に成功しました！"
   }
-} 
+}

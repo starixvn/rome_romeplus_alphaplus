@@ -1,1 +1,125 @@
-{} 
+{
+  "pendingWithdrawal": "ถอนเงินรอดำเนินการ",
+  "addManualWithdrawal": "เพิ่มการถอนเงินด้วยตนเอง",
+
+  "filter": {
+    "recentWithdrawals": "การถอนเงินล่าสุด",
+    "all": "ทั้งหมด",
+    "last30Mins": "30 นาทีที่ผ่านมา",
+    "last60Mins": "60 นาทีที่ผ่านมา",
+    "to": "ถึง",
+    "search": "ค้นหา",
+    "usernamePlaceholder": "ชื่อผู้ใช้/เลขที่อ้างอิง"
+  },
+
+  "dataGrid": {
+    "member": "สมาชิก",
+    "username": "ชื่อผู้ใช้",
+    "firstName": "ชื่อ-นามสกุล",
+    "nickname": "ชื่อเล่น",
+    "amount": "จำนวนเงิน",
+    "currency": "สกุลเงิน",
+    "from": "จาก",
+    "to": "ถึง",
+    "referenceNo": "เลขที่อ้างอิง",
+    "dateAndTime": "วันที่สร้าง",
+    "actions": "การดำเนินการ",
+    "approve": "อนุมัติ",
+    "reject": "ปฏิเสธ",
+    "process": "ดำเนินการ",
+    "viewDetails": "ดูรายละเอียด",
+    "loading": "กำลังโหลดการถอนเงินรอดำเนินการ...",
+    "noWithdrawalsFound": "ไม่พบการถอนเงินรอดำเนินการ"
+  },
+
+  "pendingWithdrawalModal": {
+    "title": "ถอนเงินรอดำเนินการ",
+    "username": "ชื่อผู้ใช้",
+    "loginName": "ชื่อเข้าสู่ระบบ",
+    "firstName": "ชื่อ",
+    "lastName": "นามสกุล",
+    "name": "ชื่อ-นามสกุล",
+    "betCredit": "เครดิตเดิมพัน",
+    "from": "จาก",
+    "to": "ถึง",
+    "withdrawalAmount": "จำนวนเงินที่ถอน",
+    "dateAndTime": "วันที่สร้าง",
+    "remarks": "หมายเหตุ",
+    "remarksPlaceholder": "เพิ่มหมายเหตุที่นี่...",
+    "approve": "อนุมัติ",
+    "reject": "ปฏิเสธ",
+    "close": "ปิด",
+    "selectBank": "เลือกธนาคาร"
+  },
+
+  "manualWithdrawalForm": {
+    "title": "เพิ่มการถอนเงินด้วยตนเอง",
+    "accountInformation": "ข้อมูลบัญชี",
+    "memberLoginName": "ชื่อผู้ใช้สมาชิก",
+    "from": "จาก",
+    "to": "ถึง",
+    "selectMember": "เลือกสมาชิก",
+    "selectMemberBank": "เลือกธนาคารสมาชิก",
+    "selectBank": "เลือกธนาคาร",
+    "withdrawalAmount": "จำนวนเงินที่ถอน",
+    "remarks": "หมายเหตุ",
+    "remarksPlaceholder": "เพิ่มหมายเหตุที่นี่...",
+    "uploadImage": "คลิกเพื่ออัปโหลด",
+    "dragAndDrop": "หรือลากและวาง",
+    "imageFormat": "อัปโหลด jpeg, jpg, png",
+    "maxSize": "สูงสุด 1 MB",
+    "viewFullSize": "ดูขนาดเต็ม",
+    "removeImage": "ลบรูปภาพ",
+    "cancel": "ยกเลิก",
+    "approve": "อนุมัติ",
+    "processing": "กำลังดำเนินการ...",
+    "memberLoginNameRequired": "กรุณาระบุชื่อผู้ใช้สมาชิก",
+    "agentBankSelectionRequired": "กรุณาเลือกแหล่งที่มา",
+    "memberBankSelectionRequired": "กรุณาเลือกปลายทาง",
+    "amountRangeError": "จำนวนเงินต้องน้อยกว่าหรือเท่ากับยอดเงินสดของสมาชิก",
+    "imageSizeError": "ขนาดรูปภาพต้องน้อยกว่า 1 MB",
+    "addWithdrawalSuccess": "เพิ่มการถอนเงินสำเร็จ!!!",
+    "memberCashBalance": "ยอดเงินสดของสมาชิก",
+    "minAmount": "ต่ำสุด",
+    "maxAmount": "สูงสุด",
+    "invalidFileType": "ประเภทไฟล์ไม่ถูกต้อง กรุณาอัปโหลดไฟล์ jpeg, jpg หรือ png"
+  },
+
+  "updateWithdrawal": {
+    "title": "อัปเดตการถอนเงิน",
+    "approveWithdrawal": "อนุมัติการถอนเงิน",
+    "rejectWithdrawal": "ปฏิเสธการถอนเงิน",
+    "confirmTitle": "ยืนยันการดำเนินการ",
+    "confirmApproveMessage": "คุณแน่ใจหรือไม่ที่จะอนุมัติการถอนเงินนี้?",
+    "confirmRejectMessage": "คุณแน่ใจหรือไม่ที่จะปฏิเสธการถอนเงินนี้?",
+    "confirmCancel": "ยกเลิก",
+    "confirmYes": "ใช่ ดำเนินการต่อ",
+    "withdrawalDetails": "รายละเอียดการถอนเงิน",
+    "memberInfo": "ข้อมูลสมาชิก",
+    "transactionDetails": "รายละเอียดธุรกรรม",
+    "withdrawalApproved": "อนุมัติการถอนเงินสำเร็จ",
+    "withdrawalRejected": "ปฏิเสธการถอนเงินสำเร็จ"
+  },
+
+  "status": {
+    "pending": "รอดำเนินการ",
+    "approved": "อนุมัติแล้ว",
+    "rejected": "ปฏิเสธแล้ว"
+  },
+
+  "errorMessages": {
+    "requiredField": "กรุณากรอกข้อมูลในช่องนี้",
+    "invalidAmount": "กรุณาระบุจำนวนเงินที่ถูกต้อง",
+    "amountTooSmall": "จำนวนเงินต้องมากกว่า 0",
+    "failedToSubmit": "ส่งคำขอถอนเงินล้มเหลว",
+    "failedToApprove": "อนุมัติการถอนเงินล้มเหลว",
+    "failedToReject": "ปฏิเสธการถอนเงินล้มเหลว"
+  },
+
+  "successMessages": {
+    "withdrawalSubmitted": "ส่งคำขอถอนเงินสำเร็จ",
+    "withdrawalUpdated": "อัปเดตการถอนเงินสำเร็จ",
+    "withdrawalApproved": "อนุมัติการถอนเงินสำเร็จ",
+    "withdrawalRejected": "ปฏิเสธการถอนเงินสำเร็จ"
+  }
+}

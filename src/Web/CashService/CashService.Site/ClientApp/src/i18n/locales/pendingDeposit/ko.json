@@ -1,89 +1,89 @@
 {
-  "pendingDeposit": "대기 중인 입금",
+  "pendingDeposit": "입금 대기",
   "addManualDeposit": "수동 입금 추가",
-  
+
   "filter": {
     "recentDeposits": "최근 입금",
-    "all": "모두",
+    "all": "전체",
     "today": "오늘",
     "yesterday": "어제",
-    "last7Days": "지난 7일",
+    "last7Days": "최근 7일",
     "to": "까지",
     "search": "검색",
-    "usernamePlaceholder": "사용자 이름/참조 번호",
-    "last30Mins": "지난 30분",
-    "last60Mins": "지난 60분"
+    "usernamePlaceholder": "사용자명/참조번호",
+    "last30Mins": "최근 30분",
+    "last60Mins": "최근 60분"
   },
-  
+
   "dataGrid": {
     "member": "회원",
-    "username": "사용자 이름",
-    "loginName": "로그인 이름",
+    "username": "사용자명",
+    "loginName": "로그인명",
     "firstName": "이름",
     "lastName": "성",
     "nickname": "닉네임",
-    "firstLastName": "이름&성",
+    "firstLastName": "성명",
     "amount": "금액",
     "currency": "통화",
-    "from": "부터",
+    "from": "에서",
     "to": "까지",
-    "referenceNo": "참조 번호",
-    "dateAndTime": "날짜 및 시간",
-    "actions": "동작",
+    "referenceNo": "참조번호",
+    "dateAndTime": "생성일시",
+    "actions": "작업",
     "approve": "승인",
     "approving": "승인 중...",
     "reject": "거부",
     "process": "처리",
     "viewDetails": "상세 보기",
-    "loading": "대기 중인 입금을 불러오는 중...",
-    "noDepositsFound": "대기 중인 입금을 찾을 수 없습니다"
+    "loading": "입금 대기 데이터를 불러오는 중...",
+    "noDepositsFound": "입금 대기 데이터가 없습니다"
   },
-  
+
   "pendingDepositModal": {
-    "title": "대기 중인 입금",
-    "username": "사용자 이름",
-    "loginName": "로그인 이름",
+    "title": "입금 대기",
+    "username": "사용자명",
+    "loginName": "로그인명",
     "firstName": "이름",
     "lastName": "성",
-    "name": "이름/성",
+    "name": "성명",
     "betCredit": "베팅 크레딧",
-    "from": "부터",
+    "from": "에서",
     "to": "까지",
     "depositAmount": "입금액",
-    "dateAndTime": "날짜 및 시간",
+    "dateAndTime": "생성일시",
     "remarks": "비고",
-    "remarksPlaceholder": "여기에 비고 추가...",
+    "remarksPlaceholder": "여기에 비고를 입력하세요...",
     "approve": "승인",
     "reject": "거부",
     "close": "닫기",
-    "firstLastName": "이름/성"
+    "firstLastName": "성명"
   },
-  
+
   "manualDepositForm": {
     "title": "수동 입금 추가",
     "accountInformation": "계정 정보",
-    "memberLoginName": "회원 로그인 이름",
-    "from": "부터",
+    "memberLoginName": "회원 로그인명",
+    "from": "에서",
     "to": "까지",
     "depositAmount": "입금액",
     "remarks": "비고",
-    "remarksPlaceholder": "여기에 비고 추가...",
-    "uploadImage": "업로드하려면 클릭",
-    "dragAndDrop": "또는 끌어다 놓기",
+    "remarksPlaceholder": "여기에 비고를 입력하세요...",
+    "uploadImage": "클릭하여 업로드",
+    "dragAndDrop": "또는 드래그 앤 드롭",
     "imageFormat": "jpeg, jpg, png 업로드",
-    "maxSize": "최대 1 MB",
-    "viewFullSize": "전체 크기로 보기",
-    "removeImage": "이미지 제거",
+    "maxSize": "최대 1MB",
+    "viewFullSize": "원본 크기로 보기",
+    "removeImage": "이미지 삭제",
     "cancel": "취소",
     "approve": "승인",
     "approving": "승인 중...",
     "agentAvailableCredit": "에이전트 사용 가능 크레딧",
-    "amountMustBeGreaterThan0AndLessThanMaxLimit": "금액은 0보다 커야 하고 최대 한도보다 작아야 합니다",
-    "imageSizeError": "이미지는 1MB 이하여야 합니다",
-    "memberLoginNameRequired": "회원 로그인 이름을 선택해주세요",
-    "agentBankSelectionRequired": "PaymentFrom을 선택해주세요",
-    "memberBankSelectionRequired": "PaymentTo을 선택해주세요",
-    "invalidFileType": "유효하지 않은 파일 형식입니다. jpeg, jpg, png 파일을 업로드해주세요."
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "금액은 0보다 크고 최대 한도를 초과하지 않아야 합니다",
+    "imageSizeError": "이미지는 1MB 미만이어야 합니다",
+    "memberLoginNameRequired": "회원 로그인명을 선택하세요",
+    "agentBankSelectionRequired": "결제 출처를 선택하세요",
+    "memberBankSelectionRequired": "결제 대상지를 선택하세요",
+    "invalidFileType": "잘못된 파일 형식입니다. jpeg, jpg 또는 png 파일을 업로드하세요."
   },
 
   "status": {
@@ -91,21 +91,21 @@
     "approved": "승인됨",
     "rejected": "거부됨"
   },
-  
+
   "errorMessages": {
     "requiredField": "이 필드는 필수입니다",
     "invalidAmount": "유효한 금액을 입력하세요",
     "amountTooSmall": "금액은 0보다 커야 합니다",
-    "failedToSubmit": "입금 제출에 실패했습니다",
-    "failedToApprove": "입금 승인에 실패했습니다",
-    "failedToReject": "입금 거부에 실패했습니다",
-    "failedToFetchData": "데이터를 가져오는 데 실패했습니다"
+    "failedToSubmit": "입금 요청 제출 실패",
+    "failedToApprove": "입금 요청 승인 실패",
+    "failedToReject": "입금 요청 거부 실패",
+    "failedToFetchData": "데이터 가져오기 실패"
   },
-  
+
   "successMessages": {
-    "depositSubmitted": "입금이 성공적으로 제출되었습니다",
-    "depositUpdated": "입금이 성공적으로 업데이트되었습니다",
-    "depositApproved": "입금이 성공적으로 승인되었습니다",
-    "depositRejected": "입금이 성공적으로 거부되었습니다"
+    "depositSubmitted": "입금 요청 제출 성공!",
+    "depositUpdated": "입금 요청 업데이트 성공!",
+    "depositApproved": "입금 요청 승인 성공!",
+    "depositRejected": "입금 요청 거부 성공!"
   }
-} 
+}
