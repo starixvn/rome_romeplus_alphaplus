@@ -1,5 +1,4 @@
 using AgencyCash.API.Payments.Criteria;
-using AgencyCash.API.Payments.Criteria.Withdrawal;
 using AgencyCash.API.Payments.Models;
 using AgencyCash.API.Payments.Services;
 using AgencyCash.API.Shared;
@@ -7,7 +6,7 @@ using AgencyCash.API.Shared.Models;
 using Fanex.Data.Repository;
 using Moq;
 
-namespace AgencyCash.API.Tests.Payments.Services;
+namespace AgencyCash.API.Tests.Payments;
 
 [Trait("Category", "Payments")]
 public class PaymentServiceTests
