@@ -1,3 +1,4 @@
+using AgencyCash.API.Payments.Constants;
 using AgencyCash.API.Payments.Criteria;
 using AgencyCash.API.Payments.Criteria.Withdrawal;
 using AgencyCash.API.Payments.Models;
@@ -39,7 +40,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
             var validatePaymentCriteria = new ValidatePaymentCriteria(
             request.AgentId,
             request.CustId,
-            transType: 2,
+            TransactionType.Withdrawal,
             siteDBConfig.CustDBGroupId,
             isManual: true,
             paymentTo: request.PaymentTo);
@@ -73,8 +74,8 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                 request.Amount,
                 request.IP);
 
-            var (firstResultSet, _) = await _repository.FetchMultipleAsync<LogEntry, ManualWithdrawalTransactionCriteria>(withdrawalTransactionCriteria);
-            await WriteLogsTransferAndRunSP(firstResultSet, siteDBConfig);
+            var logs = await _repository.FetchAsync<LogEntry>(withdrawalTransactionCriteria);
+            await WriteLogsTransferAndRunSP(logs, siteDBConfig);
 
             return new PaymentResult(withdrawalTransactionCriteria.ErrCode, withdrawalTransactionCriteria.ErrCode == 0 ? "Ok" : withdrawalTransactionCriteria.ErrMsg, withdrawalTransactionCriteria.TransId);
         }

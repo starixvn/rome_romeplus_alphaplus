@@ -82,7 +82,9 @@ public static class PaymentsEndpoints
 
     private static async Task<IResult> UpdateDepositStatus(
         long transId,
-        UpdateTransactionStatusRequest request)
+        [FromBody]
+        UpdateTransactionStatusRequest request,
+        IDepositService depositService)
     {
         if (request == null)
         {
@@ -94,7 +96,7 @@ public static class PaymentsEndpoints
             return BadRequest(nameof(transId), $"{nameof(transId)} must be a positive number.");
         }
 
-        return TypedResults.Ok(await Task.FromResult(new Result(0, "Deposit status updated successfully.")));
+        return TypedResults.Ok(await depositService.UpdateTransactionStatus(transId, request));
     }
 
     private static async Task<IResult> ManualWithdrawal([FromBody] ManualWithdrawalRequest request, IWithdrawalService withdrawalService)
@@ -120,7 +122,9 @@ public static class PaymentsEndpoints
 
     private static async Task<IResult> UpdateWithdrawalStatus(
         long transId,
-        UpdateTransactionStatusRequest request)
+        [FromBody]
+        UpdateTransactionStatusRequest request,
+        IWithdrawalService withdrawalService)
     {
         if (request == null)
         {

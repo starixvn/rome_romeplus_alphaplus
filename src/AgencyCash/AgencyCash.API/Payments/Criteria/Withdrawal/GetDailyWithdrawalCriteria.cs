@@ -13,6 +13,7 @@ public class GetDailyWithdrawalCriteria : NonQueryCommand
     }
 
     public int CustId { get; }
+
     [SpParam(Ignored = true)]
     public short SiteDBGroupId { get; }
 
