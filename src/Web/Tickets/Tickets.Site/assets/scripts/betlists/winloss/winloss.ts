@@ -1,6 +1,7 @@
 interface Window {
     productList: any;
     productDetailList: any;
+    previousSelectedProductIds: any;
 }
 
 class WinLossBetListView {
@@ -14,6 +15,7 @@ class WinLossBetListView {
 
     private betListWeekSelection: JQuery;
     private tableBetList: JQuery;
+    previousSelectedProductIds: any;
 
     constructor(
         dateRangeComponent: DateRangePickerJQueryComponent,
@@ -21,7 +23,8 @@ class WinLossBetListView {
         weekComponent: WeekComponent,
         breadcrumbLevelComponent: BreadcrumbLevelComponent,
         productList: any,
-        productDetailList: any
+        productDetailList: any,
+        previousSelectedProductIds: any
     ) {
         this.dateRangeComponent = dateRangeComponent;
         this.productComponent = productComponent;
@@ -29,6 +32,7 @@ class WinLossBetListView {
         this.breadcrumbLevelComponent = breadcrumbLevelComponent;
         this.productList = productList;
         this.productDetailList = productDetailList;
+        this.previousSelectedProductIds = previousSelectedProductIds;
     }
 
     init() {
@@ -140,6 +144,12 @@ class WinLossBetListView {
     }
 
     private buildWinLossReportUrl(reportFormData) {
+        const prevSelectedProductIds = this.previousSelectedProductIds.split(',').map(item => item.trim()).filter(Boolean);
+        
+        if(prevSelectedProductIds.includes('111')) {
+            reportFormData.productIds += ',111';
+        }
+        console.log(reportFormData.productIds);
         reportFormData = this.changeObjectKey(reportFormData, 'productIds', 'userSelectedProductIds');
         reportFormData = this.changeObjectKey(reportFormData, 'resourceIds', 'userSelectedResourceIds');
         return `${$('#winloss-detail-report-path').val()}?${$.param(reportFormData)}`;
@@ -251,6 +261,7 @@ $(function () {
         new WeekComponent(),
         new BreadcrumbLevelComponent(),
         window.productList,
-        window.productDetailList
+        window.productDetailList,
+        window.previousSelectedProductIds
     ).init();
 });

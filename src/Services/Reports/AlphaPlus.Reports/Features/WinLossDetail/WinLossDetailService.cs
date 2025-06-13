@@ -145,7 +145,9 @@ public class WinLossDetailService(
         var result = new CashFeeModel();
         var grandTotal = new CashFeeItemModel();
 
-        var criteria = new CashBillingCriteria(param.custId, param.fromDate, param.toDate);
+        var reportDate = await reportDateService.GetBalanceUpDayAndMoveBetsDay();
+       
+        var criteria = new CashBillingCriteria(param.custId, param.fromDate, param.toDate, reportDate.BalanceUpDay, reportDate.MoveBetsDay);
         var rawData = await repository.FetchAsync<CashFeeItemModel>(criteria);
 
         var groups = rawData.GroupBy(x => x.FeeType);
