@@ -286,7 +286,7 @@
 <div class="overlay">
     <div class="popup">
         <button onclick="closePopup()" class="closeButton">×</button>
-        <img src="@(cdnUri)cash-member/create/banner/BannerPC.png" alt="AdvCash" class="bannerImage" />
+        <img src="@(cdnUri)cash-member/create/cash-service-ads/BannerPC.png" alt="AdvCash" class="bannerImage" />
         
         <div id="adsContent" class="adsContent">
             <div class="mainTitle">
@@ -359,19 +359,19 @@
     const steps = [
         {
             description: "Instant deposits and withdrawals!",
-            image: "/public/cash-service-ads/step1.png"
+            image: "cash-member/create/cash-service-ads/step1.png"
         },
         {
             description: "Manage credit and cash member",
-            image: "/public/cash-service-ads/step2.png"
+            image: "cash-member/create/cash-service-ads/step2.png"
         },
         {
             description: "Dedicated domain",
-            image: "/public/cash-service-ads/step3.gif"
+            image: "cash-member/create/cash-service-ads/step3.gif"
         },
         {
             description: "Customise promotions",
-            image: "/public/cash-service-ads/step4.png"
+            image: "cash-member/create/cash-service-ads/step4.png"
         },
         {
             description: "Try Cash Service for free!"
@@ -402,7 +402,7 @@
         const stepContent = document.getElementById('stepContent');
         stepContent.innerHTML = `
             <div class="description">${step.description}</div>
-            ${step.image ? `<img src="${step.image}" class="bannerImage" />` : ''}
+            ${step.image ? `<img src="${cdnUri}${step.image}" class="bannerImage" />` : ''}
         `;
 
         document.getElementById('currentStep').textContent = currentStep + 1;
