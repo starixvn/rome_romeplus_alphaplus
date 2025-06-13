@@ -20,7 +20,7 @@
         100% { transform: scale(0.95); }
     }
 
-    .pulseAnimate {
+    .pulse-animate {
         animation: pulse 1.2s infinite;
         display: inline-block;
     }
@@ -41,7 +41,7 @@
 
     .popup {
         position: absolute;
-        max-width: 620px;
+        max-width: 630px;
         height: auto;
         margin: 20px;
         border-radius: 20px;
@@ -52,7 +52,7 @@
         top: 15%;
     }
 
-    .closeButton {
+    .close-button {
         position: absolute;
         top: 16px;
         right: 16px;
@@ -72,17 +72,18 @@
         transition: background 0.2s;
     }
 
-    .bannerImage {
+    .banner-image {
         width: 100%;
         height: auto;
         object-fit: cover;
     }
 
-    .activeCashContent {
+    .active-cash-content {
         position: absolute;
         top: 0;
         left: 0;
         height: 100%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -92,7 +93,7 @@
         box-sizing: border-box;
     }
 
-    .contentBox {
+    .content-box {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -122,14 +123,14 @@
     }
 
     .description {
-        font-size: 14px;
+        font-size: inherit;
         color: #222;
         margin-bottom: 5px;
         font-weight: 400;
     }
 
 
-    .buttonContainer {
+    .button-container {
         display: flex;
         gap: 8px;
         justify-content: center;
@@ -141,7 +142,7 @@
         }
     }
 
-    .primaryButton {
+    .primary-button {
         background: #0a2c4d;
         color: rgb(255, 255, 255);
         border: none;
@@ -156,7 +157,7 @@
         letter-spacing: 0.2px;
     }
 
-    .secondaryButton {
+    .secondary-button {
         color: #ffffff;
         background: #286fa1;
         border: none;
@@ -170,7 +171,7 @@
         letter-spacing: 0.2px;
     }
 
-    .adsContent {
+    .ads-content {
         position: absolute;
         top: 0;
         left: 0;
@@ -184,7 +185,7 @@
         box-sizing: border-box;
     }
 
-    .mainTitle {
+    .main-title {
         font-weight: 800;
         font-size: 38px;
         color: #03548d;
@@ -195,7 +196,7 @@
         text-transform: uppercase;
     }
 
-    .subTitle {
+    .sub-title {
         font-weight: 600;
         padding: 0 30px;
         font-size: 20px;
@@ -213,12 +214,12 @@
         color: #03548d;
     }
 
-    .freeHighlight {
+    .free-highlight {
         color: #ff9800;
         font-weight: 900;
     }
 
-    .stepSlider {
+    .step-slider {
         position: absolute;
         top: 0;
         left: 0;
@@ -227,31 +228,53 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: space-around;
         background: white;
         box-sizing: border-box;
     }
 
-    .stepContent {
-        min-height: 220px;
+    .step-content {
+        height: 350px;
     }
 
-    .stepNavigation {
+    .step-navigation {
         display: flex;
         justify-content: center;
-        gap: 12px;
-        margin-top: 20px;
-        margin-bottom: 10px;
+        gap: 8px;
     }
 
-    .stepButton {
-        padding: 8px 18px;
+    .step-button {
+        height: 30px;
+        padding: 0px 40px;
         border-radius: 18px;
         border: none;
         cursor: pointer;
     }
 
-    .backButton {
+    .step-title {
+        font-weight: 600;
+        font-size: 18px;
+        color: #0a2c4d;
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    .step-image {
+        width: 100%;
+        max-height: 260px;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .step-description {
+        font-size: 14px;
+        color: #222;
+        padding: 10px 0;
+        font-weight: 400;
+        text-align: center;
+    }
+
+    .back-button {
         background: #eee;
         color: #fff;
         cursor: not-allowed;
@@ -262,12 +285,12 @@
         }
     }
 
-    .nextButton {
+    .next-button {
         background: #0a2c4d;
         color: #fff;
     }
 
-    .stepCounter {
+    .step-counter {
         color: #9a9a9a;
         font-weight: 500;
     }
@@ -280,33 +303,42 @@
         margin-left: 10px;
         border-radius: 50px;
     }
+    .step-5-confirm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 16px;
+    }
+ 
 </style>
 
 
 <div class="overlay">
     <div class="popup">
-        <button onclick="closePopup()" class="closeButton">×</button>
-        <img src="@(cdnUri)cash-member/create/cash-service-ads/BannerPC.png" alt="AdvCash" class="bannerImage" />
+        <button onclick="closePopup()" class="close-button">×</button>
+        <img src="@(cdnUri)cash-member/create/cash-service-ads/BannerPC.png" alt="AdvCash" class="banner-image" />
         
-        <div id="adsContent" class="adsContent">
-            <div class="mainTitle">
+        <div id="ads-content" class="ads-content">
+            <div class="main-title">
                 EXCLUSIVELY FOR YOU
             </div>
-            <div class="subTitle">
-                Enjoy Cash Service <span class="pulseAnimate freeHighlight">FREE</span> for 14 days!
+            <div class="sub-title">
+                Enjoy Cash Service <span class="pulse-animate free-highlight">FREE</span> for 14 days!
             </div>
-            <div class="buttonContainer">
-                <button class="primaryButton" onclick="showActiveCashContent()" disabled="@(!Model.IsCanUpdateCashServiceStatus)">
+            <div class="button-container">
+                <button class="primary-button" onclick="showActiveCashContent()" disabled="@(!Model.IsCanUpdateCashServiceStatus)">
                     Activate now
                 </button>
-                <button class="secondaryButton" onclick="showStepSlider()">
+                <button class="secondary-button" onclick="showStepSlider()">
                     Find out more
                 </button>
             </div>
         </div>
 
-        <div id="activeCashContent" class="activeCashContent" style="display: none;">
-            <div class="contentBox">
+        <div id="active-cash-content" class="active-cash-content" style="display: none;">
+            <div class="content-box">
                 <div class="title">
                     Supercharge Your Cash Flow!
                 </div>
@@ -326,89 +358,111 @@
                         Get results. Stay if you love it. Cancel anytime.</li>
                 </ul>
                 <div class="description"> Don't miss out – activate your free trial now and take your cash flow to the next level.</div>
-                <div class="buttonContainer">
-                    <button class="primaryButton" onclick="confirmActivation()" disabled="@(!Model.IsCanUpdateCashServiceStatus)">
+                <div class="button-container">
+                    <button class="primary-button" onclick="confirmActivation()" disabled="@(!Model.IsCanUpdateCashServiceStatus)">
                         Confirm
                     </button>
-                    <button class="secondaryButton" onclick="showAdsContent()">
+                    <button class="secondary-button" onclick="showAdsContent()">
                         Cancel
                     </button>
                 </div>
             </div>
         </div>
 
-        <div id="stepSlider" class="stepSlider" style="display: none;">
-            <button onclick="showAdsContent()" class="closeButton">×</button>
-            <div id="stepContent" class="stepContent">
+        <div id="step-slider" class="step-slider" style="display: none;">
+            <div id="step-content" class="step-content">
                 <!-- Step content will be dynamically updated -->
             </div>
-            <div class="stepNavigation">
-                <button id="backButton" class="stepButton backButton" onclick="previousStep()" disabled>Back</button>
-                <button id="nextButton" class="stepButton nextButton" onclick="nextStep()">Next</button>
+            <div class="step-navigation">
+                <button id="back-button" class="step-button back-button" onclick="previousStep()" disabled>Back</button>
+                <button id="next-button" class="step-button next-button" onclick="nextStep()">Next</button>
             </div>
-            <div class="stepCounter">
-                <span id="currentStep">1</span> of <span id="totalSteps">5</span>
+            <div class="step-counter">
+                <span id="current-step">1</span> of <span id="total-steps">5</span>
             </div>
         </div>
     </div>
 </div>
 
 <script>
+    const cdnUri = '@cdnUri';
     let currentStep = 0;
     const totalSteps = 5;
     const steps = [
         {
-            description: "Instant deposits and withdrawals!",
-            image: "cash-member/create/cash-service-ads/step1.png"
+            title: "Instant deposits and withdrawals!",
+            image: "cash-member/create/cash-service-ads/step1.png",
+            description: "Esily add <strong>payment gateway</strong> and <strong>bank accounts</strong> so your members can play instantly."
         },
         {
-            description: "Manage credit and cash member",
-            image: "cash-member/create/cash-service-ads/step2.png"
+            title: "Manage credit and cash member",
+            image: "cash-member/create/cash-service-ads/step2.png",
+            description: "Maximise your earnings by managing both credit and cash in single account."
         },
         {
-            description: "Dedicated domain",
-            image: "cash-member/create/cash-service-ads/step3.gif"
+            title: "Dedicated domain",
+            image: "cash-member/create/cash-service-ads/step3.gif",
+            description: "Elevate your brand with a unique sign-up linked for member registrations."
         },
         {
-            description: "Customise promotions",
-            image: "cash-member/create/cash-service-ads/step4.png"
+            title: "Customise promotions",
+            image: "cash-member/create/cash-service-ads/step4.png",
+            description: "Create and manage promotions featuring popular products and providers to keep your members entertained."
         },
         {
-            description: "Try Cash Service for free!"
+            title: "",
+            classname: "step-5-confirm",
+            description: `
+                <div class="title">Supercharge Your Cash Flow!</div>
+                <div class="divider"></div>
+                <div class="description">
+                    Start your <span class="highlight">14-days FREE trial</span> today and enjoy instant savings of <strong>THB 2,800</strong>.
+                </div>
+                <ul class="description">
+                    <li><span class="icon-check"></span><strong>No platform fee</strong> - save THB 200/day during the trial.</li>
+                    <li><span class="icon-check"></span>Just <strong>THB 0.15 per transaction</strong> via your linked bank account.</li>
+                    <li><span class="icon-check"></span>Get results. Stay if you love it. Cancel anytime.</li>
+                </ul>
+                <div class="description">Don't miss out – activate your free trial now and take your cash flow to the next level.</div>
+            `
         }
     ];
 
     function showAdsContent() {
-        document.getElementById('adsContent').style.display = 'flex';
-        document.getElementById('activeCashContent').style.display = 'none';
-        document.getElementById('stepSlider').style.display = 'none';
+        document.getElementById('ads-content').style.display = 'flex';
+        document.getElementById('active-cash-content').style.display = 'none';
+        document.getElementById('step-slider').style.display = 'none';
     }
 
     function showActiveCashContent() {
-        document.getElementById('adsContent').style.display = 'none';
-        document.getElementById('activeCashContent').style.display = 'flex';
-        document.getElementById('stepSlider').style.display = 'none';
+        document.getElementById('ads-content').style.display = 'none';
+        document.getElementById('active-cash-content').style.display = 'flex';
+        document.getElementById('step-slider').style.display = 'none';
     }
 
     function showStepSlider() {
-        document.getElementById('adsContent').style.display = 'none';
-        document.getElementById('activeCashContent').style.display = 'none';
-        document.getElementById('stepSlider').style.display = 'flex';
+        document.getElementById('ads-content').style.display = 'none';
+        document.getElementById('active-cash-content').style.display = 'none';
+        document.getElementById('step-slider').style.display = 'flex';
         updateStepContent();
     }
 
     function updateStepContent() {
         const step = steps[currentStep];
-        const stepContent = document.getElementById('stepContent');
+        const stepContent = document.getElementById('step-content');
         stepContent.innerHTML = `
-            <div class="description">${step.description}</div>
-            ${step.image ? `<img src="${cdnUri}${step.image}" class="bannerImage" />` : ''}
+            <div class="step-title">${step.title}</div>
+            ${step.image ? `<img src="${cdnUri}${step.image}" class="step-image" />` : ''}
+            ${step.description ? `<div class="step-description">${step.description}</div>` : ''}
         `;
+        if (step.classname) {
+            stepContent.classList.add(step.classname);
+        }
 
-        document.getElementById('currentStep').textContent = currentStep + 1;
-        document.getElementById('backButton').disabled = currentStep === 0;
+        document.getElementById('current-step').textContent = currentStep + 1;
+        document.getElementById('back-button').disabled = currentStep === 0;
         
-        const nextButton = document.getElementById('nextButton');
+        const nextButton = document.getElementById('next-button');
         if (currentStep === totalSteps - 1) {
             nextButton.textContent = 'Finish';
             nextButton.onclick = confirmActivation;
@@ -433,35 +487,26 @@
     }
 
     function confirmActivation() {
-        handleEnableCashService();
-        console.log('Activation confirmed');
-        closePopup();
+        $.ajax({
+                url: '/main/Dashboard/UpdateCashServiceStatus',
+                type: 'POST',
+                data: {
+                    IsEnableCash: true
+                },
+                headers: {
+                    'RequestVerificationToken': $('input[name="RequestVerificationToken"]').val()
+                },
+                success: (response) => {
+                    if (response.isSuccessful) {
+                        closePopup();
+                    } else {
+                        alert(response.message);
+                }
+            }
+        });
     }
 
     function closePopup() {
         document.querySelector('.overlay').style.display = 'none';
     }
-
-    function handleEnableCashService() {
-        $.ajax({
-            url: '/main/Dashboard/UpdateCashServiceStatus',
-            type: 'POST',
-            data: {
-                IsEnableCash: true
-            },
-            headers: {
-                'RequestVerificationToken': $('input[name="RequestVerificationToken"]').val()
-            },
-            success: (response) => {
-                if (response.isSuccessful) {
-                    const toggle = $("#cash-service-toggle");
-                    toggle.attr("data-state", "on");
-                    toggle.addClass("active");
-                    $("#enableCashServiceModal").modal('hide');
-                } else {
-                    alert(response.message);
-                }
-            }
-        });
-    };
 </script>
