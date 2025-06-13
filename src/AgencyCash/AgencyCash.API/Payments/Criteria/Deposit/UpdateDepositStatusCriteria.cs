@@ -40,5 +40,5 @@ public class UpdateDepositStatusCriteria(
     public override string GetSettingKey()
         => SPNameHelper.SiteDBPrefix("API_CashDeposit_AddTransaction", SiteDBGroupId);
 
-    public override bool IsValid() => CustId > 0;
+    public override bool IsValid() => AgentId > 0 && CustId > 0 && TransId > 0;
 }
