@@ -32,6 +32,18 @@ export const transactionAPI = {
       const response = await api.get<TransactionsHistoryResponse>(
         `GetHistory?${queryParams.toString()}`
       );
+      response.data.items.forEach((item) => {
+        if (
+          item.paymentFrom === null ||
+          item.paymentFrom === undefined ||
+          item.paymentFrom === ''
+        ) {
+          item.paymentFrom = '-';
+        }
+        if (item.paymentTo === null || item.paymentTo === undefined || item.paymentTo === '') {
+          item.paymentTo = '-';
+        }
+      });
       return response.data;
     } catch (error) {
       console.error('Error fetching transactions:', error);

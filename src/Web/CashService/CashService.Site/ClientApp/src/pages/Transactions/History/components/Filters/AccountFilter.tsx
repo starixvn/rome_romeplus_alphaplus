@@ -45,10 +45,13 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
   }, [transactionType, paymentInformations, onAccountsLoaded]);
 
   return (
-    <div className="form-group"> 
-      <LabelTitleComponent text={transactionType === TransactionType.Deposit ? t('filter.to') : t('filter.from')} />
+    <div className="form-group">
+      <LabelTitleComponent
+        text={transactionType === TransactionType.Deposit ? t('filter.to') : t('filter.from')}
+      />
       <CustomDropdown
         options={accountOptions.map((option) => {
+          if (option === '-') return { value: option, label: option };
           const [bankCode, accountNumber] = option.split('-');
           return {
             value: option,
