@@ -16,6 +16,7 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
         {
             [string.Empty] = null,
             ["CashServiceMenuItem"] = () => new MenuStatus(Core.Configurations.AppSettings.IsOfferedCashService(Current.Site) && (!Current.IsSubAcc || Current.SubPageAccess.GetPermission(PageAccessType.CashService))),
+            ["NewCashServiceMenuItem"] = () => new MenuStatus(Core.Configurations.AppSettings.IsOfferedCashService(Current.Site) && (!Current.IsSubAcc || Current.SubPageAccess.GetPermission(PageAccessType.CreateAccount))),
             ["CashPromotionMenuItem"] = () => new MenuStatus(Core.Configurations.AppSettings.IsOfferedCashService(Current.Site) && (!Current.IsSubAcc || Current.SubPageAccess.GetPermission(PageAccessType.CashPromotion))),
             ["CreateAccountMenuItem"] = () => new MenuStatus(!Current.IsSubAcc || Current.SubPageAccess.GetPermission(PageAccessType.CreateAccount)),
             ["CreateDirectMemberMenuItem"] = () => new MenuStatus(() => CreateDirectMemberMenuItemVisible),
