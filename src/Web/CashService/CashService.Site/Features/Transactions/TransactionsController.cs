@@ -1,5 +1,6 @@
 namespace AlphaPlus.CashService.Site.Features.Transactions;
 
+using AlphaPlus.Shared.AppResources.CashServices;
 using Core.Models;
 using Helpers;
 using Microsoft.AspNetCore.Antiforgery;
@@ -123,8 +124,25 @@ public class TransactionsController(
         request.CustDbGroupId = custDbGroupId;
         request.PaySlip = request.Image != null ? await FileHelper.CompressAndConvertToBase64Async(request.Image) : null;
         var result = await httpClientHelper.PostAsync<AddTransactionParams, ResultModel>("/api/deposit/create", request);
+        if (result.Code != 0)
+        {
+            result.Message = MappingDepositErrorCode(result.Code);
+        }
         return Json(result);
     }
+
+    private static string MappingDepositErrorCode(int errCode) =>
+        errCode switch
+        {
+            401 => CashServicesResx.AccountDisabled,
+            402 => CashServicesResx.AccountClosed,
+            403 => CashServicesResx.UnableToProcessDeposits,
+            404 => CashServicesResx.TheAccountWasSuspended,
+            405 => CashServicesResx.InvalidParameters,
+            407 => CashServicesResx.TheAmountExceedsTheAllowedMinimumOrMaximumValue,
+            409 => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain,
+            _ => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain
+        };
 
     [HttpPost]
     public async Task<IActionResult> AddManualWithdrawal([FromForm] AddTransactionParams request)
@@ -145,8 +163,28 @@ public class TransactionsController(
         request.CustDbGroupId = custDbGroupId;
         request.PaySlip = request.Image != null ? await FileHelper.CompressAndConvertToBase64Async(request.Image) : null;
         result = await httpClientHelper.PostAsync<AddTransactionParams, ResultModel>("/api/withdrawal/create", request);
+        if (result.Code != 0)
+        {
+            result.Message = MappingAddManualWithdrawalErrCode(result.Code);
+        }
         return Json(result);
     }
+
+    private static string MappingAddManualWithdrawalErrCode(int errCode)
+    => errCode switch
+    {
+        400 => CashServicesResx.ModelValidationFailed,
+        401 => CashServicesResx.AccountDisabled,
+        402 => CashServicesResx.AccountClosed,
+        404 => CashServicesResx.TheAccountWasSuspended,
+        405 => CashServicesResx.InvalidParameters,
+        406 => CashServicesResx.MemberCashBalanceIsInsufficient,
+        407 => CashServicesResx.TheAmountExceedsTheAllowedMinimumOrMaximumValue,
+        408 => CashServicesResx.ExceedsTheDailyWithdrawalLimit,
+        409 => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain,
+        500 => CashServicesResx.AnErrorOccurredWhileProcessingWithdrawalRequest,
+        _ => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain
+    };
 
     private static ResultModel VerifyInputParam(AddTransactionParams request, bool isWithdrawal)
     {
@@ -154,30 +192,30 @@ public class TransactionsController(
         if (request.Amount <= 0 || (request.MaxLimitAmt > 0 && request.Amount > request.MaxLimitAmt))
         {
             result.Code = 1;
-            result.Message = "Amount must be greater than 0 and less than MaxLimit";
+            result.Message = CashServicesResx.TheAmountExceedsTheAllowedMinimumOrMaximumValue;
         }
         if (request.CustId <= 0)
         {
             result.Code = 1;
-            result.Message = "Please select member login";
+            result.Message = CashServicesResx.MemberUsernameIsRequired;
         }
 
         if (string.IsNullOrWhiteSpace(request.PaymentFrom) && (request.ProviderId <= 0 && isWithdrawal))
         {
             result.Code = 1;
-            result.Message = "Please select PaymentFrom";
+            result.Message = CashServicesResx.FromIsRequired;
         }
 
         if (string.IsNullOrWhiteSpace(request.PaymentTo))
         {
             result.Code = 1;
-            result.Message = "Please select PaymentTo";
+            result.Message = CashServicesResx.ToIsRequired;
         }
 
         if (!IsValidFile(request.Image))
         {
             result.Code = 1;
-            result.Message = "File upload must be less than 1MB";
+            result.Message = CashServicesResx.FileUploadMustBeLessThan1MB;
         }
         return result;
     }
