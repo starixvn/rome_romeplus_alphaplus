@@ -29,7 +29,7 @@ class CashFeeView extends BaseReportNew {
         super.initShowHideFilter();
         this.$tblReportContainer = $('#tbl-report-container');
 
-        this.dateRangeComponent.render({ maxDays: 92, onClosed: () => this.getCashFee(null) });
+        this.dateRangeComponent.render({ maxDays: 92, onClosed: () => this.getCashFee(null, true) });
         this.breadcrumbLevelComponent.init((custInfo) => {
             $.blockUI();
             const winlossDetailParams = $.extend(
@@ -40,7 +40,7 @@ class CashFeeView extends BaseReportNew {
             );
             location.href = `${$('#winloss-detail-report-path').val()}?${$.param(winlossDetailParams)}`;
         });
-        this.weekComponent.init($('#week-container'), (dateRange) => this.getCashFee(dateRange));
+        this.weekComponent.init($('#week-container'), (dateRange) => this.getCashFee(dateRange, true));
         this.globalFormData = winlossDetailFromData;
         this.registerEvents();
 
@@ -70,12 +70,14 @@ class CashFeeView extends BaseReportNew {
             .attr('href', 'javascript:;');
     }
 
-    getCashFee(weekRange) {
+    getCashFee(weekRange, isGetWeeks: boolean) {
         this.clearActiveWeek();
         this.$tblReportContainer.block();
+        const dateRange = this.dateRangeComponent.getDateRangeValues();
         const queryStringObject = $.extend(
-            {}, this.globalFormData, weekRange);
+            {}, this.globalFormData, dateRange, weekRange);
         const queryString = $.param(queryStringObject);
+        isGetWeeks && this.getWeeks(queryString);
         this.globalFormData = queryStringObject;
         const url = 'GetCashFeeData';
         $.get(`${url}?${queryString}`, (html) => {
@@ -85,6 +87,13 @@ class CashFeeView extends BaseReportNew {
             alphaReports.ajaxFail(jqXHR);
             this.$tblReportContainer.unblock();
         });
+    }
+
+    getWeeks(queryString: string) {
+        const url = $('#hidden-getReportWeeksUrl').attr('href') || 'GetWeeks';
+        $.get(`${url}?${queryString}`, (html) => this.weekComponent.render(html)).fail((jqXHR) =>
+            alphaReports.ajaxFail(jqXHR)
+        );
     }
 
     private clearActiveWeek() {
