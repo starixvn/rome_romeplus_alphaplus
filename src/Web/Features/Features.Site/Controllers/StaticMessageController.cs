@@ -7,6 +7,7 @@ using AlphaPlus.Core.Models;
 using UserLevel = AlphaPlus.Features.Messages.API.Models.Constants.UserLevel;
 using Microsoft.AspNetCore.Mvc.Razor;
 using System.Net;
+using Microsoft.AspNetCore.OutputCaching;
 
 namespace AlphaPlus.Features.Site.Messages.Controllers
 {
@@ -42,6 +43,7 @@ namespace AlphaPlus.Features.Site.Messages.Controllers
         public ActionResult Index(string id)
             => View(id);
 
+        [ResponseCache(NoStore = true), OutputCache(NoStore = true)]
         public ActionResult File(string id)
         {
             string viewName = $"{id}.{userSession.Language}";
@@ -63,6 +65,7 @@ namespace AlphaPlus.Features.Site.Messages.Controllers
             return PartialView(viewName);
         }
 
+        [ResponseCache(NoStore = true), OutputCache(NoStore = true)]
         public ActionResult Guide(string id)
         {
             var roleName = UserLevel.GetDisplayName(userSession.RoleId);
@@ -86,6 +89,7 @@ namespace AlphaPlus.Features.Site.Messages.Controllers
             return base.PhysicalFile($"{baseDirectory}/Views/StaticMessage/{fileName}.pdf", "application/pdf");
         }
 
+        [ResponseCache(NoStore = true), OutputCache(NoStore = true)]
         public ActionResult Help(string id)
         {
             string fileName = $"{id}.{userSession.Language}";
