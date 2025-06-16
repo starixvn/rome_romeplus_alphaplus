@@ -34,7 +34,7 @@ export const renderBankAccount = (bankAccount: string) => {
   if (bankCode && !accountNumber) return <div className="flex items-center">{bankCode}</div>;
   if (!accountNumber && !bankCode) return <div className="flex items-center">-</div>;
   return (
-    <div className="flex items-center">
+    <div className="inline-flex items-center">
       {bankCode && (
         <img
           src={`../assets/bank/${bankCode}.png`}

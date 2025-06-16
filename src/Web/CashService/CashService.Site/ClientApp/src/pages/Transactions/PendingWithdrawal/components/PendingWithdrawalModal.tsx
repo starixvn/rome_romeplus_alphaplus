@@ -10,8 +10,8 @@ import {
 import BankIcon from '../../../../components/BankComponents.tsx';
 import {
   ButtonApplyComponent,
-  ButtonCancelComponent,
   ButtonClosePopupComponent,
+  ButtonRejectComponent,
 } from '../../../../components/ButtonComponents.tsx';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import { ResultMessageComponent } from '../../../../components/MessageComponents.tsx';
@@ -175,7 +175,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
 
   return (
     <div className="bg-[#00000080] fixed inset-0 flex items-start justify-center z-50 w-full">
-      <div className="px-[20px] pb-[10px] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[50px] max-w-[90%] w-full max-[768px]:h-[90%] overflow-auto rounded-[4px]">
+      <div className="px-[20px] pb-[10px] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[50px] w-[900px] max-[768px]:max-w-[90%] max-[768px]:w-full max-[768px]:h-[90%] overflow-auto rounded-[4px]">
         <div className="relative my-[10px]">
           <MediumTitleComponent
             text={` ${t('pendingWithdrawalModal.title')} (${withdrawal?.transId})`}
@@ -282,7 +282,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
         </div>
 
         <div className="flex justify-center gap-[8px]">
-          <ButtonCancelComponent
+          <ButtonRejectComponent
             text={t('pendingWithdrawalModal.reject')}
             onClick={handleReject}
             disabled={isSubmitting}

@@ -12,6 +12,10 @@ import {
   ButtonApplyComponent,
   ButtonCancelComponent,
   ButtonFullComponent,
+  ButtonOffComponent,
+  ButtonOnComponent,
+  EnableButtonComponent,
+  DisableButtonComponent,
 } from '../../components/ButtonComponents';
 import { IconArrowDown, IconInfo, IconReload } from '../../components/Icons';
 import { LoadingFullComponent } from '../../components/LoadingComponent';
@@ -454,44 +458,17 @@ function PaymentProviderSettings() {
               <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-color)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
                 <BackButtonComponent onClick={onBackNavigation} />
                 <TitleComponent title={window.providerSettingsViewModel.Provider.Name} />
+                {providerStatus != paymentProviderStatusConstant.notConfigured && (
+                <div className="ml-[16px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]" role="group">               
+                <EnableButtonComponent onClick={onProviderStatusToggle} isActive={providerStatus} />
+                <DisableButtonComponent onClick={onProviderStatusToggle} isActive={!providerStatus} />
+                
+              </div>
+              )}
+                
               </div>
             </div>
-            <div className="flex gap-[24px] max-[768px]:flex-col max-[768px]:gap-[8px]">
-             
-              {providerStatus != paymentProviderStatusConstant.notConfigured && (
-                <div>
-                  <p className="flex items-center">
-                    <LabelTitleComponent text={`${tGlobal('enable')}/${tGlobal('disable')}`} />
-                    <Tippy
-                      content={
-                        <div>                           
-                          <div>• {tPaymentProviderSettings('enableDisableTip1')}</div>
-                          <div>• {tPaymentProviderSettings('enableDisableTip2')}</div>
-                          <div>• {tPaymentProviderSettings('enableDisableTip3')}</div>
-                        </div>
-                      }
-                      placement="top"
-                      theme="light"
-                      arrow={true}
-                    >
-                      <span className="cursor-pointer">
-                        <IconInfo className="w-[20px] h-[20px] ml-[4px] fill-[#118AF2]" />
-                      </span>
-                    </Tippy>
-                  </p>
-                  <label className="inline-block">
-                    <input
-                      type="checkbox"
-                      id="enableToggle"
-                      checked={providerStatus}
-                      onChange={onProviderStatusToggle}
-                      className="opacity-0 absolute hidden peer "
-                    />
-                    <span className='block cursor-pointer w-[60px] h-[30px] rounded-[20px] bg-[var(--button-switch-background)] relative after:content-[""] after:absolute after:top-[3px] after:left-[3px] after:w-[24px] after:h-[24px] after:rounded-[50%] after:bg-[var(--button-switch-dot-background)] after:transition-all after:duration-300 after:ease-in-out after:shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] peer-checked:after:left-[32px] peer-checked:bg-[var(--button-switch-background-active)]'></span>
-                  </label>
-                </div>
-              )}
-            </div>
+            
           </div>
           <div className="py-[10px]">
             <div className="flex flex-wrap mb-[8px]">
@@ -647,7 +624,7 @@ function PaymentProviderSettings() {
                               maxLength={15}
                             />
                             <label className="text-left text-[var(--text-color)]">
-                            <span className="text-[14px] px-[4px]">&gt;</span>
+                            <span className="text-[14px] px-[4px]">&gt;=</span>
                               {formatNumber(setting.minAmountTrans)}
                             </label>
                           </div>
@@ -667,7 +644,7 @@ function PaymentProviderSettings() {
                               maxLength={15}
                             />
                             <label className="text-left text-[var(--text-color)]">
-                              <span className="text-[14px] px-[4px]">&lt;</span>
+                              <span className="text-[14px] px-[4px]">&lt;=</span>
                               {formatNumber(setting.maxAmountTrans)}
                             </label>
                           </div>

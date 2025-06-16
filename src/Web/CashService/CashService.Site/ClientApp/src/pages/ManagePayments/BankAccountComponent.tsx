@@ -298,23 +298,9 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                     <ButtonTabInactiveComponent text={tManagePayments('bankAccount')} />
                   </li>
                 </ul>                     
-                <div className="py-[8px]">
+                <div className="pt-[8px]">
                   <ErrorMessageComponent message={error} />
                   <SuccessMessageComponent message={successMessage} />
-                  <MediumTitleComponent className="my-[8px]" text={tManagePayments('manageBankAccountAndLimits')} />
-                  <div className="">{tManagePayments('addBankAccountAndLimit')}</div>
-                  <div className="my-[8px] flex gap-[8px]">
-                    <ButtonFullComponent
-                      className="w-[183px] [&>*]:w-[100%]"
-                      text={`${tManagePayments('addBankAccount')}`}
-                      onClick={onAddBankAccount}
-                    />
-                    <ButtonOutlineComponent
-                      className="w-[183px] [&>*]:w-[100%]"
-                      text={tManagePayments('setLimit')}
-                      onClick={onSetLimit}
-                    />
-                  </div>
                 </div>
                 {loading && <Loading />}
                 {!loading && !error && banks.length > 0 && (
@@ -404,7 +390,21 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                 )}
 
                 {!loading && !error && bankAccounts.length > 0 && (
-                  
+                  <>
+                    <div className='w-full border border-[var(--table-border-color)] border-b-0 p-[6px] flex'>
+                    <div className="flex gap-[8px]">
+                    <ButtonFullComponent
+                      className="w-[183px] [&>*]:w-[100%]"
+                      text={`${tManagePayments('addBankAccount')}`}
+                      onClick={onAddBankAccount}
+                    />
+                    <ButtonOutlineComponent
+                      className="w-[183px] [&>*]:w-[100%]"
+                      text={tManagePayments('setLimit')}
+                      onClick={onSetLimit}
+                    />
+                  </div>
+                    </div>
                     <div className="table table-fixed-body">
                       <table className="w-full whitespace-nowrap   ">
                         <thead>
@@ -450,7 +450,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                         </tbody>
                       </table>
                     </div>
-                
+                  </>
                 )}
 
                 {!loading && !error && banks.length > 0 && bankAccounts.length === 0 && (

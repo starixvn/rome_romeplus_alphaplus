@@ -12,6 +12,7 @@ import { ButtonFullComponent } from '../../../../components/ButtonComponents';
 import Pagination from '../../Components/Pagination';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
 import { ValidateMessageComponent } from '../../../../components/MessageComponents.tsx';
+import Tippy from '@tippyjs/react';
 
 interface DataGridProps {
   withdrawals: TransactionItem[];
@@ -101,8 +102,8 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
                     <div>{withdrawal.lastName}</div>
                   </td>
                   <td>{displayAmount(withdrawal.amount)}</td>
-                  <td>{renderBankAccount(withdrawal.paymentFrom)}</td>
-                  <td>{renderBankAccount(withdrawal.paymentTo)}</td>
+                  <td className="text-left"><Tippy content={<p>data</p>}>{renderBankAccount(withdrawal.paymentFrom)}</Tippy></td>
+                  <td className="text-left"><Tippy content={<p>data</p>}>{renderBankAccount(withdrawal.paymentTo)}</Tippy></td>
                   <td>{withdrawal.transId}</td>
                   <td>{formatDateTime(withdrawal.createdTime)}</td>
                   <td>

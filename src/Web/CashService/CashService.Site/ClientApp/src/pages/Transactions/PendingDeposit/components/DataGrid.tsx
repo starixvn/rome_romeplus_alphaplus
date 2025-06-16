@@ -11,6 +11,7 @@ import Pagination from '../../Components/Pagination';
 import { ButtonFullComponent } from '../../../../components/ButtonComponents';
 import PendingDepositModal from './PendingDepositModal';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
+import Tippy from '@tippyjs/react';
 
 interface DataGridProps {
   deposits: TransactionItem[];
@@ -75,8 +76,8 @@ const TableRow: React.FC<TableRowProps> = ({
       <div>{deposit.lastName}</div>
     </td>
     <td>{displayAmount(deposit.amount)}</td>
-    <td>{renderBankAccount(deposit.paymentFrom)}</td>
-    <td>{renderBankAccount(deposit.paymentTo)}</td>
+    <td className="text-left"><Tippy content={<p>data</p>}>{renderBankAccount(deposit.paymentFrom)}</Tippy></td>
+    <td className="text-left"><Tippy content={<p>data</p>}>{renderBankAccount(deposit.paymentTo)}</Tippy></td>
     <td>{deposit.transId}</td>
     <td>{formatDateTime(deposit.createdTime)}</td>
     <td>

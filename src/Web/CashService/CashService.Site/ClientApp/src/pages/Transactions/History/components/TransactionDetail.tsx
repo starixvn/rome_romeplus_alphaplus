@@ -216,7 +216,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
                   </div>
                   <div className="w-[48%]">
                     <LabelTitleComponent text={t('detail.transactionType')} />
-                    <div>{detailData.transactionType}</div>
+                    <div className='text-[var(--text-link-color)] font-semibold'>{detailData.transactionType}</div>
                   </div>
                   <div className="w-[48%]">
                     <LabelTitleComponent text={t('detail.amount')} />
