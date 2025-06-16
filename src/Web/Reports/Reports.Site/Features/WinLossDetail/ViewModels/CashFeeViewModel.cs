@@ -7,7 +7,11 @@ using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Site.Features.WinLossDetail.ViewModels;
 
-public class CashFeeViewModel(CashFeeQuery message, CashFeeModel cashFeeModel, IEnumerable<Reports.Features.Shared.Models.Breadcrumb> breadcrumbs)
+public class CashFeeViewModel(
+    CashFeeQuery message,
+    CashFeeModel cashFeeModel, 
+    IEnumerable<Reports.Features.Shared.Models.Breadcrumb> breadcrumbs,
+    IEnumerable<WinLossDetailWeekViewModel> weeks)
 {
     public PageHeaderViewModel PageHeader { get; } = new PageHeaderViewModel(
         Title: GetCashFeeTitle(message),
@@ -21,6 +25,8 @@ public class CashFeeViewModel(CashFeeQuery message, CashFeeModel cashFeeModel, I
         message.Language);
 
     public IEnumerable<Reports.Features.Shared.Models.Breadcrumb> Breadcrumbs { get; } = breadcrumbs;
+
+    public IEnumerable<WinLossDetailWeekViewModel> Weeks { get; } = weeks;
 
     public CashFeeModel CashFee { get; } = cashFeeModel;
 

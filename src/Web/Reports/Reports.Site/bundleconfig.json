@@ -87,6 +87,7 @@
       "assets/scripts/base-report-new.js",
       "assets/scripts/components/daterangepicker-jquery.js",
       "assets/scripts/components/breadcrumb-level.js",
+      "assets/scripts/components/week.js",
       "assets/scripts/winlossdetail/cashfee-copyhtml.js",
       "assets/scripts/winlossdetail/cashfee.js"
     ]

@@ -12,7 +12,8 @@ namespace AlphaPlus.Reports.Site.Features.WinLossDetail;
 public class WinLossDetailController(IMediator mediator) : ReportBaseController(mediator)
 {
     public Task<IActionResult> Index(WinLossDetailQuery message)
-        => View<WinLossDetailViewModel>(message);
+        => 
+        View<WinLossDetailViewModel>(message);
 
     public Task<IActionResult> GetData(WinLossDetailGetDataQuery message)
         => View<WinLossDetailGetDataViewModel>(message, "ReportData");

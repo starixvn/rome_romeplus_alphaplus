@@ -27,8 +27,8 @@ public class CashFeeWorkbook(IWebHostEnvironment webHostEnvironment) :
 
     public ExcelFileViewModel BuildCashFeeExcelFile(CashFeeExcelQuery message, CashFeeModel cashFeeModel)
     {
-        var fromDateString = message.FromDate.ToShortDateWithSlash();
-        var toDateString = message.ToDate.ToShortDateWithSlash();
+        var fromDateString = (message.WeekFromDate ?? message.FromDate).ToShortDateWithSlash();
+        var toDateString = (message.WeekToDate ?? message.ToDate).ToShortDateWithSlash();
         var custName = message.CustName;
         this.cashFeeModel = cashFeeModel;
         cashFeeItemMapper = GetRowMapper();

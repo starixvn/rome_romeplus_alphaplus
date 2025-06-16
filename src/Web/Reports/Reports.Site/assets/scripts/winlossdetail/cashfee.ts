@@ -7,26 +7,29 @@ declare var winlossDetailFromData: any;
 class CashFeeView extends BaseReportNew {
     private dateRangeComponent: DateRangePickerJQueryComponent;
     private breadcrumbLevelComponent: BreadcrumbLevelComponent;
-
+    private weekComponent: WeekComponent;
     private cashFeeCopyHtml: CashFeeCopyHtml;
     private $tblReportContainer: JQuery;
+    private globalFormData: any;
 
     constructor(
         dateRangeComponent: DateRangePickerJQueryComponent,
         breadcrumbLevelComponent: BreadcrumbLevelComponent,
-        cashFeeCopyHtml: CashFeeCopyHtml
+        cashFeeCopyHtml: CashFeeCopyHtml,
+        weekComponent: WeekComponent
     ) {
         super();
         this.dateRangeComponent = dateRangeComponent;
         this.breadcrumbLevelComponent = breadcrumbLevelComponent;
         this.cashFeeCopyHtml = cashFeeCopyHtml;
+        this.weekComponent = weekComponent;
     }
 
     init() {
         super.initShowHideFilter();
         this.$tblReportContainer = $('#tbl-report-container');
 
-        this.dateRangeComponent.render({ maxDays: 92, onClosed: () => this.getCashFee() });
+        this.dateRangeComponent.render({ maxDays: 92, onClosed: () => this.getCashFee(null, false) });
         this.breadcrumbLevelComponent.init((custInfo) => {
             $.blockUI();
             const winlossDetailParams = $.extend(
@@ -37,6 +40,8 @@ class CashFeeView extends BaseReportNew {
             );
             location.href = `${$('#winloss-detail-report-path').val()}?${$.param(winlossDetailParams)}`;
         });
+        this.weekComponent.init($('#week-container'), (dateRange) => this.getCashFee(dateRange, true));
+        this.globalFormData = winlossDetailFromData;
         this.registerEvents();
 
         // setTimeout(function () {
@@ -55,7 +60,7 @@ class CashFeeView extends BaseReportNew {
                     custId: winlossDetailFromData.custId,
                     custName: winlossDetailFromData.custName
                 };
-                $.extend(excelParams, this.dateRangeComponent.getDateRangeValues());
+                $.extend(excelParams, this.globalFormData);
                 $iconExcel.attr('href', `${excelUrl}?${$.param(excelParams)}`);
                 setTimeout(function () {
                     $iconExcel.attr('href', 'javascript:;');
@@ -65,13 +70,15 @@ class CashFeeView extends BaseReportNew {
             .attr('href', 'javascript:;');
     }
 
-    getCashFee() {
+    getCashFee(weekRange, isGetWeeks: boolean) {
+        this.clearActiveWeek();
         this.$tblReportContainer.block();
         const queryStringObject = $.extend(
             { custId: winlossDetailFromData.custId, custName: winlossDetailFromData.custName },
-            this.dateRangeComponent.getDateRangeValues()
+            isGetWeeks ? weekRange : this.dateRangeComponent.getDateRangeValues()
         );
         const queryString = $.param(queryStringObject);
+        this.globalFormData = queryStringObject;
         const url = 'GetCashFeeData';
         $.get(`${url}?${queryString}`, (html) => {
             this.$tblReportContainer.html(html);
@@ -81,12 +88,18 @@ class CashFeeView extends BaseReportNew {
             this.$tblReportContainer.unblock();
         });
     }
+
+    private clearActiveWeek() {
+        delete this.globalFormData.weekFromDate;
+        delete this.globalFormData.weekToDate;
+    }
 }
 
 $(function () {
     new CashFeeView(
         new DateRangePickerJQueryComponent(),
         new BreadcrumbLevelComponent(),
-        new CashFeeCopyHtml(Clipboard)
+        new CashFeeCopyHtml(Clipboard),
+        new WeekComponent()
     ).init();
 });

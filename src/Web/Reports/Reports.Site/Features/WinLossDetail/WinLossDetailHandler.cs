@@ -308,7 +308,26 @@ public class WinLossDetailHandler(
         var cashFeeParam = new CashFeeParam(message.CustId, message.FromDate, message.ToDate);
         var cashFeeModel = await winlossDetailService.GetCashFee(cashFeeParam);
 
-        return new CashFeeViewModel(message, cashFeeModel, breadcrumbs);
+        var (validUserSelectedProductIds, productDetailXml) = await FilterProductAndProductDetailIds(
+               message,
+               message.UserSelectedProductIds,
+               message.UserSelectedResourceIds);
+
+        var weekDataParam = new WinLossDetailWeekParam(
+               message.ViewerId,
+               message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
+               message.ToDate,
+               validUserSelectedProductIds.JoinWithComma(),
+               productDetailXml,
+               string.IsNullOrWhiteSpace(message.Username) ? message.CustName : message.Username,
+               IsReward: true,
+               message.LevelType,
+               message.Site);
+        
+        var weekData = await winlossDetailService.GetWeekData(weekDataParam);
+        var weeks = BuildWeekViewModels(weekData, message.FromDate, message.ToDate, message.WeekFromDate, message.WeekToDate);
+
+        return new CashFeeViewModel(message, cashFeeModel, breadcrumbs, weeks);
     }
 
     public async Task<ExcelFileViewModel> Handle(CashFeeExcelQuery message, CancellationToken cancellationToken)

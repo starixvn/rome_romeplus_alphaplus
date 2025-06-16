@@ -35,6 +35,9 @@
 	</div>
 	<form class="form-inline filter" role="form" id="report-form">
 		<daterange-picker-jquery model="@Model.DateRangePicker" />
+		<div class="label-week-box" id="week-container">
+			<partial name="Weeks" model="@Model.Weeks" />
+		</div>
 	</form>
 
 	<div class="breadcrumb-table">
