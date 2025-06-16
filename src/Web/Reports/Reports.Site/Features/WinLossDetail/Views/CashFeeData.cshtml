@@ -16,7 +16,7 @@
 	void RenderFeeTypeRow(CashFeeItemModel item)
 	{
 		<tr class="cash-fee-total-row">
-			<td class="text-left">@item.Type</td>
+			<td class="text-left">@item.DisplayType</td>
 			<td></td>
 			<td>@item.Count.FormatNumber()</td>
 			<td>@item.Agent.FormatNumber()</td>
@@ -27,7 +27,7 @@
 	void RenderFeeItemRow(CashFeeItemModel item)
 	{
 		<tr >
-			<td class="text-left">@item.Type</td>
+			<td class="text-left">@item.DisplayType</td>
 			<td>@item.Fee.FormatNumber()</td>
 			<td>@item.Count.FormatNumber()</td>
 			<td>@item.Agent.FormatNumber()</td>

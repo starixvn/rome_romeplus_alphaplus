@@ -6,6 +6,8 @@ public class CashFeeItemModel
 
     public string Type { get; set; }
 
+    public string DisplayType { get; set; }
+
     public int Count { get; set; }
 
     public decimal Fee { get; set; }

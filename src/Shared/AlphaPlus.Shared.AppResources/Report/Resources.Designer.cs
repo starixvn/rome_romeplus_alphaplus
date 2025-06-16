@@ -3487,5 +3487,92 @@ namespace AlphaPlus.Shared.AppResources.Report {
                 return ResourceManager.GetString("CashServiceBilling", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string Transaction_Fee.
+        /// </summary>
+        public static string Transaction_Fee
+        {
+            get
+            {
+                return ResourceManager.GetString("Transaction_Fee", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string Cash_Service_Fee.
+        /// </summary>
+        public static string Cash_Service_Fee
+        {
+            get
+            {
+                return ResourceManager.GetString("Cash_Service_Fee", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string AutoDeposit.
+        /// </summary>
+        public static string AutoDeposit
+        {
+            get
+            {
+                return ResourceManager.GetString("AutoDeposit", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string ManualDeposit.
+        /// </summary>
+        public static string ManualDeposit
+        {
+            get
+            {
+                return ResourceManager.GetString("ManualDeposit", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string AutoWithdraw.
+        /// </summary>
+        public static string AutoWithdraw
+        {
+            get
+            {
+                return ResourceManager.GetString("AutoWithdraw", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string ManualWithdraw.
+        /// </summary>
+        public static string ManualWithdraw
+        {
+            get
+            {
+                return ResourceManager.GetString("ManualWithdraw", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string Freeperiod.
+        /// </summary>
+        public static string Freeperiod
+        {
+            get
+            {
+                return ResourceManager.GetString("Freeperiod", resourceCulture);
+            }
+        }
+        /// <summary>
+        ///   Looks up a localized string CashServicefee.
+        /// </summary>
+        public static string CashServicefee
+        {
+            get
+            {
+                return ResourceManager.GetString("CashServicefee", resourceCulture);
+            }
+        }
     }
 }

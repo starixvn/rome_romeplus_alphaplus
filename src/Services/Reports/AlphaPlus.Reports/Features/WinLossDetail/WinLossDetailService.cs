@@ -6,6 +6,7 @@ using AlphaPlus.Reports.Features.WinLossDetail.Criteria;
 using AlphaPlus.Reports.Features.WinLossDetail.Models;
 using Fanex.Data.Repository;
 using Microsoft.Extensions.Caching.Memory;
+using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Features.WinLossDetail;
 
@@ -156,16 +157,17 @@ public class WinLossDetailService(
         {
             var groupItem = new CashFeeGroupModel
             {
-                GroupName = group.Key
+                GroupName = Resources.ResourceManager.GetString(group.Key.Replace(" ", "_"))
             };
 
             var total = new CashFeeItemModel
             {
-                Type = group.Key
+                DisplayType = Resources.ResourceManager.GetString(group.Key.Replace(" ", "_"))
             };
 
             foreach (var item in group)
             {
+                item.DisplayType = Resources.ResourceManager.GetString(item.Type.Replace(" ", string.Empty));
                 groupItem.FeeItems.Add(item);
                 total += item;
                 grandTotal += item;

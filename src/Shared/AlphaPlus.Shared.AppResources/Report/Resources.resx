@@ -1326,4 +1326,28 @@
   <data name="CashServiceBilling" xml:space="preserve">
     <value>Cash Service Billing</value>
   </data>
+  <data name="Transaction_Fee" xml:space="preserve">
+    <value>Transaction Fee</value>
+  </data>
+  <data name="Cash_Service_Fee" xml:space="preserve">
+    <value>Cash Service Fee</value>
+  </data>
+  <data name="AutoDeposit" xml:space="preserve">
+    <value>Auto Deposit</value>
+  </data>
+  <data name="AutoWithdraw" xml:space="preserve">
+    <value>Auto Withdraw</value>
+  </data>
+  <data name="ManualWithdraw" xml:space="preserve">
+    <value>Manual Withdraw</value>
+  </data>
+  <data name="ManualDeposit" xml:space="preserve">
+    <value>Manual Deposit</value>
+  </data>
+  <data name="Freeperiod" xml:space="preserve">
+    <value>Free period</value>
+  </data>
+  <data name="CashServicefee" xml:space="preserve">
+    <value>Cash Service fee</value>
+  </data>
 </root>
