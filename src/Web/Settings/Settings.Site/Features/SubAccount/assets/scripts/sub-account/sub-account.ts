@@ -221,7 +221,7 @@ class SubAccount {
     AddSubAccount = (subAccId: number) => {
         this.$.blockUI();
 
-        var pageAccess = this.$('#View').is(':checked')
+        let pageAccess = this.$('#View').is(':checked')
             ? '[H]'
             : this.$('#UpdateView').is(':checked')
             ? '[B][H]'
@@ -249,7 +249,15 @@ class SubAccount {
             pageAccess += '[G]';
         }
 
-        var data = {
+        if (this.$('#' + subAccId + '-M').is(':checked')) {
+            pageAccess += '[M]';
+        }
+
+        if (this.$('#' + subAccId + '-N').is(':checked')) {
+            pageAccess += '[N]';
+        }
+
+        const data = {
             first: this.$('#FirstOptions_Value').val(),
             next: this.$('#NextOptions_Value').val(),
             password: encryptor.encrypt(this.$('#txtPwd').val(), this.$('#Code').val()),
@@ -258,7 +266,7 @@ class SubAccount {
             pageAccess: pageAccess || ''
         };
 
-        var updateUrl = '/settings/SubAccount/Add';
+        const updateUrl = '/settings/SubAccount/Add';
 
         this.$.ajax({
             headers: {
@@ -295,7 +303,7 @@ class SubAccount {
     };
 
     OpenUpdatePopup = (evt: any) => {
-        var currentPerm = this.$(evt.currentTarget).data('pageaccess');
+        const currentPerm = this.$(evt.currentTarget).data('pageaccess');
         switch (currentPerm) {
             case '[H]':
                 this.$('#pView').prop('checked', true);
@@ -317,18 +325,18 @@ class SubAccount {
         this.$('input[type=radio]')
             .unbind('change')
             .change((item) => {
-                var subAccId = this.$(evt.currentTarget).data('subaccid');
+                const subAccId = this.$(evt.currentTarget).data('subaccid');
                 this.UpdatePageAccess(subAccId, item);
             });
 
-        var popup = this.$('#Popup');
+        const popup = this.$('#Popup');
         popup.css({
             top: evt.clientY + 'px',
             left: evt.clientX + 'px',
             display: 'block',
             position: 'absolute'
         });
-        var timerId = setTimeout(() => {
+        let timerId = setTimeout(() => {
             popup.hide(100);
         }, 2000);
 
@@ -344,14 +352,14 @@ class SubAccount {
     };
 
     OpenAddPopup = (evt: any) => {
-        var popup = this.$('#nPopup');
+        const popup = this.$('#nPopup');
         popup.css({
             top: evt.clientY + 'px',
             left: evt.clientX + 'px',
             display: 'block',
             position: 'absolute'
         });
-        var timerId = setTimeout(() => {
+        let timerId = setTimeout(() => {
             popup.hide(100);
         }, 2000);
 
@@ -369,10 +377,10 @@ class SubAccount {
     UpdateInfo = () => {
         this.$.blockUI();
 
-        var subAccId = this.$('#SubAccId').val();
-        var firstName = this.$('#txtFirstName').val();
-        var lastName = this.$('#txtLastName').val();
-        var closed = this.$('#chkClosed').is(':checked');
+        const subAccId = this.$('#SubAccId').val();
+        const firstName = this.$('#txtFirstName').val();
+        const lastName = this.$('#txtLastName').val();
+        const closed = this.$('#chkClosed').is(':checked');
 
         this.$.ajax({
             headers: {
@@ -420,7 +428,7 @@ class SubAccount {
     };
 
     ValidatePassword = (password: string): boolean => {
-        var validPwd = this.IsPassword(password);
+        const validPwd = this.IsPassword(password);
         if (validPwd) {
             this.$('#spnPwdIcon').removeClass('PwdError').removeClass('PwdSuccess').addClass('PwdSuccess');
             return true;
@@ -431,19 +439,19 @@ class SubAccount {
     };
 
     IsPassword = (str: string): boolean => {
-        var regex1 = /^(?=.{8,100}$).*\d/i;
-        var regex2 = /^(?=.{8,100}$).*[a-z]/;
-        var regex3 = /^(?=.{8,100}$).*[A-Z]/;
-        var regex4 = /^(?=.{8,100}$).*[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,]/i;
+        const regex1 = /^(?=.{8,100}$).*\d/i;
+        const regex2 = /^(?=.{8,100}$).*[a-z]/;
+        const regex3 = /^(?=.{8,100}$).*[A-Z]/;
+        const regex4 = /^(?=.{8,100}$).*[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,]/i;
 
-        var whiteSpace = /^\S*$/;
+        const whiteSpace = /^\S*$/;
 
-        var case1 = str.search(regex1) != -1 ? 1 : 0;
-        var case2 = str.search(regex2) != -1 ? 1 : 0;
-        var case3 = str.search(regex3) != -1 ? 1 : 0;
-        var case4 = str.search(regex4) != -1 ? 1 : 0;
+        const case1 = str.search(regex1) != -1 ? 1 : 0;
+        const case2 = str.search(regex2) != -1 ? 1 : 0;
+        const case3 = str.search(regex3) != -1 ? 1 : 0;
+        const case4 = str.search(regex4) != -1 ? 1 : 0;
 
-        var case5 = str.search(whiteSpace) != -1;
+        const case5 = str.search(whiteSpace) != -1;
         return case1 + case2 + case3 + case4 >= 3 && case5;
     };
 }
