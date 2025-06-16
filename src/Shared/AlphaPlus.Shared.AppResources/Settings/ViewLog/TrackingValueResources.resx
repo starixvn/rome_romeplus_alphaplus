@@ -3501,4 +3501,10 @@
   <data name="bank" xml:space="preserve">
     <value>Bank</value>
   </data>
+  <data name="[m]" xml:space="preserve">
+    <value>[Cash Service]</value>
+  </data>
+  <data name="[n]" xml:space="preserve">
+    <value>[Cash Promotion]</value>
+  </data>
 </root>

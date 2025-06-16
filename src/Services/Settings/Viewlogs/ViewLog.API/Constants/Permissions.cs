@@ -36,6 +36,11 @@ namespace AlphaPlus.Settings.ViewLogs.API.Constants
                     permissions.Add(key, Resources.ResourceManager.GetString("PageAccess_" + GetShortPermissionKey(key)) ?? string.Empty);
                 }
 
+                foreach (var accessType in PageAccessType.CashServiceAccessTypes)
+                {
+                    permissions.Add(accessType, Resources.ResourceManager.GetString("PageAccess_" + GetShortPermissionKey(accessType)) ?? string.Empty);
+                }
+
                 return permissions;
             }
         }
