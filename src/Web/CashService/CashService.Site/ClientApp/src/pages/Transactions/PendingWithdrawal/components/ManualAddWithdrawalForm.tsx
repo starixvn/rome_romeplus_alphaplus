@@ -284,8 +284,8 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
             className="mb-[16px] max-[768px]:mb-[0]"
           />
         )}
-        <div className="flex max-[768px]:flex-col">
-          <div className="flex-1 max-w-[700px]">
+        <div className="flex justify-between max-[768px]:flex-col mb-[16px]">
+          <div className="flex-1 max-w-[700px] max-[768px]:mb-[16px]">
             <MediumTitleComponent text={t('manualWithdrawalForm.accountInformation')} />
             <div className="flex flex-wrap">
               <div className="flex flex-nowrap gap-[16px] mb-[4px] justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
@@ -351,7 +351,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                     onChange={(e) => handleSetWithdrawalAmount(e)}
                     className="control-field"
                   />
-                  <p className="text-[12px] my-[8px]">
+                  <p className="text-[12px] my-[4px]">
                     {t('manualWithdrawalForm.memberCashBalance')}:
                     <span className="font-[500] text-[var(--text-color-secondary)]">{` ${displayAmount(memberCashBalance)}`}</span>
                   </p>
@@ -364,15 +364,13 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                   value={remarks}
                   onChange={(e) => setRemarks(e.target.value)}
                   maxLength={1000}
-                  className="control-field h-[200px]! py-[8px]!"
+                  className="block control-field h-[200px]! py-[8px]! max-[768px]:h-[150px]!"
                   placeholder={t('manualWithdrawalForm.remarksPlaceholder')}
                 />
               </div>
             </div>
           </div>
-          <div className="pl-[32px] max-[768px]:pl-0 max-[768px]:mt-[16px]">
-            <UploadImage setImage={setImage} />
-          </div>
+          <UploadImage setImage={setImage} />
         </div>
         <div className="flex gap-[16px]">
           <ButtonCancelComponent

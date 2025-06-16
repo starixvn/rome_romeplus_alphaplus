@@ -252,7 +252,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
             className="mb-[16px] max-[768px]:mb-[0]"
           />
         )}
-        <div className="flex max-[768px]:flex-col">
+        <div className="flex justify-between max-[768px]:flex-col mb-[16px]">
           <AccountInformation
             memberLoginOptions={formState.memberLoginOptions}
             memberId={formState.memberId}
@@ -269,9 +269,9 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
             remarks={formState.remarks}
             onRemarksChange={(e) => updateFormState({ remarks: e.target.value })}
           />
-          <div className="pl-[32px] max-[768px]:pl-0 max-[768px]:mt-[16px]">
+         
             <UploadImage setImage={(image) => updateFormState({ image })} />
-          </div>
+     
         </div>
         <FormActions
           onCancel={() => onClose(false)}

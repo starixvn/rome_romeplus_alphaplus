@@ -45,7 +45,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
   const { t } = useTranslation('pendingDeposit');
 
   return (
-    <div className="flex-1 max-w-[700px]">
+    <div className="flex-1 max-w-[700px] max-[768px]:mb-[16px]">
       <MediumTitleComponent text={`${t('manualDepositForm.accountInformation')}`} />
       <div className="flex flex-wrap">
         <div className="flex flex-nowrap gap-[16px] mb-[4px] justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
@@ -107,7 +107,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
               onChange={onDepositAmountChange}
               className="control-field"
             />
-            <p className="text-[12px] my-[8px]">
+            <p className="text-[12px] my-[4px]">
               {t('manualDepositForm.agentAvailableCredit')}:
               <span className="font-[500] text-[var(--text-color-secondary)]">{` ${displayAmount(agentAvailableCredit)}`}</span>
             </p>
@@ -121,7 +121,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
             value={remarks}
             maxLength={1000}
             onChange={onRemarksChange}
-            className="control-field h-[200px]! py-[8px]!"
+            className="block control-field h-[200px]! py-[8px]! max-[768px]:h-[150px]!"
             placeholder={t('manualDepositForm.remarksPlaceholder')}
           />
         </div>

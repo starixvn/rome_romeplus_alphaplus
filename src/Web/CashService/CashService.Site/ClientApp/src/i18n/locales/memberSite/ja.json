@@ -31,7 +31,7 @@
     }
   },
   "actions": {
-    "save": "変更を保存",
+    "save": "保存",
     "saving": "保存中..."
   },
   "errors": {

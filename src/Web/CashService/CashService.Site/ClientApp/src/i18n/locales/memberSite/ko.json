@@ -31,7 +31,7 @@
     }
   },
   "actions": {
-    "save": "변경사항 저장",
+    "save": "저장",
     "saving": "저장 중..."
   },
   "errors": {

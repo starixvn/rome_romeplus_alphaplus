@@ -220,7 +220,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
                   </div>
                   <div className="w-[48%]">
                     <LabelTitleComponent text={t('detail.amount')} />
-                    <div>{displayAmount(detailData.amount)}</div>
+                    <div className='text-[var(--text-link-color)] font-semibold'>{displayAmount(detailData.amount)}</div>
                   </div>                    
                   <div className="w-[48%]">
                     <LabelTitleComponent text={t('detail.processedOn')} />

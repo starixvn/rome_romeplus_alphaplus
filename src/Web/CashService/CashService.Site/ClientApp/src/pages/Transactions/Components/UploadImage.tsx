@@ -129,11 +129,10 @@ const UploadImage: React.FC<UploadImageProps> = ({ setImage, prevImage, disabled
   );
 
   return (
-    <div className="flex flex-col items-center">
-      <div
-        className={`w-[350px] h-[450px] max-[768px]:w-[250px] max-[768px]:h-[250px] border-[2px] border-dashed border-[#0b599c] dark:border-[#459be5] ${
+    
+      <div className={`w-[350px] max-[768px]:w-[250px] max-[768px]:h-[200px] border-[2px] border-dashed border-[#0b599c] dark:border-[#459be5] max-[768px]:mx-auto a ${
           isDragging ? ' bg-[#D3DFEC] dark:bg-[#303740]' : 'border-[#0b599c] dark:border-[#459be5]'
-        } rounded-[5px] flex flex-col items-center justify-center mb-6 relative`}
+        } rounded-[5px] flex flex-col items-center justify-center relative`}
         onDrop={handleDrop}
         onDragOver={(e) => handleDragEvents(e, true)}
         onDragEnter={(e) => handleDragEvents(e, true)}
@@ -155,7 +154,7 @@ const UploadImage: React.FC<UploadImageProps> = ({ setImage, prevImage, disabled
           }`}
         />
       </div>
-    </div>
+   
   );
 };
 

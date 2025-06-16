@@ -174,8 +174,8 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
   };
 
   return (
-    <div className="bg-[#00000080] fixed inset-0 flex items-start justify-center z-50">
-      <div className="px-[20px] pb-[10px] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-[768px]:max-w-[90%] max-[768px]:h-[90%] overflow-auto rounded-[4px]">
+    <div className="bg-[#00000080] fixed inset-0 flex items-start justify-center z-50 w-full">
+      <div className="px-[20px] pb-[10px] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[50px] max-w-[90%] w-full max-[768px]:h-[90%] overflow-auto rounded-[4px]">
         <div className="relative my-[10px]">
           <MediumTitleComponent
             text={` ${t('pendingWithdrawalModal.title')} (${withdrawal?.transId})`}
@@ -189,14 +189,14 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
             className="mb-[16px] max-[768px]:mb-[0]"
           />
         )}
-        <div className="flex max-[768px]:flex-wrap">
+        <div className="flex max-[768px]:flex-wrap mb-[16px] max-[768px]:flex-col">
           {isLoading ? (
             <div className="w-full flex items-center justify-center min-h-[200px]">
               <LoadingFullComponent />
             </div>
           ) : (
             <>
-              <div className="flex-1 h-full max-[768px]:mb-[16px]">
+              <div className="flex-1 h-full max-[768px]:mb-[16px] w-[400px] max-[768px]:w-full mr-[32px]">
                 <div className="border border-[var(--border-control)] rounded-[4px] mb-[8px] p-[8px] flex flex-wrap">
                   <div className='w-[50%] mb-[8px] flex flex-col'>
                     <label className="font-semibold text-[var(--text-color-secondary)]">{t('pendingWithdrawalModal.username')}:</label>
@@ -270,13 +270,13 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
                 </div>
               </div>
 
-              <div className="pl-[32px] max-[768px]:pl-[0] max-[768px]:w-full">
+            
                 <UploadImage
                   setImage={setImage}
                   prevImage={withdrawal?.payslip}
                   disabled={isSubmitting}
                 />
-              </div>
+              
             </>
           )}
         </div>

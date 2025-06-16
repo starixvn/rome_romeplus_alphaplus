@@ -66,7 +66,7 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({ loading }) => {
               return (
                 <div
                   key={setting.id}
-                  className="text-left w-[25%] min-w-[200px] max-[768px]:w-[48%]"
+                  className="text-left w-[30%] min-w-[200px] max-[768px]:w-[48%]"
                   // aria-pressed={currentValue}
                 >
                   <div className="flex-1 min-w-0">                
