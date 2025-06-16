@@ -2754,4 +2754,7 @@
   <data name="bank" xml:space="preserve">
     <value>은행</value>
   </data>
+  <data name="isactive" xml:space="preserve">
+    <value />
+  </data>
 </root>

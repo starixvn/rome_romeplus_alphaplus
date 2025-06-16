@@ -3177,8 +3177,8 @@
   <data name="CommForMaster" xml:space="preserve">
     <value>Hoa hồng Master</value>
   </data>
-  <data name="DisableOpenTote" xml:space="preserve">
-    <value>Không cho phép chơi UK/Irish Tote</value>
+  <data name="PotentialWinLimit" xml:space="preserve">
+    <value>Giới Hạn Thắng Tối Đa</value>
   </data>
   <data name="accnumber" xml:space="preserve">
     <value>Số tài khoản</value>
@@ -3186,7 +3186,10 @@
   <data name="bank" xml:space="preserve">
     <value>Ngân hàng</value>
   </data>
-  <data name="PotentialWinLimit" xml:space="preserve">
-    <value>Giới Hạn Thắng Tối Đa</value>
+  <data name="DisableOpenTote" xml:space="preserve">
+    <value>Không cho phép chơi UK/Irish Tote</value>
+  </data>
+  <data name="isactive" xml:space="preserve">
+    <value />
   </data>
 </root>

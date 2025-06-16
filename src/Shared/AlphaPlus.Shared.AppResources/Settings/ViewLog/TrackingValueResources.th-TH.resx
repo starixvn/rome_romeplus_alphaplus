@@ -3426,8 +3426,8 @@
   <data name="CommForMaster" xml:space="preserve">
     <value>ค่าคอมมิชชั่น จากตัวแทนหลัก</value>
   </data>
-  <data name="DisableOpenTote" xml:space="preserve">
-    <value>ปิดการใช้งาน การทายผล การแข่งขันม้าของสนาม UK/Irish โต๊ด</value>
+  <data name="PotentialWinLimit" xml:space="preserve">
+    <value>ขีดจำกัดการชนะสูงสุด</value>
   </data>
   <data name="accnumber" xml:space="preserve">
     <value>ชื่อบัญชี</value>
@@ -3435,7 +3435,10 @@
   <data name="bank" xml:space="preserve">
     <value>ธนาคาร</value>
   </data>
-  <data name="PotentialWinLimit" xml:space="preserve">
-    <value>ขีดจำกัดการชนะสูงสุด</value>
+  <data name="DisableOpenTote" xml:space="preserve">
+    <value>ปิดการใช้งาน การทายผล การแข่งขันม้าของสนาม UK/Irish โต๊ด</value>
+  </data>
+  <data name="isactive" xml:space="preserve">
+    <value />
   </data>
 </root>
