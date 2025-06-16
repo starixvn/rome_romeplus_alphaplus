@@ -375,7 +375,14 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         }
 
         public async Task<IActionResult> GetCashServiceStatus(GetCustomerSettingRequest request)
-            => Json(await customerService.GetCashServiceStatus(request.CustId));
+        {
+            var isSiteOfferedCashService = AppSettings.IsOfferedCashService(request.Site);
+            var isOfferedCashService = isSiteOfferedCashService && request.CustLevel.IsAgentLevel();
+            var isCanUpdateCashServiceStatus = isOfferedCashService && !request.IsInternal && !request.IsSubAcc; 
+            var isCashServiceEnabled = await customerService.GetCashServiceStatus(request.CustId);
+            return Json(new { isOfferedCashService, isCanUpdateCashServiceStatus, isCashServiceEnabled });
+        }
+            
 
         public async Task<ActionResult> GetCurrentWinLossAmount(CustomerWinLossAmountQuery request)
             => Content(await customerService.GetCustomerCurrentWinLossAmounts(request.CustId, request.SportType, request.BetType, request.Language));
