@@ -305,7 +305,11 @@ public class WinLossDetailHandler(
         var breadcrumbs = BreadcrumbHelper.BuildBreadcrumbs(message).ToList();
         breadcrumbs.Add(new Reports.Features.Shared.Models.Breadcrumb(0, Resources.CashServiceBilling.ToUpper(), 0));
 
-        var cashFeeParam = new CashFeeParam(message.CustId, message.FromDate, message.ToDate);
+        var cashFeeParam = new CashFeeParam(
+            message.CustId,
+            message.WeekFromDate ?? message.FromDate,
+            message.WeekToDate ?? message.ToDate);
+
         var cashFeeModel = await winlossDetailService.GetCashFee(cashFeeParam);
 
         var (validUserSelectedProductIds, productDetailXml) = await FilterProductAndProductDetailIds(
@@ -323,7 +327,7 @@ public class WinLossDetailHandler(
                IsReward: true,
                message.LevelType,
                message.Site);
-        
+
         var weekData = await winlossDetailService.GetWeekData(weekDataParam);
         var weeks = BuildWeekViewModels(weekData, message.FromDate, message.ToDate, message.WeekFromDate, message.WeekToDate);
 
