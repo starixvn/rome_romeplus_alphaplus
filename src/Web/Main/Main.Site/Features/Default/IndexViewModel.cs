@@ -176,22 +176,15 @@ public class IndexViewModel
         get
         {
             var actorLevel = Enumeration.FromValue<UserLevel>(message.RoleId);
-            
-            return actorLevel.IsAgentLevel() && Core.Configurations.AppSettings.IsSupportPotentialWinLimit(UserSession.Current.Site); 
+
+            return actorLevel.IsAgentLevel() && Core.Configurations.AppSettings.IsSupportPotentialWinLimit(UserSession.Current.Site);
         }
     }
 
     public string HightLightFeatureImageName => "new_feature" + DarkModeName;
 
     public string HightLightFeatureUrl
-    {
-        get
-        {
-            var theme = !string.IsNullOrWhiteSpace(UserSession.Current.DarkModeName) ? "dark" : "light";
-
-            return MicroSites.SettingUrl($"~/Customer/SportBookInformation?tabindex=6&theme={theme}&custId={CustId}&roleId={RoleId}&site={UserSession.Current.Site}&siteLabel={AppSettings.SiteLabel}&lng={UserSession.Current.Language}");
-        }
-    }
+    => MicroSites.FeatureUrl($"~/StaticMessage/Help?id=226060");
 
     public bool IsShowRewardTour { get; }
 
