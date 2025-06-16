@@ -3,7 +3,7 @@
     <xsl:param name="IsInternal" select="0"></xsl:param>
     <xsl:output method="html" indent="no" />
 
-    <xsl:template match="acc_customerupdsuspended">
+    <xsl:template match="age_cashservice_custservicetypeupdate">
         <table class="tblDesc">
             <tr>
                 <td class="colW1">
