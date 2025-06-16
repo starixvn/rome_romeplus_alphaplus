@@ -22,7 +22,10 @@ import TitleComponent, {
     LabelTitleComponent, MediumTitleComponent
 } from '../../components/TitleComponents';
 import {
-    paymentMethodStatusConstant, paymentProviderStatusConstant, STATUS_OPTIONS, TRANSACTION_TYPES
+  paymentMethodStatusConstant,
+  paymentProviderStatusConstant,
+  STATUS_OPTIONS,
+  TRANSACTION_TYPES,
 } from '../../constants/paymentConstants';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 import i18n from '../../i18n/i18n-paymentProviderSettings';

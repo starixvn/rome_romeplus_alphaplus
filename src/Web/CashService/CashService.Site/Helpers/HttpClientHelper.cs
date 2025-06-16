@@ -4,6 +4,7 @@ using System.Net;
 using System.Text;
 using System.Text.Json;
 using Newtonsoft.Json;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 public class HttpClientHelper
 {
@@ -27,7 +28,14 @@ public class HttpClientHelper
         var response = await httpClient.GetAsync(url);
         if (response.IsSuccessStatusCode)
         {
-            return await response.Content.ReadFromJsonAsync<T>(jsonOptions);
+            var contentString = await response.Content.ReadAsStringAsync();
+
+            if (string.IsNullOrWhiteSpace(contentString))
+            {
+                return default(T);
+            }
+
+            return JsonSerializer.Deserialize<T>(contentString, jsonOptions);
         }
 
         throw new CustomHttpClientException(

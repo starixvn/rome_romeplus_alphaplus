@@ -19,7 +19,7 @@ export interface TransactionItem {
   createdTime: string;
   lastUpdatedDate: string;
   isAllowRevert: boolean;
-  operatedBy: string;
+  createdBy: string;
   operatedTime: string;
 }
 
