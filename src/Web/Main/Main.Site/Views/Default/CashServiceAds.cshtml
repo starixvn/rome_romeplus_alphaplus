@@ -43,7 +43,7 @@
         right: 0;
         bottom: 0;
         background-color: rgba(0, 0, 0, 0.2);
-        display: flex;
+        display: none;
         justify-content: center;
         align-items: center;
         z-index: 1000;
@@ -596,8 +596,8 @@
     // Check if popup should be shown
     document.addEventListener('DOMContentLoaded', function() {
         const hideAds = localStorage.getItem('hideCashServiceAds');
-        if (hideAds === 'true') {
-            $('.overlay').hide();
+        if (hideAds !== 'true') {
+            $('.overlay').css('display', 'flex');
         }
     });
     
