@@ -5,30 +5,47 @@
 }
 <style>
     @@keyframes fadeInBg {
-        from { opacity: 0; }
-        to { opacity: 1; }
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
     }
 
     @@keyframes fadeInPopup {
-        from { transform: scale(0.95); opacity: 0; }
-        to { transform: scale(1); opacity: 1; }
+        from {
+            transform: scale(0.95);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
     }
 
     @@keyframes pulse {
-        0% { transform: scale(0.95); }
-        50% { transform: scale(1.1); }
-        100% { transform: scale(0.95); }
-    }
-    
-    .popup{
-        button {
-            box-shadow: 0 2px 2px rgba(0,0,0,.3);
-        
+        0% {
+            transform: scale(0.95);
         }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(0.95);
+        }
+    }
+
+    .popup {
+        button {
+            box-shadow: 0 2px 2px rgba(0, 0, 0, .3);
+
+        }
+
         button[disabled] {
             cursor: not-allowed;
         }
-    
+
     }
 
     .pulse-animate {
@@ -57,7 +74,7 @@
         margin: 20px;
         border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
         animation: fadeInPopup 0.35s;
         background: #b4d2e8;
         top: 15%;
@@ -128,12 +145,13 @@
         margin: 0 auto;
         max-width: fit-content;
         border-radius: 16px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 
         &.no-border {
             border: none;
             box-shadow: none;
         }
+
         li {
             text-align: left;
         }
@@ -161,7 +179,6 @@
         font-weight: 400;
     }
 
-    
 
     .button-container {
         display: flex;
@@ -169,7 +186,7 @@
         justify-content: center;
         width: 100%;
         margin-top: 20px;
-      
+
     }
 
     .primary-button {
@@ -185,6 +202,7 @@
         transition: background 0.2s;
         letter-spacing: 0.2px;
         height: 32px;
+
         &:hover {
             background: #051a2e;
         }
@@ -204,6 +222,7 @@
         transition: background 0.2s;
         letter-spacing: 0.2px;
         height: 32px;
+
         &:hover {
             background: #1e5275;
         }
@@ -324,6 +343,7 @@
         background: #286fa1;
         cursor: pointer;
         color: #fff;
+
         &:not([disabled]):hover {
             background: #1e5275;
         }
@@ -332,6 +352,7 @@
     .next-button {
         background: #0a2c4d;
         color: #fff;
+
         &:not([disabled]):hover {
             background: #051a2e;
         }
@@ -350,6 +371,7 @@
         margin-left: 10px;
         border-radius: 50px;
     }
+
     .step-5-confirm {
         display: flex;
         flex-direction: column;
@@ -382,14 +404,83 @@
             margin-bottom: 0;
         }
     }
+
+
+    .step-highlight-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+
+    .free-badge {
+        background: #ffcd00;
+        color: #fff;
+        padding: 4px 12px;
+        border-radius: 16px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        animation: pulse 1.2s infinite;
+        font-size: 16px;
+    }
+
+    .save-amount {
+        color: #03548d;
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .step-benefits {
+        text-align: left;
+        margin: 0 auto 16px auto;
+        max-width: 400px;
+        padding-left: 0;
+        list-style: none;
+
+        li {
+            margin-bottom: 8px;
+            font-size: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+    }
+
+    .benefit-note {
+        color: #888;
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+    .step-note {
+        background: #e3f2fd;
+        color: #03548d;
+        padding: 8px 16px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        margin-top: 12px;
+
+        .icon-info {
+            margin-right: 6px;
+            font-size: 18px;
+        }
+    }
+
+    .icon-info {
+        margin-right: 6px;
+        font-size: 18px;
+        display: inline-block;
+    }
 </style>
 
 
 <div class="overlay">
     <div class="popup">
         <button onclick="closePopup()" class="close-button">×</button>
-        <img src="@(cdnUri)cash-member/create/cash-service-ads/BannerPC.png" alt="AdvCash" class="banner-image" />
-        
+        <img src="@(cdnUri)cash-member/create/cash-service-ads/BannerPC.png" alt="AdvCash" class="banner-image"/>
+
         <div id="ads-content" class="ads-content">
             <div class="main-title">
                 EXCLUSIVELY FOR YOU
@@ -398,7 +489,8 @@
                 Enjoy Cash Service <span class="pulse-animate free-highlight">FREE</span> for 14 days!
             </div>
             <div class="button-container">
-                <button class="primary-button" onclick="showActiveCashContent()" disabled="@(!Model.IsCanUpdateCashServiceStatus)">
+                <button class="primary-button" onclick="showActiveCashContent()"
+                        disabled="@(!Model.IsCanUpdateCashServiceStatus)">
                     Activate now
                 </button>
                 <button class="secondary-button" onclick="showStepSlider()">
@@ -406,7 +498,7 @@
                 </button>
             </div>
             <div class="dont-show-again">
-                <input type="checkbox" id="dontShowAgain" onchange="checkDontShowAgain()" />
+                <input type="checkbox" id="dontShowAgain" onchange="checkDontShowAgain()"/>
                 <label for="dontShowAgain">@Resources.doNotShowAgain</label>
             </div>
         </div>
@@ -418,22 +510,29 @@
                 </div>
                 <div class="divider"></div>
                 <div class="description">
-                    Start your <span class="highlight">14-days FREE trial</span> today and enjoy instant savings of <strong>THB 2,800</strong>.
+                    Start your <span class="highlight">14-days FREE trial</span> today and enjoy instant savings of
+                    <strong>THB 2,800</strong>.
                 </div>
                 <ul class="description">
                     <li>
                         <span class="icon-check"></span>
-                        <strong>No platform fee</strong> - save THB 200/day during the trial.</li>
+                        <strong>No platform fee</strong> - save THB 200/day during the trial.
+                    </li>
                     <li>
                         <span class="icon-check"></span>
-                        Just <strong>THB 0.15 per transaction</strong> via your linked bank account.</li>
+                        Just <strong>THB 0.15 per transaction</strong> via your linked bank account.
+                    </li>
                     <li>
                         <span class="icon-check"></span>
-                        Get results. Stay if you love it. Cancel anytime.</li>
+                        Get results. Stay if you love it. Cancel anytime.
+                    </li>
                 </ul>
-                <div class="description"> Don't miss out – activate your free trial now and take your cash flow to the next level.</div>
+                <div class="description"> Don't miss out – activate your free trial now and take your cash flow to the
+                    next level.
+                </div>
                 <div class="button-container">
-                    <button class="primary-button" onclick="confirmActivation()" disabled="@(!Model.IsCanUpdateCashServiceStatus)">
+                    <button class="primary-button" onclick="confirmActivation()"
+                            disabled="@(!Model.IsCanUpdateCashServiceStatus)">
                         Confirm
                     </button>
                     <button class="secondary-button" onclick="showAdsContent()">
@@ -484,21 +583,20 @@
             description: "Create and manage promotions featuring popular products and providers to keep your members entertained."
         },
         {
-            title: "",
-            classname: "step-5-confirm",
+            title: "Supercharge Your Cash Flow!",
             description: `
-                <div class="content-box no-border">
-                    <div class="title">Supercharge Your Cash Flow!</div>
-                    <div class="divider"></div>
-                    <div class="description">
-                        Start your <span class="highlight">14-days FREE trial</span> today and enjoy instant savings of <strong>THB 2,800</strong>.
+                <div class="divider"></div>
+                    <div class="step-highlight-block">
+                        <span class="free-badge">14-days <b>FREE</b> trial</span>
+                        <span class="save-amount">Start today and enjoy instant savings of <b>THB 2,800</b></span>
                     </div>
-                    <ul class="description">
-                        <li><span class="icon-check"></span> <strong>No platform fee</strong> - save THB 200/day during the trial.</li>
-                        <li><span class="icon-check"></span> Just <strong>THB 0.15 per transaction</strong> via your linked bank account.</li>
-                        <li><span class="icon-check"></span> Get results. Stay if you love it. Cancel anytime.</li>
-                    </ul>
-                    <div class="description">Don't miss out – activate your free trial now and take your cash flow to the next level.</div>
+                <ul class="step-benefits">
+                    <li><b>No platform fee</b> <span class="benefit-note">- save THB 200/day during the trial.</span></li>
+                    <li><b> Just 0.15 per transaction</b> via your linked bank account.</li>
+                    <li>Get results. Stay if you love it. Cancel anytime.</li>
+                </ul>
+                <div class="step-note">
+                    <span class="icon-info">ℹ️</span> Don't miss out – Activate now and take your cash flow to the next level.
                 </div>
             `
         }
@@ -531,14 +629,14 @@
             ${step.image ? `<img src="${cdnUri}${step.image}" class="step-image" />` : ''}
             ${step.description ? `<div class="step-description">${step.description}</div>` : ''}
         `);
-        
+
         if (step.classname) {
             $stepContent.addClass(step.classname);
         }
 
         $('#current-step').text(currentStep + 1);
         $('#back-button').prop('disabled', currentStep === 0);
-        
+
         const $nextButton = $('#next-button');
         if (currentStep === totalSteps - 1) {
             $nextButton.text('Confirm').off('click').on('click', confirmActivation);
@@ -594,11 +692,11 @@
     }
 
     // Check if popup should be shown
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const hideAds = localStorage.getItem('hideCashServiceAds');
         if (hideAds !== 'true') {
             $('.overlay').css('display', 'flex');
         }
     });
-    
+
 </script>
