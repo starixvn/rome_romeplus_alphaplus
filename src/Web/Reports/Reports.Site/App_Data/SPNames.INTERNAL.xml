@@ -119,7 +119,7 @@
         <Setting Key="Age_Rpt_GetProductDetail" SpName="Age_Rpt_GetProductDetail" DbName="DBAGE.bodb02.wsv_alpv" />
     </Function>
     <Function Name="Win Loss Detail">
-        <Setting Key="Age_Rpt_WinlossDetail_WeekDataSel" SpName="Age_Rpt_WinlossDetail_WeekDataSel" DbName="DBAGE.bodb02.wsv_alpv" />
+        <Setting Key="Age_Rpt_WinlossDetail_WeekDataSel" SpName="Age_Rpt_WinlossDetail_WeekDataSel_xtest" DbName="DBAGE.bodb02.wsv_alpv" />
         <Setting Key="Age_Rpt_WinLossDetail_Master" SpName="Age_Rpt_WinLossDetail_Master" DbName="DBAGE.bodb02.wsv_alpv" />
         <Setting Key="Age_Rpt_WinLossDetail_Agent" SpName="Age_Rpt_WinLossDetail_Agent" DbName="DBAGE.bodb02.wsv_alpv" />
         <Setting Key="Age_Rpt_WinLossDetail_Member" SpName="Age_Rpt_WinLossDetail_Member_xtest" DbName="DBAGE.bodb02.wsv_alpv" />

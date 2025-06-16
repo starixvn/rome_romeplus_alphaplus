@@ -332,7 +332,10 @@ public class WinLossDetailHandler(
 
     public async Task<ExcelFileViewModel> Handle(CashFeeExcelQuery message, CancellationToken cancellationToken)
     {
-        var cashFeeParam = new CashFeeParam(message.CustId, message.FromDate, message.ToDate);
+        var cashFeeParam = new CashFeeParam(
+           message.CustId,
+           message.WeekFromDate ?? message.FromDate,
+           message.WeekToDate ?? message.ToDate);
 
         var reportData = await winlossDetailService.GetCashFee(cashFeeParam);
 
@@ -341,7 +344,11 @@ public class WinLossDetailHandler(
 
     public async Task<CashFeeModel> Handle(CashFeeGetDataQuery message, CancellationToken cancellationToken)
     {
-        var cashFeeParam = new CashFeeParam(message.CustId, message.FromDate, message.ToDate);
+        var cashFeeParam = new CashFeeParam(
+            message.CustId,
+            message.WeekFromDate ?? message.FromDate,
+            message.WeekToDate ?? message.ToDate);
+
         return await winlossDetailService.GetCashFee(cashFeeParam);
     }
 }

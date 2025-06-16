@@ -29,7 +29,7 @@ class CashFeeView extends BaseReportNew {
         super.initShowHideFilter();
         this.$tblReportContainer = $('#tbl-report-container');
 
-        this.dateRangeComponent.render({ maxDays: 92, onClosed: () => this.getCashFee(null, false) });
+        this.dateRangeComponent.render({ maxDays: 92, onClosed: () => this.getCashFee(null) });
         this.breadcrumbLevelComponent.init((custInfo) => {
             $.blockUI();
             const winlossDetailParams = $.extend(
@@ -40,7 +40,7 @@ class CashFeeView extends BaseReportNew {
             );
             location.href = `${$('#winloss-detail-report-path').val()}?${$.param(winlossDetailParams)}`;
         });
-        this.weekComponent.init($('#week-container'), (dateRange) => this.getCashFee(dateRange, true));
+        this.weekComponent.init($('#week-container'), (dateRange) => this.getCashFee(dateRange));
         this.globalFormData = winlossDetailFromData;
         this.registerEvents();
 
@@ -70,13 +70,11 @@ class CashFeeView extends BaseReportNew {
             .attr('href', 'javascript:;');
     }
 
-    getCashFee(weekRange, isGetWeeks: boolean) {
+    getCashFee(weekRange) {
         this.clearActiveWeek();
         this.$tblReportContainer.block();
         const queryStringObject = $.extend(
-            { custId: winlossDetailFromData.custId, custName: winlossDetailFromData.custName },
-            isGetWeeks ? weekRange : this.dateRangeComponent.getDateRangeValues()
-        );
+            {}, this.globalFormData, weekRange);
         const queryString = $.param(queryStringObject);
         this.globalFormData = queryStringObject;
         const url = 'GetCashFeeData';

@@ -4,6 +4,6 @@ using MediatR;
 
 namespace AlphaPlus.Reports.Site.Features.WinLossDetail.Requests;
 
-public class CashFeeGetDataQuery : DefaultDateRangeQuery, IRequest<CashFeeModel>
+public class CashFeeGetDataQuery : WinLossDetailQuery, IRequest<CashFeeModel>
 {
 }
