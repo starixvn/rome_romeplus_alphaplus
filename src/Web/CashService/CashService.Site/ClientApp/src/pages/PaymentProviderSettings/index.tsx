@@ -8,30 +8,22 @@ import { useTranslation } from 'react-i18next';
 import Tippy from '@tippyjs/react';
 
 import {
-  BackButtonComponent,
-  ButtonApplyComponent,
-  ButtonCancelComponent,
-  ButtonFullComponent,
-  ButtonOffComponent,
-  ButtonOnComponent,
-  EnableButtonComponent,
-  DisableButtonComponent,
+    BackButtonComponent, ButtonApplyComponent, ButtonCancelComponent, ButtonFullComponent,
+    DisableButtonComponent, EnableButtonComponent
 } from '../../components/ButtonComponents';
 import { IconArrowDown, IconInfo, IconReload } from '../../components/Icons';
 import { LoadingFullComponent } from '../../components/LoadingComponent';
 import { ResultMessageComponent } from '../../components/MessageComponents';
 import {
-  StatusCompletedComponent,
-  StatusFailedComponent,
-  StatusMaintenanceComponent,
-  StatusNoneComponent,
-  StatusProcessingComponent,
+    StatusCompletedComponent, StatusFailedComponent, StatusMaintenanceComponent,
+    StatusNoneComponent, StatusProcessingComponent
 } from '../../components/StatusComponents';
 import TitleComponent, {
-  LabelTitleComponent,
-  MediumTitleComponent,
+    LabelTitleComponent, MediumTitleComponent
 } from '../../components/TitleComponents';
-import { paymentMethodStatusConstant, paymentProviderStatusConstant, STATUS_OPTIONS, TRANSACTION_TYPES } from '../../constants/paymentConstants';
+import {
+    paymentMethodStatusConstant, paymentProviderStatusConstant, STATUS_OPTIONS, TRANSACTION_TYPES
+} from '../../constants/paymentConstants';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 import i18n from '../../i18n/i18n-paymentProviderSettings';
 import { PaymentMethod } from '../../services/interfaces/Payments';
@@ -442,9 +434,11 @@ function PaymentProviderSettings() {
 
   return (
     <div className="payment-provider-settings h-full">
-      {loading ? (<LoadingFullComponent />) : 
-        error ? (<ResultMessageComponent type="error" message={error} />) : 
-        (
+      {loading ? (
+        <LoadingFullComponent />
+      ) : error ? (
+        <ResultMessageComponent type="error" message={error} />
+      ) : (
         <>
           {updateMessage && (
             <ResultMessageComponent
@@ -459,16 +453,22 @@ function PaymentProviderSettings() {
                 <BackButtonComponent onClick={onBackNavigation} />
                 <TitleComponent title={window.providerSettingsViewModel.Provider.Name} />
                 {providerStatus != paymentProviderStatusConstant.notConfigured && (
-                <div className="ml-[16px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]" role="group">               
-                <EnableButtonComponent onClick={onProviderStatusToggle} isActive={providerStatus} />
-                <DisableButtonComponent onClick={onProviderStatusToggle} isActive={!providerStatus} />
-                
-              </div>
-              )}
-                
+                  <div
+                    className="ml-[16px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]"
+                    role="group"
+                  >
+                    <EnableButtonComponent
+                      onClick={onProviderStatusToggle}
+                      isActive={providerStatus}
+                    />
+                    <DisableButtonComponent
+                      onClick={onProviderStatusToggle}
+                      isActive={!providerStatus}
+                    />
+                  </div>
+                )}
               </div>
             </div>
-            
           </div>
           <div className="py-[10px]">
             <div className="flex flex-wrap mb-[8px]">
@@ -515,34 +515,34 @@ function PaymentProviderSettings() {
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                   <LabelTitleComponent text={tPaymentProviderSettings('transactionType')} />
                   <div className="relative">
-                  <select
-                    className="control-field"
-                    value={selectedTransactionType}
-                    onChange={onTransactionTypeChange}
-                  >
-                    {TRANSACTION_TYPES.map((type) => (
-                      <option key={type.id} value={type.id}>
-                        {type.id === 0
-                          ? tGlobal('all')
-                          : tPaymentProviderSettings(`transaction-${type.id}`)}
-                      </option>
-                    ))}
-                  </select>
-                  <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
+                    <select
+                      className="control-field"
+                      value={selectedTransactionType}
+                      onChange={onTransactionTypeChange}
+                    >
+                      {TRANSACTION_TYPES.map((type) => (
+                        <option key={type.id} value={type.id}>
+                          {type.id === 0
+                            ? tGlobal('all')
+                            : tPaymentProviderSettings(`transaction-${type.id}`)}
+                        </option>
+                      ))}
+                    </select>
+                    <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
                   </div>
                 </div>
               </div>
-
-              
             </div>
             <div className="w-full border border-[var(--table-border-color)] border-b-0 p-[6px] flex">
               <ButtonFullComponent
-                  text={`${tPaymentProviderSettings('addPaymentMethod')}`}
-                  onClick={onAddPaymentMethod}
-                />
-                <ButtonFullComponent
+                text={`${tPaymentProviderSettings('addPaymentMethod')}`}
+                onClick={onAddPaymentMethod}
+              />
+              <ButtonFullComponent
                 className="ml-auto"
-                text={tPaymentProviderSettings('viewProviderFees', { providerName: window.providerSettingsViewModel.Provider.Name })}
+                text={tPaymentProviderSettings('viewProviderFees', {
+                  providerName: window.providerSettingsViewModel.Provider.Name,
+                })}
                 onClick={onViewFees}
               />
             </div>
@@ -564,7 +564,7 @@ function PaymentProviderSettings() {
                         {tGlobal('enable')}/{tGlobal('disable')}
                         <Tippy
                           content={
-                            <div>                            
+                            <div>
                               <div>• {tPaymentProviderSettings('enableDisableTip1')}</div>
                               <div>• {tPaymentProviderSettings('enableDisableTip2')}</div>
                               <div>• {tPaymentProviderSettings('enableDisableTip3')}</div>
@@ -591,22 +591,24 @@ function PaymentProviderSettings() {
                       </td>
                       <td>
                         <div className="flex items-center justify-center">
-                        {renderStatusComponent(setting.status)}
-                        {setting.status === failStatus && (
-                          <>
-                            <Tippy
-                            content={<div>{tPaymentProviderSettings('retrySetup')}</div>}
-                            placement="top"
-                            theme="light"
-                            arrow={true}
-                          >
-                            <span className="cursor-pointer" onClick={() => onRetrySetup(index)} >
-                              <IconReload className='fill-[var(--icon-color-error)] cursor-pointer ml-[4px]' />
-                            </span>
-                          </Tippy>
-                          </>
-                        )}
-                        
+                          {renderStatusComponent(setting.status)}
+                          {setting.status === failStatus && (
+                            <>
+                              <Tippy
+                                content={<div>{tPaymentProviderSettings('retrySetup')}</div>}
+                                placement="top"
+                                theme="light"
+                                arrow={true}
+                              >
+                                <span
+                                  className="cursor-pointer"
+                                  onClick={() => onRetrySetup(index)}
+                                >
+                                  <IconReload className="fill-[var(--icon-color-error)] cursor-pointer ml-[4px]" />
+                                </span>
+                              </Tippy>
+                            </>
+                          )}
                         </div>
                       </td>
                       <td className="font-semibold">
@@ -624,7 +626,7 @@ function PaymentProviderSettings() {
                               maxLength={15}
                             />
                             <label className="text-left text-[var(--text-color)]">
-                            <span className="text-[14px] px-[4px]">&gt;=</span>
+                              <span className="text-[14px] px-[4px]">&gt;=</span>
                               {formatNumber(setting.minAmountTrans)}
                             </label>
                           </div>
@@ -671,15 +673,21 @@ function PaymentProviderSettings() {
                         )}
                       </td>
                       <td>
-                        {!isEditable(setting) ? (<>-</>) : 
-                          setting.bankRequired ? 
-                            (<ButtonFullComponent text={tPaymentProviderSettings('listOfBanks')} onClick={() => onViewBanks(setting)} />) : 
-                            (<span className="font-semibold">{tPaymentProviderSettings('noBankRequired')}{' '}</span>)
-                        }
+                        {!isEditable(setting) ? (
+                          <>-</>
+                        ) : setting.bankRequired ? (
+                          <ButtonFullComponent
+                            text={tPaymentProviderSettings('listOfBanks')}
+                            onClick={() => onViewBanks(setting)}
+                          />
+                        ) : (
+                          <span className="font-semibold">
+                            {tPaymentProviderSettings('noBankRequired')}{' '}
+                          </span>
+                        )}
                       </td>
                     </tr>
                   ))}
-                  
                 </tbody>
               </table>
             </div>
@@ -687,9 +695,13 @@ function PaymentProviderSettings() {
               <ButtonCancelComponent text={tGlobal('reset')} onClick={onReset} />
               <ButtonApplyComponent
                 text={updating ? tGlobal('updating') : tGlobal('update')}
-                type='submit'
+                type="submit"
                 onClick={onUpdate}
-                disabled={providerStatus == paymentProviderStatusConstant.notConfigured || updating || !hasEditableSettings()}
+                disabled={
+                  providerStatus == paymentProviderStatusConstant.notConfigured ||
+                  updating ||
+                  !hasEditableSettings()
+                }
               />
             </div>
           </div>
@@ -723,7 +735,10 @@ function PaymentProviderSettings() {
 
       {/* Banks Popup Modal */}
       {showBanksPopup && selectedSetting && (
-        <BanksPopupModal onClose={onCloseBanksPopup} transactionType={selectedSetting.transactionType} />
+        <BanksPopupModal
+          onClose={onCloseBanksPopup}
+          transactionType={selectedSetting.transactionType}
+        />
       )}
 
       {/* Update Payment Method Modal */}
