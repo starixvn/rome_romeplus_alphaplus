@@ -559,8 +559,9 @@
 
 <script>
     const cdnUri = '@cdnUri';
+    const isCanUpdateCashServiceStatus = '@Model.IsCanUpdateCashServiceStatus'.toLowerCase() === 'true';
     let currentStep = 0;
-    const totalSteps = 5;
+    const totalSteps = 5;       
     const steps = [
         {
             title: "Instant deposits and withdrawals!",
@@ -640,8 +641,10 @@
         const $nextButton = $('#next-button');
         if (currentStep === totalSteps - 1) {
             $nextButton.text('Confirm').off('click').on('click', confirmActivation);
+            $nextButton.prop('disabled', !isCanUpdateCashServiceStatus);
         } else {
             $nextButton.text('Next').off('click').on('click', nextStep);
+            $nextButton.prop('disabled', false);
         }
     }
 
@@ -660,10 +663,11 @@
     }
 
     function confirmActivation() {
-        $.ajax({
-            url: '/main/Dashboard/UpdateCashServiceStatus',
-            type: 'POST',
-            data: {
+        if (isCanUpdateCashServiceStatus) {
+            $.ajax({
+                url: '/main/Dashboard/UpdateCashServiceStatus',
+                type: 'POST',
+                data: {
                 IsEnableCash: true
             },
             headers: {
@@ -674,9 +678,10 @@
                     closePopup();
                 } else {
                     alert(response.message);
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     function closePopup() {
