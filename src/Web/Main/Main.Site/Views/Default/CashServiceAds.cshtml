@@ -588,14 +588,14 @@
     function checkDontShowAgain() {
         const dontShowAgain = $('#dontShowAgain').prop('checked');
         if (dontShowAgain) {
-            sessionStorage.setItem('hideCashServiceAds', 'true');
+            localStorage.setItem('hideCashServiceAds', 'true');
         }
         closePopup();
     }
 
     // Check if popup should be shown
     document.addEventListener('DOMContentLoaded', function() {
-        const hideAds = sessionStorage.getItem('hideCashServiceAds');
+        const hideAds = localStorage.getItem('hideCashServiceAds');
         if (hideAds === 'true') {
             $('.overlay').hide();
         }
