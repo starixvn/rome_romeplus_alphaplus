@@ -57,6 +57,8 @@ RUN if [ "$TRANSFORM_CONFIG" = "LOCAL2" ] \
   || [ "$TRANSFORM_CONFIG" = "UAT2" ] \
   || [ "$TRANSFORM_CONFIG" = "STG2" ] \
   || [ "$TRANSFORM_CONFIG" = "PRO2" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLPROD2" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLE2" ] \
   || [ "$TRANSFORM_CONFIG" = "DR2" ]; \
   then \
   cp "src/Web/Before/Fanex.Alpha.Before/wwwroot/favicon2.ico" "src/Web/Before/Fanex.Alpha.Before/wwwroot/favicon.ico"; \
@@ -68,6 +70,8 @@ RUN if [ "$TRANSFORM_CONFIG" = "LOCAL3" ] \
   || [ "$TRANSFORM_CONFIG" = "UAT3" ] \
   || [ "$TRANSFORM_CONFIG" = "STG3" ] \
   || [ "$TRANSFORM_CONFIG" = "PRO3" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLPROD3" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLE3" ] \
   || [ "$TRANSFORM_CONFIG" = "DR3" ]; \
   then \
   cp "src/Web/Before/Fanex.Alpha.Before/bundleconfig3.json" "src/Web/Before/Fanex.Alpha.Before/bundleconfig.json"; \
