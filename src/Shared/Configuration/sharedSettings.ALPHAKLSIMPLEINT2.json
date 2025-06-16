@@ -135,7 +135,7 @@
     "RedisConfiguration": "vn-alpha-state383.gamora.prod:16383,Password=foo1@bared,Name=AlphaPlus,abortConnect=false,configChannel=__Booksleeve_MasterChanged,connectTimeout=6300",
     "RemotingRefUrl": "http://vn-remotingref.starix-alphaklprod.gamora.prod/",
     "Fanex.Customer": {
-        "ServiceUri": "http://fanex_customer_api_alphaklprod_2:5000/api/",
+        "ServiceUri": "http://fanex_customer_api_alphaklprod:5000/api/",
         "CdnUri": "/stdcsv1/",
         "SystemId": 7
     },
