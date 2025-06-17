@@ -52,7 +52,7 @@ public class AddTransactionDepositCriteriaTests
         Assert.Equal(paymentTo, criteria.PaymentTo);
         Assert.Equal(amount, criteria.Amount);
         Assert.Equal(confirmAmount, criteria.UserInput_Amount);
-        Assert.Equal(matchingMode, criteria.MachingMode);
+        Assert.Equal(matchingMode, criteria.MatchingMode);
         Assert.Equal(paySlip, criteria.PaySlip);
         Assert.Equal(ip, criteria.IP);
         Assert.Equal(remark, criteria.Remark);

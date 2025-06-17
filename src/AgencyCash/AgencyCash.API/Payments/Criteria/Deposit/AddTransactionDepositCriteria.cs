@@ -54,7 +54,7 @@ public class AddTransactionDepositCriteria(
 
     public decimal? UserInput_Amount { get; } = userInputAmount;
 
-    public byte? MachingMode { get; } = matchingMode;
+    public byte? MatchingMode { get; } = matchingMode;
 
     public byte[] PaySlip { get; } = paySlip;
 
