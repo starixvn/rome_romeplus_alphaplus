@@ -278,7 +278,7 @@
         "BackOfficeApiUrl": "https://s1-alpha-api-service.starixnet.com/api/"
     },
     "OfferProfilePictureTour": true,
-    "SiteSupportPotentialWinLimit": "222227,IBCIndo",
+    "SiteSupportPotentialWinLimit": "*",
     "CashService": {
         "OfferedSites": "755555,222227",
         "APIUrl": "http://alphaplus_api_cashservice_local_3:5000/api"
