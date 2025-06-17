@@ -664,21 +664,27 @@
 
     function confirmActivation() {
         if (isCanUpdateCashServiceStatus) {
+            const confirmButton = $("#confirmActivation");
+            confirmButton.prop('disabled', true);
+
             $.ajax({
                 url: '/main/Dashboard/UpdateCashServiceStatus',
                 type: 'POST',
                 data: {
-                IsEnableCash: true
-            },
-            headers: {
-                'RequestVerificationToken': $('input[name="RequestVerificationToken"]').val()
-            },
-            success: (response) => {
-                if (response.isSuccessful) {
-                    closePopup();
-                } else {
-                    alert(response.message);
+                    IsEnableCash: true
+                },
+                headers: {
+                    'RequestVerificationToken': $('input[name="RequestVerificationToken"]').val()
+                },
+                success: (response) => {
+                    if (response.isSuccessful) {
+                        closePopup();
+                    } else {
+                        alert(response.message);
                     }
+                },
+                complete: () => {
+                    confirmButton.prop('disabled', false);
                 }
             });
         }
