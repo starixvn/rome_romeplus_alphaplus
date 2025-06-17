@@ -388,11 +388,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                     </div>
                   </>
                 )}
-
-                {!loading && !error && bankAccounts.length > 0 && (
-                  <>
-                    <div className='w-full border border-[var(--table-border-color)] border-b-0 p-[6px] flex'>
-                    <div className="flex gap-[8px]">
+                <div className='w-full border border-[var(--table-border-color)] border-b-0 p-[6px] flex'>
+                  <div className="flex gap-[8px]">
                     <ButtonFullComponent
                       className="w-[183px] [&>*]:w-[100%]"
                       text={`${tManagePayments('addBankAccount')}`}
@@ -404,7 +401,9 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                       onClick={onSetLimit}
                     />
                   </div>
-                    </div>
+                </div>
+            
+                    
                     <div className="table table-fixed-body">
                       <table className="w-full whitespace-nowrap   ">
                         <thead>
@@ -420,6 +419,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                             <th>{tManagePayments('status')}</th> 
                           </tr>
                         </thead>
+                        {!loading && !error && bankAccounts.length > 0 && (
                         <tbody className="font-[500]">
                         {bankAccounts.map((account, index) => (
                             <tr key={account.id}>
@@ -448,17 +448,27 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                             </tr>
                           ))}
                         </tbody>
+                         )}
+                         {!loading && !error && banks.length > 0 && bankAccounts.length === 0 && (
+                           
+                            <tbody>
+                              <tr>
+                                <td colSpan={8} className="text-center">
+                                  <div className="flex justify-center items-center flex-col py-[20px]" role="alert">
+                                  <NoDataIcon />
+                                  <MediumTitleComponent text={tGlobal('noData')} />
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                         
+                        )}
                       </table>
                     </div>
-                  </>
-                )}
+                
+               
 
-                {!loading && !error && banks.length > 0 && bankAccounts.length === 0 && (
-                  <div className="p-[16px] flex flex-col items-center gap-[8px] justify-center text-center" role="alert">
-                    <NoDataIcon />
-                    <MediumTitleComponent text={tGlobal('noData')} />
-                  </div>
-                )}
+                
 
                 {showSetLimitModal && (
                   <SetTransactionLimitModal

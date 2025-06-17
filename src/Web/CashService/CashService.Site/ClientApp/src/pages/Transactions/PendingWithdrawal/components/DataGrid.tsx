@@ -13,6 +13,7 @@ import Pagination from '../../Components/Pagination';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
 import { ValidateMessageComponent } from '../../../../components/MessageComponents.tsx';
 import Tippy from '@tippyjs/react';
+import { IconImage } from '../../../../components/Icons.tsx';
 
 interface DataGridProps {
   withdrawals: TransactionItem[];
@@ -78,7 +79,7 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
               <th scope="col">
                 <div>{t('dataGrid.firstName')}</div>
               </th>
-              <th scope="col">{t('dataGrid.amount')}</th>
+              <th scope="col" className='min-w-[100px]'>{t('dataGrid.amount')}</th>
               <th scope="col" className='w-[250px]'>{t('dataGrid.from')}</th>
               <th scope="col" className='w-[250px]'>{t('dataGrid.to')}</th>
               <th scope="col">{t('dataGrid.referenceNo')}</th>
@@ -101,7 +102,7 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
                     <div>{withdrawal.firstName}</div>
                     <div>{withdrawal.lastName}</div>
                   </td>
-                  <td>{displayAmount(withdrawal.amount)}</td>
+                  <td><div className='flex items-center justify-end'><IconImage className='w-[20px] h-[20px] mr-[5px]' />{displayAmount(withdrawal.amount)}</div></td>
                   <td className="text-left"><Tippy content={<p>data</p>}>{renderBankAccount(withdrawal.paymentFrom)}</Tippy></td>
                   <td className="text-left"><Tippy content={<p>data</p>}>{renderBankAccount(withdrawal.paymentTo)}</Tippy></td>
                   <td>{withdrawal.transId}</td>

@@ -178,27 +178,27 @@ export const NoDataIcon = () => (
           </filter>
           <radialGradient id="paint0_radial_12052_32750" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(37.2971 66.8942) rotate(-29.9136) scale(52.9626)">
               <stop stopColor="#50749B"></stop>
-              <stop offset="1" stop-color="#D1DFE8"></stop>
+              <stop offset="1" stopColor="#D1DFE8"></stop>
           </radialGradient>
           <radialGradient id="paint1_radial_12052_32750" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(59.5926 63.3565) rotate(-18.166) scale(50.3371 50.3371)">
-              <stop stop-color="#9CB6D2"></stop>
-              <stop offset="1" stop-color="#C1DEF0"></stop>
+              <stop stopColor="#9CB6D2"></stop>
+              <stop offset="1" stopColor="#C1DEF0"></stop>
           </radialGradient>
           <radialGradient id="paint2_radial_12052_32750" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(79.0115 20.4899) rotate(-17.6471) scale(18.8324 14.7262)">
-              <stop stop-color="#85ABC5"></stop>
-              <stop offset="1" stop-color="#B7DAF1"></stop>
+              <stop stopColor="#85ABC5"></stop>
+              <stop offset="1" stopColor="#B7DAF1"></stop>
           </radialGradient>
           <linearGradient id="paint3_linear_12052_32750" x1="77.3667" y1="57.6993" x2="34.2324" y2="57.6993" gradientUnits="userSpaceOnUse">
-              <stop stop-color="white"></stop>
-              <stop offset="1" stop-color="#D4E6F9"></stop>
+              <stop stopColor="white"></stop>
+              <stop offset="1" stopColor="#D4E6F9"></stop>
           </linearGradient>
           <radialGradient id="paint4_radial_12052_32750" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(51.3375 64.3275) rotate(-166.332) scale(42.0751 32.6127)">
-              <stop stop-color="#A5C6E9"></stop>
-              <stop offset="1" stop-color="#50579B"></stop>
+              <stop stopColor="#A5C6E9"></stop>
+              <stop offset="1" stopColor="#50579B"></stop>
           </radialGradient>
           <radialGradient id="paint5_radial_12052_32750" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(59.7264 58.1092) rotate(-65.5982) scale(14.0433 15.6119)">
-              <stop stop-color="#A5C6E9"></stop>
-              <stop offset="1" stop-color="#50579B"></stop>
+              <stop stopColor="#A5C6E9"></stop>
+              <stop offset="1" stopColor="#50579B"></stop>
           </radialGradient>
       </defs>
   </svg>
@@ -236,8 +236,8 @@ export const IconLast = ({ className }: { className?: string }) => (
   </svg>
 
 )
-export const IconImage = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-[var(--text-link-color)] mb-[5px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+export const IconImage = ({ className }: { className?: string }) => (
+  <svg className={`${className}`} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
   </svg>
 )
