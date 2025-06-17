@@ -16,8 +16,9 @@ public class TransactionsController(
     HttpClientHelper httpClientHelper,
     IUserSession userSession,
     IHttpContextAccessor httpContextAccessor,
-    IAntiforgery antiforgery,
-    ITransactionHistoryWorkbook transactionHistoryWorkbook)
+    ITransactionHistoryWorkbook transactionHistoryWorkbook,
+    IAntiforgery antiforgery
+    )
     : SiteBaseController(userSession, antiforgery)
 {
     private readonly int agentId = userSession.CustId;
@@ -126,23 +127,10 @@ public class TransactionsController(
         var result = await httpClientHelper.PostAsync<AddTransactionParams, ResultModel>("/api/deposit/create", request);
         if (result.Code != 0)
         {
-            result.Message = MappingDepositErrorCode(result.Code);
+            result.Message = ErrorCodeHandler.MappingDepositErrorCode(result.Code);
         }
         return Json(result);
     }
-
-    private static string MappingDepositErrorCode(int errCode) =>
-        errCode switch
-        {
-            401 => CashServicesResx.AccountDisabled,
-            402 => CashServicesResx.AccountClosed,
-            403 => CashServicesResx.UnableToProcessDeposits,
-            404 => CashServicesResx.TheAccountWasSuspended,
-            405 => CashServicesResx.InvalidParameters,
-            407 => CashServicesResx.TheAmountExceedsTheAllowedMinimumOrMaximumValue,
-            409 => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain,
-            _ => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain
-        };
 
     [HttpPost]
     public async Task<IActionResult> AddManualWithdrawal([FromForm] AddTransactionParams request)
@@ -165,26 +153,10 @@ public class TransactionsController(
         result = await httpClientHelper.PostAsync<AddTransactionParams, ResultModel>("/api/withdrawal/create", request);
         if (result.Code != 0)
         {
-            result.Message = MappingAddManualWithdrawalErrCode(result.Code);
+            result.Message = ErrorCodeHandler.MappingAddManualWithdrawalErrCode(result.Code);
         }
         return Json(result);
     }
-
-    private static string MappingAddManualWithdrawalErrCode(int errCode)
-    => errCode switch
-    {
-        400 => CashServicesResx.ModelValidationFailed,
-        401 => CashServicesResx.AccountDisabled,
-        402 => CashServicesResx.AccountClosed,
-        404 => CashServicesResx.TheAccountWasSuspended,
-        405 => CashServicesResx.InvalidParameters,
-        406 => CashServicesResx.MemberCashBalanceIsInsufficient,
-        407 => CashServicesResx.TheAmountExceedsTheAllowedMinimumOrMaximumValue,
-        408 => CashServicesResx.ExceedsTheDailyWithdrawalLimit,
-        409 => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain,
-        500 => CashServicesResx.AnErrorOccurredWhileProcessingWithdrawalRequest,
-        _ => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain
-    };
 
     private static ResultModel VerifyInputParam(AddTransactionParams request, bool isWithdrawal)
     {
@@ -309,58 +281,61 @@ public class TransactionsController(
     }
 
     [HttpPost]
-    public async Task<IActionResult> ApproveDeposit([FromBody] ProcessTransactionModel request)
+    public async Task<IActionResult> ApproveDeposit([FromBody] ProcessDepositTransaction request)
     {
         if (userSession.IsInternal)
         {
             return Unauthorized();
         }
-
-        var result = await httpClientHelper.PostAsync<ProcessTransactionModel, ResultModel>("/deposit/approve", request);
+        request.SetUserSession(userSession);
+        var result = await httpClientHelper.PostAsync<ProcessDepositTransaction, ResultModel>("/api/deposit/approve", request);
         return Json(result);
     }
 
     [HttpPost]
-    public async Task<IActionResult> RejectDeposit([FromBody] ProcessTransactionModel request)
+    public async Task<IActionResult> RejectDeposit([FromBody] ProcessDepositTransaction request)
     {
         if (userSession.IsInternal)
         {
             return Unauthorized();
         }
+        request.SetUserSession(userSession);
 
-        var result = await httpClientHelper.PostAsync<ProcessTransactionModel, ResultModel>("/deposit/reject", request);
+        var result = await httpClientHelper.PostAsync<ProcessDepositTransaction, ResultModel>("/api/deposit/reject", request);
         return Json(result);
     }
 
     [HttpPost]
-    public async Task<IActionResult> ApproveWithdrawal([FromBody] ProcessTransactionModel request)
+    public async Task<IActionResult> ApproveWithdrawal([FromForm] ProcessWithdrawalTransaction request)
     {
         if (userSession.IsInternal)
         {
             return Unauthorized();
         }
+        request.SetUserSession(userSession);
 
         if (request.Image != null)
         {
             request.Payslip = await FileHelper.CompressAndConvertToBase64Async(request.Image);
         }
-        var result = await httpClientHelper.PostAsync<ProcessTransactionModel, ResultModel>("/withdrawal/approve", request);
+        var result = await httpClientHelper.PostAsync<ProcessWithdrawalTransaction, ResultModel>("/api/withdrawal/approve", request);
         return Ok(result);
     }
 
     [HttpPost]
-    public async Task<IActionResult> RejectWithdrawal([FromBody] ProcessTransactionModel request)
+    public async Task<IActionResult> RejectWithdrawal([FromForm] ProcessWithdrawalTransaction request)
     {
         if (userSession.IsInternal)
         {
             return Unauthorized();
         }
+        request.SetUserSession(userSession);
 
         if (request.Image != null)
         {
             request.Payslip = await FileHelper.CompressAndConvertToBase64Async(request.Image);
         }
-        var result = await httpClientHelper.PostAsync<ProcessTransactionModel, ResultModel>("/withdrawal/reject", request);
+        var result = await httpClientHelper.PostAsync<ProcessWithdrawalTransaction, ResultModel>("/api/withdrawal/reject", request);
         return Ok(result);
     }
 }

@@ -1,7 +1,6 @@
 using AlphaPlus.CashService.API.Features.PendingDeposit.Models;
 using AlphaPlus.CashService.API.Features.PendingDeposit.Services;
 using AlphaPlus.CashService.API.Features.Transactions.Enum;
-using AlphaPlus.CashService.API.Features.Transactions.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.CashService.API.Features.PendingDeposit.Endpoints;
@@ -54,8 +53,11 @@ public static class PendingDepositEndpoints
             Description = "Adding manual deposit transaction on Agency site"
         });
 
-        group.MapPost("/approve", async ([FromBody] ProcessTransactionModel model, IPendingDepositService service) =>
+        group.MapPost("/approve", async ([FromBody] ProcessDepositTransaction model, IPendingDepositService service) =>
         {
+            var memberSetting = await service.GetMemberSettingDepositWhenProcessTransactionAsync(model.CustId, model.ActorId, model.CustDbGroupId);
+            model.AgentGivenCredit = memberSetting.AgentGivenCredit;
+            model.CreditMembersGivenCredit = memberSetting.CreditMembers_GivenCredit;
             model.StatusId = (int)TransactionStatus.Completed;
             var result = await service.ProcessDepositAsync(model);
             return Results.Ok(result);
@@ -67,7 +69,7 @@ public static class PendingDepositEndpoints
             Description = "Approve deposit transaction"
         });
 
-        group.MapPost("/reject", async ([FromBody] ProcessTransactionModel model, IPendingDepositService service) =>
+        group.MapPost("/reject", async ([FromBody] ProcessDepositTransaction model, IPendingDepositService service) =>
         {
             model.StatusId = (int)TransactionStatus.Rejected;
             var result = await service.ProcessDepositAsync(model);

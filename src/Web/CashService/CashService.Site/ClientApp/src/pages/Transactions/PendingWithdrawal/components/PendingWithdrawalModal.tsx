@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
 import {
   displayAmount,
   formatDateTime,
@@ -25,6 +24,7 @@ import { transactionAPI } from '../../../../services/transactionsHistoryAPI.ts';
 import { TransactionTypes } from '../../../../constants/sharedConstants.ts';
 import UploadImage from '../../Components/UploadImage';
 import { LoadingFullComponent } from '../../../../components/LoadingComponent';
+import { WithdrawalAgentBankDropDown } from '../../../../services/interfaces/Transactions/BankInfo.ts';
 
 interface PendingWithdrawalModalProps {
   transId: number;
@@ -41,10 +41,12 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
   const [withdrawal, setWithdrawal] = useState<TransactionItem | null>(null);
   const [remark, setRemark] = useState('');
   const [withdrawalFrom, setWithdrawalFrom] = useState('');
-  const [bankOptions, setBankOptions] = useState<DropdownOption[]>([]);
+  const [bankOptions, setBankOptions] = useState<WithdrawalAgentBankDropDown[]>([]);
   const [image, setImage] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [providerId, setProviderId] = useState(0);
+  const [paymentMethodId, setPaymentMethodId] = useState(0);
   const [resultMessage, setResultMessage] = useState<{
     type: 'success' | 'error' | 'warning' | null;
     message: string;
@@ -76,25 +78,35 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
           transactionAPI.getCashAgentBankInfo(TransactionTypes.Withdrawal),
         ]);
 
-        const providerOptions = providers.map((provider) => ({
-          value: renderBankOptionValue('', provider.providerName),
-          label: provider.providerName,
-          code: '',
-        }));
-
-        const bankOptions = bankInfo.map((bank) => ({
+        const bankOptions: WithdrawalAgentBankDropDown[] = bankInfo.map((bank) => ({
           value: renderBankOptionValue(bank.bankCode, bank.bankAccountNumber),
           label: bank.bankAccountNumber,
           code: bank.bankCode,
           icon: <BankIcon code={bank.bankCode} />,
+          providerId: 0,
+          paymentMethodId: 0,
+        }));
+        const mappedProviderInfo: WithdrawalAgentBankDropDown[] = providers.map((provider) => ({
+          value: renderBankOptionValue('', provider.providerName),
+          label: provider.providerName,
+          code: '',
+          providerId: provider.providerId,
+          paymentMethodId: provider.paymentMethodId,
         }));
 
-        setBankOptions([...bankOptions, ...providerOptions]);
+        setBankOptions([...bankOptions, ...mappedProviderInfo]);
 
         if (
           withdrawal?.paymentFrom &&
           bankOptions.find((option) => option.value === withdrawal.paymentFrom)
         ) {
+          let providerId =
+            bankOptions.find((option) => option.value === withdrawal.paymentFrom)?.providerId || 0;
+          let paymentMethodId =
+            bankOptions.find((option) => option.value === withdrawal.paymentFrom)
+              ?.paymentMethodId || 0;
+          setProviderId(providerId);
+          setPaymentMethodId(paymentMethodId);
           setWithdrawalFrom(withdrawal.paymentFrom);
         }
       } catch (error) {
@@ -112,7 +124,10 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
       setIsSubmitting(true);
       const response = await approveWithdrawal({
         transId: withdrawal?.transId || 0,
+        custId: withdrawal?.custId || 0,
         paymentFrom: withdrawalFrom,
+        providerId: providerId,
+        paymentMethodId: paymentMethodId,
         remark: remark,
         image: image,
       });
@@ -141,7 +156,10 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
     setIsSubmitting(true);
     const response = await rejectWithdrawal({
       transId: withdrawal?.transId || 0,
+      custId: withdrawal?.custId || 0,
       paymentFrom: withdrawalFrom,
+      providerId: providerId,
+      paymentMethodId: paymentMethodId,
       remark: remark,
       image: image,
     });
@@ -169,8 +187,13 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
     }
     return true;
   };
+
   const handleChangePaymentFrom = (option: DropdownOption) => {
+    let providerId = option.attributes?.providerId || 0;
+    let paymentMethodId = option.attributes?.paymentMethodId || 0;
     setWithdrawalFrom(option.value.toString());
+    setProviderId(providerId);
+    setPaymentMethodId(paymentMethodId);
   };
 
   return (
@@ -198,22 +221,32 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
             <>
               <div className="flex-1 h-full max-[768px]:mb-[16px] w-[400px] max-[768px]:w-full mr-[32px]">
                 <div className="border border-[var(--border-control)] rounded-[4px] mb-[8px] p-[8px] flex flex-wrap">
-                  <div className='w-[50%] mb-[8px] flex flex-col'>
-                    <label className="font-semibold text-[var(--text-color-secondary)]">{t('pendingWithdrawalModal.username')}:</label>
+                  <div className="w-[50%] mb-[8px] flex flex-col">
+                    <label className="font-semibold text-[var(--text-color-secondary)]">
+                      {t('pendingWithdrawalModal.username')}:
+                    </label>
                     <span>{withdrawal?.username}</span>
                   </div>
-                  <div className='w-[50%] mb-[8px] flex flex-col'>
-                    <label className="font-semibold  text-[var(--text-color-secondary)]">{t('dataGrid.nickname')}:</label>
+                  <div className="w-[50%] mb-[8px] flex flex-col">
+                    <label className="font-semibold  text-[var(--text-color-secondary)]">
+                      {t('dataGrid.nickname')}:
+                    </label>
                     <span>{withdrawal?.nickname}</span>
                   </div>
-                  <div className='w-[50%] flex flex-col'>
-                    <label className="font-semibold text-[var(--text-color-secondary)]">{t('dataGrid.firstName')}:</label>
+                  <div className="w-[50%] flex flex-col">
+                    <label className="font-semibold text-[var(--text-color-secondary)]">
+                      {t('dataGrid.firstName')}:
+                    </label>
                     <span>{`${withdrawal?.firstName} ${withdrawal?.lastName}`}</span>
                   </div>
-                  <div className='w-[50%] flex flex-col'>
-                    <label className="font-semibold text-[var(--text-color-secondary)]">{t('pendingWithdrawalModal.betCredit')}:</label>
-                    <span className='text-[var(--text-link-color)] font-semibold'>{displayAmount(withdrawal?.betCredit || 0)}</span>
-                  </div>                   
+                  <div className="w-[50%] flex flex-col">
+                    <label className="font-semibold text-[var(--text-color-secondary)]">
+                      {t('pendingWithdrawalModal.betCredit')}:
+                    </label>
+                    <span className="text-[var(--text-link-color)] font-semibold">
+                      {displayAmount(withdrawal?.betCredit || 0)}
+                    </span>
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-6">
@@ -238,7 +271,15 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
                       <LabelTitleComponent text={t('pendingWithdrawalModal.from')} required />
                       <div className="w-full">
                         <DropdownComponent
-                          options={bankOptions}
+                          options={bankOptions.map((bank) => ({
+                            value: bank.value,
+                            label: bank.label,
+                            icon: <BankIcon code={bank.code} />,
+                            attributes: {
+                              providerId: bank.providerId,
+                              paymentMethodId: bank.paymentMethodId,
+                            },
+                          }))}
                           onSelect={handleChangePaymentFrom}
                           initialValue={withdrawal?.paymentFrom || ''}
                           placeholder={t('pendingWithdrawalModal.selectBank')}
@@ -270,13 +311,11 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
                 </div>
               </div>
 
-            
-                <UploadImage
-                  setImage={setImage}
-                  prevImage={withdrawal?.payslip}
-                  disabled={isSubmitting}
-                />
-              
+              <UploadImage
+                setImage={setImage}
+                prevImage={withdrawal?.payslip}
+                disabled={isSubmitting}
+              />
             </>
           )}
         </div>

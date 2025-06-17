@@ -58,7 +58,8 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
   const getParams = () => {
     const params: ApproveRejectDepositModel = {
       transId: deposit?.transId ? deposit.transId : 0,
-      amount: depositAmount,
+      custId: deposit?.custId ? deposit.custId : 0,
+      newAmount: depositAmount,
       remark: remark,
     };
     return params;

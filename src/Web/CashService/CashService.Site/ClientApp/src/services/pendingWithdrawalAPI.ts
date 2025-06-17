@@ -91,23 +91,36 @@ export const manualAddWithdrawal = async (
 
 export const approveWithdrawal = async ({
   transId,
+  custId,
   paymentFrom,
+  providerId,
+  paymentMethodId,
   remark,
   image,
 }: {
   transId: number;
+  custId: number;
   paymentFrom: string;
+  providerId: number;
+  paymentMethodId: number;
   remark: string;
   image: File | null;
 }): Promise<ResultModel> => {
   try {
     const formData = new FormData();
-    formData.append('transactionId', transId.toString());
+    formData.append('transId', transId.toString());
+    formData.append('custId', custId.toString());
     formData.append('paymentFrom', paymentFrom);
+    formData.append('providerId', providerId.toString());
+    formData.append('paymentMethodId', paymentMethodId.toString());
     formData.append('remark', remark);
+
     if (image) {
       formData.append('image', image);
     }
+    console.log(formData.get('transId'));
+    console.log(formData.get('custId'));
+    console.log(formData.get('paymentFrom'));
 
     const response = await api.post<ResultModel>('ApproveWithdrawal', formData, {
       headers: {
@@ -123,19 +136,28 @@ export const approveWithdrawal = async ({
 
 export const rejectWithdrawal = async ({
   transId,
+  custId,
   paymentFrom,
+  providerId,
+  paymentMethodId,
   remark,
   image,
 }: {
   transId: number;
+  custId: number;
   paymentFrom: string;
+  providerId: number;
+  paymentMethodId: number;
   remark: string;
   image: File | null;
 }): Promise<ResultModel> => {
   try {
     const formData = new FormData();
-    formData.append('transactionId', transId.toString());
+    formData.append('transId', transId.toString());
+    formData.append('custId', custId.toString());
     formData.append('paymentFrom', paymentFrom);
+    formData.append('providerId', providerId.toString());
+    formData.append('paymentMethodId', paymentMethodId.toString());
     formData.append('remark', remark);
     if (image) {
       formData.append('image', image);

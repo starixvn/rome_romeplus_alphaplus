@@ -19,7 +19,7 @@ public interface IPendingWithdrawalService
 
     Task<ResultModel> AddManualWithdrawAsync(AddManualWithdrawalModel param);
 
-    Task<ResultModel> ProcessWithdrawAsync(ProcessTransactionModel param);
+    Task<ResultModel> ProcessWithdrawAsync(ProcessWithdrawalTransaction param);
 }
 
 public class PendingWithdrawalService(
@@ -111,18 +111,28 @@ public class PendingWithdrawalService(
         return result;
     }
 
-    public async Task<ResultModel> ProcessWithdrawAsync(ProcessTransactionModel param)
+    public async Task<ResultModel> ProcessWithdrawAsync(ProcessWithdrawalTransaction param)
     {
         var command = new ProcessTransactionCommand
         {
             TransId = BigInteger.Parse(param.TransId),
             PaymentFrom = param.PaymentFrom,
+            CustId = param.CustId,
+            ProviderId = param.ProviderId,
+            PaymentMethodId = param.PaymentMethodId,
+            AgentId = param.ActorId,
+            SubAccId = param.SubAccId,
+            SiteDbGroupId = param.SiteDBGroupId,
             Remark = param.Remark,
             StatusId = param.StatusId,
             Payslip = param.Payslip
         };
-        await dynamicRepository.ExecuteAsync(command);
+        var responseLogs = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command) ?? [];
+
         var result = new ResultModel(command.ErrCode, command.ErrMsg);
+
+        transactionService.OnAfterUpdateTransaction(command.CashAccumCreditTbl, param.SiteDBGroupId, param.CustDBGroupId, responseLogs.ToList());
+
         return result;
     }
 }
