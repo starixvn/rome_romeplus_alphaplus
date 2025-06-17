@@ -12,6 +12,7 @@ import { ButtonFullComponent } from '../../../../components/ButtonComponents';
 import PendingDepositModal from './PendingDepositModal';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
 import Tippy from '@tippyjs/react';
+import { ErrorMessageComponent } from '../../../../components/MessageComponents';
 
 interface DataGridProps {
   deposits: TransactionItem[];
@@ -154,7 +155,7 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
         </table>
       </div>
 
-      {error && <div className="mt-4 p-4 bg-red-100 text-red-700 rounded-md">{error}</div>}
+      {error && <ErrorMessageComponent message={error} />}
 
       {showDepositPopup && selectedDeposit && (
         <PendingDepositModal

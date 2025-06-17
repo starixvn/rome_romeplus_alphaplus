@@ -275,7 +275,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
 
       <div
         id="manual-withdrawal-form"
-        className="w-[1100px] max-[768px]:w-full pb-[16px] pt-[10px]"
+        className="max-[768px]:w-full pb-[16px] pt-[10px]"
       >
         {resultMessage.type && (
           <ResultMessageComponent
@@ -285,7 +285,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
           />
         )}
         <div className="flex justify-between max-[768px]:flex-col mb-[16px]">
-          <div className="flex-1 max-w-[700px] max-[768px]:mb-[16px]">
+          <div className="flex-1 max-w-[700px] max-[768px]:mb-[16px] mr-[30px] max-[768px]:mr-[0]">
             <MediumTitleComponent text={t('manualWithdrawalForm.accountInformation')} />
             <div className="flex flex-wrap">
               <div className="flex flex-nowrap gap-[16px] mb-[4px] justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
@@ -342,7 +342,6 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                     searchable={true}
                   />
                 </div>
-
                 <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
                   <LabelTitleComponent text={t('manualWithdrawalForm.withdrawalAmount')} required />
                   <AmountInput
