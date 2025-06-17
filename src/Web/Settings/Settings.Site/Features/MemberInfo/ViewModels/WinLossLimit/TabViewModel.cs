@@ -1,3 +1,15 @@
+using AlphaPlus.Core.Helpers;
+
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.WinLossLimit;
 
-public record TabViewModel(string SelectedTabName);
+public record TabViewModel
+{
+    public string SelectedTabName { get; init; }
+    public string HandbookUrl { get; init; }
+
+    public TabViewModel(string selectedTabName)
+    {
+        SelectedTabName = selectedTabName;
+        HandbookUrl = MicroSites.FeatureUrl($"~/StaticMessage/Help?id=226060");
+    }
+}

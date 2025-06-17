@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icon-alpha-v2';
-  src:  url('fonts/icon-alpha-v2.eot?f08062');
-  src:  url('fonts/icon-alpha-v2.eot?f08062#iefix') format('embedded-opentype'),
-    url('fonts/icon-alpha-v2.ttf?f08062') format('truetype'),
-    url('fonts/icon-alpha-v2.woff?f08062') format('woff'),
-    url('fonts/icon-alpha-v2.svg?f08062#icon-alpha-v2') format('svg');
+  src:  url('fonts/icon-alpha-v2.eot?j8qe8w');
+  src:  url('fonts/icon-alpha-v2.eot?j8qe8w#iefix') format('embedded-opentype'),
+    url('fonts/icon-alpha-v2.ttf?j8qe8w') format('truetype'),
+    url('fonts/icon-alpha-v2.woff?j8qe8w') format('woff'),
+    url('fonts/icon-alpha-v2.svg?j8qe8w#icon-alpha-v2') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ic-book:before {
+  content: "\e91d";
+}
 .ic-filter:before {
   content: "\e91c";
 }

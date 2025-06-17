@@ -730,14 +730,8 @@
   <data name="CheckOut" xml:space="preserve">
     <value>チェックアウトする</value>
   </data>
-  <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
-    <value>カスタムフィルターを使用して会員の進行中のベットチケットを監視することで、&lt;b&gt;Last Bets&lt;/b&gt;でビジネスリスクを最小限に抑えます。</value>
-  </data>
   <data name="HighlightPopupRewardIntro" xml:space="preserve">
     <value>簡単に参照できる&lt;b&gt;統合ガイドライン&lt;/b&gt;と&lt;b&gt;用語集&lt;/b&gt;を見つけましょう。</value>
-  </data>
-  <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
-    <value>&lt;b&gt;Last Bets&lt;/b&gt;機能を発見</value>
   </data>
   <data name="HighlightPopupRewardTitle" xml:space="preserve">
     <value>&lt;b&gt;ワンストップハンドブック&lt;/b&gt;を探検しよう！</value>

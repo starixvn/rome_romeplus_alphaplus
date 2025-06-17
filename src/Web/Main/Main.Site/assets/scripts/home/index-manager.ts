@@ -492,7 +492,7 @@ var indexManager = {
             hiddenIsShowRewardTour.remove();
         } else {
             // New Feature
-            indexManager.initHighlightPopup($('#menu-BETLISTS'), '213315_LastBets', 80);
+            indexManager.initHighlightPopup($('#menu-RISKMANAGEMENT'), '226060_Potential', 80);
         }
     },
 

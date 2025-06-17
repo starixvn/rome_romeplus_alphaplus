@@ -10,4 +10,9 @@
     <li role="presentation" class="@(Model.SelectedTabName == "sportsbookpotentialwinlimit" ? "active" : string.Empty)">
         <a id="tabSportsbookPotentialWinLimit" href="/settings/WinLossLimit/sportsbookpotentialwinlimit">@Resources.SportsbookPotentialWinLimit</a>
     </li>
+    <li class="icon-tab">    
+        <a href="@Model.HandbookUrl" target="_blank" class="user-guide-link ripple">
+            <span class="ic-book"></span>
+        </a>
+    </li>
 </ul>

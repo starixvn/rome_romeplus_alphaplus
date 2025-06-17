@@ -177,13 +177,14 @@ public class IndexViewModel
         {
             var actorLevel = Enumeration.FromValue<UserLevel>(message.RoleId);
 
-                return actorLevel.IsNotAgentLevel() && (!IsSubAccount || message.ViewBetList ); 
+            return actorLevel.IsAgentLevel() && Core.Configurations.AppSettings.IsSupportPotentialWinLimit(UserSession.Current.Site);
         }
     }
 
     public string HightLightFeatureImageName => "new_feature" + DarkModeName;
 
-    public string HightLightFeatureUrl => MicroSites.TicketUrl($"~/LastBets/IndexNew");
+    public string HightLightFeatureUrl
+    => MicroSites.FeatureUrl($"~/StaticMessage/Help?id=226060");
 
     public bool IsShowRewardTour { get; }
 

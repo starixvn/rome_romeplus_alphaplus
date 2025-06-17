@@ -17,6 +17,7 @@
             --tab-line-background: #516e8f;
         }
     }
+    --icon-color-tab: #0b599c;
 }
 
 :root [data-theme='dark'] {
@@ -28,6 +29,7 @@
             --tab-line-background: #EDEDED;
         }
     }
+    --icon-color-tab: #41A4FF;
 }
 
 .title-super {
@@ -57,7 +59,11 @@
             border: 0;
             float: none;
             font-size: var(--font-size);
-
+            &.icon-tab{
+                &:after{
+                    display: none;
+                }
+            }
             &:after {
                 content: '';
                 display: block;
@@ -74,11 +80,16 @@
                 font-weight: bold;
                 outline: none;
                 cursor: pointer;
+                [class*=" ic-"], [class^=ic-] {
+                    color: var(--icon-color-tab);
+                    font-size: 15px;
+                }
             }
 
             &.active, &:hover, &:focus {
                 a {
                     color: var(--tab-text-color);
+                    
                 }
 
 

@@ -748,14 +748,11 @@ Lưu ý:Thông tin về quốc gia và thành phố được cung cấp bởi  I
   <data name="CheckOut" xml:space="preserve">
     <value>Xem ngay</value>
   </data>
-  <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
-    <value>Giảm thiểu rủi ro kinh doanh bằng cách giám sát các vé cược đang chạy của thành viên thông qua bộ lọc tùy chỉnh.</value>
-  </data>
   <data name="HighlightPopupRewardIntro" xml:space="preserve">
     <value>&lt;p&gt;Chúng tôi rất vui mừng giới thiệu Chương trình Tiền thưởng. Công ty sẽ chi trả toàn bộ tiền thưởng này, và khi Member đã nhận thưởng, số tiền này sẽ không được phép sử dụng để đặt cược. Tiền thưởng sẽ được phân phối cho các cấp trên, và Member có thể rút tiền qua Agent của mình.&lt;/p&gt;&lt;p&gt;Chức năng &lt;b&gt;Thanh toán Tiền thưởng&lt;/b&gt; giúp bạn quản lý việc thanh toán cho các cấp dưới, đảm bảo tất cả các khoản tiền thưởng được phân phối một cách chính xác.&lt;/p&gt;</value>
   </data>
   <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
-    <value>Khám phá tính năng Cược Gần Nhất</value>
+    <value>Kiểm soát hoàn toàn với Giới hạn thắng tối đa Sportsbook</value>
   </data>
   <data name="HighlightPopupRewardTitle" xml:space="preserve">
     <value>Chào mừng đến với &lt;b&gt;Chương trình Tiền thưởng&lt;/b&gt;!</value>
@@ -854,5 +851,23 @@ Lưu ý: Vui lòng thay đổi &lt;b&gt;mật khẩu&lt;/b&gt; Nova Casino Back 
   </data>
   <data name="CashService" xml:space="preserve">
     <value>Cash Service</value>
+  </data>
+  <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
+    <value>Lo lắng về người chơi rủi ro cao hoặc các khoản trả thưởng lớn bất ngờ? &lt;br/&gt;Với Giới hạn thắng tối đa Sportsbook, đại lý có thể tự động chặn thành viên khi tiền thắng tiềm năng đạt đến ngưỡng đã thiết lập.</value>
+  </data>
+  <data name="HighlightPopupNewFeatureIntro2" xml:space="preserve">
+    <value>Giảm rủi ro trả thưởng</value>
+  </data>
+  <data name="HighlightPopupNewFeatureIntro3" xml:space="preserve">
+    <value>Giữ sổ sách ổn định</value>
+  </data>
+  <data name="HighlightPopupNewFeatureIntro4" xml:space="preserve">
+    <value>Thiết lập giới hạn khi tạo tài khoản mới hoặc chỉnh sửa cài đặt Sportsbook</value>
+  </data>
+  <data name="HighlightPopupNewFeatureIntro5" xml:space="preserve">
+    <value>Theo dõi toàn bộ tại trang Giới hạn thắng tối đa</value>
+  </data>
+  <data name="HighlightPopupNewFeatureIntro6" xml:space="preserve">
+    <value>Muốn xem cách hoạt động?</value>
   </data>
 </root>
