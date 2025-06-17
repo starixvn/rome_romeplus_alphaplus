@@ -28,20 +28,21 @@ class CashFeeView extends BaseReportNew {
     init() {
         super.initShowHideFilter();
         this.$tblReportContainer = $('#tbl-report-container');
+        this.globalFormData = winlossDetailFromData;
 
         this.dateRangeComponent.render({ maxDays: 92, onClosed: () => this.getCashFee(null, true) });
         this.breadcrumbLevelComponent.init((custInfo) => {
             $.blockUI();
             const winlossDetailParams = $.extend(
                 {},
-                winlossDetailFromData,
+                this.globalFormData,
                 custInfo,
                 this.dateRangeComponent.getDateRangeValues()
             );
             location.href = `${$('#winloss-detail-report-path').val()}?${$.param(winlossDetailParams)}`;
         });
         this.weekComponent.init($('#week-container'), (dateRange) => this.getCashFee(dateRange, true));
-        this.globalFormData = winlossDetailFromData;
+        
         this.registerEvents();
 
         // setTimeout(function () {
