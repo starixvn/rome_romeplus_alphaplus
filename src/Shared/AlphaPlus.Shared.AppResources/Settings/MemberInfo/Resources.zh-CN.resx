@@ -1295,6 +1295,6 @@
     <value>累计输赢</value>
   </data>
   <data name="SportsbookPotentialWinLimit" xml:space="preserve">
-    <value>体育博彩赢额上限</value>
+    <value>体育博彩潜在赢额上限</value>
   </data>
 </root>

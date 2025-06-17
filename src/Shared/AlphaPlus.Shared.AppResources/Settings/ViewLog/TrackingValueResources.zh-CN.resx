@@ -3433,7 +3433,7 @@
     <value>总代理佣金</value>
   </data>
   <data name="PotentialWinLimit" xml:space="preserve">
-    <value>赢额上限</value>
+    <value>潜在赢额上限</value>
   </data>
   <data name="accnumber" xml:space="preserve">
     <value>账号</value>
