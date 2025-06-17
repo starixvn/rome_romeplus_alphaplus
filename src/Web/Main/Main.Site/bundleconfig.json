@@ -57,7 +57,8 @@
   {
     "outputFileName": "wwwroot/assets/bundles/default-home.css",
     "inputFiles": [
-      "assets/styles/Home/home.css"
+      "assets/styles/Home/home.css",
+      "assets/styles/Home/cash-service.css"
     ]
   },
   {
@@ -368,7 +369,8 @@
   {
     "outputFileName": "wwwroot/assets/bundles/default-home-dark.css",
     "inputFiles": [
-      "assets/styles/Home/home-dark.css"
+      "assets/styles/Home/home-dark.css",
+      "assets/styles/Home/cash-service-dark.css"
     ]
   },
   {

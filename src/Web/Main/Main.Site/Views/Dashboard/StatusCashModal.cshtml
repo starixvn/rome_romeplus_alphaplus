@@ -12,21 +12,26 @@
                             stroke-linejoin="round" />
                     </svg>
                 </div>
-                <div class="cash-modal-title">Are you sure you want to activate Cash Service?</div>
+                <div class="cash-modal-title">Supercharge Your Cash Flow?</div>
                 <div class="cash-modal-line"></div>
-                <div class="cash-modal-desc">Start your <span class="cash-modal-highlight">14-days free trial</span>
-                    with no transaction fees (excludes payment
-                    gateway transactions).</div>
-                <div class="cash-modal-desc">After the trial:</div>
-                <ul class="cash-modal-list">
-                    <li><span class="cash-modal-highlight">THB 200</span> per day.</li>
-                    <li><span class="cash-modal-highlight">THB 0.15</span> per transaction via your linked bank account
-                        and per promotion.</li>
+                <div class="cash-modal-highlight-block">
+                    <span class="cash-modal-free-badge">14-days <b>FREE</b> trial</span>
+                    <span class="cash-modal-save-amount">Start today and enjoy instant savings of <b>THB 2,800</b></span>
+                </div>
+                <ul class="cash-modal-benefits">
+                    <li><b>No platform fee</b> <span class="benefit-note">- save THB 200/day during the trial.</span></li>
+                    <li><b> Just 0.15 per transaction</b> via your linked bank account.</li>
+                    <li>Get results. Stay if you love it. Cancel anytime.</li>
                 </ul>
+                <div class="cash-modal-note">
+                    <span class="icon-info">ℹ️</span> Don't miss out – Activate now and take your cash flow to the next
+                    level.
+                </div>
             </div>
             <div class="cash-modal-footer">
                 <button type="button" class="btn custom-cancel" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn custom-confirm" disabled="@(!Model.IsCanUpdateCashServiceStatus)" id="confirmEnableCashService">Confirm</button>
+                <button type="button" class="btn custom-confirm" disabled="@(!Model.IsCanUpdateCashServiceStatus)"
+                    id="confirmEnableCashService">Confirm</button>
             </div>
         </div>
     </div>
@@ -46,12 +51,14 @@
                 <div class="cash-modal-title">Are you sure you want to deactivate Cash Service?</div>
                 <div class="cash-modal-line"></div>
                 <div class="cash-modal-desc">
-                    Cash Service will be turned off for your account, and charges will stop as of tomorrow
+                    Cash Service will be turned off for your account, and charges will stop as of tomorrow,
+                    @DateTime.UtcNow.AddDays(1).AddHours(-4).ToString("dd MMM yyyy 00:00 tt") (GMT-4).
                 </div>
             </div>
             <div class="cash-modal-footer">
                 <button type="button" class="btn custom-cancel" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn custom-confirm" disabled="@(!Model.IsCanUpdateCashServiceStatus)" id="confirmDisableCashService">Confirm</button>
+                <button type="button" class="btn custom-confirm" disabled="@(!Model.IsCanUpdateCashServiceStatus)"
+                    id="confirmDisableCashService">Confirm</button>
             </div>
         </div>
     </div>
