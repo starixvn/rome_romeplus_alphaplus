@@ -42,6 +42,12 @@
                 @Resources.Company</th>
             <th class="sorting visible-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="4">
                 @Resources.Company</th>
+            <th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="RewardAmount" data-colindex="9">
+                @Resources.Reward @(Model.ReportData.DataSource.Any() ? $"({Model.ReportData.DataSource.First().RewardCurrency})" : string.Empty)
+            </th>
+            <th class="sorting visible-stack-mode" rowspan="2" data-sortedname="RewardAmount" data-colindex="5">
+                @Resources.Reward @(Model.ReportData.DataSource.Any() ? $"({Model.ReportData.DataSource.First().RewardCurrency})" : string.Empty)
+            </th>
         </tr>
         <tr class="thead-row2">
             <th class="hidden-stack-mode col-winloss sorting" data-sortedname="@(Model.CustLevel.DisplayName + "WinLoss")"
@@ -82,6 +88,12 @@
                 @Resources.Company</th>
             <th class="sorting visible-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="4">
                 @Resources.Company</th>
+            <th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="RewardAmount" data-colindex="9">
+                @Resources.Reward @(Model.ReportData.DataSource.Any() ? $"({Model.ReportData.DataSource.First().RewardCurrency})" : string.Empty)
+            </th>
+            <th class="sorting visible-stack-mode" rowspan="2" data-sortedname="RewardAmount" data-colindex="5">
+                @Resources.Reward @(Model.ReportData.DataSource.Any() ? $"({Model.ReportData.DataSource.First().RewardCurrency})" : string.Empty)
+            </th>
         </tr>
         <tr class="thead-row2">
             <th class="hidden-stack-mode col-winloss sorting" data-sortedname="MemberWinLoss" data-colindex="3">
@@ -187,6 +199,7 @@
                 }
             }
             <td class="text-right col-company">@data.Company.FormatNumber()</td>
+            <td class="text-right col-reward-amount">@data.RewardAmount.FormatNumber()</td>
         </tr>
     }
 
@@ -294,7 +307,7 @@
     }
     else
     {
-        <no-information colspan="@(isAgentLevel ? 10 : 9)" />
+        <no-information colspan="@(isAgentLevel ? 11 : 10)" />
     }
 </table>
 <a class="hide" id="LoadLegendURL" asp-action="WinLoss" asp-controller="Legends"
