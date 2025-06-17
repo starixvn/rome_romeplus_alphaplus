@@ -611,8 +611,10 @@
 
     function showActiveCashContent() {
         $('#ads-content').hide();
-        $('#active-cash-content').show();
-        $('#step-slider').hide();
+        $('#active-cash-content').hide();
+        $('#step-slider').show();
+        currentStep = 4; // Set to step 5 (0-based index)
+        updateStepContent();
     }
 
     function showStepSlider() {
