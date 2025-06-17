@@ -19,6 +19,7 @@ public class AutoDepositRequest
     [PositiveNumber]
     public short? ProviderId { get; init; }
 
+    [Required(ErrorMessage = "{0} is required.")]
     [Range(0, short.MaxValue, ErrorMessage = "{0} must be between {1} and {2}.")]
     public short PaymentMethodId { get; init; }
 
