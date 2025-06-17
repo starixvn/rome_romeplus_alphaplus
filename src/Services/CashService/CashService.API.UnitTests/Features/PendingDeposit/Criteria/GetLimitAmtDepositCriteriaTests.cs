@@ -13,7 +13,7 @@ public class GetLimitAmtDepositCriteriaTests
 
         // Assert
         Assert.Equal(0, criteria.CustId);
-        Assert.Equal(0, criteria.AccumCreditReturn);
+        Assert.Null(criteria.AccumCreditReturn);
         Assert.Equal(0, criteria.CustDbGroupId);
         Assert.Equal(0, criteria.AgentAvailableCredit);
     }

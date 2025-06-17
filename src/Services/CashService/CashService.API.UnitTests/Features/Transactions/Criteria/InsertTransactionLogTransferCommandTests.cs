@@ -41,7 +41,7 @@ public class InsertTransactionLogTransferCommandTests
         var siteDbGroupId = 1;
 
         // Act & Assert
-        Assert.Throws<System.NullReferenceException>(() => new InsertTransactionLogTransferCommand(logItem, siteDbGroupId));
+        Assert.Throws<NullReferenceException>(() => new InsertTransactionLogTransferCommand(logItem, siteDbGroupId));
     }
 
     [Theory]

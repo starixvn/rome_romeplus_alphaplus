@@ -4,7 +4,7 @@ using System.Numerics;
 using Fanex.Data;
 using Fanex.Data.Repository;
 
-public class ProcessDepositCommand : NonQueryCommand
+public class ProcessDepositCommand : CriteriaBase
 {
     public BigInteger TransId { get; set; }
     public int CustId { get; set; }

@@ -3,7 +3,7 @@
 using System.Numerics;
 using Fanex.Data.Repository;
 
-public class ProcessTransactionCommand : NonQueryCommand
+public class ProcessTransactionCommand : CriteriaBase
 {
     public BigInteger TransId { get; set; }
     public int CustId { get; set; }

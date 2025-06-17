@@ -35,12 +35,11 @@ public class MemberSiteManagementServiceTest
 
         _repositoryMock.Setup(x =>
                 x.FetchMultipleAsync<DomainModel, MemberSiteDataObject>(It.IsAny<ICriteria>(), It.IsAny<string>(),
-                    It.IsAny<System.Threading.CancellationToken>()))
+                    It.IsAny<CancellationToken>()))
             .ReturnsAsync((domains as IEnumerable<DomainModel>, settings as IEnumerable<MemberSiteDataObject>));
 
-
         _repositoryMock.Setup(x => x.FetchAsync<string>(It.IsAny<ICriteria>(), It.IsAny<string>(),
-                It.IsAny<System.Threading.CancellationToken>()))
+                It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(countryCodes as IEnumerable<string>));
 
         // Act
@@ -69,12 +68,11 @@ public class MemberSiteManagementServiceTest
 
         _repositoryMock.Setup(x =>
                 x.FetchMultipleAsync<DomainModel, MemberSiteDataObject>(It.IsAny<ICriteria>(), It.IsAny<string>(),
-                    It.IsAny<System.Threading.CancellationToken>()))
+                    It.IsAny<CancellationToken>()))
             .ReturnsAsync((domains as IEnumerable<DomainModel>, settings as IEnumerable<MemberSiteDataObject>));
 
-
         _repositoryMock.Setup(x => x.FetchAsync<string>(It.IsAny<ICriteria>(), It.IsAny<string>(),
-                It.IsAny<System.Threading.CancellationToken>()))
+                It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(countryCodes as IEnumerable<string>));
 
         // Act

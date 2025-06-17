@@ -133,7 +133,7 @@ public class PendingWithdrawalServiceTests
             PaymentFrom = "Test",
             PaymentTo = "Test",
             Amount = 500m,
-            PaySlip = new byte[] { 1, 2, 3 },
+            PaySlip = [1, 2, 3],
             Ip = "127.0.0.1",
             Remark = "Test",
             PaymentMethodId = 1
@@ -193,7 +193,7 @@ public class PendingWithdrawalServiceTests
             PaymentFrom = "Test",
             PaymentTo = "Test",
             Amount = 500m,
-            PaySlip = new byte[] { 1, 2, 3 },
+            PaySlip = [1, 2, 3],
             Ip = "127.0.0.1",
             Remark = "Test",
             PaymentMethodId = 1
@@ -227,26 +227,25 @@ public class PendingWithdrawalServiceTests
     public async Task ProcessWithdrawAsync_ShouldProcessTransaction()
     {
         // Arrange
-        var param = new ProcessTransactionModel
+        var param = new ProcessWithdrawalTransaction
         {
             TransId = "123",
             PaymentFrom = "Test",
             Remark = "Test",
             StatusId = 1,
-            Payslip = new byte[] { 1, 2 }
+            Payslip = [1, 2]
         };
 
         mockDynamicRepository
-            .Setup(repo => repo.ExecuteAsync(It.IsAny<ProcessTransactionCommand>(), It.IsAny<string>(), It.IsAny<CancellationToken>()))
-            .Callback((INonQueryCommand command, string connectionString, CancellationToken token) =>
+            .Setup(repo => repo.FetchAsync<WriteLogDBCommandModel>(It.IsAny<ProcessTransactionCommand>(), It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .Callback((ICriteria command, string connectionString, CancellationToken token) =>
             {
                 if (command is ProcessTransactionCommand cmd)
                 {
                     cmd.ErrCode = 0;
                     cmd.ErrMsg = "Success";
                 }
-            })
-            .Returns(Task.FromResult(0));
+            });
 
         // Act
         var result = await service.ProcessWithdrawAsync(param);
@@ -254,6 +253,6 @@ public class PendingWithdrawalServiceTests
         // Assert
         Assert.NotNull(result);
         Assert.Equal(0, result.Code);
-        mockDynamicRepository.Verify(repo => repo.ExecuteAsync(It.IsAny<ProcessTransactionCommand>(), It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
+        mockDynamicRepository.Verify(repo => repo.FetchAsync<WriteLogDBCommandModel>(It.IsAny<ProcessTransactionCommand>(), It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
     }
 }

@@ -139,13 +139,13 @@ public class PendingDepositServiceTests
             PaymentFrom = "From",
             PaymentTo = "To",
             Amount = 100,
-            PaySlip = new byte[] { 1 },
+            PaySlip = [1],
             Ip = "ip",
             Remark = "remark"
         };
         var memberAgentCredit = 50m;
         var memberCreditMemberCredit = 25m;
-        var expectedLogs = new List<WriteLogDBCommandModel> { new WriteLogDBCommandModel() };
+        var expectedLogs = new List<WriteLogDBCommandModel> { new() };
         var errCode = 0;
         var errMsg = "Success";
         var cashAccumTbl = "tbl_cash_accum";
@@ -194,19 +194,19 @@ public class PendingDepositServiceTests
     public async Task ProcessDepositAsync_ShouldReturnResultModel()
     {
         // Arrange
-        var param = new ProcessTransactionModel { TransId = "123", Amount = 100, Remark = "remark", StatusId = 1 };
+        var param = new ProcessDepositTransaction { TransId = "123", NewAmount = 100, Remark = "remark", StatusId = 1, ActorId = 1, CustId = 1 };
         var errCode = 0;
         var errMsg = "Success";
 
         mockDynamicRepository
-            .Setup(repo => repo.ExecuteAsync(It.IsAny<ProcessDepositCommand>(), It.IsAny<string>(), It.IsAny<CancellationToken>()))
-            .Callback((INonQueryCommand criteria, string s, CancellationToken ct) =>
+            .Setup(repo => repo.FetchAsync<WriteLogDBCommandModel>(It.IsAny<ProcessDepositCommand>(), It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .Callback((ICriteria criteria, string s, CancellationToken ct) =>
             {
                 var cmd = (ProcessDepositCommand)criteria;
                 cmd.ErrCode = errCode;
                 cmd.ErrMsg = errMsg;
             })
-            .ReturnsAsync(1);
+            .ReturnsAsync(new List<WriteLogDBCommandModel>());
 
         // Act
         var result = await pendingDepositService.ProcessDepositAsync(param);
@@ -215,11 +215,13 @@ public class PendingDepositServiceTests
         Assert.NotNull(result);
         Assert.Equal(errCode, result.Code);
         Assert.Equal(errMsg, result.Message);
-        mockDynamicRepository.Verify(repo => repo.ExecuteAsync(
+        mockDynamicRepository.Verify(repo => repo.FetchAsync<WriteLogDBCommandModel>(
             It.Is<ProcessDepositCommand>(c =>
                 c.TransId == BigInteger.Parse(param.TransId) &&
-                c.Amount == param.Amount &&
-                c.StatusId == param.StatusId),
+                c.NewAmount == param.NewAmount &&
+                c.StatusId == param.StatusId &&
+                c.CustId == param.CustId &&
+                c.AgentId == param.ActorId),
             It.IsAny<string>(),
             It.IsAny<CancellationToken>()), Times.Once);
     }

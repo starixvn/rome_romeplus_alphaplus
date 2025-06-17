@@ -3,7 +3,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Features.Transactions.Criteria;
 
-public class RevertDepositTransactionToPendingCommand : INonQueryCommand
+public class RevertDepositTransactionToPendingCommand : ICriteria
 {
     public long TransId { get; set; }
     public string Remark { get; set; }

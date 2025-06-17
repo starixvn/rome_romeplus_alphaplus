@@ -1,5 +1,5 @@
-using AlphaPlus.CashService.API.Features.Transactions.Criteria;
 using System.Numerics;
+using AlphaPlus.CashService.API.Features.Transactions.Criteria;
 using Xunit;
 
 namespace CashService.API.UnitTests.Features.Transactions.Criteria;
@@ -64,17 +64,22 @@ public class ProcessTransactionCommandTests
         var settingKey = command.GetSettingKey();
 
         // Assert
-        Assert.Equal(string.Empty, settingKey);
+        Assert.Equal("SiteDb_0_Age_CashWithdrawal_UpdateTransStatus", settingKey);
     }
 
-    [Fact]
-    public void IsValid_ShouldThrowNotImplementedException()
+    [Theory]
+    [InlineData(1000, 1, 1, "abc", true)]
+    [InlineData(0, 1, 1, "abc", false)]
+    [InlineData(1000, 0, 1, "abc", false)]
+    [InlineData(1000, 1, 0, "abc", false)]
+    [InlineData(1000, 1, 1, "", false)]
+    public void IsValid_Returns_ExpectedResult(BigInteger transId, int agentId, int custId, string paymentFrom, bool result)
     {
         // Arrange
-        var command = new ProcessTransactionCommand();
+        var command = new ProcessTransactionCommand { TransId = transId, AgentId = agentId, CustId = custId, PaymentFrom = paymentFrom };
 
         // Act & Assert
-        Assert.Throws<System.NotImplementedException>(() => command.IsValid());
+        Assert.Equal(result, command.IsValid());
     }
 
     [Fact]
