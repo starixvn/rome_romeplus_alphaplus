@@ -104,7 +104,7 @@ public class DepositService(
             siteDBConfig.CustDBGroupId,
             paymentFrom: request.PaymentFrom,
             providerId: request.ProviderId ?? 0,
-            paymentMethodId: request.PaymentMethodId,
+            paymentMethodId: request.PaymentMethodId ?? 0,
             paymentTo: request.PaymentTo));
 
         if (!validateResult.IsSuccess)
@@ -117,7 +117,7 @@ public class DepositService(
             request.CustId,
             paymentType: request.DepositMethod,
             providerId: request.ProviderId ?? 0,
-            paymentMethodId: request.PaymentMethodId,
+            paymentMethodId: request.PaymentMethodId ?? 0,
             custDBGroupId: siteDBConfig.CustDBGroupId);
         await repository.ExecuteAsync(limitCriteria);
 
@@ -131,7 +131,7 @@ public class DepositService(
             limitCriteria.MaxAmt,
             transactionTypeId: AutoDeposit,
             paymentType: request.DepositMethod,
-            paymentMethodId: request.PaymentMethodId,
+            paymentMethodId: request.PaymentMethodId ?? 0,
             request.PaymentFrom,
             request.PaymentTo,
             request.Amount,
