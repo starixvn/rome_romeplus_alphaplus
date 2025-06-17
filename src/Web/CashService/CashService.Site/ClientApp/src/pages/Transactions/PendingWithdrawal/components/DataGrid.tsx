@@ -79,8 +79,8 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
                 <div>{t('dataGrid.firstName')}</div>
               </th>
               <th scope="col">{t('dataGrid.amount')}</th>
-              <th scope="col">{t('dataGrid.from')}</th>
-              <th scope="col">{t('dataGrid.to')}</th>
+              <th scope="col" className='w-[250px]'>{t('dataGrid.from')}</th>
+              <th scope="col" className='w-[250px]'>{t('dataGrid.to')}</th>
               <th scope="col">{t('dataGrid.referenceNo')}</th>
               <th scope="col">{t('dataGrid.dateAndTime')}</th>
               <th scope="col">{t('dataGrid.actions')}</th>
