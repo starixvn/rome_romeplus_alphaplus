@@ -383,6 +383,9 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         public async Task<ActionResult> GetPTSettingInformation(SportBookInformationQuery request)
             => Content(await customerService.GetPTSettingInformation(request.CustId, AppSettings.LocalTest, request.Site, request.Language));
 
+        public async Task<ActionResult> GetBetLimitInformation(SportBookInformationQuery request)
+            => Content(await customerService.GetBetLimitInformation(request.Site, request.SiteLabel, request.Language));
+
         public async Task<ActionResult> GetMaxPayoutSettingInformation(SportBookInformationQuery request)
             => Content(await customerService.GetMaxPayoutSettingInformation(request.Site, request.SiteLabel, request.Language));
 

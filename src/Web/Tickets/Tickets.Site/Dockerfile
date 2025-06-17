@@ -60,6 +60,7 @@ RUN if [ "${TRANSFORM_CONFIG}" = "UAT" ] || \
   [ "${TRANSFORM_CONFIG}" = "UAT4" ] || \
   [ "${TRANSFORM_CONFIG}" = "UAT5" ]; then \
     cp -r src/Web/Tickets/Tickets.Site/results.UAT.json src/Web/Tickets/Tickets.Site/results.json; \
+    cp -r src/Web/Tickets/Tickets.Site/results3rd.UAT.json src/Web/Tickets/Tickets.Site/results3rd.json; \
 fi
 
 RUN if [ "${TRANSFORM_CONFIG}" = "ALPHAKLPROD" ] || \
