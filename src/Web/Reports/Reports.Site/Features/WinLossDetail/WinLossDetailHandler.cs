@@ -314,7 +314,7 @@ public class WinLossDetailHandler(
 
         var (validUserSelectedProductIds, productDetailXml) = await FilterProductAndProductDetailIds(
                message,
-               message.UserSelectedProductIds,
+               message.ProductId,
                message.UserSelectedResourceIds);
 
         var weekDataParam = new WinLossDetailWeekParam(
