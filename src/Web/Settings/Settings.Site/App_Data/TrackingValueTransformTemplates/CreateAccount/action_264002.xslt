@@ -49,7 +49,7 @@
           <xsl:value-of select="xslLogFormat:GetLogResource('bank')"/>
         </td>
         <td class="colW2">
-          <xsl:value-of select="@bankid"/>
+          <xsl:value-of select="xslLogFormat:GetLogResource(concat('Bank_', @bankid))"/>
         </td>
         <td class="colW1">
           <xsl:value-of select="xslLogFormat:GetLogResource('ip')" />

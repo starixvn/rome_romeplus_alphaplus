@@ -541,11 +541,6 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
             return string.Join("-", dates.Select(d => dateNames[int.Parse(d.ToString()) - 1]));
         }
 
-        public string GetBankName(int bankId)
-        {
-            return remotingRef.GetProductName(bankId);
-        }
-
         private static string ReplaceValues(
             string oldValue,
             string newValue,
