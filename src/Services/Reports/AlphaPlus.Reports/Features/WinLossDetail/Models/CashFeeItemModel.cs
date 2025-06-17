@@ -2,9 +2,9 @@
 
 public class CashFeeItemModel
 {
-    public string FeeType { get; set; }
+    public int FeeType { get; set; }
 
-    public string Type { get; set; }
+    public int Type { get; set; }
 
     public string DisplayType { get; set; }
 

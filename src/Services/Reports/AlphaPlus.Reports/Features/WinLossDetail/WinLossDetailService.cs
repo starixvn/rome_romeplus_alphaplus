@@ -157,17 +157,17 @@ public class WinLossDetailService(
         {
             var groupItem = new CashFeeGroupModel
             {
-                GroupName = Resources.ResourceManager.GetString(group.Key.Replace(" ", "_"))
+                GroupName = cacheRefService.GetResourceDataByRefIdAndResourceId("CashServiceBilling", group.Key)
             };
 
             var total = new CashFeeItemModel
             {
-                DisplayType = Resources.ResourceManager.GetString(group.Key.Replace(" ", "_"))
+                DisplayType = cacheRefService.GetResourceDataByRefIdAndResourceId("CashServiceBilling", group.Key)
             };
 
             foreach (var item in group)
             {
-                item.DisplayType = Resources.ResourceManager.GetString(item.Type.Replace(" ", string.Empty));
+                item.DisplayType = cacheRefService.GetResourceDataByRefIdAndResourceId("CashServiceBilling", item.Type);
                 groupItem.FeeItems.Add(item);
                 total += item;
                 grandTotal += item;
