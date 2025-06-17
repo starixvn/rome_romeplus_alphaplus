@@ -59,7 +59,11 @@
             border: 0;
             float: none;
             font-size: var(--font-size);
-
+            &.icon-tab{
+                &:after{
+                    display: none;
+                }
+            }
             &:after {
                 content: '';
                 display: block;
@@ -78,6 +82,7 @@
                 cursor: pointer;
                 [class*=" ic-"], [class^=ic-] {
                     color: var(--icon-color-tab);
+                    font-size: 15px;
                 }
             }
 
