@@ -10,12 +10,14 @@ public class WithdrawalLimitAmountCriteria : NonQueryCommand
         int custId,
         int uplineId,
         bool isMemberSite,
-        short custDBGroupId)
+        short custDBGroupId,
+        int? withdrawalCnt = null)
     {
         CustId = custId;
         UplineId = uplineId;
         IsMemberSite = isMemberSite;
         CustDBGroupId = custDBGroupId;
+        WithdrawalCnt = withdrawalCnt;
     }
 
     public int CustId { get; }
@@ -23,6 +25,7 @@ public class WithdrawalLimitAmountCriteria : NonQueryCommand
     public bool IsMemberSite { get; }
     [SpParam(Ignored = true)]
     public short CustDBGroupId { get; }
+    public int? WithdrawalCnt { get; }
 
     public decimal MinAmt { get; set; }
     public decimal MaxAmt { get; set; }
@@ -33,4 +36,4 @@ public class WithdrawalLimitAmountCriteria : NonQueryCommand
         => SPNameHelper.CustDBPrefix("Age_CashWithdrawal_LimitAmtSel", CustDBGroupId);
 
     public override bool IsValid() => CustId > 0 && UplineId > 0;
-} 
+}

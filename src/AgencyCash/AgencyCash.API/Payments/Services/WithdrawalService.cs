@@ -79,6 +79,11 @@ public class WithdrawalService : PaymentService, IWithdrawalService
             var logs = await _repository.FetchAsync<LogEntry>(withdrawalTransactionCriteria);
             await WriteLogsTransferAndRunSP(logs, siteDBConfig);
 
+            if (!string.IsNullOrWhiteSpace(withdrawalTransactionCriteria.ErrExtraInfo))
+            {
+                await logger.ErrorAsync($"Withdrawal failed. Key: {withdrawalTransactionCriteria.GetSettingKey()}, Criteria: {JsonHelper.ToJson(withdrawalTransactionCriteria)}");
+            }
+
             return new PaymentResult(withdrawalTransactionCriteria.ErrCode, withdrawalTransactionCriteria.ErrCode == 0 ? "Ok" : withdrawalTransactionCriteria.ErrMsg, withdrawalTransactionCriteria.TransId);
         }
         catch (Exception ex)
@@ -104,7 +109,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
             await _repository.ExecuteAsync(getDailyWithdrawalCriteria);
 
             // Step 4: Get withdrawal limits
-            var withdrawalLimitCriteria = new WithdrawalLimitAmountCriteria(request.CustId, request.AgentId, isMemberSite: true, siteDBConfig.CustDBGroupId);
+            var withdrawalLimitCriteria = new WithdrawalLimitAmountCriteria(request.CustId, request.AgentId, isMemberSite: true, siteDBConfig.CustDBGroupId, getDailyWithdrawalCriteria.WithdrawalCnt);
 
             await _repository.ExecuteAsync(withdrawalLimitCriteria);
 
