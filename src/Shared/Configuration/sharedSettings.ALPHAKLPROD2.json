@@ -245,6 +245,9 @@
         },
         "ApplicationName": "Alpha.After.789y.PROD"
     },
+    "ProtectedMode": {
+        "OfferSites": "*"
+    },
     "MarketsSupportedNewHandbook": "IBC,MBC",
     "GoogleAnalyticId": "G-5LBSPVVKVJ",
     "OfferAutoTransfer.Currencies": "*",
