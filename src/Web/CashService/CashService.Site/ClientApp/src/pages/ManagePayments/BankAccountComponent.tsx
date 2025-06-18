@@ -176,47 +176,56 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
 
   const handleDeleteBankAccount = async (account: BankAccount) => {
     setDeleting(account.id);
-      setError(null);
-      setSuccessMessage(null);
-      const response = await paymentProviderService.deleteBankAccount(account.id);
+    setError(null);
+    setSuccessMessage(null);
+    const response = await paymentProviderService.deleteBankAccount(account.id);
 
-      if (response.error) {
-        setError(response.error.message);
-        setDeleting(null);
-        return;
-      }
-
-      const result = response.data ?? createErrorResultModel(1, tGlobal('errorOccurred'));
-      if (result.isSuccessful) {
-        setSuccessMessage(tManagePayments('bankAccountDeletedSuccessfully'));
-        // Clear success message and refresh list again after 3 seconds
-        setTimeout(() => {
-          setSuccessMessage(null);
-          fetchBankAccounts();
-        }, 3000);
-      } else {
-        setError(result.message ?? tManagePayments('failedToDeleteBankAccount'));
-      }
-
+    if (response.error) {
+      setError(response.error.message);
       setDeleting(null);
+      return;
+    }
+
+    const result = response.data ?? createErrorResultModel(1, tGlobal('errorOccurred'));
+    if (result.isSuccessful) {
+      setSuccessMessage(tManagePayments('bankAccountDeletedSuccessfully'));
+      // Clear success message and refresh list again after 3 seconds
+      setTimeout(() => {
+        setSuccessMessage(null);
+        fetchBankAccounts();
+      }, 3000);
+    } else {
+      setError(result.message ?? tManagePayments('failedToDeleteBankAccount'));
+    }
+
+    setDeleting(null);
   };
 
-  const renderConfirmUI = ({ onClose: closeConfirm }: { onClose: () => void }, account: BankAccount) => (
+  const renderConfirmUI = (
+    { onClose: closeConfirm }: { onClose: () => void },
+    account: BankAccount
+  ) => (
     <div className="bg-[#00000080] fixed inset-0 flex items-start justify-center z-50">
-      <div className="px-[20px] pb-[10px] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-w-[400px] w-full max-[768px]:max-w-[90%] rounded-[3px]">   
-      <div className="relative my-[10px]">
-        <MediumTitleComponent text={tManagePayments('deleteBankAccount')} />
-        <ButtonClosePopupComponent onClick={closeConfirm} />
-      </div>
+      <div className="px-[20px] pb-[10px] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-w-[400px] w-full max-[768px]:max-w-[90%] rounded-[3px]">
+        <div className="relative my-[10px]">
+          <MediumTitleComponent text={tManagePayments('deleteBankAccount')} />
+          <ButtonClosePopupComponent onClick={closeConfirm} />
+        </div>
         <p className="mb-[20px]">
-          { tManagePayments('confirmDeleteBankAccount').replace(
+          {tManagePayments('confirmDeleteBankAccount').replace(
             '{{bankAccount}}',
             account.accountNumber || ''
-          ) }
+          )}
         </p>
         <div className="flex justify-center gap-[8px]">
           <ButtonCancelComponent onClick={closeConfirm} text={tGlobal('cancel')} />
-          <ButtonApplyComponent onClick={() => {closeConfirm(); handleDeleteBankAccount(account);}} text={tGlobal('confirm')} />                      
+          <ButtonApplyComponent
+            onClick={() => {
+              closeConfirm();
+              handleDeleteBankAccount(account);
+            }}
+            text={tGlobal('confirm')}
+          />
         </div>
       </div>
     </div>
@@ -290,181 +299,192 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                 <div>• {tManagePayments('managePaymentsTip1')}</div>
                 <div>• {tManagePayments('managePaymentsTip2')}</div>
               </div>
-            </TitleComponent>            
-                <ul className="flex mt-[-12px] border-b border-[var(--border-color)]">
-                  <li className="mr-[8px]">
-                    <ButtonTabActiveComponent text={tManagePayments('paymentGateway')} onClick={() => setActiveTab('paymentGateway')} />
-                  </li>
-                  <li>
-                    <ButtonTabInactiveComponent text={tManagePayments('bankAccount')} />
-                  </li>
-                </ul>                     
-                <div className="pt-[8px]">
-                  <ErrorMessageComponent message={error} />
-                  <SuccessMessageComponent message={successMessage} />
-                </div>
-                {loading && <Loading />}
-                {!loading && !error && banks.length > 0 && (
-                  <>
-                    <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
-                      <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
-                        <LabelTitleComponent text={tManagePayments('bank')} />
-                        <CustomDropdown
-                          className="w-[330px]"
-                          options={(() => {
-                            return banks.map((bank) => ({
-                              value: bank.id,
-                              label: bank.id === 0 ? tGlobal('all') : tGlobal(bank.code),
-                              icon: <BankIcon code={bank.code} />,
-                            }));
-                          })()}
-                          initialValue={selectedBank}
-                          onSelect={(option) =>
-                            onBankChange({
-                              target: { value: option.value.toString() },
-                            } as React.ChangeEvent<HTMLSelectElement>)
-                          }
-                        />
-                      </div>
-
-                      <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
-                        <LabelTitleComponent text={tManagePayments('transactionType')} />
-                        <div className="relative">
-                        <select
-                          id="transactionTypeSelect"
-                          className="control-field"
-                          value={selectedTransactionType}
-                          onChange={onTransactionTypeChange}
-                        >
-                          <option key="0" value="0">
-                            {tGlobal('all')}
-                          </option>
-                          {transactionTypes.length &&
-                            transactionTypes.map((type) => (
-                              <option key={type.id} value={type.id}>
-                                {tManagePayments(`transactionType-${type.id}`)}
-                              </option>
-                            ))}
-                        </select>
-                        <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
-                        </div>
-                      </div>
-
-                      <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px] ">
-                        <LabelTitleComponent text={tManagePayments('status')} />
-                        <div className="relative">
-                        <select
-                          id="statusSelect"
-                          className="control-field"
-                          value={selectedStatus}
-                          onChange={onStatusChange}
-                        >
-                          {BANK_STATUS_OPTIONS.map((status) => (
-                            <option key={status.id} value={status.id}>
-                              {tManagePayments(`bank-status-${status.id}`)}
-                            </option>
-                          ))}
-                        </select>
-                        <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex pb-[16px] w-full">
-                      <div className="w-[250px] ml-auto ">
-                        <div className="relative">
-                          <span className="absolute transform-[translatey(-50%)] z-[10] top-1/2 left-[8px]">
-                            <IconSearch />
-                          </span>
-                          <input
-                            type="text"
-                            id="searchInput"
-                            className="control-field pl-[30px]!"
-                            placeholder={tManagePayments('searchAccountNumberOrName')}
-                            value={searchInput}
-                            onChange={onSearchChange}
-                            ref={searchInputRef}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                )}
-                <div className='w-full border border-[var(--table-border-color)] border-b-0 p-[6px] flex'>
-                  <div className="flex gap-[8px]">
-                    <ButtonFullComponent
-                      className="w-[183px] [&>*]:w-[100%]"
-                      text={`${tManagePayments('addBankAccount')}`}
-                      onClick={onAddBankAccount}
-                    />
-                    <ButtonOutlineComponent
-                      className="w-[183px] [&>*]:w-[100%]"
-                      text={tManagePayments('setLimit')}
-                      onClick={onSetLimit}
+            </TitleComponent>
+            <ul className="flex mt-[-12px] border-b border-[var(--border-color)]">
+              <li className="mr-[8px]">
+                <ButtonTabActiveComponent
+                  text={tManagePayments('paymentGateway')}
+                  onClick={() => setActiveTab('paymentGateway')}
+                />
+              </li>
+              <li>
+                <ButtonTabInactiveComponent text={tManagePayments('bankAccount')} />
+              </li>
+            </ul>
+            <div className="pt-[8px]">
+              <ErrorMessageComponent message={error} />
+              <SuccessMessageComponent message={successMessage} />
+            </div>
+            {loading && <Loading />}
+            {!loading && !error && banks.length > 0 && (
+              <>
+                <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
+                  <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
+                    <LabelTitleComponent text={tManagePayments('bank')} />
+                    <CustomDropdown
+                      className="w-[330px]"
+                      options={(() => {
+                        return banks.map((bank) => ({
+                          value: bank.id,
+                          label: bank.id === 0 ? tGlobal('all') : tGlobal(bank.code),
+                          icon: <BankIcon code={bank.code} />,
+                        }));
+                      })()}
+                      initialValue={selectedBank}
+                      onSelect={(option) =>
+                        onBankChange({
+                          target: { value: option.value.toString() },
+                        } as React.ChangeEvent<HTMLSelectElement>)
+                      }
                     />
                   </div>
-                </div>                        
-                    <div className="table table-fixed-body">
-                      <table className="w-full whitespace-nowrap   ">
-                        <thead>
-                          <tr>
-                            <th className="bg-[var(--table-header-background)] left-0 min-w-[32px] sticky z-21">#</th>
-                            <th className="col-shadown bg-[var(--table-header-background)] left-[32px] min-w-[82px] sticky z-21">{tGlobal('action')}</th>
-                            <th>{tManagePayments('bank')}</th>
-                            <th>{tManagePayments('transactionType')}</th>
-                            <th>{tManagePayments('accountHolderName')}</th>
-                            <th>{tManagePayments('bankAccountNumber')}</th>
-                            <th>{tManagePayments('accountNickname')}</th>
-                            <th>{tManagePayments('status')}</th> 
-                          </tr>
-                        </thead>
-                        {!loading && !error && bankAccounts.length > 0 && (
-                        <tbody className="font-[500]">
-                        {bankAccounts.map((account, index) => (
-                            <tr key={account.id}>
-                              <td className="bg-[var(--table-background)] left-0 min-w-[32px] sticky z-11">{index + 1}</td>
-                              <td className="col-shadown bg-[var(--table-background)] left-[32px] min-w-[82px] sticky z-11">
-                                <div className="flex justify-center">
-                                  <ButtonPenComponent disabled={deleting === account.id} onClick={() => onEditBankAccount(account.id)} />
-                                  <ButtonDeleteComponent onClick={() => onDeleteBankAccount(account)} />
-                                </div>
-                              </td>
-                              <td className="text-left">
-                                <div className="flex items-center relative pl-[25px]">
-                                  <span className="absolute top-[-2px] left-[0]">
-                                    <BankIcon code={account.code} />
-                                  </span>
-                                  {tGlobal(account.code)} 
-                                </div>
-                              </td>
-                              <td className="text-left">{getTransactionTypeNames(account.transactionTypes)}</td>
-                              <td className="text-left">{account.accountHolderName}</td>
-                              <td className="text-left">{account.accountNumber}</td>
-                              <td className="text-left">{account.accountNickname}</td>
-                              <td>
-                                {account.status === 1 ? (<StatusEnabledComponent />) : (<StatusDisabledComponent />)}
-                              </td>                         
-                            </tr>
+
+                  <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
+                    <LabelTitleComponent text={tManagePayments('transactionType')} />
+                    <div className="relative">
+                      <select
+                        id="transactionTypeSelect"
+                        className="control-field"
+                        value={selectedTransactionType}
+                        onChange={onTransactionTypeChange}
+                      >
+                        <option key="0" value="0">
+                          {tGlobal('all')}
+                        </option>
+                        {transactionTypes.length &&
+                          transactionTypes.map((type) => (
+                            <option key={type.id} value={type.id}>
+                              {tManagePayments(`transactionType-${type.id}`)}
+                            </option>
                           ))}
-                        </tbody>
-                         )}
-                         {!loading && !error && banks.length > 0 && bankAccounts.length === 0 && (                           
-                          <tbody>
-                            <NoRecordFound colSpan={8} />                             
-                          </tbody>                         
-                        )}
-                      </table>
+                      </select>
+                      <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
                     </div>
-                
-               
+                  </div>
 
-                
-
-                {showSetLimitModal && (
-                  <SetTransactionLimitModal
-                    onClose={onCloseSetLimitModal}
-                    onSave={onSaveSetLimit}
-                  />
+                  <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px] ">
+                    <LabelTitleComponent text={tManagePayments('status')} />
+                    <div className="relative">
+                      <select
+                        id="statusSelect"
+                        className="control-field"
+                        value={selectedStatus}
+                        onChange={onStatusChange}
+                      >
+                        {BANK_STATUS_OPTIONS.map((status) => (
+                          <option key={status.id} value={status.id}>
+                            {tManagePayments(`bank-status-${status.id}`)}
+                          </option>
+                        ))}
+                      </select>
+                      <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex pb-[16px] w-full">
+                  <div className="w-[250px] ml-auto ">
+                    <div className="relative">
+                      <span className="absolute transform-[translatey(-50%)] z-[10] top-1/2 left-[8px]">
+                        <IconSearch />
+                      </span>
+                      <input
+                        type="text"
+                        id="searchInput"
+                        className="control-field pl-[30px]!"
+                        placeholder={tManagePayments('searchAccountNumberOrName')}
+                        value={searchInput}
+                        onChange={onSearchChange}
+                        ref={searchInputRef}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+            <div className="w-full border border-[var(--table-border-color)] border-b-0 p-[6px] flex">
+              <div className="flex gap-[8px]">
+                <ButtonFullComponent
+                  className="w-[183px] [&>*]:w-[100%]"
+                  text={`${tManagePayments('addBankAccount')}`}
+                  onClick={onAddBankAccount}
+                />
+                <ButtonOutlineComponent
+                  className="w-[183px] [&>*]:w-[100%]"
+                  text={tManagePayments('setLimit')}
+                  onClick={onSetLimit}
+                />
+              </div>
+            </div>
+            <div className="table table-fixed-body">
+              <table className="w-full whitespace-nowrap   ">
+                <thead>
+                  <tr>
+                    <th className="bg-[var(--table-header-background)] left-0 min-w-[32px] sticky z-21">
+                      #
+                    </th>
+                    <th className="col-shadown bg-[var(--table-header-background)] left-[32px] min-w-[82px] sticky z-21">
+                      {tGlobal('action')}
+                    </th>
+                    <th>{tManagePayments('bank')}</th>
+                    <th>{tManagePayments('transactionType')}</th>
+                    <th>{tManagePayments('accountHolderName')}</th>
+                    <th>{tManagePayments('bankAccountNumber')}</th>
+                    <th>{tManagePayments('accountNickname')}</th>
+                    <th>{tManagePayments('status')}</th>
+                  </tr>
+                </thead>
+                {!loading && !error && bankAccounts.length > 0 && (
+                  <tbody className="font-[500]">
+                    {bankAccounts.map((account, index) => (
+                      <tr key={account.id}>
+                        <td className="bg-[var(--table-background)] left-0 min-w-[32px] sticky z-11">
+                          {index + 1}
+                        </td>
+                        <td className="col-shadown bg-[var(--table-background)] left-[32px] min-w-[82px] sticky z-11">
+                          <div className="flex justify-center">
+                            <ButtonPenComponent
+                              disabled={deleting === account.id}
+                              onClick={() => onEditBankAccount(account.id)}
+                            />
+                            <ButtonDeleteComponent onClick={() => onDeleteBankAccount(account)} />
+                          </div>
+                        </td>
+                        <td className="text-left">
+                          <div className="flex items-center relative pl-[25px]">
+                            <span className="absolute top-[-2px] left-[0]">
+                              <BankIcon code={account.code} />
+                            </span>
+                            {tGlobal(account.code)}
+                          </div>
+                        </td>
+                        <td className="text-left">
+                          {getTransactionTypeNames(account.transactionTypes)}
+                        </td>
+                        <td className="text-left">{account.accountHolderName}</td>
+                        <td className="text-left">{account.accountNumber}</td>
+                        <td className="text-left">{account.accountNickname}</td>
+                        <td>
+                          {account.status === 1 ? (
+                            <StatusEnabledComponent />
+                          ) : (
+                            <StatusDisabledComponent />
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
                 )}
+                {!loading && !error && banks.length > 0 && bankAccounts.length === 0 && (
+                  <tbody>
+                    <NoRecordFound colSpan={8} />
+                  </tbody>
+                )}
+              </table>
+            </div>
+
+            {showSetLimitModal && (
+              <SetTransactionLimitModal onClose={onCloseSetLimitModal} onSave={onSaveSetLimit} />
+            )}
           </div>
         </>
       )}

@@ -1,8 +1,8 @@
-using System.Numerics;
-using AlphaPlus.CashService.API.Features.Transactions.Criteria;
 using Xunit;
 
 namespace CashService.API.UnitTests.Features.Transactions.Criteria;
+
+using AlphaPlus.CashService.API.Features.PendingWithdrawal.Criteria;
 
 public class ProcessTransactionCommandTests
 {
@@ -10,7 +10,7 @@ public class ProcessTransactionCommandTests
     public void Constructor_ShouldInitializePropertiesToDefaultValues()
     {
         // Act
-        var command = new ProcessTransactionCommand();
+        var command = new ProcessWithdrawalTransactionCommand();
 
         // Assert
         Assert.Equal(0, command.TransId);
@@ -26,8 +26,8 @@ public class ProcessTransactionCommandTests
     public void Properties_ShouldSetAndGetCorrectly()
     {
         // Arrange
-        var command = new ProcessTransactionCommand();
-        var transId = new BigInteger(1234567890123456789);
+        var command = new ProcessWithdrawalTransactionCommand();
+        var transId = 1234567890123456789;
         var paymentFrom = "Online Banking";
         var remark = "Processing transaction";
         var payslip = new byte[] { 1, 2, 3 };
@@ -58,7 +58,7 @@ public class ProcessTransactionCommandTests
     public void GetSettingKey_ShouldReturnEmptyString()
     {
         // Arrange
-        var command = new ProcessTransactionCommand();
+        var command = new ProcessWithdrawalTransactionCommand();
 
         // Act
         var settingKey = command.GetSettingKey();
@@ -73,10 +73,10 @@ public class ProcessTransactionCommandTests
     [InlineData(1000, 0, 1, "abc", false)]
     [InlineData(1000, 1, 0, "abc", false)]
     [InlineData(1000, 1, 1, "", false)]
-    public void IsValid_Returns_ExpectedResult(BigInteger transId, int agentId, int custId, string paymentFrom, bool result)
+    public void IsValid_Returns_ExpectedResult(long transId, int agentId, int custId, string paymentFrom, bool result)
     {
         // Arrange
-        var command = new ProcessTransactionCommand { TransId = transId, AgentId = agentId, CustId = custId, PaymentFrom = paymentFrom };
+        var command = new ProcessWithdrawalTransactionCommand { TransId = transId, AgentId = agentId, CustId = custId, PaymentFrom = paymentFrom };
 
         // Act & Assert
         Assert.Equal(result, command.IsValid());
@@ -86,7 +86,7 @@ public class ProcessTransactionCommandTests
     public void Payslip_WhenSetToNull_ShouldBeNull()
     {
         // Arrange
-        var command = new ProcessTransactionCommand
+        var command = new ProcessWithdrawalTransactionCommand
         {
             // Act
             Payslip = null

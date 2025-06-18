@@ -56,7 +56,6 @@ const useTransactionData = () => {
   };
 };
 
-// Custom hook for managing API parameters
 const useApiParams = (transactionType: number) => {
   const initialParams = useMemo(() => {
     const today = new Date();
@@ -137,7 +136,6 @@ const useDisplayedItems = (
   const [displayedItems, setDisplayedItems] = useState<TransactionItem[]>([]);
   const [tempTotalCount, setTempTotalCount] = useState(0);
 
-  // Filter theo search text
   const searchFilteredItems = useMemo(() => {
     if (!localSearchText.trim()) {
       return apiData.items;
@@ -151,7 +149,6 @@ const useDisplayedItems = (
     );
   }, [apiData.items, localSearchText]);
 
-  // Filter theo account
   const accountFilteredItems = useMemo(() => {
     if (!apiParams.account) {
       return searchFilteredItems;
@@ -164,7 +161,6 @@ const useDisplayedItems = (
     );
   }, [searchFilteredItems, apiParams.account, transactionType]);
 
-  // Pagination trên data đã filter
   useEffect(() => {
     const startIndex = (apiParams.pageIndex - 1) * apiParams.pageSize;
     const endIndex = startIndex + apiParams.pageSize;
@@ -279,7 +275,6 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
   }, [apiParams, localSearchText, transactionType, fetchTransactions]);
 
   useEffect(() => {
-    // Chỉ fetch data khi thay đổi transaction type, date range, hoặc status
     const paramsForFilterOrTypeChange: TransactionsHistoryParams = {
       ...apiParams,
       pageIndex: 1,
@@ -291,7 +286,6 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     fetchTransactions(paramsForFilterOrTypeChange);
   }, [transactionType, apiParams.dateRange, apiParams.status, fetchTransactions]);
 
-  // Effect để reset pagination khi thay đổi search text hoặc account
   useEffect(() => {
     updateApiParams({ pageIndex: 1 });
   }, [localSearchText, apiParams.account, updateApiParams]);

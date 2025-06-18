@@ -1,4 +1,3 @@
-using System.Numerics;
 using AlphaPlus.CashService.API.Features.PendingDeposit.Criteria;
 using Xunit;
 
@@ -26,7 +25,7 @@ public class ProcessDepositCommandTests
     {
         // Arrange
         var command = new ProcessDepositCommand();
-        var transId = new BigInteger(1234567890);
+        var transId = 1234567890;
         var amount = 150.75m;
         var remark = "Process Test";
         var statusId = 1;
@@ -69,7 +68,7 @@ public class ProcessDepositCommandTests
     [InlineData(0, 1, 2, 3, false)]
     [InlineData(1000, 1, 0, 3, false)]
     [InlineData(1000, 1, 2, 0, false)]
-    public void IsValid_WhenCalledReturnExpectedBoolean(BigInteger transId, int agentId, int custId, int statusId, bool expectedValue)
+    public void IsValid_WhenCalledReturnExpectedBoolean(long transId, int agentId, int custId, int statusId, bool expectedValue)
     {
         // Arrange
         var command = new ProcessDepositCommand { TransId = transId, AgentId = agentId, CustId = custId, StatusId = statusId };
