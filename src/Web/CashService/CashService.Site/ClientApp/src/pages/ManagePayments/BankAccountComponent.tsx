@@ -401,16 +401,13 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                       onClick={onSetLimit}
                     />
                   </div>
-                </div>
-            
-                    
+                </div>                        
                     <div className="table table-fixed-body">
                       <table className="w-full whitespace-nowrap   ">
                         <thead>
                           <tr>
                             <th className="bg-[var(--table-header-background)] left-0 min-w-[32px] sticky z-21">#</th>
                             <th className="col-shadown bg-[var(--table-header-background)] left-[32px] min-w-[82px] sticky z-21">{tGlobal('action')}</th>
-                            
                             <th>{tManagePayments('bank')}</th>
                             <th>{tManagePayments('transactionType')}</th>
                             <th>{tManagePayments('accountHolderName')}</th>
@@ -438,9 +435,9 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                                   {tGlobal(account.code)} 
                                 </div>
                               </td>
-                              <td>{getTransactionTypeNames(account.transactionTypes)}</td>
+                              <td className="text-left">{getTransactionTypeNames(account.transactionTypes)}</td>
                               <td className="text-left">{account.accountHolderName}</td>
-                              <td>{account.accountNumber}</td>
+                              <td className="text-left">{account.accountNumber}</td>
                               <td className="text-left">{account.accountNickname}</td>
                               <td>
                                 {account.status === 1 ? (<StatusEnabledComponent />) : (<StatusDisabledComponent />)}

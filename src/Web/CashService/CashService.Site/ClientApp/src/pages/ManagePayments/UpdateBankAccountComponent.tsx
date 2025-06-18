@@ -563,7 +563,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
               })()}
 
               <div className="flex flex-nowrap mb-[16px] gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
-                <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
+                <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
                   <LabelTitleComponent text={tManagePayments('accountHolderName')} required={true} />
                   <input
                     type="text"
@@ -577,7 +577,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                   </label>
                 </div>
 
-                <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
+                <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
                   <LabelTitleComponent text={tManagePayments('bankAccountNumber')} required={true} />
                   <input
                     type="text"
@@ -591,7 +591,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                   </label>
                 </div>
 
-                <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
+                <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
                   <LabelTitleComponent text={tManagePayments('accountNickname')} />
                   <input
                     type="text"

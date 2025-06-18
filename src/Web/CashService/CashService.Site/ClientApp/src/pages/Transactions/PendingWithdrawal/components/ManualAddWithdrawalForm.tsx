@@ -23,7 +23,7 @@ import TitleComponent, {
   LabelTitleComponent,
   MediumTitleComponent,
 } from '../../../../components/TitleComponents';
-import { AmountInput } from '../../../../components/ui/AmountInput';
+import { AmountInput } from '../../../../components/AmountInput';
 
 interface ManualAddWithdrawalFormProps {
   onClose?: () => void;

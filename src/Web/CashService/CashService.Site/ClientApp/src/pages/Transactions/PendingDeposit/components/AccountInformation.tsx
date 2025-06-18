@@ -5,7 +5,7 @@ import { displayAmount, renderBankOptionValue } from '../../../../utils/commonFu
 import BankIcon from '../../../../components/BankComponents';
 import CustomDropdown, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import { LabelTitleComponent, MediumTitleComponent } from '../../../../components/TitleComponents';
-import { AmountInput } from '../../../../components/ui/AmountInput';
+import { AmountInput } from '../../../../components/AmountInput';
 import { BankInfo } from '../../../../services/interfaces/Transactions/BankInfo';
 import { MemberLoginName } from '../../../../services/interfaces/Transactions/MemberLoginName';
 

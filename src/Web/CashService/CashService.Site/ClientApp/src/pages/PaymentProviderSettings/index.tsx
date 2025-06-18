@@ -454,10 +454,16 @@ function PaymentProviderSettings() {
             <div className="settings-header">
               <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-color)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
                 <BackButtonComponent onClick={onBackNavigation} />
-                <TitleComponent title={window.providerSettingsViewModel.Provider.Name} />
-                {providerStatus != paymentProviderStatusConstant.notConfigured && (
+                <TitleComponent title={window.providerSettingsViewModel.Provider.Name} />                
+              </div>
+            </div>
+          </div>
+          <div className="py-[10px]">
+            <div className="flex flex-wrap mb-[8px]">
+              <MediumTitleComponent text={window.providerSettingsViewModel.Provider.Name} />
+              {providerStatus != paymentProviderStatusConstant.notConfigured && (
                   <div
-                    className="ml-[16px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]"
+                    className="mt-[5px] mb-[5px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]"
                     role="group"
                   >
                     <EnableButtonComponent
@@ -470,12 +476,6 @@ function PaymentProviderSettings() {
                     />
                   </div>
                 )}
-              </div>
-            </div>
-          </div>
-          <div className="py-[10px]">
-            <div className="flex flex-wrap mb-[8px]">
-              <MediumTitleComponent text={window.providerSettingsViewModel.Provider.Name} />
               <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                   <LabelTitleComponent text={tPaymentProviderSettings('paymentMethod')} />
@@ -593,7 +593,7 @@ function PaymentProviderSettings() {
                         <span className="relative z-3">{setting.methodName}</span>
                       </td>
                       <td>
-                        <div className="flex items-center justify-center">
+                        <div className="inline-block relative px-[22px]">
                           {renderStatusComponent(setting.status)}
                           {setting.status === failStatus && (
                             <>
@@ -604,10 +604,10 @@ function PaymentProviderSettings() {
                                 arrow={true}
                               >
                                 <span
-                                  className="cursor-pointer"
+                                  className="cursor-pointer absolute right-[0px] top-[2px]"
                                   onClick={() => onRetrySetup(index)}
                                 >
-                                  <IconReload className="fill-[var(--icon-color-error)] cursor-pointer ml-[4px]" />
+                                  <IconReload className="fill-[var(--icon-color-error)] cursor-pointer" />
                                 </span>
                               </Tippy>
                             </>
@@ -668,7 +668,7 @@ function PaymentProviderSettings() {
                                 onChange={() => onSettingToggle(index)}
                                 className="opacity-0 absolute hidden peer"
                               />
-                              <span className='block cursor-pointer w-[60px] h-[30px] rounded-[20px] bg-[var(--button-switch-background)] relative after:content-[""] after:absolute after:top-[3px] after:left-[3px] after:w-[24px] after:h-[24px] after:rounded-[50%] after:bg-[var(--button-switch-dot-background)] after:transition-all after:duration-300 after:ease-in-out after:shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] peer-checked:after:left-[32px] peer-checked:bg-[var(--button-switch-background-active)]'></span>
+                              <span className='block cursor-pointer w-[60px] h-[28px] rounded-[20px] bg-[var(--button-switch-background)] relative after:content-[""] after:absolute after:top-[3px] after:left-[3px] after:w-[22px] after:h-[22px] after:rounded-[50%] after:bg-[var(--button-switch-dot-background)] after:transition-all after:duration-300 after:ease-in-out after:shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] peer-checked:after:left-[34px] peer-checked:bg-[var(--button-switch-background-active)]'></span>
                             </label>
                           </div>
                         ) : (

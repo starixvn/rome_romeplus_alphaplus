@@ -46,7 +46,7 @@ const MessageForm: React.FC<MessageFormProps> = ({loading}) => {
     <div className="">
       <MediumTitleComponent text={t('message.title')} />
       <p className="pt-[4px] mb-[8px] font-semibold text-[var(--text-color)]">{t('message.description')}</p>
-      <div className='inline-block'>
+      <div className=''>
         <div className="flex flex-nowrap gap-[16px] mb-[10px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap">
           <MobilePhoneComponent
             mobilePhone={watch('mobilePhone')}

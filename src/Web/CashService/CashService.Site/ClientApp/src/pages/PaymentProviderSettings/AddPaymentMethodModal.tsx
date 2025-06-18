@@ -242,18 +242,24 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
             <div>
             <hr className="mt-[16px] mb-[8px] border-[#0000001F]" />
             <NormalTitleComponent text={tPaymentProviderSettings('addPaymentMethodStep2')} />
-            <p className="mt-[8px] ">{tPaymentProviderSettings('clickLinkOrScanQRCode')}</p>
-            <a
-              href={telegramAssistantUrl}
-              className=" text-[var(--text-link-color)] font-semibold"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {telegramAssistantUrl}
-            </a>
-            <div className="mt-[16px] flex justify-center">
-              {telegramAssistantUrl && <QRCodeCanvas value={telegramAssistantUrl} size={128} />}
+            <div className="flex justify-between items-center">
+              <div className="pr-[20px]">
+                <p className="mt-[8px] ">{tPaymentProviderSettings('clickLinkOrScanQRCode')}</p>
+                <a
+                  href={telegramAssistantUrl}
+                  className=" text-[var(--text-link-color)] font-semibold"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {telegramAssistantUrl}
+                </a>
+              </div>
+              <div className="flex-1 flex justify-center ">
+                {telegramAssistantUrl && <QRCodeCanvas value={telegramAssistantUrl} size={128} />}
+              </div>
             </div>
+            
+            
             </div>
             <div>
               <hr className="mt-[16px] mb-[8px] border-[#0000001F]" />
