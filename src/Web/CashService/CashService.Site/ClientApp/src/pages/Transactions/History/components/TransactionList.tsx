@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import {
   TransactionItem,
@@ -17,33 +17,88 @@ interface TransactionListProps {
   transactionType: number;
 }
 
-const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) => {
+const useTransactionData = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [apiData, setApiData] = useState<TransactionsHistoryResponse>({
     items: [],
     totalCount: 0,
   });
-  const [apiParams, setApiParams] = useState<
-    Omit<TransactionsHistoryParams, 'searchText' | 'column'>
-  >(() => {
+
+  const fetchTransactions = useCallback(async (params: TransactionsHistoryParams) => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const response = await transactionAPI.getTransactions(params);
+      setApiData(response);
+
+      return response;
+    } catch (err) {
+      const errorMessage = 'Failed to load transaction history';
+      setError(errorMessage);
+      console.error('Error loading data:', err);
+      setApiData({ items: [], totalCount: 0 });
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  return {
+    loading,
+    error,
+    apiData,
+    setApiData,
+    fetchTransactions,
+    setLoading,
+    setError,
+  };
+};
+
+// Custom hook for managing API parameters
+const useApiParams = (transactionType: number) => {
+  const initialParams = useMemo(() => {
     const today = new Date();
     const todayInGMT4 = convertToGMT4(today);
     todayInGMT4.setHours(23, 59, 59, 0);
+
     const sevenDaysAgo = new Date();
     const sevenDaysAgoInGMT4 = convertToGMT4(sevenDaysAgo);
     sevenDaysAgoInGMT4.setDate(sevenDaysAgoInGMT4.getDate() - 6);
     sevenDaysAgoInGMT4.setHours(0, 0, 0, 0);
+
     return {
-      dateRange: [sevenDaysAgoInGMT4.toLocaleString('en-US'), todayInGMT4.toLocaleString('en-US')],
+      dateRange: [
+        sevenDaysAgoInGMT4.toLocaleString('en-US'),
+        todayInGMT4.toLocaleString('en-US'),
+      ] as [string, string],
       status: -1,
       account: '',
       pageIndex: 1,
       pageSize: PAGE_SIZE_OPTIONS[2],
       transactionType: transactionType,
     };
-  });
+  }, [transactionType]);
 
+  const [apiParams, setApiParams] =
+    useState<Omit<TransactionsHistoryParams, 'searchText' | 'column'>>(initialParams);
+
+  const updateApiParams = useCallback(
+    (updates: Partial<Omit<TransactionsHistoryParams, 'searchText' | 'column'>>) => {
+      setApiParams((prev) => ({ ...prev, ...updates }));
+    },
+    []
+  );
+
+  return {
+    apiParams,
+    setApiParams,
+    updateApiParams,
+  };
+};
+
+const useFilters = () => {
   const [columnFilter, setColumnFilter] = useState<string[]>([
     'name',
     'amount',
@@ -55,128 +110,149 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
     'dateAndTime',
   ]);
   const [localSearchText, setLocalSearchText] = useState('');
+
+  const handleColumnChange = useCallback((value: string[]) => {
+    setColumnFilter(value);
+  }, []);
+
+  const handleLocalSearchChange = useCallback((value: string) => {
+    setLocalSearchText(value);
+  }, []);
+
+  return {
+    columnFilter,
+    localSearchText,
+    setLocalSearchText,
+    handleColumnChange,
+    handleLocalSearchChange,
+  };
+};
+
+const useDisplayedItems = (
+  apiData: TransactionsHistoryResponse,
+  apiParams: Omit<TransactionsHistoryParams, 'searchText' | 'column'>,
+  localSearchText: string,
+  transactionType: number
+) => {
   const [displayedItems, setDisplayedItems] = useState<TransactionItem[]>([]);
-  const [paymentInformations, setPaymentInformations] = useState<string[]>([]);
   const [tempTotalCount, setTempTotalCount] = useState(0);
 
-  const fetchTransactions = async (params: TransactionsHistoryParams) => {
-    try {
-      setLoading(true);
-      const response = await transactionAPI.getTransactions(params);
-      setApiData(response);
-      setTempTotalCount(response.totalCount);
-
-      const uniquePayment = new Set();
-      const paymentInfo = response.items
-        .filter((item) => {
-          const checkItem =
-            params.transactionType === TransactionType.Deposit ? item.paymentTo : item.paymentFrom;
-          if (uniquePayment.has(checkItem)) {
-            return false;
-          }
-          if (params.transactionType === TransactionType.Deposit) {
-            uniquePayment.add(item.paymentTo);
-          } else {
-            uniquePayment.add(item.paymentFrom);
-          }
-          return true;
-        })
-        .map((item) =>
-          params.transactionType === TransactionType.Deposit ? item.paymentTo : item.paymentFrom
-        );
-      setPaymentInformations(paymentInfo);
-      setApiParams((prev) => ({ ...prev, account: '', pageIndex: 1 }));
-      setLocalSearchText('');
-
-      setError(null);
-    } catch (err) {
-      setError('Failed to load transaction history');
-      console.error('Error loading data:', err);
-      setApiData({ items: [], totalCount: 0 });
-    } finally {
-      setLoading(false);
+  // Filter theo search text
+  const searchFilteredItems = useMemo(() => {
+    if (!localSearchText.trim()) {
+      return apiData.items;
     }
-  };
 
-  useEffect(() => {
-    const paramsForFilterOrTypeChange: TransactionsHistoryParams = {
-      ...apiParams,
-      account: '',
-      pageIndex: 1,
-      pageSize: PAGE_SIZE_OPTIONS[0],
-      searchText: '',
-      transactionType: transactionType,
-    };
-    fetchTransactions(paramsForFilterOrTypeChange);
-  }, [transactionType, apiParams.dateRange, apiParams.status]);
+    const lowerCaseSearchText = localSearchText.toLowerCase();
+    return apiData.items.filter(
+      (item) =>
+        item.username.toLowerCase().includes(lowerCaseSearchText) ||
+        item.transId.toString().toLowerCase().includes(lowerCaseSearchText)
+    );
+  }, [apiData.items, localSearchText]);
 
-  useEffect(() => {
-    const startIndex = (apiParams.pageIndex - 1) * apiParams.pageSize;
-    const endIndex = startIndex + apiParams.pageSize;
-
-    if (!localSearchText) {
-      setDisplayedItems(apiData.items.slice(startIndex, endIndex));
-    } else {
-      const lowerCaseSearchText = localSearchText.toLowerCase();
-      const filtered = apiData.items.filter(
-        (item) =>
-          item.username.toLowerCase().includes(lowerCaseSearchText) ||
-          item.transId.toString().toLowerCase().includes(lowerCaseSearchText)
-      );
-
-      setDisplayedItems(filtered.slice(0, apiParams.pageSize));
-      setTempTotalCount(filtered.length);
-    }
-  }, [apiData.items, localSearchText, apiParams.pageIndex, apiParams.pageSize]);
-
-  useEffect(() => {
-    const startIndex = (apiParams.pageIndex - 1) * apiParams.pageSize;
-    const endIndex = startIndex + apiParams.pageSize;
+  // Filter theo account
+  const accountFilteredItems = useMemo(() => {
     if (!apiParams.account) {
-      setDisplayedItems(apiData.items.slice(startIndex, endIndex));
-      setTempTotalCount(apiData.totalCount);
-    } else {
-      const filtered = apiData.items.filter(
-        (item) =>
-          (transactionType === TransactionType.Deposit ? item.paymentTo : item.paymentFrom) ===
-          apiParams.account
-      );
-      setDisplayedItems(filtered.slice(startIndex, endIndex));
-      setTempTotalCount(filtered.length);
+      return searchFilteredItems;
     }
-  }, [apiParams.account, apiParams.pageIndex, apiParams.pageSize]);
 
-  const handleDateRangeChange = (dates: [string, string]) => {
-    setApiParams((prev) => ({ ...prev, dateRange: dates, pageIndex: 1 }));
+    return searchFilteredItems.filter(
+      (item) =>
+        (transactionType === TransactionType.Deposit ? item.paymentTo : item.paymentFrom) ===
+        apiParams.account
+    );
+  }, [searchFilteredItems, apiParams.account, transactionType]);
+
+  // Pagination trên data đã filter
+  useEffect(() => {
+    const startIndex = (apiParams.pageIndex - 1) * apiParams.pageSize;
+    const endIndex = startIndex + apiParams.pageSize;
+
+    const itemsToDisplay = accountFilteredItems.slice(startIndex, endIndex);
+    setDisplayedItems(itemsToDisplay);
+    setTempTotalCount(accountFilteredItems.length);
+  }, [accountFilteredItems, apiParams.pageIndex, apiParams.pageSize]);
+
+  return {
+    displayedItems,
+    tempTotalCount,
   };
+};
 
-  const handleStatusChange = (value: number) => {
-    setApiParams((prev) => ({ ...prev, status: value, pageIndex: 1 }));
-  };
+const usePaymentInfo = (apiData: TransactionsHistoryResponse, transactionType: number) => {
+  const paymentInformations = useMemo(() => {
+    const uniquePayment = new Set<string>();
 
-  const handleColumnChange = (value: string[]) => {
-    setColumnFilter(value);
-  };
+    return apiData.items
+      .filter((item) => {
+        const checkItem =
+          transactionType === TransactionType.Deposit ? item.paymentTo : item.paymentFrom;
 
-  const handleAccountChange = (value: string) => {
-    setApiParams((prev) => ({ ...prev, account: value, pageIndex: 1 }));
-  };
+        if (uniquePayment.has(checkItem)) {
+          return false;
+        }
 
-  const handleLocalSearchChange = (value: string) => {
-    setLocalSearchText(value);
-  };
+        uniquePayment.add(checkItem);
+        return true;
+      })
+      .map((item) =>
+        transactionType === TransactionType.Deposit ? item.paymentTo : item.paymentFrom
+      );
+  }, [apiData.items, transactionType]);
 
-  const handlePageChange = (newPage: number) => {
-    setApiParams((prev) => ({ ...prev, pageIndex: newPage }));
-    setLocalSearchText(localSearchText);
-  };
+  return { paymentInformations };
+};
 
-  const handlePageSizeChange = (newSize: number) => {
-    setApiParams((prev) => ({ ...prev, pageSize: newSize, pageIndex: 1 }));
-    setLocalSearchText('');
-  };
+const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) => {
+  const { loading, error, apiData, fetchTransactions } = useTransactionData();
+  const { apiParams, updateApiParams } = useApiParams(transactionType);
+  const { columnFilter, localSearchText, handleColumnChange, handleLocalSearchChange } =
+    useFilters();
+  const { displayedItems, tempTotalCount } = useDisplayedItems(
+    apiData,
+    apiParams,
+    localSearchText,
+    transactionType
+  );
+  const { paymentInformations } = usePaymentInfo(apiData, transactionType);
 
-  const onDownload = () => {
+  const handleDateRangeChange = useCallback(
+    (dates: [string, string]) => {
+      updateApiParams({ dateRange: dates, pageIndex: 1 });
+    },
+    [updateApiParams]
+  );
+
+  const handleStatusChange = useCallback(
+    (value: number) => {
+      updateApiParams({ status: value, pageIndex: 1 });
+    },
+    [updateApiParams]
+  );
+
+  const handleAccountChange = useCallback(
+    (value: string) => {
+      updateApiParams({ account: value, pageIndex: 1 });
+    },
+    [updateApiParams]
+  );
+
+  const handlePageChange = useCallback(
+    (newPage: number) => {
+      updateApiParams({ pageIndex: newPage });
+    },
+    [updateApiParams]
+  );
+
+  const handlePageSizeChange = useCallback(
+    (newSize: number) => {
+      updateApiParams({ pageSize: newSize, pageIndex: 1 });
+    },
+    [updateApiParams]
+  );
+
+  const onDownload = useCallback(() => {
     const paramsForDownload: ExportExcelParams = {
       fromDate: apiParams.dateRange[0],
       toDate: apiParams.dateRange[1],
@@ -185,15 +261,40 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
       account: apiParams.account,
     };
     transactionAPI.exportExcel(paramsForDownload);
-  };
-  const onRefreshNeeded = () => {
+  }, [apiParams, transactionType]);
+
+  const onRefreshNeeded = useCallback(async () => {
     const paramsForRefresh: TransactionsHistoryParams = {
       ...apiParams,
       searchText: localSearchText,
       transactionType: transactionType,
     };
-    fetchTransactions(paramsForRefresh);
-  };
+
+    try {
+      const response = await fetchTransactions(paramsForRefresh);
+      return response;
+    } catch (error) {
+      console.error('Refresh failed:', error);
+    }
+  }, [apiParams, localSearchText, transactionType, fetchTransactions]);
+
+  useEffect(() => {
+    // Chỉ fetch data khi thay đổi transaction type, date range, hoặc status
+    const paramsForFilterOrTypeChange: TransactionsHistoryParams = {
+      ...apiParams,
+      pageIndex: 1,
+      pageSize: PAGE_SIZE_OPTIONS[0],
+      searchText: '',
+      transactionType: transactionType,
+    };
+
+    fetchTransactions(paramsForFilterOrTypeChange);
+  }, [transactionType, apiParams.dateRange, apiParams.status, fetchTransactions]);
+
+  // Effect để reset pagination khi thay đổi search text hoặc account
+  useEffect(() => {
+    updateApiParams({ pageIndex: 1 });
+  }, [localSearchText, apiParams.account, updateApiParams]);
 
   return (
     <div className="transaction-list-container">
@@ -242,6 +343,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         transactionType={transactionType}
         onRefreshNeeded={onRefreshNeeded}
       />
+
       {!loading && (
         <div className="mt-[-1px]">
           <Pagination
