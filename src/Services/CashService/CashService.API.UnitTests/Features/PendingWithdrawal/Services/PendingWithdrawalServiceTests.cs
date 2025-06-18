@@ -236,10 +236,10 @@ public class PendingWithdrawalServiceTests
         };
 
         mockDynamicRepository
-            .Setup(repo => repo.FetchAsync<WriteLogDBCommandModel>(It.IsAny<ProcessTransactionCommand>(), It.IsAny<string>(), It.IsAny<CancellationToken>()))
-            .Callback((ICriteria command, string connectionString, CancellationToken token) =>
+            .Setup(repo => repo.FetchAsync<WriteLogDBCommandModel>(It.IsAny<ProcessWithdrawalTransactionCommand>(), It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .Callback((ICriteria command, string _, CancellationToken token) =>
             {
-                if (command is ProcessTransactionCommand cmd)
+                if (command is ProcessWithdrawalTransactionCommand cmd)
                 {
                     cmd.ErrCode = 0;
                     cmd.ErrMsg = "Success";
@@ -252,6 +252,6 @@ public class PendingWithdrawalServiceTests
         // Assert
         Assert.NotNull(result);
         Assert.Equal(0, result.Code);
-        mockDynamicRepository.Verify(repo => repo.FetchAsync<WriteLogDBCommandModel>(It.IsAny<ProcessTransactionCommand>(), It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
+        mockDynamicRepository.Verify(repo => repo.FetchAsync<WriteLogDBCommandModel>(It.IsAny<ProcessWithdrawalTransactionCommand>(), It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
     }
 }

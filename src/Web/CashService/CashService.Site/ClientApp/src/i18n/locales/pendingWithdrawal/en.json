@@ -49,7 +49,10 @@
     "approve": "Approve",
     "reject": "Reject",
     "close": "Close",
-    "selectBank": "Select Bank"
+    "selectBank": "Select Bank",
+    "bankRequired": "Bank is required",
+    "approveSuccess": "Approve withdrawal successfully",
+    "rejectSuccess": "Reject withdrawal successfully"
   },
 
   "manualWithdrawalForm": {

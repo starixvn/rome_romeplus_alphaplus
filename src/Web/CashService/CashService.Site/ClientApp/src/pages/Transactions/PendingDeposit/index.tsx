@@ -83,7 +83,7 @@ const useBankInfo = () => {
 
 const useSearch = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
-  
+
   const debouncedSetSearchTerm = useDebouncedCallback((value: string) => {
     setSearchTerm(value);
   }, 500);
@@ -96,7 +96,6 @@ const useSearch = () => {
   return { searchTerm, setSearchTerm, handleSearchChange };
 };
 
-
 const PendingDeposit: React.FC = () => {
   const { t } = useTranslation('pendingDeposit');
   useCookieLanguage(i18n);
@@ -105,12 +104,13 @@ const PendingDeposit: React.FC = () => {
   const [recentDeposits, setRecentDeposits] = useState<TimeFilterOptions>(TimeFilterOptions.All);
   const [cashAgentTo, setCashAgentTo] = useState<string>('');
 
-  const { deposits, uniquePaymentToOptions, isLoading, fetchDeposits } = useDeposits(recentDeposits);
+  const { deposits, uniquePaymentToOptions, isLoading, fetchDeposits } =
+    useDeposits(recentDeposits);
   const { cashAgentOptions } = useBankInfo();
   const { searchTerm, handleSearchChange } = useSearch();
 
   const handleAddManualDeposit = () => setShowManualAddDepositForm(true);
-  
+
   const handleCloseManualDepositForm = (isSuccess: boolean) => {
     setShowManualAddDepositForm(false);
     if (isSuccess) {
@@ -124,7 +124,7 @@ const PendingDeposit: React.FC = () => {
     }
 
     let result = deposits?.items || [];
-    
+
     if (cashAgentTo) {
       result = result.filter((deposit) => deposit.paymentTo.toString() === cashAgentTo);
     }
@@ -168,7 +168,13 @@ const PendingDeposit: React.FC = () => {
             setSearchTerm={handleSearchChange}
           />
 
-          {isLoading ? <LoadingFullComponent /> : <DataGrid deposits={filteredDeposits} />}
+          {isLoading ? (
+            <div className="flex items-center justify-center h-full">
+              <LoadingFullComponent />
+            </div>
+          ) : (
+            <DataGrid deposits={filteredDeposits} reloadGrid={fetchDeposits} />
+          )}
         </div>
       )}
     </>

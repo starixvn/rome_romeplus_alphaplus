@@ -130,7 +130,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
               closeConfirm();
               handleConfirmRevert();
             }}
-            text={t('confirm')}
+            text={tGlobal('confirm')}
           />
         </div>
       </div>

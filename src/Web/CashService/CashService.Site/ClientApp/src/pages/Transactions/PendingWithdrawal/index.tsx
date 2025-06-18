@@ -119,11 +119,11 @@ const PendingWithdrawal: React.FC = () => {
           />
 
           {isLoading ? (
-            
+            <div className="flex items-center justify-center h-full">
               <LoadingFullComponent />
-         
+            </div>
           ) : (
-            <DataGrid withdrawals={filteredWithdrawals} />
+            <DataGrid withdrawals={filteredWithdrawals} reloadGrid={fetchWithdrawals} />
           )}
         </div>
       )}

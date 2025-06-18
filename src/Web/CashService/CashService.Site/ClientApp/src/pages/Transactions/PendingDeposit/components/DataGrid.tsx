@@ -17,6 +17,7 @@ import { IconImage } from '../../../../components/Icons.tsx';
 
 interface DataGridProps {
   deposits: TransactionItem[];
+  reloadGrid: () => void;
 }
 
 const TableHeader: React.FC<{ t: (key: string) => string }> = ({ t }) => (
@@ -109,7 +110,7 @@ const TableRow: React.FC<TableRowProps> = ({
   </>
 );
 
-const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
+const DataGrid: React.FC<DataGridProps> = ({ deposits, reloadGrid }) => {
   const { t } = useTranslation('pendingDeposit');
   const { t: tGlobal } = useTranslation('global');
   const [currentPage, setCurrentPage] = useState(1);
@@ -147,6 +148,7 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
   const handleCloseProcess = () => {
     setShowDepositPopup(false);
     setError(null);
+    reloadGrid();
   };
 
   return (
