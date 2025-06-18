@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AutoTransferPageHint_Member" xml:space="preserve">
-    <value>고객 리스트</value>
+    <value>회원 목록</value>
   </data>
   <data name="AutoTransferPageHint_Agent" xml:space="preserve">
     <value>에이전트 목록</value>
@@ -133,10 +133,10 @@
     <value>화</value>
   </data>
   <data name="Wed" xml:space="preserve">
-    <value>수요일</value>
+    <value>수</value>
   </data>
   <data name="Thurs" xml:space="preserve">
-    <value>목요일</value>
+    <value>목</value>
   </data>
   <data name="Fri" xml:space="preserve">
     <value>금</value>
@@ -149,5 +149,56 @@
   </data>
   <data name="Update" xml:space="preserve">
     <value>업데이트</value>
+  </data>
+  <data name="Daily" xml:space="preserve">
+    <value>매일</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>금요일</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>월요일</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>토요일</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>일요일</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>목요일</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>화요일</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>수요일</value>
+  </data>
+  <data name="AutoTransfer_AffectTime" xml:space="preserve">
+    <value>활성화되면 어제 잔액이 &lt;span&gt;오후 12:00 (GMT+8)&lt;/span&gt;에 초기화됩니다.</value>
+  </data>
+  <data name="TurnOnTransferBalanceDailyNoteMessage" xml:space="preserve">
+    <value>&lt;div style="font-weight:normal"&gt;&lt;b&gt;참고:&lt;/b&gt; 전체 일일 잔액 이체를 활성화하면 자동 이체가 비활성화되고 {0} 및 모든 하위 계정에 대해 구성된 모든 자동 이체 일정이 초기화됩니다.&lt;/div&gt;</value>
+  </data>
+  <data name="ConfirmAllowAutoTransferViewModelInCaseDisabledMemberMessage_Message" xml:space="preserve">
+    <value>이 계정({0})에 대해 자동 이체를 비활성화하시겠습니까?</value>
+  </data>
+  <data name="ConfirmAllowAutoTransferViewModelInCaseDisabledMemberMessage_Tip" xml:space="preserve">
+    <value>팁: [회원 정보 &gt;&gt; {0}] 또는 [이체 &gt;&gt; 이체]에서 여러 계정에 대해 자동 이체를 활성화 또는 비활성화하고 [이체 &gt; 자동 이체 모니터링]에서 진행 상황을 모니터링할 수 있습니다.</value>
+  </data>
+  <data name="AutoTransfer_ClearSchedule" xml:space="preserve">
+    <value>*비활성화되면 현재 자동 이체 일정이 초기화됩니다.</value>
+  </data>
+  <data name="ConfirmAllowAutoTransferViewModelInCaseEnabledMemberMessage_Message" xml:space="preserve">
+    <value>이 계정({0})에 대해 자동 이체를 활성화하시겠습니까?</value>
+  </data>
+  <data name="ConfirmAllowAutoTransferViewModelInCaseEnabledMemberMessage_Tip" xml:space="preserve">
+    <value>팁: [회원 정보 &gt;&gt; {0}] 또는 [이체 &gt;&gt; 이체]에서 여러 계정에 대해 자동 이체를 활성화 또는 비활성화하고 [이체 &gt; 자동 이체 모니터링]에서 진행 상황을 모니터링할 수 있습니다.</value>
+  </data>
+  <data name="AutoTransfer_SetSchedule" xml:space="preserve">
+    <value>이체 조건에 따라 사용 가능한 옵션에서 하위 계정에 대한 자동 이체 일정을 설정할 수 있습니다.</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>전체 선택</value>
   </data>
 </root>

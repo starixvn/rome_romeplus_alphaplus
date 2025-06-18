@@ -142,19 +142,19 @@
     <value>수정하다</value>
   </data>
   <data name="BetSettingFollows" xml:space="preserve">
-    <value>Bet Setting Follows</value>
+    <value>베팅 설정 따르기</value>
   </data>
   <data name="CommissionSettingFollows" xml:space="preserve">
-    <value>Commission Setting Follows</value>
+    <value>수수료 설정 따르기</value>
   </data>
   <data name="NewBetType" xml:space="preserve">
-    <value>New Bet Type</value>
+    <value>새로운 베팅 유형</value>
   </data>
   <data name="PositionTakingSettingFollows" xml:space="preserve">
-    <value>Position Taking Setting Follows</value>
+    <value>포지션 테이킹 설정 따르기</value>
   </data>
-  <data name="NewBetTypeEffectDate" xml:space="preserve">
-    <value>New bet types of Basketball with effect from 05/18/2017:</value>
+  <data name="NewBetTypesBasketball" xml:space="preserve">
+    <value>2017년 5월 18일부터 적용되는 새로운 농구 베팅 유형:</value>
   </data>
   <data name="CreditBalance" xml:space="preserve">
     <value>크레딧/잔액</value>
@@ -214,10 +214,10 @@
     <value>머리글에 마우스의 오른쪽 버튼을 클릭하시면 열 표시/숨기기  선택하실수 있습니다.</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>Yes</value>
+    <value>예</value>
   </data>
-  <data name="No2" xml:space="preserve">
-    <value>No</value>
+  <data name="No" xml:space="preserve">
+    <value>아니오</value>
   </data>
   <data name="MemberWinLossLimit" xml:space="preserve">
     <value>회원의  지급한도</value>
@@ -228,8 +228,8 @@
   <data name="SelectAgent" xml:space="preserve">
     <value>에이전트 선택</value>
   </data>
-  <data name="PlayerId" xml:space="preserve">
-    <value>Player ID</value>
+  <data name="PlayerID" xml:space="preserve">
+    <value>플레이어 ID</value>
   </data>
   <data name="UsernamePlaceHolder" xml:space="preserve">
     <value>사용자 이름 또는 성(이름)</value>
@@ -241,19 +241,19 @@
     <value>모든 에이전트</value>
   </data>
   <data name="AutoDailyResetLimit" xml:space="preserve">
-    <value>Auto Daily Reset Limit</value>
+    <value>자동 일일 한도 초기화</value>
   </data>
   <data name="CurrentWinLossAmount" xml:space="preserve">
-    <value>Current Win Loss Amount</value>
+    <value>현재 승패 금액</value>
   </data>
-  <data name="MaximumWin" xml:space="preserve">
-    <value>Maximum Win  (on given credit)</value>
+  <data name="MaximumWinOnGivenCredit" xml:space="preserve">
+    <value>최대 승리 금액 (지급된 크레딧 기준)</value>
   </data>
   <data name="CurrentWinLimit" xml:space="preserve">
-    <value>Current Win Limit  (%)</value>
+    <value>현재 승리 한도 (%)</value>
   </data>
   <data name="CurrentLossLimit" xml:space="preserve">
-    <value>Current Loss Limit (%)</value>
+    <value>현재 손실 한도 (%)</value>
   </data>
   <data name="MaximumLoss" xml:space="preserve">
     <value>Maximum Loss</value>

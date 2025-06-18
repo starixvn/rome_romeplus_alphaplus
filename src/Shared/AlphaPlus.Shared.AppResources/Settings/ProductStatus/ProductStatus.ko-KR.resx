@@ -138,4 +138,19 @@
   <data name="_ProductStatus" xml:space="preserve">
     <value>Product Status</value>
   </data>
+  <data name="UnableToEditDownlineProductStatus" xml:space="preserve">
+    <value>이 제품이 비활성화되어 있어 하위 라인의 제품 상태를 편집할 수 없습니다.</value>
+  </data>
+  <data name="NotAllowedToDisableDownlineProduct" xml:space="preserve">
+    <value>하위 라인의 제품을 비활성화할 권한이 없습니다.</value>
+  </data>
+  <data name="NotAllowedToPerformAction" xml:space="preserve">
+    <value>이 작업을 수행할 권한이 없습니다.</value>
+  </data>
+  <data name="NotAllowedToDisableProductOnDownlines" xml:space="preserve">
+    <value>회사 정책에 따라 하위 라인에서 이 제품을 비활성화할 수 없습니다.</value>
+  </data>
+  <data name="ProductStatus" xml:space="preserve">
+    <value>제품 상태</value>
+  </data>
 </root>

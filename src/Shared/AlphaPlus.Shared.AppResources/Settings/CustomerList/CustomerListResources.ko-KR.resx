@@ -157,13 +157,13 @@
     <value>수정하다</value>
   </data>
   <data name="EditMultipleSetting" xml:space="preserve">
-    <value>Edit Multiple Setting</value>
+    <value>다중 설정 편집</value>
   </data>
   <data name="EditSetting" xml:space="preserve">
-    <value>Edit Setting</value>
+    <value>설정 편집</value>
   </data>
   <data name="EditStatus" xml:space="preserve">
-    <value>Edit Status</value>
+    <value>상태 편집</value>
   </data>
   <data name="FirstName" xml:space="preserve">
     <value>이름</value>
@@ -199,13 +199,13 @@
     <value>닉네임</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>No.</value>
+    <value>아니오</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>없음</value>
   </data>
   <data name="NotFilter" xml:space="preserve">
-    <value>Not Filter</value>
+    <value>필터 없음</value>
   </data>
   <data name="Of" xml:space="preserve">
     <value>부터</value>
@@ -247,13 +247,13 @@
     <value>가능한 정보가 없습니다</value>
   </data>
   <data name="UnconfirmedSetting" xml:space="preserve">
-    <value>Unconfirmed Setting</value>
+    <value>미확인 설정</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>사용자 이름</value>
   </data>
   <data name="UsernamePlaceHolder" xml:space="preserve">
-    <value>Username/Nickname or First/Last Name</value>
+    <value>사용자 이름/닉네임 또는 이름/성</value>
   </data>
   <data name="View" xml:space="preserve">
     <value>보기</value>
@@ -265,36 +265,36 @@
     <value>더블 커미션 허용하지않기</value>
   </data>
   <data name="UpdateDoubleCommSuccessfully" xml:space="preserve">
-    <value>Update Double Comm successfully.</value>
+    <value>이중 수수료가 성공적으로 업데이트되었습니다.</value>
   </data>
-  <data name="UnuspendStatusPopupHeader" xml:space="preserve">
-    <value>Unsuspend &lt;username&gt;</value>
+  <data name="UnsuspendUsername" xml:space="preserve">
+    <value>&lt;username&gt; 일시정지 해제</value>
   </data>
   <data name="Group" xml:space="preserve">
     <value>그룹</value>
   </data>
   <data name="FirstLastName" xml:space="preserve">
-    <value>First &amp; Last Name</value>
+    <value>이름 및 성</value>
   </data>
-  <data name="StatementTooltip" xml:space="preserve">
-    <value>View Statement</value>
+  <data name="ViewStatement" xml:space="preserve">
+    <value>거래 내역 보기</value>
   </data>
-  <data name="UsernameTooltip" xml:space="preserve">
-    <value>Click Username to drilldown to downlines</value>
+  <data name="ClickUsernameToDrilldownToDownlines" xml:space="preserve">
+    <value>하위 라인을 보려면 사용자 이름을 클릭하세요</value>
   </data>
-  <data name="ViewIPTooltip" xml:space="preserve">
-    <value>Click IP to view IP info</value>
+  <data name="ClickIPToViewIPInfo" xml:space="preserve">
+    <value>IP 정보를 보려면 IP를 클릭하세요</value>
   </data>
   <data name="Collapse" xml:space="preserve">
-    <value>Collapse</value>
+    <value>접기</value>
   </data>
   <data name="Expand" xml:space="preserve">
-    <value>Expand</value>
+    <value>펼치기</value>
   </data>
   <data name="CollapseAll" xml:space="preserve">
-    <value>Collapse all</value>
+    <value>모두 접기</value>
   </data>
   <data name="ExpandAll" xml:space="preserve">
-    <value>Expand all</value>
+    <value>모두 펼치기</value>
   </data>
 </root>

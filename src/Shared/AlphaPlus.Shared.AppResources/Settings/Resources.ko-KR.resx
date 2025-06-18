@@ -127,7 +127,7 @@
     <value>에이전트 목록</value>
   </data>
   <data name="AgentOutstanding" xml:space="preserve">
-    <value>에이전트 아웃스텐딩</value>
+    <value>에이전트 미정산</value>
   </data>
   <data name="BalanceInfo" xml:space="preserve">
     <value>잔액정보</value>
@@ -172,28 +172,28 @@
     <value>이 고객의 계정을 비활성화 상태로 바꾸시겠습니까? 주의!! 모든 하부라인의 계정도 비활성화 되어집니다.</value>
   </data>
   <data name="ConfirmClosedViewModelInCaseOpenedMemberMessage" xml:space="preserve">
-    <value>Are you sure you want to open this account?</value>
+    <value>이 계정을 활성화하시겠습니까?</value>
   </data>
   <data name="ConfirmClosedViewModelText" xml:space="preserve">
     <value>중지</value>
   </data>
   <data name="ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage" xml:space="preserve">
-    <value>고객님의 스포츠 북에 해당하는 진 티켓에 대한 더블 커미션 기능을 허용하지 않겠습니까 ? 알림 :  에이젼트에 해당하는 모든 회원 또한 허용되지 않습니다.</value>
+    <value>고객님의 스포츠북 승리 티켓에 대한 더블 수수료 기능을 비활성화하시겠습니까? 알림: 해당 에이전트의 모든 회원도 비활성화됩니다.</value>
   </data>
   <data name="ConfirmDoubleCommViewModelInCaseDisabledMemberMessage" xml:space="preserve">
-    <value>고객님의 스포츠 북에 해당하는 진 티켓의 더블 커미션 기능을  켜시겠습니까?</value>
+    <value>이 고객의 스포츠북 승리 티켓에 대한 더블 수수료 기능을 비활성화하시겠습니까?</value>
   </data>
   <data name="ConfirmDoubleCommViewModelInCaseEnabledMemberMessage" xml:space="preserve">
-    <value>고객의 스포츠 북에 해당하는 진 티켓의 더블 커미션 기능을 허용하지 않겠습니까 ?</value>
+    <value>이 고객의 스포츠북 승리 티켓에 대한 더블 수수료 기능을 활성화하시겠습니까?</value>
   </data>
   <data name="ConfirmDoubleCommViewModelInCaseEnableMasterOrAgentMessage" xml:space="preserve">
-    <value>고객님의 스포츠 북에 해당하는 진 티켓의 더블 커미션 기능을 끄시겠습니까?</value>
+    <value>이 고객의 스포츠북 승리 티켓에 대한 더블 수수료 기능을 활성화하시겠습니까? 주의: 이 에이전트 소속의 모든 회원도 동일하게 적용됩니다.</value>
   </data>
   <data name="ConfirmDoubleCommViewModelText" xml:space="preserve">
-    <value>더블 커미션</value>
+    <value>더블 수수료</value>
   </data>
   <data name="ConfirmSuspendedViewModelInCaseSuspendedMasterOrAgentMessage" xml:space="preserve">
-    <value>이 고객의 계정을 일시정지로 바꾸시겠습니까? 주의! 이 에이젼트 소속의 모든 회원의 계정도 일시정지 되어집니다.</value>
+    <value>이 고객의 계정을 일시정지로 바꾸시겠습니까? 주의! 이 에이전트 소속의 모든 회원의 계정도 일시정지 되어집니다.</value>
   </data>
   <data name="ConfirmSuspendedViewModelInCaseSuspendedMemberMessage" xml:space="preserve">
     <value>이 고객의 계정을 일시정지로 바꾸시겟습니까? 주의! 이 회원은 베팅할수 없게 되어집니다.</value>
@@ -259,10 +259,10 @@
     <value>이름</value>
   </data>
   <data name="NetPosition" xml:space="preserve">
-    <value>Net Position</value>
+    <value>순 포지션</value>
   </data>
   <data name="NoDataChange" xml:space="preserve">
-    <value>There is no change to update.</value>
+    <value>업데이트할 변경 사항이 없습니다.</value>
   </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>가능한 정보가 없습니다</value>
@@ -283,7 +283,7 @@
     <value>비밀번호 재설정</value>
   </data>
   <data name="ResetSecurityCodeViewModelText" xml:space="preserve">
-    <value>Reset Security Code</value>
+    <value>보안 코드 재설정</value>
   </data>
   <data name="Setting" xml:space="preserve">
     <value>설정</value>
@@ -340,31 +340,31 @@
     <value>페이지</value>
   </data>
   <data name="RemoveOtpViewModelText" xml:space="preserve">
-    <value>Remove OTP</value>
+    <value>OTP 제거</value>
   </data>
   <data name="ShowContactInfo" xml:space="preserve">
-    <value>Contact Info</value>
+    <value>연락처 정보</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
-    <value>Successfully updated!</value>
+    <value>성공적으로 업데이트되었습니다!</value>
   </data>
   <data name="GivenCreditPopupTitle" xml:space="preserve">
-    <value>Update Given Credit</value>
+    <value>지급된 크레딧 업데이트</value>
   </data>
   <data name="LoginInfo" xml:space="preserve">
-    <value>Login Info</value>
+    <value>로그인 정보</value>
   </data>
   <data name="ClosedByAdmin" xml:space="preserve">
-    <value>This account was closed by admin.</value>
+    <value>이 계정은 관리자에 의해 비활성화되었습니다.</value>
   </data>
   <data name="LockedByFalsePassword" xml:space="preserve">
-    <value>This account has been locked due to multiple failed password attempts.</value>
+    <value>이 계정은 여러 번의 비밀번호 시도 실패로 인해 잠겼습니다.</value>
   </data>
   <data name="LockedByFalseOTPSC" xml:space="preserve">
-    <value>This account has been locked due to multiple failed OTP/Security Code authentication attempts.</value>
+    <value>이 계정은 여러 번의 OTP/보안 코드 인증 시도 실패로 인해 잠겼습니다.</value>
   </data>
   <data name="ClosedByUpline" xml:space="preserve">
-    <value>This account was closed by upline.</value>
+    <value>이 계정은 상위 관리자에 의해 비활성화되었습니다.</value>
   </data>
   <data name="Viewlog" xml:space="preserve">
     <value>로그인 보기</value>
@@ -373,61 +373,61 @@
     <value>이 계정은 실행하실수없는 계정입니다.</value>
   </data>
   <data name="ThisAccountWasSuspended" xml:space="preserve">
-    <value>This account was suspended.</value>
+    <value>이 계정은 일시정지되었습니다.</value>
   </data>
   <data name="Phone" xml:space="preserve">
     <value>전화</value>
   </data>
   <data name="And" xml:space="preserve">
-    <value>and</value>
+    <value>및</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>업데이트</value>
   </data>
   <data name="Agents" xml:space="preserve">
-    <value>Agents (Active/Closed/Suspended)</value>
+    <value>에이전트 (활성/비활성/일시정지)</value>
   </data>
   <data name="Members" xml:space="preserve">
-    <value>Members (Active/Closed/Suspended)</value>
+    <value>회원 (활성/비활성/일시정지)</value>
   </data>
   <data name="AccountNotFound" xml:space="preserve">
-    <value>Account not found!</value>
+    <value>계정을 찾을 수 없습니다!</value>
   </data>
   <data name="Nickname" xml:space="preserve">
     <value>닉네임</value>
   </data>
   <data name="OutrightDisabledUpline" xml:space="preserve">
-    <value>Upline has been disabled Outright betting</value>
+    <value>상위 관리자가 기타 베팅을 비활성화했습니다</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>뒤</value>
   </data>
   <data name="Sportsbook2ViewModelText" xml:space="preserve">
-    <value>Sportsbook 2</value>
+    <value>스포츠북 2</value>
   </data>
   <data name="UnuspendStatusPopupHeader" xml:space="preserve">
-    <value>Unsuspend &lt;username&gt;</value>
+    <value>&lt;username&gt; 일시정지 해제</value>
   </data>
   <data name="SuspendedByUplineTooltip" xml:space="preserve">
-    <value>This account was indirectly suspended by upline</value>
+    <value>이 계정은 상위 관리자에 의해 간접적으로 일시정지되었습니다</value>
   </data>
   <data name="CreateMemberWithQRCode" xml:space="preserve">
-    <value>Create Member with QR Code</value>
+    <value>QR 코드로 회원 생성</value>
   </data>
   <data name="FirstLoginQRCode" xml:space="preserve">
-    <value>FIRST LOGIN QR CODE</value>
+    <value>첫 로그인 QR 코드</value>
   </data>
   <data name="PendingTransfer3rd" xml:space="preserve">
-    <value>3rd Party Pending Transfer</value>
+    <value>제3자 대기 이체</value>
   </data>
   <data name="ClosedByArchive" xml:space="preserve">
-    <value>This account was closed by inactivity.</value>
+    <value>이 계정은 비활성으로 인해 비활성화되었습니다.</value>
   </data>
   <data name="ShowMore" xml:space="preserve">
-    <value>Show More</value>
+    <value>더 보기</value>
   </data>
   <data name="ShowLess" xml:space="preserve">
-    <value>Show Less</value>
+    <value>접기</value>
   </data>
   <data name="lblNew" xml:space="preserve">
     <value>새로운</value>
@@ -439,132 +439,249 @@
     <value>성</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>Reset</value>
+    <value>초기화</value>
   </data>
   <data name="editmultsportbook" xml:space="preserve">
     <value>멀티플 스포츠 북 수정하기</value>
   </data>
   <data name="AgentEditsMultipleMembers_Figure1" xml:space="preserve">
-    <value>&lt;strong&gt;Figure 1:&lt;/strong&gt; Edit Multiple Sportsbook popup</value>
+    <value>&lt;strong&gt;그림 1:&lt;/strong&gt; 여러 스포츠북 수정 팝업</value>
   </data>
   <data name="AgentEditsMultipleMembers_Figure2" xml:space="preserve">
-    <value>&lt;strong&gt;Figure 2:&lt;/strong&gt; Old Settings of Member02</value>
+    <value>&lt;strong&gt;그림 2:&lt;/strong&gt; Member02의 이전 설정</value>
   </data>
   <data name="AgentEditsMultipleMembers_Figure3" xml:space="preserve">
-    <value>&lt;strong&gt;Figure 3:&lt;/strong&gt; New Settings of Member02</value>
+    <value>&lt;strong&gt;그림 3:&lt;/strong&gt; Member02의 새 설정</value>
   </data>
   <data name="AgentEditsMultipleMembers_Guideline1" xml:space="preserve">
-    <value>To edit, tick off the setting option(s) and select your preferred settings.</value>
+    <value>수정하려면 설정 옵션을 선택하고 원하는 설정을 선택하세요.</value>
   </data>
   <data name="AgentEditsMultipleMembers_Guideline2" xml:space="preserve">
-    <value>Click &lt;strong&gt;Update&lt;/strong&gt; to save the new settings of members.</value>
+    <value>회원의 새 설정을 저장하려면 &lt;strong&gt;업데이트&lt;/strong&gt;를 클릭하세요.</value>
   </data>
   <data name="MasterEditsMultipleAgents" xml:space="preserve">
-    <value>Master Edits Multiple Agents</value>
+    <value>마스터가 여러 에이전트 수정</value>
   </data>
   <data name="MasterEditsMultipleAgents_Figure1" xml:space="preserve">
-    <value>&lt;strong&gt;Figure 1:&lt;/strong&gt; Edit Multiple Sportsbook popup</value>
+    <value>&lt;strong&gt;그림 1:&lt;/strong&gt; 여러 스포츠북 수정 팝업</value>
   </data>
   <data name="MasterEditsMultipleAgents_Figure2" xml:space="preserve">
-    <value>&lt;strong&gt;Figure 2:&lt;/strong&gt; Old Settings of Agent02</value>
+    <value>&lt;strong&gt;그림 2:&lt;/strong&gt; Agent02의 이전 설정</value>
   </data>
   <data name="MasterEditsMultipleAgents_Figure3" xml:space="preserve">
-    <value>&lt;strong&gt;Figure 3:&lt;/strong&gt; New Settings of Agent02</value>
+    <value>&lt;strong&gt;그림 3:&lt;/strong&gt; Agent02의 새 설정</value>
   </data>
   <data name="MasterEditsMultipleAgents_Guideline1" xml:space="preserve">
-    <value>Tick off the setting option(s) and input your preferred settings.</value>
+    <value>설정 옵션을 선택하고 원하는 설정을 입력하세요.</value>
   </data>
   <data name="MasterEditsMultipleAgents_Guideline2" xml:space="preserve">
-    <value>Click &lt;strong&gt;Update&lt;/strong&gt; to save the new settings of agents.</value>
+    <value>에이전트의 새 설정을 저장하려면 &lt;strong&gt;업데이트&lt;/strong&gt;를 클릭하세요.</value>
   </data>
   <data name="MasterEditsMultipleMembers" xml:space="preserve">
-    <value>Master Edits Multiple Members</value>
+    <value>마스터가 여러 회원 수정</value>
   </data>
   <data name="MasterEditsMultipleMembers_Figure4" xml:space="preserve">
-    <value>&lt;strong&gt;Figure 4:&lt;/strong&gt; Edit Multiple Sportsbook popup</value>
+    <value>&lt;strong&gt;그림 4:&lt;/strong&gt; 여러 스포츠북 수정 팝업</value>
   </data>
   <data name="MasterEditsMultipleMembers_Figure5" xml:space="preserve">
-    <value>&lt;strong&gt;Figure 5:&lt;/strong&gt; Old Settings of Member02</value>
+    <value>&lt;strong&gt;그림 5:&lt;/strong&gt; Member02의 이전 설정</value>
   </data>
   <data name="MasterEditsMultipleMembers_Figure6" xml:space="preserve">
-    <value>&lt;strong&gt;Figure 6:&lt;/strong&gt; New Settings of Member02</value>
+    <value>&lt;strong&gt;그림 6:&lt;/strong&gt; Member02의 새 설정</value>
   </data>
   <data name="MasterEditsMultipleMembers_Guideline4" xml:space="preserve">
-    <value>Tick off the setting option(s) and select your preferred settings.</value>
+    <value>설정 옵션을 선택하고 원하는 설정을 선택하세요.</value>
   </data>
   <data name="MasterEditsMultipleMembers_Guideline5" xml:space="preserve">
-    <value>Click &lt;strong&gt;Update&lt;/strong&gt; to save the new settings of members.</value>
+    <value>회원의 새 설정을 저장하려면 &lt;strong&gt;업데이트&lt;/strong&gt;를 클릭하세요.</value>
   </data>
   <data name="MasterEditsMultipleMembers_Note" xml:space="preserve">
-    <value>You can only change member status (open/closed) and your Position Taking taken on those members.</value>
+    <value>회원 상태(활성/비활성)와 해당 회원에 대한 포지션 설정만 변경할 수 있습니다.</value>
   </data>
   <data name="Notes" xml:space="preserve">
-    <value>Notes:</value>
+    <value>참고:</value>
   </data>
   <data name="Notes_Agent" xml:space="preserve">
-    <value>In multiple edit popup:</value>
+    <value>다중 수정 팝업에서:</value>
   </data>
   <data name="Notes_Agent1" xml:space="preserve">
-    <value>The default settings are the settings of the account located on top of the selected list.</value>
+    <value>기본 설정은 선택된 목록의 맨 위에 있는 계정의 설정입니다.</value>
   </data>
   <data name="Notes_Agent2" xml:space="preserve">
-    <value>All settings displayed on selected section will be updated to selected accounts regardless of whether or not change is made.</value>
+    <value>선택된 섹션에 표시된 모든 설정은 변경 여부와 관계없이 선택된 계정에 업데이트됩니다.</value>
   </data>
   <data name="Notes_Master" xml:space="preserve">
-    <value>If upline bet setting is 0, downline bet settings will follow bet settings of the higher level.</value>
+    <value>상위 관리자의 베팅 설정이 0이면 하위 라인의 베팅 설정은 상위 레벨의 베팅 설정을 따릅니다.</value>
   </data>
   <data name="Notes_Super" xml:space="preserve">
-    <value>Super cannot change Agent settings.</value>
+    <value>슈퍼는 에이전트 설정을 변경할 수 없습니다.</value>
   </data>
   <data name="PageTitle" xml:space="preserve">
-    <value>Multiple Edit Customer Settings</value>
+    <value>여러 고객 설정 수정</value>
   </data>
   <data name="PageTitleIntroduction_Agent" xml:space="preserve">
-    <value>Editing a member at a time can be a tedious work. Therefore, you are advised to get used to multi-edit function which applies the same settings to different members at once.</value>
+    <value>한 번에 하나의 회원을 수정하는 것은 지루한 작업일 수 있습니다. 따라서 여러 회원에 동일한 설정을 한 번에 적용하는 다중 수정 기능을 사용하는 것이 좋습니다.</value>
   </data>
   <data name="PageTitleIntroduction_Master" xml:space="preserve">
-    <value>Editing a downline account at a time can be a tedious work. Therefore, you are advised to get used to multi-edit function which applies the same settings to different accounts at once.</value>
+    <value>한 번에 하나의 하위 라인 계정을 수정하는 것은 지루한 작업일 수 있습니다. 따라서 여러 계정에 동일한 설정을 한 번에 적용하는 다중 수정 기능을 사용하는 것이 좋습니다.</value>
   </data>
   <data name="PageTitleIntroduction_Super" xml:space="preserve">
-    <value>Editing a downline account at a time can be a tedious work. Therefore, you are advised to get used to multi-edit function which applies the same settings to different accounts at once.</value>
+    <value>한 번에 하나의 하위 라인 계정을 수정하는 것은 지루한 작업일 수 있습니다. 따라서 여러 계정에 동일한 설정을 한 번에 적용하는 다중 수정 기능을 사용하는 것이 좋습니다.</value>
   </data>
   <data name="SuperEditsMultipleMasters" xml:space="preserve">
-    <value>Super Edits Multiple Masters</value>
+    <value>슈퍼가 여러 마스터 수정</value>
   </data>
   <data name="SuperEditsMultipleMasters_Figure1" xml:space="preserve">
-    <value>&lt;strong&gt;Figure 1:&lt;/strong&gt; Edit Multiple Sportsbook popup</value>
+    <value>&lt;strong&gt;그림 1:&lt;/strong&gt; 여러 스포츠북 수정 팝업</value>
   </data>
   <data name="SuperEditsMultipleMasters_Figure2" xml:space="preserve">
-    <value>&lt;strong&gt;Figure 2:&lt;/strong&gt; Old Settings of Master02</value>
+    <value>&lt;strong&gt;그림 2:&lt;/strong&gt; Master02의 이전 설정</value>
   </data>
   <data name="SuperEditsMultipleMasters_Figure3" xml:space="preserve">
-    <value>&lt;strong&gt;Figure 3:&lt;/strong&gt; New Settings of Master02</value>
+    <value>&lt;strong&gt;그림 3:&lt;/strong&gt; Master02의 새 설정</value>
   </data>
   <data name="SuperEditsMultipleMasters_Guideline1" xml:space="preserve">
-    <value>Tick off the setting option(s) and input your preferred settings.</value>
+    <value>설정 옵션을 선택하고 원하는 설정을 입력하세요.</value>
   </data>
   <data name="SuperEditsMultipleMasters_Guideline2" xml:space="preserve">
-    <value>Click &lt;strong&gt;Update&lt;/strong&gt; to save the new settings of masters.</value>
+    <value>마스터의 새 설정을 저장하려면 &lt;strong&gt;업데이트&lt;/strong&gt;를 클릭하세요.</value>
   </data>
   <data name="SuperEditsMultipleMembers" xml:space="preserve">
-    <value>Super Edits Multiple Members</value>
+    <value>슈퍼가 여러 회원 수정</value>
   </data>
   <data name="SuperEditsMultipleMembers_Figure4" xml:space="preserve">
-    <value>&lt;strong&gt;Figure 4:&lt;/strong&gt; Edit Multiple Sportsbook popup</value>
+    <value>&lt;strong&gt;그림 4:&lt;/strong&gt; 여러 스포츠북 수정 팝업</value>
   </data>
   <data name="SuperEditsMultipleMembers_Figure5" xml:space="preserve">
-    <value>&lt;strong&gt;Figure 5:&lt;/strong&gt; Old Settings of Member02</value>
+    <value>&lt;strong&gt;그림 5:&lt;/strong&gt; Member02의 이전 설정</value>
   </data>
   <data name="SuperEditsMultipleMembers_Figure6" xml:space="preserve">
-    <value>&lt;strong&gt;Figure 6:&lt;/strong&gt; New Settings of Member02</value>
+    <value>&lt;strong&gt;그림 6:&lt;/strong&gt; Member02의 새 설정</value>
   </data>
   <data name="SuperEditsMultipleMembers_Guideline4" xml:space="preserve">
-    <value>Tick off the setting option(s) and select your preferred settings.</value>
+    <value>설정 옵션을 선택하고 원하는 설정을 선택하세요.</value>
   </data>
   <data name="SuperEditsMultipleMembers_Guideline5" xml:space="preserve">
-    <value>Click &lt;strong&gt;Update&lt;/strong&gt; to save the new settings of members.</value>
+    <value>회원의 새 설정을 저장하려면 &lt;strong&gt;업데이트&lt;/strong&gt;를 클릭하세요.</value>
   </data>
   <data name="SuperEditsMultipleMembers_Note" xml:space="preserve">
-    <value>You can only change member status (open/closed) and your Position Taking taken on those members.</value>
+    <value>회원 상태(활성/비활성)와 해당 회원에 대한 포지션 설정만 변경할 수 있습니다.</value>
+  </data>
+  <data name="NoChangeToUpdate" xml:space="preserve">
+    <value>업데이트할 변경사항이 없습니다.</value>
+  </data>
+  <data name="ResetSecurityCode" xml:space="preserve">
+    <value>보안 코드 재설정</value>
+  </data>
+  <data name="RemoveOTP" xml:space="preserve">
+    <value>OTP 제거</value>
+  </data>
+  <data name="ContactInfo" xml:space="preserve">
+    <value>연락처 정보</value>
+  </data>
+  <data name="SuccessfullyUpdated" xml:space="preserve">
+    <value>성공적으로 업데이트되었습니다!</value>
+  </data>
+  <data name="UpdateGivenCredit" xml:space="preserve">
+    <value>지급된 크레딧 업데이트</value>
+  </data>
+  <data name="AccountLockedByFailedPassword" xml:space="preserve">
+    <value>이 계정은 여러 번의 비밀번호 시도 실패로 인해 잠겼습니다.</value>
+  </data>
+  <data name="AccountLockedByFailedOTP" xml:space="preserve">
+    <value>이 계정은 여러 번의 OTP/보안 코드 인증 시도 실패로 인해 잠겼습니다.</value>
+  </data>
+  <data name="AccountSuspended" xml:space="preserve">
+    <value>이 계정은 일시정지되었습니다.</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>및</value>
+  </data>
+  <data name="AgentsActiveClosedSuspended" xml:space="preserve">
+    <value>에이전트 (활성/비활성/일시정지)</value>
+  </data>
+  <data name="MembersActiveClosedSuspended" xml:space="preserve">
+    <value>회원 (활성/비활성/일시정지)</value>
+  </data>
+  <data name="AccountNotFound" xml:space="preserve">
+    <value>계정을 찾을 수 없습니다!</value>
+  </data>
+  <data name="UplineDisabledOutrightBetting" xml:space="preserve">
+    <value>상위 관리자가 기타 베팅을 비활성화했습니다</value>
+  </data>
+  <data name="Sportsbook2" xml:space="preserve">
+    <value>스포츠북 2</value>
+  </data>
+  <data name="UnsuspendUsername" xml:space="preserve">
+    <value>&lt;username&gt; 일시정지 해제</value>
+  </data>
+  <data name="AccountIndirectlySuspendedByUpline" xml:space="preserve">
+    <value>이 계정은 상위 관리자에 의해 간접적으로 일시정지되었습니다</value>
+  </data>
+  <data name="CreateMemberWithQRCode" xml:space="preserve">
+    <value>QR 코드로 회원 생성</value>
+  </data>
+  <data name="FirstLoginQRCode" xml:space="preserve">
+    <value>첫 로그인 QR 코드</value>
+  </data>
+  <data name="AccountClosedByInactivity" xml:space="preserve">
+    <value>이 계정은 비활성으로 인해 비활성화되었습니다.</value>
+  </data>
+  <data name="TickOffSettingsAndInput" xml:space="preserve">
+    <value>설정 옵션을 선택하고 원하는 설정을 입력하세요.</value>
+  </data>
+  <data name="ClickUpdateToSaveAgentSettings" xml:space="preserve">
+    <value>에이전트의 새 설정을 저장하려면 &lt;strong&gt;업데이트&lt;/strong&gt;를 클릭하세요.</value>
+  </data>
+  <data name="MasterEditsMultipleMembers" xml:space="preserve">
+    <value>마스터가 여러 회원 수정</value>
+  </data>
+  <data name="TickOffSettingsAndSelect" xml:space="preserve">
+    <value>설정 옵션을 선택하고 원하는 설정을 선택하세요.</value>
+  </data>
+  <data name="ClickUpdateToSaveMemberSettings" xml:space="preserve">
+    <value>회원의 새 설정을 저장하려면 &lt;strong&gt;업데이트&lt;/strong&gt;를 클릭하세요.</value>
+  </data>
+  <data name="CanOnlyChangeMemberStatus" xml:space="preserve">
+    <value>회원 상태(활성/비활성)와 해당 회원에 대한 포지션 설정만 변경할 수 있습니다.</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>참고:</value>
+  </data>
+  <data name="InMultipleEditPopup" xml:space="preserve">
+    <value>다중 수정 팝업에서:</value>
+  </data>
+  <data name="DefaultSettingsFromTopAccount" xml:space="preserve">
+    <value>기본 설정은 선택된 목록의 맨 위에 있는 계정의 설정입니다.</value>
+  </data>
+  <data name="AllSettingsWillBeUpdated" xml:space="preserve">
+    <value>선택된 섹션에 표시된 모든 설정은 변경 여부와 관계없이 선택된 계정에 업데이트됩니다.</value>
+  </data>
+  <data name="UplineBetSettingZero" xml:space="preserve">
+    <value>상위 관리자의 베팅 설정이 0이면 하위 라인의 베팅 설정은 상위 레벨의 베팅 설정을 따릅니다.</value>
+  </data>
+  <data name="SuperCannotChangeAgentSettings" xml:space="preserve">
+    <value>슈퍼는 에이전트 설정을 변경할 수 없습니다.</value>
+  </data>
+  <data name="MultipleEditCustomerSettings" xml:space="preserve">
+    <value>여러 고객 설정 수정</value>
+  </data>
+  <data name="MultiEditMemberDescription" xml:space="preserve">
+    <value>한 번에 하나의 회원을 수정하는 것은 지루한 작업일 수 있습니다. 따라서 여러 회원에 동일한 설정을 한 번에 적용하는 다중 수정 기능을 사용하는 것이 좋습니다.</value>
+  </data>
+  <data name="MultiEditDownlineDescription" xml:space="preserve">
+    <value>한 번에 하나의 하위 라인 계정을 수정하는 것은 지루한 작업일 수 있습니다. 따라서 여러 계정에 동일한 설정을 한 번에 적용하는 다중 수정 기능을 사용하는 것이 좋습니다.</value>
+  </data>
+  <data name="SuperEditsMultipleMasters" xml:space="preserve">
+    <value>슈퍼가 여러 마스터 수정</value>
+  </data>
+  <data name="TickOffSettingsAndInputForMasters" xml:space="preserve">
+    <value>설정 옵션을 선택하고 원하는 설정을 입력하세요.</value>
+  </data>
+  <data name="ClickUpdateToSaveMasterSettings" xml:space="preserve">
+    <value>마스터의 새 설정을 저장하려면 &lt;strong&gt;업데이트&lt;/strong&gt;를 클릭하세요.</value>
+  </data>
+  <data name="SuperEditsMultipleMembers" xml:space="preserve">
+    <value>슈퍼가 여러 회원 수정</value>
   </data>
 </root>

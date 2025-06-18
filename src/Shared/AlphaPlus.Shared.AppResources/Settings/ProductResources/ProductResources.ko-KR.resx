@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccountNotFound" xml:space="preserve">
-    <value>Account not found!</value>
+    <value>계정을 찾을 수 없습니다!</value>
   </data>
   <data name="Active" xml:space="preserve">
     <value>액티브</value>
@@ -132,11 +132,11 @@
   <data name="AgentOutstanding" xml:space="preserve">
     <value>에이전트 아웃스텐딩</value>
   </data>
-  <data name="Agents" xml:space="preserve">
-    <value>Agents (Active/Closed/Suspended)</value>
+  <data name="AgentsActiveClosedSuspended" xml:space="preserve">
+    <value>에이전트 (활성/비활성/일시정지)</value>
   </data>
   <data name="And" xml:space="preserve">
-    <value>and</value>
+    <value>및</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>뒤</value>
@@ -156,17 +156,17 @@
   <data name="Cancel" xml:space="preserve">
     <value>취소</value>
   </data>
-  <data name="ClosedByAdmin" xml:space="preserve">
-    <value>This account was closed by admin.</value>
+  <data name="AccountClosedByAdmin" xml:space="preserve">
+    <value>이 계정은 관리자에 의해 비활성화되었습니다.</value>
   </data>
-  <data name="ClosedByFailedLoginOrAccountExpired" xml:space="preserve">
-    <value>This account was closed by failed login or account expired.</value>
+  <data name="AccountClosedByFailedLogin" xml:space="preserve">
+    <value>이 계정은 로그인 실패 또는 계정 만료로 인해 비활성화되었습니다.</value>
   </data>
-  <data name="ClosedByFailedOTPOrSC" xml:space="preserve">
-    <value>This account was closed due to failed OTP/Security Code attempts.</value>
+  <data name="AccountClosedByFailedOTP" xml:space="preserve">
+    <value>이 계정은 OTP/보안 코드 시도 실패로 인해 비활성화되었습니다.</value>
   </data>
-  <data name="ClosedByUpline" xml:space="preserve">
-    <value>This account was closed by upline.</value>
+  <data name="AccountClosedByUpline" xml:space="preserve">
+    <value>이 계정은 상위 관리자에 의해 비활성화되었습니다.</value>
   </data>
   <data name="CommissionViewModelText" xml:space="preserve">
     <value>수수료</value>
@@ -196,7 +196,7 @@
     <value>이 고객의 계정을 비활성화 상태로 바꾸시겠습니까? 주의!! 모든 하부라인의 계정도 비활성화 되어집니다.</value>
   </data>
   <data name="ConfirmClosedViewModelInCaseOpenedMemberMessage" xml:space="preserve">
-    <value>Are you sure you want to open this account?</value>
+    <value>이 계정을 활성화하시겠습니까?</value>
   </data>
   <data name="ConfirmClosedViewModelText" xml:space="preserve">
     <value>중지</value>
@@ -235,7 +235,7 @@
     <value>작성일</value>
   </data>
   <data name="CreateMemberWithQRCode" xml:space="preserve">
-    <value>Create Member with QR Code</value>
+    <value>QR 코드로 회원 생성</value>
   </data>
   <data name="Customer" xml:space="preserve">
     <value>고객</value>
@@ -250,13 +250,13 @@
     <value>팩스</value>
   </data>
   <data name="FirstLoginQRCode" xml:space="preserve">
-    <value>FIRST LOGIN QR CODE</value>
+    <value>첫 로그인 QR 코드</value>
   </data>
   <data name="GivenCredit" xml:space="preserve">
     <value>주어진 크레딧</value>
   </data>
   <data name="GivenCreditPopupTitle" xml:space="preserve">
-    <value>Update Given Credit</value>
+    <value>지급된 크레딧 업데이트</value>
   </data>
   <data name="IP" xml:space="preserve">
     <value>아이피</value>
@@ -268,7 +268,7 @@
     <value>마지막거래(배팅)</value>
   </data>
   <data name="LoginInfo" xml:space="preserve">
-    <value>Login Info</value>
+    <value>로그인 정보</value>
   </data>
   <data name="LoginIP" xml:space="preserve">
     <value>로그인 아이피</value>
@@ -291,20 +291,20 @@
   <data name="MemberMaxCredit" xml:space="preserve">
     <value>회원 최대 크레딧</value>
   </data>
-  <data name="Members" xml:space="preserve">
-    <value>Members (Active/Closed/Suspended)</value>
+  <data name="MembersActiveClosedSuspended" xml:space="preserve">
+    <value>회원 (활성/비활성/일시정지)</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>이름</value>
   </data>
   <data name="NetPosition" xml:space="preserve">
-    <value>Net Position</value>
+    <value>순 포지션</value>
   </data>
   <data name="Nickname" xml:space="preserve">
     <value>닉네임</value>
   </data>
-  <data name="NoDataChange" xml:space="preserve">
-    <value>There is no change to update.</value>
+  <data name="NoChangeToUpdate" xml:space="preserve">
+    <value>업데이트할 변경사항이 없습니다.</value>
   </data>
   <data name="NoInfo" xml:space="preserve">
     <value>가능한 정보가 없습니다</value>
@@ -322,7 +322,7 @@
     <value>온라인 목록</value>
   </data>
   <data name="OutrightDisabledUpline" xml:space="preserve">
-    <value>Upline has been disabled Outright betting</value>
+    <value>상위 관리자가 기타 베팅을 비활성화했습니다</value>
   </data>
   <data name="Outstanding" xml:space="preserve">
     <value>대기 포인트</value>
@@ -331,28 +331,31 @@
     <value>페이지</value>
   </data>
   <data name="PendingTransfer3rd" xml:space="preserve">
-    <value>3rd Party Pending Transfer</value>
+    <value>제3자 대기 이체</value>
   </data>
   <data name="Phone" xml:space="preserve">
     <value>전화</value>
   </data>
   <data name="RemoveOtpViewModelText" xml:space="preserve">
-    <value>Remove OTP</value>
+    <value>OTP 제거</value>
   </data>
   <data name="ResetPasswordViewModelText" xml:space="preserve">
     <value>비밀번호 재설정</value>
   </data>
   <data name="ResetSecurityCodeViewModelText" xml:space="preserve">
-    <value>Reset Security Code</value>
+    <value>보안 코드 재설정</value>
   </data>
   <data name="Setting" xml:space="preserve">
     <value>설정</value>
   </data>
   <data name="ShowContactInfo" xml:space="preserve">
-    <value>Contact Info</value>
+    <value>연락처 정보</value>
+  </data>
+  <data name="Sportsbook2" xml:space="preserve">
+    <value>스포츠북 2</value>
   </data>
   <data name="Sportsbook2ViewModelText" xml:space="preserve">
-    <value>Sportsbook 2</value>
+    <value>스포츠북 2</value>
   </data>
   <data name="SportsbookMinPTViewModelText" xml:space="preserve">
     <value>최소조건 수정</value>
@@ -370,13 +373,13 @@
     <value>슈퍼</value>
   </data>
   <data name="SuspendedByUplineTooltip" xml:space="preserve">
-    <value>This account was indirectly suspended by upline</value>
+    <value>이 계정은 상위 관리자에 의해 간접적으로 일시정지되었습니다</value>
   </data>
   <data name="ThisAccountWasDisabled" xml:space="preserve">
     <value>이 계정은 실행하실수없는 계정입니다.</value>
   </data>
   <data name="ThisAccountWasSuspended" xml:space="preserve">
-    <value>This account was suspended.</value>
+    <value>이 계정은 일시정지되었습니다.</value>
   </data>
   <data name="ThisUserIsNotOnline" xml:space="preserve">
     <value>회원이 온라인 상에 있지 않습니다.</value>
@@ -397,10 +400,10 @@
     <value>전송</value>
   </data>
   <data name="UnuspendStatusPopupHeader" xml:space="preserve">
-    <value>Unsuspend &lt;username&gt;</value>
+    <value>&lt;username&gt; 일시정지 해제</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
-    <value>Successfully updated!</value>
+    <value>성공적으로 업데이트되었습니다!</value>
   </data>
   <data name="UsedCredit" xml:space="preserve">
     <value>사용된 크레딧</value>
@@ -421,16 +424,16 @@
     <value>업데이트</value>
   </data>
   <data name="EditMultipleSportsbook2Text" xml:space="preserve">
-    <value>Edit Multiple Sportsbook 2</value>
+    <value>스포츠북 2 다중 수정</value>
   </data>
   <data name="EditMultipleSportsbookText" xml:space="preserve">
     <value>멀티플 스포츠 북 수정하기</value>
   </data>
   <data name="EditMultipleLiveCasinoText" xml:space="preserve">
-    <value>Edit Multiple Live Casino</value>
+    <value>라이브 카지노 다중 수정</value>
   </data>
   <data name="EditMultipleVoidbridgeText" xml:space="preserve">
-    <value>Edit Multiple Macau Games</value>
+    <value>마카오 게임 다중 수정</value>
   </data>
   <data name="EditMultiple" xml:space="preserve">
     <value>복합 수정</value>
@@ -439,39 +442,153 @@
     <value>멀티 더블 커미션 수정하기</value>
   </data>
   <data name="EditMultipleSuspendedStatusText" xml:space="preserve">
-    <value>Edit Multiple Suspended Status</value>
+    <value>일시정지 상태 다중 수정</value>
   </data>
   <data name="EditMultipleVirtualSportsText" xml:space="preserve">
     <value>가상 스포츠 멀티수정</value>
   </data>
   <data name="Sportsbook2MultipeViewModelText" xml:space="preserve">
-    <value>Sportsbook 2</value>
+    <value>스포츠북 2</value>
   </data>
   <data name="EditMultipleClosedStatusText" xml:space="preserve">
-		<value>Edit Multiple Closed Status</value>
-	</data>
+    <value>비활성화 상태 다중 수정</value>
+  </data>
   <data name="UpdateMultipleClosedStatusText" xml:space="preserve">
-		<value>Edit Multiple Closed Status</value>
-	</data>
+    <value>비활성화 상태 다중 수정</value>
+  </data>
   <data name="UnuspendStatusPopupHeaderText" xml:space="preserve">
-		<value>Unsuspend &lt;username&gt;</value>
-	</data>
+    <value>&lt;username&gt; 일시정지 해제</value>
+  </data>
   <data name="OpenCustomerPopupHeaderText" xml:space="preserve">
-		<value>Open &lt;username&gt;</value>
-	</data>
+    <value>&lt;username&gt; 활성화</value>
+  </data>
   <data name="IndirectlyClosedByUpline" xml:space="preserve">
-		<value>This account is indirectly closed by upline</value>
-	</data>
+    <value>이 계정은 상위 관리자에 의해 간접적으로 비활성화되었습니다</value>
+  </data>
   <data name="ParlayMaxPayoutText" xml:space="preserve">
-    <value>Parlay Max Payout</value>
+    <value>팔레이 최대 지급액</value>
   </data>
   <data name="ParlayMaxPayoutPopupHeaderText" xml:space="preserve">
-    <value>수정하다 &lt;username&gt;</value>
+    <value>&lt;username&gt; 수정</value>
   </data>
   <data name="ParlayMaxPayoutMultipleText" xml:space="preserve">
-    <value>Edit Multiple Parlay Max Payout</value>
+    <value>팔레이 최대 지급액 다중 수정</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>업데이트</value>
+  </data>
+  <data name="UpdateGivenCredit" xml:space="preserve">
+    <value>지급된 크레딧 업데이트</value>
+  </data>
+  <data name="LoginIP" xml:space="preserve">
+    <value>로그인 아이피</value>
+  </data>
+  <data name="LoginTime" xml:space="preserve">
+    <value>로그인 시간</value>
+  </data>
+  <data name="AccountIndirectlySuspendedByUpline" xml:space="preserve">
+    <value>이 계정은 상위 관리자에 의해 간접적으로 일시정지되었습니다</value>
+  </data>
+  <data name="AccountSuspended" xml:space="preserve">
+    <value>이 계정은 일시정지되었습니다.</value>
+  </data>
+  <data name="UnsuspendUsername" xml:space="preserve">
+    <value>&lt;username&gt; 일시정지 해제</value>
+  </data>
+  <data name="SuccessfullyUpdated" xml:space="preserve">
+    <value>성공적으로 업데이트되었습니다!</value>
+  </data>
+  <data name="EditMultipleSportsbook2" xml:space="preserve">
+    <value>여러 스포츠북 2 수정</value>
+  </data>
+  <data name="EditMultipleLiveCasino" xml:space="preserve">
+    <value>여러 라이브 카지노 수정</value>
+  </data>
+  <data name="EditMultipleMacauGames" xml:space="preserve">
+    <value>여러 마카오 게임 수정</value>
+  </data>
+  <data name="EditMultipleSuspendedStatus" xml:space="preserve">
+    <value>여러 일시정지 상태 수정</value>
+  </data>
+  <data name="EditMultipleClosedStatus" xml:space="preserve">
+    <value>여러 비활성화 상태 수정</value>
+  </data>
+  <data name="OpenUsername" xml:space="preserve">
+    <value>&lt;username&gt; 활성화</value>
+  </data>
+  <data name="AccountIndirectlyClosedByUpline" xml:space="preserve">
+    <value>이 계정은 상위 관리자에 의해 간접적으로 비활성화되었습니다</value>
+  </data>
+  <data name="ParlayMaxPayout" xml:space="preserve">
+    <value>팔레이 최대 지급액</value>
+  </data>
+  <data name="EditMultipleParlayMaxPayout" xml:space="preserve">
+    <value>여러 팔레이 최대 지급액 수정</value>
+  </data>
+  <data name="ContactInfo" xml:space="preserve">
+    <value>연락처 정보</value>
+  </data>
+  <data name="UplineDisabledOutrightBetting" xml:space="preserve">
+    <value>상위 관리자가 기타 베팅을 비활성화했습니다</value>
+  </data>
+  <data name="RemoveOTP" xml:space="preserve">
+    <value>OTP 제거</value>
+  </data>
+  <data name="ResetSecurityCode" xml:space="preserve">
+    <value>보안 코드 재설정</value>
+  </data>
+  <data name="AreYouSureToOpenAccount" xml:space="preserve">
+    <value>이 계정을 개방하시겠습니까?</value>
+  </data>
+  <data name="AccountIndirectlySuspended" xml:space="preserve">
+    <value>이 계정은 상위 라인에 의해 간접적으로 일시정지되었습니다</value>
+  </data>
+  <data name="AccountSuspended" xml:space="preserve">
+    <value>이 계정은 일시정지되었습니다.</value>
+  </data>
+  <data name="UnsuspendUsername" xml:space="preserve">
+    <value>&lt;username&gt; 일시정지 해제</value>
+  </data>
+  <data name="SuccessfullyUpdated" xml:space="preserve">
+    <value>성공적으로 업데이트되었습니다!</value>
+  </data>
+  <data name="EditMultipleSportsbook2" xml:space="preserve">
+    <value>다중 스포츠북 2 편집</value>
+  </data>
+  <data name="EditMultipleLiveCasino" xml:space="preserve">
+    <value>다중 라이브 카지노 편집</value>
+  </data>
+  <data name="EditMultipleMacauGames" xml:space="preserve">
+    <value>다중 마카오 게임 편집</value>
+  </data>
+  <data name="EditMultipleSuspendedStatus" xml:space="preserve">
+    <value>다중 일시정지 상태 편집</value>
+  </data>
+  <data name="EditMultipleClosedStatus" xml:space="preserve">
+    <value>다중 종료 상태 편집</value>
+  </data>
+  <data name="OpenUsername" xml:space="preserve">
+    <value>&lt;username&gt; 개방</value>
+  </data>
+  <data name="AccountIndirectlyClosed" xml:space="preserve">
+    <value>이 계정은 상위 라인에 의해 간접적으로 종료되었습니다</value>
+  </data>
+  <data name="ParlayMaxPayout" xml:space="preserve">
+    <value>팔레이 최대 지급액</value>
+  </data>
+  <data name="EditMultipleParlayMaxPayout" xml:space="preserve">
+    <value>다중 팔레이 최대 지급액 편집</value>
+  </data>
+  <data name="ContactInfo" xml:space="preserve">
+    <value>연락처 정보</value>
+  </data>
+  <data name="UplineDisabledOutrightBetting" xml:space="preserve">
+    <value>상위 라인이 우승/순위 베팅을 비활성화했습니다</value>
+  </data>
+  <data name="RemoveOTP" xml:space="preserve">
+    <value>OTP 제거</value>
+  </data>
+  <data name="ResetSecurityCode" xml:space="preserve">
+    <value>보안 코드 재설정</value>
   </data>
 </root>

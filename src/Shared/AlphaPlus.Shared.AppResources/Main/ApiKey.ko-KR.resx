@@ -135,4 +135,7 @@
   <data name="UpdateSuccessful" xml:space="preserve">
     <value>Update successfully</value>
   </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
+    <value>성공적으로 업데이트되었습니다</value>
+  </data>
 </root>

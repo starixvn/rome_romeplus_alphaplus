@@ -124,7 +124,7 @@
     <value>에이전트</value>
   </data>
   <data name="AgentCommNew" xml:space="preserve">
-    <value>Agent Comm</value>
+    <value>에이전트 수수료</value>
   </data>
   <data name="AgentOutstanding" xml:space="preserve">
     <value>에이전트 아웃스텐딩</value>
@@ -133,7 +133,7 @@
     <value>총 에이전트</value>
   </data>
   <data name="AgentTotalNew" xml:space="preserve">
-    <value>Agent Total</value>
+    <value>총 에이전트</value>
   </data>
   <data name="AgentWinLoss" xml:space="preserve">
     <value>에이전트 승 패</value>
@@ -142,7 +142,7 @@
     <value>에이전트 승 패 상세보기</value>
   </data>
   <data name="AgentWinLossNew" xml:space="preserve">
-    <value>Agent Win/Loss</value>
+    <value>에이전트 승/패</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>모든</value>
@@ -157,7 +157,7 @@
     <value>총액</value>
   </data>
   <data name="Apply" xml:space="preserve">
-    <value>Apply</value>
+    <value>적용</value>
   </data>
   <data name="April" xml:space="preserve">
     <value>4월</value>
@@ -172,25 +172,25 @@
     <value>베팅카운트</value>
   </data>
   <data name="BetList" xml:space="preserve">
-    <value>배팅 리스트</value>
+    <value>베팅 목록</value>
   </data>
   <data name="BetList_Running" xml:space="preserve">
-    <value>배팅 목록(진행중)</value>
+    <value>베팅 목록(진행중)</value>
   </data>
   <data name="BetMatching_IP_Title" xml:space="preserve">
-    <value>Click to view shared IP accounts</value>
+    <value>공유 IP 계정 보기</value>
   </data>
   <data name="BetMatching_Username_Title" xml:space="preserve">
-    <value>Click to view uplines</value>
+    <value>상위 계정 보기</value>
   </data>
   <data name="BetType" xml:space="preserve">
-    <value>배팅 유형</value>
+    <value>베팅 유형</value>
   </data>
   <data name="CanOnlyViewDataAfterTimeCurrentReport" xml:space="preserve">
-    <value>You can view the report data from {0}.</value>
+    <value>{0}부터 보고서 데이터를 볼 수 있습니다.</value>
   </data>
   <data name="CanOnlyViewDataAfterTimeHistoryReport" xml:space="preserve">
-    <value>You can view the report data from {0}. </value>
+    <value>{0}부터 보고서 데이터를 볼 수 있습니다.</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>취소</value>
@@ -220,13 +220,13 @@
     <value>수수료 3</value>
   </data>
   <data name="CommissionByBettype" xml:space="preserve">
-    <value>배팅 종류에 따른 수수료</value>
+    <value>베팅 종류에 따른 수수료</value>
   </data>
   <data name="Company" xml:space="preserve">
     <value>회사</value>
   </data>
   <data name="Consolidation" xml:space="preserve">
-    <value>Consolidation</value>
+    <value>통합</value>
   </data>
   <data name="ConsolidationReportByDate" xml:space="preserve">
     <value>일과 연결 리포트</value>
@@ -247,6 +247,7 @@
     <value>매일</value>
   </data>
   <data name="DailyStatement" xml:space="preserve">
+    <value>일일 정산</value>
     <value>일일 정책</value>
   </data>
   <data name="DailyWinLossAnalysis" xml:space="preserve">
@@ -268,7 +269,7 @@
     <value>입력됨</value>
   </data>
   <data name="ExportToExcel" xml:space="preserve">
-    <value>엘셀로 내보내기</value>
+    <value>엑셀로 내보내기</value>
   </data>
   <data name="FT" xml:space="preserve">
     <value>풀게임</value>
@@ -373,7 +374,7 @@
     <value>Master Comm</value>
   </data>
   <data name="MasterOutstanding" xml:space="preserve">
-    <value>마스터 대기 포인트</value>
+    <value>마스터 미정산</value>
   </data>
   <data name="MasterTotal" xml:space="preserve">
     <value>마스터 총계</value>
@@ -415,7 +416,7 @@
     <value>Member Count</value>
   </data>
   <data name="MemberOutstanding" xml:space="preserve">
-    <value>회원 아웃스텐딩</value>
+    <value>회원 미정산</value>
   </data>
   <data name="MemberTotalNew" xml:space="preserve">
     <value>Member Total</value>
@@ -481,7 +482,7 @@
     <value>순위,승자 등</value>
   </data>
   <data name="Outstanding" xml:space="preserve">
-    <value>대기 포인트</value>
+    <value>미정산</value>
   </data>
   <data name="Owner" xml:space="preserve">
     <value>관리자</value>
@@ -532,10 +533,10 @@
     <value>기록</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value>상황</value>
+    <value>상태</value>
   </data>
   <data name="SubTotal" xml:space="preserve">
-    <value>총 하위</value>
+    <value>소계</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>확인</value>
@@ -580,10 +581,10 @@
     <value>전송</value>
   </data>
   <data name="Turnover" xml:space="preserve">
-    <value>총 배팅한 금액</value>
+    <value>베팅 금액</value>
   </data>
   <data name="TurnoverAbbr" xml:space="preserve">
-    <value>총 배팅한 금액</value>
+    <value>베팅 금액</value>
   </data>
   <data name="Upline" xml:space="preserve">
     <value>Upline</value>
@@ -616,7 +617,7 @@
     <value>승리/패배 분석</value>
   </data>
   <data name="WinLossByBetType" xml:space="preserve">
-    <value>배팅 종류별 승리 패배</value>
+    <value>베팅 종류별 승패</value>
   </data>
   <data name="WinLossTitle" xml:space="preserve">
     <value>승리 패배</value>

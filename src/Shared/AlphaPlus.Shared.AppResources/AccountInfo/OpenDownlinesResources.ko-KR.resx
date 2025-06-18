@@ -118,34 +118,34 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AffectedDownlines" xml:space="preserve">
-    <value>Affected Downlines</value>
+    <value>영향을 받는 하위 계정</value>
   </data>
   <data name="Agent" xml:space="preserve">
-    <value>Agent</value>
+    <value>에이전트</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>모든</value>
   </data>
   <data name="Level" xml:space="preserve">
-    <value>레벨단계</value>
+    <value>레벨</value>
   </data>
   <data name="Master" xml:space="preserve">
-    <value>Master</value>
+    <value>마스터</value>
   </data>
   <data name="Member" xml:space="preserve">
     <value>회원</value>
   </data>
   <data name="RemainUnchangedDownlines" xml:space="preserve">
-    <value>Remain Unchanged Downlines</value>
+    <value>변경되지 않은 하위 계정</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>Reset</value>
+    <value>초기화</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>Submit</value>
+    <value>확인</value>
   </data>
   <data name="To" xml:space="preserve">
-    <value>to</value>
+    <value>까지</value>
   </data>
   <data name="Total" xml:space="preserve">
     <value>총</value>
@@ -157,98 +157,98 @@
     <value>사용자 이름</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>뒤</value>
+    <value>뒤로</value>
   </data>
   <data name="Displaying" xml:space="preserve">
-    <value>Displaying</value>
+    <value>표시 중</value>
   </data>
   <data name="Of" xml:space="preserve">
-    <value>of</value>
+    <value>중</value>
   </data>
   <data name="Page" xml:space="preserve">
     <value>페이지</value>
   </data>
   <data name="AffectedDownlinesAgentMember" xml:space="preserve">
-    <value>Affected Downlines &lt;br/&gt;  (Agent/Member)</value>
+    <value>영향을 받은 하위 라인 &lt;br/&gt; (에이전트/회원)</value>
   </data>
   <data name="AffectedDownlinesMember" xml:space="preserve">
-    <value>Affected Downlines &lt;br/&gt; (Member)</value>
+    <value>영향을 받은 하위 라인 &lt;br/&gt; (회원)</value>
   </data>
   <data name="RemainUnchangedDownlinesAgentMember" xml:space="preserve">
-    <value>Remain Unchanged Downlines &lt;br/&gt; (Agent/Member)</value>
+    <value>변경되지 않은 하위 라인 &lt;br/&gt; (에이전트/회원)</value>
   </data>
   <data name="RemainUnchangedDownlinesMember" xml:space="preserve">
-    <value>Remain Unchanged Downlines &lt;br/&gt; (Member)</value>
+    <value>변경되지 않은 하위 라인 &lt;br/&gt; (회원)</value>
   </data>
   <data name="SubmitMultipleConfirm3" xml:space="preserve">
-    <value>Are you sure you want to proceed?</value>
+    <value>진행하시겠습니까?</value>
   </data>
   <data name="NumberColumn" xml:space="preserve">
-    <value>No.</value>
+    <value>번호</value>
   </data>
   <data name="NoData" xml:space="preserve">
     <value>데이터가 없습니다.</value>
   </data>
   <data name="Closed" xml:space="preserve">
-		<value>중지</value>
-	</data>
+    <value>계정 중지</value>
+  </data>
   <data name="CloseStatus" xml:space="preserve">
-		<value>Closed Status</value>
-	</data>
+    <value>계정 상태</value>
+  </data>
   <data name="Opened" xml:space="preserve">
-		<value>Opened</value>
-	</data>
+    <value>계정 활성화</value>
+  </data>
   <data name="OpenSingleNote" xml:space="preserve">
-		<value>List of downlines' statuses after opening &lt;username&gt;</value>
-	</data>
+    <value>계정 활성화 후 하위 계정 상태 목록 (&lt;username&gt;)</value>
+  </data>
   <data name="AffectedViewListNote" xml:space="preserve">
-		<value>List of downlines whose statuses are changed after opening &lt;username&gt;</value>
-	</data>
+    <value>계정 활성화 후 상태가 변경된 하위 계정 목록 (&lt;username&gt;)</value>
+  </data>
   <data name="ClosedSuccessfully" xml:space="preserve">
-		<value>{0} and his/her downlines have been successfully closed.</value>
-	</data>
+    <value>{0} 및 하위 계정이 성공적으로 중지되었습니다.</value>
+  </data>
   <data name="OpenedSuccessfully" xml:space="preserve">
-		<value>{0} and his/her affected downlines have been successfully opened.</value>
-	</data>
+    <value>{0} 및 영향받은 하위 계정이 성공적으로 활성화되었습니다.</value>
+  </data>
   <data name="ViewInformation1" xml:space="preserve">
-		<value>- When an account is closed, all his/her downlines will be closed as well.</value>
-	</data>
+    <value>- 계정이 중지되면 모든 하위 계정도 중지됩니다.</value>
+  </data>
   <data name="ViewInformation3" xml:space="preserve">
-		<value>+ Only the downlines who are &lt;b&gt;indirectly&lt;/b&gt; closed by the upline will be opened. You can click on the number of affected downlines to view the list.</value>
-	</data>
+    <value>+ 상위 계정에 의해 &lt;b&gt;간접적으로&lt;/b&gt; 중지된 하위 계정만 활성화됩니다. 영향받는 하위 계정 수를 클릭하면 목록을 볼 수 있습니다.</value>
+  </data>
   <data name="ViewInformation4" xml:space="preserve">
-		<value>+ For the rest, their current statuses will not change. You can click on the number of unaffected downlines to view the list.</value>
-	</data>
+    <value>+ 나머지 계정의 현재 상태는 변경되지 않습니다. 영향받지 않은 하위 계정 수를 클릭하면 목록을 볼 수 있습니다.</value>
+  </data>
   <data name="ViewInformation5" xml:space="preserve">
-		<value>- Affected Downlines: list of users whose statuses are changed after their upline is opened.</value>
-	</data>
+    <value>- 영향받는 하위 계정: 상위 계정이 활성화된 후 상태가 변경된 사용자 목록입니다.</value>
+  </data>
   <data name="ViewInformation6" xml:space="preserve">
-		<value>- Unaffected Downlines: list of users whose statuses remain unchanged after their upline is opened.</value>
-	</data>
+    <value>- 영향받지 않은 하위 계정: 상위 계정이 활성화된 후에도 상태가 변경되지 않은 사용자 목록입니다.</value>
+  </data>
   <data name="UnchangedViewListNote" xml:space="preserve">
-		<value>List of downlines whose statuses remain unchanged after opening &lt;username&gt;</value>
-	</data>
+    <value>계정 활성화 후 상태가 변경되지 않은 하위 계정 목록 (&lt;username&gt;)</value>
+  </data>
   <data name="ViewInformation2" xml:space="preserve">
-		<value>- When an account is opened:</value>
-	</data>
+    <value>- 계정이 활성화될 때:</value>
+  </data>
   <data name="SubmitMultipleConfirm1" xml:space="preserve">
-		<value>&lt;username&gt; will be opened.</value>
-	</data>
+    <value>&lt;username&gt; 계정이 활성화됩니다.</value>
+  </data>
   <data name="SubmitMultipleConfirm2" xml:space="preserve">
-		<value>&lt;username&gt; will be closed and cannot place bet.</value>
-	</data>
+    <value>&lt;username&gt; 계정이 중지되며 베팅할 수 없습니다.</value>
+  </data>
   <data name="MultipleConfirm" xml:space="preserve">
-		<value>Are you sure you want to open/close these accounts? All of their affected downlines will be opened/closed as well.</value>
-	</data>
+    <value>이 계정들을 활성화/중지하시겠습니까? 영향받는 모든 하위 계정도 함께 활성화/중지됩니다.</value>
+  </data>
   <data name="SingleConfirm" xml:space="preserve">
-    <value>Are you sure you want to open this account? All of his/her downlines will be opened as well.</value>
+    <value>이 계정을 활성화하시겠습니까? 모든 하위 계정도 함께 활성화됩니다.</value>
   </data>
   <data name="OpenedWithNoDownlinesMessages" xml:space="preserve">
-		<value>Are you sure you want to open this account?</value>
-	</data>
+    <value>이 계정을 활성화하시겠습니까?</value>
+  </data>
   <data name="Open" xml:space="preserve">
-		<value>Open</value>
-	</data>
+    <value>계정 활성화</value>
+  </data>
   <data name="OpenMultipleMemberConfirmMessage" xml:space="preserve">
     <value>&lt;username&gt; will be opened.</value>
   </data>
@@ -260,5 +260,8 @@
   </data>
   <data name="OpenedMemberSuccessfully" xml:space="preserve">
     <value>{0} have been successfully opened.</value>
+  </data>
+  <data name="SuccessfullyUpdated" xml:space="preserve">
+    <value>선택한 계정과 하위 라인의 상태가 성공적으로 업데이트되었습니다.</value>
   </data>
 </root>

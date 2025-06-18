@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="NoInformationIsAvailable" xml:space="preserve">
-    <value>가능한 정보가 없습니다</value>
+    <value>사용 가능한 정보가 없습니다</value>
   </data>
   <data name="UsernamePlaceHolder" xml:space="preserve">
     <value>사용자 이름 또는 성(이름)</value>
@@ -130,52 +130,55 @@
     <value>확인</value>
   </data>
   <data name="MemberOutstanding" xml:space="preserve">
-    <value>회원 아웃스텐딩</value>
+    <value>회원 미정산</value>
   </data>
   <data name="Level" xml:space="preserve">
-    <value>레벨단계</value>
+    <value>레벨</value>
   </data>
   <data name="GivenCredit" xml:space="preserve">
     <value>주어진 크레딧</value>
   </data>
   <data name="TransferSuccessfully" xml:space="preserve">
-    <value>전송 성공</value>
+    <value>이체 성공</value>
   </data>
   <data name="AllowTransfer" xml:space="preserve">
-    <value>You are allowed to transfer on</value>
+    <value>다음 요일에 이체할 수 있습니다:</value>
+  </data>
+  <data name="YouAreAllowedToTransferOn" xml:space="preserve">
+    <value>다음 요일에 이체할 수 있습니다:</value>
   </data>
   <data name="Friday" xml:space="preserve">
-    <value>Friday</value>
+    <value>금요일</value>
   </data>
   <data name="Monday" xml:space="preserve">
-    <value>Monday</value>
+    <value>월요일</value>
   </data>
   <data name="Saturday" xml:space="preserve">
-    <value>Saturday</value>
+    <value>토요일</value>
   </data>
   <data name="Sunday" xml:space="preserve">
-    <value>Sunday</value>
+    <value>일요일</value>
   </data>
   <data name="Thursday" xml:space="preserve">
-    <value>Thursday</value>
+    <value>목요일</value>
   </data>
   <data name="Tuesday" xml:space="preserve">
-    <value>Tuesday</value>
+    <value>화요일</value>
   </data>
   <data name="Wednesday" xml:space="preserve">
-    <value>Wednesday</value>
+    <value>수요일</value>
   </data>
   <data name="Daily" xml:space="preserve">
-    <value>Daily</value>
+    <value>매일</value>
   </data>
   <data name="HintNotAvailableToTransfer" xml:space="preserve">
-    <value>Cash balance is not available to transfer.</value>
+    <value>현금 잔액이 이체할 수 없습니다.</value>
   </data>
   <data name="HintRangeTransfer" xml:space="preserve">
-    <value>You can transfer from {0} to {1}.</value>
+    <value>{0}에서 {1}까지 이체할 수 있습니다.</value>
   </data>
   <data name="AvailableRangeTransfer" xml:space="preserve">
-    <value>Amount to transfer must be between {0} and {1}.</value>
+    <value>이체 금액은 {0}에서 {1} 사이여야 합니다.</value>
   </data>
   <data name="Super" xml:space="preserve">
     <value>슈퍼</value>
@@ -193,7 +196,7 @@
     <value>해당 기능에 대한 권한이 없습니다.</value>
   </data>
   <data name="TransferButton" xml:space="preserve">
-    <value>전송</value>
+    <value>이체</value>
   </data>
   <data name="CashBalance" xml:space="preserve">
     <value>현금</value>
@@ -202,25 +205,25 @@
     <value>안내</value>
   </data>
   <data name="OutstandingShortcut" xml:space="preserve">
-    <value>아웃스텐딩  거래</value>
+    <value>미정산 거래</value>
   </data>
   <data name="Amount" xml:space="preserve">
-    <value>총액</value>
+    <value>금액</value>
   </data>
   <data name="ConfirmTransfer" xml:space="preserve">
-    <value>전송하시겠습니까?</value>
+    <value>이체하시겠습니까?</value>
   </data>
   <data name="TransferAmountIs" xml:space="preserve">
-    <value>Transfer amount is</value>
+    <value>이체 금액은</value>
   </data>
   <data name="InvalidValue" xml:space="preserve">
     <value>잘못된 값입니다.</value>
   </data>
   <data name="MultipleTransfer" xml:space="preserve">
-    <value>복합 전송</value>
+    <value>다중 이체</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value>상황</value>
+    <value>상태</value>
   </data>
   <data name="AllYesterdayBalance" xml:space="preserve">
     <value>어제의 총 잔액</value>
@@ -229,13 +232,13 @@
     <value>모든</value>
   </data>
   <data name="Open" xml:space="preserve">
-    <value>열기</value>
+    <value>활성</value>
   </data>
   <data name="Suspended" xml:space="preserve">
-    <value>보류</value>
+    <value>일시정지</value>
   </data>
   <data name="Closed" xml:space="preserve">
-    <value>중지</value>
+    <value>비활성화</value>
   </data>
   <data name="Disabled" xml:space="preserve">
     <value>비활성화</value>
@@ -256,7 +259,7 @@
     <value>마스터 현금</value>
   </data>
   <data name="Outstanding" xml:space="preserve">
-    <value>대기 포인트</value>
+    <value>미정산</value>
   </data>
   <data name="UsedCredit" xml:space="preserve">
     <value>사용된 크레딧</value>
@@ -268,16 +271,16 @@
     <value>성</value>
   </data>
   <data name="TransferToDownlineHistory" xml:space="preserve">
-    <value>Transfer To Downline History</value>
+    <value>하위 라인 이체 내역</value>
   </data>
   <data name="Today" xml:space="preserve">
     <value>오늘</value>
   </data>
   <data name="LastWeek" xml:space="preserve">
-    <value>마지막 주</value>
+    <value>지난 주</value>
   </data>
   <data name="LastMonth" xml:space="preserve">
-    <value>마지막 달</value>
+    <value>지난 달</value>
   </data>
   <data name="SinceLastMonth" xml:space="preserve">
     <value>지난달부터</value>
@@ -286,10 +289,10 @@
     <value>특정 날짜</value>
   </data>
   <data name="ThisWeek" xml:space="preserve">
-    <value>This Week</value>
+    <value>이번 주</value>
   </data>
   <data name="ThisMonth" xml:space="preserve">
-    <value>This Month</value>
+    <value>이번 달</value>
   </data>
   <data name="To" xml:space="preserve">
     <value>종료일</value>
@@ -301,31 +304,31 @@
     <value>엘셀로 내보내기</value>
   </data>
   <data name="CanViewReportDataFrom" xml:space="preserve">
-    <value>You can view the report data from {0}.</value>
+    <value>{0}부터 보고서 데이터를 볼 수 있습니다.</value>
   </data>
   <data name="ActionDate" xml:space="preserve">
-    <value>Action Date</value>
+    <value>작업 날짜</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Description</value>
+    <value>설명</value>
   </data>
   <data name="NewBalance" xml:space="preserve">
-    <value>New Balance</value>
+    <value>새 잔액</value>
   </data>
   <data name="OldBalance" xml:space="preserve">
-    <value>Old Balance</value>
+    <value>이전 잔액</value>
   </data>
   <data name="TransferAmount" xml:space="preserve">
-    <value>Transfer Amount</value>
+    <value>이체 금액</value>
   </data>
   <data name="TransferType" xml:space="preserve">
-    <value>Transfer Type</value>
+    <value>이체 유형</value>
   </data>
   <data name="Deposit" xml:space="preserve">
-    <value>Deposit</value>
+    <value>입금</value>
   </data>
   <data name="Withdrawal" xml:space="preserve">
-    <value>Withdrawal</value>
+    <value>출금</value>
   </data>
   <data name="of" xml:space="preserve">
     <value>부터</value>
@@ -343,10 +346,10 @@
     <value>사용자 이름 또는 성(이름)</value>
   </data>
   <data name="On" xml:space="preserve">
-    <value>On</value>
+    <value>켜기</value>
   </data>
   <data name="Off" xml:space="preserve">
-    <value>Off</value>
+    <value>끄기</value>
   </data>
   <data name="Waiting" xml:space="preserve">
     <value>대기</value>
@@ -358,7 +361,7 @@
     <value>완료됨</value>
   </data>
   <data name="First_LastName" xml:space="preserve">
-    <value>First/ Last Name</value>
+    <value>이름/성</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>취소</value>
@@ -406,7 +409,7 @@
     <value>잔액</value>
   </data>
   <data name="NoChangeToUpdate" xml:space="preserve">
-    <value>There is no change to update.</value>
+    <value>업데이트할 변경 사항이 없습니다.</value>
   </data>
   <data name="Total" xml:space="preserve">
     <value>총</value>
@@ -418,9 +421,9 @@
     <value>닫기</value>
   </data>
   <data name="ADBTOnError" xml:space="preserve">
-    <value>Your upline has allowed you to use All Day Balance Transfer. The page will be automatically refreshed.</value>
+    <value>상위 관리자가 종일 잔액 이체 사용을 허용했습니다. 페이지가 자동으로 새로고침됩니다.</value>
   </data>
   <data name="ADBTOffError" xml:space="preserve">
-    <value>Your upline has disallowed you to use All Day Balance Transfer. The page will be automatically refreshed.</value>
+    <value>상위 관리자가 종일 잔액 이체 사용을 금지했습니다. 페이지가 자동으로 새로고침됩니다.</value>
   </data>
 </root>
