@@ -250,9 +250,9 @@
     },
     "MarketsSupportedNewHandbook": "IBC,MBC",
     "GoogleAnalyticId": "G-5LBSPVVKVJ",
-    "OfferAutoTransfer.Currencies": "*",
+    "OfferAutoTransfer.Currencies": "",
     "TransferToDownlineHistory:OfferSites": "76666B,IBCIndo",
-    "OfferClearGivenCredit:Sites": "*",
+    "OfferClearGivenCredit:Sites": "",
     "Authorization": {
         "cachedExpireTime": 30,
         "EnableCheckBelonging": true,
