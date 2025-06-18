@@ -575,7 +575,6 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 ServiceType = 1,
                 Language = request.Language,
                 IP = request.IP,
-                SubAccId = request.SubAccId,
                 Site = request.Site,
             });
             

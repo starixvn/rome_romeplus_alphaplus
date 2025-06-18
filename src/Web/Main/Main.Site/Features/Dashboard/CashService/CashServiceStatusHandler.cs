@@ -67,7 +67,6 @@ public class CashServiceStatusHandler :
             ServiceType = status,
             Language = request.UserSession.Language,
             IP = request.UserSession.UserLoginIp,
-            SubAccId = request.UserSession.SubAccId,
             Site = request.UserSession.Site
         };
 
