@@ -32,6 +32,7 @@ import AddBankAccountComponent from './AddBankAccountComponent';
 import SetTransactionLimitModal from './SetTransactionLimitModal';
 import UpdateBankAccountComponent from './UpdateBankAccountComponent';
 import { createErrorResultModel } from '../../services/interfaces/ResultModel';
+import NoRecordFound from '../../components/NoRecordFoundComponent';
 
 interface BankAccountComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
@@ -446,19 +447,10 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                           ))}
                         </tbody>
                          )}
-                         {!loading && !error && banks.length > 0 && bankAccounts.length === 0 && (
-                           
-                            <tbody>
-                              <tr>
-                                <td colSpan={8} className="text-center">
-                                  <div className="flex justify-center items-center flex-col py-[20px]" role="alert">
-                                  <NoDataIcon />
-                                  <MediumTitleComponent text={tGlobal('noData')} />
-                                  </div>
-                                </td>
-                              </tr>
-                            </tbody>
-                         
+                         {!loading && !error && banks.length > 0 && bankAccounts.length === 0 && (                           
+                          <tbody>
+                            <NoRecordFound colSpan={8} />                             
+                          </tbody>                         
                         )}
                       </table>
                     </div>

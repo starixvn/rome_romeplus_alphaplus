@@ -20,6 +20,7 @@ import { PaymentProvider } from '../../services/interfaces/Payments/PaymentProvi
 import { paymentProviderService } from '../../services/paymentsAPI';
 import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import DailyLimitPopupModal from './SetDailyLimitPopupModal';
+import NoRecordFound from '../../components/NoRecordFoundComponent';
 
 interface PaymentGatewayComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
@@ -130,13 +131,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
                   <th scope="col">{tManagePayments('providerStatus')}</th>
                 </tr>
               </thead>
-              <tbody className="font-[500]">
-                {providers.length === 0 && (
-                  <tr>
-                    <td colSpan={6} className="text-center">{tGlobal('noData')}</td>
-                  </tr>
-                )}
-                
+              <tbody className="font-[500]">                  
                 {providers.length > 0 && (
                   providers.map((provider, index) => (
                     <tr key={provider.id}>
@@ -153,6 +148,9 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
                       <td>{renderProviderStatus(provider.status)}</td>
                     </tr>
                   ))
+                )}
+                {providers.length === 0 && (
+                  <NoRecordFound colSpan={5} />
                 )}
               </tbody>
             </table>

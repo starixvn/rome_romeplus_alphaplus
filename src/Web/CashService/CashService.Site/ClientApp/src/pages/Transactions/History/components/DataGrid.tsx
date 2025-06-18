@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import LoadingComponent from '../../../../components/LoadingComponent';
-import NoRecordFound from '../../../../components/Table/NoRecordFound';
+import NoRecordFound from '../../../../components/NoRecordFoundComponent.tsx';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import {
   displayAmount,
@@ -156,7 +156,7 @@ const DataGrid: React.FC<DataGridProps> = ({
                 </tr>
               ))
             ) : (
-              <NoRecordFound colSpan={12} message={t('table.noRecords')} />
+              <NoRecordFound colSpan={12} message={t('table.noRecords')} /> 
             )}
           </tbody>
         </table>

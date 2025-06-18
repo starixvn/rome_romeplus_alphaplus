@@ -38,6 +38,7 @@ import AddPaymentMethodModal from './AddPaymentMethodModal';
 import BanksPopupModal from './BanksPopupModal';
 import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import UpdatePaymentMethodModal from './UpdatePaymentMethodModal';
+import NoRecordFound from '../../components/NoRecordFoundComponent';
 
 declare global {
   interface Window {
@@ -691,6 +692,11 @@ function PaymentProviderSettings() {
                       </td>
                     </tr>
                   ))}
+                  {
+                    providerSettings.length === 0 && (
+                      <NoRecordFound colSpan={7} />
+                    )
+                  }
                 </tbody>
               </table>
             </div>

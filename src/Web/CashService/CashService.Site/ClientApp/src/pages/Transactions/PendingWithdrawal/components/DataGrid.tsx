@@ -7,7 +7,7 @@ import {
   renderBankAccount,
 } from '../../../../utils/commonFunctions.tsx';
 import PendingWithdrawalModal from './PendingWithdrawalModal.tsx';
-import NoRecordFound from '../../../../components/Table/NoRecordFound';
+import NoRecordFound from '../../../../components/NoRecordFoundComponent.tsx';
 import { ButtonFullComponent } from '../../../../components/ButtonComponents';
 import Pagination from '../../Components/Pagination';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';

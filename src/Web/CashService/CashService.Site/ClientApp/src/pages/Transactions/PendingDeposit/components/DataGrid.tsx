@@ -6,7 +6,7 @@ import {
   renderBankAccount,
   formatDateTime,
 } from '../../../../utils/commonFunctions';
-import NoRecordFound from '../../../../components/Table/NoRecordFound';
+import NoRecordFound from '../../../../components/NoRecordFoundComponent.tsx';
 import Pagination from '../../Components/Pagination';
 import { ButtonFullComponent } from '../../../../components/ButtonComponents';
 import PendingDepositModal from './PendingDepositModal';
