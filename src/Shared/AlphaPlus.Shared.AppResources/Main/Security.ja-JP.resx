@@ -244,7 +244,7 @@
     <value>&lt;li&gt;大文字 [A-Z]&lt;/li&gt;
 &lt;li&gt;小文字 [a-z]&lt;/li&gt; 
 &lt;li&gt;数字 [0-9]&lt;/li&gt; 
-&lt;li&gt;特殊文字 (!, #, など)&lt;/li&gt;</value>
+&lt;li&gt;特殊文字 (!, @, #, など)&lt;/li&gt;</value>
   </data>
   <data name="PasswordHint03" xml:space="preserve">
     <value>&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;: 59D7!4$h, 493abcDE&lt;/p&gt;

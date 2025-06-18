@@ -259,7 +259,7 @@ Please use the form below to change your password now.</value>
     <value>&lt;li&gt;Uppercase letter [A-Z]&lt;/li&gt;
 &lt;li&gt;Lowercase letter [a-z]&lt;/li&gt;
 &lt;li&gt;Numeric [0-9]&lt;/li&gt;
-&lt;li&gt;Special character (!,,#,etc..)&lt;/li&gt;</value>
+&lt;li&gt;Special character (!,@,#,etc.)&lt;/li&gt;</value>
   </data>
   <data name="PasswordHint03" xml:space="preserve">
     <value>&lt;p&gt;&lt;strong&gt;For example&lt;/strong&gt;: 59D7!4$h, 493abcDE&lt;/p&gt;
