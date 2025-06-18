@@ -114,12 +114,16 @@ const DataGrid: React.FC<DataGridProps> = ({
                     </td>
                   )}
                   {shouldShowColumn('amount') && (
-                    <td className="text-right">{displayAmount(item.amount)}</td>
+                    <td className="text-right">
+                      <div className="flex items-center justify-end">
+                        {item.isHadPayslip && <IconImage className="w-[20px] h-[20px] mr-[5px]" />}
+                        {displayAmount(item.amount)}
+                      </div>
+                    </td>
                   )}
                   {shouldShowColumn('from') && (
                     <td>
                       <div className="flex items-center">
-                        {item.isHadPayslip && <IconImage className="w-[20px] h-[20px] mr-[5px]" />}
                         {item.paymentFrom ? <>{renderBankAccount(item.paymentFrom)}</> : '-'}
                       </div>
                     </td>
