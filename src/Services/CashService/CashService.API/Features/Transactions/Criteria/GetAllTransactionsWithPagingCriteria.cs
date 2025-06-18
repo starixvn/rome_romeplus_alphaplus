@@ -30,7 +30,7 @@ public class GetAllTransactionsWithPagingCriteria : CriteriaBase
     [SpParam(Ignored = true)]
     public int SiteDbGroupId { get; set; }
 
-    public override string GetSettingKey() => $"SiteDb_{SiteDbGroupId}_Age_Transaction_GetAll";
+    public override string GetSettingKey() => $"SiteDb_{SiteDbGroupId}_Age_CashTransaction_Sel";
 
     public override bool IsValid() => true;
 }

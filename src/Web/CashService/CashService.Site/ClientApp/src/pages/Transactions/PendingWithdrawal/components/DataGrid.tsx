@@ -80,9 +80,15 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
               <th scope="col">
                 <div>{t('dataGrid.firstName')}</div>
               </th>
-              <th scope="col" className='min-w-[100px]'>{t('dataGrid.amount')}</th>
-              <th scope="col" className='w-[250px]'>{t('dataGrid.from')}</th>
-              <th scope="col" className='w-[250px]'>{t('dataGrid.to')}</th>
+              <th scope="col" className="min-w-[100px]">
+                {t('dataGrid.amount')}
+              </th>
+              <th scope="col" className="w-[250px]">
+                {t('dataGrid.from')}
+              </th>
+              <th scope="col" className="w-[250px]">
+                {t('dataGrid.to')}
+              </th>
               <th scope="col">{t('dataGrid.referenceNo')}</th>
               <th scope="col">{t('dataGrid.dateAndTime')}</th>
               <th scope="col">{t('dataGrid.actions')}</th>
@@ -103,9 +109,24 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
                     <div>{withdrawal.firstName}</div>
                     <div>{withdrawal.lastName}</div>
                   </td>
-                  <td><div className='flex items-center justify-end'><IconImage className='w-[20px] h-[20px] mr-[5px]' />{displayAmount(withdrawal.amount)}</div></td>
-                  <td className="text-left"><Tippy content={<p>{tGlobal(withdrawal.paymentFrom.split('-')[0])}</p>}>{renderBankAccount(withdrawal.paymentFrom)}</Tippy></td>
-                  <td className="text-left"><Tippy content={<p>{tGlobal(withdrawal.paymentTo.split('-')[0])}</p>}>{renderBankAccount(withdrawal.paymentTo)}</Tippy></td>
+                  <td>
+                    <div className="flex items-center justify-end">
+                      {withdrawal.isHadPayslip && (
+                        <IconImage className="w-[20px] h-[20px] mr-[5px]" />
+                      )}
+                      {displayAmount(withdrawal.amount)}
+                    </div>
+                  </td>
+                  <td className="text-left">
+                    <Tippy content={<p>{tGlobal(withdrawal.paymentFrom.split('-')[0])}</p>}>
+                      {renderBankAccount(withdrawal.paymentFrom)}
+                    </Tippy>
+                  </td>
+                  <td className="text-left">
+                    <Tippy content={<p>{tGlobal(withdrawal.paymentTo.split('-')[0])}</p>}>
+                      {renderBankAccount(withdrawal.paymentTo)}
+                    </Tippy>
+                  </td>
                   <td>{withdrawal.transId}</td>
                   <td>{formatDateTime(withdrawal.createdTime)}</td>
                   <td>

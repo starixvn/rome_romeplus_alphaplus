@@ -13,6 +13,7 @@ import PendingDepositModal from './PendingDepositModal';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
 import Tippy from '@tippyjs/react';
 import { ErrorMessageComponent } from '../../../../components/MessageComponents';
+import { IconImage } from '../../../../components/Icons.tsx';
 
 interface DataGridProps {
   deposits: TransactionItem[];
@@ -57,9 +58,7 @@ interface TableRowProps {
   tGlobal: (key: string) => string;
 }
 
-const TableRow: React.FC<TableRowProps> = (
-  
-  {
+const TableRow: React.FC<TableRowProps> = ({
   deposit,
   index,
   currentPage,
@@ -68,32 +67,43 @@ const TableRow: React.FC<TableRowProps> = (
   t,
   tGlobal,
 }) => (
-  
   <>
- 
-  <tr key={deposit.transId}>
-    <td className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-background)] z-10">
-      {index + 1 + (currentPage - 1) * pageSize}
-    </td>
-    <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[var(--table-background)] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
-      <div>{deposit.username}</div>
-      <div>{deposit.nickname}</div>
-    </td>
-    <td>
-      <div>{deposit.firstName}</div>
-      <div>{deposit.lastName}</div>
-    </td>
-    <td>{displayAmount(deposit.amount)}</td>
-    <td className="text-left"><Tippy content={<p>{tGlobal(deposit.paymentFrom.split('-')[0])}</p>}>{renderBankAccount(deposit.paymentFrom)}</Tippy></td>
-    <td className="text-left"><Tippy content={<p>{tGlobal(deposit.paymentTo.split('-')[0])}</p>}>{renderBankAccount(deposit.paymentTo)}</Tippy></td>
-    <td>{deposit.transId}</td>
-    <td>{formatDateTime(deposit.createdTime)}</td>
-    <td>
-      <ButtonFullComponent
-        text={t('dataGrid.process')}
-        onClick={() => onProcess(deposit)}
-        className=""
-      />
+    <tr key={deposit.transId}>
+      <td className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-background)] z-10">
+        {index + 1 + (currentPage - 1) * pageSize}
+      </td>
+      <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[var(--table-background)] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
+        <div>{deposit.username}</div>
+        <div>{deposit.nickname}</div>
+      </td>
+      <td>
+        <div>{deposit.firstName}</div>
+        <div>{deposit.lastName}</div>
+      </td>
+      <td>
+        <div className="flex items-center justify-end">
+          {deposit.isHadPayslip && <IconImage className="w-[20px] h-[20px] mr-[5px]" />}
+          {displayAmount(deposit.amount)}
+        </div>
+      </td>
+      <td className="text-left">
+        <Tippy content={<p>{tGlobal(deposit.paymentFrom.split('-')[0])}</p>}>
+          {renderBankAccount(deposit.paymentFrom)}
+        </Tippy>
+      </td>
+      <td className="text-left">
+        <Tippy content={<p>{tGlobal(deposit.paymentTo.split('-')[0])}</p>}>
+          {renderBankAccount(deposit.paymentTo)}
+        </Tippy>
+      </td>
+      <td>{deposit.transId}</td>
+      <td>{formatDateTime(deposit.createdTime)}</td>
+      <td>
+        <ButtonFullComponent
+          text={t('dataGrid.process')}
+          onClick={() => onProcess(deposit)}
+          className=""
+        />
       </td>
     </tr>
   </>

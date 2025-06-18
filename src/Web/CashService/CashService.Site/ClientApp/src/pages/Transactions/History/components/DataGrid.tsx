@@ -12,6 +12,7 @@ import {
 } from '../../../../utils/commonFunctions';
 import TransactionDetail from './TransactionDetail';
 import { ButtonFullComponent } from '../../../../components/ButtonComponents';
+import { IconImage } from '../../../../components/Icons.tsx';
 
 interface DataGridProps {
   items: TransactionItem[];
@@ -112,10 +113,13 @@ const DataGrid: React.FC<DataGridProps> = ({
                       <div>{item.lastName}</div>
                     </td>
                   )}
-                  {shouldShowColumn('amount') && <td className='text-right'>{displayAmount(item.amount)}</td>}
+                  {shouldShowColumn('amount') && (
+                    <td className="text-right">{displayAmount(item.amount)}</td>
+                  )}
                   {shouldShowColumn('from') && (
                     <td>
                       <div className="flex items-center">
+                        {item.isHadPayslip && <IconImage className="w-[20px] h-[20px] mr-[5px]" />}
                         {item.paymentFrom ? <>{renderBankAccount(item.paymentFrom)}</> : '-'}
                       </div>
                     </td>

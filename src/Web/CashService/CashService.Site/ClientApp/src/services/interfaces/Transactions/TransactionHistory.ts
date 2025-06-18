@@ -21,6 +21,7 @@ export interface TransactionItem {
   isAllowRevert: boolean;
   createdBy: string;
   operatedTime: string;
+  isHadPayslip: boolean;
 }
 
 export interface TransactionsHistoryResponse {
