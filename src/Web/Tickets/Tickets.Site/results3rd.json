@@ -21,7 +21,7 @@
     },
     {
       "Name": "AIGaming",
-      "SportTypeId": 123,
+      "SportTypeId": 121,
       "VendorId": 110,
       "Url": "http://saba-wallet-group-004.3rd-party.t2p.nebula.prod:22080/api/AIGamingInternal/GetBetHistoryUrl",
       "Debug": 0
