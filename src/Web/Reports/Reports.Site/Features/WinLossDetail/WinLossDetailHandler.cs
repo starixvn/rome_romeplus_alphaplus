@@ -36,6 +36,7 @@ public class WinLossDetailHandler(
         IRequestHandler<CashFeeExcelQuery, ExcelFileViewModel>,
         IRequestHandler<CashFeeGetDataQuery, CashFeeModel>
 {
+    private const string CashServiceBillingProductId = "111";
     private readonly IEnteredResultService enteredResultService = enteredResultService;
     private readonly ICustomerService customerService = customerService;
     private readonly IWinLossDetailService winlossDetailService = winlossDetailService;
@@ -314,7 +315,7 @@ public class WinLossDetailHandler(
 
         var (validUserSelectedProductIds, productDetailXml) = await FilterProductAndProductDetailIds(
                message,
-               message.ProductId,
+               CashServiceBillingProductId,
                message.UserSelectedResourceIds);
 
         var weekDataParam = new WinLossDetailWeekParam(

@@ -11,6 +11,7 @@ class CashFeeView extends BaseReportNew {
     private cashFeeCopyHtml: CashFeeCopyHtml;
     private $tblReportContainer: JQuery;
     private globalFormData: any;
+    
 
     constructor(
         dateRangeComponent: DateRangePickerJQueryComponent,
@@ -44,10 +45,6 @@ class CashFeeView extends BaseReportNew {
         this.weekComponent.init($('#week-container'), (dateRange) => this.getCashFee(dateRange, true));
         
         this.registerEvents();
-
-        // setTimeout(function () {
-        //     window.top.indexManager && window.top.indexManager.initFeedbackFunction(2);
-        // }, 1000);
     }
 
     registerEvents() {
@@ -78,7 +75,7 @@ class CashFeeView extends BaseReportNew {
         const queryStringObject = $.extend(
             {}, this.globalFormData, dateRange, weekRange);
         const queryString = $.param(queryStringObject);
-        isGetWeeks && this.getWeeks(queryString);
+        isGetWeeks && this.getWeeks(queryStringObject);
         this.globalFormData = queryStringObject;
         const url = 'GetCashFeeData';
         $.get(`${url}?${queryString}`, (html) => {
@@ -90,7 +87,14 @@ class CashFeeView extends BaseReportNew {
         });
     }
 
-    getWeeks(queryString: string) {
+    getWeeks(queryStringObject: any) {
+        const CashBillingServiceProductId = "111";
+
+        var getWeekParams = $.extend(
+            {}, queryStringObject);
+        getWeekParams.userSelectedProductIds = CashBillingServiceProductId;
+
+        const queryString = $.param(getWeekParams);
         const url = $('#hidden-getReportWeeksUrl').attr('href') || 'GetWeeks';
         $.get(`${url}?${queryString}`, (html) => this.weekComponent.render(html)).fail((jqXHR) =>
             alphaReports.ajaxFail(jqXHR)
