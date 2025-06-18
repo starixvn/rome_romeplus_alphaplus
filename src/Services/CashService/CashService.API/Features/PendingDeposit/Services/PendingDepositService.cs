@@ -1,6 +1,5 @@
 namespace AlphaPlus.CashService.API.Features.PendingDeposit.Services;
 
-using System.Numerics;
 using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Transactions.Models;
 using AlphaPlus.CashService.API.Features.Transactions.Services;
@@ -112,7 +111,7 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
     {
         var command = new ProcessDepositCommand
         {
-            TransId = BigInteger.Parse(param.TransId),
+            TransId = param.TransId,
             SiteDbGroupId = param.SiteDbGroupId,
             CustId = param.CustId,
             AgentId = param.ActorId,

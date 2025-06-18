@@ -1,11 +1,10 @@
-﻿namespace AlphaPlus.CashService.API.Features.Transactions.Criteria;
+﻿namespace AlphaPlus.CashService.API.Features.PendingWithdrawal.Criteria;
 
-using System.Numerics;
 using Fanex.Data.Repository;
 
 public class ProcessTransactionCommand : CriteriaBase
 {
-    public BigInteger TransId { get; set; }
+    public long TransId { get; set; }
     public int CustId { get; set; }
     public int AgentId { get; set; }
     public int SubAccId { get; set; }

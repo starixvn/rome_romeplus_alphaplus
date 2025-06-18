@@ -1,4 +1,3 @@
-using System.Numerics;
 using AlphaPlus.CashService.API.Features.PendingDeposit.Criteria;
 using AlphaPlus.CashService.API.Features.PendingDeposit.Models;
 using AlphaPlus.CashService.API.Features.PendingDeposit.Services;
@@ -194,7 +193,7 @@ public class PendingDepositServiceTests
     public async Task ProcessDepositAsync_ShouldReturnResultModel()
     {
         // Arrange
-        var param = new ProcessDepositTransaction { TransId = "123", NewAmount = 100, Remark = "remark", StatusId = 1, ActorId = 1, CustId = 1 };
+        var param = new ProcessDepositTransaction { TransId = 123, NewAmount = 100, Remark = "remark", StatusId = 1, ActorId = 1, CustId = 1 };
         var errCode = 0;
         var errMsg = "Success";
 
@@ -217,7 +216,7 @@ public class PendingDepositServiceTests
         Assert.Equal(errMsg, result.Message);
         mockDynamicRepository.Verify(repo => repo.FetchAsync<WriteLogDBCommandModel>(
             It.Is<ProcessDepositCommand>(c =>
-                c.TransId == BigInteger.Parse(param.TransId) &&
+                c.TransId == param.TransId &&
                 c.NewAmount == param.NewAmount &&
                 c.StatusId == param.StatusId &&
                 c.CustId == param.CustId &&

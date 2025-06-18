@@ -2,7 +2,7 @@
 
 public class ProcessDepositTransaction
 {
-    public string TransId { get; set; }
+    public long TransId { get; set; }
     public int CustId { get; set; }
     public int ActorId { get; set; }
     public int SubAccId { get; set; }

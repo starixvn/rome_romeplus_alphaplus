@@ -13,7 +13,7 @@ public class ProcessTransactionCommandTests
         var command = new ProcessTransactionCommand();
 
         // Assert
-        Assert.Equal(BigInteger.Zero, command.TransId);
+        Assert.Equal(0, command.TransId);
         Assert.Null(command.PaymentFrom);
         Assert.Null(command.Remark);
         Assert.Null(command.Payslip);

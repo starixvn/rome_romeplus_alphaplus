@@ -72,7 +72,7 @@ namespace CashService.API.UnitTests.Features.PendingDeposit.Endpoints
         public async Task ProcessApproveDepositAsync_ShouldSetStatusToCompletedAndReturnOkResult()
         {
             // Arrange
-            var model = new ProcessDepositTransaction { TransId = "123", NewAmount = 50 };
+            var model = new ProcessDepositTransaction { TransId = 123, NewAmount = 50 };
             var expectedResultModel = new ResultModel { Code = 0, Message = "Approved" };
             mockPendingDepositService.Setup(s => s.ProcessDepositAsync(It.Is<ProcessDepositTransaction>(m => m.StatusId == (int)TransactionStatus.Completed && m.TransId == model.TransId))).ReturnsAsync(expectedResultModel);
 
@@ -90,7 +90,7 @@ namespace CashService.API.UnitTests.Features.PendingDeposit.Endpoints
         public async Task ProcessRejectDepositAsync_ShouldSetStatusToRejectedAndReturnOkResult()
         {
             // Arrange
-            var model = new ProcessDepositTransaction { TransId = "456", NewAmount = 75 };
+            var model = new ProcessDepositTransaction { TransId = 456, NewAmount = 75 };
             var expectedResultModel = new ResultModel { Code = 0, Message = "Rejected" };
             mockPendingDepositService.Setup(s => s.ProcessDepositAsync(It.Is<ProcessDepositTransaction>(m => m.StatusId == (int)TransactionStatus.Rejected && m.TransId == model.TransId))).ReturnsAsync(expectedResultModel);
 

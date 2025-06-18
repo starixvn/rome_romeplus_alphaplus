@@ -147,7 +147,7 @@ public class PendingWithdrawalEndpointsTests
         // Arrange
         var model = new ProcessWithdrawalTransaction
         {
-            TransId = "123",
+            TransId = 123,
             PaymentFrom = "Test",
             Remark = "Test",
             Payslip = [1, 2]
@@ -179,7 +179,7 @@ public class PendingWithdrawalEndpointsTests
         // Arrange
         var model = new ProcessWithdrawalTransaction
         {
-            TransId = "123",
+            TransId = 123,
             PaymentFrom = "Test",
             Remark = "Test",
             Payslip = [1, 2]

@@ -1,12 +1,11 @@
 ﻿namespace AlphaPlus.CashService.API.Features.PendingDeposit.Criteria;
 
-using System.Numerics;
 using Fanex.Data;
 using Fanex.Data.Repository;
 
 public class ProcessDepositCommand : CriteriaBase
 {
-    public BigInteger TransId { get; set; }
+    public long TransId { get; set; }
     public int CustId { get; set; }
     public int AgentId { get; set; }
     public int SubAccId { get; set; }

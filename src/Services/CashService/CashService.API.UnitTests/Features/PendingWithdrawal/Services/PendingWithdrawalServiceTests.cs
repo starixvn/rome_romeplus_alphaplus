@@ -7,7 +7,6 @@ using AlphaPlus.CashService.API.Features.PendingWithdrawal.Criteria;
 using AlphaPlus.CashService.API.Features.PendingWithdrawal.Models;
 using AlphaPlus.CashService.API.Features.PendingWithdrawal.Services;
 using AlphaPlus.CashService.API.Features.Shared.Models;
-using AlphaPlus.CashService.API.Features.Transactions.Criteria;
 using AlphaPlus.CashService.API.Features.Transactions.Models;
 using AlphaPlus.CashService.API.Features.Transactions.Services;
 using Fanex.Data.Repository;
@@ -229,7 +228,7 @@ public class PendingWithdrawalServiceTests
         // Arrange
         var param = new ProcessWithdrawalTransaction
         {
-            TransId = "123",
+            TransId = 123,
             PaymentFrom = "Test",
             Remark = "Test",
             StatusId = 1,

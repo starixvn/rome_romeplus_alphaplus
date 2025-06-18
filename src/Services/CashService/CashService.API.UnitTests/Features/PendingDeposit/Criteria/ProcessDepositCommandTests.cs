@@ -13,7 +13,7 @@ public class ProcessDepositCommandTests
         var command = new ProcessDepositCommand();
 
         // Assert
-        Assert.Equal(BigInteger.Zero, command.TransId);
+        Assert.Equal(0, command.TransId);
         Assert.Equal(0, command.NewAmount);
         Assert.Null(command.Remark);
         Assert.Equal(0, command.StatusId);

@@ -4,7 +4,7 @@ using Shared.Requests;
 
 public class ProcessWithdrawalTransaction : BaseActionRequest
 {
-    public string TransId { get; set; }
+    public long TransId { get; set; }
     public int CustId { get; set; }
     public string Remark { get; set; }
     public int PaymentMethodId { get; set; }

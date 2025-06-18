@@ -4,7 +4,7 @@ using Shared.Requests;
 
 public class ProcessDepositTransaction : BaseActionRequest
 {
-    public string TransId { get; set; }
+    public long TransId { get; set; }
     public int CustId { get; set; }
     public decimal NewAmount { get; set; }
     public string Remark { get; set; }

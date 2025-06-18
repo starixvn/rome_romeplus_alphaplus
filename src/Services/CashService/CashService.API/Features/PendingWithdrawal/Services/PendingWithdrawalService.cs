@@ -1,6 +1,5 @@
 namespace AlphaPlus.CashService.API.Features.PendingWithdrawal.Services;
 
-using System.Numerics;
 using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Transactions.Criteria;
 using AlphaPlus.CashService.API.Features.Transactions.Models;
@@ -115,7 +114,7 @@ public class PendingWithdrawalService(
     {
         var command = new ProcessTransactionCommand
         {
-            TransId = BigInteger.Parse(param.TransId),
+            TransId = param.TransId,
             PaymentFrom = param.PaymentFrom,
             CustId = param.CustId,
             ProviderId = param.ProviderId,
