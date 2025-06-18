@@ -229,7 +229,7 @@
     }
 
 
-    .ads-content {
+    .promo-content {
         position: absolute;
         top: 0;
         left: 0;
@@ -476,12 +476,12 @@
 </style>
 
 
-<div class="overlay">
+<div class="overlay" style="display: none;">
     <div class="popup">
         <button onclick="closePopup()" class="close-button">×</button>
         <img src="@(cdnUri)cash-member/create/cash-service-ads/BannerPC.png" alt="AdvCash" class="banner-image"/>
 
-        <div id="ads-content" class="ads-content">
+        <div id="promo-content" class="promo-content">
             <div class="main-title">
                 EXCLUSIVELY FOR YOU
             </div>
@@ -604,13 +604,13 @@
     ];
 
     function showAdsContent() {
-        $('#ads-content').show();
+        $('#promo-content').show();
         $('#active-cash-content').hide();
         $('#step-slider').hide();
     }
 
     function showActiveCashContent() {
-        $('#ads-content').hide();
+        $('#promo-content').hide();
         $('#active-cash-content').hide();
         $('#step-slider').show();
         currentStep = 4; // Set to step 5 (0-based index)
@@ -618,7 +618,7 @@
     }
 
     function showStepSlider() {
-        $('#ads-content').hide();
+        $('#promo-content').hide();
         $('#active-cash-content').hide();
         $('#step-slider').show();
         updateStepContent();
