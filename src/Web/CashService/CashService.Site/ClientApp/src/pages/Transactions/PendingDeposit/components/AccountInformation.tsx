@@ -109,7 +109,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
             />
             <p className="text-[12px] my-[4px]">
               {t('manualDepositForm.agentAvailableCredit')}:
-              <span className="font-[500] text-[var(--text-color-secondary)]">{` ${displayAmount(agentAvailableCredit)}`}</span>
+              <span className="text-[var(--text-link-color)] font-bold">{` ${displayAmount(agentAvailableCredit)}`}</span>
             </p>
           </div>
         </div>

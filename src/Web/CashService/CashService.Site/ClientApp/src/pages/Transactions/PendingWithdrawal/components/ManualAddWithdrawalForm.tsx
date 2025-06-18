@@ -352,7 +352,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                   />
                   <p className="text-[12px] my-[4px]">
                     {t('manualWithdrawalForm.memberCashBalance')}:
-                    <span className="font-[500] text-[var(--text-color-secondary)]">{` ${displayAmount(memberCashBalance)}`}</span>
+                    <span className="text-[var(--text-link-color)] font-bold">{` ${displayAmount(memberCashBalance)}`}</span>
                   </p>
                 </div>
               </div>
