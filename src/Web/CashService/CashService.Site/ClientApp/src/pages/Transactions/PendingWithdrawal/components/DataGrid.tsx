@@ -21,6 +21,7 @@ interface DataGridProps {
 
 const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
   const { t } = useTranslation('pendingWithdrawal');
+  const { t: tGlobal } = useTranslation('global');
   const [showWithdrawalPopup, setShowWithdrawalPopup] = useState<boolean>(false);
   const [selectedWithdrawal, setSelectedWithdrawal] = useState<TransactionItem | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -103,8 +104,8 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
                     <div>{withdrawal.lastName}</div>
                   </td>
                   <td><div className='flex items-center justify-end'><IconImage className='w-[20px] h-[20px] mr-[5px]' />{displayAmount(withdrawal.amount)}</div></td>
-                  <td className="text-left"><Tippy content={<p>data</p>}>{renderBankAccount(withdrawal.paymentFrom)}</Tippy></td>
-                  <td className="text-left"><Tippy content={<p>data</p>}>{renderBankAccount(withdrawal.paymentTo)}</Tippy></td>
+                  <td className="text-left"><Tippy content={<p>{tGlobal(withdrawal.paymentFrom.split('-')[0])}</p>}>{renderBankAccount(withdrawal.paymentFrom)}</Tippy></td>
+                  <td className="text-left"><Tippy content={<p>{tGlobal(withdrawal.paymentTo.split('-')[0])}</p>}>{renderBankAccount(withdrawal.paymentTo)}</Tippy></td>
                   <td>{withdrawal.transId}</td>
                   <td>{formatDateTime(withdrawal.createdTime)}</td>
                   <td>

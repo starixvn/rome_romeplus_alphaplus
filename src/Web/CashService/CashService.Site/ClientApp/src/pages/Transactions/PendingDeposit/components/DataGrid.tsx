@@ -54,16 +54,23 @@ interface TableRowProps {
   pageSize: number;
   onProcess: (deposit: TransactionItem) => void;
   t: (key: string) => string;
+  tGlobal: (key: string) => string;
 }
 
-const TableRow: React.FC<TableRowProps> = ({
+const TableRow: React.FC<TableRowProps> = (
+  
+  {
   deposit,
   index,
   currentPage,
   pageSize,
   onProcess,
   t,
+  tGlobal,
 }) => (
+  
+  <>
+ 
   <tr key={deposit.transId}>
     <td className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-background)] z-10">
       {index + 1 + (currentPage - 1) * pageSize}
@@ -77,8 +84,8 @@ const TableRow: React.FC<TableRowProps> = ({
       <div>{deposit.lastName}</div>
     </td>
     <td>{displayAmount(deposit.amount)}</td>
-    <td className="text-left"><Tippy content={<p>data</p>}>{renderBankAccount(deposit.paymentFrom)}</Tippy></td>
-    <td className="text-left"><Tippy content={<p>data</p>}>{renderBankAccount(deposit.paymentTo)}</Tippy></td>
+    <td className="text-left"><Tippy content={<p>{tGlobal(deposit.paymentFrom.split('-')[0])}</p>}>{renderBankAccount(deposit.paymentFrom)}</Tippy></td>
+    <td className="text-left"><Tippy content={<p>{tGlobal(deposit.paymentTo.split('-')[0])}</p>}>{renderBankAccount(deposit.paymentTo)}</Tippy></td>
     <td>{deposit.transId}</td>
     <td>{formatDateTime(deposit.createdTime)}</td>
     <td>
@@ -87,12 +94,14 @@ const TableRow: React.FC<TableRowProps> = ({
         onClick={() => onProcess(deposit)}
         className=""
       />
-    </td>
-  </tr>
+      </td>
+    </tr>
+  </>
 );
 
 const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
   const { t } = useTranslation('pendingDeposit');
+  const { t: tGlobal } = useTranslation('global');
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(PAGE_SIZE_OPTIONS[2]);
   const [paginatedDeposits, setPaginatedDeposits] = useState<TransactionItem[]>([]);
@@ -146,6 +155,7 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
                   pageSize={pageSize}
                   onProcess={handleProcessClick}
                   t={t}
+                  tGlobal={tGlobal}
                 />
               ))
             ) : (

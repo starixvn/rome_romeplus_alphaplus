@@ -29,7 +29,6 @@ export const renderBankOptionValue = (bankCode: string, bankAccount: string) => 
 };
 
 export const renderBankAccount = (bankAccount: string) => {
-  console.log(bankAccount);
   if (!bankAccount) return <div className="inline-flex items-center max-w-[200px]">-</div>;
   const [bankCode, accountNumber] = bankAccount.split('-');
   if (bankCode && !accountNumber) return <div className="flex items-center">{bankCode}</div>;
