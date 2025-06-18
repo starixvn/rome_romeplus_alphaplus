@@ -18,7 +18,6 @@ public class ManualWithdrawalRequest
     [PositiveNumber]
     public decimal Amount { get; set; }
 
-    [Required(ErrorMessage = "{0} is required.")]
     [StringLength(maximumLength: 50, ErrorMessage = "{0} cannot exceed {1} characters.")]
     public string IP { get; set; }
 }
