@@ -38,7 +38,7 @@ const TableHeader: React.FC<{ t: (key: string) => string }> = ({ t }) => (
       <th scope="col">
         <div>{t('dataGrid.firstLastName')}</div>
       </th>
-      <th scope="col">{t('dataGrid.amount')}</th>
+      <th scope="col" className="min-w-[150px]">{t('dataGrid.amount')}</th>
       <th scope="col">{t('dataGrid.from')}</th>
       <th scope="col">{t('dataGrid.to')}</th>
       <th scope="col">{t('dataGrid.referenceNo')}</th>
@@ -81,9 +81,9 @@ const TableRow: React.FC<TableRowProps> = ({
         <div>{deposit.lastName}</div>
       </td>
       <td>
-        <div className="flex items-center justify-end">
-          {deposit.isHadPayslip && <IconImage className="w-[20px] h-[20px] mr-[5px]" />}
+        <div className="flex items-center justify-end pr-[25px] relative">
           {displayAmount(deposit.amount)}
+          {deposit.isHadPayslip && <IconImage className="w-[20px] h-[20px] ml-[5px] absolute right-[0px]" />}
         </div>
       </td>
       <td className="text-left">

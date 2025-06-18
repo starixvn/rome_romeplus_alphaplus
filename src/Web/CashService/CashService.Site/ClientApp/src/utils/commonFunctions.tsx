@@ -29,12 +29,12 @@ export const renderBankOptionValue = (bankCode: string, bankAccount: string) => 
 };
 
 export const renderBankAccount = (bankAccount: string) => {
-  if (!bankAccount) return <div className="inline-flex items-center max-w-[200px]">-</div>;
+  if (!bankAccount) return <div className="flex items-center max-w-[200px]">-</div>;
   const [bankCode, accountNumber] = bankAccount.split('-');
   if (bankCode && !accountNumber) return <div className="flex items-center">{bankCode}</div>;
   if (!accountNumber && !bankCode) return <div className="inline">-</div>;
   return (
-    <div className="inline-flex items-center max-w-[200px]">
+    <div className="flex items-center max-w-[200px]">
       {bankCode && (
         <img
           src={`../assets/bank/${bankCode}.png`}

@@ -86,7 +86,7 @@ const DataGrid: React.FC<DataGridProps> = ({
                 <div>{t('table.nickname')}</div>
               </th>
               {shouldShowColumn('name') && <th scope="col">{t('table.name')}</th>}
-              {shouldShowColumn('amount') && <th scope="col">{t('table.amount')}</th>}
+              {shouldShowColumn('amount') && <th scope="col" className="min-w-[150px]">{t('table.amount')}</th>}
               {shouldShowColumn('from') && <th scope="col">{t('table.from')}</th>}
               {shouldShowColumn('to') && <th scope="col">{t('table.to')}</th>}
               {shouldShowColumn('status') && <th scope="col">{t('table.status')}</th>}
@@ -115,9 +115,9 @@ const DataGrid: React.FC<DataGridProps> = ({
                   )}
                   {shouldShowColumn('amount') && (
                     <td className="text-right">
-                      <div className="flex items-center justify-end">
-                        {item.isHadPayslip && <IconImage className="w-[20px] h-[20px] mr-[5px]" />}
+                      <div className="flex items-center justify-end pr-[25px] relative">                        
                         {displayAmount(item.amount)}
+                        {item.isHadPayslip && <IconImage className="w-[20px] h-[20px] ml-[5px] absolute right-[0px]" />}
                       </div>
                     </td>
                   )}

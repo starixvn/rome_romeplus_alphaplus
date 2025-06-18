@@ -80,7 +80,7 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
               <th scope="col">
                 <div>{t('dataGrid.firstName')}</div>
               </th>
-              <th scope="col" className="min-w-[100px]">
+              <th scope="col" className="min-w-[150px]">
                 {t('dataGrid.amount')}
               </th>
               <th scope="col" className="w-[250px]">
@@ -110,11 +110,11 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
                     <div>{withdrawal.lastName}</div>
                   </td>
                   <td>
-                    <div className="flex items-center justify-end">
-                      {withdrawal.isHadPayslip && (
-                        <IconImage className="w-[20px] h-[20px] mr-[5px]" />
-                      )}
+                    <div className="flex items-center justify-end pr-[25px] relative">                      
                       {displayAmount(withdrawal.amount)}
+                      {withdrawal.isHadPayslip && (
+                        <IconImage className="w-[20px] h-[20px] ml-[5px] absolute right-[0px]" />
+                      )}
                     </div>
                   </td>
                   <td className="text-left">
@@ -142,11 +142,8 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
             )}
           </tbody>
         </table>
-      </div>
-
-      {error && <div className="mt-4 p-4 bg-red-100 text-red-700 rounded-md">{error}</div>}
+      </div>     
       {error && <ValidateMessageComponent message={error} />}
-
       {showWithdrawalPopup && selectedWithdrawal && (
         <PendingWithdrawalModal
           transId={selectedWithdrawal.transId}
