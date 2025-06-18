@@ -50,7 +50,7 @@ public class CashFeeWorkbook(IWebHostEnvironment webHostEnvironment) :
     private static Mapper<CashFeeItemModel> GetRowMapper()
     {
         var mapper = new Mapper<CashFeeItemModel>()
-            .Map(A, cashFeeItem => cashFeeItem.Type)
+            .Map(A, cashFeeItem => cashFeeItem.DisplayType)
             .Map(B, cashFeeItem => cashFeeItem.Fee)
             .Map(C, cashFeeItem => cashFeeItem.Count)
             .Map(D, cashFeeItem => cashFeeItem.Agent)

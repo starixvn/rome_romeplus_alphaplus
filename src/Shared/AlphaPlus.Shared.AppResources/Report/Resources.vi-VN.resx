@@ -1211,4 +1211,13 @@
   <data name="Freeperiod" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="Fee" xml:space="preserve">
+    <value>Phí</value>
+  </data>
+  <data name="Count" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value>Số lượng</value>
+  </data>
+  <data name="Type" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value>Loại</value>
+  </data>
 </root>

@@ -1269,6 +1269,9 @@
   <data name="NewViewTakesOverNote_Duplicate[1]" xml:space="preserve">
     <value>2024年2月21日 (dd/mm/yyyy)より、新しい表示がメイン表示となりますが、クラシック表示に戻すことができます。</value>
   </data>
+  <data name="Fee" xml:space="preserve">
+    <value>手数料</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AutoDeposit" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -1284,5 +1287,11 @@
   </data>
   <data name="Freeperiod" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="Count" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value>数</value>
+  </data>
+  <data name="Type" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value>タイプ</value>
   </data>
 </root>

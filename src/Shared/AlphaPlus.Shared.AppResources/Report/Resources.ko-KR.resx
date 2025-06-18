@@ -699,5 +699,14 @@
   </data>
   <data name="Freeperiod" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data> 
+  <data name="Fee" xml:space="preserve">
+    <value>수수료</value>
+  </data>
+  <data name="Count" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value>수량</value>
+  </data>
+  <data name="Type" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value>유형</value>
   </data>
 </root>
