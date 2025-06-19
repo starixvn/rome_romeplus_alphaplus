@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using AgencyCash.API.Payments.Models;
 using AgencyCash.API.Payments.Requests;
 using AgencyCash.API.Payments.Services;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AgencyCash.API.Payments;
 
+[ExcludeFromCodeCoverage]
 public static class PaymentsEndpoints
 {
     public static void MapPaymentsEndpoints(this WebApplication app)
