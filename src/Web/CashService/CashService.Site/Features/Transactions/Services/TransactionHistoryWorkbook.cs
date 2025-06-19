@@ -1,6 +1,7 @@
 ﻿namespace AlphaPlus.CashService.Site.Features.Transactions.Services;
 
 using System;
+using AlphaPlus.Shared.AppResources.CashServices;
 using AlphaPlus.Shared.AppResources.Common;
 using AlphaPlus.Shared.AppResources.Report;
 using Core.Extensions;
@@ -87,12 +88,12 @@ public class TransactionHistoryWorkbook(IWebHostEnvironment webHostEnvironment) 
         int colIndex = row.FirstCellIndex;
 
         row.SetCellValue(colIndex++, $"{Resources.Username}\n{CommonResx.Nickname}");
-        row.SetCellValue(colIndex++, Resources.FirstLastName);
+        row.SetCellValue(colIndex++, CashServicesResx.FirstAndLastName);
         row.SetCellValue(colIndex++, Resources.Amount);
         row.SetCellValue(colIndex++, Resources.From);
         row.SetCellValue(colIndex++, Resources.To);
         row.SetCellValue(colIndex++, Resources.Status);
-        row.SetCellValue(colIndex++, "Transaction Type");
+        row.SetCellValue(colIndex++, CashServicesResx.TransactionType);
         row.SetCellValue(colIndex++, Resources.refno);
         row.SetCellValue(colIndex, Resources.CreatedDate);
     }

@@ -338,7 +338,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         onRefreshNeeded={onRefreshNeeded}
       />
 
-      {!loading && (
+      {!loading && tempTotalCount > 0 && (
         <div className="mt-[-1px]">
           <Pagination
             currentPage={apiParams.pageIndex}

@@ -123,4 +123,14 @@
   <data name="AccountDisabled" xml:space="preserve">
     <value>The account was disabled.</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="UnableToProcessDeposits" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="TransactionType" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FirstAndLastName" xml:space="preserve">
+    <value />
+  </data>
 </root>

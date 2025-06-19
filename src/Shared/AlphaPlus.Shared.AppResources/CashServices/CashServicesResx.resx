@@ -162,4 +162,10 @@
   <data name="FileUploadMustBeLessThan1MB" xml:space="preserve">
     <value>File upload must be less than 1MB</value>
   </data>
+  <data name="TransactionType" xml:space="preserve">
+    <value>Transaction Type</value>
+  </data>
+  <data name="FirstAndLastName" xml:space="preserve">
+    <value>First &amp; Last Name</value>
+  </data>
 </root>

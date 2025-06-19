@@ -106,6 +106,15 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to First &amp; Last Name.
+        /// </summary>
+        public static string FirstAndLastName {
+            get {
+                return ResourceManager.GetString("FirstAndLastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to From is required..
         /// </summary>
         public static string FromIsRequired {
@@ -183,6 +192,15 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         public static string ToIsRequired {
             get {
                 return ResourceManager.GetString("ToIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction Type.
+        /// </summary>
+        public static string TransactionType {
+            get {
+                return ResourceManager.GetString("TransactionType", resourceCulture);
             }
         }
         

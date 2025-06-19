@@ -79,7 +79,7 @@
     "memberLoginNameRequired": "Member username is required",
     "agentBankSelectionRequired": "From is required",
     "memberBankSelectionRequired": "To is required",
-    "amountRangeError": "The amount must be less than or equal to the member cash balance",
+    "amountRangeError": "The amount must be greater than 0 and less than or equal to the member cash balance",
     "imageSizeError": "Image size must be less than 1 MB",
     "addWithdrawalSuccess": "Add withdrawal successfully!!!",
     "memberCashBalance": "Member Cash Balance",

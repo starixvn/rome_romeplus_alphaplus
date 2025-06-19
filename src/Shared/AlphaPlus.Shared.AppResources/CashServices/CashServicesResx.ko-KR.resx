@@ -123,4 +123,10 @@
   <data name="AccountDisabled" xml:space="preserve">
     <value>The account was disabled.</value>
   </data>
+  <data name="TransactionType" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FirstAndLastName" xml:space="preserve">
+    <value />
+  </data>
 </root>
