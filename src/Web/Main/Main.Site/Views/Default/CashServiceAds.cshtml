@@ -1,4 +1,5 @@
 ﻿@using AlphaPlus.Main.Site.Features.Dashboard.CashService
+@using AlphaPlus.Core.Helpers
 @model CashServiceInfoViewModel
 @{
     var cdnUri = Model.CDNUri ?? "https://cdn-customer.nexdev.net/v3/cash-member/create/";
@@ -72,7 +73,7 @@
         max-width: 630px;
         height: auto;
         margin: 20px;
-        border-radius: 20px;
+        border-radius: 10px;
         overflow: hidden;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
         animation: fadeInPopup 0.35s;
@@ -186,45 +187,43 @@
         justify-content: center;
         width: 100%;
         margin-top: 20px;
-
+        button {
+            border-radius: 5px;
+            padding: 0 18px;
+            font-size: 14px;
+            cursor: pointer;
+        }
     }
 
     .primary-button {
-        background: #0a2c4d;
-        color: rgb(255, 255, 255);
+        background: #0b599c;
+        color: #fff;
         border: none;
         min-width: 90px;
-        border-radius: 18px;
-        padding: 0 18px;
-        font-weight: 500;
-        font-size: 13px;
-        cursor: pointer;
+        font-weight: bold;
         transition: background 0.2s;
         letter-spacing: 0.2px;
         height: 32px;
 
         &:hover {
-            background: #051a2e;
+            background: #0a508c;
         }
     }
 
 
     .secondary-button {
-        color: #ffffff;
-        background: #286fa1;
-        border: none;
+        color: #0b599c;
+        background: #fff;
+        border: 1px solid #0b599c;
         min-width: 90px;
-        border-radius: 18px;
-        padding: 0 18px;
-        font-weight: 500;
-        font-size: 13px;
-        cursor: pointer;
+        font-weight: bold;
         transition: background 0.2s;
         letter-spacing: 0.2px;
         height: 32px;
 
         &:hover {
-            background: #1e5275;
+            background: #0a508c;
+            color: #fff;
         }
     }
 
@@ -304,15 +303,16 @@
     .step-button {
         height: 30px;
         padding: 0px 40px;
-        border-radius: 18px;
+        border-radius: 5px;
         border: none;
         cursor: pointer;
+        font-weight: bold;
     }
 
     .step-title {
         font-weight: 600;
         font-size: 18px;
-        color: #0a2c4d;
+        color: #0a508c;
         padding: 10px 0;
         text-align: center;
     }
@@ -340,21 +340,23 @@
     }
 
     .back-button {
-        background: #286fa1;
+        background: #fff;
         cursor: pointer;
-        color: #fff;
+        color: #0a508c;
+        border: 1px solid #0a508c;
 
         &:not([disabled]):hover {
-            background: #1e5275;
+            background: #0a508c;
+            color: #fff;
         }
     }
 
     .next-button {
-        background: #0a2c4d;
+        background: #0b599c;
         color: #fff;
 
         &:not([disabled]):hover {
-            background: #051a2e;
+            background: #0a508c;
         }
     }
 
@@ -388,6 +390,9 @@
         margin-top: 10px;
         color: #666;
         font-size: 14px;
+        position: absolute;
+        bottom: 20px;
+        left: 30px;
 
         input[type="checkbox"] {
             margin: 0;
@@ -497,7 +502,7 @@
                     Find out more
                 </button>
             </div>
-            <div class="dont-show-again">
+            <div class="dont-show-again" >
                 <input type="checkbox" id="dontShowAgain" onchange="checkDontShowAgain()"/>
                 <label for="dontShowAgain">@Resources.doNotShowAgain</label>
             </div>
@@ -559,6 +564,7 @@
 
 <script>
     const cdnUri = '@cdnUri';
+    const homeUrl = '@MicroSites.MainUrl("~/Dashboard/index2")';
     const isCanUpdateCashServiceStatus = '@Model.IsCanUpdateCashServiceStatus'.toLowerCase() === 'true';
     let currentStep = 0;
     const totalSteps = 5;       
@@ -566,7 +572,7 @@
         {
             title: "Instant deposits and withdrawals!",
             image: "cash-member/create/cash-service-ads/step1.png",
-            description: "Esily add <strong>payment gateway</strong> and <strong>bank accounts</strong> so your members can play instantly."
+            description: "Easily add a <strong>payment gateway</strong> and <strong>bank accounts</strong> so your members can start playing instantly."
         },
         {
             title: "Manage credit and cash member",
@@ -589,7 +595,7 @@
                 <div class="divider"></div>
                     <div class="step-highlight-block">
                         <span class="free-badge">14-days <b>FREE</b> trial</span>
-                        <span class="save-amount">Start today and enjoy instant savings of <b>THB 2,800</b></span>
+                        <span class="">Start today and enjoy instant savings of <b>THB 2,800</b></span>
                     </div>
                 <ul class="step-benefits">
                     <li><b>No platform fee</b> <span class="benefit-note">- save THB 200/day during the trial.</span></li>
@@ -681,6 +687,7 @@
                 success: (response) => {
                     if (response.isSuccessful) {
                         closePopup();
+                        document.getElementById('main').src = homeUrl;
                     } else {
                         alert(response.message);
                     }
@@ -691,6 +698,7 @@
             });
         }
     }
+
 
     function closePopup() {
         $('.overlay').hide();
