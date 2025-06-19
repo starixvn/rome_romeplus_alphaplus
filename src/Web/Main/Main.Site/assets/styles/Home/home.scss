@@ -619,4 +619,7 @@ body {
             left: 3px;
         }
     }
+    &.disabled{
+        cursor: not-allowed;
+    }
 }
