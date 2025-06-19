@@ -22,7 +22,7 @@ public static class Pager
     {
         if (model?.TotalRecords > 0)
         {
-            return new HtmlString(@"<div id='report-pager' " + @"
+            return new HtmlString(@"<div id='report-pager' class='control-pager' " + @"
                 data-labelpage='" + Resources.Page + @"'
                 data-labelof='" + Resources.Of + @"'
                 data-labeldisplayitems='" + Resources.Pager_DisplayItems + @"'
