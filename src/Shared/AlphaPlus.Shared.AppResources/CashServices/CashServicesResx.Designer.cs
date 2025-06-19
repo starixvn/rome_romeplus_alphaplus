@@ -124,6 +124,15 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Internal Server Error.
+        /// </summary>
+        public static string InternalServerError {
+            get {
+                return ResourceManager.GetString("InternalServerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid parameters..
         /// </summary>
         public static string InvalidParameters {

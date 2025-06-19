@@ -168,4 +168,7 @@
   <data name="FirstAndLastName" xml:space="preserve">
     <value>First &amp; Last Name</value>
   </data>
+  <data name="InternalServerError" xml:space="preserve">
+    <value>Internal Server Error</value>
+  </data>
 </root>

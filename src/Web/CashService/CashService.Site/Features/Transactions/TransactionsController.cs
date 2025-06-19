@@ -127,7 +127,7 @@ public class TransactionsController(
         var result = await httpClientHelper.PostAsync<AddTransactionParams, ResultModel>("/api/deposit/create", request);
         if (result.Code != 0)
         {
-            result.Message = ErrorCodeHandler.MappingDepositErrorCode(result.Code);
+            result.Message = ErrorCodeHandler.MappingAddManualDepositErrorCode(result.Code);
         }
         return Json(result);
     }
@@ -262,6 +262,11 @@ public class TransactionsController(
         request.UserId = userId;
         request.Ip = GetClientIp();
         var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/api/transactions/revert-pending-deposit", request);
+        if (result.Code != 0)
+        {
+            result.Message = ErrorCodeHandler.MappingRevertPendingTransactionErrCode(result.Code);
+        }
+
         return Ok(result);
     }
 
@@ -277,6 +282,10 @@ public class TransactionsController(
         request.UserId = userId;
         request.Ip = GetClientIp();
         var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/api/transactions/revert-pending-withdrawal", request);
+        if (result.Code != 0)
+        {
+            result.Message = ErrorCodeHandler.MappingRevertPendingTransactionErrCode(result.Code);
+        }
         return Ok(result);
     }
 
@@ -289,6 +298,10 @@ public class TransactionsController(
         }
         request.SetUserSession(userSession);
         var result = await httpClientHelper.PostAsync<ProcessDepositTransaction, ResultModel>("/api/deposit/approve", request);
+        if (result.Code != 0)
+        {
+            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code, result.Message);
+        }
         return Json(result);
     }
 
@@ -302,6 +315,10 @@ public class TransactionsController(
         request.SetUserSession(userSession);
 
         var result = await httpClientHelper.PostAsync<ProcessDepositTransaction, ResultModel>("/api/deposit/reject", request);
+        if (result.Code != 0)
+        {
+            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code, result.Message);
+        }
         return Json(result);
     }
 
@@ -319,6 +336,10 @@ public class TransactionsController(
             request.Payslip = await FileHelper.CompressAndConvertToBase64Async(request.Image);
         }
         var result = await httpClientHelper.PostAsync<ProcessWithdrawalTransaction, ResultModel>("/api/withdrawal/approve", request);
+        if (result.Code != 0)
+        {
+            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code, result.Message);
+        }
         return Ok(result);
     }
 
@@ -336,6 +357,10 @@ public class TransactionsController(
             request.Payslip = await FileHelper.CompressAndConvertToBase64Async(request.Image);
         }
         var result = await httpClientHelper.PostAsync<ProcessWithdrawalTransaction, ResultModel>("/api/withdrawal/reject", request);
+        if (result.Code != 0)
+        {
+            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code, result.Message);
+        }
         return Ok(result);
     }
 }

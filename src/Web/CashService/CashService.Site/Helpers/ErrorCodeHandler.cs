@@ -4,7 +4,7 @@ using Shared.AppResources.CashServices;
 
 public static class ErrorCodeHandler
 {
-    public static string MappingDepositErrorCode(int errCode) =>
+    public static string MappingAddManualDepositErrorCode(int errCode) =>
         errCode switch
         {
             401 => CashServicesResx.AccountDisabled,
@@ -30,6 +30,23 @@ public static class ErrorCodeHandler
             408 => CashServicesResx.ExceedsTheDailyWithdrawalLimit,
             409 => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain,
             500 => CashServicesResx.AnErrorOccurredWhileProcessingWithdrawalRequest,
+            _ => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain
+        };
+
+    public static string MappingUpdateTransactionStatus(int errCode, string sqlException)
+        => errCode switch
+        {
+            405 => CashServicesResx.InvalidParameters,
+            409 => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain,
+            499 => $"{CashServicesResx.InternalServerError} {sqlException}",
+            _ => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain
+        };
+
+    public static string MappingRevertPendingTransactionErrCode(int errCode)
+        => errCode switch
+        {
+            405 => CashServicesResx.InvalidParameters,
+            409 => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain,
             _ => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain
         };
 }
