@@ -21,7 +21,7 @@ public class TransactionHistoryWorkbook(IWebHostEnvironment webHostEnvironment) 
     private readonly Mapper<Transaction> rowMapper
         = new Mapper<Transaction>()
         .Map(A, item => item.Username + WriteNickname(item.Nickname))
-        .Map(B, item => item.FirstName + item.LastName)
+        .Map(B, item => $"{item.FirstName} {item.LastName}")
         .Map(C, item => item.Amount)
         .Map(D, item => GetAccountNumberPart(item.PaymentFrom))
         .Map(E, item => GetAccountNumberPart(item.PaymentTo))
