@@ -185,30 +185,30 @@ Sphinx.Resources = (function () {
   var korean = function () {
     var resource = new Language();
     resource.Id = "ko-KR";
-    resource.Username = "사용자 이름";
+    resource.Username = "아이디";
     resource.Flag = "flag flag-kr";
     resource.Password = "비밀번호";
     resource.Language = "한국어";
-    resource.Captcha = "Validation";
+    resource.Captcha = "인증코드";
     resource.ErrorMessage = "";
     resource.Login = "로그인";
-    resource.ShowPassword = "비밀번호 나타내기";
+    resource.ShowPassword = "비밀번호 표시";
     resource.AutumnTitle = "textTitle_en";
-    resource.SignIn = "SignIn";
-    resource.Back = "뒤";
-    resource.errUserName = "Please input username";
-    resource.errPassWord = "Please input password";
-    resource.errValidCode = "확인코드를 입력해주세요.";
+    resource.SignIn = "로그인";
+    resource.Back = "뒤로";
+    resource.errUserName = "아이디를 입력해 주세요";
+    resource.errPassWord = "비밀번호를 입력해 주세요";
+    resource.errValidCode = "인증코드를 입력해 주세요.";
     resource.browserWarning =
-      "Your browser is out of date and might not be working properly with our website. For a better support, we strongly recommend that you upgrade to a newer version";
-    resource.updateYourBrowser = "Click here to update your browser";
+      "브라우저가 오래되어 저희 웹사이트와 제대로 작동하지 않을 수 있습니다. 더 나은 지원을 위해 최신 버전으로 업그레이드하시기를 강력히 권장합니다";
+    resource.updateYourBrowser = "브라우저를 업데이트하려면 여기를 클릭하세요";
     resource.messageAlwayShowOnLoginPage =
-      "The site encountered a technical error, we are working to resolve it. The estimated completion time is {0} (GMT +8). Please try again after that time. We are sorry for the inconvenience.";
-    resource.errUsernameFormat = "Username must be alphabet or numeric only.";
+      "사이트에서 기술적 오류가 발생했습니다. 해결하기 위해 노력하고 있습니다. 예상 완료 시간은 {0} (GMT +8)입니다. 해당 시간 이후에 다시 시도해 주세요. 불편을 끼쳐 죄송합니다.";
+    resource.errUsernameFormat = "아이디는 영문자나 숫자만 사용 가능합니다.";
     resource.warningMessage =
-      "Do not proceed if this is not your profile picture.";
+      "이것이 귀하의 프로필 사진이 아니라면 진행하지 마세요.";
     resource.warningMessage2 =
-      "Do not proceed if this is not <strong>your profile picture</strong> or <strong>the domain</strong> doesn't match the login link.";
+      "이것이 <strong>귀하의 프로필 사진</strong>이 아니거나 <strong>도메인</strong>이 로그인 링크와 일치하지 않는다면 진행하지 마세요.";
 
     return resource;
   };
