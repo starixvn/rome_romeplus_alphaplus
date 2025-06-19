@@ -204,20 +204,13 @@
                 @NoInformation.Render(Model.NumberOfColumns)
             </tbody>
         }
-        @if (Model.ShowPager)
-        {
-            <tfoot>
-                <tr>
-                    <td colspan="@Model.NumberOfColumns">
-                        <div>
-                            @Pager.Render(Model.PagerViewModel)
-                        </div>
-                    </td>
-                </tr>
-            </tfoot>
-        }
+        
     </table>
 </div>
+@if (Model.ShowPager)
+{
+    @Pager.Render(Model.PagerViewModel)
+}
 @section Scripts {
     @StaticResources.RenderScripts("~/Features/MemberInfo/assets/bundles/win-loss-limit/win-loss-limit")
 }

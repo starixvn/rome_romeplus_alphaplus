@@ -26,16 +26,18 @@
     <div class="form-group status-box">
         <label>@Resources.ProblemAccount</label>
         <select id="dropdown-problem-account" name="ProblemAccount">
-                @foreach (var option in Model.ProblemAccountOptions)
-                {
-                    <option value="@option.Value" selected="@option.Value.Equals(Model.ProblemAccount.ToString())">@option.Text</option>
-                }
-            </select>
+            @foreach (var option in Model.ProblemAccountOptions)
+            {
+                <option value="@option.Value" selected="@option.Value.Equals(Model.ProblemAccount.ToString())">@option.Text
+                </option>
+            }
+        </select>
     </div>
     <div class="form-group">
         <label>@Resources.Username</label>
-        <input type="text" id="txt-username" name="Username" placeholder="@Resources.Username" value="@Model.Username" maxlength="50" autocomplete="off" />
-    </div>    
+        <input type="text" id="txt-username" name="Username" placeholder="@Resources.Username" value="@Model.Username"
+            maxlength="50" autocomplete="off" />
+    </div>
 </form>
 <div class="potential-win-limit-table">
     <div class="breadcrumb-table">
@@ -57,20 +59,37 @@
         </div>
     </div>
     <div class="wrapper-table-scrollable">
-        <table id="tbl-report" class="tb tb-bordered w-full tablesorter tb-hover tb-freeze-header" data-has-data="@Model.PotentialWinLimitPage.PotentialWinLimitDetail.Any()">
+        <table id="tbl-report" class="tb tb-bordered w-full tablesorter tb-hover tb-freeze-header"
+            data-has-data="@Model.PotentialWinLimitPage.PotentialWinLimitDetail.Any()">
             <thead>
                 <tr>
-                    <th><div class="col-no">@Resources.No</div></th>
+                    <th>
+                        <div class="col-no">@Resources.No</div>
+                    </th>
                     <th class="col-username">@Resources.Username</th>
                     <th class="col-status">@Resources.Status</th>
                     <th class="col-problem-account">@Resources.ProblemAccount</th>
-                    <th><div class="col-credit">@Resources.Credit</div></th>
-                    <th><div class="col-auto-daily-reset-limit">@Resources.AutoDailyResetLimit</div></th>
-                    <th><div class="col-to-win">@Resources.ToWin</div></th>
-                    <th><div class="col-accumulated-win-loss">@Resources.AccumulatedWinLoss</div></th>
-                    <th><div class="col-potential-win">@Resources.PotentialWin</div></th>
-                    <th><div class="col-max-potential-win-limit">@Resources.MaxPotentialWinLimit</div></th>
-                    <th><div class="col-cur-potential-win-limit">@Resources.CurrentPotentialWin</div></th>
+                    <th>
+                        <div class="col-credit">@Resources.Credit</div>
+                    </th>
+                    <th>
+                        <div class="col-auto-daily-reset-limit">@Resources.AutoDailyResetLimit</div>
+                    </th>
+                    <th>
+                        <div class="col-to-win">@Resources.ToWin</div>
+                    </th>
+                    <th>
+                        <div class="col-accumulated-win-loss">@Resources.AccumulatedWinLoss</div>
+                    </th>
+                    <th>
+                        <div class="col-potential-win">@Resources.PotentialWin</div>
+                    </th>
+                    <th>
+                        <div class="col-max-potential-win-limit">@Resources.MaxPotentialWinLimit</div>
+                    </th>
+                    <th>
+                        <div class="col-cur-potential-win-limit">@Resources.CurrentPotentialWin</div>
+                    </th>
                     <th class="col-last-login">@Resources.LastLogin</th>
                 </tr>
             </thead>
@@ -83,7 +102,8 @@
                         <tr>
                             <td class="text-center">@index</td>
                             <td class="text-left" title="@winLossLimitDetail.Username">@winLossLimitDetail.Username</td>
-                            <td class="text-center">@SportsbookPotentialWinLimitViewModel.GetStatusText(winLossLimitDetail.Status)</td>
+                            <td class="text-center">
+                                @SportsbookPotentialWinLimitViewModel.GetStatusText(winLossLimitDetail.Status)</td>
                             <td class="text-center">@(winLossLimitDetail.IsProblemAccount ? Resources.Yes : Resources.No2)</td>
                             <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.Credit)</td>
                             <td class="text-center">@(winLossLimitDetail.IsAutoReset ? Resources.Yes : Resources.No2)</td>
@@ -92,13 +112,14 @@
                             <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.PotentialWin)</td>
                             <td class="text-right">@Model.GetMaxWinLimit(winLossLimitDetail.PotentialWinLimit)</td>
                             <td class="text-center @(winLossLimitDetail.PotentialWinPercent >= 100 ? "negative-value" : "")">
-                                @Model.GetWinPercent(winLossLimitDetail.PotentialWinPercent, winLossLimitDetail.PotentialWinLimit)
-                            </td>
-                            <td class="text-left" title="@Model.GetLastLoginDate(winLossLimitDetail.LastLogged)">
-                                @Model.GetLastLoginDate(winLossLimitDetail.LastLogged)
-                            </td>
-                        </tr>
-                        index++;
+                                @Model.GetWinPercent(winLossLimitDetail.PotentialWinPercent,
+                                winLossLimitDetail.PotentialWinLimit)
+                    </td>
+                    <td class="text-left" title="@Model.GetLastLoginDate(winLossLimitDetail.LastLogged)">
+                        @Model.GetLastLoginDate(winLossLimitDetail.LastLogged)
+                    </td>
+                </tr>
+                                index++;
                     }
                 </tbody>
             }
@@ -108,21 +129,14 @@
                     @NoInformation.Render(Model.NumberOfColumns)
                 </tbody>
             }
-            @if (Model.ShowPager)
-            {
-                <tfoot>
-                    <tr>
-                        <td colspan="@Model.NumberOfColumns">
-                            <div>
-                                @Pager.Render(Model.PagerViewModel)
-                            </div>
-                        </td>
-                    </tr>
-                </tfoot>
-                }
+
         </table>
     </div>
+    @if (Model.ShowPager)
+    {
+        @Pager.Render(Model.PagerViewModel)
+    }
 </div>
 @section Scripts {
     @StaticResources.RenderScripts("~/Features/MemberInfo/assets/bundles/win-loss-limit/potential-win-limit")
-} 
+}
