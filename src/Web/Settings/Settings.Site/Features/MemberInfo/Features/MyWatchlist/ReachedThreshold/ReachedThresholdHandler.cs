@@ -1,12 +1,12 @@
-﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.Requests;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.ViewModels;
-using AlphaPlus.Core.Helpers;
+﻿using AlphaPlus.Core.Helpers;
 using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts;
 using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold;
 using AlphaPlus.Settings.MemberInfo.Domain.Constants;
 using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Params;
 using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
 using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Params;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.Requests;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.ViewModels;
 using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold
@@ -34,7 +34,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.Reach
         public async Task<ReachedThresholdViewModel> Handle(ReachedThresholdQuery message, CancellationToken cancellation)
         {
             var isMobile = browserHelper.IsMobile(isOnlyTablet: false);
-            var query = new ReachlistAccountsQuery(message.Viewer)
+            var query = new ReachlistAccountsQuery()
             {
                 Username = message.Username,
                 FromDate = message.FromDate,
@@ -78,7 +78,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.Reach
 
         public async Task<ReachHistoryViewModel> Handle(ReachHistoryQuery message, CancellationToken cancellation)
         {
-            var query = new ReachHistoryListQuery(message.Viewer)
+            var query = new ReachHistoryListQuery()
             {
                 SelectedCustId = message.SelectedCustId,
                 FromDate = message.FromDate,

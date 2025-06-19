@@ -1,20 +1,10 @@
 ﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Requests;
-using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using Fanex.Common.Extensions;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Models;
-using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.Requests
 {
     public class ReachedThresholdQueryBase : MemberInfoBaseQuery
     {
-        public ReachedThresholdQueryBase() : this(null) { }
-
-        public ReachedThresholdQueryBase(IUser viewer) : base(viewer)
-        {
-            viewer = viewer ?? new User(UserSession.Current);
-            LimitedDateToShowInfo = viewer.LimitedDateToShowInfo;
-        }
 
         public string Username { get; set; }
 
@@ -33,8 +23,6 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.Reach
         public int PageIndex { get; set; } = 1;
 
         public int PageSize { get; set; } = 100;
-
-        public DateTime LimitedDateToShowInfo { get; }
 
         public DateTime MinDate => DateTime.Today.AddMonths(-3).FirstDayOfMonth();
 

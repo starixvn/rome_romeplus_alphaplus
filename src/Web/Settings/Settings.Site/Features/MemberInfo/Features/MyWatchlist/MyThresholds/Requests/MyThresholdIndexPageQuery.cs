@@ -1,5 +1,4 @@
 ﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyThresholds.ViewModels;
-using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using Fanex.Common.Extensions;
 using MediatR;
 
@@ -7,9 +6,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyThr
 {
     public class MyThresholdIndexPageQuery : MyThresholdHistoryQuery, IRequest<MyThresholdIndexPageViewModel>
     {
-        public MyThresholdIndexPageQuery() : this(null) { }
-
-        public MyThresholdIndexPageQuery(IUser viewer) : base(viewer)
+        public MyThresholdIndexPageQuery()
         {
             CurrentDate = DateTime.Today;
             FromDate = CurrentDate.AddDays(-1);
