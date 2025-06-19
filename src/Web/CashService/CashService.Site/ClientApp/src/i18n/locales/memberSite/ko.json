@@ -47,13 +47,13 @@
     "updateFailed": "회원 사이트 데이터를 업데이트할 수 없습니다"
   },
   "validation": {
-    "required": "필수",
-    "lineId": "LINE ID 오류",
-    "telegram": "Telegram ID 오류",
-    "email": "이메일 오류",
-    "phoneCode": "코드 오류",
-    "phoneNumber": "번호 오류",
-    "maxLength": "최대 {{maxLength}}자",
-    "onlyAz09": "a-z, 0-9, _ 만 사용 가능"
+    "required": "이 필드는 필수입니다",
+    "lineId": "유효하지 않은 LINE ID입니다",
+    "telegram": "유효하지 않은 텔레그램 ID입니다",
+    "email": "유효하지 않은 이메일 주소입니다",
+    "phoneCode": "유효하지 않은 전화번호 코드입니다",
+    "phoneNumber": "유효하지 않은 전화번호입니다",
+    "maxLength": "최대 {{maxLength}}자까지 입력 가능합니다",
+    "onlyAz09": "영문 소문자, 숫자, 언더스코어(_)만 사용 가능합니다"
   }
 } 

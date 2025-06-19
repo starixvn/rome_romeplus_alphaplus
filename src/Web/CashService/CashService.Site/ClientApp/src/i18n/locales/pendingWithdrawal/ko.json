@@ -7,6 +7,8 @@
     "all": "전체",
     "last30Mins": "최근 30분",
     "last60Mins": "최근 60분",
+      "last30Mins": "지난 30분",
+      "last60Mins": "지난 60분",
     "to": "까지",
     "search": "검색",
     "usernamePlaceholder": "사용자명/참조번호"
@@ -17,6 +19,7 @@
     "username": "사용자명",
     "firstName": "성명",
     "nickname": "닉네임",
+      "nickname": "닉네임",
     "amount": "금액",
     "currency": "통화",
     "from": "에서",
