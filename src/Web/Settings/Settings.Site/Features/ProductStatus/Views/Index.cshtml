@@ -55,7 +55,14 @@
                         enableSubmitButton |= Model.IsEnabledSubmitButton(item);
 
                         <tr>
-                            <td>@item.Name</td>
+                            <td>
+                                @item.Name
+                                @if (!string.IsNullOrEmpty(item.TooltipMessage))
+                                {
+                                    <span id="icon-information" class="icon icon-information-outline icon-information-outline-right"
+                                          data-toggle="tooltip" data-placement="bottom" title="@item.TooltipMessage"></span>
+                                }
+                            </td>
                             <td>
                                 <input type="checkbox" id="checkbox-@item.SportType-@item.BetType" data-sporttypeid="@item.SportType"
                                     data-bettypeid="@item.BetType" data-oldvalue="@item.IsDisabled.ToString().ToLowerInvariant()"
