@@ -62,7 +62,7 @@
   "manualDepositForm": {
     "title": "新增手動存款",
     "accountInformation": "帳戶資訊",
-    "memberLoginName": "會員用戶名",
+    "memberLoginName": "會員登入名稱",
     "from": "從",
     "to": "至",
     "depositAmount": "存款金額",
@@ -78,11 +78,11 @@
     "approve": "批准",
     "approving": "批准中...",
     "agentAvailableCredit": "代理可用額度",
-    "amountMustBeGreaterThan0AndLessThanMaxLimit": "金額必須大於0且小於最大限額",
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "金額必須大於0且小於代理可用額度。",
     "imageSizeError": "圖片必須小於1MB",
-    "memberLoginNameRequired": "請選擇會員登入",
-    "agentBankSelectionRequired": "請選擇付款來源",
-    "memberBankSelectionRequired": "請選擇付款目標",
+    "memberLoginNameRequired": "會員登入名稱是必需的。",
+    "agentBankSelectionRequired": "從是必需的。",
+    "memberBankSelectionRequired": "至是必需的。",
     "invalidFileType": "無效的文件類型。請上傳 jpeg、jpg 或 png 文件。"
   },
 
@@ -93,19 +93,16 @@
   },
 
   "errorMessages": {
-    "requiredField": "此字段為必填項",
-    "invalidAmount": "請輸入有效金額",
-    "amountTooSmall": "金額必須大於0",
-    "failedToSubmit": "提交存款失敗",
-    "failedToApprove": "批准存款失敗",
-    "failedToReject": "拒絕存款失敗",
+    "failedToSubmit": "提交存款請求失敗",
+    "failedToApprove": "批准存款請求失敗",
+    "failedToReject": "拒絕存款請求失敗",
     "failedToFetchData": "獲取數據失敗"
   },
 
   "successMessages": {
-    "depositSubmitted": "存款已成功提交！",
-    "depositUpdated": "存款已成功更新！",
-    "depositApproved": "存款已成功批准！",
-    "depositRejected": "存款已成功拒絕！"
+    "depositSubmitted": "存款請求提交成功！",
+    "depositUpdated": "存款請求更新成功！",
+    "depositApproved": "存款請求批准成功！",
+    "depositRejected": "存款請求拒絕成功！"
   }
 }

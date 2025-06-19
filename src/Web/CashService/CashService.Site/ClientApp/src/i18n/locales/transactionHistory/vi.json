@@ -11,17 +11,17 @@
     "allColumns": "Tất cả cột (8)",
     "column": "Cột",
     "search": "Tìm kiếm",
-    "usernamePlaceholder": "Tên đăng nhập/Số tham chiếu",
+    "usernamePlaceholder": "Tên người dùng/Số tham chiếu",
     "status": "Trạng thái",
     "dateRange": "Khoảng thời gian",
     "maxRecords": "Hiển thị tối đa 5000 bản ghi mới nhất"
   },
 
   "table": {
-    "no": "STT",
-    "username": "Tên đăng nhập",
-    "nickname": "Biệt danh",
-    "name": "Họ và tên",
+    "no": "#",
+    "username": "Tên người dùng",
+    "nickname": "Tên biệt danh",
+    "name": "Tên & Họ",
     "amount": "Số tiền",
     "currency": "Tiền tệ",
     "from": "Từ",
@@ -30,7 +30,7 @@
     "type": "Loại giao dịch",
     "referenceNo": "Số tham chiếu",
     "dateAndTime": "Ngày tạo",
-    "actions": "Thao tác",
+    "actions": "Hành động",
     "view": "Xem",
     "loading": "Đang tải giao dịch...",
     "noRecords": "Không tìm thấy bản ghi"
@@ -38,9 +38,9 @@
 
   "detail": {
     "title": "Chi tiết giao dịch",
-    "username": "Tên đăng nhập",
-    "nickname": "Biệt danh",
-    "fullName": "Họ và tên",
+    "username": "Tên người dùng",
+    "nickname": "Tên biệt danh",
+    "fullName": "Tên & Họ",
     "betCredit": "Tín dụng cược",
     "from": "Từ",
     "to": "Đến",
@@ -71,7 +71,7 @@
   },
 
   "errorMessages": {
-    "requiredField": "Vui lòng điền thông tin này",
+    "requiredField": "Trường này là bắt buộc",
     "invalidAmount": "Vui lòng nhập số tiền hợp lệ",
     "amountTooSmall": "Số tiền phải lớn hơn 0",
     "failedToLoad": "Không thể tải lịch sử giao dịch",

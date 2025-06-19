@@ -78,11 +78,11 @@
     "approve": "批准",
     "approving": "批准中...",
     "agentAvailableCredit": "代理可用额度",
-    "amountMustBeGreaterThan0AndLessThanMaxLimit": "金额必须大于0且小于最大限额",
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "金额必须大于0且小于代理可用额度。",
     "imageSizeError": "图片必须小于1MB",
-    "memberLoginNameRequired": "请选择会员登录名",
-    "agentBankSelectionRequired": "请选择付款来源",
-    "memberBankSelectionRequired": "请选择付款目标",
+    "memberLoginNameRequired": "会员登录名是必需的。",
+    "agentBankSelectionRequired": "从是必需的。",
+    "memberBankSelectionRequired": "至是必需的。",
     "invalidFileType": "无效的文件类型。请上传 jpeg、jpg 或 png 文件。"
   },
 
@@ -93,9 +93,6 @@
   },
 
   "errorMessages": {
-    "requiredField": "此字段为必填项",
-    "invalidAmount": "请输入有效金额",
-    "amountTooSmall": "金额必须大于0",
     "failedToSubmit": "提交存款请求失败",
     "failedToApprove": "批准存款请求失败",
     "failedToReject": "拒绝存款请求失败",

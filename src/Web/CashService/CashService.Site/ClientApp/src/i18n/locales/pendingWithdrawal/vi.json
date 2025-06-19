@@ -9,36 +9,36 @@
     "last60Mins": "60 phút qua",
     "to": "Đến",
     "search": "Tìm kiếm",
-    "usernamePlaceholder": "Tên đăng nhập/Mã tham chiếu"
+    "usernamePlaceholder": "Tên người dùng/Số tham chiếu"
   },
 
   "dataGrid": {
     "member": "Thành viên",
-    "username": "Tên đăng nhập",
-    "firstName": "Họ và tên",
-    "nickname": "Biệt danh",
+    "username": "Tên người dùng",
+    "firstName": "Tên & Họ",
+    "nickname": "Tên biệt danh",
     "amount": "Số tiền",
     "currency": "Tiền tệ",
     "from": "Từ",
     "to": "Đến",
-    "referenceNo": "Mã tham chiếu",
+    "referenceNo": "Số tham chiếu",
     "dateAndTime": "Ngày tạo",
-    "actions": "Thao tác",
+    "actions": "Hành động",
     "approve": "Phê duyệt",
     "reject": "Từ chối",
     "process": "Xử lý",
     "viewDetails": "Xem chi tiết",
-    "loading": "Đang tải các yêu cầu rút tiền...",
-    "noWithdrawalsFound": "Không tìm thấy yêu cầu rút tiền nào"
+    "loading": "Đang tải rút tiền đang chờ xử lý...",
+    "noWithdrawalsFound": "Không tìm thấy rút tiền nào đang chờ xử lý"
   },
 
   "pendingWithdrawalModal": {
     "title": "Rút tiền đang chờ xử lý",
-    "username": "Tên đăng nhập",
+    "username": "Tên người dùng",
     "loginName": "Tên đăng nhập",
     "firstName": "Tên",
     "lastName": "Họ",
-    "name": "Họ và tên",
+    "name": "Tên & Họ",
     "betCredit": "Tín dụng cược",
     "from": "Từ",
     "to": "Đến",
@@ -49,7 +49,10 @@
     "approve": "Phê duyệt",
     "reject": "Từ chối",
     "close": "Đóng",
-    "selectBank": "Chọn ngân hàng"
+    "selectBank": "Chọn ngân hàng",
+    "bankRequired": "Ngân hàng là bắt buộc",
+    "approveSuccess": "Phê duyệt rút tiền thành công",
+    "rejectSuccess": "Từ chối rút tiền thành công"
   },
 
   "manualWithdrawalForm": {
@@ -69,20 +72,20 @@
     "imageFormat": "Tải lên jpeg, jpg, png",
     "maxSize": "Tối đa 1 MB",
     "viewFullSize": "Xem kích thước đầy đủ",
-    "removeImage": "Xóa ảnh",
+    "removeImage": "Xóa hình ảnh",
     "cancel": "Hủy",
     "approve": "Phê duyệt",
     "processing": "Đang xử lý...",
-    "memberLoginNameRequired": "Vui lòng nhập tên đăng nhập thành viên",
-    "agentBankSelectionRequired": "Vui lòng chọn nguồn",
-    "memberBankSelectionRequired": "Vui lòng chọn đích",
-    "amountRangeError": "Số tiền phải nhỏ hơn hoặc bằng số dư tiền mặt của thành viên",
-    "imageSizeError": "Kích thước ảnh phải nhỏ hơn 1 MB",
-    "addWithdrawalSuccess": "Thêm yêu cầu rút tiền thành công!!!",
+    "memberLoginNameRequired": "Tên đăng nhập thành viên là bắt buộc",
+    "agentBankSelectionRequired": "Từ là bắt buộc",
+    "memberBankSelectionRequired": "Đến là bắt buộc",
+    "amountRangeError": "Số tiền phải lớn hơn 0 và nhỏ hơn hoặc bằng số dư tiền mặt của thành viên",
+    "imageSizeError": "Kích thước hình ảnh phải nhỏ hơn 1 MB",
+    "addWithdrawalSuccess": "Thêm rút tiền thành công!!!",
     "memberCashBalance": "Số dư tiền mặt thành viên",
     "minAmount": "Tối thiểu",
     "maxAmount": "Tối đa",
-    "invalidFileType": "Loại tệp không hợp lệ. Vui lòng tải lên tệp jpeg, jpg hoặc png."
+    "invalidFileType": "Định dạng tệp không hợp lệ. Vui lòng tải lên tệp jpeg, jpg, hoặc png."
   },
 
   "updateWithdrawal": {
@@ -90,15 +93,15 @@
     "approveWithdrawal": "Phê duyệt rút tiền",
     "rejectWithdrawal": "Từ chối rút tiền",
     "confirmTitle": "Xác nhận hành động",
-    "confirmApproveMessage": "Bạn có chắc chắn muốn phê duyệt yêu cầu rút tiền này?",
-    "confirmRejectMessage": "Bạn có chắc chắn muốn từ chối yêu cầu rút tiền này?",
+    "confirmApproveMessage": "Bạn có chắc chắn muốn phê duyệt rút tiền này?",
+    "confirmRejectMessage": "Bạn có chắc chắn muốn từ chối rút tiền này?",
     "confirmCancel": "Hủy",
     "confirmYes": "Vâng, tiếp tục",
     "withdrawalDetails": "Chi tiết rút tiền",
     "memberInfo": "Thông tin thành viên",
     "transactionDetails": "Chi tiết giao dịch",
-    "withdrawalApproved": "Phê duyệt rút tiền thành công",
-    "withdrawalRejected": "Từ chối rút tiền thành công"
+    "withdrawalApproved": "Rút tiền được phê duyệt thành công",
+    "withdrawalRejected": "Rút tiền bị từ chối thành công"
   },
 
   "status": {
@@ -111,15 +114,15 @@
     "requiredField": "Trường này là bắt buộc",
     "invalidAmount": "Vui lòng nhập số tiền hợp lệ",
     "amountTooSmall": "Số tiền phải lớn hơn 0",
-    "failedToSubmit": "Gửi yêu cầu rút tiền thất bại",
-    "failedToApprove": "Phê duyệt rút tiền thất bại",
-    "failedToReject": "Từ chối rút tiền thất bại"
+    "failedToSubmit": "Không thể gửi rút tiền",
+    "failedToApprove": "Không thể phê duyệt rút tiền",
+    "failedToReject": "Không thể từ chối rút tiền"
   },
 
   "successMessages": {
-    "withdrawalSubmitted": "Gửi yêu cầu rút tiền thành công",
-    "withdrawalUpdated": "Cập nhật rút tiền thành công",
-    "withdrawalApproved": "Phê duyệt rút tiền thành công",
-    "withdrawalRejected": "Từ chối rút tiền thành công"
+    "withdrawalSubmitted": "Rút tiền được gửi thành công",
+    "withdrawalUpdated": "Rút tiền được cập nhật thành công",
+    "withdrawalApproved": "Rút tiền được phê duyệt thành công",
+    "withdrawalRejected": "Rút tiền bị từ chối thành công"
   }
 }

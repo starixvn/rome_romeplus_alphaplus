@@ -78,11 +78,11 @@
     "approve": "อนุมัติ",
     "approving": "กำลังอนุมัติ...",
     "agentAvailableCredit": "เครดิตที่ใช้ได้ของตัวแทน",
-    "amountMustBeGreaterThan0AndLessThanMaxLimit": "จำนวนเงินต้องมากกว่า 0 และน้อยกว่าขีดจำกัดสูงสุด",
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "จำนวนเงินต้องมากกว่า 0 และน้อยกว่าเครดิตที่ใช้ได้ของตัวแทน",
     "imageSizeError": "ภาพต้องมีขนาดน้อยกว่า 1MB",
-    "memberLoginNameRequired": "กรุณาเลือกชื่อเข้าสู่ระบบสมาชิก",
-    "agentBankSelectionRequired": "กรุณาเลือกแหล่งที่มาของการชำระเงิน",
-    "memberBankSelectionRequired": "กรุณาเลือกปลายทางการชำระเงิน",
+    "memberLoginNameRequired": "ชื่อเข้าสู่ระบบสมาชิกเป็นสิ่งจำเป็น",
+    "agentBankSelectionRequired": "จากเป็นสิ่งจำเป็น",
+    "memberBankSelectionRequired": "ถึงเป็นสิ่งจำเป็น",
     "invalidFileType": "ประเภทไฟล์ไม่ถูกต้อง กรุณาอัปโหลดไฟล์ jpeg, jpg หรือ png"
   },
 

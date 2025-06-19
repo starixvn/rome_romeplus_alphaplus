@@ -28,16 +28,16 @@
     "reject": "拒絕",
     "process": "處理",
     "viewDetails": "查看詳情",
-    "loading": "正在載入待處理提款...",
+    "loading": "載入待處理提款中...",
     "noWithdrawalsFound": "未找到待處理提款"
   },
 
   "pendingWithdrawalModal": {
     "title": "待處理提款",
     "username": "用戶名",
-    "loginName": "登錄名",
-    "firstName": "名字",
-    "lastName": "姓氏",
+    "loginName": "登入名稱",
+    "firstName": "名",
+    "lastName": "姓",
     "name": "姓名",
     "betCredit": "投注額度",
     "from": "從",
@@ -49,13 +49,16 @@
     "approve": "批准",
     "reject": "拒絕",
     "close": "關閉",
-    "selectBank": "選擇銀行"
+    "selectBank": "選擇銀行",
+    "bankRequired": "銀行是必需的",
+    "approveSuccess": "批准提款成功",
+    "rejectSuccess": "拒絕提款成功"
   },
 
   "manualWithdrawalForm": {
     "title": "新增手動提款",
-    "accountInformation": "帳戶信息",
-    "memberLoginName": "會員用戶名",
+    "accountInformation": "帳戶資訊",
+    "memberLoginName": "會員登入名稱",
     "from": "從",
     "to": "至",
     "selectMember": "選擇會員",
@@ -66,19 +69,19 @@
     "remarksPlaceholder": "在此添加備註...",
     "uploadImage": "點擊上傳",
     "dragAndDrop": "或拖放",
-    "imageFormat": "上傳 jpeg、jpg、png",
+    "imageFormat": "上傳 jpeg, jpg, png",
     "maxSize": "最大 1 MB",
     "viewFullSize": "查看原圖",
     "removeImage": "移除圖片",
     "cancel": "取消",
     "approve": "批准",
     "processing": "處理中...",
-    "memberLoginNameRequired": "會員登錄名為必填項",
-    "agentBankSelectionRequired": "必須選擇來源",
-    "memberBankSelectionRequired": "必須選擇目標",
-    "amountRangeError": "金額必須小於或等於會員現金餘額",
-    "imageSizeError": "圖片大小必須小於 1 MB",
-    "addWithdrawalSuccess": "提款申請成功添加！！！",
+    "memberLoginNameRequired": "會員登入名稱是必需的",
+    "agentBankSelectionRequired": "從是必需的",
+    "memberBankSelectionRequired": "至是必需的",
+    "amountRangeError": "金額必須大於0且小於或等於會員現金餘額",
+    "imageSizeError": "圖片大小必須小於1 MB",
+    "addWithdrawalSuccess": "新增提款成功!!!",
     "memberCashBalance": "會員現金餘額",
     "minAmount": "最小",
     "maxAmount": "最大",
@@ -93,12 +96,12 @@
     "confirmApproveMessage": "您確定要批准此提款嗎？",
     "confirmRejectMessage": "您確定要拒絕此提款嗎？",
     "confirmCancel": "取消",
-    "confirmYes": "是的，繼續",
+    "confirmYes": "是，繼續",
     "withdrawalDetails": "提款詳情",
-    "memberInfo": "會員信息",
+    "memberInfo": "會員資訊",
     "transactionDetails": "交易詳情",
-    "withdrawalApproved": "提款已成功批准",
-    "withdrawalRejected": "提款已成功拒絕"
+    "withdrawalApproved": "提款批准成功",
+    "withdrawalRejected": "提款拒絕成功"
   },
 
   "status": {
@@ -108,18 +111,18 @@
   },
 
   "errorMessages": {
-    "requiredField": "此字段為必填項",
+    "requiredField": "此欄位為必填項",
     "invalidAmount": "請輸入有效金額",
-    "amountTooSmall": "金額必須大於 0",
+    "amountTooSmall": "金額必須大於0",
     "failedToSubmit": "提交提款失敗",
     "failedToApprove": "批准提款失敗",
     "failedToReject": "拒絕提款失敗"
   },
 
   "successMessages": {
-    "withdrawalSubmitted": "提款已成功提交",
-    "withdrawalUpdated": "提款已成功更新",
-    "withdrawalApproved": "提款已成功批准",
-    "withdrawalRejected": "提款已成功拒絕"
+    "withdrawalSubmitted": "提款提交成功",
+    "withdrawalUpdated": "提款更新成功",
+    "withdrawalApproved": "提款批准成功",
+    "withdrawalRejected": "提款拒絕成功"
   }
 }

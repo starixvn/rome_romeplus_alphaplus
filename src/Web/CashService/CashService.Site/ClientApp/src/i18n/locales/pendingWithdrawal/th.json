@@ -9,7 +9,7 @@
     "last60Mins": "60 นาทีที่ผ่านมา",
     "to": "ถึง",
     "search": "ค้นหา",
-    "usernamePlaceholder": "ชื่อผู้ใช้/เลขที่อ้างอิง"
+    "usernamePlaceholder": "ชื่อผู้ใช้/หมายเลขอ้างอิง"
   },
 
   "dataGrid": {
@@ -21,7 +21,7 @@
     "currency": "สกุลเงิน",
     "from": "จาก",
     "to": "ถึง",
-    "referenceNo": "เลขที่อ้างอิง",
+    "referenceNo": "หมายเลขอ้างอิง",
     "dateAndTime": "วันที่สร้าง",
     "actions": "การดำเนินการ",
     "approve": "อนุมัติ",
@@ -49,13 +49,16 @@
     "approve": "อนุมัติ",
     "reject": "ปฏิเสธ",
     "close": "ปิด",
-    "selectBank": "เลือกธนาคาร"
+    "selectBank": "เลือกธนาคาร",
+    "bankRequired": "ธนาคารเป็นสิ่งจำเป็น",
+    "approveSuccess": "อนุมัติการถอนเงินสำเร็จ",
+    "rejectSuccess": "ปฏิเสธการถอนเงินสำเร็จ"
   },
 
   "manualWithdrawalForm": {
     "title": "เพิ่มการถอนเงินด้วยตนเอง",
     "accountInformation": "ข้อมูลบัญชี",
-    "memberLoginName": "ชื่อผู้ใช้สมาชิก",
+    "memberLoginName": "ชื่อเข้าสู่ระบบสมาชิก",
     "from": "จาก",
     "to": "ถึง",
     "selectMember": "เลือกสมาชิก",
@@ -73,10 +76,10 @@
     "cancel": "ยกเลิก",
     "approve": "อนุมัติ",
     "processing": "กำลังดำเนินการ...",
-    "memberLoginNameRequired": "กรุณาระบุชื่อผู้ใช้สมาชิก",
-    "agentBankSelectionRequired": "กรุณาเลือกแหล่งที่มา",
-    "memberBankSelectionRequired": "กรุณาเลือกปลายทาง",
-    "amountRangeError": "จำนวนเงินต้องน้อยกว่าหรือเท่ากับยอดเงินสดของสมาชิก",
+    "memberLoginNameRequired": "ชื่อเข้าสู่ระบบสมาชิกเป็นสิ่งจำเป็น",
+    "agentBankSelectionRequired": "จากเป็นสิ่งจำเป็น",
+    "memberBankSelectionRequired": "ถึงเป็นสิ่งจำเป็น",
+    "amountRangeError": "จำนวนเงินต้องมากกว่า 0 และน้อยกว่าหรือเท่ากับยอดเงินสดของสมาชิก",
     "imageSizeError": "ขนาดรูปภาพต้องน้อยกว่า 1 MB",
     "addWithdrawalSuccess": "เพิ่มการถอนเงินสำเร็จ!!!",
     "memberCashBalance": "ยอดเงินสดของสมาชิก",
@@ -97,8 +100,8 @@
     "withdrawalDetails": "รายละเอียดการถอนเงิน",
     "memberInfo": "ข้อมูลสมาชิก",
     "transactionDetails": "รายละเอียดธุรกรรม",
-    "withdrawalApproved": "อนุมัติการถอนเงินสำเร็จ",
-    "withdrawalRejected": "ปฏิเสธการถอนเงินสำเร็จ"
+    "withdrawalApproved": "การถอนเงินได้รับการอนุมัติสำเร็จ",
+    "withdrawalRejected": "การถอนเงินถูกปฏิเสธสำเร็จ"
   },
 
   "status": {

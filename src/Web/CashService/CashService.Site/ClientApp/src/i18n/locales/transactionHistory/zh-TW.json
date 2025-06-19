@@ -18,7 +18,7 @@
   },
 
   "table": {
-    "no": "序號",
+    "no": "#",
     "username": "用戶名",
     "nickname": "暱稱",
     "name": "姓名",

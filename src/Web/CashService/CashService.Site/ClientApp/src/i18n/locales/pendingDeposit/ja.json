@@ -78,11 +78,11 @@
     "approve": "承認",
     "approving": "承認中...",
     "agentAvailableCredit": "エージェント利用可能クレジット",
-    "amountMustBeGreaterThan0AndLessThanMaxLimit": "金額は0より大きく、最大制限未満である必要があります",
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "金額は0より大きく、エージェント利用可能クレジット未満である必要があります。",
     "imageSizeError": "画像は1MB未満である必要があります",
-    "memberLoginNameRequired": "メンバーログイン名を選択してください",
-    "agentBankSelectionRequired": "支払い元を選択してください",
-    "memberBankSelectionRequired": "支払い先を選択してください",
+    "memberLoginNameRequired": "メンバーログイン名は必須です。",
+    "agentBankSelectionRequired": "からは必須です。",
+    "memberBankSelectionRequired": "までは必須です。",
     "invalidFileType": "無効なファイル形式です。jpeg、jpg、またはpngファイルをアップロードしてください。"
   },
 
@@ -93,9 +93,6 @@
   },
 
   "errorMessages": {
-    "requiredField": "このフィールドは必須です",
-    "invalidAmount": "有効な金額を入力してください",
-    "amountTooSmall": "金額は0より大きくなければなりません",
     "failedToSubmit": "入金リクエストの送信に失敗しました",
     "failedToApprove": "入金リクエストの承認に失敗しました",
     "failedToReject": "入金リクエストの拒否に失敗しました",
