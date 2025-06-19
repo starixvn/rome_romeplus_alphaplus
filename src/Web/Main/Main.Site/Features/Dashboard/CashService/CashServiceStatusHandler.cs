@@ -98,14 +98,7 @@ public class CashServiceStatusHandler :
 
         if (!isOfferedCashService)
         {
-            return new CashServiceInfoViewModel
-            {
-                IsCashServiceEnabled = false,
-                TotalCashMember = new TotalCashMember(),
-                IsOfferedCashService = false,
-                IsCanUpdateCashServiceStatus = false,
-                CDNUri = CDNUri
-            };
+            return new CashServiceInfoViewModel();
         }
 
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(request.UserSession.CustId);
@@ -117,7 +110,8 @@ public class CashServiceStatusHandler :
             TotalCashMember = totalCashMember ?? new TotalCashMember(),
             IsOfferedCashService = true,
             IsCanUpdateCashServiceStatus = isCanUpdateCashServiceStatus,
-            CDNUri = CDNUri
+            CDNUri = CDNUri,
+            NickName = request.UserSession.NickName
         };
     }
 }

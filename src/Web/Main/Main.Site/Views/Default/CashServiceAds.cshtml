@@ -563,6 +563,7 @@
 </div>
 
 <script>
+    const nickName = '@Model.NickName';
     const cdnUri = '@cdnUri';
     const homeUrl = '@MicroSites.MainUrl("~/Dashboard/index2")';
     const isCanUpdateCashServiceStatus = '@Model.IsCanUpdateCashServiceStatus'.toLowerCase() === 'true';
@@ -707,7 +708,7 @@
     function checkDontShowAgain() {
         const dontShowAgain = $('#dontShowAgain').prop('checked');
         if (dontShowAgain) {
-            localStorage.setItem('hideCashServiceAds', 'true');
+            localStorage.setItem(`hideCashServiceAds-${nickName}`, 'true');
         }
         closePopup();
     }

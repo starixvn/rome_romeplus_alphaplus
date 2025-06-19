@@ -13,11 +13,11 @@ public class CashServiceInfoViewModel
             TotalCashMemberClosed = 0,
         };
         IsOfferedCashService = false;
-
         IsCanUpdateCashServiceStatus = false;
-
+        NickName = string.Empty;
         CDNUri = string.Empty;
     }
+    public string NickName { get; set; }
     public bool IsCashServiceEnabled { get; set; }
 
     public TotalCashMember TotalCashMember { get; set; }
