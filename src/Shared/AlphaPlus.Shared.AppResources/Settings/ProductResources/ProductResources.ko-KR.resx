@@ -537,58 +537,31 @@
   <data name="ResetSecurityCode" xml:space="preserve">
     <value>보안 코드 재설정</value>
   </data>
-  <data name="AreYouSureToOpenAccount" xml:space="preserve">
-    <value>이 계정을 개방하시겠습니까?</value>
+  <data name="ConfirmUnlockAccessViewModelInCaseFalseOTPSC" xml:space="preserve">
+    <value>이 계정은 여러 번의 OTP/보안 코드 인증 시도 실패로 인해 잠겼습니다. 잠금을 해제하시겠습니까?</value>
   </data>
-  <data name="AccountIndirectlySuspended" xml:space="preserve">
-    <value>이 계정은 상위 라인에 의해 간접적으로 일시정지되었습니다</value>
+  <data name="ConfirmUnlockAccessViewModelInCaseFalsePassword" xml:space="preserve">
+    <value>이 계정은 여러 번의 비밀번호 시도 실패로 인해 잠겼습니다. 잠금을 해제하시겠습니까?</value>
   </data>
-  <data name="AccountSuspended" xml:space="preserve">
-    <value>이 계정은 일시정지되었습니다.</value>
+  <data name="ConfirmUnlockAccessViewModelText" xml:space="preserve">
+    <value>잠긴 접근</value>
   </data>
-  <data name="UnsuspendUsername" xml:space="preserve">
-    <value>&lt;username&gt; 일시정지 해제</value>
+  <data name="ConfirmUnlockAccessViewModelInCaseNone" xml:space="preserve">
+    <value>없음</value>
   </data>
-  <data name="SuccessfullyUpdated" xml:space="preserve">
-    <value>성공적으로 업데이트되었습니다!</value>
+  <data name="ConfirmProtectedViewModelInCaseChangeProtectedStatusMessage" xml:space="preserve">
+    <value>선택한 계정의 보호 상태를 변경하시겠습니까? 보호 상태는 비상 상황에서만 켜야 합니다.</value>
   </data>
-  <data name="EditMultipleSportsbook2" xml:space="preserve">
-    <value>다중 스포츠북 2 편집</value>
+  <data name="ConfirmProtectedViewModelText" xml:space="preserve">
+    <value>보호됨</value>
   </data>
-  <data name="EditMultipleLiveCasino" xml:space="preserve">
-    <value>다중 라이브 카지노 편집</value>
+  <data name="EditMultipleProtectedStatusText" xml:space="preserve">
+    <value>다중 보호 상태 편집</value>
   </data>
-  <data name="EditMultipleMacauGames" xml:space="preserve">
-    <value>다중 마카오 게임 편집</value>
+  <data name="EditMultipleAutoTransferText" xml:space="preserve">
+    <value>다중 자동 이체 편집</value>
   </data>
-  <data name="EditMultipleSuspendedStatus" xml:space="preserve">
-    <value>다중 일시정지 상태 편집</value>
-  </data>
-  <data name="EditMultipleClosedStatus" xml:space="preserve">
-    <value>다중 종료 상태 편집</value>
-  </data>
-  <data name="OpenUsername" xml:space="preserve">
-    <value>&lt;username&gt; 개방</value>
-  </data>
-  <data name="AccountIndirectlyClosed" xml:space="preserve">
-    <value>이 계정은 상위 라인에 의해 간접적으로 종료되었습니다</value>
-  </data>
-  <data name="ParlayMaxPayout" xml:space="preserve">
-    <value>팔레이 최대 지급액</value>
-  </data>
-  <data name="EditMultipleParlayMaxPayout" xml:space="preserve">
-    <value>다중 팔레이 최대 지급액 편집</value>
-  </data>
-  <data name="ContactInfo" xml:space="preserve">
-    <value>연락처 정보</value>
-  </data>
-  <data name="UplineDisabledOutrightBetting" xml:space="preserve">
-    <value>상위 라인이 우승/순위 베팅을 비활성화했습니다</value>
-  </data>
-  <data name="RemoveOTP" xml:space="preserve">
-    <value>OTP 제거</value>
-  </data>
-  <data name="ResetSecurityCode" xml:space="preserve">
-    <value>보안 코드 재설정</value>
+  <data name="ConfirmAllowAutoTransferViewModelText" xml:space="preserve">
+    <value>자동 이체</value>
   </data>
 </root>

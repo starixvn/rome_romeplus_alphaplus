@@ -426,4 +426,325 @@
   <data name="ADBTOffError" xml:space="preserve">
     <value>상위 관리자가 종일 잔액 이체 사용을 금지했습니다. 페이지가 자동으로 새로고침됩니다.</value>
   </data>
+  <data name="AgentBalance" xml:space="preserve">
+    <value>에이전트 잔액</value>
+  </data>
+  <data name="AgentCash" xml:space="preserve">
+    <value>에이전트 현금</value>
+  </data>
+  <data name="WarningMultipleTransfer" xml:space="preserve">
+    <value>경고: 어제 잔액이 완전히 이체되면 아래 {0}강조된{1} 회원들은 음수 베팅 크레딧을 가지게 되어 주어진 크레딧보다 더 많이 잃을 수 있습니다.</value>
+  </data>
+  <data name="CurrentStatusAllTransactions" xml:space="preserve">
+    <value>모든 거래의 현재 상태</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>고객</value>
+  </data>
+  <data name="OutTxn" xml:space="preserve">
+    <value>출금 거래</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>마지막 로그인</value>
+  </data>
+  <data name="LastTxn" xml:space="preserve">
+    <value>마지막 거래</value>
+  </data>
+  <data name="YouCanTransferUpTo" xml:space="preserve">
+    <value>최대 이체 가능 금액</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>베팅 크레딧</value>
+  </data>
+  <data name="TransferCondition" xml:space="preserve">
+    <value>이체 조건</value>
+  </data>
+  <data name="Weekly" xml:space="preserve">
+    <value>주간</value>
+  </data>
+  <data name="AccountBalanceTransferCondition" xml:space="preserve">
+    <value>계정 잔액 이체 조건</value>
+  </data>
+  <data name="PleaseChooseDaily" xml:space="preserve">
+    <value>7일 대신 일간을 선택하세요.</value>
+  </data>
+  <data name="PleaseSelectOneDay" xml:space="preserve">
+    <value>최소 하루를 선택하세요.</value>
+  </data>
+  <data name="TransferConditionByCompany" xml:space="preserve">
+    <value>일간 이체 설정이 회사 자동 이체 프로세스를 통해 적용되었습니다. 주간 이체 조건을 조정할 수 없습니다.</value>
+  </data>
+  <data name="TransferConditionByUpline" xml:space="preserve">
+    <value>일간 이체 설정이 상위 관리자에 의해 적용되었습니다. 주간 이체 조건을 조정할 수 없습니다.</value>
+  </data>
+  <data name="ConditionChangeFailed_AutoJobRunning" xml:space="preserve">
+    <value>자동 이체 프로세스가 현재 이 라인에서 진행 중입니다. 이체 조건을 변경하기 전에 프로세스가 완료될 때까지 몇 분 기다려주세요.</value>
+  </data>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>성공적으로 업데이트되었습니다</value>
+  </data>
+  <data name="ConfirmUpdateTransferCondition" xml:space="preserve">
+    <value>모든 하위 라인에 대해 이 이체 조건을 업데이트하시겠습니까?</value>
+  </data>
+  <data name="UpdateTransferCondition_Note" xml:space="preserve">
+    <value>참고: 이체 조건을 변경하면 이 계정 아래의 모든 하위 라인의 자동 이체 상태와 일정에 영향을 미칩니다. 작업을 선택하세요:</value>
+  </data>
+  <data name="UpdateTransferCondition_OnAuto" xml:space="preserve">
+    <value>새 이체 조건에 맞게 현재 일정을 조정하여 자동 이체를 활성화 상태로 유지합니다.</value>
+  </data>
+  <data name="UpdateTransferCondition_OffAuto" xml:space="preserve">
+    <value>모든 하위 라인에 대해 자동 이체를 비활성화하고 자동 이체 일정을 지웁니다</value>
+  </data>
+  <data name="TransferConditionChangeToastTitle" xml:space="preserve">
+    <value>자동 이체 설정</value>
+  </data>
+  <data name="TransferConditionChangeToastBody" xml:space="preserve">
+    <value>이체 조건이 상위 관리자에 의해 변경되었습니다. 하위 라인의 자동 이체 상태와 일정이 그에 따라 조정되었습니다. {0}을 클릭하여 세부사항을 확인하세요.</value>
+  </data>
+  <data name="TransferConditionChange_PersonalMessage" xml:space="preserve">
+    <value>이체 조건이 상위 관리자에 의해 변경되었습니다. 다음 고객에 대해 자동 이체 상태와 일정이 조정되었습니다: {0}. 세부사항은 이체 기능에서 확인할 수 있습니다.</value>
+  </data>
+  <data name="Received" xml:space="preserve">
+    <value>수령됨</value>
+  </data>
+  <data name="NotReceived" xml:space="preserve">
+    <value>미수령</value>
+  </data>
+  <data name="AlreadyPaid" xml:space="preserve">
+    <value>이미 지급됨</value>
+  </data>
+  <data name="Paid" xml:space="preserve">
+    <value>지급됨</value>
+  </data>
+  <data name="Unpaid" xml:space="preserve">
+    <value>미지급</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>날짜 범위</value>
+  </data>
+  <data name="RewardDetail" xml:space="preserve">
+    <value>보상 상세</value>
+  </data>
+  <data name="RewardPayment" xml:space="preserve">
+    <value>보상 지급</value>
+  </data>
+  <data name="Program" xml:space="preserve">
+    <value>프로그램</value>
+  </data>
+  <data name="NoProgramFound" xml:space="preserve">
+    <value>프로그램을 찾을 수 없습니다</value>
+  </data>
+  <data name="SearchProgram" xml:space="preserve">
+    <value>프로그램 검색</value>
+  </data>
+  <data name="PaymentStatus" xml:space="preserve">
+    <value>지급 상태</value>
+  </data>
+  <data name="MemberPaymentStatus" xml:space="preserve">
+    <value>회원 지급 상태</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>복사</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>복사됨</value>
+  </data>
+  <data name="HideFilter" xml:space="preserve">
+    <value>필터 숨기기</value>
+  </data>
+  <data name="ShowFilter" xml:space="preserve">
+    <value>필터 보기</value>
+  </data>
+  <data name="ConfirmPayment" xml:space="preserve">
+    <value>지급 확인</value>
+  </data>
+  <data name="ShowAllErrorPayments" xml:space="preserve">
+    <value>실패한 모든 지급 보기</value>
+  </data>
+  <data name="PaymentDate" xml:space="preserve">
+    <value>지급일</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>피드백</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>생성일</value>
+  </data>
+  <data name="UpdateRewardPaymentStatusConfirm" xml:space="preserve">
+    <value>선택한 계정의 지급을 확인하시겠습니까?</value>
+  </data>
+  <data name="UpdateRewardPaymentStatusSuccessfully" xml:space="preserve">
+    <value>이 지급이 성공적으로 확인되었습니다.</value>
+  </data>
+  <data name="UpdateAllRewardPaymentStatusSuccessfully" xml:space="preserve">
+    <value>모든 지급이 성공적으로 확인되었습니다.</value>
+  </data>
+  <data name="UpdateManyRewardPaymentStatusSuccessfully" xml:space="preserve">
+    <value>다음 지급을 제외한 모든 지급이 성공적으로 확인되었습니다:</value>
+  </data>
+  <data name="Last3Months" xml:space="preserve">
+    <value>최근 3개월</value>
+  </data>
+  <data name="NoColumnsFound" xml:space="preserve">
+    <value>열을 찾을 수 없습니다</value>
+  </data>
+  <data name="ClearCreditStep_Super_DirectMember" xml:space="preserve">
+    <value>{0}의 직접 회원</value>
+  </data>
+  <data name="TransferStep_Super_DirectMember" xml:space="preserve">
+    <value>직접 회원에서 {0}로</value>
+  </data>
+  <data name="TotalCash" xml:space="preserve">
+    <value>총 현금</value>
+  </data>
+  <data name="TotalBalance" xml:space="preserve">
+    <value>총 잔액</value>
+  </data>
+  <data name="YesterdayCash" xml:space="preserve">
+    <value>어제의 현금</value>
+  </data>
+  <data name="TotalCashTotalBalanceNote" xml:space="preserve">
+    <value>회원/직접 회원의 경우 데이터는 총 잔액을 나타냅니다.&lt;br/&gt;다른 하위 라인의 경우 총 현금을 나타냅니다.</value>
+  </data>
+  <data name="ADBTOnError" xml:space="preserve">
+    <value>상위 관리자가 종일 잔액 이체 사용을 허용했습니다. 페이지가 자동으로 새로고침됩니다.</value>
+  </data>
+  <data name="ADBTOffError" xml:space="preserve">
+    <value>상위 관리자가 종일 잔액 이체 사용을 금지했습니다. 페이지가 자동으로 새로고침됩니다.</value>
+  </data>
+  <data name="TotalCashSlashTotalBalance" xml:space="preserve">
+    <value>총 현금/&lt;br/&gt;총 잔액</value>
+  </data>
+  <data name="TransferAllAndClearCredit" xml:space="preserve">
+    <value>모든 이체 및 크레딧 정리</value>
+  </data>
+  <data name="Calculate" xml:space="preserve">
+    <value>계산</value>
+  </data>
+  <data name="TransferAllAndClearCreditNote" xml:space="preserve">
+    <value>모든 이체 및 크레딧 정리는 현재 규칙을 따르지만, 모든 나열된 레벨에 적용됩니다.</value>
+  </data>
+  <data name="DataChangedWarning" xml:space="preserve">
+    <value>계산 중에 일부 데이터가 변경되었습니다. 아래 표의 강조된 수치를 확인하세요.</value>
+  </data>
+  <data name="TransferAll" xml:space="preserve">
+    <value>모든 이체</value>
+  </data>
+  <data name="ClearCredit" xml:space="preserve">
+    <value>크레딧 정리</value>
+  </data>
+  <data name="Step" xml:space="preserve">
+    <value>단계</value>
+  </data>
+  <data name="TransferableAmount" xml:space="preserve">
+    <value>이체 가능 금액</value>
+  </data>
+  <data name="ClearableCredit" xml:space="preserve">
+    <value>정리 가능한 크레딧</value>
+  </data>
+  <data name="ClearCreditConfirm" xml:space="preserve">
+    <value>모든 이체 및 크레딧 정리를 하시겠습니까?</value>
+  </data>
+  <data name="TransferAllConfirm" xml:space="preserve">
+    <value>모든 이체를 하시겠습니까?</value>
+  </data>
+  <data name="TransferredAmount" xml:space="preserve">
+    <value>이체된 금액</value>
+  </data>
+  <data name="ClearedCredit" xml:space="preserve">
+    <value>정리된 크레딧</value>
+  </data>
+  <data name="BadRequest" xml:space="preserve">
+    <value>잘못된 요청입니다.</value>
+  </data>
+  <data name="OutstandingShortcut" xml:space="preserve">
+    <value>미정산 거래</value>
+  </data>
+  <data name="ConfirmTransfer" xml:space="preserve">
+    <value>이체하시겠습니까?</value>
+  </data>
+  <data name="TransferAmountIs" xml:space="preserve">
+    <value>이체 금액은</value>
+  </data>
+  <data name="InvalidValue" xml:space="preserve">
+    <value>유효하지 않은 값입니다.</value>
+  </data>
+  <data name="TransferStep_Super_Member" xml:space="preserve">
+    <value>회원에서 에이전트로</value>
+  </data>
+  <data name="TransferStep_Super_Agent" xml:space="preserve">
+    <value>에이전트에서 {0}로</value>
+  </data>
+  <data name="TransferStep_Super_Master" xml:space="preserve">
+    <value>{0}에서 귀하의 계정으로</value>
+  </data>
+  <data name="ClearCreditStep_Super_Member" xml:space="preserve">
+    <value>{0}의 회원들</value>
+  </data>
+  <data name="ClearCreditStep_Super_Agent" xml:space="preserve">
+    <value>{0}의 에이전트들</value>
+  </data>
+  <data name="ClearCreditStep_Super_Master" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="AllYesterdayBalance" xml:space="preserve">
+    <value>모든 어제 잔액</value>
+  </data>
+  <data name="MasterBalance" xml:space="preserve">
+    <value>마스터 잔액</value>
+  </data>
+  <data name="MasterCash" xml:space="preserve">
+    <value>마스터 현금</value>
+  </data>
+  <data name="UsedCredit" xml:space="preserve">
+    <value>사용된 크레딧</value>
+  </data>
+  <data name="TransferAllSuccess" xml:space="preserve">
+    <value>모든 이체가 성공했습니다.</value>
+  </data>
+  <data name="ClearCreditSuccess" xml:space="preserve">
+    <value>크레딧 정리가 성공했습니다.</value>
+  </data>
+  <data name="Transfer_all" xml:space="preserve">
+    <value>모든 이체</value>
+  </data>
+  <data name="Clear_credit" xml:space="preserve">
+    <value>크레딧 정리</value>
+  </data>
+  <data name="TransferAllUnsuccessfully" xml:space="preserve">
+    <value>모든 이체가 실패했습니다. 다시 시도하세요.</value>
+  </data>
+  <data name="ClearCreditUnsuccessfully" xml:space="preserve">
+    <value>크레딧 정리가 실패했습니다. 다시 시도하세요.</value>
+  </data>
+  <data name="TransferStep_Master_Member" xml:space="preserve">
+    <value>회원에서 {0}로</value>
+  </data>
+  <data name="TransferStep_Master_Agent" xml:space="preserve">
+    <value>{0}에서 귀하의 계정으로</value>
+  </data>
+  <data name="ClearCreditStep_Master_Member" xml:space="preserve">
+    <value>모든 회원</value>
+  </data>
+  <data name="ClearCreditStep_Master_Agent" xml:space="preserve">
+    <value>에이전트 {0}</value>
+  </data>
+  <data name="TransferAll_ClearCredit_Errors" xml:space="preserve">
+    <value>다음 이유로 인해 모든 이체 및 크레딧 정리 작업을 사용할 수 없습니다:</value>
+  </data>
+  <data name="CanViewReportDataFrom" xml:space="preserve">
+    <value>{0}부터 리포트 데이터를 볼 수 있습니다.</value>
+  </data>
+  <data name="ActionDate" xml:space="preserve">
+    <value>작업 날짜</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>설명</value>
+  </data>
+  <data name="DisallowedAllDayBalanceTransferError" xml:space="preserve">
+    <value>상위 관리자가 종일 잔액 이체 사용을 허용하지 않았습니다. 페이지가 자동으로 새로고침됩니다.</value>
+  </data>
+  <data name="PendingTransfer3rd" xml:space="preserve">
+    <value>제3자 대기 이체</value>
+  </data>
 </root>

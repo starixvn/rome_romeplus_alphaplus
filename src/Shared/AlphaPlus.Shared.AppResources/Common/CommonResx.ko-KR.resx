@@ -98,7 +98,7 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -162,6 +162,9 @@
   <data name="ConfirmAllowOutrightViewModelInCaseEnabledMessage" xml:space="preserve">
     <value>이 고객의 기타 베팅을 허용하시겠습니까?</value>
   </data>
+  <data name="ConfirmAllowOutrightViewModelText" xml:space="preserve">
+    <value>기타 베팅 허용</value>
+  </data>
   <data name="ConfirmClosedViewModelInCaseChangeClosedStatusMessage" xml:space="preserve">
     <value>이 고객의 계정을 비활성화 상태로 변경하시겠습니까?</value>
   </data>
@@ -170,6 +173,9 @@
   </data>
   <data name="ConfirmClosedViewModelInCaseOpenedMemberMessage" xml:space="preserve">
     <value>이 계정을 활성화하시겠습니까?</value>
+  </data>
+  <data name="ConfirmClosedViewModelText" xml:space="preserve">
+    <value>비활성화</value>
   </data>
   <data name="ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage" xml:space="preserve">
     <value>고객님의 스포츠북 승리 티켓에 대한 더블 수수료 기능을 비활성화하시겠습니까? 알림: 해당 에이전트의 모든 회원도 비활성화됩니다.</value>
@@ -183,6 +189,9 @@
   <data name="ConfirmDoubleCommViewModelInCaseEnableMasterOrAgentMessage" xml:space="preserve">
     <value>이 고객의 스포츠북 승리 티켓에 대한 더블 수수료 기능을 활성화하시겠습니까? 주의: 이 에이전트 소속의 모든 회원도 동일하게 적용됩니다.</value>
   </data>
+  <data name="ConfirmDoubleCommViewModelText" xml:space="preserve">
+    <value>더블 수수료</value>
+  </data>
   <data name="ConfirmSuspendedViewModelInCaseSuspendedMasterOrAgentMessage" xml:space="preserve">
     <value>이 고객의 계정을 일시정지로 변경하시겠습니까? 주의! 이 에이전트 소속의 모든 회원의 계정도 일시정지됩니다.</value>
   </data>
@@ -195,6 +204,9 @@
   <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMemberMessage" xml:space="preserve">
     <value>이 고객의 계정을 일시정지 해제하시겠습니까?</value>
   </data>
+  <data name="ConfirmSuspendedViewModelText" xml:space="preserve">
+    <value>일시정지</value>
+  </data>
   <data name="CreatedDate" xml:space="preserve">
     <value>작성일</value>
   </data>
@@ -203,6 +215,9 @@
   </data>
   <data name="DownlineList" xml:space="preserve">
     <value>하부라인 목록</value>
+  </data>
+  <data name="EditInfoViewModelText" xml:space="preserve">
+    <value>정보</value>
   </data>
   <data name="Fax" xml:space="preserve">
     <value>팩스</value>
@@ -265,10 +280,22 @@
     <value>미정산</value>
   </data>
   <data name="Phone" xml:space="preserve">
-    <value>전화</value>
+    <value>전화번호</value>
+  </data>
+  <data name="RemoveOtpViewModelText" xml:space="preserve">
+    <value>OTP 제거</value>
+  </data>
+  <data name="ResetPasswordViewModelText" xml:space="preserve">
+    <value>비밀번호 재설정</value>
+  </data>
+  <data name="ResetSecurityCodeViewModelText" xml:space="preserve">
+    <value>보안 코드 재설정</value>
   </data>
   <data name="Setting" xml:space="preserve">
     <value>설정</value>
+  </data>
+  <data name="SportsbookMinPTViewModelText" xml:space="preserve">
+    <value>스포츠북 최소 PT</value>
   </data>
   <data name="Statement" xml:space="preserve">
     <value>명세서</value>
@@ -297,6 +324,9 @@
   <data name="TotalMemberActiveClosed" xml:space="preserve">
     <value>총 회원 활성/비활성/일시정지</value>
   </data>
+  <data name="TransferViewModelText" xml:space="preserve">
+    <value>이체</value>
+  </data>
   <data name="UsedCredit" xml:space="preserve">
     <value>사용된 크레딧</value>
   </data>
@@ -309,44 +339,14 @@
   <data name="YesterdayCash" xml:space="preserve">
     <value>어제 현금</value>
   </data>
-  <data name="ConfirmAllowOutrightViewModelText" xml:space="preserve">
-    <value>기타 베팅 허용</value>
-  </data>
-  <data name="ConfirmClosedViewModelText" xml:space="preserve">
-    <value>비활성화</value>
-  </data>
-  <data name="ConfirmDoubleCommViewModelText" xml:space="preserve">
-    <value>더블 수수료</value>
-  </data>
-  <data name="ConfirmSuspendedViewModelText" xml:space="preserve">
-    <value>일시정지</value>
-  </data>
-  <data name="EditInfoViewModelText" xml:space="preserve">
-    <value>정보</value>
-  </data>
   <data name="NoInfo" xml:space="preserve">
     <value>사용 가능한 정보가 없습니다</value>
   </data>
   <data name="Page" xml:space="preserve">
     <value>페이지</value>
   </data>
-  <data name="RemoveOtpViewModelText" xml:space="preserve">
-    <value>OTP 제거</value>
-  </data>
-  <data name="ResetPasswordViewModelText" xml:space="preserve">
-    <value>비밀번호 재설정</value>
-  </data>
-  <data name="ResetSecurityCodeViewModelText" xml:space="preserve">
-    <value>보안 코드 재설정</value>
-  </data>
   <data name="ShowContactInfo" xml:space="preserve">
     <value>연락처 정보</value>
-  </data>
-  <data name="SportsbookMinPTViewModelText" xml:space="preserve">
-    <value>스포츠북 최소 PT</value>
-  </data>
-  <data name="TransferViewModelText" xml:space="preserve">
-    <value>이체</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>성공적으로 업데이트되었습니다!</value>
@@ -406,10 +406,19 @@
     <value>스포츠북 2</value>
   </data>
   <data name="UnuspendStatusPopupHeader" xml:space="preserve">
-    <value>일시정지 해제</value>
+    <value>&lt;username&gt; 일시정지 해제</value>
   </data>
   <data name="SuspendedByUplineTooltip" xml:space="preserve">
     <value>이 계정은 상위 라인에 의해 간접적으로 일시정지되었습니다</value>
+  </data>
+  <data name="ConfirmTransferBalanceDailyViewModelText" xml:space="preserve">
+    <value>종일 잔액 이체</value>
+  </data>
+  <data name="ConfirmTransferBalanceDailyViewModelMessage" xml:space="preserve">
+    <value>{0}의 이체 모드를 변경하시겠습니까?</value>
+  </data>
+  <data name="ConfirmTransferBalanceDailyViewModelTooltip" xml:space="preserve">
+    <value>종일 잔액 이체 모드를 허용하려면 체크하세요</value>
   </data>
   <data name="CreateMemberWithQRCode" xml:space="preserve">
     <value>QR 코드로 회원 생성</value>
@@ -423,26 +432,29 @@
   <data name="ClosedByArchive" xml:space="preserve">
     <value>이 계정은 비활성으로 인해 종료되었습니다.</value>
   </data>
+  <data name="DisallowedAllDayBalanceTransferError" xml:space="preserve">
+    <value>상위 라인이 종일 잔액 이체 사용을 허용하지 않았습니다. 페이지가 자동으로 새로고침됩니다.</value>
+  </data>
   <data name="ShowMore" xml:space="preserve">
     <value>더 보기</value>
   </data>
   <data name="ShowLess" xml:space="preserve">
     <value>접기</value>
   </data>
-  <data name="lblNew" xml:space="preserve">
-    <value>새로</value>
+  <data name="ADBTChangeToastMessage" xml:space="preserve">
+    <value>종일 잔액 이체가 이제 귀하의 계정에 활성화되었습니다. 결과적으로 자동 이체 일정이 삭제되었으며, 데이터 정확성을 위해 하위 라인에 대해 설정한 자동 이체 구성이 비활성화됩니다.</value>
   </data>
-  <data name="lblEditMember" xml:space="preserve">
-    <value>회원 편집</value>
+  <data name="ADBTChangeToastTitle" xml:space="preserve">
+    <value>자동 이체 설정</value>
   </data>
-  <data name="MemberWinNote" xml:space="preserve">
-    <value>&lt;b&gt;승리 시&lt;/b&gt;: 회원이 스포츠북 진행 중인 베팅 티켓에서 받을 수 있는 잠재적 순수익 금액. &lt;b&gt;귀하의 위험 금액&lt;/b&gt;: 회원이 티켓에서 승리할 경우 귀하가 부담하는 잠재적 위험으로, 다음과 같이 계산됩니다: &lt;b&gt;귀하의 위험 금액 = 승리 시 금액 * 귀하의 포지션. &lt;/b&gt;이 값들은 &lt;b&gt;스포츠북 정산된 티켓이나 다른 제품 티켓&lt;/b&gt;(진행 중 및 정산된 모두)에는 적용되지 않으며, &lt;b&gt;'해당 없음'&lt;/b&gt;으로 표시됩니다.</value>
+  <data name="ADBTChangeFailed_AutoJobRunning" xml:space="preserve">
+    <value>자동 이체 프로세스가 현재 진행 중입니다. 이체 모드를 변경하기 전에 몇 분 내에 프로세스가 완료될 때까지 기다려주세요.</value>
   </data>
-  <data name="DirectMember" xml:space="preserve">
-    <value>직접 회원</value>
+  <data name="ADBTConditionChange_PersonalMessage" xml:space="preserve">
+    <value>종일 잔액 이체가 이제 귀하의 계정에 활성화되었습니다. 결과적으로 자동 이체 일정이 지워졌으며, 다음 고객에 대한 하위 라인의 자동 이체가 비활성화됩니다: {0}. 자세한 내용은 이체 기능에서 확인할 수 있습니다.</value>
   </data>
-  <data name="MasterAgent" xml:space="preserve">
-    <value>마스터 에이전트</value>
+  <data name="ProductStatusWarningMessage" xml:space="preserve">
+    <value>회사 정책에 따라 하위 라인에서 이 제품을 비활성화할 수 없습니다.</value>
   </data>
   <data name="AddNewMaster" xml:space="preserve">
     <value>새 마스터 추가</value>
@@ -479,32 +491,5 @@
   </data>
   <data name="MasterAgent" xml:space="preserve">
     <value>마스터 에이전트</value>
-  </data>
-  <data name="ConfirmTransferBalanceDailyViewModelText" xml:space="preserve">
-    <value>종일 잔액 이체</value>
-  </data>
-  <data name="ConfirmTransferBalanceDailyViewModelMessage" xml:space="preserve">
-    <value>{0}의 이체 모드를 변경하시겠습니까?</value>
-  </data>
-  <data name="ConfirmTransferBalanceDailyViewModelTooltip" xml:space="preserve">
-    <value>종일 잔액 이체 모드를 허용하려면 체크하세요</value>
-  </data>
-  <data name="DisallowedAllDayBalanceTransferError" xml:space="preserve">
-    <value>상위 라인이 종일 잔액 이체 사용을 허용하지 않았습니다. 페이지가 자동으로 새로고침됩니다.</value>
-  </data>
-  <data name="ADBTChangeToastTitle" xml:space="preserve">
-    <value>자동 이체 설정</value>
-  </data>
-  <data name="ADBTChangeToastMessage" xml:space="preserve">
-    <value>종일 잔액 이체가 이제 귀하의 계정에 활성화되었습니다. 결과적으로 자동 이체 일정이 삭제되었으며, 데이터 정확성을 위해 하위 라인에 대해 설정한 자동 이체 구성이 비활성화됩니다.</value>
-  </data>
-  <data name="ADBTChangeFailed_AutoJobRunning" xml:space="preserve">
-    <value>자동 이체 프로세스가 현재 진행 중입니다. 이체 모드를 변경하기 전에 몇 분 내에 프로세스가 완료될 때까지 기다려주세요.</value>
-  </data>
-  <data name="ADBTConditionChange_PersonalMessage" xml:space="preserve">
-    <value>종일 잔액 이체가 이제 귀하의 계정에 활성화되었습니다. 결과적으로 자동 이체 일정이 지워졌으며, 다음 고객에 대한 하위 라인의 자동 이체가 비활성화됩니다: {0}. 자세한 내용은 이체 기능에서 확인할 수 있습니다.</value>
-  </data>
-  <data name="ProductStatusWarningMessage" xml:space="preserve">
-    <value>회사 정책에 따라 하위 라인에서 이 제품을 비활성화할 수 없습니다.</value>
   </data>
 </root>

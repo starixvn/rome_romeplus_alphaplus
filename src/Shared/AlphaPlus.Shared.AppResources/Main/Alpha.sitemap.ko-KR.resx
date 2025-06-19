@@ -381,4 +381,109 @@
   <data name="PendingWithdrawal" xml:space="preserve">
     <value>출금 대기</value>
   </data>
+  <data name="Beta" xml:space="preserve">
+    <value>베타</value>
+  </data>
+  <data name="ProgressiveGamesContribution" xml:space="preserve">
+    <value>프로그레시브 게임 기여도</value>
+  </data>
+  <data name="systemUpdate" xml:space="preserve">
+    <value>시스템</value>
+  </data>
+  <data name="chatbot" xml:space="preserve">
+    <value>챗봇</value>
+  </data>
+  <data name="problemAccountList" xml:space="preserve">
+    <value>문제 계정 목록</value>
+  </data>
+  <data name="BetChoiceMatching" xml:space="preserve">
+    <value>베팅 선택 매칭</value>
+  </data>
+  <data name="IndirectLoginAccount" xml:space="preserve">
+    <value>간접 로그인 계정</value>
+  </data>
+  <data name="DormantAccountList" xml:space="preserve">
+    <value>휴면 계정 목록</value>
+  </data>
+  <data name="BonusDetail" xml:space="preserve">
+    <value>보너스 상세</value>
+  </data>
+  <data name="BetCreditTracking" xml:space="preserve">
+    <value>베팅 크레딧 추적</value>
+  </data>
+  <data name="MyWatchlist" xml:space="preserve">
+    <value>내 관심목록</value>
+  </data>
+  <data name="SercurityCode" xml:space="preserve">
+    <value>보안</value>
+  </data>
+  <data name="riskManagement" xml:space="preserve">
+    <value>위험 관리</value>
+  </data>
+  <data name="MyThresholds" xml:space="preserve">
+    <value>내 임계값</value>
+  </data>
+  <data name="BackupDomains" xml:space="preserve">
+    <value>사용 가능한 도메인</value>
+  </data>
+  <data name="searchTickets" xml:space="preserve">
+    <value>티켓 검색</value>
+  </data>
+  <data name="AutoTransferMonitoring" xml:space="preserve">
+    <value>자동 이체 모니터</value>
+  </data>
+  <data name="PTTemplate" xml:space="preserve">
+    <value>포지션 취하기 템플릿</value>
+  </data>
+  <data name="MemberBettingBehavior" xml:space="preserve">
+    <value>회원 베팅 행동</value>
+  </data>
+  <data name="WhiteLabel" xml:space="preserve">
+    <value>화이트 라벨</value>
+  </data>
+  <data name="SettlementReport" xml:space="preserve">
+    <value>정산 보고서</value>
+  </data>
+  <data name="RewardPayment" xml:space="preserve">
+    <value>보상 지급</value>
+  </data>
+  <data name="SignInS1BackOffice" xml:space="preserve">
+    <value>백오피스 로그인</value>
+  </data>
+  <data name="SigninToNovaCasino" xml:space="preserve">
+    <value>노바 카지노 로그인</value>
+  </data>
+  <data name="JoinNovaCasinoNow" xml:space="preserve">
+    <value>노바 카지노 에이전트 신청</value>
+  </data>
+  <data name="newDirectMember" xml:space="preserve">
+    <value>직접 회원 생성</value>
+  </data>
+  <data name="cashService" xml:space="preserve">
+    <value>현금 서비스</value>
+  </data>
+  <data name="ManagePayments" xml:space="preserve">
+    <value>결제 관리</value>
+  </data>
+  <data name="PendingDeposit" xml:space="preserve">
+    <value>대기 중인 입금</value>
+  </data>
+  <data name="PendingWithdrawal" xml:space="preserve">
+    <value>대기 중인 출금</value>
+  </data>
+  <data name="TransactionHistory" xml:space="preserve">
+    <value>거래 내역</value>
+  </data>
+  <data name="promotion" xml:space="preserve">
+    <value>프로모션</value>
+  </data>
+  <data name="ManagePromotion" xml:space="preserve">
+    <value>프로모션 관리</value>
+  </data>
+  <data name="PendingPromotion" xml:space="preserve">
+    <value>대기 중인 프로모션</value>
+  </data>
+  <data name="PromotionReport" xml:space="preserve">
+    <value>프로모션 보고서</value>
+  </data>
 </root>

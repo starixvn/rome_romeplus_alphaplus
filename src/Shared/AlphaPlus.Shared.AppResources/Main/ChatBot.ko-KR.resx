@@ -110,10 +110,10 @@
     <value>잔액정보</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Description</value>
+    <value>설명</value>
   </data>
   <data name="MemberCredit" xml:space="preserve">
-    <value>Member Credit</value>
+    <value>회원 크레딧</value>
   </data>
   <data name="MemberOutstanding" xml:space="preserve">
     <value>회원 아웃스텐딩</value>
@@ -129,5 +129,374 @@
   </data>
   <data name="TodayWinLossNew" xml:space="preserve">
     <value>오늘의 승리/패배</value>
+  </data>
+  <data name="OneHour" xml:space="preserve">
+    <value>1시간</value>
+  </data>
+  <data name="ThreeHours" xml:space="preserve">
+    <value>3시간</value>
+  </data>
+  <data name="SixHours" xml:space="preserve">
+    <value>6시간</value>
+  </data>
+  <data name="TwelveHours" xml:space="preserve">
+    <value>12시간</value>
+  </data>
+  <data name="OneDay" xml:space="preserve">
+    <value>1일</value>
+  </data>
+  <data name="ThreeDays" xml:space="preserve">
+    <value>3일</value>
+  </data>
+  <data name="SevenDays" xml:space="preserve">
+    <value>7일</value>
+  </data>
+  <data name="FifteenDays" xml:space="preserve">
+    <value>15일</value>
+  </data>
+  <data name="ThirtyDays" xml:space="preserve">
+    <value>30일</value>
+  </data>
+  <data name="lblMessageSelfDestruct" xml:space="preserve">
+    <value>챗봇의 메시지는 다음 시간 후 자동 삭제됩니다</value>
+  </data>
+  <data name="UpdateMessageSelfDestructMessageFailedMessage" xml:space="preserve">
+    <value>자동 삭제 기간 업데이트에 실패했습니다. 다시 시도해 주세요.</value>
+  </data>
+  <data name="PleaseSetAction" xml:space="preserve">
+    <value>설정해 주세요</value>
+  </data>
+  <data name="IntroAction" xml:space="preserve">
+    <value>조회하고 싶은 작업을 활성화하려면</value>
+  </data>
+  <data name="cloneAccountNotification" xml:space="preserve">
+    <value>요청이 처리 중입니다. 잠시 기다려 주세요...</value>
+  </data>
+  <data name="cloneAccountSuccessMsg" xml:space="preserve">
+    <value>member01에서 새 회원이 복사되었습니다.</value>
+  </data>
+  <data name="HintMessage" xml:space="preserve">
+    <value>*힌트: 빠른 명령을 위해 다음을 입력하세요: </value>
+  </data>
+  <data name="actionExample" xml:space="preserve">
+    <value>작업 예시</value>
+  </data>
+  <data name="EnableDisable" xml:space="preserve">
+    <value>활성화/비활성화</value>
+  </data>
+  <data name="EnterOTP" xml:space="preserve">
+    <value>계정을 인증하기 위해 텔레그램 챗봇에서 보낸 OTP를 입력하세요 (OTP는 3분 내에 만료됩니다):</value>
+  </data>
+  <data name="GeneratePrivateQRCode" xml:space="preserve">
+    <value>QR 코드 생성</value>
+  </data>
+  <data name="HowItWorks" xml:space="preserve">
+    <value>작동 방식</value>
+  </data>
+  <data name="InstallTelegram" xml:space="preserve">
+    <value>Google Play/App Store에서 애플리케이션을 다운로드하거나 &lt;strong&gt;QR 코드 표시&lt;/strong&gt;를 클릭하고 휴대폰으로 QR 코드를 스캔하세요:</value>
+  </data>
+  <data name="IntroTelegramChatbot" xml:space="preserve">
+    <value>&lt;strong&gt;텔레그램 챗봇&lt;/strong&gt;을 사용하면 에이전시 사이트에 접속하지 않고도 챗봇과 소통하여 최신 비즈니스 정보를 얻을 수 있습니다. 챗봇은 무료, 보안, 암호화, 크로스 플랫폼 인스턴트 메시지 애플리케이션인 텔레그램에서 실행됩니다.&lt;br /&gt;챗봇을 설정하려면 아래 지침을 따르세요:</value>
+  </data>
+  <data name="IntroTelegramReports" xml:space="preserve">
+    <value>텔레그램 챗봇은 에이전시 사이트에 접속하지 않고도 비즈니스를 운영할 수 있는 다양한 보고서와 기능을 제공합니다.&lt;br /&gt;전체 명령 목록을 보려면 챗봇에서 "/help"를 입력하세요.</value>
+  </data>
+  <data name="InvalidOTP" xml:space="preserve">
+    <value>OTP가 올바르지 않습니다. 다시 시도해 주세요</value>
+  </data>
+  <data name="lblOTP" xml:space="preserve">
+    <value>OTP</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>알림/경고</value>
+  </data>
+  <data name="NotificationAndSettings" xml:space="preserve">
+    <value>알림 및 경고</value>
+  </data>
+  <data name="NotificationAndSettingsIntro" xml:space="preserve">
+    <value>텔레그램 챗봇이 알림과 보안 경고를 보내도록 설정하세요.</value>
+  </data>
+  <data name="OrUseThisLink" xml:space="preserve">
+    <value>또는 이 링크를 클릭하세요:</value>
+  </data>
+  <data name="OTPIsRequired" xml:space="preserve">
+    <value>OTP를 입력해 주세요.</value>
+  </data>
+  <data name="ProblemAccount" xml:space="preserve">
+    <value>문제 계정</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>보고서</value>
+  </data>
+  <data name="ResendOTPSuccessfully" xml:space="preserve">
+    <value>OTP를 다시 보냈습니다.</value>
+  </data>
+  <data name="ScanQRCode" xml:space="preserve">
+    <value>휴대 기기로 이 QR 코드를 스캔하여 텔레그램 챗봇을 열어보세요</value>
+  </data>
+  <data name="SeeHowItWorks" xml:space="preserve">
+    <value>작동 방식 보기</value>
+  </data>
+  <data name="SelectStartOnTelegramChatbot" xml:space="preserve">
+    <value>텔레그램 챗봇에서 &lt;strong&gt;시작&lt;/strong&gt;을 클릭한 후 다음 단계로 진행하세요</value>
+  </data>
+  <data name="StartSettingUp" xml:space="preserve">
+    <value>휴대폰 번호로 텔레그램에 가입하고 &lt;strong&gt;QR 코드 생성&lt;/strong&gt;을 클릭하세요</value>
+  </data>
+  <data name="Telegram" xml:space="preserve">
+    <value>텔레그램</value>
+  </data>
+  <data name="TelegramMessengerInc" xml:space="preserve">
+    <value>텔레그램 메신저 주식회사</value>
+  </data>
+  <data name="VerifyOTP" xml:space="preserve">
+    <value>OTP 확인</value>
+  </data>
+  <data name="YesterdayWinLossNotificationDescription" xml:space="preserve">
+    <value>매일 오후 3시(GMT-4)에 어제의 알파 승패 보고서 총 행을 전송</value>
+  </data>
+  <data name="YouCanTurnOnOff" xml:space="preserve">
+    <value>위의 알림을 여기서 또는 텔레그램 챗봇의 설정에서 켜거나 끌 수 있습니다.</value>
+  </data>
+  <data name="ChatID" xml:space="preserve">
+    <value>채팅 ID</value>
+  </data>
+  <data name="UnsubscribeTelegramBotWarning" xml:space="preserve">
+    <value>연결을 해제하시겠습니까?</value>
+  </data>
+  <data name="OTPIsExpiredMessage" xml:space="preserve">
+    <value>OTP가 만료되었습니다. 새 OTP를 생성하려면 &lt;span id="btnResend" class="link resend-code"&gt;여기를 클릭&lt;/span&gt;하세요.</value>
+  </data>
+  <data name="HasUnlinkedMessage" xml:space="preserve">
+    <value>텔레그램이 {0}에서 연결 해제되었습니다.</value>
+  </data>
+  <data name="StartBeforeInputOTP" xml:space="preserve">
+    <value>OTP를 입력하기 전에 텔레그램 챗봇에서 &lt;strong&gt;시작&lt;/strong&gt;을 클릭해 주세요.</value>
+  </data>
+  <data name="Introducing" xml:space="preserve">
+    <value>소개</value>
+  </data>
+  <data name="IntroducingContent" xml:space="preserve">
+    <value>24/7 가상 어시스턴트가 비즈니스를 쉽게 운영할 수 있도록 도와드립니다!</value>
+  </data>
+  <data name="IntroducingTitle" xml:space="preserve">
+    <value>텔레그램의 {0} 챗봇</value>
+  </data>
+  <data name="LatestNotifications" xml:space="preserve">
+    <value>최신 알림</value>
+  </data>
+  <data name="SetupNow" xml:space="preserve">
+    <value>지금 설정</value>
+  </data>
+  <data name="BalanceInfoReport" xml:space="preserve">
+    <value>잔액 정보 보고서</value>
+  </data>
+  <data name="OutstandingReport" xml:space="preserve">
+    <value>미정산 보고서</value>
+  </data>
+  <data name="WinLossReport" xml:space="preserve">
+    <value>승패 보고서</value>
+  </data>
+  <data name="EnabledTelegramOtpNotification" xml:space="preserve">
+    <value>텔레그램 OTP 알림 활성화</value>
+  </data>
+  <data name="Features" xml:space="preserve">
+    <value>보고서/기능</value>
+  </data>
+  <data name="Feature" xml:space="preserve">
+    <value>보고서/기능</value>
+  </data>
+  <data name="ChatBotTitle" xml:space="preserve">
+    <value>챗봇</value>
+  </data>
+  <data name="ChatbotSetup" xml:space="preserve">
+    <value>챗봇 설정</value>
+  </data>
+  <data name="InstallLetstalk" xml:space="preserve">
+    <value>Letstalk을 설치하고 무료 계정을 만드세요.</value>
+  </data>
+  <data name="YourLetstalkAccount" xml:space="preserve">
+    <value>귀하의 Letstalk ID</value>
+  </data>
+  <data name="link" xml:space="preserve">
+    <value>연결</value>
+  </data>
+  <data name="unLink" xml:space="preserve">
+    <value>연결 해제</value>
+  </data>
+  <data name="lblVerificationCode" xml:space="preserve">
+    <value>인증 코드</value>
+  </data>
+  <data name="Verify" xml:space="preserve">
+    <value>인증</value>
+  </data>
+  <data name="Resend" xml:space="preserve">
+    <value>재전송</value>
+  </data>
+  <data name="VerificationCodeIsInvalidOrExpired" xml:space="preserve">
+    <value>잘못되었거나 만료된 인증 코드입니다. 다시 시도하거나 새로운 코드를 요청하세요.</value>
+  </data>
+  <data name="UnsubscribeWarning" xml:space="preserve">
+    <value>Atom 연결 해제는 모든 기능을 중지합니다. 계속하시겠습니까?</value>
+  </data>
+  <data name="FunctionReport" xml:space="preserve">
+    <value>보고서</value>
+  </data>
+  <data name="FunctionNotification" xml:space="preserve">
+    <value>알림</value>
+  </data>
+  <data name="AccountDoesNotExist" xml:space="preserve">
+    <value>Letstalk ID가 존재하지 않습니다.</value>
+  </data>
+  <data name="InvalidCaptcha" xml:space="preserve">
+    <value>캡차가 유효하지 않습니다.</value>
+  </data>
+  <data name="AccountHasAlreadyBeenRegistered" xml:space="preserve">
+    <value>입력된 ID는 이미 다른 SMA 계정에 연결되고 인증되었습니다.</value>
+  </data>
+  <data name="OverMaxAddAccountTimes" xml:space="preserve">
+    <value>오늘 너무 많이 요청하셨습니다. 나중에 다시 시도해 주세요.</value>
+  </data>
+  <data name="Command" xml:space="preserve">
+    <value>명령</value>
+  </data>
+  <data name="ChatBotLanguage" xml:space="preserve">
+    <value>챗봇 언어</value>
+  </data>
+  <data name="IntroReport" xml:space="preserve">
+    <value>조회하고 싶은 보고서를 활성화하세요.</value>
+  </data>
+  <data name="IntroNotification" xml:space="preserve">
+    <value>받고 싶은 알림을 활성화하세요.</value>
+  </data>
+  <data name="Read" xml:space="preserve">
+    <value>읽기</value>
+  </data>
+  <data name="memberWinLoss" xml:space="preserve">
+    <value>회원 승패</value>
+  </data>
+  <data name="personalMessageSample" xml:space="preserve">
+    <value>상위 라인에 의해 최소 포지션 테이킹 값이 변경되었습니다. 하위 라인의 세부 정보를 확인해 주세요.</value>
+  </data>
+  <data name="specialAnnouncementSample" xml:space="preserve">
+    <value>소중한 고객님: 2018년 1월 18일부터 회사는 "홍콩"에서 에이전트 사이트 접근을 제한합니다. 주의해 주셔서 감사합니다!</value>
+  </data>
+  <data name="normalAnnouncementSample" xml:space="preserve">
+    <value>주의:[E-Sports] 경기가 취소되었으며, 받은 모든 베팅은 환불된 것으로 간주됩니다. 감사합니다!</value>
+  </data>
+  <data name="systemAnnouncementSample" xml:space="preserve">
+    <value>소중한 에이전트 여러분,&lt;br /&gt;마카오 게임에 새로운 게임이 추가되었음을 알려드립니다. 2018년 5월 10일부터 영향을 받는 베팅 한도 설정을 검토하실 수 있습니다.&lt;br /&gt;감사합니다.</value>
+  </data>
+  <data name="updateLanguageFailed" xml:space="preserve">
+    <value>챗봇 언어 업데이트에 실패했습니다. 다시 시도해 주세요.</value>
+  </data>
+  <data name="expiredOrDidNotRecieveTheCode" xml:space="preserve">
+    <value>코드를 받지 못하셨나요?</value>
+  </data>
+  <data name="IntroChatbot" xml:space="preserve">
+    <value>&lt;strong&gt;에이전시 챗봇 서비스&lt;/strong&gt;는 이 &lt;strong&gt;Letstalk IM&lt;/strong&gt;과 통합되어 사이트에 접근할 필요 없이 &lt;strong&gt;비즈니스의 최신 중요 정보를 편리하고 안전하게 받을 수 있습니다.&lt;/strong&gt;&lt;br /&gt;챗봇 설정을 시작하려면 아래 단계를 따르세요:</value>
+  </data>
+  <data name="IntroLetstalk" xml:space="preserve">
+    <value>는 대화를 강력하게 &lt;strong&gt;암호화&lt;/strong&gt;하는 가장 &lt;strong&gt;안전한 메신저&lt;/strong&gt;입니다.</value>
+  </data>
+  <data name="letstalkIM" xml:space="preserve">
+    <value>Letstalk IM</value>
+  </data>
+  <data name="letstalkTechLmd" xml:space="preserve">
+    <value>Letstalk Technology Limited</value>
+  </data>
+  <data name="pleaseInputLetstalkAccount" xml:space="preserve">
+    <value>챗봇 서비스와 연결할 Letstalk ID(화면 이름이 아님)를 입력하세요.</value>
+  </data>
+  <data name="AccountIsRequired" xml:space="preserve">
+    <value>Letstalk ID를 입력해 주세요.</value>
+  </data>
+  <data name="lblCaptcha" xml:space="preserve">
+    <value>캡차</value>
+  </data>
+  <data name="verificationCodeIsRequired" xml:space="preserve">
+    <value>인증 코드를 입력해 주세요.</value>
+  </data>
+  <data name="captchaIsRequired" xml:space="preserve">
+    <value>캡차를 입력해 주세요.</value>
+  </data>
+  <data name="reportExample" xml:space="preserve">
+    <value>보고서 예시</value>
+  </data>
+  <data name="notificationExample" xml:space="preserve">
+    <value>알림 예시</value>
+  </data>
+  <data name="howFunctionWorks" xml:space="preserve">
+    <value>기능 작동 방식</value>
+  </data>
+  <data name="pleaseSet" xml:space="preserve">
+    <value>설정해 주세요</value>
+  </data>
+  <data name="play" xml:space="preserve">
+    <value>재생</value>
+  </data>
+  <data name="playing" xml:space="preserve">
+    <value>재생 중</value>
+  </data>
+  <data name="EnterVerificationCode" xml:space="preserve">
+    <value>Letstalk ID를 인증하세요.</value>
+  </data>
+  <data name="IntroVerificationCode" xml:space="preserve">
+    <value>"&lt;strong&gt;Atom&lt;/strong&gt;"이라는 봇이 Letstalk IM을 통해 6자리 인증 코드를 보냈습니다. Letstalk ID를 인증하려면 인증 코드를 입력하세요.</value>
+  </data>
+  <data name="inputCommand" xml:space="preserve">
+    <value>명령 입력</value>
+  </data>
+  <data name="systemAnnouncement" xml:space="preserve">
+    <value>시스템 공지사항</value>
+  </data>
+  <data name="yesterdayWinLoss" xml:space="preserve">
+    <value>어제 승패</value>
+  </data>
+  <data name="ChatbotName" xml:space="preserve">
+    <value>챗봇 이름</value>
+  </data>
+  <data name="Atom" xml:space="preserve">
+    <value>Atom</value>
+  </data>
+  <data name="showQRCode" xml:space="preserve">
+    <value>QR 코드 표시</value>
+  </data>
+  <data name="hideQRCode" xml:space="preserve">
+    <value>QR 코드 숨기기</value>
+  </data>
+  <data name="pleaseSetNotification" xml:space="preserve">
+    <value>설정해 주세요</value>
+  </data>
+  <data name="LinkTooltip" xml:space="preserve">
+    <value>아래 기능을 사용하려면 Letstalk ID를 챗봇 서비스와 연결해 주세요.</value>
+  </data>
+  <data name="VerifyTooltip" xml:space="preserve">
+    <value>아래 기능을 사용하려면 Letstalk ID를 인증해 주세요.</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>계정</value>
+  </data>
+  <data name="OutstandingHiddenDownlinesCount" xml:space="preserve">
+    <value>97명의 추가 회원이 표시되지 않습니다.</value>
+  </data>
+  <data name="OutstandingHint" xml:space="preserve">
+    <value>힌트: 빠른 명령을 위해 다음을 입력하세요: /os 50</value>
+  </data>
+  <data name="YesterdayTotalBalance" xml:space="preserve">
+    <value>어제 잔액</value>
+  </data>
+  <data name="TodayWinLoss" xml:space="preserve">
+    <value>오늘 승패</value>
+  </data>
+  <data name="YesterdayWL" xml:space="preserve">
+    <value>어제 승패</value>
+  </data>
+  <data name="FifteenMinutes" xml:space="preserve">
+    <value>15분</value>
+  </data>
+  <data name="ThirtyMinutes" xml:space="preserve">
+    <value>30분</value>
   </data>
 </root>

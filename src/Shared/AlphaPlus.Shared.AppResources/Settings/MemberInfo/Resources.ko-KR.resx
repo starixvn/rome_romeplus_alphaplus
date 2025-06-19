@@ -1,110 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -117,35 +12,83 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Balance" xml:space="preserve">
-    <value>잔액</value>
+  <data name="Product" xml:space="preserve">
+    <value>상품</value>
+  </data>
+  <data name="DoubleComm" xml:space="preserve">
+    <value>더블 커미션</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>그룹</value>
+  </data>
+  <data name="MemberCommission" xml:space="preserve">
+    <value>회원 커미션</value>
+  </data>
+  <data name="Comm" xml:space="preserve">
+    <value>커미션</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>전체 상품</value>
   </data>
   <data name="BetCredit" xml:space="preserve">
     <value>배팅 크레딧</value>
   </data>
+  <data name="Balance" xml:space="preserve">
+    <value>잔액</value>
+  </data>
+  <data name="PlayForFunMemberRequest" xml:space="preserve">
+    <value>플레이 포 펀 - 회원 요청</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>번호</value>
+  </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
-    <value>가능한 정보가 없습니다</value>
+    <value>정보가 없습니다</value>
   </data>
   <data name="Outstanding" xml:space="preserve">
-    <value>대기 포인트</value>
+    <value>미결제</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>선택됨</value>
+  </data>
+  <data name="SelectProducts" xml:space="preserve">
+    <value>상품 선택</value>
+  </data>
+  <data name="ThereIsNoProduct" xml:space="preserve">
+    <value>상품이 없습니다.</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>사용자 이름</value>
+    <value>사용자명</value>
+  </data>
+  <data name="DisabledProductWarning" xml:space="preserve">
+    <value>이 상품은 비활성화되어 있습니다. 상위 계정에 문의하여 활성화하세요.</value>
   </data>
   <data name="Action" xml:space="preserve">
-    <value>실행</value>
+    <value>동작</value>
   </data>
   <data name="Refresh" xml:space="preserve">
     <value>새로고침</value>
   </data>
   <data name="Edit" xml:space="preserve">
-    <value>수정하다</value>
+    <value>수정</value>
+  </data>
+  <data name="SettingRequiredWarning" xml:space="preserve">
+    <value>상품을 활성화하려면 설정 구성이 필요합니다.</value>
+  </data>
+  <data name="NoSettingWarning" xml:space="preserve">
+    <value>아직 계정에 대한 상품 설정이 구성되지 않았습니다. 상위 계정에 문의하세요.</value>
+  </data>
+  <data name="Sync" xml:space="preserve">
+    <value>동기화</value>
+  </data>
+  <data name="PlayForFunGuidelines" xml:space="preserve">
+    <value>플레이 포 펀 - 가이드라인</value>
   </data>
   <data name="BetSettingFollows" xml:space="preserve">
     <value>베팅 설정 따르기</value>
   </data>
   <data name="CommissionSettingFollows" xml:space="preserve">
-    <value>수수료 설정 따르기</value>
+    <value>커미션 설정 따르기</value>
   </data>
   <data name="NewBetType" xml:space="preserve">
     <value>새로운 베팅 유형</value>
@@ -153,38 +96,56 @@
   <data name="PositionTakingSettingFollows" xml:space="preserve">
     <value>포지션 테이킹 설정 따르기</value>
   </data>
-  <data name="NewBetTypesBasketball" xml:space="preserve">
-    <value>2017년 5월 18일부터 적용되는 새로운 농구 베팅 유형:</value>
+  <data name="NewBetTypeEffectDate" xml:space="preserve">
+    <value>농구의 새로운 베팅 유형 적용일: {0}</value>
+  </data>
+  <data name="ProgressiveJackpotGames" xml:space="preserve">
+    <value>프로그레시브 잭팟 게임</value>
+  </data>
+  <data name="JackpotGames" xml:space="preserve">
+    <value>잭팟 게임</value>
+  </data>
+  <data name="TotalContributionRate" xml:space="preserve">
+    <value>총 기여율</value>
+  </data>
+  <data name="JackpotBetStake" xml:space="preserve">
+    <value>잭팟 베팅 금액</value>
+  </data>
+  <data name="ProgressiveJackpotHandbookDetails" xml:space="preserve">
+    <value>새로운 잭팟 게임의 세부 정보를 보려면 여기를 클릭하세요.</value>
+  </data>
+  <data name="ProgressiveJackpotHandbookTitle" xml:space="preserve">
+    <value>프로그레시브 잭팟 게임 - 핸드북</value>
   </data>
   <data name="CreditBalance" xml:space="preserve">
     <value>크레딧/잔액</value>
   </data>
   <data name="All" xml:space="preserve">
-    <value>모든</value>
+    <value>전체</value>
   </data>
   <data name="Closed" xml:space="preserve">
-    <value>중지</value>
+    <value>종료됨</value>
   </data>
   <data name="Disabled" xml:space="preserve">
-    <value>비활성화</value>
+    <value>비활성화됨</value>
   </data>
   <data name="Open" xml:space="preserve">
-    <value>열기</value>
+    <value>열림</value>
   </data>
   <data name="Suspended" xml:space="preserve">
-    <value>보류</value>
+    <value>정지됨</value>
   </data>
   <data name="EnterUsername" xml:space="preserve">
-    <value>사용자 이름 또는 성(이름)</value>
+    <value>사용자명 또는 이름/성</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value>상황</value>
+    <value>상태</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>확인</value>
+    <value>제출</value>
   </data>
   <data name="Credit" xml:space="preserve">
-    <value>포인트</value>
+    <value>크레딧</value>
   </data>
   <data name="FirstName" xml:space="preserve">
     <value>이름</value>
@@ -196,31 +157,37 @@
     <value>성</value>
   </data>
   <data name="LoginIP" xml:space="preserve">
-    <value>로그인 아이피</value>
+    <value>로그인 IP</value>
   </data>
   <data name="YesterdayBalance" xml:space="preserve">
-    <value>어제의 잔액</value>
+    <value>어제 잔액</value>
   </data>
   <data name="Of" xml:space="preserve">
-    <value>부터</value>
+    <value>중</value>
   </data>
   <data name="Page" xml:space="preserve">
     <value>페이지</value>
   </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>{from}에서 {to}까지, 총 {total}개 항목 표시</value>
+  </data>
+  <data name="AvailableCredit" xml:space="preserve">
+    <value>사용 가능 크레딧</value>
+  </data>
   <data name="DontShowAgain" xml:space="preserve">
-    <value>이 페이지를 다시 표시하지않습니다.</value>
+    <value>다시 표시하지 않기</value>
   </data>
   <data name="ShowHideColumnHint" xml:space="preserve">
-    <value>머리글에 마우스의 오른쪽 버튼을 클릭하시면 열 표시/숨기기  선택하실수 있습니다.</value>
+    <value>헤더를 마우스 오른쪽 버튼으로 클릭하여 열을 표시/숨기기</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>예</value>
   </data>
-  <data name="No" xml:space="preserve">
+  <data name="No2" xml:space="preserve">
     <value>아니오</value>
   </data>
   <data name="MemberWinLossLimit" xml:space="preserve">
-    <value>회원의  지급한도</value>
+    <value>회원 승패 한도</value>
   </data>
   <data name="SelectMaster" xml:space="preserve">
     <value>마스터 선택</value>
@@ -228,17 +195,17 @@
   <data name="SelectAgent" xml:space="preserve">
     <value>에이전트 선택</value>
   </data>
-  <data name="PlayerID" xml:space="preserve">
+  <data name="PlayerId" xml:space="preserve">
     <value>플레이어 ID</value>
   </data>
   <data name="UsernamePlaceHolder" xml:space="preserve">
-    <value>사용자 이름 또는 성(이름)</value>
+    <value>사용자명 또는 이름/성</value>
   </data>
   <data name="NoDataFound" xml:space="preserve">
-    <value>가능한 정보가 없습니다</value>
+    <value>정보가 없습니다</value>
   </data>
   <data name="AllAgent" xml:space="preserve">
-    <value>모든 에이전트</value>
+    <value>전체 에이전트</value>
   </data>
   <data name="AutoDailyResetLimit" xml:space="preserve">
     <value>자동 일일 한도 초기화</value>
@@ -246,281 +213,989 @@
   <data name="CurrentWinLossAmount" xml:space="preserve">
     <value>현재 승패 금액</value>
   </data>
-  <data name="MaximumWinOnGivenCredit" xml:space="preserve">
-    <value>최대 승리 금액 (지급된 크레딧 기준)</value>
+  <data name="MaximumWin" xml:space="preserve">
+    <value>최대 당첨 (지정 크레딧 기준)</value>
   </data>
   <data name="CurrentWinLimit" xml:space="preserve">
-    <value>현재 승리 한도 (%)</value>
+    <value>현재 당첨 한도 (%)</value>
   </data>
   <data name="CurrentLossLimit" xml:space="preserve">
     <value>현재 손실 한도 (%)</value>
   </data>
   <data name="MaximumLoss" xml:space="preserve">
-    <value>Maximum Loss</value>
+    <value>최대 손실</value>
   </data>
   <data name="RemainingBuyInAmount" xml:space="preserve">
-    <value>Remaining Buy-in Amount</value>
+    <value>남은 구매 금액</value>
+  </data>
+  <data name="Cash" xml:space="preserve">
+    <value>현금</value>
   </data>
   <data name="YesterdayCashBalance" xml:space="preserve">
-    <value>어제의 현금</value>
+    <value>어제 현금 잔액</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>취소</value>
+  <data name="DateNotified" xml:space="preserve">
+    <value>알림 날짜</value>
   </data>
-  <data name="Nickname" xml:space="preserve">
-    <value>닉네임</value>
+  <data name="ProblemMemberAccounts" xml:space="preserve">
+    <value>문제 회원 계정</value>
   </data>
-  <data name="To" xml:space="preserve">
-    <value>종료일</value>
+  <data name="ReviewStatus" xml:space="preserve">
+    <value>검토 상태</value>
   </data>
-  <data name="None" xml:space="preserve">
-    <value>없음</value>
+  <data name="MarkAsReviewed" xml:space="preserve">
+    <value>검토 완료로 표시</value>
   </data>
-  <data name="Select" xml:space="preserve">
-    <value>선택</value>
+  <data name="Reviewed" xml:space="preserve">
+    <value>검토됨</value>
   </data>
-  <data name="Member" xml:space="preserve">
-    <value>회원</value>
-  </data>
-  <data name="Agent" xml:space="preserve">
-    <value>에이전트</value>
+  <data name="NotReviewed" xml:space="preserve">
+    <value>미검토</value>
   </data>
   <data name="Master" xml:space="preserve">
     <value>마스터</value>
   </data>
+  <data name="Agent" xml:space="preserve">
+    <value>에이전트</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>회원</value>
+  </data>
+  <data name="SelectedAccounts" xml:space="preserve">
+    <value>선택된 계정:</value>
+  </data>
+  <data name="SetReviewedForAccountOnly" xml:space="preserve">
+    <value>선택된 계정만 검토 완료로 설정합니다.</value>
+  </data>
+  <data name="SetReviewedForDownline" xml:space="preserve">
+    <value>선택된 계정과 그 하위 문제 계정을 모두 검토 완료로 설정합니다.</value>
+  </data>
+  <data name="RequiredMaster" xml:space="preserve">
+    <value>유효한 마스터 계정을 입력하세요</value>
+  </data>
+  <data name="RequiredAgent" xml:space="preserve">
+    <value>유효한 에이전트 계정을 입력하세요</value>
+  </data>
+  <data name="ShowAllAccounts" xml:space="preserve">
+    <value>모든 {0}개 계정을 표시하시겠습니까?</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>선택</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>없음</value>
+  </data>
+  <data name="ProblemAccountList" xml:space="preserve">
+    <value>문제 계정 목록</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>~</value>
+  </data>
+  <data name="EnterAccount" xml:space="preserve">
+    <value>사용자명</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>엑셀로 내보내기</value>
+  </data>
+  <data name="ProblemAgentAccounts" xml:space="preserve">
+    <value>문제 에이전트 계정</value>
+  </data>
+  <data name="Nickname" xml:space="preserve">
+    <value>닉네임</value>
+  </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
+    <value>성공적으로 업데이트되었습니다!</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="ExportDate" xml:space="preserve">
+    <value>내보낸 날짜</value>
+  </data>
+  <data name="DateNotifiedFrom" xml:space="preserve">
+    <value>알림 시작일</value>
+  </data>
+  <data name="RemainingTransferInAmount" xml:space="preserve">
+    <value>남은 이체 금액</value>
+  </data>
   <data name="AccountInformation" xml:space="preserve">
-    <value>Account Information</value>
+    <value>계정 정보</value>
   </data>
   <data name="CopyLink" xml:space="preserve">
-    <value>Copy Link</value>
+    <value>링크 복사</value>
   </data>
   <data name="CreateAccount" xml:space="preserve">
-    <value>Create Account</value>
+    <value>계정 생성</value>
   </data>
   <data name="CreateMemberWithQRCode" xml:space="preserve">
-    <value>Create Member with QR Code</value>
+    <value>QR 코드로 회원 생성</value>
   </data>
   <data name="FirstNameOptional" xml:space="preserve">
-    <value>First Name (Optional)</value>
+    <value>이름 (선택)</value>
   </data>
   <data name="InputExistingMemberAccount" xml:space="preserve">
-    <value>Input Existing Member account (that you want to copy the settings)</value>
+    <value>설정을 복사할 기존 회원 계정 입력</value>
   </data>
   <data name="MemberCredit" xml:space="preserve">
-    <value>Member Credit</value>
+    <value>회원 크레딧</value>
   </data>
   <data name="NewGivenCredit" xml:space="preserve">
-    <value>New Given Credit</value>
+    <value>새로 부여된 크레딧</value>
   </data>
   <data name="PleaseShowThisQRCodeToYourMember" xml:space="preserve">
-    <value>Please show this QR code to your member</value>
+    <value>이 QR 코드를 회원에게 보여주세요</value>
   </data>
   <data name="ThisAccountHasBeenSuccessfullyCreated" xml:space="preserve">
-    <value>The account has been successfully created.</value>
+    <value>계정이 성공적으로 생성되었습니다.</value>
   </data>
   <data name="UpdateCredit" xml:space="preserve">
-    <value>Update Given Credit</value>
+    <value>부여 크레딧 업데이트</value>
   </data>
   <data name="UpdateInformation" xml:space="preserve">
-    <value>Update Information</value>
+    <value>정보 업데이트</value>
   </data>
   <data name="GivenCreditMustBeBetweenMinMax" xml:space="preserve">
-    <value>Given Credit must be between {0} and {1}.</value>
+    <value>부여 크레딧은 {0}에서 {1} 사이여야 합니다.</value>
   </data>
   <data name="MemberAccountIsInvalid" xml:space="preserve">
-    <value>Member account is invalid.</value>
+    <value>회원 계정이 유효하지 않습니다.</value>
   </data>
   <data name="UsernameIsInvalid" xml:space="preserve">
-    <value>이 사용자 이름을 사용할 수 없습니다.</value>
+    <value>이 사용자명은 사용할 수 없습니다.</value>
   </data>
   <data name="Domain" xml:space="preserve">
-    <value>Domain</value>
+    <value>도메인</value>
   </data>
   <data name="PleaseInputMemberCredit" xml:space="preserve">
-    <value>Please input Member credit</value>
+    <value>회원 크레딧을 입력하세요</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>비밀번호</value>
   </data>
   <data name="FirstLoginQRCode" xml:space="preserve">
-    <value>FIRST LOGIN QR CODE</value>
+    <value>최초 로그인 QR 코드</value>
   </data>
   <data name="CannotCreateClosedMemberQRCode" xml:space="preserve">
-    <value>You can not copy setting from closed/ suspended account.</value>
+    <value>닫힘/정지된 계정에서 설정을 복사할 수 없습니다.</value>
   </data>
   <data name="CannotGenerateMessage" xml:space="preserve">
-    <value>You can not regenerate the QR Code cause this account is already being used by member.</value>
+    <value>이 계정은 이미 회원이 사용 중이므로 QR 코드를 재생성할 수 없습니다.</value>
+  </data>
+  <data name="Connect" xml:space="preserve">
+    <value>연결</value>
+  </data>
+  <data name="ConnectToNewAccount" xml:space="preserve">
+    <value>새 계정에 연결</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>연결 해제</value>
+  </data>
+  <data name="IndirectLogIn" xml:space="preserve">
+    <value>간접 로그인</value>
+  </data>
+  <data name="IndirectLoginAccount" xml:space="preserve">
+    <value>간접 로그인 계정</value>
+  </data>
+  <data name="IndirectLoginAccountPasswordUpdated" xml:space="preserve">
+    <value>간접 로그인 계정 - 비밀번호 업데이트됨</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>레벨</value>
+  </data>
+  <data name="NewIndirectLoginAccount" xml:space="preserve">
+    <value>새 간접 로그인 계정</value>
+  </data>
+  <data name="ShowPassword" xml:space="preserve">
+    <value>비밀번호 표시</value>
   </data>
   <data name="Super" xml:space="preserve">
     <value>슈퍼</value>
   </data>
-  <data name="Level" xml:space="preserve">
-    <value>레벨단계</value>
+  <data name="DisconnectConfirmationMessage" xml:space="preserve">
+    <value>선택한 보조 계정이 목록에서 제거됩니다. 계속하시겠습니까?</value>
+  </data>
+  <data name="YourDownlineUsernameOrNickname" xml:space="preserve">
+    <value>하위 계정 사용자명 또는 닉네임</value>
+  </data>
+  <data name="UpdatePasswordHint" xml:space="preserve">
+    <value>선택한 계정의 비밀번호가 업데이트되었습니다. 새 비밀번호를 입력하세요.</value>
+  </data>
+  <data name="IndirectLoginAccountConfirmation" xml:space="preserve">
+    <value>간접 로그인 계정 - 확인</value>
+  </data>
+  <data name="IndirectLoginAccountDisconnectSuccessfully" xml:space="preserve">
+    <value>계정이 성공적으로 연결 해제되었습니다.</value>
+  </data>
+  <data name="IndirectLoginAccountNewSuccessfully" xml:space="preserve">
+    <value>계정이 성공적으로 연결되었습니다.</value>
   </data>
   <data name="RequiredPasswordError" xml:space="preserve">
-    <value>죄송합니다. 비밀번호를 입력하지 않았습니다.</value>
+    <value>비밀번호는 비워둘 수 없습니다.</value>
+  </data>
+  <data name="IndirectLoginAccountClosedOrDisabledError" xml:space="preserve">
+    <value>이 계정은 닫혔거나 비활성화되었습니다. 열고 다시 시도하세요.</value>
+  </data>
+  <data name="RequiredYourDownlineUsernameOrNicknameError" xml:space="preserve">
+    <value>유효하지 않은 계정이거나 하위 계정이 아닙니다.</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>로그인</value>
   </data>
   <data name="GivenCreditPopupTitle" xml:space="preserve">
-    <value>Update Given Credit</value>
+    <value>부여 크레딧 업데이트</value>
+  </data>
+  <data name="ArchiveDate" xml:space="preserve">
+    <value>아카이브 날짜</value>
+  </data>
+  <data name="ArchiveStage" xml:space="preserve">
+    <value>아카이브 단계</value>
+  </data>
+  <data name="ClearedGivenCredit" xml:space="preserve">
+    <value>정리된 부여 크레딧</value>
+  </data>
+  <data name="DormantAccountArchiveProcess" xml:space="preserve">
+    <value>휴면 계정 아카이브 프로세스</value>
+  </data>
+  <data name="DormantAccountList" xml:space="preserve">
+    <value>휴면 계정 목록</value>
+  </data>
+  <data name="DeletedSettings" xml:space="preserve">
+    <value>삭제된 설정</value>
+  </data>
+  <data name="ToBeClearedGivenCredit" xml:space="preserve">
+    <value>정리 예정 부여 크레딧</value>
   </data>
   <data name="Total" xml:space="preserve">
-    <value>총</value>
+    <value>총합</value>
+  </data>
+  <data name="CloseAccount" xml:space="preserve">
+    <value>계정 닫기</value>
+  </data>
+  <data name="DeleteSettings" xml:space="preserve">
+    <value>설정 삭제</value>
+  </data>
+  <data name="DisableAccount" xml:space="preserve">
+    <value>계정 비활성화</value>
+  </data>
+  <data name="DormantAccountClosedTooltip" xml:space="preserve">
+    <value>아카이브 종료일 이후에 회원이 로그인한 경우, 해당 회원이 베팅하면 이 라인은 비활성화되지 않습니다.</value>
+  </data>
+  <data name="LockStatus" xml:space="preserve">
+    <value>잠금 상태</value>
+  </data>
+  <data name="IndirectLoginAccountLockedError" xml:space="preserve">
+    <value>이 계정은 잠겨 있습니다. 잠금을 해제하고 다시 시도하세요.</value>
+  </data>
+  <data name="DeleteAccount" xml:space="preserve">
+    <value>계정 삭제</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>삭제됨</value>
+  </data>
+  <data name="DeletedAccount" xml:space="preserve">
+    <value>삭제된 계정</value>
   </data>
   <data name="ParlayMaxPayoutSubTitle" xml:space="preserve">
-    <value>Parlay Max Payout {0}</value>
+    <value>최대 조합 당첨금 {0}</value>
   </data>
   <data name="ParlayMaxPayoutSingleSubText" xml:space="preserve">
-    <value>Parlay Max Payout: {0}</value>
+    <value>최대 조합 당첨금: {0}</value>
   </data>
   <data name="ParlayMaxPayoutMultipleSubText" xml:space="preserve">
-    <value>Parlay Max Payout</value>
+    <value>최대 조합 당첨금</value>
   </data>
   <data name="SingleMatchParlay" xml:space="preserve">
-    <value>Single Match Parlay</value>
+    <value>단일 경기 조합</value>
   </data>
   <data name="Combo2" xml:space="preserve">
-    <value>Combo 2</value>
+    <value>콤보 2</value>
   </data>
   <data name="Combo35" xml:space="preserve">
-    <value>Combo 3-5</value>
+    <value>콤보 3-5</value>
   </data>
   <data name="ComboOver6" xml:space="preserve">
-    <value>Combo 6+ &amp; System Parlay</value>
+    <value>콤보 6+ 및 시스템 조합</value>
   </data>
   <data name="ParlayMaxPayoutUpdateSuccessfully" xml:space="preserve">
-    <value>Update successfully</value>
+    <value>성공적으로 업데이트됨</value>
   </data>
   <data name="InvalidMaxPayoutValueText" xml:space="preserve">
-    <value>The value must be a positive amount.</value>
+    <value>값은 양수여야 합니다.</value>
   </data>
   <data name="GreaterThanMaxValueText" xml:space="preserve">
-    <value>&lt;BetType&gt;: The setting of &lt;Column&gt; is higher than the upline's.</value>
+    <value>&lt;BetType&gt;: &lt;Column&gt;의 설정이 상위 계정보다 높습니다.</value>
   </data>
   <data name="soccerParlay" xml:space="preserve">
-    <value>Soccer Parlay</value>
+    <value>축구 조합</value>
   </data>
   <data name="mixsports" xml:space="preserve">
-    <value>믹스 스포츠 팔레이</value>
+    <value>믹스 스포츠 조합</value>
   </data>
-  <data name="Locked" xml:space="preserve">
-    <value>Locked</value>
-  </data>
-  <data name="Unlimited" xml:space="preserve">
-    <value>Unlimited</value>
-  </data>
-  <data name="From" xml:space="preserve">
-    <value>시작일</value>
-  </data>
-  <data name="UserNotExist" xml:space="preserve">
-    <value>존재하지 않는 유저</value>
-  </data>
-  <data name="EditSetting" xml:space="preserve">
-    <value>Edit Setting</value>
-  </data>
-  <data name="EditMutipleSetting" xml:space="preserve">
-    <value>Edit Multiple Setting</value>
-  </data>
-  <data name="lblNew" xml:space="preserve">
-    <value>새로운</value>
-  </data>
-  <data name="Betsetting" xml:space="preserve">
-    <value>배팅 설정</value>
-  </data>
-  <data name="MaxPayoutSetting" xml:space="preserve">
-    <value>Max Payout Setting</value>
-  </data>
-  <data name="PTSetting" xml:space="preserve">
-    <value>Position Taking Setting</value>
-  </data>
-  <data name="SMAUnlimitedBetSettingWarningMessage" xml:space="preserve">
-    <value>
-      Inputting all fields of bet setting = 0 means you do not set limit to the bet setting of this account.&lt;br/&gt;
-      To prevent members from playing the game, set Min Bet = 0 and other fields = 0.1.&lt;br/&gt;
-      Updating upline's bet setting might decrease all downlines' bet settings to ensure that they are not greater than upline's bet setting.
-    </value>
-  </data>
-  <data name="Commission" xml:space="preserve">
-    <value>수수료</value>
-  </data>
-  <data name="CustomerProfile" xml:space="preserve">
-    <value>Member Profile</value>
-  </data>
-  <data name="MemberBettingBehavior" xml:space="preserve">
-    <value>Member Betting Behavior</value>
-  </data>
-  <data name="BettingStatistic" xml:space="preserve">
-    <value>Betting Statistic</value>
-  </data>
-  <data name="DateRange" xml:space="preserve">
-    <value>Date Range</value>
-  </data>
-  <data name="Last90Days" xml:space="preserve">
-    <value>Last 90 days</value>
-  </data>
-  <data name="Last60Days" xml:space="preserve">
-    <value>Last 60 days</value>
-  </data>
-  <data name="Last30Days" xml:space="preserve">
-    <value>Last 30 days</value>
-  </data>
-  <data name="TurnoverBySport" xml:space="preserve">
-    <value>Turnover by Sport</value>
-  </data>
-  <data name="TurnoverByBetType" xml:space="preserve">
-    <value>Turnover by Bet Type</value>
-  </data>
-  <data name="TurnoverAndWinLossByDate" xml:space="preserve">
-    <value>Turnover &amp; Win/Loss by Date</value>
-  </data>
-  <data name="RelatedToOtherAccounts" xml:space="preserve">
-    <value>Related to other accounts</value>
-  </data>
-  <data name="MonitoredMember" xml:space="preserve">
-    <value>Monitored Member</value>
-  </data>
-  <data name="TotalTurnover" xml:space="preserve">
-    <value>Total Turnover</value>
-  </data>
-  <data name="CompactCopy" xml:space="preserve">
-    <value>Compact Copy</value>
-  </data>
-  <data name="IndividualCopy" xml:space="preserve">
-    <value>Individual Copy</value>
-  </data>
-  <data name="introCopyNote" xml:space="preserve">
-    <value>Click 'Copy' to copy and share the account details</value>
-  </data>
-  <data name="NetTurnover" xml:space="preserve">
-    <value>순매출</value>
+  <data name="ConditionToClearCredit" xml:space="preserve">
+    <value>크레딧 정리 조건</value>
   </data>
   <data name="CreatedDate" xml:space="preserve">
-    <value>작성일</value>
+    <value>생성일</value>
   </data>
-  <data name="MemberCommission" xml:space="preserve">
-    <value>회원 수수료</value>
+  <data name="CreditBalanceNote" xml:space="preserve">
+    <value>리포트에 표시된 잔액 및 배팅 크레딧 값은 왼쪽 패널의 계정 정보 기능에 표시된 값과 다를 수 있습니다. 최신 값을 보려면 배팅 크레딧 금액을 클릭하세요.</value>
   </data>
-  <data name="UpdateSuccessfully" xml:space="preserve">
-    <value>Successfully updated!</value>
+  <data name="Add" xml:space="preserve">
+    <value>추가</value>
+  </data>
+  <data name="AddMember" xml:space="preserve">
+    <value>회원 추가</value>
+  </data>
+  <data name="AddMembersToWatchlist" xml:space="preserve">
+    <value>회원(들) 감시목록에 추가</value>
+  </data>
+  <data name="AddRow" xml:space="preserve">
+    <value>행 추가</value>
+  </data>
+  <data name="AddSuccessfully" xml:space="preserve">
+    <value>성공적으로 추가됨</value>
+  </data>
+  <data name="AreYouSureToRemoveAccounts" xml:space="preserve">
+    <value>선택한 계정을 삭제하시겠습니까?</value>
+  </data>
+  <data name="AreYouSureToRemovePreset" xml:space="preserve">
+    <value>이 프리셋을 삭제하시겠습니까?</value>
+  </data>
+  <data name="CanViewReportData" xml:space="preserve">
+    <value>{0}부터 리포트 데이터를 볼 수 있습니다.</value>
+  </data>
+  <data name="EditMultiplePersonalThresholds" xml:space="preserve">
+    <value>여러 개인 임계값 수정</value>
+  </data>
+  <data name="EditPersonalThreshold" xml:space="preserve">
+    <value>개인 임계값 수정</value>
+  </data>
+  <data name="EditWatchlistAccount" xml:space="preserve">
+    <value>임계값(들) 수정</value>
+  </data>
+  <data name="EnterListOfMemberUsernames" xml:space="preserve">
+    <value>회원 사용자명(들) 입력</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>시작</value>
+  </data>
+  <data name="Global" xml:space="preserve">
+    <value>글로벌</value>
+  </data>
+  <data name="GlobalLosingThreshold" xml:space="preserve">
+    <value>글로벌 손실 임계값</value>
+  </data>
+  <data name="GlobalThresholds" xml:space="preserve">
+    <value>글로벌 임계값</value>
+  </data>
+  <data name="GlobalThresholdSettings" xml:space="preserve">
+    <value>글로벌 임계값 설정</value>
+  </data>
+  <data name="GlobalThresholdWillBeAppliedForMembers" xml:space="preserve">
+    <value>글로벌 임계값 설정은 감시목록에 없는 회원에게 적용됩니다.</value>
+  </data>
+  <data name="GlobalWinningThreshold" xml:space="preserve">
+    <value>글로벌 당첨 임계값</value>
+  </data>
+  <data name="InvalidAccountError" xml:space="preserve">
+    <value>유효하지 않은 계정</value>
+  </data>
+  <data name="IsNotMemberError" xml:space="preserve">
+    <value>회원이 아닙니다</value>
+  </data>
+  <data name="LastThresholdType" xml:space="preserve">
+    <value>마지막 임계값 유형</value>
+  </data>
+  <data name="LastReach" xml:space="preserve">
+    <value>마지막 도달</value>
+  </data>
+  <data name="LastLosingThreshold" xml:space="preserve">
+    <value>마지막 손실 임계값</value>
+  </data>
+  <data name="LastWinningThreshold" xml:space="preserve">
+    <value>마지막 당첨 임계값</value>
+  </data>
+  <data name="ThresholdType" xml:space="preserve">
+    <value>임계값 유형</value>
+  </data>
+  <data name="Locked" xml:space="preserve">
+    <value>잠김</value>
+  </data>
+  <data name="LosingThreshold" xml:space="preserve">
+    <value>손실 임계값</value>
+  </data>
+  <data name="PersonalThresholdPresets" xml:space="preserve">
+    <value>개인 임계값 프리셋</value>
+  </data>
+  <data name="MoreThan50UsernamesError" xml:space="preserve">
+    <value>회원 수는 50명을 초과할 수 없습니다</value>
+  </data>
+  <data name="MustEnterPresetNameError" xml:space="preserve">
+    <value>프리셋 이름을 입력하세요</value>
+  </data>
+  <data name="MustEnterThresholdError" xml:space="preserve">
+    <value>임계값을 입력하세요</value>
+  </data>
+  <data name="MustEnterThresholdOrCheckError" xml:space="preserve">
+    <value>임계값을 입력하거나 무제한을 선택하세요</value>
+  </data>
+  <data name="MustEnterUsernameError" xml:space="preserve">
+    <value>회원 사용자명을 입력하세요</value>
+  </data>
+  <data name="MyWatchlist" xml:space="preserve">
+    <value>내 감시목록</value>
   </data>
   <data name="NoChangeToUpdateError" xml:space="preserve">
-    <value>There is no change to update.</value>
+    <value>업데이트할 변경 사항이 없습니다.</value>
   </data>
-  <data name="Turnover" xml:space="preserve">
-    <value>총 배팅한 금액</value>
+  <data name="ReachCount" xml:space="preserve">
+    <value>도달 횟수</value>
+  </data>
+  <data name="ReachHistory" xml:space="preserve">
+    <value>도달 이력</value>
+  </data>
+  <data name="NotInWatchlistAnyLongerError" xml:space="preserve">
+    <value>더 이상 감시목록에 없습니다</value>
+  </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>페이지 크기</value>
+  </data>
+  <data name="Personal" xml:space="preserve">
+    <value>개인</value>
+  </data>
+  <data name="Preset" xml:space="preserve">
+    <value>프리셋</value>
+  </data>
+  <data name="PresetIsNoLongerExists" xml:space="preserve">
+    <value>이 프리셋은 더 이상 존재하지 않습니다</value>
+  </data>
+  <data name="PresetNameIsDuplicated" xml:space="preserve">
+    <value>프리셋 이름이 이미 존재합니다</value>
+  </data>
+  <data name="ReachedThreshold" xml:space="preserve">
+    <value>임계값 도달</value>
+  </data>
+  <data name="RemoveAccount" xml:space="preserve">
+    <value>계정 삭제</value>
+  </data>
+  <data name="RemoveMultipleAccounts" xml:space="preserve">
+    <value>여러 계정 삭제</value>
+  </data>
+  <data name="RemoveSuccessfully" xml:space="preserve">
+    <value>성공적으로 삭제됨</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="SelectPreset" xml:space="preserve">
+    <value>프리셋 선택</value>
+  </data>
+  <data name="SelectThresholdPreset" xml:space="preserve">
+    <value>아래 회원에 대한 임계값 프리셋을 선택하거나 임계값을 설정하세요:</value>
+  </data>
+  <data name="SupportsSportsbookDataOnly" xml:space="preserve">
+    <value>이 기능은 스포츠북에서만 사용 가능합니다.</value>
+  </data>
+  <data name="ThresholdPresetName" xml:space="preserve">
+    <value>임계값 프리셋 이름</value>
+  </data>
+  <data name="Unlimited" xml:space="preserve">
+    <value>무제한</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>업데이트</value>
   </data>
-  <data name="EnterAccount" xml:space="preserve">
-    <value>사용자 이름</value>
+  <data name="WasAddedWatchlistAlreadyError" xml:space="preserve">
+    <value>이미 감시목록에 있습니다</value>
+  </data>
+  <data name="WinningLosingAmount" xml:space="preserve">
+    <value>당첨/손실 금액</value>
+  </data>
+  <data name="WinningThreshold" xml:space="preserve">
+    <value>당첨 임계값</value>
+  </data>
+  <data name="MaximumMembers" xml:space="preserve">
+    <value>(최대 50명, 쉼표 ','로 구분)</value>
+  </data>
+  <data name="DateTime" xml:space="preserve">
+    <value>날짜/시간</value>
+  </data>
+  <data name="AccumulatedMemberWinLossOnlyStartsCountingNote" xml:space="preserve">
+    <value>누적 승패는 당첨/손실 임계값이 설정될 때부터 집계가 시작됩니다. 매일 또는 기능이 꺼질 때 초기화됩니다.</value>
+  </data>
+  <data name="PersonalThresholdPresetSettings" xml:space="preserve">
+    <value>개인 임계값 프리셋 설정</value>
+  </data>
+  <data name="WatchlistUpdateSuccessfully" xml:space="preserve">
+    <value>성공적으로 업데이트됨</value>
+  </data>
+  <data name="EditMultiple" xml:space="preserve">
+    <value>여러 개 수정</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>정보</value>
+  </data>
+  <data name="AccumulatedMemberWinLossWillBeCountedNote" xml:space="preserve">
+    <value>누적 승패는 티켓 정산 직후 집계됩니다. 이미 정산된 티켓은 누적에 영향을 주지 않으며, 어제 미정산 이벤트를 다음 영업일로 이동해도 누적이 변경되지 않습니다.</value>
+  </data>
+  <data name="MyThresholds" xml:space="preserve">
+    <value>내 임계값</value>
+  </data>
+  <data name="MyThresholdsSettings" xml:space="preserve">
+    <value>내 임계값 설정</value>
+  </data>
+  <data name="GlobalThresholdSettingsNote" xml:space="preserve">
+    <value>아래 원하는 당첨/손실 임계값에 도달하면 개별 회원의 승패 알림을 받습니다:</value>
+  </data>
+  <data name="MyLosingThreshold" xml:space="preserve">
+    <value>내 손실 임계값</value>
+  </data>
+  <data name="MyThresholdSettingsNote" xml:space="preserve">
+    <value>아래 원하는 당첨/손실 임계값에 도달하면(모든 회원에 대한 내 포지션 테이킹 기준) 승패 알림을 받습니다:</value>
+  </data>
+  <data name="MyWinningThreshold" xml:space="preserve">
+    <value>내 당첨 임계값</value>
+  </data>
+  <data name="ThresholdSettingsNote" xml:space="preserve">
+    <value>임계값을 비활성화하려면 당첨/손실 임계값 모두에 무제한 체크박스를 선택하세요.</value>
+  </data>
+  <data name="Entered" xml:space="preserve">
+    <value>입력됨</value>
+  </data>
+  <data name="NonEntered" xml:space="preserve">
+    <value>미입력</value>
+  </data>
+  <data name="SearchAndCopy" xml:space="preserve">
+    <value>검색 및 복사</value>
+  </data>
+  <data name="FullMode" xml:space="preserve">
+    <value>전체 모드</value>
+  </data>
+  <data name="QRCode" xml:space="preserve">
+    <value>QR 코드</value>
+  </data>
+  <data name="CopyAccountNote" xml:space="preserve">
+    <value>참고: 설정은 소스 계정과 동일하게 적용됩니다</value>
+  </data>
+  <data name="NoOfAccounts" xml:space="preserve">
+    <value>계정 수</value>
+  </data>
+  <data name="AccountDetails" xml:space="preserve">
+    <value>계정 세부정보</value>
+  </data>
+  <data name="AccountDetailsNote" xml:space="preserve">
+    <value>첫 번째 사용 가능한 사용자명을 선택하면 나머지 계정은 시스템 제안을 따릅니다.</value>
+  </data>
+  <data name="lblPasswordRequire" xml:space="preserve">
+    <value>비밀번호는 공백 없이 최소 8자 이상이어야 하며 다음 중 3가지 이상을 포함해야 합니다:&lt;br&gt;
+&lt;br&gt;
+  • 대문자 [A-Z] &lt;br&gt;
+  • 소문자 [a-z] &lt;br&gt;
+  • 숫자 [0-9] &lt;br&gt;
+  • 특수문자 (!,@,#,등)&lt;br&gt;
+&lt;br&gt;
+예시: 59D7!4$h, 493abcDE&lt;br&gt;
+참고: 비밀번호는 대소문자를 구분합니다&lt;br&gt;</value>
+  </data>
+  <data name="MemberMaxCredit" xml:space="preserve">
+    <value>회원 최대 크레딧</value>
+  </data>
+  <data name="CreateMore" xml:space="preserve">
+    <value>더 만들기</value>
+  </data>
+  <data name="Usernames" xml:space="preserve">
+    <value>사용자명</value>
+  </data>
+  <data name="CreateCustomerSuccessMessage" xml:space="preserve">
+    <value>{0}개 계정이 성공적으로 생성되었습니다.</value>
+  </data>
+  <data name="UserNotExist" xml:space="preserve">
+    <value>이 사용자는 존재하지 않습니다</value>
+  </data>
+  <data name="NoAccountCreatedFailed" xml:space="preserve">
+    <value>{0}개 계정 생성에 실패했습니다.</value>
+  </data>
+  <data name="FailureReason" xml:space="preserve">
+    <value>실패 사유</value>
+  </data>
+  <data name="SourceAccount" xml:space="preserve">
+    <value>소스 계정</value>
+  </data>
+  <data name="GivenCreditPerAccount" xml:space="preserve">
+    <value>계정당 부여 크레딧</value>
+  </data>
+  <data name="ClassicView" xml:space="preserve">
+    <value>클래식 보기</value>
+  </data>
+  <data name="AvailableGivenCredit" xml:space="preserve">
+    <value>사용 가능한 부여 크레딧</value>
+  </data>
+  <data name="MaxCreditPerMember" xml:space="preserve">
+    <value>회원당 최대 크레딧</value>
+  </data>
+  <data name="InvalidMaxCreditPerAccount" xml:space="preserve">
+    <value>계정당 최대 부여 크레딧: {0} 이하.</value>
+  </data>
+  <data name="InvalidMemberMaxCredit" xml:space="preserve">
+    <value>회원 최대 크레딧은 0에서 {0} 사이여야 합니다</value>
+  </data>
+  <data name="AccountWasDisabled" xml:space="preserve">
+    <value>이 계정은 비활성화되었습니다.</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>복사됨</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>복사</value>
   </data>
   <data name="lblUsername" xml:space="preserve">
-    <value>사용자 이름</value>
+    <value>사용자명</value>
+  </data>
+  <data name="pendingTransfer3rd" xml:space="preserve">
+    <value>제3자 대기 이체</value>
+  </data>
+  <data name="EditMutipleSetting" xml:space="preserve">
+    <value>여러 설정 수정</value>
+  </data>
+  <data name="EditSetting" xml:space="preserve">
+    <value>설정 수정</value>
+  </data>
+  <data name="MarkMultipleAsReviewed" xml:space="preserve">
+    <value>여러 계정을 검토 완료로 표시</value>
+  </data>
+  <data name="AddMultipleToWatchlist" xml:space="preserve">
+    <value>내 감시목록에 여러 계정 추가</value>
+  </data>
+  <data name="AddToMyWatchlist" xml:space="preserve">
+    <value>내 감시목록에 추가</value>
+  </data>
+  <data name="AddMultipleAccountsToWatchlist" xml:space="preserve">
+    <value>내 감시목록에 여러 계정 추가</value>
+  </data>
+  <data name="SuspendMultipleAccounts" xml:space="preserve">
+    <value>여러 계정 정지</value>
+  </data>
+  <data name="SetThresholds" xml:space="preserve">
+    <value>임계값 설정</value>
+  </data>
+  <data name="AccountsAlreadyInWatchlist" xml:space="preserve">
+    <value>내 감시목록에 {0}개 기존 계정</value>
+  </data>
+  <data name="NewlyAddedAccounts" xml:space="preserve">
+    <value>새로 추가된 계정</value>
+  </data>
+  <data name="AddToWatchListConfirmThresholds" xml:space="preserve">
+    <value>위에 새로 추가된 계정에 대한 임계값을 설정하는 것을 권장합니다. 계속하려면 &lt;b&gt;임계값 설정&lt;/b&gt;을 클릭하세요.</value>
+  </data>
+  <data name="AddMultipleToWatchlistExceedMessage" xml:space="preserve">
+    <value>한 번에 최대 50명의 회원만 감시목록에 추가할 수 있습니다.</value>
+  </data>
+  <data name="ProblemAccount" xml:space="preserve">
+    <value>문제 계정</value>
+  </data>
+  <data name="SuspendAccount" xml:space="preserve">
+    <value>계정 정지</value>
+  </data>
+  <data name="ShowMore" xml:space="preserve">
+    <value>더 보기</value>
+  </data>
+  <data name="ShowLess" xml:space="preserve">
+    <value>덜 보기</value>
+  </data>
+  <data name="lblPasswordMemberRequire" xml:space="preserve">
+    <value>비밀번호는 공백 없이 6-10자여야 하며 최소 1개의 대문자, 1개의 소문자, 1개의 숫자를 포함해야 합니다. (예: 493abcDE, 59D7!4$h)
+참고: 비밀번호는 대소문자를 구분합니다.</value>
+  </data>
+  <data name="BBINNote" xml:space="preserve">
+    <value>참고: BBIN의 당첨률은 &lt;b&gt;"N/A"&lt;/b&gt;로 표시됩니다. BBIN 상품에는 최대 당첨 한도 제어가 적용되지 않기 때문입니다.</value>
+  </data>
+  <data name="PTTemplate" xml:space="preserve">
+    <value>포지션 테이킹 템플릿</value>
+  </data>
+  <data name="AddNewMaster" xml:space="preserve">
+    <value>새 마스터 추가</value>
+  </data>
+  <data name="AddNewAgent" xml:space="preserve">
+    <value>새 에이전트 추가</value>
+  </data>
+  <data name="AddNewMember" xml:space="preserve">
+    <value>새 회원 추가</value>
+  </data>
+  <data name="LiteMode" xml:space="preserve">
+    <value>라이트 모드</value>
+  </data>
+  <data name="QuickIntro_Title" xml:space="preserve">
+    <value>라이트 모드의 빠른 둘러보기를 해보겠습니다</value>
+  </data>
+  <data name="QuickIntro_Title_Content" xml:space="preserve">
+    <value>가장 빠르고 중앙화된 계정 생성 프로세스를 경험해보세요.</value>
+  </data>
+  <data name="QuickIntro_Title_NotNow" xml:space="preserve">
+    <value>나중에</value>
+  </data>
+  <data name="QuickIntro_Title_Confirm" xml:space="preserve">
+    <value>시작하겠습니다</value>
+  </data>
+  <data name="QuickIntro_Popup_1" xml:space="preserve">
+    <value>이 기능의 모든 흥미로운 점을 발견하기 위해 둘러보기를 해보겠습니다!</value>
+  </data>
+  <data name="QuickIntro_Popup_2" xml:space="preserve">
+    <value>새롭고 직관적인 메뉴로 시작됩니다.</value>
+  </data>
+  <data name="QuickIntro_Popup_3" xml:space="preserve">
+    <value>상품 그룹에 PT 템플릿 값을 선택하고 적용하여 더 빠르고 중앙화된 설정으로 포지션 테이킹 구성 프로세스를 향상시킵니다.</value>
+  </data>
+  <data name="lblNew" xml:space="preserve">
+    <value>새로</value>
+  </data>
+  <data name="QuickIntro_Note" xml:space="preserve">
+    <value>*라이트 모드는 할당된 그룹 내의 모든 상품/스포츠에 동일한 PT를 적용합니다. 각 상품/스포츠마다 다른 값을 원한다면 전체 모드로 전환하세요.</value>
+  </data>
+  <data name="ADBTOnError" xml:space="preserve">
+    <value>상위 계정이 전체 일일 잔액 이체를 활성화했기 때문에 자동 이체를 사용할 수 없습니다. 페이지가 자동으로 새로고침됩니다.</value>
+  </data>
+  <data name="ADBTOffError" xml:space="preserve">
+    <value>상위 계정이 전체 일일 잔액 이체를 비활성화했기 때문에 자동 이체를 사용할 수 있습니다. 페이지가 자동으로 새로고침됩니다.</value>
+  </data>
+  <data name="PageOf" xml:space="preserve">
+    <value>페이지 {0} / {1}</value>
+  </data>
+  <data name="Betsetting" xml:space="preserve">
+    <value>베팅 설정</value>
+  </data>
+  <data name="MaxPayoutSetting" xml:space="preserve">
+    <value>최대 당첨금 설정</value>
+  </data>
+  <data name="PTSetting" xml:space="preserve">
+    <value>포지션 테이킹 설정</value>
+  </data>
+  <data name="SMAUnlimitedBetSettingWarningMessage" xml:space="preserve">
+    <value>
+      베팅 설정의 모든 필드를 0으로 입력하면 이 계정의 베팅 설정에 제한을 두지 않는다는 의미입니다.&lt;br/&gt;
+      회원이 게임을 하지 못하게 하려면 최소 베팅 = 0, 다른 필드 = 0.1로 설정하세요.&lt;br/&gt;
+      상위 계정의 베팅 설정을 업데이트하면 모든 하위 계정의 베팅 설정이 상위 계정의 베팅 설정보다 크지 않도록 감소할 수 있습니다.
+    </value>
+  </data>
+  <data name="Commission" xml:space="preserve">
+    <value>커미션</value>
+  </data>
+  <data name="Live" xml:space="preserve">
+    <value>라이브</value>
+  </data>
+  <data name="Bettype" xml:space="preserve">
+    <value>베팅 유형</value>
+  </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>취소됨</value>
+  </data>
+  <data name="Draw" xml:space="preserve">
+    <value>무승부</value>
+  </data>
+  <data name="Lose" xml:space="preserve">
+    <value>패배</value>
+  </data>
+  <data name="Sports" xml:space="preserve">
+    <value>스포츠</value>
+  </data>
+  <data name="Win" xml:space="preserve">
+    <value>승리</value>
+  </data>
+  <data name="TurnoverBySport" xml:space="preserve">
+    <value>스포츠별 회전율</value>
+  </data>
+  <data name="TurnoverByBetType" xml:space="preserve">
+    <value>베팅 유형별 회전율</value>
+  </data>
+  <data name="TurnoverAndWinLossByDate" xml:space="preserve">
+    <value>날짜별 회전율 및 승패</value>
+  </data>
+  <data name="NonLive" xml:space="preserve">
+    <value>비라이브</value>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>회전율</value>
+  </data>
+  <data name="WinLoss" xml:space="preserve">
+    <value>승패</value>
+  </data>
+  <data name="Mix" xml:space="preserve">
+    <value>믹스</value>
+  </data>
+  <data name="MemberBettingBehavior" xml:space="preserve">
+    <value>회원 베팅 행동</value>
+  </data>
+  <data name="Average" xml:space="preserve">
+    <value>평균</value>
+  </data>
+  <data name="BetCount" xml:space="preserve">
+    <value>베팅 횟수</value>
+  </data>
+  <data name="BettingStatistic" xml:space="preserve">
+    <value>베팅 통계</value>
+  </data>
+  <data name="CustomerProfile" xml:space="preserve">
+    <value>회원 프로필</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>날짜 범위</value>
+  </data>
+  <data name="Losing" xml:space="preserve">
+    <value>손실</value>
+  </data>
+  <data name="ProfitMargin" xml:space="preserve">
+    <value>이익률</value>
+  </data>
+  <data name="MixTurnover" xml:space="preserve">
+    <value>믹스 회전율</value>
+  </data>
+  <data name="MonitoredMember" xml:space="preserve">
+    <value>모니터링 회원</value>
+  </data>
+  <data name="NetTurnover" xml:space="preserve">
+    <value>순 회전율</value>
+  </data>
+  <data name="RelatedToOtherAccounts" xml:space="preserve">
+    <value>다른 계정과 관련됨</value>
+  </data>
+  <data name="Stake" xml:space="preserve">
+    <value>배팅 금액</value>
+  </data>
+  <data name="TotalTurnover" xml:space="preserve">
+    <value>총 회전율</value>
+  </data>
+  <data name="Turnover_(Live)" xml:space="preserve">
+    <value>회전율 (라이브)</value>
+  </data>
+  <data name="Turnover_(NonLive)" xml:space="preserve">
+    <value>회전율 (비라이브)</value>
+  </data>
+  <data name="Winning" xml:space="preserve">
+    <value>당첨</value>
+  </data>
+  <data name="WinLossText" xml:space="preserve">
+    <value>승패</value>
+  </data>
+  <data name="MemberUsernameIsInvalid" xml:space="preserve">
+    <value>회원 사용자명이 유효하지 않습니다</value>
+  </data>
+  <data name="Last30Days" xml:space="preserve">
+    <value>최근 30일</value>
+  </data>
+  <data name="Last60Days" xml:space="preserve">
+    <value>최근 60일</value>
+  </data>
+  <data name="Last90Days" xml:space="preserve">
+    <value>최근 90일</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>활성</value>
+  </data>
+  <data name="AddedDate" xml:space="preserve">
+    <value>추가 날짜</value>
+  </data>
+  <data name="ClickToSetThresholds" xml:space="preserve">
+    <value>임계값 설정을 클릭하세요</value>
+  </data>
+  <data name="Monitored" xml:space="preserve">
+    <value>모니터링됨</value>
+  </data>
+  <data name="ReachedLimitToday" xml:space="preserve">
+    <value>오늘 한도 도달</value>
+  </data>
+  <data name="UnlimitedThreshold" xml:space="preserve">
+    <value>무제한 임계값</value>
+  </data>
+  <data name="UnlimitedThresholdNote" xml:space="preserve">
+    <value>무제한 임계값은 임계값을 무시하고 알림을 받지 않는다는 의미입니다.</value>
+  </data>
+  <data name="WatchlistDetails" xml:space="preserve">
+    <value>감시목록 세부정보</value>
+  </data>
+  <data name="WatchlistMemberSummary" xml:space="preserve">
+    <value>감시목록 회원 요약</value>
+  </data>
+  <data name="Min" xml:space="preserve">
+    <value>최소</value>
+  </data>
+  <data name="Max" xml:space="preserve">
+    <value>최대</value>
+  </data>
+  <data name="creditHint" xml:space="preserve">
+    <value>사용 가능한 크레딧: {0}</value>
+  </data>
+  <data name="memberMaxCreditHint" xml:space="preserve">
+    <value>상위 계정이 설정한 최대 회원 크레딧: {0}</value>
+  </data>
+  <data name="DateRangeNote" xml:space="preserve">
+    <value>데이터는 {0}부터 {1}까지 요약됩니다</value>
+  </data>
+  <data name="BehaviorCategory" xml:space="preserve">
+    <value>행동 카테고리</value>
+  </data>
+  <data name="RiskLevel" xml:space="preserve">
+    <value>위험 수준</value>
+  </data>
+  <data name="CompactCopy" xml:space="preserve">
+    <value>간단 복사</value>
+  </data>
+  <data name="IndividualCopy" xml:space="preserve">
+    <value>개별 복사</value>
+  </data>
+  <data name="introCopyNote" xml:space="preserve">
+    <value>'복사'를 클릭하여 계정 세부사항을 복사하고 공유하세요</value>
+  </data>
+  <data name="CashBalanceNote" xml:space="preserve">
+    <value>직접 회원의 경우 데이터는 잔액을 나타냅니다.&lt;br/&gt;다른 하위 계정의 경우 현금을 나타냅니다.</value>
+  </data>
+  <data name="YesterdayCashYesterdayBalanceNote" xml:space="preserve">
+    <value>직접 회원의 경우 데이터는 어제 잔액을 나타냅니다.&lt;br/&gt;다른 하위 계정의 경우 어제 현금을 나타냅니다.</value>
+  </data>
+  <data name="YesterdayCash" xml:space="preserve">
+    <value>어제 현금</value>
+  </data>
+  <data name="AvailableCreditBetCreditNote" xml:space="preserve">
+    <value>직접 회원의 경우 데이터는 배팅 크레딧을 나타냅니다.&lt;br/&gt;다른 하위 계정의 경우 사용 가능한 크레딧을 나타냅니다.</value>
+  </data>
+  <data name="SelectDirectDownline" xml:space="preserve">
+    <value>직접 하위 계정 선택</value>
+  </data>
+  <data name="CashSlashBalance" xml:space="preserve">
+    <value>현금/&lt;br/&gt;잔액</value>
+  </data>
+  <data name="YesterdayCashSlashYesterdayBalance" xml:space="preserve">
+    <value>어제 현금/&lt;br/&gt;어제 잔액</value>
+  </data>
+  <data name="AvailableCreditSlashBetCredit" xml:space="preserve">
+    <value>사용 가능한 크레딧/&lt;br/&gt;배팅 크레딧</value>
+  </data>
+  <data name="CreateDirectMember" xml:space="preserve">
+    <value>직접 회원 생성</value>
   </data>
   <data name="CreateCashMember" xml:space="preserve">
-    <value>신규 현금 회원 추가</value>
+    <value>새 현금 회원 추가</value>
   </data>
-</root>
+  <data name="PotentialWin" xml:space="preserve">
+    <value>잠재적 당첨</value>
+  </data>
+  <data name="SportsbookPotentialWinLimit" xml:space="preserve">
+    <value>스포츠북 잠재적 당첨 한도</value>
+  </data>
+  <data name="MaxPotentialWinLimit" xml:space="preserve">
+    <value>최대 잠재적 당첨 한도</value>
+  </data>
+  <data name="CurrentPotentialWin" xml:space="preserve">
+    <value>현재 잠재적 당첨 (%)</value>
+  </data>
+  <data name="ToWin" xml:space="preserve">
+    <value>당첨 예정</value>
+  </data>
+  <data name="AccumulatedWinLoss" xml:space="preserve">
+    <value>누적 승패</value>
+  </data>
+  <data name="PotentialWinLimitNote1" xml:space="preserve">
+    <value>잠재적 당첨 한도가 '무제한'으로 설정되지 않은 회원만 표시합니다.</value>
+  </data>
+  <data name="PotentialWinLimitNote2" xml:space="preserve">
+    <value>결과 수정, 정산 지연 및 기타 요인으로 인해 누적된 잠재적 당첨 한도가 일시적으로 구성된 임계값을 초과할 수 있습니다.</value>
+  </data>
+</root> 

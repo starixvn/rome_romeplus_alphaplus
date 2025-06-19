@@ -98,7 +98,7 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -149,5 +149,41 @@
   </data>
   <data name="usernameAlphanumericOnly" xml:space="preserve">
     <value>사용자 이름은 영문자나 숫자만 사용할 수 있습니다.</value>
+  </data>
+  <data name="lblLoginSuccessful" xml:space="preserve">
+    <value>로그인 성공</value>
+  </data>
+  <data name="lblPasswordChanged" xml:space="preserve">
+    <value>귀하의 비밀번호는 &lt;font style='color: #ff0000'&gt;{0}&lt;/font&gt;에 마지막으로 변경되었습니다. 여전히 로그인할 수 없는 경우 즉시 고객 지원팀에 문의하세요.</value>
+  </data>
+  <data name="LoginTooOftenBlockedMessage" xml:space="preserve">
+    <value>로그인 시도가 너무 많습니다! 사용자 이름: {0}</value>
+  </data>
+  <data name="inputCaptchaTooLong" xml:space="preserve">
+    <value>캡차 입력 대기 시간이 너무 깁니다</value>
+  </data>
+  <data name="tooManyFailedCaptcha" xml:space="preserve">
+    <value>잘못된 캡차 시도가 너무 많습니다</value>
+  </data>
+  <data name="BotDetectionMessage" xml:space="preserve">
+    <value>계정 보안을 위해 이번 로그인에는 안전성 검증이 필요합니다.</value>
+  </data>
+  <data name="GoBackToLoginPage" xml:space="preserve">
+    <value>&lt;a href="{0}"&gt;로그인 페이지&lt;/a&gt;로 돌아가기</value>
+  </data>
+  <data name="UM_Message" xml:space="preserve">
+    <value>정기 서버 점검 중입니다. 웹사이트는 현재 {0}부터 {1}까지(GMT +8) 사용할 수 없습니다. 나중에 다시 방문해 주세요.</value>
+  </data>
+  <data name="ToastTitle_DownlineLoginFailed" xml:space="preserve">
+    <value>하위 계정 로그인 문제</value>
+  </data>
+  <data name="PersonalMessage_DownlineLoginFailed_ChangedPassword" xml:space="preserve">
+    <value>귀하의 하위 계정 &lt;b&gt;{0}&lt;/b&gt;이(가) &lt;b&gt;{1}&lt;/b&gt;에 변경된 이전 비밀번호를 사용하여 로그인할 수 없습니다. 필요시 도움을 주거나 비밀번호를 재설정해 주세요.</value>
+  </data>
+  <data name="PersonalMessage_DownlineLoginFailed_ExceedCount" xml:space="preserve">
+    <value>귀하의 하위 계정 &lt;b&gt;{0}&lt;/b&gt;이(가) &lt;b&gt;로그인 실패 3회&lt;/b&gt;에 도달했습니다. 이는 로그인 문제이거나 보안 문제일 수 있습니다. 필요시 확인하고 조치를 취해 주세요.</value>
+  </data>
+  <data name="LoginFailedCountMessage" xml:space="preserve">
+    <value>{0}회 실패했습니다. 총 6회 실패 시 접근이 잠깁니다. 도움이 필요하시면 고객 지원팀에 문의하세요.</value>
   </data>
 </root>

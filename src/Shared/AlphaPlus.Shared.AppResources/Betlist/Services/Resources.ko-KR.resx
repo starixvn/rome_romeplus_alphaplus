@@ -456,4 +456,76 @@
   <data name="CreatedTime" xml:space="preserve">
     <value>생성 시간</value>
   </data>
+  <data name="ThisWeek" xml:space="preserve">
+    <value>이번 주</value>
+  </data>
+  <data name="TicketDetails" xml:space="preserve">
+    <value>티켓 상세</value>
+  </data>
+  <data name="UnsavedFilter" xml:space="preserve">
+    <value>저장되지 않은 필터</value>
+  </data>
+  <data name="UsernameTagsInputPlaceHolder" xml:space="preserve">
+    <value>사용자명/닉네임을 입력하세요 (쉼표, 탭 또는 엔터로 구분)</value>
+  </data>
+  <data name="Void" xml:space="preserve">
+    <value>무효</value>
+  </data>
+  <data name="VoidAndReject" xml:space="preserve">
+    <value>무효/거부/환급된 베팅 목록</value>
+  </data>
+  <data name="WinLossRoundNote" xml:space="preserve">
+    <value>승패는 참고용으로만 반올림됩니다. 따라서 소계 금액은 모든 실제 승패 금액을 합산할 때 승패 합계와 다를 수 있습니다.</value>
+  </data>
+  <data name="nSelected" xml:space="preserve">
+    <value>선택된 수</value>
+  </data>
+  <data name="number" xml:space="preserve">
+    <value>번호</value>
+  </data>
+  <data name="platform" xml:space="preserve">
+    <value>플랫폼</value>
+  </data>
+  <data name="refunded" xml:space="preserve">
+    <value>환급됨</value>
+  </data>
+  <data name="rejected" xml:space="preserve">
+    <value>거부됨</value>
+  </data>
+  <data name="selectStatuses" xml:space="preserve">
+    <value>상태 선택</value>
+  </data>
+  <data name="voided" xml:space="preserve">
+    <value>무효됨</value>
+  </data>
+  <data name="NotifyLastBetsViaTelegram" xml:space="preserve">
+    <value>새 티켓이 필터와 일치할 때 텔레그램을 통해 알림</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>알림</value>
+  </data>
+  <data name="ConfirmTurnOffNotification" xml:space="preserve">
+    <value>이 필터의 텔레그램 알림을 비활성화하시겠습니까?</value>
+  </data>
+  <data name="ConfirmTurnOnNotification" xml:space="preserve">
+    <value>이 필터의 텔레그램 알림을 활성화하시겠습니까? 참고: 알림 필터의 최대 개수는 3개입니다</value>
+  </data>
+  <data name="EnableChatBot_LastBets" xml:space="preserve">
+    <value>최근 베팅 알림 기능을 사용하려면 챗봇 및 최근 베팅 알림을 활성화하세요. &lt;a class="lnk-chatbot"&gt;챗봇으로 이동&lt;/a&gt;</value>
+  </data>
+  <data name="MemberRisk" xml:space="preserve">
+    <value>승리 금액</value>
+  </data>
+  <data name="MasterRisk" xml:space="preserve">
+    <value>마스터 위험</value>
+  </data>
+  <data name="SuperRisk" xml:space="preserve">
+    <value>슈퍼 위험</value>
+  </data>
+  <data name="AgentRisk" xml:space="preserve">
+    <value>에이전트 위험</value>
+  </data>
+  <data name="FilterConfigurationSpecificSuperMasterContent" xml:space="preserve">
+    <value>선택된 회원의 티켓을 모니터링하며, 수동으로 추가할 수 있습니다.</value>
+  </data>
 </root>

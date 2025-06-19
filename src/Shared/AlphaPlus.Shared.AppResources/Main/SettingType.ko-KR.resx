@@ -121,19 +121,19 @@
     <value>회원설정</value>
   </data>
   <data name="_1" xml:space="preserve">
-    <value>거래 조건</value>
+    <value>포지션 취하기</value>
   </data>
   <data name="_10" xml:space="preserve">
     <value>수수료</value>
   </data>
   <data name="_11" xml:space="preserve">
-    <value>Product Status</value>
+    <value>제품 상태</value>
   </data>
   <data name="_12" xml:space="preserve">
-    <value>Win Loss Limit</value>
+    <value>승패 한도</value>
   </data>
   <data name="_13" xml:space="preserve">
-    <value>Product Status</value>
+    <value>제품 상태</value>
   </data>
   <data name="_14" xml:space="preserve">
     <value>수수료</value>
@@ -142,57 +142,57 @@
     <value>수수료</value>
   </data>
   <data name="_16" xml:space="preserve">
-    <value>배팅 설정</value>
+    <value>베팅 설정</value>
   </data>
   <data name="_17" xml:space="preserve">
-    <value>Stake Level</value>
+    <value>스테이크 레벨</value>
   </data>
   <data name="_18" xml:space="preserve">
-    <value>거래 조건</value>
+    <value>포지션 취하기</value>
   </data>
   <data name="_19" xml:space="preserve">
     <value>수수료</value>
   </data>
   <data name="_2" xml:space="preserve">
-    <value>배팅 설정</value>
+    <value>베팅 설정</value>
   </data>
   <data name="_22" xml:space="preserve">
-    <value>Win Loss Limit</value>
+    <value>승패 한도</value>
   </data>
   <data name="_3" xml:space="preserve">
     <value>수수료</value>
   </data>
   <data name="_4" xml:space="preserve">
-    <value>Product Status</value>
+    <value>제품 상태</value>
   </data>
   <data name="_5" xml:space="preserve">
     <value>수수료</value>
   </data>
   <data name="_6" xml:space="preserve">
-    <value>Win Loss Limit</value>
+    <value>승패 한도</value>
   </data>
   <data name="_7" xml:space="preserve">
-    <value>Stake Level</value>
+    <value>스테이크 레벨</value>
   </data>
   <data name="_8" xml:space="preserve">
-    <value>Stake Level</value>
+    <value>스테이크 레벨</value>
   </data>
   <data name="_9" xml:space="preserve">
-    <value>배팅 설정</value>
+    <value>베팅 설정</value>
   </data>
   <data name="_26" xml:space="preserve">
-    <value>배팅 설정</value>
+    <value>베팅 설정</value>
   </data>
   <data name="_23" xml:space="preserve">
-    <value>배팅 설정</value>
+    <value>베팅 설정</value>
   </data>
   <data name="_25" xml:space="preserve">
     <value>수수료</value>
   </data>
   <data name="_27" xml:space="preserve">
-    <value>Parlay Max Payout</value>
+    <value>파레이 최대 지급</value>
   </data>
   <data name="_28" xml:space="preserve">
-    <value>거래 조건</value>
+    <value>포지션 취하기</value>
   </data>
 </root>

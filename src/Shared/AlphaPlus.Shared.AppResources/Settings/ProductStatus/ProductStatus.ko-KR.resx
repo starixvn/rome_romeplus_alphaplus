@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Msg60033" xml:space="preserve">
-    <value>Unable to edit downline's Product Status because the account disabled for this product.</value>
+    <value>이 제품에 대해 계정이 비활성화되어 하위 라인의 제품 상태를 편집할 수 없습니다.</value>
   </data>
   <data name="Msg60035" xml:space="preserve">
-    <value>You are not allowed to disable downline's product.</value>
+    <value>하위 라인의 제품을 비활성화할 권한이 없습니다.</value>
   </data>
   <data name="Msg90012" xml:space="preserve">
-    <value>You are not allowed to perform this action.</value>
+    <value>이 작업을 수행할 권한이 없습니다.</value>
   </data>
   <data name="ProductStatusWarningMessage" xml:space="preserve">
-    <value>You are not allowed to disable this product on your downlines per company policy.</value>
+    <value>회사 정책에 따라 하위 라인에서 이 제품을 비활성화할 권한이 없습니다.</value>
   </data>
   <data name="StatusUpdatedSuccessfully" xml:space="preserve">
     <value>상태가 성공적으로 업데이트되었습니다.</value>
@@ -136,21 +136,48 @@
     <value>회원설정</value>
   </data>
   <data name="_ProductStatus" xml:space="preserve">
-    <value>Product Status</value>
+    <value>제품 상태</value>
   </data>
-  <data name="UnableToEditDownlineProductStatus" xml:space="preserve">
-    <value>이 제품이 비활성화되어 있어 하위 라인의 제품 상태를 편집할 수 없습니다.</value>
+  <data name="UnableToEditDownlinesProductStatus" xml:space="preserve">
+    <value>이 제품에 대해 계정이 비활성화되어 하위 라인의 제품 상태를 편집할 수 없습니다.</value>
   </data>
-  <data name="NotAllowedToDisableDownlineProduct" xml:space="preserve">
+  <data name="NotAllowedToDisableDownlinesProduct" xml:space="preserve">
     <value>하위 라인의 제품을 비활성화할 권한이 없습니다.</value>
   </data>
-  <data name="NotAllowedToPerformAction" xml:space="preserve">
+  <data name="NotAllowedToPerformThisAction" xml:space="preserve">
     <value>이 작업을 수행할 권한이 없습니다.</value>
   </data>
-  <data name="NotAllowedToDisableProductOnDownlines" xml:space="preserve">
-    <value>회사 정책에 따라 하위 라인에서 이 제품을 비활성화할 수 없습니다.</value>
+  <data name="NotAllowedToDisableProductPerCompanyPolicy" xml:space="preserve">
+    <value>회사 정책에 따라 하위 라인에서 이 제품을 비활성화할 권한이 없습니다.</value>
   </data>
   <data name="ProductStatus" xml:space="preserve">
     <value>제품 상태</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>모든 제품</value>
+  </data>
+  <data name="ProductStatusUM" xml:space="preserve">
+    <value>아래 설정의 점검(UTC+8)으로 인해 업데이트할 수 없습니다:</value>
+  </data>
+  <data name="ProductStatusUMPattern" xml:space="preserve">
+    <value>- {0}: {1} ({2} ~ {3})</value>
+  </data>
+  <data name="Msg60037" xml:space="preserve">
+    <value>{1}이(가) 비활성화된 경우 {0}을(를) 활성화할 수 없습니다.</value>
+  </data>
+  <data name="NoDataChange" xml:space="preserve">
+    <value>업데이트할 변경사항이 없습니다.</value>
+  </data>
+  <data name="NoInfo" xml:space="preserve">
+    <value>사용 가능한 정보가 없습니다</value>
+  </data>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>사용 가능한 정보가 없습니다</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>이 기능에 대한 권한이 없습니다.</value>
+  </data>
+  <data name="JackpotStatusTooltip" xml:space="preserve">
+    <value>이 잭팟 상태는 {0} 잭팟에만 적용됩니다. 잭팟이 비활성화되면 회원은 모든 게임을 정상적으로 이용할 수 있지만, 잭팟 참여는 불가합니다.</value>
   </data>
 </root>
