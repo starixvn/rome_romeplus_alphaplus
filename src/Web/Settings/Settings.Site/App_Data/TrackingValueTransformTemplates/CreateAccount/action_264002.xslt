@@ -49,7 +49,13 @@
           <xsl:value-of select="xslLogFormat:GetLogResource('bank')"/>
         </td>
         <td class="colW2">
-          <xsl:value-of select="@bankid"/>
+          <xsl:value-of select="xslLogFormat:GetLogResource(concat('Bank_', @bankid))"/>
+        </td>
+        <td class="colW1">
+          <xsl:value-of select="xslLogFormat:GetLogResource('accnumber')" />
+        </td>
+        <td class="colW2">
+          <xsl:value-of select="@accnumber" />
         </td>
         <td class="colW1">
           <xsl:value-of select="xslLogFormat:GetLogResource('ip')" />
@@ -57,27 +63,25 @@
         <td class="colW2">
           <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
         </td>
+      </tr>
+      <tr>
+        <td class="colW1">
+          <xsl:value-of select="xslLogFormat:GetLogResource('subaccname')" />
+        </td>
+        <td class="colW2">
+          <xsl:value-of select="@subaccname" />
+        </td>
         <td class="colW1">
           <xsl:value-of select="xslLogFormat:GetLogResource('errcode')" />
         </td>
         <td class="colW2">
           <xsl:value-of select="@errcode" />
         </td>
-      </tr>
-      <tr>
         <td class="colW1">
           <xsl:value-of select="xslLogFormat:GetLogResource('errmsg')" />
         </td>
         <td class="colW2">
           <xsl:value-of select="@errmsg" />
-        </td>
-        <td class="colW1">
-        </td>
-        <td class="colW2">
-        </td>
-        <td class="colW1">
-        </td>
-        <td class="colW2">
         </td>
       </tr>
     </table>
