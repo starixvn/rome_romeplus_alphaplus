@@ -31,9 +31,7 @@
          <div class='row'>
             <div class='col-xs-7'>@label</div>
             <div class='col-xs-5 value-toggle'>
-                <div id='cash-service-toggle' class='switch-toggle @(canUpdateCashServiceStatus ? "" : "disabled")' data-state='@(isCashServiceEnabled ? "on" : "off")'>
-                    <div class='toggle'></div>
-                </div>
+                <div id="cash-service-toggle" class='switch-toggle @(canUpdateCashServiceStatus ? "" : "disabled")' data-state='@(isCashServiceEnabled ? "on" : "off")' />
             </div>
         </div>
     }
