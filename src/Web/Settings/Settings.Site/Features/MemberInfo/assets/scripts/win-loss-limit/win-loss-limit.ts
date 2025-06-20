@@ -26,6 +26,7 @@ class WinLossLimit {
     $username: JQuery;
     $playerId: JQuery;
     $tableReport: JQuery;
+    $pageIndex: JQuery;
 
     constructor(
         $: JQueryStatic,
@@ -86,6 +87,7 @@ class WinLossLimit {
         this.$username = this.$('#txt-username');
         this.$playerId = this.$('#txt-player-id');
         this.$tableReport = this.$('#tbl-report');
+        this.$pageIndex = this.$('#PageIndex');
     };
     bindEvents = () => {
         this.$username.keyup(this.doneInputTextbox);
@@ -96,6 +98,7 @@ class WinLossLimit {
         var sportType = selectedOption.attr('data-sport-type');
         var betType = selectedOption.attr('data-bet-type');
         var productId = selectedOption.attr('data-product-id');
+        this.$pageIndex.val(1);
 
         this.$sportType.val(sportType);
         this.$betType.val(betType);
@@ -105,10 +108,12 @@ class WinLossLimit {
     changeMaster = () => {
         this.$masterId.val(this.$masterList.val());
         this.$agentId.val(0);
+        this.$pageIndex.val(1);
         this.submitForm();
     };
     changeAgent = () => {
         this.$agentId.val(this.$agentList.val());
+        this.$pageIndex.val(1);
         this.submitForm();
     };
     submitForm = () => {
@@ -119,6 +124,7 @@ class WinLossLimit {
         var keyCode = event.keyCode || event.which;
 
         if (keyCode === 13) {
+            this.$pageIndex.val(1);
             this.submitForm();
         }
     };

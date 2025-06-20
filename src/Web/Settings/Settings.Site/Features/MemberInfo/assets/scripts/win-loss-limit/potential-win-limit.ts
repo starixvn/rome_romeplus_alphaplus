@@ -19,6 +19,7 @@ class PotentialWinLimit {
     $username: JQuery;
     $tableReport: JQuery;
     $iconExcel: JQuery;
+    $pageIndex: JQuery;
 
     constructor(
         $: JQueryStatic,
@@ -38,18 +39,16 @@ class PotentialWinLimit {
 
         var self = this;
         this.statusComponent.render(
-            new SingleSelectionDropdownOption(
-                'dropdown-status',
-                'Status',
-                this.changeStatus,
-                true,
-                true
-            )
+            new SingleSelectionDropdownOption('dropdown-status', 'Status', this.changeStatus, true, true)
         );
 
         if (this.$problemAccount.length) {
             this.problemAccountComponent.render(
-                new SingleSelectionDropdownOption('dropdown-problem-account', 'ProblemAccount', this.changeProblemAccount)
+                new SingleSelectionDropdownOption(
+                    'dropdown-problem-account',
+                    'ProblemAccount',
+                    this.changeProblemAccount
+                )
             );
         }
         this.$tableReport.stickyTableHeaders();
@@ -64,6 +63,7 @@ class PotentialWinLimit {
         this.$username = this.$('#txt-username');
         this.$tableReport = this.$('#tbl-report');
         this.$iconExcel = this.$('#icon-excel');
+        this.$pageIndex = this.$('#PageIndex');
     };
 
     bindEvents = () => {
@@ -91,15 +91,16 @@ class PotentialWinLimit {
     };
 
     changeStatus = () => {
+        this.$pageIndex.val(1);
         this.$status.val(this.$status.val());
         this.submitForm();
     };
 
     changeProblemAccount = () => {
+        this.$pageIndex.val(1);
         this.$problemAccount.val(this.$problemAccount.val());
         this.submitForm();
     };
-
 
     submitForm = () => {
         this.$.blockUI();
@@ -110,6 +111,7 @@ class PotentialWinLimit {
         var keyCode = event.keyCode || event.which;
 
         if (keyCode === 13) {
+            this.$pageIndex.val(1);
             this.submitForm();
         }
     };
@@ -124,4 +126,4 @@ const potentialWinLimit = new PotentialWinLimit(
 
 $(() => {
     potentialWinLimit.init();
-}); 
+});
