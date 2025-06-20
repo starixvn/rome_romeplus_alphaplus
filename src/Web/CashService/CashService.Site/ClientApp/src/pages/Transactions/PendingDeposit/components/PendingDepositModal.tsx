@@ -169,7 +169,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
                     <div className="mb-[10px]">
                       <LabelTitleComponent text={t('pendingDepositModal.from')} />
                       <div className="flex items-center">
-                        {deposit?.paymentFrom && renderBankAccount(deposit.paymentFrom)}
+                        {renderBankAccount(deposit?.paymentFrom || '')}
                       </div>
                     </div>
                     <div>

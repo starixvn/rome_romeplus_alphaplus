@@ -13,6 +13,7 @@ import {
 import TransactionDetail from './TransactionDetail';
 import { ButtonFullComponent } from '../../../../components/ButtonComponents';
 import { IconImage } from '../../../../components/Icons.tsx';
+import Tippy from '@tippyjs/react';
 
 interface DataGridProps {
   items: TransactionItem[];
@@ -34,6 +35,7 @@ const DataGrid: React.FC<DataGridProps> = ({
   columnFilter = ['All'],
 }) => {
   const { t } = useTranslation('transactionHistory');
+  const { t: tGlobal } = useTranslation('global');
   const [selectedTransactionId, setSelectedTransactionId] = useState<number | null>(null);
   const [selectedCustId, setSelectedCustId] = useState<number | null>(null);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
@@ -86,7 +88,11 @@ const DataGrid: React.FC<DataGridProps> = ({
                 <div>{t('table.nickname')}</div>
               </th>
               {shouldShowColumn('name') && <th scope="col">{t('table.name')}</th>}
-              {shouldShowColumn('amount') && <th scope="col" className="min-w-[150px]">{t('table.amount')}</th>}
+              {shouldShowColumn('amount') && (
+                <th scope="col" className="min-w-[150px]">
+                  {t('table.amount')}
+                </th>
+              )}
               {shouldShowColumn('from') && <th scope="col">{t('table.from')}</th>}
               {shouldShowColumn('to') && <th scope="col">{t('table.to')}</th>}
               {shouldShowColumn('status') && <th scope="col">{t('table.status')}</th>}
@@ -115,22 +121,30 @@ const DataGrid: React.FC<DataGridProps> = ({
                   )}
                   {shouldShowColumn('amount') && (
                     <td className="text-right">
-                      <div className="flex items-center justify-end pr-[25px] relative">                        
+                      <div className="flex items-center justify-end pr-[25px] relative">
                         {displayAmount(item.amount)}
-                        {item.isHadPayslip && <IconImage className="w-[20px] h-[20px] ml-[5px] absolute right-[0px]" />}
+                        {item.isHadPayslip && (
+                          <IconImage className="w-[20px] h-[20px] ml-[5px] absolute right-[0px]" />
+                        )}
                       </div>
                     </td>
                   )}
                   {shouldShowColumn('from') && (
                     <td>
                       <div className="flex items-center">
-                        {item.paymentFrom ? <>{renderBankAccount(item.paymentFrom)}</> : '-'}
+                        <Tippy content={<p>{tGlobal(item.paymentFrom.split('-')[0])}</p>}>
+                          {renderBankAccount(item.paymentFrom)}
+                        </Tippy>
                       </div>
                     </td>
                   )}
                   {shouldShowColumn('to') && (
                     <td>
-                      <div className="flex items-center">{renderBankAccount(item.paymentTo)}</div>
+                      <div className="flex items-center">
+                        <Tippy content={<p>{tGlobal(item.paymentTo.split('-')[0])}</p>}>
+                          {renderBankAccount(item.paymentTo)}
+                        </Tippy>
+                      </div>
                     </td>
                   )}
                   {shouldShowColumn('status') && (
@@ -156,7 +170,7 @@ const DataGrid: React.FC<DataGridProps> = ({
                 </tr>
               ))
             ) : (
-              <NoRecordFound colSpan={12} message={t('table.noRecords')} /> 
+              <NoRecordFound colSpan={12} message={t('table.noRecords')} />
             )}
           </tbody>
         </table>
