@@ -261,7 +261,6 @@
         "BackOfficeApiUrl": "http://vn-s1-alpha-api-prod.gamora.prod/api/"
     },
     "OfferProfilePictureTour": true,
-    "SiteSupportPotentialWinLimit": "222227",
     "CashService": {
         "OfferedSites": "222227",
         "APIUrl": "http://alphaplus_api_cashservice_alphaklprod_2:5000/api"

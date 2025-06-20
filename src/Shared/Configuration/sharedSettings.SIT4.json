@@ -278,7 +278,6 @@
         "BackOfficeApiUrl": "https://s1-alpha-api-service.playonesit.com/api/"
     },
     "OfferProfilePictureTour": true,
-    "SiteSupportPotentialWinLimit": "*",
     "CashService": {
         "OfferedSites": "755555,222227",
         "APIUrl": "http://alphaplus_api_cashservice_sit_4:5000/api"

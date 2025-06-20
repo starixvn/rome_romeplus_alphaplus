@@ -64,16 +64,11 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
                 MinReportDate = message.MinReportDate,
                 IsShowOldValue = message.IsShowOldValue,
                 ActionTypeId = string.IsNullOrWhiteSpace(message.ActionTypeId) ? ActionType.All : Converter.ToInt(message.ActionTypeId),
-                LimitedDateToShowInfo = message.LimitedDateForShowInfo,
-                IsSupportPotentialWinLimit = AppSettings.IsSupportPotentialWinLimit(message.Site)
+                LimitedDateToShowInfo = message.LimitedDateForShowInfo
             };
 
             var pagingLogs = await LogService.GetPagingLogs(logsParam);
-            pagingLogs.Logs = pagingLogs.Logs.Where(i => IsSupportPotentialWinLimit(i));
-            var logsUnsupportPotentialWinLimit = pagingLogs.Logs.Where(i => !IsSupportPotentialWinLimit(i));
-            var totalRecords = pagingLogs.TotalRecords - logsUnsupportPotentialWinLimit.Count();
-
-            var viewModel = new IndexViewModel(logsParam, totalRecords)
+            var viewModel = new IndexViewModel(logsParam, pagingLogs.TotalRecords)
             {
                 LogActionTypes = await BuildLogActionTypeViewModels(message),
                 ActionTypeId = message.ActionTypeId
@@ -83,17 +78,6 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
 
             return viewModel;
         }
-
-        private static bool IsSupportPotentialWinLimit(Log log)
-        {
-            if (!PotentialWinLimitActionIds.Any(i => i == log.ActionId))
-            {
-                return true;
-            }
-
-            return log.IsSupportPotentialWinLimit;
-        }
-
         private async Task<IEnumerable<LogActionTypeViewModel>> BuildLogActionTypeViewModels(IndexQuery message)
         {
             var logActionTypes = await LogService.GetLogActionTypes();
@@ -129,7 +113,7 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
                 try
                 {
                     var formattedTrackingValue = trackingValueFormatter.GetFormattedDiffTrackingValue(log, message.IsShowOldValue);
-                    var htmlTrackingValue = transformService.TransformTrackingValue(formattedTrackingValue, log.ActionId, transformParam, log.IsHideNickname, log.IsSupportPotentialWinLimit);
+                    var htmlTrackingValue = transformService.TransformTrackingValue(formattedTrackingValue, log.ActionId, transformParam, log.IsHideNickname);
 
                     if (htmlTrackingValue != null)
                     {

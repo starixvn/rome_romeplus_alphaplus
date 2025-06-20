@@ -2,7 +2,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xslLogFormat="urn:LogFormat">
   <xsl:output method="html" indent="no" />  
     <xsl:template match="potentialwinlimit[@grouptype=162]">
-      <xsl:if test="xslLogFormat:IsSupportPotentialWinLimit() = 'True'">
+      
           <xsl:if test="r">
             <tr class="headerDetail" onclick="toggle(this)">
               <td colspan="3">
@@ -39,7 +39,7 @@
               </td>
             </tr>
           </xsl:if>
-      </xsl:if>
+
     </xsl:template>
   
   

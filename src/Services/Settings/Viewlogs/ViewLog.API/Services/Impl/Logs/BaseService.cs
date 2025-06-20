@@ -114,7 +114,6 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs
             {
                 var isHideNickname = IsHideNickName(IsSubAccFromLog(log), downlineInfo.RoleId, downlineInfo.CustId, SubAccNameFromLog(log));
                 log.IsHideNickname = isHideNickname;
-                log.IsSupportPotentialWinLimit = logParam.IsSupportPotentialWinLimit;
             }
 
             return pagingLogs;
