@@ -130,7 +130,7 @@ public class CreditBalanceViewModel
 
         return language switch
         {
-            "zh-TW" or "zh-CN" or "th-TH" or "vi-VN" => $"{viewName}.{language}",
+            "zh-TW" or "zh-CN" or "th-TH" or "vi-VN" or "ko-KR" => $"{viewName}.{language}",
             _ => $"{viewName}.en-US"
         };
     }

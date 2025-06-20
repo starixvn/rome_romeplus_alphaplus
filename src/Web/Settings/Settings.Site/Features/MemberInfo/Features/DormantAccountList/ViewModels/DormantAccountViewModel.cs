@@ -58,6 +58,6 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountLis
             => new SelectListItem { Text = text, Value = value.ToString(), Selected = selected };
 
         public string GetArchiveProcessViewLang()
-            => new[] { "th-TH", "vi-VN", "zh-CN", "zh-TW" }.FirstOrDefault(l => l.Equals(Message.Language)) ?? "en-US";
+            => new[] { "th-TH", "vi-VN", "zh-CN", "zh-TW", "ko-KR" }.FirstOrDefault(l => l.Equals(Message.Language)) ?? "en-US";
     }
 }

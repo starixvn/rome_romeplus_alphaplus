@@ -1,0 +1,73 @@
+@{
+    Layout = null;
+}
+@using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.CreditBalance
+@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
+
+@model CreditBalanceViewModel
+
+<div class="modal fade message-modal" id="report-legend" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="icon icon-close close" data-dismiss="modal"
+                    aria-label="@Resources.ConditionToClearCredit"><span aria-hidden="true"></span></button>
+                <h4 class="modal-title">@Resources.ConditionToClearCredit</h4>
+            </div>
+            <div class="modal-body">
+                <div id="msg-content">
+                    @if (Model.CustLevel.IsAgentLevel())
+                    {
+                        if (!string.IsNullOrWhiteSpace(Model.TransferCondition))
+                        {
+                            <p>- @Model.TransferCondition</p>
+                        }
+                        if (Model.IsViewingMemberList)
+                        {
+                            <p>- @Resources.CreditBalanceNote</p>
+                        }
+                        <p>- 에이전트가 생성한 후 14일 이상 로그인하지 않은 회원.</p>
+                    }
+                    else
+                    {
+                        <span>하위 라인에 지급된 크레딧은 다음 조건에서 자동으로 정리됩니다:</span>
+                        if (Model.CustLevel.IsSuperLevel())
+                        {
+                            if (Model.IsViewingMemberList)
+                            {
+                                <p>- @Resources.CreditBalanceNote</p>
+                            }
+                            <ul class="list-msg">
+                                <li>
+                                    하위 라인이 없는 마스터/에이전트(직접 회원 포함):
+                                    <p>- 마스터/에이전트가 직접 상위 라인에 의해 생성된 후 7일 이내에 로그인하지 않는 경우.</p>
+                                </li>
+                                <li>
+                                    회원/직접 회원:
+                                    <p>- 회원/직접 회원이 직접 상위 라인에 의해 생성된 후 14일 이내에 로그인하지 않는 경우.</p>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            if (Model.IsViewingMemberList)
+                            {
+                                <p>- @Resources.CreditBalanceNote</p>
+                            }
+                            <ul class="list-msg">
+                                <li>
+                                    하위 라인이 없는 에이전트:
+                                    <p>- 에이전트가 마스터에 의해 생성된 후 7일 이내에 로그인하지 않는 경우.</p>
+                                </li>
+                                <li>
+                                    회원/직접 회원:
+                                    <p>- 회원/직접 회원이 직접 상위 라인에 의해 생성된 후 14일 이내에 로그인하지 않는 경우.</p>
+                                </li>
+                            </ul>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
