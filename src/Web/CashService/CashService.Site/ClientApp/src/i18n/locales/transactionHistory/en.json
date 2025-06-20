@@ -14,7 +14,8 @@
     "usernamePlaceholder": "Username/Ref No",
     "status": "Status",
     "dateRange": "Date Range",
-    "maxRecords": "Up to 5000 latest records will be displayed"
+    "maxRecords": "Up to 5000 latest records will be displayed",
+    "noneSelected": "None selected"
   },
 
   "table": {

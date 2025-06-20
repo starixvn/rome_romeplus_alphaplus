@@ -43,13 +43,14 @@ const ColumnFilter: React.FC<ColumnFilterProps> = ({ column, onColumnChange }) =
     <div className="form-group">
       <LabelTitleComponent text={t('filter.column')} />
       <CustomMultiSelect
-        className='react-select-custom control-field p-0!'
+        className="react-select-custom control-field p-0!"
         options={options}
         initialValues={selectedColumns}
         onChange={handleChange}
         placeholder={t('filter.allColumns') as string}
         isCheckAll={true}
         onMenuClose={handleMenuClose}
+        noneSelectedText={t('filter.noneSelected')}
       />
     </div>
   );

@@ -14,7 +14,8 @@
     "usernamePlaceholder": "用戶名/參考號",
     "status": "狀態",
     "dateRange": "日期範圍",
-    "maxRecords": "最多顯示5000筆最新記錄"
+    "maxRecords": "最多顯示5000筆最新記錄",
+    "noneSelected": "未選擇"
   },
 
   "table": {

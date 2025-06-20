@@ -14,7 +14,8 @@
     "usernamePlaceholder": "Tên người dùng/Số tham chiếu",
     "status": "Trạng thái",
     "dateRange": "Khoảng thời gian",
-    "maxRecords": "Hiển thị tối đa 5000 bản ghi mới nhất"
+    "maxRecords": "Hiển thị tối đa 5000 bản ghi mới nhất",
+    "noneSelected": "Không có lựa chọn"
   },
 
   "table": {

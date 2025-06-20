@@ -14,7 +14,8 @@
     "usernamePlaceholder": "ユーザー名/参照番号",
     "status": "ステータス",
     "dateRange": "日付範囲",
-    "maxRecords": "最新5000件のレコードを表示"
+    "maxRecords": "最新5000件のレコードを表示",
+    "noneSelected": "未選択"
   },
 
   "table": {

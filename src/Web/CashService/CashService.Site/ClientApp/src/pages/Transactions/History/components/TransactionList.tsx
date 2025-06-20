@@ -288,6 +288,10 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
 
   useEffect(() => {
     updateApiParams({ pageIndex: 1 });
+  }, [transactionType, updateApiParams]);
+
+  useEffect(() => {
+    updateApiParams({ pageIndex: 1 });
   }, [localSearchText, apiParams.account, updateApiParams]);
 
   return (

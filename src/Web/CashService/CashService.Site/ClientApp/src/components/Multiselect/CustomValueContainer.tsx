@@ -8,10 +8,14 @@ interface OptionType {
   disabled?: boolean;
 }
 
+interface CustomValueContainerProps extends ValueContainerProps<OptionType, true> {
+  noneSelectedText?: string;
+}
+
 const ALL_OPTION_VALUE = '__ALL__';
 
-export const CustomValueContainer = (props: ValueContainerProps<OptionType, true>) => {
-  const { children, getValue, hasValue, selectProps } = props;
+export const CustomValueContainer = (props: CustomValueContainerProps) => {
+  const { children, getValue, hasValue, selectProps, noneSelectedText = 'None selected' } = props;
   const selectedOptions = getValue();
   const { t } = useTranslation('global');
 
@@ -69,12 +73,15 @@ export const CustomValueContainer = (props: ValueContainerProps<OptionType, true
     } else if (nonAllSelectedCount > 0) {
       valueText = `${nonAllSelectedCount} selected`;
     }
+  } else {
+    // Show custom "None selected" text when no options are selected
+    valueText = noneSelectedText;
   }
 
   return (
     <components.ValueContainer {...props}>
       {childrenToRender}
-      {hasValue && valueText && (
+      {valueText && (
         <div
           style={{
             position: 'relative',
@@ -87,6 +94,7 @@ export const CustomValueContainer = (props: ValueContainerProps<OptionType, true
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
             boxSizing: 'border-box',
+            color: hasValue ? 'inherit' : '#999',
           }}
         >
           {valueText}

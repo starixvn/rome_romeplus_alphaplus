@@ -14,7 +14,8 @@
     "usernamePlaceholder": "用户名/参考号",
     "status": "状态",
     "dateRange": "日期范围",
-    "maxRecords": "最多显示5000条最新记录"
+    "maxRecords": "最多显示5000条最新记录",
+    "noneSelected": "未选择"
   },
 
   "table": {

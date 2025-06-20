@@ -21,6 +21,7 @@ interface MultiSelectProps {
   initialValues?: string[];
   styles?: StylesConfig<OptionType, true>;
   onMenuClose?: () => void;
+  noneSelectedText?: string;
 }
 
 const ALL_OPTION_VALUE = '__ALL__';
@@ -35,6 +36,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
   initialValues = [],
   styles,
   onMenuClose,
+  noneSelectedText = 'None selected',
 }) => {
   const { t } = useTranslation('global');
 
@@ -274,7 +276,9 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
             }}
           />
         ),
-        ValueContainer: CustomValueContainer,
+        ValueContainer: (props) => (
+          <CustomValueContainer {...props} noneSelectedText={noneSelectedText} />
+        ),
         MultiValue: () => null,
         ClearIndicator: () => null,
         DropdownIndicator: (props) => (

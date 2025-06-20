@@ -14,7 +14,8 @@
     "usernamePlaceholder": "사용자명/참조번호",
     "status": "상태",
     "dateRange": "날짜 범위",
-    "maxRecords": "최대 5000개의 최신 레코드가 표시됩니다"
+    "maxRecords": "최대 5000개의 최신 레코드가 표시됩니다",
+    "noneSelected": "선택된 항목이 없습니다"
   },
 
   "table": {
