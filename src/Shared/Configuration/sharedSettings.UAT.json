@@ -280,7 +280,7 @@
     "OfferProfilePictureTour": true,
     "SiteSupportPotentialWinLimit": "222227",
     "CashService": {
-        "OfferedSites": "755555,222227",
+        "OfferedSites": "BEST-ODDS,755555,222227",
         "APIUrl": "http://alphaplus_api_cashservice_uat:5000/api"
     }
 }
