@@ -939,4 +939,13 @@
   <data name="FGSlashLG" xml:space="preserve">
     <value>전반전/후반전</value>
   </data>
+  <data name="ScoreMapInformationDescription" xml:space="preserve">
+    <value>스코어 맵 정보 설명</value>
+  </data>
+  <data name="ScoreMapNoteContent" xml:space="preserve">
+    <value>스코어 맵은 경기의 득점 변동을 시각적으로 보여줍니다. 각 점수 변화와 관련된 베팅 결과를 쉽게 확인할 수 있습니다.</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>선택</value>
+  </data>
 </root>
