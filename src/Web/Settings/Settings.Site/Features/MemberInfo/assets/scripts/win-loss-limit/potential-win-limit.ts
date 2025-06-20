@@ -19,7 +19,6 @@ class PotentialWinLimit {
     $username: JQuery;
     $tableReport: JQuery;
     $iconExcel: JQuery;
-    $pageIndex: JQuery;
 
     constructor(
         $: JQueryStatic,
@@ -63,7 +62,6 @@ class PotentialWinLimit {
         this.$username = this.$('#txt-username');
         this.$tableReport = this.$('#tbl-report');
         this.$iconExcel = this.$('#icon-excel');
-        this.$pageIndex = this.$('#PageIndex');
     };
 
     bindEvents = () => {
@@ -91,13 +89,13 @@ class PotentialWinLimit {
     };
 
     changeStatus = () => {
-        this.$pageIndex.val(1);
+        this.$('#PageIndex').val(1);
         this.$status.val(this.$status.val());
         this.submitForm();
     };
 
     changeProblemAccount = () => {
-        this.$pageIndex.val(1);
+        this.$('#PageIndex').val(1);
         this.$problemAccount.val(this.$problemAccount.val());
         this.submitForm();
     };
@@ -111,7 +109,7 @@ class PotentialWinLimit {
         var keyCode = event.keyCode || event.which;
 
         if (keyCode === 13) {
-            this.$pageIndex.val(1);
+            this.$('#PageIndex').val(1);
             this.submitForm();
         }
     };
