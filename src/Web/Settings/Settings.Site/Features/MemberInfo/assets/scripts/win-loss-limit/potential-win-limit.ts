@@ -51,7 +51,7 @@ class PotentialWinLimit {
             );
         }
         this.$tableReport.stickyTableHeaders();
-        this.pager.render(new PagerOption(this.submitForm, 'report-pager', 'win-loss-limit-form'));
+        this.pager.render(new PagerOption(this.submitForm, 'report-pager', 'potential-win-limit-form'));
     };
 
     cacheDOMElements = () => {
