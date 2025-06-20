@@ -155,7 +155,6 @@
 			"styles/components/tabs.css",
 			"styles/components/buttons.css",
 			"styles/components/textboxes.css"
-			
 		]
 	},
 	{
@@ -171,7 +170,6 @@
 			"styles/components/tabs.css",
 			"styles/components/buttons.css",
 			"styles/components/textboxes.css"
-
 		]
 	},
 	{
@@ -187,7 +185,6 @@
 			"styles/components/tabs.css",
 			"styles/components/buttons.css",
 			"styles/components/textboxes.css"
-
 		]
 	},
 	{
@@ -531,7 +528,6 @@
 			"js/libs/bootstrap/transition.js",
 			"js/libs/bootstrap/collapse.js",
 			"js/components/bootbox/bootbox.js",
-			
 			"js/libs/clipboard/clipboard.js",
 			"js/components/storejs/store.js"
 		]
@@ -654,11 +650,12 @@
 	{
 		"outputFileName": "bundles-v2/site-memberinfo/default.css",
 		"inputFiles": [
-				"styles-v2/components/tab.css",
-				"styles-v2/components/multiselect.css",
-				"styles-v2/components/fanex-multiselect.css",
-				"styles-v2/components/tables.css",
-				"styles-v2/components/tooltip.css"
+			"styles-v2/components/tab.css",
+			"styles-v2/components/multiselect.css",
+			"styles-v2/components/fanex-multiselect.css",
+			"styles-v2/components/tables.css",
+			"styles-v2/components/tooltip.css",
+			"styles-v2/components/pager.css"
 		]
 	},
 	{
@@ -1892,7 +1889,6 @@
 			"styles-v2/components/alert.css",
 			"styles-v2/components/title.css",
 			"styles-v2/components/modal.css"
-			
 		]
 	},
 	{
@@ -2223,16 +2219,16 @@
 			"styles-v2/components/tooltip.css"
 		]
 	},
-    {
-      "outputFileName": "bundles-v2/site-tickets/normal.css",
-      "inputFiles": [
-        "styles-v2/components/tab.css",
-        "styles-v2/components/bootstrap-daterangepicker.css",
-        "styles-v2/components/daterangepicker-customize.css",
-        "styles/vendors/bootstrap-multiselect.css",
-        "styles/components/bootstrap-multiselect.css",
-        "styles/vendors/select2.css",
-        "styles-v2/components/tables.css"
-      ]
-    }
+	{
+		"outputFileName": "bundles-v2/site-tickets/normal.css",
+		"inputFiles": [
+			"styles-v2/components/tab.css",
+			"styles-v2/components/bootstrap-daterangepicker.css",
+			"styles-v2/components/daterangepicker-customize.css",
+			"styles/vendors/bootstrap-multiselect.css",
+			"styles/components/bootstrap-multiselect.css",
+			"styles/vendors/select2.css",
+			"styles-v2/components/tables.css"
+		]
+	}
 ]

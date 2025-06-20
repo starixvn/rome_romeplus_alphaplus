@@ -96,6 +96,7 @@ class WinLossLimit {
         var sportType = selectedOption.attr('data-sport-type');
         var betType = selectedOption.attr('data-bet-type');
         var productId = selectedOption.attr('data-product-id');
+        this.$('#PageIndex').val(1);
 
         this.$sportType.val(sportType);
         this.$betType.val(betType);
@@ -105,10 +106,12 @@ class WinLossLimit {
     changeMaster = () => {
         this.$masterId.val(this.$masterList.val());
         this.$agentId.val(0);
+        this.$('#PageIndex').val(1);
         this.submitForm();
     };
     changeAgent = () => {
         this.$agentId.val(this.$agentList.val());
+        this.$('#PageIndex').val(1);
         this.submitForm();
     };
     submitForm = () => {
@@ -119,6 +122,7 @@ class WinLossLimit {
         var keyCode = event.keyCode || event.which;
 
         if (keyCode === 13) {
+            this.$('#PageIndex').val(1);
             this.submitForm();
         }
     };

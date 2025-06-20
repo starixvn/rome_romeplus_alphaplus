@@ -16,7 +16,7 @@
             "Name": "DBACC.bodb02.wsv_alp",
             "ConnectionString": "packet size=4096; Data Source=10.147.33.22;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
-        },  
+        },
         {
             "Name": "DBAGE.bodb02.wsv_alp",
             "ConnectionString": "packet size=4096; Data Source=10.147.33.20;Initial Catalog=bodb02;Connect Timeout=600;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
@@ -141,7 +141,7 @@
     },
     "SystemId": 2,
     "AssetAppPath": "/stcdn",
-    "JsVersion": "20250604002",
+    "JsVersion": "20250620001",
     "AssetsApp:StaticResourcesVersion": "20250604002",
     "LocalTest": false,
     "SettingStatus": 0,
