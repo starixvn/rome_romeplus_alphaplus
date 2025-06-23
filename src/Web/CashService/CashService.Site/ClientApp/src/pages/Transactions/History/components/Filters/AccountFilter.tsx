@@ -53,11 +53,12 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
         options={accountOptions.map((option) => {
           if (option === '-') return { value: option, label: option };
           const [bankCode, accountNumber] = option.split('-');
+          const isProvider = bankCode && !accountNumber;
           return {
             value: option,
-            label: accountNumber,
+            label: isProvider ? bankCode : accountNumber,
             code: bankCode,
-            icon: <BankIcon code={bankCode} />,
+            icon: isProvider ? null : <BankIcon code={bankCode} />,
           };
         })}
         onSelect={(selected) => onAccountChange(String(selected.value))}
