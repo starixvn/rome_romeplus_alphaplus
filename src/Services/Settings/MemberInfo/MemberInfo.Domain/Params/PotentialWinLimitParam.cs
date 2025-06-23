@@ -4,6 +4,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Params
     {
         public PotentialWinLimitParam(
             int custId,
+            byte roleId,
             string username,
             string status,
             byte problemAccount,
@@ -14,6 +15,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Params
             int sportType = 0)
         {
             CustId = custId;
+            RoleId = roleId;
             BetType = betType;
             SportType = sportType;
             Username = username;
@@ -25,6 +27,8 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Params
         }
 
         public int CustId { get; set; }
+
+        public byte RoleId { get; set; }
 
         public int BetType { get; set; }
 

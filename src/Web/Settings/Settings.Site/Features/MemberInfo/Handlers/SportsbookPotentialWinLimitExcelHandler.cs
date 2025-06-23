@@ -21,6 +21,7 @@ public class SportsbookPotentialWinLimitExcelHandler(
     {
         var param = new PotentialWinLimitParam(
             request.CustId,
+            request.CustLevelId,
             request.Username,
             request.Status,
             request.ProblemAccount,
