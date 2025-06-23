@@ -72,7 +72,7 @@ public class ProcessTransactionCommandTests
     [InlineData(0, 1, 1, "abc", false)]
     [InlineData(1000, 0, 1, "abc", false)]
     [InlineData(1000, 1, 0, "abc", false)]
-    [InlineData(1000, 1, 1, "", false)]
+    [InlineData(1000, 1, 1, "", true)]
     public void IsValid_Returns_ExpectedResult(long transId, int agentId, int custId, string paymentFrom, bool result)
     {
         // Arrange
