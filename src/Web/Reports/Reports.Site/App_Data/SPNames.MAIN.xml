@@ -119,18 +119,18 @@
         <Setting Key="Age_Rpt_GetProductDetail" SpName="Age_Rpt_GetProductDetail" DbName="DBAGE.bodb02.wsv_alp" />
     </Function>
     <Function Name="Win Loss Detail">
-        <Setting Key="Age_Rpt_WinlossDetail_WeekDataSel" SpName="Age_Rpt_WinlossDetail_WeekDataSel_xtest" DbName="DBAGE.bodb02.wsv_alp" />
+        <Setting Key="Age_Rpt_WinlossDetail_WeekDataSel" SpName="Age_Rpt_WinlossDetail_WeekDataSel" DbName="DBAGE.bodb02.wsv_alp" />
         <Setting Key="Age_Rpt_WinLossDetail_Master" SpName="Age_Rpt_WinLossDetail_Master" DbName="DBAGE.bodb02.wsv_alp" />
         <Setting Key="Age_Rpt_WinLossDetail_Agent" SpName="Age_Rpt_WinLossDetail_Agent" DbName="DBAGE.bodb02.wsv_alp" />
-        <Setting Key="Age_Rpt_WinLossDetail_Member" SpName="Age_Rpt_WinLossDetail_Member_xtest" DbName="DBAGE.bodb02.wsv_alp" />
+        <Setting Key="Age_Rpt_WinLossDetail_Member" SpName="Age_Rpt_WinLossDetail_Member" DbName="DBAGE.bodb02.wsv_alp" />
         <Setting Key="Age_Rpt_MatchWinLossDetail_GetProductList" SpName="Age_Rpt_MatchWinLossDetail_GetProductList" DbName="DBAGE.bodb02.wsv_alp">
             <Mapping DataField="ProductId" ObjectProperty="Id" />
         </Setting>
-		<Setting Key="Age_GetOfferedProductByCust_Extra" SpName="Age_GetOfferedProductByCust_Extra" DbName="DBAGE.bodb02.wsv_alp">
-			<Mapping DataField="ProductId" ObjectProperty="Id" />
-			<Mapping DataField="IsHidden" ObjectProperty="IsHide" />
-		</Setting>
-		<Setting Key="Age_Rpt_CashServiceBilling" SpName="Age_Rpt_CashServiceBilling_xtest" DbName="DBAGE.bodb02.wsv_alp" />
+        <Setting Key="Age_GetOfferedProductByCust_Extra" SpName="Age_GetOfferedProductByCust_Extra" DbName="DBAGE.bodb02.wsv_alp">
+            <Mapping DataField="ProductId" ObjectProperty="Id" />
+            <Mapping DataField="IsHidden" ObjectProperty="IsHide" />
+        </Setting>
+        <Setting Key="Age_Rpt_CashServiceBilling" SpName="Age_Rpt_CashServiceBilling" DbName="DBAGE.bodb02.wsv_alp" />
     </Function>
     <Function Name="Win Loss">
         <Setting Key="Age_Rpt_MatchSelResultEntered" SpName="Age_Rpt_MatchSelResultEntered" DbName="DBAGE.bodb02.wsv_alp" />
