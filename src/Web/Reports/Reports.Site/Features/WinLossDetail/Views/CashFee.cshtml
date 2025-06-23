@@ -29,7 +29,7 @@
 	<script src="~/bundles/winlossdetail/cashfee.js"></script>
 }
 @model CashFeeViewModel
-<div class="cash-fee-container">
+<div class="">
 	<div class="title-has-info title-has-entered">
 		<report-title-new model="@Model.PageHeader" />
 	</div>
@@ -39,46 +39,47 @@
 			<partial name="Weeks" model="@Model.Weeks" />
 		</div>
 	</form>
-
-	<div class="breadcrumb-table">
-		<div class="breadcrumb-container">
-			<ul class="breadcrumb" id="breadcrumb-level">
-				@{
-					var index = 0;
-					var breadcrumbsCount = Model.Breadcrumbs.Count();
-				}
-				@foreach (var item in Model.Breadcrumbs)
-				{
-					if (index + 1 == breadcrumbsCount)
-					{
-						<li>@item.CustName</li>
+	<div class="cash-fee-container">
+		<div class="breadcrumb-table">
+			<div class="breadcrumb-container">
+				<ul class="breadcrumb" id="breadcrumb-level">
+					@{
+						var index = 0;
+						var breadcrumbsCount = Model.Breadcrumbs.Count();
 					}
-					else
+					@foreach (var item in Model.Breadcrumbs)
 					{
-						index++;
-						<li>
-							<a href="javascript:;" class="upline-link" data-custid="@item.CustId" data-custname="@item.CustName"
-							   data-custlevelid="@item.CustLevelId">@item.CustName</a>
-						</li>
+						if (index + 1 == breadcrumbsCount)
+						{
+							<li>@item.CustName</li>
+						}
+						else
+						{
+							index++;
+							<li>
+								<a href="javascript:;" class="upline-link" data-custid="@item.CustId" data-custname="@item.CustName"
+								data-custlevelid="@item.CustLevelId">@item.CustName</a>
+							</li>
+						}
 					}
-				}
-			</ul>
+				</ul>
+			</div>
+			<div class="list-icon">
+				<ul>
+					<li>
+						<span id="icon-copy" class="ic-copy" data-toggle="tooltip" data-placement="top"
+							title="@Resources.Copy"></span>
+					</li>
+					<li>
+						<a id="icon-excel" class="ic-excel" data-toggle="tooltip" data-placement="top"
+						title="@Resources.ExportToExcel" asp-action="CashFeeExcel"></a>
+					</li>
+				</ul>
+			</div>
 		</div>
-		<div class="list-icon">
-			<ul>
-				<li>
-					<span id="icon-copy" class="ic-copy" data-toggle="tooltip" data-placement="top"
-						  title="@Resources.Copy"></span>
-				</li>
-				<li>
-					<a id="icon-excel" class="ic-excel" data-toggle="tooltip" data-placement="top"
-					   title="@Resources.ExportToExcel" asp-action="CashFeeExcel"></a>
-				</li>
-			</ul>
+		<div id="tbl-report-container">
+			<partial name="CashFeeData" model="@Model.CashFee" />
 		</div>
-	</div>
-	<div id="tbl-report-container">
-		<partial name="CashFeeData" model="@Model.CashFee" />
 	</div>
 </div>
 <a class="hide" id="hidden-getReportWeeksUrl" asp-action="GetWeeks"></a>
