@@ -1,5 +1,5 @@
 using AlphaPlus.Core.Filters;
-using AlphaPlus.Reports.Features.WinLossDetail.Models;
+using AlphaPlus.Reports.Features.CashBillingService.Models;
 using AlphaPlus.Reports.Site.Features.Shared;
 using AlphaPlus.Reports.Site.Features.WinLossDetail.Requests;
 using AlphaPlus.Reports.Site.Features.WinLossDetail.ViewModels;

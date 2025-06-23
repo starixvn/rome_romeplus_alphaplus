@@ -1,6 +1,6 @@
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
-using AlphaPlus.Reports.Features.WinLossDetail.Models;
+using AlphaPlus.Reports.Features.CashBillingService.Models;
 using AlphaPlus.Reports.Site.Features.Shared;
 using AlphaPlus.Reports.Site.Features.WinLossDetail.Requests;
 using AlphaPlus.Shared.AppResources.Report;

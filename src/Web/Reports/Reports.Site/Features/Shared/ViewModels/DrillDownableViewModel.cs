@@ -13,6 +13,8 @@ public abstract class DrillDownableViewModel<T> where T : class
 {
     private string betListPath;
 
+    private string cashFeePath;
+
     protected DrillDownableViewModel(
         BaseQuery message,
         byte levelType,
@@ -20,7 +22,8 @@ public abstract class DrillDownableViewModel<T> where T : class
         ReportData<T> reportData,
         string sortPropertyName,
         byte descendingSort,
-        string betListPath = null)
+        string betListPath = null,
+        string cashFeePath = null)
     {
         CustId = message.CustId;
         CustName = message.CustName;
@@ -37,6 +40,11 @@ public abstract class DrillDownableViewModel<T> where T : class
         if (!string.IsNullOrWhiteSpace(betListPath))
         {
             this.betListPath = MicroSites.TicketUrl(betListPath);
+        }
+
+        if (!string.IsNullOrWhiteSpace(cashFeePath))
+        {
+            this.cashFeePath = MicroSites.ReportsUrl(cashFeePath);
         }
     }
 
@@ -95,5 +103,18 @@ public abstract class DrillDownableViewModel<T> where T : class
         return $"{betListPath}{QueryString.Create(AddMoreBetListParams(queryParams))}";
     }
 
+    public string BuildCashFeeUrl(int custId, string custName)
+    {
+        var queryParams = new Dictionary<string, string>
+        {
+            [nameof(custId)] = custId.ToString(),
+            [nameof(custName)] = custName,
+        };
+
+        return $"{cashFeePath}{QueryString.Create(AddMoreCashFeeParams(queryParams))}";
+    }
+
     protected virtual IDictionary<string, string> AddMoreBetListParams(IDictionary<string, string> queryParams) => queryParams;
+
+    protected virtual IDictionary<string, string> AddMoreCashFeeParams(IDictionary<string, string> cashFeequeryParams) => cashFeequeryParams;
 }

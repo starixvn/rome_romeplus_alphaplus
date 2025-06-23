@@ -1,11 +1,12 @@
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
+using AlphaPlus.Reports.Features.CashBillingService;
+using AlphaPlus.Reports.Features.CashBillingService.Models;
 using AlphaPlus.Reports.Features.Customer;
 using AlphaPlus.Reports.Features.EnteredResult;
 using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLossDetail;
-using AlphaPlus.Reports.Features.WinLossDetail.Models;
 using AlphaPlus.Reports.Site.Features.Customer;
 using AlphaPlus.Reports.Site.Features.Shared;
 using AlphaPlus.Reports.Site.Features.Shared.Helpers;
@@ -26,7 +27,8 @@ public class WinLossDetailHandler(
     IWinLossDetailService winlossDetailService,
     IWinLossDetailWorkbook workbook,
     ICustomerClient customerClient,
-    ICashFeeWorkbook cashFeeWorkbook) :
+    ICashFeeWorkbook cashFeeWorkbook,
+    ICashFeeService cashFeeService) :
         BaseHandler(productService, options),
         IRequestHandler<WinLossDetailQuery, WinLossDetailViewModel>,
         IRequestHandler<WinLossDetailGetDataQuery, WinLossDetailGetDataViewModel>,
@@ -43,6 +45,7 @@ public class WinLossDetailHandler(
     private readonly IWinLossDetailWorkbook workbook = workbook;
     private readonly ICustomerClient customerClient = customerClient;
     private readonly ICashFeeWorkbook cashFeeWorkbook = cashFeeWorkbook;
+    private readonly ICashFeeService cashFeeService = cashFeeService;
 
     public async Task<WinLossDetailViewModel> Handle(WinLossDetailQuery message, CancellationToken cancellationToken)
     {
@@ -294,7 +297,7 @@ public class WinLossDetailHandler(
 
         if (Core.Configurations.AppSettings.IsOfferedCashService(message.Site))
         {
-            var productExtras = await winlossDetailService.GetProduct(message.CustId, message.MinDate, message.Language);
+            var productExtras = await cashFeeService.GetExtraProduct(message.CustId, message.MinDate, message.Language);
             return products.Concat(productExtras);
         }
 
@@ -311,19 +314,14 @@ public class WinLossDetailHandler(
             message.WeekFromDate ?? message.FromDate,
             message.WeekToDate ?? message.ToDate);
 
-        var cashFeeModel = await winlossDetailService.GetCashFee(cashFeeParam);
-
-        var (validUserSelectedProductIds, productDetailXml) = await FilterProductAndProductDetailIds(
-               message,
-               CashServiceBillingProductId,
-               message.UserSelectedResourceIds);
+        var cashFeeModel = await cashFeeService.GetCashFee(cashFeeParam);
 
         var weekDataParam = new WinLossDetailWeekParam(
                message.ViewerId,
                message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
                message.ToDate,
-               validUserSelectedProductIds.JoinWithComma(),
-               productDetailXml,
+               CashServiceBillingProductId,
+               string.Empty,
                string.IsNullOrWhiteSpace(message.Username) ? message.CustName : message.Username,
                IsReward: true,
                message.LevelType,
@@ -342,7 +340,7 @@ public class WinLossDetailHandler(
            message.WeekFromDate ?? message.FromDate,
            message.WeekToDate ?? message.ToDate);
 
-        var reportData = await winlossDetailService.GetCashFee(cashFeeParam);
+        var reportData = await cashFeeService.GetCashFee(cashFeeParam);
 
         return cashFeeWorkbook.BuildCashFeeExcelFile(message, reportData);
     }
@@ -354,6 +352,6 @@ public class WinLossDetailHandler(
             message.WeekFromDate ?? message.FromDate,
             message.WeekToDate ?? message.ToDate);
 
-        return await winlossDetailService.GetCashFee(cashFeeParam);
+        return await cashFeeService.GetCashFee(cashFeeParam);
     }
 }

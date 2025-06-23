@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Reports.Features.WinLossDetail.Models;
+﻿namespace AlphaPlus.Reports.Features.CashBillingService.Models;
 
 public class CashFeeModel
 {

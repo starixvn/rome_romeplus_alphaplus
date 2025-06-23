@@ -1,6 +1,6 @@
 ﻿using Fanex.Data.Repository;
 
-namespace AlphaPlus.Reports.Features.WinLossDetail.Criteria;
+namespace AlphaPlus.Reports.Features.CashBillingService.Criteria;
 
 internal class CashBillingCriteria(int custId, DateTime fromDate, DateTime toDate, DateTime balanceUpDay, DateTime moveBetsDay) : CriteriaBase
 {

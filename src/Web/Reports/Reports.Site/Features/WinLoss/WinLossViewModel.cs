@@ -28,7 +28,8 @@ public class WinLossViewModel : DrillDownableViewModel<WinLossModel>
             reportData,
             message.SortPropertyName,
             message.DescendingSort,
-            betListPath: "~/WinLoss/Index")
+            betListPath: "~/WinLoss/Index",
+            cashFeePath: "~/WinLoss/GetCashFeeData")
     {
         FromDate = message.FromDate.ToShortDateWithSlash();
         ToDate = message.ToDate.ToShortDateWithSlash();

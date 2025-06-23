@@ -13,8 +13,6 @@ public class WinLossDetailServiceTest
     private readonly Mock<IDynamicRepository> repositoryMock;
     private readonly Mock<IReportDateService> reportDateServiceMock;
     private readonly Mock<IPartialUMService> partialUMServiceMock;
-    private readonly Mock<IMemoryCache> memoryCacheMock;
-    private readonly Mock<ICacheRefService> cacheRefServiceMock;
     private readonly WinLossDetailService service;
 
     public WinLossDetailServiceTest()
@@ -22,16 +20,12 @@ public class WinLossDetailServiceTest
         repositoryMock = new Mock<IDynamicRepository>();
         reportDateServiceMock = new Mock<IReportDateService>();
         partialUMServiceMock = new Mock<IPartialUMService>();
-        memoryCacheMock = new Mock<IMemoryCache>();
-        cacheRefServiceMock = new Mock<ICacheRefService>();
 
         service = new WinLossDetailService(
             repositoryMock.Object,
             reportDateServiceMock.Object,
             partialUMServiceMock.Object,
-            new AllowedSitesToShareLoad(new Dictionary<string, string> { }),
-            memoryCacheMock.Object,
-            cacheRefServiceMock.Object);
+            new AllowedSitesToShareLoad(new Dictionary<string, string> { }));
     }
 
     [Fact]

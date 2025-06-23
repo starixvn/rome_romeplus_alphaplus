@@ -1,5 +1,6 @@
-﻿@using AlphaPlus.Reports.Features.WinLossDetail.Models
-@using AlphaPlus.Reports.Site.Features.WinLossDetail.ViewModels
+﻿@using AlphaPlus.Reports.Features.CashBillingService.Models
+@using AlphaPlus.Reports.Features.Shared.Extensions
+@using AlphaPlus.Shared.AppResources.Report
 @{
 	Layout = null;
 
@@ -26,7 +27,7 @@
 
 	void RenderFeeItemRow(CashFeeItemModel item)
 	{
-		<tr >
+		<tr>
 			<td class="text-left">@item.DisplayType</td>
 			<td>@item.Fee.FormatNumber()</td>
 			<td>@item.Count.FormatNumber()</td>

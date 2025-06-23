@@ -1,8 +1,8 @@
 ﻿using Fanex.Data.Repository;
 
-namespace AlphaPlus.Reports.Features.WinLossDetail.Criteria;
+namespace AlphaPlus.Reports.Features.CashBillingService.Criteria;
 
-public class WinLossDetailExtraProductCriteria(int custId) : CriteriaBase
+internal class ExtraProductCriteria(int custId) : CriteriaBase
 {
     public int CustId { get; } = custId;
 
