@@ -137,16 +137,7 @@
                 </a>
                 <span class="count">@category.Categories.Count()</span>
             </div>
-            <ul class="list-item-cat">
-                <li>
-                    <div class="item-cat">
-                        <span class="icon-right"></span>
-                        <a class="text" target="main" href="">
-                            <span class="icon-folder"></span>sasd
-                        </a>
-                        <span class="count">1</span>
-                    </div>
-                </li>
+            <ul class="list-item-cat">                 
                 @foreach (var c in category.Categories)
                 {
                     RenderCategory(c, relativePath);
