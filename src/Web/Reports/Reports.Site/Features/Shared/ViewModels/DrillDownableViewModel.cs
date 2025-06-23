@@ -6,6 +6,7 @@ using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Shared.AppResources.Common;
+using AlphaPlus.Reports.Features.CashBillingService.Models;
 
 namespace AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 
@@ -103,8 +104,17 @@ public abstract class DrillDownableViewModel<T> where T : class
         return $"{betListPath}{QueryString.Create(AddMoreBetListParams(queryParams))}";
     }
 
-    public string BuildCashFeeUrl() => cashFeePath;
+    public string BuildCashFeeUrl(int custId)
+    {
+        var queryParams = new Dictionary<string, string>
+        {
+            [nameof(custId)] = custId.ToString(),
+        };
+
+        return $"{cashFeePath}{QueryString.Create(AddMoreCashFeeParams(queryParams))}";
+    }
 
     protected virtual IDictionary<string, string> AddMoreBetListParams(IDictionary<string, string> queryParams) => queryParams;
 
+    protected virtual IDictionary<string, string> AddMoreCashFeeParams(IDictionary<string, string> cashFeeParams) => cashFeeParams;
 }

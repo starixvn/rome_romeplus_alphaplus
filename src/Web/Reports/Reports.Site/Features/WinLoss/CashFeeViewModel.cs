@@ -1,4 +1,4 @@
-﻿using AlphaPlus.Core.Utils;
+﻿using AlphaPlus.Core.Extensions;
 using AlphaPlus.Reports.Features.CashBillingService.Models;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using AlphaPlus.Shared.AppResources.Report;
@@ -14,33 +14,20 @@ IEnumerable<Reports.Features.Shared.Models.Breadcrumb> breadcrumbs)
         Title: GetCashFeeTitle(message),
         IsFilterVisible: message.IsFilterVisible);
 
-    public DateRangePickerJQueryViewModel DateRangePicker { get; } = new DateRangePickerJQueryViewModel(
-        message.FromDate,
-        message.ToDate,
-        message.MinDate,
-        SystemTime.Today.AddDays(1),
-        message.Language);
-
     public IEnumerable<Reports.Features.Shared.Models.Breadcrumb> Breadcrumbs { get; } = breadcrumbs;
 
     public CashFeeModel CashFee { get; } = cashFeeModel;
-
-    public int CustId { get; } = message.CustId;
-
-    public string CustName { get; } = message.CustName;
-
-    public byte CustLevelId { get; } = message.CustLevelId;
-
-    public byte LevelType { get; } = message.LevelType;
-
-    public string Username { get; } = message.Username;
-
-    public string UserSelectedProductIds { get; } = message.UserSelectedProductIds;
-
-    public string UserSelectedResourceIds { get; } = message.UserSelectedResourceIds;
 
     private static string GetCashFeeTitle(CashFeeGetDataQuery message)
     {
         return $"{message.CustName} - {Resources.CashServiceBilling.ToUpper()}";
     }
+
+    public IDictionary<string, string> GetExcelParams()
+       => new Dictionary<string, string>
+       {
+           ["CustId"] = message.CustId.ToString(),
+           ["FromDate"] = message.FromDate.ToShortDateWithSlash(),
+           ["ToDate"] = message.ToDate.ToShortDateWithSlash()
+       };
 }
