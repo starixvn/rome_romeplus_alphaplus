@@ -26,7 +26,6 @@ vi.mock('../../../../utils/commonFunctions', () => ({
   displayAmount: (amount: number) => amount.toString(),
   renderBankAccount: (bank: string) => bank,
   formatDateTime: (date: string) => date,
-  CurrentCurrency: 'USD',
   mappingStatus: (statusId: number) => `Status ${statusId}`,
 }));
 
@@ -53,8 +52,9 @@ describe('DataGrid', () => {
       createdTime: '2024-01-01T10:00:00',
       lastUpdatedDate: '2024-01-01T10:00:00',
       isAllowRevert: false,
-      operatedBy: 'system',
+      createdBy: 'system',
       operatedTime: '2024-01-01T10:00:00',
+      isHadPayslip: false,
     },
     {
       transId: 2,
@@ -77,8 +77,9 @@ describe('DataGrid', () => {
       createdTime: '2024-01-01T11:00:00',
       lastUpdatedDate: '2024-01-01T11:00:00',
       isAllowRevert: false,
-      operatedBy: 'system',
+      createdBy: 'system',
       operatedTime: '2024-01-01T11:00:00',
+      isHadPayslip: false,
     },
   ];
 
@@ -102,7 +103,7 @@ describe('DataGrid', () => {
 
   it('renders the data grid with transactions correctly', () => {
     render(<DataGrid {...defaultProps} />);
-    
+
     expect(screen.getByText('testuser1')).toBeInTheDocument();
     expect(screen.getByText('Test1')).toBeInTheDocument();
   });
@@ -114,17 +115,17 @@ describe('DataGrid', () => {
 
   it('respects column filter settings', () => {
     render(<DataGrid {...defaultProps} columnFilter={['username', 'amount']} />);
-    
+
     expect(screen.getByText('table.username')).toBeInTheDocument();
     expect(screen.getByText(/table\.amount/i)).toBeInTheDocument();
-    
+
     expect(screen.queryByText('table.from')).not.toBeInTheDocument();
     expect(screen.queryByText('table.to')).not.toBeInTheDocument();
   });
 
   it('displays correct pagination information', () => {
     render(<DataGrid {...defaultProps} pageIndex={2} pageSize={5} />);
-    
+
     const firstRowNumber = screen.getByText('6');
     expect(firstRowNumber).toBeInTheDocument();
   });

@@ -84,8 +84,6 @@ export const formatDateTime = (dateTimeStr: string) => {
   return `${month}/${day}/${year} ${hours}:${minutes}:${seconds} ${ampm}`;
 };
 
-export const CurrentCurrency = document.getElementById('user-currency')?.textContent;
-
 export const calculateDateRange = (recentTransactions: string): [string, string] => {
   let today = new Date();
   let startDate = new Date();

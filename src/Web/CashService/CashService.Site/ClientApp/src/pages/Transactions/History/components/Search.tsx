@@ -3,12 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { IconCopy, IconExcel, IconSearch } from '../../../../components/Icons';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
-import {
-  CurrentCurrency,
-  displayAmount,
-  formatDateTime,
-  mappingStatus,
-} from '../../../../utils/commonFunctions';
+import { displayAmount, formatDateTime, mappingStatus } from '../../../../utils/commonFunctions';
 import Tippy from '@tippyjs/react';
 
 interface SearchProps {
@@ -30,7 +25,7 @@ const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, o
       case 'name':
         return t('table.name');
       case 'amount':
-        return `${t('table.amount')} (${CurrentCurrency})`;
+        return t('table.amount');
       case 'from':
         return t('table.from');
       case 'to':

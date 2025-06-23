@@ -30,7 +30,6 @@ vi.mock('../../../../../common/commonFunctions', () => ({
   displayAmount: (amount: number) => amount.toString(),
   renderBankAccount: (bank: string) => bank,
   formatDateTime: (date: string) => date,
-  CurrentCurrency: 'USD',
 }));
 
 describe('DataGrid', () => {
@@ -56,8 +55,9 @@ describe('DataGrid', () => {
       createdTime: '2024-01-01T10:00:00',
       lastUpdatedDate: '2024-01-01T10:00:00',
       isAllowRevert: false,
-      operatedBy: 'system',
+      createdBy: 'system',
       operatedTime: '2024-01-01T10:00:00',
+      isHadPayslip: false,
     },
     {
       transId: 2,
@@ -80,8 +80,9 @@ describe('DataGrid', () => {
       createdTime: '2024-01-01T11:00:00',
       lastUpdatedDate: '2024-01-01T11:00:00',
       isAllowRevert: false,
-      operatedBy: 'system',
+      createdBy: 'system',
       operatedTime: '2024-01-01T11:00:00',
+      isHadPayslip: false,
     },
   ];
 
@@ -90,8 +91,8 @@ describe('DataGrid', () => {
   });
 
   it('renders the data grid with deposits correctly', () => {
-    render(<DataGrid deposits={mockDeposits} />);
-    
+    render(<DataGrid deposits={mockDeposits} reloadGrid={vi.fn()} />);
+
     expect(screen.getByText('testuser1')).toBeInTheDocument();
     expect(screen.getByText('Test1')).toBeInTheDocument();
     expect(screen.getByText('John')).toBeInTheDocument();
@@ -101,12 +102,12 @@ describe('DataGrid', () => {
   });
 
   it('shows no records found message when deposits array is empty', () => {
-    render(<DataGrid deposits={[]} />);
+    render(<DataGrid deposits={[]} reloadGrid={vi.fn()} />);
     expect(screen.getByText('dataGrid.noDepositsFound')).toBeInTheDocument();
   });
 
   it('handles process button click successfully', async () => {
-    render(<DataGrid deposits={mockDeposits} />);
+    render(<DataGrid deposits={mockDeposits} reloadGrid={vi.fn()} />);
 
     const processButton = screen.getAllByText('dataGrid.process')[0];
     await fireEvent.click(processButton);
@@ -120,7 +121,7 @@ describe('DataGrid', () => {
     const mockTransactionDetail = { ...mockDeposits[0] };
     vi.mocked(transactionAPI.getTransactionDetail).mockResolvedValueOnce(mockTransactionDetail);
 
-    render(<DataGrid deposits={mockDeposits} />);
+    render(<DataGrid deposits={mockDeposits} reloadGrid={vi.fn()} />);
 
     const processButton = screen.getAllByText('dataGrid.process')[0];
     await fireEvent.click(processButton);
@@ -144,7 +145,7 @@ describe('DataGrid', () => {
         nickname: `Test${index + 1}`,
       }));
 
-    render(<DataGrid deposits={manyDeposits} />);
+    render(<DataGrid deposits={manyDeposits} reloadGrid={vi.fn()} />);
 
     await waitFor(() => {
       expect(screen.getByText('testuser1')).toBeInTheDocument();
@@ -174,11 +175,12 @@ describe('DataGrid', () => {
         base64Payslip: '',
         lastUpdatedDate: '2024-01-01T10:00:00',
         isAllowRevert: false,
-        operatedBy: 'system',
+        createdBy: 'system',
         operatedTime: '2024-01-01T10:00:00',
+        isHadPayslip: false,
       }));
 
-    render(<DataGrid deposits={manyDeposits} />);
+    render(<DataGrid deposits={manyDeposits} reloadGrid={vi.fn()} />);
 
     const table = await screen.findByRole('table');
     expect(table).toBeInTheDocument();
@@ -187,8 +189,8 @@ describe('DataGrid', () => {
       const rows = screen.getAllByRole('row');
       const usernameCells = rows
         .slice(1)
-        .map(row => row.querySelectorAll('td')[1])
-        .map(cell => cell?.querySelector('div')?.textContent || '');
+        .map((row) => row.querySelectorAll('td')[1])
+        .map((cell) => cell?.querySelector('div')?.textContent || '');
       return [usernameCells[0], usernameCells[usernameCells.length - 1]];
     };
 

@@ -21,7 +21,6 @@ Object.assign(navigator, {
 
 // Mock common functions
 vi.mock('../../../../../utils/commonFunctions', () => ({
-  CurrentCurrency: 'USD',
   displayAmount: (amount: number) => amount.toString(),
   formatDateTime: (date: string) => date,
   mappingStatus: (statusId: number) => `Status ${statusId}`,
@@ -50,8 +49,9 @@ describe('Search', () => {
       createdTime: '2024-01-01T10:00:00',
       lastUpdatedDate: '2024-01-01T10:00:00',
       isAllowRevert: false,
-      operatedBy: 'system',
+      createdBy: 'system',
       operatedTime: '2024-01-01T10:00:00',
+      isHadPayslip: false,
     },
   ];
 
@@ -69,7 +69,7 @@ describe('Search', () => {
 
   it('renders search component correctly', () => {
     render(<Search {...defaultProps} />);
-    
+
     expect(screen.getByPlaceholderText('filter.usernamePlaceholder')).toBeInTheDocument();
     expect(screen.getByTitle('Copy')).toBeInTheDocument();
     expect(screen.getByTitle('Download')).toBeInTheDocument();
@@ -77,19 +77,19 @@ describe('Search', () => {
 
   it('handles search input change', () => {
     render(<Search {...defaultProps} />);
-    
+
     const searchInput = screen.getByPlaceholderText('filter.usernamePlaceholder');
     fireEvent.change(searchInput, { target: { value: 'test' } });
-    
+
     expect(defaultProps.onChange).toHaveBeenCalledWith('test');
   });
 
   it('handles download button click', () => {
     render(<Search {...defaultProps} />);
-    
+
     const downloadButton = screen.getByTitle('Download');
     fireEvent.click(downloadButton);
-    
+
     expect(defaultProps.onDownload).toHaveBeenCalled();
   });
 
@@ -102,7 +102,7 @@ describe('Search', () => {
     });
 
     render(<Search {...defaultProps} />);
-    
+
     const copyButton = screen.getByTitle('Copy');
     fireEvent.click(copyButton);
 
@@ -116,7 +116,7 @@ describe('Search', () => {
       'table.status',
       'table.type',
       'table.referenceNo',
-      'table.dateAndTime'
+      'table.dateAndTime',
     ];
 
     const row = [
@@ -129,7 +129,7 @@ describe('Search', () => {
       'Status 1',
       'Withdrawal',
       '1',
-      '2024-01-01T10:00:00'
+      '2024-01-01T10:00:00',
     ];
 
     const expectedText = headers.join('\t') + '\n' + row.join('\t');
@@ -142,9 +142,12 @@ describe('Search', () => {
       expect(screen.getByText('messages.copiedToClipboard')).toBeInTheDocument();
     });
 
-    await waitFor(() => {
-      expect(screen.queryByText('messages.copiedToClipboard')).not.toBeInTheDocument();
-    }, { timeout: 1100 });
+    await waitFor(
+      () => {
+        expect(screen.queryByText('messages.copiedToClipboard')).not.toBeInTheDocument();
+      },
+      { timeout: 1100 }
+    );
   });
 
   it('handles copy button click with empty data', async () => {
@@ -156,7 +159,7 @@ describe('Search', () => {
     });
 
     render(<Search {...defaultProps} items={[]} />);
-    
+
     const copyButton = screen.getByTitle('Copy');
     fireEvent.click(copyButton);
 
@@ -170,7 +173,7 @@ describe('Search', () => {
       'table.status',
       'table.type',
       'table.referenceNo',
-      'table.dateAndTime'
+      'table.dateAndTime',
     ];
 
     const expectedText = headers.join('\t');
@@ -183,9 +186,12 @@ describe('Search', () => {
       expect(screen.getByText('messages.copiedToClipboard')).toBeInTheDocument();
     });
 
-    await waitFor(() => {
-      expect(screen.queryByText('messages.copiedToClipboard')).not.toBeInTheDocument();
-    }, { timeout: 1100 });
+    await waitFor(
+      () => {
+        expect(screen.queryByText('messages.copiedToClipboard')).not.toBeInTheDocument();
+      },
+      { timeout: 1100 }
+    );
   });
 
   it('displays max records message', () => {
@@ -196,9 +202,9 @@ describe('Search', () => {
   it('handles clipboard API failure', async () => {
     const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
     navigator.clipboard.writeText = vi.fn().mockRejectedValue(new Error('Clipboard error'));
-    
+
     render(<Search {...defaultProps} />);
-    
+
     const copyButton = screen.getByTitle('Copy');
     fireEvent.click(copyButton);
 

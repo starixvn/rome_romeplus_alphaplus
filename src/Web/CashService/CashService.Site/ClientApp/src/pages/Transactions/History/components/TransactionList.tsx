@@ -29,7 +29,7 @@ const useTransactionData = () => {
     try {
       setLoading(true);
       setError(null);
-
+      params.account = '';
       const response = await transactionAPI.getTransactions(params);
       setApiData(response);
 
