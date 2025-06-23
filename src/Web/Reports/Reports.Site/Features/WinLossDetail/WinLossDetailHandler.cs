@@ -348,7 +348,7 @@ public class WinLossDetailHandler(
         {
             FromDate = message.WeekFromDate ?? message.FromDate,
             ToDate = message.WeekToDate ?? message.ToDate,
-            CustName = message.Username
+            CustName = message.CustName
         };
 
         return cashFeeWorkbook.BuildCashFeeExcelFile(cashFeeExcelParam, reportData);

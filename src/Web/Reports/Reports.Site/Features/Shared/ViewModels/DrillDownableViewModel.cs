@@ -103,18 +103,8 @@ public abstract class DrillDownableViewModel<T> where T : class
         return $"{betListPath}{QueryString.Create(AddMoreBetListParams(queryParams))}";
     }
 
-    public string BuildCashFeeUrl(int custId, string custName)
-    {
-        var queryParams = new Dictionary<string, string>
-        {
-            [nameof(custId)] = custId.ToString(),
-            [nameof(custName)] = custName,
-        };
-
-        return $"{cashFeePath}{QueryString.Create(AddMoreCashFeeParams(queryParams))}";
-    }
+    public string BuildCashFeeUrl() => cashFeePath;
 
     protected virtual IDictionary<string, string> AddMoreBetListParams(IDictionary<string, string> queryParams) => queryParams;
 
-    protected virtual IDictionary<string, string> AddMoreCashFeeParams(IDictionary<string, string> cashFeequeryParams) => cashFeequeryParams;
 }

@@ -124,7 +124,7 @@ public class WinLossHandler(
         {
             FromDate =  message.FromDate,
             ToDate =  message.ToDate,
-            CustName = message.Username
+            CustName = message.CustName
         };
 
         return cashFeeWorkbook.BuildCashFeeExcelFile(cashFeeExcelParam, cashFeeModel);
