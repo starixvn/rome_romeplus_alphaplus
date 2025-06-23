@@ -1,0 +1,42 @@
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Reports.Site.Features.WinLoss
+@using AlphaPlus.Shared.AppResources.Report
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AlphaPlus.Reports.Site
+@{
+	Layout = "_Layout";
+	var version = AlphaPlus.Core.Configurations.AppSettings.JsVersion;
+}
+@section Styles {
+	@StaticResources.AssetStyles.Render("/bundles-v2/site-reports/winloss")
+	<link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css?v=@version" />
+}
+@model CashFeeViewModel
+
+<div class="cash-fee-container">
+	<div class="breadcrumb-table">
+		<div class="breadcrumb-container">
+			<ul class="breadcrumb" id="breadcrumb-level">
+				@{
+					var index = 0;
+					var breadcrumbsCount = Model.Breadcrumbs.Count();
+				}
+				@foreach (var item in Model.Breadcrumbs)
+				{
+						<li>@item.CustName</li>
+				}
+			</ul>
+		</div>
+		<div class="list-icon">
+			<ul>
+				<li>
+					<a id="icon-excel" class="ic-excel" data-toggle="tooltip" data-placement="top"
+					   title="@Resources.ExportToExcel" asp-action="CashFeeExcel"></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div id="tbl-report-container">
+		<partial name="~/Features/CashBillingService/Views/CashFeeData.cshtml" model="@Model.CashFee" />
+	</div>
+</div>

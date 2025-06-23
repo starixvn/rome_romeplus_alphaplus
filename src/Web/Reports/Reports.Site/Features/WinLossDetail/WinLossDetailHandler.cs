@@ -7,6 +7,8 @@ using AlphaPlus.Reports.Features.EnteredResult;
 using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLossDetail;
+using AlphaPlus.Reports.Site.Features.CashBillingService;
+using AlphaPlus.Reports.Site.Features.CashBillingService.Requests;
 using AlphaPlus.Reports.Site.Features.Customer;
 using AlphaPlus.Reports.Site.Features.Shared;
 using AlphaPlus.Reports.Site.Features.Shared.Helpers;
@@ -342,7 +344,14 @@ public class WinLossDetailHandler(
 
         var reportData = await cashFeeService.GetCashFee(cashFeeParam);
 
-        return cashFeeWorkbook.BuildCashFeeExcelFile(message, reportData);
+        var cashFeeExcelParam = new CashFeeExcelParam
+        {
+            FromDate = message.WeekFromDate ?? message.FromDate,
+            ToDate = message.WeekToDate ?? message.ToDate,
+            CustName = message.Username
+        };
+
+        return cashFeeWorkbook.BuildCashFeeExcelFile(cashFeeExcelParam, reportData);
     }
 
     public async Task<CashFeeModel> Handle(CashFeeGetDataQuery message, CancellationToken cancellationToken)

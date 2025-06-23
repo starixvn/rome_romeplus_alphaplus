@@ -1,17 +1,17 @@
-using AlphaPlus.Core.Extensions;
+﻿using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.CashBillingService.Models;
+using AlphaPlus.Reports.Site.Features.CashBillingService.Requests;
 using AlphaPlus.Reports.Site.Features.Shared;
-using AlphaPlus.Reports.Site.Features.WinLossDetail.Requests;
 using AlphaPlus.Shared.AppResources.Report;
 using ONEbook.SpreadSheets;
 using static ONEbook.SpreadSheets.Column;
 
-namespace AlphaPlus.Reports.Site.Features.WinLossDetail;
+namespace AlphaPlus.Reports.Site.Features.CashBillingService;
 
 public interface ICashFeeWorkbook
 {
-    ExcelFileViewModel BuildCashFeeExcelFile(CashFeeExcelQuery message, CashFeeModel cashFeeModel);
+    ExcelFileViewModel BuildCashFeeExcelFile(CashFeeExcelParam message, CashFeeModel cashFeeModel);
 }
 
 public class CashFeeWorkbook(IWebHostEnvironment webHostEnvironment) :
@@ -25,11 +25,11 @@ public class CashFeeWorkbook(IWebHostEnvironment webHostEnvironment) :
     private Row cashFeeItemRowTemplate;
     private int currentRowIndex;
 
-    public ExcelFileViewModel BuildCashFeeExcelFile(CashFeeExcelQuery message, CashFeeModel cashFeeModel)
+    public ExcelFileViewModel BuildCashFeeExcelFile(CashFeeExcelParam excelParam, CashFeeModel cashFeeModel)
     {
-        var fromDateString = (message.WeekFromDate ?? message.FromDate).ToShortDateWithSlash();
-        var toDateString = (message.WeekToDate ?? message.ToDate).ToShortDateWithSlash();
-        var custName = message.CustName;
+        var fromDateString = excelParam.FromDate.ToShortDateWithSlash();
+        var toDateString = excelParam.ToDate.ToShortDateWithSlash();
+        var custName = excelParam.CustName;
         this.cashFeeModel = cashFeeModel;
         cashFeeItemMapper = GetRowMapper();
 
@@ -44,7 +44,7 @@ public class CashFeeWorkbook(IWebHostEnvironment webHostEnvironment) :
             .Sheet(Resources.DefaultSheetName)
             .ExportToBytes();
 
-        return new ExcelFileViewModel($"{message.CustName}-CASH-SERVICE-BILLING-{fromDateString}-{toDateString}", fileContent);
+        return new ExcelFileViewModel($"{excelParam.CustName}-CASH-SERVICE-BILLING-{fromDateString}-{toDateString}", fileContent);
     }
 
     private static Mapper<CashFeeItemModel> GetRowMapper()

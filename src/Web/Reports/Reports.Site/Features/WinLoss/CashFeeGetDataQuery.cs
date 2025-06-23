@@ -1,8 +1,8 @@
-﻿using AlphaPlus.Reports.Features.CashBillingService.Models;
-using MediatR;
+﻿using MediatR;
 
 namespace AlphaPlus.Reports.Site.Features.WinLoss;
 
-public class CashFeeGetDataQuery : WinLossQuery, IRequest<CashFeeModel>
+public class CashFeeGetDataQuery : WinLossQuery, IRequest<CashFeeViewModel>
 {
+    public string Username { get; set; }    
 }

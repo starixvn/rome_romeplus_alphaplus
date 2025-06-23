@@ -6,8 +6,12 @@ using AlphaPlus.Reports.Features.EnteredResult;
 using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLoss;
+using AlphaPlus.Reports.Site.Features.CashBillingService;
+using AlphaPlus.Reports.Site.Features.CashBillingService.Requests;
 using AlphaPlus.Reports.Site.Features.Shared;
+using AlphaPlus.Reports.Site.Features.Shared.Helpers;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
+using AlphaPlus.Shared.AppResources.Report;
 using MediatR;
 using Microsoft.Extensions.Options;
 
@@ -19,16 +23,19 @@ public class WinLossHandler(
     IWinLossService winlossService,
     IEnteredResultService enteredResultService,
     IWinLossWorkbook workbook,
-    ICashFeeService cashFeeService) :
+    ICashFeeService cashFeeService,
+    ICashFeeWorkbook cashFeeWorkbook) :
         BaseHandler(productService, options),
         IRequestHandler<WinLossQuery, WinLossViewModel>,
         IRequestHandler<WinLossExcelQuery, ExcelFileViewModel>,
-        IRequestHandler<CashFeeGetDataQuery, CashFeeModel>
+        IRequestHandler<CashFeeGetDataQuery, CashFeeViewModel>,
+        IRequestHandler<CashFeeExcelQuery, ExcelFileViewModel>
 {
     private readonly IWinLossService winlossService = winlossService;
     private readonly IEnteredResultService enteredResultService = enteredResultService;
     private readonly IWinLossWorkbook workbook = workbook;
     private readonly ICashFeeService cashFeeService = cashFeeService;
+    private readonly ICashFeeWorkbook cashFeeWorkbook = cashFeeWorkbook;
 
     public async Task<WinLossViewModel> Handle(WinLossQuery message, CancellationToken cancellationToken)
     {
@@ -76,14 +83,19 @@ public class WinLossHandler(
         return winlossService.GetWinLoss(param);
     }
 
-    public async Task<CashFeeModel> Handle(CashFeeGetDataQuery message, CancellationToken cancellationToken)
+    public async Task<CashFeeViewModel> Handle(CashFeeGetDataQuery message, CancellationToken cancellationToken)
     {
+        var breadcrumbs = BreadcrumbHelper.BuildBreadcrumbs(message).ToList();
+        breadcrumbs.Add(new Reports.Features.Shared.Models.Breadcrumb(0, Resources.CashServiceBilling.ToUpper(), 0));
+
         var cashFeeParam = new CashFeeParam(
             message.CustId,
             message.FromDate,
             message.ToDate);
 
-        return await cashFeeService.GetCashFee(cashFeeParam);
+        var cashFeeModel = await cashFeeService.GetCashFee(cashFeeParam);
+
+        return new CashFeeViewModel(message, cashFeeModel, breadcrumbs);
     }
 
     protected override async Task<IEnumerable<Product>> GetProducts(BaseQuery message)
@@ -97,5 +109,24 @@ public class WinLossHandler(
         }
 
         return products;
+    }
+
+    public async Task<ExcelFileViewModel> Handle(CashFeeExcelQuery message, CancellationToken cancellationToken)
+    {
+        var cashFeeParam = new CashFeeParam(
+           message.CustId,
+           message.FromDate,
+           message.ToDate);
+
+        var cashFeeModel = await cashFeeService.GetCashFee(cashFeeParam);
+
+        var cashFeeExcelParam = new CashFeeExcelParam
+        {
+            FromDate =  message.FromDate,
+            ToDate =  message.ToDate,
+            CustName = message.Username
+        };
+
+        return cashFeeWorkbook.BuildCashFeeExcelFile(cashFeeExcelParam, cashFeeModel);
     }
 }
