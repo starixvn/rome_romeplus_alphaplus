@@ -43,6 +43,12 @@ const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, o
     }
   };
 
+  const getAccountName = (account: string) => {
+    if (!account || account === '-') return '-';
+    const [bankCode, accountNumber] = account.split('-');
+    return bankCode && !accountNumber ? bankCode : accountNumber.toString();
+  };
+
   const handleCopy = () => {
     const headers = [
       t('table.no'),
@@ -64,10 +70,10 @@ const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, o
             rowData.push(displayAmount(item.amount));
             break;
           case 'from':
-            rowData.push(item.paymentFrom ? item.paymentFrom : '-');
+            rowData.push(getAccountName(item.paymentFrom));
             break;
           case 'to':
-            rowData.push(item.paymentTo ? item.paymentTo : '-');
+            rowData.push(getAccountName(item.paymentTo));
             break;
           case 'status':
             rowData.push(tGlobal(mappingStatus(item.statusId).props.text));
