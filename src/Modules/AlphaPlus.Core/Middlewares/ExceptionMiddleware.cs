@@ -50,7 +50,15 @@ public class ExceptionMiddleware
             _userSession.AdminId,
             _userSession.AdminName
         };
-        await _logger.ErrorAsync(await ExceptionHelper.BuildError(context.Request, exception));
+
+        if (exception.Message.Contains("Vendor Api Error, Unspecified Error", StringComparison.OrdinalIgnoreCase))
+        {
+            await _logger.WarnAsync(await ExceptionHelper.BuildError(context.Request, exception));
+        }
+        else
+        {
+            await _logger.ErrorAsync(await ExceptionHelper.BuildError(context.Request, exception));
+        }
 
         if (context.Request.Headers.XRequestedWith == "XMLHttpRequest")
         {
