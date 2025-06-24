@@ -63,7 +63,7 @@ public class SportsbookPotentialWinLimitViewModel
     public static string GetStatusText(string statusKey) => Resources.ResourceManager.GetString(statusKey);
 
     public string GetMaxWinLimit(decimal maxWinLimit)
-    => maxWinLimit == 0 ? Lang.Unlimited : $"{maxWinLimit.ToString("#,##0")}";
+    => maxWinLimit == 0 ? Lang.Unlimited : $"{maxWinLimit.ToString("#,##0.#")}";
 
     public string GetWinPercent(decimal? winPercent, decimal maxWinLimit)
     {
