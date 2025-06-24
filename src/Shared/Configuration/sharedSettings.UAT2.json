@@ -266,7 +266,7 @@
         "BackOfficeApiUrl": "http://vn-s1-alpha-api-uat.nebula.prod/api/"
     },
     "OfferProfilePictureTour": true,
-    "SiteSupportPotentialWinLimit": "*",
+    "SiteSupportPotentialWinLimit": "222227,IBCIndo",
     "CashService": {
         "OfferedSites": "755555,222227",
         "APIUrl": "http://alphaplus_api_cashservice_uat_2:5000/api"

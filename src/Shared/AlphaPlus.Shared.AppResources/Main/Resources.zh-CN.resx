@@ -717,7 +717,7 @@
     <value>&lt;p&gt;我们很高兴为您介绍我们新的现金奖金计划。奖金金额由公司负责，会员一旦收到奖金，并不能用于下注。奖金将分配给上线，会员可以通过其代理去兑现。&lt;/p&gt;&lt;p&gt;我们的新功能&lt;b&gt;奖金支付&lt;/b&gt;支持您的下线支付管理，确保所有奖金的准确分配。&lt;/p&gt;</value>
   </data>
   <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
-    <value>使用体育博彩赢额上限，全面掌控风险<b>新视图</b>最后投注</value>
+    <value>使用体育博彩潜在赢额上限，全面掌控风险新视图最后投注</value>
   </data>
   <data name="HighlightPopupRewardTitle" xml:space="preserve">
     <value>欢迎加入&lt;b&gt;现金奖金计划&lt;/b&gt;！</value>
@@ -833,7 +833,7 @@
     <value>Cash Service</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
-    <value>担心高风险玩家或意外的大额赔付？&lt;br/&gt;通过体育博彩赢额上限，代理可以在会员的可能赢额达到设定阈值时，自动阻止其继续下注。</value>
+    <value>担心高风险玩家或意外的大额赔付？&lt;br/&gt;通过体育博彩潜在赢额上限，代理可以在会员的可能赢额达到设定限额时，自动阻止其继续投注。</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro2" xml:space="preserve">
     <value>降低赔付风险</value>
@@ -842,10 +842,10 @@
     <value>保持账目稳定</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro4" xml:space="preserve">
-    <value>在创建账户或编辑体育博彩设置时设置赢额上限</value>
+    <value>在创建账户或编辑体育博彩设置时设置潜在赢额上限</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro5" xml:space="preserve">
-    <value>在赢额上限页面上全面监控</value>
+    <value>在潜在赢额上限页面上全面监控</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro6" xml:space="preserve">
     <value>想看看它如何运作？</value>

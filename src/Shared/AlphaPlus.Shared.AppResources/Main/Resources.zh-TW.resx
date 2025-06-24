@@ -720,7 +720,7 @@
     <value>&lt;p&gt;我們很高興為您介紹我們新的現金獎金計劃。獎金金額由公司負責，會員一旦收到獎金，並不能用於下注。獎金將分配給上線，會員可以透過其代理去兌現。&lt;/p&gt;&lt;p&gt;我們的新功能&lt;b&gt;獎金支付&lt;/b&gt;支持您的下線支付管理，確保所有獎金的準確分配。&lt;/p&gt;</value>
   </data>
   <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
-    <value>使用體育博彩贏額上限，全面掌控風險<b>新視圖</b>最後投注</value>
+    <value>使用体育博彩潜在赢额上限，全面掌控风险新视图最后投注</value>
   </data>
   <data name="HighlightPopupRewardTitle" xml:space="preserve">
     <value>歡迎加入&lt;b&gt;現金獎金計劃&lt;/b&gt;！</value>
@@ -836,21 +836,21 @@
     <value>Cash Service</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
-    <value>擔心高風險玩家或意外的大額賠付？&lt;br/&gt;透過體育博彩贏額上限，代理可以在會員的可能贏額達到設定閾值時，自動阻止其繼續投注。</value>
+    <value>担心高风险玩家或意外的大额赔付？&lt;br/&gt;通过体育博彩潜在赢额上限，代理可以在会员的可能赢额达到设定限额时，自动阻止其继续投注。</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro2" xml:space="preserve">
-    <value>降低賠付風險</value>
+    <value>降低赔付风险</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro3" xml:space="preserve">
-    <value> 維持帳務穩定</value>
+    <value>保持账目稳定</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro4" xml:space="preserve">
-    <value>在建立帳號或編輯體育博彩設定時設定贏額上限</value>
+    <value>在创建账户或编辑体育博彩设置时设置潜在赢额上限</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro5" xml:space="preserve">
-    <value>在贏額上限頁面上全面監控</value>
+    <value>在潜在赢额上限页面上全面监控</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro6" xml:space="preserve">
-    <value>想看看它怎麼運作？</value>
+    <value>想看看它如何运作？</value>
   </data>
 </root>

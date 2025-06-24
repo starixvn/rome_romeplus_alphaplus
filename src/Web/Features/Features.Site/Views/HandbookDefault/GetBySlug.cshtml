@@ -75,7 +75,7 @@
 
             <div class="category">
                 <h2 class="title-category">@Resources.AllCategories</h2>
-                <ul class="list-item-cat">
+                <ul class="list-item-cat">                    
                     @foreach (var c in Model.Categories)
                     {
                         RenderCategory(c, relativePath);
@@ -109,7 +109,7 @@
         {
             var articles = category.Articles ?? new List<ArticleModel>();
 
-            <li>
+            <li class="@category.Slug">
                 <div class="item-cat">
                     <span class="icon-right"></span>
                     <a class="text" target="main" href="@category.GetUrl(relativePath)">
@@ -137,7 +137,7 @@
                 </a>
                 <span class="count">@category.Categories.Count()</span>
             </div>
-            <ul class="list-item-cat">
+            <ul class="list-item-cat">                 
                 @foreach (var c in category.Categories)
                 {
                     RenderCategory(c, relativePath);
