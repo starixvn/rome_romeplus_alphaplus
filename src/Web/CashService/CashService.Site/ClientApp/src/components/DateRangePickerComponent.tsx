@@ -1,9 +1,9 @@
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 
-import { enUS } from 'date-fns/locale';
 import React from 'react';
 import { DateRange, Range, RangeKeyDict } from 'react-date-range';
+import { enUS, vi, ja, ko, zhCN, zhTW, th } from 'date-fns/locale';
 
 import { ButtonFullComponent } from './ButtonComponents';
 import { CalendarIcon } from './Icons';
@@ -172,6 +172,32 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   maxRangeDays,
 }) => {
   const { t } = useTranslation('global');
+  const { i18n } = useTranslation();
+  const currentLocale = i18n.language;
+  console.log('currentLocale', currentLocale);
+  let locale = enUS;
+  switch (currentLocale) {
+    case 'vi':
+      locale = vi;
+      break;
+    case 'th-TH':
+      locale = th;
+      break;
+    case 'ja-JP':
+      locale = ja;
+      break;
+    case 'ko':
+      locale = ko;
+      break;
+    case 'zh-CN':
+      locale = zhCN;
+      break;
+    case 'zh-TW':
+      locale = zhTW;
+      break;
+    default:
+      locale = enUS;
+  }
   const [open, setOpen] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
 
@@ -341,7 +367,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
               showDateDisplay={false}
               months={1}
               direction="vertical"
-              locale={enUS}
+              locale={locale || enUS}
               minDate={calendarMinDate}
               maxDate={calendarMaxDate}
             />

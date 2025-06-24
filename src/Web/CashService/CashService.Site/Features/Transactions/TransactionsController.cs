@@ -39,7 +39,7 @@ public class TransactionsController(
         var url = "/transactions/history";
         filter.CustId = agentId;
         filter.SiteDbGroupId = siteDbGroupId;
-        var result = await httpClientHelper.GetAsync<object>(url, ObjectConverter.ToDictionary(filter));
+        var result = await httpClientHelper.GetAsync<TransactionResponse>(url, ObjectConverter.ToDictionary(filter));
         return Json(result);
     }
 
@@ -65,7 +65,7 @@ public class TransactionsController(
     public async Task<IActionResult> Detail(long transactionId, int custId)
     {
         var url = $"/transactions/detail?transactionId={transactionId}&custId={custId}&siteDbGroupId={siteDbGroupId}";
-        var result = await httpClientHelper.GetAsync<object>(url);
+        var result = await httpClientHelper.GetAsync<Transaction>(url);
         return Ok(result);
     }
 

@@ -165,10 +165,40 @@
   <data name="TransactionType" xml:space="preserve">
     <value>交易类型</value>
   </data>
+  <data name="TransactionType_ManualWithdrawal" xml:space="preserve">
+    <value>手动提款</value>
+  </data>
+  <data name="TransactionType_SystemAdjust" xml:space="preserve">
+    <value>系统调整</value>
+  </data>
+  <data name="TransactionType_AutoWithdrawal" xml:space="preserve">
+    <value>自动提款</value>
+  </data>
+  <data name="TransactionType_ManualDeposit" xml:space="preserve">
+    <value>手动存款</value>
+  </data>
+  <data name="TransactionType_AutoDeposit" xml:space="preserve">
+    <value>自动存款</value>
+  </data>
   <data name="FirstAndLastName" xml:space="preserve">
     <value>姓名</value>
   </data>
   <data name="InternalServerError" xml:space="preserve">
     <value>内部服务器错误</value>
+  </data>
+  <data name="TransactionStatus_Completed" xml:space="preserve">
+    <value>已完成</value>
+  </data>
+  <data name="TransactionStatus_ProviderRejected" xml:space="preserve">
+    <value>提供商拒绝</value>
+  </data>
+  <data name="TransactionStatus_Rejected" xml:space="preserve">
+    <value>拒绝</value>
+  </data>
+  <data name="TransactionStatus_Pending" xml:space="preserve">
+    <value>待处理</value>
+  </data>
+  <data name="TransactionStatus_Expired" xml:space="preserve">
+    <value>已过期</value>
   </data>
 </root>

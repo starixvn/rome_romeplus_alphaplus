@@ -165,10 +165,40 @@
   <data name="TransactionType" xml:space="preserve">
     <value>ประเภทธุรกรรม</value>
   </data>
+  <data name="TransactionType_ManualWithdrawal" xml:space="preserve">
+    <value>การถอนเงินด้วยตนเอง</value>
+  </data>
+  <data name="TransactionType_SystemAdjust" xml:space="preserve">
+    <value>การปรับระบบ</value>
+  </data>
+  <data name="TransactionType_AutoWithdrawal" xml:space="preserve">
+    <value>การถอนเงินอัตโนมัติ</value>
+  </data>
+  <data name="TransactionType_ManualDeposit" xml:space="preserve">
+    <value>การฝากเงินด้วยตนเอง</value>
+  </data>
+  <data name="TransactionType_AutoDeposit" xml:space="preserve">
+    <value>การฝากเงินอัตโนมัติ</value>
+  </data>
   <data name="FirstAndLastName" xml:space="preserve">
     <value>ชื่อและนามสกุล</value>
   </data>
   <data name="InternalServerError" xml:space="preserve">
     <value>ข้อผิดพลาดภายในเซิร์ฟเวอร์</value>
+  </data>
+  <data name="TransactionStatus_Completed" xml:space="preserve">
+    <value>เสร็จสิ้น</value>
+  </data>
+  <data name="TransactionStatus_ProviderRejected" xml:space="preserve">
+    <value>ผู้ให้บริการปฏิเสธ</value>
+  </data>
+  <data name="TransactionStatus_Rejected" xml:space="preserve">
+    <value>ปฏิเสธ</value>
+  </data>
+  <data name="TransactionStatus_Pending" xml:space="preserve">
+    <value>รอดำเนินการ</value>
+  </data>
+  <data name="TransactionStatus_Expired" xml:space="preserve">
+    <value>หมดอายุ</value>
   </data>
 </root>

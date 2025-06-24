@@ -165,10 +165,40 @@
   <data name="TransactionType" xml:space="preserve">
     <value>Transaction Type</value>
   </data>
+  <data name="TransactionType_ManualWithdrawal" xml:space="preserve">
+    <value>Manual Withdrawal</value>
+  </data>
+  <data name="TransactionType_SystemAdjust" xml:space="preserve">
+    <value>System Adjust</value>
+  </data>
+  <data name="TransactionType_AutoWithdrawal" xml:space="preserve">
+    <value>Auto Withdrawal</value>
+  </data>
+  <data name="TransactionType_ManualDeposit" xml:space="preserve">
+    <value>Manual Deposit</value>
+  </data>
+  <data name="TransactionType_AutoDeposit" xml:space="preserve">
+    <value>Auto Deposit</value>
+  </data>
   <data name="FirstAndLastName" xml:space="preserve">
     <value>First &amp; Last Name</value>
   </data>
   <data name="InternalServerError" xml:space="preserve">
     <value>Internal Server Error</value>
+  </data>
+  <data name="TransactionStatus_Completed" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="TransactionStatus_ProviderRejected" xml:space="preserve">
+    <value>Provider Rejected</value>
+  </data>
+  <data name="TransactionStatus_Rejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="TransactionStatus_Pending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="TransactionStatus_Expired" xml:space="preserve">
+    <value>Expired</value>
   </data>
 </root>

@@ -148,7 +148,7 @@ const DataGrid: React.FC<DataGridProps> = ({
                     </td>
                   )}
                   {shouldShowColumn('status') && (
-                    <td className="text-center">{mappingStatus(item.statusId)}</td>
+                    <td className="text-center">{mappingStatus(item.statusId, item.status)}</td>
                   )}
                   {shouldShowColumn('type') && (
                     <td className="text-center">{item.transactionType}</td>

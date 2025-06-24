@@ -25,7 +25,7 @@ public class TransactionHistoryWorkbook(IWebHostEnvironment webHostEnvironment) 
         .Map(C, item => item.Amount)
         .Map(D, item => GetAccountNumberPart(item.PaymentFrom))
         .Map(E, item => GetAccountNumberPart(item.PaymentTo))
-        .Map(F, item => MappingStatusId(item.StatusId))
+        .Map(F, item => item.Status)
         .Map(G, item => item.TransactionType)
         .Map(H, item => item.TransId)
         .Map(I, item => item.CreatedTime.ToLongDateTime24HWithSlash());
@@ -68,19 +68,6 @@ public class TransactionHistoryWorkbook(IWebHostEnvironment webHostEnvironment) 
             _ => string.Empty
         };
     }
-
-    private static string MappingStatusId(int statusId)
-    => statusId switch
-    {
-        0 => "Waiting",
-        1 => "Cancelled",
-        2 => "Pending",
-        3 => "Expired",
-        4 => "Completed",
-        5 => "Rejected",
-        6 => "Provider Rejected",
-        _ => ""
-    };
 
     protected override void FillHeader(Sheet sheet)
     {

@@ -165,10 +165,40 @@
   <data name="TransactionType" xml:space="preserve">
     <value>Loại giao dịch</value>
   </data>
+  <data name="TransactionType_ManualWithdrawal" xml:space="preserve">
+    <value>Rút tiền thủ công</value>
+  </data>
+  <data name="TransactionType_SystemAdjust" xml:space="preserve">
+    <value>Điều chỉnh hệ thống</value>
+  </data>
+  <data name="TransactionType_AutoWithdrawal" xml:space="preserve">
+    <value>Rút tiền tự động</value>
+  </data>
+  <data name="TransactionType_ManualDeposit" xml:space="preserve">
+    <value>Nạp tiền thủ công</value>
+  </data>
+  <data name="TransactionType_AutoDeposit" xml:space="preserve">
+    <value>Nạp tiền tự động</value>
+  </data>
   <data name="FirstAndLastName" xml:space="preserve">
     <value>Tên &amp; Họ</value>
   </data>
   <data name="InternalServerError" xml:space="preserve">
     <value>Lỗi máy chủ nội bộ</value>
+  </data>
+  <data name="TransactionStatus_Completed" xml:space="preserve">
+    <value>Hoàn thành</value>
+  </data>
+  <data name="TransactionStatus_ProviderRejected" xml:space="preserve">
+    <value>Nhà cung cấp từ chối</value>
+  </data>
+  <data name="TransactionStatus_Rejected" xml:space="preserve">
+    <value>Từ chối</value>
+  </data>
+  <data name="TransactionStatus_Pending" xml:space="preserve">
+    <value>Đang chờ</value>
+  </data>
+  <data name="TransactionStatus_Expired" xml:space="preserve">
+    <value>Hết hạn</value>
   </data>
 </root>

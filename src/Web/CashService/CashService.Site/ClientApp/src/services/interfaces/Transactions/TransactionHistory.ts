@@ -10,6 +10,7 @@ export interface TransactionItem {
   paymentFrom: string;
   paymentTo: string;
   statusId: number;
+  status: string;
   betCredit: number;
   transactionTypeId: number;
   transactionType: string;

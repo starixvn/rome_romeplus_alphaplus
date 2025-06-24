@@ -1,18 +1,10 @@
 ﻿namespace AlphaPlus.CashService.API.Features.Transactions.Enum;
 
-using System.ComponentModel;
-
 public enum TransactionType
 {
-    [Description("Auto Withdrawal")]
-    AutoWithdrawal,
-
-    [Description("Manual Withdrawal")]
-    ManualWithdrawal,
-
-    [Description("Manual Deposit")]
-    ManualDeposit,
-
-    [Description("Auto Deposit")]
-    AutoDeposit
+    ManualDeposit = 1,
+    AutoDeposit = 2,
+    ManualWithdrawal = 3,
+    AutoWithdrawal = 4,
+    SystemAdjust = 10
 }

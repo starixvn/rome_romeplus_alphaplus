@@ -23,7 +23,6 @@ public class TransactionModel
     public int StatusId { get; set; }
     public decimal BetCredit { get; set; }
     public int TransactionTypeId { get; set; }
-    public string TransactionType { get; set; }
     public string Remark { get; set; }
     public byte[] Payslip { get; set; }
     public bool IsAllowRevert { get; set; }

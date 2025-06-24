@@ -165,10 +165,40 @@
   <data name="TransactionType" xml:space="preserve">
     <value>거래 유형</value>
   </data>
+  <data name="TransactionType_ManualWithdrawal" xml:space="preserve">
+    <value>수동 출금</value>
+  </data>
+  <data name="TransactionType_SystemAdjust" xml:space="preserve">
+    <value>시스템 조정</value>
+  </data>
+  <data name="TransactionType_AutoWithdrawal" xml:space="preserve">
+    <value>자동 출금</value>
+  </data>
+  <data name="TransactionType_ManualDeposit" xml:space="preserve">
+    <value>수동 입금</value>
+  </data>
+  <data name="TransactionType_AutoDeposit" xml:space="preserve">
+    <value>자동 입금</value>
+  </data>
   <data name="FirstAndLastName" xml:space="preserve">
     <value>성명</value>
   </data>
   <data name="InternalServerError" xml:space="preserve">
     <value>내부 서버 오류</value>
+  </data>
+  <data name="TransactionStatus_Completed" xml:space="preserve">
+    <value>완료</value>
+  </data>
+  <data name="TransactionStatus_ProviderRejected" xml:space="preserve">
+    <value>공급업체 거부</value>
+  </data>
+  <data name="TransactionStatus_Rejected" xml:space="preserve">
+    <value>거부</value>
+  </data>
+  <data name="TransactionStatus_Pending" xml:space="preserve">
+    <value>대기 중</value>
+  </data>
+  <data name="TransactionStatus_Expired" xml:space="preserve">
+    <value>만료</value>
   </data>
 </root>
