@@ -48,7 +48,7 @@ public class TransactionHistoryWorkbook(IWebHostEnvironment webHostEnvironment) 
     }
 
     private static string GetTitle(ExportExcelParams param)
-        => $"Transaction History {param.FromDate.Value.ToShortDateWithSlash()} --> {param.ToDate.Value.ToShortDateWithSlash()}";
+        => $"{CashServicesResx.TransactionHistory} {param.FromDate.Value.ToShortDateWithSlash()} --> {param.ToDate.Value.ToShortDateWithSlash()}";
 
     private static string GetAccountNumberPart(string bankAccount)
     {

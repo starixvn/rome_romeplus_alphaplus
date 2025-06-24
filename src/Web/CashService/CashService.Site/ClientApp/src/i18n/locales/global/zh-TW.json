@@ -101,6 +101,7 @@
     "last30days": "最近30天",
     "thismonth": "本月",
     "lastmonth": "上月",
-    "days": "天"
+    "days": "天",
+    "selected": "已選擇"
   }
 }

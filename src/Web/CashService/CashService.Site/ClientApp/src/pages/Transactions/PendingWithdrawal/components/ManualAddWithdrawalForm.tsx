@@ -74,7 +74,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       if (addWithdrawalResponse.isSuccessful) {
         setResultMessage({
           type: 'success',
-          message: t('manualWithdrawalForm.addWithdrawalSuccess'),
+          message: t('successMessages.withdrawalSubmitted'),
         });
         if (onClose) {
           setTimeout(() => {
@@ -86,7 +86,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
         setIsSubmitting(false);
       }
     } catch (error) {
-      setResultMessage({ type: 'error', message: t('manualWithdrawalForm.error') });
+      setResultMessage({ type: 'error', message: t('errorMessages.failedToSubmit') });
       setIsSubmitting(false);
     }
   };
@@ -270,7 +270,6 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
   const handleSetWithdrawalAmount = (value: number) => {
     setWithdrawalAmount(value);
   };
-  console.log(memberOptions);
   return (
     <div className="">
       <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">

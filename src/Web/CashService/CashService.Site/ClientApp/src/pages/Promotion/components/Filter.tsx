@@ -1,70 +1,65 @@
 import React, { useState } from 'react';
-//import { useTranslation } from 'react-i18next';
+import CustomDropdown from '../../../components/CustomDropdownComponent';
+import { LabelTitleComponent } from '../../../components/TitleComponents';
 
 interface FilterProps {
-    onFilterChange: (type: string, status: string) => void;
+  onFilterChange: (type: string, status: string) => void;
 }
 
 const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
-    //const { t } = useTranslation('promotion');
-    const [selectedType, setSelectedType] = useState('All');
-    const [selectedStatus, setSelectedStatus] = useState('All');
-    //const [searchTerm, setSearchTerm] = useState('');
+  const [selectedType, setSelectedType] = useState('');
+  const [selectedStatus, setSelectedStatus] = useState('');
 
-    const promotionTypes = ['All', 'Welcome Bonus', 'Reload Bonus', 'Cashback', 'Tournament'];
-    const statusOptions = ['All', 'Active', 'Scheduled', 'Expired'];
+  const promotionTypes = [
+    { value: 'Welcome Bonus', label: 'Welcome Bonus' },
+    { value: 'Reload Bonus', label: 'Reload Bonus' },
+    { value: 'Cashback', label: 'Cashback' },
+    { value: 'Tournament', label: 'Tournament' },
+  ];
 
-    const handleTypeChange = (type: string) => {
-        setSelectedType(type);
-        onFilterChange(type, selectedStatus);
-    };
+  const statusOptions = [
+    { value: 'Active', label: 'Active' },
+    { value: 'Scheduled', label: 'Scheduled' },
+    { value: 'Expired', label: 'Expired' },
+  ];
 
-    const handleStatusChange = (status: string) => {
-        setSelectedStatus(status);
-        onFilterChange(selectedType, status);
-    };
+  const handleTypeChange = (option: any) => {
+    setSelectedType(option.value);
+    onFilterChange(option.value, selectedStatus);
+  };
 
-    return (
-        <div className="flex mb-[16px]">
-            {/* <div className="flex-1 min-w-[200px]">
-                <input
-                    type="text"
-                    placeholder={t('search.placeholder')}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
-            </div> */}
-            <div className="text-[12px] flex gap-[16px]">
-                <div className="flex flex-col w-[180px]">
-                    <label className="block  font-semibold text-[#333333] my-[4px]">Promotion Type</label>
-                    <select
-                        className="border-0 border-b-[1px] h-[32px] max-[768px]:h-[40px] border-[#0000003D] rounded-[0px] focus:outline-none focus:focus:outline-none focus:ring-blue-500"
-                        value={selectedType}
-                        onChange={(e) => handleTypeChange(e.target.value)}
-                    >
-                        {promotionTypes.map(type => (
-                            <option key={type} value={type}>{type}</option>
-                        ))}
-                    </select>
-                </div>
-                
-                <div className="flex flex-col w-[160px]">
-                    <label className='block  font-semibold text-[#333333] my-[4px]'>Status</label>
-                    <select
-                    className="border-0 border-b-[1px] h-[32px] max-[768px]:h-[40px] border-[#0000003D] rounded-[0px] focus:outline-none focus:focus:outline-none focus:ring-blue-500"
-                    value={selectedStatus}
-                    onChange={(e) => handleStatusChange(e.target.value)}
-                >
-                    {statusOptions.map(status => (
-                        <option key={status} value={status}>{status}</option>
-                    ))}
-                </select>
-                </div>
-                
-            </div>
+  const handleStatusChange = (option: any) => {
+    setSelectedStatus(option.value);
+    onFilterChange(selectedType, option.value);
+  };
+
+  return (
+    <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
+      <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
+        <div className="form-group">
+          <LabelTitleComponent text="Promotion Type" />
+          <CustomDropdown
+            options={promotionTypes}
+            onSelect={handleTypeChange}
+            initialValue={selectedType}
+            showOptionAll={true}
+          />
         </div>
-    );
+      </div>
+
+      <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
+        <div className="form-group">
+          <LabelTitleComponent text="Status" />
+          <CustomDropdown
+            options={statusOptions}
+            onSelect={handleStatusChange}
+            initialValue={selectedStatus}
+            showOptionAll={true}
+          />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Filter;

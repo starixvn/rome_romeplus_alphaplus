@@ -201,4 +201,7 @@
   <data name="TransactionStatus_Expired" xml:space="preserve">
     <value>Expired</value>
   </data>
+  <data name="TransactionHistory" xml:space="preserve">
+    <value>Transaction History</value>
+  </data>
 </root>

@@ -101,6 +101,7 @@
     "last30days": "過去30日間",
     "thismonth": "今月",
     "lastmonth": "先月",
-    "days": "日"
+    "days": "日",
+    "selected": "選択"
   }
 }

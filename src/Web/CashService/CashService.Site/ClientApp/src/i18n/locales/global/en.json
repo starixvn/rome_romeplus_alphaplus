@@ -101,6 +101,7 @@
     "last30days": "Last 30 Days",
     "thismonth": "This Month",
     "lastmonth": "Last Month",
-    "days": "days"
+    "days": "days",
+    "selected": "Selected"
   }
 }

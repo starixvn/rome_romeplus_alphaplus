@@ -1,8 +1,23 @@
 import React, { useState } from 'react';
-
 import { Promotion } from '../../../services/interfaces/Promotion';
 import { IconInfo } from '../../../components/Icons';
-
+import {
+  BackButtonComponent,
+  ButtonApplyComponent,
+  ButtonCancelComponent,
+  DisableButtonComponent,
+  EnableButtonComponent,
+} from '../../../components/ButtonComponents';
+import CustomDropdown from '../../../components/CustomDropdownComponent';
+import {
+  ErrorMessageComponent,
+  SuccessMessageComponent,
+  ValidateMessageComponent,
+} from '../../../components/MessageComponents';
+import TitleComponent, {
+  LabelTitleComponent,
+  MediumTitleComponent,
+} from '../../../components/TitleComponents';
 
 interface AddPromotionProps {
   onClose: () => void;
@@ -10,15 +25,24 @@ interface AddPromotionProps {
   promotion?: Promotion | null;
 }
 
-const PROMOTION_TYPES = [
-  { value: 'RebateOnTurnover', label: 'Rebate on Turnover' },
-  // Add more types as needed
+const PROMOTION_TYPES = [{ value: 'RebateOnTurnover', label: 'Rebate on Turnover' }];
+
+const PROVIDER_OPTIONS = [
+  { value: 'All', label: 'All' },
+  { value: 'provider1', label: 'provider1' },
+  { value: 'provider2', label: 'provider2' },
+  { value: 'provider3', label: 'provider3' },
 ];
 
 const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion }) => {
- 
+  const [error, setError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+
   const [isActive, setIsActive] = useState<boolean>(promotion?.status === 'ACTIVE' || true);
-  const [promotionType, setPromotionType] = useState(promotion?.promotionType || PROMOTION_TYPES[0].value);
+  const [promotionType, setPromotionType] = useState(
+    promotion?.promotionType || PROMOTION_TYPES[0].value
+  );
   const [period, setPeriod] = useState(promotion?.period || '');
   const [provider, setProvider] = useState(promotion?.provider || '');
   const [categories, setCategories] = useState({
@@ -48,9 +72,43 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
     },
   });
 
+  const [fieldErrors, setFieldErrors] = useState({
+    promotionType: '',
+    period: '',
+    provider: '',
+    sportsPercentage: '',
+    virtualSportsPercentage: '',
+    gamesPercentage: '',
+    liveCasinoPercentage: '',
+  });
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const [fromDate, toDate] = period.split(' - ').map(date => new Date(date));
+    setError(null);
+    setLoading(true);
+
+    // Field-level validation
+    const errors = {
+      promotionType: !promotionType ? 'Please select promotion type' : '',
+      period: !period ? 'Please enter period' : '',
+      provider: !provider ? 'Please select provider' : '',
+      sportsPercentage: !categories.sports.percentage ? 'Please enter sports percentage' : '',
+      virtualSportsPercentage: !categories.virtualSports.percentage
+        ? 'Please enter virtual sports percentage'
+        : '',
+      gamesPercentage: !categories.games.percentage ? 'Please enter games percentage' : '',
+      liveCasinoPercentage: !categories.liveCasino.percentage
+        ? 'Please enter live casino percentage'
+        : '',
+    };
+    setFieldErrors(errors);
+    const hasError = Object.values(errors).some(Boolean);
+    if (hasError) {
+      setLoading(false);
+      return;
+    }
+    setSuccessMessage('Promotion saved successfully');
+    const [fromDate, toDate] = period.split(' - ').map((date) => new Date(date));
     const promotionData: Promotion = {
       promotionId: promotion?.promotionId || 0,
       promotionTitle: '',
@@ -85,146 +143,166 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
   };
 
   return (
-    <form id='add-promotion-form' onSubmit={handleSubmit}>
-    <div className="bg-[#ffffff] p-[16px] rounded-[5px] ">
-      <h2 className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] ">Current Promotion</h2>
-      <p className="pb-[8px] text-[12px] font-semibold">
-        Do you want to keep your promotion active? You can only run one promotion at a time.
-      </p>
-      <div className="">
-        <button
-          className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer ${isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
-          onClick={() => setIsActive(true)}
-        >
-          Enable
-        </button>
-        <button
-          className={`text-[12px] w-[100px] px-[16px] py-[8px] cursor-pointer ${!isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-background-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-background-color)]'}`}
-          onClick={() => setIsActive(false)}
-        >
-          Disable
-        </button>
-      </div>
-      <hr className='my-[16px] border-[#E0E0E0]' />   
-      
-      <h3 className="pb-[8px] mt-[8px] text-[16px] text-[var(--text-color-primary)] font-semibold leading-[21.6px] flex">Promotion Settings <span className="" title="Promotion runs on a weekly basis."><IconInfo className='w-[20px] cursor-pointer h-[20px] ml-[4px] fill-[#163f78]' /></span></h3>
-      <p className="text-[12px] text-[#333333] font-semibold">Promotion runs on a weekly basis.</p>
-      <div className="flex no-wrap gap-[16px]">
-        <div className="w-[100%] max-w-[250px]">
-          <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">Promotion Type<span className="text-[#E25757]">*</span></label>
-          <select
-            className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
-            value={promotionType}
-            onChange={e => setPromotionType(e.target.value)}
-          >
-            {PROMOTION_TYPES.map(type => (
-              <option key={type.value} value={type.value}>{type.label}</option>
-            ))}
-          </select>
+    <div tabIndex={-1}>
+      <div className="modal-content max-w-[1200px]">
+        <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
+          <BackButtonComponent onClick={onClose} />
+          <TitleComponent title="Manage Promotion" />
         </div>
-        <div className="w-[100%] max-w-[250px]">
-          <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">Period<span className="text-[#E25757]">*</span></label>
-          <input
-            type="text"
-            className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
-            placeholder="05/07/2025 - 05/07/2025"
-            value={period}
-            onChange={e => setPeriod(e.target.value)}
-          />
-        </div>
-        <div className="w-[100%] max-w-[250px]">
-          <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">Provider<span className="text-[#E25757]">*</span></label>
-          <select
-            className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
-            value={provider}
-            onChange={e => setProvider(e.target.value)}
-          >
-            <option value="">Select Provider</option>
-        {[
-            { id: 'provider1', name: 'provider1' },
-            { key: 'provider2', name: 'provider2' },
-            { key: 'provider3', name: 'provider3' },
-            { key: 'provider4', name: 'Live provider4' },
-        ].map(p => (
-              <option key={p.id} value={p.id}>{p.name}</option>
-            ))}
-          </select>
-        </div>
-      </div>
-            
-      {/* Category Fields */}
-      {[
-        { key: 'sports', label: 'Sports' },
-        { key: 'virtualSports', label: 'Virtual Sports' },
-        { key: 'games', label: 'Games' },
-        { key: 'liveCasino', label: 'Live Casino' },
-      ].map(cat => (
-        <div key={cat.key} className="flex no-wrap gap-[16px]">
-          <div className="w-[100%] max-w-[250px]">
-            <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">{cat.label} Percentage<span className="text-[#E25757]">*</span></label>
-            <div className="flex items-center relative">
-              <input
-                type="number"
-                min="0"
-                step="0.01"
-                className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] pr-[32px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
-                value={categories[cat.key as keyof typeof categories].percentage}
-                onChange={e => handleCategoryChange(cat.key, 'percentage', e.target.value)}
-              />
-              <span className="absolute right-0 top-0 text-[12px] text-[#333333] h-full w-[32px] leading-[32px] text-center font-bold border-l-[1px] border-[var(--border-control)]">%</span>
+
+        <form onSubmit={handleSubmit} className="pb-[16px]">
+          <div className="modal-body">
+            <ErrorMessageComponent className="mb-[16px] max-[768px]:mb-[0]" message={error} />
+            <SuccessMessageComponent
+              className="mb-[16px] max-[768px]:mb-[0]"
+              message={successMessage}
+            />
+
+            <MediumTitleComponent text="Current Promotion" />
+            <p className="my-[8px] text-[12px] font-semibold">
+              Do you want to keep your promotion active? You can only run one promotion at a time.
+            </p>
+            <div
+              className="mb-[16px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]"
+              role="group"
+            >
+              <EnableButtonComponent isActive={isActive} onClick={() => setIsActive(true)} />
+              <DisableButtonComponent isActive={!isActive} onClick={() => setIsActive(false)} />
             </div>
-          </div>
-          <div className="w-[100%] max-w-[250px]">
-            <label className="block text-[12px] font-semibold text-[#333333] my-[8px]">Min Turnover<span className="text-[#E25757]">*</span></label>
-            <input
-              type="number"
-              min="0"
-              className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
-              value={categories[cat.key as keyof typeof categories].minTurnover}
-              onChange={e => handleCategoryChange(cat.key, 'minTurnover', e.target.value)}
-            />
-          </div>
-          <div className="w-[100%] max-w-[250px]">
-            <label className="flex justify-between text-[12px] font-semibold text-[#333333] my-[8px]">
-              <div>Max Payout<span className="text-[#E25757]">*</span></div>
-              <div className="flex items-center text-[12px]">
-                <input
-                  type="checkbox"
-                  className="mr-2"
-                  checked={categories[cat.key as keyof typeof categories].unlimited}
-                  onChange={e => handleCategoryChange(cat.key, 'unlimited', e.target.checked)}
-                  id={`${cat.key}-unlimited`}
+
+            <MediumTitleComponent text="Promotion Settings" />
+            <div className="flex items-center mb-[8px]">
+              <p className="text-[12px] text-[#333333] font-semibold">
+                Promotion runs on a weekly basis.
+              </p>
+              <span className="ml-[4px]" title="Promotion runs on a weekly basis.">
+                <IconInfo className="w-[20px] cursor-pointer h-[20px] fill-[#163f78]" />
+              </span>
+            </div>
+
+            <div className="flex flex-nowrap gap-[16px] mb-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
+              <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
+                <LabelTitleComponent text="Promotion Type" required={true} />
+                <CustomDropdown
+                  options={PROMOTION_TYPES}
+                  onSelect={(option) => setPromotionType(option.value.toString())}
+                  initialValue={promotionType}
+                  showOptionAll={false}
                 />
-                <label htmlFor={`${cat.key}-unlimited`} className="text-[var(--text-color-primary)]">Unlimited</label>
-              </div>            
-            </label>
-            <input
-              type="number"
-              min="0"
-              className="h-[32px] max-[768px]:h-[40px] w-[100%] border-[1px] rounded-[4px] px-[8px] text-[12px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer border-[var(--border-control)]"
-              value={categories[cat.key as keyof typeof categories].maxPayout}
-              onChange={e => handleCategoryChange(cat.key, 'maxPayout', e.target.value)}
-              disabled={categories[cat.key as keyof typeof categories].unlimited}
+                <ValidateMessageComponent message={fieldErrors.promotionType} />
+              </div>
+
+              <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
+                <LabelTitleComponent text="Period" required={true} />
+                <input
+                  type="text"
+                  className={`control-field ${fieldErrors.period ? 'error' : ''}`}
+                  placeholder="05/07/2025 - 05/07/2025"
+                  value={period}
+                  onChange={(e) => setPeriod(e.target.value)}
+                />
+                <ValidateMessageComponent message={fieldErrors.period} />
+              </div>
+
+              <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
+                <LabelTitleComponent text="Provider" required={true} />
+                <CustomDropdown
+                  options={PROVIDER_OPTIONS}
+                  onSelect={(option) => setProvider(option.value.toString())}
+                  initialValue={provider}
+                  showOptionAll={false}
+                />
+                <ValidateMessageComponent message={fieldErrors.provider} />
+              </div>
+            </div>
+
+            {/* Category Fields */}
+            {[
+              { key: 'sports', label: 'Sports' },
+              { key: 'virtualSports', label: 'Virtual Sports' },
+              { key: 'games', label: 'Games' },
+              { key: 'liveCasino', label: 'Live Casino' },
+            ].map((cat) => (
+              <div
+                key={cat.key}
+                className="flex flex-nowrap gap-[16px] mb-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full"
+              >
+                <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
+                  <LabelTitleComponent text={`${cat.label} Percentage`} required={true} />
+                  <div className="flex items-center relative">
+                    <input
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      className={`control-field pr-[32px] ${fieldErrors[`${cat.key}Percentage` as keyof typeof fieldErrors] ? 'error' : ''}`}
+                      value={categories[cat.key as keyof typeof categories].percentage}
+                      onChange={(e) => handleCategoryChange(cat.key, 'percentage', e.target.value)}
+                    />
+                    <span className="absolute right-0 top-0 text-[12px] text-[#333333] h-full w-[32px] leading-[32px] text-center font-bold border-l-[1px] border-[var(--border-control)]">
+                      %
+                    </span>
+                  </div>
+                  <ValidateMessageComponent
+                    message={fieldErrors[`${cat.key}Percentage` as keyof typeof fieldErrors]}
+                  />
+                </div>
+
+                <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
+                  <LabelTitleComponent text="Min Turnover" required={true} />
+                  <input
+                    type="number"
+                    min="0"
+                    className="control-field"
+                    value={categories[cat.key as keyof typeof categories].minTurnover}
+                    onChange={(e) => handleCategoryChange(cat.key, 'minTurnover', e.target.value)}
+                  />
+                </div>
+
+                <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
+                  <div className="flex justify-between items-center mb-[4px]">
+                    <LabelTitleComponent text="Max Payout" required={true} />
+                    <div className="flex items-center text-[12px]">
+                      <input
+                        type="checkbox"
+                        className="mr-2"
+                        checked={categories[cat.key as keyof typeof categories].unlimited}
+                        onChange={(e) =>
+                          handleCategoryChange(cat.key, 'unlimited', e.target.checked)
+                        }
+                        id={`${cat.key}-unlimited`}
+                      />
+                      <label
+                        htmlFor={`${cat.key}-unlimited`}
+                        className="text-[var(--text-color-primary)]"
+                      >
+                        Unlimited
+                      </label>
+                    </div>
+                  </div>
+                  <input
+                    type="number"
+                    min="0"
+                    className="control-field"
+                    value={categories[cat.key as keyof typeof categories].maxPayout}
+                    onChange={(e) => handleCategoryChange(cat.key, 'maxPayout', e.target.value)}
+                    disabled={categories[cat.key as keyof typeof categories].unlimited}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-start py-[8px] mt-[8px] gap-[8px]">
+            <ButtonCancelComponent text="Cancel" onClick={onClose} />
+            <ButtonApplyComponent
+              text={loading ? 'Saving...' : 'Save'}
+              type="submit"
+              disabled={loading}
             />
           </div>
-          
-        </div>
-      ))}
-      <div className="flex justify-start mt-[16px]">
-        <button
-          className="w-[140px] h-[30px] rounded-[20px] text-[var(--button-text-cancel)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)] mx-[4px] bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] cursor-pointer "
-          onClick={() => {onClose()}}
-        >
-          Cancel
-        </button>
-        <button
-          className="w-[140px] h-[30px] rounded-[20px] text-[var(--button-text)] px-[16px] py-[4px] text-[12px] border-[1px] border-[var(--button-border)] mx-[4px] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] hover:border-[var(--button-border-hover)] cursor-pointer  shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]"
-        >
-          Save
-        </button>
+        </form>
       </div>
     </div>
-    </form>
   );
 };
 

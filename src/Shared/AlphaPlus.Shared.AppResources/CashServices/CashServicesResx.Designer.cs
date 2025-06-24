@@ -205,6 +205,15 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Transaction History.
+        /// </summary>
+        public static string TransactionHistory {
+            get {
+                return ResourceManager.GetString("TransactionHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Completed.
         /// </summary>
         public static string TransactionStatus_Completed {
