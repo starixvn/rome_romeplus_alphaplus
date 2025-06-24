@@ -119,11 +119,7 @@ export const approveWithdrawal = async ({
       formData.append('image', image);
     }
 
-    const response = await api.post<ResultModel>('ApproveWithdrawal', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    const response = await api.post<ResultModel>('ApproveWithdrawal', formData);
     return response.data;
   } catch (error) {
     console.error('Error approving withdrawal:', error);
@@ -160,11 +156,7 @@ export const rejectWithdrawal = async ({
       formData.append('image', image);
     }
 
-    const response = await api.post<ResultModel>('RejectWithdrawal', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    const response = await api.post<ResultModel>('RejectWithdrawal', formData);
     return response.data;
   } catch (error) {
     console.error('Error rejecting withdrawal:', error);
