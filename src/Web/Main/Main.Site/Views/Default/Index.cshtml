@@ -68,6 +68,10 @@
     {
         @await Html.PartialAsync("SuggestEnableTelegramOtpPopup")
     }
+    @if (Model.CashServiceInfoViewModel.IsOfferedCashService && !Model.CashServiceInfoViewModel.IsCashServiceEnabled)
+    {
+        @await Html.PartialAsync("CashServiceAds", Model.CashServiceInfoViewModel)
+    }
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.Render("/bundles/site-main/default")
     <script src="~/assets/bundles/default-index.js?v=@version" type="text/javascript"></script>
@@ -94,5 +98,5 @@
     }
     @Html.Hidden("TourURL", Model.TourUrl)
 </body>
-
+@Html.AntiForgeryToken()
 </html>

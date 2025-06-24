@@ -1,0 +1,73 @@
+﻿@using AlphaPlus.Reports.Features.WinLossDetail.Models
+@using AlphaPlus.Reports.Site.Features.WinLossDetail.ViewModels
+@{
+	Layout = null;
+
+	void RenderCashFeeGroup(CashFeeGroupModel cashFeeGroup)
+	{
+		RenderFeeTypeRow(cashFeeGroup.Total);
+
+		foreach (var item in cashFeeGroup.FeeItems)
+		{
+			RenderFeeItemRow(item);
+		}
+	}
+
+	void RenderFeeTypeRow(CashFeeItemModel item)
+	{
+		<tr class="cash-fee-total-row">
+			<td class="text-left">@item.DisplayType</td>
+			<td></td>
+			<td>@item.Count.FormatNumber()</td>
+			<td>@item.Agent.FormatNumber()</td>
+			<td>@item.Company.FormatNumber()</td>
+		</tr>
+	}
+
+	void RenderFeeItemRow(CashFeeItemModel item)
+	{
+		<tr >
+			<td class="text-left">@item.DisplayType</td>
+			<td>@item.Fee.FormatNumber()</td>
+			<td>@item.Count.FormatNumber()</td>
+			<td>@item.Agent.FormatNumber()</td>
+			<td>@item.Company.FormatNumber()</td>
+		</tr>
+	}
+}
+@model CashFeeModel
+<table class="tb tb-bordered tb-hover w-full tbl-win-loss-by-product"
+	   id="tbl-report">
+	<thead>
+		<tr>
+			<th>@Resources.Type</th>
+			<th>@Resources.Fee</th>
+			<th>@Resources.Count</th>
+			<th>@Resources.Agent</th>
+			<th>@Resources.Company</th>
+		</tr>
+	</thead>
+	@if (Model.FeeGroups.Any())
+	{
+		<tbody>
+			@{
+				foreach (var group in Model.FeeGroups)
+				{
+					RenderCashFeeGroup(group);
+				}
+			}
+		</tbody>
+		<tfoot>
+			<tr class="tbl-footer">
+				<td colspan="3">@Resources.Total</td>
+				<td>@Model.GrandTotal.Agent.FormatNumber()</td>
+				<td>@Model.GrandTotal.Company.FormatNumber()</td>
+			</tr>
+		</tfoot>
+	}
+	else
+	{
+		<no-information colspan="5" />
+	}
+</table>
+

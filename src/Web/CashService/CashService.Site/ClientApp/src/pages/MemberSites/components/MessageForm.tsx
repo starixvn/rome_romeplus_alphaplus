@@ -45,45 +45,45 @@ const MessageForm: React.FC<MessageFormProps> = ({loading}) => {
   return (
     <div className="">
       <MediumTitleComponent text={t('message.title')} />
-      <p className="pt-[4px] mb-[8px] font-semibold">{t('message.description')}</p>
-
-      <div className="flex flex-nowrap gap-[16px] mb-[10px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap">
-        <MobilePhoneComponent
-          mobilePhone={watch('mobilePhone')}
-          handleMobilePhoneChange={handleMobilePhoneChange}
-        />
-        {watch('contacts').map((contact: Contact, index: number) => (
-          <ContactComponent
-            index={index}
-            key={contact.type}
-            contact={contact}
+      <p className="pt-[4px] mb-[8px] font-semibold text-[var(--text-color)]">{t('message.description')}</p>
+      <div className=''>
+        <div className="flex flex-nowrap gap-[16px] mb-[10px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap">
+          <MobilePhoneComponent
+            mobilePhone={watch('mobilePhone')}
+            handleMobilePhoneChange={handleMobilePhoneChange}
           />
-        ))}
-      </div>
+          {watch('contacts').map((contact: Contact, index: number) => (
+            <ContactComponent
+              index={index}
+              key={contact.type}
+              contact={contact}
+            />
+          ))}
+        </div>
 
-      <div className='w-[476px] max-[768px]:w-[100%]'>
-       
-        <LabelTitleComponent text={t('message.announcement')}  />
-        <div className="relative">
-          <textarea
-            id="announcement"
-            {...register('announcement', {
-              maxLength: {
-                value: ANNOUNCEMENT_MAX_LENGTH,
-                message: t('validation.maxLength', { maxLength: ANNOUNCEMENT_MAX_LENGTH })
-              }
-            })}
-            rows={4}
-            className={`p-[8px] h-[100px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none max-[768px]:w-[100%] bg-[var(--background-control)] resize ${errors.announcement
-              ? 'border-[var(--border-control-error)]'
-              : 'border-[var(--border-control)]'
-              }`}
-            placeholder={t('message.placeholder.message')}
-            maxLength={ANNOUNCEMENT_MAX_LENGTH}
-          />
-          {errors.announcement && (
-            <ValidateMessageComponent message={errors.announcement?.message as string} />
-          )}
+        <div className='w-full max-[768px]:w-[100%]'>        
+          <LabelTitleComponent text={t('message.announcement')}  />
+          <div className="relative">
+            <textarea
+              id="announcement"
+              {...register('announcement', {
+                maxLength: {
+                  value: ANNOUNCEMENT_MAX_LENGTH,
+                  message: t('validation.maxLength', { maxLength: ANNOUNCEMENT_MAX_LENGTH })
+                }
+              })}
+              rows={4}
+              className={`p-[8px] h-[100px] w-[100%] border-[1px] rounded-[4px] px-[8px]  focus:outline-none max-[768px]:w-[100%] bg-[var(--background-control)] resize ${errors.announcement
+                ? 'border-[var(--border-control-error)]'
+                : 'border-[var(--border-control)]'
+                }`}
+              placeholder={t('message.placeholder.message')}
+              maxLength={ANNOUNCEMENT_MAX_LENGTH}
+            />
+            {errors.announcement && (
+              <ValidateMessageComponent message={errors.announcement?.message as string} />
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -1,0 +1,87 @@
+﻿@using AlphaPlus.Reports.Features.WinLossDetail.Models
+@using AlphaPlus.Reports.Site.Features.WinLossDetail.ViewModels
+@{
+	Layout = "_Layout";
+}
+@section Styles {
+	@StaticResources.AssetStyles.Render("/bundles-v2/site-reports/winlossdetailnew")
+	<link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" />
+}
+@section Scripts {
+	<script type="text/javascript">
+		var winlossDetailFromData = {
+			userSelectedProductIds: '@Model.UserSelectedProductIds',
+			custId: @Model.CustId,
+			custName: '@Model.CustName',
+			custLevelId: @Model.CustLevelId,
+			weekFromDate: '@Model.WeekFromDate',
+			weekToDate: '@Model.WeekToDate',
+			fromDate: '@Model.DateRangePicker.FromDate',
+			toDate: '@Model.DateRangePicker.ToDate',
+			levelType: @Model.LevelType,
+			username: '@Model.Username',
+			visibleColumns: '@Model.VisibleColumns',
+			userSelectedResourceIds: '@Model.UserSelectedResourceIds'
+
+		}
+	</script>
+	@StaticResources.AssetScripts.RenderCommon("/bundles/site-reports/winlossdetail")
+	<script src="~/bundles/winlossdetail/cashfee.js"></script>
+}
+@model CashFeeViewModel
+<div class="">
+	<div class="title-has-info title-has-entered">
+		<report-title-new model="@Model.PageHeader" />
+	</div>
+	<form class="form-inline filter" role="form" id="report-form">
+		<daterange-picker-jquery model="@Model.DateRangePicker" />
+		<div class="label-week-box" id="week-container">
+			<partial name="Weeks" model="@Model.Weeks" />
+		</div>
+	</form>
+	<div class="cash-fee-container">
+		<div class="breadcrumb-table">
+			<div class="breadcrumb-container">
+				<ul class="breadcrumb" id="breadcrumb-level">
+					@{
+						var index = 0;
+						var breadcrumbsCount = Model.Breadcrumbs.Count();
+					}
+					@foreach (var item in Model.Breadcrumbs)
+					{
+						if (index + 1 == breadcrumbsCount)
+						{
+							<li>@item.CustName</li>
+						}
+						else
+						{
+							index++;
+							<li>
+								<a href="javascript:;" class="upline-link" data-custid="@item.CustId" data-custname="@item.CustName"
+								data-custlevelid="@item.CustLevelId">@item.CustName</a>
+							</li>
+						}
+					}
+				</ul>
+			</div>
+			<div class="list-icon">
+				<ul>
+					<li>
+						<span id="icon-copy" class="ic-copy" data-toggle="tooltip" data-placement="top"
+							title="@Resources.Copy"></span>
+					</li>
+					<li>
+						<a id="icon-excel" class="ic-excel" data-toggle="tooltip" data-placement="top"
+						title="@Resources.ExportToExcel" asp-action="CashFeeExcel"></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="tbl-report-container">
+			<partial name="CashFeeData" model="@Model.CashFee" />
+		</div>
+	</div>
+</div>
+<a class="hide" id="hidden-getReportWeeksUrl" asp-action="GetWeeks"></a>
+<input type="hidden" id="hidden-breadcrumbsJson" value="@JsonHelper.ToJson(Model.Breadcrumbs)" />
+<input type="hidden" id="winloss-detail-report-path" value="@MicroSites.ReportsUrl("~/WinLossDetail/Index")" />

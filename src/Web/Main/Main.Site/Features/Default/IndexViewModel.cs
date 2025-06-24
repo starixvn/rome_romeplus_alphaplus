@@ -6,7 +6,7 @@ using AlphaPlus.SecurityCode.Web;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Main.Site.Features.Default.MenuBar;
 using AlphaPlus.Main.Site.Features.CustomerProfile;
-
+using AlphaPlus.Main.Site.Features.Dashboard.CashService;
 namespace AlphaPlus.Main.Site.Features.Default;
 
 public class IndexViewModel
@@ -204,4 +204,6 @@ public class IndexViewModel
             return isSupport;
         }
     }
+
+    public CashServiceInfoViewModel CashServiceInfoViewModel { get; set; }
 }

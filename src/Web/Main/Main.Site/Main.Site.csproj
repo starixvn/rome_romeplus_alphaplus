@@ -27,7 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.Cryptography.Aes" Version="1.0.0.6" />
-    <PackageReference Include="Fanex.Customer.Client" Version="1.0.2.3" />
+    <PackageReference Include="Fanex.Customer.Client" Version="1.0.3.2" />
     <PackageReference Include="Fanex.Logging" Version="2.0.2" />
     <PackageReference Include="Fanex.RemotingRef" Version="1.5.5.1" />
     <PackageReference Include="ONEbook.OTP" Version="2.0.0" />

@@ -6,7 +6,6 @@ using AgencyCash.API.Payments.Services;
 using AgencyCash.API.Shared;
 using AgencyCash.API.Shared.Models;
 using Fanex.Data.Repository;
-using Microsoft.AspNetCore.Mvc;
 using Moq;
 
 namespace AgencyCash.API.Tests.Payments;
@@ -258,5 +257,190 @@ public class DepositServiceTests
 
         // Assert
         _mockLogger.Verify(l => l.ErrorAsync(It.IsAny<string>()), Times.Once);
+    }
+
+    [Fact]
+    public async Task UpdateTransactionStatus_Should_Return_Success_When_Valid_Request()
+    {
+        // Arrange
+        const long transId = 12345;
+        var request = new UpdateTransactionStatusRequest
+        {
+            AgentId = 100,
+            CustId = 200,
+            StatusId = 1,
+            IP = "127.0.0.1"
+        };
+
+        var siteDBConfig = new SiteDBConfig
+        {
+            SiteDBGroupId = 1,
+            CustDBGroupId = 2
+        };
+
+        var logs = new List<LogEntry>
+        {
+            new LogEntry { LogTypeId = 1, TrackingValue = "Log details" }
+        };
+
+        _mockSiteDBService.Setup(s => s.GetSiteDBConfig(request.AgentId)).ReturnsAsync(siteDBConfig);
+
+        _mockRepository.Setup(r => r.ExecuteAsync(It.IsAny<GetDepositLimitCriteria>(), string.Empty, default))
+            .Returns(Task.FromResult(1));
+
+        _mockRepository.Setup(r => r.FetchAsync<LogEntry>(It.IsAny<ICriteria>(), string.Empty, default))
+            .ReturnsAsync(logs)
+            .Callback<ICriteria, string, CancellationToken>((c, s, t) =>
+            {
+                var criteria = c as UpdateDepositTransStatusCriteria;
+                criteria.ErrCode = 0;
+                criteria.ErrMsg = string.Empty;
+            });
+
+        // Act
+        var result = await _depositService.UpdateTransactionStatus(transId, request);
+
+        // Assert
+        Assert.True(result.IsSuccess);
+        Assert.Equal(0, result.Code);
+        Assert.Empty(result.Message);
+    }
+
+    [Fact]
+    public async Task UpdateTransactionStatus_Should_Return_Error_When_Criteria_Returns_Error()
+    {
+        // Arrange
+        const long transId = 12345;
+        var request = new UpdateTransactionStatusRequest
+        {
+            AgentId = 100,
+            CustId = 200,
+            StatusId = 1,
+            IP = "127.0.0.1"
+        };
+
+        var siteDBConfig = new SiteDBConfig
+        {
+            SiteDBGroupId = 1,
+            CustDBGroupId = 2
+        };
+
+        _mockSiteDBService.Setup(s => s.GetSiteDBConfig(request.AgentId)).ReturnsAsync(siteDBConfig);
+
+        _mockRepository.Setup(r => r.ExecuteAsync(It.IsAny<GetDepositLimitCriteria>(), string.Empty, default))
+            .Returns(Task.FromResult(1));
+
+        _mockRepository.Setup(r => r.FetchAsync<LogEntry>(It.IsAny<ICriteria>(), string.Empty, default))
+            .ReturnsAsync(new List<LogEntry>())
+            .Callback<ICriteria, string, CancellationToken>((c, s, t) =>
+            {
+                var criteria = c as UpdateDepositTransStatusCriteria;
+                criteria.ErrCode = 100;
+                criteria.ErrMsg = "Error occurred";
+            });
+
+        // Act
+        var result = await _depositService.UpdateTransactionStatus(transId, request);
+
+        // Assert
+        Assert.False(result.IsSuccess);
+        Assert.Equal(100, result.Code);
+        Assert.Equal("Error occurred", result.Message);
+    }
+
+    [Fact]
+    public async Task UpdateTransactionStatus_Should_Sync_CashAccumCredit_When_Successful_And_TableName_Provided()
+    {
+        // Arrange
+        const long transId = 12345;
+        var request = new UpdateTransactionStatusRequest
+        {
+            AgentId = 100,
+            CustId = 200,
+            StatusId = 1,
+            IP = "127.0.0.1"
+        };
+
+        var siteDBConfig = new SiteDBConfig
+        {
+            SiteDBGroupId = 1,
+            CustDBGroupId = 2
+        };
+
+        var logs = new List<LogEntry>
+        {
+            new LogEntry { LogTypeId = 2, TrackingValue = "Log details" }
+        };
+
+        _mockSiteDBService.Setup(s => s.GetSiteDBConfig(request.AgentId)).ReturnsAsync(siteDBConfig);
+
+        _mockRepository.Setup(r => r.ExecuteAsync(It.IsAny<GetDepositLimitCriteria>(), string.Empty, default))
+            .Returns(Task.FromResult(1));
+
+        _mockRepository.Setup(r => r.FetchAsync<LogEntry>(It.IsAny<ICriteria>(), string.Empty, default))
+            .ReturnsAsync(logs)
+            .Callback<ICriteria, string, CancellationToken>((c, s, t) =>
+            {
+                var criteria = c as UpdateDepositTransStatusCriteria;
+                criteria.ErrCode = 0;
+                criteria.ErrMsg = string.Empty;
+                criteria.CashAccumCreditTbl = "AccumCreditTable";
+            });
+
+        _mockRepository.Setup(r => r.ExecuteAsync(It.IsAny<SyncCashAccumCreditCriteria>(), string.Empty, default))
+            .Returns(Task.FromResult(1));
+
+        // Act
+        var result = await _depositService.UpdateTransactionStatus(transId, request);
+
+        // Assert
+        Assert.True(result.IsSuccess);
+        _mockRepository.Verify(r => r.ExecuteAsync(It.Is<SyncCashAccumCreditCriteria>(c =>
+            c.CashAccumCreditTbl == "AccumCreditTable"), string.Empty, default), Times.Once);
+    }
+
+    [Fact]
+    public async Task UpdateTransactionStatus_Should_Log_Error_When_ErrExtraInfo_Provided()
+    {
+        // Arrange
+        const long transId = 12345;
+        var request = new UpdateTransactionStatusRequest
+        {
+            AgentId = 100,
+            CustId = 200,
+            StatusId = 1,
+            IP = "127.0.0.1"
+        };
+
+        var siteDBConfig = new SiteDBConfig
+        {
+            SiteDBGroupId = 1,
+            CustDBGroupId = 2
+        };
+
+        _mockSiteDBService.Setup(s => s.GetSiteDBConfig(request.AgentId)).ReturnsAsync(siteDBConfig);
+
+        _mockRepository.Setup(r => r.ExecuteAsync(It.IsAny<GetDepositLimitCriteria>(), string.Empty, default))
+            .Returns(Task.FromResult(1));
+
+        _mockRepository.Setup(r => r.FetchAsync<LogEntry>(It.IsAny<ICriteria>(), string.Empty, default))
+            .ReturnsAsync(new List<LogEntry>())
+            .Callback<ICriteria, string, CancellationToken>((c, ip, t) =>
+            {
+                var criteria = c as UpdateDepositTransStatusCriteria;
+                criteria.ErrCode = 0;
+                criteria.ErrMsg = string.Empty;
+                criteria.ErrExtraInfo = "Additional error information";
+            });
+
+        _mockLogger.Setup(l => l.ErrorAsync(It.IsAny<string>())).Returns(Task.CompletedTask);
+
+        // Act
+        var result = await _depositService.UpdateTransactionStatus(transId, request);
+
+        // Assert
+        _mockLogger.Verify(l => l.ErrorAsync(It.Is<string>(s =>
+            s.Contains("Update Deposit Transaction Status failed") &&
+            s.Contains("Additional error information"))), Times.Once);
     }
 }

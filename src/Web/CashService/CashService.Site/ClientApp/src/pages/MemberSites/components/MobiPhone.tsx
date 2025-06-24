@@ -74,7 +74,7 @@ export const MobilePhone = (props: MobilePhoneInputProps) => {
     return (
         <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">             
             <LabelTitleComponent text={t('message.mobile')}  required={isRequired}/>
-            <div className={`flex items-center h-[28px] max-[768px]:h-[40px] w-[230px] border-[1px] border-[var(--border-control)] rounded-[3px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer bg-[var(--background-control)] ${
+            <div className={`flex items-center h-[28px] w-full border-[1px] border-[var(--border-control)] rounded-[3px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer bg-[var(--background-control)] ${
                 mobilePhoneErrors ? 'border-[var(--border-control-error)]' : ''
             }`}>
                 <MobiCode code={mobilePhone.code} onChange={(code) => {

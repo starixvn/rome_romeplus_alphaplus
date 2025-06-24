@@ -6,12 +6,6 @@
     <table class="tblDesc">
       <tr>
         <td class="colW1">
-          <xsl:value-of select="xslLogFormat:GetLogResource('username')"/>
-        </td>
-        <td class="colW2">
-          <xsl:value-of select="@username"/>
-        </td>
-        <td class="colW1">
           <xsl:value-of select="xslLogFormat:GetLogResource('firstname')"/>
         </td>
         <td class="colW2">
@@ -23,8 +17,20 @@
         <td class="colW2">
           <xsl:value-of select="@lname"/>
         </td>
+        <td class="colW1">
+          <xsl:value-of select="xslLogFormat:GetLogResource('creator')"/>
+        </td>
+        <td class="colW2">
+          <xsl:value-of select="@creator"/>
+        </td>
       </tr>
       <tr>
+        <td class="colW1">
+          <xsl:value-of select="xslLogFormat:GetLogResource('username')"/>
+        </td>
+        <td class="colW2">
+          <xsl:value-of select="@username"/>
+        </td>
         <td class="colW1">
           <xsl:value-of select="xslLogFormat:GetLogResource('phone')"/>
         </td>
@@ -37,45 +43,19 @@
         <td class="colW2">
           <xsl:value-of select="@mphone"/>
         </td>
+      </tr>
+      <tr>
         <td class="colW1">
           <xsl:value-of select="xslLogFormat:GetLogResource('bank')"/>
         </td>
         <td class="colW2">
-          <xsl:value-of select="@bankid"/>
-        </td>
-      </tr>
-      <tr>
-        <td class="colW1">
-          <xsl:value-of select="xslLogFormat:GetLogResource('accnumber')"/>
-        </td>
-        <td class="colW2">
-          <xsl:value-of select="@accnumber"/>
+          <xsl:value-of select="xslLogFormat:GetLogResource(concat('Bank_', @bankid))"/>
         </td>
         <td class="colW1">
-          <xsl:value-of select="xslLogFormat:GetLogResource('recommend')"/>
+          <xsl:value-of select="xslLogFormat:GetLogResource('accnumber')" />
         </td>
         <td class="colW2">
-          <xsl:value-of select="@recommend"/>
-        </td>
-        <td class="colW1">
-          <xsl:value-of select="xslLogFormat:GetLogResource('ugroup')" />
-        </td>
-        <td class="colW2">
-          <xsl:value-of select="@ugroup" />
-        </td>
-      </tr>
-      <tr>
-        <td class="colW1">
-          <xsl:value-of select="xslLogFormat:GetLogResource('language')" />
-        </td>
-        <td class="colW2">
-          <xsl:value-of select="@language" />
-        </td>
-        <td class="colW1">
-          <xsl:value-of select="xslLogFormat:GetLogResource('subaccname')" />
-        </td>
-        <td class="colW2">
-          <xsl:value-of select="@subaccname" />
+          <xsl:value-of select="@accnumber" />
         </td>
         <td class="colW1">
           <xsl:value-of select="xslLogFormat:GetLogResource('ip')" />
@@ -86,10 +66,10 @@
       </tr>
       <tr>
         <td class="colW1">
-          <xsl:value-of select="xslLogFormat:GetLogResource('Platform')" />
+          <xsl:value-of select="xslLogFormat:GetLogResource('subaccname')" />
         </td>
         <td class="colW2">
-          <xsl:value-of select="xslLogFormat:GetPlatformOfSearchAndCopyFunction(@systemid)" />
+          <xsl:value-of select="@subaccname" />
         </td>
         <td class="colW1">
           <xsl:value-of select="xslLogFormat:GetLogResource('errcode')" />

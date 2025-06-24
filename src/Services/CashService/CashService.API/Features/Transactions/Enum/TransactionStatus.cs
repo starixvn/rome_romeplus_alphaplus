@@ -4,7 +4,7 @@ namespace AlphaPlus.CashService.API.Features.Transactions.Enum;
 
 public enum TransactionStatus
 {
-    Completed,
+    Completed = 4,
     Rejected,
 
     [Description("Provider Rejected")]

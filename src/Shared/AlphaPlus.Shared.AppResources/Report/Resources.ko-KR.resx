@@ -684,4 +684,13 @@
   <data name="RewardCurrency" xml:space="preserve">
     <value>보상 통화</value>
   </data>
+  <data name="Fee" xml:space="preserve">
+    <value>수수료</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>수량</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>유형</value>
+  </data>
 </root>

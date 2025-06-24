@@ -54,9 +54,9 @@ const DomainCard: React.FC<DomainCardProps> = ({ domain,  index }) => {
             title="Copy URL"
           >
             {copied ? (
-              <IconCopied className="h-5 w-5" />
+              <IconCopied />
             ) : (
-              <IconCopy className="h-5 w-5" />
+              <IconCopy className="fill-[var(--domain-card-color2)]" />
             )}
           </button>
           <button 

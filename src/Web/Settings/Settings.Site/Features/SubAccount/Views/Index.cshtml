@@ -1,3 +1,4 @@
+@using AlphaPlus.Core.Configurations
 @using AlphaPlus.Core.Models
 @using AlphaPlus.Shared.AppResources.Common
 @using AlphaPlus.Shared.AppResources.Settings
@@ -6,6 +7,7 @@
     Layout = "~/Features/SubAccount/Views/_Layout.cshtml";
     var index = 0;
     var hasnotPerm = UserSession.Current.IsLimitedHostPermissionOnSubAccountFunction;
+    var isOfferCashService = UserSession.Current.RoleId == RoleIdConstants.Agent && AppSettings.IsOfferedCashService(UserSession.Current.Site);
 }
 @model IEnumerable<SubAccountViewModel>
 <div>
@@ -33,6 +35,10 @@
                 <td>@Lang.BetLists</td>
                 <td>@Lang.transfer</td>
                 <td>@Lang.viewlog</td>
+                @if(isOfferCashService){
+                    <td>@Lang.CashService</td>
+                    <td>@Lang.CashPromotion</td>
+                }
                 <td>@Lang.Edit</td>
                 <td>@Lang.password</td>
                 <td>@Lang.SecurityCode</td>
@@ -78,6 +84,17 @@
                                     type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId"
                                     data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasViewLogPermission ? "checked" :
                             string.Empty) /></td>
+                            @if(isOfferCashService){
+                                <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-M")"
+                                    type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId"
+                                    data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasCashServicePermission ? "checked" :
+                                string.Empty) />
+                                </td>
+                                <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-N")"
+                                        type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId"
+                                        data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasCashPromotionPermission ? "checked" :
+                                string.Empty) /></td>
+                            }
                             <td class="c"><span class="icon-edit info @(hasnotPerm ? "editBtn-Disable" : string.Empty)"
                                     data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
                             <td class="c"><span class="icon-edit pwd @(hasnotPerm ? "editBtn-Disable" : string.Empty)"

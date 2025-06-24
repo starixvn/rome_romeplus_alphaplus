@@ -1170,4 +1170,13 @@
   <data name="RewardCurrency" xml:space="preserve">
     <value>獎勵貨幣</value>
   </data>
+  <data name="Fee" xml:space="preserve">
+    <value>費用</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>數量</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>類型</value>
+  </data>
 </root>

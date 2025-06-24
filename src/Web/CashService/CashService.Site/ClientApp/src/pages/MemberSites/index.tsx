@@ -109,29 +109,20 @@ const MemberSiteManagement: React.FC = () => {
         <div className="mb-[8px]">
           <TitleComponent title={t('title')} showTippy={false} />
         </div>
-        <div className="max-w-[1200px]">
-         
-            
+        <div className="max-w-[950px]">               
               {result && <ResultMessageComponent className="mb-[10px]" type={result.type} message={result.text} />}
-           
-   
-
           <FormProvider {...methods}>
-            <form onSubmit={handleSubmit(onSubmit)} className="py-[5px] ">
-              
+            <form onSubmit={handleSubmit(onSubmit)} className="py-[5px] ">              
                 <RegistrationLinks
                   domains={methods
                     .watch('domains')
                     .map((domain) => ({ ...domain, status: 'active' }))}
                   loading={loading}
-                />
-             
+                />             
               <div className="block w-[100%] h-[1px] bg-[var(--border-color)] my-[10px]" ></div>              
-              <GeneralSettings loading={loading} />
-               
+              <GeneralSettings loading={loading} />               
               <div className="block w-[100%] h-[1px] bg-[var(--border-color)] my-[10px]" ></div>             
-              <MessageForm loading={loading} />           
-
+              <MessageForm loading={loading} />  
               <div className="flex justify-start py-[8px] mt-[8px]">
                 <ButtonApplyComponent
                   className="w-[140px] [&>*]:w-[100%]"
@@ -141,8 +132,7 @@ const MemberSiteManagement: React.FC = () => {
               </div>
             </form>
           </FormProvider>
-        </div>
-   
+        </div>   
     </div>
   );
 };

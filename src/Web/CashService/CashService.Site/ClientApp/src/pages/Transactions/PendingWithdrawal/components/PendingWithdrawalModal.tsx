@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
 import {
   displayAmount,
   formatDateTime,
   renderBankAccount,
   renderBankOptionValue,
-} from '../../../../common/commonFunctions.tsx';
+} from '../../../../utils/commonFunctions.tsx';
 import BankIcon from '../../../../components/BankComponents.tsx';
 import {
   ButtonApplyComponent,
-  ButtonCancelComponent,
   ButtonClosePopupComponent,
+  ButtonRejectComponent,
 } from '../../../../components/ButtonComponents.tsx';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import { ResultMessageComponent } from '../../../../components/MessageComponents.tsx';
@@ -24,19 +23,29 @@ import { approveWithdrawal, rejectWithdrawal } from '../../../../services/pendin
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI.ts';
 import { TransactionTypes } from '../../../../constants/sharedConstants.ts';
 import UploadImage from '../../Components/UploadImage';
+import { LoadingFullComponent } from '../../../../components/LoadingComponent';
 
 interface PendingWithdrawalModalProps {
-  withdrawal: TransactionItem;
+  transId: number;
+  custId: number;
   onClose: () => void;
 }
 
-const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdrawal, onClose }) => {
+const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
+  transId,
+  custId,
+  onClose,
+}) => {
   const { t } = useTranslation('pendingWithdrawal');
-  const [remark, setRemark] = useState(withdrawal.remark);
+  const [withdrawal, setWithdrawal] = useState<TransactionItem | null>(null);
+  const [remark, setRemark] = useState('');
   const [withdrawalFrom, setWithdrawalFrom] = useState('');
   const [bankOptions, setBankOptions] = useState<DropdownOption[]>([]);
   const [image, setImage] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [providerId, setProviderId] = useState(0);
+  const [paymentMethodId, setPaymentMethodId] = useState(0);
   const [resultMessage, setResultMessage] = useState<{
     type: 'success' | 'error' | 'warning' | null;
     message: string;
@@ -46,6 +55,21 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
   });
 
   useEffect(() => {
+    const fetchWithdrawal = async () => {
+      setIsLoading(true);
+      const response = await transactionAPI.getTransactionDetail(transId, custId);
+      if (response.error) {
+        setIsLoading(false);
+        return;
+      }
+      setWithdrawal(response.data);
+      setRemark(response.data.remark);
+      setIsLoading(false);
+    };
+    fetchWithdrawal();
+  }, [transId, custId]);
+
+  useEffect(() => {
     const fetchBankOptions = async () => {
       try {
         const [providers, bankInfo] = await Promise.all([
@@ -53,24 +77,38 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
           transactionAPI.getCashAgentBankInfo(TransactionTypes.Withdrawal),
         ]);
 
-        const providerOptions = providers.map((provider) => ({
-          value: renderBankOptionValue('', provider.providerName),
-          label: provider.providerName,
-          code: '',
-        }));
-
-        const bankOptions = bankInfo.map((bank) => ({
+        const bankOptions: DropdownOption[] = bankInfo.map((bank) => ({
           value: renderBankOptionValue(bank.bankCode, bank.bankAccountNumber),
           label: bank.bankAccountNumber,
-          code: bank.bankCode,
           icon: <BankIcon code={bank.bankCode} />,
+          attributes: {
+            providerId: 0,
+            paymentMethodId: 0,
+          },
+        }));
+        const mappedProviderInfo: DropdownOption[] = providers.map((provider) => ({
+          value: renderBankOptionValue('', provider.providerName),
+          label: provider.providerName,
+          attributes: {
+            providerId: provider.providerId,
+            paymentMethodId: provider.paymentMethodId,
+          },
         }));
 
-        setBankOptions([...bankOptions, ...providerOptions]);
+        setBankOptions([...bankOptions, ...mappedProviderInfo]);
+
         if (
-          withdrawal.paymentFrom &&
+          withdrawal?.paymentFrom &&
           bankOptions.find((option) => option.value === withdrawal.paymentFrom)
         ) {
+          let providerId =
+            bankOptions.find((option) => option.value === withdrawal.paymentFrom)?.attributes
+              ?.providerId || 0;
+          let paymentMethodId =
+            bankOptions.find((option) => option.value === withdrawal.paymentFrom)?.attributes
+              ?.paymentMethodId || 0;
+          setProviderId(providerId);
+          setPaymentMethodId(paymentMethodId);
           setWithdrawalFrom(withdrawal.paymentFrom);
         }
       } catch (error) {
@@ -79,7 +117,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
     };
 
     fetchBankOptions();
-  }, []);
+  }, [withdrawal]);
 
   const handleApprove = async () => {
     if (!isValidParams()) return;
@@ -87,8 +125,11 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
     try {
       setIsSubmitting(true);
       const response = await approveWithdrawal({
-        transId: withdrawal.transId,
+        transId: withdrawal?.transId || 0,
+        custId: withdrawal?.custId || 0,
         paymentFrom: withdrawalFrom,
+        providerId: providerId,
+        paymentMethodId: paymentMethodId,
         remark: remark,
         image: image,
       });
@@ -104,7 +145,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
         setIsSubmitting(false);
         setResultMessage({
           type: 'error',
-          message: t('pendingWithdrawalModal.approveError'),
+          message: response.message,
         });
       }
     } catch (error) {
@@ -113,11 +154,13 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
   };
 
   const handleReject = async () => {
-    if (!isValidParams()) return;
     setIsSubmitting(true);
     const response = await rejectWithdrawal({
-      transId: withdrawal.transId,
+      transId: withdrawal?.transId || 0,
+      custId: withdrawal?.custId || 0,
       paymentFrom: withdrawalFrom,
+      providerId: providerId,
+      paymentMethodId: paymentMethodId,
       remark: remark,
       image: image,
     });
@@ -126,11 +169,14 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
         type: 'success',
         message: t('pendingWithdrawalModal.rejectSuccess'),
       });
+      setTimeout(() => {
+        onClose();
+      }, 3000);
     } else {
       setIsSubmitting(false);
       setResultMessage({
         type: 'error',
-        message: t('pendingWithdrawalModal.rejectError'),
+        message: response.message,
       });
     }
   };
@@ -139,22 +185,27 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
     if (!withdrawalFrom) {
       setResultMessage({
         type: 'error',
-        message: t('pendingWithdrawalModal.selectBank'),
+        message: t('pendingWithdrawalModal.bankRequired'),
       });
       return false;
     }
     return true;
   };
+
   const handleChangePaymentFrom = (option: DropdownOption) => {
+    let providerId = option.attributes?.providerId || 0;
+    let paymentMethodId = option.attributes?.paymentMethodId || 0;
+    setProviderId(providerId);
+    setPaymentMethodId(paymentMethodId);
     setWithdrawalFrom(option.value.toString());
   };
 
   return (
-    <div className="bg-[#00000066] fixed inset-0 flex items-start justify-center z-50 max-[768px]:items-start">
-      <div className="p-[30px] w-full bg-[#ffffff] mt-[50px] max-w-[900px] max-[768px]:max-w-[90%] max-[768px]:h-[90%] overflow-auto rounded-[4px] shadow-[0_2px_4px_-1px_#00000033,0_4px_5px_#00000024,0_1px_10px_#0000001f] max-[768px]:mt-[16px]">
-        <div className="relative mb-[16px]">
+    <div className="bg-[#00000080] fixed inset-0 flex items-start justify-center z-50 w-full">
+      <div className="px-[20px] pb-[10px] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[50px] w-[900px] max-[768px]:max-w-[90%] max-[768px]:w-full max-[768px]:h-[90%] overflow-auto rounded-[4px]">
+        <div className="relative my-[10px]">
           <MediumTitleComponent
-            text={` ${t('pendingWithdrawalModal.title')} (${withdrawal.transId})`}
+            text={` ${t('pendingWithdrawalModal.title')} (${withdrawal?.transId})`}
           />
           <ButtonClosePopupComponent onClick={onClose} />
         </div>
@@ -165,92 +216,108 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({ withdra
             className="mb-[16px] max-[768px]:mb-[0]"
           />
         )}
-        <div className="flex max-[768px]:flex-wrap">
-          <div className="flex-1 h-full max-[768px]:mb-[16px]">
-            <div className="border border-[#333333] rounded mb-[8px] p-[8px]">
-              <table className="w-full h-full">
-                <thead>
-                  <tr className="text-left text-[#333333] font-semibold">
-                    <th className="px-[8px] py-[4px]">{t('pendingWithdrawalModal.username')}</th>
-                    <th className="px-[8px] py-[4px]">{t('dataGrid.nickname')}</th>
-                    <th className="px-[8px] py-[4px]">{t('dataGrid.firstName')}</th>
-                    <th className="px-[8px] py-[4px]">{t('pendingWithdrawalModal.betCredit')}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td className="px-[8px] py-[4px]">{withdrawal.username}</td>
-                    <td className="px-[8px] py-[4px]">{withdrawal.nickname}</td>
-                    <td className="px-[8px] py-[4px]">{`${withdrawal.firstName} ${withdrawal.lastName}`}</td>
-                    <td className="px-[8px] py-[4px] text-[var(--text-color-primary)] font-semibold">
-                      {displayAmount(withdrawal.betCredit)}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+        <div className="flex max-[768px]:flex-wrap mb-[16px] max-[768px]:flex-col">
+          {isLoading ? (
+            <div className="w-full flex items-center justify-center min-h-[200px]">
+              <LoadingFullComponent />
             </div>
-
-            <div className="grid grid-cols-2 gap-6">
-              <div>
-                <div className="mb-[16px]">
-                  <LabelTitleComponent text={t('pendingWithdrawalModal.to')} />
-                  <div className="flex items-center">
-                    <span>{renderBankAccount(withdrawal.paymentTo)}</span>
+          ) : (
+            <>
+              <div className="flex-1 h-full max-[768px]:mb-[16px] w-[400px] max-[768px]:w-full mr-[32px]">
+                <div className="border border-[var(--border-control)] rounded-[4px] mb-[8px] p-[8px] flex flex-wrap">
+                  <div className="w-[50%] mb-[8px] flex flex-col">
+                    <label className="font-semibold text-[var(--text-color-secondary)]">
+                      {t('pendingWithdrawalModal.username')}:
+                    </label>
+                    <span>{withdrawal?.username}</span>
                   </div>
-                </div>
-
-                <div className="mb-[16px]">
-                  <LabelTitleComponent text={t('pendingWithdrawalModal.withdrawalAmount')} />
-                  <div className="mt-1">
-                    <span>
-                      {displayAmount(withdrawal.amount)} {withdrawal.currency}
+                  <div className="w-[50%] mb-[8px] flex flex-col">
+                    <label className="font-semibold  text-[var(--text-color-secondary)]">
+                      {t('dataGrid.nickname')}:
+                    </label>
+                    <span>{withdrawal?.nickname}</span>
+                  </div>
+                  <div className="w-[50%] flex flex-col">
+                    <label className="font-semibold text-[var(--text-color-secondary)]">
+                      {t('dataGrid.firstName')}:
+                    </label>
+                    <span>{`${withdrawal?.firstName} ${withdrawal?.lastName}`}</span>
+                  </div>
+                  <div className="w-[50%] flex flex-col">
+                    <label className="font-semibold text-[var(--text-color-secondary)]">
+                      {t('pendingWithdrawalModal.betCredit')}:
+                    </label>
+                    <span className="text-[var(--text-link-color)] font-semibold">
+                      {displayAmount(withdrawal?.betCredit || 0)}
                     </span>
                   </div>
                 </div>
 
-                <div>
-                  <LabelTitleComponent text={t('pendingWithdrawalModal.from')} required />
-                  <div className="w-full">
-                    <DropdownComponent
-                      options={bankOptions}
-                      onSelect={handleChangePaymentFrom}
-                      initialValue={withdrawal.paymentFrom}
-                      placeholder={t('pendingWithdrawalModal.selectBank')}
-                      disable={isSubmitting}
-                      searchable={true}
-                    />
+                <div className="grid grid-cols-2 gap-6">
+                  <div>
+                    <div className="mb-[10px]">
+                      <LabelTitleComponent text={t('pendingWithdrawalModal.to')} />
+                      <div className="flex items-center">
+                        <span>{renderBankAccount(withdrawal?.paymentTo || '')}</span>
+                      </div>
+                    </div>
+
+                    <div className="mb-[10px]">
+                      <LabelTitleComponent text={t('pendingWithdrawalModal.withdrawalAmount')} />
+                      <div className="mt-1">
+                        <span className="py-[4px] text-[var(--text-link-color)] font-semibold">
+                          {displayAmount(withdrawal?.amount || 0)}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div>
+                      <LabelTitleComponent text={t('pendingWithdrawalModal.from')} required />
+                      <div className="w-full">
+                        <DropdownComponent
+                          options={bankOptions}
+                          onSelect={handleChangePaymentFrom}
+                          initialValue={withdrawal?.paymentFrom || ''}
+                          placeholder={t('pendingWithdrawalModal.selectBank')}
+                          disable={isSubmitting}
+                          searchable={true}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="mb-[16px]">
+                      <LabelTitleComponent text={t('pendingWithdrawalModal.dateAndTime')} />
+                      <div>{formatDateTime(withdrawal?.createdTime || '')}</div>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div>
-                <div className="mb-[16px]">
-                  <LabelTitleComponent text={t('pendingWithdrawalModal.dateAndTime')} />
-                  <div>{formatDateTime(withdrawal.createdTime)}</div>
+                <div className="mt-6 h-full">
+                  <LabelTitleComponent text={t('pendingWithdrawalModal.remarks')} />
+                  <textarea
+                    value={remark}
+                    onChange={(e) => setRemark(e.target.value)}
+                    maxLength={1000}
+                    placeholder={t('pendingWithdrawalModal.remarksPlaceholder')}
+                    className="block h-[140px]! py-[10px] control-field resize-none"
+                    disabled={isSubmitting}
+                  />
                 </div>
               </div>
-            </div>
 
-            <div className="mt-6 h-full">
-              <LabelTitleComponent text={t('pendingWithdrawalModal.remarks')} />
-              <textarea
-                value={withdrawal.remark}
-                onChange={(e) => setRemark(e.target.value)}
-                maxLength={1000}
-                placeholder={t('pendingWithdrawalModal.remarksPlaceholder')}
-                className="block h-[150px] w-[100%] border-[1px] border-[var(--border-control)] rounded-[4px] px-[8px] py-[10px] focus:outline-none focus:border-[var(--button-border)]"
+              <UploadImage
+                setImage={setImage}
+                prevImage={withdrawal?.payslip}
                 disabled={isSubmitting}
               />
-            </div>
-          </div>
-
-          <div className="pl-[32px] max-[768px]:pl-[0] max-[768px]:w-full">
-            <UploadImage setImage={setImage} disabled={isSubmitting} />
-          </div>
+            </>
+          )}
         </div>
 
         <div className="flex justify-center gap-[8px]">
-          <ButtonCancelComponent
+          <ButtonRejectComponent
             text={t('pendingWithdrawalModal.reject')}
             onClick={handleReject}
             disabled={isSubmitting}

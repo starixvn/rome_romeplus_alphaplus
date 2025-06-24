@@ -60,13 +60,13 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({ loading }) => {
 
       {Object.entries(groupedSettings).map(([category, categorySettings]) => (
         <div key={category}>
-          <div className="flex ">
+          <div className="flex gap-[16px]">
             {(categorySettings as Setting[]).map((setting: Setting, index: number) => {
               const currentValue = setting.value;
               return (
                 <div
                   key={setting.id}
-                  className="text-left w-[25%] min-w-[200px] max-[768px]:w-[48%]"
+                  className="text-left w-[230px]  min-w-[200px] max-[768px]:w-[48%]"
                   // aria-pressed={currentValue}
                 >
                   <div className="flex-1 min-w-0">                
@@ -92,7 +92,7 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({ loading }) => {
                         setValue(`generalSettings.${index}.value`, !currentValue, { shouldDirty: true });
                       }}
                     />
-                    <span className="block cursor-pointer w-[60px] h-[30px] rounded-[20px] bg-[var(--button-switch-background)] relative after:content-[''] after:absolute after:top-[3px] after:left-[3px] after:w-[24px] after:h-[24px] after:rounded-[50%] after:bg-[var(--button-switch-dot-background)] after:transition-all after:duration-300 after:ease-in-out after:shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] peer-checked:after:left-[32px] peer-checked:bg-[var(--button-switch-background-active)]"></span>
+                    <span className="block cursor-pointer w-[60px] h-[28px] rounded-[20px] bg-[var(--button-switch-background)] relative after:content-[''] after:absolute after:top-[3px] after:left-[3px] after:w-[22px] after:h-[22px] after:rounded-[50%] after:bg-[var(--button-switch-dot-background)] after:transition-all after:duration-300 after:ease-in-out after:shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] peer-checked:after:left-[34px] peer-checked:bg-[var(--button-switch-background-active)]"></span>
                   </label>
                 </div>
               );

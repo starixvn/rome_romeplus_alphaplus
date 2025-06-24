@@ -163,7 +163,7 @@ public static class AppSettings
     }
 
     public static bool IsOfferedCashService(string site)
-            => CashServiceOfferedSites.Contains("*") || CashServiceOfferedSites.Contains(site);
+        => CashServiceOfferedSites.Contains("*") || CashServiceOfferedSites.Contains(site);
 
     public static IEnumerable<string> CashServiceOfferedSites { get; } = new HashSet<string>(
         (ConfigurationManager.GetValue<string>("CashService:OfferedSites") ?? string.Empty)

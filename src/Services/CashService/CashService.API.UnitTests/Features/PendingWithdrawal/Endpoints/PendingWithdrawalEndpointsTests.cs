@@ -145,9 +145,9 @@ public class PendingWithdrawalEndpointsTests
     public async Task ApproveTransaction_Logic_ShouldSetStatusAndReturnCorrectResult()
     {
         // Arrange
-        var model = new ProcessTransactionModel
+        var model = new ProcessWithdrawalTransaction
         {
-            TransId = "123",
+            TransId = 123,
             PaymentFrom = "Test",
             Remark = "Test",
             Payslip = [1, 2]
@@ -155,7 +155,7 @@ public class PendingWithdrawalEndpointsTests
 
         var expectedResult = new ResultModel(0, "Success");
 
-        mockService.Setup(x => x.ProcessWithdrawAsync(It.Is<ProcessTransactionModel>(m =>
+        mockService.Setup(x => x.ProcessWithdrawAsync(It.Is<ProcessWithdrawalTransaction>(m =>
             m.StatusId == (int)TransactionStatus.Completed)))
             .ReturnsAsync(expectedResult);
 
@@ -169,7 +169,7 @@ public class PendingWithdrawalEndpointsTests
         var okResult = Assert.IsType<Ok<ResultModel>>(result);
         Assert.Equal(expectedResult.Code, okResult.Value?.Code);
         Assert.Equal(expectedResult.Message, okResult.Value?.Message);
-        mockService.Verify(x => x.ProcessWithdrawAsync(It.Is<ProcessTransactionModel>(m =>
+        mockService.Verify(x => x.ProcessWithdrawAsync(It.Is<ProcessWithdrawalTransaction>(m =>
             m.StatusId == (int)TransactionStatus.Completed)), Times.Once);
     }
 
@@ -177,9 +177,9 @@ public class PendingWithdrawalEndpointsTests
     public async Task RejectTransaction_Logic_ShouldSetStatusAndReturnCorrectResult()
     {
         // Arrange
-        var model = new ProcessTransactionModel
+        var model = new ProcessWithdrawalTransaction
         {
-            TransId = "123",
+            TransId = 123,
             PaymentFrom = "Test",
             Remark = "Test",
             Payslip = [1, 2]
@@ -187,7 +187,7 @@ public class PendingWithdrawalEndpointsTests
 
         var expectedResult = new ResultModel(0, "Success");
 
-        mockService.Setup(x => x.ProcessWithdrawAsync(It.Is<ProcessTransactionModel>(m =>
+        mockService.Setup(x => x.ProcessWithdrawAsync(It.Is<ProcessWithdrawalTransaction>(m =>
             m.StatusId == (int)TransactionStatus.Rejected)))
             .ReturnsAsync(expectedResult);
 
@@ -201,7 +201,7 @@ public class PendingWithdrawalEndpointsTests
         var okResult = Assert.IsType<Ok<ResultModel>>(result);
         Assert.Equal(expectedResult.Code, okResult.Value?.Code);
         Assert.Equal(expectedResult.Message, okResult.Value?.Message);
-        mockService.Verify(x => x.ProcessWithdrawAsync(It.Is<ProcessTransactionModel>(m =>
+        mockService.Verify(x => x.ProcessWithdrawAsync(It.Is<ProcessWithdrawalTransaction>(m =>
             m.StatusId == (int)TransactionStatus.Rejected)), Times.Once);
     }
 }

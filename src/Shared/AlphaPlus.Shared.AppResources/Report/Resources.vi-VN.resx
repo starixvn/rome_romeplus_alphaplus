@@ -1195,4 +1195,13 @@
   <data name="RewardCurrency" xml:space="preserve">
     <value>Tiền tệ phần thưởng</value>
   </data>
+  <data name="Fee" xml:space="preserve">
+    <value>Phí</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>Số lượng</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Loại</value>
+  </data>
 </root>

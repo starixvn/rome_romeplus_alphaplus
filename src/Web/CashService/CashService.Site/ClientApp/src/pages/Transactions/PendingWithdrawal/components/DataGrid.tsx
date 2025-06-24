@@ -2,26 +2,29 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory.ts';
 import {
-  CurrentCurrency,
   displayAmount,
   formatDateTime,
   renderBankAccount,
-} from '../../../../common/commonFunctions.tsx';
+} from '../../../../utils/commonFunctions.tsx';
 import PendingWithdrawalModal from './PendingWithdrawalModal.tsx';
-import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
-import NoRecordFound from '../../../../components/Table/NoRecordFound';
+import NoRecordFound from '../../../../components/NoRecordFoundComponent.tsx';
 import { ButtonFullComponent } from '../../../../components/ButtonComponents';
 import Pagination from '../../Components/Pagination';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
+import { ValidateMessageComponent } from '../../../../components/MessageComponents.tsx';
+import Tippy from '@tippyjs/react';
+import { IconImage } from '../../../../components/Icons.tsx';
 
 interface DataGridProps {
   withdrawals: TransactionItem[];
+  reloadGrid: () => void;
 }
 
-const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
+const DataGrid: React.FC<DataGridProps> = ({ withdrawals, reloadGrid }) => {
   const { t } = useTranslation('pendingWithdrawal');
-  const [processingWithdrawal, setProcessingWithdrawal] = useState<TransactionItem | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const { t: tGlobal } = useTranslation('global');
+  const [showWithdrawalPopup, setShowWithdrawalPopup] = useState<boolean>(false);
+  const [selectedWithdrawal, setSelectedWithdrawal] = useState<TransactionItem | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(PAGE_SIZE_OPTIONS[2]);
@@ -29,6 +32,9 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
   const totalItems = withdrawals.length;
 
   useEffect(() => {
+    if (withdrawals.length <= pageSize) {
+      setCurrentPage(1);
+    }
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
     setPaginatedWithdrawals(withdrawals.slice(startIndex, endIndex));
@@ -44,39 +50,31 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
   };
 
   const handleProcessClick = async (withdrawal: TransactionItem) => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const detail = await transactionAPI.getTransactionDetail(
-        withdrawal.transId,
-        withdrawal.custId
-      );
-      setProcessingWithdrawal(detail);
-    } catch (err) {
-      console.error('Error fetching transaction detail:', err);
-      setError(t('dataGrid.errorFetchingDetail'));
-    } finally {
-      setIsLoading(false);
-    }
+    setShowWithdrawalPopup(true);
+    setSelectedWithdrawal(withdrawal);
   };
 
   const handleCloseProcess = () => {
-    setProcessingWithdrawal(null);
+    setShowWithdrawalPopup(false);
     setError(null);
+    reloadGrid();
   };
 
   return (
     <>
-      <div className="table-fixed-header table-fixed-body bg-[#ffffff] min-h-0">
-        <table className="max-[600px]:text-[17px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px] border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
+      <div className="table-fixed-header table-fixed-body min-h-0">
+        <table className="w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px] border-l-[0px] text-[#333333]">
           <thead className="z-11!">
             <tr>
-              <th scope="col" className="w-[32px] min-w-[32px] sticky left-0  z-11">
+              <th
+                scope="col"
+                className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-header-background)] z-11"
+              >
                 #
               </th>
               <th
                 scope="col"
-                className="w-[150px] min-w-[150px] sticky left-[32px]  z-11 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]"
+                className="w-[150px] min-w-[150px] sticky left-[32px] bg-[var(--table-header-background)] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]"
               >
                 <div>{t('dataGrid.username')}</div>
                 <div>{t('dataGrid.nickname')}</div>
@@ -84,11 +82,15 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
               <th scope="col">
                 <div>{t('dataGrid.firstName')}</div>
               </th>
-              <th scope="col">
-                {t('dataGrid.amount')} ({CurrentCurrency})
+              <th scope="col" className="min-w-[150px]">
+                {t('dataGrid.amount')}
               </th>
-              <th scope="col">{t('dataGrid.from')}</th>
-              <th scope="col">{t('dataGrid.to')}</th>
+              <th scope="col" className="w-[250px]">
+                {t('dataGrid.from')}
+              </th>
+              <th scope="col" className="w-[250px]">
+                {t('dataGrid.to')}
+              </th>
               <th scope="col">{t('dataGrid.referenceNo')}</th>
               <th scope="col">{t('dataGrid.dateAndTime')}</th>
               <th scope="col">{t('dataGrid.actions')}</th>
@@ -98,10 +100,10 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
             {paginatedWithdrawals.length > 0 ? (
               paginatedWithdrawals.map((withdrawal, index) => (
                 <tr key={withdrawal.transId}>
-                  <td className="w-[32px] min-w-[32px] sticky left-0 bg-[#ffffff] z-10">
+                  <td className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-background)] z-10">
                     {index + 1 + (currentPage - 1) * pageSize}
                   </td>
-                  <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[#ffffff] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
+                  <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[var(--table-background)] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
                     <div>{withdrawal.username}</div>
                     <div>{withdrawal.nickname}</div>
                   </td>
@@ -109,15 +111,29 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
                     <div>{withdrawal.firstName}</div>
                     <div>{withdrawal.lastName}</div>
                   </td>
-                  <td>{displayAmount(withdrawal.amount)}</td>
-                  <td>{renderBankAccount(withdrawal.paymentFrom)}</td>
-                  <td>{renderBankAccount(withdrawal.paymentTo)}</td>
+                  <td>
+                    <div className="flex items-center justify-end pr-[25px] relative">                      
+                      {displayAmount(withdrawal.amount)}
+                      {withdrawal.isHadPayslip && (
+                        <IconImage className="w-[20px] h-[20px] ml-[5px] absolute right-[0px]" />
+                      )}
+                    </div>
+                  </td>
+                  <td className="text-left">
+                    <Tippy content={<p>{tGlobal(withdrawal.paymentFrom.split('-')[0])}</p>}>
+                      {renderBankAccount(withdrawal.paymentFrom)}
+                    </Tippy>
+                  </td>
+                  <td className="text-left">
+                    <Tippy content={<p>{tGlobal(withdrawal.paymentTo.split('-')[0])}</p>}>
+                      {renderBankAccount(withdrawal.paymentTo)}
+                    </Tippy>
+                  </td>
                   <td>{withdrawal.transId}</td>
                   <td>{formatDateTime(withdrawal.createdTime)}</td>
                   <td>
                     <ButtonFullComponent
                       text={t('dataGrid.process')}
-                      disabled={isLoading}
                       onClick={() => handleProcessClick(withdrawal)}
                     />
                   </td>
@@ -128,16 +144,17 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals }) => {
             )}
           </tbody>
         </table>
-      </div>
-
-      {error && <div className="mt-4 p-4 bg-red-100 text-red-700 rounded-md">{error}</div>}
-
-      {processingWithdrawal && (
-        <PendingWithdrawalModal withdrawal={processingWithdrawal} onClose={handleCloseProcess} />
+      </div>     
+      {error && <ValidateMessageComponent message={error} />}
+      {showWithdrawalPopup && selectedWithdrawal && (
+        <PendingWithdrawalModal
+          transId={selectedWithdrawal.transId}
+          custId={selectedWithdrawal.custId}
+          onClose={handleCloseProcess}
+        />
       )}
-
       {paginatedWithdrawals.length > 0 && (
-        <div className="mt-0">
+        <div className="mt-[-1px] relative z-12">
           <Pagination
             currentPage={currentPage}
             pageSize={pageSize}

@@ -31,7 +31,7 @@
     }
   },
   "actions": {
-    "save": "Save Changes",
+    "save": "Save",
     "saving": "Saving..."
   },
   "errors": {

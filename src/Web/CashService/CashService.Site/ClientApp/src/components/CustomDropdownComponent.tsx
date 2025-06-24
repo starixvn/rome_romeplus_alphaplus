@@ -17,9 +17,11 @@ export interface CustomDropdownComponentProps {
   showOptionAll?: boolean;
   searchable?: boolean;
   placeholder?: string;
+  className?: string;
 }
 
 const CustomDropdownComponent = ({
+  className,
   options,
   onSelect,
   disable = false,
@@ -110,9 +112,9 @@ const CustomDropdownComponent = ({
       </div>
 
       {isOpen && (
-        <div className="max-h-[200px] overflow-y-auto absolute top-[29px] left-0 w-[100%] bg-[var(--background-control)] border-[1px] border-[var(--border-control)] rounded-[8px] z-[9999]">
+        <div className={`${className} max-h-[200px] overflow-y-auto absolute top-[29px] left-0 w-[100%] bg-[var(--background-control)] border-[1px] border-[var(--border-control)] rounded-[8px] z-[9999]`} >
           {searchable && (
-            <div className="sticky top-0 p-2 border-b border-[var(--border-control)]">
+            <div className="sticky top-0 p-2 border-b border-[var(--border-control)] bg-[var(--background-control)]">
               <input
                 ref={searchInputRef}
                 type="text"

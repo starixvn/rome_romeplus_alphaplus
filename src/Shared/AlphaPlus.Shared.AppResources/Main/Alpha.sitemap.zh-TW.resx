@@ -459,4 +459,13 @@
   <data name="MemberSiteManagement" xml:space="preserve">
     <value>會員網站管理</value>
   </data>
+  <data name="PendingDeposit" xml:space="preserve">
+    <value>待處理存款</value>
+  </data>
+  <data name="TransactionHistory" xml:space="preserve">
+    <value>交易歷史</value>
+  </data>
+  <data name="PendingWithdrawal" xml:space="preserve">
+    <value>待處理提款</value>
+  </data>
 </root>

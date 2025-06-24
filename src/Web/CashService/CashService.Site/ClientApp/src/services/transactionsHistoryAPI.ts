@@ -32,6 +32,18 @@ export const transactionAPI = {
       const response = await api.get<TransactionsHistoryResponse>(
         `GetHistory?${queryParams.toString()}`
       );
+      response.data.items.forEach((item) => {
+        if (
+          item.paymentFrom === null ||
+          item.paymentFrom === undefined ||
+          item.paymentFrom === ''
+        ) {
+          item.paymentFrom = '-';
+        }
+        if (item.paymentTo === null || item.paymentTo === undefined || item.paymentTo === '') {
+          item.paymentTo = '-';
+        }
+      });
       return response.data;
     } catch (error) {
       console.error('Error fetching transactions:', error);
@@ -42,12 +54,12 @@ export const transactionAPI = {
     }
   },
 
-  getTransactionDetail: async (transactionId: number, custId: number): Promise<TransactionItem> => {
+  getTransactionDetail: async (transactionId: number, custId: number): Promise<any> => {
     try {
       const response = await api.get<TransactionItem>(
         `Detail?transactionId=${transactionId}&custId=${custId}`
       );
-      return response.data;
+      return response;
     } catch (error) {
       console.error(
         `Error fetching transaction detail for ID ${transactionId}:, custId: ${custId}`,
@@ -136,14 +148,22 @@ export const transactionAPI = {
 
   exportExcel: async (params: ExportExcelParams): Promise<void> => {
     try {
+      var formData = new FormData();
+      formData.append('transactionType', params.transactionType.toString());
+      formData.append('fromDate', params.fromDate);
+      formData.append('toDate', params.toDate);
+      formData.append('status', params.status.toString());
+      formData.append('account', params.account);
+
       await api
-        .post('ExportExcel', params, {
+        .post('ExportExcel', formData, {
           responseType: 'blob',
         })
         .then((response) => {
           const fileName = response.headers['content-disposition']
             .split('filename=')[1]
-            .split(';')[0];
+            .split(';')[0]
+            .replace(/"/g, '');
 
           const url = window.URL.createObjectURL(new Blob([response.data]));
           const link = document.createElement('a');

@@ -136,7 +136,7 @@
     "RemotingRefUrl": "http://remotingref-api-core.nexdev.net/",
     "Fanex.Customer": {
         "ServiceUri": "https://customer.nexdev.net/main/api/",
-        "CdnUri": "https://cdn-customer.nexdev.net/main/",
+        "CdnUri": "https://cdn-customer.nexdev.net/v3/",
         "SystemId": 2
     },
     "SystemId": 2,

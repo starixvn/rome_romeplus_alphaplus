@@ -1,8 +1,6 @@
 namespace AlphaPlus.CashService.API.Features.PendingWithdrawal.Services;
 
-using System.Numerics;
 using AlphaPlus.CashService.API.Features.Shared.Models;
-using AlphaPlus.CashService.API.Features.Transactions.Criteria;
 using AlphaPlus.CashService.API.Features.Transactions.Models;
 using AlphaPlus.CashService.API.Features.Transactions.Services;
 using Criteria;
@@ -19,7 +17,7 @@ public interface IPendingWithdrawalService
 
     Task<ResultModel> AddManualWithdrawAsync(AddManualWithdrawalModel param);
 
-    Task<ResultModel> ProcessWithdrawAsync(ProcessTransactionModel param);
+    Task<ResultModel> ProcessWithdrawAsync(ProcessWithdrawalTransaction param);
 }
 
 public class PendingWithdrawalService(
@@ -111,18 +109,29 @@ public class PendingWithdrawalService(
         return result;
     }
 
-    public async Task<ResultModel> ProcessWithdrawAsync(ProcessTransactionModel param)
+    public async Task<ResultModel> ProcessWithdrawAsync(ProcessWithdrawalTransaction param)
     {
-        var command = new ProcessTransactionCommand
+        var command = new ProcessWithdrawalTransactionCommand
         {
-            TransId = BigInteger.Parse(param.TransId),
+            TransId = param.TransId,
             PaymentFrom = param.PaymentFrom,
+            CustId = param.CustId,
+            ProviderId = param.ProviderId,
+            PaymentMethodId = param.PaymentMethodId,
+            AgentId = param.ActorId,
+            SubAccId = param.SubAccId,
+            SiteDbGroupId = param.SiteDBGroupId,
             Remark = param.Remark,
             StatusId = param.StatusId,
-            Payslip = param.Payslip
+            Payslip = param.Payslip,
+            Ip = param.IP,
         };
-        await dynamicRepository.ExecuteAsync(command);
+        var responseLogs = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command) ?? [];
+
         var result = new ResultModel(command.ErrCode, command.ErrMsg);
+
+        transactionService.OnAfterUpdateTransaction(command.CashAccumCreditTbl, param.SiteDBGroupId, param.CustDBGroupId, responseLogs.ToList());
+
         return result;
     }
 }

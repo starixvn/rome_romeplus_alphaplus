@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
-import { SearchIcon, DownloadIcon, CopyIcon } from '../../../../components/Icons';
 import { useTranslation } from 'react-i18next';
+
+import { IconCopy, IconExcel, IconSearch } from '../../../../components/Icons';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
-import {
-  displayAmount,
-  mappingStatus,
-  formatDateTime,
-  CurrentCurrency,
-} from '../../../../common/commonFunctions';
-import { Alert } from '../../../../components/ui/Alert';
+import { displayAmount, formatDateTime, mappingStatus } from '../../../../utils/commonFunctions';
+import Tippy from '@tippyjs/react';
 
 interface SearchProps {
   value: string;
@@ -21,14 +17,15 @@ interface SearchProps {
 
 const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, onDownload }) => {
   const { t } = useTranslation('transactionHistory');
-  const [showAlert, setShowAlert] = useState(false);
+  const { t: tGlobal } = useTranslation('global');
+  const [textCopy, setTextCopy] = useState(t('messages.copy'));
 
   const getColumnHeader = (columnName: string): string => {
     switch (columnName) {
       case 'name':
         return t('table.name');
       case 'amount':
-        return `${t('table.amount')} (${CurrentCurrency})`;
+        return t('table.amount');
       case 'from':
         return t('table.from');
       case 'to':
@@ -46,6 +43,12 @@ const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, o
     }
   };
 
+  const getAccountName = (account: string) => {
+    if (!account || account === '-') return '-';
+    const [bankCode, accountNumber] = account.split('-');
+    return bankCode && !accountNumber ? bankCode : accountNumber.toString();
+  };
+
   const handleCopy = () => {
     const headers = [
       t('table.no'),
@@ -54,7 +57,7 @@ const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, o
     ];
 
     const rows = items.map((item, index) => {
-      const rowData: string[] = [
+      const rowData: any[] = [
         (index + 1).toString(),
         `${item.username} ${item.nickname ? `(${item.nickname})` : ''}`,
       ];
@@ -67,13 +70,13 @@ const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, o
             rowData.push(displayAmount(item.amount));
             break;
           case 'from':
-            rowData.push(item.paymentFrom ? item.paymentFrom : '-');
+            rowData.push(getAccountName(item.paymentFrom));
             break;
           case 'to':
-            rowData.push(item.paymentTo ? item.paymentTo : '-');
+            rowData.push(getAccountName(item.paymentTo));
             break;
           case 'status':
-            rowData.push(mappingStatus(item.statusId).toUpperCase());
+            rowData.push(tGlobal(mappingStatus(item.statusId).props.text));
             break;
           case 'type':
             rowData.push(item.transactionType?.toString() || '-');
@@ -95,10 +98,7 @@ const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, o
     navigator.clipboard
       .writeText(finalText)
       .then(() => {
-        setShowAlert(true);
-        setTimeout(() => {
-          setShowAlert(false);
-        }, 1000);
+        setTextCopy(t('messages.copied'));
       })
       .catch((err) => {
         console.error('Failed to copy text: ', err);
@@ -110,42 +110,42 @@ const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, o
   };
 
   return (
-    <div className="flex items-center w-full">
-      <div className="text-sm text-gray-500 italic flex-shrink-0">* {t('filter.maxRecords')}</div>
-      {showAlert && (
-        <Alert
-          style={{ position: 'absolute', marginLeft: '550px' }}
-          message={t('messages.copiedToClipboard')}
-          showIcon={false}
-        />
-      )}
-      <div className="flex items-center space-x-2 ml-auto">
-        <button
-          onClick={handleDownload}
-          className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors cursor-pointer relative bottom-[7px]"
-          title="Download"
+    <div className="flex items-center w-full justify-between">
+      <div className="italic ">
+        <span className="text-[#ff0101] dark:text-[#e54748]">*</span> {t('filter.maxRecords')}
+      </div>
+      <div className="flex items-center gap-[8px]">
+        <Tippy
+          content={t('messages.exportToExcel')}
+          placement="top"
+          theme="light"
+          arrow={true}
+          hideOnClick={false}
         >
-          <DownloadIcon />
-        </button>
-        <button
-          onClick={handleCopy}
-          className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors cursor-pointer relative bottom-[7px]"
-          title="Copy"
-        >
-          <CopyIcon />
-        </button>
+          <button
+            onClick={handleDownload}
+            className="p-[4px] bg-black/10 rounded-[3px] cursor-pointer"
+          >
+            <IconExcel />
+          </button>
+        </Tippy>
+        <Tippy content={textCopy} placement="top" theme="light" arrow={true} hideOnClick={false}>
+          <button onClick={handleCopy} className="p-[4px] bg-black/10 rounded-[3px] cursor-pointer">
+            <IconCopy />
+          </button>
+        </Tippy>
 
-        <div className="flex mb-[16px]">
+        <div className="flex">
           <div className="w-[250px] ml-auto">
             <div className="relative">
-              <span className="absolute top-[8px] left-[8px] z-[10] max-[768px]:top-[12px]">
-                <SearchIcon />
+              <span className="absolute transform-[translatey(-50%)] z-[10] top-1/2 left-[8px]">
+                <IconSearch />
               </span>
               <input
                 type="text"
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
-                className="h-[32px] max-[768px]:h-[40px] w-[100%] pl-[30px] bg-[#ffffff] border-[1px] border-[#0000003D] rounded-[4px] px-[8px] focus:outline-none focus:border-[var(--button-border)] shadow-[0_0_6px_rgba(0,0,0,0.16)]"
+                className="control-field pl-[30px]!"
                 placeholder={t('filter.usernamePlaceholder')}
               />
             </div>

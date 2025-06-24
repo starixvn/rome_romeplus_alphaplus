@@ -642,6 +642,28 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Cash Service.
+        /// </summary>
+        public static string PageAccess_M
+        {
+            get
+            {
+                return ResourceManager.GetString("PageAccess_M", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Cash Promotion.
+        /// </summary>
+        public static string PageAccess_N
+        {
+            get
+            {
+                return ResourceManager.GetString("PageAccess_N", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Displaying {from} to {to} of {total} items.
         /// </summary>
         public static string Pager_DisplayItems

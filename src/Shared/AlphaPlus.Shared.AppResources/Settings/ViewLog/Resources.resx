@@ -354,4 +354,10 @@
   <data name="Schedule" xml:space="preserve">
     <value>Schedule</value>
   </data>
+  <data name="PageAccess_M" xml:space="preserve">
+    <value>Cash Service</value>
+  </data>
+  <data name="PageAccess_N" xml:space="preserve">
+    <value>Cash Promotion</value>
+  </data>
 </root>

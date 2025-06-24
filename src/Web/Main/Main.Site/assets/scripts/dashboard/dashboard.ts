@@ -50,6 +50,9 @@
     };
 
     handleEnableCashService = () => {
+        const confirmButton = this.$("#confirmEnableCashService");
+        confirmButton.prop('disabled', true);
+
         this.$.ajax({
             url: '/main/Dashboard/UpdateCashServiceStatus',
             type: 'POST',
@@ -68,11 +71,17 @@
                 } else {
                     alert(response.message);
                 }
+            },
+            complete: () => {
+                confirmButton.prop('disabled', false);
             }
         });
     };
 
     handleDisableCashService = () => {
+        const confirmButton = this.$("#confirmDisableCashService");
+        confirmButton.prop('disabled', true);
+
         this.$.ajax({
             url: '/main/Dashboard/UpdateCashServiceStatus',
             type: 'POST',
@@ -91,12 +100,21 @@
                 } else {
                     alert(response.message);
                 }
+            },
+            complete: () => {
+                confirmButton.prop('disabled', false);
             }
         });
     };
 
     initializeCashService = () => {
-        this.$("#cash-service-toggle").unbind().bind('click', () => this.onClickCashServiceToggle());
+        this.$("#cash-service-toggle").unbind().bind('click', () => {
+            if (this.$("#cash-service-toggle").hasClass("disabled")) {
+                return;
+            }
+
+            this.onClickCashServiceToggle();
+        });
         this.$("#confirmEnableCashService").click(() => this.handleEnableCashService());
         this.$("#confirmDisableCashService").click(() => this.handleDisableCashService());
     };

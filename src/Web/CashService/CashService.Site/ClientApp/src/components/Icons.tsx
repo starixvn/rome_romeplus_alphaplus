@@ -30,64 +30,6 @@ export const NoRecordsIcon: React.FC<{ className?: string }> = ({ className }) =
   </svg>
 );
 
-// Search Icon
-export const SearchIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className ?? 'text-gray-500'}
-  >
-    <circle cx="11" cy="11" r="8"></circle>
-    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-  </svg>
-);
-
-// Download Icon
-export const DownloadIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className ?? 'text-gray-600'}
-  >
-    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-    <polyline points="7 10 12 15 17 10"></polyline>
-    <line x1="12" y1="15" x2="12" y2="3"></line>
-  </svg>
-);
-
-// Copy Icon
-export const CopyIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className ?? 'text-gray-600'}
-  >
-    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-  </svg>
-);
-
 // Edit Icon
 export const IconEdit: React.FC<{ className?: string }> = ({ className }) => (
   <svg
@@ -134,17 +76,16 @@ export const ChevronDownIcon: React.FC<IconProps> = ({ className = '' }) => (
     />
   </svg>
 );
-export const IconPen: React.FC = () => (
+export const IconPen: React.FC<{ className?: string }> = ({ className }) => (
   <svg
-    className="w-[16px] h-[16px] fill-[#0b599c] dark:fill-[#41a4ff]"
+    className={`w-[20px] h-[20px] ${className}`}
     xmlns="http://www.w3.org/2000/svg"
     version="1.1"
     viewBox="0 0 32 32"
   >
-    <path d="M0 25.2v6.8h6.8l19.6-19.8-6.8-6.6-19.6 19.6zM31.4 7.2c0.8-0.8 0.8-1.8 0-2.4l-4-4c-0.8-0.8-1.8-0.8-2.4 0l-3.2 3.2 6.8 6.8 2.8-3.6z" />
+    <path d="M6.667 25.333h1.885l12.419-12.419-1.885-1.885-12.419 12.419v1.885zM28 28h-24v-5.657l17.913-17.913c0.25-0.25 0.589-0.39 0.943-0.39s0.693 0.14 0.943 0.39l3.772 3.772c0.25 0.25 0.39 0.589 0.39 0.943s-0.14 0.693-0.39 0.943l-15.247 15.247h15.676v2.667zM20.971 9.144l1.885 1.885 1.885-1.885-1.885-1.885-1.885 1.885z"></path>
   </svg>
 );
-
 export const IconClose: React.FC = () => (
   <svg
     className="w-[22px] h-[22px] fill-[#333333] dark:fill-[#ededed]"
@@ -152,39 +93,9 @@ export const IconClose: React.FC = () => (
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
   >
-    <path d="M25.333 8.547l-1.88-1.88-7.453 7.453-7.453-7.453-1.88 1.88 7.453 7.453-7.453 7.453 1.88 1.88 7.453-7.453 7.453 7.453 1.88-1.88-7.453-7.453 7.453-7.453z"></path>
+    <path d="M16.001 14.114l6.6-6.6 1.885 1.885-6.6 6.6 6.6 6.6-1.885 1.885-6.6-6.6-6.6 6.6-1.885-1.885 6.6-6.6-6.6-6.6 1.885-1.885 6.6 6.6z"></path>
   </svg>
-);
-
-export const Spinner: React.FC<{ size?: 'small' | 'large'; className?: string }> = ({
-  size = 'large',
-  className = '',
-}) => {
-  const spinnerSize = size === 'small' ? 'h-5 w-5' : 'h-8 w-8';
-  return (
-    <svg
-      className={`animate-spin text-blue-600 ${spinnerSize} ${className}`}
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-    >
-      <circle
-        className="opacity-25"
-        cx="12"
-        cy="12"
-        r="10"
-        stroke="currentColor"
-        strokeWidth="4"
-      ></circle>
-      <path
-        className="opacity-75"
-        fill="currentColor"
-        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-      ></path>
-    </svg>
-  );
-};
-
+); 
 export const CalendarIcon: React.FC<{ className?: string }> = ({ className = '' }) => (
   <svg className={`w-5 h-5 ${className}`} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path fillRule="evenodd" clipRule="evenodd" d="M16 2V4H8V2H6V4H5C3.89 4 3.01 4.9 3.01 6L3 20C3 21.1 3.89 22 5 22H19C20.1 22 21 21.1 21 20V6C21 4.9 20.1 4 19 4H18V2H16ZM17 13H12V18H17V13ZM5.00001 20H19V9.00001H5.00001V20Z" />
@@ -195,8 +106,8 @@ export const IconSearch: React.FC = () => (
     <path  d="M23 20.2h-1.4l-0.6-0.6c1.8-2 3-4.8 3-7.6 0-6.6-5.4-12-12-12-6.4 0-11.8 5.4-11.8 11.8 0 6.6 5.4 11.8 11.8 11.8 3 0 5.6-1 7.6-3l0.6 0.6v1.4l9.2 9.2 2.8-2.8-9.2-8.8zM12 20.2c-4.6 0-8.2-3.6-8.2-8.2s3.8-8.4 8.2-8.4 8.2 3.6 8.2 8.2-3.6 8.4-8.2 8.4z"></path>
   </svg>
 );
-export const IconDelete: React.FC = () => (
-  <svg className='w-[16px] h-[16px] fill-[#0b599c] dark:fill-[#41a4ff]' version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+export const IconDelete: React.FC<IconProps> = ({ className }: { className?: string }) => (
+  <svg className={`w-[16px] h-[16px] ${className}`} version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
     <path  d="M4 10v20c0 1.1 0.9 2 2 2h18c1.1 0 2-0.9 2-2v-20h-22zM10 28h-2v-14h2v14zM14 28h-2v-14h2v14zM18 28h-2v-14h2v14zM22 28h-2v-14h2v14z"></path>
     <path  d="M26.5 4h-6.5v-2.5c0-0.825-0.675-1.5-1.5-1.5h-7c-0.825 0-1.5 0.675-1.5 1.5v2.5h-6.5c-0.825 0-1.5 0.675-1.5 1.5v2.5h26v-2.5c0-0.825-0.675-1.5-1.5-1.5zM18 4h-6v-1.975h6v1.975z"></path>
   </svg>
@@ -243,7 +154,7 @@ export const IconWarning = ({ className }: { className?: string }) => (
 );
 export const NoDataIcon = () => (
   <svg width="114" height="109" viewBox="0 0 114 109" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="60.4434" cy="54.6797" r="53.4532" fill="#B4D1E4" fill-opacity="0.3"></circle>
+      <circle cx="60.4434" cy="54.6797" r="53.4532" fill="#B4D1E4" fillOpacity="0.3"></circle>
       <path d="M100.732 52.1567L98.4882 54.4004L96.248 52.1602L94.6601 53.7481L96.9003 55.9883L94.6601 58.2285L96.248 59.8163L98.4882 57.5761L100.728 59.8163L102.316 58.2285L100.076 55.9883L102.32 53.7445L100.732 52.1567Z" fill="#A1BCD6"></path>
       <path d="M62.9995 3.10588L60.7557 5.34965L58.5155 3.10946L56.9277 4.69731L59.1679 6.9375L56.9277 9.17769L58.5155 10.7655L60.7557 8.52535L62.9959 10.7655L64.5838 9.17769L62.3436 6.9375L64.5874 4.69373L62.9995 3.10588Z" fill="#A1BCD6"></path>
       <path d="M0.83436 32.2036C0.781745 32.0078 0.717226 31.8128 0.68043 31.6128C0.400254 30.0475 0.78537 29.488 2.58284 28.8553C2.77521 28.7867 2.97709 28.7445 3.1737 28.6917C17.1325 24.9399 31.0891 21.1887 45.0491 17.4415C45.4468 17.3346 45.8733 17.0462 46.2784 17.4536C49.1677 19.2128 57.5414 23.9527 60.6707 25.7089C61.1091 25.7986 61.1459 26.1699 61.236 26.5051C66.8779 47.4963 72.5204 68.4898 78.1601 89.4815C78.6348 91.2479 78.1347 92.0916 76.3382 92.5745C58.7287 97.3123 41.118 102.046 23.5062 106.774C21.7526 107.246 20.8929 106.77 20.4236 105.06C19.6984 102.425 1.73518 35.5732 0.83436 32.2036Z" fill="url(#paint0_radial_12052_32750)"></path>
@@ -256,8 +167,8 @@ export const NoDataIcon = () => (
       </g>
       <path d="M55.6563 62.3801C55.655 62.3813 55.653 62.3813 55.6518 62.3801C53.9761 60.7031 53.3387 58.7346 53.7264 56.4701L53.9205 55.3862C54.1324 54.3823 54.2291 53.6359 54.2106 53.1472C54.1922 52.6584 53.9961 52.2227 53.6179 51.8445C52.6657 50.8923 51.3954 51.2105 49.8069 52.799C49.0703 53.5356 48.405 54.3967 47.8198 55.3823C47.0227 56.7088 45.1214 57.1565 44.0271 56.0622L43.6958 55.7309C43.0432 55.0783 42.817 54.0976 43.2231 53.2688C44.042 51.5974 45.1831 50.0278 46.6508 48.5602C48.6652 46.5457 50.6853 45.371 52.711 45.0361C54.7367 44.7012 56.497 45.2812 57.992 46.7762C58.8285 47.6127 59.3229 48.4798 59.4619 49.3731C59.6009 50.2664 59.5403 51.4838 59.2847 53.0297C59.1218 54.0825 59.0206 54.86 58.9814 55.3798C58.9421 55.8996 59.0005 56.3751 59.1566 56.8063C59.3172 57.242 59.6066 57.6734 60.0337 58.1005C60.2917 58.3585 60.2917 58.7769 60.0337 59.0349L56.4327 62.6359C56.2902 62.7785 56.0591 62.7785 55.9166 62.6359L55.6607 62.3801C55.6595 62.3789 55.6575 62.3789 55.6563 62.3801ZM62.0598 67.7764C61.1889 67.7752 60.4331 67.4542 59.7924 66.8135C59.1517 66.1728 58.8085 65.3947 58.8162 64.5328C58.8239 63.6708 59.1561 62.9114 59.8084 62.2591C60.4606 61.6069 61.2111 61.2924 62.0953 61.2803C62.9795 61.2682 63.7442 61.5803 64.3849 62.221C65.0256 62.8617 65.3377 63.6264 65.3256 64.5106C65.309 65.3992 64.9857 66.1586 64.3468 66.7975C63.7078 67.4365 62.9262 67.782 62.0598 67.7764Z" fill="url(#paint5_radial_12052_32750)"></path>
       <defs>
-          <filter id="filter0_i_12052_32750" x="30.2285" y="32.1328" width="51.1328" height="51.1328" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-              <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+          <filter id="filter0_i_12052_32750" x="30.2285" y="32.1328" width="51.1328" height="51.1328" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+              <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
               <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
               <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
               <feOffset dy="1.25772"></feOffset>
@@ -266,40 +177,78 @@ export const NoDataIcon = () => (
               <feBlend mode="normal" in2="shape" result="effect1_innerShadow_12052_32750"></feBlend>
           </filter>
           <radialGradient id="paint0_radial_12052_32750" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(37.2971 66.8942) rotate(-29.9136) scale(52.9626)">
-              <stop stop-color="#50749B"></stop>
-              <stop offset="1" stop-color="#D1DFE8"></stop>
+              <stop stopColor="#50749B"></stop>
+              <stop offset="1" stopColor="#D1DFE8"></stop>
           </radialGradient>
           <radialGradient id="paint1_radial_12052_32750" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(59.5926 63.3565) rotate(-18.166) scale(50.3371 50.3371)">
-              <stop stop-color="#9CB6D2"></stop>
-              <stop offset="1" stop-color="#C1DEF0"></stop>
+              <stop stopColor="#9CB6D2"></stop>
+              <stop offset="1" stopColor="#C1DEF0"></stop>
           </radialGradient>
           <radialGradient id="paint2_radial_12052_32750" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(79.0115 20.4899) rotate(-17.6471) scale(18.8324 14.7262)">
-              <stop stop-color="#85ABC5"></stop>
-              <stop offset="1" stop-color="#B7DAF1"></stop>
+              <stop stopColor="#85ABC5"></stop>
+              <stop offset="1" stopColor="#B7DAF1"></stop>
           </radialGradient>
           <linearGradient id="paint3_linear_12052_32750" x1="77.3667" y1="57.6993" x2="34.2324" y2="57.6993" gradientUnits="userSpaceOnUse">
-              <stop stop-color="white"></stop>
-              <stop offset="1" stop-color="#D4E6F9"></stop>
+              <stop stopColor="white"></stop>
+              <stop offset="1" stopColor="#D4E6F9"></stop>
           </linearGradient>
           <radialGradient id="paint4_radial_12052_32750" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(51.3375 64.3275) rotate(-166.332) scale(42.0751 32.6127)">
-              <stop stop-color="#A5C6E9"></stop>
-              <stop offset="1" stop-color="#50579B"></stop>
+              <stop stopColor="#A5C6E9"></stop>
+              <stop offset="1" stopColor="#50579B"></stop>
           </radialGradient>
           <radialGradient id="paint5_radial_12052_32750" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(59.7264 58.1092) rotate(-65.5982) scale(14.0433 15.6119)">
-              <stop stop-color="#A5C6E9"></stop>
-              <stop offset="1" stop-color="#50579B"></stop>
+              <stop stopColor="#A5C6E9"></stop>
+              <stop offset="1" stopColor="#50579B"></stop>
           </radialGradient>
       </defs>
   </svg>
 );
 
 export const IconCopied = ({ className }: { className?: string }) => (
-  <svg className={classNames(className)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <svg className={`w-[20px] h-[20px] ${className}`}  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
   </svg>
 );
 export const IconCopy = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" className={classNames(className)} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-    </svg>
+  <svg className={`w-[20px] h-[20px] fill-[#444] dark:fill-[#ededed] ${className}`} version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path d="M21.143 26v2.083c0 0.69-0.576 1.25-1.286 1.25h-14.571c-0.71 0-1.286-0.56-1.286-1.25v-19.167c0-0.69 0.576-1.25 1.286-1.25h3.857v15.417c0 1.608 1.346 2.917 3 2.917h9zM21.143 8.083v-5.417h-9c-0.71 0-1.286 0.56-1.286 1.25v19.167c0 0.69 0.576 1.25 1.286 1.25h14.571c0.71 0 1.286-0.56 1.286-1.25v-13.75h-5.571c-0.707 0-1.286-0.563-1.286-1.25zM27.623 6.467l-3.533-3.434c-0.241-0.234-0.568-0.366-0.909-0.366h-0.325v5h5.143v-0.316c0-0.332-0.135-0.649-0.377-0.884z"></path>
+  </svg>
 );
+
+export const IconFirst = ({ className }: { className?: string }) => (
+  <svg className={`w-[20px] h-[20px] fill-[var(--pager-color)] ${className}`} version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path d="M24.547 22.12l-6.12-6.12 6.12-6.12-1.88-1.88-8 8 8 8 1.88-1.88zM8 8h2.667v16h-2.667v-16z"></path>
+  </svg>
+)
+export const IconPrev = ({ className }: { className?: string }) => (
+  <svg className={`w-[20px] h-[20px] fill-[var(--pager-color)] ${className}`} version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path d="M20.547 9.88l-1.88-1.88-8 8 8 8 1.88-1.88-6.107-6.12 6.107-6.12z"></path>
+  </svg>
+)
+export const IconNext = ({ className }: { className?: string }) => (
+  <svg className={`w-[20px] h-[20px] fill-[var(--pager-color)] ${className}`} version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path d="M13.333 8l-1.88 1.88 6.107 6.12-6.107 6.12 1.88 1.88 8-8-8-8z"></path>
+  </svg>
+)
+export const IconLast = ({ className }: { className?: string }) => (
+  <svg className={`w-[20px] h-[20px] fill-[var(--pager-color)] ${className}`} version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path d="M7.453 9.88l6.12 6.12-6.12 6.12 1.88 1.88 8-8-8-8-1.88 1.88zM21.333 8h2.667v16h-2.667v-16z"></path>
+  </svg>
+
+)
+export const IconImage = ({ className }: { className?: string }) => (
+  <svg className={`h-8 w-8 ${className}`} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+  </svg>
+)
+export const IconExcel = ({ className }: { className?: string }) => (
+  <svg className={`w-[20px] h-[20px] fill-[#2e9e60] ${className}`} version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path d="M27.994 6.4h-8.794v2.861h2.909v1.949h-2.909v1.91h2.88v1.92h-2.88v1.92h2.88v1.92h-2.88v1.92h2.88v1.92h-2.88v2.88h8.794c0.442 0 0.806-0.374 0.806-0.835v-17.53c0-0.461-0.365-0.835-0.806-0.835zM26.88 22.72h-3.84v-1.92h3.84v1.92zM26.88 18.88h-3.84v-1.92h3.84v1.92zM26.88 15.040h-3.84v-1.92h3.84v1.92zM26.88 11.2h-3.84v-1.92h3.84v1.92z"></path>
+    <path d="M3.2 6.046v19.909l14.4 2.846v-25.6l-14.4 2.846zM12.31 21.002l-1.67-3.249c-0.067-0.118-0.125-0.345-0.192-0.67h-0.038c-0.029 0.148-0.106 0.384-0.221 0.699l-1.68 3.22h-2.611l3.101-4.982-2.842-4.992h2.669l1.392 2.993c0.106 0.236 0.202 0.512 0.288 0.837h0.029c0.058-0.197 0.154-0.482 0.307-0.866l1.546-2.964h2.438l-2.918 4.943 2.995 5.031h-2.592z"></path>
+  </svg>
+)
+export const IconReload =({ className } : { className? : string}) => (
+  <svg className={`w-[20px] h-[20px] fill-[#2e9e60] ${className}`} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M25.498 8.48026C23.5333 6.4369 20.7993 5.12357 17.7677 5.00115C17.0066 4.97039 16.3644 5.56257 16.3337 6.32339C16.3029 7.08451 16.8951 7.72666 17.6556 7.7578C19.9554 7.85145 22.0152 8.84137 23.5108 10.3934C25.0043 11.9471 25.9186 14.0452 25.9194 16.3706C25.9186 18.7556 24.9565 20.9019 23.3945 22.4666C21.8299 24.0288 19.6832 24.9906 17.2987 24.9913C14.9141 24.9906 12.7668 24.0288 11.2027 22.4666C9.64085 20.9019 8.67865 18.7556 8.67798 16.3706C8.67798 16.2027 8.68309 16.0362 8.69253 15.8711L10.3357 16.6821C10.5141 16.77 10.7214 16.7714 10.8828 16.6863C11.0448 16.6001 11.1406 16.4387 11.1365 16.2575L10.9744 9.03561C10.9689 8.82908 10.8356 8.63281 10.6325 8.53125C10.428 8.43143 10.1907 8.44406 10.0246 8.56682L4.19319 12.8299C4.04618 12.937 3.97639 13.111 4.00714 13.2915C4.03654 13.4727 4.16374 13.6358 4.3429 13.7241L6.06467 14.5738C5.9713 15.1602 5.9192 15.7596 5.9192 16.3706C5.91853 19.5085 7.19527 22.3622 9.25232 24.4172C11.3073 26.4739 14.1604 27.7506 17.2986 27.75C20.4362 27.7507 23.2899 26.4739 25.3449 24.4172C27.4019 22.3622 28.6787 19.5085 28.678 16.3707C28.6787 13.3117 27.4655 10.5219 25.498 8.48026Z"  />
+  </svg>
+)

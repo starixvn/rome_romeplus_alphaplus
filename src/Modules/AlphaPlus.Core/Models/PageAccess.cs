@@ -116,6 +116,18 @@ public class PageAccess
         }
     }
 
+    public bool CashService
+    {
+        get => permissions[PageAccessType.CashService];
+        set => permissions[PageAccessType.CashService] = value;
+    }
+
+    public bool CashPromotion
+    {
+        get => permissions[PageAccessType.CashPromotion];
+        set => permissions[PageAccessType.CashPromotion] = value;
+    }
+
     public void SetPermission(string key, bool value)
     {
         if (permissions.ContainsKey(key))
@@ -151,6 +163,11 @@ public class PageAccess
             result.permissions[key] = value.Contains(key);
         }
 
+        foreach (var accessType in PageAccessType.CashServiceAccessTypes)
+        {
+            result.permissions[accessType] = value.Contains(accessType);
+        }
+
         return result;
     }
 
@@ -173,11 +190,24 @@ public class PageAccess
         }
     }
 
+    public void SetCashServicePermission()
+    {
+        foreach (var accessType in PageAccessType.CashServiceAccessTypes)
+        {
+            permissions[accessType] = true;
+        }
+    }
+
     private void InitPermissions()
     {
         foreach (DictionaryEntry accessType in PageAccessType.AccessTypes)
         {
             permissions.Add(accessType.Key.ToString(), false);
+        }
+
+        foreach (var accessType in PageAccessType.CashServiceAccessTypes)
+        {
+            permissions.Add(accessType, false);
         }
     }
 }

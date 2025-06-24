@@ -84,6 +84,7 @@
     asp-route-MinDate="@Model.DateRangePicker.MinDate" asp-route-ShowDormantAccountsNote="True"></a>
 <a class="hide" id="hidden-usernameSuggestionUrl" asp-action="Suggest" asp-controller="Customer"></a>
 <input type="hidden" id="hidden-betListUrl" value="@MicroSites.TicketUrl("~/WinLoss/IndexNew")" />
+<input type="hidden" id="hidden-cashFeeUrl" value="@MicroSites.ReportsUrl("~/WinLossDetail/CashFee")" />
 <input type="hidden" asp-for="VisibleColumns" />
 <input type="hidden" id="hidden-copyText" value="@Resources.Copy" />
 <input type="hidden" id="hidden-copiedText" value="@Resources.Copied" />

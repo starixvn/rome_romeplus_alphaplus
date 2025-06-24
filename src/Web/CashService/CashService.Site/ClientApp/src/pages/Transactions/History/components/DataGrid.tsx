@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
-import TransactionDetail from './TransactionDetail';
-import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { useTranslation } from 'react-i18next';
+
+import LoadingComponent from '../../../../components/LoadingComponent';
+import NoRecordFound from '../../../../components/NoRecordFoundComponent.tsx';
+import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import {
   displayAmount,
-  getStatusStyle,
+  formatDateTime,
   mappingStatus,
   renderBankAccount,
-  CurrentCurrency,
-  formatDateTime,
-} from '../../../../common/commonFunctions';
-import NoRecordFound from '../../../../components/Table/NoRecordFound';
-import LoadingComponent from '../../../../components/LoadingComponent';
+} from '../../../../utils/commonFunctions';
+import TransactionDetail from './TransactionDetail';
+import { ButtonFullComponent } from '../../../../components/ButtonComponents';
+import { IconImage } from '../../../../components/Icons.tsx';
+import Tippy from '@tippyjs/react';
 
 interface DataGridProps {
   items: TransactionItem[];
@@ -33,6 +35,7 @@ const DataGrid: React.FC<DataGridProps> = ({
   columnFilter = ['All'],
 }) => {
   const { t } = useTranslation('transactionHistory');
+  const { t: tGlobal } = useTranslation('global');
   const [selectedTransactionId, setSelectedTransactionId] = useState<number | null>(null);
   const [selectedCustId, setSelectedCustId] = useState<number | null>(null);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
@@ -67,24 +70,27 @@ const DataGrid: React.FC<DataGridProps> = ({
 
   return (
     <>
-      <div className="table-fixed-header table-fixed-body bg-[#ffffff] min-h-0">
-        <table className="max-[600px]:text-[17px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
+      <div className="table-fixed-header table-fixed-body min-h-0">
+        <table className="w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px]">
           <thead className="z-11!">
             <tr>
-              <th scope="col" className="w-[32px] min-w-[32px] sticky left-0 z-11">
+              <th
+                scope="col"
+                className="w-[32px] min-w-[32px] bg-[var(--table-header-background)] sticky left-0 z-11"
+              >
                 {t('table.no')}
               </th>
               <th
                 scope="col"
-                className="w-[150px] min-w-[150px] sticky left-[32px] z-11 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]"
+                className="w-[150px] min-w-[150px] sticky left-[32px] bg-[var(--table-header-background)] z-11 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]"
               >
                 <div>{t('table.username')}</div>
                 <div>{t('table.nickname')}</div>
               </th>
               {shouldShowColumn('name') && <th scope="col">{t('table.name')}</th>}
               {shouldShowColumn('amount') && (
-                <th scope="col">
-                  {t('table.amount')} ({CurrentCurrency})
+                <th scope="col" className="min-w-[150px]">
+                  {t('table.amount')}
                 </th>
               )}
               {shouldShowColumn('from') && <th scope="col">{t('table.from')}</th>}
@@ -100,10 +106,10 @@ const DataGrid: React.FC<DataGridProps> = ({
             {items && items.length > 0 ? (
               items.map((item, index) => (
                 <tr key={item.transId}>
-                  <td className="w-[32px] min-w-[32px] sticky left-0 bg-[#ffffff] z-10">
+                  <td className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-background)] z-10">
                     {index + 1 + (pageIndex - 1) * pageSize}
                   </td>
-                  <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[#ffffff] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
+                  <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[var(--table-background)] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
                     <div>{item.username}</div>
                     <div>{item.nickname}</div>
                   </td>
@@ -113,27 +119,36 @@ const DataGrid: React.FC<DataGridProps> = ({
                       <div>{item.lastName}</div>
                     </td>
                   )}
-                  {shouldShowColumn('amount') && <td>{displayAmount(item.amount)}</td>}
+                  {shouldShowColumn('amount') && (
+                    <td className="text-right">
+                      <div className="flex items-center justify-end pr-[25px] relative">
+                        {displayAmount(item.amount)}
+                        {item.isHadPayslip && (
+                          <IconImage className="w-[20px] h-[20px] ml-[5px] absolute right-[0px]" />
+                        )}
+                      </div>
+                    </td>
+                  )}
                   {shouldShowColumn('from') && (
                     <td>
                       <div className="flex items-center">
-                        {item.paymentFrom ? <>{renderBankAccount(item.paymentFrom)}</> : '-'}
+                        <Tippy content={<p>{tGlobal(item.paymentFrom.split('-')[0])}</p>}>
+                          {renderBankAccount(item.paymentFrom)}
+                        </Tippy>
                       </div>
                     </td>
                   )}
                   {shouldShowColumn('to') && (
                     <td>
-                      <div className="flex items-center">{renderBankAccount(item.paymentTo)}</div>
+                      <div className="flex items-center">
+                        <Tippy content={<p>{tGlobal(item.paymentTo.split('-')[0])}</p>}>
+                          {renderBankAccount(item.paymentTo)}
+                        </Tippy>
+                      </div>
                     </td>
                   )}
                   {shouldShowColumn('status') && (
-                    <td className="text-center">
-                      <span
-                        className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusStyle(item.statusId)}`}
-                      >
-                        {mappingStatus(item.statusId).toUpperCase()}
-                      </span>
-                    </td>
+                    <td className="text-center">{mappingStatus(item.statusId)}</td>
                   )}
                   {shouldShowColumn('type') && (
                     <td className="text-center">{item.transactionType}</td>
@@ -147,12 +162,10 @@ const DataGrid: React.FC<DataGridProps> = ({
                     </td>
                   )}
                   <td className="text-center">
-                    <button
+                    <ButtonFullComponent
+                      text={t('table.view')}
                       onClick={() => handleViewTransaction(item.transId, item.custId)}
-                      className="bg-[#163f78] hover:bg-[var(--button-background-hover)] text-white text-xs font-semibold py-1 px-3 rounded-[20px] focus:outline-none focus:ring-2 focus:ring-[#163f78] focus:ring-opacity-50 cursor-pointer"
-                    >
-                      {t('table.view')}
-                    </button>
+                    />
                   </td>
                 </tr>
               ))

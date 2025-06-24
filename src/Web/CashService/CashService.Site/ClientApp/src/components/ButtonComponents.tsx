@@ -9,17 +9,20 @@ interface ButtonComponentProps {
   disabled?: boolean;
 
   isActive?: boolean;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 export const ButtonOutlineComponent: React.FC<ButtonComponentProps> = ({
   text,
   onClick,
+  type = 'button',
   className = '',
 }) => {
   return (
     <div className={`${className}`}>
       <button
-        className="border-[1px] border-[var(--button-outline-border)] bg-[var(--button-outline-background)]  hover:bg-[var(--button-outline-background-hover)] hover:text-[var(--button-outline-text-hover)] text-[var(--button-outline-text)] hover:border-[var(--button-outline-border-hover)] rounded-[5px] cursor-pointer h-[28px] px-[16px] font-semibold outline-none"
+        type={type}
+        className="border-[1px] border-[var(--button-outline-border)] bg-[var(--button-outline-background)]  hover:bg-[var(--button-outline-background-hover)] hover:text-[var(--button-outline-text-hover)] text-[var(--button-outline-text)] rounded-[5px] cursor-pointer h-[28px] px-[16px] font-semibold outline-none pt-[1px]"
         onClick={onClick}
       >
         {text}
@@ -29,14 +32,16 @@ export const ButtonOutlineComponent: React.FC<ButtonComponentProps> = ({
 };
 export const ButtonFullComponent: React.FC<ButtonComponentProps> = ({
   text,
-  onClick,
+  onClick,  
+  type = 'button',
   className = '',
   disabled = false,
 }) => {
   return (
     <div className={`${className}`}>
       <button
-        className={`bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] text-[var(--button-text)] rounded-[3px] cursor-pointer h-[28px] px-[16px] font-semibold outline-none
+        type={type}
+        className={`bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] text-[var(--button-text)] rounded-[3px] cursor-pointer h-[28px] px-[16px] font-semibold outline-none pt-[1px]
         ${disabled ? 'cursor-not-allowed opacity-80' : 'cursor-pointer'}`}
         onClick={onClick}
         disabled={disabled}
@@ -49,13 +54,15 @@ export const ButtonFullComponent: React.FC<ButtonComponentProps> = ({
 export const ButtonCancelComponent: React.FC<ButtonComponentProps> = ({
   text,
   onClick,
+  type = 'button',
   className = '',
   disabled = false,
 }) => {
   return (
     <div className={`${className}`}>
       <button
-        className="min-w-[90px] bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] text-[var(--button-text)] rounded-[3px] cursor-pointer h-[28px] px-[16px] font-semibold outline-none"
+        type={type}
+        className="min-w-[90px] bg-[var(--button-background-cancel)] hover:bg-[var(--button-background-cancel-hover)] text-[var(--button-text)] rounded-[3px] cursor-pointer h-[28px] px-[16px] font-semibold outline-none "
         onClick={onClick}
         disabled={disabled}
       >
@@ -69,12 +76,14 @@ export const ButtonApplyComponent: React.FC<ButtonComponentProps> = ({
   text,
   onClick,
   disabled = false,
+  type = 'button',
   className = '',
 }) => {
   return (
     <div className={`${className}`}>
       <button
-        className={`min-w-[90px] text-[var(--button-text)] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] rounded-[3px] h-[28px] px-[16px] font-semibold  max-[768px]:h-[34px] outline-none
+        type={type}
+        className={`min-w-[90px] text-[var(--button-text)] bg-[var(--button-background)] hover:bg-[var(--button-background-hover)] rounded-[3px] h-[28px] px-[16px] font-semibold outline-none
         ${disabled ? 'cursor-not-allowed opacity-80' : 'cursor-pointer'}`}
         onClick={onClick}
         disabled={disabled}
@@ -90,7 +99,7 @@ export const BackButtonComponent: React.FC<ButtonComponentProps> = ({ onClick })
 
   return (
     <>
-      <div className="text-[var(--button-back-text)] hover:text-[var(--button-back-text-hover)] border-[1px] border-[var(--button-back-border)] rounded-[20px] mr-[16px] bg-[var(--button-back-background)] hover:bg-[var(--button-back-background-hover)] hover:border-[var(--button-back-border-hover)] group mb-[8px] ">
+      <div className="text-[var(--button-back-text)] hover:text-[var(--button-back-text-hover)] border-[1px] border-[var(--button-back-border)] rounded-[20px] mr-[16px] bg-[var(--button-back-background)] hover:bg-[var(--button-back-background-hover)] hover:border-[transparent] group mb-[8px] ">
         <span
           className="cursor-pointer inline-flex items-center py-[4px] pl-[8px] pr-[16px] "
           onClick={onClick}
@@ -103,13 +112,13 @@ export const BackButtonComponent: React.FC<ButtonComponentProps> = ({ onClick })
   );
 };
 
-export const EnableButtonComponent: React.FC<ButtonComponentProps> = ({ isActive, onClick }) => {
+export const EnableButtonComponent: React.FC<ButtonComponentProps> = ({ isActive, onClick, type = 'button' }) => {
   const { t: tGlobal } = useTranslation('global');
 
   return (
     <button
-      type="button"
-      className={` w-[100px] px-[16px] py-[8px] cursor-pointer rounded-tl-[4px] rounded-bl-[4px] outline-none ${isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-color)]'}`}
+      type={type}
+      className={` w-[100px] px-[16px] py-[4px] cursor-pointer rounded-tl-[4px] rounded-bl-[4px] outline-none font-semibold ${isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-color)]'}`}
       onClick={onClick}
     >
       {tGlobal('enable')}
@@ -117,13 +126,13 @@ export const EnableButtonComponent: React.FC<ButtonComponentProps> = ({ isActive
   );
 };
 
-export const DisableButtonComponent: React.FC<ButtonComponentProps> = ({ isActive, onClick }) => {
+export const DisableButtonComponent: React.FC<ButtonComponentProps> = ({ isActive, onClick, type = 'button' }) => {
   const { t: tGlobal } = useTranslation('global');
 
   return (
     <button
-      type="button"
-      className={` w-[100px] px-[16px] py-[8px] cursor-pointer rounded-tr-[4px] rounded-br-[4px] outline-none ${isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-color)]'}`}
+      type={type}
+      className={` w-[100px] px-[16px] py-[4px] cursor-pointer rounded-tr-[4px] rounded-br-[4px] outline-none font-semibold ${isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-color)]'}`}
       onClick={onClick}
     >
       {tGlobal('disable')}
@@ -131,13 +140,13 @@ export const DisableButtonComponent: React.FC<ButtonComponentProps> = ({ isActiv
   );
 };
 
-export const ButtonOnComponent: React.FC<ButtonComponentProps> = ({ isActive, onClick }) => {
+export const ButtonOnComponent: React.FC<ButtonComponentProps> = ({ isActive, onClick, type = 'button' }) => {
   const { t: tGlobal } = useTranslation('global');
 
   return (
     <button
-      type="button"
-      className={`w-[70px] px-[16px] py-[8px] cursor-pointer rounded-tl-[4px] rounded-bl-[4px] outline-none ${isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-color)]'}`}
+      type={type}
+      className={`w-[70px] px-[16px] py-[4px] cursor-pointer rounded-tl-[4px] rounded-bl-[4px] outline-none font-semibold ${isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-color)]'}`}
       onClick={onClick}
     >
       {tGlobal('on')}
@@ -145,13 +154,13 @@ export const ButtonOnComponent: React.FC<ButtonComponentProps> = ({ isActive, on
   );
 };
 
-export const ButtonOffComponent: React.FC<ButtonComponentProps> = ({ isActive, onClick }) => {
+export const ButtonOffComponent: React.FC<ButtonComponentProps> = ({ isActive, onClick, type = 'button' }) => {
   const { t: tGlobal } = useTranslation('global');
 
   return (
     <button
-      type="button"
-      className={`w-[70px] px-[16px] py-[8px] cursor-pointer rounded-tr-[4px] rounded-br-[4px] outline-none ${isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-color)]'}`}
+      type={type}
+      className={`w-[70px] px-[16px] py-[4px] cursor-pointer rounded-tr-[4px] rounded-br-[4px] outline-none font-semibold ${isActive ? 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-color-active)]' : 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-color)]'}`}
       onClick={onClick}
     >
       {tGlobal('off')}
@@ -159,11 +168,11 @@ export const ButtonOffComponent: React.FC<ButtonComponentProps> = ({ isActive, o
   );
 };
 
-export const ButtonClosePopupComponent: React.FC<ButtonComponentProps> = ({ onClick }) => {
+export const ButtonClosePopupComponent: React.FC<ButtonComponentProps> = ({ onClick, type = 'button' }) => {
   return (
     <button
-      type="button"
-      className="absolute top-0 right-[-10px] cursor-pointer outline-none"
+      type={type}
+      className="absolute top-[-1px] right-[-10px] cursor-pointer outline-none"
       onClick={onClick}
     >
       <IconClose />
@@ -171,9 +180,10 @@ export const ButtonClosePopupComponent: React.FC<ButtonComponentProps> = ({ onCl
   );
 };
 
-export const ButtonTabActiveComponent: React.FC<ButtonComponentProps> = ({ text, onClick }) => {
+export const ButtonTabActiveComponent: React.FC<ButtonComponentProps> = ({ text, onClick, type = 'button' }) => {
   return (
     <button
+      type={type}
       className="font-semibold px-[20px] pt-[10px] pb-[13px] text-[var(--tab-component-color)] cursor-pointer relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[3px] after:bg-[var(--tab-component-border-color)] after:transition-all after:duration-500 after:ease-in-out after:opacity-0 hover:after:opacity-100 hover:after:w-full hover:text-[var(--tab-component-color-active)]"
       onClick={onClick}
     >
@@ -182,9 +192,10 @@ export const ButtonTabActiveComponent: React.FC<ButtonComponentProps> = ({ text,
   );
 };
 
-export const ButtonTabInactiveComponent: React.FC<ButtonComponentProps> = ({ text, onClick }) => {
+export const ButtonTabInactiveComponent: React.FC<ButtonComponentProps> = ({ text, onClick, type = 'button' }) => {
   return (
     <button
+      type={type}
       className="font-semibold px-[20px] pt-[10px] pb-[13px] text-[var(--tab-component-color-active)] cursor-pointer relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[3px] after:bg-[var(--tab-component-border-color)]"
       onClick={onClick}
     >
@@ -193,31 +204,53 @@ export const ButtonTabInactiveComponent: React.FC<ButtonComponentProps> = ({ tex
   );
 };
 
-export const ButtonTabComponent: React.FC<ButtonComponentProps> = ({ text, onClick, isActive }) => {
+export const ButtonTabComponent: React.FC<ButtonComponentProps> = ({ text, onClick, isActive, type = 'button' }) => {
   return isActive ? (
-    <ButtonTabActiveComponent text={text} onClick={onClick} />
+    <ButtonTabActiveComponent text={text} onClick={onClick} type={type} />
   ) : (
-    <ButtonTabInactiveComponent text={text} onClick={onClick} />
+    <ButtonTabInactiveComponent text={text} onClick={onClick} type={type} />
   );
 };
 
-export const ButtonPenComponent: React.FC<ButtonComponentProps> = ({ onClick, disabled }) => {
+export const ButtonPenComponent: React.FC<ButtonComponentProps> = ({ onClick, disabled, type = 'button' }) => {
   return (
     <button
+      type={type}
       className={` mx-[4px] cursor-pointer p-[4px] rounded-[4px] hover:bg-[var(--button-icon-hover)] text-[var(--text-color-primary)] ${disabled ? 'cursor-not-allowed opacity-80' : ''}`}
       onClick={onClick}
     >
-      <IconPen />
+      <IconPen className="fill-[var(--icon-color)]" />
     </button>
   );
 };
-export const ButtonDeleteComponent: React.FC<ButtonComponentProps> = ({ onClick }) => {
+export const ButtonDeleteComponent: React.FC<ButtonComponentProps> = ({ onClick, type = 'button' }) => {
   return (
     <button
-      className="mx-[4px] cursor-pointer p-[4px] rounded-[4px] hover:bg-[var(--button-icon-hover)] text-[var(--text-color-primary)]"
+      type={type}
+      className="mx-[4px] cursor-pointer p-[4px] rounded-[4px] hover:bg-[var(--button-icon-hover)]"
       onClick={onClick}
     >
-      <IconDelete />
+      <IconDelete className='fill-[#d33]' />
     </button>
+  );
+};
+export const ButtonRejectComponent: React.FC<ButtonComponentProps> = ({
+  text,
+  onClick,
+  type = 'button',
+  className = '',
+  disabled = false,
+}) => {
+  return (
+    <div className={`${className}`}>
+      <button
+        type={type}
+        className="min-w-[90px] bg-[var(--button-background-reject)] hover:bg-[var(--button-background-reject-hover)] text-[var(--button-text)] rounded-[3px] cursor-pointer h-[28px] px-[16px] font-semibold outline-none"
+        onClick={onClick}
+        disabled={disabled}
+      >
+        {text}
+      </button>
+    </div>
   );
 };

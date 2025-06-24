@@ -1,8 +1,11 @@
+@using AlphaPlus.Core.Configurations
 @using AlphaPlus.Core.Models
 @using AlphaPlus.Shared.AppResources.Settings.SubAccount
 @model SubAccountViewModel
 @{
     Layout = "~/Features/SubAccount/Views/_Layout.cshtml";
+    var isOfferCashService = UserSession.Current.RoleId == RoleIdConstants.Agent &&
+    AppSettings.IsOfferedCashService(UserSession.Current.Site);
 }
 <div>
     <main role="main" class="pb-3">
@@ -10,7 +13,8 @@
         <table class="tblPop width-100per">
             <tr>
                 <td>@Lang.username</td>
-                <td>@Model.Username @Html.DropDownList("FirstOptions.Value", Model.FirstOptions) @Html.DropDownList("NextOptions.Value", Model.NextOptions)</td>
+                <td>@Model.Username @Html.DropDownList("FirstOptions.Value", Model.FirstOptions)
+                    @Html.DropDownList("NextOptions.Value", Model.NextOptions)</td>
             </tr>
             <tr>
                 <td>@Lang.password</td>
@@ -38,12 +42,17 @@
                 <td>@Lang.BetLists</td>
                 <td>@Lang.transfer</td>
                 <td>@Lang.viewlog</td>
+                @if (isOfferCashService)
+                {
+                    <td>@Lang.CashService</td>
+                    <td>@Lang.CashPromotion</td>
+                }
             </thead>
             <tbody>
                 <tr>
                     <td class="c">
                         <div id="MemInfo" class="pMemInfo" data-subaccid="@Model.SubAccId"
-                                data-pageaccess="@Model.MemberInfoPermission" >@Model.GetPermission()</div>
+                            data-pageaccess="@Model.MemberInfoPermission">@Model.GetPermission()</div>
                     </td>
                     <td class="c"><input id="@(Model.SubAccId + "-D")" type="checkbox" class="npageaccess"
                             data-subaccid="@Model.SubAccId" data-pageaccess="@Model.MemberInfoPermission" /></td>
@@ -55,6 +64,13 @@
                             data-subaccid="@Model.SubAccId" data-pageaccess="@Model.MemberInfoPermission" /></td>
                     <td class="c"><input id="@(Model.SubAccId + "-G")" type="checkbox" class="npageaccess"
                             data-subaccid="@Model.SubAccId" data-pageaccess="@Model.MemberInfoPermission" /></td>
+                    @if (isOfferCashService)
+                    {
+                        <td class="c"><input id="@(Model.SubAccId + "-M")" type="checkbox" class="npageaccess"
+                                data-subaccid="@Model.SubAccId" data-pageaccess="@Model.MemberInfoPermission" /></td>
+                        <td class="c"><input id="@(Model.SubAccId + "-N")" type="checkbox" class="npageaccess"
+                                data-subaccid="@Model.SubAccId" data-pageaccess="@Model.MemberInfoPermission" /></td>
+                    }
                 </tr>
             </tbody>
         </table>

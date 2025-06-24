@@ -14,10 +14,10 @@ import {
   TransactionsHistoryResponse,
 } from '../../../services/interfaces/Transactions/TransactionHistory.ts';
 import { transactionAPI } from '../../../services/transactionsHistoryAPI.ts';
-import { calculateDateRange, TransactionType } from '../../../common/commonFunctions.tsx';
+import { calculateDateRange, TransactionType } from '../../../utils/commonFunctions.tsx';
 import { LoadingFullComponent } from '../../../components/LoadingComponent';
 import TitleComponent from '../../../components/TitleComponents.tsx';
-import { ButtonOutlineComponent } from '../../../components/ButtonComponents';
+import { ButtonFullComponent } from '../../../components/ButtonComponents';
 
 const PendingWithdrawal: React.FC = () => {
   const { t } = useTranslation('pendingWithdrawal');
@@ -101,11 +101,11 @@ const PendingWithdrawal: React.FC = () => {
       {showManualAddWithdrawalForm ? (
         <ManualAddWithdrawalForm onClose={() => handleCloseManualWithdrawalForm(false)} />
       ) : (
-        <div className="py-[12px] flex h-full flex-col">
+        <div className="flex h-full flex-col">
           <TitleComponent title={t('pendingWithdrawal')} />
           <div className="mb-[8px]">
-            <ButtonOutlineComponent
-              text={`+${t('addManualWithdrawal')}`}
+            <ButtonFullComponent
+              text={`${t('addManualWithdrawal')}`}
               onClick={handleAddManualWithdrawal}
               className="min-w-[183px] [&>*]:min-w-[183px] [&>*]:inline-block"
             />
@@ -119,11 +119,11 @@ const PendingWithdrawal: React.FC = () => {
           />
 
           {isLoading ? (
-            
+            <div className="flex items-center justify-center h-full">
               <LoadingFullComponent />
-         
+            </div>
           ) : (
-            <DataGrid withdrawals={filteredWithdrawals} />
+            <DataGrid withdrawals={filteredWithdrawals} reloadGrid={fetchWithdrawals} />
           )}
         </div>
       )}

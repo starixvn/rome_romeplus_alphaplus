@@ -1,8 +1,10 @@
+using AgencyCash.API.Payments.Constants;
 using AgencyCash.API.Payments.Criteria;
 using AgencyCash.API.Payments.Criteria.Withdrawal;
 using AgencyCash.API.Payments.Models;
 using AgencyCash.API.Payments.Requests;
 using AgencyCash.API.Shared;
+using AgencyCash.API.Shared.Helpers;
 using AgencyCash.API.Shared.Models;
 using Fanex.Data.Repository;
 
@@ -12,6 +14,7 @@ public interface IWithdrawalService
 {
     Task<PaymentResult> CreateManualWithdrawal(ManualWithdrawalRequest request);
     Task<WithdrawalLimitResult> GetWithdrawalLimitAmount(GetWithdrawalLimitRequest request);
+    Task<Result> UpdateTransactionStatus(long transId, UpdateTransactionStatusRequest request);
 }
 
 public class WithdrawalService : PaymentService, IWithdrawalService
@@ -39,13 +42,13 @@ public class WithdrawalService : PaymentService, IWithdrawalService
             var validatePaymentCriteria = new ValidatePaymentCriteria(
             request.AgentId,
             request.CustId,
-            transType: 2,
+            TransactionType.Withdrawal,
             siteDBConfig.CustDBGroupId,
             isManual: true,
             paymentTo: request.PaymentTo);
 
             var result = await ValidatePayment(validatePaymentCriteria);
-            
+
             if (result.Code != 0)
             {
                 return result;
@@ -59,7 +62,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                 siteDBConfig.CustDBGroupId);
 
             await _repository.ExecuteAsync(withdrawalLimitCriteria);
-            
+
             // Step 4: Add withdrawal transaction
             var withdrawalTransactionCriteria = new ManualWithdrawalTransactionCriteria(
                 request.CustId,
@@ -73,11 +76,12 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                 request.Amount,
                 request.IP);
 
-            var (firstResultSet, _) = await _repository.FetchMultipleAsync<LogEntry, ManualWithdrawalTransactionCriteria>(withdrawalTransactionCriteria);
+            var logs = await _repository.FetchAsync<LogEntry>(withdrawalTransactionCriteria);
+            await WriteLogsTransferAndRunSP(logs, siteDBConfig);
 
-            if (withdrawalTransactionCriteria.ErrCode == 0)
+            if (!string.IsNullOrWhiteSpace(withdrawalTransactionCriteria.ErrExtraInfo))
             {
-                await ProcessWithdrawalLogs(firstResultSet.ToList(), siteDBConfig);
+                await logger.ErrorAsync($"Withdrawal failed. Key: {withdrawalTransactionCriteria.GetSettingKey()}, Criteria: {JsonHelper.ToJson(withdrawalTransactionCriteria)}");
             }
 
             return new PaymentResult(withdrawalTransactionCriteria.ErrCode, withdrawalTransactionCriteria.ErrCode == 0 ? "Ok" : withdrawalTransactionCriteria.ErrMsg, withdrawalTransactionCriteria.TransId);
@@ -105,7 +109,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
             await _repository.ExecuteAsync(getDailyWithdrawalCriteria);
 
             // Step 4: Get withdrawal limits
-            var withdrawalLimitCriteria = new WithdrawalLimitAmountCriteria(request.CustId, request.AgentId, isMemberSite: true, siteDBConfig.CustDBGroupId);
+            var withdrawalLimitCriteria = new WithdrawalLimitAmountCriteria(request.CustId, request.AgentId, isMemberSite: true, siteDBConfig.CustDBGroupId, getDailyWithdrawalCriteria.WithdrawalCnt);
 
             await _repository.ExecuteAsync(withdrawalLimitCriteria);
 
@@ -118,24 +122,33 @@ public class WithdrawalService : PaymentService, IWithdrawalService
         }
     }
 
-    private async Task ProcessWithdrawalLogs(IList<LogEntry> logs, SiteDBConfig siteDBConfig)
+    public async Task<Result> UpdateTransactionStatus(long transId, UpdateTransactionStatusRequest request)
     {
-        foreach (var log in logs)
+        var tasks = new List<Task>();
+        var siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
+
+        var criteria = new UpdateWithdrawalTransStatusCriteria(
+            request.AgentId,
+            request.CustId,
+            transId,
+            request.StatusId,
+            siteDBConfig.SiteDBGroupId,
+            request.IP);
+        var logs = await repository.FetchAsync<LogEntry>(criteria);
+        var result = new Result(criteria.ErrCode, criteria.ErrMsg);
+
+        if (result.IsSuccess && !string.IsNullOrWhiteSpace(criteria.CashAccumCreditTbl))
         {
-            if (log.LogTypeId == 1)
-            {
-                // Step 5.1: Log transfer success
-                // Step 5.2: Log transfer failure
-
-                await WriteLogsTransfer(logs, siteDBConfig.SiteDBGroupId);
-            }
-            else
-            {
-                // Step 6.1: Log run SP success
-                // Step 6.2: Log run SP failure
-
-                await WriteLogsRunSP(logs, siteDBConfig.CustDBGroupId);
-            }
+            tasks.Add(SyncCashAccumCredit(criteria.CashAccumCreditTbl, siteDBConfig.CustDBGroupId));
         }
+
+        tasks.Add(WriteLogsTransferAndRunSP(logs, siteDBConfig));
+
+        if (!string.IsNullOrWhiteSpace(criteria.ErrExtraInfo))
+        {
+            tasks.Add(logger.ErrorAsync($"Withdrawal - {nameof(UpdateTransactionStatus)} failed. Key: {criteria.GetSettingKey()}, Criteria: {JsonHelper.ToJson(criteria)}"));
+        }
+
+        return result;
     }
 }

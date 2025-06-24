@@ -52,7 +52,7 @@ public class AddTransactionDepositCriteriaTests
         Assert.Equal(paymentTo, criteria.PaymentTo);
         Assert.Equal(amount, criteria.Amount);
         Assert.Equal(confirmAmount, criteria.UserInput_Amount);
-        Assert.Equal(matchingMode, criteria.MachingMode);
+        Assert.Equal(matchingMode, criteria.MatchingMode);
         Assert.Equal(paySlip, criteria.PaySlip);
         Assert.Equal(ip, criteria.IP);
         Assert.Equal(remark, criteria.Remark);
@@ -79,12 +79,48 @@ public class AddTransactionDepositCriteriaTests
     [InlineData(1, true)]
     [InlineData(0, false)]
     [InlineData(-1, false)]
-    public void IsValid_Should_Return_Expected_Result(int custId, bool expected)
+    public void IsValid_CustId_Should_Return_Expected_Result(int custId, bool expected)
     {
         // Arrange
         var criteria = new AddTransactionDepositCriteria(
             1, custId, 3, 100, 200, 10, 1000,
             1, 2, 3, "from", "to", 500);
+
+        // Act
+        var result = criteria.IsValid();
+
+        // Assert
+        Assert.Equal(expected, result);
+    }
+
+    [Theory]
+    [InlineData(1, true)]
+    [InlineData(0, false)]
+    [InlineData(-1, false)]
+    public void IsValid_Agent_Should_Return_Expected_Result(int agent, bool expected)
+    {
+        // Arrange
+        var criteria = new AddTransactionDepositCriteria(
+            agent, 1, 3, 100, 200, 10, 1000,
+            1, 2, 3, "from", "to", 500);
+
+        // Act
+        var result = criteria.IsValid();
+
+        // Assert
+        Assert.Equal(expected, result);
+    }
+
+    [Theory]
+    [InlineData(500, true)]
+    [InlineData(0, false)]
+    [InlineData(-1, false)]
+    public void IsValid_Amount_Should_Return_Expected_Result(decimal amount, bool expected)
+    {
+        // Arrange
+        var criteria = new AddTransactionDepositCriteria(
+            1, 1, 3, 100, 200, 10, 1000,
+            1, 2, 3, "from", "to", amount);
 
         // Act
         var result = criteria.IsValid();

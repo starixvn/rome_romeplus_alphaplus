@@ -1,14 +1,21 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
+import { IconImage } from '../../../components/Icons';
 
 interface UploadImageProps {
   setImage: (image: File | null) => void;
+  prevImage?: string | null;
   disabled?: boolean;
 }
 
 const ACCEPTED_FILE_TYPES = '.jpeg,.jpg,.png';
 
-const UploadImage: React.FC<UploadImageProps> = ({ setImage, disabled = false }) => {
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
+const UploadImage: React.FC<UploadImageProps> = ({ setImage, prevImage, disabled = false }) => {
+  const { t: tGlobal } = useTranslation('global');
+
+  const [imageUrl, setImageUrl] = useState<string | null>(
+    prevImage ? `data:image/png;base64,${prevImage}` : null
+  );
   const [isDragging, setIsDragging] = useState(false);
 
   const convertToBase64 = useCallback((file: File): Promise<string> => {
@@ -107,37 +114,25 @@ const UploadImage: React.FC<UploadImageProps> = ({ setImage, disabled = false })
   );
 
   const renderUploadPlaceholder = () => (
-    <div className="flex flex-col items-center justify-center text-center p-6 text-[#333]">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-8 w-8 text-[#163f78] mb-4"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-        />
-      </svg>
-      <p className="text-sm font-medium mb-1">
-        <span className="text-[#163f78] cursor-pointer underline">Click to upload</span>{' '}
-        <span className="">or drag</span>
+    <div className="flex flex-col items-center justify-center text-center p-6 text-[var(--text-color)] ">
+      <IconImage />
+      <p className="mb-[10px]">
+        <span className="text-[var(--text-link-color)] cursor-pointer underline">
+          {tGlobal('uploadImage')}
+        </span>
+        <br />
+        <span className="text-[110%]">{tGlobal('dragAndDrop')}</span>
       </p>
-      <span className="text-sm font-medium mb-2">and drop</span>
-      <span className="text-xs font-medium">Upload jpeg, jpg, png</span>
-      <span className="text-xs font-medium">(Max 1 MB)</span>
+      <span>{tGlobal('imageFormat')}</span>
+      <span className="font-[500]">({tGlobal('maxSize')})</span>
     </div>
   );
 
   return (
-    <div className="flex flex-col items-center">
-      <div
-        className={`w-[350px] h-[450px] max-[768px]:w-[250px] max-[768px]:h-[250px] border-[2px] border-dashed ${
-          isDragging ? 'border-blue-500 bg-blue-50' : 'border-[#163f78]'
-        } rounded-[5px] flex flex-col items-center justify-center mb-6 relative`}
+    
+      <div className={`w-[350px] max-[768px]:w-[250px] max-[768px]:h-[200px] border-[2px] border-dashed border-[#0b599c] dark:border-[#459be5] max-[768px]:mx-auto a ${
+          isDragging ? ' bg-[#D3DFEC] dark:bg-[#303740]' : 'border-[#0b599c] dark:border-[#459be5]'
+        } rounded-[5px] flex flex-col items-center justify-center relative`}
         onDrop={handleDrop}
         onDragOver={(e) => handleDragEvents(e, true)}
         onDragEnter={(e) => handleDragEvents(e, true)}
@@ -159,7 +154,7 @@ const UploadImage: React.FC<UploadImageProps> = ({ setImage, disabled = false })
           }`}
         />
       </div>
-    </div>
+   
   );
 };
 

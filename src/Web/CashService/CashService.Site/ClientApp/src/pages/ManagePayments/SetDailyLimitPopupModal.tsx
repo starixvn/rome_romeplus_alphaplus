@@ -117,7 +117,7 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
     <div className="bg-[#00000080] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-start justify-center">
       <div className="px-[20px] pb-[10px] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-w-[400px] max-[768px]:max-w-[90%] rounded-[3px]">
         <div className="relative my-[10px]">
-          <MediumTitleComponent className='text-[16px] text-[var(--modal-title-color)]!' text={t('managePayments:setDailyWithdrawalCount')} />
+          <MediumTitleComponent text={t('managePayments:setDailyWithdrawalCount')} />
           <ButtonClosePopupComponent onClick={onClose} />
         </div>
         <div className="my-[8px]">
@@ -137,6 +137,11 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
                 className="control-field"
                 id="dailyLimit"
                 value={dailyLimit}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") { 
+                    e.preventDefault(); 
+                  }
+                }}
                 onChange={onDailyLimitChange}
                 min="0"
               />
@@ -145,7 +150,11 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
           </div>
           <div className="flex justify-center gap-[8px]">
             <ButtonCancelComponent text={t('global:cancel')} onClick={onClose} />
-            <ButtonApplyComponent text={isLoading ? t('global:loading') : t('global:save')} disabled={isLoading || isBlockAction}/>
+            <ButtonApplyComponent 
+              text={isLoading ? t('global:loading') : t('global:save')} 
+              type='submit'
+              disabled={isLoading || isBlockAction}
+            />
           </div>
         </form>
       </div>

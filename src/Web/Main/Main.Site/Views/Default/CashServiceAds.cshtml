@@ -1,0 +1,735 @@
+﻿@using AlphaPlus.Main.Site.Features.Dashboard.CashService
+@using AlphaPlus.Core.Helpers
+@model CashServiceInfoViewModel
+@{
+    var cdnUri = Model.CDNUri ?? "https://cdn-customer.nexdev.net/v3/cash-member/create/";
+}
+<style>
+    /* ========== ANIMATIONS ========== */
+    @@keyframes fadeInBg {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @@keyframes fadeInPopup {
+        from {
+            transform: scale(0.95);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    @@keyframes pulse {
+        0% {
+            transform: scale(0.95);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(0.95);
+        }
+    }
+
+    .pulse-animate {
+        animation: pulse 1.2s infinite;
+        display: inline-block;
+    }
+
+    /* ========== LAYOUT CONTAINERS ========== */
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.2);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        animation: fadeInBg 0.3s;
+    }
+
+    .popup {
+        position: absolute;
+        max-width: 630px;
+        height: auto;
+        margin: 20px;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+        animation: fadeInPopup 0.35s;
+        background: #b4d2e8;
+        top: 15%;
+
+        button[disabled] {
+            cursor: not-allowed;
+        }
+    }
+
+    .white-box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        background: white;
+        box-sizing: border-box;
+    }
+
+    .content-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        background: white;
+        margin: 0 auto;
+        max-width: fit-content;
+        border-radius: 16px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+        &.no-border {
+            border: none;
+            box-shadow: none;
+        }
+
+        li {
+            text-align: left;
+        }
+    }
+
+    /* ========== CONTENT SECTIONS ========== */
+    .promo-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.72) 40%, rgba(255, 255, 255, 0.36) 75%, rgba(255, 255, 255, 0) 100% );
+
+    }
+
+    .active-cash-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 32px;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.72) 40%, rgba(255, 255, 255, 0.36) 75%, rgba(255, 255, 255, 0) 100% );
+    }
+
+    .step-slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        background: white;
+        box-sizing: border-box;
+    }
+
+    .step-content {
+        height: 315px;
+    }
+
+    .step-5-confirm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    /* ========== TYPOGRAPHY ========== */
+    .main-title {
+        font-weight: 800;
+        font-size: 38px;
+        color: #03548d;
+        line-height: 1.2;
+        text-align: center;
+        max-width: 350px;
+        letter-spacing: 0.2px;
+        text-transform: uppercase;
+    }
+
+    .sub-title {
+        font-weight: 600;
+        padding: 0 30px;
+        font-size: 20px;
+        color: #03548d;
+        line-height: 1.2;
+        text-align: center;
+        margin: 10px;
+        max-width: 250px;
+        letter-spacing: 0.1px;
+        border-radius: 10px;
+    }
+
+    .title {
+        font-weight: 600;
+        font-size: 18px;
+        color: #0a2c4d;
+        margin-bottom: 14px;
+    }
+
+    .step-title {
+        font-weight: 600;
+        font-size: 18px;
+        color: #0a508c;
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    .description {
+        font-size: inherit;
+        color: #222;
+        margin-bottom: 5px;
+        font-weight: 400;
+    }
+
+    .step-description {
+        font-size: 13px;
+        color: #222;
+        padding: 10px 0;
+        font-weight: 400;
+        text-align: center;
+    }
+
+    .step-counter {
+        color: #9a9a9a;
+        font-weight: 500;
+    }
+
+    /* ========== TEXT HIGHLIGHTS ========== */
+    .highlight {
+        font-weight: 600;
+        color: #03548d;
+    }
+
+    .free-highlight {
+        color: #ff9800;
+        font-weight: 900;
+    }
+
+    .save-amount {
+        color: #03548d;
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .benefit-note {
+        color: #888;
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+    /* ========== BUTTONS ========== */
+    .close-button {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background: rgba(255, 255, 255, 0.411);
+        border: none;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 1;
+        color: #000000;
+        font-size: 20px;
+        font-weight: bold;
+        transition: background 0.2s;
+    }
+
+    .button-container {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        width: 100%;
+        margin-top: 20px;
+        
+        button {
+            border-radius: 20px;
+            padding: 0 18px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+    }
+
+    .primary-button {
+        background: #0b599c;
+        color: #fff;
+        border: none;
+        min-width: 90px;
+        font-weight: bold;
+        transition: background 0.2s;
+        letter-spacing: 0.2px;
+        height: 32px;
+
+        &:hover {
+            background: #0a508c;
+        }
+    }
+
+    .secondary-button {
+        color: #0b599c;
+        background: #fff;
+        border: 1px solid #0b599c;
+        min-width: 90px;
+        font-weight: bold;
+        transition: background 0.2s;
+        letter-spacing: 0.2px;
+        height: 32px;
+
+        &:hover {
+            background: #0a508c;
+            color: #fff;
+        }
+    }
+
+    .step-button {
+        height: 30px;
+        width: 110px;
+        border-radius: 20px;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+
+    .back-button {
+        background: #fff;
+        cursor: pointer;
+        color: #0a508c;
+        border: 1px solid #0a508c;
+
+        &:not([disabled]):hover {
+            background: #0a508c;
+            color: #fff;
+        }
+    }
+
+    .next-button {
+        background: #0b599c;
+        color: #fff;
+
+        &:not([disabled]):hover {
+            background: #0a508c;
+        }
+    }
+
+    .step-navigation {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    /* ========== VISUAL ELEMENTS ========== */
+    .banner-image {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .step-image {
+        width: 100%;
+        max-height: 220px;
+        height: auto;
+        object-fit: contain;
+    }
+    
+ 
+    
+
+    .divider {
+        width: 60px;
+        height: 2px;
+        background: #0a2c4d;
+        margin: 0 auto 20px auto;
+        border-radius: 2px;
+    }
+
+    .icon-check {
+        color: #fff;
+        background: #18965b;
+        font-size: 12px;
+        padding: 2px;
+        margin-left: 10px;
+        border-radius: 50px;
+    }
+
+    .icon-info {
+        margin-right: 6px;
+        font-size: 18px;
+        display: inline-block;
+    }
+
+    /* ========== SPECIAL COMPONENTS ========== */
+    .free-badge {
+        background: #ffcd00;
+        color: #fff;
+        padding: 4px 12px;
+        border-radius: 16px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        animation: pulse 1.2s infinite;
+        font-size: 16px;
+    }
+
+    .step-highlight-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+
+    .step-benefits {
+        text-align: left;
+        margin: 0 auto 16px auto;
+        max-width: 400px;
+        padding-left: 0;
+        list-style: none;
+
+        li {
+            margin-bottom: 8px;
+            font-size: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+    }
+
+    .step-note {
+        background: #e3f2fd;
+        color: #03548d;
+        padding: 8px 16px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        margin-top: 12px;
+
+        .icon-info {
+            margin-right: 6px;
+            font-size: 18px;
+        }
+    }
+
+    .dont-show-again {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 10px;
+        color: #666;
+        font-size: 14px;
+        position: absolute;
+        bottom: 20px;
+        left: 30px;
+
+        input[type="checkbox"] {
+            margin: 0;
+            width: 13px;
+            height: 13px;
+            top: 0;
+            cursor: pointer;
+        }
+
+        label {
+            font-size: 13px;
+            cursor: pointer;
+            color: #000;
+            margin-bottom: 0;
+        }
+
+        
+    }
+   /* Tablet and up */
+    @@media (min-width: 768px) {
+        .step-image {
+            max-height: 260px;
+        }
+        .step-description{
+            font-size: 14px;
+        }
+        .step-content{
+            height: 350px;
+        }
+    }
+</style>
+
+
+<div class="overlay" style="display: none;">
+    <div class="popup">
+        <button onclick="closePopup()" class="close-button">×</button>
+        <img src="@(cdnUri)cash-member/create/cash-service-ads/BannerPC.jpg" alt="AdvCash" class="banner-image"/>
+
+        <div id="promo-content" class="promo-content">
+            <div class="main-title">
+                EXCLUSIVELY FOR YOU
+            </div>
+            <div class="sub-title">
+                Enjoy Cash Service <span class="pulse-animate free-highlight">FREE</span> for 14 days!
+            </div>
+            <div class="button-container">
+                <button class="primary-button" onclick="showActiveCashContent()"
+                        disabled="@(!Model.IsCanUpdateCashServiceStatus)">
+                    Activate now
+                </button>
+                <button class="secondary-button" onclick="showStepSlider()">
+                    Find out more
+                </button>
+            </div>
+            <div class="dont-show-again" >
+                <input type="checkbox" id="dontShowAgain" onchange="checkDontShowAgain()"/>
+                <label for="dontShowAgain">@Resources.doNotShowAgain</label>
+            </div>
+        </div>
+
+        <div id="active-cash-content" class="active-cash-content" style="display: none;">
+            <div class="content-box">
+                <div class="title">
+                    Supercharge Your Cash Flow!
+                </div>
+                <div class="divider"></div>
+                <div class="description">
+                    Start your <span class="highlight">14-days FREE trial</span> today and enjoy instant savings of
+                    <strong>THB 2,800</strong>.
+                </div>
+                <ul class="description">
+                    <li>
+                        <span class="icon-check"></span>
+                        <strong>No platform fee</strong> - save THB 200/day during the trial.
+                    </li>
+                    <li>
+                        <span class="icon-check"></span>
+                        Just <strong>THB 0.15 per transaction</strong> via your linked bank account.
+                    </li>
+                    <li>
+                        <span class="icon-check"></span>
+                        Get results. Stay if you love it. Cancel anytime.
+                    </li>
+                </ul>
+                <div class="description"> Don't miss out – activate your free trial now and take your cash flow to the
+                    next level.
+                </div>
+                <div class="button-container">
+                    <button class="primary-button" onclick="confirmActivation()"
+                            disabled="@(!Model.IsCanUpdateCashServiceStatus)">
+                        Confirm
+                    </button>
+                    <button class="secondary-button" onclick="showAdsContent()">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="step-slider" class="step-slider" style="display: none;">
+            <div id="step-content" class="step-content">
+                <!-- Step content will be dynamically updated -->
+            </div>
+            <div class="step-navigation">
+                <button id="back-button" class="step-button back-button" onclick="previousStep()" disabled>Back</button>
+                <button id="next-button" class="step-button next-button" onclick="nextStep()">Next</button>
+            </div>
+            <div class="step-counter">
+                <span id="current-step">1</span> of <span id="total-steps">5</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const nickName = '@Model.NickName';
+    const cdnUri = '@cdnUri';
+    const homeUrl = '@MicroSites.MainUrl("~/Dashboard/index2")';
+    const isCanUpdateCashServiceStatus = '@Model.IsCanUpdateCashServiceStatus'.toLowerCase() === 'true';
+    let currentStep = 0;
+    const totalSteps = 5;       
+    const steps = [
+        {
+            title: "Instant deposits and withdrawals!",
+            image: "cash-member/create/cash-service-ads/step1.jpg",
+            description: "Easily add a <strong>payment gateway</strong> and <strong>bank accounts</strong> so your members can start playing instantly."
+        },
+        {
+            title: "Manage credit and cash member",
+            image: "cash-member/create/cash-service-ads/step2.jpg",
+            description: "Maximise your earnings by managing both credit and cash in single account."
+        },
+        {
+            title: "Dedicated domain",
+            image: "cash-member/create/cash-service-ads/step3.gif",
+            description: "Elevate your brand with a unique sign-up linked for member registrations."
+        },
+        {
+            title: "Customise promotions",
+            image: "cash-member/create/cash-service-ads/step4.jpg",
+            description: "Create and manage promotions featuring popular products <br> and providers to keep your members entertained."
+        },
+        {
+            title: "Supercharge Your Cash Flow!",
+            description: `
+                <div class="divider"></div>
+                    <div class="step-highlight-block">
+                        <span class="free-badge">14-days <b>FREE</b> trial</span>
+                        <span class="save-amount">Start today and enjoy instant savings of <b>THB 2,800</b></span>
+                    </div>
+                <ul class="step-benefits">
+                    <li><b>No platform fee</b> <span class="">- save THB 200/day during the trial.</span></li>
+                    <li><b> Just 0.15 per transaction</b> via your linked bank account.</li>
+                    <li>Get results. Stay if you love it. Cancel anytime.</li>
+                </ul>
+                <div class="step-note">
+                    <span class="icon-info">ℹ️</span> Don't miss out – Activate now and take your cash flow to the next level.
+                </div>
+            `
+        }
+    ];
+
+    function showAdsContent() {
+        $('#promo-content').show();
+        $('#active-cash-content').hide();
+        $('#step-slider').hide();
+    }
+
+    function showActiveCashContent() {
+        $('#promo-content').hide();
+        $('#active-cash-content').hide();
+        $('#step-slider').show();
+        currentStep = 4; // Set to step 5 (0-based index)
+        updateStepContent();
+    }
+
+    function showStepSlider() {
+        $('#promo-content').hide();
+        $('#active-cash-content').hide();
+        $('#step-slider').show();
+        updateStepContent();
+    }
+
+    function updateStepContent() {
+        const step = steps[currentStep];
+        const $stepContent = $('#step-content');
+        $stepContent.html(`
+            <div class="step-title">${step.title}</div>
+            ${step.image ? `<img src="${cdnUri}${step.image}" class="step-image" />` : ''}
+            ${step.description ? `<div class="step-description">${step.description}</div>` : ''}
+        `);
+
+        if (step.classname) {
+            $stepContent.addClass(step.classname);
+        }
+
+        $('#current-step').text(currentStep + 1);
+        $('#back-button').prop('disabled', currentStep === 0);
+
+        const $nextButton = $('#next-button');
+        if (currentStep === totalSteps - 1) {
+            $nextButton.text('Confirm').off('click').on('click', confirmActivation);
+            $nextButton.prop('disabled', !isCanUpdateCashServiceStatus);
+        } else {
+            $nextButton.text('Next').off('click').on('click', nextStep);
+            $nextButton.prop('disabled', false);
+        }
+    }
+
+    function previousStep() {
+        if (currentStep > 0) {
+            currentStep--;
+            updateStepContent();
+        }
+    }
+
+    function nextStep() {
+        if (currentStep < totalSteps - 1) {
+            currentStep++;
+            updateStepContent();
+        }
+    }
+
+    function confirmActivation() {
+        if (isCanUpdateCashServiceStatus) {
+            const confirmButton = $("#confirmActivation");
+            confirmButton.prop('disabled', true);
+
+            $.ajax({
+                url: '/main/Dashboard/UpdateCashServiceStatus',
+                type: 'POST',
+                data: {
+                    IsEnableCash: true
+                },
+                headers: {
+                    'RequestVerificationToken': $('input[name="RequestVerificationToken"]').val()
+                },
+                success: (response) => {
+                    if (response.isSuccessful) {
+                        closePopup();
+                        document.getElementById('main').src = homeUrl;
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                complete: () => {
+                    confirmButton.prop('disabled', false);
+                }
+            });
+        }
+    }
+
+
+    function closePopup() {
+        $('.overlay').hide();
+    }
+
+    function checkDontShowAgain() {
+        const dontShowAgain = $('#dontShowAgain').prop('checked');
+        if (dontShowAgain) {
+            localStorage.setItem(`hideCashServiceAds-${nickName}`, 'true');
+        }
+        closePopup();
+    }
+
+    // Check if popup should be shown
+    document.addEventListener('DOMContentLoaded', function () {
+        const hideAds = localStorage.getItem('hideCashServiceAds');
+        if (hideAds !== 'true') {
+            $('.overlay').css('display', 'flex');
+        }
+    });
+
+</script>

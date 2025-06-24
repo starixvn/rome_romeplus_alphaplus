@@ -68,7 +68,7 @@ public static class PendingWithdrawalEndpoints
             Description = "Adding manual withdrawal transaction on Agency site"
         });
 
-        group.MapPost("/transaction/approve", async ([FromBody] ProcessTransactionModel model, IPendingWithdrawalService service) =>
+        group.MapPost("/approve", async ([FromBody] ProcessWithdrawalTransaction model, IPendingWithdrawalService service) =>
             {
                 model.StatusId = (int)TransactionStatus.Completed;
                 var result = await service.ProcessWithdrawAsync(model);
@@ -81,7 +81,7 @@ public static class PendingWithdrawalEndpoints
                 Description = "Approve withdrawal"
             });
 
-        group.MapPost("/transaction/reject", async ([FromBody] ProcessTransactionModel model, IPendingWithdrawalService service) =>
+        group.MapPost("/reject", async ([FromBody] ProcessWithdrawalTransaction model, IPendingWithdrawalService service) =>
             {
                 model.StatusId = (int)TransactionStatus.Rejected;
                 var result = await service.ProcessWithdrawAsync(model);

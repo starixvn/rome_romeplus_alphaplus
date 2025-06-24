@@ -1,0 +1,60 @@
+:root ,:root [data-theme='light'] {   
+    --multiselect-color-icon: #333;
+    --multiselect-background: #fff;
+    --multiselect-border: #dfdfdf;
+    --multiselect-color: #333;
+}
+:root [data-theme='dark'] {
+    --multiselect-color-icon: #ededed;
+    --multiselect-background: #2b2b2b;
+    --multiselect-border: #474747;
+    --multiselect-color: #ededed;
+}
+.react-select-custom {
+    .react-select__control{
+        border: 0;
+        padding: 0 2px 0 8px;
+        background-color: transparent;
+        min-height: 26px;
+        
+    }
+    .react-select__value-container{
+        padding: 0;
+        > div{
+            top: 0 !important;
+            transform: translateY(0) !important;
+        }
+    }
+    .react-select__indicators{
+        .react-select__indicator-separator{
+            opacity: 0;
+        }
+        .react-select__dropdown-indicator{
+            padding: 0;
+            bottom: auto;
+            svg{
+                width: 16px;
+                height: 16px;
+                fill: var(--multiselect-color-icon);
+            }
+        }
+    }
+    .react-select__menu{
+        .react-select__menu-list{
+            padding: 0;
+        }
+        top: 28px;
+        padding: 0 10px;
+        background: var(--multiselect-background);
+        border-radius: 3px;
+        border: 1px solid var(--multiselect-border);
+        z-index: 100;
+        box-shadow: none;
+        .react-select__option{
+            padding: 6px 2px 6px 3px;
+            line-height: 1.6;
+            font-weight: 500;
+            color: var(--multiselect-color);
+        }
+    }
+}

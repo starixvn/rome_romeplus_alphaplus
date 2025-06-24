@@ -1197,6 +1197,9 @@
   <data name="WhiteLabelSettlementNote" xml:space="preserve">
     <value>データの正確性を確保するために、月末から5日後に精算報告書を作成してください。</value>
   </data>
+  <data name="RewardCurrency" xml:space="preserve">
+    <value>報酬通貨</value>
+  </data>
   <data name="GrossComAndAgentTotal_Duplicate[1]" xml:space="preserve">
     <value>/合計コミッション/エージェント合計</value>
   </data>
@@ -1266,7 +1269,13 @@
   <data name="NewViewTakesOverNote_Duplicate[1]" xml:space="preserve">
     <value>2024年2月21日 (dd/mm/yyyy)より、新しい表示がメイン表示となりますが、クラシック表示に戻すことができます。</value>
   </data>
-  <data name="RewardCurrency" xml:space="preserve">
-    <value>報酬通貨</value>
+  <data name="Fee" xml:space="preserve">
+    <value>手数料</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>数</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>タイプ</value>
   </data>
 </root>

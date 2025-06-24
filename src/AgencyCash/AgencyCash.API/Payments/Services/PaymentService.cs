@@ -1,8 +1,8 @@
 using AgencyCash.API.Payments.Criteria;
-using AgencyCash.API.Payments.Criteria.Withdrawal;
 using AgencyCash.API.Payments.Models;
 using AgencyCash.API.Shared;
 using AgencyCash.API.Shared.Helpers;
+using AgencyCash.API.Shared.Models;
 using Fanex.Data.Repository;
 
 namespace AgencyCash.API.Payments.Services;
@@ -22,30 +22,26 @@ public abstract class PaymentService(
 
         if (!string.IsNullOrWhiteSpace(criteria.ErrExtraInfo))
         {
-            await logger.ErrorAsync($"ValidatePayment failed for AgentId: {criteria.AgentId}, CustId: {criteria.CustId}, ErrCode: {criteria.ErrCode}, ErrMsg: {criteria.ErrMsg}, ExtraInfo: {criteria.ErrExtraInfo}, Criteria: {JsonHelper.ToJson(criteria)}");
+            await logger.ErrorAsync($"{nameof(ValidatePayment)} failed. Key: {criteria.GetSettingKey()}, Criteria: {JsonHelper.ToJson(criteria)}");
         }
 
         return new PaymentResult(criteria.ErrCode, criteria.ErrMsg);
     }
 
-    public async Task WriteLogsRunSP(IEnumerable<LogEntry> logs, short custDBGroupId)
+    public async Task WriteLogsTransferAndRunSP(IEnumerable<LogEntry> logs, SiteDBConfig siteDBConfig)
     {
         if (logs != null)
         {
             foreach (var item in logs)
             {
-                await WriteLogRunSP(item, custDBGroupId);
-            }
-        }
-    }
-
-    public async Task WriteLogsTransfer(IEnumerable<LogEntry> logs, short siteDBGroupId)
-    {
-        if (logs != null)
-        {
-            foreach (var item in logs)
-            {
-                await WriteLogTransfer(item, siteDBGroupId);
+                if (item.LogTypeId == 1)
+                {
+                    await WriteLogTransfer(item, siteDBConfig.SiteDBGroupId);
+                }
+                else
+                {
+                    await WriteLogRunSP(item, siteDBConfig.CustDBGroupId);
+                }
             }
         }
     }
@@ -97,8 +93,22 @@ public abstract class PaymentService(
         }
         catch (Exception ex)
         {
-            await logger.ErrorAsync($"{ex.Message}. {functionName} failed. Criteria: {JsonHelper.ToJson(criteria)}", ex);
+            await logger.ErrorAsync($"{functionName} failed. Key: {criteria.GetSettingKey()}, Criteria: {JsonHelper.ToJson(criteria)}", ex);
             return false;
         }
+    }
+
+    public async Task<Result> SyncCashAccumCredit(string cashAccumCreditTbl, short custDBGroupId)
+    {
+        var criteria = new SyncCashAccumCreditCriteria(cashAccumCreditTbl, custDBGroupId);
+        await repository.ExecuteAsync(criteria);
+        var result = new Result(criteria.ErrCode, criteria.ErrMsg);
+
+        if (!result.IsSuccess)
+        {
+            await logger.ErrorAsync($"{nameof(SyncCashAccumCredit)} failed. Key: {criteria.GetSettingKey()} Criteria: {JsonHelper.ToJson(criteria)}");
+        }
+
+        return result;
     }
 }

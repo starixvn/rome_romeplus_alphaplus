@@ -49,7 +49,7 @@
     <siteMapNode resourceKey="newMaster" url="/settings/CopyAccount?lv=4" menuItemType="CreateAccountMenuItem" roles="Super"></siteMapNode>
     <siteMapNode resourceKey="newAgent" url="/settings/CopyAccount?lv=3" menuItemType="CreateAccountMenuItem" roles="Master"></siteMapNode>
     <siteMapNode resourceKey="newMember" url="/settings/CopyAccount?lv=2" menuItemType="CreateAccountMenuItem" roles="Agent"></siteMapNode>
-    <siteMapNode resourceKey="newCashMember" url="/settings/Customer/CreateCashMember" menuItemType="CashServiceMenuItem" roles="Agent" isNew="true"></siteMapNode>
+    <siteMapNode resourceKey="newCashMember" url="/settings/Customer/CreateCashMember" menuItemType="NewCashServiceMenuItem" roles="Agent" isNew="true"></siteMapNode>
     <siteMapNode resourceKey="newDirectMember" url="/settings/Customer/CreateDirectMember" menuItemType="CreateDirectMemberMenuItem" roles="Super,Master" isNew="true"></siteMapNode>
     <siteMapNode resourceKey="PTTemplate" url="/settings/PTTemplate/Index" menuItemType="PTTemplateMenuItem"></siteMapNode>
     <siteMapNode menuItemType="SubAccountMenuItem" resourceKey="subaccount" url="/settings/subaccount" byPassProtectedModeInternal="true"></siteMapNode>
@@ -146,18 +146,18 @@
     <siteMapNode resourceKey="MyThresholds" url="/settings/MyThresholds/Index" roles="Super,Master"></siteMapNode>
     <siteMapNode resourceKey="MemberBettingBehavior" url="/settings/MemberBettingBehavior/Index"></siteMapNode>
   </siteMapNode>
-  <siteMapNode resourceKey="cashService" menuItemType="CashServiceMenuItem" functionType="[H]" roles="Agent">
+  <siteMapNode resourceKey="cashService" menuItemType="CashServiceMenuItem" functionType="[M]" roles="Agent">
     <siteMapNode resourceKey="ManagePayments" url="/cash-service/Payments/Index"></siteMapNode>
     <siteMapNode resourceKey="PendingDeposit" url="/cash-service/Transactions/Deposit"></siteMapNode>
     <siteMapNode resourceKey="PendingWithdrawal" url="/cash-service/Transactions/Withdrawal"></siteMapNode>
     <siteMapNode resourceKey="TransactionHistory" url="/cash-service/Transactions/History"></siteMapNode>
     <siteMapNode resourceKey="MemberSiteManagement" url="/cash-service/MemberSites/Index"></siteMapNode>
   </siteMapNode>
-  <!--<siteMapNode resourceKey="promotion" menuItemType="CashServiceMenuItem" functionType="[H]" roles="Agent">
+  <siteMapNode resourceKey="promotion" menuItemType="CashPromotionMenuItem" functionType="[N]" roles="Agent">
     <siteMapNode resourceKey="ManagePromotion" url="/cash-service/Promotions/Index"></siteMapNode>
     <siteMapNode resourceKey="PendingPromotion" url="/cash-service/Promotions/Pending"></siteMapNode>
     <siteMapNode resourceKey="PromotionReport" url="/cash-service/Promotions/Report"></siteMapNode>
-  </siteMapNode>-->
+  </siteMapNode>
   <siteMapNode resourceKey="chatbot" url="/main/TelegramChatBot/Setup"></siteMapNode>
   <siteMapNode resourceKey="WhiteLabel" menuItemType="WhiteLabel" functionType="[E]">
     <siteMapNode resourceKey="SignInS1BackOffice" menuItemType="WhiteLabelSignInBackOffice" roles="Agent" />

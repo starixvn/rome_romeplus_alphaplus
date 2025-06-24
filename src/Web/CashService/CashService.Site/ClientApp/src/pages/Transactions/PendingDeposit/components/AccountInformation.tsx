@@ -1,11 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { renderBankOptionValue } from '../../../../common/commonFunctions';
+import { displayAmount, renderBankOptionValue } from '../../../../utils/commonFunctions';
 import BankIcon from '../../../../components/BankComponents';
 import CustomDropdown, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import { LabelTitleComponent, MediumTitleComponent } from '../../../../components/TitleComponents';
-import { AmountInput } from '../../../../components/ui/AmountInput';
+import { AmountInput } from '../../../../components/AmountInput';
 import { BankInfo } from '../../../../services/interfaces/Transactions/BankInfo';
 import { MemberLoginName } from '../../../../services/interfaces/Transactions/MemberLoginName';
 
@@ -45,7 +45,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
   const { t } = useTranslation('pendingDeposit');
 
   return (
-    <div className="flex-1 max-w-[700px]">
+    <div className="flex-1 max-w-[700px] max-[768px]:mb-[16px] mr-[30px] max-[768px]:mr-[0]">
       <MediumTitleComponent text={`${t('manualDepositForm.accountInformation')}`} />
       <div className="flex flex-wrap">
         <div className="flex flex-nowrap gap-[16px] mb-[4px] justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
@@ -105,11 +105,11 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
               id="depositAmount"
               value={depositAmount}
               onChange={onDepositAmountChange}
-              className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:border-[var(--button-border)] bg-[var(--background-control)]"
+              className="control-field"
             />
-            <p className="text-xs my-[8px] text-gray-500 font-bold">
+            <p className="text-[12px] my-[4px]">
               {t('manualDepositForm.agentAvailableCredit')}:
-              <span className="text-black font-bold">{` ${agentAvailableCredit}`}</span>
+              <span className="text-[var(--text-link-color)] font-bold">{` ${displayAmount(agentAvailableCredit)}`}</span>
             </p>
           </div>
         </div>
@@ -121,7 +121,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
             value={remarks}
             maxLength={1000}
             onChange={onRemarksChange}
-            className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-[var(--button-border)] min-h-[200px] bg-[var(--background-control)]"
+            className="block control-field h-[200px]! py-[8px]! max-[768px]:h-[150px]!"
             placeholder={t('manualDepositForm.remarksPlaceholder')}
           />
         </div>

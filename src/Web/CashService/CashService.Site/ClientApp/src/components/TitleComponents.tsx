@@ -42,7 +42,7 @@ export const MediumTitleComponent: React.FC<MediumTitleComponentProps> = ({
   return (
     text && (
       <h3
-        className={`${className} w-[100%] font-semibold text-[14px] text-[#094980] dark:text-[#459be5]`}
+        className={`${className} w-[100%] font-semibold text-[14px] text-[#094980] dark:text-[#459be5] capitalize`}
       >
         {text}
         {required && <span className="text-[#FF0000] dark:text-[#FF4F50] ml-[4px]">*</span>}
@@ -58,7 +58,7 @@ export const NormalTitleComponent: React.FC<MediumTitleComponentProps> = ({
   return (
     text && (
       <h3
-        className={`${className} py-[8px] text-[#094980] dark:text-[#459be5] font-semibold `}
+        className={`${className} py-[8px] text-[#094980] dark:text-[#459be5] font-semibold capitalize`}
       >
         {text}
       </h3>
@@ -73,7 +73,7 @@ export const LabelTitleComponent: React.FC<MediumTitleComponentProps> = ({
 }) => {
   return (
     text && (
-      <label className={`${className} block font-semibold text-[var(--titleComponent-label-color)] my-[4px] `}>
+      <label className={`${className} block font-semibold text-[var(--titleComponent-label-color)] my-[4px] capitalize`}>
         {text}
         {required && <span className="text-[#FF0000] dark:text-[#FF4F50] ml-[4px]">*</span>}
       </label>

@@ -2,9 +2,11 @@ using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLossDetail;
+using AlphaPlus.Reports.Features.WinLossDetail.Models;
 using AlphaPlus.Reports.Site.Features.Shared;
-using ONEbook.SpreadSheets;
+using AlphaPlus.Reports.Site.Features.WinLossDetail.Requests;
 using AlphaPlus.Shared.AppResources.Report;
+using ONEbook.SpreadSheets;
 using static ONEbook.SpreadSheets.Column;
 
 namespace AlphaPlus.Reports.Site.Features.WinLossDetail;

@@ -8,11 +8,12 @@ namespace AlphaPlus.CashService.Site.Features.Shared.Filters
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public class SiteAuthorizationFilterAttribute : TypeFilterAttribute
     {
-        public SiteAuthorizationFilterAttribute() : base(typeof(SiteAuthorizationFilter))
+        public SiteAuthorizationFilterAttribute(string pageAccessType) : base(typeof(SiteAuthorizationFilter))
         {
+            Arguments = [pageAccessType];
         }
 
-        public class SiteAuthorizationFilter(IUserSession userSession) : IAuthorizationFilter
+        public class SiteAuthorizationFilter(IUserSession userSession, string pageAccessType) : IAuthorizationFilter
         {
             public void OnAuthorization(AuthorizationFilterContext context)
             {
@@ -30,7 +31,7 @@ namespace AlphaPlus.CashService.Site.Features.Shared.Filters
                 }
 
                 return AppSettings.IsOfferedCashService(userSession.Site)
-                    && (!userSession.IsSubAcc || userSession.SubPageAccess.GetPermission(PageAccessType.CreateAccount));
+                    && (!userSession.IsSubAcc || userSession.SubPageAccess.GetPermission(pageAccessType));
             }
         }
     }

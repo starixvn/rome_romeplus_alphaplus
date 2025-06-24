@@ -12,6 +12,8 @@ public struct PageAccessType
     public const string ViewLog = "[G]";
     public const string ViewMemberInfo = "[H]";
     public const string ViewBetLists = "[L]";
+    public const string CashService = "[M]";
+    public const string CashPromotion = "[N]";
 
     private static Hashtable accessTypes = new Hashtable
     {
@@ -25,6 +27,7 @@ public struct PageAccessType
         [ViewBetLists] = false
     };
 
+
     public static Hashtable AccessTypes
     {
         get
@@ -32,6 +35,8 @@ public struct PageAccessType
             return accessTypes;
         }
     }
+
+    public static string[] CashServiceAccessTypes => [CashService, CashPromotion];
 
     public static bool IsValidType(string type)
     {

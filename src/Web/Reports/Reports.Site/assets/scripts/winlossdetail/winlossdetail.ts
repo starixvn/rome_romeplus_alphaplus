@@ -138,6 +138,7 @@ class WinLossDetailView extends BaseReportNew {
                     });
                     betListParams = this.changeObjectKey(betListParams, 'userSelectedProductIds', 'productIds');
                     betListParams = this.changeObjectKey(betListParams, 'userSelectedResourceIds', 'resourceIds');
+                    console.log(betListParams);
                     $this.attr('href', `${$('#hidden-betListUrl').val()}?${$.param(betListParams)}`);
                 } else {
                     e.preventDefault();
@@ -159,6 +160,18 @@ class WinLossDetailView extends BaseReportNew {
                 window.top['popupManager'].open(url, undefined, width, height, 'modal-mobile-friendly');
             });
         this.winLossDetailColumns.showHideColumns(this.$tblReport);
+        this.$tblReport
+            .find('.cash-fee-link')
+            .off()
+            .click((e) => {
+                $.blockUI();
+                const $this = $(e.target);
+                const visibleColumns = this.winLossDetailColumns.getShowColumns().join(',');
+                let cashFeeParams = $.extend({}, this.globalFormData, {
+                    visibleColumns
+                });
+                $this.attr('href', `${$('#hidden-cashFeeUrl').val()}?${$.param(cashFeeParams)}`);
+            });
     }
 
     getWinLossDetail() {
@@ -277,6 +290,8 @@ class WinLossDetailView extends BaseReportNew {
         this.tableSorter(this.$tblReport, undefined, () => {
             const dormantAccountsRow = this.$tblReport.find('.dormant-accounts-mark');
             dormantAccountsRow.length && this.$tblReport.append(dormantAccountsRow);
+            const cashFeeRow = this.$tblReport.find('.cash-fee-row');
+            cashFeeRow.length && this.$tblReport.append(cashFeeRow);
         });
     }
 

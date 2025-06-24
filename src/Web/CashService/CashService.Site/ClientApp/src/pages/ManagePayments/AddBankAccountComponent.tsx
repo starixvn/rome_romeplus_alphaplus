@@ -301,238 +301,238 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
   };
 
   return (
-    <div tabIndex={-1}>
-      
-        <div className="modal-content max-w-[1200px]">
-          <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
-            <BackButtonComponent onClick={onClose} />
-            <TitleComponent title={tManagePayments('bankManagement')} />
-          </div>
-          {isLoadingBanks ? (<LoadingFullComponent />) : (
-            <form
-              onSubmit={handleSubmit}
-              className="pb-[16px] pt-[10px]"
-            >
-              <div className="modal-body">
-                <ErrorMessageComponent message={error} />
-                <SuccessMessageComponent message={successMessage} />
-
-                <MediumTitleComponent text={tManagePayments('bankStatus')} />
-                <p className=" my-[8px]">{tManagePayments('bankNote1')}</p>
-                <div className="mb-[16px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]" role="group">
-                  <EnableButtonComponent isActive={status === 1} onClick={() => setStatus(1)} />
-                  <DisableButtonComponent isActive={status === 0} onClick={() => setStatus(0)} />
-                </div>
-
-                <MediumTitleComponent text={tManagePayments('accountInformation')} />
-                <div className="mb-[16px]">
-                  <LabelTitleComponent text={tManagePayments('bank')} required={true} />
-                  <div className="w-[470px]">
-                    <CustomDropdown
-                      options={banks.map((bank) => ({
-                        value: bank.id,
-                        label: tGlobal(bank.code),
-                        icon: <BankIcon code={bank.code} />,
-                      }))}
-                      onSelect={onBankChange}
-                      initialValue={selectedBank}
-                    />
-                  </div>
-                  <ValidateMessageComponent message={fieldErrors.selectedBank} />
-                </div>
-
-                <div className="">
-                  <MediumTitleComponent
-                    className="mb-[8px]"
-                    text={tManagePayments('transactionType')}
-                    required={true}
-                  />
-                  <div className="inline-block border-[1px] border-[var(--border-control)] rounded-[4px] px-[16px] pt-[5px] pb-[16px] bg-[#f8f8f8] dark:bg-[#2b2b2b] mb-[8px]">
-                    {hasDepositTransactionType(selectedBank, banks) && (
-                      <div className="mb-3">
-                        <LabelTitleComponent text={tManagePayments('depositType')} />
-                        <div className="flex gap-[10px]" role="group">
-                          {hasManualDepositTransactionType(selectedBank, banks) && (
-                            <button
-                              type="button"
-                              className={`block w-[230px] cursor-pointer h-[120px]  rounded-[4px] border-[1px] border-[var(--border-control)] outline-none ${selectedManualDeposit ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[#0b599c] bg-[#D3DFEC] dark:bg-[#303740] dark:text-[#459be5]'}`}
-                              onClick={toggleManualDeposit}
-                            >
-                              <span className="text-[110%] font-bold ">
-                                {tManagePayments('slipUpload')}
-                              </span>
-                              <br />
-                              <span className="">{tManagePayments('manualDeposit')}</span>
-                            </button>
-                          )}
-                          {hasAutoDepositTransactionType(selectedBank, banks) && (
-                            <button
-                              type="button"
-                              className={`block w-[230px] cursor-pointer h-[120px] rounded-[4px] border-[1px] border-[var(--border-control)] outline-none ${selectedAutoDeposit ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[#0b599c] bg-[#D3DFEC] dark:bg-[#303740] dark:text-[#459be5]'}`}
-                              onClick={toggleAutoDeposit}
-                            >
-                              <span className="text-[110%] font-bold">
-                                {selectedBankObj?.depositMatchingMode.sourceTypeName}
-                              </span>
-                              <br />
-                              <span className="">{tManagePayments('autoDeposit')}</span>
-                            </button>
-                          )}
-                        </div>
-                      </div>
-                    )}
-
-                    {hasWithdrawalTransactionType(selectedBank, banks) && (
-                      <div>
-                        <LabelTitleComponent text={tManagePayments('withdrawalType')} />
-                        <div className="btn-group" role="group">
-                          {hasManualWithdrawalTransactionType(selectedBank, banks) && (
-                            <button
-                              type="button"
-                              className={`block cursor-pointer w-[230px] h-[120px] rounded-[4px] border-[1px] border-[var(--border-control)] outline-none ${selectedManualWithdrawal ? 'text-[#ffffff] bg-[var(--button-background)]' : 'text-[#0b599c] bg-[#D3DFEC] dark:bg-[#303740] dark:text-[#459be5]'}`}
-                              onClick={toggleManualWithdrawal}
-                            >
-                              <span className="text-[110%] font-bold">
-                                {tManagePayments('manualWithdrawal')}
-                              </span>
-                            </button>
-                          )}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  <ValidateMessageComponent message={fieldErrors.selectedTransactionType} />
-                </div>
-
-                {(() => {
-                  const mappingTypes = selectedBankObj?.depositMatchingMode?.mappingTypes || [];
-                  return (
-                    selectedBank &&
-                    selectedBankObj &&
-                    mappingTypes.length > 0 &&
-                    selectedAutoDeposit && (
-                      <div className="mb-3">
-                        <LabelTitleComponent text={tManagePayments('depositMatchingMode')} />
-                        <div className="flex gap-[8px]" role="group">
-                          {mappingTypes.includes(1) && (
-                            <label
-                              className="flex items-center cursor-pointer capitalize"
-                              htmlFor="manualMatching1"
-                              onClick={() => setDepositMatchingMode(1)}
-                            >
-                              <input
-                                className="w-[20px] h-[20px] m-[10px] cursor-pointer"
-                                id="manualMatching1"
-                                type="radio"
-                                name="depositMatchingMode"
-                                value={depositMatchingMode}
-                                checked={depositMatchingMode === 1}
-                              />
-                              <span className=" leading-[14px]">{tManagePayments('decimal')}</span>
-                            </label>
-                          )}
-                          {mappingTypes.includes(2) && (
-                            <label
-                              className="flex items-center cursor-pointer capitalize"
-                              htmlFor="manualMatching2"
-                              onClick={() => setDepositMatchingMode(2)}
-                            >
-                              <input
-                                className="w-[20px] h-[20px] m-[10px] cursor-pointer"
-                                id="manualMatching2"
-                                type="radio"
-                                name="depositMatchingMode"
-                                value={depositMatchingMode}
-                                checked={depositMatchingMode === 2}
-                              />
-                              <span className=" leading-[14px]">
-                                {tManagePayments('bankMatching')}
-                              </span>
-                            </label>
-                          )}
-                        </div>
-                        <ValidateMessageComponent message={fieldErrors.selectedDepositMatchingMode} />
-                      </div>
-                    )
-                  );
-                })()}
-
-                <div className="flex flex-nowrap gap-[16px] mb-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
-                  <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                    <LabelTitleComponent text={tManagePayments('accountHolderName')} required={true} />
-                    <input
-                      type="text"
-                      className={`control-field ${fieldErrors.accountHolderName ? 'error' : ''}`}
-                      value={accountHolderName}
-                      onChange={onAccountHolderNameChange}
-                      maxLength={255}
-                    />
-                    <ValidateMessageComponent message={fieldErrors.accountHolderName} />
-                    <label className="block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold">
-                      {tManagePayments('provideFullName')}
-                    </label>
-                  </div>
-
-                  <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                    <LabelTitleComponent text={tManagePayments('bankAccountNumber')} required={true} />
-                    <input
-                      type="text"
-                      className={`control-field ${fieldErrors.accountNumber ? 'error' : ''}`}
-                      value={accountNumber}
-                      onChange={onAccountNumberChange}
-                      maxLength={100}
-                    />
-                    <ValidateMessageComponent message={fieldErrors.accountNumber} />
-                    <label className="block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold">
-                      {tGlobal('maxLength').replace('{0}', '100')}
-                    </label>
-                  </div>
-
-                  <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                    <LabelTitleComponent text={tManagePayments('accountNickname')} />
-                    <input
-                      type="text"
-                      className={`control-field`}
-                      value={accountNickname}
-                      onChange={(e) => setAccountNickname(e.target.value)}
-                      maxLength={255}
-                    />
-                    <label className="block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold">
-                      {tManagePayments('accountNicknameNote1')}
-                    </label>
-                  </div>
-                </div>
-
-                <MediumTitleComponent text={tManagePayments('promptPay')} />
-                <p className="pb-[8px] ">{tManagePayments('linkMobile')}</p>
-                <div className="mb-[16px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]" role="group">
-                  <ButtonOnComponent isActive={promptPay} onClick={() => setPromptPay(true)} />
-                  <ButtonOffComponent isActive={!promptPay} onClick={() => setPromptPay(false)} />
-                </div>
-
-                <MobileComponent
-                  isShow={promptPay}
-                  label={tManagePayments('mobile')}
-                  countryCode={countryCode}
-                  mobile={mobile}
-                  fieldErrors={fieldErrors}
-                  onCountryCodeChange={onCountryCodeChange}
-                  onMobileChange={onMobileChange}
-                  placeholder={tManagePayments('enterMobileNumber')}
-                />
-              </div>
-              <div className="flex justify-start py-[8px] mt-[8px] gap-[8px]">
-                <ButtonCancelComponent text={tGlobal('cancel')} onClick={onClose} />
-                <ButtonApplyComponent
-                  text={tGlobal(loading ? 'saving' : 'save')}
-                  onClick={() => handleSubmit}
-                  disabled={loading || isBlockAction}
-                />
-              </div>
-            </form>
-          )}
+    <div tabIndex={-1}>      
+      <div className="modal-content max-w-[1200px]">
+        <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
+          <BackButtonComponent onClick={onClose} />
+          <TitleComponent title={tManagePayments('bankManagement')} />
         </div>
-     
+        {isLoadingBanks ? (<LoadingFullComponent />) : (
+          <form
+            onSubmit={handleSubmit}
+            className="pb-[16px]"
+          >
+            <div className="modal-body">
+              <ErrorMessageComponent className='mb-[16px] max-[768px]:mb-[0]' message={error} />
+              <SuccessMessageComponent className='mb-[16px] max-[768px]:mb-[0]' message={successMessage} />
+
+              <MediumTitleComponent text={tManagePayments('bankStatus')} />
+              <p className=" my-[8px]">{tManagePayments('bankNote1')}</p>
+              <div className="mb-[16px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]" role="group">
+                <EnableButtonComponent isActive={status === 1} onClick={() => setStatus(1)} />
+                <DisableButtonComponent isActive={status === 0} onClick={() => setStatus(0)} />
+              </div>
+              <MediumTitleComponent text={tManagePayments('accountInformation')} />
+              <div className="mb-[16px]">
+                <LabelTitleComponent text={tManagePayments('bank')} required={true} />
+                <div className="w-[470px]">
+                  <CustomDropdown
+                    options={banks.map((bank) => ({
+                      value: bank.id,
+                      label: tGlobal(bank.code),
+                      icon: <BankIcon code={bank.code} />,
+                    }))}
+                    onSelect={onBankChange}
+                    initialValue={selectedBank}
+                  />
+                </div>
+                <ValidateMessageComponent message={fieldErrors.selectedBank} />
+              </div>
+              <div>
+                <MediumTitleComponent
+                  className="mb-[8px]"
+                  text={tManagePayments('transactionType')}
+                  required={true}
+                />
+                <div className="inline-block border-[1px] border-[var(--border-control)] rounded-[4px] px-[10px] pt-[5px] pb-[10px] bg-[#f8f8f8] dark:bg-[#2b2b2b] mb-[8px]">
+                  {hasDepositTransactionType(selectedBank, banks) && (
+                    <div className="mb-3">
+                      <LabelTitleComponent text={tManagePayments('depositType')} />
+                      <div className="flex gap-[10px]" role="group">
+                        {hasManualDepositTransactionType(selectedBank, banks) && (
+                          <button
+                            type="button"
+                            className={`transaction-box ${selectedManualDeposit ? 'select' : ''}`}
+                            onClick={toggleManualDeposit}
+                          >
+                            <span className='check-box'></span>
+                            <span className="text-[110%] font-bold ">
+                              {tManagePayments('slipUpload')}
+                            </span>
+                            <br />
+                            <span className="">{tManagePayments('manualDeposit')}</span>
+                          </button>
+                        )}
+                        {hasAutoDepositTransactionType(selectedBank, banks) && (
+                          <button
+                            type="button"
+                            className={`transaction-box ${selectedAutoDeposit ? 'select' : ''}`}
+                            onClick={toggleAutoDeposit}
+                          >
+                            <span className='check-box'></span>
+                            <span className="text-[110%] font-bold">
+                              {selectedBankObj?.depositMatchingMode.sourceTypeName}
+                            </span>
+                            <br />
+                            <span className="">{tManagePayments('autoDeposit')}</span>
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {hasWithdrawalTransactionType(selectedBank, banks) && (
+                    <div>
+                      <LabelTitleComponent text={tManagePayments('withdrawalType')} />
+                      <div className="btn-group" role="group">
+                        {hasManualWithdrawalTransactionType(selectedBank, banks) && (
+                          <button
+                            type="button"
+                            className={`transaction-box ${selectedManualWithdrawal ? 'select' : ''}`}
+                            onClick={toggleManualWithdrawal}
+                          >
+                            <span className='check-box'></span>
+                            <span className="text-[110%] font-bold">
+                              {tManagePayments('manualWithdrawal')}
+                            </span>
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <ValidateMessageComponent message={fieldErrors.selectedTransactionType} />
+              </div>
+
+              {(() => {
+                const mappingTypes = selectedBankObj?.depositMatchingMode?.mappingTypes || [];
+                return (
+                  selectedBank &&
+                  selectedBankObj &&
+                  mappingTypes.length > 0 &&
+                  selectedAutoDeposit && (
+                    <div className="mb-3">
+                      <LabelTitleComponent text={tManagePayments('depositMatchingMode')} />
+                      <div className="flex gap-[8px]" role="group">
+                        {mappingTypes.includes(1) && (
+                          <label
+                            className="flex items-center cursor-pointer capitalize"
+                            htmlFor="manualMatching1"
+                            onClick={() => setDepositMatchingMode(1)}
+                          >
+                            <input
+                              className="w-[20px] h-[20px] m-[10px] cursor-pointer"
+                              id="manualMatching1"
+                              type="radio"
+                              name="depositMatchingMode"
+                              value={depositMatchingMode}
+                              checked={depositMatchingMode === 1}
+                            />
+                            <span className=" leading-[14px]">{tManagePayments('decimal')}</span>
+                          </label>
+                        )}
+                        {mappingTypes.includes(2) && (
+                          <label
+                            className="flex items-center cursor-pointer capitalize"
+                            htmlFor="manualMatching2"
+                            onClick={() => setDepositMatchingMode(2)}
+                          >
+                            <input
+                              className="w-[20px] h-[20px] m-[10px] cursor-pointer"
+                              id="manualMatching2"
+                              type="radio"
+                              name="depositMatchingMode"
+                              value={depositMatchingMode}
+                              checked={depositMatchingMode === 2}
+                            />
+                            <span className=" leading-[14px]">
+                              {tManagePayments('bankMatching')}
+                            </span>
+                          </label>
+                        )}
+                      </div>
+                      <ValidateMessageComponent message={fieldErrors.selectedDepositMatchingMode} />
+                    </div>
+                  )
+                );
+              })()}
+
+              <div className="flex flex-nowrap gap-[16px] mb-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
+                <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
+                  <LabelTitleComponent text={tManagePayments('accountHolderName')} required={true} />
+                  <input
+                    type="text"
+                    className={`control-field ${fieldErrors.accountHolderName ? 'error' : ''}`}
+                    value={accountHolderName}
+                    onChange={onAccountHolderNameChange}
+                    maxLength={255}
+                  />
+                  <ValidateMessageComponent message={fieldErrors.accountHolderName} />
+                  <label className="block mt-[4px] text-[#828282] text-[90%]">
+                    {tManagePayments('provideFullName')}
+                  </label>
+                </div>
+
+                <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
+                  <LabelTitleComponent text={tManagePayments('bankAccountNumber')} required={true} />
+                  <input
+                    type="text"
+                    className={`control-field ${fieldErrors.accountNumber ? 'error' : ''}`}
+                    value={accountNumber}
+                    onChange={onAccountNumberChange}
+                    maxLength={100}
+                  />
+                  <ValidateMessageComponent message={fieldErrors.accountNumber} />
+                  <label className="block mt-[4px] text-[#828282] text-[90%]">
+                    {tGlobal('maxLength').replace('{0}', '100')}
+                  </label>
+                </div>
+
+                <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
+                  <LabelTitleComponent text={tManagePayments('accountNickname')} />
+                  <input
+                    type="text"
+                    className={`control-field`}
+                    value={accountNickname}
+                    onChange={(e) => setAccountNickname(e.target.value)}
+                    maxLength={255}
+                  />
+                  <label className="block mt-[4px] text-[#828282] text-[90%]">
+                    {tManagePayments('accountNicknameNote1')}
+                  </label>
+                </div>
+              </div>
+
+              <MediumTitleComponent text={tManagePayments('promptPay')} />
+              <p className="pb-[8px] ">{tManagePayments('linkMobile')}</p>
+              <div className="mb-[10px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]" role="group">
+                <ButtonOnComponent isActive={promptPay} onClick={() => setPromptPay(true)} />
+                <ButtonOffComponent isActive={!promptPay} onClick={() => setPromptPay(false)} />
+              </div>
+              
+              <MobileComponent
+                isShow={promptPay}
+                label={tManagePayments('mobile')}
+                countryCode={countryCode}
+                mobile={mobile}
+                fieldErrors={fieldErrors}
+                onCountryCodeChange={onCountryCodeChange}
+                onMobileChange={onMobileChange}
+                placeholder={tManagePayments('enterMobileNumber')}
+              />
+            </div>
+            <div className="flex justify-start py-[8px] mt-[8px] gap-[8px]">
+              <ButtonCancelComponent text={tGlobal('cancel')} onClick={onClose} />
+              <ButtonApplyComponent
+                text={tGlobal(loading ? 'saving' : 'save')}
+                  type='submit'
+                onClick={() => handleSubmit}
+                disabled={loading || isBlockAction}
+              />
+            </div>
+          </form>
+        )}
+      </div>     
     </div>
   );
 };

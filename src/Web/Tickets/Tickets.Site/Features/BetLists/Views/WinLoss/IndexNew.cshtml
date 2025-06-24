@@ -14,6 +14,7 @@
 }
 @section Scripts {
     <script type="text/javascript">
+        var previousSelectedProductIds = "@Model.ProductIds";
         var productList = $.parseJSON('@Html.Raw(JsonSerializer.Serialize(Model.ProductViewModel.Products))');
         var productDetailList = $.parseJSON('@Html.Raw(JsonSerializer.Serialize(Model.ProductViewModel.ProductDetails))');
     </script>

@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using AgencyCash.API.Payments.Models;
 using AgencyCash.API.Payments.Requests;
 using AgencyCash.API.Payments.Services;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AgencyCash.API.Payments;
 
+[ExcludeFromCodeCoverage]
 public static class PaymentsEndpoints
 {
     public static void MapPaymentsEndpoints(this WebApplication app)
@@ -24,6 +26,10 @@ public static class PaymentsEndpoints
             .MapPost("/auto", AutoDeposit)
             .AddEndpointFilter<ModelValidationFilter<AutoDepositRequest>>()
             .Produces<PaymentResult>();
+        deposit
+            .MapPut("/{transId}/status", UpdateDepositStatus)
+            .AddEndpointFilter<ModelValidationFilter<UpdateTransactionStatusRequest>>()
+            .Produces<Result>();
 
         var withdrawal = app.MapGroup("/api/withdrawal").WithTags("Withdrawal");
         withdrawal
@@ -34,10 +40,8 @@ public static class PaymentsEndpoints
             .MapGet("/limit", GetWithdrawalLimitAmount)
             .AddEndpointFilter<ModelValidationFilter<GetWithdrawalLimitRequest>>()
             .Produces<WithdrawalLimitResult>();
-
-        var transactions = app.MapGroup("/api/transactions").WithTags("Transactions");
-        transactions
-            .MapPut("/{transId}/status", UpdateTransactionStatus)
+        withdrawal
+            .MapPut("/{transId}/status", UpdateWithdrawalStatus)
             .AddEndpointFilter<ModelValidationFilter<UpdateTransactionStatusRequest>>()
             .Produces<Result>();
     }
@@ -46,7 +50,7 @@ public static class PaymentsEndpoints
     {
         if (request == null)
         {
-            return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
+            return BadRequest(nameof(GetDepositLimitRequest), $"{nameof(request)} cannot be null.");
         }
 
         return TypedResults.Ok(await depositService.GetLimit(request));
@@ -56,7 +60,7 @@ public static class PaymentsEndpoints
     {
         if (request == null)
         {
-            return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
+            return BadRequest(nameof(ManualDepositRequest), $"{nameof(request)} cannot be null.");
         }
 
         var paySlipValidationResult = request.ValidatePaySlip();
@@ -72,17 +76,36 @@ public static class PaymentsEndpoints
     {
         if (request == null)
         {
-            return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
+            return BadRequest(nameof(AutoDepositRequest), $"{nameof(request)} cannot be null.");
         }
 
         return TypedResults.Ok(await depositService.Auto(request));
+    }
+
+    private static async Task<IResult> UpdateDepositStatus(
+        long transId,
+        [FromBody]
+        UpdateTransactionStatusRequest request,
+        IDepositService depositService)
+    {
+        if (request == null)
+        {
+            return BadRequest(nameof(UpdateTransactionStatusRequest), $"{nameof(request)} cannot be null.");
+        }
+
+        if (transId <= 0)
+        {
+            return BadRequest(nameof(transId), $"{nameof(transId)} must be a positive number.");
+        }
+
+        return TypedResults.Ok(await depositService.UpdateTransactionStatus(transId, request));
     }
 
     private static async Task<IResult> ManualWithdrawal([FromBody] ManualWithdrawalRequest request, IWithdrawalService withdrawalService)
     {
         if (request is null)
         {
-            return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
+            return BadRequest(nameof(ManualWithdrawalRequest), $"{nameof(request)} cannot be null.");
         }
 
         var result = await withdrawalService.CreateManualWithdrawal(request);
@@ -93,19 +116,21 @@ public static class PaymentsEndpoints
     {
         if (request is null)
         {
-            return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
+            return BadRequest(nameof(GetWithdrawalLimitRequest), $"{nameof(request)} cannot be null.");
         }
 
         return TypedResults.Ok(await withdrawalService.GetWithdrawalLimitAmount(request));
     }
 
-    private static async Task<IResult> UpdateTransactionStatus(
+    private static async Task<IResult> UpdateWithdrawalStatus(
         long transId,
-        UpdateTransactionStatusRequest request)
+        [FromBody]
+        UpdateTransactionStatusRequest request,
+        IWithdrawalService withdrawalService)
     {
         if (request == null)
         {
-            return BadRequest(nameof(request), $"{nameof(request)} cannot be null.");
+            return BadRequest(nameof(UpdateTransactionStatusRequest), $"{nameof(request)} cannot be null.");
         }
 
         if (transId <= 0)
@@ -113,7 +138,7 @@ public static class PaymentsEndpoints
             return BadRequest(nameof(transId), $"{nameof(transId)} must be a positive number.");
         }
 
-        return TypedResults.Ok(await Task.FromResult(new Result(0, "Transaction status updated successfully.")));
+        return TypedResults.Ok(await withdrawalService.UpdateTransactionStatus(transId, request));
     }
 
     private static IResult BadRequest(string key, string error)

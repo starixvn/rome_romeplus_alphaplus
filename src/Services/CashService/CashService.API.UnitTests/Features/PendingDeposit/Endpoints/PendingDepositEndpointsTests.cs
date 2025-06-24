@@ -2,13 +2,14 @@ using AlphaPlus.CashService.API.Features.PendingDeposit.Models;
 using AlphaPlus.CashService.API.Features.PendingDeposit.Services;
 using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Transactions.Enum;
-using AlphaPlus.CashService.API.Features.Transactions.Models;
 using Microsoft.AspNetCore.Http;
 using Moq;
 using Xunit;
 
 namespace CashService.API.UnitTests.Features.PendingDeposit.Endpoints
 {
+    using AlphaPlus.CashService.API.Features.PendingDeposit.Endpoints;
+
     public class PendingDepositEndpointsTests
     {
         private readonly Mock<IPendingDepositService> mockPendingDepositService = new();
@@ -24,7 +25,7 @@ namespace CashService.API.UnitTests.Features.PendingDeposit.Endpoints
             mockPendingDepositService.Setup(s => s.GetLimitAmtDepositAsync(agentId, custId, custDbGroupId)).ReturnsAsync(expectedCreditAmt);
 
             // Act
-            var result = await AlphaPlus.CashService.API.Features.PendingDeposit.Endpoints.PendingDepositEndpoints.GetLimitAmtDepositAsyncHandler(agentId, custId, custDbGroupId, mockPendingDepositService.Object);
+            var result = await PendingDepositEndpoints.GetLimitAmtDepositAsyncHandler(agentId, custId, custDbGroupId, mockPendingDepositService.Object);
 
             // Assert
             var okResult = Assert.IsType<Microsoft.AspNetCore.Http.HttpResults.Ok<decimal>>(result);
@@ -42,7 +43,7 @@ namespace CashService.API.UnitTests.Features.PendingDeposit.Endpoints
             mockPendingDepositService.Setup(s => s.GetMemberSettingDepositAsync(custId, custDbGroupId)).ReturnsAsync(expectedSetting);
 
             // Act
-            var result = await AlphaPlus.CashService.API.Features.PendingDeposit.Endpoints.PendingDepositEndpoints.GetMemberSettingDepositAsyncHandler(custId, custDbGroupId, mockPendingDepositService.Object);
+            var result = await PendingDepositEndpoints.GetMemberSettingDepositAsyncHandler(custId, custDbGroupId, mockPendingDepositService.Object);
 
             // Assert
             var okResult = Assert.IsType<Microsoft.AspNetCore.Http.HttpResults.Ok<MemberSettingDeposit>>(result);
@@ -59,7 +60,7 @@ namespace CashService.API.UnitTests.Features.PendingDeposit.Endpoints
             mockPendingDepositService.Setup(s => s.AddManualDepositAsync(param)).ReturnsAsync(expectedResultModel);
 
             // Act
-            var result = await AlphaPlus.CashService.API.Features.PendingDeposit.Endpoints.PendingDepositEndpoints.CreateManualDepositAsyncHandler(param, mockPendingDepositService.Object);
+            var result = await PendingDepositEndpoints.CreateManualDepositAsyncHandler(param, mockPendingDepositService.Object);
 
             // Assert
             var okResult = Assert.IsType<Microsoft.AspNetCore.Http.HttpResults.Ok<ResultModel>>(result);
@@ -71,36 +72,36 @@ namespace CashService.API.UnitTests.Features.PendingDeposit.Endpoints
         public async Task ProcessApproveDepositAsync_ShouldSetStatusToCompletedAndReturnOkResult()
         {
             // Arrange
-            var model = new ProcessTransactionModel { TransId = "123", Amount = 50 };
+            var model = new ProcessDepositTransaction { TransId = 123, NewAmount = 50 };
             var expectedResultModel = new ResultModel { Code = 0, Message = "Approved" };
-            mockPendingDepositService.Setup(s => s.ProcessDepositAsync(It.Is<ProcessTransactionModel>(m => m.StatusId == (int)TransactionStatus.Completed && m.TransId == model.TransId))).ReturnsAsync(expectedResultModel);
+            mockPendingDepositService.Setup(s => s.ProcessDepositAsync(It.Is<ProcessDepositTransaction>(m => m.StatusId == (int)TransactionStatus.Completed && m.TransId == model.TransId))).ReturnsAsync(expectedResultModel);
 
             // Act
-            var result = await AlphaPlus.CashService.API.Features.PendingDeposit.Endpoints.PendingDepositEndpoints.ProcessApproveDepositAsyncHandler(model, mockPendingDepositService.Object);
+            var result = await PendingDepositEndpoints.ProcessApproveDepositAsyncHandler(model, mockPendingDepositService.Object);
 
             // Assert
             var okResult = Assert.IsType<Microsoft.AspNetCore.Http.HttpResults.Ok<ResultModel>>(result);
             Assert.Equal(expectedResultModel, okResult.Value);
             Assert.Equal((int)TransactionStatus.Completed, model.StatusId); // Verify StatusId was set
-            mockPendingDepositService.Verify(s => s.ProcessDepositAsync(It.Is<ProcessTransactionModel>(m => m.StatusId == (int)TransactionStatus.Completed && m.TransId == model.TransId)), Times.Once);
+            mockPendingDepositService.Verify(s => s.ProcessDepositAsync(It.Is<ProcessDepositTransaction>(m => m.StatusId == (int)TransactionStatus.Completed && m.TransId == model.TransId)), Times.Once);
         }
 
         [Fact]
         public async Task ProcessRejectDepositAsync_ShouldSetStatusToRejectedAndReturnOkResult()
         {
             // Arrange
-            var model = new ProcessTransactionModel { TransId = "456", Amount = 75 };
+            var model = new ProcessDepositTransaction { TransId = 456, NewAmount = 75 };
             var expectedResultModel = new ResultModel { Code = 0, Message = "Rejected" };
-            mockPendingDepositService.Setup(s => s.ProcessDepositAsync(It.Is<ProcessTransactionModel>(m => m.StatusId == (int)TransactionStatus.Rejected && m.TransId == model.TransId))).ReturnsAsync(expectedResultModel);
+            mockPendingDepositService.Setup(s => s.ProcessDepositAsync(It.Is<ProcessDepositTransaction>(m => m.StatusId == (int)TransactionStatus.Rejected && m.TransId == model.TransId))).ReturnsAsync(expectedResultModel);
 
             // Act
-            var result = await AlphaPlus.CashService.API.Features.PendingDeposit.Endpoints.PendingDepositEndpoints.ProcessRejectDepositAsyncHandler(model, mockPendingDepositService.Object);
+            var result = await PendingDepositEndpoints.ProcessRejectDepositAsyncHandler(model, mockPendingDepositService.Object);
 
             // Assert
             var okResult = Assert.IsType<Microsoft.AspNetCore.Http.HttpResults.Ok<ResultModel>>(result);
             Assert.Equal(expectedResultModel, okResult.Value);
-            Assert.Equal((int)TransactionStatus.Rejected, model.StatusId); // Verify StatusId was set
-            mockPendingDepositService.Verify(s => s.ProcessDepositAsync(It.Is<ProcessTransactionModel>(m => m.StatusId == (int)TransactionStatus.Rejected && m.TransId == model.TransId)), Times.Once);
+            Assert.Equal((int)TransactionStatus.Rejected, model.StatusId);
+            mockPendingDepositService.Verify(s => s.ProcessDepositAsync(It.Is<ProcessDepositTransaction>(m => m.StatusId == (int)TransactionStatus.Rejected && m.TransId == model.TransId)), Times.Once);
         }
     }
 }
@@ -127,14 +128,14 @@ namespace AlphaPlus.CashService.API.Features.PendingDeposit.Endpoints
             return Results.Ok(result);
         }
 
-        public static async Task<IResult> ProcessApproveDepositAsyncHandler(ProcessTransactionModel model, IPendingDepositService service)
+        public static async Task<IResult> ProcessApproveDepositAsyncHandler(ProcessDepositTransaction model, IPendingDepositService service)
         {
             model.StatusId = (int)TransactionStatus.Completed;
             var result = await service.ProcessDepositAsync(model);
             return Results.Ok(result);
         }
 
-        public static async Task<IResult> ProcessRejectDepositAsyncHandler(ProcessTransactionModel model, IPendingDepositService service)
+        public static async Task<IResult> ProcessRejectDepositAsyncHandler(ProcessDepositTransaction model, IPendingDepositService service)
         {
             model.StatusId = (int)TransactionStatus.Rejected;
             var result = await service.ProcessDepositAsync(model);

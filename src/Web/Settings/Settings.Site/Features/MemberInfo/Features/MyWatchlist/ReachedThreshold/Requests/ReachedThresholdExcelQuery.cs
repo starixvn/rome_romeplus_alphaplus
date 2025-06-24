@@ -1,15 +1,9 @@
-﻿using AlphaPlus.Settings.MemberInfo.Domain.Models;
+﻿using AlphaPlus.Core.Models;
 using MediatR;
-using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.Requests
 {
     public class ReachedThresholdExcelQuery : ReachedThresholdQueryBase, IRequest<ExcelFileViewModel>
     {
-        public ReachedThresholdExcelQuery() : this(null) { }
-
-        public ReachedThresholdExcelQuery(IUser viewer) : base(viewer)
-        {
-        }
     }
 }

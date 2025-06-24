@@ -1,8 +1,8 @@
-using AlphaPlus.CashService.API.Features.Transactions.Criteria;
-using System.Numerics;
 using Xunit;
 
 namespace CashService.API.UnitTests.Features.Transactions.Criteria;
+
+using AlphaPlus.CashService.API.Features.PendingWithdrawal.Criteria;
 
 public class ProcessTransactionCommandTests
 {
@@ -10,10 +10,10 @@ public class ProcessTransactionCommandTests
     public void Constructor_ShouldInitializePropertiesToDefaultValues()
     {
         // Act
-        var command = new ProcessTransactionCommand();
+        var command = new ProcessWithdrawalTransactionCommand();
 
         // Assert
-        Assert.Equal(BigInteger.Zero, command.TransId);
+        Assert.Equal(0, command.TransId);
         Assert.Null(command.PaymentFrom);
         Assert.Null(command.Remark);
         Assert.Null(command.Payslip);
@@ -26,8 +26,8 @@ public class ProcessTransactionCommandTests
     public void Properties_ShouldSetAndGetCorrectly()
     {
         // Arrange
-        var command = new ProcessTransactionCommand();
-        var transId = new BigInteger(1234567890123456789);
+        var command = new ProcessWithdrawalTransactionCommand();
+        var transId = 1234567890123456789;
         var paymentFrom = "Online Banking";
         var remark = "Processing transaction";
         var payslip = new byte[] { 1, 2, 3 };
@@ -58,30 +58,35 @@ public class ProcessTransactionCommandTests
     public void GetSettingKey_ShouldReturnEmptyString()
     {
         // Arrange
-        var command = new ProcessTransactionCommand();
+        var command = new ProcessWithdrawalTransactionCommand();
 
         // Act
         var settingKey = command.GetSettingKey();
 
         // Assert
-        Assert.Equal(string.Empty, settingKey);
+        Assert.Equal("SiteDb_0_Age_CashWithdrawal_UpdateTransStatus", settingKey);
     }
 
-    [Fact]
-    public void IsValid_ShouldThrowNotImplementedException()
+    [Theory]
+    [InlineData(1000, 1, 1, "abc", true)]
+    [InlineData(0, 1, 1, "abc", false)]
+    [InlineData(1000, 0, 1, "abc", false)]
+    [InlineData(1000, 1, 0, "abc", false)]
+    [InlineData(1000, 1, 1, "", true)]
+    public void IsValid_Returns_ExpectedResult(long transId, int agentId, int custId, string paymentFrom, bool result)
     {
         // Arrange
-        var command = new ProcessTransactionCommand();
+        var command = new ProcessWithdrawalTransactionCommand { TransId = transId, AgentId = agentId, CustId = custId, PaymentFrom = paymentFrom };
 
         // Act & Assert
-        Assert.Throws<System.NotImplementedException>(() => command.IsValid());
+        Assert.Equal(result, command.IsValid());
     }
 
     [Fact]
     public void Payslip_WhenSetToNull_ShouldBeNull()
     {
         // Arrange
-        var command = new ProcessTransactionCommand
+        var command = new ProcessWithdrawalTransactionCommand
         {
             // Act
             Payslip = null

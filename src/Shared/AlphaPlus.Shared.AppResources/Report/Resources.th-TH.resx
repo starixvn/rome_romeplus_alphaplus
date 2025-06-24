@@ -1167,4 +1167,13 @@
   <data name="RewardCurrency" xml:space="preserve">
     <value>สกุลเงินรางวัล</value>
   </data>
+  <data name="Fee" xml:space="preserve">
+    <value>ค่าธรรมเนียม</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>จำนวน</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>ประเภท</value>
+  </data>
 </root>

@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { useDebouncedCallback } from '../../../hooks/useDebouncedCallback';
 import ManualAddDepositForm from './components/ManualAddDepositForm';
-import Filter from './components/Filter';
+import Filter, { TimeFilterOptions } from './components/Filter';
 import DataGrid from './components/DataGrid';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../../i18n/i18n-pendingDeposit';
@@ -10,30 +10,28 @@ import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
 import '../../../styles/common.css';
 import '../../../styles/global.scss';
 import { BankInfo } from '../../../services/interfaces/Transactions/BankInfo';
-import { calculateDateRange, TransactionType } from '../../../common/commonFunctions';
+import { calculateDateRange, TransactionType } from '../../../utils/commonFunctions';
 import { transactionAPI } from '../../../services/transactionsHistoryAPI';
 import {
   TransactionsHistoryParams,
   TransactionsHistoryResponse,
 } from '../../../services/interfaces/Transactions/TransactionHistory';
 import TitleComponent from '../../../components/TitleComponents';
-import { ButtonOutlineComponent } from '../../../components/ButtonComponents';
+import { ButtonFullComponent } from '../../../components/ButtonComponents';
 import { LoadingFullComponent } from '../../../components/LoadingComponent';
 
-const PendingDeposit: React.FC = () => {
-  const { t } = useTranslation('pendingDeposit');
-  useCookieLanguage(i18n);
-  const [recentDeposits, setRecentDeposits] = useState<string>('All');
-  const [cashAgentOptions, setCashAgentOptions] = useState<BankInfo[]>([]);
-  const [uniquePaymentToOptions, setUniquePaymentToOptions] = useState<string[]>([]);
-  const [cashAgentTo, setCashAgentTo] = useState<string>('');
-  const [searchTerm, setSearchTerm] = useState<string>('');
+const useDeposits = (recentDeposits: string) => {
   const [deposits, setDeposits] = useState<TransactionsHistoryResponse>({
     items: [],
     totalCount: 0,
   });
-  const [showManualAddDepositForm, setShowManualAddDepositForm] = useState<boolean>(false);
+  const [uniquePaymentToOptions, setUniquePaymentToOptions] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const filterPaymentTo = (deposits: TransactionsHistoryResponse | null): string[] => {
+    if (!deposits?.items) return [];
+    return [...new Set(deposits.items.map((deposit) => deposit.paymentTo))];
+  };
 
   const fetchDeposits = async () => {
     setIsLoading(true);
@@ -58,17 +56,15 @@ const PendingDeposit: React.FC = () => {
     }
   };
 
-  const filterPaymentTo = (deposits: TransactionsHistoryResponse | null) => {
-    if (!deposits || !deposits.items) {
-      return [];
-    }
-    const uniquePaymentToOptions = [...new Set(deposits.items.map((deposit) => deposit.paymentTo))];
-    return uniquePaymentToOptions;
-  };
-
   useEffect(() => {
     fetchDeposits();
   }, [recentDeposits]);
+
+  return { deposits, uniquePaymentToOptions, isLoading, fetchDeposits };
+};
+
+const useBankInfo = () => {
+  const [cashAgentOptions, setCashAgentOptions] = useState<BankInfo[]>([]);
 
   useEffect(() => {
     const fetchBankInfo = async () => {
@@ -82,16 +78,11 @@ const PendingDeposit: React.FC = () => {
     fetchBankInfo();
   }, []);
 
-  const handleAddManualDeposit = () => {
-    setShowManualAddDepositForm(true);
-  };
+  return { cashAgentOptions };
+};
 
-  const handleCloseManualDepositForm = (isSuccess: boolean) => {
-    setShowManualAddDepositForm(false);
-    if (isSuccess) {
-      fetchDeposits();
-    }
-  };
+const useSearch = () => {
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
   const debouncedSetSearchTerm = useDebouncedCallback((value: string) => {
     setSearchTerm(value);
@@ -102,12 +93,38 @@ const PendingDeposit: React.FC = () => {
     debouncedSetSearchTerm(value);
   };
 
+  return { searchTerm, setSearchTerm, handleSearchChange };
+};
+
+const PendingDeposit: React.FC = () => {
+  const { t } = useTranslation('pendingDeposit');
+  useCookieLanguage(i18n);
+
+  const [showManualAddDepositForm, setShowManualAddDepositForm] = useState<boolean>(false);
+  const [recentDeposits, setRecentDeposits] = useState<TimeFilterOptions>(TimeFilterOptions.All);
+  const [cashAgentTo, setCashAgentTo] = useState<string>('');
+
+  const { deposits, uniquePaymentToOptions, isLoading, fetchDeposits } =
+    useDeposits(recentDeposits);
+  const { cashAgentOptions } = useBankInfo();
+  const { searchTerm, handleSearchChange } = useSearch();
+
+  const handleAddManualDeposit = () => setShowManualAddDepositForm(true);
+
+  const handleCloseManualDepositForm = (isSuccess: boolean) => {
+    setShowManualAddDepositForm(false);
+    if (isSuccess) {
+      fetchDeposits();
+    }
+  };
+
   const filteredDeposits = useMemo(() => {
     if (!cashAgentTo && !searchTerm.trim()) {
       return deposits?.items || [];
     }
 
     let result = deposits?.items || [];
+
     if (cashAgentTo) {
       result = result.filter((deposit) => deposit.paymentTo.toString() === cashAgentTo);
     }
@@ -132,11 +149,11 @@ const PendingDeposit: React.FC = () => {
           onClose={() => handleCloseManualDepositForm(false)}
         />
       ) : (
-        <div className=" py-[12px] flex h-full flex-col">
+        <div className="flex h-full flex-col">
           <TitleComponent title={t('pendingDeposit')} />
           <div className="mb-[8px]">
-            <ButtonOutlineComponent
-              text={`+ ${t('addManualDeposit')}`}
+            <ButtonFullComponent
+              text={`${t('addManualDeposit')}`}
               onClick={handleAddManualDeposit}
               className="min-w-[183px] [&>*]:min-w-[183px] [&>*]:inline-block"
             />
@@ -152,11 +169,11 @@ const PendingDeposit: React.FC = () => {
           />
 
           {isLoading ? (
-            
+            <div className="flex items-center justify-center h-full">
               <LoadingFullComponent />
-             
+            </div>
           ) : (
-            <DataGrid deposits={filteredDeposits}/>
+            <DataGrid deposits={filteredDeposits} reloadGrid={fetchDeposits} />
           )}
         </div>
       )}

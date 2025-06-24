@@ -1,23 +1,24 @@
 namespace AlphaPlus.CashService.Site.Features.Transactions;
 
-using AlphaPlus.CashService.Site.Features.Transactions.Services;
+using AlphaPlus.Shared.AppResources.CashServices;
 using Core.Models;
 using Helpers;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 using Models;
-using Newtonsoft.Json;
+using Services;
 using Shared;
 using Shared.Filters;
 using Shared.Models;
 
-[SiteAuthorizationFilter]
+[SiteAuthorizationFilter(PageAccessType.CashService)]
 public class TransactionsController(
     HttpClientHelper httpClientHelper,
     IUserSession userSession,
     IHttpContextAccessor httpContextAccessor,
-    IAntiforgery antiforgery,
-    ITransactionHistoryWorkbook transactionHistoryWorkbook)
+    ITransactionHistoryWorkbook transactionHistoryWorkbook,
+    IAntiforgery antiforgery
+    )
     : SiteBaseController(userSession, antiforgery)
 {
     private readonly int agentId = userSession.CustId;
@@ -53,10 +54,10 @@ public class TransactionsController(
             TransactionType = param.TransactionType,
             SiteDbGroupId = siteDbGroupId,
             CustId = agentId,
-            Account = string.Empty
+            Account = param.Account
         };
+
         var response = await httpClientHelper.GetAsync<TransactionResponse>("/transactions/history", ObjectConverter.ToDictionary(filter));
-        Console.WriteLine(JsonConvert.SerializeObject(response.Items));
         var excelFileViewModel = transactionHistoryWorkbook.BuildExcelFile(param, response.Items);
         return File(excelFileViewModel.Content, excelFileViewModel.ContentType, excelFileViewModel.Name);
     }
@@ -124,6 +125,10 @@ public class TransactionsController(
         request.CustDbGroupId = custDbGroupId;
         request.PaySlip = request.Image != null ? await FileHelper.CompressAndConvertToBase64Async(request.Image) : null;
         var result = await httpClientHelper.PostAsync<AddTransactionParams, ResultModel>("/api/deposit/create", request);
+        if (result.Code != 0)
+        {
+            result.Message = ErrorCodeHandler.MappingAddManualDepositErrorCode(result.Code);
+        }
         return Json(result);
     }
 
@@ -146,6 +151,10 @@ public class TransactionsController(
         request.CustDbGroupId = custDbGroupId;
         request.PaySlip = request.Image != null ? await FileHelper.CompressAndConvertToBase64Async(request.Image) : null;
         result = await httpClientHelper.PostAsync<AddTransactionParams, ResultModel>("/api/withdrawal/create", request);
+        if (result.Code != 0)
+        {
+            result.Message = ErrorCodeHandler.MappingAddManualWithdrawalErrCode(result.Code);
+        }
         return Json(result);
     }
 
@@ -155,30 +164,30 @@ public class TransactionsController(
         if (request.Amount <= 0 || (request.MaxLimitAmt > 0 && request.Amount > request.MaxLimitAmt))
         {
             result.Code = 1;
-            result.Message = "Amount must be greater than 0 and less than MaxLimit";
+            result.Message = CashServicesResx.TheAmountExceedsTheAllowedMinimumOrMaximumValue;
         }
         if (request.CustId <= 0)
         {
             result.Code = 1;
-            result.Message = "Please select member login";
+            result.Message = CashServicesResx.MemberUsernameIsRequired;
         }
 
         if (string.IsNullOrWhiteSpace(request.PaymentFrom) && (request.ProviderId <= 0 && isWithdrawal))
         {
             result.Code = 1;
-            result.Message = "Please select PaymentFrom";
+            result.Message = CashServicesResx.FromIsRequired;
         }
 
         if (string.IsNullOrWhiteSpace(request.PaymentTo))
         {
             result.Code = 1;
-            result.Message = "Please select PaymentTo";
+            result.Message = CashServicesResx.ToIsRequired;
         }
 
         if (!IsValidFile(request.Image))
         {
             result.Code = 1;
-            result.Message = "File upload must be less than 1MB";
+            result.Message = CashServicesResx.FileUploadMustBeLessThan1MB;
         }
         return result;
     }
@@ -253,6 +262,11 @@ public class TransactionsController(
         request.UserId = userId;
         request.Ip = GetClientIp();
         var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/api/transactions/revert-pending-deposit", request);
+        if (result.Code != 0)
+        {
+            result.Message = ErrorCodeHandler.MappingRevertPendingTransactionErrCode(result.Code);
+        }
+
         return Ok(result);
     }
 
@@ -268,62 +282,85 @@ public class TransactionsController(
         request.UserId = userId;
         request.Ip = GetClientIp();
         var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/api/transactions/revert-pending-withdrawal", request);
+        if (result.Code != 0)
+        {
+            result.Message = ErrorCodeHandler.MappingRevertPendingTransactionErrCode(result.Code);
+        }
         return Ok(result);
     }
 
     [HttpPost]
-    public async Task<IActionResult> ApproveDeposit([FromBody] ProcessTransactionModel request)
+    public async Task<IActionResult> ApproveDeposit([FromBody] ProcessDepositTransaction request)
     {
         if (userSession.IsInternal)
         {
             return Unauthorized();
         }
-
-        var result = await httpClientHelper.PostAsync<ProcessTransactionModel, ResultModel>("/deposit/approve", request);
+        request.SetUserSession(userSession);
+        var result = await httpClientHelper.PostAsync<ProcessDepositTransaction, ResultModel>("/api/deposit/approve", request);
+        if (result.Code != 0)
+        {
+            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code, result.Message);
+        }
         return Json(result);
     }
 
     [HttpPost]
-    public async Task<IActionResult> RejectDeposit([FromBody] ProcessTransactionModel request)
+    public async Task<IActionResult> RejectDeposit([FromBody] ProcessDepositTransaction request)
     {
         if (userSession.IsInternal)
         {
             return Unauthorized();
         }
+        request.SetUserSession(userSession);
 
-        var result = await httpClientHelper.PostAsync<ProcessTransactionModel, ResultModel>("/deposit/reject", request);
+        var result = await httpClientHelper.PostAsync<ProcessDepositTransaction, ResultModel>("/api/deposit/reject", request);
+        if (result.Code != 0)
+        {
+            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code, result.Message);
+        }
         return Json(result);
     }
 
     [HttpPost]
-    public async Task<IActionResult> ApproveWithdrawal([FromBody] ProcessTransactionModel request)
+    public async Task<IActionResult> ApproveWithdrawal([FromForm] ProcessWithdrawalTransaction request)
     {
         if (userSession.IsInternal)
         {
             return Unauthorized();
         }
+        request.SetUserSession(userSession);
 
         if (request.Image != null)
         {
             request.Payslip = await FileHelper.CompressAndConvertToBase64Async(request.Image);
         }
-        var result = await httpClientHelper.PostAsync<ProcessTransactionModel, ResultModel>("/withdrawal/approve", request);
+        var result = await httpClientHelper.PostAsync<ProcessWithdrawalTransaction, ResultModel>("/api/withdrawal/approve", request);
+        if (result.Code != 0)
+        {
+            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code, result.Message);
+        }
         return Ok(result);
     }
 
     [HttpPost]
-    public async Task<IActionResult> RejectWithdrawal([FromBody] ProcessTransactionModel request)
+    public async Task<IActionResult> RejectWithdrawal([FromForm] ProcessWithdrawalTransaction request)
     {
         if (userSession.IsInternal)
         {
             return Unauthorized();
         }
+        request.SetUserSession(userSession);
 
         if (request.Image != null)
         {
             request.Payslip = await FileHelper.CompressAndConvertToBase64Async(request.Image);
         }
-        var result = await httpClientHelper.PostAsync<ProcessTransactionModel, ResultModel>("/withdrawal/reject", request);
+        var result = await httpClientHelper.PostAsync<ProcessWithdrawalTransaction, ResultModel>("/api/withdrawal/reject", request);
+        if (result.Code != 0)
+        {
+            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code, result.Message);
+        }
         return Ok(result);
     }
 }

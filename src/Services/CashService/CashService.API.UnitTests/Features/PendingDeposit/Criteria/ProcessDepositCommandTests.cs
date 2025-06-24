@@ -1,4 +1,3 @@
-using System.Numerics;
 using AlphaPlus.CashService.API.Features.PendingDeposit.Criteria;
 using Xunit;
 
@@ -13,8 +12,8 @@ public class ProcessDepositCommandTests
         var command = new ProcessDepositCommand();
 
         // Assert
-        Assert.Equal(BigInteger.Zero, command.TransId);
-        Assert.Equal(0, command.Amount);
+        Assert.Equal(0, command.TransId);
+        Assert.Equal(0, command.NewAmount);
         Assert.Null(command.Remark);
         Assert.Equal(0, command.StatusId);
         Assert.Equal(0, command.ErrCode);
@@ -26,7 +25,7 @@ public class ProcessDepositCommandTests
     {
         // Arrange
         var command = new ProcessDepositCommand();
-        var transId = new BigInteger(1234567890);
+        var transId = 1234567890;
         var amount = 150.75m;
         var remark = "Process Test";
         var statusId = 1;
@@ -35,7 +34,7 @@ public class ProcessDepositCommandTests
 
         // Act
         command.TransId = transId;
-        command.Amount = amount;
+        command.NewAmount = amount;
         command.Remark = remark;
         command.StatusId = statusId;
         command.ErrCode = errCode;
@@ -43,7 +42,7 @@ public class ProcessDepositCommandTests
 
         // Assert
         Assert.Equal(transId, command.TransId);
-        Assert.Equal(amount, command.Amount);
+        Assert.Equal(amount, command.NewAmount);
         Assert.Equal(remark, command.Remark);
         Assert.Equal(statusId, command.StatusId);
         Assert.Equal(errCode, command.ErrCode);
@@ -60,16 +59,21 @@ public class ProcessDepositCommandTests
         var settingKey = command.GetSettingKey();
 
         // Assert
-        Assert.Equal(string.Empty, settingKey);
+        Assert.Equal($"SiteDb_0_Age_CashDeposit_UpdateTransStatus", settingKey);
     }
 
-    [Fact]
-    public void IsValid_ShouldThrowNotImplementedException()
+    [Theory]
+    [InlineData(1000, 1, 2, 3, true)]
+    [InlineData(1000, 0, 2, 3, false)]
+    [InlineData(0, 1, 2, 3, false)]
+    [InlineData(1000, 1, 0, 3, false)]
+    [InlineData(1000, 1, 2, 0, false)]
+    public void IsValid_WhenCalledReturnExpectedBoolean(long transId, int agentId, int custId, int statusId, bool expectedValue)
     {
         // Arrange
-        var command = new ProcessDepositCommand();
+        var command = new ProcessDepositCommand { TransId = transId, AgentId = agentId, CustId = custId, StatusId = statusId };
 
         // Act & Assert
-        Assert.Throws<NotImplementedException>(() => command.IsValid());
+        Assert.Equal(expectedValue, command.IsValid());
     }
 }

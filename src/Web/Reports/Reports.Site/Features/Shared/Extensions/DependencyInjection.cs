@@ -56,7 +56,8 @@ public static class DependencyInjection
         .AddTransient<ISettlementWorkbook, SettlementWorkbook>()
         .AddTransient<IDailyWinLossWorkbook, DailyWinLossWorkbook>()
         .AddBetListExcelServices()
-        .AddHttpClient<ICustomerClient, CustomerClient>(configuration.GetValue<string>("Fanex.Customer:ServiceUri"));
+        .AddHttpClient<ICustomerClient, CustomerClient>(configuration.GetValue<string>("Fanex.Customer:ServiceUri"))
+        .AddTransient<ICashFeeWorkbook, CashFeeWorkbook>();
 
     private static IServiceCollection AddBetListExcelServices(this IServiceCollection services)
         => services

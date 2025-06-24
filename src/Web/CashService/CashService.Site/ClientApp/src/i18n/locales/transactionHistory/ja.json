@@ -4,35 +4,33 @@
   "withdrawal": "出金",
 
   "filter": {
-    "recentTransactions": "最近の取引",
     "all": "すべて",
-    "today": "今日",
-    "yesterday": "昨日",
-    "last7Days": "過去7日間",
     "to": "まで",
-    "from": "送信元",
+    "from": "から",
     "selectAccount": "アカウントを選択",
-    "allColumns": "すべての列 (9)",
+    "allColumns": "すべての列 (8)",
     "column": "列",
     "search": "検索",
     "usernamePlaceholder": "ユーザー名/参照番号",
     "status": "ステータス",
-    "transactionType": "取引タイプ",
-    "dateRange": "日付範囲"
+    "dateRange": "日付範囲",
+    "maxRecords": "最新5000件のレコードを表示",
+    "noneSelected": "未選択"
   },
 
   "table": {
-    "no": "番号",
+    "no": "#",
     "username": "ユーザー名",
+    "nickname": "ニックネーム",
     "name": "氏名",
     "amount": "金額",
     "currency": "通貨",
-    "from": "送信元",
-    "to": "送信先",
+    "from": "から",
+    "to": "まで",
     "status": "ステータス",
-    "type": "タイプ",
+    "type": "取引タイプ",
     "referenceNo": "参照番号",
-    "dateAndTime": "日時",
+    "dateAndTime": "作成日時",
     "actions": "操作",
     "view": "表示",
     "loading": "取引を読み込み中...",
@@ -42,23 +40,28 @@
   "detail": {
     "title": "取引詳細",
     "username": "ユーザー名",
-    "loginName": "ログイン名",
+    "nickname": "ニックネーム",
     "fullName": "氏名",
     "betCredit": "ベットクレジット",
-    "from": "送信元",
-    "to": "送信先",
-    "dateAndTime": "日時",
+    "from": "から",
+    "to": "まで",
+    "dateAndTime": "作成日時",
     "transactionType": "取引タイプ",
-    "operatedBy": "操作者",
-    "processedOn": "処理日時",
-    "amount": "取引金額",
+    "operatedBy": "作成者",
+    "processedOn": "最終更新",
+    "amount": "金額",
     "remarks": "備考",
-    "remarksPlaceholder": "備考を追加...",
+    "remarksPlaceholder": "ここに備考を入力...",
     "close": "閉じる",
-    "revertToPending": "保留に戻す",
+    "revertToPending": "保留中に戻す",
     "loading": "取引詳細を読み込み中...",
-    "noDetails": "利用可能な取引詳細はありません。",
-    "error": "取引詳細の読み込みに失敗しました"
+    "noDetails": "取引詳細がありません",
+    "error": "取引詳細の読み込みに失敗しました",
+    "cancel": "キャンセル",
+    "confirmRevert": "取引を戻す",
+    "confirmRevertMessage": "取引 #{{transactionId}} を保留中に戻してもよろしいですか？",
+    "revertSuccess": "取引を正常に戻しました",
+    "revertError": "取引の戻しに失敗しました"
   },
 
   "status": {
@@ -69,14 +72,21 @@
   },
 
   "errorMessages": {
-    "requiredField": "このフィールドは必須です",
+    "requiredField": "この項目は必須です",
     "invalidAmount": "有効な金額を入力してください",
     "amountTooSmall": "金額は0より大きい必要があります",
     "failedToLoad": "取引履歴の読み込みに失敗しました",
-    "failedToRevert": "取引の復元に失敗しました"
+    "failedToRevert": "取引の戻しに失敗しました"
   },
 
   "successMessages": {
-    "reverted": "取引が正常に保留状態に戻されました！"
+    "reverted": "取引を保留中に正常に戻しました！"
+  },
+
+  "messages": {
+    "copiedToClipboard": "テキストをクリップボードにコピーしました！",
+    "copy": "コピー",
+    "copied": "コピー済み",
+    "exportToExcel": "Excelにエクスポート"
   }
 }

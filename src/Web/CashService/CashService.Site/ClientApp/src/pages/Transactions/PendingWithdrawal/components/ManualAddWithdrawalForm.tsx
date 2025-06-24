@@ -12,7 +12,7 @@ import { AddWithdrawalModel } from '../../../../services/interfaces/AddWithdrawa
 import { ResultMessageComponent } from '../../../../components/MessageComponents';
 import UploadImage from '../../Components/UploadImage';
 import BankIcon from '../../../../components/BankComponents';
-import { renderBankOptionValue } from '../../../../common/commonFunctions';
+import { displayAmount, renderBankOptionValue } from '../../../../utils/commonFunctions';
 import {
   BackButtonComponent,
   ButtonApplyComponent,
@@ -23,7 +23,7 @@ import TitleComponent, {
   LabelTitleComponent,
   MediumTitleComponent,
 } from '../../../../components/TitleComponents';
-import { AmountInput } from '../../../../components/ui/AmountInput';
+import { AmountInput } from '../../../../components/AmountInput';
 
 interface ManualAddWithdrawalFormProps {
   onClose?: () => void;
@@ -130,7 +130,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
     if (image && !allowedTypes.includes(image.type)) {
       setResultMessage({
         type: 'error',
-        message: t('manualWithdrawalForm.invalidFileType')
+        message: t('manualWithdrawalForm.invalidFileType'),
       });
       return false;
     }
@@ -267,15 +267,15 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
   };
 
   return (
-    <div className="py-[12px]">
-      <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[#cfcfcf] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
+    <div className="">
+      <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
         <BackButtonComponent onClick={onClose} />
         <TitleComponent title={t('manualWithdrawalForm.title')} />
       </div>
 
       <div
         id="manual-withdrawal-form"
-        className="w-[1100px] bg-[#ffffff] p-[16px] rounded-[5px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] max-[768px]:w-full"
+        className="max-[768px]:w-full pb-[16px] pt-[10px]"
       >
         {resultMessage.type && (
           <ResultMessageComponent
@@ -284,8 +284,8 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
             className="mb-[16px] max-[768px]:mb-[0]"
           />
         )}
-        <div className="flex max-[768px]:flex-col">
-          <div className="flex-1 max-w-[700px]">
+        <div className="flex justify-between max-[768px]:flex-col mb-[16px]">
+          <div className="flex-1 max-w-[700px] max-[768px]:mb-[16px] mr-[30px] max-[768px]:mr-[0]">
             <MediumTitleComponent text={t('manualWithdrawalForm.accountInformation')} />
             <div className="flex flex-wrap">
               <div className="flex flex-nowrap gap-[16px] mb-[4px] justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
@@ -342,18 +342,18 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                     searchable={true}
                   />
                 </div>
-
                 <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
                   <LabelTitleComponent text={t('manualWithdrawalForm.withdrawalAmount')} required />
                   <AmountInput
                     id="withdrawalAmount"
                     value={withdrawalAmount}
                     onChange={(e) => handleSetWithdrawalAmount(e)}
-                    className="border border-gray-300 rounded-md px-2 w-full h-[32px] max-[768px]:h-[40px] focus:outline-none focus:border-[var(--button-border)]"
+                    className="control-field"
                   />
-                  <label className="block mt-[4px] text-[#828282] text-[11px] max-[768px]:text-[15px] font-semibold">
-                    {t('manualWithdrawalForm.memberCashBalance')}: {memberCashBalance}
-                  </label>
+                  <p className="text-[12px] my-[4px]">
+                    {t('manualWithdrawalForm.memberCashBalance')}:
+                    <span className="text-[var(--text-link-color)] font-bold">{` ${displayAmount(memberCashBalance)}`}</span>
+                  </p>
                 </div>
               </div>
               <div className="w-full">
@@ -363,15 +363,13 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                   value={remarks}
                   onChange={(e) => setRemarks(e.target.value)}
                   maxLength={1000}
-                  className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-[var(--button-border)] min-h-[200px]"
+                  className="block control-field h-[200px]! py-[8px]! max-[768px]:h-[150px]!"
                   placeholder={t('manualWithdrawalForm.remarksPlaceholder')}
                 />
               </div>
             </div>
           </div>
-          <div className="pl-[32px] max-[768px]:pl-0 max-[768px]:mt-[16px]">
-            <UploadImage setImage={setImage} />
-          </div>
+          <UploadImage setImage={setImage} />
         </div>
         <div className="flex gap-[16px]">
           <ButtonCancelComponent

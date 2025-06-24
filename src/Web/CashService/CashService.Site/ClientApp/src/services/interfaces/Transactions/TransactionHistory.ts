@@ -19,8 +19,9 @@ export interface TransactionItem {
   createdTime: string;
   lastUpdatedDate: string;
   isAllowRevert: boolean;
-  operatedBy: string;
+  createdBy: string;
   operatedTime: string;
+  isHadPayslip: boolean;
 }
 
 export interface TransactionsHistoryResponse {
@@ -48,4 +49,5 @@ export interface ExportExcelParams {
   toDate: string;
   transactionType: number;
   status: number;
+  account: string;
 }

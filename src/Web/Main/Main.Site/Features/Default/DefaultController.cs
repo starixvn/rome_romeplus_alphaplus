@@ -15,6 +15,7 @@ using AlphaPlus.Core.Configurations;
 using AlphaPlus.Main.Site.Features.OTP;
 using AlphaPlus.Main.Site.Features.Default.MenuBar;
 using System.Net;
+using AlphaPlus.Main.Site.Features.Dashboard.CashService;
 
 namespace AlphaPlus.Main.Site.Features.Default
 {
@@ -53,10 +54,13 @@ namespace AlphaPlus.Main.Site.Features.Default
                 return View(UnSupportedBrowsers, browser);
             }
 
+            var cashServiceInfoViewModel = await mediator.Send(new GetCashServiceStatusQuery(userSession));
+
             var query = new IndexQuery(userSession, securityCodeChecker.IsEnableSecurityCode(), null, authorizationOptions);
 
             var viewModel = await mediator.Send(query);
-
+            viewModel.CashServiceInfoViewModel = cashServiceInfoViewModel;
+            
             return View(viewModel);
         }
 

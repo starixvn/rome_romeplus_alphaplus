@@ -3,12 +3,11 @@ import { useTranslation } from 'react-i18next';
 
 import {
   ButtonFullComponent,
-  ButtonOutlineComponent,
   ButtonPenComponent,
   ButtonTabActiveComponent,
   ButtonTabInactiveComponent,
 } from '../../components/ButtonComponents';
-import { IconInfo } from '../../components/Icons';
+
 import Loading from '../../components/LoadingComponent';
 import { ErrorMessageComponent } from '../../components/MessageComponents';
 import {
@@ -16,11 +15,12 @@ import {
   StatusDisabledComponent,
   StatusNoneComponent,
 } from '../../components/StatusComponents';
-import TitleComponent, { MediumTitleComponent } from '../../components/TitleComponents';
+import TitleComponent from '../../components/TitleComponents';
 import { PaymentProvider } from '../../services/interfaces/Payments/PaymentProvider';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import DailyLimitPopupModal from './SetDailyLimitPopupModal';
+import NoRecordFound from '../../components/NoRecordFoundComponent';
 
 interface PaymentGatewayComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
@@ -99,15 +99,11 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
     <>
       <TitleComponent title={tManagePayments('managePayments')} showTippy={true}>
         <div>
-          <div>
-            <IconInfo className="w-[18px] h-[18px] fill-[#ffffff] inline-block vertical-middle mr-[4px] relative top-[-2px]" />
-            {tManagePayments('managePayments')}
-          </div>
           <div>• {tManagePayments('managePaymentsTip1')}</div>
           <div>• {tManagePayments('managePaymentsTip2')}</div>
         </div>
       </TitleComponent>
-      <ul className="flex mt-[-12px] border-b border-[var(--border-color)]">
+      <ul className="flex mt-[-12px] border-b border-[var(--border-color)] mb-[15px]">
         <li className="mr-[8px]">
           <ButtonTabInactiveComponent text={tManagePayments('paymentGateway')} />
         </li>
@@ -117,18 +113,14 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
       </ul>
        
       <div className="max-w-[1000px]">
-        <div className="py-[8px]">
-          <MediumTitleComponent className="mb-[8px]" text={tManagePayments('setDailyWithdrawalCount')} />
-          <div className="mb-[8px]">
-            {tManagePayments('setDailyWithdrawalCountForYourMembers')}
-          </div>
-          <ButtonOutlineComponent text={tManagePayments('setLimit')} onClick={() => onSetLimitClick()} />
-          <span className="block w-[100%] h-[1px] bg-[var(--border-color)] my-[10px]"></span>
-          <MediumTitleComponent className="my-[8px]" text={tManagePayments('managePaymentProviders')} />
-        </div>
+         
         {loading ? (<Loading />) : 
           error ? (<ErrorMessageComponent message={error} />) : (
-          <div className="table-fixed-header">
+          <>
+          <div className="w-full border border-[var(--table-border-color)] border-b-0 p-[6px] flex">
+            <ButtonFullComponent text={tManagePayments('setLimit')} onClick={() => onSetLimitClick()} />
+          </div>
+          <div className="table">
             <table className=" w-full border-collapse">
               <thead>
                 <tr>
@@ -137,16 +129,9 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
                   <th scope="col">{tManagePayments('provider')}</th>
                   <th scope="col">{tManagePayments('fee')}</th>
                   <th scope="col">{tManagePayments('providerStatus')}</th>
-                  <th scope="col">{tManagePayments('lastUpdated')}</th>
                 </tr>
               </thead>
-              <tbody className="font-[500]">
-                {providers.length === 0 && (
-                  <tr>
-                    <td colSpan={6} className="text-center">{tGlobal('noData')}</td>
-                  </tr>
-                )}
-                
+              <tbody className="font-[500]">                  
                 {providers.length > 0 && (
                   providers.map((provider, index) => (
                     <tr key={provider.id}>
@@ -161,13 +146,16 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
                         <ButtonFullComponent text={tGlobal('view')} onClick={() => onFeeClick(provider)} />
                       </td>
                       <td>{renderProviderStatus(provider.status)}</td>
-                      <td>{provider.lastUpdatedStr}</td>
                     </tr>
                   ))
+                )}
+                {providers.length === 0 && (
+                  <NoRecordFound colSpan={5} />
                 )}
               </tbody>
             </table>
           </div>
+          </>
         )}
 
         {/* Fee Popup Modal */}

@@ -6,7 +6,6 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Models
 {
     public class SubAccountViewModel
     {
-        private const string FullPermission = "[A][B][H][D][E][C][G][L]";
         /*
             [A]: Create
             [B]: Update
@@ -15,7 +14,9 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Models
             [E]: Reports
             [H]: Member Information
             [G]: View Log
-            [L]: Bet Lists
+            [L]: Bet Lists,
+            [M]: Cash Service,
+            [N]: Cash Promotion
         */
 
         private const string CreatePermission = "[A][B][H]";
@@ -83,6 +84,10 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Models
 
         public bool HasTransferPermission => HasFullPermission || PageAccess.Contains("[C]", StringComparison.InvariantCultureIgnoreCase);
 
+        public bool HasCashServicePermission => PageAccess.Contains("[M]", StringComparison.InvariantCultureIgnoreCase);
+
+        public bool HasCashPromotionPermission => PageAccess.Contains("[N]", StringComparison.InvariantCultureIgnoreCase);
+
         public string MemberInfoPermission => HasCreateAccountPermission ? CreatePermission :
             HasUpdatePermission ? UpdatePermission :
             HasViewMemberInfoPermission ? ViewPermission : NonePermission;
@@ -93,32 +98,32 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Models
 
         public bool IsCustomerDateLimit => UserSession.Current.GetProperty<DateTime>("CustomerDateLimit") != default;
 
-        public IEnumerable<SelectListItem> FirstOptions => new List<SelectListItem>
-        {
-            new SelectListItem { Text = "0", Value = "0" },
-            new SelectListItem { Text = "1", Value = "1" },
-            new SelectListItem { Text = "2", Value = "2" },
-            new SelectListItem { Text = "3", Value = "3" },
-            new SelectListItem { Text = "4", Value = "4" },
-            new SelectListItem { Text = "5", Value = "5" },
-            new SelectListItem { Text = "6", Value = "6" },
-            new SelectListItem { Text = "7", Value = "7" },
-            new SelectListItem { Text = "8", Value = "8" },
-            new SelectListItem { Text = "9", Value = "9" }
-        };
+        public IEnumerable<SelectListItem> FirstOptions =>
+        [
+            new() { Text = "0", Value = "0" },
+            new() { Text = "1", Value = "1" },
+            new() { Text = "2", Value = "2" },
+            new() { Text = "3", Value = "3" },
+            new() { Text = "4", Value = "4" },
+            new() { Text = "5", Value = "5" },
+            new() { Text = "6", Value = "6" },
+            new() { Text = "7", Value = "7" },
+            new() { Text = "8", Value = "8" },
+            new() { Text = "9", Value = "9" }
+        ];
 
-        public IEnumerable<SelectListItem> NextOptions => new List<SelectListItem>
-        {
-            new SelectListItem { Text = "1", Value = "1" },
-            new SelectListItem { Text = "2", Value = "2" },
-            new SelectListItem { Text = "3", Value = "3" },
-            new SelectListItem { Text = "4", Value = "4" },
-            new SelectListItem { Text = "5", Value = "5" },
-            new SelectListItem { Text = "6", Value = "6" },
-            new SelectListItem { Text = "7", Value = "7" },
-            new SelectListItem { Text = "8", Value = "8" },
-            new SelectListItem { Text = "9", Value = "9" },
-            new SelectListItem { Text = "0", Value = "0" }
-        };
+        public IEnumerable<SelectListItem> NextOptions =>
+        [
+            new() { Text = "1", Value = "1" },
+            new() { Text = "2", Value = "2" },
+            new() { Text = "3", Value = "3" },
+            new() { Text = "4", Value = "4" },
+            new() { Text = "5", Value = "5" },
+            new() { Text = "6", Value = "6" },
+            new() { Text = "7", Value = "7" },
+            new() { Text = "8", Value = "8" },
+            new() { Text = "9", Value = "9" },
+            new() { Text = "0", Value = "0" }
+        ];
     }
 }

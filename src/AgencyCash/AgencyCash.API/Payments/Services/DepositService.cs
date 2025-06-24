@@ -17,6 +17,8 @@ public interface IDepositService
     Task<PaymentResult> Manual(ManualDepositRequest request);
 
     Task<PaymentResult> Auto(AutoDepositRequest request);
+
+    Task<Result> UpdateTransactionStatus(long transId, UpdateTransactionStatusRequest request);
 }
 
 public class DepositService(
@@ -102,7 +104,7 @@ public class DepositService(
             siteDBConfig.CustDBGroupId,
             paymentFrom: request.PaymentFrom,
             providerId: request.ProviderId ?? 0,
-            paymentMethodId: request.PaymentMethodId,
+            paymentMethodId: request.PaymentMethodId ?? 0,
             paymentTo: request.PaymentTo));
 
         if (!validateResult.IsSuccess)
@@ -115,7 +117,7 @@ public class DepositService(
             request.CustId,
             paymentType: request.DepositMethod,
             providerId: request.ProviderId ?? 0,
-            paymentMethodId: request.PaymentMethodId,
+            paymentMethodId: request.PaymentMethodId ?? 0,
             custDBGroupId: siteDBConfig.CustDBGroupId);
         await repository.ExecuteAsync(limitCriteria);
 
@@ -129,7 +131,7 @@ public class DepositService(
             limitCriteria.MaxAmt,
             transactionTypeId: AutoDeposit,
             paymentType: request.DepositMethod,
-            paymentMethodId: request.PaymentMethodId,
+            paymentMethodId: request.PaymentMethodId ?? 0,
             request.PaymentFrom,
             request.PaymentTo,
             request.Amount,
@@ -143,14 +145,73 @@ public class DepositService(
 
     private async Task<PaymentResult> AddTransactionAndWriteLogs(AddTransactionDepositCriteria criteria, short custDBGroupId)
     {
+        var tasks = new List<Task>();
+
         var logs = await repository.FetchAsync<LogEntry>(criteria);
-        _ = Task.Run(async () => await WriteLogsRunSP(logs, custDBGroupId));
+        var result = new PaymentResult(criteria.ErrCode, criteria.ErrMsg, criteria.TransId);
+
+        if (criteria.PaymentType == AutoDepositType.Gateway
+            && result.IsSuccess
+            && !string.IsNullOrWhiteSpace(criteria.CashAccumCreditTbl))
+        {
+            tasks.Add(SyncCashAccumCredit(criteria.CashAccumCreditTbl, custDBGroupId));
+        }
+
+        tasks.Add(WriteLogsRunSP(logs, custDBGroupId));
 
         if (!string.IsNullOrWhiteSpace(criteria.ErrExtraInfo))
         {
-            await logger.ErrorAsync($"Deposit failed for AgentId: {criteria.AgentId}, CustId: {criteria.CustId}, ErrCode: {criteria.ErrCode}, ErrMsg: {criteria.ErrMsg}, ExtraInfo: {criteria.ErrExtraInfo}, Criteria: {JsonHelper.ToJson(criteria)}");
+            tasks.Add(logger.ErrorAsync($"Deposit failed. Key: {criteria.GetSettingKey()}, Criteria: {JsonHelper.ToJson(criteria)}"));
         }
 
-        return new PaymentResult(criteria.ErrCode, criteria.ErrMsg, criteria.TransId);
+        await Task.WhenAll(tasks);
+
+        return result;
+    }
+
+    private async Task WriteLogsRunSP(IEnumerable<LogEntry> logs, short custDBGroupId)
+    {
+        if (logs != null)
+        {
+            foreach (var item in logs)
+            {
+                await WriteLogRunSP(item, custDBGroupId);
+            }
+        }
+    }
+
+    public async Task<Result> UpdateTransactionStatus(long transId, UpdateTransactionStatusRequest request)
+    {
+        var tasks = new List<Task>();
+        var siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
+
+        var limitCriteria = new GetDepositLimitCriteria(request.AgentId, request.CustId, siteDBConfig.CustDBGroupId);
+        await repository.ExecuteAsync(limitCriteria);
+
+        var criteria = new UpdateDepositTransStatusCriteria(
+            request.AgentId,
+            request.CustId,
+            transId,
+            request.StatusId,
+            siteDBConfig.SiteDBGroupId,
+            limitCriteria.AgentGivenCredit,
+            limitCriteria.CreditMembers_GivenCredit,
+            request.IP);
+        var logs = await repository.FetchAsync<LogEntry>(criteria);
+        var result = new Result(criteria.ErrCode, criteria.ErrMsg);
+
+        if (result.IsSuccess && !string.IsNullOrWhiteSpace(criteria.CashAccumCreditTbl))
+        {
+            tasks.Add(SyncCashAccumCredit(criteria.CashAccumCreditTbl, siteDBConfig.CustDBGroupId));
+        }
+
+        tasks.Add(WriteLogsTransferAndRunSP(logs, siteDBConfig));
+
+        if (!string.IsNullOrWhiteSpace(criteria.ErrExtraInfo))
+        {
+            tasks.Add(logger.ErrorAsync($"Deposit - {nameof(UpdateTransactionStatus)} failed. Key: {criteria.GetSettingKey()}, Criteria: {JsonHelper.ToJson(criteria)}"));
+        }
+
+        return result;
     }
 }

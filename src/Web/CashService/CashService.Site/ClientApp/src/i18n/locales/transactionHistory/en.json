@@ -14,7 +14,8 @@
     "usernamePlaceholder": "Username/Ref No",
     "status": "Status",
     "dateRange": "Date Range",
-    "maxRecords": "Up to 5000 latest records will be displayed"
+    "maxRecords": "Up to 5000 latest records will be displayed",
+    "noneSelected": "None selected"
   },
 
   "table": {
@@ -56,7 +57,11 @@
     "loading": "Loading transaction details...",
     "noDetails": "No transaction details available.",
     "error": "Failed to load transaction details.",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "confirmRevert": "Revert Transaction",
+    "confirmRevertMessage": "Are you sure you want to revert transaction #{{transactionId}} to pending status?",
+    "revertSuccess": "Transaction has been reverted successfully",
+    "revertError": "Failed to revert transaction"
   },
 
   "status": {
@@ -79,6 +84,9 @@
   },
 
   "messages": {
-    "copiedToClipboard": "Text copied to clipboard successfully!"
+    "copiedToClipboard": "Text copied to clipboard successfully!",
+    "copy": "Copy",
+    "copied": "Copied",
+    "exportToExcel": "Export to Excel"
   }
 }

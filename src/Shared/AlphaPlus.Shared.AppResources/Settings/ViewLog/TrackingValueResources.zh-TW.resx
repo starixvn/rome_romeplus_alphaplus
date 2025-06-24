@@ -3432,11 +3432,8 @@
   <data name="CommForMaster" xml:space="preserve">
     <value>總代理佣金</value>
   </data>
-  <data name="hrmpm" xml:space="preserve">
-    <value>南非賽馬- 最高單場</value>
-  </data>
-  <data name="MinBv151" xml:space="preserve">
-    <value>南非南非賽馬-最低投注</value>
+  <data name="PotentialWinLimit" xml:space="preserve">
+    <value>贏額上限</value>
   </data>
   <data name="accnumber" xml:space="preserve">
     <value>賬號</value>
@@ -3444,7 +3441,13 @@
   <data name="bank" xml:space="preserve">
     <value>銀行</value>
   </data>
-  <data name="PotentialWinLimit" xml:space="preserve">
-    <value>贏額上限</value>
+  <data name="hrmpm" xml:space="preserve">
+    <value>南非賽馬- 最高單場</value>
+  </data>
+  <data name="MinBv151" xml:space="preserve">
+    <value>南非南非賽馬-最低投注</value>
+  </data>
+  <data name="isactive" xml:space="preserve">
+    <value />
   </data>
 </root>

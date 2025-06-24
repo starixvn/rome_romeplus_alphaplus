@@ -78,5 +78,27 @@
   "SMBC": "Bank Sumitomo",
   "TCRB": "THE THAI CREDIT RETAIL BANK",
   "TISCO": "Tisco Bank",
-  "TTB": "TMBThanachart Bank"
+  "TTB": "TMBThanachart Bank",
+  "uploadImage": "Click to upload",
+  "dragAndDrop": "or drag and drop",
+  "imageFormat": "Upload jpeg, jpg, png",
+  "maxSize": "Max 1 MB",
+  "status": {
+    "waiting": "Waiting",
+    "cancelled": "Cancelled",
+    "pending": "Pending",
+    "expired": "Expired",
+    "completed": "Completed",
+    "rejected": "Rejected",
+    "providerRejected": "Provider Rejected"
+  },
+  "dateRangePicker": {
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "last7days": "Last 7 Days",
+    "last30days": "Last 30 Days",
+    "thismonth": "This Month",
+    "lastmonth": "Last Month",
+    "days": "days"
+  }
 }

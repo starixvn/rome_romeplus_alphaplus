@@ -1,83 +1,92 @@
 {
   "transactionHistory": "交易歷史",
   "deposit": "存款",
-  "withdrawal": "取款",
+  "withdrawal": "提款",
 
   "filter": {
-    "recentTransactions": "最近交易",
     "all": "全部",
-    "today": "今天",
-    "yesterday": "昨天",
-    "last7Days": "過去7天",
-    "to": "到",
-    "from": "來源",
+    "to": "至",
+    "from": "從",
     "selectAccount": "選擇帳戶",
-    "allColumns": "所有欄位 (9)",
+    "allColumns": "所有欄位 (8)",
     "column": "欄位",
-    "search": "搜索",
+    "search": "搜尋",
     "usernamePlaceholder": "用戶名/參考號",
     "status": "狀態",
-    "transactionType": "交易類型",
-    "dateRange": "日期範圍"
+    "dateRange": "日期範圍",
+    "maxRecords": "最多顯示5000筆最新記錄",
+    "noneSelected": "未選擇"
   },
 
   "table": {
-    "no": "序號",
+    "no": "#",
     "username": "用戶名",
     "nickname": "暱稱",
     "name": "姓名",
     "amount": "金額",
     "currency": "貨幣",
-    "from": "來源",
-    "to": "目標",
+    "from": "從",
+    "to": "至",
     "status": "狀態",
-    "type": "類型",
+    "type": "交易類型",
     "referenceNo": "參考號",
-    "dateAndTime": "日期和時間",
+    "dateAndTime": "建立日期",
     "actions": "操作",
     "view": "查看",
-    "loading": "正在加載交易...",
-    "noRecords": "未找到記錄"
+    "loading": "載入交易中...",
+    "noRecords": "找不到記錄"
   },
 
   "detail": {
     "title": "交易詳情",
     "username": "用戶名",
-    "loginName": "登錄名",
+    "nickname": "暱稱",
     "fullName": "姓名",
     "betCredit": "投注額度",
-    "from": "來源",
-    "to": "目標",
-    "dateAndTime": "日期和時間",
+    "from": "從",
+    "to": "至",
+    "dateAndTime": "建立日期",
     "transactionType": "交易類型",
-    "operatedBy": "操作人",
-    "processedOn": "處理時間",
-    "amount": "交易金額",
+    "operatedBy": "建立者",
+    "processedOn": "最後更新",
+    "amount": "金額",
     "remarks": "備註",
-    "remarksPlaceholder": "添加備註...",
+    "remarksPlaceholder": "在此添加備註...",
     "close": "關閉",
-    "revertToPending": "恢復到待處理",
-    "loading": "正在加載交易詳情...",
-    "noDetails": "沒有可用的交易詳情。",
-    "error": "加載交易詳情失敗"
+    "revertToPending": "還原為待處理",
+    "loading": "載入交易詳情中...",
+    "noDetails": "無交易詳情。",
+    "error": "載入交易詳情失敗。",
+    "cancel": "取消",
+    "confirmRevert": "還原交易",
+    "confirmRevertMessage": "您確定要將交易 #{{transactionId}} 還原為待處理狀態嗎？",
+    "revertSuccess": "交易已成功還原",
+    "revertError": "還原交易失敗"
   },
 
   "status": {
     "completed": "已完成",
     "rejected": "已拒絕",
-    "providerRejected": "提供商拒絕",
+    "providerRejected": "供應商拒絕",
     "expired": "已過期"
   },
 
   "errorMessages": {
-    "requiredField": "此欄位為必填項",
+    "requiredField": "此欄位為必填",
     "invalidAmount": "請輸入有效金額",
     "amountTooSmall": "金額必須大於0",
-    "failedToLoad": "加載交易歷史失敗",
-    "failedToRevert": "恢復交易失敗"
+    "failedToLoad": "載入交易歷史失敗",
+    "failedToRevert": "還原交易失敗"
   },
 
   "successMessages": {
-    "reverted": "交易已成功恢復到待處理狀態！"
+    "reverted": "交易已成功還原為待處理狀態！"
+  },
+
+  "messages": {
+    "copiedToClipboard": "文字已成功複製到剪貼簿！",
+    "copy": "複製",
+    "copied": "已複製",
+    "exportToExcel": "匯出至Excel"
   }
 }

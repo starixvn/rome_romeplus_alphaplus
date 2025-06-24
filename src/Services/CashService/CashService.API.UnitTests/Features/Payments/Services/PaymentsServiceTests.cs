@@ -1,14 +1,14 @@
+using AlphaPlus.CashService.API.Features.Payments.DTOs;
 using AlphaPlus.CashService.API.Features.Payments.Models;
 using AlphaPlus.CashService.API.Features.Payments.Requests;
 using AlphaPlus.CashService.API.Features.Payments.Services;
-using AlphaPlus.CashService.API.Features.Payments.DTOs;
+using AlphaPlus.CashService.API.Features.Shared.Criteria;
 using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Services;
-using AlphaPlus.CashService.API.Features.Shared.Criteria;
 using Fanex.Data.Repository;
 using Moq;
-using Xunit;
 using Newtonsoft.Json;
+using Xunit;
 
 namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Services;
 
@@ -121,7 +121,7 @@ public class PaymentsServiceTests
         var request = new UpdateProviderRequest
         {
             Status = 1,
-            ProviderSettings = new List<ProviderSettingsModel>()
+            ProviderSettings = []
         };
 
         _mockCommonService.Setup(c => c.RunDBCommand(request, It.IsAny<BaseDBCommand>()))
@@ -571,4 +571,4 @@ public class PaymentsServiceTests
         Assert.Equal(0, result.Code);
         Assert.Equal("Success", result.Message);
     }
-} 
+}

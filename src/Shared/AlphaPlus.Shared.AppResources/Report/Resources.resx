@@ -1245,4 +1245,85 @@
   <data name="RewardCurrency" xml:space="preserve">
     <value>Reward Currency</value>
   </data>
+  <data name="GrossComAndAgentTotal_Duplicate[1]" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GrossComAndMasterTotal_Duplicate[1]" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NetTurnoverAndGrossComm_Duplicate[1]" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NetTurnoverAndTaxComm_Duplicate[1]" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DelayIssueLegend_Duplicate[1]" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Tooltip_NetTurnover_livecasino_Duplicate[1]" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CanOnlyViewDataAfterTimeHistoryReport_Duplicate[1]" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CanOnlyViewDataAfterTimeCurrentReport_Duplicate[1]" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ReportDataCanViewNote_Duplicate[1]" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SabaOtherSportsLegend_Duplicate[1]" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Tooltip_NetTurnover_RNGCasino_Duplicate[1]" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MaxDataRetrieveHistoryError_Duplicate[1]" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HistoryDataCanViewNote_Duplicate[1]" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NewViewTakesOverPopup_Duplicate[1]" xml:space="preserve">
+    <value />
+  </data>
+  <data name="October_Duplicate[1]" xml:space="preserve">
+    <value />
+  </data>
+  <data name="_Oct_Duplicate[1]" xml:space="preserve">
+    <value />
+  </data>
+  <data name="_Nov_Duplicate[1]" xml:space="preserve">
+    <value />
+  </data>
+  <data name="November_Duplicate[1]" xml:space="preserve">
+    <value />
+  </data>
+  <data name="_Dec_Duplicate[1]" xml:space="preserve">
+    <value />
+  </data>
+  <data name="December_Duplicate[1]" xml:space="preserve">
+    <value />
+  </data>
+  <data name="_Jan_Duplicate[1]" xml:space="preserve">
+    <value />
+  </data>
+  <data name="January_Duplicate[1]" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NewViewTakesOverNote_Duplicate[1]" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Fee" xml:space="preserve">
+    <value>Fee</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>Count</value>
+  </data>
+  <data name="CashServiceBilling" xml:space="preserve">
+    <value>Cash Service Billing</value>
+  </data>
 </root>

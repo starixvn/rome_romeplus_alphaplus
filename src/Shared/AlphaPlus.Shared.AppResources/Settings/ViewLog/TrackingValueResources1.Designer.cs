@@ -125,6 +125,29 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to [Cash Service].
+        /// </summary>
+        public static string _m_
+        {
+            get
+            {
+                return ResourceManager.GetString("[m]", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to [Cash Promotion].
+        /// </summary>
+        public static string _n_
+        {
+            get
+            {
+                return ResourceManager.GetString("[n]", resourceCulture);
+            }
+        }
+
+
+        /// <summary>
         ///   Looks up a localized string similar to Protected.
         /// </summary>
         public static string _protected

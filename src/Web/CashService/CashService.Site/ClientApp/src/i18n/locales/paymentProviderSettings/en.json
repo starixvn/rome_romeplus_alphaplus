@@ -76,7 +76,7 @@
   "status-0": "All",
   "status-1": "Processing",
   "status-2": "Completed",
-  "status-3": "Fail",
+  "status-3": "Failed",
   "status-4": "Maintenance",
 
   "appSecret": "App Secret",

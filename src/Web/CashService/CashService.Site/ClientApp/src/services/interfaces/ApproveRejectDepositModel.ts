@@ -1,5 +1,6 @@
 export interface ApproveRejectDepositModel {
-    transId: number;
-    amount: number;
-    remark: string;
-};
+  transId: number;
+  custId: number;
+  newAmount: number;
+  remark: string;
+}

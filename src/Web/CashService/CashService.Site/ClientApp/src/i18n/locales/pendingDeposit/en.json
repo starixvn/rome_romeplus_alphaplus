@@ -78,11 +78,11 @@
     "approve": "Approve",
     "approving": "Approving...",
     "agentAvailableCredit": "Agent Available Credit",
-    "amountMustBeGreaterThan0AndLessThanMaxLimit": "Amount must be greater than 0 and less than MaxLimit",
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "The amount must be greater than 0 and less than the agent available credit.",
     "imageSizeError": "Image must be less than 1MB",
-    "memberLoginNameRequired": "Please select member login",
-    "agentBankSelectionRequired": "Please select PaymentFrom",
-    "memberBankSelectionRequired": "Please select PaymentTo",
+    "memberLoginNameRequired": "Member username is required.",
+    "agentBankSelectionRequired": "From is required.",
+    "memberBankSelectionRequired": "To is required.",
     "invalidFileType": "Invalid file type. Please upload a jpeg, jpg, or png file."
   },
 

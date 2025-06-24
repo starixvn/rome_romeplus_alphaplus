@@ -5,9 +5,13 @@ using AlphaPlus.Reports.Features.EnteredResult;
 using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLossDetail;
+using AlphaPlus.Reports.Features.WinLossDetail.Models;
 using AlphaPlus.Reports.Site.Features.Customer;
 using AlphaPlus.Reports.Site.Features.Shared;
 using AlphaPlus.Reports.Site.Features.Shared.Helpers;
+using AlphaPlus.Reports.Site.Features.Shared.Requests;
+using AlphaPlus.Reports.Site.Features.WinLossDetail.Requests;
+using AlphaPlus.Reports.Site.Features.WinLossDetail.ViewModels;
 using AlphaPlus.Shared.AppResources.Report;
 using MediatR;
 using Microsoft.Extensions.Options;
@@ -21,18 +25,24 @@ public class WinLossDetailHandler(
     ICustomerService customerService,
     IWinLossDetailService winlossDetailService,
     IWinLossDetailWorkbook workbook,
-    ICustomerClient customerClient) :
+    ICustomerClient customerClient,
+    ICashFeeWorkbook cashFeeWorkbook) :
         BaseHandler(productService, options),
         IRequestHandler<WinLossDetailQuery, WinLossDetailViewModel>,
         IRequestHandler<WinLossDetailGetDataQuery, WinLossDetailGetDataViewModel>,
         IRequestHandler<WinLossDetailGetWeeksQuery, IEnumerable<WinLossDetailWeekViewModel>>,
-        IRequestHandler<WinLossDetailExcelQuery, ExcelFileViewModel>
+        IRequestHandler<WinLossDetailExcelQuery, ExcelFileViewModel>,
+        IRequestHandler<CashFeeQuery, CashFeeViewModel>,
+        IRequestHandler<CashFeeExcelQuery, ExcelFileViewModel>,
+        IRequestHandler<CashFeeGetDataQuery, CashFeeModel>
 {
+    private const string CashServiceBillingProductId = "111";
     private readonly IEnteredResultService enteredResultService = enteredResultService;
     private readonly ICustomerService customerService = customerService;
     private readonly IWinLossDetailService winlossDetailService = winlossDetailService;
     private readonly IWinLossDetailWorkbook workbook = workbook;
     private readonly ICustomerClient customerClient = customerClient;
+    private readonly ICashFeeWorkbook cashFeeWorkbook = cashFeeWorkbook;
 
     public async Task<WinLossDetailViewModel> Handle(WinLossDetailQuery message, CancellationToken cancellationToken)
     {
@@ -276,5 +286,74 @@ public class WinLossDetailHandler(
             : new ReportData<WinLossDetailModel>(null, null, 0);
 
         return workbook.BuildExcelFile(message, reportData, productNames);
+    }
+
+    protected override async Task<IEnumerable<Product>> GetProducts(BaseQuery message)
+    {
+        var products = await base.GetProducts(message);
+
+        if (Core.Configurations.AppSettings.IsOfferedCashService(message.Site))
+        {
+            var productExtras = await winlossDetailService.GetProduct(message.CustId, message.MinDate, message.Language);
+            return products.Concat(productExtras);
+        }
+
+        return products;
+    }
+
+    public async Task<CashFeeViewModel> Handle(CashFeeQuery message, CancellationToken cancellationToken)
+    {
+        var breadcrumbs = BreadcrumbHelper.BuildBreadcrumbs(message).ToList();
+        breadcrumbs.Add(new Reports.Features.Shared.Models.Breadcrumb(0, Resources.CashServiceBilling.ToUpper(), 0));
+
+        var cashFeeParam = new CashFeeParam(
+            message.CustId,
+            message.WeekFromDate ?? message.FromDate,
+            message.WeekToDate ?? message.ToDate);
+
+        var cashFeeModel = await winlossDetailService.GetCashFee(cashFeeParam);
+
+        var (validUserSelectedProductIds, productDetailXml) = await FilterProductAndProductDetailIds(
+               message,
+               CashServiceBillingProductId,
+               message.UserSelectedResourceIds);
+
+        var weekDataParam = new WinLossDetailWeekParam(
+               message.ViewerId,
+               message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
+               message.ToDate,
+               validUserSelectedProductIds.JoinWithComma(),
+               productDetailXml,
+               string.IsNullOrWhiteSpace(message.Username) ? message.CustName : message.Username,
+               IsReward: true,
+               message.LevelType,
+               message.Site);
+
+        var weekData = await winlossDetailService.GetWeekData(weekDataParam);
+        var weeks = BuildWeekViewModels(weekData, message.FromDate, message.ToDate, message.WeekFromDate, message.WeekToDate);
+
+        return new CashFeeViewModel(message, cashFeeModel, breadcrumbs, weeks);
+    }
+
+    public async Task<ExcelFileViewModel> Handle(CashFeeExcelQuery message, CancellationToken cancellationToken)
+    {
+        var cashFeeParam = new CashFeeParam(
+           message.CustId,
+           message.WeekFromDate ?? message.FromDate,
+           message.WeekToDate ?? message.ToDate);
+
+        var reportData = await winlossDetailService.GetCashFee(cashFeeParam);
+
+        return cashFeeWorkbook.BuildCashFeeExcelFile(message, reportData);
+    }
+
+    public async Task<CashFeeModel> Handle(CashFeeGetDataQuery message, CancellationToken cancellationToken)
+    {
+        var cashFeeParam = new CashFeeParam(
+            message.CustId,
+            message.WeekFromDate ?? message.FromDate,
+            message.WeekToDate ?? message.ToDate);
+
+        return await winlossDetailService.GetCashFee(cashFeeParam);
     }
 }

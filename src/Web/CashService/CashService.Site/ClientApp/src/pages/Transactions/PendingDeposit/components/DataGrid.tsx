@@ -5,30 +5,126 @@ import {
   displayAmount,
   renderBankAccount,
   formatDateTime,
-  CurrentCurrency,
-} from '../../../../common/commonFunctions';
-import NoRecordFound from '../../../../components/Table/NoRecordFound';
+} from '../../../../utils/commonFunctions';
+import NoRecordFound from '../../../../components/NoRecordFoundComponent.tsx';
 import Pagination from '../../Components/Pagination';
 import { ButtonFullComponent } from '../../../../components/ButtonComponents';
-import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import PendingDepositModal from './PendingDepositModal';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
+import Tippy from '@tippyjs/react';
+import { ErrorMessageComponent } from '../../../../components/MessageComponents';
+import { IconImage } from '../../../../components/Icons.tsx';
 
 interface DataGridProps {
   deposits: TransactionItem[];
+  reloadGrid: () => void;
 }
 
-const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
+const TableHeader: React.FC<{ t: (key: string) => string }> = ({ t }) => (
+  <thead className="z-11!">
+    <tr>
+      <th
+        scope="col"
+        className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-header-background)] z-11"
+      >
+        #
+      </th>
+      <th
+        scope="col"
+        className="w-[150px] min-w-[150px] sticky left-[32px] bg-[var(--table-header-background)] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]"
+      >
+        <div>{t('dataGrid.username')}</div>
+        <div>{t('dataGrid.nickname')}</div>
+      </th>
+      <th scope="col">
+        <div>{t('dataGrid.firstLastName')}</div>
+      </th>
+      <th scope="col" className="min-w-[150px]">{t('dataGrid.amount')}</th>
+      <th scope="col">{t('dataGrid.from')}</th>
+      <th scope="col">{t('dataGrid.to')}</th>
+      <th scope="col">{t('dataGrid.referenceNo')}</th>
+      <th scope="col">{t('dataGrid.dateAndTime')}</th>
+      <th scope="col">{t('dataGrid.actions')}</th>
+    </tr>
+  </thead>
+);
+
+interface TableRowProps {
+  deposit: TransactionItem;
+  index: number;
+  currentPage: number;
+  pageSize: number;
+  onProcess: (deposit: TransactionItem) => void;
+  t: (key: string) => string;
+  tGlobal: (key: string) => string;
+}
+
+const TableRow: React.FC<TableRowProps> = ({
+  deposit,
+  index,
+  currentPage,
+  pageSize,
+  onProcess,
+  t,
+  tGlobal,
+}) => (
+  <>
+    <tr key={deposit.transId}>
+      <td className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-background)] z-10">
+        {index + 1 + (currentPage - 1) * pageSize}
+      </td>
+      <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[var(--table-background)] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
+        <div>{deposit.username}</div>
+        <div>{deposit.nickname}</div>
+      </td>
+      <td>
+        <div>{deposit.firstName}</div>
+        <div>{deposit.lastName}</div>
+      </td>
+      <td>
+        <div className="flex items-center justify-end pr-[25px] relative">
+          {displayAmount(deposit.amount)}
+          {deposit.isHadPayslip && <IconImage className="w-[20px] h-[20px] ml-[5px] absolute right-[0px]" />}
+        </div>
+      </td>
+      <td className="text-left">
+        <Tippy content={<p>{tGlobal(deposit.paymentFrom.split('-')[0])}</p>}>
+          {renderBankAccount(deposit.paymentFrom)}
+        </Tippy>
+      </td>
+      <td className="text-left">
+        <Tippy content={<p>{tGlobal(deposit.paymentTo.split('-')[0])}</p>}>
+          {renderBankAccount(deposit.paymentTo)}
+        </Tippy>
+      </td>
+      <td>{deposit.transId}</td>
+      <td>{formatDateTime(deposit.createdTime)}</td>
+      <td>
+        <ButtonFullComponent
+          text={t('dataGrid.process')}
+          onClick={() => onProcess(deposit)}
+          className=""
+        />
+      </td>
+    </tr>
+  </>
+);
+
+const DataGrid: React.FC<DataGridProps> = ({ deposits, reloadGrid }) => {
   const { t } = useTranslation('pendingDeposit');
+  const { t: tGlobal } = useTranslation('global');
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(PAGE_SIZE_OPTIONS[2]);
-  const [error, setError] = useState<string | null>(null);
   const [paginatedDeposits, setPaginatedDeposits] = useState<TransactionItem[]>([]);
-  const [processingDeposit, setProcessingDeposit] = useState<TransactionItem | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [showDepositPopup, setShowDepositPopup] = useState<boolean>(false);
+  const [selectedDeposit, setSelectedDeposit] = useState<TransactionItem | null>(null);
   const totalItems = deposits.length;
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    if (deposits.length <= pageSize) {
+      setCurrentPage(1);
+    }
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
     setPaginatedDeposits(deposits.slice(startIndex, endIndex));
@@ -44,81 +140,35 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
   };
 
   const handleProcessClick = async (deposit: TransactionItem) => {
-    setIsLoading(true);
+    setShowDepositPopup(true);
+    setSelectedDeposit(deposit);
     setError(null);
-    try {
-      const detail = await transactionAPI.getTransactionDetail(deposit.transId, deposit.custId);
-      setProcessingDeposit(detail);
-    } catch (err) {
-      setError(t('dataGrid.errorFetchingDetail'));
-    } finally {
-      setIsLoading(false);
-    }
   };
 
   const handleCloseProcess = () => {
-    setProcessingDeposit(null);
+    setShowDepositPopup(false);
     setError(null);
+    reloadGrid();
   };
 
   return (
     <>
       <div className="table-fixed-header table-fixed-body min-h-0">
-        <table className="max-[600px]:text-[17px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
-          <thead className="z-11!">
-            <tr>
-              <th scope="col" className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-header-background)] z-11">
-                #
-              </th>
-              <th
-                scope="col"
-                className="w-[150px] min-w-[150px] sticky left-[32px] bg-[var(--table-header-background)] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]"
-              >
-                <div>{t('dataGrid.username')}</div>
-                <div>{t('dataGrid.nickname')}</div>
-              </th>
-              <th scope="col">
-                <div>{t('dataGrid.firstLastName')}</div>
-              </th>
-              <th scope="col">
-                {t('dataGrid.amount')} ({CurrentCurrency})
-              </th>
-              <th scope="col">{t('dataGrid.from')}</th>
-              <th scope="col">{t('dataGrid.to')}</th>
-              <th scope="col">{t('dataGrid.referenceNo')}</th>
-              <th scope="col">{t('dataGrid.dateAndTime')}</th>
-              <th scope="col">{t('dataGrid.actions')}</th>
-            </tr>
-          </thead>
+        <table className="w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px] border-l-[0px]">
+          <TableHeader t={t} />
           <tbody className="font-[500]">
             {paginatedDeposits.length > 0 ? (
               paginatedDeposits.map((deposit, index) => (
-                <tr key={deposit.transId}>
-                  <td className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-background)] z-10">
-                    {index + 1 + (currentPage - 1) * pageSize}
-                  </td>
-                  <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[var(--table-background)] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
-                    <div>{deposit.username}</div>
-                    <div>{deposit.nickname}</div>
-                  </td>
-                  <td>
-                    <div>{deposit.firstName}</div>
-                    <div>{deposit.lastName}</div>
-                  </td>
-                  <td>{displayAmount(deposit.amount)}</td>
-                  <td>{renderBankAccount(deposit.paymentFrom)}</td>
-                  <td>{renderBankAccount(deposit.paymentTo)}</td>
-                  <td>{deposit.transId}</td>
-                  <td>{formatDateTime(deposit.createdTime)}</td>
-                  <td>
-                    <ButtonFullComponent
-                      text={t('dataGrid.process')}
-                      disabled={isLoading}
-                      onClick={() => handleProcessClick(deposit)}
-                      className=""
-                    />
-                  </td>
-                </tr>
+                <TableRow
+                  key={deposit.transId}
+                  deposit={deposit}
+                  index={index}
+                  currentPage={currentPage}
+                  pageSize={pageSize}
+                  onProcess={handleProcessClick}
+                  t={t}
+                  tGlobal={tGlobal}
+                />
               ))
             ) : (
               <NoRecordFound colSpan={11} message={t('dataGrid.noDepositsFound')} />
@@ -127,14 +177,18 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits }) => {
         </table>
       </div>
 
-      {error && <div className="mt-4 p-4 bg-red-100 text-red-700 rounded-md">{error}</div>}
+      {error && <ErrorMessageComponent message={error} />}
 
-      {processingDeposit && (
-        <PendingDepositModal deposit={processingDeposit} onClose={handleCloseProcess} />
+      {showDepositPopup && selectedDeposit && (
+        <PendingDepositModal
+          transId={selectedDeposit.transId}
+          custId={selectedDeposit.custId}
+          onClose={handleCloseProcess}
+        />
       )}
 
       {paginatedDeposits.length > 0 && (
-        <div className="mt-0">
+        <div className="mt-[-1px]">
           <Pagination
             currentPage={currentPage}
             pageSize={pageSize}

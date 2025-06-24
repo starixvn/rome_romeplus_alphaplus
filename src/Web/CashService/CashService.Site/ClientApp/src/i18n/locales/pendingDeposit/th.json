@@ -1,20 +1,20 @@
 {
-  "pendingDeposit": "รายการฝากที่รอดำเนินการ",
-  "addManualDeposit": "เพิ่มรายการฝากด้วยตนเอง",
-  
+  "pendingDeposit": "ฝากเงินรอดำเนินการ",
+  "addManualDeposit": "เพิ่มการฝากเงินด้วยตนเอง",
+
   "filter": {
-    "recentDeposits": "รายการฝากล่าสุด",
+    "recentDeposits": "การฝากเงินล่าสุด",
     "all": "ทั้งหมด",
     "today": "วันนี้",
     "yesterday": "เมื่อวาน",
     "last7Days": "7 วันที่ผ่านมา",
     "to": "ถึง",
     "search": "ค้นหา",
-    "usernamePlaceholder": "ชื่อผู้ใช้/เลขอ้างอิง",
+    "usernamePlaceholder": "ชื่อผู้ใช้/หมายเลขอ้างอิง",
     "last30Mins": "30 นาทีที่ผ่านมา",
     "last60Mins": "60 นาทีที่ผ่านมา"
   },
-  
+
   "dataGrid": {
     "member": "สมาชิก",
     "username": "ชื่อผู้ใช้",
@@ -22,47 +22,47 @@
     "firstName": "ชื่อ",
     "lastName": "นามสกุล",
     "nickname": "ชื่อเล่น",
-    "firstLastName": "ชื่อและนามสกุล",
+    "firstLastName": "ชื่อ-นามสกุล",
     "amount": "จำนวนเงิน",
     "currency": "สกุลเงิน",
     "from": "จาก",
     "to": "ถึง",
-    "referenceNo": "เลขอ้างอิง",
-    "dateAndTime": "วันและเวลา",
+    "referenceNo": "หมายเลขอ้างอิง",
+    "dateAndTime": "วันที่สร้าง",
     "actions": "การดำเนินการ",
     "approve": "อนุมัติ",
     "approving": "กำลังอนุมัติ...",
     "reject": "ปฏิเสธ",
     "process": "ดำเนินการ",
     "viewDetails": "ดูรายละเอียด",
-    "loading": "กำลังโหลดรายการฝากที่รอดำเนินการ...",
-    "noDepositsFound": "ไม่พบรายการฝากที่รอดำเนินการ"
+    "loading": "กำลังโหลดการฝากเงินรอดำเนินการ...",
+    "noDepositsFound": "ไม่พบการฝากเงินรอดำเนินการ"
   },
-  
+
   "pendingDepositModal": {
-    "title": "รายการฝากที่รอดำเนินการ",
+    "title": "ฝากเงินรอดำเนินการ",
     "username": "ชื่อผู้ใช้",
     "loginName": "ชื่อเข้าสู่ระบบ",
     "firstName": "ชื่อ",
     "lastName": "นามสกุล",
-    "name": "ชื่อ/นามสกุล",
-    "betCredit": "เครดิตการเดิมพัน",
+    "name": "ชื่อ-นามสกุล",
+    "betCredit": "เครดิตเดิมพัน",
     "from": "จาก",
     "to": "ถึง",
     "depositAmount": "จำนวนเงินฝาก",
-    "dateAndTime": "วันและเวลา",
+    "dateAndTime": "วันที่สร้าง",
     "remarks": "หมายเหตุ",
     "remarksPlaceholder": "เพิ่มหมายเหตุที่นี่...",
     "approve": "อนุมัติ",
     "reject": "ปฏิเสธ",
     "close": "ปิด",
-    "firstLastName": "ชื่อ/นามสกุล"
+    "firstLastName": "ชื่อ-นามสกุล"
   },
-  
+
   "manualDepositForm": {
-    "title": "เพิ่มรายการฝากด้วยตนเอง",
+    "title": "เพิ่มการฝากเงินด้วยตนเอง",
     "accountInformation": "ข้อมูลบัญชี",
-    "memberLoginName": "ชื่อเข้าสู่ระบบของสมาชิก",
+    "memberLoginName": "ชื่อเข้าสู่ระบบสมาชิก",
     "from": "จาก",
     "to": "ถึง",
     "depositAmount": "จำนวนเงินฝาก",
@@ -71,19 +71,19 @@
     "uploadImage": "คลิกเพื่ออัปโหลด",
     "dragAndDrop": "หรือลากและวาง",
     "imageFormat": "อัปโหลด jpeg, jpg, png",
-    "maxSize": "ขนาดสูงสุด 1 MB",
-    "viewFullSize": "ดูขนาดเต็ม",
-    "removeImage": "ลบรูปภาพ",
+    "maxSize": "สูงสุด 1 MB",
+    "viewFullSize": "ดูภาพขนาดเต็ม",
+    "removeImage": "ลบภาพ",
     "cancel": "ยกเลิก",
     "approve": "อนุมัติ",
     "approving": "กำลังอนุมัติ...",
-    "agentAvailableCredit": "คูปองสำหรับสมาชิก",
-    "amountMustBeGreaterThan0AndLessThanMaxLimit": "จำนวนเงินต้องมีค่ามากกว่า 0 และน้อยกว่าค่าสูงสุด",
-    "imageSizeError": "รูปภาพต้องมีขนาดน้อยกว่า 1 MB",
-    "memberLoginNameRequired": "กรุณาเลือกชื่อเข้าสู่ระบบของสมาชิก",
-    "agentBankSelectionRequired": "กรุณาเลือกธนาคารจากธนาคารสำหรับสมาชิก",
-    "memberBankSelectionRequired": "กรุณาเลือกธนาคารจากธนาคารสำหรับสมาชิก",
-    "invalidFileType": "รูปภาพต้องมีรูปแบบ jpeg, jpg, png"
+    "agentAvailableCredit": "เครดิตที่ใช้ได้ของตัวแทน",
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "จำนวนเงินต้องมากกว่า 0 และน้อยกว่าเครดิตที่ใช้ได้ของตัวแทน",
+    "imageSizeError": "ภาพต้องมีขนาดน้อยกว่า 1MB",
+    "memberLoginNameRequired": "ชื่อเข้าสู่ระบบสมาชิกเป็นสิ่งจำเป็น",
+    "agentBankSelectionRequired": "จากเป็นสิ่งจำเป็น",
+    "memberBankSelectionRequired": "ถึงเป็นสิ่งจำเป็น",
+    "invalidFileType": "ประเภทไฟล์ไม่ถูกต้อง กรุณาอัปโหลดไฟล์ jpeg, jpg หรือ png"
   },
 
   "status": {
@@ -91,14 +91,14 @@
     "approved": "อนุมัติแล้ว",
     "rejected": "ปฏิเสธแล้ว"
   },
-  
+
   "errorMessages": {
-    "failedToSubmit": "ไม่สามารถส่งคำขอฝากเงินได้",
-    "failedToApprove": "ไม่สามารถอนุมัติคำขอฝากเงินได้",
-    "failedToReject": "ไม่สามารถปฏิเสธคำขอฝากเงินได้",
-    "failedToFetchData": "ไม่สามารถดึงข้อมูลได้"
+    "failedToSubmit": "ส่งคำขอฝากเงินล้มเหลว",
+    "failedToApprove": "อนุมัติคำขอฝากเงินล้มเหลว",
+    "failedToReject": "ปฏิเสธคำขอฝากเงินล้มเหลว",
+    "failedToFetchData": "ดึงข้อมูลล้มเหลว"
   },
-  
+
   "successMessages": {
     "depositSubmitted": "ส่งคำขอฝากเงินสำเร็จ!",
     "depositUpdated": "อัปเดตคำขอฝากเงินสำเร็จ!",

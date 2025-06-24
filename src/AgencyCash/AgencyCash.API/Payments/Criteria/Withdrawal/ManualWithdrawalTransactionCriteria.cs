@@ -48,5 +48,5 @@ public class ManualWithdrawalTransactionCriteria : NonQueryCommand
     public override string GetSettingKey()
         => SPNameHelper.SiteDBPrefix("API_CashWithdrawal_AddTransaction", SiteDBGroupId);
 
-    public override bool IsValid() => CustId > 0 && AgentId > 0 && Amount > 0 && Amount >= MinAmt && Amount <= MaxAmt && !string.IsNullOrEmpty(PaymentTo) && !string.IsNullOrEmpty(IP);
-} 
+    public override bool IsValid() => CustId > 0 && AgentId > 0 && Amount > 0 && !string.IsNullOrWhiteSpace(PaymentTo);
+}

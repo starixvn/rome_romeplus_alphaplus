@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-using MediatR;
 using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.CreditBalance;
+using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.CreditBalance;
 
@@ -14,7 +14,6 @@ public class CreditBalanceQuery : MemberInfoBaseQuery, IRequest<CreditBalanceVie
         IsAllowedTotalBalanceTransfer = viewer.IsAllowedTotalBalanceTransfer;
         CanTransfer = viewer.CanTransfer;
         CanViewBetLists = viewer.CanViewBetLists;
-        LimitedDateToShowInfo = viewer.LimitedDateToShowInfo;
     }
 
     public string UserName
@@ -42,6 +41,4 @@ public class CreditBalanceQuery : MemberInfoBaseQuery, IRequest<CreditBalanceVie
     public bool CanTransfer { get; }
 
     public bool CanViewBetLists { get; }
-
-    public DateTime LimitedDateToShowInfo { get; }
 }
