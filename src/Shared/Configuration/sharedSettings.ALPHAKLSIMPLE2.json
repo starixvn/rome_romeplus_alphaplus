@@ -266,7 +266,7 @@
         "Agent": "3000,3310"
     },
     "QRCode": {
-        "API": "http://account-service-credit.membersite-service.t2p.gamora.prod:22080/Login/",
+        "API": "http://account-service-credit.membersite-service.klt2p.gamora.prod:32280/Login/",
         "Domains": [],
         "SiteId": 4120,
         "ExpireSeconds": 900
