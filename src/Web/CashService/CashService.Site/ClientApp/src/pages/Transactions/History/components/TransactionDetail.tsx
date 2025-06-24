@@ -151,9 +151,9 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
   return (
     <div className="bg-[#00000080] fixed inset-0 flex items-start justify-center z-50">
       <div
-        className={`${bodyClassName} px-[20px] pb-[10px] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-[768px]:max-w-[90%] overflow-auto rounded-[4px]`}
+        className={`${bodyClassName} p-[12px] pt-[0] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-[768px]:max-w-[90%] overflow-auto rounded-[4px]`}
       >
-        <div className="relative my-[10px] flex items-center">
+        <div className="relative mb-[10px] border-b-[1px] border-[var(--border-color)] py-[11px] flex items-center">
           <MediumTitleComponent
             className="w-auto!"
             text={`${t('detail.title')} (${transactionId?.toString() ?? t('detail.loading')})`}

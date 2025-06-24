@@ -243,8 +243,8 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
       className="bg-[#00000080] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-start justify-center"
       tabIndex={-1}
     >
-      <div className="px-[20px] py-[10px] bg-[var(--modal-background)] mt-[100px] max-w-[540px] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] max-[768px]:max-w-[90%] rounded-[3px] ">
-        <div className="relative">
+      <div className="p-[12px] pt-[0] bg-[var(--modal-background)] mt-[100px] max-w-[540px] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] max-[768px]:max-w-[90%] rounded-[3px] ">
+        <div className="relative mb-[10px] border-b-[1px] border-[var(--border-color)] py-[11px]">
           <MediumTitleComponent text={tManagePayments('transactionLimitPreferences')} />
           <ButtonClosePopupComponent onClick={onClose} />
         </div>
@@ -337,7 +337,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
                   maxLength={5}
                 />
                 <ValidateMessageComponent message={fieldErrors.dailyWithdrawalCount} />
-                <label className=" block mt-[4px] text-[#828282] font-semibold">
+                <label className=" block mt-[4px] text-[#828282] text-[12px] leading-[12px]">
                   {tManagePayments('dailyWithdrawalCountTip')}
                 </label>
               </div>

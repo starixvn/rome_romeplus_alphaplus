@@ -185,8 +185,8 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
 
   return (
     <div className="bg-[#00000080] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-center justify-center">
-      <div className="px-[20px] py-[10px] max-h-[750px] overflow-y-auto bg-[var(--modal-background)] w-full max-w-[560px] rounded-[3px] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)]">
-        <div className="relative ">
+      <div className="p-[12px] pt-[0] max-h-[750px] overflow-y-auto bg-[var(--modal-background)] w-full max-w-[560px] max-[768px]:max-w-[90%] rounded-[3px] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)]">
+        <div className="relative mb-[10px] border-b-[1px] border-[var(--border-color)] py-[11px]" >
           <MediumTitleComponent text={tPaymentProviderSettings('setUpPaymentMethods')} />
           <ButtonClosePopupComponent onClick={onClose} />
         </div>
@@ -242,7 +242,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
             <div>
             <hr className="mt-[16px] mb-[8px] border-[#0000001F]" />
             <NormalTitleComponent text={tPaymentProviderSettings('addPaymentMethodStep2')} />
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-start">
               <div className="pr-[20px]">
                 <p className="mt-[8px] ">{tPaymentProviderSettings('clickLinkOrScanQRCode')}</p>
                 <a
