@@ -11,6 +11,6 @@ public record TabViewModel
     public TabViewModel(string selectedTabName)
     {
         SelectedTabName = selectedTabName;
-        HandbookUrl = AppSettings.IsSiteLabel789y ? MicroSites.FeatureUrl("~/StaticMessage/Help?id=226060") : MicroSites.FeatureUrl($"~/HandbookDefault/GetBySlug?slug=potential-win-limit-overview");
+        HandbookUrl = AppSettings.IsSiteLabel789y ? MicroSites.FeatureUrl("~/StaticMessage/Help?id=226060") : MicroSites.FeatureUrl($"~/HandbookDefault/GetBySlug?slug=member-win-loss-limit");
     }
 }
