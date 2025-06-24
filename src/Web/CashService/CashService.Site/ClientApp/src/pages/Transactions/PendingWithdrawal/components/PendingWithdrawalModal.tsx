@@ -309,7 +309,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
 
               <UploadImage
                 setImage={setImage}
-                prevImage={withdrawal?.payslip}
+                prevImage={withdrawal?.base64Payslip}
                 disabled={isSubmitting}
               />
             </>

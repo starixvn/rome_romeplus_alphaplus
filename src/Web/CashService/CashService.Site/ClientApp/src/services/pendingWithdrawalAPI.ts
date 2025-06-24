@@ -118,9 +118,6 @@ export const approveWithdrawal = async ({
     if (image) {
       formData.append('image', image);
     }
-    console.log(formData.get('transId'));
-    console.log(formData.get('custId'));
-    console.log(formData.get('paymentFrom'));
 
     const response = await api.post<ResultModel>('ApproveWithdrawal', formData, {
       headers: {
