@@ -128,9 +128,13 @@ public class CustomerInfoModel
 
     public byte Locked { get; }
 
+    public int ServiceType { get; set; }
+
     public bool IsDirectMember => IsDirectMemberOfMaster || IsDirectMemberOfSuper;
 
     public bool IsDirectMemberOfMaster => AgentId == DirectMemberAgentIds.Master;
 
     public bool IsDirectMemberOfSuper => AgentId == DirectMemberAgentIds.Super;
+
+    public bool IsCashMember => ServiceType == 1;
 }

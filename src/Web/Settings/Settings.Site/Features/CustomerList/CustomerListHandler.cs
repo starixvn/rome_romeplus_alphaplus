@@ -208,9 +208,10 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                message.SearchAccountName,
                message.SearchAccountRoleId,
                message.AgentId,
+               message.IsCashMember,
                BuildSearchAccountProductStatus(customerStatusModel.DCSProducts.ToList()),
                upline);
-
+            
             return new CustomerStatusViewModel(
                 BuildCustomerProductStatus(actor, searchAccount, message, customerStatusModel, isAllDayBalTransfer),
                 BuildCustomerProductSettings(actor, searchAccount, message, customerStatusModel));
@@ -240,6 +241,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                message.SearchAccountName,
                message.SearchAccountRoleId,
                message.AgentId,
+               message.IsCashMember,
                BuildSearchAccountProductStatus(customerStatusModel.DCSProducts.ToList()),
                upline);
 

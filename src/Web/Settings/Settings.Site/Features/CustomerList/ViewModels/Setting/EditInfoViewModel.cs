@@ -18,7 +18,8 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting
             => new()
             {
                 ["custId"] = SearchAccount.Id.ToString(),
-                ["username"] = SearchAccount.Username
+                ["username"] = SearchAccount.Username,
+                ["isCashMember"] = SearchAccount.IsCashMember.ToString(),
             };
     }
 }

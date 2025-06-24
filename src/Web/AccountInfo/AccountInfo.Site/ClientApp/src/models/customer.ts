@@ -38,4 +38,5 @@ export default interface Customer {
     ViewLoginIPLink: string;
     IsDirectMember: boolean;
     IsDirectMemberOfSuper: boolean;
+    IsCashMember: boolean;
 }

@@ -19,6 +19,7 @@
             public const string AllowedAllDayBalTransfer = "SearchAccount.AllowedAllDayBalTransfer";
             public const string IsAllowAutoTransfer = "SearchAccount.IsAllowAutoTransfer";
             public const string ScheduleWeekDays = "SearchAccount.ScheduleWeekDays";
+            public const string IsCashMember = "SearchAccount.IsCashMember";
 
             public static class Upline
             {

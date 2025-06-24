@@ -20,6 +20,8 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
 
         public bool IsDirectMember { get; set; }
 
+        public bool IsCashMember { get; set; }
+
         public int AgentId => IsDirectMember ? (UplineRoleId == UserLevel.Super.Value ? DirectMemberAgentIds.Super : DirectMemberAgentIds.Master) : 0;
 
         public int SubAccountId => viewer.SubAccId;
