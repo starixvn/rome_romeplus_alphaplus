@@ -38,6 +38,7 @@
 
   "setUpPaymentMethodsForMembers": "Set up payment methods for your members",
   "addPaymentMethod": "Add payment method",
+  "RequirePaymentMethod": "Require at least one 'Completed' payment method.",
   
   "viewProviderFees": "View {{providerName}} fees",
   "bank": "Bank",

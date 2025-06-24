@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 export interface DropdownOption {
   value: string | number;
-  label: string;
+  label: string | React.ReactNode;
   icon?: any;
   attributes?: Record<string, any>;
 }
@@ -88,9 +88,10 @@ const CustomDropdownComponent = ({
   const displayOptions = showOptionAll ? [{ value: '', label: t('all') }, ...options] : options;
 
   const filteredOptions = searchTerm
-    ? displayOptions.filter((option) =>
-        option.label.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+    ? displayOptions.filter((option) => {
+        const labelText = typeof option.label === 'string' ? option.label : '';
+        return labelText.toLowerCase().includes(searchTerm.toLowerCase());
+      })
     : displayOptions;
 
   const displaySelected = () => {
@@ -105,7 +106,7 @@ const CustomDropdownComponent = ({
         onClick={handleToggle}
       >
         {selected && selected.icon}
-        <span className="block whitespace-nowrap overflow-hidden text-ellipsis pr-[12px]">
+        <span className="block whitespace-nowrap overflow-hidden text-ellipsis pr-[12px] [&>.nickname]:hidden">
           {displaySelected()}
         </span>
         <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
@@ -131,7 +132,7 @@ const CustomDropdownComponent = ({
               <div
                 key={option.value}
                 onClick={() => handleSelect(option)}
-                className="py-[3px] px-[12px] hover:bg-[#1967D2] hover:text-[#fff] cursor-pointer flex items-center max-[768px]:py-[6px]"
+                className="py-[3px] px-[12px] hover:bg-[#1967D2] hover:text-[#fff] cursor-pointer flex flex-wrap items-start max-[768px]:py-[6px]"
               >
                 {option.icon}
                 {option.label}

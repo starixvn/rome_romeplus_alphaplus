@@ -38,6 +38,7 @@
 
   "setUpPaymentMethodsForMembers": "ตั้งค่าวิธีการชำระเงินสำหรับสมาชิกของคุณ",
   "addPaymentMethod": "เพิ่มวิธีการชำระเงิน",
+  "RequirePaymentMethod": "ต้องมีวิธีการชำระเงินที่ 'เสร็จสมบูรณ์' อย่างน้อยหนึ่งรายการ",
   
   "viewProviderFees": "ดูค่าธรรมเนียม{{providerName}}",
   "bank": "ธนาคาร",

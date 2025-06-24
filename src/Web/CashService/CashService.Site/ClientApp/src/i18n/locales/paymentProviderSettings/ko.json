@@ -38,6 +38,7 @@
 
   "setUpPaymentMethodsForMembers": "회원의 결제 방법 설정",
   "addPaymentMethod": "결제 방법 추가",
+  "RequirePaymentMethod": "최소 하나의 '완료' 결제 방법이 필요합니다.",
   
   "viewProviderFees": "{{providerName}} 수수료 보기",
   "bank": "은행",

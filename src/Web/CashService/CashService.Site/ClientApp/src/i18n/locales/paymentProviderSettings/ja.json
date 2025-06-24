@@ -38,6 +38,7 @@
 
   "setUpPaymentMethodsForMembers": "メンバーの支払い方法を設定",
   "addPaymentMethod": "支払い方法を追加",
+  "RequirePaymentMethod": "少なくとも1つの「完了」支払い方法が必要です。",
   
   "viewProviderFees": "{{providerName}}の手数料を表示",
   "bank": "銀行",

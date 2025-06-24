@@ -437,7 +437,7 @@ function PaymentProviderSettings() {
   };
 
   return (
-    <div className="payment-provider-settings h-full">
+    <div className="payment-provider-settings">
       {loading ? (
         <LoadingFullComponent />
       ) : error ? (
@@ -451,20 +451,23 @@ function PaymentProviderSettings() {
               message={updateMessage.text}
             />
           )}
-          <div>
-            <div className="settings-header">
-              <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-color)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
-                <BackButtonComponent onClick={onBackNavigation} />
-                <TitleComponent title={window.providerSettingsViewModel.Provider.Name} />                
-              </div>
+         
+          <div className="settings-header">
+            <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-color)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
+              <BackButtonComponent onClick={onBackNavigation} />
+              <TitleComponent title={window.providerSettingsViewModel.Provider.Name} />                
             </div>
           </div>
-          <div className="py-[10px]">
-            <div className="flex flex-wrap mb-[8px]">
+        
+          <div className="pb-[10px]">
+            <div className="mb-[8px]">
               <MediumTitleComponent text={window.providerSettingsViewModel.Provider.Name} />
+              <p className="my-[8px]">
+                {tPaymentProviderSettings('RequirePaymentMethod')}
+              </p>
               {providerStatus != paymentProviderStatusConstant.notConfigured && (
                   <div
-                    className="mt-[5px] mb-[5px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]"
+                    className="mb-[10px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]"
                     role="group"
                   >
                     <EnableButtonComponent
@@ -477,7 +480,7 @@ function PaymentProviderSettings() {
                     />
                   </div>
                 )}
-              <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
+              <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                   <LabelTitleComponent text={tPaymentProviderSettings('paymentMethod')} />
                   <div className="relative">

@@ -204,7 +204,12 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       setMemberOptions(
         memberNames.map((member) => ({
           value: member.custId.toString(),
-          label: member.username + (member.nickName ? ' (' + member.nickName + ')' : ''),
+          label: (
+            <>
+              {member.username}
+              {member.nickName && <div className="nickname w-full">({member.nickName})</div>}
+            </>
+          ),
         }))
       );
       const firstMember = memberNames[0];
@@ -265,7 +270,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
   const handleSetWithdrawalAmount = (value: number) => {
     setWithdrawalAmount(value);
   };
-
+  console.log(memberOptions);
   return (
     <div className="">
       <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
@@ -275,7 +280,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
 
       <div
         id="manual-withdrawal-form"
-        className="max-[768px]:w-full pb-[16px] pt-[10px]"
+        className="max-w-[1100px] w-full max-[768px]:w-full pb-[16px] pt-[10px]"
       >
         {resultMessage.type && (
           <ResultMessageComponent

@@ -382,7 +382,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
           </div>
           <div className={`bg-[#ffffff] dark:bg-[#2b2b2b] px-[20px] py-[10px] rounded-[5px] max-w-[722px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] mb-[15px] border-l-[12px] ${fetchedBankAccount?.status === 1 ? ' border-[#5cb774]' : 'border-[#af4646]'}`} >
             <div className="flex gap-[30px]">
-              <div>                 
+              <div className="text-center">                 
                 <MediumTitleComponent text={fetchedBankAccount?.accountNickname || ''} />
                 <div>                
                   {fetchedBankAccount?.status === bankStatusConstant.enabled ? <StatusEnabledComponent /> : <StatusDisabledComponent />}
