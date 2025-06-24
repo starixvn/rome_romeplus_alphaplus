@@ -51,11 +51,7 @@ public class ExceptionMiddleware
             _userSession.AdminName
         };
 
-        if (exception.Message.Contains("Vendor Api Error, Unspecified Error", StringComparison.OrdinalIgnoreCase))
-        {
-            await _logger.WarnAsync(await ExceptionHelper.BuildError(context.Request, exception));
-        }
-        else
+        if (!exception.Message.Contains("Vendor Api Error, Unspecified Error", StringComparison.OrdinalIgnoreCase))
         {
             await _logger.ErrorAsync(await ExceptionHelper.BuildError(context.Request, exception));
         }
