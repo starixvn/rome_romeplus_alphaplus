@@ -26,13 +26,17 @@ public class WinLossWorkbook(IWebHostEnvironment webHostEnvironment) :
         var custLevel = message.CustLevel;
         var isAgentLevel = custLevel.IsAgentLevel();
         var levelTypeValue = custLevel.IsSuperLevel() ? CommonResx.MasterAgent : Resources.Agent;
+        var rewardText = Resources.ResourceManager.GetString("Reward");
+        if(reportData.DataSource.Any()){
+            rewardText = string.Format("{0} ({1})", rewardText, reportData.DataSource.First().RewardCurrency);
+        }
 
         var fileContent = UseTemplate(
             new TemplateInfo(
                 GetExcelTemplatePath(custLevel.GetDirectDownLineLevel().DisplayName),
                 noInfomationText: Resources.NoInformationIsAvailable))
             .Title($"{Resources.WinLossTitle} {fromDate} --> {toDate} {Resources.of2} {productNames}")
-            .Header(Resources.ResourceManager.GetString)
+            .Header(key => key.Equals("Reward") ? rewardText : Resources.ResourceManager.GetString(key))
             .Body(reportData.DataSource, isAgentLevel ? GetRowMapperMember() : GetRowMapper(levelTypeValue))
             .Footer(reportData.Total, isAgentLevel ? GetRowMapperMember(isTotal: true) : GetRowMapper(levelTypeValue, isTotal: true))
             .Sheet(Resources.DefaultSheetName)
@@ -51,7 +55,8 @@ public class WinLossWorkbook(IWebHostEnvironment webHostEnvironment) :
         .Map(F, winLoss => winLoss.WinLoss)
         .Map(G, winLoss => winLoss.Comm)
         .Map(H, winLoss => winLoss.Total)
-        .Map(I, winLoss => winLoss.Company);
+        .Map(I, winLoss => winLoss.Company)
+        .Map(J, winLoss => winLoss.RewardAmount);
 
     private static Mapper<WinLossModel> GetRowMapperMember(bool isTotal = false)
         => new Mapper<WinLossModel>()
@@ -64,5 +69,6 @@ public class WinLossWorkbook(IWebHostEnvironment webHostEnvironment) :
         .Map(G, winLoss => winLoss.WinLoss)
         .Map(H, winLoss => winLoss.Comm)
         .Map(I, winLoss => winLoss.Total)
-        .Map(J, winLoss => winLoss.Company);
+        .Map(J, winLoss => winLoss.Company)
+        .Map(K, winLoss => winLoss.RewardAmount);
 }

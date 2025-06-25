@@ -14,6 +14,10 @@ public class WinLossModel
 
     public decimal MemberComm { get; set; }
 
+    public string RewardCurrency { get; set; }
+
+    public decimal RewardAmount { get; set; }
+
     public decimal MemberTotal
     {
         get => MemberWinLoss + MemberComm;
@@ -54,6 +58,7 @@ public class WinLossModel
         model1.Comm += model2.Comm;
         model1.Total += model2.Total;
         model1.Company += model2.Company;
+        model1.RewardAmount += model2.RewardAmount;
 
         return model1;
     }
