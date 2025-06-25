@@ -1,110 +1,52 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -555,89 +497,11 @@
   <data name="CreditGrade" xml:space="preserve">
     <value>크레딧 등급</value>
   </data>
-  <data name="Gender" xml:space="preserve">
-    <value>성별</value>
-  </data>
-  <data name="GroupB" xml:space="preserve">
-    <value>그룹 B</value>
-  </data>
-  <data name="GroupC" xml:space="preserve">
-    <value>그룹 C</value>
-  </data>
-  <data name="GroupA" xml:space="preserve">
-    <value>그룹 A</value>
-  </data>
-  <data name="GroupD" xml:space="preserve">
-    <value>그룹 D</value>
-  </data>
-  <data name="NewCredit" xml:space="preserve">
-    <value>새 크레딧</value>
-  </data>
   <data name="fax" xml:space="preserve">
     <value>팩스</value>
   </data>
-  <data name="BaseballMinBet" xml:space="preserve">
-    <value>야구-최소 베팅</value>
-  </data>
-  <data name="FootballMinBet" xml:space="preserve">
-    <value>축구-최소 베팅</value>
-  </data>
-  <data name="BasketballMinBet" xml:space="preserve">
-    <value>농구-최소 베팅</value>
-  </data>
-  <data name="TennisMinBet" xml:space="preserve">
-    <value>테니스-최소 베팅</value>
-  </data>
-  <data name="TennisMaxBet" xml:space="preserve">
-    <value>테니스-최대 베팅</value>
-  </data>
-  <data name="FootballMaxBet" xml:space="preserve">
-    <value>축구-최대 베팅</value>
-  </data>
-  <data name="BasketballMaxBet" xml:space="preserve">
-    <value>농구-최대 베팅</value>
-  </data>
-  <data name="BaseballMaxBet" xml:space="preserve">
-    <value>야구-최대 베팅</value>
-  </data>
-  <data name="OverUnder" xml:space="preserve">
-    <value>오버/언더</value>
-  </data>
-  <data name="OddEven" xml:space="preserve">
-    <value>홀/짝</value>
-  </data>
-  <data name="Handicap" xml:space="preserve">
-    <value>핸디캡</value>
-  </data>
-  <data name="Outright" xml:space="preserve">
-    <value>우승</value>
-  </data>
   <data name="mphone" xml:space="preserve">
     <value>휴대폰</value>
-  </data>
-  <data name="GolfMaxPerMatch" xml:space="preserve">
-    <value>골프-경기당 최대</value>
-  </data>
-  <data name="MotorsportsMaxPerMatch" xml:space="preserve">
-    <value>모터스포츠-경기당 최대</value>
-  </data>
-  <data name="OtherSportsMaxPerMatch" xml:space="preserve">
-    <value>기타 스포츠-경기당 최대</value>
-  </data>
-  <data name="Closed" xml:space="preserve">
-    <value>비활성</value>
-  </data>
-  <data name="Live1stOU" xml:space="preserve">
-    <value>라이브 1차 오버/언더</value>
-  </data>
-  <data name="Live1stHdp" xml:space="preserve">
-    <value>라이브 1차 핸디캡</value>
-  </data>
-  <data name="Credit" xml:space="preserve">
-    <value>크레딧</value>
-  </data>
-  <data name="Language" xml:space="preserve">
-    <value>언어</value>
   </data>
   <data name="[a]" xml:space="preserve">
     <value>[계정 생성]</value>
@@ -1548,108 +1412,6 @@
   <data name="bank" xml:space="preserve">
     <value>은행</value>
   </data>
-  <data name="MinOE" xml:space="preserve">
-    <value>최소 오버/언더</value>
-  </data>
-  <data name="MinOU" xml:space="preserve">
-    <value>최소 오버/언더</value>
-  </data>
-  <data name="LiveOU" xml:space="preserve">
-    <value>라이브 오버/언더</value>
-  </data>
-  <data name="LiveHdp" xml:space="preserve">
-    <value>라이브 핸디캡</value>
-  </data>
-  <data name="MaxHdp" xml:space="preserve">
-    <value>최대 핸디캡</value>
-  </data>
-  <data name="MaxOE" xml:space="preserve">
-    <value>최대 오버/언더</value>
-  </data>
-  <data name="MaxOU" xml:space="preserve">
-    <value>최대 오버/언더</value>
-  </data>
-  <data name="NewSuperPT" xml:space="preserve">
-    <value>새 슈퍼 PT</value>
-  </data>
-  <data name="NewMasterPT" xml:space="preserve">
-    <value>새 마스터 PT</value>
-  </data>
-  <data name="MixParlay" xml:space="preserve">
-    <value>혼합 파레이</value>
-  </data>
-  <data name="ToName" xml:space="preserve">
-    <value>받는 사람 이름</value>
-  </data>
-  <data name="CommissionGroup" xml:space="preserve">
-    <value>수수료 그룹</value>
-  </data>
-  <data name="UpdateMinMaxBetTennis" xml:space="preserve">
-    <value>테니스 최소-최대 베팅 업데이트</value>
-  </data>
-  <data name="UpdateMinMaxBetBasketball" xml:space="preserve">
-    <value>농구 최소-최대 베팅 업데이트</value>
-  </data>
-  <data name="UpdateMinMaxBetFootball" xml:space="preserve">
-    <value>축구 최소-최대 베팅 업데이트</value>
-  </data>
-  <data name="UpdateMinMaxBetBaseball" xml:space="preserve">
-    <value>야구 최소-최대 베팅 업데이트</value>
-  </data>
-  <data name="SAToteWinComm" xml:space="preserve">
-    <value>SA 토트 승리 수수료</value>
-  </data>
-  <data name="MasterAgentID" xml:space="preserve">
-    <value>마스터 에이전트 ID</value>
-  </data>
-  <data name="UpdateMultiple" xml:space="preserve">
-    <value>다중 업데이트</value>
-  </data>
-  <data name="SuspendedMultiple" xml:space="preserve">
-    <value>다중 일시정지</value>
-  </data>
-  <data name="MasterAutoPositionTaking" xml:space="preserve">
-    <value>마스터 자동 포지션 테이킹</value>
-  </data>
-  <data name="IsMasterAutoPositionTakingOnMember" xml:space="preserve">
-    <value>회원에 대한 마스터 자동 포지션 테이킹 여부</value>
-  </data>
-  <data name="IsSuperAutoPositionTakingOnMaster" xml:space="preserve">
-    <value>마스터에 대한 슈퍼 자동 포지션 테이킹 여부</value>
-  </data>
-  <data name="UpdateMinMaxBetSoccer" xml:space="preserve">
-    <value>축구 최소-최대 베팅 업데이트</value>
-  </data>
-  <data name="TypeUsername" xml:space="preserve">
-    <value>사용자명 입력</value>
-  </data>
-  <data name="EditBy" xml:space="preserve">
-    <value>편집자</value>
-  </data>
-  <data name="LogDate" xml:space="preserve">
-    <value>로그 날짜</value>
-  </data>
-  <data name="LogID" xml:space="preserve">
-    <value>로그 ID</value>
-  </data>
-  <data name="EditedBy" xml:space="preserve">
-    <value>편집자</value>
-  </data>
-  <data name="ViewLog" xml:space="preserve">
-    <value>로그 보기</value>
-  </data>
-  <data name="ViewBy" xml:space="preserve">
-    <value>보는 사람</value>
-  </data>
-  <data name="PleaseInputUsernameToSearch" xml:space="preserve">
-    <value>검색할 사용자명을 입력하세요</value>
-  </data>
-  <data name="NoInformationAvailable" xml:space="preserve">
-    <value>사용 가능한 정보가 없습니다</value>
-  </data>
-  <data name="TotalGoal" xml:space="preserve">
-    <value>총 골</value>
-  </data>
   <data name="success" xml:space="preserve">
     <value>성공</value>
   </data>
@@ -1785,48 +1547,6 @@
   <data name="Tennis" xml:space="preserve">
     <value>테니스</value>
   </data>
-  <data name="MemberLoginLogNotAvailable" xml:space="preserve">
-    <value>회원 로그인 로그를 사용할 수 없습니다.</value>
-  </data>
-  <data name="UpdatePositionTakingMixSportsParlay" xml:space="preserve">
-    <value>혼합 스포츠 파레이 포지션 테이킹 업데이트</value>
-  </data>
-  <data name="UpdatePositionTakingNumberGame" xml:space="preserve">
-    <value>번호 게임 포지션 테이킹 업데이트</value>
-  </data>
-  <data name="MinLiveNextOverUnder" xml:space="preserve">
-    <value>최소 라이브 다음 오버/언더</value>
-  </data>
-  <data name="MinLiveNextOddEven" xml:space="preserve">
-    <value>최소 라이브 다음 홀/짝</value>
-  </data>
-  <data name="MinLiveNextHighLow" xml:space="preserve">
-    <value>최소 라이브 다음 높음/낮음</value>
-  </data>
-  <data name="MaxLiveNextOverUnder" xml:space="preserve">
-    <value>최대 라이브 다음 오버/언더</value>
-  </data>
-  <data name="MaxLiveNextOddEven" xml:space="preserve">
-    <value>최대 라이브 다음 홀/짝</value>
-  </data>
-  <data name="MaxLiveNextHighLow" xml:space="preserve">
-    <value>최대 라이브 다음 높음/낮음</value>
-  </data>
-  <data name="MinLiveNextCombo" xml:space="preserve">
-    <value>최소 라이브 다음 콤보</value>
-  </data>
-  <data name="MinLiveNumberWheel" xml:space="preserve">
-    <value>최소 라이브 번호 휠</value>
-  </data>
-  <data name="MaxLiveNextCombo" xml:space="preserve">
-    <value>최대 라이브 다음 콤보</value>
-  </data>
-  <data name="MaxLiveNumberWheel" xml:space="preserve">
-    <value>최대 라이브 번호 휠</value>
-  </data>
-  <data name="ApplyToAllDownlines" xml:space="preserve">
-    <value>모든 하위 라인에 적용</value>
-  </data>
   <data name="IsForcedChangeSecurityCode" xml:space="preserve">
     <value>보안 코드 강제 변경 여부</value>
   </data>
@@ -1845,29 +1565,11 @@
   <data name="v10apt_20" xml:space="preserve">
     <value>머니라인</value>
   </data>
-  <data name="v11spt_2" xml:space="preserve">
-    <value>홀/짝</value>
-  </data>
-  <data name="v11spt_3" xml:space="preserve">
-    <value>오버/언더</value>
-  </data>
   <data name="v11spt_20" xml:space="preserve">
     <value>머니라인</value>
   </data>
-  <data name="v11apt_2" xml:space="preserve">
-    <value>홀/짝</value>
-  </data>
-  <data name="v11apt_3" xml:space="preserve">
-    <value>오버/언더</value>
-  </data>
   <data name="v11apt_20" xml:space="preserve">
     <value>머니라인</value>
-  </data>
-  <data name="v11mpt_2" xml:space="preserve">
-    <value>홀/짝</value>
-  </data>
-  <data name="v11mpt_3" xml:space="preserve">
-    <value>오버/언더</value>
   </data>
   <data name="v11mpt_20" xml:space="preserve">
     <value>머니라인</value>
@@ -1941,9 +1643,6 @@
   <data name="v8spt_1" xml:space="preserve">
     <value>핸디캡</value>
   </data>
-  <data name="v8spt_2" xml:space="preserve">
-    <value>홀/짝</value>
-  </data>
   <data name="v8spt_3" xml:space="preserve">
     <value>오버/언더</value>
   </data>
@@ -1953,9 +1652,6 @@
   <data name="v8apt_1" xml:space="preserve">
     <value>핸디캡</value>
   </data>
-  <data name="v8apt_2" xml:space="preserve">
-    <value>홀/짝</value>
-  </data>
   <data name="v8apt_3" xml:space="preserve">
     <value>오버/언더</value>
   </data>
@@ -1964,9 +1660,6 @@
   </data>
   <data name="v8mpt_1" xml:space="preserve">
     <value>핸디캡</value>
-  </data>
-  <data name="v8mpt_2" xml:space="preserve">
-    <value>홀/짝</value>
   </data>
   <data name="v8mpt_3" xml:space="preserve">
     <value>오버/언더</value>
@@ -1979,18 +1672,6 @@
   </data>
   <data name="a_v3spt_3" xml:space="preserve">
     <value>오버/언더</value>
-  </data>
-  <data name="a_v3apt_1" xml:space="preserve">
-    <value>핸디캡</value>
-  </data>
-  <data name="a_v3apt_2" xml:space="preserve">
-    <value>홀/짝</value>
-  </data>
-  <data name="a_v3apt_3" xml:space="preserve">
-    <value>오버/언더</value>
-  </data>
-  <data name="a_v3apt_20" xml:space="preserve">
-    <value>머니라인</value>
   </data>
   <data name="a_v3mpt_1" xml:space="preserve">
     <value>핸디캡</value>
@@ -2010,18 +1691,6 @@
   <data name="a_v99spt_3" xml:space="preserve">
     <value>오버/언더</value>
   </data>
-  <data name="a_v99apt_1" xml:space="preserve">
-    <value>핸디캡</value>
-  </data>
-  <data name="a_v99apt_2" xml:space="preserve">
-    <value>홀/짝</value>
-  </data>
-  <data name="a_v99apt_3" xml:space="preserve">
-    <value>오버/언더</value>
-  </data>
-  <data name="a_v99apt_20" xml:space="preserve">
-    <value>머니라인</value>
-  </data>
   <data name="a_v99mpt_1" xml:space="preserve">
     <value>핸디캡</value>
   </data>
@@ -2037,32 +1706,14 @@
   <data name="a_v8spt_1" xml:space="preserve">
     <value>핸디캡</value>
   </data>
-  <data name="a_v8spt_2" xml:space="preserve">
-    <value>홀/짝</value>
-  </data>
   <data name="a_v8spt_3" xml:space="preserve">
     <value>오버/언더</value>
   </data>
   <data name="a_v8spt_20" xml:space="preserve">
     <value>머니라인</value>
   </data>
-  <data name="a_v8apt_1" xml:space="preserve">
-    <value>핸디캡</value>
-  </data>
-  <data name="a_v8apt_2" xml:space="preserve">
-    <value>홀/짝</value>
-  </data>
-  <data name="a_v8apt_3" xml:space="preserve">
-    <value>오버/언더</value>
-  </data>
-  <data name="a_v8apt_20" xml:space="preserve">
-    <value>머니라인</value>
-  </data>
   <data name="a_v8mpt_1" xml:space="preserve">
     <value>핸디캡</value>
-  </data>
-  <data name="a_v8mpt_2" xml:space="preserve">
-    <value>홀/짝</value>
   </data>
   <data name="a_v8mpt_3" xml:space="preserve">
     <value>오버/언더</value>
