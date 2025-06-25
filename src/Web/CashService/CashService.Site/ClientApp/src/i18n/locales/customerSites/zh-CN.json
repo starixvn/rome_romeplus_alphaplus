@@ -1,0 +1,19 @@
+{
+    "updateInfoCashMember": {
+        "memberInfo": "Member Info",
+        "bankInfo": "Bank Info",
+        "fistName": "First Name",
+        "lastName": "Last Name",
+        "phone": "Phone",
+        "mobilePhone": "Mobile Phone",
+        "email": "Email",
+        "fax": "Fax",
+        "customerInformation": "Customer Information",
+        "update": "Update",
+        "clearAll": "Clear All",
+        "memberBankAccount": "Member's Bank Account",
+        "agentBankAccount": "Agent's Bank Account",
+        "action": "Action",
+        "addBankAccount": "Add Bank Account"
+    }
+}

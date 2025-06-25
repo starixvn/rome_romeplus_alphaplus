@@ -22,7 +22,7 @@ const getErrorMessage = (error: FieldError | undefined) => {
     return '';
 };
 
-const MobiCode = (props: MobiCodeProps) => {
+export const MobiCode = (props: MobiCodeProps) => {
     const { onChange } = props;
     const { register, formState: { errors } } = useFormContext();
     const { t } = useTranslation('memberSite');

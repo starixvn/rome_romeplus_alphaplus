@@ -41,7 +41,8 @@ export default defineConfig({
         pendingDeposit: 'src/pages/Transactions/PendingDeposit/index.tsx',
         pendingWithdrawal: 'src/pages/Transactions/PendingWithdrawal/index.tsx',
         transactionsHistory: 'src/pages/Transactions/History/index.tsx',
-        paymentProviderSettings: 'src/pages/PaymentProviderSettings/index.tsx'
+        paymentProviderSettings: 'src/pages/PaymentProviderSettings/index.tsx',
+        updateInfoCashMember: 'src/pages/CustomerSites/pages/UpdateInfoCashMember.tsx'
       },
       output:{
         assetFileNames: 'index-[hash][extname]'
