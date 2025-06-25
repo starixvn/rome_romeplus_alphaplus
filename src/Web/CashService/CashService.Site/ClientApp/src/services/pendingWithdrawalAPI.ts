@@ -113,7 +113,7 @@ export const approveWithdrawal = async ({
     formData.append('paymentFrom', paymentFrom);
     formData.append('providerId', providerId.toString());
     formData.append('paymentMethodId', paymentMethodId.toString());
-    formData.append('remark', remark);
+    formData.append('remark', remark || '');
 
     if (image) {
       formData.append('image', image);
@@ -151,7 +151,7 @@ export const rejectWithdrawal = async ({
     formData.append('paymentFrom', paymentFrom);
     formData.append('providerId', providerId.toString());
     formData.append('paymentMethodId', paymentMethodId.toString());
-    formData.append('remark', remark);
+    formData.append('remark', remark || '');
     if (image) {
       formData.append('image', image);
     }

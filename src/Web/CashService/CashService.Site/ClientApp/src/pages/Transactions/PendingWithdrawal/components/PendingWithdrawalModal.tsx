@@ -131,7 +131,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
         paymentFrom: withdrawalFrom,
         providerId: providerId,
         paymentMethodId: paymentMethodId,
-        remark: remark,
+        remark: remark || '',
         image: image,
       });
       if (response.isSuccessful) {
@@ -164,7 +164,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
       paymentFrom: withdrawalFrom,
       providerId: providerId,
       paymentMethodId: paymentMethodId,
-      remark: remark,
+      remark: remark || '',
       image: image,
     });
     if (response.isSuccessful) {

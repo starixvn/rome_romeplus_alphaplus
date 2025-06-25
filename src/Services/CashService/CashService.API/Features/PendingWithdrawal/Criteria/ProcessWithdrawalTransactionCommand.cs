@@ -17,7 +17,10 @@ public class ProcessWithdrawalTransactionCommand : CriteriaBase
 
     public int ProviderId { get; set; }
     public int PaymentMethodId { get; set; }
+
+    [SpParam(AllowNull = true)]
     public string Remark { get; set; }
+
     public byte[] Payslip { get; set; }
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; }
