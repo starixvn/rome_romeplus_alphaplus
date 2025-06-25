@@ -28,6 +28,7 @@ interface PendingDepositModalProps {
 }
 const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, custId, onClose }) => {
   const { t } = useTranslation('pendingDeposit');
+  const { t: tGlobal } = useTranslation('global');
   const [remark, setRemark] = useState('');
   const [deposit, setDeposit] = useState<TransactionItem | null>(null);
   const [depositAmount, setDepositAmount] = useState<number>(deposit?.amount || 0);
@@ -169,7 +170,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
                     <div className="mb-[10px]">
                       <LabelTitleComponent text={t('pendingDepositModal.from')} />
                       <div className="flex items-center">
-                        {renderBankAccount(deposit?.paymentFrom || '')}
+                        {renderBankAccount(deposit?.paymentFrom || '', tGlobal)}
                       </div>
                     </div>
                     <div>
@@ -181,7 +182,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
                   <div>
                     <div className="mb-[10px]">
                       <LabelTitleComponent text={t('pendingDepositModal.to')} />
-                      {deposit?.paymentTo && renderBankAccount(deposit.paymentTo)}
+                      {deposit?.paymentTo && renderBankAccount(deposit.paymentTo, tGlobal)}
                     </div>
 
                     <div>

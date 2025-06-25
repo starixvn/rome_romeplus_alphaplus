@@ -12,7 +12,6 @@ import { ButtonFullComponent } from '../../../../components/ButtonComponents';
 import Pagination from '../../Components/Pagination';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
 import { ValidateMessageComponent } from '../../../../components/MessageComponents.tsx';
-import Tippy from '@tippyjs/react';
 import { IconImage } from '../../../../components/Icons.tsx';
 
 interface DataGridProps {
@@ -119,15 +118,11 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals, reloadGrid }) => {
                       )}
                     </div>
                   </td>
-                  <td className="text-left">
-                    <Tippy content={<p>{tGlobal(withdrawal.paymentFrom.split('-')[0])}</p>}>
-                      {renderBankAccount(withdrawal.paymentFrom)}
-                    </Tippy>
+                  <td className="text-left">                   
+                      {renderBankAccount(withdrawal.paymentFrom, tGlobal)}                     
                   </td>
-                  <td className="text-left">
-                    <Tippy content={<p>{tGlobal(withdrawal.paymentTo.split('-')[0])}</p>}>
-                      {renderBankAccount(withdrawal.paymentTo)}
-                    </Tippy>
+                  <td className="text-left">                  
+                      {renderBankAccount(withdrawal.paymentTo, tGlobal)}                   
                   </td>
                   <td>{withdrawal.transId}</td>
                   <td>{formatDateTime(withdrawal.createdTime)}</td>

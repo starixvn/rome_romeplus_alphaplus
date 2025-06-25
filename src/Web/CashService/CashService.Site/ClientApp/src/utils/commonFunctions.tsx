@@ -6,6 +6,7 @@ import {
   StatusNoneComponent,
   StatusProcessingComponent,
 } from '../components/StatusComponents';
+import Tippy from '@tippyjs/react';
 
 export const displayAmount = (amount: number): string => {
   if (amount >= 1000) {
@@ -28,22 +29,26 @@ export const renderBankOptionValue = (bankCode: string, bankAccount: string) => 
   return `${bankCode}-${bankAccount}`;
 };
 
-export const renderBankAccount = (bankAccount: string) => {
+export const renderBankAccount = (bankAccount: string, tGlobal?: any) => {  
   if (!bankAccount) return <div className="flex items-center max-w-[200px]">-</div>;
   const [bankCode, accountNumber] = bankAccount.split('-');
   if (bankCode && !accountNumber) return <div className="flex items-center">{bankCode}</div>;
   if (!accountNumber && !bankCode) return <div className="inline">-</div>;
-  return (
-    <div className="flex items-center max-w-[200px]">
-      {bankCode && (
-        <img
-          src={`../assets/bank/${bankCode}.png`}
-          alt={bankCode}
-          className="w-[16px] h-[16px] mr-[8px] inline-block"
-        />
-      )}
-      <span className="overflow-hidden text-ellipsis whitespace-nowrap">{accountNumber}</span>
-    </div>
+  return (    
+    <>   
+    <Tippy content={ bankCode ? <p>{ tGlobal(bankCode) }</p> : <p>{accountNumber}</p>}>
+      <div className="inline-flex items-center max-w-[200px]">
+        {bankCode && (
+          <img
+            src={`../assets/bank/${bankCode}.png`}
+            alt={bankCode}
+            className="w-[16px] h-[16px] mr-[8px] inline-block"
+          />
+        )}
+        <span className="overflow-hidden text-ellipsis whitespace-nowrap">{accountNumber}</span>
+      </div>
+    </Tippy>    
+    </>
   );
 };
 

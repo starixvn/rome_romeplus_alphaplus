@@ -123,6 +123,7 @@ const PendingWithdrawal: React.FC = () => {
               <LoadingFullComponent />
             </div>
           ) : (
+            //console.log(filteredWithdrawals),
             <DataGrid withdrawals={filteredWithdrawals} reloadGrid={fetchWithdrawals} />
           )}
         </div>

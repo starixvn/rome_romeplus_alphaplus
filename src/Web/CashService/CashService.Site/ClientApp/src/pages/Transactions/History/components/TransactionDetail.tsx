@@ -214,13 +214,13 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
                   <div className="w-[48%] flex flex-col">
                     <LabelTitleComponent text={t('detail.from')} />
                     <div className="flex items-center">
-                      {renderBankAccount(detailData.paymentFrom)}
+                      {renderBankAccount(detailData.paymentFrom, tGlobal)}
                     </div>
                   </div>
                   <div className="w-[48%]">
                     <LabelTitleComponent text={t('detail.to')} />
                     <div className="flex items-center">
-                      {renderBankAccount(detailData.paymentTo)}
+                      {renderBankAccount(detailData.paymentTo, tGlobal)}
                     </div>
                   </div>
                   <div className="w-[48%]">

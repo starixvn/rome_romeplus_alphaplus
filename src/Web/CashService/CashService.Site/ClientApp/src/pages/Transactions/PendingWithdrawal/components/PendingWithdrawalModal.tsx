@@ -37,6 +37,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
   onClose,
 }) => {
   const { t } = useTranslation('pendingWithdrawal');
+  const { t: tGlobal } = useTranslation('global');
   const [withdrawal, setWithdrawal] = useState<TransactionItem | null>(null);
   const [remark, setRemark] = useState('');
   const [withdrawalFrom, setWithdrawalFrom] = useState('');
@@ -275,7 +276,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
                     <div className="mb-[10px]">
                       <LabelTitleComponent text={t('pendingWithdrawalModal.to')} />
                       <div className="flex items-center">
-                        <span>{renderBankAccount(withdrawal?.paymentTo || '')}</span>
+                        <span>{renderBankAccount(withdrawal?.paymentTo || '', tGlobal)}</span>
                       </div>
                     </div>
 

@@ -13,7 +13,6 @@ import {
 import TransactionDetail from './TransactionDetail';
 import { ButtonFullComponent } from '../../../../components/ButtonComponents';
 import { IconImage } from '../../../../components/Icons.tsx';
-import Tippy from '@tippyjs/react';
 
 interface DataGridProps {
   items: TransactionItem[];
@@ -132,18 +131,14 @@ const DataGrid: React.FC<DataGridProps> = ({
                   {shouldShowColumn('from') && (
                     <td>
                       <div className="flex items-center">
-                        <Tippy content={<p>{tGlobal(item.paymentFrom.split('-')[0])}</p>}>
-                          {renderBankAccount(item.paymentFrom)}
-                        </Tippy>
+                        {renderBankAccount(item.paymentFrom, tGlobal)}
                       </div>
                     </td>
                   )}
                   {shouldShowColumn('to') && (
                     <td>
                       <div className="flex items-center">
-                        <Tippy content={<p>{tGlobal(item.paymentTo.split('-')[0])}</p>}>
-                          {renderBankAccount(item.paymentTo)}
-                        </Tippy>
+                        {renderBankAccount(item.paymentTo, tGlobal)}
                       </div>
                     </td>
                   )}

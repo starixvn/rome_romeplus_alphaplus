@@ -11,7 +11,6 @@ import Pagination from '../../Components/Pagination';
 import { ButtonFullComponent } from '../../../../components/ButtonComponents';
 import PendingDepositModal from './PendingDepositModal';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
-import Tippy from '@tippyjs/react';
 import { ErrorMessageComponent } from '../../../../components/MessageComponents';
 import { IconImage } from '../../../../components/Icons.tsx';
 
@@ -88,14 +87,10 @@ const TableRow: React.FC<TableRowProps> = ({
         </div>
       </td>
       <td className="text-left">
-        <Tippy content={<p>{tGlobal(deposit.paymentFrom.split('-')[0])}</p>}>
-          {renderBankAccount(deposit.paymentFrom)}
-        </Tippy>
+          {renderBankAccount(deposit.paymentFrom, tGlobal)}
       </td>
       <td className="text-left">
-        <Tippy content={<p>{tGlobal(deposit.paymentTo.split('-')[0])}</p>}>
-          {renderBankAccount(deposit.paymentTo)}
-        </Tippy>
+          {renderBankAccount(deposit.paymentTo, tGlobal)}
       </td>
       <td>{deposit.transId}</td>
       <td>{formatDateTime(deposit.createdTime)}</td>
