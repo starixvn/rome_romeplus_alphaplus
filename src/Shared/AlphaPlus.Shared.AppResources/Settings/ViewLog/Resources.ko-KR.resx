@@ -354,4 +354,10 @@
   <data name="Pager_DisplayItems" xml:space="preserve">
     <value>총 {total}개 항목 중 {from}부터 {to}까지 표시</value>
   </data>
+  <data name="PageAccess_M" xml:space="preserve">
+    <value>캐시 서비스</value>
+  </data>
+  <data name="PageAccess_N" xml:space="preserve">
+    <value>캐시 프로모션</value>
+  </data>
 </root>

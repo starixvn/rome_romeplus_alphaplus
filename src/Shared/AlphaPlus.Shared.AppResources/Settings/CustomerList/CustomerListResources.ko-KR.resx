@@ -257,4 +257,16 @@
   <data name="MComm3" xml:space="preserve">
     <value>M 수수료 3</value>
   </data>
+  <data name="UnuspendStatusPopupHeader" xml:space="preserve">
+    <value>정지 해제 &lt;사용자이름&gt;</value>
+  </data>
+  <data name="StatementTooltip" xml:space="preserve">
+    <value>정산 내역 보기</value>
+  </data>
+  <data name="UsernameTooltip" xml:space="preserve">
+    <value>사용자 이름을 클릭하면 하위 계정으로 이동합니다</value>
+  </data>
+  <data name="ViewIPTooltip" xml:space="preserve">
+    <value>IP를 클릭하면 IP 정보를 확인할 수 있습니다</value>
+  </data>
 </root>

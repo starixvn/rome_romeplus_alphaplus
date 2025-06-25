@@ -251,4 +251,10 @@
   <data name="lblPasswordCSample" xml:space="preserve">
     <value>비밀번호는 샘플 비밀번호와 달라야 합니다.</value>
   </data>
+  <data name="CashService" xml:space="preserve">
+    <value>캐시 서비스</value>
+  </data>
+  <data name="CashPromotion" xml:space="preserve">
+    <value>캐시 프로모션</value>
+  </data>
 </root>

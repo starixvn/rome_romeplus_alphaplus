@@ -422,4 +422,34 @@
   <data name="ConfirmAllowAutoTransferViewModelText" xml:space="preserve">
     <value>자동 이체</value>
   </data>
+  <data name="Agents" xml:space="preserve">
+    <value>에이전트 (활성/비활성/일시정지)</value>
+  </data>
+  <data name="ClosedByAdmin" xml:space="preserve">
+    <value>이 계정은 관리자에 의해 비활성화되었습니다.</value>
+  </data>
+  <data name="ClosedByFailedLoginOrAccountExpired" xml:space="preserve">
+    <value>이 계정은 로그인 시도 실패 또는 계정 만료로 인해 비활성화되었습니다</value>
+  </data>
+  <data name="ClosedByFailedOTPOrSC" xml:space="preserve">
+    <value>이 계정은 OTP/보안 코드 시도 실패로 인해 비활성화되었습니다.</value>
+  </data>
+  <data name="ClosedByUpline" xml:space="preserve">
+    <value>이 계정은 상위 관리자에 의해 비활성화되었습니다.</value>
+  </data>
+  <data name="ConfirmTransferBalanceDailyViewModelMessage" xml:space="preserve">
+    <value>&lt;div style="font-weight: normal"&gt;{0}의 이체 모드를 변경하시겠습니까?&lt;/div&gt;</value>
+  </data>
+  <data name="ConfirmTransferBalanceDailyViewModelText" xml:space="preserve">
+    <value>종일 잔액 이체</value>
+  </data>
+  <data name="ConfirmTransferBalanceDailyViewModelTooltip" xml:space="preserve">
+    <value>종일 잔액 이체 모드 허용을 위해 체크하세요</value>
+  </data>
+  <data name="NoDataChange" xml:space="preserve">
+    <value>업데이트할 변경사항이 없습니다.</value>
+  </data>
+  <data name="Members" xml:space="preserve">
+    <value>회원 (활성/비활성/일시정지)</value>
+  </data>
 </root>
