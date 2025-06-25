@@ -1,4 +1,5 @@
 // using System.Text.Json;
+using System.Threading.Tasks;
 using AlphaPlus.Core;
 using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Helpers;
@@ -142,12 +143,13 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             return View(viewModel);
         }
 
-        public ActionResult EditCustomer(EditCustomerQuery query)
+        public async Task<ActionResult> EditCustomer(EditCustomerQuery query)
         {
             var viewModel = new EditCustomerViewModel(
                 query,
                 new AppConfiguration(GetApplicationPath(), systemId),
                 CDNUri,
+                await customerService.GetCashServiceStatus(query.CustId),
                 GetAssetsVersion());
 
             return View(viewModel);

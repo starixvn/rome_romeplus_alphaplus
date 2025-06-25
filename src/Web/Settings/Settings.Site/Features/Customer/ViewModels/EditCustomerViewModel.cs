@@ -9,6 +9,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer.ViewModels
             EditCustomerQuery query,
             AppConfiguration appConfig,
             string cndUri,
+            int serviceType,
             string assetsVersion)
             : base(appConfig, cndUri, assetsVersion)
         {
@@ -18,7 +19,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer.ViewModels
                 roleId = query.RoleId,
                 uplineRoleId = query.ViewerLevelId,
                 productGroupId = query.ProductGroupId,
-                agentId = query.AgentId
+                agentId = query.AgentId,
+                serviceType
             });
         }
     }
