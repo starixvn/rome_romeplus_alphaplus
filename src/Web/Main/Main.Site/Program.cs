@@ -65,7 +65,9 @@ app.UseRouting();
 app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseNetThrottling();
 app.UseMiddleware<RequestCultureMiddleware>();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
