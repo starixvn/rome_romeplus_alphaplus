@@ -348,7 +348,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
           </div>
           <div className="border-t border-[var(--datarangepicker-border)] p-[10px] flex justify-between items-center">
             <div className="">
-              <span className="">Selected:</span>{' '}
+              <span className="">{t('selected')}:</span>{' '}
               <span className="text-[var(--datarangepicker-color-selected-days)] bg-[var(--datarangepicker-cell-background)] px-[4px] py-[3px] rounded-[4px]">
                 {selectedStart && selectedEnd ? (
                   <>
@@ -363,7 +363,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
                     </span>
                   </>
                 ) : (
-                  'No range selected'
+                  t('noRangeSelected')
                 )}
               </span>
             </div>
