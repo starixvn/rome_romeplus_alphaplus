@@ -486,4 +486,13 @@
   <data name="PromotionReport" xml:space="preserve">
     <value>프로모션 보고서</value>
   </data>
+  <data name="BetChoiceLimit" xml:space="preserve">
+    <value>베팅 선택 한도</value>
+  </data>
+  <data name="winLossByProduct" xml:space="preserve">
+    <value>상품별 승패</value>
+  </data>
+  <data name="LastBets" xml:space="preserve">
+    <value>최근 베팅</value>
+  </data>
 </root>
