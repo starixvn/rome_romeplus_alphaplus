@@ -6,7 +6,7 @@ import {
   ButtonApplyComponent,
   ButtonCancelComponent,
   ButtonClosePopupComponent,
-} from '../../components/ButtonComponents';
+} from '../../components/Buttons/index';
 import {
   ErrorMessageComponent,
   SuccessMessageComponent,

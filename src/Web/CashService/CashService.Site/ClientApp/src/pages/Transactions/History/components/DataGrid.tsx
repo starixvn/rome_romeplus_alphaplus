@@ -11,7 +11,7 @@ import {
   renderBankAccount,
 } from '../../../../utils/commonFunctions';
 import TransactionDetail from './TransactionDetail';
-import { ButtonFullComponent } from '../../../../components/ButtonComponents';
+import { ButtonFullComponent } from '../../../../components/Buttons/index';
 import { IconImage } from '../../../../components/Icons.tsx';
 
 interface DataGridProps {

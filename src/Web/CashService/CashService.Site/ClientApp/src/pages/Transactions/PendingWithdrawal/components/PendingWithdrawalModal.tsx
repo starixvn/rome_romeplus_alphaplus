@@ -11,7 +11,7 @@ import {
   ButtonApplyComponent,
   ButtonClosePopupComponent,
   ButtonRejectComponent,
-} from '../../../../components/ButtonComponents.tsx';
+} from '../../../../components/Buttons/index';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import { ResultMessageComponent } from '../../../../components/MessageComponents.tsx';
 import {

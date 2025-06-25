@@ -15,7 +15,7 @@ import {
   ButtonClosePopupComponent,
   ButtonApplyComponent,
   ButtonCancelComponent,
-} from '../../components/ButtonComponents';
+} from '../../components/Buttons/index';
 import CustomDropdown from '../../components/CustomDropdownComponent';
 import { IconArrowDown, IconSearch } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';

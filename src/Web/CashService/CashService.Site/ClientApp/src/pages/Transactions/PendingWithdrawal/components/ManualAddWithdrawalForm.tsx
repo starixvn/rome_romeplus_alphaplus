@@ -17,7 +17,7 @@ import {
   BackButtonComponent,
   ButtonApplyComponent,
   ButtonCancelComponent,
-} from '../../../../components/ButtonComponents';
+} from '../../../../components/Buttons/index';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import TitleComponent, {
   LabelTitleComponent,

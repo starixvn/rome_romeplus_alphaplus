@@ -6,7 +6,7 @@ import { createRoot } from 'react-dom/client';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ButtonApplyComponent } from '../../components/ButtonComponents';
+import { ButtonApplyComponent } from '../../components/Buttons/index';
 import { ResultMessageComponent, ResultType } from '../../components/MessageComponents';
 import TitleComponent from '../../components/TitleComponents';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';

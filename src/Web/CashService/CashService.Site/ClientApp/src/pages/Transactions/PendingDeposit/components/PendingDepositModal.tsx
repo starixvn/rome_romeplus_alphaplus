@@ -9,7 +9,7 @@ import {
   ButtonApplyComponent,
   ButtonClosePopupComponent,
   ButtonRejectComponent,
-} from '../../../../components/ButtonComponents';
+} from '../../../../components/Buttons/index';
 import { ResultMessageComponent } from '../../../../components/MessageComponents.tsx';
 import {
   LabelTitleComponent,

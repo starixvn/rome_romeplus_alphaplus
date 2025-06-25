@@ -8,7 +8,7 @@ import {
   ButtonApplyComponent,
   ButtonCancelComponent,
   ButtonClosePopupComponent,
-} from '../../../../components/ButtonComponents';
+} from '../../../../components/Buttons/index';
 
 import { ResultMessageComponent } from '../../../../components/MessageComponents';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';

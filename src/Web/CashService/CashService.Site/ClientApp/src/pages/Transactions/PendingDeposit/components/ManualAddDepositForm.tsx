@@ -14,7 +14,7 @@ import {
   ButtonCancelComponent,
   ButtonApplyComponent,
   BackButtonComponent,
-} from '../../../../components/ButtonComponents';
+} from '../../../../components/Buttons/index';
 import { renderBankOptionValue } from '../../../../utils/commonFunctions';
 
 interface ManualAddDepositFormProps {

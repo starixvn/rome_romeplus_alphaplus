@@ -10,7 +10,7 @@ import Tippy from '@tippyjs/react';
 import {
     BackButtonComponent, ButtonApplyComponent, ButtonCancelComponent, ButtonFullComponent,
     DisableButtonComponent, EnableButtonComponent
-} from '../../components/ButtonComponents';
+} from '../../components/Buttons/index';
 import { IconArrowDown, IconInfo, IconReload } from '../../components/Icons';
 import { LoadingFullComponent } from '../../components/LoadingComponent';
 import { ResultMessageComponent } from '../../components/MessageComponents';

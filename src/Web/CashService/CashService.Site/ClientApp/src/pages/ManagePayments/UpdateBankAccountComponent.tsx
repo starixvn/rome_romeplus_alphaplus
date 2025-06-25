@@ -10,7 +10,7 @@ import {
   ButtonOnComponent,
   DisableButtonComponent,
   EnableButtonComponent,
-} from '../../components/ButtonComponents';
+} from '../../components/Buttons/index';
 import CustomDropdown, { DropdownOption } from '../../components/CustomDropdownComponent';
 import Loading from '../../components/LoadingComponent';
 import {

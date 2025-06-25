@@ -8,7 +8,7 @@ import {
 } from '../../../../utils/commonFunctions.tsx';
 import PendingWithdrawalModal from './PendingWithdrawalModal.tsx';
 import NoRecordFound from '../../../../components/NoRecordFoundComponent.tsx';
-import { ButtonFullComponent } from '../../../../components/ButtonComponents';
+import { ButtonFullComponent } from '../../../../components/Buttons/index';
 import Pagination from '../../Components/Pagination';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
 import { ValidateMessageComponent } from '../../../../components/MessageComponents.tsx';

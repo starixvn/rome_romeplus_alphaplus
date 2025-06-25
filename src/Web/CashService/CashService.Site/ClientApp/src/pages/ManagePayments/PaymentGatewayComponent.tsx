@@ -6,7 +6,7 @@ import {
   ButtonPenComponent,
   ButtonTabActiveComponent,
   ButtonTabInactiveComponent,
-} from '../../components/ButtonComponents';
+} from '../../components/Buttons/index';
 
 import Loading from '../../components/LoadingComponent';
 import { ErrorMessageComponent } from '../../components/MessageComponents';

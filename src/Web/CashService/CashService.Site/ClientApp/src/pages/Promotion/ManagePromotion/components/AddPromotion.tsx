@@ -7,7 +7,7 @@ import {
   ButtonCancelComponent,
   DisableButtonComponent,
   EnableButtonComponent,
-} from '../../../../components/ButtonComponents';
+} from '../../../../components/Buttons/index';
 import CustomDropdown from '../../../../components/CustomDropdownComponent';
 import {
   ErrorMessageComponent,

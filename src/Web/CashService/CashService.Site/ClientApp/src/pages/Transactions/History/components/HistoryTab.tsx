@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import {
   ButtonTabActiveComponent,
   ButtonTabInactiveComponent,
-} from '../../../../components/ButtonComponents';
+} from '../../../../components/Buttons/index';
 import { TransactionType } from '../../../../utils/commonFunctions';
 
 interface HistoryTabProps {

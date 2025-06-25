@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {  ButtonClosePopupComponent } from './ButtonComponents';
+import {  ButtonClosePopupComponent } from './Buttons/index';
 import { MediumTitleComponent } from './TitleComponents';
 
 interface PopupModalProps {

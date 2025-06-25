@@ -8,7 +8,7 @@ import Filter from './components/Filter';
 import type { Promotion } from '../../../services/interfaces/Promotion';
 import AddPromotion from './components/AddPromotion';
 import TitleComponent from '../../../components/TitleComponents';
-import { ButtonFullComponent } from '../../../components/ButtonComponents';
+import { ButtonFullComponent } from '../../../components/Buttons/index';
 import '../../../styles/common.css';
 import '../../../styles/global.scss';
 

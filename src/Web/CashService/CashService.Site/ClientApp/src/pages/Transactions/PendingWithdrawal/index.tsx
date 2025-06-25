@@ -17,7 +17,7 @@ import { transactionAPI } from '../../../services/transactionsHistoryAPI.ts';
 import { calculateDateRange, TransactionType } from '../../../utils/commonFunctions.tsx';
 import { LoadingFullComponent } from '../../../components/LoadingComponent';
 import TitleComponent from '../../../components/TitleComponents.tsx';
-import { ButtonFullComponent } from '../../../components/ButtonComponents';
+import { ButtonFullComponent } from '../../../components/Buttons/index';
 
 const PendingWithdrawal: React.FC = () => {
   const { t } = useTranslation('pendingWithdrawal');

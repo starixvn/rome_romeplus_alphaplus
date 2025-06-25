@@ -17,7 +17,7 @@ import {
   TransactionsHistoryResponse,
 } from '../../../services/interfaces/Transactions/TransactionHistory';
 import TitleComponent from '../../../components/TitleComponents';
-import { ButtonFullComponent } from '../../../components/ButtonComponents';
+import { ButtonFullComponent } from '../../../components/Buttons/index';
 import { LoadingFullComponent } from '../../../components/LoadingComponent';
 
 const useDeposits = (recentDeposits: string) => {
