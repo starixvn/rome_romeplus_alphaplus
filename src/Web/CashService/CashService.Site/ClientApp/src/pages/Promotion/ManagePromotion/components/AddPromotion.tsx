@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
-import { Promotion } from '../../../services/interfaces/Promotion';
-import { IconInfo } from '../../../components/Icons';
+import { Promotion } from '../../../../services/interfaces/Promotion';
+import { IconInfo } from '../../../../components/Icons';
 import {
   BackButtonComponent,
   ButtonApplyComponent,
   ButtonCancelComponent,
   DisableButtonComponent,
   EnableButtonComponent,
-} from '../../../components/ButtonComponents';
-import CustomDropdown from '../../../components/CustomDropdownComponent';
+} from '../../../../components/ButtonComponents';
+import CustomDropdown from '../../../../components/CustomDropdownComponent';
 import {
   ErrorMessageComponent,
   SuccessMessageComponent,
   ValidateMessageComponent,
-} from '../../../components/MessageComponents';
+} from '../../../../components/MessageComponents';
 import TitleComponent, {
   LabelTitleComponent,
   MediumTitleComponent,
-} from '../../../components/TitleComponents';
+} from '../../../../components/TitleComponents';
 
 interface AddPromotionProps {
   onClose: () => void;

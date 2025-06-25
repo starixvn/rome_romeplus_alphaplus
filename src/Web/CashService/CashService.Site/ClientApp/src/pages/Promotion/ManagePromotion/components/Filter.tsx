@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import CustomDropdown from '../../../components/CustomDropdownComponent';
-import { LabelTitleComponent } from '../../../components/TitleComponents';
+import CustomDropdown from '../../../../components/CustomDropdownComponent';
+import { LabelTitleComponent } from '../../../../components/TitleComponents';
 
 interface FilterProps {
   onFilterChange: (type: string, status: string) => void;

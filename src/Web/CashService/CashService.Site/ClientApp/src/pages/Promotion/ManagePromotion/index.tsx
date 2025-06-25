@@ -2,15 +2,15 @@
 import { createRoot } from 'react-dom/client';
 import 'tippy.js/dist/tippy.css';
 
-import { promotionService } from '../../services/promotionAPI';
+import { promotionService } from '../../../services/promotionAPI';
 import PromotionList from './components/PromotionList';
 import Filter from './components/Filter';
-import type { Promotion } from '../../services/interfaces/Promotion';
+import type { Promotion } from '../../../services/interfaces/Promotion';
 import AddPromotion from './components/AddPromotion';
-import TitleComponent from '../../components/TitleComponents';
-import { ButtonFullComponent } from '../../components/ButtonComponents';
-import '../../styles/common.css';
-import '../../styles/global.scss';
+import TitleComponent from '../../../components/TitleComponents';
+import { ButtonFullComponent } from '../../../components/ButtonComponents';
+import '../../../styles/common.css';
+import '../../../styles/global.scss';
 
 const Promotion: React.FC = () => {
   const [promotionType, setPromotionType] = useState<string>('All');

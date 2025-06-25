@@ -1,0 +1,4 @@
+@import '../../../styles/common.css';
+.promotion-page {
+  z-index: 1;
+}

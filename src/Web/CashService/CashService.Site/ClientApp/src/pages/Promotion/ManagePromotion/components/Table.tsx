@@ -1,9 +1,9 @@
 ﻿import React from 'react';
 import { useTranslation } from 'react-i18next';
-import i18n from '../../../i18n/i18n-promotion';
-import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
-import { Promotion } from '../../../services/interfaces/Promotion';
-import { IconDelete, IconPen, NoRecordsIcon } from '../../../components/Icons';
+import i18n from '../../../../i18n/i18n-promotion';
+import { useCookieLanguage } from '../../../../hooks/useCookieLanguage';
+import { Promotion } from '../../../../services/interfaces/Promotion';
+import { IconDelete, IconPen, NoRecordsIcon } from '../../../../components/Icons';
 
 interface TableProps {
   items: Promotion[];
