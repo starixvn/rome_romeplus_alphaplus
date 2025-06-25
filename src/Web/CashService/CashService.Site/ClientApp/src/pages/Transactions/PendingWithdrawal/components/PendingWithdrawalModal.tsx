@@ -154,6 +154,8 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
   };
 
   const handleReject = async () => {
+    if (!isValidParams(true)) return;
+
     setIsSubmitting(true);
     const response = await rejectWithdrawal({
       transId: withdrawal?.transId || 0,
@@ -181,14 +183,29 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
     }
   };
 
-  const isValidParams = () => {
-    if (!withdrawalFrom) {
+  const isValidParams = (isReject: boolean = false) => {
+    if (!withdrawalFrom && !isReject) {
       setResultMessage({
         type: 'error',
         message: t('pendingWithdrawalModal.bankRequired'),
       });
       return false;
     }
+
+    if (image && image.size > 1024 * 1024) {
+      setResultMessage({ type: 'error', message: t('manualWithdrawalForm.imageSizeError') });
+      return false;
+    }
+
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+    if (image && !allowedTypes.includes(image.type)) {
+      setResultMessage({
+        type: 'error',
+        message: t('manualWithdrawalForm.invalidFileType'),
+      });
+      return false;
+    }
+
     return true;
   };
 
