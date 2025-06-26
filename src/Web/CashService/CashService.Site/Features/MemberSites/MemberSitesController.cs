@@ -2,19 +2,18 @@ using AlphaPlus.CashService.Site.Features.MemberSites.Models;
 using AlphaPlus.CashService.Site.Features.MemberSites.ViewModels;
 using AlphaPlus.CashService.Site.Features.Shared;
 using AlphaPlus.CashService.Site.Features.Shared.Filters;
-using AlphaPlus.Core.Models;
-using Microsoft.AspNetCore.Antiforgery;
-using Microsoft.AspNetCore.Mvc;
-using Fanex.Customer.Client.Services;
 using AlphaPlus.CashService.Site.Features.Shared.Models;
 using AlphaPlus.CashService.Site.Features.Shared.Resources;
+using AlphaPlus.Core.Models;
+using Fanex.Customer.Client.Services;
+using Microsoft.AspNetCore.Antiforgery;
+using Microsoft.AspNetCore.Mvc;
 namespace AlphaPlus.CashService.Site.Features.MemberSites;
 
 [SiteAuthorizationFilter(PageAccessType.CashService)]
 public class MemberSitesController : SiteBaseController
 {
     private readonly string _apiBaseUrl;
-    private readonly HttpClient _httpClient;
 
     public MemberSitesController(
         IConfiguration configuration,
@@ -25,7 +24,6 @@ public class MemberSitesController : SiteBaseController
         ) : base(userSession, antiforgery, httpClient, customerService)
     {
         _apiBaseUrl = configuration["CashService:APIUrl"];
-        _httpClient = httpClient;
     }
 
     [HttpGet]
@@ -45,7 +43,7 @@ public class MemberSitesController : SiteBaseController
         var url = $"{_apiBaseUrl}/member-site-info?custId={_userSession.CustId}&site={_userSession.Site}";
         var response = await _httpClient.GetFromJsonAsync<MemberSiteManagementModel>(url, cancellationToken);
 
-        response.IsCashServiceEnabled =  await _customerService.GetCashServiceStatus(_userSession.CustId);
+        response.IsCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
         return Ok(response);
     }
 
@@ -58,7 +56,8 @@ public class MemberSitesController : SiteBaseController
         }
 
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
-        if(isCashServiceEnabled == 0) {
+        if (isCashServiceEnabled == 0)
+        {
             return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
         }
 
