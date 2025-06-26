@@ -554,7 +554,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
         {
             return verifySignInResult.FailedCount == FAILED_LOGIN_ATTEMPTS_NOTIFICATION_THRESHOLD
                 ? (MESSAGE_KEY_LOGIN_FAILED_EXCEED_COUNT, new object[] { signInResult.Username })
-                : (MESSAGE_KEY_LOGIN_FAILED_CHANGED_PASSWORD, new object[] { signInResult.Username, verifySignInResult.LastTimeToChangePassword });
+                : (MESSAGE_KEY_LOGIN_FAILED_CHANGED_PASSWORD, new object[] { signInResult.Username, verifySignInResult.LastTimeToChangePassword.ToStringForCulture() });
         }
     }
 }
