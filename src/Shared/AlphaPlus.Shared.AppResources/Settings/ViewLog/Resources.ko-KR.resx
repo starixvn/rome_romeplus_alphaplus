@@ -309,4 +309,7 @@
   <data name="NoInfo" xml:space="preserve">
     <value>가능한 정보가 없습니다</value>
   </data>
+  <data name="ViewLogCredit" xml:space="preserve">
+    <value>포인트 로그 보기</value>
+  </data>
 </root>

@@ -24,5 +24,28 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Controllers
 
             return View(viewModel);
         }
+
+        public async Task<ActionResult> Excel(IndexQuery indexQuery)
+        {
+            var excelQuery = new CreditLogExcelQuery(
+                UserSession,
+                null,
+                indexQuery.IsShowOldValue,
+                indexQuery.SportBetTypeVisibilities,
+                indexQuery.ResourcesByBetTypeCacheRef,
+                indexQuery.ResourcesByProductCacheRef)
+            {
+                FromDate = indexQuery.FromDate,
+                ToDate = indexQuery.ToDate,
+                Username = indexQuery.Username,
+                ActionTypeId = indexQuery.ActionTypeId,
+                PageIndex = indexQuery.PageIndex,
+                PageSize = indexQuery.PageSize
+            };
+
+            var excelViewModel = await mediator.Send(excelQuery);
+
+            return File(excelViewModel.Content, excelViewModel.ContentType, excelViewModel.Name);
+        }
     }
 }

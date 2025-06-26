@@ -321,4 +321,7 @@
   <data name="Schedule" xml:space="preserve">
     <value>日程表</value>
   </data>
+  <data name="ViewLogCredit" xml:space="preserve">
+    <value>察看信用额度日志</value>
+  </data>
 </root>

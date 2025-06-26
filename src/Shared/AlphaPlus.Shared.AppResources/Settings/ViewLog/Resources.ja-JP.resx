@@ -256,4 +256,7 @@
   <data name="ViewLog" xml:space="preserve">
     <value>ログ表示</value>
   </data>
+  <data name="ViewLogCredit" xml:space="preserve">
+    <value>クレジットログ表示</value>
+  </data>
 </root>
