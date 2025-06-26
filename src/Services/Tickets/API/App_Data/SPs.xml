@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Functions>
   <Function Name="Partial UM">
-    <Setting Key="Acc_CheckUM_ByReport" SpName="Acc_CheckUM_ByReport" DbName="DBCust.CustDB.wsv_alp" />
+    <Setting Key="Acc_CheckUM_ByReport" SpName="Acc_CheckUM_ByReport" DbName="DBCUST.CustDB.wsv_alp" />
   </Function>
   <Function Name="Total Bets">
     <!-- Handicap/Over Under/Live -->
@@ -132,9 +132,9 @@
   </Function>
 
   <Function Name="IP">
-    <Setting Key="Age_IPRangesByCountrySel" SpName="Age_IPRangesByCountrySel" DbName="DBCust.IPDB.wsv_alp" />
-    <Setting Key="Age_IPRangesByCountrySelByIPList" SpName="Age_IPRangesByCountrySelByIPList" DbName="DBCust.IPDB.wsv_alp" />
-    <Setting Key="Age_IPRangesByCountrySelByIPV6List" SpName="Age_IPRangesByCountrySelByIPV6List" DbName="DBCust.IPDB.wsv_alp" />
+    <Setting Key="Age_IPRangesByCountrySel" SpName="Age_IPRangesByCountrySel" DbName="DBCUST.IPDB.wsv_alp" />
+    <Setting Key="Age_IPRangesByCountrySelByIPList" SpName="Age_IPRangesByCountrySelByIPList" DbName="DBCUST.IPDB.wsv_alp" />
+    <Setting Key="Age_IPRangesByCountrySelByIPV6List" SpName="Age_IPRangesByCountrySelByIPV6List" DbName="DBCUST.IPDB.wsv_alp" />
   </Function>
 
   <Function Name="Products">
@@ -145,18 +145,18 @@
   </Function>
 
   <Function Name="Auto Follow Bet">
-    <Setting Key="Age_Customer_FollowBetAccountListSelByAgent" SpName="Age_Customer_FollowBetAccountListSelByAgent" DbName="DBCust.CustDB.wsv_alp" />
+    <Setting Key="Age_Customer_FollowBetAccountListSelByAgent" SpName="Age_Customer_FollowBetAccountListSelByAgent" DbName="DBCUST.CustDB.wsv_alp" />
   </Function>
 
   <Function Name="Smart Punter">
-    <Setting Key="Age_CustomerSelCheckSmartPunterSMA" SpName="Age_CustomerSelCheckSmartPunterSMA" DbName="DBCust.CustDB.wsv_alp" />
-    <Setting Key="Age_CustomerSelCheckListSmartPunter" SpName="Age_CustomerSelCheckListSmartPunter" DbName="DBCust.CustDB.wsv_alp" />
+    <Setting Key="Age_CustomerSelCheckSmartPunterSMA" SpName="Age_CustomerSelCheckSmartPunterSMA" DbName="DBCUST.CustDB.wsv_alp" />
+    <Setting Key="Age_CustomerSelCheckListSmartPunter" SpName="Age_CustomerSelCheckListSmartPunter" DbName="DBCUST.CustDB.wsv_alp" />
     <Setting Key="Age_UserLog_SmartPunterInsMultiple" SpName="Age_UserLog_SmartPunterInsMultiple" DbName="DBLOG.bodb_CustomerLog.wsv_alp" />
     <Setting Key="NAP_UserLog_SmartPunterIns" SpName="NAP_UserLog_SmartPunterIns" DbName="DBLOG.bodb_CustomerLog.wsv_alp" />
     <Setting Key="Acc_Con_FileNameSelByCustID" SpName="Acc_Con_FileNameSelByCustID" DbName="DBPOL.NAP_UserControl.wsv_alp">
       <Mapping DataField="actual_policy" ObjectProperty="ActualPolicy"></Mapping>
     </Setting>
-    <Setting Key="Acc_CustomerIsInternalAdmin" SpName="Acc_CustomerIsInternalAdmin" DbName="DBCust.CustDB.wsv_alp" />
+    <Setting Key="Acc_CustomerIsInternalAdmin" SpName="Acc_CustomerIsInternalAdmin" DbName="DBCUST.CustDB.wsv_alp" />
   </Function>
 
   <Function Name="Running BetList">
