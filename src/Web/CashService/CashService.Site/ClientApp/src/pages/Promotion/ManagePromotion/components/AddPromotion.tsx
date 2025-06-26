@@ -20,6 +20,7 @@ import {
   MediumTitleComponent,
 } from '../../../../components/Title';
 import DateRangePickerComponent from '../../../../components/DateRangePickerComponent';
+import TreeSelect from '../../../../components/TreeSelect/TreeSelect';
 
 interface AddPromotionProps {
   onClose: () => void;
@@ -30,10 +31,31 @@ interface AddPromotionProps {
 const PROMOTION_TYPES = [{ value: 'RebateOnTurnover', label: 'Rebate on Turnover' }];
 
 const PROVIDER_OPTIONS = [
-  { value: 'All', label: 'All' },
-  { value: 'provider1', label: 'provider1' },
-  { value: 'provider2', label: 'provider2' },
-  { value: 'provider3', label: 'provider3' },
+  {
+    label: 'Virtual Sports',
+    value: 'virtual-sports',
+    children: [],
+  },
+  {
+    label: 'Live Casino',
+    value: 'live-casino',
+  },
+  {
+    label: 'Bitcoin',
+    value: 'bitcoin',
+    children: [
+      {
+        label: 'Crypto Provider',
+        value: 'crypto-provider',
+        children: [
+          {
+            label: 'BTC Game',
+            value: 'btc-game',
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion }) => {
@@ -48,7 +70,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
   const [period, setPeriod] = useState<[Date | null, Date | null]>(
     promotion?.fromDate && promotion?.toDate ? [promotion.fromDate, promotion.toDate] : [null, null]
   );
-  const [provider, setProvider] = useState(promotion?.provider || '');
+  const [provider, setProvider] = useState(promotion?.provider || []);
   const [categories, setCategories] = useState({
     sports: {
       percentage: promotion?.sportsPercentage?.toString() || '',
@@ -85,6 +107,11 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
     gamesPercentage: '',
     liveCasinoPercentage: '',
   });
+
+  const handleProviderChange = (value: string[]) => {
+    setProvider(value);
+    console.log('value', value);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -206,21 +233,20 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
 
               <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
                 <LabelTitleComponent text="Provider" required={true} />
-                <CustomDropdown
+                <TreeSelect
                   options={PROVIDER_OPTIONS}
-                  onSelect={(option) => setProvider(option.value.toString())}
-                  initialValue={provider}
-                  showOptionAll={false}
+                  value={provider}
+                  onChange={handleProviderChange}
                 />
                 <ValidateMessageComponent message={fieldErrors.provider} />
               </div>
             </div>
 
             {[
-              { key: 'sports', label: 'Sports' },
-              { key: 'virtualSports', label: 'Virtual Sports' },
-              { key: 'games', label: 'Games' },
-              { key: 'liveCasino', label: 'Live Casino' },
+              { key: 'sports', label: 'Sports', id: 1, selected: true },
+              { key: 'virtualSports', label: 'Virtual Sports', id: 2, selected: false },
+              { key: 'games', label: 'Games', id: 3, selected: false },
+              { key: 'liveCasino', label: 'Live Casino', id: 4, selected: false },
             ].map((cat) => (
               <div
                 key={cat.key}
@@ -236,6 +262,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
                       className={`control-field pr-[32px] ${fieldErrors[`${cat.key}Percentage` as keyof typeof fieldErrors] ? 'error' : ''}`}
                       value={categories[cat.key as keyof typeof categories].percentage}
                       onChange={(e) => handleCategoryChange(cat.key, 'percentage', e.target.value)}
+                      disabled={!cat.selected}
                     />
                     <span className="absolute right-0 top-0 text-[12px] text-[#333333] h-full w-[32px] leading-[32px] text-center font-bold border-l-[1px] border-[var(--border-control)]">
                       %
@@ -251,14 +278,15 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
                   <input
                     type="number"
                     min="0"
-                    className="control-field"
+                    className={`control-field ${!cat.selected ? 'opacity-50' : ''}`}
                     value={categories[cat.key as keyof typeof categories].minTurnover}
                     onChange={(e) => handleCategoryChange(cat.key, 'minTurnover', e.target.value)}
+                    disabled={!cat.selected}
                   />
                 </div>
 
                 <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
-                  <div className="flex justify-between items-center mb-[4px]">
+                  <div className="flex justify-between items-center">
                     <LabelTitleComponent text="Max Payout" required={true} />
                     <div className="flex items-center text-[12px]">
                       <input
@@ -269,6 +297,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
                           handleCategoryChange(cat.key, 'unlimited', e.target.checked)
                         }
                         id={`${cat.key}-unlimited`}
+                        disabled={!cat.selected}
                       />
                       <label
                         htmlFor={`${cat.key}-unlimited`}
@@ -281,10 +310,12 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
                   <input
                     type="number"
                     min="0"
-                    className="control-field"
+                    className={`control-field ${!cat.selected ? 'opacity-50' : ''}`}
                     value={categories[cat.key as keyof typeof categories].maxPayout}
                     onChange={(e) => handleCategoryChange(cat.key, 'maxPayout', e.target.value)}
-                    disabled={categories[cat.key as keyof typeof categories].unlimited}
+                    disabled={
+                      categories[cat.key as keyof typeof categories].unlimited || !cat.selected
+                    }
                   />
                 </div>
               </div>

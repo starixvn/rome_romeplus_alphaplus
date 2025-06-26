@@ -11,7 +11,7 @@ const Table: React.FC<TableProps> = ({ data }) => {
       <table className="w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px] border-l-[0px]">
         <thead className="z-11!">
           <tr>
-            <th className="w-[32px] min-w-[32px] sticky left-0 bg-white z-10">#</th>
+            <th className="w-[32px] min-w-[32px] text-center">#</th>
             <th className="w-[40px] min-w-[40px] text-center">
               <input type="checkbox" />
             </th>

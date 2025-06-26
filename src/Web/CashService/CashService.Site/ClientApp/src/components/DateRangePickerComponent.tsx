@@ -174,7 +174,6 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   const { t } = useTranslation('global');
   const { i18n } = useTranslation();
   const currentLocale = i18n.language;
-  console.log('currentLocale', currentLocale);
   let locale = enUS;
   switch (currentLocale) {
     case 'vi':

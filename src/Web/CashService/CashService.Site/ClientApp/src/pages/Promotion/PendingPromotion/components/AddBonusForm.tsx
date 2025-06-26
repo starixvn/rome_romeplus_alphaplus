@@ -1,32 +1,63 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   BackButtonComponent,
   ButtonApplyComponent,
   ButtonCancelComponent,
 } from '../../../../components/Buttons';
-import { TitleComponent, LabelTitleComponent, MediumTitleComponent } from '../../../../components/Title';
+import {
+  TitleComponent,
+  LabelTitleComponent,
+  MediumTitleComponent,
+} from '../../../../components/Title';
 import { AmountInput } from '../../../../components/AmountInput';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import { ResultMessageComponent } from '../../../../components/Message';
-
-const mockMembers = [
-  { value: '999tb20a00001', label: '999tb20a00001' },
-  { value: '999tb20a00002', label: '999tb20a00002' },
-];
+import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
+import { MemberLoginName } from '../../../../services/interfaces/Transactions/MemberLoginName';
 
 interface AddBonusFormProps {
   onClose?: () => void;
 }
 
 const AddBonusForm: React.FC<AddBonusFormProps> = ({ onClose }) => {
-  const [member, setMember] = useState(mockMembers[0].value);
+  const [member, setMember] = useState<string>('');
   const [amount, setAmount] = useState<string>('');
   const [remark, setRemark] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [memberOptions, setMemberOptions] = useState<DropdownOption[]>([]);
   const [resultMessage, setResultMessage] = useState<{
     type: 'success' | 'error' | null;
     message: string;
   }>({ type: null, message: '' });
+
+  useEffect(() => {
+    const fetchMemberData = async () => {
+      try {
+        const memberNames = await transactionAPI.getMemberLoginName();
+        const options = memberNames.map((member: MemberLoginName) => ({
+          value: member.custId.toString(),
+          label: (
+            <>
+              {member.username}
+              {member.nickName && <div className="nickname w-full">({member.nickName})</div>}
+            </>
+          ),
+        }));
+        setMemberOptions(options);
+        if (options.length > 0) {
+          setMember(options[0].value as string);
+        }
+      } catch (error) {
+        console.error('Error fetching member login names:', error);
+        setResultMessage({
+          type: 'error',
+          message: 'Failed to load member data. Please try again.',
+        });
+      }
+    };
+
+    fetchMemberData();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,7 +101,7 @@ const AddBonusForm: React.FC<AddBonusFormProps> = ({ onClose }) => {
 
                   <div className="relative z-[9999]">
                     <DropdownComponent
-                      options={mockMembers}
+                      options={memberOptions}
                       onSelect={handleMemberChange}
                       initialValue={member}
                       searchable={true}

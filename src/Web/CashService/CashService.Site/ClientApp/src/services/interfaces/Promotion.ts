@@ -12,7 +12,7 @@
   virtualSportsMaxPayout: number;
   gamesMaxPayout: number;
   liveCasinoMaxPayout: number;
-  provider: string;
+  provider: string[];
   status: string;
   lastUpdated: string;
 }

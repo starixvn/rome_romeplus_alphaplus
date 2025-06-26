@@ -35,17 +35,13 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
   const buildHeader = () => (
     <thead>
       <tr>
-        <th rowSpan={2} scope="col" className="w-[32px] sticky z-10 left-0 bg-[#ffffff] ">
+        <th rowSpan={2} scope="col" className="w-[32px] text-center">
           {t('table.no')}
         </th>
-        <th rowSpan={2} scope="col" className="w-[75px] sticky z-10 left-[32px] bg-[#ffffff]">
+        <th rowSpan={2} scope="col" className="w-[75px] text-center">
           {t('table.action')}
         </th>
-        <th
-          rowSpan={2}
-          className="sticky z-10 w-[110px]  left-[107px] bg-[#ffffff] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]"
-          scope="col"
-        >
+        <th rowSpan={2} className="w-[110px] text-center" scope="col">
           <span className="relative z-3">{t('table.promotionTitle')}</span>
         </th>
         <th rowSpan={2} scope="col">
