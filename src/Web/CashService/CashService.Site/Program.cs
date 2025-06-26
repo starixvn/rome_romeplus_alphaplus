@@ -42,6 +42,7 @@ builder.Services
     .AddNetThrottling(configuration)
     .AddSharedSession(configuration)
     .AddSecurityCodeServices(configuration)
+    .AddDependencyInjection(configuration)
     .AddMediatR(cfg =>
     {
         cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);

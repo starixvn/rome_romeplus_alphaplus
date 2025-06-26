@@ -174,7 +174,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
     fetchBankAccounts();
   };
 
-  const handleDeleteBankAccount = async (account: BankAccount) => {
+  const handleDeleteBankAccount = async (account: BankAccount) => {    
     setDeleting(account.id);
     setError(null);
     setSuccessMessage(null);
@@ -316,7 +316,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
               <SuccessMessageComponent message={successMessage} />
             </div>
             {loading && <Loading />}
-            {!loading && !error && banks.length > 0 && (
+            {!loading && banks && banks.length > 0 && (
               <>
                 <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                   <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
@@ -433,7 +433,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                     <th>{tManagePayments('status')}</th>
                   </tr>
                 </thead>
-                {!loading && !error && bankAccounts.length > 0 && (
+                {!loading && bankAccounts && bankAccounts.length > 0 && (
                   <tbody className="font-[500]">
                     {bankAccounts.map((account, index) => (
                       <tr key={account.id}>
@@ -474,7 +474,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                     ))}
                   </tbody>
                 )}
-                {!loading && !error && banks.length > 0 && bankAccounts.length === 0 && (
+                {!loading && bankAccounts && bankAccounts.length === 0 && (
                   <tbody>
                     <NoRecordFound colSpan={8} />
                   </tbody>

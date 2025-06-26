@@ -3,9 +3,13 @@ using AlphaPlus.CashService.Site.Features.Payments.Requests;
 using AlphaPlus.CashService.Site.Features.Payments.ViewModels;
 using AlphaPlus.CashService.Site.Features.Shared;
 using AlphaPlus.CashService.Site.Features.Shared.Filters;
+using AlphaPlus.CashService.Site.Features.Shared.Models;
+using AlphaPlus.CashService.Site.Features.Shared.Resources;
 using AlphaPlus.Core.Models;
+using Fanex.Customer.Client.Services;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.JSInterop;
 
 namespace AlphaPlus.CashService.Site.Features.Payments
 {
@@ -14,15 +18,18 @@ namespace AlphaPlus.CashService.Site.Features.Payments
     {
         private readonly string _apiBaseUrl;
         private readonly HttpClient _httpClient;
+        private readonly ICustomerService _customerService;
 
         public PaymentsController(
             IConfiguration configuration,
             HttpClient httpClient,
             IUserSession userSession,
-            IAntiforgery antiforgery) : base(userSession, antiforgery)
+            IAntiforgery antiforgery,
+            ICustomerService customerService) : base(userSession, antiforgery)
         {
             _apiBaseUrl = configuration["CashService:APIUrl"];
             _httpClient = httpClient;
+            _customerService = customerService;
         }
 
         private int _custId => _userSession.CustId;
@@ -209,11 +216,19 @@ namespace AlphaPlus.CashService.Site.Features.Payments
                 return Unauthorized();
             }
 
+            var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+            if(isCashServiceEnabled == 0) {
+                return Json(new ResultModel {
+                    Code = 401,
+                    Message = Messages.CashServiceIsDisabled
+                });
+            }
+
             request.SetUserSession(_userSession);
             var response = await _httpClient.PostAsJsonAsync(url, request, cancellationToken);
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadFromJsonAsync<TResult>(cancellationToken: cancellationToken);
             return Json(result);
-        }
+        } 
     }
 }
