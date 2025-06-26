@@ -35,7 +35,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer.Requests
                 WinLossLimitTab
             };
 
-            if (ViewerLevel.IsAgentLevel() && AppSettings.IsSupportPotentialWinLimit(Site))
+            if (ViewerLevel.IsAgentLevel())
             {
                 tabs.Add(PotentialWinLimitTab);
             }

@@ -21,7 +21,6 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
         private Dictionary<string, int> resourcesByBetTypeCacheRef;
         private bool isHideNickname;
 
-        private bool isSupportPotentialWinLimit;
         private const int SevenDaysIndex = 8;
 
         public LogFormatterImpl(
@@ -38,7 +37,7 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
         /// Need be reviewed code here, AssignParams should not in formatter class
         /// </summary>
         /// <param name="transformParam"></param>
-        public void Init(TransformParam transformParam, bool isHideNickname = false, bool isSupportPotentialWinLimit = false)
+        public void Init(TransformParam transformParam, bool isHideNickname = false)
         {
             if (transformParam == null)
             {
@@ -50,7 +49,6 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
             resourcesByBetTypeCacheRef = transformParam.ResourcesByBetTypeCacheRef;
             resourcesBySportTypeCacheRef = transformParam.ResourcesBySportTypeCacheRef;
             this.isHideNickname = isHideNickname;
-            this.isSupportPotentialWinLimit = isSupportPotentialWinLimit;
         }
 
         public string FormatIP(string ip)
@@ -334,8 +332,6 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
         public string FormatNickName(string nickname)
             => isHideNickname ? string.Empty : nickname;
 
-        public bool IsSupportPotentialWinLimit() => isSupportPotentialWinLimit;
-        
         public string FormatApiKeyScopes(string scopes)
         {
             //<span class="valuechanged">2</span><span class="valueold">(1;2)</span>

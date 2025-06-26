@@ -177,7 +177,7 @@ public class IndexViewModel
         {
             var actorLevel = Enumeration.FromValue<UserLevel>(message.RoleId);
 
-            return actorLevel.IsAgentLevel() && Core.Configurations.AppSettings.IsSupportPotentialWinLimit(UserSession.Current.Site);
+            return actorLevel.IsAgentLevel();
         }
     }
 

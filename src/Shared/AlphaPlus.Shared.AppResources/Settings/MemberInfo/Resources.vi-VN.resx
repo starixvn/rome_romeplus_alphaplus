@@ -1259,6 +1259,6 @@ Lưu ý:  Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
     <value>Giới Hạn Thắng Tối Đa của Sportsbook</value>
   </data>
   <data name="PotentialWinLimitNote1" xml:space="preserve">
-    <value>Chỉ hiển thị các Member cài đặt “Không giới hạn” Giới Hạn Thắng Tối Đa.</value>
+    <value>Chỉ hiển thị các Member mà Giới Hạn Thắng Tối Đa không được cài đặt “Không giới hạn”.</value>
   </data>
 </root>
