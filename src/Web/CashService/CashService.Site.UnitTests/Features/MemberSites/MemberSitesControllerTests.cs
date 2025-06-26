@@ -21,7 +21,6 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.MemberSites
     {
         private readonly Mock<IConfiguration> _mockConfig = new();
         private readonly Mock<IUserSession> _mockUserSession = new();
-        private readonly Mock<HttpClient> _mockHttpClient = new();
         private readonly Mock<IAntiforgery> _mockAntiforgery = new();
         private readonly Mock<ICustomerService> _mockCustomerService = new();
         private readonly MemberSitesController _controller;
