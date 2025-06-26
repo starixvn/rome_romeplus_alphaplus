@@ -1,12 +1,31 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite';
-
+import fs from 'fs';
+import path from 'path';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 
+const copyWithoutHash = () => {
+  return {
+    name: 'copy-without-hash',
+    writeBundle() {
+      const distDir = 'dist';
+      const files = fs.readdirSync(distDir);
+      
+      files.forEach(file => {
+        if (file.includes('updateInfoCashMember') && file.includes('.js')) {
+          const sourcePath = path.join(distDir, file);
+          const targetPath = path.join(distDir, 'updateInfoCashMember.js');
+          fs.copyFileSync(sourcePath, targetPath);
+        }
+      });
+    }
+  };
+};
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+    copyWithoutHash()
 
   test: {
     globals: true,

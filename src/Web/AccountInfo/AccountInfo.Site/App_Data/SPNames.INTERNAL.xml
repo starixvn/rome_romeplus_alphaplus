@@ -104,7 +104,7 @@
         <Setting Key="Age_CustSubPageAccessSel" SpName="Age_CustSubPageAccessSel" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
     </Function>
     <Function Name="Account Info">
-        <Setting Key="Age_CustomerSelAllInfo" SpName="Age_CustomerSelAllInfo" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
+        <Setting Key="Age_CustomerSelAllInfo" SpName="Age_CustomerSelAllInfo_UAT2" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
         <Setting Key="Age_CustomerSelAllStatus" SpName="Age_CustomerSelAllStatus" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
         <Setting Key="Age_CustomerSelUserSearch" SpName="Age_CustomerSelUserSearch" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
         <Setting Key="Acc_CustomerSelTotalDownline" SpName="Acc_CustomerSelTotalDownline" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />

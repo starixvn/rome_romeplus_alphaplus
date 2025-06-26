@@ -408,7 +408,13 @@ namespace AlphaPlus.Settings.Site.Features.Customer
            => Json(await customerService.CheckExistedCustomer(username));
 
         public async Task<IActionResult> UpdateInfo(int custId)
-            => View(await customerService.GetCustomerInfo(custId));
+        {
+            // TODO: get customer info
+            var customerInfo = await customerService.GetCustomerInfo(custId);
+            var viewModel = new UpdateInfoViewModel(customerInfo, CDNUri, GetAssetsVersion(), new AppConfiguration(GetApplicationPath(), systemId));
+            return View();
+        }
+            
 
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateInfoPost(UpdateCustomerInfoRequest request)

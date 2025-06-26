@@ -6,9 +6,12 @@ import {
     ButtonFullComponent,
     ButtonOutlineComponent,
     ButtonCancelComponent,
-    ButtonApplyComponent
+    ButtonApplyComponent,
+    ButtonClosePopupComponent
 } from "../../../components/Buttons";
 import { TitleComponent, LabelTitleComponent } from "../../../components/Title";
+import CustomDropdown, { DropdownOption } from '../../../components/CustomDropdownComponent';
+
 import { useTranslation } from "react-i18next";
 import i18n from '../../../i18n/i18n-customerSites';
 import '../../../styles/common.css';
@@ -16,9 +19,10 @@ import '../../../styles/global.scss';
 import { useCookieLanguage } from "../../../hooks/useCookieLanguage";
 import { FormProvider, useForm, Controller } from 'react-hook-form';
 import { PHONE_CODE_MAX_LENGTH, PHONE_NUMBER_MAX_LENGTH } from "../../../constants/memberSiteConstants";
-import PopupModalComponent from "../../../components/PopupModalComponent";
 import NoRecordFound from "../../../components/NoRecordFoundComponent";
 
+const mockBanks = [
+]
 
 export default function UpdateInfoCashMember() {
     useCookieLanguage(i18n);
@@ -298,18 +302,11 @@ const SettingCustomerInfo = () => {
 
 interface BankAccountData {
     id: string;
-    memberBankAccount: string;
-    agentBankAccount: string;
-    bankName: string;
-    accountNumber: string;
-    accountHolderName: string;
+    memberBankAccountId: string;
+    memberBankAccountNumber: string;
+    agentBankAccountNumber: string;
 }
 
-interface AddBankAccountFormData {
-    bankName: string;
-    accountNumber: string;
-    accountHolderName: string;
-}
 
 const SettingMemberBankInfo = () => {
     const { t } = useTranslation('customerSites');
@@ -333,11 +330,9 @@ const SettingMemberBankInfo = () => {
             let mockData: BankAccountData[] = [
                 {
                     id: '1',
-                    memberBankAccount: '1234567890',
-                    agentBankAccount: '0987654321',
-                    bankName: 'Sample Bank',
-                    accountNumber: '1234567890',
-                    accountHolderName: 'John Doe'
+                    memberBankAccountId: '1',
+                    memberBankAccountNumber: '1234567890',
+                    agentBankAccountNumber: '0987654321',
                 }
             ];
             mockData = []
@@ -367,14 +362,12 @@ const SettingMemberBankInfo = () => {
         }
     };
 
-    const handleAddBankAccount = (newAccount: AddBankAccountFormData) => {
+    const handleAddBankAccount = (newAccount: BankAccountData) => {
         const bankAccount: BankAccountData = {
             id: Date.now().toString(),
-            memberBankAccount: newAccount.accountNumber,
-            agentBankAccount: newAccount.accountNumber, // This might need to be different based on business logic
-            bankName: newAccount.bankName,
-            accountNumber: newAccount.accountNumber,
-            accountHolderName: newAccount.accountHolderName
+            memberBankAccountId: newAccount.memberBankAccountId,
+            memberBankAccountNumber: newAccount.memberBankAccountNumber,
+            agentBankAccountNumber: newAccount.agentBankAccountNumber,
         };
 
         setBankAccounts(prev => [...prev, bankAccount]);
@@ -408,8 +401,8 @@ const SettingMemberBankInfo = () => {
                             bankAccounts.map((account, index) => (
                                 <tr key={account.id}>
                                     <td>{index + 1}</td>
-                                    <td>{account.memberBankAccount}</td>
-                                    <td>{account.agentBankAccount}</td>
+                                    <td>{account.memberBankAccountNumber}</td>
+                                    <td>{account.agentBankAccountNumber}</td>
                                     <td>
                                         <ButtonOutlineComponent
                                             className="w-[80px] [&>*]:w-[100%] text-red-600 border-red-600 hover:bg-red-600 hover:text-white"
@@ -441,7 +434,7 @@ const SettingMemberBankInfo = () => {
 
 interface AddBankAccountPopupProps {
     onClose: () => void;
-    onAdd: (data: AddBankAccountFormData) => void;
+    onAdd: (data: BankAccountData) => void;
 }
 
 const AddBankAccountPopup: React.FC<AddBankAccountPopupProps> = ({ onClose, onAdd }) => {
@@ -449,11 +442,30 @@ const AddBankAccountPopup: React.FC<AddBankAccountPopupProps> = ({ onClose, onAd
     const [isLoading, setIsLoading] = React.useState(false);
     const [isBlockAction, setIsBlockAction] = React.useState(false);
 
-    const methods = useForm<AddBankAccountFormData>({
+    const [memberBank] = React.useState<DropdownOption[]>(mockBanks.map(e => ({
+        value: e.id,
+        label: e.name,
+        icon: <img
+            src={`https://cdn-customer.nexdev.net/v5/cash-member/create/bank/${e.code}.png`}
+            alt={`${e.code} bank icon`}
+            className={`w-[16px] h-[16px] mr-[8px] inline-block`}
+        />,
+    })));
+    const [agentBank] = React.useState<DropdownOption[]>(mockBanks.map(e => ({
+        value: e.id,
+        label: e.name,
+        icon: <img
+            src={`https://cdn-customer.nexdev.net/v5/cash-member/create/bank/${e.code}.png`}
+            alt={`${e.code} bank icon`}
+            className={`w-[16px] h-[16px] mr-[8px] inline-block`}
+        />,
+    })));
+
+    const methods = useForm<BankAccountData>({
         defaultValues: {
-            bankName: '',
-            accountNumber: '',
-            accountHolderName: ''
+            memberBankAccountId: '',
+            memberBankAccountNumber: '',
+            agentBankAccountNumber: ''
         },
         mode: 'onChange',
         criteriaMode: 'all',
@@ -465,7 +477,7 @@ const AddBankAccountPopup: React.FC<AddBankAccountPopupProps> = ({ onClose, onAd
         formState: { isDirty, errors },
     } = methods;
 
-    const onSubmit = async (formData: AddBankAccountFormData) => {
+    const onSubmit = async (formData: BankAccountData) => {
         try {
             setIsLoading(true);
             setIsBlockAction(true);
@@ -489,64 +501,70 @@ const AddBankAccountPopup: React.FC<AddBankAccountPopupProps> = ({ onClose, onAd
     };
 
     return (
-        <PopupModalComponent title={t('updateInfoCashMember.addBankAccount')} onClose={onClose}>
-            <FormProvider {...methods}>
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                    <div>
-                        <LabelTitleComponent text={t('updateInfoCashMember.bankName')} required={true} />
-                        <Controller
-                            name="bankName"
-                            control={control}
-                            rules={{ required: t('updateInfoCashMember.bankNameRequired') || 'Bank name is required' }}
-                            render={({ field }) => (
-                                <input
-                                    {...field}
-                                    type="text"
-                                    className={`w-full border border-gray-300 rounded px-2 py-1 focus:outline-none ${errors.bankName ? 'border-red-500' : ''}`}
+        <div className="bg-[#00000080] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-start justify-center">
+            <div className="p-[12px] pt-[0] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] min-w-[350px] max-[768px]:max-w-[90%] rounded-[3px] dark:bg-[#121212]">
+                <div className="relative mb-[10px] text-center border-b-[1px] border-[var(--border-color)] py-[11px]" >
+                    <MediumTitleComponent text={t('updateInfoCashMember.addBankAccount')} />
+                    <ButtonClosePopupComponent onClick={onClose} />
+                </div>
+                <div>
+                    <FormProvider {...methods}>
+                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                            <div>
+                                <LabelTitleComponent text={t('updateInfoCashMember.memberBankAccount')} required={true} />
+                                <CustomDropdown
+                                    options={memberBank}
+                                    onSelect={() => { }}
+                                    initialValue={''}
                                 />
-                            )}
-                        />
-                        {errors.bankName && (
-                            <div className="text-red-500 text-sm mt-1">{errors.bankName.message}</div>
-                        )}
-                    </div>
+                            </div>
 
-                    <div>
-                        <LabelTitleComponent text={t('updateInfoCashMember.accountNumber')} required={true} />
-                        <Controller
-                            name="accountNumber"
-                            control={control}
-                            rules={{ required: t('updateInfoCashMember.accountNumberRequired') || 'Account number is required' }}
-                            render={({ field }) => (
-                                <input
-                                    {...field}
-                                    type="text"
-                                    className={`w-full border border-gray-300 rounded px-2 py-1 focus:outline-none ${errors.accountNumber ? 'border-red-500' : ''}`}
+                            <div>
+                                <LabelTitleComponent text={t('updateInfoCashMember.memberBankAccountNumber')} required={true} />
+                                <Controller
+                                    name="memberBankAccountNumber"
+                                    control={control}
+                                    rules={{ required: t('updateInfoCashMember.accountNumberRequired') || 'Account number is required' }}
+                                    render={({ field }) => (
+                                        <input
+                                            {...field}
+                                            type="text"
+                                            className={`w-full border border-gray-300 rounded px-2 py-1 focus:outline-none ${errors.memberBankAccountNumber ? 'border-red-500' : ''}`}
+                                        />
+                                    )}
                                 />
-                            )}
-                        />
-                        {errors.accountNumber && (
-                            <div className="text-red-500 text-sm mt-1">{errors.accountNumber.message}</div>
-                        )}
-                    </div>
+                                {errors.memberBankAccountNumber && (
+                                    <div className="text-red-500 text-sm mt-1">{errors.memberBankAccountNumber.message}</div>
+                                )}
+                            </div>
+                            <div>
+                                <LabelTitleComponent text={t('updateInfoCashMember.agentBankAccount')} />
+                                <CustomDropdown
+                                    options={agentBank}
+                                    onSelect={() => { }}
+                                    initialValue={agentBank[0].value}
+                                />
+                            </div>
 
 
 
-                    <div className="flex justify-center gap-[8px] pt-4">
-                        <ButtonCancelComponent
-                            text={t('global:cancel')}
-                            onClick={onClose}
-                            disabled={isLoading || isBlockAction}
-                        />
-                        <ButtonApplyComponent
-                            text={isLoading ? t('global:loading') : t('global:save')}
-                            type='submit'
-                            disabled={isLoading || isBlockAction || !isDirty}
-                        />
-                    </div>
-                </form>
-            </FormProvider>
-        </PopupModalComponent>
+                            <div className="flex justify-center gap-[8px] pt-4">
+                                <ButtonCancelComponent
+                                    text={t('global:cancel')}
+                                    onClick={onClose}
+                                    disabled={isLoading || isBlockAction}
+                                />
+                                <ButtonApplyComponent
+                                    text={isLoading ? t('global:loading') : t('global:save')}
+                                    type='submit'
+                                    disabled={isLoading || isBlockAction || !isDirty}
+                                />
+                            </div>
+                        </form>
+                    </FormProvider>
+                </div>
+            </div>
+        </div>
     )
 }
 
@@ -555,3 +573,5 @@ createRoot(document.getElementById('root')!).render(
         <UpdateInfoCashMember />
     </React.StrictMode>
 );
+
+

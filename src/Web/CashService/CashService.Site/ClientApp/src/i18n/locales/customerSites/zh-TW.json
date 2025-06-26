@@ -12,8 +12,13 @@
         "update": "Update",
         "clearAll": "Clear All",
         "memberBankAccount": "Member's Bank Account",
+        "memberBankAccountNumber": "Member's Bank Account Number",
         "agentBankAccount": "Agent's Bank Account",
         "action": "Action",
-        "addBankAccount": "Add Bank Account"
+        "addBankAccount": "Add Bank Account",
+        "bankName": "Bank Name",
+        "accountNumber": "Account Number",
+        "bankNameRequired": "Bank name is required",
+        "accountNumberRequired": "Account number is required"
     }
 }
