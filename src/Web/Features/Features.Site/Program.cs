@@ -1,6 +1,8 @@
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
 using AlphaPlus.Features.Site.Helpers;
+using AlphaPlus.NetThrottling;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
 
 ThreadPool.SetMinThreads(100, 100);
@@ -19,6 +21,7 @@ configuration
 
 builder.Services
     .RegisterApplicationServices(configuration)
+    .AddNetThrottling(configuration)
     .Configure<ForwardedHeadersOptions>(options =>
     {
         options.ForwardedHeaders =
@@ -34,11 +37,12 @@ StaticResources.Init(configuration.GetValue<string>("JsVersion"));
 
 app.UseForwardedHeaders();
 app.UsePathBase(PathBase);
-app.MapHealthChecks("/health");
+app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute(), new DisableNetThrottlingAttribute());
 app.UseStaticFiles(new StaticFileOptions());
 app.UseRouting();
 app.UseAuthorization();
 app.UseSession();
+app.UseNetThrottling();
 app.UseMiddleware<RequestCultureMiddleware>();
 if (app.Environment.IsDevelopment())
 {

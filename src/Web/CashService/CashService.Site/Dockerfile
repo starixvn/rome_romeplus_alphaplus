@@ -13,6 +13,7 @@ WORKDIR /build
 # copy .csproj files
 COPY "src/Modules/AlphaPlus.PartialUM/AlphaPlus.PartialUM.csproj" "src/Modules/AlphaPlus.PartialUM/AlphaPlus.PartialUM.csproj"
 COPY "src/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj" "src/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj"
+COPY "src/Modules/AlphaPlus.NetThrottling/AlphaPlus.NetThrottling.csproj" "src/Modules/AlphaPlus.NetThrottling/AlphaPlus.NetThrottling.csproj"
 COPY "src/Modules/AlphaPlus.Logging/AlphaPlus.Logging.csproj" "src/Modules/AlphaPlus.Logging/AlphaPlus.Logging.csproj"
 COPY "src/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "src/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj"
 COPY "src/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "src/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
@@ -32,6 +33,7 @@ COPY "src/Modules/AlphaPlus.RequestInfo" "src/Modules/AlphaPlus.RequestInfo"
 COPY "src/Modules/AlphaPlus.PartialUM" "src/Modules/AlphaPlus.PartialUM"
 COPY "src/Modules/AlphaPlus.Core" "src/Modules/AlphaPlus.Core"
 COPY "src/Modules/AlphaPlus.SecurityCode" "src/Modules/AlphaPlus.SecurityCode"
+COPY "src/Modules/AlphaPlus.NetThrottling" "src/Modules/AlphaPlus.NetThrottling"
 COPY "src/Web/CashService/CashService.Site" "src/Web/CashService/CashService.Site"
 
 ARG TRANSFORM_CONFIG
