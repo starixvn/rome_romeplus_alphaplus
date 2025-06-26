@@ -30,6 +30,10 @@ public static class PaymentsEndpoints
             .MapPut("/{transId}/status", UpdateDepositStatus)
             .AddEndpointFilter<ModelValidationFilter<UpdateTransactionStatusRequest>>()
             .Produces<Result>();
+        deposit
+            .MapPut("/{transId}/payslip", UpdatePaySlip)
+            .AddEndpointFilter<ModelValidationFilter<UpdatePaySlipRequest>>()
+            .Produces<Result>();
 
         var withdrawal = app.MapGroup("/api/withdrawal").WithTags("Withdrawal");
         withdrawal
@@ -63,12 +67,6 @@ public static class PaymentsEndpoints
             return BadRequest(nameof(ManualDepositRequest), $"{nameof(request)} cannot be null.");
         }
 
-        var paySlipValidationResult = request.ValidatePaySlip();
-        if (paySlipValidationResult != null)
-        {
-            return TypedResults.BadRequest(paySlipValidationResult);
-        }
-
         return TypedResults.Ok(await depositService.Manual(request));
     }
 
@@ -99,6 +97,31 @@ public static class PaymentsEndpoints
         }
 
         return TypedResults.Ok(await depositService.UpdateTransactionStatus(transId, request));
+    }
+
+    private static async Task<IResult> UpdatePaySlip(
+        long transId,
+        [FromBody]
+        UpdatePaySlipRequest request,
+        IDepositService depositService)
+    {
+        if (request == null)
+        {
+            return BadRequest(nameof(UpdatePaySlipRequest), $"{nameof(request)} cannot be null.");
+        }
+
+        if (transId <= 0)
+        {
+            return BadRequest(nameof(transId), $"{nameof(transId)} must be a positive number.");
+        }
+
+        var paySlipValidationResult = request.ValidatePaySlip();
+        if (paySlipValidationResult != null)
+        {
+            return TypedResults.BadRequest(paySlipValidationResult);
+        }
+
+        return TypedResults.Ok(await depositService.UpdatePaySlip(transId, request));
     }
 
     private static async Task<IResult> ManualWithdrawal([FromBody] ManualWithdrawalRequest request, IWithdrawalService withdrawalService)

@@ -19,6 +19,8 @@ public interface IDepositService
     Task<PaymentResult> Auto(AutoDepositRequest request);
 
     Task<Result> UpdateTransactionStatus(long transId, UpdateTransactionStatusRequest request);
+
+    Task<Result> UpdatePaySlip(long transId, UpdatePaySlipRequest request);
 }
 
 public class DepositService(
@@ -85,7 +87,6 @@ public class DepositService(
             request.PaymentFrom,
             request.PaymentTo,
             request.Amount,
-            paySlip: request.PaySlipBuffer,
             ip: request.IP,
             remark: request.Remark);
 
@@ -212,6 +213,33 @@ public class DepositService(
             tasks.Add(logger.ErrorAsync($"Deposit - {nameof(UpdateTransactionStatus)} failed. Key: {criteria.GetSettingKey()}, Criteria: {JsonHelper.ToJson(criteria)}"));
         }
 
+        await Task.WhenAll(tasks);
+
         return result;
+    }
+
+    public async Task<Result> UpdatePaySlip(long transId, UpdatePaySlipRequest request)
+    {
+        var tasks = new List<Task>();
+        var siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
+
+        var criteria = new UpdatePaySlipCriteria(
+            request.AgentId,
+            request.CustId,
+            transId,
+            request.PaySlipBuffer,
+            request.IP,
+            siteDBConfig.SiteDBGroupId);
+        var logs = await repository.FetchAsync<LogEntry>(criteria);
+        tasks.Add(WriteLogsRunSP(logs, siteDBConfig.CustDBGroupId));
+
+        if (!string.IsNullOrWhiteSpace(criteria.ErrExtraInfo))
+        {
+            tasks.Add(logger.ErrorAsync($"Deposit - {nameof(UpdatePaySlipCriteria)} failed. Key: {criteria.GetSettingKey()}, Criteria: {JsonHelper.ToJson(criteria)}"));
+        }
+
+        await Task.WhenAll(tasks);
+
+        return new Result(criteria.ErrCode, criteria.ErrMsg);
     }
 }

@@ -20,7 +20,6 @@ public class AddTransactionDepositCriteria(
     decimal amount,
     decimal? userInputAmount = null,
     byte? matchingMode = null,
-    byte[] paySlip = null,
     string ip = null,
     string remark = null) : CriteriaBase
 {
@@ -55,8 +54,6 @@ public class AddTransactionDepositCriteria(
     public decimal? UserInput_Amount { get; } = userInputAmount;
 
     public byte? MatchingMode { get; } = matchingMode;
-
-    public byte[] PaySlip { get; } = paySlip;
 
     public string IP { get; } = ip;
 

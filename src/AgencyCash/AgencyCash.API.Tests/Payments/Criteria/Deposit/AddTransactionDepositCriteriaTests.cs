@@ -25,7 +25,6 @@ public class AddTransactionDepositCriteriaTests
         decimal amount = 500.0m;
         decimal confirmAmount = 500.0m;
         byte matchingMode = 1;
-        byte[] paySlip = new byte[] { 1, 2, 3 };
         string ip = "127.0.0.1";
         string remark = "test remark";
 
@@ -35,7 +34,7 @@ public class AddTransactionDepositCriteriaTests
             creditMembersGivenCredit, minAmount, maxAmount,
             transactionTypeId, paymentType, paymentMethodId,
             paymentFrom, paymentTo, amount, confirmAmount,
-            matchingMode, paySlip, ip, remark);
+            matchingMode, ip, remark);
 
         // Assert
         Assert.Equal(agentId, criteria.AgentId);
@@ -53,7 +52,6 @@ public class AddTransactionDepositCriteriaTests
         Assert.Equal(amount, criteria.Amount);
         Assert.Equal(confirmAmount, criteria.UserInput_Amount);
         Assert.Equal(matchingMode, criteria.MatchingMode);
-        Assert.Equal(paySlip, criteria.PaySlip);
         Assert.Equal(ip, criteria.IP);
         Assert.Equal(remark, criteria.Remark);
     }
