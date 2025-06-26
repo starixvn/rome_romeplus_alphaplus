@@ -25,8 +25,9 @@ interface PendingDepositModalProps {
   transId: number;
   custId: number;
   onClose: (isSuccess: boolean) => void;
+  isCashServiceEnabled: boolean;
 }
-const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, custId, onClose }) => {
+const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, custId, onClose, isCashServiceEnabled }) => {
   const { t } = useTranslation('pendingDeposit');
   const { t: tGlobal } = useTranslation('global');
   const [remark, setRemark] = useState('');
@@ -225,12 +226,14 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({ transId, cust
           <ButtonRejectComponent
             text={t('pendingDepositModal.reject')}
             onClick={handleReject}
-            disabled={isSubmitting}
+            disabled={isSubmitting || !isCashServiceEnabled}
+            title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
           />
           <ButtonApplyComponent
             text={t('pendingDepositModal.approve')}
             onClick={handleApprove}
-            disabled={isSubmitting}
+            disabled={isSubmitting || !isCashServiceEnabled}
+            title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
           />
         </div>
       </div>

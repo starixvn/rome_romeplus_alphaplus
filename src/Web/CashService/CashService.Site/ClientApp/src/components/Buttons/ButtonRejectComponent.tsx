@@ -8,6 +8,7 @@ export const ButtonRejectComponent: React.FC<ButtonComponentProps> = ({
   type = 'button',
   className = '',
   disabled = false,
+  title = '',
 }) => {
   return (
     <div className={`${className}`}>
@@ -16,6 +17,7 @@ export const ButtonRejectComponent: React.FC<ButtonComponentProps> = ({
         className="min-w-[90px] bg-[var(--button-background-reject)] hover:bg-[var(--button-background-reject-hover)] text-[var(--button-text)] rounded-[3px] cursor-pointer h-[28px] px-[16px] font-semibold outline-none"
         onClick={onClick}
         disabled={disabled}
+        title={title}
       >
         {text}
       </button>

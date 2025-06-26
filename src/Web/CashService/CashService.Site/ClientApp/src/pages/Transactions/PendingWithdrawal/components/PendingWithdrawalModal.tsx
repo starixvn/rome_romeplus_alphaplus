@@ -28,13 +28,15 @@ import { LoadingFullComponent } from '../../../../components/LoadingComponent';
 interface PendingWithdrawalModalProps {
   transId: number;
   custId: number;
-  onClose: () => void;
+  onClose: () => void;  
+  isCashServiceEnabled: boolean;
 }
 
 const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
   transId,
   custId,
   onClose,
+  isCashServiceEnabled,
 }) => {
   const { t } = useTranslation('pendingWithdrawal');
   const { t: tGlobal } = useTranslation('global');
@@ -339,11 +341,13 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
             text={t('pendingWithdrawalModal.reject')}
             onClick={handleReject}
             disabled={isSubmitting}
+            title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
           />
           <ButtonApplyComponent
             text={t('pendingWithdrawalModal.approve')}
             onClick={handleApprove}
             disabled={isSubmitting}
+            title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
           />
         </div>
       </div>

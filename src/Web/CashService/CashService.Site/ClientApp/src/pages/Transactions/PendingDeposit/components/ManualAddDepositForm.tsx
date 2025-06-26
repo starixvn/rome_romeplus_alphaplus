@@ -20,6 +20,7 @@ import { renderBankOptionValue } from '../../../../utils/commonFunctions';
 interface ManualAddDepositFormProps {
   cashAgentOptions: BankInfo[];
   onClose: (isSuccess: boolean) => void;
+  isCashServiceEnabled: boolean;
 }
 
 interface FormState {
@@ -56,14 +57,17 @@ const FormActions: React.FC<{
   isSubmitting: boolean;
   cancelText: string;
   submitText: string;
-  submittingText: string;
-}> = ({ onCancel, onSubmit, isSubmitting, cancelText, submitText, submittingText }) => (
+  submittingText: string; 
+  isCashServiceEnabled: boolean;
+  buttonTitle: string;
+}> = ({ onCancel, onSubmit, isSubmitting, cancelText, submitText, submittingText, isCashServiceEnabled, buttonTitle }) => (
   <div className="flex gap-[16px]">
     <ButtonCancelComponent text={cancelText} onClick={onCancel} />
     <ButtonApplyComponent
       text={isSubmitting ? submittingText : submitText}
-      disabled={isSubmitting}
+      disabled={isSubmitting || !isCashServiceEnabled}
       onClick={onSubmit}
+      title={isCashServiceEnabled ? '' : buttonTitle}
     />
   </div>
 );
@@ -71,8 +75,10 @@ const FormActions: React.FC<{
 const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
   cashAgentOptions,
   onClose,
+  isCashServiceEnabled,
 }) => {
   const { t } = useTranslation('pendingDeposit');
+  const { t: tGlobal } = useTranslation('global');
 
   const [formState, setFormState] = useState<FormState>({
     memberLoginOptions: [],
@@ -280,7 +286,9 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
           cancelText={t('manualDepositForm.cancel')}
           submitText={t('manualDepositForm.approve')}
           submittingText={t('manualDepositForm.approving')}
-        />
+          isCashServiceEnabled={isCashServiceEnabled}
+          buttonTitle={tGlobal('cashServiceDisabled')} 
+        />  
       </div>
     </>
   );

@@ -27,11 +27,13 @@ import {
 import { AmountInput } from '../../../../components/AmountInput';
 
 interface ManualAddWithdrawalFormProps {
-  onClose?: () => void;
+  onClose?: () => void; 
+  isCashServiceEnabled: boolean;
 }
 
-const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClose }) => {
-  const { t } = useTranslation('pendingWithdrawal');
+const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClose, isCashServiceEnabled }) => {
+  const { t } = useTranslation('pendingWithdrawal');  
+  const { t: tGlobal } = useTranslation('global');
   const [custId, setCustId] = useState<number | null>(null);
   const [from, setFrom] = useState<string>('');
   const [to, setTo] = useState<string>('');
@@ -383,13 +385,14 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
             text={t('manualWithdrawalForm.cancel')}
           />
           <ButtonApplyComponent
-            disabled={isSubmitting}
+            disabled={isSubmitting || !isCashServiceEnabled}
             text={
               isSubmitting
                 ? t('manualWithdrawalForm.processing')
                 : t('manualWithdrawalForm.approve')
             }
             onClick={handleSubmit}
+            title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
           />
         </div>
       </div>

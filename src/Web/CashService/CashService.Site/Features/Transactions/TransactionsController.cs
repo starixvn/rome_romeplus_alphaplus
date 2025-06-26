@@ -11,6 +11,7 @@ using Shared;
 using Shared.Filters;
 using Shared.Models;
 using Fanex.Customer.Client.Services;
+using AlphaPlus.CashService.Site.Features.Shared.Resources;
 
 [SiteAuthorizationFilter(PageAccessType.CashService)]
 public class TransactionsController(
@@ -31,9 +32,15 @@ public class TransactionsController(
 
     public IActionResult Index() => Ok("Transactions");
 
-    public IActionResult Deposit() => View();
+    public async Task<IActionResult> Deposit()  {
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+        return View(new SiteBaseViewModel { IsCashServiceEnabled = isCashServiceEnabled });
+    }
 
-    public IActionResult Withdrawal() => View();
+    public async Task<IActionResult> Withdrawal() {
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+        return View(new SiteBaseViewModel { IsCashServiceEnabled = isCashServiceEnabled });
+    }
 
     public IActionResult History() => View();
 
@@ -122,6 +129,11 @@ public class TransactionsController(
             return Unauthorized();
         }
 
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+        if(isCashServiceEnabled == 0) {
+            return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
+        }
+
         request.UplineId = agentId;
         request.Ip = GetClientIp();
         request.SiteDbGroupId = siteDbGroupId;
@@ -141,6 +153,11 @@ public class TransactionsController(
         if (userSession.IsInternal)
         {
             return Unauthorized();
+        }
+
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+        if(isCashServiceEnabled == 0) {
+            return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
         }
 
         var result = VerifyInputParam(request, true);
@@ -260,6 +277,11 @@ public class TransactionsController(
             return Unauthorized();
         }
 
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+        if(isCashServiceEnabled == 0) {
+            return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
+        }
+
         request.SiteDbGroupId = siteDbGroupId;
         request.CustDbGroupId = custDbGroupId;
         request.UserId = userId;
@@ -281,6 +303,11 @@ public class TransactionsController(
             return Unauthorized();
         }
 
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+        if(isCashServiceEnabled == 0) {
+            return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
+        }
+
         request.SiteDbGroupId = siteDbGroupId;
         request.UserId = userId;
         request.Ip = GetClientIp();
@@ -299,6 +326,12 @@ public class TransactionsController(
         {
             return Unauthorized();
         }
+
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+        if(isCashServiceEnabled == 0) {
+            return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
+        }
+
         request.SetUserSession(userSession);
         var result = await httpClientHelper.PostAsync<ProcessDepositTransaction, ResultModel>("/api/deposit/approve", request);
         if (result.Code != 0)
@@ -315,6 +348,12 @@ public class TransactionsController(
         {
             return Unauthorized();
         }
+        
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+        if(isCashServiceEnabled == 0) {
+            return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
+        }
+
         request.SetUserSession(userSession);
 
         var result = await httpClientHelper.PostAsync<ProcessDepositTransaction, ResultModel>("/api/deposit/reject", request);

@@ -103,6 +103,12 @@ const PendingDeposit: React.FC = () => {
   const [showManualAddDepositForm, setShowManualAddDepositForm] = useState<boolean>(false);
   const [recentDeposits, setRecentDeposits] = useState<TimeFilterOptions>(TimeFilterOptions.All);
   const [cashAgentTo, setCashAgentTo] = useState<string>('');
+  const [isCashServiceEnabled, setIsCashServiceEnabled] = useState(false);
+
+  useEffect(() => {
+    const isCashServiceEnabled = document.getElementById('IsCashServiceEnabled')?.getAttribute('value');
+    setIsCashServiceEnabled(isCashServiceEnabled === '1');
+  }, []);
 
   const { deposits, uniquePaymentToOptions, isLoading, fetchDeposits } =
     useDeposits(recentDeposits);
@@ -147,6 +153,7 @@ const PendingDeposit: React.FC = () => {
         <ManualAddDepositForm
           cashAgentOptions={cashAgentOptions}
           onClose={() => handleCloseManualDepositForm(false)}
+          isCashServiceEnabled={isCashServiceEnabled}
         />
       ) : (
         <div className="flex h-full flex-col">
@@ -173,7 +180,7 @@ const PendingDeposit: React.FC = () => {
               <LoadingFullComponent />
             </div>
           ) : (
-            <DataGrid deposits={filteredDeposits} reloadGrid={fetchDeposits} />
+            <DataGrid deposits={filteredDeposits} reloadGrid={fetchDeposits} isCashServiceEnabled={isCashServiceEnabled} />
           )}
         </div>
       )}

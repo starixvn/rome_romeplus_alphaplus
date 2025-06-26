@@ -17,9 +17,10 @@ import { IconImage } from '../../../../components/Icons.tsx';
 interface DataGridProps {
   withdrawals: TransactionItem[];
   reloadGrid: () => void;
+  isCashServiceEnabled: boolean;
 }
 
-const DataGrid: React.FC<DataGridProps> = ({ withdrawals, reloadGrid }) => {
+const DataGrid: React.FC<DataGridProps> = ({ withdrawals, reloadGrid, isCashServiceEnabled }) => {
   const { t } = useTranslation('pendingWithdrawal');
   const { t: tGlobal } = useTranslation('global');
   const [showWithdrawalPopup, setShowWithdrawalPopup] = useState<boolean>(false);
@@ -146,6 +147,7 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals, reloadGrid }) => {
           transId={selectedWithdrawal.transId}
           custId={selectedWithdrawal.custId}
           onClose={handleCloseProcess}
+          isCashServiceEnabled={isCashServiceEnabled}
         />
       )}
       {paginatedWithdrawals.length > 0 && (
