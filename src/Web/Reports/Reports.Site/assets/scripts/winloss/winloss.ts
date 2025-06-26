@@ -59,7 +59,7 @@
                   1: { sorter: 'text' }
               }
             : { 0: { sorter: 'text' } };
-        this.sortComponent.initSort(this.$tableReport, sortHeaders, this.sortComponent.handleDormantAccountsAfterSort);
+        this.sortComponent.initSort(this.$tableReport, sortHeaders, this.afterSortFunction);
         // remove style="visibility:hidden"
         // TableSorter cannot run with style="display:none"
         this.$tableReport.removeAttr('style');
@@ -172,6 +172,12 @@
         }
 
         return sortedColumn;
+    }
+
+    afterSortFunction = () => {
+        console.log("cứt");
+        this.sortComponent.handleDormantAccountsAfterSort();
+        this.sortComponent.handleCashFeeDataAfterSort();
     }
 }
 

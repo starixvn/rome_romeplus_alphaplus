@@ -29,7 +29,7 @@
 			<th rowspan="2" class="visible-stack-mode col-combine sorting" data-sortedname="Turnover" data-colindex="2">
 				<span class="prior-sortedcolumn">@Resources.TurnoverAbbr</span>
 				@(isAgentLevel ? "/ " + Resources.GrossComm :
-										(isSuperLevel ? Resources.GrossComAndMasterTotal : Resources.GrossComAndAgentTotal))
+																																						(isSuperLevel ? Resources.GrossComAndMasterTotal : Resources.GrossComAndAgentTotal))
 			</th>
 			<th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="DownlineTotal" data-colindex="4">
 				@Resources.DownlineTotal
@@ -46,12 +46,12 @@
 			</th>
 			<th class="sorting visible-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="4">
 				@Resources.Company
-            <th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="RewardAmount" data-colindex="9">
-                @Resources.Reward @(Model.ReportData.DataSource.Any() ? $"({Model.ReportData.DataSource.First().RewardCurrency})" : string.Empty)
-            </th>
-            <th class="sorting visible-stack-mode" rowspan="2" data-sortedname="RewardAmount" data-colindex="5">
-                @Resources.Reward @(Model.ReportData.DataSource.Any() ? $"({Model.ReportData.DataSource.First().RewardCurrency})" : string.Empty)
-            </th>
+				<th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="RewardAmount" data-colindex="9">
+					@Resources.Reward @(Model.ReportData.DataSource.Any() ? $"({Model.ReportData.DataSource.First().RewardCurrency})" : string.Empty)
+				</th>
+				<th class="sorting visible-stack-mode" rowspan="2" data-sortedname="RewardAmount" data-colindex="5">
+					@Resources.Reward @(Model.ReportData.DataSource.Any() ? $"({Model.ReportData.DataSource.First().RewardCurrency})" : string.Empty)
+				</th>
 		</tr>
 		<tr class="thead-row2">
 			<th class="hidden-stack-mode col-winloss sorting" data-sortedname="@(Model.CustLevel.DisplayName + "WinLoss")"
@@ -80,7 +80,7 @@
 			<th rowspan="2" class="visible-stack-mode col-combine sorting" data-sortedname="Turnover" data-colindex="1">
 				<span class="prior-sortedcolumn">@Resources.TurnoverAbbr</span>
 				@(isAgentLevel ? "/ " + Resources.GrossComm :
-										(isSuperLevel ? Resources.GrossComAndMasterTotal : Resources.GrossComAndAgentTotal))
+																																						(isSuperLevel ? Resources.GrossComAndMasterTotal : Resources.GrossComAndAgentTotal))
 			</th>
 			<th colspan="3" class="col-level hidden-stack-mode">@Resources.Member</th>
 			<th class="visible-stack-mode col-combine sorting" data-sortedname="MemberWinLoss" rowspan="2" data-colindex="2">
@@ -98,12 +98,12 @@
 			<th class="sorting visible-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="4">
 				@Resources.Company
 			</th>
-            <th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="RewardAmount" data-colindex="9">
-                @Resources.Reward @(Model.ReportData.DataSource.Any() ? $"({Model.ReportData.DataSource.First().RewardCurrency})" : string.Empty)
-            </th>
-            <th class="sorting visible-stack-mode" rowspan="2" data-sortedname="RewardAmount" data-colindex="5">
-                @Resources.Reward @(Model.ReportData.DataSource.Any() ? $"({Model.ReportData.DataSource.First().RewardCurrency})" : string.Empty)
-            </th>
+			<th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="RewardAmount" data-colindex="9">
+				@Resources.Reward @(Model.ReportData.DataSource.Any() ? $"({Model.ReportData.DataSource.First().RewardCurrency})" : string.Empty)
+			</th>
+			<th class="sorting visible-stack-mode" rowspan="2" data-sortedname="RewardAmount" data-colindex="5">
+				@Resources.Reward @(Model.ReportData.DataSource.Any() ? $"({Model.ReportData.DataSource.First().RewardCurrency})" : string.Empty)
+			</th>
 		</tr>
 		<tr class="thead-row2">
 			<th class="hidden-stack-mode col-winloss sorting" data-sortedname="MemberWinLoss" data-colindex="3">
@@ -131,8 +131,23 @@
 	void RenderRow(WinLossModel data, bool isTotalRow = false)
 	{
 		var isDormantAccounts = data.IsDormantAccounts;
-		<tr class="@(isTotalRow ? "tbl-footer" : (isDormantAccounts ? "dormant-accounts-mark" : string.Empty))">
-			<td @(isDormantAccounts ? string.Empty : $"data-sortedvalue={data.CustName}") class="text-left col-username">
+		var isCashFee = string.IsNullOrEmpty(data.CustName) ? false : data.CustName.Equals("CASH SERVICE BILLING", StringComparison.OrdinalIgnoreCase);
+		var rowClass = string.Empty;
+		@if (isTotalRow) {
+			rowClass = "tbl-footer";
+		} else {
+			if (isDormantAccounts) {
+				rowClass = "dormant-accounts-mark";
+			}
+			else if (isCashFee) {
+				rowClass = "cash-fee-row";
+			} else{
+				rowClass = string.Empty;
+			}
+		}
+
+		<tr class="@rowClass">
+			<td @(isDormantAccounts || isCashFee ? string.Empty : $"data-sortedvalue={data.CustName}") class="text-left col-username">
 				@if (isTotalRow)
 				{
 					@Resources.Total
@@ -145,9 +160,9 @@
 				}
 				else if (isAgentLevel || data.IsDirectMember)
 				{
-					if (data.CustName.Equals("CASH SERVICE BILLING", StringComparison.OrdinalIgnoreCase))
+					if (isCashFee)
 					{
-						<a href="javascript:;" class="open-link" data-url="@Model.BuildCashFeeUrl(data.CustId)">@data.CustName</a>
+						<a href="javascript:;" class="open-link cash-fee-link" data-url="@Model.BuildCashFeeUrl(data.CustId)">@data.CustName</a>
 					}
 					else
 					{
