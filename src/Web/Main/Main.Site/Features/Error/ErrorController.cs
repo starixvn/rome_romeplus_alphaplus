@@ -3,11 +3,13 @@ using AlphaPlus.Main.Site.Helpers;
 using AlphaPlus.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using AlphaPlus.Core.Filters;
+using AlphaPlus.NetThrottling;
 
 namespace AlphaPlus.Main.Site.Features.Error
 {
     [AllowAnonymous]
     [AllowProtectedMode]
+    [DisableNetThrottling]
     public class ErrorController(IUserSession userSession) : Controller
     {
         private readonly IUserSession userSession = userSession;
