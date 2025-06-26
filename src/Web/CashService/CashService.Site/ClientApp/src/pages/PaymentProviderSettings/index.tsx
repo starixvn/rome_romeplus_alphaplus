@@ -84,6 +84,7 @@ function PaymentProviderSettings() {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = React.useState('');
   const [selectedStatus, setSelectedStatus] = React.useState('');
   const [selectedTransactionType, setSelectedTransactionType] = React.useState('');
+  const [isCashServiceEnabled, setIsCashServiceEnabled] = React.useState(false);
 
   const [formState, setFormState] = useState<FormState>({
     providerStatus: window.providerSettingsViewModel.Provider.Status,
@@ -711,10 +712,12 @@ function PaymentProviderSettings() {
                 type="submit"
                 onClick={onUpdate}
                 disabled={
+                  !isCashServiceEnabled ||
                   providerStatus == paymentProviderStatusConstant.notConfigured ||
                   updating ||
                   !hasEditableSettings()
                 }
+                title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
               />
             </div>
           </div>
@@ -739,7 +742,8 @@ function PaymentProviderSettings() {
         <AddPaymentMethodModal
           providerId={window.providerSettingsViewModel.Provider.Id}
           onClose={onCloseAddPaymentMethod}
-          onSuccess={reloadPage}
+          onSuccess={reloadPage}  
+          isCashServiceEnabled={isCashServiceEnabled}
           orgTelegramAssistantUrl={
             window.providerSettingsViewModel.AddPaymentMethodViewModel.ChannelContact.Tele
           }
@@ -763,7 +767,8 @@ function PaymentProviderSettings() {
           orgTelegramAssistantUrl={
             window.providerSettingsViewModel.AddPaymentMethodViewModel.ChannelContact.Tele
           }
-          existingPaymentMethod={selectedSetting}
+          existingPaymentMethod={selectedSetting} 
+          isCashServiceEnabled={isCashServiceEnabled}
         />
       )}
     </div>

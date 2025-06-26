@@ -28,6 +28,7 @@ interface AddPaymentMethodModalProps {
   onSuccess: () => void;
   providerId: number;
   orgTelegramAssistantUrl: string;
+  isCashServiceEnabled: boolean;
 }
 
 interface PaymentMethodFormState {
@@ -45,6 +46,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
   onSuccess,
   providerId,
   orgTelegramAssistantUrl,
+  isCashServiceEnabled,
 }) => {
   const { t: tGlobal } = useTranslation('global');
   const { t: tPaymentProviderSettings } = useTranslation('paymentProviderSettings');
@@ -324,7 +326,8 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
             <ButtonApplyComponent
               text={tGlobal('save')}
               onClick={() => onSubmit({ preventDefault: () => {} } as React.FormEvent)}
-              disabled={isLoading || allMethodsInactive || isBlockAction}
+              disabled={isLoading || allMethodsInactive || isBlockAction || !isCashServiceEnabled}
+              title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
             />
           </div>
         </form>
