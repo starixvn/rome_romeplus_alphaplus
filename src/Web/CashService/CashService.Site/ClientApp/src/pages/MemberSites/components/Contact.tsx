@@ -3,7 +3,7 @@ import { Contact as ContactType } from "../../../services/interfaces/MemberSites
 import { FieldError, useFormContext } from "react-hook-form";
 import { CONTACT_MAX_LENGTH, CONTACT_REGEX, LINE_REGEX } from "../../../constants";
 import { LabelTitleComponent } from "../../../components/TitleComponents";
-import { ValidateMessageComponent } from "../../../components/MessageComponents";
+import { ValidateMessageComponent } from "../../../components/Message";
 
 interface ContactProps {
   index: number;

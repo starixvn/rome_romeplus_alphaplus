@@ -13,7 +13,7 @@ import {
   ButtonRejectComponent,
 } from '../../../../components/Buttons/index';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
-import { ResultMessageComponent } from '../../../../components/MessageComponents.tsx';
+import { ResultMessageComponent } from '../../../../components/Message';
 import {
   LabelTitleComponent,
   MediumTitleComponent,

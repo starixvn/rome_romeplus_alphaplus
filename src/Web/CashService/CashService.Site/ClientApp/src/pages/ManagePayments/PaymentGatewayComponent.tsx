@@ -9,7 +9,7 @@ import {
 } from '../../components/Buttons/index';
 
 import Loading from '../../components/LoadingComponent';
-import { ErrorMessageComponent } from '../../components/MessageComponents';
+import { ErrorMessageComponent } from '../../components/Message';
 import {
   StatusEnabledComponent,
   StatusDisabledComponent,

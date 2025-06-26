@@ -10,7 +10,7 @@ import {
   ErrorMessageComponent,
   SuccessMessageComponent,
   ValidateMessageComponent,
-} from '../../components/MessageComponents';
+} from '../../components/Message';
 import { LabelTitleComponent, MediumTitleComponent } from '../../components/TitleComponents';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { ensureIntegerInput } from '../../utils/inputHandlers';

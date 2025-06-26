@@ -9,7 +9,7 @@ import {
   getWithdrawalMemberCashBalance,
 } from '../../../../services/pendingWithdrawalAPI';
 import { AddWithdrawalModel } from '../../../../services/interfaces/AddWithdrawalModel';
-import { ResultMessageComponent } from '../../../../components/MessageComponents';
+import { ResultMessageComponent } from '../../../../components/Message';
 import UploadImage from '../../Components/UploadImage';
 import BankIcon from '../../../../components/BankComponents';
 import { displayAmount, renderBankOptionValue } from '../../../../utils/commonFunctions';

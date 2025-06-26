@@ -13,7 +13,7 @@ import {
 } from '../../components/Buttons/index';
 import { IconArrowDown, IconInfo, IconReload } from '../../components/Icons';
 import { LoadingFullComponent } from '../../components/LoadingComponent';
-import { ResultMessageComponent } from '../../components/MessageComponents';
+import { ResultMessageComponent } from '../../components/Message';
 import {
     StatusCompletedComponent, StatusFailedComponent, StatusMaintenanceComponent,
     StatusNoneComponent, StatusProcessingComponent

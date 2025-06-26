@@ -7,7 +7,7 @@ import pendingDepositAPI from '../../../../services/pendingDepositAPI';
 import UploadImage from '../../Components/UploadImage';
 import { AddDepositManualModel } from '../../../../services/interfaces/AddDepositManualModel';
 import { LoadingFullComponent } from '../../../../components/LoadingComponent';
-import { ResultMessageComponent } from '../../../../components/MessageComponents';
+import { ResultMessageComponent } from '../../../../components/Message';
 import AccountInformation from './AccountInformation';
 import TitleComponent from '../../../../components/TitleComponents';
 import {

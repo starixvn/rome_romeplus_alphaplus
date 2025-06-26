@@ -13,7 +13,7 @@ import {
   ErrorMessageComponent,
   SuccessMessageComponent,
   ValidateMessageComponent,
-} from '../../../../components/MessageComponents';
+} from '../../../../components/Message';
 import TitleComponent, {
   LabelTitleComponent,
   MediumTitleComponent,

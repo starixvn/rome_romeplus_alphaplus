@@ -6,7 +6,7 @@ import { MobilePhone as MobilePhoneComponent } from './MobiPhone';
 import { useFormContext } from 'react-hook-form';
 import { ANNOUNCEMENT_MAX_LENGTH } from '../../../constants';
 import { LabelTitleComponent, MediumTitleComponent } from '../../../components/TitleComponents';
-import { ValidateMessageComponent } from '../../../components/MessageComponents';
+import { ValidateMessageComponent } from '../../../components/Message';
 
 interface MessageFormProps {
   loading: boolean;

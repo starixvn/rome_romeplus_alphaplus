@@ -10,7 +10,7 @@ import {
   ButtonClosePopupComponent,
   ButtonRejectComponent,
 } from '../../../../components/Buttons/index';
-import { ResultMessageComponent } from '../../../../components/MessageComponents.tsx';
+import { ResultMessageComponent } from '../../../../components/Message';
 import {
   LabelTitleComponent,
   MediumTitleComponent,

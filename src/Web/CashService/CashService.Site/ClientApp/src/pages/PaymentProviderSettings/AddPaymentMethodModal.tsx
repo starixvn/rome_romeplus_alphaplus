@@ -11,7 +11,7 @@ import {
   ErrorMessageComponent,
   SuccessMessageComponent,
   ValidateMessageComponent,
-} from '../../components/MessageComponents';
+} from '../../components/Message';
 import {
   LabelTitleComponent,
   MediumTitleComponent,

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ensureIntegerInput } from '../utils/inputHandlers';
-import { ValidateMessageComponent } from './MessageComponents';
+import { ValidateMessageComponent } from './Message';
 import { LabelTitleComponent } from './TitleComponents';
 
 interface MobileComponentProps {

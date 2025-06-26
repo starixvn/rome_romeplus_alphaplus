@@ -19,7 +19,7 @@ import {
 import CustomDropdown from '../../components/CustomDropdownComponent';
 import { IconArrowDown, IconSearch } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
-import { ErrorMessageComponent, SuccessMessageComponent } from '../../components/MessageComponents';
+import { ErrorMessageComponent, SuccessMessageComponent } from '../../components/Message';
 import { StatusDisabledComponent, StatusEnabledComponent } from '../../components/StatusComponents';
 import TitleComponent, {
   LabelTitleComponent,

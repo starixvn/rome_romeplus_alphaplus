@@ -17,7 +17,7 @@ import {
   ErrorMessageComponent,
   SuccessMessageComponent,
   ValidateMessageComponent,
-} from '../../components/MessageComponents';
+} from '../../components/Message';
 import MobileComponent from '../../components/MobileComponent';
 import TitleComponent, {
   LabelTitleComponent,

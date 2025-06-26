@@ -11,7 +11,7 @@ import NoRecordFound from '../../../../components/NoRecordFoundComponent.tsx';
 import { ButtonFullComponent } from '../../../../components/Buttons/index';
 import Pagination from '../../Components/Pagination';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
-import { ValidateMessageComponent } from '../../../../components/MessageComponents.tsx';
+import { ValidateMessageComponent } from '../../../../components/Message';
 import { IconImage } from '../../../../components/Icons.tsx';
 
 interface DataGridProps {

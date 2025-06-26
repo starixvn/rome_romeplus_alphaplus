@@ -10,7 +10,7 @@ import {
   ButtonClosePopupComponent,
 } from '../../../../components/Buttons/index';
 
-import { ResultMessageComponent } from '../../../../components/MessageComponents';
+import { ResultMessageComponent } from '../../../../components/Message';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import {

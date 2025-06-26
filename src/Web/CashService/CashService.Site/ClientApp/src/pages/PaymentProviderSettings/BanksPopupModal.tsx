@@ -4,7 +4,7 @@ import { Bank } from '../../services/interfaces/Payments/Bank';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import Loading from '../../components/LoadingComponent';
 import BankIcon from '../../components/BankComponents';
-import { ErrorMessageComponent } from '../../components/MessageComponents';
+import { ErrorMessageComponent } from '../../components/Message';
 import PopupModalComponent from '../../components/PopupModalComponent';
 import { TableComponent } from '../../components/TableComponents';
 
