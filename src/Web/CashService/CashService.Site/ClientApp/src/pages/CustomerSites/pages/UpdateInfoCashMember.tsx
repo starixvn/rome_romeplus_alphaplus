@@ -1,13 +1,13 @@
 import { createRoot } from "react-dom/client";
 import React from "react";
 import {
-    ButtonCancelComponent,
+    ButtonTabInactiveComponent,
+    ButtonTabActiveComponent,
     ButtonFullComponent,
     ButtonOutlineComponent,
-    ButtonTabActiveComponent,
-    ButtonTabInactiveComponent,
+    ButtonCancelComponent,
     ButtonApplyComponent
-} from "../../../components/ButtonComponents";
+} from "../../../components/Buttons";
 import TitleComponent, { LabelTitleComponent } from "../../../components/TitleComponents";
 import { useTranslation } from "react-i18next";
 import i18n from '../../../i18n/i18n-customerSites';
@@ -18,6 +18,7 @@ import { FormProvider, useForm, Controller } from 'react-hook-form';
 import { PHONE_CODE_MAX_LENGTH, PHONE_NUMBER_MAX_LENGTH } from "../../../constants/memberSiteConstants";
 import PopupModalComponent from "../../../components/PopupModalComponent";
 import NoRecordFound from "../../../components/NoRecordFoundComponent";
+
 
 export default function UpdateInfoCashMember() {
     useCookieLanguage(i18n);
