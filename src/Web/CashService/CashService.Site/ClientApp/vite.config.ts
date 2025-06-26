@@ -24,8 +24,7 @@ const copyWithoutHash = () => {
 };
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
-    copyWithoutHash()
+  plugins: [react(), tailwindcss(), copyWithoutHash()],
 
   test: {
     globals: true,

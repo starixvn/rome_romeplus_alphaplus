@@ -74,7 +74,7 @@
         const cdnUri = "@Html.Raw(Model.CdnUri)cash-member/create";
     </script> *@
     <environment include="Production">
-        <script type="module"src="@(MicroSites.CashServiceUrl())/updateInfoCashMember.js?version=@(Model.AssetsVersion)"></script>
+        <script type="module"src="@(MicroSites.CashServiceUrl())updateInfoCashMember.js?version=@(Model.AssetsVersion)"></script>
     </environment>
     <environment include="Development">
         <script type="module">

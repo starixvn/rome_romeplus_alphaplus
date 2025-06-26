@@ -9,7 +9,7 @@ import {
     ButtonApplyComponent,
     ButtonClosePopupComponent
 } from "../../../components/Buttons";
-import { TitleComponent, LabelTitleComponent } from "../../../components/Title";
+import { TitleComponent, LabelTitleComponent, MediumTitleComponent } from "../../../components/Title";
 import CustomDropdown, { DropdownOption } from '../../../components/CustomDropdownComponent';
 
 import { useTranslation } from "react-i18next";
@@ -21,8 +21,7 @@ import { FormProvider, useForm, Controller } from 'react-hook-form';
 import { PHONE_CODE_MAX_LENGTH, PHONE_NUMBER_MAX_LENGTH } from "../../../constants/memberSiteConstants";
 import NoRecordFound from "../../../components/NoRecordFoundComponent";
 
-const mockBanks = [
-]
+const mockBanks: any[] = []
 
 export default function UpdateInfoCashMember() {
     useCookieLanguage(i18n);
@@ -442,7 +441,7 @@ const AddBankAccountPopup: React.FC<AddBankAccountPopupProps> = ({ onClose, onAd
     const [isLoading, setIsLoading] = React.useState(false);
     const [isBlockAction, setIsBlockAction] = React.useState(false);
 
-    const [memberBank] = React.useState<DropdownOption[]>(mockBanks.map(e => ({
+    const [memberBank] = React.useState<DropdownOption[]>(mockBanks?.map(e => ({
         value: e.id,
         label: e.name,
         icon: <img
@@ -451,7 +450,7 @@ const AddBankAccountPopup: React.FC<AddBankAccountPopupProps> = ({ onClose, onAd
             className={`w-[16px] h-[16px] mr-[8px] inline-block`}
         />,
     })));
-    const [agentBank] = React.useState<DropdownOption[]>(mockBanks.map(e => ({
+    const [agentBank] = React.useState<DropdownOption[]>(mockBanks?.map(e => ({
         value: e.id,
         label: e.name,
         icon: <img

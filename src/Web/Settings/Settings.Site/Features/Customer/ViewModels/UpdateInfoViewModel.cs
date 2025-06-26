@@ -17,6 +17,11 @@ public class UpdateInfoViewModel
         SettingSiteUrl = settingSiteUrl;
         AssetsVersion = assetsVersion;
     }
+    public UpdateInfoViewModel(CustomerInfo customerInfo, string assetsVersion)
+    {
+        CustomerInfo = customerInfo;
+        AssetsVersion = assetsVersion;
+    }
     public string CdnUrl { get; }
 
     public string CashServiceSiteUrl { get; }

@@ -411,8 +411,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         {
             // TODO: get customer info
             var customerInfo = await customerService.GetCustomerInfo(custId);
-            var viewModel = new UpdateInfoViewModel(customerInfo, CDNUri, GetAssetsVersion(), new AppConfiguration(GetApplicationPath(), systemId));
-            return View();
+            var viewModel = new UpdateInfoViewModel(customerInfo, GetAssetsVersion());
+            return View(viewModel);
         }
             
 
