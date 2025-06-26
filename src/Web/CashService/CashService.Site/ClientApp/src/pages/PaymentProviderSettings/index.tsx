@@ -84,7 +84,7 @@ function PaymentProviderSettings() {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = React.useState('');
   const [selectedStatus, setSelectedStatus] = React.useState('');
   const [selectedTransactionType, setSelectedTransactionType] = React.useState('');
-  const [isCashServiceEnabled, setIsCashServiceEnabled] = React.useState(false);
+  const [isCashServiceEnabled] = React.useState(false);
 
   const [formState, setFormState] = useState<FormState>({
     providerStatus: window.providerSettingsViewModel.Provider.Status,
