@@ -102,7 +102,8 @@
     "thismonth": "Tháng này",
     "lastmonth": "Tháng trước",
     "days": "ngày",
-    "selected": "Đã chọn"
+    "selected": "Đã chọn",
+    "noRangeSelected": "Chưa chọn phạm vi"
   },
   "cashServiceDisabled": "Dịch vụ tiền mặt đã bị vô hiệu hóa"
 }

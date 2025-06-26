@@ -14,7 +14,7 @@ import { ResultMessageComponent } from '../../../../components/Message';
 import {
   LabelTitleComponent,
   MediumTitleComponent,
-} from '../../../../components/TitleComponents.tsx';
+} from '../../../../components/Title';
 import { ApproveRejectDepositModel } from '../../../../services/interfaces/ApproveRejectDepositModel.ts';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';

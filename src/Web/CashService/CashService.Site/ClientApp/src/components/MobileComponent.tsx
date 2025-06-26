@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ensureIntegerInput } from '../utils/inputHandlers';
 import { ValidateMessageComponent } from './Message';
-import { LabelTitleComponent } from './TitleComponents';
+import { LabelTitleComponent } from './Title';
 
 interface MobileComponentProps {
   isShow: boolean;

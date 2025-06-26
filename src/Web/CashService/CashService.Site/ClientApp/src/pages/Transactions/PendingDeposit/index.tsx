@@ -16,7 +16,7 @@ import {
   TransactionsHistoryParams,
   TransactionsHistoryResponse,
 } from '../../../services/interfaces/Transactions/TransactionHistory';
-import TitleComponent from '../../../components/TitleComponents';
+import { TitleComponent } from '../../../components/Title';
 import { ButtonFullComponent } from '../../../components/Buttons/index';
 import { LoadingFullComponent } from '../../../components/LoadingComponent';
 

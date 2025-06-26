@@ -17,7 +17,7 @@ import { ResultMessageComponent } from '../../../../components/Message';
 import {
   LabelTitleComponent,
   MediumTitleComponent,
-} from '../../../../components/TitleComponents.tsx';
+} from '../../../../components/Title';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory.ts';
 import { approveWithdrawal, rejectWithdrawal } from '../../../../services/pendingWithdrawalAPI.ts';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI.ts';

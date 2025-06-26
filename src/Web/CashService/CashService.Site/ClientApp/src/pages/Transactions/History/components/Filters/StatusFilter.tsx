@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import CustomDropdown from '../../../../../components/CustomDropdownComponent';
-import { LabelTitleComponent } from '../../../../../components/TitleComponents';
+import { LabelTitleComponent } from '../../../../../components/Title';
 
 interface StatusFilterProps {
   status: number;

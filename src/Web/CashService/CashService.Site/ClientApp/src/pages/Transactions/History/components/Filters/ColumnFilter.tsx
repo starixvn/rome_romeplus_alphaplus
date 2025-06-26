@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import CustomMultiSelect from '../../../../../components/Multiselect/MultiSelect';
-import { LabelTitleComponent } from '../../../../../components/TitleComponents';
+import { LabelTitleComponent } from '../../../../../components/Title';
 
 interface ColumnFilterProps {
   column: string[];

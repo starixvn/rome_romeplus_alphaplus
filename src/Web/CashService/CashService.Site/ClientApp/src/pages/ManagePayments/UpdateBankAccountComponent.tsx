@@ -19,10 +19,11 @@ import {
   ValidateMessageComponent,
 } from '../../components/Message';
 import MobileComponent from '../../components/MobileComponent';
-import TitleComponent, {
+import {
+  TitleComponent,
   LabelTitleComponent,
   MediumTitleComponent,
-} from '../../components/TitleComponents';
+} from '../../components/Title';
 import { BANK_TRANSACTION_TYPES, bankStatusConstant } from '../../constants/paymentConstants';
 import { baseAPI } from '../../services/commonAPI';
 import {

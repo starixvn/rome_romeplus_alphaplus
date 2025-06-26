@@ -16,7 +16,7 @@ import {
   LabelTitleComponent,
   MediumTitleComponent,
   NormalTitleComponent,
-} from '../../components/TitleComponents';
+} from '../../components/Title';
 import { TRANSACTION_TYPES, paymentMethodStatusConstant } from '../../constants/paymentConstants';
 import { PaymentMethod } from '../../services/interfaces/Payments/PaymentMethod';
 import { paymentProviderService } from '../../services/paymentsAPI';

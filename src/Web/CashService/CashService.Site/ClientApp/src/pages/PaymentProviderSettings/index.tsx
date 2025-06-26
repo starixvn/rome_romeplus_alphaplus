@@ -18,9 +18,10 @@ import {
     StatusCompletedComponent, StatusFailedComponent, StatusMaintenanceComponent,
     StatusNoneComponent, StatusProcessingComponent
 } from '../../components/StatusComponents';
-import TitleComponent, {
+import {
+    TitleComponent,
     LabelTitleComponent, MediumTitleComponent
-} from '../../components/TitleComponents';
+} from '../../components/Title';
 import {
   paymentMethodStatusConstant,
   paymentProviderStatusConstant,

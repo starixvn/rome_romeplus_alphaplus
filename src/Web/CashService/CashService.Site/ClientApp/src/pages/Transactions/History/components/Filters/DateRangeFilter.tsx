@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import DateRangePickerComponent from '../../../../../components/DateRangePickerComponent';
-import { LabelTitleComponent } from '../../../../../components/TitleComponents';
+import { LabelTitleComponent } from '../../../../../components/Title';
 
 interface DateRangeFilterProps {
   dateRange: [string, string];

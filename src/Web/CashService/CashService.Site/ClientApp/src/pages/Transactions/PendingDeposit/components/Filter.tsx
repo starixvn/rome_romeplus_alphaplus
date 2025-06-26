@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import BankIcon from '../../../../components/BankComponents';
 import CustomDropdown from '../../../../components/CustomDropdownComponent';
 import { IconArrowDown, IconSearch } from '../../../../components/Icons';
-import { LabelTitleComponent } from '../../../../components/TitleComponents';
+import { LabelTitleComponent } from '../../../../components/Title';
 
 export enum TimeFilterOptions {
   All = 'All',

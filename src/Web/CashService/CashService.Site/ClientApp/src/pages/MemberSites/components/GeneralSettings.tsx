@@ -2,7 +2,7 @@ import React from 'react';
 import { Setting } from '../../../services/interfaces/MemberSites';
 import { useTranslation } from 'react-i18next';
 import { useFormContext } from 'react-hook-form';
-import { LabelTitleComponent, MediumTitleComponent } from '../../../components/TitleComponents';
+import { LabelTitleComponent, MediumTitleComponent } from '../../../components/Title';
 
 interface GeneralSettingsProps { loading: boolean; }
 

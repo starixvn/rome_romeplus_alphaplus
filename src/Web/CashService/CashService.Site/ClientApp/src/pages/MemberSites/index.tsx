@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 
 import { ButtonApplyComponent } from '../../components/Buttons/index';
 import { ResultMessageComponent, ResultType } from '../../components/Message';
-import TitleComponent from '../../components/TitleComponents';
+import { TitleComponent } from '../../components/Title';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 import i18n from '../../i18n/i18n-memberSite';
 import {

@@ -102,7 +102,8 @@
     "thismonth": "本月",
     "lastmonth": "上月",
     "days": "天",
-    "selected": "已選擇"
+    "selected": "已選擇",
+    "noRangeSelected": "未選擇範圍"
   },
   "cashServiceDisabled": "現金服務已禁用"
 }

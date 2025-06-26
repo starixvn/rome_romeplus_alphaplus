@@ -1,5 +1,5 @@
 import React from 'react';
-import { MediumTitleComponent } from './TitleComponents';
+import { MediumTitleComponent } from './Title';
 import { NoDataIcon } from './Icons';
 import { useTranslation } from 'react-i18next';
 

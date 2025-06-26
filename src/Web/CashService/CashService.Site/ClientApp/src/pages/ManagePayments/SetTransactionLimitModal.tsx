@@ -11,7 +11,7 @@ import {
   SuccessMessageComponent,
   ValidateMessageComponent,
 } from '../../components/Message';
-import { LabelTitleComponent, MediumTitleComponent } from '../../components/TitleComponents';
+import { LabelTitleComponent, MediumTitleComponent } from '../../components/Title';
 import { createDefaultPaymentTransactionLimit } from '../../services/interfaces/Payments';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { ensureDecimalInput, ensureIntegerInput } from '../../utils/inputHandlers';

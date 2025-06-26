@@ -2,7 +2,7 @@ import React from 'react';
 import { Domain } from '../../../services/interfaces/MemberSites';
 import DomainCard from './DomainCard';
 import { useTranslation } from 'react-i18next';
-import { MediumTitleComponent } from '../../../components/TitleComponents';
+import { MediumTitleComponent } from '../../../components/Title';
 
 interface Props {
   domains: Domain[];

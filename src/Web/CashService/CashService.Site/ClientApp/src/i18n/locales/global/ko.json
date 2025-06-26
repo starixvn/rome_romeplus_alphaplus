@@ -102,7 +102,8 @@
     "thismonth": "이번 달",
     "lastmonth": "지난달",
     "days": "일",
-    "selected": "선택"
+    "selected": "선택",
+    "noRangeSelected": "범위가 선택되지 않음"
   },
   "cashServiceDisabled": "캐시 서비스가 비활성화되었습니다"
 }

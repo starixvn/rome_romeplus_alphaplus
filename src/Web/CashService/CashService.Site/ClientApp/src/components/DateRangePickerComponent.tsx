@@ -389,7 +389,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
                     </span>
                   </>
                 ) : (
-                  t('noRangeSelected')
+                  t('dateRangePicker.noRangeSelected')
                 )}
               </span>
             </div>

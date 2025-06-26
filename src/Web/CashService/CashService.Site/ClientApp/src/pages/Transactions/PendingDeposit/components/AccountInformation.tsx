@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { displayAmount, renderBankOptionValue } from '../../../../utils/commonFunctions';
 import BankIcon from '../../../../components/BankComponents';
 import CustomDropdown, { DropdownOption } from '../../../../components/CustomDropdownComponent';
-import { LabelTitleComponent, MediumTitleComponent } from '../../../../components/TitleComponents';
+import { LabelTitleComponent, MediumTitleComponent } from '../../../../components/Title';
 import { AmountInput } from '../../../../components/AmountInput';
 import { BankInfo } from '../../../../services/interfaces/Transactions/BankInfo';
 import { MemberLoginName } from '../../../../services/interfaces/Transactions/MemberLoginName';

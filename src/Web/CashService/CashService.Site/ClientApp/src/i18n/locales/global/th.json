@@ -102,7 +102,8 @@
     "thismonth": "เดือนนี้",
     "lastmonth": "เดือนที่แล้ว",
     "days": "วัน",
-    "selected": "เลือก"
+    "selected": "เลือก",
+    "noRangeSelected": "ไม่ได้เลือกช่วงเวลา"
   },
   "cashServiceDisabled": "บริการเงินสดถูกปิดใช้งาน"
 }

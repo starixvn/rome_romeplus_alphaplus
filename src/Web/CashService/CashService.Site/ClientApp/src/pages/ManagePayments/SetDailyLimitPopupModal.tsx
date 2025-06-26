@@ -11,7 +11,7 @@ import {
   SuccessMessageComponent,
   ValidateMessageComponent,
 } from '../../components/Message';
-import { LabelTitleComponent, MediumTitleComponent } from '../../components/TitleComponents';
+import { LabelTitleComponent, MediumTitleComponent } from '../../components/Title';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { ensureIntegerInput } from '../../utils/inputHandlers';
 import { createErrorResultModel } from '../../services/interfaces/ResultModel';

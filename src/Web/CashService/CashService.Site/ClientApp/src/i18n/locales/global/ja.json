@@ -102,7 +102,8 @@
     "thismonth": "今月",
     "lastmonth": "先月",
     "days": "日",
-    "selected": "選択"
+    "selected": "選択",
+    "noRangeSelected": "範囲が選択されていません"
   },
   "cashServiceDisabled": "キャッシュサービスは無効です"
 }

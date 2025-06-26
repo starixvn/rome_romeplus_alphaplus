@@ -8,7 +8,7 @@ import {
     ButtonCancelComponent,
     ButtonApplyComponent
 } from "../../../components/Buttons";
-import TitleComponent, { LabelTitleComponent } from "../../../components/TitleComponents";
+import { TitleComponent, LabelTitleComponent } from "../../../components/Title";
 import { useTranslation } from "react-i18next";
 import i18n from '../../../i18n/i18n-customerSites';
 import '../../../styles/common.css';

@@ -14,10 +14,11 @@ import {
   SuccessMessageComponent,
   ValidateMessageComponent,
 } from '../../../../components/Message';
-import TitleComponent, {
+import {
+  TitleComponent,
   LabelTitleComponent,
   MediumTitleComponent,
-} from '../../../../components/TitleComponents';
+} from '../../../../components/Title';
 import DateRangePickerComponent from '../../../../components/DateRangePickerComponent';
 
 interface AddPromotionProps {

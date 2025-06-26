@@ -5,7 +5,7 @@ import { Contact as ContactComponent } from './Contact';
 import { MobilePhone as MobilePhoneComponent } from './MobiPhone';
 import { useFormContext } from 'react-hook-form';
 import { ANNOUNCEMENT_MAX_LENGTH } from '../../../constants';
-import { LabelTitleComponent, MediumTitleComponent } from '../../../components/TitleComponents';
+import { LabelTitleComponent, MediumTitleComponent } from '../../../components/Title';
 import { ValidateMessageComponent } from '../../../components/Message';
 
 interface MessageFormProps {

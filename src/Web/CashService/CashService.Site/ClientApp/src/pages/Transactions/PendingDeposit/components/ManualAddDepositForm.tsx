@@ -9,7 +9,7 @@ import { AddDepositManualModel } from '../../../../services/interfaces/AddDeposi
 import { LoadingFullComponent } from '../../../../components/LoadingComponent';
 import { ResultMessageComponent } from '../../../../components/Message';
 import AccountInformation from './AccountInformation';
-import TitleComponent from '../../../../components/TitleComponents';
+import { TitleComponent } from '../../../../components/Title';
 import {
   ButtonCancelComponent,
   ButtonApplyComponent,

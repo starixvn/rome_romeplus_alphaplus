@@ -2,7 +2,7 @@ import { MobilePhone as MobilePhoneType } from "../../../services/interfaces/Mem
 import { useTranslation } from "react-i18next";
 import { FieldError, useFormContext } from "react-hook-form";
 import { NUMBER_REGEX, PHONE_CODE_MAX_LENGTH, PHONE_NUMBER_MAX_LENGTH } from "../../../constants";
-import { LabelTitleComponent } from "../../../components/TitleComponents";
+import { LabelTitleComponent } from "../../../components/Title";
 import { ValidateMessageComponent } from "../../../components/Message";
 
 interface MobiCodeProps {

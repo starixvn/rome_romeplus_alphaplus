@@ -19,10 +19,11 @@ import {
   ButtonCancelComponent,
 } from '../../../../components/Buttons/index';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
-import TitleComponent, {
+import {
+  TitleComponent,
   LabelTitleComponent,
   MediumTitleComponent,
-} from '../../../../components/TitleComponents';
+} from '../../../../components/Title';
 import { AmountInput } from '../../../../components/AmountInput';
 
 interface ManualAddWithdrawalFormProps {

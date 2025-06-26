@@ -20,7 +20,7 @@ import {
   renderBankAccount,
   TransactionType,
 } from '../../../../utils/commonFunctions';
-import { LabelTitleComponent, MediumTitleComponent } from '../../../../components/TitleComponents';
+import { LabelTitleComponent, MediumTitleComponent } from '../../../../components/Title';
 import LoadingComponent from '../../../../components/LoadingComponent';
 
 interface TransactionDetailProps {

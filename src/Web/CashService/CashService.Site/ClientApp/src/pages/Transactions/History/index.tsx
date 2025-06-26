@@ -6,7 +6,7 @@ import i18n from '../../../i18n/i18n-transactionHistory';
 import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
 import '../../../styles/common.css';
 import '../../../styles/global.scss';
-import TitleComponent from '../../../components/TitleComponents';
+import { TitleComponent } from '../../../components/Title';
 import { useTranslation } from 'react-i18next';
 
 const History: React.FC = () => {

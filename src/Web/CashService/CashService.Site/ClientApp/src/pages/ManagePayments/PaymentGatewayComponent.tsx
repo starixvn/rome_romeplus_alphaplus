@@ -15,7 +15,7 @@ import {
   StatusDisabledComponent,
   StatusNoneComponent,
 } from '../../components/StatusComponents';
-import TitleComponent from '../../components/TitleComponents';
+import { TitleComponent } from '../../components/Title';
 import { PaymentProvider } from '../../services/interfaces/Payments/PaymentProvider';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import ProviderFeesPopupModal from './ProviderFeesPopupModal';

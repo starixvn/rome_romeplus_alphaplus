@@ -21,10 +21,11 @@ import { IconArrowDown, IconSearch } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
 import { ErrorMessageComponent, SuccessMessageComponent } from '../../components/Message';
 import { StatusDisabledComponent, StatusEnabledComponent } from '../../components/StatusComponents';
-import TitleComponent, {
+import {
+  TitleComponent,
   LabelTitleComponent,
   MediumTitleComponent,
-} from '../../components/TitleComponents';
+} from '../../components/Title';
 import { BANK_STATUS_OPTIONS } from '../../constants/paymentConstants';
 import { Bank, BankAccount } from '../../services/interfaces/Payments';
 import { paymentProviderService } from '../../services/paymentsAPI';
