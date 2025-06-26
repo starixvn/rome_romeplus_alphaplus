@@ -31,7 +31,6 @@ COPY "src/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "src/Modul
 COPY "src/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj" "src/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj"
 COPY "src/Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj" "src/Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj"
 COPY "src/Web/AccountInfo/AccountInfo.Site/AccountInfo.Site.csproj" "src/Web/AccountInfo/AccountInfo.Site/AccountInfo.Site.csproj"
-COPY "src/Modules/AlphaPlus.NetThrottling/AlphaPlus.NetThrottling.csproj" "src/Modules/AlphaPlus.NetThrottling/AlphaPlus.NetThrottling.csproj"
 
 COPY "src/NuGet.config" "src/NuGet.config"
 
@@ -47,7 +46,6 @@ COPY "src/Modules/AlphaPlus.RequestInfo" "src/Modules/AlphaPlus.RequestInfo"
 COPY "src/Modules/AlphaPlus.Core" "src/Modules/AlphaPlus.Core"
 COPY "src/Modules/AlphaPlus.SecurityCode" "src/Modules/AlphaPlus.SecurityCode"
 COPY "src/Web/AccountInfo/AccountInfo.Site" "src/Web/AccountInfo/AccountInfo.Site"
-COPY "src/Modules/AlphaPlus.NetThrottling" "src/Modules/AlphaPlus.NetThrottling"
 COPY "src/Shared" "src/Shared"
 
 ARG TRANSFORM_CONFIG

@@ -6,7 +6,6 @@ using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
-using AlphaPlus.NetThrottling;
 using AlphaPlus.RequestInfo;
 using AlphaPlus.SecurityCode.Extensions;
 using AlphaPlus.SecurityCode.Filters;
@@ -39,7 +38,6 @@ builder.Services
     .AddRequestInfo()
     .AddFanexLogging(configuration)
     .AddAlphaPlusCore(configuration)
-    .AddNetThrottling(configuration)
     .AddSharedSession(configuration)
     .AddSecurityCodeServices(configuration)
     .AddMediatR(cfg =>
@@ -100,7 +98,6 @@ app
     .UseSession()
     .UseAuthentication()
     .UseAuthorization()
-    .UseNetThrottling()
     .UseMiddleware<RequestCultureMiddleware>();
 if (app.Environment.IsDevelopment())
 {
@@ -123,7 +120,7 @@ app.UseCors("AllowSpecificOrigins");
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
 StaticResources.Init(configuration.GetValue<string>("JsVersion"));
 
-app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute(), new DisableNetThrottlingAttribute());
+app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute());
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Payments}/{action=Index}/{id?}");

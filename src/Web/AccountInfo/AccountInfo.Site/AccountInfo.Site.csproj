@@ -30,12 +30,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
     <ProjectReference Include="..\..\..\Shared\AlphaPlus.Shared.AppResources\AlphaPlus.Shared.AppResources.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Utilities.IP\AlphaPlus.Utilities.IP.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Logging\AlphaPlus.Logging.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.SecurityCode\AlphaPlus.SecurityCode.csproj" />
-    <ProjectReference Include="..\..\..\Modules\AlphaPlus.NetThrottling\AlphaPlus.NetThrottling.csproj" />
   </ItemGroup>
 
   <ItemGroup>
