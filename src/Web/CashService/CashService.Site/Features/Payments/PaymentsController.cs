@@ -3,13 +3,10 @@ using AlphaPlus.CashService.Site.Features.Payments.Requests;
 using AlphaPlus.CashService.Site.Features.Payments.ViewModels;
 using AlphaPlus.CashService.Site.Features.Shared;
 using AlphaPlus.CashService.Site.Features.Shared.Filters;
-using AlphaPlus.CashService.Site.Features.Shared.Models;
-using AlphaPlus.CashService.Site.Features.Shared.Resources;
 using AlphaPlus.Core.Models;
 using Fanex.Customer.Client.Services;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.JSInterop;
 
 namespace AlphaPlus.CashService.Site.Features.Payments
 {
@@ -17,19 +14,15 @@ namespace AlphaPlus.CashService.Site.Features.Payments
     public class PaymentsController : SiteBaseController
     {
         private readonly string _apiBaseUrl;
-        private readonly HttpClient _httpClient;
-        private readonly ICustomerService _customerService;
 
         public PaymentsController(
             IConfiguration configuration,
             HttpClient httpClient,
-            IUserSession userSession,
+            IUserSession userSession,   
             IAntiforgery antiforgery,
-            ICustomerService customerService) : base(userSession, antiforgery)
+            ICustomerService customerService) : base(userSession, antiforgery, httpClient, customerService)
         {
             _apiBaseUrl = configuration["CashService:APIUrl"];
-            _httpClient = httpClient;
-            _customerService = customerService;
         }
 
         private int _custId => _userSession.CustId;
@@ -209,30 +202,5 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             var countryCodes = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
             return Json(countryCodes);
         }
-
-        private async Task<IActionResult> DoAction<TRequest, TResult>(
-            string url,
-            TRequest request,
-            CancellationToken cancellationToken) where TRequest : Shared.Requests.BaseActionRequest
-        {
-            if (_userSession.IsInternal)
-            {
-                return Unauthorized();
-            }
-
-            var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
-            if(isCashServiceEnabled == 0) {
-                return Json(new ResultModel {
-                    Code = 401,
-                    Message = Messages.CashServiceIsDisabled
-                });
-            }
-
-            request.SetUserSession(_userSession);
-            var response = await _httpClient.PostAsJsonAsync(url, request, cancellationToken);
-            response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadFromJsonAsync<TResult>(cancellationToken: cancellationToken);
-            return Json(result);
-        } 
     }
 }

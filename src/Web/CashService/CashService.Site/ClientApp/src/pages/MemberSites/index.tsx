@@ -26,6 +26,7 @@ const MemberSiteManagement: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [result, setResult] = useState<{ type: ResultType; text: string } | null>(null);
   const [isSaving, setIsSaving] = useState(false);
+  const [isCashServiceEnabled, setIsCashServiceEnabled] = useState(false);
 
   const methods = useForm<MemberSiteManagementData>({
     defaultValues: MemberSiteManagementDataDefault,
@@ -41,6 +42,8 @@ const MemberSiteManagement: React.FC = () => {
 
   useEffect(() => {
     fetchData();
+    const isCashServiceEnabled = document.getElementById('IsCashServiceEnabled')?.getAttribute('value');
+    setIsCashServiceEnabled(isCashServiceEnabled === '1');
   }, []);
 
   const showResult = (type: ResultType, text: string) => {
@@ -127,7 +130,8 @@ const MemberSiteManagement: React.FC = () => {
                 <ButtonApplyComponent
                   className="w-[140px] [&>*]:w-[100%]"
                   text={isSaving ? t('actions.saving') : t('actions.save')}
-                  disabled={isSaving}
+                  disabled={isSaving || !isCashServiceEnabled}
+                  title={isCashServiceEnabled ? '' : t('global:cashServiceDisabled')}
                 />
               </div>
             </form>

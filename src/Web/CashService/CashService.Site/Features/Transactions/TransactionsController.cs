@@ -10,6 +10,7 @@ using Services;
 using Shared;
 using Shared.Filters;
 using Shared.Models;
+using Fanex.Customer.Client.Services;
 
 [SiteAuthorizationFilter(PageAccessType.CashService)]
 public class TransactionsController(
@@ -17,9 +18,11 @@ public class TransactionsController(
     IUserSession userSession,
     IHttpContextAccessor httpContextAccessor,
     ITransactionHistoryWorkbook transactionHistoryWorkbook,
-    IAntiforgery antiforgery
+    IAntiforgery antiforgery,
+    HttpClient httpClient,
+    ICustomerService customerService
     )
-    : SiteBaseController(userSession, antiforgery)
+    : SiteBaseController(userSession, antiforgery, httpClient, customerService)
 {
     private readonly int agentId = userSession.CustId;
     private readonly int custDbGroupId = userSession.CustDBGroupId;

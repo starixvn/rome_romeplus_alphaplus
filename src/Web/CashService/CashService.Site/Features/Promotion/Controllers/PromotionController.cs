@@ -6,14 +6,18 @@ using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
 using Shared.Filters;
+using Fanex.Customer.Client.Services;
 
 [SiteAuthorizationFilter(PageAccessType.CashPromotion)]
 public class PromotionController(
-    HttpClientHelper httpClient,
+    HttpClientHelper httpClientHelper,
     IConfiguration configuration,
     IUserSession userSession,
-    IAntiforgery antiforgery)
-    : SiteBaseController(userSession, antiforgery)
+    IAntiforgery antiforgery,
+    HttpClient httpClient,
+    ICustomerService customerService
+    )
+    : SiteBaseController(userSession, antiforgery, httpClient, customerService)
 {
     private readonly string _apiBaseUrl = configuration["CashService:APIUrl"];
 
@@ -27,7 +31,7 @@ public class PromotionController(
     {
         var url = $"{_apiBaseUrl}/promotion/get-promotion/{promotionType}/{status}";
 
-        var result = await httpClient.GetAsync<object>(url);
+        var result = await httpClientHelper.GetAsync<object>(url);
 
         return Json(result);
     }

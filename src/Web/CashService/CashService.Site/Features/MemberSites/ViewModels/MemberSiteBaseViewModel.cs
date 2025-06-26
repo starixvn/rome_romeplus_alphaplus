@@ -2,5 +2,6 @@ namespace AlphaPlus.CashService.Site.Features.MemberSites.ViewModels;
 
 public class MemberSiteBaseViewModel
 {
-    public string DarkModeName { get; set; }
+    public string DarkModeName { get; set; } 
+    public int IsCashServiceEnabled { get; set; }
 }

@@ -5,6 +5,9 @@ using AlphaPlus.CashService.Site.Features.Shared.Filters;
 using AlphaPlus.Core.Models;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
+using Fanex.Customer.Client.Services;
+using AlphaPlus.CashService.Site.Features.Shared.Models;
+using AlphaPlus.CashService.Site.Features.Shared.Resources;
 namespace AlphaPlus.CashService.Site.Features.MemberSites;
 
 [SiteAuthorizationFilter(PageAccessType.CashService)]
@@ -17,7 +20,9 @@ public class MemberSitesController : SiteBaseController
         IConfiguration configuration,
         IUserSession userSession,
         HttpClient httpClient,
-        IAntiforgery antiforgery) : base(userSession, antiforgery)
+        IAntiforgery antiforgery,
+        ICustomerService customerService
+        ) : base(userSession, antiforgery, httpClient, customerService)
     {
         _apiBaseUrl = configuration["CashService:APIUrl"];
         _httpClient = httpClient;
@@ -39,8 +44,9 @@ public class MemberSitesController : SiteBaseController
 
         var url = $"{_apiBaseUrl}/member-site-info?custId={_userSession.CustId}&site={_userSession.Site}";
         var response = await _httpClient.GetFromJsonAsync<MemberSiteManagementModel>(url, cancellationToken);
-        return Ok(response);
 
+        response.IsCashServiceEnabled =  await _customerService.GetCashServiceStatus(_userSession.CustId);
+        return Ok(response);
     }
 
     [HttpPut]
@@ -49,6 +55,11 @@ public class MemberSitesController : SiteBaseController
         if (_userSession.IsInternal)
         {
             return Unauthorized();
+        }
+
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+        if(isCashServiceEnabled == 0) {
+            return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
         }
 
         if (!ModelState.IsValid)

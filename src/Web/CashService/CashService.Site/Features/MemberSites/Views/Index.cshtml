@@ -19,4 +19,5 @@
     <script type="module" asp-src-include="/memberSites-*.js"></script>
 </environment>
 
-<input type="hidden" name="__RequestVerificationToken" value="@ViewData["RequestVerificationToken"]" />
+<input type="hidden" name="__RequestVerificationToken" value="@ViewData["RequestVerificationToken"]" /> 
+<input type="hidden" id="IsCashServiceEnabled" value="@Model.IsCashServiceEnabled" />
