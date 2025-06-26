@@ -3,7 +3,7 @@ import DateRangePickerComponent from '../../../../components/DateRangePickerComp
 import CustomDropdownComponent, {
   DropdownOption,
 } from '../../../../components/CustomDropdownComponent';
-import { LabelTitleComponent } from '../../../../components/TitleComponents';
+import { LabelTitleComponent } from '../../../../components/Title';
 
 const promotionTypeOptions: DropdownOption[] = [
   { value: 'type1', label: 'Type 1' },

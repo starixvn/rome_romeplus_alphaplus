@@ -131,7 +131,7 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
         <br />
         {item.liveCasinoMaxPayout}
       </td>
-      <td className="">{item.period}</td>
+      <td className=""> </td>
       <td className="">{item.provider}</td>
       <td className="">
         <span className={`rounded-[20px] px-[10px] py-[3px] ${getStatusStyle(item.status)}`}>

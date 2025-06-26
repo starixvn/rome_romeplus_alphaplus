@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import TitleComponent from '../../../components/TitleComponents';
+import { TitleComponent } from '../../../components/Title';
 import Filter from './components/Filter.tsx';
 import Table from './components/Table.tsx';
 import Search from './components/Search.tsx';
@@ -9,7 +9,7 @@ import i18n from '../../../i18n/i18n-promotion';
 import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
 import '../../../styles/common.css';
 import '../../../styles/global.scss';
-import { ButtonFullComponent } from '../../../components/ButtonComponents.tsx';
+import { ButtonFullComponent } from '../../../components/Buttons';
 import AddBonusForm from './components/AddBonusForm';
 
 const mockData: any[] = [];

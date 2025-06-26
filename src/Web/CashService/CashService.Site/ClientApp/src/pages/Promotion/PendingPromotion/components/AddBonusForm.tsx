@@ -3,14 +3,11 @@ import {
   BackButtonComponent,
   ButtonApplyComponent,
   ButtonCancelComponent,
-} from '../../../../components/ButtonComponents';
-import TitleComponent, {
-  LabelTitleComponent,
-  MediumTitleComponent,
-} from '../../../../components/TitleComponents';
+} from '../../../../components/Buttons';
+import { TitleComponent, LabelTitleComponent, MediumTitleComponent } from '../../../../components/Title';
 import { AmountInput } from '../../../../components/AmountInput';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
-import { ResultMessageComponent } from '../../../../components/MessageComponents';
+import { ResultMessageComponent } from '../../../../components/Message';
 
 const mockMembers = [
   { value: '999tb20a00001', label: '999tb20a00001' },
