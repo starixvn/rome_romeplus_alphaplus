@@ -19,9 +19,10 @@ import { createErrorResultModel } from '../../services/interfaces/ResultModel';
 interface SetDailyLimitPopupModalProps {
   onClose: () => void;
   onSave: (dailyLimit: number) => void;
+  isCashServiceEnabled: boolean;
 }
 
-const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClose, onSave }) => {
+const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClose, onSave, isCashServiceEnabled   }) => {
   const { t } = useTranslation(['managePayments', 'global']);
   const [dailyLimit, setDailyLimit] = React.useState<number>(1);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
@@ -153,7 +154,8 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
             <ButtonApplyComponent 
               text={isLoading ? t('global:loading') : t('global:save')} 
               type='submit'
-              disabled={isLoading || isBlockAction}
+              disabled={!isCashServiceEnabled || isLoading || isBlockAction}
+              title={isCashServiceEnabled ? '' : t('global:cashServiceDisabled')}
             />
           </div>
         </form>

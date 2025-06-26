@@ -47,7 +47,8 @@ import { StatusEnabledComponent } from '../../components/StatusComponents';
 interface UpdateBankAccountComponentProps {
   onClose: () => void;
   onSave: () => void;
-  bankAccount: BankAccount;
+  bankAccount: BankAccount; 
+  isCashServiceEnabled: boolean;
 }
 
 interface FormState {
@@ -79,6 +80,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   onClose,
   onSave,
   bankAccount,
+  isCashServiceEnabled,
 }) => {
   const { t: tManagePayments } = useTranslation('managePayments');
   const { t: tGlobal } = useTranslation('global');
@@ -661,7 +663,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 text={loading ? tGlobal('saving') : tGlobal('save')}
                 type='submit'
                 onClick={() => onSubmit({ preventDefault: () => {} } as React.FormEvent)}
-                disabled={loading || isBlockAction}
+                disabled={!isCashServiceEnabled || loading || isBlockAction}
+                title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
               />
             </div>
           </form>

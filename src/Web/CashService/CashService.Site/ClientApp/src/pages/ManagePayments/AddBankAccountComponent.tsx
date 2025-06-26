@@ -39,9 +39,10 @@ import { ensureIntegerInput } from '../../utils/inputHandlers';
 interface AddBankAccountComponentProps {
   onClose: () => void;
   onSave: () => void;
+  isCashServiceEnabled: boolean;
 }
 
-const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClose, onSave }) => {
+const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClose, onSave, isCashServiceEnabled }) => {
   const { t: tManagePayments } = useTranslation('managePayments');
   const { t: tGlobal } = useTranslation('global');
 
@@ -527,7 +528,8 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
                 text={tGlobal(loading ? 'saving' : 'save')}
                   type='submit'
                 onClick={() => handleSubmit}
-                disabled={loading || isBlockAction}
+                disabled={!isCashServiceEnabled || loading || isBlockAction}
+                title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
               />
             </div>
           </form>

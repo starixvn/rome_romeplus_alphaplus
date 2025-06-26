@@ -34,12 +34,14 @@ namespace AlphaPlus.CashService.Site.Features.Payments
 
         private int _custId => _userSession.CustId;
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
             var viewModel = new PaymentBaseViewModel
             {
                 Language = _userSession.Language,
-                DarkModeName = _userSession.DarkModeName
+                DarkModeName = _userSession.DarkModeName,
+                IsCashServiceEnabled = isCashServiceEnabled
             };
 
             return View(viewModel);
@@ -79,6 +81,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             var addPaymentMethodViewModel = await _httpClient.GetFromJsonAsync<AddPaymentMethodViewModel>($"{_apiBaseUrl}/payments/get-add-payment-method-info?custId={_custId}&providerId={provider.Id}&transactionType=0&languageCode={_userSession.Language}", cancellationToken);
             var allPaymentMethods = addPaymentMethodViewModel.PaymentMethods.ToList().Prepend(PaymentMethodModel.CreateOptionAll());
 
+            var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
             var viewModel = new ProviderSettingsViewModel
             {
                 Provider = provider,
@@ -88,7 +91,8 @@ namespace AlphaPlus.CashService.Site.Features.Payments
                     ChannelContact = addPaymentMethodViewModel.ChannelContact
                 },
                 Language = _userSession.Language,
-                DarkModeName = _userSession.DarkModeName
+                DarkModeName = _userSession.DarkModeName,
+                IsCashServiceEnabled = isCashServiceEnabled
             };
 
             return View(viewModel);

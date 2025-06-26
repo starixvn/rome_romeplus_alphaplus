@@ -19,6 +19,7 @@ import { createErrorResultModel } from '../../services/interfaces/ResultModel';
 interface SetTransactionLimitModalProps {
   onClose: () => void;
   onSave: () => void;
+  isCashServiceEnabled: boolean;
 }
 
 interface FormState {
@@ -37,7 +38,7 @@ interface FormErrors {
   dailyWithdrawalCount: string;
 }
 
-const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onClose, onSave }) => {
+const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onClose, onSave, isCashServiceEnabled }) => {
   const { t: tManagePayments } = useTranslation('managePayments');
   const { t: tGlobal } = useTranslation('global');
 
@@ -349,7 +350,8 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
               text={loading ? tGlobal('saving') : tGlobal('save')}
               type='submit'
               onClick={() => onSubmit({ preventDefault: () => {} } as React.FormEvent)}
-              disabled={loading || isBlockAction}
+              disabled={!isCashServiceEnabled || loading || isBlockAction}
+              title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
             />
           </div>
         </form>

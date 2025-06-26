@@ -4,5 +4,6 @@ namespace AlphaPlus.CashService.Site.Features.Payments.ViewModels
     {
         public string Language { get; set; } = "en";
         public string DarkModeName { get; set; }
+        public int IsCashServiceEnabled { get; set; }
     }
 }

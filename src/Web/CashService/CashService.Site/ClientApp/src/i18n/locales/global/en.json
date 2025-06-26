@@ -102,6 +102,7 @@
     "thismonth": "This Month",
     "lastmonth": "Last Month",
     "days": "days",
-    "selected": "Selected"
-  }
+    "selected": "Selected"    
+  },  
+  "cashServiceDisabled": "Cash Service is disabled"
 }

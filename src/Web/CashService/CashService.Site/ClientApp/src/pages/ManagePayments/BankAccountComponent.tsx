@@ -35,10 +35,11 @@ import { createErrorResultModel } from '../../services/interfaces/ResultModel';
 import NoRecordFound from '../../components/NoRecordFoundComponent';
 
 interface BankAccountComponentProps {
-  setActiveTab: React.Dispatch<React.SetStateAction<string>>;
+  setActiveTab: React.Dispatch<React.SetStateAction<string>>; 
+  isCashServiceEnabled: boolean;
 }
 
-const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTab }) => {
+const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTab, isCashServiceEnabled }) => {
   const { t: tManagePayments } = useTranslation('managePayments');
   const { t: tGlobal } = useTranslation('global');
   const [banks, setBanks] = useState<Bank[]>([]);
@@ -203,7 +204,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
 
   const renderConfirmUI = (
     { onClose: closeConfirm }: { onClose: () => void },
-    account: BankAccount
+    account: BankAccount,
+    isCashServiceEnabled: boolean
   ) => (
     <div className="bg-[#00000080] fixed inset-0 flex items-start justify-center z-50">
       <div className="px-[20px] pb-[10px] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-w-[400px] w-full max-[768px]:max-w-[90%] rounded-[3px]">
@@ -225,6 +227,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
               handleDeleteBankAccount(account);
             }}
             text={tGlobal('confirm')}
+            disabled={!isCashServiceEnabled}
+            title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
           />
         </div>
       </div>
@@ -233,7 +237,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
 
   const onDeleteBankAccount = async (account: BankAccount) => {
     confirmAlert({
-      customUI: ({ onClose }) => renderConfirmUI({ onClose }, account),
+      customUI: ({ onClose }) => renderConfirmUI({ onClose }, account, isCashServiceEnabled),
     });
   };
 
@@ -283,13 +287,15 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
       {showAddBankAccountModal ? (
         <AddBankAccountComponent
           onClose={onCloseAddBankAccountModal}
-          onSave={onSaveAddBankAccount}
+          onSave={onSaveAddBankAccount} 
+          isCashServiceEnabled={isCashServiceEnabled}
         />
       ) : showUpdateBankAccountModal && selectedBankAccount ? (
         <UpdateBankAccountComponent
           onClose={onCloseUpdateBankAccountModal}
           onSave={onSaveUpdateBankAccount}
-          bankAccount={selectedBankAccount}
+          bankAccount={selectedBankAccount}   
+          isCashServiceEnabled={isCashServiceEnabled}
         />
       ) : (
         <>
@@ -483,7 +489,10 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
             </div>
 
             {showSetLimitModal && (
-              <SetTransactionLimitModal onClose={onCloseSetLimitModal} onSave={onSaveSetLimit} />
+              <SetTransactionLimitModal 
+                onClose={onCloseSetLimitModal} 
+                onSave={onSaveSetLimit} 
+                isCashServiceEnabled={isCashServiceEnabled} />
             )}
           </div>
         </>

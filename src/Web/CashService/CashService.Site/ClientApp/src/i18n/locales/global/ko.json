@@ -103,5 +103,6 @@
     "lastmonth": "지난달",
     "days": "일",
     "selected": "선택"
-  }
+  },
+  "cashServiceDisabled": "캐시 서비스가 비활성화되었습니다"
 }

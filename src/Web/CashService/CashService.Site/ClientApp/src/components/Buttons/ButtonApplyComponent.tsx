@@ -8,6 +8,7 @@ export const ButtonApplyComponent: React.FC<ButtonComponentProps> = ({
   disabled = false,
   type = 'button',
   className = '',
+  title = '',
 }) => {
   return (
     <div className={`${className}`}>
@@ -17,6 +18,7 @@ export const ButtonApplyComponent: React.FC<ButtonComponentProps> = ({
         ${disabled ? 'cursor-not-allowed opacity-80' : 'cursor-pointer'}`}
         onClick={onClick}
         disabled={disabled}
+        title={title}
       >
         {text}
       </button>

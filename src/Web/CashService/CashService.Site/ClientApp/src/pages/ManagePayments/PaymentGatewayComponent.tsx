@@ -24,10 +24,12 @@ import NoRecordFound from '../../components/NoRecordFoundComponent';
 
 interface PaymentGatewayComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
+  isCashServiceEnabled: boolean;
 }
 
 const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
-  setActiveTab
+  setActiveTab,
+  isCashServiceEnabled
 }) => {
   const { t: tGlobal } = useTranslation('global');
   const { t: tManagePayments } = useTranslation('managePayments');
@@ -165,7 +167,9 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
 
         {/* Daily Limit Popup Modal */}
         {showDailyLimitPopup && (
-          <DailyLimitPopupModal onClose={onCloseDailyLimitPopup} onSave={onSaveDailyLimit} />
+          <DailyLimitPopupModal onClose={onCloseDailyLimitPopup} 
+            onSave={onSaveDailyLimit} 
+            isCashServiceEnabled={isCashServiceEnabled} />
         )}
       </div>    
      

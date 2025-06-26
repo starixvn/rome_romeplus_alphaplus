@@ -103,5 +103,6 @@
     "lastmonth": "先月",
     "days": "日",
     "selected": "選択"
-  }
+  },
+  "cashServiceDisabled": "キャッシュサービスは無効です"
 }

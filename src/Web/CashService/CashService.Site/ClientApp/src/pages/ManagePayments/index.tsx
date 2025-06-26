@@ -11,17 +11,23 @@ import '../../styles/global.scss';
 function ManagePayments() {
   useCookieLanguage(i18n);
   const [activeTab, setActiveTab] = React.useState('paymentGateway');
+  const [isCashServiceEnabled, setIsCashServiceEnabled] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    const isCashServiceEnabled = document.getElementById('IsCashServiceEnabled')?.getAttribute('value');
+    setIsCashServiceEnabled(isCashServiceEnabled === '1');
+  }, []);
 
   return (
     <>
       {activeTab === 'paymentGateway' && (
         <div className="payment-gateway-content">
-          <PaymentGatewayComponent setActiveTab={setActiveTab} />
+          <PaymentGatewayComponent setActiveTab={setActiveTab} isCashServiceEnabled={isCashServiceEnabled} />
         </div>
       )}
       {activeTab === 'bankAccount' && (
         <div className="bank-account-content h-full">
-          <BankAccountComponent setActiveTab={setActiveTab} />
+          <BankAccountComponent setActiveTab={setActiveTab} isCashServiceEnabled={isCashServiceEnabled} />
         </div>
       )}
     </>

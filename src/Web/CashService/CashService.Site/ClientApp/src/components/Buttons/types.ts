@@ -4,5 +4,6 @@ export interface ButtonComponentProps {
   onClick?: any;
   disabled?: boolean;
   isActive?: boolean;
-  type?: 'button' | 'submit' | 'reset';
+  type?: 'button' | 'submit' | 'reset'; 
+  title?: string;
 } 

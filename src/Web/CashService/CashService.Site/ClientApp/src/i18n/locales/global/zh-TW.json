@@ -103,5 +103,6 @@
     "lastmonth": "上月",
     "days": "天",
     "selected": "已選擇"
-  }
+  },
+  "cashServiceDisabled": "現金服務已禁用"
 }
