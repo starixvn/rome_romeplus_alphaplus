@@ -18,6 +18,11 @@ const copyWithoutHash = () => {
           const targetPath = path.join(distDir, 'updateInfoCashMember.js');
           fs.copyFileSync(sourcePath, targetPath);
         }
+        if (file.includes('index') && file.includes('.css')) {
+          const sourcePath = path.join(distDir, file);
+          const targetPath = path.join(distDir, 'index.css');
+          fs.copyFileSync(sourcePath, targetPath);
+        }
       });
     }
   };

@@ -60,8 +60,12 @@
 <!DOCTYPE html>
 <html>
 
+
 <head>
     <title>UpdateInfoCashMember Page</title>
+    <environment names="Production">
+        <link rel="stylesheet" href="@(MicroSites.CashServiceUrl())index.css?version=@(Model.AssetsVersion)" />
+    </environment>
     @* <link rel="stylesheet" href="@(MicroSites.CashServiceUrl())update-info-cash-member/index.css?version=@(Model.AssetsVersion)" /> *@
 </head>
 
@@ -73,8 +77,9 @@
         const params = @Html.Raw(Model.Params);
         const cdnUri = "@Html.Raw(Model.CdnUri)cash-member/create";
     </script> *@
+
     <environment include="Production">
-        <script type="module"src="@(MicroSites.CashServiceUrl())updateInfoCashMember.js?version=@(Model.AssetsVersion)"></script>
+        <script type="module" src="@(MicroSites.CashServiceUrl())updateInfoCashMember.js?version=@(Model.AssetsVersion)"></script>
     </environment>
     <environment include="Development">
         <script type="module">
