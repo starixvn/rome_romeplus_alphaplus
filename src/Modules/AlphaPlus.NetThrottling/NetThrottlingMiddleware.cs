@@ -14,7 +14,7 @@ namespace AlphaPlus.NetThrottling
         public async Task InvokeAsync(HttpContext context)
         {
             var endpoint = context.GetEndpoint();
-            if (endpoint?.Metadata?.GetMetadata<IDisableNetThrottling>() is object)
+            if (endpoint?.Metadata?.GetMetadata<IDisableNetThrottling>() is object || context.Request.Path.StartsWithSegments("/health"))
             {
                 await _next(context);
                 return;
