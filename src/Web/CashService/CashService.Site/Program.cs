@@ -28,7 +28,6 @@ configuration
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"authorization.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"securitycode.json", optional: false, reloadOnChange: true)
-    //.AddEnvironmentVariables()
     .AddCommandLine(args);
 
 AlphaPlus.Core.Configurations.ConfigurationManager.Init(builder.Configuration);

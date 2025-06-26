@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Member Sites";
+    Layout = "_Layout";
+}
+
+@section Styles {
+    <environment names="Production">
+        <link rel="stylesheet" asp-href-include="/index-*.css" />
+    </environment>
+}
+<div id="root"></div>
+<input type="hidden" name="__RequestVerificationToken" value="@ViewData["RequestVerificationToken"]" />
+<environment names="Development">
+    <script type="module" src="http://localhost:5173/src/pages/Promotion/ManagePromotion/index.tsx"></script>
+</environment>
+<environment names="Production">
+    <script type="module" asp-src-include="/managePromotion-*.js"></script>
+</environment>

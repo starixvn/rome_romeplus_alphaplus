@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next';
 import i18n from '../../../../i18n/i18n-promotion';
 import { useCookieLanguage } from '../../../../hooks/useCookieLanguage';
 import { Promotion } from '../../../../services/interfaces/Promotion';
-import { IconDelete, IconPen, NoRecordsIcon } from '../../../../components/Icons';
+import { IconDelete, IconPen } from '../../../../components/Icons';
+import NoRecordFoundComponent from '../../../../components/NoRecordFoundComponent';
 
 interface TableProps {
   items: Promotion[];
@@ -34,27 +35,53 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
   const buildHeader = () => (
     <thead>
       <tr>
-        <th scope="col" className="w-[32px] sticky z-10 left-0 bg-[#ffffff] ">
-          <span>{t('table.no')} </span>
+        <th rowSpan={2} scope="col" className="w-[32px] sticky z-10 left-0 bg-[#ffffff] ">
+          {t('table.no')}
         </th>
-        <th scope="col" className="w-[75px] sticky z-10 left-[32px] bg-[#ffffff]">
+        <th rowSpan={2} scope="col" className="w-[75px] sticky z-10 left-[32px] bg-[#ffffff]">
           {t('table.action')}
         </th>
         <th
+          rowSpan={2}
           className="sticky z-10 w-[110px]  left-[107px] bg-[#ffffff] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]"
           scope="col"
         >
           <span className="relative z-3">{t('table.promotionTitle')}</span>
         </th>
-        <th scope="col">{t('table.promotionType')}</th>
-        <th scope="col">{t('table.sports')}</th>
-        <th scope="col">{t('table.virtualSports')}</th>
-        <th scope="col">{t('table.games')}</th>
-        <th scope="col">{t('table.liveCasino')}</th>
-        <th scope="col">{t('table.period')}</th>
-        <th scope="col">{t('table.provider')}</th>
-        <th scope="col">{t('table.status')}</th>
-        <th scope="col">{t('table.lastUpdated')}</th>
+        <th rowSpan={2} scope="col">
+          {t('table.promotionType')}
+        </th>
+        <th colSpan={4} className="text-center" scope="col">
+          Percentage (%)
+          <br />
+          Max Payout
+        </th>
+        <th rowSpan={2} scope="col">
+          {t('table.period')}
+        </th>
+        <th rowSpan={2} scope="col">
+          Provider
+        </th>
+        <th rowSpan={2} scope="col">
+          Status
+        </th>
+        <th rowSpan={2} scope="col">
+          Last updated
+        </th>
+      </tr>
+      <tr>
+        <th className="text-center" scope="col">
+          Sports
+        </th>
+        <th className="text-center" scope="col">
+          Virtual Sports
+        </th>
+        <th className="text-center" scope="col">
+          Games
+        </th>
+        <th className="text-center" scope="col">
+          Live Casino
+        </th>
       </tr>
     </thead>
   );
@@ -115,20 +142,13 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
     </tr>
   );
 
-  const buildEmptyState = () => (
-    <tr>
-      <td colSpan={12} className="border border-gray-300">
-        <div className="flex flex-col items-center justify-center py-16">
-          <NoRecordsIcon className="mb-4 text-gray-400" />
-          <p className="text-gray-500 text-sm">{t('table.noRecords')}</p>
-        </div>
-      </td>
-    </tr>
-  );
-
   const buildBody = () => (
     <tbody className="font-[500]">
-      {items && items.length > 0 ? items.map(buildRow) : buildEmptyState()}
+      {items && items.length > 0 ? (
+        items.map(buildRow)
+      ) : (
+        <NoRecordFoundComponent colSpan={12} message="No pending promotions found" />
+      )}
     </tbody>
   );
 

@@ -1,0 +1,124 @@
+.pending-promotion {
+  padding: 20px;
+  background-color: #f5f6f8;
+  min-height: 100vh;
+}
+.pending-promotion .page-header {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 12px;
+}
+.pending-promotion .filters-container {
+  background: white;
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+.pending-promotion .filters-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 20px;
+}
+.pending-promotion .filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.pending-promotion .filter-label {
+  font-size: 13px;
+  color: #666;
+}
+.pending-promotion .search-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+}
+.pending-promotion .search-input {
+  position: relative;
+  width: 250px;
+  margin-left: auto;
+}
+.pending-promotion .search-input input {
+  width: 100%;
+  padding: 8px 12px 8px 36px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #333;
+}
+.pending-promotion .search-input svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+.pending-promotion .table-section {
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.pending-promotion .table-section table {
+  min-width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #e5e7eb;
+}
+.pending-promotion .table-section th {
+  padding: 4px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f2937;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  white-space: nowrap;
+}
+.pending-promotion .table-section td {
+  padding: 4px;
+  font-size: 13px;
+  color: #4b5563;
+  border: 1px solid #e5e7eb;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.pending-promotion .table-section td.amount {
+  text-align: right;
+}
+.pending-promotion .empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 0;
+  color: #888;
+}
+@media (max-width: 1200px) {
+  .pending-promotion .filters-section {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 768px) {
+  .pending-promotion {
+    padding: 8px;
+  }
+  .pending-promotion .filters-container {
+    padding: 8px 0;
+  }
+  .pending-promotion .filters-section {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .pending-promotion .search-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .pending-promotion .search-input {
+    width: 100%;
+    margin-left: 0;
+  }
+  .pending-promotion .history-table {
+    overflow-x: auto;
+  }
+}

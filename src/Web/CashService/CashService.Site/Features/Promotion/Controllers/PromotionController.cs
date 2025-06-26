@@ -1,4 +1,4 @@
-namespace AlphaPlus.CashService.Site.Features.Promotions;
+namespace AlphaPlus.CashService.Site.Features.Promotion.Controllers;
 
 using Core.Models;
 using Helpers;
@@ -6,10 +6,9 @@ using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
 using Shared.Filters;
-using ViewModels;
 
 [SiteAuthorizationFilter(PageAccessType.CashPromotion)]
-public class ManagePromotionsController(
+public class PromotionController(
     HttpClientHelper httpClient,
     IConfiguration configuration,
     IUserSession userSession,
@@ -18,16 +17,11 @@ public class ManagePromotionsController(
 {
     private readonly string _apiBaseUrl = configuration["CashService:APIUrl"];
 
-    public IActionResult Index()
-    {
-        var viewModel = new PromotionBaseViewModel
-        {
-            Language = _userSession.Language,
-            DarkModeName = _userSession.DarkModeName,
-        };
+    public IActionResult Index() => View();
 
-        return View(viewModel);
-    }
+    public IActionResult Pending() => View();
+
+    public IActionResult Report() => View();
 
     public async Task<IActionResult> GetPromotion(string promotionType, string status, CancellationToken cancellationToken)
     {

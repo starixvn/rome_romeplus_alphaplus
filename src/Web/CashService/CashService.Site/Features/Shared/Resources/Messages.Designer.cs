@@ -61,7 +61,7 @@ namespace AlphaPlus.CashService.Site.Features.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cash Service is disabled.
+        ///   Looks up a localized string similar to Your are not authorized because Cash Service is disabled.
         /// </summary>
         public static string CashServiceIsDisabled {
             get {

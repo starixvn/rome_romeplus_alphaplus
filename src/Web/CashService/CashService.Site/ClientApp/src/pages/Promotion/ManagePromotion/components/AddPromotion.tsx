@@ -18,6 +18,7 @@ import TitleComponent, {
   LabelTitleComponent,
   MediumTitleComponent,
 } from '../../../../components/TitleComponents';
+import DateRangePickerComponent from '../../../../components/DateRangePickerComponent';
 
 interface AddPromotionProps {
   onClose: () => void;
@@ -43,7 +44,9 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
   const [promotionType, setPromotionType] = useState(
     promotion?.promotionType || PROMOTION_TYPES[0].value
   );
-  const [period, setPeriod] = useState(promotion?.period || '');
+  const [period, setPeriod] = useState<[Date | null, Date | null]>(
+    promotion?.fromDate && promotion?.toDate ? [promotion.fromDate, promotion.toDate] : [null, null]
+  );
   const [provider, setProvider] = useState(promotion?.provider || '');
   const [categories, setCategories] = useState({
     sports: {
@@ -108,7 +111,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
       return;
     }
     setSuccessMessage('Promotion saved successfully');
-    const [fromDate, toDate] = period.split(' - ').map((date) => new Date(date));
+    const [fromDate, toDate] = period.map((date) => (date ? new Date(date) : null));
     const promotionData: Promotion = {
       promotionId: promotion?.promotionId || 0,
       promotionTitle: '',
@@ -123,7 +126,6 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
       virtualSportsMaxPayout: parseFloat(categories.virtualSports.maxPayout) || 0,
       gamesMaxPayout: parseFloat(categories.games.maxPayout) || 0,
       liveCasinoMaxPayout: parseFloat(categories.liveCasino.maxPayout) || 0,
-      period,
       provider,
       status: isActive ? 'ACTIVE' : 'INACTIVE',
       lastUpdated: new Date().toISOString(),
@@ -194,12 +196,9 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
 
               <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
                 <LabelTitleComponent text="Period" required={true} />
-                <input
-                  type="text"
-                  className={`control-field ${fieldErrors.period ? 'error' : ''}`}
-                  placeholder="05/07/2025 - 05/07/2025"
+                <DateRangePickerComponent
                   value={period}
-                  onChange={(e) => setPeriod(e.target.value)}
+                  onChange={(value) => setPeriod(value as [Date | null, Date | null])}
                 />
                 <ValidateMessageComponent message={fieldErrors.period} />
               </div>
@@ -216,7 +215,6 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion 
               </div>
             </div>
 
-            {/* Category Fields */}
             {[
               { key: 'sports', label: 'Sports' },
               { key: 'virtualSports', label: 'Virtual Sports' },
