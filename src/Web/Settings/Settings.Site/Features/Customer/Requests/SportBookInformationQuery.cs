@@ -1,8 +1,6 @@
 using System.Text.Json;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Settings.Site.Features.Shared;
-using AlphaPlus.Core.Configurations;
-using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.Customer.Requests
 {

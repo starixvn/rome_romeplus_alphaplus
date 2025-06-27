@@ -1,5 +1,4 @@
 // using System.Text.Json;
-using System.Threading.Tasks;
 using AlphaPlus.Core;
 using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Helpers;
@@ -380,11 +379,11 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         {
             var isSiteOfferedCashService = AppSettings.IsOfferedCashService(request.Site);
             var isOfferedCashService = isSiteOfferedCashService && request.CustLevel.IsAgentLevel();
-            var isCanUpdateCashServiceStatus = isOfferedCashService && !request.IsInternal && !request.IsSubAcc; 
+            var isCanUpdateCashServiceStatus = isOfferedCashService && !request.IsInternal && !request.IsSubAcc;
             var isCashServiceEnabled = await customerService.GetCashServiceStatus(request.CustId);
             return Json(new { isOfferedCashService, isCanUpdateCashServiceStatus, isCashServiceEnabled });
         }
-            
+
 
         public async Task<ActionResult> GetCurrentWinLossAmount(CustomerWinLossAmountQuery request)
             => Content(await customerService.GetCustomerCurrentWinLossAmounts(request.CustId, request.SportType, request.BetType, request.Language));
@@ -414,7 +413,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             var viewModel = new UpdateInfoViewModel(customerInfo, GetAssetsVersion());
             return View(viewModel);
         }
-            
+
 
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateInfoPost(UpdateCustomerInfoRequest request)
@@ -568,7 +567,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 
             return Json(new { status, totalDownline }, serializeOptions);
         }
-   
+
         [HttpPost]
         public async Task<IActionResult> EnableCashService(UpdateCashCustomerInfoRequest request)
         {
@@ -585,12 +584,12 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 IP = request.IP,
                 Site = request.Site,
             });
-            
+
             if (result.IsSuccessful)
             {
                 userSession.IsCashServiceEnabled = true;
             }
-            
+
             return Json(result, serializeOptions);
         }
     }

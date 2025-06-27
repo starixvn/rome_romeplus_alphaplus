@@ -6,7 +6,6 @@ using AlphaPlus.Reports.Features.WinLossDetail.Criteria;
 using AlphaPlus.Reports.Features.WinLossDetail.Models;
 using Fanex.Data.Repository;
 using Microsoft.Extensions.Caching.Memory;
-using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Features.WinLossDetail;
 
@@ -147,7 +146,7 @@ public class WinLossDetailService(
         var grandTotal = new CashFeeItemModel();
 
         var reportDate = await reportDateService.GetBalanceUpDayAndMoveBetsDay();
-       
+
         var criteria = new CashBillingCriteria(param.custId, param.fromDate, param.toDate, reportDate.BalanceUpDay, reportDate.MoveBetsDay);
         var rawData = await repository.FetchAsync<CashFeeItemModel>(criteria);
 

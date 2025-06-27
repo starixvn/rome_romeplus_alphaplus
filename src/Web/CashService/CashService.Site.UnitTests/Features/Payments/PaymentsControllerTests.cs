@@ -1,8 +1,8 @@
+using System.Net;
 using AlphaPlus.CashService.Site.Features.Payments;
 using AlphaPlus.CashService.Site.Features.Payments.Models;
 using AlphaPlus.CashService.Site.Features.Payments.Requests;
 using AlphaPlus.CashService.Site.Features.Payments.ViewModels;
-using AlphaPlus.CashService.Site.Features.Shared;
 using AlphaPlus.CashService.Site.Features.Shared.Models;
 using AlphaPlus.Core.Models;
 using Fanex.Customer.Client.Services;
@@ -14,8 +14,6 @@ using Microsoft.Extensions.Configuration;
 using Moq;
 using Moq.Protected;
 using Newtonsoft.Json;
-using System.Net;
-using System.Text.Json;
 using Xunit;
 
 namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
@@ -43,7 +41,7 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             _httpContextMock = new Mock<HttpContext>();
 
             _configurationMock.Setup(x => x["CashService:APIUrl"]).Returns(_apiBaseUrl);
-            
+
             _userSessionMock.Setup(x => x.CustId).Returns(123);
             _userSessionMock.Setup(x => x.Language).Returns("en");
             _userSessionMock.Setup(x => x.DarkModeName).Returns("dark");
@@ -128,7 +126,7 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             SetupHttpClientException(new HttpRequestException("API Error"));
 
             // Act & Assert
-            await Assert.ThrowsAsync<HttpRequestException>(() => 
+            await Assert.ThrowsAsync<HttpRequestException>(() =>
                 _controller.GetProviders(CancellationToken.None));
         }
 
@@ -237,10 +235,10 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
         public async Task AddPaymentMethod_WhenValidRequest_ReturnsJsonResult()
         {
             // Arrange
-            var request = new InsertPaymentMethodRequest 
-            { 
-                ProviderId = 1, 
-                TransactionType = 1, 
+            var request = new InsertPaymentMethodRequest
+            {
+                ProviderId = 1,
+                TransactionType = 1,
                 Method = 1,
                 APIMethodKey = "key",
                 MerchantID = "merchant",
@@ -263,10 +261,10 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
         public async Task UpdatePaymentMethod_WhenValidRequest_ReturnsJsonResult()
         {
             // Arrange
-            var request = new UpdatePaymentMethodRequest 
-            { 
-                ProviderId = 1, 
-                TransactionType = 1, 
+            var request = new UpdatePaymentMethodRequest
+            {
+                ProviderId = 1,
+                TransactionType = 1,
                 Method = 1,
                 APIMethodKey = "updated-key",
                 MerchantID = "updated-merchant",
@@ -530,7 +528,7 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             SetupHttpClientException(new HttpRequestException("Network error"));
 
             // Act & Assert
-            await Assert.ThrowsAsync<HttpRequestException>(() => 
+            await Assert.ThrowsAsync<HttpRequestException>(() =>
                 _controller.SetDailyWithdrawalCount(request, CancellationToken.None));
         }
 
@@ -543,7 +541,7 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             SetupHttpClientResponse(HttpStatusCode.BadRequest, new { Error = "Bad Request" });
 
             // Act & Assert
-            await Assert.ThrowsAsync<HttpRequestException>(() => 
+            await Assert.ThrowsAsync<HttpRequestException>(() =>
                 _controller.SetDailyWithdrawalCount(request, CancellationToken.None));
         }
 
@@ -586,7 +584,7 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             SetupHttpClientResponse(HttpStatusCode.NotFound, new { Error = "Provider not found" });
 
             // Act & Assert
-            await Assert.ThrowsAsync<HttpRequestException>(() => 
+            await Assert.ThrowsAsync<HttpRequestException>(() =>
                 _controller.ManageProviderSettings(999, CancellationToken.None));
         }
 
@@ -692,17 +690,17 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
         {
             jsonResult.Should().NotBeNull();
             jsonResult.Value.Should().NotBeNull();
-            
+
             // For JsonElement comparisons, serialize both to JSON strings and compare
             var actualJson = System.Text.Json.JsonSerializer.Serialize(jsonResult.Value);
             var expectedJson = System.Text.Json.JsonSerializer.Serialize(expectedValue);
-            
+
             // Parse both as JsonDocument for structural comparison
             var actualDoc = System.Text.Json.JsonDocument.Parse(actualJson);
             var expectedDoc = System.Text.Json.JsonDocument.Parse(expectedJson);
-            
+
             actualDoc.RootElement.ValueKind.Should().Be(expectedDoc.RootElement.ValueKind);
-            
+
             if (actualDoc.RootElement.ValueKind == System.Text.Json.JsonValueKind.Array)
             {
                 actualDoc.RootElement.GetArrayLength().Should().Be(expectedDoc.RootElement.GetArrayLength());
@@ -715,4 +713,4 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             }
         }
     }
-} 
+}
