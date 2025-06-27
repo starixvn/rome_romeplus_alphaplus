@@ -56,7 +56,11 @@
     "approve": "Phê duyệt",
     "reject": "Từ chối",
     "close": "Đóng",
-    "firstLastName": "Tên/Họ"
+    "firstLastName": "Tên/Họ",
+    "confirmRejectTitle": "Xác nhận từ chối",
+    "confirmRejectMessage": "Bạn có chắc chắn muốn từ chối giao dịch nạp tiền này?",
+    "confirmApproveTitle": "Xác nhận phê duyệt",
+    "confirmApproveMessage": "Bạn có chắc chắn muốn phê duyệt giao dịch nạp tiền này?"
   },
 
   "manualDepositForm": {

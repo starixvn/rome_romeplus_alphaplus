@@ -19,7 +19,6 @@ const Promotion: React.FC = () => {
   const [promotions, setPromotions] = useState<PromotionDetail[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showAddPromotion, setShowAddPromotion] = useState<boolean>(false);
-  const [selectedPromotion, setSelectedPromotion] = useState<PromotionDetail | null>(null);
 
   const handleFilterChange = (type: string, status: string) => {
     setPromotionType(type);
@@ -48,7 +47,7 @@ const Promotion: React.FC = () => {
   }, [promotionType, status]);
 
   const handleEdit = (promotion: PromotionDetail) => {
-    setSelectedPromotion(promotion);
+    console.log(promotion);
     setShowAddPromotion(true);
   };
 
@@ -85,7 +84,6 @@ const Promotion: React.FC = () => {
             <ButtonFullComponent
               text="Add Promotion"
               onClick={() => {
-                setSelectedPromotion(null);
                 setShowAddPromotion(true);
               }}
               className="min-w-[183px] [&>*]:min-w-[183px] [&>*]:inline-block"
@@ -103,14 +101,7 @@ const Promotion: React.FC = () => {
         <AddPromotion
           onClose={() => {
             setShowAddPromotion(false);
-            setSelectedPromotion(null);
           }}
-          onSave={() => {
-            setShowAddPromotion(false);
-            setSelectedPromotion(null);
-            fetchPromotions();
-          }}
-          promotion={selectedPromotion}
         />
       )}
     </div>

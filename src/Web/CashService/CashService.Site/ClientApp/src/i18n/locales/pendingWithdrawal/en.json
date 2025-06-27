@@ -52,7 +52,11 @@
     "selectBank": "Select Bank",
     "bankRequired": "Bank is required",
     "approveSuccess": "Approve withdrawal successfully",
-    "rejectSuccess": "Reject withdrawal successfully"
+    "rejectSuccess": "Reject withdrawal successfully",
+    "confirmRejectTitle": "Confirm Reject",
+    "confirmRejectMessage": "Are you sure you want to reject this withdrawal?",
+    "confirmApproveTitle": "Confirm Approve",
+    "confirmApproveMessage": "Are you sure you want to approve this withdrawal?"
   },
 
   "manualWithdrawalForm": {

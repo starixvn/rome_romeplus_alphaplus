@@ -52,7 +52,11 @@
     "selectBank": "은행 선택",
     "bankRequired": "은행은 필수입니다",
     "approveSuccess": "출금 승인 성공",
-    "rejectSuccess": "출금 거부 성공"
+    "rejectSuccess": "출금 거부 성공",
+    "confirmRejectTitle": "거부 확인",
+    "confirmRejectMessage": "이 출금을 거부하시겠습니까?",
+    "confirmApproveTitle": "승인 확인",
+    "confirmApproveMessage": "이 출금을 승인하시겠습니까?"
   },
 
   "manualWithdrawalForm": {

@@ -52,7 +52,11 @@
     "selectBank": "Chọn ngân hàng",
     "bankRequired": "Ngân hàng là bắt buộc",
     "approveSuccess": "Phê duyệt rút tiền thành công",
-    "rejectSuccess": "Từ chối rút tiền thành công"
+    "rejectSuccess": "Từ chối rút tiền thành công",
+    "confirmRejectTitle": "Xác nhận từ chối",
+    "confirmRejectMessage": "Bạn có chắc chắn muốn từ chối giao dịch rút tiền này?",
+    "confirmApproveTitle": "Xác nhận phê duyệt",
+    "confirmApproveMessage": "Bạn có chắc chắn muốn phê duyệt giao dịch rút tiền này?"
   },
 
   "manualWithdrawalForm": {

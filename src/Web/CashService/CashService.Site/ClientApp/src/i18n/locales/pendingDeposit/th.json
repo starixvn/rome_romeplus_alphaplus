@@ -56,7 +56,11 @@
     "approve": "อนุมัติ",
     "reject": "ปฏิเสธ",
     "close": "ปิด",
-    "firstLastName": "ชื่อ-นามสกุล"
+    "firstLastName": "ชื่อ-นามสกุล",
+    "confirmRejectTitle": "ยืนยันการปฏิเสธ",
+    "confirmRejectMessage": "คุณแน่ใจหรือไม่ว่าต้องการปฏิเสธการฝากเงินนี้?",
+    "confirmApproveTitle": "ยืนยันการอนุมัติ",
+    "confirmApproveMessage": "คุณแน่ใจหรือไม่ว่าต้องการอนุมัติการฝากเงินนี้?"
   },
 
   "manualDepositForm": {

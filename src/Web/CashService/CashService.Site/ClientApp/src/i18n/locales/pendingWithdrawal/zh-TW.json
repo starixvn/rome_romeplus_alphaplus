@@ -52,7 +52,11 @@
     "selectBank": "選擇銀行",
     "bankRequired": "銀行是必需的",
     "approveSuccess": "批准提款成功",
-    "rejectSuccess": "拒絕提款成功"
+    "rejectSuccess": "拒絕提款成功",
+    "confirmRejectTitle": "確認拒絕",
+    "confirmRejectMessage": "您確定要拒絕此提現嗎？",
+    "confirmApproveTitle": "確認批准",
+    "confirmApproveMessage": "您確定要批准此提現嗎？"
   },
 
   "manualWithdrawalForm": {

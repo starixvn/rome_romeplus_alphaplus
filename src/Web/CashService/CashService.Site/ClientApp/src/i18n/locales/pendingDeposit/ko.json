@@ -56,7 +56,11 @@
     "approve": "승인",
     "reject": "거부",
     "close": "닫기",
-    "firstLastName": "성명"
+    "firstLastName": "성명",
+    "confirmRejectTitle": "거부 확인",
+    "confirmRejectMessage": "이 입금을 거부하시겠습니까?",
+    "confirmApproveTitle": "승인 확인",
+    "confirmApproveMessage": "이 입금을 승인하시겠습니까?"
   },
 
   "manualDepositForm": {

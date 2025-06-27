@@ -56,7 +56,11 @@
     "approve": "Approve",
     "reject": "Reject",
     "close": "Close",
-    "firstLastName": "First/Last Name"
+    "firstLastName": "First/Last Name",
+    "confirmRejectTitle": "Confirm Reject",
+    "confirmRejectMessage": "Are you sure you want to reject this deposit?",
+    "confirmApproveTitle": "Confirm Approve",
+    "confirmApproveMessage": "Are you sure you want to approve this deposit?"
   },
 
   "manualDepositForm": {

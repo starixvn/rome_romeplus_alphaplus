@@ -52,7 +52,11 @@
     "selectBank": "เลือกธนาคาร",
     "bankRequired": "ธนาคารเป็นสิ่งจำเป็น",
     "approveSuccess": "อนุมัติการถอนเงินสำเร็จ",
-    "rejectSuccess": "ปฏิเสธการถอนเงินสำเร็จ"
+    "rejectSuccess": "ปฏิเสธการถอนเงินสำเร็จ",
+    "confirmRejectTitle": "ยืนยันการปฏิเสธ",
+    "confirmRejectMessage": "คุณแน่ใจหรือไม่ว่าต้องการปฏิเสธการถอนเงินนี้?",
+    "confirmApproveTitle": "ยืนยันการอนุมัติ",
+    "confirmApproveMessage": "คุณแน่ใจหรือไม่ว่าต้องการอนุมัติการถอนเงินนี้?"
   },
 
   "manualWithdrawalForm": {

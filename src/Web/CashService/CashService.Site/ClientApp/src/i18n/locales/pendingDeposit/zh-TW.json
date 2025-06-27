@@ -56,7 +56,11 @@
     "approve": "批准",
     "reject": "拒絕",
     "close": "關閉",
-    "firstLastName": "姓名"
+    "firstLastName": "姓名",
+    "confirmRejectTitle": "確認拒絕",
+    "confirmRejectMessage": "您確定要拒絕此存款嗎？",
+    "confirmApproveTitle": "確認批准",
+    "confirmApproveMessage": "您確定要批准此存款嗎？"
   },
 
   "manualDepositForm": {

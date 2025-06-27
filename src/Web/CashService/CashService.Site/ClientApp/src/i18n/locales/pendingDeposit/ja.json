@@ -56,7 +56,11 @@
     "approve": "承認",
     "reject": "拒否",
     "close": "閉じる",
-    "firstLastName": "氏名"
+    "firstLastName": "氏名",
+    "confirmRejectTitle": "拒否の確認",
+    "confirmRejectMessage": "この入金を拒否してもよろしいですか？",
+    "confirmApproveTitle": "承認の確認",
+    "confirmApproveMessage": "この入金を承認してもよろしいですか？"
   },
 
   "manualDepositForm": {

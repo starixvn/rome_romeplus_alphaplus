@@ -52,7 +52,11 @@
     "selectBank": "銀行を選択",
     "bankRequired": "銀行は必須です",
     "approveSuccess": "出金の承認に成功しました",
-    "rejectSuccess": "出金の拒否に成功しました"
+    "rejectSuccess": "出金の拒否に成功しました",
+    "confirmRejectTitle": "拒否の確認",
+    "confirmRejectMessage": "この出金を拒否してもよろしいですか？",
+    "confirmApproveTitle": "承認の確認",
+    "confirmApproveMessage": "この出金を承認してもよろしいですか？"
   },
 
   "manualWithdrawalForm": {
