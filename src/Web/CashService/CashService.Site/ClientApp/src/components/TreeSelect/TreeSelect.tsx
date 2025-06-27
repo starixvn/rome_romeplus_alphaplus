@@ -2,14 +2,14 @@ import React, { useState, useMemo, useEffect, useRef } from 'react';
 
 export interface TreeNodeOption {
   label: string;
-  value: string;
+  value: string | number;
   children?: TreeNodeOption[];
 }
 
 interface TreeSelectProps {
   options: TreeNodeOption[];
-  value: string[];
-  onChange: (selected: string[]) => void;
+  value: (string | number)[];
+  onChange: (selectedValue: (string | number)[], selectedTreeNode: TreeNodeOption[]) => void;
   searchPlaceholder?: string;
   placeholder?: string;
 }
@@ -25,8 +25,8 @@ const flattenTree = (nodes: TreeNodeOption[]): TreeNodeOption[] => {
   return result;
 };
 
-const getAllValues = (nodes: TreeNodeOption[]): string[] => {
-  let result: string[] = [];
+const getAllValues = (nodes: TreeNodeOption[]): (string | number)[] => {
+  let result: (string | number)[] = [];
   nodes.forEach((node) => {
     result.push(node.value);
     if (node.children) {
@@ -53,7 +53,7 @@ const filterTree = (nodes: TreeNodeOption[], keyword: string): TreeNodeOption[] 
     .filter(Boolean) as TreeNodeOption[];
 };
 
-const getSelectedLabels = (nodes: TreeNodeOption[], selected: string[]): string[] => {
+const getSelectedLabels = (nodes: TreeNodeOption[], selected: (string | number)[]): string[] => {
   let result: string[] = [];
   nodes.forEach((node) => {
     if (selected.includes(node.value)) {
@@ -65,6 +65,48 @@ const getSelectedLabels = (nodes: TreeNodeOption[], selected: string[]): string[
   });
   return result;
 };
+
+function filterTreeBySelected(
+  nodes: TreeNodeOption[],
+  selected: (string | number)[]
+): TreeNodeOption[] {
+  return nodes
+    .map((node) => {
+      if (selected.includes(node.value)) {
+        if (node.children) {
+          const filteredChildren = filterTreeBySelected(node.children, selected);
+          return { ...node, children: filteredChildren.length > 0 ? filteredChildren : undefined };
+        }
+        return { ...node };
+      } else if (node.children) {
+        const filteredChildren = filterTreeBySelected(node.children, selected);
+        if (filteredChildren.length > 0) {
+          return { ...node, children: filteredChildren };
+        }
+      }
+      return null;
+    })
+    .filter(Boolean) as TreeNodeOption[];
+}
+
+function getSelectedLeafValues(
+  nodes: TreeNodeOption[],
+  selected: (string | number)[]
+): (string | number)[] {
+  let result: (string | number)[] = [];
+  nodes.forEach((node) => {
+    if (selected.includes(node.value)) {
+      if (!node.children || node.children.length === 0) {
+        result.push(node.value);
+      } else {
+        result = result.concat(getSelectedLeafValues(node.children, selected));
+      }
+    } else if (node.children) {
+      result = result.concat(getSelectedLeafValues(node.children, selected));
+    }
+  });
+  return result;
+}
 
 const TreeSelect: React.FC<TreeSelectProps> = ({
   options,
@@ -84,7 +126,7 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
       let result: { [key: string]: boolean } = {};
       nodes.forEach((node) => {
         if (node.children) {
-          result[node.value] = true;
+          result[String(node.value)] = true;
           Object.assign(result, expandAll(node.children));
         }
       });
@@ -111,25 +153,31 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
 
   const handleCheck = (checked: boolean, node: TreeNodeOption) => {
     const nodeValues = getAllValues([node]);
-    let newValue: string[];
+    let newValue: (string | number)[];
     if (checked) {
       newValue = Array.from(new Set([...value, ...nodeValues]));
     } else {
       newValue = value.filter((v) => !nodeValues.includes(v));
     }
-    onChange(newValue);
+    const selectedTreeNode = filterTreeBySelected(options, newValue);
+    const selectedValue = getSelectedLeafValues(options, newValue);
+    onChange(selectedValue, selectedTreeNode);
   };
 
   const handleSelectAll = (checked: boolean) => {
+    let newValue: (string | number)[];
     if (checked) {
-      onChange(Array.from(new Set([...value, ...allValues])));
+      newValue = Array.from(new Set([...value, ...allValues]));
     } else {
-      onChange(value.filter((v) => !allValues.includes(v)));
+      newValue = value.filter((v) => !allValues.includes(v));
     }
+    const selectedTreeNode = filterTreeBySelected(options, newValue);
+    const selectedValue = getSelectedLeafValues(options, newValue);
+    onChange(selectedValue, selectedTreeNode);
   };
 
-  const handleExpand = (nodeValue: string) => {
-    setExpanded((prev) => ({ ...prev, [nodeValue]: !prev[nodeValue] }));
+  const handleExpand = (nodeValue: string | number) => {
+    setExpanded((prev) => ({ ...prev, [String(nodeValue)]: !prev[String(nodeValue)] }));
   };
 
   const selectedLabels = useMemo(() => getSelectedLabels(options, value), [options, value]);
@@ -185,10 +233,17 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
         {nodes.map((node) => {
           const checked = getAllValues([node]).every((v) => value.includes(v));
           const indeterminate = !checked && getAllValues([node]).some((v) => value.includes(v));
+          const hasChildren = !!node.children && node.children.length > 0;
           return (
-            <li key={node.value} style={{ marginBottom: 0 }}>
+            <li key={String(node.value)} style={{ marginBottom: 0 }}>
               <div
-                style={{ ...itemStyle, paddingLeft: 5 + level * 18 }}
+                style={{
+                  ...itemStyle,
+                  paddingLeft: 5 + level * 18,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}
                 className="tree-select-item"
                 tabIndex={-1}
                 onMouseDown={(e) => e.preventDefault()}
@@ -196,32 +251,31 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
                 onMouseEnter={(e) => (e.currentTarget.style.background = '#F5F5F5')}
                 onMouseLeave={(e) => (e.currentTarget.style.background = '')}
               >
-                {level !== 0 && node.children && node.children.length > 0 && (
+                <span style={{ display: 'flex', alignItems: 'center', flex: 1 }}>
+                  <input
+                    type="checkbox"
+                    checked={checked}
+                    ref={(el) => {
+                      if (el) el.indeterminate = indeterminate;
+                    }}
+                    readOnly
+                    style={{ marginRight: 8 }}
+                  />
+                  <span>{node.label}</span>
+                </span>
+                {hasChildren && (
                   <span
-                    style={{ cursor: 'pointer', marginRight: 4 }}
+                    style={{ cursor: 'pointer', marginLeft: 8, fontSize: 10, color: '#888' }}
                     onClick={(e) => {
                       e.stopPropagation();
                       handleExpand(node.value);
                     }}
                   >
-                    {expanded[node.value] ? '▼' : '▶'}
+                    {expanded[String(node.value)] ? '▼' : '▶'}
                   </span>
                 )}
-                <input
-                  type="checkbox"
-                  checked={checked}
-                  ref={(el) => {
-                    if (el) el.indeterminate = indeterminate;
-                  }}
-                  readOnly
-                  style={{ marginRight: 8 }}
-                />
-                <span>{node.label}</span>
               </div>
-              {node.children &&
-                node.children.length > 0 &&
-                (level === 0 || expanded[node.value]) &&
-                renderTree(node.children, level + 1)}
+              {hasChildren && expanded[String(node.value)] && renderTree(node.children!, level + 1)}
             </li>
           );
         })}
@@ -244,13 +298,23 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
         }}
         onClick={() => setDropdownOpen((open) => !open)}
       >
-        <span style={{ flex: 1, color: selectedLabels.length === 0 ? '#aaa' : '#222' }}>
+        <span
+          style={{
+            flex: 1,
+            color: '#222',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            display: 'inline-block',
+          }}
+        >
           {displayValue}
         </span>
         <span
           style={{
             position: 'absolute',
             right: 8,
+            fontSize: 10,
             top: '50%',
             transform: 'translateY(-50%)',
             color: '#888',

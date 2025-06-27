@@ -2,15 +2,15 @@
 import { useTranslation } from 'react-i18next';
 import i18n from '../../../../i18n/i18n-promotion';
 import { useCookieLanguage } from '../../../../hooks/useCookieLanguage';
-import { Promotion } from '../../../../services/interfaces/Promotion';
+import { PromotionDetail } from '../../../../services/interfaces/Promotion';
 import { IconDelete, IconPen } from '../../../../components/Icons';
 import NoRecordFoundComponent from '../../../../components/NoRecordFoundComponent';
 
 interface TableProps {
-  items: Promotion[];
+  items: PromotionDetail[];
   isLoading: boolean;
-  onEdit?: (item: Promotion) => void;
-  onDelete?: (item: Promotion) => void;
+  onEdit?: (item: PromotionDetail) => void;
+  onDelete?: (item: PromotionDetail) => void;
 }
 
 const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => {
@@ -82,8 +82,8 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
     </thead>
   );
 
-  const buildRow = (item: Promotion, index: number) => (
-    <tr>
+  const buildRow = (item: PromotionDetail, index: number) => (
+    <tr key={item.promotionId}>
       <td className="w-[32px] sticky left-0 bg-[#ffffff]">{index + 1}</td>
       <td className="w-[75px] sticky left-[32px] bg-[#ffffff]">
         <div className="flex gap-[4px]">
@@ -108,30 +108,24 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
       </td>
       <td className="">{item.promotionType}</td>
       <td className="text-right">
-        {item.sportsPercentage}
-        <br />
-        {item.sportsMaxPayout}
+        {item.products.find((p) => p.productId === 1)?.productSettings.percentage}
       </td>
       <td className="text-right">
-        {item.virtualSportsPercentage}
-        <br />
-        {item.virtualSportsMaxPayout}
+        {item.products.find((p) => p.productId === 2)?.productSettings.percentage}
       </td>
       <td className="text-right">
-        {item.gamesPercentage}
-        <br />
-        {item.gamesMaxPayout}
+        {item.products.find((p) => p.productId === 3)?.productSettings.percentage}
       </td>
       <td className="text-right">
-        {item.liveCasinoPercentage}
-        <br />
-        {item.liveCasinoMaxPayout}
+        {item.products.find((p) => p.productId === 4)?.productSettings.percentage}
       </td>
       <td className=""> </td>
-      <td className="">{item.provider}</td>
+      <td className=""></td>
       <td className="">
-        <span className={`rounded-[20px] px-[10px] py-[3px] ${getStatusStyle(item.status)}`}>
-          {item.status.toUpperCase()}
+        <span
+          className={`rounded-[20px] px-[10px] py-[3px] ${getStatusStyle(item.enabled ? 'ACTIVE' : 'INACTIVE')}`}
+        >
+          {item.enabled ? 'ACTIVE' : 'INACTIVE'}
         </span>
       </td>
       <td className="">{item.lastUpdated}</td>

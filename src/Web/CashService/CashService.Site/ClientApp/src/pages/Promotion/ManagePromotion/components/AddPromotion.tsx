@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Promotion } from '../../../../services/interfaces/Promotion';
+import { Product, PromotionRequest } from '../../../../services/interfaces/Promotion';
 import { IconInfo } from '../../../../components/Icons';
 import {
   BackButtonComponent,
@@ -20,319 +20,571 @@ import {
   MediumTitleComponent,
 } from '../../../../components/Title';
 import DateRangePickerComponent from '../../../../components/DateRangePickerComponent';
-import TreeSelect from '../../../../components/TreeSelect/TreeSelect';
+import TreeSelect, { TreeNodeOption } from '../../../../components/TreeSelect/TreeSelect';
 
 interface AddPromotionProps {
   onClose: () => void;
-  onSave: (promotion: Promotion) => void;
-  promotion?: Promotion | null;
 }
 
 const PROMOTION_TYPES = [{ value: 'RebateOnTurnover', label: 'Rebate on Turnover' }];
 
-const PROVIDER_OPTIONS = [
+export const PRODUCTS: Product[] = [
   {
-    label: 'Virtual Sports',
-    value: 'virtual-sports',
+    productId: 1,
+    productName: 'Sportsbook',
+    isSelected: true,
     children: [],
+    productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
   },
   {
-    label: 'Live Casino',
-    value: 'live-casino',
+    productId: 2,
+    productName: 'Number Game',
+    isSelected: true,
+    children: [],
+    productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
   },
   {
-    label: 'Bitcoin',
-    value: 'bitcoin',
+    productId: 3,
+    productName: 'Lottery',
+    isSelected: true,
+    children: [],
+    productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+  },
+  {
+    productId: 4,
+    productName: 'Sports Lottery',
+    isSelected: true,
+    children: [],
+    productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+  },
+  {
+    productId: 5,
+    productName: 'RNG Keno',
+    isSelected: true,
+    children: [],
+    productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+  },
+  {
+    productId: 6,
+    productName: 'Table Game',
+    isSelected: true,
+    children: [],
+    productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+  },
+  {
+    productId: 7,
+    productName: 'Virtual Sports',
+    isSelected: true,
+    children: [],
+    productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+  },
+  {
+    productId: 8,
+    productName: 'Bitcoin',
+    isSelected: true,
+    children: [],
+    productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+  },
+  {
+    productId: 9,
+    productName: 'Saba Promotion',
+    isSelected: true,
+    children: [],
+    productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+  },
+  {
+    productId: 10,
+    productName: 'Live Casino',
+    isSelected: true,
+    productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
     children: [
       {
-        label: 'Crypto Provider',
-        value: 'crypto-provider',
-        children: [
-          {
-            label: 'BTC Game',
-            value: 'btc-game',
-          },
-        ],
+        productId: 11,
+        productName: 'FGG',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 12,
+        productName: 'Allbet',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 13,
+        productName: 'BBIN',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 14,
+        productName: 'SA Gaming',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 15,
+        productName: 'AE Sexy',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 16,
+        productName: 'ION',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 17,
+        productName: 'WM',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 18,
+        productName: 'BG',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 19,
+        productName: 'PP Live Casino',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 20,
+        productName: 'YeeBet',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 21,
+        productName: 'ON Casino',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 22,
+        productName: 'Microgaming Live',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
       },
     ],
   },
+  {
+    productId: 23,
+    productName: 'RNG Casino',
+    isSelected: true,
+    productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+    children: [
+      {
+        productId: 24,
+        productName: 'Virtual Games',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 25,
+        productName: 'Vgaming',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 26,
+        productName: 'Macau Games',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 27,
+        productName: 'Saba Casino',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 28,
+        productName: 'Arcadia Gaming',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 29,
+        productName: 'SG',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 30,
+        productName: 'PP',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 31,
+        productName: 'PG Soft',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 32,
+        productName: 'Joker',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 33,
+        productName: 'MaxGame',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 34,
+        productName: 'Habanero',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 35,
+        productName: 'CG',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 36,
+        productName: 'AdvantPlay',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 37,
+        productName: 'AdvantPlay Mini',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 38,
+        productName: 'SEAL Entertainment',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 39,
+        productName: 'MG-RNG',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 40,
+        productName: 'Nextspin',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 41,
+        productName: 'SABA xD',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 42,
+        productName: 'GPI',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 43,
+        productName: 'PLAYSTAR',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 44,
+        productName: 'ASKMESLOT',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+      {
+        productId: 45,
+        productName: 'Funky Games',
+        isSelected: true,
+        children: [],
+        productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+      },
+    ],
+  },
+  {
+    productId: 46,
+    productName: 'Cash Service Billing',
+    isSelected: true,
+    children: [],
+    productSettings: { percentage: 0, minTurnover: 0, maxPayout: 0, unlimited: false },
+  },
 ];
 
-const AddPromotion: React.FC<AddPromotionProps> = ({ onClose, onSave, promotion }) => {
+function convertProductToTreeNodeOption(products: Product[]): TreeNodeOption[] {
+  return products.map((product) => ({
+    label: product.productName,
+    value: product.productId,
+    children:
+      product.children && product.children.length > 0
+        ? convertProductToTreeNodeOption(product.children)
+        : [],
+  }));
+}
+
+const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
-
-  const [isActive, setIsActive] = useState<boolean>(promotion?.status === 'ACTIVE' || true);
-  const [promotionType, setPromotionType] = useState(
-    promotion?.promotionType || PROMOTION_TYPES[0].value
-  );
-  const [period, setPeriod] = useState<[Date | null, Date | null]>(
-    promotion?.fromDate && promotion?.toDate ? [promotion.fromDate, promotion.toDate] : [null, null]
-  );
-  const [provider, setProvider] = useState(promotion?.provider || []);
-  const [categories, setCategories] = useState({
-    sports: {
-      percentage: promotion?.sportsPercentage?.toString() || '',
-      minTurnover: '',
-      maxPayout: promotion?.sportsMaxPayout?.toString() || '',
-      unlimited: false,
-    },
-    virtualSports: {
-      percentage: promotion?.virtualSportsPercentage?.toString() || '',
-      minTurnover: '',
-      maxPayout: promotion?.virtualSportsMaxPayout?.toString() || '',
-      unlimited: false,
-    },
-    games: {
-      percentage: promotion?.gamesPercentage?.toString() || '',
-      minTurnover: '',
-      maxPayout: promotion?.gamesMaxPayout?.toString() || '',
-      unlimited: false,
-    },
-    liveCasino: {
-      percentage: promotion?.liveCasinoPercentage?.toString() || '',
-      minTurnover: '',
-      maxPayout: promotion?.liveCasinoMaxPayout?.toString() || '',
-      unlimited: false,
-    },
-  });
-
+  const [isActive, setIsActive] = useState<boolean>(true);
+  const [promotionType, setPromotionType] = useState(PROMOTION_TYPES[0].value);
+  const [period, setPeriod] = useState<[Date | null, Date | null]>([null, null]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [selectedProductIds, setSelectedProductIds] = useState<number[]>([]);
   const [fieldErrors, setFieldErrors] = useState({
-    promotionType: '',
-    period: '',
-    provider: '',
-    sportsPercentage: '',
-    virtualSportsPercentage: '',
-    gamesPercentage: '',
-    liveCasinoPercentage: '',
+    percentage: '',
+    minTurnover: '',
+    maxPayout: '',
+    unlimited: '',
   });
 
-  const handleProviderChange = (value: string[]) => {
-    setProvider(value);
-    console.log('value', value);
+  const handleProductChange = (values: (string | number)[], highestParents: TreeNodeOption[]) => {
+    setSelectedProductIds(values.map((v) => v as number));
+    setProducts(PRODUCTS.filter((p) => highestParents.some((h) => h.value === p.productId)));
+  };
+
+  const handleProductFieldChange = (productId: number, field: string, value: number | boolean) => {
+    setProducts((prev) =>
+      prev.map((p) =>
+        p.productId === productId
+          ? { ...p, productSettings: { ...p.productSettings, [field]: value } }
+          : p
+      )
+    );
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     setLoading(true);
-
-    // Field-level validation
-    const errors = {
-      promotionType: !promotionType ? 'Please select promotion type' : '',
-      period: !period ? 'Please enter period' : '',
-      provider: !provider ? 'Please select provider' : '',
-      sportsPercentage: !categories.sports.percentage ? 'Please enter sports percentage' : '',
-      virtualSportsPercentage: !categories.virtualSports.percentage
-        ? 'Please enter virtual sports percentage'
-        : '',
-      gamesPercentage: !categories.games.percentage ? 'Please enter games percentage' : '',
-      liveCasinoPercentage: !categories.liveCasino.percentage
-        ? 'Please enter live casino percentage'
-        : '',
-    };
-    setFieldErrors(errors);
-    const hasError = Object.values(errors).some(Boolean);
-    if (hasError) {
-      setLoading(false);
-      return;
-    }
+    setFieldErrors({
+      percentage: '',
+      minTurnover: '',
+      maxPayout: '',
+      unlimited: '',
+    });
     setSuccessMessage('Promotion saved successfully');
     const [fromDate, toDate] = period.map((date) => (date ? new Date(date) : null));
-    const promotionData: Promotion = {
-      promotionId: promotion?.promotionId || 0,
+    const promotionData: PromotionRequest = {
       promotionTitle: '',
       promotionType,
       fromDate,
       toDate,
-      sportsPercentage: parseFloat(categories.sports.percentage) || 0,
-      virtualSportsPercentage: parseFloat(categories.virtualSports.percentage) || 0,
-      gamesPercentage: parseFloat(categories.games.percentage) || 0,
-      liveCasinoPercentage: parseFloat(categories.liveCasino.percentage) || 0,
-      sportsMaxPayout: parseFloat(categories.sports.maxPayout) || 0,
-      virtualSportsMaxPayout: parseFloat(categories.virtualSports.maxPayout) || 0,
-      gamesMaxPayout: parseFloat(categories.games.maxPayout) || 0,
-      liveCasinoMaxPayout: parseFloat(categories.liveCasino.maxPayout) || 0,
-      provider,
-      status: isActive ? 'ACTIVE' : 'INACTIVE',
-      lastUpdated: new Date().toISOString(),
+      products: products.filter((p) => selectedProductIds.includes(p.productId)),
+      enabled: isActive,
     };
-    onSave(promotionData);
-  };
-
-  const handleCategoryChange = (cat: string, field: string, value: string | boolean) => {
-    setCategories((prev) => ({
-      ...prev,
-      [cat]: {
-        ...prev[cat as keyof typeof prev],
-        [field]: value,
-        ...(field === 'unlimited' && value ? { maxPayout: '' } : {}),
-      },
-    }));
+    console.log(promotionData);
   };
 
   return (
-    <div tabIndex={-1}>
-      <div className="modal-content max-w-[1200px]">
-        <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
-          <BackButtonComponent onClick={onClose} />
-          <TitleComponent title="Manage Promotion" />
+    <>
+      <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
+        <BackButtonComponent onClick={onClose} />
+        <TitleComponent title={`Add Promotion`} />
+      </div>
+
+      <form onSubmit={handleSubmit} className="pb-[16px]">
+        <div className="modal-body">
+          <ErrorMessageComponent className="mb-[16px] max-[768px]:mb-[0]" message={error} />
+          <SuccessMessageComponent
+            className="mb-[16px] max-[768px]:mb-[0]"
+            message={successMessage}
+          />
+
+          <MediumTitleComponent text="Current Promotion" />
+          <p className="my-[8px] text-[12px] font-semibold">
+            Do you want to keep your promotion active? You can only run one promotion at a time.
+          </p>
+          <div
+            className="mb-[16px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]"
+            role="group"
+          >
+            <EnableButtonComponent isActive={isActive} onClick={() => setIsActive(true)} />
+            <DisableButtonComponent isActive={!isActive} onClick={() => setIsActive(false)} />
+          </div>
+
+          <MediumTitleComponent text="Promotion Settings" />
+          <div className="flex items-center mb-[8px]">
+            <p className="text-[12px] text-[#333333] font-semibold">
+              Promotion runs on a weekly basis.
+            </p>
+            <span className="ml-[4px]" title="Promotion runs on a weekly basis.">
+              <IconInfo className="w-[20px] cursor-pointer h-[20px] fill-[#163f78]" />
+            </span>
+          </div>
+
+          <div className="flex flex-nowrap gap-[16px] mb-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
+            <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
+              <LabelTitleComponent text="Promotion Type" required={true} />
+              <CustomDropdown
+                options={PROMOTION_TYPES}
+                onSelect={(option) => setPromotionType(option.value.toString())}
+                initialValue={promotionType}
+                showOptionAll={false}
+              />
+            </div>
+
+            <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
+              <LabelTitleComponent text="Period" required={true} />
+              <DateRangePickerComponent
+                value={period}
+                onChange={(value) => setPeriod(value as [Date | null, Date | null])}
+              />
+            </div>
+
+            <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
+              <LabelTitleComponent text="Provider" required={true} />
+              <TreeSelect
+                options={convertProductToTreeNodeOption(PRODUCTS)}
+                value={selectedProductIds}
+                onChange={handleProductChange}
+              />
+            </div>
+          </div>
+
+          {products.map((product) => (
+            <div
+              key={product.productId}
+              className="flex flex-nowrap gap-[16px] mb-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full"
+            >
+              <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
+                <LabelTitleComponent text={`${product.productName} Percentage`} required={true} />
+                <div className="flex items-center relative">
+                  <input
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    className={`control-field pr-[32px] ${fieldErrors[`${product.productName} Percentage` as keyof typeof fieldErrors] ? 'error' : ''}`}
+                    value={product.productSettings.percentage}
+                    onChange={(e) =>
+                      handleProductFieldChange(
+                        product.productId,
+                        'percentage',
+                        Number(e.target.value)
+                      )
+                    }
+                    disabled={!product.isSelected}
+                  />
+                  <span className="absolute right-0 top-0 text-[12px] text-[#333333] h-full w-[32px] leading-[32px] text-center font-bold border-l-[1px] border-[var(--border-control)]">
+                    %
+                  </span>
+                </div>
+                <ValidateMessageComponent
+                  message={
+                    fieldErrors[`${product.productName}Percentage` as keyof typeof fieldErrors]
+                  }
+                />
+              </div>
+
+              <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
+                <LabelTitleComponent text="Min Turnover" required={true} />
+                <input
+                  type="number"
+                  min="0"
+                  className={`control-field ${!product.isSelected ? 'opacity-50' : ''}`}
+                  value={product.productSettings.minTurnover}
+                  onChange={(e) =>
+                    handleProductFieldChange(
+                      product.productId,
+                      'minTurnover',
+                      Number(e.target.value)
+                    )
+                  }
+                  disabled={!product.isSelected}
+                />
+              </div>
+
+              <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
+                <div className="flex justify-between items-center">
+                  <LabelTitleComponent text="Max Payout" required={true} />
+                  <div className="flex items-center text-[12px]">
+                    <input
+                      type="checkbox"
+                      className="mr-2"
+                      checked={product.productSettings.unlimited}
+                      onChange={(e) =>
+                        handleProductFieldChange(product.productId, 'unlimited', e.target.checked)
+                      }
+                      id={`${product.productId}-unlimited`}
+                      disabled={!product.isSelected}
+                    />
+                    <label
+                      htmlFor={`${product.productId}-unlimited`}
+                      className="text-[var(--text-color-primary)]"
+                    >
+                      Unlimited
+                    </label>
+                  </div>
+                </div>
+                <input
+                  type="number"
+                  min="0"
+                  className={`control-field ${!product.isSelected ? 'opacity-50' : ''}`}
+                  value={product.productSettings.maxPayout}
+                  onChange={(e) =>
+                    handleProductFieldChange(product.productId, 'maxPayout', Number(e.target.value))
+                  }
+                  disabled={product.productSettings.unlimited || !product.isSelected}
+                />
+              </div>
+            </div>
+          ))}
         </div>
 
-        <form onSubmit={handleSubmit} className="pb-[16px]">
-          <div className="modal-body">
-            <ErrorMessageComponent className="mb-[16px] max-[768px]:mb-[0]" message={error} />
-            <SuccessMessageComponent
-              className="mb-[16px] max-[768px]:mb-[0]"
-              message={successMessage}
-            />
-
-            <MediumTitleComponent text="Current Promotion" />
-            <p className="my-[8px] text-[12px] font-semibold">
-              Do you want to keep your promotion active? You can only run one promotion at a time.
-            </p>
-            <div
-              className="mb-[16px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]"
-              role="group"
-            >
-              <EnableButtonComponent isActive={isActive} onClick={() => setIsActive(true)} />
-              <DisableButtonComponent isActive={!isActive} onClick={() => setIsActive(false)} />
-            </div>
-
-            <MediumTitleComponent text="Promotion Settings" />
-            <div className="flex items-center mb-[8px]">
-              <p className="text-[12px] text-[#333333] font-semibold">
-                Promotion runs on a weekly basis.
-              </p>
-              <span className="ml-[4px]" title="Promotion runs on a weekly basis.">
-                <IconInfo className="w-[20px] cursor-pointer h-[20px] fill-[#163f78]" />
-              </span>
-            </div>
-
-            <div className="flex flex-nowrap gap-[16px] mb-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
-              <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
-                <LabelTitleComponent text="Promotion Type" required={true} />
-                <CustomDropdown
-                  options={PROMOTION_TYPES}
-                  onSelect={(option) => setPromotionType(option.value.toString())}
-                  initialValue={promotionType}
-                  showOptionAll={false}
-                />
-                <ValidateMessageComponent message={fieldErrors.promotionType} />
-              </div>
-
-              <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
-                <LabelTitleComponent text="Period" required={true} />
-                <DateRangePickerComponent
-                  value={period}
-                  onChange={(value) => setPeriod(value as [Date | null, Date | null])}
-                />
-                <ValidateMessageComponent message={fieldErrors.period} />
-              </div>
-
-              <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
-                <LabelTitleComponent text="Provider" required={true} />
-                <TreeSelect
-                  options={PROVIDER_OPTIONS}
-                  value={provider}
-                  onChange={handleProviderChange}
-                />
-                <ValidateMessageComponent message={fieldErrors.provider} />
-              </div>
-            </div>
-
-            {[
-              { key: 'sports', label: 'Sports', id: 1, selected: true },
-              { key: 'virtualSports', label: 'Virtual Sports', id: 2, selected: false },
-              { key: 'games', label: 'Games', id: 3, selected: false },
-              { key: 'liveCasino', label: 'Live Casino', id: 4, selected: false },
-            ].map((cat) => (
-              <div
-                key={cat.key}
-                className="flex flex-nowrap gap-[16px] mb-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full"
-              >
-                <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
-                  <LabelTitleComponent text={`${cat.label} Percentage`} required={true} />
-                  <div className="flex items-center relative">
-                    <input
-                      type="number"
-                      min="0"
-                      step="0.01"
-                      className={`control-field pr-[32px] ${fieldErrors[`${cat.key}Percentage` as keyof typeof fieldErrors] ? 'error' : ''}`}
-                      value={categories[cat.key as keyof typeof categories].percentage}
-                      onChange={(e) => handleCategoryChange(cat.key, 'percentage', e.target.value)}
-                      disabled={!cat.selected}
-                    />
-                    <span className="absolute right-0 top-0 text-[12px] text-[#333333] h-full w-[32px] leading-[32px] text-center font-bold border-l-[1px] border-[var(--border-control)]">
-                      %
-                    </span>
-                  </div>
-                  <ValidateMessageComponent
-                    message={fieldErrors[`${cat.key}Percentage` as keyof typeof fieldErrors]}
-                  />
-                </div>
-
-                <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
-                  <LabelTitleComponent text="Min Turnover" required={true} />
-                  <input
-                    type="number"
-                    min="0"
-                    className={`control-field ${!cat.selected ? 'opacity-50' : ''}`}
-                    value={categories[cat.key as keyof typeof categories].minTurnover}
-                    onChange={(e) => handleCategoryChange(cat.key, 'minTurnover', e.target.value)}
-                    disabled={!cat.selected}
-                  />
-                </div>
-
-                <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
-                  <div className="flex justify-between items-center">
-                    <LabelTitleComponent text="Max Payout" required={true} />
-                    <div className="flex items-center text-[12px]">
-                      <input
-                        type="checkbox"
-                        className="mr-2"
-                        checked={categories[cat.key as keyof typeof categories].unlimited}
-                        onChange={(e) =>
-                          handleCategoryChange(cat.key, 'unlimited', e.target.checked)
-                        }
-                        id={`${cat.key}-unlimited`}
-                        disabled={!cat.selected}
-                      />
-                      <label
-                        htmlFor={`${cat.key}-unlimited`}
-                        className="text-[var(--text-color-primary)]"
-                      >
-                        Unlimited
-                      </label>
-                    </div>
-                  </div>
-                  <input
-                    type="number"
-                    min="0"
-                    className={`control-field ${!cat.selected ? 'opacity-50' : ''}`}
-                    value={categories[cat.key as keyof typeof categories].maxPayout}
-                    onChange={(e) => handleCategoryChange(cat.key, 'maxPayout', e.target.value)}
-                    disabled={
-                      categories[cat.key as keyof typeof categories].unlimited || !cat.selected
-                    }
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex justify-start py-[8px] mt-[8px] gap-[8px]">
-            <ButtonCancelComponent text="Cancel" onClick={onClose} />
-            <ButtonApplyComponent
-              text={loading ? 'Saving...' : 'Save'}
-              type="submit"
-              disabled={loading}
-            />
-          </div>
-        </form>
-      </div>
-    </div>
+        <div className="flex justify-start py-[8px] mt-[8px] gap-[8px]">
+          <ButtonCancelComponent text="Cancel" onClick={onClose} />
+          <ButtonApplyComponent
+            text={loading ? 'Saving...' : 'Save'}
+            type="submit"
+            disabled={loading}
+          />
+        </div>
+      </form>
+    </>
   );
 };
 

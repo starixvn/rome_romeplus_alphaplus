@@ -5,7 +5,7 @@ import 'tippy.js/dist/tippy.css';
 import { promotionService } from '../../../services/promotionAPI';
 import PromotionList from './components/PromotionList';
 import Filter from './components/Filter';
-import type { Promotion } from '../../../services/interfaces/Promotion';
+import type { Promotion, PromotionDetail } from '../../../services/interfaces/Promotion';
 import AddPromotion from './components/AddPromotion';
 import { TitleComponent } from '../../../components/Title';
 import { ButtonFullComponent } from '../../../components/Buttons/index';
@@ -16,10 +16,10 @@ const Promotion: React.FC = () => {
   const [promotionType, setPromotionType] = useState<string>('All');
   const [status, setStatus] = useState<string>('All');
   const [error, setError] = useState<string | null>(null);
-  const [promotions, setPromotions] = useState<Promotion[]>([]);
+  const [promotions, setPromotions] = useState<PromotionDetail[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showAddPromotion, setShowAddPromotion] = useState<boolean>(false);
-  const [selectedPromotion, setSelectedPromotion] = useState<Promotion | null>(null);
+  const [selectedPromotion, setSelectedPromotion] = useState<PromotionDetail | null>(null);
 
   const handleFilterChange = (type: string, status: string) => {
     setPromotionType(type);
@@ -47,12 +47,12 @@ const Promotion: React.FC = () => {
     fetchPromotions();
   }, [promotionType, status]);
 
-  const handleEdit = (promotion: Promotion) => {
+  const handleEdit = (promotion: PromotionDetail) => {
     setSelectedPromotion(promotion);
     setShowAddPromotion(true);
   };
 
-  const handleDelete = async (promotion: Promotion) => {
+  const handleDelete = async (promotion: PromotionDetail) => {
     if (window.confirm('Are you sure you want to delete this promotion?')) {
       try {
         await promotionService.deletePromotion(promotion.promotionId);

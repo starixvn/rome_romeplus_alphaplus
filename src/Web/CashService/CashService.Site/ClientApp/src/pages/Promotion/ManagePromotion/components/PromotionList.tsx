@@ -1,12 +1,12 @@
 import React from 'react';
 import Table from './Table';
-import type { Promotion } from '../../../../services/interfaces/Promotion';
+import type { PromotionDetail } from '../../../../services/interfaces/Promotion';
 
 interface PromotionListProps {
-  items: Promotion[];
+  items: PromotionDetail[];
   isLoading: boolean;
-  onEdit?: (item: Promotion) => void;
-  onDelete?: (item: Promotion) => void;
+  onEdit?: (item: PromotionDetail) => void;
+  onDelete?: (item: PromotionDetail) => void;
 }
 
 const PromotionList: React.FC<PromotionListProps> = ({ items, isLoading, onEdit, onDelete }) => {
