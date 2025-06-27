@@ -31,7 +31,7 @@ public class WriteLogDBCommandCriteria : NonQueryCommand
     public string Duration { get; }
 
     [SpParam(Ignored = true)]
-    public int SiteDB { get; }
+    public int SiteDB { get; set; }
 
     public override string GetSettingKey() 
         => SiteDB < 0 ? "WriteLog_CashService_UserLog_RunSP" : $"SiteDB_{SiteDB}_WriteLog_CashService_UserLog_RunSP";
