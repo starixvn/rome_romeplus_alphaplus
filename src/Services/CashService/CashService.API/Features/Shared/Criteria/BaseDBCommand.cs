@@ -12,10 +12,10 @@ public class BaseDBCommand : CriteriaBase
         Language = language;
     }
 
-    public int CustId { get; set; }
-    public int SubAccId { get; set; }
-    public string IP { get; set; } 
-    public string Language { get; set; } 
+    public int CustId { get; }
+    public int SubAccId { get; }
+    public string IP { get; } 
+    public string Language { get; } 
 
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; }

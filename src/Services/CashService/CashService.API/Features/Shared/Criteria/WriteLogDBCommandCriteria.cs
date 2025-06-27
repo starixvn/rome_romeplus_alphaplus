@@ -28,10 +28,10 @@ public class WriteLogDBCommandCriteria : NonQueryCommand
     public string TrackingValue2 { get; }
     public string TrackingValueMask { get; set; }
     public string TrackingValueMask2 { get; set; }
-    public string Duration { get; set; }
+    public string Duration { get; }
 
     [SpParam(Ignored = true)]
-    public int SiteDB { get; set; }
+    public int SiteDB { get; }
 
     public override string GetSettingKey() 
         => SiteDB < 0 ? "WriteLog_CashService_UserLog_RunSP" : $"SiteDB_{SiteDB}_WriteLog_CashService_UserLog_RunSP";
