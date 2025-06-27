@@ -15,7 +15,7 @@ export const BackButtonComponent: React.FC<ButtonComponentProps> = ({ onClick })
           onClick={onClick}
         >
           <IconBack className="w-[18px] h-[18px] fill-[var(--button-back-text)] mr-[8px] group-hover:fill-[var(--button-back-text-hover)]" />
-          <span className="font-semibold max-w-[100px]">{tGlobal('back')}</span>
+          <span className="font-semibold">{tGlobal('back')}</span>
         </span>
       </div>
     </>
