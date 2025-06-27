@@ -29,8 +29,7 @@ export const SettingCashMemberInfo = () => {
         handleSubmit,
         reset,
         control,
-        setValue,
-        formState: { isDirty, errors },
+        formState: { errors },
     } = methods;
 
     // Populate form when customerInfo is loaded
