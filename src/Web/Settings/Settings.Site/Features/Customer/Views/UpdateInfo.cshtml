@@ -72,11 +72,16 @@
 <div id="root"></div>
 
 <body>
-    @* <script type="text/javascript">
-        const appConfig = @Html.Raw(Model.AppConfig);
-        const params = @Html.Raw(Model.Params);
-        const cdnUri = "@Html.Raw(Model.CdnUri)cash-member/create";
-    </script> *@
+    <script type="text/javascript">
+        const updateInfoCustomerPageConfig = @Html.Raw(Json.Serialize(
+            new {
+                custId = Model.CustId,    
+                isCashMember = Model.IsCashMember,
+                settingSiteUrl = MicroSites.SettingUrl(),
+                cashServiceUrl = MicroSites.CashServiceUrl()
+            }
+        ));
+    </script>
 
     <environment include="Production">
         <script type="module" src="@(MicroSites.CashServiceUrl())updateInfoCashMember.js?version=@(Model.AssetsVersion)"></script>
@@ -93,8 +98,9 @@
     </environment>
     <environment include="Development">
         <script type="module"
-            src="http://localhost:5173/src/pages/CustomerSites/pages/UpdateInfoCashMember.tsx"></script>
+            src="http://localhost:5173/src/pages/CustomerSites/pages/UpdateInfoCustomer/index.tsx"></script>
     </environment>
+    @Html.AntiForgeryToken()
 </body>
 
 </html>

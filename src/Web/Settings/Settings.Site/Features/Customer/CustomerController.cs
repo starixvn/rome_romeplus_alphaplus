@@ -406,11 +406,14 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         public async Task<ActionResult> CheckExistedCustomer(string username)
            => Json(await customerService.CheckExistedCustomer(username));
 
-        public async Task<IActionResult> UpdateInfo(int custId)
+        public async Task<IActionResult> GetCustomerInfo(int custId)
+           => Json(await customerService.GetCustomerInfo(custId), serializeOptions);
+
+        public async Task<IActionResult> UpdateInfo(int custId, bool isCashMember)
         {
             // TODO: get customer info
             var customerInfo = await customerService.GetCustomerInfo(custId);
-            var viewModel = new UpdateInfoViewModel(customerInfo, GetAssetsVersion());
+            var viewModel = new UpdateInfoViewModel(customerInfo, GetAssetsVersion(), custId, isCashMember);
             return View(viewModel);
         }
 

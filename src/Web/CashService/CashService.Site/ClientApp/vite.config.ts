@@ -13,9 +13,9 @@ const copyWithoutHash = () => {
       const files = fs.readdirSync(distDir);
       
       files.forEach(file => {
-        if (file.includes('updateInfoCashMember') && file.includes('.js')) {
+        if (file.includes('updateInfoCustomer') && file.includes('.js')) {
           const sourcePath = path.join(distDir, file);
-          const targetPath = path.join(distDir, 'updateInfoCashMember.js');
+          const targetPath = path.join(distDir, 'updateInfoCustomer.js');
           fs.copyFileSync(sourcePath, targetPath);
         }
         if (file.includes('index') && file.includes('.css')) {
@@ -30,7 +30,6 @@ const copyWithoutHash = () => {
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss(), copyWithoutHash()],
-
   test: {
     globals: true,
     environment: 'jsdom',
@@ -62,7 +61,7 @@ export default defineConfig({
         pendingWithdrawal: 'src/pages/Transactions/PendingWithdrawal/index.tsx',
         transactionsHistory: 'src/pages/Transactions/History/index.tsx',
         paymentProviderSettings: 'src/pages/PaymentProviderSettings/index.tsx',
-        updateInfoCashMember: 'src/pages/CustomerSites/pages/UpdateInfoCashMember.tsx',
+        updateInfoCustomer: 'src/pages/CustomerSites/pages/UpdateInfoCustomer/index.tsx',
         pendingPromotion: 'src/pages/Promotion/PendingPromotion/index.tsx',
       },
       output: {

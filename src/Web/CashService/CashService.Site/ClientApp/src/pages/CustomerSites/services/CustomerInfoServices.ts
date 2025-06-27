@@ -1,48 +1,14 @@
 import { axiosInstance } from '../../../services/axios';
-import { AxiosError } from 'axios';
-// Declare the cashServiceAPIUrl property on the Window interface
-declare global {
-  interface Window {
-    cashServiceAPIUrl: string;
-  }
+
+const GetCustomerInfo = async <T>(params?: Record<string, any>): Promise<T> =>{
+  const { data } = await axiosInstance.get<T>(`${updateInfoCustomerPageConfig.settingSiteUrl}Customer/GetCustomerInfo`, {
+    params
+  });
+  return data;
+}
+const UpdateCustomerInfo = async <T>(params?: Record<string, any>): Promise<T> =>{
+  const { data } = await axiosInstance.post<T>(`${updateInfoCustomerPageConfig.settingSiteUrl}Customer/UpdateInfoPost`, params);
+  return data;
 }
 
-
-class CustomerInfoServices {
-  private readonly CustomerInfoAPI = 'XXXX';
-  private readonly BankInfoAPI = 'XXXX';
-
-  async getCustomerInfo(): Promise<any> {
-    try {
-      const { data } = await axiosInstance.get<any>(this.CustomerInfoAPI);
-      console.log("getCustomerInfo", data);
-      return data;
-    } catch (error) {
-      if (error instanceof AxiosError && error.response?.status === 404) {
-        return  {
-
-        }
-      }
-      throw error;
-    }
-  }
-
-  async getCustomerBanksInfo(): Promise<any> {
-    try {
-      const { data } = await axiosInstance.get<any>(this.BankInfoAPI);
-      console.log("getCustomerBanksInfo", data);
-      return {
-      
-      };
-    } catch (error) {
-      if (error instanceof AxiosError && error.response?.status === 404) {
-        return  {
-
-        }
-      }
-      throw error;
-    }
-  }
-}
-
-export const customerInfoServices = new CustomerInfoServices();
+export { GetCustomerInfo, UpdateCustomerInfo };

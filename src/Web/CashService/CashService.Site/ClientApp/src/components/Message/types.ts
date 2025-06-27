@@ -11,4 +11,5 @@ export interface ResultMessageProps {
 
 export interface ValidateMessageProps {
   message: string;
+  className?: string;
 } 
