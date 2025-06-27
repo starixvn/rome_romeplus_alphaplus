@@ -16,7 +16,6 @@ public class AddTransactionDepositCriteria(
     short paymentMethodId,
     string paymentFrom,
     string paymentTo,
-    //decimal exchangeRate,
     decimal amount,
     decimal? userInputAmount = null,
     byte? matchingMode = null,
@@ -47,7 +46,7 @@ public class AddTransactionDepositCriteria(
 
     public string PaymentTo { get; } = paymentTo;
 
-    public decimal ExchangeRate { get; }// = exchangeRate;
+    public decimal ExchangeRate { get; }
 
     public decimal Amount { get; } = amount;
 

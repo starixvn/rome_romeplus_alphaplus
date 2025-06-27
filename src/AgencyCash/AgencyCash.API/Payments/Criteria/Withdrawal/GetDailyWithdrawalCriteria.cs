@@ -4,18 +4,12 @@ using Fanex.Data.Repository;
 
 namespace AgencyCash.API.Payments.Criteria.Withdrawal;
 
-public class GetDailyWithdrawalCriteria : NonQueryCommand
+public class GetDailyWithdrawalCriteria(int custId, short siteDBGroupId) : NonQueryCommand
 {
-    public GetDailyWithdrawalCriteria(int custId, short siteDBGroupId)
-    {
-        CustId = custId;
-        SiteDBGroupId = siteDBGroupId;
-    }
-
-    public int CustId { get; }
+    public int CustId { get; } = custId;
 
     [SpParam(Ignored = true)]
-    public short SiteDBGroupId { get; }
+    public short SiteDBGroupId { get; } = siteDBGroupId;
 
     public int WithdrawalCnt { get; set; }
 
