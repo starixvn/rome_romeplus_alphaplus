@@ -9,6 +9,7 @@ public class UpdateWithdrawalTransStatusCriteria(
     long transId,
     byte statusId,
     short siteDBGroupId,
+    string providerTransId,
     string ip) : CriteriaBase
 {
     public int AgentId { get; } = agentId;
@@ -20,6 +21,8 @@ public class UpdateWithdrawalTransStatusCriteria(
     public byte StatusId { get; } = statusId;
 
     public short SiteDBGroupId { get; } = siteDBGroupId;
+
+    public string ProviderTransId { get; } = providerTransId;
 
     public string IP { get; } = ip;
 

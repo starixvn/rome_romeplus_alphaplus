@@ -11,6 +11,7 @@ public class UpdateDepositTransStatusCriteria(
     short siteDBGroupId,
     decimal agentGivenCredit,
     decimal creditMembersGivenCredit,
+    string providerTransId,
     string ip) : CriteriaBase
 {
     public int AgentId { get; } = agentId;
@@ -26,6 +27,8 @@ public class UpdateDepositTransStatusCriteria(
     public decimal AgentGivenCredit { get; } = agentGivenCredit;
 
     public decimal CreditMembers_GivenCredit { get; } = creditMembersGivenCredit;
+
+    public string ProviderTransId { get; } = providerTransId;
 
     public string IP { get; } = ip;
 

@@ -15,11 +15,12 @@ public class UpdateWithdrawalTransStatusCriteriaTest
         const long transId = 789;
         const byte statusId = 1;
         const short siteDBGroupId = 10;
+        string providerTransId = "PROV123";
         const string ip = "192.168.1.1";
 
         // Act
         var criteria = new UpdateWithdrawalTransStatusCriteria(
-            agentId, custId, transId, statusId, siteDBGroupId, ip);
+            agentId, custId, transId, statusId, siteDBGroupId, providerTransId, ip);
 
         // Assert
         Assert.Equal(agentId, criteria.AgentId);
@@ -27,6 +28,7 @@ public class UpdateWithdrawalTransStatusCriteriaTest
         Assert.Equal(transId, criteria.TransId);
         Assert.Equal(statusId, criteria.StatusId);
         Assert.Equal(siteDBGroupId, criteria.SiteDBGroupId);
+        Assert.Equal(providerTransId, criteria.ProviderTransId);
         Assert.Equal(ip, criteria.IP);
     }
 
@@ -36,7 +38,7 @@ public class UpdateWithdrawalTransStatusCriteriaTest
         // Arrange
         const short siteDBGroupId = 5;
         var criteria = new UpdateWithdrawalTransStatusCriteria(
-            1, 1, 1, 1, siteDBGroupId, "127.0.0.1");
+            1, 1, 1, 1, siteDBGroupId, null, "127.0.0.1");
         var expectedSpName = SPNameHelper.SiteDBPrefix("API_CashWithdrawal_UpdateTransStatus", siteDBGroupId);
 
         // Act
@@ -56,7 +58,7 @@ public class UpdateWithdrawalTransStatusCriteriaTest
     {
         // Arrange
         var criteria = new UpdateWithdrawalTransStatusCriteria(
-            agentId, custId, transId, 1, 5, "127.0.0.1");
+            agentId, custId, transId, 1, 5, null, "127.0.0.1");
 
         // Act
         var result = criteria.IsValid();

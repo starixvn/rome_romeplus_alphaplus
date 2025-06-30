@@ -133,6 +133,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
             transId,
             request.StatusId,
             siteDBConfig.SiteDBGroupId,
+            request.ProviderTransId,
             request.IP);
         var logs = await repository.FetchAsync<LogEntry>(criteria);
         var result = new Result(criteria.ErrCode, criteria.ErrMsg);

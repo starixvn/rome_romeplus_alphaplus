@@ -138,6 +138,7 @@ public class DepositService(
             request.Amount,
             userInputAmount: request.UserInputAmount,
             matchingMode: request.MatchingMode,
+            providerId: request.ProviderId,
             ip: request.IP,
             remark: request.Remark);
 
@@ -197,6 +198,7 @@ public class DepositService(
             siteDBConfig.SiteDBGroupId,
             limitCriteria.AgentGivenCredit,
             limitCriteria.CreditMembers_GivenCredit,
+            request.ProviderTransId,
             request.IP);
         var logs = await repository.FetchAsync<LogEntry>(criteria);
         var result = new Result(criteria.ErrCode, criteria.ErrMsg);
