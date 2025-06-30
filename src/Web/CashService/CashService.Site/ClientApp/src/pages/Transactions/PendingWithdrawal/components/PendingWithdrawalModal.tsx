@@ -27,14 +27,12 @@ interface PendingWithdrawalModalProps {
   transId: number;
   custId: number;
   onClose: () => void;
-  isCashServiceEnabled: boolean;
 }
 
 const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
   transId,
   custId,
   onClose,
-  isCashServiceEnabled,
 }) => {
   const { t } = useTranslation('pendingWithdrawal');
   const { t: tGlobal } = useTranslation('global');
@@ -356,12 +354,12 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
           <div className="flex gap-4 justify-end mt-6">
             <ButtonRejectComponent
               onClick={handleReject}
-              disabled={isSubmitting || isLoading || !isCashServiceEnabled}
+              disabled={isSubmitting || isLoading}
               text={t('pendingWithdrawalModal.reject')}
             />
             <ButtonApplyComponent
               onClick={handleApprove}
-              disabled={isSubmitting || isLoading || !isCashServiceEnabled}
+              disabled={isSubmitting || isLoading}
               text={t('pendingWithdrawalModal.approve')}
             />
           </div>

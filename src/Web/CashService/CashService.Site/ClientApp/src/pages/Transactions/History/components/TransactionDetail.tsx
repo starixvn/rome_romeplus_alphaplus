@@ -30,6 +30,7 @@ interface TransactionDetailProps {
   transactionType: number;
   onClose: () => void;
   onRevertSuccess?: () => void;
+  isCashServiceEnabled: boolean;
 }
 
 const TransactionDetail: React.FC<TransactionDetailProps> = ({
@@ -39,6 +40,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
   transactionType,
   onClose,
   onRevertSuccess,
+  isCashServiceEnabled,
 }) => {
   const { t } = useTranslation('transactionHistory');
   const { t: tGlobal } = useTranslation('global');
@@ -272,8 +274,9 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
             {detailData?.isAllowRevert && (
               <ButtonApplyComponent
                 onClick={handleRevert}
-                disabled={reverting || !detailData}
+                disabled={reverting || !detailData || !isCashServiceEnabled}
                 text={t('detail.revertToPending')}
+                title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
               />
             )}
           </div>

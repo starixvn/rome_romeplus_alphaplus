@@ -42,7 +42,10 @@ public class TransactionsController(
         return View(new SiteBaseViewModel { IsCashServiceEnabled = isCashServiceEnabled });
     }
 
-    public IActionResult History() => View();
+    public async Task<IActionResult> History() {
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+        return View(new SiteBaseViewModel { IsCashServiceEnabled = isCashServiceEnabled });
+    }
 
     public async Task<IActionResult> GetHistory([FromQuery] GetTransactionFilter filter)
     {

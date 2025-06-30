@@ -15,6 +15,7 @@ import Pagination from '../../Components/Pagination';
 
 interface TransactionListProps {
   transactionType: number;
+  isCashServiceEnabled: boolean;
 }
 
 const useTransactionData = () => {
@@ -200,7 +201,7 @@ const usePaymentInfo = (apiData: TransactionsHistoryResponse, transactionType: n
   return { paymentInformations };
 };
 
-const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) => {
+const TransactionList: React.FC<TransactionListProps> = ({ transactionType, isCashServiceEnabled }) => {
   const { loading, error, apiData, fetchTransactions } = useTransactionData();
   const { apiParams, updateApiParams } = useApiParams(transactionType);
   const { columnFilter, localSearchText, handleColumnChange, handleLocalSearchChange } =
@@ -340,6 +341,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         columnFilter={columnFilter}
         transactionType={transactionType}
         onRefreshNeeded={onRefreshNeeded}
+        isCashServiceEnabled={isCashServiceEnabled}
       />
 
       {!loading && tempTotalCount > 0 && (

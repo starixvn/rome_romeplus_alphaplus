@@ -20,7 +20,7 @@ interface DataGridProps {
   isCashServiceEnabled: boolean;
 }
 
-const DataGrid: React.FC<DataGridProps> = ({ withdrawals, reloadGrid, isCashServiceEnabled }) => {
+const DataGrid: React.FC<DataGridProps> = ({ withdrawals, reloadGrid }) => {
   const { t } = useTranslation('pendingWithdrawal');
   const { t: tGlobal } = useTranslation('global');
   const [showWithdrawalPopup, setShowWithdrawalPopup] = useState<boolean>(false);
@@ -147,7 +147,6 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals, reloadGrid, isCashServ
           transId={selectedWithdrawal.transId}
           custId={selectedWithdrawal.custId}
           onClose={handleCloseProcess}
-          isCashServiceEnabled={isCashServiceEnabled}
         />
       )}
       {paginatedWithdrawals.length > 0 && (

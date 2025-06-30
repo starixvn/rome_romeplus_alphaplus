@@ -13,7 +13,13 @@ const History: React.FC = () => {
   useCookieLanguage(i18n);
   const [activeTab, setActiveTab] = useState<number>(1);
   const { t: tTransactionHistory } = useTranslation('transactionHistory');
+  const [isCashServiceEnabled, setIsCashServiceEnabled] = useState(false);
 
+  React.useEffect(() => {
+    const isCashServiceEnabled = document.getElementById('IsCashServiceEnabled')?.getAttribute('value');
+    setIsCashServiceEnabled(isCashServiceEnabled === '1');
+  }, []);
+  
   const handleTabChange = (tab: number) => {
     setActiveTab(tab);
   };
@@ -22,7 +28,7 @@ const History: React.FC = () => {
     <div className="flex h-full flex-col">
       <TitleComponent title={tTransactionHistory('transactionHistory')} />
       <HistoryTab activeTab={activeTab} onTabChange={handleTabChange} />
-      <TransactionList transactionType={activeTab} />
+      <TransactionList transactionType={activeTab} isCashServiceEnabled={isCashServiceEnabled} />
     </div>
   );
 };

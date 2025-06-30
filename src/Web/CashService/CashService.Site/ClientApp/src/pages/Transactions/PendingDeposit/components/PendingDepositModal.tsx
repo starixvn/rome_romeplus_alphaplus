@@ -274,11 +274,13 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
                 onClick={handleReject}
                 disabled={isSubmitting || isLoading || !isCashServiceEnabled}
                 text={t('pendingDepositModal.reject')}
+                title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
               />
               <ButtonApplyComponent
                 onClick={handleApprove}
                 disabled={isSubmitting || isLoading || !isCashServiceEnabled}
                 text={t('pendingDepositModal.approve')}
+                title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
               />
             </div>
           )}

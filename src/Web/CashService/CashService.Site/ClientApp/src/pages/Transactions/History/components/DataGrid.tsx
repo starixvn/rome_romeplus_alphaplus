@@ -22,6 +22,7 @@ interface DataGridProps {
   transactionType: number;
   onRefreshNeeded?: () => void;
   columnFilter?: string[];
+  isCashServiceEnabled: boolean;
 }
 
 const DataGrid: React.FC<DataGridProps> = ({
@@ -32,6 +33,7 @@ const DataGrid: React.FC<DataGridProps> = ({
   transactionType,
   onRefreshNeeded,
   columnFilter = ['All'],
+  isCashServiceEnabled,
 }) => {
   const { t } = useTranslation('transactionHistory');
   const { t: tGlobal } = useTranslation('global');
@@ -179,6 +181,7 @@ const DataGrid: React.FC<DataGridProps> = ({
           transactionType={transactionType}
           onClose={handleCloseModal}
           onRevertSuccess={handleRevertSuccess}
+          isCashServiceEnabled={isCashServiceEnabled}
         />
       )}
     </>
