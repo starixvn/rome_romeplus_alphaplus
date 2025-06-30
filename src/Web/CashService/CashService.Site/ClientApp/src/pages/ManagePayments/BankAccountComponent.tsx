@@ -60,7 +60,9 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
   const [selectedBankAccount, setSelectedBankAccount] = useState<BankAccount | null>(null);
   const [transactionTypes, setTransactionTypes] = useState<any[]>([]);
   const searchInputRef = useRef<HTMLInputElement>(null);
-
+  const [isSearchActive, setIsSearchActive] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+  
   const fetchTransactionTypes = async () => {
     setLoading(true);
     const response = await paymentProviderService.getTransactionTypes();
@@ -175,6 +177,22 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
     fetchBanks();
     fetchBankAccounts();
   };
+
+  const handleSearchClick = () => {
+    setIsSearchActive(!isSearchActive);
+  };
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setIsSearchActive(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleDeleteBankAccount = async (account: BankAccount) => {    
     setDeleting(account.id);
@@ -388,24 +406,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                     </div>
                   </div>
                 </div>
-                <div className="flex pb-[16px] w-full">
-                  <div className="w-[250px] ml-auto ">
-                    <div className="relative">
-                      <span className="absolute transform-[translatey(-50%)] z-[10] top-1/2 left-[8px]">
-                        <IconSearch />
-                      </span>
-                      <input
-                        type="text"
-                        id="searchInput"
-                        className="control-field pl-[30px]!"
-                        placeholder={tManagePayments('searchAccountNumberOrName')}
-                        value={searchInput}
-                        onChange={onSearchChange}
-                        ref={searchInputRef}
-                      />
-                    </div>
-                  </div>
-                </div>
+                
               </>
             )}
             <div className="w-full border border-[var(--table-border-color)] border-b-0 p-[6px] flex">
@@ -420,6 +421,25 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                   text={tManagePayments('setLimit')}
                   onClick={onSetLimit}
                 />
+              </div>
+              <div ref={searchRef} className={`box-search relative w-[250px] max-[768px]:w-[28px] ml-auto ${isSearchActive ? 'active' : ''}`} >
+                <div className="hidden max-[768px]:block bg-black/10 rounded-[3px] p-[6px] cursor-pointer" onClick={handleSearchClick}>
+                  <IconSearch />
+                </div>
+                <div className="relative max-[768px]:hidden child-search">
+                  <span className="absolute transform-[translatey(-50%)] z-[10] top-1/2 left-[8px]">
+                    <IconSearch />
+                  </span>
+                  <input
+                    type="text"
+                    id="searchInput"
+                    className="control-field pl-[30px]!"
+                    placeholder={tManagePayments('searchAccountNumberOrName')}
+                    value={searchInput}
+                    onChange={onSearchChange}
+                    ref={searchInputRef}
+                  />
+                </div>
               </div>
             </div>
             <div className="table table-fixed-body">
