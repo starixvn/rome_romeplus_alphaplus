@@ -5,7 +5,7 @@ import './ButtonComponents.scss';
 export const ButtonRejectComponent: React.FC<ButtonComponentProps> = ({
   text,
   onClick,
-  type = 'button',
+  type,
   className = '',
   disabled = false,
   title = '',

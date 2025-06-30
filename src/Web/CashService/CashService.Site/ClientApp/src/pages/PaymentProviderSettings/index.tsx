@@ -84,7 +84,7 @@ function PaymentProviderSettings() {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = React.useState('');
   const [selectedStatus, setSelectedStatus] = React.useState('');
   const [selectedTransactionType, setSelectedTransactionType] = React.useState('');
-  const [isCashServiceEnabled] = React.useState(false);
+  const [isCashServiceEnabled, setIsCashServiceEnabled] = React.useState(false);
 
   const [formState, setFormState] = useState<FormState>({
     providerStatus: window.providerSettingsViewModel.Provider.Status,
@@ -94,6 +94,11 @@ function PaymentProviderSettings() {
     providerStatus: window.providerSettingsViewModel.Provider.Status,
     providerSettings: window.providerSettingsViewModel.Provider.ProviderSettings,
   });
+
+  React.useEffect(() => {
+    const isCashServiceEnabled = document.getElementById('IsCashServiceEnabled')?.getAttribute('value');
+    setIsCashServiceEnabled(isCashServiceEnabled === '1');
+  }, []);
 
   useCookieLanguage(i18n);
   // Fetch provider settings when component mounts or when dropdowns change

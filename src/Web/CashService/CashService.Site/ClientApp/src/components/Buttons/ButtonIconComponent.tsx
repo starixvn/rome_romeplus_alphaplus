@@ -3,7 +3,7 @@ import { IconClose, IconDelete, IconPen } from '../Icons';
 import { ButtonComponentProps } from './types';
 import './ButtonComponents.scss';
 
-export const ButtonClosePopupComponent: React.FC<ButtonComponentProps> = ({ onClick, type = 'button' }) => {
+export const ButtonClosePopupComponent: React.FC<ButtonComponentProps> = ({ onClick, type }) => {
   return (
     <button
       type={type}
@@ -15,7 +15,7 @@ export const ButtonClosePopupComponent: React.FC<ButtonComponentProps> = ({ onCl
   );
 };
 
-export const ButtonPenComponent: React.FC<ButtonComponentProps> = ({ onClick, disabled, type = 'button' }) => {
+export const ButtonPenComponent: React.FC<ButtonComponentProps> = ({ onClick, disabled, type }) => {
   return (
     <button
       type={type}
@@ -27,7 +27,7 @@ export const ButtonPenComponent: React.FC<ButtonComponentProps> = ({ onClick, di
   );
 };
 
-export const ButtonDeleteComponent: React.FC<ButtonComponentProps> = ({ onClick, type = 'button' }) => {
+export const ButtonDeleteComponent: React.FC<ButtonComponentProps> = ({ onClick, type }) => {
   return (
     <button
       type={type}

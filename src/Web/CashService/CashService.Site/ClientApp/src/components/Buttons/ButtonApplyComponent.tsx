@@ -6,7 +6,7 @@ export const ButtonApplyComponent: React.FC<ButtonComponentProps> = ({
   text,
   onClick,
   disabled = false,
-  type = 'button',
+  type,
   className = '',
   title = '',
 }) => {

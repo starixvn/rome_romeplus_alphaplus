@@ -322,7 +322,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
             <ValidateMessageComponent message={fieldErrors.agreeToTerms} />
           </div>
           <div className="flex justify-center gap-[8px]">
-            <ButtonCancelComponent text={tGlobal('cancel')} onClick={onClose} />
+            <ButtonCancelComponent text={tGlobal('cancel')} onClick={onClose} type='button' />
             <ButtonApplyComponent
               text={tGlobal('save')}
               onClick={() => onSubmit({ preventDefault: () => {} } as React.FormEvent)}

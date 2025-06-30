@@ -5,7 +5,7 @@ import './ButtonComponents.scss';
 export const ButtonFullComponent: React.FC<ButtonComponentProps> = ({
   text,
   onClick,  
-  type = 'button',
+  type,
   className = '',
   disabled = false,
 }) => {

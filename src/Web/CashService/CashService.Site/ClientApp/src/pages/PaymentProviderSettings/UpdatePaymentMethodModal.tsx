@@ -355,7 +355,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
             <ValidateMessageComponent message={fieldErrors.agreeToTerms} />
           </div>
           <div className="flex justify-center gap-[8px]">
-            <ButtonCancelComponent text={tPaymentProviderSettings('setUpLater')} onClick={onClose} />
+            <ButtonCancelComponent text={tPaymentProviderSettings('setUpLater')} onClick={onClose} type='button' />
             <ButtonApplyComponent
               text={isLoading ? tGlobal('loading') : tGlobal('update')}
               type='submit'

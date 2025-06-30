@@ -45,10 +45,10 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.MemberSites
         }
 
         [Fact]
-        public void Index_ReturnsViewWithModel()
+        public async Task Index_ReturnsViewWithModel()
         {
             _mockCustomerService.Setup(s => s.GetCashServiceStatus(1)).ReturnsAsync(1);
-            var result = _controller.Index();
+            var result = await _controller.Index();
             var viewResult = Assert.IsType<ViewResult>(result);
             var model = Assert.IsAssignableFrom<MemberSiteBaseViewModel>(viewResult.Model);
             Assert.Equal("dark", model.DarkModeName);

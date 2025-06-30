@@ -5,7 +5,7 @@ import './ButtonComponents.scss';
 export const ButtonOutlineComponent: React.FC<ButtonComponentProps> = ({
   text,
   onClick,
-  type = 'button',
+  type,
   className = '',
 }) => {
   return (

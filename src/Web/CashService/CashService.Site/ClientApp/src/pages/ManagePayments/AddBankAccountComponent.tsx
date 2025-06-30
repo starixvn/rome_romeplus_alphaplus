@@ -524,10 +524,10 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
               />
             </div>
             <div className="flex justify-start py-[8px] mt-[8px] gap-[8px]">
-              <ButtonCancelComponent text={tGlobal('cancel')} onClick={onClose} />
+              <ButtonCancelComponent text={tGlobal('cancel')}  onClick={onClose} type='button' />
               <ButtonApplyComponent
                 text={tGlobal(loading ? 'saving' : 'save')}
-                  type='submit'
+                type='submit'
                 onClick={() => handleSubmit}
                 disabled={!isCashServiceEnabled || loading || isBlockAction}
                 title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}

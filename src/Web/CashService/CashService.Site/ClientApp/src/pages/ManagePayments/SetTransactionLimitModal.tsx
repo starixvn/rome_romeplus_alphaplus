@@ -345,7 +345,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
             </div>
           </div>
           <div className="flex justify-center gap-[8px]">
-            <ButtonCancelComponent text={tGlobal('cancel')} onClick={onClose} />
+            <ButtonCancelComponent text={tGlobal('cancel')} onClick={onClose} type='button' />
             <ButtonApplyComponent
               text={loading ? tGlobal('saving') : tGlobal('save')}
               type='submit'
