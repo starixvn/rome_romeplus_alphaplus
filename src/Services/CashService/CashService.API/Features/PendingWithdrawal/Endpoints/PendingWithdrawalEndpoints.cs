@@ -84,6 +84,9 @@ public static class PendingWithdrawalEndpoints
         group.MapPost("/reject", async ([FromBody] ProcessWithdrawalTransaction model, IPendingWithdrawalService service) =>
             {
                 model.StatusId = (int)TransactionStatus.Rejected;
+                model.PaymentFrom = string.Empty;
+                model.PaymentMethodId = 0;
+                model.ProviderId = 0;
                 var result = await service.ProcessWithdrawAsync(model);
                 return Results.Ok(result);
             })
