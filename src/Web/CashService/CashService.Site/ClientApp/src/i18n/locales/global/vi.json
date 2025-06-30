@@ -85,6 +85,9 @@
   "dragAndDrop": "hoặc kéo và thả",
   "imageFormat": "Tải lên jpeg, jpg, png",
   "maxSize": "Tối đa 1 MB",
+  "exportToExcel": "Xuất ra Excel",
+  "copied": "Đã sao chép",
+  "copy": "Sao chép",
   "status": {
     "waiting": "Đang chờ",
     "cancelled": "Đã hủy",

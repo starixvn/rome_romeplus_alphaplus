@@ -85,6 +85,9 @@
   "dragAndDrop": "또는 드래그 앤 드롭",
   "imageFormat": "jpeg, jpg, png 업로드",
   "maxSize": "최대 1 MB",
+  "exportToExcel": "Excel로 내보내기",
+  "copied": "복사됨",
+  "copy": "복사",
   "status": {
     "waiting": "대기 중",
     "cancelled": "취소됨",

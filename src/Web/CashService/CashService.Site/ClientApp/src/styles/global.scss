@@ -435,6 +435,26 @@ table:not(.no-hover){
     }
   }
 }
+.box-search{
+  &.active{
+    .child-search{
+      display: block;
+      position: absolute;
+      right: 0 ;
+      top: 0;
+      z-index: 10;
+      width: 200px;
+      > span{
+        right: 6px;
+        left: auto;
+      }
+      .control-field{
+        padding-right: 30px!important;
+        
+      }
+    }
+  }
+}
 
 @keyframes mulShdSpin {
   0%,

@@ -85,6 +85,9 @@
   "dragAndDrop": "or drag and drop",
   "imageFormat": "Upload jpeg, jpg, png",
   "maxSize": "Max 1 MB",
+  "exportToExcel": "Export to Excel",
+  "copied": "Copied",
+  "copy": "Copy",
   "status": {
     "waiting": "Waiting",
     "cancelled": "Cancelled",

@@ -85,6 +85,9 @@
   "dragAndDrop": "或拖放",
   "imageFormat": "上傳 jpeg、jpg、png",
   "maxSize": "最大 1 MB",
+  "exportToExcel": "匯出到 Excel",
+  "copied": "已複製",
+  "copy": "複製",
   "status": {
     "waiting": "等待中",
     "cancelled": "已取消",

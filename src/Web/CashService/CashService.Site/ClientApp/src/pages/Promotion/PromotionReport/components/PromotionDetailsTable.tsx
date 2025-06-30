@@ -2,7 +2,7 @@ import NoRecordFoundComponent from '../../../../components/NoRecordFoundComponen
 import {
   StatusCompletedComponent,
   StatusProcessingComponent,
-  StatusFailedComponent,
+  StatusDisabledComponent,
 } from '../../../../components/StatusComponents';
 import { formatNumber } from '../../../../utils/numberFormatting';
 
@@ -20,7 +20,7 @@ const PromotionDetailsRow = ({ idx, data }: any) => {
       return <StatusProcessingComponent text="Pending" />;
     }
 
-    return <StatusFailedComponent text="Rejected" />;
+    return <StatusDisabledComponent text="Rejected" />;
   };
 
   return (
