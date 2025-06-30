@@ -2,6 +2,7 @@ namespace AlphaPlus.CashService.Site.Features.Transactions;
 
 using AlphaPlus.Shared.AppResources.CashServices;
 using Core.Models;
+using Fanex.Customer.Client.Services;
 using Helpers;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
@@ -10,8 +11,7 @@ using Services;
 using Shared;
 using Shared.Filters;
 using Shared.Models;
-using Fanex.Customer.Client.Services;
-using AlphaPlus.CashService.Site.Features.Shared.Resources;
+using Shared.Resources;
 
 [SiteAuthorizationFilter(PageAccessType.CashService)]
 public class TransactionsController(
@@ -32,17 +32,20 @@ public class TransactionsController(
 
     public IActionResult Index() => Ok("Transactions");
 
-    public async Task<IActionResult> Deposit()  {
+    public async Task<IActionResult> Deposit()
+    {
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
         return View(new SiteBaseViewModel { IsCashServiceEnabled = isCashServiceEnabled });
     }
 
-    public async Task<IActionResult> Withdrawal() {
+    public async Task<IActionResult> Withdrawal()
+    {
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
         return View(new SiteBaseViewModel { IsCashServiceEnabled = isCashServiceEnabled });
     }
 
-    public async Task<IActionResult> History() {
+    public async Task<IActionResult> History()
+    {
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
         return View(new SiteBaseViewModel { IsCashServiceEnabled = isCashServiceEnabled });
     }
@@ -133,7 +136,8 @@ public class TransactionsController(
         }
 
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
-        if(isCashServiceEnabled == 0) {
+        if (isCashServiceEnabled == 0)
+        {
             return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
         }
 
@@ -159,7 +163,8 @@ public class TransactionsController(
         }
 
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
-        if(isCashServiceEnabled == 0) {
+        if (isCashServiceEnabled == 0)
+        {
             return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
         }
 
@@ -281,7 +286,8 @@ public class TransactionsController(
         }
 
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
-        if(isCashServiceEnabled == 0) {
+        if (isCashServiceEnabled == 0)
+        {
             return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
         }
 
@@ -307,7 +313,8 @@ public class TransactionsController(
         }
 
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
-        if(isCashServiceEnabled == 0) {
+        if (isCashServiceEnabled == 0)
+        {
             return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
         }
 
@@ -331,7 +338,8 @@ public class TransactionsController(
         }
 
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
-        if(isCashServiceEnabled == 0) {
+        if (isCashServiceEnabled == 0)
+        {
             return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
         }
 
@@ -351,9 +359,10 @@ public class TransactionsController(
         {
             return Unauthorized();
         }
-        
+
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
-        if(isCashServiceEnabled == 0) {
+        if (isCashServiceEnabled == 0)
+        {
             return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
         }
 

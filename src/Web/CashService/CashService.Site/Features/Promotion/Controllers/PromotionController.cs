@@ -45,4 +45,41 @@ public class PromotionController(
 
         return Json(result);
     }
+
+    public async Task<IActionResult> GetPromotionProducts()
+    {
+        var url = $"/promotions/products";
+        var result = await httpClientHelper.GetAsync<object>(url, null);
+        return Json(result);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> AddPromotion([FromBody] object request)
+    {
+        var url = $"/promotions";
+        var result = await httpClientHelper.PostAsync<object, object>(url, request);
+        return Json(result);
+    }
+
+    [HttpPut]
+    public async Task<IActionResult> EditPromotion(int promotionId, [FromBody] object request)
+    {
+        var url = $"/promotions/{promotionId}";
+        await httpClientHelper.PutAsync<object>(url, request);
+        return Json(new { success = true });
+    }
+
+    public async Task<IActionResult> GetPromotionReport()
+    {
+        var url = $"/promotions/reports";
+        var result = await httpClientHelper.GetAsync<object>(url, null);
+        return Json(result);
+    }
+
+    public async Task<IActionResult> GetPromotionReportDetails(int id)
+    {
+        var url = $"/promotions/reports/{id}";
+        var result = await httpClientHelper.GetAsync<object>(url, null);
+        return Json(result);
+    }
 }
