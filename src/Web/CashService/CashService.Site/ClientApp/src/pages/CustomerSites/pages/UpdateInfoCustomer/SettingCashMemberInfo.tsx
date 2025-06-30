@@ -16,22 +16,22 @@ import { useResultMessage } from "../../../../hooks/useResultMessage";
 export const SettingCashMemberInfo = () => {
     const { t } = useTranslation('customerSites');
     const { t: tGlobal } = useTranslation('global');
-    const [originalCustomerInfo, setOriginalCustomerInfo] = useState<CustomerInfoData | null>(null);
+    const [originalCustomerInfo, setOriginalCustomerInfo] = useState<CustomerInfoData>({
+        firstName: '',
+        lastName: '',
+        mobilePhone: '',
+        mobileCode: '',
+        mobileNumber: '',
+        phone: '',
+        email: '',
+        fax: ''
+    });
     const [loading, setLoading] = useState(false);
     const [isBlockAction, setIsBlockAction] = useState(false);
     const { showResult, ResultMessage } = useResultMessage();
 
     const methods = useForm<CustomerInfoData>({
-        defaultValues: {
-            firstName: '',
-            lastName: '',
-            mobilePhone: '',
-            mobileCode: '',
-            mobileNumber: '',
-            phone: '',
-            email: '',
-            fax: ''
-        },
+        defaultValues: originalCustomerInfo,
         mode: 'onChange',
         criteriaMode: 'all',
     });
@@ -63,6 +63,7 @@ export const SettingCashMemberInfo = () => {
                 showResult('error', t('global:thereNoChangeToUpdate'));
                 return;
             }
+            
             setLoading(true);
             setIsBlockAction(true);
 
@@ -77,27 +78,25 @@ export const SettingCashMemberInfo = () => {
                 Fax: formData.fax
             });
             if ((response as any).isSuccessful) {
+                setOriginalCustomerInfo(formData);
+                reset(formData);
                 showResult('success', t('global:updateSuccess'));
             } else {
                 showResult('error', (response as any).message);
             }
-
         } catch (error) {
             console.error('Error updating customer info:', error);
             showResult('error', t('global:updateFailed'));
         } finally {
-
             setLoading(false);
             setIsBlockAction(false);
         }
     };
 
-    const handleClearAll = () => {
-        if (originalCustomerInfo) {
-            reset(originalCustomerInfo);
-        }
-    };
-
+    const handleReset = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        reset(originalCustomerInfo);
+    }
 
     return (
         <div className="w-full sm:w-[80%] md:w-[60%] lg:w-[50%] xl:w-[40%]">
@@ -105,9 +104,9 @@ export const SettingCashMemberInfo = () => {
                 {ResultMessage()}
             </div>
             <FormProvider {...methods}>
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form>
                     <div className="bg-white border border-gray-200 rounded-[3px] p-[10px]">
-            
+
                         <div className="flex flex-col">
                             {/* First Name and Last Name Row */}
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
@@ -285,14 +284,14 @@ export const SettingCashMemberInfo = () => {
                     <div className="flex flex-col sm:flex-row gap-[8px] mt-[15px]">
                         <ButtonFullComponent
                             className="w-full sm:w-[100px] [&>*]:w-[100%]"
+                            onClick={handleSubmit(onSubmit)}
                             text={loading ? t('global:loading') : t('updateInfoCashMember.update')}
-                            type="submit"
                             disabled={loading || isBlockAction}
                         />
                         <ButtonOutlineComponent
                             className="w-full sm:w-[100px] [&>*]:w-[100%]"
                             text={t('updateInfoCashMember.reset')}
-                            onClick={handleClearAll}
+                            onClick={handleReset}
                             disabled={loading || isBlockAction}
                         />
                     </div>

@@ -84,6 +84,7 @@ export const SettingCustomerInfoWrapper = () => {
 
         } catch (error) {
             console.error('Error updating customer info:', error);
+            showResult('error', t('global:updateFailed'));
         } finally {
             setLoading(false);
             setIsBlockAction(false);
@@ -98,7 +99,10 @@ export const SettingCustomerInfoWrapper = () => {
         return true;
     }
 
-
+    const handleReset = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        reset(originalCustomerInfo);
+    }
 
     return (
         <div>
@@ -106,7 +110,7 @@ export const SettingCustomerInfoWrapper = () => {
                 <div className="w-[50%] mb-[10px]">
                     {ResultMessage()}
                 </div>
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form>
                     <div className="table">
                         <table className="w-[50%] border-collapse no-hover">
                             <thead style={{ boxShadow: 'none' }}>
@@ -224,13 +228,13 @@ export const SettingCustomerInfoWrapper = () => {
                         <ButtonFullComponent
                             className="w-[120px] [&>*]:w-[100%]"
                             text={loading ? t('global:loading') : t('updateInfoCashMember.update')}
-                            type="submit"
+                            onClick={handleSubmit(onSubmit)}
                             disabled={loading || isBlockAction}
                         />
                         <ButtonOutlineComponent
                             className="w-[120px] [&>*]:w-[100%]"
                             text={t('updateInfoCashMember.reset')}
-                            onClick={() => reset(originalCustomerInfo)}
+                            onClick={handleReset}
                             disabled={loading || isBlockAction}
                         />
                     </div>
