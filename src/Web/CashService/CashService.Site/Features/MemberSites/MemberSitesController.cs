@@ -27,12 +27,15 @@ public class MemberSitesController : SiteBaseController
     }
 
     [HttpGet]
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
         var model = new MemberSiteBaseViewModel
         {
-            DarkModeName = _userSession.DarkModeName
+            DarkModeName = _userSession.DarkModeName,
+            IsCashServiceEnabled = isCashServiceEnabled
         };
+
         return View(model);
     }
 
@@ -42,8 +45,6 @@ public class MemberSitesController : SiteBaseController
 
         var url = $"{_apiBaseUrl}/member-site-info?custId={_userSession.CustId}&site={_userSession.Site}";
         var response = await _httpClient.GetFromJsonAsync<MemberSiteManagementModel>(url, cancellationToken);
-
-        response.IsCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
         return Ok(response);
     }
 

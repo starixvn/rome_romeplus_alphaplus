@@ -8,7 +8,6 @@ public class MemberSiteManagementModel
     public string Mobile { get; set; } = string.Empty;
     public string Contacts { get; set; } = string.Empty;
     public string Announcement { get; set; } = string.Empty;
-    public int IsCashServiceEnabled { get; set; }
 }
 
 public class UpdateMemberSiteManagementModel : MemberSiteManagementModel

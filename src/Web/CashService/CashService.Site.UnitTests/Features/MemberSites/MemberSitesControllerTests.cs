@@ -47,17 +47,18 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.MemberSites
         [Fact]
         public void Index_ReturnsViewWithModel()
         {
+            _mockCustomerService.Setup(s => s.GetCashServiceStatus(1)).ReturnsAsync(1);
             var result = _controller.Index();
             var viewResult = Assert.IsType<ViewResult>(result);
             var model = Assert.IsAssignableFrom<MemberSiteBaseViewModel>(viewResult.Model);
             Assert.Equal("dark", model.DarkModeName);
+            Assert.Equal(1, model.IsCashServiceEnabled);
         }
 
         [Fact]
         public async Task MemberSiteManagement_Get_ReturnsOkWithResponse()
         {
             var model = new MemberSiteManagementModel();
-            _mockCustomerService.Setup(s => s.GetCashServiceStatus(1)).ReturnsAsync(1);
             var controller = new MemberSitesController(
                 _mockConfig.Object,
                 _mockUserSession.Object,
@@ -69,7 +70,6 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.MemberSites
             var result = await controller.MemberSiteManagement(CancellationToken.None);
             var okResult = Assert.IsType<OkObjectResult>(result);
             var response = Assert.IsType<MemberSiteManagementModel>(okResult.Value);
-            Assert.Equal(1, response.IsCashServiceEnabled);
         }
 
         [Fact]
