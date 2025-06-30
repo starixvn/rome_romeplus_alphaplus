@@ -54,4 +54,8 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ClientApp\src\pages\Promotion\PromotionReport\" />
+  </ItemGroup>
+
 </Project>

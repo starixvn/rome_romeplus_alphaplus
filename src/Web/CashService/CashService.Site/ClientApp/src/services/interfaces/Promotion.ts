@@ -56,3 +56,8 @@ export interface ProductSetting {
   maxPayout: number;
   unlimited: boolean;
 }
+
+export interface PromotionReport {
+  promotionId: number;
+  promotionTitle: string;
+}

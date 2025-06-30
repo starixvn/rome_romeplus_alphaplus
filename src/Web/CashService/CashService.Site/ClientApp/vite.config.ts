@@ -63,6 +63,7 @@ export default defineConfig({
         paymentProviderSettings: 'src/pages/PaymentProviderSettings/index.tsx',
         updateInfoCustomer: 'src/pages/CustomerSites/pages/UpdateInfoCustomer/index.tsx',
         pendingPromotion: 'src/pages/Promotion/PendingPromotion/index.tsx',
+        promotionReport: 'src/pages/Promotion/PromotionReport/index.tsx',
       },
       output: {
         assetFileNames: 'index-[hash][extname]',

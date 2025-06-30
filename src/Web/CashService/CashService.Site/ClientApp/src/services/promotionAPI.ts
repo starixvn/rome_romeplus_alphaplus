@@ -1,5 +1,5 @@
 import { axiosInstance as api } from './axios';
-import { PromotionDetail, PromotionParams } from './interfaces/Promotion';
+import { PromotionDetail, PromotionParams, PromotionReport } from './interfaces/Promotion';
 
 export const promotionService = {
   getPromotion: async (promotionParams: PromotionParams): Promise<PromotionDetail[]> => {
@@ -23,4 +23,8 @@ export const promotionService = {
       throw error;
     }
   },
+  getPromotionReport: async (): Promise<any> =>
+    await api.get<PromotionReport[]>('GetPromotionReport'),
+  getPromotionDetailsReport: async (): Promise<any> =>
+    await api.get<object[]>('GetPromotionDetailsReport'),
 };
