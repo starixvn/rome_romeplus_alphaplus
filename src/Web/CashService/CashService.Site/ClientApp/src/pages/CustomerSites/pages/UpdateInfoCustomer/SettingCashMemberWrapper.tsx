@@ -1,6 +1,5 @@
 import React from "react";
 import { ButtonTabInactiveComponent, ButtonTabActiveComponent } from "../../../../components/Buttons";
-import { TitleComponent } from "../../../../components/Title";
 import { useTranslation } from "react-i18next";
 import { SettingCashMemberBankInfo } from "./SettingCashMemberBankInfo";
 import { SettingCashMemberInfo } from "./SettingCashMemberInfo";
