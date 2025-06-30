@@ -28,6 +28,7 @@ public record Transaction
     public DateTime CreatedTime { get; set; }
     public bool IsAllowRevert { get; set; }
     public bool IsHadPayslip { get; set; }
+    public int PaymentType { get; set; }
     public string CreatedBy { get; set; }
     public string Base64Payslip { get; set; }
     public DateTime? LastUpdatedDate { get; set; }

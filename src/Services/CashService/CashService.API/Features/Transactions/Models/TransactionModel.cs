@@ -27,6 +27,7 @@ public class TransactionModel
     public byte[] Payslip { get; set; }
     public bool IsAllowRevert { get; set; }
     public bool IsHadPayslip { get; set; }
+    public int PaymentType { get; set; }
     public string CreatedBy { get; set; }
     public string Base64Payslip => Payslip is null ? string.Empty : Convert.ToBase64String(Payslip);
     public DateTime CreatedTime { get; set; }
