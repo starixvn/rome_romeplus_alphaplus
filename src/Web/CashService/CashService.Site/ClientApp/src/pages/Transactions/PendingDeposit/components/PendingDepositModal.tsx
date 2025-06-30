@@ -9,6 +9,7 @@ import {
   ButtonApplyComponent,
   ButtonClosePopupComponent,
   ButtonRejectComponent,
+  ButtonCancelComponent,
 } from '../../../../components/Buttons/index';
 import { ResultMessageComponent } from '../../../../components/Message';
 import { LabelTitleComponent, MediumTitleComponent } from '../../../../components/Title';
@@ -239,16 +240,18 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
                       </div>
                     </div>
                   </div>
-                  <div className="mb-[16px] mt-[10px]">
-                    <LabelTitleComponent text={t('pendingDepositModal.remarks')} />
-                    <textarea
-                      value={remark}
-                      onChange={(e) => setRemark(e.target.value)}
-                      maxLength={1000}
-                      placeholder={t('pendingDepositModal.remarksPlaceholder')}
-                      className="block h-[230px]! py-[10px] control-field"
-                    />
-                  </div>
+                  {deposit?.paymentType === 2 && (
+                    <div className="mb-[16px] mt-[10px]">
+                      <LabelTitleComponent text={t('pendingDepositModal.remarks')} />
+                      <textarea
+                        value={remark}
+                        onChange={(e) => setRemark(e.target.value)}
+                        maxLength={1000}
+                        placeholder={t('pendingDepositModal.remarksPlaceholder')}
+                        className="block h-[230px]! py-[10px] control-field"
+                      />
+                    </div>
+                  )}
                 </div>
                 {deposit?.base64Payslip && (
                   <div className="pl-[32px] max-[768px]:pl-[0] max-[768px]:w-full">
@@ -265,18 +268,25 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
             )}
           </div>
 
-          <div className="flex gap-4 justify-end mt-6">
-            <ButtonRejectComponent
-              onClick={handleReject}
-              disabled={isSubmitting || isLoading || !isCashServiceEnabled}
-              text={t('pendingDepositModal.reject')}
-            />
-            <ButtonApplyComponent
-              onClick={handleApprove}
-              disabled={isSubmitting || isLoading || !isCashServiceEnabled}
-              text={t('pendingDepositModal.approve')}
-            />
-          </div>
+          {deposit?.paymentType === 2 && (
+            <div className="flex gap-4 justify-end mt-6">
+              <ButtonRejectComponent
+                onClick={handleReject}
+                disabled={isSubmitting || isLoading || !isCashServiceEnabled}
+                text={t('pendingDepositModal.reject')}
+              />
+              <ButtonApplyComponent
+                onClick={handleApprove}
+                disabled={isSubmitting || isLoading || !isCashServiceEnabled}
+                text={t('pendingDepositModal.approve')}
+              />
+            </div>
+          )}
+          {deposit?.paymentType === 1 && (
+            <div className="flex gap-4 justify-end mt-6">
+              <ButtonCancelComponent onClick={() => onClose(false)} text={tGlobal('close')} />
+            </div>
+          )}
         </div>
       </div>
     </>

@@ -23,6 +23,7 @@ export interface TransactionItem {
   createdBy: string;
   operatedTime: string;
   isHadPayslip: boolean;
+  paymentType: number;
 }
 
 export interface TransactionsHistoryResponse {
