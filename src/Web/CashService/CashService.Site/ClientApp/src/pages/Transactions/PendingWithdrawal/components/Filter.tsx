@@ -38,22 +38,24 @@ const Filter: React.FC<FilterProps> = ({
           </div>
         </div>
       </div>
-      <div className="flex mb-[16px]">
-        <div className="w-[250px] ml-auto">
-          <div className="relative">
-            <span className="absolute transform-[translatey(-50%)] z-[10] top-1/2 left-[8px]">
-              <IconSearch />
-            </span>
-            <input
-              type="text"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="control-field pl-[30px]!"
-              placeholder={t('filter.usernamePlaceholder')}
-            />
+      <div className="search-section w-full border border-[var(--table-border-color)] border-b-0 p-[6px]">
+        <div className="flex">
+          <div className="w-[250px] ml-auto">
+            <div className="relative">
+              <span className="absolute transform-[translatey(-50%)] z-[10] top-1/2 left-[8px]">
+                <IconSearch />
+              </span>
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="control-field pl-[30px]!"
+                placeholder={t('filter.usernamePlaceholder')}
+              />
+            </div>
           </div>
         </div>
-      </div>
+      </div>      
     </>
   );
 };

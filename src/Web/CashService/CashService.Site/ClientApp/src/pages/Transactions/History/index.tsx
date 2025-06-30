@@ -19,7 +19,7 @@ const History: React.FC = () => {
   };
 
   return (
-    <div className="py-[12px] flex h-full flex-col">
+    <div className="flex h-full flex-col">
       <TitleComponent title={tTransactionHistory('transactionHistory')} />
       <HistoryTab activeTab={activeTab} onTabChange={handleTabChange} />
       <TransactionList transactionType={activeTab} />

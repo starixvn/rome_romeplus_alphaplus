@@ -379,6 +379,9 @@ table:not(.no-hover){
   outline: none;
   cursor: pointer;
   appearance: none;
+  &[type="text"]{
+    cursor: text;
+  }
   &.error{
     border-color: var(--border-control-error);
   }
