@@ -101,7 +101,7 @@ function PromotionReport() {
   //const fetchPromotionDetails = useCallback(async () => {}, [promotionId]);
 
   return (
-    <div className="">
+    <>
       <TitleComponent title="Promotion Report" />
       <Filter
         dateRange={dateRange}
@@ -163,7 +163,7 @@ function PromotionReport() {
       ) : (
         <PromotionDetailsTable data={promotionDetailsData} />
       )}
-    </div>
+    </>
   );
 }
 
