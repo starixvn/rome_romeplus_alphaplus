@@ -1,5 +1,6 @@
 using AlphaPlus.CashService.API.Features.Promotion.Models;
 using AlphaPlus.CashService.API.Features.Promotion.Services;
+using AlphaPlus.CashService.API.Features.Promotion.Models;
 
 namespace AlphaPlus.CashService.API.Features.Promotion.Endpoints;
 
@@ -7,11 +8,21 @@ public static class PromotionEndpoints
 {
     public static void MapPromotionEndpoints(this WebApplication app)
     {
-        var group = app.MapGroup("/api/promotion").WithTags("Promotion");
-
-        group.MapGet("/get-promotion/{promotionType}/{status}", async (string promotionType, string status, IPromotionService service) =>
+	app.MapGet("/api/promotions/products", async (IPromotionService service) =>
         {
-            var promotions = await service.GetPromotion(promotionType, status);
+            var products = await service.GetProductAsync();
+            return Results.Ok(products);
+        })
+        .WithName("GetPromotionProducts")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Get promotion products",
+            Description = "Returns a tree of available products for promotion"
+        });
+
+        app.MapGet("/api/promotions/get", async (int promotionTypeId, int statusId, int custId, IPromotionService service) =>
+        {
+            var promotions = await service.GetPromotionAsync(promotionTypeId, statusId, custId);
             return Results.Ok(promotions);
         })
         .WithName("GetPromotion")
@@ -21,16 +32,40 @@ public static class PromotionEndpoints
             Description = "Returns a list of available promotion"
         });
 
-        group.MapDelete("/delete/{custId:int}/{promotionId:int}", async (int custId, int promotionId, IPromotionService service) =>
+        app.MapGet("/api/promotions", async (int promotionId, int custId, IPromotionService service) =>
         {
-            var result = await service.DeletePromotion(custId, promotionId);
-            return Results.Ok(result);
+            var promotion = await service.GetPromotionByIdAsync(promotionId, custId);
+            return Results.Ok(promotion);
         })
-        .WithName("DeletePromotion")
+        .WithName("GetPromotions")
         .WithOpenApi(operation => new(operation)
         {
-            Summary = "Delete promotion",
-            Description = "Deletes a promotion by its ID for a specific customer."
+            Summary = "Get promotion detail",
+            Description = "Returns a promotion match ID"
+        });
+
+        app.MapPost("/api/promotions", async (PromotionRequest request, IPromotionService service) =>
+        {
+            var result = await service.AddPromotionAsync(request);
+            return Results.Ok(result);
+        })
+        .WithName("AddPromotion")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Add promotion",
+            Description = "Add a new promotion"
+        });
+
+        app.MapPut("/api/promotions/{promotionId}", async (int promotionId, PromotionRequest request, IPromotionService service) =>
+        {
+            var result = await service.EditPromotion(promotionId, request);
+            return Results.Ok(result);
+        })
+        .WithName("EditPromotion")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Edit promotion",
+            Description = "Edit an existing promotion"
         });
 
         group.MapGet("/reports", () =>

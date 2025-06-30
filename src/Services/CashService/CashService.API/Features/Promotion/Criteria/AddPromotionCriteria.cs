@@ -1,46 +1,24 @@
-﻿using Fanex.Data.Repository;
+﻿namespace AlphaPlus.CashService.API.Features.Promotion.Criteria;
 
-namespace AlphaPlus.CashService.API.Features.Promotion.Criteria
+using Fanex.Data.Repository;
+
+public class AddPromotionCriteria : NonQueryCommand
 {
-    public class AddPromotionCriteria : NonQueryCommand
-    {
-        public string PromotionType { get; set; }
+    public int PromotionType { get; set; }
+    public int StatusId { get; set; }
+    public DateTime FromDate { get; set; }
+    public DateTime ToDate { get; set; }
+    public string Title { get; set; }
+    public string Content { get; set; }
+    public byte[] Banner { get; set; }
+    public string ProductSettings { get; set; }
+    public int CreatedBy { get; set; }
+    public string IP { get; set; }
+    public int SiteDbGroupId { get; set; }
+    public int ErrCode { get; set; }
+    public string ErrMsg { get; set; }
 
-        public DateTime FromDate { get; set; }
+    public override string GetSettingKey() => "";
 
-        public DateTime ToDate { get; set; }
-
-        public string Provider { get; set; }
-
-        public decimal SportsPercentage { get; set; }
-
-        public decimal SportsMinTurnover { get; set; }
-
-        public decimal SportsMaxPayout { get; set; }
-
-        public decimal VirtualSportsPercentage { get; set; }
-
-        public decimal VirtualSportsMinTurnover { get; set; }
-
-        public decimal VirtualSportsMaxPayout { get; set; }
-
-        public decimal GamesPercentage { get; set; }
-
-        public decimal GamesMinTurnover { get; set; }
-
-        public decimal GamesMaxPayout { get; set; }
-
-        public decimal LiveCasinoPercentage { get; set; }
-
-        public decimal LiveCasinoMinTurnover { get; set; }
-
-        public decimal LiveCasinoMaxPayout { get; set; }
-
-        public int ErrCode { get; set; }
-        public string ErrMsg { get; set; }
-
-        public override string GetSettingKey() => "";
-
-        public override bool IsValid() => true;
-    }
+    public override bool IsValid() => true;
 }

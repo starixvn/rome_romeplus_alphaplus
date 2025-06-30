@@ -37,9 +37,9 @@ public class PromotionController(
         return Json(await _httpClient.GetFromJsonAsync<object>(url));
     }
 
-    public async Task<IActionResult> GetPromotion(string promotionType, string status, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetPromotion(int promotionTypeId, int statusId, CancellationToken cancellationToken)
     {
-        var url = $"{_apiBaseUrl}/promotion/get-promotion/{promotionType}/{status}";
+        var url = $"{_apiBaseUrl}/promotions/get?promotionTypeId={promotionTypeId}&statusId={statusId}";
 
         var result = await httpClientHelper.GetAsync<object>(url);
 

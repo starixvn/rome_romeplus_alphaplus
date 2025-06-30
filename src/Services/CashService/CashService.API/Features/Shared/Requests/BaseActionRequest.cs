@@ -12,4 +12,4 @@ public class BaseActionRequest
     public int CustDBGroupId { get; set; }
 
     public virtual bool IsValid() => ActorId > 0;
-} 
+}
