@@ -2,7 +2,7 @@
     "updateInfoCashMember": {
         "memberInfo": "Member Info",
         "bankInfo": "Bank Info",
-        "fistName": "First Name",
+        "firstName": "First Name",
         "lastName": "Last Name",
         "phone": "Phone",
         "mobile": "Mobile",
@@ -21,6 +21,7 @@
         "bankName": "Bank Name",
         "accountNumber": "Account Number",
         "bankNameRequired": "Bank name is required",
-        "accountNumberRequired": "Account number is required"
+        "accountNumberRequired": "Account number is required",
+        "updatedSuccessfully": "Updated successfully"
     }
 }

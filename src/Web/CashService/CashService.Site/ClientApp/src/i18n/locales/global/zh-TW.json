@@ -108,5 +108,6 @@
     "selected": "已選擇",
     "noRangeSelected": "未選擇範圍"
   },
-  "cashServiceDisabled": "現金服務已禁用"
+  "cashServiceDisabled": "現金服務已禁用",
+  "info": "資訊"
 }

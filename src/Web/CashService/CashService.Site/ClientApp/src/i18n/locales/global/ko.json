@@ -108,5 +108,6 @@
     "selected": "선택",
     "noRangeSelected": "범위가 선택되지 않음"
   },
-  "cashServiceDisabled": "캐시 서비스가 비활성화되었습니다"
+  "cashServiceDisabled": "캐시 서비스가 비활성화되었습니다",
+  "info": "정보"
 }

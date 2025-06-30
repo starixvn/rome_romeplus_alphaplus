@@ -27,7 +27,6 @@ export const SettingCashMemberWrapper = () => {
 
     return (
         <>
-            <TitleComponent title={t('updateInfoCashMember.memberInfo')} showTippy={false} />
             <ul className="flex mt-[-12px] border-b border-[var(--border-color)] mb-[15px]">
                 {tabButton(activeTab)}
             </ul>

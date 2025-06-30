@@ -3,19 +3,16 @@ import { useState, useEffect } from "react";
 import { CustomerInfoData } from "../../types/UpdateCustomerType";
 import { FormProvider, useForm, Controller } from 'react-hook-form';
 import { ButtonFullComponent, ButtonOutlineComponent } from "../../../../components/Buttons";
-import { LabelTitleComponent, TitleComponent } from "../../../../components/Title";
-import { useCustomerInfo } from "../../context/CustomerInfoContext";
-import LoadingComponent from "../../../../components/LoadingComponent";
-import { UpdateCustomerInfo } from "../../services/CustomerInfoServices";
+import { LabelTitleComponent } from "../../../../components/Title";
+import { GetCustomerInfo, UpdateCustomerInfo } from "../../services/CustomerInfoServices";
+import { splitMobile } from "../../../../utils/sharedUtils";
+import { useResultMessage } from "../../../../hooks/useResultMessage";
+import { EMAIL_REGEX } from "../../../../constants/memberSiteConstants";
 
 export const SettingCustomerInfoWrapper = () => {
     const { t } = useTranslation('customerSites');
-    const { customerInfo, loading, error, refreshCustomerInfo } = useCustomerInfo();
-    const [isLoading, setIsLoading] = useState(false);
-    const [isBlockAction, setIsBlockAction] = useState(false);
-
-    const CustomerInfoDataDefault: CustomerInfoData = {
-        fistName: '',
+    const [originalCustomerInfo, setOriginalCustomerInfo] = useState<CustomerInfoData>({
+        firstName: '',
         lastName: '',
         mobilePhone: '',
         mobileCode: '',
@@ -23,10 +20,13 @@ export const SettingCustomerInfoWrapper = () => {
         phone: '',
         email: '',
         fax: ''
-    }
+    });
+    const [loading, setLoading] = useState(false);
+    const [isBlockAction, setIsBlockAction] = useState(false);
+    const { showResult, ResultMessage } = useResultMessage();
 
     const methods = useForm<CustomerInfoData>({
-        defaultValues: CustomerInfoDataDefault,
+        defaultValues: originalCustomerInfo,
         mode: 'onChange',
         criteriaMode: 'all',
     });
@@ -38,73 +38,78 @@ export const SettingCustomerInfoWrapper = () => {
         formState: { isDirty },
     } = methods;
 
-    // Populate form when customerInfo is loaded
     useEffect(() => {
-        if (customerInfo) {
-            reset(customerInfo);
+        const fetchCustomerInfo = async () => {
+            const data = await GetCustomerInfo<CustomerInfoData>({
+                custId: updateInfoCustomerPageConfig.custId
+            });
+            const mobile = splitMobile(data.mobilePhone);
+            data.mobileCode = mobile.countryCode;
+            data.mobileNumber = mobile.mobile;
+            reset(data);
+            setOriginalCustomerInfo(data);
         }
-    }, [customerInfo, reset]);
+        fetchCustomerInfo();
+    }, [reset]);
 
     const onSubmit = async (formData: CustomerInfoData) => {
         try {
-            setIsLoading(true);
+            if (!isDirty) {
+                showResult('error', t('global:thereNoChangeToUpdate'));
+                return;
+            }
+            if (!isValidEmail(formData)) {
+                return;
+            }
+
+            setLoading(true);
             setIsBlockAction(true);
 
-            // TODO: Implement API call to update customer info
-            console.log('Updating customer info:', formData);
-
             const response = await UpdateCustomerInfo({
-                FirstName: formData.fistName,
+                FirstName: formData.firstName,
                 LastName: formData.lastName,
                 Phone: formData.phone,
                 Mobile: formData.mobilePhone,
                 Email: formData.email,
                 Fax: formData.fax
             });
-            console.log('response', response);
 
-            // Refresh customer info after successful update
-            // refreshCustomerInfo();
-
-            // Show success message or handle response
-            alert(t('updateInfoCashMember.updateSuccess') || 'Update successful');
+            if ((response as any).isSuccessful) {
+                setOriginalCustomerInfo(formData);
+                reset(formData);
+                showResult('success', t('global:updateSuccess'));
+            } else {
+                showResult('error', (response as any).message);
+            }
 
         } catch (error) {
             console.error('Error updating customer info:', error);
-            alert(t('updateInfoCashMember.updateError') || 'Update failed');
         } finally {
-            setIsLoading(false);
+            setLoading(false);
             setIsBlockAction(false);
         }
     };
 
-    const handleClearAll = () => {
-        reset(CustomerInfoDataDefault);
-    };
-
-    if (loading) {
-        return <LoadingComponent />;
+    const isValidEmail = (formData: CustomerInfoData) => {
+        if (formData.email && !EMAIL_REGEX.test(formData.email)) {
+            showResult('error', t('updateInfoCashMember.emailNotValid'));
+            return false;
+        }
+        return true;
     }
 
-    if (error) {
-        return (
-            <div className="text-red-500">
-                <p>Error: {error}</p>
-                <button onClick={refreshCustomerInfo} className="mt-2 px-4 py-2 bg-blue-500 text-white rounded">
-                    Retry
-                </button>
-            </div>
-        );
-    }
+
 
     return (
         <div>
-            <TitleComponent title={t('updateInfoCashMember.memberInfo')} showTippy={false} />
             <FormProvider {...methods}>
+                <div className="w-[50%] mb-[10px]">
+                    {ResultMessage()}
+                </div>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="table">
                         <table className="w-[50%] border-collapse no-hover">
-                            <thead>
+                            <thead style={{ boxShadow: 'none' }}>
                                 <tr>
                                     <th colSpan={4} scope="col">{t('updateInfoCashMember.customerInformation')}</th>
                                 </tr>
@@ -112,11 +117,11 @@ export const SettingCustomerInfoWrapper = () => {
                             <tbody className="font-[500]">
                                 <tr>
                                     <td>
-                                        <LabelTitleComponent text={t('updateInfoCashMember.fistName')} className="text-right" />
+                                        <LabelTitleComponent text={t('updateInfoCashMember.firstName')} className="text-right" />
                                     </td>
                                     <td>
                                         <Controller
-                                            name="fistName"
+                                            name="firstName"
                                             control={control}
                                             render={({ field }) => (
                                                 <input
@@ -218,15 +223,15 @@ export const SettingCustomerInfoWrapper = () => {
                     <div className="flex gap-[8px] mt-[15px]">
                         <ButtonFullComponent
                             className="w-[120px] [&>*]:w-[100%]"
-                            text={isLoading ? t('global:loading') : t('updateInfoCashMember.update')}
+                            text={loading ? t('global:loading') : t('updateInfoCashMember.update')}
                             type="submit"
-                            disabled={isLoading || isBlockAction || !isDirty}
+                            disabled={loading || isBlockAction}
                         />
                         <ButtonOutlineComponent
                             className="w-[120px] [&>*]:w-[100%]"
                             text={t('updateInfoCashMember.reset')}
-                            onClick={handleClearAll}
-                            disabled={isLoading || isBlockAction}
+                            onClick={() => reset(originalCustomerInfo)}
+                            disabled={loading || isBlockAction}
                         />
                     </div>
                 </form>

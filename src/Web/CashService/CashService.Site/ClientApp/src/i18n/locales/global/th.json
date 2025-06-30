@@ -108,5 +108,6 @@
     "selected": "เลือก",
     "noRangeSelected": "ไม่ได้เลือกช่วงเวลา"
   },
-  "cashServiceDisabled": "บริการเงินสดถูกปิดใช้งาน"
+  "cashServiceDisabled": "บริการเงินสดถูกปิดใช้งาน",
+  "info": "ข้อมูล"
 }

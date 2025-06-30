@@ -6,7 +6,7 @@ export interface MemberBankAccountRecord {
 }
 
 export interface CustomerInfoData {
-    fistName: string;
+    firstName: string;
     lastName: string;
     mobilePhone: string;
     mobileCode: string;

@@ -6,3 +6,4 @@ export const QR_CODE_SIZE = 256;
 export const NUMBER_REGEX = /[^0-9]/g;
 export const LINE_REGEX = /^[a-zA-Z0-9_.]+$/;
 export const CONTACT_REGEX = /^[a-zA-Z0-9_]+$/;
+export const EMAIL_REGEX = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;

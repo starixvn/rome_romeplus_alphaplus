@@ -66,7 +66,6 @@
     <environment names="Production">
         <link rel="stylesheet" href="@(MicroSites.CashServiceUrl())index.css?version=@(Model.AssetsVersion)" />
     </environment>
-    @* <link rel="stylesheet" href="@(MicroSites.CashServiceUrl())update-info-cash-member/index.css?version=@(Model.AssetsVersion)" /> *@
 </head>
 
 <div id="root"></div>
@@ -75,7 +74,8 @@
     <script type="text/javascript">
         const updateInfoCustomerPageConfig = @Html.Raw(Json.Serialize(
             new {
-                custId = Model.CustId,    
+                custId = Model.CustId,
+                username = Model.Username,
                 isCashMember = Model.IsCashMember,
                 settingSiteUrl = MicroSites.SettingUrl(),
                 cashServiceUrl = MicroSites.CashServiceUrl()

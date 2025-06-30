@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
     ButtonFullComponent,
     ButtonOutlineComponent,
@@ -6,21 +6,32 @@ import {
 import { LabelTitleComponent } from "../../../../components/Title";
 import { useTranslation } from "react-i18next";
 import { FormProvider, useForm, Controller } from 'react-hook-form';
-import { NUMBER_REGEX, PHONE_CODE_MAX_LENGTH, PHONE_NUMBER_MAX_LENGTH } from "../../../../constants/memberSiteConstants";
+import { EMAIL_REGEX, NUMBER_REGEX, PHONE_CODE_MAX_LENGTH, PHONE_NUMBER_MAX_LENGTH } from "../../../../constants/memberSiteConstants";
 import { CustomerInfoData } from "../../types/UpdateCustomerType";
-import { useCustomerInfo } from "../../context/CustomerInfoContext";
-import LoadingComponent from "../../../../components/LoadingComponent";
 import { ValidateMessageComponentV2 } from "../../../../components/Message/ValidateMessageComponent";
+import { GetCustomerInfo, UpdateCustomerInfo } from "../../services/CustomerInfoServices";
+import { splitMobile } from "../../../../utils/sharedUtils";
+import { useResultMessage } from "../../../../hooks/useResultMessage";
 
 export const SettingCashMemberInfo = () => {
     const { t } = useTranslation('customerSites');
     const { t: tGlobal } = useTranslation('global');
-    const { customerInfo, loading, originalCustomerInfo } = useCustomerInfo();
-    const [isLoading, setIsLoading] = React.useState(false);
-    const [isBlockAction, setIsBlockAction] = React.useState(false);
+    const [originalCustomerInfo, setOriginalCustomerInfo] = useState<CustomerInfoData | null>(null);
+    const [loading, setLoading] = useState(false);
+    const [isBlockAction, setIsBlockAction] = useState(false);
+    const { showResult, ResultMessage } = useResultMessage();
 
     const methods = useForm<CustomerInfoData>({
-        defaultValues: originalCustomerInfo,
+        defaultValues: {
+            firstName: '',
+            lastName: '',
+            mobilePhone: '',
+            mobileCode: '',
+            mobileNumber: '',
+            phone: '',
+            email: '',
+            fax: ''
+        },
         mode: 'onChange',
         criteriaMode: 'all',
     });
@@ -29,87 +40,96 @@ export const SettingCashMemberInfo = () => {
         handleSubmit,
         reset,
         control,
-        formState: { errors },
+        formState: { errors, isDirty },
     } = methods;
 
-    // Populate form when customerInfo is loaded
     useEffect(() => {
-        if (customerInfo) {
-            reset(customerInfo);
+        const fetchCustomerInfo = async () => {
+            const data = await GetCustomerInfo<CustomerInfoData>({
+                custId: updateInfoCustomerPageConfig.custId
+            });
+            const mobile = splitMobile(data.mobilePhone);
+            data.mobileCode = mobile.countryCode;
+            data.mobileNumber = mobile.mobile;
+            reset(data);
+            setOriginalCustomerInfo(data);
         }
-    }, [customerInfo, reset]);
+        fetchCustomerInfo();
+    }, [reset]);
 
     const onSubmit = async (formData: CustomerInfoData) => {
         try {
-            setIsLoading(true);
+            if (!isDirty) {
+                showResult('error', t('global:thereNoChangeToUpdate'));
+                return;
+            }
+            setLoading(true);
             setIsBlockAction(true);
 
-            // TODO: Implement API call to update customer info
             console.log('Updating customer info:', formData);
-
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1000));
-
-            // Refresh customer info after successful update
-            // refreshCustomerInfo();
-
-            // Show success message or handle response
-            alert(t('updateInfoCashMember.updateSuccess') || 'Update successful');
+            const response = await UpdateCustomerInfo({
+                CustId: updateInfoCustomerPageConfig.custId,
+                FirstName: formData.firstName,
+                LastName: formData.lastName,
+                Phone: formData.phone,
+                MobilePhone: formData.mobileCode + '-' + formData.mobileNumber,
+                Email: formData.email,
+                Fax: formData.fax
+            });
+            if ((response as any).isSuccessful) {
+                showResult('success', t('global:updateSuccess'));
+            } else {
+                showResult('error', (response as any).message);
+            }
 
         } catch (error) {
             console.error('Error updating customer info:', error);
-            alert(t('updateInfoCashMember.updateError') || 'Update failed');
+            showResult('error', t('global:updateFailed'));
         } finally {
-            setIsLoading(false);
+
+            setLoading(false);
             setIsBlockAction(false);
         }
     };
 
     const handleClearAll = () => {
-        reset(originalCustomerInfo);
+        if (originalCustomerInfo) {
+            reset(originalCustomerInfo);
+        }
     };
 
-    if (loading) {
-        return <LoadingComponent />;
-    }
 
     return (
-        <div>
+        <div className="w-full sm:w-[80%] md:w-[60%] lg:w-[50%] xl:w-[40%]">
+            <div className="mb-[10px]">
+                {ResultMessage()}
+            </div>
             <FormProvider {...methods}>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="w-full sm:w-[80%] md:w-[60%] lg:w-[50%] xl:w-[40%] bg-white border border-gray-200 rounded-lg pt-[10px] pl-[15px] pr-[15px] pb-[5px]">
-                        {/* <div className="flex flex-col">
-                            <div className="flex flex-col">
-                                <LabelTitleComponent
-                                    text={t('updateInfoCashMember.memberInfo')}
-                                    className=" font-medium text-gray-700"
-                                />
-                            </div>
-                        </div> */}
-
+                    <div className="bg-white border border-gray-200 rounded-[3px] p-[10px]">
+            
                         <div className="flex flex-col">
                             {/* First Name and Last Name Row */}
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                                 <div className="flex flex-col gap-2">
                                     <LabelTitleComponent
-                                        text={t('updateInfoCashMember.fistName')}
+                                        text={t('updateInfoCashMember.firstName')}
                                         required={true}
                                         className=" font-medium text-gray-700"
                                     />
                                     <Controller
-                                        name="fistName"
+                                        name="firstName"
                                         control={control}
                                         rules={{ required: tGlobal('pleaseFillField') || 'First name is required' }}
                                         render={({ field }) => (
                                             <input
                                                 {...field}
                                                 type="text"
-                                                className={`control-field ${errors.fistName ? 'error' : ''}`}
-                                                placeholder={t('updateInfoCashMember.fistName')}
+                                                className={`control-field ${errors.firstName ? 'error' : ''}`}
                                             />
                                         )}
                                     />
-                                    <ValidateMessageComponentV2 message={errors.fistName?.message as string} className="min-h-[20px]" />
+                                    <ValidateMessageComponentV2 message={errors.firstName?.message as string} />
                                 </div>
 
                                 <div className="flex flex-col gap-2">
@@ -127,12 +147,11 @@ export const SettingCashMemberInfo = () => {
                                                 {...field}
                                                 type="text"
                                                 className={`control-field ${errors.lastName ? 'error' : ''}`}
-                                                placeholder={t('updateInfoCashMember.lastName')}
                                             />
                                         )}
                                     />
-                                
-                                    <ValidateMessageComponentV2 message={errors.lastName?.message as string} className="min-h-[20px]" />
+
+                                    <ValidateMessageComponentV2 message={errors.lastName?.message as string} />
                                 </div>
                             </div>
 
@@ -176,7 +195,6 @@ export const SettingCashMemberInfo = () => {
                                                     id="mobileNumber"
                                                     className="flex-1 border-none focus:outline-none px-2 sm:px-3 py-2"
                                                     type="text"
-                                                    placeholder="Enter mobile number"
                                                     maxLength={PHONE_NUMBER_MAX_LENGTH}
                                                     onChange={(e) => {
                                                         e.preventDefault();
@@ -187,7 +205,7 @@ export const SettingCashMemberInfo = () => {
                                             )}
                                         />
                                     </div>
-                                    <ValidateMessageComponentV2 message={(errors.mobileCode?.message || errors.mobileNumber?.message) as string} className="min-h-[20px]" />
+                                    <ValidateMessageComponentV2 message={(errors.mobileCode?.message || errors.mobileNumber?.message) as string} />
                                 </div>
                                 <div className="flex flex-col gap-1">
                                     <LabelTitleComponent
@@ -202,7 +220,12 @@ export const SettingCashMemberInfo = () => {
                                                 {...field}
                                                 type="text"
                                                 className="control-field"
-                                                placeholder={t('updateInfoCashMember.phone')}
+                                                maxLength={PHONE_NUMBER_MAX_LENGTH}
+                                                onChange={(e) => {
+                                                    e.preventDefault();
+                                                    const value = e.target.value.replace(NUMBER_REGEX, '').slice(0, PHONE_NUMBER_MAX_LENGTH);
+                                                    field.onChange(value);
+                                                }}
                                             />
                                         )}
                                     />
@@ -224,7 +247,7 @@ export const SettingCashMemberInfo = () => {
                                         control={control}
                                         rules={{
                                             pattern: {
-                                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                                value: EMAIL_REGEX,
                                                 message: t('updateInfoCashMember.emailNotValid') || 'Invalid email address'
                                             }
                                         }}
@@ -233,11 +256,10 @@ export const SettingCashMemberInfo = () => {
                                                 {...field}
                                                 type="email"
                                                 className={`control-field ${errors.email ? 'error' : ''}`}
-                                                placeholder="example@email.com"
                                             />
                                         )}
                                     />
-                                    <ValidateMessageComponentV2 message={errors.email?.message as string} className="min-h-[20px]" />
+                                    <ValidateMessageComponentV2 message={errors.email?.message as string} />
                                 </div>
 
                                 <div className="flex flex-col gap-1">
@@ -253,7 +275,6 @@ export const SettingCashMemberInfo = () => {
                                                 {...field}
                                                 type="text"
                                                 className="control-field"
-                                                placeholder={t('updateInfoCashMember.fax')}
                                             />
                                         )}
                                     />
@@ -264,15 +285,15 @@ export const SettingCashMemberInfo = () => {
                     <div className="flex flex-col sm:flex-row gap-[8px] mt-[15px]">
                         <ButtonFullComponent
                             className="w-full sm:w-[100px] [&>*]:w-[100%]"
-                            text={isLoading ? t('global:loading') : t('updateInfoCashMember.update')}
+                            text={loading ? t('global:loading') : t('updateInfoCashMember.update')}
                             type="submit"
-                            disabled={isLoading || isBlockAction}
+                            disabled={loading || isBlockAction}
                         />
                         <ButtonOutlineComponent
                             className="w-full sm:w-[100px] [&>*]:w-[100%]"
                             text={t('updateInfoCashMember.reset')}
                             onClick={handleClearAll}
-                            disabled={isLoading || isBlockAction}
+                            disabled={loading || isBlockAction}
                         />
                     </div>
                 </form>

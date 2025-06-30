@@ -124,5 +124,12 @@ const createAPI = () => {
   };
 };
 
+export const createHeaderXMLHttp = () => ({
+  __RequestVerificationToken: (document.getElementsByName('__RequestVerificationToken')[0] as HTMLInputElement).value,
+  RequestVerificationToken: (document.getElementsByName('__RequestVerificationToken')[0] as HTMLInputElement).value,
+  'X-Requested-With': 'XMLHttpRequest',
+});
+
+
 export const axiosInstance = createAxiosInstance();
 export const api = createAPI();

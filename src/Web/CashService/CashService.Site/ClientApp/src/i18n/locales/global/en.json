@@ -108,5 +108,6 @@
     "selected": "Selected",
     "noRangeSelected": "No range selected"
   },  
-  "cashServiceDisabled": "Cash Service is disabled"
+  "cashServiceDisabled": "Cash Service is disabled",
+  "info": "Info"
 }

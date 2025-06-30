@@ -412,24 +412,22 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         public async Task<IActionResult> GetCustomerInfo(int custId)
            => Json(await customerService.GetCustomerInfo(custId), serializeOptions);
 
-        public async Task<IActionResult> UpdateInfo(int custId, bool isCashMember)
+        public async Task<IActionResult> UpdateInfo(int custId, string username, bool isCashMember)
         {
-            // TODO: get customer info
-            var customerInfo = await customerService.GetCustomerInfo(custId);
-            var viewModel = new UpdateInfoViewModel(customerInfo, GetAssetsVersion(), custId, isCashMember);
+            var viewModel = new UpdateInfoViewModel(GetAssetsVersion(), custId, username, isCashMember);
             return View(viewModel);
         }
 
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateInfoPost(UpdateCustomerInfoRequest request)
+        public async Task<IActionResult> UpdateInfoPost([FromBody] UpdateCustomerInfoRequest request)
         {
             if (request.IsInternal)
             {
-                return Json(Result.CreateErrorResult(Resources.NotAuthorized));
+                 return UnAuthorized();
             }
-
-            return Json(await customerService.UpdateCustomerInfo(new UpdateCustomerInfoParam
+            
+            var updateCustomerInfoParam = new UpdateCustomerInfoParam
             {
                 CustId = request.CustId,
                 FirstName = request.FirstName?.Trim() ?? string.Empty,
@@ -442,7 +440,9 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 SubAccId = request.SubAccId,
                 IP = request.IP,
                 Language = request.LangKey
-            }));
+            };
+    
+            return Json(await customerService.UpdateCustomerInfo(updateCustomerInfoParam), serializeOptions);
         }
 
         [HttpGet]

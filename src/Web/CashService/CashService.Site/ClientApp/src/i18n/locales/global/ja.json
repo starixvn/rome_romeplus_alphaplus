@@ -108,5 +108,6 @@
     "selected": "選択",
     "noRangeSelected": "範囲が選択されていません"
   },
-  "cashServiceDisabled": "キャッシュサービスは無効です"
+  "cashServiceDisabled": "キャッシュサービスは無効です",
+  "info": "情報"
 }
