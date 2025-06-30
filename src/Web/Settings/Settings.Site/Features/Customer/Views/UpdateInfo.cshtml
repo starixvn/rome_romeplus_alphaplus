@@ -84,7 +84,7 @@
     </script>
 
     <environment include="Production">
-        <script type="module" src="@(MicroSites.CashServiceUrl())updateInfoCashMember.js?version=@(Model.AssetsVersion)"></script>
+        <script type="module" src="@(MicroSites.CashServiceUrl())updateInfoCustomer.js?version=@(Model.AssetsVersion)"></script>
     </environment>
     <environment include="Development">
         <script type="module">
@@ -97,8 +97,7 @@
         <script type="module" src=@("http://localhost:5173/@vite/client")></script>
     </environment>
     <environment include="Development">
-        <script type="module"
-            src="http://localhost:5173/src/pages/CustomerSites/pages/UpdateInfoCustomer/index.tsx"></script>
+        <script type="module"src="http://localhost:5173/src/pages/CustomerSites/pages/UpdateInfoCustomer/index.tsx"></script>
     </environment>
     @Html.AntiForgeryToken()
 </body>
