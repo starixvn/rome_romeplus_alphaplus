@@ -71,6 +71,28 @@ function PromotionReport() {
       totalBonus: 10000,
       status: 0,
     },
+    {
+      promotionId: 4,
+      promotionTitle: 'Christmas Special',
+      promotionType: 'Cashback',
+      period: '01 Dec 2023 - 25 Dec 2023',
+      totalRequest: 120,
+      totalApproved: 100,
+      totalRejected: 20,
+      totalBonus: 6000,
+      status: 2,
+    },
+    {
+      promotionId: 5,
+      promotionTitle: 'Spring Festival',
+      promotionType: 'Discount',
+      period: '01 Mar 2023 - 31 Mar 2023',
+      totalRequest: 80,
+      totalApproved: 70,
+      totalRejected: 10,
+      totalBonus: 3000,
+      status: 1,
+    },
   ];
   const promotionListData = mockData;
 

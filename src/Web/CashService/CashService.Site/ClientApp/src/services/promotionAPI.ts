@@ -1,5 +1,5 @@
-import { axiosInstance as api } from './axios';
-import { PromotionDetail, PromotionParams, PromotionReport } from './interfaces/Promotion';
+import { axiosInstance, api } from './axios';
+import { PromotionDetail, PromotionParams } from './interfaces/Promotion';
 
 export const promotionService = {
   getPromotion: async (promotionParams: PromotionParams): Promise<PromotionDetail[]> => {
@@ -8,7 +8,9 @@ export const promotionService = {
         promotionType: promotionParams.type,
         status: promotionParams.status,
       });
-      const response = await api.get<PromotionDetail[]>(`GetPromotion?${queryParams.toString()}`);
+      const response = await axiosInstance.get<PromotionDetail[]>(
+        `GetPromotion?${queryParams.toString()}`
+      );
       return response.data;
     } catch (error) {
       console.error('Error fetching promotion:', error);
@@ -17,14 +19,12 @@ export const promotionService = {
   },
   deletePromotion: async (promotionId: number): Promise<void> => {
     try {
-      await api.delete(`DeletePromotion/${promotionId}`);
+      await axiosInstance.delete(`DeletePromotion/${promotionId}`);
     } catch (error) {
       console.error('Error deleting promotion:', error);
       throw error;
     }
   },
-  getPromotionReport: async (): Promise<any> =>
-    await api.get<PromotionReport[]>('GetPromotionReport'),
-  getPromotionDetailsReport: async (): Promise<any> =>
-    await api.get<object[]>('GetPromotionDetailsReport'),
+  getMainReport: async (): Promise<any> => await api.get<object>('GetMainReport'),
+  getDetailsReport: async (): Promise<any> => await api.get<object[]>('GetDetailsReport'),
 };
