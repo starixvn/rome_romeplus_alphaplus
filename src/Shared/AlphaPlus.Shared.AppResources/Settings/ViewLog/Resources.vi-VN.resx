@@ -326,4 +326,7 @@
   <data name="Schedule" xml:space="preserve">
     <value>Lịch</value>
   </data>
+  <data name="ViewLogCredit" xml:space="preserve">
+    <value>Xem nhật ký tín dụng</value>
+  </data>
 </root>

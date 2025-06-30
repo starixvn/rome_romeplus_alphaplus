@@ -321,4 +321,7 @@
   <data name="Schedule" xml:space="preserve">
     <value>กำหนดการ</value>
   </data>
+  <data name="ViewLogCredit" xml:space="preserve">
+    <value>ดูบันทึกเครดิต</value>
+  </data>
 </root>

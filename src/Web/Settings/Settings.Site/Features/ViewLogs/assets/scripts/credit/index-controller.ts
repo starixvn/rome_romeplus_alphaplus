@@ -36,6 +36,12 @@ var creditController = {
 
         var url = creditController.urls.index + "?" + $.param(tabController.viewLogsParams);
         window.location.href = url;
+    },
+    exportExcel: function () {
+        var viewLogsParams = creditView.getParams();
+        var exportExcelPath = (<HTMLInputElement>document.getElementById("exportExcelPath")).value;
+        var url = exportExcelPath + "?" + $.param(viewLogsParams);
+        window.location.href = url;
     }
 };
 

@@ -42,6 +42,22 @@ $height-td: 28px;
         }
     }
 
+    .submit-box {
+        .icon-excel {
+            cursor: pointer;
+            color: #1f7244;
+            font-size: 19px;
+            vertical-align: middle;
+            height: 28px;
+            float: right;
+
+            &:before {
+                position: relative;
+                top: 5px;
+            }
+        }
+    }
+
     .warning {
         margin-bottom: 10px;
 
