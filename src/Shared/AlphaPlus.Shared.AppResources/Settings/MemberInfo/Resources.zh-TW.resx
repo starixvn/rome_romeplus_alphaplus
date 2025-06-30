@@ -1274,16 +1274,16 @@
     <value>可能贏額</value>
   </data>
   <data name="MaxPotentialWinLimit" xml:space="preserve">
-    <value>最大贏額上限</value>
+    <value>最大潛在贏額上限</value>
   </data>
   <data name="CurrentPotentialWin" xml:space="preserve">
     <value>當前贏額百分比 (%)</value>
   </data>
   <data name="PotentialWinLimitNote1" xml:space="preserve">
-    <value>僅顯示潛在獲勝上限未設為「無限」的會員</value>
+    <value>僅顯示潛在贏額上限未設置為"無限制"的會員</value>
   </data>
   <data name="PotentialWinLimitNote2" xml:space="preserve">
-    <value>由於結果修正、結算延遲及其他因素，累積贏額可能暫時超過設定的限額。</value>
+    <value>由於結果修正、結算延遲等因素，累計潛在贏額可能暫時超過設定的限額。</value>
   </data>
   <data name="ToWin" xml:space="preserve">
     <value>贏取金額</value>

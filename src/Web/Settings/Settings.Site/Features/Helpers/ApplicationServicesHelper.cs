@@ -42,6 +42,7 @@ using AlphaPlus.Settings.Site.Features.Shared.Services;
 using AlphaPlus.Settings.Site.Features.SubAccount.Services;
 using AlphaPlus.Settings.Site.Features.UserNameSuggestion;
 using AlphaPlus.Settings.Site.Features.ViewLogs.Helpers;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Handlers;
 using AlphaPlus.Settings.Transfer.API.Helpers;
 using AlphaPlus.Settings.Transfer.API.Models.Reward;
 using AlphaPlus.Settings.Transfer.API.Models.TransferToDownlineHistory;
@@ -178,6 +179,9 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
             services
                 .AddSingleton<ProblemAccountWorkbook, ProblemAccountWorkbookImpl>()
                 .AddScoped<IProblemAccountService, ProblemAccountService>();
+
+            services
+                .AddSingleton<CreditLogWorkbook, CreditLogWorkbookImpl>();
 
             services
                 .AddScoped<IndirectLoginAccountService, IndirectLoginAccountServiceImpl>();

@@ -7,13 +7,15 @@ import thTh from './th-TH/translation.json';
 import viVN from './vi-VN/translation.json';
 import zhCN from './zh-CN/translation.json';
 import zhTW from './zh-TW/translation.json';
+import koKR from './ko-KR/translation.json';
 
 export const resources = {
     'en-US': { translation: enUS },
     'th-TH': { translation: thTh },
     'vi-VN': { translation: viVN },
     'zh-CN': { translation: zhCN },
-    'zh-TW': { translation: zhTW }
+    'zh-TW': { translation: zhTW },
+    'ko-KR': { translation: koKR }
 };
 
 i18next

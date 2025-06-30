@@ -121,36 +121,84 @@
     <value>승/무/패</value>
   </data>
   <data name="LabelAsianHDC_OU_OE" xml:space="preserve">
-    <value>아시안 핸디캡, 초과/미만, 홀짝</value>
+    <value>아시안 핸디캡, 오버/언더, 홀/짝</value>
   </data>
   <data name="LabelHandicapFC" xml:space="preserve">
     <value>핸디캡</value>
   </data>
   <data name="LabelOddEven" xml:space="preserve">
-    <value>홀수/짝수</value>
+    <value>홀/짝</value>
   </data>
   <data name="LabelOtherTypes" xml:space="preserve">
-    <value>다른 배팅종류</value>
+    <value>기타 베팅 유형</value>
   </data>
   <data name="LabelOverUnder" xml:space="preserve">
-    <value>초과/미만</value>
+    <value>오버/언더</value>
   </data>
   <data name="moneyline" xml:space="preserve">
-    <value>머니라인(핸디캡 없는 경기)</value>
+    <value>머니라인 (핸디캡 없는 경기)</value>
   </data>
   <data name="BetType" xml:space="preserve">
-    <value>배팅 유형</value>
+    <value>베팅 유형</value>
   </data>
   <data name="LabelOutright" xml:space="preserve">
-    <value>순위,승자 등</value>
+    <value>우승, 순위 등</value>
   </data>
   <data name="BetSettingFollows" xml:space="preserve">
-    <value>Bet Setting Follows</value>
+    <value>베팅 설정이 따릅니다</value>
   </data>
   <data name="CommissionSettingFollows" xml:space="preserve">
-    <value>Commission Setting Follows</value>
+    <value>수수료 설정이 따릅니다</value>
   </data>
   <data name="PositionTakingSettingFollows" xml:space="preserve">
-    <value>Position Taking Setting Follows</value>
+    <value>포지션 설정이 따릅니다</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>기타 스포츠</value>
+  </data>
+  <data name="Label1HHDC" xml:space="preserve">
+    <value>1차 핸디캡</value>
+  </data>
+  <data name="NewSportType" xml:space="preserve">
+    <value>새로운 스포츠 유형</value>
+  </data>
+  <data name="NewBetType" xml:space="preserve">
+    <value>새로운 베팅 유형</value>
+  </data>
+  <data name="NewBetTypeTitle" xml:space="preserve">
+    <value>E-스포츠의 새로운 베팅 유형</value>
+  </data>
+  <data name="LabelTotalGoal" xml:space="preserve">
+    <value>총 골</value>
+  </data>
+  <data name="NewBetTypeOfSoccerTitle" xml:space="preserve">
+    <value>축구의 새로운 베팅 유형:</value>
+  </data>
+  <data name="LabelOthers" xml:space="preserve">
+    <value>기타</value>
+  </data>
+  <data name="NewBetTypeOfBadmintonTitle" xml:space="preserve">
+    <value>배드민턴의 새로운 베팅 유형:</value>
+  </data>
+  <data name="NewBetTypeOfBasketball" xml:space="preserve">
+    <value>농구의 새로운 베팅 유형:</value>
+  </data>
+  <data name="NewBetTypeOfCricketTitle" xml:space="preserve">
+    <value>크리켓의 새로운 베팅 유형:</value>
+  </data>
+  <data name="NoCommission" xml:space="preserve">
+    <value>수수료 없음</value>
+  </data>
+  <data name="NewBetTypeOfVolleyball" xml:space="preserve">
+    <value>배구의 새로운 베팅 유형:</value>
+  </data>
+  <data name="TwoWayMarket" xml:space="preserve">
+    <value>2방향 시장</value>
+  </data>
+  <data name="ThreeWayMarket" xml:space="preserve">
+    <value>3방향 시장</value>
+  </data>
+  <data name="NewBetTypeOfBaseball" xml:space="preserve">
+    <value>야구의 새로운 베팅 유형:</value>
   </data>
 </root>

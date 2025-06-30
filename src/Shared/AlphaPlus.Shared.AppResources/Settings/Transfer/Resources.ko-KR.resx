@@ -1,110 +1,52 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!--
-    Microsoft ResX Schema
-
-    Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
-    associated with the data types.
-
-    Example:
-
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-
-    There are any number of "resheader" rows that contain simple
-    name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
-    mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
-    extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
-    read any of the formats listed below.
-
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -118,7 +60,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="NoInformationIsAvailable" xml:space="preserve">
-    <value>가능한 정보가 없습니다</value>
+    <value>사용 가능한 정보가 없습니다</value>
   </data>
   <data name="UsernamePlaceHolder" xml:space="preserve">
     <value>사용자 이름 또는 성(이름)</value>
@@ -130,52 +72,52 @@
     <value>확인</value>
   </data>
   <data name="MemberOutstanding" xml:space="preserve">
-    <value>회원 아웃스텐딩</value>
+    <value>회원 미정산</value>
   </data>
   <data name="Level" xml:space="preserve">
-    <value>레벨단계</value>
+    <value>레벨</value>
   </data>
   <data name="GivenCredit" xml:space="preserve">
     <value>주어진 크레딧</value>
   </data>
   <data name="TransferSuccessfully" xml:space="preserve">
-    <value>전송 성공</value>
+    <value>이체 성공</value>
   </data>
   <data name="AllowTransfer" xml:space="preserve">
-    <value>You are allowed to transfer on</value>
+    <value>다음 요일에 이체할 수 있습니다:</value>
   </data>
   <data name="Friday" xml:space="preserve">
-    <value>Friday</value>
+    <value>금요일</value>
   </data>
   <data name="Monday" xml:space="preserve">
-    <value>Monday</value>
+    <value>월요일</value>
   </data>
   <data name="Saturday" xml:space="preserve">
-    <value>Saturday</value>
+    <value>토요일</value>
   </data>
   <data name="Sunday" xml:space="preserve">
-    <value>Sunday</value>
+    <value>일요일</value>
   </data>
   <data name="Thursday" xml:space="preserve">
-    <value>Thursday</value>
+    <value>목요일</value>
   </data>
   <data name="Tuesday" xml:space="preserve">
-    <value>Tuesday</value>
+    <value>화요일</value>
   </data>
   <data name="Wednesday" xml:space="preserve">
-    <value>Wednesday</value>
+    <value>수요일</value>
   </data>
   <data name="Daily" xml:space="preserve">
-    <value>Daily</value>
+    <value>매일</value>
   </data>
   <data name="HintNotAvailableToTransfer" xml:space="preserve">
-    <value>Cash balance is not available to transfer.</value>
+    <value>현금 잔액이 이체할 수 없습니다.</value>
   </data>
   <data name="HintRangeTransfer" xml:space="preserve">
-    <value>You can transfer from {0} to {1}.</value>
+    <value>{0}에서 {1}까지 이체할 수 있습니다.</value>
   </data>
   <data name="AvailableRangeTransfer" xml:space="preserve">
-    <value>Amount to transfer must be between {0} and {1}.</value>
+    <value>이체 금액은 {0}에서 {1} 사이여야 합니다.</value>
   </data>
   <data name="Super" xml:space="preserve">
     <value>슈퍼</value>
@@ -193,7 +135,7 @@
     <value>해당 기능에 대한 권한이 없습니다.</value>
   </data>
   <data name="TransferButton" xml:space="preserve">
-    <value>전송</value>
+    <value>이체</value>
   </data>
   <data name="CashBalance" xml:space="preserve">
     <value>현금</value>
@@ -202,25 +144,25 @@
     <value>안내</value>
   </data>
   <data name="OutstandingShortcut" xml:space="preserve">
-    <value>아웃스텐딩  거래</value>
+    <value>미정산 거래</value>
   </data>
   <data name="Amount" xml:space="preserve">
-    <value>총액</value>
+    <value>금액</value>
   </data>
   <data name="ConfirmTransfer" xml:space="preserve">
-    <value>전송하시겠습니까?</value>
+    <value>이체하시겠습니까?</value>
   </data>
   <data name="TransferAmountIs" xml:space="preserve">
-    <value>Transfer amount is</value>
+    <value>이체 금액은</value>
   </data>
   <data name="InvalidValue" xml:space="preserve">
     <value>잘못된 값입니다.</value>
   </data>
   <data name="MultipleTransfer" xml:space="preserve">
-    <value>복합 전송</value>
+    <value>다중 이체</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value>상황</value>
+    <value>상태</value>
   </data>
   <data name="AllYesterdayBalance" xml:space="preserve">
     <value>어제의 총 잔액</value>
@@ -229,13 +171,13 @@
     <value>모든</value>
   </data>
   <data name="Open" xml:space="preserve">
-    <value>열기</value>
+    <value>활성</value>
   </data>
   <data name="Suspended" xml:space="preserve">
-    <value>보류</value>
+    <value>일시정지</value>
   </data>
   <data name="Closed" xml:space="preserve">
-    <value>중지</value>
+    <value>비활성화</value>
   </data>
   <data name="Disabled" xml:space="preserve">
     <value>비활성화</value>
@@ -256,7 +198,7 @@
     <value>마스터 현금</value>
   </data>
   <data name="Outstanding" xml:space="preserve">
-    <value>대기 포인트</value>
+    <value>미정산</value>
   </data>
   <data name="UsedCredit" xml:space="preserve">
     <value>사용된 크레딧</value>
@@ -268,16 +210,16 @@
     <value>성</value>
   </data>
   <data name="TransferToDownlineHistory" xml:space="preserve">
-    <value>Transfer To Downline History</value>
+    <value>하위 라인 이체 내역</value>
   </data>
   <data name="Today" xml:space="preserve">
     <value>오늘</value>
   </data>
   <data name="LastWeek" xml:space="preserve">
-    <value>마지막 주</value>
+    <value>지난 주</value>
   </data>
   <data name="LastMonth" xml:space="preserve">
-    <value>마지막 달</value>
+    <value>지난 달</value>
   </data>
   <data name="SinceLastMonth" xml:space="preserve">
     <value>지난달부터</value>
@@ -286,10 +228,10 @@
     <value>특정 날짜</value>
   </data>
   <data name="ThisWeek" xml:space="preserve">
-    <value>This Week</value>
+    <value>이번 주</value>
   </data>
   <data name="ThisMonth" xml:space="preserve">
-    <value>This Month</value>
+    <value>이번 달</value>
   </data>
   <data name="To" xml:space="preserve">
     <value>종료일</value>
@@ -301,31 +243,31 @@
     <value>엘셀로 내보내기</value>
   </data>
   <data name="CanViewReportDataFrom" xml:space="preserve">
-    <value>You can view the report data from {0}.</value>
+    <value>{0}부터 보고서 데이터를 볼 수 있습니다.</value>
   </data>
   <data name="ActionDate" xml:space="preserve">
-    <value>Action Date</value>
+    <value>작업 날짜</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Description</value>
+    <value>설명</value>
   </data>
   <data name="NewBalance" xml:space="preserve">
-    <value>New Balance</value>
+    <value>새 잔액</value>
   </data>
   <data name="OldBalance" xml:space="preserve">
-    <value>Old Balance</value>
+    <value>이전 잔액</value>
   </data>
   <data name="TransferAmount" xml:space="preserve">
-    <value>Transfer Amount</value>
+    <value>이체 금액</value>
   </data>
   <data name="TransferType" xml:space="preserve">
-    <value>Transfer Type</value>
+    <value>이체 유형</value>
   </data>
   <data name="Deposit" xml:space="preserve">
-    <value>Deposit</value>
+    <value>입금</value>
   </data>
   <data name="Withdrawal" xml:space="preserve">
-    <value>Withdrawal</value>
+    <value>출금</value>
   </data>
   <data name="of" xml:space="preserve">
     <value>부터</value>
@@ -343,10 +285,10 @@
     <value>사용자 이름 또는 성(이름)</value>
   </data>
   <data name="On" xml:space="preserve">
-    <value>On</value>
+    <value>켜기</value>
   </data>
   <data name="Off" xml:space="preserve">
-    <value>Off</value>
+    <value>끄기</value>
   </data>
   <data name="Waiting" xml:space="preserve">
     <value>대기</value>
@@ -358,7 +300,7 @@
     <value>완료됨</value>
   </data>
   <data name="First_LastName" xml:space="preserve">
-    <value>First/ Last Name</value>
+    <value>이름/성</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>취소</value>
@@ -406,7 +348,7 @@
     <value>잔액</value>
   </data>
   <data name="NoChangeToUpdate" xml:space="preserve">
-    <value>There is no change to update.</value>
+    <value>업데이트할 변경 사항이 없습니다.</value>
   </data>
   <data name="Total" xml:space="preserve">
     <value>총</value>
@@ -418,9 +360,489 @@
     <value>닫기</value>
   </data>
   <data name="ADBTOnError" xml:space="preserve">
-    <value>Your upline has allowed you to use All Day Balance Transfer. The page will be automatically refreshed.</value>
+    <value>상위 관리자가 종일 잔액 이체 사용을 허용했습니다. 페이지가 자동으로 새로고침됩니다.</value>
   </data>
   <data name="ADBTOffError" xml:space="preserve">
-    <value>Your upline has disallowed you to use All Day Balance Transfer. The page will be automatically refreshed.</value>
+    <value>상위 관리자가 종일 잔액 이체 사용을 금지했습니다. 페이지가 자동으로 새로고침됩니다.</value>
+  </data>
+  <data name="AgentBalance" xml:space="preserve">
+    <value>에이전트 잔액</value>
+  </data>
+  <data name="AgentCash" xml:space="preserve">
+    <value>에이전트 현금</value>
+  </data>
+  <data name="WarningMultipleTransfer" xml:space="preserve">
+    <value>경고: 어제 잔액이 완전히 이체되면 아래 {0}강조된{1} 회원들은 음수 베팅 크레딧을 가지게 되어 주어진 크레딧보다 더 많이 잃을 수 있습니다.</value>
+  </data>
+  <data name="CurrentStatusAllTransactions" xml:space="preserve">
+    <value>모든 거래의 현재 상태</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>고객</value>
+  </data>
+  <data name="OutTxn" xml:space="preserve">
+    <value>출금 거래</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>마지막 로그인</value>
+  </data>
+  <data name="LastTxn" xml:space="preserve">
+    <value>마지막 거래</value>
+  </data>
+  <data name="YouCanTransferUpTo" xml:space="preserve">
+    <value>최대 이체 가능 금액</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>베팅 크레딧</value>
+  </data>
+  <data name="TransferCondition" xml:space="preserve">
+    <value>이체 조건</value>
+  </data>
+  <data name="Weekly" xml:space="preserve">
+    <value>주간</value>
+  </data>
+  <data name="AccountBalanceTransferCondition" xml:space="preserve">
+    <value>계정 잔액 이체 조건</value>
+  </data>
+  <data name="PleaseChooseDaily" xml:space="preserve">
+    <value>7일 대신 일간을 선택하세요.</value>
+  </data>
+  <data name="PleaseSelectOneDay" xml:space="preserve">
+    <value>최소 하루를 선택하세요.</value>
+  </data>
+  <data name="TransferConditionByCompany" xml:space="preserve">
+    <value>일간 이체 설정이 회사 자동 이체 프로세스를 통해 적용되었습니다. 주간 이체 조건을 조정할 수 없습니다.</value>
+  </data>
+  <data name="TransferConditionByUpline" xml:space="preserve">
+    <value>일간 이체 설정이 상위 관리자에 의해 적용되었습니다. 주간 이체 조건을 조정할 수 없습니다.</value>
+  </data>
+  <data name="ConditionChangeFailed_AutoJobRunning" xml:space="preserve">
+    <value>자동 이체 프로세스가 현재 이 라인에서 진행 중입니다. 이체 조건을 변경하기 전에 프로세스가 완료될 때까지 몇 분 기다려주세요.</value>
+  </data>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>성공적으로 업데이트되었습니다</value>
+  </data>
+  <data name="ConfirmUpdateTransferCondition" xml:space="preserve">
+    <value>모든 하위 라인에 대해 이 이체 조건을 업데이트하시겠습니까?</value>
+  </data>
+  <data name="UpdateTransferCondition_Note" xml:space="preserve">
+    <value>참고: 이체 조건을 변경하면 이 계정 아래의 모든 하위 라인의 자동 이체 상태와 일정에 영향을 미칩니다. 작업을 선택하세요:</value>
+  </data>
+  <data name="UpdateTransferCondition_OnAuto" xml:space="preserve">
+    <value>새 이체 조건에 맞게 현재 일정을 조정하여 자동 이체를 활성화 상태로 유지합니다.</value>
+  </data>
+  <data name="UpdateTransferCondition_OffAuto" xml:space="preserve">
+    <value>모든 하위 라인에 대해 자동 이체를 비활성화하고 자동 이체 일정을 지웁니다</value>
+  </data>
+  <data name="TransferConditionChangeToastTitle" xml:space="preserve">
+    <value>자동 이체 설정</value>
+  </data>
+  <data name="TransferConditionChangeToastBody" xml:space="preserve">
+    <value>이체 조건이 상위 관리자에 의해 변경되었습니다. 하위 라인의 자동 이체 상태와 일정이 그에 따라 조정되었습니다. {0}을 클릭하여 세부사항을 확인하세요.</value>
+  </data>
+  <data name="TransferConditionChange_PersonalMessage" xml:space="preserve">
+    <value>이체 조건이 상위 관리자에 의해 변경되었습니다. 다음 고객에 대해 자동 이체 상태와 일정이 조정되었습니다: {0}. 세부사항은 이체 기능에서 확인할 수 있습니다.</value>
+  </data>
+  <data name="Received" xml:space="preserve">
+    <value>수령됨</value>
+  </data>
+  <data name="NotReceived" xml:space="preserve">
+    <value>미수령</value>
+  </data>
+  <data name="AlreadyPaid" xml:space="preserve">
+    <value>이미 지급됨</value>
+  </data>
+  <data name="Paid" xml:space="preserve">
+    <value>지급됨</value>
+  </data>
+  <data name="Unpaid" xml:space="preserve">
+    <value>미지급</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>날짜 범위</value>
+  </data>
+  <data name="RewardDetail" xml:space="preserve">
+    <value>보상 상세</value>
+  </data>
+  <data name="RewardPayment" xml:space="preserve">
+    <value>보상 지급</value>
+  </data>
+  <data name="Program" xml:space="preserve">
+    <value>프로그램</value>
+  </data>
+  <data name="NoProgramFound" xml:space="preserve">
+    <value>프로그램을 찾을 수 없습니다</value>
+  </data>
+  <data name="SearchProgram" xml:space="preserve">
+    <value>프로그램 검색</value>
+  </data>
+  <data name="PaymentStatus" xml:space="preserve">
+    <value>지급 상태</value>
+  </data>
+  <data name="MemberPaymentStatus" xml:space="preserve">
+    <value>회원 지급 상태</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>복사</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>복사됨</value>
+  </data>
+  <data name="HideFilter" xml:space="preserve">
+    <value>필터 숨기기</value>
+  </data>
+  <data name="ShowFilter" xml:space="preserve">
+    <value>필터 보기</value>
+  </data>
+  <data name="ConfirmPayment" xml:space="preserve">
+    <value>지급 확인</value>
+  </data>
+  <data name="ShowAllErrorPayments" xml:space="preserve">
+    <value>실패한 모든 지급 보기</value>
+  </data>
+  <data name="PaymentDate" xml:space="preserve">
+    <value>지급일</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>피드백</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>생성일</value>
+  </data>
+  <data name="UpdateRewardPaymentStatusConfirm" xml:space="preserve">
+    <value>선택한 계정의 지급을 확인하시겠습니까?</value>
+  </data>
+  <data name="UpdateRewardPaymentStatusSuccessfully" xml:space="preserve">
+    <value>이 지급이 성공적으로 확인되었습니다.</value>
+  </data>
+  <data name="UpdateAllRewardPaymentStatusSuccessfully" xml:space="preserve">
+    <value>모든 지급이 성공적으로 확인되었습니다.</value>
+  </data>
+  <data name="UpdateManyRewardPaymentStatusSuccessfully" xml:space="preserve">
+    <value>다음 지급을 제외한 모든 지급이 성공적으로 확인되었습니다:</value>
+  </data>
+  <data name="Last3Months" xml:space="preserve">
+    <value>최근 3개월</value>
+  </data>
+  <data name="NoColumnsFound" xml:space="preserve">
+    <value>열을 찾을 수 없습니다</value>
+  </data>
+  <data name="ClearCreditStep_Super_DirectMember" xml:space="preserve">
+    <value>{0}의 직접 회원</value>
+  </data>
+  <data name="TransferStep_Super_DirectMember" xml:space="preserve">
+    <value>직접 회원에서 {0}로</value>
+  </data>
+  <data name="TotalCash" xml:space="preserve">
+    <value>총 현금</value>
+  </data>
+  <data name="TotalBalance" xml:space="preserve">
+    <value>총 잔액</value>
+  </data>
+  <data name="YesterdayCash" xml:space="preserve">
+    <value>어제의 현금</value>
+  </data>
+  <data name="TotalCashTotalBalanceNote" xml:space="preserve">
+    <value>회원/직접 회원의 경우 데이터는 총 잔액을 나타냅니다.&lt;br/&gt;다른 하위 라인의 경우 총 현금을 나타냅니다.</value>
+  </data>
+  <data name="ADBTChangeError" xml:space="preserve">
+    <value>상위 관리자가 종일 잔액 이체를 활성화하여 자동 이체를 사용할 수 없습니다. 페이지가 자동으로 새로고침됩니다.</value>
+  </data>
+  <data name="AllPages" xml:space="preserve">
+    <value>모든 페이지</value>
+  </data>
+  <data name="AllowedAllDayBalanceTransferError" xml:space="preserve">
+    <value>상위 관리자가 종일 잔액 이체 사용을 허용했습니다. 페이지가 자동으로 새로고침됩니다.</value>
+  </data>
+  <data name="AutoTransfer" xml:space="preserve">
+    <value>자동 이체</value>
+  </data>
+  <data name="AutoTransferGuideline" xml:space="preserve">
+    <value>자동 이체 가이드라인</value>
+  </data>
+  <data name="AutoTransferHistory" xml:space="preserve">
+    <value>자동 이체 내역</value>
+  </data>
+  <data name="AutoTransferMonitoring" xml:space="preserve">
+    <value>자동 이체 모니터</value>
+  </data>
+  <data name="AutoTransfer_CancelAllSuccess" xml:space="preserve">
+    <value>자동 이체 처리가 성공적으로 취소되었습니다.</value>
+  </data>
+  <data name="AutoTransfer_CancelSuccess" xml:space="preserve">
+    <value>작업이 취소되었습니다!</value>
+  </data>
+  <data name="AutoTransfer_ClearSchedule" xml:space="preserve">
+    <value>비활성화 시 현재 자동 이체 일정이 삭제됩니다.</value>
+  </data>
+  <data name="AutoTransfer_Error_101_Multiple" xml:space="preserve">
+    <value>다음 계정이 존재하지 않습니다:</value>
+  </data>
+  <data name="AutoTransfer_Error_101_Single" xml:space="preserve">
+    <value>이 계정이 존재하지 않습니다.</value>
+  </data>
+  <data name="AutoTransfer_Error_102_Multiple" xml:space="preserve">
+    <value>이 계정들은 귀하의 하위 라인에 속하지 않습니다:</value>
+  </data>
+  <data name="AutoTransfer_Error_102_Single" xml:space="preserve">
+    <value>이 계정은 귀하의 하위 라인에 속하지 않습니다.</value>
+  </data>
+  <data name="AutoTransfer_Error_103_Multiple" xml:space="preserve">
+    <value>자동 이체 프로세스가 진행 중이므로 이 계정들의 자동 이체를 비활성화할 수 없습니다. 프로세스 완료 후 다시 시도하세요.</value>
+  </data>
+  <data name="AutoTransfer_Error_103_Single" xml:space="preserve">
+    <value>자동 이체 프로세스가 진행 중이므로 이 계정의 자동 이체를 비활성화할 수 없습니다. 프로세스 완료 후 다시 시도하세요.</value>
+  </data>
+  <data name="AutoTransfer_InfoAffectTime" xml:space="preserve">
+    <value>활성화 시, 어제 잔액이 <span>오후 12:00 (GMT+8)</span>에 귀하의 이체 조건(<b>{0}</b>)에 따라 정리됩니다.</value>
+  </data>
+  <data name="AutoTransfer_InfoAffectTime2" xml:space="preserve">
+    <value>실행 중에 자동 이체를 활성화하면, 다음 예약된 시간에 이체가 적용됩니다.</value>
+  </data>
+  <data name="AutoTransfer_InfoAffectTimeSuper" xml:space="preserve">
+    <value>활성화 시, 어제 잔액이 <span>오후 12:00 (GMT+8)</span>에 정리됩니다.</value>
+  </data>
+  <data name="AutoTransfer_InfoCannotTransfer" xml:space="preserve">
+    <value>자동 이체 프로세스 중에는 자동 이체가 활성화된 하위 라인으로 이체할 수 없습니다.</value>
+  </data>
+  <data name="AutoTransfer_InfoSettingTime" xml:space="preserve">
+    <value>자동 이체 프로세스는 오후 12:00 (GMT+8)에 실행되며, 이때 어제 잔액이 정리됩니다.</value>
+  </data>
+  <data name="AutoTransfer_MultipleAffectNextConditionWarning" xml:space="preserve">
+    <value>이 계정들에 대해 자동 이체가 활성화되었습니다. 현재 프로세스가 진행 중이며, 다음 예약된 시간에 자동 이체가 적용됩니다.</value>
+  </data>
+  <data name="AutoTransfer_MultipleAffectNextConditionWarning_Single" xml:space="preserve">
+    <value>이 계정에 대해 자동 이체가 활성화되었습니다. 현재 프로세스가 진행 중이며, 다음 예약된 시간에 자동 이체가 적용됩니다.</value>
+  </data>
+  <data name="AutoTransfer_NoCancellable" xml:space="preserve">
+    <value>취소 가능한 거래가 없습니다.</value>
+  </data>
+  <data name="AutoTransfer_SetSchedule" xml:space="preserve">
+    <value>이체 조건에 따라 하위 라인에 대한 자동 이체 일정을 설정할 수 있습니다.</value>
+  </data>
+  <data name="AutoTransfer_Statistic" xml:space="preserve">
+    <value>"보류", "처리중", "실패", "보류 거래 취소" 카테고리의 이체 건수는 모든 하위 라인에 대해 집계됩니다.</value>
+  </data>
+  <data name="AutoTransfer_UpdateScheduleSuccess" xml:space="preserve">
+    <value>계정 {0}의 자동 이체 일정이 성공적으로 업데이트되었습니다.</value>
+  </data>
+  <data name="AutoTransfer_UpdateSuccess" xml:space="preserve">
+    <value>이 계정들의 자동 이체가 성공적으로 업데이트되었습니다.</value>
+  </data>
+  <data name="AutoTransfer_UpdateSuccessOff" xml:space="preserve">
+    <value>계정 {0}의 자동 이체가 성공적으로 비활성화되었습니다.</value>
+  </data>
+  <data name="AutoTransfer_UpdateSuccessOn" xml:space="preserve">
+    <value>계정 {0}의 자동 이체가 성공적으로 활성화되었습니다.</value>
+  </data>
+  <data name="AutoTransfer_UpdateTip" xml:space="preserve">
+    <value>팁: [회원 정보 &gt;&gt; {0}] 또는 [이체 &gt;&gt; 이체]에서 여러 계정의 자동 이체를 활성화/비활성화하고, [이체 &gt;&gt; 자동 이체 모니터]에서 진행 상황을 모니터링할 수 있습니다.</value>
+  </data>
+  <data name="AutoTransfer_UplineConditionChanged" xml:space="preserve">
+    <value>상위 관리자가 이체 조건을 변경했습니다. 페이지를 새로고침하세요.</value>
+  </data>
+  <data name="CancelAll" xml:space="preserve">
+    <value>전체 취소</value>
+  </data>
+  <data name="CancelAllAutoTransferJobsConfirm" xml:space="preserve">
+    <value>{0}개의 계정에 대해 자동 이체 프로세스를 취소하시겠습니까?</value>
+  </data>
+  <data name="CancelSuspendedTransactions" xml:space="preserve">
+    <value>보류 중인 거래 취소</value>
+  </data>
+  <data name="CancelSuspendedTransactionsTip" xml:space="preserve">
+    <value>15분 이상 보류/처리 중인 모든 거래를 취소하려면 여기를 클릭하세요.</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>취소됨</value>
+  </data>
+  <data name="Columns" xml:space="preserve">
+    <value>열</value>
+  </data>
+  <data name="CompletedTime" xml:space="preserve">
+    <value>완료 시간</value>
+  </data>
+  <data name="EditAutoTransferSchedule" xml:space="preserve">
+    <value>자동 이체 일정 편집</value>
+  </data>
+  <data name="EditMultipleAutoTransfer" xml:space="preserve">
+    <value>다중 자동 이체 편집</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>활성화됨</value>
+  </data>
+  <data name="Entered" xml:space="preserve">
+    <value>입력됨</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>실패</value>
+  </data>
+  <data name="Ignored" xml:space="preserve">
+    <value>무시됨</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>이체 대기</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>번호</value>
+  </data>
+  <data name="NoRefresh" xml:space="preserve">
+    <value>아니오</value>
+  </data>
+  <data name="NoTransferMade" xml:space="preserve">
+    <value>선택한 모든 계정의 잔액이 0이어서 이체가 이루어지지 않았습니다.</value>
+  </data>
+  <data name="NonEntered" xml:space="preserve">
+    <value>미입력</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>확인</value>
+  </data>
+  <data name="confirmTurnOnAutoTransfer" xml:space="preserve">
+    <value><b>이 계정({0})에 대해 자동 이체를 활성화하시겠습니까?</b></value>
+  </data>
+  <data name="confirmUpdateAutoTransfer" xml:space="preserve">
+    <value><b>이 계정들에 대해 자동 이체를 업데이트하시겠습니까?</b></value>
+  </data>
+  <data name="NoDataChange" xml:space="preserve">
+    <value>업데이트할 변경사항이 없습니다.</value>
+  </data>
+  <data name="BadRequest" xml:space="preserve">
+    <value>잘못된 요청</value>
+  </data>
+  <data name="Calculate" xml:space="preserve">
+    <value>계산</value>
+  </data>
+  <data name="ClearCredit" xml:space="preserve">
+    <value>크레딧 정리</value>
+  </data>
+  <data name="ClearCreditConfirm" xml:space="preserve">
+    <value>크레딧을 정리하시겠습니까?</value>
+  </data>
+  <data name="ClearCreditStep_Master_Member" xml:space="preserve">
+    <value>마스터-회원 크레딧 정리 단계</value>
+  </data>
+  <data name="ClearCreditStep_Super_Agent" xml:space="preserve">
+    <value>슈퍼-에이전트 크레딧 정리 단계</value>
+  </data>
+  <data name="ClearCreditStep_Super_Master" xml:space="preserve">
+    <value>슈퍼-마스터 크레딧 정리 단계</value>
+  </data>
+  <data name="ClearCreditStep_Super_Member" xml:space="preserve">
+    <value>슈퍼-회원 크레딧 정리 단계</value>
+  </data>
+  <data name="ClearCreditSuccess" xml:space="preserve">
+    <value>크레딧 정리 성공</value>
+  </data>
+  <data name="ClearCreditUnsuccessfully" xml:space="preserve">
+    <value>크레딧 정리 실패</value>
+  </data>
+  <data name="Clear_credit" xml:space="preserve">
+    <value>크레딧 정리</value>
+  </data>
+  <data name="ClearableCredit" xml:space="preserve">
+    <value>정리 가능한 크레딧</value>
+  </data>
+  <data name="ClearedCredit" xml:space="preserve">
+    <value>정리된 크레딧</value>
+  </data>
+  <data name="DataChangedWarning" xml:space="preserve">
+    <value>데이터가 변경되었습니다. 저장하시겠습니까?</value>
+  </data>
+  <data name="DisallowedAllDayBalanceTransferError" xml:space="preserve">
+    <value>종일 잔액 이체가 허용되지 않습니다</value>
+  </data>
+  <data name="OnlyThisPage" xml:space="preserve">
+    <value>이 페이지만</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>총 {total}개 항목 중 {from}부터 {to}까지 표시</value>
+  </data>
+  <data name="PendingTransfer3rd" xml:space="preserve">
+    <value>제3자 대기 이체</value>
+  </data>
+  <data name="ReadyToTransfer" xml:space="preserve">
+    <value>이체 준비 완료</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>사유</value>
+  </data>
+  <data name="SearchColumn" xml:space="preserve">
+    <value>검색 열</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>모두 선택</value>
+  </data>
+  <data name="SelectAll2" xml:space="preserve">
+    <value>모두 선택</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>선택 안함</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>선택됨</value>
+  </data>
+  <data name="Step" xml:space="preserve">
+    <value>단계</value>
+  </data>
+  <data name="TotalCashSlashTotalBalance" xml:space="preserve">
+    <value>총 현금/총 잔액</value>
+  </data>
+  <data name="Transfer" xml:space="preserve">
+    <value>이체</value>
+  </data>
+  <data name="TransferAll" xml:space="preserve">
+    <value>모두 이체</value>
+  </data>
+  <data name="TransferAllAndClearCredit" xml:space="preserve">
+    <value>모두 이체 및 크레딧 정리</value>
+  </data>
+  <data name="TransferAllAndClearCreditNote" xml:space="preserve">
+    <value>모든 이체 및 크레딧 정리 참고사항</value>
+  </data>
+  <data name="TransferAllConfirm" xml:space="preserve">
+    <value>모든 이체 확인</value>
+  </data>
+  <data name="TransferAllSuccess" xml:space="preserve">
+    <value>모든 이체 성공</value>
+  </data>
+  <data name="TransferAllUnsuccessfully" xml:space="preserve">
+    <value>모든 이체 실패</value>
+  </data>
+  <data name="TransferAll_ClearCredit_Errors" xml:space="preserve">
+    <value>모든 이체_크레딧 정리_오류</value>
+  </data>
+  <data name="TransferStep_Master_Agent" xml:space="preserve">
+    <value>마스터-에이전트 이체 단계</value>
+  </data>
+  <data name="TransferStep_Master_Member" xml:space="preserve">
+    <value>마스터-회원 이체 단계</value>
+  </data>
+  <data name="TransferStep_Super_Agent" xml:space="preserve">
+    <value>슈퍼-에이전트 이체 단계</value>
+  </data>
+  <data name="TransferStep_Super_Master" xml:space="preserve">
+    <value>슈퍼-마스터 이체 단계</value>
+  </data>
+  <data name="TransferStep_Super_Member" xml:space="preserve">
+    <value>슈퍼-회원 이체 단계</value>
+  </data>
+  <data name="Transfer_all" xml:space="preserve">
+    <value>모두 이체</value>
+  </data>
+  <data name="TransferableAmount" xml:space="preserve">
+    <value>이체 가능 금액</value>
+  </data>
+  <data name="TransferredAmount" xml:space="preserve">
+    <value>이체된 금액</value>
+  </data>
+  <data name="confirmCancelJob" xml:space="preserve">
+    <value>작업 취소 확인</value>
+  </data>
+  <data name="confirmChangeAutoTransferSchedule" xml:space="preserve">
+    <value>자동 이체 일정 변경 확인</value>
+  </data>
+  <data name="confirmTurnOffAutoTransfer" xml:space="preserve">
+    <value>자동 이체 끄기 확인</value>
   </data>
 </root>

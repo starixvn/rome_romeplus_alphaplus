@@ -133,7 +133,7 @@
     <value>차트</value>
   </data>
   <data name="consolidatedreport" xml:space="preserve">
-    <value>Consolidation</value>
+    <value>통합</value>
   </data>
   <data name="correctscore" xml:space="preserve">
     <value>정확한 득점</value>
@@ -142,7 +142,7 @@
     <value>크레딧/잔액</value>
   </data>
   <data name="customerlist" xml:space="preserve">
-    <value>고객 리스트</value>
+    <value>회원 목록</value>
   </data>
   <data name="dailywinlossanalysisreport" xml:space="preserve">
     <value>일일승패금액분석</value>
@@ -169,10 +169,10 @@
     <value>에이전트 아웃스텐딩</value>
   </data>
   <data name="cancelledBets" xml:space="preserve">
-    <value>취소된 배팅</value>
+    <value>취소된 베팅</value>
   </data>
   <data name="commissionByBettype" xml:space="preserve">
-    <value>배팅 종류에 따른 수수료</value>
+    <value>베팅 종류에 따른 수수료</value>
   </data>
   <data name="commssionhorseracing" xml:space="preserve">
     <value>경마 수수료</value>
@@ -181,7 +181,7 @@
     <value>예상</value>
   </data>
   <data name="homeDrawAwayNoBet" xml:space="preserve">
-    <value>Home/Draw/Away No Bet</value>
+    <value>홈/무승부/어웨이 노베트</value>
   </data>
   <data name="HOUL" xml:space="preserve">
     <value>핸디캡/초과 미만/생중계</value>
@@ -190,7 +190,7 @@
     <value>마스터 에이전트 목록</value>
   </data>
   <data name="masterOutstanding" xml:space="preserve">
-    <value>마스터 대기 포인트</value>
+    <value>마스터 미정산</value>
   </data>
   <data name="matchWinLostDetail" xml:space="preserve">
     <value>경기 승 패 상세보기</value>
@@ -208,7 +208,7 @@
     <value>회원 승리 패배</value>
   </data>
   <data name="monitor" xml:space="preserve">
-    <value>마지막베팅내역</value>
+    <value>최근 베팅 내역</value>
   </data>
   <data name="newAgent" xml:space="preserve">
     <value>새로운 에이전트</value>
@@ -223,7 +223,7 @@
     <value>순위,승자 등</value>
   </data>
   <data name="positionTaking" xml:space="preserve">
-    <value>포지션 테이킹(%)</value>
+    <value>포지션 설정(%)</value>
   </data>
   <data name="scoreMap" xml:space="preserve">
     <value>라이브스코어</value>
@@ -232,7 +232,7 @@
     <value>기록</value>
   </data>
   <data name="winLossByBettype" xml:space="preserve">
-    <value>배팅 종류별 승리 패배</value>
+    <value>베팅 종류별 승리 패배</value>
   </data>
   <data name="masterwinloss" xml:space="preserve">
     <value>마스터 승리 패배</value>
@@ -244,7 +244,7 @@
     <value>매치 승리 패배</value>
   </data>
   <data name="MemberWinLimit" xml:space="preserve">
-    <value>회원의  지급한도</value>
+    <value>회원 지급 한도</value>
   </data>
   <data name="memberwinlossdetail" xml:space="preserve">
     <value>상세한 회원의 승리 패배</value>
@@ -277,13 +277,13 @@
     <value>보조계정</value>
   </data>
   <data name="totalbets" xml:space="preserve">
-    <value>총 배팅</value>
+    <value>총 베팅</value>
   </data>
   <data name="winlossanalysis" xml:space="preserve">
     <value>승리/패배 분석</value>
   </data>
   <data name="announcements" xml:space="preserve">
-    <value>Announcements</value>
+    <value>공지사항</value>
   </data>
   <data name="customerSetting" xml:space="preserve">
     <value>회원설정</value>
@@ -295,13 +295,13 @@
     <value>일반</value>
   </data>
   <data name="personalMessage" xml:space="preserve">
-    <value>개인 메세지</value>
+    <value>개인 메시지</value>
   </data>
   <data name="special" xml:space="preserve">
-    <value>Special</value>
+    <value>특별</value>
   </data>
   <data name="status" xml:space="preserve">
-    <value>상황</value>
+    <value>상태</value>
   </data>
   <data name="transfer" xml:space="preserve">
     <value>전송</value>
@@ -313,7 +313,7 @@
     <value>통계</value>
   </data>
   <data name="winLossAnalysisChart" xml:space="preserve">
-    <value>Win Loss Analysis Chart</value>
+    <value>승패 분석 차트</value>
   </data>
   <data name="BetType13" xml:space="preserve">
     <value>클린 시트</value>
@@ -325,46 +325,46 @@
     <value>3방향 핸디캡</value>
   </data>
   <data name="BetsAndForecast" xml:space="preserve">
-    <value>Bets &amp; Forecast</value>
+    <value>베팅 및 예측</value>
   </data>
   <data name="soccer" xml:space="preserve">
     <value>축구</value>
   </data>
   <data name="credit" xml:space="preserve">
-    <value>Credit</value>
+    <value>크레딧</value>
   </data>
   <data name="Setting" xml:space="preserve">
     <value>설정</value>
   </data>
   <data name="BetLists" xml:space="preserve">
-    <value>배팅 리스트</value>
+    <value>베팅 목록</value>
   </data>
   <data name="TransferAllAndClearCredit" xml:space="preserve">
-    <value>Transfer All &amp; Clear Credit</value>
+    <value>전체 이체 및 크레딧 정리</value>
   </data>
   <data name="BetStatistics" xml:space="preserve">
-    <value>Risk Analysis</value>
+    <value>베팅 통계</value>
   </data>
   <data name="IPMatching" xml:space="preserve">
-    <value>IP Matching</value>
+    <value>IP 일치</value>
   </data>
   <data name="agentOutstandingNew" xml:space="preserve">
-    <value>Agent Outstanding (New)</value>
+    <value>에이전트 미정산 (신규)</value>
   </data>
   <data name="masterOutstandingNew" xml:space="preserve">
-    <value>Master Outstanding (New)</value>
+    <value>마스터 미정산 (신규)</value>
   </data>
   <data name="memberOutstandingNew" xml:space="preserve">
-    <value>Member Outstanding (New)</value>
+    <value>회원 미정산 (신규)</value>
   </data>
   <data name="TransferToDownlineHistory" xml:space="preserve">
-    <value>Transfer To Downline History</value>
+    <value>하위 라인 이체 내역</value>
   </data>
   <data name="superWinLossDetailByPT" xml:space="preserve">
-    <value>Super Win Loss Detail By PT</value>
+    <value>PT별 슈퍼 승패 상세</value>
   </data>
   <data name="Old" xml:space="preserve">
-    <value>Old</value>
+    <value>이전</value>
   </data>
   <data name="newCashMember" xml:space="preserve">
     <value>신규 현금 회원</value>
@@ -380,5 +380,119 @@
   </data>
   <data name="PendingWithdrawal" xml:space="preserve">
     <value>출금 대기</value>
+  </data>
+  <data name="Beta" xml:space="preserve">
+    <value>베타</value>
+  </data>
+  <data name="ProgressiveGamesContribution" xml:space="preserve">
+    <value>프로그레시브 게임 기여도</value>
+  </data>
+  <data name="systemUpdate" xml:space="preserve">
+    <value>시스템</value>
+  </data>
+  <data name="chatbot" xml:space="preserve">
+    <value>챗봇</value>
+  </data>
+  <data name="problemAccountList" xml:space="preserve">
+    <value>문제 계정 목록</value>
+  </data>
+  <data name="BetChoiceMatching" xml:space="preserve">
+    <value>베팅 선택 매칭</value>
+  </data>
+  <data name="IndirectLoginAccount" xml:space="preserve">
+    <value>간접 로그인 계정</value>
+  </data>
+  <data name="DormantAccountList" xml:space="preserve">
+    <value>휴면 계정 목록</value>
+  </data>
+  <data name="BonusDetail" xml:space="preserve">
+    <value>보너스 상세</value>
+  </data>
+  <data name="BetCreditTracking" xml:space="preserve">
+    <value>베팅 크레딧 추적</value>
+  </data>
+  <data name="MyWatchlist" xml:space="preserve">
+    <value>내 관심목록</value>
+  </data>
+  <data name="SercurityCode" xml:space="preserve">
+    <value>보안</value>
+  </data>
+  <data name="riskManagement" xml:space="preserve">
+    <value>위험 관리</value>
+  </data>
+  <data name="MyThresholds" xml:space="preserve">
+    <value>내 임계값</value>
+  </data>
+  <data name="BackupDomains" xml:space="preserve">
+    <value>사용 가능한 도메인</value>
+  </data>
+  <data name="searchTickets" xml:space="preserve">
+    <value>티켓 검색</value>
+  </data>
+  <data name="AutoTransferMonitoring" xml:space="preserve">
+    <value>자동 이체 모니터</value>
+  </data>
+  <data name="PTTemplate" xml:space="preserve">
+    <value>포지션 취하기 템플릿</value>
+  </data>
+  <data name="MemberBettingBehavior" xml:space="preserve">
+    <value>회원 베팅 행동</value>
+  </data>
+  <data name="WhiteLabel" xml:space="preserve">
+    <value>화이트 라벨</value>
+  </data>
+  <data name="SettlementReport" xml:space="preserve">
+    <value>정산 보고서</value>
+  </data>
+  <data name="RewardPayment" xml:space="preserve">
+    <value>보상 지급</value>
+  </data>
+  <data name="SignInS1BackOffice" xml:space="preserve">
+    <value>백오피스 로그인</value>
+  </data>
+  <data name="SigninToNovaCasino" xml:space="preserve">
+    <value>노바 카지노 로그인</value>
+  </data>
+  <data name="JoinNovaCasinoNow" xml:space="preserve">
+    <value>노바 카지노 에이전트 신청</value>
+  </data>
+  <data name="newDirectMember" xml:space="preserve">
+    <value>직접 회원 생성</value>
+  </data>
+  <data name="cashService" xml:space="preserve">
+    <value>현금 서비스</value>
+  </data>
+  <data name="ManagePayments" xml:space="preserve">
+    <value>결제 관리</value>
+  </data>
+  <data name="PendingDeposit" xml:space="preserve">
+    <value>대기 중인 입금</value>
+  </data>
+  <data name="PendingWithdrawal" xml:space="preserve">
+    <value>대기 중인 출금</value>
+  </data>
+  <data name="TransactionHistory" xml:space="preserve">
+    <value>거래 내역</value>
+  </data>
+  <data name="promotion" xml:space="preserve">
+    <value>프로모션</value>
+  </data>
+  <data name="ManagePromotion" xml:space="preserve">
+    <value>프로모션 관리</value>
+  </data>
+  <data name="PendingPromotion" xml:space="preserve">
+    <value>대기 중인 프로모션</value>
+  </data>
+  <data name="PromotionReport" xml:space="preserve">
+    <value>프로모션 보고서</value>
+  </data>
+  <data name="BetChoiceLimit" xml:space="preserve">
+    <value>베팅 선택 한도</value>
+  </data>
+  <data name="winLossByProduct" xml:space="preserve">
+    <value>상품별 승패</value>
+  </data>
+  <data name="LastBets" xml:space="preserve">
+    <value>최근 베팅</value>
   </data>
 </root>

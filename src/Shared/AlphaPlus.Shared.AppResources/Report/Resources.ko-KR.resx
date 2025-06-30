@@ -1,110 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -124,7 +66,7 @@
     <value>에이전트</value>
   </data>
   <data name="AgentCommNew" xml:space="preserve">
-    <value>Agent Comm</value>
+    <value>에이전트 수수료</value>
   </data>
   <data name="AgentOutstanding" xml:space="preserve">
     <value>에이전트 아웃스텐딩</value>
@@ -133,7 +75,7 @@
     <value>총 에이전트</value>
   </data>
   <data name="AgentTotalNew" xml:space="preserve">
-    <value>Agent Total</value>
+    <value>총 에이전트</value>
   </data>
   <data name="AgentWinLoss" xml:space="preserve">
     <value>에이전트 승 패</value>
@@ -142,7 +84,7 @@
     <value>에이전트 승 패 상세보기</value>
   </data>
   <data name="AgentWinLossNew" xml:space="preserve">
-    <value>Agent Win/Loss</value>
+    <value>에이전트 승/패</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>모든</value>
@@ -157,7 +99,7 @@
     <value>총액</value>
   </data>
   <data name="Apply" xml:space="preserve">
-    <value>Apply</value>
+    <value>적용</value>
   </data>
   <data name="April" xml:space="preserve">
     <value>4월</value>
@@ -172,25 +114,25 @@
     <value>베팅카운트</value>
   </data>
   <data name="BetList" xml:space="preserve">
-    <value>배팅 리스트</value>
+    <value>베팅 목록</value>
   </data>
   <data name="BetList_Running" xml:space="preserve">
-    <value>배팅 목록(진행중)</value>
+    <value>베팅 목록(진행중)</value>
   </data>
   <data name="BetMatching_IP_Title" xml:space="preserve">
-    <value>Click to view shared IP accounts</value>
+    <value>공유 IP 계정 보기</value>
   </data>
   <data name="BetMatching_Username_Title" xml:space="preserve">
-    <value>Click to view uplines</value>
+    <value>상위 계정 보기</value>
   </data>
   <data name="BetType" xml:space="preserve">
-    <value>배팅 유형</value>
+    <value>베팅 유형</value>
   </data>
   <data name="CanOnlyViewDataAfterTimeCurrentReport" xml:space="preserve">
-    <value>You can view the report data from {0}.</value>
+    <value>{0}부터 보고서 데이터를 볼 수 있습니다.</value>
   </data>
   <data name="CanOnlyViewDataAfterTimeHistoryReport" xml:space="preserve">
-    <value>You can view the report data from {0}. </value>
+    <value>{0}부터 보고서 데이터를 볼 수 있습니다.</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>취소</value>
@@ -220,13 +162,13 @@
     <value>수수료 3</value>
   </data>
   <data name="CommissionByBettype" xml:space="preserve">
-    <value>배팅 종류에 따른 수수료</value>
+    <value>베팅 종류에 따른 수수료</value>
   </data>
   <data name="Company" xml:space="preserve">
     <value>회사</value>
   </data>
   <data name="Consolidation" xml:space="preserve">
-    <value>Consolidation</value>
+    <value>통합</value>
   </data>
   <data name="ConsolidationReportByDate" xml:space="preserve">
     <value>일과 연결 리포트</value>
@@ -247,6 +189,7 @@
     <value>매일</value>
   </data>
   <data name="DailyStatement" xml:space="preserve">
+    <value>일일 정산</value>
     <value>일일 정책</value>
   </data>
   <data name="DailyWinLossAnalysis" xml:space="preserve">
@@ -268,7 +211,7 @@
     <value>입력됨</value>
   </data>
   <data name="ExportToExcel" xml:space="preserve">
-    <value>엘셀로 내보내기</value>
+    <value>엑셀로 내보내기</value>
   </data>
   <data name="FT" xml:space="preserve">
     <value>풀게임</value>
@@ -280,19 +223,19 @@
     <value>Filter</value>
   </data>
   <data name="FilterByMemberWinLoss" xml:space="preserve">
-    <value>Filter By Member Win Loss</value>
+    <value>회원 승패로 필터링</value>
   </data>
   <data name="FilterByStake" xml:space="preserve">
-    <value>Filter By Stake</value>
+    <value>배팅금으로 필터링</value>
   </data>
   <data name="FilterByUsername" xml:space="preserve">
-    <value>Filter By Username</value>
+    <value>사용자명으로 필터링</value>
   </data>
   <data name="FilterByUsername_Placeholder" xml:space="preserve">
-    <value>Separate mulitple usernames by comma (,)</value>
+    <value>여러 사용자명을 쉼표(,)로 구분하세요</value>
   </data>
   <data name="FirstLastName" xml:space="preserve">
-    <value>First/ Last Name</value>
+    <value>이름/성</value>
   </data>
   <data name="From" xml:space="preserve">
     <value>시작일</value>
@@ -301,7 +244,7 @@
     <value>게임 형식이름</value>
   </data>
   <data name="Gaming" xml:space="preserve">
-    <value>Gaming</value>
+    <value>게임</value>
   </data>
   <data name="GivenCredit" xml:space="preserve">
     <value>주어진 크레딧</value>
@@ -325,19 +268,19 @@
     <value>경마</value>
   </data>
   <data name="HttpError_Default" xml:space="preserve">
-    <value>Sorry, there was an unexpected issue on the server. Please seek help from our customer support. [{0}]</value>
+    <value>죄송합니다. 서버에서 예상치 못한 문제가 발생했습니다. 고객 지원팀에 문의해 주세요. [{0}]</value>
   </data>
   <data name="IP" xml:space="preserve">
     <value>아이피</value>
   </data>
   <data name="IPMatching" xml:space="preserve">
-    <value>IP Matching</value>
+    <value>IP 매칭</value>
   </data>
   <data name="IPMatchingNote" xml:space="preserve">
-    <value>This report's data is used for statistics only, due to the resettlement process, the figure might not be totally exact.</value>
+    <value>이 보고서의 데이터는 통계용으로만 사용되며, 재정산 과정으로 인해 수치가 완전히 정확하지 않을 수 있습니다.</value>
   </data>
   <data name="IP_used_by" xml:space="preserve">
-    <value>IP used by</value>
+    <value>사용된 IP</value>
   </data>
   <data name="January" xml:space="preserve">
     <value>1월</value>
@@ -370,25 +313,25 @@
     <value>마스터</value>
   </data>
   <data name="MasterCommNew" xml:space="preserve">
-    <value>Master Comm</value>
+    <value>마스터 수수료</value>
   </data>
   <data name="MasterOutstanding" xml:space="preserve">
-    <value>마스터 대기 포인트</value>
+    <value>마스터 미정산</value>
   </data>
   <data name="MasterTotal" xml:space="preserve">
     <value>마스터 총계</value>
   </data>
   <data name="MasterTotalNew" xml:space="preserve">
-    <value>Master Total</value>
+    <value>마스터 총계</value>
   </data>
   <data name="MasterWinLoss" xml:space="preserve">
-    <value>마스터 승리 패배</value>
+    <value>마스터 승패</value>
   </data>
   <data name="MasterWinLossDetail" xml:space="preserve">
-    <value>상세한 마스터 승리 패배</value>
+    <value>상세한 마스터 승패</value>
   </data>
   <data name="MasterWinLossNew" xml:space="preserve">
-    <value>Master Win/Loss</value>
+    <value>마스터 승/패</value>
   </data>
   <data name="Match" xml:space="preserve">
     <value>매치</value>
@@ -400,7 +343,7 @@
     <value>경기 승 패 상세보기</value>
   </data>
   <data name="MatchingBets" xml:space="preserve">
-    <value>Matching Bets</value>
+    <value>매칭 베팅</value>
   </data>
   <data name="May" xml:space="preserve">
     <value>5월</value>
@@ -409,40 +352,40 @@
     <value>회원</value>
   </data>
   <data name="MemberCommNew" xml:space="preserve">
-    <value>Member Comm</value>
+    <value>회원 수수료</value>
   </data>
   <data name="MemberCount" xml:space="preserve">
-    <value>Member Count</value>
+    <value>회원 수</value>
   </data>
   <data name="MemberOutstanding" xml:space="preserve">
-    <value>회원 아웃스텐딩</value>
+    <value>회원 미정산</value>
   </data>
   <data name="MemberTotalNew" xml:space="preserve">
-    <value>Member Total</value>
+    <value>회원 총계</value>
   </data>
   <data name="MemberTurnOver" xml:space="preserve">
-    <value>Member Turnover</value>
+    <value>회원 거래량</value>
   </data>
   <data name="MemberWinLoss" xml:space="preserve">
-    <value>회원 승리 패배</value>
+    <value>회원 승패</value>
   </data>
   <data name="MemberWinLossDetail" xml:space="preserve">
-    <value>상세한 회원의 승리 패배</value>
+    <value>상세한 회원의 승패</value>
   </data>
   <data name="MemberWinLossNew" xml:space="preserve">
-    <value>Member Win/Loss</value>
+    <value>회원 승/패</value>
   </data>
   <data name="Month" xml:space="preserve">
-    <value>Month</value>
+    <value>월</value>
   </data>
   <data name="Monthly" xml:space="preserve">
     <value>매월</value>
   </data>
   <data name="MonthlyWinLossAnalysis" xml:space="preserve">
-    <value>매월 승리/패배 분석</value>
+    <value>매월 승패 분석</value>
   </data>
   <data name="MonthlyWinLossChart" xml:space="preserve">
-    <value>매월 승리/패배 차트</value>
+    <value>매월 승패 차트</value>
   </data>
   <data name="NetTurnover" xml:space="preserve">
     <value>순매출</value>
@@ -460,103 +403,208 @@
     <value>기록되지 않은 것</value>
   </data>
   <data name="NotAuthorized" xml:space="preserve">
-    <value>해당 기능에 대한 권한이 없습니다.</value>
+    <value>이 기능에 대한 권한이 없습니다.</value>
+  </data>
+  <data name="NotReceived" xml:space="preserve">
+    <value>수신되지 않음</value>
   </data>
   <data name="November" xml:space="preserve">
     <value>11월</value>
   </data>
   <data name="NumberGame" xml:space="preserve">
-    <value>넘버게임 커미션</value>
+    <value>번호 게임</value>
   </data>
   <data name="NumberGameNo" xml:space="preserve">
-    <value>라이브빙고 번호</value>
+    <value>번호 게임 번호</value>
   </data>
   <data name="October" xml:space="preserve">
     <value>10월</value>
   </data>
+  <data name="OldEventDate" xml:space="preserve">
+    <value>이전 이벤트 날짜</value>
+  </data>
+  <data name="OlderThan3Months" xml:space="preserve">
+    <value>3개월 이상</value>
+  </data>
+  <data name="OpeningBal" xml:space="preserve">
+    <value>시작 잔액</value>
+  </data>
+  <data name="OpeningBalance" xml:space="preserve">
+    <value>시작 잔액</value>
+  </data>
   <data name="Others" xml:space="preserve">
-    <value>Others</value>
+    <value>기타</value>
   </data>
   <data name="Outright" xml:space="preserve">
-    <value>순위,승자 등</value>
+    <value>아웃라이트</value>
   </data>
   <data name="Outstanding" xml:space="preserve">
-    <value>대기 포인트</value>
+    <value>미정산</value>
   </data>
   <data name="Owner" xml:space="preserve">
-    <value>관리자</value>
+    <value>소유자</value>
   </data>
   <data name="PT" xml:space="preserve">
-    <value>PT</value>
+    <value>포지션 테이킹</value>
   </data>
   <data name="Page" xml:space="preserve">
     <value>페이지</value>
   </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>{total}개 항목 중 {from}부터 {to}까지 표시</value>
+  </data>
+  <data name="PartialUMAnnouncement" xml:space="preserve">
+    <value>더 나은 경험을 위해 이 기능을 업데이트하고 있습니다. 따라서 이 기능은 일시적으로 비활성화됩니다({0} - {1} (GMT+8)). 나중에 다시 시도해 주시고 불편을 끼쳐 죄송합니다.</value>
+  </data>
+  <data name="PaymentDate" xml:space="preserve">
+    <value>결제 날짜</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>대기중</value>
+  </data>
   <data name="Place" xml:space="preserve">
-    <value>순위</value>
+    <value>위치</value>
+  </data>
+  <data name="PlayerComm" xml:space="preserve">
+    <value>플레이어 수수료</value>
   </data>
   <data name="PositionTaking" xml:space="preserve">
-    <value>거래 조건</value>
+    <value>포지션 테이킹</value>
+  </data>
+  <data name="PreGame" xml:space="preserve">
+    <value>프리게임</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>제품</value>
+  </data>
+  <data name="ProductDetails" xml:space="preserve">
+    <value>제품 상세</value>
+  </data>
+  <data name="ProgressiveGamesContribution" xml:space="preserve">
+    <value>프로그레시브 게임 기여</value>
   </data>
   <data name="Race" xml:space="preserve">
     <value>경주</value>
+  </data>
+  <data name="Received" xml:space="preserve">
+    <value>수신됨</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>거부됨</value>
   </data>
   <data name="Remark" xml:space="preserve">
     <value>비고</value>
   </data>
   <data name="ReportBy" xml:space="preserve">
-    <value>~에 의한 자료</value>
+    <value>보고서 작성자</value>
+  </data>
+  <data name="ReportDataCanViewNote" xml:space="preserve">
+    <value>{0}부터 시작하는 보고서 데이터는 최대 90일 이상 볼 수 있습니다.</value>
   </data>
   <data name="Results" xml:space="preserve">
-    <value>결과 확인</value>
+    <value>결과</value>
+  </data>
+  <data name="RoundCount" xml:space="preserve">
+    <value>라운드 수</value>
+  </data>
+  <data name="SearchColumns" xml:space="preserve">
+    <value>열 검색</value>
+  </data>
+  <data name="SearchProduct" xml:space="preserve">
+    <value>제품 검색</value>
+  </data>
+  <data name="SearchProductDetails" xml:space="preserve">
+    <value>제품 상세 검색</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>모두 선택</value>
   </data>
   <data name="SelectLeague" xml:space="preserve">
     <value>리그 선택</value>
   </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>선택 안함</value>
+  </data>
+  <data name="SelectProducts" xml:space="preserve">
+    <value>제품 선택</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>선택됨</value>
+  </data>
   <data name="September" xml:space="preserve">
     <value>9월</value>
   </data>
+  <data name="ShowFilter" xml:space="preserve">
+    <value>필터 표시</value>
+  </data>
   <data name="SinceLastMonth" xml:space="preserve">
-    <value>지난달부터</value>
+    <value>지난달 이후</value>
+  </data>
+  <data name="SpecificDate" xml:space="preserve">
+    <value>특정 날짜</value>
   </data>
   <data name="Sport" xml:space="preserve">
     <value>스포츠</value>
   </data>
   <data name="SportWinLossAnalysis" xml:space="preserve">
-    <value>스포츠 적중/손실 (승패)분석</value>
+    <value>스포츠 승패 분석</value>
   </data>
   <data name="Stake" xml:space="preserve">
-    <value>배팅 금액</value>
+    <value>배팅금</value>
   </data>
   <data name="Statement" xml:space="preserve">
-    <value>기록</value>
+    <value>정산서</value>
+  </data>
+  <data name="StatementGuidelines" xml:space="preserve">
+    <value>정산서 가이드라인</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value>상황</value>
+    <value>상태</value>
   </data>
   <data name="SubTotal" xml:space="preserve">
-    <value>총 하위</value>
+    <value>소계</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>확인</value>
+    <value>제출</value>
+  </data>
+  <data name="SumOfMemberTotal" xml:space="preserve">
+    <value>총계</value>
+  </data>
+  <data name="SummaryOfDormantAccounts" xml:space="preserve">
+    <value>휴면 계정 요약</value>
   </data>
   <data name="Super" xml:space="preserve">
     <value>슈퍼</value>
   </data>
   <data name="SuperCommNew" xml:space="preserve">
-    <value>Super Comm</value>
+    <value>슈퍼 수수료</value>
+  </data>
+  <data name="SuperTotal" xml:space="preserve">
+    <value>슈퍼 총계</value>
   </data>
   <data name="SuperTotalNew" xml:space="preserve">
-    <value>Super Total</value>
+    <value>슈퍼 총계</value>
   </data>
   <data name="SuperWinLoss" xml:space="preserve">
-    <value>Super Win Loss</value>
+    <value>슈퍼 승패</value>
   </data>
   <data name="SuperWinLossDetailByPT" xml:space="preserve">
-    <value>Super Win Loss Detail By PT</value>
+    <value>PT별 슈퍼 승패 상세</value>
   </data>
   <data name="SuperWinLossNew" xml:space="preserve">
-    <value>Super Win/Loss</value>
+    <value>슈퍼 승패</value>
+  </data>
+  <data name="SymbolMyanmarOdds" xml:space="preserve">
+    <value>미얀마 배당</value>
+  </data>
+  <data name="Symbol_NoDataNumber" xml:space="preserve">
+    <value>--</value>
+  </data>
+  <data name="TaxComm" xml:space="preserve">
+    <value>총 세금 수수료</value>
+  </data>
+  <data name="ThereIsNoLeague" xml:space="preserve">
+    <value>리그가 없습니다.</value>
   </data>
   <data name="To" xml:space="preserve">
     <value>종료일</value>
@@ -568,37 +616,37 @@
     <value>총</value>
   </data>
   <data name="TotalMemberWL" xml:space="preserve">
-    <value>Total Member WL</value>
+    <value>총 회원 승패</value>
   </data>
   <data name="TotalStake" xml:space="preserve">
-    <value>Total Stake</value>
+    <value>총 배팅금</value>
   </data>
   <data name="Tote" xml:space="preserve">
-    <value>Tote</value>
+    <value>토트</value>
   </data>
   <data name="Transfer" xml:space="preserve">
     <value>전송</value>
   </data>
   <data name="Turnover" xml:space="preserve">
-    <value>총 배팅한 금액</value>
+    <value>회전율</value>
   </data>
   <data name="TurnoverAbbr" xml:space="preserve">
-    <value>총 배팅한 금액</value>
+    <value>회전율</value>
   </data>
   <data name="Upline" xml:space="preserve">
-    <value>Upline</value>
+    <value>상위 계정</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>사용자 이름</value>
+    <value>사용자명</value>
   </data>
   <data name="ViewHistoryReport" xml:space="preserve">
     <value>리포트 내역 보기</value>
   </data>
   <data name="ViewProductPTList" xml:space="preserve">
-    <value>View Product/PT List</value>
+    <value>제품/PT 목록 보기</value>
   </data>
   <data name="ViewProductPTListNoteMessage" xml:space="preserve">
-    <value>PT values shown in the report are the Super Max PT</value>
+    <value>보고서에 표시된 PT 값은 슈퍼 최대 PT입니다</value>
   </data>
   <data name="VirtualSports" xml:space="preserve">
     <value>가상 스포츠</value>
@@ -613,16 +661,16 @@
     <value>승/패</value>
   </data>
   <data name="WinLossAnalysis" xml:space="preserve">
-    <value>승리/패배 분석</value>
+    <value>승패 분석</value>
   </data>
   <data name="WinLossByBetType" xml:space="preserve">
-    <value>배팅 종류별 승리 패배</value>
+    <value>베팅 종류별 승패</value>
   </data>
   <data name="WinLossTitle" xml:space="preserve">
-    <value>승리 패배</value>
+    <value>승패</value>
   </data>
   <data name="WinPlace" xml:space="preserve">
-    <value>승리 순위</value>
+    <value>승패 순위</value>
   </data>
   <data name="Yesterday" xml:space="preserve">
     <value>어제</value>
@@ -683,6 +731,1899 @@
   </data>
   <data name="RewardCurrency" xml:space="preserve">
     <value>보상 통화</value>
+  </data>
+  <data name="SuperTotal" xml:space="preserve">
+    <value>슈퍼 총계</value>
+  </data>
+  <data name="TotalMemberWL" xml:space="preserve">
+    <value>총 회원 승패</value>
+  </data>
+  <data name="TotalStake" xml:space="preserve">
+    <value>총 배팅금</value>
+  </data>
+  <data name="ViewProductPTList" xml:space="preserve">
+    <value>제품/PT 목록 보기</value>
+  </data>
+  <data name="Void" xml:space="preserve">
+    <value>무효</value>
+  </data>
+  <data name="Voidbridge" xml:space="preserve">
+    <value>마카오 게임</value>
+  </data>
+  <data name="WinLossByProduct" xml:space="preserve">
+    <value>제품별 승패</value>
+  </data>
+  <data name="WinLossDate" xml:space="preserve">
+    <value>승패 날짜</value>
+  </data>
+  <data name="WinLossDetail" xml:space="preserve">
+    <value>승패 상세</value>
+  </data>
+  <data name="_Sep" xml:space="preserve">
+    <value>9월</value>
+  </data>
+  <data name="nSelected" xml:space="preserve">
+    <value>선택된 수</value>
+  </data>
+  <data name="of2" xml:space="preserve">
+    <value>중</value>
+  </data>
+  <data name="vs" xml:space="preserve">
+    <value> - 대 - </value>
+  </data>
+  <data name="SabaOtherSportsLegend" xml:space="preserve">
+    <value>{0}의 데이터는 {1} 아래에 표시됩니다.</value>
+  </data>
+  <data name="MonitoredMember" xml:space="preserve">
+    <value>모니터링된 회원</value>
+  </data>
+  <data name="AddToMyWatchlist" xml:space="preserve">
+    <value>내 감시 목록에 추가</value>
+  </data>
+  <data name="Statement_WinLoss" xml:space="preserve">
+    <value>승/패</value>
+  </data>
+  <data name="ProductWinLossAnalysis" xml:space="preserve">
+    <value>제품별 승패 분석</value>
+  </data>
+  <data name="Reward" xml:space="preserve">
+    <value>보상</value>
+  </data>
+  <data name="SettlementReport" xml:space="preserve">
+    <value>정산 보고서</value>
+  </data>
+  <data name="DailyWinLossReport" xml:space="preserve">
+    <value>일일 승패 보고서</value>
+  </data>
+  <data name="WhiteLabel" xml:space="preserve">
+    <value>화이트 라벨</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>검색</value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>프로모션</value>
+  </data>
+  <data name="MasterEarning" xml:space="preserve">
+    <value>마스터 수익</value>
+  </data>
+  <data name="SuperEarning" xml:space="preserve">
+    <value>슈퍼 수익</value>
+  </data>
+  <data name="LossCarryforward" xml:space="preserve">
+    <value>손실 이월</value>
+  </data>
+  <data name="NetWinLoss" xml:space="preserve">
+    <value>순 승패</value>
+  </data>
+  <data name="GrossFee" xml:space="preserve">
+    <value>총 수수료</value>
+  </data>
+  <data name="PromotionSettlement" xml:space="preserve">
+    <value>프로모션 정산</value>
+  </data>
+  <data name="PromotionShare" xml:space="preserve">
+    <value>프로모션 분배</value>
+  </data>
+  <data name="TotalFee" xml:space="preserve">
+    <value>총 수수료</value>
+  </data>
+  <data name="Income" xml:space="preserve">
+    <value>수익</value>
+  </data>
+  <data name="WhiteLabelSettlementNote" xml:space="preserve">
+    <value>데이터 정확성을 위해 월말 5일 후에 정산 보고서를 생성하세요.</value>
+  </data>
+  <data name="ToWin" xml:space="preserve">
+    <value>승리까지</value>
+  </data>
+  <data name="MasterRisk" xml:space="preserve">
+    <value>마스터 리스크</value>
+  </data>
+  <data name="SuperRisk" xml:space="preserve">
+    <value>슈퍼 리스크</value>
+  </data>
+  <data name="AgentRisk" xml:space="preserve">
+    <value>에이전트 리스크</value>
+  </data>
+  <data name="SportsbookRiskAmount" xml:space="preserve">
+    <value>스포츠북 리스크 금액</value>
+  </data>
+  <data name="DownlineTotal" xml:space="preserve">
+    <value>하위 라인 총계</value>
+  </data>
+  <data name="Guidelines_TransferAmt_DirectMember" xml:space="preserve">
+    <value>직접 상위 라인과 회원 간의 총 이체 금액. 이체 상세를 보려면 클릭하세요.</value>
+  </data>
+  <data name="AccumTotal" xml:space="preserve">
+    <value>누적 총계</value>
+  </data>
+  <data name="AccumulatedTotal" xml:space="preserve">
+    <value>누적 총계</value>
+  </data>
+  <data name="ActionDateTime" xml:space="preserve">
+    <value>작업 날짜/시간</value>
+  </data>
+  <data name="ActualStake" xml:space="preserve">
+    <value>실제 배팅금</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>모든 제품</value>
+  </data>
+  <data name="Allbet" xml:space="preserve">
+    <value>올벳</value>
+  </data>
+  <data name="AppStart_Message" xml:space="preserve">
+    <value>알파 - 리포트 - 애플리케이션 시작</value>
+  </data>
+  <data name="BalanceChange" xml:space="preserve">
+    <value>잔액 변경</value>
+  </data>
+  <data name="BetChoiceMatching" xml:space="preserve">
+    <value>베팅 선택 매칭</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>베팅 크레딧</value>
+  </data>
+  <data name="BetCreditHistory" xml:space="preserve">
+    <value>베팅 크레딧 기록</value>
+  </data>
+  <data name="BetType1X2_FT" xml:space="preserve">
+    <value>풀타임</value>
+  </data>
+  <data name="BonusDetail" xml:space="preserve">
+    <value>보너스 상세</value>
+  </data>
+  <data name="BonusDetailRefNo" xml:space="preserve">
+    <value>참조 번호</value>
+  </data>
+  <data name="BonusStatus" xml:space="preserve">
+    <value>보너스 상태</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>취소됨</value>
+  </data>
+  <data name="ClassicView" xml:space="preserve">
+    <value>클래식 보기</value>
+  </data>
+  <data name="Columns" xml:space="preserve">
+    <value>열</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>완료됨</value>
+  </data>
+  <data name="ConfirmPayment" xml:space="preserve">
+    <value>결제 확인</value>
+  </data>
+  <data name="ConfirmPaymentNote" xml:space="preserve">
+    <value>이 양식을 제출하면 시스템에 결제 날짜가 기록됩니다.</value>
+  </data>
+  <data name="ConfirmPaymentSuccessfully" xml:space="preserve">
+    <value>결제 날짜가 성공적으로 기록되었습니다.</value>
+  </data>
+  <data name="ConsolidationPTNote" xml:space="preserve">
+    <value>보고서에 표시된 PT 값은 {0}의 최대 PT입니다</value>
+  </data>
+  <data name="ContributionAmount" xml:space="preserve">
+    <value>기여 금액</value>
+  </data>
+  <data name="ContributionAmountRoundNote" xml:space="preserve">
+    <value>- 기여 금액은 소수점 4자리로 반올림됩니다.</value>
+  </data>
+  <data name="ContributionShare" xml:space="preserve">
+    <value>기여 분담</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>복사됨</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>복사</value>
+  </data>
+  <data name="CreatedFrom" xml:space="preserve">
+    <value>생성 출처</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>날짜 범위</value>
+  </data>
+  <data name="DefaultSheetName" xml:space="preserve">
+    <value>시트 1</value>
+  </data>
+  <data name="DelayIssueLegend" xml:space="preserve">
+    <value>- {0}의 데이터는 티켓 정산 후 최대 5분까지 지연될 수 있습니다.</value>
+  </data>
+  <data name="DormantAccounts" xml:space="preserve">
+    <value>휴면 계정</value>
+  </data>
+  <data name="DormantAccountsNote" xml:space="preserve">
+    <value>- 휴면 계정 정보가 수집되고 요약되었습니다. 개별 휴면 계정의 세부 정보는 더 이상 볼 수 없습니다.</value>
+  </data>
+  <data name="DuplicatedTicketMessage" xml:space="preserve">
+    <value>이벤트 날짜가 여러 번 변경된 티켓은 중복으로 표시되고 빨간색으로 강조됩니다.</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>활성화</value>
+  </data>
+  <data name="EventDateFrom" xml:space="preserve">
+    <value>이벤트 날짜 시작</value>
+  </data>
+  <data name="Formular_Accumulated_Total" xml:space="preserve">
+    <value>누적 총계 = 시작 잔액 + 승패 + 수수료 + 이체 금액</value>
+  </data>
+  <data name="GoldDeluxe" xml:space="preserve">
+    <value>골드 디럭스</value>
+  </data>
+  <data name="GrandPrize" xml:space="preserve">
+    <value>대상</value>
+  </data>
+  <data name="GrandPrize_Guidelines" xml:space="preserve">
+    <value>회원 잔액에서 제외되는 이벤트의 대승리 금액</value>
+  </data>
+  <data name="GrossCommNoteForAgent" xml:space="preserve">
+    <value>에이전트 목록에서: 마스터가 각 에이전트 또는 마스터 직접 회원에서 상위 계정으로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForCasino" xml:space="preserve">
+    <value>일부 카지노 제품에서 포지션 테이킹/수수료율이 게임이나 하루 중에 변경되면 보고서에 표시되는 Gross Comm 값은 평균 포지션 테이킹/수수료율에서 계산된 근사값입니다.</value>
+  </data>
+  <data name="GrossCommNoteForConsolidationReportAgent" xml:space="preserve">
+    <value>에이전트 레벨에서 보기: 에이전트가 상위 계정으로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForConsolidationReportMaster" xml:space="preserve">
+    <value>마스터 레벨에서 보기: 마스터가 상위 계정으로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForConsolidationReportSuper" xml:space="preserve">
+    <value>슈퍼 레벨에서 보기: 슈퍼가 상위 계정으로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForMaster" xml:space="preserve">
+    <value>마스터 목록에서: 슈퍼가 각 마스터 또는 슈퍼 직접 회원에서 회사로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForMember" xml:space="preserve">
+    <value>회원 목록에서: 에이전트가 각 회원에서 상위 계정으로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForRoundingProblem" xml:space="preserve">
+    <value>Gross Comm 값은 소수점 4자리로 반올림되어 각 레벨에서 다를 수 있습니다.</value>
+  </data>
+  <data name="GrossCommRoundingNote" xml:space="preserve">
+    <value>- 수수료 값은 이론적 값(Gross Comm * Position Taking)과 약간 다를 수 있습니다. 이는 하위 티켓의 수수료 값(소수점 4자리로 반올림)을 합산하여 계산되기 때문입니다.</value>
+  </data>
+  <data name="Guidelines_AccumulatedTotal_Member" xml:space="preserve">
+    <value>선택된 날짜 범위 내 각 날짜의 회원 마감 잔액</value>
+  </data>
+  <data name="Guidelines_AccumulatedTotal_SMA" xml:space="preserve">
+    <value>선택된 날짜 범위 내 각 날짜의 귀하의 마감 잔액</value>
+  </data>
+  <data name="Guidelines_Commission_Member" xml:space="preserve">
+    <value>총 회원 수수료</value>
+  </data>
+  <data name="Guidelines_Commission_SMA" xml:space="preserve">
+    <value>회원 티켓 기반 총 순수수료</value>
+  </data>
+  <data name="Guidelines_OpeningBalance_Member" xml:space="preserve">
+    <value>"시작일"까지 계산된 회원 잔액. 시작 잔액이 이전 날짜의 누적 총계와 같지 않으면 시작 잔액이 분홍색으로 강조됩니다.</value>
+  </data>
+  <data name="Guidelines_OpeningBalance_SMA" xml:space="preserve">
+    <value>"시작일"까지 계산된 귀하의 잔액. 시작 잔액이 이전 날짜의 누적 총계와 같지 않으면 시작 잔액이 분홍색으로 강조됩니다.</value>
+  </data>
+  <data name="Guidelines_Outstanding" xml:space="preserve">
+    <value>진행 중인 티켓의 총 배팅금. 클릭하여 진행 중인 티켓의 베팅 목록을 확인하세요.</value>
+  </data>
+  <data name="Guidelines_TransferAmt_Member" xml:space="preserve">
+    <value>에이전트와 회원 간의 총 이체 금액. 클릭하여 이체 상세를 확인하세요.</value>
+  </data>
+  <data name="Guidelines_TransferAmt_SMA" xml:space="preserve">
+    <value>총 이체 금액. 클릭하여 이체 상세를 확인하세요.</value>
+  </data>
+  <data name="Guidelines_Turnover" xml:space="preserve">
+    <value>모든 티켓의 총 배팅금(Void/거부/진행중/환불 티켓 제외)</value>
+  </data>
+  <data name="Guidelines_VoidRejected" xml:space="preserve">
+    <value>Void/거부 티켓의 총 배팅금. 클릭하여 Void/거부 티켓의 베팅 목록을 확인하세요.</value>
+  </data>
+  <data name="Guidelines_WinLoss_Member" xml:space="preserve">
+    <value>베팅 티켓의 총 승패 금액(회원 수수료 제외)(Void/거부/진행중 티켓 제외). 클릭하여 상세 베팅 목록을 확인하세요.</value>
+  </data>
+  <data name="Guidelines_WinLoss_SMA" xml:space="preserve">
+    <value>포지션 테이킹 후 베팅 티켓의 총 승패 금액(Void/거부/진행중 티켓 제외)</value>
+  </data>
+  <data name="Happy5" xml:space="preserve">
+    <value>해피 5</value>
+  </data>
+  <data name="HideFilter" xml:space="preserve">
+    <value>필터 숨기기</value>
+  </data>
+  <data name="HistoryDataCanViewNote" xml:space="preserve">
+    <value>{0} 이전의 과거 데이터는 최대 31일까지 볼 수 있습니다.</value>
+  </data>
+  <data name="Include" xml:space="preserve">
+    <value>포함</value>
+  </data>
+  <data name="Insurance_GemsWinLoss" xml:space="preserve">
+    <value>보험 및 보석 승패</value>
+  </data>
+  <data name="Insurance_GemsWinLossAbbr" xml:space="preserve">
+    <value>보험 및 보석</value>
+  </data>
+  <data name="InvalidRefNo" xml:space="preserve">
+    <value>잘못된 참조 번호</value>
+  </data>
+  <data name="InvalidUsername" xml:space="preserve">
+    <value>잘못된 사용자명</value>
+  </data>
+  <data name="Last3Months" xml:space="preserve">
+    <value>최근 3개월</value>
+  </data>
+  <data name="LiveGame" xml:space="preserve">
+    <value>라이브 게임</value>
+  </data>
+  <data name="MainReport" xml:space="preserve">
+    <value>메인 리포트</value>
+  </data>
+  <data name="MatchResultEntered" xml:space="preserve">
+    <value>경기 결과 입력됨</value>
+  </data>
+  <data name="MaxDataRetrieveHistoryError" xml:space="preserve">
+    <value>{0} 이전의 데이터는 최대 31일까지 검색할 수 있습니다. 날짜 범위를 확인해 주세요.</value>
+  </data>
+  <data name="MemberFeedback" xml:space="preserve">
+    <value>회원 피드백</value>
+  </data>
+  <data name="MemberRefNo" xml:space="preserve">
+    <value>회원/참조 번호</value>
+  </data>
+  <data name="MembersMovedEventDateReport" xml:space="preserve">
+    <value>회원 이벤트 날짜 변경 리포트</value>
+  </data>
+  <data name="MoveStatementHistory" xml:space="preserve">
+    <value>정산서 이동 기록</value>
+  </data>
+  <data name="MoveStatementHistoryNote" xml:space="preserve">
+    <value>보고서는 검색된 날짜 범위에 이전/새 이벤트 날짜가 포함된 모든 티켓을 표시합니다.</value>
+  </data>
+  <data name="NetTurnoverAndTaxComm" xml:space="preserve">
+    <value>/순 회전율/총 세금 수수료</value>
+  </data>
+  <data name="Neutral" xml:space="preserve">
+    <value>(무)</value>
+  </data>
+  <data name="NewBalance" xml:space="preserve">
+    <value>새 잔액</value>
+  </data>
+  <data name="NewEventDate" xml:space="preserve">
+    <value>새 이벤트 날짜</value>
+  </data>
+  <data name="NewView" xml:space="preserve">
+    <value>새 보기</value>
+  </data>
+  <data name="NewViewTakesOver" xml:space="preserve">
+    <value>새 보기가 대체됨</value>
+  </data>
+  <data name="NewViewTakesOverNote" xml:space="preserve">
+    <value>새 보기는 2024년 2월 21일(일/월/년)부터 대체됩니다. 클래식 보기로 다시 전환할 수 있습니다.</value>
+  </data>
+  <data name="NewViewTakesOverPopup" xml:space="preserve">
+    <value><b>2024년 2월 21일(일/월/년)</b>부터 <b>새 보기</b>가 <b>기본 표시</b>가 됩니다. 클래식 보기로 다시 전환할 수 있습니다.</value>
+  </data>
+  <data name="NoColumnsFound" xml:space="preserve">
+    <value>열을 찾을 수 없음</value>
+  </data>
+  <data name="NoProductDetailsFound" xml:space="preserve">
+    <value>제품 상세를 찾을 수 없음</value>
+  </data>
+  <data name="NoProductFound" xml:space="preserve">
+    <value>제품을 찾을 수 없음</value>
+  </data>
+  <data name="NoneSelected" xml:space="preserve">
+    <value>선택되지 않음</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>이 기능에 대한 권한이 없습니다.</value>
+  </data>
+  <data name="ThereIsNoProduct" xml:space="preserve">
+    <value>제품이 없습니다.</value>
+  </data>
+  <data name="ThereIsNoSelectedProduct" xml:space="preserve">
+    <value>선택된 제품이 없습니다.</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>이번 달</value>
+  </data>
+  <data name="ThisWeek" xml:space="preserve">
+    <value>이번 주</value>
+  </data>
+  <data name="Tip_ShowReportInNormalView" xml:space="preserve">
+    <value>열 그룹 해제</value>
+  </data>
+  <data name="Tip_ShowReportInStackColumnView" xml:space="preserve">
+    <value>열 그룹화</value>
+  </data>
+  <data name="ToMember" xml:space="preserve">
+    <value>회원에게</value>
+  </data>
+  <data name="VarianceFromSelectedDate" xml:space="preserve">
+    <value>선택된 날짜와의 차이</value>
+  </data>
+  <data name="Tooltip_CommissionByBetType" xml:space="preserve">
+    <value>- 기타: {0}의 베팅 유형에 적용됩니다.</value>
+  </data>
+  <data name="Tooltip_NetTurnover" xml:space="preserve">
+    <value>- 스포츠북의 경우, 순 회전율은 무승부 티켓과 절반 승리, 절반 패배 티켓의 절반 회전율을 제외한 회전율입니다.</value>
+  </data>
+  <data name="Tooltip_NetTurnover_RNGCasino" xml:space="preserve">
+    <value>- {0}의 경우, 순 회전율은 Void/거부/환불 티켓을 제외한 회전율입니다.</value>
+  </data>
+  <data name="Tooltip_NetTurnover_livecasino" xml:space="preserve">
+    <value>- {0}의 경우, 순 회전율은 수수료 계산에 사용하는 총 유효 베팅입니다.</value>
+  </data>
+  <data name="TotalCommission" xml:space="preserve">
+    <value>총 수수료</value>
+  </data>
+  <data name="TotalMembers" xml:space="preserve">
+    <value>총 회원 수</value>
+  </data>
+  <data name="TotalWinLoss" xml:space="preserve">
+    <value>총 승패</value>
+  </data>
+  <data name="TransferAmt" xml:space="preserve">
+    <value>이체 금액</value>
+  </data>
+  <data name="TransferDetails" xml:space="preserve">
+    <value>이체 상세</value>
+  </data>
+  <data name="UsernameIsRequired" xml:space="preserve">
+    <value>사용자명이 필요합니다.</value>
+  </data>
+  <data name="UsernameOrFirstLastName" xml:space="preserve">
+    <value>사용자명 또는 이름/성</value>
+  </data>
+  <data name="UsernamePTProduct" xml:space="preserve">
+    <value>사용자명/PT/제품</value>
+  </data>
+  <data name="ViewHistoryReport" xml:space="preserve">
+    <value>과거 리포트 보기</value>
+  </data>
+  <data name="ViewProductPTList" xml:space="preserve">
+    <value>제품/PT 목록 보기</value>
+  </data>
+  <data name="ViewProductPTListNoteMessage" xml:space="preserve">
+    <value>보고서에 표시된 PT 값은 슈퍼 최대 PT입니다</value>
+  </data>
+  <data name="VirtualSports" xml:space="preserve">
+    <value>가상 스포츠</value>
+  </data>
+  <data name="Void" xml:space="preserve">
+    <value>무효</value>
+  </data>
+  <data name="Voidbridge" xml:space="preserve">
+    <value>마카오 게임</value>
+  </data>
+  <data name="Win" xml:space="preserve">
+    <value>승리</value>
+  </data>
+  <data name="WinLoss" xml:space="preserve">
+    <value>승패</value>
+  </data>
+  <data name="WinLossAbbr" xml:space="preserve">
+    <value>승패</value>
+  </data>
+  <data name="WinLossAnalysis" xml:space="preserve">
+    <value>승패 분석</value>
+  </data>
+  <data name="WinLossByBetType" xml:space="preserve">
+    <value>베팅 유형별 승패</value>
+  </data>
+  <data name="WinLossByProduct" xml:space="preserve">
+    <value>제품별 승패</value>
+  </data>
+  <data name="WinLossDate" xml:space="preserve">
+    <value>승패 날짜</value>
+  </data>
+  <data name="WinLossDetail" xml:space="preserve">
+    <value>승패 상세</value>
+  </data>
+  <data name="WinLossTitle" xml:space="preserve">
+    <value>승패</value>
+  </data>
+  <data name="WinPlace" xml:space="preserve">
+    <value>승리 위치</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>어제</value>
+  </data>
+  <data name="_Apr" xml:space="preserve">
+    <value>4월</value>
+  </data>
+  <data name="_Aug" xml:space="preserve">
+    <value>8월</value>
+  </data>
+  <data name="_Dec" xml:space="preserve">
+    <value>12월</value>
+  </data>
+  <data name="_Feb" xml:space="preserve">
+    <value>2월</value>
+  </data>
+  <data name="_Jan" xml:space="preserve">
+    <value>1월</value>
+  </data>
+  <data name="_Jul" xml:space="preserve">
+    <value>7월</value>
+  </data>
+  <data name="_Jun" xml:space="preserve">
+    <value>6월</value>
+  </data>
+  <data name="_Mar" xml:space="preserve">
+    <value>3월</value>
+  </data>
+  <data name="_May" xml:space="preserve">
+    <value>5월</value>
+  </data>
+  <data name="_Nov" xml:space="preserve">
+    <value>11월</value>
+  </data>
+  <data name="_Oct" xml:space="preserve">
+    <value>10월</value>
+  </data>
+  <data name="_Sep" xml:space="preserve">
+    <value>9월</value>
+  </data>
+  <data name="eventdate" xml:space="preserve">
+    <value>이벤트 날짜</value>
+  </data>
+  <data name="nSelected" xml:space="preserve">
+    <value>선택된 수</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>중</value>
+  </data>
+  <data name="of2" xml:space="preserve">
+    <value>중</value>
+  </data>
+  <data name="over" xml:space="preserve">
+    <value>오버</value>
+  </data>
+  <data name="refno" xml:space="preserve">
+    <value>참조 번호</value>
+  </data>
+  <data name="transtime" xml:space="preserve">
+    <value>거래 시간</value>
+  </data>
+  <data name="under" xml:space="preserve">
+    <value>언더</value>
+  </data>
+  <data name="vs" xml:space="preserve">
+    <value> - 대 - </value>
+  </data>
+  <data name="SabaOtherSportsLegend" xml:space="preserve">
+    <value>{0}의 데이터는 {1}에 포함됩니다.</value>
+  </data>
+  <data name="MonitoredMember" xml:space="preserve">
+    <value>모니터링 회원</value>
+  </data>
+  <data name="AddToMyWatchlist" xml:space="preserve">
+    <value>내 관심 목록에 추가</value>
+  </data>
+  <data name="Statement_WinLoss" xml:space="preserve">
+    <value>승/패</value>
+  </data>
+  <data name="ProductWinLossAnalysis" xml:space="preserve">
+    <value>제품 승패 분석</value>
+  </data>
+  <data name="Reward" xml:space="preserve">
+    <value>보상</value>
+  </data>
+  <data name="SettlementReport" xml:space="preserve">
+    <value>정산 보고서</value>
+  </data>
+  <data name="DailyWinLossReport" xml:space="preserve">
+    <value>일일 승패 리포트</value>
+  </data>
+  <data name="WhiteLabel" xml:space="preserve">
+    <value>화이트 라벨</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>검색</value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>프로모션</value>
+  </data>
+  <data name="MasterEarning" xml:space="preserve">
+    <value>마스터 수익</value>
+  </data>
+  <data name="SuperEarning" xml:space="preserve">
+    <value>슈퍼 수익</value>
+  </data>
+  <data name="LossCarryforward" xml:space="preserve">
+    <value>손실 이월</value>
+  </data>
+  <data name="NetWinLoss" xml:space="preserve">
+    <value>순 승패</value>
+  </data>
+  <data name="GrossFee" xml:space="preserve">
+    <value>총 수수료</value>
+  </data>
+  <data name="PromotionSettlement" xml:space="preserve">
+    <value>프로모션 정산</value>
+  </data>
+  <data name="PromotionShare" xml:space="preserve">
+    <value>프로모션 분배</value>
+  </data>
+  <data name="TotalFee" xml:space="preserve">
+    <value>총 수수료</value>
+  </data>
+  <data name="Income" xml:space="preserve">
+    <value>수익</value>
+  </data>
+  <data name="WhiteLabelSettlementNote" xml:space="preserve">
+    <value>데이터 정확성을 위해 월말 5일 후에 정산 보고서를 생성하세요.</value>
+  </data>
+  <data name="ToWin" xml:space="preserve">
+    <value>승리까지</value>
+  </data>
+  <data name="MasterRisk" xml:space="preserve">
+    <value>마스터 리스크</value>
+  </data>
+  <data name="SuperRisk" xml:space="preserve">
+    <value>슈퍼 리스크</value>
+  </data>
+  <data name="AgentRisk" xml:space="preserve">
+    <value>에이전트 리스크</value>
+  </data>
+  <data name="SportsbookRiskAmount" xml:space="preserve">
+    <value>스포츠북 리스크 금액</value>
+  </data>
+  <data name="DownlineTotal" xml:space="preserve">
+    <value>하위 라인 총계</value>
+  </data>
+  <data name="Guidelines_TransferAmt_DirectMember" xml:space="preserve">
+    <value>직접 상위 라인과 회원 간의 총 이체 금액. 클릭하여 이체 상세를 확인하세요.</value>
+  </data>
+  <data name="AccumTotal" xml:space="preserve">
+    <value>누적 총계</value>
+  </data>
+  <data name="AccumulatedTotal" xml:space="preserve">
+    <value>누적 총계</value>
+  </data>
+  <data name="ActionDateTime" xml:space="preserve">
+    <value>작업 날짜/시간</value>
+  </data>
+  <data name="ActualStake" xml:space="preserve">
+    <value>실제 배팅금</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>모든 제품</value>
+  </data>
+  <data name="Allbet" xml:space="preserve">
+    <value>올벳</value>
+  </data>
+  <data name="AppStart_Message" xml:space="preserve">
+    <value>알파 - 리포트 - 애플리케이션 시작</value>
+  </data>
+  <data name="BalanceChange" xml:space="preserve">
+    <value>잔액 변경</value>
+  </data>
+  <data name="BetChoiceMatching" xml:space="preserve">
+    <value>베팅 선택 매칭</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>베팅 크레딧</value>
+  </data>
+  <data name="BetCreditHistory" xml:space="preserve">
+    <value>베팅 크레딧 기록</value>
+  </data>
+  <data name="BetType1X2_FT" xml:space="preserve">
+    <value>풀타임</value>
+  </data>
+  <data name="BonusDetail" xml:space="preserve">
+    <value>보너스 상세</value>
+  </data>
+  <data name="BonusDetailRefNo" xml:space="preserve">
+    <value>참조 번호</value>
+  </data>
+  <data name="BonusStatus" xml:space="preserve">
+    <value>보너스 상태</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>취소됨</value>
+  </data>
+  <data name="ClassicView" xml:space="preserve">
+    <value>클래식 보기</value>
+  </data>
+  <data name="Columns" xml:space="preserve">
+    <value>열</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>완료됨</value>
+  </data>
+  <data name="ConfirmPayment" xml:space="preserve">
+    <value>결제 확인</value>
+  </data>
+  <data name="ConfirmPaymentNote" xml:space="preserve">
+    <value>이 양식을 제출하면 시스템에 결제 날짜가 기록됩니다.</value>
+  </data>
+  <data name="ConfirmPaymentSuccessfully" xml:space="preserve">
+    <value>결제 날짜가 성공적으로 기록되었습니다.</value>
+  </data>
+  <data name="ConsolidationPTNote" xml:space="preserve">
+    <value>보고서에 표시된 PT 값은 {0}의 최대 PT입니다</value>
+  </data>
+  <data name="ContributionAmount" xml:space="preserve">
+    <value>기여 금액</value>
+  </data>
+  <data name="ContributionAmountRoundNote" xml:space="preserve">
+    <value>- 기여 금액은 소수점 4자리로 반올림됩니다.</value>
+  </data>
+  <data name="ContributionShare" xml:space="preserve">
+    <value>기여 분담</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>복사됨</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>복사</value>
+  </data>
+  <data name="CreatedFrom" xml:space="preserve">
+    <value>생성 출처</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>날짜 범위</value>
+  </data>
+  <data name="DefaultSheetName" xml:space="preserve">
+    <value>시트 1</value>
+  </data>
+  <data name="DelayIssueLegend" xml:space="preserve">
+    <value>- {0}의 데이터는 티켓 정산 후 최대 5분까지 지연될 수 있습니다.</value>
+  </data>
+  <data name="DormantAccounts" xml:space="preserve">
+    <value>휴면 계정</value>
+  </data>
+  <data name="DormantAccountsNote" xml:space="preserve">
+    <value>- 휴면 계정 정보가 수집되고 요약되었습니다. 개별 휴면 계정의 세부 정보는 더 이상 볼 수 없습니다.</value>
+  </data>
+  <data name="DuplicatedTicketMessage" xml:space="preserve">
+    <value>이벤트 날짜가 여러 번 변경된 티켓은 중복으로 표시되고 빨간색으로 강조됩니다.</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>활성화</value>
+  </data>
+  <data name="EventDateFrom" xml:space="preserve">
+    <value>이벤트 날짜 시작</value>
+  </data>
+  <data name="Formular_Accumulated_Total" xml:space="preserve">
+    <value>누적 총계 = 시작 잔액 + 승패 + 수수료 + 이체 금액</value>
+  </data>
+  <data name="GoldDeluxe" xml:space="preserve">
+    <value>골드 디럭스</value>
+  </data>
+  <data name="GrandPrize" xml:space="preserve">
+    <value>대상</value>
+  </data>
+  <data name="GrandPrize_Guidelines" xml:space="preserve">
+    <value>회원 잔액에서 제외되는 이벤트의 대승리 금액</value>
+  </data>
+  <data name="GrossCommNoteForAgent" xml:space="preserve">
+    <value>에이전트 목록에서: 마스터가 각 에이전트 또는 마스터 직접 회원에서 상위 계정으로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForCasino" xml:space="preserve">
+    <value>일부 카지노 제품에서 포지션 테이킹/수수료율이 게임이나 하루 중에 변경되면 보고서에 표시되는 Gross Comm 값은 평균 포지션 테이킹/수수료율에서 계산된 근사값입니다.</value>
+  </data>
+  <data name="GrossCommNoteForConsolidationReportAgent" xml:space="preserve">
+    <value>에이전트 레벨에서 보기: 에이전트가 상위 계정으로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForConsolidationReportMaster" xml:space="preserve">
+    <value>마스터 레벨에서 보기: 마스터가 상위 계정으로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForConsolidationReportSuper" xml:space="preserve">
+    <value>슈퍼 레벨에서 보기: 슈퍼가 상위 계정으로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForMaster" xml:space="preserve">
+    <value>마스터 목록에서: 슈퍼가 각 마스터 또는 슈퍼 직접 회원에서 회사로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForMember" xml:space="preserve">
+    <value>회원 목록에서: 에이전트가 각 회원에서 상위 계정으로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForRoundingProblem" xml:space="preserve">
+    <value>Gross Comm 값은 소수점 4자리로 반올림되어 각 레벨에서 다를 수 있습니다.</value>
+  </data>
+  <data name="GrossCommRoundingNote" xml:space="preserve">
+    <value>- 수수료 값은 이론적 값(Gross Comm * Position Taking)과 약간 다를 수 있습니다. 이는 하위 티켓의 수수료 값(소수점 4자리로 반올림)을 합산하여 계산되기 때문입니다.</value>
+  </data>
+  <data name="Guidelines_AccumulatedTotal_Member" xml:space="preserve">
+    <value>선택된 날짜 범위 내 각 날짜의 회원 마감 잔액</value>
+  </data>
+  <data name="Guidelines_AccumulatedTotal_SMA" xml:space="preserve">
+    <value>선택된 날짜 범위 내 각 날짜의 귀하의 마감 잔액</value>
+  </data>
+  <data name="Guidelines_Commission_Member" xml:space="preserve">
+    <value>총 회원 수수료</value>
+  </data>
+  <data name="Guidelines_Commission_SMA" xml:space="preserve">
+    <value>회원 티켓 기반 총 순수수료</value>
+  </data>
+  <data name="Guidelines_OpeningBalance_Member" xml:space="preserve">
+    <value>"시작일"까지 계산된 회원 잔액. 시작 잔액이 이전 날짜의 누적 총계와 같지 않으면 시작 잔액이 분홍색으로 강조됩니다.</value>
+  </data>
+  <data name="Guidelines_OpeningBalance_SMA" xml:space="preserve">
+    <value>"시작일"까지 계산된 귀하의 잔액. 시작 잔액이 이전 날짜의 누적 총계와 같지 않으면 시작 잔액이 분홍색으로 강조됩니다.</value>
+  </data>
+  <data name="Guidelines_Outstanding" xml:space="preserve">
+    <value>진행 중인 티켓의 총 배팅금. 클릭하여 진행 중인 티켓의 베팅 목록을 확인하세요.</value>
+  </data>
+  <data name="Guidelines_TransferAmt_Member" xml:space="preserve">
+    <value>에이전트와 회원 간의 총 이체 금액. 클릭하여 이체 상세를 확인하세요.</value>
+  </data>
+  <data name="Guidelines_TransferAmt_SMA" xml:space="preserve">
+    <value>총 이체 금액. 클릭하여 이체 상세를 확인하세요.</value>
+  </data>
+  <data name="Guidelines_Turnover" xml:space="preserve">
+    <value>모든 티켓의 총 배팅금(Void/거부/진행중/환불 티켓 제외)</value>
+  </data>
+  <data name="Guidelines_VoidRejected" xml:space="preserve">
+    <value>Void/거부 티켓의 총 배팅금. 클릭하여 Void/거부 티켓의 베팅 목록을 확인하세요.</value>
+  </data>
+  <data name="Guidelines_WinLoss_Member" xml:space="preserve">
+    <value>베팅 티켓의 총 승패 금액(회원 수수료 제외)(Void/거부/진행중 티켓 제외). 클릭하여 상세 베팅 목록을 확인하세요.</value>
+  </data>
+  <data name="Guidelines_WinLoss_SMA" xml:space="preserve">
+    <value>포지션 테이킹 후 베팅 티켓의 총 승패 금액(Void/거부/진행중 티켓 제외)</value>
+  </data>
+  <data name="Happy5" xml:space="preserve">
+    <value>해피 5</value>
+  </data>
+  <data name="HideFilter" xml:space="preserve">
+    <value>필터 숨기기</value>
+  </data>
+  <data name="HistoryDataCanViewNote" xml:space="preserve">
+    <value>{0} 이전의 과거 데이터는 최대 31일까지 볼 수 있습니다.</value>
+  </data>
+  <data name="Include" xml:space="preserve">
+    <value>포함</value>
+  </data>
+  <data name="Insurance_GemsWinLoss" xml:space="preserve">
+    <value>보험 및 보석 승패</value>
+  </data>
+  <data name="Insurance_GemsWinLossAbbr" xml:space="preserve">
+    <value>보험 및 보석</value>
+  </data>
+  <data name="InvalidRefNo" xml:space="preserve">
+    <value>잘못된 참조 번호</value>
+  </data>
+  <data name="InvalidUsername" xml:space="preserve">
+    <value>잘못된 사용자명</value>
+  </data>
+  <data name="Last3Months" xml:space="preserve">
+    <value>최근 3개월</value>
+  </data>
+  <data name="LiveGame" xml:space="preserve">
+    <value>라이브 게임</value>
+  </data>
+  <data name="MainReport" xml:space="preserve">
+    <value>메인 리포트</value>
+  </data>
+  <data name="MatchResultEntered" xml:space="preserve">
+    <value>경기 결과 입력됨</value>
+  </data>
+  <data name="MaxDataRetrieveHistoryError" xml:space="preserve">
+    <value>{0} 이전의 데이터는 최대 31일까지 검색할 수 있습니다. 날짜 범위를 확인해 주세요.</value>
+  </data>
+  <data name="MemberFeedback" xml:space="preserve">
+    <value>회원 피드백</value>
+  </data>
+  <data name="MemberRefNo" xml:space="preserve">
+    <value>회원/참조 번호</value>
+  </data>
+  <data name="MembersMovedEventDateReport" xml:space="preserve">
+    <value>회원 이벤트 날짜 변경 리포트</value>
+  </data>
+  <data name="MoveStatementHistory" xml:space="preserve">
+    <value>정산서 이동 기록</value>
+  </data>
+  <data name="MoveStatementHistoryNote" xml:space="preserve">
+    <value>보고서는 검색된 날짜 범위에 이전/새 이벤트 날짜가 포함된 모든 티켓을 표시합니다.</value>
+  </data>
+  <data name="NetTurnoverAndTaxComm" xml:space="preserve">
+    <value>/순 회전율/총 세금 수수료</value>
+  </data>
+  <data name="Neutral" xml:space="preserve">
+    <value>(무)</value>
+  </data>
+  <data name="NewBalance" xml:space="preserve">
+    <value>새 잔액</value>
+  </data>
+  <data name="NewEventDate" xml:space="preserve">
+    <value>새 이벤트 날짜</value>
+  </data>
+  <data name="NewView" xml:space="preserve">
+    <value>새 보기</value>
+  </data>
+  <data name="NewViewTakesOver" xml:space="preserve">
+    <value>새 보기가 대체됨</value>
+  </data>
+  <data name="NewViewTakesOverNote" xml:space="preserve">
+    <value>새 보기는 2024년 2월 21일(일/월/년)부터 대체됩니다. 클래식 보기로 다시 전환할 수 있습니다.</value>
+  </data>
+  <data name="NewViewTakesOverPopup" xml:space="preserve">
+    <value><b>2024년 2월 21일(일/월/년)</b>부터 <b>새 보기</b>가 <b>기본 표시</b>가 됩니다. 클래식 보기로 다시 전환할 수 있습니다.</value>
+  </data>
+  <data name="NoColumnsFound" xml:space="preserve">
+    <value>열을 찾을 수 없음</value>
+  </data>
+  <data name="NoProductDetailsFound" xml:space="preserve">
+    <value>제품 상세를 찾을 수 없음</value>
+  </data>
+  <data name="NoProductFound" xml:space="preserve">
+    <value>제품을 찾을 수 없음</value>
+  </data>
+  <data name="NoneSelected" xml:space="preserve">
+    <value>선택되지 않음</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>이 기능에 대한 권한이 없습니다.</value>
+  </data>
+  <data name="ThereIsNoProduct" xml:space="preserve">
+    <value>제품이 없습니다.</value>
+  </data>
+  <data name="ThereIsNoSelectedProduct" xml:space="preserve">
+    <value>선택된 제품이 없습니다.</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>이번 달</value>
+  </data>
+  <data name="ThisWeek" xml:space="preserve">
+    <value>이번 주</value>
+  </data>
+  <data name="Tip_ShowReportInNormalView" xml:space="preserve">
+    <value>열 그룹 해제</value>
+  </data>
+  <data name="Tip_ShowReportInStackColumnView" xml:space="preserve">
+    <value>열 그룹화</value>
+  </data>
+  <data name="ToMember" xml:space="preserve">
+    <value>회원에게</value>
+  </data>
+  <data name="VarianceFromSelectedDate" xml:space="preserve">
+    <value>선택된 날짜와의 차이</value>
+  </data>
+  <data name="Tooltip_CommissionByBetType" xml:space="preserve">
+    <value>- 기타: {0}의 베팅 유형에 적용됩니다.</value>
+  </data>
+  <data name="Tooltip_NetTurnover" xml:space="preserve">
+    <value>- 스포츠북의 경우, 순 회전율은 무승부 티켓과 절반 승리, 절반 패배 티켓의 절반 회전율을 제외한 회전율입니다.</value>
+  </data>
+  <data name="Tooltip_NetTurnover_RNGCasino" xml:space="preserve">
+    <value>- {0}의 경우, 순 회전율은 Void/거부/환불 티켓을 제외한 회전율입니다.</value>
+  </data>
+  <data name="Tooltip_NetTurnover_livecasino" xml:space="preserve">
+    <value>- {0}의 경우, 순 회전율은 수수료 계산에 사용하는 총 유효 베팅입니다.</value>
+  </data>
+  <data name="TotalCommission" xml:space="preserve">
+    <value>총 수수료</value>
+  </data>
+  <data name="TotalMembers" xml:space="preserve">
+    <value>총 회원 수</value>
+  </data>
+  <data name="TotalWinLoss" xml:space="preserve">
+    <value>총 승패</value>
+  </data>
+  <data name="TransferAmt" xml:space="preserve">
+    <value>이체 금액</value>
+  </data>
+  <data name="TransferDetails" xml:space="preserve">
+    <value>이체 상세</value>
+  </data>
+  <data name="UsernameIsRequired" xml:space="preserve">
+    <value>사용자명이 필요합니다.</value>
+  </data>
+  <data name="UsernameOrFirstLastName" xml:space="preserve">
+    <value>사용자명 또는 이름/성</value>
+  </data>
+  <data name="UsernamePTProduct" xml:space="preserve">
+    <value>사용자명/PT/제품</value>
+  </data>
+  <data name="ViewHistoryReport" xml:space="preserve">
+    <value>과거 리포트 보기</value>
+  </data>
+  <data name="ViewProductPTList" xml:space="preserve">
+    <value>제품/PT 목록 보기</value>
+  </data>
+  <data name="ViewProductPTListNoteMessage" xml:space="preserve">
+    <value>보고서에 표시된 PT 값은 슈퍼 최대 PT입니다</value>
+  </data>
+  <data name="VirtualSports" xml:space="preserve">
+    <value>가상 스포츠</value>
+  </data>
+  <data name="Void" xml:space="preserve">
+    <value>무효</value>
+  </data>
+  <data name="Voidbridge" xml:space="preserve">
+    <value>마카오 게임</value>
+  </data>
+  <data name="Win" xml:space="preserve">
+    <value>승리</value>
+  </data>
+  <data name="WinLoss" xml:space="preserve">
+    <value>승패</value>
+  </data>
+  <data name="WinLossAbbr" xml:space="preserve">
+    <value>승패</value>
+  </data>
+  <data name="WinLossAnalysis" xml:space="preserve">
+    <value>승패 분석</value>
+  </data>
+  <data name="WinLossByBetType" xml:space="preserve">
+    <value>베팅 유형별 승패</value>
+  </data>
+  <data name="WinLossByProduct" xml:space="preserve">
+    <value>제품별 승패</value>
+  </data>
+  <data name="WinLossDate" xml:space="preserve">
+    <value>승패 날짜</value>
+  </data>
+  <data name="WinLossDetail" xml:space="preserve">
+    <value>승패 상세</value>
+  </data>
+  <data name="WinLossTitle" xml:space="preserve">
+    <value>승패</value>
+  </data>
+  <data name="WinPlace" xml:space="preserve">
+    <value>승리 위치</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>어제</value>
+  </data>
+  <data name="_Apr" xml:space="preserve">
+    <value>4월</value>
+  </data>
+  <data name="_Aug" xml:space="preserve">
+    <value>8월</value>
+  </data>
+  <data name="_Dec" xml:space="preserve">
+    <value>12월</value>
+  </data>
+  <data name="_Feb" xml:space="preserve">
+    <value>2월</value>
+  </data>
+  <data name="_Jan" xml:space="preserve">
+    <value>1월</value>
+  </data>
+  <data name="_Jul" xml:space="preserve">
+    <value>7월</value>
+  </data>
+  <data name="_Jun" xml:space="preserve">
+    <value>6월</value>
+  </data>
+  <data name="_Mar" xml:space="preserve">
+    <value>3월</value>
+  </data>
+  <data name="_May" xml:space="preserve">
+    <value>5월</value>
+  </data>
+  <data name="_Nov" xml:space="preserve">
+    <value>11월</value>
+  </data>
+  <data name="_Oct" xml:space="preserve">
+    <value>10월</value>
+  </data>
+  <data name="_Sep" xml:space="preserve">
+    <value>9월</value>
+  </data>
+  <data name="eventdate" xml:space="preserve">
+    <value>이벤트 날짜</value>
+  </data>
+  <data name="nSelected" xml:space="preserve">
+    <value>선택된 수</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>중</value>
+  </data>
+  <data name="of2" xml:space="preserve">
+    <value>중</value>
+  </data>
+  <data name="over" xml:space="preserve">
+    <value>오버</value>
+  </data>
+  <data name="refno" xml:space="preserve">
+    <value>참조 번호</value>
+  </data>
+  <data name="transtime" xml:space="preserve">
+    <value>거래 시간</value>
+  </data>
+  <data name="under" xml:space="preserve">
+    <value>언더</value>
+  </data>
+  <data name="vs" xml:space="preserve">
+    <value> - 대 - </value>
+  </data>
+  <data name="SabaOtherSportsLegend" xml:space="preserve">
+    <value>{0}의 데이터는 {1}에 포함됩니다.</value>
+  </data>
+  <data name="MonitoredMember" xml:space="preserve">
+    <value>모니터링 회원</value>
+  </data>
+  <data name="AddToMyWatchlist" xml:space="preserve">
+    <value>내 관심 목록에 추가</value>
+  </data>
+  <data name="Statement_WinLoss" xml:space="preserve">
+    <value>승/패</value>
+  </data>
+  <data name="ProductWinLossAnalysis" xml:space="preserve">
+    <value>제품 승패 분석</value>
+  </data>
+  <data name="Reward" xml:space="preserve">
+    <value>보상</value>
+  </data>
+  <data name="SettlementReport" xml:space="preserve">
+    <value>정산 보고서</value>
+  </data>
+  <data name="DailyWinLossReport" xml:space="preserve">
+    <value>일일 승패 리포트</value>
+  </data>
+  <data name="WhiteLabel" xml:space="preserve">
+    <value>화이트 라벨</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>검색</value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>프로모션</value>
+  </data>
+  <data name="MasterEarning" xml:space="preserve">
+    <value>마스터 수익</value>
+  </data>
+  <data name="SuperEarning" xml:space="preserve">
+    <value>슈퍼 수익</value>
+  </data>
+  <data name="LossCarryforward" xml:space="preserve">
+    <value>손실 이월</value>
+  </data>
+  <data name="NetWinLoss" xml:space="preserve">
+    <value>순 승패</value>
+  </data>
+  <data name="GrossFee" xml:space="preserve">
+    <value>총 수수료</value>
+  </data>
+  <data name="PromotionSettlement" xml:space="preserve">
+    <value>프로모션 정산</value>
+  </data>
+  <data name="PromotionShare" xml:space="preserve">
+    <value>프로모션 분배</value>
+  </data>
+  <data name="TotalFee" xml:space="preserve">
+    <value>총 수수료</value>
+  </data>
+  <data name="Income" xml:space="preserve">
+    <value>수익</value>
+  </data>
+  <data name="WhiteLabelSettlementNote" xml:space="preserve">
+    <value>데이터 정확성을 위해 월말 5일 후에 정산 보고서를 생성하세요.</value>
+  </data>
+  <data name="ToWin" xml:space="preserve">
+    <value>승리까지</value>
+  </data>
+  <data name="MasterRisk" xml:space="preserve">
+    <value>마스터 리스크</value>
+  </data>
+  <data name="SuperRisk" xml:space="preserve">
+    <value>슈퍼 리스크</value>
+  </data>
+  <data name="AgentRisk" xml:space="preserve">
+    <value>에이전트 리스크</value>
+  </data>
+  <data name="SportsbookRiskAmount" xml:space="preserve">
+    <value>스포츠북 리스크 금액</value>
+  </data>
+  <data name="DownlineTotal" xml:space="preserve">
+    <value>하위 라인 총계</value>
+  </data>
+  <data name="Guidelines_TransferAmt_DirectMember" xml:space="preserve">
+    <value>직접 상위 라인과 회원 간의 총 이체 금액. 클릭하여 이체 상세를 확인하세요.</value>
+  </data>
+  <data name="AccumTotal" xml:space="preserve">
+    <value>누적 총계</value>
+  </data>
+  <data name="AccumulatedTotal" xml:space="preserve">
+    <value>누적 총계</value>
+  </data>
+  <data name="ActionDateTime" xml:space="preserve">
+    <value>작업 날짜/시간</value>
+  </data>
+  <data name="ActualStake" xml:space="preserve">
+    <value>실제 배팅금</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>모든 제품</value>
+  </data>
+  <data name="Allbet" xml:space="preserve">
+    <value>올벳</value>
+  </data>
+  <data name="AppStart_Message" xml:space="preserve">
+    <value>알파 - 리포트 - 애플리케이션 시작</value>
+  </data>
+  <data name="BalanceChange" xml:space="preserve">
+    <value>잔액 변경</value>
+  </data>
+  <data name="BetChoiceMatching" xml:space="preserve">
+    <value>베팅 선택 매칭</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>베팅 크레딧</value>
+  </data>
+  <data name="BetCreditHistory" xml:space="preserve">
+    <value>베팅 크레딧 기록</value>
+  </data>
+  <data name="BetType1X2_FT" xml:space="preserve">
+    <value>풀타임</value>
+  </data>
+  <data name="BonusDetail" xml:space="preserve">
+    <value>보너스 상세</value>
+  </data>
+  <data name="BonusDetailRefNo" xml:space="preserve">
+    <value>참조 번호</value>
+  </data>
+  <data name="BonusStatus" xml:space="preserve">
+    <value>보너스 상태</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>취소됨</value>
+  </data>
+  <data name="ClassicView" xml:space="preserve">
+    <value>클래식 보기</value>
+  </data>
+  <data name="Columns" xml:space="preserve">
+    <value>열</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>완료됨</value>
+  </data>
+  <data name="ConfirmPayment" xml:space="preserve">
+    <value>결제 확인</value>
+  </data>
+  <data name="ConfirmPaymentNote" xml:space="preserve">
+    <value>이 양식을 제출하면 시스템에 결제 날짜가 기록됩니다.</value>
+  </data>
+  <data name="ConfirmPaymentSuccessfully" xml:space="preserve">
+    <value>결제 날짜가 성공적으로 기록되었습니다.</value>
+  </data>
+  <data name="ConsolidationPTNote" xml:space="preserve">
+    <value>보고서에 표시된 PT 값은 {0}의 최대 PT입니다</value>
+  </data>
+  <data name="ContributionAmount" xml:space="preserve">
+    <value>기여 금액</value>
+  </data>
+  <data name="ContributionAmountRoundNote" xml:space="preserve">
+    <value>- 기여 금액은 소수점 4자리로 반올림됩니다.</value>
+  </data>
+  <data name="ContributionShare" xml:space="preserve">
+    <value>기여 분담</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>복사됨</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>복사</value>
+  </data>
+  <data name="CreatedFrom" xml:space="preserve">
+    <value>생성 출처</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>날짜 범위</value>
+  </data>
+  <data name="DefaultSheetName" xml:space="preserve">
+    <value>시트 1</value>
+  </data>
+  <data name="DelayIssueLegend" xml:space="preserve">
+    <value>- {0}의 데이터는 티켓 정산 후 최대 5분까지 지연될 수 있습니다.</value>
+  </data>
+  <data name="DormantAccounts" xml:space="preserve">
+    <value>휴면 계정</value>
+  </data>
+  <data name="DormantAccountsNote" xml:space="preserve">
+    <value>- 휴면 계정 정보가 수집되고 요약되었습니다. 개별 휴면 계정의 세부 정보는 더 이상 볼 수 없습니다.</value>
+  </data>
+  <data name="DuplicatedTicketMessage" xml:space="preserve">
+    <value>이벤트 날짜가 여러 번 변경된 티켓은 중복으로 표시되고 빨간색으로 강조됩니다.</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>활성화</value>
+  </data>
+  <data name="EventDateFrom" xml:space="preserve">
+    <value>이벤트 날짜 시작</value>
+  </data>
+  <data name="Formular_Accumulated_Total" xml:space="preserve">
+    <value>누적 총계 = 시작 잔액 + 승패 + 수수료 + 이체 금액</value>
+  </data>
+  <data name="GoldDeluxe" xml:space="preserve">
+    <value>골드 디럭스</value>
+  </data>
+  <data name="GrandPrize" xml:space="preserve">
+    <value>대상</value>
+  </data>
+  <data name="GrandPrize_Guidelines" xml:space="preserve">
+    <value>회원 잔액에서 제외되는 이벤트의 대승리 금액</value>
+  </data>
+  <data name="GrossCommNoteForAgent" xml:space="preserve">
+    <value>에이전트 목록에서: 마스터가 각 에이전트 또는 마스터 직접 회원에서 상위 계정으로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForCasino" xml:space="preserve">
+    <value>일부 카지노 제품에서 포지션 테이킹/수수료율이 게임이나 하루 중에 변경되면 보고서에 표시되는 Gross Comm 값은 평균 포지션 테이킹/수수료율에서 계산된 근사값입니다.</value>
+  </data>
+  <data name="GrossCommNoteForConsolidationReportAgent" xml:space="preserve">
+    <value>에이전트 레벨에서 보기: 에이전트가 상위 계정으로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForConsolidationReportMaster" xml:space="preserve">
+    <value>마스터 레벨에서 보기: 마스터가 상위 계정으로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForConsolidationReportSuper" xml:space="preserve">
+    <value>슈퍼 레벨에서 보기: 슈퍼가 상위 계정으로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForMaster" xml:space="preserve">
+    <value>마스터 목록에서: 슈퍼가 각 마스터 또는 슈퍼 직접 회원에서 회사로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForMember" xml:space="preserve">
+    <value>회원 목록에서: 에이전트가 각 회원에서 상위 계정으로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForRoundingProblem" xml:space="preserve">
+    <value>Gross Comm 값은 소수점 4자리로 반올림되어 각 레벨에서 다를 수 있습니다.</value>
+  </data>
+  <data name="GrossCommRoundingNote" xml:space="preserve">
+    <value>- 수수료 값은 이론적 값(Gross Comm * Position Taking)과 약간 다를 수 있습니다. 이는 하위 티켓의 수수료 값(소수점 4자리로 반올림)을 합산하여 계산되기 때문입니다.</value>
+  </data>
+  <data name="Guidelines_AccumulatedTotal_Member" xml:space="preserve">
+    <value>선택된 날짜 범위 내 각 날짜의 회원 마감 잔액</value>
+  </data>
+  <data name="Guidelines_AccumulatedTotal_SMA" xml:space="preserve">
+    <value>선택된 날짜 범위 내 각 날짜의 귀하의 마감 잔액</value>
+  </data>
+  <data name="Guidelines_Commission_Member" xml:space="preserve">
+    <value>총 회원 수수료</value>
+  </data>
+  <data name="Guidelines_Commission_SMA" xml:space="preserve">
+    <value>회원 티켓 기반 총 순수수료</value>
+  </data>
+  <data name="Guidelines_OpeningBalance_Member" xml:space="preserve">
+    <value>"시작일"까지 계산된 회원 잔액. 시작 잔액이 이전 날짜의 누적 총계와 같지 않으면 시작 잔액이 분홍색으로 강조됩니다.</value>
+  </data>
+  <data name="Guidelines_OpeningBalance_SMA" xml:space="preserve">
+    <value>"시작일"까지 계산된 귀하의 잔액. 시작 잔액이 이전 날짜의 누적 총계와 같지 않으면 시작 잔액이 분홍색으로 강조됩니다.</value>
+  </data>
+  <data name="Guidelines_Outstanding" xml:space="preserve">
+    <value>진행 중인 티켓의 총 배팅금. 클릭하여 진행 중인 티켓의 베팅 목록을 확인하세요.</value>
+  </data>
+  <data name="Guidelines_TransferAmt_Member" xml:space="preserve">
+    <value>에이전트와 회원 간의 총 이체 금액. 클릭하여 이체 상세를 확인하세요.</value>
+  </data>
+  <data name="Guidelines_TransferAmt_SMA" xml:space="preserve">
+    <value>총 이체 금액. 클릭하여 이체 상세를 확인하세요.</value>
+  </data>
+  <data name="Guidelines_Turnover" xml:space="preserve">
+    <value>모든 티켓의 총 배팅금(Void/거부/진행중/환불 티켓 제외)</value>
+  </data>
+  <data name="Guidelines_VoidRejected" xml:space="preserve">
+    <value>Void/거부 티켓의 총 배팅금. 클릭하여 Void/거부 티켓의 베팅 목록을 확인하세요.</value>
+  </data>
+  <data name="Guidelines_WinLoss_Member" xml:space="preserve">
+    <value>베팅 티켓의 총 승패 금액(회원 수수료 제외)(Void/거부/진행중 티켓 제외). 클릭하여 상세 베팅 목록을 확인하세요.</value>
+  </data>
+  <data name="Guidelines_WinLoss_SMA" xml:space="preserve">
+    <value>포지션 테이킹 후 베팅 티켓의 총 승패 금액(Void/거부/진행중 티켓 제외)</value>
+  </data>
+  <data name="Happy5" xml:space="preserve">
+    <value>해피 5</value>
+  </data>
+  <data name="HideFilter" xml:space="preserve">
+    <value>필터 숨기기</value>
+  </data>
+  <data name="HistoryDataCanViewNote" xml:space="preserve">
+    <value>{0} 이전의 과거 데이터는 최대 31일까지 볼 수 있습니다.</value>
+  </data>
+  <data name="Include" xml:space="preserve">
+    <value>포함</value>
+  </data>
+  <data name="Insurance_GemsWinLoss" xml:space="preserve">
+    <value>보험 및 보석 승패</value>
+  </data>
+  <data name="Insurance_GemsWinLossAbbr" xml:space="preserve">
+    <value>보험 및 보석</value>
+  </data>
+  <data name="InvalidRefNo" xml:space="preserve">
+    <value>잘못된 참조 번호</value>
+  </data>
+  <data name="InvalidUsername" xml:space="preserve">
+    <value>잘못된 사용자명</value>
+  </data>
+  <data name="Last3Months" xml:space="preserve">
+    <value>최근 3개월</value>
+  </data>
+  <data name="LiveGame" xml:space="preserve">
+    <value>라이브 게임</value>
+  </data>
+  <data name="MainReport" xml:space="preserve">
+    <value>메인 리포트</value>
+  </data>
+  <data name="MatchResultEntered" xml:space="preserve">
+    <value>경기 결과 입력됨</value>
+  </data>
+  <data name="MaxDataRetrieveHistoryError" xml:space="preserve">
+    <value>{0} 이전의 데이터는 최대 31일까지 검색할 수 있습니다. 날짜 범위를 확인해 주세요.</value>
+  </data>
+  <data name="MemberFeedback" xml:space="preserve">
+    <value>회원 피드백</value>
+  </data>
+  <data name="MemberRefNo" xml:space="preserve">
+    <value>회원/참조 번호</value>
+  </data>
+  <data name="MembersMovedEventDateReport" xml:space="preserve">
+    <value>회원 이벤트 날짜 변경 리포트</value>
+  </data>
+  <data name="MoveStatementHistory" xml:space="preserve">
+    <value>정산서 이동 기록</value>
+  </data>
+  <data name="MoveStatementHistoryNote" xml:space="preserve">
+    <value>보고서는 검색된 날짜 범위에 이전/새 이벤트 날짜가 포함된 모든 티켓을 표시합니다.</value>
+  </data>
+  <data name="NetTurnoverAndTaxComm" xml:space="preserve">
+    <value>/순 회전율/총 세금 수수료</value>
+  </data>
+  <data name="Neutral" xml:space="preserve">
+    <value>(무)</value>
+  </data>
+  <data name="NewBalance" xml:space="preserve">
+    <value>새 잔액</value>
+  </data>
+  <data name="NewEventDate" xml:space="preserve">
+    <value>새 이벤트 날짜</value>
+  </data>
+  <data name="NewView" xml:space="preserve">
+    <value>새 보기</value>
+  </data>
+  <data name="NewViewTakesOver" xml:space="preserve">
+    <value>새 보기가 대체됨</value>
+  </data>
+  <data name="NewViewTakesOverNote" xml:space="preserve">
+    <value>새 보기는 2024년 2월 21일(일/월/년)부터 대체됩니다. 클래식 보기로 다시 전환할 수 있습니다.</value>
+  </data>
+  <data name="NewViewTakesOverPopup" xml:space="preserve">
+    <value><b>2024년 2월 21일(일/월/년)</b>부터 <b>새 보기</b>가 <b>기본 표시</b>가 됩니다. 클래식 보기로 다시 전환할 수 있습니다.</value>
+  </data>
+  <data name="NoColumnsFound" xml:space="preserve">
+    <value>열을 찾을 수 없음</value>
+  </data>
+  <data name="NoProductDetailsFound" xml:space="preserve">
+    <value>제품 상세를 찾을 수 없음</value>
+  </data>
+  <data name="NoProductFound" xml:space="preserve">
+    <value>제품을 찾을 수 없음</value>
+  </data>
+  <data name="NoneSelected" xml:space="preserve">
+    <value>선택되지 않음</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>이 기능에 대한 권한이 없습니다.</value>
+  </data>
+  <data name="ThereIsNoProduct" xml:space="preserve">
+    <value>제품이 없습니다.</value>
+  </data>
+  <data name="ThereIsNoSelectedProduct" xml:space="preserve">
+    <value>선택된 제품이 없습니다.</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>이번 달</value>
+  </data>
+  <data name="ThisWeek" xml:space="preserve">
+    <value>이번 주</value>
+  </data>
+  <data name="Tip_ShowReportInNormalView" xml:space="preserve">
+    <value>열 그룹 해제</value>
+  </data>
+  <data name="Tip_ShowReportInStackColumnView" xml:space="preserve">
+    <value>열 그룹화</value>
+  </data>
+  <data name="ToMember" xml:space="preserve">
+    <value>회원에게</value>
+  </data>
+  <data name="VarianceFromSelectedDate" xml:space="preserve">
+    <value>선택된 날짜와의 차이</value>
+  </data>
+  <data name="Tooltip_CommissionByBetType" xml:space="preserve">
+    <value>- 기타: {0}의 베팅 유형에 적용됩니다.</value>
+  </data>
+  <data name="Tooltip_NetTurnover" xml:space="preserve">
+    <value>- 스포츠북의 경우, 순 회전율은 무승부 티켓과 절반 승리, 절반 패배 티켓의 절반 회전율을 제외한 회전율입니다.</value>
+  </data>
+  <data name="Tooltip_NetTurnover_RNGCasino" xml:space="preserve">
+    <value>- {0}의 경우, 순 회전율은 Void/거부/환불 티켓을 제외한 회전율입니다.</value>
+  </data>
+  <data name="Tooltip_NetTurnover_livecasino" xml:space="preserve">
+    <value>- {0}의 경우, 순 회전율은 수수료 계산에 사용하는 총 유효 베팅입니다.</value>
+  </data>
+  <data name="TotalCommission" xml:space="preserve">
+    <value>총 수수료</value>
+  </data>
+  <data name="TotalMembers" xml:space="preserve">
+    <value>총 회원 수</value>
+  </data>
+  <data name="TotalWinLoss" xml:space="preserve">
+    <value>총 승패</value>
+  </data>
+  <data name="TransferAmt" xml:space="preserve">
+    <value>이체 금액</value>
+  </data>
+  <data name="TransferDetails" xml:space="preserve">
+    <value>이체 상세</value>
+  </data>
+  <data name="UsernameIsRequired" xml:space="preserve">
+    <value>사용자명이 필요합니다.</value>
+  </data>
+  <data name="UsernameOrFirstLastName" xml:space="preserve">
+    <value>사용자명 또는 이름/성</value>
+  </data>
+  <data name="UsernamePTProduct" xml:space="preserve">
+    <value>사용자명/PT/제품</value>
+  </data>
+  <data name="ViewHistoryReport" xml:space="preserve">
+    <value>과거 리포트 보기</value>
+  </data>
+  <data name="ViewProductPTList" xml:space="preserve">
+    <value>제품/PT 목록 보기</value>
+  </data>
+  <data name="ViewProductPTListNoteMessage" xml:space="preserve">
+    <value>보고서에 표시된 PT 값은 슈퍼 최대 PT입니다</value>
+  </data>
+  <data name="VirtualSports" xml:space="preserve">
+    <value>가상 스포츠</value>
+  </data>
+  <data name="Void" xml:space="preserve">
+    <value>무효</value>
+  </data>
+  <data name="Voidbridge" xml:space="preserve">
+    <value>마카오 게임</value>
+  </data>
+  <data name="Win" xml:space="preserve">
+    <value>승리</value>
+  </data>
+  <data name="WinLoss" xml:space="preserve">
+    <value>승패</value>
+  </data>
+  <data name="WinLossAbbr" xml:space="preserve">
+    <value>승패</value>
+  </data>
+  <data name="WinLossAnalysis" xml:space="preserve">
+    <value>승패 분석</value>
+  </data>
+  <data name="WinLossByBetType" xml:space="preserve">
+    <value>베팅 유형별 승패</value>
+  </data>
+  <data name="WinLossByProduct" xml:space="preserve">
+    <value>제품별 승패</value>
+  </data>
+  <data name="WinLossDate" xml:space="preserve">
+    <value>승패 날짜</value>
+  </data>
+  <data name="WinLossDetail" xml:space="preserve">
+    <value>승패 상세</value>
+  </data>
+  <data name="WinLossTitle" xml:space="preserve">
+    <value>승패</value>
+  </data>
+  <data name="WinPlace" xml:space="preserve">
+    <value>승리 위치</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>어제</value>
+  </data>
+  <data name="_Apr" xml:space="preserve">
+    <value>4월</value>
+  </data>
+  <data name="_Aug" xml:space="preserve">
+    <value>8월</value>
+  </data>
+  <data name="_Dec" xml:space="preserve">
+    <value>12월</value>
+  </data>
+  <data name="_Feb" xml:space="preserve">
+    <value>2월</value>
+  </data>
+  <data name="_Jan" xml:space="preserve">
+    <value>1월</value>
+  </data>
+  <data name="_Jul" xml:space="preserve">
+    <value>7월</value>
+  </data>
+  <data name="_Jun" xml:space="preserve">
+    <value>6월</value>
+  </data>
+  <data name="_Mar" xml:space="preserve">
+    <value>3월</value>
+  </data>
+  <data name="_May" xml:space="preserve">
+    <value>5월</value>
+  </data>
+  <data name="_Nov" xml:space="preserve">
+    <value>11월</value>
+  </data>
+  <data name="_Oct" xml:space="preserve">
+    <value>10월</value>
+  </data>
+  <data name="_Sep" xml:space="preserve">
+    <value>9월</value>
+  </data>
+  <data name="eventdate" xml:space="preserve">
+    <value>이벤트 날짜</value>
+  </data>
+  <data name="nSelected" xml:space="preserve">
+    <value>선택된 수</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>중</value>
+  </data>
+  <data name="of2" xml:space="preserve">
+    <value>중</value>
+  </data>
+  <data name="over" xml:space="preserve">
+    <value>오버</value>
+  </data>
+  <data name="refno" xml:space="preserve">
+    <value>참조 번호</value>
+  </data>
+  <data name="transtime" xml:space="preserve">
+    <value>거래 시간</value>
+  </data>
+  <data name="under" xml:space="preserve">
+    <value>언더</value>
+  </data>
+  <data name="vs" xml:space="preserve">
+    <value> - 대 - </value>
+  </data>
+  <data name="SabaOtherSportsLegend" xml:space="preserve">
+    <value>{0}의 데이터는 {1}에 포함됩니다.</value>
+  </data>
+  <data name="MonitoredMember" xml:space="preserve">
+    <value>모니터링 회원</value>
+  </data>
+  <data name="AddToMyWatchlist" xml:space="preserve">
+    <value>내 관심 목록에 추가</value>
+  </data>
+  <data name="Statement_WinLoss" xml:space="preserve">
+    <value>승/패</value>
+  </data>
+  <data name="ProductWinLossAnalysis" xml:space="preserve">
+    <value>제품 승패 분석</value>
+  </data>
+  <data name="Reward" xml:space="preserve">
+    <value>보상</value>
+  </data>
+  <data name="SettlementReport" xml:space="preserve">
+    <value>정산 보고서</value>
+  </data>
+  <data name="DailyWinLossReport" xml:space="preserve">
+    <value>일일 승패 리포트</value>
+  </data>
+  <data name="WhiteLabel" xml:space="preserve">
+    <value>화이트 라벨</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>검색</value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>프로모션</value>
+  </data>
+  <data name="MasterEarning" xml:space="preserve">
+    <value>마스터 수익</value>
+  </data>
+  <data name="SuperEarning" xml:space="preserve">
+    <value>슈퍼 수익</value>
+  </data>
+  <data name="LossCarryforward" xml:space="preserve">
+    <value>손실 이월</value>
+  </data>
+  <data name="NetWinLoss" xml:space="preserve">
+    <value>순 승패</value>
+  </data>
+  <data name="GrossFee" xml:space="preserve">
+    <value>총 수수료</value>
+  </data>
+  <data name="PromotionSettlement" xml:space="preserve">
+    <value>프로모션 정산</value>
+  </data>
+  <data name="PromotionShare" xml:space="preserve">
+    <value>프로모션 분배</value>
+  </data>
+  <data name="TotalFee" xml:space="preserve">
+    <value>총 수수료</value>
+  </data>
+  <data name="Income" xml:space="preserve">
+    <value>수익</value>
+  </data>
+  <data name="WhiteLabelSettlementNote" xml:space="preserve">
+    <value>데이터 정확성을 위해 월말 5일 후에 정산 보고서를 생성하세요.</value>
+  </data>
+  <data name="ToWin" xml:space="preserve">
+    <value>승리까지</value>
+  </data>
+  <data name="MasterRisk" xml:space="preserve">
+    <value>마스터 리스크</value>
+  </data>
+  <data name="SuperRisk" xml:space="preserve">
+    <value>슈퍼 리스크</value>
+  </data>
+  <data name="AgentRisk" xml:space="preserve">
+    <value>에이전트 리스크</value>
+  </data>
+  <data name="SportsbookRiskAmount" xml:space="preserve">
+    <value>스포츠북 리스크 금액</value>
+  </data>
+  <data name="DownlineTotal" xml:space="preserve">
+    <value>하위 라인 총계</value>
+  </data>
+  <data name="Guidelines_TransferAmt_DirectMember" xml:space="preserve">
+    <value>직접 상위 라인과 회원 간의 총 이체 금액. 클릭하여 이체 상세를 확인하세요.</value>
+  </data>
+  <data name="AccumTotal" xml:space="preserve">
+    <value>누적 총계</value>
+  </data>
+  <data name="AccumulatedTotal" xml:space="preserve">
+    <value>누적 총계</value>
+  </data>
+  <data name="ActionDateTime" xml:space="preserve">
+    <value>작업 날짜/시간</value>
+  </data>
+  <data name="ActualStake" xml:space="preserve">
+    <value>실제 배팅금</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>모든 제품</value>
+  </data>
+  <data name="Allbet" xml:space="preserve">
+    <value>올벳</value>
+  </data>
+  <data name="AppStart_Message" xml:space="preserve">
+    <value>알파 - 리포트 - 애플리케이션 시작</value>
+  </data>
+  <data name="BalanceChange" xml:space="preserve">
+    <value>잔액 변경</value>
+  </data>
+  <data name="BetChoiceMatching" xml:space="preserve">
+    <value>베팅 선택 매칭</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>베팅 크레딧</value>
+  </data>
+  <data name="BetCreditHistory" xml:space="preserve">
+    <value>베팅 크레딧 기록</value>
+  </data>
+  <data name="BetType1X2_FT" xml:space="preserve">
+    <value>풀타임</value>
+  </data>
+  <data name="BonusDetail" xml:space="preserve">
+    <value>보너스 상세</value>
+  </data>
+  <data name="BonusDetailRefNo" xml:space="preserve">
+    <value>참조 번호</value>
+  </data>
+  <data name="BonusStatus" xml:space="preserve">
+    <value>보너스 상태</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>취소됨</value>
+  </data>
+  <data name="ClassicView" xml:space="preserve">
+    <value>클래식 보기</value>
+  </data>
+  <data name="Columns" xml:space="preserve">
+    <value>열</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>완료됨</value>
+  </data>
+  <data name="ConfirmPayment" xml:space="preserve">
+    <value>결제 확인</value>
+  </data>
+  <data name="ConfirmPaymentNote" xml:space="preserve">
+    <value>이 양식을 제출하면 시스템에 결제 날짜가 기록됩니다.</value>
+  </data>
+  <data name="ConfirmPaymentSuccessfully" xml:space="preserve">
+    <value>결제 날짜가 성공적으로 기록되었습니다.</value>
+  </data>
+  <data name="ConsolidationPTNote" xml:space="preserve">
+    <value>보고서에 표시된 PT 값은 {0}의 최대 PT입니다</value>
+  </data>
+  <data name="ContributionAmount" xml:space="preserve">
+    <value>기여 금액</value>
+  </data>
+  <data name="ContributionAmountRoundNote" xml:space="preserve">
+    <value>- 기여 금액은 소수점 4자리로 반올림됩니다.</value>
+  </data>
+  <data name="ContributionShare" xml:space="preserve">
+    <value>기여 분담</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>복사됨</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>복사</value>
+  </data>
+  <data name="CreatedFrom" xml:space="preserve">
+    <value>생성 출처</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>날짜 범위</value>
+  </data>
+  <data name="DefaultSheetName" xml:space="preserve">
+    <value>시트 1</value>
+  </data>
+  <data name="DelayIssueLegend" xml:space="preserve">
+    <value>- {0}의 데이터는 티켓 정산 후 최대 5분까지 지연될 수 있습니다.</value>
+  </data>
+  <data name="DormantAccounts" xml:space="preserve">
+    <value>휴면 계정</value>
+  </data>
+  <data name="DormantAccountsNote" xml:space="preserve">
+    <value>- 휴면 계정 정보가 수집되고 요약되었습니다. 개별 휴면 계정의 세부 정보는 더 이상 볼 수 없습니다.</value>
+  </data>
+  <data name="DuplicatedTicketMessage" xml:space="preserve">
+    <value>이벤트 날짜가 여러 번 변경된 티켓은 중복으로 표시되고 빨간색으로 강조됩니다.</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>활성화</value>
+  </data>
+  <data name="EventDateFrom" xml:space="preserve">
+    <value>이벤트 날짜 시작</value>
+  </data>
+  <data name="Formular_Accumulated_Total" xml:space="preserve">
+    <value>누적 총계 = 시작 잔액 + 승패 + 수수료 + 이체 금액</value>
+  </data>
+  <data name="GoldDeluxe" xml:space="preserve">
+    <value>골드 디럭스</value>
+  </data>
+  <data name="GrandPrize" xml:space="preserve">
+    <value>대상</value>
+  </data>
+  <data name="GrandPrize_Guidelines" xml:space="preserve">
+    <value>회원 잔액에서 제외되는 이벤트의 대승리 금액</value>
+  </data>
+  <data name="GrossCommNoteForAgent" xml:space="preserve">
+    <value>에이전트 목록에서: 마스터가 각 에이전트 또는 마스터 직접 회원에서 상위 계정으로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForCasino" xml:space="preserve">
+    <value>일부 카지노 제품에서 포지션 테이킹/수수료율이 게임이나 하루 중에 변경되면 보고서에 표시되는 Gross Comm 값은 평균 포지션 테이킹/수수료율에서 계산된 근사값입니다.</value>
+  </data>
+  <data name="GrossCommNoteForConsolidationReportAgent" xml:space="preserve">
+    <value>에이전트 레벨에서 보기: 에이전트가 상위 계정으로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForConsolidationReportMaster" xml:space="preserve">
+    <value>마스터 레벨에서 보기: 마스터가 상위 계정으로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForConsolidationReportSuper" xml:space="preserve">
+    <value>슈퍼 레벨에서 보기: 슈퍼가 상위 계정으로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForMaster" xml:space="preserve">
+    <value>마스터 목록에서: 슈퍼가 각 마스터 또는 슈퍼 직접 회원에서 회사로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForMember" xml:space="preserve">
+    <value>회원 목록에서: 에이전트가 각 회원에서 상위 계정으로부터 받을 수 있는 수수료(PT 제외)</value>
+  </data>
+  <data name="GrossCommNoteForRoundingProblem" xml:space="preserve">
+    <value>Gross Comm 값은 소수점 4자리로 반올림되어 각 레벨에서 다를 수 있습니다.</value>
+  </data>
+  <data name="GrossCommRoundingNote" xml:space="preserve">
+    <value>- 수수료 값은 이론적 값(Gross Comm * Position Taking)과 약간 다를 수 있습니다. 이는 하위 티켓의 수수료 값(소수점 4자리로 반올림)을 합산하여 계산되기 때문입니다.</value>
   </data>
   <data name="Fee" xml:space="preserve">
     <value>수수료</value>

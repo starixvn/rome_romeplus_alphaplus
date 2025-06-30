@@ -4,37 +4,36 @@
 }
 @model string
 <p class="main-desc">
-    Bets & Forecast function summarizes major bet types, number of tickets and stakes on running tickets of each event.
-    It also predicts win loss amount on these tickets based on the current score and displays Total Forecast Win Loss of
-    each Live event.
+    베팅 및 예측 기능은 각 경기의 주요 베팅 유형, 티켓 수 및 진행 중인 티켓의 배팅금을 요약합니다.
+    또한 현재 점수를 기반으로 이러한 티켓의 승패 금액을 예측하고 각 라이브 경기의 총 예측 승패를 표시합니다.
 </p>
 <img class="img-big" src="~/bundles/images/@Model/1.png?v=@version" />
 <div class="block-Guideline">
-    <h4 class="title-Guideline">Forecast Win/Loss of Handicap</h4>
+    <h4 class="title-Guideline">핸디캡 승/패 예측</h4>
     <div class="detail">
         <div class="left">
-            <h5>Live</h5>
+            <h5>라이브</h5>
             <ul class="circle">
-                <li>Forecast Win Loss starts from Current Score Difference.</li>
-                <li>Example: Current live score 2 - 0</li>
+                <li>승패 예측은 현재 점수 차이에서 시작됩니다.</li>
+                <li>예시: 현재 라이브 점수 2 - 0</li>
             </ul>
             <div class="c-red txt-bold">
-                <p>Current Score Difference (X)</p>
-                <p>= Live Home Score - Live Away Score = 2 – 0 = 2</p>
+                <p>현재 점수 차이 (X)</p>
+                <p>= 라이브 홈 점수 - 라이브 원정 점수 = 2 – 0 = 2</p>
             </div>
             <div class="img-small">
                 <img src="~/bundles/images/@Model/2.png?v=@version" />
             </div>
         </div>
         <div class="left">
-            <h5>Non-Live</h5>
+            <h5>비라이브</h5>
             <ul class="circle">
-                <li>Forecast Win Loss starts from rounding down the Handicap Average.</li>
+                <li>승패 예측은 핸디캡 평균을 내림하여 시작됩니다.</li>
                 <li>
-                    Example: The event has handicap values: 1.5 – 2
+                    예시: 경기에 핸디캡 값이 있음: 1.5 – 2
                     <ul class="circle c-red txt-bold">
-                        <li>Handicap Average = (1.5 + 2)/2 = 1.75</li>
-                        <li>Round down the Handicap Average (Y) = 1</li>
+                        <li>핸디캡 평균 = (1.5 + 2)/2 = 1.75</li>
+                        <li>핸디캡 평균 내림 (Y) = 1</li>
                     </ul>
                 </li>
             </ul>
@@ -46,31 +45,31 @@
 </div>
 
 <div class="block-Guideline">
-    <h4 class="title-Guideline">Forecast Win/Loss of Over Under</h4>
+    <h4 class="title-Guideline">오버 언더 승/패 예측</h4>
     <div class="detail">
         <div class="left">
-            <h5>Live</h5>
+            <h5>라이브</h5>
             <ul class="circle">
-                <li>Forecast Win Loss starts from Total Current Score</li>
-                <li>Example: Current live score 0 – 4</li>
+                <li>승패 예측은 총 현재 점수에서 시작됩니다</li>
+                <li>예시: 현재 라이브 점수 0 – 4</li>
             </ul>
             <div class="c-red txt-bold">
-                <p>Total Current Score (X)</p>
-                <p>= Live Home Score + Live Away Score = 0 + 4 = 4</p>
+                <p>총 현재 점수 (X)</p>
+                <p>= 라이브 홈 점수 + 라이브 원정 점수 = 0 + 4 = 4</p>
             </div>
             <div class="img-small">
                 <img src="~/bundles/images/@Model/4.png?v=@version" />
             </div>
         </div>
         <div class="left">
-            <h5>Non-Live</h5>
+            <h5>비라이브</h5>
             <ul class="circle">
-                <li>Forecast Win Lost starts from rounding down the Total Goal Average.</li>
+                <li>승패 예측은 총 골 평균을 내림하여 시작됩니다.</li>
                 <li>
-                    Example: The event has Over Under values: 2-2.5
+                    예시: 경기에 오버 언더 값이 있음: 2-2.5
                     <ul class="circle c-red txt-bold">
-                        <li>Total Goal Average = (2 + 2.5)/2 = 2.25</li>
-                        <li>Round down the Goal Average (Y) = 2</li>
+                        <li>총 골 평균 = (2 + 2.5)/2 = 2.25</li>
+                        <li>골 평균 내림 (Y) = 2</li>
                     </ul>
                 </li>
             </ul>
@@ -82,17 +81,17 @@
 </div>
 
 <div class="block-Guideline">
-    <h4 class="title-Guideline">Forecast Win/Loss of 1X2</h4>
+    <h4 class="title-Guideline">1X2 승/패 예측</h4>
     <div class="detail">
         <div class="left">
-            <h5>Live</h5>
+            <h5>라이브</h5>
             <ul class="circle">
-                <li>Highlight Current result.</li>
+                <li>현재 결과를 강조합니다.</li>
                 <li>
-                    Example: Current Live score 2 – 0
+                    예시: 현재 라이브 점수 2 – 0
                     <ul class="arrow txt-bold">
-                        <li>Home Win</li>
-                        <li>Highlight header 1</li>
+                        <li>홈 승</li>
+                        <li>헤더 1 강조</li>
                     </ul>
                 </li>
             </ul>
@@ -101,24 +100,24 @@
             </div>
         </div>
         <div class="left">
-            <h5>Non-Live</h5>
+            <h5>비라이브</h5>
             <ul class="circle">
                 <li>
-                    If Handicap bet type is offered to the event.
+                    경기에 핸디캡 베팅 유형이 제공되는 경우.
                     <div class="img-small img-ex">
                         <img src="~/bundles/images/@Model/7.png?v=@version" />
                     </div>
                 </li>
-                <li class="ex-text">If Handicap bet type is NOT offered to the event, there is NO highlighted header.
+                <li class="ex-text">경기에 핸디캡 베팅 유형이 제공되지 않는 경우, 강조된 헤더가 없습니다.
                 </li>
                 <li>
-                    Example: The event has handicap values: 1.5 – 2
+                    예시: 경기에 핸디캡 값이 있음: 1.5 – 2
                     <ul class="circle c-red txt-bold">
-                        <li>Handicap Average = (1.5 + 2)/2 = 1.75</li>
-                        <li>Round down the Handicap Average (X) = 1 > 0</li>
+                        <li>핸디캡 평균 = (1.5 + 2)/2 = 1.75</li>
+                        <li>핸디캡 평균 내림 (X) = 1 > 0</li>
                     </ul>
                     <ul class="arrow txt-bold">
-                        <li>Highlight header 1</li>
+                        <li>헤더 1 강조</li>
                     </ul>
                 </li>
             </ul>

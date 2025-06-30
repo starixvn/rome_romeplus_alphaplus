@@ -9,6 +9,7 @@ import viVN from './vi-VN/translation.json';
 import zhCN from './zh-CN/translation.json';
 import zhTW from './zh-TW/translation.json';
 import jaJP from './ja-JP/translation.json';
+import koKR from './ko-KR/translation.json';
 
 
 export const defaultNS = 'translation';
@@ -20,6 +21,7 @@ export const resources = {
   'zh-CN': { translation: zhCN },
   'zh-TW': { translation: zhTW },
   'ja-JP': { translation: jaJP },
+  'ko-KR': { translation: koKR }
 };
 
 i18next

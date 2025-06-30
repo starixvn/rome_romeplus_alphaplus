@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="TotalBets" xml:space="preserve">
-    <value>총 배팅</value>
+    <value>총 베팅</value>
   </data>
   <data name="Forecast" xml:space="preserve">
-    <value>예상</value>
+    <value>예측</value>
   </data>
   <data name="Reports" xml:space="preserve">
-    <value>리포트</value>
+    <value>보고서</value>
   </data>
   <data name="MemberInfo" xml:space="preserve">
     <value>회원 정보</value>
@@ -139,13 +139,13 @@
     <value>보기</value>
   </data>
   <data name="Transfer" xml:space="preserve">
-    <value>전송</value>
+    <value>이체</value>
   </data>
   <data name="ViewLog" xml:space="preserve">
-    <value>로그인 보기</value>
+    <value>로그 보기</value>
   </data>
   <data name="Daily" xml:space="preserve">
-    <value>매일</value>
+    <value>일간</value>
   </data>
   <data name="Sun" xml:space="preserve">
     <value>일</value>
@@ -157,10 +157,13 @@
     <value>화</value>
   </data>
   <data name="Wed" xml:space="preserve">
-    <value>수요일</value>
+    <value>수</value>
   </data>
   <data name="Thurs" xml:space="preserve">
-    <value>목요일</value>
+    <value>목</value>
+  </data>
+  <data name="Fri" xml:space="preserve">
+    <value>금</value>
   </data>
   <data name="Sat" xml:space="preserve">
     <value>토</value>
@@ -168,14 +171,11 @@
   <data name="Weekly" xml:space="preserve">
     <value>주간</value>
   </data>
-  <data name="Fri" xml:space="preserve">
-    <value>금</value>
-  </data>
   <data name="Unlimited" xml:space="preserve">
     <value>무제한</value>
   </data>
   <data name="DisabledVirtualSports" xml:space="preserve">
-    <value>가상스포츠 비활성화하기</value>
+    <value>가상 스포츠 비활성화</value>
   </data>
   <data name="Disabled" xml:space="preserve">
     <value>비활성화</value>
@@ -187,34 +187,34 @@
     <value>로그인</value>
   </data>
   <data name="UsernameOrFirstLastName" xml:space="preserve">
-    <value>사용자 이름 또는 성(이름)</value>
+    <value>사용자 이름 또는 성/이름</value>
   </data>
   <data name="ShowOldValues" xml:space="preserve">
-    <value>Show old values</value>
+    <value>이전 값 표시</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>사용자 이름</value>
   </data>
   <data name="To" xml:space="preserve">
-    <value>종료일</value>
+    <value>~</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>확인</value>
+    <value>제출</value>
   </data>
   <data name="LogId" xml:space="preserve">
-    <value>로그인 아이디</value>
+    <value>로그 ID</value>
   </data>
   <data name="LogDate" xml:space="preserve">
-    <value>로그인 날짜</value>
+    <value>로그 날짜</value>
   </data>
   <data name="EditedBy" xml:space="preserve">
-    <value>Edited by</value>
+    <value>수정자</value>
   </data>
   <data name="Action" xml:space="preserve">
-    <value>실행</value>
+    <value>작업</value>
   </data>
   <data name="of" xml:space="preserve">
-    <value>부터</value>
+    <value>/</value>
   </data>
   <data name="Page" xml:space="preserve">
     <value>페이지</value>
@@ -259,10 +259,10 @@
     <value>12월</value>
   </data>
   <data name="OldValue" xml:space="preserve">
-    <value>Old value</value>
+    <value>이전 값</value>
   </data>
   <data name="NewValue" xml:space="preserve">
-    <value>New value</value>
+    <value>새 값</value>
   </data>
   <data name="Domain" xml:space="preserve">
     <value>도메인</value>
@@ -271,10 +271,10 @@
     <value>브라우저</value>
   </data>
   <data name="Country" xml:space="preserve">
-    <value>Country</value>
+    <value>국가</value>
   </data>
   <data name="By" xml:space="preserve">
-    <value>by</value>
+    <value>작성</value>
   </data>
   <data name="Setting" xml:space="preserve">
     <value>설정</value>
@@ -286,27 +286,81 @@
     <value>회원 정보: 업데이트</value>
   </data>
   <data name="PageAccess_C" xml:space="preserve">
-    <value>전송</value>
+    <value>이체</value>
   </data>
   <data name="PageAccess_E" xml:space="preserve">
-    <value>리포트</value>
+    <value>보고서</value>
   </data>
   <data name="PageAccess_G" xml:space="preserve">
-    <value>로그인 보기</value>
+    <value>로그 보기</value>
   </data>
   <data name="PageAccess_H" xml:space="preserve">
     <value>회원 정보: 보기</value>
   </data>
   <data name="PageAccess_L" xml:space="preserve">
-    <value>배팅 리스트</value>
+    <value>베팅 목록</value>
   </data>
   <data name="PageAccess_D" xml:space="preserve">
-    <value>Bets &amp; Forecast</value>
+    <value>베팅 및 예측</value>
   </data>
   <data name="Credit" xml:space="preserve">
-    <value>포인트</value>
+    <value>크레딧</value>
   </data>
   <data name="NoInfo" xml:space="preserve">
-    <value>가능한 정보가 없습니다</value>
+    <value>사용 가능한 정보가 없습니다</value>
+  </data>
+  <data name="ViewLogCredit" xml:space="preserve">
+    <value>크레딧 로그</value>
+  </data>
+  <data name="ViewLogSetting" xml:space="preserve">
+    <value>설정 로그</value>
+  </data>
+  <data name="ViewLogLogin" xml:space="preserve">
+    <value>로그인 로그</value>
+  </data>
+  <data name="ViewLogStatus" xml:space="preserve">
+    <value>상태 로그</value>
+  </data>
+  <data name="DisableGoldDeluxe" xml:space="preserve">
+    <value>골드 딜럭스 비활성화</value>
+  </data>
+  <data name="DisableAllBet" xml:space="preserve">
+    <value>올벳 비활성화</value>
+  </data>
+  <data name="DisableMacauGames" xml:space="preserve">
+    <value>마카오 게임 비활성화</value>
+  </data>
+  <data name="LoginLogs_Warning" xml:space="preserve">
+    <value>회원 로그인 로그가 없습니다.</value>
+  </data>
+  <data name="AppStart_Message" xml:space="preserve">
+    <value>알파 - 로그 보기 - 프로그램 시작</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>상세 정보</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="AllTypes" xml:space="preserve">
+    <value>모든 유형</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>번호</value>
+  </data>
+  <data name="Schedule" xml:space="preserve">
+    <value>일정</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>총 {total}개 항목 중 {from}부터 {to}까지 표시</value>
+  </data>
+  <data name="PageAccess_M" xml:space="preserve">
+    <value>캐시 서비스</value>
+  </data>
+  <data name="PageAccess_N" xml:space="preserve">
+    <value>캐시 프로모션</value>
+  </data>
+  <data name="ViewLogCredit" xml:space="preserve">
+    <value>포인트 로그 보기</value>
   </data>
 </root>

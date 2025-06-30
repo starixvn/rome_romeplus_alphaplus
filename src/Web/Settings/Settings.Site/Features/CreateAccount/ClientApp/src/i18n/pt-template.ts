@@ -9,7 +9,7 @@ import viVN from './vi-VN/pt-template.json';
 import zhCN from './zh-CN/pt-template.json';
 import zhTW from './zh-TW/pt-template.json';
 import jaJP from './ja-JP/pt-template.json';
-
+import koKR from './ko-KR/pt-template.json';
 
 export const defaultNS = 'ptTemplate';
 
@@ -20,6 +20,7 @@ export const resources = {
   'zh-CN': { ptTemplate: zhCN },
   'zh-TW': { ptTemplate: zhTW },
   'ja-JP': { ptTemplate: jaJP },
+  'ko-KR': { ptTemplate: koKR }
 };
 
 i18next
@@ -27,7 +28,7 @@ i18next
   .use(initReactI18next)
   .init({
     debug: true,
-    supportedLngs: ['en-US', 'th-TH', 'vi-VN', 'zh-CN', 'zh-TW', 'ja-JP'],
+    supportedLngs: ['en-US', 'th-TH', 'vi-VN', 'zh-CN', 'zh-TW', 'ja-JP', 'ko-KR'],
     fallbackLng: 'en-US',
     load: 'currentOnly',
     resources,

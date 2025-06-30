@@ -130,28 +130,28 @@
     <value>모든 회원</value>
   </data>
   <data name="BetListHistory" xml:space="preserve">
-    <value>배팅 리스트</value>
+    <value>베팅 목록</value>
   </data>
   <data name="BetlistRunning" xml:space="preserve">
-    <value>배팅 목록(진행중)</value>
+    <value>베팅 목록(진행중)</value>
   </data>
   <data name="Bets" xml:space="preserve">
-    <value>bets</value>
+    <value>베팅</value>
   </data>
   <data name="CancelledBet" xml:space="preserve">
-    <value>취소된 배팅</value>
+    <value>취소된 베팅</value>
   </data>
   <data name="CombinationResultTooHuge" xml:space="preserve">
-    <value>There is a huge number of combinations of this Parlay ticket, please kindly click on &lt;a href={0}&gt;this link&lt;/a&gt; to download an Excel file comprising the full list of all combinations.</value>
+    <value>이 팔레이 티켓의 조합 수가 매우 많습니다. 모든 조합의 전체 목록이 포함된 엑셀 파일을 다운로드하려면 &lt;a href={0}&gt;이 링크&lt;/a&gt;를 클릭하세요.</value>
   </data>
   <data name="CommissionRoundNote" xml:space="preserve">
-    <value>Com. is rounded for reference only. Therefore, Subtotal Com. amount may be different from the sum of Com. when it sums all the actual Com. amounts.</value>
+    <value>수수료는 참고용으로만 반올림됩니다. 따라서 소계 수수료 금액은 실제 수수료 금액의 합계와 다를 수 있습니다.</value>
   </data>
   <data name="DailyStatement" xml:space="preserve">
-    <value>일일 정책</value>
+    <value>일일 정산</value>
   </data>
   <data name="ExportToExcel" xml:space="preserve">
-    <value>엘셀로 내보내기</value>
+    <value>엑셀로 내보내기</value>
   </data>
   <data name="From" xml:space="preserve">
     <value>시작일</value>
@@ -166,16 +166,16 @@
     <value>핸디캡</value>
   </data>
   <data name="HideFilter" xml:space="preserve">
-    <value>Hide Filter</value>
+    <value>필터 숨기기</value>
   </data>
   <data name="IPMatchingTitle" xml:space="preserve">
-    <value>Member Bet List {0} - IP Matching: {1}</value>
+    <value>회원 베팅 목록 {0} - IP 매칭: {1}</value>
   </data>
   <data name="Last" xml:space="preserve">
     <value>마지막</value>
   </data>
   <data name="LastBetsMonitoring" xml:space="preserve">
-    <value>마지막베팅내역</value>
+    <value>최근 베팅 내역</value>
   </data>
   <data name="LastMonth" xml:space="preserve">
     <value>마지막 달</value>
@@ -190,10 +190,10 @@
     <value>가능한 정보가 없습니다</value>
   </data>
   <data name="Note" xml:space="preserve">
-    <value>Note</value>
+    <value>참고</value>
   </data>
   <data name="OtherBetTypes" xml:space="preserve">
-    <value>다른 배팅종류</value>
+    <value>다른 베팅 종류</value>
   </data>
   <data name="OverUnder" xml:space="preserve">
     <value>초과/미만</value>
@@ -202,7 +202,7 @@
     <value>페이지</value>
   </data>
   <data name="ShowFilter" xml:space="preserve">
-    <value>Show Filter</value>
+    <value>필터 표시</value>
   </data>
   <data name="SinceLastMonth" xml:space="preserve">
     <value>지난달부터</value>
@@ -214,7 +214,7 @@
     <value>소계(수수료)</value>
   </data>
   <data name="Subtotal_wl" xml:space="preserve">
-    <value>소계(승패)</value>
+    <value>소계(승/패)</value>
   </data>
   <data name="To" xml:space="preserve">
     <value>종료일</value>
@@ -226,7 +226,7 @@
     <value>사용자 이름</value>
   </data>
   <data name="Win" xml:space="preserve">
-    <value>승리/패배</value>
+    <value>승/패</value>
   </data>
   <data name="Yesterday" xml:space="preserve">
     <value>어제</value>
@@ -250,7 +250,7 @@
     <value>경기</value>
   </data>
   <data name="ipnote" xml:space="preserve">
-    <value>Country and city information is provided by IP2Location™ and DNSstuff which might only serve as a reference, with no warranty. Please consult other reliable sources for the current and accurate information, if required.</value>
+    <value>국가 및 도시 정보는 IP2Location™ 및 DNSstuff에서 제공하며 참고용으로만 사용할 수 있으며 보증은 없습니다. 필요한 경우 현재 및 정확한 정보를 위해 다른 신뢰할 수 있는 소스를 참조하세요.</value>
   </data>
   <data name="lblComm" xml:space="preserve">
     <value>수수료</value>
@@ -262,13 +262,13 @@
     <value>시스템 팔레이</value>
   </data>
   <data name="lblWinLoss" xml:space="preserve">
-    <value>승리 패배</value>
+    <value>승/패</value>
   </data>
   <data name="lose" xml:space="preserve">
     <value>패</value>
   </data>
   <data name="losingtickets" xml:space="preserve">
-    <value>총 잃은 티켓</value>
+    <value>패배 티켓</value>
   </data>
   <data name="masterPT" xml:space="preserve">
     <value>마스터 PT</value>
@@ -280,7 +280,7 @@
     <value>회원</value>
   </data>
   <data name="memberBetList" xml:space="preserve">
-    <value>회원 배팅 리스트</value>
+    <value>회원 베팅 목록</value>
   </data>
   <data name="odds" xml:space="preserve">
     <value>배당</value>
@@ -289,7 +289,7 @@
     <value>부터</value>
   </data>
   <data name="outstanding" xml:space="preserve">
-    <value>대기 포인트</value>
+    <value>미정산</value>
   </data>
   <data name="parlay" xml:space="preserve">
     <value>팔레이</value>
@@ -310,13 +310,13 @@
     <value>진행중</value>
   </data>
   <data name="stake" xml:space="preserve">
-    <value>배팅 금액</value>
+    <value>베팅 금액</value>
   </data>
   <data name="status" xml:space="preserve">
-    <value>상황</value>
+    <value>상태</value>
   </data>
   <data name="subTotal" xml:space="preserve">
-    <value>총 하위</value>
+    <value>소계</value>
   </data>
   <data name="superPT" xml:space="preserve">
     <value>슈퍼 PT</value>
@@ -340,28 +340,28 @@
     <value>5월</value>
   </data>
   <data name="Action" xml:space="preserve">
-    <value>실행</value>
+    <value>액션</value>
   </data>
   <data name="All" xml:space="preserve">
-    <value>모든</value>
+    <value>전체</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>뒤</value>
+    <value>뒤로</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>취소</value>
   </data>
   <data name="DoNotShowAgain" xml:space="preserve">
-    <value>이 페이지를 다시 표시하지않습니다.</value>
+    <value>다시 표시하지 않음</value>
   </data>
   <data name="NoChangeToUpdate" xml:space="preserve">
-    <value>There is no change to update.</value>
+    <value>업데이트할 변경사항이 없습니다.</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
-    <value>Update successfully</value>
+    <value>성공적으로 업데이트되었습니다</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>Yes</value>
+    <value>예</value>
   </data>
   <data name="NotAuthorized" xml:space="preserve">
     <value>해당 기능에 대한 권한이 없습니다.</value>
@@ -371,5 +371,512 @@
   </data>
   <data name="Oct" xml:space="preserve">
     <value>10월</value>
+  </data>
+  <data name="Activity" xml:space="preserve">
+    <value>활동</value>
+  </data>
+  <data name="AddedSuccessfully" xml:space="preserve">
+    <value>성공적으로 추가되었습니다</value>
+  </data>
+  <data name="AllIncludedNewlyAddedMembers" xml:space="preserve">
+    <value>전체 (신규 추가 회원 포함)</value>
+  </data>
+  <data name="AllLeagues" xml:space="preserve">
+    <value>모든 리그</value>
+  </data>
+  <data name="AllMembers" xml:space="preserve">
+    <value>모든 회원</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>모든 상품</value>
+  </data>
+  <data name="AllSports" xml:space="preserve">
+    <value>모든 스포츠</value>
+  </data>
+  <data name="AllStatus" xml:space="preserve">
+    <value>모든 상태</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>적용</value>
+  </data>
+  <data name="AutoRefresh" xml:space="preserve">
+    <value>자동 새로고침</value>
+  </data>
+  <data name="BadRequest" xml:space="preserve">
+    <value>잘못된 요청</value>
+  </data>
+  <data name="BetList" xml:space="preserve">
+    <value>베팅 목록</value>
+  </data>
+  <data name="BetType" xml:space="preserve">
+    <value>베팅 유형</value>
+  </data>
+  <data name="BetTypes" xml:space="preserve">
+    <value>베팅 유형</value>
+  </data>
+  <data name="CanOnlyViewDataAfterTimeHistoryReport" xml:space="preserve">
+    <value>{0} 이후의 정산된 시간의 보고서 데이터만 볼 수 있습니다.</value>
+  </data>
+  <data name="CanOnlyViewDataAfterTimeHistoryReportWithFormat" xml:space="preserve">
+    <value>{0} (mm/dd/yyyy) 이후의 정산된 시간의 보고서 데이터만 볼 수 있습니다.</value>
+  </data>
+  <data name="CashOut" xml:space="preserve">
+    <value>캐시아웃</value>
+  </data>
+  <data name="CashOutAmount" xml:space="preserve">
+    <value>캐시아웃 금액</value>
+  </data>
+  <data name="CashOutCancelled" xml:space="preserve">
+    <value>캐시아웃 취소됨</value>
+  </data>
+  <data name="CashOutHistoryTitle" xml:space="preserve">
+    <value>캐시아웃 내역</value>
+  </data>
+  <data name="CashOutRecovered" xml:space="preserve">
+    <value>캐시아웃 복구됨</value>
+  </data>
+  <data name="ClassicView" xml:space="preserve">
+    <value>기본 보기</value>
+  </data>
+  <data name="ConfirmMessageRemoveAllFilters" xml:space="preserve">
+    <value>모든 필터를 제거하시겠습니까? 제거된 필터는 복구할 수 없습니다.</value>
+  </data>
+  <data name="ConfirmMessageRemoveFilter" xml:space="preserve">
+    <value>이 필터를 제거하시겠습니까? 제거된 필터는 복구할 수 없습니다.</value>
+  </data>
+  <data name="ContributionAmountRoundNote" xml:space="preserve">
+    <value>기여 금액은 소수점 4자리까지 반올림됩니다.</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>복사됨</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>복사</value>
+  </data>
+  <data name="CreatedTime" xml:space="preserve">
+    <value>생성 시간</value>
+  </data>
+  <data name="ThisWeek" xml:space="preserve">
+    <value>이번 주</value>
+  </data>
+  <data name="TicketDetails" xml:space="preserve">
+    <value>티켓 상세</value>
+  </data>
+  <data name="UnsavedFilter" xml:space="preserve">
+    <value>저장되지 않은 필터</value>
+  </data>
+  <data name="UsernameTagsInputPlaceHolder" xml:space="preserve">
+    <value>사용자명/닉네임을 입력하세요 (쉼표, 탭 또는 엔터로 구분)</value>
+  </data>
+  <data name="Void" xml:space="preserve">
+    <value>무효</value>
+  </data>
+  <data name="VoidAndReject" xml:space="preserve">
+    <value>무효/거부/환급된 베팅 목록</value>
+  </data>
+  <data name="WinLossRoundNote" xml:space="preserve">
+    <value>승패는 참고용으로만 반올림됩니다. 따라서 소계 금액은 모든 실제 승패 금액을 합산할 때 승패 합계와 다를 수 있습니다.</value>
+  </data>
+  <data name="nSelected" xml:space="preserve">
+    <value>선택된 수</value>
+  </data>
+  <data name="number" xml:space="preserve">
+    <value>번호</value>
+  </data>
+  <data name="platform" xml:space="preserve">
+    <value>플랫폼</value>
+  </data>
+  <data name="refunded" xml:space="preserve">
+    <value>환급됨</value>
+  </data>
+  <data name="rejected" xml:space="preserve">
+    <value>거부됨</value>
+  </data>
+  <data name="selectStatuses" xml:space="preserve">
+    <value>상태 선택</value>
+  </data>
+  <data name="voided" xml:space="preserve">
+    <value>무효됨</value>
+  </data>
+  <data name="NotifyLastBetsViaTelegram" xml:space="preserve">
+    <value>새 티켓이 필터와 일치할 때 텔레그램을 통해 알림</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>알림</value>
+  </data>
+  <data name="ConfirmTurnOffNotification" xml:space="preserve">
+    <value>이 필터의 텔레그램 알림을 비활성화하시겠습니까?</value>
+  </data>
+  <data name="ConfirmTurnOnNotification" xml:space="preserve">
+    <value>이 필터의 텔레그램 알림을 활성화하시겠습니까? 참고: 알림 필터의 최대 개수는 3개입니다</value>
+  </data>
+  <data name="EnableChatBot_LastBets" xml:space="preserve">
+    <value>최근 베팅 알림 기능을 사용하려면 챗봇 및 최근 베팅 알림을 활성화하세요. &lt;a class="lnk-chatbot"&gt;챗봇으로 이동&lt;/a&gt;</value>
+  </data>
+  <data name="MemberRisk" xml:space="preserve">
+    <value>승리 금액</value>
+  </data>
+  <data name="MasterRisk" xml:space="preserve">
+    <value>마스터 위험</value>
+  </data>
+  <data name="SuperRisk" xml:space="preserve">
+    <value>슈퍼 위험</value>
+  </data>
+  <data name="AgentRisk" xml:space="preserve">
+    <value>에이전트 위험</value>
+  </data>
+  <data name="FilterConfigurationSpecificSuperMasterContent" xml:space="preserve">
+    <value>선택된 회원의 티켓을 모니터링하며, 수동으로 추가할 수 있습니다.</value>
+  </data>
+  <data name="Apr" xml:space="preserve">
+    <value>4월</value>
+  </data>
+  <data name="Aug" xml:space="preserve">
+    <value>8월</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>날짜 범위</value>
+  </data>
+  <data name="DateTime" xml:space="preserve">
+    <value>날짜/시간</value>
+  </data>
+  <data name="Dec" xml:space="preserve">
+    <value>12월</value>
+  </data>
+  <data name="EnterMembers" xml:space="preserve">
+    <value>회원 입력</value>
+  </data>
+  <data name="EnteredMembers" xml:space="preserve">
+    <value>입력된 회원</value>
+  </data>
+  <data name="ExceededMaxTotalRowExportExcelFunc" xml:space="preserve">
+    <value>시스템은 최대 {0}개의 티켓만 내보낼 수 있습니다. 더 짧은 날짜 범위를 선택하세요.</value>
+  </data>
+  <data name="ExceededMaxTotalRowWithExcelFunc" xml:space="preserve">
+    <value>보고서에 {0}개의 티켓이 포함되어 있지만, 페이지는 최대 {1}개만 표시할 수 있습니다. 더 짧은 날짜 범위를 선택하거나 엑셀로 내보내세요.</value>
+  </data>
+  <data name="ExpandAll" xml:space="preserve">
+    <value>모두 펼치기</value>
+  </data>
+  <data name="Feb" xml:space="preserve">
+    <value>2월</value>
+  </data>
+  <data name="FilterByMembers" xml:space="preserve">
+    <value>회원별 필터</value>
+  </data>
+  <data name="FilterBySports" xml:space="preserve">
+    <value>스포츠별 필터</value>
+  </data>
+  <data name="FilterByTickets" xml:space="preserve">
+    <value>티켓별 필터</value>
+  </data>
+  <data name="FilterConfiguration" xml:space="preserve">
+    <value>필터 설정</value>
+  </data>
+  <data name="FilterConfigurationAllMembersContent" xml:space="preserve">
+    <value>모든 회원의 티켓을 모니터링합니다.</value>
+  </data>
+  <data name="FilterConfigurationAllMembersContent2" xml:space="preserve">
+    <value>신규 회원이 자동으로 포함됩니다.</value>
+  </data>
+  <data name="FilterConfigurationAllSportsContent" xml:space="preserve">
+    <value>모든 스포츠의 티켓을 모니터링합니다.</value>
+  </data>
+  <data name="FilterConfigurationAllSportsContent2" xml:space="preserve">
+    <value>신규 스포츠가 자동으로 포함됩니다.</value>
+  </data>
+  <data name="FilterConfigurationBetTypesRequiredError" xml:space="preserve">
+    <value>베팅 유형을 선택하세요</value>
+  </data>
+  <data name="FilterConfigurationFilterByMembersRequiredError" xml:space="preserve">
+    <value>회원(들)을 입력하거나 선택하세요</value>
+  </data>
+  <data name="FilterConfigurationFilterNameRequiredError" xml:space="preserve">
+    <value>필터 이름을 입력하세요</value>
+  </data>
+  <data name="FilterConfigurationSpecificMembersContent" xml:space="preserve">
+    <value>선택한 회원(들)의 티켓을 모니터링하며, 수동으로 추가하거나 내 관심목록에서 선택할 수 있습니다.</value>
+  </data>
+  <data name="FilterConfigurationSpecificSportsContent" xml:space="preserve">
+    <value>선택한 기준(스포츠/리그)에 따라 티켓을 모니터링합니다.</value>
+  </data>
+  <data name="FilterConfigurationSpecificSportsContent2" xml:space="preserve">
+    <value>완료된 리그는 필터 기준에서 제거됩니다.</value>
+  </data>
+  <data name="FilterConfigurationSportsRequiredError" xml:space="preserve">
+    <value>스포츠를 선택하세요</value>
+  </data>
+  <data name="FilterConfigurationStakeRequiredError" xml:space="preserve">
+    <value>스테이크를 입력하세요</value>
+  </data>
+  <data name="FilterConfigurationWelcomeContent" xml:space="preserve">
+    <value>&lt;strong&gt;최근 베팅&lt;/strong&gt; 기능을 처음 사용하시나요? 베팅 티켓 모니터링 필요에 따라 필터 기준을 설정하고, 나중에 사용할 수 있도록 필터를 저장하세요.</value>
+  </data>
+  <data name="FilterConfigurationWelcomeContent2" xml:space="preserve">
+    <value>지금 바로 시도해보세요!</value>
+  </data>
+  <data name="FilterConfigurationWelcomeTitle" xml:space="preserve">
+    <value>먼저 필터 기준을 설정하세요</value>
+  </data>
+  <data name="FilterName" xml:space="preserve">
+    <value>필터 이름</value>
+  </data>
+  <data name="FilterNameAlreadyExists" xml:space="preserve">
+    <value>필터 이름이 이미 존재합니다.</value>
+  </data>
+  <data name="FromMonitoredList" xml:space="preserve">
+    <value>모니터링 목록에서</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="InputMembers" xml:space="preserve">
+    <value>회원(들) 입력</value>
+  </data>
+  <data name="InvalidUsername" xml:space="preserve">
+    <value>잘못된 사용자명</value>
+  </data>
+  <data name="Jan" xml:space="preserve">
+    <value>1월</value>
+  </data>
+  <data name="Jul" xml:space="preserve">
+    <value>7월</value>
+  </data>
+  <data name="Jun" xml:space="preserve">
+    <value>6월</value>
+  </data>
+  <data name="Last3Months" xml:space="preserve">
+    <value>최근 3개월</value>
+  </data>
+  <data name="LastBets" xml:space="preserve">
+    <value>최근 베팅</value>
+  </data>
+  <data name="Live" xml:space="preserve">
+    <value>라이브</value>
+  </data>
+  <data name="LiveStatus" xml:space="preserve">
+    <value>라이브 상태</value>
+  </data>
+  <data name="MajorSports" xml:space="preserve">
+    <value>주요 스포츠</value>
+  </data>
+  <data name="ManageFilters" xml:space="preserve">
+    <value>필터 관리</value>
+  </data>
+  <data name="ManuallyEntered" xml:space="preserve">
+    <value>수동 입력</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>마스터</value>
+  </data>
+  <data name="MaxDataRetrieveHistoryError" xml:space="preserve">
+    <value>{0} 이전 데이터는 최대 31일까지 조회할 수 있습니다. 날짜 범위를 확인하세요.</value>
+  </data>
+  <data name="MaxNoUsernames" xml:space="preserve">
+    <value>최대: # 회원</value>
+  </data>
+  <data name="MemberAlreadyExists" xml:space="preserve">
+    <value>회원이 이미 존재합니다</value>
+  </data>
+  <data name="MemberNotFound" xml:space="preserve">
+    <value>회원을 찾을 수 없습니다</value>
+  </data>
+  <data name="Members" xml:space="preserve">
+    <value>회원들</value>
+  </data>
+  <data name="MinorSports" xml:space="preserve">
+    <value>비주요 스포츠</value>
+  </data>
+  <data name="MonitoredMember" xml:space="preserve">
+    <value>모니터링 회원</value>
+  </data>
+  <data name="MostRecentTickets" xml:space="preserve">
+    <value>최신 티켓</value>
+  </data>
+  <data name="MyFilters" xml:space="preserve">
+    <value>내 필터</value>
+  </data>
+  <data name="NetworkLatency" xml:space="preserve">
+    <value>네트워크 지연으로 인해 정보를 사용할 수 없습니다. 잠시 후 다시 시도하세요.</value>
+  </data>
+  <data name="NewView" xml:space="preserve">
+    <value>새로운 보기</value>
+  </data>
+  <data name="NewViewTakesOver" xml:space="preserve">
+    <value>새로운 보기로 전환</value>
+  </data>
+  <data name="NewViewTakesOverNote" xml:space="preserve">
+    <value>2024년 2월 21일부터 새로운 보기가 기본 표시가 됩니다. 여전히 클래식 보기로 전환할 수 있습니다.</value>
+  </data>
+  <data name="NewViewTakesOverPopup" xml:space="preserve">
+    <value>&lt;b&gt;2024년 2월 21일&lt;/b&gt;부터 &lt;b&gt;새로운 보기&lt;/b&gt;가 &lt;b&gt;기본 표시&lt;/b&gt;가 됩니다. 여전히 클래식 보기로 전환할 수 있습니다.</value>
+  </data>
+  <data name="NoMemberUsernameFound" xml:space="preserve">
+    <value>회원 사용자명을 찾을 수 없습니다</value>
+  </data>
+  <data name="NoProductDetailsFound" xml:space="preserve">
+    <value>상품 세부정보를 찾을 수 없습니다</value>
+  </data>
+  <data name="NoProductFound" xml:space="preserve">
+    <value>상품을 찾을 수 없습니다</value>
+  </data>
+  <data name="NonLive" xml:space="preserve">
+    <value>비라이브</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>없음</value>
+  </data>
+  <data name="NoneSelected" xml:space="preserve">
+    <value>선택 없음</value>
+  </data>
+  <data name="NotAMember" xml:space="preserve">
+    <value>회원이 아님</value>
+  </data>
+  <data name="NoteCancelledBetPage" xml:space="preserve">
+    <value>{0}부터 보고서 데이터를 볼 수 있습니다.</value>
+  </data>
+  <data name="Nov" xml:space="preserve">
+    <value>11월</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>꺼짐</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>켜짐</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>기타</value>
+  </data>
+  <data name="PPJackpotWonDetails" xml:space="preserve">
+    <value>PP 잭팟 당첨 내역</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>{from}~{to} / 총 {total}개 항목 표시</value>
+  </data>
+  <data name="Platform_0" xml:space="preserve">
+    <value>해당 없음</value>
+  </data>
+  <data name="Platform_1" xml:space="preserve">
+    <value>데스크탑</value>
+  </data>
+  <data name="Platform_2" xml:space="preserve">
+    <value>모바일</value>
+  </data>
+  <data name="Platform_3" xml:space="preserve">
+    <value>앱</value>
+  </data>
+  <data name="Platform_99" xml:space="preserve">
+    <value>분류되지 않음</value>
+  </data>
+  <data name="Platform_NA" xml:space="preserve">
+    <value>해당 없음</value>
+  </data>
+  <data name="Platform_Uncategorized" xml:space="preserve">
+    <value>분류되지 않음</value>
+  </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>선택하세요</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>상품</value>
+  </data>
+  <data name="ProductDetails" xml:space="preserve">
+    <value>상품 세부정보</value>
+  </data>
+  <data name="ProgressiveJackpotWonDetails" xml:space="preserve">
+    <value>누적 잭팟 당첨 내역</value>
+  </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>참조 번호</value>
+  </data>
+  <data name="RefNo_Duplicate[1]" xml:space="preserve">
+    <value>참조 번호</value>
+  </data>
+  <data name="RemoveAllFilters" xml:space="preserve">
+    <value>모든 필터 제거</value>
+  </data>
+  <data name="RemovedSuccessfully" xml:space="preserve">
+    <value>성공적으로 제거되었습니다</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="SaveAndApply" xml:space="preserve">
+    <value>저장 및 적용</value>
+  </data>
+  <data name="SaveFilter" xml:space="preserve">
+    <value>필터 저장</value>
+  </data>
+  <data name="SaveToMyFilters" xml:space="preserve">
+    <value>내 필터에 저장</value>
+  </data>
+  <data name="SearchMemberUsernameOrNickname" xml:space="preserve">
+    <value>회원 사용자명/닉네임 검색</value>
+  </data>
+  <data name="SearchProduct" xml:space="preserve">
+    <value>상품 검색</value>
+  </data>
+  <data name="SearchProductDetails" xml:space="preserve">
+    <value>상품 세부정보 검색</value>
+  </data>
+  <data name="SearchSportLeague" xml:space="preserve">
+    <value>스포츠/리그 검색</value>
+  </data>
+  <data name="SearchTickets" xml:space="preserve">
+    <value>티켓 검색</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>전체 선택</value>
+  </data>
+  <data name="SelectBettype" xml:space="preserve">
+    <value>베팅 유형 선택</value>
+  </data>
+  <data name="SelectMembers" xml:space="preserve">
+    <value>회원(들) 선택</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>선택 안 함</value>
+  </data>
+  <data name="SelectProducts" xml:space="preserve">
+    <value>상품 선택</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>선택됨</value>
+  </data>
+  <data name="SelectedOnly" xml:space="preserve">
+    <value>선택된 항목만</value>
+  </data>
+  <data name="Sep" xml:space="preserve">
+    <value>9월</value>
+  </data>
+  <data name="SetAsDefaultFilter" xml:space="preserve">
+    <value>기본 필터로 설정</value>
+  </data>
+  <data name="SetDefault" xml:space="preserve">
+    <value>기본값 설정</value>
+  </data>
+  <data name="SpecificDate" xml:space="preserve">
+    <value>특정 날짜</value>
+  </data>
+  <data name="SpecificMembers" xml:space="preserve">
+    <value>특정 회원</value>
+  </data>
+  <data name="SpecificSports" xml:space="preserve">
+    <value>특정 스포츠</value>
+  </data>
+  <data name="SportGroup" xml:space="preserve">
+    <value>스포츠 그룹</value>
+  </data>
+  <data name="SportLeagueNotFound" xml:space="preserve">
+    <value>스포츠/리그를 찾을 수 없습니다</value>
+  </data>
+  <data name="Sports" xml:space="preserve">
+    <value>스포츠</value>
+  </data>
+  <data name="ThereIsNoProduct" xml:space="preserve">
+    <value>상품이 없습니다.</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>이번 달</value>
   </data>
 </root>

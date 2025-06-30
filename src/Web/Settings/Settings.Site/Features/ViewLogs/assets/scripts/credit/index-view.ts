@@ -28,6 +28,7 @@ var creditView = {
     },
     elelments: {
         btnSubmit: null,
+        iconExcel: null,
         ddlMonth: null,
         iconLoading: null,
         txtUsername: null,
@@ -40,6 +41,7 @@ var creditView = {
     pageSize: 0,
     cacheElements: function () {
         creditView.elelments.btnSubmit = $("#btn-submit");
+        creditView.elelments.iconExcel = $("#icon-excel");
         creditView.elelments.ddlMonth = $("#ddlMonth");
         creditView.elelments.iconLoading = $("#icon-loading");
         creditView.elelments.txtUsername = $("#txt-username");
@@ -58,6 +60,10 @@ var creditView = {
             creditView.pageSize = 0;
 
             creditController.viewLogs();
+        });
+
+        creditView.elelments.iconExcel.click(function () {
+            creditController.exportExcel();
         });
 
         creditView.elelments.txtUsername.keypress(function (e: any) {

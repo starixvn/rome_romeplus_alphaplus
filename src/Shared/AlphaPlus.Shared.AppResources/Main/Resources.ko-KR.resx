@@ -143,16 +143,16 @@
     <value>하여 업로드하세요!</value>
   </data>
   <data name="strNotAccessPage" xml:space="preserve">
-    <value>죄송합니다. 이페이지를 엑서스 할 수 있는 권한이 없습니다.</value>
+    <value>죄송합니다. 이 페이지에 접근할 권한이 없습니다.</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>도움말</value>
   </data>
   <data name="ContactUs" xml:space="preserve">
-    <value>Contact Us</value>
+    <value>문의하기</value>
   </data>
   <data name="EditProfilePicture" xml:space="preserve">
-    <value>프로필 사진</value>
+    <value>프로필 설정</value>
   </data>
   <data name="LoginOption" xml:space="preserve">
     <value>로그인 옵션</value>
@@ -161,19 +161,19 @@
     <value>비밀번호</value>
   </data>
   <data name="SecurityCode" xml:space="preserve">
-    <value>Security Code</value>
+    <value>보안 코드</value>
   </data>
   <data name="OldView" xml:space="preserve">
-    <value>Old View</value>
+    <value>이전 보기</value>
   </data>
   <data name="accountInfo" xml:space="preserve">
-    <value>계정정보</value>
+    <value>계정 정보</value>
   </data>
   <data name="mainMenu" xml:space="preserve">
     <value>메인 메뉴</value>
   </data>
   <data name="balanceInfo" xml:space="preserve">
-    <value>잔액정보</value>
+    <value>잔액</value>
   </data>
   <data name="agent" xml:space="preserve">
     <value>에이전트</value>
@@ -185,34 +185,34 @@
     <value>슈퍼</value>
   </data>
   <data name="agentGivenCredit" xml:space="preserve">
-    <value>에이전트 충전금액</value>
+    <value>에이전트 지급액</value>
   </data>
   <data name="masterGivenCredit" xml:space="preserve">
-    <value>마스터 충전금액</value>
+    <value>마스터 지급액</value>
   </data>
   <data name="superGivenCredit" xml:space="preserve">
-    <value>슈퍼 충전 금액</value>
+    <value>슈퍼 지급액</value>
   </data>
   <data name="totalAgentCredit" xml:space="preserve">
-    <value>총 에이전트 포인트(크레딧)</value>
+    <value>총 에이전트</value>
   </data>
   <data name="totalMasterCredit" xml:space="preserve">
-    <value>총 마스터 크레딧</value>
+    <value>총 마스터</value>
   </data>
   <data name="totalMemberCredit" xml:space="preserve">
-    <value>총 회원 포인트(크레딧)</value>
+    <value>총 회원</value>
   </data>
   <data name="cashBalance" xml:space="preserve">
     <value>현금</value>
   </data>
   <data name="currency" xml:space="preserve">
-    <value>화페</value>
+    <value>통화</value>
   </data>
   <data name="todayWinLoss" xml:space="preserve">
-    <value>오늘의 승리/패배</value>
+    <value>오늘의 손익</value>
   </data>
   <data name="totalBalance" xml:space="preserve">
-    <value>총잔액</value>
+    <value>총액</value>
   </data>
   <data name="yesterdayBalance" xml:space="preserve">
     <value>어제의 잔액</value>
@@ -221,10 +221,10 @@
     <value>어제의 현금</value>
   </data>
   <data name="yesterdayTotalBalance" xml:space="preserve">
-    <value>어제의 토탈 잔액</value>
+    <value>어제의 총액</value>
   </data>
   <data name="yesterdayWinLoss" xml:space="preserve">
-    <value>어제의 승리/패배</value>
+    <value>어제의 손익</value>
   </data>
   <data name="announcement" xml:space="preserve">
     <value>공지사항</value>
@@ -236,13 +236,13 @@
     <value>자세히</value>
   </data>
   <data name="totalActiveClosedSuspended" xml:space="preserve">
-    <value>총 유효/정지/사용중지</value>
+    <value>총 활성/비활성/일시정지</value>
   </data>
   <data name="totalAgentActiveClosedSuspended" xml:space="preserve">
-    <value>총 에이전트 접속/중지/보류됨</value>
+    <value>총 에이전트 활성/비활성/일시정지</value>
   </data>
   <data name="totalMasterACS" xml:space="preserve">
-    <value>총 마스터 접속/중지/보류됨</value>
+    <value>총 마스터 활성/비활성/일시정지</value>
   </data>
   <data name="statistics" xml:space="preserve">
     <value>통계</value>
@@ -269,7 +269,7 @@
     <value>마스터 대기 포인트</value>
   </data>
   <data name="show" xml:space="preserve">
-    <value>Show</value>
+    <value>보기</value>
   </data>
   <data name="member" xml:space="preserve">
     <value>회원</value>
@@ -290,10 +290,10 @@
     <value>주어진 크레딧</value>
   </data>
   <data name="Notice_2" xml:space="preserve">
-    <value>Your betting limit value has been changed by the upline.&lt;br&gt;Please kindly be informed and have a check the details for your downlines.</value>
+    <value>상위 관리자에 의해 베팅 한도가 변경되었습니다.&lt;br&gt;하위 라인의 세부 정보를 확인해 주세요.</value>
   </data>
   <data name="Notice_1_2" xml:space="preserve">
-    <value>Your minimum position taking and betting limit value have been changed by the upline.&lt;br&gt;Please kindly be informed and have a check the details for your downlines.</value>
+    <value>상위 관리자에 의해 최소 포지션 및 베팅 한도가 변경되었습니다.&lt;br&gt;하위 라인의 세부 정보를 확인해 주세요.</value>
   </data>
   <data name="Notice_1" xml:space="preserve">
     <value>상위 관리자에 의해 최소 거래조건이 변경되었습니다.</value>
@@ -305,10 +305,10 @@
     <value>이 페이지를 다시 표시하지않습니다.</value>
   </data>
   <data name="PrivateMessage" xml:space="preserve">
-    <value>Private Message</value>
+    <value>개인 메시지</value>
   </data>
   <data name="less" xml:space="preserve">
-    <value>less</value>
+    <value>접기</value>
   </data>
   <data name="LogOut" xml:space="preserve">
     <value>로그 아웃</value>
@@ -320,7 +320,7 @@
     <value>다음</value>
   </data>
   <data name="UpdatedSuccessfully" xml:space="preserve">
-    <value>Successfully updated!</value>
+    <value>성공적으로 업데이트되었습니다!</value>
   </data>
   <data name="lblBack" xml:space="preserve">
     <value>뒤</value>
@@ -359,7 +359,7 @@
     <value>확인</value>
   </data>
   <data name="ThereIsNoChange" xml:space="preserve">
-    <value>There is no change to update.</value>
+    <value>업데이트할 변경사항이 없습니다.</value>
   </data>
   <data name="outstanding" xml:space="preserve">
     <value>대기 포인트</value>
@@ -404,10 +404,10 @@
     <value>새로운</value>
   </data>
   <data name="Notice_3" xml:space="preserve">
-    <value>Your upline has enabled Fishing World for your downlines. Please go to setting page to configure your own PT settings.</value>
+    <value>상위 관리자가 하위 라인에 대해 피싱 월드를 활성화했습니다. 설정 페이지에서 자체 PT 설정을 구성해 주세요.</value>
   </data>
   <data name="highlights" xml:space="preserve">
-    <value>HIGHLIGHTS</value>
+    <value>주요 사항</value>
   </data>
   <data name="Total" xml:space="preserve">
     <value>총</value>
@@ -419,46 +419,46 @@
     <value>닉네임은 독특하고 알파벳이나 숫자이여야합니다. 최소5~최대20자리이여야 합니다.</value>
   </data>
   <data name="NicknameCompanyPolicy" xml:space="preserve">
-    <value>To increase security and protect your account, you are required to login only by nickname.</value>
+    <value>보안을 강화하고 계정을 보호하기 위해 닉네임으로만 로그인해야 합니다.</value>
   </data>
   <data name="NicknameEffectedFrom" xml:space="preserve">
-    <value>New policy will take effect from {0}.</value>
+    <value>새로운 정책은 {0}부터 적용됩니다.</value>
   </data>
   <data name="NicknameNote1" xml:space="preserve">
-    <value>You are not allowed to change your nickname afterward.</value>
+    <value>이후에는 닉네임을 변경할 수 없습니다.</value>
   </data>
   <data name="NicknameNote2" xml:space="preserve">
-    <value>Only your direct upline can see your nickname.</value>
+    <value>직속 상위 관리자만 닉네임을 볼 수 있습니다.</value>
   </data>
   <data name="SubAccNicknameNote2" xml:space="preserve">
-    <value>Only the main account user can see your nickname.</value>
+    <value>메인 계정 사용자만 닉네임을 볼 수 있습니다.</value>
   </data>
   <data name="NicknameOption1" xml:space="preserve">
-    <value>Login by username or nickname</value>
+    <value>사용자 이름 또는 닉네임으로 로그인</value>
   </data>
   <data name="NicknameOption2" xml:space="preserve">
-    <value>Login by nickname only</value>
+    <value>닉네임으로만 로그인</value>
   </data>
   <data name="NicknameSkipText" xml:space="preserve">
-    <value>Skip this step and go to Home Page</value>
+    <value>이 단계를 건너뛰고 홈페이지로 이동</value>
   </data>
   <data name="NicknameRules" xml:space="preserve">
-    <value>Nickname rules</value>
+    <value>닉네임 규칙</value>
   </data>
   <data name="PleaseChooseNickname" xml:space="preserve">
-    <value>Please choose your desired nickname</value>
+    <value>원하는 닉네임을 선택해 주세요</value>
   </data>
   <data name="PleaseSelectLoginByNickname" xml:space="preserve">
-    <value>Please select Login by nickname only</value>
+    <value>닉네임으로만 로그인하도록 선택해 주세요</value>
   </data>
   <data name="invalidCaptcha" xml:space="preserve">
     <value>잘못된 코드가 입력되었습니다</value>
   </data>
   <data name="CreateMemberWithQRCode" xml:space="preserve">
-    <value>Create Member with QR Code</value>
+    <value>QR 코드로 회원 생성</value>
   </data>
   <data name="PendingTransfer3rd" xml:space="preserve">
-    <value>3rd Party Pending Transfer</value>
+    <value>제3자 대기 이체</value>
   </data>
   <data name="UMFrom" xml:space="preserve">
     <value>시작일</value>
@@ -467,27 +467,467 @@
     <value>업데이트</value>
   </data>
   <data name="LearnMore" xml:space="preserve">
-    <value>Learn more</value>
+    <value>자세히 알아보기</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>Yes</value>
+    <value>예</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>No</value>
+    <value>아니오</value>
   </data>
   <data name="Page" xml:space="preserve">
     <value>페이지</value>
   </data>
   <data name="invalidsession" xml:space="preserve">
-    <value>세션설정이 잘못되었습니다.</value>
+    <value>잘못된 세션!</value>
+  </data>
+  <data name="RebateAndRetentionTour_Page1_Row1" xml:space="preserve">
+    <value>현금 보상 프로그램을 탐색하고 제공하는 것을 발견해 보세요!</value>
   </data>
   <data name="RebateAndRetentionTour_Page1_Row2" xml:space="preserve">
-    <value>잔액정보</value>
+    <value>잔액 정보</value>
+  </data>
+  <data name="RewardPayment" xml:space="preserve">
+    <value>보상 지급</value>
+  </data>
+  <data name="RebateAndRetentionTour_Page1_Row3" xml:space="preserve">
+    <value>하위 라인에 분배된 보상을 확인할 수 있는 새로운 기능입니다.</value>
+  </data>
+  <data name="RewardDetail" xml:space="preserve">
+    <value>보상 상세</value>
+  </data>
+  <data name="RebateAndRetentionTour_Page1_Row4" xml:space="preserve">
+    <value>새로운 보고서는 투명성을 위해 회원의 보상 거래와 피드백을 함께 표시합니다.</value>
+  </data>
+  <data name="RebateAndRetentionTour_Page1_Row5" xml:space="preserve">
+    <value>승패 상세 보고서에 새로운 보상 열이 포함되었습니다.</value>
   </data>
   <data name="TotalCashMember" xml:space="preserve">
-    <value>Total Cash Member</value>
+    <value>총 현금 회원</value>
   </data>
   <data name="CashService" xml:space="preserve">
-    <value>Cash Service</value>
+    <value>현금 서비스</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>국가</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>도시</value>
+  </data>
+  <data name="IPNote" xml:space="preserve">
+    <value>DNSstuff에서 추가 정보: &lt;a href="{0}" target="_blank"&gt;여기를 클릭하세요&lt;/a&gt;. 참고: 국가 및 도시 정보는 IP2Location™ 및 DNSstuff에서 제공되며 참고용으로만 사용되며 보증이 없습니다. 필요시 현재 및 정확한 정보를 위해 다른 신뢰할 수 있는 소스를 참조하세요.</value>
+  </data>
+  <data name="ipv6note" xml:space="preserve">
+    <value>IPv6의 경우 동일한 IP 주소가 다르게 표시될 수 있습니다.</value>
+  </data>
+  <data name="ForExample" xml:space="preserve">
+    <value>예시:</value>
+  </data>
+  <data name="ipv61" xml:space="preserve">
+    <value>- IP 주소 1: 2001:db8:3333:4444:5555:6666:1.2.3.4</value>
+  </data>
+  <data name="ipv62" xml:space="preserve">
+    <value>- IP 주소 2: 2001:0db8:3333:4444:5555:6666:0102:0304</value>
+  </data>
+  <data name="ProfileClickTootip" xml:space="preserve">
+    <value>프로필 설정을 편집하려면 여기를 클릭하세요.</value>
+  </data>
+  <data name="ProfileLoginTip" xml:space="preserve">
+    <value>소중한 에이전트 여러분, 우리 사이트를 가짜 사이트와 구별하는 데 도움이 되도록 기본 프로필 사진을 선택했습니다. &lt;a class="change-picture-link" href="{0}" target="main" id="changePictureLink"&gt;여기를 클릭&lt;/a&gt;하여 새로운 사진을 선택할 수 있습니다.&lt;br/&gt;또한 언어 설정을 &lt;a class="change-picture-link" href="{1}" target="main"&gt;여기&lt;/a&gt;에서 설정할 수 있습니다. 감사합니다.</value>
+  </data>
+  <data name="BrowserIsOutOfDate" xml:space="preserve">
+    <value>귀하의 브라우저가 오래되어 웹사이트가 제대로 작동하지 않을 수 있습니다. 더 나은 지원을 위해 최신 버전으로 업그레이드하는 것을 강력히 권장합니다. </value>
+  </data>
+  <data name="ClickToUpdateBrowser" xml:space="preserve">
+    <value>브라우저를 업데이트하려면 여기를 클릭하세요</value>
+  </data>
+  <data name="BackOldViewText" xml:space="preserve">
+    <value>또는 홈페이지로 이동하려면 여기를 클릭하세요</value>
+  </data>
+  <data name="ClickToBackOldView" xml:space="preserve">
+    <value>돌아가려면 여기를 클릭하세요</value>
+  </data>
+  <data name="WarningOldViewDate" xml:space="preserve">
+    <value>이전 버전은 다음 날짜까지만 사용 가능합니다</value>
+  </data>
+  <data name="WarningText" xml:space="preserve">
+    <value>경고: </value>
+  </data>
+  <data name="TitleUnsupportBrowser" xml:space="preserve">
+    <value>브라우저 업데이트 필요! </value>
+  </data>
+  <data name="HomeIconIntroduction" xml:space="preserve">
+    <value>홈 아이콘 - 홈페이지로 이동</value>
+  </data>
+  <data name="TransferAndViewLogIntroduction" xml:space="preserve">
+    <value>이체 및 로그 보기는 이제 메인 메뉴에 있습니다</value>
+  </data>
+  <data name="QuickMenuIntroduction" xml:space="preserve">
+    <value>계정 설정으로 빠르게 이동</value>
+  </data>
+  <data name="QuickMenu" xml:space="preserve">
+    <value>빠른 메뉴</value>
+  </data>
+  <data name="SwitchView" xml:space="preserve">
+    <value>보기 전환</value>
+  </data>
+  <data name="BackOldViewIntroduction" xml:space="preserve">
+    <value>이 새로운 인터페이스가 아직 익숙하지 않으신가요? 돌아가려면 여기를 클릭하세요.</value>
+  </data>
+  <data name="WarningOldVersionDeadline" xml:space="preserve">
+    <value>참고: 이전 버전은 다음 날짜까지만 사용 가능합니다 </value>
+  </data>
+  <data name="MainMenuIntroduction" xml:space="preserve">
+    <value>논리적인 순서, 한 곳에 모두 모여있음</value>
+  </data>
+  <data name="ReportMenuIntroduction" xml:space="preserve">
+    <value>보고서의 새로운 기능을 확인하려면 이것을 클릭하세요</value>
+  </data>
+  <data name="WinLossAnalysisChartIntroduction" xml:space="preserve">
+    <value>승패 분석 차트는 여기에 있습니다</value>
+  </data>
+  <data name="CollapseExpandIcon" xml:space="preserve">
+    <value>접기/펼치기 아이콘</value>
+  </data>
+  <data name="CollapseExpandIconIntroduction" xml:space="preserve">
+    <value>공간을 확보하려면 클릭하세요</value>
+  </data>
+  <data name="MainIntroductionTitle" xml:space="preserve">
+    <value>새로운 모습과 느낌을 경험하세요</value>
+  </data>
+  <data name="MainIntroductionDescription" xml:space="preserve">
+    <value>더 시각적이고 편리합니다.</value>
+  </data>
+  <data name="NotNow" xml:space="preserve">
+    <value>나중에</value>
+  </data>
+  <data name="QuickTour" xml:space="preserve">
+    <value>빠른 둘러보기</value>
+  </data>
+  <data name="TransferMenuIntroduction" xml:space="preserve">
+    <value>이체는 이제 메인 메뉴에 있습니다</value>
+  </data>
+  <data name="ViewLogMenuIntroduction" xml:space="preserve">
+    <value>로그 보기는 이제 메인 메뉴에 있습니다</value>
+  </data>
+  <data name="ShowMainMenu" xml:space="preserve">
+    <value>메인 메뉴 표시</value>
+  </data>
+  <data name="GotIt" xml:space="preserve">
+    <value>알겠습니다</value>
+  </data>
+  <data name="Replay" xml:space="preserve">
+    <value>다시 보기</value>
+  </data>
+  <data name="ReplayInstruction" xml:space="preserve">
+    <value>이 아이콘을 클릭하여 이 둘러보기를 다시 볼 수 있습니다.</value>
+  </data>
+  <data name="TakeTourInstruction" xml:space="preserve">
+    <value>이 아이콘을 클릭하여 둘러보기를 시작할 수 있습니다.</value>
+  </data>
+  <data name="QuickTourTooltip" xml:space="preserve">
+    <value>빠른 둘러보기</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>메시지</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>활성화</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>제거</value>
+  </data>
+  <data name="searchAccount" xml:space="preserve">
+    <value>계정 검색</value>
+  </data>
+  <data name="viewMessage" xml:space="preserve">
+    <value>메시지 보기</value>
+  </data>
+  <data name="viewAnnouncement" xml:space="preserve">
+    <value>공지사항 보기</value>
+  </data>
+  <data name="changeLanguage" xml:space="preserve">
+    <value>언어 변경</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>요청</value>
+  </data>
+  <data name="systemUpdate" xml:space="preserve">
+    <value>시스템</value>
+  </data>
+  <data name="DataProcessingNotification" xml:space="preserve">
+    <value>데이터 처리 알림</value>
+  </data>
+  <data name="DataProcessingIsInProgress" xml:space="preserve">
+    <value>데이터 처리가 진행 중입니다.</value>
+  </data>
+  <data name="IamNotARobot" xml:space="preserve">
+    <value>저는 로봇이 아닙니다</value>
+  </data>
+  <data name="UMAnnouncementTitle" xml:space="preserve">
+    <value>유지보수 공지</value>
+  </data>
+  <data name="UMSchedule" xml:space="preserve">
+    <value>계획된 유지보수가 있습니다(GMT +8). 이 기간 동안 다음 기능을 사용할 수 없습니다:</value>
+  </data>
+  <data name="UMSorryForInconvenience" xml:space="preserve">
+    <value>불편을 끼쳐 대단히 죄송합니다.</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>모든 제품</value>
+  </data>
+  <data name="UMCustomerSettingsPattern" xml:space="preserve">
+    <value>&lt;strong&gt;_SettingType_&lt;/strong&gt;의 &lt;strong&gt;_Product_&lt;/strong&gt;: &lt;span class="um-message-time"&gt;{0}&lt;/span&gt;부터 &lt;span class="um-message-time"&gt;{1}&lt;/span&gt;까지 사용 불가</value>
+  </data>
+  <data name="UMTransferPattern" xml:space="preserve">
+    <value>&lt;strong&gt;이체&lt;/strong&gt;: &lt;span class="um-message-time"&gt;{0}&lt;/span&gt;부터 &lt;span class="um-message-time"&gt;{1}&lt;/span&gt;까지 사용 불가</value>
+  </data>
+  <data name="UMNewAccountPattern" xml:space="preserve">
+    <value>&lt;strong&gt;새 계정&lt;/strong&gt;: &lt;span class="um-message-time"&gt;{0}&lt;/span&gt;부터 &lt;span class="um-message-time"&gt;{1}&lt;/span&gt;까지 사용 불가</value>
+  </data>
+  <data name="UMDearValuedCustomers" xml:space="preserve">
+    <value>귀중한 고객 여러분,</value>
+  </data>
+  <data name="DashboardViewOverallInformation" xml:space="preserve">
+    <value>전체 정보를 보려면 {0}을(를) 클릭하세요.</value>
+  </data>
+  <data name="PartialUMAnnouncement" xml:space="preserve">
+    <value>더 나은 경험을 위해 이 기능을 업데이트하고 있습니다. 따라서 이 기능은 일시적으로 비활성화됩니다({0} - {1} (GMT+8)). 나중에 다시 시도해 주시기 바랍니다. 불편을 끼쳐 죄송합니다.</value>
+  </data>
+  <data name="LiveMessage" xml:space="preserve">
+    <value>실시간 메시지</value>
+  </data>
+  <data name="NewProtectionCode" xml:space="preserve">
+    <value>새 보호 코드</value>
+  </data>
+  <data name="ProtectionCode" xml:space="preserve">
+    <value>보호 코드</value>
+  </data>
+  <data name="ConfirmProtectionCode" xml:space="preserve">
+    <value>보호 코드 확인</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>생성</value>
+  </data>
+  <data name="NotMatchedConfirmProtectionCode" xml:space="preserve">
+    <value>보호 코드가 일치하지 않습니다.</value>
+  </data>
+  <data name="ProtectionCodeRule" xml:space="preserve">
+    <value>보호 코드는 최소 6자 이상이어야 하며, 보안 코드와 동일할 수 있지만 비밀번호와는 동일할 수 없습니다.</value>
+  </data>
+  <data name="RequiredNewProtectionCode" xml:space="preserve">
+    <value>새 보호 코드가 필요합니다.</value>
+  </data>
+  <data name="ShowProtectionCode" xml:space="preserve">
+    <value>보호 코드 표시</value>
+  </data>
+  <data name="MinLengthNewProtectionCodeError" xml:space="preserve">
+    <value>보호 코드는 최소 6자 이상이어야 합니다.</value>
+  </data>
+  <data name="RequiredConfirmProtectionCode" xml:space="preserve">
+    <value>보호 코드 확인이 필요합니다.</value>
+  </data>
+  <data name="UpdateProtectionCodeSuccessfully" xml:space="preserve">
+    <value>보호 코드가 성공적으로 업데이트되었습니다.</value>
+  </data>
+  <data name="ContainsSpaceOrUnicodeCharacterError" xml:space="preserve">
+    <value>보호 코드에는 유니코드 문자나 공백이 포함될 수 없습니다.</value>
+  </data>
+  <data name="ContactUs_Content" xml:space="preserve">
+    <value>고객 서비스 전문가가 에이전시 사이트에서 발생하는 모든 질문에 답변해 드립니다.</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>다운로드</value>
+  </data>
+  <data name="LetstalkIMID" xml:space="preserve">
+    <value>렛스톡 IM ID</value>
+  </data>
+  <data name="SkypeID" xml:space="preserve">
+    <value>스카이프 ID</value>
+  </data>
+  <data name="ContactUsLegend" xml:space="preserve">
+    <value>더 나은 보안을 위해</value>
+  </data>
+  <data name="AdvertisementMyWatchlist" xml:space="preserve">
+    <value>&lt;b&gt;쉽게&lt;/b&gt; 내 임계값을 사용하여 승패를 &lt;b&gt;모니터링&lt;/b&gt;하세요</value>
+  </data>
+  <data name="AdvertisementMyWatchlistGlobalThreshold" xml:space="preserve">
+    <value>내 임계값: 포지션에 따른 승리/패배 임계값 설정</value>
+  </data>
+  <data name="AdvertisementMyWatchlistGlobalThresholdDetail" xml:space="preserve">
+    <value>&lt;b&gt;리스크 관리&lt;/b&gt; --&gt; 내 임계값 --&gt; 승리/패배 임계값 설정으로 이동</value>
+  </data>
+  <data name="AdvertisementMyWatchlistGlobalThresholdDetailAgent" xml:space="preserve">
+    <value>&lt;b&gt;리스크 관리&lt;/b&gt; --&gt; 내 감시 목록 - 내 임계값 --&gt; 승리/패배 임계값 설정으로 이동</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>피드백</value>
+  </data>
+  <data name="FeedbackTitle" xml:space="preserve">
+    <value>개선에 도움을 주세요!</value>
+  </data>
+  <data name="LoveToHear" xml:space="preserve">
+    <value>귀하의 의견을 듣고 싶습니다.</value>
+  </data>
+  <data name="CheckOut" xml:space="preserve">
+    <value>확인</value>
+  </data>
+  <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
+    <value>고위험 플레이어나 예상치 못한 큰 지급에 대해 걱정하시나요?&lt;br/&gt;&lt;b&gt;잠재적 스포츠북 승리 한도&lt;/b&gt;를 통해 에이전트는 이제 회원의 잠재적 승리가 설정된 임계값에 도달하면 자동으로 베팅을 차단할 수 있습니다.</value>
+  </data>
+  <data name="HighlightPopupNewFeatureIntro2" xml:space="preserve">
+    <value>지급 위험 감소</value>
+  </data>
+  <data name="HighlightPopupNewFeatureIntro3" xml:space="preserve">
+    <value>북을 안정적으로 유지</value>
+  </data>
+  <data name="HighlightPopupNewFeatureIntro4" xml:space="preserve">
+    <value>새 계정 생성 또는 스포츠북 설정 편집 시 한도 설정</value>
+  </data>
+  <data name="HighlightPopupNewFeatureIntro5" xml:space="preserve">
+    <value>&lt;b&gt;잠재적 승리 한도&lt;/b&gt; 페이지에서 모든 것을 모니터링</value>
+  </data>
+  <data name="HighlightPopupNewFeatureIntro6" xml:space="preserve">
+    <value>작동 방식을 보고 싶으신가요?</value>
+  </data>
+  <data name="HighlightPopupRewardIntro" xml:space="preserve">
+    <value>&lt;p&gt;새로운 현금 보상 프로그램을 소개하게 되어 기쁩니다. 회사는 보상 금액을 책임지며, 회원이 보상을 받으면 베팅에 사용할 수 없습니다. 보상은 상위 라인에 분배되며, 회원은 에이전트를 통해 현금화할 수 있습니다.&lt;/p&gt;&lt;p&gt;새로운 기능 &lt;b&gt;보상 지급&lt;/b&gt;은 하위 라인 지급 관리를 지원하여 모든 보상의 정확한 분배를 보장합니다.&lt;/p&gt;</value>
+  </data>
+  <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
+    <value>잠재적 스포츠북 승리 한도로 완전한 제어를 얻으세요</value>
+  </data>
+  <data name="HighlightPopupRewardTitle" xml:space="preserve">
+    <value>&lt;b&gt;현금 보상 프로그램&lt;/b&gt;에 오신 것을 환영합니다!</value>
+  </data>
+  <data name="GetStarted" xml:space="preserve">
+    <value>시작하기</value>
+  </data>
+  <data name="SessionExpired" xml:space="preserve">
+    <value>로그인이 시간 초과되었습니다.</value>
+  </data>
+  <data name="FeedbackOnFunctionTitle" xml:space="preserve">
+    <value>{0} 개선에 도움을 주세요</value>
+  </data>
+  <data name="WinLossDetailReport" xml:space="preserve">
+    <value>승패 상세 보고서</value>
+  </data>
+  <data name="Here" xml:space="preserve">
+    <value>여기</value>
+  </data>
+  <data name="minAgo" xml:space="preserve">
+    <value>1분 전</value>
+  </data>
+  <data name="minsAgo" xml:space="preserve">
+    <value>분 전</value>
+  </data>
+  <data name="hoursAgo" xml:space="preserve">
+    <value>시간 전</value>
+  </data>
+  <data name="daysAgo" xml:space="preserve">
+    <value>일 전</value>
+  </data>
+  <data name="SetupChatbot" xml:space="preserve">
+    <value>챗봇 설정</value>
+  </data>
+  <data name="WhiteLabel_Intro" xml:space="preserve">
+    <value>&lt;span&gt;3&lt;/span&gt;일 이내에 자체 &lt;span&gt;화이트 라벨&lt;/span&gt; 플랫폼을 시작하세요</value>
+  </data>
+  <data name="TurnkeySolution" xml:space="preserve">
+    <value>더 많은 고객 확보</value>
+  </data>
+  <data name="TurnkeySolution_Description" xml:space="preserve">
+    <value>정말로 전환되는 제휴, 추천, 프로모션으로 고객 기반을 확장하세요.</value>
+  </data>
+  <data name="NoBadDebt" xml:space="preserve">
+    <value>나쁜 부채 없음</value>
+  </data>
+  <data name="NoBadDebt_Description" xml:space="preserve">
+    <value>플레이어가 선불로 입금하여 비즈니스에서 나쁜 부채 위험을 제거합니다.</value>
+  </data>
+  <data name="RichProductsCollection" xml:space="preserve">
+    <value>풍부한 제품 컬렉션</value>
+  </data>
+  <data name="RichProductsCollection_Description" xml:space="preserve">
+    <value>다양한 게임과 제품으로 플레이어를 흥미롭게 만드세요.</value>
+  </data>
+  <data name="Interested" xml:space="preserve">
+    <value>관심이 있으신가요? </value>
+  </data>
+  <data name="ContactCSD" xml:space="preserve">
+    <value>자세한 내용은 CSD에 문의하세요!</value>
+  </data>
+  <data name="SyncedNovaCasinoPersonalMessage" xml:space="preserve">
+    <value>귀중한 에이전트 여러분,
+
+귀하의 하위 라인 "{0}"이(가) Nova Casino에 성공적으로 가입했습니다. 원활한 처리를 위해 점수를 신속히 제공해 주시기 바랍니다.
+
+문의사항이 있으시면 고객 서비스 부서에 연락해 주세요.
+
+지속적인 협력에 감사드립니다!</value>
+  </data>
+  <data name="NovaCasinoBriefIntroduction" xml:space="preserve">
+    <value>Nova Casino는 다중 에이전트 모드의 새로운 플랫폼입니다. 지금 신청하여 다중 하위 라인과 플레이어를 생성하세요.
+&lt;br&gt;&lt;br&gt;
+참고: 에이전트 사이트에서 Nova Casino 백오피스의 '신청'을 처음 클릭할 때 &lt;b&gt;비밀번호&lt;/b&gt;를 변경해 주세요. 감사합니다</value>
+  </data>
+  <data name="SystemUnderMaintenance" xml:space="preserve">
+    <value>시스템이 현재 유지보수 중입니다. 유지보수 시간: {0} - {1} (GMT+8). 나중에 다시 시도해 주세요. [503]</value>
+  </data>
+  <data name="InternalServerError" xml:space="preserve">
+    <value>오류가 발생했습니다. 도움이 필요하시면 고객 서비스 부서에 연락해 주세요. 감사합니다. [500]</value>
+  </data>
+  <data name="RewardPayable" xml:space="preserve">
+    <value>지급 가능한 보상</value>
+  </data>
+  <data name="RewardPayableTooltip" xml:space="preserve">
+    <value>하위 라인에 분배할 수 있는 금액입니다.</value>
+  </data>
+  <data name="RewardReceivable" xml:space="preserve">
+    <value>수령 가능한 보상</value>
+  </data>
+  <data name="RewardReceivableTooltip" xml:space="preserve">
+    <value>상위 라인으로부터 받을 수 있는 금액입니다.</value>
+  </data>
+  <data name="Reward" xml:space="preserve">
+    <value>보상</value>
+  </data>
+  <data name="NotSetupWhiteLabelMessage" xml:space="preserve">
+    <value>아직 화이트 라벨 비즈니스에 가입하지 않으셨습니다. 추가 지원을 위해 고객 서비스 부서에 연락해 주세요.</value>
+  </data>
+  <data name="TakeATour" xml:space="preserve">
+    <value>둘러보기</value>
+  </data>
+  <data name="RewardTakeATour" xml:space="preserve">
+    <value>둘러보기</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>중</value>
+  </data>
+  <data name="Limit_Offer_Date" xml:space="preserve">
+    <value>제한된 제안: 다음 10명 가입자에게 &lt;span class="fee" &gt;설정 수수료 없음&lt;/span&gt;!</value>
+  </data>
+  <data name="Limit_Offer_Link" xml:space="preserve">
+    <value>오늘 자리를 확보하세요!</value>
+  </data>
+  <data name="Limit_Offer_End" xml:space="preserve">
+    <value>제안은 2025년 1월 31일에 종료됩니다.</value>
+  </data>
+  <data name="WhiteLabelBannerChat" xml:space="preserve">
+    <value>사용자가 화이트 라벨 배너에서 라이브 채팅 클릭: 사용자명: {0}</value>
+  </data>
+  <data name="WhiteLabelBannerClick" xml:space="preserve">
+    <value>사용자가 배너 클릭: 사용자명: {0}</value>
+  </data>
+  <data name="WhiteLabelSkypeChat" xml:space="preserve">
+    <value>사용자가 화이트 라벨 배너에서 스카이프 채팅 클릭: 사용자명: {0}</value>
+  </data>
+  <data name="TotalDirectMember" xml:space="preserve">
+    <value>총 직접 회원</value>
+  </data>
+  <data name="invalidsession" xml:space="preserve">
+    <value>잘못된 세션!</value>
   </data>
 </root>

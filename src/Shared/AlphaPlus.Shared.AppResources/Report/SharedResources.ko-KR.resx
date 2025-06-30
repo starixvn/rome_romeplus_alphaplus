@@ -127,12 +127,36 @@
     <value>다음</value>
   </data>
   <data name="NumberGame" xml:space="preserve">
-    <value>넘버게임 커미션</value>
+    <value>번호 게임 수수료</value>
   </data>
   <data name="NumberGameNo" xml:space="preserve">
     <value>라이브빙고 번호</value>
   </data>
   <data name="Super" xml:space="preserve">
     <value>슈퍼</value>
+  </data>
+  <data name="Agent" xml:space="preserve">
+    <value>에이전트</value>
+  </data>
+  <data name="FT" xml:space="preserve">
+    <value>풀타임</value>
+  </data>
+  <data name="Happy5" xml:space="preserve">
+    <value>해피 5</value>
+  </data>
+  <data name="LiveGame" xml:space="preserve">
+    <value>라이브 게임</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>번호</value>
+  </data>
+  <data name="PT" xml:space="preserve">
+    <value>포지션 테이킹</value>
+  </data>
+  <data name="PreGame" xml:space="preserve">
+    <value>프리게임</value>
+  </data>
+  <data name="VirtualSports" xml:space="preserve">
+    <value>가상 스포츠</value>
   </data>
 </root>

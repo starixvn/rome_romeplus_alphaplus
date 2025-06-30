@@ -1,110 +1,52 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -118,7 +60,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AffectedDownlines" xml:space="preserve">
-    <value>Affected Downlines</value>
+    <value>영향을 받은 하위 라인</value>
   </data>
   <data name="Agent" xml:space="preserve">
     <value>에이전트</value>
@@ -127,138 +69,138 @@
     <value>모든</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>뒤</value>
+    <value>뒤로</value>
   </data>
   <data name="Displaying" xml:space="preserve">
-    <value>Displaying</value>
+    <value>표시 중</value>
   </data>
   <data name="Level" xml:space="preserve">
-    <value>레벨단계</value>
+    <value>레벨</value>
   </data>
   <data name="Master" xml:space="preserve">
-    <value>Master</value>
+    <value>마스터</value>
   </data>
   <data name="Member" xml:space="preserve">
     <value>회원</value>
   </data>
   <data name="Of" xml:space="preserve">
-    <value>of</value>
+    <value>/</value>
   </data>
   <data name="Page" xml:space="preserve">
-    <value>Page</value>
+    <value>페이지</value>
   </data>
   <data name="RemainUnchangedDownlines" xml:space="preserve">
-    <value>Remain Unchanged Downlines</value>
+    <value>변경되지 않은 하위 라인</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>Reset</value>
+    <value>초기화</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>확인</value>
   </data>
   <data name="Suspended" xml:space="preserve">
-    <value>보류</value>
+    <value>일시정지</value>
   </data>
   <data name="SuspendedSuccessfully" xml:space="preserve">
-    <value>{0} and their downlines have been suspended successfully.</value>
+    <value>{0}과(와) 그들의 하위 라인이 성공적으로 일시정지되었습니다.</value>
   </data>
   <data name="SuspendStatus" xml:space="preserve">
-    <value>Suspend Status</value>
+    <value>일시정지 상태</value>
   </data>
   <data name="To" xml:space="preserve">
-    <value>to</value>
+    <value>에서</value>
   </data>
   <data name="Total" xml:space="preserve">
     <value>총</value>
   </data>
   <data name="Unsuspended" xml:space="preserve">
-    <value>Unsuspended</value>
+    <value>일시정지 해제</value>
   </data>
   <data name="UnsuspendedSuccessfully" xml:space="preserve">
-    <value>{0} and their affected downlines have been unsuspended successfully.</value>
+    <value>{0}과(와) 그들의 영향을 받은 하위 라인이 성공적으로 일시정지 해제되었습니다.</value>
   </data>
   <data name="UnsuspendSingleNote" xml:space="preserve">
-    <value>List of downlines' status after &lt;username&gt; is unsuspended.</value>
+    <value>&lt;username&gt;이(가) 일시정지 해제된 후 하위 라인의 상태 목록.</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
-    <value>Successfully updated!</value>
+    <value>성공적으로 업데이트되었습니다!</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>사용자 이름</value>
   </data>
   <data name="AffectedViewListNote" xml:space="preserve">
-    <value>List of downlines whose status are changed after &lt;username&gt; is unsuspended.</value>
+    <value>&lt;username&gt;이(가) 일시정지 해제된 후 상태가 변경된 하위 라인 목록.</value>
   </data>
   <data name="AffectedDownlinesAgentMember" xml:space="preserve">
-    <value>Affected Downlines &lt;br/&gt;  (Agent/Member)</value>
+    <value>영향을 받은 하위 라인 &lt;br/&gt; (에이전트/회원)</value>
   </data>
   <data name="AffectedDownlinesMember" xml:space="preserve">
-    <value>Affected Downlines &lt;br/&gt;  (Member)</value>
+    <value>영향을 받은 하위 라인 &lt;br/&gt; (회원)</value>
   </data>
   <data name="RemainUnchangedDownlinesAgentMember" xml:space="preserve">
-    <value>Remain Unchanged Downlines &lt;br/&gt; (Agent/Member)</value>
+    <value>변경되지 않은 하위 라인 &lt;br/&gt; (에이전트/회원)</value>
   </data>
   <data name="RemainUnchangedDownlinesMember" xml:space="preserve">
-    <value>Remain Unchanged Downlines &lt;br/&gt; (Member)</value>
+    <value>변경되지 않은 하위 라인 &lt;br/&gt; (회원)</value>
   </data>
   <data name="ViewInformation1" xml:space="preserve">
-    <value>- When a customer is suspended, all his downlines will be suspended as well.</value>
+    <value>- 고객이 일시정지되면 모든 하위 라인도 일시정지됩니다.</value>
   </data>
   <data name="ViewInformation2" xml:space="preserve">
-    <value>- When a customer is unsuspended:</value>
+    <value>- 고객이 일시정지 해제될 때:</value>
   </data>
   <data name="ViewInformation3" xml:space="preserve">
-    <value>+ Only the downlines who were &lt;b&gt;indirectly&lt;/b&gt; suspended by upline will be unsuspended. You can click on the number of affected downlines to view the list.</value>
+    <value>+ 상위 라인에 의해 &lt;b&gt;간접적으로&lt;/b&gt; 일시정지된 하위 라인만 일시정지 해제됩니다. 영향을 받은 하위 라인 수를 클릭하여 목록을 볼 수 있습니다.</value>
   </data>
   <data name="ViewInformation4" xml:space="preserve">
-    <value>+ For the rest, their current status will not be changed. You can click on the number of remain unchanged downlines to view the list.</value>
+    <value>+ 나머지는 현재 상태가 변경되지 않습니다. 변경되지 않은 하위 라인 수를 클릭하여 목록을 볼 수 있습니다.</value>
   </data>
   <data name="ViewInformation5" xml:space="preserve">
-    <value>- Affected Downlines: list of users whose status will be changed after their upline is unsuspended.</value>
+    <value>- 영향을 받은 하위 라인: 상위 라인이 일시정지 해제된 후 상태가 변경될 사용자 목록.</value>
   </data>
   <data name="ViewInformation6" xml:space="preserve">
-    <value>- Remain Unchanged Downlines: list of users whose status will be kept after their upline is unsuspended .</value>
+    <value>- 변경되지 않은 하위 라인: 상위 라인이 일시정지 해제된 후 상태가 유지될 사용자 목록.</value>
   </data>
   <data name="UnchangedViewListNote" xml:space="preserve">
-    <value>List of downlines whose status are unchanged after &lt;username&gt; is unsuspended.</value>
+    <value>&lt;username&gt;이(가) 일시정지 해제된 후 상태가 변경되지 않은 하위 라인 목록.</value>
   </data>
   <data name="SubmitMultipleConfirm1" xml:space="preserve">
-    <value>&lt;username&gt; will be unsuspended.</value>
+    <value>&lt;username&gt;이(가) 일시정지 해제됩니다.</value>
   </data>
   <data name="SubmitMultipleConfirm2" xml:space="preserve">
-    <value>&lt;username&gt; will be suspended. Warning: they will not be able to place bet.</value>
+    <value>&lt;username&gt;이(가) 일시정지됩니다. 경고: 베팅을 할 수 없습니다.</value>
   </data>
   <data name="SubmitMultipleConfirm3" xml:space="preserve">
-    <value>Do you want to proceed?</value>
+    <value>계속하시겠습니까?</value>
   </data>
   <data name="MultipleConfirm" xml:space="preserve">
-    <value>Are you sure you want to suspend/unsuspend selected account(s)? All affected downlines will be suspended/unsuspended as well.</value>
+    <value>선택한 계정을 일시정지/일시정지 해제하시겠습니까? 영향을 받는 모든 하위 라인도 일시정지/일시정지 해제됩니다.</value>
   </data>
   <data name="NumberColumn" xml:space="preserve">
-    <value>No.</value>
+    <value>번호</value>
   </data>
   <data name="NoData" xml:space="preserve">
     <value>데이터가 없습니다.</value>
   </data>
   <data name="UnsuspendedWithNoDownlinesMessages" xml:space="preserve">
-    <value>이 고객의 계정을 일시정지로 바꾸시겠습니까?</value>
+    <value>이 회원의 계정을 일시정지로 변경하시겠습니까?</value>
   </data>
   <data name="UnsuspendMultipleConfirmMessage" xml:space="preserve">
-    <value>&lt;username&gt; will be unsuspended.</value>
+    <value>&lt;username&gt;이(가) 일시정지 해제됩니다.</value>
   </data>
   <data name="SuspendMultipleConfirmMessage" xml:space="preserve">
-    <value>&lt;username&gt; will be suspended and cannot place bet.</value>
+    <value>&lt;username&gt;이(가) 일시정지되고 베팅을 할 수 없습니다.</value>
   </data>
   <data name="SuspendedMemberSuccessfully" xml:space="preserve">
-    <value>{0} have been successfully suspended.</value>
+    <value>{0}이(가) 성공적으로 일시정지되었습니다.</value>
   </data>
   <data name="UnsuspendedMemberSuccessfully" xml:space="preserve">
-    <value>{0} have been successfully unsuspended.</value>
+    <value>{0}이(가) 성공적으로 일시정지 해제되었습니다.</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>취소</value>
   </data>
   <data name="SelectedAccounts" xml:space="preserve">
-    <value>Selected account(s):</value>
+    <value>선택한 계정:</value>
   </data>
-</root>
+  </root>
