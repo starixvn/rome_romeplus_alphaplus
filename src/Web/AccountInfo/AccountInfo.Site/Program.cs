@@ -2,7 +2,6 @@ using AlphaPlus.AccountInfo.Site.Extensions;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
 using AlphaPlus.Logging;
-using AlphaPlus.NetThrottling;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -35,7 +34,6 @@ builder.Services
     })
     .AddHttpContextAccessor()
     .AddApplicationServices(builder.Configuration)
-    .AddNetThrottling(builder.Configuration)
     .AddAuthorization()
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddSharedCookie();
@@ -43,7 +41,7 @@ builder.Services
 var app = builder.Build();
 app.UseForwardedHeaders();
 app.UsePathBase(PathBase);
-app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute(), new DisableNetThrottlingAttribute());
+app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute());
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
@@ -52,7 +50,6 @@ app.UseRouting();
 app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseNetThrottling();
 app.UseMiddleware<RequestCultureMiddleware>();
 if (app.Environment.IsDevelopment())
 {
