@@ -1,6 +1,5 @@
 using AlphaPlus.CashService.API.Features.Promotion.Models;
 using AlphaPlus.CashService.API.Features.Promotion.Services;
-using AlphaPlus.CashService.API.Features.Promotion.Models;
 
 namespace AlphaPlus.CashService.API.Features.Promotion.Endpoints;
 
@@ -8,7 +7,10 @@ public static class PromotionEndpoints
 {
     public static void MapPromotionEndpoints(this WebApplication app)
     {
-	app.MapGet("/api/promotions/products", async (IPromotionService service) =>
+        var group = app.MapGroup("/api/promotions")
+            .WithTags("Promotions");
+
+        group.MapGet("/products", async (IPromotionService service) =>
         {
             var products = await service.GetProductAsync();
             return Results.Ok(products);
@@ -20,7 +22,7 @@ public static class PromotionEndpoints
             Description = "Returns a tree of available products for promotion"
         });
 
-        app.MapGet("/api/promotions/get", async (int promotionTypeId, int statusId, int custId, IPromotionService service) =>
+        group.MapGet("/get", async (int promotionTypeId, int statusId, int custId, IPromotionService service) =>
         {
             var promotions = await service.GetPromotionAsync(promotionTypeId, statusId, custId);
             return Results.Ok(promotions);
@@ -32,7 +34,7 @@ public static class PromotionEndpoints
             Description = "Returns a list of available promotion"
         });
 
-        app.MapGet("/api/promotions", async (int promotionId, int custId, IPromotionService service) =>
+        group.MapGet("/", async (int promotionId, int custId, IPromotionService service) =>
         {
             var promotion = await service.GetPromotionByIdAsync(promotionId, custId);
             return Results.Ok(promotion);
@@ -44,7 +46,7 @@ public static class PromotionEndpoints
             Description = "Returns a promotion match ID"
         });
 
-        app.MapPost("/api/promotions", async (PromotionRequest request, IPromotionService service) =>
+        group.MapPost("/", async (PromotionRequest request, IPromotionService service) =>
         {
             var result = await service.AddPromotionAsync(request);
             return Results.Ok(result);
@@ -56,7 +58,7 @@ public static class PromotionEndpoints
             Description = "Add a new promotion"
         });
 
-        app.MapPut("/api/promotions/{promotionId}", async (int promotionId, PromotionRequest request, IPromotionService service) =>
+        group.MapPut("/{promotionId}", async (int promotionId, PromotionRequest request, IPromotionService service) =>
         {
             var result = await service.EditPromotion(promotionId, request);
             return Results.Ok(result);
@@ -140,6 +142,7 @@ public static class PromotionEndpoints
             };
             return TypedResults.Ok(reports);
         }).WithName("PromotionReport");
+
         group.MapGet("/reports/{id}", (int id) =>
         {
             var details = new[]
