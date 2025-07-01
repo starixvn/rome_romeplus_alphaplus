@@ -33,7 +33,7 @@ const PromotionRow = ({ idx, item, onClickPromotionTitle }: any) => {
       <td className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-background)] z-10">
         {formatNumber(idx + 1)}
       </td>
-      <td className="text-left w-[250px] min-w-[250px] sticky left-[32px] bg-[var(--table-background)] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
+      <td className="text-left sticky left-[32px] bg-[var(--table-background)] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
         <a
           href="#"
           onClick={(event) => handleDrillDown(event, item.promotionId, item.promotionTitle)}
@@ -64,7 +64,7 @@ export default function PromotionTable({ data, onClickPromotionTitle }: Promotio
             <th className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-header-background)] z-11">
               #
             </th>
-            <th className="w-[250px] min-w-[250px] sticky left-[32px] bg-[var(--table-header-background)] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
+            <th className="sticky left-[32px] bg-[var(--table-header-background)] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
               Promotion Title
             </th>
             <th>Promotion Type</th>

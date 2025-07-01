@@ -54,10 +54,16 @@ export default function Search({
       <div className="font-semibold mt-[1px]">
         <ul>
           <li className='uppercase relative inline-block after:content-["❯"] after:px-[8px] after:text-[#333]  dark:after:text-[#fff]'>
-            <a className='text-[#045ace] dark:text-[#41a4ff] cursor-pointer'>Promotion Report</a>
+            <a
+              href="#"
+              className="text-[#045ace] dark:text-[#41a4ff] cursor-pointer"
+              onClick={onClickBreadcrumb}
+            >
+              Promotion Report
+            </a>
           </li>
-          <li className='text-[#9d1c1c] dark:text-[#fff] uppercase relative inline-block'>
-            <span className=''>New Year Sale</span>
+          <li className="text-[#9d1c1c] dark:text-[#fff] uppercase relative inline-block">
+            <span>{promotionTitle}</span>
           </li>
         </ul>
       </div>
