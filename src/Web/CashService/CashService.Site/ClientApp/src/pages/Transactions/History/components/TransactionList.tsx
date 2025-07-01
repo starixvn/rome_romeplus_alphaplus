@@ -31,6 +31,12 @@ const useTransactionData = () => {
       setLoading(true);
       setError(null);
       params.account = '';
+
+      if (params.dateRange && params.dateRange[1]) {
+        const toDate = new Date(params.dateRange[1]);
+        toDate.setHours(23, 59, 59, 0);
+        params.dateRange[1] = toDate.toLocaleString('en-US');
+      }
       const response = await transactionAPI.getTransactions(params);
       setApiData(response);
 
@@ -201,7 +207,10 @@ const usePaymentInfo = (apiData: TransactionsHistoryResponse, transactionType: n
   return { paymentInformations };
 };
 
-const TransactionList: React.FC<TransactionListProps> = ({ transactionType, isCashServiceEnabled }) => {
+const TransactionList: React.FC<TransactionListProps> = ({
+  transactionType,
+  isCashServiceEnabled,
+}) => {
   const { loading, error, apiData, fetchTransactions } = useTransactionData();
   const { apiParams, updateApiParams } = useApiParams(transactionType);
   const { columnFilter, localSearchText, handleColumnChange, handleLocalSearchChange } =

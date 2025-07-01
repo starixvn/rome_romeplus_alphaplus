@@ -33,7 +33,9 @@ const PendingWithdrawal: React.FC = () => {
   const [isCashServiceEnabled, setIsCashServiceEnabled] = useState(false);
 
   useEffect(() => {
-    const isCashServiceEnabled = document.getElementById('IsCashServiceEnabled')?.getAttribute('value');
+    const isCashServiceEnabled = document
+      .getElementById('IsCashServiceEnabled')
+      ?.getAttribute('value');
     setIsCashServiceEnabled(isCashServiceEnabled === '1');
   }, []);
 
@@ -105,7 +107,10 @@ const PendingWithdrawal: React.FC = () => {
   return (
     <>
       {showManualAddWithdrawalForm ? (
-        <ManualAddWithdrawalForm onClose={() => handleCloseManualWithdrawalForm(false)} isCashServiceEnabled={isCashServiceEnabled} />
+        <ManualAddWithdrawalForm
+          onClose={() => handleCloseManualWithdrawalForm(false)}
+          isCashServiceEnabled={isCashServiceEnabled}
+        />
       ) : (
         <div className="flex h-full flex-col">
           <TitleComponent title={t('pendingWithdrawal')} />
@@ -129,8 +134,11 @@ const PendingWithdrawal: React.FC = () => {
               <LoadingFullComponent />
             </div>
           ) : (
-            //console.log(filteredWithdrawals),
-            <DataGrid withdrawals={filteredWithdrawals} reloadGrid={fetchWithdrawals} isCashServiceEnabled={isCashServiceEnabled} />
+            <DataGrid
+              withdrawals={filteredWithdrawals}
+              reloadGrid={fetchWithdrawals}
+              isCashServiceEnabled={isCashServiceEnabled}
+            />
           )}
         </div>
       )}
