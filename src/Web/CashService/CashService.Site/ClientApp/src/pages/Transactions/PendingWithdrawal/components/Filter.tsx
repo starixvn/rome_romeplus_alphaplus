@@ -21,8 +21,8 @@ const Filter: React.FC<FilterProps> = ({
 
   return (
     <>
-      <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
-        <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
+      <div className="flex flex-wrap w-full">
+        <div className="w-[190px] mb-[12px] mr-[12px]">
           <LabelTitleComponent text={t('filter.recentWithdrawals')} />
           <div className="select-wrapper relative">
             <select

@@ -106,8 +106,8 @@ export default function MainReportFilter({
 }: FilterProps) {
   const currentYear = new Date().getFullYear();
   return (
-    <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
-      <div className="w-[190px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
+    <div className="flex flex-nowrap max-[768px]:flex-wrap w-full">
+      <div className="w-[190px] mb-[12px] mr-[12px]">
         <LabelTitleComponent text="Date Range" />
         <DateRangePickerComponent
           value={dateRange}
@@ -116,7 +116,7 @@ export default function MainReportFilter({
           maxRangeDays={92}
         />
       </div>
-      <div className="w-[190px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
+      <div className="w-[190px] mb-[12px] mr-[12px]">
         <LabelTitleComponent text="Promotion Type" />
         <CustomDropdownComponent
           options={promotionTypeOptions}
@@ -126,7 +126,7 @@ export default function MainReportFilter({
           searchable
         />
       </div>
-      <div className="w-[190px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
+      <div className="w-[190px] mb-[12px] mr-[12px]">
         <LabelTitleComponent text="Status" />
         <CustomDropdownComponent
           options={statusOptions}

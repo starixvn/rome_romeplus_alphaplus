@@ -31,11 +31,11 @@ const Filters: React.FC<FiltersProps> = ({
   onAccountChange,
 }) => {
   return (
-    <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
-      <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
+    <div className="flex flex-wrap w-full">
+      <div className="w-[190px] mb-[12px] mr-[12px]">
         <DateRangeFilter dateRange={dateRange} onDateRangeChange={onDateRangeChange} />
       </div>
-      <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
+      <div className="w-[190px] mb-[12px] mr-[12px]">
         <AccountFilter
           account={account}
           transactionType={transactionType}
@@ -43,10 +43,10 @@ const Filters: React.FC<FiltersProps> = ({
           onAccountChange={onAccountChange}
         />
       </div>
-      <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
+      <div className="w-[190px] mb-[12px] mr-[12px]">
         <StatusFilter status={status} onStatusChange={onStatusChange} />
       </div>
-      <div className="w-[220px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
+      <div className="w-[190px] mb-[12px] mr-[12px]">
         <ColumnFilter column={column} onColumnChange={onColumnChange} />
       </div>
     </div>

@@ -137,7 +137,7 @@ function ReportRow({ idx, item, onClickPromotionTitle }: any) {
       <td className="text-right">{formatNumber(item.totalRequest)}</td>
       <td className="text-right">
         <div>{formatNumber(item.totalApproved)}</div>
-        <div className="text-[#9d1c1c]">{formatNumber(item.totalRejected)}</div>
+        <div className="text-[#CC0000] dark:text-[#F23D3D]">{formatNumber(item.totalRejected)}</div>
       </td>
       <td className="text-right">{formatNumber(item.totalBonus)}</td>
       <td>{mapStatus(item.status)}</td>

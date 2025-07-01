@@ -460,14 +460,14 @@ function PaymentProviderSettings() {
           )}
          
           <div className="settings-header">
-            <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-color)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
+            <div className="flex items-center justify-flex-start mb-[12px] py-[8px] border-[var(--border-color)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
               <BackButtonComponent onClick={onBackNavigation} />
               <TitleComponent title={window.providerSettingsViewModel.Provider.Name} />                
             </div>
           </div>
         
           <div className="pb-[10px]">
-            <div className="mb-[8px]">
+            
               <MediumTitleComponent text={window.providerSettingsViewModel.Provider.Name} />
               <p className="my-[8px]">
                 {tPaymentProviderSettings('RequirePaymentMethod')}
@@ -487,8 +487,8 @@ function PaymentProviderSettings() {
                     />
                   </div>
                 )}
-              <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
-                <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
+              <div className="flex flex-wrap w-full">
+                <div className="w-[160px] mr-[12px] mb-[12px]">
                   <LabelTitleComponent text={tPaymentProviderSettings('paymentMethod')} />
                   <div className="relative">
                     <select
@@ -508,7 +508,7 @@ function PaymentProviderSettings() {
                   </div>
                 </div>
 
-                <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
+                <div className="w-[160px] mr-[12px] mb-[12px]">
                   <LabelTitleComponent text={tPaymentProviderSettings('status')} />
                   <div className="relative">
                     <select
@@ -526,7 +526,7 @@ function PaymentProviderSettings() {
                   </div>
                 </div>
 
-                <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
+                <div className="w-[160px] mr-[12px] mb-[12px]">
                   <LabelTitleComponent text={tPaymentProviderSettings('transactionType')} />
                   <div className="relative">
                     <select
@@ -546,7 +546,7 @@ function PaymentProviderSettings() {
                   </div>
                 </div>
               </div>
-            </div>
+             
             <div className="w-full border border-[var(--table-border-color)] border-b-0 p-[6px] flex">
               <ButtonFullComponent
                 text={`${tPaymentProviderSettings('addPaymentMethod')}`}

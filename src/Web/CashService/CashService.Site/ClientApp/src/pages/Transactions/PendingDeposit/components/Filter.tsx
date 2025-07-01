@@ -25,7 +25,7 @@ const TimeFilter: React.FC<{
   onChange: (value: TimeFilterOptions) => void;
   t: (key: string) => string;
 }> = ({ value, onChange, t }) => (
-  <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
+  <div className="w-[190px] mb-[12px] mr-[12px]">
     <LabelTitleComponent text={t('filter.recentDeposits')} />
     <div className="select-wrapper relative">
       <select
@@ -47,7 +47,7 @@ const BankFilter: React.FC<{
   onSelect: (value: string) => void;
   t: (key: string) => string;
 }> = ({ options, onSelect, t }) => (
-  <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
+  <div className="w-[190px] mb-[12px] mr-[12px]">
     <LabelTitleComponent text={t('filter.to')} />
     <CustomDropdown
       options={options.map((option) => {
@@ -101,7 +101,7 @@ const Filter: React.FC<FilterProps> = ({
 
   return (
     <>
-      <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
+      <div className="flex flex-wrap w-full">
         <TimeFilter
           value={recentDeposits as TimeFilterOptions}
           onChange={setRecentDeposits}
