@@ -11,6 +11,9 @@ public class RegisterCashMemberService(IDynamicRepository dynamicRepository) : I
 {
     private readonly IDynamicRepository _dynamicRepository = dynamicRepository;
 
+    private const int UsernameExisted = 201;
+    private const int MaxRetryCount = 5;
+
     public async Task<RegisterCashMemberResult> RegisterCashMember(RegisterCashMemberRequest request)
     {
         var sanitizedDomain = DomainHelper.RemoveProtocol(request.Domain);
@@ -19,13 +22,11 @@ public class RegisterCashMemberService(IDynamicRepository dynamicRepository) : I
         {
             return new RegisterCashMemberResult(validateResult.Code, validateResult.Message);
         }
+
         string actorName = validateResult.AgentUsername;
-        const byte roleId = CustomerLevel.Agent;
-        const int UsernameExisted = 201;
-        const int MaxRetryCount = 5;
         for (int retryCount = 0; retryCount < MaxRetryCount; retryCount++)
         {
-            var suggestResult = await GetSuggestUsername(actorName, roleId);
+            var suggestResult = await GetSuggestUsername(actorName, CustomerLevel.Agent);
             if (!suggestResult.IsSuccess)
             {
                 return new RegisterCashMemberResult(suggestResult.Code, suggestResult.Message);
@@ -37,12 +38,16 @@ public class RegisterCashMemberService(IDynamicRepository dynamicRepository) : I
             if (registerBeforeAddNewResult.Code == UsernameExisted)
             {
                 if (retryCount == MaxRetryCount - 1)
+                {
                     return new RegisterCashMemberResult(registerBeforeAddNewResult.Code, registerBeforeAddNewResult.Message);
+                }
                 continue;
             }
 
             if (!registerBeforeAddNewResult.IsSuccess)
+            {
                 return new RegisterCashMemberResult(registerBeforeAddNewResult.Code, registerBeforeAddNewResult.Message);
+            }
 
             var createResult = await CreateNewCashMember(request, registerBeforeAddNewResult.CustId, newUserName);
             if (!createResult.IsSuccess)

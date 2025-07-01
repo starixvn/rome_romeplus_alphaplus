@@ -7,7 +7,7 @@ internal static class ExceptionHelper
     private const string BreakLine = "\r\n";
     private const string TwoBreakLine = "\r\n\r\n";
 
-    public static async Task<string> BuildError(HttpRequest request, Exception exception)
+    internal static async Task<string> BuildError(HttpRequest request, Exception exception)
     {
         var errorBuilder = new StringBuilder();
         errorBuilder

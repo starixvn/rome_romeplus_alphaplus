@@ -3,6 +3,7 @@ using Fanex.Data.Repository;
 
 namespace AgencyCash.API.Payments.Criteria.Deposit;
 
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "Approved")]
 public class AddTransactionDepositCriteria(
     int agentId,
     int custId,
