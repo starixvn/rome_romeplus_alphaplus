@@ -25,6 +25,22 @@ export const promotionService = {
       throw error;
     }
   },
-  getMainReport: async (): Promise<any> => await api.get<object>('GetMainReport'),
-  getDetailsReport: async (): Promise<any> => await api.get<object[]>('GetDetailsReport'),
+  getMainReport: async (): Promise<any> => {
+    const { data, error } = await api.get<object>('GetMainReport');
+    if (error) {
+      alert(error.message);
+      return [];
+    }
+
+    return data;
+  },
+  getDetailsReport: async (promotionId: number): Promise<any> => {
+    const { data, error } = await api.get<object[]>(`GetDetailsReport?promotionId=${promotionId}`);
+    if (error) {
+      alert(error.message);
+      return {};
+    }
+
+    return data;
+  },
 };

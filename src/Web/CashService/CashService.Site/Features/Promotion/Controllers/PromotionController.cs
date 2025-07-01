@@ -17,13 +17,21 @@ public class PromotionController(
     HttpClient httpClient,
     ICustomerService customerService) : SiteBaseController(userSession, antiforgery, httpClient, customerService)
 {
+    //private const string CustomerDatelimit = "CustomerDateLimit";
     private readonly string _apiBaseUrl = configuration["CashService:APIUrl"];
 
     public IActionResult Index() => View();
 
     public IActionResult Pending() => View();
 
-    public IActionResult Report() => View();
+    public IActionResult Report()
+    {
+        // var today = SystemTime.Today;
+        // var minDate = new DateTime(today.Year - 3, 1, 1);
+        // var limitedDateToShowInfo = userSession.GetProperty<DateTime>(CustomerDatelimit);
+        // var viewModel = new PromotionReportViewModel(minDate.GetGreaterDate(limitedDateToShowInfo), today);
+        return View();
+    }
 
     public async Task<IActionResult> GetMainReport()
     {

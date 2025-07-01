@@ -44,7 +44,7 @@ const PromotionDetailsRow = ({ idx, data }: any) => {
   );
 };
 
-export default function PromotionDetailsTable({ data }: PromotionDetailsProps) {
+export default function DetailsReportTable({ data }: PromotionDetailsProps) {
   return (
     <div className="table-fixed-header table-fixed-body min-h-0">
       <table className="w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px] border-l-[0px]">

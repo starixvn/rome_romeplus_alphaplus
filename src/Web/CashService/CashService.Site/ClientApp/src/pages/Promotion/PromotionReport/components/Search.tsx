@@ -4,12 +4,20 @@ import Tippy from '@tippyjs/react';
 import { useTranslation } from 'react-i18next';
 
 interface SearchProps {
+  promotionTitle: string;
+  onClickBreadcrumb: () => void;
   search: string;
   setSearch: (val: string) => void;
   onDownload: () => void;
 }
 
-export default function Search({ search, setSearch, onDownload }: SearchProps) {
+export default function Search({
+  promotionTitle,
+  onClickBreadcrumb,
+  search,
+  setSearch,
+  onDownload,
+}: SearchProps) {
   const { t: tGlobal } = useTranslation('global');
   const [textCopy, setTextCopy] = useState(tGlobal('copy'));
   const [isSearchActive, setIsSearchActive] = useState(false);
@@ -18,7 +26,7 @@ export default function Search({ search, setSearch, onDownload }: SearchProps) {
   const handleDownload = async () => {
     onDownload();
   };
-  
+
   const handleCopy = () => {
     navigator.clipboard.writeText(search);
     setTextCopy(tGlobal('copied'));
@@ -73,9 +81,12 @@ export default function Search({ search, setSearch, onDownload }: SearchProps) {
             <IconCopy />
           </button>
         </Tippy>
-        <div ref={searchRef} className={`flex box-search relative ${isSearchActive ? 'active' : ''}`}>
+        <div
+          ref={searchRef}
+          className={`flex box-search relative ${isSearchActive ? 'active' : ''}`}
+        >
           <div className="w-[250px] max-[768px]:w-[28px] ml-auto">
-            <div 
+            <div
               className="hidden max-[768px]:block bg-black/10 rounded-[3px] p-[6px] cursor-pointer"
               onClick={handleSearchClick}
             >
