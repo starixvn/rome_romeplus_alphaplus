@@ -99,20 +99,6 @@
     /* ========== CONTENT SECTIONS ========== */
     
 
-    .active-cash-content {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 20px 32px;
-        background: linear-gradient(90deg, rgba(255, 255, 255, 0.72) 40%, rgba(255, 255, 255, 0.36) 75%, rgba(255, 255, 255, 0) 100% );
-    }
-
     .step-slider {
         position: absolute;
         top: 0;
@@ -226,8 +212,8 @@
     /* ========== BUTTONS ========== */
     .close-button {
         position: absolute;
-        top: 16px;
-        right: 16px;
+        top: 10px;
+        right: 10px;
         background: rgba(255, 255, 255, 0.411);
         border: none;
         border-radius: 50%;
@@ -264,15 +250,15 @@
     
 
     .step-button {
-        height: 30px;
+        height: 28px;
         width: 110px;
-        border-radius: 20px;
+        border-radius: 3px;
         border: none;
         cursor: pointer;
         font-weight: bold;
         
         &:disabled {
-            opacity: 0.5;
+            opacity: 0.8;
             cursor: not-allowed;
         }
     }
@@ -536,7 +522,7 @@
                 <input type="checkbox" id="dontShowAgain" onchange="checkDontShowAgain()"/>
                 <label for="dontShowAgain">@Resources.doNotShowAgain</label>
             </div>
-        </div>     
+        </div>
 
         <div id="step-slider" class="step-slider" style="display: none;">
             <div id="step-content" class="step-content">
@@ -603,13 +589,11 @@
 
     function showAdsContent() {
         $('#promo-content').show();
-        $('#active-cash-content').hide();
         $('#step-slider').hide();
     }
 
     function showActiveCashContent() {
         $('#promo-content').hide();
-        $('#active-cash-content').hide();
         $('#step-slider').show();
         currentStep = 4; // Set to step 5 (0-based index)
         updateStepContent();
@@ -617,7 +601,6 @@
 
     function showStepSlider() {
         $('#promo-content').hide();
-        $('#active-cash-content').hide();
         $('#step-slider').show();
         updateStepContent();
     }
