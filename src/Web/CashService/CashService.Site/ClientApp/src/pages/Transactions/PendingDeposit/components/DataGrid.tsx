@@ -149,7 +149,7 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits, reloadGrid, isCashService
 
   return (
     <>
-      <div className="table-fixed-header table-fixed-body min-h-0">
+      <div className="table table-fixed-body min-h-0">
         <table className="w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px] border-l-[0px]">
           <TableHeader t={t} />
           <tbody className="font-[500]">

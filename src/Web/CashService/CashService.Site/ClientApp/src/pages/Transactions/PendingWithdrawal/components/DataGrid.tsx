@@ -62,7 +62,7 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals, reloadGrid }) => {
 
   return (
     <>
-      <div className="table-fixed-header table-fixed-body min-h-0">
+      <div className="table table-fixed-body min-h-0">
         <table className="w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px] border-l-[0px] text-[#333333]">
           <thead className="z-11!">
             <tr>
