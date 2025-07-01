@@ -16,9 +16,11 @@ using AlphaPlus.Main.Site.Features.OTP;
 using AlphaPlus.Main.Site.Features.Default.MenuBar;
 using System.Net;
 using AlphaPlus.Main.Site.Features.Dashboard.CashService;
+using AlphaPlus.NetThrottling;
 
 namespace AlphaPlus.Main.Site.Features.Default
 {
+    [DisableNetThrottling]
     public class DefaultController(
         IUserSession userSession,
         IMediator mediator,
