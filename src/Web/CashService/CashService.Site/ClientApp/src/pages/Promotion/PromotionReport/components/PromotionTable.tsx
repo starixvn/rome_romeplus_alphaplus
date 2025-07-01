@@ -37,7 +37,7 @@ const PromotionRow = ({ idx, item, onClickPromotionTitle }: any) => {
         <a
           href="#"
           onClick={(event) => handleDrillDown(event, item.promotionId, item.promotionTitle)}
-          className="text-blue-600 hover:underline"
+          className="text-[#118AF2] hover:underline"
         >
           {item.promotionTitle}
         </a>

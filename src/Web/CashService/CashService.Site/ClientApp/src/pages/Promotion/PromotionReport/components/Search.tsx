@@ -45,10 +45,10 @@ export default function Search({ search, setSearch, onDownload }: SearchProps) {
     <div className="flex items-center w-full justify-between">
       <div className="font-semibold mt-[1px]">
         <ul>
-          <li className='uppercase relative inline-block after:content-["❯"] after:px-[8px] after:text-[#333] '>
-            <a className='text-[#045ace] cursor-pointer'>Promotion Report</a>
+          <li className='uppercase relative inline-block after:content-["❯"] after:px-[8px] after:text-[#333]  dark:after:text-[#fff]'>
+            <a className='text-[#045ace] dark:text-[#41a4ff] cursor-pointer'>Promotion Report</a>
           </li>
-          <li className='text-[#9d1c1c] uppercase relative inline-block'>
+          <li className='text-[#9d1c1c] dark:text-[#fff] uppercase relative inline-block'>
             <span className=''>New Year Sale</span>
           </li>
         </ul>

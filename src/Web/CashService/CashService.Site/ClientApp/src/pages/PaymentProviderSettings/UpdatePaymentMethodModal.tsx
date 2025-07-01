@@ -226,7 +226,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
 
   return (
     <div className="bg-[#00000080] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-center justify-center">
-      <div className="p-[12px] pt-[0] max-h-[750px] overflow-y-auto bg-[var(--modal-background)] w-full max-w-[560px] max-[768px]:max-w-[90%] rounded-[3px] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)]">
+      <div className="p-[12px] pt-[0] overflow-y-auto bg-[var(--modal-background)] w-full max-w-[560px] max-[768px]:max-w-[90%] rounded-[3px] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] max-h-[90%] overflow-auto">
         <div className="relative mb-[10px] border-b-[1px] border-[var(--border-color)] py-[11px]" >
           <MediumTitleComponent text={tPaymentProviderSettings('updatePaymentMethod')} />
           <ButtonClosePopupComponent onClick={onClose} />
