@@ -35,13 +35,13 @@ public class PromotionController(
 
     public async Task<IActionResult> GetMainReport()
     {
-        var url = $"{_apiBaseUrl}/promotion/reports";
+        var url = $"{_apiBaseUrl}/promotions/reports";
         return Json(await _httpClient.GetFromJsonAsync<object>(url));
     }
 
     public async Task<IActionResult> GetDetailsReport(int promotionId)
     {
-        var url = $"{_apiBaseUrl}/promotion/reports/{promotionId}";
+        var url = $"{_apiBaseUrl}/promotions/reports/{promotionId}";
         return Json(await _httpClient.GetFromJsonAsync<object>(url));
     }
 

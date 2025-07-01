@@ -150,7 +150,7 @@ public static class PromotionEndpoints
                 new PromotionDetails
                 {
                     Username = "john_doe",
-                    Nickname = "John",
+                    Nickname = "john_doe_123",
                     FirstName = "John",
                     LastName = "Doe",
                     PromotionType = "Discount",
@@ -163,7 +163,7 @@ public static class PromotionEndpoints
                 new PromotionDetails
                 {
                     Username = "jane_smith",
-                    Nickname = "Jane",
+                    Nickname = "jane_smith_456",
                     FirstName = "Jane",
                     LastName = "Smith",
                     PromotionType = "Cashback",
@@ -176,7 +176,7 @@ public static class PromotionEndpoints
                 new PromotionDetails
                 {
                     Username = "alice_jones",
-                    Nickname = "Alice",
+                    Nickname = "alice_jones_789",
                     FirstName = "Alice",
                     LastName = "Jones",
                     PromotionType = "Discount",
@@ -189,7 +189,6 @@ public static class PromotionEndpoints
                 new PromotionDetails
                 {
                     Username = "bob_brown",
-                    Nickname = "Bob",
                     FirstName = "Bob",
                     LastName = "Brown",
                     PromotionType = "Cashback",
@@ -202,7 +201,7 @@ public static class PromotionEndpoints
                 new PromotionDetails
                 {
                     Username = "charlie_white",
-                    Nickname = "Charlie",
+                    Nickname = "",
                     FirstName = "Charlie",
                     LastName = "White",
                     PromotionType = "Discount",

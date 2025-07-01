@@ -7,23 +7,14 @@ import { createRoot } from 'react-dom/client';
 import { TitleComponent } from '../../../components/Title';
 import MainReportContainer from './components/MainReport';
 import DetailsReportContainer from './components/DetailsReport';
-import {
-  PromotionDetailsSummaryProps,
-  PromotionDetailsSummary,
-} from './components/PromotionDetailsSummary.tsx';
-import PromotionDetailsTable from './components/PromotionDetailsTable.tsx';
 
 function PromotionReport() {
   useCookieLanguage(i18n);
-
   const [promotion, setPromotion]: any = useState(null);
-  const [promotionDetailsSummaryData, setPromotionDetailsSummaryData] =
-    useState<PromotionDetailsSummaryProps>();
 
   return (
     <>
       <TitleComponent title="Promotion Report" />
-      {promotionDetailsSummaryData && <PromotionDetailsSummary {...promotionDetailsSummaryData} />}
       {promotion === null ? (
         <MainReportContainer
           onClickPromotionTitle={(id: number, name: string) => {

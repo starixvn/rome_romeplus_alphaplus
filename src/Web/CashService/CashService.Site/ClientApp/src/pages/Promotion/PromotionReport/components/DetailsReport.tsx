@@ -1,16 +1,7 @@
 import { useState, useEffect } from 'react';
-import Tippy from '@tippyjs/react';
-import { useTranslation } from 'react-i18next';
-import NoRecordFoundComponent from '../../../../components/NoRecordFoundComponent';
-import {
-  StatusEnabledComponent,
-  StatusDisabledComponent,
-} from '../../../../components/StatusComponents';
-import { formatNumber } from '../../../../utils/numberFormatting';
 import { convertToGMT4 } from '../../../../utils/commonFunctions';
 import { promotionService } from '../../../../services/promotionAPI';
 import LoadingComponent from '../../../../components/LoadingComponent';
-import { IconCopy, IconExcel, IconSearch } from '../../../../components/Icons';
 import DetailsReportFilter from './DetailsReportFilter';
 import { PromotionDetailsSummaryProps, PromotionDetailsSummary } from './PromotionDetailsSummary';
 import Search from './Search';
@@ -55,12 +46,6 @@ export default function DetailsReportContainer({ promotion, onClickBreadcrumb }:
   const [status, setStatus] = useState<string>('');
   const { detailsReportData, loading }: any = useDetailsReportData(promotion.promotionId);
   const { search, setSearch }: any = useState('');
-
-  function handleFilterChange(queryString: string) {
-    // This function can be used to update the report data based on the filter
-    // For now, it does nothing as we are not implementing server-side filtering
-    console.log('Filter changed: ' + queryString);
-  }
 
   return (
     <>

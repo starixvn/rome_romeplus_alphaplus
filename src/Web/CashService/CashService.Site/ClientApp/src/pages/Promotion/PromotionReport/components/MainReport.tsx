@@ -127,7 +127,7 @@ function ReportRow({ idx, item, onClickPromotionTitle }: any) {
         <a
           href="#"
           onClick={(event) => handleDrillDown(event, item.promotionId, item.promotionTitle)}
-          className="text-blue-600 hover:underline"
+          className="text-[#045ace] dark:text-[#41a4ff] hover:underline"
         >
           {item.promotionTitle}
         </a>
@@ -137,7 +137,7 @@ function ReportRow({ idx, item, onClickPromotionTitle }: any) {
       <td className="text-right">{formatNumber(item.totalRequest)}</td>
       <td className="text-right">
         <div>{formatNumber(item.totalApproved)}</div>
-        <div className="text-red-600 hover:underline">{formatNumber(item.totalRejected)}</div>
+        <div className="text-[#9d1c1c]">{formatNumber(item.totalRejected)}</div>
       </td>
       <td className="text-right">{formatNumber(item.totalBonus)}</td>
       <td>{mapStatus(item.status)}</td>
@@ -212,12 +212,6 @@ export default function MainReportContainer({ onClickPromotionTitle }: any) {
   const [status, setStatus] = useState<string>('');
   //const [filter, setFilter] = useState('');
   const { reportData, loading } = useReportData();
-
-  function handleFilterChange(queryString: string) {
-    // This function can be used to update the report data based on the filter
-    // For now, it does nothing as we are not implementing server-side filtering
-    console.log('Filter changed: ' + queryString);
-  }
 
   return (
     <>

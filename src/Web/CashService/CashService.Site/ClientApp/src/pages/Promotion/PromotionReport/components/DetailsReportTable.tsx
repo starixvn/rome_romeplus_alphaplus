@@ -29,7 +29,8 @@ const PromotionDetailsRow = ({ idx, data }: any) => {
         {formatNumber(idx + 1)}
       </td>
       <td className="text-left w-[250px] min-w-[250px] sticky left-[32px] bg-[var(--table-background)] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
-        {data.username}
+        <div>{data.username}</div>
+        {data.nickname && data.nickname.length && <div>{data.nickname}</div>}
       </td>
       <td className="text-left">
         <div>{data.firstName}</div>
@@ -54,7 +55,8 @@ export default function DetailsReportTable({ data }: PromotionDetailsProps) {
               #
             </th>
             <th className="w-[250px] min-w-[250px] sticky left-[32px] bg-[var(--table-header-background)] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
-              Username
+              <div>Username</div>
+              <div>Nickname</div>
             </th>
             <th>First & Last Name</th>
             <th>Promotion Type</th>

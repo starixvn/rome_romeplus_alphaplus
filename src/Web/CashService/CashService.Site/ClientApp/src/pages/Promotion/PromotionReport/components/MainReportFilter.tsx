@@ -1,10 +1,8 @@
-import { useState } from 'react';
 import DateRangePickerComponent from '../../../../components/DateRangePickerComponent';
 import CustomDropdownComponent, {
   DropdownOption,
 } from '../../../../components/CustomDropdownComponent';
 import { LabelTitleComponent } from '../../../../components/Title';
-import { convertToGMT4 } from '../../../../utils/commonFunctions';
 
 const promotionTypeOptions: DropdownOption[] = [
   { value: 1, label: 'Rebate on Turnover' },
