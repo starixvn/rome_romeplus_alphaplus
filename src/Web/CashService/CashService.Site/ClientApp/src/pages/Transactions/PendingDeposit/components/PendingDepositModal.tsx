@@ -269,7 +269,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
           </div>
 
           {deposit?.paymentType === 2 && (
-            <div className="flex gap-4 justify-end mt-6">
+            <div className="flex gap-4 justify-end">
               <ButtonRejectComponent
                 onClick={handleReject}
                 disabled={isSubmitting || isLoading || !isCashServiceEnabled}
@@ -285,7 +285,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
             </div>
           )}
           {deposit?.paymentType === 1 && (
-            <div className="flex gap-4 justify-end mt-6">
+            <div className="flex gap-4 justify-end">
               <ButtonCancelComponent onClick={() => onClose(false)} text={tGlobal('close')} />
             </div>
           )}

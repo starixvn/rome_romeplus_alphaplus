@@ -351,7 +351,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
             )}
           </div>
 
-          <div className="flex gap-4 justify-end mt-6">
+          <div className="flex gap-4 justify-end">
             <ButtonRejectComponent
               onClick={handleReject}
               disabled={isSubmitting || isLoading}
