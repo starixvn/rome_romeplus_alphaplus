@@ -6,6 +6,7 @@ using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Main.Site.Helpers;
+using AlphaPlus.NetThrottling;
 using AlphaPlus.RequestInfo;
 using AlphaPlus.Shared.AppResources.Main;
 using Fanex.Cryptography.Aes;
@@ -17,7 +18,7 @@ using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Main.Site.Features.Account;
 
-[AllowAnonymous]
+[AllowAnonymous, DisableNetThrottling]
 public class AccountController(
     IUserSession userSession,
     IDeviceHelper deviceHelper,

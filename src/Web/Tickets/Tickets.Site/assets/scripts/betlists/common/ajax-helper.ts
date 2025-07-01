@@ -37,7 +37,8 @@
             if (jqXHR.status === 401) {
                 window.top['age'].SignOut();
             } else if (jqXHR.status === 429) {
-                window.location.href = window.top.alpha.urls.mainRootPath + 'error/blocked';
+                // window.location.href = window.top.alpha.urls.mainRootPath + 'error/blocked';
+                alert('Too many requests.');
             } else if (jqXHR.status === 500 && jqXHR.responseText) {
                 const jsonData = JSON.parse(jqXHR.responseText);
                 if (jsonData.UMFrom && jsonData.UMTo) {
