@@ -7,30 +7,29 @@ using Fanex.Data.Repository;
 
 namespace AgencyCash.API.RegisterCashMember;
 
-public class RegisterCashMemberService : IRegisterCashMemberService
+public class RegisterCashMemberService(IDynamicRepository dynamicRepository) : IRegisterCashMemberService
 {
-    private readonly IDynamicRepository _dynamicRepository;
-
-    public RegisterCashMemberService(IDynamicRepository dynamicRepository)
-    {
-        _dynamicRepository = dynamicRepository;
-    }
+    private readonly IDynamicRepository _dynamicRepository = dynamicRepository;
 
     public async Task<RegisterCashMemberResult> RegisterCashMember(RegisterCashMemberRequest request)
     {
         var sanitizedDomain = DomainHelper.RemoveProtocol(request.Domain);
         var validateResult = await ValidateSetting(request.UserName, sanitizedDomain, request.AgentId);
         if (!validateResult.IsSuccess)
+        {
             return new RegisterCashMemberResult(validateResult.Code, validateResult.Message);
+        }
         string actorName = validateResult.AgentUsername;
-        byte roleId = CustomerLevel.Agent;
+        const byte roleId = CustomerLevel.Agent;
         const int UsernameExisted = 201;
         const int MaxRetryCount = 5;
         for (int retryCount = 0; retryCount < MaxRetryCount; retryCount++)
         {
             var suggestResult = await GetSuggestUsername(actorName, roleId);
             if (!suggestResult.IsSuccess)
+            {
                 return new RegisterCashMemberResult(suggestResult.Code, suggestResult.Message);
+            }
 
             string newUserName = actorName + suggestResult.SeqName;
             var registerBeforeAddNewResult = await RegisterUsernameBeforeAddNew(request, newUserName);

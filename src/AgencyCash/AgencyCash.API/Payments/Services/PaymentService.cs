@@ -56,7 +56,7 @@ public abstract class PaymentService(
             log.TrackingValueMask2,
             log.TrackingValue,
             log.TrackingValue2);
-        var functionName = nameof(WriteLogRunSP);
+        const string functionName = nameof(WriteLogRunSP);
         var isSuccess = await WriteLog(criteria, functionName);
 
         if (!isSuccess)

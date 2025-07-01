@@ -1,6 +1,6 @@
 namespace AgencyCash.API.Shared.Helpers;
 
-public class Base64StringHelper
+public static class Base64StringHelper
 {
     public static bool TryConvertToByte(string base64String, out byte[] result)
     {

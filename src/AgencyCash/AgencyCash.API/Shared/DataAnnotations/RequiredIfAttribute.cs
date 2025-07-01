@@ -21,13 +21,11 @@ public class RequiredIfAttribute(string dependentProperty, object targetValue) :
         var dependentValue = dependentProperty.GetValue(validationContext.ObjectInstance);
         var conditionMet = Equals(dependentValue, _targetValue);
 
-        if (conditionMet)
+        if (conditionMet && value == null || (value is string str && string.IsNullOrWhiteSpace(str)))
         {
-            if (value == null || (value is string str && string.IsNullOrWhiteSpace(str)))
-            {
-                return new ValidationResult(FormatErrorMessage(validationContext.DisplayName), [validationContext.MemberName!]);
-            }
+            return new ValidationResult(FormatErrorMessage(validationContext.DisplayName), [validationContext.MemberName!]);
         }
+
 
         return ValidationResult.Success;
     }

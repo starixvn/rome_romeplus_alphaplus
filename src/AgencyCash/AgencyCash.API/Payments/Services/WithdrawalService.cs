@@ -84,7 +84,10 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                 await logger.ErrorAsync($"Withdrawal failed. Key: {withdrawalTransactionCriteria.GetSettingKey()}, Criteria: {JsonHelper.ToJson(withdrawalTransactionCriteria)}");
             }
 
-            return new PaymentResult(withdrawalTransactionCriteria.ErrCode, withdrawalTransactionCriteria.ErrCode == 0 ? "Ok" : withdrawalTransactionCriteria.ErrMsg, withdrawalTransactionCriteria.TransId);
+            return new PaymentResult(
+                withdrawalTransactionCriteria.ErrCode,
+                withdrawalTransactionCriteria.ErrCode == 0 ? "Ok" : withdrawalTransactionCriteria.ErrMsg,
+                withdrawalTransactionCriteria.TransId);
         }
         catch (Exception ex)
         {
