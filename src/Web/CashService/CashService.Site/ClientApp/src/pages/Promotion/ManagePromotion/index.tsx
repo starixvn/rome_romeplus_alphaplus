@@ -5,7 +5,7 @@ import 'tippy.js/dist/tippy.css';
 import { promotionService } from '../../../services/promotionAPI';
 import PromotionList from './components/PromotionList';
 import Filter from './components/Filter';
-import type { Promotion, PromotionDetail } from '../../../services/interfaces/Promotion';
+import type { PromotionDetail } from '../../../services/interfaces/Promotion';
 import AddPromotion from './components/AddPromotion';
 import { TitleComponent } from '../../../components/Title';
 import { ButtonFullComponent } from '../../../components/Buttons/index';
@@ -13,14 +13,14 @@ import '../../../styles/common.css';
 import '../../../styles/global.scss';
 
 const Promotion: React.FC = () => {
-  const [promotionType, setPromotionType] = useState<string>('All');
-  const [status, setStatus] = useState<string>('All');
+  const [promotionType, setPromotionType] = useState<number>(0);
+  const [status, setStatus] = useState<number>(0);
   const [error, setError] = useState<string | null>(null);
   const [promotions, setPromotions] = useState<PromotionDetail[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showAddPromotion, setShowAddPromotion] = useState<boolean>(false);
 
-  const handleFilterChange = (type: string, status: string) => {
+  const handleFilterChange = (type: number, status: number) => {
     setPromotionType(type);
     setStatus(status);
   };

@@ -1,56 +1,43 @@
-﻿export interface Promotion {
+﻿export interface PromotionDetail {
   promotionId: number;
   promotionTitle: string;
   promotionType: string;
   fromDate: Date | null;
   toDate: Date | null;
-  sportsPercentage: number;
-  virtualSportsPercentage: number;
-  gamesPercentage: number;
-  liveCasinoPercentage: number;
-  sportsMaxPayout: number;
-  virtualSportsMaxPayout: number;
-  gamesMaxPayout: number;
-  liveCasinoMaxPayout: number;
-  provider: number[];
-  status: string;
-  lastUpdated: string;
-}
-
-export interface PromotionDetail {
-  promotionId: number;
-  promotionTitle: string;
-  promotionType: string;
-  fromDate: Date | null;
-  toDate: Date | null;
-  products: Product[];
+  productSettings: ProductSetting[];
   enabled: boolean;
   lastUpdated: string;
 }
 
 export interface PromotionRequest {
-  promotionTitle: string;
-  promotionType: string;
+  promotionType: number;
   fromDate: Date | null;
   toDate: Date | null;
   enabled: boolean;
-  products: Product[];
+  products: ProductSetting[];
+  promotionInfo: LanguageInfo[];
+}
+
+export interface LanguageInfo {
+  lang: string;
+  title: string;
+  banner: string | null;
+  content: string;
 }
 
 export interface PromotionParams {
-  type: string;
-  status: string;
+  type: number;
+  status: number;
 }
 
 export interface Product {
   productId: number;
   productName: string;
   isSelected: boolean;
-  children: Product[];
-  productSettings: ProductSetting;
+  childProducts: Product[];
 }
 
-export interface ProductSetting {
+export interface ProductSetting extends Product {
   percentage: number;
   minTurnover: number;
   maxPayout: number;

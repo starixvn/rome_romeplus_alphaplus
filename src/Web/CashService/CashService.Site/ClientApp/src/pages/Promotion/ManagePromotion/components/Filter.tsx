@@ -3,24 +3,24 @@ import CustomDropdown from '../../../../components/CustomDropdownComponent';
 import { LabelTitleComponent } from '../../../../components/Title';
 
 interface FilterProps {
-  onFilterChange: (type: string, status: string) => void;
+  onFilterChange: (type: number, status: number) => void;
 }
 
 const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
-  const [selectedType, setSelectedType] = useState('');
-  const [selectedStatus, setSelectedStatus] = useState('');
+  const [selectedType, setSelectedType] = useState<number>(0);
+  const [selectedStatus, setSelectedStatus] = useState<number>(0);
 
   const promotionTypes = [
-    { value: 'Welcome Bonus', label: 'Welcome Bonus' },
-    { value: 'Reload Bonus', label: 'Reload Bonus' },
-    { value: 'Cashback', label: 'Cashback' },
-    { value: 'Tournament', label: 'Tournament' },
+    { value: 0, label: 'Welcome Bonus' },
+    { value: 1, label: 'Reload Bonus' },
+    { value: 2, label: 'Cashback' },
+    { value: 3, label: 'Tournament' },
   ];
 
   const statusOptions = [
-    { value: 'Active', label: 'Active' },
-    { value: 'Scheduled', label: 'Scheduled' },
-    { value: 'Expired', label: 'Expired' },
+    { value: 0, label: 'Active' },
+    { value: 1, label: 'Scheduled' },
+    { value: 2, label: 'Expired' },
   ];
 
   const handleTypeChange = (option: any) => {

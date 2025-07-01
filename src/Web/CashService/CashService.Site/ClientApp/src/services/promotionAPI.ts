@@ -1,12 +1,12 @@
 import { axiosInstance, api } from './axios';
-import { PromotionDetail, PromotionParams } from './interfaces/Promotion';
+import { Product, PromotionDetail, PromotionParams } from './interfaces/Promotion';
 
 export const promotionService = {
   getPromotion: async (promotionParams: PromotionParams): Promise<PromotionDetail[]> => {
     try {
       const queryParams = new URLSearchParams({
-        promotionType: promotionParams.type,
-        status: promotionParams.status,
+        promotionType: promotionParams.type.toString(),
+        status: promotionParams.status.toString(),
       });
       const response = await axiosInstance.get<PromotionDetail[]>(
         `GetPromotion?${queryParams.toString()}`
@@ -17,6 +17,17 @@ export const promotionService = {
       return [];
     }
   },
+
+  getPromotionProducts: async (): Promise<Product[]> => {
+    try {
+      const response = await axiosInstance.get<Product[]>(`GetPromotionProducts`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching promotion products:', error);
+      return [];
+    }
+  },
+
   deletePromotion: async (promotionId: number): Promise<void> => {
     try {
       await axiosInstance.delete(`DeletePromotion/${promotionId}`);

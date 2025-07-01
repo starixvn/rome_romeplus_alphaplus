@@ -182,7 +182,7 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
 
   const selectedLabels = useMemo(() => getSelectedLabels(options, value), [options, value]);
   let displayValue = '';
-  if (selectedLabels.length === 0) displayValue = placeholder || 'Select';
+  if (selectedLabels.length === 0) displayValue = placeholder || 'None Selected';
   else if (selectedLabels.length <= 2) displayValue = selectedLabels.join(', ');
   else displayValue = `${selectedLabels.slice(0, 2).join(', ')} +${selectedLabels.length - 2}`;
 

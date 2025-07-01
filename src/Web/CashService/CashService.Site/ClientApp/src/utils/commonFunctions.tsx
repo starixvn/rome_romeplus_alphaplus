@@ -29,25 +29,25 @@ export const renderBankOptionValue = (bankCode: string, bankAccount: string) => 
   return `${bankCode}-${bankAccount}`;
 };
 
-export const renderBankAccount = (bankAccount: string, tGlobal?: any) => {  
+export const renderBankAccount = (bankAccount: string, tGlobal?: any) => {
   if (!bankAccount) return <div className="flex items-center max-w-[200px]">-</div>;
   const [bankCode, accountNumber] = bankAccount.split('-');
   if (bankCode && !accountNumber) return <div className="flex items-center">{bankCode}</div>;
   if (!accountNumber && !bankCode) return <div className="inline">-</div>;
-  return (    
-    <>   
-    <Tippy content={ bankCode ? <p>{ tGlobal(bankCode) }</p> : <p>{accountNumber}</p>}>
-      <div className="inline-flex items-center max-w-[200px]">
-        {bankCode && (
-          <img
-            src={`../assets/bank/${bankCode}.png`}
-            alt={bankCode}
-            className="w-[16px] h-[16px] mr-[8px] inline-block"
-          />
-        )}
-        <span className="overflow-hidden text-ellipsis whitespace-nowrap">{accountNumber}</span>
-      </div>
-    </Tippy>    
+  return (
+    <>
+      <Tippy content={bankCode ? <p>{tGlobal(bankCode)}</p> : <p>{accountNumber}</p>}>
+        <div className="inline-flex items-center max-w-[200px]">
+          {bankCode && (
+            <img
+              src={`../assets/bank/${bankCode}.png`}
+              alt={bankCode}
+              className="w-[16px] h-[16px] mr-[8px] inline-block"
+            />
+          )}
+          <span className="overflow-hidden text-ellipsis whitespace-nowrap">{accountNumber}</span>
+        </div>
+      </Tippy>
     </>
   );
 };
@@ -107,6 +107,15 @@ export const calculateDateRange = (recentTransactions: string): [string, string]
       return ['', ''];
   }
   return [startDate.toLocaleString('en-US'), today.toLocaleString('en-US')];
+};
+
+export const formatDate = (date: string) => {
+  if (!date) return '';
+  const dateObj = new Date(date);
+  const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+  const day = dateObj.getDate().toString().padStart(2, '0');
+  const year = dateObj.getFullYear();
+  return `${month}/${day}/${year}`;
 };
 
 export const convertToGMT4 = (date: Date): Date => {

@@ -1,10 +1,15 @@
-﻿import React from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../../../i18n/i18n-promotion';
 import { useCookieLanguage } from '../../../../hooks/useCookieLanguage';
-import { PromotionDetail } from '../../../../services/interfaces/Promotion';
+import {
+  Product,
+  ProductSetting,
+  PromotionDetail,
+} from '../../../../services/interfaces/Promotion';
 import { IconDelete, IconPen } from '../../../../components/Icons';
 import NoRecordFoundComponent from '../../../../components/NoRecordFoundComponent';
+import { formatDate } from '../../../../utils/commonFunctions';
 
 interface TableProps {
   items: PromotionDetail[];
@@ -14,9 +19,13 @@ interface TableProps {
 }
 
 const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => {
+  const [gridProducts, setGridProducts] = useState<ProductSetting[]>([]);
   const { t } = useTranslation('promotion');
-  const { t: tGlobal } = useTranslation('global');
   useCookieLanguage(i18n);
+
+  useEffect(() => {
+    setGridProducts(displayGridProducts(items));
+  }, [items]);
 
   const getStatusStyle = (status: string) => {
     var s = status ? status.toLocaleUpperCase() : '';
@@ -27,110 +36,143 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
         return 'bg-[#FBD8D8]';
       case 'EXPIRED':
         return 'bg-[#FBD8D8]';
+      case 'INACTIVE':
+        return 'bg-[#FBD8D8]';
       default:
         return '';
     }
   };
 
+  const displayProducts = (products: Product[]) => {
+    const maxDisplay = 5;
+    if (!products || products.length === 0) return '';
+    const names = products.slice(0, maxDisplay).map((p) => p.productName);
+    const remain = products.length - maxDisplay;
+    return remain > 0 ? `${names.join(', ')} + ${remain} more` : names.join(', ');
+  };
+
+  const displayGridProducts = (promotions: PromotionDetail[]): ProductSetting[] => {
+    const productMap = new Map<number, ProductSetting>();
+    promotions.forEach((promotion) => {
+      promotion.productSettings.forEach((product) => {
+        if (!productMap.has(product.productId)) {
+          productMap.set(product.productId, product);
+        }
+      });
+    });
+    return Array.from(productMap.values());
+  };
   const buildHeader = () => (
     <thead>
       <tr>
-        <th rowSpan={2} scope="col" className="w-[32px] text-center">
+        <th rowSpan={2} scope="col" className="w-[32px] sticky left-0 z-10 bg-white text-center">
           {t('table.no')}
         </th>
-        <th rowSpan={2} scope="col" className="w-[75px] text-center">
+        <th rowSpan={2} className="w-[75px] sticky left-[32px] z-10 bg-white text-center">
           {t('table.action')}
         </th>
-        <th rowSpan={2} className="w-[110px] text-center" scope="col">
+        <th
+          rowSpan={2}
+          className="w-[110px] sticky left-[93px] z-10 bg-white text-center"
+          scope="col"
+        >
           <span className="relative z-3">{t('table.promotionTitle')}</span>
         </th>
-        <th rowSpan={2} scope="col">
+        <th rowSpan={2} scope="col" className="sticky left-[200px] z-10 bg-white text-center">
           {t('table.promotionType')}
         </th>
-        <th colSpan={4} className="text-center" scope="col">
-          Percentage (%)
+        <th colSpan={gridProducts.length} className="text-center" scope="col">
+          {t('table.percentage')}
           <br />
-          Max Payout
+          {t('table.maxPayout')}
         </th>
-        <th rowSpan={2} scope="col">
+        <th
+          rowSpan={2}
+          scope="col"
+          className="w-[110px] sticky right-[252px] z-10 bg-white text-center"
+        >
+          {t('table.products')}
+        </th>
+        <th
+          rowSpan={2}
+          scope="col"
+          className="w-[110px] sticky right-[86px] z-10 bg-white text-center"
+        >
           {t('table.period')}
         </th>
-        <th rowSpan={2} scope="col">
-          Provider
-        </th>
-        <th rowSpan={2} scope="col">
-          Status
-        </th>
-        <th rowSpan={2} scope="col">
-          Last updated
+        <th rowSpan={2} scope="col" className="w-[110px] sticky right-0 z-10 bg-white text-center">
+          {t('table.status')}
         </th>
       </tr>
       <tr>
-        <th className="text-center" scope="col">
-          Sports
-        </th>
-        <th className="text-center" scope="col">
-          Virtual Sports
-        </th>
-        <th className="text-center" scope="col">
-          Games
-        </th>
-        <th className="text-center" scope="col">
-          Live Casino
-        </th>
+        {gridProducts.map((product) => (
+          <th key={product.productId} scope="col" className="text-center">
+            {product.productName}
+          </th>
+        ))}
       </tr>
     </thead>
   );
-
   const buildRow = (item: PromotionDetail, index: number) => (
     <tr key={item.promotionId}>
-      <td className="w-[32px] sticky left-0 bg-[#ffffff]">{index + 1}</td>
-      <td className="w-[75px] sticky left-[32px] bg-[#ffffff]">
-        <div className="flex gap-[4px]">
+      <td className="sticky left-0 bg-white z-10 text-center">{index + 1}</td>
+      <td className="sticky left-[32px] bg-white z-10 text-center">
+        <div className="flex items-center justify-center gap-2">
           <button
-            className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
-            title={tGlobal('edit')}
+            className="text-blue-600 hover:text-blue-800"
             onClick={() => onEdit?.(item)}
+            title={t('table.edit') as string}
           >
             <IconPen />
           </button>
           <button
-            className="cursor-pointer p-[4px] rounded-[4px] bg-[#ffffff] hover:bg-[#EAEDF2] text-[var(--text-color-primary)]"
-            title={tGlobal('delete')}
+            className="text-red-600 hover:text-red-800"
             onClick={() => onDelete?.(item)}
+            title={t('table.delete') as string}
           >
             <IconDelete />
           </button>
         </div>
       </td>
-      <td className="text-left sticky left-[107px] bg-[#ffffff] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
-        {item.promotionTitle}
+      <td className="sticky left-[93px] bg-white z-10 text-left">{item.promotionTitle}</td>
+      <td className="sticky left-[200px] bg-white z-10 text-center">{item.promotionType}</td>
+      {gridProducts.map((product) =>
+        displayPercentageMaxPayout(item.productSettings, product.productId)
+      )}
+      <td className="w-[110px] sticky right-[252px] bg-white z-10">
+        {displayProducts(item.productSettings)}
       </td>
-      <td className="">{item.promotionType}</td>
-      <td className="text-right">
-        {item.products.find((p) => p.productId === 1)?.productSettings.percentage}
-      </td>
-      <td className="text-right">
-        {item.products.find((p) => p.productId === 2)?.productSettings.percentage}
-      </td>
-      <td className="text-right">
-        {item.products.find((p) => p.productId === 3)?.productSettings.percentage}
-      </td>
-      <td className="text-right">
-        {item.products.find((p) => p.productId === 4)?.productSettings.percentage}
-      </td>
-      <td className=""> </td>
-      <td className=""></td>
-      <td className="">
+      <td className="w-[110px] sticky right-[86px] bg-white z-10">{`${formatDate(item.fromDate?.toString() || '')} - ${formatDate(item.toDate?.toString() || '')}`}</td>
+      <td className="w-[110px] sticky right-0 bg-white z-10">
         <span
-          className={`rounded-[20px] px-[10px] py-[3px] ${getStatusStyle(item.enabled ? 'ACTIVE' : 'INACTIVE')}`}
+          className={`inline-block px-2 py-1 rounded text-xs font-semibold ${getStatusStyle(item.enabled ? 'ACTIVE' : 'INACTIVE')}`}
         >
           {item.enabled ? 'ACTIVE' : 'INACTIVE'}
         </span>
       </td>
-      <td className="">{item.lastUpdated}</td>
     </tr>
   );
+
+  const displayPercentageMaxPayout = (productSettings: ProductSetting[], productId: number) => {
+    const product = productSettings.find((p) => p.productId === productId);
+    if (!product)
+      return (
+        <td key={productId} className="text-right">
+          -
+          <br />-
+        </td>
+      );
+
+    let displayMaxPayout: number | string = product.maxPayout;
+    if (product.unlimited) displayMaxPayout = 'Unlimited';
+    return (
+      <td key={product.productId} className="text-right">
+        {product.percentage + '%'}
+        <br />
+        {displayMaxPayout || ''}
+      </td>
+    );
+  };
 
   const buildBody = () => (
     <tbody className="font-[500]">

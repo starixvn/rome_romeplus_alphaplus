@@ -1,12 +1,12 @@
 namespace AlphaPlus.CashService.Site.Features.Promotion.Controllers;
 
 using Core.Models;
+using Fanex.Customer.Client.Services;
 using Helpers;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
 using Shared.Filters;
-using Fanex.Customer.Client.Services;
 
 [SiteAuthorizationFilter(PageAccessType.CashPromotion)]
 public class PromotionController(
@@ -47,7 +47,7 @@ public class PromotionController(
 
     public async Task<IActionResult> GetPromotion(int promotionTypeId, int statusId, CancellationToken cancellationToken)
     {
-        var url = $"{_apiBaseUrl}/promotions/get?promotionTypeId={promotionTypeId}&statusId={statusId}";
+        var url = $"/promotions/get?promotionTypeId={promotionTypeId}&statusId={statusId}&custId={userSession.CustId}";
 
         var result = await httpClientHelper.GetAsync<object>(url);
 
@@ -56,15 +56,15 @@ public class PromotionController(
 
     public async Task<IActionResult> GetPromotionProducts()
     {
-        var url = $"/promotions/products";
-        var result = await httpClientHelper.GetAsync<object>(url, null);
+        var url = "/promotions/products";
+        var result = await httpClientHelper.GetAsync<object>(url);
         return Json(result);
     }
 
     [HttpPost]
     public async Task<IActionResult> AddPromotion([FromBody] object request)
     {
-        var url = $"/promotions";
+        var url = $"/api/promotions";
         var result = await httpClientHelper.PostAsync<object, object>(url, request);
         return Json(result);
     }
@@ -72,22 +72,8 @@ public class PromotionController(
     [HttpPut]
     public async Task<IActionResult> EditPromotion(int promotionId, [FromBody] object request)
     {
-        var url = $"/promotions/{promotionId}";
+        var url = $"/api/promotions/{promotionId}";
         await httpClientHelper.PutAsync<object>(url, request);
         return Json(new { success = true });
-    }
-
-    public async Task<IActionResult> GetPromotionReport()
-    {
-        var url = $"/promotions/reports";
-        var result = await httpClientHelper.GetAsync<object>(url, null);
-        return Json(result);
-    }
-
-    public async Task<IActionResult> GetPromotionReportDetails(int id)
-    {
-        var url = $"/promotions/reports/{id}";
-        var result = await httpClientHelper.GetAsync<object>(url, null);
-        return Json(result);
     }
 }
