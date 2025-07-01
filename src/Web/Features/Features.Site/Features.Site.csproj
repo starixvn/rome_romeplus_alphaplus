@@ -34,6 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
+    <ProjectReference Include="..\..\..\Modules\AlphaPlus.NetThrottling\AlphaPlus.NetThrottling.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Utilities.IP\AlphaPlus.Utilities.IP.csproj" />
     <ProjectReference Include="..\..\..\Services\Features\Messages\Messages.API.csproj" />
     <ProjectReference Include="..\..\..\Services\Features\Handbook\Handbook.API.csproj" />
