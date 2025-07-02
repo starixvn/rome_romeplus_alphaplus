@@ -2,14 +2,13 @@ namespace AlphaPlus.CashService.Site.Features.Promotion.Models;
 
 public class PromotionDetails
 {
-    public string Username { get; set; }
-    public string Nickname { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public string PromotionType { get; set; }
-    public DateTime FromDate { get; set; }
-    public DateTime ToDate { get; set; }
-    public decimal BonusAmount { get; set; }
-    public DateTime LastUpdated { get; set; }
-    public int Status { get; set; }
+    public string Username { get; init; }
+    public string Nickname { get; init; }
+    public string FirstName { get; init; }
+    public string LastName { get; init; }
+    public string PromotionType { get; init; }
+    public string DateRange { get; init; }
+    public decimal BonusAmount { get; init; }
+    public DateTime LastUpdated { get; init; }
+    public byte Status { get; init; }
 }

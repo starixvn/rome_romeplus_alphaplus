@@ -204,4 +204,40 @@
   <data name="TransactionHistory" xml:space="preserve">
     <value>交易历史</value>
   </data>
+  <data name="PromotionReport" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PromotionType" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TotalRequest" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TotalRequestApproved" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TotalBonusGiven" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PromotionTitle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TotalRequestRejected" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BonusAmount" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LastUpdated" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value />
+  </data>
 </root>

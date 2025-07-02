@@ -1,6 +1,7 @@
 ﻿namespace AlphaPlus.CashService.Site.Features.Transactions.Services;
 
 using System;
+using AlphaPlus.CashService.Site.Features.Shared;
 using AlphaPlus.Shared.AppResources.CashServices;
 using AlphaPlus.Shared.AppResources.Common;
 using AlphaPlus.Shared.AppResources.Report;
@@ -61,9 +62,9 @@ public class TransactionHistoryWorkbook(IWebHostEnvironment webHostEnvironment) 
 
         return parts switch
         {
-            [var accountNumber] => accountNumber,
+        [var accountNumber] => accountNumber,
 
-            [_, var accountNumber] => accountNumber,
+        [_, var accountNumber] => accountNumber,
 
             _ => string.Empty
         };

@@ -72,75 +72,7 @@ public static class PromotionEndpoints
 
         group.MapGet("/reports", () =>
         {
-            var reports = new[]
-            {
-                new PromotionReport
-                {
-                    PromotionId = 1,
-                    PromotionTitle = "New Year Sale",
-                    PromotionType = "Discount",
-                    FromDate = new DateTime(2023, 1, 1),
-                    ToDate = new DateTime(2023, 1, 31),
-                    TotalRequest = 100,
-                    TotalApproved = 80,
-                    TotalRejected = 20,
-                    TotalBonus = 5000.00m,
-                    Status = 1
-                },
-                new PromotionReport
-                {
-                    PromotionId = 2,
-                    PromotionTitle = "Summer Special",
-                    PromotionType = "Cashback",
-                    FromDate = new DateTime(2023, 6, 1),
-                    ToDate = new DateTime(2023, 6, 30),
-                    TotalRequest = 150,
-                    TotalApproved = 120,
-                    TotalRejected = 30,
-                    TotalBonus = 7500.00m,
-                    Status = 1
-                },
-                new PromotionReport
-                {
-                    PromotionId = 3,
-                    PromotionTitle = "Black Friday Deals",
-                    PromotionType = "Discount",
-                    FromDate = new DateTime(2023, 11, 24),
-                    ToDate = new DateTime(2023, 11, 30),
-                    TotalRequest = 200,
-                    TotalApproved = 180,
-                    TotalRejected = 20,
-                    TotalBonus = 10000.00m,
-                    Status = 1
-                },
-                new PromotionReport
-                {
-                    PromotionId = 4,
-                    PromotionTitle = "Holiday Bonanza",
-                    PromotionType = "Cashback",
-                    FromDate = new DateTime(2023, 12, 1),
-                    ToDate = new DateTime(2023, 12, 31),
-                    TotalRequest = 120,
-                    TotalApproved = 100,
-                    TotalRejected = 20,
-                    TotalBonus = 6000.00m,
-                    Status = 1
-                },
-                new PromotionReport
-                {
-                    PromotionId = 5,
-                    PromotionTitle = "Spring Festival",
-                    PromotionType = "Discount",
-                    FromDate = new DateTime(2023, 3, 1),
-                    ToDate = new DateTime(2023, 3, 31),
-                    TotalRequest = 80,
-                    TotalApproved = 70,
-                    TotalRejected = 10,
-                    TotalBonus = 3000.00m,
-                    Status = 0
-                }
-            };
-            return TypedResults.Ok(reports);
+            return TypedResults.Ok(FakeReport());
         }).WithName("PromotionReport");
 
         group.MapGet("/reports/{id}", (int id) =>
@@ -222,5 +154,45 @@ public static class PromotionEndpoints
                 details);
             return TypedResults.Ok(reports);
         }).WithName("PromotionDetailsReport");
+    }
+
+    private static IEnumerable<PromotionReport> FakeReport()
+    {
+        var reports = new List<PromotionReport>();
+        var random = new Random();
+        var promotionTypes = new[] { "Discount", "Cashback", "Bonus", "Rebate", "Loyalty" };
+        var titles = new[] { "Sale", "Special", "Deal", "Promotion", "Offer", "Bonanza", "Festival", "Extravaganza", "Event", "Campaign" };
+        var prefixes = new[] { "Holiday", "Summer", "Winter", "Spring", "Fall", "New Year", "Christmas", "Easter", "Black Friday", "Cyber Monday", "Weekend", "Monthly", "Annual", "Seasonal", "Limited Time" };
+        var statuses = new[] { 0, 1, 1, 1, 1, 2, 3 }; // Weighted to have more status 1 items
+
+        for (int i = 1; i <= 100; i++)
+        {
+            // Generate random dates within 2023
+            var fromMonth = random.Next(1, 12);
+            var fromDay = random.Next(1, 28);
+            var durationDays = random.Next(7, 31);
+            var fromDate = new DateTime(2023, fromMonth, fromDay);
+            var toDate = fromDate.AddDays(durationDays);
+
+            var totalRequest = random.Next(50, 300);
+            var totalApproved = random.Next(30, totalRequest);
+            var totalRejected = totalRequest - totalApproved;
+
+            reports.Add(new PromotionReport
+            {
+                PromotionId = i,
+                PromotionTitle = $"{prefixes[random.Next(prefixes.Length)]} {titles[random.Next(titles.Length)]} {random.Next(1, 10)}",
+                PromotionType = promotionTypes[random.Next(promotionTypes.Length)],
+                FromDate = fromDate,
+                ToDate = toDate,
+                TotalRequest = totalRequest,
+                TotalApproved = totalApproved,
+                TotalRejected = totalRejected,
+                TotalBonus = Math.Round(random.Next(1000, 15000) * 1.0m, 2),
+                Status = (byte)statuses[random.Next(statuses.Length)]
+            });
+        }
+
+        return reports;
     }
 }

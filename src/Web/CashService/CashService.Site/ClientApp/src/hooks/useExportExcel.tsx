@@ -1,33 +1,25 @@
 import { useCallback } from 'react';
-import { api } from '../services/axios';
+import { axiosInstance } from '../services/axios';
 
-export function useExportExcel(
-  apiUrl: string,
-  formData = undefined,
-  deps: React.DependencyList = [apiUrl]
-) {
+export default function useExportExcel(apiUrl: string, deps: React.DependencyList = [apiUrl]) {
   const download = useCallback(async () => {
-    const { data, error, response }: any = await api.post(apiUrl, formData, {
-      responseType: 'blob',
-    });
-
-    if (error) {
-      console.error('Error exporting excel:', error);
-      return;
-    }
+    const response = await axiosInstance.get(apiUrl, { responseType: 'blob' });
 
     const fileName = response.headers['content-disposition']
       .split('filename=')[1]
       .split(';')[0]
       .replace(/"/g, '');
-    const url = window.URL.createObjectURL(new Blob([data]));
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', fileName);
-    document.body.appendChild(link);
-    link.click();
-    link.parentNode?.removeChild(link);
-    window.URL.revokeObjectURL(url);
+
+    const blob = response.data;
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => window.URL.revokeObjectURL(url), 100);
   }, deps);
 
   return download;

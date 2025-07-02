@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { convertToGMT4 } from '../../../../utils/commonFunctions';
 import { promotionService } from '../../../../services/promotionAPI';
 import LoadingComponent from '../../../../components/LoadingComponent';
@@ -46,6 +46,7 @@ export default function DetailsReportContainer({ promotion, onClickBreadcrumb }:
   const [status, setStatus] = useState<string>('');
   const { detailsReportData, loading }: any = useDetailsReportData(promotion.promotionId);
   const { search, setSearch }: any = useState('');
+  const tableRef = useRef<HTMLTableElement>(null);
 
   return (
     <>
@@ -64,12 +65,13 @@ export default function DetailsReportContainer({ promotion, onClickBreadcrumb }:
             <Search
               promotionTitle={promotion.promotionTitle}
               onClickBreadcrumb={onClickBreadcrumb}
+              tableRef={tableRef}
               search={search}
               setSearch={setSearch}
               onDownload={() => {}}
             />
           </div>
-          <DetailsReportTable data={detailsReportData.promotionDetails} />
+          <DetailsReportTable ref={tableRef} data={detailsReportData.promotionDetails} />
         </>
       )}
     </>

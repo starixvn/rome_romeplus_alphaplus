@@ -2,14 +2,13 @@ namespace AlphaPlus.CashService.Site.Features.Promotion.Models;
 
 public class PromotionReport
 {
-    public int PromotionId { get; set; }
-    public string PromotionTitle { get; set; }
-    public string PromotionType { get; set; }
-    public DateTime FromDate { get; set; }
-    public DateTime ToDate { get; set; }
-    public int TotalRequest { get; set; }
-    public int TotalApproved { get; set; }
-    public int TotalRejected { get; set; }
-    public decimal TotalBonus { get; set; }
-    public int Status { get; set; }
+    public int PromotionId { get; init; }
+    public string PromotionTitle { get; init; }
+    public string PromotionType { get; init; }
+    public string DataRange { get; init; }
+    public int TotalRequest { get; init; }
+    public int TotalApproved { get; init; }
+    public int TotalRejected { get; init; }
+    public decimal TotalBonus { get; init; }
+    public byte Status { get; init; }
 }

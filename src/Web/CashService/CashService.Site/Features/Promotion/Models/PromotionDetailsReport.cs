@@ -1,14 +1,11 @@
 namespace AlphaPlus.CashService.Site.Features.Promotion.Models;
 using System.Collections.Generic;
 
-public class PromotionDetailsReport
+public class PromotionDetailsReport(
+    PromotionDetailsSummary summary,
+    IEnumerable<PromotionDetails> promotionDetails)
 {
-    public PromotionDetailsSummary Summary { get; set; }
-    public IEnumerable<PromotionDetails> Details { get; set; }
+    public PromotionDetailsSummary Summary { get; } = summary;
 
-    public PromotionDetailsReport(PromotionDetailsSummary summary, IEnumerable<PromotionDetails> details)
-    {
-        Summary = summary;
-        Details = details;
-    }
+    public IEnumerable<PromotionDetails> PromotionDetails { get; } = promotionDetails;
 }

@@ -1,6 +1,6 @@
-﻿namespace AlphaPlus.CashService.Site.Features.Transactions.Services;
+﻿using ONEbook.SpreadSheets.BetListNPOI;
 
-using ONEbook.SpreadSheets.BetListNPOI;
+namespace AlphaPlus.CashService.Site.Features.Shared;
 
 public class ReportNpoiWorkbook<T>(IWebHostEnvironment webHostEnvironment) : NpoiWorkbook<T> where T : class
 {

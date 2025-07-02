@@ -1,5 +1,6 @@
 using System.Text.Json;
 using AlphaPlus.CashService.Site.Features.ChatHub;
+using AlphaPlus.CashService.Site.Features.Promotion.Services;
 using AlphaPlus.CashService.Site.Features.Transactions.Services;
 using AlphaPlus.CashService.Site.Helpers;
 using AlphaPlus.Core.Extensions;
@@ -88,6 +89,8 @@ builder.Services.AddAntiforgery(options =>
 });
 
 builder.Services.AddTransient<ITransactionHistoryWorkbook, TransactionHistoryWorkbook>();
+builder.Services.AddScoped<IPromotionReportWorkbook, PromotionReportWorkbook>();
+builder.Services.AddScoped<IPromotionDetailsReportWorkbook, PromotionDetailsReportWorkbook>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

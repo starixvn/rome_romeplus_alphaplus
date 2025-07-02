@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Tippy from '@tippyjs/react';
 import { useTranslation } from 'react-i18next';
 import NoRecordFoundComponent from '../../../../components/NoRecordFoundComponent';
@@ -12,6 +12,8 @@ import { promotionService } from '../../../../services/promotionAPI';
 import LoadingComponent from '../../../../components/LoadingComponent';
 import { IconCopy, IconExcel, IconSearch } from '../../../../components/Icons';
 import MainReportFilter from './MainReportFilter';
+import { copyHtmlToClipboard } from '../../../../utils/sharedUtils';
+import useExportExcel from '../../../../hooks/useExportExcel';
 
 interface PromotionListProps {
   data: any[];
@@ -19,23 +21,27 @@ interface PromotionListProps {
 }
 
 interface SearchProps {
+  tableRef: React.RefObject<HTMLTableElement | null>;
   search: string;
   setSearch: (val: string) => void;
   onExportExcel: () => void;
 }
 
-function ReportTitle({ search, setSearch, onExportExcel }: SearchProps) {
+function ReportTitle({ tableRef, search, setSearch, onExportExcel }: SearchProps) {
   const { t: tGlobal } = useTranslation('global');
   const [textCopy, setTextCopy] = useState(tGlobal('copy'));
+  const downloadExcel = useExportExcel('ExportMainReport');
 
   async function handleExportExcel() {
+    await downloadExcel();
     onExportExcel();
   }
 
-  function handleCopy() {
-    //navigator.clipboard.writeText(search);
-    setTextCopy(tGlobal('copied'));
-    setTimeout(() => setTextCopy(tGlobal('copy')), 3000);
+  async function handleCopy() {
+    await copyHtmlToClipboard(tableRef.current, () => {
+      setTextCopy(tGlobal('copied'));
+      setTimeout(() => setTextCopy(tGlobal('copy')), 3000);
+    });
   }
 
   return (
@@ -147,14 +153,23 @@ function ReportRow({ idx, item, onClickPromotionTitle }: any) {
 
 function ReportTable({ data, onClickPromotionTitle }: PromotionListProps) {
   const [search, setSearch] = useState<string>('');
+  const tableRef = useRef<HTMLTableElement>(null);
 
   return (
     <>
       <div className="search-section w-full border border-[var(--table-border-color)] border-b-0 p-[6px]">
-        <ReportTitle search={search} setSearch={setSearch} onExportExcel={() => {}} />
+        <ReportTitle
+          tableRef={tableRef}
+          search={search}
+          setSearch={setSearch}
+          onExportExcel={() => {}}
+        />
       </div>
       <div className="table-fixed-header table-fixed-body min-h-0">
-        <table className="w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px] border-l-[0px]">
+        <table
+          ref={tableRef}
+          className="w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px] border-l-[0px]"
+        >
           <thead className="z-11!">
             <tr>
               <th className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-header-background)] z-11">

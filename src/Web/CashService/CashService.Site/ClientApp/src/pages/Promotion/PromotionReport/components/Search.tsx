@@ -1,11 +1,14 @@
 import { useState, useRef, useEffect } from 'react';
-import { IconCopy, IconExcel, IconSearch } from '../../../../components/Icons';
 import Tippy from '@tippyjs/react';
 import { useTranslation } from 'react-i18next';
+import { IconCopy, IconExcel, IconSearch } from '../../../../components/Icons';
+import { copyHtmlToClipboard } from '../../../../utils/sharedUtils';
+import useExportExcel from '../../../../hooks/useExportExcel';
 
 interface SearchProps {
   promotionTitle: string;
   onClickBreadcrumb: () => void;
+  tableRef: React.RefObject<HTMLTableElement | null>;
   search: string;
   setSearch: (val: string) => void;
   onDownload: () => void;
@@ -14,6 +17,7 @@ interface SearchProps {
 export default function Search({
   promotionTitle,
   onClickBreadcrumb,
+  tableRef,
   search,
   setSearch,
   onDownload,
@@ -22,15 +26,19 @@ export default function Search({
   const [textCopy, setTextCopy] = useState(tGlobal('copy'));
   const [isSearchActive, setIsSearchActive] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
+  const downloadExcel = useExportExcel('ExportDetailsReport');
 
-  const handleDownload = async () => {
+  async function handleDownload() {
+    await downloadExcel();
     onDownload();
-  };
+  }
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(search);
-    setTextCopy(tGlobal('copied'));
-  };
+  async function handleCopy() {
+    await copyHtmlToClipboard(tableRef.current, () => {
+      setTextCopy(tGlobal('copied'));
+      setTimeout(() => setTextCopy(tGlobal('copy')), 3000);
+    });
+  }
 
   const handleSearchClick = () => {
     setIsSearchActive(!isSearchActive);

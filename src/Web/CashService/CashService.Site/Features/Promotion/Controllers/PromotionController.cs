@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
 using Shared.Filters;
+using AlphaPlus.CashService.Site.Features.Promotion.Models;
+using AlphaPlus.CashService.Site.Features.Promotion.Services;
 
 [SiteAuthorizationFilter(PageAccessType.CashPromotion)]
 public class PromotionController(
@@ -15,10 +17,14 @@ public class PromotionController(
     IUserSession userSession,
     IAntiforgery antiforgery,
     HttpClient httpClient,
-    ICustomerService customerService) : SiteBaseController(userSession, antiforgery, httpClient, customerService)
+    ICustomerService customerService,
+    IPromotionReportWorkbook promotionReportWorkbook,
+    IPromotionDetailsReportWorkbook promotionDetailsReportWorkbook) : SiteBaseController(userSession, antiforgery, httpClient, customerService)
 {
     //private const string CustomerDatelimit = "CustomerDateLimit";
     private readonly string _apiBaseUrl = configuration["CashService:APIUrl"];
+    private readonly IPromotionReportWorkbook promotionReportWorkbook = promotionReportWorkbook;
+    private readonly IPromotionDetailsReportWorkbook promotionDetailsReportWorkbook = promotionDetailsReportWorkbook;
 
     public IActionResult Index() => View();
 
@@ -36,13 +42,31 @@ public class PromotionController(
     public async Task<IActionResult> GetMainReport()
     {
         var url = $"{_apiBaseUrl}/promotions/reports";
-        return Json(await _httpClient.GetFromJsonAsync<object>(url));
+        return Json(await _httpClient.GetFromJsonAsync<PromotionReport[]>(url));
     }
 
     public async Task<IActionResult> GetDetailsReport(int promotionId)
     {
         var url = $"{_apiBaseUrl}/promotions/reports/{promotionId}";
         return Json(await _httpClient.GetFromJsonAsync<object>(url));
+    }
+
+    public async Task<IActionResult> ExportMainReport()
+    {
+        var url = $"{_apiBaseUrl}/promotions/reports";
+        var reportData = await _httpClient.GetFromJsonAsync<PromotionReport[]>(url);
+        var excelFileViewModel = promotionReportWorkbook.BuildExcelFile(reportData);
+
+        return File(excelFileViewModel.Content, excelFileViewModel.ContentType, excelFileViewModel.Name);
+    }
+
+    public async Task<IActionResult> ExportDetailsReport()
+    {
+        var url = $"{_apiBaseUrl}/promotions/reports/{1}";
+        var reportData = await _httpClient.GetFromJsonAsync<PromotionDetailsReport>(url);
+        var excelFileViewModel = promotionDetailsReportWorkbook.BuildExcelFile(reportData);
+
+        return File(excelFileViewModel.Content, excelFileViewModel.ContentType, excelFileViewModel.Name);
     }
 
     public async Task<IActionResult> GetPromotion(int promotionTypeId, int statusId, CancellationToken cancellationToken)

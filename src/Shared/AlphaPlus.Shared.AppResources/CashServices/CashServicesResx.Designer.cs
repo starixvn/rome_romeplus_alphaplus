@@ -88,6 +88,33 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Approved.
+        /// </summary>
+        public static string Approved {
+            get {
+                return ResourceManager.GetString("Approved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bonus Amount.
+        /// </summary>
+        public static string BonusAmount {
+            get {
+                return ResourceManager.GetString("BonusAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Range.
+        /// </summary>
+        public static string DateRange {
+            get {
+                return ResourceManager.GetString("DateRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exceeds the daily withdrawal limit..
         /// </summary>
         public static string ExceedsTheDailyWithdrawalLimit {
@@ -142,6 +169,15 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last Updated .
+        /// </summary>
+        public static string LastUpdated {
+            get {
+                return ResourceManager.GetString("LastUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Member’s cash balance is insufficient..
         /// </summary>
         public static string MemberCashBalanceIsInsufficient {
@@ -165,6 +201,42 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         public static string ModelValidationFailed {
             get {
                 return ResourceManager.GetString("ModelValidationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Promotion Report.
+        /// </summary>
+        public static string PromotionReport {
+            get {
+                return ResourceManager.GetString("PromotionReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Promotion Title.
+        /// </summary>
+        public static string PromotionTitle {
+            get {
+                return ResourceManager.GetString("PromotionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Promotion Type.
+        /// </summary>
+        public static string PromotionType {
+            get {
+                return ResourceManager.GetString("PromotionType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
             }
         }
         
@@ -201,6 +273,42 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         public static string ToIsRequired {
             get {
                 return ResourceManager.GetString("ToIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Bonus Given .
+        /// </summary>
+        public static string TotalBonusGiven {
+            get {
+                return ResourceManager.GetString("TotalBonusGiven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Request.
+        /// </summary>
+        public static string TotalRequest {
+            get {
+                return ResourceManager.GetString("TotalRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Request Approved.
+        /// </summary>
+        public static string TotalRequestApproved {
+            get {
+                return ResourceManager.GetString("TotalRequestApproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Request Rejected.
+        /// </summary>
+        public static string TotalRequestRejected {
+            get {
+                return ResourceManager.GetString("TotalRequestRejected", resourceCulture);
             }
         }
         
