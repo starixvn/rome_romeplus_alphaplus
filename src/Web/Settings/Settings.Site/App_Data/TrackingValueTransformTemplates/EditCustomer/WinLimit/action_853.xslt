@@ -31,7 +31,7 @@
           <xsl:value-of select="xslLogFormat:GetLogResource('DailyAutoReset')" />
         </td>
       </tr>
-      <xsl:for-each select="winlosslimit[count(.|key('groupid',@groupid)[1])=1]">
+      <xsl:for-each select="winlimit[count(.|key('groupid',@groupid)[1])=1]">
         <tr class="headerSportTypeDetail">
           <td colspan="3">
             <xsl:value-of select="xslLogFormat:GetProductGroupName(@groupid)" />
