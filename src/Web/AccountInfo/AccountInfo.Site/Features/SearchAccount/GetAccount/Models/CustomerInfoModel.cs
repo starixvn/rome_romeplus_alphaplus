@@ -1,4 +1,5 @@
 using AlphaPlus.AccountInfo.Site.Features.Shared;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Models;
 
@@ -136,5 +137,5 @@ public class CustomerInfoModel
 
     public bool IsDirectMemberOfSuper => AgentId == DirectMemberAgentIds.Super;
 
-    public bool IsCashMember => ServiceType == 1;
+    public bool IsCashMember => RoleId == UserLevel.Member.Value && ServiceType == 1;
 }
