@@ -81,7 +81,7 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
     {
         var criteria = new GetSetupCheckListCriteria(custId);
         // await repository.ExecuteAsync(criteria);
-        return new SetupCheckListModel(true, true, true);
+        return new SetupCheckListModel(true, true, false);
         // return new SetupCheckListModel(criteria.CompleteDepositMethods, criteria.CompleteWithdrawalMethods, criteria.CompleteLineID);
     }
 }

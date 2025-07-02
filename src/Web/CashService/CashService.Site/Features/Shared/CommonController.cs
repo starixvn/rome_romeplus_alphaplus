@@ -21,8 +21,8 @@ namespace AlphaPlus.CashService.Site.Features.Shared
 
         [HttpGet]
         public async Task<IActionResult> GetSetupChecklist(CancellationToken cancellationToken = default)
-        {
-            var url = $"{_apiBaseUrl}/api/common/setup-checklist/{_userSession.CustId}";
+        { 
+            var url = $"{_apiBaseUrl}/common/setup-checklist/{_userSession.CustId}";
             var response = await _httpClient.GetAsync(url, cancellationToken);
             response.EnsureSuccessStatusCode();
             var setupChecklist = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);

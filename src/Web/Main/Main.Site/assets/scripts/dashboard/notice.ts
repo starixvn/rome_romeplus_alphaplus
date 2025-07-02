@@ -89,6 +89,6 @@
 }
 
 $(() => {
-    const notice = new NoticeMessage($);
+    const notice = new NoticeMessage($, window.top);
     notice.loadInfo('#notice', notice.registerEvents);
 })

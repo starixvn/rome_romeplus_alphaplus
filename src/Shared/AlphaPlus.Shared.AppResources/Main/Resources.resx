@@ -934,4 +934,28 @@ Note: Please change your &lt;b&gt;password&lt;/b&gt; the first time you click 'A
   <data name="HighlightPopupNewFeatureIntro6" xml:space="preserve">
     <value>Want to see how it works?</value>
   </data>
+  <data name="CashServiceSetupChecklist_Row1" xml:space="preserve">
+    <value>Steps to share your unique sign-up link with your members.</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row2" xml:space="preserve">
+    <value>Go to &lt;a class="lnk-manage-payments" target="main" href="{0}"&gt;Manage Payments&lt;/a&gt; to set up your Payment Gateway or Bank Account</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row3" xml:space="preserve">
+    <value>&lt;div class="chk-deposit-methods"&gt;&lt;/div&gt;Set up and Enable your deposit methods</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row4" xml:space="preserve">
+    <value>&lt;div class="chk-withdrawal-methods"&gt;&lt;/div&gt;Set up and Enable your withdrawal methods</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row5" xml:space="preserve">
+    <value>Go to &lt;a class="lnk-member-site-management" target="main" href="{0}"&gt;Member Site Management&lt;/a&gt;</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row6" xml:space="preserve">
+    <value>&lt;div class="chk-line-id"&gt;&lt;/div&gt;Fill in your LINE ID and share your link</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row7" xml:space="preserve">
+    <value>Ensure your Available Credit is sufficient for deposits and withdrawals</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row8" xml:space="preserve">
+    <value>Need help? Please read our guide.</value>
+  </data>
 </root>

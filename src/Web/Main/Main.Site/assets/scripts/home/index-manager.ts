@@ -53,7 +53,7 @@ var indexManager = {
         checkExistFeedback: alpha.urls.messageRootPath + 'Feedback/CheckExist?id=',
         feedbackFunction: alpha.urls.messageRootPath + 'Feedback/Function?id=',
         winningThresholdSurvey: alpha.urls.messageRootPath + 'Feedback/WinningThresholdSurvey',
-        cashServiceSetupChecklist: alpha.urls.cashServiceRootPath + 'Common/SetupChecklist'
+        cashServiceSetupChecklist: alpha.urls.cashServiceRootPath + 'Common/GetSetupChecklist'
     },
 
     init: function () {
@@ -607,11 +607,76 @@ var indexManager = {
 
         $.get(indexManager.urls.cashServiceSetupChecklist, function (result) {
             var checklistDiv = $('#cash-service-checklist');
+            if(result.isCompleteAll) {
+                checklistDiv.addClass('hide');
+                return;
+            }
+
+            checklistDiv.removeClass('hide');
             var content = checklistDiv.find('.checklist-content');
+
+            if(result.completeDepositMethods) {
+                content.find('.chk-deposit-methods').addClass('complete');
+            } else {
+                content.find('.chk-deposit-methods').removeClass('complete');
+            }
+
+            if(result.completeWithdrawalMethods) {
+                content.find('.chk-withdrawal-methods').addClass('complete');
+            } else {
+                content.find('.chk-withdrawal-methods').removeClass('complete');
+            }
+
+            if(result.completeLineID) {
+                content.find('.chk-line-id').addClass('complete');
+            } else {
+                content.find('.chk-line-id').removeClass('complete');
+            }
+
+            checklistDiv.find('#ico-checklist').click(() => {
+                if(content.hasClass('hide')) {
+                    content.removeClass('hide');
+                } else {
+                    content.addClass('hide');
+                }
+            });
+
+            checklistDiv.find('.btn-help').click(() => {
+                window.open(alpha.urls.howToUseRootPath + 'HandbookDefault/Index', '_blank');
+            });
+
+            // Bind click event on main frame to hide cash-service-checklist
+            indexManager.domElements.mainFrame.on('load', function() {
+                try {
+                    const iframeWindow = this.contentWindow || this.contentDocument;
+                    if (iframeWindow && iframeWindow.document) {
+                        $(iframeWindow.document).on('click', (e) => {
+                            const checklistDiv = $('#cash-service-checklist');
+                            if (!checklistDiv.is(e.target) && checklistDiv.has(e.target).length === 0) {
+                                indexManager.hideCashServiceChecklist();
+                            }
+                        });
+                    }
+                } catch (e) {
+                    // Handle cross-origin restrictions
+                }
+            });
+
+            // Also bind on window for cases where main frame might not be available
+            $(window).on('click', (e) => {
+                const checklistDiv = $('#cash-service-checklist');
+                if (!checklistDiv.is(e.target) && checklistDiv.has(e.target).length === 0) {
+                    indexManager.hideCashServiceChecklist();
+                }
+            });
+
             if(openContent) {
                 content.removeClass('hide');
             }
         });
+    },
+    hideCashServiceChecklist: function () {
+        $('#cash-service-checklist .checklist-content').addClass('hide');
     }
 };
 

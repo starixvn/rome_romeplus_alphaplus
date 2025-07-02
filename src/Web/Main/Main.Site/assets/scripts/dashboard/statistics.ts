@@ -49,6 +49,6 @@
 }
 
 $(() => {
-    const stats = new Statistics($);
+    const stats = new Statistics($, window.top);
     stats.loadInfo('#stats', stats.registerEvents);
 });

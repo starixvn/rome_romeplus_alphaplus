@@ -16,4 +16,5 @@ public class SetupCheckListModel
     public bool CompleteDepositMethods { get; set; }
     public bool CompleteWithdrawalMethods { get; set; }
     public bool CompleteLineID { get; set; }
+    public bool IsCompleteAll => CompleteDepositMethods && CompleteWithdrawalMethods && CompleteLineID;
 } 
