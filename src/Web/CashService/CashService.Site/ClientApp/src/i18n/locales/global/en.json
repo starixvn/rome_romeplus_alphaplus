@@ -84,7 +84,7 @@
   "uploadImage": "Click to upload",
   "dragAndDrop": "or drag and drop",
   "imageFormat": "Upload jpeg, jpg, png",
-  "maxSize": "Max 1 MB",
+  "maxSize": "Max {0} MB",
   "exportToExcel": "Export to Excel",
   "copied": "Copied",
   "copy": "Copy",
@@ -107,7 +107,7 @@
     "days": "days",
     "selected": "Selected",
     "noRangeSelected": "No range selected"
-  },  
+  },
   "cashServiceDisabled": "Cash Service is disabled",
   "info": "Info"
 }

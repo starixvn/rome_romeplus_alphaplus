@@ -2,6 +2,7 @@ import React from 'react';
 import { LabelTitleComponent } from '../../../../../components/Title/LabelTitleComponent';
 import { ErrorMessageComponent, SuccessMessageComponent } from '../../../../../components/Message';
 import UploadImage from '../../../../Transactions/Components/UploadImage';
+import { ButtonTabComponent } from '../../../../../components/Buttons/ButtonTabComponent';
 
 export interface PromotionLangFields {
   title: string;
@@ -24,33 +25,32 @@ export const LanguageTabs: React.FC<{
   languages: { key: string; label: string }[];
   activeLang: string;
   setActiveLang: (lang: string) => void;
-}> = ({ languages, activeLang, setActiveLang }) => (
-  <div className="flex gap-2 mb-4">
-    {languages.map((lang) => (
-      <button
-        key={lang.key}
-        className={`px-4 py-2 rounded-t font-semibold border-b-2 ${
-          activeLang === lang.key
-            ? 'bg-[#1967D2] text-white border-[#1967D2]'
-            : 'bg-[#F5F5F5] text-[#333] border-transparent'
-        }`}
-        onClick={() => setActiveLang(lang.key)}
-        type="button"
-      >
-        {lang.label}
-      </button>
-    ))}
-  </div>
-);
+}> = ({ languages, activeLang, setActiveLang }) => {
+  return (
+    <div className="flex gap-2 mb-4">
+      {languages.map((lang) => (
+        <ButtonTabComponent
+          key={lang.key}
+          text={lang.label}
+          onClick={() => setActiveLang(lang.key)}
+          isActive={activeLang === lang.key}
+          type="button"
+        />
+      ))}
+    </div>
+  );
+};
 
 export const TitleField: React.FC<{
   value: string;
   onChange: (v: string) => void;
-}> = ({ value, onChange }) => (
+  lang: string;
+}> = ({ value, onChange, lang }) => (
   <div className="mb-4">
-    <LabelTitleComponent text="Title" required />
+    <LabelTitleComponent text={`Title (${lang})`} required />
     <input
       className="control-field w-full"
+      key={`title-${lang}`}
       value={value}
       onChange={(e) => onChange(e.target.value)}
       placeholder=""
@@ -61,21 +61,29 @@ export const TitleField: React.FC<{
 export const BannerField: React.FC<{
   prevBanner: string | null;
   setBanner: (f: File | string | null) => void;
-}> = ({ prevBanner, setBanner }) => (
+  lang: string;
+}> = ({ prevBanner, setBanner, lang }) => (
   <div className="mb-4">
-    <LabelTitleComponent text="Banner" required />
-    <UploadImage setImage={setBanner} prevImage={prevBanner} />
+    <LabelTitleComponent text={`Banner (${lang})`} required />
+    <UploadImage
+      setImage={setBanner}
+      prevImage={prevBanner}
+      maxSize={500}
+      customClassName="w-full h-[300px]"
+    />
   </div>
 );
 
 export const ContentField: React.FC<{
   value: string;
   onChange: (v: string) => void;
-}> = ({ value, onChange }) => (
+  lang: string;
+}> = ({ value, onChange, lang }) => (
   <div className="mb-4">
-    <LabelTitleComponent text="Content" required />
+    <LabelTitleComponent text={`Content (${lang})`} required />
     <div className="border border-[var(--border-control)] rounded">
       <textarea
+        key={`content-${lang}`}
         className="w-full min-h-[120px] p-2 resize-y border-0 focus:ring-0 focus:outline-none"
         value={value}
         onChange={(e) => onChange(e.target.value)}
@@ -103,14 +111,20 @@ const PromotionInfo: React.FC<PromotionInfoProps> = ({
   return (
     <div className="bg-white max-w-3xl pt-[16px]">
       <LanguageTabs languages={languages} activeLang={activeLang} setActiveLang={setActiveLang} />
-      <TitleField value={langFields.title} onChange={(v) => setValue(activeLang, 'title', v)} />
+      <TitleField
+        value={langFields.title}
+        onChange={(v) => setValue(activeLang, 'title', v)}
+        lang={activeLang}
+      />
       <BannerField
         prevBanner={langFields.prevBanner}
         setBanner={(f) => setValue(activeLang, 'banner', f)}
+        lang={activeLang}
       />
       <ContentField
         value={langFields.content}
         onChange={(v) => setValue(activeLang, 'content', v)}
+        lang={activeLang}
       />
       <ErrorMessageComponent message={error || null} />
       <SuccessMessageComponent message={success || null} />

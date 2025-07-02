@@ -1,12 +1,7 @@
 {
     "SecurityCode": {
         "IsActive": true,
-        "Paths": [
-            "MemberSites",
-            "Payments",
-            "Transactions",
-            "Promotions"
-        ],
+        "Paths": ["MemberSites", "Payments", "Transactions", "Promotions", "Promotions/Pending"],
         "BetListsPaths": [],
         "StatementPaths": [],
         "Sites": [],

@@ -31,6 +31,7 @@ const PROMOTION_TYPES = [
 export const LANGUAGES = [
   { key: 'en', label: 'English (default)' },
   { key: 'th', label: 'ภาษาไทย' },
+  { key: 'vi', label: 'Tiếng Việt' },
 ];
 
 function convertProductToTreeNodeOption(products: Product[]): TreeNodeOption[] {

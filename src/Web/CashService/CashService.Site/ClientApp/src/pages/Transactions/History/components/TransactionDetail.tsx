@@ -103,6 +103,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
           onClose();
         }, 3000);
       } else {
+        setReverting(false);
         setRevertAlert({ type: 'error', message: response.message });
       }
     } catch (err) {

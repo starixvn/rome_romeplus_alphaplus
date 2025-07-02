@@ -84,7 +84,7 @@
   "uploadImage": "クリックしてアップロード",
   "dragAndDrop": "またはドラッグ＆ドロップ",
   "imageFormat": "jpeg、jpg、pngをアップロード",
-  "maxSize": "最大1 MB",
+  "maxSize": "最大{0} MB",
   "exportToExcel": "Excelにエクスポート",
   "copied": "コピーしました",
   "copy": "コピー",

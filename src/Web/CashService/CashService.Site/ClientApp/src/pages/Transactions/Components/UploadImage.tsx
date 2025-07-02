@@ -6,11 +6,19 @@ interface UploadImageProps {
   setImage: (image: File | null) => void;
   prevImage?: string | null;
   disabled?: boolean;
+  customClassName?: string;
+  maxSize?: number;
 }
 
 const ACCEPTED_FILE_TYPES = '.jpeg,.jpg,.png';
 
-const UploadImage: React.FC<UploadImageProps> = ({ setImage, prevImage, disabled = false }) => {
+const UploadImage: React.FC<UploadImageProps> = ({
+  setImage,
+  prevImage,
+  disabled = false,
+  customClassName,
+  maxSize = 1,
+}) => {
   const { t: tGlobal } = useTranslation('global');
 
   const [imageUrl, setImageUrl] = useState<string | null>(
@@ -124,37 +132,36 @@ const UploadImage: React.FC<UploadImageProps> = ({ setImage, prevImage, disabled
         <span className="text-[110%]">{tGlobal('dragAndDrop')}</span>
       </p>
       <span>{tGlobal('imageFormat')}</span>
-      <span className="font-[500]">({tGlobal('maxSize')})</span>
+      <span className="font-[500]">({tGlobal('maxSize').replace('{0}', maxSize.toString())})</span>
     </div>
   );
 
   return (
-    
-      <div className={`w-[350px] max-[768px]:w-[250px] max-[768px]:h-[200px] border-[2px] border-dashed border-[#0b599c] dark:border-[#459be5] max-[768px]:mx-auto a ${
-          isDragging ? ' bg-[#D3DFEC] dark:bg-[#303740]' : 'border-[#0b599c] dark:border-[#459be5]'
-        } rounded-[5px] flex flex-col items-center justify-center relative`}
-        onDrop={handleDrop}
-        onDragOver={(e) => handleDragEvents(e, true)}
-        onDragEnter={(e) => handleDragEvents(e, true)}
-        onDragLeave={(e) => handleDragEvents(e, false)}
-      >
-        {imageUrl ? renderImagePreview() : renderUploadPlaceholder()}
-        <input
-          id="image-upload"
-          type="file"
-          accept={ACCEPTED_FILE_TYPES}
-          onChange={handleImageUpload}
-          className="hidden"
-          disabled={disabled}
-        />
-        <label
-          htmlFor="image-upload"
-          className={`absolute inset-0 w-full h-full ${
-            imageUrl ? 'opacity-0 z-0' : 'opacity-0 cursor-pointer z-10'
-          }`}
-        />
-      </div>
-   
+    <div
+      className={`${customClassName ? customClassName : 'w-[350px]'}  max-[768px]:w-[250px] max-[768px]:h-[200px] border-[2px] border-dashed border-[#0b599c] dark:border-[#459be5] max-[768px]:mx-auto a ${
+        isDragging ? ' bg-[#D3DFEC] dark:bg-[#303740]' : 'border-[#0b599c] dark:border-[#459be5]'
+      } rounded-[5px] flex flex-col items-center justify-center relative`}
+      onDrop={handleDrop}
+      onDragOver={(e) => handleDragEvents(e, true)}
+      onDragEnter={(e) => handleDragEvents(e, true)}
+      onDragLeave={(e) => handleDragEvents(e, false)}
+    >
+      {imageUrl ? renderImagePreview() : renderUploadPlaceholder()}
+      <input
+        id="image-upload"
+        type="file"
+        accept={ACCEPTED_FILE_TYPES}
+        onChange={handleImageUpload}
+        className="hidden"
+        disabled={disabled}
+      />
+      <label
+        htmlFor="image-upload"
+        className={`absolute inset-0 w-full h-full ${
+          imageUrl ? 'opacity-0 z-0' : 'opacity-0 cursor-pointer z-10'
+        }`}
+      />
+    </div>
   );
 };
 

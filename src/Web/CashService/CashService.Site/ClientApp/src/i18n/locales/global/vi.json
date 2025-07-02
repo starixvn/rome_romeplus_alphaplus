@@ -84,7 +84,7 @@
   "uploadImage": "Nhấp để tải lên",
   "dragAndDrop": "hoặc kéo và thả",
   "imageFormat": "Tải lên jpeg, jpg, png",
-  "maxSize": "Tối đa 1 MB",
+  "maxSize": "Tối đa {0} MB",
   "exportToExcel": "Xuất ra Excel",
   "copied": "Đã sao chép",
   "copy": "Sao chép",

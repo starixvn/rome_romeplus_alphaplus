@@ -2,7 +2,11 @@ import React from 'react';
 import { ButtonComponentProps } from './types';
 import './ButtonComponents.scss';
 
-export const ButtonTabActiveComponent: React.FC<ButtonComponentProps> = ({ text, onClick, type }) => {
+export const ButtonTabActiveComponent: React.FC<ButtonComponentProps> = ({
+  text,
+  onClick,
+  type,
+}) => {
   return (
     <button
       type={type}
@@ -14,7 +18,11 @@ export const ButtonTabActiveComponent: React.FC<ButtonComponentProps> = ({ text,
   );
 };
 
-export const ButtonTabInactiveComponent: React.FC<ButtonComponentProps> = ({ text, onClick, type }) => {
+export const ButtonTabInactiveComponent: React.FC<ButtonComponentProps> = ({
+  text,
+  onClick,
+  type,
+}) => {
   return (
     <button
       type={type}
@@ -26,10 +34,15 @@ export const ButtonTabInactiveComponent: React.FC<ButtonComponentProps> = ({ tex
   );
 };
 
-export const ButtonTabComponent: React.FC<ButtonComponentProps> = ({ text, onClick, isActive, type }) => {
+export const ButtonTabComponent: React.FC<ButtonComponentProps> = ({
+  text,
+  onClick,
+  isActive,
+  type,
+}) => {
   return isActive ? (
     <ButtonTabActiveComponent text={text} onClick={onClick} type={type} />
   ) : (
     <ButtonTabInactiveComponent text={text} onClick={onClick} type={type} />
   );
-}; 
+};

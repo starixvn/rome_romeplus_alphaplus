@@ -84,7 +84,7 @@
   "uploadImage": "點擊上傳",
   "dragAndDrop": "或拖放",
   "imageFormat": "上傳 jpeg、jpg、png",
-  "maxSize": "最大 1 MB",
+  "maxSize": "最大 {0} MB",
   "exportToExcel": "匯出到 Excel",
   "copied": "已複製",
   "copy": "複製",
