@@ -6,15 +6,15 @@ public class SetupCheckListModel
     {
     }
 
-    public SetupCheckListModel(bool completeDepositMethods, bool completeWithdrawalMethods, bool completeLineID)
+    public SetupCheckListModel(bool hasDepositMethods, bool hasWithdrawalMethods, bool hasLineID)
     {
-        CompleteDepositMethods = completeDepositMethods;
-        CompleteWithdrawalMethods = completeWithdrawalMethods;
-        CompleteLineID = completeLineID;
+        HasDepositMethods = hasDepositMethods;
+        HasWithdrawalMethods = hasWithdrawalMethods;
+        HasLineID = hasLineID;
     }
 
-    public bool CompleteDepositMethods { get; set; }
-    public bool CompleteWithdrawalMethods { get; set; }
-    public bool CompleteLineID { get; set; }
-    public bool IsCompleteAll => CompleteDepositMethods && CompleteWithdrawalMethods && CompleteLineID;
+    public bool HasDepositMethods { get; set; }
+    public bool HasWithdrawalMethods { get; set; }
+    public bool HasLineID { get; set; }
+    public bool IsCompleteAll => HasDepositMethods && HasWithdrawalMethods && HasLineID;
 } 

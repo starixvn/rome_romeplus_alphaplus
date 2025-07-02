@@ -615,19 +615,19 @@ var indexManager = {
             checklistDiv.removeClass('hide');
             var content = checklistDiv.find('.checklist-content');
 
-            if(result.completeDepositMethods) {
+            if(result.hasDepositMethods) {
                 content.find('.chk-deposit-methods').addClass('complete');
             } else {
                 content.find('.chk-deposit-methods').removeClass('complete');
             }
 
-            if(result.completeWithdrawalMethods) {
+            if(result.hasWithdrawalMethods) {
                 content.find('.chk-withdrawal-methods').addClass('complete');
             } else {
                 content.find('.chk-withdrawal-methods').removeClass('complete');
             }
 
-            if(result.completeLineID) {
+            if(result.hasLineID) {
                 content.find('.chk-line-id').addClass('complete');
             } else {
                 content.find('.chk-line-id').removeClass('complete');
