@@ -18,6 +18,8 @@
           <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
         </td>
       </tr>
+      </table>
+      <table class="tblDesc">
       <tr class="headerDetail" style="text-align:center;">
         <td>
           <xsl:value-of select="xslLogFormat:GetLogResource('product')" />
@@ -31,7 +33,7 @@
       </tr>
       <xsl:for-each select="winlosslimit[count(.|key('groupid',@groupid)[1])=1]">
         <tr class="headerSportTypeDetail">
-          <td colspan="4">
+          <td colspan="3">
             <xsl:value-of select="xslLogFormat:GetProductGroupName(@groupid)" />
           </td>
         </tr>
