@@ -358,7 +358,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
             <ButtonCancelComponent text={tPaymentProviderSettings('setUpLater')} onClick={onClose} type='button' />
             <ButtonApplyComponent
               text={isLoading ? tGlobal('loading') : tGlobal('update')}
-              type='submit'
+              type='button'
               onClick={() => onSubmit({ preventDefault: () => {} } as React.FormEvent)}
               disabled={isLoading || allMethodsInactive || isBlockAction || !isCashServiceEnabled}
               title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}

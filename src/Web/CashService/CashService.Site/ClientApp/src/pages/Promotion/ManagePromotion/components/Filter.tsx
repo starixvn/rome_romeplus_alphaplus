@@ -34,8 +34,8 @@ const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
   };
 
   return (
-    <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
-      <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
+    <div className="flex flex-wrap w-full">
+      <div className="w-[190px] mr-[12px] mb-[12px]">
         <div className="form-group">
           <LabelTitleComponent text="Promotion Type" />
           <CustomDropdown
@@ -47,7 +47,7 @@ const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
         </div>
       </div>
 
-      <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
+      <div className="w-[190px] mr-[12px] mb-[12px]">
         <div className="form-group">
           <LabelTitleComponent text="Status" />
           <CustomDropdown

@@ -325,6 +325,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
             <ButtonCancelComponent text={tGlobal('cancel')} onClick={onClose} type='button' />
             <ButtonApplyComponent
               text={tGlobal('save')}
+              type='button'
               onClick={() => onSubmit({ preventDefault: () => {} } as React.FormEvent)}
               disabled={isLoading || allMethodsInactive || isBlockAction || !isCashServiceEnabled}
               title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}

@@ -314,24 +314,20 @@ const TransactionList: React.FC<TransactionListProps> = ({
           <strong className="font-bold">Error!</strong>
           <span className="block sm:inline"> {error}</span>
         </div>
-      )}
-
-      <div className="filters-container mb-[5px]">
-        <Filters
-          dateRange={apiParams.dateRange}
-          status={apiParams.status}
-          column={columnFilter}
-          account={apiParams.account}
-          paymentInformations={paymentInformations}
-          transactionType={transactionType}
-          onDateRangeChange={handleDateRangeChange}
-          onStatusChange={handleStatusChange}
-          onColumnChange={handleColumnChange}
-          onAccountChange={handleAccountChange}
-        />
-      </div>
-
-      <div className="search-section w-full border border-[var(--table-border-color)] border-b-0 p-[6px]">
+      )}    
+      <Filters
+        dateRange={apiParams.dateRange}
+        status={apiParams.status}
+        column={columnFilter}
+        account={apiParams.account}
+        paymentInformations={paymentInformations}
+        transactionType={transactionType}
+        onDateRangeChange={handleDateRangeChange}
+        onStatusChange={handleStatusChange}
+        onColumnChange={handleColumnChange}
+        onAccountChange={handleAccountChange}
+      />  
+      <div className="w-full border border-[var(--table-border-color)] border-b-0 p-[6px]">
         <Search
           value={localSearchText}
           onChange={handleLocalSearchChange}
