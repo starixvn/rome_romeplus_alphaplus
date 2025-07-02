@@ -19,6 +19,7 @@ public class RegisterCashMemberCommand : INonQueryCommand
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; } = string.Empty;
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "<Pending>")]
     public RegisterCashMemberCommand(
         int custId,
         string firstName,

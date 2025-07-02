@@ -12,7 +12,7 @@ namespace AgencyCash.API.RegisterCashMember.Criteria
         public int CustId { get; }
 
         public string GetSettingKey() => "Acc_CustomerIns_Rollback";
-        
+
         public bool IsValid() => true;
     }
 

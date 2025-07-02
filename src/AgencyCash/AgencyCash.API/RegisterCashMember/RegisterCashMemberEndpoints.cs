@@ -22,9 +22,8 @@ public static class RegisterCashMemberEndpoints
 
     public static async Task<IResult> RegisterCashMemberAsync(RegisterCashMemberRequest request, IRegisterCashMemberService service)
     {
-        Fanex.Logging.LogService.Info(JsonSerializer.Serialize(request));
+        await Fanex.Logging.LogService.InfoAsync(JsonSerializer.Serialize(request));
         return Results.Ok(await service.RegisterCashMember(request));
-
     }
 
     private static async Task<IResult> CheckUsernameAsync([AsParameters] CheckUsernameRequest request, IRegisterCashMemberService service)

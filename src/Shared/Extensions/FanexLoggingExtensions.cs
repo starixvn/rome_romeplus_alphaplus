@@ -2,33 +2,36 @@ using Fanex.Logging;
 using Fanex.Logging.RabbitMQ;
 using Fanex.Logging.Sentry;
 
-internal static class FanexLoggingExtensions
+namespace Shared.Extensions
 {
-    internal static IServiceCollection AddFanexLogging(this IServiceCollection services, IConfiguration configuration)
+    internal static class FanexLoggingExtensions
     {
-        LogManager
-            .SetDefaultLogCategory(configuration["Fanex.Logging:DefaultCategory"])
-            .Use(GetLogEngines(configuration));
-
-        return services.AddSingleton(Logger.Log);
-    }
-
-    private static IEnumerable<ILogEngine> GetLogEngines(IConfiguration configuration)
-    {
-        var rabbitMQConnectionStrings = configuration["Fanex.Logging:RabbitMQConnectionStrings"];
-        if (!string.IsNullOrWhiteSpace(rabbitMQConnectionStrings))
+        internal static IServiceCollection AddFanexLogging(this IServiceCollection services, IConfiguration configuration)
         {
-            yield return new RabbitMQLogging(rabbitMQConnectionStrings);
+            LogManager
+                .SetDefaultLogCategory(configuration["Fanex.Logging:DefaultCategory"])
+                .Use(GetLogEngines(configuration));
+
+            return services.AddSingleton(Logger.Log);
         }
 
-        var sentryUrl = configuration["Fanex.Logging:SentryBackendUrl"];
-        if (!string.IsNullOrWhiteSpace(sentryUrl))
+        private static IEnumerable<ILogEngine> GetLogEngines(IConfiguration configuration)
         {
-            yield return new SentryLogging(new SentryEngineOptions
+            var rabbitMQConnectionStrings = configuration["Fanex.Logging:RabbitMQConnectionStrings"];
+            if (!string.IsNullOrWhiteSpace(rabbitMQConnectionStrings))
             {
-                Dsn = sentryUrl,
-                FrontEndDsn = configuration["Fanex.Logging:SentryUrl"]
-            });
+                yield return new RabbitMQLogging(rabbitMQConnectionStrings);
+            }
+
+            var sentryUrl = configuration["Fanex.Logging:SentryBackendUrl"];
+            if (!string.IsNullOrWhiteSpace(sentryUrl))
+            {
+                yield return new SentryLogging(new SentryEngineOptions
+                {
+                    Dsn = sentryUrl,
+                    FrontEndDsn = configuration["Fanex.Logging:SentryUrl"]
+                });
+            }
         }
     }
 }

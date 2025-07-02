@@ -1,12 +1,12 @@
 using AgencyCash.API.Payments.Constants;
+using AgencyCash.API.Payments.Criteria;
 using AgencyCash.API.Payments.Criteria.Deposit;
 using AgencyCash.API.Payments.Models;
 using AgencyCash.API.Payments.Requests;
 using AgencyCash.API.Shared;
-using AgencyCash.API.Shared.Models;
 using AgencyCash.API.Shared.Helpers;
+using AgencyCash.API.Shared.Models;
 using Fanex.Data.Repository;
-using AgencyCash.API.Payments.Criteria;
 
 namespace AgencyCash.API.Payments.Services;
 

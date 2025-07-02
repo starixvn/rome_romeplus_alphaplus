@@ -74,7 +74,7 @@ public abstract class PaymentService(
             log.ToCustId,
             log.IP,
             log.Doing);
-        var functionName = nameof(WriteLogTransfer);
+        const string functionName = nameof(WriteLogTransfer);
         var isSuccess = await WriteLog(criteria, functionName);
 
         if (!isSuccess)

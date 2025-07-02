@@ -1,6 +1,6 @@
-using Microsoft.Data.SqlClient;
 using System.Text;
 using Fanex.Data;
+using Microsoft.Data.SqlClient;
 
 internal static class ExceptionHelper
 {

@@ -29,5 +29,18 @@ public class WriteLogTransferCriteria(
         ? SPNameHelper.SiteDBPrefix("WriteLog_CashService_UserLog_Transfer", SiteDBGroupId.Value)
         : "DBLOG_WriteLog_CashService_UserLog_Transfer";
 
-    public override bool IsValid() => FromCustId > 0 && ToCustId > 0 && UserId > 0 && !string.IsNullOrEmpty(IP) && !string.IsNullOrEmpty(Doing);
+    public override bool IsValid()
+    {
+        if (FromCustId <= 0 || ToCustId <= 0)
+        {
+            return false;
+        }
+
+        if (UserId <= 0 || string.IsNullOrEmpty(IP) || string.IsNullOrEmpty(Doing))
+        {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -12,20 +12,19 @@ public class RequiredIfAttribute(string dependentProperty, object targetValue) :
 
     protected override ValidationResult IsValid(object value, ValidationContext validationContext)
     {
-        var dependentProperty = validationContext.ObjectType.GetProperty(_dependentProperty);
-        if (dependentProperty == null)
+        var dependentPropertyInfo = validationContext.ObjectType.GetProperty(_dependentProperty);
+        if (dependentPropertyInfo == null)
         {
             return new ValidationResult($"Unknown property: {_dependentProperty}");
         }
 
-        var dependentValue = dependentProperty.GetValue(validationContext.ObjectInstance);
+        var dependentValue = dependentPropertyInfo.GetValue(validationContext.ObjectInstance);
         var conditionMet = Equals(dependentValue, _targetValue);
 
         if (conditionMet && value == null || (value is string str && string.IsNullOrWhiteSpace(str)))
         {
             return new ValidationResult(FormatErrorMessage(validationContext.DisplayName), [validationContext.MemberName!]);
         }
-
 
         return ValidationResult.Success;
     }
