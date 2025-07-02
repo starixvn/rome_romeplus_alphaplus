@@ -15,17 +15,17 @@ const HistoryTab: React.FC<HistoryTabProps> = ({ activeTab, onTabChange }) => {
   const { t } = useTranslation('transactionHistory');
   const renderButtonApply = (text: string, onClick: () => void) => {
     if (activeTab == TransactionType.Deposit) {
-      return <> <ButtonTabInactiveComponent text={text} onClick={onClick} /></>;
+      return <> <ButtonTabActiveComponent text={text} onClick={onClick} /></>;
     } else {
-      return <><ButtonTabActiveComponent text={text} onClick={onClick} /></>;
+      return <><ButtonTabInactiveComponent text={text} onClick={onClick} /></>;
     }
   };
 
   const renderButtonCancel = (text: string, onClick: () => void) => {
     if (activeTab == TransactionType.Deposit) {
-      return <><ButtonTabActiveComponent text={text} onClick={onClick} /></>;
-    } else {
       return <><ButtonTabInactiveComponent text={text} onClick={onClick} /></>;
+    } else {
+      return <><ButtonTabActiveComponent text={text} onClick={onClick} /></>;
     }
   };
   return (

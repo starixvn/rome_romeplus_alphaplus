@@ -327,13 +327,13 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
             </TitleComponent>
             <ul className="flex mt-[-12px] border-b border-[var(--border-color)]">
               <li className="mr-[8px]">
-                <ButtonTabActiveComponent
+                <ButtonTabInactiveComponent
                   text={tManagePayments('paymentGateway')}
                   onClick={() => setActiveTab('paymentGateway')}
                 />
               </li>
               <li>
-                <ButtonTabInactiveComponent text={tManagePayments('bankAccount')} />
+                <ButtonTabActiveComponent text={tManagePayments('bankAccount')} />
               </li>
             </ul>
             <div className="pt-[8px]">

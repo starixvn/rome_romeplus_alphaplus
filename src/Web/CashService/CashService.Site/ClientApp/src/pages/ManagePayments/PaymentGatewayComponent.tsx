@@ -107,10 +107,10 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
       </TitleComponent>
       <ul className="flex mt-[-12px] border-b border-[var(--border-color)] mb-[15px]">
         <li className="mr-[8px]">
-          <ButtonTabInactiveComponent text={tManagePayments('paymentGateway')} />
+          <ButtonTabActiveComponent text={tManagePayments('paymentGateway')} />
         </li>
         <li>
-          <ButtonTabActiveComponent text={tManagePayments('bankAccount')} onClick={() => setActiveTab('bankAccount')} />
+          <ButtonTabInactiveComponent text={tManagePayments('bankAccount')} onClick={() => setActiveTab('bankAccount')} />
         </li>
       </ul>
        
