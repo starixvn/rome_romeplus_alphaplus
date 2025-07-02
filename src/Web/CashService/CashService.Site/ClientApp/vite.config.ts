@@ -11,8 +11,8 @@ const copyWithoutHash = () => {
     writeBundle() {
       const distDir = 'dist';
       const files = fs.readdirSync(distDir);
-      
-      files.forEach(file => {
+
+      files.forEach((file) => {
         if (file.includes('updateInfoCustomer') && file.includes('.js')) {
           const sourcePath = path.join(distDir, file);
           const targetPath = path.join(distDir, 'updateInfoCustomer.js');
@@ -24,7 +24,7 @@ const copyWithoutHash = () => {
           fs.copyFileSync(sourcePath, targetPath);
         }
       });
-    }
+    },
   };
 };
 // https://vite.dev/config/
@@ -62,6 +62,7 @@ export default defineConfig({
         transactionsHistory: 'src/pages/Transactions/History/index.tsx',
         paymentProviderSettings: 'src/pages/PaymentProviderSettings/index.tsx',
         updateInfoCustomer: 'src/pages/CustomerSites/pages/UpdateInfoCustomer/index.tsx',
+        managePromotion: 'src/pages/Promotion/ManagePromotion/index.tsx',
         pendingPromotion: 'src/pages/Promotion/PendingPromotion/index.tsx',
         promotionReport: 'src/pages/Promotion/PromotionReport/index.tsx',
       },
