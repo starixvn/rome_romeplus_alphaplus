@@ -465,15 +465,6 @@
   <data name="ManagePayments" xml:space="preserve">
     <value>결제 관리</value>
   </data>
-  <data name="PendingDeposit" xml:space="preserve">
-    <value>대기 중인 입금</value>
-  </data>
-  <data name="PendingWithdrawal" xml:space="preserve">
-    <value>대기 중인 출금</value>
-  </data>
-  <data name="TransactionHistory" xml:space="preserve">
-    <value>거래 내역</value>
-  </data>
   <data name="promotion" xml:space="preserve">
     <value>프로모션</value>
   </data>

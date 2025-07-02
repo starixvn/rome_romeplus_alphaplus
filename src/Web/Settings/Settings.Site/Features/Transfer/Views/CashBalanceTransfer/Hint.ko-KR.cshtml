@@ -1,0 +1,48 @@
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Settings.Transfer
+@{
+    Layout = "~/Features/Transfer/Views/CashBalanceTransfer/_HintLayout.cshtml";
+}
+@if (Model.IsAlldayTransfer)
+{
+    <p>어제 잔액으로 이체</p>
+    <ul>
+        <li>"어제 잔액"은 전체 금액만 이체할 수 있습니다</li>
+        <li>회원의 어제 잔액이 0이 아닐 때만 이체가 가능합니다</li>
+    </ul>
+    <p>현금 잔액으로 이체</p>
+    <ul>
+        <li>음수 이체의 경우: 이체 금액은 (현금 잔액 - 다운라인 미정산)을 초과할 수 없습니다</li>
+        <li>양수 이체의 경우: 이체 금액은 귀하의 현금 잔액을 초과할 수 없습니다</li>
+        <li>"현금 잔액"은 이체 상세 내역에 명시됩니다</li>
+    </ul>
+    <p>참고사항</p>
+    <ul class="ul-remark">
+        @if (!string.IsNullOrEmpty(Model.AllowTransfer))
+        {
+            <li>@Html.Raw(Model.AllowTransfer)</li>
+        }
+        <li>하루에 원하는 만큼 거래할 수 있습니다 (어제 잔액과 현금 잔액 모두)</li>        
+        <li>@Resources.showhidecolumnAd</li>
+    </ul>
+}
+else
+{
+    <p>참고사항</p>
+    <ul class="ul-remark">
+        @if (!string.IsNullOrEmpty(Model.AllowTransfer))
+        {
+            <li>@Html.Raw(Model.AllowTransfer)</li>
+        }
+        <li>@Resources.showhidecolumnAd</li>
+    </ul>
+}
+
+@if (Model.IsEnabledAutoTransfer)
+{
+    <ul>
+        <li>@Resources.AutoTransfer_InfoSettingTime</li>
+        <li>@Resources.AutoTransfer_InfoCannotTransfer</li>
+        <li>@Resources.AutoTransfer_InfoAffectTime2</li>
+    </ul>
+}

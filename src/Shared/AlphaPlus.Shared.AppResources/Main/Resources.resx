@@ -749,14 +749,14 @@
     <value>Check Out</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
-    <value>Worried about high-risk players or unexpected big payouts?&lt;br/&gt;With &lt;b&gt;Potential Sportsbook Win Limit&lt;/b&gt;, agents can now automatically block a member from placing bets once their potential winnings reach the set threshold.</value>
+    <value>We’re excited to announce that &lt;b&gt;you can now have your own Members!&lt;/b&gt; Create them directly and enjoy greater flexibility in organizing your downlines.</value>
   </data>
   <data name="HighlightPopupRewardIntro" xml:space="preserve">
     <value>&lt;p&gt;We are excited to introduce our new Cash Reward Program. The company is responsible for the reward amounts, and once a Member receives their reward, it cannot be used for placing bets. Rewards will be distributed to uplines, and Members can cash out through their Agents.&lt;/p&gt;&lt;p&gt;Our new feature &lt;b&gt;Reward Payment&lt;/b&gt; supports your downline payment management, ensuring accurate distribution of all rewards.&lt;/p&gt;
     </value>
   </data>
   <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
-    <value>Gain Full Control with Potential Sportsbook Win Limit</value>
+    <value>Introducing &lt;b&gt;"Create Direct Member"&lt;/b&gt;!</value>
   </data>
   <data name="HighlightPopupRewardTitle" xml:space="preserve">
     <value>Welcome to the &lt;b&gt;Cash Reward Program&lt;/b&gt;!</value>
@@ -920,16 +920,16 @@ Note: Please change your &lt;b&gt;password&lt;/b&gt; the first time you click 'A
     <value>Cash Service</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro2" xml:space="preserve">
-    <value>Reduce payout risk</value>
+    <value>Create Direct Members</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro3" xml:space="preserve">
-    <value>Keep your book stable</value>
+    <value>Greater Flexibility</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro4" xml:space="preserve">
-    <value>Set limits when creating a new account or editing sportsbook settings</value>
+    <value>Improve Downline Organization</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro5" xml:space="preserve">
-    <value>Monitor everything on the &lt;b&gt;Potential Win Limit &lt;/b&gt;page</value>
+    <value>Monitor everything on the &lt;b&gt;Direct Member Management&lt;/b&gt; page</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro6" xml:space="preserve">
     <value>Want to see how it works?</value>

@@ -492,7 +492,7 @@ var indexManager = {
             hiddenIsShowRewardTour.remove();
         } else {
             // New Feature
-            indexManager.initHighlightPopup($('#menu-RISKMANAGEMENT'), '226060_Potential', 80);
+            indexManager.initHighlightPopup($('#menu-MEMBERINFO'), '211969_DirectMember', 80);
         }
     },
 

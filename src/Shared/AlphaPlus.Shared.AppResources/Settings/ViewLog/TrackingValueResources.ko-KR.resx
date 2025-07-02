@@ -1,6 +1,5 @@
-<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  
   <xs:schema id="root">
     <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xs:element name="root" ns1:IsDataSet="true">
@@ -1546,18 +1545,6 @@
   </data>
   <data name="Tennis" xml:space="preserve">
     <value>테니스</value>
-  </data>
-  <data name="IsForcedChangeSecurityCode" xml:space="preserve">
-    <value>보안 코드 강제 변경 여부</value>
-  </data>
-  <data name="IsAllAffectedDownlines" xml:space="preserve">
-    <value>모든 영향을 받은 하위 라인 여부</value>
-  </data>
-  <data name="v10mpt_2" xml:space="preserve">
-    <value>홀/짝</value>
-  </data>
-  <data name="v10mpt_3" xml:space="preserve">
-    <value>오버/언더</value>
   </data>
   <data name="v10mpt_20" xml:space="preserve">
     <value>머니라인</value>

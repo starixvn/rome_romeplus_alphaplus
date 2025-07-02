@@ -177,19 +177,17 @@ public class IndexViewModel
         {
             var actorLevel = Enumeration.FromValue<UserLevel>(message.RoleId);
 
-            return actorLevel.IsAgentLevel();
+            return (actorLevel.IsSuperLevel() || actorLevel.IsMasterLevel()) && ((PageAccess)SubPageAccess).CreateAccount;
         }
     }
 
     public string HightLightFeatureImageName => "new_feature" + DarkModeName;
 
-    public string HightLightFeatureUrl
-    => AppSettings.IsSiteLabel789y ? MicroSites.FeatureUrl("~/StaticMessage/Help?id=226060") : MicroSites.FeatureUrl($"~/HandbookDefault/GetBySlug?slug=potential-win-limit-overview");
-
+    public string HightLightFeatureUrl => MicroSites.MainUrl("~/Tour/Index");
 
     public bool IsShowRewardTour { get; }
 
-    public string TourUrl => MicroSites.TicketUrl($"~/LastBets/IndexNew");
+    public string TourUrl => MicroSites.SettingUrl($"~/Customer/CreateDirectMember");
 
     public bool IsEnableReCheckIn => message.IsEnableReCheckIn;
 

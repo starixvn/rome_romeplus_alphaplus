@@ -637,6 +637,9 @@
   <data name="Enabled" xml:space="preserve">
     <value>활성화</value>
   </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>비활성화</value>
+  </data>
   <data name="Remove" xml:space="preserve">
     <value>제거</value>
   </data>
@@ -776,19 +779,19 @@
     <value>확인</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
-    <value>고위험 플레이어나 예상치 못한 큰 지급에 대해 걱정하시나요?&lt;br/&gt;&lt;b&gt;잠재적 스포츠북 승리 한도&lt;/b&gt;를 통해 에이전트는 이제 회원의 잠재적 승리가 설정된 임계값에 도달하면 자동으로 베팅을 차단할 수 있습니다.</value>
+    <value>&lt;b&gt;이제 직접 회원을 가질 수 있습니다!&lt;/b&gt; 직접 생성하고 다운라인 구성에 더 큰 유연성을 즐기세요.</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro2" xml:space="preserve">
-    <value>지급 위험 감소</value>
+    <value>직접 회원 생성</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro3" xml:space="preserve">
-    <value>북을 안정적으로 유지</value>
+    <value>더 큰 유연성</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro4" xml:space="preserve">
-    <value>새 계정 생성 또는 스포츠북 설정 편집 시 한도 설정</value>
+    <value>다운라인 구성 개선</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro5" xml:space="preserve">
-    <value>&lt;b&gt;잠재적 승리 한도&lt;/b&gt; 페이지에서 모든 것을 모니터링</value>
+    <value>&lt;b&gt;직접 회원 관리&lt;/b&gt; 페이지에서 모든 것을 모니터링</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro6" xml:space="preserve">
     <value>작동 방식을 보고 싶으신가요?</value>
@@ -797,7 +800,7 @@
     <value>&lt;p&gt;새로운 현금 보상 프로그램을 소개하게 되어 기쁩니다. 회사는 보상 금액을 책임지며, 회원이 보상을 받으면 베팅에 사용할 수 없습니다. 보상은 상위 라인에 분배되며, 회원은 에이전트를 통해 현금화할 수 있습니다.&lt;/p&gt;&lt;p&gt;새로운 기능 &lt;b&gt;보상 지급&lt;/b&gt;은 하위 라인 지급 관리를 지원하여 모든 보상의 정확한 분배를 보장합니다.&lt;/p&gt;</value>
   </data>
   <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
-    <value>잠재적 스포츠북 승리 한도로 완전한 제어를 얻으세요</value>
+    <value>&lt;b&gt;"직접 회원 생성"&lt;/b&gt;을 소개합니다!</value>
   </data>
   <data name="HighlightPopupRewardTitle" xml:space="preserve">
     <value>&lt;b&gt;현금 보상 프로그램&lt;/b&gt;에 오신 것을 환영합니다!</value>
@@ -926,8 +929,5 @@
   </data>
   <data name="TotalDirectMember" xml:space="preserve">
     <value>총 직접 회원</value>
-  </data>
-  <data name="invalidsession" xml:space="preserve">
-    <value>잘못된 세션!</value>
   </data>
 </root>

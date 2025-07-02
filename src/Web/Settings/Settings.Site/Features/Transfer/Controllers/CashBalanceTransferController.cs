@@ -30,7 +30,7 @@ public class CashBalanceTransferController(IMediator mediator) : TransferBaseCon
     private string GetHintViewNameByLanguage(string language)
         => language switch
         {
-            "zh-TW" or "zh-CN" or "th-TH" or "vi-VN" => $"{nameof(Hint)}.{language}",
+            "zh-TW" or "zh-CN" or "th-TH" or "vi-VN" or "ko-KR" => $"{nameof(Hint)}.{language}",
             _ => nameof(Hint)
         };
 }
