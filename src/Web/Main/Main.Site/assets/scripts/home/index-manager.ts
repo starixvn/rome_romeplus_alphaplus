@@ -52,7 +52,8 @@ var indexManager = {
         feedback: alpha.urls.messageRootPath + 'Feedback/Index',
         checkExistFeedback: alpha.urls.messageRootPath + 'Feedback/CheckExist?id=',
         feedbackFunction: alpha.urls.messageRootPath + 'Feedback/Function?id=',
-        winningThresholdSurvey: alpha.urls.messageRootPath + 'Feedback/WinningThresholdSurvey'
+        winningThresholdSurvey: alpha.urls.messageRootPath + 'Feedback/WinningThresholdSurvey',
+        cashServiceSetupChecklist: alpha.urls.cashServiceRootPath + 'Common/SetupChecklist'
     },
 
     init: function () {
@@ -69,6 +70,8 @@ var indexManager = {
         setTimeout(() => {
             indexManager.initWinningThresholdSurvey();
         }, 1000);
+
+        indexManager.initCashServiceChecklist();
     },
 
     initAfterCheckSurvey: function () {
@@ -594,6 +597,20 @@ var indexManager = {
                 null,
                 { customClass: 'feedback-survey-modal', disableDraggable: true }
             );
+        });
+    },
+
+    initCashServiceChecklist: function (openContent: boolean = false) {
+        if ($('#ShowCashServiceChecklist').val() === '0') {
+            return;
+        }
+
+        $.get(indexManager.urls.cashServiceSetupChecklist, function (result) {
+            var checklistDiv = $('#cash-service-checklist');
+            var content = checklistDiv.find('.checklist-content');
+            if(openContent) {
+                content.removeClass('hide');
+            }
         });
     }
 };

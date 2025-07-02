@@ -12,6 +12,8 @@ public interface ICommonService
     Task<ResultModel> RunDBCommand(BaseActionRequest request, BaseDBCommand baseDBCommand);
 
     Task WriteLogDBCommand(BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel);
+
+    Task<SetupCheckListModel> GetSetupCheckList(int custId);
 }
 
 public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger logger) : ICommonService
@@ -73,5 +75,13 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
         {
             await logger.ErrorAsync(e.Message, e);
         }
+    }
+
+    public async Task<SetupCheckListModel> GetSetupCheckList(int custId)
+    {
+        var criteria = new GetSetupCheckListCriteria(custId);
+        // await repository.ExecuteAsync(criteria);
+        return new SetupCheckListModel(true, true, true);
+        // return new SetupCheckListModel(criteria.CompleteDepositMethods, criteria.CompleteWithdrawalMethods, criteria.CompleteLineID);
     }
 }

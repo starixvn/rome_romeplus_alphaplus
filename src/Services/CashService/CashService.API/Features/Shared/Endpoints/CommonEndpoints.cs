@@ -20,5 +20,17 @@ public static class CommonEndpoints
                 Summary = "Get country codes",
                 Description = "Returns a list of all available country codes"
             });
+
+        group.MapGet("setup-checklist/{custId}", async (int custId, ICommonService service) =>
+            {
+                var setupCheckList = await service.GetSetupCheckList(custId);
+                return Results.Ok(setupCheckList);
+            })
+            .WithName("GetSetupCheckList")
+            .WithOpenApi(operation => new(operation)
+            {
+                Summary = "Get setup checklist",
+                Description = "Returns a setup checklist"
+            });
     }
 }
