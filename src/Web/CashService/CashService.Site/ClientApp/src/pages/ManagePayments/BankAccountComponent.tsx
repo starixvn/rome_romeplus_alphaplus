@@ -344,7 +344,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
             {!loading && banks && banks.length > 0 && (
               <>
                 <div className="flex flex-wrap w-full">
-                  <div className="w-[190px] mb-[12px] mr-[12px]">
+                  <div className="w-[160px] mb-[12px] mr-[12px]">
                     <LabelTitleComponent text={tManagePayments('bank')} />
                     <CustomDropdown
                       className="w-[330px]"
@@ -364,7 +364,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                     />
                   </div>
 
-                  <div className="w-[190px] mb-[12px] mr-[12px]">
+                  <div className="w-[160px] mb-[12px] mr-[12px]">
                     <LabelTitleComponent text={tManagePayments('transactionType')} />
                     <div className="relative">
                       <select
@@ -387,7 +387,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                     </div>
                   </div>
 
-                  <div className="w-[190px] mb-[12px] mr-[12px] ">
+                  <div className="w-[160px] mb-[12px] mr-[12px] ">
                     <LabelTitleComponent text={tManagePayments('status')} />
                     <div className="relative">
                       <select
