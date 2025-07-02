@@ -6,7 +6,7 @@ import './ButtonComponents.scss';
 export const ButtonClosePopupComponent: React.FC<ButtonComponentProps> = ({ onClick, type }) => {
   return (
     <button
-      type={type}
+      type={type || 'button'}
       className="absolute top-[11px] right-[-5px] cursor-pointer outline-none"
       onClick={onClick}
     >
@@ -18,7 +18,7 @@ export const ButtonClosePopupComponent: React.FC<ButtonComponentProps> = ({ onCl
 export const ButtonPenComponent: React.FC<ButtonComponentProps> = ({ onClick, disabled, type }) => {
   return (
     <button
-      type={type}
+      type={type || 'button'}
       className={` mx-[4px] cursor-pointer p-[4px] rounded-[4px] hover:bg-[var(--button-icon-hover)] text-[var(--text-color-primary)] ${disabled ? 'cursor-not-allowed opacity-80' : ''}`}
       onClick={onClick}
     >
@@ -30,7 +30,7 @@ export const ButtonPenComponent: React.FC<ButtonComponentProps> = ({ onClick, di
 export const ButtonDeleteComponent: React.FC<ButtonComponentProps> = ({ onClick, type }) => {
   return (
     <button
-      type={type}
+      type={type || 'button'}
       className="mx-[4px] cursor-pointer p-[4px] rounded-[4px] hover:bg-[var(--button-icon-hover)]"
       onClick={onClick}
     >

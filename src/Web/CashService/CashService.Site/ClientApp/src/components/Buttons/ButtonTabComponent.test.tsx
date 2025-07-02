@@ -22,23 +22,16 @@ describe('ButtonTabComponent', () => {
         'px-[20px]',
         'pt-[10px]',
         'pb-[13px]',
-        'text-[var(--tab-component-color)]',
+        'text-[var(--tab-component-color-active)]',
         'cursor-pointer',
         'relative',
         'after:content-[\'\']',
         'after:absolute',
         'after:bottom-0',
         'after:left-0',
-        'after:w-0',
+        'after:w-full',
         'after:h-[3px]',
-        'after:bg-[var(--tab-component-border-color)]',
-        'after:transition-all',
-        'after:duration-500',
-        'after:ease-in-out',
-        'after:opacity-0',
-        'hover:after:opacity-100',
-        'hover:after:w-full',
-        'hover:text-[var(--tab-component-color-active)]'
+        'after:bg-[var(--tab-component-border-color)]'
       );
     });
 
@@ -106,16 +99,23 @@ describe('ButtonTabComponent', () => {
         'px-[20px]',
         'pt-[10px]',
         'pb-[13px]',
-        'text-[var(--tab-component-color-active)]',
+        'text-[var(--tab-component-color)]',
         'cursor-pointer',
         'relative',
         'after:content-[\'\']',
         'after:absolute',
         'after:bottom-0',
         'after:left-0',
-        'after:w-full',
+        'after:w-0',
         'after:h-[3px]',
-        'after:bg-[var(--tab-component-border-color)]'
+        'after:bg-[var(--tab-component-border-color)]',
+        'after:transition-all',
+        'after:duration-500',
+        'after:ease-in-out',
+        'after:opacity-0',
+        'hover:after:opacity-100',
+        'hover:after:w-full',
+        'hover:text-[var(--tab-component-color-active)]'
       );
     });
 
@@ -177,8 +177,9 @@ describe('ButtonTabComponent', () => {
       const button = screen.getByRole('button');
       expect(button).toBeInTheDocument();
       expect(button).toHaveTextContent('Active Tab');
-      expect(button).toHaveClass('text-[var(--tab-component-color)]');
-      expect(button).toHaveClass('hover:text-[var(--tab-component-color-active)]');
+      expect(button).toHaveClass('text-[var(--tab-component-color-active)]');
+      expect(button).toHaveClass('after:w-full');
+      expect(button).not.toHaveClass('hover:text-[var(--tab-component-color-active)]');
     });
 
     it('renders inactive tab when isActive is false', () => {
@@ -187,8 +188,9 @@ describe('ButtonTabComponent', () => {
       const button = screen.getByRole('button');
       expect(button).toBeInTheDocument();
       expect(button).toHaveTextContent('Inactive Tab');
-      expect(button).toHaveClass('text-[var(--tab-component-color-active)]');
-      expect(button).not.toHaveClass('hover:text-[var(--tab-component-color-active)]');
+      expect(button).toHaveClass('text-[var(--tab-component-color)]');
+      expect(button).toHaveClass('after:w-0');
+      expect(button).toHaveClass('hover:text-[var(--tab-component-color-active)]');
     });
 
     it('renders inactive tab when isActive is undefined', () => {
@@ -197,7 +199,8 @@ describe('ButtonTabComponent', () => {
       const button = screen.getByRole('button');
       expect(button).toBeInTheDocument();
       expect(button).toHaveTextContent('Default Tab');
-      expect(button).toHaveClass('text-[var(--tab-component-color-active)]');
+      expect(button).toHaveClass('text-[var(--tab-component-color)]');
+      expect(button).toHaveClass('after:w-0');
     });
 
     it('calls onClick when active tab is clicked', () => {

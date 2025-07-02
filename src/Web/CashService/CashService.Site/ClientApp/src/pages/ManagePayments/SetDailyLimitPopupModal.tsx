@@ -150,7 +150,7 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
             </div>
           </div>
           <div className="flex justify-center gap-[8px]">
-            <ButtonCancelComponent text={t('global:cancel')} onClick={onClose} type='button' />
+            <ButtonCancelComponent text={t('global:cancel')} onClick={onClose} />
             <ButtonApplyComponent 
               text={isLoading ? t('global:loading') : t('global:save')} 
               type='submit'
