@@ -148,7 +148,8 @@ class AlphaReports {
 
     ajaxFail(jqXHR) {
         if (jqXHR.status === 429) {
-            window.location.href = `${window.top.alpha.urls.mainRootPath}error/blocked`;
+            // window.location.href = `${window.top.alpha.urls.mainRootPath}error/blocked`;
+            alert('Too many requests.');
         } else if (jqXHR.status === 500 && jqXHR.responseText) {
             const responseObject = JSON.parse(jqXHR.responseText);
             if (responseObject.UMFrom && responseObject.UMTo) {

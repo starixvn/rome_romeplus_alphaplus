@@ -42,7 +42,7 @@ RUN --mount=type=cache,target=/root/.yarn \
     yarn gulp
 
 # Use nginx-unprivileged image
-FROM hub.nexdev.net/base/nginxinc/nginx-unprivileged:1.22-alpine-slim
+FROM hub.nexdev.net/base/nginxinc/nginx-unprivileged:1-alpine
 # Set root user has full permissions of read/write files/folders to copy needed things
 USER root
 

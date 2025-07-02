@@ -105,6 +105,7 @@ app
     .UseSession()
     .UseAuthentication()
     .UseAuthorization()
+    .UseNetThrottling()
     .UseMiddleware<RequestCultureMiddleware>();
 if (app.Environment.IsDevelopment())
 {
