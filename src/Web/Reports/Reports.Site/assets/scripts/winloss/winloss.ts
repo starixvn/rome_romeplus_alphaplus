@@ -175,7 +175,6 @@
     }
 
     afterSortFunction = () => {
-        console.log("cứt");
         this.sortComponent.handleDormantAccountsAfterSort();
         this.sortComponent.handleCashFeeDataAfterSort();
     }
