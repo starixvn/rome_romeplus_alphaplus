@@ -29,9 +29,9 @@ const PROMOTION_TYPES = [
 ];
 
 export const LANGUAGES = [
-  { key: 'en', label: 'English (default)' },
-  { key: 'th', label: 'ภาษาไทย' },
-  { key: 'vi', label: 'Tiếng Việt' },
+  { key: 'en', label: 'English (default)', isDefault: true },
+  { key: 'th', label: 'ภาษาไทย', isDefault: false },
+  { key: 'vi', label: 'Tiếng Việt', isDefault: false },
 ];
 
 function convertProductToTreeNodeOption(products: Product[]): TreeNodeOption[] {
@@ -52,7 +52,6 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
   const [isActive, setIsActive] = useState<boolean>(true);
   const [promotionType, setPromotionType] = useState<number>(PROMOTION_TYPES[0].value);
 
-  // Set default period: today to today + 7 days
   const today = new Date();
   const nextWeek = new Date();
   nextWeek.setDate(today.getDate() + 7);
@@ -61,7 +60,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
   const [productOptions, setProductOptions] = useState<Product[]>([]);
   const [productSettings, setProductSettings] = useState<ProductSetting[]>([]);
   const [selectedProductIds, setSelectedProductIds] = useState<number[]>([]);
-  const [activeLang, setActiveLang] = useState('en');
+  const [activeLang, setActiveLang] = useState(LANGUAGES[0].key);
   const [promotionInfo, setPromotionInfo] = useState<Record<string, PromotionLangFields>>({});
 
   useEffect(() => {
