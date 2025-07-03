@@ -2,30 +2,18 @@ using AlphaPlus.Core.Configurations;
 
 namespace AlphaPlus.Core.Models;
 
-public class UserPermission
+public static class UserPermission
 {
-    protected static IUserSession CurrentUserSession
-    {
-        get
-        {
-            return UserSession.Current;
-        }
-    }
+    private static IUserSession CurrentUserSession => UserSession.Current;
 
     public static bool IsEnableProduct(int product)
-    {
-        return !AppSettings.ForcedHideProductIds.Contains(product) && !CurrentUserSession.GetHideProduct(product);
-    }
+        => !AppSettings.ForcedHideProductIds.Contains(product) && !CurrentUserSession.GetHideProduct(product);
 
     public static bool IsSyncedProduct(int product)
-    {
-        return CurrentUserSession.GetSyncedProduct(product);
-    }
+        => CurrentUserSession.GetSyncedProduct(product);
 
     public static bool IsDisabledProduct(int product)
-    {
-        return CurrentUserSession.GetDisabledProduct(product);
-    }
+        => CurrentUserSession.GetDisabledProduct(product);
 
     // sportsbook is always SHOW
     public static bool HasPermissionOnProduct(int productId)

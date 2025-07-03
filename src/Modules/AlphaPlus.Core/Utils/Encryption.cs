@@ -77,11 +77,7 @@ public class Encryption : IEncryption
 
     public string RandomString(int length, bool noZeroO)
     {
-        string chars;
-        if (noZeroO)
-            chars = "qwertyuipasdfghjklzxcvbnm123456789";
-        else
-            chars = "qwertyuiopasdfghjklzxcvbnm0123456789";
+        var chars = noZeroO ? "qwertyuipasdfghjklzxcvbnm123456789" : "qwertyuiopasdfghjklzxcvbnm0123456789";
         var rndStr = string.Empty;
         var rnd = new Random(DateTime.Now.Second + DateTime.Now.Millisecond);
 
