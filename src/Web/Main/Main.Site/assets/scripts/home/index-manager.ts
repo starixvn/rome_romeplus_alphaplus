@@ -634,10 +634,10 @@ var indexManager = {
             }
 
             checklistDiv.find('#ico-checklist').click(() => {
-                if(content.hasClass('hide')) {
-                    content.removeClass('hide');
+                if(content.hasClass('show')) {
+                    content.removeClass('show');
                 } else {
-                    content.addClass('hide');
+                    content.addClass('show');
                 }
             });
 

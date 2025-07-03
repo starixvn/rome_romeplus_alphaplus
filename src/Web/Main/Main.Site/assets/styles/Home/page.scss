@@ -1265,7 +1265,7 @@ html * {
     position: absolute;
     z-index: 1000;
     top: 135px;
-    right: 5px;
+    right: 0;
     .button-check-list {
         position: absolute;
         top: 0;
@@ -1278,21 +1278,14 @@ html * {
         padding: 3px 10px;
         border-top-left-radius: 3px;
         border-bottom-left-radius: 3px;
+        cursor: pointer;
         .icon-cashservice{
             margin-right: 5px;
             position: relative;
             top: 1px;
         }
     }
-    .icon-close{
-        font-size: 20px;
-        width: 20px;
-        height: 20px;
-        position: absolute;
-        top: 7px;
-        right: 8px;
-        z-index: 20;
-    }
+ 
     .help-text{            
         text-align: center;
     }
@@ -1314,18 +1307,26 @@ html * {
 }
 
 .checklist-content{     
-    width: 500px;
-    position: relative;
-    line-height: 2;
-    background-color: #fff;
-    border-radius: 3px;
-    border: 1px solid #fff;
-    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);   
-    padding: 15px 12px 9px;
+    width: 0;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    &.show{
+        width: 500px;
+        box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3); 
+    }
     a{
         font-weight: bold;
         text-decoration: underline;
         color: #0a5494;
+    }
+    .inner{
+        position: relative;
+        line-height: 2;
+        background-color: #fff;
+        border-radius: 3px;
+        border: 1px solid #fff;        
+        padding: 15px 12px 9px;       
+        min-width: 470px;
     }
     .chk-deposit-methods, .chk-withdrawal-methods, .chk-line-id{
         display: inline-block;

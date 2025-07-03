@@ -1,20 +1,21 @@
 ﻿@using AlphaPlus.Main.Site
 @using AlphaPlus.Main.Site.Features.Default
 @model IndexViewModel
-<div id="cash-service-checklist-1" class="cash-service-checklist hide">
-    <div id="ico-checklist" class="icon-close"></div>
-    <div class="button-check-list"><span class=" icon-cashservice"></span>Check List</div>
-    <div class="checklist-content hide">
-        <div><strong>@Html.Raw(Resources.CashServiceSetupChecklist_Row1)</strong></div>
-        <div>@Html.Raw(string.Format(Resources.CashServiceSetupChecklist_Row2, Model.CashServiceRootPath + "Payments/Index"))</div>
-        <div>@Html.Raw(Resources.CashServiceSetupChecklist_Row3)</div>
-        <div>@Html.Raw(Resources.CashServiceSetupChecklist_Row4)</div>
-        <div>@Html.Raw(string.Format(Resources.CashServiceSetupChecklist_Row5, Model.CashServiceRootPath + "MemberSites/Index"))</div>
-        <div>@Html.Raw(Resources.CashServiceSetupChecklist_Row6)</div>
-        <div>@Html.Raw(Resources.CashServiceSetupChecklist_Row7)</div>
-        <div>@Html.Raw(Resources.CashServiceSetupChecklist_Row8)</div>
-        <div class="list-buttons">
-        <button class="btn-help">@Resources.Help</button>
+<div id="cash-service-checklist" class="cash-service-checklist hide">
+    <div id="ico-checklist" class="button-check-list"><span class="icon-cashservice"></span>Check List</div>
+    <div class="checklist-content">        
+        <div class="inner">
+            <div><strong>@Html.Raw(Resources.CashServiceSetupChecklist_Row1)</strong></div>
+            <div>@Html.Raw(string.Format(Resources.CashServiceSetupChecklist_Row2, Model.CashServiceRootPath + "Payments/Index"))</div>
+            <div>@Html.Raw(Resources.CashServiceSetupChecklist_Row3)</div>
+            <div>@Html.Raw(Resources.CashServiceSetupChecklist_Row4)</div>
+            <div>@Html.Raw(string.Format(Resources.CashServiceSetupChecklist_Row5, Model.CashServiceRootPath + "MemberSites/Index"))</div>
+            <div>@Html.Raw(Resources.CashServiceSetupChecklist_Row6)</div>
+            <div>@Html.Raw(Resources.CashServiceSetupChecklist_Row7)</div>
+            <div>@Html.Raw(Resources.CashServiceSetupChecklist_Row8)</div>
+            <div class="list-buttons">
+            <button class="btn-help">@Resources.Help</button>
+            </div>
         </div>
     </div>
 </div>
