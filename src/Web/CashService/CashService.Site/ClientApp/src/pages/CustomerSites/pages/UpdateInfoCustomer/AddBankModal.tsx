@@ -46,7 +46,7 @@ export const AddBankModal = ({ closeModal, onAddSuccess }: AddBankModalProps) =>
         const memberBankDropdownOptions: DropdownOption[] = memberBanks.map((bank) => ({
             value: bank.bankId,
             label: bank.bankName,
-            icon: <img src={`https://cdn-customer.nexdev.net/v5/cash-member/create/bank/${bank.bankCode?.toUpperCase()}.png`} alt={bank.name} className="w-[16px] h-[16px] inline-block mr-[5px]" />
+            icon: <img src={`${updateInfoCustomerPageConfig.cdnUri}cash-member/create/bank/${bank.bankCode?.toUpperCase()}.png`} alt={bank.bankName} className="w-[16px] h-[16px] inline-block mr-[5px]" />
         }));
 
         const agentBanks = await GetCustomerBankInfo<Bank[]>({
@@ -55,9 +55,9 @@ export const AddBankModal = ({ closeModal, onAddSuccess }: AddBankModalProps) =>
         const agentBankDropdownOptions: DropdownOption[] = agentBanks.map((bank) => ({
             value: bank.bankId,
             label: bank.bankAccountNumber,
-            icon: <img src={`https://cdn-customer.nexdev.net/v5/cash-member/create/bank/${bank.bankCode?.toUpperCase()}.png`} alt={bank.name} className="w-[16px] h-[16px] inline-block mr-[5px]" />
+            icon: <img src={`${updateInfoCustomerPageConfig.cdnUri}cash-member/create/bank/${bank.bankCode?.toUpperCase()}.png`} alt={bank.bankName} className="w-[16px] h-[16px] inline-block mr-[5px]" />
         }));
-        console.log('agentBanks', agentBanks);
+
         reset({
             memberId: updateInfoCustomerPageConfig.custId,
             memberBankID: memberBanks[0].bankId,
@@ -78,7 +78,7 @@ export const AddBankModal = ({ closeModal, onAddSuccess }: AddBankModalProps) =>
         handleSubmit,
         control,
         watch,
-        formState: { isDirty, errors },
+        formState: { errors },
         reset,
         setValue,
     } = methods;

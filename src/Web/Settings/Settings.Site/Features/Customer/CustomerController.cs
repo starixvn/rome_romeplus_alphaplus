@@ -414,7 +414,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 
         public async Task<IActionResult> UpdateInfo(int custId, string username, bool isCashMember)
         {
-            var viewModel = new UpdateInfoViewModel(GetAssetsVersion(), custId, username, isCashMember);
+            var viewModel = new UpdateInfoViewModel(GetAssetsVersion(), custId, username, isCashMember, CDNUri);
             return View(viewModel);
         }
 

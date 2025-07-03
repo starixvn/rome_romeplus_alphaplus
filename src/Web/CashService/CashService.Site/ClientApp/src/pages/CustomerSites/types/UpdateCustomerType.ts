@@ -27,5 +27,6 @@ declare global {
         isCashMember: boolean;
         username: string;
         custId: number;
+        cdnUri: string;
     }
 }

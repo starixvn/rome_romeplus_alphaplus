@@ -67,7 +67,7 @@ export const SettingCashMemberBankInfo = () => {
         return (
             <>
                 <img
-                    src={`https://cdn-customer.nexdev.net/v5/cash-member/create/bank/${bankCode}.png`}
+                    src={`${updateInfoCustomerPageConfig.cdnUri}cash-member/create/bank/${bankCode}.png`}
                     alt={`${bankCode} bank icon`}
                     className={`w-[16px] h-[16px] inline-block mr-[5px]`}
                 />
