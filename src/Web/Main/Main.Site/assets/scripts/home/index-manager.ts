@@ -605,6 +605,7 @@ var indexManager = {
             return;
         }
 
+        indexManager.bindCashServiceChecklistEvents();
         $.get(indexManager.urls.cashServiceSetupChecklist, function (result) {
             var checklistDiv = $('#cash-service-checklist');
             if(result.isCompleteAll) {
@@ -633,59 +634,65 @@ var indexManager = {
                 content.find('.chk-line-id').removeClass('complete');
             }
 
-            checklistDiv.find('#ico-checklist').click(() => {
-                if(content.hasClass('show')) {
-                    content.removeClass('show');
-                } else {
-                    content.addClass('show');
-                }
-            });
-
-            checklistDiv.find('.btn-help').click(() => {
-                window.open(alpha.urls.howToUseRootPath + 'HandbookDefault/Index', '_blank');
-            });
-
-            // Bind click event on main frame to hide cash-service-checklist
-            indexManager.domElements.mainFrame.on('load', function() {
-                try {
-                    const iframeWindow = this.contentWindow || this.contentDocument;
-                    if (iframeWindow && iframeWindow.document) {
-                        $(iframeWindow.document).on('click', (e) => {
-                            const checklistDiv = $('#cash-service-checklist');
-                            if (!checklistDiv.is(e.target) && checklistDiv.has(e.target).length === 0) {
-                                indexManager.collapseCashServiceChecklist();
-                            }
-                        });
-                    }
-                } catch (e) {
-                    // Handle cross-origin restrictions
-                }
-            });
-
-            // Also bind on window for cases where main frame might not be available
-            $(window).on('click', (e) => {
-                const checklistDiv = $('#cash-service-checklist');
-                if (!checklistDiv.is(e.target) && checklistDiv.has(e.target).length === 0) {
-                    indexManager.collapseCashServiceChecklist();
-                }
-            });
-
             if(openContent) {
-                content.removeClass('hide');
+                content.addClass('show');
             }
         });
     },
     collapseCashServiceChecklist: function () {
-        $('#cash-service-checklist .checklist-content').addClass('hide');
+        $('#cash-service-checklist .checklist-content').removeClass('show');
     },
     showHideCashServiceChecklist: function (isShow: boolean) {
         if(isShow) {
             $('#ShowCashServiceChecklist').val(1);
             indexManager.initCashServiceChecklist(true);
         } else {
-            $('#ShowCashServiceChecklist').val(0);
             $('#cash-service-checklist').addClass('hide');
+            $('#ShowCashServiceChecklist').val(0);
+            $('#cash-service-checklist').removeClass('show');
         }
+    },
+    bindCashServiceChecklistEvents: function () {
+        var checklistDiv = $('#cash-service-checklist');
+
+        checklistDiv.find('.btn-help').click(() => {
+            window.open(alpha.urls.howToUseRootPath + 'HandbookDefault/Index', '_blank');
+        });
+
+        // Bind click event on main frame to hide cash-service-checklist
+        indexManager.domElements.mainFrame.on('load', function() {
+            try {
+                const iframeWindow = this.contentWindow || this.contentDocument;
+                if (iframeWindow && iframeWindow.document) {
+                    $(iframeWindow.document).on('click', (e) => {
+                        const checklistDiv = $('#cash-service-checklist');
+                        if (!checklistDiv.is(e.target) && checklistDiv.has(e.target).length === 0) {
+                            indexManager.collapseCashServiceChecklist();
+                        }
+                    });
+                }
+            } catch (e) {
+                // Handle cross-origin restrictions
+            }
+        });
+
+        var content = checklistDiv.find('.checklist-content');
+        checklistDiv.find('#ico-checklist').click(() => {
+            console.log('click' + content.hasClass('show'));
+            if(content.hasClass('show')) {
+                content.removeClass('show');
+            } else {
+                content.addClass('show');
+            }
+        });
+
+        // Also bind on window for cases where main frame might not be available
+        $(window).on('click', (e) => {
+            const checklistDiv = $('#cash-service-checklist');
+            if (!checklistDiv.is(e.target) && checklistDiv.has(e.target).length === 0) {
+                indexManager.collapseCashServiceChecklist();
+            }
+        });
     }
 };
 
