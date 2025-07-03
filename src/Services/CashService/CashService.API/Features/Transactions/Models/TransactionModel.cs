@@ -2,6 +2,7 @@ namespace AlphaPlus.CashService.API.Features.Transactions.Models;
 
 using System.Numerics;
 using System.Text.Json.Serialization;
+using Shared.Helpers;
 
 public class TransactionModel
 {
@@ -29,7 +30,7 @@ public class TransactionModel
     public bool IsHadPayslip { get; set; }
     public int PaymentType { get; set; }
     public string CreatedBy { get; set; }
-    public string Base64Payslip => Payslip is null ? string.Empty : Convert.ToBase64String(Payslip);
+    public string Base64Payslip => FileHelper.ByteToBase64String(Payslip);
     public DateTime CreatedTime { get; set; }
     public DateTime? LastUpdatedDate { get; set; }
     public DateTime? OperatedTime { get; set; }

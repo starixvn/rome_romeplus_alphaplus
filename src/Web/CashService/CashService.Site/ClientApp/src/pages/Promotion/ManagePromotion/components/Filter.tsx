@@ -18,9 +18,12 @@ const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
   ];
 
   const statusOptions = [
-    { value: 0, label: 'Active' },
-    { value: 1, label: 'Scheduled' },
-    { value: 2, label: 'Expired' },
+    { value: 0, label: 'All' },
+    { value: 1, label: 'Active' },
+    { value: 2, label: 'Scheduled' },
+    { value: 3, label: 'Expired' },
+    { value: 4, label: 'Completed' },
+    { value: 5, label: 'Inactive' },
   ];
 
   const handleTypeChange = (option: any) => {
@@ -54,7 +57,6 @@ const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
             options={statusOptions}
             onSelect={handleStatusChange}
             initialValue={selectedStatus}
-            showOptionAll={true}
           />
         </div>
       </div>

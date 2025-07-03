@@ -119,16 +119,16 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
       <td className="sticky left-[32px] bg-white z-10 text-center">
         <div className="flex items-center justify-center gap-2">
           <button
-            className="text-blue-600 hover:text-blue-800"
+            className="text-blue-600 hover:text-blue-800 cursor-pointer"
             onClick={() => onEdit?.(item)}
-            title={t('table.edit') as string}
+            title={t('table.edit')}
           >
             <IconPen />
           </button>
           <button
-            className="text-red-600 hover:text-red-800"
+            className="text-red-600 hover:text-red-800 cursor-pointer"
             onClick={() => onDelete?.(item)}
-            title={t('table.delete') as string}
+            title={t('table.delete')}
           >
             <IconDelete />
           </button>

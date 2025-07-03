@@ -121,9 +121,9 @@ public class PendingWithdrawalService(
             AgentId = param.ActorId,
             SubAccId = param.SubAccId,
             SiteDbGroupId = param.SiteDBGroupId,
-            Remark = param.Remark,
+            Remark = param.Remark ?? string.Empty,
             StatusId = param.StatusId,
-            Payslip = param.Payslip,
+            Payslip = param.IsRemovePayslip ? [] : param.Payslip,
             Ip = param.IP,
         };
         var responseLogs = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command) ?? [];

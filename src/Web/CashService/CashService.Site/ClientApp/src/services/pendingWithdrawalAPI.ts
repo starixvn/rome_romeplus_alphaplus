@@ -97,6 +97,7 @@ export const approveWithdrawal = async ({
   paymentMethodId,
   remark,
   image,
+  isRemovePayslip,
 }: {
   transId: number;
   custId: number;
@@ -105,6 +106,7 @@ export const approveWithdrawal = async ({
   paymentMethodId: number;
   remark: string;
   image: File | null;
+  isRemovePayslip: boolean;
 }): Promise<ResultModel> => {
   try {
     const formData = new FormData();
@@ -114,6 +116,7 @@ export const approveWithdrawal = async ({
     formData.append('providerId', providerId.toString());
     formData.append('paymentMethodId', paymentMethodId.toString());
     formData.append('remark', remark || '');
+    formData.append('isRemovePayslip', isRemovePayslip.toString());
 
     if (image) {
       formData.append('image', image);
@@ -135,6 +138,7 @@ export const rejectWithdrawal = async ({
   paymentMethodId,
   remark,
   image,
+  isRemovePayslip,
 }: {
   transId: number;
   custId: number;
@@ -143,6 +147,7 @@ export const rejectWithdrawal = async ({
   paymentMethodId: number;
   remark: string;
   image: File | null;
+  isRemovePayslip: boolean;
 }): Promise<ResultModel> => {
   try {
     const formData = new FormData();
@@ -152,6 +157,7 @@ export const rejectWithdrawal = async ({
     formData.append('providerId', providerId.toString());
     formData.append('paymentMethodId', paymentMethodId.toString());
     formData.append('remark', remark || '');
+    formData.append('isRemovePayslip', isRemovePayslip.toString());
     if (image) {
       formData.append('image', image);
     }

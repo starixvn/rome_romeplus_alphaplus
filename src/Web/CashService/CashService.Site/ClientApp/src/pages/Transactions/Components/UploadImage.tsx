@@ -21,9 +21,7 @@ const UploadImage: React.FC<UploadImageProps> = ({
 }) => {
   const { t: tGlobal } = useTranslation('global');
 
-  const [imageUrl, setImageUrl] = useState<string | null>(
-    prevImage ? `data:image/png;base64,${prevImage}` : null
-  );
+  const [imageUrl, setImageUrl] = useState<string | null>(prevImage ?? null);
   const [isDragging, setIsDragging] = useState(false);
 
   const convertToBase64 = useCallback((file: File): Promise<string> => {

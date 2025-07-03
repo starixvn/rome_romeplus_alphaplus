@@ -13,7 +13,11 @@
     "period": "Period",
     "provider": "Provider",
     "status": "Status",
-    "lastUpdated": "Last Updated"
+    "lastUpdated": "Last Updated",
+    "edit": "Edit",
+    "delete": "Delete",
+    "products": "Products",
+    "noRecords": "No records found"
   },
   "search": {
     "placeholder": "Search by title or type..."

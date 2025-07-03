@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export interface TreeNodeOption {
   label: string;
@@ -12,6 +13,7 @@ interface TreeSelectProps {
   onChange: (selectedValue: (string | number)[], selectedTreeNode: TreeNodeOption[]) => void;
   searchPlaceholder?: string;
   placeholder?: string;
+  isAllowCollapseExpand?: boolean;
 }
 
 const flattenTree = (nodes: TreeNodeOption[]): TreeNodeOption[] => {
@@ -108,19 +110,32 @@ function getSelectedLeafValues(
   return result;
 }
 
+const getAllLeafValues = (nodes: TreeNodeOption[]): (string | number)[] => {
+  let result: (string | number)[] = [];
+  nodes.forEach((node) => {
+    if (node.children && node.children.length > 0) {
+      result = result.concat(getAllLeafValues(node.children));
+    } else {
+      result.push(node.value);
+    }
+  });
+  return result;
+};
+
 const TreeSelect: React.FC<TreeSelectProps> = ({
   options,
   value,
   onChange,
   searchPlaceholder,
   placeholder,
+  isAllowCollapseExpand = false,
 }) => {
   const [expanded, setExpanded] = useState<{ [key: string]: boolean }>({});
   const [search, setSearch] = useState('');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLDivElement>(null);
-
+  const { t } = useTranslation('global');
   useEffect(() => {
     const expandAll = (nodes: TreeNodeOption[]) => {
       let result: { [key: string]: boolean } = {};
@@ -147,29 +162,42 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
   }, [dropdownOpen]);
 
   const filteredOptions = useMemo(() => filterTree(options, search), [options, search]);
-  const allValues = useMemo(() => getAllValues(filteredOptions), [filteredOptions]);
-  const allChecked = allValues.length > 0 && allValues.every((v) => value.includes(v));
-  const someChecked = allValues.some((v) => value.includes(v));
+  const allLeafValues = useMemo(() => getAllLeafValues(filteredOptions), [filteredOptions]);
+  const allChecked = allLeafValues.length > 0 && allLeafValues.every((v) => value.includes(v));
 
-  const handleCheck = (checked: boolean, node: TreeNodeOption) => {
-    const nodeValues = getAllValues([node]);
-    let newValue: (string | number)[];
-    if (checked) {
-      newValue = Array.from(new Set([...value, ...nodeValues]));
+  const handleCheck = (node: TreeNodeOption) => {
+    const hasChildren = !!node.children && node.children.length > 0;
+
+    let newValue: (string | number)[] = value;
+    if (!hasChildren) {
+      if (value.includes(node.value)) {
+        newValue = value.filter((v) => v !== node.value);
+      } else {
+        newValue = [...value, node.value];
+      }
     } else {
-      newValue = value.filter((v) => !nodeValues.includes(v));
+      const childrenValues = getAllValues(node.children!);
+      const allChildrenChecked = childrenValues.every((v) => value.includes(v));
+      const someChildrenChecked = childrenValues.some((v) => value.includes(v));
+      if (!someChildrenChecked) {
+        newValue = Array.from(new Set([...value, ...childrenValues, node.value]));
+      } else if (allChildrenChecked) {
+        newValue = value.filter((v) => ![node.value, ...childrenValues].includes(v));
+      } else {
+        newValue = Array.from(new Set([...value, ...childrenValues, node.value]));
+      }
     }
     const selectedTreeNode = filterTreeBySelected(options, newValue);
     const selectedValue = getSelectedLeafValues(options, newValue);
     onChange(selectedValue, selectedTreeNode);
   };
 
-  const handleSelectAll = (checked: boolean) => {
+  const handleSelectAll = () => {
     let newValue: (string | number)[];
-    if (checked) {
-      newValue = Array.from(new Set([...value, ...allValues]));
+    if (allChecked) {
+      newValue = [];
     } else {
-      newValue = value.filter((v) => !allValues.includes(v));
+      newValue = Array.from(new Set([...allLeafValues]));
     }
     const selectedTreeNode = filterTreeBySelected(options, newValue);
     const selectedValue = getSelectedLeafValues(options, newValue);
@@ -182,47 +210,40 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
 
   const selectedLabels = useMemo(() => getSelectedLabels(options, value), [options, value]);
   let displayValue = '';
-  if (selectedLabels.length === 0) displayValue = placeholder || 'None Selected';
+  if (selectedLabels.length === 0) displayValue = placeholder || t('noneSelected');
   else if (selectedLabels.length <= 2) displayValue = selectedLabels.join(', ');
   else displayValue = `${selectedLabels.slice(0, 2).join(', ')} +${selectedLabels.length - 2}`;
-
-  const itemStyle: React.CSSProperties = {
-    display: 'flex',
-    alignItems: 'center',
-    minHeight: 26,
-    maxHeight: 32,
-    padding: '5px 2px 5px 3px',
-    fontSize: 13,
-    cursor: 'pointer',
-    border: 'none',
-    background: 'none',
-    outline: 'none',
-    userSelect: 'none',
-    borderRadius: 0,
-    transition: 'background 0.2s',
-  };
 
   const renderSelectAll = () => {
     return (
       <div
-        style={itemStyle}
-        className="tree-select-item tree-select-selectall"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          minHeight: 26,
+          maxHeight: 32,
+          fontSize: 13,
+          cursor: 'pointer',
+          border: 'none',
+          background: 'none',
+          outline: 'none',
+          userSelect: 'none',
+          borderRadius: 0,
+          transition: 'background 0.2s',
+        }}
         tabIndex={-1}
         onMouseDown={(e) => e.preventDefault()}
-        onClick={() => handleSelectAll(!(allChecked || (!allChecked && someChecked)))}
+        onClick={handleSelectAll}
         onMouseEnter={(e) => (e.currentTarget.style.background = '#F5F5F5')}
         onMouseLeave={(e) => (e.currentTarget.style.background = '')}
       >
         <input
           type="checkbox"
           checked={allChecked}
-          ref={(el) => {
-            if (el) el.indeterminate = !allChecked && someChecked;
-          }}
           readOnly
-          style={{ marginRight: 8 }}
+          style={{ marginRight: 6, marginLeft: 16, width: 20, height: 20 }}
         />
-        <span>Select all</span>
+        <span>{t('selectAll')}</span>
       </div>
     );
   };
@@ -231,49 +252,64 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
     return (
       <ul style={{ paddingLeft: 0, listStyle: 'none', margin: 0 }}>
         {nodes.map((node) => {
-          const checked = getAllValues([node]).every((v) => value.includes(v));
-          const indeterminate = !checked && getAllValues([node]).some((v) => value.includes(v));
           const hasChildren = !!node.children && node.children.length > 0;
+          let checked = false;
+          if (hasChildren) {
+            const childrenValues = getAllValues(node.children!);
+            checked = childrenValues.some((v) => value.includes(v));
+          } else {
+            checked = value.includes(node.value);
+          }
           return (
             <li key={String(node.value)} style={{ marginBottom: 0 }}>
               <div
                 style={{
-                  ...itemStyle,
-                  paddingLeft: 5 + level * 18,
                   display: 'flex',
                   alignItems: 'center',
+                  minHeight: 26,
+                  maxHeight: 32,
+                  fontSize: 13,
+                  cursor: 'pointer',
+                  border: 'none',
+                  background: 'none',
+                  outline: 'none',
+                  userSelect: 'none',
+                  borderRadius: 0,
+                  transition: 'background 0.2s',
+                  paddingLeft: level * 25,
                   justifyContent: 'space-between',
                 }}
-                className="tree-select-item"
                 tabIndex={-1}
                 onMouseDown={(e) => e.preventDefault()}
-                onClick={() => handleCheck(!checked, node)}
+                onClick={() => handleCheck(node)}
                 onMouseEnter={(e) => (e.currentTarget.style.background = '#F5F5F5')}
                 onMouseLeave={(e) => (e.currentTarget.style.background = '')}
               >
                 <span style={{ display: 'flex', alignItems: 'center', flex: 1 }}>
+                  <span style={{ width: 16 }}>
+                    {isAllowCollapseExpand && hasChildren && (
+                      <span
+                        style={{ cursor: 'pointer', fontSize: 10, color: '#888' }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleExpand(node.value);
+                        }}
+                      >
+                        {expanded[String(node.value)] ? '▼' : '▶'}
+                      </span>
+                    )}
+                    {!isAllowCollapseExpand && hasChildren && (
+                      <span style={{ fontSize: 13, color: '#888', marginLeft: 0 }}>▼</span>
+                    )}
+                  </span>
                   <input
                     type="checkbox"
                     checked={checked}
-                    ref={(el) => {
-                      if (el) el.indeterminate = indeterminate;
-                    }}
                     readOnly
-                    style={{ marginRight: 8 }}
+                    style={{ marginRight: 6, width: 20, height: 20 }}
                   />
                   <span>{node.label}</span>
                 </span>
-                {hasChildren && (
-                  <span
-                    style={{ cursor: 'pointer', marginLeft: 8, fontSize: 10, color: '#888' }}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleExpand(node.value);
-                    }}
-                  >
-                    {expanded[String(node.value)] ? '▼' : '▶'}
-                  </span>
-                )}
               </div>
               {hasChildren && expanded[String(node.value)] && renderTree(node.children!, level + 1)}
             </li>
@@ -288,13 +324,17 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
       <div
         ref={inputRef}
         tabIndex={0}
-        className="control-field"
         style={{
           display: 'flex',
           alignItems: 'center',
           cursor: 'pointer',
           userSelect: 'none',
           paddingRight: 32,
+          paddingLeft: 8,
+          border: '1px solid #dfdfdf',
+          borderRadius: 3,
+          height: 28,
+          background: '#fff',
         }}
         onClick={() => setDropdownOpen((open) => !open)}
       >
@@ -339,7 +379,7 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
             border: '1px solid #dfdfdf',
             borderRadius: 3,
             boxShadow: 'none',
-            padding: '0 10px',
+            padding: '0 5px',
             marginTop: 0,
             fontSize: 15,
           }}
@@ -354,7 +394,7 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
               autoFocus
             />
           </div>
-          <div style={{ maxHeight: 260, overflowY: 'auto', padding: 0 }}>
+          <div style={{ maxHeight: 400, overflowY: 'auto', padding: 0 }}>
             {renderSelectAll()}
             {renderTree(filteredOptions)}
           </div>

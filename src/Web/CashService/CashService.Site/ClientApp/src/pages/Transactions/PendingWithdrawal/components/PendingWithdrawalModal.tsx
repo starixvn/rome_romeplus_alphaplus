@@ -45,6 +45,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
   const [isLoading, setIsLoading] = useState(true);
   const [providerId, setProviderId] = useState(0);
   const [paymentMethodId, setPaymentMethodId] = useState(0);
+  const [isRemovePayslip, setIsRemovePayslip] = useState(false);
   const [resultMessage, setResultMessage] = useState<{
     type: 'success' | 'error' | 'warning' | null;
     message: string;
@@ -119,6 +120,12 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
     fetchBankOptions();
   }, [withdrawal]);
 
+  const handleImageChange = (file: File | null) => {
+    const isRemovePayslip = withdrawal?.base64Payslip !== null && file === null;
+    setImage(file);
+    setIsRemovePayslip(isRemovePayslip);
+  };
+
   const handleApprove = async () => {
     setShowConfirm('approve');
   };
@@ -139,6 +146,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
         paymentMethodId: paymentMethodId,
         remark: remark || '',
         image: image,
+        isRemovePayslip: isRemovePayslip,
       });
       if (response.isSuccessful) {
         setResultMessage({ type: 'success', message: t('pendingWithdrawalModal.approveSuccess') });
@@ -167,6 +175,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
       paymentMethodId: paymentMethodId,
       remark: remark || '',
       image: image,
+      isRemovePayslip: isRemovePayslip,
     });
     if (response.isSuccessful) {
       setResultMessage({ type: 'success', message: t('pendingWithdrawalModal.rejectSuccess') });
@@ -343,7 +352,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
                   </div>
                 </div>
                 <UploadImage
-                  setImage={setImage}
+                  setImage={handleImageChange}
                   prevImage={withdrawal?.base64Payslip}
                   disabled={isSubmitting}
                 />

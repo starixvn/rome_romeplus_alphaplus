@@ -148,7 +148,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
               text={`${t('detail.title')} (${transactionId?.toString() ?? t('detail.loading')})`}
             />
             <div className="relative ml-[10px]">
-              {detailData && mappingStatus(detailData.statusId)}
+              {detailData && mappingStatus(detailData.statusId, detailData.status)}
             </div>
             <ButtonClosePopupComponent onClick={onClose} />
           </div>
@@ -256,7 +256,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
                 {detailData.base64Payslip && (
                   <div className="w-[400px] h-full">
                     <img
-                      src={`data:image/png;base64,${detailData.base64Payslip}`}
+                      src={detailData.base64Payslip}
                       alt={detailData.transId.toString()}
                       className="w-full h-full object-contain"
                     />

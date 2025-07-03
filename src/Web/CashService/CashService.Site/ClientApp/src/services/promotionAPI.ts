@@ -18,6 +18,13 @@ export const promotionService = {
     }
   },
 
+  getPromotionById: async (promotionId: number): Promise<PromotionDetail> => {
+    const response = await axiosInstance.get<PromotionDetail>(
+      `GetPromotionById?promotionId=${promotionId}`
+    );
+    return response.data;
+  },
+
   getPromotionProducts: async (): Promise<Product[]> => {
     try {
       const response = await axiosInstance.get<Product[]>(`GetPromotionProducts`);

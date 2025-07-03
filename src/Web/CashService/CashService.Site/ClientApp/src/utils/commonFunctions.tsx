@@ -55,19 +55,19 @@ export const renderBankAccount = (bankAccount: string, tGlobal?: any) => {
 export const mappingStatus = (status: number, textContent?: string) => {
   switch (status) {
     case 0:
-      return <StatusProcessingComponent text={textContent || 'status.waiting'} />;
+      return <StatusProcessingComponent text={textContent} />;
     case 1:
-      return <StatusFailedComponent text={textContent || 'status.cancelled'} />;
+      return <StatusFailedComponent text={textContent} />;
     case 2:
-      return <StatusMaintenanceComponent text={textContent || 'status.pending'} />;
+      return <StatusMaintenanceComponent text={textContent} />;
     case 3:
-      return <StatusFailedComponent text={textContent || 'status.expired'} />;
+      return <StatusFailedComponent text={textContent} />;
     case 4:
-      return <StatusCompletedComponent text={textContent || 'status.completed'} />;
+      return <StatusCompletedComponent text={textContent} />;
     case 5:
-      return <StatusDisabledComponent text={textContent || 'status.rejected'} />;
+      return <StatusDisabledComponent text={textContent} />;
     case 6:
-      return <StatusDisabledComponent text="status.providerRejected" />;
+      return <StatusDisabledComponent text={textContent} />;
     default:
       return <StatusNoneComponent />;
   }

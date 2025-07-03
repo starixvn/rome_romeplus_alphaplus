@@ -21,7 +21,9 @@ public class ProcessWithdrawalTransactionCommand : CriteriaBase
     [SpParam(AllowNull = true)]
     public string Remark { get; set; }
 
+    [SpParam(AllowNull = true)]
     public byte[] Payslip { get; set; }
+
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; }
     public string CashAccumCreditTbl { get; set; }

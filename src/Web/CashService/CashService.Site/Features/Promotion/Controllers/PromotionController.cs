@@ -78,6 +78,15 @@ public class PromotionController(
         return Json(result);
     }
 
+    public async Task<IActionResult> GetPromotionById(int promotionId, CancellationToken cancellationToken)
+    {
+        var url = $"/promotions?promotionId={promotionId}&custId={userSession.CustId}";
+
+        var result = await httpClientHelper.GetAsync<object>(url);
+
+        return Json(result);
+    }
+
     public async Task<IActionResult> GetPromotionProducts()
     {
         var url = "/promotions/products";

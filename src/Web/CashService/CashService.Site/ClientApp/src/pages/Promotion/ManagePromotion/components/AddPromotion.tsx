@@ -51,7 +51,13 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [isActive, setIsActive] = useState<boolean>(true);
   const [promotionType, setPromotionType] = useState<number>(PROMOTION_TYPES[0].value);
-  const [period, setPeriod] = useState<[Date | null, Date | null]>([null, null]);
+
+  // Set default period: today to today + 7 days
+  const today = new Date();
+  const nextWeek = new Date();
+  nextWeek.setDate(today.getDate() + 7);
+  const [period, setPeriod] = useState<[Date | null, Date | null]>([today, nextWeek]);
+
   const [productOptions, setProductOptions] = useState<Product[]>([]);
   const [productSettings, setProductSettings] = useState<ProductSetting[]>([]);
   const [selectedProductIds, setSelectedProductIds] = useState<number[]>([]);

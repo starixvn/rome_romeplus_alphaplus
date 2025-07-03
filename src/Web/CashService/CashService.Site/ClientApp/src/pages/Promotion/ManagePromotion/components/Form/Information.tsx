@@ -71,6 +71,8 @@ const Information: React.FC<InformationProps> = ({
         <DateRangePickerComponent
           value={period}
           onChange={(value) => setPeriod(value as [Date | null, Date | null])}
+          hideQuickRanges={true}
+          minDate={new Date()}
         />
       </div>
 

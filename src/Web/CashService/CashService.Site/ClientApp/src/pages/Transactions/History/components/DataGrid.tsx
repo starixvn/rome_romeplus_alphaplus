@@ -50,11 +50,7 @@ const DataGrid: React.FC<DataGridProps> = ({
   const handleCloseModal = () => {
     setIsDetailModalOpen(false);
     setSelectedTransactionId(null);
-  };
-
-  const handleRevertSuccess = () => {
     onRefreshNeeded?.();
-    handleCloseModal();
   };
 
   const shouldShowColumn = (columnName: string) => {
@@ -180,7 +176,7 @@ const DataGrid: React.FC<DataGridProps> = ({
           isOpen={isDetailModalOpen}
           transactionType={transactionType}
           onClose={handleCloseModal}
-          onRevertSuccess={handleRevertSuccess}
+          onRevertSuccess={handleCloseModal}
           isCashServiceEnabled={isCashServiceEnabled}
         />
       )}

@@ -1,10 +1,14 @@
 ﻿export interface PromotionDetail {
   promotionId: number;
   promotionTitle: string;
+  promotionTypeId: number;
   promotionType: string;
+  statusId: number;
+  status: string;
   fromDate: Date | null;
   toDate: Date | null;
   productSettings: ProductSetting[];
+  promotionInfo: LanguageInfo[];
   enabled: boolean;
   lastUpdated: string;
 }
