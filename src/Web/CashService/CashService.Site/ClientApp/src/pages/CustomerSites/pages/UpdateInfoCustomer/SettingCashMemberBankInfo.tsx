@@ -1,7 +1,8 @@
 import React from "react";
 import {
     ButtonFullComponent,
-    ButtonOutlineComponent,
+    ButtonPenComponent,
+    ButtonDeleteComponent,
 } from "../../../../components/Buttons";
 
 import { useTranslation } from "react-i18next";
@@ -9,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import NoRecordFound from "../../../../components/NoRecordFoundComponent";
 import { MemberBankAccountRecord } from "../../types/UpdateCustomerType";
 import { AddBankModal } from "./AddBankModal";
+import { GetCustomerBankInfo } from "../../services/CustomerInfoServices";
 
 
 
@@ -28,19 +30,16 @@ export const SettingCashMemberBankInfo = () => {
             setIsLoading(true);
             // TODO: Implement API call to load bank accounts
             // Simulate API call
+            const memberBanks = await GetCustomerBankInfo<MemberBankAccountRecord[]>({
+                custId: updateInfoCustomerPageConfig.custId,
+                roleId: 1
+            });
+            console.log('memberBanks', memberBanks);
             await new Promise(resolve => setTimeout(resolve, 500));
 
             // Mock data - replace with actual API call
-            let mockData: MemberBankAccountRecord[] = [
-                {
-                    id: '1',
-                    memberBankAccountId: '1',
-                    memberBankAccountNumber: '1234567890',
-                    agentBankAccountNumber: '0987654321',
-                }
-            ];
-            mockData = []
-            setBankAccounts(mockData);
+
+            setBankAccounts(memberBanks);
         } catch (error) {
             console.error('Error loading bank accounts:', error);
         } finally {
@@ -48,14 +47,14 @@ export const SettingCashMemberBankInfo = () => {
         }
     };
 
-    const handleDeleteBankAccount = async (id: string) => {
+    const handleDeleteBankAccount = async (id: number) => {
         if (window.confirm(t('updateInfoCashMember.confirmDelete') || 'Are you sure you want to delete this bank account?')) {
             try {
                 setIsLoading(true);
                 // TODO: Implement API call to delete bank account
                 await new Promise(resolve => setTimeout(resolve, 500));
 
-                setBankAccounts(prev => prev.filter(account => account.id !== id));
+                setBankAccounts(prev => prev.filter(account => account.memberBankAccountID !== id));
                 alert(t('updateInfoCashMember.deleteSuccess') || 'Bank account deleted successfully');
             } catch (error) {
                 console.error('Error deleting bank account:', error);
@@ -67,16 +66,38 @@ export const SettingCashMemberBankInfo = () => {
     };
 
     const handleAddBankAccount = (newAccount: MemberBankAccountRecord) => {
-        const bankAccount: MemberBankAccountRecord = {
-            id: Date.now().toString(),
-            memberBankAccountId: newAccount.memberBankAccountId,
-            memberBankAccountNumber: newAccount.memberBankAccountNumber,
-            agentBankAccountNumber: newAccount.agentBankAccountNumber,
-        };
+        console.log('newAccount', newAccount);
+        // const bankAccount: MemberBankAccountRecord = {
+        //     agentBankAccountID: newAccount.agentBankAccountID,
+        //     agentBankAccountNumber: newAccount.agentBankAccountNumber,
+        //     agentBankAccountStatus: newAccount.agentBankAccountStatus,
+        //     agentBankCode: newAccount.agentBankCode,
+        //     agentBankID: newAccount.agentBankID,
+        //     memberBankAccountID: newAccount.memberBankAccountID,
+        //     memberBankAccountNumber: newAccount.memberBankAccountNumber,
+        // };
 
-        setBankAccounts(prev => [...prev, bankAccount]);
-        setShowAddBankAccountPopup(false);
+        // setBankAccounts(prev => [...prev, bankAccount]);
+        // setShowAddBankAccountPopup(false);
     };
+
+    const handleEditBankAccount = (id: number) => {
+        console.log('edit bank account', id);
+    };
+
+    const renderCell = ({ accountNumber, bankCode }: { accountNumber: string, bankCode: string }) => {
+        if (!accountNumber || !bankCode) return "No Matching Bank Account"
+        return (
+            <>
+                <img
+                    src={`https://cdn-customer.nexdev.net/v5/cash-member/create/bank/${bankCode}.png`}
+                    alt={`${bankCode} bank icon`}
+                    className={`w-[16px] h-[16px] inline-block mr-[5px]`}
+                />
+                {accountNumber}
+            </>
+        )
+    }
 
     return (
         <>
@@ -103,17 +124,27 @@ export const SettingCashMemberBankInfo = () => {
                     <tbody>
                         {bankAccounts.length > 0 && (
                             bankAccounts.map((account, index) => (
-                                <tr key={account.id}>
+                                <tr key={account.memberBankAccountID}>
                                     <td>{index + 1}</td>
-                                    <td>{account.memberBankAccountNumber}</td>
-                                    <td>{account.agentBankAccountNumber}</td>
                                     <td>
-                                        <ButtonOutlineComponent
-                                            className="w-[80px] [&>*]:w-[100%] text-red-600 border-red-600 hover:bg-red-600 hover:text-white"
-                                            text={t('global:delete') || 'Delete'}
-                                            onClick={() => handleDeleteBankAccount(account.id)}
-                                            disabled={isLoading}
-                                        />
+                                        {renderCell({ accountNumber: account.memberBankAccountNumber, bankCode: account.memberBankCode })}
+                                    </td>
+                                    <td>
+                                        {renderCell({ accountNumber: account.agentBankAccountNumber, bankCode: account.agentBankCode })}
+                                    </td>
+                                    <td>
+                                        <div className="flex justify-center">
+                                            <ButtonPenComponent
+                                                onClick={() => handleEditBankAccount(account.memberBankAccountID)}
+                                                disabled={isLoading}
+                                                sizeIcon={{ width: 20, height: 20 }}
+                                            />
+                                            <ButtonDeleteComponent
+                                                onClick={() => handleDeleteBankAccount(account.memberBankAccountID)}
+                                                disabled={isLoading}
+                                                sizeIcon={{ width: 16, height: 16 }}
+                                            />
+                                        </div>
                                     </td>
                                 </tr>
                             ))

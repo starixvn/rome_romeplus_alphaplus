@@ -17,4 +17,11 @@ const UpdateCustomerInfo = async <T>(params?: Record<string, any>): Promise<T> =
   return data;
 }
 
-export { GetCustomerInfo, UpdateCustomerInfo };
+const GetCustomerBankInfo = async <T>(params?: Record<string, any>): Promise<T> =>{
+  const { data } = await axiosInstance.get<T>(`${updateInfoCustomerPageConfig.settingSiteUrl}Customer/GetCustomerBankInfo`, {
+    params
+  });
+  return data;
+}
+
+export { GetCustomerInfo, UpdateCustomerInfo, GetCustomerBankInfo };

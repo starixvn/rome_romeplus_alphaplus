@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconClose, IconDelete, IconPen } from '../Icons';
-import { ButtonComponentProps } from './types';
+import { ButtonComponentProps, ButtonIconComponentProps} from './types';
 import './ButtonComponents.scss';
 
 export const ButtonClosePopupComponent: React.FC<ButtonComponentProps> = ({ onClick, type }) => {
@@ -15,26 +15,26 @@ export const ButtonClosePopupComponent: React.FC<ButtonComponentProps> = ({ onCl
   );
 };
 
-export const ButtonPenComponent: React.FC<ButtonComponentProps> = ({ onClick, disabled, type }) => {
+export const ButtonPenComponent: React.FC<ButtonIconComponentProps> = ({ onClick, disabled, type, sizeIcon }) => {
   return (
     <button
       type={type || 'button'}
       className={` mx-[4px] cursor-pointer p-[4px] rounded-[4px] hover:bg-[var(--button-icon-hover)] text-[var(--text-color-primary)] ${disabled ? 'cursor-not-allowed opacity-80' : ''}`}
       onClick={onClick}
     >
-      <IconPen className="fill-[var(--icon-color)]" />
+      <IconPen className="fill-[var(--icon-color)]" width={sizeIcon?.width} height={sizeIcon?.height} />
     </button>
   );
 };
 
-export const ButtonDeleteComponent: React.FC<ButtonComponentProps> = ({ onClick, type }) => {
+export const ButtonDeleteComponent: React.FC<ButtonIconComponentProps> = ({ onClick, type, sizeIcon }) => {
   return (
     <button
       type={type || 'button'}
       className="mx-[4px] cursor-pointer p-[4px] rounded-[4px] hover:bg-[var(--button-icon-hover)]"
       onClick={onClick}
     >
-      <IconDelete className='fill-[#d33]' />
+      <IconDelete className='fill-[#d33]' width={sizeIcon?.width} height={sizeIcon?.height} />
     </button>
   );
 }; 

@@ -39,9 +39,15 @@ export const AddBankModal = ({ onClose, onAdd }: AddBankModalProps) => {
 
     const methods = useForm<MemberBankAccountRecord>({
         defaultValues: {
-            memberBankAccountId: '',
+            memberBankAccountID: 0,
             memberBankAccountNumber: '',
-            agentBankAccountNumber: ''
+            agentBankAccountNumber: '',
+            memberBankCode: '',
+            agentBankCode: '',
+            memberBankID: 0,
+            agentBankID: 0,
+            agentBankAccountID: 0,
+            agentBankAccountStatus: '',
         },
         mode: 'onChange',
         criteriaMode: 'all',

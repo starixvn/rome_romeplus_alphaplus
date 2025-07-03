@@ -1,8 +1,13 @@
 export interface MemberBankAccountRecord {
-    id: string;
-    memberBankAccountId: string;
-    memberBankAccountNumber: string;
+    agentBankAccountID: number;
     agentBankAccountNumber: string;
+    agentBankAccountStatus: string;
+    agentBankCode: string;
+    agentBankID: number;
+    memberBankAccountID: number;
+    memberBankAccountNumber: string;
+    memberBankCode: string;
+    memberBankID: number;
 }
 
 export interface CustomerInfoData {

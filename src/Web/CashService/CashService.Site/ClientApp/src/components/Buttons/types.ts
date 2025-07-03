@@ -7,3 +7,7 @@ export interface ButtonComponentProps {
   type?: 'button' | 'submit' | 'reset'; 
   title?: string;
 } 
+
+export interface ButtonIconComponentProps extends ButtonComponentProps {
+  sizeIcon?: { width: number; height: number };
+}

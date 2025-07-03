@@ -10,12 +10,12 @@ export const SettingCashMemberWrapper = () => {
     const tabButton = (tab: string) => {
         const tabList: React.ReactNode[] = [];
         if (tab === 'memberInfo') {
-            tabList.push(<ButtonTabInactiveComponent text={t('updateInfoCashMember.memberInfo')} />)
-            tabList.push(<ButtonTabActiveComponent text={t('updateInfoCashMember.bankInfo')} onClick={() => setActiveTab('bankInfo')} />)
+            tabList.push(<ButtonTabActiveComponent text={t('updateInfoCashMember.memberInfo')} />)
+            tabList.push(<ButtonTabInactiveComponent text={t('updateInfoCashMember.bankInfo')} onClick={() => setActiveTab('bankInfo')} />)
         }
         if (tab === 'bankInfo') {
-            tabList.push(<ButtonTabActiveComponent text={t('updateInfoCashMember.memberInfo')} onClick={() => setActiveTab('memberInfo')} />)
-            tabList.push(<ButtonTabInactiveComponent text={t('updateInfoCashMember.bankInfo')} />)
+            tabList.push(<ButtonTabInactiveComponent text={t('updateInfoCashMember.memberInfo')} onClick={() => setActiveTab('memberInfo')} />)
+            tabList.push(<ButtonTabActiveComponent text={t('updateInfoCashMember.bankInfo')} />)
         }
         return tabList.map((item, index) => (
             <li key={`${tab}-${index}`} className="mr-[8px]">

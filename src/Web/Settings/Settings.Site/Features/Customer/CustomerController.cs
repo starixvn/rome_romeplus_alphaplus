@@ -598,5 +598,11 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 
             return Json(result, serializeOptions);
         }
+
+        public async Task<IActionResult> GetCustomerBankInfo(int custId, int roleId)
+        {
+            var result = await customerService.GetCustomerBankInfo(custId, roleId);
+            return Content(result);
+        }
     }
 }

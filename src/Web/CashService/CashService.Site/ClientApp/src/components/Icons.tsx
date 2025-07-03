@@ -2,6 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 export interface IconProps {
   className?: string;
+  width?: number;
+  height?: number;
 }
 
 export const NoRecordsIcon: React.FC<{ className?: string }> = ({ className }) => (
@@ -76,9 +78,9 @@ export const ChevronDownIcon: React.FC<IconProps> = ({ className = '' }) => (
     />
   </svg>
 );
-export const IconPen: React.FC<{ className?: string }> = ({ className }) => (
+export const IconPen: React.FC<IconProps> = ({ className, width = 20, height = 20 }) => (
   <svg
-    className={`w-[20px] h-[20px] ${className}`}
+    className={`w-[${width}px] h-[${height}px] ${className}`}
     xmlns="http://www.w3.org/2000/svg"
     version="1.1"
     viewBox="0 0 32 32"
@@ -106,8 +108,8 @@ export const IconSearch: React.FC = () => (
     <path  d="M23 20.2h-1.4l-0.6-0.6c1.8-2 3-4.8 3-7.6 0-6.6-5.4-12-12-12-6.4 0-11.8 5.4-11.8 11.8 0 6.6 5.4 11.8 11.8 11.8 3 0 5.6-1 7.6-3l0.6 0.6v1.4l9.2 9.2 2.8-2.8-9.2-8.8zM12 20.2c-4.6 0-8.2-3.6-8.2-8.2s3.8-8.4 8.2-8.4 8.2 3.6 8.2 8.2-3.6 8.4-8.2 8.4z"></path>
   </svg>
 );
-export const IconDelete: React.FC<IconProps> = ({ className }: { className?: string }) => (
-  <svg className={`w-[16px] h-[16px] ${className}`} version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+export const IconDelete: React.FC<IconProps> = ({ className, width = 16, height = 16}) => (
+  <svg className={`w-[${width}px] h-[${height}px] ${className}`} version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
     <path  d="M4 10v20c0 1.1 0.9 2 2 2h18c1.1 0 2-0.9 2-2v-20h-22zM10 28h-2v-14h2v14zM14 28h-2v-14h2v14zM18 28h-2v-14h2v14zM22 28h-2v-14h2v14z"></path>
     <path  d="M26.5 4h-6.5v-2.5c0-0.825-0.675-1.5-1.5-1.5h-7c-0.825 0-1.5 0.675-1.5 1.5v2.5h-6.5c-0.825 0-1.5 0.675-1.5 1.5v2.5h26v-2.5c0-0.825-0.675-1.5-1.5-1.5zM18 4h-6v-1.975h6v1.975z"></path>
   </svg>
