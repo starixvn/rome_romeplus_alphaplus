@@ -653,7 +653,7 @@ var indexManager = {
                         $(iframeWindow.document).on('click', (e) => {
                             const checklistDiv = $('#cash-service-checklist');
                             if (!checklistDiv.is(e.target) && checklistDiv.has(e.target).length === 0) {
-                                indexManager.hideCashServiceChecklist();
+                                indexManager.collapseCashServiceChecklist();
                             }
                         });
                     }
@@ -666,7 +666,7 @@ var indexManager = {
             $(window).on('click', (e) => {
                 const checklistDiv = $('#cash-service-checklist');
                 if (!checklistDiv.is(e.target) && checklistDiv.has(e.target).length === 0) {
-                    indexManager.hideCashServiceChecklist();
+                    indexManager.collapseCashServiceChecklist();
                 }
             });
 
@@ -675,8 +675,17 @@ var indexManager = {
             }
         });
     },
-    hideCashServiceChecklist: function () {
+    collapseCashServiceChecklist: function () {
         $('#cash-service-checklist .checklist-content').addClass('hide');
+    },
+    showHideCashServiceChecklist: function (isShow: boolean) {
+        if(isShow) {
+            $('#ShowCashServiceChecklist').val(1);
+            indexManager.initCashServiceChecklist(true);
+        } else {
+            $('#ShowCashServiceChecklist').val(0);
+            $('#cash-service-checklist').addClass('hide');
+        }
     }
 };
 

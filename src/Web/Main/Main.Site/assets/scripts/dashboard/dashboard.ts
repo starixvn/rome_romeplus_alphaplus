@@ -70,7 +70,7 @@
                     toggle.attr("data-state", "on");
                     toggle.addClass("active");
                     this.$("#enableCashServiceModal").modal('hide');
-                    this.topWindow.indexManager.initCashServiceChecklist(true);
+                    this.topWindow.indexManager.showHideCashServiceChecklist(true);
                 } else {
                     alert(response.message);
                 }
@@ -100,6 +100,7 @@
                     toggle.attr("data-state", "off");
                     toggle.removeClass("active");
                     this.$("#disableCashServiceModal").modal('hide');
+                    this.topWindow.indexManager.showHideCashServiceChecklist(false);
                 } else {
                     alert(response.message);
                 }
