@@ -3,8 +3,6 @@ import { LabelTitleComponent } from '../../../../../components/Title/LabelTitleC
 import { ErrorMessageComponent, SuccessMessageComponent } from '../../../../../components/Message';
 import UploadImage from '../../../../Transactions/Components/UploadImage';
 import { ButtonTabComponent } from '../../../../../components/Buttons/ButtonTabComponent';
-import { useQuill } from 'react-quilljs';
-import 'quill/dist/quill.snow.css';
 
 export interface PromotionLangFields {
   title: string;
@@ -84,47 +82,20 @@ export const ContentField: React.FC<{
   onChange: (v: string) => void;
   lang: string;
   isDefault: boolean;
-}> = ({ value, onChange, lang, isDefault }) => {
-  const { quill, quillRef } = useQuill({
-    theme: 'snow',
-    modules: {
-      toolbar: [
-        [{ header: [1, 2, false] }],
-        ['bold', 'italic', 'underline'],
-        ['link', 'image'],
-        [{ list: 'ordered' }, { list: 'bullet' }],
-        ['clean'],
-      ],
-    },
-    placeholder: '',
-  });
-
-  React.useEffect(() => {
-    if (quill && value !== quill.root.innerHTML) {
-      quill.root.innerHTML = value || '';
-    }
-  }, [quill, value]);
-
-  React.useEffect(() => {
-    if (!quill) return;
-    const handler = () => {
-      onChange(quill.root.innerHTML);
-    };
-    quill.on('text-change', handler);
-    return () => {
-      quill.off('text-change', handler);
-    };
-  }, [quill, onChange]);
-
-  return (
-    <div className="mb-4">
-      <LabelTitleComponent text={`Content`} required={isDefault} />
-      <div className="border border-[var(--border-control)] rounded">
-        <div key={`content-${lang}`} ref={quillRef} style={{ minHeight: 180, padding: 2 }} />
-      </div>
+}> = ({ value, onChange, lang, isDefault }) => (
+  <div className="mb-4">
+    <LabelTitleComponent text={`Content`} required={isDefault} />
+    <div className="border border-[var(--border-control)] rounded">
+      <textarea
+        key={`content-${lang}`}
+        className="w-full min-h-[120px] p-2 resize-y border-0 focus:ring-0 focus:outline-none"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder=""
+      />
     </div>
-  );
-};
+  </div>
+);
 
 const PromotionInfo: React.FC<PromotionInfoProps> = ({
   languages,
