@@ -958,4 +958,7 @@ Note: Please change your &lt;b&gt;password&lt;/b&gt; the first time you click 'A
   <data name="CashServiceSetupChecklist_Row8" xml:space="preserve">
     <value>Need help? Please read our guide.</value>
   </data>
+  <data name="Checklist" xml:space="preserve">
+    <value>Checklist</value>
+  </data>
 </root>

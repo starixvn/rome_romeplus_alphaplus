@@ -3099,5 +3099,13 @@ namespace AlphaPlus.Shared.AppResources.Main
                 return ResourceManager.GetString("CashServiceSetupChecklist_Row8", resourceCulture);
             }
         }
+        
+        public static string Checklist
+        {
+            get
+            {
+                return ResourceManager.GetString("Checklist", resourceCulture);
+            }
+        }
     }
 }
