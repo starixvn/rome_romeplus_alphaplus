@@ -1,7 +1,7 @@
 FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-node22-25h1 AS builder
 
 WORKDIR /build
-EXPOSE 5000
+ENV ASPNETCORE_URLS=http://0.0.0.0:5000
 
 COPY "src/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "src/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj"
 COPY "src/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "src/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
