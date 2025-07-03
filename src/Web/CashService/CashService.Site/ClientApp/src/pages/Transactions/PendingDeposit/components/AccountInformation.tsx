@@ -58,12 +58,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
               <CustomDropdown
                 options={memberLoginOptions.map((option) => ({
                   value: option.custId.toString(),
-                  label: (
-                    <>
-                      {option.username}
-                      {option.nickName && <div className="nickname w-full">({option.nickName})</div>}
-                    </>
-                  ),
+                  label: option.username + (option.nickName ? ' <span class="nickname">(' + option.nickName + ')</span>' : ''),
                 }))}
                 onSelect={(selected) => onMemberChange(selected)}
                 initialValue={memberId?.toString()}

@@ -99,6 +99,11 @@ const CustomDropdownComponent = ({
     if (showOptionAll) return t('all');
     return placeholder;
   };
+
+  const getDisplayText = () => {
+    const display = displaySelected();
+    return typeof display === 'string' ? display : '';
+  };
   return (
     <div className="relative" ref={dropdownRef}>
       <div
@@ -106,9 +111,7 @@ const CustomDropdownComponent = ({
         onClick={handleToggle}
       >
         {selected && selected.icon}
-        <span className="block whitespace-nowrap overflow-hidden text-ellipsis pr-[12px] [&>.nickname]:hidden">
-          {displaySelected()}
-        </span>
+        <span className="block whitespace-nowrap overflow-hidden text-ellipsis pr-[12px] [&>.nickname]:hidden" dangerouslySetInnerHTML={{ __html: getDisplayText() }} />
         <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
       </div>
 
@@ -135,7 +138,7 @@ const CustomDropdownComponent = ({
                 className="py-[3px] px-[12px] hover:bg-[#1967D2] hover:text-[#fff] cursor-pointer flex flex-wrap items-start max-[768px]:py-[6px]"
               >
                 {option.icon}
-                {option.label}
+                <span className="flex flex-col" dangerouslySetInnerHTML={{ __html: typeof option.label === 'string' ? option.label : '' }} />
               </div>
             ))
           ) : (
