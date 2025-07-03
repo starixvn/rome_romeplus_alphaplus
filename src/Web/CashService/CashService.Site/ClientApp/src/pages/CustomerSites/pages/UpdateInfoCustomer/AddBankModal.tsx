@@ -1,54 +1,75 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import CustomDropdown, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import { ButtonClosePopupComponent, ButtonCancelComponent, ButtonApplyComponent } from "../../../../components/Buttons";
 import { MediumTitleComponent, LabelTitleComponent } from "../../../../components/Title";
 import { FormProvider, useForm, Controller } from 'react-hook-form';
-import { MemberBankAccountRecord } from "../../types/UpdateCustomerType";
+import { AddMemberBankInfo, GetBanks, GetCustomerBankInfo } from "../../services/CustomerInfoServices";
+import { useResultMessage } from "../../../../hooks/useResultMessage";
+import { ValidateMessageComponent } from "../../../../components/Message";
 
 
 interface AddBankModalProps {
-    onClose: () => void;
-    onAdd: (data: MemberBankAccountRecord) => void;
+    closeModal: () => void;
+    onAddSuccess: () => void;
 }
-const mockBanks: any[] = []
 
-export const AddBankModal = ({ onClose, onAdd }: AddBankModalProps) => {
+interface Bank {
+    bankId: number;
+    bankName: string;
+    bankCode: string;
+    bankAccountNumber: string;
+}
+
+interface AddMemberBankFormData {
+    memberId: number;
+    memberBankID: number;
+    agentBankID: number;
+    memberBankAccountNumber: string;
+    agentBankAccountNumber: string;
+    memberBankDropdownOptions: DropdownOption[];
+    agentBankDropdownOptions: DropdownOption[];
+    agentBanks: any[];
+}
+export const AddBankModal = ({ closeModal, onAddSuccess }: AddBankModalProps) => {
     const { t } = useTranslation('customerSites');
-    const [isLoading, setIsLoading] = React.useState(false);
-    const [isBlockAction, setIsBlockAction] = React.useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isBlockAction, setIsBlockAction] = useState(false);
+    const { ResultMessage, showResult, clearResult } = useResultMessage();
 
-    const [memberBank] = React.useState<DropdownOption[]>(mockBanks?.map(e => ({
-        value: e.id,
-        label: e.name,
-        icon: <img
-            src={`https://cdn-customer.nexdev.net/v5/cash-member/create/bank/${e.code}.png`}
-            alt={`${e.code} bank icon`}
-            className={`w-[16px] h-[16px] mr-[8px] inline-block`}
-        />,
-    })));
-    const [agentBank] = React.useState<DropdownOption[]>(mockBanks?.map(e => ({
-        value: e.id,
-        label: e.name,
-        icon: <img
-            src={`https://cdn-customer.nexdev.net/v5/cash-member/create/bank/${e.code}.png`}
-            alt={`${e.code} bank icon`}
-            className={`w-[16px] h-[16px] mr-[8px] inline-block`}
-        />,
-    })));
+    useEffect(() => {
+        loadModalData();
+    }, []);
 
-    const methods = useForm<MemberBankAccountRecord>({
-        defaultValues: {
-            memberBankAccountID: 0,
-            memberBankAccountNumber: '',
-            agentBankAccountNumber: '',
-            memberBankCode: '',
-            agentBankCode: '',
-            memberBankID: 0,
-            agentBankID: 0,
-            agentBankAccountID: 0,
-            agentBankAccountStatus: '',
-        },
+    const loadModalData = async () => {
+        const memberBanks = await GetBanks<Bank[]>({});
+        const memberBankDropdownOptions: DropdownOption[] = memberBanks.map((bank) => ({
+            value: bank.bankId,
+            label: bank.bankName,
+            icon: <img src={`https://cdn-customer.nexdev.net/v5/cash-member/create/bank/${bank.bankCode?.toUpperCase()}.png`} alt={bank.name} className="w-[16px] h-[16px] inline-block mr-[5px]" />
+        }));
+
+        const agentBanks = await GetCustomerBankInfo<Bank[]>({
+            roleId: 2
+        });
+        const agentBankDropdownOptions: DropdownOption[] = agentBanks.map((bank) => ({
+            value: bank.bankId,
+            label: bank.bankAccountNumber,
+            icon: <img src={`https://cdn-customer.nexdev.net/v5/cash-member/create/bank/${bank.bankCode?.toUpperCase()}.png`} alt={bank.name} className="w-[16px] h-[16px] inline-block mr-[5px]" />
+        }));
+        console.log('agentBanks', agentBanks);
+        reset({
+            memberId: updateInfoCustomerPageConfig.custId,
+            memberBankID: memberBanks[0].bankId,
+            memberBankDropdownOptions: memberBankDropdownOptions,
+            agentBankID: agentBanks[0].bankId,
+            agentBankDropdownOptions: agentBankDropdownOptions,
+            agentBanks: agentBanks,
+        });
+
+    }
+
+    const methods = useForm<AddMemberBankFormData>({
         mode: 'onChange',
         criteriaMode: 'all',
     });
@@ -56,26 +77,33 @@ export const AddBankModal = ({ onClose, onAdd }: AddBankModalProps) => {
     const {
         handleSubmit,
         control,
+        watch,
         formState: { isDirty, errors },
+        reset,
+        setValue,
     } = methods;
 
-    const onSubmit = async (formData: MemberBankAccountRecord) => {
+    const onSubmit = async (formData: AddMemberBankFormData) => {
         try {
             setIsLoading(true);
             setIsBlockAction(true);
+            const response = await AddMemberBankInfo<any>({
+                MemberId: formData.memberId,
+                MemberBankId: formData.memberBankID,
+                MemberBankAccountNumber: formData.memberBankAccountNumber,
+                AgentBankId: formData.agentBankID,
+                AgentBankAccountNumber: formData.agentBankAccountNumber,
+            });
 
-            // TODO: Implement API call to add bank account
-            console.log('Adding bank account:', formData);
-
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1000));
-
-            onAdd(formData);
-            alert(t('updateInfoCashMember.addSuccess') || 'Bank account added successfully');
+            if (response.isSuccessful) {
+                showResult('success', t('global:addSuccess'), 3000, onAddSuccess);
+            } else {
+                showResult('error', response.message);
+            }
 
         } catch (error) {
             console.error('Error adding bank account:', error);
-            alert(t('updateInfoCashMember.addError') || 'Failed to add bank account');
+            showResult('error', t('global:addFailed'));
         } finally {
             setIsLoading(false);
             setIsBlockAction(false);
@@ -87,18 +115,26 @@ export const AddBankModal = ({ onClose, onAdd }: AddBankModalProps) => {
             <div className="p-[12px] pt-[0] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] min-w-[350px] max-[768px]:max-w-[90%] rounded-[3px] dark:bg-[#121212]">
                 <div className="relative mb-[10px] text-center border-b-[1px] border-[var(--border-color)] py-[11px]" >
                     <MediumTitleComponent text={t('updateInfoCashMember.addBankAccount')} />
-                    <ButtonClosePopupComponent onClick={onClose} />
+                    <ButtonClosePopupComponent onClick={closeModal} />
                 </div>
                 <div>
+                    <div className="mb-[10px]">
+                        {ResultMessage()}
+                    </div>
                     <FormProvider {...methods}>
-                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-[15px]">
                             <div>
                                 <LabelTitleComponent text={t('updateInfoCashMember.memberBankAccount')} required={true} />
                                 <CustomDropdown
-                                    options={memberBank}
-                                    onSelect={() => { }}
-                                    initialValue={''}
+                                    options={watch('memberBankDropdownOptions') ?? []}
+                                    onSelect={(option) => {
+                                        setValue('memberBankID', Number(option.value));
+                                    }}
+                                    initialValue={watch('memberBankDropdownOptions')?.[0]?.value}
                                 />
+                                {errors.memberBankID && (
+                                    <div className="">{errors.memberBankID.message}</div>
+                                )}
                             </div>
 
                             <div>
@@ -115,31 +151,35 @@ export const AddBankModal = ({ onClose, onAdd }: AddBankModalProps) => {
                                         />
                                     )}
                                 />
-                                {errors.memberBankAccountNumber && (
-                                    <div className="text-red-500 text-sm mt-1">{errors.memberBankAccountNumber.message}</div>
-                                )}
+                                <ValidateMessageComponent message={errors.memberBankAccountNumber?.message as string} />
                             </div>
                             <div>
                                 <LabelTitleComponent text={t('updateInfoCashMember.agentBankAccount')} />
                                 <CustomDropdown
-                                    options={agentBank}
-                                    onSelect={() => { }}
-                                    initialValue={agentBank[0].value}
+                                    options={watch('agentBankDropdownOptions') ?? []}
+                                    onSelect={(option) => {
+                                        const selectedBank = watch('agentBanks')?.find((opt) => opt.bankId === option.value);
+                                        console.log('selectedBank', selectedBank);
+                                        setValue('agentBankID', selectedBank?.bankId ?? 0);
+                                        setValue('agentBankAccountNumber', selectedBank?.bankAccountNumber ?? '');
+                                    }}
+                                    initialValue={watch('agentBankDropdownOptions')?.[0]?.value}
                                 />
                             </div>
-
-
 
                             <div className="flex justify-center gap-[8px] pt-4">
                                 <ButtonCancelComponent
                                     text={t('global:cancel')}
-                                    onClick={onClose}
+                                    onClick={() => {
+                                        closeModal();
+                                        clearResult();
+                                    }}
                                     disabled={isLoading || isBlockAction}
                                 />
                                 <ButtonApplyComponent
                                     text={isLoading ? t('global:loading') : t('global:save')}
                                     type='submit'
-                                    disabled={isLoading || isBlockAction || !isDirty}
+                                    disabled={isLoading || isBlockAction}
                                 />
                             </div>
                         </form>

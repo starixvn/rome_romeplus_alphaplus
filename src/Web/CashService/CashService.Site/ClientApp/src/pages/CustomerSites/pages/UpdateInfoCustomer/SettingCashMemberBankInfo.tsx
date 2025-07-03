@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import {
     ButtonFullComponent,
     ButtonPenComponent,
@@ -16,28 +16,21 @@ import { GetCustomerBankInfo } from "../../services/CustomerInfoServices";
 
 export const SettingCashMemberBankInfo = () => {
     const { t } = useTranslation('customerSites');
-    const [showAddBankAccountPopup, setShowAddBankAccountPopup] = React.useState(false);
-    const [bankAccounts, setBankAccounts] = React.useState<MemberBankAccountRecord[]>([]);
-    const [isLoading, setIsLoading] = React.useState(false);
+    const [showAddBankAccountPopup, setShowAddBankAccountPopup] = useState(false);
+    const [bankAccounts, setBankAccounts] = useState<MemberBankAccountRecord[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
 
-    // Load bank accounts on component mount
-    React.useEffect(() => {
+    useEffect(() => {
         loadBankAccounts();
     }, []);
 
     const loadBankAccounts = async () => {
         try {
             setIsLoading(true);
-            // TODO: Implement API call to load bank accounts
-            // Simulate API call
             const memberBanks = await GetCustomerBankInfo<MemberBankAccountRecord[]>({
                 custId: updateInfoCustomerPageConfig.custId,
                 roleId: 1
             });
-            console.log('memberBanks', memberBanks);
-            await new Promise(resolve => setTimeout(resolve, 500));
-
-            // Mock data - replace with actual API call
 
             setBankAccounts(memberBanks);
         } catch (error) {
@@ -63,22 +56,6 @@ export const SettingCashMemberBankInfo = () => {
                 setIsLoading(false);
             }
         }
-    };
-
-    const handleAddBankAccount = (newAccount: MemberBankAccountRecord) => {
-        console.log('newAccount', newAccount);
-        // const bankAccount: MemberBankAccountRecord = {
-        //     agentBankAccountID: newAccount.agentBankAccountID,
-        //     agentBankAccountNumber: newAccount.agentBankAccountNumber,
-        //     agentBankAccountStatus: newAccount.agentBankAccountStatus,
-        //     agentBankCode: newAccount.agentBankCode,
-        //     agentBankID: newAccount.agentBankID,
-        //     memberBankAccountID: newAccount.memberBankAccountID,
-        //     memberBankAccountNumber: newAccount.memberBankAccountNumber,
-        // };
-
-        // setBankAccounts(prev => [...prev, bankAccount]);
-        // setShowAddBankAccountPopup(false);
     };
 
     const handleEditBankAccount = (id: number) => {
@@ -159,8 +136,11 @@ export const SettingCashMemberBankInfo = () => {
             </div>
             {showAddBankAccountPopup && (
                 <AddBankModal
-                    onClose={() => setShowAddBankAccountPopup(false)}
-                    onAdd={handleAddBankAccount}
+                    closeModal={() => setShowAddBankAccountPopup(false)}
+                    onAddSuccess={() => {
+                        setShowAddBankAccountPopup(false);
+                        loadBankAccounts();
+                    }}
                 />
             )}
         </>

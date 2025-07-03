@@ -9,14 +9,7 @@ import { SettingCustomerInfoWrapper } from "./SettingCustomerInfoWrapper";
 import { TitleComponent } from "../../../../components/Title";
 import { useTranslation } from "react-i18next";
 
-declare global {
-    const updateInfoCustomerPageConfig: {
-        settingSiteUrl: string;
-        isCashMember: boolean;
-        username: string;
-        custId: number;
-    }
-}
+
 function PageTitle(){
     console.log(updateInfoCustomerPageConfig);
     const { t } = useTranslation('global');

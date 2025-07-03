@@ -131,9 +131,9 @@ const CustomDropdownComponent = ({
             </div>
           )}
           {filteredOptions.length > 0 ? (
-            filteredOptions.map((option) => (
+            filteredOptions.map((option,index) => (
               <div
-                key={option.value}
+                key={`${option.value}-${index}`}
                 onClick={() => handleSelect(option)}
                 className="py-[3px] px-[12px] hover:bg-[#1967D2] hover:text-[#fff] cursor-pointer flex flex-wrap items-start max-[768px]:py-[6px]"
               >

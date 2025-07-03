@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { FormProvider, useForm, Controller } from 'react-hook-form';
 import { EMAIL_REGEX, NUMBER_REGEX, PHONE_CODE_MAX_LENGTH, PHONE_NUMBER_MAX_LENGTH } from "../../../../constants/memberSiteConstants";
 import { CustomerInfoData } from "../../types/UpdateCustomerType";
-import { ValidateMessageComponentV2 } from "../../../../components/Message/ValidateMessageComponent";
+import { ValidateMessageComponent } from "../../../../components/Message/ValidateMessageComponent";
 import { GetCustomerInfo, UpdateCustomerInfo } from "../../services/CustomerInfoServices";
 import { splitMobile } from "../../../../utils/sharedUtils";
 import { useResultMessage } from "../../../../hooks/useResultMessage";
@@ -106,7 +106,6 @@ export const SettingCashMemberInfo = () => {
             <FormProvider {...methods}>
                 <form>
                     <div className="bg-white border border-gray-200 rounded-[3px] p-[10px]">
-
                         <div className="flex flex-col">
                             {/* First Name and Last Name Row */}
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
@@ -128,7 +127,7 @@ export const SettingCashMemberInfo = () => {
                                             />
                                         )}
                                     />
-                                    <ValidateMessageComponentV2 message={errors.firstName?.message as string} />
+                                    <ValidateMessageComponent message={errors.firstName?.message as string} />
                                 </div>
 
                                 <div className="flex flex-col gap-2">
@@ -150,7 +149,7 @@ export const SettingCashMemberInfo = () => {
                                         )}
                                     />
 
-                                    <ValidateMessageComponentV2 message={errors.lastName?.message as string} />
+                                    <ValidateMessageComponent message={errors.lastName?.message as string} />
                                 </div>
                             </div>
 
@@ -204,7 +203,7 @@ export const SettingCashMemberInfo = () => {
                                             )}
                                         />
                                     </div>
-                                    <ValidateMessageComponentV2 message={(errors.mobileCode?.message || errors.mobileNumber?.message) as string} />
+                                    <ValidateMessageComponent message={(errors.mobileCode?.message || errors.mobileNumber?.message) as string} />
                                 </div>
                                 <div className="flex flex-col gap-1">
                                     <LabelTitleComponent
@@ -228,7 +227,7 @@ export const SettingCashMemberInfo = () => {
                                             />
                                         )}
                                     />
-                                    <ValidateMessageComponentV2 message={errors.phone?.message as string} />
+                                    <ValidateMessageComponent message={errors.phone?.message as string} />
                                 </div>
 
 
@@ -258,7 +257,7 @@ export const SettingCashMemberInfo = () => {
                                             />
                                         )}
                                     />
-                                    <ValidateMessageComponentV2 message={errors.email?.message as string} />
+                                    <ValidateMessageComponent message={errors.email?.message as string} />
                                 </div>
 
                                 <div className="flex flex-col gap-1">

@@ -5,14 +5,15 @@ import { ResultMessageComponent } from "../components/Message/ResultMessageCompo
 export const useResultMessage = () => {
     const [result, setResult] = useState<{ type: ResultType; text: string } | null>(null);
 
-    const showResult = (type: ResultType, text: string) => {
+    const showResult = (type: ResultType, text: string, duration: number = 3000, onClose?: () => void) => {
         setResult({
             type: type,
             text: text,
         });
         setTimeout(() => {
             setResult(null);
-        }, 3000);
+            onClose?.();
+        }, duration);
     };
 
     const clearResult = () => {

@@ -20,3 +20,12 @@ export interface CustomerInfoData {
     email: string;
     fax: string;
 }
+
+declare global {
+    const updateInfoCustomerPageConfig: {
+        settingSiteUrl: string;
+        isCashMember: boolean;
+        username: string;
+        custId: number;
+    }
+}

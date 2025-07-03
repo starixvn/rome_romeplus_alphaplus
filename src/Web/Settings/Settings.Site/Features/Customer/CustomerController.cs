@@ -561,9 +561,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 return UnAuthorized();
             }
 
-            var url = $"{configuration["CashService:APIUrl"]}/payments/banks?site={userSession.Site}&transactionType={0}&languageCode={userSession.Language}";
-            var banks = await httpClient.GetFromJsonAsync<BankModel[]>(url, cancellationToken);
-            return Json(banks, serializeOptions);
+            var result = await customerService.GetBanks(userSession.Site);
+            return Content(result);
         }
 
         public async Task<IActionResult> GetCashServiceStatusAndTotalDownline(GetCustomerSettingRequest request, CancellationToken cancellationToken)
@@ -574,7 +573,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             return Json(new { status, totalDownline }, serializeOptions);
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> EnableCashService(UpdateCashCustomerInfoRequest request)
         {
             if (!AppSettings.IsOfferedCashService(userSession.Site) || request.IsInternal)
@@ -601,7 +600,61 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 
         public async Task<IActionResult> GetCustomerBankInfo(int custId, int roleId)
         {
-            var result = await customerService.GetCustomerBankInfo(custId, roleId);
+            switch (roleId)
+            {
+                case 1:
+                    return Content(await customerService.GetCustomerBankInfo(custId, roleId));
+                case 2:
+                    return Content(await customerService.GetCustomerBankInfo(userSession.CustId, 2));
+            }
+            return Content(string.Empty);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddMemberBankInfo([FromBody] AddMemberBankInfoRequest request)
+        {
+            if (!AppSettings.IsOfferedCashService(userSession.Site) || userSession.IsInternal)
+            {
+                return Json(Result.CreateErrorResult(Resources.NotAuthorized), serializeOptions);
+            }
+
+            var addMemberBankInfoParam = new AddMemberBankInfoParam{
+                MemberBankId = request.MemberBankId,
+                MemberBankAccountNumber = request.MemberBankAccountNumber,
+                AgentBankId = request.AgentBankId,
+                AgentBankAccountNumber = request.AgentBankAccountNumber,
+                CustId = request.MemberId,
+                SubAccID = request.SubAccId,
+                IP = request.IP,
+                Language = request.Language,
+                ActorId = request.ViewerId,
+            };
+
+            var result = await customerService.AddMemberBankInfo(addMemberBankInfoParam);
+            return Content(result);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateMemberBankInfo(UpdateMemberBankInfoParam request)
+        {
+            if (!AppSettings.IsOfferedCashService(userSession.Site) || userSession.IsInternal)
+            {
+                return Json(Result.CreateErrorResult(Resources.NotAuthorized), serializeOptions);
+            }
+
+            var result = await customerService.UpdateMemberBankInfo(request);
+            return Content(result);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> RemoveMemberBankInfo(RemoveMemberBankInfoParam request)
+        {
+            if (!AppSettings.IsOfferedCashService(userSession.Site) || userSession.IsInternal)
+            {
+                return Json(Result.CreateErrorResult(Resources.NotAuthorized), serializeOptions);
+            }
+
+            var result = await customerService.RemoveMemberBankInfo(request);
             return Content(result);
         }
     }
