@@ -31,12 +31,7 @@ public class WriteLogTransferCriteria(
 
     public override bool IsValid()
     {
-        if (FromCustId <= 0 || ToCustId <= 0)
-        {
-            return false;
-        }
-
-        if (UserId <= 0 || string.IsNullOrEmpty(IP) || string.IsNullOrEmpty(Doing))
+        if (FromCustId <= 0 || ToCustId <= 0 || UserId <= 0)
         {
             return false;
         }

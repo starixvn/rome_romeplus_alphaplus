@@ -70,10 +70,6 @@ public class WriteLogTransferCriteriaTest
     [InlineData(0, 2, 3, "127.0.0.1", "Test", false)]
     [InlineData(1, 0, 3, "127.0.0.1", "Test", false)]
     [InlineData(1, 2, 0, "127.0.0.1", "Test", false)]
-    [InlineData(1, 2, 3, "", "Test", false)]
-    [InlineData(1, 2, 3, "127.0.0.1", "", false)]
-    [InlineData(1, 2, 3, null, "Test", false)]
-    [InlineData(1, 2, 3, "127.0.0.1", null, false)]
     public void IsValid_Should_Return_Expected_Result_Based_On_Input(
         int userId, int fromCustId, int toCustId, string ip, string doing, bool expectedResult)
     {
