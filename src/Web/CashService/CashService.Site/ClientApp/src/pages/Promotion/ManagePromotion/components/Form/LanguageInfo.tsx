@@ -1,6 +1,5 @@
 import React from 'react';
 import { LabelTitleComponent } from '../../../../../components/Title/LabelTitleComponent';
-import { ErrorMessageComponent, SuccessMessageComponent } from '../../../../../components/Message';
 import UploadImage from '../../../../Transactions/Components/UploadImage';
 import { ButtonTabComponent } from '../../../../../components/Buttons/ButtonTabComponent';
 
@@ -101,8 +100,6 @@ const PromotionInfo: React.FC<PromotionInfoProps> = ({
   languages,
   value,
   setValue,
-  error,
-  success,
   activeLang,
   setActiveLang,
 }) => {
@@ -133,8 +130,6 @@ const PromotionInfo: React.FC<PromotionInfoProps> = ({
         lang={activeLang}
         isDefault={languages.find((lang) => lang.key === activeLang)?.isDefault || false}
       />
-      <ErrorMessageComponent message={error || null} />
-      <SuccessMessageComponent message={success || null} />
     </div>
   );
 };

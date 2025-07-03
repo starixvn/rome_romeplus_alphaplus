@@ -107,6 +107,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
     e.preventDefault();
     setError(null);
     setLoading(true);
+
     setSuccessMessage('Promotion saved successfully');
     const [fromDate, toDate] = period.map((date) => (date ? new Date(date) : null));
     const promotionData: PromotionRequest = {
@@ -132,7 +133,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
         <TitleComponent title={`Add Promotion`} />
       </div>
 
-      <form onSubmit={handleSubmit} className="pb-[16px]">
+      <div className="pb-[16px]">
         <div className="modal-body">
           <ErrorMessageComponent className="mb-[16px] max-[768px]:mb-[0]" message={error} />
           <SuccessMessageComponent
@@ -170,10 +171,10 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
         />
 
         <div className="flex justify-start py-[8px] mt-[8px] gap-[8px]">
-          <ButtonCancelComponent text="Cancel" onClick={onClose} />
-          <ButtonApplyComponent text="Create" type="submit" disabled={loading} />
+          <ButtonCancelComponent text="Cancel" onClick={onClose} disabled={loading} />
+          <ButtonApplyComponent text="Create" onClick={handleSubmit} disabled={loading} />
         </div>
-      </form>
+      </div>
     </>
   );
 };
