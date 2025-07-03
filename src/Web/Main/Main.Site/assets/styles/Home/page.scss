@@ -1300,7 +1300,7 @@ html * {
             padding: 0 10px;
             border-radius: 3px;
             border: 0;
-            min-width: 90px;
+            width: 90px;
             line-height: 28px;
         }
     }
@@ -1326,7 +1326,7 @@ html * {
         border-radius: 3px;
         border: 1px solid #fff;        
         padding: 15px 12px 9px;       
-        min-width: 470px;
+        min-width: 474px;
     }
     .chk-deposit-methods, .chk-withdrawal-methods, .chk-line-id{
         display: inline-block;
@@ -1345,7 +1345,7 @@ html * {
             font-size: 18px;
             margin-right: 5px;
         }
-        &.completed{
+        &.complete{
             &:before{
                 color: #1eb71e;
             }

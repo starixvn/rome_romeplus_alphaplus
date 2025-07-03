@@ -1323,3 +1323,94 @@ html * {
         height: calc(100% - 40px) !important;
     }
 }
+/********** checklist *************/
+.cash-service-checklist{
+    position: absolute;
+    z-index: 1000;
+    top: 135px;
+    right: 0;
+    .button-check-list {
+        position: absolute;
+        top: 0;
+        right: 100%;
+        background-color: #36587D;
+        color: #ededed;
+        font-size: 15px;
+        font-weight: bold;
+        white-space: nowrap; 
+        padding: 3px 10px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+        cursor: pointer;
+        .icon-cashservice{
+            margin-right: 5px;
+            position: relative;
+            top: 1px;
+        }
+    }
+ 
+    .help-text{            
+        text-align: center;
+    }
+    .list-buttons{
+        text-align: center;
+        .btn-help{
+            appearance: none;
+            background-color: #36587D;
+            color: #fff;
+            font-size: 15px;
+            white-space: nowrap; 
+            padding: 0 10px;
+            border-radius: 3px;
+            border: 0;
+            min-width: 90px;
+            line-height: 28px;
+        }
+    }
+}
+
+.checklist-content{     
+    width: 0;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    &.show{
+        width: 500px;         
+    }
+    a{
+        font-weight: bold;
+        text-decoration: underline;
+        color: #118AF2;
+    }
+    .inner{
+        position: relative;
+        line-height: 2;
+        background-color: #171717;
+        border-radius: 3px;
+        border: 1px solid #515151;        
+        padding: 15px 12px 9px;       
+        width: 474px;
+    }
+    .chk-deposit-methods, .chk-withdrawal-methods, .chk-line-id{
+        display: inline-block;
+        vertical-align: middle;
+        &:before{
+            font-family: Iconalpha !important;
+            speak: never;
+            font-style: normal;
+            font-weight: 400;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            content: "\e91f";
+            color: #999;
+            font-size: 18px;
+            margin-right: 5px;
+        }
+        &.complete{
+            &:before{
+                color: #1eb71e;
+            }
+        }
+    }
+}
