@@ -1,215 +1,41 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Tippy from '@tippyjs/react';
-import { useTranslation } from 'react-i18next';
-import NoRecordFoundComponent from '../../../../components/NoRecordFoundComponent';
-import {
-  StatusEnabledComponent,
-  StatusDisabledComponent,
-} from '../../../../components/StatusComponents';
-import { formatNumber } from '../../../../utils/numberFormatting';
-import { convertToGMT4 } from '../../../../utils/commonFunctions';
-import { promotionService } from '../../../../services/promotionAPI';
+import { useState, useEffect, useRef } from 'react';
 import LoadingComponent from '../../../../components/LoadingComponent';
-import { IconCopy, IconExcel, IconSearch } from '../../../../components/Icons';
 import MainReportFilter from './MainReportFilter';
-import { copyHtmlToClipboard } from '../../../../utils/sharedUtils';
+import MainReportTableTitle from './MainReportTableTitle';
+import MainReportTable from './MainReportTable';
 import useExportExcel from '../../../../hooks/useExportExcel';
+import { promotionService } from '../../../../services/promotionAPI';
+import { convertToGMT4 } from '../../../../utils/commonFunctions';
 
-interface PromotionListProps {
-  data: any[];
-  onClickPromotionTitle: (promotionId: number, promotionTitle: string) => void;
-}
-
-interface SearchProps {
-  tableRef: React.RefObject<HTMLTableElement | null>;
-  search: string;
-  setSearch: (val: string) => void;
-  onExportExcel: () => void;
-}
-
-function ReportTitle({ tableRef, search, setSearch, onExportExcel }: SearchProps) {
-  const { t: tGlobal } = useTranslation('global');
-  const [textCopy, setTextCopy] = useState(tGlobal('copy'));
-  const downloadExcel = useExportExcel('ExportMainReport');
-
-  async function handleExportExcel() {
-    await downloadExcel();
-    onExportExcel();
-  }
-
-  async function handleCopy() {
-    await copyHtmlToClipboard(tableRef.current, () => {
-      setTextCopy(tGlobal('copied'));
-      setTimeout(() => setTextCopy(tGlobal('copy')), 3000);
-    });
-  }
-
-  return (
-    <div className="flex items-center w-full justify-between">
-      <div></div>
-      <div className="flex items-center gap-[8px]">
-        <Tippy
-          content={tGlobal('exportToExcel')}
-          placement="top"
-          theme="light"
-          arrow={true}
-          hideOnClick={false}
-        >
-          <button
-            onClick={handleExportExcel}
-            className="p-[4px] bg-black/10 rounded-[3px] cursor-pointer"
-          >
-            <IconExcel />
-          </button>
-        </Tippy>
-        <Tippy content={textCopy} placement="top" theme="light" arrow={true} hideOnClick={false}>
-          <button onClick={handleCopy} className="p-[4px] bg-black/10 rounded-[3px] cursor-pointer">
-            <IconCopy />
-          </button>
-        </Tippy>
-        <div className="flex">
-          <div className="w-[250px] ml-auto relative">
-            <span className="absolute transform-[translatey(-50%)] z-[10] top-1/2 left-[8px]">
-              <IconSearch />
-            </span>
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="control-field pl-[30px]!"
-              placeholder="Promotion Title"
-              autoComplete="off"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function useReportData() {
-  const [reportData, setReportData] = useState([]);
+function useMainReportData(
+  fromDate: string,
+  toDate: string,
+  promotionType: string,
+  status: string
+) {
+  const [mainReportData, setMainReportData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
 
     async function fetchData() {
-      const data = await promotionService.getMainReport();
-      setReportData(data);
+      const data = await promotionService.getMainReport(fromDate, toDate, promotionType, status);
+      setMainReportData(data);
     }
 
     fetchData();
     setLoading(false);
-  }, []);
+  }, [fromDate, toDate, promotionType, status]);
 
-  return { reportData, loading };
+  return { mainReportData, loading };
 }
 
-function ReportRow({ idx, item, onClickPromotionTitle }: any) {
-  const handleDrillDown = (
-    event: React.MouseEvent<HTMLAnchorElement>,
-    promotionId: number,
-    promotionTitle: string
-  ) => {
-    event.preventDefault();
-    onClickPromotionTitle(promotionId, promotionTitle);
-  };
-
-  const mapStatus = (status: number) => {
-    if (status === 1) {
-      return <StatusEnabledComponent />;
-    }
-
-    return <StatusDisabledComponent />;
-  };
-
-  return (
-    <tr>
-      <td className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-background)] z-10">
-        {formatNumber(idx + 1)}
-      </td>
-      <td className="text-left sticky left-[32px] bg-[var(--table-background)] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
-        <a
-          href="#"
-          onClick={(event) => handleDrillDown(event, item.promotionId, item.promotionTitle)}
-          className="text-[#045ace] dark:text-[#41a4ff] hover:underline"
-        >
-          {item.promotionTitle}
-        </a>
-      </td>
-      <td>{item.promotionType}</td>
-      <td>{item.dateRange}</td>
-      <td className="text-right">{formatNumber(item.totalRequest)}</td>
-      <td className="text-right">
-        <div>{formatNumber(item.totalApproved)}</div>
-        <div className="text-[#CC0000] dark:text-[#F23D3D]">{formatNumber(item.totalRejected)}</div>
-      </td>
-      <td className="text-right">{formatNumber(item.totalBonus)}</td>
-      <td>{mapStatus(item.status)}</td>
-    </tr>
-  );
-}
-
-function ReportTable({ data, onClickPromotionTitle }: PromotionListProps) {
-  const [search, setSearch] = useState<string>('');
-  const tableRef = useRef<HTMLTableElement>(null);
-
-  return (
-    <>
-      <div className="search-section w-full border border-[var(--table-border-color)] border-b-0 p-[6px]">
-        <ReportTitle
-          tableRef={tableRef}
-          search={search}
-          setSearch={setSearch}
-          onExportExcel={() => {}}
-        />
-      </div>
-      <div className="table-fixed-header table-fixed-body min-h-0">
-        <table
-          ref={tableRef}
-          className="w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px] border-l-[0px]"
-        >
-          <thead className="z-11!">
-            <tr>
-              <th className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-header-background)] z-11">
-                #
-              </th>
-              <th className="sticky left-[32px] bg-[var(--table-header-background)] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
-                Promotion Title
-              </th>
-              <th>Promotion Type</th>
-              <th>Date Range</th>
-              <th>Total Request</th>
-              <th>
-                <div>Total Request Approved</div>
-                <div>Total Request Rejected</div>
-              </th>
-              <th>Total Bonus Given</th>
-              <th className="w-[140px] min-w-[140px]">Status</th>
-            </tr>
-          </thead>
-          <tbody className="font-[500]">
-            {data.length === 0 ? (
-              <NoRecordFoundComponent colSpan={8} />
-            ) : (
-              data.map((item, idx) => (
-                <ReportRow
-                  key={item.promotionId}
-                  idx={idx}
-                  item={item}
-                  onClickPromotionTitle={onClickPromotionTitle}
-                />
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
-    </>
-  );
-}
-
-export default function MainReportContainer({ onClickPromotionTitle }: any) {
+export default function MainReport({
+  onClickPromotionTitle,
+}: {
+  onClickPromotionTitle: (promotion: any) => void;
+}) {
   const today = new Date();
   const todayInGMT4 = convertToGMT4(today);
   todayInGMT4.setHours(23, 59, 59, 0);
@@ -225,8 +51,29 @@ export default function MainReportContainer({ onClickPromotionTitle }: any) {
   ]);
   const [promotionType, setPromotionType] = useState<string>('');
   const [status, setStatus] = useState<string>('');
-  //const [filter, setFilter] = useState('');
-  const { reportData, loading } = useReportData();
+
+  const exportExcel = useExportExcel('ExportMainReport');
+  const tableRef = useRef<HTMLTableElement>(null);
+  const [search, setSearch] = useState('');
+
+  const { mainReportData, loading }: any = useMainReportData(
+    dateRange[0]!.toLocaleString('en-US'),
+    dateRange[1]!.toLocaleString('en-US'),
+    promotionType,
+    status
+  );
+
+  async function handleExportExcel() {
+    await exportExcel();
+  }
+
+  const lowerCaseSearch = search ? search.trim().toLowerCase() : '';
+  const filteredReportData =
+    lowerCaseSearch.length === 0
+      ? mainReportData
+      : mainReportData.filter((data: any) =>
+          data.promotionTitle.toLowerCase().includes(lowerCaseSearch)
+        );
 
   return (
     <>
@@ -238,11 +85,22 @@ export default function MainReportContainer({ onClickPromotionTitle }: any) {
         status={status}
         setStatus={setStatus}
       />
-      {/* <MainReportFilter onFilterChange={handleFilterChange} /> */}
       {loading ? (
         <LoadingComponent />
       ) : (
-        <ReportTable data={reportData} onClickPromotionTitle={onClickPromotionTitle} />
+        <>
+          <MainReportTableTitle
+            tableRef={tableRef}
+            search={search}
+            setSearch={setSearch}
+            onExportExcel={handleExportExcel}
+          />
+          <MainReportTable
+            ref={tableRef}
+            data={filteredReportData}
+            onClickPromotionTitle={onClickPromotionTitle}
+          />
+        </>
       )}
     </>
   );

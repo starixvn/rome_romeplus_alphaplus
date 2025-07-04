@@ -1,16 +1,14 @@
 import { formatNumber } from '../../../../utils/numberFormatting';
 
-export interface PromotionDetailsSummaryProps {
-  totalBonus: number;
-  totalApproved: number;
-  totalRejected: number;
-}
-
-export function PromotionDetailsSummary({
+export default function DetailsSummary({
   totalBonus,
   totalApproved,
   totalRejected,
-}: PromotionDetailsSummaryProps) {
+}: {
+  totalBonus: number;
+  totalApproved: number;
+  totalRejected: number;
+}) {
   return (
     <div className="flex mb-[12px]">
       <div className="flex items-center font-semibold border border-[var(--table-border-color)] rounded-[3px] pr-[3px] justify-center py-[3px] mr-[12px]">

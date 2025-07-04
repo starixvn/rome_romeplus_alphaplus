@@ -5,24 +5,22 @@ import CustomDropdownComponent, {
 import { LabelTitleComponent } from '../../../../components/Title';
 
 const statusOptions: DropdownOption[] = [
-  { value: '1', label: 'Approved' },
-  { value: '2', label: 'Pending' },
-  { value: '3', label: 'Rejected' },
+  { value: 1, label: 'Approved' },
+  { value: 2, label: 'Pending' },
+  { value: 3, label: 'Rejected' },
 ];
-
-interface FilterProps {
-  dateRange: [Date | null, Date | null];
-  setDateRange: (range: [Date | null, Date | null]) => void;
-  status: string;
-  setStatus: (status: string) => void;
-}
 
 export default function DetailsReportFilter({
   dateRange,
   setDateRange,
   status,
   setStatus,
-}: FilterProps) {
+}: {
+  dateRange: [Date | null, Date | null];
+  setDateRange: (range: [Date | null, Date | null]) => void;
+  status: string;
+  setStatus: (status: string) => void;
+}) {
   const currentYear = new Date().getFullYear();
   return (
     <div className="flex flex-nowrap gap-[16px] max-[768px]:gap-[12px] max-[768px]:flex-wrap w-full">

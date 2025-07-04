@@ -7,23 +7,23 @@ import {
 } from '../../../../components/StatusComponents';
 import { formatNumber } from '../../../../utils/numberFormatting';
 
-interface PromotionDetailsProps {
+interface DetailsReportTableProps {
   data: any[];
 }
 
-const PromotionDetailsRow = ({ idx, data }: any) => {
-  const mapStatus = (status: number) => {
-    if (status === 1) {
-      return <StatusCompletedComponent text="Approved" />;
-    }
+function DetailsReportStatusRow({ status }: { status: number }) {
+  if (status === 1) {
+    return <StatusCompletedComponent text="Approved" />;
+  }
 
-    if (status === 2) {
-      return <StatusProcessingComponent text="Pending" />;
-    }
+  if (status === 2) {
+    return <StatusProcessingComponent text="Pending" />;
+  }
 
-    return <StatusDisabledComponent text="Rejected" />;
-  };
+  return <StatusDisabledComponent text="Rejected" />;
+}
 
+function DetailsReportRow({ idx, data }: { idx: number; data: any }) {
   return (
     <tr>
       <td className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-background)] z-10">
@@ -41,12 +41,14 @@ const PromotionDetailsRow = ({ idx, data }: any) => {
       <td>{data.dateRange}</td>
       <td className="text-right">{formatNumber(data.bonusAmount)}</td>
       <td>{data.lastUpdated}</td>
-      <td>{mapStatus(data.status)}</td>
+      <td>
+        <DetailsReportStatusRow status={data.status} />
+      </td>
     </tr>
   );
-};
+}
 
-const DetailsReportTable = React.forwardRef<HTMLTableElement, PromotionDetailsProps>(
+const DetailsReportTable = React.forwardRef<HTMLTableElement, DetailsReportTableProps>(
   (props, ref: ForwardedRef<HTMLTableElement>) => {
     const { data } = props;
     return (
@@ -77,7 +79,7 @@ const DetailsReportTable = React.forwardRef<HTMLTableElement, PromotionDetailsPr
               <NoRecordFoundComponent colSpan={8} />
             ) : (
               data.map((item, idx) => (
-                <PromotionDetailsRow key={item.username} idx={idx} data={item} />
+                <DetailsReportRow key={item.username} idx={idx} data={item} />
               ))
             )}
           </tbody>

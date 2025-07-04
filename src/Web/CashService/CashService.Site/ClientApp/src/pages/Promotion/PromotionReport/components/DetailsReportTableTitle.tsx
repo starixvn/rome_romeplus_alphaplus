@@ -3,35 +3,26 @@ import Tippy from '@tippyjs/react';
 import { useTranslation } from 'react-i18next';
 import { IconCopy, IconExcel, IconSearch } from '../../../../components/Icons';
 import { copyHtmlToClipboard } from '../../../../utils/sharedUtils';
-import useExportExcel from '../../../../hooks/useExportExcel';
 
-interface SearchProps {
-  promotionTitle: string;
-  onClickBreadcrumb: () => void;
-  tableRef: React.RefObject<HTMLTableElement | null>;
-  search: string;
-  setSearch: (val: string) => void;
-  onDownload: () => void;
-}
-
-export default function Search({
+export default function DetailsReportTableTitle({
   promotionTitle,
   onClickBreadcrumb,
   tableRef,
   search,
   setSearch,
-  onDownload,
-}: SearchProps) {
+  onExportExcel,
+}: {
+  promotionTitle: string;
+  onClickBreadcrumb: () => void;
+  tableRef: React.RefObject<HTMLTableElement | null>;
+  search: string;
+  setSearch: (val: string) => void;
+  onExportExcel: () => void;
+}) {
   const { t: tGlobal } = useTranslation('global');
   const [textCopy, setTextCopy] = useState(tGlobal('copy'));
   const [isSearchActive, setIsSearchActive] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
-  const downloadExcel = useExportExcel('ExportDetailsReport');
-
-  async function handleDownload() {
-    await downloadExcel();
-    onDownload();
-  }
 
   async function handleCopy() {
     await copyHtmlToClipboard(tableRef.current, () => {
@@ -40,9 +31,9 @@ export default function Search({
     });
   }
 
-  const handleSearchClick = () => {
+  function handleSearchClick() {
     setIsSearchActive(!isSearchActive);
-  };
+  }
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -52,13 +43,11 @@ export default function Search({
     };
 
     document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   return (
-    <div className="flex items-center w-full justify-between">
+    <div className="search-section flex items-center w-full justify-between border border-[var(--table-border-color)] border-b-0 p-[6px]">
       <div className="font-semibold mt-[1px]">
         <ul>
           <li className='uppercase relative inline-block after:content-["❯"] after:px-[8px] after:text-[#333]  dark:after:text-[#fff]'>
@@ -84,7 +73,7 @@ export default function Search({
           hideOnClick={false}
         >
           <button
-            onClick={handleDownload}
+            onClick={onExportExcel}
             className="p-[4px] bg-black/10 rounded-[3px] cursor-pointer"
           >
             <IconExcel />
@@ -115,7 +104,7 @@ export default function Search({
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="control-field pl-[30px]! max-[768px]:pl-[8px]!"
-                placeholder="Promotion Title"
+                placeholder="Username/First or Last Name"
               />
             </div>
           </div>

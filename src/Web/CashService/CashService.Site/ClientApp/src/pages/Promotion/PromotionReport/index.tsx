@@ -1,31 +1,26 @@
 import '../../../styles/common.css';
 import '../../../styles/global.scss';
 import React, { useState } from 'react';
-import i18n from '../../../i18n/i18n-promotion';
+import { useTranslation } from 'react-i18next';
 import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
+import i18n from '../../../i18n/i18n-promotion';
 import { createRoot } from 'react-dom/client';
 import { TitleComponent } from '../../../components/Title';
-import MainReportContainer from './components/MainReport';
-import DetailsReportContainer from './components/DetailsReport';
+import MainReport from './components/MainReport';
+import DetailsReport from './components/DetailsReport';
 
 function PromotionReport() {
+  const { t } = useTranslation('promotion');
   useCookieLanguage(i18n);
   const [promotion, setPromotion]: any = useState(null);
 
   return (
     <>
-      <TitleComponent title="Promotion Report" />
+      <TitleComponent title={t('promotionReport')} />
       {promotion === null ? (
-        <MainReportContainer
-          onClickPromotionTitle={(id: number, name: string) => {
-            setPromotion({ promotionId: id, promotionTitle: name });
-          }}
-        />
+        <MainReport onClickPromotionTitle={(promotion) => setPromotion(promotion)} />
       ) : (
-        <DetailsReportContainer
-          promotion={promotion}
-          onClickBreadcrumb={() => setPromotion(null)}
-        />
+        <DetailsReport promotion={promotion} onClickBreadcrumb={() => setPromotion(null)} />
       )}
     </>
   );
