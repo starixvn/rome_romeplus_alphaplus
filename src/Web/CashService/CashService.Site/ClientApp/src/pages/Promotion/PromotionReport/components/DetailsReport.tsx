@@ -7,7 +7,6 @@ import DetailsReportTable from './DetailsReportTable';
 import useExportExcel from '../../../../hooks/useExportExcel';
 import { promotionService } from '../../../../services/promotionAPI';
 import { convertToGMT4 } from '../../../../utils/commonFunctions';
-import { set } from 'date-fns';
 
 function useDetailsReportData(
   promotionId: string,
