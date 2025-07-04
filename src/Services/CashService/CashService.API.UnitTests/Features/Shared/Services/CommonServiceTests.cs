@@ -129,4 +129,88 @@ public class CommonServiceTests
         _repositoryMock.Verify(x => x.ExecuteAsync(It.Is<WriteLogDBCommandCriteria>(c => c.SiteDB != -1), string.Empty, CancellationToken.None), Times.Once);
         _loggerMock.Verify(x => x.ErrorAsync(It.IsAny<string>(), It.IsAny<Exception>()), Times.Once);
     }
+
+    [Fact]
+    public async Task GetSetupCheckList_WhenValidCustIdProvided_ReturnsSetupCheckListModel()
+    {
+        // Arrange
+        const int custId = 12345;
+        var expectedSetupCheckList = new SetupCheckListModel(true, false, true);
+        _repositoryMock.Setup(x => x.GetAsync<SetupCheckListModel>(It.Is<GetSetupCheckListCriteria>(c => c.CustId == custId), string.Empty, CancellationToken.None))
+            .ReturnsAsync(expectedSetupCheckList);
+
+        // Act
+        var result = await _commonService.GetSetupCheckList(custId);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(expectedSetupCheckList.HasDepositMethods, result.HasDepositMethods);
+        Assert.Equal(expectedSetupCheckList.HasWithdrawalMethods, result.HasWithdrawalMethods);
+        Assert.Equal(expectedSetupCheckList.HasLineID, result.HasLineID);
+        Assert.Equal(expectedSetupCheckList.IsCompleteAll, result.IsCompleteAll);
+        _repositoryMock.Verify(x => x.GetAsync<SetupCheckListModel>(It.Is<GetSetupCheckListCriteria>(c => c.CustId == custId), string.Empty, CancellationToken.None), Times.Once);
+    }
+
+    [Fact]
+    public async Task GetSetupCheckList_WhenCompleteSetup_ReturnsCompleteSetupCheckList()
+    {
+        // Arrange
+        const int custId = 12345;
+        var expectedSetupCheckList = new SetupCheckListModel(true, true, true);
+        _repositoryMock.Setup(x => x.GetAsync<SetupCheckListModel>(It.Is<GetSetupCheckListCriteria>(c => c.CustId == custId), string.Empty, CancellationToken.None))
+            .ReturnsAsync(expectedSetupCheckList);
+
+        // Act
+        var result = await _commonService.GetSetupCheckList(custId);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.True(result.HasDepositMethods);
+        Assert.True(result.HasWithdrawalMethods);
+        Assert.True(result.HasLineID);
+        Assert.True(result.IsCompleteAll);
+        _repositoryMock.Verify(x => x.GetAsync<SetupCheckListModel>(It.Is<GetSetupCheckListCriteria>(c => c.CustId == custId), string.Empty, CancellationToken.None), Times.Once);
+    }
+
+    [Fact]
+    public async Task GetSetupCheckList_WhenIncompleteSetup_ReturnsIncompleteSetupCheckList()
+    {
+        // Arrange
+        const int custId = 12345;
+        var expectedSetupCheckList = new SetupCheckListModel(false, false, false);
+        _repositoryMock.Setup(x => x.GetAsync<SetupCheckListModel>(It.Is<GetSetupCheckListCriteria>(c => c.CustId == custId), string.Empty, CancellationToken.None))
+            .ReturnsAsync(expectedSetupCheckList);
+
+        // Act
+        var result = await _commonService.GetSetupCheckList(custId);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.False(result.HasDepositMethods);
+        Assert.False(result.HasWithdrawalMethods);
+        Assert.False(result.HasLineID);
+        Assert.False(result.IsCompleteAll);
+        _repositoryMock.Verify(x => x.GetAsync<SetupCheckListModel>(It.Is<GetSetupCheckListCriteria>(c => c.CustId == custId), string.Empty, CancellationToken.None), Times.Once);
+    }
+
+    [Fact]
+    public async Task GetSetupCheckList_WhenPartialSetup_ReturnsPartialSetupCheckList()
+    {
+        // Arrange
+        const int custId = 12345;
+        var expectedSetupCheckList = new SetupCheckListModel(true, true, false);
+        _repositoryMock.Setup(x => x.GetAsync<SetupCheckListModel>(It.Is<GetSetupCheckListCriteria>(c => c.CustId == custId), string.Empty, CancellationToken.None))
+            .ReturnsAsync(expectedSetupCheckList);
+
+        // Act
+        var result = await _commonService.GetSetupCheckList(custId);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.True(result.HasDepositMethods);
+        Assert.True(result.HasWithdrawalMethods);
+        Assert.False(result.HasLineID);
+        Assert.False(result.IsCompleteAll);
+        _repositoryMock.Verify(x => x.GetAsync<SetupCheckListModel>(It.Is<GetSetupCheckListCriteria>(c => c.CustId == custId), string.Empty, CancellationToken.None), Times.Once);
+    }
 }

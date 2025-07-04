@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Moq;
 using Xunit;
 
-namespace CashService.API.UnitTests.Features.Transactions.Endpoints
+namespace AlphaPlus.CashService.API.UnitTests.Features.Transactions.Endpoints
 {
     public class TransactionsEndpointsTests
     {

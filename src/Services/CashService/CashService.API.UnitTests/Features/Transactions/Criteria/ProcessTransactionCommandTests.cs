@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace CashService.API.UnitTests.Features.Transactions.Criteria;
+namespace AlphaPlus.CashService.API.UnitTests.Features.Transactions.Criteria;
 
 using AlphaPlus.CashService.API.Features.PendingWithdrawal.Criteria;
 

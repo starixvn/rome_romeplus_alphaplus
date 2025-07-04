@@ -8,7 +8,7 @@ using Fanex.Data.Repository;
 using Moq;
 using Xunit;
 
-namespace CashService.API.UnitTests.Features.PendingDeposit.Services;
+namespace AlphaPlus.CashService.API.UnitTests.Features.PendingDeposit.Services;
 
 public class PendingDepositServiceTests
 {

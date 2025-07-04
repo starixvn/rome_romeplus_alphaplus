@@ -7,8 +7,8 @@
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
-    <RootNamespace>CashService.API.UnitTests</RootNamespace>
-    <AssemblyName>CashService.API.UnitTests</AssemblyName>
+    <RootNamespace>AlphaPlus.CashService.API.UnitTests</RootNamespace>
+    <AssemblyName>AlphaPlus.CashService.API.UnitTests</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

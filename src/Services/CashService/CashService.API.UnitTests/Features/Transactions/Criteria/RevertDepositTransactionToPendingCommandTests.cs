@@ -1,7 +1,7 @@
 using AlphaPlus.CashService.API.Features.Transactions.Criteria;
 using Xunit;
 
-namespace CashService.API.UnitTests.Features.Transactions.Criteria;
+namespace AlphaPlus.CashService.API.UnitTests.Features.Transactions.Criteria;
 
 public class RevertDepositTransactionToPendingCommandTests
 {

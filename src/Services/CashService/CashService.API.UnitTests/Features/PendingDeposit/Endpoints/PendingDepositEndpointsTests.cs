@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Moq;
 using Xunit;
 
-namespace CashService.API.UnitTests.Features.PendingDeposit.Endpoints
+namespace AlphaPlus.CashService.API.UnitTests.Features.PendingDeposit.Endpoints
 {
     using AlphaPlus.CashService.API.Features.PendingDeposit.Endpoints;
 

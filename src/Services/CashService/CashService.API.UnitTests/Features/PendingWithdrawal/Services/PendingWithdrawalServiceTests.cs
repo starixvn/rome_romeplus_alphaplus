@@ -1,4 +1,4 @@
-namespace CashService.API.UnitTests.Features.PendingWithdrawal.Services;
+namespace AlphaPlus.CashService.API.UnitTests.Features.PendingWithdrawal.Services;
 
 using System.Collections.Generic;
 using System.Threading;

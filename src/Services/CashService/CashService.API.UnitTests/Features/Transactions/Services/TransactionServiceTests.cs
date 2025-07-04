@@ -9,7 +9,7 @@ using Fanex.Logging;
 using Moq;
 using Xunit;
 
-namespace CashService.API.UnitTests.Features.Transactions.Services;
+namespace AlphaPlus.CashService.API.UnitTests.Features.Transactions.Services;
 
 public class TransactionServiceTests
 {

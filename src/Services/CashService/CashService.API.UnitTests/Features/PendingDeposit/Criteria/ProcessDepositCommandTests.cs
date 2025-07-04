@@ -1,7 +1,7 @@
 using AlphaPlus.CashService.API.Features.PendingDeposit.Criteria;
 using Xunit;
 
-namespace CashService.API.UnitTests.Features.PendingDeposit.Criteria;
+namespace AlphaPlus.CashService.API.UnitTests.Features.PendingDeposit.Criteria;
 
 public class ProcessDepositCommandTests
 {
