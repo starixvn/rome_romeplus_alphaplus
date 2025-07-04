@@ -55,8 +55,8 @@ const Information: React.FC<InformationProps> = ({
       </span>
     </div>
 
-    <div className="flex flex-nowrap gap-[16px] mb-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
-      <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
+    <div className="flex flex-wrap w-full">
+      <div className="w-[190px] mr-[12px] mb-[12px]">
         <LabelTitleComponent text="Promotion Type" required={true} />
         <CustomDropdown
           options={PROMOTION_TYPES}
@@ -66,7 +66,7 @@ const Information: React.FC<InformationProps> = ({
         />
       </div>
 
-      <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
+      <div className="w-[190px] mr-[12px] mb-[12px]">
         <LabelTitleComponent text="Period" required={true} />
         <DateRangePickerComponent
           value={period}
@@ -76,7 +76,7 @@ const Information: React.FC<InformationProps> = ({
         />
       </div>
 
-      <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
+      <div className="w-[190px] mr-[12px] mb-[12px]">
         <LabelTitleComponent text="Provider" required={true} />
         <TreeSelect
           options={convertProductToTreeNodeOption(productOptions)}

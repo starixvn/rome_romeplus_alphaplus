@@ -26,7 +26,7 @@ export const LanguageTabs: React.FC<{
   setActiveLang: (lang: string) => void;
 }> = ({ languages, activeLang, setActiveLang }) => {
   return (
-    <div className="flex gap-2 mb-4">
+    <div className="flex mt-[-12px] border-b border-[var(--border-color)] mb-[15px]">
       {languages.map((lang) => (
         <ButtonTabComponent
           key={lang.key}
@@ -110,7 +110,7 @@ const PromotionInfo: React.FC<PromotionInfoProps> = ({
     content: '',
   };
   return (
-    <div className="bg-white max-w-3xl pt-[16px]">
+    <div className="max-w-3xl">
       <LanguageTabs languages={languages} activeLang={activeLang} setActiveLang={setActiveLang} />
       <TitleField
         value={langFields.title}

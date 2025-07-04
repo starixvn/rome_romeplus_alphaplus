@@ -65,20 +65,20 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
   const buildHeader = () => (
     <thead>
       <tr>
-        <th rowSpan={2} scope="col" className="w-[32px] sticky left-0 z-10 bg-white text-center">
+        <th rowSpan={2} scope="col" className="w-[32px] sticky left-0 z-10 bg-[var(--table-header-background)] text-center">
           {t('table.no')}
         </th>
-        <th rowSpan={2} className="w-[75px] sticky left-[32px] z-10 bg-white text-center">
+        <th rowSpan={2} className="w-[75px] sticky left-[32px] z-10 bg-[var(--table-header-background)] text-center">
           {t('table.action')}
         </th>
         <th
           rowSpan={2}
-          className="w-[110px] sticky left-[93px] z-10 bg-white text-center"
+          className="w-[110px] sticky left-[93px] z-10 bg-[var(--table-header-background)] text-center"
           scope="col"
         >
           <span className="relative z-3">{t('table.promotionTitle')}</span>
         </th>
-        <th rowSpan={2} scope="col" className="sticky left-[200px] z-10 bg-white text-center">
+        <th rowSpan={2} scope="col" className="sticky left-[200px] z-10 text-center bg-[var(--table-header-background)] shadow-[1px_0_0_#a6a6a6]">
           {t('table.promotionType')}
         </th>
         <th colSpan={gridProducts.length} className="text-center" scope="col">
@@ -89,18 +89,18 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
         <th
           rowSpan={2}
           scope="col"
-          className="w-[110px] sticky right-[252px] z-10 bg-white text-center"
+          className="w-[110px] sticky right-[252px] z-10 bg-[var(--table-header-background)] text-center"
         >
           {t('table.products')}
         </th>
         <th
           rowSpan={2}
           scope="col"
-          className="w-[110px] sticky right-[86px] z-10 bg-white text-center"
+          className="w-[110px] sticky right-[86px] z-10 bg-[var(--table-header-background)] text-center"
         >
           {t('table.period')}
         </th>
-        <th rowSpan={2} scope="col" className="w-[110px] sticky right-0 z-10 bg-white text-center">
+        <th rowSpan={2} scope="col" className="w-[110px] sticky right-0 z-10 bg-[var(--table-header-background)] text-center">
           {t('table.status')}
         </th>
       </tr>
@@ -135,7 +135,7 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
         </div>
       </td>
       <td className="sticky left-[93px] bg-white z-10 text-left">{item.promotionTitle}</td>
-      <td className="sticky left-[200px] bg-white z-10 text-center">{item.promotionType}</td>
+      <td className="sticky left-[200px] bg-white z-10 text-center shadow-[1px_0_0_#a6a6a6]">{item.promotionType}</td>
       {gridProducts.map((product) =>
         displayPercentageMaxPayout(item.productSettings, product.productId)
       )}
