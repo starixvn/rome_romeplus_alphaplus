@@ -164,10 +164,9 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
           confirmText={tGlobal('confirm')}
         />
       )}
-      <div className="bg-[#00000080] fixed inset-0 flex items-start justify-center z-50">
+      <div className="bg-[#00000080] fixed inset-0 flex items-center justify-center z-50">
         <div
-          className={` ${classBase64} p-[12px] pt-[0] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-[768px]:max-w-[90%] max-[768px]:h-[90%] overflow-auto rounded-[4px]`}
-        >
+          className={` ${classBase64} p-[12px] pt-[0] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] max-[768px]:max-w-[90%] max-h-[90%] overflow-auto rounded-[4px]`}>
           <div className="relative mb-[10px] border-b-[1px] border-[var(--border-color)] py-[11px]">
             <MediumTitleComponent
               text={` ${t('pendingDepositModal.title')} (${deposit?.transId})`}
@@ -188,7 +187,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
               </div>
             ) : (
               <>
-                <div className="flex-1 h-full max-[768px]:mb-[16px]">
+                <div className="flex-1 h-full">
                   <div className="border border-[var(--border-control)] rounded-[4px] mb-[8px] p-[8px] flex flex-wrap ">
                     <div className="w-[50%] mb-[8px] flex flex-col">
                       <label className="font-semibold">{t('pendingDepositModal.username')}:</label>
@@ -248,7 +247,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
                         onChange={(e) => setRemark(e.target.value)}
                         maxLength={1000}
                         placeholder={t('pendingDepositModal.remarksPlaceholder')}
-                        className="block h-[230px]! py-[10px] control-field"
+                        className="block h-[230px]! py-[10px] control-field max-[768px]:h-[100px]!"
                       />
                     </div>
                   )}
