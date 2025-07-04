@@ -9,7 +9,7 @@ public class GetConsolidationProductsCriteriaTest
     public void GetSettingKey_Should_Return_Correct_Key()
     {
         // Arrange
-        var criteria = new GetConsolidationProductsCriteria(1, 1);
+        var criteria = new GetConsolidationProductsCriteria(1, 1, "site");
 
         // Act
         var result = criteria.GetSettingKey();
@@ -26,7 +26,7 @@ public class GetConsolidationProductsCriteriaTest
     public void IsValid_Should_Return_Expected_Result(int custId, bool expected)
     {
         // Arrange
-        var criteria = new GetConsolidationProductsCriteria(custId, 1);
+        var criteria = new GetConsolidationProductsCriteria(custId, 1, "site");
 
         // Act
         var result = criteria.IsValid();
@@ -41,12 +41,13 @@ public class GetConsolidationProductsCriteriaTest
         // Arrange
         int expectedCustId = 123;
         byte expectedSettingStatus = 2;
-
+        string expectedSCashServiceSite = "site";
         // Act
-        var criteria = new GetConsolidationProductsCriteria(expectedCustId, expectedSettingStatus);
+        var criteria = new GetConsolidationProductsCriteria(expectedCustId, expectedSettingStatus, expectedSCashServiceSite);
 
         // Assert
         Assert.Equal(expectedCustId, criteria.CustId);
         Assert.Equal(expectedSettingStatus, criteria.SettingStatus);
+        Assert.Equal(expectedSCashServiceSite, criteria.CashServiceSites);
     }
 }

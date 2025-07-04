@@ -5,6 +5,7 @@ using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
 using Fanex.Data.Repository;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Configuration;
 
 namespace AlphaPlus.Reports.Features.Consolidation;
 
@@ -47,8 +48,8 @@ public class ConsolidationService(
             {
                 cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(ProductsCacheTimeInMinutes));
                 var ip = allowedSitesToShareLoad.GetIP(siteName);
-
-                return (await repository.FetchAsync<ConsolidationProduct>(new GetConsolidationProductsCriteria(custId, settingStatus), ip))
+                var cashServiceSites = Core.Configurations.AppSettings.IsOfferedCashService(siteName) ? siteName : null;
+                return (await repository.FetchAsync<ConsolidationProduct>(new GetConsolidationProductsCriteria(custId, settingStatus, cashServiceSites), ip))
                     .Where(product => product.ProductId != ProductIdConstants.Cashout && IsRemainSupportProduct(product, minDate))
                     .Select(product => new Product
                     {
