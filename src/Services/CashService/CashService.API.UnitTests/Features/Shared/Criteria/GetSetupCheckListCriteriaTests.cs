@@ -1,7 +1,7 @@
 using AlphaPlus.CashService.API.Features.Shared.Criteria;
 using Xunit;
 
-namespace AlphaPlus.CashService.API.UnitTests.Criteria.Common;
+namespace AlphaPlus.CashService.API.UnitTests.Features.Shared.Criteria;
 
 public class GetSetupCheckListCriteriaTests
 {

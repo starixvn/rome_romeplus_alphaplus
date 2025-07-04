@@ -13,7 +13,10 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
         [SpParam(SqlParamName = "PaymentMethodID")]
         public int Method { get; } = request.Method;
 
-        public string APIConfig { get; set; }
+        [SpParam(Ignored = true)]
+        public bool APIResult { get; } = request.APIResult;
+
+        public string APIConfig { get; } = request.GetAPIConfigJson();
 
         public override string GetSettingKey() => "Age_CashService_PaymentMethod_Config";
 

@@ -127,10 +127,7 @@ public class PaymentsService(
             return new ResultModel(1, "Invalid customer ID or provider ID");
         }
 
-        var criteria = new InsertPaymentMethodCriteria(request) {
-            APIConfig = $"{{\"APIMethodKey\":\"{request.APIMethodKey}\",\"MerchantID\":\"{request.MerchantID}\",\"AppSecret\":\"{request.AppSecret}\"}}",
-        };
-
+        var criteria = new InsertPaymentMethodCriteria(request);
         var result = await commonService.RunDBCommand(request, criteria); 
         return result;
     }
@@ -308,10 +305,7 @@ public class PaymentsService(
             return new ResultModel(1, "Invalid customer ID or provider ID");
         }
 
-        var criteria = new UpdatePaymentMethodCriteria(request) {
-            APIConfig = $"{{\"APIMethodKey\":\"{request.APIMethodKey}\",\"MerchantID\":\"{request.MerchantID}\",\"AppSecret\":\"{request.AppSecret}\"}}",
-        };
-
+        var criteria = new UpdatePaymentMethodCriteria(request);
         var result = await commonService.RunDBCommand(request, criteria); 
         return result;
     }

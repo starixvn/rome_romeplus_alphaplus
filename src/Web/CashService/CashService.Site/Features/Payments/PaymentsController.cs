@@ -108,14 +108,18 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         [HttpPost]
         public async Task<IActionResult> AddPaymentMethod(
             [FromBody] InsertPaymentMethodRequest request,
-            CancellationToken cancellationToken)
-            => await DoAction<InsertPaymentMethodRequest, object>($"{_apiBaseUrl}/payments/add-payment-method", request, cancellationToken);
+            CancellationToken cancellationToken) {
+            request.APIResult = false;
+            return await DoAction<InsertPaymentMethodRequest, object>($"{_apiBaseUrl}/payments/add-payment-method", request, cancellationToken);
+        }
 
         [HttpPost]
         public async Task<IActionResult> UpdatePaymentMethod(
             [FromBody] UpdatePaymentMethodRequest request,
-            CancellationToken cancellationToken)
-            => await DoAction<UpdatePaymentMethodRequest, object>($"{_apiBaseUrl}/payments/update-payment-method", request, cancellationToken);
+            CancellationToken cancellationToken) {
+            request.APIResult = true;
+            return await DoAction<UpdatePaymentMethodRequest, object>($"{_apiBaseUrl}/payments/update-payment-method", request, cancellationToken);
+        }
 
         public async Task<IActionResult> GetBanksByTransactionType(int transactionType, CancellationToken cancellationToken)
         {
