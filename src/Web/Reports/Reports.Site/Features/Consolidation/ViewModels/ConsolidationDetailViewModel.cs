@@ -29,6 +29,8 @@ public class ConsolidationDetailViewModel(
 {
     private static string BetListPath = MicroSites.TicketUrl("~/WinLoss/Index");
 
+    private static string CashFeePath = MicroSites.ReportsUrl("~/WinLoss/CashFee");
+
     public bool IsSetDefaultStackMode { get; } = message.IsSetDefaultStackMode;
 
     public string ReportType { get; } = message.ReportType;
@@ -81,5 +83,18 @@ public class ConsolidationDetailViewModel(
         ]);
 
         return $"{BetListPath}{queryString}";
+    }
+
+    public string GetCashFeeUrl(int custId, string custName)
+    {
+        var queryString = QueryString.Create(
+         [
+            KeyValuePair.Create(nameof(custId), custId.ToString()),
+            KeyValuePair.Create(nameof(custName), custName),
+            KeyValuePair.Create(nameof(DateRangePicker.FromDate), DateRangePicker.FromDate),
+            KeyValuePair.Create(nameof(DateRangePicker.ToDate), DateRangePicker.ToDate)
+         ]);
+
+        return $"{CashFeePath}{queryString}";
     }
 }
