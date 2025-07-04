@@ -11,7 +11,7 @@
             "Name": "DBGLOB.GlobCustDB.wsv_alp",
             "ConnectionString": "packet size=4096; Data Source=10.18.200.54;Initial Catalog=GLOBCUSTDB;integrated security=false; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==; TrustServerCertificate=true",
             "ProviderName": "System.Data.SqlClient"
-        },
+        },      
         {
             "Name": "DBACC.bodb02.wsv_alp",
             "ConnectionString": "packet size=4096; Data Source=10.18.200.56;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
@@ -280,6 +280,7 @@
     "OfferProfilePictureTour": true,
     "CashService": {
         "OfferedSites": "755555,222227,BEST-ODDS,733333",
-        "APIUrl": "http://alphaplus_api_cashservice_local:5000/api"
+        "APIUrl": "http://alphaplus_api_cashservice_local:5000/api",
+        "TWAPIUrl": "http://alphaplus_api_cashservice_local:5000/api"
     }
 }
