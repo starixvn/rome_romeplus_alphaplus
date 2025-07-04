@@ -255,7 +255,7 @@ export const IconReload =({ className } : { className? : string}) => (
   </svg>
 )
 export const IconTick = ({ className }: { className?: string }) => (
-  <svg className={`w-[20px] h-[20px] fill-[#444] dark:fill-[#ededed] ${className}`} version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-    <path d="M13.2 27l-8.8-8.8 2.4-2.4 6.4 6.2 13.6-13.6 2.4 2.4-16 16.2z"></path>
+  <svg className={`w-[20px] h-[20px] fill-[#444] dark:fill-[#ededed] ${className}`} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12.8065 24L5 16.4301L7.12903 14.3656L12.8065 19.6989L24.871 8L27 10.0645L12.8065 24Z" />
   </svg>
 )
