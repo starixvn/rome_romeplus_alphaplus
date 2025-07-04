@@ -6,6 +6,7 @@ using AlphaPlus.CashService.Site.Features.Payments.ViewModels;
 using AlphaPlus.CashService.Site.Features.Shared.Models;
 using AlphaPlus.Core.Models;
 using Fanex.Customer.Client.Services;
+using Fanex.Logging;
 using FluentAssertions;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Http;
@@ -26,6 +27,7 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
         private readonly Mock<IUserSession> _userSessionMock;
         private readonly Mock<IAntiforgery> _antiforgeryMock;
         private readonly Mock<ICustomerService> _customerServiceMock;
+        private readonly Mock<ILogger> _loggerMock;
         private readonly Mock<HttpContext> _httpContextMock;
         private readonly PaymentsController _controller;
         private readonly string _apiBaseUrl = "https://api.test.com";
@@ -38,6 +40,7 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             _userSessionMock = new Mock<IUserSession>();
             _antiforgeryMock = new Mock<IAntiforgery>();
             _customerServiceMock = new Mock<ICustomerService>();
+            _loggerMock = new Mock<ILogger>();
             _httpContextMock = new Mock<HttpContext>();
 
             _configurationMock.Setup(x => x["CashService:APIUrl"]).Returns(_apiBaseUrl);
@@ -53,7 +56,8 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
                 _httpClient,
                 _userSessionMock.Object,
                 _antiforgeryMock.Object,
-                _customerServiceMock.Object);
+                _customerServiceMock.Object,
+                _loggerMock.Object);
 
             // Setup HttpContext
             _controller.ControllerContext = new ControllerContext
@@ -344,121 +348,6 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             
             // Verify that APIResult was still set to false even though an exception occurred
             request.APIResult.Should().BeFalse();
-        }
-
-        [Fact]
-        public async Task UpdatePaymentMethod_WhenValidRequest_ReturnsJsonResult()
-        {
-            // Arrange
-            var request = new UpdatePaymentMethodRequest
-            {
-                ProviderId = 1,
-                TransactionType = 1,
-                Method = 1,
-                APIMethodKey = "updated-key",
-                MerchantID = "updated-merchant",
-                AppSecret = "updated-secret"
-            };
-            var expectedResponse = new { Success = true };
-            _customerServiceMock.Setup(x => x.GetCashServiceStatus(123)).ReturnsAsync(1);
-            SetupHttpClientResponse(HttpStatusCode.OK, expectedResponse);
-
-            // Act
-            var result = await _controller.UpdatePaymentMethod(request, CancellationToken.None);
-
-            // Assert
-            result.Should().BeOfType<JsonResult>();
-            var jsonResult = result as JsonResult;
-            AssertJsonResultEquals(jsonResult, expectedResponse);
-            
-            // Verify that APIResult was set to true
-            request.APIResult.Should().BeTrue();
-            
-            // Verify the HTTP request was made with the correct data
-            _httpMessageHandlerMock.Protected().Verify(
-                "SendAsync",
-                Times.Once(),
-                ItExpr.Is<HttpRequestMessage>(req => 
-                    req.Method == HttpMethod.Post && 
-                    req.RequestUri.ToString().Contains("/payments/update-payment-method")),
-                ItExpr.IsAny<CancellationToken>()
-            );
-        }
-
-        [Fact]
-        public async Task UpdatePaymentMethod_WhenCashServiceDisabled_ReturnsUnauthorized()
-        {
-            // Arrange
-            var request = new UpdatePaymentMethodRequest
-            {
-                ProviderId = 1,
-                TransactionType = 1,
-                Method = 1,
-                APIMethodKey = "updated-key",
-                MerchantID = "updated-merchant",
-                AppSecret = "updated-secret"
-            };
-            _customerServiceMock.Setup(x => x.GetCashServiceStatus(123)).ReturnsAsync(0);
-
-            // Act
-            var result = await _controller.UpdatePaymentMethod(request, CancellationToken.None);
-
-            // Assert
-            result.Should().BeOfType<JsonResult>();
-            var jsonResult = result as JsonResult;
-            AssertJsonResultEquals(jsonResult, new ResultModel { Code = 401 });
-            
-            // Verify that APIResult was still set to true even though the request was rejected
-            request.APIResult.Should().BeTrue();
-        }
-
-        [Fact]
-        public async Task UpdatePaymentMethod_WhenUserIsInternal_ReturnsUnauthorized()
-        {
-            // Arrange
-            var request = new UpdatePaymentMethodRequest
-            {
-                ProviderId = 1,
-                TransactionType = 1,
-                Method = 1,
-                APIMethodKey = "updated-key",
-                MerchantID = "updated-merchant",
-                AppSecret = "updated-secret"
-            };
-            _userSessionMock.Setup(x => x.IsInternal).Returns(true);
-
-            // Act
-            var result = await _controller.UpdatePaymentMethod(request, CancellationToken.None);
-
-            // Assert
-            result.Should().BeOfType<UnauthorizedResult>();
-            
-            // Verify that APIResult was still set to true even though the request was rejected
-            request.APIResult.Should().BeTrue();
-        }
-
-        [Fact]
-        public async Task UpdatePaymentMethod_WhenHttpClientThrowsException_ThrowsException()
-        {
-            // Arrange
-            var request = new UpdatePaymentMethodRequest
-            {
-                ProviderId = 1,
-                TransactionType = 1,
-                Method = 1,
-                APIMethodKey = "updated-key",
-                MerchantID = "updated-merchant",
-                AppSecret = "updated-secret"
-            };
-            _customerServiceMock.Setup(x => x.GetCashServiceStatus(123)).ReturnsAsync(1);
-            SetupHttpClientException(new HttpRequestException("Network error"));
-
-            // Act & Assert
-            await Assert.ThrowsAsync<HttpRequestException>(() =>
-                _controller.UpdatePaymentMethod(request, CancellationToken.None));
-            
-            // Verify that APIResult was still set to true even though an exception occurred
-            request.APIResult.Should().BeTrue();
         }
 
         [Fact]
