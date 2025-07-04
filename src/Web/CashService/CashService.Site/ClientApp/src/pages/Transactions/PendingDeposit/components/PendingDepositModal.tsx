@@ -257,7 +257,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
                   <div className="pl-[32px] max-[768px]:pl-[0] max-[768px]:w-full">
                     <div className="w-[350px] h-[450px] max-[768px]:w-[250px] max-[768px]:h-[250px] rounded-[5px] mb-6">
                       <img
-                        src={`data:image/png;base64,${deposit?.base64Payslip}`}
+                        src={deposit?.base64Payslip}
                         alt={deposit?.transId.toString()}
                         className="w-full h-full object-contain"
                       />
