@@ -678,7 +678,6 @@ var indexManager = {
 
         var content = checklistDiv.find('.checklist-content');
         checklistDiv.find('#ico-checklist').click(() => {
-            console.log('click' + content.hasClass('show'));
             if(content.hasClass('show')) {
                 content.removeClass('show');
             } else {
