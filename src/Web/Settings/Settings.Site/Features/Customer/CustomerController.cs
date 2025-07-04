@@ -619,15 +619,15 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             }
 
             var addMemberBankInfoParam = new AddMemberBankInfoParam{
+                ActorId = request.ViewerId,
+                CustId = request.CustId,
                 MemberBankId = request.MemberBankId,
                 MemberBankAccountNumber = request.MemberBankAccountNumber,
                 AgentBankId = request.AgentBankId,
                 AgentBankAccountNumber = request.AgentBankAccountNumber,
-                CustId = request.MemberId,
                 SubAccID = request.SubAccId,
                 IP = request.IP,
                 Language = request.Language,
-                ActorId = request.ViewerId,
             };
 
             var result = await customerService.AddMemberBankInfo(addMemberBankInfoParam);
@@ -635,26 +635,47 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateMemberBankInfo(UpdateMemberBankInfoParam request)
+        public async Task<IActionResult> UpdateMemberBankInfo([FromBody] UpdateMemberBankInfoRequest request)
         {
             if (!AppSettings.IsOfferedCashService(userSession.Site) || userSession.IsInternal)
             {
                 return Json(Result.CreateErrorResult(Resources.NotAuthorized), serializeOptions);
             }
 
-            var result = await customerService.UpdateMemberBankInfo(request);
+            var updateMemberBankInfoParam = new UpdateMemberBankInfoParam{
+                ActorId = request.ViewerId,
+                CustId = request.CustId,
+                MemberBankAccountId = request.MemberBankAccountId,
+                MemberBankId = request.MemberBankId,
+                MemberBankAccountNumber = request.MemberBankAccountNumber,
+                AgentBankId = request.AgentBankId,
+                AgentBankAccountNumber = request.AgentBankAccountNumber,
+                SubAccID = request.SubAccId,
+                IP = request.IP,
+                Language = request.Language,
+            };
+            var result = await customerService.UpdateMemberBankInfo(updateMemberBankInfoParam);
             return Content(result);
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> RemoveMemberBankInfo(RemoveMemberBankInfoParam request)
+        public async Task<IActionResult> RemoveMemberBankInfo([FromBody] RemoveMemberBankInfoRequest request)
         {
             if (!AppSettings.IsOfferedCashService(userSession.Site) || userSession.IsInternal)
             {
                 return Json(Result.CreateErrorResult(Resources.NotAuthorized), serializeOptions);
             }
 
-            var result = await customerService.RemoveMemberBankInfo(request);
+            var removeMemberBankInfoParam = new RemoveMemberBankInfoParam{
+                ActorId = request.ViewerId,
+                CustId = request.CustId,
+                MemberBankAccountId = request.MemberBankAccountId,
+                SubAccID = request.SubAccId,
+                IP = request.IP,
+                Language = request.Language,
+            };
+
+            var result = await customerService.RemoveMemberBankInfo(removeMemberBankInfoParam);
             return Content(result);
         }
     }

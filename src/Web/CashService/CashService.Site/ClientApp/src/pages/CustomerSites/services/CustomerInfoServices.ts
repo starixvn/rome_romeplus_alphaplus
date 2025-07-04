@@ -41,10 +41,32 @@ const AddMemberBankInfo = async <T>(params?: Record<string, any>): Promise<T> =>
   return data;
 }
 
+const UpdateMemberBankInfo = async <T>(params?: Record<string, any>): Promise<T> => {
+  const { data } = await axiosInstance.post<T>(`${updateInfoCustomerPageConfig.settingSiteUrl}Customer/UpdateMemberBankInfo`, params, {
+    headers: {
+      ...createHeaderXMLHttp(),
+      'Content-Type': 'application/json'
+    }
+  });
+  return data;
+}
+
+const RemoveMemberBankInfo = async <T>(params?: Record<string, any>): Promise<T> => {
+  const { data } = await axiosInstance.post<T>(`${updateInfoCustomerPageConfig.settingSiteUrl}Customer/RemoveMemberBankInfo`, params, {
+    headers: {
+      ...createHeaderXMLHttp(),
+      'Content-Type': 'application/json'
+    }
+  });
+  return data;
+}
+
 export {
   GetCustomerInfo,
   UpdateCustomerInfo,
   GetCustomerBankInfo,
   GetBanks,
-  AddMemberBankInfo
+  AddMemberBankInfo,
+  UpdateMemberBankInfo,
+  RemoveMemberBankInfo
 };

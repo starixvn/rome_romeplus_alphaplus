@@ -88,7 +88,7 @@ export const AddBankModal = ({ closeModal, onAddSuccess }: AddBankModalProps) =>
             setIsLoading(true);
             setIsBlockAction(true);
             const response = await AddMemberBankInfo<any>({
-                MemberId: formData.memberId,
+                CustId: formData.memberId,
                 MemberBankId: formData.memberBankID,
                 MemberBankAccountNumber: formData.memberBankAccountNumber,
                 AgentBankId: formData.agentBankID,
