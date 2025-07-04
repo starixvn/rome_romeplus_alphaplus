@@ -85,12 +85,11 @@ public class ConsolidationDetailViewModel(
         return $"{BetListPath}{queryString}";
     }
 
-    public string GetCashFeeUrl(int custId, string custName)
+    public string GetCashFeeUrl(int custId)
     {
         var queryString = QueryString.Create(
          [
             KeyValuePair.Create(nameof(custId), custId.ToString()),
-            KeyValuePair.Create(nameof(custName), custName),
             KeyValuePair.Create(nameof(DateRangePicker.FromDate), DateRangePicker.FromDate),
             KeyValuePair.Create(nameof(DateRangePicker.ToDate), DateRangePicker.ToDate)
          ]);
