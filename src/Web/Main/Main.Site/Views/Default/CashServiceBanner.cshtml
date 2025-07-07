@@ -1,35 +1,26 @@
 <style>
     .cash-service-banner {
         background-color: #f9f1b7;
-        padding: 12px 24px;
+        padding: 11px 24px;
         font-size: 14px;
         display: flex;
         align-items: center;
         gap: 10px;
-        margin-left: 65px;
-        margin-bottom: 10px;
+        position: relative;
+        margin-left: 70px;
+        width: 100%;
     }
-
     .cash-service-banner .background {
         display: flex;
         flex-wrap: wrap;
         font-weight: 600;
-    }
-
-    .cash-service-banner .background-container {
         position: absolute;
-        top: 2px;
-        left: 0;
-    }
-
+        top: 0;     
+        left: -72px;
+    }  
     .cash-service-banner .image {
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        position: absolute;
+        display: block;
     }
-
     .cash-service-banner .highlight {
         top: 0;
         right: 0;
@@ -38,18 +29,19 @@
         position: absolute;
         font-weight: 700;
         font-size: 18px;
-        margin-left: 104px;
-        margin-top: 14px;
-        width: 240px;
-        padding-left: 0;
+        padding-left: 110px;
+        padding-top: 16px;
     }
-
+    .cash-service-banner .cash-service-banner-content{
+        display: flex;
+        align-items: center;
+        margin-left: 260px;
+    }
     .cash-service-banner .message {
         font-weight: 600;
         font-size: 16px;
-        margin-left: 240px;
+        margin-right: 8px;
     }
-
     .cash-service-banner .banner-btn {
         background: #16396b;
         color: #fff;
@@ -61,23 +53,37 @@
         cursor: pointer;
         transition: background 0.2s;
     }
-
     .cash-service-banner .banner-btn.secondary {
         background: #f5f8fa;
         color: #16396b;
         border: 1px solid #16396b;
     }
+    @@media (max-width: 768px) {
+        .cash-service-banner{
+            margin-left: 0;
+            padding: 10px;
+        }
+        .cash-service-banner .background{
+            display: none;
+        }
+        .cash-service-banner .banner-btn{
+            white-space: nowrap;
+        }
+        .cash-service-banner .cash-service-banner-content{
+            margin-left: 0;
+        }
+    }
 </style>
 <div class="cash-service-banner">
-    <span class="background">
-        <div class="background-container">
-            <span class="image">
-                <img src="~/assets/images/cash-service-banner.png" alt="Cash Service Banner" />
-            </span>
-            <span class="highlight">EXCLUSIVELY FOR YOU!</span>
-        </div>
+    <span class="background">    
+        <span class="image">
+            <img src="~/assets/images/cash-service-banner.png" alt="Cash Service Banner" />
+        </span>
+        <span class="highlight">EXCLUSIVELY FOR YOU!</span>
     </span>
-    <span class="message">Enjoy Cash Service for free! Until 31st Mar 2025</span>
-    <button class="banner-btn">Activate now</button>
-    <button class="banner-btn secondary">Find out more</button>
+    <div class="cash-service-banner-content">
+        <span class="message">Enjoy Cash Service for free! Until 31st Mar 2025</span>
+        <button class="banner-btn">Activate now</button>
+        <button class="banner-btn secondary">Find out more</button>
+    </div>
 </div>
