@@ -818,10 +818,10 @@
     <value>คุณยังไม่ได้ลงทะเบียนธุรกิจฉลากขาว โปรดติดต่อฝ่ายบริการลูกค้าของเราเพื่อขอความช่วยเหลือเพิ่มเติม</value>
   </data>
   <data name="TakeATour" xml:space="preserve">
-    <value>ดูรายละเอียด</value>
+    <value>ดูวิธีใช้</value>
   </data>
   <data name="RewardTakeATour" xml:space="preserve">
-    <value>ดูรายละเอียด</value>
+    <value>ดูวิธีใช้</value>
   </data>
   <data name="Page" xml:space="preserve">
     <value>หน้า</value>
