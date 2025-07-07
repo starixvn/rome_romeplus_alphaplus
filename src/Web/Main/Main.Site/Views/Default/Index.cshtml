@@ -17,8 +17,8 @@
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
     @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/site-main/{Model.UserLevel}")
     <link href="~/assets/bundles/default-index@(Model.DarkModeName).css?v=@version" rel="stylesheet" type="text/css" />
-    <link href="~/assets/bundles/page-mobile-calculate-07@(Model.DarkModeName).css?v=@version" rel="stylesheet" type="text/css"
-        media="screen and (max-device-width: 767px)" />
+    <link href="~/assets/bundles/page-mobile-calculate-07@(Model.DarkModeName).css?v=@version" rel="stylesheet"
+        type="text/css" media="screen and (max-device-width: 767px)" />
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -42,6 +42,7 @@
         <header class="header" id="header">
             @await Html.PartialAsync("HeaderNav", Model.HeaderNavViewModel)
             @await Html.PartialAsync("HeaderMarquee", Model.IsProtectedMode)
+            @await Html.PartialAsync("CashServiceBanner")
         </header>
         <main class="content" id="content" data-default-url="@Model.DefaultPath">
         </main>
@@ -100,4 +101,5 @@
     @Html.Hidden("TourURL", Model.TourUrl)
 </body>
 @Html.AntiForgeryToken()
+
 </html>
