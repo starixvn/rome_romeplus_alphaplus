@@ -676,12 +676,12 @@ var indexManager = {
             }
         });
 
-        var content = checklistDiv.find('.checklist-content');
+      
         checklistDiv.find('#ico-checklist').click(() => {
-            if(content.hasClass('show')) {
-                content.removeClass('show');
+            if(checklistDiv.hasClass('show')) {
+                checklistDiv.removeClass('show');
             } else {
-                content.addClass('show');
+                checklistDiv.addClass('show');
             }
         });
 
