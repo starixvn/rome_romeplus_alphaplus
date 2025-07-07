@@ -11,12 +11,9 @@ public static class ErrorHandlingMiddleware
         var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
         var exception = exceptionHandlerPathFeature?.Error;
 
-        Console.WriteLine("ErrorHandlingMiddleware");
-        Console.WriteLine(exception.Message);
-
         if(exception != null) {
             var logger = app.Services.GetService<Fanex.Logging.ILogger>();
-            logger.Error(ExceptionHelper.BuildError(context.Request, exception).Result, exception);
+            logger.Error(await ExceptionHelper.BuildError(context.Request, exception), exception);
         }
 
         var result = JsonSerializer.Serialize(new

@@ -44,6 +44,25 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
 
     public async Task WriteLogDBCommand(BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel)
     {
+        var isSuccess = await WriteLogDBCommandIntoDBLog(request, writeLogDBCommandModel);
+
+        if (isSuccess)
+        {
+            return;
+        }
+
+        await WriteLogDBCommandIntoSiteDB(request, writeLogDBCommandModel);
+    }
+
+    public async Task<SetupCheckListModel> GetSetupCheckList(int custId)
+    {
+        var criteria = new GetSetupCheckListCriteria(custId);
+        var result = await repository.GetAsync<SetupCheckListModel>(criteria);
+        return result;
+    }
+
+    public async Task<bool> WriteLogDBCommandIntoDBLog(BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel)
+    {
         var isSuccess = false;
 
         try
@@ -61,11 +80,11 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
             await logger.ErrorAsync(e.Message, e);
         }
 
-        if (isSuccess)
-        {
-            return;
-        }
+        return isSuccess;
+    }
 
+    public async Task WriteLogDBCommandIntoSiteDB(BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel)
+    {
         try
         {
             var criteria = new WriteLogDBCommandCriteria(request, writeLogDBCommandModel);
@@ -75,12 +94,5 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
         {
             await logger.ErrorAsync(e.Message, e);
         }
-    }
-
-    public async Task<SetupCheckListModel> GetSetupCheckList(int custId)
-    {
-        var criteria = new GetSetupCheckListCriteria(custId);
-        var result = await repository.GetAsync<SetupCheckListModel>(criteria);
-        return result;
     }
 }

@@ -4,7 +4,7 @@ namespace AlphaPlus.CashService.API.Features.Payments.Models
     {
         public ProviderModel()
         {
-            LastUpdated = DateTime.UtcNow;
+            LastUpdated = DateTimeOffset.UtcNow.DateTime;
             Name = string.Empty;
             Status = 0;
             CustId = 0;

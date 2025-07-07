@@ -2,6 +2,8 @@ using Fanex.Logging;
 using Fanex.Logging.RabbitMQ;
 using Fanex.Logging.Sentry;
 
+namespace AlphaPlus.CashService.API.Extensions;
+
 public static class FanexLoggingExtensions
 {
     public static IServiceCollection AddFanexLogging(this IServiceCollection services, IConfiguration configuration)

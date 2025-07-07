@@ -1,6 +1,6 @@
-using System.Text.RegularExpressions;
 using AlphaPlus.CashService.API.Features.Payments.Requests;
 using AlphaPlus.CashService.API.Features.Shared.Criteria;
+using AlphaPlus.CashService.API.Features.Shared.Helpers;
 using Fanex.Data;
 
 namespace AlphaPlus.CashService.API.Features.Payments.Criteria
@@ -60,22 +60,16 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
         {
             var isValid = base.IsValid() &&
             BankId > 0 &&
-            !string.IsNullOrWhiteSpace(AccountNumber) &&
-            !string.IsNullOrWhiteSpace(AccountHolderName) &&
-            Regex.IsMatch(AccountNumber, @"^\d+$") &&
-            AccountHolderName.Length <= 255 &&
-            AccountNumber.Length <= 100 &&
-            AccountNickname.Length <= 255;
+            ValidatorHelper.IsValidAccountHolderName(AccountHolderName) &&
+            ValidatorHelper.IsValidAccountNumber(AccountNumber) &&
+            ValidatorHelper.IsValidAccountNickname(AccountNickname);
 
             if (!isValid || !PromptPay)
             {
                 return isValid;
             }
 
-            return !string.IsNullOrWhiteSpace(CountryCode)
-                && !string.IsNullOrWhiteSpace(MobileNumber)
-                && Regex.IsMatch(CountryCode, @"^\d+$")
-                && Regex.IsMatch(MobileNumber, @"^\d+$");
+            return ValidatorHelper.IsValidCountryCode(CountryCode) && ValidatorHelper.IsValidMobileNumber(MobileNumber);
         }
     }
 }

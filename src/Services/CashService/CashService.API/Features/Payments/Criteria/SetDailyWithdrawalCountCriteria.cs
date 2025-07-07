@@ -13,10 +13,10 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
         [SpParam(SqlParamName = "DrawLimit")]
         public int DailyWithdrawalCount { get; } = request.Count;
 
-        public decimal MinPerDeposit { get; } = 0;
-        public decimal MaxPerDeposit { get; } = 0;
-        public decimal MinPerWithdrawal { get; } = 0;
-        public decimal MaxPerWithdrawal { get; } = 0;
+        public decimal MinPerDeposit { get; }
+        public decimal MaxPerDeposit { get; }
+        public decimal MinPerWithdrawal { get; }
+        public decimal MaxPerWithdrawal { get; }
 
         public override string GetSettingKey() => "Age_CashService_AgentBankAccountLimit_Upd";
 
