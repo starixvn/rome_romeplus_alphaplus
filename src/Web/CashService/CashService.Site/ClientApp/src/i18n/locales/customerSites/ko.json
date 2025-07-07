@@ -25,6 +25,8 @@
         "updatedSuccessfully": "성공적으로 업데이트되었습니다",
         "deleteBankAccount": "은행 계좌 삭제",
         "areYouSureYouWantToDeleteThisBankAccount": "{{bankNumber}}을(를) 삭제하시겠습니까?",
-        "thisActionIsPermanentAndCannotBeUndone": "이 작업은 영구적이며 되돌릴 수 없습니다."
+        "thisActionIsPermanentAndCannotBeUndone": "이 작업은 영구적이며 되돌릴 수 없습니다.",
+        "agentBankAccountTooltip": "회원의 입금을 당신의 계좌에 매칭하려면, 입금을 받을 은행 계좌를 선택해주세요.",
+        "agentBankAccountTooltip2": "은행 관리에서 원하는 입금 매칭 모드를 변경할 수 있습니다."
     }
 }

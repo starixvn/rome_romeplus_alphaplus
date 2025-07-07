@@ -25,6 +25,8 @@
         "updatedSuccessfully": "Cập nhật thành công",
         "deleteBankAccount": "Xóa tài khoản ngân hàng",
         "areYouSureYouWantToDeleteThisBankAccount": "Bạn có chắc chắn muốn xóa tài khoản ngân hàng {{bankNumber}} không?",
-        "thisActionIsPermanentAndCannotBeUndone": "Hành động này là bất khả kháng và không thể hoàn tác."
+        "thisActionIsPermanentAndCannotBeUndone": "Hành động này là bất khả kháng và không thể hoàn tác.",
+        "agentBankAccountTooltip": "Để khớp với số tiền gửi của thành viên vào tài khoản của bạn, vui lòng chọn tài khoản ngân hàng bạn muốn sử dụng để nhận tiền gửi.",
+        "agentBankAccountTooltip2": "Bạn có thể thay đổi chế độ khớp tiền gửi ưu tiên trong phần Quản lý ngân hàng."
     }
 }

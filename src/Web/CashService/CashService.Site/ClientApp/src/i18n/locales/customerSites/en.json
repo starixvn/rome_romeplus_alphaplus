@@ -25,6 +25,8 @@
         "updatedSuccessfully": "Updated successfully",
         "deleteBankAccount": "Delete Bank Account",
         "areYouSureYouWantToDeleteThisBankAccount": "Are you sure you want to delete {{bankNumber}}?",
-        "thisActionIsPermanentAndCannotBeUndone": "This action is permanent and cannot be undone."
+        "thisActionIsPermanentAndCannotBeUndone": "This action is permanent and cannot be undone.",
+        "agentBankAccountTooltip": "To match deposits made by members to your account, please select the bank account you wish to use to receive the deposits.",
+        "agentBankAccountTooltip2": "You can change your preferred Deposit Matching Mode under  Bank Management."
     }
 }

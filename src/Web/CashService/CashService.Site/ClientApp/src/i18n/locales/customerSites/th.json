@@ -25,6 +25,8 @@
         "updatedSuccessfully": "อัพเดทเสร็จสมบูรณ์",
         "deleteBankAccount": "ลบบัญชีธนาคาร",
         "areYouSureYouWantToDeleteThisBankAccount": "คุณต้องการลบบัญชีธนาคาร {{bankNumber}} หรือไม่?",
-        "thisActionIsPermanentAndCannotBeUndone": "การดำเนินการนี้เป็นการดำเนินการถาวรและไม่สามารถยกเลิกได้"
+        "thisActionIsPermanentAndCannotBeUndone": "การดำเนินการนี้เป็นการดำเนินการถาวรและไม่สามารถยกเลิกได้",
+        "agentBankAccountTooltip": "เพื่อตรงกับการฝากเงินของสมาชิกไปยังบัญชีของคุณ โปรดเลือกบัญชีธนาคารที่คุณต้องการใช้ในการรับฝากเงิน",
+        "agentBankAccountTooltip2": "คุณสามารถเปลี่ยนการตรงกับการฝากเงินที่ต้องการในส่วน Bank Management"
     }
 }

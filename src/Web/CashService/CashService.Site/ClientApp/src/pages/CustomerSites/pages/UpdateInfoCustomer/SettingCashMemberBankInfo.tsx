@@ -12,9 +12,10 @@ import NoRecordFound from "../../../../components/NoRecordFoundComponent";
 import { MemberBankAccountRecord } from "../../types/UpdateCustomerType";
 import { AddBankModal } from "./AddBankModal";
 import { GetCustomerBankInfo, RemoveMemberBankInfo, UpdateMemberBankInfo } from "../../services/CustomerInfoServices";
-import { IconClose, IconTick } from "../../../../components/Icons";
+import { IconClose, IconInfo, IconTick } from "../../../../components/Icons";
 import { useResultMessage } from "../../../../hooks/useResultMessage";
 import ConfirmPopup from "../../../../components/ConfirmPopup";
+import Tippy from "@tippyjs/react";
 
 interface Bank {
     bankId: number;
@@ -183,7 +184,7 @@ export const SettingCashMemberBankInfo = () => {
     }, []);
 
     const loadBankAccounts = useCallback(async () => {
-      
+
         const memberBanks = await GetCustomerBankInfo<MemberBankAccountRecord[]>({
             custId: updateInfoCustomerPageConfig.custId,
             roleId: 1
@@ -218,7 +219,7 @@ export const SettingCashMemberBankInfo = () => {
 
     const handleConfirmDelete = useCallback(async () => {
         if (!deleteAccountId) return;
-        
+
         try {
             setIsLoading(true);
             const response = await RemoveMemberBankInfo<any>({
@@ -292,7 +293,7 @@ export const SettingCashMemberBankInfo = () => {
             } else {
                 showResult('error', response.message);
             }
-           
+
         } catch (error) {
             console.error('Error updating bank account:', error);
             showResult('error', t('updateInfoCashMember.updateError') || 'Failed to update bank account');
@@ -304,7 +305,7 @@ export const SettingCashMemberBankInfo = () => {
 
     const handleAgentBankChange = useCallback((option: DropdownOption) => {
         if (!editingRow) return;
-        const selectedBank = agentBanks.find(bank => (bank.bankId+ '|' + bank.bankAccountNumber) === option.value);
+        const selectedBank = agentBanks.find(bank => (bank.bankId + '|' + bank.bankAccountNumber) === option.value);
         if (selectedBank) {
             setEditingRow({
                 ...editingRow,
@@ -383,7 +384,22 @@ export const SettingCashMemberBankInfo = () => {
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">{t('updateInfoCashMember.memberBankAccount')}</th>
-                            <th scope="col">{t('updateInfoCashMember.agentBankAccount')}</th>
+                            <th scope="col">{
+                                <div className="flex items-center justify-center">
+                                    {t('updateInfoCashMember.agentBankAccount')}
+                                    <Tippy content={<div>
+                                        <div>{t('updateInfoCashMember.agentBankAccountTooltip')}</div>
+                                        <div>{t('updateInfoCashMember.agentBankAccountTooltip2')}</div>
+                                    </div>}
+                                        placement="top"
+                                        theme="light" arrow={true}>
+                                        <span>
+                                            <IconInfo className="w-[18px] cursor-pointer h-[18px] ml-[10px] fill-[#118AF2]" />
+                                        </span>
+                                    </Tippy>
+                                </div>
+                            }
+                            </th>
                             <th scope="col">{t('updateInfoCashMember.action')}</th>
                         </tr>
                     </thead>
