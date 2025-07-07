@@ -7,7 +7,6 @@ import {
   ProductSetting,
   PromotionDetail,
 } from '../../../../services/interfaces/Promotion';
-import { IconDelete, IconPen } from '../../../../components/Icons';
 import NoRecordFoundComponent from '../../../../components/NoRecordFoundComponent';
 import { formatDate } from '../../../../utils/commonFunctions';
 import { ButtonDeleteComponent, ButtonPenComponent } from '../../../../components/Buttons/ButtonIconComponent';
