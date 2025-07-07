@@ -4,11 +4,12 @@ using AgencyCash.API.Payments.Requests;
 using AgencyCash.API.Payments.Services;
 using AgencyCash.API.Shared.DataAnnotations;
 using AgencyCash.API.Shared.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AgencyCash.API.Payments;
 
-[ExcludeFromCodeCoverage]
+[ExcludeFromCodeCoverage(Justification = "Endpoints are covered by integration tests.")]
 public static class PaymentsEndpoints
 {
     public static void MapPaymentsEndpoints(this WebApplication app)
@@ -164,6 +165,6 @@ public static class PaymentsEndpoints
         return TypedResults.Ok(await withdrawalService.UpdateTransactionStatus(transId, request));
     }
 
-    private static IResult BadRequest(string key, string error)
+    private static BadRequest<ModelValidationResult> BadRequest(string key, string error)
         => TypedResults.BadRequest(new ModelValidationResult(key, error));
 }

@@ -2,16 +2,11 @@ using Fanex.Data.Repository;
 
 namespace AgencyCash.API.RegisterCashMember.Criteria;
 
-public class CheckUsernameCommand : INonQueryCommand
+public class CheckUsernameCommand(string username) : INonQueryCommand
 {
-    public string Username { get; }
+    public string Username { get; } = username;
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; }
-
-    public CheckUsernameCommand(string username)
-    {
-        Username = username;
-    }
 
     public string GetSettingKey() => "API_CustomerInsMember_CashMember_CheckUsername";
 

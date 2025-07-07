@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace AgencyCash.API.Shared.DataAnnotations;
 
-[ExcludeFromCodeCoverage]
+[ExcludeFromCodeCoverage(Justification = "Validation attribute logic is tested indirectly through model validation tests.")]
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = true)]
 public class RequiredIfAttribute(string dependentProperty, object targetValue) : ValidationAttribute("{0} is required.")
 {

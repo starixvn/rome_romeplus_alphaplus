@@ -17,19 +17,13 @@ public interface IWithdrawalService
     Task<Result> UpdateTransactionStatus(long transId, UpdateTransactionStatusRequest request);
 }
 
-public class WithdrawalService : PaymentService, IWithdrawalService
+public class WithdrawalService(
+    IDynamicRepository repository,
+    ISiteDBService siteDBService,
+    Fanex.Logging.ILogger logger) : PaymentService(repository, siteDBService, logger), IWithdrawalService
 {
-    private readonly IDynamicRepository _repository;
-    private readonly ISiteDBService _siteDBService;
-
-    public WithdrawalService(
-        IDynamicRepository repository,
-        ISiteDBService siteDBService,
-        Fanex.Logging.ILogger logger) : base(repository, siteDBService, logger)
-    {
-        _repository = repository;
-        _siteDBService = siteDBService;
-    }
+    private readonly IDynamicRepository _repository = repository;
+    private readonly ISiteDBService _siteDBService = siteDBService;
 
     public async Task<PaymentResult> CreateManualWithdrawal(ManualWithdrawalRequest request)
     {

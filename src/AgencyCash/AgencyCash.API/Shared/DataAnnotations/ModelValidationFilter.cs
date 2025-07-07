@@ -4,7 +4,7 @@ using AgencyCash.API.Shared.Models;
 
 namespace AgencyCash.API.Shared.DataAnnotations;
 
-[ExcludeFromCodeCoverage]
+[ExcludeFromCodeCoverage(Justification = "This class is a simple filter used for model validation and does not require code coverage.")]
 public class ModelValidationFilter<T> : IEndpointFilter where T : class
 {
     public async ValueTask<object> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)

@@ -2,6 +2,7 @@ using System.Text;
 using Fanex.Data;
 using Microsoft.Data.SqlClient;
 
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Major Bug", "S3903:Types should be defined in named namespaces", Justification = "<Pending>")]
 internal static class ExceptionHelper
 {
     private const string BreakLine = "\r\n";

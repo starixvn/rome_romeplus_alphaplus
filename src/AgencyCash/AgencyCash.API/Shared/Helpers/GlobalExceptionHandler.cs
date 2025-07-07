@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Diagnostics;
 
 namespace AgencyCash.API.Shared.Helpers;
 
-[ExcludeFromCodeCoverage]
+[ExcludeFromCodeCoverage(Justification = "Global exception handler is tested indirectly through integration tests.")]
 public sealed class GlobalExceptionHandler(Fanex.Logging.ILogger logger) : IExceptionHandler
 {
     private readonly Fanex.Logging.ILogger logger = logger;

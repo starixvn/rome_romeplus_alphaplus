@@ -14,12 +14,12 @@ namespace AgencyCash.API.Shared.Helpers
 
             if (domain.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
             {
-                return domain.Substring(HttpProtocolLength);
+                return domain[HttpProtocolLength..];
             }
 
             if (domain.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
             {
-                return domain.Substring(HttpsProtocolLength);
+                return domain[HttpsProtocolLength..];
             }
 
             return domain;

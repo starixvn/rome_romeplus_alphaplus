@@ -1,11 +1,6 @@
 namespace AgencyCash.API.RegisterCashMember.Responses;
 
-public class CheckUsernameResult
+public class CheckUsernameResult(bool available)
 {
-    public bool Available { get; }
-
-    public CheckUsernameResult(bool available)
-    {
-        Available = available;
-    }
+    public bool Available { get; } = available;
 }
