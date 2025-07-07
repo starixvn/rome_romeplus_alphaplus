@@ -411,10 +411,12 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 <div className="inline-block border-[1px] border-[var(--border-control)] rounded-[5px]" role="group">
                   <EnableButtonComponent
                     isActive={formState.status === '1'}
+                    type="button"
                     onClick={() => setFormState({ ...formState, status: '1' })}
                   />
                   <DisableButtonComponent
                     isActive={formState.status === '0'}
+                    type="button"
                     onClick={() => setFormState({ ...formState, status: '0' })}
                   />
                 </div>
@@ -618,6 +620,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                 </div>
                 <div className="mb-[8px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]" role="group">
                   <ButtonOnComponent
+                    type="button"
                     isActive={formState.promptPay}
                     onClick={() =>  {
                       if(fetchedBankAccount?.promptPay) { 
@@ -635,6 +638,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                     }}
                   />
                   <ButtonOffComponent
+                    type="button"
                     isActive={!formState.promptPay}
                     onClick={() => setFormState({ ...formState, promptPay: false })}
                   />

@@ -321,8 +321,8 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
               <MediumTitleComponent text={tManagePayments('bankStatus')} />
               <p className=" my-[8px]">{tManagePayments('bankNote1')}</p>
               <div className="mb-[16px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]" role="group">
-                <EnableButtonComponent isActive={status === 1} onClick={() => setStatus(1)} />
-                <DisableButtonComponent isActive={status === 0} onClick={() => setStatus(0)} />
+                <EnableButtonComponent type="button" isActive={status === 1} onClick={() => setStatus(1)} />
+                <DisableButtonComponent type="button" isActive={status === 0} onClick={() => setStatus(0)} />
               </div>
               <MediumTitleComponent text={tManagePayments('accountInformation')} />
               <div className="mb-[16px]">
@@ -508,8 +508,8 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
               <MediumTitleComponent text={tManagePayments('promptPay')} />
               <p className="pb-[8px] ">{tManagePayments('linkMobile')}</p>
               <div className="mb-[10px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]" role="group">
-                <ButtonOnComponent isActive={promptPay} onClick={() => setPromptPay(true)} />
-                <ButtonOffComponent isActive={!promptPay} onClick={() => setPromptPay(false)} />
+                <ButtonOnComponent type="button" isActive={promptPay} onClick={() => setPromptPay(true)} />
+                <ButtonOffComponent type="button" isActive={!promptPay} onClick={() => setPromptPay(false)} />
               </div>
               
               <MobileComponent

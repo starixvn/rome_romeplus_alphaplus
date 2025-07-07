@@ -59,10 +59,8 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
         public override bool IsValid()
         {
             var isValid = base.IsValid() &&
-            BankId > 0 &&
-            ValidatorHelper.IsValidAccountHolderName(AccountHolderName) &&
-            ValidatorHelper.IsValidAccountNumber(AccountNumber) &&
-            ValidatorHelper.IsValidAccountNickname(AccountNickname);
+                IsValidBankAccountInfo() &&
+                ValidatorHelper.IsValidAccountNickname(AccountNickname);
 
             if (!isValid || !PromptPay)
             {
@@ -71,5 +69,10 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
 
             return ValidatorHelper.IsValidCountryCode(CountryCode) && ValidatorHelper.IsValidMobileNumber(MobileNumber);
         }
+
+        private bool IsValidBankAccountInfo() =>
+            BankId > 0 &&
+            ValidatorHelper.IsValidAccountHolderName(AccountHolderName) &&
+            ValidatorHelper.IsValidAccountNumber(AccountNumber);
     }
 }

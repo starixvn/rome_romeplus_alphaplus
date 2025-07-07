@@ -378,8 +378,7 @@ function PaymentProviderSettings() {
   };
 
   // Handler for provider status toggle
-  const onProviderStatusToggle = () => {
-    const newStatus = !providerStatus;
+  const onProviderStatusToggle = (newStatus: number) => {
     setProviderStatus(newStatus);
     setFormState((prev) => ({
       ...prev,
@@ -478,11 +477,11 @@ function PaymentProviderSettings() {
                     role="group"
                   >
                     <EnableButtonComponent
-                      onClick={onProviderStatusToggle}
+                      onClick={() => onProviderStatusToggle(1)}
                       isActive={providerStatus}
                     />
                     <DisableButtonComponent
-                      onClick={onProviderStatusToggle}
+                      onClick={() => onProviderStatusToggle(0)}
                       isActive={!providerStatus}
                     />
                   </div>
