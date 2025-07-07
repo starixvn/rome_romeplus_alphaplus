@@ -77,7 +77,10 @@ RUN if [ "${TRANSFORM_CONFIG}" = "PRO" ] \
   || [ "${TRANSFORM_CONFIG}" = "ALPHAKLPRODINT3" ] \
   || [ "${TRANSFORM_CONFIG}" = "ALPHAKLSIMPLEINT" ] \
   || [ "${TRANSFORM_CONFIG}" = "ALPHAKLSIMPLEINT2" ] \
-  || [ "${TRANSFORM_CONFIG}" = "ALPHAKLSIMPLEINT3" ]; \
+  || [ "${TRANSFORM_CONFIG}" = "ALPHAKLSIMPLEINT3" ] \
+  || [ "${TRANSFORM_CONFIG}" = "ALPHAKLSTG" ] \
+  || [ "${TRANSFORM_CONFIG}" = "ALPHAKLSTG2" ] \
+  || [ "${TRANSFORM_CONFIG}" = "ALPHAKLSTG3" ]; \
   then cd /build/tmp && curl --fail -o ${TRANSFORM_CONFIG}.domainmappings.json --header "PRIVATE-TOKEN:${CI_JOB_TOKEN}" https://gitlab.nexdev.net/api/v4/projects/alpha-config%2Flogin-domains/repository/files/src%2F${TRANSFORM_CONFIG}.domainmappings.json/raw?ref=main \
   && cd - && cp -r tmp/${TRANSFORM_CONFIG}.domainmappings.json src/Web/Settings/Settings.Site/Domains/domainmappings.json; fi
 
