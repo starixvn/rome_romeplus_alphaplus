@@ -14,6 +14,7 @@ import { AddBankModal } from "./AddBankModal";
 import { GetCustomerBankInfo, RemoveMemberBankInfo, UpdateMemberBankInfo } from "../../services/CustomerInfoServices";
 import { IconClose, IconTick } from "../../../../components/Icons";
 import { useResultMessage } from "../../../../hooks/useResultMessage";
+import ConfirmPopup from "../../../../components/ConfirmPopup";
 
 interface Bank {
     bankId: number;
@@ -161,6 +162,8 @@ export const SettingCashMemberBankInfo = () => {
     const [editingRow, setEditingRow] = useState<EditingRow | null>(null);
     const [agentBankOptions, setAgentBankOptions] = useState<DropdownOption[]>([]);
     const [agentBanks, setAgentBanks] = useState<Bank[]>([]);
+    const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+    const [deleteAccountId, setDeleteAccountId] = useState<number | null>(null);
     const { ResultMessage, showResult } = useResultMessage();
 
     // Memoized values
@@ -208,27 +211,41 @@ export const SettingCashMemberBankInfo = () => {
     }, []);
 
     const handleDeleteBankAccount = useCallback(async (id: number) => {
-        if (window.confirm(t('updateInfoCashMember.confirmDelete') || 'Are you sure you want to delete this bank account?')) {
-            try {
-                setIsLoading(true);
-                const response = await RemoveMemberBankInfo<any>({
-                    custId: updateInfoCustomerPageConfig.custId,
-                    memberBankAccountID: id,
-                });
-                setBankAccounts(prev => prev.filter(account => account.memberBankAccountID !== id));
-                if (response.isSuccessful) {
-                    showResult('success', t('global:removeSuccess') || 'Bank account removed successfully');
-                } else {
-                    showResult('error', response.message);
-                }
-            } catch (error) {
-                console.error('Error deleting bank account:', error);
-                showResult('error', t('global:removeError') || 'Failed to remove bank account');
-            } finally {
-                setIsLoading(false);
+        setEditingRow(null);
+        setDeleteAccountId(id);
+        setShowDeleteConfirm(true);
+    }, []);
+
+    const handleConfirmDelete = useCallback(async () => {
+        if (!deleteAccountId) return;
+        
+        try {
+            setIsLoading(true);
+            const response = await RemoveMemberBankInfo<any>({
+                custId: updateInfoCustomerPageConfig.custId,
+                memberBankAccountID: deleteAccountId,
+            });
+            setBankAccounts(prev => prev.filter(account => account.memberBankAccountID !== deleteAccountId));
+            if (response.isSuccessful) {
+                showResult('success', t('global:removeSuccess') || 'Bank account removed successfully');
+            } else {
+                showResult('error', response.message);
             }
+        } catch (error) {
+            console.error('Error deleting bank account:', error);
+            showResult('error', t('global:removeError') || 'Failed to remove bank account');
+            loadBankAccounts();
+        } finally {
+            setIsLoading(false);
+            setShowDeleteConfirm(false);
+            setDeleteAccountId(null);
         }
-    }, [t]);
+    }, [deleteAccountId, t]);
+
+    const handleCancelDelete = useCallback(() => {
+        setShowDeleteConfirm(false);
+        setDeleteAccountId(null);
+    }, []);
 
     const handleEditBankAccount = useCallback((account: MemberBankAccountRecord) => {
         setEditingRow({
@@ -308,6 +325,7 @@ export const SettingCashMemberBankInfo = () => {
     }, []);
 
     const handleAddBankClick = useCallback(() => {
+        setEditingRow(null);
         setShowAddBankAccountPopup(true);
     }, []);
 
@@ -383,6 +401,23 @@ export const SettingCashMemberBankInfo = () => {
                 <AddBankModal
                     closeModal={handleCloseModal}
                     onAddSuccess={handleAddBankSuccess}
+                />
+            )}
+            {showDeleteConfirm && (
+                <ConfirmPopup
+                    title={t('updateInfoCashMember.deleteBankAccount')}
+                    message={
+                        <>
+                            <div className="text-center">
+                                {t('updateInfoCashMember.areYouSureYouWantToDeleteThisBankAccount', { bankNumber: bankAccounts.find(account => account.memberBankAccountID === deleteAccountId)?.memberBankAccountNumber })}
+                            </div>
+                            <div className="text-center text-[12px]">
+                                *{t('updateInfoCashMember.thisActionIsPermanentAndCannotBeUndone')}
+                            </div>
+                        </>
+                    }
+                    onCancel={handleCancelDelete}
+                    onConfirm={handleConfirmDelete}
                 />
             )}
         </>

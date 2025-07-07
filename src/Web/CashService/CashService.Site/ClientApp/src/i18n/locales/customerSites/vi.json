@@ -22,6 +22,9 @@
         "accountNumber": "Số tài khoản",
         "bankNameRequired": "Tên ngân hàng là bắt buộc",
         "accountNumberRequired": "Số tài khoản là bắt buộc",
-        "updatedSuccessfully": "Cập nhật thành công"
+        "updatedSuccessfully": "Cập nhật thành công",
+        "deleteBankAccount": "Xóa tài khoản ngân hàng",
+        "areYouSureYouWantToDeleteThisBankAccount": "Bạn có chắc chắn muốn xóa tài khoản ngân hàng {{bankNumber}} không?",
+        "thisActionIsPermanentAndCannotBeUndone": "Hành động này là bất khả kháng và không thể hoàn tác."
     }
 }

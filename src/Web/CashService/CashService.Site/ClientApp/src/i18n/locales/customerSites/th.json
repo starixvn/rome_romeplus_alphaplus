@@ -22,6 +22,9 @@
         "accountNumber": "เลขที่บัญชี",
         "bankNameRequired": "ต้องระบุชื่อธนาคาร",
         "accountNumberRequired": "ต้องระบุเลขที่บัญชี",
-        "updatedSuccessfully": "อัพเดทเสร็จสมบูรณ์"
+        "updatedSuccessfully": "อัพเดทเสร็จสมบูรณ์",
+        "deleteBankAccount": "ลบบัญชีธนาคาร",
+        "areYouSureYouWantToDeleteThisBankAccount": "คุณต้องการลบบัญชีธนาคาร {{bankNumber}} หรือไม่?",
+        "thisActionIsPermanentAndCannotBeUndone": "การดำเนินการนี้เป็นการดำเนินการถาวรและไม่สามารถยกเลิกได้"
     }
 }

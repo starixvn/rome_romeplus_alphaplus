@@ -7,6 +7,7 @@ import { FormProvider, useForm, Controller } from 'react-hook-form';
 import { AddMemberBankInfo, GetBanks, GetCustomerBankInfo } from "../../services/CustomerInfoServices";
 import { useResultMessage } from "../../../../hooks/useResultMessage";
 import { ValidateMessageComponent } from "../../../../components/Message";
+import { NUMBER_REGEX } from "../../../../constants/memberSiteConstants";
 
 
 interface AddBankModalProps {
@@ -96,7 +97,7 @@ export const AddBankModal = ({ closeModal, onAddSuccess }: AddBankModalProps) =>
             });
 
             if (response.isSuccessful) {
-                showResult('success', t('global:addSuccess'), 3000, onAddSuccess);
+                showResult('success', t('global:addSuccess'), 1000, onAddSuccess);
             } else {
                 showResult('error', response.message);
             }
@@ -146,8 +147,14 @@ export const AddBankModal = ({ closeModal, onAddSuccess }: AddBankModalProps) =>
                                     render={({ field }) => (
                                         <input
                                             {...field}
+                                            maxLength={50}
                                             type="text"
                                             className={`w-full border border-gray-300 rounded px-2 py-1 focus:outline-none ${errors.memberBankAccountNumber ? 'border-red-500' : ''}`}
+                                            onChange={(e) => {
+                                                e.preventDefault();
+                                                const value = e.target.value.replace(NUMBER_REGEX, '').slice(0, 50);
+                                                field.onChange(value);
+                                            }}
                                         />
                                     )}
                                 />

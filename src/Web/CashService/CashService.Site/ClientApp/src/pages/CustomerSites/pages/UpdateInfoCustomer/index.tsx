@@ -11,7 +11,6 @@ import { useTranslation } from "react-i18next";
 
 
 function PageTitle(){
-    console.log(updateInfoCustomerPageConfig);
     const { t } = useTranslation('global');
     return (
         <TitleComponent title={`${t('global:info')} ${updateInfoCustomerPageConfig.username}`} showTippy={false} />

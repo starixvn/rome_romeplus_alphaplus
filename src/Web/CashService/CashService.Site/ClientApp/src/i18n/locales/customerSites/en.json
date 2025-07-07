@@ -22,6 +22,9 @@
         "accountNumber": "Account Number",
         "bankNameRequired": "Bank name is required",
         "accountNumberRequired": "Account number is required",
-        "updatedSuccessfully": "Updated successfully"
+        "updatedSuccessfully": "Updated successfully",
+        "deleteBankAccount": "Delete Bank Account",
+        "areYouSureYouWantToDeleteThisBankAccount": "Are you sure you want to delete {{bankNumber}}?",
+        "thisActionIsPermanentAndCannotBeUndone": "This action is permanent and cannot be undone."
     }
 }
