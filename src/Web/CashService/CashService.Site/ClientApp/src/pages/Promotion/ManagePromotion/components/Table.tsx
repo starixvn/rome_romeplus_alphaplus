@@ -10,6 +10,7 @@ import {
 import { IconDelete, IconPen } from '../../../../components/Icons';
 import NoRecordFoundComponent from '../../../../components/NoRecordFoundComponent';
 import { formatDate } from '../../../../utils/commonFunctions';
+import { ButtonDeleteComponent, ButtonPenComponent } from '../../../../components/Buttons/ButtonIconComponent';
 
 interface TableProps {
   items: PromotionDetail[];
@@ -73,12 +74,12 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
         </th>
         <th
           rowSpan={2}
-          className="w-[110px] sticky left-[93px] z-10 bg-[var(--table-header-background)] text-center"
+          className="w-[110px] sticky left-[117px] z-10 bg-[var(--table-header-background)] text-center"
           scope="col"
         >
           <span className="relative z-3">{t('table.promotionTitle')}</span>
         </th>
-        <th rowSpan={2} scope="col" className="sticky left-[200px] z-10 text-center bg-[var(--table-header-background)] shadow-[1px_0_0_#a6a6a6]">
+        <th rowSpan={2} scope="col" className="sticky left-[225px] z-10 text-center bg-[var(--table-header-background)] shadow-[1px_0_0_#a6a6a6]">
           {t('table.promotionType')}
         </th>
         <th colSpan={gridProducts.length} className="text-center" scope="col">
@@ -89,18 +90,18 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
         <th
           rowSpan={2}
           scope="col"
-          className="w-[110px] sticky right-[252px] z-10 bg-[var(--table-header-background)] text-center"
+          className="w-[110px] sticky right-[253px] z-10 bg-[var(--table-header-background)] text-center"
         >
           {t('table.products')}
         </th>
         <th
           rowSpan={2}
           scope="col"
-          className="w-[110px] sticky right-[86px] z-10 bg-[var(--table-header-background)] text-center"
+          className="w-[110px] sticky right-[87px] z-10 bg-[var(--table-header-background)] text-center"
         >
           {t('table.period')}
         </th>
-        <th rowSpan={2} scope="col" className="w-[110px] sticky right-0 z-10 bg-[var(--table-header-background)] text-center">
+        <th rowSpan={2} scope="col" className="w-[110px] sticky right-[1px] z-10 bg-[var(--table-header-background)] text-center">
           {t('table.status')}
         </th>
       </tr>
@@ -117,33 +118,21 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
     <tr key={item.promotionId}>
       <td className="sticky left-0 bg-white z-10 text-center">{index + 1}</td>
       <td className="sticky left-[32px] bg-white z-10 text-center">
-        <div className="flex items-center justify-center gap-2">
-          <button
-            className="text-blue-600 hover:text-blue-800 cursor-pointer"
-            onClick={() => onEdit?.(item)}
-            title={t('table.edit')}
-          >
-            <IconPen />
-          </button>
-          <button
-            className="text-red-600 hover:text-red-800 cursor-pointer"
-            onClick={() => onDelete?.(item)}
-            title={t('table.delete')}
-          >
-            <IconDelete />
-          </button>
+        <div className="flex justify-center">
+          <ButtonPenComponent onClick={() => onEdit?.(item)} />
+          <ButtonDeleteComponent onClick={() => onDelete?.(item)} />
         </div>
       </td>
-      <td className="sticky left-[93px] bg-white z-10 text-left">{item.promotionTitle}</td>
-      <td className="sticky left-[200px] bg-white z-10 text-center shadow-[1px_0_0_#a6a6a6]">{item.promotionType}</td>
+      <td className="sticky left-[117px] bg-white z-10 text-left">{item.promotionTitle}</td>
+      <td className="sticky left-[225px] bg-white z-10 text-center shadow-[1px_0_0_#a6a6a6]">{item.promotionType}</td>
       {gridProducts.map((product) =>
         displayPercentageMaxPayout(item.productSettings, product.productId)
       )}
-      <td className="w-[110px] sticky right-[252px] bg-white z-10">
+      <td className="w-[110px] sticky right-[253px] bg-white z-10">
         {displayProducts(item.productSettings)}
       </td>
-      <td className="w-[110px] sticky right-[86px] bg-white z-10">{`${formatDate(item.fromDate?.toString() || '')} - ${formatDate(item.toDate?.toString() || '')}`}</td>
-      <td className="w-[110px] sticky right-0 bg-white z-10">
+      <td className="w-[110px] sticky right-[87px] bg-white z-10">{`${formatDate(item.fromDate?.toString() || '')} - ${formatDate(item.toDate?.toString() || '')}`}</td>
+      <td className="w-[110px] sticky right-[1px] bg-white z-10">
         <span
           className={`inline-block px-2 py-1 rounded text-xs font-semibold ${getStatusStyle(item.enabled ? 'ACTIVE' : 'INACTIVE')}`}
         >
