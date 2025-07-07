@@ -235,8 +235,18 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         private async Task<bool> ValidatePaymentMethod(ValidatePaymentMethodRequest request, CancellationToken cancellationToken)
         {
             try {
-                var url = $"{_twAPIUrl}/payments/validate-payment-method";
-                var response = await _httpClient.PostAsJsonAsync(url, request, cancellationToken);
+                var url = $"{_twAPIUrl}/PaymentGateway/TestConnection";
+                var twRequest = new {
+                    ProviderId = request.ProviderId,
+                    TransactionType = request.TransactionType,
+                    PaymentMethod = request.Method,
+                    APIConfig = Newtonsoft.Json.JsonConvert.SerializeObject(new {
+                        MerchantName = request.MerchantID,
+                        SecretKey = request.APIMethodKey,
+                        AppSecret = request.AppSecret
+                    })
+                };
+                var response = await _httpClient.PostAsJsonAsync(url, twRequest, cancellationToken);
                 response.EnsureSuccessStatusCode();
                 var result = await response.Content.ReadFromJsonAsync<bool>(cancellationToken: cancellationToken);
                 return result;

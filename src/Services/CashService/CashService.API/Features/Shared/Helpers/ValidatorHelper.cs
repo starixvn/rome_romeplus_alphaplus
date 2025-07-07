@@ -2,7 +2,7 @@
 
 namespace AlphaPlus.CashService.API.Features.Shared.Helpers;
 
-public class ValidatorHelper
+public static class ValidatorHelper
 {
     public static bool IsValidAccountHolderName(string accountHolderName) {
         return !string.IsNullOrWhiteSpace(accountHolderName) && accountHolderName.Length <= 255;

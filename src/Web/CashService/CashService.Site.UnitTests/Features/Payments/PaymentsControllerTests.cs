@@ -44,6 +44,7 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             _httpContextMock = new Mock<HttpContext>();
 
             _configurationMock.Setup(x => x["CashService:APIUrl"]).Returns(_apiBaseUrl);
+            _configurationMock.Setup(x => x["CashService:TWAPIUrl"]).Returns("https://tw-api.test.com");
 
             _userSessionMock.Setup(x => x.CustId).Returns(123);
             _userSessionMock.Setup(x => x.Language).Returns("en");
@@ -250,7 +251,27 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             };
             var expectedResponse = new { Success = true };
             _customerServiceMock.Setup(x => x.GetCashServiceStatus(123)).ReturnsAsync(1);
-            SetupHttpClientResponse(HttpStatusCode.OK, expectedResponse);
+            
+            // Setup HTTP client to return different responses based on URL
+            _httpMessageHandlerMock
+                .Protected()
+                .Setup<Task<HttpResponseMessage>>(
+                    "SendAsync",
+                    ItExpr.IsAny<HttpRequestMessage>(),
+                    ItExpr.IsAny<CancellationToken>())
+                .Returns<HttpRequestMessage, CancellationToken>((req, token) =>
+                {
+                    var response = new HttpResponseMessage(HttpStatusCode.OK);
+                    if (req.RequestUri.ToString().Contains("/PaymentGateway/TestConnection"))
+                    {
+                        response.Content = new StringContent(JsonConvert.SerializeObject(true));
+                    }
+                    else if (req.RequestUri.ToString().Contains("/payments/add-payment-method"))
+                    {
+                        response.Content = new StringContent(JsonConvert.SerializeObject(expectedResponse));
+                    }
+                    return Task.FromResult(response);
+                });
 
             // Act
             var result = await _controller.AddPaymentMethod(request, CancellationToken.None);
@@ -260,16 +281,14 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             var jsonResult = result as JsonResult;
             AssertJsonResultEquals(jsonResult, expectedResponse);
             
-            // Verify that APIResult was set to false
-            request.APIResult.Should().BeFalse();
+            // Verify that APIResult was set to true after successful validation
+            request.APIResult.Should().BeTrue();
             
-            // Verify the HTTP request was made with the correct data
+            // Verify that both HTTP requests were made
             _httpMessageHandlerMock.Protected().Verify(
                 "SendAsync",
-                Times.Once(),
-                ItExpr.Is<HttpRequestMessage>(req => 
-                    req.Method == HttpMethod.Post && 
-                    req.RequestUri.ToString().Contains("/payments/add-payment-method")),
+                Times.Exactly(2),
+                ItExpr.IsAny<HttpRequestMessage>(),
                 ItExpr.IsAny<CancellationToken>()
             );
         }
@@ -298,6 +317,55 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             AssertJsonResultEquals(jsonResult, new ResultModel { Code = 401 });
             
             // Verify that APIResult was still set to false even though the request was rejected
+            request.APIResult.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task AddPaymentMethod_WhenValidationFails_ReturnsJsonResultWithFalseAPIResult()
+        {
+            // Arrange
+            var request = new InsertPaymentMethodRequest
+            {
+                ProviderId = 1,
+                TransactionType = 1,
+                Method = 1,
+                APIMethodKey = "key",
+                MerchantID = "merchant",
+                AppSecret = "secret"
+            };
+            var expectedResponse = new { Success = true };
+            _customerServiceMock.Setup(x => x.GetCashServiceStatus(123)).ReturnsAsync(1);
+            
+            // Setup HTTP client to return validation failure for TW API but success for main API
+            _httpMessageHandlerMock
+                .Protected()
+                .Setup<Task<HttpResponseMessage>>(
+                    "SendAsync",
+                    ItExpr.IsAny<HttpRequestMessage>(),
+                    ItExpr.IsAny<CancellationToken>())
+                .Returns<HttpRequestMessage, CancellationToken>((req, token) =>
+                {
+                    var response = new HttpResponseMessage(HttpStatusCode.OK);
+                    if (req.RequestUri.ToString().Contains("/PaymentGateway/TestConnection"))
+                    {
+                        response.Content = new StringContent(JsonConvert.SerializeObject(false));
+                    }
+                    else if (req.RequestUri.ToString().Contains("/payments/add-payment-method"))
+                    {
+                        response.Content = new StringContent(JsonConvert.SerializeObject(expectedResponse));
+                    }
+                    return Task.FromResult(response);
+                });
+
+            // Act
+            var result = await _controller.AddPaymentMethod(request, CancellationToken.None);
+
+            // Assert
+            result.Should().BeOfType<JsonResult>();
+            var jsonResult = result as JsonResult;
+            AssertJsonResultEquals(jsonResult, expectedResponse);
+            
+            // Verify that APIResult was set to false after failed validation
             request.APIResult.Should().BeFalse();
         }
 
@@ -348,6 +416,61 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             
             // Verify that APIResult was still set to false even though an exception occurred
             request.APIResult.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task AddPaymentMethod_WhenValidationThrowsException_ReturnsJsonResultWithFalseAPIResult()
+        {
+            // Arrange
+            var request = new InsertPaymentMethodRequest
+            {
+                ProviderId = 1,
+                TransactionType = 1,
+                Method = 1,
+                APIMethodKey = "key",
+                MerchantID = "merchant",
+                AppSecret = "secret"
+            };
+            var expectedResponse = new { Success = true };
+            _customerServiceMock.Setup(x => x.GetCashServiceStatus(123)).ReturnsAsync(1);
+            
+            // Setup HTTP client to throw exception for TW API but success for main API
+            _httpMessageHandlerMock
+                .Protected()
+                .Setup<Task<HttpResponseMessage>>(
+                    "SendAsync",
+                    ItExpr.IsAny<HttpRequestMessage>(),
+                    ItExpr.IsAny<CancellationToken>())
+                .Returns<HttpRequestMessage, CancellationToken>((req, token) =>
+                {
+                    if (req.RequestUri.ToString().Contains("/PaymentGateway/TestConnection"))
+                    {
+                        throw new HttpRequestException("TW API Error");
+                    }
+                    else if (req.RequestUri.ToString().Contains("/payments/add-payment-method"))
+                    {
+                        var response = new HttpResponseMessage(HttpStatusCode.OK)
+                        {
+                            Content = new StringContent(JsonConvert.SerializeObject(expectedResponse))
+                        };
+                        return Task.FromResult(response);
+                    }
+                    return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK));
+                });
+
+            // Act
+            var result = await _controller.AddPaymentMethod(request, CancellationToken.None);
+
+            // Assert
+            result.Should().BeOfType<JsonResult>();
+            var jsonResult = result as JsonResult;
+            AssertJsonResultEquals(jsonResult, expectedResponse);
+            
+            // Verify that APIResult was set to false after exception during validation
+            request.APIResult.Should().BeFalse();
+            
+            // Verify that logger was called with the exception
+            _loggerMock.Verify(x => x.ErrorAsync(It.IsAny<string>(), It.IsAny<Exception>()), Times.Once);
         }
 
         [Fact]
@@ -726,6 +849,219 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             );
         }
 
+        [Fact]
+        public async Task UpdatePaymentMethod_WhenValidRequest_ReturnsJsonResult()
+        {
+            // Arrange
+            var request = new UpdatePaymentMethodRequest
+            {
+                ProviderId = 1,
+                TransactionType = 1,
+                Method = 1,
+                APIMethodKey = "key",
+                MerchantID = "merchant",
+                AppSecret = "secret"
+            };
+            var expectedResponse = new { Success = true };
+            _customerServiceMock.Setup(x => x.GetCashServiceStatus(123)).ReturnsAsync(1);
+            
+            // Setup HTTP client to return different responses based on URL
+            _httpMessageHandlerMock
+                .Protected()
+                .Setup<Task<HttpResponseMessage>>(
+                    "SendAsync",
+                    ItExpr.IsAny<HttpRequestMessage>(),
+                    ItExpr.IsAny<CancellationToken>())
+                .Returns<HttpRequestMessage, CancellationToken>((req, token) =>
+                {
+                    var response = new HttpResponseMessage(HttpStatusCode.OK);
+                    if (req.RequestUri.ToString().Contains("/PaymentGateway/TestConnection"))
+                    {
+                        response.Content = new StringContent(JsonConvert.SerializeObject(true));
+                    }
+                    else if (req.RequestUri.ToString().Contains("/payments/update-payment-method"))
+                    {
+                        response.Content = new StringContent(JsonConvert.SerializeObject(expectedResponse));
+                    }
+                    return Task.FromResult(response);
+                });
+
+            // Act
+            var result = await _controller.UpdatePaymentMethod(request, CancellationToken.None);
+
+            // Assert
+            result.Should().BeOfType<JsonResult>();
+            var jsonResult = result as JsonResult;
+            AssertJsonResultEquals(jsonResult, expectedResponse);
+            
+            // Verify that APIResult was set to true after successful validation
+            request.APIResult.Should().BeTrue();
+            
+            // Verify that both HTTP requests were made
+            _httpMessageHandlerMock.Protected().Verify(
+                "SendAsync",
+                Times.Exactly(2),
+                ItExpr.IsAny<HttpRequestMessage>(),
+                ItExpr.IsAny<CancellationToken>()
+            );
+        }
+
+        [Fact]
+        public async Task UpdatePaymentMethod_WhenCashServiceDisabled_ReturnsUnauthorized()
+        {
+            // Arrange
+            var request = new UpdatePaymentMethodRequest
+            {
+                ProviderId = 1,
+                TransactionType = 1,
+                Method = 1,
+                APIMethodKey = "key",
+                MerchantID = "merchant",
+                AppSecret = "secret"
+            };
+            _customerServiceMock.Setup(x => x.GetCashServiceStatus(123)).ReturnsAsync(0);
+
+            // Act
+            var result = await _controller.UpdatePaymentMethod(request, CancellationToken.None);
+
+            // Assert
+            result.Should().BeOfType<JsonResult>();
+            var jsonResult = result as JsonResult;
+            AssertJsonResultEquals(jsonResult, new ResultModel { Code = 401 });
+            
+            // Verify that APIResult was still set to false even though the request was rejected
+            request.APIResult.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task UpdatePaymentMethod_WhenUserIsInternal_ReturnsUnauthorized()
+        {
+            // Arrange
+            var request = new UpdatePaymentMethodRequest
+            {
+                ProviderId = 1,
+                TransactionType = 1,
+                Method = 1,
+                APIMethodKey = "key",
+                MerchantID = "merchant",
+                AppSecret = "secret"
+            };
+            _userSessionMock.Setup(x => x.IsInternal).Returns(true);
+
+            // Act
+            var result = await _controller.UpdatePaymentMethod(request, CancellationToken.None);
+
+            // Assert
+            result.Should().BeOfType<UnauthorizedResult>();
+            
+            // Verify that APIResult was still set to false even though the request was rejected
+            request.APIResult.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task UpdatePaymentMethod_WhenValidationFails_ReturnsJsonResultWithFalseAPIResult()
+        {
+            // Arrange
+            var request = new UpdatePaymentMethodRequest
+            {
+                ProviderId = 1,
+                TransactionType = 1,
+                Method = 1,
+                APIMethodKey = "key",
+                MerchantID = "merchant",
+                AppSecret = "secret"
+            };
+            var expectedResponse = new { Success = true };
+            _customerServiceMock.Setup(x => x.GetCashServiceStatus(123)).ReturnsAsync(1);
+            
+            // Setup HTTP client to return validation failure for TW API but success for main API
+            _httpMessageHandlerMock
+                .Protected()
+                .Setup<Task<HttpResponseMessage>>(
+                    "SendAsync",
+                    ItExpr.IsAny<HttpRequestMessage>(),
+                    ItExpr.IsAny<CancellationToken>())
+                .Returns<HttpRequestMessage, CancellationToken>((req, token) =>
+                {
+                    var response = new HttpResponseMessage(HttpStatusCode.OK);
+                    if (req.RequestUri.ToString().Contains("/PaymentGateway/TestConnection"))
+                    {
+                        response.Content = new StringContent(JsonConvert.SerializeObject(false));
+                    }
+                    else if (req.RequestUri.ToString().Contains("/payments/update-payment-method"))
+                    {
+                        response.Content = new StringContent(JsonConvert.SerializeObject(expectedResponse));
+                    }
+                    return Task.FromResult(response);
+                });
+
+            // Act
+            var result = await _controller.UpdatePaymentMethod(request, CancellationToken.None);
+
+            // Assert
+            result.Should().BeOfType<JsonResult>();
+            var jsonResult = result as JsonResult;
+            AssertJsonResultEquals(jsonResult, expectedResponse);
+            
+            // Verify that APIResult was set to false after failed validation
+            request.APIResult.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task UpdatePaymentMethod_WhenValidationThrowsException_ReturnsJsonResultWithFalseAPIResult()
+        {
+            // Arrange
+            var request = new UpdatePaymentMethodRequest
+            {
+                ProviderId = 1,
+                TransactionType = 1,
+                Method = 1,
+                APIMethodKey = "key",
+                MerchantID = "merchant",
+                AppSecret = "secret"
+            };
+            var expectedResponse = new { Success = true };
+            _customerServiceMock.Setup(x => x.GetCashServiceStatus(123)).ReturnsAsync(1);
+            
+            // Setup HTTP client to throw exception for TW API but success for main API
+            _httpMessageHandlerMock
+                .Protected()
+                .Setup<Task<HttpResponseMessage>>(
+                    "SendAsync",
+                    ItExpr.IsAny<HttpRequestMessage>(),
+                    ItExpr.IsAny<CancellationToken>())
+                .Returns<HttpRequestMessage, CancellationToken>((req, token) =>
+                {
+                    if (req.RequestUri.ToString().Contains("/PaymentGateway/TestConnection"))
+                    {
+                        throw new HttpRequestException("TW API Error");
+                    }
+                    else if (req.RequestUri.ToString().Contains("/payments/update-payment-method"))
+                    {
+                        var response = new HttpResponseMessage(HttpStatusCode.OK)
+                        {
+                            Content = new StringContent(JsonConvert.SerializeObject(expectedResponse))
+                        };
+                        return Task.FromResult(response);
+                    }
+                    return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK));
+                });
+
+            // Act
+            var result = await _controller.UpdatePaymentMethod(request, CancellationToken.None);
+
+            // Assert
+            result.Should().BeOfType<JsonResult>();
+            var jsonResult = result as JsonResult;
+            AssertJsonResultEquals(jsonResult, expectedResponse);
+            
+            // Verify that APIResult was set to false after exception during validation
+            request.APIResult.Should().BeFalse();
+            
+            // Verify that logger was called with the exception
+            _loggerMock.Verify(x => x.ErrorAsync(It.IsAny<string>(), It.IsAny<Exception>()), Times.Once);
+        }
+
         private void SetupHttpClientResponse<T>(HttpStatusCode statusCode, T content)
         {
             var response = new HttpResponseMessage(statusCode)
@@ -738,6 +1074,22 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
                 .Setup<Task<HttpResponseMessage>>(
                     "SendAsync",
                     ItExpr.IsAny<HttpRequestMessage>(),
+                    ItExpr.IsAny<CancellationToken>())
+                .ReturnsAsync(response);
+        }
+
+        private void SetupHttpClientResponse<T>(HttpStatusCode statusCode, T content, Func<HttpRequestMessage, bool> urlPredicate)
+        {
+            var response = new HttpResponseMessage(statusCode)
+            {
+                Content = new StringContent(JsonConvert.SerializeObject(content))
+            };
+
+            _httpMessageHandlerMock
+                .Protected()
+                .Setup<Task<HttpResponseMessage>>(
+                    "SendAsync",
+                    ItExpr.Is<HttpRequestMessage>(req => urlPredicate(req)),
                     ItExpr.IsAny<CancellationToken>())
                 .ReturnsAsync(response);
         }
