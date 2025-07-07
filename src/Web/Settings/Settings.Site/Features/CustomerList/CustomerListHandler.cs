@@ -296,7 +296,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                 .AddData(DataKey.SearchAccount.IsAllowAutoTransfer, model.NonProduct.IsAllowAutoTransfer)
                 .AddData(DataKey.SearchAccount.ScheduleWeekDays, model.NonProduct.ScheduleWeekDays);
 
-            request.SupportAutoTransfer = IsEnableAutoTransfer(message, CurrenciesOfferAutoTransfer);
+            request.SupportAutoTransfer = IsEnableAutoTransfer(message, CurrenciesOfferAutoTransfer) && !message.IsCashMember;
             request.AutoTransferAffect = transferService.IsAutoTransferAffect(message.Currency, CurrenciesOfferAutoTransfer);
 
             return statusViewModelFactory.GetViewModels(request).Where(status => status.Visible).OrderBy(status => status.DisplayOrder);
