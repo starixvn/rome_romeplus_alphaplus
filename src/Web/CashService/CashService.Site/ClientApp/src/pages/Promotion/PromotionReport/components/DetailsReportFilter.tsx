@@ -5,23 +5,27 @@ import CustomDropdownComponent, {
 import { LabelTitleComponent } from '../../../../components/Title';
 
 const statusOptions: DropdownOption[] = [
+  { value: '0', label: 'All' },
   { value: 1, label: 'Approved' },
   { value: 2, label: 'Pending' },
   { value: 3, label: 'Rejected' },
 ];
 
 export default function DetailsReportFilter({
+  minDate,
+  maxDate,
   dateRange,
   setDateRange,
   status,
   setStatus,
 }: {
+  minDate: Date;
+  maxDate: Date;
   dateRange: [Date | null, Date | null];
   setDateRange: (range: [Date | null, Date | null]) => void;
   status: string;
   setStatus: (status: string) => void;
 }) {
-  const currentYear = new Date().getFullYear();
   return (
     <div className="flex flex-nowrap gap-[16px] max-[768px]:gap-[12px] max-[768px]:flex-wrap w-full">
       <div className="w-[190px] mb-[12px]">
@@ -29,8 +33,8 @@ export default function DetailsReportFilter({
         <DateRangePickerComponent
           value={dateRange}
           onChange={setDateRange}
-          minYear={currentYear - 3}
-          maxRangeDays={92}
+          minDate={minDate}
+          maxDate={maxDate}
         />
       </div>
       <div className="w-[160px] mb-[12px]">
@@ -39,7 +43,6 @@ export default function DetailsReportFilter({
           options={statusOptions}
           onSelect={(opt) => setStatus(opt.value as string)}
           initialValue={status}
-          showOptionAll
         />
       </div>
     </div>

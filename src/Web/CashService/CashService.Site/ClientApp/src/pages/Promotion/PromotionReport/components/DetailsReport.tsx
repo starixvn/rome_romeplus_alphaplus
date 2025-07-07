@@ -6,31 +6,32 @@ import DetailsReportTableTitle from './DetailsReportTableTitle';
 import DetailsReportTable from './DetailsReportTable';
 import useExportExcel from '../../../../hooks/useExportExcel';
 import { promotionService } from '../../../../services/promotionAPI';
-import { convertToGMT4 } from '../../../../utils/commonFunctions';
+import { formatSimpleDate } from '../../../../utils/sharedUtils';
 
-function useDetailsReportData(
-  promotionId: string,
-  fromDate: string,
-  toDate: string,
-  status: string
-) {
+function useDetailsReportData(filterParams: {
+  promotionId: string;
+  fromDate: string;
+  toDate: string;
+  status: string;
+}) {
   const [detailsReportData, setDetailsReportData] = useState({
-    summary: {},
-    promotionDetails: [],
+    summary: null,
+    promotionDetails: null,
   });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
-
     async function fetchData() {
-      const data = await promotionService.getDetailsReport(promotionId, fromDate, toDate, status);
+      setLoading(true);
+
+      const data = await promotionService.getDetailsReport(filterParams);
       setDetailsReportData(data);
+
+      setLoading(false);
     }
 
     fetchData();
-    setLoading(false);
-  }, [promotionId, fromDate, toDate, status]);
+  }, [filterParams.promotionId, filterParams.fromDate, filterParams.toDate, filterParams.status]);
 
   return { detailsReportData, loading };
 }
@@ -38,36 +39,37 @@ function useDetailsReportData(
 export default function DetailsReport({
   promotion,
   onClickBreadcrumb,
+  initialDateRange,
 }: {
   promotion: any;
   onClickBreadcrumb: () => void;
+  initialDateRange: {
+    minDate: Date;
+    maxDate: Date;
+    fromDate: Date;
+    toDate: Date;
+  };
 }) {
-  const today = new Date();
-  const todayInGMT4 = convertToGMT4(today);
-  todayInGMT4.setHours(23, 59, 59, 0);
-
-  const sevenDaysAgo = new Date();
-  const sevenDaysAgoInGMT4 = convertToGMT4(sevenDaysAgo);
-  sevenDaysAgoInGMT4.setDate(sevenDaysAgoInGMT4.getDate() - 6);
-  sevenDaysAgoInGMT4.setHours(0, 0, 0, 0);
-
+  const { promotionId, promotionTitle } = promotion;
   const [dateRange, setDateRange] = useState<[Date | null, Date | null]>([
-    sevenDaysAgoInGMT4,
-    todayInGMT4,
+    initialDateRange.fromDate,
+    initialDateRange.toDate,
   ]);
-  const [status, setStatus] = useState<string>('');
+  const [status, setStatus] = useState<string>('0');
 
-  const exportExcel = useExportExcel('ExportDetailsReport');
+  const filterParams = {
+    promotionId,
+    fromDate: formatSimpleDate(dateRange[0]!),
+    toDate: formatSimpleDate(dateRange[1]!),
+    status,
+  };
+  const exportExcel = useExportExcel(
+    `ExportDetailsReport?${new URLSearchParams(filterParams).toString()}`
+  );
   const tableRef = useRef<HTMLTableElement>(null);
   const [search, setSearch] = useState<string>('');
 
-  const { promotionId, promotionTitle } = promotion;
-  const { detailsReportData, loading }: any = useDetailsReportData(
-    promotionId,
-    dateRange[0]!.toLocaleString('en-US'),
-    dateRange[1]!.toLocaleString('en-US'),
-    status
-  );
+  const { detailsReportData, loading }: any = useDetailsReportData(filterParams);
   const { summary, promotionDetails } = detailsReportData;
 
   async function handleExportExcel() {
@@ -89,6 +91,8 @@ export default function DetailsReport({
   return (
     <>
       <DetailsReportFilter
+        minDate={initialDateRange.minDate}
+        maxDate={initialDateRange.maxDate}
         dateRange={dateRange}
         setDateRange={setDateRange}
         status={status}
@@ -96,7 +100,7 @@ export default function DetailsReport({
       />
       {loading ? (
         <LoadingComponent />
-      ) : (
+      ) : filteredReportData === null ? null : (
         <>
           <DetailsSummary {...summary} />
           <DetailsReportTableTitle

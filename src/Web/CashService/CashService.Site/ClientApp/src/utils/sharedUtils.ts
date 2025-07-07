@@ -74,3 +74,10 @@ export const copyHtml = (table: HTMLTableElement | undefined | null) => {
 
   return '';
 };
+
+export const formatSimpleDate = (date: Date) =>
+  date.toLocaleString('en-US', {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  });

@@ -43,20 +43,14 @@ export const promotionService = {
       throw error;
     }
   },
-  getMainReport: async (
-    fromDate: string,
-    toDate: string,
-    promotionType: string,
-    status: string
-  ): Promise<any> => {
-    const params = new URLSearchParams({
-      fromDate: fromDate,
-      toDate: toDate,
-      promotionType: promotionType,
-      status: status,
-    });
-    const url = `GetMainReport?${params.toString()}`;
-    const { data, error } = await api.get<object>(url);
+  getMainReport: async (filterParams: {
+    fromDate: string;
+    toDate: string;
+    promotionType: string;
+    status: string;
+  }): Promise<any> => {
+    const url = `GetMainReport?${new URLSearchParams(filterParams).toString()}`;
+    const { data, error } = await api.get<object[]>(url);
     if (error) {
       console.error(`Error get promotion report with url=${url}`, error);
       return [];
@@ -64,20 +58,14 @@ export const promotionService = {
 
     return data;
   },
-  getDetailsReport: async (
-    promotionId: string,
-    fromDate: string,
-    toDate: string,
-    status: string
-  ): Promise<any> => {
-    const params = new URLSearchParams({
-      promotionId: promotionId,
-      fromDate: fromDate,
-      toDate: toDate,
-      status: status,
-    });
-    const url = `GetDetailsReport?${params.toString()}`;
-    const { data, error } = await api.get<object[]>(url);
+  getDetailsReport: async (filterParams: {
+    promotionId: string;
+    fromDate: string;
+    toDate: string;
+    status: string;
+  }): Promise<any> => {
+    const url = `GetDetailsReport?${new URLSearchParams(filterParams).toString()}`;
+    const { data, error } = await api.get<object>(url);
     if (error) {
       console.error(`Error get promotion details report with url=${url}:`, error);
       return {};

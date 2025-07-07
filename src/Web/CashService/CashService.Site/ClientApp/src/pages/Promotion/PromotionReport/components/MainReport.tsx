@@ -5,66 +5,79 @@ import MainReportTableTitle from './MainReportTableTitle';
 import MainReportTable from './MainReportTable';
 import useExportExcel from '../../../../hooks/useExportExcel';
 import { promotionService } from '../../../../services/promotionAPI';
-import { convertToGMT4 } from '../../../../utils/commonFunctions';
+import { formatSimpleDate } from '../../../../utils/sharedUtils';
 
-function useMainReportData(
-  fromDate: string,
-  toDate: string,
-  promotionType: string,
-  status: string
-) {
-  const [mainReportData, setMainReportData] = useState([]);
+function useMainReportData(filterParams: {
+  fromDate: string;
+  toDate: string;
+  promotionType: string;
+  status: string;
+}) {
+  const [mainReportData, setMainReportData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
-
     async function fetchData() {
-      const data = await promotionService.getMainReport(fromDate, toDate, promotionType, status);
+      setLoading(true);
+
+      const data = await promotionService.getMainReport(filterParams);
       setMainReportData(data);
+
+      setLoading(false);
     }
 
     fetchData();
-    setLoading(false);
-  }, [fromDate, toDate, promotionType, status]);
+  }, [filterParams.fromDate, filterParams.toDate, filterParams.promotionType, filterParams.status]);
 
   return { mainReportData, loading };
 }
 
 export default function MainReport({
   onClickPromotionTitle,
+  initialFilterParams,
 }: {
-  onClickPromotionTitle: (promotion: any) => void;
+  onClickPromotionTitle: (promotion: any, filterParams: any) => void;
+  initialFilterParams: {
+    minDate: Date;
+    maxDate: Date;
+    fromDate: Date;
+    toDate: Date;
+    promotionType: string;
+    status: string;
+  };
 }) {
-  const today = new Date();
-  const todayInGMT4 = convertToGMT4(today);
-  todayInGMT4.setHours(23, 59, 59, 0);
-
-  const sevenDaysAgo = new Date();
-  const sevenDaysAgoInGMT4 = convertToGMT4(sevenDaysAgo);
-  sevenDaysAgoInGMT4.setDate(sevenDaysAgoInGMT4.getDate() - 6);
-  sevenDaysAgoInGMT4.setHours(0, 0, 0, 0);
-
   const [dateRange, setDateRange] = useState<[Date | null, Date | null]>([
-    sevenDaysAgoInGMT4,
-    todayInGMT4,
+    initialFilterParams.fromDate,
+    initialFilterParams.toDate,
   ]);
-  const [promotionType, setPromotionType] = useState<string>('');
-  const [status, setStatus] = useState<string>('');
+  const [promotionType, setPromotionType] = useState<string>(initialFilterParams.promotionType);
+  const [status, setStatus] = useState<string>(initialFilterParams.status);
 
-  const exportExcel = useExportExcel('ExportMainReport');
+  const filterParams = {
+    fromDate: formatSimpleDate(dateRange[0]!),
+    toDate: formatSimpleDate(dateRange[1]!),
+    promotionType,
+    status,
+  };
+  const exportExcel = useExportExcel(
+    `ExportMainReport?${new URLSearchParams(filterParams).toString()}`
+  );
   const tableRef = useRef<HTMLTableElement>(null);
   const [search, setSearch] = useState('');
 
-  const { mainReportData, loading }: any = useMainReportData(
-    dateRange[0]!.toLocaleString('en-US'),
-    dateRange[1]!.toLocaleString('en-US'),
-    promotionType,
-    status
-  );
+  const { mainReportData, loading }: any = useMainReportData(filterParams);
 
   async function handleExportExcel() {
     await exportExcel();
+  }
+
+  function handleClickPromotionTitle(promotion: any) {
+    onClickPromotionTitle(promotion, {
+      fromDate: dateRange[0],
+      toDate: dateRange[1],
+      promotionType: promotionType,
+      status: status,
+    });
   }
 
   const lowerCaseSearch = search ? search.trim().toLowerCase() : '';
@@ -78,6 +91,8 @@ export default function MainReport({
   return (
     <>
       <MainReportFilter
+        minDate={initialFilterParams.minDate}
+        maxDate={initialFilterParams.maxDate}
         dateRange={dateRange}
         setDateRange={setDateRange}
         promotionType={promotionType}
@@ -87,7 +102,7 @@ export default function MainReport({
       />
       {loading ? (
         <LoadingComponent />
-      ) : (
+      ) : filteredReportData === null ? null : (
         <>
           <MainReportTableTitle
             tableRef={tableRef}
@@ -98,7 +113,7 @@ export default function MainReport({
           <MainReportTable
             ref={tableRef}
             data={filteredReportData}
-            onClickPromotionTitle={onClickPromotionTitle}
+            onClickPromotionTitle={handleClickPromotionTitle}
           />
         </>
       )}

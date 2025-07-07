@@ -2,7 +2,7 @@
     ViewData["Title"] = "Promotion Report";
     Layout = "_Layout";
 }
-
+@model DateTime
 @section Styles {
     <environment names="Production">
         <link rel="stylesheet" asp-href-include="/index-*.css" />
@@ -17,3 +17,7 @@
     </environment>
 }
 <div id="root"></div>
+@if (Model != DateTime.MinValue)
+{
+    <input type="hidden" id="limitedDateToShowInfo" value="@Model" />
+}

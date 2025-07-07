@@ -11,12 +11,8 @@ interface MainReportTableProps {
   onClickPromotionTitle: (promotion: any) => void;
 }
 
-function MainReportStatusRow({ status }: { status: number }) {
-  if (status === 1) {
-    return <StatusEnabledComponent />;
-  }
-
-  return <StatusDisabledComponent />;
+function MainReportStatusRow({ status }: { status: boolean }) {
+  return status ? <StatusEnabledComponent /> : <StatusDisabledComponent />;
 }
 
 function MainReportRow({

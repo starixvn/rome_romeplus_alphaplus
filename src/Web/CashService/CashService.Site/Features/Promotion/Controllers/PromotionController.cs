@@ -9,6 +9,8 @@ using Shared;
 using Shared.Filters;
 using AlphaPlus.CashService.Site.Features.Promotion.Models;
 using AlphaPlus.CashService.Site.Features.Promotion.Services;
+using AlphaPlus.CashService.Site.Features.Promotion.Requests;
+using AlphaPlus.CashService.Site.Features.Shared.Requests;
 
 [SiteAuthorizationFilter(PageAccessType.CashPromotion)]
 public class PromotionController(
@@ -21,7 +23,6 @@ public class PromotionController(
     IPromotionReportWorkbook promotionReportWorkbook,
     IPromotionDetailsReportWorkbook promotionDetailsReportWorkbook) : SiteBaseController(userSession, antiforgery, httpClient, customerService)
 {
-    //private const string CustomerDatelimit = "CustomerDateLimit";
     private readonly string _apiBaseUrl = configuration["CashService:APIUrl"];
     private readonly IPromotionReportWorkbook promotionReportWorkbook = promotionReportWorkbook;
     private readonly IPromotionDetailsReportWorkbook promotionDetailsReportWorkbook = promotionDetailsReportWorkbook;
@@ -32,41 +33,64 @@ public class PromotionController(
 
     public IActionResult Report()
     {
-        // var today = SystemTime.Today;
-        // var minDate = new DateTime(today.Year - 3, 1, 1);
-        // var limitedDateToShowInfo = userSession.GetProperty<DateTime>(CustomerDatelimit);
-        // var viewModel = new PromotionReportViewModel(minDate.GetGreaterDate(limitedDateToShowInfo), today);
-        return View();
+        var request = new BaseActionRequest()
+            .SetLimitedDateToShowInfo(userSession);
+
+        return View(request.LimitedDateToShowInfo);
     }
 
-    public async Task<IActionResult> GetMainReport()
-    {
-        var url = $"{_apiBaseUrl}/promotions/reports";
-        return Json(await _httpClient.GetFromJsonAsync<PromotionReport[]>(url));
-    }
+    public async Task<IActionResult> GetMainReport(GetPromotionReportRequest request)
+        => Json(await GetPromotionReport(request));
 
-    public async Task<IActionResult> GetDetailsReport(int promotionId)
-    {
-        var url = $"{_apiBaseUrl}/promotions/reports/{promotionId}";
-        return Json(await _httpClient.GetFromJsonAsync<object>(url));
-    }
+    public async Task<IActionResult> GetDetailsReport(GetPromotionDetailsReportRequest request)
+        => Json(await GetPromotionDetailsReport(request));
 
-    public async Task<IActionResult> ExportMainReport()
+    public async Task<IActionResult> ExportMainReport(GetPromotionReportRequest request)
     {
-        var url = $"{_apiBaseUrl}/promotions/reports";
-        var reportData = await _httpClient.GetFromJsonAsync<PromotionReport[]>(url);
+        var reportData = await GetPromotionReport(request);
         var excelFileViewModel = promotionReportWorkbook.BuildExcelFile(reportData);
 
         return File(excelFileViewModel.Content, excelFileViewModel.ContentType, excelFileViewModel.Name);
     }
 
-    public async Task<IActionResult> ExportDetailsReport()
+    public async Task<IActionResult> ExportDetailsReport(GetPromotionDetailsReportRequest request)
     {
-        var url = $"{_apiBaseUrl}/promotions/reports/{1}";
-        var reportData = await _httpClient.GetFromJsonAsync<PromotionDetailsReport>(url);
+        var reportData = await GetPromotionDetailsReport(request);
         var excelFileViewModel = promotionDetailsReportWorkbook.BuildExcelFile(reportData);
 
         return File(excelFileViewModel.Content, excelFileViewModel.ContentType, excelFileViewModel.Name);
+    }
+
+    private Task<PromotionReport[]> GetPromotionReport(GetPromotionReportRequest request)
+    {
+        request
+            .SetUserSession(userSession)
+            .SetLimitedDateToShowInfo(userSession);
+        if (!request.IsValid())
+        {
+            return Task.FromResult(Array.Empty<PromotionReport>());
+        }
+
+        var url = $"{_apiBaseUrl}/promotions/reports{request.ToQueryString()}";
+
+        return _httpClient.GetFromJsonAsync<PromotionReport[]>(url);
+    }
+
+    private Task<PromotionDetailsReport> GetPromotionDetailsReport(GetPromotionDetailsReportRequest request)
+    {
+        request
+            .SetUserSession(userSession)
+            .SetLimitedDateToShowInfo(userSession);
+        if (!request.IsValid())
+        {
+            return Task.FromResult(new PromotionDetailsReport(
+                new PromotionDetailsSummary(),
+                Array.Empty<PromotionDetails>()
+            ));
+        }
+
+        var url = $"{_apiBaseUrl}/promotions/reports/{request.PromotionId}{request.ToQueryString()}";
+        return _httpClient.GetFromJsonAsync<PromotionDetailsReport>(url);
     }
 
     public async Task<IActionResult> GetPromotion(int promotionTypeId, int statusId, CancellationToken cancellationToken)

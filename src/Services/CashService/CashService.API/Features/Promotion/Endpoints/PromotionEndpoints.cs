@@ -1,4 +1,5 @@
 using AlphaPlus.CashService.API.Features.Promotion.Models;
+using AlphaPlus.CashService.API.Features.Promotion.Requests;
 using AlphaPlus.CashService.API.Features.Promotion.Services;
 
 namespace AlphaPlus.CashService.API.Features.Promotion.Endpoints;
@@ -70,12 +71,12 @@ public static class PromotionEndpoints
             Description = "Edit an existing promotion"
         });
 
-        group.MapGet("/reports", () =>
+        group.MapGet("/reports", ([AsParameters] GetPromotionReportRequest request, IPromotionService service) =>
         {
             return TypedResults.Ok(FakeReport());
         }).WithName("PromotionReport");
 
-        group.MapGet("/reports/{id}", (int id) =>
+        group.MapGet("/reports/{id}", (int id, [AsParameters] GetPromotionDetailsReportRequest request, IPromotionService service) =>
         {
             var details = new[]
             {
@@ -163,7 +164,7 @@ public static class PromotionEndpoints
         var promotionTypes = new[] { "Discount", "Cashback", "Bonus", "Rebate", "Loyalty" };
         var titles = new[] { "Sale", "Special", "Deal", "Promotion", "Offer", "Bonanza", "Festival", "Extravaganza", "Event", "Campaign" };
         var prefixes = new[] { "Holiday", "Summer", "Winter", "Spring", "Fall", "New Year", "Christmas", "Easter", "Black Friday", "Cyber Monday", "Weekend", "Monthly", "Annual", "Seasonal", "Limited Time" };
-        var statuses = new[] { 0, 1, 1, 1, 1, 2, 3 }; // Weighted to have more status 1 items
+        var statuses = new[] { false, true, true, true, true, false, false }; // Weighted to have more status 1 items
 
         for (int i = 1; i <= 100; i++)
         {
@@ -189,7 +190,7 @@ public static class PromotionEndpoints
                 TotalApproved = totalApproved,
                 TotalRejected = totalRejected,
                 TotalBonus = Math.Round(random.Next(1000, 15000) * 1.0m, 2),
-                Status = (byte)statuses[random.Next(statuses.Length)]
+                Status = statuses[random.Next(statuses.Length)]
             });
         }
 

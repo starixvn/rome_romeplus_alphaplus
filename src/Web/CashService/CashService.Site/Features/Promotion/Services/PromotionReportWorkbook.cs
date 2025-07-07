@@ -54,5 +54,5 @@ public class PromotionReportWorkbook(IWebHostEnvironment webHostEnvironment) :
         .Map(E, p => p.TotalRequest)
         .Map(F, p => $"{p.TotalApproved}\n{p.TotalRejected}")
         .Map(G, p => p.TotalBonus)
-        .Map(H, p => p.Status == 0 ? Resources.Disabled : Resources.Enabled);
+        .Map(H, p => p.Status ? Resources.Enabled : Resources.Disabled);
 }

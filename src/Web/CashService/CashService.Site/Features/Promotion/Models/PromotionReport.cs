@@ -10,5 +10,5 @@ public class PromotionReport
     public int TotalApproved { get; init; }
     public int TotalRejected { get; init; }
     public decimal TotalBonus { get; init; }
-    public byte Status { get; init; }
+    public bool Status { get; init; }
 }

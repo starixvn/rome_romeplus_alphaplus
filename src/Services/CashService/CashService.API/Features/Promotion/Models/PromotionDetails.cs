@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace AlphaPlus.CashService.API.Features.Promotion.Models;
 
 public class PromotionDetails
@@ -12,8 +14,10 @@ public class PromotionDetails
 
     public string PromotionType { get; init; }
 
+    [JsonIgnore]
     public DateTime FromDate { get; init; }
 
+    [JsonIgnore]
     public DateTime ToDate { get; init; }
 
     public string DateRange

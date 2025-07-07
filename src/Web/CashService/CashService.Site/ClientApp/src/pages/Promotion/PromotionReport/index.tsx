@@ -8,19 +8,80 @@ import { createRoot } from 'react-dom/client';
 import { TitleComponent } from '../../../components/Title';
 import MainReport from './components/MainReport';
 import DetailsReport from './components/DetailsReport';
+import { convertToGMT4 } from '../../../utils/commonFunctions';
+
+function calculatedDates() {
+  // Get today in GMT-4
+  const today = new Date();
+  const todayInGMT4 = convertToGMT4(today);
+  todayInGMT4.setHours(0, 0, 0, 0);
+
+  // Max Date is tomorrow in GMT-4
+  const maxDate = new Date(todayInGMT4);
+  maxDate.setDate(maxDate.getDate() + 1);
+
+  // Min Date
+  let minDate;
+  const limitedDateToShowInfo = document.getElementById(
+    'limitedDateToShowInfo'
+  ) as HTMLInputElement;
+  if (limitedDateToShowInfo) {
+    minDate = new Date(limitedDateToShowInfo.value);
+  } else {
+    const currentYear = todayInGMT4.getFullYear();
+    minDate = new Date(currentYear - 3, 0, 1);
+  }
+
+  // From Date is 7 days ago in GMT-4
+  const sevenDaysAgo = new Date();
+  const sevenDaysAgoInGMT4 = convertToGMT4(sevenDaysAgo);
+  sevenDaysAgoInGMT4.setDate(sevenDaysAgoInGMT4.getDate() - 6);
+  sevenDaysAgoInGMT4.setHours(0, 0, 0, 0);
+
+  return {
+    minDate,
+    maxDate,
+    fromDate: sevenDaysAgoInGMT4 > minDate ? sevenDaysAgoInGMT4 : minDate,
+    toDate: todayInGMT4,
+  };
+}
 
 function PromotionReport() {
   const { t } = useTranslation('promotion');
   useCookieLanguage(i18n);
   const [promotion, setPromotion]: any = useState(null);
+  const [mainReportFilterParams, setMainReportFilterParams]: any = useState(() => {
+    const dates = calculatedDates();
+    return { ...dates, promotionType: '0', status: '2' };
+  });
+
+  function handleClickPromotionTitle(promotion: any, filterParams: any) {
+    setMainReportFilterParams((prevFilter: any) => ({
+      ...prevFilter,
+      ...filterParams,
+    }));
+    setPromotion(promotion);
+  }
 
   return (
     <>
       <TitleComponent title={t('promotionReport')} />
       {promotion === null ? (
-        <MainReport onClickPromotionTitle={(promotion) => setPromotion(promotion)} />
+        <MainReport
+          onClickPromotionTitle={handleClickPromotionTitle}
+          initialFilterParams={mainReportFilterParams}
+        />
       ) : (
-        <DetailsReport promotion={promotion} onClickBreadcrumb={() => setPromotion(null)} />
+        <DetailsReport
+          promotion={promotion}
+          onClickBreadcrumb={() => setPromotion(null)}
+          initialDateRange={{
+            minDate: mainReportFilterParams.minDate,
+            maxDate: mainReportFilterParams.maxDate,
+            fromDate: mainReportFilterParams.fromDate,
+            toDate: mainReportFilterParams.toDate,
+          }}
+        />
       )}
     </>
   );
