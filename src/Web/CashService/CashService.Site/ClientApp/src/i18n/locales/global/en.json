@@ -110,6 +110,6 @@
   },
   "cashServiceDisabled": "Cash Service is disabled",
   "info": "Info",
-  "selectAll": "Select All",
-  "noneSelected": "None Selected"
+  "removeSuccess": "Remove successfully",
+  "removeError": "Remove failed"
 }

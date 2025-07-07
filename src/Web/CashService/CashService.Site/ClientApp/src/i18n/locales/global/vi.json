@@ -109,5 +109,7 @@
     "noRangeSelected": "Chưa chọn phạm vi"
   },
   "cashServiceDisabled": "Dịch vụ tiền mặt đã bị vô hiệu hóa",
-  "info": "Thông tin"
+  "info": "Thông tin",
+  "removeSuccess": "Xóa thành công",
+  "removeError": "Xóa thất bại"
 }

@@ -84,7 +84,7 @@ const TableRow = memo(({
                 <CustomDropdown
                     options={agentBankOptions}
                     onSelect={onAgentBankChange}
-                    initialValue={editingRow?.agentBankAccountNumber}
+                    initialValue={editingRow?.agentBankID + '|' + editingRow?.agentBankAccountNumber}
                     className="w-full"
                 />
             );
@@ -195,8 +195,7 @@ export const SettingCashMemberBankInfo = () => {
         setAgentBanks(agentBanks);
 
         const agentBankDropdownOptions: DropdownOption[] = agentBanks.map((bank) => ({
-            uuid: Date.now().toString(),
-            value: bank.bankId,
+            value: bank.bankId + '|' + bank.bankAccountNumber,
             label: bank.bankAccountNumber,
             icon: <img
                 src={`${updateInfoCustomerPageConfig.cdnUri}cash-member/create/bank/${bank.bankCode?.toUpperCase()}.png`}
@@ -212,15 +211,19 @@ export const SettingCashMemberBankInfo = () => {
         if (window.confirm(t('updateInfoCashMember.confirmDelete') || 'Are you sure you want to delete this bank account?')) {
             try {
                 setIsLoading(true);
-                await RemoveMemberBankInfo({
+                const response = await RemoveMemberBankInfo<any>({
                     custId: updateInfoCustomerPageConfig.custId,
                     memberBankAccountID: id,
                 });
                 setBankAccounts(prev => prev.filter(account => account.memberBankAccountID !== id));
-                alert(t('updateInfoCashMember.deleteSuccess') || 'Bank account deleted successfully');
+                if (response.isSuccessful) {
+                    showResult('success', t('global:removeSuccess') || 'Bank account removed successfully');
+                } else {
+                    showResult('error', response.message);
+                }
             } catch (error) {
                 console.error('Error deleting bank account:', error);
-                alert(t('updateInfoCashMember.deleteError') || 'Failed to delete bank account');
+                showResult('error', t('global:removeError') || 'Failed to remove bank account');
             } finally {
                 setIsLoading(false);
             }
@@ -267,7 +270,6 @@ export const SettingCashMemberBankInfo = () => {
                     }
                     : account
             ));
-            console.log('response', response);
             if (response.isSuccessful) {
                 showResult('success', t('global:updateSuccess'));
             } else {
@@ -285,7 +287,7 @@ export const SettingCashMemberBankInfo = () => {
 
     const handleAgentBankChange = useCallback((option: DropdownOption) => {
         if (!editingRow) return;
-        const selectedBank = agentBanks.find(bank => bank.bankAccountNumber === option.label && bank.bankId === option.value);
+        const selectedBank = agentBanks.find(bank => (bank.bankId+ '|' + bank.bankAccountNumber) === option.value);
         if (selectedBank) {
             setEditingRow({
                 ...editingRow,

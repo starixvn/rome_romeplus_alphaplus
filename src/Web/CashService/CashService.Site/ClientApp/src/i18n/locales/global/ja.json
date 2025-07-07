@@ -109,5 +109,7 @@
     "noRangeSelected": "範囲が選択されていません"
   },
   "cashServiceDisabled": "キャッシュサービスは無効です",
-  "info": "情報"
+  "info": "情報",
+  "removeSuccess": "削除成功",
+  "removeError": "削除失敗"
 }

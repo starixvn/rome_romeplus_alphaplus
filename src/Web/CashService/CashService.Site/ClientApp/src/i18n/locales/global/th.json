@@ -109,5 +109,7 @@
     "noRangeSelected": "ไม่ได้เลือกช่วงเวลา"
   },
   "cashServiceDisabled": "บริการเงินสดถูกปิดใช้งาน",
-  "info": "ข้อมูล"
+  "info": "ข้อมูล",
+  "removeSuccess": "ลบสำเร็จ",
+  "removeError": "ลบล้มเหลว"
 }
