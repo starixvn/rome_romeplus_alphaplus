@@ -242,13 +242,13 @@ namespace AlphaPlus.CashService.Site.Features.Payments
 
                 var url = $"{_twAPIUrl}/PaymentGateway/TestConnection";
                 var twRequest = new {
-                    providerId = request.ProviderId,
-                    transactionType = request.TransactionType,
-                    paymentMethod = request.Method,
+                    providerId = 1, //request.ProviderId,
+                    transactionType = 1, //request.TransactionType,
+                    paymentMethod = 6, //request.Method,
                     apiConfig = new {
-                        MerchantNo = request.MerchantID,
-                        AppSecret = request.AppSecret,
-                        SecretKey = request.APIMethodKey
+                        MerchantNo = "90906", //request.MerchantID,
+                        AppSecret = "5bxr2v89pUyN9qjUAUT9YQ", //request.AppSecret,
+                        SecretKey = "P8TP8jp0H0_WxvlBMmTpjw" //request.APIMethodKey
                     }
                 };
 

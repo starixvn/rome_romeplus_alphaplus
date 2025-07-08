@@ -276,6 +276,6 @@
     "CashService": {
         "OfferedSites": "222227",
         "APIUrl": "http://alphaplus_api_cashservice_alphaklprod_3:5000/api",
-        "TWAPIUrl": "http://alphaplus_api_cashservice_alphaklprod_3:5000/api"
+        "TWAPIUrl": "https://payment-service-001.playonesit.com/api"
     }
 }

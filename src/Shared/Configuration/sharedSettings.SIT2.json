@@ -266,6 +266,6 @@
     "CashService": {
         "OfferedSites": "755555,222227",
         "APIUrl": "http://alphaplus_api_cashservice_sit_2:5000/api",
-        "TWAPIUrl": "http://alphaplus_api_cashservice_sit_2:5000/api"
+        "TWAPIUrl": "http://payment-service-001.membersite-service.k8s.nebula.sit/api"
     }
 }

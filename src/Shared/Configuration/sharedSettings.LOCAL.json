@@ -281,6 +281,6 @@
     "CashService": {
         "OfferedSites": "755555,222227,BEST-ODDS,733333",
         "APIUrl": "http://alphaplus_api_cashservice_local:5000/api",
-        "TWAPIUrl": "http://alphaplus_api_cashservice_local:5000/api"
+        "TWAPIUrl": "https://payment-service-001.playonesit.com/api"
     }
 }

@@ -67,7 +67,7 @@ export default defineConfig({
         promotionReport: 'src/pages/Promotion/PromotionReport/index.tsx',
       },
       output: {
-        assetFileNames: 'index-[hash].[ext]',
+        assetFileNames: 'index-[hash][extname]',
       },
     },
   },
