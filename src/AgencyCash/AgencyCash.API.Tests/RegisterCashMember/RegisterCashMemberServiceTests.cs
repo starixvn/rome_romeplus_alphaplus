@@ -1,6 +1,7 @@
 using AgencyCash.API.RegisterCashMember;
 using AgencyCash.API.RegisterCashMember.Criteria;
 using AgencyCash.API.RegisterCashMember.Requests;
+using AgencyCash.API.RegisterCashMember.Responses;
 using Fanex.Data.Repository;
 using Moq;
 
@@ -46,44 +47,96 @@ namespace AgencyCash.API.Tests.RegisterCashMember
             Assert.True(result.Available);
         }
 
-        // [Fact]
-        // public async Task RegisterCashMember_RegisterCustomerFails_ReturnsError()
-        // {
-        //    // Arrange
-        //    var mockRepo = new Mock<IDynamicRepository>();
-        //    var service = new RegisterCashMemberService(mockRepo.Object);
-        //    var request = new RegisterCashMemberRequest
-        //    {
-        //        AgentId = 1,
-        //        UserName = "user",
-        //        Password = "pass",
-        //        FirstName = "first",
-        //        LastName = "last",
-        //        Mobile = "123456789",
-        //        Domain = "domain",
-        //        Ip = "127.0.0.1"
-        //    };
+        [Fact]
+        public async Task ValidateSetting_ReturnsExpectedResult()
+        {
+            var mockRepo = new Mock<IDynamicRepository>();
+            var service = new RegisterCashMemberService(mockRepo.Object);
 
-        //    // Act
-        //    var result = await service.RegisterCashMember(request);
+            var username = "user";
+            var domain = "domain.com";
+            var agentId = 1;
 
-        //    // Assert
-        //    Assert.Equal(1, result.Code);
-        //    Assert.Equal("Error", result.Message);
-        // }
+            var result = await service.ValidateSetting(username, domain, agentId);
 
-        // [Fact]
-        // public async Task CheckUsernameAvailable_ReturnsAvailableFalse_WhenUsernameIsTaken()
-        // {
-        //     // Arrange
-        //     var service = new RegisterCashMemberService(new Mock<IDynamicRepository>().Object);
-        //     var criteria = new CheckUsernameCommand("taken");
+            Assert.NotNull(result);
+            Assert.Equal(0, result.Code); // Default mock returns 0
+        }
 
-        //     // Act
-        //     var result = await service.CheckUsernameAvailable(criteria);
+        [Fact]
+        public async Task GetSuggestUsername_ReturnsExpectedResult()
+        {
+            var mockRepo = new Mock<IDynamicRepository>();
+            var service = new RegisterCashMemberService(mockRepo.Object);
 
-        //     // Assert
-        //     Assert.False(result.Available);
-        // }
+            var actorName = "agent";
+            byte roleId = 1;
+
+            var result = await service.GetSuggestUsername(actorName, roleId);
+
+            Assert.NotNull(result);
+            Assert.Equal(0, result.Code); // Default mock returns 0
+        }
+
+        [Fact]
+        public async Task RegisterUsernameBeforeAddNew_ReturnsExpectedResult()
+        {
+            var mockRepo = new Mock<IDynamicRepository>();
+            var service = new RegisterCashMemberService(mockRepo.Object);
+
+            var request = new RegisterCashMemberRequest
+            {
+                AgentId = 1,
+                UserName = "user",
+                Password = "pass",
+                FirstName = "first",
+                LastName = "last",
+                Mobile = "123456789",
+                Domain = "domain",
+                Ip = "127.0.0.1"
+            };
+            var newUserName = "newuser";
+
+            var result = await service.RegisterUsernameBeforeAddNew(request, newUserName);
+
+            Assert.NotNull(result);
+            Assert.Equal(0, result.Code); // Default mock returns 0
+        }
+
+        [Fact]
+        public async Task CreateNewCashMember_ReturnsExpectedResult()
+        {
+            var mockRepo = new Mock<IDynamicRepository>();
+            var service = new RegisterCashMemberService(mockRepo.Object);
+
+            var request = new RegisterCashMemberRequest
+            {
+                AgentId = 1,
+                UserName = "user",
+                Password = "pass",
+                FirstName = "first",
+                LastName = "last",
+                Mobile = "123456789",
+                Domain = "domain",
+                Ip = "127.0.0.1"
+            };
+            int custId = 123;
+            string newUserName = "newuser";
+
+            var result = await service.CreateNewCashMember(request, custId, newUserName);
+
+            Assert.NotNull(result);
+            Assert.Equal(0, result.Code); // Default mock returns 0
+        }
+
+        [Fact]
+        public async Task Rollback_ExecutesWithoutException()
+        {
+            var mockRepo = new Mock<IDynamicRepository>();
+            var service = new RegisterCashMemberService(mockRepo.Object);
+
+            var exception = await Record.ExceptionAsync(() => service.Rollback(123));
+            Assert.Null(exception);
+        }
     }
 }
