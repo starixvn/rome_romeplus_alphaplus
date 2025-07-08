@@ -111,5 +111,7 @@
   "cashServiceDisabled": "Cash Service is disabled",
   "info": "Info",
   "removeSuccess": "Remove successfully",
-  "removeError": "Remove failed"
+  "removeError": "Remove failed",
+  "noneSelected": "None selected",
+  "selectAll": "Select All"
 }

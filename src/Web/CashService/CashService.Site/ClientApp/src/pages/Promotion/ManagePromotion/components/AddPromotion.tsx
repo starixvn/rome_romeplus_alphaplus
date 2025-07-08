@@ -21,12 +21,7 @@ interface AddPromotionProps {
   onClose: () => void;
 }
 
-const PROMOTION_TYPES = [
-  { value: 0, label: 'Welcome Bonus' },
-  { value: 1, label: 'Reload Bonus' },
-  { value: 2, label: 'Cashback' },
-  { value: 3, label: 'Tournament' },
-];
+const PROMOTION_TYPES = [{ value: 1, label: 'Rebate on Turnover' }];
 
 export const LANGUAGES = [
   { key: 'en', label: 'English (default)', isDefault: true },

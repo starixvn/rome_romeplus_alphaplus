@@ -74,7 +74,7 @@ const Information: React.FC<InformationProps> = ({
       </div>
 
       <div className="w-[250px] mr-[12px] mb-[12px]">
-        <LabelTitleComponent text="Provider" required={true} />
+        <LabelTitleComponent text="Product" required={true} />
         <TreeSelect
           options={productOptions}
           value={selectedProductIds}
