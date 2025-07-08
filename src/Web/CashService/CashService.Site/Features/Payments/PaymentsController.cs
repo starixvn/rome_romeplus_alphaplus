@@ -251,6 +251,8 @@ namespace AlphaPlus.CashService.Site.Features.Payments
                         AppSecret = request.AppSecret
                     })
                 };
+
+                Console.WriteLine($"ValidatePaymentMethod Request: {Newtonsoft.Json.JsonConvert.SerializeObject(twRequest)}");
                 var response = await _httpClient.PostAsJsonAsync(url, twRequest, cancellationToken);
                 response.EnsureSuccessStatusCode();
                 var result = await response.Content.ReadFromJsonAsync<TWAPIResultModel>(cancellationToken: cancellationToken);

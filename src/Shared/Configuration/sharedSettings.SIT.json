@@ -279,8 +279,8 @@
     },
     "OfferProfilePictureTour": true,
     "CashService": {
-        "OfferedSites": "755555,222227,733333,BEST-ODDS",
+        "OfferedSites": "755555,222227",
         "APIUrl": "http://alphaplus_api_cashservice_sit:5000/api",
-        "TWAPIUrl": "http://alphaplus_api_cashservice_sit:5000/api"
+        "TWAPIUrl": "http://payment-service-001.membersite-service.k8s.nebula.sit/api"
     }
 }
