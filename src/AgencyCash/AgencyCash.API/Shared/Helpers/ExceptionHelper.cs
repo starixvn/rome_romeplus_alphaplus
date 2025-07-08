@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Fanex.Data;
 using Microsoft.Data.SqlClient;
 
 namespace AgencyCash.API.Shared.Helpers;
 
+[ExcludeFromCodeCoverage(Justification = "This class is a simple helper used for log global exception and does not require code coverage.")]
 public static class ExceptionHelper
 {
     private const string BreakLine = "\r\n";
