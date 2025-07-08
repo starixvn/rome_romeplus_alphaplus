@@ -33,4 +33,8 @@
     <Setting Key="SiteDB3_WriteLog_CashService_UserLog_Transfer" SpName="WriteLog_CashService_UserLog_Transfer" DbName="DBSITE03.bodb_CustomerLog.asv_CashService" />
     <Setting Key="Age_CashAccumCredit_SyncData" SpName="Age_CashAccumCredit_SyncData" DbName="DBCUST.CustDB.asv_CashService" />
   </Function>
+  <Function Name="Payments: Validate and Write Logs">
+    <Setting Key="DBLOG_WriteLog_CashService_UserLog_API" SpName="WriteLog_CashService_UserLog_API" DbName="DBLOG.bodb_CustomerLog.asv_CashService" />
+    <Setting Key="WriteLog_CashService_UserLog_API" SpName="WriteLog_CashService_UserLog_API" DbName="DBCUST.bodb_CustomerLog.asv_CashService" />
+  </Function>
 </Functions>

@@ -1,8 +1,11 @@
+using AgencyCash.API.Shared.Helpers;
+using Fanex.Data;
 using Fanex.Data.Repository;
 
 namespace AgencyCash.API.Shared.Criteria;
 
 public class AddRequestLoggingCriteria(
+    int userId,
     int custId,
     string funcName,
     string requestUrl,
@@ -10,7 +13,7 @@ public class AddRequestLoggingCriteria(
     string from = "Member Site",
     string to = "Agency Cash API") : NonQueryCommand
 {
-    public DateTime LogDate { get; } = DateTime.Now;
+    public int UserId { get; } = userId;
     public int CustId { get; } = custId;
     public string From { get; } = from;
     public string To { get; } = to;
@@ -22,7 +25,13 @@ public class AddRequestLoggingCriteria(
     public int Duration { get; set; }
     public string ResponseBody { get; set; }
 
-    public override string GetSettingKey() => "";
+    [SpParam(Ignored = true)]
+    public short? CustDBGroupId { get; set; }
+
+    public override string GetSettingKey()
+        => CustDBGroupId.HasValue
+        ? SPNameHelper.CustDBPrefix("WriteLog_CashService_UserLog_API", CustDBGroupId.Value)
+        : "DBLOG_WriteLog_CashService_UserLog_API";
 
     public override bool IsValid() => true;
 }

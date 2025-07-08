@@ -7,9 +7,9 @@ namespace AgencyCash.API.Shared;
 
 public interface ISiteDBService
 {
-    Task<int> GetCustDBGroupId(int custId);
+    Task<short> GetCustDBGroupId(int custId);
 
-    Task<int> GetSiteDBGroupId(int custId);
+    Task<short> GetSiteDBGroupId(int custId);
 
     Task<SiteDBConfig> GetSiteDBConfig(int custId);
 }
@@ -22,14 +22,14 @@ public class SiteDBService(IDynamicRepository dynamicRepository, IMemoryCache me
     private readonly IDynamicRepository dynamicRepository = dynamicRepository;
     private readonly IMemoryCache memoryCache = memoryCache;
 
-    public async Task<int> GetCustDBGroupId(int custId)
+    public async Task<short> GetCustDBGroupId(int custId)
     {
         var siteDBConfig = await GetSiteDBConfig(custId);
 
         return siteDBConfig?.CustDBGroupId ?? 0;
     }
 
-    public async Task<int> GetSiteDBGroupId(int custId)
+    public async Task<short> GetSiteDBGroupId(int custId)
     {
         var siteDBConfig = await GetSiteDBConfig(custId);
 

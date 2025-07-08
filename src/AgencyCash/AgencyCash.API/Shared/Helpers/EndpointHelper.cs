@@ -1,25 +1,49 @@
+using System.Text.RegularExpressions;
 
 namespace AgencyCash.API.Shared.Helpers;
 
 public static class EndpointHelper
 {
-    public const string RegisterCashMember = "RegisterCashMember";
+    public const string RegisterCashMember = "Register Cash Member";
+    private static readonly Dictionary<string, string> FunctionNameMapper = new(StringComparer.OrdinalIgnoreCase)
+    {
+        ["/api/cash-members/check-username"] = "Check Cash Member Username",
+        ["/api/cash-members"] = "Register Cash Member",
+        ["/api/deposit/limit"] = "Min Max Deposit",
+        ["/api/deposit/manual"] = "Manual Deposit",
+        ["/api/deposit/auto"] = "Auto Deposit",
+        ["/api/withdrawal/limit"] = "Min Max Withdrawal",
+        ["/api/withdrawal/manual"] = "Manual Withdrawal",
+    };
 
     public static string ToFunctionName(string path)
     {
-        if (path.Contains("cash-members", StringComparison.OrdinalIgnoreCase))
+        path = path.TrimEnd('/');
+
+        if (FunctionNameMapper.TryGetValue(path, out var functionName))
         {
-            return RegisterCashMember;
+            return functionName;
         }
 
-        if (path.Contains("deposit", StringComparison.OrdinalIgnoreCase))
+        // Handle dynamic segments like {transId}
+        return MapDynamicPath(path);
+    }
+
+    private static string MapDynamicPath(string path)
+    {
+        if (Regex.IsMatch(path, @"/api/deposit/[^/]+/status$", RegexOptions.IgnoreCase))
         {
-            return "Deposit";
+            return "Update Deposit Transaction Status";
         }
 
-        if (path.Contains("withdrawal", StringComparison.OrdinalIgnoreCase))
+        if (Regex.IsMatch(path, @"/api/deposit/[^/]+/payslip$", RegexOptions.IgnoreCase))
         {
-            return "Withdrawal";
+            return "Add Payslip To Manual Deposit";
+        }
+
+        if (Regex.IsMatch(path, @"/api/withdrawal/[^/]+/status$", RegexOptions.IgnoreCase))
+        {
+            return "Update Withdrawal Transaction Status";
         }
 
         return string.Empty;

@@ -20,13 +20,28 @@ public class RequestLoggingService(
 
     public async Task WriteLog(AddRequestLoggingCriteria criteria)
     {
+        var isSuccess = await ExecuteNonQuery(criteria);
+
+        if (!isSuccess)
+        {
+            criteria.CustDBGroupId = criteria.UserId == 0
+                ? (short)0
+                : await siteDBService.GetCustDBGroupId(criteria.UserId);
+            await ExecuteNonQuery(criteria);
+        }
+    }
+
+    private async Task<bool> ExecuteNonQuery(INonQueryCommand criteria)
+    {
         try
         {
             await repository.ExecuteAsync(criteria);
+            return true;
         }
         catch (Exception ex)
         {
             await logger.ErrorAsync($"{nameof(WriteLog)} failed. Key: {criteria.GetSettingKey()}, Criteria: {JsonHelper.ToJson(criteria)}", ex);
+            return false;
         }
     }
 }

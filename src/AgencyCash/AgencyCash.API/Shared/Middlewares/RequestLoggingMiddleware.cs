@@ -2,7 +2,6 @@ using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
-using System.Text.RegularExpressions;
 using AgencyCash.API.Shared.Criteria;
 using AgencyCash.API.Shared.Helpers;
 using AgencyCash.API.Shared.Models;
@@ -33,16 +32,17 @@ public class RequestLoggingMiddleware(
         var requestUrl = $"{request.Scheme}://{request.Host}{request.PathBase}{path}{request.QueryString}";
         var requestBody = string.Empty;
         var agentId = 0;
+        var custId = 0;
         if (request.Method.Equals("GET", StringComparison.OrdinalIgnoreCase))
         {
-            agentId = GetAgentId(request.Query);
+            (agentId, custId) = GetAgentAndCustId(request.Query);
         }
         else
         {
             requestBody = await GetRequestBodyString(request);
             if (!string.IsNullOrWhiteSpace(requestBody))
             {
-                agentId = GetAgentId(requestBody);
+                (agentId, custId) = GetAgentAndCustId(requestBody);
                 if (EndpointHelper.IsRegisterCashMember(functionName))
                 {
                     requestBody = RemovePassword(requestBody);
@@ -52,6 +52,7 @@ public class RequestLoggingMiddleware(
 
         var criteria = new AddRequestLoggingCriteria(
             agentId,
+            custId,
             functionName,
             requestUrl,
             requestBody);
@@ -91,8 +92,6 @@ public class RequestLoggingMiddleware(
                 using var reader = new StreamReader(bodyStream, Encoding.UTF8, leaveOpen: true);
                 criteria.ResponseBody = await reader.ReadToEndAsync();
             }
-
-            Console.WriteLine(JsonHelper.ToJson(criteria));
 
             bodyStream.Seek(0, SeekOrigin.Begin);
             await responseBody.CopyToAsync(originalBodyStream);
@@ -134,28 +133,53 @@ public class RequestLoggingMiddleware(
             : requestBody;
     }
 
-    private static int GetAgentId(IQueryCollection query)
-        => query?.Count > 0
-        && query.TryGetValue("agentId", out var agentIdValue)
-        && int.TryParse(agentIdValue, out int agentId)
-            ? agentId
-            : 0;
-
-    private static int GetAgentId(string requestBody)
+    private static (int, int) GetAgentAndCustId(IQueryCollection query)
     {
+        if (query == null || query.Count == 0)
+        {
+            return (0, 0);
+        }
+
+        var agentId = 0;
+        var custId = 0;
+
+        if (query.TryGetValue("agentId", out var agentIdValue))
+        {
+            int.TryParse(agentIdValue, out agentId);
+        }
+
+        if (query.TryGetValue("custId", out var custIdValue))
+        {
+            int.TryParse(custIdValue, out custId);
+        }
+
+        return (agentId, custId);
+    }
+
+    private static (int, int) GetAgentAndCustId(string requestBody)
+    {
+        var agentId = 0;
+        var custId = 0;
+
         try
         {
             using var doc = JsonDocument.Parse(requestBody.ToLowerInvariant());
-            return doc.RootElement.TryGetProperty("agentid", out var element)
-                && element.TryGetInt32(out int agentId)
-                ? agentId
-                : 0;
+
+            if (doc.RootElement.TryGetProperty("agentid", out var agentElement))
+            {
+                agentElement.TryGetInt32(out agentId);
+            }
+
+            if (doc.RootElement.TryGetProperty("custid", out var custElement))
+            {
+                custElement.TryGetInt32(out custId);
+            }
         }
         catch (JsonException)
         {
             // Invalid JSON or property not found
         }
 
-        return 0;
+        return (agentId, custId);
     }
 }
