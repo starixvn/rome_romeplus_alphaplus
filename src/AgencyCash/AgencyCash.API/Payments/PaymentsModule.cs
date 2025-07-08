@@ -7,7 +7,7 @@ namespace AgencyCash.API.Payments;
 public static class PaymentsModule
 {
     public static IServiceCollection RegisterPaymentsModule(this IServiceCollection services)
-    => services
+        => services
         .AddSingleton<IDepositService, DepositService>()
         .AddSingleton<IWithdrawalService, WithdrawalService>();
 }

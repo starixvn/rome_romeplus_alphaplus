@@ -1,7 +1,7 @@
 using AgencyCash.API.Payments;
 using AgencyCash.API.RegisterCashMember;
 using AgencyCash.API.Shared;
-using AgencyCash.API.Shared.Helpers;
+using AgencyCash.API.Shared.Middlewares;
 using Fanex.Data.Repository;
 using Fanex.Data.SqlServer;
 
@@ -11,12 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 builder.Services
     .AddFanexLogging(configuration)
-    .AddExceptionHandler<GlobalExceptionHandler>()
     .AddProblemDetails()
     .AddMemoryCache()
     .AddFanexSql(configuration)
     .AddSingleton<IDynamicRepository, DynamicRepository>()
     .AddSingleton<ISiteDBService, SiteDBService>()
+    .AddSingleton<IRequestLoggingService, RequestLoggingService>()
     .AddSingleton<IRegisterCashMemberService, RegisterCashMemberService>()
     .RegisterPaymentsModule()
     .AddSwaggerGen(c =>
@@ -29,7 +29,7 @@ builder.Services
             Name = "X-API-KEY",
             Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
             Scheme = ApiKeySchemeName
-        }); 
+        });
         c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement {
             {
                 new Microsoft.OpenApi.Models.OpenApiSecurityScheme {
@@ -53,12 +53,9 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
-else
-{
-    app.UseExceptionHandler();
-}
 
 app
+    .UseMiddleware<RequestLoggingMiddleware>()
     .UseSwagger()
     .UseSwaggerUI(c =>
     {

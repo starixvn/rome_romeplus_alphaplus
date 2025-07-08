@@ -1,4 +1,3 @@
-using System.Text.Json;
 using AgencyCash.API.RegisterCashMember.Criteria;
 using AgencyCash.API.RegisterCashMember.Requests;
 using AgencyCash.API.Shared.DataAnnotations;
@@ -22,8 +21,8 @@ public static class RegisterCashMemberEndpoints
 
     public static async Task<IResult> RegisterCashMemberAsync(RegisterCashMemberRequest request, IRegisterCashMemberService service)
     {
-        await Fanex.Logging.LogService.InfoAsync(JsonSerializer.Serialize(request));
-        return Results.Ok(await service.RegisterCashMember(request));
+        var result = await service.RegisterCashMember(request);
+        return Results.Ok(result);
     }
 
     private static async Task<IResult> CheckUsernameAsync([AsParameters] CheckUsernameRequest request, IRegisterCashMemberService service)
