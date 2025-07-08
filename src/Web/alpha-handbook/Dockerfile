@@ -1,5 +1,6 @@
-FROM hub.nexdev.net/base/node:18.16-alpine AS deps
+FROM hub.nexdev.net/base/node:18-alpine-25h1 AS deps
 RUN apk add --no-cache libc6-compat
+
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
@@ -9,7 +10,8 @@ RUN --mount=type=cache,target=/app/node_modules \
     yarn --frozen-lockfile
 
 # 2. Rebuild the source code only when needed
-FROM hub.nexdev.net/base/node:18.16-alpine AS builder
+FROM hub.nexdev.net/base/node:18-alpine-25h1 AS builder
+
 WORKDIR /app
 COPY src/Web/alpha-handbook .
 
@@ -30,14 +32,20 @@ RUN yarn build
 
 # Production image, copy all the files and run next
 FROM hub.nexdev.net/base/node:18.16-alpine AS runner
+
 WORKDIR /app
 
 ENV NODE_ENV production
 # Uncomment the following line in case you want to disable telemetry during runtime.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+# Upgrade BusyBox to latest version
+RUN apk update && apk upgrade busybox
+
+# Create a non-root user and group
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs && \
+    chown -R nextjs:nodejs /app
 
 COPY --from=builder /app/public ./public
 
@@ -45,6 +53,7 @@ COPY --from=builder /app/public ./public
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
 
 USER nextjs
 
