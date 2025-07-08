@@ -752,7 +752,7 @@ Lưu ý:Thông tin về quốc gia và thành phố được cung cấp bởi  I
     <value>&lt;p&gt;Chúng tôi rất vui mừng giới thiệu Chương trình Tiền thưởng. Công ty sẽ chi trả toàn bộ tiền thưởng này, và khi Member đã nhận thưởng, số tiền này sẽ không được phép sử dụng để đặt cược. Tiền thưởng sẽ được phân phối cho các cấp trên, và Member có thể rút tiền qua Agent của mình.&lt;/p&gt;&lt;p&gt;Chức năng &lt;b&gt;Thanh toán Tiền thưởng&lt;/b&gt; giúp bạn quản lý việc thanh toán cho các cấp dưới, đảm bảo tất cả các khoản tiền thưởng được phân phối một cách chính xác.&lt;/p&gt;</value>
   </data>
   <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
-    <value>Kiểm soát hoàn toàn với Giới hạn thắng tối đa Sportsbook</value>
+    <value>Ra Mắt Tính Năng Đột Phá: &lt;b&gt;"Tạo Member Trực Tiếp"&lt;/b&gt;!</value>
   </data>
   <data name="HighlightPopupRewardTitle" xml:space="preserve">
     <value>Chào mừng đến với &lt;b&gt;Chương trình Tiền thưởng&lt;/b&gt;!</value>
@@ -853,19 +853,19 @@ Lưu ý: Vui lòng thay đổi &lt;b&gt;mật khẩu&lt;/b&gt; Nova Casino Back 
     <value>Cash Service</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
-    <value>Lo lắng về người chơi rủi ro cao hoặc các khoản trả thưởng lớn bất ngờ? &lt;br/&gt;Với Giới hạn thắng tối đa Sportsbook, đại lý có thể tự động chặn thành viên khi tiền thắng tiềm năng đạt đến ngưỡng đã thiết lập.</value>
+    <value>Chủ động hơn, linh hoạt hơn! &lt;b&gt;Tự tạo Member trực tiếp&lt;/b&gt; và tổ chức cấp dưới theo cách của bạn.</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro2" xml:space="preserve">
-    <value>Giảm rủi ro trả thưởng</value>
+    <value>Tạo Member trực tiếp</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro3" xml:space="preserve">
-    <value>Giữ sổ sách ổn định</value>
+    <value>Sự linh hoạt lớn hơn</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro4" xml:space="preserve">
-    <value>Thiết lập giới hạn khi tạo tài khoản mới hoặc chỉnh sửa cài đặt Sportsbook</value>
+    <value>Cải thiện tổ chức cấp dưới</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro5" xml:space="preserve">
-    <value>Theo dõi toàn bộ tại trang Giới hạn thắng tối đa</value>
+    <value>Theo dõi mọi thứ tại trang &lt;b&gt;Quản lý Member trực tiếp&lt;/b&gt;</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro6" xml:space="preserve">
     <value>Muốn xem cách hoạt động?</value>

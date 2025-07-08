@@ -360,7 +360,4 @@
   <data name="PageAccess_N" xml:space="preserve">
     <value>캐시 프로모션</value>
   </data>
-  <data name="ViewLogCredit" xml:space="preserve">
-    <value>포인트 로그 보기</value>
-  </data>
 </root>

@@ -31,6 +31,6 @@
         public bool EnableSecurityCode { get; }
 
         public string GetLearnMoreViewLang()
-            => new[] { "th-TH", "vi-VN", "zh-CN", "zh-TW" }.FirstOrDefault(l => l.Equals(Language)) ?? "en-US";
+            => new[] { "th-TH", "vi-VN", "zh-CN", "zh-TW", "ko-KR" }.FirstOrDefault(l => l.Equals(Language)) ?? "en-US";
     }
 }

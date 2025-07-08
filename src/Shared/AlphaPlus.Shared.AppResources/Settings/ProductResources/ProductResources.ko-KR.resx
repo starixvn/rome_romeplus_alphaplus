@@ -1,6 +1,5 @@
-<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  
   <xs:schema id="root">
     <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xs:element name="root" ns1:IsDataSet="true">
@@ -388,12 +387,6 @@
   </data>
   <data name="Update" xml:space="preserve">
     <value>업데이트</value>
-  </data>
-  <data name="LoginIP" xml:space="preserve">
-    <value>로그인 아이피</value>
-  </data>
-  <data name="LoginTime" xml:space="preserve">
-    <value>로그인 시간</value>
   </data>
   <data name="ConfirmUnlockAccessViewModelInCaseFalseOTPSC" xml:space="preserve">
     <value>이 계정은 여러 번의 OTP/보안 코드 인증 시도 실패로 인해 잠겼습니다. 잠금을 해제하시겠습니까?</value>
