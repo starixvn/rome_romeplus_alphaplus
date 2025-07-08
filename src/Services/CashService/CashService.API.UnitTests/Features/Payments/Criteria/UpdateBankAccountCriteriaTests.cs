@@ -40,10 +40,26 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
             Assert.Equal(request.AccountNickname, criteria.AccountNickname);
             Assert.Equal(request.Agent_TransTypeList, criteria.TransactionTypeIDs);
             Assert.Equal(request.PromptPay, criteria.PromptPay);
-            Assert.Equal("", criteria.Mobile);
+            Assert.Equal("", criteria.Mobile); // When PromptPay is false, Mobile should be empty
             Assert.Equal(request.Agent_DepositMatchingMode, criteria.DepositMatchingMode);
             Assert.Equal(request.CountryCode, criteria.CountryCode);
             Assert.Equal(request.Mobile, criteria.MobileNumber);
+        }
+
+        [Fact]
+        public void Constructor_WhenPromptPayEnabled_ShouldSetMobileWithCountryCodeAndMobile()
+        {
+            // Arrange
+            var request = CreateValidRequest();
+            request.PromptPay = true;
+            request.CountryCode = "66";
+            request.Mobile = "123456789";
+
+            // Act
+            var criteria = new UpdateBankAccountCriteria(request);
+
+            // Assert
+            Assert.Equal("66-123456789", criteria.Mobile);
         }
 
         [Fact]
@@ -62,7 +78,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
         [Theory]
         [InlineData(1, "Test Account", false, true)]     // Valid case without PromptPay
         [InlineData(0, "Test Account", false, false)]    // Invalid Id
-        [InlineData(1, "", false, true)]                 // Empty AccountNickname is valid
+        [InlineData(1, "", false, true)]                 // Empty AccountNickname is valid (length <= 255)
         [InlineData(1, "Test Account", true, false)]     // Invalid case with PromptPay but missing mobile
         public void IsValid_WhenCalled_ShouldReturnExpectedResult(
             int id, 
@@ -77,7 +93,6 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
             request.PromptPay = promptPay;
             request.CountryCode = "";
             request.Mobile = "";
-
 
             var criteria = new UpdateBankAccountCriteria(request);
 
@@ -139,6 +154,22 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
             // Arrange
             var request = CreateValidRequest();
             request.AccountNickname = new string('a', length);
+
+            var criteria = new UpdateBankAccountCriteria(request);
+
+            // Act
+            var isValid = criteria.IsValid();
+
+            // Assert
+            Assert.False(isValid);
+        }
+
+        [Fact]
+        public void IsValid_WhenBaseValidationFails_ShouldReturnFalse()
+        {
+            // Arrange
+            var request = CreateValidRequest();
+            request.ActorId = 0; // Invalid ActorId to make base validation fail
 
             var criteria = new UpdateBankAccountCriteria(request);
 

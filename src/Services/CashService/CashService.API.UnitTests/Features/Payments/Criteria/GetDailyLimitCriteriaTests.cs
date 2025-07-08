@@ -48,19 +48,5 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
             // Assert
             Assert.Equal(expectedResult, isValid);
         }
-
-        [Fact]
-        public void ModeView_WhenSet_ShouldUpdateValue()
-        {
-            // Arrange
-            var criteria = new GetDailyLimitCriteria(1, 2);
-            var newModeView = 3;
-
-            // Act
-            criteria.ModeView = newModeView;
-
-            // Assert
-            Assert.Equal(newModeView, criteria.ModeView);
-        }
     }
 } 

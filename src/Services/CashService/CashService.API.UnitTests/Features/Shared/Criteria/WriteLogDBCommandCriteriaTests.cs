@@ -28,7 +28,7 @@ public class WriteLogDBCommandCriteriaTests
         };
 
         // Act
-        var criteria = new WriteLogDBCommandCriteria(request, model);
+        var criteria = new WriteLogDBCommandCriteria(request.SiteDBGroupId, request, model);
 
         // Assert
         Assert.Equal(123, criteria.CustId);
@@ -47,7 +47,7 @@ public class WriteLogDBCommandCriteriaTests
         // Arrange
         var request = new BaseActionRequest { CustDBGroupId = -1 };
         var model = new WriteLogDBCommandModel { ActionId = 1 };
-        var criteria = new WriteLogDBCommandCriteria(request, model);
+        var criteria = new WriteLogDBCommandCriteria(request.SiteDBGroupId, request, model);
 
         // Act
         var result = criteria.GetSettingKey();
@@ -62,7 +62,7 @@ public class WriteLogDBCommandCriteriaTests
         // Arrange
         var request = new BaseActionRequest { CustDBGroupId = 123 };
         var model = new WriteLogDBCommandModel { ActionId = 1 };
-        var criteria = new WriteLogDBCommandCriteria(request, model);
+        var criteria = new WriteLogDBCommandCriteria(request.SiteDBGroupId, request, model);
 
         // Act
         var result = criteria.GetSettingKey();
@@ -80,7 +80,7 @@ public class WriteLogDBCommandCriteriaTests
         // Arrange
         var request = new BaseActionRequest { ActorId = custId };
         var model = new WriteLogDBCommandModel { ActionId = actionId };
-        var criteria = new WriteLogDBCommandCriteria(request, model);
+        var criteria = new WriteLogDBCommandCriteria(request.SiteDBGroupId, request, model);
 
         // Act
         var result = criteria.IsValid();

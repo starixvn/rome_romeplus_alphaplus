@@ -155,7 +155,29 @@ public class PaymentsServiceTests
         // Assert
         Assert.True(result.IsSuccessful);
         Assert.Equal(0, result.Code);
-        Assert.Equal("", result.Message);
+        Assert.Equal("Success", result.Message);
+    }
+
+    [Fact]
+    public async Task UpdateProvider_WhenStatusUpdateSucceedsAndHasProviderSettings_ReturnsSuccessResult()
+    {
+        // Arrange
+        var request = new UpdateProviderRequest
+        {
+            Status = 1,
+            ProviderSettings = new List<ProviderSettingsModel> { new ProviderSettingsModel() } // Non-empty settings
+        };
+
+        _mockCommonService.Setup(c => c.RunDBCommand(request, It.IsAny<BaseDBCommand>()))
+            .ReturnsAsync(new ResultModel(0, "Success"));
+
+        // Act
+        var result = await _paymentsService.UpdateProvider(request);
+
+        // Assert
+        Assert.True(result.IsSuccessful);
+        Assert.Equal(0, result.Code);
+        Assert.Equal("Success", result.Message);
     }
 
     [Fact]

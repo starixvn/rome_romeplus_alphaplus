@@ -7,8 +7,9 @@ namespace AlphaPlus.CashService.API.Features.Shared.Criteria;
 
 public class WriteLogDBCommandCriteria : NonQueryCommand
 {
-    public WriteLogDBCommandCriteria(BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel)
+    public WriteLogDBCommandCriteria(int siteDB, BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel)
     {
+        SiteDB = siteDB;
         CustId = request.ActorId;
         UserId = request.UserId;
         SiteDB = request.CustDBGroupId;
@@ -21,6 +22,9 @@ public class WriteLogDBCommandCriteria : NonQueryCommand
         Duration = writeLogDBCommandModel.Duration;
     }
 
+    [SpParam(Ignored = true)]
+    public int SiteDB { get; }
+
     public int CustId { get; }
     public int UserId { get; }
     public int ActionId { get; }
@@ -29,9 +33,6 @@ public class WriteLogDBCommandCriteria : NonQueryCommand
     public string TrackingValueMask { get; set; }
     public string TrackingValueMask2 { get; set; }
     public string Duration { get; }
-
-    [SpParam(Ignored = true)]
-    public int SiteDB { get; set; }
 
     public override string GetSettingKey() 
         => SiteDB < 0 ? "WriteLog_CashService_UserLog_RunSP" : $"SiteDB_{SiteDB}_WriteLog_CashService_UserLog_RunSP";

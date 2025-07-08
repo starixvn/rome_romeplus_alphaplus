@@ -6,7 +6,7 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
     {
         public int CustId { get; } = custId;
 
-        public int ModeView { get; set; } = modeView;
+        public int ModeView { get; } = modeView;
 
         public override string GetSettingKey() => "Age_CashService_AgentBankAccountLimit_Sel";
 

@@ -1,6 +1,7 @@
 using AlphaPlus.CashService.API.Features.Payments.Constants;
 using AlphaPlus.CashService.API.Features.Payments.Requests;
 using AlphaPlus.CashService.API.Features.Shared.Criteria;
+using AlphaPlus.CashService.API.Features.Shared.Helpers;
 using Fanex.Data;
 
 namespace AlphaPlus.CashService.API.Features.Payments.Criteria
@@ -22,7 +23,6 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
 
         public override bool IsValid()
             => base.IsValid() 
-                && DailyWithdrawalCount > 0 
-                && DailyWithdrawalCount <= 32767;
+                && ValidatorHelper.IsValidWithdrawalCount(DailyWithdrawalCount);
     }
 } 

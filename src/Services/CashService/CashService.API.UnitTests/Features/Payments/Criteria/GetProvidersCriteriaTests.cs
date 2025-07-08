@@ -46,19 +46,5 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
             // Assert
             Assert.Equal(expectedResult, isValid);
         }
-
-        [Fact]
-        public void CustId_WhenSet_ShouldUpdateValue()
-        {
-            // Arrange
-            var criteria = new GetProvidersCriteria(1);
-            var newCustId = 2;
-
-            // Act
-            criteria.CustId = newCustId;
-
-            // Assert
-            Assert.Equal(newCustId, criteria.CustId);
-        }
     }
 } 
