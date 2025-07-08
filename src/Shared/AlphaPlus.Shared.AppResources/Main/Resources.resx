@@ -961,4 +961,10 @@ Note: Please change your &lt;b&gt;password&lt;/b&gt; the first time you click 'A
   <data name="Checklist" xml:space="preserve">
     <value>Checklist</value>
   </data>
+  <data name="ExclusivelyForYou" xml:space="preserve">
+    <value>Exclusively For You</value>
+  </data>
+  <data name="EnjoyCashServiceFree" xml:space="preserve">
+    <value>Enjoy Cash Service FREE for 14 days!</value>
+  </data>
 </root>
