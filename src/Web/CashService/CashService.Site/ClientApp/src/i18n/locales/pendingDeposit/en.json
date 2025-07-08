@@ -83,7 +83,7 @@
     "approving": "Approving...",
     "agentAvailableCredit": "Agent Available Credit",
     "amountMustBeGreaterThan0AndLessThanMaxLimit": "The amount must be greater than 0 and less than the agent available credit.",
-    "imageSizeError": "Image must be less than 1MB",
+    "imageSizeError": "Image size must be less than 1MB",
     "memberLoginNameRequired": "Member username is required.",
     "agentBankSelectionRequired": "From is required.",
     "memberBankSelectionRequired": "To is required.",
@@ -104,9 +104,9 @@
   },
 
   "successMessages": {
-    "depositSubmitted": "Deposit request submitted successfully!",
-    "depositUpdated": "Deposit request updated successfully!",
-    "depositApproved": "Deposit request approved successfully!",
-    "depositRejected": "Deposit request rejected successfully!"
+    "depositSubmitted": "Deposit request has been submitted successfully",
+    "depositUpdated": "Deposit request has been updated successfully",
+    "depositApproved": "Deposit request has been approved successfully",
+    "depositRejected": "Deposit request has been rejected successfully"
   }
 }

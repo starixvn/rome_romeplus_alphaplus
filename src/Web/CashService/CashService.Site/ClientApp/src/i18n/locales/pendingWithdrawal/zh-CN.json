@@ -85,7 +85,7 @@
     "memberBankSelectionRequired": "至是必需的",
     "amountRangeError": "金额必须大于0且小于或等于会员现金余额",
     "imageSizeError": "图片大小必须小于1 MB",
-    "addWithdrawalSuccess": "添加提款成功!!!",
+    "addWithdrawalSuccess": "添加提款成功",
     "memberCashBalance": "会员现金余额",
     "minAmount": "最小",
     "maxAmount": "最大",
@@ -124,9 +124,9 @@
   },
 
   "successMessages": {
-    "withdrawalSubmitted": "提款提交成功",
-    "withdrawalUpdated": "提款更新成功",
-    "withdrawalApproved": "提款批准成功",
-    "withdrawalRejected": "提款拒绝成功"
+    "withdrawalSubmitted": "提款请求已成功提交",
+    "withdrawalUpdated": "提款请求已成功更新",
+    "withdrawalApproved": "提款请求已成功批准",
+    "withdrawalRejected": "提款请求已成功拒绝"
   }
 }

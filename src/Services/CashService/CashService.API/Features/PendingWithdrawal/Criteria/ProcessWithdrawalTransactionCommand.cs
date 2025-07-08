@@ -9,7 +9,10 @@ public class ProcessWithdrawalTransactionCommand : CriteriaBase
     public int CustId { get; set; }
     public int AgentId { get; set; }
     public int SubAccId { get; set; }
-    public int StatusId { get; set; }
+
+    [SpParam(AllowNull = true)]
+    public int? StatusId { get; set; }
+
     public int SiteDbGroupId { get; set; }
 
     [SpParam(AllowNull = true)]

@@ -3,22 +3,24 @@ import { LabelTitleComponent } from '../../../../../components/Title/LabelTitleC
 import { ProductSetting } from '../../../../../services/interfaces/Promotion';
 
 interface ProductSettingsProps {
-  productSettings: ProductSetting[];
+  productCategories: ProductSetting[];
   handleProductFieldChange: (productId: number, field: string, value: number | boolean) => void;
+  selectedProductCategories: number[];
 }
 
 const ProductSettings: React.FC<ProductSettingsProps> = ({
-  productSettings,
+  productCategories,
   handleProductFieldChange,
+  selectedProductCategories,
 }) => (
   <>
-    {productSettings.map((product) => (
+    {productCategories.map((product) => (
       <div
-        key={product.productId}
+        key={product.productCategoryId}
         className="flex flex-nowrap gap-[16px] mb-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full"
       >
         <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
-          <LabelTitleComponent text={`${product.productName} Percentage`} required={true} />
+          <LabelTitleComponent text={`${product.productCategoryName} Percentage`} required />
           <div className="flex items-center relative">
             <input
               type="number"
@@ -26,8 +28,13 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
               step="0.01"
               className={`control-field pr-[32px]`}
               value={product.percentage}
+              disabled={!selectedProductCategories.includes(product.productCategoryId)}
               onChange={(e) =>
-                handleProductFieldChange(product.productId, 'percentage', Number(e.target.value))
+                handleProductFieldChange(
+                  product.productCategoryId,
+                  'percentage',
+                  Number(e.target.value)
+                )
               }
             />
             <span className="absolute right-0 top-0 text-[12px] text-[#333333] h-full w-[32px] leading-[32px] text-center font-bold border-l-[1px] border-[var(--border-control)]">
@@ -43,8 +50,13 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
             min="0"
             className={`control-field`}
             value={product.minTurnover}
+            disabled={!selectedProductCategories.includes(product.productCategoryId)}
             onChange={(e) =>
-              handleProductFieldChange(product.productId, 'minTurnover', Number(e.target.value))
+              handleProductFieldChange(
+                product.productCategoryId,
+                'minTurnover',
+                Number(e.target.value)
+              )
             }
           />
         </div>
@@ -57,13 +69,14 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
                 type="checkbox"
                 className="mr-2"
                 checked={product.unlimited}
+                disabled={!selectedProductCategories.includes(product.productCategoryId)}
                 onChange={(e) =>
-                  handleProductFieldChange(product.productId, 'unlimited', e.target.checked)
+                  handleProductFieldChange(product.productCategoryId, 'unlimited', e.target.checked)
                 }
-                id={`${product.productId}-unlimited`}
+                id={`${product.productCategoryId}-unlimited`}
               />
               <label
-                htmlFor={`${product.productId}-unlimited`}
+                htmlFor={`${product.productCategoryId}-unlimited`}
                 className="text-[var(--text-color-primary)]"
               >
                 Unlimited
@@ -75,10 +88,14 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
             min="0"
             className={`control-field ${product.unlimited ? 'opacity-50' : ''}`}
             value={product.maxPayout}
+            disabled={!selectedProductCategories.includes(product.productCategoryId)}
             onChange={(e) =>
-              handleProductFieldChange(product.productId, 'maxPayout', Number(e.target.value))
+              handleProductFieldChange(
+                product.productCategoryId,
+                'maxPayout',
+                Number(e.target.value)
+              )
             }
-            disabled={product.unlimited}
           />
         </div>
       </div>

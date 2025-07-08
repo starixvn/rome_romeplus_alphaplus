@@ -16,7 +16,7 @@
     "member": "Thành viên",
     "username": "Tên người dùng",
     "firstName": "Tên & Họ",
-    "nickname": "Tên biệt danh",
+    "nickname": "Biệt danh",
     "amount": "Số tiền",
     "currency": "Tiền tệ",
     "from": "Từ",
@@ -85,7 +85,7 @@
     "memberBankSelectionRequired": "Đến là bắt buộc",
     "amountRangeError": "Số tiền phải lớn hơn 0 và nhỏ hơn hoặc bằng số dư tiền mặt của thành viên",
     "imageSizeError": "Kích thước hình ảnh phải nhỏ hơn 1 MB",
-    "addWithdrawalSuccess": "Thêm rút tiền thành công!!!",
+    "addWithdrawalSuccess": "Thêm rút tiền thành công",
     "memberCashBalance": "Số dư tiền mặt thành viên",
     "minAmount": "Tối thiểu",
     "maxAmount": "Tối đa",
@@ -124,9 +124,9 @@
   },
 
   "successMessages": {
-    "withdrawalSubmitted": "Rút tiền được gửi thành công",
-    "withdrawalUpdated": "Rút tiền được cập nhật thành công",
-    "withdrawalApproved": "Rút tiền được phê duyệt thành công",
-    "withdrawalRejected": "Rút tiền bị từ chối thành công"
+    "withdrawalSubmitted": "Yêu cầu rút tiền đã được gửi thành công",
+    "withdrawalUpdated": "Yêu cầu rút tiền đã được cập nhật thành công",
+    "withdrawalApproved": "Yêu cầu rút tiền đã được phê duyệt thành công",
+    "withdrawalRejected": "Yêu cầu rút tiền đã bị từ chối thành công"
   }
 }

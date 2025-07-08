@@ -70,8 +70,14 @@ public static class PendingWithdrawalEndpoints
 
         group.MapPost("/approve", async ([FromBody] ProcessWithdrawalTransaction model, IPendingWithdrawalService service) =>
             {
-                model.StatusId = (int)TransactionStatus.Completed;
+                model.StatusId = model.ProviderId == 0 ? (int)TransactionStatus.Completed : null;
                 var result = await service.ProcessWithdrawAsync(model);
+
+                if (result.IsSuccessful && model.ProviderId > 0)
+                {
+                    result = await service.ApproveByPaymentGatewayAsync(model);
+                }
+
                 return Results.Ok(result);
             })
             .WithName("ApproveTransactionAsync")

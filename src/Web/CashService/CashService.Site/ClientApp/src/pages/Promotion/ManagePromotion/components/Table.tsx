@@ -55,8 +55,8 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
     const productMap = new Map<number, ProductSetting>();
     promotions.forEach((promotion) => {
       promotion.productSettings.forEach((product) => {
-        if (!productMap.has(product.productId)) {
-          productMap.set(product.productId, product);
+        if (!productMap.has(product.productCategoryId)) {
+          productMap.set(product.productCategoryId, product);
         }
       });
     });
@@ -65,20 +65,24 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
   const buildHeader = () => (
     <thead>
       <tr>
-        <th rowSpan={2} scope="col" className="w-[32px] sticky left-0 z-10 bg-[var(--table-header-background)] text-center">
+        <th
+          rowSpan={2}
+          scope="col"
+          className="w-[32px] bg-[var(--table-header-background)] text-center"
+        >
           {t('table.no')}
         </th>
-        <th rowSpan={2} className="w-[75px] sticky left-[32px] z-10 bg-[var(--table-header-background)] text-center">
+        <th rowSpan={2} className="w-[75px] bg-[var(--table-header-background)] text-center">
           {t('table.action')}
         </th>
         <th
           rowSpan={2}
-          className="w-[110px] sticky left-[117px] z-10 bg-[var(--table-header-background)] text-center"
+          className="w-[110px] bg-[var(--table-header-background)] text-center"
           scope="col"
         >
           <span className="relative z-3">{t('table.promotionTitle')}</span>
         </th>
-        <th rowSpan={2} scope="col" className="sticky left-[225px] z-10 text-center bg-[var(--table-header-background)] shadow-[1px_0_0_#a6a6a6]">
+        <th rowSpan={2} scope="col" className="text-center bg-[var(--table-header-background)]">
           {t('table.promotionType')}
         </th>
         <th colSpan={gridProducts.length} className="text-center" scope="col">
@@ -89,25 +93,29 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
         <th
           rowSpan={2}
           scope="col"
-          className="w-[110px] sticky right-[253px] z-10 bg-[var(--table-header-background)] text-center"
+          className="w-[110px] bg-[var(--table-header-background)] text-center"
         >
           {t('table.products')}
         </th>
         <th
           rowSpan={2}
           scope="col"
-          className="w-[110px] sticky right-[87px] z-10 bg-[var(--table-header-background)] text-center"
+          className="w-[110px] bg-[var(--table-header-background)] text-center"
         >
           {t('table.period')}
         </th>
-        <th rowSpan={2} scope="col" className="w-[110px] sticky right-[1px] z-10 bg-[var(--table-header-background)] text-center">
+        <th
+          rowSpan={2}
+          scope="col"
+          className="w-[110px] bg-[var(--table-header-background)] text-center"
+        >
           {t('table.status')}
         </th>
       </tr>
       <tr>
         {gridProducts.map((product) => (
-          <th key={product.productId} scope="col" className="text-center">
-            {product.productName}
+          <th key={product.productCategoryId} scope="col" className="text-center">
+            {product.productCategoryName}
           </th>
         ))}
       </tr>
@@ -115,23 +123,23 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
   );
   const buildRow = (item: PromotionDetail, index: number) => (
     <tr key={item.promotionId}>
-      <td className="sticky left-0 bg-white z-10 text-center">{index + 1}</td>
-      <td className="sticky left-[32px] bg-white z-10 text-center">
+      <td className="bg-white text-center">{index + 1}</td>
+      <td className="bg-white text-center">
         <div className="flex justify-center">
           <ButtonPenComponent onClick={() => onEdit?.(item)} />
           <ButtonDeleteComponent onClick={() => onDelete?.(item)} />
         </div>
       </td>
-      <td className="sticky left-[117px] bg-white z-10 text-left">{item.promotionTitle}</td>
-      <td className="sticky left-[225px] bg-white z-10 text-center shadow-[1px_0_0_#a6a6a6]">{item.promotionType}</td>
+      <td className="bg-white text-left">{item.promotionTitle}</td>
+      <td className="bg-white text-center">{item.promotionType}</td>
       {gridProducts.map((product) =>
-        displayPercentageMaxPayout(item.productSettings, product.productId)
+        displayPercentageMaxPayout(item.productSettings, product.productCategoryId)
       )}
-      <td className="w-[110px] sticky right-[253px] bg-white z-10">
-        {displayProducts(item.productSettings)}
+      <td className="w-[110px] bg-white">
+        {displayProducts(item.productSettings.flatMap((p) => p.products))}
       </td>
-      <td className="w-[110px] sticky right-[87px] bg-white z-10">{`${formatDate(item.fromDate?.toString() || '')} - ${formatDate(item.toDate?.toString() || '')}`}</td>
-      <td className="w-[110px] sticky right-[1px] bg-white z-10">
+      <td className="w-[110px] bg-white">{`${formatDate(item.fromDate?.toString() || '')} - ${formatDate(item.toDate?.toString() || '')}`}</td>
+      <td className="w-[110px] bg-white">
         <span
           className={`inline-block px-2 py-1 rounded text-xs font-semibold ${getStatusStyle(item.enabled ? 'ACTIVE' : 'INACTIVE')}`}
         >
@@ -142,7 +150,7 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
   );
 
   const displayPercentageMaxPayout = (productSettings: ProductSetting[], productId: number) => {
-    const product = productSettings.find((p) => p.productId === productId);
+    const product = productSettings.find((p) => p.productCategoryId === productId);
     if (!product)
       return (
         <td key={productId} className="text-right">
@@ -154,7 +162,7 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
     let displayMaxPayout: number | string = product.maxPayout;
     if (product.unlimited) displayMaxPayout = 'Unlimited';
     return (
-      <td key={product.productId} className="text-right">
+      <td key={product.productCategoryId} className="text-right">
         {product.percentage + '%'}
         <br />
         {displayMaxPayout || ''}

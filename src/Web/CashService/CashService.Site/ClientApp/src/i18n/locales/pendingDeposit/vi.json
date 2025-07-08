@@ -21,7 +21,7 @@
     "loginName": "Tên đăng nhập",
     "firstName": "Tên",
     "lastName": "Họ",
-    "nickname": "Tên biệt danh",
+    "nickname": "Biệt danh",
     "firstLastName": "Tên & Họ",
     "amount": "Số tiền",
     "currency": "Tiền tệ",
@@ -45,7 +45,7 @@
     "loginName": "Tên đăng nhập",
     "firstName": "Tên",
     "lastName": "Họ",
-    "name": "Tên/Họ",
+    "name": "Tên & Họ",
     "betCredit": "Tín dụng cược",
     "from": "Từ",
     "to": "Đến",
@@ -104,9 +104,9 @@
   },
 
   "successMessages": {
-    "depositSubmitted": "Yêu cầu tiền gửi đã được gửi thành công!",
-    "depositUpdated": "Yêu cầu tiền gửi đã được cập nhật thành công!",
-    "depositApproved": "Yêu cầu tiền gửi đã được phê duyệt thành công!",
-    "depositRejected": "Yêu cầu tiền gửi đã bị từ chối thành công!"
+    "depositSubmitted": "Yêu cầu tiền gửi đã được gửi thành công",
+    "depositUpdated": "Yêu cầu tiền gửi đã được cập nhật thành công",
+    "depositApproved": "Yêu cầu tiền gửi đã được phê duyệt thành công",
+    "depositRejected": "Yêu cầu tiền gửi đã bị từ chối thành công"
   }
 }

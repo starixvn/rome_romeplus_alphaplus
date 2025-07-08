@@ -10,7 +10,7 @@ public class ProcessWithdrawalTransaction : BaseActionRequest
     public int ProviderId { get; set; }
     public int PaymentMethodId { get; set; }
     public string Remark { get; set; }
-    public int StatusId { get; set; }
+    public int? StatusId { get; set; }
     public byte[] Payslip { get; set; }
     public bool IsRemovePayslip { get; set; }
 }

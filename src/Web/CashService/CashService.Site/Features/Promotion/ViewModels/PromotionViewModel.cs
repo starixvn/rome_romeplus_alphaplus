@@ -1,6 +1,6 @@
-﻿using AlphaPlus.CashService.Site.Features.Promotions.Models;
+﻿namespace AlphaPlus.CashService.Site.Features.Promotion.ViewModels;
 
-namespace AlphaPlus.CashService.Site.Features.Promotions.ViewModels;
+using Models;
 
 public class PromotionViewModel
 {

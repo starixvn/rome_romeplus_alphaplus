@@ -6,6 +6,7 @@ using AlphaPlus.CashService.API.Features.Transactions.Services;
 using Criteria;
 using Fanex.Data.Repository;
 using Models;
+using Models.PaymentGateway;
 
 public interface IPendingWithdrawalService
 {
@@ -17,12 +18,15 @@ public interface IPendingWithdrawalService
 
     Task<ResultModel> AddManualWithdrawAsync(AddManualWithdrawalModel param);
 
+    Task<ResultModel> ApproveByPaymentGatewayAsync(ProcessWithdrawalTransaction command);
+
     Task<ResultModel> ProcessWithdrawAsync(ProcessWithdrawalTransaction param);
 }
 
 public class PendingWithdrawalService(
     IDynamicRepository dynamicRepository,
-    ITransactionService transactionService) : IPendingWithdrawalService
+    ITransactionService transactionService,
+    IPaymentGatewayService paymentGateway) : IPendingWithdrawalService
 {
     public async Task<decimal> GetCashBalanceAsync(int custId, int siteDbGroupId)
     {
@@ -107,6 +111,62 @@ public class PendingWithdrawalService(
         transactionService.OnAfterUpdateTransaction(command.CashAccumCreditTbl, param.SiteDbGroupId, param.CustDbGroupId, responseLogs.ToList());
 
         return result;
+    }
+
+    public async Task<ResultModel> ApproveByPaymentGatewayAsync(ProcessWithdrawalTransaction command)
+    {
+        var result = new ResultModel(400, "Invalid parameters");
+
+        var transaction = await transactionService.GetTransactionByIdAsync(command.TransId, command.CustId, command.SiteDBGroupId);
+        var parts = transaction?.PaymentTo?.Split('-') ?? [];
+        var bankCode = parts.ElementAtOrDefault(0) ?? string.Empty;
+        var accountNumber = parts.ElementAtOrDefault(1) ?? string.Empty;
+
+        if (transaction is null || !string.IsNullOrWhiteSpace(bankCode) || !string.IsNullOrWhiteSpace(accountNumber))
+        {
+            return result;
+        }
+
+        var model = new WithdrawalBodyRequest
+        {
+            AgentId = command.ActorId,
+            CustId = command.CustId,
+            Amount = transaction.Amount,
+            TransId = command.TransId,
+            ProviderId = command.ProviderId,
+            MemberInfo = new WithdrawalMemberInfo
+            {
+                Name = transaction.Username,
+                BankCode = bankCode,
+                AccountNumber = accountNumber
+            }
+        };
+        try
+        {
+            var response = await paymentGateway.WithdrawalViaPaymentGateway(model);
+
+            if (!response.IsSuccessful)
+            {
+                result.Code = response.Code;
+                result.Message = response.Message;
+                command.StatusId = 0;
+            }
+            else
+            {
+                result = await UpdateProviderTransId(command.TransId, response.Data.ProviderTransId);
+            }
+        }
+        catch (Exception e)
+        {
+            result.Code = 500;
+            result.Message = e.Message;
+        }
+        return result;
+    }
+
+    private async Task<ResultModel> UpdateProviderTransId(long commandTransId, string dataProviderTransId)
+    {
+        throw new NotImplementedException();
     }
 
     public async Task<ResultModel> ProcessWithdrawAsync(ProcessWithdrawalTransaction param)

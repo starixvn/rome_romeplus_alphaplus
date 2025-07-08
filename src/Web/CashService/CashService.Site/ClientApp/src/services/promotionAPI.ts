@@ -1,5 +1,5 @@
 import { axiosInstance, api } from './axios';
-import { Product, PromotionDetail, PromotionParams } from './interfaces/Promotion';
+import { ProductDropdown, PromotionDetail, PromotionParams } from './interfaces/Promotion';
 
 export const promotionService = {
   getPromotion: async (promotionParams: PromotionParams): Promise<PromotionDetail[]> => {
@@ -25,9 +25,9 @@ export const promotionService = {
     return response.data;
   },
 
-  getPromotionProducts: async (): Promise<Product[]> => {
+  getPromotionProducts: async (): Promise<ProductDropdown[]> => {
     try {
-      const response = await axiosInstance.get<Product[]>(`GetPromotionProducts`);
+      const response = await axiosInstance.get<ProductDropdown[]>(`GetPromotionProducts`);
       return response.data;
     } catch (error) {
       console.error('Error fetching promotion products:', error);

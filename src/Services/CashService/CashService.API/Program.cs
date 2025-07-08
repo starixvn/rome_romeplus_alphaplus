@@ -9,6 +9,8 @@ builder.Services
     .AddCashServiceCors(configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? ["*"])
     .AddCashServiceLogging()
     .AddDependencies(configuration)
+    .AddHttpClientService(configuration)
+    .AddConfiguration(configuration)
     .AddControllers();
 
 var app = builder.Build();

@@ -5,7 +5,6 @@ import CustomDropdown from '../../../../../components/CustomDropdownComponent';
 import DateRangePickerComponent from '../../../../../components/DateRangePickerComponent';
 import TreeSelect, { TreeNodeOption } from '../../../../../components/TreeSelect/TreeSelect';
 import { EnableButtonComponent, DisableButtonComponent } from '../../../../../components/Buttons';
-import { Product } from '../../../../../services/interfaces/Promotion';
 
 interface InformationProps {
   isActive: boolean;
@@ -14,11 +13,10 @@ interface InformationProps {
   setPromotionType: (v: number) => void;
   period: [Date | null, Date | null];
   setPeriod: (v: [Date | null, Date | null]) => void;
-  productOptions: Product[];
+  productOptions: TreeNodeOption[];
   selectedProductIds: number[];
   handleProductChange: (values: (string | number)[], highestParents: TreeNodeOption[]) => void;
   PROMOTION_TYPES: { value: number; label: string }[];
-  convertProductToTreeNodeOption: (products: Product[]) => TreeNodeOption[];
 }
 
 const Information: React.FC<InformationProps> = ({
@@ -32,7 +30,6 @@ const Information: React.FC<InformationProps> = ({
   selectedProductIds,
   handleProductChange,
   PROMOTION_TYPES,
-  convertProductToTreeNodeOption,
 }) => (
   <>
     <MediumTitleComponent text="Current Promotion" />
@@ -56,7 +53,7 @@ const Information: React.FC<InformationProps> = ({
     </div>
 
     <div className="flex flex-wrap w-full">
-      <div className="w-[190px] mr-[12px] mb-[12px]">
+      <div className="w-[250px] mr-[12px] mb-[12px]">
         <LabelTitleComponent text="Promotion Type" required={true} />
         <CustomDropdown
           options={PROMOTION_TYPES}
@@ -66,7 +63,7 @@ const Information: React.FC<InformationProps> = ({
         />
       </div>
 
-      <div className="w-[190px] mr-[12px] mb-[12px]">
+      <div className="w-[250px] mr-[12px] mb-[12px]">
         <LabelTitleComponent text="Period" required={true} />
         <DateRangePickerComponent
           value={period}
@@ -76,10 +73,10 @@ const Information: React.FC<InformationProps> = ({
         />
       </div>
 
-      <div className="w-[190px] mr-[12px] mb-[12px]">
+      <div className="w-[250px] mr-[12px] mb-[12px]">
         <LabelTitleComponent text="Provider" required={true} />
         <TreeSelect
-          options={convertProductToTreeNodeOption(productOptions)}
+          options={productOptions}
           value={selectedProductIds}
           onChange={handleProductChange}
         />

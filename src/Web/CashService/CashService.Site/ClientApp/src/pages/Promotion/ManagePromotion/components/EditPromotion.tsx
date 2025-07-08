@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Product,
+  ProductDropdown,
   ProductSetting,
   PromotionRequest,
 } from '../../../../services/interfaces/Promotion';
@@ -35,13 +35,16 @@ export const LANGUAGES = [
   { key: 'vi', label: 'Tiếng Việt', isDefault: false },
 ];
 
-function convertProductToTreeNodeOption(products: Product[]): TreeNodeOption[] {
+function convertProductToTreeNodeOption(products: ProductDropdown[]): TreeNodeOption[] {
   return products.map((product) => ({
-    label: product.productName,
-    value: product.productId,
+    label: product.productCategoryName,
+    value: product.productCategoryId,
     children:
-      product.childProducts && product.childProducts.length > 0
-        ? convertProductToTreeNodeOption(product.childProducts)
+      product.products && product.products.length > 0
+        ? product.products.map((p) => ({
+            label: p.productName,
+            value: p.productId,
+          }))
         : [],
   }));
 }
@@ -53,9 +56,10 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
   const [isActive, setIsActive] = useState<boolean>(true);
   const [promotionType, setPromotionType] = useState<number>(PROMOTION_TYPES[0].value);
   const [period, setPeriod] = useState<[Date | null, Date | null]>([null, null]);
-  const [productOptions, setProductOptions] = useState<Product[]>([]);
+  const [productOptions, setProductOptions] = useState<ProductDropdown[]>([]);
   const [productSettings, setProductSettings] = useState<ProductSetting[]>([]);
   const [selectedProductIds, setSelectedProductIds] = useState<number[]>([]);
+  const [selectedProductCategories, setSelectedProductCategories] = useState<number[]>([]);
   const [activeLang, setActiveLang] = useState(LANGUAGES[0].key);
   const [promotionInfo, setPromotionInfo] = useState<Record<string, PromotionLangFields>>({});
 
@@ -77,7 +81,7 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
           if (promotionData.productSettings) {
             setProductSettings(promotionData.productSettings);
             setSelectedProductIds(
-              promotionData.productSettings.map((p: ProductSetting) => p.productId)
+              promotionData.productSettings.map((p: ProductSetting) => p.productCategoryId)
             );
           }
 
@@ -115,25 +119,12 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
 
   const handleProductChange = (values: (string | number)[], highestParents: TreeNodeOption[]) => {
     setSelectedProductIds(values.map((v) => v as number));
-    setProductSettings(
-      productOptions
-        .filter((p) => highestParents.some((h) => h.value === p.productId))
-        .map((p) => ({
-          productId: p.productId,
-          productName: p.productName,
-          isSelected: p.isSelected,
-          childProducts: p.childProducts,
-          percentage: 0,
-          minTurnover: 0,
-          maxPayout: 0,
-          unlimited: false,
-        }))
-    );
+    setSelectedProductCategories(highestParents.map((h) => h.value as number));
   };
 
   const handleProductFieldChange = (productId: number, field: string, value: number | boolean) => {
     setProductSettings((prev) =>
-      prev.map((p) => (p.productId === productId ? { ...p, [field]: value } : p))
+      prev.map((p) => (p.productCategoryId === productId ? { ...p, [field]: value } : p))
     );
   };
 
@@ -207,15 +198,15 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
             setPromotionType={setPromotionType}
             period={period}
             setPeriod={setPeriod}
-            productOptions={productOptions}
+            productOptions={convertProductToTreeNodeOption(productOptions)}
             selectedProductIds={selectedProductIds}
             handleProductChange={handleProductChange}
             PROMOTION_TYPES={PROMOTION_TYPES}
-            convertProductToTreeNodeOption={convertProductToTreeNodeOption}
           />
         </div>
         <ProductSettings
-          productSettings={productSettings}
+          productCategories={productSettings}
+          selectedProductCategories={selectedProductCategories}
           handleProductFieldChange={handleProductFieldChange}
         />
 

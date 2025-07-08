@@ -85,7 +85,7 @@
     "memberBankSelectionRequired": "까지는 필수입니다",
     "amountRangeError": "금액은 0보다 크고 회원의 현금 잔액 이하여야 합니다",
     "imageSizeError": "이미지 크기는 1MB 미만이어야 합니다",
-    "addWithdrawalSuccess": "출금 추가 성공!!!",
+    "addWithdrawalSuccess": "출금 추가 성공",
     "memberCashBalance": "회원 현금 잔액",
     "minAmount": "최소",
     "maxAmount": "최대",
@@ -124,9 +124,9 @@
   },
 
   "successMessages": {
-    "withdrawalSubmitted": "출금 요청 제출 성공",
-    "withdrawalUpdated": "출금 업데이트 성공",
-    "withdrawalApproved": "출금 승인 성공",
-    "withdrawalRejected": "출금 거부 성공"
+    "withdrawalSubmitted": "출금 요청이 성공적으로 제출되었습니다",
+    "withdrawalUpdated": "출금 요청이 성공적으로 업데이트되었습니다",
+    "withdrawalApproved": "출금 요청이 성공적으로 승인되었습니다",
+    "withdrawalRejected": "출금 요청이 성공적으로 거부되었습니다"
   }
 }

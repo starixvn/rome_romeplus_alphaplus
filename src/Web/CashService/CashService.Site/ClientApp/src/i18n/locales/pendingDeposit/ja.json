@@ -35,8 +35,8 @@
     "reject": "拒否",
     "process": "処理",
     "viewDetails": "詳細を表示",
-    "loading": "入金保留中のデータを読み込み中...",
-    "noDepositsFound": "入金保留中のデータが見つかりません"
+    "loading": "入金保留中を読み込み中...",
+    "noDepositsFound": "入金保留が見つかりません"
   },
 
   "pendingDepositModal": {
@@ -65,7 +65,7 @@
 
   "manualDepositForm": {
     "title": "手動入金を追加",
-    "accountInformation": "アカウント情報",
+    "accountInformation": "口座情報",
     "memberLoginName": "メンバーログイン名",
     "from": "から",
     "to": "まで",
@@ -76,14 +76,14 @@
     "dragAndDrop": "またはドラッグ＆ドロップ",
     "imageFormat": "jpeg、jpg、pngをアップロード",
     "maxSize": "最大1MB",
-    "viewFullSize": "原寸大で表示",
+    "viewFullSize": "全画面表示",
     "removeImage": "画像を削除",
     "cancel": "キャンセル",
     "approve": "承認",
     "approving": "承認中...",
     "agentAvailableCredit": "エージェント利用可能クレジット",
     "amountMustBeGreaterThan0AndLessThanMaxLimit": "金額は0より大きく、エージェント利用可能クレジット未満である必要があります。",
-    "imageSizeError": "画像は1MB未満である必要があります",
+    "imageSizeError": "画像サイズは1MB未満である必要があります",
     "memberLoginNameRequired": "メンバーログイン名は必須です。",
     "agentBankSelectionRequired": "からは必須です。",
     "memberBankSelectionRequired": "までは必須です。",
@@ -104,9 +104,9 @@
   },
 
   "successMessages": {
-    "depositSubmitted": "入金リクエストの送信に成功しました！",
-    "depositUpdated": "入金リクエストの更新に成功しました！",
-    "depositApproved": "入金リクエストの承認に成功しました！",
-    "depositRejected": "入金リクエストの拒否に成功しました！"
+    "depositSubmitted": "入金リクエストが正常に送信されました",
+    "depositUpdated": "入金リクエストが正常に更新されました",
+    "depositApproved": "入金リクエストが正常に承認されました",
+    "depositRejected": "入金リクエストが正常に拒否されました"
   }
 }

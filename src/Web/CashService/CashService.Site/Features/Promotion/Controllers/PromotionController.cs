@@ -5,10 +5,12 @@ using Fanex.Customer.Client.Services;
 using Helpers;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
+using Models;
+using Models.Products;
+using Models.PromotionItems;
+using Services;
 using Shared;
 using Shared.Filters;
-using AlphaPlus.CashService.Site.Features.Promotion.Models;
-using AlphaPlus.CashService.Site.Features.Promotion.Services;
 using AlphaPlus.CashService.Site.Features.Promotion.Requests;
 using AlphaPlus.CashService.Site.Features.Shared.Requests;
 
@@ -24,8 +26,6 @@ public class PromotionController(
     IPromotionDetailsReportWorkbook promotionDetailsReportWorkbook) : SiteBaseController(userSession, antiforgery, httpClient, customerService)
 {
     private readonly string _apiBaseUrl = configuration["CashService:APIUrl"];
-    private readonly IPromotionReportWorkbook promotionReportWorkbook = promotionReportWorkbook;
-    private readonly IPromotionDetailsReportWorkbook promotionDetailsReportWorkbook = promotionDetailsReportWorkbook;
 
     public IActionResult Index() => View();
 
@@ -97,7 +97,7 @@ public class PromotionController(
     {
         var url = $"/promotions/get?promotionTypeId={promotionTypeId}&statusId={statusId}&custId={userSession.CustId}";
 
-        var result = await httpClientHelper.GetAsync<object>(url);
+        var result = await httpClientHelper.GetAsync<Promotion>(url);
 
         return Json(result);
     }
@@ -114,8 +114,15 @@ public class PromotionController(
     public async Task<IActionResult> GetPromotionProducts()
     {
         var url = "/promotions/products";
-        var result = await httpClientHelper.GetAsync<object>(url);
-        return Json(result);
+        var products = await httpClientHelper.GetAsync<List<Product>>(url);
+        var productCategoryList = products.GroupBy(p => p.ProductCategoryId).Select(g
+            => new ProductDropdown
+            {
+                ProductCategoryId = g.Key,
+                Products = g.ToList()
+            });
+
+        return Json(productCategoryList);
     }
 
     [HttpPost]

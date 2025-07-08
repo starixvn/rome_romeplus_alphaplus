@@ -1,5 +1,9 @@
 namespace AlphaPlus.CashService.API.Extensions;
 
+using System.Net;
+using AlphaPlus.CashService.API.Features.PendingWithdrawal.Services;
+using AlphaPlus.CashService.API.Features.Shared.Constants;
+using AlphaPlus.CashService.API.Features.Shared.Models;
 using Fanex.Data.Repository;
 using Fanex.Data.SqlServer;
 using Fanex.RemotingRef;
@@ -30,6 +34,7 @@ public static class DependencyInjectionExtensions
         services.AddScoped<ITransactionService, TransactionService>();
         services.AddScoped<IPromotionService, PromotionService>();
         services.AddScoped<IBankService, BankService>();
+        services.AddScoped<PaymentGatewayService, PaymentGatewayService>();
 
         return services;
     }
@@ -42,5 +47,23 @@ public static class DependencyInjectionExtensions
 
         services.AddSingleton<IRemotingRefService, RemotingRefService>();
         services.AddSingleton<ICacheRefService, CacheRefService>();
+    }
+
+    public static IServiceCollection AddConfiguration(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddSingleton(configuration.GetSection("ProxySettings").Get<ProxySettings>());
+
+        return services;
+    }
+
+    public static IServiceCollection AddHttpClientService(this IServiceCollection services, IConfiguration configuration)
+    {
+        var proxySettings = configuration.GetSection("ProxySettings").Get<ProxySettings>();
+        services.AddHttpClient(HttpClientName.ProxyHttpClient).ConfigurePrimaryHttpMessageHandler(() => new SocketsHttpHandler
+        {
+            UseProxy = proxySettings.IsUseProxy,
+            Proxy = new WebProxy(proxySettings.ProxyAddress, proxySettings.BypassOnLocal)
+        });
+        return services;
     }
 }

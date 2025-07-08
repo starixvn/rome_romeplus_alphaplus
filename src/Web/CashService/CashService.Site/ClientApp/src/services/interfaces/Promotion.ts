@@ -34,14 +34,19 @@ export interface PromotionParams {
   status: number;
 }
 
-export interface Product {
-  productId: number;
-  productName: string;
-  isSelected: boolean;
-  childProducts: Product[];
+export interface ProductDropdown {
+  productCategoryId: number;
+  productCategoryName: string;
+  products: Product[];
 }
 
-export interface ProductSetting extends Product {
+export interface Product {
+  productCategoryId: number;
+  productId: number;
+  productName: string;
+}
+
+export interface ProductSetting extends ProductDropdown {
   percentage: number;
   minTurnover: number;
   maxPayout: number;

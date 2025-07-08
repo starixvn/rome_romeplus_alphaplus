@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Product,
+  ProductDropdown,
   ProductSetting,
   PromotionRequest,
 } from '../../../../services/interfaces/Promotion';
@@ -34,13 +34,16 @@ export const LANGUAGES = [
   { key: 'vi', label: 'Tiếng Việt', isDefault: false },
 ];
 
-function convertProductToTreeNodeOption(products: Product[]): TreeNodeOption[] {
+function convertProductToTreeNodeOption(products: ProductDropdown[]): TreeNodeOption[] {
   return products.map((product) => ({
-    label: product.productName,
-    value: product.productId,
+    label: product.productCategoryName,
+    value: product.productCategoryId,
     children:
-      product.childProducts && product.childProducts.length > 0
-        ? convertProductToTreeNodeOption(product.childProducts)
+      product.products && product.products.length > 0
+        ? product.products.map((p) => ({
+            label: p.productName,
+            value: p.productId,
+          }))
         : [],
   }));
 }
@@ -57,9 +60,10 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
   nextWeek.setDate(today.getDate() + 7);
   const [period, setPeriod] = useState<[Date | null, Date | null]>([today, nextWeek]);
 
-  const [productOptions, setProductOptions] = useState<Product[]>([]);
+  const [productOptions, setProductOptions] = useState<ProductDropdown[]>([]);
   const [productSettings, setProductSettings] = useState<ProductSetting[]>([]);
   const [selectedProductIds, setSelectedProductIds] = useState<number[]>([]);
+  const [selectedProductCategories, setSelectedProductCategories] = useState<number[]>([]);
   const [activeLang, setActiveLang] = useState(LANGUAGES[0].key);
   const [promotionInfo, setPromotionInfo] = useState<Record<string, PromotionLangFields>>({});
 
@@ -67,31 +71,29 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
     promotionService.getPromotionProducts().then((apiProducts) => {
       if (apiProducts && apiProducts.length > 0) {
         setProductOptions(apiProducts);
+        setProductSettings(
+          apiProducts.map((p) => ({
+            productCategoryId: p.productCategoryId,
+            productCategoryName: p.productCategoryName,
+            products: p.products,
+            percentage: 0,
+            minTurnover: 0,
+            maxPayout: 0,
+            unlimited: false,
+          }))
+        );
       }
     });
   }, []);
 
   const handleProductChange = (values: (string | number)[], highestParents: TreeNodeOption[]) => {
     setSelectedProductIds(values.map((v) => v as number));
-    setProductSettings(
-      productOptions
-        .filter((p) => highestParents.some((h) => h.value === p.productId))
-        .map((p) => ({
-          productId: p.productId,
-          productName: p.productName,
-          isSelected: p.isSelected,
-          childProducts: p.childProducts,
-          percentage: 0,
-          minTurnover: 0,
-          maxPayout: 0,
-          unlimited: false,
-        }))
-    );
+    setSelectedProductCategories(highestParents.map((h) => h.value as number));
   };
 
   const handleProductFieldChange = (productId: number, field: string, value: number | boolean) => {
     setProductSettings((prev) =>
-      prev.map((p) => (p.productId === productId ? { ...p, [field]: value } : p))
+      prev.map((p) => (p.productCategoryId === productId ? { ...p, [field]: value } : p))
     );
   };
 
@@ -148,16 +150,16 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
             setPromotionType={setPromotionType}
             period={period}
             setPeriod={setPeriod}
-            productOptions={productOptions}
+            productOptions={convertProductToTreeNodeOption(productOptions)}
             selectedProductIds={selectedProductIds}
             handleProductChange={handleProductChange}
             PROMOTION_TYPES={PROMOTION_TYPES}
-            convertProductToTreeNodeOption={convertProductToTreeNodeOption}
           />
         </div>
         <ProductSettings
-          productSettings={productSettings}
+          productCategories={productSettings}
           handleProductFieldChange={handleProductFieldChange}
+          selectedProductCategories={selectedProductCategories}
         />
 
         <PromotionInfo
