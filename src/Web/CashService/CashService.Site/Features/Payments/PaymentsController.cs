@@ -235,6 +235,8 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         private async Task<bool> ValidatePaymentMethod(ValidatePaymentMethodRequest request, CancellationToken cancellationToken)
         {
             try {
+                Console.WriteLine($"ValidatePaymentMethod: {request.ProviderId}, {request.TransactionType}, {request.Method}, {request.MerchantID}, {request.APIMethodKey}, {request.AppSecret}");
+
                 var url = $"{_twAPIUrl}/PaymentGateway/TestConnection";
                 var twRequest = new {
                     ProviderId = request.ProviderId,
@@ -249,9 +251,11 @@ namespace AlphaPlus.CashService.Site.Features.Payments
                 var response = await _httpClient.PostAsJsonAsync(url, twRequest, cancellationToken);
                 response.EnsureSuccessStatusCode();
                 var result = await response.Content.ReadFromJsonAsync<TWAPIResultModel>(cancellationToken: cancellationToken);
+                Console.WriteLine($"ValidatePaymentMethod Result: {result.Code}, {result.Message}");
                 return result.Code == 0;
             } catch (Exception ex) {
                 await _logger.ErrorAsync(ex.Message, ex);
+                Console.WriteLine($"ValidatePaymentMethod Error: {ex.Message}");
                 return false;
             }
         }
