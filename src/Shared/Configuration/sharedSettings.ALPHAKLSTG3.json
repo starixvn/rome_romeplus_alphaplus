@@ -1,4 +1,4 @@
-{
+﻿{
     "Logging": {
         "LogLevel": {
             "Default": "Information",
@@ -9,77 +9,77 @@
     "ConnectionStrings": [
         {
             "Name": "DBGLOB.GlobCustDB.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=dbcust.dp.gamora.prod,7105;Initial Catalog=GLOBCUSTDB;integrated security=false; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==; TrustServerCertificate=true",
+            "ConnectionString": "packet size=4096; Data Source=dbcust.gamora.prod;Initial Catalog=GLOBCUSTDB;integrated security=false; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==; TrustServerCertificate=true",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "DBACC.bodb02.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=db061.dp.gamora.prod,7114;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "packet size=4096; Data Source=db061.gamora.prod;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "DBAGE.bodb02.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=db052.dp.gamora.prod,7109;Initial Catalog=bodb02;Connect Timeout=600;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "packet size=4096; Data Source=db052.gamora.prod;Initial Catalog=bodb02;Connect Timeout=600;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "DBARC.bodb_Archive.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=db061.dp.gamora.prod,7114;Initial Catalog=bodb_archive;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "packet size=4096; Data Source=db061.gamora.prod;Initial Catalog=bodb_archive;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "DBBAH.bodb02.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=db05.dp.gamora.prod,7108;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "packet size=4096; Data Source=db05.gamora.prod;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "DBBOF.bodb02.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=db055.dp.gamora.prod,7112;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "packet size=4096; Data Source=db055.gamora.prod;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "DBCust.CustDB.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=dbcust.dp.gamora.prod,7105;Initial Catalog=CustDB;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "packet size=4096; Data Source=dbcust.gamora.prod;Initial Catalog=CustDB;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "DBCust.IPDB.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=dbcust.dp.gamora.prod,7105;Initial Catalog=IPDB;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "packet size=4096; Data Source=dbcust.gamora.prod;Initial Catalog=IPDB;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "DBLOG.bodb_CustomerLog.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=db055.dp.gamora.prod,7112;Initial Catalog=bodb_CustomerLog;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "packet size=4096; Data Source=db055.gamora.prod;Initial Catalog=bodb_CustomerLog;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "DBONUSER.ON_USER.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=db05.dp.gamora.prod,7108;Initial Catalog=on_user;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "packet size=4096; Data Source=db05.gamora.prod;Initial Catalog=on_user;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "DBRPT.bodb_report.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=db061.dp.gamora.prod,7114;Initial Catalog=bodb_report;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "packet size=4096; Data Source=db061.gamora.prod;Initial Catalog=bodb_report;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "DBTXN.bodb02.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=dbcust.dp.gamora.prod,7104;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "packet size=4096; Data Source=dbcust.gamora.prod;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "DBPOL.NAP_UserControl.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=dbcust.dp.gamora.prod,7105;Initial Catalog=NAP_UserControl;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "packet size=4096; Data Source=dbcust.gamora.prod;Initial Catalog=NAP_UserControl;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "DBOST.bodb_ost.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=db055.dp.gamora.prod,7112;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "packet size=4096; Data Source=db055.gamora.prod;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "DBBOT.bodb_Chatbot.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=db055.dp.gamora.prod,7112;Initial Catalog=bodb_Chatbot;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "packet size=4096; Data Source=db055.gamora.prod;Initial Catalog=bodb_Chatbot;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
@@ -89,37 +89,37 @@
         },
         {
             "Name": "DBMSG.bodb_Message.wsv_alp",
-            "ConnectionString": "Data Source=dbmessage.dp.gamora.prod,7125;Initial Catalog=bodb_message;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "Data Source=dbmessage.gamora.prod;Initial Catalog=bodb_message;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "DBAGE.bodb_AGE.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=db052.dp.gamora.prod,7109;Initial Catalog=bodb_AGE;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "packet size=4096; Data Source=db052.gamora.prod;Initial Catalog=bodb_AGE;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "DBCust.bodb_Credit.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=dbcust.dp.gamora.prod,7105;Initial Catalog=bodb_Credit;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "packet size=4096; Data Source=dbcust.gamora.prod;Initial Catalog=bodb_Credit;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "DB052.bodb02.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=db052.dp.gamora.prod,7109;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "packet size=4096; Data Source=db052.gamora.prod;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "DB053.bodb02.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=db052.dp.gamora.prod,7109;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "packet size=4096; Data Source=db052.gamora.prod;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "SiteDB.CustDB.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=dbcust.dp.gamora.prod,7105;Initial Catalog=CustDB;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "packet size=4096; Data Source=dbcust.gamora.prod;Initial Catalog=CustDB;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "DBCRM.bodb_CRM.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=db052.dp.gamora.prod,7109;Initial Catalog=bodb_CRM;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "packet size=4096; Data Source=db052.gamora.prod;Initial Catalog=bodb_CRM;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         }
     ],
@@ -170,7 +170,7 @@
         "IBCINDO"
     ],
     "AllowedSitesToShareLoad": {
-        "db052.dp.gamora.prod,7109": "y889,y789,yut,yOther"
+        "db052.gamora.prod": "y889,y789,yut,yOther"
     },
     "AlphaPlus.NetThrottling": {
         "Resolver": "HttpError",
