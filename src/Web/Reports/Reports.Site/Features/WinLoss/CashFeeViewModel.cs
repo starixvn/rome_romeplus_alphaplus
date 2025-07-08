@@ -12,7 +12,7 @@ IEnumerable<Reports.Features.Shared.Models.Breadcrumb> breadcrumbs)
 {
     public PageHeaderViewModel PageHeader { get; } = new PageHeaderViewModel(
         Title: GetCashFeeTitle(),
-        IsFilterVisible: false);
+        HasHideFilterIcon: false);
 
     public IEnumerable<Reports.Features.Shared.Models.Breadcrumb> Breadcrumbs { get; } = breadcrumbs;
 

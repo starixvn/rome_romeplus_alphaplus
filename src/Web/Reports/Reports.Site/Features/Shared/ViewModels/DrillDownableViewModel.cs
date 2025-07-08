@@ -109,6 +109,7 @@ public abstract class DrillDownableViewModel<T> where T : class
         var queryParams = new Dictionary<string, string>
         {
             [nameof(custId)] = custId.ToString(),
+            [nameof(CustName)] = CustName,
             ["CustLevelId"] = CustLevel.Value.ToString(),
             [nameof(breadCrumbsJson)] = breadCrumbsJson
         };
