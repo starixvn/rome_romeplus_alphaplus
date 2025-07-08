@@ -245,11 +245,11 @@ namespace AlphaPlus.CashService.Site.Features.Payments
                     ProviderId = request.ProviderId,
                     TransactionType = request.TransactionType,
                     PaymentMethod = request.Method,
-                    APIConfig = Newtonsoft.Json.JsonConvert.SerializeObject(new {
+                    APIConfig = new {
                         MerchantNo = request.MerchantID,
                         SecretKey = request.APIMethodKey,
                         AppSecret = request.AppSecret
-                    })
+                    }
                 };
 
                 Console.WriteLine($"ValidatePaymentMethod Request: {Newtonsoft.Json.JsonConvert.SerializeObject(twRequest)}");
