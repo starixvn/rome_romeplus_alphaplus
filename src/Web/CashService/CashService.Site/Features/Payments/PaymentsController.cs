@@ -246,7 +246,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
                     TransactionType = request.TransactionType,
                     PaymentMethod = request.Method,
                     APIConfig = Newtonsoft.Json.JsonConvert.SerializeObject(new {
-                        MerchantName = request.MerchantID,
+                        MerchantNo = request.MerchantID,
                         SecretKey = request.APIMethodKey,
                         AppSecret = request.AppSecret
                     })
