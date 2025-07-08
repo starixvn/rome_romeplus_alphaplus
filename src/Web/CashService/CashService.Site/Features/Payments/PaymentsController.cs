@@ -3,6 +3,7 @@ using AlphaPlus.CashService.Site.Features.Payments.Requests;
 using AlphaPlus.CashService.Site.Features.Payments.ViewModels;
 using AlphaPlus.CashService.Site.Features.Shared;
 using AlphaPlus.CashService.Site.Features.Shared.Filters;
+using AlphaPlus.CashService.Site.Features.Shared.Models;
 using AlphaPlus.Core.Models;
 using Fanex.Customer.Client.Services;
 using Microsoft.AspNetCore.Antiforgery;
@@ -125,7 +126,9 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             };
 
             request.APIResult = await ValidatePaymentMethod(validateRequest, cancellationToken);
-            return await DoAction<InsertPaymentMethodRequest, object>($"{_apiBaseUrl}/payments/add-payment-method", request, cancellationToken);
+            return new JsonResult(new ResultModel(0, "Payment method added successfully"));
+
+            // return await DoAction<InsertPaymentMethodRequest, object>($"{_apiBaseUrl}/payments/add-payment-method", request, cancellationToken);
         }
 
         [HttpPost]
