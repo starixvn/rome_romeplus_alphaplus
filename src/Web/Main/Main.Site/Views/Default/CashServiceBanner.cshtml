@@ -1,8 +1,8 @@
 <style>
     .cash-service-banner {
         background-color: #f9f1b7;
-        padding: 11px 24px;
-        font-size: 14px;
+        padding: 6px 24px;
+        font-size: 13px;
         display: flex;
         align-items: center;
         gap: 10px;
@@ -16,10 +16,13 @@
         font-weight: 600;
         position: absolute;
         top: 0;     
-        left: -72px;
+        left: -55px;
     }  
     .cash-service-banner .image {
         display: block;
+    }
+    .cash-service-banner .image img{
+        height: 50px;
     }
     .cash-service-banner .highlight {
         top: 0;
@@ -28,27 +31,25 @@
         left: 0;
         position: absolute;
         font-weight: 700;
-        font-size: 18px;
-        padding-left: 110px;
-        padding-top: 16px;
+        font-size: 13px;
+        padding-left: 78px;
+        padding-top: 11px;
     }
     .cash-service-banner .cash-service-banner-content{
         display: flex;
         align-items: center;
-        margin-left: 260px;
+        margin-left: 170px;
     }
-    .cash-service-banner .message {
-        font-weight: 600;
-        font-size: 16px;
+    .cash-service-banner .message {        
         margin-right: 8px;
+        font-weight: bold;
     }
     .cash-service-banner .banner-btn {
         background: #16396b;
         color: #fff;
         border: none;
         border-radius: 16px;
-        padding: 6px 24px;
-        font-weight: bold;
+        padding: 4px 15px;        
         margin-right: 8px;
         cursor: pointer;
         transition: background 0.2s;
@@ -57,11 +58,12 @@
         background: #f5f8fa;
         color: #16396b;
         border: 1px solid #16396b;
+        font-weight: bold;
     }
     @@media (max-width: 768px) {
         .cash-service-banner{
             margin-left: 0;
-            padding: 10px;
+            padding: 5px 10px ;
         }
         .cash-service-banner .background{
             display: none;
