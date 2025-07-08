@@ -162,7 +162,7 @@
 				{
 					if (isCashFee)
 					{
-						<a href="javascript:;" class="open-link cash-fee-link" data-url="@Model.BuildCashFeeUrl(data.CustId)">@data.CustName</a>
+						<a href="javascript:;" class="open-link cash-fee-link" data-url="@Model.BuildCashFeeUrl(data.CustId, Model.PageHeader.BreadcrumbLevel.BreadcrumbsJson)">@data.CustName</a>
 					}
 					else
 					{

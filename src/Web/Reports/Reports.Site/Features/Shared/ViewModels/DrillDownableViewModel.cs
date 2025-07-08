@@ -104,11 +104,13 @@ public abstract class DrillDownableViewModel<T> where T : class
         return $"{betListPath}{QueryString.Create(AddMoreBetListParams(queryParams))}";
     }
 
-    public string BuildCashFeeUrl(int custId)
+    public string BuildCashFeeUrl(int custId, string breadCrumbsJson)
     {
         var queryParams = new Dictionary<string, string>
         {
             [nameof(custId)] = custId.ToString(),
+            ["CustLevelId"] = CustLevel.Value.ToString(),
+            [nameof(breadCrumbsJson)] = breadCrumbsJson
         };
 
         return $"{cashFeePath}{QueryString.Create(AddMoreCashFeeParams(queryParams))}";

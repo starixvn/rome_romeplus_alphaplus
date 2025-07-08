@@ -11,16 +11,16 @@ CashFeeModel cashFeeModel,
 IEnumerable<Reports.Features.Shared.Models.Breadcrumb> breadcrumbs)
 {
     public PageHeaderViewModel PageHeader { get; } = new PageHeaderViewModel(
-        Title: GetCashFeeTitle(message),
-        IsFilterVisible: message.IsFilterVisible);
+        Title: GetCashFeeTitle(),
+        IsFilterVisible: false);
 
     public IEnumerable<Reports.Features.Shared.Models.Breadcrumb> Breadcrumbs { get; } = breadcrumbs;
 
     public CashFeeModel CashFee { get; } = cashFeeModel;
 
-    private static string GetCashFeeTitle(CashFeeGetDataQuery message)
+    private static string GetCashFeeTitle()
     {
-        return $"{message.CustName} - {Resources.CashServiceBilling.ToUpper()}";
+        return Resources.CashServiceBilling.ToUpper();
     }
 
     public IDictionary<string, string> GetExcelParams()
