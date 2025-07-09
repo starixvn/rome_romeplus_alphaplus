@@ -204,9 +204,6 @@
   <data name="None" xml:space="preserve">
     <value>Bỏ Chọn</value>
   </data>
-  <data name="NotFilter" xml:space="preserve">
-    <value>Không dùng</value>
-  </data>
   <data name="Of" xml:space="preserve">
     <value>/</value>
   </data>
@@ -257,6 +254,9 @@
   </data>
   <data name="View" xml:space="preserve">
     <value>Xem</value>
+  </data>
+  <data name="NotFilter" xml:space="preserve">
+    <value>Không dùng</value>
   </data>
   <data name="AllowDoubleCommission" xml:space="preserve">
     <value>Cho phép Nhân đôi hoa hồng</value>

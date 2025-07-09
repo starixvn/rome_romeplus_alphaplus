@@ -22,6 +22,7 @@ class CustomerList {
     private doubleCommDropdown: SingleSelectionDropdownComponent;
     private allowAutoTransferDropdown: SingleSelectionDropdownComponent;
     private levelComponent: SingleSelectionDropdownComponent;
+    private serviceTypeComponent: SingleSelectionDropdownComponent;
 
     constructor(
         $: JQueryStatic,
@@ -31,7 +32,8 @@ class CustomerList {
         statusDropdown: SingleSelectionDropdownComponent,
         doubleCommDropdown: SingleSelectionDropdownComponent,
         allowAutoTransferDropdown: SingleSelectionDropdownComponent,
-        levelComponent: SingleSelectionDropdownComponent
+        levelComponent: SingleSelectionDropdownComponent,
+        serviceTypeComponent: SingleSelectionDropdownComponent
     ) {
         this.$ = $;
         this.viewModel = viewModel;
@@ -42,6 +44,7 @@ class CustomerList {
         this.doubleCommDropdown = doubleCommDropdown;
         this.allowAutoTransferDropdown = allowAutoTransferDropdown;
         this.levelComponent = levelComponent;
+        this.serviceTypeComponent = serviceTypeComponent;
     }
 
     public init = () => {
@@ -56,6 +59,7 @@ class CustomerList {
         );
 
         this.levelComponent.render(new SingleSelectionDropdownOption('dropdown-level-type', 'HiddenLevelType'));
+        this.serviceTypeComponent.render(new SingleSelectionDropdownOption('serviceType'));
 
         this.bindingTxtUsername();
         this.customerListDataTable.bindingEvent();
@@ -126,7 +130,8 @@ $(function () {
         JSON.parse($('#canViewReport').val()),
         JSON.parse($('#canUpdateAccount').val()),
         window.customerListData,
-        JSON.parse($('#IsDirectMember').val())
+        JSON.parse($('#IsDirectMember').val()),
+        parseInt($('#serviceType').val())
     );
 
     const customerListPopup = new CustomerListPopup($, window.top, viewModel.IsMobileView),
@@ -157,6 +162,7 @@ $(function () {
             viewModel,
             customerListPopup,
             customerListDataTable,
+            new SingleSelectionDropdownComponent($),
             new SingleSelectionDropdownComponent($),
             new SingleSelectionDropdownComponent($),
             new SingleSelectionDropdownComponent($),

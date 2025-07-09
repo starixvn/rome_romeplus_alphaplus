@@ -101,6 +101,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                     PageIndex = message.PageIndex,
                     PageSize = message.PageSize,
                     AllowAutoTransfer = message.AllowAutoTransfer,
+                    ServiceType = message.ServiceType,
                     LevelType = message.LevelType
                 },
                 cancellation
@@ -134,6 +135,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                     message.LimitedDateToShowInfo,
                     message.ShowNickname,
                     message.AllowAutoTransfer,
+                    message.ServiceType,
                     message.LevelType == 2);
 
             return new CustomerListPagingViewModel(await customerListService.GetCustomerList(param), message, ipService);

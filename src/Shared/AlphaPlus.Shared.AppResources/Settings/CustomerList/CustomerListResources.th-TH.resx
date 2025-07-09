@@ -204,9 +204,6 @@
   <data name="None" xml:space="preserve">
     <value>ไม่ใช่</value>
   </data>
-  <data name="NotFilter" xml:space="preserve">
-    <value>Not Filter</value>
-  </data>
   <data name="Of" xml:space="preserve">
     <value>ของ</value>
   </data>
@@ -258,6 +255,9 @@
   <data name="View" xml:space="preserve">
     <value>ดู</value>
   </data>
+  <data name="NotFilter" xml:space="preserve">
+    <value>Not Filter</value>
+  </data>
   <data name="AllowDoubleCommission" xml:space="preserve">
     <value>อนุญาติดับเบิลคอมมิชชั่น</value>
   </data>
@@ -303,10 +303,10 @@
   <data name="UnlockTooltip" xml:space="preserve">
     <value>คลิกเพื่อปลดล็อก</value>
   </data>
-  <data name="Enabled" xml:space="preserve">
-    <value>เปิดใช้งาน</value>
-  </data>
   <data name="AutoTransfer" xml:space="preserve">
     <value>โอนอัตโนมัติ</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>เปิดใช้งาน</value>
   </data>
 </root>

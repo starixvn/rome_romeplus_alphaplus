@@ -9,5 +9,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
         public IEnumerable<CustInfo> BreadcrumbLevel { get; set; } = [];
 
         public byte LevelType { get; set; } = 1;
+
+        public byte ServiceType { get; set; } = 2;
     }
 }

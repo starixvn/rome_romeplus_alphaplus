@@ -240,4 +240,10 @@
   <data name="Approved" xml:space="preserve">
     <value>Approved</value>
   </data>
+  <data name="AccountType" xml:space="preserve">
+    <value>Account Type</value>
+  </data>
+  <data name="MemberListNoteEditMultipleNotAvailable" xml:space="preserve">
+    <value>Editing multiple customers isn't available if Account Type is 'All'.</value>
+  </data>
 </root>

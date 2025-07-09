@@ -240,4 +240,10 @@
   <data name="Approved" xml:space="preserve">
     <value />
   </data>
+  <data name="AccountType" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MemberListNoteEditMultipleNotAvailable" xml:space="preserve">
+    <value />
+  </data>
 </root>

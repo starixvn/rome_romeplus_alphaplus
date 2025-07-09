@@ -79,6 +79,15 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account Type.
+        /// </summary>
+        public static string AccountType {
+            get {
+                return ResourceManager.GetString("AccountType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred while processing withdrawal request..
         /// </summary>
         public static string AnErrorOccurredWhileProcessingWithdrawalRequest {
@@ -183,6 +192,15 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         public static string MemberCashBalanceIsInsufficient {
             get {
                 return ResourceManager.GetString("MemberCashBalanceIsInsufficient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Editing multiple customers isn&apos;t available if Account Type is &apos;All&apos;..
+        /// </summary>
+        public static string MemberListNoteEditMultipleNotAvailable {
+            get {
+                return ResourceManager.GetString("MemberListNoteEditMultipleNotAvailable", resourceCulture);
             }
         }
         
