@@ -34,7 +34,7 @@
             <Mapping DataField="RequiresBank" ObjectProperty="BankRequired"></Mapping>
         </Setting>
         <Setting Key="Age_CashService_PaymentProvider_Ins" SpName="Age_CashService_PaymentProvider_Ins" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
-        <Setting Key="Age_CashService_PaymentMethod_Config" SpName="Age_CashService_PaymentMethod_Config" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="Age_CashService_PaymentMethod_Config" SpName="Age_CashService_PaymentMethod_Config_UAT2" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
         <Setting Key="Age_CashService_BankList" SpName="Age_CashService_BankList" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="BankID" ObjectProperty="Id"></Mapping>
             <Mapping DataField="Bankcode" ObjectProperty="Code"></Mapping>

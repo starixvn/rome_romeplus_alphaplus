@@ -13,7 +13,7 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
         [SpParam(SqlParamName = "PaymentMethodID")]
         public int Method { get; } = request.Method;
 
-        [SpParam(Ignored = true)]
+        [SpParam(SqlParamName = "PaymentMethodStatus")]
         public bool APIResult { get; } = request.APIResult;
         
         public string APIConfig { get; } = request.GetAPIConfigJson();
